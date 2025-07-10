@@ -331,37 +331,51 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 // Remote smite
 /datum/tgs_chat_command/remote_smite
 	name = "smite"
-	help_text = "allows admins to remotely smite players. Usage: smite \[bsa, lightning, pie\] name"
+	help_text = "allows admins to remotely smite players. Usage: smite \[bsa, lightning, pie, gib, dust\] name"
 	admin_only = TRUE
 
 /datum/tgs_chat_command/remote_smite/Run(datum/tgs_chat_user/sender, params)
 	var/list/message_as_list = splittext(params, " ")
 	if(!LAZYLEN(message_as_list))
-		return "```Invalid command usage: smite \[bsa, lightning, pie\] name```"
+		return "```Invalid command usage: smite \[bsa, lightning, pie, gib, dust\] name```"
 	var/smite_name = message_as_list[1]
 	if(!istext(smite_name))
 		return "```First param must be the smite name.```"
 
 	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
-		return "```Invalid command usage: smite \[bsa, lightning, pie\] name```"
+		return "```Invalid command usage: smite \[bsa, lightning, pie, gib, dust\] name```"
+	var/player_name = message_as_list.Join(" ")
 	switch(smite_name)
 		if("bsa")
 			for(var/mob/living/target in player_list)
-				if(target.real_name == message_as_list.Join(" "))
+				if(target.real_name == player_name)
 					bluespace_artillery(target)
+					return "Smite [smite_name] sent!"
 		if("lightning")
 			for(var/mob/living/target in player_list)
-				if(target.real_name == message_as_list.Join(" "))
+				if(target.real_name == player_name)
 					var/turf/T = get_step(get_step(target, NORTH), NORTH)
 					T.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
 					target.electrocute_act(75,def_zone = BP_HEAD)
 					target.visible_message(span_danger("[target] is struck by lightning!"))
+					return "Smite [smite_name] sent!"
 		if("pie")
 			for(var/mob/living/target in player_list)
-				if(target.real_name == message_as_list.Join(" "))
+				if(target.real_name == player_name)
 					new/obj/effect/decal/cleanable/pie_smudge(get_turf(target))
 					playsound(target, 'sound/effects/slime_squish.ogg', 100, 1, get_rand_frequency(), falloff = 5)
 					target.Weaken(1)
 					target.visible_message(span_danger("[target] is struck by pie!"))
-	return "Smite [smite_name] sent!"
+					return "Smite [smite_name] sent!"
+		if("gib")
+			for(var/mob/living/target in player_list)
+				if(target.real_name == player_name)
+					target.gib()
+					return "Smite [smite_name] sent!"
+		if("dust")
+			for(var/mob/living/target in player_list)
+				if(target.real_name == player_name)
+					target.dust()
+					return "Smite [smite_name] sent!"
+	return "Smite [smite_name] failed to find player ([player_name]), validate their name and try again."
