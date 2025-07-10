@@ -609,3 +609,46 @@
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(MAT_PLASTEEL = 10000, MAT_OSMIUM = 3000, MAT_GOLD = 5000)
 	build_path = /obj/item/mecha_parts/component/actuator/hispeed
+
+/datum/design_techweb/mechfab/vehicle
+	build_type = MECHFAB
+	category = list(
+		RND_SUBCATEGORY_MECHFAB_VEHICLE + RND_SUBCATEGORY_MECHFAB_CHASSIS
+	)
+	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6)
+
+/datum/design_techweb/mechfab/vehicle/spacebike_chassis
+	name = "Spacebike Chassis"
+	desc = "A space-bike's un-assembled frame."
+	id = "vehicle_chassis_spacebike"
+	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_BLUESPACE = 3, TECH_PHORON = 3)
+	materials = list(MAT_STEEL = 12000, MAT_SILVER = 3000, MAT_PHORON = 3000, MAT_OSMIUM = 1000)
+	build_path = /obj/item/vehicle_assembly/spacebike
+
+/datum/design_techweb/mechfab/vehicle/quadbike_chassis
+	name = "Quad bike Chassis"
+	desc = "A quad bike's un-assembled frame."
+	id = "vehicle_chassis_quadbike"
+	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
+	materials = list(MAT_STEEL = 15000, MAT_SILVER = 3000, MAT_PLASTIC = 3000, MAT_OSMIUM = 1000)
+	build_path = /obj/item/vehicle_assembly/quadbike
+
+/datum/design_techweb/mechfab/vehicle/snowmobile_chassis
+	name = "Snowmobile Chassis"
+	desc = "A snowmobile's un-assembled frame."
+	id = "vehicle_chassis_snowmobile"
+	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 3, TECH_POWER = 2)
+	materials = list(MAT_STEEL = 12000, MAT_SILVER = 3000, MAT_PLASTIC = 3000, MAT_OSMIUM = 1000)
+	build_path = /obj/item/vehicle_assembly/snowmobile
+
+/datum/design_techweb/mechfab/vehicle/basic //I'm going to just count this as a vehicle...
+	name = "UAV - Recon Skimmer"
+	desc = "A UAV designed for reconnaissance and light scouting. It is equipped with a camera and can be controlled remotely."
+	id = "recon_skimmer"
+	category = list(
+		RND_SUBCATEGORY_MECHFAB_VEHICLE + RND_SUBCATEGORY_MECHFAB_CHASSIS
+	)
+	build_path = /obj/item/uav
+	time = 20
+	//req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5, TECH_PHORON = 3, TECH_MAGNET = 4, TECH_POWER = 6)
+	materials = list(MAT_STEEL = 10000, MAT_GLASS = 6000, MAT_SILVER = 4000)

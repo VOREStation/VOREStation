@@ -22,3 +22,15 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_EQUIPMENT
 	)
+
+/datum/design_techweb/synthetic_flash
+	name = "Synthetic Flash"
+	desc = "A synthetic flash with a singular charge."
+	id = "sflash"
+	//req_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 2)
+	build_type = MECHFAB
+	materials = list(MAT_STEEL = 562, MAT_GLASS = 562)
+	build_path = /obj/item/flash/synthetic
+	category = list(
+		RND_SUBCATEGORY_MECHFAB_EQUIPMENT_MISC
+	) //I really don't know what to put for this.
