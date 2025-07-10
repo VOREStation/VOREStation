@@ -1303,7 +1303,6 @@
 #include "code\game\mecha\micro\mecha_construction_paths_vr.dm"
 #include "code\game\mecha\micro\mecha_parts_vr.dm"
 #include "code\game\mecha\micro\mecha_vr.dm"
-#include "code\game\mecha\micro\mechfab_designs_vr.dm"
 #include "code\game\mecha\micro\micro.dm"
 #include "code\game\mecha\micro\micro_equipment.dm"
 #include "code\game\mecha\micro\security.dm"
