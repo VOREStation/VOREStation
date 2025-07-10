@@ -639,6 +639,7 @@
 #include "code\datums\diseases\advance\symptoms\mlem.dm"
 #include "code\datums\diseases\advance\symptoms\necrotic_agent.dm"
 #include "code\datums\diseases\advance\symptoms\radiation.dm"
+#include "code\datums\diseases\advance\symptoms\robot.dm"
 #include "code\datums\diseases\advance\symptoms\shivering.dm"
 #include "code\datums\diseases\advance\symptoms\size.dm"
 #include "code\datums\diseases\advance\symptoms\sneeze.dm"
