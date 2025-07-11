@@ -100,3 +100,5 @@
 /obj/machinery/rnd/server/master/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
 	// No doing anything to the master server
 	return
+
+#undef SERVER_NOMINAL_TEXT
