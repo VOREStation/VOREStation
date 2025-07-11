@@ -186,7 +186,7 @@
 		occupantData["name"] = H.name
 		occupantData["species"] = H.species.name
 		if(H.custom_species)
-			if( H.species.name == SPECIES_CUSTOM )
+			if( H.species.name == SPECIES_CUSTOM || H.species.name == SPECIES_HANNER )
 				// Fully custom species
 				occupantData["species"] = "[H.custom_species]"
 			else
