@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/obj/machinery/mecha_part_fabricator{
+/obj/machinery/mecha_part_fabricator_tg{
 	req_access = list()
 	},
 /obj/effect/floor_decal/milspec/color/black/half{
@@ -660,7 +660,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/bar)
 "dM" = (
-/obj/machinery/mecha_part_fabricator/pros{
+/obj/machinery/mecha_part_fabricator_tg/pros{
 	req_access = list()
 	},
 /obj/effect/floor_decal/milspec/color/black/half{

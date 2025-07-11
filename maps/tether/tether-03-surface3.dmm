@@ -12716,7 +12716,6 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "avv" = (
-/obj/machinery/r_n_d/destructive_analyzer,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "avw" = (
@@ -13658,7 +13657,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "awY" = (
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 1
 	},
 /obj/item/reagent_containers/glass/beaker/sulphuric,
@@ -13666,7 +13665,7 @@
 /area/rnd/research)
 "awZ" = (
 /obj/machinery/hologram/holopad,
-/obj/machinery/r_n_d/protolathe{
+/obj/machinery/rnd/production/protolathe{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -19495,14 +19494,14 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "aGS" = (
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 8
 	},
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aGT" = (
-/obj/machinery/mecha_part_fabricator/pros{
+/obj/machinery/mecha_part_fabricator_tg/pros{
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/acid{
@@ -20978,7 +20977,7 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aJm" = (
-/obj/machinery/mecha_part_fabricator{
+/obj/machinery/mecha_part_fabricator_tg{
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{

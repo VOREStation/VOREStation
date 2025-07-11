@@ -2575,7 +2575,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "ip" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "iq" = (
@@ -2772,15 +2772,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
-"iW" = (
-/obj/machinery/r_n_d/destructive_analyzer,
-/turf/simulated/floor/tiled/white,
-/area/centcom/control)
 "iX" = (
 /turf/simulated/floor/tiled/dark,
 /area/centcom/living)
 "iZ" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/production/protolathe,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ja" = (
@@ -2907,7 +2903,7 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ju" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
@@ -4259,7 +4255,7 @@
 /turf/unsimulated/floor/techfloor_grid,
 /area/tdome/tdome1)
 "oM" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
@@ -4975,7 +4971,7 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "sP" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "sR" = (
@@ -9600,10 +9596,6 @@
 /obj/structure/closet/secure_closet/medical3,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
-"KN" = (
-/obj/machinery/r_n_d/server/centcom,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "KO" = (
 /obj/machinery/light,
 /obj/structure/bed/chair/shuttle{
@@ -29263,7 +29255,7 @@ em
 aj
 qY
 Pm
-KN
+EA
 aj
 vu
 vu
@@ -32790,7 +32782,7 @@ ZQ
 uL
 nd
 iJ
-iW
+JS
 jp
 kj
 kK

@@ -4223,7 +4223,7 @@
 	},
 /area/tdome/tdomeobserve)
 "oE" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/production/protolathe,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "oF" = (
@@ -4933,7 +4933,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/security)
 "qN" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "qQ" = (
@@ -5765,7 +5765,7 @@
 	},
 /area/centcom/specops)
 "tE" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "tH" = (
@@ -9686,10 +9686,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/centcom)
-"GV" = (
-/obj/machinery/r_n_d/destructive_analyzer,
-/turf/simulated/floor/tiled/white,
-/area/centcom/control)
 "GW" = (
 /obj/structure/sign/nosmoking_2,
 /turf/simulated/wall/r_wall,
@@ -10425,7 +10421,7 @@
 /turf/simulated/floor/reinforced,
 /area/centcom/terminal)
 "Jj" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
@@ -12043,7 +12039,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/bathroom)
 "On" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
@@ -15410,10 +15406,6 @@
 /obj/item/storage/box/syringes,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
-"Zu" = (
-/obj/machinery/r_n_d/server/centcom,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "Zv" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -29280,7 +29272,7 @@ Vt
 jm
 hW
 Kr
-Zu
+Sp
 jm
 Vt
 Vt
@@ -32807,7 +32799,7 @@ bR
 cI
 MP
 HI
-GV
+hZ
 Ri
 lm
 VE

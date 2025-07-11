@@ -58,7 +58,7 @@
 	var/drop_direction = SOUTH
 
 /obj/machinery/mecha_part_fabricator_tg/Initialize(mapload)
-	print_sound = new(src,  FALSE)
+	print_sound = new(list(src),  FALSE)
 	rmat = AddComponent(\
 		/datum/component/material_container,\
 		subtypesof(/datum/material),\
