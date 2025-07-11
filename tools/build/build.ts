@@ -164,7 +164,7 @@ export const DmTarget = new Juke.Target({
     SkipIconCutter,
   ],
   dependsOn: ({ get }) => [
-    get(DefineParameter).includes("ALL_TEMPLATES") && DmMapsIncludeTarget,
+    get(DefineParameter).includes("ALL_MAPS") && DmMapsIncludeTarget,
     !get(SkipIconCutter) && IconCutterTarget,
   ],
   inputs: [
