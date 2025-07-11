@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "Set Voice verb uses correct list of voices"

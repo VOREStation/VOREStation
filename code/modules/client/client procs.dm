@@ -302,6 +302,8 @@
 	tgui_say.initialize()
 	tgui_shocker.initialize()
 
+	loot_panel = new(src)
+
 	connection_time = world.time
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
@@ -388,6 +390,7 @@
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 
+	QDEL_NULL(loot_panel)
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 
