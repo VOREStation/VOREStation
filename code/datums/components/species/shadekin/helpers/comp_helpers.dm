@@ -50,28 +50,35 @@
 		//Blue has constant, steady (slow) regen and ignores darkness.
 		if(BLUE_EYES)
 			set_light_and_darkness(0.75,0.75)
+			nutrition_conversion_scaling = 0.5
 		if(RED_EYES)
 			set_light_and_darkness(-0.5,0.5)
+			nutrition_conversion_scaling = 2
 		if(PURPLE_EYES)
 			set_light_and_darkness(-0.5,1)
+			nutrition_conversion_scaling = 1
 		if(YELLOW_EYES)
 			set_light_and_darkness(-2,3)
+			nutrition_conversion_scaling = 0.5
 		if(GREEN_EYES)
 			set_light_and_darkness(0.125,2)
+			nutrition_conversion_scaling = 0.5
 		if(ORANGE_EYES)
 			set_light_and_darkness(-0.25,0.75)
+			nutrition_conversion_scaling = 1.5
 
 ///Sets our eye color.
-/datum/component/shadekin/proc/set_shadekin_eyecolor(var/mob/living/carbon/human/H)
+/datum/component/shadekin/proc/set_shadekin_eyecolor()
 	if(!ishuman(owner))
 		return eye_color //revert to default if we're not a human
-	else
-		H = owner
+
+	var/mob/living/carbon/human/H = owner
 	var/eyecolor_rgb = rgb(H.r_eyes, H.g_eyes, H.b_eyes)
 
-	var/eyecolor_hue = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[1]
-	var/eyecolor_sat = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[2]
-	var/eyecolor_val = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[3]
+	var/list/hsv_color = rgb2num(eyecolor_rgb, COLORSPACE_HSV)
+	var/eyecolor_hue = hsv_color[1]
+	var/eyecolor_sat = hsv_color[2]
+	var/eyecolor_val = hsv_color[3]
 
 	//First, clamp the saturation/value to prevent black/grey/white eyes
 	if(eyecolor_sat < 10)
@@ -81,9 +88,10 @@
 
 	eyecolor_rgb = rgb(eyecolor_hue, eyecolor_sat, eyecolor_val, space=COLORSPACE_HSV)
 
-	H.r_eyes = rgb2num(eyecolor_rgb)[1]
-	H.g_eyes = rgb2num(eyecolor_rgb)[2]
-	H.b_eyes = rgb2num(eyecolor_rgb)[3]
+	var/list/rgb_color = rgb2num(eyecolor_rgb)
+	H.r_eyes = rgb_color[1]
+	H.g_eyes = rgb_color[2]
+	H.b_eyes = rgb_color[3]
 
 	//Now determine what color we fall into.
 	switch(eyecolor_hue)
@@ -159,3 +167,47 @@
 	if(!isnum(amount))
 		return //No
 	shadekin_set_energy(dark_energy + amount)
+
+/datum/component/shadekin/proc/handle_nutrition_conversion(dark_gains)
+	if(!nutrition_energy_conversion)
+		return
+	if(shadekin_get_energy() == 100 && dark_gains > 0)
+		owner.nutrition += dark_gains * 5 * nutrition_conversion_scaling
+	else if(shadekin_get_energy() < 50 && owner.nutrition > 500)
+		owner.nutrition -= nutrition_conversion_scaling * 50
+		dark_gains += nutrition_conversion_scaling
+
+/datum/component/shadekin/proc/attack_dephase(var/turf/T = null, atom/dephaser)
+	// no assigned dephase-target, just use our own
+	if(!T)
+		T = get_turf(owner)
+
+	if(!in_phase || doing_phase)
+		return FALSE
+
+	// make sure it's possible to be dephased (and we're in phase)
+	if(!T || !T.CanPass(owner,T))
+		return FALSE
+
+
+	log_admin("[key_name_admin(owner)] was stunned out of phase at [T.x],[T.y],[T.z] by [dephaser.name], last touched by [dephaser.forensic_data?.get_lastprint()].")
+	message_admins("[key_name_admin(owner)] was stunned out of phase at [T.x],[T.y],[T.z] by [dephaser.name], last touched by [dephaser.forensic_data?.get_lastprint()]. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)", 1)
+	// start the dephase
+	owner.phase_in(T, src)
+	shadekin_adjust_energy(-20) // loss of energy for the interception
+	// apply a little extra stun for good measure
+	owner.Weaken(3)
+
+/mob/living/carbon/human/is_incorporeal()
+	var/datum/component/shadekin/SK = get_shadekin_component()
+	if(SK && SK.in_phase) //Shadekin
+		return TRUE
+	return ..()
+
+///Proc that takes in special considerations, such as 'no abilities in VR' and the such
+///Returns TRUE if we try to do something forbidden
+/datum/component/shadekin/proc/special_considerations(allow_vr)
+	if(!allow_vr && istype(get_area(owner), /area/vr))
+		to_chat(owner, span_danger("The VR systems cannot comprehend this power! This is useless to you!"))
+		return TRUE
+	return FALSE

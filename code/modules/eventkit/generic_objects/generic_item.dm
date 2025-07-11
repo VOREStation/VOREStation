@@ -173,7 +173,7 @@
 	var/check_togglable
 
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/s_name = tgui_input_text(src, "Item Name:", "Name")

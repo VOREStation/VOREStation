@@ -156,11 +156,6 @@
 			selected_list["belly_description_data"] = belly_description_data
 
 		if(active_vore_tab == OPTIONS_TAB)
-			var/list/silicon_control = list(
-				"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
-				"belly_sprite_option_shown" = LAZYLEN(owner.vore_icon_bellies) >= 1 ? TRUE : FALSE,
-				"belly_sprite_to_affect" = selected.belly_sprite_to_affect
-			)
 			var/list/belly_option_data = list(
 				"can_taste" = selected.can_taste,
 				"is_feedable" = selected.is_feedable,
@@ -191,7 +186,6 @@
 				"private_struggle" = selected.private_struggle,
 				"drainmode" = selected.drainmode,
 				"drainmode_options" = selected.drainmodes,
-				"mob_belly_controls" = silicon_control
 			)
 			if(selected.contaminates)
 				belly_option_data += list(
@@ -220,6 +214,11 @@
 			selected_list["belly_sound_data"] = belly_sound_data
 
 		if(active_vore_tab == VISUALS_TAB)
+			var/list/silicon_control = list(
+				"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
+				"belly_sprite_option_shown" = LAZYLEN(owner.vore_icon_bellies) >= 1 ? TRUE : FALSE,
+				"belly_sprite_to_affect" = selected.belly_sprite_to_affect
+			)
 			var/list/belly_fullscreens
 			if(selected.colorization_enabled)
 				belly_fullscreens = icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
@@ -265,7 +264,8 @@
 			"undergarment_color" = selected.undergarment_color,
 			"tail_option_shown" = ishuman(owner),
 			"tail_to_change_to" = selected.tail_to_change_to,
-			"tail_sprite_options" = global.tail_styles_list
+			"tail_sprite_options" = global.tail_styles_list,
+			"mob_belly_controls" = silicon_control
 			)
 			selected_list["belly_visual_data"] = belly_visual_data
 
