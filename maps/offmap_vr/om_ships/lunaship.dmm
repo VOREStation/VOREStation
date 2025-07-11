@@ -2710,7 +2710,7 @@
 	},
 /area/lunaship/cockpit)
 "MX" = (
-/obj/machinery/mecha_part_fabricator_tg/pros{
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
 	req_access = list()
 	},
 /obj/effect/floor_decal/milspec/color/black/half{

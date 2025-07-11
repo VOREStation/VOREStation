@@ -19501,7 +19501,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aGT" = (
-/obj/machinery/mecha_part_fabricator_tg/pros{
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/acid{

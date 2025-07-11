@@ -4012,7 +4012,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/tram)
 "fHW" = (
-/obj/machinery/mecha_part_fabricator_tg/pros{
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
