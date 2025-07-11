@@ -1,4 +1,11 @@
-import { Box, Button, Icon, Section, Stack } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 import { Tooltip } from 'tgui-core/components';
 import { type BooleanLike, classes } from 'tgui-core/react';
 
@@ -17,10 +24,19 @@ type ExosuitDesign = Design & {
   constructionTime: number;
 };
 
-type ExosuitFabricatorData = FabricatorData & {
-  processing: BooleanLike;
-  designs: Record<string, ExosuitDesign>;
-};
+// Extra stuff for the prosfab to not need it's own UI
+type ProsfabData = Partial<{
+  species_types: string;
+  species: string;
+  manufacturer: string;
+  all_manufacturers: string;
+}>;
+
+type ExosuitFabricatorData = FabricatorData &
+  ProsfabData & {
+    processing: BooleanLike;
+    designs: Record<string, ExosuitDesign>;
+  };
 
 export const ExosuitFabricatorTg = (props) => {
   const { act, data } = useBackend<ExosuitFabricatorData>();
@@ -179,7 +195,14 @@ type QueueProps = {
 const Queue = (props: QueueProps) => {
   const { act, data } = useBackend<ExosuitFabricatorData>();
   const { availableMaterials, SHEET_MATERIAL_AMOUNT } = props;
-  const { designs, processing } = data;
+  const {
+    designs,
+    processing,
+    species,
+    species_types,
+    all_manufacturers,
+    manufacturer,
+  } = data;
 
   const queue = data.queue || [];
 
@@ -245,6 +268,31 @@ const Queue = (props: QueueProps) => {
               SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
             />
           </Section>
+        </Stack.Item>
+        <Stack.Item>
+          <Stack fill>
+            {species_types ? (
+              <Stack.Item>
+                <LabeledList>
+                  <LabeledList.Item label="Species">
+                    <Button onClick={() => act('species')}>{species}</Button>
+                  </LabeledList.Item>
+                </LabeledList>
+              </Stack.Item>
+            ) : null}
+            <Stack.Item grow />
+            {all_manufacturers ? (
+              <Stack.Item>
+                <LabeledList>
+                  <LabeledList.Item label="Manufacturer">
+                    <Button onClick={() => act('manufacturer')}>
+                      {manufacturer || 'None'}
+                    </Button>
+                  </LabeledList.Item>
+                </LabeledList>
+              </Stack.Item>
+            ) : null}
+          </Stack>
         </Stack.Item>
       </Stack>
     </Section>

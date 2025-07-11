@@ -3567,6 +3567,10 @@
 /obj/machinery/mecha_part_fabricator_tg,
 /turf/simulated/floor/tiled,
 /area/bridge)
+"iD" = (
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -10196,7 +10200,7 @@ fY
 gf
 iB
 gv
-gf
+iD
 gf
 pG
 gv

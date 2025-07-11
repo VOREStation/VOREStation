@@ -651,31 +651,31 @@
 //Micromech modules.
 
 /datum/design_techweb/mechfab/equipment/weapon/taser/micro
-	name = "MICRO \improper TS-12 \"Suppressor\" integrated taser"
+	name = "MICRO TS-12 \"Suppressor\" integrated taser"
 	id = "micro_taser"
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/microtaser
 
 /datum/design_techweb/mechfab/equipment/weapon/laser/micro
-	name = "MICRO \improper WS-19 \"Torch\" laser carbine"
+	name = "MICRO WS-19 \"Torch\" laser carbine"
 	id = "micro_laser"
 //	req_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/microlaser
 
 /datum/design_techweb/mechfab/equipment/weapon/laser_heavy/micro
-	name = "MICRO \improper PC-20 \"Lance\" light laser cannon"
+	name = "MICRO PC-20 \"Lance\" light laser cannon"
 	id = "micro_laser_heavy"
 	//req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	materials = list(MAT_STEEL = 10000, MAT_GLASS = 1000, MAT_DIAMOND = 2000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/microheavy
 
 /datum/design_techweb/mechfab/equipment/weapon/grenade_launcher/micro
-	name = "MICRO \improper FP-20 mounted grenade launcher"
+	name = "MICRO FP-20 mounted grenade launcher"
 	id = "micro_flashbang_launcher"
 //	req_tech = list(TECH_COMBAT = 3)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/microflashbang
 
 /datum/design_techweb/mechfab/equipment/weapon/scattershot/micro
-	name = "MICRO \improper Remington C-12 \"Boomstick\""
+	name = "MICRO Remington C-12 \"Boomstick\""
 	desc = "A mounted combat shotgun with integrated ammo-lathe. Only fits micro mecha."
 	id = "micro_scattershot"
 //	req_tech = list(TECH_COMBAT = 4)

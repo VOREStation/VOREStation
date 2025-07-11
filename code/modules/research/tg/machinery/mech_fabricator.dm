@@ -9,6 +9,9 @@
 	circuit = /obj/item/circuitboard/mechfab
 	speed_process = TRUE
 
+	/// Type of designs to grab
+	var/fab_type = MECHFAB
+
 	/// Current items in the build queue.
 	var/list/datum/design_techweb/queue = list()
 
@@ -64,7 +67,10 @@
 		_after_insert = CALLBACK(src, PROC_REF(AfterMaterialInsert)))
 	cached_designs = list()
 	illegal_local_designs = list()
-	return ..()
+	. = ..()
+	default_apply_parts()
+	RefreshParts()
+	update_icon()
 
 /obj/machinery/mecha_part_fabricator_tg/Destroy()
 	QDEL_NULL(print_sound)
@@ -163,7 +169,7 @@
 	for(var/v in stored_research.researched_designs)
 		var/datum/design_techweb/design = SSresearch.techweb_design_by_id(v)
 
-		if(design.build_type & MECHFAB)
+		if(design.build_type & fab_type)
 			cached_designs |= design
 
 	for(var/datum/design_techweb/illegal_disign in illegal_local_designs)
@@ -285,7 +291,7 @@
  * * dispensed_design - Design datum to attempt to dispense.
  */
 /obj/machinery/mecha_part_fabricator_tg/proc/dispense_built_part(datum/design_techweb/dispensed_design)
-	var/obj/item/built_part = new dispensed_design.build_path(src)
+	var/obj/item/built_part = create_new_part(dispensed_design)
 
 	being_built = null
 
@@ -302,6 +308,12 @@
 	top_job_id += 1
 
 	return TRUE
+
+/**
+ * Creates parts as necessary (overridden by the prosfab)
+ */
+/obj/machinery/mecha_part_fabricator_tg/proc/create_new_part(datum/design_techweb/dispensed_design)
+	return new dispensed_design.build_path(src)
 
 /**
  * Adds a datum design to the build queue.
@@ -357,7 +369,7 @@
 /obj/machinery/mecha_part_fabricator_tg/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ExosuitFabricatorTg")
+		ui = new(user, src, "ExosuitFabricatorTg", name)
 		ui.open()
 
 /obj/machinery/mecha_part_fabricator_tg/tgui_static_data(mob/user)
@@ -371,8 +383,8 @@
 	for(var/datum/design_techweb/design in cached_designs)
 		var/cost = list()
 		var/list/materials = design.materials
-		for(var/datum/material/mat in materials)
-			cost[mat.name] = OPTIMAL_COST(materials[mat] * component_coeff)
+		for(var/mat_id in materials)
+			cost[mat_id] = OPTIMAL_COST(materials[mat_id] * component_coeff)
 
 		var/icon_size = spritesheet.icon_size_id(design.id)
 		designs[design.id] = list(
@@ -442,7 +454,7 @@
 
 				var/datum/design_techweb/design = SSresearch.techweb_design_by_id(design_id)
 
-				if(!(design.build_type & MECHFAB) || design.id != design_id)
+				if(!(design.build_type & fab_type) || design.id != design_id)
 					continue
 
 				add_to_queue(design)
@@ -499,9 +511,15 @@
 	return FALSE
 
 /obj/machinery/mecha_part_fabricator_tg/proc/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
-	var/datum/material/M = id_inserted
-	add_overlay("fab-load-[M.name]")
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, cut_overlay), "fab-load-[M.name]"), 1 SECONDS)
+	// var/datum/material/M = id_inserted // Not used atm.
+	add_overlay("fab-load-metal")
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, cut_overlay), "fab-load-metal"), 1 SECONDS)
+
+/obj/machinery/mecha_part_fabricator_tg/update_icon()
+	if(panel_open)
+		icon_state = "fab-o"
+	else
+		icon_state = "fab-idle"
 
 /obj/machinery/mecha_part_fabricator_tg/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
 	add_fingerprint(user)
@@ -511,6 +529,7 @@
 		return FALSE
 
 	if(default_deconstruction_screwdriver(user, W))
+		update_icon()
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
