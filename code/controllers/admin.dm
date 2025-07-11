@@ -27,7 +27,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	var/class
 
 /obj/effect/statclick/debug/Click()
-	if(!usr.client.holder || !target)
+	if(!check_rights_for(usr.client, R_HOLDER) || !target)
 		return
 	if(!class)
 		if(istype(target, /datum/controller/subsystem))

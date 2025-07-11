@@ -12,7 +12,7 @@
     "marked": "^15.0.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tgui-core": "^4.3.2",
+    "tgui-core": "^4.3.3",
     "tgui-dev-server": "workspace:*"
   },
   "private": true

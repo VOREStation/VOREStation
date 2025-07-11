@@ -18,6 +18,9 @@
     "gitlens.advanced.blame.customArguments": [
         "-w", "--ignore-revs-file", ".git-blame-ignore-revs"
     ],
+    "search.exclude": {
+        "**/node_modules": true,
+    },
     "tgstationTestExplorer.project.resultsType": "json",
     "[dm]": {
         "files.eol": "\n",

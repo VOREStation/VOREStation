@@ -744,11 +744,6 @@
 		var/mob/M = locate(href_list["lookmob"])
 		src.examinate(M)
 
-	if (href_list["clickitem"])
-		var/obj/item/I = locate(href_list["clickitem"])
-		if(src.client)
-			src.ClickOn(I)
-
 	if (href_list["flavor_change"])
 		switch(href_list["flavor_change"])
 			if("done")
@@ -1152,6 +1147,8 @@
 
 /mob/living/carbon/human/wash(clean_types)
 	. = ..()
+
+	LAZYCLEARLIST(body_writing)
 
 	//Always do hands (or whatever's on our hands)
 	if(gloves)
