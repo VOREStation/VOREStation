@@ -292,6 +292,10 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	if(!LAZYLEN(message_as_list) && action == "reply")
 		return "```Invalid command usage: ticket id \[reply, reject, icissue, close, resolve, handle, reopen\] message```"
+
+	if(!(action in list("reply", "reject", "icissue", "close", "resolve", "handle", "reopen")))
+		return "```Invalid command usage: ticket id \[reply, reject, icissue, close, resolve, handle, reopen\] message```"
+
 	var/text_message
 	if(LAZYLEN(message_as_list))
 		text_message = message_as_list.Join(" ")
