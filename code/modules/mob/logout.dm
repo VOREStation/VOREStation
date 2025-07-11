@@ -6,7 +6,8 @@
 	update_client_z(null)
 	log_access_out(src)
 	unset_machine()
-	if(GLOB.admin_datums[src.ckey] && check_rights(R_HOLDER, FALSE))
+	var/datum/admins/is_admin = GLOB.admin_datums[src.ckey]
+	if(is_admin && is_admin.check_for_rights(R_HOLDER))
 		message_admins("Staff logout: [key_name(src)]") // Staff logout notice displays no matter what
 		if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
 			var/admins_number = GLOB.admins.len
