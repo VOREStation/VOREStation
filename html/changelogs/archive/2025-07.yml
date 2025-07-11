@@ -109,3 +109,17 @@
   - maptweak: floors losing icon state on turf change
   TheCaramelion:
   - bugfix: Spyndrome symptom can be found again
+2025-07-11:
+  Diana:
+  - bugfix: Xenochimera component can be applied midround
+  - bugfix: Grippers can insert items into protolathes
+  Kashargul:
+  - code_imp: improve tg chat performance
+  ShadowLarkens:
+  - qol: Replaced the funky alt-click turf examine menu with a separate TGUI window
+      called the Lootpanel
+  TankTheBirb:
+  - bugfix: removed 2 pixels on the veymed female torso sprite to make it actually
+      fit into any clothes at all that aren't skirts.
+  Willburd:
+  - bugfix: Set Voice verb uses correct list of voices
