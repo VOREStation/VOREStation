@@ -326,3 +326,169 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
+// Surgical devices
+/datum/design_techweb/scalpel_laser1
+	name = "Basic Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
+	id = "scalpel_laser1"
+	// req_tech = list(TECH_BIO = 2, TECH_MATERIAL = 2, TECH_MAGNET = 2)
+	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500)
+	build_path = /obj/item/surgical/scalpel/laser1
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/scalpel_laser2
+	name = "Improved Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks somewhat advanced."
+	id = "scalpel_laser2"
+	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 4, TECH_MAGNET = 4)
+	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2500)
+	build_path = /obj/item/surgical/scalpel/laser2
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/scalpel_laser3
+	name = "Advanced Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks to be the pinnacle of precision energy cutlery!"
+	id = "scalpel_laser3"
+	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 5)
+	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2000, MAT_GOLD = 1500)
+	build_path = /obj/item/surgical/scalpel/laser3
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/scalpel_manager
+	name = "Incision Management System"
+	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
+	id = "scalpel_manager"
+	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 5, TECH_DATA = 4)
+	materials = list (MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_DIAMOND = 750)
+	build_path = /obj/item/surgical/scalpel/manager
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/saw_manager
+	name = "Energetic Bone Diverter"
+	desc = "A strange development following the I.M.S., this heavy tool can split and open, or close and shut, intentional holes in bones."
+	id = "advanced_saw"
+	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_DATA = 5)
+	materials = list (MAT_STEEL = 12500, MAT_PLASTIC = 800, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_OSMIUM = 1000)
+	build_path = /obj/item/surgical/circular_saw/manager
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/organ_ripper
+	name = "Organ Ripper"
+	desc = "A modern and horrifying take on an ancient practice, this tool is capable of rapidly removing an organ from a hopefully willing patient, without damaging it."
+	id = "organ_ripper"
+	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_ILLEGAL = 3)
+	materials = list (MAT_STEEL = 12500, MAT_PLASTIC = 8000, MAT_OSMIUM = 2500)
+	build_path = /obj/item/surgical/scalpel/ripper
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/bone_clamp
+	name = "Bone Clamp"
+	desc = "A miracle of modern science, this tool rapidly knits together bone, without the need for bone gel."
+	id = "bone_clamp"
+	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_DATA = 4)
+	materials = list (MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2500)
+	build_path = /obj/item/surgical/bone_clamp
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/medical_analyzer
+	name = "health analyzer"
+	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
+	id = "medical_analyzer"
+	// req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/healthanalyzer
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/improved_analyzer
+	name = "improved health analyzer"
+	desc = "A prototype version of the regular health analyzer, able to distinguish the location of more serious injuries as well as accurately determine radiation levels."
+	id = "improved_analyzer"
+	// req_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_SILVER = 1000, MAT_GOLD = 1500)
+	build_path = /obj/item/healthanalyzer/improved
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/advanced_analyzer
+	name = "advanced health analyzer"
+	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
+	id = "advanced_analyzer"
+	// req_tech = list(TECH_MAGNET = 7, TECH_BIO = 7, TECH_DATA = 5)
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 4000, MAT_SILVER = 3500, MAT_GOLD = 2500, MAT_DIAMOND = 1250)
+	build_path = /obj/item/healthanalyzer/advanced
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/gene_scanner
+	name = "Gene Scanner"
+	id = "gene_scanner"
+	// req_tech = list(TECH_DATA = 1, TECH_BIO = 2)
+	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	build_path = /obj/item/gene_scanner
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/advanced_roller
+	name = "advanced roller bed"
+	desc = "A more advanced version of the regular roller bed, with inbuilt surgical stabilisers and an improved folding system."
+	id = "roller_bed"
+	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3, TECH_MAGNET = 3)
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_PHORON = 2000)
+	build_path = /obj/item/roller/adv
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/sleevemate
+	name = "SleeveMate 3700"
+	id = "sleevemate"
+	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	build_path = /obj/item/sleevemate
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/protohypospray
+	name = "prototype hypospray"
+	desc = "This prototype hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	id = "protohypospray"
+	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 2, TECH_BIO = 4, TECH_ILLEGAL = 2)
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 1500, MAT_SILVER = 2000, MAT_GOLD = 1500, MAT_URANIUM = 1000)
+	build_path = /obj/item/reagent_containers/hypospray/science
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE

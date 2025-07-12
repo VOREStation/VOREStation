@@ -5,9 +5,10 @@
 	description = "Establishing the bedrock of scientific understanding, paving the way for deeper exploration and theoretical inquiry."
 	design_ids = list(
 		"experi_scanner",
-		// "rdserver",
+		"rdserver",
+		"rdconsole",
+		"bomb_tester",
 		// "rdservercontrol",
-		// "rdconsole",
 		// "tech_disk",
 		// "doppler_array",
 		// "experimentor",

@@ -601,3 +601,47 @@
 	name = "pAI Speech Synthesizer"
 	id = "pai_speech_synthesizer"
 	build_path = /obj/item/paiparts/speech_synthesizer
+
+
+/datum/design_techweb/disk
+	build_type = IMPRINTER
+	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 1000)
+	lathe_time_factor = 1.5
+	category = list(
+		RND_CATEGORY_PROSFAB
+	)
+
+/datum/design_techweb/disk/New()
+	. = ..()
+	if(build_path)
+		var/obj/item/disk/D = build_path
+		if(istype(D, /obj/item/disk/species))
+			name = "Species Prosthetic design ([name])"
+		else if(istype(D, /obj/item/disk/limb))
+			name = "Transtellar Prosthetic design ([name])"
+		else
+			name = "Disk design ([name])"
+
+/datum/design_techweb/disk/skrellprint
+	name = SPECIES_SKRELL
+	id = "prosthetic_skrell"
+	// req_tech = list(TECH_DATA = 3, TECH_BIO = 3)
+	build_path = /obj/item/disk/species/skrell
+
+/datum/design_techweb/disk/tajprint
+	name = SPECIES_TAJARAN
+	id = "prosthetic_tajaran"
+	// req_tech = list(TECH_DATA = 3, TECH_BIO = 3)
+	build_path = /obj/item/disk/species/tajaran
+
+/datum/design_techweb/disk/unathiprint
+	name = SPECIES_UNATHI
+	id = "prosthetic_unathi"
+	// req_tech = list(TECH_DATA = 3, TECH_BIO = 4)
+	build_path = /obj/item/disk/species/unathi
+
+/datum/design_techweb/disk/teshariprint
+	name = SPECIES_TESHARI
+	id = "prosthetic_teshari"
+	// req_tech = list(TECH_DATA = 3, TECH_BIO = 4)
+	build_path = /obj/item/disk/species/teshari
