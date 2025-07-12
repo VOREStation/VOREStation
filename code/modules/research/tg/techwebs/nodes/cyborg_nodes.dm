@@ -79,3 +79,79 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)
+
+// Implants root node
+/datum/techweb_node/passive_implants
+	id = TECHWEB_NODE_PASSIVE_IMPLANTS
+	display_name = "Passive Implants"
+	description = "Implants designed to operate seamlessly without active user input, enhancing various physiological functions or providing continuous benefits."
+	prereq_ids = list(TECHWEB_NODE_AUGMENTATION)
+	design_ids = list(
+		"implant_backup",
+		// "skill_station",
+		// "implant_trombone",
+		// "implant_chem",
+		// "implant_tracking",
+		// "implant_exile",
+		// "implant_beacon",
+		// "implant_bluespace",
+		// "implantcase",
+		// "implanter",
+		// "locator",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SECURITY, CHANNEL_MEDICAL)
+
+/datum/techweb_node/cyber_implants
+	id = TECHWEB_NODE_CYBER_IMPLANTS
+	display_name = "Cybernetic Implants"
+	description = "Advanced technological enhancements integrated into the body, offering improved physical capabilities."
+	prereq_ids = list(TECHWEB_NODE_PASSIVE_IMPLANTS, TECHWEB_NODE_CYBERNETICS)
+	design_ids = list(
+		"implant_chem",
+		// "ci-breather",
+		// "ci-nutriment",
+		// "ci-thrusters",
+		// "ci-herculean",
+		// "ci-connector",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_MEDICAL)
+
+/datum/techweb_node/combat_implants
+	id = TECHWEB_NODE_COMBAT_IMPLANTS
+	display_name = "Combat Implants"
+	description = "To make sure that you can wake the f*** up, samurai."
+	prereq_ids = list(TECHWEB_NODE_CYBER_IMPLANTS)
+	design_ids = list(
+		"implant_free",
+		"blade_implant",
+		"armblade_implant",
+		"sword_implant",
+		"dartbow_implant",
+		"taser_implant",
+		"laser_implant",
+		"surge_implant",
+		"thermal_implant",
+		// "ci-reviver",
+		// "ci-antidrop",
+		// "ci-antistun",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_MEDICAL)
+
+/datum/techweb_node/integrated_toolsets
+	id = TECHWEB_NODE_INTERGRATED_TOOLSETS
+	display_name = "Integrated Toolsets"
+	description = "Decades of contraband smuggling by assistants have led to the development of a full toolbox that fits seamlessly into your arm."
+	prereq_ids = list(TECHWEB_NODE_COMBAT_IMPLANTS, TECHWEB_NODE_EXP_TOOLS)
+	design_ids = list(
+		"research_implant",
+		"tool_implant",
+		"surgical_implant",
+		// "ci-nutrimentplus",
+		// "ci-toolset",
+		// "ci-surgery",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_MEDICAL)
