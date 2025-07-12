@@ -34,7 +34,8 @@ FROM byond AS build
 WORKDIR /vorestation
 
 RUN apt-get install -y --no-install-recommends \
-	curl
+	curl \
+    unzip
 
 COPY . .
 
@@ -68,7 +69,8 @@ WORKDIR /vorestation
 
 RUN apt-get install -y --no-install-recommends \
         libssl3 \
-        zlib1g:i386
+        zlib1g:i386 \
+        libcurl4:i386
 
 COPY --from=build /vorestation/ ./
 COPY --from=rust_g /rust_g/target/i686-unknown-linux-gnu/release/librust_g.so ./librust_g.so
