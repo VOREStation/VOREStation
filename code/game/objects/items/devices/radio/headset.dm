@@ -95,7 +95,7 @@
 
 
 			for(var/ch_name in channels)
-				radio_controller.remove_object(src, radiochannels[ch_name])
+				SSradio.remove_object(src, radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 
@@ -183,15 +183,15 @@
 /obj/item/radio/headset/proc/handle_finalize_recalculatechannels(var/setDescription = FALSE, var/initial_run = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!radio_controller && initial_run)
+	if(!SSradio && initial_run)
 		addtimer(CALLBACK(src,PROC_REF(handle_finalize_recalculatechannels),setDescription, FALSE),3 SECONDS)
 		return
-	if(!radio_controller && !initial_run)
+	if(!SSradio && !initial_run)
 		name = "broken radio headset"
 		return
 
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 	if(setDescription)
 		setupRadioDescription()
