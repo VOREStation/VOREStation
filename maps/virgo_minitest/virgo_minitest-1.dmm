@@ -3539,10 +3539,7 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/kitchen)
 "ix" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/rnd/production/circuit_imprinter,
+/obj/machinery/mecha_part_fabricator_tg,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "iy" = (
@@ -3556,19 +3553,22 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
 "iA" = (
-/obj/machinery/rnd/production/protolathe,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "iB" = (
-/obj/machinery/computer/rdconsole_tg,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/rnd/production/circuit_imprinter,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "iC" = (
-/obj/machinery/mecha_part_fabricator_tg,
+/obj/machinery/rnd/production/protolathe,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "iD" = (
-/obj/machinery/mecha_part_fabricator_tg/prosthetics,
+/obj/machinery/computer/rdconsole_tg,
 /turf/simulated/floor/tiled,
 /area/bridge)
 "iJ" = (
@@ -9994,9 +9994,9 @@ eM
 eM
 gc
 gh
-iA
-ix
 iC
+iB
+ix
 gf
 gf
 gf
@@ -10198,9 +10198,9 @@ aa
 aa
 fY
 gf
-iB
-gv
 iD
+gv
+iA
 gf
 pG
 gv
