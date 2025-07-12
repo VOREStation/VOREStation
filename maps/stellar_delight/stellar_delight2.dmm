@@ -17332,7 +17332,7 @@
 /area/engineering/engine_room)
 "Mh" = (
 /obj/structure/table/rack/steel,
-/obj/item/circuitboard/rdserver{
+/obj/item/circuitboard/machine/rdserver{
 	pixel_x = -3;
 	pixel_y = 3
 	},
