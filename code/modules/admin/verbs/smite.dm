@@ -181,8 +181,11 @@
 	if(!istype(target))
 		return
 
+	var/real_user = user ? user : usr
+	var/user_name = real_user ? key_name(real_user) : "Remotely (Discord)"
+
 	to_chat(target,"You've been hit by bluespace artillery!")
-	log_and_message_admins("has been hit by Bluespace Artillery fired by [key_name(user ? user : usr)]", target)
+	log_and_message_admins("has been hit by Bluespace Artillery fired by [user_name]", target)
 
 	target.setMoveCooldown(2 SECONDS)
 
