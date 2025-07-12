@@ -11,6 +11,16 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
+/datum/design_techweb/mechfab/ripley/circuit_main
+	name = "APLU 'Ripley' central control circuit"
+	id = "ripley_main"
+	build_path = /obj/item/circuitboard/mecha/ripley/main
+
+/datum/design_techweb/mechfab/ripley/circuit_peri
+	name = "APLU 'Ripley' peripherals control circuit"
+	id = "ripley_peri"
+	build_path = /obj/item/circuitboard/mecha/ripley/peripherals
+
 /datum/design_techweb/mechfab/ripley/chassis
 	name = "Ripley Chassis"
 	id = "ripley_chassis"
@@ -62,6 +72,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
+/datum/design_techweb/mechfab/odysseus/odysseus_main
+	name = "'Odysseus' central control circuit"
+	id = "odysseus_main"
+	// req_tech = list(TECH_DATA = 3,TECH_BIO = 2)
+	build_path = /obj/item/circuitboard/mecha/odysseus/main
+
+/datum/design_techweb/mechfab/odysseus/odysseus_peri
+	name = "'Odysseus' peripherals control circuit"
+	id = "odysseus_peri"
+	// req_tech = list(TECH_DATA = 3,TECH_BIO = 2)
+	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
+
 /datum/design_techweb/mechfab/odysseus/chassis
 	name = "Odysseus Chassis"
 	id = "odysseus_chassis"
@@ -111,6 +133,30 @@
 		RND_CATEGORY_MECHFAB_GYGAX + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/mechfab/gygax/gygax_main
+	name = "'Gygax' central control circuit"
+	id = "gygax_main"
+	// req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/circuitboard/mecha/gygax/main
+
+/datum/design_techweb/mechfab/gygax/gygax_peri
+	name = "'Gygax' peripherals control circuit"
+	id = "gygax_peri"
+	// req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/circuitboard/mecha/gygax/peripherals
+
+/datum/design_techweb/mechfab/gygax/gygax_targ
+	name = "'Gygax' weapon control and targeting circuit"
+	id = "gygax_targ"
+	// req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
+	build_path = /obj/item/circuitboard/mecha/gygax/targeting
+
+/datum/design_techweb/mechfab/gygax/gygax_medical
+	name = "'Serenity' medical control circuit"
+	id = "gygax_medical"
+	// req_tech = list(TECH_DATA = 4, TECH_BIO = 2)
+	build_path = /obj/item/circuitboard/mecha/gygax/medical
 
 /datum/design_techweb/mechfab/gygax/chassis/serenity
 	name = "Serenity Chassis"
@@ -173,6 +219,27 @@
 		RND_CATEGORY_MECHFAB_DURAND + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/mechfab/durand/durand_main
+	name = "'Durand' central control circuit"
+	id = "durand_main"
+	// req_tech = list(TECH_DATA = 4)
+	materials = list(MAT_GLASS = 2000, MAT_GRAPHITE = 1250)
+	build_path = /obj/item/circuitboard/mecha/durand/main
+
+/datum/design_techweb/mechfab/durand/durand_peri
+	name = "'Durand' peripherals control circuit"
+	id = "durand_peri"
+	// req_tech = list(TECH_DATA = 4)
+	materials = list(MAT_GLASS = 2000, MAT_GRAPHITE = 1250)
+	build_path = /obj/item/circuitboard/mecha/durand/peripherals
+
+/datum/design_techweb/mechfab/durand/durand_targ
+	name = "'Durand' weapon control and targeting circuit"
+	id = "durand_targ"
+	// req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
+	materials = list(MAT_GLASS = 2000, MAT_GRAPHITE = 1250)
+	build_path = /obj/item/circuitboard/mecha/durand/targeting
 
 /datum/design_techweb/mechfab/durand/chassis
 	name = "Durand Chassis"
@@ -293,6 +360,30 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
+/datum/design_techweb/mechfab/pinnace/pinnace_main
+	name = "Pinnace central control board circuit"
+	id = "pinnace_main"
+	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
+	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/main
+
+/datum/design_techweb/mechfab/pinnace/pinnace_flight
+	name = "Pinnace flight control board circuit"
+	id = "pinnace_flight"
+	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
+	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/flight
+
+/datum/design_techweb/mechfab/pinnace/pinnace_targeting
+	name = "Pinnace weapon control and targeting board circuit"
+	id = "pinnace_targeting"
+	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
+	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/targeting
+
+/datum/design_techweb/mechfab/pinnace/pinnace_cockpit_control
+	name = "Pinnace manual flight control instruments circuit"
+	id = "pinnace_cockpit_control"
+	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
+	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/cockpitboard
+
 /datum/design_techweb/mechfab/pinnace/chassis
 	name = "Pinnace Chassis"
 	id = "pinnace_chassis"
@@ -349,6 +440,30 @@
 		RND_CATEGORY_MECHFAB_BARON + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/mechfab/baron/baron_main
+	name = "Baron central control board circuit"
+	id = "baron_main"
+	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4)
+	build_path = /obj/item/circuitboard/mecha/fighter/baron/main
+
+/datum/design_techweb/mechfab/baron/baron_flight
+	name = "Baron flight control board circuit"
+	id = "baron_flight"
+	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4)
+	build_path = /obj/item/circuitboard/mecha/fighter/baron/flight
+
+/datum/design_techweb/mechfab/baron/baron_targeting
+	name = "Baron weapon control and targeting board circuit"
+	id = "baron_targeting"
+	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4, TECH_COMBAT = 3)
+	build_path = /obj/item/circuitboard/mecha/fighter/baron/targeting
+
+/datum/design_techweb/mechfab/baron/baron_cockpit_control
+	name = "Baron manual flight control instruments circuit"
+	id = "baron_cockpit_control"
+	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4, TECH_COMBAT = 3)
+	build_path = /obj/item/circuitboard/mecha/fighter/baron/cockpitboard
 
 /datum/design_techweb/mechfab/baron/chassis
 	name = "Baron Chassis"
@@ -607,6 +722,16 @@
 		RND_CATEGORY_MECHFAB_GOPHER + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 
+/datum/design_techweb/mechfab/gopher/gopher_main
+	name = "'Gopher' central control circuit"
+	id = "gopher_main"
+	build_path = /obj/item/circuitboard/mecha/gopher/main
+
+/datum/design_techweb/mechfab/gopher/gopher_peri
+	name = "'Gopher' peripherals control circuit"
+	id = "gopher_peri"
+	build_path = /obj/item/circuitboard/mecha/gopher/peripherals
+
 /datum/design_techweb/mechfab/gopher/chassis
 	name = "Gopher Chassis"
 	id = "gopher_chassis"
@@ -662,6 +787,24 @@
 		RND_CATEGORY_MECHFAB_POLECAT + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
 
+/datum/design_techweb/mechfab/polecat/polecat_main
+	name = "'Polecat' central control circuit"
+	id = "polecat_main"
+	// req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/circuitboard/mecha/polecat/main
+
+/datum/design_techweb/mechfab/polecat/polecat_peri
+	name = "'Polecat' peripherals control circuit"
+	id = "polecat_peri"
+	// req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/circuitboard/mecha/polecat/peripherals
+
+/datum/design_techweb/mechfab/polecat/polecat_targ
+	name = "'Polecat' weapon control and targeting circuit"
+	id = "polecat_targ"
+	// req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
+	build_path = /obj/item/circuitboard/mecha/polecat/targeting
+
 /datum/design_techweb/mechfab/polecat/chassis
 	name = "Polecat Chassis"
 	id = "polecat_chassis"
@@ -709,6 +852,24 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_WEASEL + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
+
+/datum/design_techweb/mechfab/weasel/weasel_main
+	name = "'Weasel' central control circuit"
+	id = "weasel_main"
+	// req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/circuitboard/mecha/weasel/main
+
+/datum/design_techweb/mechfab/weasel/weasel_peri
+	name = "'Weasel' peripherals control circuit"
+	id = "weasel_peri"
+	// req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/circuitboard/mecha/weasel/peripherals
+
+/datum/design_techweb/mechfab/weasel/weasel_targ
+	name = "'Weasel' weapon control and targeting circuit"
+	id = "weasel_targ"
+	// req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
+	build_path = /obj/item/circuitboard/mecha/weasel/targeting
 
 /datum/design_techweb/mechfab/weasel/chassis
 	name = "Weasel Chassis"

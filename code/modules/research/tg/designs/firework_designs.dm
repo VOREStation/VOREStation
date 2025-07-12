@@ -1,8 +1,19 @@
 // Firework Stars
+/datum/design_techweb/firework_star
+	category = list(
+		RND_CATEGORY_FIREWORKS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/firework_star/New()
 	. = ..()
 	name = "Firework Star ([name])"
+
+/datum/design_techweb/board/firework_launcher
+	name = "firework launcher circuit"
+	id = "fireworklauncher"
+	// req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
+	build_path = /obj/item/circuitboard/firework_launcher
 
 /datum/design_techweb/firework_star/aesthetic
 	name = "aesthetic"
@@ -12,9 +23,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 500, MAT_GLASS = 500)
 	build_path = /obj/item/firework_star/aesthetic
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/aesthetic_config
 	name = "aesthetic - configurable"
@@ -24,9 +32,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 1000, MAT_GLASS = 1000)
 	build_path = /obj/item/firework_star/aesthetic/configurable
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_clear
 	name = "weather - CLEAR"
@@ -36,9 +41,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_STEEL = 4000)
 	build_path = /obj/item/firework_star/weather/clear
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_overcast
 	name = "weather - CLOUDY"
@@ -48,9 +50,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 1000)
 	build_path = /obj/item/firework_star/weather/overcast
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_fog
 	name = "weather - FOG"
@@ -60,9 +59,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 2000)
 	build_path = /obj/item/firework_star/weather/fog
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_rain
 	name = "weather - RAIN"
@@ -72,9 +68,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 4000)
 	build_path = /obj/item/firework_star/weather/rain
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_storm
 	name = "weather - STORM"
@@ -84,9 +77,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_GOLD = 1000)
 	build_path = /obj/item/firework_star/weather/storm
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_light_snow
 	name = "weather - LIGHT SNOW"
@@ -96,9 +86,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_LEAD = 2000)
 	build_path = /obj/item/firework_star/weather/light_snow
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_snow
 	name = "weather - MODERATE SNOW"
@@ -108,9 +95,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_LEAD = 2000)
 	build_path = /obj/item/firework_star/weather/snow
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_blizzard
 	name = "weather - HEAVY SNOW"
@@ -120,9 +104,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_LEAD = 3000)
 	build_path = /obj/item/firework_star/weather/blizzard
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_hail
 	name = "weather - HAIL"
@@ -132,9 +113,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_SILVER = 3000, MAT_LEAD = 3000, MAT_PLASTEEL = 4000)
 	build_path = /obj/item/firework_star/weather/hail
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_confetti
 	name = "weather - CONFETTI"
@@ -144,9 +122,6 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 10000, MAT_GLASS = 10000)
 	build_path = /obj/item/firework_star/weather/confetti
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)
 
 /datum/design_techweb/firework_star/weather_fallout
 	name = "weather - NUCLEAR"
@@ -156,6 +131,3 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 2000, MAT_URANIUM = 12000)
 	build_path = /obj/item/firework_star/weather/fallout
-	category = list(
-		RND_CATEGORY_FIREWORKS
-	)

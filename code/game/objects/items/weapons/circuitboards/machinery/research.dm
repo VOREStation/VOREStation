@@ -2,29 +2,6 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/circuitboard/rdserver
-	name = T_BOARD("R&D server")
-	build_path = /obj/machinery/r_n_d/server/core
-	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 3)
-	req_components = list(
-							/obj/item/stack/cable_coil = 2,
-							/obj/item/stock_parts/scanning_module = 1)
-
-/obj/item/circuitboard/rdserver/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.has_tool_quality(TOOL_SCREWDRIVER))
-		playsound(src, I.usesound, 50, 1)
-		user.visible_message(span_infoplain(span_bold("\The [user]") + " adjusts the jumper on \the [src]'s access protocol pins."), span_notice("You adjust the jumper on the access protocol pins."))
-		if(build_path == /obj/machinery/r_n_d/server/core)
-			name = T_BOARD("RD Console - Robotics")
-			build_path = /obj/machinery/r_n_d/server/robotics
-			to_chat(user, span_notice("Access protocols set to robotics."))
-		else
-			name = T_BOARD("RD Console")
-			build_path = /obj/machinery/r_n_d/server/core
-			to_chat(user, span_notice("Access protocols set to default."))
-	return
-
 /obj/item/circuitboard/destructive_analyzer
 	name = T_BOARD("destructive analyzer")
 	build_path = /obj/machinery/r_n_d/destructive_analyzer

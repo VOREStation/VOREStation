@@ -198,3 +198,131 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/beaker_noreact
+	name = "cryostasis"
+	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
+	id = "splitbeaker"
+	// req_tech = list(TECH_MATERIAL = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 3000)
+	build_path = /obj/item/reagent_containers/glass/beaker/noreact
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/beaker_bluespace
+	name = TECH_BLUESPACE
+	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
+	id = "bluespacebeaker"
+	// req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 6)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 3000, MAT_PHORON = 3000, MAT_DIAMOND = 500)
+	build_path = /obj/item/reagent_containers/glass/beaker/bluespace
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/nifrepairtool
+	name = "adv. NIF repair tool"
+	desc = "A tool to repair NIF implants."
+	id = "anrt"
+	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 3000, MAT_URANIUM = 2000, MAT_DIAMOND = 2000)
+	build_path = /obj/item/nifrepairer
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+
+/datum/design_techweb/mass_spectrometer
+	name = "Mass Spectrometer"
+	desc = "A device for analyzing chemicals in blood."
+	id = "mass_spectrometer"
+	// req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	build_path = /obj/item/mass_spectrometer
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/adv_mass_spectrometer
+	name = "Advanced Mass Spectrometer"
+	desc = "A device for analyzing chemicals in blood and their quantities."
+	id = "adv_mass_spectrometer"
+	// req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	build_path = /obj/item/mass_spectrometer/adv
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/reagent_scanner
+	name = "Reagent Scanner"
+	desc = "A device for identifying chemicals."
+	id = "reagent_scanner"
+	// req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	build_path = /obj/item/reagent_scanner
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/adv_reagent_scanner
+	name = "Advanced Reagent Scanner"
+	desc = "A device for identifying chemicals and their proportions."
+	id = "adv_reagent_scanner"
+	// req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
+	build_path = /obj/item/reagent_scanner/adv
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/robot_scanner
+	desc = "A hand-held scanner able to diagnose robotic injuries."
+	id = "robot_scanner"
+	// req_tech = list(TECH_MAGNET = 3, TECH_BIO = 2, TECH_ENGINEERING = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 200)
+	build_path = /obj/item/robotanalyzer
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/nanopaste
+	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
+	id = "nanopaste"
+	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 7000, MAT_GLASS = 7000)
+	build_path = /obj/item/stack/nanopaste
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/plant_analyzer
+	desc = "A device capable of quickly scanning all relevant data about a plant."
+	id = "plant_analyzer"
+	// req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/analyzer/plant_analyzer
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE
