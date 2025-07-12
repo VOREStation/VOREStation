@@ -484,6 +484,7 @@
 			"name" = material.name,
 			"ref" = REF(material),
 			"amount" = amount,
+			"color" = material.icon_colour,
 			"sheets" = round(amount / SHEET_MATERIAL_AMOUNT),
 			"removable" = amount >= SHEET_MATERIAL_AMOUNT,
 		))

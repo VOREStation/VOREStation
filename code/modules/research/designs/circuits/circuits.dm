@@ -24,69 +24,12 @@ CIRCUITS BELOW
 	if(!desc)
 		desc = "Allows for the construction of \a [item_name] circuit board."
 
-/datum/design/circuit/arcademachine
-	name = "battle arcade machine"
-	id = "arcademachine"
-	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/circuitboard/arcade/battle
-	sort_string = "MAAAA"
-
-/datum/design/circuit/oriontrail
-	name = "orion trail arcade machine"
-	id = "oriontrail"
-	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/circuitboard/arcade/orion_trail
-	sort_string = "MAAAB"
-
-/datum/design/circuit/clawmachine
-	name = "grab-a-gift arcade machine"
-	id = "clawmachine"
-	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/circuitboard/arcade/clawmachine
-	sort_string = "MAAAC"
-
 /datum/design/circuit/jukebox
 	name = "jukebox"
 	id = "jukebox"
 	req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1)
 	build_path = /obj/item/circuitboard/jukebox
 	sort_string = "MAAAO"
-
-/datum/design/circuit/seccamera
-	name = "security camera monitor"
-	id = "seccamera"
-	build_path = /obj/item/circuitboard/security
-	sort_string = "DAAAZ"	// Duplicate string, really need to redo this whole thing
-
-/datum/design/circuit/secdata
-	name = "security records console"
-	id = "sec_data"
-	build_path = /obj/item/circuitboard/secure_data
-	sort_string = "DABAA"
-
-/datum/design/circuit/prisonmanage
-	name = "prisoner management console"
-	id = "prisonmanage"
-	build_path = /obj/item/circuitboard/prisoner
-	sort_string = "DACAA"
-
-/datum/design/circuit/med_data
-	name = "medical records console"
-	id = "med_data"
-	build_path = /obj/item/circuitboard/med_data
-	sort_string = "FAAAA"
-
-/datum/design/circuit/operating
-	name = "patient monitoring console"
-	id = "operating"
-	build_path = /obj/item/circuitboard/operating
-	sort_string = "FACAA"
-
-/datum/design/circuit/scan_console
-	name = "DNA machine"
-	id = "scan_console"
-	build_path = /obj/item/circuitboard/scan_consolenew
-	sort_string = "FAGAA"
 
 /datum/design/circuit/clonecontrol
 	name = "cloning control console"

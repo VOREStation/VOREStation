@@ -736,7 +736,7 @@
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/submap/debrisfield/tinyshuttle/hangar)
 "br" = (
-/obj/machinery/mecha_part_fabricator{
+/obj/machinery/mecha_part_fabricator_tg{
 	req_access = list()
 	},
 /obj/machinery/light{
