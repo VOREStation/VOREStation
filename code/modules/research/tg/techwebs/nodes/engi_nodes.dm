@@ -62,7 +62,7 @@
 		"hyper_cell",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	// required_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier2_any)
+	required_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier2_any)
 	announce_channels = list(CHANNEL_ENGINEERING)
 
 // Engineering root node

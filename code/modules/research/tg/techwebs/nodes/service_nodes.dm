@@ -104,3 +104,26 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/physical/arcade_winner = TECHWEB_TIER_2_POINTS)
+
+/datum/techweb_node/fireworks
+	id = TECHWEB_NODE_FIREWORKS
+	display_name = "Fireworks"
+	description = "Pretty explosives! They change the weather!"
+	prereq_ids = list(TECHWEB_NODE_PARTS_ADV)
+	design_ids = list(
+		"fireworkaesthetic",
+		"fireworkaestheticconfig",
+		"fireworkclearsky",
+		"fireworkcloudy",
+		"fireworkfog",
+		"fireworkrain",
+		"fireworkstorm",
+		"fireworklightsnow",
+		"fireworksnow",
+		"fireworkblizzard",
+		"fireworkhail",
+		"fireworkconfetti",
+		"fireworkfallout",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_COMMON)

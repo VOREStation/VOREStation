@@ -91,6 +91,8 @@
 #define RND_SUBCATEGORY_EQUIPMENT_KITCHEN "/Bar & Kitchen Equipment"
 #define RND_SUBCATEGORY_EQUIPMENT_MISC "/Miscellaneous Equipment"
 
+#define RND_CATEGORY_FIREWORKS "/Fireworks"
+
 #define RND_CATEGORY_AI "/Artificial Intelligence"
 #define RND_SUBCATEGORY_AI_CORE "/AI Construction"
 #define RND_SUBCATEGORY_AI_CORE_MODULES "/Core AI Modules"
