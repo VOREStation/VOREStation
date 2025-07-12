@@ -669,7 +669,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	. = ..()
 	IF_VV_OPTION("admin_add")
 		admin_add()
-		href_list["datumrefresh"] = "\ref[src]"
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 
 /obj/machinery/gear_dispenser/proc/admin_add()
 	if(!check_rights(R_DEBUG|R_FUN))

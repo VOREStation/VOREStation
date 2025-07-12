@@ -111,7 +111,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			if(issmall(player))
 				body += span_bold("Monkeyized") + " | "
 			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];monkeyone=\ref[player]'>Monkeyize</A> | "
+				body += "<A href='byond://?_src_=holder;[HrefToken()];turn_monkey=\ref[player]'>Monkeyize</A> | "
 
 			//Corgi
 			if(iscorgi(player))
@@ -123,9 +123,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			if(isAI(player))
 				body += span_bold("Is an AI ")
 			else if(ishuman(player))
-				body += {"<A href='byond://?_src_=holder;[HrefToken()];makeai=\ref[player]'>Make AI</A> |
-					<A href='byond://?_src_=holder;[HrefToken()];makerobot=\ref[player]'>Make Robot</A> |
-					<A href='byond://?_src_=holder;[HrefToken()];makealien=\ref[player]'>Make Alien</A>
+				body += {"<A href='byond://?_src_=holder;[HrefToken()];turn_ai=\ref[player]'>Make AI</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];turn_robot=\ref[player]'>Make Robot</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];turn_alien=\ref[player]'>Make Alien</A>
 				"}
 
 			//Simple Animals
