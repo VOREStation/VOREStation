@@ -492,3 +492,142 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+// Mining digging devices
+/datum/design_techweb/drill
+	name = "Drill"
+	id = "drill"
+	// req_tech = list(TECH_MATERIAL = 1, TECH_POWER = 2, TECH_ENGINEERING = 1)
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 500) //expensive, but no need for miners.
+	build_path = /obj/item/pickaxe/drill
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/advdrill
+	name = "Advanced Drill"
+	id = "advanced_drill"
+	// req_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 1000) //expensive, but no need for miners.
+	build_path = /obj/item/pickaxe/advdrill
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/jackhammer
+	name = "Jackhammer"
+	id = "jackhammer"
+	// req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 500, MAT_SILVER = 500)
+	build_path = /obj/item/pickaxe/jackhammer
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/plasmacutter
+	name = "Plasma Cutter"
+	id = "plasmacutter"
+	// req_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
+	materials = list(MAT_STEEL = 1500, MAT_GLASS = 500, MAT_GOLD = 500, MAT_PHORON = 500)
+	build_path = /obj/item/pickaxe/plasmacutter
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/pick_diamond
+	name = "Diamond Pickaxe"
+	id = "pick_diamond"
+	// req_tech = list(TECH_MATERIAL = 6)
+	materials = list(MAT_DIAMOND = 3000)
+	build_path = /obj/item/pickaxe/diamond
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/drill_diamond
+	name = "Diamond Drill"
+	id = "drill_diamond"
+	// req_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 4)
+	materials = list(MAT_STEEL = 3000, MAT_GLASS = 1000, MAT_DIAMOND = 2000)
+	build_path = /obj/item/pickaxe/diamonddrill
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+// Mining other equipment
+
+/datum/design_techweb/depth_scanner
+	name = "Depth Scanner"
+	desc = "Used to check spatial depth and density of rock outcroppings."
+	id = "depth_scanner"
+	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 2)
+	materials = list(MAT_STEEL = 1000,MAT_GLASS = 1000)
+	build_path = /obj/item/depth_scanner
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/mining_scanner
+	name = "Mining Scanner"
+	id = "mining_scanner"
+	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 1)
+	materials = list(MAT_STEEL = 1000,MAT_GLASS = 500)
+	build_path = /obj/item/mining_scanner/advanced
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MINING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+// Everything that didn't fit elsewhere
+/datum/design_techweb/laserpointer
+	name = "laser pointer"
+	desc = "Don't shine it in your eyes!"
+	id = "laser_pointer"
+	// req_tech = list(TECH_MAGNET = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 100, MAT_GLASS = 50)
+	build_path = /obj/item/laser_pointer
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+
+/datum/design_techweb/translator
+	name = "handheld translator"
+	id = "translator"
+	// req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000)
+	build_path = /obj/item/universal_translator
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+
+/datum/design_techweb/bsflare
+	name = "bluespace flare"
+	desc = "A marker that can be detected by shuttle landing systems."
+	id = "bsflare"
+	// req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 2000)
+	build_path = /obj/item/spaceflare
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+
+/datum/design_techweb/motion_tracker
+	name = "Motion Tracker"
+	// id = "motion_tracker"
+	// req_tech = list(TECH_MAGNET = 1, TECH_DATA = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 500)
+	build_path = /obj/item/motiontracker
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)

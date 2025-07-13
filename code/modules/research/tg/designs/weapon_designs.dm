@@ -220,6 +220,9 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
 
+	research_icon = 'icons/obj/ammo.dmi'
+	research_icon_state = "darts_small-3"
+
 /datum/design_techweb/dartgun_ammo_small
 	name = "Dartgun Ammo (Small)"
 	id = "dartgun_ammo_s"
@@ -230,6 +233,9 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE
+
+	research_icon = 'icons/obj/ammo.dmi'
+	research_icon_state = "darts_small-3"
 
 /datum/design_techweb/dartgunmag_med
 	name = "Dartgun Magazine (Chem)"
@@ -785,3 +791,26 @@
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/upgradeAOE
+	name = "Mining Explosion Upgrade"
+	desc = "An area of effect upgrade for the Proto-Kinetic Accelerator."
+	id = "pka_mineaoe"
+	// req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 8, TECH_ENGINEERING = 7) // Lets make this endgame level tech, due to it's power.
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_SILVER = 500, MAT_GOLD = 500, MAT_URANIUM = 2000, MAT_PHORON = 2000)
+	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_PARTS
+	)
+
+/datum/design_techweb/riflescope
+	name = "rifle scope"
+	desc = "A scope that can be mounted to certain rifles."
+	id = "riflescope"
+	// req_tech = list(TECH_ILLEGAL = 2, TECH_MATERIAL = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	build_path = /obj/item/binoculars/scope
+	category = list(
+		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_PARTS
+	)

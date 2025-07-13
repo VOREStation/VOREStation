@@ -7,6 +7,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/deluxe_bluespace_bracelet
 	name = "Deluxe Size Standardization Bracelet"
@@ -17,6 +18,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/bluespace_collar
 	name = "Bluespace Collar"
@@ -27,6 +29,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/hyperfiber_jumpsuit
 	name = "HYPER jumpsuit"
@@ -37,6 +40,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/bluespace_jumpsuit
 	name = "Bluespace Jumpsuit"
@@ -47,6 +51,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/ore_holding
 	name = "Mining Satchel of Holding"
@@ -59,6 +64,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/sheet_holding
 	name = "Sheet Snatcher of Holding"
@@ -71,6 +77,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/bag_holding
 	name = "Bag of Holding"
@@ -107,6 +114,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design_techweb/pouch_holding
 	name = "Pouch of Holding"
@@ -132,6 +140,7 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design_techweb/belt_holding_utility
 	name = "Tool-Belt of Holding"
@@ -143,4 +152,191 @@
 	build_path = /obj/item/storage/belt/utility/holding
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+// HUDs
+/datum/design_techweb/hud
+	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	build_type = PROTOLATHE
+
+/datum/design_techweb/hud/New()
+	..()
+	name = "HUD glasses prototype ([initial(name)])"
+
+/datum/design_techweb/hud/health
+	name = "health scanner"
+	id = "health_hud"
+	// req_tech = list(TECH_BIO = 2, TECH_MAGNET = 3)
+	build_path = /obj/item/clothing/glasses/hud/health
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
+	)
+
+/datum/design_techweb/hud/security
+	name = "security records"
+	id = "security_hud"
+	// req_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 2)
+	build_path = /obj/item/clothing/glasses/hud/security
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SECURITY
+	)
+
+/datum/design_techweb/hud/janitor
+	name = "contaminant detector"
+	id = "janitor_hud"
+	// req_tech = list(TECH_MAGNET = 2)
+	build_path = /obj/item/clothing/glasses/hud/janitor
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SERVICE
+	)
+
+/datum/design_techweb/hud/mesons
+	name = "optical meson scanner"
+	id = "mesons"
+	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
+	build_path = /obj/item/clothing/glasses/meson
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
+	)
+
+/datum/design_techweb/hud/material
+	name = "optical material scanner"
+	id = "material"
+	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
+	build_path = /obj/item/clothing/glasses/material
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
+	)
+
+/datum/design_techweb/hud/graviton_visor
+	name = "graviton visor"
+	id = "graviton_goggles"
+	// req_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3, TECH_PHORON = 3, TECH_ARCANE = 1)
+	materials = list(MAT_PLASTEEL = 2000, MAT_GLASS = 3000, MAT_PHORON = 1500, MAT_DIAMOND = 500)
+	build_path = /obj/item/clothing/glasses/graviton
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_ENGINEERING
+	)
+
+/datum/design_techweb/hud/omni
+	name = "AR glasses"
+	id = "omnihud"
+	// req_tech = list(TECH_MAGNET = 4, TECH_COMBAT = 3, TECH_BIO = 3)
+	materials = list(MAT_STEEL = 1000, MAT_GLASS = 1000)
+	build_path = /obj/item/clothing/glasses/omnihud
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+
+// GPS
+/datum/design_techweb/gps
+	// req_tech = list(TECH_MATERIAL = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
+	materials = list(MAT_STEEL = 500)
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+
+/datum/design_techweb/gps/generic
+	name = "GPS - GEN"
+	id = "gps_gen"
+	build_path = /obj/item/gps
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/gps/command
+	name = "GPS - COM"
+	id = "gps_com"
+	build_path = /obj/item/gps/command
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_COMMAND
+
+/datum/design_techweb/gps/security
+	name = "GPS - SEC"
+	id = "gps_sec"
+	build_path = /obj/item/gps/security
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/gps/medical
+	name = "GPS - MED"
+	id = "gps_med"
+	build_path = /obj/item/gps/medical
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/gps/engineering
+	name = "GPS - ENG"
+	id = "gps_eng"
+	build_path = /obj/item/gps/engineering
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/gps/science
+	name = "GPS - SCI"
+	id = "gps_sci"
+	build_path = /obj/item/gps/science
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/gps/mining
+	name = "GPS - MINE"
+	id = "gps_mine"
+	build_path = /obj/item/gps/mining
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/gps/explorer
+	name = "GPS - EXP"
+	id = "gps_exp"
+	build_path = /obj/item/gps/explorer
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/beacon_locator
+	name = "Tracking beacon pinpointer"
+	desc = "Used to scan and locate signals on a particular frequency."
+	id = "beacon_locator"
+	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 1000,MAT_GLASS = 500)
+	build_path = /obj/item/beacon_locator
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+
+/datum/design_techweb/beacon
+	name = "Bluespace tracking beacon"
+	id = "beacon"
+	// req_tech = list(TECH_BLUESPACE = 1)
+	build_type = PROTOLATHE
+	materials = list (MAT_STEEL = 20, MAT_GLASS = 10)
+	build_path = /obj/item/radio/beacon
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+
+/datum/design_techweb/ear_translator
+	name = "earpiece translator"
+	id = "ear_translator"
+	// req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5)	//It's been hella miniaturized.
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000, MAT_GOLD = 1000)
+	build_path = /obj/item/universal_translator/ear
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+
+/datum/design_techweb/walkpod
+	name = "PodZu Music Player"
+	id = "walkpod"
+	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	build_path = /obj/item/walkpod
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+
+/datum/design_techweb/juke_remote
+	name = "BoomTown Cordless Speaker"
+	id = "juke_remote"
+	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 1)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_URANIUM = 2000)
+	build_path = /obj/item/juke_remote
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
