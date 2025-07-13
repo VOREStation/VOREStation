@@ -106,7 +106,7 @@ ADMIN_VERB(narrate_mob, R_FUN, "Narrate Entity (Interface)", "Send either a visi
 	var/which_entity = tgui_input_list(user, "Choose which mob to narrate", "Narrate mob", choices, null)
 	if(!which_entity) return
 	if(which_entity == "Open TGUI")
-		holder.tgui_interact(user)
+		holder.tgui_interact(user.mob)
 	else
 		var/mode = tgui_alert(user, "Speak or emote?", "mode", list("Speak", "Emote", "Cancel"))
 		if(!mode || mode == "Cancel") return
