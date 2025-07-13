@@ -39,112 +39,105 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
-/datum/admins/proc/show_player_panel(var/mob/M in mob_list)
-	set category = "Admin.Game"
-	set name = "Show Player Panel"
-	set desc="Edit player (respawn, ban, heal, etc)"
+ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", mob/player in world)
+	log_admin("[key_name(user)] checked the individual player panel for [key_name(player)][isobserver(user.mob)?"":" while in game"].")
 
-	if(!M)
-		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.")
-		return
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
+	if(!player)
+		to_chat(user, "You seem to be selecting a mob that doesn't exist anymore.")
 		return
 
-	var/body = "Options panel for" + span_bold("[M]")
-	if(M.client)
-		body += " played by " + span_bold("[M.client]")
-		body += "\[<A href='byond://?src=\ref[src];[HrefToken()];editrights=show'>[M.client.holder ? M.client.holder.rank_names() : "Player"]</A>\]"
+	var/body = "Options panel for " + span_bold("[player]")
+	if(player.client)
+		body += " played by " + span_bold("[player.client]")
+		body += "\[<A href='byond://?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[player.client.ckey] || GLOB.deadmins[player.client.ckey]) ? "rank" : "add"];key=[player.key]'>[player.client.holder ? player.client.holder.rank_names() : "Player"]</A>\]"
 
-	if(isnewplayer(M))
-		body += span_bold(" Hasn't Entered Game")
+	if(isnewplayer(player))
+		body += span_bold("Hasn't Entered Game")
 	else
-		body += " \[<A href='byond://?src=\ref[src];[HrefToken()];revive=\ref[M]'>Heal</A>\] "
+		body += " \[<A href='byond://?_src_=holder;[HrefToken()];revive=[REF(player)]'>Heal</A>\] "
 
-	if(M.client)
-		body += "<br>" + span_bold("First connection:") + "[M.client.player_age] days ago"
-		body += "<br>" + span_bold("BYOND account created:") + "[M.client.account_join_date]"
-		body += "<br>" + span_bold("BYOND account age (days):") + "[M.client.account_age]"
+	if(player.client)
+		body += "<br>" + span_bold("First connection:") + "[player.client.player_age] days ago"
+		body += "<br>" + span_bold("BYOND account created:") + "[player.client.account_join_date]"
+		body += "<br>" + span_bold("BYOND account age (days):") + "[player.client.account_age]"
 
 	body += {"
 		<br><br>\[
-		<a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[M]'>VV</a> -
-		<a href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'>TP</a> -
-		<a href='byond://?src=\ref[usr];[HrefToken()];priv_msg=\ref[M]'>PM</a> -
-		<a href='byond://?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>SM</a> -
-		[admin_jump_link(M, src)]\] <br>
-		"} + span_bold("Mob type:") + {"[M.type]<br>
-		"} + span_bold("Inactivity time:") + {" [M.client ? "[M.client.inactivity/600] minutes" : "Logged out"]<br/><br/>
-		<A href='byond://?src=\ref[src];[HrefToken()];boot2=\ref[M]'>Kick</A> |
-		<A href='byond://?_src_=holder;[HrefToken()];warn=[M.ckey]'>Warn</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];newban=\ref[M]'>Ban</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];jobban2=\ref[M]'>Jobban</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];notes=show;mob=\ref[M]'>Notes</A>
+		<a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[player]'>VV</a> -
+		<a href='byond://?_src_=holder;[HrefToken()];traitor=\ref[player]'>TP</a> -
+		<a href='byond://??_src_=holder;[HrefToken()];priv_msg=\ref[player]'>PM</a> -
+		<a href='byond://?_src_=holder;[HrefToken()];subtlemessage=\ref[player]'>SM</a> -
+		[admin_jump_link(player, src)]\] <br>
+		"} + span_bold("Mob type:") + {"[player.type]<br>
+		"} + span_bold("Inactivity time:") + {" [player.client ? "[player.client.inactivity/600] minutes" : "Logged out"]<br/><br/>
+		<A href='byond://?_src_=holder;[HrefToken()];boot2=\ref[player]'>Kick</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];warn=[player.ckey]'>Warn</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];newban=\ref[player]'>Ban</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];jobban2=\ref[player]'>Jobban</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];notes=show;mob=\ref[player]'>Notes</A>
 	"}
 
-	if(M.client)
-		body += "| <A href='byond://?src=\ref[src];[HrefToken()];sendtoprison=\ref[M]'>Prison</A> | "
-		body += "\ <A href='byond://?src=\ref[src];[HrefToken()];sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
-		var/muted = M.client.prefs.muted
+	if(player.client)
+		body += "| <A href='byond://?_src_=holder;[HrefToken()];sendtoprison=\ref[player]'>Prison</A> | "
+		body += "\ <A href='byond://?_src_=holder;[HrefToken()];sendbacktolobby=\ref[player]'>Send back to Lobby</A> | "
+		var/muted = player.client.prefs.muted
 		body += {"<br>"} + span_bold("Mute: ") + {"
-			\[<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_IC]'>[(muted & MUTE_IC) ? span_red("IC") : span_blue("IC")]</a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_OOC]'>[(muted & MUTE_OOC) ? span_red("OOC") : span_blue("OOC")]</a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_LOOC]'>[(muted & MUTE_LOOC) ? span_red("LOOC") : span_blue("LOOC")]</a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_PRAY]'>[(muted & MUTE_PRAY) ? span_red("PRAY") : span_blue("PRAY")]</a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'>[(muted & MUTE_ADMINHELP) ? span_red("ADMINHELP") : span_blue("ADMINHELP")]</a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'>[(muted & MUTE_DEADCHAT) ? span_red("DEADCHAT") : span_blue("DEADCHAT")]</a>\]
-			(<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ALL]'>[(muted & MUTE_ALL) ? span_red("toggle all") : span_blue("toggle all")]</a>)
+			\[<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_IC]'>[(muted & MUTE_IC) ? span_red("IC") : span_blue("IC")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_OOC]'>[(muted & MUTE_OOC) ? span_red("OOC") : span_blue("OOC")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_LOOC]'>[(muted & MUTE_LOOC) ? span_red("LOOC") : span_blue("LOOC")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_PRAY]'>[(muted & MUTE_PRAY) ? span_red("PRAY") : span_blue("PRAY")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_ADMINHELP]'>[(muted & MUTE_ADMINHELP) ? span_red("ADMINHELP") : span_blue("ADMINHELP")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_DEADCHAT]'>[(muted & MUTE_DEADCHAT) ? span_red("DEADCHAT") : span_blue("DEADCHAT")]</a>\]
+			(<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_ALL]'>[(muted & MUTE_ALL) ? span_red("toggle all") : span_blue("toggle all")]</a>)
 		"}
 
 	body += {"<br><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];jumpto=\ref[M]'>"} + span_bold("Jump to") + {"</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];getmob=\ref[M]'>Get</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];sendmob=\ref[M]'>Send To</A>
+		<A href='byond://?_src_=holder;[HrefToken()];jumpto=\ref[player]'>"} + span_bold("Jump to") + {"</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];getmob=\ref[player]'>Get</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];sendmob=\ref[player]'>Send To</A>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD|R_EVENT,0) ? "<A href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'>Traitor panel</A> | " : "" ]
-		<A href='byond://?src=\ref[src];[HrefToken()];narrateto=\ref[M]'>Narrate to</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>Subtle message</A>
+		[check_rights(R_ADMIN|R_MOD|R_EVENT,0) ? "<A href='byond://?_src_=holder;[HrefToken()];traitor=\ref[player]'>Traitor panel</A> | " : "" ]
+		<A href='byond://?_src_=holder;[HrefToken()];narrateto=\ref[player]'>Narrate to</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];subtlemessage=\ref[player]'>Subtle message</A>
 	"}
 
-	if (M.client)
-		if(!isnewplayer(M))
+	if (player.client)
+		if(!isnewplayer(player))
 			body += "<br><br>"
 			body += span_bold("Transformation:")
 			body += "<br>"
 
 			//Monkey
-			if(issmall(M))
+			if(issmall(player))
 				body += span_bold("Monkeyized") + " | "
 			else
-				body += "<A href='byond://?src=\ref[src];[HrefToken()];monkeyone=\ref[M]'>Monkeyize</A> | "
+				body += "<A href='byond://?_src_=holder;[HrefToken()];monkeyone=\ref[player]'>Monkeyize</A> | "
 
 			//Corgi
-			if(iscorgi(M))
+			if(iscorgi(player))
 				body += span_bold("Corgized") + " | "
 			else
-				body += "<A href='byond://?src=\ref[src];[HrefToken()];corgione=\ref[M]'>Corgize</A> | "
+				body += "<A href='byond://?_src_=holder;[HrefToken()];corgione=\ref[player]'>Corgize</A> | "
 
 			//AI / Cyborg
-			if(isAI(M))
+			if(isAI(player))
 				body += span_bold("Is an AI ")
-			else if(ishuman(M))
-				body += {"<A href='byond://?src=\ref[src];[HrefToken()];makeai=\ref[M]'>Make AI</A> |
-					<A href='byond://?src=\ref[src];[HrefToken()];makerobot=\ref[M]'>Make Robot</A> |
-					<A href='byond://?src=\ref[src];[HrefToken()];makealien=\ref[M]'>Make Alien</A>
+			else if(ishuman(player))
+				body += {"<A href='byond://?_src_=holder;[HrefToken()];makeai=\ref[player]'>Make AI</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];makerobot=\ref[player]'>Make Robot</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];makealien=\ref[player]'>Make Alien</A>
 				"}
 
 			//Simple Animals
-			if(isanimal(M))
-				body += "<A href='byond://?src=\ref[src];[HrefToken()];makeanimal=\ref[M]'>Re-Animalize</A> | "
+			if(isanimal(player))
+				body += "<A href='byond://?_src_=holder;[HrefToken()];makeanimal=\ref[player]'>Re-Animalize</A> | "
 			else
-				body += "<A href='byond://?src=\ref[src];[HrefToken()];makeanimal=\ref[M]'>Animalize</A> | "
+				body += "<A href='byond://?_src_=holder;[HrefToken()];makeanimal=\ref[player]'>Animalize</A> | "
 
-			body += "<A href='byond://?src=\ref[src];[HrefToken()];respawn=\ref[M.client]'>Respawn</A> | "
+			body += "<A href='byond://?_src_=holder;[HrefToken()];respawn=\ref[player.client]'>Respawn</A> | "
 
 			// DNA2 - Admin Hax
-			if(M.dna && iscarbon(M))
+			if(player.dna && iscarbon(player))
 				body += "<br><br>"
 				body += span_bold("DNA Blocks:") + "<br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
@@ -165,7 +158,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 						bname = ""
 					body += "<td>"
 					if(bname)
-						var/bstate=(bname in M.active_genes) // Traitgenes more reliable way to check gene states
+						var/bstate=(bname in player.active_genes) // Traitgenes more reliable way to check gene states
 						// Traitgenes show trait linked names on mouseover
 						var/tname = bname
 						if(istype(gene,/datum/gene/trait))
@@ -173,11 +166,11 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 							tname = T.get_name()
 						if(bstate)
 							bname = span_green(bname)
-						else if(!bstate && M.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
+						else if(!bstate && player.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
 							bname = span_orange(bname)
 						else
 							bname = span_red(bname)
-						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
+						body += "<A href='byond://?_src_=holder;[HrefToken()];togmutate=\ref[player];block=[block]' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
 					else
 						body += "[block]"
 					body+="</td>"
@@ -185,45 +178,45 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 
 			body += {"<br><br>
 				"} + span_bold("Rudimentary transformation:") + span_normal("<br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.") + {"<br>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=observer;mob=\ref[M]'>Observer</A> |
-				\[ Xenos: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=larva;mob=\ref[M]'>Larva</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Xenomorph Drone;mob=\ref[M]'>Drone</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Xenomorph Hunter;mob=\ref[M]'>Hunter</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Xenomorph Sentinel;mob=\ref[M]'>Sentinel</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \] |
-				\[ Crew: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;mob=\ref[M]'>Human</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Unathi;mob=\ref[M]'>Unathi</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Tajaran;mob=\ref[M]'>Tajaran</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Skrell;mob=\ref[M]'>Skrell</A> \] | \[
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=nymph;mob=\ref[M]'>Nymph</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species='Diona';mob=\ref[M]'>Diona</A> \] |
-				\[ slime: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=slime;mob=\ref[M]'>Baby</A>,
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=robot;mob=\ref[M]'>Cyborg</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=cat;mob=\ref[M]'>Cat</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=runtime;mob=\ref[M]'>Runtime</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=corgi;mob=\ref[M]'>Corgi</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=ian;mob=\ref[M]'>Ian</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=crab;mob=\ref[M]'>Crab</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=coffee;mob=\ref[M]'>Coffee</A> |
-				\[ Construct: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=constructarmoured;mob=\ref[M]'>Armoured</A> ,
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=constructbuilder;mob=\ref[M]'>Builder</A> ,
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=constructwraith;mob=\ref[M]'>Wraith</A> \]
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=shade;mob=\ref[M]'>Shade</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=\ref[player]'>Observer</A> |
+				\[ Xenos: <A href='byond://?_src_=holder;[HrefToken()];simplemake=larva;mob=\ref[player]'>Larva</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Drone;mob=\ref[player]'>Drone</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Hunter;mob=\ref[player]'>Hunter</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Sentinel;mob=\ref[player]'>Sentinel</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=\ref[player]'>Queen</A> \] |
+				\[ Crew: <A href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=\ref[player]'>Human</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Unathi;mob=\ref[player]'>Unathi</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Tajaran;mob=\ref[player]'>Tajaran</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Skrell;mob=\ref[player]'>Skrell</A> \] | \[
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=nymph;mob=\ref[player]'>Nymph</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species='Diona';mob=\ref[player]'>Diona</A> \] |
+				\[ slime: <A href='byond://?_src_=holder;[HrefToken()];simplemake=slime;mob=\ref[player]'>Baby</A>,
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=adultslime;mob=\ref[player]'>Adult</A> \]
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=\ref[player]'>Monkey</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=robot;mob=\ref[player]'>Cyborg</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=cat;mob=\ref[player]'>Cat</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=runtime;mob=\ref[player]'>Runtime</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=corgi;mob=\ref[player]'>Corgi</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=ian;mob=\ref[player]'>Ian</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=crab;mob=\ref[player]'>Crab</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=coffee;mob=\ref[player]'>Coffee</A> |
+				\[ Construct: <A href='byond://?_src_=holder;[HrefToken()];simplemake=constructarmoured;mob=\ref[player]'>Armoured</A> ,
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=constructbuilder;mob=\ref[player]'>Builder</A> ,
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=constructwraith;mob=\ref[player]'>Wraith</A> \]
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=shade;mob=\ref[player]'>Shade</A>
 				<br>
 			"}
 	body += {"<br><br>
 			"} + span_bold("Other actions:") + {"
 			<br>
-			<A href='byond://?src=\ref[src];[HrefToken()];forcespeech=\ref[M]'>Forcesay</A>
+			<A href='byond://?_src_=holder;[HrefToken()];forcespeech=\ref[player]'>Forcesay</A>
 			"}
-	if (M.client)
+	if (player.client)
 		body += {" |
-			<A href='byond://?src=\ref[src];[HrefToken()];tdome1=\ref[M]'>Thunderdome 1</A> |
-			<A href='byond://?src=\ref[src];[HrefToken()];tdome2=\ref[M]'>Thunderdome 2</A> |
-			<A href='byond://?src=\ref[src];[HrefToken()];tdomeadmin=\ref[M]'>Thunderdome Admin</A> |
-			<A href='byond://?src=\ref[src];[HrefToken()];tdomeobserve=\ref[M]'>Thunderdome Observer</A> |
+			<A href='byond://?_src_=holder;[HrefToken()];tdome1=\ref[player]'>Thunderdome 1</A> |
+			<A href='byond://?_src_=holder;[HrefToken()];tdome2=\ref[player]'>Thunderdome 2</A> |
+			<A href='byond://?_src_=holder;[HrefToken()];tdomeadmin=\ref[player]'>Thunderdome Admin</A> |
+			<A href='byond://?_src_=holder;[HrefToken()];tdomeobserve=\ref[player]'>Thunderdome Observer</A> |
 		"}
 	// language toggles
 	body += "<br><br>" + span_bold("Languages:") + "<br>"
@@ -233,17 +226,17 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		if(!(L.flags & INNATE))
 			if(!f) body += " | "
 			else f = 0
-			if(L in M.languages)
+			if(L in player.languages)
 				k = span_green(k)
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]'>[k]</a>"
+				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[k]</a>"
 			else
 				k = span_red(k)
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]'>[k]</a>"
+				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[k]</a>"
 
 	body += {"<br>"}
 
-	var/datum/browser/popup = new(owner, "adminplayeropts", "Edit Player", 550, 515)
-	popup.add_head_content("<title>Options for [M.key]</title>")
+	var/datum/browser/popup = new(user, "adminplayeropts", "Edit Player", 550, 515)
+	popup.add_head_content("<title>Options for [player.key]</title>")
 	popup.set_content(body)
 	popup.open()
 
@@ -596,7 +589,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
 		"}
 
-	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 210, 280)
+	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 220, 295)
 	popup.set_content(dat)
 	popup.open()
 
@@ -637,7 +630,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 	set category = "Server.Game"
 	set name = "Restart"
 	set desc="Restarts the world"
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 	var/confirm = alert(usr, "Restart the game world?", "Restart", "Yes", "Cancel") // Not tgui_alert for safety
 	if(!confirm || confirm == "Cancel")
@@ -1028,7 +1021,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Server.Game"
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
-	if(!usr.client.holder)	return
+	if(!check_rights_for(usr.client, R_HOLDER))	return
 	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
 		return
 	to_world(span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
@@ -1306,7 +1299,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
 
-	if (!holder)
+	if (!check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 

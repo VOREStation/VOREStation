@@ -235,7 +235,7 @@ var/list/gear_datums = list()
 				if(TG.display_name in active_gear_list)
 					active_gear_list -= TG.display_name
 				else if(get_total() + TG.cost <= MAX_GEAR_COST)
-					active_gear_list[TG.display_name] = list()
+					LAZYSET(active_gear_list, TG.display_name, list())
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("gear_tweak")

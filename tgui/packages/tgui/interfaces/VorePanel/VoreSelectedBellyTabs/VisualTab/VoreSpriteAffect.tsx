@@ -1,18 +1,20 @@
 import { Box, LabeledList, Stack } from 'tgui-core/components';
 
 import { spriteToTooltip } from '../../constants';
-import type { bellyVisualData } from '../../types';
+import type { bellyVisualData, hostMob } from '../../types';
 import { VorePanelEditCheckboxes } from '../../VorePanelElements/VorePanelEditCheckboxes';
 import { VorePanelEditColor } from '../../VorePanelElements/VorePanelEditColor';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
+import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
 
 export const VoreSpriteAffects = (props: {
   editMode: boolean;
   bellyVisualData: bellyVisualData;
+  hostMobtype: hostMob;
 }) => {
-  const { editMode, bellyVisualData } = props;
+  const { editMode, bellyVisualData, hostMobtype } = props;
   const {
     vore_sprite_flags,
     absorbed_voresprite,
@@ -34,6 +36,7 @@ export const VoreSpriteAffects = (props: {
     tail_option_shown,
     tail_to_change_to,
     tail_sprite_options,
+    mob_belly_controls,
   } = bellyVisualData;
 
   return (
@@ -170,6 +173,11 @@ export const VoreSpriteAffects = (props: {
                   </LabeledList.Item>
                 )}
             </LabeledList>
+            <VoreSelectedMobTypeBellyButtons
+              editMode={editMode}
+              bellyControl={mob_belly_controls}
+              host_mobtype={hostMobtype}
+            />
           </Stack.Item>
           <Stack.Item basis="49%" grow>
             <LabeledList>

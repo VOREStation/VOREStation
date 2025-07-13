@@ -34,28 +34,6 @@
 /// Signal that gets sent when a ghost query is completed
 #define COMSIG_GHOST_QUERY_COMPLETE "ghost_query_complete"
 
-// /datum signals
-/// when a component is added to a datum: (/datum/component)
-#define COMSIG_COMPONENT_ADDED "component_added"
-/// before a component is removed from a datum because of RemoveComponent: (/datum/component)
-#define COMSIG_COMPONENT_REMOVING "component_removing"
-/// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
-#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
-/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_PARENT_QDELETING "parent_qdeleting"
-/// generic topic handler (usr, href_list)
-#define COMSIG_TOPIC "handle_topic"
-/// from datum tgui_act (usr, action)
-#define COMSIG_UI_ACT "COMSIG_UI_ACT"
-/// from datum tgui_fallback (payload)
-#define COMSIG_UI_FALLBACK "COMSIG_UI_FALLBACK"
-
-
-/// fires on the target datum when an element is attached to it (/datum/element)
-#define COMSIG_ELEMENT_ATTACH "element_attach"
-/// fires on the target datum when an element is attached to it  (/datum/element)
-#define COMSIG_ELEMENT_DETACH "element_detach"
-
 // /atom signals
 ///from base of atom/proc/Initialize(): sent any time a new atom is created
 #define COMSIG_ATOM_CREATED "atom_created"
@@ -860,8 +838,9 @@
 #define COMSIG_GARGOYLE_CHECK_ENERGY "gargoyle_check_energy"
 
 // Species Components
-///from /datum/species/xenochimera/handle_environment_special()
+///from /datum/species/proc/handle_species_components()
 #define COMSIG_XENOCHIMERA_COMPONENT "xenochimera_component"
+#define COMSIG_SHADEKIN_COMPONENT "shadekin_component"
 
 // Hose Connector Component
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"

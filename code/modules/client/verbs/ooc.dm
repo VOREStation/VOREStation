@@ -16,7 +16,7 @@
 		to_chat(src, span_warning("You have OOC muted."))
 		return
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		if(!CONFIG_GET(flag/ooc_allowed))
 			to_chat(src, span_danger("OOC is globally muted."))
 			return

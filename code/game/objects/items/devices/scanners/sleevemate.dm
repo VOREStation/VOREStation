@@ -297,6 +297,10 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			if(H.resleeve_lock && stored_mind.loaded_from_ckey != H.resleeve_lock)
 				to_chat(usr,span_warning("\The [H] is protected from impersonation!"))
 				return
+			//Changeling bodies. Only changelings can be put in them.
+			if(H.changeling_locked && !is_changeling(stored_mind))
+				to_chat(usr,span_warning("\The [H] is too complex to put this mind into!"))
+				return
 
 		usr.visible_message(span_warning("[usr] begins uploading someone's mind into [target]!"),span_notice("You begin uploading a mind into [target]!"))
 		if(do_after(usr,35 SECONDS,target))

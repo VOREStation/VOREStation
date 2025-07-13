@@ -20,7 +20,7 @@
 	//	user.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 
 /datum/ticket_chat/tgui_state(mob/user)
-	return GLOB.tgui_admin_state // Remove this line to enable player-side ticket ui
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG) // Remove this line to enable player-side ticket ui
 	//return GLOB.tgui_ticket_state
 
 /datum/ticket_chat/tgui_data(mob/user)

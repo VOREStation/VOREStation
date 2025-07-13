@@ -1,28 +1,26 @@
 GLOBAL_VAR_INIT(global_vantag_hud, 0)
 
-/client/proc/cmd_admin_drop_everything(mob/M as mob in mob_list)
-	set category = null
-	set name = "Drop Everything"
-	if(!holder)
-		return
-
-	var/confirm = tgui_alert(src, "Make [M] drop everything?", "Message", list("Yes", "No"))
+ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/dropee in mob_list)
+	var/confirm = tgui_alert(src, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
-	for(var/obj/item/W in M)
+	for(var/obj/item/W in dropee)
 		if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//There's basically no reason to remove either of these
 			continue
-		M.drop_from_inventory(W)
+		dropee.drop_from_inventory(W)
 
-	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
-	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
+	dropee.regenerate_icons()
+
+	log_admin("[key_name(user)] made [key_name(dropee)] drop everything!")
+	var/msg = "[key_name_admin(user)] made [ADMIN_LOOKUPFLW(dropee)] drop everything!"
+	message_admins(msg)
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_prison(mob/M as mob in mob_list)
 	set category = "Admin.Game"
 	set name = "Prison"
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	if (ismob(M))
@@ -50,7 +48,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 /client/proc/cmd_check_new_players()
 	set category = "Admin.Investigate"
 	set name = "Check new Players"
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/age = tgui_alert(src, "Age check", "Show accounts yonger then _____ days", list("7","30","All"))
@@ -88,7 +86,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 	set name = "Subtle Message"
 
 	if(!ismob(M))	return
-	if (!holder)
+	if (!check_rights_for(src, R_HOLDER))
 		return
 
 	var/msg = tgui_input_text(usr, "Message:", text("Subtle PM to [M.key]"))
@@ -101,7 +99,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 
 	if(usr)
 		if (usr.client)
-			if(usr.client.holder)
+			if(check_rights_for(usr.client, R_HOLDER))
 				to_chat(M, span_bold("You hear a voice in your head...") + " " + span_italics("[msg]"))
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
@@ -114,7 +112,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 	set category = "Fun.Narrate"
 	set name = "Global Narrate"
 
-	if (!holder)
+	if (!check_rights_for(src, R_HOLDER))
 		return
 
 	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"))
@@ -135,7 +133,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 	set category = "Fun.Narrate"
 	set name = "Direct Narrate"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	if(!M)
@@ -162,7 +160,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 	set category = "Admin.Game"
 	set name = "Godmode"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	M.status_flags ^= GODMODE
@@ -182,16 +180,16 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 	else
 		if(!usr || !usr.client)
 			return
-		if(!usr.client.holder)
+		if(!check_rights_for(usr.client, R_HOLDER))
 			to_chat(usr, span_red("Error: cmd_admin_mute: You don't have permission to do this."))
 			return
 		if(!M.client)
 			to_chat(usr, span_red("Error: cmd_admin_mute: This mob doesn't have a client tied to it."))
-		if(M.client.holder)
+		if(check_rights_for(M.client, R_HOLDER))
 			to_chat(usr, span_red("Error: cmd_admin_mute: You cannot mute an admin/mod."))
 	if(!M.client)
 		return
-	if(M.client.holder)
+	if(check_rights_for(M.client, R_HOLDER))
 		return
 
 	var/muteunmute
@@ -232,7 +230,7 @@ GLOBAL_VAR_INIT(global_vantag_hud, 0)
 	set category = "Fun.Silicon"
 	set name = "Add Random AI Law"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
@@ -284,7 +282,7 @@ Ccomp's first proc.
 	set name = "Allow player to respawn"
 	set desc = "Let a player bypass the wait to respawn or allow them to re-enter their corpse."
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/target = tgui_input_list(usr, "Select a ckey to allow to rejoin", "Allow Respawn Selector", GLOB.respawn_timers)
@@ -321,13 +319,13 @@ Ccomp's first proc.
 	set name = "Toggle antagHUD usage"
 	set desc = "Toggles antagHUD usage for observers"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/action=""
 	if(CONFIG_GET(flag/antag_hud_allowed))
 		for(var/mob/observer/dead/g in get_ghosts())
-			if(!g.client.holder)						//Remove the verb from non-admin ghosts
+			if(!check_rights_for(g.client, R_HOLDER))						//Remove the verb from non-admin ghosts
 				remove_verb(g, /mob/observer/dead/verb/toggle_antagHUD)
 			if(g.antagHUD)
 				g.antagHUD = 0						// Disable it on those that have it enabled
@@ -338,7 +336,7 @@ Ccomp's first proc.
 		action = "disabled"
 	else
 		for(var/mob/observer/dead/g in get_ghosts())
-			if(!g.client.holder)						// Add the verb back for all non-admin ghosts
+			if(!check_rights_for(g.client, R_HOLDER))						// Add the verb back for all non-admin ghosts
 				add_verb(g, /mob/observer/dead/verb/toggle_antagHUD)
 			to_chat(g, span_boldnotice("The Administrator has enabled AntagHUD"))	// Notify all observers they can now use AntagHUD
 		CONFIG_SET(flag/antag_hud_allowed, TRUE)
@@ -356,7 +354,7 @@ Ccomp's first proc.
 	set name = "Toggle antagHUD Restrictions"
 	set desc = "Restricts players that have used antagHUD from being able to join this round."
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/action=""
@@ -543,6 +541,8 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 			if(antag_data)
 				antag_data.add_antagonist(new_character.mind)
 				antag_data.place_mob(new_character)
+			if(new_character.mind.antag_holder)
+				new_character.mind.antag_holder.apply_antags(new_character)
 
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
@@ -613,7 +613,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Fun.Silicon"
 	set name = "Add Custom AI law"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", ""))
@@ -642,7 +642,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Admin.Game"
 	set name = "Rejuvenate"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	if(!mob)
@@ -665,7 +665,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Fun.Event Kit"
 	set name = "Create Command Report"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, prevent_enter = TRUE), extra = 0)
@@ -695,7 +695,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Admin.Game"
 	set name = "Delete"
 
-	if (!holder)
+	if (!check_rights_for(src, R_HOLDER))
 		return
 
 	admin_delete(O)
@@ -704,7 +704,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Admin.Investigate"
 	set name = "List free slots"
 
-	if (!holder)
+	if (!check_rights_for(src, R_HOLDER))
 		return
 
 	if(job_master)
@@ -712,105 +712,11 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 			to_chat(src, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
-	set category = "Fun.Do Not"
-	set name = "Explosion"
-
-	if(!check_rights(R_DEBUG|R_FUN))	return
-
-	var/devastation = tgui_input_number(usr, "Range of total devastation. -1 to none", text("Input"), min_value=-1)
-	if(devastation == null) return
-	var/heavy = tgui_input_number(usr, "Range of heavy impact. -1 to none", text("Input"), min_value=-1)
-	if(heavy == null) return
-	var/light = tgui_input_number(usr, "Range of light impact. -1 to none", text("Input"), min_value=-1)
-	if(light == null) return
-	var/flash = tgui_input_number(usr, "Range of flash. -1 to none", text("Input"), min_value=-1)
-	if(flash == null) return
-
-	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))
-		if ((devastation > 20) || (heavy > 20) || (light > 20))
-			if (tgui_alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", list("Yes", "No")) != "Yes")
-				return
-
-		explosion(O, devastation, heavy, light, flash)
-		log_admin("[key_name(usr)] created an explosion ([devastation],[heavy],[light],[flash]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an explosion ([devastation],[heavy],[light],[flash]) at ([O.x],[O.y],[O.z])", 1)
-		feedback_add_details("admin_verb","EXPL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		return
-	else
-		return
-
-/client/proc/cmd_admin_emp(atom/O as obj|mob|turf in world)
-	set category = "Fun.Do Not"
-	set name = "EM Pulse"
-
-	if(!check_rights(R_DEBUG|R_FUN))	return
-
-	var/heavy = tgui_input_number(usr, "Range of heavy pulse.", text("Input"))
-	if(heavy == null) return
-	var/med = tgui_input_number(usr, "Range of medium pulse.", text("Input"))
-	if(med == null) return
-	var/light = tgui_input_number(usr, "Range of light pulse.", text("Input"))
-	if(light == null) return
-	var/long = tgui_input_number(usr, "Range of long pulse.", text("Input"))
-	if(long == null) return
-
-	if (heavy || med || light || long)
-
-		empulse(O, heavy, med, light, long)
-		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy],[med],[light],[long]) at ([O.x],[O.y],[O.z])", 1)
-		feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-		return
-	else
-		return
-
-/client/proc/cmd_admin_gib(mob/M as mob in mob_list)
-	set category = "Fun.Do Not"
-	set name = "Gib"
-
-	if(!check_rights(R_ADMIN|R_FUN))	return
-
-	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
-	if(confirm != "Yes") return
-	//Due to the delay here its easy for something to have happened to the mob
-	if(!M)	return
-
-	log_admin("[key_name(usr)] has gibbed [key_name(M)]")
-	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(M)]", 1)
-
-	if(isobserver(M))
-		gibs(M.loc)
-		return
-
-	M.gib()
-	feedback_add_details("admin_verb","GIB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/cmd_admin_gib_self()
-	set name = "Gibself"
-	set category = "Fun.Do Not"
-
-	if(!holder)
-		return
-
-	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
-	if(!confirm)
-		return
-	if(confirm == "Yes")
-		if (isobserver(mob)) // so they don't spam gibs everywhere
-			return
-		else
-			mob.gib()
-
-		log_admin("[key_name(usr)] used gibself.")
-		message_admins(span_blue("[key_name_admin(usr)] used gibself."), 1)
-		feedback_add_details("admin_verb","GIBS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /*
 /client/proc/cmd_manual_ban()
 	set name = "Manual Ban"
 	set category = "Admin.Moderation"
-	if(!authenticated || !holder)
+	if(!authenticated || !check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 	var/mob/M = null
@@ -823,7 +729,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 			if(!selection)
 				return
 			M = selection:mob
-			if ((M.client && M.client.holder && (M.client.holder.level >= holder.level)))
+			if ((M.client && check_rights_for(M.client, R_HOLDER) && (M.client.holder.level >= holder.level)))
 				tgui_alert_async(usr, "You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
@@ -873,7 +779,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set name = "Check Contents"
 	set popup_menu = FALSE
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/list/L = M.get_contents()
@@ -885,7 +791,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 /client/proc/cmd_admin_remove_phoron()
 	set category = "Debug.Game"
 	set name = "Stabilize Atmos."
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 	feedback_add_details("admin_verb","STATM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -917,7 +823,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set name = "Change View Range"
 	set desc = "switches between 1x and custom views"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	var/view = src.view

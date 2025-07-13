@@ -56,7 +56,7 @@
 		showing = 0
 		overlays.len = 0
 		overlays.Add(closed_state)
-	else if(forced_state != 1) // We're opening it, show the icons.
+	else if(forced_state != 1) // We're opening it, show the icons. OR, if forced_state == 2, we're forcing it to open it.
 		open_ability_master()
 		update_abilities(1)
 		showing = 1
@@ -84,6 +84,7 @@
 		A.screen_loc = "[encode_screen_X(xpos)]:[x_pix],[encode_screen_Y(ypos)]:[y_pix]"
 		if(my_mob && my_mob.client)
 			my_mob.client.screen += A
+			my_mob.client.screen |= src
 //			A.handle_icon_updates = 1
 
 /obj/screen/movable/ability_master/proc/update_abilities(forced = 0, mob/user)
@@ -177,12 +178,12 @@
 /mob/Login()
 	..()
 	if(ability_master)
-		ability_master.toggle_open(1)
-		client.screen -= ability_master
+		ability_master.toggle_open(2) //Force it to open on login.
+		//client.screen -= ability_master
 
 /mob/Initialize(mapload)
 	. = ..()
-	if(!ability_master)	//VOREStation Edit: S H A D E K I N
+	if(!ability_master)
 		ability_master = new /obj/screen/movable/ability_master(src)
 
 ///////////ACTUAL ABILITIES////////////
