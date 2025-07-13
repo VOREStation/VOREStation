@@ -138,7 +138,7 @@ ADMIN_VERB(narrate_mob_args, R_FUN, "Narrate Entity", "Narrate entities using po
 	//Separate definition for mob/living and /obj due to .say() code allowing us to engage with languages, stuttering etc
 	//We also need this so we can check for .client
 	var/datum/weakref/wref = holder.entity_refs[name]
-	var/selection = wref.resolve()
+	var/selection = wref?.resolve()
 	if(!selection)
 		to_chat(user, span_notice("[name] has invalid reference, deleting"))
 		holder.entity_names -= name
