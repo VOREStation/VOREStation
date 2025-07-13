@@ -331,6 +331,7 @@
 	name = "Basic Laser Scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
 	id = "scalpel_laser1"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 2, TECH_MATERIAL = 2, TECH_MAGNET = 2)
 	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500)
 	build_path = /obj/item/surgical/scalpel/laser1
@@ -343,6 +344,7 @@
 	name = "Improved Laser Scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks somewhat advanced."
 	id = "scalpel_laser2"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 4, TECH_MAGNET = 4)
 	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2500)
 	build_path = /obj/item/surgical/scalpel/laser2
@@ -355,6 +357,7 @@
 	name = "Advanced Laser Scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks to be the pinnacle of precision energy cutlery!"
 	id = "scalpel_laser3"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 5)
 	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2000, MAT_GOLD = 1500)
 	build_path = /obj/item/surgical/scalpel/laser3
@@ -367,6 +370,7 @@
 	name = "Incision Management System"
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	id = "scalpel_manager"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 5, TECH_DATA = 4)
 	materials = list (MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_DIAMOND = 750)
 	build_path = /obj/item/surgical/scalpel/manager
@@ -379,6 +383,7 @@
 	name = "Energetic Bone Diverter"
 	desc = "A strange development following the I.M.S., this heavy tool can split and open, or close and shut, intentional holes in bones."
 	id = "advanced_saw"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_DATA = 5)
 	materials = list (MAT_STEEL = 12500, MAT_PLASTIC = 800, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_OSMIUM = 1000)
 	build_path = /obj/item/surgical/circular_saw/manager
@@ -391,6 +396,7 @@
 	name = "Organ Ripper"
 	desc = "A modern and horrifying take on an ancient practice, this tool is capable of rapidly removing an organ from a hopefully willing patient, without damaging it."
 	id = "organ_ripper"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_ILLEGAL = 3)
 	materials = list (MAT_STEEL = 12500, MAT_PLASTIC = 8000, MAT_OSMIUM = 2500)
 	build_path = /obj/item/surgical/scalpel/ripper
@@ -403,6 +409,7 @@
 	name = "Bone Clamp"
 	desc = "A miracle of modern science, this tool rapidly knits together bone, without the need for bone gel."
 	id = "bone_clamp"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_DATA = 4)
 	materials = list (MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2500)
 	build_path = /obj/item/surgical/bone_clamp
@@ -415,6 +422,7 @@
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	id = "medical_analyzer"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
 	build_path = /obj/item/healthanalyzer
@@ -427,6 +435,7 @@
 	name = "improved health analyzer"
 	desc = "A prototype version of the regular health analyzer, able to distinguish the location of more serious injuries as well as accurately determine radiation levels."
 	id = "improved_analyzer"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_SILVER = 1000, MAT_GOLD = 1500)
 	build_path = /obj/item/healthanalyzer/improved
@@ -439,6 +448,7 @@
 	name = "advanced health analyzer"
 	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
 	id = "advanced_analyzer"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 7, TECH_BIO = 7, TECH_DATA = 5)
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 4000, MAT_SILVER = 3500, MAT_GOLD = 2500, MAT_DIAMOND = 1250)
 	build_path = /obj/item/healthanalyzer/advanced
@@ -450,6 +460,7 @@
 /datum/design_techweb/gene_scanner
 	name = "Gene Scanner"
 	id = "gene_scanner"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_DATA = 1, TECH_BIO = 2)
 	materials = list(MAT_STEEL = 30, MAT_GLASS = 20)
 	build_path = /obj/item/gene_scanner
@@ -462,6 +473,7 @@
 	name = "advanced roller bed"
 	desc = "A more advanced version of the regular roller bed, with inbuilt surgical stabilisers and an improved folding system."
 	id = "roller_bed"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3, TECH_MAGNET = 3)
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_PHORON = 2000)
 	build_path = /obj/item/roller/adv
@@ -473,6 +485,7 @@
 /datum/design_techweb/sleevemate
 	name = "SleeveMate 3700"
 	id = "sleevemate"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 	build_path = /obj/item/sleevemate
@@ -485,6 +498,7 @@
 	name = "prototype hypospray"
 	desc = "This prototype hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
 	id = "protohypospray"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 2, TECH_BIO = 4, TECH_ILLEGAL = 2)
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 1500, MAT_SILVER = 2000, MAT_GOLD = 1500, MAT_URANIUM = 1000)
 	build_path = /obj/item/reagent_containers/hypospray/science
@@ -497,6 +511,7 @@
 /datum/design_techweb/drill
 	name = "Drill"
 	id = "drill"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 1, TECH_POWER = 2, TECH_ENGINEERING = 1)
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 500) //expensive, but no need for miners.
 	build_path = /obj/item/pickaxe/drill
@@ -508,6 +523,7 @@
 /datum/design_techweb/advdrill
 	name = "Advanced Drill"
 	id = "advanced_drill"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 6000, MAT_GLASS = 1000) //expensive, but no need for miners.
 	build_path = /obj/item/pickaxe/advdrill
@@ -519,6 +535,7 @@
 /datum/design_techweb/jackhammer
 	name = "Jackhammer"
 	id = "jackhammer"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 500, MAT_SILVER = 500)
 	build_path = /obj/item/pickaxe/jackhammer
@@ -530,6 +547,7 @@
 /datum/design_techweb/plasmacutter
 	name = "Plasma Cutter"
 	id = "plasmacutter"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
 	materials = list(MAT_STEEL = 1500, MAT_GLASS = 500, MAT_GOLD = 500, MAT_PHORON = 500)
 	build_path = /obj/item/pickaxe/plasmacutter
@@ -541,6 +559,7 @@
 /datum/design_techweb/pick_diamond
 	name = "Diamond Pickaxe"
 	id = "pick_diamond"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 6)
 	materials = list(MAT_DIAMOND = 3000)
 	build_path = /obj/item/pickaxe/diamond
@@ -552,6 +571,7 @@
 /datum/design_techweb/drill_diamond
 	name = "Diamond Drill"
 	id = "drill_diamond"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	materials = list(MAT_STEEL = 3000, MAT_GLASS = 1000, MAT_DIAMOND = 2000)
 	build_path = /obj/item/pickaxe/diamonddrill
@@ -566,6 +586,7 @@
 	name = "Depth Scanner"
 	desc = "Used to check spatial depth and density of rock outcroppings."
 	id = "depth_scanner"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 2)
 	materials = list(MAT_STEEL = 1000,MAT_GLASS = 1000)
 	build_path = /obj/item/depth_scanner
@@ -577,6 +598,7 @@
 /datum/design_techweb/mining_scanner
 	name = "Mining Scanner"
 	id = "mining_scanner"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 1)
 	materials = list(MAT_STEEL = 1000,MAT_GLASS = 500)
 	build_path = /obj/item/mining_scanner/advanced
@@ -590,6 +612,7 @@
 	name = "laser pointer"
 	desc = "Don't shine it in your eyes!"
 	id = "laser_pointer"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_MAGNET = 3)
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 100, MAT_GLASS = 50)
@@ -601,6 +624,7 @@
 /datum/design_techweb/translator
 	name = "handheld translator"
 	id = "translator"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000)
@@ -613,6 +637,7 @@
 	name = "bluespace flare"
 	desc = "A marker that can be detected by shuttle landing systems."
 	id = "bsflare"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 4)
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 2000)
@@ -623,7 +648,7 @@
 
 /datum/design_techweb/motion_tracker
 	name = "Motion Tracker"
-	// id = "motion_tracker"
+	id = "motion_tracker"
 	// req_tech = list(TECH_MAGNET = 1, TECH_DATA = 2)
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 500)
@@ -631,3 +656,194 @@
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
 	)
+
+/datum/design_techweb/slime_scanner
+	name = "Slime Scanner"
+	desc = "A hand-held body scanner able to learn information about slimes."
+	id = "slime_scanner"
+	// req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/slime_scanner
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/grinder
+	name = "Portable Slime Processor"
+	desc = "This high tech device combines the slime processor with the latest in woodcutting technology."
+	id = "slime_grinder"
+	// req_tech = list(TECH_MAGNET = 4, TECH_BIO = 5)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 200, MAT_GLASS = 200, MAT_SILVER = 500, MAT_GOLD = 100)
+	build_path = /obj/item/slime_grinder
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+// Xenoarch
+/datum/design_techweb/ano_scanner
+	name = "Alden-Saraspova counter"
+	id = "ano_scanner"
+	desc = "Aids in triangulation of exotic particles."
+	// req_tech = list(TECH_BLUESPACE = 3, TECH_MAGNET = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 10000,MAT_GLASS = 5000)
+	build_path = /obj/item/ano_scanner
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/xenoarch_multi_tool
+	name = "xenoarcheology multitool"
+	id = "xenoarch_multitool"
+	// req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3)
+	build_type = PROTOLATHE
+	build_path = /obj/item/xenoarch_multi_tool
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_URANIUM = 500, MAT_PHORON = 500)
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/excavationdrill
+	name = "Excavation Drill"
+	id = "excavationdrill"
+	// req_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	build_path = /obj/item/pickaxe/excavationdrill
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/anobattery
+	name = "Anomaly power battery - Basic"
+	id = "anobattery-basic"
+	// req_tech = list(TECH_MATERIAL = 2, TECH_POWER = 4, TECH_ENGINEERING = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000)
+	build_path = /obj/item/anobattery
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/anobattery_mid
+	name = "Anomaly power battery - Moderate"
+	id = "anobattery-moderate"
+	// req_tech = list(TECH_MATERIAL = 5, TECH_POWER = 4, TECH_ENGINEERING = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_SILVER = 2000) //Same object, different materials
+	build_path = /obj/item/anobattery/moderate
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/anobattery_advanced
+	name = "Anomaly power battery - Advanced"
+	id = "anobattery-advanced"
+	// req_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_ENGINEERING = 5, TECH_BLUESPACE = 5, TECH_DATA = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2500, MAT_GLASS = 2500, MAT_SILVER = 2000, MAT_GOLD = 2500, MAT_PHORON = 2500)
+	build_path = /obj/item/anobattery/advanced
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/anobattery_exotic
+	name = "Anomaly power battery - Exotic"
+	id = "anobattery-exotic"
+	// req_tech = list(TECH_MATERIAL = 8, TECH_POWER = 7, TECH_ENGINEERING = 6, TECH_BLUESPACE = 6,  TECH_DATA = 6, TECH_PRECURSOR = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 1500, MAT_GLASS = 1500, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_PHORON = 2000, MAT_DIAMOND = 2000, MAT_MORPHIUM = 2000)
+	build_path = /obj/item/anobattery/exotic
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+// Precursor
+/datum/design_techweb/precursorcrowbar
+	name = "Hybrid Crowbar"
+	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
+	id = "hybridcrowbar"
+	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 6, TECH_BLUESPACE = 3, TECH_PRECURSOR = 1)
+	build_type = PROTOLATHE
+	materials = list(MAT_PLASTEEL = 2000, MAT_VERDANTIUM = 3000, MAT_GOLD = 250, MAT_URANIUM = 2500)
+	build_path = /obj/item/tool/crowbar/hybrid
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/precursorwrench
+	name = "Hybrid Wrench"
+	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
+	id = "hybridwrench"
+	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 3, TECH_PRECURSOR = 1)
+	build_type = PROTOLATHE
+	materials = list(MAT_PLASTEEL = 2000, MAT_VERDANTIUM = 3000, MAT_SILVER = 300, MAT_URANIUM = 2000)
+	build_path = /obj/item/tool/wrench/hybrid
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/precursorscrewdriver
+	name = "Hybrid Screwdriver"
+	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
+	id = "hybridscrewdriver"
+	// req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 3, TECH_PRECURSOR = 1)
+	build_type = PROTOLATHE
+	materials = list(MAT_PLASTEEL = 2000, MAT_VERDANTIUM = 3000, MAT_PLASTIC = 8000, MAT_DIAMOND = 2000)
+	build_path = /obj/item/tool/screwdriver/hybrid
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/precursorwirecutters
+	name = "Hybrid Wirecutters"
+	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
+	id = "hybridwirecutters"
+	// req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 5, TECH_PHORON = 2, TECH_PRECURSOR = 1)
+	build_type = PROTOLATHE
+	materials = list(MAT_PLASTEEL = 2000, MAT_VERDANTIUM = 3000, MAT_PLASTIC = 8000, MAT_PHORON = 2750, MAT_DIAMOND = 2000)
+	build_path = /obj/item/tool/wirecutters/hybrid
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/precursorwelder
+	name = "Hybrid Welding Tool"
+	desc = "A tool utilizing cutting edge modern technology, and ancient component designs."
+	id = "hybridwelder"
+	// req_tech = list(TECH_ENGINEERING = 6, TECH_MATERIAL = 6, TECH_BLUESPACE = 3, TECH_PHORON = 3, TECH_MAGNET = 5, TECH_PRECURSOR = 1)
+	build_type = PROTOLATHE
+	materials = list(MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_METALHYDROGEN = 4750, MAT_URANIUM = 6000)
+	build_path = /obj/item/weldingtool/experimental/hybrid
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ALIEN
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/camotrap
+	name = "Chameleon Trap"
+	desc = "A self-miraging mechanical trap, capable of producing short bursts of electric current when triggered."
+	id = "hunt_trap"
+	// req_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_PHORON = 2, TECH_ARCANE = 2)
+	build_type = PROTOLATHE
+	materials = list(MAT_DURASTEEL = 3000, MAT_METALHYDROGEN = 1000, MAT_PHORON = 2000)
+	build_path = /obj/item/beartrap/hunting
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY

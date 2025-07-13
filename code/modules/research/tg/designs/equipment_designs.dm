@@ -232,6 +232,7 @@
 // GPS
 /datum/design_techweb/gps
 	// req_tech = list(TECH_MATERIAL = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
+	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 500)
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC

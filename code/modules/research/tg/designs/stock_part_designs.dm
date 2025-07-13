@@ -167,6 +167,7 @@
 	name = "Super Capacitor"
 	desc = "A tier 3 stock part used in the construction of various devices."
 	id = "super_capacitor"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 50, MAT_GOLD = 20)
 	build_path = /obj/item/stock_parts/capacitor/super
@@ -180,6 +181,7 @@
 	name = "Hyper Capacitor"
 	desc = "A tier 4 stock part used in the construction of various devices."
 	id = "hyper_capacitor"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_POWER = 6, TECH_MATERIAL = 5, TECH_BLUESPACE = 1, TECH_ARCANE = 1)
 	materials = list(MAT_STEEL = 200, MAT_GLASS = 100, MAT_VERDANTIUM = 30, MAT_DURASTEEL = 25)
 	build_path = /obj/item/stock_parts/capacitor/hyper
@@ -193,6 +195,7 @@
 	name = "Omni Capacitor"
 	desc = "A tier 5 stock part used in the construction of various devices."
 	id = "omni_capacitor"
+	build_type = PROTOLATHE
 	// req_tech = list(TECH_POWER = 7, TECH_MATERIAL = 6, TECH_BLUESPACE = 3, TECH_PRECURSOR = 1)
 	materials = list(MAT_STEEL = 2000, MAT_DIAMOND = 1000, MAT_GLASS = 1000, MAT_MORPHIUM = 100, MAT_DURASTEEL = 100)
 	build_path = /obj/item/stock_parts/capacitor/omni

@@ -298,6 +298,14 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 	//req_tech = list(TECH_MATERIAL = 7, TECH_BLUESPACE = 5, TECH_MAGNET = 6, TECH_PHORON = 3, TECH_ARCANE = 1, TECH_PRECURSOR = 2)
 
+/datum/design_techweb/mechfab/janusmodule
+	name = "Blackbox Circuit Datamass"
+	desc = "A design that seems to be in a constantly shifting superposition."
+	id = "janus_module"
+	// req_tech = list(TECH_MATERIAL = 7, TECH_BLUESPACE = 5, TECH_MAGNET = 6, TECH_PHORON = 3, TECH_ARCANE = 1, TECH_PRECURSOR = 2)
+	materials = list(MAT_DURASTEEL = 3000, MAT_MORPHIUM = 2000, MAT_METALHYDROGEN = 6000, MAT_URANIUM = 6000, MAT_VERDANTIUM = 1500)
+	build_path = /obj/random/janusmodule
+
 /datum/design_techweb/mechfab/janus/chassis
 	name = "Janus Chassis"
 	id = "janus_chassis"
