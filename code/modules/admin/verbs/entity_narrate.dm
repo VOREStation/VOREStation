@@ -209,10 +209,13 @@ ADMIN_VERB(narrate_mob_args, R_FUN, "Narrate Entity", "Narrate entities using po
 			tgui_selected_type = ""
 			tgui_selected_name = ""
 			tgui_selected_refs = null
+			return TRUE
 		if("change_mode_privacy")
 			tgui_narrate_privacy = !tgui_narrate_privacy
+			return TRUE
 		if("change_mode_narration")
 			tgui_narrate_mode = !tgui_narrate_mode
+			return TRUE
 		if("select_entity")
 			if(tgui_selection_mode)
 				if(params["id_selected"] in tgui_selected_id_multi)
@@ -252,6 +255,7 @@ ADMIN_VERB(narrate_mob_args, R_FUN, "Narrate Entity", "Narrate entities using po
 						var/atom/A = tgui_selected_refs
 						tgui_selected_type = A.type
 						tgui_selected_name = A.name
+			return TRUE
 		if("narrate")
 			if(world.time < (tgui_last_message + 0.5 SECONDS))
 				to_chat(ui.user, span_notice("You can't messages that quickly! Wait at least half a second"))
@@ -288,7 +292,7 @@ ADMIN_VERB(narrate_mob_args, R_FUN, "Narrate Entity", "Narrate entities using po
 						tgui_selected_type = ""
 						tgui_selected_name = ""
 						tgui_selected_refs = null
-						return
+						return TRUE
 					if(isliving(ref))
 						var/mob/living/L = ref
 						if(L.client)
@@ -297,6 +301,7 @@ ADMIN_VERB(narrate_mob_args, R_FUN, "Narrate Entity", "Narrate entities using po
 					else if(istype(ref, /atom))
 						var/atom/A = ref
 						narrate_tgui_atom(A, message)
+			return TRUE
 
 /datum/entity_narrate/proc/narrate_tgui_mob(mob/living/L, message as text)
 	//say and custom_emote sanitize it themselves, not sanitizing here to avoid double encoding.
