@@ -178,7 +178,12 @@ export const NarrationInput = (props) => {
       title="Narration Text"
       fill
       buttons={
-        <Button onClick={() => act('narrate', { message: narration })}>
+        <Button
+          onClick={() => {
+            act('narrate', { message: narration });
+            setNarration('');
+          }}
+        >
           Send Narration
         </Button>
       }
