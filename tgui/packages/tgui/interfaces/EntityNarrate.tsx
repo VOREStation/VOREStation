@@ -28,11 +28,11 @@ export const EntityNarrate = (props) => {
   const { act, data } = useBackend<data>();
   return (
     <Window width={800} height={470} theme="abstract">
-      <Window.Content scrollable>
-        <Section>
-          <Stack>
-            <Stack.Item grow={2}>
-              <Section scrollable>
+      <Window.Content>
+        <Section fill>
+          <Stack fill>
+            <Stack.Item grow={2.2}>
+              <Section fill scrollable>
                 <EntitySelection />
               </Section>
             </Stack.Item>
@@ -40,8 +40,8 @@ export const EntityNarrate = (props) => {
               <Divider vertical />
             </Stack.Item>
             <Stack.Item grow={6.75}>
-              <Section>
-                <Stack direction="column" justify="space-between">
+              <Section fill>
+                <Stack vertical fill>
                   <Stack.Item>
                     <Section title="Details">
                       <DisplayDetails />
@@ -52,7 +52,7 @@ export const EntityNarrate = (props) => {
                       <ModeSelector />
                     </Section>
                   </Stack.Item>
-                  <Stack.Item>
+                  <Stack.Item grow>
                     <NarrationInput />
                   </Stack.Item>
                 </Stack>
@@ -75,6 +75,7 @@ export const EntitySelection = (props) => {
       <Stack.Item>
         <Section
           title="Choose!"
+          fill
           buttons={
             <Button
               selected={selection_mode}
@@ -132,7 +133,7 @@ export const ModeSelector = (props) => {
   const { privacy_select, mode_select } = data;
 
   return (
-    <Stack direction="row">
+    <Stack>
       <Stack.Item grow>
         <Button
           onClick={() => act('change_mode_privacy')}
@@ -175,21 +176,19 @@ export const NarrationInput = (props) => {
   return (
     <Section
       title="Narration Text"
+      fill
       buttons={
         <Button onClick={() => act('narrate', { message: narration })}>
           Send Narration
         </Button>
       }
     >
-      <Stack>
-        <Stack.Item width="85%">
-          <TextArea
-            height={'18rem'}
-            onBlur={(val) => setNarration(val)}
-            value={narration || ''}
-          />
-        </Stack.Item>
-      </Stack>
+      <TextArea
+        height="100%"
+        fluid
+        onBlur={(val) => setNarration(val)}
+        value={narration || ''}
+      />
     </Section>
   );
 };
