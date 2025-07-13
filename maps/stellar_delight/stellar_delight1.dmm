@@ -6858,7 +6858,7 @@
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "nE" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11047,7 +11047,6 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "wK" = (
-/obj/machinery/computer/rdconsole/robotics,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/camera/network/research,
 /turf/simulated/floor/tiled/steel,

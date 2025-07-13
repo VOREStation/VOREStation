@@ -10706,12 +10706,6 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/facility/cell14)
-"pjb" = (
-/obj/machinery/computer/rdconsole/robotics{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/redgate/facility/cell14)
 "pjC" = (
 /obj/machinery/light{
 	dir = 8
@@ -31253,7 +31247,7 @@ bXk
 alk
 tvs
 oXQ
-pjb
+tvs
 bXk
 tvs
 bXk

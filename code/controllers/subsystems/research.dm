@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(research)
 /datum/controller/subsystem/research/proc/techweb_design_by_id(id)
 	return techweb_designs[id] || error_design
 
-/datum/controller/subsystem/research/proc/on_design_deletion(datum/design/D)
+/datum/controller/subsystem/research/proc/on_design_deletion(datum/design_techweb/D)
 	for(var/i in techweb_nodes)
 		var/datum/techweb_node/TN = techwebs[i]
 		TN.on_design_deletion(TN)

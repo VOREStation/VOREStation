@@ -12719,7 +12719,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "avw" = (
-/obj/machinery/computer/rdconsole/core,
+/obj/machinery/computer/rdconsole_tg,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "avx" = (
@@ -20499,9 +20499,6 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aIv" = (
-/obj/machinery/computer/rdconsole/robotics{
-	dir = 8
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},

@@ -1917,12 +1917,6 @@
 	icon_state = "white"
 	},
 /area/centcom/control)
-"dQ" = (
-/obj/machinery/computer/rdconsole/robotics,
-/turf/unsimulated/floor/steel{
-	icon_state = "white"
-	},
-/area/centcom/control)
 "dR" = (
 /obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/floor_decal/industrial/warning{
@@ -2244,7 +2238,7 @@
 	},
 /area/centcom/control)
 "ez" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/unsimulated/floor/steel,
@@ -31120,7 +31114,7 @@ aX
 aX
 aX
 dm
-dQ
+fp
 ee
 em
 em

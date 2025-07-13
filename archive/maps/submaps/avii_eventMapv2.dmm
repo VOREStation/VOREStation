@@ -7380,7 +7380,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/fore)
 "IG" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /obj/machinery/light{

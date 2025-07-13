@@ -2879,7 +2879,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "jp" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -3977,10 +3977,6 @@
 "nJ" = (
 /turf/simulated/floor/tiled,
 /area/shuttle/centcom/ccbay)
-"nL" = (
-/obj/machinery/computer/rdconsole/robotics,
-/turf/simulated/floor/tiled/white,
-/area/centcom/control)
 "nM" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
@@ -33738,7 +33734,7 @@ aX
 aX
 aX
 uL
-nL
+JS
 iK
 em
 em

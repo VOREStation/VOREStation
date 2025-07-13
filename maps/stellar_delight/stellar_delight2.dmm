@@ -17340,10 +17340,6 @@
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/obj/item/circuitboard/destructive_analyzer{
-	pixel_x = -1;
-	pixel_y = 1
-	},
 /obj/item/circuitboard/rdconsole,
 /obj/item/circuitboard/autolathe{
 	pixel_x = 1;

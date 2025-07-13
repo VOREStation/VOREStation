@@ -2810,7 +2810,7 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
 	},
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,

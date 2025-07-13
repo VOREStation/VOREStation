@@ -3078,7 +3078,6 @@
 	name = "Privacy Shutter Control";
 	pixel_y = 30
 	},
-/obj/machinery/computer/rdconsole/robotics,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "hV" = (
@@ -13945,7 +13944,7 @@
 /turf/simulated/wall,
 /area/groundbase/civilian/chapel/office)
 "MF" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
