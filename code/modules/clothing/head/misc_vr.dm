@@ -181,3 +181,10 @@
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "eulrhat"
+
+/obj/item/clothing/head/jester
+	name = "jester cap"
+	desc = "And how, pray tell, hast thou prepared to present thyself before thine peers while wearing this? Surely thou dost not mean to debate in any serious capacity while yonder bells dangle from thine head?!"
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "jester"

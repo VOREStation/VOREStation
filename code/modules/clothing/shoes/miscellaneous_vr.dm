@@ -115,3 +115,12 @@
 	icon = 'icons/inventory/feet/item_vr.dmi'
 	icon_override = 'icons/inventory/feet/mob_vr.dmi'
 	addblends = "sandals_elegant_a"
+
+/obj/item/clothing/shoes/clown_shoes/jester
+	name = "jester shoes"
+	desc = "Forsooth, thou truly mean to wear this garishly colored footwear?! O, how its incessant jingles hurt mine ears!"
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/mob_vr.dmi'
+	icon_state = "jester"
+	item_state = "jester"
+	squeek_sound = "clownstep_jester"

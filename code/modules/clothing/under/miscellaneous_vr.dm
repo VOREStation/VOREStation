@@ -748,3 +748,13 @@
 	icon_state = "gestalt_sleeveless"
 	item_state = "gestalt_sleeveless"
 	body_parts_covered = CHEST|LEGS
+
+// funni heehoo jester outfit
+/obj/item/clothing/under/clown/jester
+	name = "jester suit"
+	desc = "Thou wisheth to be a fool; naught more than a mere comic? Then prithee, wouldst thou don this garb and grovel for mine amusement?"
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "jester"
+	item_state = "jester"
+	body_parts_covered = CHEST|ARMS|LEGS
