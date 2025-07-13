@@ -21,7 +21,7 @@ Nothing else in the console has ID requirements.
 	desc = "A console used to interface with R&D tools."
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"
-	// circuit = /obj/item/circuitboard/computer/rdconsole
+	circuit = /obj/item/circuitboard/rdconsole
 	req_access = list(access_research) // Locking and unlocking the console requires research access
 	/// Reference to global science techweb
 	var/datum/techweb/stored_research
@@ -282,7 +282,7 @@ Nothing else in the console has ID requirements.
 	var/datum/asset/spritesheet_batched/research_designs/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
 	var/size32x32 = "[spritesheet.name]32x32"
 	for (var/design_id in SSresearch.techweb_designs)
-		var/datum/design/design = SSresearch.techweb_designs[design_id] || SSresearch.error_design
+		var/datum/design_techweb/design = SSresearch.techweb_designs[design_id] || SSresearch.error_design
 		var/compressed_id = "[compress_id(design.id)]"
 		var/size = spritesheet.icon_size_id(design.id)
 		design_cache[compressed_id] = list(

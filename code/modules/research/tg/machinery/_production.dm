@@ -16,7 +16,7 @@
 	/// The types of designs this fabricator can print.
 	var/allowed_buildtypes = NONE
 	/// All designs in the techweb that can be fabricated by this machine, since the last update.
-	var/list/datum/design/cached_designs
+	var/list/datum/design_techweb/cached_designs
 	/// What color is this machine's stripe? Leave null to not have a stripe.
 	var/stripe_color = null
 	///direction we output onto (if 0, on top of us)

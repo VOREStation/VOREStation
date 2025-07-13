@@ -341,3 +341,25 @@
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
 	)
+
+/datum/design_techweb/translocator
+	name = "Personal translocator"
+	id = "translocator"
+	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 6)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_URANIUM = 4000, MAT_DIAMOND = 2000)
+	build_path = /obj/item/perfect_tele
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)
+
+/datum/design_techweb/bluespace_crystal
+	name = "Artificial Bluespace Crystal"
+	id = "bluespace_crystal"
+	// req_tech = list(TECH_BLUESPACE = 3, TECH_PHORON = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_DIAMOND = 1500, MAT_PHORON = 1500)
+	build_path = /obj/item/bluespace_crystal/artificial
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MISC
+	)

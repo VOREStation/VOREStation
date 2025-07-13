@@ -2,16 +2,6 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/circuitboard/destructive_analyzer
-	name = T_BOARD("destructive analyzer")
-	build_path = /obj/machinery/r_n_d/destructive_analyzer
-	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_DATA = 2)
-	req_components = list(
-							/obj/item/stock_parts/scanning_module = 1,
-							/obj/item/stock_parts/manipulator = 1,
-							/obj/item/stock_parts/micro_laser = 1)
-
 /obj/item/circuitboard/autolathe
 	name = T_BOARD("autolathe")
 	build_path = /obj/machinery/autolathe
@@ -55,7 +45,7 @@
 
 /obj/item/circuitboard/prosthetics
 	name = "Circuit board (Prosthetics Fabricator)"
-	build_path = /obj/machinery/mecha_part_fabricator/pros
+	build_path = /obj/machinery/mecha_part_fabricator_tg/prosthetics
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	req_components = list(

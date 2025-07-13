@@ -259,3 +259,57 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/fusion
+	name = "Fusion Core Control Console"
+	id = "fusion_core_control"
+	build_path = /obj/item/circuitboard/fusion_core_control
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/fusion/fuel_compressor
+	name = "Fusion Fuel Compressor"
+	id = "fusion_fuel_compressor"
+	build_path = /obj/item/circuitboard/fusion_fuel_compressor
+
+/datum/design_techweb/board/fusion/fuel_control
+	name = "Fusion Fuel Control Console"
+	id = "fusion_fuel_control"
+	build_path = /obj/item/circuitboard/fusion_fuel_control
+
+/datum/design_techweb/board/fusion/gyrotron_control
+	name = "Gyrotron Control Console"
+	id = "gyrotron_control"
+	build_path = /obj/item/circuitboard/gyrotron_control
+
+/datum/design_techweb/board/fusion/core
+	name = "Fusion Core"
+	id = "fusion_core"
+	build_path = /obj/item/circuitboard/fusion_core
+
+/datum/design_techweb/board/fusion/injector
+	name = "Fusion Fuel Injector"
+	id = "fusion_injector"
+	build_path = /obj/item/circuitboard/fusion_injector
+
+/datum/design_techweb/board/airlock_cycling
+	name = "Machine Design (Cycling Airlock Board)"
+	desc = "The circuit board for cycling airlock parts."
+	id = "airlock_cycling"
+	build_path = /obj/item/circuitboard/airlock_cycling
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/tesla_coil
+	name = "Machine Design (Tesla Coil Board)"
+	desc = "The circuit board for a tesla coil."
+	id = "tesla_coil"
+	build_path = /obj/item/circuitboard/tesla_coil
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

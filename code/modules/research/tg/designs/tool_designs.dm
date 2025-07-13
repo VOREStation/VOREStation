@@ -847,3 +847,14 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SECURITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/protean_reboot
+	name = "Protean Reboot Programmer"
+	id = "protean_reboot"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_PLASTEEL = 10000)
+	build_path = /obj/item/protean_reboot
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

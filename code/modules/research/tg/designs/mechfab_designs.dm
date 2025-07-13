@@ -777,17 +777,25 @@
 	build_path = /obj/item/mecha_parts/micro/part/gopher_right_leg
 	materials = list(MAT_STEEL = 12500)
 
-/datum/design/item/mecha/drill/micro
+/datum/design_techweb/micro
 	name = "Miniature Drill"
 	id = "micro_drill"
+	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/micro
 	materials = list(MAT_STEEL = 2500)
+	category = list(
+		RND_CATEGORY_MECHFAB_EQUIPMENT
+	)
 
-/datum/design/item/mecha/hydraulic_clamp/micro
+/datum/design_techweb/hydraulic_clampmicro
 	name = "Mounted ore box"
 	id = "ore_scoop"
+	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop
 	materials = list(MAT_STEEL = 2500)
+	category = list(
+		RND_CATEGORY_MECHFAB_EQUIPMENT
+	)
 
 /datum/design_techweb/mechfab/polecat
 	desc = "A part used in the construction of the Gopher micro mech series"
