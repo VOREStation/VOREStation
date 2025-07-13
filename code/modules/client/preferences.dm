@@ -408,7 +408,7 @@ var/list/preferences_datums = list()
 		attempt_vr(user.client?.prefs_vr,"load_vore","")
 		ShowChoices(user)
 
-/datum/preferences/proc/vanity_copy_to(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/copy_ooc_notes = FALSE, var/convert_to_prosthetics = FALSE)
+/datum/preferences/proc/vanity_copy_to(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/copy_ooc_notes = FALSE, var/convert_to_prosthetics = FALSE, var/apply_bloodtype = TRUE)
 	//snowflake copy_to, does not copy anything but the vanity things
 	//does not check if the name is the same, do that in any proc that calls this proc
 	/*
@@ -454,7 +454,8 @@ var/list/preferences_datums = list()
 	character.grad_style= grad_style
 	character.f_style	= f_style
 	character.grad_style= grad_style
-	//character.dna.b_type= b_type //This actually just straight up kills whoever uses it if the blood types aren't compatible
+	if(apply_bloodtype)
+		character.dna.b_type= b_type //This actually just straight up kills whoever uses it if the blood types aren't compatible in TF
 	character.synth_color = synth_color
 
 	var/datum/preference/color/synth_color_color = GLOB.preference_entries[/datum/preference/color/human/synth_color]
