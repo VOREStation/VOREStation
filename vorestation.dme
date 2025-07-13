@@ -4136,6 +4136,7 @@
 #include "code\modules\research\tg\rdconsole.dm"
 #include "code\modules\research\tg\rdmachines.dm"
 #include "code\modules\research\tg\server.dm"
+#include "code\modules\research\tg\server_control.dm"
 #include "code\modules\research\tg\designs\ai_designs.dm"
 #include "code\modules\research\tg\designs\circuitry_designs.dm"
 #include "code\modules\research\tg\designs\construction_designs.dm"
