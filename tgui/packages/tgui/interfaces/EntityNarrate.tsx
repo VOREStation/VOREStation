@@ -173,16 +173,28 @@ export const ModeSelector = (props) => {
 export const NarrationInput = (props) => {
   const { act, data } = useBackend<data>();
   const [narration, setNarration] = useState('');
+
+  const { number_mob_selected, selected_type } = data;
+
+  const isDisbaled = !number_mob_selected && !selected_type;
+
+  function doSendMessage() {
+    if (isDisbaled) {
+      return;
+    }
+    act('narrate', { message: narration });
+    setNarration('');
+  }
+
   return (
     <Section
       title="Narration Text"
       fill
       buttons={
         <Button
-          onClick={() => {
-            act('narrate', { message: narration });
-            setNarration('');
-          }}
+          disabled={isDisbaled}
+          tooltip={isDisbaled ? 'Select a reference first' : undefined}
+          onClick={doSendMessage}
         >
           Send Narration
         </Button>
