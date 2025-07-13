@@ -1,0 +1,6 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "bellymode absorb messages not being editable"
+  - qol: "reduces the chance of the chat resizing badly"
+  - admin: "entity narrate works again"
