@@ -1,24 +1,16 @@
 /client/proc/add_admin_verbs()
 	// OLD ADMIN VERB SYSTEM
-	if(holder)
-		var/rights = holder.rank_flags()
-		add_verb(src, admin_verbs_default)
-		if(rights & R_BUILDMODE)		add_verb(src, /client/proc/togglebuildmodeself)
-		if(rights & R_ADMIN)			add_verb(src, admin_verbs_admin)
+	var/rights = holder.rank_flags()
+	if(rights & R_HOLDER)
+		if(rights & R_BUILDMODE)	add_verb(src, /client/proc/togglebuildmodeself)
+		if(rights & R_ADMIN)		add_verb(src, admin_verbs_admin)
 		if(rights & R_FUN)			add_verb(src, admin_verbs_fun)
 		if(rights & R_SERVER)		add_verb(src, admin_verbs_server)
-		if(rights & R_DEBUG)
-			add_verb(src, admin_verbs_debug)
-			if(CONFIG_GET(flag/debugparanoid) && !(rights & R_ADMIN))
-				remove_verb(src, admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
-		if(rights & R_POSSESS)		add_verb(src, admin_verbs_possess)
-		if(rights & R_PERMISSIONS)	add_verb(src, admin_verbs_permissions)
-		if(rights & R_STEALTH)		add_verb(src, /client/proc/stealth)
-		if(rights & R_REJUVINATE)	add_verb(src, admin_verbs_rejuv)
+		if(rights & R_DEBUG)		add_verb(src, admin_verbs_debug)
 		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
-		if(rights & R_SPAWN)			add_verb(src, admin_verbs_spawn)
+		if(rights & R_SPAWN)		add_verb(src, admin_verbs_spawn)
 		if(rights & R_MOD)			add_verb(src, admin_verbs_mod)
-		if(rights & R_EVENT)			add_verb(src, admin_verbs_event_manager)
+		if(rights & R_EVENT)		add_verb(src, admin_verbs_event_manager)
 
 	// NEW ADMIN VERBS SYSTEM
 	SSadmin_verbs.assosciate_admin(src)
@@ -26,16 +18,11 @@
 /client/proc/remove_admin_verbs()
 	// OLD ADMIN VERB SYSTEM
 	remove_verb(src, list(
-		admin_verbs_default,
 		/client/proc/togglebuildmodeself,
 		admin_verbs_admin,
 		admin_verbs_fun,
 		admin_verbs_server,
 		admin_verbs_debug,
-		admin_verbs_possess,
-		admin_verbs_permissions,
-		/client/proc/stealth,
-		admin_verbs_rejuv,
 		admin_verbs_sounds,
 		admin_verbs_spawn,
 		debug_verbs
@@ -80,7 +67,7 @@
 /client/proc/admin_ghost()
 	set category = "Admin.Game"
 	set name = "Aghost"
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	var/build_mode
 	if(src.buildmode)
@@ -130,7 +117,7 @@
 	set category = "Admin.Game"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
 
-	if(holder && mob)
+	if(check_rights(R_HOLDER) && mob)
 		if(mob.invisibility > INVISIBILITY_OBSERVER)
 			to_chat(mob, span_warning("You can't use this, your current invisibility level ([mob.invisibility]) is above the observer level ([INVISIBILITY_OBSERVER])."))
 			return
@@ -145,11 +132,26 @@
 		to_chat(mob, span_filter_system(span_boldnotice("Invisimin on. You are now as invisible as a ghost.")))
 		mob.alpha = max(mob.alpha - 100, 0)
 
+ADMIN_VERB(list_bombers, R_ADMIN, "List Bombers", "Look at all bombs and their likely culprit.", ADMIN_CATEGORY_GAME)
+	user.holder.list_bombers()
+	//BLACKBOX_LOG_ADMIN_VERB("List Bombers")
+
+ADMIN_VERB(list_signalers, R_ADMIN, "List Signalers", "View all signalers.", ADMIN_CATEGORY_GAME)
+	user.holder.list_signalers()
+	//BLACKBOX_LOG_ADMIN_VERB("List Signalers")
+
+ADMIN_VERB(list_law_changes, R_ADMIN, "List Law Changes", "View all AI law changes.", ADMIN_CATEGORY_DEBUG)
+	user.holder.list_law_changes()
+	//BLACKBOX_LOG_ADMIN_VERB("List Law Changes")
+
+ADMIN_VERB(show_manifest, R_ADMIN, "Show Manifest", "View the shift's Manifest.", ADMIN_CATEGORY_DEBUG)
+	user.holder.show_manifest()
+	//BLACKBOX_LOG_ADMIN_VERB("Show Manifest")
 
 /client/proc/player_panel()
 	set name = "Player Panel"
 	set category = "Admin.Game"
-	if(holder)
+	if(check_rights(R_HOLDER))
 		holder.player_panel_old()
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
@@ -157,7 +159,7 @@
 /client/proc/player_panel_new()
 	set name = "Player Panel New"
 	set category = "Admin.Game"
-	if(holder)
+	if(check_rights(R_HOLDER))
 		holder.player_panel_new()
 	feedback_add_details("admin_verb","PPN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
@@ -165,7 +167,7 @@
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
 	set category = "Admin.Investigate"
-	if(holder)
+	if(check_rights(R_HOLDER))
 		holder.check_antagonists()
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
 	feedback_add_details("admin_verb","CHA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -189,14 +191,6 @@ ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state 
 	user.holder.Game()
 	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/secrets()
-	set name = "Secrets"
-	set category = "Admin.Secrets"
-	if (holder)
-		holder.Secrets()
-	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
 /client/proc/findStealthKey(txt)
 	if(txt)
 		for(var/P in GLOB.stealthminID)
@@ -216,25 +210,22 @@ ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state 
 				i = 0
 	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
 
-/client/proc/stealth()
-	set category = "Admin.Game"
-	set name = "Stealth Mode"
-	if(holder)
-		if(holder.fakekey)
-			holder.fakekey = null
-			if(isnewplayer(src.mob))
-				mob.name = capitalize(ckey)
-		else
-			var/new_key = ckeyEx(tgui_input_text(usr, "Enter your desired display name.", "Fake Key", key))
-			if(!new_key)
-				return
-			if(length(new_key) >= 26)
-				new_key = copytext(new_key, 1, 26)
-			holder.fakekey = new_key
-			createStealthKey()
-			if(isnewplayer(mob))
-				mob.name = new_key
-		log_and_message_admins("has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", usr)
+ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
+	if(user.holder.fakekey)
+		user.holder.fakekey = null
+		if(isnewplayer(user.mob))
+			user.mob.name = capitalize(user.ckey)
+	else
+		var/new_key = ckeyEx(tgui_input_text(user, "Enter your desired display name.", "Fake Key", user.key))
+		if(!new_key)
+			return
+		if(length(new_key) >= 26)
+			new_key = copytext(new_key, 1, 26)
+		user.holder.fakekey = new_key
+		user.createStealthKey()
+		if(isnewplayer(user.mob))
+			user.mob.name = new_key
+	log_and_message_admins("has turned stealth mode [user.holder.fakekey ? "ON" : "OFF"]", usr)
 	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 #define MAX_WARNS 3
@@ -375,15 +366,15 @@ ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state 
 
 ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
 	user.holder.deactivate()
-	to_chat(src, span_interface("You are now a normal player."))
-	log_admin("[key_name(src)] deadminned themselves.")
-	message_admins("[key_name_admin(src)] deadminned themselves.")
+	to_chat(user, span_interface("You are now a normal player."))
+	log_admin("[key_name(user)] deadminned themselves.")
+	message_admins("[key_name_admin(user)] deadminned themselves.")
 	//BLACKBOX_LOG_ADMIN_VERB("Deadmin")
 	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	if(isobserver(user.mob))
 		var/mob/observer/dead/our_mob = user.mob
-		our_mob.visualnet?.removeVisibility(our_mob, src)
+		our_mob.visualnet?.removeVisibility(our_mob, user)
 
 /client/proc/toggle_log_hrefs()
 	set name = "Toggle href logging"
@@ -396,7 +387,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
 	set category = "Admin.Silicon"
-	if(holder)
+	if(check_rights(R_HOLDER))
 		src.holder.output_ai_laws()
 
 /client/proc/rename_silicon()
@@ -458,7 +449,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 /client/proc/mod_panel()
 	set name = "Moderator Panel"
 	set category = "Admin.Moderation"
-/*	if(holder)
+/*	if(check_rights(R_HOLDER))
 		holder.mod_panel()*/
 //	feedback_add_details("admin_verb","MP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
@@ -466,14 +457,14 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 /client/proc/playernotes()
 	set name = "Show Player Info"
 	set category = "Admin.Moderation"
-	if(holder)
+	if(check_rights(R_HOLDER))
 		holder.PlayerNotes()
 	return
 
 /client/proc/free_slot()
 	set name = "Free Job Slot"
 	set category = "Admin.Game"
-	if(holder)
+	if(check_rights(R_HOLDER))
 		var/list/jobs = list()
 		for (var/datum/job/J in job_master.occupations)
 			if (J.current_positions >= J.total_positions && J.total_positions != -1)
@@ -531,22 +522,38 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
 
-/client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
-	set category = "Fun.Event Kit"
-	set name = "Give Spell"
-	set desc = "Gives a spell to a mob."
-	var/spell/S = tgui_input_list(usr, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
-	if(!S) return
-	T.spell_list += new S
+ADMIN_VERB(give_spell, R_FUN, "Give Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/spell_recipient)
+	var/spell/S = tgui_input_list(user, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
+	if(!S)
+		return
+	spell_recipient.spell_list += new S
 	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
-	message_admins(span_blue("[key_name_admin(usr)] gave [key_name(T)] the spell [S]."), 1)
+	log_admin("[key_name(usr)] gave [key_name(spell_recipient)] the spell [S].")
+	message_admins(span_blue("[key_name_admin(usr)] gave [key_name(spell_recipient)] the spell [S]."), 1)
 
-/client/proc/debugstatpanel()
-	set name = "Debug Stat Panel"
-	set category = "Debug.Misc"
+ADMIN_VERB(remove_spell, R_FUN, "Remove Spell", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/removal_target)
+	var/list/target_spell_list = list()
+	for(var/spell/spell in removal_target.spell_list)
+		target_spell_list[spell.name] = spell
 
-	src.stat_panel.send_message("create_debug")
+	if(!length(target_spell_list))
+		return
+
+	var/chosen_spell = tgui_input_list(user, "Choose the spell to remove from [removal_target]", "ABRAKADABRA", sortList(target_spell_list))
+	if(isnull(chosen_spell))
+		return
+	var/spell/to_remove = target_spell_list[chosen_spell]
+	if(!istype(to_remove))
+		return
+
+	qdel(to_remove)
+	log_admin("[key_name(user)] removed the spell [chosen_spell] from [key_name(removal_target)].")
+	message_admins("[key_name_admin(user)] removed the spell [chosen_spell] from [key_name_admin(removal_target)].")
+	feedback_add_details("admin_verb","RS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	//BLACKBOX_LOG_ADMIN_VERB("Remove Spell")
+
+ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of the stat panel", "Debug.Misc")
+	user.stat_panel.send_message("create_debug")
 
 /client/proc/spawn_reagent()
 	set name = "Spawn Reagent"
@@ -618,7 +625,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	var/atom/movable/orbiter
 	var/input
 
-	if(holder.marked_datum)
+	if(check_rights(R_HOLDER) && holder.marked_datum)
 		input = tgui_alert(usr, "You have \n[holder.marked_datum] marked, should this be the center of the orbit, or the orbiter?", "Orbit", list("Center", "Orbiter", "Neither"))
 		switch(input)
 			if("Center")

@@ -179,13 +179,6 @@
 		// but just in case it does, I'm leaving the null-src checking
 		log_admin("[key_name(src)] used the resize command in-game to be [new_size]% size. [src ? ADMIN_JMP(src) : "null"]")
 
-/*
-//Add the set_size() proc to usable verbs. By commenting this out, we can leave the proc and hand it to species that need it.
-/hook/living_new/proc/resize_setup(mob/living/H)
-	add_verb(H, /mob/living/proc/set_size)
-	return 1
-*/
-
 /**
  * Attempt to scoop up this mob up into M's hands, if the size difference is large enough.
  * @return false if normal code should continue, 1 to prevent normal code.

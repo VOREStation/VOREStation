@@ -21,7 +21,7 @@
 
 /obj/machinery/giga_drill/Bump(atom/A)
 	if(active && !drilling_turf)
-		if(istype(A,/turf/simulated/mineral))
+		if(ismineralturf(A))
 			var/turf/simulated/mineral/M = A
 			drilling_turf = get_turf(src)
 			src.visible_message(span_bold("\The [src]") + " begins to drill into \the [M].")

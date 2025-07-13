@@ -115,4 +115,4 @@
 		peeb += dat
 		peeb += span_notice("For more detailed information on the patient's condition, utilize a body scanner at the closest medical bay.")
 
-	user.show_message(peeb, 1)
+		user.show_message(peeb, 1)

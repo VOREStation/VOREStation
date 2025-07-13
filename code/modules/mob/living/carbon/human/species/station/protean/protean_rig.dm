@@ -16,6 +16,7 @@
 	seal_delay = 0
 	var/mob/living/myprotean
 	initial_modules = list(/obj/item/rig_module/protean/syphon, /obj/item/rig_module/protean/armor, /obj/item/rig_module/protean/healing)
+	item_flags = NOSTRIP
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/protean //These are important for sprite pointers
 	boot_type = /obj/item/clothing/shoes/magboots/rig/protean
@@ -393,6 +394,13 @@
 				var/obj/item/organ/external/new_eo = new limb_path(H)
 				new_eo.robotize(H.synthetic ? H.synthetic.company : null)
 				new_eo.sync_colour_to_human(H)
+		// Regenerate missing internal organs too
+		for(var/organ_tag in H.species.has_organ)
+			var/obj/item/organ/O = H.internal_organs_by_name[organ_tag]
+			if(!O)
+				var/organ_type = H.species.has_organ[organ_tag]
+				O = new organ_type(H,1)
+				H.internal_organs_by_name[organ_tag] = O
 		if(!partial)
 			dead_mob_list.Remove(H)
 			living_mob_list += H

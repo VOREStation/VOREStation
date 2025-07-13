@@ -662,7 +662,10 @@
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly, severity) // preserving save data
 			var/datum/belly_overlays/lookup_belly_path = text2path("/datum/belly_overlays/[lowertext(belly_fullscreen)]")
 			if(!lookup_belly_path)
-				CRASH("Icon datum was not defined for [belly_fullscreen]")
+				var/used_fullscreen = belly_fullscreen
+				to_chat(owner, span_warning("The belly overlay ([used_fullscreen]) you've selected for [src] no longer exists. Please reselect your overlay."))
+				belly_fullscreen = null
+				CRASH("Icon datum was not defined for [used_fullscreen]")
 
 			var/alpha = min(belly_fullscreen_alpha, L.max_voreoverlay_alpha)
 			F.icon = initial(lookup_belly_path.belly_icon)
@@ -1003,6 +1006,7 @@
 /obj/belly/proc/digestion_death(mob/living/M)
 	digested_prey_count++
 	add_attack_logs(owner, M, "Digested in [lowertext(name)]")
+	owner.changeling_obtain_dna(M)
 
 	// Reverts TF on death. This fixes a bug with posibrains or similar, and also makes reforming easier.
 	if(M.tf_mob_holder && M.tf_mob_holder.loc == M)
@@ -1149,6 +1153,7 @@
 		// TODO - Find a way to make the absorbed prey share the effects with the pred.
 		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
 		// problems when A absorbs B, and then C absorbs A,  resulting in B holding onto an invalid reagent container.
+		Pred.changeling_obtain_dna(Prey)
 
 	//This is probably already the case, but for sub-prey, it won't be.
 	if(M.loc != src)

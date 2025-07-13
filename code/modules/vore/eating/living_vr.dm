@@ -39,19 +39,6 @@
 /mob/living/proc/handle_special_unlocks()
 	return
 
-//
-// Hook for generic creation of stuff on new creatures
-//
-/hook/living_new/proc/vore_setup(mob/living/M)
-
-	//Tries to load prefs if a client is present otherwise gives freebie stomach
-	spawn(2 SECONDS)
-		if(!QDELETED(M))
-			M.init_vore()
-
-	//return TRUE to hook-caller
-	return TRUE
-
 /mob/proc/init_vore()
 	//Something else made organs, meanwhile.
 	if(!isnewplayer(src))
@@ -193,6 +180,36 @@
 				return TRUE
 			else
 				return TRUE //You don't get to hit someone 'later'
+
+	// Body writing
+	else if(istype(I, /obj/item/pen))
+		// Avoids having an override on this proc because attempt_vr won't call the override
+		if(!ishuman(src))
+			return FALSE
+		var/mob/living/carbon/human/us = src
+
+		if(!isliving(user))
+			return FALSE
+		var/mob/living/attacker = user
+
+		if(attacker.a_intent != I_HELP)
+			return FALSE
+
+		var/hit_zone = attacker.zone_sel.selecting
+
+		var/obj/item/organ/external/affecting = get_organ(hit_zone)
+		if(!affecting || affecting.is_stump())
+			to_chat(attacker, span_danger("They are missing that limb!"))
+			return TRUE
+
+		var/message = tgui_input_text(attacker, "What would you like to write on [src]'s [affecting]? (This will replace existing writing.)", "Body Writing", "", 128, FALSE)
+		if(!message)
+			return TRUE
+
+		add_attack_logs(attacker, us, "wrote \"[message]\"")
+
+		LAZYSET(us.body_writing, affecting.organ_tag, message)
+		return TRUE
 
 	return FALSE
 
@@ -602,7 +619,7 @@
 		src.forceMove(get_turf(F))
 		log_and_message_admins("used the OOC escape button to get out of a food item.", src)
 
-	else if(src.alerts["leashed"])
+	else if(alerts && alerts["leashed"])
 		var/obj/screen/alert/leash_pet/pet_alert = src.alerts["leashed"]
 		var/obj/item/leash/owner = pet_alert.master
 		owner.clear_leash()
@@ -1436,7 +1453,10 @@
 		to_chat(user, span_vwarning("This person's prefs dont allow that!"))
 		return FALSE
 
-	var/obj/belly/RTB = tgui_input_list(user, "Choose which vore belly to transfer from", "Select Belly", vore_organs)
+	if(!LAZYLEN(TG.vore_organs))
+		return FALSE
+
+	var/obj/belly/RTB = tgui_input_list(user, "Choose which vore belly to transfer from", "Select Belly", TG.vore_organs)
 	if(!RTB)
 		return FALSE
 

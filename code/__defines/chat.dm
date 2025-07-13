@@ -35,3 +35,12 @@
 #define MESSAGE_TYPE_ADMINLOG "adminlog"
 #define MESSAGE_TYPE_ATTACKLOG "attacklog"
 #define MESSAGE_TYPE_DEBUG "debug"
+
+/// Adds a generic box around whatever message you're sending in chat. Really makes things stand out.
+#define boxed_message(str) ("<div class='boxed_message'>" + str + "</div>")
+/// Adds a box around whatever message you're sending in chat. Can apply color and/or additional classes. Available colors: red, green, blue, purple. Use it like red_box
+#define custom_boxed_message(classes, str) ("<div class='boxed_message " + classes + "'>" + str + "</div>")
+/// Makes a fieldset with a neaty styled name. Can apply additional classes.
+#define fieldset_block(title, content, classes) ("<fieldset class='fieldset " + classes + "'><legend class='fieldset_legend'>" + title + "</legend>" + content + "</fieldset>")
+/// Makes a horizontal line with text in the middle
+#define separator_hr(str) ("<div class='separator'>" + str + "</div>")

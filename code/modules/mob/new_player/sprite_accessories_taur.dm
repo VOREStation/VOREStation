@@ -208,6 +208,8 @@
 	icon_state = "wolf2_s"
 	extra_overlay = "wolf2_markings"
 	extra_overlay2 = "wolf2_markings_2"
+	extra_overlay_w = "fatwolf2_markings"
+	extra_overlay2_w = "fatwolf2_markings_2"
 	ani_state = "fatwolf2_s"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf

@@ -16,7 +16,7 @@
 		arg = "'[arg]'"
 	return arg
 
-/proc/ext_python(var/script, var/args, var/scriptsprefix = 1)
+/proc/ext_python(var/script, var/arguments, var/scriptsprefix = 1)
 	return  // VOREStation Edit - Can't exploit shell if we never call shell!
 	/* Unreachable with above vorestation edit
 	if(scriptsprefix)
@@ -25,6 +25,6 @@
 	if(world.system_type == MS_WINDOWS)
 		script = replacetext(script, "/", "\\")
 
-	var/command = config.python_path + " " + script + " " + args
+	var/command = config.python_path + " " + script + " " + arguments
 	return shell(command)
 	*/

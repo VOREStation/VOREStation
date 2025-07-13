@@ -359,6 +359,7 @@
 	var/food_preference_bonus = 0
 
 	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
+	var/component_requires_late_recalc = FALSE // If TRUE, the component will do special recalculation stuff at the end of update_icons_body()
 
 	// For Lleill and Hanner
 	var/lleill_energy = 200
@@ -594,12 +595,11 @@
 			SEND_SIGNAL(H, COMSIG_XENOCHIMERA_COMPONENT)
 
 	//Shadekin Species Component.
-	/* //For when shadekin actually have their component control everything.
-	var/datum/component/shadekin/sk = H.get_xenochimera_component()
+	//For when shadekin actually have their component control everything.
+	var/datum/component/shadekin/sk = H.get_shadekin_component()
 	if(sk)
-		if(!H.stat || !(xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+		if(!H.stat)
 			SEND_SIGNAL(H, COMSIG_SHADEKIN_COMPONENT)
-	*/
 
 // Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
@@ -668,7 +668,7 @@
 	return TRUE
 
 // Used to find a special target for falling on, such as pouncing on someone from above.
-/datum/species/proc/find_fall_target_special(src, landing)
+/datum/species/proc/find_fall_target_special(source, landing)
 	return FALSE
 
 // Used to override normal fall behaviour. Use only when the species does fall down a level.

@@ -1,0 +1,14 @@
+{
+  "name": "registration",
+  "version": "1.0.0",
+  "description": "Small discord.js bot to handle adding member roles on discord registration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tigercat2000",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.21.0"
+  }
+}

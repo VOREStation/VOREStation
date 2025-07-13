@@ -56,8 +56,9 @@
 
 //This is called when we want different types of 'cloaks' to stop working, e.g. when attacking.
 /mob/living/carbon/human/break_cloak()
-	if(mind && mind.changeling) //Changeling visible camo
-		mind.changeling.cloaked = 0
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(comp) //Changeling visible camo
+		comp.cloaked = 0
 	if(istype(back, /obj/item/rig)) //Ninja cloak
 		var/obj/item/rig/suit = back
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
@@ -67,7 +68,8 @@
 		dr.uncloak()
 
 /mob/living/carbon/human/is_cloaked()
-	if(mind && mind.changeling && mind.changeling.cloaked) // Ling camo.
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(comp && comp.cloaked) // Ling camo.
 		return TRUE
 	else if(istype(back, /obj/item/rig)) //Ninja cloak
 		var/obj/item/rig/suit = back
@@ -197,7 +199,7 @@
 	if(vantag_hud)
 		compiled_vis |= VIS_CH_VANTAG
 
-	if(client?.prefs.read_preference(/datum/preference/toggle/tummy_sprites))
+	if(client?.prefs?.read_preference(/datum/preference/toggle/tummy_sprites))
 		compiled_vis += VIS_CH_STOMACH
 
 	if(soulgem?.flag_check(SOULGEM_SEE_SR_SOULS))

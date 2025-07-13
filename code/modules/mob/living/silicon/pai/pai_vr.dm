@@ -537,7 +537,7 @@
 		if (isnewplayer(G))
 			continue
 		else if(isobserver(G) && G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
-			if((client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || G.client.holder) && \
+			if((client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || check_rights_for(G.client, R_HOLDER)) && \
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
 				to_chat(G, span_filter_say(span_cult("[src.name]'s screen prints, \"[message]\"")))
 

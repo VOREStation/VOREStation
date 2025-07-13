@@ -56,14 +56,14 @@
 			balloon_alert(user, "\the [blocked] is in the way!")
 			return
 
-		balloon_alert_visible("[user] attempts to force [M] to swallow \the [src].")
+		user.balloon_alert_visible("[user] attempts to force [M] to swallow \the [src].")
 
 		user.setClickCooldown(user.get_attack_speed(src))
 		if(!do_mob(user, M))
 			return
 
 		user.drop_from_inventory(src) //icon update
-		balloon_alert_visible("[user] forces [M] to swallow \the [src].")
+		user.balloon_alert_visible("[user] forces [M] to swallow \the [src].")
 
 		var/contained = reagentlist()
 		add_attack_logs(user,M,"Fed a pill containing [contained]")
@@ -83,7 +83,7 @@
 		if(!target.reagents.total_volume)
 			balloon_alert(user, "[target] is empty.")
 			return
-		balloon_alert_visible("[user] puts something in \the [target]", "[target] dissolves in \the [src]", 2)
+		user.balloon_alert_visible("[user] puts something in \the [target]", "[target] dissolves in \the [src]", 2)
 
 		add_attack_logs(user,null,"Spiked [target.name] with a pill containing [reagentlist()]")
 
@@ -98,7 +98,7 @@
 /obj/item/reagent_containers/pill/attackby(obj/item/W as obj, mob/user as mob)
 	if(is_sharp(W))
 		var/obj/item/reagent_containers/powder/J = new /obj/item/reagent_containers/powder(src.loc)
-		balloon_alert_visible("[user] cuts up [src] with [W]!", "cut up \the [src] with [W]")
+		user.balloon_alert_visible("[user] cuts up [src] with [W]!", "cut up \the [src] with [W]")
 		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
 
 		if(reagents)
@@ -108,7 +108,7 @@
 
 	if(istype(W, /obj/item/card/id))
 		var/obj/item/reagent_containers/powder/J = new /obj/item/reagent_containers/powder(src.loc)
-		balloon_alert_visible("[user] clumsily cuts up [src] with [W]!", "You clumsily cut up \the [src] with [W]")
+		user.balloon_alert_visible("[user] clumsily cuts up [src] with [W]!", "You clumsily cut up \the [src] with [W]")
 		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
 
 		if(reagents)

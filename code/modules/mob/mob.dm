@@ -76,7 +76,6 @@
 		living_mob_list += src
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
-	hook_vr("mob_new",list(src)) //VOREStation Code
 	update_transform() // Some mobs may start bigger or smaller than normal.
 	. = ..()
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
@@ -1342,3 +1341,292 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	if(incorporeal_move)
 		return 1
 	return ..()
+
+/**
+ * Get the mob VV dropdown extras
+ */
+/mob/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_GIB, "Gib")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_AI, "Give AI Controller")
+	//VV_DROPDOWN_OPTION(VV_HK_GIVE_AI_SPEECH, "Give Random AI Speech")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
+	VV_DROPDOWN_OPTION(VV_HK_ADDLANGUAGE, "Add Language")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVELANGUAGE, "Remove Language")
+	VV_DROPDOWN_OPTION(VV_HK_ADDVERB, "Add Verb")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVEVERB, "Remove Verb")
+	VV_DROPDOWN_OPTION(VV_HK_ADDORGAN, "Add Organ")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVEORGAN, "Remove Organ")
+	//VV_DROPDOWN_OPTION(VV_HK_GIVE_MOB_ACTION, "Give Mob Ability")
+	//VV_DROPDOWN_OPTION(VV_HK_REMOVE_MOB_ACTION, "Remove Mob Ability")
+	//VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "Give Disease")
+	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "Toggle Godmode")
+	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "Drop Everything")
+	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "Regenerate Icons")
+	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS_FULL, "Regenerate Icons & Clear Stuck Overlays")
+	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Show player panel")
+	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "Toggle Buildmode")
+	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "Assume Direct Control")
+	//VV_DROPDOWN_OPTION(VV_HK_GIVE_DIRECT_CONTROL, "Give Direct Control")
+	//VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
+	//VV_DROPDOWN_OPTION(VV_HK_VIEW_PLANES, "View/Edit Planes")
+
+/mob/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_REGEN_ICONS])
+		if(!check_rights(NONE))
+			return
+		regenerate_icons()
+
+	if(href_list[VV_HK_REGEN_ICONS_FULL])
+		if(!check_rights(NONE))
+			return
+		cut_overlays()
+		regenerate_icons()
+
+	if(href_list[VV_HK_PLAYER_PANEL])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, src)
+
+	if(href_list[VV_HK_GODMODE])
+		if(!check_rights(R_ADMIN))
+			return
+		usr.client.cmd_admin_godmode(src)
+
+	if(href_list[VV_HK_ADDLANGUAGE])
+		if(!check_rights(R_SPAWN))
+			return
+
+		var/mob/H = src
+		if(!istype(H))
+			to_chat(usr, "This can only be done to instances of type /mob")
+			return
+
+		var/new_language = tgui_input_list(usr, "Please choose a language to add.", "Language", GLOB.all_languages)
+		if(!new_language)
+			return
+
+		if(!H)
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+
+		if(H.add_language(new_language))
+			to_chat(usr, "Added [new_language] to [H].")
+			return
+
+		to_chat(usr, "Mob already knows that language.")
+
+	if(href_list[VV_HK_REMOVELANGUAGE])
+		if(!check_rights(R_SPAWN))
+			return
+
+		var/mob/H = src
+		if(!istype(H))
+			to_chat(usr, "This can only be done to instances of type /mob")
+			return
+
+		if(!H.languages.len)
+			to_chat(usr, "This mob knows no languages.")
+			return
+
+		var/datum/language/rem_language = tgui_input_list(usr, "Please choose a language to remove.", "Language", H.languages)
+
+		if(!rem_language)
+			return
+
+		if(!H)
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+
+		if(H.remove_language(rem_language.name))
+			to_chat(usr, "Removed [rem_language] from [H].")
+			return
+
+		to_chat(usr, "Mob doesn't know that language.")
+
+	if(href_list[VV_HK_ADDVERB])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/H = src
+
+		if(!ismob(H))
+			to_chat(usr, "This can only be done to instances of type /mob")
+			return
+		var/list/possibleverbs = list()
+		possibleverbs += "Cancel" 								// One for the top...
+		possibleverbs += typesof(/mob/proc, /mob/verb)
+		if(isobserver(H))
+			possibleverbs += typesof(/mob/observer/dead/proc,/mob/observer/dead/verb)
+		if(isliving(H))
+			possibleverbs += typesof(/mob/living/proc,/mob/living/verb)
+		if(ishuman(H))
+			possibleverbs += typesof(/mob/living/carbon/proc,/mob/living/carbon/verb,/mob/living/carbon/human/verb,/mob/living/carbon/human/proc)
+		if(isrobot(H))
+			possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/robot/proc,/mob/living/silicon/robot/verb)
+		if(isAI(H))
+			possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/ai/proc,/mob/living/silicon/ai/verb)
+		if(isanimal(H))
+			possibleverbs += typesof(/mob/living/simple_mob/proc)
+		possibleverbs -= H.verbs
+		possibleverbs += "Cancel" 								// ...And one for the bottom
+
+		var/verb = tgui_input_list(usr, "Select a verb!", "Verbs", possibleverbs)
+		if(!verb || verb == "Cancel")
+			return
+
+		if(!H)
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+
+		add_verb(H, verb)
+
+	if(href_list[VV_HK_REMOVEVERB])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/H = src
+
+		if(!istype(H))
+			to_chat(usr, "This can only be done to instances of type /mob")
+			return
+		var/verb = tgui_input_list(usr, "Please choose a verb to remove.", "Verbs", H.verbs)
+		if(!verb)
+			return
+
+		if(!H)
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+
+		remove_verb(H, verb)
+
+	if(href_list[VV_HK_ADDORGAN])
+		if(!check_rights(R_SPAWN))
+			return
+
+		var/mob/living/carbon/M = src
+		if(!istype(M))
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
+			return
+
+		var/new_organ = tgui_input_list(usr, "Please choose an organ to add.", "Organ", subtypesof(/obj/item/organ))
+		if(!new_organ)
+			return
+
+		if(!M)
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+
+		if(locate(new_organ) in M.internal_organs)
+			to_chat(usr, "Mob already has that organ.")
+			return
+
+		new new_organ(M)
+
+
+	if(href_list[VV_HK_REMOVEORGAN])
+		if(!check_rights(R_SPAWN))
+			return
+
+		var/mob/living/carbon/M = src
+		if(!istype(M))
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
+			return
+
+		var/obj/item/organ/rem_organ = tgui_input_list(usr, "Please choose an organ to remove.", "Organ", M.internal_organs)
+		if(!rem_organ)
+			return
+
+		if(!M)
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+
+		if(!(locate(rem_organ) in M.internal_organs))
+			to_chat(usr, "Mob does not have that organ.")
+			return
+
+		to_chat(usr, "Removed [rem_organ] from [M].")
+		rem_organ.removed()
+		qdel(rem_organ)
+
+	if(href_list[VV_HK_GIVE_AI])
+		if(!check_rights(R_HOLDER))
+			return
+
+		var/mob/M = src
+		if(!isliving(M))
+			to_chat(src, span_notice("This can only be used on instances of type /mob/living"))
+			return
+		var/mob/living/L = M
+		if(L.client || L.teleop)
+			to_chat(src, span_warning("This cannot be used on player mobs!"))
+			return
+
+		if(L.ai_holder)	//Cleaning up the original ai
+			var/ai_holder_old = L.ai_holder
+			L.ai_holder = null
+			qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
+		L.ai_holder_type = tgui_input_list(usr, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
+		L.initialize_ai_holder()
+		L.faction = sanitize(tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral"))
+		L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
+		if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
+			L.AdjustSleeping(-100)
+
+	//if(href_list[VV_HK_GIVE_AI_SPEECH])
+	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_ai_speech, src)
+
+	//if(href_list[VV_HK_GIVE_MOB_ACTION])
+	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_mob_action, src)
+
+	//if(href_list[VV_HK_REMOVE_MOB_ACTION])
+	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/remove_mob_action, src)
+
+	if(href_list[VV_HK_GIVE_SPELL])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_spell, src)
+
+	if(href_list[VV_HK_REMOVE_SPELL])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/remove_spell, src)
+
+	//if(href_list[VV_HK_GIVE_DISEASE])
+	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/give_disease, src)
+
+	if(href_list[VV_HK_GIB])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/gib_them, src)
+
+	if(href_list[VV_HK_BUILDMODE])
+		if(!check_rights(R_BUILDMODE))
+			return
+		togglebuildmode(src)
+
+	if(href_list[VV_HK_DROP_ALL])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/drop_everything, src)
+
+	if(href_list[VV_HK_DIRECT_CONTROL])
+		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/cmd_assume_direct_control, src)
+
+	//if(href_list[VV_HK_GIVE_DIRECT_CONTROL])
+	//	return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/cmd_give_direct_control, src)
+
+	//if(href_list[VV_HK_OFFER_GHOSTS])
+	//	if(!check_rights(NONE))
+	//		return
+	//	offer_control(src)
+
+	//if(href_list[VV_HK_VIEW_PLANES])
+	//	if(!check_rights(R_DEBUG))
+	//		return
+	//	usr.client.edit_plane_masters(src)
+/**
+ * extra var handling for the logging var
+ */
+/mob/vv_get_var(var_name)
+	//switch(var_name)
+	//	if(NAMEOF(src, logging))
+	//		return debug_variable(var_name, logging, 0, src, FALSE)
+	. = ..()

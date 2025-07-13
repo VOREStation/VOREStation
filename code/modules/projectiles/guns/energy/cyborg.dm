@@ -160,7 +160,7 @@
 	name = "combat jaws"
 	icon_state = "jaws"
 	desc = "The jaws of the law."
-	force = 25
+	force = 30
 	armor_penetration = 25
 	defend_chance = 15
 	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
@@ -169,7 +169,7 @@
 	name = "puppy jaws"
 	icon_state = "smalljaws"
 	desc = "The jaws of a small dog."
-	force = 10
+	force = 15
 	defend_chance = 5
 	attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
 	var/emagged = 0
@@ -177,22 +177,44 @@
 	var/mob/living/silicon/robot/R = user
 	if(R.emagged || R.emag_items)
 		emagged = !emagged
-		if(emagged)
-			name = "combat jaws"
-			icon_state = "jaws"
-			desc = "The jaws of the law."
-			force = 25
-			armor_penetration = 25
-			defend_chance = 15
-			attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
+		if(R.sprite_datum.dogborg_sprites)
+			if(emagged)
+				name = "combat jaws"
+				icon_state = "jaws"
+				desc = "The jaws of the law."
+				force = 30
+				armor_penetration = 25
+				defend_chance = 15
+				attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
+			else
+				name = "puppy jaws"
+				icon_state = "smalljaws"
+				desc = "The jaws of a small dog."
+				force = 15
+				armor_penetration = 0
+				defend_chance = 5
+				attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
 		else
-			name = "puppy jaws"
-			icon_state = "smalljaws"
-			desc = "The jaws of a small dog."
-			force = 10
-			armor_penetration = 0
-			defend_chance = 5
-			attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
+			if(emagged)
+				name = "claymore"
+				desc = "Now this is a knife!"
+				icon = 'icons/obj/tools_robot.dmi'
+				icon_state = "claymore_cyborg"
+				hitsound = 'sound/weapons/slice.ogg'
+				attack_verb = list("sliced", "slashed", "jabbed", "stabbed")
+				force = 30
+				armor_penetration = 25
+				defend_chance = 15
+			else
+				name = "self defense knife"
+				icon = 'icons/obj/tools_robot.dmi'
+				icon_state = "knife_cyborg"
+				hitsound = 'sound/weapons/slash.ogg'
+				desc = "A sharp knife used for defending crew against hostile threats. Not effective for non-defense use."
+				attack_verb = list("sliced", "slashed", "jabbed", "stabbed")
+				force = 15
+				armor_penetration = 0
+				defend_chance = 5
 		update_icon()
 
 
@@ -257,6 +279,9 @@
 		var/mob/living/carbon/human/H = target
 		H.forcesay(GLOB.hit_appends)
 
+/obj/item/melee/robotic/proc/refresh_light(clear)
+	return
+
 /obj/item/melee/robotic/blade //For downstreams that use blade
 	name = "Robotic Blade"
 	desc = "A glowing blade. It appears to be extremely sharp."
@@ -292,7 +317,13 @@
 		var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
 		blade_overlay.color = lcolor
 		add_overlay(blade_overlay)
-		set_light(2, 1, lcolor)
+	refresh_light()
+
+/obj/item/melee/robotic/blade/refresh_light(clear)
+	if(active)
+		if(clear)
+			set_light(0)
+		set_light(2, 2, lcolor)
 	else
 		set_light(0)
 
@@ -395,7 +426,12 @@
 		icon_state = "[initial(name)]_active"
 	else
 		icon_state = "[initial(name)]"
+	refresh_light()
+
+/obj/item/melee/robotic/baton/refresh_light(clear)
 	if(icon_state == "[initial(name)]_active")
+		if(clear)
+			set_light(0)
 		set_light(2, 1, lightcolor)
 	else
 		set_light(0)
