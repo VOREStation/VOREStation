@@ -24,7 +24,7 @@
 
 //Appears as a right click verb on any obj and mob within view range.
 //when not right clicking we get a list to pick from in aforementioned view range.
-ADMIN_VERB(add_mob_for_narration, R_FUN, "Narrate Entity (Add ref)", "Saves a reference of target mob to be called when narrating.", "Fun.Narrate", E as obj|mob|turf in orange(world.view))
+ADMIN_VERB_AND_CONTEXT_MENU(add_mob_for_narration, R_FUN, "Narrate Entity (Add ref)", "Saves a reference of target mob to be called when narrating.", "Fun.Narrate", E as obj|mob|turf in orange(world.view))
 	//Making sure we got the list datum on our client.
 	if(!user.entity_narrate_holder)
 		user.entity_narrate_holder = new /datum/entity_narrate()
