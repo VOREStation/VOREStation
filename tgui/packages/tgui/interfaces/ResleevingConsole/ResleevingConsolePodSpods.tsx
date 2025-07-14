@@ -9,7 +9,7 @@ export const ResleevingConsolePodSpods = (props) => {
   const { act, data } = useBackend<Data>();
   const { spods, selected_printer } = data;
 
-  if (spods && spods.length) {
+  if (spods?.length) {
     return spods.map((pod, i) => {
       let podAction: React.JSX.Element;
       if (pod.status === 'cloning') {
@@ -25,7 +25,7 @@ export const ResleevingConsolePodSpods = (props) => {
             }}
             mt="0.5rem"
           >
-            <Box textAlign="center">{toFixed(pod.progress) + '%'}</Box>
+            <Box textAlign="center">{`${toFixed(pod.progress)}%`}</Box>
           </ProgressBar>
         );
       } else if (pod.status === 'mess') {
@@ -54,9 +54,7 @@ export const ResleevingConsolePodSpods = (props) => {
       return (
         <Box key={i} width="64px" textAlign="center" inline mr="0.5rem">
           <Image
-            src={resolveAsset(
-              'synthprinter' + (pod.busy ? '_working' : '') + '.gif',
-            )}
+            src={resolveAsset(`synthprinter${pod.busy ? '_working' : ''}.gif`)}
             style={{
               width: '100%',
             }}

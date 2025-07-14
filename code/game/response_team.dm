@@ -12,7 +12,7 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 	set category = "Fun.Event Kit"
 	set desc = "Send an emergency response team to the station"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		to_chat(usr, span_danger("Only administrators may use this command."))
 		return
 	if(!ticker)
@@ -67,7 +67,7 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 /proc/percentage_dead()
 	var/total = 0
 	var/deadcount = 0
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.mob_list)
 		if(H.client) // Monkeys and mice don't have a client, amirite?
 			if(H.stat == 2) deadcount++
 			total++
@@ -79,7 +79,7 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 /proc/percentage_antagonists()
 	var/total = 0
 	var/antagonists = 0
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.mob_list)
 		if(is_special_character(H) >= 1)
 			antagonists++
 		total++

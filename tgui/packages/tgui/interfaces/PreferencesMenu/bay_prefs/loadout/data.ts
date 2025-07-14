@@ -1,4 +1,4 @@
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 // Updated every tick
 export type UnsafeHtml = string;

@@ -29,6 +29,7 @@
 	var/pixel_x = 0
 	var/icon_x = 32
 	var/icon_y = 32
+	var/dogborg_sprites = FALSE //If we have dogborg sprites or not. Used for puppyjaws.
 
 	var/is_whitelisted = FALSE
 	var/whitelist_ckey
@@ -66,6 +67,7 @@
 			//Melee Check
 			if(istype(thing_to_check, /obj/item/melee/robotic))
 				var/obj/item/melee/robotic/melee = thing_to_check
+				melee.refresh_light(TRUE)
 				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
 					ourborg.add_overlay("[sprite_icon_state]-melee")
 					continue
@@ -204,6 +206,23 @@
 	return
 
 /datum/robot_sprite/proc/do_equipment_glamour(var/obj/item/robot_module/module)
+	if(!dogborg_sprites)
+		var/obj/item/melee/robotic/jaws/small/small_jaws = locate() in module.modules
+		if(small_jaws)
+			small_jaws.name = "self defense knife"
+			small_jaws.icon = 'icons/obj/tools_robot.dmi'
+			small_jaws.icon_state = "knife_cyborg"
+			small_jaws.hitsound = 'sound/weapons/slash.ogg'
+			small_jaws.desc = "A sharp knife used for defending crew against hostile threats. Not effective for non-defense use. If emagged, can be upgraded to a claymore."
+			small_jaws.attack_verb = list("sliced", "slashed", "jabbed", "stabbed")
+		var/obj/item/melee/robotic/jaws/big/big_jaws = locate() in module.modules
+		if(big_jaws)
+			big_jaws.name = "claymore"
+			big_jaws.desc = "Now this is a knife!"
+			big_jaws.icon = 'icons/obj/tools_robot.dmi'
+			big_jaws.icon_state = "claymore_cyborg"
+			big_jaws.hitsound = 'sound/weapons/slice.ogg'
+			big_jaws.attack_verb = list("sliced", "slashed", "jabbed", "stabbed")
 	return
 
 // Dogborgs and not-dogborgs that use dogborg stuff. Oh no.
@@ -220,20 +239,7 @@
 	pixel_x = -16
 	icon_x = 64
 	icon_y = 32
-
-/datum/robot_sprite/dogborg/do_equipment_glamour(var/obj/item/robot_module/module)
-	if(!has_custom_equipment_sprites)
-		return
-
-	var/obj/item/tool/crowbar/cyborg/C = locate() in module.modules
-	if(C)
-		C.name = "puppy jaws"
-		C.desc = "The jaws of a small dog. Still strong enough to pry things."
-		C.icon = 'icons/mob/dogborg_vr.dmi'
-		C.icon_state = "smalljaws_textless"
-		C.hitsound = 'sound/weapons/bite.ogg'
-		C.attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
-
+	dogborg_sprites = TRUE
 
 /datum/robot_sprite/dogborg/tall
 	has_dead_sprite_overlay = FALSE
@@ -241,7 +247,7 @@
 	vis_height = 64
 	icon_x = 64
 	icon_y = 64
-
+	dogborg_sprites = FALSE
 
 // Default module sprite
 

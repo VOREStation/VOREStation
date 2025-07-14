@@ -15,7 +15,7 @@
 
 // Handle people leaving due to round ending.
 /hook/roundend/proc/persist_locations()
-	for(var/mob/living/carbon/human/Player in human_mob_list)
+	for(var/mob/living/carbon/human/Player in GLOB.human_mob_list)
 		if(!Player.mind || isnewplayer(Player))
 			continue // No mind we can do nothing, new players we care not for
 		else if(Player.stat == DEAD)
@@ -166,7 +166,10 @@
 	for(var/name in character.species.has_limbs)
 		var/obj/item/organ/external/O = character.organs_by_name[name]
 		if(!O)
-			prefs.organ_data[name] = "amputated"
+			if(name in GLOB.storable_amputated_organs)
+				prefs.organ_data[name] = "amputated"
+			else
+				prefs.rlimb_data.Remove(name) // Missing limb and not in the global list means default model
 		else if(O.robotic >= ORGAN_ROBOT)
 			prefs.organ_data[name] = "cyborg"
 			if(O.model)

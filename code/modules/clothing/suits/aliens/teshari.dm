@@ -231,7 +231,7 @@
 	name = "Teshari labcoat"
 	desc = "A small suit that protects against minor chemical spills. This one is a good fit on Teshari."
 	icon = 'icons/inventory/suit/item_teshari.dmi'
-	icon_state = "tesh_labcoat"
+	icon_state = "labcoat"
 	species_restricted = list(SPECIES_TESHARI)
 
 /obj/item/clothing/suit/storage/toggle/tesharicoat

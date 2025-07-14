@@ -1,6 +1,3 @@
-
-var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT_LEVEL_MODERATE = "Moderate", EVENT_LEVEL_MAJOR = "Major")
-
 /datum/event_container
 	var/severity = -1
 	var/delayed = 0
@@ -39,7 +36,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 
 		new next_event.event_type(next_event)	// Events are added and removed from the processing queue in their New/kill procs
 
-		log_debug("Starting event '[next_event.name]' of severity [severity_to_string[severity]].")
+		log_debug("Starting event '[next_event.name]' of severity [GLOB.severity_to_string[severity]].")
 		next_event = null						// When set to null, a random event will be selected next time
 	else
 		// If not, wait for one minute, instead of one tick, before checking again.
@@ -101,7 +98,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	// Otherwise, follow the standard setup process
 	else
 		var/playercount_modifier = 1
-		switch(player_list.len)
+		switch(GLOB.player_list.len)
 			if(0 to 10)
 				playercount_modifier = 1.2
 			if(11 to 15)
@@ -117,7 +114,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 		var/event_delay = rand(CONFIG_GET(number_list/event_delay_lower)[severity] MINUTES, CONFIG_GET(number_list/event_delay_upper)[severity] MINUTES) * playercount_modifier
 		next_event_time = world.time + event_delay
 
-	log_debug("Next event of severity [severity_to_string[severity]] in [(next_event_time - world.time)/600] minutes.")
+	log_debug("Next event of severity [GLOB.severity_to_string[severity]] in [(next_event_time - world.time)/600] minutes.")
 
 /datum/event_container/proc/SelectEvent()
 	var/datum/event_meta/EM = tgui_input_list(usr, "Select an event to queue up.", "Event Selection", available_events)

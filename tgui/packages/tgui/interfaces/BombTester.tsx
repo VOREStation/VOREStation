@@ -215,8 +215,8 @@ class BombTesterSimulation extends Component {
 
     const newStyle: {} = {
       position: 'relative',
-      left: x + 'px',
-      top: y + 'px',
+      left: `${x}px`,
+      top: `${y}px`,
     };
 
     return (

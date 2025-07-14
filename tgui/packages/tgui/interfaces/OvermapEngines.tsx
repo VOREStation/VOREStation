@@ -85,7 +85,7 @@ export const OvermapEnginesContent = (props) => {
                     <AnimatedNumber value={engine.eng_thrust} /> | Limit:{' '}
                     <AnimatedNumber
                       value={engine.eng_thrust_limiter}
-                      format={(val) => val + '%'}
+                      format={(val) => `${val}%`}
                     />
                   </Box>
                   // "Engine " + (i + 1)

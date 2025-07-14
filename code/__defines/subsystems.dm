@@ -94,7 +94,12 @@
 
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
 
-var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_GAME, RUNLEVEL_POSTGAME)
+GLOBAL_LIST_INIT(runlevel_flags, list(
+	RUNLEVEL_LOBBY,
+	RUNLEVEL_SETUP,
+	RUNLEVEL_GAME,
+	RUNLEVEL_POSTGAME
+	))
 #define RUNLEVEL_FLAG_TO_INDEX(flag) (log(2, flag) + 1)	// Convert from the runlevel bitfield constants to index in runlevel_flags list
 
 //! ### SS initialization hints
@@ -164,6 +169,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_MAPRENAME		-60 //Initiating after Ticker to ensure everything is loaded and everything we rely on us working
 #define INIT_ORDER_WIKI				-61
 #define INIT_ORDER_ATC				-70
+#define INIT_ORDER_LOOT				-80
 #define INIT_ORDER_STATPANELS		-98
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
@@ -198,6 +204,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_TICKER		60
 #define FIRE_PRIORITY_PLANETS		75
 #define FIRE_PRIORITY_MACHINES		100
+#define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_PROJECTILES	150
 #define FIRE_PRIORITY_STATPANEL		390

@@ -686,7 +686,9 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		else if (not_hungy)
 			var/nutrition_cost = 500 + (nutrition / 2)
 			adjust_nutrition(-nutrition_cost)
-			new /mob/living/simple_mob/vore/alienanimals/teppi(loc, src)
+			new /mob/living/simple_mob/vore/alienanimals/teppi(loc, store_teppi_data(src))
+			qdel(src)
+			return
 		else
 			visible_message("\The [src] whines pathetically...", runemessage = "whines")
 			if(prob(50))
@@ -765,7 +767,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	GLOB.teppi_count ++
 	if(teppi1 && !teppi2)
 		inherit_from_baby(teppi1)
-		qdel(teppi1)
 	else if (teppi1 && teppi2)
 		inherit_from_parents(teppi1, teppi2)
 	. = ..()
@@ -773,7 +774,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 /mob/living/simple_mob/vore/alienanimals/teppi/Destroy()
 	GLOB.teppi_count --
 	friend_zone = null
-	active_ghost_pods -= src
+	GLOB.active_ghost_pods -= src
 	ai_holder.leader = null
 	return ..()
 
@@ -919,26 +920,46 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 /mob/living/simple_mob/vore/alienanimals/teppi/baby/init_vore() //shouldn't need all the vore bidness if they aren't using it as babbies. They get their tummies when they grow up.
 	return
 
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/store_teppi_data(mob/living/simple_mob/vore/alienanimals/teppi/teppi)
+	var/list/teppi_data = list(
+		"dir" = teppi.dir,
+		"name" = teppi.name,
+		"real_name" = teppi.real_name,
+		"faction" = teppi.faction,
+		"affinity" = teppi.affinity,
+		"affection_factor" = teppi.affection_factor,
+		"nutrition" = teppi.nutrition,
+		"allergen_preference" = teppi.allergen_preference,
+		"allergen_unpreference" = teppi.allergen_unpreference,
+		"color" = teppi.color,
+		"marking_color" = teppi.marking_color,
+		"horn_color" = teppi.horn_color,
+		"eye_color" = teppi.eye_color,
+		"skin_color" = teppi.skin_color,
+	)
+
+	return teppi_data
+
 //This sets all the things on adult teppi when they grow from a baby
-/mob/living/simple_mob/vore/alienanimals/teppi/proc/inherit_from_baby(mob/living/simple_mob/vore/alienanimals/teppi/baby/baby)
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/inherit_from_baby(list/teppi_data)
 	inherit_colors = TRUE
 	inherit_allergen = TRUE
-	dir = baby.dir
-	name = baby.name
-	real_name = baby.real_name
-	faction = baby.faction
-	affinity = baby.affinity
-	affection_factor = baby.affection_factor
-	nutrition = baby.nutrition
-	allergen_preference = baby.allergen_preference
-	allergen_unpreference = baby.allergen_unpreference
-	color = baby.color
-	marking_color = baby.marking_color
-	horn_color = baby.horn_color
-	eye_color = baby.eye_color
-	skin_color = baby.skin_color
+	dir = teppi_data["dir"]
+	name = teppi_data["name"]
+	real_name = teppi_data["real_name"]
+	faction = teppi_data["faction"]
+	affinity = teppi_data["affinity"]
+	affection_factor = teppi_data["affection_factor"]
+	nutrition = teppi_data["nutrition"]
+	allergen_preference = teppi_data["allergen_preference"]
+	allergen_unpreference = teppi_data["allergen_unpreference"]
+	color = teppi_data["color"]
+	marking_color = teppi_data["marking_color"]
+	horn_color = teppi_data["horn_color"]
+	eye_color = teppi_data["eye_color"]
+	skin_color = teppi_data["skin_color"]
 	ghostjoin = 1
-	active_ghost_pods |= src
+	GLOB.active_ghost_pods += src
 	update_icon()
 
 //This sets all the things on baby teppi when they are bred from adult teppi

@@ -13,6 +13,10 @@
 	//max_integrity = 60
 	var/obj/item/canvas/painting = null
 
+/obj/structure/easel/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 //Adding canvases
 /obj/structure/easel/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/canvas))
@@ -536,7 +540,7 @@
  * For now, we do it this way because calling this on a canvas itself might cause issues due to the whole dimension thing.
 */
 /obj/structure/sign/painting/proc/admin_lateload_painting(var/spawn_specific = 0, var/which_painting = 0)
-	if(!usr.client.holder)
+	if(!check_rights_for(usr.client, R_HOLDER))
 		return 0
 	if(spawn_specific && isnum(which_painting))
 		var/list/painting = SSpersistence.all_paintings[which_painting]

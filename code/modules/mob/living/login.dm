@@ -44,5 +44,6 @@
 		else
 			voice_sounds_list = DEFAULT_TALK_SOUNDS
 	resize(size_multiplier, animate = FALSE, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE, aura_animation = FALSE)
+	init_vore()
 
 	return .

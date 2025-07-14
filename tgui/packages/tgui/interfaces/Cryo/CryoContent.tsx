@@ -66,7 +66,7 @@ export const CryoContent = (props) => {
             <LabeledList.Item label="Temperature">
               <AnimatedNumber
                 value={occupant.bodyTemperature}
-                format={(value) => toFixed(value) + ' K'}
+                format={(value) => `${toFixed(value)} K`}
               />
             </LabeledList.Item>
             <LabeledList.Divider />
@@ -139,7 +139,7 @@ const CryoBeaker = (props) => {
           {beakerVolume ? (
             <AnimatedNumber
               value={beakerVolume}
-              format={(v) => toFixed(v) + ' units remaining'}
+              format={(v) => `${toFixed(v)} units remaining`}
             />
           ) : (
             'Beaker is empty'

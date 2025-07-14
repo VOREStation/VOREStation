@@ -97,7 +97,7 @@ export const ChemicalReactionList = (props: {
                 key={entry}
                 ourKey={ourKey}
                 entries={grinding[entry]}
-                title={capitalize(entry) + ' Grinding'}
+                title={`${capitalize(entry)} Grinding`}
               />
             ),
         )}
@@ -133,7 +133,7 @@ function getReactionComponents(
     : 'Component';
 
   return (
-    <Section title={'Potential Chemical ' + sectionTitle + ' ' + index}>
+    <Section title={`Potential Chemical ${sectionTitle} ${index}`}>
       <LabeledList>
         {(typeof reactionTypes.temp_min === 'number' ||
           typeof reactionTypes.temp_max === 'number') && (
@@ -185,7 +185,7 @@ function getReactionComponents(
                     <LabeledList.Divider />
                   </>
                 )}
-                <LabeledList.Item label={' - ' + componentName}>
+                <LabeledList.Item label={` - ${componentName}`}>
                   {required}
                 </LabeledList.Item>
               </Fragment>

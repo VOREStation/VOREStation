@@ -180,7 +180,7 @@
 	return damage * 3 //made for boring holes
 
 /obj/item/projectile/bullet/magnetic/bore/Bump(atom/A, forced=0)
-	if(istype(A, /turf/simulated/mineral))
+	if(ismineralturf(A))
 		var/turf/simulated/mineral/MI = A
 		loc = get_turf(A) // Careful.
 		permutated.Add(A)

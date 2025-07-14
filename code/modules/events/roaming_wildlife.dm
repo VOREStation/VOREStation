@@ -7,7 +7,7 @@
 
 /datum/event/roaming_wildlife/start()
 	var/list/possible_spawns = list()
-	for(var/obj/effect/landmark/C in landmarks_list)
+	for(var/obj/effect/landmark/C in GLOB.landmarks_list)
 		if(istype(C, /obj/effect/landmark/wildlife))
 			var/obj/effect/landmark/wildlife/WLLM = C
 			if(GLOB.world_time_season == "winter" && WLLM.wildlife_type == 1)		//fish forbidden in winter because ice now aparently
@@ -44,9 +44,9 @@
 		var/list/spawn_list
 		switch(WL.wildlife_type)
 			if(1)
-				spawn_list = event_wildlife_aquatic
+				spawn_list = GLOB.event_wildlife_aquatic
 			if(2)
-				spawn_list = event_wildlife_roaming
+				spawn_list = GLOB.event_wildlife_roaming
 		if(!spawn_list)
 			continue
 

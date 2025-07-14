@@ -3,10 +3,10 @@ import { useBackend } from 'tgui/backend';
 import { Button, Input, Section } from 'tgui-core/components';
 
 import { ColorPicker, ColorType } from '../../helper_components';
-import {
-  type GeneralData,
-  type GeneralDataConstant,
-  type GeneralDataStatic,
+import type {
+  GeneralData,
+  GeneralDataConstant,
+  GeneralDataStatic,
 } from '../data';
 import { BodyPopup } from '../SubtabBody';
 import { EarsImageButton } from './Ears';

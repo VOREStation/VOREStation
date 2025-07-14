@@ -1,22 +1,3 @@
-var/global/list/radio_channels_by_freq = list(
-	num2text(PUB_FREQ) = CHANNEL_COMMON,
-	num2text(AI_FREQ)  = CHANNEL_AI_PRIVATE,
-	num2text(ENT_FREQ) = CHANNEL_ENTERTAINMENT,
-	num2text(ERT_FREQ) = CHANNEL_RESPONSE_TEAM,
-	num2text(COMM_FREQ)= CHANNEL_COMMAND,
-	num2text(ENG_FREQ) = CHANNEL_ENGINEERING,
-	num2text(MED_FREQ) = CHANNEL_MEDICAL,
-	num2text(MED_I_FREQ)=CHANNEL_MEDICAL_1,
-	num2text(SEC_FREQ) = CHANNEL_SECURITY,
-	num2text(SEC_I_FREQ)=CHANNEL_SECURITY_1,
-	num2text(SCI_FREQ) = CHANNEL_SCIENCE,
-	num2text(SUP_FREQ) = CHANNEL_SUPPLY,
-	num2text(SRV_FREQ) = CHANNEL_SERVICE,
-	num2text(EXP_FREQ) = CHANNEL_EXPLORATION
-	)
-
-GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
-
 /obj/item/paicard
 	name = "personal AI device"
 	icon = 'icons/obj/pda.dmi'
@@ -73,7 +54,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 		to_chat(user,span_warning("You cannot join a pAI card when you are banned from playing as a pAI."))
 		return
 
-	for(var/ourkey in paikeys)
+	for(var/ourkey in GLOB.paikeys)
 		if(ourkey == user.ckey)
 			to_chat(user, span_warning("You can't just rejoin any old pAI card!!! Your card still exists."))
 			return
@@ -96,14 +77,14 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			var/obj/item/paicard/typeb/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
-			paikeys |= new_pai.ckey
+			GLOB.paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			new_pai.SetName(actual_pai_name)
 		else
 			var/obj/item/paicard/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
-			paikeys |= new_pai.ckey
+			GLOB.paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			new_pai.SetName(actual_pai_name)
 
@@ -112,7 +93,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			var/obj/item/paicard/typeb/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
-			paikeys |= new_pai.ckey
+			GLOB.paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
 				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
@@ -123,7 +104,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			var/obj/item/paicard/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
-			paikeys |= new_pai.ckey
+			GLOB.paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
 				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
@@ -517,7 +498,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 	channels = list()
 
 	for(var/internal_chan in internal_channels)
-		var/ch_name = radio_channels_by_freq[internal_chan]
+		var/ch_name = GLOB.radio_channels_by_freq[internal_chan]
 		if(has_channel_access(card.pai, internal_chan))
 			channels += ch_name
 			channels[ch_name] = 1

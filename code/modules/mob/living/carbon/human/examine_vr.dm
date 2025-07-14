@@ -138,3 +138,20 @@
 				return span_notice("[t_He] [t_appear] to be in some sort of torpor.")
 		else if(xc.feral)
 			return span_warning("[t_He] [t_has] a crazed, wild look in [t_his] eyes!")
+
+/mob/living/carbon/human/proc/examine_body_writing(list/hidden, datum/gender/G)
+	. = list()
+
+	for(var/bodypart in hidden)
+		var/is_hidden = hidden[bodypart]
+		if(is_hidden)
+			continue
+
+		var/writing = LAZYACCESS(body_writing, bodypart)
+		if(writing)
+			var/obj/item/organ/external/affecting = get_organ(bodypart)
+			if(!affecting || affecting.is_stump())
+				LAZYREMOVE(body_writing, bodypart)
+				continue
+
+			. += span_notice("[G.He] [G.has] \"[writing]\" written on [G.his] [parse_zone(bodypart)].")

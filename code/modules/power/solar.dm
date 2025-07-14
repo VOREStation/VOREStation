@@ -37,6 +37,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		health *= 2
 	update_icon()
 	connect_to_network()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/power/solar/Destroy()
 	unset_control() //remove from control computer
@@ -131,6 +132,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	stat |= BROKEN
 	unset_control()
 	update_icon()
+	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, null)
 	return
 
 

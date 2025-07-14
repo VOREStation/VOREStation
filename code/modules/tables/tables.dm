@@ -7,7 +7,6 @@ var/list/table_icon_cache = list()
 	desc = "It's a table, for putting things on. Or standing on, if you really want to."
 	density = TRUE
 	anchored = TRUE
-	climbable = TRUE
 	layer = TABLE_LAYER
 	throwpass = 1
 	surgery_odds = 50 //VOREStation Edit
@@ -77,6 +76,8 @@ var/list/table_icon_cache = list()
 	update_icon()
 	update_desc()
 	update_material()
+
+	AddElement(/datum/element/climbable/table)
 
 /obj/structure/table/Destroy()
 	material = null
@@ -191,12 +192,6 @@ var/list/table_icon_cache = list()
 			return 1
 	visible_message(span_infoplain(span_bold("\The [user]") + " scratches at \the [src]!"))
 	return ..()
-
-/obj/structure/table/MouseDrop_T(obj/item/stack/material/what, mob/user)
-	if(can_reinforce && isliving(user) && (!user.stat) && istype(what) && user.get_active_hand() == what && Adjacent(user))
-		reinforce_table(what, user)
-	else
-		return ..()
 
 /obj/structure/table/proc/reinforce_table(obj/item/stack/material/S, mob/user)
 	if(reinforced)

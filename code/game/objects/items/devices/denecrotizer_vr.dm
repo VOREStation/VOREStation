@@ -11,10 +11,10 @@
 
 			if(var_value)
 				ghostjoin = TRUE
-				active_ghost_pods |= src
+				GLOB.active_ghost_pods |= src
 			else
 				ghostjoin = FALSE
-				active_ghost_pods -= src
+				GLOB.active_ghost_pods -= src
 
 			ghostjoin_icon()
 			. =  TRUE
@@ -63,7 +63,7 @@
 /// Inject a ghost into this mob. Assumes you've done all sanity before this point.
 /mob/living/simple_mob/proc/ghost_join(mob/observer/dead/D)
 	log_and_message_admins("joined [src] as a ghost [ADMIN_FLW(src)]", D)
-	active_ghost_pods -= src
+	GLOB.active_ghost_pods -= src
 
 	// Move the ghost in
 	if(D.mind)
@@ -159,7 +159,7 @@
 				target.faction = user.faction
 				target.revivedby = user.name
 				target.ghostjoin = 1
-				active_ghost_pods += target
+				GLOB.active_ghost_pods += target
 				target.ghostjoin_icon()
 				last_used = world.time
 				charges--
@@ -189,7 +189,7 @@
 		log_and_message_admins("used a denecrotizer to revive a simple mob: [target]. [ADMIN_FLW(src)]", user)
 		if(!target.mind) //if it doesn't have a mind then no one has been playing as it, and it is safe to offer to ghosts.
 			target.ghostjoin = 1
-			active_ghost_pods |= target
+			GLOB.active_ghost_pods |= target
 			target.ghostjoin_icon()
 		last_used = world.time
 		charges--

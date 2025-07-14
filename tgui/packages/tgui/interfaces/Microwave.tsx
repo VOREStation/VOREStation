@@ -174,7 +174,7 @@ const MicrowaveContents = (props) => {
           <Box>
             {items.map((item) => (
               <Tooltip
-                content={item.name + ' - ' + item.amt + ' ' + item.extra}
+                content={`${item.name} - ${item.amt} ${item.extra}`}
                 position="top"
                 key={item.name}
               >
@@ -243,7 +243,7 @@ const MicrowaveContents = (props) => {
         </Stack.Item>
         <Stack.Item>
           <Tooltip
-            content={'Predicted Result - ' + (recipe_name || 'Burned Mess')}
+            content={`Predicted Result - ${recipe_name || 'Burned Mess'}`}
             position="top"
           >
             <Box

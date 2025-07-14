@@ -3,7 +3,7 @@
 	set category = "Fun.Event Kit"
 	set name = "Change Custom Event"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 

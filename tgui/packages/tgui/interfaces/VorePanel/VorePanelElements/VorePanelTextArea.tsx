@@ -78,7 +78,7 @@ const CountedTextElement = (props: {
         <Stack>
           <Stack.Item grow />
           <Stack.Item>
-            <Box color="label">{currentCount + ' / ' + limit}</Box>
+            <Box color="label">{`${currentCount} / ${limit}`}</Box>
           </Stack.Item>
           <Stack.Item grow />
         </Stack>

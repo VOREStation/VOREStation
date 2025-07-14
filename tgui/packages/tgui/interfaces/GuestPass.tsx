@@ -9,7 +9,7 @@ type Data = {
   area: area[];
   giver: string | null;
   giveName: string;
-  reason: String;
+  reason: string;
   duration: number;
   mode: BooleanLike;
   log: string[];
@@ -54,7 +54,7 @@ export const GuestPass = (props) => {
           </Section>
         )) || (
           <Section
-            title={'Guest pass terminal #' + uid}
+            title={`Guest pass terminal #${uid}`}
             buttons={
               <Button icon="scroll" onClick={() => act('mode', { mode: 1 })}>
                 Activity Log

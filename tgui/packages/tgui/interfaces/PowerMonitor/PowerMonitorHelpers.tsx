@@ -22,7 +22,7 @@ export const AreaCharge = (props: { charging: number; charge: number }) => {
         }
       />
       <Box inline width="36px" textAlign="right">
-        {toFixed(charge) + '%'}
+        {`${toFixed(charge)}%`}
       </Box>
     </>
   );
@@ -32,8 +32,7 @@ export const AreaStatusColorBox = (props: { status: number }) => {
   const { status } = props;
   const power: boolean = Boolean(status & 2);
   const mode: boolean = Boolean(status & 1);
-  const tooltipText: string =
-    (power ? 'On' : 'Off') + ` [${mode ? 'auto' : 'manual'}]`;
+  const tooltipText: string = `${power ? 'On' : 'Off'} [${mode ? 'auto' : 'manual'}]`;
   return (
     <Tooltip content={tooltipText}>
       <ColorBox
