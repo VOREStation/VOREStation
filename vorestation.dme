@@ -1,4 +1,4 @@
-// DM Environment file for baystation12.dme.
+// DM Environment file for vorestation.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
  // New source code should be placed in .dm files: choose File/New --> Code File.
 // BEGIN_INTERNALS
@@ -2440,11 +2440,15 @@
 #include "code\modules\clothing\under\xenos\teshari.dm"
 #include "code\modules\clothing\under\xenos\vox.dm"
 #include "code\modules\commandline_networks\commandline_networks.dm"
+#include "code\modules\commandline_networks\__defines\command_defines.dm"
+#include "code\modules\commandline_networks\__defines\network_defines.dm"
+#include "code\modules\commandline_networks\__defines\node_defines.dm"
+#include "code\modules\commandline_networks\__defines\parsing_defines.dm"
 #include "code\modules\commandline_networks\core\command.dm"
-#include "code\modules\commandline_networks\core\defines.dm"
 #include "code\modules\commandline_networks\core\input_node.dm"
 #include "code\modules\commandline_networks\core\logging.dm"
 #include "code\modules\commandline_networks\core\network.dm"
+#include "code\modules\commandline_networks\core\network_export.dm"
 #include "code\modules\commandline_networks\core\node.dm"
 #include "code\modules\commandline_networks\core\parser.dm"
 #include "code\modules\commandline_networks\core\components\network_host.dm"
@@ -2452,6 +2456,7 @@
 #include "code\modules\commandline_networks\core\components\network_node.dm"
 #include "code\modules\commandline_networks\core\core_commands\event.dm"
 #include "code\modules\commandline_networks\core\core_commands\help.dm"
+#include "code\modules\commandline_networks\core\core_commands\macros.dm"
 #include "code\modules\commandline_networks\core\core_commands\proxy.dm"
 #include "code\modules\commandline_networks\core\core_commands\reboot.dm"
 #include "code\modules\commandline_networks\core\core_commands\set_active_network.dm"

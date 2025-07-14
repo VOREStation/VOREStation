@@ -2,92 +2,69 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 
 import { NetworkGraph } from './networkGraph';
-import { type GraphNodeData } from './types';
+import { type GraphNodeData, type NodeInstance } from './types';
+import { type Log } from './types';
 
 type Data = {
   theme: string;
   userName: string;
+  networkTree: NodeInstance[];
+  logs: Log[];
+  macros: Record<string, string>; // key is name/alias, value is command
+  homeNode: string; // The node the user is currently on if it exists.
 };
 
-// --- NetworkGraph.js-style config ---
-const networkConfig = [
-  {
-    name: 'test',
-    subs: [
-      {
-        name: 'LocalStorage',
-        glitch: true,
-        distortion: 0.1,
-        latency: 12444,
-      },
-      { name: 'NetworkMnger', glitch: true, distortion: 0.1, latency: 90 },
-    ],
-  },
-  {
-    name: 'Network1',
-    parent: 'Network With Subnetwork',
-    glitch: true,
-    distortion: 0.6,
-    latency: 1,
-    subs: ['A1', 'A2'],
-  },
-  {
-    name: 'Network With Subnetwork',
-    parent: 'test',
-    subs: [
-      { name: 'ExplosionNode', glitch: true, distortion: 0.1, latency: 250 },
-      { name: 'WomanSensor', glitch: false, distortion: 0, latency: 250 },
-    ],
-  },
-  {
-    name: 'Random Robot',
-    parent: 'test',
-    subs: [
-      { name: 'fsdfsd', glitch: false, distortion: 0, latency: 250 },
-      { name: 'fsdfsd', glitch: false, distortion: 0, latency: 250 },
-    ],
-  },
-];
-
 // --- Layout nodes ---
-import { Box, Section, Stack, TextArea } from 'tgui-core/components';
+import { useState } from 'react';
+import { Box, Input, Section, Stack, TextArea } from 'tgui-core/components';
 
-import { layoutNetwork } from './util'; // Ensure layoutNetwork is exported from './util'
-const nodes: (GraphNodeData & { id: string })[] = layoutNetwork(
-  networkConfig,
-  'test',
-  0,
-  0,
-  50,
-).map((node, idx) => ({
-  ...node,
-  id: String(idx),
-}));
+import { HelpBox } from './helpBox';
+import { LogContainer } from './LogContainer';
+import { MacroBox } from './macroBox';
+import { layoutNetwork } from './util';
 export type LogData = {};
 
 export const CommandlineTerminal = () => {
   const { act, data } = useBackend<Data>();
+  const [defaultCommand, setDefaultCommand] = useState('>');
+  const nodes: (GraphNodeData & { id: string })[] = layoutNetwork(
+    data.networkTree,
+    0,
+    0,
+    80,
+  ).map((node, idx) => ({
+    ...node,
+    id: String(idx),
+  }));
   return (
-    <Window width={1200} height={700}>
+    <Window width={1200} height={700} theme="cyberpunk">
       <Stack fill>
         <Stack.Item>
-          <Section fill>probably put buttons here</Section>
+          <Section fill>
+            <HelpBox />
+            <MacroBox macros={data.macros} />
+          </Section>
         </Stack.Item>
         <Stack.Item grow>
           <Stack fill vertical>
             <Stack.Item grow>
               <Section fill>
-                <Window.Content>
-                  testing this is where outputs will go or something. Not
-                  scrollable because the uhhhh network thing will be in here and
-                  it&apos;ll be epic and have cool animations and stuff and um
-                  yeah epic but also there&apos;ll be padding & it&apos;ll be
-                  semitransparent
-                </Window.Content>
+                <LogContainer logs={data.logs} source={data.homeNode} />
               </Section>
             </Stack.Item>
             <Stack.Item>
-              <TextArea fluid maxLength={1000} />
+              <Input
+                width="100%"
+                height="100%"
+                fontSize="20px"
+                monospace
+                value={defaultCommand}
+                onChange={setDefaultCommand}
+                onEnter={(value: string) => {
+                  act('sendCommand', { command: value });
+                  setDefaultCommand('>');
+                }}
+              />
             </Stack.Item>
           </Stack>
         </Stack.Item>

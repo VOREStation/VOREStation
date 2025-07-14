@@ -3,14 +3,24 @@
 /datum/commandline_network_command/set_active_network
 	name = "settarget"
 
-/datum/commandline_network_command/set_active_network/getHelpText(datum/commandline_network_node/homenode, arguments, verbose)
+/datum/commandline_network_command/set_active_network/getHelpText(datum/commandline_network_node/homenode, arguments, verbose, direct)
+	if(direct)
+		return {"
+Sets the active network connection for remote communication.
+Usage: >settarget NETWORKNAME
+- The specified network becomes the active target for broadcasted commands.
+- Requires an established physical connection to the network.
+"}
 	if(verbose)
-		return "Sets the active network connection for remote network commands. You must have a physical connection to the network in order to select it for broadcasting. Syntax is: settarget NETWORKNAME"
-	else return "Set network target"
+		return {"
+Selects a network for remote command targeting. Must be physically connected to use. Ensures subsequent commands are sent to the chosen network."}
+
+	return "sets a target network for sending remote commands. Requires connection."
+
 
 /datum/commandline_network_command/set_active_network/runCommand(var/datum/commandline_network_node/source, var/datum/commandline_network_node/from, var/list/sorted_tokens, var/datum/commandline_log_entry/logs, var/verbose = FALSE)
 	if(!from.owner)
-		logs.set_log(from,"Err: Originating Node Not Part Of Network","error")
+		logs.set_log(from,"Err: Originating Node Not Part Of Network",COMMAND_OUTPUT_ERROR)
 		return
 
 	var/list/arguments = LAZYACCESS(sorted_tokens,COMMAND_ARGUMENT_ARGUMENTS)
@@ -20,21 +30,21 @@
 			var/x = ""
 			for(var/y in from.owner.connected_networks)
 				x += y + ", "
-			logs.set_log(from,"Err: No Target Network Alias Provided: Avaliable Options: [x].","error")
+			logs.set_log(from,"Err: No Target Network Alias Provided: Avaliable Options: [x].",COMMAND_OUTPUT_ERROR)
 			return
 
-		logs.set_log(from,"Err: No Target Network Alias Provided","error")
+		logs.set_log(from,"Err: No Target Network Alias Provided",COMMAND_OUTPUT_ERROR)
 		return
 
 	if(!(target in from.owner.connected_networks))
 		if(verbose)
 			var/x = ""
 			for(var/y in from.owner.connected_networks)
-				x += y + ", "
-			logs.set_log(from,"Err: Invalid Target Alias \"[target]\". Avaliable Options: [x]","error")
+				x += y.name + ", "
+			logs.set_log(from,"Err: Invalid Target Alias \"[target]\". Avaliable Options: [x]",COMMAND_OUTPUT_ERROR)
 			return
 		else
-			logs.set_log(from,"Err: Invalid Target Alias \"[target]\".","error")
+			logs.set_log(from,"Err: Invalid Target Alias \"[target]\".",COMMAND_OUTPUT_ERROR)
 			return
 	from.owner.targetted_network = from.owner.connected_networks[target]
 	logs.set_log(from,"Target Network Set To: [target].")

@@ -1,0 +1,173 @@
+/**
+ * Copyright (c) 2020 Whoever Wants Dibs
+ * SPDX-License-Identifier: MIT
+ */
+
+.theme-cyberpunk:root {
+  --color-base: rgb(51, 22, 27);
+  --section-background: rgba(0, 0, 0, 0);
+  --titlebar-background: rgba(0, 0, 0, 0.5); //looks sick w/ the gradient
+  --font-family: var('Rajdhani');
+
+  // bg gradient
+  --color-base-start: #461616;
+  --color-base-end: rgb(4, 13, 17);
+
+  --color-primary: #295459;
+  --color-secondary: #295459;
+  --secondary-lightness-adjustment: 11.5;
+  --base-gradient-spread: 6;
+  // Components
+  --button-background-selected: hsl(0, 90%, 37.5%);
+  --button-background-caution: hsl(28, 87%, 39%);
+  --button-background-danger: hsl(61, 100%, 30%);
+  --notice-box-background: hsl(0, 98%, 28%);
+  --notice-box-color: var(--color-text-fixed-white);
+  --progress-bar-background: hsla(0, 0%, 0%, 0.5);
+  --tooltip-background-lightness: 25;
+
+  // TODO https://codepen.io/hussard/pen/ExgbXMP
+  --colors-bg--300: #1e181e;
+  --colors-bg--500: #191a1e;
+  --colors-primary--200: #f4908b;
+  --colors-primary--300: #ea6f69;
+  --colors-primary--500: #e8615a;
+  --colors-primary--600: #9c3230;
+  --colors-primary--700: #5e2122;
+  --colors-primary--800: #451717;
+  --colors-primary--900: #3c181a;
+  --colors-secondary--500: #295459;
+  --colors-secondary--900: #295459;
+  --colors-tertiary--500: #fed33f;
+
+  --ui-notch-amount: 10px;
+  --ui-notch-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--ui-notch-amount) + 2px),
+    calc(100% - var(--ui-notch-amount) + 2px) 100%,
+    0 100%
+  );
+  --ui-notch-amount-xl: 30px;
+  --ui-notch-path-xl: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--ui-notch-amount-xl) + 2px),
+    calc(100% - var(--ui-notch-amount-xl) + 2px) 100%,
+    0 100%
+  );
+
+  --log-entry-clip: polygon(
+    0 0,
+    calc(100% - 10px) 0px,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px),
+    0 50%,
+    10px calc(50% - 10px),
+    10px calc(15% + 10px),
+    0 15%
+  );
+
+  .Window {
+    background-image: radial-gradient(
+      ellipse at 33% 10%,
+      var(--color-base-start) 0%,
+      var(--color-base-end) 75%
+    );
+  }
+
+  .Button {
+    clip-path: var(--ui-notch-path);
+  }
+  //commandline specific stuff - I can splurge!
+
+  #commandline_logcontainer .commandline_logentry,
+  .commandline_logentry {
+    color: var(--colors-secondary--900);
+    font-family: var(--font-family-mono);
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        transparent 4px,
+        #750 0,
+        #750 6px,
+        transparent 0,
+        transparent 9px
+      ),
+      var(--color-base-end);
+    background-size: 296px 7px;
+    background-position:
+      99.5% calc(100% - 3px),
+      0 0;
+    background-repeat: no-repeat;
+    //border via shadows
+    padding: 0px 30px 10px 30px;
+    clip-path: var(--log-entry-clip);
+  }
+
+  .commandline_logentry-header {
+    width: 110%;
+    margin: 0 0 0 -10px;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0px,
+      100% 10px,
+      100% 100%,
+      0 100%
+    );
+  }
+
+  .commandline_logentry-border {
+    position: relative;
+    padding: 2px; // Border thickness
+    background: var(--colors-tertiary--500); // Border color
+    clip-path: var(--log-entry-clip);
+    margin-bottom: 20px;
+    // Optionally: width: fit-content; height: fit-content;
+  }
+
+  .commandline_logentry-border:not(:last-child) .commandline_logentry {
+    background-size: 100% 100%;
+    background-position:
+      99.5% calc(100% - 10px),
+      0 0;
+    background-repeat: repeat;
+  }
+
+  .commandline_helpbox {
+    background: var(--color-base-end);
+    color: var(--colors-secondary--900);
+    font-family: var(--font-family-mono);
+    padding: 10px;
+    border-radius: 5px;
+    border-color: var(--colors-secondary--900);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    clip-path: var(--ui-notch-path-xl);
+    height: 45%;
+    margin-bottom: 20px;
+  }
+
+  .commandline_logentry-timestamp {
+    border-radius: 0px;
+    clip-path: var(--ui-notch-path);
+    font-family: var(--font-family-mono);
+    padding: 2px 8px;
+  }
+
+  .commandline_macroButton {
+    background: var(--colors-primary--500);
+    color: var(--colors-bg--500);
+    font-family: var(--font-family-mono);
+    font-size: 10px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background: var(--colors-primary--600);
+      cursor: pointer;
+      clip-path: var(--ui-notch-path);
+    }
+  }
+}

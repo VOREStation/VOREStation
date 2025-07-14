@@ -4,6 +4,7 @@
 
 /datum/component/commandline_network_node/Initialize(var/nodeType)
 	node = new nodeType
+	node.assigned_to = parent
 	node.Initialize()
 	. = ..()
 

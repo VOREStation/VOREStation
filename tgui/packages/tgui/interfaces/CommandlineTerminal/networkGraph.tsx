@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-// You may need to import resolveAsset if it's not global
 import { Box, Button, InfinitePlane } from 'tgui-core/components';
 
 import { resolveAsset } from '../../assets';
@@ -40,7 +39,7 @@ export const NetworkGraph = (props: {
         from: { x: node.x, y: node.y },
         to: { x: target.x, y: target.y },
         style: ConnectionStyle.DIRECT,
-        packetDurationMs: node.latency ?? 2000,
+        packetDurationMs: 20000,
         packetFrequencyMs: 1000,
         packetSize: 4,
         packetColor: node.glitch
@@ -79,11 +78,6 @@ export const NetworkGraph = (props: {
           zoomToX={coords[0]}
           zoomToY={coords[1]}
           backgroundImage={resolveAsset('cmd_ui_hex.png')}
-          style={{ border: '2px solid blue', width: '100%', height: '100%' }}
-          // Prevent mouse drag pan
-          onMouseDown={(e) => e.preventDefault()}
-          onMouseMove={(e) => e.preventDefault()}
-          onMouseUp={(e) => e.preventDefault()}
         >
           {nodes.map((node) => (
             <GraphNode

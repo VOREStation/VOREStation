@@ -1,5 +1,5 @@
 /datum/commandline_network
-	var/atom/owner = null //required
+	var/datum/owner = null //required
 	var/list/nodes = list() //every node in the network that contains commands.
 	var/list/nodecaches = list() //moderately complicated structure that lets us cache a target to a given node (or series of)
 	//commands that need to be processed
@@ -26,27 +26,30 @@
 	var/datum/commandline_log_entry/log = new
 	log.owner = src
 	log.command = input
+	log.source = source
 	add_log(log)
 
 	var/list/tokens = TokenizeString(input)
 	if(istext(tokens)) //we got an error from the tokenizer
-		return tokens
+		log.set_log(src,tokens,COMMAND_OUTPUT_ERROR)
+		return
 
 	var/list/categorized_tokens = ParseTokens(tokens)
 	if(!islist(categorized_tokens))
-		return categorized_tokens //error from the parser
+		log.set_log(src,categorized_tokens,COMMAND_OUTPUT_ERROR)
+		return //error from the parser
 
 	var/prefix = LAZYACCESS(categorized_tokens,COMMAND_ARGUMENT_PREFIX)
 	if(prefix == null)
-		log.set_log(src,COMMAND_RESULT_NO_PREFIX,"error")
+		log.set_log(src,COMMAND_RESULT_NO_PREFIX,COMMAND_OUTPUT_ERROR)
 		return
 	var/target = LAZYACCESS(categorized_tokens,COMMAND_ARGUMENT_TARGET)
 	if(target == null)
-		log.set_log(src,COMMAND_RESULT_NO_TARGET,"error")
+		log.set_log(src,COMMAND_RESULT_NO_TARGET,COMMAND_OUTPUT_ERROR)
 		return
 	var/command = LAZYACCESS(categorized_tokens,COMMAND_ARGUMENT_COMMAND)
 	if(command == null)
-		log.set_log(src,COMMAND_RESULT_NO_COMMAND,"error")
+		log.set_log(src,COMMAND_RESULT_NO_COMMAND,COMMAND_OUTPUT_ERROR)
 		return
 
 	//ruled out all the shitty options.
@@ -62,7 +65,7 @@
 		foundNodes = find_nodes(target,prefix)
 
 	if(foundNodes == null)
-		log.set_log(src,COMMAND_RESULT_NO_FOUND_TARGETS(target),"error")
+		log.set_log(src,COMMAND_RESULT_NO_FOUND_TARGETS(target),COMMAND_OUTPUT_ERROR)
 		return
 
 	var/verbose = FALSE
@@ -83,13 +86,13 @@
 
 /datum/commandline_network/New(var/atom/new_owner, var/new_name)
 	owner = owner
-	name = name
+	name = new_name
 	SScommandline_networks.Initialize_Network(src)
 
 /datum/commandline_network/proc/Initialize()
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
-
+	name = name + "_[SScommandline_networks.networks_instantiated]"
 
 	//oopies!
 
@@ -165,16 +168,16 @@
 	newConnection.connect_to_network(src)
 
 /datum/commandline_network/proc/connect_to_network(var/datum/commandline_network/newNetwork)
-	if(newNetwork.name in connected_networks)
+	if(newNetwork in connected_networks)
 		return //already in
-	LAZYADDASSOC(connected_networks,newNetwork.name,newNetwork)
+	LAZYADD(connected_networks,newNetwork)
 
 /datum/commandline_network/proc/disconnect_from(var/datum/commandline_network/removedConnection)
 	removedConnection.disconnect_from_network(src)
 	disconnect_from_network(removedConnection)
 
 /datum/commandline_network/proc/disconnect_from_network(var/datum/commandline_network/removedConnection)
-	LAZYREMOVE(connected_networks,removedConnection.name)
+	LAZYREMOVE(connected_networks,removedConnection)
 
 
 /datum/commandline_network/proc/add_log(var/datum/commandline_log_entry/newlog)
@@ -183,36 +186,7 @@
 		if(LAZYLEN(logs) > max_logs)
 			logs.Remove(logs[1]) //remove from the first.
 
-/datum/commandline_network/proc/get_log()
-	var/list/outputlogs = list()
-	for(var/datum/commandline_log_entry/L in logs)
-		outputlogs += L.serializeLog()
-	return outputlogs
-
-/datum/commandline_network/proc/get_all_logs() //serialized, for TGUI
-	var/list/json_nightmare = list()
-	for(var/datum/commandline_network/n in connected_networks + src)
-		json_nightmare += n.get_log()
-	return json_nightmare
-
-/datum/commandline_network/proc/export_tgui_data() as list
-	var/list/data = list()
-	data["connectedNetworks"] = list()
-	for(var/datum/commandline_network/x in connected_networks)
-		data["connectedNetworks"][x.name] = x.nodes.len //how many nodes in each network?
-
-	data["logs"] = get_all_logs()
-	data["targetNetworkName"] = targetted_network ? targetted_network.name : "NO_CONNECTION"
-	data["theme"] = theme
-	return data
-/*
-	//JSON FORMAT:
-	// List of network logs
-		//each network logs list contains a list of network entries
-			//each network entry is a dict containing:
-				TIME = timestamp since start of day servertime
-				STATION_TIME = station timestamp for display
-				LOGS: dict
-					\ref of the obj & the log output it has authority over (str (intensity),str (entry))
-
-*/
+/datum/commandline_network/proc/FetchFirstNodeByFlag(var/flag)
+	for(var/datum/commandline_network_node/n in nodes)
+		if(n.flags & flag)
+			return n //we just need the first one.

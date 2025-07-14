@@ -9,7 +9,14 @@
 
 /datum/tgui_module/commandline_network_display/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
+
 	to_chat(world,"TGUI ACT: [action] | PARAMS: [params]")
+	if(action == "sendCommand")
+		to_chat(world,"SENDING COMMAND: [json_encode(params)]")
+		var/command = params["command"]
+		network.process_command(command,source_node,FALSE)
+		return TRUE
+
 
 /datum/tgui_module/commandline_network_display/tgui_close()
 	. = ..()
@@ -29,4 +36,12 @@
 /datum/tgui_module/commandline_network_display/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = network?.export_tgui_data()
 	data["userName"] = user.name
+
+	if(source_node)
+		data["homeNode"] = "\ref[source_node]"
+		data["macros"] = source_node.macros
+	else
+		data["homeNode"] = null
+		data["macros"] = list()
+
 	return data

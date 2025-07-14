@@ -7,8 +7,8 @@
 	dupe_type = /datum/component/commandline_network //allow subnetworks
 	var/datum/commandline_network/network
 
-/datum/component/commandline_network/Initialize(var/networkType = /datum/commandline_network)
-	network = new networkType
+/datum/component/commandline_network/Initialize(var/networkType = /datum/commandline_network, var/networkname = "Network")
+	network = new networkType(new_name = networkname)
 
 /datum/component/commandline_network/RegisterWithParent()
 	var/list/L = parent.GetComponents(/datum/component/commandline_network_node)

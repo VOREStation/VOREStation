@@ -58,11 +58,13 @@ export const GraphNode: React.FC<GraphNodeProps> = ({
   // Subtle opacity pulse
   const opacity = 0.85 + pulse * 0.15;
 
-  // Common label style
-  const parentX = node.parentX ?? node.x;
-  const parentY = node.parentY ?? node.y;
-  const dx = node.x - parentX;
-  const dy = node.y - parentY;
+  // labels
+  const parentX =
+    typeof node.parentXs === 'number' ? node.parentXs : (node.x ?? 0);
+  const parentY =
+    typeof node.parentYs === 'number' ? node.parentYs : (node.y ?? 0);
+  const dx = (typeof node.x === 'number' ? node.x : 0) - parentX;
+  const dy = (typeof node.y === 'number' ? node.y : 0) - parentY;
 
   // Default: label below
   let labelOffsetY = size / 2 + 8;

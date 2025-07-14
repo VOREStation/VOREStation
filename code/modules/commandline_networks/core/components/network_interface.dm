@@ -33,19 +33,22 @@
 	if(!localhost)
 		return COMPONENT_INCOMPATIBLE
 
+
 	if(nameof)
 		name = nameof
 
 	UI = new
 	UI.name = src.name
 	UI.network = localhost.network
+	UI.source_node = localhost.network.FetchFirstNodeByFlag(CMD_NODE_FLAG_DATAJACK) //if there's 2 datajack nodes on something then that's entirely their fault
 	UI.host = parent
 
 	RegisterSignal(parent,COMSIG_ITEM_PRE_ATTACK,PROC_REF(item_preattack))
 	RegisterSignal(parent,COMSIG_ITEM_ATTACK_SELF,PROC_REF(openInterface))
 
 /datum/component/commandline_network_interface/proc/item_preattack(obj/item/weapon, atom/target, mob/user, list/modifiers, list/attack_modifiers)
-	SIGNAL_HANDLER//TODO: remove, debug.
+	SIGNAL_HANDLER
+	//TODO: remove, debug.
 	to_chat(user,"PREATTACK: [attack_modifiers] | [modifiers] | [target]")
 
 	remotehost = target.GetComponent(/datum/component/commandline_network)
@@ -65,6 +68,4 @@
 
 /datum/component/commandline_network_interface/proc/openInterface(datum/source, mob/user)
 	SIGNAL_HANDLER
-	to_chat(user,"FSDFSDFSD")
-	CallAsync(src,)
 	UI.tgui_interact(user)

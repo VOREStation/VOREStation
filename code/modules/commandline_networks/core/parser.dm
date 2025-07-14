@@ -112,8 +112,6 @@ results in a list containing
 	//basically just split the prefix so it gets into its own token
 	if(!prefix)
 		prefix_found = FALSE
-		prefix = COMMAND_PREFIX_TARGET_ONCE + " "
-		input = prefix + input
 
 	if(prefix_found)
 		input = replacetext_char(input,prefix,prefix+" ",1,LAZYLEN(prefix)+1) //clean the prefix so it's always going to be its own token
