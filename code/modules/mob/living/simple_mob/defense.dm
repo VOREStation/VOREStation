@@ -43,7 +43,7 @@
 
 		if(I_HURT)
 			var/armor = run_armor_check(def_zone = null, attack_flag = "melee")
-			if(ishuman(L)) //VOREStation EDIT START Is it a human?
+			if(ishuman(L))
 				var/mob/living/carbon/human/attacker = L //We are a human!
 				var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(src, BP_TORSO) //What attack are we using? Also, just default to attacking the chest.
 				var/rand_damage = rand(1, 5) //Like normal human attacks, let's randomize the damage...
@@ -68,7 +68,7 @@
 				apply_damage(damage = real_damage, damagetype = hit_dam_type, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null)
 				L.visible_message(span_warning("\The [L] [pick(attack.attack_verb)] \the [src]!"))
 				L.do_attack_animation(src)
-				return //VOREStation EDIT END
+				return
 			apply_damage(damage = harm_intent_damage, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null) //VOREStation EDIT Somebody set this to burn instead of brute.
 			L.visible_message(span_warning("\The [L] [response_harm] \the [src]!"))
 			L.do_attack_animation(src)
