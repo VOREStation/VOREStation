@@ -172,14 +172,11 @@
 					medical["empty"] = 1
 			if(MED_DATA_V_DATA)
 				data["virus"] = list()
-				for(var/datum/disease/D in GLOB.active_diseases)
-					if(!global_flag_check(D.virus_modifiers, DISCOVERED))
-						continue
-					var/datum/data/record/v = GLOB.active_diseases[D]
+				for(var/datum/data/record/v in GLOB.virusDB)
 					data["virus"] += list(list("name" = v.fields["name"], "D" = "\ref[v]"))
 			if(MED_DATA_MEDBOT)
 				data["medbots"] = list()
-				for(var/mob/living/bot/medbot/M in mob_list)
+				for(var/mob/living/bot/medbot/M in GLOB.mob_list)
 					if(M.z != z)
 						continue
 					var/turf/T = get_turf(M)

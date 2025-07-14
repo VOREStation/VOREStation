@@ -1,5 +1,5 @@
 import { Divider, LabeledList, Section } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { vorespawnAbsorbedColor, vorespawnAbsorbedText } from '../../constants';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';

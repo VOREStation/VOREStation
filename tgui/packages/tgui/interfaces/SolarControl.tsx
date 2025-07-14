@@ -79,7 +79,7 @@ export const SolarControl = (props) => {
                       maxValue={1}
                       value={generated_ratio}
                     >
-                      {generated + ' W'}
+                      {`${generated} W`}
                     </ProgressBar>
                   </LabeledList.Item>
                   <LabeledList.Item label="Star orientation">
@@ -150,7 +150,7 @@ export const SolarControl = (props) => {
               )}
               {tracking_state === 2 && (
                 <Box inline color="label" mt="3px">
-                  {array_angle + '°'} (auto)
+                  {`${array_angle}°`} (auto)
                 </Box>
               )}
             </LabeledList.Item>

@@ -34,7 +34,7 @@ export const ItemList = (props: {
                   })
                 }
               >
-                {formatMoney(item.cost) + ' ' + currencySymbol}
+                {`${formatMoney(item.cost)} ${currencySymbol}`}
               </Button>
             </Table.Cell>
           </Table.Row>
@@ -56,7 +56,7 @@ export const ItemList = (props: {
             })
           }
         >
-          {item.cost + ' ' + currencySymbol}
+          {`${item.cost} ${currencySymbol}`}
         </Button>
       }
     >

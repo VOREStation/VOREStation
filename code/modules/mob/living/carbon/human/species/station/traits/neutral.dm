@@ -1446,7 +1446,7 @@
 /datum/trait/neutral/gargoyle/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
 	var/datum/component/gargoyle/G = H.GetComponent(added_component_path)
-	if (trait_prefs)
+	if(trait_prefs)
 		G.tint = trait_prefs["tint"]
 		G.material = lowertext(trait_prefs["material"])
 		G.identifier = lowertext(trait_prefs["identifier"])

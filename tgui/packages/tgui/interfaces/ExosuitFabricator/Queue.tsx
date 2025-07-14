@@ -176,7 +176,7 @@ const BeingBuilt = (props) => {
             <Stack.Item>{name}</Stack.Item>
             <Stack.Item grow />
             <Stack.Item>
-              {(timeLeft >= 0 && timeLeft + 's') || 'Dispensing...'}
+              {(timeLeft >= 0 && `${timeLeft}s`) || 'Dispensing...'}
             </Stack.Item>
           </Stack>
         </ProgressBar>

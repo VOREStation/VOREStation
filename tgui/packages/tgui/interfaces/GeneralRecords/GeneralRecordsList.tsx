@@ -31,7 +31,7 @@ export const GeneralRecordsList = (props) => {
             mb="0.5rem"
             onClick={() => act('d_rec', { d_rec: record.ref })}
           >
-            {record.id + ': ' + record.name}
+            {`${record.id}: ${record.name}`}
           </Button>
         ))}
       </Box>

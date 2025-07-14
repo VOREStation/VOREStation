@@ -135,7 +135,7 @@
 /obj/structure/redgate/attack_ghost(var/mob/observer/dead/user)
 
 	if(target)
-		if(!(secret || target.secret) || user?.client?.holder)
+		if(!(secret || target.secret) || check_rights_for(user?.client, R_HOLDER))
 			user.forceMove(get_turf(target))
 	else
 		return ..()

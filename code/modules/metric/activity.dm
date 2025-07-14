@@ -27,7 +27,7 @@
 		return
 	var/departmental_activity = 0
 	var/departmental_size = 0
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(guess_department(M) != department) // Ignore people outside the department we're assessing.
 			continue
 		departmental_activity += assess_player_activity(M)
@@ -66,7 +66,7 @@
 /datum/metric/proc/assess_all_living_mobs() // Living refers to the type, not the stat variable.
 	. = 0
 	var/num = 0
-	for(var/mob/living/L in player_list)
+	for(var/mob/living/L in GLOB.player_list)
 		. += assess_player_activity(L)
 		num++
 	if(num)
@@ -75,7 +75,7 @@
 /datum/metric/proc/assess_all_dead_mobs() // Ditto.
 	. = 0
 	var/num = 0
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		. += assess_player_activity(O)
 		num++
 	if(num)
@@ -84,7 +84,7 @@
 /datum/metric/proc/assess_all_outdoor_mobs()
 	. = 0
 	var/num = 0
-	for(var/mob/living/L in player_list)
+	for(var/mob/living/L in GLOB.player_list)
 		var/turf/T = get_turf(L)
 		if(istype(T) && !istype(T, /turf/space) && T.is_outdoors())
 			. += assess_player_activity(L)

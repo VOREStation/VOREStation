@@ -329,3 +329,28 @@
   - bugfix: dna resequencers from the body record console should not do radiation
       damage
   - code_imp: Reagent unit-test is more strict about duplicated reagent names
+2025-06-29:
+  Diana:
+  - bugfix: Gargoyle statues now regenerate energy properly
+  - balance: Gargoyle statues now burn under extreme temperatures (>1600C)
+  - balance: Gargoyle statues now regenerate health VERY slowly when in statue state
+      (150 hp will take 50 minutes)
+  - code_imp: Gargoyle code quality increased in general.
+  - rscadd: borgs now have a basic melee weapon (puppy jaws/knife)
+  - rscadd: Light fixtures can now directly be interfaced via multitool.
+  - bugfix: Fixes a bunch of bugs with the multibelt and borg gripper
+  - qol: Borg material dispenser can now pick up materials
+  - qol: Borg multibelt & Gripper can now open the radial menu via Ctrl-Z
+  - qol: Borg default crowbar changed to borg jaws
+  - bugfix: Borg welder no longer passively drains battery
+  - qol: Borg gripper will now select the final slot when first spawned, allowing
+      you to pick up until the gripper is full.
+  ItsSelis:
+  - admin: More verbs moved to the new subsystem
+  - admin: Secrets panel overhauled
+2025-06-30:
+  Diana:
+  - rscadd: Starlight will come through windows and illuminate areas exposed to space!
+  Kashargul:
+  - bugfix: bunch of right issues with the new ticket system and mentors
+  - rscdel: tgui-sonar

@@ -1,6 +1,6 @@
 
 /datum/admins/proc/player_panel_new()//The new one
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 	var/ui_scale = owner.prefs.read_preference(/datum/preference/toggle/ui_scale)
 	var/dat = "<html><head><title>Admin Player Panel</title></head>"
@@ -216,7 +216,7 @@
 		<span id='maintable_data_archive'>
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
-	var/list/mobs = sortmobs()
+	var/list/mobs = sort_mobs()
 	var/i = 1
 	for(var/mob/M in mobs)
 		if(M.ckey)
@@ -324,14 +324,14 @@
 
 //The old one
 /datum/admins/proc/player_panel_old()
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 
 	var/dat = "<html><head><title>Player Menu</title></head>"
 	dat += "<body><table border=1 cellspacing=5>" + span_bold("<tr><th>Name</th><th>Real Name</th><th>Assigned Job</th><th>Key</th><th>Options</th><th>PM</th><th>Traitor?</th></tr>")
 	//add <th>IP:</th> to this if wanting to add back in IP checking
 	//add <td>(IP: [M.lastKnownIP])</td> if you want to know their ip to the lists below
-	var/list/mobs = sortmobs()
+	var/list/mobs = sort_mobs()
 
 	for(var/mob/M in mobs)
 		if(!M.ckey) continue

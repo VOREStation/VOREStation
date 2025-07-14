@@ -12,13 +12,13 @@ if(attempt_vr(object,proc to call,args)) return
 The proc you're attemping should return nonzero values on success.
 */
 
-/proc/attempt_vr(callon, procname, list/args=null)
+/proc/attempt_vr(callon, procname, list/arguments=null)
 	try
 		if(!callon || !procname)
 			error("attempt_vr: Invalid obj/proc: [callon]/[procname]")
 			return 0
 
-		var/result = call(callon,procname)(arglist(args))
+		var/result = call(callon,procname)(arglist(arguments))
 
 		return result
 
@@ -42,7 +42,7 @@ if(hook_vr(proc,args)) return
 
 The hooks you're calling should return nonzero values on success.
 */
-/proc/hook_vr(hook, list/args=null)
+/proc/hook_vr(hook, list/arguments=null)
 	try
 		var/hook_path = text2path("/hook/[hook]")
 		if(!hook_path)
@@ -52,7 +52,7 @@ The hooks you're calling should return nonzero values on success.
 		var/hook_instance = new hook_path
 		var/status = 1
 		for(var/P in typesof("[hook_path]/proc"))
-			if(!call(hook_instance, P)(arglist(args)))
+			if(!call(hook_instance, P)(arglist(arguments)))
 				error("hook_vr: Hook '[P]' failed or runtimed.")
 				status = 0
 

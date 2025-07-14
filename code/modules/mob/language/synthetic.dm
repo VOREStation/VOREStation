@@ -23,14 +23,14 @@
 	var/message_start = "[name], " + span_name("[speaker.name]")
 	var/message_body = span_message("[speaker.say_quote(message)], \"[message]\"")
 
-	for (var/mob/M in dead_mob_list)
+	for (var/mob/M in GLOB.dead_mob_list)
 		if(!isnewplayer(M) && !istype(M,/mob/living/carbon/brain)) //No meta-evesdropping
 			var/message_to_send = span_binarysay("[message_start] ([ghost_follow_link(speaker, M)]) [message_body]")
 			if(M.check_mentioned(message) && M.client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
 				message_to_send = span_large(span_bold("[message_to_send]"))
 			M.show_message(message_to_send, 2)
 
-	for (var/mob/living/S in living_mob_list)
+	for (var/mob/living/S in GLOB.living_mob_list)
 		if(drone_only && !istype(S,/mob/living/silicon/robot/drone))
 			continue
 		else if(isAI(S))

@@ -51,7 +51,7 @@
 	set category = "IC.Game"
 	set desc = "Switch tail layer on top."
 
-	var/input = tgui_input_list(usr, "Select a tail layer.", "Set Tail Layer", list(SWITCH_TAIL_LAYER_UPPER, SWITCH_TAIL_LAYER_STANDARD, SWITCH_TAIL_LAYER_LOWER))
+	var/input = tgui_input_list(src, "Select a tail layer.", "Set Tail Layer", list(SWITCH_TAIL_LAYER_UPPER, SWITCH_TAIL_LAYER_STANDARD, SWITCH_TAIL_LAYER_LOWER))
 	if(isnull(input))
 		return
 	switch(input)

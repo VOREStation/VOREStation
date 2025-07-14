@@ -36,8 +36,6 @@ GLOBAL_DATUM_INIT(mods, /datum/moduletypes, new())
 
 GLOBAL_VAR_INIT(gravity_is_on, TRUE)
 
-GLOBAL_VAR(join_motd)
-
 // Metric datum, used to keep track of the round.
 GLOBAL_DATUM_INIT(metric, /datum/metric, new())
 

@@ -128,7 +128,7 @@
 /obj/item/glamour_face/attack_self(var/mob/user)
 	if(!homunculus)
 		var/list/targets = list()
-		for(var/mob/living/carbon/human/M in mob_list)
+		for(var/mob/living/carbon/human/M in GLOB.mob_list)
 			if(M.z != user.z || get_dist(user,M) > 10)
 				continue
 			if(!M.allow_mimicry)

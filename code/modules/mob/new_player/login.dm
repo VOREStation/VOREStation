@@ -17,7 +17,7 @@
 	loc = null
 	sight |= SEE_TURFS
 
-	player_list |= src
+	GLOB.player_list |= src
 	GLOB.new_player_list += src
 
 	created_for = ckey
@@ -28,8 +28,9 @@
 /mob/new_player/proc/do_after_login()
 	PRIVATE_PROC(TRUE)
 	if(client)
-		if(GLOB.join_motd)
-			to_chat(src, examine_block("<div class=\"motd\">[GLOB.join_motd]</div>"))
+		var/motd = global.config.motd
+		if(motd)
+			to_chat(src, examine_block("<div class=\"motd\">[motd]</div>"))
 
 		if(has_respawned)
 			to_chat(src, CONFIG_GET(string/respawn_message))

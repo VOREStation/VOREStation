@@ -403,11 +403,11 @@
 						answer = text2num(answer)
 
 					if(field == "rank")
-						if(answer in joblist)
+						if(answer in GLOB.joblist)
 							active1.fields["real_rank"] = answer
 
 					if(field == "criminal")
-						for(var/mob/living/carbon/human/H in player_list)
+						for(var/mob/living/carbon/human/H in GLOB.player_list)
 							BITSET(H.hud_updateflag, WANTED_HUD)
 
 					if(istype(active2) && (field in active2.fields))

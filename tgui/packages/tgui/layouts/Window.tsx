@@ -15,7 +15,7 @@ import {
 import { backendSuspendStart, globalStore, useBackend } from 'tgui/backend';
 import { UI_DISABLED, UI_INTERACTIVE } from 'tgui/constants';
 import { useDebug } from 'tgui/debug';
-import { type Box } from 'tgui-core/components';
+import type { Box } from 'tgui-core/components';
 import { type BooleanLike, classes } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 

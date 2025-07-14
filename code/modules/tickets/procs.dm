@@ -10,7 +10,7 @@
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src, span_danger("Error: Mentor-PM: You cannot send adminhelps (Muted)."))
 		return
-	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if(handle_spam_prevention(MUTE_ADMINHELP))
 		return
 
 	if(!msg)
@@ -36,7 +36,7 @@
 				to_chat(src, span_warning("Ticket not found, creating new one..."))
 		else
 			current_ticket.AddInteraction("[usr.ckey] opened a new ticket.")
-			current_ticket.Resolve()
+			current_ticket.Resolve(usr)
 
 	new /datum/ticket(msg, src, FALSE, 0)
 
@@ -55,7 +55,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 	GLOB.tickets.BrowseTickets(browse_to)
 
 /proc/message_mentors(var/msg)
-	msg = span_mentor_channel(span_prefix("Mentor:") + span_message("[msg]"))
+	msg = span_mentor_channel(span_prefix("Mentor: ") + span_message("[msg]"))
 
 	for(var/client/C in GLOB.admins)
 		to_chat(C, msg)
@@ -91,7 +91,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src, span_danger("Error: Admin-PM: You cannot send adminhelps (Muted)."))
 		return
-	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if(handle_spam_prevention(MUTE_ADMINHELP))
 		return
 
 	if(!msg)
@@ -116,7 +116,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 				to_chat(src, span_warning("Ticket not found, creating new one..."))
 		else if(current_ticket)
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
-			current_ticket.Close()
+			current_ticket.Close(usr)
 
 	new /datum/ticket(msg, src, FALSE, 1)
 
@@ -261,7 +261,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 		to_chat(src, span_mentor_notice("Message: [msg]"))
 		return
 
-	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if (src.handle_spam_prevention(MUTE_ADMINHELP))
 		return
 
 	msg = trim(sanitize(copytext(msg,1,MAX_MESSAGE_LEN)))
