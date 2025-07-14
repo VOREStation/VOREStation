@@ -90,7 +90,7 @@ export const ChatPageSettings = (props) => {
               )
             }
           >
-            &nbsp;Mute&nbsp;
+            Mute
           </Button.Checkbox>
         </Stack.Item>
         {!page.isMain ? (
