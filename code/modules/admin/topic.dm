@@ -867,7 +867,7 @@
 				message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes."))
 				var/datum/ticket/T = M.client ? M.client.current_ticket : null
 				if(T)
-					T.Resolve()
+					T.Resolve(usr)
 				qdel(M.client)
 				//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 			if("No")
@@ -895,7 +895,7 @@
 				DB_ban_record(BANTYPE_PERMA, M, -1, reason)
 				var/datum/ticket/T = M.client ? M.client.current_ticket : null
 				if(T)
-					T.Resolve()
+					T.Resolve(usr)
 				qdel(M.client)
 				//qdel(M)
 			if("Cancel")
@@ -967,10 +967,10 @@
 		Game() // updates the main game menu
 		.(href, list("f_secret"=1))
 
-	else if(href_list["monkeyone"])
+	else if(href_list[VV_HK_TURN_MONKEY])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
+		var/mob/living/carbon/human/H = locate(href_list[VV_HK_TURN_MONKEY])
 		if(!istype(H))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
@@ -1184,10 +1184,10 @@
 		else
 			to_chat(usr, span_filter_adminlog(span_filter_warning("Admin Rejuvinates have been disabled")))
 
-	else if(href_list["makeai"])
+	else if(href_list[VK_HK_TURN_AI])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
+		var/mob/living/carbon/human/H = locate(href_list[VK_HK_TURN_AI])
 		if(!istype(H))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
@@ -1196,20 +1196,20 @@
 		log_admin("[key_name(usr)] AIized [key_name(H)]")
 		H.AIize()
 
-	else if(href_list["makealien"])
+	else if(href_list[VV_HK_TURN_ALIEN])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makealien"])
+		var/mob/living/carbon/human/H = locate(href_list[VV_HK_TURN_ALIEN])
 		if(!istype(H))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
 
 		usr.client.cmd_admin_alienize(H)
 
-	else if(href_list["makerobot"])
+	else if(href_list[VK_HK_TURN_ROBOT])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
+		var/mob/living/carbon/human/H = locate(href_list[VK_HK_TURN_ROBOT])
 		if(!istype(H))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return

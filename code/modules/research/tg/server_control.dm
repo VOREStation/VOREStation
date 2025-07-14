@@ -8,6 +8,7 @@
 
 	///Connected techweb node the server is connected to.
 	var/datum/techweb/stored_research
+	var/badmin = FALSE // old compatibility
 
 /obj/machinery/computer/rdservercontrol/Initialize(mapload)
 	. = ..()

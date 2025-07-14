@@ -1,4 +1,4 @@
-ADMIN_VERB(resize, (R_ADMIN|R_FUN|R_VAREDIT), "Resize", "Resizes any living mob without any restrictions on size.", "Fun.Event Kit", mob/living/L in mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(resize, (R_ADMIN|R_FUN|R_VAREDIT), "Resize", "Resizes any living mob without any restrictions on size.", "Fun.Event Kit", mob/living/L in mob_list)
 	var/size_multiplier = tgui_input_number(usr, "Input size multiplier.", "Resize", 1, round_value=FALSE)
 	if(!size_multiplier)
 		return //cancelled

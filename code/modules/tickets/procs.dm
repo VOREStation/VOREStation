@@ -36,7 +36,7 @@
 				to_chat(src, span_warning("Ticket not found, creating new one..."))
 		else
 			current_ticket.AddInteraction("[usr.ckey] opened a new ticket.")
-			current_ticket.Resolve()
+			current_ticket.Resolve(usr)
 
 	new /datum/ticket(msg, src, FALSE, 0)
 
@@ -116,7 +116,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 				to_chat(src, span_warning("Ticket not found, creating new one..."))
 		else if(current_ticket)
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
-			current_ticket.Close()
+			current_ticket.Close(usr)
 
 	new /datum/ticket(msg, src, FALSE, 1)
 

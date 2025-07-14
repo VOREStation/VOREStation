@@ -46,7 +46,7 @@
 #define R_DEFAULT R_NONE
 
 #define R_EVERYTHING (1<<17)-1 //the sum of all other rank permissions, used for +EVERYTHING
-#define R_HOLDER ((R_EVERYTHING) & (~R_MENTOR))
+#define R_HOLDER ((R_EVERYTHING) & (~(R_MENTOR | R_STEALTH)))
 
 #define SMITE_BREAKLEGS				"Break Legs"
 #define SMITE_BLUESPACEARTILLERY	"Bluespace Artillery"

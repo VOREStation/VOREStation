@@ -112,7 +112,7 @@ const VoreSoulcatcherSection = (props: {
       title={'Soulcatcher (' + name + ')'}
       fill
       buttons={
-        <Stack>
+        <Stack align="center">
           <Stack.Item>
             <VorePanelEditSwitch
               action="soulcatcher_toggle"
