@@ -18677,6 +18677,10 @@
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/plating,
 /area/maintenance/firstdeck/aftstarboard)
+"aLx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/monotile,
+/area/hangar/two)
 "aLy" = (
 /obj/machinery/light{
 	dir = 8
@@ -53339,7 +53343,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/lab)
 "bWM" = (
-/obj/machinery/computer/rdconsole_tg{
+/obj/machinery/computer/rdconsole/core{
 	dir = 8
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -55055,7 +55059,7 @@
 /turf/simulated/wall/r_wall,
 /area/rnd/workshop)
 "cay" = (
-/obj/machinery/computer/rdconsole_tg,
+/obj/machinery/computer/rdconsole/core,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 9
 	},
@@ -149942,7 +149946,7 @@ aGw
 aGw
 aKC
 aKY
-aKY
+aLx
 aLV
 aME
 aNk
@@ -153540,7 +153544,7 @@ aGw
 aGw
 aKE
 aKY
-aKY
+aLx
 aLY
 aMH
 aNk
