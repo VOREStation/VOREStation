@@ -26,9 +26,9 @@ Nothing else in the console has ID requirements.
 	/// Reference to global science techweb
 	var/datum/techweb/stored_research
 	/// The stored technology disk, if present
-	// var/obj/item/disk/tech_disk/t_disk
+	var/obj/item/disk/tech_disk/t_disk
 	/// The stored design disk, if present
-	// var/obj/item/disk/design_disk/d_disk
+	var/obj/item/disk/design_disk/d_disk
 	/// Determines if the console is locked, and consequently if actions can be performed with it
 	var/locked = FALSE
 	/// Used for compressing data sent to the UI via static_data as payload size is of concern
@@ -49,39 +49,39 @@ Nothing else in the console has ID requirements.
 	if(stored_research)
 		stored_research.consoles_accessing -= src
 		stored_research = null
-	// if(t_disk)
-	// 	t_disk.forceMove(get_turf(src))
-	// 	t_disk = null
-	// if(d_disk)
-	// 	d_disk.forceMove(get_turf(src))
-	// 	d_disk = null
+	if(t_disk)
+		t_disk.forceMove(get_turf(src))
+		t_disk = null
+	if(d_disk)
+		d_disk.forceMove(get_turf(src))
+		d_disk = null
 	return ..()
 
-// /obj/machinery/computer/rdconsole_tg/attackby(obj/item/D, mob/user, list/modifiers, list/attack_modifiers)
-// 	//Loading a disk into it.
-// 	if(istype(D, /obj/item/disk))
-// 		if(istype(D, /obj/item/disk/tech_disk))
-// 			if(t_disk)
-// 				to_chat(user, span_warning("A technology disk is already loaded!"))
-// 				return
-// 			if(!user.transferItemToLoc(D, src))
-// 				to_chat(user, span_warning("[D] is stuck to your hand!"))
-// 				return
-// 			t_disk = D
-// 		else if (istype(D, /obj/item/disk/design_disk))
-// 			if(d_disk)
-// 				to_chat(user, span_warning("A design disk is already loaded!"))
-// 				return
-// 			if(!user.transferItemToLoc(D, src))
-// 				to_chat(user, span_warning("[D] is stuck to your hand!"))
-// 				return
-// 			d_disk = D
-// 		else
-// 			to_chat(user, span_warning("Machine cannot accept disks in that format."))
-// 			return
-// 		to_chat(user, span_notice("You insert [D] into \the [src]!"))
-// 		return
-// 	return ..()
+/obj/machinery/computer/rdconsole_tg/attackby(obj/item/D, mob/user, list/modifiers, list/attack_modifiers)
+	//Loading a disk into it.
+	if(istype(D, /obj/item/disk))
+		if(istype(D, /obj/item/disk/tech_disk))
+			if(t_disk)
+				to_chat(user, span_warning("A technology disk is already loaded!"))
+				return
+			if(!user.unEquip(D, target = src))
+				to_chat(user, span_warning("[D] is stuck to your hand!"))
+				return
+			t_disk = D
+		else if (istype(D, /obj/item/disk/design_disk))
+			if(d_disk)
+				to_chat(user, span_warning("A design disk is already loaded!"))
+				return
+			if(!user.unEquip(D, target = src))
+				to_chat(user, span_warning("[D] is stuck to your hand!"))
+				return
+			d_disk = D
+		else
+			to_chat(user, span_warning("Machine cannot accept disks in that format."))
+			return
+		to_chat(user, span_notice("You insert [D] into \the [src]!"))
+		return
+	return ..()
 
 /obj/machinery/computer/rdconsole_tg/proc/enqueue_node(id, mob/user)
 	if(!stored_research || !stored_research.available_nodes[id] || stored_research.researched_nodes[id])
@@ -178,15 +178,14 @@ Nothing else in the console has ID requirements.
 		"d_disk" = null,
 	)
 
-	// if (t_disk)
-	// 	data["t_disk"] = list (
-	// 		"stored_research" = t_disk.stored_research.researched_nodes,
-	// 	)
-	// if (d_disk)
-	// 	data["d_disk"] = list("blueprints" = list())
-	// 	for (var/datum/design/D in d_disk.blueprints)
-	// 		data["d_disk"]["blueprints"] += D.id
-
+	if(t_disk)
+		data["t_disk"] = list (
+			"stored_research" = t_disk.stored_research.researched_nodes,
+		)
+	if(d_disk)
+		data["d_disk"] = list("blueprints" = list())
+		for (var/datum/design_techweb/D in d_disk.blueprints)
+			data["d_disk"]["blueprints"] += D.id
 
 	// Serialize all nodes to display
 	for(var/v in stored_research.tiers)
@@ -336,53 +335,53 @@ Nothing else in the console has ID requirements.
 			dequeue_node(params["node_id"], usr)
 			return TRUE
 
-		// if ("ejectDisk")
-		// 	eject_disk(params["type"])
-		// 	return TRUE
+		if("ejectDisk")
+			eject_disk(params["type"])
+			return TRUE
 
-		// if ("uploadDisk")
-		// 	if (params["type"] == RND_DESIGN_DISK)
-		// 		if(QDELETED(d_disk))
-		// 			say("No design disk inserted!")
-		// 			return TRUE
-		// 		for(var/D in d_disk.blueprints)
-		// 			if(D)
-		// 				stored_research.add_design(D, TRUE)
-		// 		say("Uploading blueprints from disk.")
-		// 		d_disk.on_upload(stored_research, src)
-		// 		return TRUE
-		// 	if (params["type"] == RND_TECH_DISK)
-		// 		if(!COOLDOWN_FINISHED(src, cooldowncopy)) // prevents MC hang
-		// 			say("Servers busy!")
-		// 			return
-		// 		if (QDELETED(t_disk))
-		// 			say("No tech disk inserted!")
-		// 			return TRUE
-		// 		COOLDOWN_START(src, cooldowncopy, 5 SECONDS)
-		// 		say("Uploading technology disk.")
-		// 		t_disk.stored_research.copy_research_to(stored_research)
-		// 	return TRUE
+		if("uploadDisk")
+			if(params["type"] == RND_DESIGN_DISK)
+				if(QDELETED(d_disk))
+					atom_say("No design disk inserted!")
+					return TRUE
+				for(var/D in d_disk.blueprints)
+					if(D)
+						stored_research.add_design(D, TRUE)
+				atom_say("Uploading blueprints from disk.")
+				d_disk.on_upload(stored_research, src)
+				return TRUE
+			if(params["type"] == RND_TECH_DISK)
+				if(!COOLDOWN_FINISHED(src, cooldowncopy)) // prevents MC hang
+					atom_say("Servers busy!")
+					return
+				if (QDELETED(t_disk))
+					atom_say("No tech disk inserted!")
+					return TRUE
+				COOLDOWN_START(src, cooldowncopy, 5 SECONDS)
+				atom_say("Uploading technology disk.")
+				t_disk.stored_research.copy_research_to(stored_research)
+			return TRUE
 
 		//Tech disk-only action.
-		// if ("loadTech")
-		// 	if(!COOLDOWN_FINISHED(src, cooldowncopy)) // prevents MC hang
-		// 		atom_say("Servers busy!")
-		// 		return
-		// 	if(QDELETED(t_disk))
-		// 		atom_say("No tech disk inserted!")
-		// 		return
-		// 	COOLDOWN_START(src, cooldowncopy, 5 SECONDS)
-		// 	atom_say("Downloading to technology disk.")
-		// 	stored_research.copy_research_to(t_disk.stored_research)
-		// 	return TRUE
+		if("loadTech")
+			if(!COOLDOWN_FINISHED(src, cooldowncopy)) // prevents MC hang
+				atom_say("Servers busy!")
+				return
+			if(QDELETED(t_disk))
+				atom_say("No tech disk inserted!")
+				return
+			COOLDOWN_START(src, cooldowncopy, 5 SECONDS)
+			atom_say("Downloading to technology disk.")
+			stored_research.copy_research_to(t_disk.stored_research)
+			return TRUE
 
-// /obj/machinery/computer/rdconsole_tg/proc/eject_disk(type)
-// 	if(type == RND_DESIGN_DISK && d_disk)
-// 		d_disk.forceMove(get_turf(src))
-// 		d_disk = null
-// 	if(type == RND_TECH_DISK && t_disk)
-// 		t_disk.forceMove(get_turf(src))
-// 		t_disk = null
+/obj/machinery/computer/rdconsole_tg/proc/eject_disk(type)
+	if(type == RND_DESIGN_DISK && d_disk)
+		d_disk.forceMove(get_turf(src))
+		d_disk = null
+	if(type == RND_TECH_DISK && t_disk)
+		t_disk.forceMove(get_turf(src))
+		t_disk = null
 
 #undef RND_TECH_DISK
 #undef RND_DESIGN_DISK

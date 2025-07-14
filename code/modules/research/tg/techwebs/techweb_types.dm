@@ -26,3 +26,10 @@
 	for(var/i in SSresearch.point_types)
 		research_points[i] = INFINITY
 	hidden_nodes = list()
+
+/**
+ * Techweb made through tech disks
+ * Contains nothing, subtype mostly meant to make it easy for admins to see.
+ */
+/datum/techweb/disk
+	id = "D1SK"
