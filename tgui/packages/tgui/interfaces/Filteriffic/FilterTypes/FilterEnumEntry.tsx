@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button } from 'tgui-core/components';
 
-import { type Data, type FilterEntryProps } from '../types';
+import type { Data, FilterEntryProps } from '../types';
 
 export const FilterEnumEntry = (props: FilterEntryProps) => {
   const { name, value, hasValue, filterName, filterType } = props;

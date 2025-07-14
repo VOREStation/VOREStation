@@ -6,7 +6,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { messageTabLabel } from '../../constants';
 import type { bellyDescriptionData } from '../../types';

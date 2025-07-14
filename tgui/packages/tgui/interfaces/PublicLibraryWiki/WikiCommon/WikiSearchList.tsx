@@ -1,4 +1,4 @@
-import { type Dispatch, type SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Divider, Input, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';

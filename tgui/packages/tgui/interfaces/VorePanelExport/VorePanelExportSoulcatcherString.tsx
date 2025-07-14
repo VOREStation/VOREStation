@@ -17,7 +17,7 @@ export const generateSoulcatcherString = (soulcatcher: Soulcatcher) => {
   result += '<div class="accordion-body">';
 
   result += '<b>== Settings ==</b><br>';
-  const arr = new Array();
+  const arr: string[] = [];
   let parsedFlag = setting_flags;
   while(parsedFlag !== 0) {
     arr.push(String(parsedFlag));

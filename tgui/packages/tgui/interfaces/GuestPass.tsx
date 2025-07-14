@@ -9,7 +9,7 @@ type Data = {
   area: area[];
   giver: string | null;
   giveName: string;
-  reason: String;
+  reason: string;
   duration: number;
   mode: BooleanLike;
   log: string[];

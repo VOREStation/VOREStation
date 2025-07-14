@@ -6,7 +6,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { noSelectionName } from '../constants';
 import type { abilities, DropdownEntry, soulcatcherData } from '../types';

@@ -10,7 +10,7 @@ import {
   ImageButton,
   Stack,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import {
   AppearanceFlags,

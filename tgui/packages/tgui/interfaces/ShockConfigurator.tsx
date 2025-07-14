@@ -11,7 +11,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 // These are straight from https://docs.pishock.com/multishock/multishock-websocket-api.html
 type MultishockAPIShocker = {

@@ -6,7 +6,7 @@ import { resolveAsset } from '../../assets';
 import { useBackend } from '../../backend';
 import { CommonwealthLogo } from './animated_logos/Commonwealth';
 import { NTLogo } from './animated_logos/NT';
-import { type Data } from './types';
+import type { Data } from './types';
 
 const LoadingText = (props: { onFinish?: () => void }) => {
   const onFinish = props.onFinish ? props.onFinish : () => {};
