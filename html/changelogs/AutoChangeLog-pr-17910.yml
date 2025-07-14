@@ -1,0 +1,5 @@
+author: "zeskorion"
+delete-after: True
+changes:
+  - rscadd: "new traits that increase unarmed damage. Traits have been added that combine with respective tiers of Hardy, to simulate high strength for species that should be inhumanly strong"
+  - bugfix: "simplemobs should now take extra damage from hulk/knuckles"
