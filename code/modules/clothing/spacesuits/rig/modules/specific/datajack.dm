@@ -47,8 +47,8 @@
 	// I fucking hate R&D code. This typecheck spam would be totally unnecessary in a sane setup. Sanity? This is BYOND.
 	// else if(istype(input_device,/obj/machinery))
 	// 	var/datum/research/incoming_files
-	// 	if(istype(input_device,/obj/machinery/computer/rdconsole) ||\
-	// 		istype(input_device,/obj/machinery/r_n_d/server) ||\
+	// 	if(istype(input_device,/obj/machinery/computer/rdconsole) ||
+	// 		istype(input_device,/obj/machinery/r_n_d/server) ||
 	// 		istype(input_device,/obj/machinery/mecha_part_fabricator))
 
 	// 		incoming_files = input_device:files
