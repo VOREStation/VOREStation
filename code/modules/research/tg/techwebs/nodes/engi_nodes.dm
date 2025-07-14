@@ -60,10 +60,75 @@
 		"ultra_micro_laser",
 		"parts_bundle_t3",
 		"hyper_cell",
+		"arped",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier2_any)
 	announce_channels = list(CHANNEL_ENGINEERING)
+
+/datum/techweb_node/parts_hyper
+	id = TECHWEB_NODE_PARTS_HYPER
+	display_name = "Hyper Parts"
+	description = "Integrating the latest in technology, these advanced components not only enhance functionality but also open up new possibilities for the station's technological capabilities."
+	prereq_ids = list(TECHWEB_NODE_PARTS_ADV) //, TECHWEB_NODE_BLUESPACE_TRAVEL)
+	design_ids = list(
+		"pbrped",
+		"hyper_mani",
+		"hyper_matter_bin",
+		"hyper_mani",
+		"hyper_capacitor",
+		"hyper_sensor",
+		"hyper_micro_laser",
+		"parts_bundle_t4",
+		"hyper_cell",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier3_any = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
+
+/datum/techweb_node/telecomms
+	id = TECHWEB_NODE_TELECOMS
+	display_name = "Telecommunications Technology"
+	description = "A comprehensive suite of machinery for station-wide communication setups, ensuring seamless connectivity and operational coordination."
+	prereq_ids = list(TECHWEB_NODE_PARTS_HYPER)
+	design_ids = list(
+		"tcom-server",
+		"tcom-processor",
+		"tcom-bus",
+		"tcom-hub",
+		"tcom-relay",
+		"tcom-broadcaster",
+		"tcom-receiver",
+		"tcom-exonet_node",
+		"ntnet_relay",
+		"s-ansible",
+		"s-filter",
+		"s-amplifier",
+		"s-treatment",
+		"s-analyzer",
+		"s-crystal",
+		"s-transmitter",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+
+/datum/techweb_node/parts_omni
+	id = TECHWEB_NODE_PARTS_OMNI
+	display_name = "Omni Parts"
+	description = "The end-game of improving machines, these components represent the absolute cutting edge of science."
+	prereq_ids = list(TECHWEB_NODE_PARTS_HYPER)
+	design_ids = list(
+		"brped",
+		"omni_matter_bin",
+		"omni_mani",
+		"omni_capacitor",
+		"omni_sensor",
+		"omni_micro_laser",
+		"parts_bundle_t5",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier4_any = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
+
 
 // Engineering root node
 /datum/techweb_node/construction
@@ -73,6 +138,9 @@
 	description = "Tools and essential machinery used for station maintenance and expansion."
 	design_ids = list(
 		"tscanner",
+		"rcon_console",
+		"powermonitor",
+		"solarcontrol",
 		// "circuit_imprinter_offstation",
 		// "circuit_imprinter",
 		// "solarcontrol",
@@ -123,6 +191,10 @@
 		"inducersci",
 		"inducerind",
 		"upgradedtscanner",
+		"batteryrack",
+		"smes_cell",
+		"grid_checker",
+		"breakerbox",
 		// "apc_control",
 		// "powermonitor",
 		// "smes",
@@ -139,6 +211,35 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING)
+
+/datum/techweb_node/holographics
+	id = TECHWEB_NODE_HOLOGRAPHICS
+	display_name = "Holographics"
+	description = "Use of holographic technology for signage and barriers."
+	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION)
+	design_ids = list(
+		"arf_generator",
+		// "forcefield_projector",
+		// "holosign",
+		// "holosignsec",
+		// "holosignengi",
+		// "holosignatmos",
+		// "holosignrestaurant",
+		// "holosignbar",
+		// "holobarrier_jani",
+		// "holobarrier_med",
+		// "holopad",
+		// "vendatray",
+		// "holodisk",
+		// "modular_shield_generator",
+		// "modular_shield_node",
+		// "modular_shield_cable",
+		// "modular_shield_relay",
+		// "modular_shield_charger",
+		// "modular_shield_well",
+		// "modular_shield_console",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/exp_tools
 	id = TECHWEB_NODE_EXP_TOOLS

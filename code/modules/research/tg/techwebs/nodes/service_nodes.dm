@@ -64,10 +64,10 @@
 	prereq_ids = list(TECHWEB_NODE_OFFICE_EQUIP)
 	design_ids = list(
 		"med_data",
+		"ordercomp",
+		"supplycomp",
 		// "comconsole",
 		// "automated_announcement",
-		// "cargo",
-		// "cargorequest",
 		// "crewconsole",
 		// "bankmachine",
 		// "account_console",
@@ -111,6 +111,7 @@
 	description = "Pretty explosives! They change the weather!"
 	prereq_ids = list(TECHWEB_NODE_PARTS_ADV)
 	design_ids = list(
+		"fireworklauncher",
 		"fireworkaesthetic",
 		"fireworkaestheticconfig",
 		"fireworkclearsky",

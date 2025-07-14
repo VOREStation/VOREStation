@@ -6,8 +6,9 @@
 	description = "Maintaining station air and related life support systems."
 	design_ids = list(
 		"atmosanalyzer",
-		// "atmos_control",
-		// "atmosalerts",
+		"atmosalerts",
+		"air_management",
+		"shutoff_monitor",
 		// "thermomachine",
 		// "space_heater",
 		// "scrubber",
@@ -22,3 +23,46 @@
 		// "plasmaman_gas_filter",
 		// "pipe_painter",
 	)
+
+/datum/techweb_node/gas_compression
+	id = TECHWEB_NODE_GAS_COMPRESSION
+	display_name = "Gas Compression"
+	description = "Highly pressurized gases hold potential for unlocking immense energy capabilities."
+	prereq_ids = list(TECHWEB_NODE_ATMOS)
+	design_ids = list(
+		"gasheater",
+		"gascooler",
+		// "tank_compressor",
+		// "pump",
+		// "emergency_oxygen",
+		// "emergency_oxygen_engi",
+		// "power_turbine_console",
+		// "turbine_part_compressor",
+		// "turbine_part_rotor",
+		// "turbine_part_stator",
+		// "turbine_compressor",
+		// "turbine_rotor",
+		// "turbine_stator",
+		// "atmos_thermal",
+		// "pneumatic_seal",
+		// "large_welding_tool",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
+
+/datum/techweb_node/plasma_control
+	id = TECHWEB_NODE_PLASMA_CONTROL
+	display_name = "Controlled Plasma"
+	description = "Experiments with high-pressure gases and electricity resulting in crystallization and controlled plasma reactions."
+	prereq_ids = list(TECHWEB_NODE_GAS_COMPRESSION, TECHWEB_NODE_ENERGY_MANIPULATION)
+	design_ids = list(
+		"pacman",
+		"superpacman",
+		"mrspacman",
+		// "electrolyzer",
+		// "pipe_scrubber",
+		// "mech_generator",
+		// "plasmacutter",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
