@@ -74,7 +74,7 @@ export const TicketChat = (props) => {
         <Stack fill vertical>
           <Stack.Item>
             <Section
-              title={'Ticket #' + id}
+              title={`Ticket #${id}`}
               buttons={
                 <Box
                   className="TicketPanel__Label"

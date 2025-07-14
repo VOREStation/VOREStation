@@ -84,7 +84,7 @@ export const VorePanelEditTextTabs = (props: {
                   act(tabAction, { tab: value });
                 }
               }}
-              icon={tabsToIcons && tabsToIcons[value]}
+              icon={tabsToIcons?.[value]}
             >
               {value}
             </Tabs.Tab>
@@ -100,9 +100,7 @@ export const VorePanelEditTextTabs = (props: {
                 subAction={button_subAction}
                 editMode={editMode}
                 active={!!button_data}
-                tooltip={
-                  (button_data ? 'Dis' : 'En') + 'ables ' + button_tooltip
-                }
+                tooltip={`${button_data ? 'Dis' : 'En'}ables ${button_tooltip}`}
               />
             </LabeledList.Item>
           </LabeledList>

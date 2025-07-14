@@ -12,11 +12,11 @@ export const DNAModifierMain = (props) => {
 
   const { selectedMenuKey } = data;
 
-  const tabs: React.JSX.Element[] = [];
+  const tabs: Record<string, React.JSX.Element> = {};
 
-  tabs['se'] = <DNAModifierMainSE />;
-  tabs['buffer'] = <DNAModifierMainBuffers />;
-  tabs['rejuvenators'] = <DNAModifierMainRejuvenators />;
+  tabs.se = <DNAModifierMainSE />;
+  tabs.buffer = <DNAModifierMainBuffers />;
+  tabs.rejuvenators = <DNAModifierMainRejuvenators />;
 
   return (
     <Section fill>

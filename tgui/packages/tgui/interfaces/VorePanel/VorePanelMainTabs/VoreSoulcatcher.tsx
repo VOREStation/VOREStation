@@ -6,7 +6,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { noSelectionName } from '../constants';
 import type { abilities, DropdownEntry, soulcatcherData } from '../types';
@@ -109,7 +109,7 @@ const VoreSoulcatcherSection = (props: {
 
   return (
     <Section
-      title={'Soulcatcher (' + name + ')'}
+      title={`Soulcatcher (${name})`}
       fill
       buttons={
         <Stack align="center">

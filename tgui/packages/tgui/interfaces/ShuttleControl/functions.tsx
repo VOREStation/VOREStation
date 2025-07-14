@@ -7,7 +7,7 @@ export function getDockingStatus(
 ): React.JSX.Element {
   let main: string = 'ERROR';
   let color: string = 'bad';
-  let showsOverride: Boolean = false;
+  let showsOverride: boolean = false;
   if (docking_status === 'docked') {
     main = 'DOCKED';
     color = 'good';
@@ -25,7 +25,7 @@ export function getDockingStatus(
   }
 
   if (showsOverride && docking_override) {
-    main = main + '-MANUAL';
+    main = `${main}-MANUAL`;
   }
 
   return <Box color={color}>{main}</Box>;

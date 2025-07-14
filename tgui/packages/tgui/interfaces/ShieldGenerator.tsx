@@ -109,10 +109,10 @@ const ShieldGeneratorContent = (props) => {
             {toFixed(average_field_strength, 2) +
               ' Renwick (' +
               (target_field_strength &&
-                toFixed(
+                `${toFixed(
                   (100 * average_field_strength) / target_field_strength,
                   1,
-                ) + '%)') || 'NA)'}
+                )}%)`) || 'NA)'}
           </LabeledList.Item>
           <LabeledList.Item label="Upkeep Power">
             {formatPower(upkeep)}
@@ -127,7 +127,7 @@ const ShieldGeneratorContent = (props) => {
             <LabeledList>
               {capacitorLen ? (
                 capacitors.map((cap, i) => (
-                  <LabeledList.Item key={i} label={'Capacitor #' + i}>
+                  <LabeledList.Item key={i} label={`Capacitor #${i}`}>
                     {cap.active ? (
                       <Box color="good">Online</Box>
                     ) : (

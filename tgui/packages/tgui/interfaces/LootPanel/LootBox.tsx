@@ -1,4 +1,4 @@
-import { type MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
@@ -68,7 +68,7 @@ export function LootBox(props: Props) {
           {!is_blind && name}
         </Stack.Item>
         <Stack.Item lineHeight="34px" pr={1}>
-          {amount > 1 && 'x' + amount}
+          {amount > 1 && `x${amount}`}
         </Stack.Item>
       </Stack>
     </Button>

@@ -256,7 +256,7 @@ export const SubtabInfo = (props: {
           </Stack.Item>
           <Stack.Item>
             <Box bold>Language Keys</Box>
-            {language_keys.map((key) => key + ' ')}
+            {language_keys.map((key) => `${key} `)}
             <Button onClick={() => act('change_prefix')}>Change</Button>
             <Button onClick={() => act('reset_prefix')}>Reset</Button>
             <Box bold>Preferred Language</Box>

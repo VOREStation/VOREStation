@@ -151,7 +151,7 @@ const SelectionField = (props: {
       <Stack>
         <Stack.Item grow />
         <Stack.Item>
-          <Box className={classes([previewImageSize, previewImage + 'S'])} />
+          <Box className={classes([previewImageSize, `${previewImage}S`])} />
         </Stack.Item>
         <Stack.Item grow />
       </Stack>
