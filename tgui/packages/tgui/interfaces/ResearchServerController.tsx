@@ -131,7 +131,7 @@ const ResearchServerAccess = (props: { server: server }) => {
           consoles.map((console) => (
             <LabeledList.Item
               key={console.name}
-              label={console.name + ' (' + console.loc + ')'}
+              label={`${console.name} (${console.loc})`}
             >
               <Button
                 icon={hasUploadAccess(server, console) ? 'lock-open' : 'lock'}

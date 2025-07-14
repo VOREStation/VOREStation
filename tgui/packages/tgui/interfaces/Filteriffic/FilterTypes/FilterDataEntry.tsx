@@ -1,6 +1,6 @@
 import { Box, LabeledList } from 'tgui-core/components';
 
-import { type FilterEntryProps } from '../types';
+import type { FilterEntryProps } from '../types';
 import { FilterColorEntry } from './FilterColorEntry';
 import { FilterEnumEntry } from './FilterEnumEntry';
 import { FilterFlagsEntry } from './FilterFlagsEntry';

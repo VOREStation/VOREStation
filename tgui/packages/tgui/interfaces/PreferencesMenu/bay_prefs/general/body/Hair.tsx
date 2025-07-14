@@ -32,7 +32,7 @@ export const HairImageButton = (
     async (ctx: OffscreenCanvasRenderingContext2D) => {
       ctx.globalCompositeOperation = 'destination-over';
       const image = await getImage(
-        Byond.iconRefMap['icons/mob/human.dmi'] + '?state=body_f_s&dir=2',
+        `${Byond.iconRefMap['icons/mob/human.dmi']}?state=body_f_s&dir=2`,
       );
 
       ctx.drawImage(image, 0, 0, 32, 10, 0, 0, 64, 20);
@@ -51,7 +51,7 @@ export const HairImageButton = (
   return (
     <ColorizedImageButton
       iconRef={data.icon}
-      iconState={data.icon_state + '_s'}
+      iconState={`${data.icon_state}_s`}
       color={hairColor}
       onClick={onClick}
       tooltip={props.tooltip}

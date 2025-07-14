@@ -251,7 +251,7 @@ const ListView = (props) => {
                   })
                 }
               >
-                {'#' + acc.account_number}
+                {`#${acc.account_number}`}
               </Button>
             </LabeledList.Item>
           ))}

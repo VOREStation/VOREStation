@@ -54,7 +54,7 @@ export const VoreUserPreferencesDevouring = (props: {
               tooltipPosition="right"
               onClick={() => act('switch_selective_mode_pref')}
             >
-              {'Selective Mode Preference: ' + capitalize(selective_active)}
+              {`Selective Mode Preference: ${capitalize(selective_active)}`}
             </Button>
           </Stack.Item>
           <Stack.Item basis="32%" grow>

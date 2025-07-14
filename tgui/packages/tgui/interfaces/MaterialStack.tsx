@@ -30,7 +30,7 @@ export const MaterialStack = (props) => {
   return (
     <Window width={400} height={600}>
       <Window.Content scrollable>
-        <Section title={'Amount: ' + amount}>
+        <Section title={`Amount: ${amount}`}>
           <Stack vertical>
             <Stack.Item>
               <Input
@@ -129,7 +129,7 @@ const Multipliers = (props) => {
             })
           }
         >
-          {multiplier * recipe.res_amount + 'x'}
+          {`${multiplier * recipe.res_amount}x`}
         </Button>,
       );
     }
@@ -145,7 +145,7 @@ const Multipliers = (props) => {
           })
         }
       >
-        {maxM * recipe.res_amount + 'x'}
+        {`${maxM * recipe.res_amount}x`}
       </Button>,
     );
   }
@@ -164,12 +164,12 @@ const Recipe = (props: { recipe: recipe; title: string }) => {
 
   let buttonName = title;
   buttonName += ' (';
-  buttonName += req_amount + ' ';
-  buttonName += 'sheet' + (req_amount > 1 ? 's' : '');
+  buttonName += `${req_amount} `;
+  buttonName += `sheet${req_amount > 1 ? 's' : ''}`;
   buttonName += ')';
 
   if (res_amount > 1) {
-    buttonName = res_amount + 'x ' + buttonName;
+    buttonName = `${res_amount}x ${buttonName}`;
   }
 
   const maxMultiplier = buildMultiplier(recipe, amount);

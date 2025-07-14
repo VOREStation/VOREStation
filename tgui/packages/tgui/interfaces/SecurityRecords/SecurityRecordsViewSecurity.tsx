@@ -48,8 +48,7 @@ export const SecurityRecordsViewSecurity = (props) => {
         {security.comments && security.comments.length === 0 ? (
           <Box color="label">No comments found.</Box>
         ) : (
-          security.comments &&
-          security.comments.map((comment, i) => (
+          security.comments?.map((comment, i) => (
             <Box key={i}>
               <Box color="label" inline>
                 {comment.header}

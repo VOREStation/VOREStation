@@ -156,7 +156,7 @@ const IsIMOurs = (
 const enforceLengthLimit = (prefix: string, name: string, length: number) => {
   if ((prefix + name).length > length) {
     if (name.length > length) {
-      return name.slice(0, length) + '...';
+      return `${name.slice(0, length)}...`;
     }
     return name;
   }
