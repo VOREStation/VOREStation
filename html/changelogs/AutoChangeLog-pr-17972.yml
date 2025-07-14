@@ -1,4 +1,0 @@
-author: "ShadowLarkens"
-delete-after: True
-changes:
-  - bugfix: "Proteans can no longer get stuck in a death loop because their posibrain fell out."

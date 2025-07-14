@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Changeling stings fixed, can be used multiple times again."
-  - bugfix: "Transformation sting works properly now"
-  - bugfix: "Extraction sting works properly now"

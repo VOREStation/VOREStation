@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Whitelisted items can be selected if you're the shape of that species if not that species exactly."
