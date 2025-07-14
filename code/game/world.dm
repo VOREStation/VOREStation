@@ -176,11 +176,6 @@ GLOBAL_VAR(restart_counter)
 	src.update_status()
 	setup_season()	//VOREStation Addition
 
-	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if (debug_server)
-		call_ext(debug_server, "auxtools_init")()
-		enable_debugging()
-
 #ifdef UNIT_TESTS
 	log_unit_test("Unit Tests Enabled.  This will destroy the world when testing is complete.")
 	log_unit_test("If you did not intend to enable this please check code/__defines/unit_testing.dm")
