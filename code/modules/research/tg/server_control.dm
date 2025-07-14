@@ -30,6 +30,9 @@
 	balloon_alert(user, "console emagged")
 	return TRUE
 
+/obj/machinery/computer/rdservercontrol/attack_hand(mob/user)
+	return tgui_interact(user)
+
 /obj/machinery/computer/rdservercontrol/tgui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
