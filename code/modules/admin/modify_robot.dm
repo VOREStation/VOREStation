@@ -160,7 +160,7 @@
 
 
 /datum/eventkit/modify_robot/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/eventkit/modify_robot/tgui_act(action, params, datum/tgui/ui)
 	. = ..()

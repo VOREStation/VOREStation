@@ -1013,6 +1013,8 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/CtrlClick(mob/user) //Hold door open
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(user.is_incorporeal())
+		return
 	if(!Adjacent(user))
 		return
 	if(user.a_intent == I_HURT)

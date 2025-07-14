@@ -53,7 +53,14 @@
 	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
 		return FALSE
 	var/obj/item/I = user.get_active_hand() // ctrl-shift-click doesn't give us the item, we have to fetch it
-	if(!I)
+
+	if(isrobot(user)) //snowflake gripper BS because it can't be done in get_active_hand without breaking everything
+		var/mob/living/silicon/robot/robot = user
+		if(istype(robot.module_active, /obj/item/gripper))
+			var/obj/item/gripper/gripper = robot.module_active
+			I = gripper.get_current_pocket()
+
+	else if(!I)
 		return FALSE
 	return IC.attackby(I, user)
 

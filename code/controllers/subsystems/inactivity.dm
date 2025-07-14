@@ -61,5 +61,5 @@ SUBSYSTEM_DEF(inactivity)
 	return ..()
 
 /datum/controller/subsystem/inactivity/proc/can_kick(var/client/C)
-	if(C.holder) return FALSE //VOREStation Add - Don't kick admins.
+	if(check_rights_for(C, R_HOLDER|R_MENTOR)) return FALSE //VOREStation Add - Don't kick admins.
 	return TRUE

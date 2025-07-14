@@ -2107,11 +2107,7 @@
 /area/centcom/security/residential)
 "gF" = (
 /obj/effect/floor_decal/industrial/warning/corner,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "gN" = (
 /obj/effect/floor_decal/emblem/stellardelight{
@@ -4315,11 +4311,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "pl" = (
 /obj/effect/floor_decal/emblem/stellardelight{
@@ -4692,11 +4684,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "rM" = (
 /obj/structure/bed/chair/shuttle,
@@ -5370,11 +5358,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "vR" = (
 /obj/structure/flora/pottedplant{
@@ -5515,11 +5499,7 @@
 /area/tdome/tdome1)
 "wj" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "wk" = (
 /obj/structure/table/rack,
@@ -5942,11 +5922,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "yI" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -6116,11 +6092,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "zy" = (
 /obj/effect/floor_decal/derelict/d11,
@@ -6137,11 +6109,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "zG" = (
 /obj/structure/bed/chair/wood/wings,
@@ -10487,11 +10455,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/command)
 "MS" = (
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "MT" = (
 /obj/structure/table/glass,

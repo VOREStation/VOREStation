@@ -831,7 +831,7 @@
 		var/mob/M = locate(href_list["newban"])
 		if(!ismob(M)) return
 
-		if(M.client && M.client.holder)	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
+		if(M.client && check_rights_for(M.client, R_HOLDER))	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
 		switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No","Cancel")))
 			if(null)
@@ -863,7 +863,7 @@
 				message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes."))
 				var/datum/ticket/T = M.client ? M.client.current_ticket : null
 				if(T)
-					T.Resolve()
+					T.Resolve(usr)
 				qdel(M.client)
 				//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 			if("No")
@@ -891,7 +891,7 @@
 				DB_ban_record(BANTYPE_PERMA, M, -1, reason)
 				var/datum/ticket/T = M.client ? M.client.current_ticket : null
 				if(T)
-					T.Resolve()
+					T.Resolve(usr)
 				qdel(M.client)
 				//qdel(M)
 			if("Cancel")
@@ -963,10 +963,10 @@
 		Game() // updates the main game menu
 		.(href, list("f_secret"=1))
 
-	else if(href_list["monkeyone"])
+	else if(href_list[VV_HK_TURN_MONKEY])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
+		var/mob/living/carbon/human/H = locate(href_list[VV_HK_TURN_MONKEY])
 		if(!istype(H))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
@@ -1180,10 +1180,10 @@
 		else
 			to_chat(usr, span_filter_adminlog(span_filter_warning("Admin Rejuvinates have been disabled")))
 
-	else if(href_list["makeai"])
+	else if(href_list[VK_HK_TURN_AI])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
+		var/mob/living/carbon/human/H = locate(href_list[VK_HK_TURN_AI])
 		if(!istype(H))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
@@ -1192,20 +1192,20 @@
 		log_admin("[key_name(usr)] AIized [key_name(H)]")
 		H.AIize()
 
-	else if(href_list["makealien"])
+	else if(href_list[VV_HK_TURN_ALIEN])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makealien"])
+		var/mob/living/carbon/human/H = locate(href_list[VV_HK_TURN_ALIEN])
 		if(!istype(H))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
 
 		usr.client.cmd_admin_alienize(H)
 
-	else if(href_list["makerobot"])
+	else if(href_list[VK_HK_TURN_ROBOT])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
+		var/mob/living/carbon/human/H = locate(href_list[VK_HK_TURN_ROBOT])
 		if(!istype(H))
 			to_chat(usr, span_filter_adminlog("This can only be used on instances of type /mob/living/carbon/human"))
 			return
@@ -1240,11 +1240,11 @@
 			return
 		var/block=text2num(href_list["block"])
 		usr.client.cmd_admin_toggle_block(H,block)
-		show_player_panel(H)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_player_panel, H)
 
 	else if(href_list["adminplayeropts"])
 		var/mob/M = locate(href_list["adminplayeropts"])
-		show_player_panel(M)
+		SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_player_panel, M)
 
 	else if(href_list["adminplayerobservejump"])
 		if(!check_rights(R_MOD|R_ADMIN|R_SERVER))	return
@@ -1951,7 +1951,7 @@
 				if(!M.add_language(lang2toggle))
 					to_chat(usr, span_filter_adminlog("Failed to add language '[lang2toggle]' from \the [M]!"))
 
-			show_player_panel(M)
+			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/show_player_panel, M)
 
 	else if(href_list["cryoplayer"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return

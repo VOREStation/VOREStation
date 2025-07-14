@@ -181,7 +181,7 @@
 	to_chat(user, span_notice("You can taste the sweet flavor of digital friendship. Or maybe it is something else."))
 
 /obj/item/reagent_containers/food/after_trash_eaten(var/mob/living/user)
-	if(!reagents.total_volume)
+	if(!reagents?.total_volume)
 		to_chat(user, span_notice("You can taste the flavor of garbage and leftovers. Delicious?"))
 	else
 		to_chat(user, span_notice("You can taste the flavor of gluttonous waste of food."))

@@ -178,8 +178,10 @@
 		rm_controller.dbg("ZM(par): Adding mineral to [M.x],[M.y].")
 		if(rm_controller.diffstep >= 3)
 			M.turf_resource_types |= TURF_HAS_RARE_ORE
+			M.make_ore(TRUE)
 		else
 			M.turf_resource_types |= TURF_HAS_ORE
+			M.make_ore()
 		mineral_rocks += M
 		//If above difficulty threshold make rare ore instead (M.turf_resource_types |= TURF_HAS_RARE_ORE)
 	//Increase with difficulty etc

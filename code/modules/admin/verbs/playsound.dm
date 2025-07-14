@@ -245,7 +245,7 @@ var/list/sounds_cache = list()
 /client/proc/stop_sounds()
 	set category = "Debug.Dangerous"
 	set name = "Stop All Playing Sounds"
-	if(!src.holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	log_admin("[key_name(src)] stopped all currently playing sounds.")
