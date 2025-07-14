@@ -33,7 +33,7 @@
 
 // Quickly adds the boilerplate code to add an image and padding for the image.
 /proc/desc_panel_image(var/icon_state)
-	return "[icon2html(description_icons[icon_state], usr)]&emsp;"
+	return "[icon2html(GLOB.description_icons[icon_state], usr)]&emsp;"
 
 /mob/living/get_description_fluff()
 	if(flavor_text) //Get flavor text for the green text.
@@ -106,7 +106,7 @@
 				title = "🔍 | Flavor Text"
 
 		. += span_details(title,fluff_info_temp)
-	var/is_antagish = ((mind && mind.special_role) || isobserver(src)) //ghosts don't have minds
+	var/is_antagish = antag_check()
 	var/antag_info_temp = A.get_description_antag()
 	if(is_antagish && antag_info_temp)
 		. += span_details("🏴‍☠️ | Antag Information",antag_info_temp)
@@ -117,9 +117,19 @@
 			temp += a + "\n"
 		. += span_details("🛠️ | Interaction Information",temp)
 
+/mob/proc/antag_check()
+	if(mind && (mind.special_role || mind.antag_holder.is_antag())) //We're a /mob and have a mind and antag status.
+		return TRUE
+	if(isobserver(src)) //We're an observer. We always are able to see stuff antags see.
+		return TRUE
+	var/datum/component/antag/comp = GetComponent(/datum/component/antag)
+	if(comp)
+		return TRUE
+	return FALSE
+
 /mob/proc/update_examine_panel(var/atom/A)
 	if(client)
-		var/is_antag = ((mind && mind.special_role) || isobserver(src)) //ghosts don't have minds
+		var/is_antag = antag_check()
 		client.update_description_holders(A, is_antag)
 		SSstatpanels.set_examine_tab(client)
 

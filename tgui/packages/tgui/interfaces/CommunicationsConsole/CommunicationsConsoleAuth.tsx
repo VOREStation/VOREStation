@@ -35,7 +35,7 @@ export const CommunicationsConsoleAuth = (props) => {
                 selected={authenticated}
                 onClick={() => act('auth')}
               >
-                {authenticated ? 'Log Out (' + authReadable + ')' : 'Log In'}
+                {authenticated ? `Log Out (${authReadable})` : 'Log In'}
               </Button>
             </LabeledList.Item>
           )}

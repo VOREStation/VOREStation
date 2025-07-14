@@ -176,7 +176,7 @@ export const ModifyRobotComponent = (props: {
                   <Box
                     className={classes([
                       target.sprite_size,
-                      target.sprite + 'E',
+                      `${target.sprite}E`,
                     ])}
                   />
                 </Stack.Item>
@@ -276,9 +276,9 @@ const ComponentSection = (props: {
                   <Stack.Item>
                     <Stack align="center">
                       <Stack.Item>
-                        {capitalize(component.name)}{' '}
+                        {capitalize(component.name)}
                         {action === 'add_component' &&
-                          '(' + component.max_damage + ')'}
+                          ` (${component.max_damage})`}
                       </Stack.Item>
                       <Stack.Item grow />
                       <Stack.Item>
@@ -304,10 +304,10 @@ const ComponentSection = (props: {
                   <Stack.Item />
                   <Stack.Item>
                     {action === 'add_component' &&
-                      'Brute Damage: ' + component.brute_damage}
+                      `Brute Damage: ${component.brute_damage}`}
                   </Stack.Item>
                   {action === 'add_component' &&
-                    'Electronics Damage: ' + component.electronics_damage}
+                    `Electronics Damage: ${component.electronics_damage}`}
                   <Stack.Item />
                 </Stack>
               </Button>

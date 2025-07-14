@@ -387,6 +387,12 @@
 								active_mr = null
 								return
 
+							//Changeling lock.
+							if(sleever.get_occupant().changeling_locked && !is_changeling(active_mr.mind_ref))
+								set_temp("Error: Mind incompatible with body", "danger")
+								active_mr = null
+								return TRUE
+
 							var/list/subtargets = list()
 							for(var/mob/living/carbon/human/H in sleever.get_occupant())
 								if(H.resleeve_lock && active_mr.ckey != H.resleeve_lock)
@@ -463,6 +469,7 @@
 				I.desc = "Resequences structural enzymes to match the body record this was created from."
 				I.buf = active_br.mydna.copy()
 				I.buf.types = DNA2_BUF_SE
+				I.has_radiation = FALSE // SAFE!
 				atom_say("Beginning injector synthesis.")
 				addtimer(CALLBACK(src, PROC_REF(dispense_injector), I), 10 SECONDS, TIMER_DELETE_ME)
 			. = TRUE

@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Stack } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export const VorePanelColorBox = (props: {
   back_color: string;
@@ -9,8 +9,8 @@ export const VorePanelColorBox = (props: {
 }) => {
   const { back_color, pixelSize = 20, alpha = 255 } = props;
 
-  const parentSize = pixelSize + 'px';
-  const childSize = pixelSize - 4 + 'px';
+  const parentSize = `${pixelSize}px`;
+  const childSize = `${pixelSize - 4}px`;
 
   return (
     <Box
@@ -48,7 +48,7 @@ export const VorePanelEditToggle = (props: {
         <Button
           icon="pencil"
           selected={editMode}
-          tooltip={(editMode ? 'Dis' : 'En') + 'able edit mode.'}
+          tooltip={`${editMode ? 'Dis' : 'En'}able edit mode.`}
           onClick={() => toggleEditMode(!editMode)}
         />
       </Stack.Item>

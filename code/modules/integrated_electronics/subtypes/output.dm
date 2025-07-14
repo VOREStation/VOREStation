@@ -152,7 +152,7 @@
 /obj/item/integrated_circuit/output/text_to_speech/advanced/Initialize(mapload)
 	. = ..()
 	my_voice = new (src)
-	mob_list -= my_voice // no life() ticks
+	GLOB.mob_list -= my_voice // no life() ticks
 	my_voice.name = "TTS Circuit"
 
 /obj/item/integrated_circuit/output/text_to_speech/advanced/do_work()

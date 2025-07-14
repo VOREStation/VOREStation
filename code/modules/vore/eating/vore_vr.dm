@@ -33,13 +33,6 @@
 /client
 	var/datum/vore_preferences/prefs_vr
 
-/hook/client_new/proc/add_prefs_vr(client/C)
-	C.prefs_vr = new/datum/vore_preferences(C)
-	if(C.prefs_vr)
-		return TRUE
-
-	return FALSE
-
 /datum/vore_preferences
 	//Actual preferences
 	var/digestable = TRUE

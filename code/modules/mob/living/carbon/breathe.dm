@@ -17,18 +17,16 @@
 
 	if(losebreath>0) //Suffocating so do not take a breath
 		AdjustLosebreath(-1)
-		if (prob(10) && !isbelly(loc)) //Gasp per 10 ticks? Sounds about right. //VOREStation Add
+		if (prob(10) && !isbelly(loc)) //Gasp per 10 ticks? Sounds about right.
 			spawn emote("gasp")
 	else
 		//Okay, we can breathe, now check if we can get air
 		breath = get_breath_from_internal() //First, check for air from internals
-		//VOREStation Add - Respirocytes as a NIF implant
 		if(!breath && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			if(H.nif && H.nif.flag_check(NIF_H_SPAREBREATH,NIF_FLAGS_HEALTH))
 				var/datum/nifsoft/spare_breath/SB = H.nif.imp_check(NIF_SPAREBREATH)
 				breath = SB.resp_breath()
-		//VOREStation Add End
 		if(!breath)
 			breath = get_breath_from_environment() //No breath from internals so let's try to get air from our location
 		if(!breath)

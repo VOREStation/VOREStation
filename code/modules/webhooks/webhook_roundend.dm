@@ -4,7 +4,7 @@
 // Data expects three numerical fields: "survivors", "escaped", "ghosts", "clients"
 /decl/webhook/roundend/get_message(var/list/data)
 	. = ..()
-	var/desc = "A round of **[SSticker.mode ? SSticker.mode.name : "Unknown"]** ([game_id]) has ended.\n\n"
+	var/desc = "A round of **[SSticker.mode ? SSticker.mode.name : "Unknown"]** (Round ID: [GLOB.round_id ? GLOB.round_id : "No database"]) has ended.\n\n"
 	if(data)
 		var/s_escaped =  "Escaped"
 		if(!emergency_shuttle.evac)

@@ -52,7 +52,7 @@
 	A.PlayerNotesLegacy()
 
 /datum/tgui_module/player_notes/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/player_notes/tgui_fallback(payload)
 	if(..())
@@ -107,7 +107,7 @@
 	var/key = null
 
 /datum/tgui_module/player_notes_info/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/player_notes_info/tgui_fallback(payload)
 	if(..())

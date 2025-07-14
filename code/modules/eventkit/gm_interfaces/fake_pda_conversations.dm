@@ -63,7 +63,7 @@
 Invoked by vv topic "fakepdapropconvo" in code\modules\admin\view_variables\topic.dm found in PDA vv dropdown.
 */
 /obj/item/pda/proc/createPropFakeConversation_admin(mob/M)
-	if(!M.client || !check_rights_for(M.client,R_FUN))
+	if(!M.client || !check_rights_for(M.client, R_FUN))
 		return
 
 	var/datum/eventkit/fake_pdaconvos/FPC = M.client.fakeConversations

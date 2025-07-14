@@ -33,7 +33,7 @@ export const GasPump = (props) => {
             <LabeledList.Item label="Flow Rate">
               <AnimatedNumber
                 value={last_flow_rate / 10}
-                format={(value) => toFixed(value, 1) + ' L/s'}
+                format={(value) => `${toFixed(value, 1)} L/s`}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Load">
@@ -45,7 +45,7 @@ export const GasPump = (props) => {
                   last_power_draw < max_power_draw - 5 ? 'good' : 'average'
                 }
               >
-                {last_power_draw + ' W'}
+                {`${last_power_draw} W`}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>

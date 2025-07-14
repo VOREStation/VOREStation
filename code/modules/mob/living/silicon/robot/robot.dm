@@ -514,6 +514,22 @@
 	to_chat(src, span_filter_notice("You harmlessly spark."))
 	spark_system.start()
 
+///Essentially, a Activate Held Object mode for borgs that acts just like pressing Z in hotkey mode but also works well with multibelts.
+/mob/living/silicon/robot/verb/alt_mode()
+	set name = "Robot Activate Held Object"
+	set category = "Object"
+	set src = usr
+
+	if(!checkClickCooldown())
+		return
+
+	setClickCooldown(1)
+
+	var/obj/item/W = module_active
+	if(module_active)
+		W.attack_self(src)
+	return
+
 /mob/living/silicon/robot/verb/toggle_grabbability() // Grisp the preyborgs with consent (and allows for your borg to still be pet).
 	set category = "Abilities.Silicon"
 	set name = "Toggle Pickup"
@@ -1025,7 +1041,7 @@
 		for(var/belly_class in vore_fullness_ex)
 			reset_belly_lights(belly_class)
 			var/vs_fullness = vore_fullness_ex[belly_class]
-			if(belly_class == "sleeper")
+			if(belly_class == "sleeper" && vore_selected)
 				if(sleeper_state == 0 && vore_selected.silicon_belly_overlay_preference == "Sleeper") continue
 				if(sleeper_state != 0 && !(vs_fullness + 1 > vore_capacity_ex[belly_class]))
 					if(vore_selected.silicon_belly_overlay_preference == "Sleeper")

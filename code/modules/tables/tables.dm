@@ -193,12 +193,6 @@ var/list/table_icon_cache = list()
 	visible_message(span_infoplain(span_bold("\The [user]") + " scratches at \the [src]!"))
 	return ..()
 
-/obj/structure/table/MouseDrop_T(obj/item/stack/material/what, mob/user)
-	if(can_reinforce && isliving(user) && (!user.stat) && istype(what) && user.get_active_hand() == what && Adjacent(user))
-		reinforce_table(what, user)
-	else
-		return ..()
-
 /obj/structure/table/proc/reinforce_table(obj/item/stack/material/S, mob/user)
 	if(reinforced)
 		to_chat(user, span_warning("\The [src] is already reinforced!"))

@@ -69,8 +69,8 @@ var/list/gear_datums = list()
 	save_data["gear_slot"] = pref.gear_slot
 
 /datum/category_item/player_setup_item/loadout/loadout/proc/is_valid_gear(datum/gear/G, max_cost)
-	if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
-		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
+	if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client)
+		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && (G.whitelisted != pref.species && G.whitelisted != pref.custom_base))
 			return FALSE
 		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
 			return FALSE
@@ -213,7 +213,7 @@ var/list/gear_datums = list()
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("clear_loadout")
-			active_gear_list.Cut()
+			active_gear_list?.Cut()
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("copy_loadout")
@@ -235,7 +235,7 @@ var/list/gear_datums = list()
 				if(TG.display_name in active_gear_list)
 					active_gear_list -= TG.display_name
 				else if(get_total() + TG.cost <= MAX_GEAR_COST)
-					active_gear_list[TG.display_name] = list()
+					LAZYSET(active_gear_list, TG.display_name, list())
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("gear_tweak")

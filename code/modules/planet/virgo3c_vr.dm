@@ -668,15 +668,15 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/asteroid_steel/outdoors)
 
 /turf/simulated/mineral/cave/virgo3c
 	VIRGO3C_SET_ATMOS
-	outdoors = 0
+	outdoors = OUTDOORS_NO
 
 /turf/simulated/mineral/floor/virgo3c
 	VIRGO3C_SET_ATMOS
-	outdoors = 0
+	outdoors = OUTDOORS_NO
 
 /turf/simulated/mineral/floor/ignore_mapgen/virgo3c
 	VIRGO3C_SET_ATMOS
-	outdoors = 0
+	outdoors = OUTDOORS_NO
 
 /turf/simulated/floor/outdoors/grass/virgo3c
 	VIRGO3C_SET_ATMOS

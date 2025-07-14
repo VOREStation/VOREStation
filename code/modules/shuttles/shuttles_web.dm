@@ -346,7 +346,7 @@
 				message_admins("ERROR: Shuttle computer was asked to traverse a nonexistant route.")
 				return
 
-			if(!check_docking(, ui.user, WS))
+			if(!check_docking(ui.user, WS))
 				return TRUE
 
 			var/datum/shuttle_destination/target_destination = new_route.get_other_side(WS.web_master.current_destination)

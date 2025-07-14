@@ -35,7 +35,7 @@
 			// /obj/machinery/message_server/proc/send_pda_message(var/recipient = "",var/sender = "",var/message = "")
 			var/obj/item/pda/P
 			var/list/viables = list()
-			for(var/obj/item/pda/check_pda in sortAtom(PDAs))
+			for(var/obj/item/pda/check_pda in sort_names(PDAs))
 				if (!check_pda.owner || check_pda == src || check_pda.hidden)
 					continue
 
@@ -107,7 +107,7 @@
 
 			/*	//VOREStation Removal: no need to spam the AI tenfold
 			if (prob(50)) //Give the AI an increased chance to intercept the message
-				for(var/mob/living/silicon/ai/ai in mob_list)
+				for(var/mob/living/silicon/ai/ai in GLOB.mob_list)
 					// Allows other AIs to intercept the message but the AI won't intercept their own message.
 					if(ai.aiPDA != P && ai.aiPDA != src)
 						ai.show_message(span_italics("Intercepted message from <b>[sender]</b></i> (Unknown / spam?) <i>to <b>[P:owner]</b>: [message]"))

@@ -49,7 +49,7 @@ export const LobbyButton = (props: LobbyButtonProps) => {
             : `${1.5 + index * 0.2}s`,
       }}
     >
-      <CustomButton fluid className={'distinctButton ' + className} {...rest}>
+      <CustomButton fluid className={`distinctButton ${className}`} {...rest}>
         {children}
       </CustomButton>
     </Stack.Item>

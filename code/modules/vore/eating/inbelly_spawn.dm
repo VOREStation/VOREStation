@@ -18,7 +18,7 @@ Please do not abuse this ability.
 
 	var/list/eligible_targets = list()
 
-	for(var/mob/living/pred in living_mob_list)
+	for(var/mob/living/pred in GLOB.living_mob_list)
 		if(!istype(pred) || !pred.client)		// Ignore preds that aren't living mobs or player controlled
 			continue
 		if(pred.no_vore)						// No vore, no bellies, no inbelly spawning
@@ -154,10 +154,10 @@ Please do not abuse this ability.
 		if(antag_data)
 			antag_data.add_antagonist(new_character.mind)
 			antag_data.place_mob(new_character)
-
-	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
 		new_character.mind.loaded_from_slot = picked_slot
+		if(new_character.mind.antag_holder)
+			new_character.mind.antag_holder.apply_antags(new_character)
 
 	for(var/lang in prey.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]

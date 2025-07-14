@@ -103,6 +103,8 @@
 //////////////////////////////////////////////////////////////////////////////////////
 /// Adds hidden admin trackable fingerprints, visible even if normal fingerprints are smudged.
 /datum/forensics_crime/proc/add_hiddenprints(mob/living/M as mob)
+	if(!fingerprintshidden)
+		fingerprintshidden = list()
 	if(!ishuman(M))
 		if(fingerprintslast != M.key)
 			fingerprintshidden += text("\[[time_stamp()]\] (Non-human mob). Real name: [], Key: []",M.real_name, M.key)

@@ -118,13 +118,13 @@ SUBSYSTEM_DEF(xenoarch)
 		artifact_turf.artifact_find = new()
 
 /// This is the proc that is used when a Z level runs out of artifacts. This means you have 'completed' your job and now you get bonus goodies to keep you occupied.
-/datum/controller/subsystem/xenoarch/proc/continual_generation(var/mob/living/caller)
+/datum/controller/subsystem/xenoarch/proc/continual_generation(var/mob/living/user)
 
 	/// So, to preface this, I had to do a lot of testing with this to ensure it wouldn't cause mass lag and that it properly functioned.
 	/// At first, I tried to make it scan mineral in the user's Z. There's not really any preexisting functionality for this that I could find, so that was a negative.
-	/// Next, I saw what would happen if it did 'in world' and then went 'if M.z != caller.z continue' and that caused...A lot of lag. For a long time.
+	/// Next, I saw what would happen if it did 'in world' and then went 'if M.z != user.z continue' and that caused...A lot of lag. For a long time.
 	/// This range(100) was for me was completely lagless. It gives a good amount of artifacts to keep digging and keep archeo working so they don't 'run out' of things to do.
-	for(var/turf/simulated/mineral/M in range(100, caller))
+	for(var/turf/simulated/mineral/M in range(100, user))
 
 		if(!M.density)
 			continue
