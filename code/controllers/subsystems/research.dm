@@ -339,9 +339,8 @@ SUBSYSTEM_DEF(research)
 /datum/controller/subsystem/research/proc/find_valid_servers(turf/location, datum/techweb/checking_web)
 	var/list/valid_servers = list()
 	for(var/obj/machinery/rnd/server/server as anything in checking_web.techweb_servers)
-		// TODO: figure out a way to do this..
-		// if(!is_valid_z_level(get_turf(server), location))
-		// 	continue
+		if(!is_valid_z_level(get_turf(server), location))
+			continue
 		valid_servers += server
 	return valid_servers
 

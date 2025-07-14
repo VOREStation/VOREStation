@@ -1607,3 +1607,18 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return "CLIENT: [D]"
 	else
 		return "Unknown data type: [D]"
+
+/**
+ * - is_valid_z_level
+ *
+ * Checks if source_loc and checking_loc is both on the station, or on the same z level.
+ * This is because the station's several levels aren't considered the same z, so multi-z stations need this special case.
+ *
+ * Args:
+ * source_loc - turf of the source we're comparing.
+ * checking_loc - turf we are comparing to source_loc.
+ *
+ * returns TRUE if connection is valid, FALSE otherwise.
+ */
+/proc/is_valid_z_level(turf/source_loc, turf/checking_loc)
+	return is_on_same_plane_or_station(source_loc.z, checking_loc.z)
