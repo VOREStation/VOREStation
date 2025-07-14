@@ -224,7 +224,7 @@ GLOBAL_VAR_INIT(meteor_wave_delay, 625) //minimum wait between waves in tenths o
 		O.throw_at(dest, 5, 10)
 
 /obj/effect/meteor/proc/shake_players()
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		var/turf/T = get_turf(M)
 		if(!T || T.z != src.z)
 			continue

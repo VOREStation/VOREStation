@@ -1,6 +1,6 @@
 GLOBAL_VAR_INIT(global_vantag_hud, 0)
 
-ADMIN_VERB_AND_CONTEXT_MENU(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/dropee in mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, mob/living/dropee in GLOB.mob_list)
 	var/confirm = tgui_alert(src, "Make [dropee] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
@@ -17,7 +17,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(drop_everything, R_ADMIN, "Drop Everything", ADMIN_V
 	message_admins(msg)
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_prison(mob/M as mob in mob_list)
+/client/proc/cmd_admin_prison(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Prison"
 	if(!check_rights_for(src, R_HOLDER))
@@ -81,7 +81,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(drop_everything, R_ADMIN, "Drop Everything", ADMIN_V
 	else
 		to_chat(src, "No matches for that age range found.")
 
-/client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
+/client/proc/cmd_admin_subtle_message(mob/M as mob in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Subtle Message"
 
@@ -156,7 +156,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(drop_everything, R_ADMIN, "Drop Everything", ADMIN_V
 	admin_ticket_log(M, msg)
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
+/client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Godmode"
 
@@ -258,17 +258,13 @@ Ccomp's first proc.
 
 	var/list/mobs = list()
 	var/list/ghosts = list()
-	var/list/sortmob = sortAtom(mob_list)                           // get the mob list.
-	var/any=0
-	for(var/mob/observer/dead/M in sortmob)
-		mobs.Add(M)                                             //filter it where it's only ghosts
-		any = 1                                                 //if no ghosts show up, any will just be 0
-	if(!any)
+	if(!LAZYLEN(GLOB.observer_mob_list))
 		if(notify)
 			to_chat(src, "There doesn't appear to be any ghosts for you to select.")
 		return
+	var/list/sortmob = sort_names(GLOB.observer_mob_list)                           // get the mob list.
 
-	for(var/mob/M in mobs)
+	for(var/mob/M in sortmob)
 		var/name = M.name
 		ghosts[name] = M                                        //get the name of the mob for the popup list
 	if(what==1)
@@ -440,7 +436,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	//Well you're not reloading their job or they never had one.
 	if(!charjob)
-		var/pickjob = tgui_input_list(src,"Pick a job to assign them (or none).","Job Select", joblist + "-No Job-", "-No Job-")
+		var/pickjob = tgui_input_list(src,"Pick a job to assign them (or none).","Job Select", GLOB.joblist + "-No Job-", "-No Job-")
 		if(!pickjob)
 			return
 		if(pickjob != "-No Job-")
@@ -619,14 +615,14 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", ""))
 	if(!input)
 		return
-	for(var/mob/living/silicon/ai/M in mob_list)
+	for(var/mob/living/silicon/ai/M in GLOB.mob_list)
 		if (M.stat == 2)
 			to_chat(usr, "Upload failed. No signal is being detected from the AI.")
 		else if (M.see_in_dark == 0)
 			to_chat(usr, "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power.")
 		else
 			M.add_ion_law(input)
-			for(var/mob/living/silicon/ai/O in mob_list)
+			for(var/mob/living/silicon/ai/O in GLOB.mob_list)
 				to_chat(O,input + span_red("... LAWS UPDATED!"))
 				O.show_laws()
 
@@ -638,7 +634,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 		command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
+/client/proc/cmd_admin_rejuvenate(mob/living/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Rejuvenate"
 
@@ -723,7 +719,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	switch(tgui_alert(usr, "How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
 		if("Key List")
 			var/list/keys = list()
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				keys += M.client
 			var/selection = tgui_input_list(usr, "Please, select a player!", "Admin Jumping", keys)
 			if(!selection)
@@ -774,7 +770,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	// I will both remove their SVN access and permanently ban them from my servers.
 	return
 
-/client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
+/client/proc/cmd_admin_check_contents(mob/living/M as mob in GLOB.mob_list)
 	set category = "Admin.Investigate"
 	set name = "Check Contents"
 	set popup_menu = FALSE
@@ -902,7 +898,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	log_admin("[key_name(src)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 	message_admins("[key_name_admin(usr)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
-/client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
+/client/proc/cmd_admin_attack_log(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Logs"
 	set name = "Attack Log"
 
@@ -963,7 +959,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/despawn_player(var/mob/M in living_mob_list)
+/client/proc/despawn_player(var/mob/M in GLOB.living_mob_list)
 	set name = "Cryo Player"
 	set category = "Admin.Game"
 	set desc = "Removes a player from the round as if they'd cryo'd."
@@ -1075,7 +1071,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(!check_rights(R_SPAWN))
 		return
 
-	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Mob Picker", living_mob_list)
+	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Mob Picker", GLOB.living_mob_list)
 	if(!L)
 		return
 
@@ -1102,7 +1098,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	GLOB.global_vantag_hud = !GLOB.global_vantag_hud
 	if(GLOB.global_vantag_hud)
-		for(var/mob/living/L in living_mob_list)
+		for(var/mob/living/L in GLOB.living_mob_list)
 			if(L.ckey)
 				L.vantag_hud = TRUE
 				L.recalculate_vis()

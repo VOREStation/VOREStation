@@ -291,10 +291,10 @@
 /datum/unit_test/chemical_grinding_must_produce_valid_results/start_test()
 	var/failed = FALSE
 
-	for(var/grind in global.sheet_reagents + global.ore_reagents)
-		var/list/results = global.sheet_reagents[grind]
+	for(var/grind in GLOB.sheet_reagents + GLOB.ore_reagents)
+		var/list/results = GLOB.sheet_reagents[grind]
 		if(!results)
-			results = global.ore_reagents[grind]
+			results = GLOB.ore_reagents[grind]
 		if(!results || !islist(results))
 			log_unit_test("[grind]: Reagents - Grinding result had invalid list.")
 			failed = TRUE

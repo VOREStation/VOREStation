@@ -213,7 +213,7 @@ var/list/preferences_datums = list()
 	BG.icon_state = bgstate
 	BG.screen_loc = preview_screen_locs["BG"]
 
-	for(var/D in global.GLOB.cardinal)
+	for(var/D in GLOB.cardinal)
 		var/obj/screen/setup_preview/O = LAZYACCESS(char_render_holders, "[D]")
 		if(!O)
 			O = new
@@ -461,7 +461,7 @@ var/list/preferences_datums = list()
 
 	character.synth_markings = synth_markings
 
-	var/list/ear_styles = get_available_styles(global.ear_styles_list)
+	var/list/ear_styles = get_available_styles(GLOB.ear_styles_list)
 	character.ear_style =  ear_styles[ear_style]
 
 	var/datum/preference/color/ears_color1 = GLOB.preference_entries[/datum/preference/color/human/ears_color1]
@@ -476,7 +476,7 @@ var/list/preferences_datums = list()
 	character.ear_secondary_style = ear_styles[ear_secondary_style]
 	character.ear_secondary_colors = SANITIZE_LIST(ear_secondary_colors)
 
-	var/list/tail_styles = get_available_styles(global.tail_styles_list)
+	var/list/tail_styles = get_available_styles(GLOB.tail_styles_list)
 	character.tail_style = tail_styles[tail_style]
 
 	var/datum/preference/color/tail_color1 = GLOB.preference_entries[/datum/preference/color/human/tail_color1]
@@ -488,7 +488,7 @@ var/list/preferences_datums = list()
 	var/datum/preference/color/tail_color3 = GLOB.preference_entries[/datum/preference/color/human/tail_color3]
 	tail_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/tail_color3))
 
-	var/list/wing_styles = get_available_styles(global.wing_styles_list)
+	var/list/wing_styles = get_available_styles(GLOB.wing_styles_list)
 	character.wing_style = wing_styles[wing_style]
 
 	var/datum/preference/color/wing_color1 = GLOB.preference_entries[/datum/preference/color/human/wing_color1]
@@ -547,7 +547,7 @@ var/list/preferences_datums = list()
 	var/priority = 0
 	for(var/M in body_markings)
 		priority += 1
-		var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[M]
+		var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[M]
 
 		for(var/BP in mark_datum.body_parts)
 			var/obj/item/organ/external/O = character.organs_by_name[BP]

@@ -54,66 +54,66 @@
 
 	// Base icon (base material color)
 	var/cache_key = "[base_icon]-[material.name]"
-	if(isnull(stool_cache[cache_key]))
+	if(isnull(GLOB.stool_cache[cache_key]))
 		var/image/I = image(icon, base_icon)
 		if(applies_material_colour)
 			I.color = material.icon_colour
-		stool_cache[cache_key] = I
-	add_overlay(stool_cache[cache_key])
+		GLOB.stool_cache[cache_key] = I
+	add_overlay(GLOB.stool_cache[cache_key])
 
 	// Padding ('_padding') (padding material color)
 	if(padding_material)
 		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]"
-		if(isnull(stool_cache[padding_cache_key]))
+		if(isnull(GLOB.stool_cache[padding_cache_key]))
 			var/image/I =  image(icon, "[base_icon]_padding")
 			I.color = padding_material.icon_colour
-			stool_cache[padding_cache_key] = I
-		add_overlay(stool_cache[padding_cache_key])
+			GLOB.stool_cache[padding_cache_key] = I
+		add_overlay(GLOB.stool_cache[padding_cache_key])
 
 	// Over ('_over') (base material color)
 	cache_key = "[base_icon]-[material.name]-over"
-	if(isnull(stool_cache[cache_key]))
+	if(isnull(GLOB.stool_cache[cache_key]))
 		var/image/I = image(icon, "[base_icon]_over")
 		I.plane = MOB_PLANE
 		I.layer = ABOVE_MOB_LAYER
 		if(applies_material_colour)
 			I.color = material.icon_colour
-		stool_cache[cache_key] = I
-	add_overlay(stool_cache[cache_key])
+		GLOB.stool_cache[cache_key] = I
+	add_overlay(GLOB.stool_cache[cache_key])
 
 	// Padding Over ('_padding_over') (padding material color)
 	if(padding_material)
 		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]-over"
-		if(isnull(stool_cache[padding_cache_key]))
+		if(isnull(GLOB.stool_cache[padding_cache_key]))
 			var/image/I =  image(icon, "[base_icon]_padding_over")
 			I.color = padding_material.icon_colour
 			I.plane = MOB_PLANE
 			I.layer = ABOVE_MOB_LAYER
-			stool_cache[padding_cache_key] = I
-		add_overlay(stool_cache[padding_cache_key])
+			GLOB.stool_cache[padding_cache_key] = I
+		add_overlay(GLOB.stool_cache[padding_cache_key])
 
 	if(has_buckled_mobs())
 		if(padding_material)
 			cache_key = "[base_icon]-armrest-[padding_material.name]"
 		// Armrest ('_armrest') (base material color)
-		if(isnull(stool_cache[cache_key]))
+		if(isnull(GLOB.stool_cache[cache_key]))
 			var/image/I = image(icon, "[base_icon]_armrest")
 			I.plane = MOB_PLANE
 			I.layer = ABOVE_MOB_LAYER
 			if(applies_material_colour)
 				I.color = material.icon_colour
-			stool_cache[cache_key] = I
-		add_overlay(stool_cache[cache_key])
+			GLOB.stool_cache[cache_key] = I
+		add_overlay(GLOB.stool_cache[cache_key])
 		if(padding_material)
 			cache_key = "[base_icon]-padding-armrest-[padding_material.name]"
 			// Padding Armrest ('_padding_armrest') (padding material color)
-			if(isnull(stool_cache[cache_key]))
+			if(isnull(GLOB.stool_cache[cache_key]))
 				var/image/I = image(icon, "[base_icon]_padding_armrest")
 				I.plane = MOB_PLANE
 				I.layer = ABOVE_MOB_LAYER
 				I.color = padding_material.icon_colour
-				stool_cache[cache_key] = I
-			add_overlay(stool_cache[cache_key])
+				GLOB.stool_cache[cache_key] = I
+			add_overlay(GLOB.stool_cache[cache_key])
 
 /obj/structure/bed/chair/bay/chair
 	name = "mounted chair"

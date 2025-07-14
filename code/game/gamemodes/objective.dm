@@ -229,7 +229,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		return 0
 	var/area/shuttle = locate(/area/shuttle/escape/centcom)
 	var/list/protected_mobs = list(/mob/living/silicon/ai, /mob/living/silicon/pai)
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.type in protected_mobs)	continue
 		if (player.mind && (player.mind != owner))
 			if(player.stat != DEAD)			//they're not dead!
@@ -251,7 +251,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		return 0
 	var/area/shuttle = locate(/area/shuttle/escape/centcom)
 	var/protected_mobs[] = list(/mob/living/silicon/ai, /mob/living/silicon/pai, /mob/living/silicon/robot)
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.type in protected_mobs)	continue
 		if (player.mind)
 			if (player.stat != 2)
@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	if(!emergency_shuttle.returned())
 		return 0
 
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player == owner.current)
 			continue
 		if(player.mind)
@@ -521,7 +521,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 					if(isAI(M) && M.stat != 2) //See if any AI's are alive inside that card.
 						return 1
 
-			for(var/mob/living/silicon/ai/ai in mob_list)
+			for(var/mob/living/silicon/ai/ai in GLOB.mob_list)
 				var/turf/T = get_turf(ai)
 				if(istype(T))
 					var/area/check_area = get_area(ai)
@@ -609,11 +609,11 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	if (ticker)
 		var/n_p = 1 //autowin
 		if (ticker.current_state == GAME_STATE_SETTING_UP)
-			for(var/mob/new_player/P in player_list)
+			for(var/mob/new_player/P in GLOB.player_list)
 				if(P.client && P.ready && P.mind!=owner)
 					n_p ++
 		else if (ticker.current_state == GAME_STATE_PLAYING)
-			for(var/mob/living/carbon/human/P in player_list)
+			for(var/mob/living/carbon/human/P in GLOB.player_list)
 				var/datum/component/antag/changeling/comp = P.GetComponent(/datum/component/antag/changeling)
 				if(P.client && !(comp) && P.mind!=owner)
 					n_p ++
@@ -863,7 +863,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/cult/sacrifice/find_target()
 	var/list/possible_targets = list()
 	if(!possible_targets.len)
-		for(var/mob/living/carbon/human/player in player_list)
+		for(var/mob/living/carbon/human/player in GLOB.player_list)
 			if(player.mind && !(player.mind in cult))
 				possible_targets += player.mind
 	if(possible_targets.len > 0)

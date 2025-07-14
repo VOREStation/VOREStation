@@ -18,7 +18,7 @@
 	var/list/potential_victims = list()
 
 /datum/event2/event/wildlife_encounter/set_up()
-	for(var/mob/living/L in player_list)
+	for(var/mob/living/L in GLOB.player_list)
 		//if(!(L.z in get_location_z_levels()))
 		//	log_debug("Not on the right z-level")
 		//	continue // Not on the right z-level.
