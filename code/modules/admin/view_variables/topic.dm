@@ -19,7 +19,7 @@
 //~CARN: for renaming mobs (updates their name, real_name, mind.name, their ID/PDA and datacore records).
 	if(href_list["rename"])
 
-		var/mob/M = locate(href_list["rename"]) in mob_list
+		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
 		if(!istype(M))
 			to_chat(usr, "This can only be used on instances of type /mob", confidential = TRUE)
 			return
@@ -56,7 +56,7 @@
 
 	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
 
-		var/mob/living/L = locate(href_list["mobToDamage"]) in mob_list
+		var/mob/living/L = locate(href_list["mobToDamage"]) in GLOB.mob_list
 		if(!istype(L))
 			return
 
@@ -151,7 +151,7 @@
 		vv_update_display(editing, href_list["var_tweak"], istext(new_val) ? uppertext(new_val) : new_val)
 
 	//Finally, refresh if something modified the list.
-	if(href_list["datumrefresh"])
-		var/datum/DAT = locate(href_list["datumrefresh"])
+	if(href_list[VV_HK_DATUM_REFRESH])
+		var/datum/DAT = locate(href_list[VV_HK_DATUM_REFRESH])
 		if(isdatum(DAT) || istype(DAT, /client) || islist(DAT))
 			debug_variables(DAT)

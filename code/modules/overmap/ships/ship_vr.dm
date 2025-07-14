@@ -1,9 +1,9 @@
 /obj/effect/overmap/visitable/ship/Initialize(mapload)
 	. = ..()
-	listening_objects += src
+	GLOB.listening_objects += src
 
 /obj/effect/overmap/visitable/ship/Destroy()
-	listening_objects -= src
+	GLOB.listening_objects -= src
 	return ..()
 
 /obj/effect/overmap/visitable/ship/MouseDrop(atom/over)

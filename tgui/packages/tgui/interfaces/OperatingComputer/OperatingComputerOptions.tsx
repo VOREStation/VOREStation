@@ -35,7 +35,7 @@ export const OperatingComputerOptions = (props) => {
           value={healthAlarm}
           stepPixelSize={5}
           ml="0"
-          format={(val) => toFixed(val) + '%'}
+          format={(val) => `${toFixed(val)}%`}
           onChange={(e, val: number) =>
             act('health_adj', {
               new: val,
@@ -60,7 +60,7 @@ export const OperatingComputerOptions = (props) => {
           value={oxyAlarm}
           stepPixelSize={5}
           ml="0"
-          format={(val) => toFixed(val) + '%'}
+          format={(val) => `${toFixed(val)}%`}
           onChange={(e, val: number) =>
             act('oxy_adj', {
               new: val,

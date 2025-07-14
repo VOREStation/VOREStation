@@ -231,6 +231,9 @@
 
 /obj/structure/girder/proc/construct_wall(obj/item/stack/material/S, mob/user)
 	var/amount_to_use = reinf_material ? 1 : 2
+	var/time_to_reinforce = 4 SECONDS
+	if(isrobot(user)) //Robots get a speed boost.
+		time_to_reinforce = 1.5 SECONDS
 	if(S.get_amount() < amount_to_use)
 		to_chat(user, span_notice("There isn't enough material here to construct a wall."))
 		return FALSE
@@ -248,7 +251,7 @@
 
 	to_chat(user, span_notice("You begin adding the plating..."))
 
-	if(!do_after(user,40) || !S.use(amount_to_use))
+	if(!do_after(user,time_to_reinforce) || !S.use(amount_to_use))
 		return TRUE //once we've gotten this far don't call parent attackby()
 
 	if(anchored)

@@ -83,3 +83,63 @@
 2025-07-07:
   Kashargul:
   - qol: moves robot sprite setting to the visual tab
+2025-07-08:
+  Kashargul:
+  - bugfix: mining voucher can no longer be redeemed multiple times
+  ShadowLarkens:
+  - rscadd: You can now write messages on people with a pen~ A shower cleans them
+      off.
+  TheCaramelion:
+  - bugfix: Virologists can change the name of their viruses now
+2025-07-09:
+  Diana:
+  - bugfix: Borg claymore and borg jaws do proper damage values
+  ShadowLarkens:
+  - bugfix: Copy slot should work better
+2025-07-10:
+  Diana, Kash:
+  - rscadd: Shadekin light toggle now has a TGUI.
+  - bugfix: Borg grippers don't delete items
+  - bugfix: A lot of borg gripper exploits/bugs fixed
+  - qol: Borgs can reinforce girders at a speed of 1.5 seconds instead of the normal
+      4
+  - code_imp: Two hours spent to optimize shadekin phase code and save an average
+      of ~4 ms of CPU time per phase in extreme conditions!
+  Kashargul:
+  - maptweak: floors losing icon state on turf change
+  TheCaramelion:
+  - bugfix: Spyndrome symptom can be found again
+2025-07-11:
+  Diana:
+  - bugfix: Xenochimera component can be applied midround
+  - bugfix: Grippers can insert items into protolathes
+  Kashargul:
+  - code_imp: improve tg chat performance
+  ShadowLarkens:
+  - qol: Replaced the funky alt-click turf examine menu with a separate TGUI window
+      called the Lootpanel
+  TankTheBirb:
+  - bugfix: removed 2 pixels on the veymed female torso sprite to make it actually
+      fit into any clothes at all that aren't skirts.
+  Willburd:
+  - bugfix: Set Voice verb uses correct list of voices
+2025-07-13:
+  Kashargul:
+  - admin: tickets can be answered from discord
+2025-07-14:
+  Diana:
+  - bugfix: Changeling stings fixed, can be used multiple times again.
+  - bugfix: Transformation sting works properly now
+  - bugfix: Extraction sting works properly now
+  - bugfix: Normal labcoats become teshari sprites when worn by a teshari
+  - bugfix: Whitelisted items can be selected if you're the shape of that species
+      if not that species exactly.
+  Kashargul:
+  - bugfix: bellymode absorb messages not being editable
+  - qol: reduces the chance of the chat resizing badly
+  - admin: entity narrate works again
+  - code_imp: font awesome update
+  ShadowLarkens:
+  - bugfix: Proteans can no longer get stuck in a death loop because their posibrain
+      fell out.
+  - bugfix: Alt click menu now lets you middle click

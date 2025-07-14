@@ -192,16 +192,16 @@ export class NanoMap extends Component<Props, State> {
 
     const WxH = this.getWxH(zoom);
 
-    const mapUrl = resolveAsset('minimap_' + config.mapZLevel + '.png');
+    const mapUrl = resolveAsset(`minimap_${config.mapZLevel}.png`);
     const newStyle: {} = {
-      width: WxH[0] + 'px',
-      height: WxH[1] + 'px',
-      'margin-top': offsetY + 'px',
-      'margin-left': offsetX + 'px',
+      width: `${WxH[0]}px`,
+      height: `${WxH[1]}px`,
+      'margin-top': `${offsetY}px`,
+      'margin-left': `${offsetX}px`,
       overflow: 'hidden',
       position: 'relative',
       'image-rendering': 'pixelated',
-      'background-image': 'url(' + mapUrl + ')',
+      'background-image': `url(${mapUrl})`,
       'background-size': 'cover',
       'background-repeat': 'no-repeat',
       'text-align': 'center',
@@ -252,8 +252,8 @@ const NanoMapMarker = (props: NanoMapMarkerProps) => {
         position="absolute"
         className="NanoMap__marker"
         lineHeight="0"
-        bottom={ry + 'px'}
-        left={rx + 'px'}
+        bottom={`${ry}px`}
+        left={`${rx}px`}
         onMouseDown={handleOnClick}
       >
         <Icon name={icon} color={color} size={zoom * 0.25} />
@@ -283,7 +283,7 @@ const NanoMapZoomer = (props: NanoMapZoomerProps) => {
             minValue={1}
             maxValue={8}
             stepPixelSize={10}
-            format={(v) => v + 'x'}
+            format={(v) => `${v}x`}
             value={props.zoom}
             onDrag={(e, v) => props.onZoom(e, v)}
           />

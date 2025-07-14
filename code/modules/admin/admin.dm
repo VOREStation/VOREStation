@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 						confidential = TRUE)
 
 /proc/admin_notice(var/message, var/rights)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		var/C = M.client
 
 		if(!C)
@@ -111,7 +111,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			if(issmall(player))
 				body += span_bold("Monkeyized") + " | "
 			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];monkeyone=\ref[player]'>Monkeyize</A> | "
+				body += "<A href='byond://?_src_=holder;[HrefToken()];turn_monkey=\ref[player]'>Monkeyize</A> | "
 
 			//Corgi
 			if(iscorgi(player))
@@ -123,9 +123,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			if(isAI(player))
 				body += span_bold("Is an AI ")
 			else if(ishuman(player))
-				body += {"<A href='byond://?_src_=holder;[HrefToken()];makeai=\ref[player]'>Make AI</A> |
-					<A href='byond://?_src_=holder;[HrefToken()];makerobot=\ref[player]'>Make Robot</A> |
-					<A href='byond://?_src_=holder;[HrefToken()];makealien=\ref[player]'>Make Alien</A>
+				body += {"<A href='byond://?_src_=holder;[HrefToken()];turn_ai=\ref[player]'>Make AI</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];turn_robot=\ref[player]'>Make Robot</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];turn_alien=\ref[player]'>Make Alien</A>
 				"}
 
 			//Simple Animals
@@ -630,7 +630,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	set category = "Server.Game"
 	set name = "Restart"
 	set desc="Restarts the world"
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 	var/confirm = alert(usr, "Restart the game world?", "Restart", "Yes", "Cancel") // Not tgui_alert for safety
 	if(!confirm || confirm == "Cancel")
@@ -1021,7 +1021,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Server.Game"
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
-	if(!usr.client.holder)	return
+	if(!check_rights_for(usr.client, R_HOLDER))	return
 	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
 		return
 	to_world(span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
@@ -1035,7 +1035,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	world.Reboot()
 
-/datum/admins/proc/unprison(var/mob/M in mob_list)
+/datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Moderation"
 	set name = "Unprison"
 	if (M.z == 2)
@@ -1177,7 +1177,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Events"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
@@ -1299,7 +1299,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
 
-	if (!holder)
+	if (!check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 

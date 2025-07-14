@@ -62,7 +62,7 @@
 	else
 		data["fadein"] = fadein //float
 	if(isgenerator(color))
-		data["color"] = return_generator_args(color)
+		data["color"] = return_generator_args(color, TRUE)
 	else
 		data["color"] = color //float OR string
 	if(isgenerator(color_change))

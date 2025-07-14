@@ -17,7 +17,7 @@ export const DNAModifierMainRadiationEmitter = (props) => {
   const { radiationIntensity, radiationDuration, occupant } = data;
 
   return (
-    (occupant && occupant.isViableSubject && (
+    (occupant?.isViableSubject && (
       <Section fill title="Radiation Emitter">
         <Stack>
           <Stack.Item grow />
