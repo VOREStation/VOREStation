@@ -24,7 +24,7 @@ export const FilterEntry = (props: {
 
   return (
     <Collapsible
-      title={name + ' (' + type + ')'}
+      title={`${name} (${type})`}
       buttons={
         <>
           <NumberInput

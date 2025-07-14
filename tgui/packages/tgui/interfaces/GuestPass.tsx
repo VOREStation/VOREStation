@@ -54,7 +54,7 @@ export const GuestPass = (props) => {
           </Section>
         )) || (
           <Section
-            title={'Guest pass terminal #' + uid}
+            title={`Guest pass terminal #${uid}`}
             buttons={
               <Button icon="scroll" onClick={() => act('mode', { mode: 1 })}>
                 Activity Log

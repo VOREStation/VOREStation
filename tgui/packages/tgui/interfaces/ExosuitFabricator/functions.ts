@@ -64,28 +64,28 @@ export function queueCondFormat(
   const textColors = {};
 
   queue?.forEach((part, i) => {
-      textColors[i] = COLOR_NONE;
-      Object.keys(part.cost).forEach((mat) => {
-        materialTally[mat] = materialTally[mat] || 0;
-        missingMatTally[mat] = missingMatTally[mat] || 0;
+    textColors[i] = COLOR_NONE;
+    Object.keys(part.cost).forEach((mat) => {
+      materialTally[mat] = materialTally[mat] || 0;
+      missingMatTally[mat] = missingMatTally[mat] || 0;
 
-        matFormat[mat] = partBuildColor(
-          part.cost[mat],
-          materialTally[mat],
-          materials[mat],
-        );
+      matFormat[mat] = partBuildColor(
+        part.cost[mat],
+        materialTally[mat],
+        materials[mat],
+      );
 
-        if (matFormat[mat].color !== COLOR_NONE) {
-          if (textColors[i] < matFormat[mat].color) {
-            textColors[i] = matFormat[mat].color;
-          }
-        } else {
-          materialTally[mat] += part.cost[mat];
+      if (matFormat[mat].color !== COLOR_NONE) {
+        if (textColors[i] < matFormat[mat].color) {
+          textColors[i] = matFormat[mat].color;
         }
+      } else {
+        materialTally[mat] += part.cost[mat];
+      }
 
-        missingMatTally[mat] += matFormat[mat].deficit;
-      });
+      missingMatTally[mat] += matFormat[mat].deficit;
     });
+  });
   return { materialTally, missingMatTally, textColors, matFormat };
 }
 

@@ -102,7 +102,7 @@ export const TelesciConsoleContent = (props) => {
           <NumberInput
             fluid
             value={rotation!}
-            format={(v) => v + '°'}
+            format={(v) => `${v}°`}
             step={1}
             minValue={-900}
             maxValue={900}
@@ -113,7 +113,7 @@ export const TelesciConsoleContent = (props) => {
           <NumberInput
             fluid
             value={distance!}
-            format={(v) => v + '/' + maxAllowedDistance + ' m'}
+            format={(v) => `${v}/${maxAllowedDistance} m`}
             minValue={0}
             maxValue={maxAllowedDistance!}
             step={1}
@@ -123,15 +123,15 @@ export const TelesciConsoleContent = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Sector">
           {sectorOptions?.map((z) => (
-              <Button
-                key={z}
-                icon="check-circle"
-                selected={currentZ === Number(z)}
-                onClick={() => act('setz', { setz: z })}
-              >
-                {z}
-              </Button>
-            ))}
+            <Button
+              key={z}
+              icon="check-circle"
+              selected={currentZ === Number(z)}
+              onClick={() => act('setz', { setz: z })}
+            >
+              {z}
+            </Button>
+          ))}
         </LabeledList.Item>
         <LabeledList.Item label="Controls">
           <Button icon="share" iconRotation={-90} onClick={() => act('send')}>

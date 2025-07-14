@@ -60,9 +60,7 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
           )}
           <Stack.Item>
             <Button
-              tooltip={
-                (showAll ? 'Hides' : 'Shows') + ' all possible belly messages.'
-              }
+              tooltip={`${showAll ? 'Hides' : 'Shows'} all possible belly messages.`}
               onClick={() =>
                 act('set_attribute', {
                   attribute: 'b_message_mode',

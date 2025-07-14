@@ -155,12 +155,7 @@ export const EntryGeneratorNumbersList = (
                 var: var_name,
                 var_mod: !isStringArray(input) ? P_DATA_GENERATOR : null,
                 new_value: !isStringArray(input)
-                  ? [
-                      'sphere',
-                      [0, 0, 0],
-                      [1, 1, 1],
-                      RandToNumber.UNIFORM_RAND,
-                    ]
+                  ? ['sphere', [0, 0, 0], [1, 1, 1], RandToNumber.UNIFORM_RAND]
                   : [1, 1, 1],
               })
             }

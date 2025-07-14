@@ -94,7 +94,7 @@ export const EmbeddedController = (props) => {
   const Component: React.JSX.Element = primaryRoutes[internalTemplateName];
   if (!Component) {
     throw Error(
-      'Unable to find Component for template name: ' + internalTemplateName,
+      `Unable to find Component for template name: ${internalTemplateName}`,
     );
   }
 

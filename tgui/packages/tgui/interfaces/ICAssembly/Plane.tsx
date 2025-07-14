@@ -289,7 +289,7 @@ const Circuit = (
     onPortRightClick,
   } = props;
 
-  const [pos, setPos] = useSharedState('component-pos-' + circuit.ref, {
+  const [pos, setPos] = useSharedState(`component-pos-${circuit.ref}`, {
     x: 0,
     y: 0,
   });

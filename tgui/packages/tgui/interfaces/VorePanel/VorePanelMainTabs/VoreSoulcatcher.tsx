@@ -109,7 +109,7 @@ const VoreSoulcatcherSection = (props: {
 
   return (
     <Section
-      title={'Soulcatcher (' + name + ')'}
+      title={`Soulcatcher (${name})`}
       fill
       buttons={
         <Stack align="center">

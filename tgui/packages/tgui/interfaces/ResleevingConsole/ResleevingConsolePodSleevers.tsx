@@ -14,7 +14,7 @@ export const ResleevingConsolePodSleevers = (props) => {
         <Box key={i} width="64px" textAlign="center" inline mr="0.5rem">
           <Image
             src={resolveAsset(
-              'sleeve_' + (pod.occupied ? 'occupied' : 'empty') + '.gif',
+              `sleeve_${pod.occupied ? 'occupied' : 'empty'}.gif`,
             )}
             style={{
               width: '100%',

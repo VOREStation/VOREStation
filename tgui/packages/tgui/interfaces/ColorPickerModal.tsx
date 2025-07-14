@@ -195,7 +195,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         }}
                       >
                         <Box
-                          backgroundColor={'#' + entry}
+                          backgroundColor={`#${entry}`}
                           width="21px"
                           height="14px"
                         />
@@ -225,7 +225,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         }}
                       >
                         <Box
-                          backgroundColor={'#' + entry}
+                          backgroundColor={`#${entry}`}
                           width="21px"
                           height="14px"
                         />

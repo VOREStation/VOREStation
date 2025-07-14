@@ -39,7 +39,7 @@ export const NtosFileManager = (props) => {
       <NtosWindow.Content scrollable>
         {(filename && (
           <Section
-            title={'Viewing File ' + filename}
+            title={`Viewing File ${filename}`}
             buttons={
               <Stack>
                 <Stack.Item>

@@ -103,7 +103,7 @@ export const TelecommsMachineBrowser = (props) => {
           <TelecommsBrowser
             title={
               selectedMachine
-                ? selectedMachine.name + ' (' + selectedMachine.id + ')'
+                ? `${selectedMachine.name} (${selectedMachine.id})`
                 : 'Detected Network Entities'
             }
             list={selectedMachine ? selectedMachine.links : machinelist}
@@ -145,7 +145,7 @@ const TelecommsBrowser = (props) => {
           list.map((machine) => (
             <LabeledList.Item
               key={machine.id}
-              label={machine.name + ' (' + machine.id + ')'}
+              label={`${machine.name} (${machine.id})`}
             >
               <Button
                 icon="eye"

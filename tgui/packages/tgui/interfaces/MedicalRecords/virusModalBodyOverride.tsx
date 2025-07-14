@@ -34,7 +34,7 @@ export const virusModalBodyOverride = (modal: modalData) => {
           <LabeledList.Item label="Symptoms">
             <LabeledList>
               {virus.symptoms.map((s) => (
-                <LabeledList.Item key={s.stage} label={s.stage + '. ' + s.name}>
+                <LabeledList.Item key={s.stage} label={`${s.stage}. ${s.name}`}>
                   <Box inline color="label">
                     Strength:
                   </Box>{' '}

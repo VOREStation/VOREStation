@@ -203,9 +203,7 @@ const PartCategory = (props: {
                   icon="question-circle"
                   color="transparent"
                   height="20px"
-                  tooltip={
-                    'Build Time: ' + part.printTime + 's. ' + (part.desc || '')
-                  }
+                  tooltip={`Build Time: ${part.printTime}s. ${part.desc || ''}`}
                   tooltipPosition="left"
                 />
               </Stack.Item>

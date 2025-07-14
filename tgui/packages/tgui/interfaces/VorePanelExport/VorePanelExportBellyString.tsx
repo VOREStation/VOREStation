@@ -252,13 +252,13 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" data-bs-parent="#accordionBellies">';
   result += '<div class="accordion-body">';
-  result += 'Addons:<br>' + GetAddons(addons) + '<br><br>';
+  result += `Addons:<br>${GetAddons(addons)}<br><br>`;
 
   result += '<b>== Descriptions ==</b><br>';
-  result += 'Vore Verb:<br>' + vore_verb + '<br><br>';
-  result += 'Release Verb:<br>' + release_verb + '<br><br>';
-  result += 'Description:<br>"' + desc + '"<br><br>';
-  result += 'Absorbed Description:<br>"' + absorbed_desc + '"<br><br>';
+  result += `Vore Verb:<br>${vore_verb}<br><br>`;
+  result += `Release Verb:<br>${release_verb}<br><br>`;
+  result += `Description:<br>"${desc}"<br><br>`;
+  result += `Absorbed Description:<br>"${absorbed_desc}"<br><br>`;
 
   result += '<hr>';
 
@@ -438,7 +438,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_attempt_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -447,7 +447,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_attempt_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -456,7 +456,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -465,7 +465,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -474,7 +474,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_messages_outside?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -483,7 +483,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_item_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -492,7 +492,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_item_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -501,7 +501,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_item_messages_outside?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -510,7 +510,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_fail_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -519,7 +519,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_fail_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -528,7 +528,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_attempt_absorbed_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -537,7 +537,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_attempt_absorbed_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -546,7 +546,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_absorbed_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -555,7 +555,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_absorbed_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -564,7 +564,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_absorbed_messages_outside?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -573,7 +573,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_fail_absorbed_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -582,7 +582,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   escape_fail_absorbed_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -591,7 +591,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   primary_transfer_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -600,7 +600,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   primary_transfer_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -609,7 +609,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   secondary_transfer_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -618,7 +618,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   secondary_transfer_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -627,7 +627,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   primary_autotransfer_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -636,7 +636,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   primary_autotransfer_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -645,7 +645,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   secondary_autotransfer_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -654,7 +654,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   secondary_autotransfer_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -663,7 +663,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   digest_chance_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -672,7 +672,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   digest_chance_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -681,7 +681,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   absorb_chance_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -690,7 +690,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   absorb_chance_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -699,7 +699,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   struggle_messages_outside?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -708,7 +708,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   struggle_messages_inside?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -717,7 +717,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   absorbed_struggle_messages_outside?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -726,7 +726,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   absorbed_struggle_messages_inside?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -735,7 +735,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   digest_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -744,7 +744,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   digest_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -753,7 +753,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   absorb_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -762,7 +762,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   absorb_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -771,7 +771,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   unabsorb_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -780,7 +780,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   unabsorb_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -789,7 +789,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   examine_messages?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -798,7 +798,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   examine_messages_absorbed?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -807,7 +807,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   trash_eater_in?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -816,7 +816,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="messagesTabpanel">';
   trash_eater_out?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -828,67 +828,67 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<details><summary>Idle Messages (Hold):</summary><p>';
   emotes_hold?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Hold Absorbed):</summary><p>';
   emotes_holdabsorbed?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Digest):</summary><p>';
   emotes_digest?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Absorb):</summary><p>';
   emotes_absorb?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Unabsorb):</summary><p>';
   emotes_unabsorb?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Drain):</summary><p>';
   emotes_drain?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Heal):</summary><p>';
   emotes_heal?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Size Steal):</summary><p>';
   emotes_steal?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Shrink):</summary><p>';
   emotes_shrink?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Grow):</summary><p>';
   emotes_grow?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
   result += '<details><summary>Idle Messages (Encase In Egg):</summary><p>';
   emotes_egg?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</details></p><br>';
 
@@ -896,7 +896,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<hr>';
 
-  result += '<div class="accordion" id="settingsAccordion' + index + '">';
+  result += `<div class="accordion" id="settingsAccordion${index}">`;
 
   // OPTIONS
 
@@ -1000,7 +1000,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
         ? '<span style="color: green;">Yes'
         : '<span style="color: orange;">Prey Choice') +
     '</li>';
-  result += '<li class="list-group-item">Egg Type: ' + egg_type + '</li>';
+  result += `<li class="list-group-item">Egg Type: ${egg_type}</li>`;
   result +=
     '<li class="list-group-item">Selective Mode Preference: ' +
     selective_preference +
@@ -1051,9 +1051,9 @@ export const generateBellyString = (belly: Belly, index: number) => {
       ? '<span style="color: green;">Yes'
       : '<span style="color: red;">No') +
     '</li>';
-  result += '<li class="list-group-item">Vore Sound: ' + vore_sound + '</li>';
+  result += `<li class="list-group-item">Vore Sound: ${vore_sound}</li>`;
   result +=
-    '<li class="list-group-item">Release Sound: ' + release_sound + '</li>';
+    `<li class="list-group-item">Release Sound: ${release_sound}</li>`;
   result += '</ul>';
   result += '</div></div></div>';
 
@@ -1162,33 +1162,27 @@ export const generateBellyString = (belly: Belly, index: number) => {
     '</span>)</b>';
   result += '<ul class="list-group">';
   result +=
-    '<li class="list-group-item">Escape Chance: ' + escapechance + '%</li>';
+    `<li class="list-group-item">Escape Chance: ${escapechance}%</li>`;
   result +=
     '<li class="list-group-item">Escape Chance: ' +
     escapechance_absorbed +
     '%</li>';
   result +=
-    '<li class="list-group-item">Escape Time: ' + escapetime / 10 + 's</li>';
+    `<li class="list-group-item">Escape Time: ${escapetime / 10}s</li>`;
   result +=
-    '<li class="list-group-item">Transfer Chance: ' + transferchance + '%</li>';
+    `<li class="list-group-item">Transfer Chance: ${transferchance}%</li>`;
   result +=
-    '<li class="list-group-item">Transfer Location: ' +
-    transferlocation +
-    '</li>';
+    `<li class="list-group-item">Transfer Location: ${transferlocation}</li>`;
   result +=
-    '<li class="list-group-item">Secondary Transfer Chance: ' +
-    transferchance_secondary +
-    '%</li>';
+    `<li class="list-group-item">Secondary Transfer Chance: ${transferchance_secondary}%</li>`;
   result +=
-    '<li class="list-group-item">Secondary Transfer Location: ' +
-    transferlocation_secondary +
-    '</li>';
+    `<li class="list-group-item">Secondary Transfer Location: ${transferlocation_secondary}</li>`;
   result +=
-    '<li class="list-group-item">Absorb Chance: ' + absorbchance + '%</li>';
+    `<li class="list-group-item">Absorb Chance: ${absorbchance}%</li>`;
   result +=
-    '<li class="list-group-item">Digest Chance: ' + digestchance + '%</li>';
+    `<li class="list-group-item">Digest Chance: ${digestchance}%</li>`;
   result +=
-    '<li class="list-group-item">Belch Chance: ' + belchchance + '%</li>';
+    `<li class="list-group-item">Belch Chance: ${belchchance}%</li>`;
   result += '</ul>';
   result += '<hr>';
   result +=
@@ -1322,9 +1316,9 @@ export const generateBellyString = (belly: Belly, index: number) => {
       : '<span style="color: red;">Off') +
     '</li>';
   result +=
-    '<li class="list-group-item">Liquid Type: ' + reagent_chosen + '</li>';
+    `<li class="list-group-item">Liquid Type: ${reagent_chosen}</li>`;
   result +=
-    '<li class="list-group-item">Liquid Name: ' + reagent_name + '</li>';
+    `<li class="list-group-item">Liquid Name: ${reagent_name}</li>`;
   result +=
     '<li class="list-group-item">Transfer Verb: ' +
     reagent_transfer_verb +
@@ -1434,7 +1428,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="liquidMessagesTabpanel">';
   fullness1_messages?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -1443,7 +1437,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="liquidMessagesTabpanel">';
   fullness2_messages?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -1452,7 +1446,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="liquidMessagesTabpanel">';
   fullness3_messages?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -1461,7 +1455,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="liquidMessagesTabpanel">';
   fullness4_messages?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 
@@ -1470,7 +1464,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     index +
     '" role="liquidMessagesTabpanel">';
   fullness5_messages?.forEach((msg) => {
-    result += msg + '<br>';
+    result += `${msg}<br>`;
   });
   result += '</div>';
 

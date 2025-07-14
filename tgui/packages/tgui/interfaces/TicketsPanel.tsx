@@ -228,7 +228,7 @@ export const TicketsPanel = (props) => {
               <Stack fill vertical>
                 <Stack.Item>
                   <Section
-                    title={'Ticket #' + selected_ticket.id}
+                    title={`Ticket #${selected_ticket.id}`}
                     buttons={
                       <Stack>
                         <Stack.Item>

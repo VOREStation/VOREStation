@@ -25,7 +25,7 @@ export function getDockingStatus(
   }
 
   if (showsOverride && docking_override) {
-    main = main + '-MANUAL';
+    main = `${main}-MANUAL`;
   }
 
   return <Box color={color}>{main}</Box>;

@@ -185,7 +185,7 @@ export const ExtraWindow = (props: {
     >
       <Section
         fill
-        title={name + ' Options'}
+        title={`${name} Options`}
         buttons={
           <Button icon="times" color="bad" onClick={() => setShow('')}>
             Close

@@ -28,7 +28,7 @@ export const generateSoulcatcherString = (soulcatcher: Soulcatcher) => {
     '" aria-expanded="false" aria-controls="collapse' +
     index +
     '">';
-  result += name + ' (Soulcatcher)';
+  result += `${name} (Soulcatcher)`;
   result += '</button></h2>';
 
   result +=
@@ -62,13 +62,13 @@ export const generateSoulcatcherString = (soulcatcher: Soulcatcher) => {
 
   result += '<br><hr>';
   result += '<b>== Descriptions ==</b><br>';
-  result += 'Inside Flavor:<br>' + inside_flavor + '<br><br>';
-  result += 'Capture Message:<br>' + capture_message + '<br><br>';
-  result += 'Transit Message:<br>' + transit_message + '<br><br>';
-  result += 'Release Message:<br>' + release_message + '<br><br>';
-  result += 'Transfer Message:<br>' + transfer_message + '<br><br>';
-  result += 'Delete Message:<br>' + delete_message + '<br><br>';
-  result += 'Linked Belly:<br>' + linked_belly + '<br><br>';
+  result += `Inside Flavor:<br>${inside_flavor}<br><br>`;
+  result += `Capture Message:<br>${capture_message}<br><br>`;
+  result += `Transit Message:<br>${transit_message}<br><br>`;
+  result += `Release Message:<br>${release_message}<br><br>`;
+  result += `Transfer Message:<br>${transfer_message}<br><br>`;
+  result += `Delete Message:<br>${delete_message}<br><br>`;
+  result += `Linked Belly:<br>${linked_belly}<br><br>`;
 
   result += '</div></div>';
   result += '</div>'; // End Div messagesTabpanel
