@@ -352,7 +352,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	var/player_name = message_as_list.Join(" ")
 	var/mob/living/real_target
-	for(var/mob/living/target in player_list)
+	for(var/mob/living/target in GLOB.player_list)
 		if(target.real_name == player_name)
 			real_target = target
 			break
