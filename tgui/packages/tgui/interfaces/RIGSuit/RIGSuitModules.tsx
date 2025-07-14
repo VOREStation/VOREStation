@@ -30,8 +30,7 @@ export const RIGSuitModules = (props) => {
       <Box color="label" mb="0.2rem" fontSize={1.5}>
         Selected Primary: {capitalize(primarysystem || 'None')}
       </Box>
-      {modules &&
-        modules.map((module, i) => (
+      {modules?.map((module, i) => (
           <Section
             key={i}
             title={

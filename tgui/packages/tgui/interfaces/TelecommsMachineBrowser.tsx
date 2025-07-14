@@ -99,7 +99,7 @@ export const TelecommsMachineBrowser = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        {machinelist && machinelist.length ? (
+        {machinelist?.length ? (
           <TelecommsBrowser
             title={
               selectedMachine

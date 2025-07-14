@@ -84,7 +84,7 @@ export const VorePanelEditTextTabs = (props: {
                   act(tabAction, { tab: value });
                 }
               }}
-              icon={tabsToIcons && tabsToIcons[value]}
+              icon={tabsToIcons?.[value]}
             >
               {value}
             </Tabs.Tab>

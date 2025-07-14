@@ -122,8 +122,7 @@ export const TelesciConsoleContent = (props) => {
           />
         </LabeledList.Item>
         <LabeledList.Item label="Sector">
-          {sectorOptions &&
-            sectorOptions.map((z) => (
+          {sectorOptions?.map((z) => (
               <Button
                 key={z}
                 icon="check-circle"

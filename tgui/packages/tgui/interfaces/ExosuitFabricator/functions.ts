@@ -46,8 +46,8 @@ export function partCondFormat(
   Object.keys(part.cost).forEach((mat) => {
     format[mat] = partBuildColor(part.cost[mat], tally[mat], materials[mat]);
 
-    if (format[mat].color > format['textColor']) {
-      format['textColor'] = format[mat].color;
+    if (format[mat].color > format.textColor) {
+      format.textColor = format[mat].color;
     }
   });
 
@@ -63,8 +63,7 @@ export function queueCondFormat(
   const missingMatTally = {};
   const textColors = {};
 
-  queue &&
-    queue.forEach((part, i) => {
+  queue?.forEach((part, i) => {
       textColors[i] = COLOR_NONE;
       Object.keys(part.cost).forEach((mat) => {
         materialTally[mat] = materialTally[mat] || 0;

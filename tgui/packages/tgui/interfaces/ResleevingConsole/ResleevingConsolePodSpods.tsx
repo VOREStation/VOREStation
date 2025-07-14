@@ -9,7 +9,7 @@ export const ResleevingConsolePodSpods = (props) => {
   const { act, data } = useBackend<Data>();
   const { spods, selected_printer } = data;
 
-  if (spods && spods.length) {
+  if (spods?.length) {
     return spods.map((pod, i) => {
       let podAction: React.JSX.Element;
       if (pod.status === 'cloning') {

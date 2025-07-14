@@ -165,7 +165,7 @@ export const ShockConfigurator = (props) => {
             />
           }
         >
-          {availableDevices && availableDevices.length ? (
+          {availableDevices?.length ? (
             availableDevices.map((device) => (
               <Box key={device.id}>
                 <Box bold>

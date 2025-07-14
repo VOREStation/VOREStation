@@ -283,8 +283,7 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
 
   return (
     <Stack wrap="wrap">
-      {regions &&
-        regions.map((region) => (
+      {regions?.map((region) => (
           <Stack.Item mb={1} basis="content" grow key={region.name}>
             <Section title={region.name} height="100%">
               {region.accesses.map((access) => (

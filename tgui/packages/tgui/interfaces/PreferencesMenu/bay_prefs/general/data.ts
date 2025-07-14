@@ -381,7 +381,7 @@ export type Species = {
   species_language: string;
   icobase: string;
   rarity: number;
-  has_organ: string;
+  has_organ: Record<string, string>;
   flags: SpeciesFlags;
   spawn_flags: SpawnFlags;
   appearance_flags: AppearanceFlags;
