@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 						confidential = TRUE)
 
 /proc/admin_notice(var/message, var/rights)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		var/C = M.client
 
 		if(!C)
@@ -1035,7 +1035,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	world.Reboot()
 
-/datum/admins/proc/unprison(var/mob/M in mob_list)
+/datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Moderation"
 	set name = "Unprison"
 	if (M.z == 2)
@@ -1177,7 +1177,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Events"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"

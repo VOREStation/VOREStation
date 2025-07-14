@@ -84,7 +84,7 @@ export const GasTemperatureSystem = (props) => {
             maxValue={maxGasTemperature}
             fillValue={gasTemperature}
             value={targetGasTemperature}
-            format={(value) => gasTemperature + ' / ' + toFixed(value)}
+            format={(value) => `${gasTemperature} / ${toFixed(value)}`}
             unit="K"
             color={gasTemperatureClass}
             onChange={(e, val) => act('setGasTemperature', { temp: val })}

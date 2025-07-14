@@ -1,6 +1,6 @@
 import { Box, Stack } from 'tgui-core/components';
 
-const formatUnits = (a) => a + ' unit' + (a === 1 ? '' : 's');
+const formatUnits = (a) => `${a} unit${a === 1 ? '' : 's'}`;
 
 /**
  * Displays a beaker's contents

@@ -402,8 +402,8 @@
 				O = new organ_type(H,1)
 				H.internal_organs_by_name[organ_tag] = O
 		if(!partial)
-			dead_mob_list.Remove(H)
-			living_mob_list += H
+			GLOB.dead_mob_list.Remove(H)
+			GLOB.living_mob_list += H
 			H.tod = null
 			H.timeofdeath = 0
 			H.set_stat(CONSCIOUS)

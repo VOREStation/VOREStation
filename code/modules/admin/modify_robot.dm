@@ -1,4 +1,4 @@
-/client/proc/modify_robot(var/mob/living/silicon/robot/target in silicon_mob_list)
+/client/proc/modify_robot(var/mob/living/silicon/robot/target in GLOB.silicon_mob_list)
 	set name = "Modify Robot"
 	set desc = "Allows to add or remove modules to/from robots."
 	set category = "Admin.Silicon"
@@ -63,7 +63,7 @@
 		.["target"]["crisis_override"] = target.crisis_override
 		.["target"]["active_restrictions"] = target.restrict_modules_to
 		var/list/possible_restrictions = list()
-		for(var/entry in robot_modules)
+		for(var/entry in GLOB.robot_modules)
 			if(!target.restrict_modules_to.Find(entry))
 				possible_restrictions += entry
 		.["target"]["possible_restrictions"] = possible_restrictions
@@ -74,7 +74,7 @@
 			.["target"]["sprite_size"] = spritesheet.icon_size_id(.["target"]["sprite"] + "S")
 			.["target"]["modules"] = get_target_items(user)
 			var/list/module_options = list()
-			for(var/module in robot_modules)
+			for(var/module in GLOB.robot_modules)
 				module_options += module
 			.["model_options"] = module_options
 			// Data for the upgrade options
@@ -122,7 +122,7 @@
 			if(source)
 				.["source"] += get_module_source(user, spritesheet)
 	var/list/all_robots = list()
-	for(var/mob/living/silicon/robot/R in silicon_mob_list)
+	for(var/mob/living/silicon/robot/R in GLOB.silicon_mob_list)
 		if(!R.loc)
 			continue
 		all_robots += list(list("displayText" = "[R]", "value" = "\ref[R]"))
@@ -190,7 +190,7 @@
 		if("select_source")
 			if(source)
 				qdel(source)
-			var/module_type = robot_modules[params["new_source"]]
+			var/module_type = GLOB.robot_modules[params["new_source"]]
 			if(ispath(module_type, /obj/item/robot_module/robot/syndicate))
 				source = new /mob/living/silicon/robot/syndicate(null)
 			else
@@ -282,7 +282,7 @@
 				return FALSE
 			var/mod_type = source.modtype
 			qdel(source.module)
-			var/module_type = robot_modules[target.modtype]
+			var/module_type = GLOB.robot_modules[target.modtype]
 			source.modtype = target.modtype
 			new module_type(source)
 			source.sprite_datum = target.sprite_datum
@@ -293,7 +293,7 @@
 			target.hud_used?.update_robot_modules_display(TRUE)
 			qdel(target.module)
 			target.modtype = mod_type
-			module_type = robot_modules[mod_type]
+			module_type = GLOB.robot_modules[mod_type]
 			target.transform_with_anim()
 			new module_type(target)
 			target.hands.icon_state = target.get_hud_module_icon()

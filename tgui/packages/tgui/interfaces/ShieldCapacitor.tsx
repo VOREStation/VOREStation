@@ -63,7 +63,7 @@ export const ShieldCapacitor = (props) => {
               />
               <AnimatedNumber
                 value={100 * round(stored_charge / max_charge, 1)}
-                format={(value) => ' (' + toFixed(value, 1) + '%)'}
+                format={(value) => ` (${toFixed(value, 1)}%)`}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Charge Rate">

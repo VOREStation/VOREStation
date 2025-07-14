@@ -77,7 +77,7 @@ export const AtmosMixer = (props) => {
             <LabeledList.Item color="label">
               <u>Concentrations</u>
             </LabeledList.Item>
-            <LabeledList.Item label={'Node 1 (' + node1_dir + ')'}>
+            <LabeledList.Item label={`Node 1 (${node1_dir})`}>
               <NumberInput
                 animated
                 value={node1_concentration}
@@ -94,7 +94,7 @@ export const AtmosMixer = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label={'Node 2 (' + node2_dir + ')'}>
+            <LabeledList.Item label={`Node 2 (${node2_dir})`}>
               <NumberInput
                 animated
                 value={node2_concentration}

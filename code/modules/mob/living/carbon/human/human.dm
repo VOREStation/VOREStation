@@ -52,7 +52,7 @@
 
 	nutrition = rand(200,400)
 
-	human_mob_list |= src
+	GLOB.human_mob_list |= src
 
 	. = ..()
 
@@ -75,14 +75,14 @@
 	var/animal = pick("cow","chicken_brown", "chicken_black", "chicken_white", "chick", "mouse_brown", "mouse_gray", "mouse_white", "lizard", "cat2", "goose", "penguin")
 	var/image/img = image('icons/mob/animal.dmi', src, animal)
 	img.override = TRUE
-	add_alt_appearance("animals", img, displayTo = alt_farmanimals)
+	add_alt_appearance("animals", img, displayTo = GLOB.alt_farmanimals)
 
 /mob/living/carbon/human/Destroy()
-	human_mob_list -= src
+	GLOB.human_mob_list -= src
 	QDEL_NULL_LIST(organs)
 	if(nif)
 		QDEL_NULL(nif)
-	alt_farmanimals -= src
+	GLOB.alt_farmanimals -= src
 	worn_clothing.Cut()
 
 	if(stored_blob)
@@ -965,7 +965,7 @@
 		remove_verb(src, /mob/living/carbon/human/proc/remotesay)
 		return
 	var/list/creatures = list()
-	for(var/mob/living/carbon/h in mob_list)
+	for(var/mob/living/carbon/h in GLOB.mob_list)
 		if(h == src) // Don't target self
 			continue
 		creatures += h
@@ -980,7 +980,7 @@
 		target.show_message(span_filter_say("[span_blue("You hear a voice that seems to echo around the room: [say]")]"))
 	src.show_message(span_filter_say("[span_blue("You project your mind into [target.real_name]: [say]")]"))
 	log_say("(TPATH to [key_name(target)]) [say]",src)
-	for(var/mob/observer/dead/G in mob_list)
+	for(var/mob/observer/dead/G in GLOB.mob_list)
 		G.show_message(span_filter_say(span_italics("Telepathic message from " + span_bold("[src]") + " to " + span_bold("[target]") + ": [say]")))
 
 /mob/living/carbon/human/proc/remoteobserve()
@@ -1003,7 +1003,7 @@
 	var/list/mob/creatures = list()
 
 	var/turf/current = get_turf(src) // Needs to be on station or same z to perform telepathy
-	for(var/mob/living/carbon/h in mob_list)
+	for(var/mob/living/carbon/h in GLOB.mob_list)
 		var/turf/temp_turf = get_turf(h)
 		if(!istype(temp_turf,/turf/)) // Nullcheck fix
 			continue

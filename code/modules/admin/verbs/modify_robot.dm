@@ -1,5 +1,5 @@
 //Allows to add and remove modules from borgs
-/client/proc/modify_robot(var/mob/living/silicon/robot/target in silicon_mob_list)
+/client/proc/modify_robot(var/mob/living/silicon/robot/target in GLOB.silicon_mob_list)
 	set name = "Modify Robot Module"
 	set desc = "Allows to add or remove modules to/from robots."
 	set category = "Admin.Silicon"

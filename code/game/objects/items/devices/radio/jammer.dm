@@ -1,4 +1,4 @@
-var/global/list/active_radio_jammers = list()
+GLOBAL_LIST_EMPTY(active_radio_jammers)
 
 /proc/is_jammed(var/obj/radio)
 	var/turf/Tr = get_turf(radio)
@@ -9,7 +9,7 @@ var/global/list/active_radio_jammers = list()
 	if(our_area.no_comms)
 		return TRUE
 
-	for(var/obj/item/radio_jammer/J as anything in active_radio_jammers)
+	for(var/obj/item/radio_jammer/J as anything in GLOB.active_radio_jammers)
 		var/turf/Tj = get_turf(J)
 
 		if(J.on && Tj.z == Tr.z) //If we're on the same Z, it's worth checking.
@@ -52,7 +52,7 @@ var/global/list/active_radio_jammers = list()
 	if(user)
 		to_chat(user,span_warning("\The [src] deactivates."))
 	STOP_PROCESSING(SSobj, src)
-	active_radio_jammers -= src
+	GLOB.active_radio_jammers -= src
 	on = FALSE
 	update_icon()
 
@@ -60,7 +60,7 @@ var/global/list/active_radio_jammers = list()
 	if(user)
 		to_chat(user,span_notice("\The [src] is now active."))
 	START_PROCESSING(SSobj, src)
-	active_radio_jammers += src
+	GLOB.active_radio_jammers += src
 	on = TRUE
 	update_icon()
 

@@ -126,3 +126,20 @@
 2025-07-13:
   Kashargul:
   - admin: tickets can be answered from discord
+2025-07-14:
+  Diana:
+  - bugfix: Changeling stings fixed, can be used multiple times again.
+  - bugfix: Transformation sting works properly now
+  - bugfix: Extraction sting works properly now
+  - bugfix: Normal labcoats become teshari sprites when worn by a teshari
+  - bugfix: Whitelisted items can be selected if you're the shape of that species
+      if not that species exactly.
+  Kashargul:
+  - bugfix: bellymode absorb messages not being editable
+  - qol: reduces the chance of the chat resizing badly
+  - admin: entity narrate works again
+  - code_imp: font awesome update
+  ShadowLarkens:
+  - bugfix: Proteans can no longer get stuck in a death loop because their posibrain
+      fell out.
+  - bugfix: Alt click menu now lets you middle click

@@ -119,7 +119,7 @@ export const VoreUserPreferencesAesthetic = (props: {
                     entry={
                       belly_rub_target
                         ? belly_rub_target
-                        : 'Current Selected (' + capitalizedName + ')'
+                        : `Current Selected (${capitalizedName})`
                     }
                   />
                 </LabeledList.Item>
@@ -133,7 +133,7 @@ export const VoreUserPreferencesAesthetic = (props: {
             {!!sanitizeCorruption.corrupted && (
               <Stack.Item>
                 <NoticeBox danger>
-                  Your {'>' + aestethicMessages.aest_subtab + '<'} messages are
+                  Your {`>${aestethicMessages.aest_subtab}<`} messages are
                   corrupted, please edit and save them!
                 </NoticeBox>
               </Stack.Item>

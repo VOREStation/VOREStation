@@ -101,7 +101,7 @@ export const Ticket = (props) => {
         <Stack fill vertical>
           <Stack.Item>
             <Section
-              title={'Ticket #' + id}
+              title={`Ticket #${id}`}
               buttons={
                 <Stack>
                   <Stack.Item>

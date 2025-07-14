@@ -43,7 +43,7 @@ export const setGradientSpace = (
   gradient?.map((entry) => {
     if (typeof entry === 'object') {
       if (Object.keys(entry)[0] === 'space') {
-        entry['space'] = space;
+        entry.space = space;
         found = true;
       }
     }

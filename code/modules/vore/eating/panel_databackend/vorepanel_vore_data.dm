@@ -264,7 +264,7 @@
 			"undergarment_color" = selected.undergarment_color,
 			"tail_option_shown" = ishuman(owner),
 			"tail_to_change_to" = selected.tail_to_change_to,
-			"tail_sprite_options" = global.tail_styles_list,
+			"tail_sprite_options" = GLOB.tail_styles_list,
 			"mob_belly_controls" = silicon_control
 			)
 			selected_list["belly_visual_data"] = belly_visual_data

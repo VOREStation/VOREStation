@@ -135,7 +135,7 @@ const NtosEmailClientContent = (props) => {
 
   return (
     <Section
-      title={'Logged in as: ' + current_account}
+      title={`Logged in as: ${current_account}`}
       buttons={
         <Stack>
           <Stack.Item>
