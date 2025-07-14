@@ -47,7 +47,7 @@ interface ColorPickerData {
   presets: string;
 }
 
-type ColorPickerModalProps = {}
+type ColorPickerModalProps = {};
 
 export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const { act, data } = useBackend<ColorPickerData>();
