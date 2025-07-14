@@ -76,7 +76,7 @@ export const PartsLathe = (props) => {
                 {toTitleCase(copyBoard)}
               </LabeledList.Item>
             </LabeledList>
-            {(copyBoardReqComponents && copyBoardReqComponents.length && (
+            {(copyBoardReqComponents?.length && (
               <>
                 {copyBoardReqComponents.map((comp) => (
                   <Box key={comp.name}>

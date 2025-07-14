@@ -78,7 +78,7 @@ export const BrigTimer = (props) => {
                 icon="hourglass-start"
                 onClick={() => act('preset', { preset: 'short' })}
               >
-                {'Add ' + formatTime(preset_short)}
+                {`Add ${formatTime(preset_short)}`}
               </Button>
             </Stack.Item>
             <Stack.Item grow>
@@ -87,7 +87,7 @@ export const BrigTimer = (props) => {
                 icon="hourglass-start"
                 onClick={() => act('preset', { preset: 'medium' })}
               >
-                {'Add ' + formatTime(preset_medium)}
+                {`Add ${formatTime(preset_medium)}`}
               </Button>
             </Stack.Item>
             <Stack.Item grow>
@@ -96,7 +96,7 @@ export const BrigTimer = (props) => {
                 icon="hourglass-start"
                 onClick={() => act('preset', { preset: 'long' })}
               >
-                {'Add ' + formatTime(preset_long)}
+                {`Add ${formatTime(preset_long)}`}
               </Button>
             </Stack.Item>
           </Stack>

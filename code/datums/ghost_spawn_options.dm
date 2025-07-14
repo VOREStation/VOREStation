@@ -106,12 +106,12 @@
 	chosen_fabricator.create_drone(user.client)
 
 /datum/tgui_module/ghost_spawn_menu/proc/join_vr(mob/observer/dead/user, landmark)
-	var/S = locate(landmark) in landmarks_list
+	var/S = locate(landmark) in GLOB.landmarks_list
 
 	user.fake_enter_vr(S)
 
 /datum/tgui_module/ghost_spawn_menu/proc/soulcatcher_spawn(mob/observer/dead/user, selected_player)
-	var/mob/living/target = locate(selected_player) in player_list
+	var/mob/living/target = locate(selected_player) in GLOB.player_list
 		//Didn't pick anyone or picked a null
 	if(!target)
 		to_chat(user, span_warning("Invalid player selected!"))
@@ -168,7 +168,7 @@
 		SC.catch_mob(user) //This will result in us being deleted so...
 
 /datum/tgui_module/ghost_spawn_menu/proc/soulcatcher_vore_spawn(mob/observer/dead/user, selected_player)
-	var/mob/living/target = locate(selected_player) in player_list
+	var/mob/living/target = locate(selected_player) in GLOB.player_list
 	if(!target)
 		to_chat(user, span_warning("Invalid player selected!"))
 		return
@@ -211,7 +211,7 @@
 
 
 /datum/tgui_module/ghost_spawn_menu/proc/vore_belly_spawn(mob/observer/dead/user, selected_player)
-	var/mob/living/target = locate(selected_player) in player_list
+	var/mob/living/target = locate(selected_player) in GLOB.player_list
 
 	if(!target)
 		to_chat(user, span_warning("Invalid player selected!"))
@@ -321,7 +321,7 @@
 
 /datum/tgui_module/ghost_spawn_menu/proc/get_ghost_role_spawn()
 	var/list/possibleSpawnspots = list()
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		if(L.name == JOB_GHOSTROLES)
 			possibleSpawnspots += L
 	if(possibleSpawnspots.len)

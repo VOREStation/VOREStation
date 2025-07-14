@@ -33,7 +33,7 @@
 
 	// Find another AI-controlled mob in the same faction if possible.
 	var/mob/living/first_friend
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L in GLOB.living_mob_list)
 		if(L.faction == holder.faction && L.ai_holder)
 			first_friend = L
 			break

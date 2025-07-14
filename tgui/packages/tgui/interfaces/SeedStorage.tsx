@@ -49,7 +49,7 @@ export const SeedStorage = (props) => {
           {seeds.map((seed) => (
             <Stack mt={-1} key={seed.name + seed.uid}>
               <Stack.Item basis="60%">
-                <Collapsible title={toTitleCase(seed.name) + ' #' + seed.uid}>
+                <Collapsible title={`${toTitleCase(seed.name)} #${seed.uid}`}>
                   <Section width="165%" title="Traits">
                     <LabeledList>
                       {Object.keys(seed.traits).map((key) => (

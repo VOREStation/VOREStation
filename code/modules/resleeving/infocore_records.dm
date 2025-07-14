@@ -4,6 +4,7 @@
 ////////////////////////////////
 
 /mob/living/carbon/human/var/resleeve_lock
+/mob/living/carbon/human/var/changeling_locked
 /mob/living/carbon/human/var/original_player
 
 /////// Mind-backup record ///////
@@ -79,6 +80,7 @@
 	//These may or may not be set, mostly irrelevant since it's just a body record.
 	var/ckey
 	var/locked
+	var/changeling_locked
 	var/client/client_ref
 	var/datum/mind/mind_ref
 	var/synthetic
@@ -122,6 +124,11 @@
 
 	//Person OOCly doesn't want people impersonating them
 	locked = ckeylock
+
+	//The mob is a changeling, don't allow anyone to possess them. Not using locked as locked gives OOC notices.
+	if(is_changeling(M))
+		changeling_locked = TRUE
+
 
 	var/datum/species/S = GLOB.all_species["[M.dna.species]"]
 	if(S)
@@ -400,7 +407,7 @@
 
 	// Update record from vanity copy of slot if needed
 	if(from_save_slot)
-		H.client.prefs.vanity_copy_to(H,FALSE,TRUE,TRUE,FALSE)
+		H.client.prefs.vanity_copy_to(H,FALSE,TRUE,TRUE,FALSE,TRUE)
 		for(var/category in H.all_underwear) // No undies
 			H.hide_underwear[category] = TRUE
 		H.update_underwear()

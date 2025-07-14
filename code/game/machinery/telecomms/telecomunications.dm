@@ -13,7 +13,6 @@
 	Look at radio.dm for the prequel to this code.
 */
 
-var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms
 	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Add

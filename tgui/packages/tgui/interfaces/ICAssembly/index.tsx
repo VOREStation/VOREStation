@@ -156,7 +156,7 @@ const CircuitInfo = (props) => {
           {(net_power === 0 && '0 W/s') || (
             <AnimatedNumber
               value={net_power}
-              format={(val) => '-' + formatPower(Math.abs(val)) + '/s'}
+              format={(val) => `-${formatPower(Math.abs(val))}/s`}
             />
           )}
         </LabeledList.Item>

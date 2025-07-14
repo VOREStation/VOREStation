@@ -110,7 +110,7 @@
 
 	var/S = null
 	var/list/vr_landmarks = list()
-	for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
+	for(var/obj/effect/landmark/virtual_reality/sloc in GLOB.landmarks_list)
 		vr_landmarks += sloc.name
 	if(!LAZYLEN(vr_landmarks))
 		to_chat(G, "There are no available spawn locations in virtual reality.")
@@ -118,7 +118,7 @@
 	S = tgui_input_list(G, "Please select a location to spawn your avatar at:", "Spawn location", vr_landmarks)
 	if(!S)
 		return 0
-	for(var/obj/effect/landmark/virtual_reality/i in landmarks_list)
+	for(var/obj/effect/landmark/virtual_reality/i in GLOB.landmarks_list)
 		if(i.name == S)
 			S = i
 			break

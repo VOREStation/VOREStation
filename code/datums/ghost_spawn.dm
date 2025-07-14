@@ -110,7 +110,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 
 /datum/tgui_module/ghost_spawn_menu/proc/compile_ghost_join_data(mob/user)
 	var/ghost_spawn_exists = FALSE
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		if(L.name == JOB_GHOSTROLES)
 			ghost_spawn_exists = TRUE
 			break
@@ -173,7 +173,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 /datum/tgui_module/ghost_spawn_menu/proc/get_vr_data(mob/user)
 	var/datum/data/record/record_found = find_general_record("name", user.client.prefs.real_name)
 	var/list/vr_landmarks = list()
-	for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
+	for(var/obj/effect/landmark/virtual_reality/sloc in GLOB.landmarks_list)
 		vr_landmarks += list(REF(sloc) = sloc.name)
 
 	return list(
@@ -183,7 +183,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 
 /datum/tgui_module/ghost_spawn_menu/proc/compile_vorespawn_data()
 	var/list/compiled_spawn_data = list()
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(!player.client || player.stat)
 			continue
 		var/soulcatcher_active = FALSE

@@ -261,7 +261,7 @@
 	..()
 
 	var/destination = null
-	for(var/obj/singularity/narsie/large/N in narsie_list)
+	for(var/obj/singularity/narsie/large/N in GLOB.narsie_list)
 		destination = N.loc
 		break
 	if(destination)

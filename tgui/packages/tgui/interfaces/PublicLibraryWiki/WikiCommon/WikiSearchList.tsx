@@ -1,4 +1,4 @@
-import { type Dispatch, type SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Input, Section, Stack } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
@@ -37,7 +37,7 @@ export const WikiSearchList = (props: {
               mr="10px"
               fluid
               value={searchText}
-              placeholder={'Search for ' + title + '...'}
+              placeholder={`Search for ${title}...`}
               onChange={(value: string) => onSearchText(value)}
             />
           </Stack.Item>

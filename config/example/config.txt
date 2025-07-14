@@ -451,10 +451,8 @@ ITEMS_SURVIVE_DIGESTION
 # Path to the folder that BYOND should export faxes into so they are readable on the web.
 #FAX_EXPORT_DIR data/faxes
 
-# TCP port on which to connect to the VGS instance.
-#VGS_SERVER_PORT 8888
-# Secret pre-shared-key to authenticate to VGS.
-#VGS_ACCESS_IDENTIFIER some_password_here
+# Port for helper script to add member roles in discord (see tools/registration)
+#REGISTER_SERVER_PORT 6969
 
 MULTI_Z_EXPLOSION_SCALAR 0.35
 
@@ -592,3 +590,15 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 
 ## Uncomment to limit resize caps depending on sprite icon height
 #PIXEL_SIZE_LIMIT
+
+# This is the tgs4 channel tag, for discord chatbots used in TGS
+#AHELP_CHANNEL_TAG admin
+
+# Turn this off if you don't want the TGS bot sending you messages whenever an ahelp ticket is created.
+#DISCORD_AHELPS_DISABLED
+
+#Turn this on if you want all admin-PMs to go to be sent to discord, and not only the first message of a ticket.
+#DISCORD_AHELPS_ALL
+
+## Uncomment to set the number of /world/Reboot()s before the DreamDaemon restarts itself. 0 means restart every round. Requires tgstation server tools.
+#ROUNDS_UNTIL_HARD_RESTART 10

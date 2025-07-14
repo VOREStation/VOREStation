@@ -112,7 +112,7 @@
 	if (!changing_turf)
 		stack_trace("Improper turf qdel. Do not qdel turfs directly.")
 	changing_turf = FALSE
-	cleanbot_reserved_turfs -= src
+	GLOB.cleanbot_reserved_turfs -= src
 	if(connections)
 		connections.erase_all()
 	..()

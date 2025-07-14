@@ -53,7 +53,7 @@
 
 //Called when someone is clicked with the leash
 /obj/item/leash/attack(mob/living/carbon/C, mob/living/user, attackchain_flags, damage_multiplier) //C is the target, user is the one with the leash
-	if(C.alerts["leashed"]) //If the pet is already leashed, do not leash them. For the love of god.
+	if(C.alerts && C.alerts["leashed"]) //If the pet is already leashed, do not leash them. For the love of god.
 		// If they re-click, remove the leash
 		if (C == leash_pet && user == leash_master)
 			unleash()

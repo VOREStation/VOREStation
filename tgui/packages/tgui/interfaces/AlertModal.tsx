@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Autofocus, Box, Button, Section, Stack } from 'tgui-core/components';
 import { isEscape, KEY } from 'tgui-core/keys';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { Loader } from './common/Loader';
 
@@ -36,7 +36,7 @@ export function AlertModal(props) {
   // Stolen wholesale from fontcode
   function textWidth(text: string, font: string, fontsize: number) {
     // default font height is 12 in tgui
-    font = fontsize + 'x ' + font;
+    font = `${fontsize}x ${font}`;
     const c = document.createElement('canvas');
     const ctx = c.getContext('2d') as CanvasRenderingContext2D;
     ctx.font = font;

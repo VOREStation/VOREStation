@@ -13,10 +13,6 @@ SUBSYSTEM_DEF(nightshift)
 /datum/controller/subsystem/nightshift/Initialize()
 	if(!CONFIG_GET(flag/enable_night_shifts))
 		can_fire = FALSE
-	/*
-	if(config.randomize_shift_time)
-		GLOB.gametime_offset = rand(0, 23) HOURS
-	*/
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/nightshift/fire(resumed = FALSE)
@@ -57,7 +53,7 @@ SUBSYSTEM_DEF(nightshift)
 	if(nightshift_active != night_time)
 		update_nightshift(night_time, announcing)
 
-/datum/controller/subsystem/nightshift/proc/update_nightshift(active, announce = TRUE)
+/datum/controller/subsystem/nightshift/proc/update_nightshift(active, announce = TRUE, resumed = FALSE, forced = FALSE)
 	nightshift_active = active
 	if(announce)
 		if(active)

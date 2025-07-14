@@ -49,6 +49,7 @@
 	return
 
 /datum/species/shapeshifter/promethean/avatar/handle_environment_special(var/mob/living/carbon/human/H)
+	//Traits like anxiety won't apply here, but that's the issue with them being a subtype of Promethean.
 	return
 
 /mob/living/carbon/human/proc/shapeshifter_change_opacity()

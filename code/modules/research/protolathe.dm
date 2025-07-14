@@ -112,6 +112,13 @@
 	if(busy)
 		to_chat(user, span_notice("\The [src] is busy. Please wait for completion of previous operation."))
 		return 1
+	if(isrobot(user)) //snowflake gripper BS because it can't be done in get_active_hand without breaking everything
+		var/mob/living/silicon/robot/robot = user
+		if(istype(robot.module_active, /obj/item/gripper))
+			var/obj/item/gripper/gripper = robot.module_active
+			O = gripper.get_current_pocket()
+			gripper.wrapped = null
+			gripper.current_pocket = pick(gripper.pockets)
 	if(default_deconstruction_screwdriver(user, O))
 		if(linked_console)
 			linked_console.linked_lathe = null
@@ -123,8 +130,6 @@
 		return
 	if(O.is_open_container())
 		return 1
-	if(istype(O, /obj/item/gripper/no_use/loader))
-		return 0		//Sheet loaders weren't finishing attack(), this prevents the message "You can't stuff that gripper into this" without preventing the rest of the attack sequence from finishing
 	if(panel_open)
 		to_chat(user, span_notice("You can't load \the [src] while it's opened."))
 		return 1

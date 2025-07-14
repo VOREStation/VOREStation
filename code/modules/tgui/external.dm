@@ -102,7 +102,7 @@
  *
  * required payload list A list of the payload supposed to be set on the regular UI.
  */
-/datum/proc/tgui_fallback(list/payload)
+/datum/proc/tgui_fallback(list/payload, mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_UI_FALLBACK, usr)
 

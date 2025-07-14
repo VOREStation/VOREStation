@@ -181,7 +181,7 @@
 	var/obj/machinery/shipsensors/sensors
 
 /datum/tgui_module/ship/fullmonty/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/ship/fullmonty/New(host, obj/effect/overmap/visitable/ship/new_linked)
 	. = ..()
