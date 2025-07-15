@@ -238,7 +238,7 @@ SUBSYSTEM_DEF(ticker)
 	// TODO START
 
 	// TODO END
-	for(var/obj/effect/landmark/start/S in landmarks_list)
+	for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
 		//Deleting Startpoints but we need the ai point to AI-ize people later
 		if (S.name != "AI")
 			qdel(S)

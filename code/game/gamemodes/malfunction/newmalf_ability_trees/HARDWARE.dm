@@ -109,7 +109,7 @@
 		play_cinematic(/datum/cinematic/malf)
 
 		// FIXME: Probably a better way
-		for(var/mob/living/M in living_mob_list)
+		for(var/mob/living/M in GLOB.living_mob_list)
 			switch(M.z)
 				if(0)	//inside a crate or something
 					var/turf/T = get_turf(M)

@@ -210,24 +210,11 @@
 /datum/unit_test/chemical_grinding_must_produce_valid_results
 
 /datum/unit_test/chemical_grinding_must_produce_valid_results/Run()
-	var/failed = FALSE
-
 	for(var/grind in GLOB.sheet_reagents + GLOB.ore_reagents)
 		var/list/results = GLOB.sheet_reagents[grind]
+
 		if(!results)
 			results = GLOB.ore_reagents[grind]
-		if(!results || !islist(results))
-			TEST_NOTICE("[grind]: Reagents - Grinding result had invalid list.")
-			failed = TRUE
-			continue
-		if(!results.len)
-			TEST_NOTICE("[grind]: Reagents - Grinding result had empty.")
-			failed = TRUE
-			continue
-		for(var/reg_id in results)
-			if(!SSchemistry.chemical_reagents[reg_id])
-				TEST_NOTICE("[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
-				failed = TRUE
 
 		// Cursed test
 		TEST_ASSERT(!(!results || !islist(results)), "[grind]: Reagents - Grinding result had invalid list.")

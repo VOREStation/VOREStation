@@ -67,8 +67,8 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 		uncreatables = build_list_of_uncreatables()
 
 	allocated = new
-	run_loc_floor_bottom_left = get_turf(locate(/obj/effect/landmark/unit_test_bottom_left) in landmarks_list)
-	run_loc_floor_top_right = get_turf(locate(/obj/effect/landmark/unit_test_top_right) in landmarks_list)
+	run_loc_floor_bottom_left = get_turf(locate(/obj/effect/landmark/unit_test_bottom_left) in GLOB.landmarks_list)
+	run_loc_floor_top_right = get_turf(locate(/obj/effect/landmark/unit_test_top_right) in GLOB.landmarks_list)
 
 	// NOT IMPLENTED YET, SEE THE BEGINNING OF THIS PROC
 	//TEST_ASSERT(isfloorturf(run_loc_floor_bottom_left), "run_loc_floor_bottom_left was not a floor ([run_loc_floor_bottom_left])")

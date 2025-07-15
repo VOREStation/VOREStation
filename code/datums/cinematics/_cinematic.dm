@@ -13,7 +13,7 @@
 	var/datum/cinematic/playing = new cinematic_type(watchers, special_callback)
 
 	if(watchers == world)
-		watchers = mob_list
+		watchers = GLOB.mob_list
 
 	playing.start_cinematic(watchers)
 
