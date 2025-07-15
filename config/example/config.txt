@@ -285,9 +285,6 @@ TICKLAG 0.25
 ## FIXME: Unused config. Only uncomment if changed in code.
 # TICKCOMP 1
 
-## Whether the server will talk to other processes through socket_talk
-SOCKET_TALK 0
-
 ## Uncomment this to ban use of ToR
 #TOR_BAN
 

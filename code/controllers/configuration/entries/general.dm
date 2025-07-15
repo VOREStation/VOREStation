@@ -234,9 +234,6 @@
 
 // var/static/Tickcomp = 0 // FIXME: Unused
 
-/// use socket_talk to communicate with other processes
-/datum/config_entry/flag/socket_talk
-
 // var/static/list/resource_urls = null // FIXME: Unused
 
 /// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.

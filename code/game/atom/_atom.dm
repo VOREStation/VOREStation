@@ -1,3 +1,9 @@
+/**
+ * The base type for nearly all physical objects in SS13
+
+ * Lots and lots of functionality lives here, although in general we are striving to move
+ * as much as possible to the components/elements system
+ */
 /atom
 	layer = TURF_LAYER //This was here when I got here. Why though?
 	var/level = 2
