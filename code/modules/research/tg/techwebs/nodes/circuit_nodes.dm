@@ -30,6 +30,6 @@
 	description = "Grants access to movable shells, allowing for remote operations and pranks."
 	prereq_ids = list(TECHWEB_NODE_CIRCUIT_SHELLS)
 	design_ids = list(
-		"drone_shell",
+		"assembly-drone",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
