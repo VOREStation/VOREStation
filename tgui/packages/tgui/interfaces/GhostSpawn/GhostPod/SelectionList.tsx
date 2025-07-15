@@ -8,12 +8,12 @@ import type { PodData } from '../types';
 export const SelectionList = (props: {
   allPods: PodData[];
   userZ: number;
-  selecctedType: string;
+  selectedType: string;
   selectedPod: string;
   onSelectedPod: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const { act } = useBackend();
-  const { allPods, userZ, selecctedType, selectedPod, onSelectedPod } = props;
+  const { allPods, userZ, selectedType, selectedPod, onSelectedPod } = props;
 
   const [searchText, setSearchText] = useState<string>('');
   const [usePlayerZ, setUsePlayerZ] = useState<boolean>(false);
@@ -42,7 +42,7 @@ export const SelectionList = (props: {
     if (filtered.length) {
       onSelectedPod(filtered[0].ref);
     }
-  }, [selecctedType]);
+  }, [selectedType]);
 
   return (
     <Section
