@@ -116,10 +116,6 @@
 	name = "combat medic robot module"
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
-/obj/item/robot_module/robot/syndicate/ninja
-	name = "ninja robot module"
-	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
-
 /obj/item/robot_module/robot/syndicate/combat_medic/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/healthanalyzer/phasic(src)
@@ -171,6 +167,9 @@
 		S.update_icon()
 	..()
 
+/obj/item/robot_module/robot/syndicate/ninja
+	name = "ninja robot module"
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
 /obj/item/robot_module/robot/syndicate/ninja/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
@@ -181,3 +180,9 @@
 	src.modules += new /obj/item/robotic_multibelt/syndicate(src)
 	src.modules += new /obj/item/melee/robotic/blade/ninja(src)
 	src.modules += new /obj/item/multitool/ai_detector(src)
+	src.modules += new /obj/item/borg/cloak(src)
+	//Removes the default sblade
+	var/obj/item/melee/robotic/blade/syndicate/sblade = locate() in src.modules
+	if(sblade)
+		src.modules -= sblade
+		qdel(sblade)
