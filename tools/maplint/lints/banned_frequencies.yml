@@ -1,5 +1,5 @@
 help: "All frequencies must be odd."
-/obj/machinery/embedded_controller:
+/obj/machinery:
   banned_variables:
     frequency:
       deny: { pattern: '.*\s\d*[02468];.*' }
