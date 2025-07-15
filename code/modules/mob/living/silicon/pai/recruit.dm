@@ -40,7 +40,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 			GLOB.paikeys |= pai.ckey
 			card.setPersonality(pai)
 			if(!candidate.name)
-				pai.SetName(pick(ninja_names))
+				pai.SetName(pick(GLOB.ninja_names))
 			else
 				pai.SetName(candidate.name)
 			if(candidate.description)
