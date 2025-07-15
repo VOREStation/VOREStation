@@ -1,0 +1,4 @@
+/obj/machinery:
+  banned_variables:
+    frequency:
+      deny: { pattern: '\s\d*[02468]' }
