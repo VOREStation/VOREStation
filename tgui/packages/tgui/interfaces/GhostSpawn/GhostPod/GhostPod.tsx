@@ -27,12 +27,6 @@ export const GhostPod = (props: {
     }
   }, []);
 
-  useEffect(() => {
-    if (selectedGhostPods.length) {
-      setSelectedPod(selectedGhostPods[0].ref);
-    }
-  }, [selecctedType]);
-
   return (
     <Stack fill>
       <Stack.Item basis="30%">
@@ -46,6 +40,7 @@ export const GhostPod = (props: {
         <SelectionList
           allPods={selectedGhostPods}
           userZ={user_z}
+          selecctedType={selecctedType}
           selectedPod={selectedPod}
           onSelectedPod={setSelectedPod}
         />

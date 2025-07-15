@@ -98,6 +98,11 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 /datum/tgui_module/ghost_spawn_menu/proc/compile_pod_data()
 	var/list/compiled_pods = list()
 	for(var/atom/movable/spawn_object in GLOB.active_ghost_pods)
+		var/enabled = TRUE
+		if(istype(spawn_object, /obj/structure/ghost_pod/manual))
+			var/obj/structure/ghost_pod/manual/man = spawn_object
+			if(!man.remains_active)
+				enabled = FALSE
 		var/type = "Other"
 		if(ismouse(spawn_object))
 			type = "Mouse"
@@ -105,7 +110,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 			type = "Mob"
 		else if(isstructure(spawn_object))
 			type = "Structure"
-		UNTYPED_LIST_ADD(compiled_pods, list("pod_type" = type, "pod_name" = spawn_object.name, "z_level" = spawn_object.z, "ref" = REF(spawn_object)))
+		UNTYPED_LIST_ADD(compiled_pods, list("pod_type" = type, "pod_name" = spawn_object.name, "z_level" = spawn_object.z, "ref" = REF(spawn_object), "remains_active" = enabled))
 	return compiled_pods
 
 /datum/tgui_module/ghost_spawn_menu/proc/compile_ghost_join_data(mob/user)

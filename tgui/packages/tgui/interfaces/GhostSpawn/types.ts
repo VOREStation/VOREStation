@@ -13,6 +13,7 @@ export type PodData = {
   pod_name: string;
   z_level: number;
   ref: string;
+  remains_active: BooleanLike;
 };
 
 export type VoreSpawnData = {
