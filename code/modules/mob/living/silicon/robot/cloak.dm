@@ -86,6 +86,7 @@
 	on_created_text = span_warning("You become harder to see.")
 	on_expired_text = span_notice("You become fully visible once more.")
 	var/visibility
+	evasion = 0
 
 	stacks = MODIFIER_STACK_FORBID
 
@@ -97,10 +98,9 @@
 /datum/modifier/robot_cloak/on_applied()
 	var/mob/living/silicon/robot/R = holder
 	var/obj/item/borg/cloak/cloak = locate() in R //Find the borg cloak module
-	to_world("R = [R] cloak = [cloak]")
 	var/cloak_strength = cloak.cloak_strength
-	to_world("CS = [cloak_strength]")
 	visibility = 255 * (1 - cloak_strength)
+	evasion = 60*cloak_strength //60 at full strength, 30 at half strength.
 	holder.alpha = visibility
 	return
 
