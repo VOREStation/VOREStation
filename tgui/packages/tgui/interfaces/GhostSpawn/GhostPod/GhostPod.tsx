@@ -9,7 +9,7 @@ export const GhostPod = (props: {
   all_ghost_pods: PodData[];
   user_z: number;
 }) => {
-  const [selecctedType, setSelectedType] = useState<string>('');
+  const [selectedType, setSelectedType] = useState<string>('');
   const [selectedPod, setSelectedPod] = useState<string>('');
 
   const { all_ghost_pods, user_z } = props;
@@ -18,7 +18,7 @@ export const GhostPod = (props: {
     (a, b) => a.localeCompare(b),
   );
   const selectedGhostPods = all_ghost_pods.filter(
-    (ghostPod) => ghostPod.pod_type === selecctedType,
+    (ghostPod) => ghostPod.pod_type === selectedType,
   );
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export const GhostPod = (props: {
       <Stack.Item basis="30%">
         <PodSelectionList
           podTypes={podTypes}
-          selectedPod={selecctedType}
+          selectedPod={selectedType}
           onSelectedPod={setSelectedType}
         />
       </Stack.Item>
@@ -40,7 +40,7 @@ export const GhostPod = (props: {
         <SelectionList
           allPods={selectedGhostPods}
           userZ={user_z}
-          selecctedType={selecctedType}
+          selectedType={selectedType}
           selectedPod={selectedPod}
           onSelectedPod={setSelectedPod}
         />
