@@ -143,3 +143,22 @@
   - bugfix: Proteans can no longer get stuck in a death loop because their posibrain
       fell out.
   - bugfix: Alt click menu now lets you middle click
+2025-07-15:
+  Kashargul:
+  - bugfix: a server crash on high deflect mobs
+  - qol: active belly settings tabs are now static and no longer scroll out of view
+  - bugfix: diagonal movement
+  - admin: aghosting is logged
+  SatinIsle:
+  - rscadd: Hanner no longer get outed by medical scanners.
+  - bugfix: Removed copying of bloodtype from vanity TF procs, as if the user actually
+      has blood it will cause organ failure.
+  - bugfix: Added secondary ears to copy form ability.
+  TeleTubby2:
+  - bugfix: fixed the recycler deciding plebeians weren't allowed to use it after
+      someone tried to buy an access locked item.
+  zeskorion:
+  - rscadd: new traits that increase unarmed damage. Traits have been added that combine
+      with respective tiers of Hardy, to simulate high strength for species that should
+      be inhumanly strong
+  - bugfix: simplemobs should now take extra damage from hulk/knuckles
