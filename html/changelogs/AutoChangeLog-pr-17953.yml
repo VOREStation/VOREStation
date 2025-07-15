@@ -1,6 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - rscadd: "Hanner no longer get outed by medical scanners."
-  - bugfix: "Removed copying of bloodtype from vanity TF procs, as if the user actually has blood it will cause organ failure."
-  - bugfix: "Added secondary ears to copy form ability."

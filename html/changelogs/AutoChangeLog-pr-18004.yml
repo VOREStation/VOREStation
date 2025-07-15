@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "diagonal movement"
-  - admin: "aghosting is logged"

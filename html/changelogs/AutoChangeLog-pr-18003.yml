@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - qol: "active belly settings tabs are now static and no longer scroll out of view"
