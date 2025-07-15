@@ -132,8 +132,8 @@
 	var/list/data = ..()
 
 	data["headsetlist"] = GLOB.headsetlist
-	data["GLOB.backbaglist"] = GLOB.backbaglist
-	data["GLOB.pdachoicelist"] = GLOB.pdachoicelist
+	data["backbaglist"] = GLOB.backbaglist
+	data["pdachoicelist"] = GLOB.pdachoicelist
 
 	return data
 
