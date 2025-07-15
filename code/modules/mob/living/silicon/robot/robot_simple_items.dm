@@ -184,6 +184,18 @@
 	icon_state = "toolkit_engiborg_multitool"
 	toolspeed = 0.5
 
+/obj/item/multitool/ai_detector/cyborg
+	name = "AI detector multitool"
+	toolspeed = 0.5
+	desc = "Allows you to see if you are being watched by the AI or within network range. Also works as a normal multitool."
+	description_info = "Functions as a normal multitool with one added benefit.<br>\
+	This will change colors (and make sounds that only you can hear if in your active modules) during various events.<br>\
+	BLUE: You are outside of camera range.<br>\
+	GREEN: You are inside of camera range.<br>\
+	RED: You are currently being watched by the AI.<br>\
+	FLASHING RED AND ORANGE: You are currently being TRACKED by the AI.<br>\
+	FLASHING ORANGE AND BLUE: The AI has attempted to track you but has failed to do so due to being outside camera range."
+
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"
 	desc = "A device that makes cable."

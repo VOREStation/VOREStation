@@ -179,7 +179,7 @@
 	src.modules += new /obj/item/robotic_multibelt/syndicate(src)
 	src.modules += new /obj/item/robotic_multibelt/syndicate(src)
 	src.modules += new /obj/item/melee/robotic/blade/ninja(src)
-	src.modules += new /obj/item/multitool/ai_detector(src)
+	src.modules += new /obj/item/multitool/ai_detector/cyborg(src)
 	src.modules += new /obj/item/borg/cloak(src)
 	//Removes the default sblade
 	var/obj/item/melee/robotic/blade/syndicate/sblade = locate() in src.modules
