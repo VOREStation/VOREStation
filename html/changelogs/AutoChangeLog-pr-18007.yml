@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - bugfix: "Critical preference menu crash when switching to loadout -> equipment"
