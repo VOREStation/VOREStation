@@ -1,3 +1,4 @@
+help: "All frequencies must be odd."
 /obj/machinery:
   banned_variables:
     frequency:
