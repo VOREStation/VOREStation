@@ -170,7 +170,7 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/proc/update_general()
 	recalculate_directional_opacity()
-	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+	if(SSticker && SSticker.current_state == GAME_STATE_PLAYING)
 		reconsider_lights()
 		if(SSair)
 			SSair.mark_for_update(src)

@@ -1,10 +1,13 @@
 SUBSYSTEM_DEF(planets)
 	name = "Planets"
-	init_order = INIT_ORDER_PLANETS
 	priority = FIRE_PRIORITY_PLANETS
 	wait = 2 SECONDS
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	dependencies = list(
+		/datum/controller/subsystem/plants,
+		/datum/controller/subsystem/vis_overlays
+	)
 
 	var/static/list/planets = list()
 	var/static/list/z_to_planet = list()
@@ -75,7 +78,7 @@ SUBSYSTEM_DEF(planets)
 		if(MC_TICK_CHECK)
 			return
 
-	#ifndef UNIT_TEST // Don't be updating temperatures and such during unit tests
+	#ifndef UNIT_TESTS // Don't be updating temperatures and such during unit tests
 	var/list/needs_temp_update = src.needs_temp_update
 	while(needs_temp_update.len)
 		var/datum/planet/P = needs_temp_update[needs_temp_update.len]

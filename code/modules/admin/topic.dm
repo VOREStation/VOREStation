@@ -25,7 +25,7 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
-	if(ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))
+	if(SSticker.mode && SSticker.mode.check_antagonists_topic(href, href_list))
 		check_antagonists()
 		return
 
@@ -147,13 +147,13 @@
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
 
-		if( ticker.mode.name == "blob" )
+		if( SSticker.mode.name == "blob" )
 			tgui_alert_async(usr, "You can't call the shuttle during blob!")
 			return
 
 		switch(href_list["call_shuttle"])
 			if("1")
-				if ((!( ticker ) || !emergency_shuttle.location()))
+				if ((!( SSticker ) || !emergency_shuttle.location()))
 					return
 				if (emergency_shuttle.can_call())
 					emergency_shuttle.call_evac()
@@ -161,7 +161,7 @@
 					message_admins(span_blue("[key_name_admin(usr)] called the Emergency Shuttle to the station."), 1)
 
 			if("2")
-				if (!( ticker ) || !emergency_shuttle.location())
+				if (!( SSticker ) || !emergency_shuttle.location())
 					return
 				if (emergency_shuttle.can_call())
 					emergency_shuttle.call_evac()
@@ -200,9 +200,9 @@
 	else if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))	return
 
-		ticker.delay_end = !ticker.delay_end
-		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins(span_blue("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"]."), 1)
+		SSticker.delay_end = !SSticker.delay_end
+		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+		message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."), 1)
 		href_list["secretsadmin"] = "check_antagonist"
 
 	else if(href_list["simplemake"])
@@ -913,7 +913,7 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
 
-		if(ticker && ticker.mode)
+		if(SSticker && SSticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
 		for(var/mode in config.modes)
@@ -926,7 +926,7 @@
 	else if(href_list["f_secret"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
 
-		if(ticker && ticker.mode)
+		if(SSticker && SSticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
 		if(GLOB.master_mode != "secret")
 			return tgui_alert_async(usr, "The game mode has to be secret!")
@@ -940,7 +940,7 @@
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER|R_EVENT))	return
 
-		if (ticker && ticker.mode)
+		if (SSticker && SSticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
 		GLOB.master_mode = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the mode as [config.mode_names[GLOB.master_mode]].")
@@ -953,7 +953,7 @@
 	else if(href_list["f_secret2"])
 		if(!check_rights(R_ADMIN|R_SERVER|R_EVENT))	return
 
-		if(ticker && ticker.mode)
+		if(SSticker && SSticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
 		if(GLOB.master_mode != "secret")
 			return tgui_alert_async(usr, "The game mode has to be secret!")
@@ -1576,7 +1576,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD|R_EVENT))	return
 
-		if(!ticker || !ticker.mode)
+		if(!SSticker|| !SSticker.mode)
 			tgui_alert_async(usr, "The game hasn't started yet!")
 			return
 

@@ -9,7 +9,7 @@
 	var/datum/admins/is_admin = GLOB.admin_datums[src.ckey]
 	if(is_admin && is_admin.check_for_rights(R_HOLDER))
 		message_admins("Staff logout: [key_name(src)]") // Staff logout notice displays no matter what
-		if (ticker && ticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
+		if (SSticker && SSticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
 			var/admins_number = GLOB.admins.len
 
 			if(admins_number == 0) //Apparently the admin logging out is no longer an admin at this point, so we have to check this towards 0 and not towards 1. Awell.
