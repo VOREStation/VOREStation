@@ -325,6 +325,18 @@
 	icon = 'icons/obj/tools_robot.dmi'
 	icon_state = "sili_rolling_pin"
 
+/obj/item/robotic_multibelt/syndicate
+	name = "Syndicate Robotic multitool"
+	desc = "An integrated toolbelt that holds various tools. This one comes with a multitool-hacktool."
+	cyborg_integrated_tools = list(
+		/obj/item/tool/screwdriver/cyborg = null,
+		/obj/item/tool/wrench/cyborg = null,
+		/obj/item/tool/crowbar/cyborg = null,
+		/obj/item/tool/wirecutters/cyborg = null,
+		/obj/item/multitool/hacktool = null,
+		/obj/item/weldingtool/electric/mounted/cyborg = null,
+		)
+
 //Admin proc to add new materials to their fabricator
 /mob/living/silicon/robot/proc/add_new_material(mat_to_add) //Allows us to add a new material to the borg's synth and then make their multibelt refresh.
 	if(!module)
@@ -951,6 +963,13 @@
 	icon_state = "gripper-sheet"
 
 	can_hold = list(SHEET_GRIPPER)
+
+/obj/item/gripper/syndicate
+	name = "syndicate gripper"
+	desc = "A simple grasping tool for off-the-books syndicate work."
+	icon_state = "gripper-sec"
+
+	can_hold = list(BASIC_GRIPPER, SECURITY_GRIPPER, MINER_GRIPPER, PAPERWORK_GRIPPER, MEDICAL_GRIPPER, RESEARCH_GRIPPER, CIRCUIT_GRIPPER, SERVICE_GRIPPER, GRAVEYARD_GRIPPER, ORGAN_GRIPPER, ROBOTICS_ORGAN_GRIPPER, EXOSUIT_GRIPPER, SHEET_GRIPPER)
 
 /*
  * Misc tools
