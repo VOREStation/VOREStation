@@ -86,7 +86,18 @@
 	on_created_text = span_warning("You become harder to see.")
 	on_expired_text = span_notice("You become fully visible once more.")
 	var/visibility
-	evasion = 0
+	///How many times we have been hit in a short succession.
+	var/times_hit = 0 //How many times we have been hit while cloaked.
+	///How many hits it can sustain before the cloak drops
+	var/cloak_durability = 3
+	///When we were last hit.
+	var/last_hit_time = 0
+	///How slow we are to reset the hit counter.
+	var/hit_dissipation = 5 SECONDS //How long we wait before resetting the hit counter.
+	///If our cloak is currently up or not
+	var/cloaked = TRUE
+	///How much evasion we have when our cloak is up.
+	var/modified_evasion
 
 	stacks = MODIFIER_STACK_FORBID
 
@@ -100,15 +111,53 @@
 	var/obj/item/borg/cloak/cloak = locate() in R //Find the borg cloak module
 	var/cloak_strength = cloak.cloak_strength
 	visibility = 255 * (1 - cloak_strength)
-	evasion = 60*cloak_strength //60 at full strength, 30 at half strength.
-	holder.alpha = visibility
+	modified_evasion = 60*cloak_strength
+	evasion = modified_evasion //60 at full strength, 30 at half strength.
+	animate(holder, alpha = visibility, time = 1 SECOND)
+	RegisterSignal(holder, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(damage_inflicted))
 	return
 
 /datum/modifier/robot_cloak/on_expire()
 	holder.alpha = initial(holder.alpha)
+	UnregisterSignal(holder, COMSIG_MOB_APPLY_DAMAGE)
 	return
 
 /datum/modifier/robot_cloak/tick()
-	holder.alpha = visibility
 	if(holder.stat == DEAD)
 		expire(silent = TRUE)
+	else if(times_hit && (world.time - last_hit_time) > hit_dissipation) //If we have been hit, but the time has passed, reset the hit counter.
+		if(!cloaked)
+			to_chat(holder, span_warning("Your cloak whirrs back to life!"))
+		reset_cloak()
+
+	if(cloaked && !times_hit) //The !times_hit is here so it doesn't interfere with the animation.
+		animate(holder, alpha = visibility, time = 1 SECOND)
+
+/datum/modifier/robot_cloak/proc/damage_inflicted(mob/living/source, damage)
+	if(damage < 5) //weak, don't do anything.
+		return
+	times_hit++
+	var/alpha_to_show = CLAMP((holder.alpha+(damage*10)), holder.alpha, 255) //The more damage we take, the more visible we become.
+	flick_cloak(alpha_to_show)
+	last_hit_time = world.time
+	if(damage >= 50 || times_hit >= cloak_durability)
+		to_chat(holder, span_warning("Your cloak buzzes and fails after sustaining too much damage!!"))
+		drop_cloak()
+		return
+
+/datum/modifier/robot_cloak/proc/flick_cloak(alpha_to_show)
+	animate(holder, alpha = alpha_to_show, time = 2, loop = 6, flags = ANIMATION_PARALLEL) //1 second
+	apply_wibbly_filters(holder, 1 SECOND)
+	animate(holder, alpha = visibility, time = 1 SECOND)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_wibbly_filters), holder, 0.1 SECOND), 1 SECOND)
+
+
+/datum/modifier/robot_cloak/proc/drop_cloak()
+	holder.alpha = initial(holder.alpha)
+	cloaked = FALSE
+	evasion = 0
+
+/datum/modifier/robot_cloak/proc/reset_cloak()
+	times_hit = 0
+	cloaked = TRUE
+	evasion = modified_evasion
