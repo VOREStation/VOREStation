@@ -778,10 +778,10 @@ function draw_verbs(cat) {
 function set_theme(which) {
 	if (which == "light" || which == "vchatlight") {
 		document.body.className = "";
-		set_style_sheet("browserOutput_white");
+		document.documentElement.className = 'light';
 	} else if (which == "dark" || which == "vchatdark") {
 		document.body.className = "dark";
-		set_style_sheet("browserOutput");
+		document.documentElement.className = 'dark';
 	}
 }
 
@@ -800,21 +800,6 @@ function set_tabs_style(style) {
 		menu.classList.remove('menu-wrap');
 		menu.classList.remove('tabs-classic');
 	}
-}
-
-function set_style_sheet(sheet) {
-	if (document.getElementById("goonStyle")) {
-		var currentSheet = document.getElementById("goonStyle");
-		currentSheet.parentElement.removeChild(currentSheet);
-	}
-	var head = document.getElementsByTagName('head')[0];
-	var sheetElement = document.createElement("link");
-	sheetElement.id = "goonStyle";
-	sheetElement.rel = "stylesheet";
-	sheetElement.type = "text/css";
-	sheetElement.href = sheet + ".css";
-	sheetElement.media = 'all';
-	head.appendChild(sheetElement);
 }
 
 function restoreFocus() {
