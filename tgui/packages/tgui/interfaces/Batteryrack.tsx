@@ -113,7 +113,7 @@ export const Batteryrack = (props) => {
                       </Stack.Item>
                       <Stack.Item grow />
                       <Stack.Item>
-                        {cell.used ? cell.percentage + '%' : 'N/C'}
+                        {cell.used ? `${cell.percentage}%` : 'N/C'}
                       </Stack.Item>
                     </Stack>
                   </ProgressBar>

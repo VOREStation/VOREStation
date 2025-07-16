@@ -23,7 +23,7 @@ const EjectMaterial = (props: { material: material }) => {
   const { name, removable, sheets } = material;
 
   const [removeMaterials, setRemoveMaterials] = useSharedState(
-    'remove_mats_' + name,
+    `remove_mats_${name}`,
     1,
   );
 

@@ -14,7 +14,7 @@ export const RCONSmesList = (props) => {
   };
 
   return (
-    <Section title={'SMESs (Page ' + current_page + ')'}>
+    <Section title={`SMESs (Page ${current_page})`}>
       <Stack vertical>
         {smes_info.map((smes) => (
           <Stack.Item key={smes.RCON_tag}>

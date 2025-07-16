@@ -140,7 +140,7 @@
 
 /obj/item/Destroy()
 	if(item_tf_spawn_allowed)
-		item_tf_spawnpoints -= src
+		GLOB.item_tf_spawnpoints -= src
 	if(ismob(loc))
 		var/mob/m = loc
 		m.drop_from_inventory(src)
@@ -397,6 +397,7 @@
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
+	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
 	pixel_x = 0
 	pixel_y = 0
 	return
@@ -1121,12 +1122,12 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 /obj/item/proc/item_tf_spawnpoint_set()
 	if(!item_tf_spawn_allowed)
 		item_tf_spawn_allowed = TRUE
-		item_tf_spawnpoints += src
+		GLOB.item_tf_spawnpoints += src
 
 /obj/item/proc/item_tf_spawnpoint_used()
 	if(item_tf_spawn_allowed)
 		item_tf_spawn_allowed = FALSE
-		item_tf_spawnpoints -= src
+		GLOB.item_tf_spawnpoints -= src
 
 // Ported from TG, used when dropping items on tables/closets.
 /obj/item/proc/do_drop_animation(atom/moving_from)

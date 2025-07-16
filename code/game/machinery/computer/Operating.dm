@@ -283,7 +283,7 @@
 			/datum/surgery_step/brainstem,
 			/datum/surgery_step/generic/ripper,
 		)
-	good_surgeries = surgery_steps
+	good_surgeries = GLOB.surgery_steps
 	for(var/datum/surgery_step/S in good_surgeries)
 		if(S.type in banned_surgery_steps)
 			good_surgeries -= S

@@ -1,10 +1,10 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Stack } from 'tgui-core/components';
 
-import {
-  type LoadoutData,
-  type LoadoutDataConstant,
-  type LoadoutDataStatic,
+import type {
+  LoadoutData,
+  LoadoutDataConstant,
+  LoadoutDataStatic,
 } from './data';
 
 export const SubtabEquipment = (props: {
@@ -22,6 +22,7 @@ export const SubtabEquipment = (props: {
     ringtone,
     shoes,
     jacket,
+    underwear,
   } = data;
 
   const { backbaglist, headsetlist, pdachoicelist } = serverData;
@@ -30,7 +31,7 @@ export const SubtabEquipment = (props: {
     <Stack fill vertical>
       <Stack.Item>
         <LabeledList>
-          {data.underwear.map((underwear, i) => (
+          {underwear?.map((underwear, i) => (
             <LabeledList.Item
               key={underwear.category}
               label={underwear.category}
@@ -43,7 +44,7 @@ export const SubtabEquipment = (props: {
               >
                 {underwear.name}
               </Button>
-              {underwear.tweaks.map((tweak) => (
+              {underwear.tweaks?.map((tweak) => (
                 <Button
                   fluid
                   key={tweak.ref}
@@ -83,7 +84,7 @@ export const SubtabEquipment = (props: {
         </LabeledList>
         <Box>
           <Box bold>Headset Type</Box>
-          {headsetlist.map((item, i) => (
+          {headsetlist?.map((item, i) => (
             <Button
               key={item}
               onClick={() => act('change_headset', { headset: i })}
@@ -95,7 +96,7 @@ export const SubtabEquipment = (props: {
         </Box>
         <Box>
           <Box bold>Backpack Type</Box>
-          {backbaglist.map((item, i) => (
+          {backbaglist?.map((item, i) => (
             <Button
               key={item}
               onClick={() => act('change_backpack', { backbag: i })}
@@ -107,7 +108,7 @@ export const SubtabEquipment = (props: {
         </Box>
         <Box>
           <Box bold>PDA Type</Box>
-          {pdachoicelist.map((item, i) => (
+          {pdachoicelist?.map((item, i) => (
             <Button
               key={item}
               onClick={() => act('change_pda', { pda: i })}

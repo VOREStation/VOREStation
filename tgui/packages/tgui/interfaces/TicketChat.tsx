@@ -3,8 +3,8 @@ import { type RefObject, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
+  Box,
   Button,
-  Divider,
   Input,
   LabeledList,
   Section,
@@ -74,20 +74,24 @@ export const TicketChat = (props) => {
         <Stack fill vertical>
           <Stack.Item>
             <Section
-              title={'Ticket #' + id}
+              title={`Ticket #${id}`}
               buttons={
-                <Button color={LevelColor[level]}>{Level[level]}</Button>
+                <Box
+                  className="TicketPanel__Label"
+                  backgroundColor={LevelColor[level]}
+                >
+                  {Level[level]}
+                </Box>
               }
             >
               <LabeledList>
                 <LabeledList.Item label="Assignee">{handler}</LabeledList.Item>
-                <LabeledList.Item label="Log" />
               </LabeledList>
             </Section>
-            <Divider />
+            <Stack.Divider />
           </Stack.Item>
           <Stack.Item grow>
-            <Section fill ref={messagesEndRef} scrollable>
+            <Section fill ref={messagesEndRef} scrollable title="Log">
               <Stack fill direction="column">
                 <Stack.Item grow>
                   {Object.keys(log)
@@ -101,6 +105,8 @@ export const TicketChat = (props) => {
                 </Stack.Item>
               </Stack>
             </Section>
+          </Stack.Item>
+          <Stack.Item>
             <Section fill>
               <Stack fill>
                 <Stack.Item grow>

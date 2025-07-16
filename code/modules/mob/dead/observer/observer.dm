@@ -39,57 +39,6 @@
 	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
 	var/toggled_invisible = 0
 	var/ghost_sprite = null
-	var/global/list/possible_ghost_sprites = list(
-		"Clear" = "blank",
-		"Green Blob" = "otherthing",
-		"Bland" = "ghost",
-		"Robed-B" = "ghost1",
-		"Robed-BAlt" = "ghost2",
-		"King" = "ghostking",
-		"Shade" = "shade",
-		"Hecate" = "ghost-narsie",
-		"Glowing Statue" = "armour",
-		"Artificer" = "artificer",
-		"Behemoth" = "behemoth",
-		"Harvester" = "harvester",
-		"Wraith" = "wraith",
-		"Viscerator" = "viscerator",
-		"Corgi" = "corgi",
-		"Tamaskan" = "tamaskan",
-		"Black Cat" = "blackcat",
-		"Lizard" = "lizard",
-		"Goat" = "goat",
-		"Space Bear" = "bear",
-		"Bats" = "bat",
-		"Chicken" = "chicken_white",
-		"Parrot"= "parrot_fly",
-		"Goose" = "goose",
-		"Penguin" = "penguin",
-		"Brown Crab" = "crab",
-		"Gray Crab" = "evilcrab",
-		"Trout" = "trout-swim",
-		"Salmon" = "salmon-swim",
-		"Pike" = "pike-swim",
-		"Koi" = "koi-swim",
-		"Carp" = "carp",
-		"Red Robes" = "robe_red",
-		"Faithless" = "faithless",
-		"Shadowform" = "forgotten",
-		"Dark Ethereal" = "bloodguardian",
-		"Holy Ethereal" = "lightguardian",
-		"Red Elemental" = "magicRed",
-		"Blue Elemental" = "magicBlue",
-		"Pink Elemental" = "magicPink",
-		"Orange Elemental" = "magicOrange",
-		"Green Elemental" = "magicGreen",
-		"Daemon" = "daemon",
-		"Guard Spider" = "guard",
-		"Hunter Spider" = "hunter",
-		"Nurse Spider" = "nurse",
-		"Rogue Drone" = "drone",
-		"ED-209" = "ed209",
-		"Beepsky" = "secbot"
-		)
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
@@ -150,7 +99,7 @@
 	real_name = name
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
-	observer_mob_list += src
+	GLOB.observer_mob_list += src
 	. = ..()
 	visualnet = ghostnet
 
@@ -166,7 +115,7 @@
 
 /mob/observer/dead/Topic(href, href_list)
 	if (href_list["track"])
-		var/mob/target = locate(href_list["track"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 		if(target)
 			ManualFollow(target)
 	if(href_list["reenter"])
@@ -336,6 +285,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		B.update(1)
 	if(!admin_ghosted)
 		announce_ghost_joinleave(mind, 0, "They now occupy their body again.")
+	if(admin_ghosted)
+		log_and_message_admins("Admin [key_name(src)] re-entered their body.")
 	return 1
 
 /mob/observer/dead/verb/toggle_medHUD()
@@ -599,7 +550,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/M = following
 		M.following_mobs -= src
 	stop_following()
-	observer_mob_list -= src
+	GLOB.observer_mob_list -= src
 	for(var/datum/chunk/ghost/ghost_chunks in visibleChunks)
 		ghost_chunks.remove(src)
 	return ..()
@@ -1022,7 +973,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/finalized = "No"
 
 	while(finalized == "No" && src.client)
-		choice = tgui_input_list(src, "What would you like to use for your ghost sprite?", "Ghost Sprite", possible_ghost_sprites)
+		choice = tgui_input_list(src, "What would you like to use for your ghost sprite?", "Ghost Sprite", GLOB.possible_ghost_sprites)
 		if(!choice)
 			return
 
@@ -1033,10 +984,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			if(icon_state && icon)
 				previous_state = icon_state
 
-			icon_state = possible_ghost_sprites[choice]
+			icon_state = GLOB.possible_ghost_sprites[choice]
 			finalized = tgui_alert(src, "Look at your sprite. Is this what you wish to use?","Ghost Sprite",list("No","Yes"))
 
-			ghost_sprite = possible_ghost_sprites[choice]
+			ghost_sprite = GLOB.possible_ghost_sprites[choice]
 
 			if(!finalized || finalized == "No")
 				icon_state = previous_state

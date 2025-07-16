@@ -151,7 +151,6 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	density = TRUE
 	var/list/dispenses = list(/datum/gear_disp/trash) // put your gear datums here!
 	var/datum/gear_disp/one_setting
-	var/global/list/gear_distributed_to = list()
 	var/dispenser_flags = GD_NOGREED|GD_UNLIMITED
 	var/unique_dispense_list = list()
 	var/needs_power = 0
@@ -163,8 +162,8 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 
 /obj/machinery/gear_dispenser/Initialize(mapload)
 	. = ..()
-	if(!gear_distributed_to["[type]"] && (dispenser_flags & GD_NOGREED))
-		gear_distributed_to["[type]"] = list()
+	if(!GLOB.gear_distributed_to["[type]"] && (dispenser_flags & GD_NOGREED))
+		GLOB.gear_distributed_to["[type]"] = list()
 	var/list/real_gear_list = list()
 	for(var/gear in dispenses)
 		var/datum/gear_disp/S = new gear
@@ -198,7 +197,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 
 
 /obj/machinery/gear_dispenser/proc/can_use(var/mob/living/carbon/human/user)
-	var/list/used_by = gear_distributed_to["[type]"]
+	var/list/used_by = GLOB.gear_distributed_to["[type]"]
 	if(needs_power && inoperable())
 		to_chat(user,span_warning("The machine does not respond to your prodding."))
 		return 0
@@ -252,7 +251,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	else if(!(dispenser_flags & GD_UNLIMITED))
 		S.amount--
 	if((dispenser_flags & GD_NOGREED) && !emagged)
-		gear_distributed_to["[type]"] |= user.ckey
+		GLOB.gear_distributed_to["[type]"] |= user.ckey
 	if((dispenser_flags & GD_UNIQUE) && !emagged)
 		unique_dispense_list |= user.ckey
 
@@ -357,7 +356,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	else if(!(dispenser_flags & GD_UNLIMITED))
 		S.amount--
 	if((dispenser_flags & GD_NOGREED) && !emagged)
-		gear_distributed_to["[type]"] |= user.ckey
+		GLOB.gear_distributed_to["[type]"] |= user.ckey
 	if((dispenser_flags & GD_UNIQUE) && !emagged)
 		unique_dispense_list |= user.ckey
 
@@ -669,7 +668,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	. = ..()
 	IF_VV_OPTION("admin_add")
 		admin_add()
-		href_list["datumrefresh"] = "\ref[src]"
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 
 /obj/machinery/gear_dispenser/proc/admin_add()
 	if(!check_rights(R_DEBUG|R_FUN))

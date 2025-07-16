@@ -432,7 +432,7 @@ so as to remain in compliance with the most up-to-date laws."
 	name = "Admin Chat Request"
 	desc = "A Administrator would like to chat with you. \
 	Click here to begin."
-	icon_state = "32x32"
+	icon_state = "nt_logo"
 
 /obj/screen/alert/open_ticket/Click()
 	if(!usr || !usr.client) return

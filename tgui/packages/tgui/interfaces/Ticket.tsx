@@ -5,7 +5,6 @@ import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Divider,
   Input,
   LabeledList,
   Section,
@@ -102,20 +101,36 @@ export const Ticket = (props) => {
         <Stack fill vertical>
           <Stack.Item>
             <Section
-              title={'Ticket #' + id}
+              title={`Ticket #${id}`}
               buttons={
-                <Box nowrap>
-                  <Button icon="pen" onClick={() => act('retitle')}>
-                    Rename Ticket
-                  </Button>
-                  <Button onClick={() => act('legacy')}>Legacy UI</Button>
-                  <Button color={LevelColor[level]}>{Level[level]}</Button>
-                </Box>
+                <Stack>
+                  <Stack.Item>
+                    <Button icon="pen" onClick={() => act('retitle')}>
+                      Rename Ticket
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button onClick={() => act('legacy')}>Legacy UI</Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Box
+                      className="TicketPanel__Label"
+                      backgroundColor={LevelColor[level]}
+                    >
+                      {Level[level]}
+                    </Box>
+                  </Stack.Item>
+                </Stack>
               }
             >
               <LabeledList>
                 <LabeledList.Item label="Ticket ID">
-                  #{id}: <div dangerouslySetInnerHTML={{ __html: name }} />
+                  <Stack>
+                    <Stack.Item>#{id}:</Stack.Item>
+                    <Stack.Item>
+                      <div dangerouslySetInnerHTML={{ __html: name }} />
+                    </Stack.Item>
+                  </Stack>
                 </LabeledList.Item>
                 <LabeledList.Item label="Type">{Level[level]}</LabeledList.Item>
                 <LabeledList.Item label="State">
@@ -131,23 +146,28 @@ export const Ticket = (props) => {
                   </LabeledList.Item>
                 ) : (
                   <LabeledList.Item label="Closed At">
-                    {closed_at_date +
-                      ' (' +
-                      toFixed(round((closed_at / 600) * 10, 0) / 10, 1) +
-                      ' minutes ago.)'}
-                    <Button onClick={() => act('reopen')}>Reopen</Button>
+                    <Stack>
+                      <Stack.Item>
+                        {closed_at_date +
+                          ' (' +
+                          toFixed(round((closed_at / 600) * 10, 0) / 10, 1) +
+                          ' minutes ago.)'}
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Button onClick={() => act('reopen')}>Reopen</Button>
+                      </Stack.Item>
+                    </Stack>
                   </LabeledList.Item>
                 )}
                 <LabeledList.Item label="Actions">
                   <div dangerouslySetInnerHTML={{ __html: actions }} />
                 </LabeledList.Item>
-                <LabeledList.Item label="Log" />
               </LabeledList>
             </Section>
-            <Divider />
+            <Stack.Divider />
           </Stack.Item>
           <Stack.Item grow>
-            <Section scrollable ref={messagesEndRef} fill>
+            <Section scrollable ref={messagesEndRef} fill title="Log">
               <Stack fill direction="column">
                 <Stack.Item grow>
                   {Object.keys(log)
