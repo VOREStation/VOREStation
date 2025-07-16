@@ -299,6 +299,8 @@
 		else if(temperature <= H.species.cold_level_1)
 			to_chat(H, span_warning("The water is freezing cold!"))
 
+////////////////////////RUBBER DUCKIES//////////////////////////////
+
 /obj/item/bikehorn/rubberducky
 	name = "rubber ducky"
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
@@ -312,7 +314,7 @@
 	honk_sound = 'sound/voice/quack.ogg' //VOREStation edit
 	var/honk_text = 0
 
-/obj/item/bikehorn/rubberducky/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/attack_self(mob/user)
 	if(spam_flag == 0)
 		spam_flag = 1
 		playsound(src, honk_sound, 50, 1)
@@ -333,7 +335,7 @@
 	honk_sound = 'sound/effects/adminhelp.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/red/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/red/attack_self(mob/user)
 	if(honk_count >= 3)
 		var/turf/epicenter = get_turf(src)
 		explosion(epicenter, 0, 0, 1, 3)
@@ -358,7 +360,7 @@
 	honk_sound = 'sound/effects/bubbles.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/blue/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/blue/attack_self(mob/user)
 	if(spam_flag == 0)
 		var/turf/simulated/whereweare = get_turf(src)
 		whereweare.wet_floor(2)
@@ -379,7 +381,7 @@
 	honk_sound = 'sound/vore/sunesound/pred/insertion_01.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/pink/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/pink/attack_self(mob/user)
 	if(spam_flag == 0)
 		if(!user.devourable)
 			to_chat(user, span_vnotice("You can't bring yourself to squeeze it..."))
@@ -408,7 +410,7 @@
 	honk_sound = 'sound/effects/ghost.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/grey/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/grey/attack_self(mob/user)
 	if(spam_flag == 0)
 		for(var/obj/machinery/light/L in GLOB.machines)
 			if(L.z != user.z || get_dist(user,L) > 10)
@@ -450,7 +452,7 @@
 						/obj/structure/flora/ausbushes/sparsegrass,
 						/obj/structure/flora/ausbushes/fullgrass)
 
-/obj/item/bikehorn/rubberducky/green/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/green/attack_self(mob/user)
 	if(spam_flag == 0)
 		var/turf/simulated/whereweare = get_turf(src)
 		var/obj/P = pick(flora)
@@ -472,7 +474,7 @@
 	honk_sound = 'sound/effects/lightningshock.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/white/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/white/attack_self(mob/user)
 	if(spam_flag == 0)
 		lightning_strike(get_turf(src), 1)
 		spam_flag = 1
@@ -491,6 +493,73 @@
 	item_state = "rubberducky_black"
 	light_sound = 'sound/voice/quack.ogg'
 	blast_sound = 'sound/voice/quack.ogg'
+
+/obj/item/bikehorn/rubberducky/gold
+	name = "rubber ducky"
+	desc = "You could give your very life for this duck."
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_gold"
+	item_state = "rubberducky_gold"
+	honk_sound = 'sound/voice/quack_reverb.ogg'
+
+/obj/item/bikehorn/rubberducky/gold/attack_self(mob/user)
+	if(spam_flag == 0)
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
+		if(isliving(user))
+			var/mob/living/U = user
+			U.dust()
+		user.drop_item()
+		qdel(src)
+	return
+
+/obj/item/bikehorn/rubberducky/viking
+	name = "rubber ducky"
+	desc = "Honking is a duckie exclusive power."
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_viking"
+	item_state = "rubberducky_viking"
+	honk_sound = 'sound/voice/scream_jelly_m1.ogg'
+	honk_text = "DUK ROH DAH!"
+
+/obj/item/bikehorn/rubberducky/viking/attack_self(mob/user)
+	if(spam_flag == 0)
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
+		user.drop_item()
+		user.throw_at_random(FALSE,9,2)
+		addtimer(VARSET_CALLBACK(src, spam_flag, 0), 20, TIMER_DELETE_ME)
+	return
+
+/obj/item/bikehorn/rubberducky/galaxy
+	name = "rubber ducky"
+	desc = "In the vastness of space all things center around thing, somewhere, a core."
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "rubberducky_galaxy"
+	item_state = "rubberducky_galaxy"
+	honk_sound = 'sound/effects/teleport.ogg'
+
+/obj/item/bikehorn/rubberducky/galaxy/attack_self(mob/user)
+	if(spam_flag == 0)
+		spam_flag = 1
+		playsound(src, honk_sound, 50, 1)
+		if(honk_text)
+			audible_message(span_maroon("[honk_text]"))
+		var/list/possible_orbiters = list()
+		for(var/obj/item/I in oview(7,user))
+			possible_orbiters += I
+		for(var/mob/living/M in oview(7,user))
+			possible_orbiters += M
+		var/atom/movable/selected_orbiter = pick(possible_orbiters)
+		selected_orbiter.orbit(user,32,TRUE,20,36)
+		addtimer(VARSET_CALLBACK(src, spam_flag, 0), 20, TIMER_DELETE_ME)
+	return
+
+//////////////////////////////SINKS//////////////////////////////
 
 /obj/structure/sink
 	name = "sink"
