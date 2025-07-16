@@ -25,8 +25,8 @@
 	if(target.stat != DEAD && stored_life < 200)
 		holder.Beam(target, icon_state = "drain_life", time = 1 SECOND)
 		if(!prob(susceptibility * 100)) //Inverse. If they are not susceptible, we don't steal life. We still beam them though.
-			target.apply_damage(5*susceptibility, SEARING, BP_TORSO)
-		return 25*susceptibility //nobody actually uses this god damned thing so I'm buffing it so maybe one day someone will ACTUALLY USE IT.
+			target.apply_damage(5 * susceptibility, SEARING, BP_TORSO)
+		return 25 * susceptibility //nobody actually uses this god damned thing so I'm buffing it so maybe one day someone will ACTUALLY USE IT.
 
 	return 0
 

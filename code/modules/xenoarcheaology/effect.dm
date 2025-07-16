@@ -240,5 +240,5 @@
 	if(istype(H.glasses,/obj/item/clothing/glasses/science))
 		protected += 0.1
 
-	susceptibility = CLAMP(susceptibility - protected, 0, 1) //Clamp the susceptibility to be between 0 and 1. No negative numbers allowed.
+	susceptibility = CLAMP01(susceptibility - protected) //Clamp the susceptibility to be between 0 and 1. No negative numbers allowed.
 	return susceptibility
