@@ -92,7 +92,7 @@
 	if (tgui_alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", list("Yes", "No")) != "Yes")
 		return
 	if(isturf(usr.loc))
-		balloon_alert(usr, "empted \the [src] onto the floor.")
+		balloon_alert(usr, "emptied \the [src] onto the floor.")
 		reagents.splash(usr.loc, reagents.total_volume)
 
 //space cleaner

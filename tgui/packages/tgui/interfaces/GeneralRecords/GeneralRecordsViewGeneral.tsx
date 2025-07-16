@@ -50,8 +50,7 @@ export const GeneralRecordsViewGeneral = (props) => {
           {general.comments && general.comments.length === 0 ? (
             <Box color="label">No comments found.</Box>
           ) : (
-            general.comments &&
-            general.comments.map((comment, i) => (
+            general.comments?.map((comment, i) => (
               <Box key={i}>
                 <Box color="label" inline>
                   {comment.header}

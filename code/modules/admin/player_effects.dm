@@ -1,4 +1,4 @@
-/client/proc/player_effects(var/mob/target in mob_list)
+/client/proc/player_effects(var/mob/target in GLOB.mob_list)
 	set name = "Player Effects"
 	set desc = "Modify a player character with various 'special treatments' from a list."
 	set category = "Fun.Event Kit"
@@ -37,7 +37,7 @@
 	return data
 
 /datum/eventkit/player_effects/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/eventkit/player_effects/tgui_act(action, list/params, datum/tgui/ui)
 	. = ..()
@@ -623,7 +623,7 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			if(!user.client.holder)
+			if(!check_rights_for(user.client, R_HOLDER))
 				return
 			var/obj/item/X = user.client.holder.marked_datum
 			if(!istype(X))
@@ -634,7 +634,7 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			if(!user.client.holder)
+			if(!check_rights_for(user.client, R_HOLDER))
 				return
 			var/obj/item/X = user.client.holder.marked_datum
 			if(!istype(X))
@@ -681,7 +681,7 @@
 			log_and_message_admins("Quick NIF'd [Tar.real_name] with a [input_NIF].", user)
 
 		if("resize")
-			user.client.resize(target)
+			SSadmin_verbs.dynamic_invoke_verb(user.client, /datum/admin_verb/resize, target)
 
 		if("teleport")
 			var/where = tgui_alert(user, "Where to teleport?", "Where?", list("To Me", "To Mob", "To Area", "Cancel"))
@@ -690,7 +690,7 @@
 			if(where == "To Me")
 				user.client.Getmob(target)
 			if(where == "To Mob")
-				var/mob/selection = tgui_input_list(ui.user, "Select a mob to jump [target] to:", "Jump to mob", mob_list)
+				var/mob/selection = tgui_input_list(ui.user, "Select a mob to jump [target] to:", "Jump to mob", GLOB.mob_list)
 				target.on_mob_jump()
 				target.forceMove(get_turf(selection))
 				log_admin("[key_name(user)] jumped [target] to [selection]")
@@ -724,7 +724,7 @@
 			user.client.cmd_admin_direct_narrate(target)
 
 		if("player_panel")
-			user.client.holder.show_player_panel(target)
+			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/show_player_panel, target)
 
 		if("view_variables")
 			user.client.debug_variables(target)

@@ -602,6 +602,26 @@ h2.alert {
   font-weight: bold;
 }
 
+.brute {
+  color: hsl(0, 100%, 60%);
+}
+
+.burn {
+  color: hsl(30, 100%, 60%);
+}
+
+.tox {
+  color: hsl(150, 100%, 40%);
+}
+
+.oxy {
+  color: hsl(220, 100%, 49%);
+}
+
+.clone {
+  color: hsl(180, 100%, 40%);
+}
+
 .rose {
   color: hsl(0, 100%, 66%);
 }
@@ -1144,6 +1164,47 @@ h2.alert {
 .tooltip {
   font-style: italic;
   border-bottom: 1px dashed hsl(0, 0%, 0%);
+}
+
+.fieldset_legend {
+  background: hsl(0, 0%, 100%); // Chat background color
+
+  &:before {
+    background: hsl(0, 0%, 100%); // Chat background color
+  }
+}
+
+.boxed_message {
+  background: hsl(220, 100%, 97.5%);
+  border-color: hsla(220, 75%, 25%, 0.5);
+
+  &.red_box {
+    background: hsl(0, 100%, 97.5%);
+    border-color: hsla(0, 100%, 50%, 0.5);
+  }
+
+  &.green_box {
+    background: hsl(140, 100%, 97.5%);
+    border-color: hsl(120, 100%, 33%, 0.5);
+  }
+
+  &.blue_box {
+    background: hsl(220, 100%, 97.5%);
+    border-color: hsla(225, 100%, 50%, 0.5);
+  }
+
+  &.purple_box {
+    background: hsl(260, 100%, 97.5%);
+    border-color: hsla(260, 100%, 50%, 0.5);
+  }
+}
+
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
 $alert-stripe-colors: (

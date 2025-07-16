@@ -91,7 +91,7 @@
 			return
 		if(snapshot)
 			to_chat(usr, span_warning("Someone (or you) may have started a mass edit on this AI datum already. Refresh the VV window to get the option to end the mass edit instead."))
-			href_list["datumrefresh"] = "\ref[src]"
+			href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 			return
 		snapshot = vars.Copy() //'vars' appears to be special in that vars.Copy produces a flat list of keys with no values. It seems that 'vars[key]' is handled somewhere in the byond engine differently than normal lists.
 
@@ -133,7 +133,7 @@
 
 		VARSET_IN(src, snapshot, null, 2 MINUTES) // Safety
 		to_chat(usr, span_notice("Variable snapshot saved. Begin editing the datum, and end the mass edit from the dropdown menu within 2 minutes. Note that editing the contents of lists is not supported."))
-		href_list["datumrefresh"] = "\ref[src]"
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 
 	IF_VV_OPTION("mass_edit_finish")
 		if(!check_rights(R_ADMIN))
@@ -157,7 +157,7 @@
 
 		if(!diff.len)
 			to_chat(usr, span_warning("You don't appear to have changed anything on the AI datum you were editing."))
-			href_list["datumrefresh"] = "\ref[src]"
+			href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 		else
 			var/message = "These differences were detected in your varedit. If you notice any that you didn't change, please redo your edit:<br>"
 			for(var/key in diff)
@@ -177,7 +177,7 @@
 			types += text2path(typestring)
 			typestring += "/"
 
-		var/list/searching = living_mob_list // Started/seeded with this
+		var/list/searching = GLOB.living_mob_list // Started/seeded with this
 		var/list/choices = list()
 		for(var/typechoice in types)
 			var/list/found = list()
@@ -192,7 +192,7 @@
 
 		var/choice = tgui_input_list(usr,"Based on your AI holder's mob location, we'll edit mobs on Z [levels_working.Join(",")]. What types do you want to alter?", "Types", choices)
 		if(!choice)
-			href_list["datumrefresh"] = "\ref[src]"
+			href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 			return
 		var/list/selected = choices[choice]
 		for(var/mob/living/L as anything in selected)
@@ -209,7 +209,7 @@
 					to_chat(usr,span_warning("Skipping unavailable var '[newvar]' on: [L] [ADMIN_COORDJMP(L)]"))
 
 		to_chat(usr,span_notice("Mass AI edit done."))
-		href_list["datumrefresh"] = "\ref[src]"
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 
 /datum/ai_holder/New(var/new_holder)
 	ASSERT(new_holder)

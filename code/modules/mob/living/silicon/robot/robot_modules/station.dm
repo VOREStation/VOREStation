@@ -1,25 +1,3 @@
-var/global/list/robot_modules = list(
-	"Standard"		= /obj/item/robot_module/robot/standard,
-	"Service" 		= /obj/item/robot_module/robot/clerical/butler,
-	"Clerical" 		= /obj/item/robot_module/robot/clerical/general,
-	"Clown"			= /obj/item/robot_module/robot/clerical/honkborg,
-	"Command"		= /obj/item/robot_module/robot/chound,
-	"Research" 		= /obj/item/robot_module/robot/research,
-	"Miner" 		= /obj/item/robot_module/robot/miner,
-	"Crisis" 		= /obj/item/robot_module/robot/medical/crisis,
-	"Surgeon" 		= /obj/item/robot_module/robot/medical/surgeon,
-	"Security" 		= /obj/item/robot_module/robot/security/general,
-	"Combat" 		= /obj/item/robot_module/robot/security/combat,
-	"Exploration"	= /obj/item/robot_module/robot/exploration,
-	"Engineering"	= /obj/item/robot_module/robot/engineering,
-	"Janitor" 		= /obj/item/robot_module/robot/janitor,
-	"Gravekeeper"	= /obj/item/robot_module/robot/gravekeeper,
-	"Lost"			= /obj/item/robot_module/robot/lost,
-	"Protector" 	= /obj/item/robot_module/robot/syndicate/protector,
-	"Mechanist" 	= /obj/item/robot_module/robot/syndicate/mechanist,
-	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic
-	)
-
 /obj/item/robot_module
 	name = "robot module"
 	icon = 'icons/obj/module.dmi'
@@ -200,15 +178,6 @@ var/global/list/robot_modules = list(
 			CHANNEL_EXPLORATION = 1
 			)
 
-/obj/item/robot_module/robot/Initialize(mapload)
-	. = ..()
-
-	if(!isrobot(loc))
-		return
-	var/mob/living/silicon/robot/R = loc
-	if(R.sprite_datum)
-		R.sprite_datum.do_equipment_glamour(src)
-
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/robot_module/robot/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
@@ -218,6 +187,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/flash/robot(src)
 	src.modules += new /obj/item/extinguisher(src)
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
+	src.modules += new /obj/item/melee/robotic/jaws/small(src)
 	src.modules += new /obj/item/gripper/scene(src)
 
 /obj/item/robot_module/robot/standard

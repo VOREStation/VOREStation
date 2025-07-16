@@ -247,8 +247,8 @@ export const ComplexModal = (props) => {
 
   return (
     <Modal
-      maxWidth={props.maxWidth || window.innerWidth / 2 + 'px'}
-      maxHeight={props.maxHeight || window.innerHeight / 2 + 'px'}
+      maxWidth={props.maxWidth || `${window.innerWidth / 2}px`}
+      maxHeight={props.maxHeight || `${window.innerHeight / 2}px`}
       onEnter={modalOnEnter}
       onEscape={modalOnEscape}
       mx="auto"

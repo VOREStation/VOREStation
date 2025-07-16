@@ -65,7 +65,7 @@ export const VoreInsidePanel = (props: {
       </Box>
       &nbsp;
       <Box color="label">{desc}</Box>
-      {contents && contents.length ? (
+      {contents?.length ? (
         <Collapsible title="Belly Contents">
           <VoreContentsPanel
             contents={contents}

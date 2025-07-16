@@ -1,6 +1,5 @@
 var/global/narsie_behaviour = "CultStation13"
 var/global/narsie_cometh = 0
-var/global/list/narsie_list = list()
 /obj/singularity/narsie //Moving narsie to its own file for the sake of being clearer
 	name = "Nar-Sie"
 	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
@@ -18,10 +17,10 @@ var/global/list/narsie_list = list()
 
 /obj/singularity/narsie/Initialize(mapload)
 	. = ..()
-	narsie_list.Add(src)
+	GLOB.narsie_list.Add(src)
 
 /obj/singularity/narsie/Destroy()
-	narsie_list.Remove(src)
+	GLOB.narsie_list.Remove(src)
 	. = ..()
 
 /obj/singularity/narsie/large
@@ -129,13 +128,13 @@ var/global/list/narsie_list = list()
 	spawn(0)
 		step(src, movement_dir)
 		narsiefloor(get_turf(loc))
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				M.see_narsie(src,movement_dir)
 	spawn(10)
 		step(src, movement_dir)
 		narsiefloor(get_turf(loc))
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				M.see_narsie(src,movement_dir)
 	return 1
@@ -259,7 +258,7 @@ var/global/list/narsie_list = list()
 				if(!(AM2.singuloCanEat()))
 					continue
 
-				if (101 == AM2.invisibility)
+				if (INVISIBILITY_ABSTRACT == AM2.invisibility)
 					continue
 
 				spawn (0)
@@ -287,7 +286,7 @@ var/global/list/narsie_list = list()
 		acquire(pick(cultists))
 		return
 		//If there was living cultists, it picks one to follow.
-	for(var/mob/living/carbon/human/food in living_mob_list)
+	for(var/mob/living/carbon/human/food in GLOB.living_mob_list)
 		if(food.stat)
 			continue
 		var/turf/pos = get_turf(food)
@@ -298,7 +297,7 @@ var/global/list/narsie_list = list()
 		acquire(pick(cultists))
 		return
 		//no living cultists, pick a living human instead.
-	for(var/mob/observer/dead/ghost in player_list)
+	for(var/mob/observer/dead/ghost in GLOB.player_list)
 		if(!ghost.client)
 			continue
 		var/turf/pos = get_turf(ghost)
@@ -335,7 +334,7 @@ var/global/list/narsie_list = list()
 	chained = 1
 	move_self = 0
 	icon_state ="narsie-chains"
-	for(var/mob/M in mob_list)//removing the client image of nar-sie while it is chained
+	for(var/mob/M in GLOB.mob_list)//removing the client image of nar-sie while it is chained
 		if(M.client)
 			M.see_narsie(src)
 

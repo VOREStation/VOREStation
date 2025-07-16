@@ -27,7 +27,7 @@ export const PlantAnalyzer = (props) => {
   if (seed) {
     calculatedHeight += 18 * seed.trait_info.length;
   }
-  if (reagents && reagents.length) {
+  if (reagents?.length) {
     calculatedHeight += 55;
     calculatedHeight += 20 * reagents.length;
   }

@@ -432,7 +432,7 @@
 				tab_data["set_action"] = DIGEST_OWNER
 				tab_data["tooltip"] = "Displayed to you when your prey gets digested."
 				return tab_data
-		if(message_subtab == ABSORBED_MESSAGE)
+		if(message_subtab == ABSORB_MESSAGE)
 			tab_data["possible_messages"] = list(TO_PREY, TO_YOU)
 			if(!selected_message)
 				selected_message = TO_PREY

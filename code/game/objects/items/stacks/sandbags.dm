@@ -48,9 +48,6 @@
 
 	slowdown = round(amount / 10, 0.1)
 
-var/global/list/datum/stack_recipe/sandbag_recipes = list( \
-	new/datum/stack_recipe("barricade", /obj/structure/barricade/sandbag, 3, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE))
-
 /obj/item/stack/sandbags/produce_recipe(datum/stack_recipe/recipe, var/quantity, mob/user)
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)

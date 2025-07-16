@@ -38,6 +38,7 @@
 	var/eye_safety_modifier = 0 // Increasing this will make less eye protection needed to stop eye damage.  IE at 1, sunglasses will fully protect.
 	var/burned_fuel_for = 0 // Keeps track of how long the welder's been on, used to gradually empty the welder if left one, without RNG.
 	var/always_process = FALSE // If true, keeps the welder on the process list even if it's off.  Used for when it needs to regenerate fuel.
+	var/no_passive_burn = FALSE // If true, the welder will not passively burn fuel. Used for things like electric welders.
 	toolspeed = 1
 	drop_sound = 'sound/items/drop/weldingtool.ogg'
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
@@ -127,9 +128,10 @@
 
 /obj/item/weldingtool/process()
 	if(welding)
-		++burned_fuel_for
-		if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
-			remove_fuel(1)
+		if(!no_passive_burn)
+			++burned_fuel_for
+			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
+				remove_fuel(1)
 		if(get_fuel() < 1)
 			setWelding(0)
 		else			//Only start fires when its on and has enough fuel to actually keep working

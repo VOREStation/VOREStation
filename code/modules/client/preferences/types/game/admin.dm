@@ -46,7 +46,7 @@
 	if(!.)
 		return
 
-	return preferences.client.holder
+	return check_rights_for(preferences.client, R_HOLDER)
 
 /datum/preference/toggle/holder/play_adminhelp_ping
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES

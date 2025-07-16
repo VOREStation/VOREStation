@@ -21,7 +21,7 @@ export const VoreSelectedMobTypeBellyButtons = (props: {
   if (is_cyborg) {
     if (belly_sprite_option_shown && belly_sprite_to_affect === 'sleeper') {
       return (
-        <Section title={'Cyborg Controls'} width={'80%'}>
+        <Section title={'Cyborg Controls'}>
           <LabeledList>
             <LabeledList.Item label="Toggle Belly Overlay Mode">
               <VorePanelEditDropdown
@@ -38,7 +38,7 @@ export const VoreSelectedMobTypeBellyButtons = (props: {
       );
     } else {
       return (
-        <Section title={'Cyborg Controls'} width={'80%'}>
+        <Section title={'Cyborg Controls'}>
           <Box color="red">
             Your module does either not support vore sprites or you&apos;ve
             selected a belly sprite other than the sleeper within the Visuals

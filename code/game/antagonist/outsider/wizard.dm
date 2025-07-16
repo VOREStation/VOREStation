@@ -131,3 +131,7 @@ Made a proc so this is not repeated 14 (or more) times.*/
 		to_chat(src, span_warning("I don't feel strong enough without my hat."))
 		return 0
 	return 1
+
+/datum/antagonist/wizard/remove_antagonist(datum/mind/player, show_message, implanted)
+	. = ..()
+	player.current.spellremove()

@@ -471,7 +471,7 @@
 /area/shuttle/aerostat)
 "bi" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_n_exterior";
 	locked = 1
 	},
@@ -486,7 +486,7 @@
 /area/offmap/aerostat/inside/northchamb)
 "bk" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_n_exterior";
 	locked = 1
 	},
@@ -497,12 +497,12 @@
 /area/offmap/aerostat/inside/airlock/north)
 "bl" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_n_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_n_airlock";
 	pixel_x = -25;
 	tag_airpump = "aerostat_n_n_pump";
@@ -522,7 +522,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_w_interior";
 	locked = 1
 	},
@@ -533,7 +533,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_e_interior";
 	locked = 1
 	},
@@ -897,7 +897,7 @@
 /area/offmap/aerostat/inside/miscstorage)
 "ct" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_w_exterior";
 	locked = 1
 	},
@@ -1520,7 +1520,7 @@
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1452
+	frequency = 1453
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -1632,12 +1632,12 @@
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1452
+	frequency = 1453
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	cycle_to_external_air = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_east_airlock";
 	pixel_y = 29
 	},
@@ -1648,7 +1648,7 @@
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1452
+	frequency = 1453
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/light/small,
@@ -1889,7 +1889,7 @@
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	power_rating = 90000
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
@@ -2374,7 +2374,7 @@
 /area/offmap/aerostat/inside/xenoarch)
 "gS" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_e_exterior";
 	locked = 1
 	},
@@ -2900,7 +2900,7 @@
 /area/offmap/aerostat/inside/xenobiolab)
 "jl" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1452
+	frequency = 1453
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_external,
 /obj/effect/floor_decal/rust,
@@ -3254,13 +3254,13 @@
 "kD" = (
 /obj/machinery/airlock_sensor{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_n_sensor";
 	master_tag = "aerostat_n_n_airlock";
 	pixel_x = 23
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_n_pump"
 	},
 /turf/simulated/floor,
@@ -3402,7 +3402,7 @@
 /area/offmap/aerostat/inside/toxins)
 "li" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_w_exterior";
 	locked = 1
 	},
@@ -3747,7 +3747,7 @@
 /area/offmap/aerostat/inside/toxins)
 "mx" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_e_exterior";
 	locked = 1
 	},
@@ -3869,7 +3869,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "aerostat_toxins";
 	pixel_y = 32;
 	req_one_access = list(13)
@@ -4046,7 +4046,7 @@
 /area/offmap/aerostat/inside/toxins)
 "nw" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_s_exterior";
 	locked = 1
 	},
@@ -4183,7 +4183,7 @@
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /turf/simulated/floor/plating/virgo2,
@@ -4376,7 +4376,7 @@
 "oL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_n_interior";
 	locked = 1
 	},
@@ -4395,7 +4395,7 @@
 "oS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_s_interior";
 	locked = 1
 	},
@@ -4406,7 +4406,7 @@
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1452
+	frequency = 1453
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor,
@@ -4587,7 +4587,7 @@
 "pD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_s_interior";
 	locked = 1
 	},
@@ -4672,7 +4672,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "aerostat_toxins";
 	pixel_y = 32;
 	req_one_access = list(13)
@@ -4997,7 +4997,7 @@
 "ri" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_n_interior";
 	locked = 1
 	},
@@ -5346,11 +5346,11 @@
 "sX" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_e_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_e_airlock";
 	pixel_y = 29;
 	tag_airpump = "aerostat_s_e_pump";
@@ -5421,7 +5421,7 @@
 /area/offmap/aerostat/inside/westhall)
 "tm" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_w_exterior";
 	locked = 1
 	},
@@ -5441,11 +5441,11 @@
 "tq" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_w_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_w_airlock";
 	pixel_y = 29;
 	tag_airpump = "aerostat_n_w_pump";
@@ -5723,7 +5723,7 @@
 /area/offmap/aerostat/inside/toxins)
 "ux" = (
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null;
 	pixel_y = 24
 	},
@@ -5848,7 +5848,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_e_interior";
 	locked = 1
 	},
@@ -6636,12 +6636,12 @@
 "yy" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_e_pump"
 	},
 /obj/machinery/airlock_sensor{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_e_sensor";
 	master_tag = "aerostat_s_e_airlock";
 	pixel_y = -25
@@ -6662,7 +6662,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_e_interior";
 	locked = 1
 	},
@@ -6729,7 +6729,7 @@
 "yO" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -6919,7 +6919,7 @@
 /area/offmap/aerostat/inside/arm/sw)
 "zC" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_w_exterior";
 	locked = 1
 	},
@@ -7728,7 +7728,7 @@
 "CQ" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
@@ -7857,11 +7857,11 @@
 "Dt" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_e_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_e_airlock";
 	pixel_y = 29;
 	tag_airpump = "aerostat_n_e_pump";
@@ -8004,12 +8004,12 @@
 "DU" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_s_pump"
 	},
 /obj/machinery/airlock_sensor{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_s_sensor";
 	master_tag = "aerostat_s_s_airlock";
 	pixel_x = 25
@@ -8060,7 +8060,7 @@
 /area/offmap/aerostat/inside/toxins)
 "Ep" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_e_exterior";
 	locked = 1
 	},
@@ -8826,7 +8826,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	cycle_to_external_air = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_shuttle_airlock";
 	pixel_y = 29
 	},
@@ -9153,7 +9153,7 @@
 "Iy" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 6;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_e_sensext";
 	master_tag = "aerostat_s_e_airlock"
 	},
@@ -9243,14 +9243,14 @@
 "IV" = (
 /obj/machinery/airlock_sensor{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_w_sensor";
 	master_tag = "aerostat_n_w_airlock";
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_w_pump"
 	},
 /turf/simulated/floor,
@@ -9371,7 +9371,7 @@
 /area/offmap/aerostat/inside/xenoarch)
 "JB" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_w_interior";
 	locked = 1
 	},
@@ -9419,14 +9419,14 @@
 "JH" = (
 /obj/machinery/airlock_sensor{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_w_sensor";
 	master_tag = "aerostat_s_w_airlock";
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_w_pump"
 	},
 /turf/simulated/floor,
@@ -9531,7 +9531,7 @@
 /area/offmap/aerostat/inside/easthall)
 "Kc" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_s_exterior";
 	locked = 1
 	},
@@ -9661,7 +9661,7 @@
 "KH" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 6;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_w_sensext";
 	master_tag = "aerostat_n_w_airlock"
 	},
@@ -9988,11 +9988,11 @@
 "Mi" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_w_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_w_airlock";
 	pixel_y = 29;
 	tag_airpump = "aerostat_s_w_pump";
@@ -10963,14 +10963,14 @@
 "Qu" = (
 /obj/machinery/airlock_sensor{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_e_sensor";
 	master_tag = "aerostat_n_e_airlock";
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_e_pump"
 	},
 /turf/simulated/floor,
@@ -11085,7 +11085,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_e_interior";
 	locked = 1
 	},
@@ -11149,7 +11149,7 @@
 "Ra" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 10;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_e_sensext";
 	master_tag = "aerostat_n_e_airlock"
 	},
@@ -11205,7 +11205,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	cycle_to_external_air = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_west_airlock";
 	pixel_y = 29
 	},
@@ -11289,7 +11289,7 @@
 "Rx" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 10;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_w_sensext";
 	master_tag = "aerostat_s_w_airlock"
 	},
@@ -11335,7 +11335,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_w_interior";
 	locked = 1
 	},
@@ -11489,7 +11489,7 @@
 "Sp" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 5;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_n_n_sensext";
 	master_tag = "aerostat_n_n_airlock"
 	},
@@ -11787,12 +11787,12 @@
 "TO" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_s_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_s_airlock";
 	pixel_x = -25;
 	tag_airpump = "aerostat_s_s_pump";
@@ -11827,7 +11827,7 @@
 /area/offmap/aerostat/inside/atmos)
 "TT" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_e_exterior";
 	locked = 1
 	},
@@ -12562,7 +12562,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_s_w_interior";
 	locked = 1
 	},
@@ -12627,7 +12627,7 @@
 "WU" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null;
 	pixel_y = 24
 	},
@@ -13271,7 +13271,7 @@
 "Zv" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	cycle_to_external_air = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aerostat_toxins";
 	pixel_y = 29
 	},

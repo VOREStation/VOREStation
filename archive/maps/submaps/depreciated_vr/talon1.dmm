@@ -1640,7 +1640,7 @@
 "ht" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talonboat_docker";
 	pixel_x = 28
 	},
@@ -4810,7 +4810,7 @@
 "WF" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talon_boatbay";
 	pixel_x = 28
 	},

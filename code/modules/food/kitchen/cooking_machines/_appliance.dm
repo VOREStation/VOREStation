@@ -36,12 +36,12 @@
 	// If the machine has multiple output modes, define them here.
 	var/selected_option
 	var/list/output_options = list()
-	var/list/datum/recipe/available_recipes
+	var/list/datum/recipe/appliance_available_recipes = list()
 
 	var/container_type = null
 
 	var/combine_first = FALSE // If TRUE, this appliance will do combination cooking before checking recipes
-	var/food_safety = FALSE	//RS ADD - If true, the appliance automatically ejects food instead of burning it
+	var/food_safety = FALSE	// If true, the appliance automatically ejects food instead of burning it
 
 	var/static/radial_eject = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_eject")
 	var/static/radial_power = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_power")
@@ -56,12 +56,10 @@
 	if(output_options.len)
 		verbs += /obj/machinery/appliance/proc/choose_output
 
-	if (!available_recipes)
-		available_recipes = new
-
-	for(var/datum/recipe/test as anything in subtypesof(/datum/recipe))
-		if((appliancetype & initial(test.appliance)))
-			available_recipes += new test
+	if(!LAZYLEN(appliance_available_recipes))
+		for(var/datum/recipe/test as anything in subtypesof(/datum/recipe))
+			if((appliancetype & initial(test.appliance)))
+				appliance_available_recipes += new test
 
 /obj/machinery/appliance/Destroy()
 	for(var/datum/cooking_item/CI as anything in cooking_objs)
@@ -441,7 +439,7 @@
 		C = CI.container
 	else
 		C = src
-	recipe = select_recipe(available_recipes, C)
+	recipe = select_recipe(appliance_available_recipes, C)
 
 	var/list/results = list()
 	if(recipe)
@@ -496,7 +494,7 @@
 		C = CI.container
 	else
 		C = src
-	recipe = select_recipe(available_recipes,C)
+	recipe = select_recipe(appliance_available_recipes,C)
 
 	if (recipe)
 		CI.result_type = 4//Recipe type, a specific recipe will transform the ingredients into a new food
@@ -508,7 +506,7 @@
 			AM.forceMove(temp)
 
 		//making multiple copies of a recipe from one container. For example, tons of fries
-		while (select_recipe(available_recipes,C) == recipe)
+		while (select_recipe(appliance_available_recipes,C) == recipe)
 			var/list/TR = list()
 			TR += recipe.make_food(C)
 			for (var/atom/movable/AM in TR) //Move results to buffer

@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(env_messages)
 /mob/living/verb/create_env_message()
 	set name = "Create Env Message"
 	set desc = "Create an ooc message in the environment for other players to see."
-	set category = "OOC"
+	set category = "OOC.Game"
 
 	if(!istype(src) || !get_turf(src) || !src.ckey)
 		return
@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(env_messages)
 /mob/living/verb/remove_env_message()
 	set name = "Remove Env Message"
 	set desc = "Remove your current env message."
-	set category = "OOC"
+	set category = "OOC.Game"
 
 	if(!istype(src) || !src.ckey)
 		return

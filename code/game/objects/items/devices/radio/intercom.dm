@@ -87,7 +87,7 @@
 
 /obj/item/radio/intercom/department/medbay/Initialize(mapload)
 	. = ..()
-	internal_channels = default_medbay_channels.Copy()
+	internal_channels = GLOB.default_medbay_channels.Copy()
 
 /obj/item/radio/intercom/department/security/Initialize(mapload)
 	. = ..()
@@ -232,4 +232,4 @@
 
 /obj/item/radio/intercom/locked/confessional
 	name = "confessional intercom"
-	frequency = 1480
+	frequency = 1481

@@ -18,6 +18,8 @@ ashburndracki - Protean
 athena14 - Xenochimera
 athena14 - Protean
 auraribbon - Black-Eyed Shadekin
+avianaviator - Protean
+avianaviator - Hanner
 azmodan412 - Xenochimera
 beyondmylife - Protean
 bonktrauma - Diona
@@ -170,6 +172,7 @@ rubyflamewing - Protean
 rykkastormheart - Xenochimera
 ryumi - Protean
 ryumi - Xenochimera
+ryumi - Black-Eyed Shadekin
 satinisle - Black-Eyed Shadekin
 satinisle - Protean
 scoutisafolflol - Xenochimera

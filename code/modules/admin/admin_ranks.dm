@@ -81,6 +81,8 @@ GLOBAL_PROTECT(protected_ranks)
 				flag = R_MOD
 			if("EVENT")
 				flag = R_EVENT
+			if("MENTOR")
+				flag = R_MENTOR
 			if("@")
 				if(previous_rank)
 					switch(group_count)

@@ -1,4 +1,4 @@
-/client/proc/smite(var/mob/living/carbon/human/target in player_list)
+/client/proc/smite(var/mob/living/carbon/human/target in GLOB.player_list)
 	set name = "Smite"
 	set desc = "Abuse a player with various 'special treatments' from a list."
 	set category = "Fun.Do Not"
@@ -181,8 +181,11 @@
 	if(!istype(target))
 		return
 
+	var/real_user = user ? user : usr
+	var/user_name = real_user ? key_name(real_user) : "Remotely (Discord)"
+
 	to_chat(target,"You've been hit by bluespace artillery!")
-	log_and_message_admins("has been hit by Bluespace Artillery fired by [key_name(user ? user : usr)]", target)
+	log_and_message_admins("has been hit by Bluespace Artillery fired by [user_name]", target)
 
 	target.setMoveCooldown(2 SECONDS)
 
@@ -285,7 +288,7 @@ var/redspace_abduction_z
 
 	target.forceMove(locate(target.x,target.y,redspace_abduction_z))
 	to_chat(target,span_danger("The tug relaxes, but everything around you looks... slightly off."))
-	to_chat(user,span_notice("The mob has been moved. ([admin_jump_link(target,usr.client.holder)])"))
+	to_chat(user, span_notice("The mob has been moved. ([admin_jump_link(target, check_rights_for(usr.client, R_HOLDER))])"))
 
 	target.transforming = FALSE
 
