@@ -7,10 +7,10 @@
 		if(remaining_volume <= 0)
 			break
 
-		if(global.sheet_reagents[O.type])
+		if(GLOB.sheet_reagents[O.type])
 			var/obj/item/stack/stack = O
 			if(istype(stack))
-				var/list/sheet_components = global.sheet_reagents[stack.type]
+				var/list/sheet_components = GLOB.sheet_reagents[stack.type]
 				var/amount_to_take = max(0,min(stack.get_amount(),round(remaining_volume/REAGENTS_PER_SHEET)))
 				if(amount_to_take)
 					stack.use(amount_to_take)
@@ -24,10 +24,10 @@
 						R.add_reagent(sheet_components, (amount_to_take*REAGENTS_PER_SHEET))
 					continue
 
-		if(global.ore_reagents[O.type])
+		if(GLOB.ore_reagents[O.type])
 			var/obj/item/ore/D = O
 			if(istype(D))
-				var/list/ore_components = global.ore_reagents[D.type]
+				var/list/ore_components = GLOB.ore_reagents[D.type]
 				if(remaining_volume >= REAGENTS_PER_ORE)
 					holdingitems -= D
 					qdel(D)

@@ -30,9 +30,9 @@
 		to_chat(user, "The machine cannot hold anymore items.")
 		return TRUE
 
-	// Botany gameplay
-	if(istype(O,/obj/item/storage/bag/plants))
-		var/obj/item/storage/bag/plants/bag = O
+	// Botany/Chemistry gameplay
+	if(istype(O,/obj/item/storage/bag))
+		var/obj/item/storage/bag/bag = O
 		var/failed = 1
 		for(var/obj/item/G in O.contents)
 			if(!G.reagents || !G.reagents.total_volume)
@@ -44,7 +44,7 @@
 				break
 
 		if(failed)
-			to_chat(user, "Nothing in the plant bag is usable.")
+			to_chat(user, "Nothing in \the [O] is usable.")
 			return 1
 
 		if(!O.contents.len)
