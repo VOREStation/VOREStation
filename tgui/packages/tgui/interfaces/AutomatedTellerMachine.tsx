@@ -44,7 +44,7 @@ export const AutomatedTellerMachine = (props) => {
   return (
     <Window width={680} height={550}>
       <Window.Content>
-        <Section title={'Automatic Teller Machine - ' + data.machine_id} fill>
+        <Section title={`Automatic Teller Machine - ${data.machine_id}`} fill>
           {data.authenticated_account ? (
             <AuthenticatedScreen />
           ) : (

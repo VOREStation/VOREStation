@@ -61,12 +61,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/global/click_sound = 'sound/items/nif_click.ogg'
 	var/global/bad_sound = 'sound/items/nif_tone_bad.ogg'
 	var/global/good_sound = 'sound/items/nif_tone_good.ogg'
-	var/global/list/look_messages = list(
-			"flicks their eyes around",
-			"looks at something unseen",
-			"reads some invisible text",
-			"seems to be daydreaming",
-			"focuses elsewhere for a moment")
+
 
 	var/list/save_data
 
@@ -398,7 +393,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	last_notification = message // TGUI Hook
 
 	to_chat(human,span_filter_nif(span_bold("\[[icon2html(src.big_icon, human.client)]NIF\]") + " displays, " + (alert ? span_danger(message) : span_notice(message))))
-	if(prob(1)) human.visible_message(span_notice("\The [human] [pick(look_messages)]."))
+	if(prob(1)) human.visible_message(span_notice("\The [human] [pick(GLOB.nif_look_messages)]."))
 	if(alert)
 		human << bad_sound
 	else
@@ -498,7 +493,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	if(stat != NIF_WORKING) return FALSE
 
 	if(human)
-		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(look_messages)]."))
+		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(GLOB.nif_look_messages)]."))
 		var/applies_to = soft.applies_to
 		var/synth = human.isSynthetic()
 		if(synth && !(applies_to & NIF_SYNTHETIC))
@@ -525,7 +520,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Deactivate a nifsoft
 /obj/item/nif/proc/deactivate(var/datum/nifsoft/soft)
 	if(human)
-		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(look_messages)]."))
+		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(GLOB.nif_look_messages)]."))
 		human << click_sound
 
 	if(soft.tick_flags == NIF_ACTIVETICK)

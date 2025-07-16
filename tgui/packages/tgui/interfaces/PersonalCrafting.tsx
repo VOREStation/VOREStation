@@ -202,7 +202,7 @@ const CraftingList = (props: {
               icon="cog"
               disabled={!craftability[craftable.ref]}
               tooltip={
-                craftable.tool_text && 'Tools needed: ' + craftable.tool_text
+                craftable.tool_text && `Tools needed: ${craftable.tool_text}`
               }
               tooltipPosition="left"
               onClick={() =>

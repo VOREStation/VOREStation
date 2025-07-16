@@ -30,7 +30,7 @@ export const SleeperOccupant = (props) => {
               icon={auto_eject_dead ? 'toggle-on' : 'toggle-off'}
               selected={auto_eject_dead}
               onClick={() =>
-                act('auto_eject_dead_' + (auto_eject_dead ? 'off' : 'on'))
+                act(`auto_eject_dead_${auto_eject_dead ? 'off' : 'on'}`)
               }
             >
               {auto_eject_dead ? 'On' : 'Off'}

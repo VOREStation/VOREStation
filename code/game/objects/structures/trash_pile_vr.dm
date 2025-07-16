@@ -17,17 +17,6 @@
 
 	//These are types that can only spawn once, and then will be removed from this list.
 	//Alpha and beta lists are in their respective procs.
-	var/global/list/unique_gamma = list(
-		/obj/item/perfect_tele,
-		/obj/item/bluespace_harpoon,
-		/obj/item/clothing/glasses/thermal/syndi,
-		/obj/item/gun/energy/netgun,
-		/obj/item/gun/projectile/dartgun,
-		/obj/item/clothing/gloves/black/bloodletter,
-		/obj/item/gun/energy/mouseray/metamorphosis
-		)
-
-	var/global/list/allocated_gamma = list()
 
 /obj/structure/trash_pile/Initialize(mapload)
 	. = ..()
@@ -53,12 +42,12 @@
 
 /obj/structure/trash_pile/attackby(obj/item/W as obj, mob/user as mob)
 	var/w_type = W.type
-	if(w_type in allocated_gamma)
+	if(w_type in GLOB.allocated_gamma)
 		to_chat(user,span_notice("You feel \the [W] slip from your hand, and disappear into the trash pile."))
 		user.unEquip(W)
 		W.forceMove(src)
-		allocated_gamma -= w_type
-		unique_gamma += w_type
+		GLOB.allocated_gamma -= w_type
+		GLOB.unique_gamma += w_type
 		qdel(W)
 
 	else
@@ -332,18 +321,18 @@
 	return I
 
 /obj/structure/trash_pile/proc/produce_gamma_item()
-	var/path = pick_n_take(unique_gamma)
+	var/path = pick_n_take(GLOB.unique_gamma)
 	if(!path) //Tapped out, reallocate?
-		for(var/P in allocated_gamma)
-			var/obj/item/I = allocated_gamma[P]
+		for(var/P in GLOB.allocated_gamma)
+			var/obj/item/I = GLOB.allocated_gamma[P]
 			if(QDELETED(I) || istype(I.loc,/obj/machinery/computer/cryopod))
-				allocated_gamma -= P
+				GLOB.allocated_gamma -= P
 				path = P
 				break
 
 	if(path)
 		var/obj/item/I = new path()
-		allocated_gamma[path] = I
+		GLOB.allocated_gamma[path] = I
 		return I
 	else
 		return produce_beta_item()

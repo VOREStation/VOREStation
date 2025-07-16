@@ -13,7 +13,7 @@ export function prepareSearch<T extends SearchObject>(
     if (typeof object === 'string') {
       return object;
     } else {
-      return object['name'];
+      return object.name;
     }
   });
   return flow([

@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, NumberInput } from 'tgui-core/components';
 
-import { type FilterEntryProps } from '../types';
+import type { FilterEntryProps } from '../types';
 
 export const FilterTransformEntry = (props: FilterEntryProps) => {
   const { name, value, hasValue, filterName, filterType } = props;

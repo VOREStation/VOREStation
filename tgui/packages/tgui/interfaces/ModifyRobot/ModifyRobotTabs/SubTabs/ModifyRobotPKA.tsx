@@ -49,7 +49,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
                     color="green"
                     tooltip={
                       modkit.denied_by
-                        ? 'Modul incompatible with: ' + modkit.denied_by
+                        ? `Modul incompatible with: ${modkit.denied_by}`
                         : ''
                     }
                     onClick={() =>

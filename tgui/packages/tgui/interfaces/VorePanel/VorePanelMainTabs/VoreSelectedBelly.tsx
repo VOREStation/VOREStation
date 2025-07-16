@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Stack, Tabs } from 'tgui-core/components';
+import { Section, Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { tabToNames } from '../constants';
@@ -129,7 +129,11 @@ export const VoreSelectedBelly = (props: {
           ))}
         </Tabs>
       </Stack.Item>
-      <Stack.Item grow>{tabs[activeVoreTab] || 'Error'}</Stack.Item>
+      <Stack.Item grow>
+        <Section noTopPadding fill scrollable>
+          {tabs[activeVoreTab] || 'Error'}
+        </Section>
+      </Stack.Item>
     </Stack>
   );
 };

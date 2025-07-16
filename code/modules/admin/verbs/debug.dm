@@ -93,7 +93,7 @@
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_robotize(var/mob/M in mob_list)
+/client/proc/cmd_admin_robotize(var/mob/M in GLOB.mob_list)
 	set category = "Fun.Event Kit"
 	set name = "Make Robot"
 
@@ -108,7 +108,7 @@
 	else
 		tgui_alert_async(usr, "Invalid mob")
 
-/client/proc/cmd_admin_animalize(var/mob/M in mob_list)
+/client/proc/cmd_admin_animalize(var/mob/M in GLOB.mob_list)
 	set category = "Fun.Event Kit"
 	set name = "Make Simple Animal"
 
@@ -138,7 +138,7 @@
 	var/turf/T = get_turf(mob)
 
 	var/list/available = list()
-	for(var/mob/C in mob_list)
+	for(var/mob/C in GLOB.mob_list)
 		if(C.key && isobserver(C))
 			available.Add(C)
 	var/mob/choice = tgui_input_list(usr, "Choose a player to play the pAI", "Spawn pAI", available)
@@ -160,7 +160,7 @@
 	log_admin("made a pAI with key=[pai.key] at ([T.x],[T.y],[T.z])")
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_alienize(var/mob/M in mob_list)
+/client/proc/cmd_admin_alienize(var/mob/M in GLOB.mob_list)
 	set category = "Fun.Event Kit"
 	set name = "Make Alien"
 
@@ -273,7 +273,7 @@
 	else
 		. = lines.Join("\n")
 
-/client/proc/cmd_admin_grantfullaccess(var/mob/M in mob_list)
+/client/proc/cmd_admin_grantfullaccess(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Events"
 	set name = "Grant Full Access"
 
@@ -587,15 +587,15 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 
 	switch(tgui_input_list(usr, "Which list?", "List Choice", list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients")))
 		if("Players")
-			to_chat(usr, span_filter_debuglogs(jointext(player_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.player_list,",")))
 		if("Admins")
 			to_chat(usr, span_filter_debuglogs(jointext(GLOB.admins,",")))
 		if("Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.mob_list,",")))
 		if("Living Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(living_mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.living_mob_list,",")))
 		if("Dead Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(dead_mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.dead_mob_list,",")))
 		if("Clients")
 			to_chat(usr, span_filter_debuglogs(jointext(GLOB.clients,",")))
 
@@ -739,7 +739,7 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 
 ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", "Fun.Add Nif")
 	var/input_NIF
-	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", player_list)
+	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", GLOB.player_list)
 
 	if(!H)
 		return

@@ -38,6 +38,8 @@
 	var/normal_phase = TRUE
 	///If we drop items on phase.
 	var/drop_items_on_phase = FALSE
+	///If cameras count as watchers for us
+	var/camera_counts_as_watcher = FALSE
 
 	//Dark Respite Vars (Unused on Virgo)
 	///If we are in dark respite or not
@@ -56,8 +58,8 @@
 	//Ability Vars
 	///The innate abilities we start with
 	var/list/shadekin_abilities = list(/datum/power/shadekin/phase_shift,
-									   /datum/power/shadekin/regenerate_other,
-									   /datum/power/shadekin/create_shade)
+										/datum/power/shadekin/regenerate_other,
+										/datum/power/shadekin/create_shade)
 	///Datum holder. Largely ignore this.
 	var/list/shadekin_ability_datums = list()
 
@@ -72,13 +74,14 @@
 
 /datum/component/shadekin/full
 	shadekin_abilities = list(/datum/power/shadekin/phase_shift,
-							  /datum/power/shadekin/regenerate_other,
-							  /datum/power/shadekin/create_shade,
-							  /datum/power/shadekin/dark_maw,
-							  /datum/power/shadekin/dark_respite,
-							  /datum/power/shadekin/dark_tunneling)
+								/datum/power/shadekin/regenerate_other,
+								/datum/power/shadekin/create_shade,
+								/datum/power/shadekin/dark_maw,
+								/datum/power/shadekin/dark_respite,
+								/datum/power/shadekin/dark_tunneling)
 	extended_kin = TRUE
 	drop_items_on_phase = TRUE
+	camera_counts_as_watcher = TRUE
 
 /datum/component/shadekin/full/rakshasa
 	flicker_time = 0 //Rakshasa don't flicker lights when they phase in.
@@ -132,6 +135,10 @@
 	owner = null
 	. = ..()
 
+/datum/component/shadekin/proc/recalc_values()
+	set_shadekin_eyecolor() //Gets what eye color we are.
+	set_eye_energy() //Sets the energy values based on our eye color.
+
 ///Handles the component running.
 /datum/component/shadekin/proc/handle_comp()
 	SIGNAL_HANDLER
@@ -172,11 +179,77 @@
 		else
 			dark_gains = energy_light
 
+	handle_nutrition_conversion(dark_gains)
+
 	shadekin_adjust_energy(dark_gains)
 
 	//Update huds
 	update_shadekin_hud()
 
+/datum/component/shadekin/proc/calculate_stun()
+	var/stun_time = 3
+	if(flicker_time > 0)
+		stun_time -= min(flicker_time / 5, 1)
+	if(flicker_distance > 0)
+		stun_time -= min(flicker_distance / 5, 1)
+	if(flicker_break_chance > 0)
+		stun_time -= min(flicker_break_chance / 5, 1)
+	return stun_time
+
+/datum/component/shadekin/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShadekinConfig", "Shadekin Config")
+		ui.open()
+
+/datum/component/shadekin/tgui_data(mob/user)
+	var/data = list(
+		"stun_time" = calculate_stun(),
+		"flicker_time" = flicker_time,
+		"flicker_color" = flicker_color,
+		"flicker_break_chance" = flicker_break_chance,
+		"flicker_distance" = flicker_distance,
+	)
+
+	return data
+
+
+/datum/component/shadekin/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("adjust_time")
+			var/new_time = text2num(params["val"])
+			new_time = CLAMP(new_time, 2, 20)
+			if(!isnum(new_time))
+				return FALSE
+			flicker_time = new_time
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_time, new_time)
+			return TRUE
+		if("adjust_color")
+			var/set_new_color = tgui_color_picker(ui.user, "Select a color you wish the lights to flicker as (Default is #E0EFF0)", "Color Selector", flicker_color)
+			if(!set_new_color)
+				return FALSE
+			flicker_color = set_new_color
+			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color)
+			return TRUE
+		if("adjust_break")
+			var/new_break_chance = text2num(params["val"])
+			new_break_chance = CLAMP(new_break_chance, 0, 25)
+			if(!isnum(new_break_chance))
+				return FALSE
+			flicker_break_chance = new_break_chance
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_break_chance)
+			return TRUE
+		if("adjust_distance")
+			var/new_distance = text2num(params["val"])
+			new_distance = CLAMP(new_distance, 4, 10)
+			if(!isnum(new_distance))
+				return FALSE
+			flicker_distance = new_distance
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_distance, new_distance)
+			return TRUE
 
 /mob/living/proc/nutrition_conversion_toggle()
 	set name = "Toggle Energy <-> Nutrition conversions"
@@ -204,21 +277,5 @@
 	if(!SK)
 		to_chat(src, span_warning("Only a shadekin can use that!"))
 		return FALSE
-	var/flicker_timer = tgui_input_number(src, "Adjust how long lights flicker when you phase in! (Min 10 Max 20 times!)", "Set Flicker", SK.flicker_time, 20, 10)
-	if(flicker_timer > 20 || flicker_timer < 10)
-		to_chat(src,"<span class='warning'>You must choose a number between 10 and 20</span>")
-		return
-	SK.flicker_time = flicker_timer
-	to_chat(src,"<span class='warning'>Flicker timer set to [SK.flicker_time] seconds!</span>")
 
-	var/set_new_color = tgui_color_picker(src,"Select a color you wish the lights to flicker as (Default is #E0EFF0)","Color Selector", SK.flicker_color)
-	if(set_new_color)
-		SK.flicker_color = set_new_color
-	to_chat(src,"<span class='warning'>Flicker color set to [SK.flicker_color]!</span>")
-
-	var/break_chance = tgui_input_number(src, "Adjust the % chance for lights to break when you phase in! (Default 0. Min 0. Max 25)", "Set Break Chance", 0, 25, 0)
-	if(break_chance > 25 || break_chance < 0)
-		to_chat(src,"<span class='warning'>You must choose a number between 0 and 25</span>")
-		return
-	SK.flicker_break_chance = break_chance
-	to_chat(src,"<span class='warning'>Break chance set to [SK.flicker_break_chance]%</span>")
+	SK.tgui_interact(src)

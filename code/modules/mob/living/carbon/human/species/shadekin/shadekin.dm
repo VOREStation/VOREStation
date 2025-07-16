@@ -101,12 +101,115 @@
 		)
 
 	species_component = /datum/component/shadekin
+	component_requires_late_recalc = TRUE
 
 /datum/species/shadekin/handle_death(var/mob/living/carbon/human/H)
-	spawn(1)
-		for(var/obj/item/W in H)
-			H.drop_from_inventory(W)
-		qdel(H)
+	var/special_handling = FALSE //varswitch for downstream
+	H.clear_dark_maws() //clear dark maws on death or similar
+	if(!special_handling)
+		spawn(1)
+			for(var/obj/item/W in H)
+				H.drop_from_inventory(W)
+			qdel(H)
+	else
+		var/datum/component/shadekin/SK = H.get_shadekin_component()
+		if(!SK)
+			return
+		if(SK.respite_activating)
+			return TRUE
+		var/area/current_area = get_area(H)
+		if((SK.in_dark_respite) || H.has_modifier_of_type(/datum/modifier/dark_respite) || current_area.flag_check(AREA_LIMIT_DARK_RESPITE))
+			return
+		if(!LAZYLEN(GLOB.latejoin_thedark))
+			log_and_message_admins("[H] died outside of the dark but there were no valid floors to warp to")
+			return
+
+		H.visible_message("<b>\The [H.name]</b> phases to somewhere far away!")
+		var/obj/effect/temp_visual/shadekin/phase_out/phaseanimout = new /obj/effect/temp_visual/shadekin/phase_out(H.loc)
+		phaseanimout.dir = H.dir
+		SK.respite_activating = TRUE
+
+		H.drop_l_hand()
+		H.drop_r_hand()
+
+		SK.shadekin_set_energy(0)
+		SK.in_dark_respite = TRUE
+		H.invisibility = INVISIBILITY_SHADEKIN
+
+		H.adjustFireLoss(-(H.getFireLoss() * 0.75))
+		H.adjustBruteLoss(-(H.getBruteLoss() * 0.75))
+		H.adjustToxLoss(-(H.getToxLoss() * 0.75))
+		H.adjustCloneLoss(-(H.getCloneLoss() * 0.75))
+		H.germ_level = 0 //Take away the germs, or we'll die AGAIN
+		H.vessel.add_reagent(REAGENT_ID_BLOOD,blood_volume-H.vessel.total_volume)
+		for(var/obj/item/organ/external/bp in H.organs)
+			bp.bandage()
+			bp.disinfect()
+		for(var/obj/item/organ/internal/I in H.internal_organs) //other wise their organs stay mush
+			I.damage = 0
+			I.status = 0
+			if(I.organ_tag == O_EYES)
+				H.sdisabilities &= ~BLIND
+			if(I.organ_tag == O_LUNGS)
+				H.SetLosebreath(0)
+		H.nutrition = 0
+		H.invisibility = INVISIBILITY_SHADEKIN
+		BITRESET(H.hud_updateflag, HEALTH_HUD)
+		BITRESET(H.hud_updateflag, STATUS_HUD)
+		BITRESET(H.hud_updateflag, LIFE_HUD)
+
+		if(istype(H.loc, /obj/belly))
+			//Yay digestion... presumably...
+			var/obj/belly/belly = H.loc
+			add_attack_logs(belly.owner, H, "Digested in [lowertext(belly.name)]")
+			to_chat(belly.owner, span_notice("\The [H.name] suddenly vanishes within your [belly.name]"))
+			H.forceMove(pick(GLOB.latejoin_thedark))
+			if(SK.in_phase)
+				H.phase_shift()
+			else
+				var/obj/effect/temp_visual/shadekin/phase_in/phaseanim = new /obj/effect/temp_visual/shadekin/phase_in(H.loc)
+				phaseanim.dir = H.dir
+			H.invisibility = initial(H.invisibility)
+			SK.respite_activating = FALSE
+			belly.owner.handle_belly_update()
+			H.clear_fullscreen("belly")
+			if(H.hud_used)
+				if(!H.hud_used.hud_shown)
+					H.toggle_hud_vis()
+			H.stop_sound_channel(CHANNEL_PREYLOOP)
+			H.add_modifier(/datum/modifier/dark_respite, 10 MINUTES)
+			H.muffled = FALSE
+			H.forced_psay = FALSE
+
+
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, can_leave_dark)), 5 MINUTES, TIMER_DELETE_ME)
+		else
+			H.add_modifier(/datum/modifier/dark_respite, 25 MINUTES)
+
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, enter_the_dark)), 1 SECOND, TIMER_DELETE_ME)
+
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living, can_leave_dark)), 15 MINUTES, TIMER_DELETE_ME)
+
+		return TRUE
+
+
+/mob/living/proc/enter_the_dark()
+	var/datum/component/shadekin/SK = get_shadekin_component()
+	if(!SK)
+		return
+	SK.respite_activating = FALSE
+	SK.in_dark_respite = TRUE
+
+	forceMove(pick(GLOB.latejoin_thedark))
+	invisibility = initial(invisibility)
+	SK.respite_activating = FALSE
+
+/mob/living/proc/can_leave_dark()
+	var/datum/component/shadekin/SK = get_shadekin_component()
+	if(!SK)
+		return
+	SK.in_dark_respite = FALSE
+	to_chat(src, span_notice("You feel like you can leave the Dark again"))
 
 /datum/species/shadekin/get_bodytype()
 	return SPECIES_SHADEKIN

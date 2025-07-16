@@ -359,6 +359,7 @@
 	var/food_preference_bonus = 0
 
 	var/datum/component/species_component = null // The component that this species uses. Example: Xenochimera use /datum/component/xenochimera
+	var/component_requires_late_recalc = FALSE // If TRUE, the component will do special recalculation stuff at the end of update_icons_body()
 
 	// For Lleill and Hanner
 	var/lleill_energy = 200
@@ -371,6 +372,8 @@
 	var/grab_power_self = 0 //NYI - Used Downstream
 	var/waking_speed = 1 //NYI - Used Downstream
 	var/lightweight_light = 0 //NYI - Used Downstream
+	var/unarmed_bonus = 0 //do you have stronger unarmed attacks?
+	var/shredding = FALSE //do you shred when attacking? Affects escaping restraints, and punching normally unpunchable things
 
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
@@ -621,7 +624,8 @@
 
 	if(!ignore_intent && H.a_intent != I_HURT)
 		return 0
-
+	if(shredding)
+		return 1
 	for(var/datum/unarmed_attack/attack in unarmed_attacks)
 		if(!attack.is_usable(H))
 			continue

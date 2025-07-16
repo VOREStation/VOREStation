@@ -27,7 +27,7 @@ export const CrewMonitorMapView = (props: {
               y={cm.y}
               zoom={props.zoom}
               icon="circle"
-              tooltip={cm.name + ' (' + cm.assignment + ')'}
+              tooltip={`${cm.name} (${cm.assignment})`}
               color={getStatColor(cm)}
             />
           ))}

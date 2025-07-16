@@ -23,7 +23,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(possess, R_POSSESS, "Possess Obj", "Possess an objec
 	user.mob.control_object = O
 	feedback_add_details("admin_verb","PO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(release, R_POSSESS, "Release Object", "Stop possessing an object.", ADMIN_CATEGORY_OBJECT, obj/O as obj in world)
+ADMIN_VERB_AND_CONTEXT_MENU(release, R_POSSESS, "Release Object", "Stop possessing an object.", ADMIN_CATEGORY_OBJECT, obj/O as obj in world)
 	if(user.mob.control_object && user.mob.name_archive) //if you have a name archived and if you are actually relassing an object
 		user.mob.real_name = user.mob.name_archive
 		user.mob.name = user.mob.real_name

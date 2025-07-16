@@ -274,9 +274,7 @@
 	weight = 1
 	pass_stack_colors = TRUE
 
-var/global/list/datum/stack_recipe/wax_recipes = list( \
-	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
-)
+
 
 /obj/item/bee_pack
 	name = "bee pack"

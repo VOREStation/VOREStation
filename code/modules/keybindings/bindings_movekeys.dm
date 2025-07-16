@@ -1,18 +1,3 @@
-// TODO - Optimize this into numerics if this ends up working out
-var/global/list/MOVE_KEY_MAPPINGS = list(
-	"North" = NORTH_KEY,
-	"South" = SOUTH_KEY,
-	"East" = EAST_KEY,
-	"West" = WEST_KEY,
-	"W" = W_KEY,
-	"A" = A_KEY,
-	"S" = S_KEY,
-	"D" = D_KEY,
-	"Shift" = SHIFT_KEY,
-	"Ctrl" = CTRL_KEY,
-	"Alt" = ALT_KEY,
-)
-
 // These verbs are called for all movemen key press and release events
 /client/verb/moveKeyDown(movekeyName as text)
 	set instant = TRUE
@@ -21,7 +6,7 @@ var/global/list/MOVE_KEY_MAPPINGS = list(
 	set name = "KeyDown"
 
 	// Map text sent by skin.dmf to our numeric codes. (This can be optimized away once we update skin.dmf)
-	var/movekey = MOVE_KEY_MAPPINGS[movekeyName]
+	var/movekey = GLOB.MOVE_KEY_MAPPINGS[movekeyName]
 
 	// Validate input.  Must be one (and only one) of the key codes)
 	if(isnull(movekey) || (movekey & ~0xFFF) || (movekey & (movekey - 1)))
@@ -53,7 +38,7 @@ var/global/list/MOVE_KEY_MAPPINGS = list(
 	set name = "KeyUp"
 
 	// Map text sent by skin.dmf to our numeric codes. (This can be optimized away once we update skin.dmf)
-	var/movekey = MOVE_KEY_MAPPINGS[movekeyName]
+	var/movekey = GLOB.MOVE_KEY_MAPPINGS[movekeyName]
 
 	// Validate input.  Must be one (and only one) of the key codes)
 	if(isnull(movekey) || (movekey & ~0xFFF) || (movekey & (movekey - 1)))

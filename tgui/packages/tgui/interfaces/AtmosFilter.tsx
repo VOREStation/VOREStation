@@ -41,7 +41,7 @@ export const AtmosFilter = (props) => {
               <Box inline mr={1}>
                 <AnimatedNumber
                   value={last_flow_rate}
-                  format={(val) => val + ' L/s'}
+                  format={(val) => `${val} L/s`}
                 />
               </Box>
               <NumberInput

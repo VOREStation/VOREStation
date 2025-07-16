@@ -207,7 +207,7 @@ const GeneralMobSettings = (props: {
               onChange={(val: number) => props.onAmount(val)}
             />
           </LabeledList.Item>
-          <LabeledList.Item label={'Size (' + props.sizeMultiplier + '%)'}>
+          <LabeledList.Item label={`Size (${props.sizeMultiplier}%)`}>
             <Knob
               format={(value) => toFixed(value)}
               value={props.sizeMultiplier}
