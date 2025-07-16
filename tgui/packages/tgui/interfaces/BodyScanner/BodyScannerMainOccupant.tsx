@@ -76,8 +76,8 @@ export const BodyScannerMainOccupant = (props: { occupant: occupant }) => {
           %)
         </LabeledList.Item>
         <LabeledList.Item label="Weight">
-          {toFixed(occupant.weight / 2.20463, 1) + 'kg, '}
-          {toFixed(occupant.weight) + 'lbs'}
+          {`${toFixed(occupant.weight / 2.20463, 1)}kg, `}
+          {`${toFixed(occupant.weight)}lbs`}
         </LabeledList.Item>
       </LabeledList>
     </Section>

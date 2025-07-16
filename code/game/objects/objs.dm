@@ -237,6 +237,7 @@
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---")
 	VV_DROPDOWN_OPTION(VV_HK_MASS_DEL_TYPE, "Delete all of type")
+	VV_DROPDOWN_OPTION(VV_HK_FAKE_CONVO, "Add Fake Prop Conversation")
 	//VV_DROPDOWN_OPTION(VV_HK_OSAY, "Object Say")
 
 /obj/vv_do_topic(list/href_list)
@@ -284,3 +285,14 @@
 					return
 				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
 				message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
+
+	if(href_list[VV_HK_FAKE_CONVO])
+		if(!check_rights(R_FUN))
+			return
+
+		var/obj/item/pda/P = src
+		if(!istype(P))
+			to_chat(usr, span_warning("This can only be done to instances of type /pda"))
+			return
+
+		P.createPropFakeConversation_admin(usr)

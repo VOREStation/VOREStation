@@ -18,7 +18,7 @@ export function sanitize_color(color?: string | null, mirrorBlack?: boolean) {
 }
 
 export function calcLineHeight(lim: number, height: number) {
-  return (Math.ceil(lim / 25 / height + 0.5) * height).toFixed() + 'px';
+  return `${(Math.ceil(lim / 25 / height + 0.5) * height).toFixed()}px`;
 }
 
 export function fixCorruptedData(

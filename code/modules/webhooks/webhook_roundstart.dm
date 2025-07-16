@@ -5,7 +5,7 @@
 /decl/webhook/roundstart/get_message(var/list/data)
 	. = ..()
 	var/desc = "Gamemode: **[GLOB.master_mode]**\n"
-	desc += "Players: **[global.player_list.len]**"
+	desc += "Players: **[GLOB.player_list.len]**"
 	if(data && data["url"])
 		desc += "\nAddress: <[data["url"]]>"
 

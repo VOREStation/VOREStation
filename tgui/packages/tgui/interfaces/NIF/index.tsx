@@ -58,7 +58,7 @@ export const NIF = (props) => {
                       icon="ban"
                       color="bad"
                       confirmIcon="ban"
-                      confirmContent={'Uninstall ' + viewingModule.name + '?'}
+                      confirmContent={`Uninstall ${viewingModule.name}?`}
                       onClick={() => {
                         act('uninstall', { module: viewingModule.ref });
                         setViewing(null);
@@ -109,7 +109,7 @@ export const NIF = (props) => {
           </Modal>
         )}
         <Section
-          title={'Welcome to your NIF, ' + config.user.name}
+          title={`Welcome to your NIF, ${config.user.name}`}
           buttons={
             <Button
               icon="cogs"

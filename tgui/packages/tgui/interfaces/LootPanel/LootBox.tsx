@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
@@ -38,14 +39,15 @@ export function LootBox(props: Props) {
       p={0}
       fluid
       color="transparent"
-      onClick={(event) =>
+      onMouseDown={(event: MouseEvent) => {
         act('grab', {
           alt: event.altKey,
           ctrl: event.ctrlKey,
           ref: item.ref,
           shift: event.shiftKey,
-        })
-      }
+          middle: event.button === 1,
+        });
+      }}
       onContextMenu={(event) => {
         event.preventDefault();
         act('grab', {
@@ -66,7 +68,7 @@ export function LootBox(props: Props) {
           {!is_blind && name}
         </Stack.Item>
         <Stack.Item lineHeight="34px" pr={1}>
-          {amount > 1 && 'x' + amount}
+          {amount > 1 && `x${amount}`}
         </Stack.Item>
       </Stack>
     </Button>

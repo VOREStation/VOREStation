@@ -986,7 +986,7 @@
 			. = TRUE
 		if("b_tail_to_change_to")
 			var/tail_choice = params["val"]
-			if(!(tail_choice in global.tail_styles_list))
+			if(!(tail_choice in GLOB.tail_styles_list))
 				return FALSE
 			host.vore_selected.tail_to_change_to = tail_choice
 			. = TRUE

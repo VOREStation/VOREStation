@@ -188,7 +188,7 @@
 		if(antag) antag.place_mob(src.current)
 
 	else if (href_list["role_edit"])
-		var/new_role = tgui_input_list(usr, "Select new role", "Assigned role", assigned_role, joblist)
+		var/new_role = tgui_input_list(usr, "Select new role", "Assigned role", assigned_role, GLOB.joblist)
 		if (!new_role) return
 		assigned_role = new_role
 
@@ -493,7 +493,7 @@
 		return 0
 
 /datum/mind/proc/get_ghost(even_if_they_cant_reenter)
-	for(var/mob/observer/dead/G in player_list)
+	for(var/mob/observer/dead/G in GLOB.player_list)
 		if(G.mind == src)
 			if(G.can_reenter_corpse || even_if_they_cant_reenter)
 				return G

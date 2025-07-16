@@ -176,7 +176,7 @@ export function setupHotKeys(config?: KeyPassthroughConfig) {
 
     const promises: Promise<any>[] = [];
     for (const set of separated) {
-      promises.push(Byond.winget(set + '.*'));
+      promises.push(Byond.winget(`${set}.*`));
     }
 
     Promise.all(promises).then((sets: Record<string, string>[]) => {

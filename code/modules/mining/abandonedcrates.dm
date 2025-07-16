@@ -153,8 +153,11 @@ vorestation edit end */
 		return
 
 	to_chat(user, span_notice("The crate is locked with a Deca-code lock."))
-	var/input = tgui_input_text(user, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "")
+	var/input = tgui_input_text(user, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "", codelen)
 	if(!Adjacent(user))
+		return
+	if(input == null)
+		to_chat(user, span_notice("You leave the crate alone."))
 		return
 	var/list/sanitised = list()
 	var/sanitycheck = 1
@@ -165,9 +168,11 @@ vorestation edit end */
 			if(sanitised[i] == sanitised[j])
 				sanitycheck = null //if a digit is repeated, reject the input
 
-	if(input == null || sanitycheck == null || length(input) != codelen)
-		to_chat(user, span_notice("You leave the crate alone."))
-	else if(check_input(input))
+	if(sanitycheck == null || length(input) != codelen)
+		to_chat(user, span_notice("You aren't sure this input is a good idea."))
+		return
+
+	if(check_input(input))
 		to_chat(user, span_notice("The crate unlocks!"))
 		playsound(src, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)

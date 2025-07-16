@@ -10,7 +10,7 @@ import {
   ImageButton,
   Stack,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import {
   AppearanceFlags,
@@ -176,10 +176,10 @@ export const SubtabSpecies = (props: {
                     SpawnFlags.SPECIES_IS_WHITELISTED ? (
                       <Box>Whitelist restricted.</Box>
                     ) : null}
-                    {viewed_species.has_organ['heart'] ? null : (
+                    {viewed_species.has_organ.heart ? null : (
                       <Box>Does not have a circulatory system.</Box>
                     )}
-                    {viewed_species.has_organ['lungs'] ? null : (
+                    {viewed_species.has_organ.lungs ? null : (
                       <Box>Does not have a respiratory system.</Box>
                     )}
                     {viewed_species.flags & SpeciesFlags.NO_DNA ? (

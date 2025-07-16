@@ -71,7 +71,7 @@ const SelectedArticle = (props) => {
 
   return (
     <Section
-      title={'Viewing: ' + title}
+      title={`Viewing: ${title}`}
       buttons={
         <Stack>
           <Stack.Item>

@@ -18,7 +18,7 @@ export const Filteriffic = (props: any) => {
   const name = data.target_name || 'Unknown Object';
   const filters = data.target_filter_data || {};
   const hasFilters = Object.keys(filters).length !== 0;
-  const filterDefaults = data['filter_info'];
+  const filterDefaults = data.filter_info;
   const [massApplyPath, setMassApplyPath] = useState('');
   const [hiddenSecret, setHiddenSecret] = useState(false);
 

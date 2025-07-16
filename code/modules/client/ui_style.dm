@@ -1,34 +1,3 @@
-
-
-/var/all_ui_styles = list(
-	"Midnight"     = 'icons/mob/screen/midnight.dmi',
-	"Orange"       = 'icons/mob/screen/orange.dmi',
-	"old"          = 'icons/mob/screen/old.dmi',
-	"White"        = 'icons/mob/screen/white.dmi',
-	"old-noborder" = 'icons/mob/screen/old-noborder.dmi',
-	"minimalist"   = 'icons/mob/screen/minimalist.dmi',
-	"Hologram"     = 'icons/mob/screen/holo.dmi'
-	)
-
-/var/all_ui_styles_robot = list(
-	"Midnight"     = 'icons/mob/screen1_robot.dmi',
-	"Orange"       = 'icons/mob/screen1_robot.dmi',
-	"old"          = 'icons/mob/screen1_robot.dmi',
-	"White"        = 'icons/mob/screen1_robot.dmi',
-	"old-noborder" = 'icons/mob/screen1_robot.dmi',
-	"minimalist"   = 'icons/mob/screen1_robot_minimalist.dmi',
-	"Hologram"     = 'icons/mob/screen1_robot_minimalist.dmi'
-	)
-
-var/global/list/all_tooltip_styles = list(
-	"Midnight",		//Default for everyone is the first one,
-	"Plasmafire",
-	"Retro",
-	"Slimecore",
-	"Operative",
-	"Clockwork"
-	)
-
 /proc/ui_style2icon(ui_style)
 	if(ui_style in all_ui_styles)
 		return all_ui_styles[ui_style]

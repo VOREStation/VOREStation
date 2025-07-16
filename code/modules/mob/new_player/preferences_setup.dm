@@ -193,7 +193,7 @@
 	// Determine what job is marked as 'High' priority, and dress them up as such.
 	if(job_civilian_low & ASSISTANT)
 		previewJob = job_master.GetJob(JOB_ALT_VISITOR)
-	else if(client && ispAI(client.mob))	//VOREStation Edit! - pAIs shouldn't wear job gear~!
+	else if(client && ispAI(client.mob))
 		pass() //Don't do anything!
 	else
 		for(var/datum/job/job in job_master.occupations)
@@ -225,7 +225,7 @@
 						if(previewJob.title == job_name)
 							permitted = 1
 
-				if(G.whitelisted && (G.whitelisted != mannequin.species.name))
+				if(G.whitelisted && (G.whitelisted != mannequin.species.name && G.whitelisted != mannequin.species.base_species))
 					permitted = 0
 
 				if(!permitted)
@@ -247,7 +247,7 @@
 		mannequin.dna = new /datum/dna(null)
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
-	mannequin.update_transform() //VOREStation Edit to update size/shape stuff.
+	mannequin.update_transform()
 	mannequin.toggle_tail(setting = animations_toggle)
 	mannequin.toggle_wing(setting = animations_toggle)
 
@@ -276,28 +276,27 @@
 
 /datum/preferences/proc/get_valid_hairstyles(mob/user)
 	var/list/valid_hairstyles = list()
-	for(var/hairstyle in hair_styles_list)
-		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
-		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
+	for(var/hairstyle in GLOB.hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
+		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
 			continue
-		if((!S.ckeys_allowed) || (user.ckey in S.ckeys_allowed)) //VOREStation Edit, allows ckey locked hairstyles.
-			valid_hairstyles[S.name] = hairstyle //VOREStation Edit, allows ckey locked hairstyles.
+		if((!S.ckeys_allowed) || (user.ckey in S.ckeys_allowed))
+			valid_hairstyles[S.name] = hairstyle
 
-		//valid_hairstyles[hairstyle] = hair_styles_list[hairstyle] //VOREStation Edit. Replaced by above.
 
 	return valid_hairstyles
 
 /datum/preferences/proc/get_valid_facialhairstyles()
 	var/list/valid_facialhairstyles = list()
-	for(var/facialhairstyle in facial_hair_styles_list)
-		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
 		if(biological_gender == MALE && S.gender == FEMALE)
 			continue
 		if(biological_gender == FEMALE && S.gender == MALE)
 			continue
-		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
+		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed)))
 			continue
 
-		valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
+		valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
 	return valid_facialhairstyles

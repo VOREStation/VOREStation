@@ -350,7 +350,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 		if(!check_rights(R_DEBUG))
 			return
 		src.check_static_power(usr)
-		href_list["datumrefresh"] = "\ref[src]"
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 
 // Debugging proc to report if static power is correct or not.
 /area/proc/check_static_power(var/user)

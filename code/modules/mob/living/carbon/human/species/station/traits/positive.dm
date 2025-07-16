@@ -27,6 +27,44 @@
 	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_UNATHI, SPECIES_VASILISSAN, SPECIES_XENOCHIMERA, SPECIES_VOX) //i assume if a dev made your base slowdown different then you shouldn't have this.
 	excludes = list(/datum/trait/positive/speed_fast) // olympic sprinters don't naruto run
 
+/datum/trait/positive/punchdamage
+	name = "Strong Attacks"
+	desc = "Your unarmed attacks deal more damage"
+	cost = 2
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 5)
+	banned_species = list(SPECIES_TESHARI)
+
+/datum/trait/positive/punchdamageplus
+	name = "Crushing Attacks"
+	desc = "Your unarmed attacks deal high damage, and you're capable of escaping most restraints"
+	cost = 6
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 10, "shredding" = TRUE)
+	banned_species = list(SPECIES_TESHARI, SPECIES_VOX)
+
+/datum/trait/positive/strength //combine effects of hardy + strong punches, for if someone wants a generally "strong" character. Exists for the purposes of the trait limit
+	name = "High Strength"
+	desc = "Your unarmed attacks deal more damage, and you can carry heavy equipment with less slowdown."
+	cost = 3
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 5, "item_slowdown_mod" = 0.5)
+	excludes = list(/datum/trait/positive/punchdamage, /datum/trait/positive/hardy)
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_PROTEAN)
+
+/datum/trait/positive/strengthplus //see above comment
+	name = "Inhuman Strength"
+	desc = "You are unreasonably strong. Your unarmed attacks do high damage, you experience almost no slowdown from heavy equipment, and you can escape most restraints with ease."
+	cost = 8
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 10, "shredding" = TRUE, "item_slowdown_mod" = 0.25)
+	excludes = list(/datum/trait/positive/punchdamage, /datum/trait/positive/hardy, /datum/trait/positive/punchdamageplus, /datum/trait/positive/hardy_plus)
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_VOX)
+
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."

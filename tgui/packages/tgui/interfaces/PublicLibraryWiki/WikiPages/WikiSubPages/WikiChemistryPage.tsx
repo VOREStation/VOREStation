@@ -38,7 +38,7 @@ export const WikiChemistryPage = (props: {
 
   const capitalizedTitle = capitalize(title);
   const pageTitle = beakerAmount
-    ? 'Detected Reagent: ' + capitalizedTitle
+    ? `Detected Reagent: ${capitalizedTitle}`
     : capitalizedTitle;
 
   return (
@@ -69,7 +69,7 @@ export const WikiChemistryPage = (props: {
             </LabeledList.Item>
             <LabeledList.Item label="Overdose">
               {overdose ? (
-                <Box color="red">{overdose + 'u'}</Box>
+                <Box color="red">{`${overdose}u`}</Box>
               ) : (
                 <NotAvilableBox />
               )}
