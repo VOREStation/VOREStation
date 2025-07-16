@@ -4,6 +4,11 @@
 	display_name = "Basic Arms"
 	description = "Ballistics can be unpredictable in space."
 	design_ids = list(
+		"dartgun_r",
+		"dartgun_mag_s",
+		"dartgun_ammo_s",
+		"dartgun_mag_m",
+		"dartgun_ammo_m",
 		// "toy_armblade",
 		// "toygun",
 		// "c38_rubber",
@@ -41,4 +46,69 @@
 		// "electropack",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SECURITY)
+
+/datum/techweb_node/riot_supression
+	id = TECHWEB_NODE_RIOT_SUPRESSION
+	display_name = "Riot Supression"
+	description = "When you are on the opposing side of a revolutionary movement."
+	prereq_ids = list(TECHWEB_NODE_SEC_EQUIP)
+	design_ids = list(
+		// "clown_firing_pin",
+		// "pin_testing",
+		// "pin_loyalty",
+		// "tele_shield",
+		// "ballistic_shield",
+		// "handcuffs_s",
+		// "bola_energy",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_SECURITY)
+
+/datum/techweb_node/explosives
+	id = TECHWEB_NODE_EXPLOSIVES
+	display_name = "Explosives"
+	description = "For once, intentional explosions."
+	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION)
+	design_ids = list(
+		"large_Grenade",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	// required_experiments = list(/datum/experiment/ordnance/explosive/lowyieldbomb)
+	announce_channels = list(CHANNEL_SECURITY, CHANNEL_MEDICAL)
+
+/datum/techweb_node/exotic_ammo
+	id = TECHWEB_NODE_EXOTIC_AMMO
+	display_name = "Exotic Ammunition"
+	description = "Specialized bullets designed to ignite, freeze, and inflict various other effects on targets, expanding combat capabilities."
+	prereq_ids = list(TECHWEB_NODE_EXPLOSIVES)
+	design_ids = list(
+		// "c38_hotshot",
+		// "c38_hotshot_mag",
+		// "c38_iceblox",
+		// "c38_iceblox_mag",
+		// "c38_trac",
+		// "c38_trac_mag",
+		// "c38_true_strike",
+		// "c38_true_strike_mag",
+		// "techshotshell",
+		// "flechetteshell",
+		"magnetic_ammo",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	// discount_experiments = list(/datum/experiment/ordnance/explosive/highyieldbomb = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_SECURITY)
+
+/datum/techweb_node/electric_weapons
+	id = TECHWEB_NODE_ELECTRIC_WEAPONS
+	display_name = "Electric Weaponry"
+	description = "Energy-based weaponry designed for both lethal and non-lethal applications."
+	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION)
+	design_ids = list(
+		"stunrevolver",
+		"temp_gun",
+		// "ioncarbine",
+		// "lasershell",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(CHANNEL_SECURITY)

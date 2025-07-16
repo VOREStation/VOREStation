@@ -46,6 +46,7 @@
 		"belt_holding_med",
 		"belt_holding_utility",
 		"bluespacebeaker",
+		"bsflare",
 		// "ore_silo",
 		// "plumbing_receiver",
 		// "adv_watering_can",
@@ -58,3 +59,40 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	// discount_experiments = list(/datum/experiment/scanning/points/bluespace_crystal = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_MEDICAL, CHANNEL_SERVICE, CHANNEL_SUPPLY)
+
+/datum/techweb_node/bluespace_travel
+	id = TECHWEB_NODE_BLUESPACE_TRAVEL
+	display_name = "Bluespace Travel"
+	description = "Facilitate teleportation methods based on bluespace principles to revolutionize logistical efficiency."
+	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE)
+	design_ids = list(
+		"telesci_console",
+		"telesci_pad",
+		"quantum_pad",
+		"qpad_booster",
+		"teleconsole",
+		// "tele_station",
+		// "tele_hub",
+		// "launchpad_console",
+		// "launchpad",
+		// "bluespace_pod",
+		// "swapper",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
+
+/datum/techweb_node/anomaly_research
+	id = TECHWEB_NODE_ANOMALY_RESEARCH
+	display_name = "Anomaly Research"
+	description = "Delving into the study of mysterious anomalies to investigate methods to refine and harness their unpredictable energies."
+	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE)
+	design_ids = list(
+		"xenoarch_multitool",
+		"excavationdrill",
+		"ano_scanner",
+		// "anomaly_refinery",
+		// "anomaly_neutralizer",
+		// "reactive_armour",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)

@@ -15,11 +15,13 @@
 	name = "APLU 'Ripley' central control circuit"
 	id = "ripley_main"
 	build_path = /obj/item/circuitboard/mecha/ripley/main
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/ripley/circuit_peri
 	name = "APLU 'Ripley' peripherals control circuit"
 	id = "ripley_peri"
 	build_path = /obj/item/circuitboard/mecha/ripley/peripherals
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/ripley/chassis
 	name = "Ripley Chassis"
@@ -77,12 +79,14 @@
 	id = "odysseus_main"
 	// req_tech = list(TECH_DATA = 3,TECH_BIO = 2)
 	build_path = /obj/item/circuitboard/mecha/odysseus/main
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/odysseus/odysseus_peri
 	name = "'Odysseus' peripherals control circuit"
 	id = "odysseus_peri"
 	// req_tech = list(TECH_DATA = 3,TECH_BIO = 2)
 	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/odysseus/chassis
 	name = "Odysseus Chassis"
@@ -139,24 +143,28 @@
 	id = "gygax_main"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/mecha/gygax/main
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/gygax/gygax_peri
 	name = "'Gygax' peripherals control circuit"
 	id = "gygax_peri"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/mecha/gygax/peripherals
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/gygax/gygax_targ
 	name = "'Gygax' weapon control and targeting circuit"
 	id = "gygax_targ"
 	// req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	build_path = /obj/item/circuitboard/mecha/gygax/targeting
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/gygax/gygax_medical
 	name = "'Serenity' medical control circuit"
 	id = "gygax_medical"
 	// req_tech = list(TECH_DATA = 4, TECH_BIO = 2)
 	build_path = /obj/item/circuitboard/mecha/gygax/medical
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/gygax/chassis/serenity
 	name = "Serenity Chassis"
@@ -226,6 +234,7 @@
 	// req_tech = list(TECH_DATA = 4)
 	materials = list(MAT_GLASS = 2000, MAT_GRAPHITE = 1250)
 	build_path = /obj/item/circuitboard/mecha/durand/main
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/durand/durand_peri
 	name = "'Durand' peripherals control circuit"
@@ -233,6 +242,7 @@
 	// req_tech = list(TECH_DATA = 4)
 	materials = list(MAT_GLASS = 2000, MAT_GRAPHITE = 1250)
 	build_path = /obj/item/circuitboard/mecha/durand/peripherals
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/durand/durand_targ
 	name = "'Durand' weapon control and targeting circuit"
@@ -240,6 +250,7 @@
 	// req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	materials = list(MAT_GLASS = 2000, MAT_GRAPHITE = 1250)
 	build_path = /obj/item/circuitboard/mecha/durand/targeting
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/durand/chassis
 	name = "Durand Chassis"
@@ -373,24 +384,28 @@
 	id = "pinnace_main"
 	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/main
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/pinnace/pinnace_flight
 	name = "Pinnace flight control board circuit"
 	id = "pinnace_flight"
 	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/flight
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/pinnace/pinnace_targeting
 	name = "Pinnace weapon control and targeting board circuit"
 	id = "pinnace_targeting"
 	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/targeting
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/pinnace/pinnace_cockpit_control
 	name = "Pinnace manual flight control instruments circuit"
 	id = "pinnace_cockpit_control"
 	// req_tech = list(TECH_DATA = 3, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/pinnace/cockpitboard
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/pinnace/chassis
 	name = "Pinnace Chassis"
@@ -454,24 +469,28 @@
 	id = "baron_main"
 	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/baron/main
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/baron/baron_flight
 	name = "Baron flight control board circuit"
 	id = "baron_flight"
 	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4)
 	build_path = /obj/item/circuitboard/mecha/fighter/baron/flight
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/baron/baron_targeting
 	name = "Baron weapon control and targeting board circuit"
 	id = "baron_targeting"
 	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4, TECH_COMBAT = 3)
 	build_path = /obj/item/circuitboard/mecha/fighter/baron/targeting
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/baron/baron_cockpit_control
 	name = "Baron manual flight control instruments circuit"
 	id = "baron_cockpit_control"
 	// req_tech = list(TECH_DATA = 5, TECH_POWER = 4, TECH_COMBAT = 3)
 	build_path = /obj/item/circuitboard/mecha/fighter/baron/cockpitboard
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/baron/chassis
 	name = "Baron Chassis"
@@ -734,11 +753,13 @@
 	name = "'Gopher' central control circuit"
 	id = "gopher_main"
 	build_path = /obj/item/circuitboard/mecha/gopher/main
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/gopher/gopher_peri
 	name = "'Gopher' peripherals control circuit"
 	id = "gopher_peri"
 	build_path = /obj/item/circuitboard/mecha/gopher/peripherals
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/gopher/chassis
 	name = "Gopher Chassis"
@@ -808,18 +829,21 @@
 	id = "polecat_main"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/mecha/polecat/main
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/polecat/polecat_peri
 	name = "'Polecat' peripherals control circuit"
 	id = "polecat_peri"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/mecha/polecat/peripherals
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/polecat/polecat_targ
 	name = "'Polecat' weapon control and targeting circuit"
 	id = "polecat_targ"
 	// req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	build_path = /obj/item/circuitboard/mecha/polecat/targeting
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/polecat/chassis
 	name = "Polecat Chassis"
@@ -874,18 +898,21 @@
 	id = "weasel_main"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/mecha/weasel/main
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/weasel/weasel_peri
 	name = "'Weasel' peripherals control circuit"
 	id = "weasel_peri"
 	// req_tech = list(TECH_DATA = 4)
 	build_path = /obj/item/circuitboard/mecha/weasel/peripherals
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/weasel/weasel_targ
 	name = "'Weasel' weapon control and targeting circuit"
 	id = "weasel_targ"
 	// req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	build_path = /obj/item/circuitboard/mecha/weasel/targeting
+	materials = list(MAT_GLASS = 2000)
 
 /datum/design_techweb/mechfab/weasel/chassis
 	name = "Weasel Chassis"

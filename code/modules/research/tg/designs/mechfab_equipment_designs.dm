@@ -419,6 +419,7 @@
 	)
 
 /datum/design_techweb/mechfab/equipment/phoron_generator
+	name = "Phoron Reactor"
 	desc = "Phoron Reactor"
 	id = "mech_phoron_generator"
 	//req_tech = list(TECH_PHORON = 2, TECH_POWER= 2, TECH_ENGINEERING = 2)

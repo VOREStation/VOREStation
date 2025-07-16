@@ -68,6 +68,7 @@
 #define TECHWEB_NODE_MECH_COMBAT "mech_combat"
 #define TECHWEB_NODE_MECH_ENERGY_GUNS "mech_energy_guns"
 #define TECHWEB_NODE_MECH_EQUIPMENT "mech_equipment"
+#define TECHWEB_NODE_MECH_FIGHTER "mech_fighter"
 #define TECHWEB_NODE_MECH_FIREARMS "mech_firearms"
 #define TECHWEB_NODE_MECH_HEAVY "mech_heavy"
 #define TECHWEB_NODE_MECH_HEAVY_ARMS "mech_heavy_arms"

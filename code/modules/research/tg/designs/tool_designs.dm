@@ -200,7 +200,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/beaker_noreact
-	name = "cryostasis"
+	name = "Cryostasis Beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
 	id = "splitbeaker"
 	// req_tech = list(TECH_MATERIAL = 2)
@@ -213,7 +213,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design_techweb/beaker_bluespace
-	name = TECH_BLUESPACE
+	name = "Bluespace Beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
 	id = "bluespacebeaker"
 	// req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 6)
@@ -292,6 +292,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/robot_scanner
+	name = "Robot Scanner"
 	desc = "A hand-held scanner able to diagnose robotic injuries."
 	id = "robot_scanner"
 	// req_tech = list(TECH_MAGNET = 3, TECH_BIO = 2, TECH_ENGINEERING = 3)
@@ -304,6 +305,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/nanopaste
+	name = "Nanopaste"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	id = "nanopaste"
 	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
@@ -316,6 +318,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/plant_analyzer
+	name = "Plant Analyzer"
 	desc = "A device capable of quickly scanning all relevant data about a plant."
 	id = "plant_analyzer"
 	// req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
