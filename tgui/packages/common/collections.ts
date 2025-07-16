@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
 const binarySearch = <T, U = unknown>(
   getKey: (value: T) => U,
   collection: readonly T[],
