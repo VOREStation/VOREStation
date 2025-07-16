@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 	var/chance_nothing = 0			// Unlucky people might need to loot multiple spots to find things.
 	var/chance_uncommon = 10		// Probability of pulling from the uncommon_loot list.
 	var/chance_rare = 1				// Ditto, but for rare_loot list.
-	var/chance_gamma = 0			// Singledrop global loot table shaded with all piles.
+	var/chance_gamma = 0			// Singledrop global loot table shared with all piles.
 
 	var/allow_multiple_looting = FALSE	// If true, the same person can loot multiple times.  Mostly for debugging.
 	var/loot_depletion = FALSE		// If true, loot piles can be 'depleted' after a certain number of searches by different players, where no more loot can be obtained.
