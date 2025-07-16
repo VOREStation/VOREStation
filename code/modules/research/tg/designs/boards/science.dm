@@ -58,16 +58,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/protolathe
-	name = "protolathe circuit"
-	id = "protolathe"
-	// req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
-	build_path = /obj/item/circuitboard/protolathe
-	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
-
 /datum/design_techweb/board/circuit_imprinter
 	name = "circuit imprinter circuit"
 	id = "circuit_imprinter"

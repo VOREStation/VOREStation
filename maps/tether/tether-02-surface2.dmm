@@ -4591,10 +4591,7 @@
 /obj/effect/floor_decal/corner/red/bordercorner{
 	dir = 8
 	},
-/obj/structure/table/bench/steel,
-/obj/effect/landmark/start{
-	name = "Security Officer"
-	},
+/obj/machinery/rnd/production/protolathe/department/security,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/outfitting)
 "ahs" = (

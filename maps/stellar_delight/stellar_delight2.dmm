@@ -4302,6 +4302,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/monitoring)
+"jb" = (
+/obj/machinery/rnd/production/protolathe/department/cargo,
+/turf/simulated/floor/tiled/eris/steel/cargo,
+/area/quartermaster/storage)
 "jc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
@@ -4320,6 +4324,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/port)
+"je" = (
+/obj/machinery/rnd/production/protolathe/department/medical,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/medical/cmostore)
 "jf" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -17336,10 +17344,6 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/protolathe{
-	pixel_x = -2;
-	pixel_y = 2
-	},
 /obj/item/circuitboard/rdconsole,
 /obj/item/circuitboard/autolathe{
 	pixel_x = 1;
@@ -19924,10 +19928,7 @@
 /turf/simulated/floor,
 /area/quartermaster/storage)
 "RP" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
+/obj/machinery/rnd/production/protolathe/department/engineering,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/workshop)
 "RQ" = (
@@ -20425,6 +20426,7 @@
 /obj/effect/floor_decal/milspec/color/green/half{
 	dir = 4
 	},
+/obj/machinery/rnd/production/protolathe/department/service,
 /turf/simulated/floor/tiled,
 /area/hydroponics)
 "SZ" = (
@@ -33014,7 +33016,7 @@ Eo
 hA
 QP
 gu
-Kf
+je
 Kf
 Kf
 Kf
@@ -33883,7 +33885,7 @@ RO
 ae
 gt
 WE
-Ui
+jb
 BO
 Ui
 dN

@@ -7843,10 +7843,6 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/protolathe{
-	pixel_x = -2;
-	pixel_y = 2
-	},
 /obj/item/circuitboard/rdconsole,
 /obj/item/circuitboard/autolathe{
 	pixel_x = 1;

@@ -3188,6 +3188,7 @@
 /obj/structure/cable/pink{
 	icon_state = "1-2"
 	},
+/obj/machinery/rnd/production/protolathe/department/security,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "gc" = (
@@ -16641,13 +16642,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenobiology)
 "IP" = (
-/obj/machinery/rnd/production/protolathe{
-	dir = 1
-	},
 /obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/rnd/production/protolathe/department/science,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "IQ" = (

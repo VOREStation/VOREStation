@@ -12,15 +12,36 @@
 							/obj/item/stock_parts/manipulator = 1,
 							/obj/item/stock_parts/console_screen = 1)
 
-/obj/item/circuitboard/protolathe
+/obj/item/circuitboard/machine/protolathe
 	name = T_BOARD("protolathe")
 	build_path = /obj/machinery/rnd/production/protolathe
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 	req_components = list(
 							/obj/item/stock_parts/matter_bin = 2,
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/reagent_containers/glass/beaker = 2)
+
+/obj/item/circuitboard/machine/protolathe/department
+	name = T_BOARD("departmental protolathe")
+	build_path = /obj/machinery/rnd/production/protolathe/department
+/obj/item/circuitboard/machine/protolathe/department/engineering
+	name = T_BOARD("departmental protolathe (engineering)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/engineering
+/obj/item/circuitboard/machine/protolathe/department/service
+	name = T_BOARD("departmental protolathe (service)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/service
+/obj/item/circuitboard/machine/protolathe/department/medical
+	name = T_BOARD("departmental protolathe (medical)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/medical
+/obj/item/circuitboard/machine/protolathe/department/cargo
+	name = T_BOARD("departmental protolathe (cargo)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/cargo
+/obj/item/circuitboard/machine/protolathe/department/science
+	name = T_BOARD("departmental protolathe (science)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/science
+/obj/item/circuitboard/machine/protolathe/department/security
+	name = T_BOARD("departmental protolathe (security)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/security
 
 /obj/item/circuitboard/circuit_imprinter
 	name = T_BOARD("circuit imprinter")

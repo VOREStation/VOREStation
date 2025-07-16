@@ -2840,6 +2840,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/storage)
+"aeY" = (
+/obj/machinery/rnd/production/protolathe/department/engineering,
+/turf/simulated/floor/tiled/monotile,
+/area/engineering/workshop)
 "aeZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -5357,10 +5361,6 @@
 /obj/item/circuitboard/machine/rdserver{
 	pixel_x = -3;
 	pixel_y = 3
-	},
-/obj/item/circuitboard/protolathe{
-	pixel_x = -2;
-	pixel_y = 2
 	},
 /obj/item/circuitboard/rdconsole,
 /obj/item/circuitboard/autolathe{
@@ -28241,7 +28241,7 @@
 /obj/effect/floor_decal/corner/brown/bordercorner2{
 	dir = 8
 	},
-/obj/structure/table/standard,
+/obj/machinery/rnd/production/protolathe/department/cargo,
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "qWN" = (
@@ -40553,7 +40553,7 @@ aqq
 arE
 atk
 avm
-asU
+aeY
 atN
 axU
 axW
