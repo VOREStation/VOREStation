@@ -162,3 +162,6 @@
       with respective tiers of Hardy, to simulate high strength for species that should
       be inhumanly strong
   - bugfix: simplemobs should now take extra damage from hulk/knuckles
+2025-07-16:
+  ShadowLarkens:
+  - bugfix: Critical preference menu crash when switching to loadout -> equipment

@@ -18435,7 +18435,7 @@
 /obj/effect/floor_decal/industrial/outline,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "cargo_bay";
 	pixel_x = -23
 	},

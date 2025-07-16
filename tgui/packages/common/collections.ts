@@ -4,53 +4,6 @@
  * @license MIT
  */
 
-/**
- * Creates a duplicate-free version of an array, using SameValueZero for
- * equality comparisons, in which only the first occurrence of each element
- * is kept. The order of result values is determined by the order they occur
- * in the array.
- *
- * It accepts iteratee which is invoked for each element in array to generate
- * the criterion by which uniqueness is computed. The order of result values
- * is determined by the order they occur in the array. The iteratee is
- * invoked with one argument: value.
- */
-export const uniqBy = <T extends unknown>(
-  array: T[],
-  iterateeFn?: (value: T) => unknown,
-): T[] => {
-  const { length } = array;
-  const result: T[] = [];
-  const seen: unknown[] = iterateeFn ? [] : result;
-  let index = -1;
-  // prettier-ignore
-  outer:
-    while (++index < length) {
-      const value: T | 0 = array[index];
-      const computed = iterateeFn ? iterateeFn(value) : value;
-      if (computed === computed) {
-        let seenIndex = seen.length;
-        while (seenIndex--) {
-          if (seen[seenIndex] === computed) {
-            continue outer;
-          }
-        }
-        if (iterateeFn) {
-          seen.push(computed);
-        }
-        result.push(value);
-      } else if (!seen.includes(computed)) {
-        if (seen !== result) {
-          seen.push(computed);
-        }
-        result.push(value);
-      }
-    }
-  return result;
-};
-
-export const uniq = <T>(array: T[]): T[] => uniqBy(array);
-
 const binarySearch = <T, U = unknown>(
   getKey: (value: T) => U,
   collection: readonly T[],
