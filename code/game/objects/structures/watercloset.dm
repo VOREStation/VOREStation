@@ -314,7 +314,7 @@
 	honk_sound = 'sound/voice/quack.ogg' //VOREStation edit
 	var/honk_text = 0
 
-/obj/item/bikehorn/rubberducky/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/attack_self(mob/user)
 	if(spam_flag == 0)
 		spam_flag = 1
 		playsound(src, honk_sound, 50, 1)
@@ -335,7 +335,7 @@
 	honk_sound = 'sound/effects/adminhelp.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/red/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/red/attack_self(mob/user)
 	if(honk_count >= 3)
 		var/turf/epicenter = get_turf(src)
 		explosion(epicenter, 0, 0, 1, 3)
@@ -360,7 +360,7 @@
 	honk_sound = 'sound/effects/bubbles.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/blue/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/blue/attack_self(mob/user)
 	if(spam_flag == 0)
 		var/turf/simulated/whereweare = get_turf(src)
 		whereweare.wet_floor(2)
@@ -381,7 +381,7 @@
 	honk_sound = 'sound/vore/sunesound/pred/insertion_01.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/pink/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/pink/attack_self(mob/user)
 	if(spam_flag == 0)
 		if(!user.devourable)
 			to_chat(user, span_vnotice("You can't bring yourself to squeeze it..."))
@@ -410,7 +410,7 @@
 	honk_sound = 'sound/effects/ghost.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/grey/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/grey/attack_self(mob/user)
 	if(spam_flag == 0)
 		for(var/obj/machinery/light/L in GLOB.machines)
 			if(L.z != user.z || get_dist(user,L) > 10)
@@ -452,7 +452,7 @@
 						/obj/structure/flora/ausbushes/sparsegrass,
 						/obj/structure/flora/ausbushes/fullgrass)
 
-/obj/item/bikehorn/rubberducky/green/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/green/attack_self(mob/user)
 	if(spam_flag == 0)
 		var/turf/simulated/whereweare = get_turf(src)
 		var/obj/P = pick(flora)
@@ -474,7 +474,7 @@
 	honk_sound = 'sound/effects/lightningshock.ogg'
 	var/honk_count = 0
 
-/obj/item/bikehorn/rubberducky/white/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/white/attack_self(mob/user)
 	if(spam_flag == 0)
 		lightning_strike(get_turf(src), 1)
 		spam_flag = 1
@@ -502,7 +502,7 @@
 	item_state = "rubberducky_gold"
 	honk_sound = 'sound/voice/quack_reverb.ogg'
 
-/obj/item/bikehorn/rubberducky/gold/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/gold/attack_self(mob/user)
 	if(spam_flag == 0)
 		spam_flag = 1
 		playsound(src, honk_sound, 50, 1)
@@ -524,7 +524,7 @@
 	honk_sound = 'sound/voice/scream_jelly_m1.ogg'
 	honk_text = "DUK ROH DAH!"
 
-/obj/item/bikehorn/rubberducky/viking/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/viking/attack_self(mob/user)
 	if(spam_flag == 0)
 		spam_flag = 1
 		playsound(src, honk_sound, 50, 1)
@@ -543,7 +543,7 @@
 	item_state = "rubberducky_galaxy"
 	honk_sound = 'sound/effects/teleport.ogg'
 
-/obj/item/bikehorn/rubberducky/galaxy/attack_self(mob/user as mob)
+/obj/item/bikehorn/rubberducky/galaxy/attack_self(mob/user)
 	if(spam_flag == 0)
 		spam_flag = 1
 		playsound(src, honk_sound, 50, 1)
