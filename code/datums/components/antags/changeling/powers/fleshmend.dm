@@ -34,8 +34,8 @@
 /datum/modifier/fleshmend
 	name = "Fleshmend"
 	desc = "We are regenerating"
-	on_created_text "We have begun to regenerate our body."
-	on_expired_text "Our regeneration has ceased."
+	on_created_text = "We have begun to regenerate our body."
+	on_expired_text = "Our regeneration has ceased."
 
 // For changelings who bought the Recursive Enhancement evolution.
 /datum/modifier/fleshmend/recursive
