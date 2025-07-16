@@ -4683,7 +4683,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "explodocker_bay";
 	pixel_x = -24
 	},
@@ -8084,7 +8084,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "miningdocker_bay";
 	pixel_x = 24
 	},
@@ -12539,7 +12539,7 @@
 "zV" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "miningdocker";
 	pixel_x = -24
 	},
@@ -17337,7 +17337,7 @@
 "Kw" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "explodocker";
 	pixel_x = 24
 	},

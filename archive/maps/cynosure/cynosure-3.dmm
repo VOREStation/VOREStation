@@ -4200,7 +4200,7 @@
 /obj/effect/floor_decal/spline/plain,
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "large_escape_pod_2_berth_hatch";
 	locked = 1;
@@ -22705,7 +22705,7 @@
 /area/surface/station/quartermaster/office)
 "pwt" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "large_escape_pod_2";
 	pixel_x = 26;
 	pixel_y = -26;
@@ -26981,7 +26981,7 @@
 /area/surface/station/hallway/primary/secondfloor/east)
 "szd" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "large_escape_pod_2_hatch";
 	locked = 1;
@@ -32731,7 +32731,7 @@
 	dir = 1
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "large_escape_pod_2_berth";
 	pixel_y = 24;
 	tag_door = "large_escape_pod_2_berth_hatch"

@@ -13,7 +13,7 @@
 /obj/item/circuitboard/air_management/supermatter_core
 	name = T_BOARD("core control")
 	build_path = /obj/machinery/computer/general_air_control/supermatter_core
-	frequency = 1438
+	frequency = 1433
 /obj/item/circuitboard/air_management/injector_control
 	name = T_BOARD("injector control")
 	build_path = /obj/machinery/computer/general_air_control/fuel_injection
