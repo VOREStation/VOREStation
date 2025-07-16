@@ -1174,7 +1174,7 @@
 /area/engineering/storage)
 "cq" = (
 /obj/machinery/air_sensor{
-	frequency = 1438;
+	frequency = 1433;
 	id_tag = "burn_chamber";
 	output = 63
 	},
@@ -2450,7 +2450,7 @@
 	dir = 4
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "starboard_escape_pod";
 	pixel_y = 24
 	},
@@ -3100,7 +3100,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "port_escape_berth";
 	pixel_x = -24
 	},
@@ -3151,7 +3151,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/engine{
 	external_pressure_bound = 100;
 	external_pressure_bound_default = 0;
-	frequency = 1438;
+	frequency = 1433;
 	icon_state = "map_vent_in";
 	id_tag = "cooling_out";
 	initialize_directions = 4;
@@ -14100,7 +14100,7 @@
 	dir = 6
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "cargo_bay";
 	pixel_y = 24
 	},
@@ -21555,7 +21555,7 @@
 /area/engineering/atmos/monitoring)
 "VB" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
-	frequency = 1438;
+	frequency = 1433;
 	id = "cooling_in";
 	name = "Coolant Injector";
 	pixel_y = 1;
@@ -22515,7 +22515,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "starboard_escape_berth";
 	pixel_x = 24
 	},
@@ -23113,7 +23113,7 @@
 	dir = 8
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "port_escape_pod";
 	pixel_y = 24
 	},

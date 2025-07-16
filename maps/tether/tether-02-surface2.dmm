@@ -10848,7 +10848,7 @@
 /obj/machinery/computer/general_air_control/fuel_injection{
 	device_tag = "riot_inject";
 	dir = 8;
-	frequency = 1442;
+	frequency = 1443;
 	name = "Riot Control Console"
 	},
 /obj/structure/sign/painting/library_secure{
