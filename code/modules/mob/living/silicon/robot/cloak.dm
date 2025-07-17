@@ -122,6 +122,7 @@
 	holder.alpha = initial(holder.alpha)
 	UnregisterSignal(holder, COMSIG_MOB_APPLY_DAMAGE)
 	UnregisterSignal(holder, COMSIG_ROBOT_ITEM_ATTACK)
+	remove_wibble(TRUE)
 	return
 
 /datum/modifier/robot_cloak/tick()
