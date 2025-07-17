@@ -115,11 +115,13 @@
 	evasion = modified_evasion //60 at full strength, 30 at half strength.
 	animate(holder, alpha = visibility, time = 1 SECOND)
 	RegisterSignal(holder, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(damage_inflicted))
+	RegisterSignal(holder, COMSIG_ROBOT_ITEM_ATTACK, PROC_REF(attacked_in_cloak))
 	return
 
 /datum/modifier/robot_cloak/on_expire()
 	holder.alpha = initial(holder.alpha)
 	UnregisterSignal(holder, COMSIG_MOB_APPLY_DAMAGE)
+	UnregisterSignal(holder, COMSIG_ROBOT_ITEM_ATTACK)
 	return
 
 /datum/modifier/robot_cloak/tick()
@@ -152,13 +154,17 @@
 	apply_wibbly_filters(holder, 0.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(remove_wibble), 0.1 SECOND), 0.5 SECONDS, TIMER_DELETE_ME) //Calling a proc with no arguments
 
+/datum/modifier/robot_cloak/proc/attacked_in_cloak()
+	if(holder && !holder.get_filter("wibbly-[1]")) //We're not wibbled at the moment.
+		var/alpha_to_show = CLAMP((holder.alpha+(rand(50,200))), holder.alpha, 255) //Become more visible by a significant margin, randomly.
+		flick_cloak(alpha_to_show)
+
 /datum/modifier/robot_cloak/proc/remove_wibble(instant)
 	if(holder && holder.get_filter("wibbly-[1]")) //We just check for the first wibble. If it has one it has them all.
 		if(instant)
 			remove_wibbly_filters(holder)
 		else
 			remove_wibbly_filters(holder, 0.1 SECOND)
-
 
 /datum/modifier/robot_cloak/proc/drop_cloak()
 	holder.alpha = initial(holder.alpha)
