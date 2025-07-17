@@ -2,6 +2,8 @@
 /obj/item/borg/cloak
 	name = "personal cloaking"
 	desc = "A powerful experimental module that allows one to adjust their visiblity."
+	description_info = "Ctrl-Clicking on the cloak will turn it on or off.<br>\
+	Clicking the cloak while selected will allow you to change the strength of the cloak."
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 	var/cloak_strength = 0.5		//Percent of visibility, 0 is visible, 1 is fully invisible
@@ -14,8 +16,12 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/borg/cloak/attack_self(var/mob/living/user)
+/obj/item/borg/cloak/attack_self(mob/user)
 	set_cloak_level(user)
+
+/obj/item/borg/cloak/CtrlClick(mob/user)
+	toggle_cloak(user)
+	return
 
 /obj/item/borg/cloak/process()
 	if(!active || !cloak_strength) //We are not active or cloak strength is set to 0
@@ -50,7 +56,9 @@
 	set category = "Object"
 	set src in range(0)
 	var/mob/living/silicon/robot/R = usr
+	set_cloaking_level(R)
 
+/obj/item/borg/cloak/proc/set_cloaking_level(mob/living/silicon/robot/R)
 	if(!isrobot(R)) //sod off
 		return
 
@@ -70,14 +78,15 @@
 	set category = "Object"
 	set src in range(0)
 	var/mob/living/silicon/robot/R = usr
+	toggle_cloak(R)
 
+/obj/item/borg/cloak/proc/toggle_cloak(mob/living/silicon/robot/R)
 	if(!isrobot(R)) //sod off
 		return
 
 	active = !active
 	to_chat(R, span_notice("You [active ? "re" : "de"]activate your personal cloaking device."))
 	update_cloak(R)
-
 
 /datum/modifier/robot_cloak
 	name = "robotic stealth"
