@@ -2958,7 +2958,10 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/office8)
 "eku" = (
-/obj/machinery/telecomms/allinone,
+/obj/structure/prop/machine/core{
+	icon = 'icons/obj/stationobjs_vr.dmi';
+	icon_state = "allinone"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/facility/lab3)
 "ekR" = (
@@ -14355,9 +14358,12 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/entrance)
 "ulm" = (
-/obj/machinery/telecomms/bus,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/prop/machine/core{
+	icon = 'icons/obj/stationobjs_vr.dmi';
+	icon_state = "bus"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/facility/lab3)
@@ -14747,7 +14753,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/facility/cell9)
 "uMg" = (
-/obj/machinery/telecomms/server,
+/obj/structure/prop/machine/core{
+	icon = 'icons/obj/stationobjs_vr.dmi';
+	icon_state = "comm_server"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/facility/lab3)
 "uMq" = (
