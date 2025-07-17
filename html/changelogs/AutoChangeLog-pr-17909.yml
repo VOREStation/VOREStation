@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - qol: "moves find ghost pod, vorespawn and some other join options from tgui list to a tgui datum"
-  - rscadd: "additional ghost spawn options (2 slots), requires multiple /obj/effect/landmark/start/ghost_roles to be mapped in"
