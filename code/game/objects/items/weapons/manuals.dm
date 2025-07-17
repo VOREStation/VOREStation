@@ -1670,3 +1670,76 @@
 				</body>
 			</html>
 				"}
+
+
+// Chemical Refinery
+/obj/item/book/manual/chem_refinery
+	name = "Chemical Refinery Basic Operations"
+	icon_state ="bookrefinery"
+	item_state = "book15"
+	author = "Engineering Encyclopedia"
+	title = "Chemical Refinery Basic Operations"
+
+	dat = {"<html>
+				<head>
+					<style>
+					h1 {font-size: 18px; margin: 15px 0px 5px;}
+					h2 {font-size: 15px; margin: 15px 0px 5px;}
+					li {margin: 2px 0px 2px 15px;}
+					ul {margin: 5px; padding: 0px;}
+					ol {margin: 5px; padding: 0px 15px;}
+					body {font-size: 13px; font-family: Verdana;}
+					</style>
+				</head>
+				<body>
+					<h1>OPERATING MANUAL FOR MK 1 INDUSTRIAL REAGENT REFINERY EQUIPMENT</h1>
+					<br>
+					<h2>OPERATING PRINCIPLES</h2>
+					<p>The chemical refinery is not a single machine, but instead many machines connected together to perform the complex, multi-step, reactions needed for production of high value industrial reagents for export from the station.</p>
+					<p>Unlike a traditional chemistry department where reagents are created at small scales for local use; A chemical refinery is often dedicated to one or two types of reagents, produced at massive quantities. Each cargo train tanker will need to be filled full of a single reagent to be properly sold by cargo.</p>
+					<p>To achieve this, the refinery has many unique machines, each with a role to play. Multiple of the same type of machine will often be needed. As reagents often need many steps to filter and react them to their final forms.</p>
+					<br>
+					<h2>MACHINERY OVERVIEW</h2>
+					<p>In order of importance in refinery operations:</p>
+					<h3>Pipes:</h3>
+					<p>Pipes form the inexpensive backbone of reagent transfer in a refinery, and connect more complex modules of a refinery together. Pipes do not require power to transport reagents, but do so only in one direction. The red pipe marks an input connection from another machine. Arrows are also pressed into the hull of the pipe to indicate flow.</p>
+
+					<h3>Filters:</h3>
+					<p>Similar to pipes, a filter allows reagents to flow from one machine to the next. With a red pipe as input. Once reagents are present in a filter, one of them may be chosen. Once chosen the reagent will be filtered to the purple marked outlet on the filter's side. The filter will not move any reagents if no filtered reagent is selected. It can also be configured to filter out nothing, or everything, if the filter is being used as a way divert flow or purge upstream machinery.</p>
+
+					<h3>Hubs:</h3>
+					<p>Hubs are an automatic quick connect solution to pumping reagents from the refinery into cargo train tankers. Once a tanker is moved onto a hub's pad, it will begin filling or draining after a small delay. A hub's mode of operation depends entirely on if a machine's output points into it, or not. If a machine's output points into a hub, it will fill cargo tankers on the pad. If the hub connects to a machine's input instead, it will drain cargo tankers into that machine.</p>
+
+					<h3>Grinders:</h3>
+					<p>Solid materials such as metal sheets, ores, and plants may be ground down for use in the refinery. Though this method of reagent production is generally slower, and requires manual input. The grinder only has a single output.</p>
+
+					<h3>Vats:</h3>
+					<p>Vats are your primary reagent storage tanks. They hold large volumes of reagents. Like any part of the refinery, once reagents are flowing inside them, they can react with other reagents. Separation, filtering, and careful mixing is critical for the construction of a seamlessly operating refinery. Vats only have a single output, all other sides are considered inputs.</p>
+
+					<h3>Reactors:</h3>
+					<p>Reactors are the most complex machine in the refinery. It is capable of distilling reagents that require complex atmospheric conditions. A reactor only has a single output, all other sides are considered inputs. Reagents inside a reactor are separated into internal pressurized tanks, and only react during the machine's distillation cycle. The reactor will automatically shift between pumping and distilling once it detects chemical input. The results will often require filtering and reprocessing, as the input reagents are used to flush the reaction chamber each cycle.</p>
+					<p>Reactors are compatible with portable atmospherics pads, and may be anchored on top of one to automatically connect it to a gas network. The gas network will provide the specific pressure and temperature required for the reaction within the machine. Many reactions require specific conditions to progress, and some input reagents may have different reactions depending on temperature and gas composition. Consult a trained chemist for insights on enhancing your refinery layout.</p>
+
+					<h3>Sintering Furnaces:</h3>
+					<p>Sintering is the process of heating a material under high pressure, causing it to weld together into a cohesive form. Unfortunately, this can only be done with pure materials, as the correctly mixed ratios required for proper alloy production are not possible. Only base materials such as iron, gold, or silver may be formed. Though some reagents may produce other results. It is inadvisable to attempt sintering on flammable or explosive reagents.</p>
+
+					<h3>Pumps:</h3>
+					<p>Pumps allow for the high volume exchange of reagents from one machine to another, but they are also useful for their multiple hose connectors. Allowing you to pump reagents from any other hose connector equipped tool. With this feature, they can serve as the input connection for long distance fracking networks.</p>
+
+					<h3>Fluid Pumps:</h3>
+					<p>While not directly a refinery machine, they serve a core function outside of the refinery. Fluid pumps will extract eroded ores from bodies of water near mineral rich deposits. Discussion of high value ores with an experienced miner is recommended. Ores must remain intact near a body of water to be collected by the pump.</p>
+					<p>Fluid pumps operate on an internal power cell, protected behind a water proof panel. A crowbar is handy for opening it. Hoses can be connected to a fluid pump, allowing it to connect to long distance tube networks.</p>
+					<p>Rarely, large cracks can be found underground, these complex networks of micro fractures can be pumped and drained repeatedly to expand them, and extract the dissolved ores deep within the ground. This process is described as fracking.</p>
+
+					<h3>Pump Relay:</h3>
+					<p>The location of external fluid pumps are often very far away from the chemical refinery they are destined for. Pump relays allow two input hoses, and one output hose. Active as a passive, no power required pump. Using the pressure of the other pumps at the head of the network. Pump relays may be spaced far apart, unlike refinery piping, saving crews time and expensive parts.</p>
+
+					<h3>Waste Processors:</h3>
+					<p>Many reagents have little use in huge quantities, such as water from a pumped river. This waste reagent may be disposed of quickly in a waste processor. Shredding it to an atomic level and dispersing it through nearby bluespace. Similar to what happens to opens dropped out of a shuttles bluespace shielding during flight.</p>
+
+					<br>
+					<h2>OPERATIONAL GOALS</h2>
+					<p>With the provided knowledge, anything is possible with the right reagents and machines. Reagents produced by the refinery are intended for sale from the station's cargo department. Reagents must be sold pure, and in a full cargo tanker. Each reagent has a different value and purpose on the market. For methods of reagent production, consult a trained chemist, or one of our trusted exonet partners; Such as BINGLE.</p>
+				</body>
+			</html>
+			"}

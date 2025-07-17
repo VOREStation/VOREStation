@@ -103,6 +103,7 @@
 		return
 
 	else
-		to_chat(user, span_notice("There are no available connectors on \the [target]. You wind \the [src] back up."))
+		if(remembered)
+			to_chat(user, span_notice("There are no available connectors on \the [target]. You wind \the [src] back up."))
 		remembered = null // Unintuitive if it does not reset state
 		..()
