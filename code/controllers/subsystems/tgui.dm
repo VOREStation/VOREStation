@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(tgui)
 	ntos_error = "<style type='text/css'>\n[ntos_error]\n</style>"
 	basehtml = replacetextEx(basehtml, "<!-- tgui:ntos-error -->", ntos_error)
 
-	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) 2284-[CURRENT_STATION_YEAR]")
+	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) 2284-[text2num(time2text(world.realtime,"YYYY")) + STATION_YEAR_OFFSET]")
 
 /datum/controller/subsystem/tgui/Shutdown()
 	close_all_uis()

@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - maptweak: "Replaced telecomms machines in the facility redgate map with props that look like them instead."

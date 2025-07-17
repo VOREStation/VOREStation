@@ -784,6 +784,9 @@
 ///from base of [/datum/element/light_eater/proc/devour]: (atom/eaten_light)
 #define COMSIG_LIGHT_EATER_DEVOUR "light_eater_devour"
 
+// Lootpiles
+#define COMSIG_LOOT_REWARD "lootpile_reward_drop"
+
 // conflict checking elements
 /// (id) - returns flags - Registered on something by conflict checking elements.
 #define COMSIG_CONFLICT_ELEMENT_CHECK "conflict_element_check"

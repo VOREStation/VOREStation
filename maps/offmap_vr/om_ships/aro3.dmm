@@ -813,7 +813,7 @@
 "eG" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aroboat3_docker";
 	pixel_x = 25;
 	req_one_access = list(777)
@@ -3525,7 +3525,7 @@
 /area/aro3/workshop)
 "wq" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aroship3_boatbay";
 	pixel_y = 28
 	},

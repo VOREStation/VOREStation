@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	frequency = 1200;
+	frequency = 1201;
 	id_tag = "westpump"
 	},
 /turf/simulated/floor,
@@ -170,7 +170,7 @@
 /area/mercbase/airlock)
 "au" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
-	frequency = 1200;
+	frequency = 1201;
 	id_tag = "westairlock";
 	master_tag = "westexteriorsensor"
 	},
@@ -178,11 +178,11 @@
 /area/mercbase/roid)
 "av" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	frequency = 1200;
+	frequency = 1201;
 	id_tag = "westpump"
 	},
 /obj/machinery/airlock_sensor/airlock_interior{
-	frequency = 1200;
+	frequency = 1201;
 	id_tag = "westairlock";
 	master_tag = "westchambersensor"
 	},
@@ -190,7 +190,7 @@
 /area/mercbase/airlock)
 "aw" = (
 /obj/machinery/airlock_sensor/airlock_interior{
-	frequency = 1200;
+	frequency = 1201;
 	id_tag = "westairlock";
 	master_tag = "westinteriorsensor"
 	},
@@ -3412,7 +3412,7 @@
 /area/mercbase/hall)
 "wF" = (
 /obj/machinery/airlock_sensor/airlock_interior{
-	frequency = 1200;
+	frequency = 1201;
 	id_tag = "westairlock";
 	master_tag = "westinteriorsensor"
 	},
