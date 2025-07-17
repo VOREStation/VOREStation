@@ -6,6 +6,7 @@
 	design_ids = list(
 		"operating",
 		"scan_console",
+		"medical_analyzer",
 		// "medicalbed",
 		// "defibmountdefault",
 		// "defibrillator",
@@ -45,6 +46,7 @@
 		"chemmaster",
 		"reagent_scanner",
 		"mass_spectrometer",
+		"improved_analyzer",
 		// "med_spray_bottle",
 		// "medigel",
 		// "medipen_refiller",
@@ -71,6 +73,8 @@
 	design_ids = list(
 		"adv_mass_spectrometer",
 		"adv_reagent_scanner",
+		"advanced_analyzer",
+		"recombobray",
 		// "smoke_machine",
 		// "healthanalyzer_advanced",
 		// "mod_health_analyzer",
@@ -98,4 +102,38 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	// discount_experiments = list(/datum/experiment/scanning/reagent/cryostylane = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_MEDICAL)
+
+/datum/techweb_node/medigun
+	id = TECHWEB_NODE_MEDIGUN
+	display_name = "Cell-Loaded Medigun"
+	description = "The ML3M Series Medigun is your one stop solution to all medical problems!"
+	prereq_ids = list(TECHWEB_NODE_CRYOSTASIS)
+	design_ids = list(
+		"cell_medigun",
+		"cell_medigun_mag",
+		"cell_medigun_mag_advanced",
+		"ml3m_cell_brute",
+		"ml3m_cell_burn",
+		"ml3m_cell_stabilize",
+		"ml3m_cell_toxin",
+		"ml3m_cell_omni",
+		"ml3m_cell_antirad",
+		"ml3m_cell_brute2",
+		"ml3m_cell_burn2",
+		"ml3m_cell_stabilize2",
+		"ml3m_cell_omni2",
+		"ml3m_cell_toxin2",
+		"ml3m_cell_haste",
+		"ml3m_cell_resist",
+		"ml3m_cell_corpse_mend",
+		"ml3m_cell_brute3",
+		"ml3m_cell_burn3",
+		"ml3m_cell_toxin3",
+		"ml3m_cell_omni3",
+		"ml3m_cell_shrink",
+		"ml3m_cell_grow",
+		"ml3m_cell_normalsize",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(CHANNEL_MEDICAL)

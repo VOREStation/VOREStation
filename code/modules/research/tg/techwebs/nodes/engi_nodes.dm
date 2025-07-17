@@ -100,6 +100,9 @@
 		"tcom-broadcaster",
 		"tcom-receiver",
 		"tcom-exonet_node",
+		"message_monitor",
+		"comm_monitor",
+		"comm_server",
 		"ntnet_relay",
 		"s-ansible",
 		"s-filter",
@@ -141,8 +144,8 @@
 		"rcon_console",
 		"powermonitor",
 		"solarcontrol",
+		"circuit_imprinter",
 		// "circuit_imprinter_offstation",
-		// "circuit_imprinter",
 		// "solarcontrol",
 		// "solar_panel",
 		// "solar_tracker",
@@ -219,6 +222,8 @@
 	prereq_ids = list(TECHWEB_NODE_ENERGY_MANIPULATION)
 	design_ids = list(
 		"arf_generator",
+		"shield_generator",
+		"shield_diffuser",
 		// "forcefield_projector",
 		// "holosign",
 		// "holosignsec",
@@ -261,3 +266,42 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING)
+
+/datum/techweb_node/hud
+	id = TECHWEB_NODE_HUD
+	display_name = "Integrated HUDs"
+	description = "Initially developed for assistants to learn the nuances of different professions through augmented reality."
+	prereq_ids = list(TECHWEB_NODE_HOLOGRAPHICS, TECHWEB_NODE_CYBER_IMPLANTS)
+	design_ids = list(
+		"health_hud",
+		"security_hud",
+		"janitor_hud",
+		"rig_component_medhud",
+		"rig_component_sechud",
+		"graviton_goggles",
+		"omnihud",
+		// "diagnostic_hud",
+		// "mod_visor_diaghud",
+		// "ci-medhud",
+		// "ci-diaghud",
+		// "ci-sechud",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING, CHANNEL_SECURITY, CHANNEL_SCIENCE, CHANNEL_MEDICAL)
+
+/datum/techweb_node/night_vision
+	id = TECHWEB_NODE_NIGHT_VISION
+	display_name = "Night Vision Technology"
+	description = "There are whispers that Nanotrasen pushed for this technology to extend shift durations, ensuring productivity around the clock."
+	prereq_ids = list(TECHWEB_NODE_HUD)
+	design_ids = list(
+		"rig_component_nvg",
+		// "diagnostic_hud_night",
+		// "health_hud_night",
+		// "night_visision_goggles",
+		// "nvgmesons",
+		// "nv_scigoggles",
+		// "security_hud_night",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING, CHANNEL_SECURITY, CHANNEL_SCIENCE, CHANNEL_MEDICAL)

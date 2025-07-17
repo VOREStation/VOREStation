@@ -69,6 +69,8 @@
 		"mmi",
 		"posibrain",
 		"dronebrain",
+		"borgupload",
+		"recharge_station",
 		// "cyborgrecharger",
 		// "advanced_l_arm",
 		// "advanced_r_arm",

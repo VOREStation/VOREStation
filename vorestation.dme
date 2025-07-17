@@ -4194,6 +4194,7 @@
 #include "code\modules\research\tg\techwebs\nodes\mech_nodes.dm"
 #include "code\modules\research\tg\techwebs\nodes\medbay_nodes.dm"
 #include "code\modules\research\tg\techwebs\nodes\mining_nodes.dm"
+#include "code\modules\research\tg\techwebs\nodes\modsuit_nodes.dm"
 #include "code\modules\research\tg\techwebs\nodes\research_nodes.dm"
 #include "code\modules\research\tg\techwebs\nodes\robo_nodes.dm"
 #include "code\modules\research\tg\techwebs\nodes\scene_nodes.dm"

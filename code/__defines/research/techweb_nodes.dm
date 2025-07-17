@@ -78,6 +78,7 @@
 #define TECHWEB_NODE_MECH_MINING "mech_mining"
 #define TECHWEB_NODE_MEDBAY_EQUIP "medbay_equip"
 #define TECHWEB_NODE_MEDBAY_EQUIP_ADV "medbay_equip_adv"
+#define TECHWEB_NODE_MEDIGUN "medbay_medigun"
 #define TECHWEB_NODE_MINING "mining"
 #define TECHWEB_NODE_MINING_ADV "mining_adv"
 #define TECHWEB_NODE_MOD_ANOMALY "mod_anomaly"

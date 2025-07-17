@@ -35,6 +35,8 @@
 		"mining drill head",
 		"mining drill brace",
 		"gps_mine",
+		"mesons",
+		"material",
 		// "cargoexpress",
 		// "brm",
 		// "b_smelter",
