@@ -143,13 +143,21 @@
 	if(damage >= 50 || times_hit >= cloak_durability)
 		to_chat(holder, span_warning("Your cloak buzzes and fails after sustaining too much damage!!"))
 		drop_cloak()
+		remove_wibble(TRUE)
 		return
 
 /datum/modifier/robot_cloak/proc/flick_cloak(alpha_to_show)
-	animate(holder, alpha = alpha_to_show, time = 2, loop = 6, flags = ANIMATION_PARALLEL) //1 second
-	apply_wibbly_filters(holder, 1 SECOND)
-	animate(holder, alpha = visibility, time = 1 SECOND)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_wibbly_filters), holder, 0.1 SECOND), 1 SECOND)
+	animate(holder, alpha = alpha_to_show, time = 0.1 SECONDS, loop = 0.5 SECONDS)
+	animate(alpha = visibility, time = 0.1 SECONDS)
+	apply_wibbly_filters(holder, 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_wibble), 0.1 SECOND), 0.5 SECONDS, TIMER_DELETE_ME) //Calling a proc with no arguments
+
+/datum/modifier/robot_cloak/proc/remove_wibble(instant)
+	if(holder && holder.get_filter("wibbly-[1]")) //We just check for the first wibble. If it has one it has them all.
+		if(instant)
+			remove_wibbly_filters(holder)
+		else
+			remove_wibbly_filters(holder, 0.1 SECOND)
 
 
 /datum/modifier/robot_cloak/proc/drop_cloak()
