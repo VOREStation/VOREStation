@@ -579,7 +579,7 @@
 			if(can_change(owner, APPEARANCE_ALL_COSMETIC))
 				if(tgui_alert(owner, "Are you certain you wish to load the currently selected savefile?", "Load Savefile", list("No","Yes")) == "Yes")
 					if(owner && owner.client) //sanity
-						owner.client.prefs.vanity_copy_to(owner, FALSE, TRUE, FALSE, FALSE)
+						owner.client.prefs.vanity_copy_to(owner, FALSE, TRUE, FALSE, FALSE, FALSE)
 						return TRUE
 					return TRUE
 				else

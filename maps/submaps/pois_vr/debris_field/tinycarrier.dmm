@@ -104,7 +104,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "debris_carrier_docker";
 	pixel_x = 24;
 	pixel_y = -6

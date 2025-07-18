@@ -2,7 +2,7 @@
 
 Note that these have to be in the same /area that the controller is in for them to function.
 You still need to set the controller's "id_tag" to something unique.
-Any frequency works, it's self-setting, but it seems like people have decided 1380 for airlocks so maybe set that on the controller too.
+Any frequency works, it's self-setting, but it seems like people have decided 1381 for airlocks so maybe set that on the controller too.
 
 */
 

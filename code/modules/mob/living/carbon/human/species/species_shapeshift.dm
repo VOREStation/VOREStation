@@ -593,7 +593,7 @@ var/list/wrapped_species_by_ref = list()
 		character.visible_message(span_notify("[character] rapidly contorts and shifts!"), span_danger("You begin to reform."))
 		if(do_after(character, 40,exclusive = TASK_ALL_EXCLUSIVE))
 			if(character.client.prefs)	//Make sure we didn't d/c
-				character.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, FALSE)
+				character.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, FALSE, FALSE)
 				character.visible_message(span_notify("[character] adopts a new form!"), span_danger("You have reformed."))
 
 /mob/living/carbon/human/proc/shapeshifter_copy_body()
@@ -658,5 +658,5 @@ var/list/wrapped_species_by_ref = list()
 			to_chat(character, span_warning("You lost your grip on [victim]!"))
 			return
 		if(character.client)	//Make sure we didn't d/c
-			transform_into_other_human(victim, FALSE, flavour, FALSE)
+			transform_into_other_human(victim, FALSE, flavour, FALSE, FALSE)
 			character.visible_message(span_notify("[character] adopts the form of [victim]!"), span_danger("You have reassembled into [victim]."))

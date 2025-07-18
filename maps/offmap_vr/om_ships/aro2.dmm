@@ -1385,7 +1385,7 @@
 /area/aro2/powerarea)
 "mg" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aroship2_boatbay";
 	pixel_y = 28
 	},
@@ -2136,7 +2136,7 @@
 /area/aro2/observation)
 "vc" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aroboat2_docker";
 	pixel_y = 28
 	},

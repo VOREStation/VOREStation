@@ -150,7 +150,7 @@
 	dir = 1
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null;
 	pixel_y = 27
 	},
@@ -247,7 +247,7 @@
 /area/submap/event_autonomous_drone/engineering)
 "BF" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "event_autonomousdrone_docker";
 	pixel_x = 5;
 	pixel_y = 25

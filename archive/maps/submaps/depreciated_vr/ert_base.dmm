@@ -27,7 +27,7 @@
 /area/centcom/specops)
 "ag" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ert_shuttle_bay";
 	name = "shuttle bay controller";
 	pixel_x = 25;
@@ -56,7 +56,7 @@
 /area/centcom/specops)
 "ak" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "ert_shuttle_bay_door";
 	locked = 1
@@ -76,7 +76,7 @@
 /area/shuttle/specops/centcom)
 "an" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "ert1_shuttle_outer";
 	locked = 1;
@@ -87,7 +87,7 @@
 /area/shuttle/specops/centcom)
 "ao" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "ert1_shuttle_outer";
 	locked = 1;
@@ -96,7 +96,7 @@
 /obj/structure/fans/tiny,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "ert1_control";
 	pixel_x = 24;
 	req_one_access = list(103)
@@ -160,11 +160,11 @@
 "at" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 2;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ert1_vent"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ert1_control";
 	pixel_x = -25;
 	req_access = list(103);
@@ -189,11 +189,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 2;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ert1_vent"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ert1_sensor";
 	pixel_x = 25
 	},
@@ -244,7 +244,7 @@
 /area/shuttle/specops/centcom)
 "aB" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "ert1_shuttle_inner";
 	locked = 1;
@@ -324,7 +324,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "ert1_control";
 	pixel_x = -22;
 	pixel_y = 32;

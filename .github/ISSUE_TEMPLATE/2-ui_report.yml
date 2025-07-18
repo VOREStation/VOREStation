@@ -24,10 +24,10 @@ body:
   validations:
     required: true
 
-- type: input
+- type: textarea
   attributes:
-    label: Code Revision
-    description: "Found using the 'Show Server Revision' verb under the OOC tab."
+    label: Server Revision Info
+    description: "Copy-paste the entirety of the 'Show Server Revision' verb found under the OOC tab."
   validations:
     required: false
 
