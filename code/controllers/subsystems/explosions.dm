@@ -167,16 +167,16 @@ SUBSYSTEM_DEF(explosions)
 	wake()
 	next_fire = 0
 	// Save these for AFTER the explosion has resolved
-	defer_powernet_rebuild = TRUE
+	SSmachines.defer_powernet_rebuild();
 
 /datum/controller/subsystem/explosions/proc/suspend_and_invoke_deferred_subsystems()
+	// Resolve all the stuff we put off for after the explosion resolved
+	// Awaiting the rust powernet rebuild so this can be called normally...
+	INVOKE_ASYNC(SSmachines, TYPE_PROC_REF(/datum/controller/subsystem/machines,release_powernet_defer))
 	// we've finished. Pause because was have no more work to do.
 	if(!can_fire) // already asleep
 		return
 	suspend()
-	// Resolve all the stuff we put off for after the explosion resolved
-	defer_powernet_rebuild = FALSE
-	INVOKE_ASYNC(SSmachines, TYPE_PROC_REF(/datum/controller/subsystem/machines,makepowernets))
 
 /datum/controller/subsystem/explosions/proc/abort()
 	if(!currentrun.len)

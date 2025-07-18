@@ -31,6 +31,9 @@ SUBSYSTEM_DEF(machines)
 	var/list/powernets = list()
 	var/list/powerobjs = list()
 
+	// Wait to rebuild powernets
+	VAR_PRIVATE/defering_powernets = FALSE
+
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	admin_notice(span_danger("Initializing atmos machinery."), R_DEBUG)
@@ -45,6 +48,19 @@ SUBSYSTEM_DEF(machines)
 	INTERNAL_PROCESS_STEP(SSMACHINES_PIPENETS,TRUE,process_pipenets,cost_pipenets,SSMACHINES_MACHINERY)
 	INTERNAL_PROCESS_STEP(SSMACHINES_MACHINERY,FALSE,process_machinery,cost_machinery,SSMACHINES_POWERNETS)
 	INTERNAL_PROCESS_STEP(SSMACHINES_POWERNETS,FALSE,process_powernets,cost_powernets,SSMACHINES_POWER_OBJECTS)
+
+// Call when you need the network rebuilt, but we should wait until we have a good time to do it
+/datum/controller/subsystem/machines/proc/defer_powernet_rebuild()
+	// Use with responsibility... Must regen the entire power network after deferal is finished.
+	defering_powernets = TRUE
+
+// This MUST be called if request_powernet_rebuild is called with defer = TRUE once the network is free to regen
+/datum/controller/subsystem/machines/proc/release_powernet_defer()
+	defering_powernets = FALSE
+	makepowernets()
+
+/datum/controller/subsystem/machines/proc/powernet_is_defered()
+	return defering_powernets
 
 // rebuild all power networks from scratch - only called at world creation or by the admin verb
 // The above is a lie. Turbolifts also call this proc.
@@ -92,7 +108,7 @@ SUBSYSTEM_DEF(machines)
 	msg += "} "
 	msg += "PI:[SSmachines.networks.len]|"
 	msg += "MC:[SSmachines.processing_machines.len]|"
-	msg += "PN:[SSmachines.powernets.len]|"
+	msg += "PN:[SSmachines.powernets.len][defering_powernets ? " - !!DEFER!!" : ""]|"
 	msg += "PO:[SSmachines.powerobjs.len]|"
 	msg += "HV:[SSmachines.hibernating_vents.len]|"
 	msg += "MC/MS:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
