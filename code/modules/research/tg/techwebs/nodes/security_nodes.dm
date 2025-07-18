@@ -32,6 +32,8 @@
 		"seccamera",
 		"sec_data",
 		"prisonmanage",
+		"pointdefense",
+		"pointdefense_control",
 		// "mining",
 		// "rdcamera",
 		// "security_photobooth",
@@ -54,6 +56,17 @@
 	description = "When you are on the opposing side of a revolutionary movement."
 	prereq_ids = list(TECHWEB_NODE_SEC_EQUIP)
 	design_ids = list(
+		"netgun",
+		"sickshot",
+		"pummeler",
+		"protector",
+		"fuelrod_gun",
+		"chargesword",
+		"chargeaxe",
+		"riflescope",
+		"motion_tracker",
+		"hunt_trap",
+		"recon_skimmer",
 		// "clown_firing_pin",
 		// "pin_testing",
 		// "pin_loyalty",
@@ -83,6 +96,13 @@
 	description = "Specialized bullets designed to ignite, freeze, and inflict various other effects on targets, expanding combat capabilities."
 	prereq_ids = list(TECHWEB_NODE_EXPLOSIVES)
 	design_ids = list(
+		"smg",
+		"ammo_9mm",
+		"magnetic_ammo",
+		"stunshell",
+		"empshell",
+		"ptrshell",
+		"monkey_gun",
 		// "c38_hotshot",
 		// "c38_hotshot_mag",
 		// "c38_iceblox",
@@ -93,7 +113,6 @@
 		// "c38_true_strike_mag",
 		// "techshotshell",
 		// "flechetteshell",
-		"magnetic_ammo",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	// discount_experiments = list(/datum/experiment/ordnance/explosive/highyieldbomb = TECHWEB_TIER_4_POINTS)
@@ -107,8 +126,26 @@
 	design_ids = list(
 		"stunrevolver",
 		"temp_gun",
+		"vinstunrevolver",
 		// "ioncarbine",
 		// "lasershell",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_SECURITY)
+
+/datum/techweb_node/beam_weapons
+	id = TECHWEB_NODE_BEAM_WEAPONS
+	display_name = "Advanced Beam Weaponry"
+	description = "So advanced, even engineers are baffled by its operational principles."
+	prereq_ids = list(TECHWEB_NODE_ELECTRIC_WEAPONS)
+	design_ids = list(
+		"nuclear_gun",
+		"ppistol",
+		"lasercannon",
+		"decloner",
+		"advparticle",
+		"pressureinterlock",
+		"particlecannon",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_SECURITY)

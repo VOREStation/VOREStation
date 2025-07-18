@@ -92,18 +92,6 @@
 	id = "cart_captain"
 	build_path = /obj/item/cartridge/captain
 
-/datum/design_techweb/design_disk
-	name = "Design Storage Disk"
-	desc = "Produce additional disks for storing device designs."
-	id = "design_disk"
-	// req_tech = list(TECH_DATA = 1)
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 30, MAT_GLASS = 10)
-	build_path = /obj/item/disk/design_disk
-	category = list(
-		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
-	)
-
 /datum/design_techweb/tech_disk
 	name = "Technology Data Storage Disk"
 	desc = "Produce additional disks for storing technology data."

@@ -5,6 +5,11 @@
 	description = "Nanotrasen's finest in ergonomic office tech, ensuring station admin stays productive and compliant with corporate policies — because even in space, paperwork never stops."
 	design_ids = list(
 		"communicator",
+		"laser_pointer",
+		"translator",
+		"ear_translator",
+		"walkpod",
+		"juke_remote",
 		// "fax",
 		// "sec_pen",
 		// "handlabel",
@@ -70,6 +75,33 @@
 		"emp_data",
 		"comconsole",
 		"idcardconsole",
+		"jukebox",
+		// PDAs
+		"pda",
+		"cart_basic",
+		"cart_engineering",
+		"cart_atmos",
+		"cart_medical",
+		"cart_chemistry",
+		"cart_security",
+		"cart_janitor",
+		"cart_science",
+		"cart_quartermaster",
+		"cart_head",
+		"cart_hop",
+		"cart_hos",
+		"cart_ce",
+		"cart_cmo",
+		"cart_rd",
+		"cart_captain",
+		// GPS
+		"gps_gen",
+		"gps_com",
+		"gps_sec",
+		"gps_med",
+		"gps_eng",
+		"gps_sci",
+		"gps_exp",
 		// "automated_announcement",
 		// "bankmachine",
 		// "account_console",
@@ -90,6 +122,42 @@
 		// "telescreen_prison",
 		// "telescreen_bar",
 		// "telescreen_entertainment",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)
+
+
+/datum/techweb_node/modular_computers
+	id = TECHWEB_NODE_MODULAR_COMPUTER
+	display_name = "Modular Computers"
+	description = "Pieces and parts for modular computers; consoles, laptops, and tablets."
+	prereq_ids = list(TECHWEB_NODE_CONSOLES)
+	design_ids = list(
+		"hdd_basic",
+		"hdd_advanced",
+		"hdd_super",
+		"hdd_cluster",
+		"hdd_small",
+		"hdd_micro",
+		"netcard_basic",
+		"netcard_advanced",
+		"netcard_wired",
+		"bat_normal",
+		"bat_advanced",
+		"bat_super",
+		"bat_ultra",
+		"bat_nano",
+		"bat_micro",
+		"cpu_normal",
+		"cpu_small",
+		"pcpu_normal",
+		"pcpu_small",
+		"cardslot",
+		"nanoprinter",
+		"teslalink",
+		"portadrive_basic",
+		"portadrive_advanced",
+		"portadrive_super",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(CHANNEL_SERVICE)
@@ -130,3 +198,63 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(CHANNEL_COMMON)
+
+
+// Kitchen root node
+/datum/techweb_node/cafeteria_equip
+	id = TECHWEB_NODE_CAFETERIA_EQUIP
+	starting_node = TRUE
+	display_name = "Cafeteria Equipment"
+	description = "When standard-issue tubed food no longer satisfies the station crew's appetite..."
+	design_ids = list(
+		"microwave_board",
+		// "microwave",
+		// "bowl",
+		// "plate",
+		// "oven_tray",
+		// "servingtray",
+		// "tongs",
+		// "spoon",
+		// "fork",
+		// "kitchen_knife",
+		// "plastic_spoon",
+		// "plastic_fork",
+		// "plastic_knife",
+		// "shaker",
+		// "drinking_glass",
+		// "shot_glass",
+		// "coffee_cartridge",
+		// "coffeemaker",
+		// "coffeepot",
+		// "syrup_bottle",
+		// "foodtray",
+		// "restaurant_portal",
+	)
+
+/datum/techweb_node/food_proc
+	id = TECHWEB_NODE_FOOD_PROC
+	display_name = "Food Processing"
+	description = "Top-tier kitchen appliances from Nanotrasen, designed to keep the crew well-fed and happy."
+	prereq_ids = list(TECHWEB_NODE_CAFETERIA_EQUIP)
+	design_ids = list(
+		"deluxe microwave",
+		"oven_board",
+		"fryer_board",
+		"cerealmaker_board",
+		"candymachine_board",
+		// "range",
+		// "souppot",
+		// "processor",
+		// "gibber",
+		// "monkey_recycler",
+		// "reagentgrinder",
+		// "microwave_engineering",
+		// "smartfridge",
+		// "dehydrator",
+		// "sheetifier",
+		// "fat_sucker",
+		// "dish_drive",
+		// "roastingstick",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)

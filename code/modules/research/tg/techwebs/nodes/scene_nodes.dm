@@ -30,3 +30,33 @@
 	discount_experiments = list(
 		/datum/experiment/scanning/people/big_or_smol = TECHWEB_TIER_3_POINTS
 	)
+
+/datum/techweb_node/illegal
+	id = TECHWEB_NODE_ILLEGAL_SCENETOOLS
+	display_name = "Scene Tools - Highly Illegal"
+	description = "Risky recreational devices that are distinctly outlawed."
+	prereq_ids = list(TECHWEB_NODE_SCENE_TOOLS, TECHWEB_NODE_SEC_EQUIP)
+	design_ids = list(
+		"chameleon",
+		"bodysnatcher",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+
+
+/datum/techweb_node/guns
+	id = TECHWEB_NODE_SCENE_GUNS
+	display_name = "Scene Tools - 'NSFW' Gun"
+	description = "Experimental N.S.F.W. Revolver."
+	prereq_ids = list(TECHWEB_NODE_SCENE_TOOLS, TECHWEB_NODE_EXOTIC_AMMO)
+	design_ids = list(
+		"nsfw_prototype",
+		"nsfw_mag_prototype",
+		"nsfw_cell_stun",
+		"nsfw_cell_lethal",
+		"nsfw_cell_net",
+		"nsfw_cell_ion",
+		"nsfw_cell_shotstun",
+		"nsfw_cell_xray",
+		"nsfw_cell_stripper",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
