@@ -258,7 +258,7 @@ var/global/narsie_cometh = 0
 				if(!(AM2.singuloCanEat()))
 					continue
 
-				if (101 == AM2.invisibility)
+				if (INVISIBILITY_ABSTRACT == AM2.invisibility)
 					continue
 
 				spawn (0)

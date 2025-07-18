@@ -5035,7 +5035,7 @@
 /area/rnd/outpost/anomaly_lab/testing)
 "kh" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1452;
+	frequency = 1453;
 	icon_state = "door_locked";
 	id_tag = "anomaly_testing_exterior";
 	locked = 1;
@@ -5199,7 +5199,7 @@
 /area/rnd/outpost)
 "kx" = (
 /obj/machinery/access_button{
-	frequency = 1452;
+	frequency = 1453;
 	master_tag = "anomaly_chamber_airlock";
 	pixel_x = -25;
 	pixel_y = 25
@@ -5486,7 +5486,7 @@
 	dir = 8
 	},
 /obj/machinery/access_button{
-	frequency = 1452;
+	frequency = 1453;
 	master_tag = "anomaly_chamber_airlock";
 	pixel_x = 25
 	},
@@ -5812,7 +5812,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1452;
+	frequency = 1453;
 	id_tag = "anomaly_airlock_pump";
 	name = "Anomaly Airlock Pump"
 	},
@@ -5887,14 +5887,14 @@
 /area/rnd/outpost/anomaly_lab/testing)
 "lA" = (
 /obj/machinery/airlock_sensor/phoron{
-	frequency = 1452;
+	frequency = 1453;
 	id_tag = "anomaly_chamber_airlock_sensor";
 	master_tag = null;
 	pixel_x = -25;
 	pixel_y = -10
 	},
 /obj/machinery/embedded_controller/radio/airlock/phoron{
-	frequency = 1452;
+	frequency = 1453;
 	id_tag = "anomaly_chamber_airlock";
 	pixel_x = -25;
 	tag_airpump = "anomaly_airlock_pump";
@@ -6149,7 +6149,7 @@
 /area/rnd/outpost/anomaly_lab/testing)
 "lX" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1452;
+	frequency = 1453;
 	icon_state = "door_locked";
 	id_tag = "anomaly_testing_interior";
 	locked = 1;
@@ -7099,7 +7099,7 @@
 /area/rnd/outpost/anomaly_lab)
 "nS" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
-	frequency = 1452;
+	frequency = 1453;
 	scrub_id = "anomaly_airlock_scrubber"
 	},
 /turf/simulated/floor/tiled,
@@ -7251,7 +7251,7 @@
 	dir = 1
 	},
 /obj/machinery/access_button{
-	frequency = 1452;
+	frequency = 1453;
 	master_tag = "anomaly_chamber_airlock";
 	pixel_y = 25
 	},
@@ -7266,7 +7266,7 @@
 	pixel_x = -23
 	},
 /obj/machinery/access_button{
-	frequency = 1452;
+	frequency = 1453;
 	master_tag = "anomaly_chamber_airlock";
 	pixel_y = 25
 	},

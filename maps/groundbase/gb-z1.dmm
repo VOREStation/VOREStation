@@ -2788,7 +2788,7 @@
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "tcommsairlock";
 	pixel_x = -32;
 	req_one_access = list(61)
@@ -3162,7 +3162,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tcommsairlock";
 	pixel_y = 24;
 	req_one_access = list(61)
@@ -3994,7 +3994,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "tcommsairlock";
 	pixel_x = 32;
 	req_one_access = list(61)

@@ -100,7 +100,30 @@
 /obj/screen/ghost/vr/Click()
 	..()
 	var/mob/observer/dead/G = usr
-	G.fake_enter_vr()
+	var/datum/data/record/record_found
+	record_found = find_general_record("name", G.client.prefs.real_name)
+	// Found their record, they were spawned previously. Remind them corpses cannot play games.
+	if(record_found)
+		var/answer = tgui_alert(G, "You seem to have previously joined this round. If you are currently dead, you should not enter VR as this character. Would you still like to proceed?", "Previously spawned",list("Yes", "No"))
+		if(answer != "Yes")
+			return
+
+	var/S = null
+	var/list/vr_landmarks = list()
+	for(var/obj/effect/landmark/virtual_reality/sloc in GLOB.landmarks_list)
+		vr_landmarks += sloc.name
+	if(!LAZYLEN(vr_landmarks))
+		to_chat(G, "There are no available spawn locations in virtual reality.")
+		return
+	S = tgui_input_list(G, "Please select a location to spawn your avatar at:", "Spawn location", vr_landmarks)
+	if(!S)
+		return 0
+	for(var/obj/effect/landmark/virtual_reality/i in GLOB.landmarks_list)
+		if(i.name == S)
+			S = i
+			break
+
+	G.fake_enter_vr(S)
 
 /mob/observer/dead/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
