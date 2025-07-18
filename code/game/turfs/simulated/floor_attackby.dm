@@ -173,6 +173,11 @@
 		else
 			return 0
 		playsound(src, W.usesound, 80, 1)
+		if(isliving(user) && is_plating())
+			var/mob/living/deconstructor = user
+			var/obj/item/stack/tile/T = deconstructor.get_inactive_hand()
+			if(T)
+				attackby(T, user) // Replace the tile
 		return 1
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 		if(broken || burnt)

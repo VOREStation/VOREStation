@@ -44,11 +44,13 @@
 			. += "Use a welder on it to repair the damage."
 		else
 			. += "Use a crowbar on it to remove it."
+			. += "If using a crowbar and holding a floor tile in your offhand, you will automatically replace the floor with that tile."
 	else if(flooring)
 		if(flooring.flags & TURF_IS_FRAGILE)
 			. += "You can use a crowbar on it to remove it, but this will destroy it!"
 		else if(flooring.flags & TURF_REMOVE_CROWBAR)
 			. += "Use a crowbar on it to remove it."
+			. += "If using a crowbar and holding a floor tile in your offhand, you will automatically replace the floor with that tile."
 		if(flooring.flags & TURF_REMOVE_SCREWDRIVER)
 			. += "Use a screwdriver on it to remove it."
 		if(flooring.flags & TURF_REMOVE_WRENCH)

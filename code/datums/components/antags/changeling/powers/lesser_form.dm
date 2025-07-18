@@ -19,8 +19,13 @@
 
 	var/mob/living/carbon/human/H = src
 
-	if(!istype(H) || !H.species.primitive_form)
-		to_chat(src, span_warning("We cannot perform this ability in this form!"))
+	if(!istype(H))
+		to_chat(src, span_warning("We must be a humanoid to use thia bility!!"))
+		return
+
+	else if(!H.species.primitive_form)
+		to_chat(src, span_warning("The species we are currently in the form of does not have a primitive form!"))
+		to_chat(src, span_info("NOTE: Species such as Unathi, Tajaran, Akula, and Human have primitive forms. Things such as custom species do not.")) //Let's add a warning...Ideally, we change primitive form to be based off body style, but we still run into the problem of some speices not having them.
 		return
 
 	changeling.chem_charges--

@@ -17,10 +17,16 @@
 	if(!istype(target))
 		return 0
 
+	var/susceptibility = 1
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		susceptibility = GetAnomalySusceptibility(H)
+
 	if(target.stat != DEAD && stored_life < 200)
 		holder.Beam(target, icon_state = "drain_life", time = 1 SECOND)
-		target.apply_damage(5, SEARING, BP_TORSO)
-		return 5
+		if(!prob(susceptibility * 100)) //Inverse. If they are not susceptible, we don't steal life. We still beam them though.
+			target.apply_damage(5 * susceptibility, SEARING, BP_TORSO)
+		return 25 * susceptibility //nobody actually uses this god damned thing so I'm buffing it so maybe one day someone will ACTUALLY USE IT.
 
 	return 0
 
