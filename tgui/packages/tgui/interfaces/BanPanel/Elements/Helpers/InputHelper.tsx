@@ -1,11 +1,11 @@
 import { Box, Stack } from 'tgui-core/components';
 
 export const InputHelper = (props: {
-  banType: string | null;
-  banCkey: string | null;
+  banType: string;
+  banCkey: string;
   banDuration: number;
-  banJob: string | null;
-  banReason: string | null;
+  banJob: string;
+  banReason: string;
 }) => {
   const { banType, banCkey, banDuration, banJob, banReason } = props;
 
@@ -53,10 +53,10 @@ export const InputHelper = (props: {
 };
 
 export const InputError = (props: {
-  banCkey: string | null;
-  banReason: string | null;
+  banCkey: string;
+  banReason: string;
   banDuration?: number;
-  banJob?: string | null;
+  banJob?: string;
 }) => {
   const { banCkey, banReason, banDuration, banJob } = props;
 
