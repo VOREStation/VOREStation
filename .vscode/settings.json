@@ -3,9 +3,9 @@
 		"source.fixAll.biome": "explicit"
 	},
 	"files.eol": "\n",
-    "files.encoding": "utf8",
+	"files.encoding": "utf8",
 	"files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
+	"files.trimFinalNewlines": true,
 	"files.trimTrailingWhitespace": true,
 	"editor.insertSpaces": false,
 	"git.branchProtection": ["master"],
@@ -27,9 +27,9 @@
 	"search.exclude": {
 		"**/node_modules": true
 	},
-    "debug.onTaskErrors": "abort",
-    "dreammaker.objectTreePane": true,
-    "dreammaker.autoUpdate": true,
-    "dreammaker.tickOnCreate": true,
-    "tgstationTestExplorer.project.DMEName": "vorestation.dme"
+	"debug.onTaskErrors": "abort",
+	"dreammaker.objectTreePane": true,
+	"dreammaker.autoUpdate": true,
+	"dreammaker.tickOnCreate": true,
+	"tgstationTestExplorer.project.DMEName": "vorestation.dme"
 }
