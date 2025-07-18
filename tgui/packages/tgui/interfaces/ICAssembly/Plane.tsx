@@ -17,7 +17,8 @@ import {
   PortTypesToColor,
 } from './types';
 
-export type PlaneProps = undefined;
+// biome-ignore lint/complexity/noBannedTypes:Ingored here
+export type PlaneProps = {};
 
 type PlaneState = {
   locations: Record<string, { x: number; y: number }>;
