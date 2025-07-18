@@ -229,7 +229,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 			playsound(L, "rustle", 25, 1)
 			return
 
-		playsound(L, "punch", 70, 1)
+		playsound(L, SFX_PUNCH, 70, 1)
 		shake_camera(L, 1, 1)
 
 		visible_message(span_danger("\The [L] hits \the [T]!"))

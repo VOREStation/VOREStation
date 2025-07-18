@@ -654,7 +654,7 @@
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		L.visible_message(span_danger("\The [user] [attack_message] \the [L], sending them flying!"))
-		playsound(src, "punch", 50, 1)
+		playsound(src, SFX_PUNCH, 50, 1)
 		L.Weaken(2)
 		L.adjustBruteLoss(rand(30, 50))
 		var/throwdir = get_dir(src, L)

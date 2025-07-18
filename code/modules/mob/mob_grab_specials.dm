@@ -107,7 +107,7 @@
 		target.apply_effect(20, PARALYZE)
 		target.visible_message(span_danger("[target] [target.species.get_knockout_message(target)]"))
 
-	playsound(attacker, "swing_hit", 25, 1, -1)
+	playsound(attacker, SFX_SWING_HIT, 25, 1, -1)
 	add_attack_logs(attacker,target,"Headbutted using grab")
 
 	attacker.drop_from_inventory(src)

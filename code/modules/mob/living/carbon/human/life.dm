@@ -1172,9 +1172,8 @@
 		adjust_nutrition(-nutrition_reduction)
 
 	if(noisy == TRUE && nutrition < 250 && prob(10))
-		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
-		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
+		playsound(src, SFX_HUNGER_SOUNDS, vol = growlmultiplier, vary = 1, falloff_distance = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
 	if(nutrition > 500 && noisy_full == TRUE)
 		var/belch_prob = 5 //Maximum belch prob.
 		if(nutrition < 4075)

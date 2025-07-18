@@ -160,7 +160,7 @@
 	add_fingerprint(ui.user)
 
 /obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
-	playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
+	playsound(src, 'sound/effects/sparks/sparks4.ogg', 75, 1)
 	last_to_emag = user //emag again to change the owner
 	if (!emagged)
 		emagged = 1

@@ -24,7 +24,7 @@ var/datum/antagonist/shipwreck_survivor/survivors
 	and how you wish to proceed now that you were rescued. \n \
 	You <b>DON'T</b> need to set your ambitions. Feel free to ignore them."
 
-	antag_sound = 'sound/voice/hiss1.ogg'
+	antag_sound = 'sound/mob/non-humanoids/hiss/hiss1.ogg'
 
 	can_speak_aooc = FALSE
 	can_hear_aooc = FALSE

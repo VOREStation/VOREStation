@@ -708,7 +708,7 @@
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
 			target_mob.visible_message(span_infoplain(span_bold("\The [src]") + " misses \the [target_mob] narrowly!"))
-			playsound(target_mob, "bullet_miss", 75, 1)
+			playsound(target_mob, SFX_BULLET_MISS, 75, 1)
 		return FALSE
 
 	var/impacted_organ = parse_zone(def_zone)

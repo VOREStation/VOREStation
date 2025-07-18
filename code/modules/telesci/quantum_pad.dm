@@ -226,9 +226,9 @@
 		linked_pad.sparks()
 
 		flick("qpad-beam-out", src)
-		playsound(src, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
+		playsound(src, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff_distance = 5)
 		flick("qpad-beam-in", linked_pad)
-		playsound(linked_pad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
+		playsound(linked_pad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff_distance = 5)
 
 		transport_objects(get_turf(linked_pad))
 

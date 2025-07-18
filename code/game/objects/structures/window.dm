@@ -302,7 +302,7 @@
 	else if(istype(W, /obj/item/stack/cable_coil) && reinf && state == 0 && !istype(src, /obj/structure/window/reinforced/polarized))
 		var/obj/item/stack/cable_coil/C = W
 		if (C.use(1))
-			playsound(src, 'sound/effects/sparks1.ogg', 75, 1)
+			playsound(src, 'sound/effects/sparks/sparks1.ogg', 75, 1)
 			user.visible_message( \
 				span_infoplain(span_bold("\The [user]") + " begins to wire \the [src] for electrochromic tinting."), \
 				span_notice("You begin to wire \the [src] for electrochromic tinting."), \

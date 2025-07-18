@@ -19,8 +19,8 @@
 
 	switch(action)
 		if("lose")
-			playsound(computer, 'sound/arcade/lose.ogg', 50, TRUE, extrarange = -3, falloff = 0.1)
+			playsound(computer, 'sound/arcade/lose.ogg', 50, TRUE, extrarange = -3, falloff_distance = 0.1)
 			. = TRUE
 		if("win")
-			playsound(computer, 'sound/arcade/win.ogg', 50, TRUE, extrarange = -3, falloff = 0.1)
+			playsound(computer, 'sound/arcade/win.ogg', 50, TRUE, extrarange = -3, falloff_distance = 0.1)
 			. = TRUE

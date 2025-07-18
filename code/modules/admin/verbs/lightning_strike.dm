@@ -62,11 +62,10 @@
 
 	// And for those far away. If the strike happens on a planet, everyone on the planet will hear it.
 	// Otherwise only those on the current z-level will hear it.
-	var/sound = get_sfx("thunder")
 	for(var/mob/M in GLOB.player_list)
 		if( (P && (M.z in P.expected_z_levels)) || M.z == T.z)
 			if(M.check_sound_preference(/datum/preference/toggle/weather_sounds))
-				M.playsound_local(get_turf(M), soundin = sound, vol = 70, vary = FALSE, is_global = TRUE)
+				M.playsound_local(M, SFX_THUNDER, vol = 70, vary = FALSE)
 
 	if(cosmetic) // Everything beyond here involves potentially damaging things. If we don't want to do that, stop now.
 		return

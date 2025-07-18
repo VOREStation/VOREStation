@@ -133,7 +133,7 @@
 
 /obj/item/reagent_containers/food/drinks/proc/open(mob/user)
 	if(!cant_open)
-		playsound(src,"canopen", rand(10,50), 1)
+		playsound(src, SFX_CAN_OPEN, rand(10,50), 1)
 		GLOB.cans_opened_roundstat++
 		to_chat(user, span_notice("You open [src] with an audible pop!"))
 		flags |= OPENCONTAINER

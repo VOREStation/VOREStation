@@ -342,19 +342,19 @@ var/global/datum/controller/subsystem/ticker/ticker
 				if("mercenary") //Nuke wasn't on station when it blew up
 					flick("intro_nuke",cinematic)
 					sleep(35)
-					world << sound('sound/effects/explosionfar.ogg')
+					world << sound('sound/effects/explosion/explosionfar.ogg')
 					flick("station_intact_fade_red",cinematic)
 					cinematic.icon_state = "summary_nukefail"
 				else
 					flick("intro_nuke",cinematic)
 					sleep(35)
-					world << sound('sound/effects/explosionfar.ogg')
+					world << sound('sound/effects/explosion/explosionfar.ogg')
 					//flick("end",cinematic)
 
 
 		if(2)	//nuke was nowhere nearby	//TODO: a really distant explosion animation
 			sleep(50)
-			world << sound('sound/effects/explosionfar.ogg')
+			world << sound('sound/effects/explosion/explosionfar.ogg')
 
 
 		else	//station was destroyed
@@ -365,25 +365,25 @@ var/global/datum/controller/subsystem/ticker/ticker
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					flick("station_explode_fade_red",cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
+					world << sound('sound/effects/explosion/explosionfar.ogg')
 					cinematic.icon_state = "summary_nukewin"
 				if("AI malfunction") //Malf (screen,explosion,summary)
 					flick("intro_malf",cinematic)
 					sleep(76)
 					flick("station_explode_fade_red",cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
+					world << sound('sound/effects/explosion/explosionfar.ogg')
 					cinematic.icon_state = "summary_malf"
 				if("blob") //Station nuked (nuke,explosion,summary)
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					flick("station_explode_fade_red",cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
+					world << sound('sound/effects/explosion/explosionfar.ogg')
 					cinematic.icon_state = "summary_selfdes"
 				else //Station nuked (nuke,explosion,summary)
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					flick("station_explode_fade_red", cinematic)
-					world << sound('sound/effects/explosionfar.ogg')
+					world << sound('sound/effects/explosion/explosionfar.ogg')
 					cinematic.icon_state = "summary_selfdes"
 			for(var/mob/living/M in GLOB.living_mob_list)
 				if(M.loc.z in using_map.station_levels)

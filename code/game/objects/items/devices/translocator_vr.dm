@@ -358,7 +358,7 @@ This device records all warnings given and teleport events for admin review in c
 
 	spk.start()
 	playsound(T, 'sound/effects/phasein.ogg', 25, 1)
-	playsound(T, 'sound/effects/sparks2.ogg', 50, 1)
+	playsound(T, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
 	spk.set_up(5, 0, src)
 	spk.attach(src)

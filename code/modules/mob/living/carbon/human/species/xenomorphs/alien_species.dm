@@ -34,9 +34,9 @@
 	gibbed_anim = "gibbed-a"
 	dusted_anim = "dust-a"
 	death_message = "lets out a guttural screech, green blood bubbling from its maw."
-	death_sound = 'sound/voice/hiss6.ogg'
+	death_sound = 'sound/mob/non-humanoids/hiss/hiss6.ogg'
 
-	speech_sounds = list('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
+	speech_sounds = list('sound/mob/non-humanoids/hiss/hiss1.ogg','sound/mob/non-humanoids/hiss/hiss2.ogg','sound/mob/non-humanoids/hiss/hiss3.ogg','sound/mob/non-humanoids/hiss/hiss4.ogg')
 	speech_chance = 75
 
 	virus_immune = 1

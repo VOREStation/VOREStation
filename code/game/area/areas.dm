@@ -49,7 +49,10 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/arfgs_active = 0
 	var/list/ambience = list()
 	var/list/forced_ambience = null
-	var/sound_env = STANDARD_STATION
+
+	///Used to decide what kind of reverb the area makes sound have
+	var/sound_env = SOUND_ENVIRONMENT_NONE
+
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	VAR_PROTECTED/color_grading = null // Color blending for clients that enter this area
 

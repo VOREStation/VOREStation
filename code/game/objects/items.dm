@@ -100,9 +100,9 @@
 	// Sound used when equipping the items into a valid slot.
 	var/equip_sound
 	// pickup sound - this is the default
-	var/pickup_sound = "generic_pickup"
+	var/pickup_sound = SFX_GENERIC_PICKUP
 	// drop sound - this is the default
-	var/drop_sound = "generic_drop"
+	var/drop_sound = SFX_GENERIC_DROP
 
 	var/tip_timer // reference to timer id for a tooltip we might open soon
 
@@ -379,7 +379,7 @@
 			else if(hitsound)
 				playsound(hit_atom, hitsound, volume, TRUE, -1)
 			else
-				playsound(hit_atom, 'sound/weapons/genhit.ogg', volume, TRUE, -1)
+				playsound(hit_atom, 'sound/items/weapons/genhit.ogg', volume, TRUE, -1)
 		else
 			playsound(hit_atom, 'sound/weapons/throwtap.ogg', 1, volume, -1)
 	else

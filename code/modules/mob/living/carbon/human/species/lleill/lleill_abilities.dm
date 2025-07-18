@@ -219,7 +219,7 @@
 
 			spk.start()
 			playsound(S, 'sound/effects/phasein.ogg', 25, 1)
-			playsound(S, 'sound/effects/sparks2.ogg', 50, 1)
+			playsound(S, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 			anim(S,src,'icons/mob/mob.dmi',,"phasein",,src.dir)
 			spk.set_up(5, 0, src)
 			spk.attach(src)

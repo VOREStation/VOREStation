@@ -100,7 +100,7 @@
 			M.adjustOxyLoss(round(dam_force/2))
 			M.updatehealth()
 			occupant_message(span_warning("You squeeze [target] with [src.name]. Something cracks."))
-			playsound(src, "fracture", 5, 1, -2) //CRACK
+			playsound(src, SFX_FRACTURE, 5, 1, -2) //CRACK
 			chassis.visible_message(span_warning("[chassis] squeezes [target]."))
 		else if(chassis.occupant.a_intent == I_DISARM && enable_special)
 			playsound(src, 'sound/mecha/hydraulic.ogg', 10, 1, -2)
@@ -108,7 +108,7 @@
 			M.adjustOxyLoss(round(dam_force/3))
 			M.updatehealth()
 			occupant_message(span_warning("You slam [target] with [src.name]. Something cracks."))
-			playsound(src, "fracture", 3, 1, -2) //CRACK 2
+			playsound(src, SFX_FRACTURE, 3, 1, -2) //CRACK 2
 			chassis.visible_message(span_warning("[chassis] slams [target]."))
 			M.throw_at(get_step(M,get_dir(src, M)), 14, 1.5, chassis)
 		else

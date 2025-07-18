@@ -118,9 +118,9 @@ GLOBAL_LIST_INIT(mark_spells, list())
 			to_chat(user, span_notice("You are teleported to your Mark."))
 
 			playsound(target_turf, 'sound/effects/phasein.ogg', 25, 1)
-			playsound(target_turf, 'sound/effects/sparks2.ogg', 50, 1)
+			playsound(target_turf, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 
-			playsound(old_turf, 'sound/effects/sparks2.ogg', 50, 1)
+			playsound(old_turf, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 
 			adjust_instability(25)
 			qdel(src)

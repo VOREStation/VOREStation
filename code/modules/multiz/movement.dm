@@ -574,7 +574,7 @@
 				visible_message(span_warning("\The [src] falls from above and slams into \the [landing]!"), \
 					span_danger("You fall off and hit \the [landing]!"), \
 					"You hear something slam into \the [landing].")
-			playsound(src, "punch", 25, 1, -1)
+			playsound(src, SFX_PUNCH, 25, 1, -1)
 
 		// Because wounds heal rather quickly, 10 (the default for this proc) should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
 		// Hits 10 times, because apparently targeting individual limbs lets certain species survive the fall from atmosphere
@@ -673,7 +673,7 @@
 				visible_message(span_warning("\The [src] falls from above and slams into \the [landing]!"), \
 					span_danger("You fall off and hit \the [landing]!"), \
 					"You hear something slam into \the [landing].")
-			playsound(src, "punch", 25, 1, -1)
+			playsound(src, SFX_PUNCH, 25, 1, -1)
 
 	// And now to hurt the mech.
 	if(!planetary)

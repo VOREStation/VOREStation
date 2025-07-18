@@ -83,7 +83,7 @@
 
 	if(icon_keyboard)
 		if(stat & NOPOWER)
-			playsound(src, 'sound/machines/terminal_off.ogg', 50, 1)
+			playsound(src, 'sound/machines/terminal/terminal_off.ogg', 50, 1)
 			return add_overlay("[icon_keyboard]_off")
 		. += icon_keyboard
 
@@ -94,7 +94,7 @@
 
 	. += mutable_appearance(icon, overlay_state)
 	. += emissive_appearance(icon, overlay_state)
-	playsound(src, 'sound/machines/terminal_on.ogg', 50, 1)
+	playsound(src, 'sound/machines/terminal/terminal_on.ogg', 50, 1)
 
 	add_overlay(.)
 

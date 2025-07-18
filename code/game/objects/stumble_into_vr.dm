@@ -1,5 +1,5 @@
 /atom/proc/stumble_into(mob/living/M)
-	playsound(src, "punch", 25, 1, -1)
+	playsound(src, SFX_PUNCH, 25, 1, -1)
 	visible_message(span_warning("[M] [pick("ran", "slammed")] into \the [src]!"))
 	to_chat(M, span_warning("You just [pick("ran", "slammed")] into \the [src]!"))
 	M.apply_damage(5, BRUTE)

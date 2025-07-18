@@ -20,7 +20,7 @@
 			return
 		else
 			current_news_page++
-			playsound(src.loc, "pageturn", 50, 1)
+			playsound(src.loc, SFX_PAGE_TURN, 50, 1)
 			show_latest_news(GLOB.news_data.station_newspaper)
 
 
@@ -36,7 +36,7 @@
 			return
 		else
 			current_news_page--
-			playsound(src.loc, "pageturn", 50, 1)
+			playsound(src.loc, SFX_PAGE_TURN, 50, 1)
 			show_latest_news(GLOB.news_data.station_newspaper)
 
 

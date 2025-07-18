@@ -238,7 +238,7 @@
 		if(!locked)
 			locked = 1
 		else
-			playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
+			playsound(src, 'sound/effects/sparks/sparks4.ogg', 75, 1)
 			locked = 0
 	if(!opened && prob(20/severity))
 		if(!locked)
@@ -728,8 +728,8 @@
 	desc = "A cart with a large fabric bin on it used for transporting large amounts of clothes."
 	icon = 'icons/obj/closets/laundry.dmi'
 	closet_appearance = null
-	open_sound = 'sound/effects/rustle1.ogg'
-	close_sound = 'sound/effects/rustle2.ogg'
+	open_sound = 'sound/effects/rustle/rustle1.ogg'
+	close_sound = 'sound/effects/rustle/rustle2.ogg'
 	icon_state = ""
 
 //Wooden Crate

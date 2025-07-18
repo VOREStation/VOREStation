@@ -384,7 +384,7 @@ var/list/mining_overlay_cache = list()
 				return
 
 			to_chat(user, span_notice("You start digging."))
-			playsound(user, 'sound/effects/rustle1.ogg', 50, 1)
+			playsound(user, 'sound/effects/rustle/rustle1.ogg', 50, 1)
 
 			if(!do_after(user,digspeed)) return
 
@@ -409,7 +409,7 @@ var/list/mining_overlay_cache = list()
 			var/obj/item/stack/tile/floor/S = W
 			if (S.get_amount() < 1)
 				return
-			playsound(src, 'sound/weapons/genhit.ogg', 50, 1)
+			playsound(src, 'sound/items/weapons/genhit.ogg', 50, 1)
 			ChangeTurf(/turf/simulated/floor)
 			S.use(1)
 			return
@@ -470,7 +470,7 @@ var/list/mining_overlay_cache = list()
 				playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
 			else
 				user.visible_message(span_warning("\The [src] plows into the rock with a thunk, smashing it to pieces."))
-				playsound(src, get_sfx("pickaxe"), 35, 1, -1) //Weak. Not on. Just as good as a normal pick.
+				playsound(src, SFX_PICKAXE, 35, 1, -1) //Weak. Not on. Just as good as a normal pick.
 
 			if(newDepth >= 200) // This means the rock is mined out fully
 				if(S.destroy_artefacts)

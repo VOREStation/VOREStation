@@ -84,7 +84,7 @@
 
 	holder.spark_system.start()
 	playsound(src, 'sound/effects/phasein.ogg', 25, 1)
-	playsound(src, 'sound/effects/sparks2.ogg', 50, 1)
+	playsound(src, 'sound/effects/sparks/sparks2.ogg', 50, 1)
 	anim(T,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
 
 /obj/item/rig_module/teleporter/proc/phase_out(var/mob/M,var/turf/T)

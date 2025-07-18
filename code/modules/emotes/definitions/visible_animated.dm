@@ -25,7 +25,7 @@
 	key = "flip"
 	emote_message_1p = "You do a flip!"
 	emote_message_3p = "does a flip!"
-	emote_sound = 'sound/effects/bodyfall4.ogg'
+	emote_sound = 'sound/effects/bodyfall/bodyfall4.ogg'
 	//emote_delay = 1.2 SECONDS //VOREStation Edit - Delay moved to parent
 
 /decl/emote/visible/flip/do_extra(mob/user)

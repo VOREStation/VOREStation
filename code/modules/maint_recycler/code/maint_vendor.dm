@@ -232,7 +232,7 @@
 		set_light(light_range_on, light_power_on)
 		monitor_screen.icon_state = "screen_default"
 	else
-		playsound(src, 'sound/machines/terminal_off.ogg', 50, 1)
+		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 50, 1)
 		set_light(0)
 		monitor_screen.icon_state = "screen_off"
 

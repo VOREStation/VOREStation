@@ -91,7 +91,7 @@
 			if(do_after(user, 30, target) && length(contents) < max_item_count)
 				target.forceMove(src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [target.name] slips inside."), span_notice("Your [src.name] groans lightly as [target] slips inside."))
-				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
+				playsound(src, gulpsound, vol = 60, vary = 1, falloff_distance = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(analyzer && istype(target,/obj/item))
 					var/obj/item/tech_item = target
 					var/list/tech_levels = list()
@@ -111,7 +111,7 @@
 				trashmouse.forceMove(src)
 				trashmouse.reset_view(src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashmouse] slips inside."), span_notice("Your [src.name] groans lightly as [trashmouse] slips inside."))
-				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
+				playsound(src, gulpsound, vol = 60, vary = 1, falloff_distance = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= trashmouse
@@ -133,7 +133,7 @@
 				START_PROCESSING(SSobj, src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashman] slips inside."), span_notice("Your [src.name] groans lightly as [trashman] slips inside."))
 				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
-				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
+				playsound(src, gulpsound, vol = 100, vary = 1, falloff_distance = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= trashman
@@ -164,7 +164,7 @@
 				START_PROCESSING(SSobj, src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] lights up as [H.name] slips inside."), span_notice("Your [src] lights up as [H] slips inside. Life support functions engaged."))
 				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
-				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
+				playsound(src, gulpsound, vol = 100, vary = 1, falloff_distance = 0.1, preference = /datum/preference/toggle/eating_noises)
 
 /obj/item/dogborg/sleeper/proc/ingest_atom(var/atom/ingesting)
 	if (!ingesting || ingesting == hound)
@@ -545,39 +545,15 @@
 
 	//Belly is entirely empty
 	if(!length(touchable_items))
-		var/finisher = pick(
-			'sound/vore/death1.ogg',
-			'sound/vore/death2.ogg',
-			'sound/vore/death3.ogg',
-			'sound/vore/death4.ogg',
-			'sound/vore/death5.ogg',
-			'sound/vore/death6.ogg',
-			'sound/vore/death7.ogg',
-			'sound/vore/death8.ogg',
-			'sound/vore/death9.ogg',
-			'sound/vore/death10.ogg')
-		playsound(src, finisher, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
+		playsound(src, SFX_CLASSIC_DEATH_SOUNDS, vol = 100, vary = 1, falloff_distance = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
 		to_chat(hound, span_notice("Your [src.name] is now clean. Ending self-cleaning cycle."))
 		cleaning = 0
 		update_patient()
-		playsound(src, 'sound/machines/ding.ogg', vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
+		playsound(src, 'sound/machines/ding.ogg', vol = 100, vary = 1, falloff_distance = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
 		return
 
 	if(prob(20))
-		var/churnsound = pick(
-			'sound/vore/digest1.ogg',
-			'sound/vore/digest2.ogg',
-			'sound/vore/digest3.ogg',
-			'sound/vore/digest4.ogg',
-			'sound/vore/digest5.ogg',
-			'sound/vore/digest6.ogg',
-			'sound/vore/digest7.ogg',
-			'sound/vore/digest8.ogg',
-			'sound/vore/digest9.ogg',
-			'sound/vore/digest10.ogg',
-			'sound/vore/digest11.ogg',
-			'sound/vore/digest12.ogg')
-		playsound(src, churnsound, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
+		playsound(src, SFX_CLASSIC_DIGESTION_SOUNDS, vol = 100, vary = 1, falloff_distance = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
 	//If the timing is right, and there are items to be touched
 	if(SSair.current_cycle%3==1 && length(touchable_items))
 
@@ -600,18 +576,7 @@
 						log_admin("[key_name(hound)] has digested [key_name(T)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 					to_chat(hound, span_notice("You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems."))
 					to_chat(T, span_notice("You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems."))
-					var/deathsound = pick(
-						'sound/vore/death1.ogg',
-						'sound/vore/death2.ogg',
-						'sound/vore/death3.ogg',
-						'sound/vore/death4.ogg',
-						'sound/vore/death5.ogg',
-						'sound/vore/death6.ogg',
-						'sound/vore/death7.ogg',
-						'sound/vore/death8.ogg',
-						'sound/vore/death9.ogg',
-						'sound/vore/death10.ogg')
-					playsound(src, deathsound, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
+					playsound(src, SFX_CLASSIC_DEATH_SOUNDS, vol = 100, vary = 1, falloff_distance = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
 					if(is_vore_predator(T))
 						for(var/obj/belly/B as anything in T.vore_organs)
 							for(var/atom/movable/thing in B)

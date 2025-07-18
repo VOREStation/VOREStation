@@ -194,7 +194,7 @@
 		if(prob(80))	T.break_tile_to_plating()
 		else			T.break_tile()
 
-	playsound(T, get_sfx("explosion"), 100, 1, get_rand_frequency(), falloff = 5) // get_sfx() is so that everyone gets the same sound
+	playsound(T, SFX_EXPLOSION, 100, 1, get_rand_frequency(), falloff_distance = 5) // get_sfx() is so that everyone gets the same sound
 
 	if(target.health < 10)
 		target.gib()

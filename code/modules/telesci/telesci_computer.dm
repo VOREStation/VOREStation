@@ -209,7 +209,7 @@
 				var/L = get_turf(telepad)
 				var/blocked = list(/mob/living/simple_mob/vore)
 				var/list/hostiles = typesof(/mob/living/simple_mob/vore) - blocked
-				playsound(L, 'sound/effects/phasein.ogg', 100, 1, extrarange = 3, falloff = 5)
+				playsound(L, 'sound/effects/phasein.ogg', 100, 1, extrarange = 3, falloff_distance = 5)
 				for(var/i in 1 to rand(1,4))
 					var/chosen = pick(hostiles)
 					var/mob/living/simple_mob/vore/H = new chosen
@@ -298,7 +298,7 @@
 				dest = target
 
 			flick("pad-beam", telepad)
-			playsound(telepad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
+			playsound(telepad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff_distance = 5)
 			for(var/atom/movable/ROI in source)
 				// if is anchored, don't let through
 				if(ROI.anchored)

@@ -32,7 +32,7 @@
 /mob/living/stumble_into(mob/living/M)
 	var/mob/living/carbon/human/S = src
 
-	playsound(src, "punch", 25, 1, -1)
+	playsound(src, SFX_PUNCH, 25, 1, -1)
 	M.Weaken(4)
 	M.stop_flying()
 	if(CanStumbleVore(M)) //This is if the person stumbling into us is able to eat us!

@@ -137,7 +137,7 @@
 /datum/ghost_query/xeno
 	role_name = "Alien"
 	question = "An Alien has just been created on the facility.  Would you like to play as them?"
-	query_sound = 'sound/voice/hiss5.ogg'
+	query_sound = 'sound/mob/non-humanoids/hiss/hiss5.ogg'
 	be_special_flag = BE_ALIEN
 
 /datum/ghost_query/xenomorph_larva

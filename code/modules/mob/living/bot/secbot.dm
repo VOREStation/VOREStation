@@ -348,7 +348,7 @@
 		var/mob/living/L = M
 		L.adjustBruteLoss(xeno_harm_strength)
 		do_attack_animation(M)
-		playsound(src, "swing_hit", 50, 1, -1)
+		playsound(src, SFX_SWING_HIT, 50, 1, -1)
 		busy = TRUE
 		update_icons()
 		spawn(2)

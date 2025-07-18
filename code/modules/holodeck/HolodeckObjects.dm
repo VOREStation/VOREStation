@@ -164,7 +164,7 @@
 	if(HULK in user.mutations)
 		damage += 5
 
-	playsound(target, "punch", 25, 1, -1)
+	playsound(target, SFX_PUNCH, 25, 1, -1)
 
 	target.visible_message(span_bolddanger("[user] has punched [target]!"))
 

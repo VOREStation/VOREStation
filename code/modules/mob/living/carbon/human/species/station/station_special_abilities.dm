@@ -886,7 +886,7 @@
 				originator.Weaken(2) //If you hit something dense or anchored, fall flat on your face.
 				originator.visible_message(span_warning("\The [originator] trips over their self and falls flat on their face!"), \
 								span_warning("You trip over yourself and fall flat on your face!") )
-				playsound(originator, "punch", 25, 1, -1)
+				playsound(originator, SFX_PUNCH, 25, 1, -1)
 			return
 		else
 			hit_object.throw_at(firer, throw_range, hit_object.throw_speed, firer)
@@ -896,7 +896,7 @@
 			originator.Weaken(2) //Hit a wall? Whoops!
 			originator.visible_message(span_warning("\The [originator] trips over their self and falls flat on their face!"), \
 							span_warning("You trip over yourself and fall flat on your face!") )
-			playsound(originator, "punch", 25, 1, -1)
+			playsound(originator, SFX_PUNCH, 25, 1, -1)
 			return
 		else
 			return

@@ -18,11 +18,11 @@
 	var/list/available_sounds = list(
 		"Blade Slice"			=	'sound/weapons/bladeslice.ogg',
 		"Energy Blade Slice"	=	'sound/weapons/blade1.ogg',
-		"Explosions"			=	"explosion",
-		"Distant Explosion"		=	'sound/effects/explosionfar.ogg',
-		"Sparks"				=	"sparks",
-		"Punches"				=	"punch",
-		"Glass Shattering"		=	"shatter",
+		"Explosions"			=	SFX_EXPLOSION,
+		"Distant Explosion"		=	'sound/effects/explosion/explosionfar.ogg',
+		"Sparks"				=	SFX_SPARKS,
+		"Punches"				=	SFX_PUNCH,
+		"Glass Shattering"		=	SFX_SHATTER,
 		"Grille Damage"			=	'sound/effects/grillehit.ogg',
 		"Energy Pulse"			=	'sound/effects/EMPulse.ogg',
 		"Airlock"				=	'sound/machines/door/old_airlock.ogg',
@@ -60,7 +60,7 @@
 		"Nymph Chirping"		=	'sound/misc/nymphchirp.ogg',
 		"Sad Trombone"			=	'sound/misc/sadtrombone.ogg',
 		"Honk"					=	'sound/items/bikehorn.ogg',
-		"Bone Fracture"			=	"fracture",
+		"Bone Fracture"			=	SFX_FRACTURE,
 		)
 	var/selected_sound = null
 

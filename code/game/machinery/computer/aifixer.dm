@@ -87,13 +87,13 @@
 		restoring = FALSE
 
 	if(action)
-		playsound(src, "terminal_type", 50, 1)
+		playsound(src, SFX_TERMINAL_TYPE, 50, 1)
 
 	switch(action)
 		if("PRG_beginReconstruction")
 			if(occupier?.health < 100)
 				to_chat(ui.user, span_notice("Reconstruction in progress. This will take several minutes."))
-				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 25, FALSE)
+				playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 25, FALSE)
 				restoring = TRUE
 				var/mob/observer/dead/ghost = occupier.get_ghost()
 				if(ghost)

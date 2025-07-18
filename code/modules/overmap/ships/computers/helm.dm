@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 	add_fingerprint(ui.user)
 	if(. && !issilicon(ui.user))
-		playsound(src, "terminal_type", 50, 1)
+		playsound(src, SFX_TERMINAL_TYPE, 50, 1)
 
 
 /obj/machinery/computer/ship/navigation

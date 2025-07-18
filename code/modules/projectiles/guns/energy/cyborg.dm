@@ -225,7 +225,7 @@
 	desc = "Shocking!"
 	force = 15
 	throwforce = 0
-	hitsound = 'sound/weapons/genhit1.ogg'
+	hitsound = 'sound/items/weapons/genhit1.ogg'
 	attack_verb = list("hit")
 	w_class = ITEMSIZE_NORMAL
 	var/charge_cost = 15
