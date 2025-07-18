@@ -74,11 +74,10 @@
 			vol = volume,
 			vary = FALSE,
 			frequency = K.frequency,
-			falloff = null,
-			is_global = null,
+			falloff_distance = null,
 			channel = channel,
 			pressure_affected = null,
-			S = copy,
+			sound_to_use = copy,
 			preference = /datum/preference/toggle/instrument_toggle,
 			volume_channel = VOLUME_CHANNEL_INSTRUMENTS)
 		// Could do environment and echo later but not for now

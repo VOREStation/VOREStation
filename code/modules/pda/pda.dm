@@ -27,12 +27,12 @@
 	var/detonate = 1 // Can the PDA be blown up?
 	var/ttone = "beep" //The ringtone!
 	var/list/ttone_sound = list("beep" = 'sound/machines/twobeep.ogg',
-								"boom" = 'sound/effects/explosionfar.ogg',
+								"boom" = 'sound/effects/explosion/explosionfar.ogg',
 								"slip" = 'sound/misc/slip.ogg',
 								"honk" = 'sound/items/bikehorn.ogg',
 								"SKREE" = 'sound/voice/shriek1.ogg',
-								"xeno" = 'sound/voice/hiss1.ogg',
-								"spark" = 'sound/effects/sparks4.ogg',
+								"xeno" = 'sound/mob/non-humanoids/hiss/hiss1.ogg',
+								"spark" = 'sound/effects/sparks/sparks4.ogg',
 								"rad" = 'sound/items/geiger/high1.ogg',
 								"servo" = 'sound/machines/rig/rigservo.ogg',
 								"buh-boop" = 'sound/misc/buh-boop.ogg',

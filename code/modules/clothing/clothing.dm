@@ -27,6 +27,9 @@
 	var/fit_for_digi = FALSE // flag for if clothing has already been reskinned to digitigrade
 	var/datum/weakref/wearer	//Who the person currently wearing us is.
 
+	/// Trait modification, lazylist of traits to add/take away, on equipment/drop in the correct slot
+	var/list/clothing_traits
+
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
@@ -52,11 +55,15 @@
 
 /obj/item/clothing/equipped(var/mob/user,var/slot)
 	..()
+	for(var/trait in clothing_traits)
+		ADD_CLOTHING_TRAIT(user, trait)
 	if(enables_planes)
 		user.recalculate_vis()
 
 /obj/item/clothing/dropped(mob/user)
 	..()
+	for(var/trait in clothing_traits)
+		REMOVE_CLOTHING_TRAIT(user, trait)
 	if(enables_planes)
 		user.recalculate_vis()
 
@@ -599,8 +606,8 @@
 	var/list/say_messages
 	var/list/say_verbs
 
-	drop_sound = "generic_drop"
-	pickup_sound = "generic_pickup"
+	drop_sound = SFX_GENERIC_DROP
+	pickup_sound = SFX_GENERIC_PICKUP
 
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))

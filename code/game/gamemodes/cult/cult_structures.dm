@@ -28,7 +28,7 @@
 
 	var/shatter_message = "The pylon shatters!"
 	var/impact_sound = 'sound/effects/Glasshit.ogg'
-	var/shatter_sound = 'sound/effects/Glassbr3.ogg'
+	var/shatter_sound = 'sound/effects/glass/glassbr3.ogg'
 
 	var/activation_cooldown = 30 SECONDS
 	var/last_activation = 0

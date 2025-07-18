@@ -35,7 +35,7 @@
 	anchored = FALSE
 	density = TRUE
 	workout_sounds = list(
-		"punch")
+		SFX_PUNCH)
 	messages = list(
 		"You slam your fist into the punching bag",
 			"You jab the punching bag with your elbow")
@@ -45,8 +45,8 @@
 	desc = "A bag often used to releive stress and burn fat. It has a clown on the front of it."
 	icon_state = "bopbag"
 	workout_sounds = list(
-		"punch",
-		"clownstep",
+		SFX_PUNCH,
+		SFX_CLOWN_STEP,
 		"sound/items/bikehorn.ogg")
 	messages = list(
 		"You slam your fist into the punching bag",

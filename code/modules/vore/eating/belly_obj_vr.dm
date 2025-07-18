@@ -543,7 +543,7 @@
 		if(special_entrance_sound) // Custom sound set by mob's init_vore or ingame varedits.
 			soundfile = special_entrance_sound
 		if(soundfile)
-			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff_distance = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 			recent_sound = TRUE
 
 	if(reagents.total_volume >= 5 && !isliving(thing) && (item_digest_mode == IM_DIGEST || item_digest_mode == IM_DIGEST_PARALLEL))
@@ -860,7 +860,7 @@
 		else
 			soundfile = GLOB.fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff_distance = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
 	return count
 
@@ -948,7 +948,7 @@
 		else
 			soundfile = GLOB.fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff_distance = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	//Should fix your view not following you out of mobs sometimes!
 	if(ismob(M))
 		var/mob/ourmob = M
@@ -1303,12 +1303,12 @@
 	if(!private_struggle)
 		if(is_wet)
 			if(!fancy_vore)
-				struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
+				struggle_snuggle = SFX_CLASSIC_STRUGGLE_SOUNDS
 			else
-				struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
-			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
+				struggle_snuggle = SFX_FANCY_PREY_STRUGGLE
+			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff_distance = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 		else
-			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
+			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff_distance = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	if(prob(belchchance))//Unsure if this should go in escapable or not, leaving it here for now.
 		owner.emote("belch")
 	if(escapable) //If the stomach has escapable enabled.
@@ -1446,12 +1446,12 @@
 	if(!private_struggle)
 		if(is_wet)
 			if(!fancy_vore)
-				struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
+				struggle_snuggle = SFX_CLASSIC_STRUGGLE_SOUNDS
 			else
-				struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
-			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
+				struggle_snuggle = SFX_FANCY_PREY_STRUGGLE
+			playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff_distance = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 		else
-			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
+			playsound(src, struggle_rustle, vary = 1, vol = 75, falloff_distance = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
 	//absorb resists
 	if(escapable || owner.stat) //If the stomach has escapable enabled or the owner is dead/unconscious

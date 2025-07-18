@@ -153,7 +153,7 @@
 				blocked = 1
 				var/attackamt = rand(2,6)
 				temp = "You attack for [attackamt] damage!"
-				playsound(src, 'sound/arcade/hit.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				playsound(src, 'sound/arcade/hit.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 				if(turtle > 0)
 					turtle--
 
@@ -166,7 +166,7 @@
 				var/pointamt = rand(1,3)
 				var/healamt = rand(6,8)
 				temp = "You use [pointamt] magic to heal for [healamt] damage!"
-				playsound(src, 'sound/arcade/heal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				playsound(src, 'sound/arcade/heal.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 				turtle++
 
 				sleep(10)
@@ -179,7 +179,7 @@
 				blocked = 1
 				var/chargeamt = rand(4,7)
 				temp = "You regain [chargeamt] points"
-				playsound(src, 'sound/arcade/mana.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				playsound(src, 'sound/arcade/mana.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 				player_mp += chargeamt
 				if(turtle > 0)
 					turtle--
@@ -209,7 +209,7 @@
 		if(!gameover)
 			gameover = 1
 			temp = "[enemy_name] has fallen! Rejoice!"
-			playsound(src, 'sound/arcade/win.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+			playsound(src, 'sound/arcade/win.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 
 			if(emagged)
 				feedback_inc("arcade_win_emagged")
@@ -230,13 +230,13 @@
 	else if (emagged && (turtle >= 4))
 		var/boomamt = rand(5,10)
 		enemy_action = "[enemy_name] throws a bomb, exploding you for [boomamt] damage!"
-		playsound(src, 'sound/arcade/boom.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/boom.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		player_hp -= boomamt
 
 	else if ((enemy_mp <= 5) && (prob(70)))
 		var/stealamt = rand(2,3)
 		enemy_action = "[enemy_name] steals [stealamt] of your power!"
-		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		player_mp -= stealamt
 
 		if (player_mp <= 0)
@@ -251,20 +251,20 @@
 
 	else if ((enemy_hp <= 10) && (enemy_mp > 4))
 		enemy_action = "[enemy_name] heals for 4 health!"
-		playsound(src, 'sound/arcade/heal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/heal.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		enemy_hp += 4
 		enemy_mp -= 4
 
 	else
 		var/attackamt = rand(3,6)
 		enemy_action = "[enemy_name] attacks for [attackamt] damage!"
-		playsound(src, 'sound/arcade/hit.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/hit.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		player_hp -= attackamt
 
 	if ((player_mp <= 0) || (player_hp <= 0))
 		gameover = 1
 		temp = "You have been crushed! GAME OVER"
-		playsound(src, 'sound/arcade/lose.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/lose.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		if(emagged)
 			feedback_inc("arcade_loss_hp_emagged")
 			user.gib()
@@ -399,7 +399,7 @@
 	user.set_machine(src)
 	var/dat = ""
 	if(gameStatus == ORION_STATUS_GAMEOVER)
-		playsound(src, 'sound/arcade/ori_fail.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/ori_fail.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		dat = "<center><h1>Game Over</h1></center>"
 		dat += "Like many before you, your crew never made it to Orion, lost to space... <br><b>forever</b>."
 		if(settlers.len == 0)
@@ -534,7 +534,7 @@
 
 	else if(href_list["newgame"]) //Reset everything
 		if(gameStatus == ORION_STATUS_START)
-			playsound(src, 'sound/arcade/ori_begin.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+			playsound(src, 'sound/arcade/ori_begin.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 			newgame(usr)
 	else if(href_list["menu"]) //back to the main menu
 		if(gameStatus == ORION_STATUS_GAMEOVER)
@@ -606,7 +606,7 @@
 
 	else if(href_list["killcrew"]) //shoot a crewmember
 		if(gameStatus == ORION_STATUS_NORMAL || event == ORION_TRAIL_MUTINY)
-			playsound(src, 'sound/arcade/kill_crew.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+			playsound(src, 'sound/arcade/kill_crew.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 			var/sheriff = remove_crewmember() //I shot the sheriff
 			var/mob/living/L = usr
 			if(!istype(L))
@@ -632,7 +632,7 @@
 	else if(href_list["buycrew"]) //buy a crewmember
 		if(gameStatus == ORION_STATUS_MARKET)
 			if(!spaceport_raided && food >= 10 && fuel >= 10)
-				playsound(src, 'sound/arcade/get_fuel.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				playsound(src, 'sound/arcade/get_fuel.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 				var/bought = add_crewmember()
 				last_spaceport_action = "You hired [bought] as a new crewmember."
 				fuel -= 10
@@ -642,7 +642,7 @@
 	else if(href_list["sellcrew"]) //sell a crewmember
 		if(gameStatus == ORION_STATUS_MARKET)
 			if(!spaceport_raided && settlers.len > 1)
-				playsound(src, 'sound/arcade/lose_fuel.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				playsound(src, 'sound/arcade/lose_fuel.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 				var/sold = remove_crewmember()
 				last_spaceport_action = "You sold your crewmember, [sold]!"
 				fuel += 7
@@ -660,7 +660,7 @@
 	else if(href_list["raid_spaceport"])
 		if(gameStatus == ORION_STATUS_MARKET)
 			if(!spaceport_raided)
-				playsound(src, 'sound/arcade/raid.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				playsound(src, 'sound/arcade/raid.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 				var/success = min(15 * alive,100) //default crew (4) have a 60% chance
 				spaceport_raided = 1
 
@@ -699,7 +699,7 @@
 	else if(href_list["buyparts"])
 		if(gameStatus == ORION_STATUS_MARKET)
 			if(!spaceport_raided && fuel > 5)
-				playsound(src, 'sound/arcade/get_fuel.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				playsound(src, 'sound/arcade/get_fuel.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 				switch(text2num(href_list["buyparts"]))
 					if(1) //Engine Parts
 						engine++
@@ -716,7 +716,7 @@
 	else if(href_list["trade"])
 		if(gameStatus == ORION_STATUS_MARKET)
 			if(!spaceport_raided)
-				playsound(src, 'sound/arcade/get_fuel.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				playsound(src, 'sound/arcade/get_fuel.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 				switch(text2num(href_list["trade"]))
 					if(1) //Fuel
 						if(fuel > 5)
@@ -759,7 +759,7 @@
 			canContinueEvent = 1
 
 		if(ORION_TRAIL_FLUX)
-			playsound(src, 'sound/arcade/explo.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+			playsound(src, 'sound/arcade/explo.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 			eventdat += "This region of space is highly turbulent. <br>If we go slowly we may avoid more damage, but if we keep our speed we won't waste supplies."
 			eventdat += "<br>What will you do?"
 			eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];slow=1'>Slow Down</a> <a href='byond://?src=\ref[src];keepspeed=1'>Continue</a></P>"
@@ -774,7 +774,7 @@
 			canContinueEvent = 1
 
 		if(ORION_TRAIL_BREAKDOWN)
-			playsound(src, 'sound/arcade/explo.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+			playsound(src, 'sound/arcade/explo.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 			eventdat += "Oh no! The engine has broken down!"
 			eventdat += "<br>You can repair it with an engine part, or you can make repairs for 3 days."
 			if(engine >= 1)
@@ -793,7 +793,7 @@
 			eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];close=1'>Close</a></P>"
 
 		if(ORION_TRAIL_COLLISION)
-			playsound(src, 'sound/arcade/explo.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+			playsound(src, 'sound/arcade/explo.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 			eventdat += "Something hit us! Looks like there's some hull damage."
 			if(prob(25))
 				var/sfood = rand(5,15)
@@ -1009,7 +1009,7 @@
 /obj/machinery/computer/arcade/orion_trail/proc/win(var/mob/user)
 	gameStatus = ORION_STATUS_START
 	src.visible_message("\The [src] plays a triumpant tune, stating 'CONGRATULATIONS, YOU HAVE MADE IT TO ORION.'")
-	playsound(src, 'sound/arcade/ori_win.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+	playsound(src, 'sound/arcade/ori_win.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 	if(emagged)
 		new /obj/item/orion_ship(src.loc)
 		message_admins("[key_name_admin(user)] made it to Orion on an emagged machine and got an explosive toy ship.")
@@ -1150,7 +1150,7 @@
 		credit_purchase("(cash)")
 		return 1
 	if(emagged)
-		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		to_chat(user, span_info("It doesn't seem to accept that! Seem you'll need to swipe a valid ID."))
 
 
@@ -1167,7 +1167,7 @@
 			credit_purchase("[wallet.owner_name] (chargecard)")
 			return 1
 	if(emagged)
-		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		to_chat(user, span_info("It doesn't seem to accept that! Seem you'll need to swipe a valid ID."))
 
 ///// ID
@@ -1269,7 +1269,7 @@
 		return
 
 	if(action == "newgame" && gamepaid == 0)
-		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 
 	if(action == "newgame" && gamepaid == 1)
 		gameStatus = "CLAWMACHINE_ON"
@@ -1302,11 +1302,11 @@
 			G.activate()
 			G.throw_at(get_turf(user),10,10) /// Play stupid games, win stupid prizes.
 
-		playsound(src, 'sound/arcade/ori_win.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/ori_win.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		winprob = 0
 
 	else
-		playsound(src, 'sound/arcade/ori_fail.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+		playsound(src, 'sound/arcade/ori_fail.ogg', 50, 1, extrarange = -3, falloff_distance = 0.1, ignore_walls = FALSE)
 		winscreen = "Aw, shucks. Try again!"
 	wintick = 0
 	gamepaid = 0

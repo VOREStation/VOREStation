@@ -74,7 +74,7 @@
 
 	if(source.lying) //play crawling sound if we're lying
 		if(turf.footstep)
-			playsound(turf, 'sound/effects/footstep/crawl1.ogg', 15 * volume, falloff = 1, vary = sound_vary)
+			playsound(turf, 'sound/effects/footstep/crawl1.ogg', 15 * volume, falloff_distance = 1, vary = sound_vary)
 		return
 
 	if(iscarbon(source))
@@ -123,19 +123,19 @@
 		return
 
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
-		playsound(source.loc, footstep_sounds, volume * volume_multiplier, falloff = 1, vary = sound_vary)
+		playsound(source.loc, footstep_sounds, volume * volume_multiplier, falloff_distance = 1, vary = sound_vary)
 		return
 
 	var/turf_footstep = prepared_steps[footstep_type]
 	if(isnull(turf_footstep) || !footstep_sounds[turf_footstep])
 		return
-	playsound(source.loc, pick(footstep_sounds[turf_footstep][1]), footstep_sounds[turf_footstep][2] * volume, TRUE, footstep_sounds[turf_footstep][3] + e_range, falloff = 1, vary = sound_vary)
+	playsound(source.loc, pick(footstep_sounds[turf_footstep][1]), footstep_sounds[turf_footstep][2] * volume, TRUE, footstep_sounds[turf_footstep][3] + e_range, falloff_distance = 1, vary = sound_vary)
 
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
 	if (source.custom_footstep == FOOTSTEP_MOB_SLITHER)
-		playsound(source.loc, 'sound/effects/footstep/crawl1.ogg', 15 * volume, falloff = 1, vary = sound_vary)
+		playsound(source.loc, 'sound/effects/footstep/crawl1.ogg', 15 * volume, falloff_distance = 1, vary = sound_vary)
 		return
 
 	var/volume_multiplier = 0.3
@@ -158,7 +158,7 @@
 				playsound(source.loc, pick(footstep_sounds[shoestep_type][1]),
 					footstep_sounds[shoestep_type][2] * volume * volume_multiplier,
 					TRUE,
-					footstep_sounds[shoestep_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
+					footstep_sounds[shoestep_type][3] + e_range + range_adjustment, falloff_distance = 1, vary = sound_vary)
 				return
 
 		play_barefoot_sound(source, prepared_steps, volume_multiplier, range_adjustment)
@@ -169,11 +169,11 @@
 /datum/element/footstep/proc/play_barefoot_sound(mob/living/carbon/human/source, list/prepared_steps, volume_multiplier, range_adjustment)
 
 	if(source.species.special_step_sounds)
-		playsound(source.loc, pick(source.species.special_step_sounds), volume, TRUE, falloff = 1, vary = sound_vary)
+		playsound(source.loc, pick(source.species.special_step_sounds), volume, TRUE, falloff_distance = 1, vary = sound_vary)
 		return
 
 	if (istype(source.species, /datum/species/shapeshifter/promethean))
-		playsound(source.loc, 'sound/effects/footstep/slime1.ogg', volume, TRUE, falloff = 1, vary = sound_vary)
+		playsound(source.loc, 'sound/effects/footstep/slime1.ogg', volume, TRUE, falloff_distance = 1, vary = sound_vary)
 		return
 
 	var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
@@ -187,7 +187,7 @@
 		playsound(source.loc, pick(bare_footstep_sounds[barefoot_type][1]),
 			bare_footstep_sounds[barefoot_type][2] * volume * volume_multiplier,
 			TRUE,
-			bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff = 1, vary = sound_vary)
+			bare_footstep_sounds[barefoot_type][3] + e_range + range_adjustment, falloff_distance = 1, vary = sound_vary)
 
 ///Prepares a footstep for machine walking
 /datum/element/footstep/proc/play_simplestep_machine(atom/movable/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
@@ -197,5 +197,5 @@
 	if(!istype(source_loc))
 		return
 
-	playsound(source_loc, footstep_sounds, 50, falloff = 1, vary = sound_vary)
+	playsound(source_loc, footstep_sounds, 50, falloff_distance = 1, vary = sound_vary)
 #undef SHOULD_DISABLE_FOOTSTEPS

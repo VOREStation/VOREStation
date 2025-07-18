@@ -40,7 +40,7 @@
 						step_away(src,M,15)
 						sleep(3)
 						step_away(src,M,15)
-				playsound(src, "punch", 25, 1, -1)
+				playsound(src, SFX_PUNCH, 25, 1, -1)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
 						O.show_message(span_bolddanger(text("[] has punched []!", M, src)), 1)

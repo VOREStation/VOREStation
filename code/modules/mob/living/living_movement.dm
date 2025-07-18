@@ -179,7 +179,7 @@ default behaviour is:
 		/* VOREStation Removal - See above
 		if(confused && prob(50) && m_intent==I_RUN)
 			Weaken(2)
-			playsound(src, "punch", 25, 1, -1)
+			playsound(src, SFX_PUNCH, 25, 1, -1)
 			visible_message(span_warning("[src] [pick("ran", "slammed")] into \the [AM]!"))
 			src.apply_damage(5, BRUTE)
 			to_chat(src, span_warning("You just [pick("ran", "slammed")] into \the [AM]!"))

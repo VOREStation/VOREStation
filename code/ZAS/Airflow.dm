@@ -119,7 +119,7 @@ Contains helper procs for airflow, handled in /connection_group.
 		return
 //	for(var/mob/M in hearers(src))
 //		M.show_message(span_danger("[src] slams into [A]!"),1,span_danger("You hear a loud slam!"),2)
-	playsound(src, "punch", 25, 1, -1)
+	playsound(src, SFX_PUNCH, 25, 1, -1)
 	if (prob(33))
 		loc:add_blood(src)
 		bloody_body(src)

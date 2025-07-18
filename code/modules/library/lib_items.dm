@@ -363,11 +363,11 @@ Book Cart End
 		if(href_list["next_page"])
 			if(page != pages.len)
 				page++
-				playsound(src, "pageturn", 50, 1)
+				playsound(src, SFX_PAGE_TURN, 50, 1)
 		if(href_list["prev_page"])
 			if(page > 1)
 				page--
-				playsound(src, "pageturn", 50, 1)
+				playsound(src, SFX_PAGE_TURN, 50, 1)
 		src.attack_self(usr)
 		updateUsrDialog(usr)
 	else

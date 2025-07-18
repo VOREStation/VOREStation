@@ -22,13 +22,6 @@
 #define send_rsc(target, rsc_content, rsc_name)	target << browse_rsc(rsc_content, rsc_name)
 #define open_link(target, url) target << link(url)
 
-// From TG, might be useful to have.
-#define DIRECT_OUTPUT(A, B) A << B
-#define DIRECT_INPUT(A, B) A >> B
-#define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
-#define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
-//#define WRITE_LOG is in logging.dm
-
 #define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
 
 #define qdel_null(x) if(x) { qdel(x) ; x = null }
