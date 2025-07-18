@@ -6,8 +6,8 @@
 
 import {
   colorList,
-  hexToHsva,
   type HsvaColor,
+  hexToHsva,
   hsvaToHex,
   hsvaToHslString,
   hsvaToRgba,
@@ -47,6 +47,7 @@ interface ColorPickerData {
   presets: string;
 }
 
+// biome-ignore lint/complexity/noBannedTypes:Ingored here
 type ColorPickerModalProps = {};
 
 export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {

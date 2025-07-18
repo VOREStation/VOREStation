@@ -17,7 +17,7 @@ import {
   PortTypesToColor,
 } from './types';
 
-export type PlaneProps = {};
+export type PlaneProps = undefined;
 
 type PlaneState = {
   locations: Record<string, { x: number; y: number }>;
@@ -72,8 +72,8 @@ export class Plane extends Component<PlaneProps, PlaneState> {
     const position = this.getPosition(dom);
 
     if (
-      isNaN(position.x) ||
-      isNaN(position.y) ||
+      Number.isNaN(position.x) ||
+      Number.isNaN(position.y) ||
       (lastPosition &&
         lastPosition.x === position.x &&
         lastPosition.y === position.y)
