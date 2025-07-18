@@ -165,3 +165,23 @@
 2025-07-16:
   ShadowLarkens:
   - bugfix: Critical preference menu crash when switching to loadout -> equipment
+2025-07-17:
+  Diana:
+  - qol: Proteans are less squishy to EMPs
+  - qol: Veymed limbs are less squishy to EMPs.
+  Kashargul:
+  - qol: default browser background follows light / dark mode
+  - qol: moves find ghost pod, vorespawn and some other join options from tgui list
+      to a tgui datum
+  - rscadd: additional ghost spawn options (2 slots), requires multiple /obj/effect/landmark/start/ghost_roles
+      to be mapped in
+  - rscadd: maplint for bad frequencies
+  - code_imp: tgui dependency update
+  SatinIsle:
+  - maptweak: Replaced telecomms machines in the facility redgate map with props that
+      look like them instead.
+  - rscadd: Adds three more admin duckies.
+  Willburd:
+  - balance: rng of trashpiles altered
+  - code_imp: trash piles and loot piles now use a unified looting element for handling
+      drops and rarity. Not limited to just loot piles.

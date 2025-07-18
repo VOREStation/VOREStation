@@ -6,11 +6,11 @@ if (!Array.prototype.includes) {
 			if (this[i] == thing) return true;
 		}
 		return false;
-	}
+	};
 }
 if (!String.prototype.trim) {
 	String.prototype.trim = function () {
-		return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+		return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
 	};
 }
 
@@ -32,8 +32,8 @@ var turfcontents = [];
 var turfname = "";
 var imageRetryDelay = 500;
 var imageRetryLimit = 50;
-var menu = document.getElementById('menu');
-var statcontentdiv = document.getElementById('statcontent');
+var menu = document.getElementById("menu");
+var statcontentdiv = document.getElementById("statcontent");
 var storedimages = [];
 var split_admin_tabs = false;
 
@@ -47,10 +47,8 @@ function run_after_focus(callback) {
 function createStatusTab(name) {
 	if (name.indexOf(".") != -1) {
 		var splitName = name.split(".");
-		if (split_admin_tabs && splitName[0] === "Admin")
-			name = splitName[1];
-		else
-			name = splitName[0];
+		if (split_admin_tabs && splitName[0] === "Admin") name = splitName[1];
+		else name = splitName[0];
 	}
 	if (document.getElementById(name) || name.trim() == "") {
 		return;
@@ -89,7 +87,7 @@ function removeStatusTab(name) {
 			verb_tabs.splice(i, 1);
 		}
 	}
-	if(current_tab == name) {
+	if (current_tab == name) {
 		tab_change("Status");
 	}
 	menu.removeChild(document.getElementById(name));
@@ -101,12 +99,11 @@ function sortVerbs() {
 		var selector = a[0] == b[0] ? 1 : 0;
 		if (a[selector].toUpperCase() < b[selector].toUpperCase()) {
 			return 1;
-		}
-		else if (a[selector].toUpperCase() > b[selector].toUpperCase()) {
+		} else if (a[selector].toUpperCase() > b[selector].toUpperCase()) {
 			return -1;
 		}
 		return 0;
-	})
+	});
 }
 
 function addPermanentTab(name) {
@@ -127,7 +124,10 @@ function removePermanentTab(name) {
 
 function checkStatusTab() {
 	for (var i = 0; i < menu.children.length; i++) {
-		if (!verb_tabs.includes(menu.children[i].id) && !permanent_tabs.includes(menu.children[i].id)) {
+		if (
+			!verb_tabs.includes(menu.children[i].id) &&
+			!permanent_tabs.includes(menu.children[i].id)
+		) {
 			menu.removeChild(menu.children[i]);
 		}
 	}
@@ -153,10 +153,8 @@ function verbs_cat_check(cat) {
 	var tabCat = cat;
 	if (cat.indexOf(".") != -1) {
 		var splitName = cat.split(".");
-		if (split_admin_tabs && splitName[0] === "Admin")
-			tabCat = splitName[1];
-		else
-			tabCat = splitName[0];
+		if (split_admin_tabs && splitName[0] === "Admin") tabCat = splitName[1];
+		else tabCat = splitName[0];
 	}
 	var verbs_in_cat = 0;
 	var verbcat = "";
@@ -169,31 +167,26 @@ function verbs_cat_check(cat) {
 		verbcat = part[0];
 		if (verbcat.indexOf(".") != -1) {
 			var splitName = verbcat.split(".");
-			if (split_admin_tabs && splitName[0] === "Admin")
-				verbcat = splitName[1];
-			else
-				verbcat = splitName[0];
+			if (split_admin_tabs && splitName[0] === "Admin") verbcat = splitName[1];
+			else verbcat = splitName[0];
 		}
 		if (verbcat != tabCat || verbcat.trim() == "") {
 			continue;
-		}
-		else {
+		} else {
 			verbs_in_cat = 1;
 			break; // we only need one
 		}
 	}
 	if (verbs_in_cat != 1) {
 		removeStatusTab(tabCat);
-		if (current_tab == tabCat)
-			tab_change("Status");
+		if (current_tab == tabCat) tab_change("Status");
 	}
 }
 
 function findVerbindex(name, verblist) {
 	for (var i = 0; i < verblist.length; i++) {
 		var part = verblist[i];
-		if (part[1] == name)
-			return i;
+		if (part[1] == name) return i;
 	}
 }
 function wipe_verbs() {
@@ -216,12 +209,12 @@ function SendTabsToByond() {
 }
 
 function SendTabToByond(tab) {
-	Byond.sendMessage("Send-Tabs", {tab: tab});
+	Byond.sendMessage("Send-Tabs", { tab: tab });
 }
 
 //Byond can't have this tab anymore since we're removing it
 function TakeTabFromByond(tab) {
-	Byond.sendMessage("Remove-Tabs", {tab: tab});
+	Byond.sendMessage("Remove-Tabs", { tab: tab });
 }
 
 function spell_cat_check(cat) {
@@ -247,8 +240,8 @@ function tab_change(tab) {
 	set_byond_tab(tab);
 	if (document.getElementById(tab))
 		document.getElementById(tab).className = "button active"; // make current button active
-	var spell_tabs_thingy = (spell_tabs.includes(tab));
-	var verb_tabs_thingy = (verb_tabs.includes(tab));
+	var spell_tabs_thingy = spell_tabs.includes(tab);
+	var verb_tabs_thingy = verb_tabs.includes(tab);
 	if (tab == "Status") {
 		draw_status();
 	} else if (tab == "MC") {
@@ -273,24 +266,24 @@ function tab_change(tab) {
 		statcontentdiv.textContext = "Loading...";
 	}
 	Byond.winset(Byond.windowId, {
-		'is-visible': true,
+		"is-visible": true,
 	});
 }
 
 function set_byond_tab(tab) {
-	Byond.sendMessage("Set-Tab", {tab: tab});
+	Byond.sendMessage("Set-Tab", { tab: tab });
 }
 
 function draw_examine() {
 	statcontentdiv.textContent = "";
 	var div_content = document.createElement("div");
 	for (var i = 0; i < examine.length; i++) {
-		var parameter = document.createElement('p');
+		var parameter = document.createElement("p");
 		var textList = examine[i].split("||");
-		if(textList.length > 1) {
-			for(var j = 0; j < textList.length; j++) {
-				var spoilerText = document.createElement('span');
-				if(j % 2) {
+		if (textList.length > 1) {
+			for (var j = 0; j < textList.length; j++) {
+				var spoilerText = document.createElement("span");
+				if (j % 2) {
 					spoilerText.className = "spoiler";
 				}
 				spoilerText.innerHTML = textList[j];
@@ -312,13 +305,17 @@ function draw_debug() {
 	statcontentdiv.textContent = "";
 	var wipeverbstabs = document.createElement("div");
 	var link = document.createElement("a");
-	link.onclick = function () { wipe_verbs() };
+	link.onclick = function () {
+		wipe_verbs();
+	};
 	link.textContent = "Wipe All Verbs";
 	wipeverbstabs.appendChild(link);
 	document.getElementById("statcontent").appendChild(wipeverbstabs);
 	var wipeUpdateVerbsTabs = document.createElement("div");
 	var updateLink = document.createElement("a");
-	updateLink.onclick = function () { update_verbs() };
+	updateLink.onclick = function () {
+		update_verbs();
+	};
 	updateLink.textContent = "Wipe and Update All Verbs";
 	wipeUpdateVerbsTabs.appendChild(updateLink);
 	document.getElementById("statcontent").appendChild(wipeUpdateVerbsTabs);
@@ -331,18 +328,18 @@ function draw_debug() {
 		// Hide subgroups except admin subgroups if they are split
 		if (verb_tabs[i].lastIndexOf(".") != -1) {
 			var splitName = verb_tabs[i].split(".");
-			if (split_admin_tabs && splitName[0] === "Admin")
-				part = splitName[1];
-			else
-				continue;
+			if (split_admin_tabs && splitName[0] === "Admin") part = splitName[1];
+			else continue;
 		}
 		var tr = document.createElement("tr");
 		var td1 = document.createElement("td");
 		td1.textContent = part;
 		var a = document.createElement("a");
-		a.onclick = function (part) {
-			return function () { removeStatusTab(part) };
-		}(part);
+		a.onclick = (function (part) {
+			return function () {
+				removeStatusTab(part);
+			};
+		})(part);
 		a.textContent = " Delete Tab " + part;
 		td1.appendChild(a);
 		tr.appendChild(td1);
@@ -378,17 +375,18 @@ function draw_debug() {
 		table3.appendChild(trrr);
 	}
 	document.getElementById("statcontent").appendChild(table3);
-
 }
 function draw_status() {
 	if (!document.getElementById("Status")) {
 		createStatusTab("Status");
 		current_tab = "Status";
 	}
-	statcontentdiv.textContent = '';
+	statcontentdiv.textContent = "";
 	for (var i = 0; i < status_tab_parts.length; i++) {
 		if (status_tab_parts[i].trim() == "") {
-			document.getElementById("statcontent").appendChild(document.createElement("br"));
+			document
+				.getElementById("statcontent")
+				.appendChild(document.createElement("br"));
 		} else {
 			var div = document.createElement("div");
 			div.textContent = status_tab_parts[i];
@@ -412,7 +410,8 @@ function draw_mc() {
 		var td2 = document.createElement("td");
 		if (part[2]) {
 			var a = document.createElement("a");
-			a.href = "byond://?_src_=vars;admin_token=" + href_token + ";Vars=" + part[2];
+			a.href =
+				"byond://?_src_=vars;admin_token=" + href_token + ";Vars=" + part[2];
 			a.textContent = part[1];
 			td2.appendChild(a);
 		} else {
@@ -429,8 +428,7 @@ function remove_tickets() {
 	if (tickets) {
 		tickets = [];
 		removePermanentTab("Tickets");
-		if (current_tab == "Tickets")
-			tab_change("Status");
+		if (current_tab == "Tickets") tab_change("Status");
 	}
 	checkStatusTab();
 }
@@ -439,15 +437,14 @@ function remove_sdql2() {
 	if (sdql2) {
 		sdql2 = [];
 		removePermanentTab("SDQL2");
-		if (current_tab == "SDQL2")
-			tab_change("Status");
+		if (current_tab == "SDQL2") tab_change("Status");
 	}
 	checkStatusTab();
 }
 
 function iconError(e) {
 	setTimeout(function () {
-		if(current_tab != turfname && current_tab != "Examine") {
+		if (current_tab != turfname && current_tab != "Examine") {
 			return;
 		}
 		var node = e.target;
@@ -457,7 +454,7 @@ function iconError(e) {
 		}
 		var src = node.src;
 		node.src = null;
-		node.src = src + '#' + current_attempts;
+		node.src = src + "#" + current_attempts;
 		node.setAttribute("data-attempts", current_attempts + 1);
 	}, imageRetryDelay);
 }
@@ -483,12 +480,12 @@ function draw_listedturf() {
 		}
 		var b = document.createElement("div");
 		b.className = "link";
-		b.onmousedown = function (part) {
+		b.onmousedown = (function (part) {
 			// The outer function is used to close over a fresh "part" variable,
 			// rather than every onmousedown getting the "part" of the last entry.
 			return function (e) {
 				e.preventDefault();
-				var params = {"src": part[1]};
+				var params = { src: part[1] };
 				switch (e.button) {
 					case 1:
 						params["statpanel_item_click"] = "middle";
@@ -508,9 +505,9 @@ function draw_listedturf() {
 				if (e.altKey) {
 					params["statpanel_item_altclick"] = 1;
 				}
-				Byond.topic(params)
-			}
-		}(part);
+				Byond.topic(params);
+			};
+		})(part);
 		b.textContent = part[0];
 		table.appendChild(b);
 		table.appendChild(document.createElement("br"));
@@ -531,7 +528,7 @@ function remove_mc() {
 	if (current_tab == "MC") {
 		tab_change("Status");
 	}
-};
+}
 
 function draw_sdql2() {
 	statcontentdiv.textContent = "";
@@ -571,7 +568,12 @@ function draw_tickets() {
 		var td2 = document.createElement("td");
 		if (part[2]) {
 			var a = document.createElement("a");
-			a.href = "byond://?_src_=holder;admin_token=" + href_token + ";ahelp=" + part[2] + ";ahelp_action=ticket;statpanel_item_click=left;action=ticket";
+			a.href =
+				"byond://?_src_=holder;admin_token=" +
+				href_token +
+				";ahelp=" +
+				part[2] +
+				";ahelp_action=ticket;statpanel_item_click=left;action=ticket";
 			a.textContent = part[1];
 			td2.appendChild(a);
 		} else if (part[3]) {
@@ -602,7 +604,7 @@ function draw_misc(tab) {
 		var part = data[i];
 
 		var td1 = document.createElement("td");
-		if(part[0]) {
+		if (part[0]) {
 			td1.className = "elem";
 			td1.textContent = part[0];
 		}
@@ -615,7 +617,7 @@ function draw_misc(tab) {
 			img.id = part[1];
 			storedimages[part[1]] = part[2];
 			td2.appendChild(img);
-		} else if(part[1]) {
+		} else if (part[1]) {
 			td2 = document.createElement("td");
 			var img = document.createElement("img");
 			img.src = storedimages[part[1]];
@@ -626,12 +628,12 @@ function draw_misc(tab) {
 		var b = document.createElement("div");
 		if (part[4]) {
 			b.className = "linkelem";
-			b.onmousedown = function (part) {
+			b.onmousedown = (function (part) {
 				// The outer function is used to close over a fresh "part" variable,
 				// rather than every onmousedown getting the "part" of the last entry.
 				return function (e) {
 					e.preventDefault();
-					var params = { "src": part[4] };
+					var params = { src: part[4] };
 					switch (e.button) {
 						case 1:
 							params["statpanel_item_click"] = "middle";
@@ -652,29 +654,28 @@ function draw_misc(tab) {
 						params["statpanel_item_altclick"] = 1;
 					}
 					Byond.topic(params);
-				}
-			}(part);
+				};
+			})(part);
 		}
-		if(part[3]) {
+		if (part[3]) {
 			td3 = document.createElement("td");
 			b.textContent = part[3];
 			td3.appendChild(b);
 		}
-		if(!td2 && !td3) {
+		if (!td2 && !td3) {
 			td1.className = "elem_span3";
 			td1.colSpan += 2;
-		}
-		else if (!td2) {
+		} else if (!td2) {
 			td1.className = "elem_span2";
 			td1.colSpan += 1;
 		} else if (!td3) {
 			td2.colSpan += 1;
 		}
 		tr.appendChild(td1);
-		if(td2) {
+		if (td2) {
 			tr.appendChild(td2);
 		}
-		if(td3) {
+		if (td3) {
 			tr.appendChild(td3);
 		}
 		table.appendChild(tr);
@@ -723,8 +724,7 @@ function draw_verbs(cat) {
 	sortVerbs();
 	if (split_admin_tabs && cat.lastIndexOf(".") != -1) {
 		var splitName = cat.split(".");
-		if (splitName[0] === "Admin")
-			cat = splitName[1];
+		if (splitName[0] === "Admin") cat = splitName[1];
 	}
 	verbs.reverse(); // sort verbs backwards before we draw
 	for (var i = 0; i < verbs.length; ++i) {
@@ -732,13 +732,16 @@ function draw_verbs(cat) {
 		var name = part[0];
 		if (split_admin_tabs && name.lastIndexOf(".") != -1) {
 			var splitName = name.split(".");
-			if (splitName[0] === "Admin")
-				name = splitName[1];
+			if (splitName[0] === "Admin") name = splitName[1];
 		}
 		var command = part[1];
 		var desc = part[2];
 
-		if (command && name.lastIndexOf(cat, 0) != -1 && (name.length == cat.length || name.charAt(cat.length) == ".")) {
+		if (
+			command &&
+			name.lastIndexOf(cat, 0) != -1 &&
+			(name.length == cat.length || name.charAt(cat.length) == ".")
+		) {
 			var subCat = name.lastIndexOf(".") != -1 ? name.split(".")[1] : null;
 			if (subCat && !additions[subCat]) {
 				var newTable = document.createElement("div");
@@ -778,64 +781,49 @@ function draw_verbs(cat) {
 function set_theme(which) {
 	if (which == "light" || which == "vchatlight") {
 		document.body.className = "";
-		set_style_sheet("browserOutput_white");
+		document.documentElement.className = "light";
 	} else if (which == "dark" || which == "vchatdark") {
 		document.body.className = "dark";
-		set_style_sheet("browserOutput");
+		document.documentElement.className = "dark";
 	}
 }
 
 function set_font_size(size) {
-	document.body.style.setProperty('font-size', size);
+	document.body.style.setProperty("font-size", size);
 }
 
 function set_tabs_style(style) {
 	if (style == "default") {
-		menu.classList.add('menu-wrap');
-		menu.classList.remove('tabs-classic');
+		menu.classList.add("menu-wrap");
+		menu.classList.remove("tabs-classic");
 	} else if (style == "classic") {
-		menu.classList.add('menu-wrap');
-		menu.classList.add('tabs-classic');
+		menu.classList.add("menu-wrap");
+		menu.classList.add("tabs-classic");
 	} else if (style == "scrollable") {
-		menu.classList.remove('menu-wrap');
-		menu.classList.remove('tabs-classic');
+		menu.classList.remove("menu-wrap");
+		menu.classList.remove("tabs-classic");
 	}
-}
-
-function set_style_sheet(sheet) {
-	if (document.getElementById("goonStyle")) {
-		var currentSheet = document.getElementById("goonStyle");
-		currentSheet.parentElement.removeChild(currentSheet);
-	}
-	var head = document.getElementsByTagName('head')[0];
-	var sheetElement = document.createElement("link");
-	sheetElement.id = "goonStyle";
-	sheetElement.rel = "stylesheet";
-	sheetElement.type = "text/css";
-	sheetElement.href = sheet + ".css";
-	sheetElement.media = 'all';
-	head.appendChild(sheetElement);
 }
 
 function restoreFocus() {
 	run_after_focus(function () {
-		Byond.winset('map', {
+		Byond.winset("map", {
 			focus: true,
 		});
 	});
 }
 
 function getCookie(cname) {
-	var name = cname + '=';
-	var ca = document.cookie.split(';');
+	var name = cname + "=";
+	var ca = document.cookie.split(";");
 	for (var i = 0; i < ca.length; i++) {
 		var c = ca[i];
-		while (c.charAt(0) == ' ') c = c.substring(1);
+		while (c.charAt(0) == " ") c = c.substring(1);
 		if (c.indexOf(name) === 0) {
 			return decoder(c.substring(name.length, c.length));
 		}
 	}
-	return '';
+	return "";
 }
 
 function add_verb_list(payload) {
@@ -843,18 +831,14 @@ function add_verb_list(payload) {
 	to_add.sort(); // sort what we're adding
 	for (var i = 0; i < to_add.length; i++) {
 		var part = to_add[i];
-		if (!part[0])
-			continue;
+		if (!part[0]) continue;
 		var category = part[0];
 		if (category.indexOf(".") != -1) {
 			var splitName = category.split(".");
-			if (split_admin_tabs && splitName[0] === "Admin")
-				category = splitName[1];
-			else
-				category = splitName[0];
+			if (split_admin_tabs && splitName[0] === "Admin") category = splitName[1];
+			else category = splitName[0];
 		}
-		if (findVerbindex(part[1], verbs))
-			continue;
+		if (findVerbindex(part[1], verbs)) continue;
 		if (verb_tabs.includes(category)) {
 			verbs.push(part);
 			if (current_tab == category) {
@@ -866,7 +850,7 @@ function add_verb_list(payload) {
 			createStatusTab(category);
 		}
 	}
-};
+}
 
 function init_spells() {
 	var cat = "";
@@ -891,7 +875,7 @@ window.onload = function () {
 	Byond.sendMessage("Update-Verbs");
 };
 
-Byond.subscribeTo('update_spells', function (payload) {
+Byond.subscribeTo("update_spells", function (payload) {
 	spell_tabs = payload.spell_tabs;
 	var do_update = false;
 	if (spell_tabs.includes(current_tab)) {
@@ -908,20 +892,19 @@ Byond.subscribeTo('update_spells', function (payload) {
 	}
 });
 
-Byond.subscribeTo('remove_verb_list', function (v) {
+Byond.subscribeTo("remove_verb_list", function (v) {
 	var to_remove = v;
 	for (var i = 0; i < to_remove.length; i++) {
 		remove_verb(to_remove[i]);
 	}
 	check_verbs();
 	sortVerbs();
-	if (verb_tabs.includes(current_tab))
-		draw_verbs(current_tab);
+	if (verb_tabs.includes(current_tab)) draw_verbs(current_tab);
 });
 
 // passes a 2D list of (verbcategory, verbname) creates tabs and adds verbs to respective list
 // example (IC, Say)
-Byond.subscribeTo('init_verbs', function (payload) {
+Byond.subscribeTo("init_verbs", function (payload) {
 	wipe_verbs(); // remove all verb categories so we can replace them
 	checkStatusTab(); // remove all status tabs
 	verb_tabs = payload.panel_tabs;
@@ -945,15 +928,17 @@ Byond.subscribeTo('init_verbs', function (payload) {
 	SendTabsToByond();
 });
 
-Byond.subscribeTo('update_stat', function (payload) {
+Byond.subscribeTo("update_stat", function (payload) {
 	status_tab_parts = [payload.ping_str];
 	var parsed = payload.global_data;
 
-	for (var i = 0; i < parsed.length; i++) if (parsed[i] != null) status_tab_parts.push(parsed[i]);
+	for (var i = 0; i < parsed.length; i++)
+		if (parsed[i] != null) status_tab_parts.push(parsed[i]);
 
 	parsed = payload.other_str;
 
-	for (var i = 0; i < parsed.length; i++) if (parsed[i] != null) status_tab_parts.push(parsed[i]);
+	for (var i = 0; i < parsed.length; i++)
+		if (parsed[i] != null) status_tab_parts.push(parsed[i]);
 
 	if (current_tab == "Status") {
 		draw_status();
@@ -962,7 +947,7 @@ Byond.subscribeTo('update_stat', function (payload) {
 	}
 });
 
-Byond.subscribeTo('update_mc', function (payload) {
+Byond.subscribeTo("update_mc", function (payload) {
 	mc_tab_parts = payload.mc_data;
 	mc_tab_parts.splice(0, 0, ["Location:", payload.coord_entry]);
 
@@ -977,13 +962,13 @@ Byond.subscribeTo('update_mc', function (payload) {
 	}
 });
 
-Byond.subscribeTo('remove_spells', function () {
+Byond.subscribeTo("remove_spells", function () {
 	for (var s = 0; s < spell_tabs.length; s++) {
 		removeStatusTab(spell_tabs[s]);
 	}
 });
 
-Byond.subscribeTo('init_spells', function () {
+Byond.subscribeTo("init_spells", function () {
 	var cat = "";
 	for (var i = 0; i < spell_tabs.length; i++) {
 		cat = spell_tabs[i];
@@ -994,13 +979,13 @@ Byond.subscribeTo('init_spells', function () {
 	}
 });
 
-Byond.subscribeTo('check_spells', function () {
+Byond.subscribeTo("check_spells", function () {
 	for (var v = 0; v < spell_tabs.length; v++) {
 		spell_cat_check(spell_tabs[v]);
 	}
 });
 
-Byond.subscribeTo('create_debug', function () {
+Byond.subscribeTo("create_debug", function () {
 	if (!document.getElementById("Debug Stat Panel")) {
 		addPermanentTab("Debug Stat Panel");
 	} else {
@@ -1008,46 +993,46 @@ Byond.subscribeTo('create_debug', function () {
 	}
 });
 
-Byond.subscribeTo('create_listedturf', function (TN) {
+Byond.subscribeTo("create_listedturf", function (TN) {
 	remove_listedturf(); // remove the last one if we had one
 	turfname = TN;
 	addPermanentTab(turfname);
 	tab_change(turfname);
 });
 
-Byond.subscribeTo('create_misc', function (TN) {
+Byond.subscribeTo("create_misc", function (TN) {
 	addPermanentTab(TN);
 });
 
-Byond.subscribeTo('remove_misc', function (TN) {
+Byond.subscribeTo("remove_misc", function (TN) {
 	removePermanentTab(TN);
 });
 
-Byond.subscribeTo('remove_admin_tabs', function () {
+Byond.subscribeTo("remove_admin_tabs", function () {
 	href_token = null;
 	remove_mc();
 	remove_tickets();
 	remove_sdql2();
 });
 
-Byond.subscribeTo('update_listedturf', function (TC) {
+Byond.subscribeTo("update_listedturf", function (TC) {
 	turfcontents = TC;
 	if (current_tab == turfname) {
 		draw_listedturf();
 	}
 });
 
-Byond.subscribeTo('update_misc', function (payload) {
-	let TN = payload.TN
-	let TC = payload.TC
-	misc.set(TN,TC);
+Byond.subscribeTo("update_misc", function (payload) {
+	let TN = payload.TN;
+	let TC = payload.TC;
+	misc.set(TN, TC);
 	if (current_tab == TN) {
 		draw_misc(TN);
 	}
 });
 
-Byond.subscribeTo('update_split_admin_tabs', function (status) {
-	status = (status == true);
+Byond.subscribeTo("update_split_admin_tabs", function (status) {
+	status = status == true;
 
 	if (split_admin_tabs !== status) {
 		if (split_admin_tabs === true) {
@@ -1060,32 +1045,32 @@ Byond.subscribeTo('update_split_admin_tabs', function (status) {
 	split_admin_tabs = status;
 });
 
-Byond.subscribeTo('add_admin_tabs', function (ht) {
+Byond.subscribeTo("add_admin_tabs", function (ht) {
 	href_token = ht;
 	addPermanentTab("MC");
 	addPermanentTab("Tickets");
 });
 
-Byond.subscribeTo('add_tickets_tabs', function (ht) {
+Byond.subscribeTo("add_tickets_tabs", function (ht) {
 	href_token = ht;
 	addPermanentTab("Tickets");
 });
 
-Byond.subscribeTo('update_examine', function (payload) {
+Byond.subscribeTo("update_examine", function (payload) {
 	examine = payload.EX;
 	if (examine.length > 0 && !verb_tabs.includes("Examine")) {
 		verb_tabs.push("Examine");
-		addPermanentTab("Examine")
+		addPermanentTab("Examine");
 	}
 	if (current_tab == "Examine") {
 		draw_examine();
 	}
-	if(payload.UPD) {
+	if (payload.UPD) {
 		tab_change("Examine");
 	}
-})
+});
 
-Byond.subscribeTo('update_sdql2', function (S) {
+Byond.subscribeTo("update_sdql2", function (S) {
 	sdql2 = S;
 	if (sdql2.length > 0 && !verb_tabs.includes("SDQL2")) {
 		verb_tabs.push("SDQL2");
@@ -1096,7 +1081,7 @@ Byond.subscribeTo('update_sdql2', function (S) {
 	}
 });
 
-Byond.subscribeTo('update_tickets', function (T) {
+Byond.subscribeTo("update_tickets", function (T) {
 	tickets = T;
 	if (!verb_tabs.includes("Tickets")) {
 		verb_tabs.push("Tickets");
@@ -1107,10 +1092,10 @@ Byond.subscribeTo('update_tickets', function (T) {
 	}
 });
 
-Byond.subscribeTo('remove_listedturf', remove_listedturf);
+Byond.subscribeTo("remove_listedturf", remove_listedturf);
 
-Byond.subscribeTo('remove_sdql2', remove_sdql2);
+Byond.subscribeTo("remove_sdql2", remove_sdql2);
 
-Byond.subscribeTo('remove_mc', remove_mc);
+Byond.subscribeTo("remove_mc", remove_mc);
 
-Byond.subscribeTo('add_verb_list', add_verb_list);
+Byond.subscribeTo("add_verb_list", add_verb_list);

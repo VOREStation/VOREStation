@@ -1097,7 +1097,7 @@
 "hc" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_dock_1";
 	name = "port exterior access button";
 	pixel_x = -6;
@@ -1105,7 +1105,7 @@
 	},
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_dock_2";
 	name = "starboard exterior access button";
 	pixel_x = 4;
@@ -1873,13 +1873,13 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_port_sensor";
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_port_pump"
 	},
 /obj/machinery/light/small{
@@ -2095,7 +2095,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_port";
 	pixel_y = 23;
 	tag_airpump = "itglight_port_pump";
@@ -2104,7 +2104,7 @@
 	tag_interior_door = "itglight_port_inner"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_port_pump"
 	},
 /turf/simulated/floor,
@@ -3100,7 +3100,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_starboard";
 	pixel_y = 23;
 	tag_airpump = "itglight_starboard_pump";
@@ -3109,7 +3109,7 @@
 	tag_interior_door = "itglight_starboard_inner"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_starboard_pump"
 	},
 /turf/simulated/floor,
@@ -3292,7 +3292,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_1_pump"
 	},
 /obj/machinery/light/small{
@@ -3484,7 +3484,7 @@
 	},
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_port";
 	name = "interior access button";
 	pixel_y = 26
@@ -3582,7 +3582,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_2_pump"
 	},
 /obj/structure/handrail{
@@ -3705,7 +3705,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_1_pump"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -3891,13 +3891,13 @@
 "AZ" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_starboard_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_starboard_sensor";
 	pixel_y = -25
 	},
@@ -3929,7 +3929,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_2_pump"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -4092,7 +4092,7 @@
 	},
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_dock_1";
 	name = "exterior access button";
 	pixel_x = -27;
@@ -4161,7 +4161,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_1";
 	pixel_x = 18;
 	pixel_y = -32;
@@ -4203,7 +4203,7 @@
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_dock_1";
 	name = "interior access button";
 	pixel_y = 26
@@ -4455,7 +4455,7 @@
 	},
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_dock_2";
 	name = "interior access button";
 	pixel_y = 26
@@ -4477,7 +4477,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_2";
 	pixel_x = -18;
 	pixel_y = -32;
@@ -4525,7 +4525,7 @@
 	},
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_dock_2";
 	name = "exterior access button";
 	pixel_x = 27;
@@ -4745,7 +4745,7 @@
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_starboard";
 	name = "interior access button";
 	pixel_y = 26
@@ -4784,7 +4784,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglightshuttle_docker";
 	pixel_x = -19;
 	tag_door = "itglightshuttle_docker_hatch"
@@ -4894,7 +4894,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_1_pump"
 	},
 /obj/structure/handrail{
@@ -5003,7 +5003,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_2_pump"
 	},
 /obj/machinery/light/small{
@@ -5043,7 +5043,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_1_pump"
 	},
 /obj/machinery/light/small,
@@ -5074,7 +5074,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_1_pump"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -5089,7 +5089,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_2_pump"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -5143,7 +5143,7 @@
 "Ix" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_1_sensor";
 	pixel_y = -25
 	},
@@ -5212,7 +5212,7 @@
 "IQ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_2_sensor";
 	pixel_y = -25
 	},
@@ -5251,7 +5251,7 @@
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_starboard";
 	name = "exterior access button";
 	pixel_y = -27;
@@ -5275,7 +5275,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_dock_2_pump"
 	},
 /obj/machinery/light/small,
@@ -6682,7 +6682,7 @@
 	},
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "itglight_shuttlebay";
 	pixel_y = 22
 	},
@@ -7250,7 +7250,7 @@
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "itglight_port";
 	name = "exterior access button";
 	pixel_y = -27;
