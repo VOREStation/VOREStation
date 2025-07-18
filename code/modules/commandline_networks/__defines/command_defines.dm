@@ -57,3 +57,13 @@ Uh oh, outputs!
 #define COMMAND_RESULT_NO_COMMAND_IN_NODE(name, command) "Err: command [command] not present in node [name]."
 
 #define COMMAND_RESULT_UNKNOWN_PREFIX(prefix) "Err: Unknown Command Prefix \"[prefix]\" - Check legend."
+
+#define COMMAND_ACTION_PARAMS \
+var/datum/commandline_network_node/source, \
+var/datum/commandline_network_node/from, \
+var/list/sorted_tokens, \
+var/datum/commandline_log_entry/logs, \
+var/verbose
+
+#define COMMAND_ACTION_DEFINE(action,procname,min)  dispatch_table["[ckey(action)]"] = list(CALLBACK(src,PROC_REF(procname),min))
+#define COMMAND_STANDALONE_ACTION_DEFINE(procname,min) standalone = CALLBACK(src,PROC_REF(procname)); min_args_standalone=min

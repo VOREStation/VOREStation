@@ -1,0 +1,22 @@
+TODO:
+Get Core Commands done
+Add per-node macro logic to parser
+shit codersprites
+
+add "awaiting input" state to parser/command processer so that you can await a yes/no/y/n/other response for commands that deem that suitable
+
+finish network latency/integrity
+add general getter methods for that, or components that handle it maybe? idk yet.
+	Node subtype for limbs with stuff like brand/etc
+
+add per-brand/age dictionary for node command aliases
+implement evil fucked up logic for vey med command aliases
+
+
+implement limbs
+
+implement other organs
+
+poke the code in the right spots to handle the failure states for said organs
+
+implement decalibration for limbs & organs. Figure this out.

@@ -12,7 +12,7 @@
 		var/targetted_command = arguments[1]
 		if(targetted_command in from.commands)
 			var/datum/commandline_network_command/command = SScommandline_networks.GetCachedCommand(from.commands[targetted_command])
-			response = command.getHelpText(from,null,verbose,TRUE)
+			response = command.getHelpText(from,arguments,verbose,TRUE)
 			logs.set_log(source,response)
 			return
 		else
@@ -27,7 +27,7 @@
 	for(var/x in from.commands)
 		var/datum/commandline_network_command/command = SScommandline_networks.GetCachedCommand(from.commands[x])
 		if(command)
-			response += "[x]: [command.getHelpText(from,null,verbose,FALSE)] \n\n"
+			response += "[x]: [command.getHelpText(from,arguments,verbose,FALSE)] \n\n"
 	logs.set_log(source,response)
 
 /datum/commandline_network_command/help/getHelpText(datum/commandline_network_node/homenode, list/arguments, verbose, direct)
