@@ -177,14 +177,14 @@ ADMIN_VERB(jobbans, R_BAN, "Display Job bans", "View job bans here.", "Admin.Inv
 	if(CONFIG_GET(flag/ban_legacy_system))
 		user.holder.Jobbans()
 	else
-		user.holder.DB_ban_panel()
+		user.holder.DB_ban_panel(user)
 	feedback_add_details("admin_verb","VJB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(unban_panel, R_BAN, "Unbanning Panel", "Unban players here.", ADMIN_CATEGORY_GAME)
 	if(CONFIG_GET(flag/ban_legacy_system))
 		user.holder.unbanpanel()
 	else
-		user.holder.DB_ban_panel()
+		user.holder.DB_ban_panel(user)
 	feedback_add_details("admin_verb","UBP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state of the game.", ADMIN_CATEGORY_GAME)
