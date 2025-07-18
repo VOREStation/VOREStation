@@ -56,8 +56,9 @@ SUBSYSTEM_DEF(machines)
 
 // This MUST be called if request_powernet_rebuild is called with defer = TRUE once the network is free to regen
 /datum/controller/subsystem/machines/proc/release_powernet_defer()
+	if(defering_powernets)
+		makepowernets()
 	defering_powernets = FALSE
-	makepowernets()
 
 /datum/controller/subsystem/machines/proc/powernet_is_defered()
 	return defering_powernets
