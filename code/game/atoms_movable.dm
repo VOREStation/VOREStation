@@ -92,11 +92,6 @@
 	QDEL_NULL(riding_datum)
 	set_listening(NON_LISTENING_ATOM)
 
-/atom/movable/vv_edit_var(var_name, var_value)
-	if(var_name in GLOB.VVpixelmovement)			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
-		return FALSE
-	return ..()
-
 ////////////////////////////////////////
 /atom/movable/Move(atom/newloc, direct = 0, movetime)
 	// Didn't pass enough info
@@ -181,7 +176,7 @@
 			// place due to a Crossed, Bumped, etc. call will interrupt
 			// the second half of the diagonal movement, or the second attempt
 			// at a first half if step() fails because we hit something.
-			glide_for(movetime * 2)
+			glide_for(movetime * SQRT_2)
 			if (direct & NORTH)
 				if (direct & EAST)
 					if (step(src, NORTH) && moving_diagonally)
@@ -253,8 +248,6 @@
 		riding_datum.handle_vehicle_offsets()
 	for (var/datum/light_source/light as anything in light_sources) // Cycle through the light sources on this atom and tell them to update.
 		light.source_atom.update_light()
-
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, direction)
 
 	return TRUE
 
@@ -723,3 +716,51 @@
 
 /atom/movable/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	return
+
+/atom/movable/proc/Bump_vr(var/atom/A, yes)
+	return
+
+/atom/movable/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---------")
+	//VV_DROPDOWN_OPTION(VV_HK_OBSERVE_FOLLOW, "Observe Follow")
+	VV_DROPDOWN_OPTION(VV_HK_GET_MOVABLE, "Get Movable")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_PARTICLES, "Edit Particles")
+	//VV_DROPDOWN_OPTION(VV_HK_DEADCHAT_PLAYS, "Start/Stop Deadchat Plays")
+	//VV_DROPDOWN_OPTION(VV_HK_ADD_FANTASY_AFFIX, "Add Fantasy Affix")
+
+/atom/movable/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	//if(href_list[VV_HK_OBSERVE_FOLLOW])
+	//	if(!check_rights(R_ADMIN))
+	//		return
+	//	usr.client?.admin_follow(src)
+
+	if(href_list[VV_HK_GET_MOVABLE])
+		if(!check_rights(R_ADMIN))
+			return
+		if(QDELETED(src))
+			return
+		forceMove(get_turf(usr))
+
+	if(href_list[VV_HK_EDIT_PARTICLES] && check_rights(R_VAREDIT))
+		var/client/C = usr.client
+		C?.open_particle_editor(src)
+
+	//if(href_list[VV_HK_DEADCHAT_PLAYS] && check_rights(R_FUN))
+	//	if(tgui_alert(usr, "Allow deadchat to control [src] via chat commands?", "Deadchat Plays [src]", list("Allow", "Cancel")) != "Allow")
+	//		return
+	//	// Alert is async, so quick sanity check to make sure we should still be doing this.
+	//	if(QDELETED(src))
+	//		return
+	//	// This should never happen, but if it does it should not be silent.
+	//	if(deadchat_plays() == COMPONENT_INCOMPATIBLE)
+	//		to_chat(usr, span_warning("Deadchat control not compatible with [src]."))
+	//		CRASH("deadchat_control component incompatible with object of type: [type]")
+	//	to_chat(usr, span_notice("Deadchat now control [src]."))
+	//	log_admin("[key_name(usr)] has added deadchat control to [src]")
+	//	message_admins(span_notice("[key_name(usr)] has added deadchat control to [src]"))

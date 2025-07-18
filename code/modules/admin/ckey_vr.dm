@@ -1,5 +1,5 @@
 // Command to set the ckey of a mob without requiring VV permission
-/client/proc/SetCKey(var/mob/M in mob_list)
+/client/proc/SetCKey(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Set CKey"
 	set desc = "Mob to teleport"
@@ -8,7 +8,7 @@
 		return
 
 	var/list/keys = list()
-	for(var/mob/playerMob in player_list)
+	for(var/mob/playerMob in GLOB.player_list)
 		keys += playerMob.client
 	var/client/selection = tgui_input_list(usr, "Please, select a player!", "Set CKey", sortKey(keys))
 	if(!selection || !istype(selection))

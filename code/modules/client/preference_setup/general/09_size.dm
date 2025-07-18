@@ -191,7 +191,7 @@
 			return TOPIC_REFRESH
 
 		if("customize_footsteps")
-			var/list/footstep_choice = selectable_footstep
+			var/list/footstep_choice = GLOB.selectable_footstep
 			var/choice = tgui_input_list(user, "What footstep sounds would your character make?", "Custom Foostep Sounds", footstep_choice)
 			if(choice)
 				pref.custom_footstep = footstep_choice[choice]

@@ -12,6 +12,10 @@
 	var/list/frames = list()	// List of frames inside.
 	var/maxFrames = 5
 
+/obj/machinery/beehive/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/beehive/update_icon()
 	cut_overlays()
 	icon_state = "beehive"
@@ -270,9 +274,7 @@
 	weight = 1
 	pass_stack_colors = TRUE
 
-var/global/list/datum/stack_recipe/wax_recipes = list( \
-	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
-)
+
 
 /obj/item/bee_pack
 	name = "bee pack"

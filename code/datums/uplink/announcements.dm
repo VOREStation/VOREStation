@@ -24,9 +24,9 @@
 		return
 	return list("title" = title, "message" = message)
 
-/datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/uplink/U, var/loc, var/mob/user, var/list/args)
-	post_comm_message(args["title"], replacetext(args["message"], "\n", "<br/>"))
-	command_announcement.Announce(args["message"], args["title"])
+/datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/uplink/U, var/location, var/mob/user, var/list/arguments)
+	post_comm_message(arguments["title"], replacetext(arguments["message"], "\n", "<br/>"))
+	command_announcement.Announce(arguments["message"], arguments["title"])
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival
@@ -34,7 +34,7 @@
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Trigger with care!"
 	item_cost = 15
 
-/datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/uplink/U, var/loc, var/mob/user, var/list/args)
+/datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/uplink/U, var/location, var/mob/user, var/list/arguments)
 	if(!user)
 		return 0
 
@@ -93,7 +93,7 @@
 	desc = "Interferes with the station's ion sensors. Triggers immediately upon investment."
 	item_cost = 10
 
-/datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/uplink/U, var/loc)
+/datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/uplink/U, var/location)
 	ion_storm_announcement()
 	return 1
 
@@ -102,7 +102,7 @@
 	desc = "Interferes with the station's radiation sensors. Triggers immediately upon investment."
 	item_cost = 15
 
-/datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/uplink/U, var/loc)
+/datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/uplink/U, var/location)
 	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
 	new/datum/event/radiation_storm/syndicate(EM)
 	return 1

@@ -321,22 +321,10 @@
 	using.alpha = HUD.ui_alpha
 	adding |= using
 
-	//VOREStation Addition begin
-	shadekin_display = new /obj/screen/shadekin()
-	shadekin_display.screen_loc = ui_shadekin_display
-	shadekin_display.icon_state = "shadekin"
+	//Component hud elements. Made in /mob/living/create_mob_hud
 	hud_elements |= shadekin_display
-
-	xenochimera_danger_display = new /obj/screen/xenochimera/danger_level()
-	xenochimera_danger_display.screen_loc = ui_xenochimera_danger_display
-	xenochimera_danger_display.icon_state = "danger00"
 	hud_elements |= xenochimera_danger_display
-
-	lleill_display = new /obj/screen/lleill()
-	lleill_display.screen_loc = ui_lleill_display
-	lleill_display.icon_state = "lleill"
 	hud_elements |= lleill_display
-	//VOREStation Addition end
 
 	ling_chem_display = new /obj/screen/ling/chems()
 	ling_chem_display.screen_loc = ui_ling_chemical_display

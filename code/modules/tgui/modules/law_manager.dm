@@ -6,9 +6,6 @@
 	var/inherent_law = "InherentLaw"
 	var/supplied_law = "SuppliedLaw"
 	var/supplied_law_position = MIN_SUPPLIED_LAW_NUMBER
-
-	var/global/list/datum/ai_laws/admin_laws
-	var/global/list/datum/ai_laws/player_laws
 	var/mob/living/silicon/owner = null
 
 /datum/tgui_module/law_manager/New(mob/living/silicon/S)
@@ -221,4 +218,4 @@
 
 /datum/tgui_module/law_manager/admin
 /datum/tgui_module/law_manager/admin/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)

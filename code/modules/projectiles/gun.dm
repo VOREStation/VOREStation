@@ -174,46 +174,46 @@
 /obj/item/gun/proc/special_check(var/mob/user)
 
 	if(!isliving(user))
-		return 0
+		return FALSE
 	if(!user.IsAdvancedToolUser())
-		return 0
+		return FALSE
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
 		if(!S.IsHumanoidToolUser(src))
-			return 0
+			return FALSE
 
 	var/mob/living/M = user
 	if(istype(M))
 		if(M.has_modifier_of_type(/datum/modifier/underwater_stealth))
-			to_chat(user,span_warning("You cannot use guns whilst hiding underwater!"))
-			return 0
+			to_chat(user, span_warning("You cannot use guns whilst hiding underwater!"))
+			return FALSE
+		else if(M.has_modifier_of_type(/datum/modifier/phased_out))
+			to_chat(user, span_warning("You cannot use guns whilst incorporeal!"))
+			return FALSE
 		else if(M.has_modifier_of_type(/datum/modifier/rednet))
-			to_chat(user,span_warning("Your gun refuses to fire!"))
-			return 0
+			to_chat(user, span_warning("Your gun refuses to fire!"))
+			return FALSE
 		else if(M.has_modifier_of_type(/datum/modifier/trait/thickdigits))
-			to_chat(user,span_warning("Your hands can't pull the trigger!!"))
-			return 0
+			to_chat(user, span_warning("Your hands can't pull the trigger!!"))
+			return FALSE
 		else if(M.has_modifier_of_type(/datum/modifier/shield_projection/melee_focus))
-			to_chat(user,span_warning("The shield projection around you prevents you from using anything but melee!!"))
-			return 0
+			to_chat(user, span_warning("The shield projection around you prevents you from using anything but melee!!"))
+			return FALSE
 	if(dna_lock && attached_lock.stored_dna)
 		if(!authorized_user(user))
 			if(attached_lock.safety_level == 0)
 				to_chat(M, span_danger("\The [src] buzzes in dissapointment and displays an invalid DNA symbol."))
-				return 0
+				return FALSE
 			if(!attached_lock.exploding)
 				if(attached_lock.safety_level == 1)
 					to_chat(M, span_danger("\The [src] hisses in dissapointment."))
 					visible_message(span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")), span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")))
 					attached_lock.exploding = 1
-					spawn(100)
-						explosion(src, 0, 0, 3, 4)
-						sleep(1)
-						qdel(src)
-					return 0
+					addtimer(CALLBACK(src, PROC_REF(lock_explosion)), 10 SECONDS, TIMER_DELETE_ME)
+					return FALSE
 	if(HULK in M.mutations)
 		to_chat(M, span_danger("Your fingers are much too large for the trigger guard!"))
-		return 0
+		return FALSE
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
@@ -227,8 +227,12 @@
 				M.drop_item()
 		else
 			handle_click_empty(user)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
+
+/obj/item/gun/proc/lock_explosion()
+	explosion(src, 0, 0, 3, 4)
+	QDEL_IN(src, 1)
 
 /obj/item/gun/emp_act(severity)
 	for(var/obj/O in contents)

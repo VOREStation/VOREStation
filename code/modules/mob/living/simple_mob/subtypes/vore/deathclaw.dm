@@ -5,7 +5,7 @@
 	Originally the Deathclaw was a top secret genetics project that was run by ancestral Zorren which was \
 	lost to time. While it is not immediately evident in their body structure, these creatures bare a \
 	subtle genetic connection to Zorren, however, this connection is marred by the other genes that \
-	have been grafted onto the DNA strucutre of the Deathclaw. The creatures are known to attack humans \
+	have been grafted onto the DNA structure of the Deathclaw. The creatures are known to attack humans \
 	and other animals regularly to protect their territory or to hunt for food. It is speculated that \
 	they escaped roughly around the time as whatever calamity befell the Zorren many centuries ago \
 	as sighting of these beasts in the wild began around that time according to recovered Zorren texts. \

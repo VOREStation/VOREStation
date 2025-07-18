@@ -2,7 +2,13 @@
 //as they handle all relevant stuff like adding it to the player's screen and such
 
 //Returns the thing in our active hand (whatever is in our active module-slot, in this case)
-/mob/living/silicon/robot/get_active_hand()
+/mob/living/silicon/robot/get_active_hand(atom/A)
+	if(module_active == A) //If we are interacting with the item itself (I.E swapping multibelt items)
+		return module_active
+	else if(istype(module_active, /obj/item/robotic_multibelt)) //If we are hitting something with a multibelt
+		var/obj/item/robotic_multibelt/belt = module_active
+		if(belt.selected_item)
+			return belt.selected_item
 	return module_active
 
 /*-------TODOOOOOOOOOO--------*/
@@ -23,6 +29,9 @@
 		return
 
 	if(module_state_1 == I)
+		if(istype(module_state_1,/obj/item/robotic_multibelt))
+			var/obj/item/robotic_multibelt/toolbelt = module_state_1
+			toolbelt.original_state()
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode &= ~module_state_1:sight_mode
 		if (client)
@@ -33,6 +42,9 @@
 		module_state_1 = null
 		inv1.icon_state = "inv1"
 	else if(module_state_2 == I)
+		if(istype(module_state_2,/obj/item/robotic_multibelt))
+			var/obj/item/robotic_multibelt/toolbelt = module_state_2
+			toolbelt.original_state()
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
 		if (client)
@@ -43,6 +55,9 @@
 		module_state_2 = null
 		inv2.icon_state = "inv2"
 	else if(module_state_3 == I)
+		if(istype(module_state_3,/obj/item/robotic_multibelt))
+			var/obj/item/robotic_multibelt/toolbelt = module_state_3
+			toolbelt.original_state()
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
 		if (client)
@@ -126,6 +141,9 @@
 		return 0
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
+	var/belt_check = using_multibelt(O)
+	if(belt_check)
+		return belt_check
 	if(module_state_1 == O)
 		return 1
 	else if(module_state_2 == O)
@@ -134,6 +152,15 @@
 		return 1
 	else
 		return 0
+
+/mob/living/silicon/robot/proc/using_multibelt(obj/item/O)
+	for(var/obj/item/robotic_multibelt/materials/material_belt in contents)
+		if(material_belt.selected_item == O)
+			return TRUE
+	for(var/obj/item/gripper/gripper in contents)
+		if(gripper.current_pocket == O)
+			return TRUE
+	return FALSE
 
 /mob/living/silicon/robot/proc/get_active_modules()
 	return list(module_state_1, module_state_2, module_state_3)

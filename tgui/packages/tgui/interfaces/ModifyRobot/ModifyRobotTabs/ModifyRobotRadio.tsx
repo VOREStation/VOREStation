@@ -25,7 +25,7 @@ export const ModifyRobotRadio = (props: { target: Target }) => {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Stack height={!target.active ? '75%' : '80%'}>
+      <Stack fill>
         <Stack.Item width="30%">
           <RadioSection
             title="Add Radio Channel"
@@ -42,7 +42,7 @@ export const ModifyRobotRadio = (props: { target: Target }) => {
             <Stack.Item grow />
             <Stack.Item>
               <Box
-                className={classes([target.sprite_size, target.sprite + 'N'])}
+                className={classes([target.sprite_size, `${target.sprite}N`])}
               />
             </Stack.Item>
             <Stack.Item grow />

@@ -500,6 +500,11 @@
 	anchored = TRUE
 	var/busy = 0 	//Something's being washed at the moment
 
+/obj/structure/sink/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/hose_connector/endless_source/water)
+	AddComponent(/datum/component/hose_connector/endless_drain)
+
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
 	..()
 	if(!istype(thing) || !thing.is_open_container())
@@ -599,6 +604,12 @@
 		O.reagents.add_reagent(REAGENT_ID_WATER, 5)
 		to_chat(user, span_notice("You wet \the [O] in \the [src]."))
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
+		return
+	else if(istype(O, /obj/item/soap))
+		var/obj/item/soap/soap = O
+		to_chat(user, span_notice("You wet \the [O] in \the [src]"))
+		soap.wet()
+		O.wash(CLEAN_SCRUB)
 		return
 
 	var/turf/location = user.loc

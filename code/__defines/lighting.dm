@@ -60,8 +60,6 @@
 #define DYNAMIC_LIGHTING_ENABLED 1
 /// dynamic lighting enabled even if the area doesn't require power
 #define DYNAMIC_LIGHTING_FORCED 2
-/// dynamic lighting enabled only if starlight is.
-#define DYNAMIC_LIGHTING_IFSTARLIGHT 3
 #define IS_DYNAMIC_LIGHTING(A) A.dynamic_lighting
 
 

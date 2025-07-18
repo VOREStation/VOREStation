@@ -54,10 +54,11 @@
 	stop_flying()
 
 	//Handle snowflake ling stuff.
-	if(mind && mind.changeling)
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(comp)
 		// If the ling is capable of revival, don't allow them to see deadchat.
-		if(mind.changeling.chem_charges >= CHANGELING_STASIS_COST)
-			if(mind.changeling.max_geneticpoints >= 0) // Absorbed lings don't count, as they can't revive.
+		if(comp.chem_charges >= CHANGELING_STASIS_COST)
+			if(comp.max_geneticpoints >= 0) // Absorbed lings don't count, as they can't revive.
 				forbid_seeing_deadchat = TRUE
 
 	//Handle brain slugs.
@@ -89,16 +90,14 @@
 		var/area/A = get_area(src)
 		if(!(A?.flag_check(AREA_BLOCK_SUIT_SENSORS)) && isbelly(loc))
 			// SSgame_master.adjust_danger(gibbed ? 40 : 20)  // We don't use SSgame_master yet.
-			for(var/mob/observer/dead/O in mob_list)
+			for(var/mob/observer/dead/O in GLOB.mob_list)
 				if(O.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 					to_chat(O, span_deadsay(span_bold("[src]") + " has died in " + span_bold("[get_area(src)]")  + ". [ghost_follow_link(src, O)] "))
 
 	if(!gibbed && !isbelly(loc))
 		playsound(src, pick(get_species_sound(get_gendered_sound(src))["death"]), src.species.death_volume, 1, 20, volume_channel = VOLUME_CHANNEL_DEATH_SOUNDS)
 
-	if(ticker && ticker.mode)
-		sql_report_death(src)
-		ticker.mode.check_win()
+	SSmobs.report_death(src)
 
 	if(wearing_rig)
 		wearing_rig.notify_ai(span_danger("Warning: user death event. Mobility control passed to integrated intelligence system."))

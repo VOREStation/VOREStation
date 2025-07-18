@@ -231,8 +231,8 @@ export class Plane extends Component<PlaneProps, PlaneState> {
       const { zoom } = this.state;
       const portLocation = locations[selectedPort.ref];
       const mouseCoords = {
-        x: mouseX * Math.pow(zoom, -1),
-        y: (mouseY + ABSOLUTE_Y_OFFSET) * Math.pow(zoom, -1),
+        x: mouseX * zoom ** -1,
+        y: (mouseY + ABSOLUTE_Y_OFFSET) * zoom ** -1,
       };
       connections.push({
         color:
@@ -289,7 +289,7 @@ const Circuit = (
     onPortRightClick,
   } = props;
 
-  const [pos, setPos] = useSharedState('component-pos-' + circuit.ref, {
+  const [pos, setPos] = useSharedState(`component-pos-${circuit.ref}`, {
     x: 0,
     y: 0,
   });

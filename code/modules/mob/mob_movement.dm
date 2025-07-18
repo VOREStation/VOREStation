@@ -414,7 +414,7 @@
 			else if(!istype(mob, /mob/observer/dead) && T.blocks_nonghost_incorporeal)
 				return
 			//RS Port #658 Start
-			if(!holder)
+			if(!check_rights_for(src, R_HOLDER))
 				if(isliving(mob) && A.flag_check(AREA_BLOCK_PHASE_SHIFT))
 					to_chat(mob, span_warning("Something blocks you from entering this location while phased out."))
 					return

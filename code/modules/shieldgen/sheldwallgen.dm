@@ -25,6 +25,10 @@
 		var/max_stored_power = 50000 //50 kW
 		use_power = USE_POWER_OFF	//Draws directly from power net. Does not use APC power.
 
+/obj/machinery/shieldwallgen/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
 		to_chat(user, span_red("The shield generator needs to be firmly secured to the floor first."))

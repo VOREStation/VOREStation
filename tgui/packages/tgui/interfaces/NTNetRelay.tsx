@@ -44,7 +44,7 @@ const NTNetRelayContent = (props) => {
           selected={enabled}
           onClick={() => act('toggle')}
         >
-          {'Relay ' + (enabled ? 'On' : 'Off')}
+          {`Relay ${enabled ? 'On' : 'Off'}`}
         </Button>
       }
     >

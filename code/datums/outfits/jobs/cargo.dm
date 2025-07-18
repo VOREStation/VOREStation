@@ -31,7 +31,7 @@
 	satchel_one  = /obj/item/storage/backpack/satchel/eng
 	id_type = /obj/item/card/id/cargo/miner
 	pda_type = /obj/item/pda/shaftminer
-	backpack_contents = list(/obj/item/tool/crowbar = 1, /obj/item/storage/bag/ore = 1)
+	backpack_contents = list(/obj/item/tool/crowbar = 1, /obj/item/storage/bag/ore = 1, /obj/item/mining_voucher = 1)
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
 	headset = /obj/item/radio/headset/miner

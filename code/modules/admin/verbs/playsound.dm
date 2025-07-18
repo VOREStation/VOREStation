@@ -41,7 +41,7 @@ var/list/sounds_cache = list()
 	log_admin("[key_name(src)] played sound [S]")
 	message_admins("[key_name_admin(src)] played sound [S]", 1)
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.read_preference(/datum/preference/toggle/play_admin_midis))
 			admin_sound.volume = vol * M.client.admin_music_volume
 			SEND_SOUND(M, admin_sound)
@@ -67,7 +67,7 @@ var/list/sounds_cache = list()
 		return
 
 	if(!M)
-		M = tgui_input_list(usr, "Choose a mob to play the sound to. Only they will hear it.", "Play Mob Sound", sortNames(player_list))
+		M = tgui_input_list(usr, "Choose a mob to play the sound to. Only they will hear it.", "Play Mob Sound", sortNames(GLOB.player_list))
 	if(!M || QDELETED(M))
 		return
 	log_admin("[key_name(src)] played a direct mob sound [S] to [M].")
@@ -90,7 +90,7 @@ var/list/sounds_cache = list()
 
 	log_admin("[key_name(src)] played sound [S] on Z[target_z]")
 	message_admins("[key_name_admin(src)] played sound [S] on Z[target_z]", 1)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.read_preference(/datum/preference/toggle/play_admin_midis) && M.z == target_z)
 			M << uploaded_sound
 
@@ -201,7 +201,7 @@ var/list/sounds_cache = list()
 
 		return
 	if(web_sound_url || stop_web_sounds)
-		for(var/m in player_list)
+		for(var/m in GLOB.player_list)
 			var/mob/M = m
 			var/client/C = M.client
 			if(C.prefs?.read_preference(/datum/preference/toggle/play_admin_midis))
@@ -245,12 +245,12 @@ var/list/sounds_cache = list()
 /client/proc/stop_sounds()
 	set category = "Debug.Dangerous"
 	set name = "Stop All Playing Sounds"
-	if(!src.holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	log_admin("[key_name(src)] stopped all currently playing sounds.")
 	message_admins("[key_name_admin(src)] stopped all currently playing sounds.")
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		SEND_SOUND(M, sound(null))
 		var/client/C = M.client
 		C?.tgui_panel?.stop_music()
@@ -269,12 +269,12 @@ var/list/sounds_cache = list()
 	set name = "Cuban Pete Time"
 
 	message_admins("[key_name_admin(usr)] has declared Cuban Pete Time!", 1)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			if(M.client.midis)
 				M << 'cubanpetetime.ogg'
 
-	for(var/mob/living/carbon/human/CP in human_mob_list)
+	for(var/mob/living/carbon/human/CP in GLOB.human_mob_list)
 		if(CP.real_name=="Cuban Pete" && CP.key!="Rosham")
 			to_chat(CP, "Your body can't contain the rhumba beat")
 			CP.gib()
@@ -285,7 +285,7 @@ var/list/sounds_cache = list()
 	set name = "Banana Phone"
 
 	message_admins("[key_name_admin(usr)] has activated Banana Phone!", 1)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			if(M.client.midis)
 				M << 'bananaphone.ogg'
@@ -296,7 +296,7 @@ var/list/sounds_cache = list()
 	set name = "Space Asshole"
 
 	message_admins("[key_name_admin(usr)] has played the Space Asshole Hymn.", 1)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			if(M.client.midis)
 				M << 'sound/music/space_asshole.ogg'
@@ -307,7 +307,7 @@ var/list/sounds_cache = list()
 	set name = "Honk"
 
 	message_admins("[key_name_admin(usr)] has creeped everyone out with Blackest Honks.", 1)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			if(M.client.midis)
 				M << 'honk_theme.ogg'*/

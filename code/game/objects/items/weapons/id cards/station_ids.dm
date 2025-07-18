@@ -367,12 +367,14 @@
 	configured = 1
 	to_chat(user, span_notice("Card settings set."))
 
-/obj/item/card/id/event/attackby(obj/item/I as obj, var/mob/user)
+/obj/item/card/id/event/attackby(obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/card/id) && !accessset)
 		var/obj/item/card/id/O = I
 		access |= O.GetAccess()
 		desc = I.desc
 		rank = O.rank
+		mining_points = O.mining_points
+		survey_points = O.survey_points
 		to_chat(user, span_notice("You copy the access from \the [I] to \the [src]."))
 		user.drop_from_inventory(I)
 		qdel(I)

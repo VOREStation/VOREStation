@@ -19,6 +19,7 @@
 		return 0
 
 	var/mob/living/carbon/human/H = new mobtype(mobloc)
+	H.init_vore()
 
 	if(with_mind)
 		H.mind_initialize("TestKey[rand(0,10000)]")

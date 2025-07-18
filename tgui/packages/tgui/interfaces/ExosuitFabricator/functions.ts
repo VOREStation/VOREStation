@@ -1,4 +1,4 @@
-import { uniqBy } from 'common/collections';
+import { uniqBy } from 'es-toolkit';
 import { createSearch } from 'tgui-core/string';
 
 import { COLOR_AVERAGE, COLOR_BAD, COLOR_NONE } from './constants';
@@ -46,8 +46,8 @@ export function partCondFormat(
   Object.keys(part.cost).forEach((mat) => {
     format[mat] = partBuildColor(part.cost[mat], tally[mat], materials[mat]);
 
-    if (format[mat].color > format['textColor']) {
-      format['textColor'] = format[mat].color;
+    if (format[mat].color > format.textColor) {
+      format.textColor = format[mat].color;
     }
   });
 
@@ -63,30 +63,29 @@ export function queueCondFormat(
   const missingMatTally = {};
   const textColors = {};
 
-  queue &&
-    queue.forEach((part, i) => {
-      textColors[i] = COLOR_NONE;
-      Object.keys(part.cost).forEach((mat) => {
-        materialTally[mat] = materialTally[mat] || 0;
-        missingMatTally[mat] = missingMatTally[mat] || 0;
+  queue?.forEach((part, i) => {
+    textColors[i] = COLOR_NONE;
+    Object.keys(part.cost).forEach((mat) => {
+      materialTally[mat] = materialTally[mat] || 0;
+      missingMatTally[mat] = missingMatTally[mat] || 0;
 
-        matFormat[mat] = partBuildColor(
-          part.cost[mat],
-          materialTally[mat],
-          materials[mat],
-        );
+      matFormat[mat] = partBuildColor(
+        part.cost[mat],
+        materialTally[mat],
+        materials[mat],
+      );
 
-        if (matFormat[mat].color !== COLOR_NONE) {
-          if (textColors[i] < matFormat[mat].color) {
-            textColors[i] = matFormat[mat].color;
-          }
-        } else {
-          materialTally[mat] += part.cost[mat];
+      if (matFormat[mat].color !== COLOR_NONE) {
+        if (textColors[i] < matFormat[mat].color) {
+          textColors[i] = matFormat[mat].color;
         }
+      } else {
+        materialTally[mat] += part.cost[mat];
+      }
 
-        missingMatTally[mat] += matFormat[mat].deficit;
-      });
+      missingMatTally[mat] += matFormat[mat].deficit;
     });
+  });
   return { materialTally, missingMatTally, textColors, matFormat };
 }
 

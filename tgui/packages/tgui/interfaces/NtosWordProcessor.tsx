@@ -75,7 +75,7 @@ export const NtosWordProcessor = (props) => {
               </Section>
             </Section>
           )) || (
-            <Section title={'Document: ' + filename}>
+            <Section title={`Document: ${filename}`}>
               <Box>
                 <Button onClick={() => act('PRG_newfile')}>New</Button>
                 <Button onClick={() => act('PRG_loadmenu')}>Load</Button>

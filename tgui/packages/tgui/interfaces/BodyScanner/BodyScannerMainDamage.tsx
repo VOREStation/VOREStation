@@ -14,7 +14,7 @@ export const BodyScannerMainDamage = (props: { occupant: occupant }) => {
           <>
             <Table.Row color="label">
               <Table.Cell>{d1[0]}:</Table.Cell>
-              <Table.Cell>{!!d2 && d2[0] + ':'}</Table.Cell>
+              <Table.Cell>{!!d2 && `${d2[0]}:`}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>

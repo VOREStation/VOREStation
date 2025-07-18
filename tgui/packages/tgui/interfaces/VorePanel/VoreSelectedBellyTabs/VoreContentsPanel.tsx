@@ -116,7 +116,7 @@ export const VoreContentsPanel = (props: {
                 }
               >
                 <Image
-                  src={'data:image/jpeg;base64, ' + thing.icon}
+                  src={`data:image/jpeg;base64,${thing.icon}`}
                   width="64px"
                   height="64px"
                   style={{

@@ -2,7 +2,7 @@
  * VOREStation global lists
 */
 
-var/global/list/hair_accesories_list= list()// Stores /datum/sprite_accessory/hair_accessory indexed by type
+GLOBAL_LIST_EMPTY(hair_accesories_list) // Stores /datum/sprite_accessory/hair_accessory indexed by type
 GLOBAL_LIST_EMPTY(negative_traits)	// Negative custom species traits, indexed by path
 GLOBAL_LIST_EMPTY(neutral_traits)		// Neutral custom species traits, indexed by path
 GLOBAL_LIST_EMPTY(positive_traits)	// Positive custom species traits, indexed by path
@@ -11,11 +11,16 @@ GLOBAL_LIST_EMPTY(everyone_traits_neutral)	// Neutral traits available to all sp
 GLOBAL_LIST_EMPTY(everyone_traits_negative)	// Neutral traits available to all species, indexed by path
 GLOBAL_LIST_EMPTY(traits_costs)		// Just path = cost list, saves time in char setup
 GLOBAL_LIST_EMPTY(all_traits)			// All of 'em at once (same instances)
-var/global/list/active_ghost_pods = list()
 
+GLOBAL_LIST_EMPTY(active_ghost_pods) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_gatewaystation) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_plainspath) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_fueldepot) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_tyrvillage) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_thedark) //NYI - Used downstream
 //Global vars for making the overmap_renamer subsystem.
 //Collects all instances by reference of visitable overmap objects of /obj/effect/overmap/visitable like the debris field.
-var/global/list/visitable_overmap_object_instances = list()
+GLOBAL_LIST_EMPTY(visitable_overmap_object_instances)
 
 GLOBAL_LIST_INIT(sensorpreflist, list("Off", "Binary", "Vitals", "Tracking", "No Preference"))
 
@@ -41,7 +46,7 @@ GLOBAL_LIST_INIT(vantag_choices_list, list(
 		VANTAG_KILL		=	"Be Killed"))
 
 //Blacklist to exclude items from object ingestion. Digestion blacklist located in digest_act_vr.dm
-var/global/list/item_vore_blacklist = list(
+GLOBAL_LIST_INIT(item_vore_blacklist, list(
 		/obj/item/hand_tele,
 		/obj/item/card/id/gold/captain/spare,
 		/obj/item/gun,
@@ -50,7 +55,7 @@ var/global/list/item_vore_blacklist = list(
 		/obj/item/areaeditor/blueprints,
 		/obj/item/clothing/head/helmet/space,
 		/obj/item/disk/nuclear,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz)
+		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz))
 
 //Classic Vore sounds
 GLOBAL_LIST_INIT(classic_vore_sounds, list(
@@ -155,7 +160,7 @@ GLOBAL_LIST_INIT(global_vore_egg_types, list(
 	"Spotted Pink"
 	))
 
-var/global/list/tf_vore_egg_types = list(
+GLOBAL_LIST_INIT(tf_vore_egg_types, list(
 	"Unathi" 		= /obj/item/storage/vore_egg/unathi,
 	"Tajara" 		= /obj/item/storage/vore_egg/tajaran,
 	"Akula" 		= /obj/item/storage/vore_egg/shark,
@@ -188,9 +193,9 @@ var/global/list/tf_vore_egg_types = list(
 	"Purple"		= /obj/item/storage/vore_egg/purple,
 	"Red"			= /obj/item/storage/vore_egg/red,
 	"Rainbow"		= /obj/item/storage/vore_egg/rainbow,
-	"Spotted Pink"	= /obj/item/storage/vore_egg/pinkspots)
+	"Spotted Pink"	= /obj/item/storage/vore_egg/pinkspots))
 
-var/global/list/edible_trash = list(/obj/item/broken_device,
+GLOBAL_LIST_INIT(edible_trash, list(/obj/item/broken_device,
 				/obj/item/clothing/accessory/collar,
 				/obj/item/communicator,
 				/obj/item/clothing/mask,
@@ -248,7 +253,7 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/roulette_ball,
 				/obj/item/pizzabox,
 				/obj/item/card/id
-				)
+				))
 
 GLOBAL_LIST_INIT(contamination_flavors, list(
 				"Generic" = GLOB.contamination_flavors_generic,
@@ -536,7 +541,7 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 	paths = subtypesof(/datum/sprite_accessory/hair_accessory)
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair_accessory/instance = new path()
-		hair_accesories_list[path] = instance
+		GLOB.hair_accesories_list[path] = instance
 
 	// Custom species traits
 	paths = typesof(/datum/trait) - /datum/trait - /datum/trait/negative - /datum/trait/neutral - /datum/trait/positive
@@ -595,7 +600,7 @@ GLOBAL_LIST_EMPTY(weavable_structures)
 GLOBAL_LIST_EMPTY(weavable_items)
 
 
-var/global/list/xenobio_metal_materials_normal = list(
+GLOBAL_LIST_INIT(xenobio_metal_materials_normal, list(
 										/obj/item/stack/material/steel = 20,
 										/obj/item/stack/material/glass = 15,
 										/obj/item/stack/material/plastic = 12,
@@ -609,9 +614,9 @@ var/global/list/xenobio_metal_materials_normal = list(
 										/obj/item/stack/material/copper = 4,
 										/obj/item/stack/material/tin = 4,
 										/obj/item/stack/material/bronze = 4,
-										/obj/item/stack/material/aluminium = 4)
+										/obj/item/stack/material/aluminium = 4))
 
-var/global/list/xenobio_metal_materials_adv = list(
+GLOBAL_LIST_INIT(xenobio_metal_materials_adv, list(
 										/obj/item/stack/material/glass/reinforced = 15,
 										/obj/item/stack/material/marble = 10,
 										/obj/item/stack/material/plasteel = 10,
@@ -626,9 +631,9 @@ var/global/list/xenobio_metal_materials_adv = list(
 										/obj/item/stack/material/durasteel = 2,
 										/obj/item/stack/material/painite = 1,
 										/obj/item/stack/material/void_opal = 1,
-										/obj/item/stack/material/quartz = 1)
+										/obj/item/stack/material/quartz = 1))
 
-var/global/list/xenobio_metal_materials_weird = list(
+GLOBAL_LIST_INIT(xenobio_metal_materials_weird, list(
 										/obj/item/stack/material/cloth = 10,
 										/obj/item/stack/material/leather = 5,
 										/obj/item/stack/material/fiber = 5,
@@ -637,29 +642,29 @@ var/global/list/xenobio_metal_materials_weird = list(
 										/obj/item/stack/material/snowbrick = 3,
 										/obj/item/stack/material/flint = 3,
 										/obj/item/stack/material/stick = 3,
-										/obj/item/stack/material/chitin = 1)
+										/obj/item/stack/material/chitin = 1))
 
-var/global/list/xenobio_silver_materials_basic = list(
+GLOBAL_LIST_INIT(xenobio_silver_materials_basic, list(
 										/obj/item/stack/material/silver = 10,
 										/obj/item/stack/material/uranium = 8,
 										/obj/item/stack/material/gold = 6,
 										/obj/item/stack/material/titanium = 4,
-										/obj/item/stack/material/phoron = 1)
+										/obj/item/stack/material/phoron = 1))
 
-var/global/list/xenobio_silver_materials_adv = list(
+GLOBAL_LIST_INIT(xenobio_silver_materials_adv, list(
 										/obj/item/stack/material/deuterium = 5,
 										/obj/item/stack/material/tritium = 5,
 										/obj/item/stack/material/osmium = 5,
 										/obj/item/stack/material/mhydrogen = 3,
 										/obj/item/stack/material/diamond = 2,
-										/obj/item/stack/material/verdantium = 1)
+										/obj/item/stack/material/verdantium = 1))
 
-var/global/list/xenobio_silver_materials_special = list(
+GLOBAL_LIST_INIT(xenobio_silver_materials_special, list(
 										/obj/item/stack/material/valhollide = 1,
 										/obj/item/stack/material/morphium = 1,
-										/obj/item/stack/material/supermatter = 1)
+										/obj/item/stack/material/supermatter = 1))
 
-var/global/list/xenobio_gold_mobs_hostile = list(
+GLOBAL_LIST_INIT(xenobio_gold_mobs_hostile, list(
 										/mob/living/simple_mob/vore/alienanimals/space_jellyfish,
 										/mob/living/simple_mob/vore/alienanimals/skeleton,
 										/mob/living/simple_mob/vore/alienanimals/space_ghost,
@@ -721,9 +726,9 @@ var/global/list/xenobio_gold_mobs_hostile = list(
 										/mob/living/simple_mob/vore/sect_queen,
 										/mob/living/simple_mob/vore/weretiger,
 										/mob/living/simple_mob/vore/wolf,
-										/mob/living/simple_mob/vore/xeno_defanged)
+										/mob/living/simple_mob/vore/xeno_defanged))
 
-var/global/list/xenobio_gold_mobs_bosses = list(
+GLOBAL_LIST_INIT(xenobio_gold_mobs_bosses, list(
 										/mob/living/simple_mob/animal/giant_spider/broodmother,
 										/mob/living/simple_mob/vore/leopardmander,
 										/mob/living/simple_mob/vore/leopardmander/blue,
@@ -731,9 +736,9 @@ var/global/list/xenobio_gold_mobs_bosses = list(
 										/mob/living/simple_mob/vore/greatwolf,
 										/mob/living/simple_mob/vore/greatwolf/black,
 										/mob/living/simple_mob/vore/greatwolf/grey,
-										/mob/living/simple_mob/vore/bigdragon)
+										/mob/living/simple_mob/vore/bigdragon))
 
-var/global/list/xenobio_gold_mobs_safe = list(
+GLOBAL_LIST_INIT(xenobio_gold_mobs_safe, list(
 										/mob/living/simple_mob/vore/alienanimals/dustjumper,
 										/mob/living/simple_mob/animal/passive/chicken,
 										/mob/living/simple_mob/animal/passive/cow,
@@ -774,9 +779,9 @@ var/global/list/xenobio_gold_mobs_safe = list(
 										/mob/living/simple_mob/vore/redpanda,
 										/mob/living/simple_mob/vore/sheep,
 										/mob/living/simple_mob/vore/squirrel,
-										/mob/living/simple_mob/vore/solargrub)
+										/mob/living/simple_mob/vore/solargrub))
 
-var/global/list/xenobio_gold_mobs_birds = list(/mob/living/simple_mob/animal/passive/bird/black_bird,
+GLOBAL_LIST_INIT(xenobio_gold_mobs_birds, list(/mob/living/simple_mob/animal/passive/bird/black_bird,
 										/mob/living/simple_mob/animal/passive/bird/azure_tit,
 										/mob/living/simple_mob/animal/passive/bird/european_robin,
 										/mob/living/simple_mob/animal/passive/bird/goldcrest,
@@ -796,9 +801,9 @@ var/global/list/xenobio_gold_mobs_birds = list(/mob/living/simple_mob/animal/pas
 										/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/grey,
 										/mob/living/simple_mob/animal/passive/bird/parrot/sulphur_cockatoo,
 										/mob/living/simple_mob/animal/passive/bird/parrot/white_cockatoo,
-										/mob/living/simple_mob/animal/passive/bird/parrot/pink_cockatoo)			//There's too dang many
+										/mob/living/simple_mob/animal/passive/bird/parrot/pink_cockatoo))			//There's too dang many
 
-var/global/list/xenobio_cerulean_potions = list(
+GLOBAL_LIST_INIT(xenobio_cerulean_potions, list(
 										/obj/item/slimepotion/enhancer,
 										/obj/item/slimepotion/stabilizer,
 										/obj/item/slimepotion/mutator,
@@ -816,9 +821,9 @@ var/global/list/xenobio_cerulean_potions = list(
 										/obj/item/slimepotion/reinvigoration,
 										/obj/item/slimepotion/mimic,
 										/obj/item/slimepotion/sapience,
-										/obj/item/slimepotion/obedience)
+										/obj/item/slimepotion/obedience))
 
-var/global/list/xenobio_rainbow_extracts = list(
+GLOBAL_LIST_INIT(xenobio_rainbow_extracts, list(
 										/obj/item/slime_extract/grey = 2,
 										/obj/item/slime_extract/metal = 3,
 										/obj/item/slime_extract/blue = 3,
@@ -840,13 +845,13 @@ var/global/list/xenobio_rainbow_extracts = list(
 										/obj/item/slime_extract/ruby = 3,
 										/obj/item/slime_extract/emerald = 3,
 										/obj/item/slime_extract/light_pink = 1,
-										/obj/item/slime_extract/rainbow = 1)
+										/obj/item/slime_extract/rainbow = 1))
 
 
 //// Wildlife lists
 //Listed by-type. Under each type are lists of lists that contain 'groupings' of wildlife. Sorted from 1 to 5 by threat level.
 
-var/global/list/event_wildlife_aquatic = list(
+GLOBAL_LIST_INIT(event_wildlife_aquatic, list(
 										list(
 												list(/mob/living/simple_mob/animal/passive/fish/koi = 1,
 														/mob/living/simple_mob/animal/passive/fish/pike = 2,
@@ -875,9 +880,9 @@ var/global/list/event_wildlife_aquatic = list(
 										list(
 												list(/mob/living/simple_mob/animal/sif/hooligan_crab = 1)
 											)
-										)
+										))
 
-var/global/list/event_wildlife_roaming = list(
+GLOBAL_LIST_INIT(event_wildlife_roaming, list(
 										list(
 												list(/mob/living/simple_mob/animal/passive/mouse/jerboa = 1,
 														/mob/living/simple_mob/animal/passive/mouse/black = 2,
@@ -931,7 +936,7 @@ var/global/list/event_wildlife_roaming = list(
 												list(/mob/living/simple_mob/vore/aggressive/giant_snake = 1),
 												list(/mob/living/simple_mob/vore/aggressive/corrupthound = 1)
 											)
-										)
+										))
 
 
 GLOBAL_LIST_INIT(selectable_speech_bubbles, list(
@@ -984,15 +989,15 @@ GLOBAL_LIST_INIT(selectable_speech_bubbles, list(
 // These lists are, obviously, unfinished.
 
 // ALLOWING BUILDING IN AN AREA:
-// If you want someone to be able to build a new area in a place, add the area to the 'BUILDABLE_AREA_TYPES' and 'blacklisted_areas'
-// BUILDABLE_AREA_TYPES means they can build an area there. The blacklisted_areas means they CAN NOT EXPAND that area. No making space bigger!
+// If you want someone to be able to build a new area in a place, add the area to the 'GLOB.BUILDABLE_AREA_TYPES' and 'GLOB.blacklisted_areas'
+// GLOB.BUILDABLE_AREA_TYPES means they can build an area there. The GLOB.blacklisted_areas means they CAN NOT EXPAND that area. No making space bigger!
 
 // DISALLOW BUILDING/AREA MANIPULATION IN AN AREA (OR A TURF TYPE):
 // Likewise, if you want someone to never ever EVER be able to do anything area generation/expansion related to an area
-// Then add it to SPECIALS and area_or_turf_fail_types
+// Then add it to GLOB.SPECIALS and GLOB.area_or_turf_fail_types
 
 // If you want someone to
-var/global/list/BUILDABLE_AREA_TYPES = list(
+GLOBAL_LIST_INIT(BUILDABLE_AREA_TYPES, list(
 	/area/space,
 	/area/mine,
 //	/area/surface/outside, 	//SC
@@ -1005,9 +1010,9 @@ var/global/list/BUILDABLE_AREA_TYPES = list(
 	/area/offmap/aerostat/surface,
 	/area/tether_away/beach,
 	/area/tether_away/cave,
-)
+))
 
-var/static/list/blacklisted_areas = typecacheof(list(
+GLOBAL_LIST_INIT(blacklisted_areas, typecacheof(list(
 	/area/space,
 	/area/mine,
 //	/area/surface/outside,	//SC
@@ -1022,9 +1027,9 @@ var/static/list/blacklisted_areas = typecacheof(list(
 	/area/offmap/aerostat/surface,
 	/area/tether_away/beach,
 	/area/tether_away/cave
-	))
+	)))
 
-var/global/list/SPECIALS = list(
+GLOBAL_LIST_INIT(SPECIALS, list(
 	/turf/space,
 	/area/shuttle,
 	/area/admin,
@@ -1044,9 +1049,9 @@ var/global/list/SPECIALS = list(
 	/area/submap/casino_event,
 	/area/vr
 	// /area/derelict //commented out, all hail derelict-rebuilders!
-)
+))
 
-var/global/list/area_or_turf_fail_types = typecacheof(list(
+GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/turf/space,
 	/area/shuttle,
 	/area/admin,
@@ -1065,4 +1070,173 @@ var/global/list/area_or_turf_fail_types = typecacheof(list(
 	/area/submap/virgo2,
 	/area/submap/event,
 	/area/submap/casino_event
-	))
+	)))
+
+//GRIPPERS!!!
+#define BASIC_GRIPPER \
+	/obj/item/cell, \
+	/obj/item/airlock_electronics, \
+	/obj/item/tracker_electronics, \
+	/obj/item/module/power_control, \
+	/obj/item/bluespace_crystal, \
+	/obj/item/stock_parts, \
+	/obj/item/frame, \
+	/obj/item/camera_assembly, \
+	/obj/item/tank, \
+	/obj/item/circuitboard, \
+	/obj/item/smes_coil, \
+	/obj/item/fuel_assembly, \
+	/obj/item/stack/tile/floor
+
+#define OMNI_GRIPPER \
+	/obj/item
+
+#define MINER_GRIPPER \
+	/obj/item/cell, \
+	/obj/item/stock_parts
+
+#define SECURITY_GRIPPER \
+	/obj/item/paper, \
+	/obj/item/paper_bundle, \
+	/obj/item/pen, \
+	/obj/item/sample, \
+	/obj/item/forensics/sample_kit, \
+	/obj/item/taperecorder, \
+	/obj/item/rectape, \
+	/obj/item/uv_light
+
+#define PAPERWORK_GRIPPER \
+	/obj/item/clipboard, \
+	/obj/item/paper, \
+	/obj/item/paper_bundle, \
+	/obj/item/card/id, \
+	/obj/item/book, \
+	/obj/item/newspaper
+
+#define MEDICAL_GRIPPER \
+	/obj/item/reagent_containers/glass, \
+	/obj/item/storage/pill_bottle, \
+	/obj/item/reagent_containers/pill, \
+	/obj/item/reagent_containers/blood, \
+	/obj/item/nif, \
+	/obj/item/stack/material/phoron, \
+	/obj/item/tank/anesthetic, \
+	/obj/item/disk/body_record
+
+#define RESEARCH_GRIPPER \
+	/obj/item/cell, \
+	/obj/item/stock_parts, \
+	/obj/item/mmi, \
+	/obj/item/robot_parts, \
+	/obj/item/borg/upgrade, \
+	/obj/item/flash, \
+	/obj/item/disk, \
+	/obj/item/circuitboard, \
+	/obj/item/reagent_containers/glass, \
+	/obj/item/assembly/prox_sensor, \
+	/obj/item/healthanalyzer, \
+	/obj/item/slime_cube, \
+	/obj/item/slime_crystal, \
+	/obj/item/disposable_teleporter/slime, \
+	/obj/item/slimepotion, \
+	/obj/item/slime_extract, \
+	/obj/item/reagent_containers/food/snacks/monkeycube
+
+#define CIRCUIT_GRIPPER \
+	/obj/item/cell/device, \
+	/obj/item/electronic_assembly, \
+	/obj/item/assembly/electronic_assembly, \
+	/obj/item/clothing/under/circuitry, \
+	/obj/item/clothing/gloves/circuitry, \
+	/obj/item/clothing/glasses/circuitry, \
+	/obj/item/clothing/shoes/circuitry, \
+	/obj/item/clothing/head/circuitry, \
+	/obj/item/clothing/ears/circuitry, \
+	/obj/item/clothing/suit/circuitry, \
+	/obj/item/implant/integrated_circuit, \
+	/obj/item/integrated_circuit
+
+#define SERVICE_GRIPPER \
+	/obj/item/reagent_containers/glass, \
+	/obj/item/reagent_containers/food, \
+	/obj/item/seeds, \
+	/obj/item/grown, \
+	/obj/item/trash, \
+	/obj/item/reagent_containers/cooking_container
+
+#define GRAVEYARD_GRIPPER \
+	/obj/item/seeds, \
+	/obj/item/grown, \
+	/obj/item/material/gravemarker
+
+#define SCENE_GRIPPER \
+	/obj/item/capture_crystal, \
+	/obj/item/clothing, \
+	/obj/item/implanter, \
+	/obj/item/disk/nifsoft/compliance, \
+	/obj/item/handcuffs, \
+	/obj/item/toy, \
+	/obj/item/petrifier, \
+	/obj/item/dice, \
+	/obj/item/casino_platinum_chip, \
+	/obj/item/spacecasinocash
+
+#define ORGAN_GRIPPER \
+	/obj/item/organ, \
+	/obj/item/nif
+
+#define ROBOTICS_ORGAN_GRIPPER \
+	/obj/item/organ/external, \
+	/obj/item/organ/internal/brain, \
+	/obj/item/organ/internal/cell, \
+	/obj/item/organ/internal/eyes/robot, \
+	/obj/item/nif
+
+#define EXOSUIT_GRIPPER \
+	/obj/item/mecha_parts/part, \
+	/obj/item/mecha_parts/micro/part, \
+	/obj/item/mecha_parts/mecha_equipment, \
+	/obj/item/mecha_parts/mecha_tracking, \
+	/obj/item/mecha_parts/component
+
+#define SHEET_GRIPPER \
+	/obj/item/stack/material
+
+GLOBAL_LIST_INIT(all_borg_multitool_options, list(
+	/obj/item/tool/screwdriver/cyborg,
+	/obj/item/tool/wrench/cyborg,
+	/obj/item/tool/crowbar/cyborg,
+	/obj/item/tool/wirecutters/cyborg,
+	/obj/item/multitool/cyborg,
+	/obj/item/weldingtool/electric/mounted/cyborg,
+	/obj/item/surgical/retractor/cyborg,
+	/obj/item/surgical/hemostat/cyborg,
+	/obj/item/surgical/cautery/cyborg,
+	/obj/item/surgical/surgicaldrill/cyborg,
+	/obj/item/surgical/scalpel/cyborg,
+	/obj/item/surgical/circular_saw/cyborg,
+	/obj/item/surgical/bonegel/cyborg,
+	/obj/item/surgical/FixOVein/cyborg,
+	/obj/item/surgical/bonesetter/cyborg,
+	/obj/item/surgical/bioregen/cyborg,
+	/obj/item/autopsy_scanner,
+	/obj/item/material/minihoe/cyborg,
+	/obj/item/material/knife/machete/hatchet/cyborg,
+	/obj/item/analyzer/plant_analyzer/cyborg,
+	/obj/item/material/knife/cyborg,
+	/obj/item/robot_harvester,
+	/obj/item/material/kitchen/rollingpin/cyborg,
+	/obj/item/reagent_containers/spray,
+))
+
+GLOBAL_LIST_INIT(material_synth_list, list(
+								METAL_SYNTH = /datum/matter_synth/metal,
+								PLASTEEL_SYNTH = /datum/matter_synth/plasteel,
+								GLASS_SYNTH = /datum/matter_synth/glass,
+								WOOD_SYNTH = /datum/matter_synth/wood,
+								PLASTIC_SYNTH = /datum/matter_synth/plastic,
+								WIRE_SYNTH = /datum/matter_synth/wire,
+								CLOTH_SYNTH = /datum/matter_synth/cloth
+							))
+
+GLOBAL_LIST_EMPTY(virusDB) // Stores discovered viruses

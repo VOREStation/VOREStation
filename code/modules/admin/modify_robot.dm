@@ -1,4 +1,4 @@
-/client/proc/modify_robot(var/mob/living/silicon/robot/target in silicon_mob_list)
+/client/proc/modify_robot(var/mob/living/silicon/robot/target in GLOB.silicon_mob_list)
 	set name = "Modify Robot"
 	set desc = "Allows to add or remove modules to/from robots."
 	set category = "Admin.Silicon"
@@ -20,6 +20,7 @@
 	var/supplied_law = "SuppliedLaw"
 	var/supplied_law_position = MIN_SUPPLIED_LAW_NUMBER
 	var/list/datum/ai_laws/law_list
+	var/obj/item/robotic_multibelt/multibelt_holder //Currently selected multibelt.
 
 /datum/eventkit/modify_robot/New()
 	. = ..()
@@ -62,7 +63,7 @@
 		.["target"]["crisis_override"] = target.crisis_override
 		.["target"]["active_restrictions"] = target.restrict_modules_to
 		var/list/possible_restrictions = list()
-		for(var/entry in robot_modules)
+		for(var/entry in GLOB.robot_modules)
 			if(!target.restrict_modules_to.Find(entry))
 				possible_restrictions += entry
 		.["target"]["possible_restrictions"] = possible_restrictions
@@ -73,7 +74,7 @@
 			.["target"]["sprite_size"] = spritesheet.icon_size_id(.["target"]["sprite"] + "S")
 			.["target"]["modules"] = get_target_items(user)
 			var/list/module_options = list()
-			for(var/module in robot_modules)
+			for(var/module in GLOB.robot_modules)
 				module_options += module
 			.["model_options"] = module_options
 			// Data for the upgrade options
@@ -81,6 +82,10 @@
 			var/obj/item/gun/energy/kinetic_accelerator/kin = locate() in target.module.modules
 			if(kin)
 				.["target"]["pka"] += get_pka(kin)
+			for(var/obj/item/robotic_multibelt/multibelt in target.module.modules)
+				.["target"]["multibelt"] += list(get_mult_belt(multibelt))
+
+
 			// Radio section
 			var/list/radio_channels = list()
 			for(var/channel in target.radio.channels)
@@ -117,7 +122,7 @@
 			if(source)
 				.["source"] += get_module_source(user, spritesheet)
 	var/list/all_robots = list()
-	for(var/mob/living/silicon/robot/R in silicon_mob_list)
+	for(var/mob/living/silicon/robot/R in GLOB.silicon_mob_list)
 		if(!R.loc)
 			continue
 		all_robots += list(list("displayText" = "[R]", "value" = "\ref[R]"))
@@ -155,7 +160,7 @@
 
 
 /datum/eventkit/modify_robot/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/eventkit/modify_robot/tgui_act(action, params, datum/tgui/ui)
 	. = ..()
@@ -185,7 +190,7 @@
 		if("select_source")
 			if(source)
 				qdel(source)
-			var/module_type = robot_modules[params["new_source"]]
+			var/module_type = GLOB.robot_modules[params["new_source"]]
 			if(ispath(module_type, /obj/item/robot_module/robot/syndicate))
 				source = new /mob/living/silicon/robot/syndicate(null)
 			else
@@ -277,7 +282,7 @@
 				return FALSE
 			var/mod_type = source.modtype
 			qdel(source.module)
-			var/module_type = robot_modules[target.modtype]
+			var/module_type = GLOB.robot_modules[target.modtype]
 			source.modtype = target.modtype
 			new module_type(source)
 			source.sprite_datum = target.sprite_datum
@@ -288,7 +293,7 @@
 			target.hud_used?.update_robot_modules_display(TRUE)
 			qdel(target.module)
 			target.modtype = mod_type
-			module_type = robot_modules[mod_type]
+			module_type = GLOB.robot_modules[mod_type]
 			target.transform_with_anim()
 			new module_type(target)
 			target.hands.icon_state = target.get_hud_module_icon()
@@ -335,6 +340,39 @@
 			var/obj/item/rem_kit = locate(params["modkit"])
 			kin.modkits.Remove(rem_kit)
 			qdel(rem_kit)
+			return TRUE
+		if("select_multibelt")
+			multibelt_holder = locate(params["multibelt"])
+			return TRUE
+		if("install_tool")
+			if(!istype(multibelt_holder))
+				return FALSE
+			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
+				target.add_new_material(text2path(params["tool"]))
+				return TRUE
+			var/new_tool = text2path(params["tool"])
+			if(new_tool in GLOB.all_borg_multitool_options)
+				multibelt_holder.cyborg_integrated_tools += new_tool //Make sure you don't add items directly to it, or you can't ever remove them.
+				multibelt_holder.generate_tools()
+			return TRUE
+
+		if("remove_tool")
+			if(!istype(multibelt_holder))
+				return FALSE
+			if(istype(multibelt_holder, /obj/item/robotic_multibelt/materials))
+				var/datum/matter_synth/synth = locate(params["tool"])
+				target.module.synths -= synth
+				qdel(synth)
+				target.update_material_multibelts()
+				return TRUE
+			var/obj/item/rem_tool = locate(params["tool"])
+			if(multibelt_holder.selected_item == rem_tool)
+				multibelt_holder.dropped() //Reset to original icon.
+			multibelt_holder.contents -= rem_tool
+			multibelt_holder.cyborg_integrated_tools -= rem_tool.type
+			multibelt_holder.integrated_tools_by_name -= rem_tool.name
+			multibelt_holder.integrated_tool_images -= rem_tool.name
+			qdel(rem_tool)
 			return TRUE
 		if("add_channel")
 			var/selected_radio_channel = params["channel"]
@@ -693,6 +731,33 @@
 	pka["capacity"] = kin.get_remaining_mod_capacity()
 	pka["max_capacity"] = kin.max_mod_capacity
 	return pka
+
+/datum/eventkit/modify_robot/proc/get_mult_belt(var/obj/item/robotic_multibelt/mult_belt)
+	var/list/multi_belt_list = list()
+	multi_belt_list["name"] = mult_belt.name
+	multi_belt_list["ref"] = REF(mult_belt)
+	var/list/integrated_tools = list()
+	var/list/tools = list()
+	if(istype(mult_belt, /obj/item/robotic_multibelt/materials))
+		for(var/datum/matter_synth/synth in target.module.synths)
+			integrated_tools += list(list("name" = synth.name, "ref" = "\ref[synth]"))
+		for(var/tool in GLOB.material_synth_list)
+			var/material_path = GLOB.material_synth_list[tool]
+			if(!target.can_install_synth(material_path)) //Don't add it to the list if we already have it!
+				continue
+			tools += list(list("name" = tool, "path" = material_path))
+	else
+		for(var/obj/tool in mult_belt.contents)
+			integrated_tools += list(list("name" = tool.name, "ref" = "\ref[tool]"))
+		for(var/tool in GLOB.all_borg_multitool_options)
+			if(tool in mult_belt.cyborg_integrated_tools) //Don't add it to the list if we already have it!
+				continue
+			var/obj/item/tool_to_add = tool
+			tools += list(list("name" = initial(tool_to_add.name), "path" = tool_to_add))
+	multi_belt_list["integrated_tools"] = integrated_tools
+	multi_belt_list["tools"] = tools
+	return multi_belt_list
+
 
 /datum/eventkit/modify_robot/proc/get_cells()
 	var/list/cell_options = list()

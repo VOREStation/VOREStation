@@ -16,7 +16,13 @@ GLOBAL_LIST_INIT(radiation_levels, list(
 ))
 
 GLOBAL_LIST_INIT(traits_by_type, list(
+	/atom = list(
+		"TRAIT_ALT_CLICK_BLOCKER" = TRAIT_ALT_CLICK_BLOCKER,
+	),
 	/mob = list(
 		"TRAIT_THINKING_IN_CHARACTER" = TRAIT_THINKING_IN_CHARACTER,
+	),
+	/obj = list(
+		"TRAIT_CLIMBABLE" = TRAIT_CLIMBABLE,
 	)
 ))

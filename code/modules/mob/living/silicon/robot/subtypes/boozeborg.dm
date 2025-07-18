@@ -49,14 +49,14 @@ What Borgs are available is sadly handled in the above file in the proc
 /obj/item/robot_module/robot/booze/create_equipment(mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/gripper/service(src)
-	//src.modules += new /obj/item/reagent_containers/glass/bucket(src)
+	//src.modules += new /obj/item/reagent_containers/glass/bucket/cyborg(src)
 	//src.modules += new /obj/item/material/minihoe(src)
 	//src.modules += new /obj/item/analyzer/plant_analyzer(src)
 	//src.modules += new /obj/item/storage/bag/plants(src)
 	//src.modules += new /obj/item/robot_harvester(src)
 	src.modules += new /obj/item/material/knife(src)
 	src.modules += new /obj/item/material/kitchen/rollingpin(src)
-	src.modules += new /obj/item/multitool(src) //to freeze trays
+	src.modules += new /obj/item/multitool/cyborg(src) //to freeze trays
 	src.modules += new /obj/item/dogborg/jaws/small(src)
 	src.modules += new /obj/item/dogborg/boop_module(src)
 	src.modules += new /obj/item/dogborg/sleeper/compactor/brewer(src)
@@ -148,7 +148,7 @@ What Borgs are available is sadly handled in the above file in the proc
 	options["Grape Soda"] = "The Grapist"
 	options["Demon's Blood"] = "Vampire's Aid"
 	options["Slav Vodka"] = "Vodka Komrade"
-	var/choice = input(M,"Choose your drink!") in options
+	var/choice = tgui_input_list(M,"Choose your drink!", "Choose Drink", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		icontype = options[choice]
 		var/active_sound = 'sound/effects/bubbles.ogg'
