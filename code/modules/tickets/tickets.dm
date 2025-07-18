@@ -413,7 +413,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	switch(level)
 		if(0)
 			for (var/client/C in GLOB.admins)
-				var/chat_msg = span_mentor_channel(span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(" (Mentor): [LinkedReplyName(ref_src)] [FullMonty(ref_src, check_rights_for(C, (R_ADMIN|R_SERVER|R_MOD)))]:") + msg))
+				var/chat_msg = span_mentor_channel(span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(" (Mentor): [LinkedReplyName(ref_src)] [FullMonty(ref_src, check_rights_for(C, (R_ADMIN|R_SERVER|R_MOD)))]: ") + msg))
 				if (C.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
 					C << 'sound/effects/mentorhelp.mp3'
 				to_chat(C, chat_msg)
