@@ -255,7 +255,7 @@ SUBSYSTEM_DEF(explosions)
 		resolving_explosions["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,max_starting)
 
 /proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, shaped)
-	if(SSticker.current_state == GAME_STATE_INIT)
+	if(SSticker.PreRoundStart())
 		return
 
 	// Lets assume recursive prey has happened...
