@@ -61,8 +61,8 @@ SUBSYSTEM_DEF(machines)
 	if(SSticker.current_state == GAME_STATE_INIT)
 		return
 	if(defering_powernets)
+		defering_powernets = FALSE
 		makepowernets()
-	defering_powernets = FALSE
 
 /datum/controller/subsystem/machines/proc/powernet_is_defered()
 	return defering_powernets
