@@ -5,6 +5,10 @@ SUBSYSTEM_DEF(aifast)
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
+	dependencies = (
+		/datum/controller/subsystem/ai
+	)
+
 	var/list/processing = list()
 	var/list/currentrun = list()
 

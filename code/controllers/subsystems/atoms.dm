@@ -3,7 +3,6 @@ SUBSYSTEM_DEF(atoms)
 	dependencies = list(
 		/datum/controller/subsystem/garbage,
 		/datum/controller/subsystem/mapping,
-		/datum/controller/subsystem/plants,
 		/datum/controller/subsystem/planets,
 		/datum/controller/subsystem/transcore,
 		/datum/controller/subsystem/chemistry
