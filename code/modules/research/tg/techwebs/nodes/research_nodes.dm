@@ -37,6 +37,7 @@
 	description = "With a heightened grasp of bluespace dynamics, sophisticated applications and technologies can be devised using data from bluespace crystal analyses."
 	prereq_ids = list(TECHWEB_NODE_BLUESPACE_THEORY)
 	design_ids = list(
+		"ore_silo",
 		"ore_holding",
 		"sheet_holding",
 		"bag_holding",

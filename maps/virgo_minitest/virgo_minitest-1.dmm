@@ -3571,6 +3571,13 @@
 /obj/machinery/computer/rdconsole_tg,
 /turf/simulated/floor/tiled,
 /area/bridge)
+"iE" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/ore_silo,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -9585,7 +9592,7 @@ aa
 aa
 aa
 fY
-gk
+iE
 gf
 gr
 gf

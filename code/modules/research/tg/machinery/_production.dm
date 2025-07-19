@@ -8,7 +8,7 @@
 	/// The efficiency coefficient. Material costs and print times are multiplied by this number;
 	var/efficiency_coeff = 1
 	/// The material storage used by this fabricator.
-	var/datum/component/material_container/materials
+	var/datum/component/remote_materials/materials
 	/// Which departments are allowed to process this design
 	var/allowed_department_flags = ALL
 	/// Icon state when production has started
@@ -29,11 +29,12 @@
 /obj/machinery/rnd/production/Initialize(mapload)
 	print_sound = new(list(src), FALSE)
 	materials = AddComponent(
-		/datum/component/material_container, \
-		subtypesof(/datum/material), \
-		0, \
-		MATCONTAINER_EXAMINE, \
-		_after_insert = CALLBACK(src, PROC_REF(AfterMaterialInsert)))
+		/datum/component/remote_materials, \
+		mapload, \
+		mat_container_signals = list( \
+			COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/rnd/production, local_material_insert)
+		) \
+	)
 
 	cached_designs = list()
 
@@ -45,7 +46,6 @@
 
 /obj/machinery/rnd/production/Destroy()
 	QDEL_NULL(print_sound)
-	materials?.retrieve_all(get_turf(src)) // TODO: remove when ore silos
 	materials = null
 	cached_designs = null
 	return ..()
@@ -130,12 +130,21 @@
  * * list/mats_consumed - list of mats consumed
  * * amount_inserted - amount of material actually processed
  */
-/obj/machinery/rnd/production/proc/process_item(obj/item/item_inserted, id_inserted, amount_inserted)
+/obj/machinery/rnd/production/proc/process_item(obj/item/item_inserted, list/mats_consumed, amount_inserted)
 	PRIVATE_PROC(TRUE)
 
 	//we use initial(active_power_usage) because higher tier parts will have higher active usage but we have no benifit from it
 	if(use_power_oneoff(ROUND_UP((amount_inserted / (MAX_STACK_SIZE * SHEET_MATERIAL_AMOUNT)) * 0.4 * initial(active_power_usage))))
-		flick_animation(GET_MATERIAL_REF(id_inserted))
+		var/datum/material/highest_mat_ref
+
+		var/highest_mat = 0
+		for(var/datum/material/mat as anything in mats_consumed)
+			var/present_mat = mats_consumed[mat]
+			if(present_mat > highest_mat)
+				highest_mat = present_mat
+				highest_mat_ref = mat
+
+		flick_animation(highest_mat_ref)
 /**
  * Plays an visual animation when materials are inserted
  * Arguments
@@ -153,10 +162,10 @@
 	flick_overlay_view_atom(mutable_appearance('icons/obj/machines/research_vr.dmi', "protolathe_progress"), 1 SECONDS)
 
 ///When materials are instered into local storage
-/obj/machinery/rnd/production/proc/AfterMaterialInsert(obj/item/item_inserted, id_inserted, amount_inserted)
+/obj/machinery/rnd/production/proc/local_material_insert(container, obj/item/item_inserted, last_inserted_id, list/mats_consumed, amount_inserted, atom/context)
 	SIGNAL_HANDLER
 
-	process_item(item_inserted, id_inserted, amount_inserted)
+	process_item(item_inserted, mats_consumed, amount_inserted)
 
 /obj/machinery/rnd/production/RefreshParts()
 	. = ..()
@@ -164,7 +173,7 @@
 	var/total_storage = 0
 	for(var/obj/item/stock_parts/matter_bin/bin in component_parts)
 		total_storage += bin.rating * 37.5 * SHEET_MATERIAL_AMOUNT
-	materials.max_amount = total_storage
+	materials.set_local_size(total_storage)
 
 	efficiency_coeff = compute_efficiency()
 
@@ -251,10 +260,10 @@
 /obj/machinery/rnd/production/tgui_data(mob/user)
 	var/list/data = list()
 
-	data["materials"] = materials.tgui_data()
+	data["materials"] = materials.mat_container.tgui_data()
 	data["onHold"] = FALSE //materials.on_hold()
 	data["busy"] = busy
-	data["materialMaximum"] = materials.max_amount
+	data["materialMaximum"] = materials.local_size
 	data["queue"] = list()
 
 	return data
@@ -283,7 +292,7 @@
 				atom_say("No power to dispense sheets")
 				return
 
-			materials.retrieve_sheets(amount, material)
+			materials.eject_sheets(material, amount)
 			return TRUE
 
 		if("build")
@@ -317,13 +326,10 @@
 			//efficiency for this design, stacks use exact materials
 			var/coefficient = build_efficiency(design.build_path)
 
-			var/list/materials_used = list()
-			for(var/mat_id in design.materials)
-				var/amt = design.materials[mat_id]
-				materials_used[mat_id] = amt * coefficient * print_quantity
-
 			//check for materials
-			if(!materials.has_materials(materials_used))
+			if(!materials.can_use_resource())
+				return
+			if(!materials.mat_container.has_materials(design.materials, coefficient, print_quantity))
 				atom_say("Not enough materials to complete prototype[print_quantity > 1 ? "s" : ""].")
 				return FALSE
 
@@ -384,15 +390,18 @@
 		finalize_build()
 		return
 
+	if(!materials.can_use_resource())
+		atom_say("Unable to continue production, materials on hold.")
+		finalize_build()
+		return
+
 	var/is_stack = ispath(design.build_path, /obj/item/stack)
 	var/list/design_materials = design.materials
-	for(var/mat_id in design_materials)
-		design_materials[mat_id] *= material_cost_coefficient
-	if(!materials.has_materials(design_materials))
+	if(!materials.mat_container.has_materials(design_materials, material_cost_coefficient, is_stack ? items_remaining : 1))
 		atom_say("Unable to continue production, missing materials.")
 		finalize_build()
 		return
-	materials.use_materials(design_materials)
+	materials.use_materials(design_materials, material_cost_coefficient, is_stack ? items_remaining : 1, "built", "[design.name]")
 
 	var/atom/movable/created
 	if(is_stack)

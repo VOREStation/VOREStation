@@ -2876,6 +2876,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/general)
+"afb" = (
+/obj/machinery/ore_silo,
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "afe" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor/tiled,
@@ -45142,7 +45146,7 @@ uqB
 xyX
 wkd
 oyD
-aDz
+afb
 kJz
 xyO
 iEl

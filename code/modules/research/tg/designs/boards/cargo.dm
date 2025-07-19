@@ -36,3 +36,13 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_CARGO
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/ore_silo
+	name = "Ore Silo Board"
+	desc = "The circuit board for an ore silo."
+	id = "ore_silo"
+	build_path = /obj/item/circuitboard/machine/ore_silo
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE

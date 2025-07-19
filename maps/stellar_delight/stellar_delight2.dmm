@@ -15176,12 +15176,12 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Hu" = (
-/obj/structure/table/standard,
 /obj/structure/disposalpipe/tagger{
 	dir = 8;
 	name = "package tagger - Trash";
 	sort_tag = "Trash"
 	},
+/obj/machinery/ore_silo,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/quartermaster/storage)
 "Hv" = (

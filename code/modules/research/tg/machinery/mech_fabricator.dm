@@ -43,7 +43,7 @@
 	var/datum/techweb/stored_research
 
 	/// Reference to a remote material inventory, such as an ore silo.
-	var/datum/component/material_container/rmat
+	var/datum/component/remote_materials/rmat
 
 	/// All designs in the techweb that can be fabricated by this machine, since the last update.
 	var/list/datum/design_techweb/cached_designs
@@ -58,13 +58,13 @@
 	var/drop_direction = SOUTH
 
 /obj/machinery/mecha_part_fabricator_tg/Initialize(mapload)
-	print_sound = new(list(src),  FALSE)
-	rmat = AddComponent(\
-		/datum/component/material_container,\
-		subtypesof(/datum/material),\
-		0,\
-		MATCONTAINER_EXAMINE,\
-		_after_insert = CALLBACK(src, PROC_REF(AfterMaterialInsert)))
+	print_sound = new(list(src), FALSE)
+	rmat = AddComponent( \
+		/datum/component/remote_materials, \
+		mapload, \
+		mat_container_signals = list( \
+			COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/mecha_part_fabricator_tg, AfterMaterialInsert) \
+		))
 	cached_designs = list()
 	illegal_local_designs = list()
 	. = ..()
@@ -74,7 +74,6 @@
 
 /obj/machinery/mecha_part_fabricator_tg/Destroy()
 	QDEL_NULL(print_sound)
-	rmat?.retrieve_all(get_turf(src)) // TODO: remove when ore silos
 	rmat = null
 	return ..()
 
@@ -119,7 +118,7 @@
 	//maximum stocking amount (default 300000, 600000 at T4)
 	for(var/obj/item/stock_parts/matter_bin/matter_bin in component_parts)
 		T += matter_bin.rating
-	rmat.max_amount = (((100 * SHEET_MATERIAL_AMOUNT) + (T * (25 * SHEET_MATERIAL_AMOUNT))))
+	rmat.set_local_size(((100 * SHEET_MATERIAL_AMOUNT) + (T * (25 * SHEET_MATERIAL_AMOUNT))))
 
 	//resources adjustment coefficient (1 -> 0.85 -> 0.7 -> 0.55)
 	T = 1.15
@@ -146,7 +145,7 @@
 /obj/machinery/mecha_part_fabricator_tg/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Storing up to <b>[rmat.max_amount]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
+		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
 		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
 
 /obj/machinery/mecha_part_fabricator_tg/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
@@ -237,17 +236,21 @@
 	if(!D || length(D.reagents_list))
 		return FALSE
 
-	var/datum/component/material_container/materials = rmat
+	var/datum/component/material_container/materials = rmat.mat_container
 	if (!materials)
 		if(verbose)
 			atom_say("No access to material storage, please contact the quartermaster.")
+		return FALSE
+	if (rmat.on_hold())
+		if(verbose)
+			atom_say("Mineral access is on hold, please contact the quartermaster.")
 		return FALSE
 	if(!materials.has_materials(D.materials, component_coeff))
 		if(verbose)
 			atom_say("Not enough resources. Processing stopped.")
 		return FALSE
 
-	rmat.use_materials(D.materials, component_coeff)
+	rmat.use_materials(D.materials, component_coeff, 1, "built", "[D.name]")
 	being_built = D
 	build_finish = world.time + get_construction_time_w_coeff(initial(D.construction_time))
 	build_start = world.time
@@ -375,7 +378,7 @@
 		ui.open()
 
 /obj/machinery/mecha_part_fabricator_tg/tgui_static_data(mob/user)
-	var/list/data = rmat.tgui_static_data(user)
+	var/list/data = rmat.mat_container.tgui_static_data(user)
 
 	var/list/designs = list()
 
@@ -406,7 +409,7 @@
 /obj/machinery/mecha_part_fabricator_tg/tgui_data(mob/user)
 	var/list/data = list()
 
-	data["materials"] = rmat.tgui_data(user)
+	data["materials"] = rmat.mat_container.tgui_data(user)
 	data["queue"] = list()
 	data["processing"] = process_queue
 
@@ -495,7 +498,7 @@
 			return
 
 		if("remove_mat")
-			var/datum/material/material = name_to_material[params["id"]]
+			var/datum/material/material = GET_MATERIAL_REF(params["id"])
 			if(!istype(material))
 				return
 
@@ -507,7 +510,7 @@
 			if(isnull(amount))
 				return
 
-			rmat.retrieve_sheets(amount, material)
+			rmat.eject_sheets(material, amount)
 			return TRUE
 
 	return FALSE
