@@ -741,3 +741,5 @@
 		))
 
 	return data
+
+#undef MATERIAL_INSERT_ITEM_SUCCESS
