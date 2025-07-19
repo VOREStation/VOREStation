@@ -7839,17 +7839,9 @@
 /area/groundbase/level1/westspur)
 "rj" = (
 /obj/structure/table/rack/steel,
-/obj/item/circuitboard/rdserver{
+/obj/item/circuitboard/machine/rdserver{
 	pixel_x = -3;
 	pixel_y = 3
-	},
-/obj/item/circuitboard/protolathe{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/circuitboard/destructive_analyzer{
-	pixel_x = -1;
-	pixel_y = 1
 	},
 /obj/item/circuitboard/rdconsole,
 /obj/item/circuitboard/autolathe{

@@ -10,14 +10,6 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 4)
 	req_components = list(/obj/item/stock_parts/capacitor = 1)
 
-/datum/design/circuit/tesla_coil
-	name = "Machine Design (Tesla Coil Board)"
-	desc = "The circuit board for a tesla coil."
-	id = "tesla_coil"
-	build_path = /obj/item/circuitboard/tesla_coil
-	req_tech = list(TECH_MAGNET = 2, TECH_POWER = 4)
-	sort_string = "MAAAC"
-
 // Grounding rods can be built as machines using a circuit made in an autolathe.
 /obj/item/circuitboard/grounding_rod
 	name = T_BOARD("grounding rod")

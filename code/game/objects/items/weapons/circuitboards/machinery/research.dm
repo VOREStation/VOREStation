@@ -2,39 +2,6 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/circuitboard/rdserver
-	name = T_BOARD("R&D server")
-	build_path = /obj/machinery/r_n_d/server/core
-	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_DATA = 3)
-	req_components = list(
-							/obj/item/stack/cable_coil = 2,
-							/obj/item/stock_parts/scanning_module = 1)
-
-/obj/item/circuitboard/rdserver/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.has_tool_quality(TOOL_SCREWDRIVER))
-		playsound(src, I.usesound, 50, 1)
-		user.visible_message(span_infoplain(span_bold("\The [user]") + " adjusts the jumper on \the [src]'s access protocol pins."), span_notice("You adjust the jumper on the access protocol pins."))
-		if(build_path == /obj/machinery/r_n_d/server/core)
-			name = T_BOARD("RD Console - Robotics")
-			build_path = /obj/machinery/r_n_d/server/robotics
-			to_chat(user, span_notice("Access protocols set to robotics."))
-		else
-			name = T_BOARD("RD Console")
-			build_path = /obj/machinery/r_n_d/server/core
-			to_chat(user, span_notice("Access protocols set to default."))
-	return
-
-/obj/item/circuitboard/destructive_analyzer
-	name = T_BOARD("destructive analyzer")
-	build_path = /obj/machinery/r_n_d/destructive_analyzer
-	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_DATA = 2)
-	req_components = list(
-							/obj/item/stock_parts/scanning_module = 1,
-							/obj/item/stock_parts/manipulator = 1,
-							/obj/item/stock_parts/micro_laser = 1)
-
 /obj/item/circuitboard/autolathe
 	name = T_BOARD("autolathe")
 	build_path = /obj/machinery/autolathe
@@ -45,19 +12,40 @@
 							/obj/item/stock_parts/manipulator = 1,
 							/obj/item/stock_parts/console_screen = 1)
 
-/obj/item/circuitboard/protolathe
+/obj/item/circuitboard/machine/protolathe
 	name = T_BOARD("protolathe")
-	build_path = /obj/machinery/r_n_d/protolathe
+	build_path = /obj/machinery/rnd/production/protolathe
 	board_type = new /datum/frame/frame_types/machine
-	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 	req_components = list(
 							/obj/item/stock_parts/matter_bin = 2,
 							/obj/item/stock_parts/manipulator = 2,
 							/obj/item/reagent_containers/glass/beaker = 2)
 
+/obj/item/circuitboard/machine/protolathe/department
+	name = T_BOARD("departmental protolathe")
+	build_path = /obj/machinery/rnd/production/protolathe/department
+/obj/item/circuitboard/machine/protolathe/department/engineering
+	name = T_BOARD("departmental protolathe (engineering)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/engineering
+/obj/item/circuitboard/machine/protolathe/department/service
+	name = T_BOARD("departmental protolathe (service)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/service
+/obj/item/circuitboard/machine/protolathe/department/medical
+	name = T_BOARD("departmental protolathe (medical)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/medical
+/obj/item/circuitboard/machine/protolathe/department/cargo
+	name = T_BOARD("departmental protolathe (cargo)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/cargo
+/obj/item/circuitboard/machine/protolathe/department/science
+	name = T_BOARD("departmental protolathe (science)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/science
+/obj/item/circuitboard/machine/protolathe/department/security
+	name = T_BOARD("departmental protolathe (security)")
+	build_path = /obj/machinery/rnd/production/protolathe/department/security
+
 /obj/item/circuitboard/circuit_imprinter
 	name = T_BOARD("circuit imprinter")
-	build_path = /obj/machinery/r_n_d/circuit_imprinter
+	build_path = /obj/machinery/rnd/production/circuit_imprinter
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 	req_components = list(
@@ -67,7 +55,7 @@
 
 /obj/item/circuitboard/mechfab
 	name = "Circuit board (Exosuit Fabricator)"
-	build_path = /obj/machinery/mecha_part_fabricator
+	build_path = /obj/machinery/mecha_part_fabricator_tg
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	req_components = list(
@@ -78,7 +66,7 @@
 
 /obj/item/circuitboard/prosthetics
 	name = "Circuit board (Prosthetics Fabricator)"
-	build_path = /obj/machinery/mecha_part_fabricator/pros
+	build_path = /obj/machinery/mecha_part_fabricator_tg/prosthetics
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	req_components = list(

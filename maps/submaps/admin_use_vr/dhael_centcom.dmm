@@ -1917,14 +1917,8 @@
 	icon_state = "white"
 	},
 /area/centcom/control)
-"dQ" = (
-/obj/machinery/computer/rdconsole/robotics,
-/turf/unsimulated/floor/steel{
-	icon_state = "white"
-	},
-/area/centcom/control)
 "dR" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 4
@@ -1983,11 +1977,11 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "dT" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "dU" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "dV" = (
@@ -2114,15 +2108,11 @@
 	icon_state = "white"
 	},
 /area/centcom/control)
-"el" = (
-/obj/machinery/r_n_d/destructive_analyzer,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "em" = (
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "en" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/production/protolathe,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "eo" = (
@@ -2248,7 +2238,7 @@
 	},
 /area/centcom/control)
 "ez" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/unsimulated/floor/steel,
@@ -2258,7 +2248,7 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "eB" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
@@ -5718,10 +5708,6 @@
 	dir = 1;
 	badmin = 1
 	},
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
-"lU" = (
-/obj/machinery/r_n_d/server/centcom,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "lV" = (
@@ -26041,7 +26027,7 @@ em
 fA
 kX
 em
-lU
+em
 dm
 dk
 dk
@@ -30136,7 +30122,7 @@ ac
 dm
 dK
 dZ
-el
+em
 ez
 eW
 fm
@@ -31128,7 +31114,7 @@ aX
 aX
 aX
 dm
-dQ
+fp
 ee
 em
 em

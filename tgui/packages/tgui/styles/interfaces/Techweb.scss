@@ -66,3 +66,56 @@
   color: var(--color-label);
   margin: var(--space-m) 0;
 }
+
+@keyframes bounce {
+  0% {
+    margin-bottom: 0px;
+  }
+  50% {
+    margin-bottom: 100px;
+  }
+  100% {
+    margin-bottom: 0px;
+  }
+}
+
+@keyframes wink {
+  0% {
+    height: 20px;
+  }
+
+  50% {
+    height: 60px;
+  }
+
+  100% {
+    height: 20px;
+  }
+}
+
+.Techweb__Bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.Techweb__HappyFace__LeftEye {
+  background-color: white;
+  margin-bottom: 20px;
+  height: 20px;
+  width: 20px;
+  animation: wink 2s ease-in-out infinite;
+}
+
+.Techweb__HappyFace__RightEye {
+  margin-left: 40px;
+  margin-bottom: 20px;
+  background-color: white;
+  height: 60px;
+  width: 20px;
+}
+
+.Techweb__HappyFace__Smile {
+  background-color: white;
+  width: 80px;
+  height: 20px;
+  border-radius: 0px 0px 10px 10px;
+}
