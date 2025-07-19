@@ -4139,7 +4139,6 @@
 #include "code\modules\recycling\sortingmachinery.dm"
 #include "code\modules\research\message_server.dm"
 #include "code\modules\research\part_replacer.dm"
-#include "code\modules\research\tg\__DEBUG.dm"
 #include "code\modules\research\tg\designs.dm"
 #include "code\modules\research\tg\disks.dm"
 #include "code\modules\research\tg\rdconsole.dm"
