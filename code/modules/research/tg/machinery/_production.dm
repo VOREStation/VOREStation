@@ -223,6 +223,9 @@
 
 	var/coefficient
 	for(var/datum/design_techweb/design in cached_designs)
+		if(!(isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)))
+			continue
+
 		var/cost = list()
 
 		coefficient = build_efficiency(design.build_path)
