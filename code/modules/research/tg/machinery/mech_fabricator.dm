@@ -74,6 +74,8 @@
 
 /obj/machinery/mecha_part_fabricator_tg/Destroy()
 	QDEL_NULL(print_sound)
+	rmat?.retrieve_all(get_turf(src)) // TODO: remove when ore silos
+	rmat = null
 	return ..()
 
 /obj/machinery/mecha_part_fabricator_tg/Initialize(mapload)

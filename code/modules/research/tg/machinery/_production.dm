@@ -45,6 +45,7 @@
 
 /obj/machinery/rnd/production/Destroy()
 	QDEL_NULL(print_sound)
+	materials?.retrieve_all(get_turf(src)) // TODO: remove when ore silos
 	materials = null
 	cached_designs = null
 	return ..()
