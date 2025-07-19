@@ -19504,14 +19504,15 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aGT" = (
-/obj/machinery/mecha_part_fabricator_tg/prosthetics{
-	dir = 1
-	},
 /obj/structure/reagent_dispensers/acid{
 	pixel_y = -30
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/mauve/border,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
+	dir = 1;
+	drop_direction = NORTH
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aGU" = (
@@ -20979,7 +20980,8 @@
 /area/tether/surfacebase/medical/chemistry)
 "aJm" = (
 /obj/machinery/mecha_part_fabricator_tg{
-	dir = 8
+	dir = 8;
+	drop_direction = WEST
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
