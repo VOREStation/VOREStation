@@ -453,6 +453,18 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 		else
 			equipment = 0
 
+	var/custom_job
+	var/custom_job_title
+	if(charjob)
+		custom_job = tgui_alert(src,"Customise Job Title?", "Custom Job", list("No", "Yes", "Cancel"))
+		if(!custom_job || equipment == "Cancel")
+			return
+		else if(custom_job == "Yes")
+			custom_job = 1
+			custom_job_title = tgui_input_text(src,"Choose a Job Title for the character.","Job Title")
+		else
+			custom_job = 0
+
 	//For logging later
 	var/admin = key_name_admin(src)
 	var/player_key = picked_client.key
@@ -559,6 +571,19 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 			if(new_character.mind)
 				new_character.mind.assigned_role = charjob
 				new_character.mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
+
+	//If customised job title, modify here.
+	if(custom_job && custom_job_title)
+		var/character_name = new_character.name
+		for(var/obj/item/card/id/I in new_character.contents)
+			I.name = "[character_name]'s ID Card ([custom_job_title])"
+			I.assignment = custom_job_title
+		for(var/obj/item/pda/P in new_character.contents)
+			P.name = "PDA-[character_name] ([custom_job_title])"
+			P.ownjob = custom_job_title
+		new_character.mind.assigned_role = custom_job_title
+		new_character.mind.role_alt_title = custom_job_title
+		to_chat(new_character, "Your job title has been changed to [custom_job_title].")
 
 	//If desired, add records.
 	if(records)

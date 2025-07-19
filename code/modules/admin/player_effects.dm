@@ -580,6 +580,14 @@
 				return
 			add_verb(Tar, /mob/living/proc/toggle_active_cloaking)
 
+		if("colormate")
+			if(istype(target,/mob/living/simple_mob))
+				var/mob/living/simple_mob/Tar = target
+				add_verb(Tar, /mob/living/simple_mob/proc/ColorMate)
+			if(istype(target,/mob/living/silicon/robot))
+				var/mob/living/silicon/robot/Tar = target
+				add_verb(Tar, /mob/living/silicon/robot/proc/ColorMate)
+
 
 		////////INVENTORY//////////////
 
