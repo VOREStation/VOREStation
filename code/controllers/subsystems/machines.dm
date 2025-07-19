@@ -54,12 +54,16 @@ SUBSYSTEM_DEF(machines)
 	if(SSticker.PreRoundStart())
 		return
 	// Use with responsibility... Must regen the entire power network after deferal is finished.
-	defering_powernets = TRUE
+	if(!defering_powernets)
+		defering_powernets = TRUE
+		message_admins("Powernet generation deferred...")
+
 
 // This MUST be called if request_powernet_rebuild is called with defer = TRUE once the network is free to regen
 /datum/controller/subsystem/machines/proc/release_powernet_defer()
 	if(defering_powernets)
 		defering_powernets = FALSE
+		message_admins("Powernet generation resumed. Rebuilding network...")
 		makepowernets()
 
 /datum/controller/subsystem/machines/proc/powernet_is_defered()
