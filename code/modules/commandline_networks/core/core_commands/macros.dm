@@ -31,15 +31,20 @@
 	else
 		logs.set_log(from,"Err: Unable to remove macro from [from.name]: Alias [alias] does not exist.", COMMAND_OUTPUT_ERROR)
 
-/datum/commandline_network_command/macro/getHelpText(datum/commandline_network_node/homenode, arguments, verbose, direct)
+/datum/commandline_network_command/macro/getHelpText(homenode,arguments,alias_used,verbose,direct,usage)
+	. = ..()
+	var/usage_text = ">[alias_used] add|remove alias \">command here\""
 	if(direct)
 		return {"Defines and manages a node's command macros: shorthand aliases for longer commands.
-Syntax: >macro add|remove alias ">command here"
+Usage: [usage_text]
 - Macros simplify command usage and can be referenced in commands from this node.
 - Double quotes are required around the full command to ensure proper parsing.
 - add requires both an alias and a full command; remove needs only the alias.
 "}
 	if(verbose)
 		return "Lets you create or remove shorthand macros that map to full commands. Used in UI and CLI from this node. Quotes around the full command are mandatory. ae: \">command here \"."
+
+	if(usage)
+		return usage_text
 
 	return "Creates or deletes aliases that represent larger commands."

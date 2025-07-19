@@ -9,19 +9,21 @@
 	var/datum/callback/standalone //define this in init if we are a "standalone" command with no actions, or a singular action that doesn't
 	var/min_args_standalone = 1 //change this to reflect any standalone def
 	var/no_args_return_log = 0 //1 = show usage on no args, 2 = show nonverbose help, 3 = show verbose help
-	var/usage_example
 
 	//need an origin object
 	var/requires_source = FALSE
 
-//dispatch table is defined on a per-command basis w/ minimum arguments
-// commandSpec["clear"]  = list(CALLBACK(PROC), MINIMUM_ARGUMENTS)
-// not strictly needed if you need or want to do weird shit with a command, but this helps
-// with the simple boilerplate.
+/*
+There's three ways to handle making a command:
+	* if your command has "actions" (ae, >target command add/subtract/multiply/divide), use the dispatch table with a few smaller procs. the cleanest example is probably the macro command in core_commands
+	* if your command is "standalone" (ae, no significantly different courses of action based on args), use the standalone - note that this has priority if you have it AND a dispatch table.
+	* if your command is freaky, just override runCOmmand. there's a bit more boilerplate for that though. of which you might want to overwrite, who knows.
+*/
 
 //check code/modules/commandline_networks/core/core_commands/help.dm for the expected usecase.
 //note that arguments may be null.
-/datum/commandline_network_command/proc/getHelpText(var/datum/commandline_network_node/homenode,var/list/arguments, var/verbose = FALSE, var/direct = FALSE, var/usage = FALSE)
+/datum/commandline_network_command/proc/getHelpText(var/datum/commandline_network_node/homenode,var/list/tokens, var/alias_used, var/verbose, var/direct, var/usage)
+	SHOULD_CALL_PARENT(FALSE)
 	return "There is no documentation avaliable for this command."
 
 /datum/commandline_network_command/proc/Initialize()
@@ -48,6 +50,7 @@ arguments: what arguments were given? -> full list of tokens.
 	SHOULD_CALL_PARENT(FALSE) //if you're overwriting logic you probably don't wanna call this anyway. if you DO feel free to comment this out
 
 	var/list/arguments = LAZYACCESS(sorted_tokens,COMMAND_ARGUMENT_ARGUMENTS)
+	var/argument_count = arguments.len-1 //-1. we don't have a dedicated "action" token
 
 	if(!from) //FUCK FUCK FUCK FUCK
 		logs.set_log(src,ERROR_NO_FROM,COMMAND_OUTPUT_ERROR) //TODO: add "command output FUCKED"
@@ -58,7 +61,7 @@ arguments: what arguments were given? -> full list of tokens.
 		return
 
 	if(standalone)
-		if(arguments.len-1 >= min_args_standalone)
+		if(arguments.len >= min_args_standalone) //standalone doesn't count the action!
 			standalone.Invoke(source,from,sorted_tokens,logs,verbose)
 		else
 			logs.set_log(from,ERROR_NOT_ENOUGH_ARGUMENTS(sorted_tokens[COMMAND_ARGUMENT_COMMAND],min_args_standalone),COMMAND_OUTPUT_ERROR)
@@ -68,10 +71,6 @@ arguments: what arguments were given? -> full list of tokens.
 		logs.set_log(from,ERROR_MISSING_TABLE,COMMAND_OUTPUT_ERROR)
 		return
 
-
-
-
-	var/argument_count = arguments.len-1 //-1. we don't have a dedicated "action" token
 	if(argument_count < 1)
 		logs.set_log(from,ERROR_NO_ARGUMENTS_NON_STANDALONE,COMMAND_OUTPUT_ERROR)
 		return
@@ -83,7 +82,7 @@ arguments: what arguments were given? -> full list of tokens.
 		var/list/dispatch = dispatch_table[ckey(action)]
 		var/datum/callback/to_dispatch = dispatch[1]
 		var/min_args = dispatch[2]
-		if(argument_count-1 < min_args)
+		if(argument_count < min_args)
 			logs.set_log(from,ERROR_NOT_ENOUGH_ARGUMENTS(action,min_args),COMMAND_OUTPUT_ERROR)
 			return
 		//TODO: replace this with an addtimer for node latency

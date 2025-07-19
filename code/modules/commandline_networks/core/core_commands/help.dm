@@ -5,14 +5,18 @@
 /datum/commandline_network_command/help
 	name = "help"
 
-/datum/commandline_network_command/help/runCommand(datum/commandline_network_node/source, datum/commandline_network_node/from, list/sorted_tokens, datum/commandline_log_entry/logs, verbose)
+/datum/commandline_network_command/help/Initialize()
+	. = ..()
+	standalone = COMMAND_STANDALONE_ACTION_DEFINE(getHelp,0)
+
+/datum/commandline_network_command/help/proc/getHelp(COMMAND_ACTION_PARAMS)
 	var/response = "Documentation for Network Node \"[from]\": \n" //TODO
 	var/list/arguments = LAZYACCESS(sorted_tokens,COMMAND_ARGUMENT_ARGUMENTS)
 	if(arguments.len >= 1) //we assume that the arguments are noted
 		var/targetted_command = arguments[1]
 		if(targetted_command in from.commands)
 			var/datum/commandline_network_command/command = SScommandline_networks.GetCachedCommand(from.commands[targetted_command])
-			response = command.getHelpText(from,arguments,verbose,TRUE)
+			response = command.getHelpText(from,sorted_tokens,arguments[COMMAND_ARGUMENT_COMMAND],FALSE,TRUE,FALSE)
 			logs.set_log(source,response)
 			return
 		else
@@ -24,16 +28,19 @@
 	if(from.desc_verbose && (verbose || !from.desc))
 		response += from.desc_verbose + "\n\n"
 
-	for(var/x in from.commands)
-		var/datum/commandline_network_command/command = SScommandline_networks.GetCachedCommand(from.commands[x])
-		if(command)
-			response += "[x]: [command.getHelpText(from,arguments,verbose,FALSE)] \n\n"
+	for(var/commandalias in from.commands)
+		var/datum/commandline_network_command/command = SScommandline_networks.GetCachedCommand(from.commands[commandalias])
+		if(command) //(var/datum/commandline_network_node/homenode,var/list/tokens, var/alias_used, var/verbose = FALSE, var/direct = FALSE, var/usage = FALSE)
+			response += "[commandalias]: [command.getHelpText(from,sorted_tokens,arguments[COMMAND_ARGUMENT_COMMAND],verbose,FALSE,FALSE)] \n\n"
 	logs.set_log(source,response)
 
-/datum/commandline_network_command/help/getHelpText(datum/commandline_network_node/homenode, list/arguments, verbose, direct)
+
+/datum/commandline_network_command/help/getHelpText(homenode,arguments,alias_used,verbose,direct,usage)
+	var/usage_example = "usage: >target [alias_used] command --verbose, where command and --verbose are optional."
+
 	if(direct)
 		return {"retrieves information about a node (if avaliable) and the commands attached to it.
-usage: >target help command --verbose, where command and --verbose are optional.
+		[usage_example]
 
 when a command is provided and is on the node, it will provide more detailed information than \"verbose\" (but no other information), whereas
 when \"verbose\" is provided as a flag, it shows all commands more detailed than the overview it gives when the flag is not provided."}
@@ -41,8 +48,11 @@ when \"verbose\" is provided as a flag, it shows all commands more detailed than
 	if(verbose)
 		return {"Displays help for a target node.
 Without arguments, shows brief summaries of each command.
+[usage_example]
 Use --verbose to expand all descriptions. Supplying a specific command shows detailed info for that command alone.
 "}
+	if(usage)
+		return usage_example
 
 	return "Shows help info for target node & its commands. Use --verbose for detailed output or specify a command for focused help."
 
