@@ -3,9 +3,9 @@ import { Button, Icon, Table } from 'tgui-core/components';
 export const SortButton = (props: {
   id: string;
   sortId: string;
-  sortOrder: string;
-  onSortOrder: Function;
-  onSortId: Function;
+  sortOrder: boolean;
+  onSortOrder: React.Dispatch<React.SetStateAction<boolean>>;
+  onSortId: React.Dispatch<React.SetStateAction<string>>;
   children: React.JSX.Element | string;
 }) => {
   const { id, sortId, sortOrder, onSortOrder, onSortId, children } = props;

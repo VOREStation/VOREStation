@@ -18,3 +18,9 @@ export type Page = {
   hideUnreadCount: boolean;
   createdAt: number;
 };
+
+export type NewPageData = {
+  isMain: boolean;
+  name: string;
+  acceptedTypes: Record<string, boolean>;
+};

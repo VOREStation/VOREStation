@@ -63,7 +63,7 @@ export type modalData = {
     }[];
     record: string;
   };
-  modal_type: string;
+  type: string;
 };
 
 type record = {

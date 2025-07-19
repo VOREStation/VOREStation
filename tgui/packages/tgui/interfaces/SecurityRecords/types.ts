@@ -41,6 +41,7 @@ type record = {
 export type modalData = {
   id: string;
   text: string;
+  // biome-ignore lint/complexity/noBannedTypes: In this case we got any type of Object
   args: {};
-  modal_type: string;
+  type: string;
 };

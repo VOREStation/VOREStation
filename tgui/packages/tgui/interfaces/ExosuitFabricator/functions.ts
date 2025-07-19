@@ -2,7 +2,7 @@ import { uniqBy } from 'es-toolkit';
 import { createSearch } from 'tgui-core/string';
 
 import { COLOR_AVERAGE, COLOR_BAD, COLOR_NONE } from './constants';
-import type { material, part, queueFormat } from './types';
+import type { MatFormat, material, part, queueFormat } from './types';
 
 export function materialArrayToObj(
   materials: material[],
@@ -55,13 +55,13 @@ export function partCondFormat(
 }
 
 export function queueCondFormat(
-  materials: material | {},
+  materials: Record<string, number>,
   queue: part[] | null,
 ): queueFormat {
-  const materialTally = {};
-  const matFormat = {};
-  const missingMatTally = {};
-  const textColors = {};
+  const materialTally: Record<string, number> = {};
+  const matFormat: Record<string, MatFormat> = {};
+  const missingMatTally: Record<string, number> = {};
+  const textColors: Record<number, number> = {};
 
   queue?.forEach((part, i) => {
     textColors[i] = COLOR_NONE;

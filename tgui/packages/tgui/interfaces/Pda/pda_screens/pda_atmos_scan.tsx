@@ -16,7 +16,13 @@ type aircontent = {
   bad_high: number;
 };
 
-const getItemColor = (value, min2, min1, max1, max2) => {
+const getItemColor = (
+  value: number,
+  min2: number,
+  min1: number,
+  max1: number,
+  max2: number,
+) => {
   if (value < min2) {
     return 'bad';
   } else if (value < min1) {
@@ -49,7 +55,7 @@ export const pda_atmos_scan = (props) => {
               key={item.entry}
               label={item.entry}
               color={getItemColor(
-                item.val,
+                Number(item.val),
                 item.bad_low,
                 item.poor_low,
                 item.poor_high,

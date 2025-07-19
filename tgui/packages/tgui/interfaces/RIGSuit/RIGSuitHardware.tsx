@@ -104,11 +104,8 @@ export const RIGSuitHardware = (props) => {
               >
                 <Tooltip
                   content={
-                    `Suit Seals: ${sealing}`
-                      ? 'Sealing'
-                      : sealed
-                        ? 'Sealed'
-                        : 'UNSEALED'
+                    'Suit Seals: ' +
+                    (sealing ? 'Sealing' : sealed ? 'Sealed' : 'UNSEALED')
                   }
                 >
                   <Box

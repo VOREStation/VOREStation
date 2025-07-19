@@ -124,7 +124,7 @@ export const VoreSelectedBelly = (props: {
               onClick={() => act('change_vore_tab', { tab: index })}
             >
               {tabToNames[index]}
-              {!!(index === 6) && '(' + content_length + ')'}
+              {!!(index === 6) && `(${content_length})`}
             </Tabs.Tab>
           ))}
         </Tabs>

@@ -65,7 +65,7 @@ const ResearchControllerContent = (props) => {
 
 const ResearchServer = (props: {
   server: server;
-  setSelectedServer: Function;
+  setSelectedServer: React.Dispatch<React.SetStateAction<number | null>>;
 }) => {
   const { data } = useBackend<Data>();
   const { badmin } = data;

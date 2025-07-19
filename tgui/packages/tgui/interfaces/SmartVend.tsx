@@ -34,18 +34,6 @@ export const SmartVend = (props) => {
   const [sortOrder, setSortOrder] = useState('Alphabetical');
   const [descending, setDescending] = useState(false);
 
-  function handleSearchText(value: string) {
-    setSearchText(value);
-  }
-
-  function handleSortOrder(value: string) {
-    setSortOrder(value);
-  }
-
-  function handleDescending(value: boolean) {
-    setDescending(value);
-  }
-
   const { secure, locked, contents } = data;
 
   return (
@@ -55,7 +43,7 @@ export const SmartVend = (props) => {
           {(secure && locked === -1 && (
             <NoticeBox danger>
               <Box>
-                Sec.re ACC_** //):securi_nt.diag=&gt;##&apos;or 1=1&apos;%($...
+                {`Sec.re ACC_** //):securi_nt.diag=&gt;##&apos;or 1=1&apos;%($...`}
               </Box>
             </NoticeBox>
           )) ||
@@ -73,9 +61,9 @@ export const SmartVend = (props) => {
                 searchText={searchText}
                 sortOrder={sortOrder}
                 descending={descending}
-                onSearchText={handleSearchText}
-                onSortOrder={handleSortOrder}
-                onDescending={handleDescending}
+                onSearchText={setSearchText}
+                onSortOrder={setSortOrder}
+                onDescending={setDescending}
               />
               <SheetItems
                 searchText={searchText}
@@ -95,9 +83,9 @@ const SheetSearch = (props: {
   searchText: string;
   sortOrder: string;
   descending: boolean;
-  onSearchText: Function;
-  onSortOrder: Function;
-  onDescending: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
+  onSortOrder: React.Dispatch<React.SetStateAction<string>>;
+  onDescending: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const {
     searchText,

@@ -7,6 +7,4 @@ you will have to supply the correct ip-address/domain and port on where this API
 
 For this you can set the DBCONFIG_PATH environment variable (or use the .env.example) to the exact path of the config/dbconfig.txt.
 
-
-
 Do not forget to rename .env.example to .env of course, if you want to use a file.

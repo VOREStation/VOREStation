@@ -8,8 +8,8 @@ import type { Data } from './types';
 export const CrewMonitorContent = (props: {
   tabIndex: number;
   zoom: number;
-  onTabIndex: Function;
-  onZoom: Function;
+  onTabIndex: React.Dispatch<React.SetStateAction<number>>;
+  onZoom: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { data } = useBackend<Data>();
 

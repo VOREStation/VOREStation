@@ -121,7 +121,7 @@ export const ModifyRobotAccess = (props: {
 const AccessSection = (props: {
   title: string;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   access: Access[];
   action: string;
   buttonColor: string;

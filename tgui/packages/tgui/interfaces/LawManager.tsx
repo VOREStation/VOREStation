@@ -465,7 +465,7 @@ export const LawManagerLawSets = (props: {
   law_sets: law_pack[];
   ion_law_nr: string;
   searchLawName: string;
-  onSearchLawName: Function;
+  onSearchLawName: React.Dispatch<React.SetStateAction<string>>;
   isAdmin: BooleanLike;
   isMalf: BooleanLike;
 }) => {

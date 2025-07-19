@@ -127,7 +127,7 @@ const SelectionField = (props: {
   previewImage: string | undefined;
   previewImageSize: string | undefined;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   action: string;
   buttonIcon: string;
   buttonColor: string;

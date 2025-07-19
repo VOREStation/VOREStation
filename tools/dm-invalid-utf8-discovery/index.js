@@ -7,7 +7,7 @@ let count = 0;
 
 while (queue.length) {
   let entries = await Promise.all(
-    queue.slice(0, 100).map((path) => readdir(path, { withFileTypes: true }))
+    queue.slice(0, 100).map((path) => readdir(path, { withFileTypes: true })),
   );
   for (let i = 0; i < entries.length; ++i) {
     for (const entry of entries[i]) {

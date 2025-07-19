@@ -205,7 +205,7 @@
 		victim = L
 		break
 
-	if(victim)
+	if(victim?.reagents)
 		victim.reagents.add_reagent(REAGENT_ID_WARNINGTOXIN, poison_per_bite)
 		victim.AdjustWeakened(2)
 		victim.visible_message(span_danger("\The [src] has bitten \the [victim]!"))

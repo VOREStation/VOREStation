@@ -282,7 +282,7 @@ const CustomWithdrawal = (props: {
                 maxLength={10}
                 onChange={(val) => {
                   const value = parseInt(val, 10);
-                  if (isNaN(value)) {
+                  if (Number.isNaN(value)) {
                     setMoney(0);
                   } else {
                     setMoney(value);
@@ -430,7 +430,7 @@ const TransferMenu = (props: {
   const [accountNum, setAccountNum] = useState(100000);
   const updateAccountNum = (val) => {
     const newVal = parseInt(val, 10);
-    if (isNaN(newVal)) {
+    if (Number.isNaN(newVal)) {
       setAccountNum(100000);
     } else {
       setAccountNum(newVal);
@@ -440,7 +440,7 @@ const TransferMenu = (props: {
   const [money, setMoney] = useState(0);
   const updateMoney = (val) => {
     const newVal = parseInt(val, 10);
-    if (isNaN(newVal)) {
+    if (Number.isNaN(newVal)) {
       setMoney(0);
     } else {
       setMoney(newVal);

@@ -17,6 +17,7 @@ import {
   PortTypesToColor,
 } from './types';
 
+// biome-ignore lint/complexity/noBannedTypes:Ingored here
 export type PlaneProps = {};
 
 type PlaneState = {
@@ -72,8 +73,8 @@ export class Plane extends Component<PlaneProps, PlaneState> {
     const position = this.getPosition(dom);
 
     if (
-      isNaN(position.x) ||
-      isNaN(position.y) ||
+      Number.isNaN(position.x) ||
+      Number.isNaN(position.y) ||
       (lastPosition &&
         lastPosition.x === position.x &&
         lastPosition.y === position.y)

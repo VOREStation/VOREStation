@@ -7,7 +7,7 @@ import type { Data } from './types';
 
 export const CrewMonitorMapView = (props: {
   zoom: number;
-  onZoom: Function;
+  onZoom: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { config, data } = useBackend<Data>();
 

@@ -148,7 +148,7 @@ SUBSYSTEM_DEF(statpanels)
 
 	var/atom/atom_icon = description_holders["icon"]
 	var/shown_icon = target.examine_icon
-	if(!shown_icon)
+	if(!shown_icon && atom_icon)
 		if(ismob(atom_icon) || length(atom_icon.overlays) > 0)
 			var/force_south = FALSE
 			if(isliving(atom_icon))

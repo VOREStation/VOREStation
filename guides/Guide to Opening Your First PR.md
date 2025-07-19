@@ -28,8 +28,6 @@ Choose “Clone a Repo”, and then choose Github.com. You can then choose where
 https://i.imgur.com/y15Qir2.png
 https://i.imgur.com/bsw8p18.png
 
-
-
 Opening your Repo for the first time:
 Once your repo is cloned, you’ll be greeted with a screen SIMILAR to this (Note that mine has a lot of branches and repos):
 https://i.imgur.com/Ei6QZOh.png
@@ -82,9 +80,9 @@ If the TO repo doesn’t autofill, don’t panic. Just choose VOREStation/VORESt
 
 Then type the NAME of your PR, and a description underneath, then hit “Create Pull Request”!
 
-And that’s it! 
+And that’s it!
 
-**You’ve now successfully made your first PR!** 
+**You’ve now successfully made your first PR!**
 
 Any further issues or changes, maintainers will assist you with! If you have any questions or run into any snags during this tutorial, feel free to @ a maintainer (The blue names on the sidebar) in #dev-general or just ask for help and someone should be with you momentarily!
 

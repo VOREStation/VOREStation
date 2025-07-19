@@ -120,7 +120,7 @@ const QueueList = (props: { textColors: Record<number, number> }) => {
   const { queue = [] } = data;
 
   if (!queue || !queue.length) {
-    return <>No parts in queue.</>;
+    return 'No parts in queue.';
   }
 
   return queue.map((part, index) => (

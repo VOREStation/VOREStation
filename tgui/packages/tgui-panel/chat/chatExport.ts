@@ -113,7 +113,7 @@ async function getRound(
               for (const message of messages) {
                 // Filter messages according to active tab for export
                 if (page && canPageAcceptType(page, message.type)) {
-                  messagesHtml += message.html + '\n';
+                  messagesHtml += `${message.html}\n`;
                 }
               }
 

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Button } from 'tgui-core/components';
 
-export const PageButton = <P extends unknown>(props: {
+export const PageButton = <P,>(props: {
   currentPage: P;
   page: P;
   otherActivePages?: P[];

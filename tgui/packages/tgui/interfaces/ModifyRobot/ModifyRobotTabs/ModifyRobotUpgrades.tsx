@@ -118,7 +118,7 @@ export const ModifyRobotUpgrades = (props: { target: Target }) => {
 const UpgradeSection = (props: {
   title: string;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   upgrades: Upgrade[];
   action: string;
 }) => {

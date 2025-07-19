@@ -170,7 +170,7 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
         </Section>
       </Stack.Item>
       <Stack.Item grow>
-        <Section fill title={'Special roles (' + remaining_ghost_roles + ')'}>
+        <Section fill title={`Special roles (${remaining_ghost_roles})`}>
           <LabeledList>
             {specialRoles.map((role) => (
               <SpawnElement

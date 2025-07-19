@@ -1,6 +1,5 @@
 ## How to set-up the Docker database
 
-
 First, open `config/docker/mysql.env.example`, open in notepad or N++, change all the values to something else ~~or don't if you are lazy~~ for security sake.
 
 Then proceed to save the changed version to `mysql.env` and save it in the same directory as the `mysql.env.example` file.

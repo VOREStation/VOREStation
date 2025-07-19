@@ -7,7 +7,7 @@
 import { createUuid } from 'tgui-core/uuid';
 
 import { MESSAGE_TYPE_INTERNAL, MESSAGE_TYPES } from './constants';
-import type { message, Page } from './types';
+import type { message, NewPageData, Page } from './types';
 
 export const canPageAcceptType = (page: Page, type: string): string | boolean =>
   type.startsWith(MESSAGE_TYPE_INTERNAL) || page.acceptedTypes[type];
@@ -46,7 +46,7 @@ export const canStoreType = (
   type: string,
 ) => storedTypes[type];
 
-export const createPage = (obj?: Object): Page => {
+export const createPage = (obj?: NewPageData): Page => {
   const acceptedTypes = {};
 
   for (const typeDef of MESSAGE_TYPES) {
@@ -66,7 +66,7 @@ export const createPage = (obj?: Object): Page => {
 };
 
 export const createMainPage = (): Page => {
-  const acceptedTypes = {};
+  const acceptedTypes: Record<string, boolean> = {};
   for (const typeDef of MESSAGE_TYPES) {
     acceptedTypes[typeDef.type] = true;
   }

@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-            fetch-depth: 0
+          fetch-depth: 0
       # Caches
       - name: Setup Bun
         uses: ./.github/actions/setup_bun
@@ -113,7 +113,7 @@ jobs:
     if: ( !contains(github.event.head_commit.message, '[ci skip]') )
     strategy:
       matrix:
-        map: ['USE_MAP_TETHER', 'USE_MAP_STELLARDELIGHT', 'USE_MAP_GROUNDBASE']
+        map: ["USE_MAP_TETHER", "USE_MAP_STELLARDELIGHT", "USE_MAP_GROUNDBASE"]
     # name: Integration Tests (${{ matrix.map }})
     name: Integration Tests
     # needs: ['run_linters', 'dreamchecker']
@@ -170,7 +170,7 @@ jobs:
   tests_successful:
     if: ( !contains(github.event.head_commit.message, '[ci skip]') )
     name: Integration Tests
-    needs: ['run_linters', 'dreamchecker', 'unit_tests', 'extra_map_tests']
+    needs: ["run_linters", "dreamchecker", "unit_tests", "extra_map_tests"]
     runs-on: ubuntu-24.04
     steps:
       - name: Report Success
