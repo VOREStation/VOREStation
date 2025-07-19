@@ -149,3 +149,21 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_SECURITY)
+
+/datum/techweb_node/gun_nsfw
+	id = TECHWEB_NODE_NSFW
+	display_name = "'NSFW' Gun"
+	description = "Experimental N.S.F.W. Revolver."
+	prereq_ids = list(TECHWEB_NODE_EXOTIC_AMMO)
+	design_ids = list(
+		"nsfw_prototype",
+		"nsfw_mag_prototype",
+		"nsfw_cell_stun",
+		"nsfw_cell_lethal",
+		"nsfw_cell_net",
+		"nsfw_cell_ion",
+		"nsfw_cell_shotstun",
+		"nsfw_cell_xray",
+		"nsfw_cell_stripper",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
