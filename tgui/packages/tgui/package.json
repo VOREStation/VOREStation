@@ -2,16 +2,18 @@
   "name": "tgui",
   "version": "6.0.0",
   "dependencies": {
-    "@floating-ui/react": "^0.27.5",
     "common": "workspace:*",
     "dateformat": "^5.0.3",
     "dompurify": "^3.2.5",
+    "es-toolkit": "^1.39.3",
     "highlight.js": "^11.11.1",
     "js-yaml": "^4.1.0",
     "marked": "^15.0.11",
+    "marked-base-url": "^1.1.6",
+    "marked-smartypants": "^1.1.9",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tgui-core": "^4.3.3",
+    "tgui-core": "^4.3.4",
     "tgui-dev-server": "workspace:*"
   },
   "private": true

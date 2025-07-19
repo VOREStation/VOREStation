@@ -236,7 +236,7 @@
 
 /obj/machinery/computer/general_air_control/supermatter_core
 	icon = 'icons/obj/computer.dmi'
-	frequency = 1438
+	frequency = 1433
 	var/input_tag
 	var/output_tag
 	var/list/input_info

@@ -1,4 +1,4 @@
-import { uniqBy } from 'common/collections';
+import { uniqBy } from 'es-toolkit';
 import { createSearch } from 'tgui-core/string';
 
 import { COLOR_AVERAGE, COLOR_BAD, COLOR_NONE } from './constants';

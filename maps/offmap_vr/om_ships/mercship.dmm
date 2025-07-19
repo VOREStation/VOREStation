@@ -2791,7 +2791,7 @@
 /area/ship/mercenary/armoury)
 "fd" = (
 /obj/machinery/airlock_sensor/airlock_interior{
-	frequency = 1414;
+	frequency = 1415;
 	id_tag = "southinteriorsensor";
 	master_tag = "southairlock"
 	},
@@ -2883,7 +2883,7 @@
 "fn" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
 	dir = 4;
-	frequency = 1414;
+	frequency = 1415;
 	icon_state = "map_vent_aux";
 	id_tag = "southpump"
 	},
@@ -2895,7 +2895,7 @@
 	icon_state = "map-aux"
 	},
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller{
-	frequency = 1414;
+	frequency = 1415;
 	id_tag = "southairlock";
 	name = "South Airlock Controller";
 	tag_airpump = "southpump";
@@ -2956,7 +2956,7 @@
 	icon_state = "intact-aux"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1414;
+	frequency = 1415;
 	id_tag = "southchambersensor"
 	},
 /turf/simulated/floor,
@@ -3308,7 +3308,7 @@
 /area/ship/mercenary/northairlock)
 "fZ" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1414;
+	frequency = 1415;
 	id_tag = "southexteriordoor";
 	name = "Modified External Airlock";
 	req_one_access = list(150)
@@ -3317,7 +3317,7 @@
 /area/ship/mercenary/southairlock)
 "ga" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
-	frequency = 1414;
+	frequency = 1415;
 	id_tag = "southairlock";
 	master_tag = "southexteriorsensor"
 	},
@@ -3345,7 +3345,7 @@
 "gc" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
 	dir = 4;
-	frequency = 1414;
+	frequency = 1415;
 	icon_state = "map_vent_aux";
 	id_tag = "southpump"
 	},
@@ -3990,7 +3990,7 @@
 /area/ship/mercenary/barracks)
 "hh" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1414;
+	frequency = 1415;
 	id_tag = "southinteriordoor";
 	name = "Modified External Airlock";
 	req_one_access = list(150)
@@ -4001,7 +4001,7 @@
 "hi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1414;
+	frequency = 1415;
 	id_tag = "southinteriordoor";
 	name = "Modified External Airlock";
 	req_one_access = list(150)

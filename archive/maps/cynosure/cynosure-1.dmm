@@ -2281,7 +2281,7 @@
 	},
 /obj/machinery/computer/general_air_control{
 	dir = 4;
-	frequency = 1430;
+	frequency = 1431;
 	name = "Mixing Chamber Monitor";
 	sensors = list("toxins_mixing_exterior" = "Mixing Chamber - Exterior", "toxins_mixing_interior" = "Mixing Chamber - Interior")
 	},
@@ -12738,7 +12738,7 @@
 	dir = 4
 	},
 /obj/machinery/air_sensor{
-	frequency = 1430;
+	frequency = 1431;
 	id_tag = "toxins_mixing_interior";
 	output = 63;
 	pixel_y = 18
@@ -19983,7 +19983,7 @@
 /area/surface/outpost/research/xenoarcheology/analysis)
 "Tt" = (
 /obj/machinery/air_sensor{
-	frequency = 1430;
+	frequency = 1431;
 	id_tag = "toxins_mixing_exterior";
 	output = 63
 	},
