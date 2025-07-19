@@ -167,7 +167,7 @@ SUBSYSTEM_DEF(ticker)
 					end_game_state = END_GAME_READY_TO_END
 					current_state = GAME_STATE_FINISHED
 					Master.SetRunLevel(RUNLEVEL_POSTGAME)
-					INVOKE_ASYNC(src, PROC_REF(declare_completion))
+					INVOKE_ASYNC(src, PROC_REF(declare_completion), END_ROUND_AS_NORMAL, TRUE)
 				else if (mode_finished && (end_game_state < END_GAME_MODE_FINISHED))
 					end_game_state = END_GAME_MODE_FINISHED // Only do this cleanup once!
 					mode.cleanup()
@@ -415,7 +415,7 @@ SUBSYSTEM_DEF(ticker)
 			if(!isnewplayer(M))
 				to_chat(M, span_notice("Site Management is not forced on anyone."))
 
-/datum/controller/subsystem/ticker/proc/declare_completion(was_forced = END_ROUND_AS_NORMAL)
+/datum/controller/subsystem/ticker/proc/declare_completion(was_forced = END_ROUND_AS_NORMAL, external_shutdown = FALSE)
 	set waitfor = FALSE
 
 	for(var/datum/callback/roundend_callbacks as anything in round_end_events)
@@ -509,9 +509,10 @@ SUBSYSTEM_DEF(ticker)
 
 	SSdbcore.SetRoundEnd()
 
-	sleep(5 SECONDS)
-	ready_for_reboot = TRUE
-	standard_reboot()
+	if (!external_shutdown)
+		sleep(5 SECONDS)
+		ready_for_reboot = TRUE
+		standard_reboot()
 
 /datum/controller/subsystem/ticker/proc/standard_reboot()
 	if(ready_for_reboot)
