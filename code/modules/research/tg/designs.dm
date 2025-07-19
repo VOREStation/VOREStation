@@ -87,3 +87,6 @@ other types of metals and chemistry for reagents).
 	var/obj/object_build_item_path = build_path
 
 	return isnull(desc) ? initial(object_build_item_path.desc) : desc
+
+/datum/design_techweb/proc/create_item(target)
+	return new build_path(target)

@@ -10,7 +10,6 @@
 		"basic_sensor",
 		"basic_micro_laser",
 		"micro_manipulator",
-		"parts_bundle_t1",
 		"basic_cell",
 		"high_cell",
 		"device_cell",
@@ -39,7 +38,6 @@
 		"adv_capacitor",
 		"adv_sensor",
 		"high_micro_laser",
-		"parts_bundle_t2",
 		"super_cell",
 		"super_mech_cell",
 		"rped",
@@ -58,7 +56,6 @@
 		"super_capacitor",
 		"phasic_sensor",
 		"ultra_micro_laser",
-		"parts_bundle_t3",
 		"hyper_cell",
 		"arped",
 	)
@@ -79,7 +76,6 @@
 		"hyper_capacitor",
 		"hyper_sensor",
 		"hyper_micro_laser",
-		"parts_bundle_t4",
 		"hyper_cell",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
@@ -126,7 +122,6 @@
 		"omni_capacitor",
 		"omni_sensor",
 		"omni_micro_laser",
-		"parts_bundle_t5",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier4_any = TECHWEB_TIER_5_POINTS)

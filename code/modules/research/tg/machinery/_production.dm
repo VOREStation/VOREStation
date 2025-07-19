@@ -405,7 +405,7 @@
 
 		created = new stack_item(null, number_to_make)
 	else
-		created = new design.build_path(null)
+		created = design.create_item(null)
 		// split_materials_uniformly(design_materials, material_cost_coefficient, created)
 
 	if(isitem(created))

@@ -313,7 +313,7 @@
  * Creates parts as necessary (overridden by the prosfab)
  */
 /obj/machinery/mecha_part_fabricator_tg/proc/create_new_part(datum/design_techweb/dispensed_design)
-	return new dispensed_design.build_path(src)
+	return dispensed_design.create_item(src)
 
 /**
  * Adds a datum design to the build queue.
