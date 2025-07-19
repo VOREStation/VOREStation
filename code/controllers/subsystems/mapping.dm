@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(mapping)
 	//)
 	dependencies = list(
 		///datum/controller/subsystem/garbage,
+		/datum/controller/subsystem/vis_overlays,
 		/datum/controller/subsystem/chemistry
 	)
 	flags = SS_NO_FIRE
