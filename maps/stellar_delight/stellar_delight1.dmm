@@ -3187,7 +3187,6 @@
 /obj/structure/cable/pink{
 	icon_state = "1-2"
 	},
-/obj/machinery/rnd/production/protolathe/department/security,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "gc" = (
@@ -23881,6 +23880,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/rnd/production/protolathe/department/security,
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "Ya" = (
