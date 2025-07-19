@@ -38,8 +38,8 @@
 	return ..()
 
 /obj/machinery/rnd/server/power_change()
+	. = ..()
 	refresh_working()
-	return ..()
 
 /// Checks if we should be working or not, and updates accordingly.
 /obj/machinery/rnd/server/proc/refresh_working()
