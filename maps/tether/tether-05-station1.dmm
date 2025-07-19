@@ -2841,9 +2841,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/storage)
 "aeY" = (
-/obj/machinery/rnd/production/protolathe/department/engineering,
-/turf/simulated/floor/tiled/monotile,
-/area/engineering/workshop)
+/obj/machinery/ore_silo,
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "aeZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -2877,9 +2877,9 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/general)
 "afb" = (
-/obj/machinery/ore_silo,
-/turf/simulated/floor/tiled,
-/area/quartermaster/storage)
+/obj/machinery/rnd/production/protolathe/department/engineering,
+/turf/simulated/floor/tiled/monotile,
+/area/engineering/workshop)
 "afe" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor/tiled,
@@ -40557,7 +40557,7 @@ aqq
 arE
 atk
 avm
-aeY
+afb
 atN
 axU
 axW
@@ -45146,7 +45146,7 @@ uqB
 xyX
 wkd
 oyD
-afb
+aeY
 kJz
 xyO
 iEl
