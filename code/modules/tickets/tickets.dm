@@ -169,7 +169,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	if(C.current_ticket)
 		var/datum/ticket/T = C.current_ticket
 		T.AddInteraction("Client disconnected.")
-		T.initiator.mob.clear_alert("open ticket")
+		T.initiator.mob?.clear_alert("open ticket")
 		T.initiator = null
 		T = null
 
