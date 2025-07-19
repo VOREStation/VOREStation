@@ -52,7 +52,7 @@
 			data["servers"] += list(list(
 				"server_name" = server,
 				"server_details" = server.get_status_text(),
-				"server_disabled" = server.research_disabled,
+				"server_disabled" = server.research_disabled || !server.working,
 				"server_ref" = REF(server),
 			))
 
