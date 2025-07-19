@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import { Flex, Input, Section, Tabs, VirtualList } from 'tgui-core/components';
+import {
+  Box,
+  Flex,
+  Input,
+  Section,
+  Stack,
+  Tabs,
+  VirtualList,
+} from 'tgui-core/components';
 
 import { useRemappedBackend } from './helpers';
 import { TechNode } from './nodes/TechNode';
@@ -90,13 +98,38 @@ export function TechwebOverview(props) {
       </Flex.Item>
       <Flex.Item className="Techweb__OverviewNodes" height="100%">
         <Section fill scrollable>
-          <VirtualList>
-            {displayedNodes.map((n) => (
-              <TechNode node={n} key={n.id} />
-            ))}
-          </VirtualList>
+          {displayedNodes?.length ? (
+            <VirtualList>
+              {displayedNodes.map((n) => (
+                <TechNode node={n} key={n.id} />
+              ))}
+            </VirtualList>
+          ) : (
+            <HappyFace />
+          )}
         </Section>
       </Flex.Item>
     </Flex>
   );
 }
+
+export const HappyFace = (props) => {
+  return (
+    <Stack fill align="center" justify="center" vertical>
+      <Stack.Item className="Techweb__Bounce">
+        <Stack align="center" justify="center" vertical>
+          <Stack.Item>
+            <Box inline className="Techweb__HappyFace__LeftEye" />
+            <Box inline className="Techweb__HappyFace__RightEye" />
+          </Stack.Item>
+          <Stack.Item>
+            <Box className="Techweb__HappyFace__Smile" />
+          </Stack.Item>
+          <Stack.Item fontSize={2} mt={8}>
+            No Nodes Found!
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+    </Stack>
+  );
+};
