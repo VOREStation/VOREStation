@@ -19511,7 +19511,7 @@
 /obj/effect/floor_decal/corner/mauve/border,
 /obj/machinery/mecha_part_fabricator_tg/prosthetics{
 	dir = 1;
-	drop_direction = NORTH
+	drop_direction = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
@@ -20981,7 +20981,7 @@
 "aJm" = (
 /obj/machinery/mecha_part_fabricator_tg{
 	dir = 8;
-	drop_direction = WEST
+	drop_direction = 8
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
