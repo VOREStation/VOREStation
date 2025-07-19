@@ -2,7 +2,8 @@ SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
-		/datum/controller/subsystem/atoms
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/points_of_interest
 	)
 	flags = SS_NO_FIRE
 
