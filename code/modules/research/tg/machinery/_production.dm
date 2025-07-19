@@ -433,14 +433,14 @@
 	SStgui.update_uis(src)
 	icon_state = initial(icon_state)
 
-/obj/machinery/rnd/production/MouseDrop_T(atom/over, mob/user, src_location, over_location, params)
-	if(!Adjacent(user))
+/obj/machinery/rnd/production/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(usr))
 		return
 	if(busy)
-		balloon_alert(user, "busy printing!")
+		balloon_alert(usr, "busy printing!")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+	balloon_alert(usr, "dropping [dir2text(drop_direction)]")

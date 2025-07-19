@@ -147,17 +147,17 @@
 		. += span_notice("The status display reads: Storing up to <b>[rmat.max_amount]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
 		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
 
-/obj/machinery/mecha_part_fabricator_tg/MouseDrop_T(atom/over, mob/user, src_location, over_location, params)
-	if(!Adjacent(user))
+/obj/machinery/mecha_part_fabricator_tg/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	if(!Adjacent(usr))
 		return
 	if(being_built)
-		balloon_alert(user, "printing started!")
+		balloon_alert(usr, "printing started!")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+	balloon_alert(usr, "dropping [dir2text(drop_direction)]")
 
 /**
  * Updates the `final_sets` and `buildable_parts` for the current mecha fabricator.
