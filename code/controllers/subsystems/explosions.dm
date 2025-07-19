@@ -161,14 +161,13 @@ SUBSYSTEM_DEF(explosions)
 	resolve_explosions = FALSE
 
 /datum/controller/subsystem/explosions/proc/wake_and_defer_subsystem_updates(var/defer = FALSE)
+	if(defer) // Save these for AFTER the explosion has resolved
+		SSmachines.defer_powernet_rebuild();
 	// waking from sleep, we are absolutely not resuming, and INSTANT feedback to players is required here.
 	if(can_fire) // already awake
 		return
 	wake()
 	next_fire = 0
-	// Save these for AFTER the explosion has resolved
-	if(defer)
-		SSmachines.defer_powernet_rebuild();
 
 /datum/controller/subsystem/explosions/proc/suspend_and_invoke_deferred_subsystems()
 	// Resolve all the stuff we put off for after the explosion resolved
@@ -242,7 +241,7 @@ SUBSYSTEM_DEF(explosions)
 	explosion_signals.Add(list( list(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,world.time) )) // append a list in a list. Needed so that the data list doesn't get merged into the list of datalists
 
 	// BOINK! Time to wake up sleeping beauty!
-	wake_and_defer_subsystem_updates(devastation_range > 0 || heavy_impact_range > 0 || light_impact_range > 1) // If significant enough devistation then rebuild!
+	wake_and_defer_subsystem_updates(devastation_range >= 2 || heavy_impact_range >= 4 || light_impact_range >= 8)
 
 // Collect prepared explosions for BLAST PROCESSING
 /datum/controller/subsystem/explosions/proc/finalize_explosion(var/x0,var/y0,var/z0,var/pwr,var/max_starting)

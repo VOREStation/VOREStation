@@ -65,8 +65,7 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/proc/powernet_is_defered()
 	return defering_powernets
 
-// rebuild all power networks from scratch - only called at world creation or by the admin verb
-// The above is a lie. Turbolifts also call this proc.
+// rebuild all power networks from scratch - Called when major network changes happen, like shuttles/turbolifts with wires moving, or huge explosions, where doing it per-wire does not make sense.
 /datum/controller/subsystem/machines/proc/makepowernets()
 	// TODO - check to not run while in the middle of a tick!
 	for(var/datum/powernet/PN as anything in powernets)
