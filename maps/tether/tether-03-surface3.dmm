@@ -12733,9 +12733,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
-"avv" = (
-/turf/simulated/floor/tiled/dark,
-/area/rnd/research)
 "avx" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -13669,6 +13666,9 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_grid,
+/area/rnd/research)
+"awY" = (
+/turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "awZ" = (
 /obj/machinery/hologram/holopad,
@@ -55387,9 +55387,9 @@ aux
 aud
 atT
 aqy
-avv
+awY
 avU
-avv
+awY
 axl
 axJ
 auY
@@ -55529,7 +55529,7 @@ aux
 aud
 atT
 auv
-avv
+awY
 avV
 awZ
 axz
