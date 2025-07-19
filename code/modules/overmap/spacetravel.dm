@@ -155,6 +155,6 @@
 			if(D.pulling)
 				D.pulling.forceMove(dest)
 	else
-		to_world("CANARY: Could not move [A] to [nx], [ny], [nz]: [dest ? "[dest]" : "null"]")
+		to_chat(world, "CANARY: Could not move [A] to [nx], [ny], [nz]: [dest ? "[dest]" : "null"]")
 
 	M.cleanup()

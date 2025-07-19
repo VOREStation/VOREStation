@@ -23,7 +23,7 @@
 	flick("[icon_state]_erupt",src)
 	return TRUE
 
-/obj/effect/temporary_effect/eruption/testing/on_eruption(var/turf/Target)
+/obj/effect/temporary_effect/eruption/test/on_eruption(var/turf/Target)
 	flick("[icon_state]_erupt",src)
 	if(Target)
 		new /obj/effect/explosion(Target)

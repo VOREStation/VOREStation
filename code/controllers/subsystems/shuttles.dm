@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(shuttles)
 		var/datum/shuttle/S = working_shuttles[working_shuttles.len]
 		working_shuttles.len--
 		if(!istype(S) || QDELETED(S))
-			error("Bad entry in SSshuttles.process_shuttles - [log_info_line(S)] ")
+			log_world("## ERROR Bad entry in SSshuttles.process_shuttles - [log_info_line(S)] ")
 			process_shuttles -= S
 			continue
 		// NOTE - In old system, /datum/shuttle/ferry was processed only if (F.process_state || F.always_process)
@@ -157,7 +157,7 @@ SUBSYSTEM_DEF(shuttles)
 				S.motherdock = S.current_location.landmark_tag
 				mothership.shuttle_area |= S.shuttle_area
 			else
-				error("Shuttle [S] was unable to find mothership [mothership]!")
+				log_world("## ERROR Shuttle [S] was unable to find mothership [mothership]!")
 
 // Let shuttles scan their owned areas for objects they want to configure (Called after mothership hookup)
 /datum/controller/subsystem/shuttles/proc/hook_up_shuttle_objects(shuttles_list)

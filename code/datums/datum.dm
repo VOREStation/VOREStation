@@ -168,6 +168,16 @@
 	for(var/target in _signal_procs)
 		UnregisterSignal(target, _signal_procs[target])
 
+/// Return a list of data which can be used to investigate the datum, also ensure that you set the semver in the options list
+/datum/proc/serialize_list(list/options, list/semvers)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = list()
+	.["tag"] = tag
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
+
 /**
  * Callback called by a timer to end an associative-list-indexed cooldown.
  *

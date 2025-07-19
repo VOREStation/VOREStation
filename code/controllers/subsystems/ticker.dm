@@ -78,8 +78,8 @@ var/global/datum/controller/subsystem/ticker/ticker
 			post_game_tick()
 
 /datum/controller/subsystem/ticker/proc/pregame_welcome()
-	to_world(span_boldannounce(span_notice("<em>Welcome to the pregame lobby!</em>")))
-	to_world(span_boldannounce(span_notice("Please set up your character and select ready. The round will start in [pregame_timeleft] seconds.")))
+	to_chat(world, span_boldannounce(span_notice("<em>Welcome to the pregame lobby!</em>")))
+	to_chat(world, span_boldannounce(span_notice("Please set up your character and select ready. The round will start in [pregame_timeleft] seconds.")))
 	world << sound('sound/misc/server-ready.ogg', volume = 100)
 
 // Called during GAME_STATE_PREGAME (RUNLEVEL_LOBBY)
@@ -128,7 +128,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	var/list/runnable_modes = config.get_runnable_modes()
 	if((GLOB.master_mode == "random") || (GLOB.master_mode == "secret"))
 		if(!runnable_modes.len)
-			to_world(span_filter_system(span_bold("Unable to choose playable game mode.") + " Reverting to pregame lobby."))
+			to_chat(world, span_filter_system(span_bold("Unable to choose playable game mode.") + " Reverting to pregame lobby."))
 			return 0
 		if(GLOB.secret_force_mode != "secret")
 			src.mode = config.pick_mode(GLOB.secret_force_mode)
@@ -141,7 +141,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 		src.mode = config.pick_mode(GLOB.master_mode)
 
 	if(!src.mode)
-		to_world(span_boldannounce("Serious error in mode setup! Reverting to pregame lobby.")) //Uses setup instead of set up due to computational context.
+		to_chat(world, span_boldannounce("Serious error in mode setup! Reverting to pregame lobby.")) //Uses setup instead of set up due to computational context.
 		return 0
 
 	job_master.ResetOccupations()
@@ -150,21 +150,21 @@ var/global/datum/controller/subsystem/ticker/ticker
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.mode.can_start())
-		to_world(span_filter_system(span_bold("Unable to start [mode.name].") + " Not enough players readied, [CONFIG_GET(keyed_list/player_requirements)[mode.config_tag]] players needed. Reverting to pregame lobby."))
+		to_chat(world, span_filter_system(span_bold("Unable to start [mode.name].") + " Not enough players readied, [CONFIG_GET(keyed_list/player_requirements)[mode.config_tag]] players needed. Reverting to pregame lobby."))
 		mode.fail_setup()
 		mode = null
 		job_master.ResetOccupations()
 		return 0
 
 	if(hide_mode)
-		to_world(span_world(span_notice("The current game mode is - Secret!")))
+		to_chat(world, span_world(span_notice("The current game mode is - Secret!")))
 		if(runnable_modes.len)
 			var/list/tmpmodes = list()
 			for (var/datum/game_mode/M in runnable_modes)
 				tmpmodes+=M.name
 			tmpmodes = sortList(tmpmodes)
 			if(tmpmodes.len)
-				to_world(span_filter_system(span_bold("Possibilities:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
+				to_chat(world, span_filter_system(span_bold("Possibilities:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
 	else
 		src.mode.announce()
 	return 1
@@ -186,7 +186,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			//Deleting Startpoints but we need the ai point to AI-ize people later
 			if (S.name != "AI")
 				qdel(S)
-		to_world(span_boldannounce(span_notice("<em>Enjoy the game!</em>")))
+		to_chat(world, span_boldannounce(span_notice("<em>Enjoy the game!</em>")))
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
@@ -230,7 +230,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 		end_game_state = END_GAME_MODE_FINISHED // Only do this cleanup once!
 		mode.cleanup()
 		//call a transfer shuttle vote
-		to_world(span_boldannounce("The round has ended!"))
+		to_chat(world, span_boldannounce("The round has ended!"))
 		SSvote.start_vote(new /datum/vote/crew_transfer)
 
 // Called during GAME_STATE_FINISHED (RUNLEVEL_POSTGAME)
@@ -243,7 +243,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 				feedback_set_details("end_proper", "nuke")
 				restart_timeleft = 1 MINUTE // No point waiting five minutes if everyone's dead.
 				if(!delay_end)
-					to_world(span_boldannounce("Rebooting due to destruction of [station_name()] in [round(restart_timeleft/600)] minute\s."))
+					to_chat(world, span_boldannounce("Rebooting due to destruction of [station_name()] in [round(restart_timeleft/600)] minute\s."))
 					last_restart_notify = world.time
 			else
 				feedback_set_details("end_proper", "proper completion")
@@ -257,14 +257,14 @@ var/global/datum/controller/subsystem/ticker/ticker
 		if(END_GAME_ENDING)
 			restart_timeleft -= (world.time - last_fire)
 			if(delay_end)
-				to_world(span_boldannounce("An admin has delayed the round end."))
+				to_chat(world, span_boldannounce("An admin has delayed the round end."))
 				end_game_state = END_GAME_DELAYED
 			else if(restart_timeleft <= 0)
-				to_world(span_boldannounce("Restarting world!"))
+				to_chat(world, span_boldannounce("Restarting world!"))
 				sleep(5)
 				world.Reboot()
 			else if (world.time - last_restart_notify >= 1 MINUTE)
-				to_world(span_boldannounce("Restarting in [round(restart_timeleft/600, 1)] minute\s."))
+				to_chat(world, span_boldannounce("Restarting in [round(restart_timeleft/600, 1)] minute\s."))
 				last_restart_notify = world.time
 			return
 		if(END_GAME_DELAYED)
@@ -272,7 +272,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if(!delay_end)
 				end_game_state = END_GAME_ENDING
 		else
-			log_error("Ticker arrived at round end in an unexpected endgame state '[end_game_state]'.")
+			log_runtime("Ticker arrived at round end in an unexpected endgame state '[end_game_state]'.")
 			end_game_state = END_GAME_READY_TO_END
 
 
@@ -459,7 +459,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()
-	to_world(span_filter_system("<br><br><br><H1>A round of [mode.name] has ended!</H1>"))
+	to_chat(world, span_filter_system("<br><br><br><H1>A round of [mode.name] has ended!</H1>"))
 	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
@@ -482,20 +482,20 @@ var/global/datum/controller/subsystem/ticker/ticker
 						to_chat(Player, span_filter_system(span_red(span_bold("You did not survive the events on [station_name()]..."))))
 				else
 					to_chat(Player, span_filter_system(span_red(span_bold("You did not survive the events on [station_name()]..."))))
-	to_world(span_filter_system("<br>"))
+	to_chat(world, span_filter_system("<br>"))
 
 	for (var/mob/living/silicon/ai/aiPlayer in GLOB.mob_list)
 		if (aiPlayer.stat != 2)
-			to_world(span_filter_system(span_bold("[aiPlayer.name]'s laws at the end of the round were:"))) // VOREStation edit
+			to_chat(world, span_filter_system(span_bold("[aiPlayer.name]'s laws at the end of the round were:"))) // VOREStation edit
 		else
-			to_world(span_filter_system(span_bold("[aiPlayer.name]'s laws when it was deactivated were:"))) // VOREStation edit
+			to_chat(world, span_filter_system(span_bold("[aiPlayer.name]'s laws when it was deactivated were:"))) // VOREStation edit
 		aiPlayer.show_laws(1)
 
 		if (aiPlayer.connected_robots.len)
 			var/robolist = span_bold("The AI's loyal minions were:") + " "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				robolist += "[robo.name][robo.stat?" (Deactivated), ":", "]"  // VOREStation edit
-			to_world(span_filter_system("[robolist]"))
+			to_chat(world, span_filter_system("[robolist]"))
 
 	var/dronecount = 0
 
@@ -512,15 +512,15 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 		if (!robo.connected_ai)
 			if (robo.stat != 2)
-				to_world(span_filter_system(span_bold("[robo.name] survived as an AI-less stationbound synthetic! Its laws were:"))) // VOREStation edit
+				to_chat(world, span_filter_system(span_bold("[robo.name] survived as an AI-less stationbound synthetic! Its laws were:"))) // VOREStation edit
 			else
-				to_world(span_filter_system(span_bold("[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:"))) // VOREStation edit
+				to_chat(world, span_filter_system(span_bold("[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:"))) // VOREStation edit
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
 
 	if(dronecount)
-		to_world(span_filter_system(span_bold("There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.")))
+		to_chat(world, span_filter_system(span_bold("There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.")))
 
 	mode.declare_completion()//To declare normal completion.
 

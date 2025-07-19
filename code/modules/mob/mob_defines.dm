@@ -1,3 +1,11 @@
+/**
+ * The mob, usually meant to be a creature of some type
+ *
+ * Has a client attached that is a living person (most of the time), although I have to admit
+ * sometimes it's hard to tell they're sentient
+ *
+ * Has a lot of the creature game world logic, such as health etc
+ */
 /mob
 	density = TRUE
 	layer = MOB_LAYER
@@ -6,6 +14,10 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	///when this be added to vis_contents of something it inherit something.plane, important for visualisation of mob in openspace.
 	vis_flags = VIS_INHERIT_PLANE
+
+	/// It's like a client, but persists! Persistent clients will stick to a mob until the client in question is logged into a different mob.
+	var/datum/persistent_client/persistent_client
+
 	var/datum/mind/mind
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
@@ -51,7 +63,10 @@
 
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
+
 	var/computer_id = null
+	var/list/logging = list()
+
 	var/already_placed = 0.0
 	var/obj/machinery/machine = null
 	var/other_mobs = null

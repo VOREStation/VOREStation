@@ -181,7 +181,7 @@
 		PM.receive_message(list("sent" = 0, "owner" = "[pda.owner]", "job" = "[pda.ownjob]", "message" = "[t]", "target" = "\ref[pda]"), "\ref[pda]")
 
 		SStgui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
-		log_pda("(PDA: [src.name]) sent \"[t]\" to [P.name]", U)
+		U.log_message("(PDA: [src.name] | [U.real_name]) sent \"[t]\" to [P.name]", LOG_PDA)
 		to_chat(U, "[icon2html(pda,U.client)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 	else
 		to_chat(U, span_notice("ERROR: Messaging server is not responding."))

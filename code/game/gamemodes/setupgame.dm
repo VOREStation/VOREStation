@@ -39,7 +39,7 @@
 				GLOB.dna_genes_good.Add(G)
 	log_world("DNA2: Created traitgenes with [blocks_remaining.len] remaining blocks. Used [DNA_SE_LENGTH - blocks_remaining.len] out of [DNA_SE_LENGTH] ")
 	if(blocks_remaining.len < 10)
-		warning("DNA2: Blocks remaining is less than 10. The DNA_SE_LENGTH should be raised in dna.dm.")
+		WARNING("DNA2: Blocks remaining is less than 10. The DNA_SE_LENGTH should be raised in dna.dm.")
 	// Run conflict-o-tron on each traitgene all other traits... Lets setup an initial database of conflicts.
 	log_world("DNA2: Checking trait gene conflicts")
 	for(var/datum/gene/trait/gene in GLOB.dna_genes)

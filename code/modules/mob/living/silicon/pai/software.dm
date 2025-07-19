@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(default_pai_software)
 		var/datum/pai_software/P = new type()
 		if(GLOB.pai_software_by_key[P.id])
 			var/datum/pai_software/O = GLOB.pai_software_by_key[P.id]
-			to_world(span_warning("pAI software module [P.name] has the same key as [O.name]!"))
+			to_chat(world, span_warning("pAI software module [P.name] has the same key as [O.name]!"))
 			r = 0
 			continue
 		GLOB.pai_software_by_key[P.id] = P

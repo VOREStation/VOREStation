@@ -39,7 +39,7 @@
 
 /area/proc/spawn_mob_on_turf()
 	if(!valid_mobs.len)
-		to_world_log("[src] does not have a set valid mobs list!")
+		log_mapping("[src] does not have a set valid mobs list!")
 		return TRUE
 
 	var/mob/M
@@ -87,7 +87,7 @@
 
 /area/proc/spawn_flora_on_turf()
 	if(!valid_flora.len)
-		to_world_log("[src] does not have a set valid flora list!")
+		log_mapping("[src] does not have a set valid flora list!")
 		return TRUE
 
 	var/obj/F

@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(transcore)
 	for(var/t in subtypesof(/datum/transcore_db))
 		var/datum/transcore_db/db = new t()
 		if(!db.key)
-			warning("Instantiated transcore DB without a key: [t]")
+			WARNING("Instantiated transcore DB without a key: [t]")
 			continue
 		databases[db.key] = db
 	return SS_INIT_SUCCESS
@@ -140,7 +140,7 @@ SUBSYSTEM_DEF(transcore)
 /datum/controller/subsystem/transcore/Recover()
 	for(var/key in SStranscore.databases)
 		if(!SStranscore.databases[key])
-			warning("SStranscore recovery found missing database value for key: [key]")
+			WARNING("SStranscore recovery found missing database value for key: [key]")
 			continue
 		if(key == "default")
 			default_db = SStranscore.databases[key]
@@ -149,10 +149,10 @@ SUBSYSTEM_DEF(transcore)
 
 /datum/controller/subsystem/transcore/proc/leave_round(var/mob/M)
 	if(!istype(M))
-		warning("Non-mob asked to be removed from transcore: [M] [M?.type]")
+		WARNING("Non-mob asked to be removed from transcore: [M] [M?.type]")
 		return
 	if(!M.mind)
-		warning("No mind mob asked to be removed from transcore: [M] [M?.type]")
+		WARNING("No mind mob asked to be removed from transcore: [M] [M?.type]")
 		return
 
 	for(var/key in databases)
@@ -168,7 +168,7 @@ SUBSYSTEM_DEF(transcore)
 	if(isnull(key))
 		return default_db
 	if(!databases[key])
-		warning("Tried to find invalid transcore database: [key]")
+		WARNING("Tried to find invalid transcore database: [key]")
 		return default_db
 	return databases[key]
 

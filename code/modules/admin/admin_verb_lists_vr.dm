@@ -213,7 +213,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player,
-	/datum/admins/proc/view_runtimes,
 	// /client/proc/show_gm_status, //We don't use SSgame_master yet.
 	/datum/admins/proc/set_uplink,
 	/datum/admins/proc/change_weather,

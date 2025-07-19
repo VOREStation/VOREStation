@@ -173,7 +173,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)
 	else
-		to_world(span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
+		to_chat(world, span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
 		Initialize(20, TRUE)
 
 
@@ -272,11 +272,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	// Gave invalid return value.
 	if(result && !(result in valid_results))
-		warning("[subsystem.name] subsystem initialized, returning invalid result [result]. This is a bug.")
+		WARNING("[subsystem.name] subsystem initialized, returning invalid result [result]. This is a bug.")
 
 	// just returned ..() or didn't implement Initialize() at all
 	if(result == SS_INIT_NONE)
-		warning("[subsystem.name] subsystem does not implement Initialize() or it returns ..(). If the former is true, the SS_NO_INIT flag should be set for this subsystem.")
+		WARNING("[subsystem.name] subsystem does not implement Initialize() or it returns ..(). If the former is true, the SS_NO_INIT flag should be set for this subsystem.")
 
 	if(result != SS_INIT_FAILURE)
 		// Some form of success, implicit failure, or the SS in unused.

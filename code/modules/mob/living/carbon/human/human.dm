@@ -979,7 +979,7 @@
 	else
 		target.show_message(span_filter_say("[span_blue("You hear a voice that seems to echo around the room: [say]")]"))
 	src.show_message(span_filter_say("[span_blue("You project your mind into [target.real_name]: [say]")]"))
-	log_say("(TPATH to [key_name(target)]) [say]",src)
+	log_talk("(TPATH to [key_name(target)]) [say]", LOG_SAY)
 	for(var/mob/observer/dead/G in GLOB.mob_list)
 		G.show_message(span_filter_say(span_italics("Telepathic message from " + span_bold("[src]") + " to " + span_bold("[target]") + ": [say]")))
 

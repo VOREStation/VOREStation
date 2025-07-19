@@ -59,7 +59,7 @@
 	launched = TRUE
 	var/obj/effect/overmap/visitable/S = get_overmap_sector(z)
 	if(!S)
-		error("Distress button hit on z[z] but that's not an overmap sector...")
+		log_mapping("## ERROR Distress button hit on z[z] but that's not an overmap sector...")
 		return
 	S.distress(user)
 	//Kind of pricey, but this is a one-time thing that can't be reused, so I'm not too worried.

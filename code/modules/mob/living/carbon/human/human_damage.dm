@@ -477,7 +477,7 @@ This function restores all organs.
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/sharp = FALSE, var/edge = FALSE, var/obj/used_weapon = null, var/projectile = FALSE)
 	if(GLOB.Debug2)
-		to_world_log("## DEBUG: human/apply_damage() was called on [src], with [damage] damage, an armor value of [blocked], and a soak value of [soaked].")
+		log_world("## DEBUG: human/apply_damage() was called on [src], with [damage] damage, an armor value of [blocked], and a soak value of [soaked].")
 	var/obj/item/organ/external/organ = null
 	if(isorgan(def_zone))
 		organ = def_zone
@@ -560,7 +560,7 @@ This function restores all organs.
 		damage -= soaked
 
 	if(GLOB.Debug2)
-		to_world_log("## DEBUG: [src] was hit for [damage].")
+		log_world("## DEBUG: [src] was hit for [damage].")
 
 	switch(damagetype)
 		if(BRUTE)

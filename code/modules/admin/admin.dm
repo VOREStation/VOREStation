@@ -4,7 +4,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 ////////////////////////////////
 /proc/message_admins(var/msg)
 	msg = span_filter_adminlog(span_log_message(span_prefix("ADMIN LOG:") + span_message("[msg]")))
-	//log_adminwarn(msg) //log_and_message_admins is for this
+	//log_admin_private(msg) //log_and_message_admins is for this
 
 	for(var/client/C in GLOB.admins)
 		if(check_rights_for(C, (R_ADMIN|R_MOD|R_SERVER)))
@@ -544,8 +544,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 		else
 			dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
-	//to_world("Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
-	//to_world("Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
+	//to_chat(world, "Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
+	//to_chat(world, "Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
 
 	var/datum/browser/popup = new(owner, "admincaster_main", "Admin Newscaster", 400, 600)
 	popup.add_head_content("<TITLE>Admin Newscaster</TITLE>")
@@ -636,7 +636,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 	if(!confirm || confirm == "Cancel")
 		return
 	if(confirm == "Yes")
-		to_world(span_danger("Restarting world!" ) + span_notice("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"))
+		to_chat(world, span_danger("Restarting world!" ) + span_notice("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"))
 		log_admin("[key_name(usr)] initiated a reboot.")
 
 		feedback_set_details("end_error","admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
@@ -792,9 +792,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	CONFIG_SET(flag/ooc_allowed, !CONFIG_GET(flag/ooc_allowed))
 	if (CONFIG_GET(flag/ooc_allowed))
-		to_world(span_world("The OOC channel has been globally enabled!"))
+		to_chat(world, span_world("The OOC channel has been globally enabled!"))
 	else
-		to_world(span_world("The OOC channel has been globally disabled!"))
+		to_chat(world, span_world("The OOC channel has been globally disabled!"))
 	log_and_message_admins("toggled OOC.")
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -808,9 +808,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	CONFIG_SET(flag/looc_allowed, !CONFIG_GET(flag/looc_allowed))
 	if (CONFIG_GET(flag/looc_allowed))
-		to_world(span_world("The LOOC channel has been globally enabled!"))
+		to_chat(world, span_world("The LOOC channel has been globally enabled!"))
 	else
-		to_world(span_world("The LOOC channel has been globally disabled!"))
+		to_chat(world, span_world("The LOOC channel has been globally disabled!"))
 	log_and_message_admins("toggled LOOC.")
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -825,9 +825,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	CONFIG_SET(flag/dsay_allowed, !CONFIG_GET(flag/dsay_allowed))
 	if (CONFIG_GET(flag/dsay_allowed))
-		to_world(span_world("Deadchat has been globally enabled!"))
+		to_chat(world, span_world("Deadchat has been globally enabled!"))
 	else
-		to_world(span_world("Deadchat has been globally disabled!"))
+		to_chat(world, span_world("Deadchat has been globally disabled!"))
 	log_admin("[key_name(usr)] toggled deadchat.")
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
@@ -887,7 +887,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		SSticker.start_immediately = FALSE
-		to_world(span_filter_system(span_blue("Immediate game start canceled. Normal startup resumed.")))
+		to_chat(world, span_filter_system(span_blue("Immediate game start canceled. Normal startup resumed.")))
 		log_and_message_admins("cancelled immediate game start.")
 
 /datum/admins/proc/toggleenter()
@@ -896,9 +896,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle Entering"
 	CONFIG_SET(flag/enter_allowed, !CONFIG_GET(flag/enter_allowed))
 	if (!CONFIG_GET(flag/enter_allowed))
-		to_world(span_world("New players may no longer enter the game."))
+		to_chat(world, span_world("New players may no longer enter the game."))
 	else
-		to_world(span_world("New players may now enter the game."))
+		to_chat(world, span_world("New players may now enter the game."))
 	log_admin("[key_name(usr)] toggled new player game entering.")
 	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering."), 1)
 	world.update_status()
@@ -910,9 +910,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle AI"
 	CONFIG_SET(flag/allow_ai, !CONFIG_GET(flag/allow_ai))
 	if (!CONFIG_GET(flag/allow_ai))
-		to_world(span_world("The AI job is no longer chooseable."))
+		to_chat(world, span_world("The AI job is no longer chooseable."))
 	else
-		to_world(span_world("The AI job is chooseable now."))
+		to_chat(world, span_world("The AI job is chooseable now."))
 	log_admin("[key_name(usr)] toggled AI allowed.")
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -923,9 +923,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle Respawn"
 	CONFIG_SET(flag/abandon_allowed, !CONFIG_GET(flag/abandon_allowed))
 	if(CONFIG_GET(flag/abandon_allowed))
-		to_world(span_world("You may now respawn."))
+		to_chat(world, span_world("You may now respawn."))
 	else
-		to_world(span_world("You may no longer respawn :("))
+		to_chat(world, span_world("You may no longer respawn :("))
 	message_admins(span_blue("[key_name_admin(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."), 1)
 	log_admin("[key_name(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"].")
 	world.update_status()
@@ -947,9 +947,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle Mapload Persistent Data"
 	CONFIG_SET(flag/persistence_ignore_mapload, !CONFIG_GET(flag/persistence_ignore_mapload))
 	if(!CONFIG_GET(flag/persistence_ignore_mapload))
-		to_world(span_world("Persistence is now enabled."))
+		to_chat(world, span_world("Persistence is now enabled."))
 	else
-		to_world(span_world("Persistence is no longer enabled."))
+		to_chat(world, span_world("Persistence is no longer enabled."))
 	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_ignore_mapload) ? "Off" : "On"]."), 1)
 	log_admin("[key_name(usr)] toggled persistence to [CONFIG_GET(flag/persistence_ignore_mapload) ? "Off" : "On"].")
 	world.update_status()
@@ -986,10 +986,10 @@ var/datum/announcement/minor/admin_min_announcer = new
 		return
 	GLOB.round_progressing = !GLOB.round_progressing
 	if (!GLOB.round_progressing)
-		to_world(span_world("The game start has been delayed."))
+		to_chat(world, span_world("The game start has been delayed."))
 		log_admin("[key_name(usr)] delayed the game.")
 	else
-		to_world(span_world("The game will start soon."))
+		to_chat(world, span_world("The game will start soon."))
 		log_admin("[key_name(usr)] removed the delay.")
 	feedback_add_details("admin_verb","DELAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -1024,7 +1024,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!check_rights_for(usr.client, R_HOLDER))	return
 	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
 		return
-	to_world(span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
+	to_chat(world, span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
 
 	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
@@ -1274,9 +1274,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle tinted welding helmets."
 	CONFIG_SET(flag/welder_vision, !CONFIG_GET(flag/welder_vision))
 	if (CONFIG_GET(flag/welder_vision))
-		to_world(span_world("Reduced welder vision has been enabled!"))
+		to_chat(world, span_world("Reduced welder vision has been enabled!"))
 	else
-		to_world(span_world("Reduced welder vision has been disabled!"))
+		to_chat(world, span_world("Reduced welder vision has been disabled!"))
 	log_admin("[key_name(usr)] toggled welder vision.")
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -1287,9 +1287,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Toggle guests"
 	CONFIG_SET(flag/guests_allowed, !CONFIG_GET(flag/guests_allowed))
 	if (!CONFIG_GET(flag/guests_allowed))
-		to_world(span_world("Guests may no longer enter the game."))
+		to_chat(world, span_world("Guests may no longer enter the game."))
 	else
-		to_world(span_world("Guests may now enter the game."))
+		to_chat(world, span_world("Guests may now enter the game."))
 	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
 	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."), 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

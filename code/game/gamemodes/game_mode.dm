@@ -117,11 +117,11 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 				return
 
 /datum/game_mode/proc/announce() //to be called when round starts
-	to_world(span_world("The current game mode is [capitalize(name)]!"))
+	to_chat(world, span_world("The current game mode is [capitalize(name)]!"))
 	if(round_description)
-		to_world(span_filter_system("[round_description]"))
+		to_chat(world, span_filter_system("[round_description]"))
 	if(round_autoantag)
-		to_world(span_filter_system("Antagonists will be added to the round automagically as needed."))
+		to_chat(world, span_filter_system("Antagonists will be added to the round automagically as needed."))
 	if(antag_templates && antag_templates.len)
 		var/antag_summary = span_bold("Possible antagonist types:") + " "
 		var/i = 1
@@ -135,7 +135,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			i++
 		antag_summary += "."
 		if(antag_templates.len > 1 && GLOB.master_mode != "secret")
-			to_world(span_filter_system("[antag_summary]"))
+			to_chat(world, span_filter_system("[antag_summary]"))
 		else
 			message_admins("[antag_summary]")
 
@@ -344,7 +344,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		text += ".<br>"
 	else
 		text += "There were " + span_bold("no survivors") + " (" + span_bold("[ghosts] ghosts") + ")."
-	to_world(span_filter_system(text))
+	to_chat(world, span_filter_system(text))
 
 	if(clients > 0)
 		feedback_set("round_end_clients",clients)

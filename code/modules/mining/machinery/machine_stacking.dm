@@ -18,7 +18,7 @@
 		machine.console = src
 	else
 		//Silently failing and causing mappers to scratch their heads while runtiming isn't ideal.
-		to_world(span_danger("Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!"))
+		to_chat(world, span_danger("Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!"))
 		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/mineral/stacking_unit_console/attack_hand(mob/user)

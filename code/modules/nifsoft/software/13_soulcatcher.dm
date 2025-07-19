@@ -107,7 +107,7 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon, CS.client)]NIF\]") + message))
 
-	log_nsay(message,nif.human.real_name,sender)
+	sender.log_talk("NSAY (NIF:[nif.human.real_name]): [message]", LOG_SAY)
 
 /datum/nifsoft/soulcatcher/proc/emote_into(var/message, var/mob/living/sender, var/mob/eyeobj, var/whisper)
 	var/sender_name = eyeobj ? eyeobj.name : sender.name
@@ -135,7 +135,7 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon,CS.client)]NIF\]") + message))
 
-	log_nme(message,nif.human.real_name,sender)
+	sender.log_message("NME (NIF:[nif.human.real_name]): [message]", LOG_EMOTE)
 
 /datum/nifsoft/soulcatcher/proc/show_settings(var/mob/living/carbon/human/H)
 	set waitfor = FALSE

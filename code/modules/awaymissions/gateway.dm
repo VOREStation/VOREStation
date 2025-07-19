@@ -38,7 +38,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 
 /obj/machinery/gateway/centerstation/Initialize(mapload)
 	if(GLOB.gateway_station)
-		warning("[src] at [x],[y],[z] appears to be an additional station-gateway")
+		WARNING("[src] at [x],[y],[z] appears to be an additional station-gateway")
 	else
 		GLOB.gateway_station = src
 
@@ -256,7 +256,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 
 /obj/machinery/gateway/centeraway/Initialize(mapload)
 	if(GLOB.gateway_away)
-		warning("[src] at [x],[y],[z] appears to be an additional away-gateway")
+		WARNING("[src] at [x],[y],[z] appears to be an additional away-gateway")
 	else
 		GLOB.gateway_away = src
 

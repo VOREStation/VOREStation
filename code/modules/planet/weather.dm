@@ -29,14 +29,14 @@
 
 /datum/weather_holder/proc/apply_to_turf(turf/T)
 	if(visuals in T.vis_contents)
-		warning("Was asked to add weather to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
+		WARNING("Was asked to add weather to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
 		return
 	T.vis_contents += visuals
 	T.vis_contents += special_visuals
 
 /datum/weather_holder/proc/remove_from_turf(turf/T)
 	if(!(visuals in T.vis_contents))
-		warning("Was asked to remove weather from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
+		WARNING("Was asked to remove weather from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
 		return
 	T.vis_contents -= visuals
 	T.vis_contents -= special_visuals

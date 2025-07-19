@@ -39,4 +39,4 @@
 			if((M.mind && M.mind.special_role && A && A.can_hear_aooc) || isobserver(M)) // Antags must have their type be allowed to AOOC to see AOOC.  This prevents, say, ERT from seeing AOOC.
 				to_chat(M, span_ooc(span_aooc("[create_text_tag("aooc", "Antag-OOC:", M.client)] <EM>[player_display]:</EM> " + span_message("[msg]"))))
 
-	log_aooc(msg,src)
+	src.mob.log_talk("(AOOC) [msg]", LOG_OOC)

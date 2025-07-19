@@ -93,18 +93,18 @@
 
 /obj/effect/temporary_effect/pulse/snake/proc/on_enter_turf(var/turf/T)
 
-/obj/effect/temporary_effect/pulse/snake/testing/on_leave_turf(var/turf/T)
+/obj/effect/temporary_effect/pulse/snake/test/on_leave_turf(var/turf/T)
 	if(T)
-		new /obj/effect/temporary_effect/eruption/testing(T, 3 SECONDS, "#ff0000")
+		new /obj/effect/temporary_effect/eruption/test(T, 3 SECONDS, "#ff0000")
 
-/obj/effect/temporary_effect/pulse/snake/testing/on_enter_turf(var/turf/T)
+/obj/effect/temporary_effect/pulse/snake/test/on_enter_turf(var/turf/T)
 	if(T)
 		T.color = "#00ff00"
 
 		spawn(3 SECONDS)
 			T.color = initial(T.color)
 
-/obj/effect/temporary_effect/pulse/snake/testing/hunter/pulse_loop()
+/obj/effect/temporary_effect/pulse/snake/test/hunter/pulse_loop()
 	hunting = locate(/mob/living) in range(7, src)
 	..()
 

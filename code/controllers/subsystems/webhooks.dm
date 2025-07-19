@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(webhooks)
 /datum/controller/subsystem/webhooks/proc/load_webhooks()
 
 	if(!fexists(HTTP_POST_DLL_LOCATION))
-		to_world_log("Unable to locate HTTP POST lib at [HTTP_POST_DLL_LOCATION], webhooks will not function on this run.")
+		log_world("Unable to locate HTTP POST lib at [HTTP_POST_DLL_LOCATION], webhooks will not function on this run.")
 		return
 
 	var/list/all_webhooks_by_id = list()
@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(webhooks)
 			var/list/wmention = webhook_data["mentions"]
 			if(wmention && !islist(wmention))
 				wmention = list(wmention)
-			to_world_log("Setting up webhook [wid].")
+			log_world("Setting up webhook [wid].")
 			if(wid && wurl && all_webhooks_by_id[wid])
 				var/decl/webhook/webhook = all_webhooks_by_id[wid]
 				webhook.urls = islist(wurl) ? wurl : list(wurl)
@@ -42,18 +42,18 @@ SUBSYSTEM_DEF(webhooks)
 				if(wmention)
 					webhook.mentions = wmention?.Copy()
 				webhook_decls[wid] = webhook
-				to_world_log("Webhook [wid] ready.")
+				log_world("Webhook [wid] ready.")
 			else
-				to_world_log("Failed to set up webhook [wid].")
+				log_world("Failed to set up webhook [wid].")
 
 /datum/controller/subsystem/webhooks/proc/send(var/wid, var/wdata)
 	var/decl/webhook/webhook = webhook_decls[wid]
 	if(webhook)
 		if(webhook.send(wdata))
-			to_world_log("Sent webhook [webhook.id].")
+			log_world("Sent webhook [webhook.id].")
 			log_debug("Webhook sent: [webhook.id].")
 		else
-			to_world_log("Failed to send webhook [webhook.id].")
+			log_world("Failed to send webhook [webhook.id].")
 			log_debug("Webhook failed to send: [webhook.id].")
 
 /client/proc/reload_webhooks()
@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(webhooks)
 		to_chat(usr, span_warning("Let the webhook subsystem initialize before trying to reload it."))
 		return
 
-	to_world_log("[usr.key] has reloaded webhooks.")
+	log_world("[usr.key] has reloaded webhooks.")
 	log_and_message_admins("has reloaded webhooks.")
 	SSwebhooks.load_webhooks()
 
@@ -86,7 +86,7 @@ SUBSYSTEM_DEF(webhooks)
 	if(choice && SSwebhooks.webhook_decls[choice])
 		var/decl/webhook/webhook = SSwebhooks.webhook_decls[choice]
 		log_and_message_admins("has pinged webhook [choice].", usr)
-		to_world_log("[usr.key] has pinged webhook [choice].")
+		log_world("[usr.key] has pinged webhook [choice].")
 		webhook.send()
 
 /hook/roundstart/proc/run_webhook()

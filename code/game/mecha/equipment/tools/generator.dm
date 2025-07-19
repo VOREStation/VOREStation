@@ -29,14 +29,14 @@
 		set_ready_state(TRUE)
 		return PROCESS_KILL
 	if(fuel.get_amount() <= 0)
-		log_message("Deactivated - no fuel.")
+		src.mecha_log_message("Deactivated - no fuel.")
 		set_ready_state(TRUE)
 		return PROCESS_KILL
 	var/cur_charge = chassis.get_charge()
 	if(isnull(cur_charge))
 		set_ready_state(TRUE)
 		occupant_message("No powercell detected.")
-		log_message("Deactivated.")
+		src.mecha_log_message("Deactivated.")
 		return PROCESS_KILL
 	var/use_fuel = fuel_per_cycle_idle
 	if(cur_charge<chassis.cell.maxcharge)
@@ -57,11 +57,11 @@
 		if(datum_flags & DF_ISPROCESSING)
 			STOP_PROCESSING(SSfastprocess, src)
 			set_ready_state(TRUE)
-			log_message("Deactivated.")
+			src.mecha_log_message("Deactivated.")
 		else
 			START_PROCESSING(SSfastprocess, src)
 			set_ready_state(FALSE)
-			log_message("Activated.")
+			src.mecha_log_message("Activated.")
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/get_equip_info()

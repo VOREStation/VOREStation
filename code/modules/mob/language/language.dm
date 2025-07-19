@@ -128,7 +128,7 @@
 	return (copytext(message, length(message)) == "!") ? 2 : 1
 
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
-	log_say("(HIVE) [message]", speaker)
+	speaker.log_talk("(HIVE) [message]", LOG_SAY)
 
 	add_verb(speaker, /mob/proc/adjust_hive_range)
 

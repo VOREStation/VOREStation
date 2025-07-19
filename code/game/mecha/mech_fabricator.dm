@@ -689,19 +689,19 @@
 		return
 	// Problem, fix problem and abort
 	if(materials[matstring] < 0)
-		warning("[src] tried to eject material '[material]', which it has 'materials[matstring]' of!")
+		WARNING("[src] tried to eject material '[material]', which it has 'materials[matstring]' of!")
 		materials[matstring] = 0
 		return
 
 	// Find the material datum for our material
 	var/datum/material/M = get_material_by_name(matstring)
 	if(!M)
-		warning("[src] tried to eject material '[matstring]', which didn't match any known material datum!")
+		WARNING("[src] tried to eject material '[matstring]', which didn't match any known material datum!")
 		return
 	// Find what type of sheets it makes
 	var/obj/item/stack/material/S = M.stack_type
 	if(!S)
-		warning("[src] tried to eject material '[matstring]', which didn't have a stack_type!")
+		WARNING("[src] tried to eject material '[matstring]', which didn't have a stack_type!")
 		return
 
 	// If we were passed -1, then it's recursive ejection and we should eject all we can
@@ -713,7 +713,7 @@
 	// Place a sheet
 	S = M.place_sheet(get_turf(src), ejected)
 	if(!istype(S))
-		warning("[src] tried to eject material '[material]', which didn't generate a proper stack when asked!")
+		WARNING("[src] tried to eject material '[material]', which didn't generate a proper stack when asked!")
 		return
 
 	// Reduce our amount stored

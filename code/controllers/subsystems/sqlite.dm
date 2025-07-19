@@ -22,10 +22,10 @@ SUBSYSTEM_DEF(sqlite)
 
 
 	if(!sqlite_db)
-		to_world_log("Failed to load or create a SQLite database.")
+		log_sql("Failed to load or create a SQLite database.")
 		log_debug("ERROR: SQLite database is active in config but failed to load.")
 	else
-		to_world_log("Sqlite database connected.")
+		log_sql("Sqlite database connected.")
 
 // Makes the tables, if they do not already exist in the sqlite file.
 /datum/controller/subsystem/sqlite/proc/init_schema(database/sqlite_object)
@@ -169,7 +169,7 @@ SUBSYSTEM_DEF(sqlite)
 // This stops mods/admins/etc from guessing the author by shoving names in an MD5 hasher until they pick the right one.
 // Don't use this for things needing actual security.
 /datum/controller/subsystem/sqlite/proc/get_feedback_pepper()
-	var/pepper_file = file2list("config/sqlite_feedback_pepper.txt")
+	var/pepper_file = world.file2list("config/sqlite_feedback_pepper.txt")
 	var/pepper = null
 	for(var/line in pepper_file)
 		if(!line)

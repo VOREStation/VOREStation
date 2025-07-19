@@ -516,7 +516,7 @@
 			break
 
 	if(!new_canvas)
-		warning("Couldn't find a canvas to match [w]x[h] of painting")
+		WARNING("Couldn't find a canvas to match [w]x[h] of painting")
 		return
 
 	new_canvas.fill_grid_from_icon(I)
@@ -573,7 +573,7 @@
 				break
 
 		if(!new_canvas)
-			warning("Couldn't find a canvas to match [w]x[h] of painting")
+			WARNING("Couldn't find a canvas to match [w]x[h] of painting")
 			return 0
 
 		new_canvas.fill_grid_from_icon(I)

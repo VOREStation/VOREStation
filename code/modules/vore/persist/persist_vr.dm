@@ -51,12 +51,12 @@
 		// Okay this mob has a real loaded-from-savefile mind in it!
 		var/datum/preferences/prefs = preferences_datums[persister.mind.loaded_from_ckey]
 		if(!prefs)
-			warning("Persist (P4P): [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found.")
+			WARNING("Persist (P4P): [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found.")
 			return
 
 		// Okay, lets do a few checks to see if we should really save tho!
 		if(!prefs.load_character(persister.mind.loaded_from_slot))
-			warning("Persist (P4P): [persister.mind] was loaded from slot [persister.mind.loaded_from_slot] but loading prefs failed.")
+			WARNING("Persist (P4P): [persister.mind] was loaded from slot [persister.mind.loaded_from_slot] but loading prefs failed.")
 			return // Failed to load character
 
 		// For now as a safety measure we will only save if the name matches.
@@ -82,7 +82,7 @@
 
 	var/datum/preferences/prefs = prep_for_persist(occupant)
 	if(!prefs)
-		warning("Persist (PID): Skipping [occupant] for persisting, as they have no prefs.")
+		WARNING("Persist (PID): Skipping [occupant] for persisting, as they have no prefs.")
 		return
 
 	//This one doesn't rely on persistence prefs
@@ -238,7 +238,7 @@
 
 	var/slot = H?.mind?.loaded_from_slot
 	if(isnull(slot))
-		warning("Persist (NIF): [H] has no mind slot, skipping")
+		WARNING("Persist (NIF): [H] has no mind slot, skipping")
 		return
 
 	var/datum/json_savefile/savefile = new /datum/json_savefile(nif_savefile_path(H.ckey))

@@ -30,7 +30,7 @@
 			total_so_far += amt
 			reagents.add_reagent(string, amt)
 		if(total_so_far > volume)
-			warning("[src]([src.type]) starts with more reagents than it has total volume")
+			WARNING("[src]([src.type]) starts with more reagents than it has total volume")
 		starts_with = null // it should gc, since it's just strings and numbers
 
 /obj/item/reagent_containers/attack_self(mob/user as mob)

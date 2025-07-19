@@ -99,7 +99,7 @@ var/datum/antagonist/wizard/wizards
 		break
 	if(!survivor)
 		feedback_set_details("round_end_result","loss - wizard killed")
-		to_world(span_boldannounce(span_large("The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew!")))
+		to_chat(world, span_boldannounce(span_large("The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew!")))
 
 //To batch-remove wizard spells. Linked to mind.dm.
 /mob/proc/spellremove()

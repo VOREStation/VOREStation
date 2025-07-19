@@ -1,9 +1,6 @@
 //handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 /mob/proc/update_Login_details()
 	//Multikey checks and logging
-	lastKnownIP	= client.address
-	computer_id	= client.computer_id
-	log_access_in(client)
 	if(CONFIG_GET(flag/log_access))
 		for(var/mob/M in GLOB.player_list)
 			if(M == src)	continue
@@ -19,15 +16,22 @@
 				if(matches)
 					if(M.client)
 						message_admins("[span_red(span_bold("Notice:"))] [span_blue("[key_name_admin(src)] has the same [matches] as [key_name_admin(M)].")]", 1)
-						log_adminwarn("Notice: [key_name(src)] has the same [matches] as [key_name(M)].")
+						log_admin_private("Notice: [key_name(src)] has the same [matches] as [key_name(M)].")
 					else
 						message_admins("[span_red(span_bold("Notice:"))] [span_blue("[key_name_admin(src)] has the same [matches] as [key_name_admin(M)] (no longer logged in). ")]", 1)
-						log_adminwarn("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
+						log_admin_private("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
 
 /mob/Login()
+	if(!client)
+		return FALSE
+
 	persistent_ckey = client.ckey
+	client.persistent_client.set_mob(src)
 
 	GLOB.player_list |= src
+	lastKnownIP	= client.address
+	computer_id	= client.computer_id
+	log_access("Mob Login: [key_name(src)] was assigned to a [type] ([tag])")
 	update_Login_details()
 	world.update_status()
 
@@ -82,8 +86,17 @@
 
 	if(cloaked && cloaked_selfimage)
 		client.images += cloaked_selfimage
-	client.init_verbs()
+
+	if(client)
+		for(var/datum/action/A as anything in persistent_client.player_actions)
+			A.Grant(src)
+
+		for(var/datum/callback/CB as anything in persistent_client.post_login_callbacks)
+			CB.Invoke()
+
+	log_mob_tag("TAG: [tag] NEW OWNER: [key_name(src)]")
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
 	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN, src)
+	client.init_verbs()
 
 	set_listening(LISTENING_PLAYER)

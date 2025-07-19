@@ -161,7 +161,7 @@ Proc for attack log creation, because really why not
 		user.attack_log += text("\[[time_stamp()]\] [span_red("Attacked [target_str]: [what_done]")]")
 	if(ismob(target))
 		target.attack_log += text("\[[time_stamp()]\] [span_orange("Attacked by [user_str]: [what_done]")]")
-	log_attack(user_str,target_str,what_done)
+	log_combat(user, target, what_done)
 	if(admin_notify)
 		msg_admin_attack("[key_name_admin(user)] vs [target_str]: [what_done]")
 

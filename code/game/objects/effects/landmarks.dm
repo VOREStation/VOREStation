@@ -100,7 +100,7 @@
 	if(using_map)
 		using_map.secret_levels |= z
 	else
-		log_error("[type] mapped in but no using_map")
+		log_mapping("[type] mapped in but no using_map")
 
 /obj/effect/landmark/hidden_level
 	delete_me = TRUE
@@ -110,7 +110,7 @@
 	if(using_map)
 		using_map.hidden_levels |= z
 	else
-		log_error("[type] mapped in but no using_map")
+		log_mapping("[type] mapped in but no using_map")
 
 
 /obj/effect/landmark/virtual_reality

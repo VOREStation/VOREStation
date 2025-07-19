@@ -1,7 +1,7 @@
 ### Config Flags for logging, compatibility flags are at the top
 
-### << COMING SOON >>
-
+## Should we also log entries as human readable
+LOG_AS_HUMAN_READABLE
 
 ### Actual logging flags
 
@@ -17,8 +17,17 @@ LOG_ADMIN
 ## log admin chat
 LOG_ADMINCHAT
 
+## log event chat
+LOG_EVENTCHAT
+
+## log asset debug logs
+# LOG_ASSET
+
 ## log OOC channel
 LOG_OOC
+
+## log prayers
+LOG_PRAYER
 
 ## log client Say
 LOG_SAY
@@ -56,5 +65,8 @@ LOG_GRAFFITI
 ## log world.log and runtime errors to a file
 LOG_RUNTIME
 
-## log admin warning messages
-LOG_ADMINWARN
+## log all world.Topic() calls
+LOG_WORLD_TOPIC
+
+## Enables log entries for logins that failed due to suspicious circumstances (banned player, CID randomiser, spoofed BYOND version, etc.) to a dedicated file.
+LOG_SUSPICIOUS_LOGIN

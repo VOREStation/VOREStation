@@ -72,7 +72,7 @@
 	for(var/obj/machinery/power/sensor/S in GLOB.machines)
 		if(T && (S.loc.z == T.z) || (S.loc.z in levels) || (S.long_range)) // Consoles have range on their Z-Level. Sensors with long_range var will work between Z levels.
 			if(S.name_tag == "#UNKN#") // Default name. Shouldn't happen!
-				warning("Powernet sensor with unset ID Tag! [S.x]X [S.y]Y [S.z]Z")
+				WARNING("Powernet sensor with unset ID Tag! [S.x]X [S.y]Y [S.z]Z")
 			else
 				grid_sensors += S
 

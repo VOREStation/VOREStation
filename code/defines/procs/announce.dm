@@ -62,14 +62,14 @@
 
 // You'll need to update these to_world usages if you want to make these z-level specific ~Aro
 /datum/announcement/minor/Message(message as text, message_title as text)
-	to_world(span_bold("[message]"))
+	to_chat(world, span_bold("[message]"))
 
 /datum/announcement/priority/Message(message as text, message_title as text)
-	to_world("<h1 class='alert'>[message_title]</h1>")
-	to_world(span_alert("[message]"))
+	to_chat(world, "<h1 class='alert'>[message_title]</h1>")
+	to_chat(world, span_alert("[message]"))
 	if(announcer)
-		to_world(span_alert(" -[html_encode(announcer)]"))
-	to_world(span_alert("<br>"))
+		to_chat(world, span_alert(" -[html_encode(announcer)]"))
+	to_chat(world, span_alert("<br>"))
 
 /datum/announcement/priority/command/Message(message as text, message_title as text, var/list/zlevels)
 	var/command

@@ -1,27 +1,21 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
+/// Force the log directory to be something specific in the data/logs folder
+#define OVERRIDE_LOG_DIRECTORY_PARAMETER "log-directory"
 
 GLOBAL_VAR(restart_counter)
 
 #define RECOMMENDED_VERSION 513
 /world/New()
+	// TODO: This has to be moved into Genesis later
+	// Create the logger
+	logger = new
+
 	world_startup_time = world.timeofday
 	rollover_safety_date = world.realtime - world.timeofday // 00:00 today (ish, since floating point error with world.realtime) of today
-	to_world_log("Map Loading Complete")
-	//logs
-	GLOB.log_directory += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
-	GLOB.diary = start_log("[GLOB.log_directory].log")
-	GLOB.href_logfile = start_log("[GLOB.log_directory]-hrefs.htm")
-	GLOB.error_log = start_log("[GLOB.log_directory]-error.log")
-	GLOB.sql_error_log = start_log("[GLOB.log_directory]-sql-error.log")
-	GLOB.query_debug_log = start_log("[GLOB.log_directory]-query-debug.log")
-	GLOB.debug_log = start_log("[GLOB.log_directory]-debug.log")
-
-	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
-	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : "" //for telling if the changelog has changed recently
-	to_world_log("Changelog Hash: '[GLOB.changelog_hash]' ([latest_changelog])")
+	log_mapping("Map Loading Complete")
 
 	if(byond_version < RECOMMENDED_VERSION)
-		to_world_log("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
+		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
 	InitTgs()
 
@@ -107,6 +101,8 @@ GLOBAL_VAR(restart_counter)
 	// Try to set round ID
 	SSdbcore.InitializeRound()
 
+	SetupLogs()
+
 	//apply a default value to config.python_path, if needed
 	if (!CONFIG_GET(string/python_path))
 		if(world.system_type == UNIX)
@@ -117,6 +113,55 @@ GLOBAL_VAR(restart_counter)
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
 		fdel(RESTART_COUNTER_PATH)
+
+/// Returns a list of data about the world state, don't clutter
+/world/proc/get_world_state_for_logging()
+	var/data = list()
+	data["tick_usage"] = world.tick_usage
+	data["tick_lag"] = world.tick_lag
+	data["time"] = world.time
+	data["timestamp"] = rustg_unix_timestamp()
+	return data
+
+/world/proc/SetupLogs()
+	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
+	if(!override_dir)
+		var/realtime = world.realtime
+		var/texttime = time2text(realtime, "YYYY/MM/DD", TIMEZONE_UTC)
+		GLOB.log_directory = "data/logs/[texttime]/round-"
+		if(GLOB.round_id)
+			GLOB.log_directory += "[GLOB.round_id]"
+			//GLOB.picture_logging_prefix += "R_[GLOB.round_id]_"
+			//GLOB.picture_log_directory += "[GLOB.round_id]"
+		else
+			var/timestamp = replacetext(time_stamp(), ":", ".")
+			GLOB.log_directory += "[timestamp]"
+			//GLOB.picture_log_directory += "[timestamp]"
+			//GLOB.picture_logging_prefix += "T_[timestamp]_"
+	else
+		GLOB.log_directory = "data/logs/[override_dir]"
+		//GLOB.picture_logging_prefix = "O_[override_dir]_"
+		//GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
+
+	logger.init_logging()
+
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM", TIMEZONE_UTC) + ".yml")
+	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
+
+	if(GLOB.round_id)
+		log_game("Round ID: [GLOB.round_id]")
+
+	// This was printed early in startup to the world log and config_error.log,
+	// but those are both private, so let's put the commit info in the runtime
+	// log which is ultimately public.
+	log_runtime(GLOB.revdata.get_log_message())
+
+#ifndef USE_CUSTOM_ERROR_HANDLER
+	world.log = file("[GLOB.log_directory]/dd.log")
+#else
+	if (TgsAvailable()) // why
+		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
+#endif
 
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
@@ -347,10 +392,10 @@ var/world_topic_spam_protect_time = world.timeofday
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
-			to_world(span_boldannounce("[key_name_admin(usr)] has requested an immediate world restart via client side debugging tools"))
+			to_chat(world, span_boldannounce("[key_name_admin(usr)] has requested an immediate world restart via client side debugging tools"))
 
 		else
-			to_world(span_boldannounce("Rebooting world immediately due to host request"))
+			to_chat(world, span_boldannounce("Rebooting world immediately due to host request"))
 	else
 		Master.Shutdown()	//run SS shutdowns
 		for(var/client/C in GLOB.clients)
@@ -359,14 +404,18 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	if(check_hard_reboot())
 		log_world("World hard rebooted at [time_stamp()]")
-		//shutdown_logging() // See comment below.
+		shutdown_logging() // See comment below.
 		//QDEL_NULL(Tracy)
 		//QDEL_NULL(Debugger)
 		TgsEndProcess()
 		return ..()
 
-	TgsReboot()
 	log_world("World rebooted at [time_stamp()]")
+
+	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+
+	TgsReboot() // TGS can decide to kill us right here, so it's important to do it last
+
 	..()
 
 /hook/startup/proc/loadMode()
@@ -382,7 +431,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	if(Lines.len)
 		if(Lines[1])
 			GLOB.master_mode = Lines[1]
-			log_misc("Saved mode is '[GLOB.master_mode]'")
+			log_world("## MISC Saved mode is '[GLOB.master_mode]'")
 
 /world/proc/save_mode(var/the_mode)
 	var/F = file("data/mode.txt")
@@ -397,7 +446,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	if(CONFIG_GET(flag/admin_legacy_system))
 		var/text = file2text("config/moderators.txt")
 		if (!text)
-			error("Failed to load config/mods.txt")
+			log_world("Failed to load config/mods.txt")
 		else
 			var/list/lines = splittext(text, "\n")
 			for(var/line in lines)
@@ -478,11 +527,11 @@ var/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
 	if(!CONFIG_GET(flag/sql_enabled))
-		to_world_log("SQL connection disabled in config.")
+		log_sql("SQL connection disabled in config.")
 	else if(!setup_database_connection())
-		to_world_log("Your server failed to establish a connection with the feedback database.")
+		log_sql("Your server failed to establish a connection with the feedback database.")
 	else
-		to_world_log("Feedback database connection established.")
+		log_sql("Feedback database connection established.")
 	return 1
 
 /proc/setup_database_connection()
@@ -506,7 +555,7 @@ var/failed_old_db_connections = 0
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_db_connections++		//If it failed, increase the failed connections counter.
-		to_world_log(SSdbcore.ErrorMsg())
+		log_sql(SSdbcore.ErrorMsg())
 
 	return .
 
@@ -541,7 +590,7 @@ var/failed_old_db_connections = 0
 			results += "FAIL: failed to connect to the database with setup_database_connection()"
 
 	results += "-- DB Reset End --"
-	to_world_log(results.Join("\n"))
+	log_sql(results.Join("\n"))
 
 // Things to do when a new z-level was just made.
 /world/proc/max_z_changed()

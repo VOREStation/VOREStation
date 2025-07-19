@@ -910,7 +910,7 @@ GLOBAL_LIST_EMPTY(json_cache)
 			GLOB.json_cache[json_to_decode] = json_decode(json_to_decode)
 		. = GLOB.json_cache[json_to_decode]
 	catch(var/exception/e)
-		log_error("Exception during JSON decoding ([json_to_decode]): [e]")
+		log_runtime("Exception during JSON decoding ([json_to_decode]): [e]")
 		return list()
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate

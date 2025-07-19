@@ -52,7 +52,7 @@
 	var/docking_tag = docking_controller
 	docking_controller = SSshuttles.docking_registry[docking_tag]
 	if(!istype(docking_controller))
-		log_error("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
+		log_mapping("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
 	if(using_map.use_overmap)
 		var/obj/effect/overmap/visitable/location = get_overmap_sector(z)
 		if(location && location.docking_codes)

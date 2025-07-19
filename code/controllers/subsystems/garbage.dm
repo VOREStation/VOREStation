@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(garbage)
 		if(LAZYLEN(I.extra_details))
 			entry["Deleted Metadata"] = I.extra_details
 
-	log_debug("", del_log)
+	log_qdel("", del_log)
 
 /datum/controller/subsystem/garbage/fire()
 	//the fact that this resets its processing each fire (rather then resume where it left off) is intentional.

@@ -32,7 +32,7 @@
 		return
 	next_location = destinations_cache[destination_key]
 	if(!next_location)
-		warning("Shuttle [src] set to destination we can't find: [destination_key]")
+		WARNING("Shuttle [src] set to destination we can't find: [destination_key]")
 
 /datum/shuttle/autodock/multi/proc/get_destinations()
 	if (last_cache_rebuild_time < SSshuttles.last_landmark_registration_time)

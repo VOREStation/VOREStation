@@ -84,7 +84,7 @@ GLOBAL_LIST_EMPTY(security_printer_tickets)		//VOREStation Edit
 	//VOREStation Add End
 
 	if(LAZYLEN(valid_stats_list))
-		to_world(span_world("Shift trivia!"))
+		to_chat(world, span_world("Shift trivia!"))
 
 		for(var/body in valid_stats_list)
-			to_world(span_filter_system("[body]"))
+			to_chat(world, span_filter_system("[body]"))

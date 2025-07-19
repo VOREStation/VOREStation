@@ -74,7 +74,7 @@
 		input = message
 
 	if(input)
-		log_subtle(message,src)
+		src.log_message("(SUBTLE) [message]", LOG_EMOTE)
 		message = span_emote_subtle(span_bold("[src]") + " " + span_italics("[input]"))
 		if(!(subtle_mode == "Adjacent Turfs (Default)"))
 			message = span_bold("(T) ") + message
@@ -344,7 +344,7 @@
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
 				if(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || check_rights_for(G.client, R_HOLDER))
 					to_chat(G, span_psay("\The [M] thinks, \"[message]\""))
-		log_say(message,M)
+		M.log_talk("(PSAY) [message]", LOG_SAY)
 	else		//There wasn't anyone to send the message to, pred or prey, so let's just say it instead and correct our psay just in case.
 		M.forced_psay = FALSE
 		M.say(message)
@@ -441,7 +441,7 @@
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
 				if(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || check_rights_for(G.client, R_HOLDER))
 					to_chat(G, span_pemote("\The [M] [message]"))
-		log_say(message,M)
+		M.log_talk(message, LOG_SAY)
 	else	//There wasn't anyone to send the message to, pred or prey, so let's just emote it instead and correct our psay just in case.
 		M.forced_psay = FALSE
 		M.me_verb(message)
@@ -488,7 +488,7 @@
 			if(M.stat == UNCONSCIOUS || M.sleeping > 0)
 				continue
 			to_chat(M, span_filter_say("[isobserver(M) ? "[message] ([ghost_follow_link(src, M)])" : message]"))
-	log_emote(message, src)
+	log_message(message, LOG_EMOTE)
 
 /mob/verb/select_speech_bubble()
 	set name = "Select Speech Bubble"

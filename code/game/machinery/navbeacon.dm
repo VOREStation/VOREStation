@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(navbeacons) // no I don't like putting this in, but it will do
 	. = ..()
 	set_codes_from_txt(codes_txt)
 	if(freq)
-		warning("[src] at [x],[y],[z] has deprecated var freq=[freq].  Replace it with proper type.")
+		WARNING("[src] at [x],[y],[z] has deprecated var freq=[freq].  Replace it with proper type.")
 
 	var/turf/T = loc
 	hide(!T.is_plating())
@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(navbeacons) // no I don't like putting this in, but it will do
 /obj/machinery/navbeacon/proc/set_codes_from_txt()
 	if(!codes_txt)
 		return
-	warning("[src] at [x],[y],[z] in [get_area(src)] is using the deprecated 'codes_txt' mapping method.  Replace it with proper type.")
+	WARNING("[src] at [x],[y],[z] in [get_area(src)] is using the deprecated 'codes_txt' mapping method.  Replace it with proper type.")
 
 	codes = list()
 	var/list/entries = splittext(codes_txt, ";")	// entries are separated by semicolons

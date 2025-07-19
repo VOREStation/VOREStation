@@ -86,7 +86,7 @@
 				O.loc = chassis
 				O.anchored = FALSE
 				occupant_message(span_notice("[target] succesfully loaded."))
-				log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+				src.mecha_log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 			else
 				occupant_message(span_warning("You must hold still while handling objects."))
 				O.anchored = initial(O.anchored)
@@ -147,7 +147,7 @@
 						O.loc = chassis
 						O.anchored = FALSE
 						chassis.occupant_message(span_notice("[target] succesfully loaded."))
-						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+						chassis.mecha_log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 					else
 						chassis.occupant_message(span_warning("You must hold still while handling objects."))
 						O.anchored = initial(O.anchored)

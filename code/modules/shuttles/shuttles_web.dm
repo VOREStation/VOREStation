@@ -39,7 +39,7 @@
 	// TODO - Probably don't even need to override this right?  Debug testing code below will check!
 	. = web_master?.get_current_destination()?.my_landmark?.docking_controller?.id_tag
 	if (. != ..())
-		warning("Web shuttle [src] had current_dock_target()=[.] but autodock.current_dock_target() = [..()]")
+		WARNING("Web shuttle [src] had current_dock_target()=[.] but autodock.current_dock_target() = [..()]")
 
 /datum/shuttle/autodock/web_shuttle/perform_shuttle_move()
 	..()
@@ -432,7 +432,7 @@
 				var/travel_delay = D.routes_to_make[type_to_link]
 				D.link_destinations(WM.get_destination_by_type(type_to_link), D.preferred_interim_tag, travel_delay)
 	else
-		warning("[log_info_line()]'s shuttle [global.log_info_line(ES)] initialized but destinations:[destinations]")
+		WARNING("[log_info_line()]'s shuttle [global.log_info_line(ES)] initialized but destinations:[destinations]")
 
 	qdel(src)
 
