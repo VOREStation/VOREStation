@@ -10069,6 +10069,9 @@
 /obj/machinery/requests_console/preset/research{
 	pixel_y = 30
 	},
+/obj/machinery/rnd/production/circuit_imprinter{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "aqz" = (
@@ -12145,6 +12148,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/structure/closet,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "aut" = (
@@ -12175,6 +12179,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/machinery/rnd/production/protolathe/department/science,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "auw" = (
@@ -12191,6 +12196,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/machinery/computer/rdconsole_tg,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "aux" = (
@@ -12728,10 +12734,6 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "avv" = (
-/turf/simulated/floor/tiled/dark,
-/area/rnd/research)
-"avw" = (
-/obj/machinery/computer/rdconsole_tg,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "avx" = (
@@ -13668,16 +13670,8 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
-"awY" = (
-/obj/machinery/rnd/production/circuit_imprinter{
-	dir = 1
-	},
-/obj/item/reagent_containers/glass/beaker/sulphuric,
-/turf/simulated/floor/tiled/dark,
-/area/rnd/research)
 "awZ" = (
 /obj/machinery/hologram/holopad,
-/obj/machinery/rnd/production/protolathe/department/science,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "axa" = (
@@ -19507,7 +19501,6 @@
 /obj/machinery/rnd/production/circuit_imprinter{
 	dir = 8
 	},
-/obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aGT" = (
@@ -20515,6 +20508,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 4
 	},
+/obj/structure/table/glass,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aIw" = (
@@ -55393,7 +55387,7 @@ atT
 aqy
 avv
 avU
-awY
+avv
 axl
 axJ
 auY
@@ -55533,7 +55527,7 @@ aux
 aud
 atT
 auv
-avw
+avv
 avV
 awZ
 axz

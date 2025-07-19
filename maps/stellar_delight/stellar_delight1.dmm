@@ -2820,7 +2820,6 @@
 /obj/machinery/rnd/production/circuit_imprinter{
 	dir = 1
 	},
-/obj/item/reagent_containers/glass/beaker/sulphuric,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -6497,7 +6496,6 @@
 	pixel_y = 30
 	},
 /obj/machinery/rnd/production/circuit_imprinter,
-/obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/steel,
 /area/assembly/robotics)
 "mO" = (
