@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(shuttles)
 	dependencies = list(
 		///datum/controller/subsystem/machines,
 		///datum/controller/subsystem/atoms,
-		/datum/controller/subsystem/radio
+		///datum/controller/subsystem/radio
 	)
 	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
