@@ -2,7 +2,7 @@
 
 SUBSYSTEM_DEF(plants)
 	name = "Plants"
-	dependencies = (
+	dependencies = list(
 		/datum/controller/subsystem/mapping
 	)
 	priority = FIRE_PRIORITY_PLANTS
