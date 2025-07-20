@@ -11,7 +11,7 @@ export const SpawnElement = (props: {
   const { title, disabled, tooltip, action } = props;
 
   return (
-    <LabeledList.Item label={title + ' Spawn'}>
+    <LabeledList.Item label={`${title} Spawn`}>
       <Stack>
         <Stack.Item basis="200px">
           <Button.Confirm
@@ -22,7 +22,7 @@ export const SpawnElement = (props: {
             tooltipPosition="top"
             onClick={() => act(action)}
           >
-            {'Become ' + title + '?'}
+            {`Become ${title}?`}
           </Button.Confirm>
         </Stack.Item>
       </Stack>
