@@ -21,5 +21,5 @@
 	required_atoms = list(
 		/mob/living/simple_mob/animal/passive/mouse = 1,
 		/mob/living/simple_mob/vore/otie/red/chubby/cocoa = 1,
-		/mob/living/simple_mob/slime/xenobio/rainbow/kendrick = 1,
+		/mob/living/simple_mob/vore/aggressive/rat/pet = 1,
 	)
