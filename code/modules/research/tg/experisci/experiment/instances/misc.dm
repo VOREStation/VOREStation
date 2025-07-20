@@ -17,5 +17,9 @@
 /datum/experiment/scanning/points/easy_cytology
 	name = "Basic Cytology Scanning Experiment"
 	description = "A scientist needs vermin to test on!"
-	required_points = 3
-	required_atoms = list(/mob/living/simple_mob/animal/passive/mouse = 1)
+	required_points = 1
+	required_atoms = list(
+		/mob/living/simple_mob/animal/passive/mouse = 1,
+		/mob/living/simple_mob/vore/otie/red/chubby/cocoa = 1,
+		/mob/living/simple_mob/slime/xenobio/rainbow/kendrick = 1,
+	)
