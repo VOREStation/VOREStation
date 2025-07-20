@@ -14,11 +14,7 @@ import { Window } from '../layouts';
 import { Materials } from './ExosuitFabricator/Material';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
-import {
-  type Design,
-  type FabricatorData,
-  type MaterialMap,
-} from './Fabrication/Types';
+import type { Design, FabricatorData, MaterialMap } from './Fabrication/Types';
 
 export const Fabricator = (props) => {
   const { act, data } = useBackend<FabricatorData>();

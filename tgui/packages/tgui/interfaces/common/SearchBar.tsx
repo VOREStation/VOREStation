@@ -1,4 +1,4 @@
-import { type CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import { Icon, Input, Stack } from 'tgui-core/components';
 
 type RequiredProps = {

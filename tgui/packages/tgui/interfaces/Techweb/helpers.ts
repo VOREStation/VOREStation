@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { type NodeCache, type TechWebData } from './types';
+import type { NodeCache, TechWebData } from './types';
 
 type Cost = {
   type: string;

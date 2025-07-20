@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 
 import { TechwebDiskMenu } from './disks/DiskMenu';
 import { useTechWebRoute } from './hooks';

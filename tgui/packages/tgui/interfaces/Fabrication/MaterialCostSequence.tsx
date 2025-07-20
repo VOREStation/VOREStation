@@ -2,7 +2,7 @@ import { Stack } from 'tgui-core/components';
 import { formatSiUnit } from 'tgui-core/format';
 
 import { MaterialIcon } from './MaterialIcon';
-import { type Design, type MaterialMap } from './Types';
+import type { Design, MaterialMap } from './Types';
 
 export type MaterialCostSequenceProps = {
   /**
