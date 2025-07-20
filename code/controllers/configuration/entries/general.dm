@@ -796,10 +796,6 @@
 /datum/config_entry/flag/discord_ahelps_all
 	default = FALSE
 
-/datum/config_entry/number/rounds_until_hard_restart
-	default = -1
-	min_val = 0
-
 /datum/config_entry/number/mc_tick_rate/base_mc_tick_rate
 	integer = FALSE
 	default = 1
