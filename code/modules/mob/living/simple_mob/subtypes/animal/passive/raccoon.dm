@@ -3,7 +3,7 @@
 	name = "raccoon"
 	desc = "A raccoon, also known as a trash panda."
 	tt_desc = "E purgamentum raccoonus"
-	icon = 'modular_chomp/icons/mob/animal_ch.dmi'
+	icon = 'icons/mob/animal_vr.dmi'
 	icon_state = "raccoon"
 	item_state = "raccoon"
 	icon_living = "raccoon"
