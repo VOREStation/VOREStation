@@ -94,7 +94,7 @@
 		// "piercesyringe",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	// required_experiments = list(/datum/experiment/scanning/reagent/haloperidol)
+	required_experiments = list(/datum/experiment/scanning/points/easy_cytology)
 	announce_channels = list(CHANNEL_MEDICAL)
 
 /datum/techweb_node/cryostasis

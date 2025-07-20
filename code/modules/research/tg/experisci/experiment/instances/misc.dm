@@ -13,3 +13,9 @@
 	description = "Exosuit equipment places unique strain upon the structure of the vehicle. Scan exosuits you have assembled from your exosuit fabricator and fully equipped to accelerate our structural stress simulations."
 	possible_types = list(/obj/mecha)
 	total_requirement = 1
+
+/datum/experiment/scanning/points/easy_cytology
+	name = "Basic Cytology Scanning Experiment"
+	description = "A scientist needs vermin to test on!"
+	required_points = 3
+	required_atoms = list(/mob/living/simple_mob/animal/passive/mouse = 1)
