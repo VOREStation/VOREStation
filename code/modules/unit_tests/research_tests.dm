@@ -30,7 +30,7 @@
 /datum/unit_test/research_designs_shall_be_unique/proc/number_of_issues(list/entries, type)
 	for(var/value in entries)
 		var/list/list_of_designs = entries[value]
-		TEST_ASSERT(list_of_designs.len < 1, "[type] - The following entries have the same value - [value]: " + english_list(list_of_designs))
+		TEST_ASSERT(list_of_designs.len <= 1, "[type] - The following entries have the same value - [value]: " + english_list(list_of_designs))
 
 /// Test that tests that research designs have valid materials and chemicals
 /datum/unit_test/research_designs_have_valid_materials
