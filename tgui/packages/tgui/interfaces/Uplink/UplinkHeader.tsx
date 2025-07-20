@@ -5,7 +5,7 @@ import type { Data } from './types';
 
 export const UplinkHeader = (props: {
   screen: number;
-  setScreen: Function;
+  setScreen: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { data } = useBackend<Data>();
 

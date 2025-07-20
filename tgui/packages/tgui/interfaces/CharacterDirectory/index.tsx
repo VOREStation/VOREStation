@@ -23,15 +23,11 @@ export const CharacterDirectory = (props) => {
   const [overlay, setOverlay] = useState<mobEntry | null>(null);
   const [overwritePrefs, setOverwritePrefs] = useState<boolean>(false);
 
-  function handleOverlay(value: mobEntry) {
-    setOverlay(value);
-  }
-
   return (
     <Window width={816} height={722}>
       <Window.Content scrollable>
         {(overlay && (
-          <ViewCharacter overlay={overlay} onOverlay={handleOverlay} />
+          <ViewCharacter overlay={overlay} onOverlay={setOverlay} />
         )) || (
           <>
             <Section
@@ -132,7 +128,7 @@ export const CharacterDirectory = (props) => {
             </Section>
             <CharacterDirectoryList
               directory={directory}
-              onOverlay={handleOverlay}
+              onOverlay={setOverlay}
             />
           </>
         )}

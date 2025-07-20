@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(vr_mob_tf_options, list(
 	"Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 	"Seagull" =/mob/living/simple_mob/vore/seagull,
 	"Fox" = /mob/living/simple_mob/animal/passive/fox,
-	//"Racoon" = /mob/living/simple_mob/animal/passive/raccoon_ch, //TODO: Port from Downstream
+	"Racoon" = /mob/living/simple_mob/animal/passive/raccoon,
 	"Shantak" = /mob/living/simple_mob/animal/sif/shantak,
 	"Goose" = /mob/living/simple_mob/animal/space/goose,
 	"Space shark" = /mob/living/simple_mob/animal/space/shark,
@@ -488,7 +488,7 @@ GLOBAL_LIST_INIT(vr_mob_spawner_options, list(
 	"Seagull" =/mob/living/simple_mob/vore/seagull,
 	"Corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
 	//"Armadillo" = /mob/living/simple_mob/animal/passive/armadillo, //TODO: Port from Downstream
-	//"Racoon" = /mob/living/simple_mob/animal/passive/raccoon_ch, //TODO: Port from Downstream
+	"Racoon" = /mob/living/simple_mob/animal/passive/raccoon,
 	"Goose" = /mob/living/simple_mob/animal/space/goose,
 	"Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 	"Dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
