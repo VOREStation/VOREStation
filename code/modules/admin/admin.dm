@@ -625,29 +625,69 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
 //i.e. buttons/verbs
 
+#define REGULAR_RESTART "Regular Restart"
+#define REGULAR_RESTART_DELAYED "Regular Restart (with delay)"
+#define HARD_RESTART "Hard Restart (No Delay/Feedback Reason)"
+#define HARDEST_RESTART "Hardest Restart (No actions, just reboot)"
+#define TGS_RESTART "Server Restart (Kill and restart DD)"
+ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.", "Server.Game")
+	var/list/options = list(REGULAR_RESTART, REGULAR_RESTART_DELAYED, HARD_RESTART)
 
-/datum/admins/proc/restart()
-	set category = "Server.Game"
-	set name = "Restart"
-	set desc="Restarts the world"
-	if (!check_rights_for(usr.client, R_HOLDER))
+	// this option runs a codepath that can leak db connections because it skips subsystem (specifically SSdbcore) shutdown
+	if(!SSdbcore.IsConnected())
+		options += HARDEST_RESTART
+
+	if(world.TgsAvailable())
+		options += TGS_RESTART;
+
+	if(SSticker.admin_delay_notice)
+		if(alert(user, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") != "Yes")
+			return FALSE
+
+	var/result = input(user, "Select reboot method", "World Reboot", options[1]) as null|anything in options
+	if(isnull(result))
 		return
-	var/confirm = alert(usr, "Restart the game world?", "Restart", "Yes", "Cancel") // Not tgui_alert for safety
-	if(!confirm || confirm == "Cancel")
+
+	feedback_add_details("admin_verb","R")
+	if(blackbox)
+		blackbox.save_all_data_to_sql()
+
+	var/init_by = "Initiated by [user.holder.fakekey ? "Admin" : user.key]."
+	switch(result)
+		if(REGULAR_RESTART)
+			if(!user.is_localhost())
+				if(alert(user, "Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+					return FALSE
+			SSticker.Reboot(init_by, "admin reboot - by [user.key] [user.holder.fakekey ? "(stealth)" : ""]", 10)
+		if(REGULAR_RESTART_DELAYED)
+			var/delay = input("What delay should the restart have (in seconds)?", "Restart Delay", 5) as num|null
+			if(!delay)
+				return FALSE
+			if(!user.is_localhost())
+				if(alert(user,"Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+					return FALSE
+			SSticker.Reboot(init_by, "admin reboot - by [user.key] [user.holder.fakekey ? "(stealth)" : ""]", delay * 10)
+		if(HARD_RESTART)
+			to_chat(world, "World reboot - [init_by]")
+			world.Reboot()
+		if(HARDEST_RESTART)
+			to_chat(world, "Hard world reboot - [init_by]")
+			world.Reboot(fast_track = TRUE)
+		if(TGS_RESTART)
+			to_chat(world, "Server restart - [init_by]")
+			world.TgsEndProcess()
+
+#undef REGULAR_RESTART
+#undef REGULAR_RESTART_DELAYED
+#undef HARD_RESTART
+#undef HARDEST_RESTART
+#undef TGS_RESTART
+
+ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world reboot.", "Server.Game")
+	if(!SSticker.cancel_reboot(user))
 		return
-	if(confirm == "Yes")
-		to_world(span_danger("Restarting world!" ) + span_notice("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"))
-		log_admin("[key_name(usr)] initiated a reboot.")
-
-		feedback_set_details("end_error","admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
-		feedback_add_details("admin_verb","R") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-		if(blackbox)
-			blackbox.save_all_data_to_sql()
-
-		sleep(50)
-		world.Reboot()
-
+	log_admin("[key_name(user)] cancelled the pending world reboot.")
+	message_admins("[key_name_admin(user)] cancelled the pending world reboot.")
 
 /datum/admins/proc/announce()
 	set category = "Admin.Chat"
