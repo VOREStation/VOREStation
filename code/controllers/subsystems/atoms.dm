@@ -6,7 +6,8 @@ SUBSYSTEM_DEF(atoms)
 		/datum/controller/subsystem/planets,
 		/datum/controller/subsystem/transcore,
 		/datum/controller/subsystem/chemistry,
-		/datum/controller/subsystem/sounds
+		/datum/controller/subsystem/sounds,
+		/datum/controller/subsystem/job
 	)
 	flags = SS_NO_FIRE
 

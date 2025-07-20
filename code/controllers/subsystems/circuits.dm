@@ -5,6 +5,11 @@
 SUBSYSTEM_DEF(circuit)
 	name = "Circuit"
 	flags = SS_NO_FIRE
+
+	dependencies = list(
+		/datum/controller/subsystem/atoms
+	)
+
 	var/list/all_components = list()								// Associative list of [component_name]:[component_path] pairs
 	var/list/cached_components = list()								// Associative list of [component_path]:[component] pairs
 	var/list/all_assemblies = list()								// Associative list of [assembly_name]:[assembly_path] pairs

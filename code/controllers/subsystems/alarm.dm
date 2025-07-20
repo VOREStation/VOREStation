@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(alarm)
 	name = "Alarm"
 	wait = 2 SECONDS
 	priority = FIRE_PRIORITY_ALARM
-	dependencies = (
+	dependencies = list(
 		/datum/controller/subsystem/mapping
 	)
 	var/list/datum/alarm/all_handlers
