@@ -6,7 +6,8 @@ SUBSYSTEM_DEF(ai)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	dependencies = list(
-		/datum/controller/subsystem/air
+		/datum/controller/subsystem/air,
+		/datum/controller/subsystem/mobs
 	)
 
 	var/list/processing = list()

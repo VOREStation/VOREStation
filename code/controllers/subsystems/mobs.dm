@@ -12,6 +12,12 @@ SUBSYSTEM_DEF(mobs)
 	flags = SS_KEEP_TIMING|SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/points_of_interest,
+		/datum/controller/subsystem/shuttles
+	)
+
 	var/list/currentrun = list()
 	var/log_extensively = FALSE
 	var/list/timelog = list()
