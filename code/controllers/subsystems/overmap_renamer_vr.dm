@@ -5,6 +5,7 @@ Readme at code\modules\awaymissions\overmap_renamer\readme.md
 SUBSYSTEM_DEF(overmap_renamer)
 	name = "Overmap Renamer"
 	//Loaded very late in initializations. Must come before mapping and objs. Uses both as inputs.
+	init_stage = INITSTAGE_LAST
 	dependencies = list(
 		/datum/controller/subsystem/skybox
 	)
