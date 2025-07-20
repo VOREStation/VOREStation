@@ -8,16 +8,17 @@ These are just guidelines, not rules, use your best judgment and feel free to pr
 #### Table Of Contents
 
 [What should I know before I get started?](#what-should-i-know-before-i-get-started)
-  * [Code of Conduct](#code-of-conduct)
+
+- [Code of Conduct](#code-of-conduct)
 
 [How Can I Contribute?](#how-can-i-contribute)
-  * [Your First Code Contribution](#your-first-code-contribution)
-  * [VOREStation Coding Standards](#vorestation-coding-standards)
-  * [Pull Requests](#pull-requests)
-  * [Git Commit Messages](#git-commit-messages)
+
+- [Your First Code Contribution](#your-first-code-contribution)
+- [VOREStation Coding Standards](#vorestation-coding-standards)
+- [Pull Requests](#pull-requests)
+- [Git Commit Messages](#git-commit-messages)
 
 [Licensing](#Licensing)
-
 
 ## What should I know before I get started?
 
@@ -36,23 +37,24 @@ Unsure where to begin contributing to VOREStation? You can start by looking thro
 
 Any code submissions that do not meet our coding standards are likely to be rejected, or at the very least, have a maintainer request changes on your PR. Save time and follow these standards from the start.
 
-* Change whitespace as little as possible. Do not randomly add/remove whitespace.
-* Map changes must be in tgm format. See the [Mapmerge2 Readme] for details, or use [StrongDMM] which can automatically save maps as tgm.
+- Change whitespace as little as possible. Do not randomly add/remove whitespace.
+- Map changes must be in tgm format. See the [Mapmerge2 Readme] for details, or use [StrongDMM] which can automatically save maps as tgm.
 
 ### Pull Requests
 
-* Your submission must pass CI checking. The checks are important, prevent many common mistakes, and even experienced coders get caught by it sometimes. If you think there is a bug in CI, open an issue. (One known CI issue is comments in the middle of multi-line lists, just don't do it)
-* Your PR should not have an excessive number of commits unless it is a large project or includes many separate remote commits. If you need to keep tweaking your PR to pass CI or to satisfy a maintainer's requests and are making many commits, you should squash them in the end and update your PR accordingly so these commits don't clog up the history.
-* You can create a WIP PR, and if so, please mark it with [WIP] in the title **and make it a draft pr** so it can be labeled appropriately. These can't sit forever, though.
-* If your pull request has many no-conflict merge commits ('merge from master' into your PR branch), it cannot be merged. Squash and make a new PR/forcepush to your PR branch.
+- Your submission must pass CI checking. The checks are important, prevent many common mistakes, and even experienced coders get caught by it sometimes. If you think there is a bug in CI, open an issue. (One known CI issue is comments in the middle of multi-line lists, just don't do it)
+- Your PR should not have an excessive number of commits unless it is a large project or includes many separate remote commits. If you need to keep tweaking your PR to pass CI or to satisfy a maintainer's requests and are making many commits, you should squash them in the end and update your PR accordingly so these commits don't clog up the history.
+- You can create a WIP PR, and if so, please mark it with [WIP] in the title **and make it a draft pr** so it can be labeled appropriately. These can't sit forever, though.
+- If your pull request has many no-conflict merge commits ('merge from master' into your PR branch), it cannot be merged. Squash and make a new PR/forcepush to your PR branch.
 
 ### Git Commit Messages
 
-* Limit the first line to 72 characters or less, otherwise it truncates the title with '...', wrapping the rest into the description.
-* Reference issues and pull requests liberally.
-* Use the GitHub magic words "Fixed/Fixes/Fix, Resolved/Resolves/Resolve, Closed/Closes/Close", as in, "Closes #1928", as this will automatically close that issue when the PR is merged if it is a fix for that issue.
+- Limit the first line to 72 characters or less, otherwise it truncates the title with '...', wrapping the rest into the description.
+- Reference issues and pull requests liberally.
+- Use the GitHub magic words "Fixed/Fixes/Fix, Resolved/Resolves/Resolve, Closed/Closes/Close", as in, "Closes #1928", as this will automatically close that issue when the PR is merged if it is a fix for that issue.
 
 ## Licensing
+
 VOREStation is licensed under the GNU Affero General Public License version 3, which can be found in full in LICENSE-AGPL3.txt.
 
 Commits with a git authorship date prior to `1420675200 +0000` (2015/01/08 00:00) are licensed under the GNU General Public License version 3, which can be found in full in LICENSE-GPL3.txt.

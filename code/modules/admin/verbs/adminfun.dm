@@ -60,7 +60,7 @@ ADMIN_VERB(gib_them, (R_ADMIN|R_FUN), "Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CA
 	victim.gib()
 	feedback_add_details("admin_verb","GIB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-ADMIN_VERB(gib_self, R_HOLDER, "Gibself", "Give yourself the same treatment you give others.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(gib_self, R_HOLDER, "Gibself", "Give yourself the same treatment you give others.", "Fun.Do Not")
 	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
 	if(!confirm)
 		return

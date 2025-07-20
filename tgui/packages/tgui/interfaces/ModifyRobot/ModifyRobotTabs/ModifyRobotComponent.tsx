@@ -218,7 +218,7 @@ export const ModifyRobotComponent = (props: {
 const ComponentSection = (props: {
   title: string;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   components: Component[];
   action: string;
   buttonColor: string;
