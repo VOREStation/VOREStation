@@ -1,4 +1,4 @@
-/*
+/\*
 
 How to use - for mappers:
 
@@ -7,8 +7,8 @@ How to use - for mappers:
         There, create a new object as given in the following example:
 
         /obj/effect/landmark/overmap_renamer/debris_field/examplelandmark
-	        name = "Debris field example landmark that hints at which POI it came from!!!"
-	        descriptors = list("This element appears when you hover over the obj in the nav console", "if someone manages to examine it", "This is what the printed paper says")
+            name = "Debris field example landmark that hints at which POI it came from!!!"
+            descriptors = list("This element appears when you hover over the obj in the nav console", "if someone manages to examine it", "This is what the printed paper says")
 
         Make sure you use exactly 3 elements, no more and no less and make sure each element is enclosed in a "".
         If you want to only change one element, fill in the other ones with the appropriate  /obj/effect/overmap/visitable/ subtype's name, desc or scanner_desc your Z level corresponds to.
@@ -21,7 +21,7 @@ How to use - for mappers:
         When making such landmarks: reserve them for MAJOR POIs - stuff a ship's scanner might pick up as having a significance.
         A small shuttle in the debris field shouldn't get a landmark
         The big alien derelict? Now that's worthy of a special landmark!
-        The idea of this system is for us to be able to treat existing Z levels as technically different locations. 
+        The idea of this system is for us to be able to treat existing Z levels as technically different locations.
         Did you want to make an abandoned mining facility overmap adventure? Now this system will let you turn the DF into one (if the dice permits)
 
     Adding a new POI to a brand new lateloaded Z level (you can check which Z levels are handled by the renamer in code\controllers\subsystems\overmap_renamer_vr.dm)
@@ -30,7 +30,7 @@ How to use - for mappers:
         Your task will become a bit more difficult now. Create a new .dm file following convention already estabilished with debrisfield_renamer.dm
 
             Within this file, define your /obj/effect/landmark/overmap_renamer/newname here
-                add the following line: 
+                add the following line:
                     var/static/reference //leave thus null. The initialization will change this to contain reference to your overmap object instance. Saves us from excess looping
                     name = "obvious reference to the lateloaded Z in question here"
             Within this file, create a new /obj/effect/landmark/overmap_renamer/newname/Initialize()
@@ -44,9 +44,6 @@ How to use - for mappers:
                 change the if(D == "Debris Field") section in your new if statement just like you did for the landmark!
 
         And you're done! Refer to the "How to add a landmark" section on the top from now on.
-        
-
-
 
 Important procs, vars etc. contained within the following files:
 
@@ -69,10 +66,9 @@ Important procs, vars etc. contained within the following files:
         /obj/effect/landmark/overmap_renamer/debris_field/Initialize() - Copy the entire thing, and change the "Debris Field" to your obj's var/unique_identifier
 
     code\controllers\subsystems\overmap_renamer_vr.dm
-        /datum/controller/subsystem/overmap_renamer/proc/update_names() - Checks which Z levels are loaded, modifies them 
+        /datum/controller/subsystem/overmap_renamer/proc/update_names() - Checks which Z levels are loaded, modifies them
             To add new Z levels to the renamer, simply copy the if statement and its contents for debris field,
             taking care to change the "Debris Field - Z1 Space" to the name var defined in your lateloaded Z level's map_template datum
             example: maps\offmap_vr\common_offmaps.dm and then the /datum/map_template/common_lateload/away_debrisfield
 
-
-*/
+\*/

@@ -3,13 +3,13 @@
 # The file names and locations are VERY important here
 # DO NOT EDIT THIS UNLESS YOU KNOW WHAT YOU ARE DOING
 # -aa
-name: 'Render Nanomaps'
+name: "Render Nanomaps"
 on:
   push:
     branches:
       - master
     paths:
-      - 'maps/**'
+      - "maps/**"
   workflow_dispatch:
 
 permissions: {}
@@ -19,51 +19,51 @@ jobs:
       contents: write # to push to branch
       pull-requests: write # to create pull requests (repo-sync/pull-request)
 
-    name: 'Generate NanoMaps'
+    name: "Generate NanoMaps"
     runs-on: ubuntu-24.04
     steps:
-    - name: Clone
-      uses: actions/checkout@v4
+      - name: Clone
+        uses: actions/checkout@v4
 
-    - name: Branch
-      run: |
-        git fetch origin
-        git branch -f nanomaps_generation
-        git checkout nanomaps_generation
-        git reset --hard origin/master
-    - name: Restore SpacemanDMM cache
-      uses: actions/cache@v4
-      with:
-        path: ~/SpacemanDMM
-        key: ${{ runner.os }}-spacemandmm-${{ hashFiles('dependencies.sh') }}
-        restore-keys: |
-          ${{ runner.os }}-spacemandmm-
-    - name: Install Tools
-      run: |
-        sudo apt update
-        bash tools/ci/install_spaceman_dmm.sh dmm-tools
-        sudo apt install -y imagemagick
-    - name: Ensure +x on github-actions directory
-      run: chmod -R +x ./tools/github-actions
+      - name: Branch
+        run: |
+          git fetch origin
+          git branch -f nanomaps_generation
+          git checkout nanomaps_generation
+          git reset --hard origin/master
+      - name: Restore SpacemanDMM cache
+        uses: actions/cache@v4
+        with:
+          path: ~/SpacemanDMM
+          key: ${{ runner.os }}-spacemandmm-${{ hashFiles('dependencies.sh') }}
+          restore-keys: |
+            ${{ runner.os }}-spacemandmm-
+      - name: Install Tools
+        run: |
+          sudo apt update
+          bash tools/ci/install_spaceman_dmm.sh dmm-tools
+          sudo apt install -y imagemagick
+      - name: Ensure +x on github-actions directory
+        run: chmod -R +x ./tools/github-actions
 
-    - name: Generate Maps
-      run: tools/github-actions/nanomap-renderer-invoker.sh
+      - name: Generate Maps
+        run: tools/github-actions/nanomap-renderer-invoker.sh
 
-    - name: Commit Maps
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "NanoMap Generation"
-        git add .
-        git commit -m "NanoMap Auto-Update (`date`)" -a || true
-        git push -f -u origin nanomaps_generation
+      - name: Commit Maps
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "NanoMap Generation"
+          git add .
+          git commit -m "NanoMap Auto-Update (`date`)" -a || true
+          git push -f -u origin nanomaps_generation
 
-    - name: Create Pull Request
-      uses: repo-sync/pull-request@v2
-      with:
-        source_branch: "nanomaps_generation"
-        destination_branch: "master"
-        pr_title: "Automatic NanoMap Update"
-        pr_body: "This pull request updates the nanomap images to the latest version of the map."
-        pr_label: "Infrastructure"
-        pr_allow_empty: false
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "nanomaps_generation"
+          destination_branch: "master"
+          pr_title: "Automatic NanoMap Update"
+          pr_body: "This pull request updates the nanomap images to the latest version of the map."
+          pr_label: "Infrastructure"
+          pr_allow_empty: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
