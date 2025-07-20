@@ -333,6 +333,12 @@
 
 		////////MEDICAL//////////////
 
+		if("health_scan")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.scan_mob(user)
+
 		if("appendicitis")
 			var/mob/living/carbon/human/Tar = target
 			if(istype(Tar))
