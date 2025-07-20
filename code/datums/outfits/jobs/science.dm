@@ -24,12 +24,14 @@
 	headset = /obj/item/radio/headset/heads/rd
 	headset_alt = /obj/item/radio/headset/alt/heads/rd
 	headset_earbud = /obj/item/radio/headset/earbud/heads/rd
+	l_pocket = /obj/item/experi_scanner
 
 /decl/hierarchy/outfit/job/science/scientist
 	name = OUTFIT_JOB_NAME(JOB_SCIENTIST)
 	uniform = /obj/item/clothing/under/rank/scientist
 	id_type = /obj/item/card/id/science
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
+	l_pocket = /obj/item/experi_scanner
 
 /decl/hierarchy/outfit/job/science/xenobiologist
 	name = OUTFIT_JOB_NAME(JOB_XENOBIOLOGIST)
