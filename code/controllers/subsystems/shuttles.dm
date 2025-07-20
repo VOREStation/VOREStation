@@ -9,8 +9,8 @@ SUBSYSTEM_DEF(shuttles)
 	wait = 2 SECONDS
 	priority = FIRE_PRIORITY_SHUTTLES
 	dependencies = list(
-		/datum/controller/subsystem/machines,
-		/datum/controller/subsystem/atoms,
+		///datum/controller/subsystem/machines,
+		///datum/controller/subsystem/atoms,
 		/datum/controller/subsystem/radio
 	)
 	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
