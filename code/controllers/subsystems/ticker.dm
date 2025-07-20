@@ -182,6 +182,10 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_FINISHED)
 			post_game_tick()
 
+			if (world.time - last_restart_notify >= 1 MINUTE && !delay_end)
+				to_world(span_boldannounce("Restarting in [round(restart_timeleft/600, 1)] minute\s."))
+				last_restart_notify = world.time
+
 /datum/controller/subsystem/ticker/proc/setup()
 	to_chat(world, span_boldannounce("Starting game..."))
 	var/init_start = world.timeofday
@@ -335,28 +339,6 @@ SUBSYSTEM_DEF(ticker)
 
 			end_game_state = END_GAME_ENDING
 			return
-		/*
-		if(END_GAME_ENDING)
-			restart_timeleft -= (world.time - last_fire)
-			if(delay_end)
-				to_world(span_boldannounce("An admin has delayed the round end."))
-				end_game_state = END_GAME_DELAYED
-			else if(restart_timeleft <= 0)
-				to_world(span_boldannounce("Restarting world!"))
-				sleep(5)
-				world.Reboot()
-			else if (world.time - last_restart_notify >= 1 MINUTE)
-				to_world(span_boldannounce("Restarting in [round(restart_timeleft/600, 1)] minute\s."))
-				last_restart_notify = world.time
-			return
-		if(END_GAME_DELAYED)
-			restart_timeleft -= (world.time - last_fire)
-			if(!delay_end)
-				end_game_state = END_GAME_ENDING
-		else
-			log_error("Ticker arrived at round end in an unexpected endgame state '[end_game_state]'.")
-			end_game_state = END_GAME_READY_TO_END
-		*/
 
 /datum/controller/subsystem/ticker/proc/create_characters()
 	for(var/mob/new_player/player in GLOB.player_list)
