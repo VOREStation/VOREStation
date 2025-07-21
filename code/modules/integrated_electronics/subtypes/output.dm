@@ -300,7 +300,6 @@
 // 	extended_desc = jointext(extended_desc, null)
 // 	camera = new(src)
 // 	on_data_written()
-// 	message_admins("Video camera init")
 
 // /obj/item/integrated_circuit/output/video_camera/Destroy()
 // 	QDEL_NULL(camera)
