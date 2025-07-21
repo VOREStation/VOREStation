@@ -108,6 +108,10 @@
 // Proc for setting all this up for GMs
 
 /mob/living/carbon/human/proc/custom_medical_issue(var/mob/user)
+
+	var/list/external_organ_surgeries = list("bone reinforcement","remove growths","redirect blood vessels","extract object","flesh graft")
+	var/list/internal_organ_surgeries = list("remove growths","redirect blood vessels","close holes","ultrasound","reoxygenate tissue")
+
 	var/issue_name = tgui_input_text(user,"What would you like to call this medical issue?","Name")
 	var/list/organ_options = list()
 	for(var/obj/item/organ/E in src.organs)
@@ -152,7 +156,10 @@
 		cure_reagent_ID = cure_reagent.name
 
 	if(cure_q == "Surgery")
-		cure_surgery = tgui_input_list(user, "Which surgery step should cure it?", "Cure", list(get_surgery_steps_without_basetypes()))
+		if(istype(issue_organ,/obj/item/organ/internal))
+			cure_surgery = tgui_input_list(user, "Which surgery step should cure it?", "Cure", internal_organ_surgeries)
+		else
+			cure_surgery = tgui_input_list(user, "Which surgery step should cure it?", "Cure", external_organ_surgeries)
 		if(!cure_surgery)
 			return
 
@@ -195,3 +202,438 @@
 		M.symptom_text = symptom_text
 	if(symptom_affect != "None")
 		M.symptom_affect = symptom_affect
+
+//////////////External Organ Surgeries/////////////////////////
+
+/datum/surgery_step/medical_issue
+
+/datum/surgery_step/medical_issue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_danger("[user]'s hand slips, damaging the bone in [target]'s [affected.name] with \the [tool]!") , \
+		span_danger("Your hand slips, damaging the bone in [target]'s [affected.name] with \the [tool]!"))
+	user.balloon_alert_visible("slips, damaging the bone.", "your hand slips, damaging the bone")
+	affected.createwound(BRUISE, 5)
+
+//Bone-gel
+/datum/surgery_step/medical_issue/strengthen_bone
+	surgery_name = "Reinforce Bone"
+	allowed_tools = list(
+		/obj/item/surgical/bonegel = 100
+	)
+
+	allowed_procs = list(IS_SCREWDRIVER = 75)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/strengthen_bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "bone reinforcement")
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/strengthen_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to reinforce the bone in [target]'s [affected.name] in place with \the [tool].") , \
+		span_notice("You are beginning to reinforce the bone in [target]'s [affected.name] in place with \the [tool]."))
+	user.balloon_alert_visible("begins to reinforce the bone.", "reinforcing the bone.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/strengthen_bone/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "bone reinforcement")
+			user.visible_message(span_notice("[user] reinforces the bone in [target]'s [affected.name] with \the [tool]."), \
+			span_notice("You reinforce the bone in [target]'s [affected.name] with \the [tool]."))
+			user.balloon_alert_visible("reinforces the bone.", "bone reinforced.")
+			MI.cure_issue()
+
+//scalpel
+/datum/surgery_step/medical_issue/remove_growth
+	surgery_name = "Remove Growth"
+	allowed_tools = list(
+		/obj/item/surgical/scalpel = 100
+	)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/remove_growth/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "remove growths")
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/remove_growth/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to remove growths in [target]'s [affected.name] with \the [tool].") , \
+		span_notice("You are beginning to remove growths in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("begins to remove growths.", "removing growths.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/remove_growth/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "remove growths")
+			user.visible_message(span_notice("[user] removes the growths in [target]'s [affected.name] with \the [tool]."), \
+			span_notice("You removes the growths in [target]'s [affected.name] with \the [tool]."))
+			user.balloon_alert_visible("removes the growth.", "removed growth.")
+			MI.cure_issue()
+
+//fixovein
+/datum/surgery_step/medical_issue/redirect_vessels
+	surgery_name = "Redirect Blood Vessels"
+	allowed_tools = list(
+		/obj/item/surgical/FixOVein = 100
+	)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/redirect_vessels/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "redirect blood vessels")
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/redirect_vessels/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to redirect blood vessels in [target]'s [affected.name] with \the [tool].") , \
+		span_notice("You are beginning to redirect blood vessels in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("begins to redirect blood vessels.", "redirecting blood vessels.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/redirect_vessels/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "redirect blood vessels")
+			user.visible_message(span_notice("[user] redirected blood vessels in [target]'s [affected.name] with \the [tool]."), \
+			span_notice("You redirected blood vessels in [target]'s [affected.name] with \the [tool]."))
+			user.balloon_alert_visible("redirected blood vessels.", "redirected blood vessels.")
+			MI.cure_issue()
+
+//hemostat
+/datum/surgery_step/medical_issue/extract_object
+	surgery_name = "Extract Object"
+	allowed_tools = list(
+		/obj/item/surgical/hemostat = 100
+	)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/extract_object/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "extract object")
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/extract_object/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to remove objects in [target]'s [affected.name] with \the [tool].") , \
+		span_notice("You are beginning to remove objects in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("begins to remove objects.", "removing objects.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/extract_object/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "extract object")
+			user.visible_message(span_notice("[user] removes the objects in [target]'s [affected.name] with \the [tool]."), \
+			span_notice("You removes the objects in [target]'s [affected.name] with \the [tool]."))
+			user.balloon_alert_visible("removes the objects.", "removed objects.")
+			MI.cure_issue()
+
+//brute kit
+/datum/surgery_step/medical_issue/flesh_graft
+	surgery_name = "Graft Flesh"
+	allowed_tools = list(
+		/obj/item/stack/medical/advanced/bruise_pack = 100
+	)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/flesh_graft/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "flesh graft")
+			return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/flesh_graft/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to graft flesh in [target]'s [affected.name] with \the [tool].") , \
+		span_notice("You are beginning to graft flesh in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("begins to graft flesh.", "grafting flesh.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/flesh_graft/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/datum/medical_issue/MI in affected.medical_issues)
+		if(MI.cure_surgery == "flesh graft")
+			user.visible_message(span_notice("[user] grafts the flesh in [target]'s [affected.name] with \the [tool]."), \
+			span_notice("You grafts the flesh in [target]'s [affected.name] with \the [tool]."))
+			user.balloon_alert_visible("grafted flesh.", "grafted flesh.")
+			MI.cure_issue()
+
+///////////////////Internal Organs
+
+//scalpel
+/datum/surgery_step/medical_issue/remove_growth_internal
+	surgery_name = "Remove Growth on Organ"
+	allowed_tools = list(
+		/obj/item/surgical/scalpel = 100
+	)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/remove_growth_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "remove growths")
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/remove_growth_internal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to remove growths in [target]'s [affected.name] with \the [tool].") , \
+		span_notice("You are beginning to remove growths in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("begins to remove growths.", "removing growths.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/remove_growth_internal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "remove growths")
+				user.visible_message(span_notice("[user] removes the growths in [target]'s [affected.name] with \the [tool]."), \
+				span_notice("You removes the growths in [target]'s [affected.name] with \the [tool]."))
+				user.balloon_alert_visible("removes the growth.", "removed growth.")
+				MI.cure_issue()
+
+//fixovein
+/datum/surgery_step/medical_issue/redirect_vessels_internal
+	surgery_name = "Redirect Blood Vessels"
+	allowed_tools = list(
+		/obj/item/surgical/FixOVein = 100
+	)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/redirect_vessels_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "redirect blood vessels")
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/redirect_vessels_internal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to redirect blood vessels in [target]'s [affected.name] with \the [tool].") , \
+		span_notice("You are beginning to redirect blood vessels in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("begins to redirect blood vessels.", "redirecting blood vessels.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/redirect_vessels_internal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "redirect blood vessels")
+				user.visible_message(span_notice("[user] redirected blood vessels in [target]'s [affected.name] with \the [tool]."), \
+				span_notice("You redirected blood vessels in [target]'s [affected.name] with \the [tool]."))
+				user.balloon_alert_visible("redirected blood vessels.", "redirected blood vessels.")
+				MI.cure_issue()
+
+//cautery
+/datum/surgery_step/medical_issue/close_holes
+	surgery_name = "Close Holes"
+	allowed_tools = list(
+		/obj/item/surgical/cautery = 100
+	)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/redirect_vessels_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "close holes")
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/redirect_vessels_internal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to close holes in [target]'s [affected.name] with \the [tool].") , \
+		span_notice("You are beginning to close holes in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("begins to close holes.", "closing holes.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/redirect_vessels_internal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "close holes")
+				user.visible_message(span_notice("[user] closed holes in [target]'s [affected.name] with \the [tool]."), \
+				span_notice("You closed holes in [target]'s [affected.name] with \the [tool]."))
+				user.balloon_alert_visible("closed holes.", "closed holes.")
+				MI.cure_issue()
+
+//cautery
+/datum/surgery_step/medical_issue/ultrasound
+	surgery_name = "Ultrasound"
+	allowed_tools = list(
+		/obj/item/healthanalyzer = 100
+	)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/ultrasound/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "ultrasound")
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/ultrasound/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to break up material using ultrasound in [target]'s [affected.name] with \the [tool].") , \
+		span_notice("You are beginning to break up material using ultrasound in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("begins to break up material using ultrasound.", "breaking up material using ultrasound.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/ultrasound/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "ultrasound")
+				user.visible_message(span_notice("[user] broke up material with ultrasound in [target]'s [affected.name] with \the [tool]."), \
+				span_notice("You broke up material with ultrasound in [target]'s [affected.name] with \the [tool]."))
+				user.balloon_alert_visible("broke up material with ultrasound.", "broke up material with ultrasound.")
+				MI.cure_issue()
+
+//cautery
+/datum/surgery_step/medical_issue/reoxygenate_tissue
+	surgery_name = "Reoxygenate Tissue"
+	allowed_tools = list(
+		/obj/item/surgical/bioregen = 100
+	)
+
+	can_infect = 1
+	blood_level = 1
+
+	min_duration = 50
+	max_duration = 60
+
+/datum/surgery_step/medical_issue/reoxygenate_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return 0
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "reoxygenate tissue")
+				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
+	return 0
+
+/datum/surgery_step/medical_issue/reoxygenate_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] is beginning to reoxygenate tissue in [target]'s [affected.name] with \the [tool].") , \
+		span_notice("You are beginning to reoxygenate tissue in [target]'s [affected.name] with \the [tool]."))
+	user.balloon_alert_visible("begins to reoxygenate tissue.", "reoxygenating tissue.")
+	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
+	..()
+
+/datum/surgery_step/medical_issue/reoxygenate_tissue/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	for(var/obj/item/organ/internal/I in affected.internal_organs)
+		for(var/datum/medical_issue/MI in I.medical_issues)
+			if(MI.cure_surgery == "reoxygenate tissue")
+				user.visible_message(span_notice("[user] reoxygenated tissue in [target]'s [affected.name] with \the [tool]."), \
+				span_notice("You reoxygenated tissue in [target]'s [affected.name] with \the [tool]."))
+				user.balloon_alert_visible("reoxygenated tissue.", "reoxygenated tissue.")
+				MI.cure_issue()
