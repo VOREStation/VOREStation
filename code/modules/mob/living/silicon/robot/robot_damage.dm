@@ -154,5 +154,7 @@
 		parts -= picked
 
 /mob/living/silicon/robot/emp_act(severity)
+	if(SEND_SIGNAL(src, COMSIG_ROBOT_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
+		return // Cancelled by a component
 	uneq_all()
 	..() //Damage is handled at /silicon/ level.
