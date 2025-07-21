@@ -51,6 +51,7 @@
 		"bluespace_crystal",
 		"beacon",
 		"beacon_locator",
+		"chameleon",
 		// "ore_silo",
 		// "plumbing_receiver",
 		// "adv_watering_can",
