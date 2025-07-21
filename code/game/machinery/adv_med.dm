@@ -266,6 +266,15 @@
 			organData["bruised"] = E.min_bruised_damage
 			organData["broken"] = E.min_broken_damage
 
+			var/medical_issueDataE[0]
+			for(var/datum/medical_issue/MI in E.medical_issues)
+				var/medical_issueSubData[0]
+				if(MI.showscanner)
+					medical_issueSubData["medical_issue"] = MI.name
+					medical_issueDataE.Add(list(medical_issueSubData))
+
+			organData["medical_issues_E"] = medical_issueDataE
+
 			var/implantData[0]
 			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
@@ -344,6 +353,15 @@
 				organData["inflamed"] = A.inflamed
 
 			intOrganData.Add(list(organData))
+
+			var/medical_issueDataI[0]
+			for(var/datum/medical_issue/MI in I.medical_issues)
+				var/medical_issueSubData[0]
+				if(MI.showscanner)
+					medical_issueSubData["medical_issue"] = MI.name
+					medical_issueDataI.Add(list(medical_issueSubData))
+
+			organData["medical_issues_I"] = medical_issueDataI
 
 		occupantData["intOrgan"] = intOrganData
 
@@ -479,6 +497,7 @@
 			var/internal_bleeding = ""
 			var/lung_ruptured = ""
 			var/o_dead = ""
+			var/mi = ""
 			for(var/datum/wound/W in e.wounds) if(W.internal)
 				internal_bleeding = "<br>Internal bleeding"
 				break
@@ -522,18 +541,22 @@
 				else
 					unknown_body++
 
+			for(var/datum/medical_issue/MI in e.medical_issues)
+				mi += "[MI.name] detected:"
+
 			if(unknown_body)
 				imp += "Unknown body present:"
 			if(!AN && !open && !infected && !imp)
 				AN = "None:"
 			if(!(e.status & ORGAN_DESTROYED))
-				dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured][o_dead]</td>"
+				dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][mi][internal_bleeding][lung_ruptured][o_dead]</td>"
 			else
 				dat += "<td>[e.name]</td><td>-</td><td>-</td><td>Not Found</td>"
 			dat += "</tr>"
 		for(var/obj/item/organ/i in occupant.internal_organs)
 			var/mech = ""
 			var/i_dead = ""
+			var/mi = ""
 			if(i.status & ORGAN_ASSISTED)
 				mech = "Assisted:"
 			if(i.robotic >= ORGAN_ROBOT)
@@ -561,9 +584,11 @@
 				var/obj/item/organ/internal/appendix/A = i
 				if(A.inflamed)
 					infection = "Inflammation detected!"
+			for(var/datum/medical_issue/MI in i.medical_issues)
+				mi += "[MI.name] detected:"
 
 			dat += "<tr>"
-			dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech][i_dead]</td><td></td>"
+			dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mi][mech][i_dead]</td><td></td>"
 			dat += "</tr>"
 		for(var/organ_tag in occupant.species.has_organ) //Check to see if we are missing any organs
 			var/organData[0]

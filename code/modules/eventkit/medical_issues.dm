@@ -203,7 +203,11 @@
 	if(symptom_affect != "None")
 		M.symptom_affect = symptom_affect
 
+	to_chat(user,"[issue_name] applied to [issue_organ] inside of [src]!")
+
+///////////////////////////////////////////////////////////////
 //////////////External Organ Surgeries/////////////////////////
+///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/medical_issue
 
@@ -522,7 +526,7 @@
 	min_duration = 50
 	max_duration = 60
 
-/datum/surgery_step/medical_issue/redirect_vessels_internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/medical_issue/close_holes/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -534,7 +538,7 @@
 				return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2
 	return 0
 
-/datum/surgery_step/medical_issue/redirect_vessels_internal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/medical_issue/close_holes/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(span_notice("[user] is beginning to close holes in [target]'s [affected.name] with \the [tool].") , \
 		span_notice("You are beginning to close holes in [target]'s [affected.name] with \the [tool]."))
@@ -542,7 +546,7 @@
 	target.custom_pain("The pain in your [affected.name] is going to make you pass out!", 50)
 	..()
 
-/datum/surgery_step/medical_issue/redirect_vessels_internal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/medical_issue/close_holes/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		for(var/datum/medical_issue/MI in I.medical_issues)
@@ -556,7 +560,7 @@
 /datum/surgery_step/medical_issue/ultrasound
 	surgery_name = "Ultrasound"
 	allowed_tools = list(
-		/obj/item/healthanalyzer = 100
+		/obj/item/autopsy_scanner = 100
 	)
 
 	can_infect = 1
