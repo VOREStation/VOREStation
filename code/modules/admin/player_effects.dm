@@ -480,6 +480,12 @@
 			Tar.ingested.clear_reagents()
 			Tar.touching.clear_reagents()
 
+		if("medical_issue")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.custom_medical_issue()
+
 		////////ABILITIES//////////////
 
 		if("vent_crawl")

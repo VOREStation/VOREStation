@@ -39,6 +39,9 @@ export const ControlMedical = (props) => {
       <Button fluid onClick={() => act('purge')}>
         Purge Reagents
       </Button>
+      <Button fluid onClick={() => act('medical_issue')}>
+        Create Custom Medical Issue
+      </Button>
     </Section>
   );
 };
