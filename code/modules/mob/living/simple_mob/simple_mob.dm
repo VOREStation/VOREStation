@@ -371,10 +371,6 @@
 			var/totaldelay = round(rand(1,3) * damage_fatigue_mult * clamp(((rand(2,5) * (h / getMaxHealth())) - rand(0,2)), 1, 5)) 	// totaldelay is how much delay we're going to feed into attacks and movement. Do NOT change this formula unless you know how to math.
 			injury_level = totaldelay 						// Adds our returned slowdown to the mob's injury level
 
-/mob/living/simple_mob/updatehealth()	// We don't want to fully override the check, just hook our own code in
-	get_injury_level()					// We check how injured we are, then actually update the mob on how hurt we are.
-	. = ..() 							// Calling parent here, actually updating our mob on how hurt we are.
-
 /mob/living/simple_mob/proc/ColorMate()
 	set name = "Recolour"
 	set category = "Abilities.Settings"

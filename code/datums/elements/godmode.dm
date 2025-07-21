@@ -1,25 +1,102 @@
 /**
- * Attached to humans. Gives them godmode by stopping damage to external and internal organs.
+ * Attached to mobs. Gives them godmode by stopping damage.
  */
-/datum/element/human_godmode
+/datum/element/godmode
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 
 
-/datum/element/human_godmode/Attach(datum/target)
+/datum/element/godmode/Attach(datum/target)
 	. = ..()
-	if(!ishuman(target))
+	if(!ismob(target))
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_external_damaged))
-	RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
 
-/datum/element/human_godmode/Detach(atom/movable/target)
+	if(ishuman(target))
+		RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_external_damaged))
+		RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
+
+	//Four main damage types: Brute, Burn, Oxy, Tox
+	RegisterSignal(target, COMSIG_TAKING_OXY_DAMAGE, PROC_REF(on_oxygen_damage))
+	RegisterSignal(target, COMSIG_TAKING_TOX_DAMAGE, PROC_REF(on_tox_damage))
+	RegisterSignal(target, COMSIG_TAKING_FIRE_DAMAGE, PROC_REF(on_fire_damage))
+	RegisterSignal(target, COMSIG_TAKING_BRUTE_DAMAGE, PROC_REF(on_brute_damage))
+
+	//Rarer types, such as Brain, Clone, Halloss
+	RegisterSignal(target, COMSIG_TAKING_BRAIN_DAMAGE, PROC_REF(on_brain_damage))
+	RegisterSignal(target, COMSIG_TAKING_CLONE_DAMAGE, PROC_REF(on_clone_damage))
+	RegisterSignal(target, COMSIG_TAKING_HALO_DAMAGE, PROC_REF(on_halo_damage))
+
+	//Things such as update health.
+	RegisterSignal(target, COMSIG_UPDATE_HEALTH, PROC_REF(on_update_health))
+	RegisterSignal(target, COMSIG_TAKING_APPLY_EFFECT, PROC_REF(on_apply_effect))
+
+	//For things that don't fall into a single bucket
+	RegisterSignal(target, COMSIG_CHECK_FOR_GODMODE, PROC_REF(godmode_check))
+	RegisterSignal(target, COMSIG_BEING_ELECTROCUTED, PROC_REF(on_electrocute))
+	RegisterSignal(target, COMSIG_EMBED_OBJECT, PROC_REF(embed_check))
+
+
+/datum/element/godmode/Detach(atom/movable/target)
 	. = ..()
-	UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE))
 
-/datum/element/human_godmode/proc/on_external_damaged()
+	//Human specific comsigs:
+	if(ishuman(target))
+		UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE))
+	UnregisterSignal(target, list(COMSIG_TAKING_OXY_DAMAGE, COMSIG_TAKING_TOX_DAMAGE, COMSIG_TAKING_FIRE_DAMAGE, \
+	COMSIG_TAKING_BRUTE_DAMAGE, COMSIG_TAKING_BRAIN_DAMAGE, COMSIG_TAKING_CLONE_DAMAGE, COMSIG_TAKING_HALO_DAMAGE, \
+	COMSIG_UPDATE_HEALTH, COMSIG_TAKING_APPLY_EFFECT, COMSIG_BEING_ELECTROCUTED))
+
+/datum/element/godmode/proc/on_external_damaged()
 	SIGNAL_HANDLER
 	return COMPONENT_CANCEL_EXTERNAL_ORGAN_DAMAGE
 
-/datum/element/human_godmode/proc/on_internal_damaged()
+/datum/element/godmode/proc/on_internal_damaged()
 	SIGNAL_HANDLER
 	return COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE
+
+/datum/element/godmode/proc/on_brain_damage()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_BRAIN_DAMAGE
+
+/datum/element/godmode/proc/on_oxygen_damage()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_OXY_DAMAGE
+
+/datum/element/godmode/proc/on_tox_damage()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_TOX_DAMAGE
+
+/datum/element/godmode/proc/on_clone_damage()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_CLONE_DAMAGE
+
+/datum/element/godmode/proc/on_fire_damage()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_FIRE_DAMAGE
+
+/datum/element/godmode/proc/on_brute_damage()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_BRUTE_DAMAGE
+
+/datum/element/godmode/proc/on_halo_damage()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_HALO_DAMAGE
+
+/datum/element/godmode/proc/on_update_health()
+	SIGNAL_HANDLER
+	return COMSIG_UPDATE_HEALTH_GOD_MODE
+
+/datum/element/godmode/proc/on_apply_effect()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_EFFECT
+
+/datum/element/godmode/proc/on_electrocute()
+	SIGNAL_HANDLER
+	return COMPONENT_CARBON_CANCEL_ELECTROCUTE
+
+/datum/element/godmode/proc/embed_check()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_EMBED
+
+/datum/element/godmode/proc/godmode_check()
+	SIGNAL_HANDLER
+	return COMSIG_GODMODE_CANCEL

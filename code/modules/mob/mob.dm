@@ -1362,7 +1362,8 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	//VV_DROPDOWN_OPTION(VV_HK_GIVE_MOB_ACTION, "Give Mob Ability")
 	//VV_DROPDOWN_OPTION(VV_HK_REMOVE_MOB_ACTION, "Remove Mob Ability")
 	//VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "Give Disease")
-	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "Toggle Godmode")
+	VV_DROPDOWN_OPTION(VV_HK_GRANT_GODMODE, "Grant Godmode")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_GODMODE, "Remove Godmode")
 	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "Drop Everything")
 	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "Regenerate Icons")
 	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS_FULL, "Regenerate Icons & Clear Stuck Overlays")
@@ -1393,10 +1394,15 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	if(href_list[VV_HK_PLAYER_PANEL])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, src)
 
-	if(href_list[VV_HK_GODMODE])
+	if(href_list[VV_HK_GRANT_GODMODE])
 		if(!check_rights(R_ADMIN))
 			return
-		usr.client.cmd_admin_godmode(src)
+		usr.client.cmd_admin_grant_godmode(src)
+
+	if(href_list[VV_HK_REMOVE_GODMODE])
+		if(!check_rights(R_ADMIN))
+			return
+		usr.client.cmd_admin_remove_godmode(src)
 
 	if(href_list[VV_HK_ADDLANGUAGE])
 		if(!check_rights(R_SPAWN))

@@ -95,7 +95,7 @@
 			. += span_info("You can use a <b>crowbar</b> to remove it.")
 */
 /mob/living/bot/updatehealth()
-	if(status_flags & GODMODE)
+	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
 		health = getMaxHealth()
 		set_stat(CONSCIOUS)
 	else

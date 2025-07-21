@@ -2,7 +2,7 @@
 /mob/living/carbon/human/updatehealth()
 	var/huskmodifier = 2.5 // With 1.5, you need 250 burn instead of 200 to husk a human.
 
-	if(status_flags & GODMODE)
+	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
 		health = getMaxHealth()
 		set_stat(CONSCIOUS)
 		return
@@ -24,7 +24,8 @@
 
 /mob/living/carbon/human/adjustBrainLoss(var/amount)
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(SEND_SIGNAL(src, COMSIG_TAKING_BRAIN_DAMAGE, amount) & COMSIG_CANCEL_BRAIN_DAMAGE)
+		return 0	// Cancelled by a component
 
 	if(should_have_organ(O_BRAIN))
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[O_BRAIN]
@@ -38,7 +39,8 @@
 
 /mob/living/carbon/human/setBrainLoss(var/amount)
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(SEND_SIGNAL(src, COMSIG_TAKING_BRAIN_DAMAGE, amount) & COMSIG_CANCEL_BRAIN_DAMAGE)
+		return 0	// Cancelled by a component
 
 	if(should_have_organ(O_BRAIN))
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[O_BRAIN]
@@ -52,7 +54,8 @@
 
 /mob/living/carbon/human/getBrainLoss()
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL) //I don't want to go in and do HUD stuff imediately, so... no.
+		return 0	// Cancelled by a component
 
 	if(should_have_organ(O_BRAIN))
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[O_BRAIN]
@@ -111,6 +114,8 @@
 
 //'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
 /mob/living/carbon/human/adjustBruteLoss(var/amount,var/include_robo)
+	if(SEND_SIGNAL(src, COMSIG_TAKING_BRUTE_DAMAGE, amount) & COMSIG_CANCEL_BRUTE_DAMAGE)
+		return 0	// Cancelled by a component
 	amount = amount*species.brute_mod
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
@@ -419,7 +424,6 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 // damage MANY external organs, in random order
 /mob/living/carbon/human/take_overall_damage(var/brute, var/burn, var/sharp = FALSE, var/edge = FALSE, var/used_weapon = null)
-	if(status_flags & GODMODE)	return	//godmode
 	var/list/obj/item/organ/external/parts = get_damageable_organs()
 	var/update = 0
 	while(parts.len && (brute>0 || burn>0) )

@@ -156,21 +156,37 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	admin_ticket_log(M, msg)
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
+/client/proc/cmd_admin_grant_godmode(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
-	set name = "Godmode"
+	set name = "Grant Godmode"
 
 	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	M.status_flags ^= GODMODE
-	to_chat(usr, span_blue("Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"))
+	M.AddElement(/datum/element/godmode)
+	to_chat(usr, span_blue("Toggled godmode on."))
 
-	log_admin("[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]")
-	var/msg = "[key_name_admin(usr)] has toggled [ADMIN_LOOKUPFLW(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]"
+	log_admin("[key_name(usr)] has granted [key_name(M)] godmode.")
+	var/msg = "[key_name_admin(usr)] has toggled [ADMIN_LOOKUPFLW(M)]'s godmode on."
 	message_admins(msg)
 	admin_ticket_log(M, msg)
-	feedback_add_details("admin_verb","GOD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","GOD_ENABLE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/cmd_admin_remove_godmode(mob/M as mob in GLOB.mob_list)
+	set category = "Admin.Game"
+	set name = "Remove Godmode"
+
+	if(!check_rights_for(src, R_HOLDER))
+		return
+
+	M.RemoveElement(/datum/element/godmode)
+	to_chat(usr, span_blue("Toggled godmode off."))
+
+	log_admin("[key_name(usr)] has removed [key_name(M)]'s godmode.")
+	var/msg = "[key_name_admin(usr)] has removed [ADMIN_LOOKUPFLW(M)]'s godmode."
+	message_admins(msg)
+	admin_ticket_log(M, msg)
+	feedback_add_details("admin_verb","GOD_DISABLE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)

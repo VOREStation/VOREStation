@@ -1,12 +1,13 @@
 /mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
-	status_flags = GODMODE|CANPUSH
+	status_flags = CANPUSH
 	has_huds = FALSE
 	blocks_emissive = FALSE
 	no_vore = TRUE //Dummies don't need bellies.
 
 /mob/living/carbon/human/dummy/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/godmode)
 	GLOB.mob_list -= src
 	GLOB.living_mob_list -= src
 	GLOB.dead_mob_list -= src
