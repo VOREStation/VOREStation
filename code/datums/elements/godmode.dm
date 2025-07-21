@@ -2,6 +2,8 @@
  * Attached to mobs. Gives them godmode by stopping damage, effects, embeds, among all other negative effects.
  */
 /datum/element/godmode
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY|ELEMENT_BESPOKE
+	argument_hash_start_idx = 2
 
 /datum/element/godmode/Attach(datum/target)
 	. = ..()
