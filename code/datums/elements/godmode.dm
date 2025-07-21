@@ -9,6 +9,8 @@
 	. = ..()
 	if(!ismob(target))
 		return ELEMENT_INCOMPATIBLE
+	var/mob/our_target = target
+	our_target.status_flags |= GODMODE
 
 	if(ishuman(target))
 		RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_external_damaged))
@@ -44,6 +46,8 @@
 	UnregisterSignal(target, list(COMSIG_TAKING_OXY_DAMAGE, COMSIG_TAKING_TOX_DAMAGE, COMSIG_TAKING_FIRE_DAMAGE, \
 	COMSIG_TAKING_BRUTE_DAMAGE, COMSIG_TAKING_BRAIN_DAMAGE, COMSIG_TAKING_CLONE_DAMAGE, COMSIG_TAKING_HALO_DAMAGE, \
 	COMSIG_UPDATE_HEALTH, COMSIG_TAKING_APPLY_EFFECT, COMSIG_BEING_ELECTROCUTED))
+	var/mob/our_target = target
+	our_target.status_flags &= ~GODMODE
 
 /datum/element/godmode/proc/on_external_damaged()
 	SIGNAL_HANDLER
