@@ -15,7 +15,7 @@
 	var/maxdamage = 300			//What is the maximum amount of damage it can cause?
 	var/damageorgan = FALSE		//Should this damage the organ it's attached to or the body in general?
 
-	var/datum/reagent/cure_reagent	//Which reagent cures this issue, if any?
+	var/cure_reagent			//Which reagent cures this issue, if any?
 	var/datum/surgery_step/cure_surgery			//Which surgery step can be used to cure this?
 	var/unhealth = 100			//The amount of health the issue has, depleted by reagent
 	var/reagent_strength = 10	//How much health the reagent will remove per processing
@@ -30,7 +30,7 @@
 	if(!istype(owner) || !istype(affectedorgan))
 		return
 
-	if(!(affectedorgan in owner.organs) || !(affectedorgan in owner.internal_organs))
+	if(!(affectedorgan in owner.organs) && !(affectedorgan in owner.internal_organs))
 		return
 
 	if(unhealth <= 0)
@@ -61,27 +61,27 @@
 		else
 			switch(damagetype)
 				if(BRUTE)
-					if(maxdamage <= owner.getBruteLoss())
+					if(maxdamage >= owner.getBruteLoss())
 						owner.adjustBruteLoss(damagestrength)
 				if(BURN)
-					if(maxdamage <= owner.getFireLoss())
+					if(maxdamage >= owner.getFireLoss())
 						owner.adjustFireLoss(damagestrength)
 				if(OXY)
-					if(maxdamage <= owner.getOxyLoss())
+					if(maxdamage >= owner.getOxyLoss())
 						owner.adjustFireLoss(damagestrength)
 				if(TOX)
-					if(maxdamage <= owner.getToxLoss())
+					if(maxdamage >= owner.getToxLoss())
 						owner.adjustToxLoss(damagestrength)
 				if(CLONE)
-					if(maxdamage <= owner.getCloneLoss())
+					if(maxdamage >= owner.getCloneLoss())
 						owner.adjustCloneLoss(damagestrength)
 				if(HALLOSS)
-					if(maxdamage <= owner.getHalLoss())
+					if(maxdamage >= owner.getHalLoss())
 						owner.adjustHalLoss(damagestrength)
 
 /datum/medical_issue/proc/handle_curing()
 	for(var/datum/reagent/R in owner.reagents.reagent_list)
-		if(istype(R,cure_reagent))
+		if(R.name == cure_reagent)
 			unhealth = unhealth - reagent_strength
 
 /datum/medical_issue/proc/handle_symptoms()
@@ -122,14 +122,16 @@
 	if(!damage || (damage == "Cancel"))
 		return
 	var/damage_organ
+	var/damage_value_pre
 	var/damage_value
 	var/damage_max
 	var/damage_type
 	if(damage == "Yes")
-		damage_organ = tgui_alert(user, "Should this damage the organ or body?","Damage",list(issue_organ,"Body"))
+		damage_organ = tgui_alert(user, "Should this damage the organ or body?","Damage",list("Organ","Body"))
 		if(!damage_organ)
 			return
-		damage_value = tgui_input_number(user,"How much damage should this apply per processing. Low values are recommended.","Damage",0.1)
+		damage_value_pre = tgui_input_number(user,"How much damage should this apply per processing. Low values are recommended, automatically divided by 10.","Damage",1)
+		damage_value = damage_value_pre / 10
 		damage_max = tgui_input_number(user,"What is the maximum about of damage this issue can apply? It will not damage above this value.","Damage",300)
 		if(damage_organ == "Body")
 			damage_type = tgui_input_list(user, "Should this damage the organ or body?","Damage",list(BRUTE,BURN,OXY,TOX,CLONE,HALLOSS),BRUTE)
@@ -140,12 +142,14 @@
 	if(!cure_q || (cure_q == "Cancel"))
 		return
 	var/datum/reagent/cure_reagent
+	var/cure_reagent_ID
 	var/cure_surgery
 	if(cure_q == "Reagent")
 		var/list/chem_list = typesof(/datum/reagent)
 		cure_reagent = tgui_input_list(user, "Which reagent should be the cure?", "Cure", chem_list)
 		if(!cure_reagent)
 			return
+		cure_reagent_ID = cure_reagent.name
 
 	if(cure_q == "Surgery")
 		cure_surgery = tgui_input_list(user, "Which surgery step should cure it?", "Cure", list(get_surgery_steps_without_basetypes()))
@@ -183,7 +187,7 @@
 		M.maxdamage = damage_max
 
 	if(cure_reagent)
-		M.cure_reagent = cure_reagent
+		M.cure_reagent = cure_reagent_ID
 	if(cure_surgery)
 		M.cure_surgery = cure_surgery
 
