@@ -185,3 +185,6 @@
   - balance: rng of trashpiles altered
   - code_imp: trash piles and loot piles now use a unified looting element for handling
       drops and rarity. Not limited to just loot piles.
+2025-07-21:
+  Kashargul:
+  - code_imp: replace eslint with biome
