@@ -219,7 +219,7 @@
 			tr = H.reagents.total_volume
 		set_pin_data(IC_OUTPUT, 6, mr)
 		set_pin_data(IC_OUTPUT, 7, tr)
-		set_pin_data(IC_OUTPUT, 8, H:stat == DEAD ? FALSE : TRUE) // If it's dead, it can't be living.
+		set_pin_data(IC_OUTPUT, 8, H:stat == DEAD ? FALSE : TRUE)
 		push_data()
 		activate_pin(2)
 	else
