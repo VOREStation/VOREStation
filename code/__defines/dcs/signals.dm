@@ -580,6 +580,21 @@
 ///When the mob's dna and species have been fully applied
 #define COMSIG_HUMAN_DNA_FINALIZED "human_dna_finished"
 
+// Organ specific damage signals
+
+///from /obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon, forbidden_limbs, permutation, projectile)
+#define COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION "external_organ_pre_damage_application"
+///Return this in response if you don't want external organ damage to be dealt via the normal proc.
+	#define COMPONENT_CANCEL_EXTERNAL_ORGAN_DAMAGE (1<<0)
+///from /obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon, forbidden_limbs, permutation, projectile)
+#define COMSIG_EXTERNAL_ORGAN_POST_DAMAGE_APPLICATION "external_organ_post_damage_application"
+///from /obj/item/organ/take_damage(amount, silent)
+#define COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION "internal_organ_pre_damage_application"
+///Return this in response if you don't want internal organ damage to be dealt via the normal proc.
+	#define COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE (1<<0)
+///from /obj/item/organ/take_damage(amount, silent)
+#define COMSIG_INTERNAL_ORGAN_POST_DAMAGE_APPLICATION "internal_organ_post_damage_application"
+
 // /datum/species signals
 
 ///from datum/species/on_species_gain(): (datum/species/new_species, datum/species/old_species)
