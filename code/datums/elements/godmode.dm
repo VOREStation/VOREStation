@@ -1,5 +1,5 @@
 /**
- * Attached to mobs. Gives them godmode by stopping damage.
+ * Attached to mobs. Gives them godmode by stopping damage, effects, embeds, among all other negative effects.
  */
 /datum/element/godmode
 	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
@@ -7,12 +7,12 @@
 
 /datum/element/godmode/Attach(datum/target)
 	. = ..()
+	//Must be appliied to mobs.
 	if(!ismob(target))
 		return ELEMENT_INCOMPATIBLE
 	var/mob/our_target = target
 	if(our_target.status_flags & GODMODE) //Already have it.
 		return ELEMENT_INCOMPATIBLE
-
 	our_target.status_flags |= GODMODE
 
 	if(ishuman(target))
@@ -41,16 +41,19 @@
 
 
 /datum/element/godmode/Detach(atom/movable/target)
-	. = ..()
-
 	//Human specific comsigs:
 	if(ishuman(target))
 		UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE))
+
+	//All the general comsigs.
 	UnregisterSignal(target, list(COMSIG_TAKING_OXY_DAMAGE, COMSIG_TAKING_TOX_DAMAGE, COMSIG_TAKING_FIRE_DAMAGE, \
 	COMSIG_TAKING_BRUTE_DAMAGE, COMSIG_TAKING_BRAIN_DAMAGE, COMSIG_TAKING_CLONE_DAMAGE, COMSIG_TAKING_HALO_DAMAGE, \
 	COMSIG_UPDATE_HEALTH, COMSIG_TAKING_APPLY_EFFECT, COMSIG_BEING_ELECTROCUTED))
 	var/mob/our_target = target
+
+	//And finally, remove the fact we're in godmode.
 	our_target.status_flags &= ~GODMODE
+	. = ..()
 
 /datum/element/godmode/proc/on_external_damaged()
 	SIGNAL_HANDLER
