@@ -438,11 +438,14 @@
 	#define COMPONENT_CARBON_CANCEL_ELECTROCUTE (1<<0) //If this is set, the carbon will be not be electrocuted.
 
 
-// /mob/living/silicon/robot signals
-///called when a robot's cell is being EMP'd. from /obj/item/cell/emp_act(severity)
-#define COMSIG_ATOM_EMP_ACT_ROBOT_CELL "emp_act_robot_cell"
+// /mob/living/silicon signals
+///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity)
+#define COMSIG_SILICON_EMP_ACT "silicon_emp_act"
 	#define COMPONENT_BLOCK_EMP (1<<0) //If this is set, the EMP will not go through. Used by other EMP acts as well.
-// /obj signals
+
+// /mob/living/silicon/robot signals
+///called when a robot is emp'd. from /mob/living/silicon/robot/emp_act(severity)
+#define COMSIG_ROBOT_EMP_ACT "robot_emp_act"
 
 ///from base of obj/deconstruct(): (disassembled)
 #define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"

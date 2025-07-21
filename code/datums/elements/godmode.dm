@@ -19,8 +19,11 @@
 		RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_external_damaged))
 		RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
 
+	if(issilicon(target))
+		RegisterSignal(target, COMSIG_SILICON_EMP_ACT, PROC_REF(on_emp))
+
 	if(isrobot(target))
-		RegisterSignal(target, COMSIG_ATOM_EMP_ACT_ROBOT_CELL, PROC_REF(on_emp))
+		RegisterSignal(target, COMSIG_ROBOT_EMP_ACT, PROC_REF(on_emp))
 
 	//Four main damage types: Brute, Burn, Oxy, Tox
 	RegisterSignal(target, COMSIG_TAKING_OXY_DAMAGE, PROC_REF(on_oxygen_damage))
@@ -48,8 +51,11 @@
 	if(ishuman(target))
 		UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION))
 
+	if(issilicon(target))
+		UnregisterSignal(target, list(COMSIG_SILICON_EMP_ACT))
+
 	if(isrobot(target))
-		UnregisterSignal(target, list(COMSIG_ATOM_EMP_ACT_ROBOT_CELL))
+		UnregisterSignal(target, list(COMSIG_ROBOT_EMP_ACT))
 
 	//All the general comsigs.
 	UnregisterSignal(target, list(COMSIG_TAKING_OXY_DAMAGE, COMSIG_TAKING_TOX_DAMAGE, COMSIG_TAKING_FIRE_DAMAGE, \
