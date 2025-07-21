@@ -166,7 +166,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	if(M.status_flags & GODMODE)
 		M.RemoveElement(/datum/element/godmode)
 
-	else if(!M.status_flags & GODMODE)
+	else if(!(M.status_flags & GODMODE))
 		M.AddElement(/datum/element/godmode)
 
 	to_chat(usr, span_blue("Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"))

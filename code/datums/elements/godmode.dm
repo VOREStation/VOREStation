@@ -10,6 +10,9 @@
 	if(!ismob(target))
 		return ELEMENT_INCOMPATIBLE
 	var/mob/our_target = target
+	if(our_target.status_flags & GODMODE) //Already have it.
+		return ELEMENT_INCOMPATIBLE
+
 	our_target.status_flags |= GODMODE
 
 	if(ishuman(target))
