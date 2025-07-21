@@ -1,6 +1,6 @@
 import { Stack } from 'tgui-core/components';
 import { formatSiUnit } from 'tgui-core/format';
-
+import { capitalize } from 'tgui-core/string';
 import { MaterialIcon } from './MaterialIcon';
 import type { Design, MaterialMap } from './Types';
 
@@ -84,7 +84,12 @@ export const MaterialCostSequence = (props: MaterialCostSequenceProps) => {
                 }
               }
             >
-              {formatSiUnit((amount || 1) * quantity)}
+              <Stack vertical align="center">
+                <Stack.Item>
+                  {formatSiUnit((amount || 1) * quantity)}
+                </Stack.Item>
+                <Stack.Item>{capitalize(material)}</Stack.Item>
+              </Stack>
             </Stack.Item>
           </Stack>
         </Stack.Item>

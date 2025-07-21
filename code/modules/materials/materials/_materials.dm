@@ -78,6 +78,21 @@ var/list/name_to_material
 			else
 				.[M] = matter[mat]
 
+/obj/proc/set_custom_materials(list/materials, multiplier = 1)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(!LAZYLEN(materials))
+		return
+
+	materials = materials.Copy()
+
+	if(multiplier != 1)
+		for(var/x in materials)
+			materials[x] *= multiplier
+
+	matter = materials
+
+
 // Builds the datum list above.
 /proc/populate_material_list(force_remake=0)
 	if(name_to_material && !force_remake) return // Already set up!
