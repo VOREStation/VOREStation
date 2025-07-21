@@ -23,3 +23,12 @@
 		/mob/living/simple_mob/vore/otie/red/chubby/cocoa = 1,
 		/mob/living/simple_mob/vore/aggressive/rat/pet = 1,
 	)
+
+/datum/experiment/scanning/points/slime_scanning
+	name = "Slime Scanning Experiment"
+	description = "Xenobiologists love their squishy friends. Scan one, or their core!"
+	required_points = 1
+	required_atoms = list(
+		/mob/living/simple_mob/slime = 1,
+		/obj/item/slime_extract = 1,
+	)
