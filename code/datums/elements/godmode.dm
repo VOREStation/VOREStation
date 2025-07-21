@@ -13,9 +13,9 @@
 		return ELEMENT_INCOMPATIBLE
 	our_target.status_flags |= GODMODE
 
-	//Organs.
-	RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_external_damaged))
-	RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
+	if(ishuman(target))
+		RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_external_damaged))
+		RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
 
 	//Four main damage types: Brute, Burn, Oxy, Tox
 	RegisterSignal(target, COMSIG_TAKING_OXY_DAMAGE, PROC_REF(on_oxygen_damage))
@@ -39,7 +39,11 @@
 
 
 /datum/element/godmode/Detach(atom/movable/target)
-	UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE, COMSIG_TAKING_OXY_DAMAGE, COMSIG_TAKING_TOX_DAMAGE, COMSIG_TAKING_FIRE_DAMAGE, \
+	//Human specific comsigs:
+	UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION))
+
+	//All the general comsigs.
+	UnregisterSignal(target, list(COMSIG_TAKING_OXY_DAMAGE, COMSIG_TAKING_TOX_DAMAGE, COMSIG_TAKING_FIRE_DAMAGE, \
 	COMSIG_TAKING_BRUTE_DAMAGE, COMSIG_TAKING_BRAIN_DAMAGE, COMSIG_TAKING_CLONE_DAMAGE, COMSIG_TAKING_HALO_DAMAGE, \
 	COMSIG_UPDATE_HEALTH, COMSIG_TAKING_APPLY_EFFECT, COMSIG_CHECK_FOR_GODMODE, COMSIG_BEING_ELECTROCUTED, COMSIG_EMBED_OBJECT))
 	var/mob/our_target = target
