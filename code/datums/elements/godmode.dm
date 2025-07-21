@@ -19,6 +19,9 @@
 		RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_external_damaged))
 		RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
 
+	if(isrobot(target))
+		RegisterSignal(target, COMSIG_ATOM_EMP_ACT_ROBOT_CELL, PROC_REF(on_emp))
+
 	//Four main damage types: Brute, Burn, Oxy, Tox
 	RegisterSignal(target, COMSIG_TAKING_OXY_DAMAGE, PROC_REF(on_oxygen_damage))
 	RegisterSignal(target, COMSIG_TAKING_TOX_DAMAGE, PROC_REF(on_tox_damage))
@@ -42,7 +45,11 @@
 
 /datum/element/godmode/Detach(atom/movable/target)
 	//Human specific comsigs:
-	UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION))
+	if(ishuman(target))
+		UnregisterSignal(target, list(COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION))
+
+	if(isrobot(target))
+		UnregisterSignal(target, list(COMSIG_ATOM_EMP_ACT_ROBOT_CELL))
 
 	//All the general comsigs.
 	UnregisterSignal(target, list(COMSIG_TAKING_OXY_DAMAGE, COMSIG_TAKING_TOX_DAMAGE, COMSIG_TAKING_FIRE_DAMAGE, \
@@ -105,6 +112,10 @@
 /datum/element/godmode/proc/embed_check()
 	SIGNAL_HANDLER
 	return COMSIG_CANCEL_EMBED
+
+/datum/element/godmode/proc/on_emp()
+	SIGNAL_HANDLER
+	return COMPONENT_BLOCK_EMP
 
 /datum/element/godmode/proc/godmode_check()
 	SIGNAL_HANDLER

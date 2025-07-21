@@ -229,6 +229,8 @@
 	//remove this once emp changes on dev are merged in
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/R = loc
+		if(SEND_SIGNAL(R, COMSIG_ATOM_EMP_ACT_ROBOT_CELL) & COMPONENT_BLOCK_EMP)
+			return
 		severity *= R.cell_emp_mult
 
 	charge -= charge / severity
