@@ -1,7 +1,7 @@
-import { readdir, readFile } from 'node:fs/promises';
-import isValidUTF8 from 'utf-8-validate';
+import { readdir, readFile } from "node:fs/promises";
+import isValidUTF8 from "utf-8-validate";
 
-let queue = ['../..'];
+let queue = ["../.."];
 let files = {};
 let count = 0;
 
@@ -13,7 +13,7 @@ while (queue.length) {
     for (const entry of entries[i]) {
       if (entry.isDirectory()) {
         queue.push(`${queue[i]}/${entry.name}`);
-      } else if (entry.isFile() && entry.name.endsWith('.dm')) {
+      } else if (entry.isFile() && entry.name.endsWith(".dm")) {
         files[`${queue[i]}/${entry.name}`] = true;
       }
     }
