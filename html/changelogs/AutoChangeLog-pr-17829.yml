@@ -1,0 +1,7 @@
+author: "Diana, Asher"
+delete-after: True
+changes:
+  - rscadd: "Ninja syndicate borgs (Comes with a cloaking module and special esword)"
+  - balance: "Syndicate borgs now spawn with AI trackers"
+  - qol: "AI Tracker now tells you info about what the states mean if you're an antag"
+  - code_imp: "being hit now screams the information into the void"
