@@ -14,6 +14,7 @@
 	id = "fireworklauncher"
 	// req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	build_path = /obj/item/circuitboard/firework_launcher
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/firework_star/aesthetic
 	name = "aesthetic"

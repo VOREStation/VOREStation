@@ -77,6 +77,7 @@
 		"qpad_booster",
 		"teleconsole",
 		"translocator",
+		"mini_translocator",
 		// "tele_station",
 		// "tele_hub",
 		// "launchpad_console",

@@ -10,6 +10,7 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_EQUIPMENT
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/super_mech_cell
 	name = "Super-Capacity Mecha Cell"
@@ -22,6 +23,7 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_EQUIPMENT
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/synthetic_flash
 	name = "Synthetic Flash"
@@ -32,5 +34,6 @@
 	materials = list(MAT_STEEL = 562, MAT_GLASS = 562)
 	build_path = /obj/item/flash/synthetic
 	category = list(
-		RND_SUBCATEGORY_MECHFAB_EQUIPMENT_MISC
+		RND_CATEGORY_TOOLS
 	) //I really don't know what to put for this.
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

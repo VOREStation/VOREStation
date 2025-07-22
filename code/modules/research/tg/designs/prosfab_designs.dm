@@ -3,6 +3,7 @@
 	category = list(
 		RND_CATEGORY_PROSFAB + RND_SUBCATEGORY_PROSFAB_MISC
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/prosfab/pros
 	category = list(
@@ -602,7 +603,6 @@
 	id = "pai_speech_synthesizer"
 	build_path = /obj/item/paiparts/speech_synthesizer
 
-
 /datum/design_techweb/disk
 	build_type = IMPRINTER
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 1000)
@@ -610,6 +610,7 @@
 	category = list(
 		RND_CATEGORY_PROSFAB
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/disk/New()
 	. = ..()

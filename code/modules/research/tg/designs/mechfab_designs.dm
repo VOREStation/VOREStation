@@ -1,6 +1,7 @@
 /datum/design_techweb/mechfab
 	build_type = MECHFAB
 	//req_tech = list(TECH_MATERIAL = 1)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 ///RIPLEY
 /datum/design_techweb/mechfab/ripley
@@ -9,7 +10,6 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_RIPLEY + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/mechfab/ripley/circuit_main
 	name = "APLU 'Ripley' central control circuit"
@@ -72,7 +72,6 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_ODYSSEUS + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design_techweb/mechfab/odysseus/odysseus_main
 	name = "'Odysseus' central control circuit"
@@ -136,7 +135,6 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_GYGAX + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/gygax/gygax_main
 	name = "'Gygax' central control circuit"
@@ -226,7 +224,6 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_DURAND + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/durand/durand_main
 	name = "'Durand' central control circuit"
@@ -306,7 +303,6 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_JANUS + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 	//req_tech = list(TECH_MATERIAL = 7, TECH_BLUESPACE = 5, TECH_MAGNET = 6, TECH_PHORON = 3, TECH_ARCANE = 1, TECH_PRECURSOR = 2)
 
 /datum/design_techweb/mechfab/janusmodule
@@ -384,7 +380,6 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_PINNACE + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/pinnace/pinnace_main
 	name = "Pinnace central control board circuit"
@@ -469,7 +464,6 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_BARON + RND_SUBCATEGORY_MECHFAB_CHASSIS
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/baron/baron_main
 	name = "Baron central control board circuit"
@@ -596,7 +590,6 @@
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_COMBAT = 2)
 	materials = list(MAT_STEEL = 40000, MAT_DIAMOND = 8000)
 	build_path = /obj/item/mecha_parts/component/armor/marshal
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/exointernal/darkgygax_armor
 	name = "Armor Plate (Blackops)"
@@ -605,7 +598,6 @@
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_COMBAT = 4, TECH_ILLEGAL = 2)
 	materials = list(MAT_PLASTEEL = 20000, MAT_DIAMOND = 10000, MAT_GRAPHITE = 20000)
 	build_path = /obj/item/mecha_parts/component/armor/marshal/reinforced
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/exointernal/durand_armour
 	name = "Armor Plate (Military)"
@@ -614,7 +606,6 @@
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_COMBAT = 2)
 	materials = list(MAT_STEEL = 40000, MAT_PLASTEEL = 9525, MAT_URANIUM = 8000)
 	build_path = /obj/item/mecha_parts/component/armor/military
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/exointernal/marauder_armour
 	name = "Armor Plate (Cutting Edge)"
@@ -623,7 +614,6 @@
 	//req_tech = list(TECH_MATERIAL = 8, TECH_ENGINEERING = 7, TECH_COMBAT = 6, TECH_ILLEGAL = 4)
 	materials = list(MAT_DURASTEEL = 40000, MAT_GRAPHITE = 8000, MAT_OSMIUM = 8000)
 	build_path = /obj/item/mecha_parts/component/armor/military/marauder
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/exointernal/phazon_armour
 	name = "Armor Plate (Janus)"
@@ -632,7 +622,6 @@
 	//req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 6, TECH_COMBAT = 6, TECH_ILLEGAL = 4)
 	materials = list(MAT_MORPHIUM = 40000, MAT_DURASTEEL = 8000, MAT_OSMIUM = 8000)
 	build_path = /obj/item/mecha_parts/component/armor/alien
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/mechfab/exointernal/stan_hull
 	name = "Hull (Standard)"
@@ -814,6 +803,7 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_EQUIPMENT
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/hydraulic_clampmicro
 	name = "Mounted ore box"
@@ -824,6 +814,7 @@
 	category = list(
 		RND_CATEGORY_MECHFAB_EQUIPMENT
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/mechfab/polecat
 	desc = "A part used in the construction of the Gopher micro mech series"
