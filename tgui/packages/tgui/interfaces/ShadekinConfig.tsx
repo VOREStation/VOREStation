@@ -40,7 +40,7 @@ export const ShadekinConfig = (props) => {
   const isSubtle =
     flicker_time < 5 || flicker_break_chance < 5 || flicker_distance < 5;
 
-  const windowHeight = (isSubtle ? 220 : 190) + (extended_kin ? 100 : 0);
+  const windowHeight = (isSubtle ? 220 : 190) + (extended_kin ? 95 : 0);
 
   return (
     <Window width={300} height={windowHeight} theme="abductor">
