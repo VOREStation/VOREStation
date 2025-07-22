@@ -1,4 +1,3 @@
-import type React from 'react';
 import { Component, type CSSProperties, type PropsWithChildren } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
