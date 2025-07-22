@@ -100,6 +100,9 @@
 		set_stat(CONSCIOUS)
 	else
 		health = getMaxHealth() - getFireLoss() - getBruteLoss()
+		if(health <= -getMaxHealth()) //die only once
+			death()
+			return
 	oxyloss = 0
 	toxloss = 0
 	cloneloss = 0

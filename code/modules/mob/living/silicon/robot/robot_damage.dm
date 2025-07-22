@@ -4,6 +4,9 @@
 		set_stat(CONSCIOUS)
 		return
 	health = getMaxHealth() - (getBruteLoss() + getFireLoss())
+	if(health <= -getMaxHealth()) //die only once
+		death()
+		return
 	return
 
 /mob/living/silicon/robot/getMaxHealth()

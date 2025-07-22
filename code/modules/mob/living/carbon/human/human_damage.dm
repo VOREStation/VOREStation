@@ -16,7 +16,9 @@
 		total_burn  += O.burn_dam
 
 	health = getMaxHealth() - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
-
+	if(health <= -getMaxHealth()) //die only once
+		death()
+		return
 	//TODO: fix husking
 	if( ((getMaxHealth() - total_burn) < (-getMaxHealth()) * huskmodifier) && stat == DEAD)
 		ChangeToHusk()

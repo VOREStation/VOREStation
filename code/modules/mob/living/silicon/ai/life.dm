@@ -174,6 +174,9 @@
 		setOxyLoss(0)
 	else
 		health = getMaxHealth() - getFireLoss() - getBruteLoss() // Oxyloss is not part of health as it represents AIs backup power. AI is immune against ToxLoss as it is machine.
+		if(health <= -getMaxHealth()) //die only once
+			death()
+			return
 
 /mob/living/silicon/ai/rejuvenate()
 	..()

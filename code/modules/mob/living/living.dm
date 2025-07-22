@@ -196,6 +196,9 @@
 					if(51 to INFINITY)
 						if(prob(pain_noise * 3)  && !isbelly(loc)) // More likely, most severe damage. No pain noises inside bellies.
 							emote("pain")
+		if(health <= -getMaxHealth()) //die only once
+			death()
+			return
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
