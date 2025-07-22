@@ -122,7 +122,7 @@
 
 	switch(action)
 		if("cahngekey")
-			key = trim(params["ckey"])
+			key = sanitize(params["ckey"])
 
 		if("add_player_info")
 			var/key = params["ckey"]
