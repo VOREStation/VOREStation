@@ -40,7 +40,7 @@ export const ShadekinConfig = (props) => {
   const isSubtle =
     flicker_time < 5 || flicker_break_chance < 5 || flicker_distance < 5;
 
-  const windowHeight = (isSubtle ? 220 : 190) + (extended_kin ? 50 : 0);
+  const windowHeight = (isSubtle ? 220 : 190) + (extended_kin ? 100 : 0);
 
   return (
     <Window width={300} height={windowHeight} theme="abductor">
@@ -52,7 +52,7 @@ export const ShadekinConfig = (props) => {
             </Stack.Item>
           )}
           <Stack.Item>
-            <Section fill title="Shadekin Settings">
+            <Section fill title="Light Settings">
               <LabeledList>
                 <LabeledList.Item label="Flicker Count">
                   <Stack>
@@ -130,27 +130,29 @@ export const ShadekinConfig = (props) => {
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
-                {!!extended_kin && (
-                  <LabeledList.Item label="Retreat Toggle">
-                    <Button.Checkbox
-                      tooltip="Toggle if you wish to return to the Dark Retreat upon death!"
-                      checked={!no_retreat}
-                      onClick={() => act('toggle_retreat')}
-                    />
-                  </LabeledList.Item>
-                )}
-                {!!extended_kin && (
-                  <LabeledList.Item label="Nutrition Conversion Toggle">
-                    <Button.Checkbox
-                      tooltip="Toggle to have dark energy and nutrition being converted into each other when full!"
-                      checked={nutrition_energy_conversion}
-                      onClick={() => act('toggle_nutrition')}
-                    />
-                  </LabeledList.Item>
-                )}
               </LabeledList>
             </Section>
           </Stack.Item>
+          {!!extended_kin && (
+            <Stack.Item>
+              <Section fill title="Misc Settings">
+                <LabeledList.Item label="Retreat Toggle">
+                  <Button.Checkbox
+                    tooltip="Toggle if you wish to return to the Dark Retreat upon death!"
+                    checked={!no_retreat}
+                    onClick={() => act('toggle_retreat')}
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item label="Nutrition Conversion Toggle">
+                  <Button.Checkbox
+                    tooltip="Toggle to have dark energy and nutrition being converted into each other when full!"
+                    checked={nutrition_energy_conversion}
+                    onClick={() => act('toggle_nutrition')}
+                  />
+                </LabeledList.Item>
+              </Section>
+            </Stack.Item>
+          )}
         </Stack>
       </Window.Content>
     </Window>
