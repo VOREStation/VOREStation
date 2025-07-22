@@ -22,6 +22,8 @@
 	//TODO: fix husking
 	if( ((getMaxHealth() - total_burn) < (-getMaxHealth()) * huskmodifier) && stat == DEAD)
 		ChangeToHusk()
+	handle_shock()
+	handle_pain()
 	return
 
 /mob/living/carbon/human/adjustBrainLoss(var/amount)
