@@ -579,10 +579,10 @@ GLOBAL_LIST_EMPTY(random_maps)
 GLOBAL_LIST_EMPTY(map_count)
 GLOBAL_LIST_EMPTY(narsie_list)
 GLOBAL_LIST_EMPTY(id_card_states)
-GLOBAL_LIST_EMPTY(allocated_gamma)
+GLOBAL_LIST_EMPTY(allocated_gamma_loot)
 GLOBAL_LIST_EMPTY(semirandom_mob_spawner_decisions)
 
-GLOBAL_LIST_INIT(unique_gamma, list(
+GLOBAL_LIST_INIT(unique_gamma_loot, list(
 	/obj/item/perfect_tele,
 	/obj/item/bluespace_harpoon,
 	/obj/item/clothing/glasses/thermal/syndi,

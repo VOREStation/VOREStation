@@ -104,6 +104,7 @@
 	w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
+	allow_quick_empty = FALSE
 	can_hold = list(/obj/item/ore)
 	var/current_capacity = 0
 	var/max_pickup = 100 //How much ore can be picked up in one go. There to prevent someone from walking on a turf with 10000 ore and making the server cry.

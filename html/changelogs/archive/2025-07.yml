@@ -185,3 +185,13 @@
   - balance: rng of trashpiles altered
   - code_imp: trash piles and loot piles now use a unified looting element for handling
       drops and rarity. Not limited to just loot piles.
+2025-07-21:
+  Kashargul:
+  - code_imp: replace eslint with biome
+2025-07-22:
+  Diana:
+  - bugfix: Bunny taur will no longer hide all worn clothing
+  - bugfix: Empty Contents no longer shows up on ore satchels
+  - bugfix: feline 3color taur fat vwag is fixed
+  Willburd:
+  - code_imp: Gamma loot global list moved to proper file
