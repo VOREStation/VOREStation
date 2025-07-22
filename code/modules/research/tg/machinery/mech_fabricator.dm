@@ -297,6 +297,7 @@
  */
 /obj/machinery/mecha_part_fabricator_tg/proc/dispense_built_part(datum/design_techweb/dispensed_design)
 	var/obj/item/built_part = create_new_part(dispensed_design)
+	split_materials_uniformly(dispensed_design.materials, component_coeff, built_part)
 
 	being_built = null
 

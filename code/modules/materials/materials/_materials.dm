@@ -82,6 +82,7 @@ var/list/name_to_material
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	if(!LAZYLEN(materials))
+		matter = null
 		return
 
 	materials = materials.Copy()

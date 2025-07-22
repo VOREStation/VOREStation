@@ -1628,45 +1628,47 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
  * * [target_object][atom] - the target object who's custom materials we are trying to modify
  */
 /proc/split_materials_uniformly(list/custom_materials, multiplier, obj/target_object)
-	if(!length(target_object.contents)) //most common case where the object is just 1 thing
-		target_object.set_custom_materials(custom_materials, multiplier)
-		return
+	target_object.set_custom_materials(custom_materials)
 
-	//Step 1: Get recursive contents of all objects, only filter obj cause that what's material container accepts
-	var/list/reccursive_contents = target_object.get_all_contents_type(/obj/item)
+	// if(!length(target_object.contents)) //most common case where the object is just 1 thing
+	// 	target_object.set_custom_materials(custom_materials, multiplier)
+	// 	return
 
-	//Step 2: find the sum of each material type per object and record their amounts into an 2D list
-	var/list/material_map_sum = list()
-	var/list/material_map_amounts = list()
-	for(var/obj/object as anything in reccursive_contents)
-		var/list/item_materials = object.matter
-		for(var/mat as anything in custom_materials)
-			var/mat_amount = 1 //no materials mean we assign this default amount
-			if(length(item_materials))
-				mat_amount = item_materials[mat] || 1 //if this object doesn't have our material type then assign a default value of 1
+	// //Step 1: Get recursive contents of all objects, only filter obj cause that what's material container accepts
+	// var/list/reccursive_contents = target_object.get_all_contents_type(/obj/item)
 
-			//record the sum of mats for normalizing
-			material_map_sum[mat] += mat_amount
-			//record the material amount for each item into an 2D list
-			var/list/mat_list_per_item = material_map_amounts[mat]
-			if(isnull(mat_list_per_item))
-				material_map_amounts[mat] = list(mat_amount)
-			else
-				mat_list_per_item += mat_amount
+	// //Step 2: find the sum of each material type per object and record their amounts into an 2D list
+	// var/list/material_map_sum = list()
+	// var/list/material_map_amounts = list()
+	// for(var/obj/object as anything in reccursive_contents)
+	// 	var/list/item_materials = object.matter
+	// 	for(var/mat as anything in custom_materials)
+	// 		var/mat_amount = 1 //no materials mean we assign this default amount
+	// 		if(length(item_materials))
+	// 			mat_amount = item_materials[mat] || 1 //if this object doesn't have our material type then assign a default value of 1
 
-	//Step 3: normalize & scale material_map_amounts with material_map_sum
-	for(var/mat as anything in material_map_amounts)
-		var/mat_sum = material_map_sum[mat]
-		var/list/mat_per_item = material_map_amounts[mat]
-		for(var/i in 1 to mat_per_item.len)
-			mat_per_item[i] = (mat_per_item[i] / mat_sum) * custom_materials[mat]
+	// 		//record the sum of mats for normalizing
+	// 		material_map_sum[mat] += mat_amount
+	// 		//record the material amount for each item into an 2D list
+	// 		var/list/mat_list_per_item = material_map_amounts[mat]
+	// 		if(isnull(mat_list_per_item))
+	// 			material_map_amounts[mat] = list(mat_amount)
+	// 		else
+	// 			mat_list_per_item += mat_amount
 
-	//Step 4 flatten the 2D list and assign the final values to each atom
-	var/index = 1
-	for(var/obj/object as anything in reccursive_contents)
-		var/list/final_material_list = list()
-		for(var/mat as anything in material_map_amounts)
-			var/list/mat_per_item = material_map_amounts[mat]
-			final_material_list[mat] = mat_per_item[index]
-		object.set_custom_materials(final_material_list, multiplier)
-		index += 1
+	// //Step 3: normalize & scale material_map_amounts with material_map_sum
+	// for(var/mat as anything in material_map_amounts)
+	// 	var/mat_sum = material_map_sum[mat]
+	// 	var/list/mat_per_item = material_map_amounts[mat]
+	// 	for(var/i in 1 to mat_per_item.len)
+	// 		mat_per_item[i] = (mat_per_item[i] / mat_sum) * custom_materials[mat]
+
+	// //Step 4 flatten the 2D list and assign the final values to each atom
+	// var/index = 1
+	// for(var/obj/object as anything in reccursive_contents)
+	// 	var/list/final_material_list = list()
+	// 	for(var/mat as anything in material_map_amounts)
+	// 		var/list/mat_per_item = material_map_amounts[mat]
+	// 		final_material_list[mat] = mat_per_item[index]
+	// 	object.set_custom_materials(final_material_list, multiplier)
+		// index += 1
