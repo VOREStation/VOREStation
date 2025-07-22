@@ -46,6 +46,7 @@
 	var/in_dark_respite = FALSE
 	var/manual_respite = FALSE
 	var/respite_activating = FALSE
+	var/no_retreat = FALSE
 
 	//Dark Tunneling Vars (Unused on Virgo)
 	///If we have already made a dark tunnel
@@ -114,7 +115,7 @@
 	//Misc stuff we need to do
 	if(extended_kin)
 		add_verb(owner, /mob/living/proc/nutrition_conversion_toggle)
-	add_verb(owner, /mob/living/proc/flicker_adjustment)
+	add_verb(owner, /mob/living/proc/shadekin_control_panel)
 
 /datum/component/shadekin/Destroy(force)
 	if(ishuman(owner))
@@ -123,12 +124,14 @@
 		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
 	if(extended_kin)
 		remove_verb(owner, /mob/living/proc/nutrition_conversion_toggle)
-	remove_verb(owner, /mob/living/proc/flicker_adjustment)
+	remove_verb(owner, /mob/living/proc/shadekin_control_panel)
 	for(var/datum/power in shadekin_ability_datums)
 		qdel(power)
 	for(var/obj/effect/abstract/dark_maw/dm as anything in active_dark_maws) //if the component gets destroyed so does your precious maws
 		if(!QDELETED(dm))
 			qdel(dm)
+	owner.shadekin_display.invisibility = INVISIBILITY_ABSTRACT //hide it
+	remove_shadekin_abilities()
 	active_dark_maws.Cut()
 	shadekin_abilities.Cut()
 	shadekin_ability_datums.Cut()
@@ -209,6 +212,8 @@
 		"flicker_color" = flicker_color,
 		"flicker_break_chance" = flicker_break_chance,
 		"flicker_distance" = flicker_distance,
+		"no_retreat" = no_retreat,
+		"extended_kin" = extended_kin,
 	)
 
 	return data
@@ -250,6 +255,10 @@
 			flicker_distance = new_distance
 			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_distance, new_distance)
 			return TRUE
+		if("toggle_retreat")
+			var/new_retreat = !no_retreat
+			no_retreat = !no_retreat
+			ui.user.write_preference_directly(/datum/preference/toggle/living/dark_retreat_toggle, new_retreat)
 
 /mob/living/proc/nutrition_conversion_toggle()
 	set name = "Toggle Energy <-> Nutrition conversions"
@@ -268,9 +277,9 @@
 		to_chat(src, span_notice("Nutrition and dark energy conversions enabled."))
 		SK.nutrition_energy_conversion = 1
 
-/mob/living/proc/flicker_adjustment()
-	set name = "Adjust Light Flicker"
-	set desc = "Allows you to adjust the settings of the light flicker when you phase in!"
+/mob/living/proc/shadekin_control_panel()
+	set name = "Shadekin Control Panel"
+	set desc = "Allows you to adjust the settings of various shadekin settings!"
 	set category = "Abilities.Shadekin"
 
 	var/datum/component/shadekin/SK = get_shadekin_component()

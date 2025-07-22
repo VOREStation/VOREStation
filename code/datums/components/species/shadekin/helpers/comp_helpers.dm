@@ -113,8 +113,10 @@
 
 ///Adds the shadekin abilities to the owner.
 /datum/component/shadekin/proc/add_shadekin_abilities()
-	if(!owner.ability_master || !istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
-		owner.ability_master = null
+	if(!owner.ability_master)
+		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
+	else if(!istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
+		qdel_null(owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
 	for(var/datum/power/shadekin/P in shadekin_ability_datums)
 		if(!(P.verbpath in owner.verbs))
@@ -126,6 +128,16 @@
 					ability_icon_given = P.ability_icon_state,
 					arguments = list()
 					)
+
+/datum/component/shadekin/proc/remove_shadekin_abilities()
+	if(!owner.ability_master)
+		owner.ability_master = new /obj/screen/movable/ability_master(owner)
+	else if(istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
+		qdel_null(owner.ability_master)
+		owner.ability_master = new /obj/screen/movable/ability_master(owner)
+	for(var/datum/power/shadekin/P in shadekin_ability_datums)
+		if((P.verbpath in owner.verbs))
+			remove_verb(owner, P.verbpath)
 
 //wait, it's all light?
 ///Allows setting the light and darkness gain.
