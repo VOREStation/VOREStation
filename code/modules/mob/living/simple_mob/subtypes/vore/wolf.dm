@@ -43,11 +43,7 @@
 	pain_emote_1p = list("yelp", "whine", "bark", "growl")
 	pain_emote_3p = list("yelps", "whines", "barks", "growls")
 
-/mob/living/simple_mob/animal/vore/wolf/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/animal/vore/wolf/load_default_bellies()
 	. = ..()
 
 	var/obj/belly/B = vore_selected

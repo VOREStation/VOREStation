@@ -94,11 +94,7 @@
 	vore_default_item_mode = IM_DIGEST
 
 
-/mob/living/simple_mob/vore/woof/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/woof/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
