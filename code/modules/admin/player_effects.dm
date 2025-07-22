@@ -484,7 +484,13 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.custom_medical_issue()
+			Tar.custom_medical_issue(user)
+
+		if("clear_issue")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.clear_medical_issue(user)
 
 		////////ABILITIES//////////////
 

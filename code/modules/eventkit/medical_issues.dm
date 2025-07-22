@@ -122,7 +122,7 @@
 	if(!issue_organ)
 		return
 
-	var/damage = tgui_alert(user, "Should this apply damage?","Damage",list("Yes","No","Canel"))
+	var/damage = tgui_alert(user, "Should this apply damage?","Damage",list("Yes","No","Cancel"))
 	if(!damage || (damage == "Cancel"))
 		return
 	var/damage_organ
@@ -204,6 +204,39 @@
 		M.symptom_affect = symptom_affect
 
 	to_chat(user,"[issue_name] applied to [issue_organ] inside of [src]!")
+	if(damage == "Yes")
+		to_chat(user,"[issue_name] will damage the [damage_organ] with a strength of [damage_value], up to a maximum of [damage_max].")
+	if(cure_reagent)
+		to_chat(user,"[issue_name] can be cured with [cure_reagent_ID].")
+	else if(cure_surgery)
+		to_chat(user,"[issue_name] can be cured via the [cure_surgery] surgery.")
+	else
+		to_chat(user,"[issue_name] can only be cured by amputation or removal of \the [issue_organ]!")
+
+/mob/living/carbon/human/proc/clear_medical_issue(var/mob/user)
+	var/list/all_issues = list()
+	for(var/obj/item/organ/O in contents)
+		for(var/datum/medical_issue/MI in O.medical_issues)
+			all_issues |= MI
+	if(!all_issues.len)
+		to_chat(user,"No custom medical issues found in [src]!")
+		return
+	var/broad = tgui_alert(user, "Would you like to clear all custom medical issues or a specific one?","Damage",list("All","One","Cancel"))
+	if(!broad || (broad == "Cancel"))
+		return
+
+	if(broad == "All")
+		for(var/datum/medical_issue/MI in all_issues)
+			MI.cure_issue()
+			to_chat(user,"[MI.name] removed from [MI.affectedorgan] in [src].")
+
+	if(broad == "One")
+		var/datum/medical_issue/one_issue = tgui_input_list(user, "Which issue would you like to remove?", "Symptoms", all_issues)
+		if(!one_issue)
+			return
+		one_issue.cure_issue()
+		to_chat(user,"[one_issue.name] removed from [one_issue.affectedorgan] in [src].")
+
 
 ///////////////////////////////////////////////////////////////
 //////////////External Organ Surgeries/////////////////////////
