@@ -121,6 +121,9 @@
 		return TRUE
 
 	switch(action)
+		if("cahngekey")
+			key = trim(params["ckey"])
+
 		if("add_player_info")
 			var/key = params["ckey"]
 			var/add = tgui_input_text(ui.user, "Write your comment below.", "Add Player Info", multiline = TRUE, prevent_enter = TRUE)
@@ -138,7 +141,7 @@
 	var/list/data = list()
 
 	if(!key)
-		return
+		return data
 
 	var/p_age = "unknown"
 	for(var/client/C in GLOB.clients)
