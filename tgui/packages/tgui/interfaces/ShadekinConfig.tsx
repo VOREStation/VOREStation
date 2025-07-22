@@ -20,6 +20,7 @@ type Data = {
   flicker_distance: number;
   no_retreat: number;
   extended_kin: number;
+  nutrition_energy_conversion: number;
 };
 
 export const ShadekinConfig = (props) => {
@@ -33,12 +34,13 @@ export const ShadekinConfig = (props) => {
     flicker_distance,
     no_retreat,
     extended_kin,
+    nutrition_energy_conversion,
   } = data;
 
   const isSubtle =
     flicker_time < 5 || flicker_break_chance < 5 || flicker_distance < 5;
 
-  const windowHeight = (isSubtle ? 220 : 190) + (extended_kin ? 20 : 0);
+  const windowHeight = (isSubtle ? 220 : 190) + (extended_kin ? 50 : 0);
 
   return (
     <Window width={300} height={windowHeight} theme="abductor">
@@ -134,6 +136,15 @@ export const ShadekinConfig = (props) => {
                       tooltip="Toggle if you wish to return to the Dark Retreat upon death!"
                       checked={!no_retreat}
                       onClick={() => act('toggle_retreat')}
+                    />
+                  </LabeledList.Item>
+                )}
+                {!!extended_kin && (
+                  <LabeledList.Item label="Nutrition Conversion Toggle">
+                    <Button.Checkbox
+                      tooltip="Toggle to have dark energy and nutrition being converted into each other when full!"
+                      checked={nutrition_energy_conversion}
+                      onClick={() => act('toggle_nutrition')}
                     />
                   </LabeledList.Item>
                 )}

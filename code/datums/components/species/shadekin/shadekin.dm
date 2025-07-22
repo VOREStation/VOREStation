@@ -46,6 +46,7 @@
 	var/in_dark_respite = FALSE
 	var/manual_respite = FALSE
 	var/respite_activating = FALSE
+	///If we return to The Dark upon death or not.
 	var/no_retreat = FALSE
 
 	//Dark Tunneling Vars (Unused on Virgo)
@@ -113,8 +114,6 @@
 	set_eye_energy() //Sets the energy values based on our eye color.
 
 	//Misc stuff we need to do
-	if(extended_kin)
-		add_verb(owner, /mob/living/proc/nutrition_conversion_toggle)
 	add_verb(owner, /mob/living/proc/shadekin_control_panel)
 
 /datum/component/shadekin/Destroy(force)
@@ -122,8 +121,6 @@
 		UnregisterSignal(owner, COMSIG_SHADEKIN_COMPONENT)
 	else
 		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
-	if(extended_kin)
-		remove_verb(owner, /mob/living/proc/nutrition_conversion_toggle)
 	remove_verb(owner, /mob/living/proc/shadekin_control_panel)
 	for(var/datum/power in shadekin_ability_datums)
 		qdel(power)
@@ -213,6 +210,7 @@
 		"flicker_break_chance" = flicker_break_chance,
 		"flicker_distance" = flicker_distance,
 		"no_retreat" = no_retreat,
+		"nutrition_energy_conversion" = nutrition_energy_conversion,
 		"extended_kin" = extended_kin,
 	)
 
@@ -259,23 +257,10 @@
 			var/new_retreat = !no_retreat
 			no_retreat = !no_retreat
 			ui.user.write_preference_directly(/datum/preference/toggle/living/dark_retreat_toggle, new_retreat)
-
-/mob/living/proc/nutrition_conversion_toggle()
-	set name = "Toggle Energy <-> Nutrition conversions"
-	set desc = "Toggle dark energy and nutrition being converted into each other when full"
-	set category = "Abilities.Shadekin"
-
-	var/datum/component/shadekin/SK = get_shadekin_component()
-	if(!SK)
-		to_chat(src, span_warning("Only a shadekin can use that!"))
-		return FALSE
-
-	if(SK.nutrition_energy_conversion)
-		to_chat(src, span_notice("Nutrition and dark energy conversions disabled."))
-		SK.nutrition_energy_conversion = 0
-	else
-		to_chat(src, span_notice("Nutrition and dark energy conversions enabled."))
-		SK.nutrition_energy_conversion = 1
+		if("toggle_nutrition")
+			var/new_retreat = !nutrition_energy_conversion
+			nutrition_energy_conversion = !nutrition_energy_conversion
+			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_nutrition_conversion, new_retreat)
 
 /mob/living/proc/shadekin_control_panel()
 	set name = "Shadekin Control Panel"
