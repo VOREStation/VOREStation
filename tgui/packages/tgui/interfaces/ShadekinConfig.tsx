@@ -136,14 +136,14 @@ export const ShadekinConfig = (props) => {
           {!!extended_kin && (
             <Stack.Item>
               <Section fill title="Misc Settings">
-                <LabeledList.Item label="Retreat Toggle">
+                <LabeledList.Item label="Retreat on Death">
                   <Button.Checkbox
                     tooltip="Toggle if you wish to return to the Dark Retreat upon death!"
                     checked={!no_retreat}
                     onClick={() => act('toggle_retreat')}
                   />
                 </LabeledList.Item>
-                <LabeledList.Item label="Nutrition Conversion Toggle">
+                <LabeledList.Item label="Nutrition Conversion">
                   <Button.Checkbox
                     tooltip="Toggle to have dark energy and nutrition being converted into each other when full!"
                     checked={nutrition_energy_conversion}
