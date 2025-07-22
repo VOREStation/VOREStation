@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - code_imp: "Gamma loot global list moved to proper file"
