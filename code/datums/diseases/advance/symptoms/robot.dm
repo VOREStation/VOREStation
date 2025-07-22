@@ -15,12 +15,12 @@
 
 	var/replaceorgans = FALSE
 	var/replacebody = FALSE
-	var/robustbits = FALSE
+	//var/robustbits = FALSE
 
 	threshold_descs = list(
 		"Stage Speed 4" = "The virus will replace the host's organic organs with mundane, biometallic versions.",
 		"Resistance 4" = "The virus will eventually convert the host's entire body to biometallic materials, and maintain its cellular integrity.",
-		"Stage Speed 12" = "Biometallic mass created by the virus will be superior to typical organic mass."
+		//"Stage Speed 12" = "Biometallic mass created by the virus will be superior to typical organic mass." TODO: Some fancy organs.
 	)
 
 /datum/symptom/robotic_adaptation/OnAdd(datum/disease/advance/A)
@@ -30,8 +30,10 @@
 	. = ..()
 	if(A.stage_rate >= 4)
 		severity += 1
+		/*
 		if(A.stage_rate >= 12)
 			severity -= 3
+		*/
 	if(A.resistance >= 4)
 		severity += 1
 
@@ -41,8 +43,10 @@
 		replaceorgans = TRUE
 	if(A.resistance >= 4)
 		replacebody = TRUE
+	/*
 	if(A.stage_rate >= 12)
 		robustbits = TRUE
+	*/
 
 /datum/symptom/robotic_adaptation/Activate(datum/disease/advance/A)
 	if(!..())

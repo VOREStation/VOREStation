@@ -623,6 +623,7 @@
 #include "code\datums\diseases\advance\symptoms\cockroach.dm"
 #include "code\datums\diseases\advance\symptoms\confusion.dm"
 #include "code\datums\diseases\advance\symptoms\cough.dm"
+#include "code\datums\diseases\advance\symptoms\dance.dm"
 #include "code\datums\diseases\advance\symptoms\deafness.dm"
 #include "code\datums\diseases\advance\symptoms\fever.dm"
 #include "code\datums\diseases\advance\symptoms\fire.dm"

@@ -411,7 +411,7 @@
 				if(D.visibility_flags & HIDDEN_SCANNER)
 					continue
 				else
-					dat += span_red("Viral pathogen detected in blood stream.") + "<BR>"
+					dat += span_red("Disease detected in blood stream.") + "<BR>"
 
 		var/damage_string = null
 		damage_string = "\t-Brute Damage %: [occupant.getBruteLoss()]"
