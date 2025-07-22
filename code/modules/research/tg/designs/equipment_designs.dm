@@ -366,7 +366,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/translocator
+/datum/design_techweb/mini_translocator
 	name = "Mini translocator"
 	id = "mini_translocator"
 	// req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 6)
