@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 	var/active_tab = GHOST_POD_TAB
 
 /datum/tgui_module/ghost_spawn_menu/tgui_state(mob/user)
-	return GLOB.tgui_self_state
+	return GLOB.tgui_observer_state
 
 /datum/tgui_module/ghost_spawn_menu/tgui_close(mob/user)
 	. = ..()

@@ -2,7 +2,7 @@
   "private": true,
   "name": "tgui-workspace",
   "version": "6.0.0",
-  "packageManager": "bun@1.2.18",
+  "packageManager": "bun@1.2.19",
   "workspaces": [
     "packages/*"
   ],
@@ -17,7 +17,7 @@
     "@happy-dom/global-registrator": "^17.6.3",
     "@rspack/cli": "^1.4.8",
     "@rspack/core": "^1.4.8",
-    "@types/bun": "^1.2.18",
+    "@types/bun": "^1.2.19",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/webpack-env": "^1.18.8",
