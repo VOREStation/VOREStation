@@ -56,11 +56,14 @@
 		return
 	switch(input)
 		if(SWITCH_TAIL_LAYER_UPPER)
-			tail_alt = TAIL_UPPER_LAYER_HIGH
+			tail_layering = input
+			write_preference_directly(/datum/preference/numeric/human/tail_layering, TAIL_UPPER_LAYER_HIGH)
 		if(SWITCH_TAIL_LAYER_STANDARD)
-			tail_alt = TAIL_UPPER_LAYER
+			tail_layering = input
+			write_preference_directly(/datum/preference/numeric/human/tail_layering, TAIL_UPPER_LAYER)
 		if(SWITCH_TAIL_LAYER_LOWER)
-			tail_alt = TAIL_UPPER_LAYER_LOW
+			tail_layering = input
+			write_preference_directly(/datum/preference/numeric/human/tail_layering, TAIL_UPPER_LAYER_LOW)
 
 	update_tail_showing()
 
