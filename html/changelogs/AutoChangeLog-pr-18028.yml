@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Bunny taur will no longer hide all worn clothing"
-  - bugfix: "Empty Contents no longer shows up on ore satchels"
-  - bugfix: "feline 3color taur fat vwag is fixed"
