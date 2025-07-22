@@ -12,7 +12,9 @@ import { decodeHtmlEntities } from 'tgui-core/string';
 import { NEWSCASTER_SCREEN_VIEWLIST } from './constants';
 import type { Data } from './types';
 
-export const NewscasterViewSelected = (props: { setScreen: Function }) => {
+export const NewscasterViewSelected = (props: {
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { act, data } = useBackend<Data>();
 
   const { viewing_channel, securityCaster, company } = data;
@@ -95,11 +97,11 @@ export const NewscasterViewSelected = (props: { setScreen: Function }) => {
       {(!!viewing_channel.messages.length &&
         viewing_channel.messages.map((message) => (
           <Section key={message.ref}>
-            {message.title && decodeHtmlEntities(message.title) + ' - '}
+            {message.title && `${decodeHtmlEntities(message.title)} - `}
             {decodeHtmlEntities(message.body)}
             {!!message.img && (
               <Box>
-                <Image src={'data:image/png;base64,' + message.img} />
+                <Image src={`data:image/png;base64,${message.img}`} />
                 {(!!message.caption && decodeHtmlEntities(message.caption)) ||
                   null}
               </Box>

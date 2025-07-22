@@ -86,7 +86,7 @@ const VendingRow = (props: { product: product }) => {
             })
           }
         >
-          {product.price ? 'Buy (' + product.price + '₮)' : 'Vend'}
+          {product.price ? `Buy (${product.price}₮)` : 'Vend'}
         </Button>
       </Table.Cell>
     </Table.Row>
@@ -98,14 +98,10 @@ export const Vending = (props) => {
   const { panel } = data;
   const [searchText, setSearchText] = useState<string>('');
 
-  function handleSearchText(value: string) {
-    setSearchText(value);
-  }
-
   return (
     <Window width={450} height={600}>
       <Window.Content scrollable>
-        <VendingProducts searchText={searchText} onSearch={handleSearchText} />
+        <VendingProducts searchText={searchText} onSearch={setSearchText} />
         {panel ? <VendingMaintenance /> : null}
       </Window.Content>
     </Window>
@@ -114,7 +110,7 @@ export const Vending = (props) => {
 
 export const VendingProducts = (props: {
   searchText: string;
-  onSearch: Function;
+  onSearch: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const { act, data } = useBackend<Data>();
   const { coin, chargesMoney, user, userMoney, guestNotice, products } = data;
@@ -156,7 +152,7 @@ export const VendingProducts = (props: {
       </Section>
       {!!coin && (
         <Section
-          title={coin + ' deposited'}
+          title={`${coin} deposited`}
           buttons={
             <Button icon="eject" onClick={() => act('remove_coin')}>
               Eject Coin

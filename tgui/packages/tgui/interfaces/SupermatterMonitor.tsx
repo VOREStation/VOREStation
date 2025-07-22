@@ -67,7 +67,7 @@ const SupermatterMonitorList = (props) => {
       <Stack wrap="wrap">
         {supermatters.map((sm, i) => (
           <Stack.Item basis="49%" grow={i % 2} key={i}>
-            <Section title={sm.area_name + ' (#' + sm.uid + ')'}>
+            <Section title={`${sm.area_name} (#${sm.uid})`}>
               <LabeledList>
                 <LabeledList.Item label="Integrity">
                   {sm.integrity} %
@@ -137,7 +137,7 @@ const SupermatterMonitorActive = (props) => {
             }
           >
             <AnimatedNumber
-              format={(val) => toFixed(val, 2) + ' MeV/cm³'}
+              format={(val) => `${toFixed(val, 2)} MeV/cm³`}
               value={SM_power}
             />
           </Box>
@@ -151,7 +151,7 @@ const SupermatterMonitorActive = (props) => {
             }
           >
             <AnimatedNumber
-              format={(val) => toFixed(val, 2) + ' K'}
+              format={(val) => `${toFixed(val, 2)} K`}
               value={SM_ambienttemp}
             />
           </Box>
@@ -165,7 +165,7 @@ const SupermatterMonitorActive = (props) => {
             }
           >
             <AnimatedNumber
-              format={(val) => toFixed(val, 2) + ' kPa'}
+              format={(val) => `${toFixed(val, 2)} kPa`}
               value={SM_ambientpressure}
             />
           </Box>

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, type CSSProperties } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -213,10 +213,10 @@ class BombTesterSimulation extends Component {
   render() {
     const { x, y } = this.state;
 
-    const newStyle: {} = {
+    const newStyle: CSSProperties = {
       position: 'relative',
-      left: x + 'px',
-      top: y + 'px',
+      left: `${x}px`,
+      top: `${y}px`,
     };
 
     return (

@@ -129,7 +129,7 @@
 		if("factoryreset")
 			if(tgui_alert(ui.user, "This will factory reset the card, including access and owner. Continue?", "Factory Reset", list("No", "Yes")) == "Yes" && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				S.age = initial(S.age)
-				S.access = syndicate_access.Copy()
+				S.access = GLOB.syndicate_access.Copy()
 				S.assignment = initial(S.assignment)
 				S.blood_type = initial(S.blood_type)
 				S.dna_hash = initial(S.dna_hash)

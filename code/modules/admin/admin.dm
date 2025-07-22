@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 						confidential = TRUE)
 
 /proc/admin_notice(var/message, var/rights)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		var/C = M.client
 
 		if(!C)
@@ -111,7 +111,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			if(issmall(player))
 				body += span_bold("Monkeyized") + " | "
 			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];monkeyone=\ref[player]'>Monkeyize</A> | "
+				body += "<A href='byond://?_src_=holder;[HrefToken()];turn_monkey=\ref[player]'>Monkeyize</A> | "
 
 			//Corgi
 			if(iscorgi(player))
@@ -123,9 +123,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			if(isAI(player))
 				body += span_bold("Is an AI ")
 			else if(ishuman(player))
-				body += {"<A href='byond://?_src_=holder;[HrefToken()];makeai=\ref[player]'>Make AI</A> |
-					<A href='byond://?_src_=holder;[HrefToken()];makerobot=\ref[player]'>Make Robot</A> |
-					<A href='byond://?_src_=holder;[HrefToken()];makealien=\ref[player]'>Make Alien</A>
+				body += {"<A href='byond://?_src_=holder;[HrefToken()];turn_ai=\ref[player]'>Make AI</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];turn_robot=\ref[player]'>Make Robot</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];turn_alien=\ref[player]'>Make Alien</A>
 				"}
 
 			//Simple Animals
@@ -1035,7 +1035,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	world.Reboot()
 
-/datum/admins/proc/unprison(var/mob/M in mob_list)
+/datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Moderation"
 	set name = "Unprison"
 	if (M.z == 2)
@@ -1177,7 +1177,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Events"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"

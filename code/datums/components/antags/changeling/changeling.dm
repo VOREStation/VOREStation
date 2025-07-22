@@ -74,11 +74,14 @@ var/list/datum/power/changeling/powerinstances = list()
 
 ///Handles the cooldown for the power. Returns TRUE if the cooldown has passed. FALSE if it's still on cooldown.
 ///This is just a general anti-spam thing and not really a true cooldown
-/datum/component/antag/changeling/proc/handle_cooldown()
+
+/datum/component/antag/changeling/proc/check_cooldown()
 	if(world.time > last_used_sting_time+cooldown_time)
-		last_used_sting_time = world.time
 		return TRUE
 	return FALSE
+
+/datum/component/antag/changeling/proc/set_sting_cooldown()
+	last_used_sting_time = world.time
 
 /datum/component/antag/changeling/proc/get_cooldown(id)
 	return changeling_cooldowns[id]
@@ -221,7 +224,7 @@ var/list/datum/power/changeling/powerinstances = list()
 /mob/proc/changeling_power(var/required_chems=0, var/required_dna=0, var/max_genetic_damage=100, var/max_stat=0)
 
 	if(!src.mind)		return
-	if(!iscarbon(src))	return
+	if(!isliving(src))	return
 
 	var/datum/component/antag/changeling/comp = is_changeling(src)
 	if(!comp)
@@ -276,7 +279,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/datum/component/antag/changeling/comp = changeling_power(required_chems)
 	if(!comp)
 		return
-	if(!comp.handle_cooldown())
+	if(!comp.check_cooldown())
 		to_chat(src, span_warning("We are still recovering from our last sting."))
 		return
 
@@ -286,8 +289,9 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/mob/living/carbon/T = tgui_input_list(src, "Who will we sting?", "Sting!", victims)
 
 	if(!T)
+		to_chat(src, span_warning("We have no targets in range to sting!"))
 		return
-	if(!comp.handle_cooldown())//Check again in case we have multiple windows open at once.
+	if(!comp.check_cooldown())//Check again in case we have multiple windows open at once.
 		to_chat(src, span_warning("We are still recovering from our last sting."))
 		return
 	if(T.isSynthetic())
@@ -299,6 +303,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	comp.chem_charges -= required_chems
 	comp.sting_range = 1
+	comp.set_sting_cooldown()
 
 	to_chat(src, span_notice("We stealthily sting [T]."))
 	var/datum/component/antag/changeling/target_comp = is_changeling(T)

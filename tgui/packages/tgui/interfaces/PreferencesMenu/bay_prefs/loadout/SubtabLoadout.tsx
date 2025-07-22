@@ -3,10 +3,10 @@ import { Fragment, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack, Table } from 'tgui-core/components';
 
-import {
-  type LoadoutData,
-  type LoadoutDataConstant,
-  type LoadoutDataStatic,
+import type {
+  LoadoutData,
+  LoadoutDataConstant,
+  LoadoutDataStatic,
 } from './data';
 
 export const SubtabLoadout = (props: {

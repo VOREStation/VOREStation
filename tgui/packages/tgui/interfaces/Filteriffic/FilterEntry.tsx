@@ -18,15 +18,13 @@ export const FilterEntry = (props: {
   const { name, filterDataEntry } = props;
   const { type, priority, ...restOfProps } = filterDataEntry;
 
-  const filterDefaults = data['filter_info'];
+  const filterDefaults = data.filter_info;
 
-  const targetFilterPossibleKeys = Object.keys(
-    filterDefaults[type]['defaults'],
-  );
+  const targetFilterPossibleKeys = Object.keys(filterDefaults[type].defaults);
 
   return (
     <Collapsible
-      title={name + ' (' + type + ')'}
+      title={`${name} (${type})`}
       buttons={
         <>
           <NumberInput
@@ -63,7 +61,7 @@ export const FilterEntry = (props: {
       <Section>
         <LabeledList>
           {targetFilterPossibleKeys.map((entryName) => {
-            const defaults = filterDefaults[type]['defaults'];
+            const defaults = filterDefaults[type].defaults;
             const value = restOfProps[entryName] || defaults[entryName];
             const hasValue = value !== defaults[entryName];
             return (

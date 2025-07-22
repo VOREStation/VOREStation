@@ -120,7 +120,7 @@ const QueueList = (props: { textColors: Record<number, number> }) => {
   const { queue = [] } = data;
 
   if (!queue || !queue.length) {
-    return <>No parts in queue.</>;
+    return 'No parts in queue.';
   }
 
   return queue.map((part, index) => (
@@ -176,7 +176,7 @@ const BeingBuilt = (props) => {
             <Stack.Item>{name}</Stack.Item>
             <Stack.Item grow />
             <Stack.Item>
-              {(timeLeft >= 0 && timeLeft + 's') || 'Dispensing...'}
+              {(timeLeft >= 0 && `${timeLeft}s`) || 'Dispensing...'}
             </Stack.Item>
           </Stack>
         </ProgressBar>

@@ -407,7 +407,7 @@
 
 	// Update record from vanity copy of slot if needed
 	if(from_save_slot)
-		H.client.prefs.vanity_copy_to(H,FALSE,TRUE,TRUE,FALSE)
+		H.client.prefs.vanity_copy_to(H,FALSE,TRUE,TRUE,FALSE,TRUE)
 		for(var/category in H.all_underwear) // No undies
 			H.hide_underwear[category] = TRUE
 		H.update_underwear()

@@ -78,11 +78,11 @@ export function retrace(stack: string): string | undefined {
         return `  at ${methodName}`;
       }
       const compactPath = file
-        .replace(/^webpack:\/\/\/?/, './')
+        .replace(/^rspack:\/\/\/?/, './')
         .replace(/.*node_modules\//, '');
       return `  at ${methodName} (${compactPath}:${lineNumber})`;
     })
     .join('\n');
 
-  return header + '\n' + mappedStack;
+  return `${header}\n${mappedStack}`;
 }

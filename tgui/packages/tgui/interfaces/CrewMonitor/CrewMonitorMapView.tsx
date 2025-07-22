@@ -7,7 +7,7 @@ import type { Data } from './types';
 
 export const CrewMonitorMapView = (props: {
   zoom: number;
-  onZoom: Function;
+  onZoom: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { config, data } = useBackend<Data>();
 
@@ -27,7 +27,7 @@ export const CrewMonitorMapView = (props: {
               y={cm.y}
               zoom={props.zoom}
               icon="circle"
-              tooltip={cm.name + ' (' + cm.assignment + ')'}
+              tooltip={`${cm.name} (${cm.assignment})`}
               color={getStatColor(cm)}
             />
           ))}

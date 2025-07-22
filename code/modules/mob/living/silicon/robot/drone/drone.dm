@@ -243,7 +243,7 @@ var/list/mob_hat_cache = list()
 
 			user.visible_message(span_danger("\The [user] swipes [TU.his] ID card through \the [src], attempting to reboot it."), span_danger(">You swipe your ID card through \the [src], attempting to reboot it."))
 			var/drones = 0
-			for(var/mob/living/silicon/robot/drone/D in player_list)
+			for(var/mob/living/silicon/robot/drone/D in GLOB.player_list)
 				drones++
 			if(drones < CONFIG_GET(number/max_maint_drones))
 				request_player()
@@ -329,7 +329,7 @@ var/list/mob_hat_cache = list()
 //Reboot procs.
 
 /mob/living/silicon/robot/drone/proc/request_player()
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(jobban_isbanned(O, JOB_CYBORG))
 			continue
 		if(O.client)

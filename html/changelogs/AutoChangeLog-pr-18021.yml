@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - admin: "refactors the banning panel as tgui interface"

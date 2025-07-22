@@ -338,7 +338,7 @@ const AirAlarmControlThresholds = (props) => {
         {thresholds.map((threshold) => (
           <tr key={threshold.name}>
             <td className="LabeledList__label">
-              <span className={'color-' + getGasColor(threshold.name)}>
+              <span className={`color-${getGasColor(threshold.name)}`}>
                 {getGasLabel(threshold.name)}
               </span>
             </td>

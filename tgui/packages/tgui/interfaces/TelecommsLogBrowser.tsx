@@ -149,7 +149,7 @@ const TelecommsServerSelection = (props: {
         {servers.map((server) => (
           <LabeledList.Item
             key={server.id}
-            label={server.name + ' (' + server.id + ')'}
+            label={`${server.name} (${server.id})`}
           >
             <Button icon="eye" onClick={() => act('view', { id: server.id })}>
               View
@@ -171,7 +171,7 @@ const TelecommsSelectedServer = (props: {
 
   return (
     <Section
-      title={'Server (' + server.id + ')'}
+      title={`Server (${server.id})`}
       buttons={
         <Button icon="undo" onClick={() => act('mainmenu')}>
           Return
@@ -181,8 +181,8 @@ const TelecommsSelectedServer = (props: {
       <LabeledList>
         <LabeledList.Item label="Total Recorded Traffic">
           {server.totalTraffic >= 1024
-            ? toFixed(server.totalTraffic / 1024) + ' Terrabytes'
-            : server.totalTraffic + ' Gigabytes'}
+            ? `${toFixed(server.totalTraffic / 1024)} Terrabytes`
+            : `${server.totalTraffic} Gigabytes`}
         </LabeledList.Item>
       </LabeledList>
       <Section title="Stored Logs" mt="4px">
@@ -194,8 +194,8 @@ const TelecommsSelectedServer = (props: {
                   <Section
                     title={
                       universal_translate ||
-                      log.parameters['uspeech'] ||
-                      log.parameters['intelligible'] ||
+                      log.parameters.uspeech ||
+                      log.parameters.intelligible ||
                       log.input_type === 'Execution Error'
                         ? log.input_type
                         : 'Audio File'
@@ -216,7 +216,7 @@ const TelecommsSelectedServer = (props: {
                           Error
                         </LabeledList.Item>
                         <LabeledList.Item label="Output">
-                          {log.parameters['message']}
+                          {log.parameters.message}
                         </LabeledList.Item>
                         <LabeledList.Item label="Delete">
                           <Button
@@ -226,8 +226,8 @@ const TelecommsSelectedServer = (props: {
                         </LabeledList.Item>
                       </LabeledList>
                     ) : universal_translate ||
-                      log.parameters['uspeech'] ||
-                      log.parameters['intelligible'] ? (
+                      log.parameters.uspeech ||
+                      log.parameters.intelligible ? (
                       <TelecommsLog log={log} />
                     ) : (
                       <TelecommsLog error />
@@ -244,7 +244,7 @@ const TelecommsSelectedServer = (props: {
 const TelecommsLog = (props: { log?: log; error?: BooleanLike }) => {
   const { log, error } = props;
 
-  const { timecode, name, race, job, message } = (log && log.parameters) || {
+  const { timecode, name, race, job, message } = log?.parameters || {
     none: 'none',
   };
 

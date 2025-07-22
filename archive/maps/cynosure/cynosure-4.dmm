@@ -1256,7 +1256,7 @@
 "nS" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_pod_1_berth_hatch";
 	locked = 1;
@@ -1885,7 +1885,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tcomdock_airlock";
 	pixel_y = 25;
 	req_one_access = list(13)
@@ -2870,7 +2870,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_pod_1";
 	pixel_x = -24;
 	tag_door = "escape_pod_1_hatch"
@@ -3082,7 +3082,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_pod_1_berth";
 	pixel_y = -24;
 	tag_door = "escape_pod_1_berth_hatch"
@@ -4695,7 +4695,7 @@
 /area/tcommsat/cynosure/teleporter)
 "Ws" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_pod_1_hatch";
 	locked = 1;

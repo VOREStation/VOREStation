@@ -2182,7 +2182,7 @@
 "gH" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talon_podbay";
 	pixel_x = 26
 	},
@@ -2458,7 +2458,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talonpod_docker";
 	pixel_x = -8;
 	pixel_y = -24;
@@ -4224,7 +4224,7 @@
 	specialfunctions = 4
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1420;
+	frequency = 1421;
 	id_tag = "tal_shuttle_sb";
 	req_one_access = list(301)
 	},
@@ -6252,7 +6252,7 @@
 "va" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talon_boatbay";
 	pixel_y = 26
 	},
@@ -10727,7 +10727,7 @@
 	channels = list("Talon" = 1)
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talonboat_docker";
 	pixel_x = -6;
 	pixel_y = 24
@@ -15209,7 +15209,7 @@
 /area/talon_v2/maintenance/wing_starboard)
 "Zr" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1420;
+	frequency = 1421;
 	id_tag = "tal_shuttle_sb";
 	req_one_access = list(301)
 	},

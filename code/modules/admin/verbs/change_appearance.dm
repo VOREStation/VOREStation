@@ -5,7 +5,7 @@
 
 	if(!check_rights(R_FUN)) return
 
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Admin", human_mob_list)
+	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Admin", GLOB.human_mob_list)
 	if(!H) return
 
 	log_and_message_admins("is altering the appearance of [H].")
@@ -19,7 +19,7 @@
 
 	if(!check_rights(R_FUN)) return
 
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Self", human_mob_list)
+	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Self", GLOB.human_mob_list)
 	if(!H) return
 
 	if(!H.client)
@@ -41,7 +41,7 @@
 
 	if(!check_rights(R_FUN))	return
 
-	var/mob/living/carbon/human/M = tgui_input_list(usr, "Select mob.", "Edit Appearance", human_mob_list)
+	var/mob/living/carbon/human/M = tgui_input_list(usr, "Select mob.", "Edit Appearance", GLOB.human_mob_list)
 
 	if(!ishuman(M))
 		to_chat(usr, span_warning("You can only do this to humans!"))
@@ -80,12 +80,12 @@
 		M.s_tone =  -M.s_tone + 35
 
 	// hair
-	var/new_hstyle = tgui_input_list(usr, "Select a hair style", "Grooming", hair_styles_list)
+	var/new_hstyle = tgui_input_list(usr, "Select a hair style", "Grooming", GLOB.hair_styles_list)
 	if(new_hstyle)
 		M.h_style = new_hstyle
 
 	// facial hair
-	var/new_fstyle = tgui_input_list(usr, "Select a facial hair style", "Grooming", facial_hair_styles_list)
+	var/new_fstyle = tgui_input_list(usr, "Select a facial hair style", "Grooming", GLOB.facial_hair_styles_list)
 	if(new_fstyle)
 		M.f_style = new_fstyle
 

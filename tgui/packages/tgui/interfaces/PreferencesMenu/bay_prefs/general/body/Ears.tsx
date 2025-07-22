@@ -8,10 +8,10 @@ import {
   ColorType,
   drawColorizedIconToOffscreenCanvas,
 } from '../../helper_components';
-import {
-  type GeneralData,
-  type GeneralDataConstant,
-  type GeneralDataStatic,
+import type {
+  GeneralData,
+  GeneralDataConstant,
+  GeneralDataStatic,
 } from '../data';
 import { BodyPopup } from '../SubtabBody';
 

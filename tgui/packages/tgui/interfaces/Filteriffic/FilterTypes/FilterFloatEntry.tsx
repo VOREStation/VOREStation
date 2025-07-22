@@ -4,7 +4,7 @@ import { Box, NumberInput } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 import { numberOfDecimalDigits } from 'tgui-core/math';
 
-import { type FilterEntryProps } from '../types';
+import type { FilterEntryProps } from '../types';
 
 export const FilterFloatEntry = (props: FilterEntryProps) => {
   const { name, value, hasValue, filterName, filterType } = props;

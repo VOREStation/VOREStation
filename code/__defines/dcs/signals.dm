@@ -292,6 +292,8 @@
 ///from base of /obj/item/attack(): (mob/M, mob/user)
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)
+///from the base of /mob/living/silicon/robot/ClickOn(): (var/atom/A, var/params)
+#define COMSIG_ROBOT_ITEM_ATTACK "robot_item_attack"
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 #define COMSIG_MOB_APPLY_DAMGE	"mob_apply_damage"
 ///from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
@@ -783,6 +785,9 @@
 	#define COMPONENT_BLOCK_LIGHT_EATER (1<<0)
 ///from base of [/datum/element/light_eater/proc/devour]: (atom/eaten_light)
 #define COMSIG_LIGHT_EATER_DEVOUR "light_eater_devour"
+
+// Lootpiles
+#define COMSIG_LOOT_REWARD "lootpile_reward_drop"
 
 // conflict checking elements
 /// (id) - returns flags - Registered on something by conflict checking elements.

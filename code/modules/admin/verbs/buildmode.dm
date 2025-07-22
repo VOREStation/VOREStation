@@ -13,7 +13,7 @@
 
 GLOBAL_LIST_EMPTY(active_buildmode_holders)
 
-/proc/togglebuildmode(mob/M as mob in player_list)
+/proc/togglebuildmode(mob/M as mob in GLOB.player_list)
 	set name = "Toggle Build Mode"
 	set category = "Special Verbs"
 	if(M.client)
@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 					if("number")
 						master.buildmode.valueholder = tgui_input_number(usr,"Enter variable value:" ,"Value", 123)
 					if("mob-reference")
-						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", mob_list)
+						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", GLOB.mob_list)
 					if("obj-reference")
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 					if("turf-reference")
@@ -706,7 +706,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			var/z = c1.z //Eh
 
 			var/i = 0
-			for(var/mob/living/L in living_mob_list)
+			for(var/mob/living/L in GLOB.living_mob_list)
 				if(L.z != z || L.client)
 					continue
 				if(L.x >= low_x && L.x <= hi_x && L.y >= low_y && L.y <= hi_y)

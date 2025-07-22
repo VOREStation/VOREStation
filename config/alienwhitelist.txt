@@ -118,6 +118,7 @@ magpiemayhem - Vox
 magpiemayhem - Xenochimera
 makkinindorn - Protean
 malfestio - Protean
+malfestio - Xenochimera
 marcobarko - Black-Eyed Shadekin
 marcobarko - Protean
 maxcaliber50 - Protean
@@ -172,6 +173,7 @@ rubyflamewing - Protean
 rykkastormheart - Xenochimera
 ryumi - Protean
 ryumi - Xenochimera
+ryumi - Black-Eyed Shadekin
 satinisle - Black-Eyed Shadekin
 satinisle - Protean
 scoutisafolflol - Xenochimera

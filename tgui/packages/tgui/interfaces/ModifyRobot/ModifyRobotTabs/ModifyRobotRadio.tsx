@@ -42,7 +42,7 @@ export const ModifyRobotRadio = (props: { target: Target }) => {
             <Stack.Item grow />
             <Stack.Item>
               <Box
-                className={classes([target.sprite_size, target.sprite + 'N'])}
+                className={classes([target.sprite_size, `${target.sprite}N`])}
               />
             </Stack.Item>
             <Stack.Item grow />
@@ -67,7 +67,7 @@ export const ModifyRobotRadio = (props: { target: Target }) => {
 const RadioSection = (props: {
   title: string;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   channels: string[];
   action: string;
   buttonColor: string;

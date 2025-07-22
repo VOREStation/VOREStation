@@ -55,7 +55,7 @@
 			impacted = P
 			break
 	if(impacted)
-		for(var/mob/living/L in mob_list)
+		for(var/mob/living/L in GLOB.mob_list)
 			if(!istype(L))
 				continue
 			var/turf/mob_turf = get_turf(L)

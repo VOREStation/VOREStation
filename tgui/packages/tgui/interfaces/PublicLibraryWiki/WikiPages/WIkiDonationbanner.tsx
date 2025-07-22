@@ -161,7 +161,7 @@ const DonationButtons = (props) => {
         })
       }
     >
-      {'Donate ' + donation + '₮'}
+      {`Donate ${donation}₮`}
     </Button>
   );
 };
