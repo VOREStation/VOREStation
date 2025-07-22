@@ -113,11 +113,7 @@
 
 ///Adds the shadekin abilities to the owner.
 /datum/component/shadekin/proc/add_shadekin_abilities()
-	if(!owner.ability_master)
-		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
-	else if(!istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
-		qdel_null(owner.ability_master)
-		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
+	create_shadekin_abilities()
 	for(var/datum/power/shadekin/P in shadekin_ability_datums)
 		if(!(P.verbpath in owner.verbs))
 			add_verb(owner, P.verbpath)
@@ -129,15 +125,51 @@
 					arguments = list()
 					)
 
-/datum/component/shadekin/proc/remove_shadekin_abilities()
+
+///Builds and adds abilities to our owner. Should be used if you're adding new abilities
+/datum/component/shadekin/proc/build_and_add_abilities()
+	clear_shadekin_abilities()
+	build_ability_datums()
+	add_shadekin_abilities()
+
+
+///Clears the ability datums and rebuilds it.
+/datum/component/shadekin/proc/build_ability_datums()
+	//generates powers and then adds them
+	for(var/datum/power in shadekin_ability_datums)
+		qdel(power)
+	shadekin_ability_datums = list()
+	for(var/power in shadekin_abilities)
+		var/datum/power/shadekin/SKP = new power(src)
+		shadekin_ability_datums.Add(SKP)
+
+///Gets rid of any old ability master if we have one and replaces it with a shadekin ability master.
+/datum/component/shadekin/proc/create_shadekin_abilities()
+	if(!owner.ability_master)
+		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
+	else if(!istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
+		qdel_null(owner.ability_master)
+		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
+
+//Clears up our verbs. Used when rebuilding our verbs list..
+/datum/component/shadekin/proc/clear_shadekin_abilities()
+	for(var/datum/power/shadekin/P in shadekin_ability_datums)
+		if((P.verbpath in owner.verbs))
+			remove_verb(owner, P.verbpath)
+			owner.ability_master.remove_shadekin_ability(
+					object_given = owner,
+					verb_given = P.verbpath,
+					arguments = list()
+					)
+
+//Clears our abilities master and gives us a new, non-shadekin one. Used for destroy.
+/datum/component/shadekin/proc/replace_shadekin_master()
 	if(!owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master(owner)
 	else if(istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
 		qdel_null(owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master(owner)
-	for(var/datum/power/shadekin/P in shadekin_ability_datums)
-		if((P.verbpath in owner.verbs))
-			remove_verb(owner, P.verbpath)
+	clear_shadekin_abilities()
 
 //wait, it's all light?
 ///Allows setting the light and darkness gain.

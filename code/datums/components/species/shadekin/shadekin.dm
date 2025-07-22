@@ -95,17 +95,13 @@
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
-	add_shadekin_abilities(owner)
 	if(ishuman(owner))
 		RegisterSignal(owner, COMSIG_SHADEKIN_COMPONENT, PROC_REF(handle_comp)) //Happens every species tick.
 	else
 		RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(handle_comp)) //Happens every life tick (mobs)
 
 	//generates powers and then adds them
-	for(var/power in shadekin_abilities)
-		var/datum/power/shadekin/SKP = new power(src)
-		shadekin_ability_datums.Add(SKP)
-	add_shadekin_abilities()
+	build_and_add_abilities()
 
 	handle_comp() //First hit is free!
 
@@ -128,7 +124,7 @@
 		if(!QDELETED(dm))
 			qdel(dm)
 	owner.shadekin_display.invisibility = INVISIBILITY_ABSTRACT //hide it
-	remove_shadekin_abilities()
+	replace_shadekin_master()
 	active_dark_maws.Cut()
 	shadekin_abilities.Cut()
 	shadekin_ability_datums.Cut()
