@@ -218,39 +218,15 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   let result = '';
   result +=
-    '<div class="accordion-item"><h2 class="accordion-header" id="heading' +
-    index +
-    '">';
+    `<div class="accordion-item"><h2 class="accordion-header" id="heading${index}">`;
   result +=
-    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' +
-    index +
-    '" aria-expanded="false" aria-controls="collapse' +
-    index +
-    '">';
+    `<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">`;
   result +=
-    name +
-    ' - (<span style="color: red;">' +
-    digest_brute +
-    '</span >/<span style="color: orange;">' +
-    digest_burn +
-    '</span>/<span style="color: blue;">' +
-    digest_oxy +
-    '</span>/<span style="color: green;">' +
-    digest_tox +
-    '</span>/<span style="color: purple;">' +
-    digest_clone +
-    '</span>) - ' +
-    ModeSpan[mode] +
-    ' - ' +
-    ItemModeSpan[item_mode];
+    `${name} - (<span style="color: red;">${digest_brute}</span >/<span style="color: orange;">${digest_burn}</span>/<span style="color: blue;">${digest_oxy}</span>/<span style="color: green;">${digest_tox}</span>/<span style="color: purple;">${digest_clone}</span>) - ${ModeSpan[mode]} - ${ItemModeSpan[item_mode]}`;
   result += '</button></h2>';
 
   result +=
-    '<div id="collapse' +
-    index +
-    '" class="accordion-collapse collapse" aria-labelledby="heading' +
-    index +
-    '" data-bs-parent="#accordionBellies">';
+    `<div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#accordionBellies">`;
   result += '<div class="accordion-body">';
   result += `Addons:<br>${GetAddons(addons)}<br><br>`;
 
@@ -264,557 +240,391 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<b>== Messages ==</b><br>';
   result +=
-    'Show All Interactive Messages: ' +
-    (message_mode
+    `Show All Interactive Messages: ${message_mode
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</span><br>';
+      : '<span style="color: red;">No'}</span><br>`;
   result += '<div role="messagesTabpanel">'; // Start Div messagesTabpanel
   result += '<div class="row"><div class="col-4">';
   result += '<div class="list-group" id="messagesList" role="messagesTablist">';
   result +=
-    '<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#escapeAttemptMessagesOwner' +
-    index +
-    '" role="tab">Escape Attempt Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#escapeAttemptMessagesOwner${index}" role="tab">Escape Attempt Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAttemptMessagesPrey' +
-    index +
-    '" role="tab">Escape Attempt Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAttemptMessagesPrey${index}" role="tab">Escape Attempt Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeMessagesOwner' +
-    index +
-    '" role="tab">Escape Message (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeMessagesOwner${index}" role="tab">Escape Message (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeMessagesPrey' +
-    index +
-    '" role="tab">Escape Message (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeMessagesPrey${index}" role="tab">Escape Message (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeMessagesOutside' +
-    index +
-    '" role="tab">Escape Message (Outside)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeMessagesOutside${index}" role="tab">Escape Message (Outside)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeItemMessagesOwner' +
-    index +
-    '" role="tab">Escape Item Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeItemMessagesOwner${index}" role="tab">Escape Item Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeItemMessagesPrey' +
-    index +
-    '" role="tab">Escape Item Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeItemMessagesPrey${index}" role="tab">Escape Item Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeItemMessagesOutside' +
-    index +
-    '" role="tab">Escape Item Messages (Outside)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeItemMessagesOutside${index}" role="tab">Escape Item Messages (Outside)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeFailMessagesOwner' +
-    index +
-    '" role="tab">Escape Fail Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeFailMessagesOwner${index}" role="tab">Escape Fail Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#esccapeFailMessagesPrey' +
-    index +
-    '" role="tab">Escape Fail Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#esccapeFailMessagesPrey${index}" role="tab">Escape Fail Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAttemptAbsorbedMessagesOwner' +
-    index +
-    '" role="tab">Escape Attempt Absorbed Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAttemptAbsorbedMessagesOwner${index}" role="tab">Escape Attempt Absorbed Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAttemptAbsorbedMessagesPrey' +
-    index +
-    '" role="tab">Escape Attempt Absorbed Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAttemptAbsorbedMessagesPrey${index}" role="tab">Escape Attempt Absorbed Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAbsorbedMessagesOwner' +
-    index +
-    '" role="tab">Escape Absorbed Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAbsorbedMessagesOwner${index}" role="tab">Escape Absorbed Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAbsorbedMessagesPrey' +
-    index +
-    '" role="tab">Escape Absorbed Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAbsorbedMessagesPrey${index}" role="tab">Escape Absorbed Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAbsorbedMessagesOutside' +
-    index +
-    '" role="tab">Escape Absorbed Messages (Outside)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeAbsorbedMessagesOutside${index}" role="tab">Escape Absorbed Messages (Outside)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeFailAbsorbedMessagesOwner' +
-    index +
-    '" role="tab">Escape Fail Absorbed Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeFailAbsorbedMessagesOwner${index}" role="tab">Escape Fail Absorbed Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeFailAbsorbedMessagesPrey' +
-    index +
-    '" role="tab">Escape Fail Absorbed Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#escapeFailAbsorbedMessagesPrey${index}" role="tab">Escape Fail Absorbed Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#primaryTransferMessagesOwner' +
-    index +
-    '" role="tab">Primary Transfer Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#primaryTransferMessagesOwner${index}" role="tab">Primary Transfer Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#primaryTransferMessagesPrey' +
-    index +
-    '" role="tab">Primary Transfer Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#primaryTransferMessagesPrey${index}" role="tab">Primary Transfer Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#secondaryTransferMessagesOwner' +
-    index +
-    '" role="tab">Secondary Transfer Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#secondaryTransferMessagesOwner${index}" role="tab">Secondary Transfer Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#secondaryTransferMessagesPrey' +
-    index +
-    '" role="tab">Secondary Transfer Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#secondaryTransferMessagesPrey${index}" role="tab">Secondary Transfer Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestChanceMessagesOwner' +
-    index +
-    '" role="tab">Digest Chance Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestChanceMessagesOwner${index}" role="tab">Digest Chance Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestChanceMessagesPrey' +
-    index +
-    '" role="tab">Digest Chance Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestChanceMessagesPrey${index}" role="tab">Digest Chance Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbChanceMessagesOwner' +
-    index +
-    '" role="tab">Absorb Chance Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbChanceMessagesOwner${index}" role="tab">Absorb Chance Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbChanceMessagesPrey' +
-    index +
-    '" role="tab">Absorb Chance Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbChanceMessagesPrey${index}" role="tab">Absorb Chance Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesOutside' +
-    index +
-    '" role="tab">Struggle Messages (Outside)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesOutside${index}" role="tab">Struggle Messages (Outside)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesInside' +
-    index +
-    '" role="tab">Struggle Messages (Inside)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesInside${index}" role="tab">Struggle Messages (Inside)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleOutside' +
-    index +
-    '" role="tab">Absorbed Struggle Messages (Outside)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleOutside${index}" role="tab">Absorbed Struggle Messages (Outside)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleInside' +
-    index +
-    '" role="tab">Absorbed Struggle Messages (Inside)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleInside${index}" role="tab">Absorbed Struggle Messages (Inside)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestMessagesOwner' +
-    index +
-    '" role="tab">Digest Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestMessagesOwner${index}" role="tab">Digest Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestMessagesPrey' +
-    index +
-    '" role="tab">Digest Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestMessagesPrey${index}" role="tab">Digest Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbMessagesOwner' +
-    index +
-    '" role="tab">Absorb Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbMessagesOwner${index}" role="tab">Absorb Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbMessagesPrey' +
-    index +
-    '" role="tab">Absorb Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbMessagesPrey${index}" role="tab">Absorb Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#unabsorbMessagesOwner' +
-    index +
-    '" role="tab">Unabsorb Messages (Owner)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#unabsorbMessagesOwner${index}" role="tab">Unabsorb Messages (Owner)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#unabsorbMessagesPrey' +
-    index +
-    '" role="tab">Unabsorb Messages (Prey)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#unabsorbMessagesPrey${index}" role="tab">Unabsorb Messages (Prey)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessages' +
-    index +
-    '" role="tab">Examine Messages</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessages${index}" role="tab">Examine Messages</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessagesAbsorbed' +
-    index +
-    '" role="tab">Examine Messages (Absorbed)</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessagesAbsorbed${index}" role="tab">Examine Messages (Absorbed)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#trash_eater_in' +
-    index +
-    '" role="tab">Trash Eater Ingest Messages</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#trash_eater_in${index}" role="tab">Trash Eater Ingest Messages</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#trash_eater_out' +
-    index +
-    '" role="tab">Item Expel Messages</a>';
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#trash_eater_out${index}" role="tab">Item Expel Messages</a>`;
   result += '</div></div>';
 
   result += '<div class="col-8">';
   result += '<div class="tab-content">';
 
   result +=
-    '<div class="tab-pane fade show active" id="escapeAttemptMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade show active" id="escapeAttemptMessagesOwner${index}" role="messagesTabpanel">`;
   escape_attempt_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeAttemptMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeAttemptMessagesPrey${index}" role="messagesTabpanel">`;
   escape_attempt_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeMessagesOwner${index}" role="messagesTabpanel">`;
   escape_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeMessagesPrey${index}" role="messagesTabpanel">`;
   escape_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeMessagesOutside' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeMessagesOutside${index}" role="messagesTabpanel">`;
   escape_messages_outside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeItemMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeItemMessagesOwner${index}" role="messagesTabpanel">`;
   escape_item_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeItemMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeItemMessagesPrey${index}" role="messagesTabpanel">`;
   escape_item_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeItemMessagesOutside' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeItemMessagesOutside${index}" role="messagesTabpanel">`;
   escape_item_messages_outside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeFailMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeFailMessagesOwner${index}" role="messagesTabpanel">`;
   escape_fail_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="esccapeFailMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="esccapeFailMessagesPrey${index}" role="messagesTabpanel">`;
   escape_fail_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeAttemptAbsorbedMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeAttemptAbsorbedMessagesOwner${index}" role="messagesTabpanel">`;
   escape_attempt_absorbed_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeAttemptAbsorbedMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeAttemptAbsorbedMessagesPrey${index}" role="messagesTabpanel">`;
   escape_attempt_absorbed_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeAbsorbedMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeAbsorbedMessagesOwner${index}" role="messagesTabpanel">`;
   escape_absorbed_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeAbsorbedMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeAbsorbedMessagesPrey${index}" role="messagesTabpanel">`;
   escape_absorbed_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeAbsorbedMessagesOutside' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeAbsorbedMessagesOutside${index}" role="messagesTabpanel">`;
   escape_absorbed_messages_outside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeFailAbsorbedMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeFailAbsorbedMessagesOwner${index}" role="messagesTabpanel">`;
   escape_fail_absorbed_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="escapeFailAbsorbedMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="escapeFailAbsorbedMessagesPrey${index}" role="messagesTabpanel">`;
   escape_fail_absorbed_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="primaryTransferMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="primaryTransferMessagesOwner${index}" role="messagesTabpanel">`;
   primary_transfer_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="primaryTransferMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="primaryTransferMessagesPrey${index}" role="messagesTabpanel">`;
   primary_transfer_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="secondaryTransferMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="secondaryTransferMessagesOwner${index}" role="messagesTabpanel">`;
   secondary_transfer_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="secondaryTransferMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="secondaryTransferMessagesPrey${index}" role="messagesTabpanel">`;
   secondary_transfer_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="primaryAutoTransferMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="primaryAutoTransferMessagesOwner${index}" role="messagesTabpanel">`;
   primary_autotransfer_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="primaryAutoTransferMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="primaryAutoTransferMessagesPrey${index}" role="messagesTabpanel">`;
   primary_autotransfer_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="secondaryAutoTransferMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="secondaryAutoTransferMessagesOwner${index}" role="messagesTabpanel">`;
   secondary_autotransfer_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="secondaryAutoTransferMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="secondaryAutoTransferMessagesPrey${index}" role="messagesTabpanel">`;
   secondary_autotransfer_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="digestChanceMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="digestChanceMessagesOwner${index}" role="messagesTabpanel">`;
   digest_chance_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="digestChanceMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="digestChanceMessagesPrey${index}" role="messagesTabpanel">`;
   digest_chance_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="absorbChanceMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="absorbChanceMessagesOwner${index}" role="messagesTabpanel">`;
   absorb_chance_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="absorbChanceMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="absorbChanceMessagesPrey${index}" role="messagesTabpanel">`;
   absorb_chance_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="struggleMessagesOutside' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="struggleMessagesOutside${index}" role="messagesTabpanel">`;
   struggle_messages_outside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="struggleMessagesInside' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="struggleMessagesInside${index}" role="messagesTabpanel">`;
   struggle_messages_inside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="absorbedStruggleOutside' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="absorbedStruggleOutside${index}" role="messagesTabpanel">`;
   absorbed_struggle_messages_outside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="absorbedStruggleInside' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="absorbedStruggleInside${index}" role="messagesTabpanel">`;
   absorbed_struggle_messages_inside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="digestMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="digestMessagesOwner${index}" role="messagesTabpanel">`;
   digest_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="digestMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="digestMessagesPrey${index}" role="messagesTabpanel">`;
   digest_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="absorbMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="absorbMessagesOwner${index}" role="messagesTabpanel">`;
   absorb_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="absorbMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="absorbMessagesPrey${index}" role="messagesTabpanel">`;
   absorb_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="unabsorbMessagesOwner' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="unabsorbMessagesOwner${index}" role="messagesTabpanel">`;
   unabsorb_messages_owner?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="unabsorbMessagesPrey' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="unabsorbMessagesPrey${index}" role="messagesTabpanel">`;
   unabsorb_messages_prey?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="examineMessages' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="examineMessages${index}" role="messagesTabpanel">`;
   examine_messages?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="examineMessagesAbsorbed' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="examineMessagesAbsorbed${index}" role="messagesTabpanel">`;
   examine_messages_absorbed?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="trash_eater_in' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="trash_eater_in${index}" role="messagesTabpanel">`;
   trash_eater_in?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="trash_eater_out' +
-    index +
-    '" role="messagesTabpanel">';
+    `<div class="tab-pane fade" id="trash_eater_out${index}" role="messagesTabpanel">`;
   trash_eater_out?.forEach((msg) => {
     result += `${msg}<br>`;
   });
@@ -902,109 +712,67 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<div class="accordion-item">';
   result +=
-    '<h2 class="accordion-header" id="settingsAccordion' +
-    index +
-    '-headingOne">';
+    `<h2 class="accordion-header" id="settingsAccordion${index}-headingOne">`;
   result +=
-    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion' +
-    index +
-    '-collapseOne" aria-expanded="true" aria-controls="settingsAccordion' +
-    index +
-    '-collapseOne">';
+    `<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion${index}-collapseOne" aria-expanded="true" aria-controls="settingsAccordion${index}-collapseOne">`;
   result += '<b>== Options ==</b><br>';
   result += '</button></h2>';
 
   result +=
-    '<div id="settingsAccordion' +
-    index +
-    '-collapseOne" class="accordion-collapse collapse" aria-labelledby="settingsAccordion' +
-    index +
-    '-headingOne">';
+    `<div id="settingsAccordion${index}-collapseOne" class="accordion-collapse collapse" aria-labelledby="settingsAccordion${index}-headingOne">`;
   result += '<div class="accordion-body">';
   result += '<ul class="list-group">';
   result +=
-    '<li class="list-group-item">Can Taste: ' +
-    (can_taste
+    `<li class="list-group-item">Can Taste: ${can_taste
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result +=
-    '<li class="list-group-item">Feedable: ' +
-    (is_feedable
+    `<li class="list-group-item">Feedable: ${is_feedable
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result +=
-    '<li class="list-group-item">Contaminates: ' +
-    (contaminates
+    `<li class="list-group-item">Contaminates: ${contaminates
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result +=
-    '<li class="list-group-item">Contamination Flavor: ' +
-    contamination_flavor +
-    '</li>';
+    `<li class="list-group-item">Contamination Flavor: ${contamination_flavor}</li>`;
   result +=
-    '<li class="list-group-item">Contamination Color: ' +
-    contamination_color +
-    '</li>';
+    `<li class="list-group-item">Contamination Color: ${contamination_color}</li>`;
   result +=
-    '<li class="list-group-item">Nutritional Gain: ' +
-    nutrition_percent +
-    '%</li>';
+    `<li class="list-group-item">Nutritional Gain: ${nutrition_percent}%</li>`;
   result +=
-    '<li class="list-group-item">Required Examine Size: ' +
-    bulge_size * 100 +
-    '%</li>';
+    `<li class="list-group-item">Required Examine Size: ${bulge_size * 100}%</li>`;
   result +=
-    '<li class="list-group-item">Display Absorbed Examines: ' +
-    (display_absorbed_examine
+    `<li class="list-group-item">Display Absorbed Examines: ${display_absorbed_examine
       ? '<span style="color: green;">True'
-      : '<span style="color: red;">False') +
-    '</li>';
+      : '<span style="color: red;">False'}</li>`;
   result +=
-    '<li class="list-group-item">Save Digest Mode: ' +
-    (save_digest_mode
+    `<li class="list-group-item">Save Digest Mode: ${save_digest_mode
       ? '<span style="color: green;">True'
-      : '<span style="color: red;">False') +
-    '</li>';
+      : '<span style="color: red;">False'}</li>`;
   result +=
-    '<li class="list-group-item">Idle Emotes: ' +
-    (emote_active
+    `<li class="list-group-item">Idle Emotes: ${emote_active
       ? '<span style="color: green;">Active'
-      : '<span style="color: red;">Inactive') +
-    '</li>';
+      : '<span style="color: red;">Inactive'}</li>`;
   result +=
-    '<li class="list-group-item">Idle Emote Delay: ' +
-    emote_time +
-    ' seconds</li>';
+    `<li class="list-group-item">Idle Emote Delay: ${emote_time} seconds</li>`;
   result +=
-    '<li class="list-group-item">Shrink/Grow Size: ' +
-    shrink_grow_size * 100 +
-    '%</li>';
+    `<li class="list-group-item">Shrink/Grow Size: ${shrink_grow_size * 100}%</li>`;
   result +=
-    '<li class="list-group-item">Vore Spawn Blacklist: ' +
-    (vorespawn_blacklist
+    `<li class="list-group-item">Vore Spawn Blacklist: ${vorespawn_blacklist
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result +=
-    '<li class="list-group-item">Vore Spawn Whitelist: ' +
-    (vorespawn_whitelist.length ? vorespawn_whitelist.join(', ') : 'Anyone!') +
-    '</li>';
+    `<li class="list-group-item">Vore Spawn Whitelist: ${vorespawn_whitelist.length ? vorespawn_whitelist.join(', ') : 'Anyone!'}</li>`;
   result +=
-    '<li class="list-group-item">Vore Spawn Absorbed: ' +
-    (vorespawn_absorbed === 0
+    `<li class="list-group-item">Vore Spawn Absorbed: ${vorespawn_absorbed === 0
       ? '<span style="color: red;">No'
       : vorespawn_absorbed === 1
         ? '<span style="color: green;">Yes'
-        : '<span style="color: orange;">Prey Choice') +
-    '</li>';
+        : '<span style="color: orange;">Prey Choice'}</li>`;
   result += `<li class="list-group-item">Egg Type: ${egg_type}</li>`;
   result +=
-    '<li class="list-group-item">Selective Mode Preference: ' +
-    selective_preference +
-    '</li>';
+    `<li class="list-group-item">Selective Mode Preference: ${selective_preference}</li>`;
   result += '</ul>';
   result += '</div></div></div>';
 
@@ -1013,44 +781,28 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<div class="accordion-item">';
   result +=
-    '<h2 class="accordion-header" id="settingsAccordion' +
-    index +
-    '-headingTwo">';
+    `<h2 class="accordion-header" id="settingsAccordion${index}-headingTwo">`;
   result +=
-    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion' +
-    index +
-    '-collapseTwo" aria-expanded="true" aria-controls="settingsAccordion' +
-    index +
-    '-collapseTwo">';
+    `<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion${index}-collapseTwo" aria-expanded="true" aria-controls="settingsAccordion${index}-collapseTwo">`;
   result += '<b>== Sounds ==</b><br>';
   result += '</button></h2>';
 
   result +=
-    '<div id="settingsAccordion' +
-    index +
-    '-collapseTwo" class="accordion-collapse collapse" aria-labelledby="settingsAccordion' +
-    index +
-    '-headingTwo">';
+    `<div id="settingsAccordion${index}-collapseTwo" class="accordion-collapse collapse" aria-labelledby="settingsAccordion${index}-headingTwo">`;
   result += '<div class="accordion-body">';
   result += '<ul class="list-group">';
   result +=
-    '<li class="list-group-item">Fleshy Belly: ' +
-    (is_wet
+    `<li class="list-group-item">Fleshy Belly: ${is_wet
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result +=
-    '<li class="list-group-item">Internal Loop: ' +
-    (wet_loop
+    `<li class="list-group-item">Internal Loop: ${wet_loop
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result +=
-    '<li class="list-group-item">Use Fancy Sounds: ' +
-    (fancy_vore
+    `<li class="list-group-item">Use Fancy Sounds: ${fancy_vore
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result += `<li class="list-group-item">Vore Sound: ${vore_sound}</li>`;
   result +=
     `<li class="list-group-item">Release Sound: ${release_sound}</li>`;
@@ -1062,71 +814,43 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<div class="accordion-item">';
   result +=
-    '<h2 class="accordion-header" id="settingsAccordion' +
-    index +
-    '-headingVisuals">';
+    `<h2 class="accordion-header" id="settingsAccordion${index}-headingVisuals">`;
   result +=
-    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion' +
-    index +
-    '-collapseVisuals" aria-expanded="true" aria-controls="settingsAccordion' +
-    index +
-    '-collapseVisuals">';
+    `<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion${index}-collapseVisuals" aria-expanded="true" aria-controls="settingsAccordion${index}-collapseVisuals">`;
   result += '<b>== Visuals ==</b><br>';
   result += '</button></h2>';
 
   result +=
-    '<div id="settingsAccordion' +
-    index +
-    '-collapseVisuals" class="accordion-collapse collapse" aria-labelledby="settingsAccordion' +
-    index +
-    '-headingVisuals>';
+    `<div id="settingsAccordion${index}-collapseVisuals" class="accordion-collapse collapse" aria-labelledby="settingsAccordion${index}-headingVisuals>`;
   result += '<div class="accordion-body">';
   result += '<b>Vore Sprites</b>';
   result += '<ul class="list-group">';
   result +=
-    '<li class="list-group-item">Affect Vore Sprites: ' +
-    (affects_vore_sprites
+    `<li class="list-group-item">Affect Vore Sprites: ${affects_vore_sprites
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result +=
-    '<li class="list-group-item">Count Absorbed prey for vore sprites: ' +
-    (count_absorbed_prey_for_sprite
+    `<li class="list-group-item">Count Absorbed prey for vore sprites: ${count_absorbed_prey_for_sprite
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result +=
-    '<li class="list-group-item">Animation when prey resist: ' +
-    (resist_triggers_animation
+    `<li class="list-group-item">Animation when prey resist: ${resist_triggers_animation
       ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+      : '<span style="color: red;">No'}</li>`;
   result +=
-    '<li class="list-group-item">Vore Sprite Size Factor: ' +
-    size_factor_for_sprite +
-    '</li>';
+    `<li class="list-group-item">Vore Sprite Size Factor: ${size_factor_for_sprite}</li>`;
   result +=
-    '<li class="list-group-item">Belly Sprite to affect: ' +
-    belly_sprite_to_affect +
-    '</li>';
+    `<li class="list-group-item">Belly Sprite to affect: ${belly_sprite_to_affect}</li>`;
   result += '</ul>';
   result += '<b>Belly Fullscreens Preview and Coloring</b>';
   result += '<ul class="list-group">';
   result +=
-    '<li class="list-group-item">Color: <span style="color: ' +
-    belly_fullscreen_color +
-    ';">' +
-    belly_fullscreen_color +
-    '</span>';
+    `<li class="list-group-item">Color: <span style="color: ${belly_fullscreen_color};">${belly_fullscreen_color}</span>`;
   result += '</ul>';
   result += '<b>Vore FX</b>';
   result += '<ul class="list-group">';
   result +=
-    '<li class="list-group-item">Disable Prey HUD: ' +
-    (disable_hud
-      ? '<span style="color: green;">Yes'
-      : '<span style="color: red;">No') +
-    '</li>';
+    `<li class="list-group-item">Disable Prey HUD: ${disable_hud      ? '<span style="color: green;">Yes'      : '<span style="color: red;">No'}</li>`;
   result += '</ul>';
   result += '</div></div></div>';
 
@@ -1135,38 +859,24 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<div class="accordion-item">';
   result +=
-    '<h2 class="accordion-header" id="settingsAccordion' +
-    index +
-    '-headingThree">';
+    `<h2 class="accordion-header" id="settingsAccordion${index}-headingThree">`;
   result +=
-    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion' +
-    index +
-    '-collapseThree" aria-expanded="true" aria-controls="settingsAccordion' +
-    index +
-    '-collapseThree">';
+    `<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion${index}-collapseThree" aria-expanded="true" aria-controls="settingsAccordion${index}-collapseThree">`;
   result += '<b>== Interactions ==</b>';
   result += '</button></h2>';
 
   result +=
-    '<div id="settingsAccordion' +
-    index +
-    '-collapseThree" class="accordion-collapse collapse" aria-labelledby="settingsAccordion' +
-    index +
-    '-headingThree">';
+    `<div id="settingsAccordion${index}-collapseThree" class="accordion-collapse collapse" aria-labelledby="settingsAccordion${index}-headingThree">`;
   result += '<div class="accordion-body">';
   result +=
-    '<b>Belly Interactions (' +
-    (escapable
+    `<b>Belly Interactions (${escapable
       ? '<span style="color: green;">Enabled'
-      : '<span style="color: red;">Disabled') +
-    '</span>)</b>';
+      : '<span style="color: red;">Disabled'}</span>)</b>`;
   result += '<ul class="list-group">';
   result +=
     `<li class="list-group-item">Escape Chance: ${escapechance}%</li>`;
   result +=
-    '<li class="list-group-item">Escape Chance: ' +
-    escapechance_absorbed +
-    '%</li>';
+    `<li class="list-group-item">Escape Chance: ${escapechance_absorbed}%</li>`;
   result +=
     `<li class="list-group-item">Escape Time: ${escapetime / 10}s</li>`;
   result +=
@@ -1186,96 +896,52 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += '</ul>';
   result += '<hr>';
   result +=
-    '<b>Auto-Transfer Options (' +
-    (autotransfer_enabled
+    `<b>Auto-Transfer Options (${autotransfer_enabled
       ? '<span style="color: green;">Enabled'
-      : '<span style="color: red;">Disabled') +
-    '</span>)</b>';
+      : '<span style="color: red;">Disabled'}</span>)</b>`;
   result += '<ul class="list-group">';
   result +=
-    '<li class="list-group-item">Auto-Transfer Time: ' +
-    autotransferwait / 10 +
-    's</li>';
+    `<li class="list-group-item">Auto-Transfer Time: ${autotransferwait / 10}s</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Chance: ' +
-    autotransferchance +
-    '%</li>';
+    `<li class="list-group-item">Auto-Transfer Chance: ${autotransferchance}%</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Location: ' +
-    autotransferlocation +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Location: ${autotransferlocation}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Chance: ' +
-    autotransferchance_secondary +
-    '%</li>';
+    `<li class="list-group-item">Auto-Transfer Chance: ${autotransferchance_secondary}%</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Location: ' +
-    autotransferlocation_secondary +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Location: ${autotransferlocation_secondary}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Min Amount: ' +
-    autotransfer_min_amount +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Min Amount: ${autotransfer_min_amount}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Max Amount: ' +
-    autotransfer_max_amount +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Max Amount: ${autotransfer_max_amount}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Primary Chance: ' +
-    autotransferchance +
-    '%</li>';
+    `<li class="list-group-item">Auto-Transfer Primary Chance: ${autotransferchance}%</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Primary Location: ' +
-    autotransferlocation +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Primary Location: ${autotransferlocation}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Primary Location Extras: ' +
-    autotransferextralocation.join(', ') +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Primary Location Extras: ${autotransferextralocation.join(', ')}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Primary Whitelist (Mobs): ' +
-    GetAutotransferFlags(autotransfer_whitelist, true) +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Primary Whitelist (Mobs): ${GetAutotransferFlags(autotransfer_whitelist, true)}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Primary Whitelist (Items): ' +
-    GetAutotransferFlags(autotransfer_whitelist_items, true) +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Primary Whitelist (Items): ${GetAutotransferFlags(autotransfer_whitelist_items, true)}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Primary Blacklist (Mobs): ' +
-    GetAutotransferFlags(autotransfer_blacklist, false) +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Primary Blacklist (Mobs): ${GetAutotransferFlags(autotransfer_blacklist, false)}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Primary Blacklist (Items): ' +
-    GetAutotransferFlags(autotransfer_blacklist_items, false) +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Primary Blacklist (Items): ${GetAutotransferFlags(autotransfer_blacklist_items, false)}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Secondary Chance: ' +
-    autotransferchance_secondary +
-    '%</li>';
+    `<li class="list-group-item">Auto-Transfer Secondary Chance: ${autotransferchance_secondary}%</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Secondary Location: ' +
-    autotransferlocation_secondary +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Secondary Location: ${autotransferlocation_secondary}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Secondary Location Extras: ' +
-    autotransferextralocation_secondary.join(', ') +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Secondary Location Extras: ${autotransferextralocation_secondary.join(', ')}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Secondary Whitelist (Mobs): ' +
-    GetAutotransferFlags(autotransfer_secondary_whitelist, true) +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Secondary Whitelist (Mobs): ${GetAutotransferFlags(autotransfer_secondary_whitelist, true)}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Secondary Whitelist (Items): ' +
-    GetAutotransferFlags(autotransfer_secondary_whitelist_items, true) +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Secondary Whitelist (Items): ${GetAutotransferFlags(autotransfer_secondary_whitelist_items, true)}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Secondary Blacklist (Mobs): ' +
-    GetAutotransferFlags(autotransfer_secondary_blacklist, false) +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Secondary Blacklist (Mobs): ${GetAutotransferFlags(autotransfer_secondary_blacklist, false)}</li>`;
   result +=
-    '<li class="list-group-item">Auto-Transfer Secondary Blacklist (Items): ' +
-    GetAutotransferFlags(autotransfer_secondary_blacklist_items, false) +
-    '</li>';
+    `<li class="list-group-item">Auto-Transfer Secondary Blacklist (Items): ${GetAutotransferFlags(autotransfer_secondary_blacklist_items, false)}</li>`;
   result += '</ul>';
   result += '</div></div></div>';
 
@@ -1284,63 +950,39 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<div class="accordion-item">';
   result +=
-    '<h2 class="accordion-header" id="settingsAccordion' +
-    index +
-    '-headingFour">';
+    `<h2 class="accordion-header" id="settingsAccordion${index}-headingFour">`;
   result +=
-    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion' +
-    index +
-    '-collapseFour" aria-expanded="true" aria-controls="settingsAccordion' +
-    index +
-    '-collapseFour">';
+    `<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion${index}-collapseFour" aria-expanded="true" aria-controls="settingsAccordion${index}-collapseFour">`;
   result +=
-    '<b>== Liquid Options (' +
-    (show_liquids
+    `<b>== Liquid Options (${show_liquids
       ? '<span style="color: green;">Liquids On'
-      : '<span style="color: red;">Liquids Off') +
-    '</span>) ==</b>';
+      : '<span style="color: red;">Liquids Off'}</span>) ==</b>`;
   result += '</button></h2>';
 
   result +=
-    '<div id="settingsAccordion' +
-    index +
-    '-collapseFour" class="accordion-collapse collapse" aria-labelledby="settingsAccordion' +
-    index +
-    '-headingFour">';
+    `<div id="settingsAccordion${index}-collapseFour" class="accordion-collapse collapse" aria-labelledby="settingsAccordion${index}-headingFour">`;
   result += '<div class="accordion-body">';
   result += '<ul class="list-group">';
   result +=
-    '<li class="list-group-item">Generate Liquids: ' +
-    (reagentbellymode
+    `<li class="list-group-item">Generate Liquids: ${reagentbellymode
       ? '<span style="color: green;">On'
-      : '<span style="color: red;">Off') +
-    '</li>';
+      : '<span style="color: red;">Off'}</li>`;
   result +=
     `<li class="list-group-item">Liquid Type: ${reagent_chosen}</li>`;
   result +=
     `<li class="list-group-item">Liquid Name: ${reagent_name}</li>`;
   result +=
-    '<li class="list-group-item">Transfer Verb: ' +
-    reagent_transfer_verb +
-    '</li>';
+    `<li class="list-group-item">Transfer Verb: ${reagent_transfer_verb}</li>`;
   result +=
-    '<li class="list-group-item">Generation Time: ' +
-    gen_time_display +
-    '</li>';
+    `<li class="list-group-item">Generation Time: ${gen_time_display}</li>`;
   result +=
-    '<li class="list-group-item">Liquid Capacity: ' +
-    custom_max_volume +
-    '</li>';
+    `<li class="list-group-item">Liquid Capacity: ${custom_max_volume}</li>`;
   result +=
-    '<li class="list-group-item">Slosh Sounds: ' +
-    (vorefootsteps_sounds
+    `<li class="list-group-item">Slosh Sounds: ${vorefootsteps_sounds
       ? '<span style="color: green;">On'
-      : '<span style="color: red;">Off') +
-    '</li>';
+      : '<span style="color: red;">Off'}</li>`;
   result +=
-    '<li class="list-group-item">Liquid Addons: ' +
-    GetLiquidAddons(reagent_mode_flag_list) +
-    '</li>';
+    `<li class="list-group-item">Liquid Addons: ${GetLiquidAddons(reagent_mode_flag_list)}</li>`;
   result += '</ul>';
   result += '</div></div></div>';
 
@@ -1349,29 +991,17 @@ export const generateBellyString = (belly: Belly, index: number) => {
 
   result += '<div class="accordion-item">';
   result +=
-    '<h2 class="accordion-header" id="settingsAccordion' +
-    index +
-    '-headingFive">';
+    `<h2 class="accordion-header" id="settingsAccordion${index}-headingFive">`;
   result +=
-    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion' +
-    index +
-    '-collapseFive" aria-expanded="true" aria-controls="settingsAccordion' +
-    index +
-    '-collapseFive">';
+    `<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settingsAccordion${index}-collapseFive" aria-expanded="true" aria-controls="settingsAccordion${index}-collapseFive">`;
   result +=
-    '<b>== Liquid Messages (' +
-    (show_liquids
+    `<b>== Liquid Messages (${show_liquids
       ? '<span style="color: green;">Messages On'
-      : '<span style="color: red;">Messages Off') +
-    '</span>) ==</b>';
+      : '<span style="color: red;">Messages Off'}</span>) ==</b>`;
   result += '</button></h2>';
 
   result +=
-    '<div id="settingsAccordion' +
-    index +
-    '-collapseFive" class="accordion-collapse collapse" aria-labelledby="settingsAccordion' +
-    index +
-    '-headingFive">';
+    `<div id="settingsAccordion${index}-collapseFive" class="accordion-collapse collapse" aria-labelledby="settingsAccordion${index}-headingFive">`;
   result += '<div class="accordion-body">';
 
   result += '<div role="liquidMessagesTabpanel">'; // Start Div liquidMessagesTabpanel
@@ -1379,90 +1009,60 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result +=
     '<div class="list-group" id="liquidMessagesList" role="messagesTablist">';
   result +=
-    '<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#examineMessage0_20' +
-    index +
-    '" role="tab">Examine Message (0 to 20%) (' +
-    (liquid_fullness1_messages
+    `<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#examineMessage0_20${index}" role="tab">Examine Message (0 to 20%) (${liquid_fullness1_messages
       ? '<span style="color: green;">On'
-      : '<span style="color: red;">Off') +
-    '</span>)</a>';
+      : '<span style="color: red;">Off'}</span>)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage20_40' +
-    index +
-    '" role="tab">Examine Message (20 to 40%) (' +
-    (liquid_fullness2_messages
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage20_40${index}" role="tab">Examine Message (20 to 40%) (${liquid_fullness2_messages
       ? '<span style="color: green;">On'
-      : '<span style="color: red;">Off') +
-    '</span>)</a>';
+      : '<span style="color: red;">Off'}</span>)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage40_60' +
-    index +
-    '" role="tab">Examine Message (40 to 60%) (' +
-    (liquid_fullness3_messages
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage40_60${index}" role="tab">Examine Message (40 to 60%) (${liquid_fullness3_messages
       ? '<span style="color: green;">On'
-      : '<span style="color: red;">Off') +
-    '</span>)</a>';
+      : '<span style="color: red;">Off'}</span>)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage60_80' +
-    index +
-    '" role="tab">Examine Message (60 to 80%) (' +
-    (liquid_fullness4_messages
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage60_80${index}" role="tab">Examine Message (60 to 80%) (${liquid_fullness4_messages
       ? '<span style="color: green;">On'
-      : '<span style="color: red;">Off') +
-    '</span>)</a>';
+      : '<span style="color: red;">Off'}</span>)</a>`;
   result +=
-    '<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage80_100' +
-    index +
-    '" role="tab">Examine Message (80 to 100%) (' +
-    (liquid_fullness5_messages
+    `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#examineMessage80_100${index}" role="tab">Examine Message (80 to 100%) (${liquid_fullness5_messages
       ? '<span style="color: green;">On'
-      : '<span style="color: red;">Off') +
-    '</span>)</a>';
+      : '<span style="color: red;">Off'}</span>)</a>`;
   result += '</div></div>';
 
   result += '<div class="col-8">';
   result += '<div class="tab-content">';
 
   result +=
-    '<div class="tab-pane fade show active" id="examineMessage0_20' +
-    index +
-    '" role="liquidMessagesTabpanel">';
+    `<div class="tab-pane fade show active" id="examineMessage0_20${index}" role="liquidMessagesTabpanel">`;
   fullness1_messages?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="examineMessage20_40' +
-    index +
-    '" role="liquidMessagesTabpanel">';
+    `<div class="tab-pane fade" id="examineMessage20_40${index}" role="liquidMessagesTabpanel">`;
   fullness2_messages?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="examineMessage40_60' +
-    index +
-    '" role="liquidMessagesTabpanel">';
+    `<div class="tab-pane fade" id="examineMessage40_60${index}" role="liquidMessagesTabpanel">`;
   fullness3_messages?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="examineMessage60_80' +
-    index +
-    '" role="liquidMessagesTabpanel">';
+    `<div class="tab-pane fade" id="examineMessage60_80${index}" role="liquidMessagesTabpanel">`;
   fullness4_messages?.forEach((msg) => {
     result += `${msg}<br>`;
   });
   result += '</div>';
 
   result +=
-    '<div class="tab-pane fade" id="examineMessage80_100' +
-    index +
-    '" role="liquidMessagesTabpanel">';
+    `<div class="tab-pane fade" id="examineMessage80_100${index}" role="liquidMessagesTabpanel">`;
   fullness5_messages?.forEach((msg) => {
     result += `${msg}<br>`;
   });
