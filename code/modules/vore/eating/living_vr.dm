@@ -39,7 +39,7 @@
 /mob/living/proc/handle_special_unlocks()
 	return
 
-/mob/proc/init_vore()
+/mob/proc/init_vore(force = FALSE)
 	//Something else made organs, meanwhile.
 	if(!isnewplayer(src))
 		AddElement(/datum/element/slosh)
@@ -74,7 +74,7 @@
 			soulgem = new(src)
 		return TRUE
 
-/mob/living/init_vore()
+/mob/living/init_vore(force)
 	if(no_vore)
 		return FALSE
 	return ..()

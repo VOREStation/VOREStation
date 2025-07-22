@@ -206,7 +206,10 @@
 	. = ..()
 
 // Make sure you don't call ..() on this one, otherwise you duplicate work.
-/mob/living/simple_mob/init_vore()
+/mob/living/simple_mob/init_vore(force)
+	if(force)
+		vore_active = TRUE
+		voremob_loaded = TRUE
 	if(!vore_active || no_vore || !voremob_loaded)
 		return
 

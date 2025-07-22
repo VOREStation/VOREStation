@@ -791,8 +791,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 /mob/living/simple_mob/vore/alienanimals/teppi/animal_nom(mob/living/T in living_mobs(1))
 	if(vore_active && !voremob_loaded)
-		voremob_loaded = TRUE
-		init_vore()
+		init_vore(TRUE)
 	if(client)
 		return ..()
 	var/current_affinity = affinity[T.real_name]
@@ -913,7 +912,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	say_list_type = /datum/say_list/teppibaby
 
 
-/mob/living/simple_mob/vore/alienanimals/teppi/baby/init_vore() //shouldn't need all the vore bidness if they aren't using it as babbies. They get their tummies when they grow up.
+/mob/living/simple_mob/vore/alienanimals/teppi/baby/init_vore(force) //shouldn't need all the vore bidness if they aren't using it as babbies. They get their tummies when they grow up.
 	return
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/store_teppi_data(mob/living/simple_mob/vore/alienanimals/teppi/teppi)
