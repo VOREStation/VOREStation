@@ -123,19 +123,22 @@
 	switch(action)
 		if("cahngekey")
 			key = sanitize(params["ckey"])
+			return TRUE
 
 		if("add_player_info")
 			var/key = params["ckey"]
 			var/add = tgui_input_text(ui.user, "Write your comment below.", "Add Player Info", multiline = TRUE, prevent_enter = TRUE)
-			if(!add) return
+			if(!add) return FALSE
 
 			notes_add(key,add,ui.user)
+			return TRUE
 
 		if("remove_player_info")
 			var/key = params["ckey"]
 			var/index = params["index"]
 
 			notes_del(key, index)
+			return TRUE
 
 /datum/tgui_module/player_notes_info/tgui_data(mob/user)
 	var/list/data = list()

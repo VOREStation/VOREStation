@@ -60,25 +60,30 @@ export const PlayerNotesInfo = (props) => {
                         <Table.Row key={entry.comment}>
                           <Table.Cell collapsing={false}>
                             <Divider />
-                            <Box>
-                              Written by {entry.author} on{' '}
-                              <span color="blue">{entry.date}</span>
-                              <br />
-                              <span color="green">
-                                &quot;{entry.comment}&quot;
-                              </span>
-                            </Box>
-                            <Button
-                              icon="trash"
-                              onClick={() =>
-                                act('remove_player_info', {
-                                  ckey: ckey,
-                                  index: index + 1,
-                                })
-                              }
-                            >
-                              Remove
-                            </Button>
+                            <Stack vertical>
+                              <Stack.Item>
+                                {`Written by ${entry.author} on `}
+                                <Box inline color="blue">
+                                  {entry.date}
+                                </Box>
+                              </Stack.Item>
+                              <Stack.Item>
+                                <Box color="red">{`"${entry.comment}"`}</Box>
+                              </Stack.Item>
+                              <Stack.Item>
+                                <Button.Confirm
+                                  icon="trash"
+                                  onClick={() =>
+                                    act('remove_player_info', {
+                                      ckey: ckey,
+                                      index: index + 1,
+                                    })
+                                  }
+                                >
+                                  Remove
+                                </Button.Confirm>
+                              </Stack.Item>
+                            </Stack>
                           </Table.Cell>
                         </Table.Row>
                       ))}
