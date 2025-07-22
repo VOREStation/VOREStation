@@ -100,13 +100,13 @@
 		set_stat(CONSCIOUS)
 	else
 		health = getMaxHealth() - getFireLoss() - getBruteLoss()
-		if(health <= -getMaxHealth()) //die only once
-			death()
-			return
 	oxyloss = 0
 	toxloss = 0
 	cloneloss = 0
 	halloss = 0
+	if(health <= -getMaxHealth()) //die only once
+		death()
+		return
 
 /mob/living/bot/death()
 	explode()
