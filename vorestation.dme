@@ -2833,6 +2833,7 @@
 #include "code\modules\integrated_electronics\core\pins.dm"
 #include "code\modules\integrated_electronics\core\printer.dm"
 #include "code\modules\integrated_electronics\core\tools.dm"
+#include "code\modules\integrated_electronics\core\assemblies\circuit_bug.dm"
 #include "code\modules\integrated_electronics\core\assemblies\clothing.dm"
 #include "code\modules\integrated_electronics\core\assemblies\device.dm"
 #include "code\modules\integrated_electronics\core\assemblies\generic.dm"
