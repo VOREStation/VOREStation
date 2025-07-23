@@ -43,7 +43,7 @@
 	attacktext = list("mauled","slashed","clawed")
 	friendly = list("boops", "pawbs", "mars softly at", "sniffs on")
 
-	vore_active = TRUE
+	vore_active = FALSE
 	vore_pounce_chance = 10
 	vore_icons = SA_ICON_LIVING
 	swallowTime = 2 SECONDS
