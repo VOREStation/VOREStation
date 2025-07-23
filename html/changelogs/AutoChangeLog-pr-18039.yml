@@ -1,0 +1,13 @@
+author: "TheCaramelion"
+delete-after: True
+changes:
+  - rscadd: "Added \"Choreomania\", \"Tissue Hydration\", and \"Biometallic Replication\" symptoms"
+  - rscadd: "Added Roanoake Syndrome as a disease."
+  - rscadd: "Added a dormant version of Roanoake Syndrome that xenochimeras spawn with."
+  - rscadd: "Added infective component"
+  - balance: "Lowered the damage done by macrophages when they emerge"
+  - balance: "Lowered the damage output of macrophages"
+  - balance: "Bio suits now cover hands and feet"
+  - bugfix: "Fixed Macrophages symptom acting too fast"
+  - qol: "Added \"Chicken Noodle Soup\" to possible cures for Cold, Flu, and Food Poisoning"
+  - qol: "Changed the text in the advanced medical scanner to diferentiate better between diseases or viruses"
