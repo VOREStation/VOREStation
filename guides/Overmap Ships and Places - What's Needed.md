@@ -4,6 +4,7 @@ Proper, full-length guide will be added later to here + the wiki.
 For now, just use this as reference for what is needed for Overmap ships + locations.
 
 **CREATED IN-EDITOR:**
+
 ```
 /obj/effect/shuttle_landmark
   var edits:
@@ -14,13 +15,14 @@ For now, just use this as reference for what is needed for Overmap ships + locat
 ```
 
 **CREATED IN-CODE:**
+
 ```c
 /area/shuttle/SHIPNAME
   name = "\improper [Name]" // Just replace [Name] with whatever your want to name the ship
   icon_state = "shuttlered"
-  requires_power = 1 // Or 0 if you don't want to have to power the ship yourself. 
+  requires_power = 1 // Or 0 if you don't want to have to power the ship yourself.
 //Area should probably be placed in southern-cross-areas.dm but the rest can go into some file all together.
-  
+
 /datum/shuttle/autodock/overmap/SHIPNAME
     name = "[Name]"
     warmup_time = 0
@@ -44,6 +46,7 @@ For now, just use this as reference for what is needed for Overmap ships + locat
 
 **OVERMAP SHIP CREATION INSTRUCTIONS:**
 Build your shuttle however you'd like, though it MUST have:
+
 - Phoron cannister(s) hooked up to proper engines. /obj/machinery/atmospherics/unary/engine
 - Engine Control. `/obj/machinery/computer/ship/engines`
 - Helm Control. `/obj/machinery/computer/ship/helm`
@@ -54,6 +57,7 @@ Build your shuttle however you'd like, though it MUST have:
 - The shuttle also needs to be placed entirely in the designated area that you made in the above code, since shuttles are based off of the area everything is in.
 
 It would be **RECOMMENDED** to also have:
+
 - Sensors, controlled by `/obj/machinery/computer/ship/sensors` and `/obj/machinery/shipsensors` (maybe the /weak variant for small ships if you add them at all?)
 - Docking Controller. Not 100% sure on how these work yet, but will be updated as needed. Not necessary, just nice to have for ease of access.
 - A pump somewhere in the fuel intake to your engines, for better fuel management.

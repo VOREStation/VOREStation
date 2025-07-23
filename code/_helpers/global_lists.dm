@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(vr_mob_tf_options, list(
 	"Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 	"Seagull" =/mob/living/simple_mob/vore/seagull,
 	"Fox" = /mob/living/simple_mob/animal/passive/fox,
-	//"Racoon" = /mob/living/simple_mob/animal/passive/raccoon_ch, //TODO: Port from Downstream
+	"Racoon" = /mob/living/simple_mob/animal/passive/raccoon,
 	"Shantak" = /mob/living/simple_mob/animal/sif/shantak,
 	"Goose" = /mob/living/simple_mob/animal/space/goose,
 	"Space shark" = /mob/living/simple_mob/animal/space/shark,
@@ -488,7 +488,7 @@ GLOBAL_LIST_INIT(vr_mob_spawner_options, list(
 	"Seagull" =/mob/living/simple_mob/vore/seagull,
 	"Corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
 	//"Armadillo" = /mob/living/simple_mob/animal/passive/armadillo, //TODO: Port from Downstream
-	//"Racoon" = /mob/living/simple_mob/animal/passive/raccoon_ch, //TODO: Port from Downstream
+	"Racoon" = /mob/living/simple_mob/animal/passive/raccoon,
 	"Goose" = /mob/living/simple_mob/animal/space/goose,
 	"Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 	"Dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
@@ -579,10 +579,10 @@ GLOBAL_LIST_EMPTY(random_maps)
 GLOBAL_LIST_EMPTY(map_count)
 GLOBAL_LIST_EMPTY(narsie_list)
 GLOBAL_LIST_EMPTY(id_card_states)
-GLOBAL_LIST_EMPTY(allocated_gamma)
+GLOBAL_LIST_EMPTY(allocated_gamma_loot)
 GLOBAL_LIST_EMPTY(semirandom_mob_spawner_decisions)
 
-GLOBAL_LIST_INIT(unique_gamma, list(
+GLOBAL_LIST_INIT(unique_gamma_loot, list(
 	/obj/item/perfect_tele,
 	/obj/item/bluespace_harpoon,
 	/obj/item/clothing/glasses/thermal/syndi,
@@ -1302,7 +1302,8 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	"Lost"			= /obj/item/robot_module/robot/lost,
 	"Protector" 	= /obj/item/robot_module/robot/syndicate/protector,
 	"Mechanist" 	= /obj/item/robot_module/robot/syndicate/mechanist,
-	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic
+	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic,
+	"Ninja" 		= /obj/item/robot_module/robot/syndicate/ninja,
 	))
 
 

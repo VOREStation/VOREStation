@@ -34,18 +34,6 @@ export const MiningVendor = (props) => {
   const [sortOrder, setSortOrder] = useState('Alphabetical');
   const [descending, setDescending] = useState(false);
 
-  function handleSearchText(value: string) {
-    setSearchText(value);
-  }
-
-  function handleSortOrder(value: string) {
-    setSortOrder(value);
-  }
-
-  function handleDescending(value: boolean) {
-    setDescending(value);
-  }
-
   return (
     <Window width={400} height={450}>
       <Window.Content className="Layout__content--StackColumn" scrollable>
@@ -54,9 +42,9 @@ export const MiningVendor = (props) => {
           searchText={searchText}
           sortOrder={sortOrder}
           descending={descending}
-          onSearchText={handleSearchText}
-          onSortOrder={handleSortOrder}
-          onDescending={handleDescending}
+          onSearchText={setSearchText}
+          onSortOrder={setSortOrder}
+          onDescending={setDescending}
         />
         <MiningVendorItems
           searchText={searchText}
@@ -125,9 +113,9 @@ const MiningVendorSearch = (props: {
   searchText: string;
   sortOrder: string;
   descending: boolean;
-  onSearchText: Function;
-  onSortOrder: Function;
-  onDescending: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
+  onSortOrder: React.Dispatch<React.SetStateAction<string>>;
+  onDescending: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <Box mb="0.5rem">

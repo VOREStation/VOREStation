@@ -53,7 +53,7 @@ var/list/gear_datums = list()
 		for(var/j in entries)
 			entries["[j]"] = path2text_list(entries["[j]"])
 		pref.gear_list["[i]"] = entries
-	pref.gear_slot = save_data["gear_slot"]
+	pref.gear_slot = save_data["gear_slot"] || 1
 
 /datum/category_item/player_setup_item/loadout/loadout/save_character(list/save_data)
 	var/list/all_gear = list()

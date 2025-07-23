@@ -44,16 +44,15 @@ const icons = {
 
 type Data = { dates: string[] };
 
-export class Changelog extends Component<
-  {},
-  {
-    data:
-      | string
-      | { date: string; authors: { name: string; changes: string[] } };
-    selectedDate: string;
-    selectedIndex: number;
-  }
-> {
+// biome-ignore lint/complexity/noBannedTypes:Ingored here
+type ChangelogProps = {};
+
+interface ChangelogState {
+  data: string | { date: string; authors: { name: string; changes: string[] } };
+  selectedDate: string;
+  selectedIndex: number;
+}
+export class Changelog extends Component<ChangelogProps, ChangelogState> {
   dateChoices: string[];
 
   constructor(props) {

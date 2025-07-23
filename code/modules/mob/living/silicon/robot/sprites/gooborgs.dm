@@ -202,7 +202,7 @@
 	vis_height = 64
 
 //Exploration.
-/datum/robot_sprite/dogborg/explo_gooborg
+/datum/robot_sprite/dogborg/ninja_gooborg
 	name = "Gooborg"
 	sprite_icon_state = "base"
 	//sprite_hud_icon_state = "syndicat"
@@ -216,11 +216,13 @@
 	sprite_icon = 'icons/mob/robot/gooborgs/custom/gooborg_ninja.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
-	module_type = "Exploration"
+	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_BLADE_SPRITE //esword
+	module_type = "Ninja"
+	sprite_hud_icon_state = "malf" //malf!!
 	icon_y = 64
 	vis_height = 64
 
-/datum/robot_sprite/dogborg/explo_gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
+/datum/robot_sprite/dogborg/ninja_gooborg/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else

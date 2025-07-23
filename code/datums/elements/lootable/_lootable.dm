@@ -1,13 +1,3 @@
-GLOBAL_LIST_INIT(allocated_gamma_loot,list())
-GLOBAL_LIST_INIT(unique_gamma_loot,list(\
-		/obj/item/perfect_tele,\
-		/obj/item/bluespace_harpoon,\
-		/obj/item/clothing/glasses/thermal/syndi,\
-		/obj/item/gun/energy/netgun,\
-		/obj/item/gun/projectile/dartgun,\
-		/obj/item/clothing/gloves/black/bloodletter,\
-		/obj/item/gun/energy/mouseray/metamorphosis))
-
 /datum/element/lootable
 	var/chance_nothing = 0			// Unlucky people might need to loot multiple spots to find things.
 	var/chance_uncommon = 10		// Probability of pulling from the uncommon_loot list.
@@ -34,7 +24,7 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 	UnregisterSignal(target, COMSIG_LOOT_REWARD)
 
 /// Calculates and drops loot, the source's turf is where it will be dropped, L is the searching mob, and searched_by is a passed list for storing who has searched a loot pile.
-/datum/element/lootable/proc/loot(atom/source,mob/living/L,var/list/searched_by)
+/datum/element/lootable/proc/loot(atom/source,mob/living/L,var/list/searched_by, wake_chance = 0)
 	SIGNAL_HANDLER
 	// The loot's all gone.
 	if(loot_depletion && loot_left <= 0)
@@ -91,6 +81,10 @@ GLOBAL_LIST_INIT(unique_gamma_loot,list(\
 		if("alium")
 			final_message = span_alium(final_message)
 	to_chat(L, span_info(final_message))
+	var/disturbed_sleep = rand(1,100) //spawning of mobs, for now only the trash panda.
+	if(disturbed_sleep <= wake_chance)
+		new /mob/living/simple_mob/animal/passive/raccoon(get_turf(source))
+		source.visible_message("A raccoon jumps out of the trash!.")
 
 	// Check if we should delete on depletion
 	if(!loot_depletion)

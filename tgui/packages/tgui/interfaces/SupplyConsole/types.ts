@@ -24,7 +24,7 @@ export type modalData = {
     ref: string;
     random: number;
   };
-  modal_type: string;
+  type: string;
 };
 
 export type supplyPack = {
