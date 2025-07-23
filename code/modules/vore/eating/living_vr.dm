@@ -1404,24 +1404,24 @@
 	for (var/belly in vore_organs)
 		var/obj/belly/B = belly
 
-		var/fill_percentage = round((custom_max_volume > 0 ? B.reagents.total_volume / custom_max_volume : 0) * 100)
+		var/fill_percentage = round((B.custom_max_volume > 0 ? B.reagents.total_volume / B.custom_max_volume : 0) * 100)
 
 		if(B.show_fullness_messages)
 			switch(fill_percentage)
 				if(0 to 20)
-					if(liquid_fullness1_messages)
+					if(B.liquid_fullness1_messages)
 						message += B.get_reagent_examine_msg1()
 				if(20 to 40)
-					if(liquid_fullness2_messages)
+					if(B.liquid_fullness2_messages)
 						message += B.get_reagent_examine_msg2()
 				if(40 to 60)
-					if(liquid_fullness3_messages)
+					if(B.liquid_fullness3_messages)
 						message += B.get_reagent_examine_msg3()
 				if(60 to 80)
-					if(liquid_fullness4_messages)
+					if(B.liquid_fullness4_messages)
 						message += B.get_reagent_examine_msg4()
 				if(80 to 100)
-					if(liquid_fullness5_messages)
+					if(B.liquid_fullness5_messages)
 						message += B.get_reagent_examine_msg5()
 
 	return message
