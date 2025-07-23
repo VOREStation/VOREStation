@@ -266,12 +266,10 @@
 			organData["bruised"] = E.min_bruised_damage
 			organData["broken"] = E.min_broken_damage
 
-			var/medical_issueDataE[0]
+			var/list/medical_issueDataE = list()
 			for(var/datum/medical_issue/MI in E.medical_issues)
-				var/medical_issueSubData[0]
 				if(MI.showscanner)
-					medical_issueSubData["medical_issue"] = MI.name
-					medical_issueDataE.Add(list(medical_issueSubData))
+					medical_issueDataE += MI.name
 
 			organData["medical_issues_E"] = medical_issueDataE
 
@@ -354,12 +352,10 @@
 
 			intOrganData.Add(list(organData))
 
-			var/medical_issueDataI[0]
+			var/list/medical_issueDataI = list()
 			for(var/datum/medical_issue/MI in I.medical_issues)
-				var/medical_issueSubData[0]
 				if(MI.showscanner)
-					medical_issueSubData["medical_issue"] = MI.name
-					medical_issueDataI.Add(list(medical_issueSubData))
+					medical_issueDataI += MI.name
 
 			organData["medical_issues_I"] = medical_issueDataI
 
@@ -546,7 +542,7 @@
 
 			if(unknown_body)
 				imp += "Unknown body present:"
-			if(!AN && !open && !infected && !imp)
+			if(!AN && !open && !infected && !imp && !mi)
 				AN = "None:"
 			if(!(e.status & ORGAN_DESTROYED))
 				dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][mi][internal_bleeding][lung_ruptured][o_dead]</td>"

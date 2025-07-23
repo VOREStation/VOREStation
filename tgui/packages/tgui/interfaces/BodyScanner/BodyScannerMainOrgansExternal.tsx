@@ -88,9 +88,7 @@ export const BodyScannerMainOrgansExternal = (props: {
                 {reduceOrganStatus(
                   o.implants.map((s) => (s.known ? s.name : 'Unknown object')),
                 )}
-                {reduceOrganStatus(
-                  o.medical_issues_E.map((s) => (s.medical_issue)),
-                )}
+                {reduceOrganStatus(o.medical_issues_E)}
               </Box>
             </Table.Cell>
           </Table.Row>
