@@ -47,10 +47,18 @@
 /obj/machinery/containment_field/ex_act(severity)
 	return 0
 
-/obj/machinery/containment_field/Crossed(mob/living/L)
-	if(!istype(L) || L.is_incorporeal())
+/obj/machinery/containment_field/Crossed(atom/A)
+	if(!istype(A) || A.is_incorporeal())
 		return
-	shock(L)
+	if(isliving(A))
+		var/mob/living/L = A
+		shock(L)
+		return
+	if(A.density)
+		if(istype(A,/obj/machinery/containment_field) || istype(A,/obj/effect) || istype(A,/obj/singularity))
+			return
+		else
+			Destroy()
 
 /obj/machinery/containment_field/HasProximity(turf/T, datum/weakref/WF, old_loc)
 	if(isnull(WF))
