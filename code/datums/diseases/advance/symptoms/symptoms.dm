@@ -97,9 +97,6 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 /datum/symptom/proc/OnRemove(datum/disease/advance/A)
 	return
 
-/datum/symptom/proc/generate_threshold_desc()
-	return
-
 /datum/symptom/proc/get_symptom_data()
 	var/list/data = list()
 	data["name"] = name

@@ -51,7 +51,9 @@
 		if(SPECIES_UNATHI, SPECIES_TAJARAN) // Mice devourers
 			sickrisk = 0.5
 		if(SPECIES_XENOCHIMERA)
-			// Ronoake Syndrome will go here :)
+			var/datum/disease/advance/dormant_roanoake = new /datum/disease/roanoake
+			dormant_roanoake.virus_modifiers |= DORMANT
+			ForceContractDisease(dormant_roanoake, TRUE)
 			return
 		if(SPECIES_PROMETHEAN) // Too clean
 			return

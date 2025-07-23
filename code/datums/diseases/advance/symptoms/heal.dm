@@ -225,6 +225,65 @@
 	if(regenerate_blood && H.vessel.get_reagent_amount(REAGENT_ID_BLOOD) < H.species.blood_volume)
 		H.add_chemical_effect(CE_BLOODRESTORE, 1)
 
+/datum/symptom/heal/water
+	name = "Tissue Hydration"
+	desc = "The virus uses excess water inside and outside the body to repair damaged tissue cells. More effective when using holy water and against burns."
+	stealth = 0
+	resistance = -1
+	stage_speed = 0
+	transmission = 1
+	level = 6
+	passive_message = span_notice("Your skin feels oddly dry...")
+	threshold_descs = list(
+		"Resistance 5" = "Water is consumed at a much slower rate.",
+		"Stage Speed 7" = "Increases healing speed."
+	)
+
+	var/absorption_coeff = 1
+
+	prefixes = list("Hydro", "Moist ")
+	bodies = list("Water")
+
+/datum/symptom/heal/water/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.stage_rate >= 7)
+		power = 2
+	if(A.resistance >= 5)
+		absorption_coeff = 0.25
+
+/datum/symptom/heal/water/CanHeal(mob/living/M, datum/disease/advance/A, actual_power)
+	if(!istype(M))
+		return
+
+	var/mob/living/carbon/human/H = M
+
+	if(H.fire_stacks < 0)
+		H.adjust_fire_stacks(min(absorption_coeff, -H.fire_stacks))
+		. += power
+	if(H.reagents.has_reagent(REAGENT_ID_HOLYWATER))
+		H.reagents.remove_reagent(REAGENT_ID_HOLYWATER, 0.5 * absorption_coeff)
+		. += power * 0.75
+	else if(H.reagents.has_reagent(REAGENT_ID_WATER))
+		H.reagents.remove_reagent(REAGENT_ID_WATER, 0.5 * absorption_coeff)
+		. += power * 0.5
+
+/datum/symptom/heal/water/Heal(mob/living/carbon/human/H, datum/disease/advance/A, actual_power)
+	var/heal_amt = 2 * actual_power
+
+	var/list/zone_list = BP_ALL
+
+	if(!zone_list.len)
+		return
+
+	if(prob(5))
+		to_chat(H, span_notice("You feel yourself absorbing the water around you to soothe your damaged skin."))
+
+	for(var/obj/item/organ/external/bodypart in zone_list)
+		if(bodypart.burn_dam > 0 && !(bodypart.robotic >= ORGAN_ROBOT))
+			bodypart.heal_damage(0, (heal_amt/zone_list.len))
+
+	return TRUE
 
 /*
 //////////////////////////////////////
