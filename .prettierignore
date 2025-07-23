@@ -8,7 +8,6 @@ juke
 **/dist
 **/node_modules
 html/templates
-html/create_object.html
 
 # File names / types
 *.min.*
