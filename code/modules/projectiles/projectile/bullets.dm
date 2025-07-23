@@ -8,7 +8,7 @@
 	check_armour = "bullet"
 	embed_chance = 20	//Modified in the actual embed process, but this should keep embed chance about the same
 	sharp = TRUE
-	hitsound_wall = "ricochet"
+	hitsound_wall = SFX_RICOCHET
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	excavation_amount  = 20
 	var/mob_passthrough_check = 0
@@ -277,7 +277,7 @@
 
 /obj/item/projectile/bullet/burstbullet
 	name = "exploding bullet"
-	fire_sound = 'sound/effects/Explosion1.ogg'
+	fire_sound = 'sound/effects/explosion/explosion1.ogg'
 	damage = 20
 	embed_chance = 0
 	edge = TRUE

@@ -511,7 +511,7 @@
 	if(cooldown < world.time)
 		cooldown = (world.time + 300) // Sets cooldown at 30 seconds
 		user.visible_message(span_warning("[user] presses the big red button."), span_notice("You press the button, it plays a loud noise!"), span_notice("The button clicks loudly."))
-		playsound(src, 'sound/effects/explosionfar.ogg', 50, 0, 0)
+		playsound(src, 'sound/effects/explosion/explosionfar.ogg', 50, 0, 0)
 		for(var/mob/M in range(10, src)) // Checks range
 			if(!M.stat && !isAI(M)) // Checks to make sure whoever's getting shaken is alive/not the AI
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(shake_camera), M, 2, 1), 0.2 SECONDS)
@@ -678,8 +678,7 @@
 		icon_state = "[initial(icon_state)]cool"
 		sleep(5)
 		atom_say("Hiss!")
-		var/list/possible_sounds = list('sound/voice/hiss1.ogg', 'sound/voice/hiss2.ogg', 'sound/voice/hiss3.ogg', 'sound/voice/hiss4.ogg')
-		playsound(get_turf(src), pick(possible_sounds), 50, 1)
+		playsound(get_turf(src), SFX_HISS, 50, 1)
 		spawn(45)
 			if(src)
 				icon_state = "[initial(icon_state)]"

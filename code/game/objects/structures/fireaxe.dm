@@ -54,7 +54,7 @@
 			else
 				hitstaken++
 				if(hitstaken == 4)
-					playsound(src, 'sound/effects/Glassbr3.ogg', 100, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
+					playsound(src, 'sound/effects/glass/glassbr3.ogg', 100, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
 					smashed = 1
 					locked = 0
 					open= 1

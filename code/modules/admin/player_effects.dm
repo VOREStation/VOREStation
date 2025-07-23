@@ -252,7 +252,7 @@
 
 		if("pie_splat")
 			new/obj/effect/decal/cleanable/pie_smudge(get_turf(target))
-			playsound(target, 'sound/effects/slime_squish.ogg', 100, 1, get_rand_frequency(), falloff = 5)
+			playsound(target, 'sound/effects/slime_squish.ogg', 100, 1, get_rand_frequency(), falloff_distance = 5)
 			target.Weaken(1)
 			target.visible_message(span_danger("[target] is struck by pie!"))
 
@@ -262,10 +262,10 @@
 			target.Blind(10)
 			target.Stun(5)
 			target.Weaken(5)
-			playsound(target, 'sound/effects/spray2.ogg', 100, 1, get_rand_frequency(), falloff = 5)
+			playsound(target, 'sound/effects/spray2.ogg', 100, 1, get_rand_frequency(), falloff_distance = 5)
 
 		if("hot_dog")
-			playsound(target, 'sound/effects/whistle.ogg', 50, 1, get_rand_frequency(), falloff = 5)
+			playsound(target, 'sound/effects/whistle.ogg', 50, 1, get_rand_frequency(), falloff_distance = 5)
 			sleep(2 SECONDS)
 			target.Stun(10)
 			if(!ishuman(target))

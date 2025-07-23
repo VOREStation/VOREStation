@@ -31,7 +31,9 @@
 			playsound(src, death_sound_override, 50, 1, 20, volume_channel = VOLUME_CHANNEL_DEATH_SOUNDS)
 		else
 			if(!ishuman(src)) // Safety, we're not going to double up on death noises if we're not human.
-				playsound(src, pick(get_species_sound(get_gendered_sound(src))["death"]), 50, 1, 20, volume_channel = VOLUME_CHANNEL_DEATH_SOUNDS)
+				var/sound_to_play = pick(get_species_sound(get_gendered_sound(src))["death"])
+				if(sound_to_play) // Lets make sure that there is actually a death sound for this species. Otherwise, ignore
+					playsound(src, sound_to_play, 50, 1, 20, volume_channel = VOLUME_CHANNEL_DEATH_SOUNDS)
 
 	. = ..()
 

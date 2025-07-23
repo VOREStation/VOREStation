@@ -123,17 +123,17 @@
 			send_sound = 'sound/machines/door/old_airlock.ogg'
 		if(2)
 			if(prob(50))
-				send_sound = 'sound/effects/Explosion1.ogg'
+				send_sound = 'sound/effects/explosion/explosion1.ogg'
 			else
-				send_sound = 'sound/effects/Explosion2.ogg'
+				send_sound = 'sound/effects/explosion/explosion2.ogg'
 		if(3)
-			send_sound = 'sound/effects/explosionfar.ogg'
+			send_sound = 'sound/effects/explosion/explosionfar.ogg'
 		if(4)
-			send_sound = 'sound/effects/Glassbr1.ogg'
+			send_sound = 'sound/effects/glass/glassbr1.ogg'
 		if(5)
-			send_sound = 'sound/effects/Glassbr2.ogg'
+			send_sound = 'sound/effects/glass/glassbr2.ogg'
 		if(6)
-			send_sound = 'sound/effects/Glassbr3.ogg'
+			send_sound = 'sound/effects/glass/glassbr3.ogg'
 		if(7)
 			send_sound = 'sound/machines/twobeep.ogg'
 		if(8)

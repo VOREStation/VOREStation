@@ -120,7 +120,7 @@
 			concurrent_users += user_ref
 		// Turn on the console
 		if(length(concurrent_users) == 1 && is_living)
-			playsound(tgui_host(), 'sound/machines/terminal_on.ogg', 25, FALSE)
+			playsound(tgui_host(), 'sound/machines/terminal/terminal_on.ogg', 25, FALSE)
 		// Open UI
 		ui = new(user, src, tgui_id, name)
 		ui.open()
@@ -157,7 +157,7 @@
 		return TRUE
 
 	if(action && !issilicon(ui.user))
-		playsound(tgui_host(), "terminal_type", 50, 1)
+		playsound(tgui_host(), SFX_TERMINAL_TYPE, 50, 1)
 
 	if(action == "switch_camera")
 		var/c_tag = params["name"]
@@ -169,7 +169,7 @@
 			active_camera = C
 			active_camera.AddComponent(/datum/component/recursive_move)
 			RegisterSignal(active_camera, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
-		playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
+		playsound(tgui_host(), SFX_TERMINAL_TYPE, 25, FALSE)
 		update_active_camera_screen()
 		return TRUE
 
@@ -197,7 +197,7 @@
 				active_camera = target
 				active_camera.AddComponent(/datum/component/recursive_move)
 				RegisterSignal(active_camera, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
-				playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
+				playsound(tgui_host(), SFX_TERMINAL_TYPE, 25, FALSE)
 				update_active_camera_screen()
 				. = TRUE
 
@@ -293,7 +293,7 @@
 			UnregisterSignal(active_camera, COMSIG_OBSERVER_MOVED)
 		active_camera = null
 		last_camera_turf = null
-		playsound(tgui_host(), 'sound/machines/terminal_off.ogg', 25, FALSE)
+		playsound(tgui_host(), 'sound/machines/terminal/terminal_off.ogg', 25, FALSE)
 
 // NTOS Version
 // Please note, this isn't a very good replacement for converting modular computers 100% to TGUI

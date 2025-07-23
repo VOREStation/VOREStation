@@ -10,6 +10,11 @@
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 	ear_protection = 2
 
+/obj/item/clothing/ears/earmuffs/debug
+	name = "debug earmuffs"
+	desc = "Wearing these sends a chat message for every sound played. Walking to ignore footsteps is highly recommended."
+	clothing_traits = list(TRAIT_SOUND_DEBUGGED)
+
 /obj/item/clothing/ears/earmuffs/headphones
 	name = "headphones"
 	desc = "Unce unce unce unce."

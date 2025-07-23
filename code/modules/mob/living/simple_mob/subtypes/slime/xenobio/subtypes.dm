@@ -411,7 +411,7 @@
 		var/mob/living/L = A
 		if(L.mob_size <= MOB_MEDIUM)
 			visible_message(span_danger("\The [src] sends \the [L] flying with the impact!"))
-			playsound(src, "punch", 50, 1)
+			playsound(src, SFX_PUNCH, 50, 1)
 			L.Weaken(1)
 			var/throwdir = get_dir(src, L)
 			L.throw_at(get_edge_target_turf(L, throwdir), 3, 1, src)

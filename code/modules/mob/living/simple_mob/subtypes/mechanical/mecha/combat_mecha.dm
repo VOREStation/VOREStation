@@ -29,7 +29,7 @@
 		var/mob/living/L = A
 		if(L.mob_size <= MOB_MEDIUM)
 			visible_message(span_danger("\The [src] sends \the [L] flying with their mechanized fist!"))
-			playsound(src, "punch", 50, 1)
+			playsound(src, SFX_PUNCH, 50, 1)
 			L.Weaken(weaken_amount)
 			var/throw_dir = get_dir(src, L)
 			var/throw_dist = L.incapacitated(INCAPACITATION_DISABLED) ? 4 : 1

@@ -60,7 +60,7 @@
 	if(power_usage)
 		if(cell.use(power_usage) != power_usage) // we weren't able to use our full power_usage amount!
 			visible_message(span_warning("\The [src] flickers before going dull."))
-			playsound(src, 'sound/effects/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket. //VOREStation Edit
+			playsound(src, 'sound/effects/sparks/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket. //VOREStation Edit
 			on = 0
 			update_brightness()
 			return PROCESS_KILL

@@ -193,7 +193,7 @@
 		step_towards(src,M)
 
 	else if(prob(15))
-		M << sound(pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'))
+		M << sound(pick(get_sfx(SFX_PUNCH)))
 		M.show_message(span_bolddanger("\The [src] has punched \the [M]!"), 1)
 		M.halloss += 4
 

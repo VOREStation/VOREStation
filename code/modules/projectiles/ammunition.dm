@@ -174,11 +174,11 @@
 			to_chat(user, span_notice("[src] is already empty!"))
 			return
 		to_chat(user, span_notice("You empty [src]."))
-		playsound(src, "casing_sound", 50, 1)
+		playsound(src, SFX_CASING_SOUNDS, 50, 1)
 		spawn(7)
-			playsound(src, "casing_sound", 50, 1)
+			playsound(src, SFX_CASING_SOUNDS, 50, 1)
 		spawn(10)
-			playsound(src, "casing_sound", 50, 1)
+			playsound(src, SFX_CASING_SOUNDS, 50, 1)
 		for(var/obj/item/ammo_casing/C in stored_ammo)
 			C.loc = user.loc
 			C.set_dir(pick(GLOB.cardinal))

@@ -108,7 +108,7 @@
 				user.take_organ_damage(2*force)
 			return
 		if(..())
-			//playsound(src, "swing_hit", 50, 1, -1)
+			//playsound(src, SFX_SWING_HIT, 50, 1, -1)
 			return
 	else
 		return ..()

@@ -45,12 +45,12 @@
 
 /obj/mecha/combat/gorilla/mechstep(direction)
 	var/result = step(src,direction)
-	playsound(src,"mechstep",40,1)
+	playsound(src, SFX_MECHSTEP, 40, 1)
 	return result
 
 /obj/mecha/combat/gorilla/mechturn(direction)
 	dir = direction
-	playsound(src,"mechstep",40,1)
+	playsound(src, SFX_MECHSTEP, 40, 1)
 
 
 /obj/mecha/combat/gorilla/relaymove(mob/user,direction)

@@ -9,7 +9,6 @@
 	var/gen_level = 0
 	var/mode = 0
 	var/obj/structure/cable/attached
-	var/list/spark_sounds = list('sound/effects/sparks1.ogg','sound/effects/sparks2.ogg','sound/effects/sparks3.ogg','sound/effects/sparks4.ogg','sound/effects/sparks5.ogg','sound/effects/sparks6.ogg')
 	harvestable = 0
 
 /datum/artifact_effect/generator/New()
@@ -94,4 +93,4 @@
 						M.electrocute_act(gen_level*9, src)
 	else
 		if(prob(5))
-			playsound(holder, pick(spark_sounds), 75, 1)
+			playsound(holder, SFX_SPARKS, 75, 1)

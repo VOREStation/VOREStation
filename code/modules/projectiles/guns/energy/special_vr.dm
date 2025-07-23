@@ -62,9 +62,9 @@
 		spinning_up = FALSE
 
 /obj/item/projectile/beam/stun/weak/BFG
-	fire_sound = 'sound/effects/sparks6.ogg'
-	hitsound = 'sound/effects/sparks4.ogg'
-	hitsound_wall = 'sound/effects/sparks7.ogg'
+	fire_sound = 'sound/effects/sparks/sparks6.ogg'
+	hitsound = 'sound/effects/sparks/sparks4.ogg'
+	hitsound_wall = 'sound/effects/sparks/sparks7.ogg'
 
 /obj/item/projectile/bullet/BFGtaser
 	name = "lightning ball"

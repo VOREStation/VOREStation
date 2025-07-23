@@ -65,7 +65,7 @@
 				to_chat(L, span_danger("The ground lurches beneath you!"))
 				shake_camera(L, 6, 1)
 				if(!L.ear_deaf)
-					L << 'sound/effects/explosionfar.ogg'
+					L << 'sound/effects/explosion/explosionfar.ogg'
 	qdel(src)
 
 /obj/structure/meteorite
