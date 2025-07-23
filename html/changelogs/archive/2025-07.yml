@@ -195,3 +195,20 @@
   - bugfix: feline 3color taur fat vwag is fixed
   Willburd:
   - code_imp: Gamma loot global list moved to proper file
+2025-07-23:
+  Diana:
+  - bugfix: Emotes now can be used the first time someone emotes instead of *help
+      having to be used
+  - rscadd: Auto floortile placement if crowbarring floor tiles up with a floor tile
+      in your offhand
+  - bugfix: Changeling fleshmend gives you activation text now
+  - bugfix: Makes the resurrection artifact respect anomaly clothing.
+  - bugfix: Fixes a xenoarch exploit pertaining to item stacking.
+  - qol: Changeling lesserform informs you of its failstates
+  Diana, Asher:
+  - rscadd: Ninja syndicate borgs (Comes with a cloaking module and special esword)
+  - balance: Syndicate borgs now spawn with AI trackers
+  - qol: AI Tracker now tells you info about what the states mean if you're an antag
+  - code_imp: being hit now screams the information into the void
+  Kashargul:
+  - admin: refactors the banning panel as tgui interface
