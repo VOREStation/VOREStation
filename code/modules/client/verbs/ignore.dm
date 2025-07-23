@@ -31,7 +31,7 @@
 		to_chat(usr, span_warning("You aren't ignoring any players."))
 		return
 
-	var/key_to_unignore = tgui_input_list(usr, "Ignored players", "Unignore", ignored_players)
+	var/key_to_unignore = tgui_input_list(usr, "Ignored players", "Unignore", ignored_players, encode = FALSE)
 	if(!key_to_unignore)
 		return
 	key_to_unignore = ckey(sanitize(key_to_unignore))

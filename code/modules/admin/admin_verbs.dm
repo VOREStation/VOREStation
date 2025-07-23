@@ -327,7 +327,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
 	if(O)
-		var/message = sanitize(tgui_input_text(usr, "What do you want the message to be?", "Make Sound"))
+		var/message = sanitize(tgui_input_text(usr, "What do you want the message to be?", "Make Sound"), encode = FALSE)
 		if(!message)
 			return
 		O.audible_message(message)

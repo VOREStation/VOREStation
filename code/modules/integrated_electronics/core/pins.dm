@@ -155,7 +155,7 @@ list[](
 	switch(type_to_use)
 		if("string")
 			new_data = tgui_input_text(user, "Now type in a string.","[src] string writing", istext(default) ? default : null, MAX_NAME_LEN)
-			new_data = sanitize(new_data,MAX_NAME_LEN)
+			new_data = sanitize(new_data,MAX_NAME_LEN, encode = FALSE)
 			if(istext(new_data) && holder.check_interactivity(user) )
 				to_chat(user, span_notice("You input [new_data] into the pin."))
 				return new_data

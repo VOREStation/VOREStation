@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
 			var/sec_name = tgui_input_text(ui.user, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
-			sec_name = sanitize(sec_name,MAX_NAME_LEN)
+			sec_name = sanitize(sec_name,MAX_NAME_LEN, encode = FALSE)
 			if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 				return FALSE
 			if(!sec_name)

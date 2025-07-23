@@ -268,7 +268,7 @@
 
 /obj/item/disk/nifsoft/compliance/attack_self(mob/user)
 	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, multiline = TRUE, prevent_enter = TRUE)
-	newlaws = sanitize(newlaws,2048)
+	newlaws = sanitize(newlaws,2048, encode = FALSE)
 	if(newlaws)
 		to_chat(user,span_filter_notice("You set the laws to: <br>" + span_notice("[newlaws]")))
 		laws = newlaws

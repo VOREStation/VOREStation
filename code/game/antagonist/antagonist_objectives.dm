@@ -46,7 +46,7 @@
 	round for everybody else.", "Ambitions", mind.ambitions, multiline = TRUE)
 	if(isnull(new_ambitions))
 		return
-	new_ambitions = sanitize(new_ambitions)
+	new_ambitions = sanitize(new_ambitions, encode = FALSE)
 	mind.ambitions = new_ambitions
 	if(new_ambitions)
 		to_chat(src, span_notice("You've set your goal to be '[new_ambitions]'."))

@@ -29,11 +29,11 @@
 
 	if(choice == "Add new identity")
 		var/newRef = sanitize(tgui_input_text(usr, "Input unique reference. Duplicates are FORBIDDEN!. Players can't see this.\
-		Used to uniquely identify conversations in PDAs", null))
+		Used to uniquely identify conversations in PDAs", null), encode = FALSE)
 		if(!newRef) return
 		FPC.fakeRefs.Add(newRef)
-		FPC.names[newRef] = sanitize(tgui_input_text(usr, "Input fake name",newRef))
-		FPC.fakeJobs[newRef] = sanitize(tgui_input_text(usr, "Input fake assignment.",newRef))
+		FPC.names[newRef] = sanitize(tgui_input_text(usr, "Input fake name",newRef), encode = FALSE)
+		FPC.fakeJobs[newRef] = sanitize(tgui_input_text(usr, "Input fake assignment.",newRef), encode = FALSE)
 		to_chat(usr, span_notice("You have created [newRef]. Current name: [FPC.names[newRef]]. Current assignment: [FPC.fakeJobs[newRef]]"))
 		return
 
@@ -42,10 +42,10 @@
 		to_chat(usr, span_notice("You are editing [ref]. Current name: [FPC.names[ref]]. Current assignment: [FPC.fakeJobs[ref]]"))
 		var/editChoice = tgui_alert(usr, "What do you wish to edit?", "Details", list("Name", "Job", "Cancel"))
 		if(editChoice == "Name")
-			FPC.names[ref] = sanitize(tgui_input_text(usr, "Input fake name", FPC.names[ref]))
+			FPC.names[ref] = sanitize(tgui_input_text(usr, "Input fake name", FPC.names[ref]), encode = FALSE)
 			to_chat(usr, span_notice("Current data for [ref] are : Current name: [FPC.names[ref]]. Current assignment: [FPC.fakeJobs[ref]]"))
 		if(editChoice == "Job")
-			FPC.fakeJobs[ref] = sanitize(tgui_input_text(usr, "Input fake name", FPC.fakeJobs[ref]))
+			FPC.fakeJobs[ref] = sanitize(tgui_input_text(usr, "Input fake name", FPC.fakeJobs[ref]), encode = FALSE)
 			to_chat(usr, span_notice("Current data for [ref] are : Current name: [FPC.names[ref]]. Current assignment: [FPC.fakeJobs[ref]]"))
 		return
 	if(choice == "Delete existing identity")
@@ -86,7 +86,7 @@ Invoked by vv topic "fakepdapropconvo" in code\modules\admin\view_variables\topi
 		while(safetyLimit < 30)
 			safetyLimit += 1
 			var/message = sanitize(tgui_input_text(M, "Input fake message. Leave empty to cancel. Can create up to 30 messages in a row",null),
-			MAX_MESSAGE_LEN)
+			MAX_MESSAGE_LEN, encode = FALSE)
 			if(!message) return
 			var/input = tgui_alert(M, "Received or Sent?", "Direction", list("Received", "Sent"))
 			if(!input)

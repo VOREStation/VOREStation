@@ -129,7 +129,7 @@
 
 		if("network")
 			var/newnet = tgui_input_text(ui.user, "Which network do you want to view?", "Comm Monitor", network, 15)
-			newnet = sanitize(newnet,15)
+			newnet = sanitize(newnet,15, encode = FALSE)
 
 			if(newnet && ((ui.user in range(1, src)) || issilicon(ui.user)))
 				if(length(newnet) > 15)

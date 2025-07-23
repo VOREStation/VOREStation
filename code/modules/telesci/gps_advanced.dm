@@ -53,7 +53,7 @@
 	..()
 	if(href_list["advtag"] )
 		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag)
-		a = uppertext(copytext(sanitize(a), 1, 5))
+		a = uppertext(copytext(sanitize(a, encode = FALSE), 1, 5))
 		if(src.loc == usr)
 			gps_tag = a
 			name = "global positioning system ([gps_tag])"

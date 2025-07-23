@@ -295,7 +295,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 		O.forceMove(src)
 		scan = O
 	else if(O.has_tool_quality(TOOL_MULTITOOL) && panel_open)
-		var/input = sanitize(tgui_input_text(user, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department))
+		var/input = sanitize(tgui_input_text(user, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department), encode = FALSE)
 		if(!input)
 			to_chat(user, "No input found. Please hang up and try your call again.")
 			return

@@ -201,7 +201,7 @@
 			pref.directory_erptag = new_erptag
 			return TOPIC_REFRESH
 		if("directory_ad")
-			var/msg = sanitize(tgui_input_text(user,"Write your advertisement here!", "Flavor Text", html_decode(pref.directory_ad), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
+			var/msg = sanitize(tgui_input_text(user,"Write your advertisement here!", "Flavor Text", html_decode(pref.directory_ad), multiline = TRUE, prevent_enter = TRUE), extra = 0, encode = FALSE)	//VOREStation Edit: separating out OOC notes
 			if(!msg)
 				return
 			pref.directory_ad = msg
@@ -221,7 +221,7 @@
 			pref.borg_petting = pref.borg_petting ? 0 : 1;
 			return TOPIC_REFRESH
 		if("edit_private_notes")
-			var/new_metadata = sanitize(tgui_input_text(user,"Write some notes for yourself. These can be anything that is useful, whether it's character events that you want to remember or a bit of lore. Things that you would normally stick in a txt file for yourself!", "Private Notes", html_decode(pref.read_preference(/datum/preference/text/living/private_notes)), multiline = TRUE, prevent_enter = TRUE), extra = 0)
+			var/new_metadata = sanitize(tgui_input_text(user,"Write some notes for yourself. These can be anything that is useful, whether it's character events that you want to remember or a bit of lore. Things that you would normally stick in a txt file for yourself!", "Private Notes", html_decode(pref.read_preference(/datum/preference/text/living/private_notes)), multiline = TRUE, prevent_enter = TRUE), extra = 0, encode = FALSE)
 			if(new_metadata)
 				pref.update_preference_by_type(/datum/preference/text/living/private_notes, new_metadata)
 			return TOPIC_REFRESH
@@ -247,29 +247,29 @@
 				pref.vantag_preference = names_list[selection]
 			return TOPIC_REFRESH
 		if("custom_say")
-			var/say_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'says': [pref.real_name] says, \"Hi.\"", "Custom Say", pref.custom_say, 12), 12)
+			var/say_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'says': [pref.real_name] says, \"Hi.\"", "Custom Say", pref.custom_say, 12), 12, encode = FALSE)
 			if(say_choice)
 				pref.custom_say = say_choice
 			return TOPIC_REFRESH
 		if("custom_whisper")
-			var/whisper_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'whispers': [pref.real_name] whispers, \"Hi...\"", "Custom Whisper", pref.custom_whisper, 12), 12)
+			var/whisper_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'whispers': [pref.real_name] whispers, \"Hi...\"", "Custom Whisper", pref.custom_whisper, 12), 12, encode = FALSE)
 			if(whisper_choice)
 				pref.custom_whisper = whisper_choice
 			return TOPIC_REFRESH
 		if("custom_ask")
-			var/ask_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'asks': [pref.real_name] asks, \"Hi?\"", "Custom Ask", pref.custom_ask, 12), 12)
+			var/ask_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'asks': [pref.real_name] asks, \"Hi?\"", "Custom Ask", pref.custom_ask, 12), 12, encode = FALSE)
 			if(ask_choice)
 				pref.custom_ask = ask_choice
 			return TOPIC_REFRESH
 		if("custom_exclaim")
-			var/exclaim_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [pref.real_name] exclaims, \"Hi!\"", "Custom Exclaim", pref.custom_exclaim, 12), 12)
+			var/exclaim_choice = sanitize(tgui_input_text(user, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [pref.real_name] exclaims, \"Hi!\"", "Custom Exclaim", pref.custom_exclaim, 12), 12, encode = FALSE)
 			if(exclaim_choice)
 				pref.custom_exclaim = exclaim_choice
 			return TOPIC_REFRESH
 		if("custom_heat")
 			tgui_alert(user, "You are setting custom heat messages. These will overwrite your species' defaults. To return to defaults, click reset.")
 			var/old_message = pref.custom_heat.Join("\n\n")
-			var/new_message = sanitize(tgui_input_text(user,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Heat Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+			var/new_message = sanitize(tgui_input_text(user,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Heat Discomfort messages",old_message, multiline= TRUE, encode = FALSE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
 			if(length(new_message) > 0)
 				var/list/raw_list = splittext(new_message,"\n\n")
 				if(raw_list.len > 10)
@@ -285,7 +285,7 @@
 		if("custom_cold")
 			tgui_alert(user, "You are setting custom cold messages. These will overwrite your species' defaults. To return to defaults, click reset.")
 			var/old_message = pref.custom_heat.Join("\n\n")
-			var/new_message = sanitize(tgui_input_text(user,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Cold Discomfort messages",old_message, multiline= TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
+			var/new_message = sanitize(tgui_input_text(user,"Use double enter between messages to enter a new one. Must be at least 3 characters long, 160 characters max and up to 10 messages are allowed.","Cold Discomfort messages",old_message, multiline= TRUE, encode = FALSE, prevent_enter = TRUE), MAX_MESSAGE_LEN,0,0,0)
 			if(length(new_message) > 0)
 				var/list/raw_list = splittext(new_message,"\n\n")
 				if(raw_list.len > 10)
@@ -330,6 +330,6 @@
 			return TOPIC_REFRESH
 		if("custom_species")
 			var/raw_choice = sanitize(tgui_input_text(user, "Input your custom species name:",
-				"Character Preference", pref.custom_species, MAX_NAME_LEN), MAX_NAME_LEN)
+				"Character Preference", pref.custom_species, MAX_NAME_LEN), MAX_NAME_LEN, encode = FALSE)
 			pref.custom_species = raw_choice
 			return TOPIC_REFRESH

@@ -45,7 +45,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(add_mob_for_narration, R_FUN, "Narrate Entity (Add r
 			log_and_message_admins("has added [L.ckey]'s mob to their entity narrate list", user)
 			return
 		var/unique_name = sanitize(tgui_input_text(user, "Please give the entity a unique name to track internally. \
-		This doesn't override how it appears in game", "tracker", L.name))
+		This doesn't override how it appears in game", "tracker", L.name), encode = FALSE)
 		if(unique_name in holder.entity_names)
 			to_chat(user, span_notice("[unique_name] is not unique! Pick another!"))
 			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/add_mob_for_narration, L) //Recursively calling ourselves until cancelled or a unique name is given.
@@ -58,7 +58,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(add_mob_for_narration, R_FUN, "Narrate Entity (Add r
 	else if(istype(E, /atom))
 		var/atom/A = E
 		var/unique_name = sanitize(tgui_input_text(user, "Please give the entity a unique name to track internally. \
-		This doesn't override how it appears in game", "tracker", A.name))
+		This doesn't override how it appears in game", "tracker", A.name), encode = FALSE)
 		if(unique_name in holder.entity_names)
 			to_chat(user, span_notice("[unique_name] is not unique! Pick another!"))
 			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/add_mob_for_narration, A)
@@ -148,7 +148,7 @@ ADMIN_VERB(narrate_mob_args, R_FUN, "Narrate Entity", "Narrate entities using po
 		if(our_entity.client) //Making sure we can't speak for players
 			log_and_message_admins("used entity-narrate to speak through [our_entity.ckey]'s mob", user)
 		if(!message)
-			message = tgui_input_text(user, "Input what you want [our_entity] to [mode]", "narrate", null) //say/emote sanitize already
+			message = tgui_input_text(user, "Input what you want [our_entity] to [mode]", "narrate", null, encode = FALSE) //say/emote sanitize already
 		if(message && mode == "Speak")
 			our_entity.say(message)
 		else if(message && mode == "Emote")

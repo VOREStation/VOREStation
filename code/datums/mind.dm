@@ -193,7 +193,7 @@
 		assigned_role = new_role
 
 	else if (href_list["memory_edit"])
-		var/new_memo = sanitize(tgui_input_text(usr, "Write new memory", "Memory", memory, multiline = TRUE, prevent_enter = TRUE))
+		var/new_memo = sanitize(tgui_input_text(usr, "Write new memory", "Memory", memory, multiline = TRUE, prevent_enter = TRUE), encode = FALSE)
 		if (isnull(new_memo)) return
 		memory = new_memo
 
@@ -205,7 +205,7 @@
 		if(isnull(new_ambition))
 			return
 		if(mind)
-			mind.ambitions = sanitize(new_ambition)
+			mind.ambitions = sanitize(new_ambition, encode = FALSE)
 			to_chat(mind.current, span_warning("Your ambitions have been changed by higher powers, they are now: [mind.ambitions]"))
 		log_and_message_admins("made [key_name(mind.current)]'s ambitions be '[mind.ambitions]'.")
 
@@ -320,7 +320,7 @@
 				new_objective.target_amount = target_number
 
 			if ("custom")
-				var/expl = sanitize(tgui_input_text(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : ""))
+				var/expl = sanitize(tgui_input_text(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : "", encode = FALSE))
 				if (!expl) return
 				new_objective = new /datum/objective
 				new_objective.owner = src

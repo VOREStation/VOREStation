@@ -2,7 +2,7 @@
 	set category = "IC.Game"
 	set name = "Pray"
 
-	var/raw_msg = sanitize(tgui_input_text(src, "Prayers are sent to staff but do not open tickets or go to Discord. If you have a technical difficulty or an event/spice idea/hook - please ahelp instead. Thank you!", "Pray", null, MAX_MESSAGE_LEN))
+	var/raw_msg = sanitize(tgui_input_text(src, "Prayers are sent to staff but do not open tickets or go to Discord. If you have a technical difficulty or an event/spice idea/hook - please ahelp instead. Thank you!", "Pray", null, MAX_MESSAGE_LEN), encode = FALSE)
 	if(!raw_msg)	return
 
 	if(src.client)

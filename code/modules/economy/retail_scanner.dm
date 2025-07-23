@@ -118,7 +118,7 @@
 				else
 					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account not found."))
 			if("custom_order")
-				var/t_purpose = sanitize(tgui_input_text(usr, "Enter purpose", "New purpose"))
+				var/t_purpose = sanitize(tgui_input_text(usr, "Enter purpose", "New purpose"), encode = FALSE)
 				if (!t_purpose || !Adjacent(usr)) return
 				transaction_purpose = t_purpose
 				item_list += t_purpose

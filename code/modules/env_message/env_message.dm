@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(env_messages)
 	if(!istype(src) || !get_turf(src) || !src.ckey)
 		return
 
-	var/new_message = sanitize(tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now. If you already have a message somewhere, it will be removed in the process. Please refrain from abusive or deceptive messages, but otherwise, feel free to be creative!", "Env Message"))
+	var/new_message = sanitize(tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now. If you already have a message somewhere, it will be removed in the process. Please refrain from abusive or deceptive messages, but otherwise, feel free to be creative!", "Env Message"), encode = FALSE)
 
 	if(!new_message)
 		return
@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(env_messages)
 	if(!get_turf(mob) || !src.ckey)
 		return
 
-	var/new_message = sanitize(tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now.", "Env Message"))
+	var/new_message = sanitize(tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now.", "Env Message"), encode = FALSE)
 
 	if(!new_message)
 		return

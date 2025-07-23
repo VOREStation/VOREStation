@@ -376,7 +376,7 @@
 	var/area/A = get_area(usr)
 	var/prevname = "[A.name]"
 	var/str = tgui_input_text(usr, "New area name", "Area Creation", max_length = MAX_NAME_LEN)
-	str = sanitize(str,MAX_NAME_LEN)
+	str = sanitize(str,MAX_NAME_LEN, encode = FALSE)
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
@@ -499,7 +499,7 @@
 	var/area/oldA = get_area(get_turf(creator))
 	if(!isarea(area_choice))
 		var/str = tgui_input_text(creator, "New area name", "Blueprint Editing", max_length = MAX_NAME_LEN)
-		str = sanitize(str,MAX_NAME_LEN)
+		str = sanitize(str,MAX_NAME_LEN, encode = FALSE)
 		if(!str || !length(str)) //cancel
 			return
 		if(length(str) > 50)
@@ -612,7 +612,7 @@
 			to_chat(creator, span_warning("Making a new area here would be meaningless. Renaming it would be a better option."))
 			return
 		str = tgui_input_text(creator, "New area name", "Blueprint Editing", max_length = MAX_NAME_LEN)
-		str = sanitize(str,MAX_NAME_LEN)
+		str = sanitize(str,MAX_NAME_LEN, encode = FALSE)
 		if(!str || !length(str)) //cancel
 			return
 		if(length(str) > 50)

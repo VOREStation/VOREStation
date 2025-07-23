@@ -105,7 +105,7 @@
 		return
 
 	if(!message)
-		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher", multiline=TRUE)
+		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", multiline=TRUE, encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		gem.use_speech(sane_message, src)
@@ -136,7 +136,7 @@
 		return
 
 	if(!message)
-		message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher", multiline=TRUE)
+		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", multiline=TRUE, encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		gem.use_emote(sane_message, src)
@@ -197,7 +197,7 @@
 	set desc = "Speak to your Soulcatcher (circumventing SR speaking)."
 	set category = "Soulcatcher"
 
-	var/message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher", multiline=TRUE)
+	var/message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", multiline=TRUE, encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		gem.use_speech(sane_message, src)
@@ -207,7 +207,7 @@
 	set desc = "Emote to your Soulcatcher (circumventing SR speaking)."
 	set category = "Soulcatcher"
 
-	var/message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher", multiline=TRUE)
+	var/message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", multiline=TRUE, encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		gem.use_emote(sane_message, src)

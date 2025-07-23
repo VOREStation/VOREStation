@@ -186,7 +186,7 @@
 	switch(param)
 		if("reason")
 			if(!value)
-				value = sanitize(tgui_input_text(usr, "Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null))
+				value = sanitize(tgui_input_text(usr, "Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null), encode = FALSE)
 				value = sql_sanitize_text(value)
 				if(!value)
 					to_chat(usr, "Cancelled")

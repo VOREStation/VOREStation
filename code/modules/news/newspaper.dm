@@ -135,7 +135,7 @@
 		if(scribble_page == curr_page)
 			to_chat(user, span_blue("There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?"))
 		else
-			var/s = sanitize(tgui_input_text(user, "Write something", "Newspaper", ""))
+			var/s = sanitize(tgui_input_text(user, "Write something", "Newspaper", ""), encode = FALSE)
 			s = sanitize(s)
 			if(!s)
 				return

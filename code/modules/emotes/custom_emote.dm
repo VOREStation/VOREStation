@@ -8,7 +8,7 @@
 
 	var/input
 	if(!message)
-		input = sanitize(tgui_input_text(src,"Choose an emote to display."))
+		input = sanitize(tgui_input_text(src,"Choose an emote to display."), encode = FALSE)
 	else
 		input = message
 	process_normal_emote(m_type, message, input, range)

@@ -624,7 +624,7 @@ var/list/sacrificed = list()
 	else
 		usr.whisper("O bidai nabora se[pick("'","`")]sma!")
 
-	input = sanitize(input)
+	input = sanitize(input, encode = FALSE)
 	log_and_message_admins("used a communicate rune to say '[input]'")
 	for(var/datum/mind/H in cult.current_antagonists)
 		if (H.current)

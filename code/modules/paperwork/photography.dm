@@ -46,7 +46,7 @@ GLOBAL_VAR_INIT(photo_count, 0)
 
 /obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/pen))
-		var/txt = sanitize(tgui_input_text(user, "What would you like to write on the back?", "Photo Writing", null, 128), 128)
+		var/txt = sanitize(tgui_input_text(user, "What would you like to write on the back?", "Photo Writing", null, 128), 128, encode = FALSE)
 		if(loc == user && user.stat == 0)
 			scribble = txt
 	..()

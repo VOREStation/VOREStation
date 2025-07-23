@@ -75,7 +75,7 @@
 			to_chat(user, span_warning("Circuit controls are locked."))
 			return
 		var/existing_networks = jointext(network,",")
-		var/input = sanitize(tgui_input_text(user, "Which networks would you like to connect this camera console circuit to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
+		var/input = sanitize(tgui_input_text(user, "Which networks would you like to connect this camera console circuit to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks), encode = FALSE)
 		if(!input)
 			to_chat(user, "No input found please hang up and try your call again.")
 			return

@@ -99,7 +99,7 @@
 			use_custom_ai = !use_custom_ai
 			return TRUE
 		if("set_faction")
-			faction = sanitize(tgui_input_text(ui.user, "Please input your mobs' faction", "Faction", (faction ? faction : "neutral")))
+			faction = sanitize(tgui_input_text(ui.user, "Please input your mobs' faction", "Faction", (faction ? faction : "neutral")), encode = FALSE)
 			return TRUE
 		if("set_intent")
 			intent = tgui_input_list(ui.user, "Please select preferred intent", "Select Intent", list(I_HELP, I_HURT), (intent ? intent : I_HELP))

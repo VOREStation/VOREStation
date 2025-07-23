@@ -21,7 +21,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 	coordinates = "(X:[loc.x];Y:[loc.y];Z:[loc.z])"
 
 /obj/effect/landmark/event_trigger/proc/set_vars(mob/M)
-	var/new_name = sanitize(tgui_input_text(M, "Input Name for the trigger", "Naming", "Event Trigger"))
+	var/new_name = sanitize(tgui_input_text(M, "Input Name for the trigger", "Naming", "Event Trigger"), encode = FALSE)
 	if(!new_name)
 		return
 	name = new_name

@@ -36,7 +36,7 @@
 	if(mind)
 		mind.transfer_to(adult)
 		if (can_namepick_as_adult)
-			var/newname = sanitize(tgui_input_text(adult, "You have become an adult. Choose a name for yourself.", "Adult Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
+			var/newname = sanitize(tgui_input_text(adult, "You have become an adult. Choose a name for yourself.", "Adult Name", null, MAX_NAME_LEN), MAX_NAME_LEN, encode = FALSE)
 
 			if(!newname)
 				adult.fully_replace_character_name(name, "[src.adult_name] ([instance_num])")

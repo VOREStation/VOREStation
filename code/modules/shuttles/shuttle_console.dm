@@ -112,7 +112,7 @@
 
 		if("set_codes")
 			var/newcode = tgui_input_text(ui.user, "Input new docking codes", "Docking codes", shuttle.docking_codes, MAX_NAME_LEN)
-			newcode = sanitize(newcode,MAX_NAME_LEN)
+			newcode = sanitize(newcode,MAX_NAME_LEN, encode = FALSE)
 			if(newcode && !..())
 				shuttle.set_docking_codes(uppertext(newcode))
 			return TRUE

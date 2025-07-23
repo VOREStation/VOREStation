@@ -239,14 +239,14 @@ Book Cart End
 					src.name = newtitle
 					src.title = newtitle
 			if("Contents")
-				var/content = sanitize(tgui_input_text(user, "Write your book's contents (HTML NOT allowed):", max_length=MAX_BOOK_MESSAGE_LEN, multiline=TRUE), MAX_BOOK_MESSAGE_LEN)
+				var/content = sanitize(tgui_input_text(user, "Write your book's contents (HTML NOT allowed):", max_length=MAX_BOOK_MESSAGE_LEN, multiline=TRUE), MAX_BOOK_MESSAGE_LEN, encode = FALSE)
 				if(!content)
 					to_chat(user, "The content is invalid.")
 					return
 				else
 					src.dat += content
 			if("Author")
-				var/newauthor = sanitize(tgui_input_text(user, "Write the author's name:"))
+				var/newauthor = sanitize(tgui_input_text(user, "Write the author's name:"), encode = FALSE)
 				if(!newauthor)
 					to_chat(user, "The name is invalid.")
 					return

@@ -425,7 +425,7 @@
 		if(!raw)
 			return
 
-		var/t =  sanitize(raw, MAX_PAPER_MESSAGE_LEN, extra = 0)
+		var/t =  sanitize(raw, MAX_PAPER_MESSAGE_LEN, extra = 0, encode = FALSE)
 		if(!t)
 			return
 
