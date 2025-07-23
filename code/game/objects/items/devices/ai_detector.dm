@@ -12,6 +12,13 @@
 	var/range_warning = 14		// Will turn yellow if the AI's eye is near the holder.
 	var/detect_state = PROXIMITY_NONE
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_ILLEGAL = 2)
+	description_antag = "Functions as a normal multitool with one added benefit.<br>\
+	This will change colors and make sounds (that only you can hear) during various events.<br>\
+	BLUE: You are outside of camera range.<br>\
+	GREEN: You are inside of camera range.<br>\
+	RED: You are currently being watched by the AI.<br>\
+	FLASHING RED AND ORANGE: You are currently being TRACKED by the AI.<br>\
+	FLASHING ORANGE AND BLUE: The AI has attempted to track you but has failed to do so due to being outside camera range."
 
 /obj/item/multitool/ai_detector/Initialize(mapload)
 	. = ..()

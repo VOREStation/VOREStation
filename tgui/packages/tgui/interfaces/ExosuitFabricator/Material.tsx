@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
   Box,
@@ -11,7 +12,6 @@ import { formatMoney, formatSiUnit } from 'tgui-core/format';
 import { toFixed } from 'tgui-core/math';
 import { classes } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
-
 import { MATERIAL_KEYS } from './constants';
 import type { Data, material } from './types';
 
@@ -111,7 +111,7 @@ export const MaterialAmount = (props: {
   formatsi?: boolean;
   formatmoney?: boolean;
   color?: string;
-  style?: {};
+  style?: CSSProperties;
 }) => {
   const { name, amount, formatsi, formatmoney, color, style } = props;
 

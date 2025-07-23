@@ -964,6 +964,13 @@
 	if(!check_has_mouth())
 		return TRUE
 
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(CE_ANTACID in H.chem_effects)
+			if(prob(min(90, H.chem_effects[CE_ANTACID] * 15)))
+				VARSET_IN(src, lastpuke, FALSE, rand(30 SECONDS, 2 MINUTES))
+			return FALSE
+
 	if(nutrition < 100 && !blood)
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), span_userdanger("You try to throw up, but there's nothing in your stomach!"))

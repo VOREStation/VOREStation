@@ -1,0 +1,4 @@
+author: "TheCaramelion"
+delete-after: True
+changes:
+  - bugfix: "Fixed Calcium Carbonate not preventing vomiting"

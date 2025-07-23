@@ -270,10 +270,6 @@ type MouseTrackerProps = PropsWithChildren<{
 }>;
 
 export class MouseTracker extends Component<MouseTrackerProps> {
-  constructor(props: MouseTrackerProps) {
-    super(props);
-  }
-
   onMouseDown = (e) => {
     if (this.props.onMouseDown) {
       this.props.onMouseDown(e);

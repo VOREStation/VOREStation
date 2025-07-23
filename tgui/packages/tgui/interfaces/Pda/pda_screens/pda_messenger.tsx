@@ -41,14 +41,6 @@ type message = {
   target: string;
 };
 
-// Really cursed old API that was deprecated before IE8 but still works in IE11 because lol lmao
-type IeWindow = Window &
-  typeof globalThis & {
-    clipboardData: {
-      setData: (type: 'Text', text: string) => {};
-    };
-  };
-
 const CopyToClipboardButton = (props: { messages: message[] }) => {
   const [showCompletion, setShowCompletion] = useState(false);
 

@@ -1,15 +1,16 @@
 import { type KeyboardEvent, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Modal } from 'tgui-core/components';
 import {
   Box,
   Button,
   Dropdown,
   Image,
   Input,
+  Modal,
   Stack,
 } from 'tgui-core/components';
 
+// biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
 type Data = { modal: { id: string; args: {}; text: string; type: string } };
 const bodyOverrides = {};
 
@@ -39,11 +40,18 @@ export const modalOpen = (id, args = {}) => {
  */
 export const modalRegisterBodyOverride = (
   id: string,
-  bodyOverride: Function,
+  bodyOverride: (modal: {
+    id: string;
+    text: string;
+    // biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
+    args: {};
+    type: string;
+  }) => React.JSX.Element,
 ) => {
   bodyOverrides[id] = bodyOverride;
 };
 
+// biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
 const modalAnswer = (id: string, answer: string, args: {}) => {
   const { act, data } = useBackend<Data>();
 
