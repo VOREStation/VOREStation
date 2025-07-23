@@ -66,6 +66,8 @@
 
 // connect the machine to a powernet if a node cable is present on the turf
 /obj/machinery/power/proc/connect_to_network()
+	if(SSmachines.powernet_is_defered()) return 0;
+
 	var/turf/T = src.loc
 	if(!T || !istype(T))
 		return 0
@@ -79,6 +81,8 @@
 
 // remove and disconnect the machine from its current powernet
 /obj/machinery/power/proc/disconnect_from_network()
+	if(SSmachines.powernet_is_defered()) return 0;
+
 	if(!powernet)
 		return 0
 	powernet.remove_machine(src)
