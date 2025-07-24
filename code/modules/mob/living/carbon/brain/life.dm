@@ -76,12 +76,6 @@
 	if(ingested) ingested.metabolize()
 	if(bloodstr) bloodstr.metabolize()
 
-	// decrement dizziness counter, clamped to 0
-	if(resting)
-		make_dizzy(-5)
-	else
-		make_dizzy(-1)
-
 	updatehealth()
 
 	return //TODO: DEFERRED
