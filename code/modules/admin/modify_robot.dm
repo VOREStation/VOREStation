@@ -654,7 +654,7 @@
 	var/list/all_upgrades = list()
 	var/list/whitelisted_upgrades = list()
 	var/list/blacklisted_upgrades = list()
-	for(var/datum/design_techweb/prosfab/robot_upgrade/restricted/upgrade in SSresearch.techweb_designs)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/restricted/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/restricted))
 		if(!upgrade.name)
 			continue
 		if(!(initial(upgrade.build_path) in target.module.supported_upgrades))
@@ -664,14 +664,14 @@
 	all_upgrades["whitelisted_upgrades"] = whitelisted_upgrades
 	all_upgrades["blacklisted_upgrades"] = blacklisted_upgrades
 	var/list/utility_upgrades = list()
-	for(var/datum/design_techweb/prosfab/robot_upgrade/utility/upgrade in SSresearch.techweb_designs)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/utility/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/utility))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
 			utility_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
 	all_upgrades["utility_upgrades"] = utility_upgrades
 	var/list/basic_upgrades = list()
-	for(var/datum/design_techweb/prosfab/robot_upgrade/basic/upgrade in SSresearch.techweb_designs)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/basic/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/basic))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
@@ -680,7 +680,7 @@
 			basic_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
 	all_upgrades["basic_upgrades"] = basic_upgrades
 	var/list/advanced_upgrades = list()
-	for(var/datum/design_techweb/prosfab/robot_upgrade/advanced/upgrade in SSresearch.techweb_designs)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/advanced/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/advanced))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
@@ -689,7 +689,7 @@
 			advanced_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
 	all_upgrades["advanced_upgrades"] = advanced_upgrades
 	var/list/restricted_upgrades = list()
-	for(var/datum/design_techweb/prosfab/robot_upgrade/restricted/upgrade in SSresearch.techweb_designs)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/restricted/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/restricted))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
