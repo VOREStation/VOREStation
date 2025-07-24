@@ -597,8 +597,6 @@
 	if(!WR)
 		return
 	var/obj/item/wrapped = get_current_pocket()
-	if(!wrapped)
-		return
 	//Checks two things:
 	//Is our wrapped object currently in our borg still? If not, reset WR.
 	if(wrapped.loc != loc)
