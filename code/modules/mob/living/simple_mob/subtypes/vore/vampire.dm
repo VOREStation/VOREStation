@@ -54,11 +54,7 @@
 	emote_hear = list("laughs maniacally","croans","hisses")
 	emote_see = list("wafts about","licks their lips","flaps a bit")
 
-/mob/living/simple_mob/vore/vampire/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/vampire/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

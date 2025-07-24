@@ -53,11 +53,7 @@
 /datum/ai_holder/simple_mob/retaliate/jelly
 	speak_chance = 2
 
-/mob/living/simple_mob/vore/jelly/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/jelly/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

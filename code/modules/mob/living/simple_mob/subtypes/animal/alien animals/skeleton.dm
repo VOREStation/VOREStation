@@ -86,11 +86,7 @@
 	emote_see = list("spins its head around", "shuffles","shambles","practices on the xylophone","drinks some milk","looks at you. Its hollow, bottomless sockets gaze into you greedily.")
 	emote_hear = list("rattles","makes a spooky sound","cackles madly","plinks","clacks")
 
-/mob/living/simple_mob/vore/alienanimals/skeleton/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/alienanimals/skeleton/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

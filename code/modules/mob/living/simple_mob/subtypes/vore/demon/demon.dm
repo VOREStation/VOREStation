@@ -44,11 +44,7 @@
 	var/last_shift = 0
 	var/is_shifting = FALSE
 
-/mob/living/simple_mob/vore/demon/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/demon/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
