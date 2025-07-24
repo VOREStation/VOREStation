@@ -1,6 +1,6 @@
 /datum/component/turfslip
 	var/mob/living/owner
-	var/slip_dist = 0
+	var/slip_dist = TURFSLIP_LUBE * 0
 	var/dirtslip = FALSE
 
 /datum/component/turfslip/Initialize()
@@ -12,6 +12,7 @@
 /datum/component/turfslip/proc/start_slip(var/turf/simulated/start, var/is_dirt)
 	var/slip_stun = 6
 	var/floor_type = "wet"
+	var/already_slipping = (slip_dist > 0)
 
 	// Handle dirt slipping
 	dirtslip = is_dirt
@@ -35,14 +36,16 @@
 			slip_dist = rand(1,3)
 			dirtslip = FALSE
 
-	owner.slip("the [floor_type] floor", slip_stun)
-	addtimer(CALLBACK(src, PROC_REF(next_slip)), 1)
+	// Only start the slip timer if we are not already sliding
+	if(!already_slipping)
+		owner.slip("the [floor_type] floor", slip_stun)
+		addtimer(CALLBACK(src, PROC_REF(next_slip)), 1)
 
 /datum/component/turfslip/proc/move_react(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
 	// Can the mob slip?
-	if(QDELETED(owner) || !slip_dist || isbelly(owner.loc))
+	if(QDELETED(owner) || isbelly(owner.loc))
 		qdel(src)
 		return
 
@@ -59,7 +62,10 @@
 	if(!step(owner, owner.dir) || dirtslip) // done sliding, failed to move, dirt also only slips once
 		qdel(src)
 		return
-	slip_dist--
+	// Kill the slip if it's over
+	if(!--slip_dist)
+		qdel(src)
+		return
 
 /datum/component/turfslip/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
