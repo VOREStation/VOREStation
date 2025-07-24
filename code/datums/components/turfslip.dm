@@ -24,12 +24,12 @@
 
 	// Proper sliding behavior
 	switch(start.wet)
-		if(2) // Lube
+		if(TURFSLIP_LUBE)
 			floor_type = "slippery"
 			slip_dist = 4
 			slip_stun = 10
 			dirtslip = FALSE
-		if(3) // Ice
+		if(TURFSLIP_ICE)
 			floor_type = "icy"
 			slip_stun = 4
 			slip_dist = rand(1,3)
@@ -41,10 +41,12 @@
 /datum/component/turfslip/proc/move_react(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
+	// Can the mob slip?
 	if(QDELETED(owner) || !slip_dist || isbelly(owner.loc))
 		qdel(src)
 		return
 
+	// Can the turf be slipped on?
 	var/turf/simulated/ground = get_turf(owner)
 	if(!ground || !ground.check_slipping(owner,dirtslip))
 		qdel(src)
@@ -78,6 +80,6 @@
 		return FALSE
 	if(!wet && !(dirtslip && (dirt > 50 || is_outdoors() == OUTDOORS_YES)))
 		return FALSE
-	if(wet == 1 && M.m_intent == I_WALK)
+	if(wet == TURFSLIP_WET && M.m_intent == I_WALK)
 		return FALSE
 	return TRUE

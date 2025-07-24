@@ -1524,7 +1524,7 @@
 	for(var/turf/simulated/T in trange(5, get_turf(holder.my_atom)))
 		if(!istype(T))
 			continue
-		T.wet = 1
+		T.wet = TURFSLIP_WET
 		T.freeze_floor()
 	..()
 

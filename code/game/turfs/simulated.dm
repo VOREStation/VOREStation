@@ -1,6 +1,6 @@
 /turf/simulated
 	name = "station"
-	var/wet = 0
+	var/wet = TURFSLIP_DRY
 	var/image/wet_overlay = null
 
 	//Mining resources (for the large drills).
@@ -24,7 +24,7 @@
 
 // This is not great.
 /turf/simulated/proc/wet_floor(var/wet_val = 1)
-	if(wet > 2)	//Can't mop up ice
+	if(wet >= TURFSLIP_ICE)	//Can't mop up ice
 		return
 	wet = wet_val
 	if(wet_overlay)
@@ -34,13 +34,13 @@
 	if(wet_cleanup_timer)
 		deltimer(wet_cleanup_timer)
 		wet_cleanup_timer = null
-	if(wet == 2)
+	if(wet == TURFSLIP_LUBE)
 		wet_cleanup_timer = addtimer(CALLBACK(src, PROC_REF(wet_floor_finish)), 160 SECONDS, TIMER_STOPPABLE)
 	else
 		wet_cleanup_timer = addtimer(CALLBACK(src, PROC_REF(wet_floor_finish)), 40 SECONDS, TIMER_STOPPABLE)
 
 /turf/simulated/proc/wet_floor_finish()
-	wet = 0
+	wet = TURFSLIP_DRY
 	if(wet_cleanup_timer)
 		deltimer(wet_cleanup_timer)
 		wet_cleanup_timer = null
@@ -51,14 +51,14 @@
 /turf/simulated/proc/freeze_floor()
 	if(!wet) // Water is required for it to freeze.
 		return
-	wet = 3 // icy
+	wet = TURFSLIP_ICE
 	if(wet_overlay)
 		cut_overlay(wet_overlay)
 		wet_overlay = null
 	wet_overlay = image('icons/turf/overlays.dmi',src,"snowfloor")
 	add_overlay(wet_overlay)
 	spawn(5 MINUTES)
-		wet = 0
+		wet = TURFSLIP_DRY
 		if(wet_overlay)
 			cut_overlay(wet_overlay)
 			wet_overlay = null
