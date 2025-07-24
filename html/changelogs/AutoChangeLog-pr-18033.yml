@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a new GM tool that allows them to create custom medical issues on the fly for setting up medical based events."

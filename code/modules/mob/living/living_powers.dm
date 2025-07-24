@@ -41,7 +41,7 @@
 		to_chat(src,span_notice("You will no longer bite hands who pat or boop you."))
 	else
 		touch_reaction_flags |= SPECIES_TRAIT_PATTING_DEFENCE
-		to_chat(src,span_notice("You will now longer bite hands who pat or boop you."))
+		to_chat(src,span_notice("You will now bite hands who pat or boop you."))
 
 /mob/living/proc/toggle_personal_space()
 	set name = "Toggle Personal Space"

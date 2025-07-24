@@ -27,8 +27,7 @@
 	if you strip it off unsuspecting prey. You're stronger than other shadekin, faster, and more capable in \
 	a brawl, but you barely generate any of your own energy. You can stand in a dark spot to gather scraps \
 	of energy in a pinch, but otherwise need to take it, by force if necessary."
-
-/mob/living/simple_mob/shadekin/red
+	vore_active = TRUE
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 /mob/living/simple_mob/shadekin/red/white
@@ -77,6 +76,7 @@
 	it from others. Most of the time, anyway. You don't have a need to steal energy from others, and gather it up \
 	without doing so, albeit slowly. Dark and light are irrelevant to you, they are just different places to explore and \
 	discover new things and new people."
+	vore_active = TRUE
 
 /mob/living/simple_mob/shadekin/blue/
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
@@ -122,6 +122,7 @@
 	steal it from others when it suits you. You generate energy at a moderate pace in dark areas, and staying in well-lit \
 	areas is taxing on your energy. You can harvest energy from others in a fight, but since you don't need to, you may \
 	just choose to simply not fight."
+	vore_active = TRUE
 
 /mob/living/simple_mob/shadekin/purple
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
@@ -168,6 +169,7 @@
 	shadekin, but your fast energy generation in the dark allows you to phase shift more often."
 
 	nom_mob = TRUE
+	vore_active = TRUE
 
 /mob/living/simple_mob/shadekin/yellow
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
@@ -222,6 +224,7 @@
 	player_msg = "Your kind rarely ventures into realspace. Being in any well-lit area is very taxing on you, but you \
 	have more experience than your yellow-eyed cousins. You gain energy decently fast in any very dark area. You're weaker than other \
 	shadekin, but your slight energy generation constnatly, and especially in the dark allows for a good mix of uses."
+	vore_active = TRUE
 
 /mob/living/simple_mob/shadekin/green
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
@@ -262,6 +265,7 @@
 	player_msg = "You usually hunt for energy to fuel yourself, though not as often as your red-eyed cousins. \
 	You're stronger than most shadekin, faster, and more capable in a brawl, but you don't generate much of your own energy. \
 	You can stand in a dark spot to gather some energy, but otherwise need to take it, by force if necessary."
+	vore_active = TRUE
 
 /mob/living/simple_mob/shadekin/orange
 	ai_holder_type = /datum/ai_holder/simple_mob/melee

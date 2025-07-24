@@ -51,11 +51,7 @@
 /datum/say_list/spacewhale
 	emote_see = list("ripples and flows", "flashes rhythmically","glows faintly","investigates something")
 
-/mob/living/simple_mob/vore/overmap/spacewhale/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/overmap/spacewhale/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

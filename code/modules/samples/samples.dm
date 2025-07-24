@@ -1,6 +1,6 @@
 /obj/item/research_sample
 	name = "research sample"
-	desc = "A curious sample of unknown material. Destructive analysis might yield scientific advances. Alternatively, it may be possible to stabilize it to yield useful resources instead.<br/>" + span_warning("It looks dangerous to handle without heavy gloves or other protective equipment.")
+	desc = "A curious sample of unknown material. It may be possible to stabilize it to yield useful resources, or it could be shipped back to Central for research purposes.<br/>" + span_warning("It looks dangerous to handle without heavy gloves or other protective equipment.")
 	icon = 'icons/obj/samples.dmi'
 	icon_state = "sample"
 	w_class = ITEMSIZE_TINY
@@ -9,6 +9,7 @@
 	var/fixed_tech = null	//do we have a predetermined tech-group, per request? if so, overrides randomization for icon and name
 	var/rand_tech = null	//randomized tech-group from the list below
 	var/list/valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL,TECH_ARCANE,TECH_PRECURSOR)
+	var/supply_value = 5
 
 	persist_storable = FALSE //don't shove hazardous shinies into the item bank!! also their properties are (usually) randomized on creation, so saving them is pointless-- you won't get out what you put in
 
@@ -217,12 +218,14 @@
 	rand_level = 1
 	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/common)
+	supply_value = 15
 
 /obj/item/research_sample/uncommon
 	tech_level = 4 //4~6
 	rand_level = 2
 	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/uncommon)
+	supply_value = 35
 
 	handle_risk		= 50
 	min_damage		= 4
@@ -238,6 +241,7 @@
 	rand_level = 2
 	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL,TECH_ARCANE,TECH_PRECURSOR)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/rare)
+	supply_value = 75
 
 	handle_risk		= 80
 	min_damage		= 5
@@ -257,6 +261,7 @@
 	fixed_tech = TECH_BLUESPACE
 	var/lightcolor = "#0066CC"
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/bluespace)
+	supply_value = 100
 
 	handle_risk		= 80
 	min_damage		= 5
