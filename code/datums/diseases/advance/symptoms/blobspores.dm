@@ -67,7 +67,7 @@ BONUS
 
 			if(!M.get_jittery())
 				to_chat(M, span_notice("You feel a bit jittery."))
-				M.set_jittery(10)
+				M.AdjustJittery(100 + rand(12,16))
 
 		if(2)
 			if(ishuman(M))

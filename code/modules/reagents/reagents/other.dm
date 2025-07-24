@@ -196,8 +196,8 @@
 	M.SetStunned(0)
 	M.SetParalysis(0)
 	M.silent = 0
-	M.set_dizzy(0)
-	M.set_jittery(0)
+	M.clear_dizzy()
+	M.clear_jittery()
 	M.drowsyness = 0
 	M.stuttering = 0
 	M.SetConfused(0)

@@ -76,12 +76,8 @@ below 100 is not jittery
 	JC.jitteriness = max(min(1000, JC.jitteriness + amount),0)	// store what will be new value
 																// clamped to max 1000
 
-/mob/proc/set_jittery(var/value)
-	if(value <= 0)
-		qdel(GetComponent(/datum/component/jittery_shake))
-		return
-	var/datum/component/jittery_shake/JC = LoadComponent(/datum/component/jittery_shake);
-	JC.jitteriness = value
+/mob/proc/clear_jittery()
+	qdel(GetComponent(/datum/component/jittery_shake))
 
 /mob/proc/get_jittery()
 	var/datum/component/jittery_shake/JC = GetComponent(/datum/component/jittery_shake);

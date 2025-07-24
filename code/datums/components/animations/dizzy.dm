@@ -75,12 +75,8 @@ below 100 is not dizzy
 	DC.dizziness = max(min(1000, DC.dizziness + amount),0)	// store what will be new value
 															// clamped to max 1000
 
-/mob/proc/set_dizzy(var/value)
-	if(value <= 0)
-		qdel(GetComponent(/datum/component/dizzy_shake))
-		return
-	var/datum/component/dizzy_shake/DC = LoadComponent(/datum/component/dizzy_shake);
-	DC.dizziness = value
+/mob/proc/clear_dizzy()
+	qdel(GetComponent(/datum/component/dizzy_shake))
 
 /mob/proc/get_dizzy()
 	var/datum/component/dizzy_shake/DC = GetComponent(/datum/component/dizzy_shake);
