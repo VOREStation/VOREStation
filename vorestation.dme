@@ -527,7 +527,6 @@
 #include "code\datums\components\connect_mob_behalf.dm"
 #include "code\datums\components\holographic_nature.dm"
 #include "code\datums\components\infective.dm"
-#include "code\datums\components\material_container.dm"
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\overlay_lighting.dm"
 #include "code\datums\components\recursive_move.dm"
