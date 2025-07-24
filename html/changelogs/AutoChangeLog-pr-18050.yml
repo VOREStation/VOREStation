@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - bugfix: "Fixed an exploit that allowed dense objects to be pushed in front of the containment field when it was already active. It now instantly shuts off when a dense object crosses over it."
