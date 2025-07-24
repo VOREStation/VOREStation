@@ -200,7 +200,7 @@
 ///from base of atom/MouseDrop_T: do_after(mob/user, delay, atom/target, needhand, progress, incapacitation_flags, ignore_movement, max_distance, exclusive)
 #define COMSIG_DO_AFTER_BEGAN "do_after_began"
 ///from base of atom/MouseDrop_T: do_after(mob/user, delay, atom/target, needhand, progress, incapacitation_flags, ignore_movement, max_distance, exclusive)
-#define COMSIG_DO_AFTER_ENDED "do_after_began"
+#define COMSIG_DO_AFTER_ENDED "do_after_ended"
 
 // /area signals
 

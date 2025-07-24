@@ -594,8 +594,14 @@
 
 /obj/item/gripper/proc/end_using()
 	gripper_in_use = FALSE
+	if(!WR)
+		return
 	var/obj/item/wrapped = get_current_pocket()
-	if(wrapped && (!istype(wrapped.loc, /obj/item/storage/internal/gripper)))
+	if(!wrapped)
+		return
+	//Checks two things:
+	//Is our wrapped object currently in our borg still? If not, reset WR.
+	if(wrapped.loc != loc)
 		WR = null
 
 //This is the code that updates our pockets and decides if they should have icons or not.
@@ -639,10 +645,9 @@
 		current_pocket = pockets_by_name[choice]
 		if(!istype(current_pocket,/obj/item/storage/internal/gripper)) //The pocket we're selecting is NOT a gripper storage
 			if(!istype(current_pocket.loc, /obj/item/storage/internal/gripper)) //We kept the radial menu opened, used the item, then selected it again.
-				current_pocket = pick(pockets) //Just pick a random pocket.
-				WR = null
+				get_open_pocket(TRUE, TRUE) //Pick the next open pocket.
 			else
-				WR = current_pocket
+				WR = WEAKREF(current_pocket)
 		else
 			WR = null
 	else if(wrapped)
@@ -663,10 +668,9 @@
 		if(!wrapped)
 			get_open_pocket(TRUE)
 
-		//Object is not in our contents AND is not in the gripper storage still. AKA, it was moved into something or somewhere.
+		//Object is not in our contents AND is not in the gripper storage still. AKA, it was moved into something or somewhere. Either way, it's not ours anymore.
 		else if((wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper)))
-			WR = null
-			get_current_pocket()
+			get_open_pocket(TRUE, TRUE)
 
 		//We were not given a resolved, the object still exists, AND we hit something. Attack that thing with our wrapped item.
 		else if(!resolved && wrapped && O)
@@ -674,7 +678,7 @@
 			wrapped = get_current_pocket()
 			//The object still exists, but is not in our contents OR back in the gripper storage.
 			if((wrapped && wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper)))
-				get_open_pocket(TRUE)
+				get_open_pocket(TRUE, TRUE)
 		else //Nothing happened to it. Just put it back into our pocket.
 			wrapped.loc = current_pocket
 
@@ -682,8 +686,10 @@
 	return ..()
 
 ///Gets an open pocket in the gripper.
-///ARGS: set_pocket TRUE/FALSE. If set to TRUE, will set our current_pocket to the first open pocket it finds.
-/obj/item/gripper/proc/get_open_pocket(set_pocket = FALSE)
+///ARGS:
+///set_pocket TRUE/FALSE. If set to TRUE, will set our current_pocket to the first open pocket it finds.
+///clear_wrapped TRUE/FALSE. If set to TRUE, will set WR to null.
+/obj/item/gripper/proc/get_open_pocket(set_pocket = FALSE, clear_wrapped = FALSE)
 	var/pocket_to_select
 	for(var/obj/item/storage/internal/gripper/our_pocket in pockets)
 		if(LAZYLEN(our_pocket.contents))
@@ -692,6 +698,8 @@
 		break
 	if(set_pocket)
 		current_pocket = pocket_to_select
+	if(clear_wrapped)
+		WR = null
 	return pocket_to_select
 
 /obj/item/gripper/verb/drop_gripper_item()
@@ -722,6 +730,7 @@
 	generate_icons()
 	//update_icon()
 
+//FORCES the item onto the ground and resets the
 /obj/item/gripper/proc/drop_item_nm()
 	var/obj/item/wrapped = get_current_pocket()
 	if((wrapped == current_pocket && !istype(wrapped.loc, /obj/item/storage/internal/gripper))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
@@ -870,8 +879,10 @@
 				user.visible_message(span_danger("[user] removes the power cell from [A]!"), "You remove the power cell.")
 
 //HELPER PROCS
-///Use this to get what the current pocket is.
+///Use this to get what the current pocket is. Returns NULL if no
 /obj/item/gripper/proc/get_current_pocket() //done as a proc so snowflake code can be found later down the line and consolidated.
+	if(!WR)
+		return null
 	var/obj/item/wrapped = WR.resolve()
 	return wrapped
 
