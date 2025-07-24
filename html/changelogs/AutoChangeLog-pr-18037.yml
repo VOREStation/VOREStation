@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Emotes now can be used the first time someone emotes instead of *help having to be used"

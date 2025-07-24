@@ -5,8 +5,7 @@
 
 /mob/living/simple_mob/insidePanel() //On-demand belly loading.
 	if(vore_active && !voremob_loaded)
-		voremob_loaded = TRUE
-		init_vore()
+		init_vore(TRUE)
 	..()
 
 //
@@ -18,8 +17,7 @@
 	set desc = "Since you can't grab, you get a verb!"
 
 	if(vore_active && !voremob_loaded) // On-demand belly loading.
-		voremob_loaded = TRUE
-		init_vore()
+		init_vore(TRUE)
 
 	if(stat != CONSCIOUS)
 		return
@@ -35,8 +33,7 @@
 
 /mob/living/simple_mob/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	if(vore_active && !voremob_loaded && pred == src) //Only init your own bellies.
-		voremob_loaded = TRUE
-		init_vore()
+		init_vore(TRUE)
 		belly = vore_selected
 	return ..()
 

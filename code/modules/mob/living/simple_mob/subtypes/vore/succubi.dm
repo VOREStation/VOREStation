@@ -72,11 +72,7 @@ GLOBAL_LIST_INIT(succubus_safewords, list(
 	emote_hear = list("makes a kissing sound","giggles","lets out a needy whine")
 	emote_see = list("gestures for you to come over","winks","smiles","stretches")
 
-/mob/living/simple_mob/vore/succubus/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/succubus/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

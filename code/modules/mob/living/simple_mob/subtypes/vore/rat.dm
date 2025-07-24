@@ -72,29 +72,25 @@
 
 	allow_mind_transfer = TRUE
 
-/mob/living/simple_mob/vore/aggressive/rat/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/aggressive/rat/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "In a cruel game of cat-and-mouse gone horribly wrong, you struggle to breathe clearly as the giant rat holds your head in its jaws, the rest of its bulk pinning you to the ground. Slimy slurps and its own muffled squeaking fill your senses as it simultaneously tosses its head while backing up. Quickly, ravenously consuming you, bit by bit, packing you down its gullet no matter how you struggle. Passing by its excited heartbeat, your thoroughly slickened head pushes out into its awaiting stomach, a dark and humid hammock eager to accept the rest of you. Soon, those too-warm, plush walls clench and squeeze around you with undeniable need! A need for mere filling, or, perhaps, a proper meal?"
 
 	B.emote_lists[DM_HOLD] = list(
-		"As time passes, the massive rat’s stomach slowly churns and squeezes down around you, packing you into an easier to carry bundle amidst that oddly soothing massage.",
+		"As time passes, the massive rat's stomach slowly churns and squeezes down around you, packing you into an easier to carry bundle amidst that oddly soothing massage.",
 		"The giant rat ambles around, its well-fed, underhanging belly doing little to hide that someone is inside it, with every heavy footfall swaying you from one side to the other.",
 		"A soft, growl-like rumble mutedly filters into your heated, humid confines... before a paw squishes into the weighty lump you give the overgrown rat.",
-		"While somewhat cramped, the giant rat’s innards cling more to you like a hot, heavy blanket than anything else, lazily squeezing and relaxing to a casual, squelch-based rhythm.",
+		"While somewhat cramped, the giant rat's innards cling more to you like a hot, heavy blanket than anything else, lazily squeezing and relaxing to a casual, squelch-based rhythm.",
 		"For a while, most of your limited free space is squished away as the rat opts to rest atop its stuffed belly, a satisfied squeak drifting in here and there amidst the closer, more intimate massaging.",
-		"Every breath you take while trapped in the rat’s stomach is a deep one, having to contend with the hot, stuffy atmosphere within it. It only further compounds upon the relaxation creeping into your body, urging you to curl up, to accept this impromptu, greedy sanctuary.")
+		"Every breath you take while trapped in the rat's stomach is a deep one, having to contend with the hot, stuffy atmosphere within it. It only further compounds upon the relaxation creeping into your body, urging you to curl up, to accept this impromptu, greedy sanctuary.")
 
 	B.emote_lists[DM_DIGEST] = list(
-		"With each passing moment, the giant rat’s stomach forcefully churns and clenches down around you, massaging an ever-thicker layer of hot, ache-inducing ooze into your body!",
-		"The massive rat’s stomach visibly twitches and shivers as it ambles around, every footfall sloshing fresh stomach juices over you as the chamber noisily gurgles away!",
+		"With each passing moment, the giant rat's stomach forcefully churns and clenches down around you, massaging an ever-thicker layer of hot, ache-inducing ooze into your body!",
+		"The massive rat's stomach visibly twitches and shivers as it ambles around, every footfall sloshing fresh stomach juices over you as the chamber noisily gurgles away!",
 		"Everything suddenly turns onto its side, the rat sitting back atop its haunches to mash its forepaws into its belly... encouraging that its still-solid meal soften away!",
-		"The rat’s restless innards show no respect for your personal space, clinging tightly to your figure as that ample, slimy flesh grinds tingling slime into you!",
+		"The rat's restless innards show no respect for your personal space, clinging tightly to your figure as that ample, slimy flesh grinds tingling slime into you!",
 		"Your wiggle room disappears for a time as the giant rat flumps belly-first to the ground, vigorously squishing you under its bulk in hopes of weakening its meal more efficiently!",
 		"Every shallow breath taken is more unpleasant than the last, the lack of fresh air leaving you increasingly lightheaded. It only worsens the drained feeling permeating you, encouraging your worn, sore figure to give in entirely!")
 

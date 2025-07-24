@@ -72,8 +72,8 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
-	var/new_input = tgui_input_text(user, "Enter some words, please.","Number pad", get_pin_data(IC_OUTPUT, 1),MAX_NAME_LEN)
-	new_input = sanitize(new_input,MAX_NAME_LEN)
+	var/new_input = tgui_input_text(user, "Enter some words, please.","Number pad", get_pin_data(IC_OUTPUT, 1),MAX_NAME_LEN, encode=FALSE)
+	new_input = sanitize(new_input,MAX_KEYPAD_INPUT_LEN) // Slightly increase the size of the character limit.
 	if(istext(new_input) && CanInteract(user, GLOB.tgui_physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
@@ -179,7 +179,10 @@
 	relative coordinates, total amount of reagents, and maximum amount of reagents of the referenced object."
 	icon_state = "video_camera"
 	complexity = 6
-	inputs = list("target" = IC_PINTYPE_REF)
+	inputs = list(
+		"target" = IC_PINTYPE_REF,
+		"ignore dead" = IC_PINTYPE_BOOLEAN
+		)
 	outputs = list(
 		"name"	            	= IC_PINTYPE_STRING,
 		"description"       	= IC_PINTYPE_STRING,
@@ -188,6 +191,7 @@
 		"distance"			    = IC_PINTYPE_NUMBER,
 		"max reagents"			= IC_PINTYPE_NUMBER,
 		"amount of reagents"    = IC_PINTYPE_NUMBER,
+		"is living"          	= IC_PINTYPE_BOOLEAN
 	)
 	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT, "not scanned" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -199,10 +203,10 @@
 	var/turf/T = get_turf(src)
 	if(!istype(H)) //Invalid input
 		return
-
+	if(get_pin_data(IC_INPUT, 2) == TRUE) // Ignore mob, if ignore dead is enabled.
+		if(ismob(H) && H:stat == DEAD)
+			return
 	if(H in view(T)) // This is a camera. It can't examine thngs,that it can't see.
-
-
 		set_pin_data(IC_OUTPUT, 1, H.name)
 		set_pin_data(IC_OUTPUT, 2, H.desc)
 		set_pin_data(IC_OUTPUT, 3, H.x-T.x)
@@ -215,6 +219,7 @@
 			tr = H.reagents.total_volume
 		set_pin_data(IC_OUTPUT, 6, mr)
 		set_pin_data(IC_OUTPUT, 7, tr)
+		set_pin_data(IC_OUTPUT, 8, H:stat == DEAD ? FALSE : TRUE)
 		push_data()
 		activate_pin(2)
 	else
@@ -285,11 +290,15 @@
 	name = "advanced locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon. This type locates something \
 		that is standing in given radius of up to 7 meters"
-	extended_desc = "The first pin requires a ref to a kind of object that you want the locator to acquire. This means that it will \
+	extended_desc = "The first pin requires a reference, or string reference for a mob type. This means that it will \
 		give refs to nearby objects that are similar to given sample. If this pin is a string, the locator will search for\
-		item by matching desired text in name + description. If more than one valid object is found nearby, it will choose one of them at \
+		item by matches in name / description / mobtype. If more than one valid object is found nearby, it will choose one of them at \
 		random. The second pin is a radius."
-	inputs = list("desired type" = IC_PINTYPE_ANY, "radius" = IC_PINTYPE_NUMBER)
+	inputs = list(
+		"desired type" = IC_PINTYPE_ANY,
+		"radius" = IC_PINTYPE_NUMBER,
+		"ignore dead" = IC_PINTYPE_BOOLEAN
+		)
 	outputs = list("located ref")
 	activators = list("locate" = IC_PINTYPE_PULSE_IN,"found" = IC_PINTYPE_PULSE_OUT,"not found" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -315,14 +324,31 @@
 			var/desired_type = A.type
 			if(desired_type)
 				for(var/atom/thing in nearby_things)
+					var/atom/movable/M = thing
+					if(ismob(M) && M:stat == DEAD && get_pin_data(IC_INPUT, 3) == TRUE) // Ignore dead mobs if requested.
+						continue
 					if(thing.is_incorporeal())
 						continue
-					if(thing.type == desired_type)
+					if(istype(thing, desired_type))
 						valid_things.Add(thing)
 	else if(istext(I.data))
+		if (length(I.data) > 2) // Ensure string is not empty.
+			if (copytext(I.data, 1, 2) == "/")
+				var/desired_type = text2path(I.data)
+				for(var/atom/thing in nearby_things)
+					var/atom/movable/M = thing
+					if(ismob(M) && M:stat == DEAD && get_pin_data(IC_INPUT, 3) == TRUE) // Ignore dead mobs if requested.
+						continue
+					if(thing.is_incorporeal())
+						continue
+					if(istype(thing, desired_type))
+						valid_things.Add(thing)
 		var/DT = I.data
 		for(var/atom/thing in nearby_things)
 			if(thing.is_incorporeal())
+				continue
+			var/atom/movable/M = thing
+			if(ismob(M) && M == DEAD && get_pin_data(IC_INPUT, 3) == TRUE) // Ignore dead mobs if requested.
 				continue
 			if(findtext(addtext(thing.name," ",thing.desc), DT, 1, 0) )
 				valid_things.Add(thing)

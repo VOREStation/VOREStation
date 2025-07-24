@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscadd: "Auto floortile placement if crowbarring floor tiles up with a floor tile in your offhand"
-  - bugfix: "Changeling fleshmend gives you activation text now"
-  - bugfix: "Makes the resurrection artifact respect anomaly clothing."
-  - bugfix: "Fixes a xenoarch exploit pertaining to item stacking."
-  - qol: "Changeling lesserform informs you of its failstates"

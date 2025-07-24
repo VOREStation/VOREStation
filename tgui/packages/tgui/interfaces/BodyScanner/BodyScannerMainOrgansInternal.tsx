@@ -48,6 +48,7 @@ export const BodyScannerMainOrgansInternal = (props: {
                   !!o.germ_level && germStatus(o.germ_level),
                   !!o.inflamed && 'Appendicitis detected.',
                 ])}
+                {reduceOrganStatus(o.medical_issues_I)}
               </Box>
               <Box inline>
                 {reduceOrganStatus([
