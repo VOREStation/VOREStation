@@ -229,11 +229,7 @@
 	knockdown_chance = 50
 	ai_holder_type = /datum/ai_holder/simple_mob/vore
 
-/mob/living/simple_mob/animal/space/carp/large/huge/vorny/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/animal/space/carp/large/huge/vorny/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

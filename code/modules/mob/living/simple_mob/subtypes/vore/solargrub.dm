@@ -171,11 +171,7 @@ List of things solar grubs should be able to do:
 	else if(is_dead())
 		glow_override = FALSE
 
-/mob/living/simple_mob/vore/solargrub/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/solargrub/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "admin spawned simple mobs not getting their vore verbs if they weren't vore mobs"

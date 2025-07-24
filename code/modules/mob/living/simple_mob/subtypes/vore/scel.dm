@@ -94,11 +94,7 @@
 	add_verb(src, /mob/living/proc/target_lunge)
 	movement_cooldown = -1
 
-/mob/living/simple_mob/vore/scel/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/scel/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
