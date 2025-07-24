@@ -50,8 +50,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 
 	switch(action)
 		if("select_pod")
-			if(istype(observer))
-				jump_to_pod(ui.user, params["selected_pod"])
+			ghost_spawn("jump_to_pod", observer, params["selected_pod"])
 			. = TRUE
 		if("set_tab")
 			var/new_tab = text2num(params["val"])
@@ -59,40 +58,40 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 				active_tab = new_tab
 			. = TRUE
 		if("soulcatcher_spawn")
-			soulcatcher_spawn(ui.user, params["selected_player"])
-			close_ui()
+			if(ghost_spawn("soulcatcher_spawn", observer, params["selected_player"]))
+				close_ui()
 			. = TRUE
 		if("soulcatcher_vore_spawn")
-			soulcatcher_vore_spawn(ui.user, params["selected_player"])
-			close_ui()
+			if(ghost_spawn("soulcatcher_vore_spawn", observer, params["selected_player"]))
+				close_ui()
 			. = TRUE
 		if("bellyspawn")
-			vore_belly_spawn(ui.user, params["selected_player"])
-			close_ui()
+			if(ghost_spawn("vore_belly_spawn", observer, params["selected_player"]))
+				close_ui()
 			. = TRUE
 		if("mouse_spawn")
-			become_mouse(ui.user)
+			ghost_spawn("become_mouse", observer)
 			. = TRUE
 		if("drone_spawn")
-			become_drone(ui.user, params["fabricator"])
+			ghost_spawn("become_drone", observer, params["fabricator"])
 			. = TRUE
 		if("vr_spawn")
-			join_vr(ui.user, params["landmark"])
+			ghost_spawn("join_vr", observer, params["landmark"])
 			. = TRUE
 		if("corgi_spawn")
-			join_corgi(ui.user)
+			ghost_spawn("join_corgi", observer)
 			. = TRUE
 		if("lost_drone_spawn")
-			join_lost(ui.user)
+			ghost_spawn("join_lost", observer)
 			. = TRUE
 		if("maintpred_spawn")
-			join_maintpred(ui.user)
+			ghost_spawn("join_maintpred", observer)
 			. = TRUE
 		if("gravekeeper_spawn")
-			join_grave(ui.user)
+			ghost_spawn("join_grave", observer)
 			. = TRUE
 		if("morph_spawn")
-			join_morpth(ui.user)
+			ghost_spawn("join_morpth", observer)
 			. = TRUE
 
 /datum/tgui_module/ghost_spawn_menu/proc/compile_pod_data()
