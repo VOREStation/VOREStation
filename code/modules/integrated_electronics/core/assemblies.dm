@@ -15,6 +15,9 @@
 	var/obj/item/cell/device/battery = null // Internal cell which most circuits need to work.
 	var/net_power = 0 // Set every tick, to display how much power is being drawn in total.
 	var/detail_color = COLOR_ASSEMBLY_BLACK
+	var/locked = FALSE // If true, the assembly cannot be opened with a crowbar
+	var/obj/item/card/id/locked_by = null // The ID that locked this assembly
+	var/obj/item/card/id/access_card = null // ID card for door access
 
 
 /obj/item/electronic_assembly/Initialize(mapload)
@@ -191,6 +194,9 @@
 /obj/item/electronic_assembly/update_icon()
 	if(opened)
 		icon_state = initial(icon_state) + "-open"
+	// else if(locked)
+		// For when I finish the locked assembly sprites.
+		// icon_state = initial(icon_state) // + "-locked" would be added once sprites are made
 	else
 		icon_state = initial(icon_state)
 	cut_overlays()
@@ -203,6 +209,8 @@
 
 /obj/item/electronic_assembly/GetAccess()
 	. = list()
+	if(access_card)
+		. |= access_card.access
 	for(var/obj/item/integrated_circuit/part in contents)
 		. |= part.GetAccess()
 
@@ -295,11 +303,45 @@
 			return TRUE
 
 	else if(I.has_tool_quality(TOOL_CROWBAR))
+		if(locked)
+			to_chat(user, span_warning("\The [src] is locked! You cannot open it with a crowbar."))
+			return FALSE
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		opened = !opened
 		to_chat(user, span_notice("You [opened ? "opened" : "closed"] \the [src]."))
 		update_icon()
 		return TRUE
+
+	else if((istype(I, /obj/item/card/id) || istype(I, /obj/item/pda)) && !opened)
+		var/obj/item/card/id/id_card = null
+
+		if(istype(I, /obj/item/card/id))
+			id_card = I
+		else
+			var/obj/item/pda/pda = I
+			id_card = pda.id
+
+		if(!id_card)
+			to_chat(user, span_warning("You need an ID card to lock this assembly!"))
+			return FALSE
+
+		if(locked)
+			// Trying to unlock
+			if(locked_by && id_card.registered_name == locked_by.registered_name)
+				locked = FALSE
+				locked_by = null
+				to_chat(user, span_notice("You unlock \the [src]."))
+				update_icon()
+			else
+				to_chat(user, span_warning("Access denied. This assembly was locked by [locked_by ? locked_by.registered_name : "someone else"]."))
+			return TRUE
+		else
+			// Trying to lock
+			locked = TRUE
+			locked_by = id_card
+			to_chat(user, span_notice("You lock \the [src]. Now only your ID card can unlock it."))
+			update_icon()
+			return TRUE
 
 	else if(istype(I, /obj/item/integrated_electronics/wirer) || istype(I, /obj/item/integrated_electronics/debugger) || I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(opened)
@@ -398,6 +440,14 @@
 /obj/item/electronic_assembly/proc/on_unanchored()
 	for(var/obj/item/integrated_circuit/IC in contents)
 		IC.on_unanchored()
+
+// Bump functionality, for pathfinding circuits. (Droid circuit assembly types)
+/obj/item/electronic_assembly/Bump(atom/AM)
+	..()
+	if(istype(AM, /obj/machinery/door) && can_move())
+		var/obj/machinery/door/D = AM
+		if(D.check_access(src))
+			D.open()
 
 // Returns TRUE if I is something that could/should have a valid interaction. Used to tell circuitclothes to hit the circuit with something instead of the clothes
 /obj/item/electronic_assembly/proc/is_valid_tool(var/obj/item/I)
