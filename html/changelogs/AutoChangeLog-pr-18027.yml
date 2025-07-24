@@ -1,0 +1,4 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - rscadd: "Added the ability to export research samples to earn extra supply points, both loose and in sample containers"

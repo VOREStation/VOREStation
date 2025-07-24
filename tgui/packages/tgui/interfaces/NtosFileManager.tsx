@@ -1,5 +1,3 @@
-/* eslint react/no-danger: "off" */
-
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
 import { Button, Section, Stack, Table } from 'tgui-core/components';
@@ -60,9 +58,8 @@ export const NtosFileManager = (props) => {
               </Stack>
             }
           >
-            {/* This dangerouslySetInnerHTML is only ever passed data that has passed through pencode2html
-             * It should be safe enough to support pencode in this way.
-             */}
+            {/** biome-ignore lint/security/noDangerouslySetInnerHtml: is only ever passed data that has passed through pencode2html
+             * It should be safe enough to support pencode in this way. */}
             {filedata && <div dangerouslySetInnerHTML={{ __html: filedata }} />}
           </Section>
         )) || (

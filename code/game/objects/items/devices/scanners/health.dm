@@ -418,6 +418,31 @@
 				dat+= span_danger("WARNING: Defib will cause extreme pain and set subject feral. Sedation recommended prior to defibrillation.")
 			else // If they bop them and they're not dead or reviving, give 'em a little notice.
 				dat += span_notice("Subject is a Xenochimera. Treat accordingly.")
+
+		// Custom medical issues
+		for(var/obj/item/organ/I in H.internal_organs)
+			for(var/datum/medical_issue/MI in I.medical_issues)
+				if(advscan >= MI.advscan)
+					dat += span_danger("Warning: [MI.name] detected in [MI.affectedorgan].<br>")
+					if(advscan >= MI.advscan_cure)
+						if(MI.cure_reagent)
+							dat += span_notice("Suggested treatment: Prescription of [MI.cure_reagent].<br>")
+						else if(MI.cure_surgery)
+							dat += span_notice("Required surgery: [MI.cure_surgery].<br>")
+						else
+							dat += span_notice("[MI.affectedorgan] may require surgical removal or transplantation.<br>")
+		for(var/obj/item/organ/E in H.organs)
+			for(var/datum/medical_issue/MI in E.medical_issues)
+				if(advscan >= MI.advscan)
+					dat += span_danger("Warning: [MI.name] detected in [MI.affectedorgan].<br>")
+					if(advscan >= MI.advscan_cure)
+						if(MI.cure_reagent)
+							dat += span_notice("Suggested treatment: Prescription of [MI.cure_reagent].<br>")
+						else if(MI.cure_surgery)
+							dat += span_notice("Required surgery: [MI.cure_surgery].<br>")
+						else
+							dat += span_notice("[MI.affectedorgan] may require surgical removal or transplantation.<br>")
+
 	user.show_message(dat, 1)
 	if(guide)
 		guide(M, user)

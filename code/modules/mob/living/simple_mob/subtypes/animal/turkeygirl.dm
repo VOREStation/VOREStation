@@ -43,11 +43,7 @@
 	vore_default_item_mode = IM_DIGEST
 	vore_standing_too = TRUE
 
-/mob/living/simple_mob/vore/turkeygirl/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/turkeygirl/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

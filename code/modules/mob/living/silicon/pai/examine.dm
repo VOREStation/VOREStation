@@ -6,10 +6,10 @@
 			if(!src.client)	. += "It appears to be in stand-by mode." //afk
 		if(UNCONSCIOUS)		. += span_warning("It doesn't seem to be responding.")
 		if(DEAD)			. += span_deadsay("It looks completely unsalvageable.")
-	. += attempt_vr(src,"examine_reagent_bellies",args) // reagent bellies
+	. += examine_reagent_bellies() // reagent bellies
 
 	// VOREStation Edit: Start
-	. += attempt_vr(src,"examine_bellies",args) //VOREStation Edit
+	. += examine_bellies() //VOREStation Edit
 	if(print_flavor_text()) . += "\n[print_flavor_text()]\n"
 	// VOREStation Edit: End
 	. += ""
