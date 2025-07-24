@@ -424,6 +424,34 @@
 				L.Add(T)
 	return L
 
+// Diagonal-friendly version of CardinalTurfWithAccess
+// Handles not gettin stuck on corners in most cases.
+/turf/proc/AdjacentTurfsWithAccess(obj/item/card/id/ID)
+	var/list/L = new()
+
+	for(var/dir_to_check in GLOB.cardinal) // Cardinals first.
+		var/turf/T = get_step(src, dir_to_check)
+		if(!T || !T.Adjacent(src))
+			continue
+		if(!LinkBlockedWithAccess(src, T, ID))
+			L.Add(T)
+
+	if(L.len >= 2) // Only do diagonals logic when applicable.
+		for(var/dir_to_check in GLOB.cornerdirs)
+			var/turf/T = get_step(src, dir_to_check)
+			if(!T || !T.Adjacent(src))
+				continue
+
+			var/card1 = dir_to_check & (NORTH|SOUTH) // Short way to get cardinals from dir..
+			var/card2 = dir_to_check & (EAST|WEST)
+
+			// Check if both cardinal directions are accessible
+			var/turf/T1 = get_step(src, card1)
+			var/turf/T2 = get_step(src, card2)
+			if((T1 in L) && (T2 in L) && !LinkBlockedWithAccess(src, T, ID))
+				L.Add(T)
+
+	return L
 
 // Similar to above but not restricted to just GLOB.cardinal directions.
 /turf/proc/TurfsWithAccess(var/obj/item/card/id/ID)
