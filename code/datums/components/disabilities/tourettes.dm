@@ -20,7 +20,7 @@
 		return
 	if((prob(1) && prob(2) && owner.paralysis <= 1))
 		owner.Stun(10)
-		owner.make_jittery(100)
+		owner.AdjustJittery(100)
 		switch(rand(1, 3))
 			if(1)
 				owner.emote("twitch")

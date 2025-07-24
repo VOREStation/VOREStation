@@ -35,7 +35,7 @@
 					span_userdanger("You have a panic attack!")
 				)
 				affected_mob.AdjustConfused(rand(12, 16))
-				affected_mob.jitteriness = rand(12, 16)
+				affected_mob.set_jittery(rand(12, 16))
 			if(prob(2))
 				affected_mob.visible_message(
 					span_danger("[affected_mob] coughs up butterflies!"),

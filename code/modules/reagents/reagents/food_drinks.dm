@@ -998,7 +998,7 @@
 	if(!(M.species.allergens & allergen_type))
 		var/bonus = M.food_preference(allergen_type)
 		M.adjust_nutrition((nutrition + bonus) * removed)
-	M.dizziness = max(0, M.dizziness + adj_dizzy)
+	M.AdjustDizzy(adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.AdjustSleeping(adj_sleepy)
 	if(adj_temp > 0 && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
@@ -1609,7 +1609,7 @@
 
 	//if(alien == IS_TAJARA) //VOREStation Edit Begin
 		//M.adjustToxLoss(0.5 * removed)
-		//M.make_jittery(4) //extra sensitive to caffine
+		//M.AdjustJittery(4) //extra sensitive to caffine
 	if(adj_temp > 0)
 		holder.remove_reagent(REAGENT_ID_FROSTOIL, 10 * removed)
 
@@ -1618,7 +1618,7 @@
 
 	//if(alien == IS_TAJARA)
 		//M.adjustToxLoss(2 * removed)
-		//M.make_jittery(4)
+		//M.AdjustJittery(4)
 		//return
 
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
@@ -1627,7 +1627,7 @@
 	//if(alien == IS_TAJARA)
 		//M.adjustToxLoss(4 * REM)
 		//M.apply_effect(3, STUTTER) //VOREStation Edit end
-	M.make_jittery(5)
+	M.AdjustJittery(5)
 
 /datum/reagent/drink/coffee/handle_addiction(var/mob/living/carbon/M, var/alien)
 	// A copy of the base with withdrawl, but with much less effects, no vomiting and sometimes halloss
@@ -2141,7 +2141,7 @@
 	allergen_type = ALLERGEN_DAIRY|ALLERGEN_COFFEE //Made with coffee and dairy products
 
 /datum/reagent/drink/milkshake/coffeeshake/overdose(var/mob/living/carbon/M, var/alien)
-	M.make_jittery(5)
+	M.AdjustJittery(5)
 
 /datum/reagent/drink/milkshake/peanutshake
 	name = REAGENT_PEANUTMILKSHAKE
@@ -2168,7 +2168,7 @@
 
 /datum/reagent/drink/rewriter/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.make_jittery(5)
+	M.AdjustJittery(5)
 
 /datum/reagent/drink/soda/nuka_cola
 	name = REAGENT_NUKACOLA
@@ -2187,9 +2187,9 @@
 /datum/reagent/drink/soda/nuka_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
-	M.make_jittery(20)
+	M.AdjustJittery(20)
 	M.druggy = max(M.druggy, 30)
-	M.dizziness += 5
+	M.AdjustDizzy(5)
 	M.drowsyness = 0
 
 /datum/reagent/drink/grenadine 	//Description implies that the grenadine we would be working with does not contain fruit, so no allergens.
@@ -2492,8 +2492,7 @@
 	M.adjustOxyLoss(-4 * removed)
 	M.heal_organ_damage(2 * removed, 2 * removed)
 	M.adjustToxLoss(-2 * removed)
-	if(M.dizziness)
-		M.dizziness = max(0, M.dizziness - 15)
+	M.AdjustDizzy(-15)
 	if(M.confused)
 		M.Confuse(-5)
 
@@ -2823,7 +2822,7 @@
 /datum/reagent/drink/syrup/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
 		return
-	M.make_dizzy(1)
+	M.AdjustDizzy(1)
 
 /datum/reagent/drink/syrup/pumpkin
 	name = REAGENT_SYRUPPUMPKIN
@@ -3042,7 +3041,7 @@
 		if(alien == IS_DIONA)
 			return
 		M.adjust_nutrition((M.food_preference(allergen_type) / 2) * removed) //RS edit
-		M.jitteriness = max(M.jitteriness - 3, 0)
+		M.AdjustJittery(-3)
 
 /datum/reagent/ethanol/beer/lite
 	name = REAGENT_LITEBEER
@@ -3103,7 +3102,7 @@
 	if(alien == IS_DIONA)
 		return
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
-		M.dizziness +=5
+		M.AdjustDizzy(5)
 
 /datum/reagent/ethanol/firepunch
 	name = REAGENT_FIREPUNCH
@@ -3141,7 +3140,7 @@
 		if(alien == IS_DIONA)
 			return
 		..()
-		M.dizziness = max(0, M.dizziness - 5)
+		M.AdjustDizzy(-5)
 		M.drowsyness = max(0, M.drowsyness - 3)
 		M.AdjustSleeping(-2)
 		if(M.bodytemperature > 310)
@@ -3149,12 +3148,12 @@
 
 		//if(alien == IS_TAJARA)
 			//M.adjustToxLoss(0.5 * removed)
-			//M.make_jittery(4) //extra sensitive to caffine
+			//M.AdjustJittery(4) //extra sensitive to caffine
 
 /datum/reagent/ethanol/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	//if(alien == IS_TAJARA)
 		//M.adjustToxLoss(2 * removed)
-		//M.make_jittery(4)
+		//M.AdjustJittery(4)
 		//return
 
 /datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
@@ -3164,7 +3163,7 @@
 		//M.adjustToxLoss(4 * REM)
 		//M.apply_effect(3, STUTTER) //VOREStation Edit end
 	if(!(M.isSynthetic()))
-		M.make_jittery(5)
+		M.AdjustJittery(5)
 
 /datum/reagent/ethanol/coffee/kahlua
 	name = REAGENT_KAHLUA
@@ -3275,7 +3274,7 @@
 		M.drowsyness = max(0, M.drowsyness - 7)
 		if (M.bodytemperature > 310)
 			M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-		M.make_jittery(5)
+		M.AdjustJittery(5)
 
 /datum/reagent/ethanol/vermouth
 	name = REAGENT_VERMOUTH
@@ -4976,7 +4975,7 @@
 
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
 		if(dose * strength >= strength) // Early warning
-			M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
+			M.AdjustDizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
 		if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
 			M.slurring = max(M.slurring, 30)
 

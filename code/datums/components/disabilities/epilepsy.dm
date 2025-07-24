@@ -24,7 +24,7 @@
 				continue
 			O.show_message(span_danger("[owner] starts having a seizure!"), 1)
 		owner.Paralyse(10)
-		owner.make_jittery(1000)
+		owner.AdjustJittery(1000)
 
 /datum/component/epilepsy_disability/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_HANDLE_DISABILITIES)

@@ -91,5 +91,5 @@
 					M.Stun(10)
 					M.Paralyse(4)
 				else
-					M.make_jittery(50)
+					M.AdjustJittery(50)
 				to_chat(M, span_red(span_massive(span_bold("HONK"))))

@@ -14,8 +14,7 @@
 		M.Confuse(-8*removed)
 	if(M.eye_blurry)
 		M.eye_blurry = max(M.eye_blurry - 25*removed, 0)
-	if(M.jitteriness)
-		M.make_jittery(min(-25*removed,0))
+	M.AdjustJittery(-25*removed)
 
 /datum/reagent/numbing_enzyme
 	name = REAGENT_NUMBENZYME
@@ -56,7 +55,7 @@
 		if(prob(3))
 			to_chat(H,span_warning("You shiver, your body continually being assaulted by the sensation of pins and needles."))
 			H.emote("shiver")
-			H.make_jittery(10)
+			H.AdjustJittery(10)
 		if(prob(3))
 			to_chat(H,span_warning("Your tongue feels numb and unresponsive."))
 			H.stuttering += 20

@@ -91,7 +91,7 @@ var/static/list/redspace_areas = list (
 			"You can feel your [O] squirming inside of you, trying to get out...", "Your [O] is trying to escape...", \
 			"Your [O] itches.", "Your [O] is crawling around inside of you.")
 			to_chat(unfortunate_soul, span_cult(spooky_message))
-		unfortunate_soul.make_dizzy(5)
+		unfortunate_soul.AdjustDizzy(5)
 		unfortunate_soul.stuttering = min(100, unfortunate_soul.stuttering + 10) //Stuttering is increased by 1, but never above 100. You're in a scary place.
 	return
 

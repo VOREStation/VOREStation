@@ -232,7 +232,7 @@
 						M.Stun(10)
 						M.Paralyse(4)
 					else
-						M.make_jittery(500)
+						M.AdjustJittery(500)
 				spawn(15)
 					explode()
 			else if(current_track == null)

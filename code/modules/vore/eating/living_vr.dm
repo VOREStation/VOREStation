@@ -1044,8 +1044,8 @@
 				H.Weaken(2)
 				H.Confuse(nom["WTF"])
 				H.apply_effect(nom["WTF"], STUTTER)
-				H.make_jittery(nom["WTF"])
-				H.make_dizzy(nom["WTF"])
+				H.AdjustJittery(nom["WTF"])
+				H.AdjustDizzy(nom["WTF"])
 				H.druggy = max(H.druggy, nom["WTF"])
 
 			return TRUE

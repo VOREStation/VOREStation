@@ -68,7 +68,7 @@
 	if(stored_blood && last_touched && last_touched.stat != DEAD) //We have been activated (have some energy), an owner and they are alive. They are going to feel pain.
 		to_chat(last_touched, span_cult("You feel as though your mind is suddenly being torn apart at the seams as the [src] is destroyed!"))
 		last_touched.Paralyse(10)
-		last_touched.make_jittery(1000)
+		last_touched.AdjustJittery(1000)
 		last_touched.eye_blurry += 10
 		last_touched.add_modifier(/datum/modifier/agonize, 30 SECONDS)
 		blood_splatter(last_touched, last_touched, 1)

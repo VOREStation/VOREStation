@@ -51,7 +51,7 @@
 	// Deathbell effects.
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
 		if(dose * strength >= strength)
-			M.make_dizzy(24)
+			M.AdjustDizzy(24)
 		if(dose * strength >= strength * 2.5)
 			M.slurring = max(M.slurring, 30)
 		// Simulating heat effects of spice. Without spice.
@@ -102,7 +102,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
-			if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+			if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.get_jittery() < 100) //Same check as feral triggers to stop them immediately re-feralling
 				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
 				if (xc.feral <=0) //check if they're unferalled
 					xc.feral = 0
@@ -193,7 +193,7 @@
 
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
 		if(dose * strength >= strength) // Early warning
-			M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
+			M.AdjustDizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
 		if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
 			M.slurring = max(M.slurring, 30)
 
@@ -468,7 +468,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
-			if(xc && xc.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
+			if(xc && xc.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.get_jittery() < 100) // same check as feral triggers to stop them immediately re-feralling
 				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
 				if (xc.feral <=0) //check if they're unferalled
 					xc.feral = 0
@@ -558,7 +558,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/datum/component/xenochimera/xc = M.get_xenochimera_component()
-		if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+		if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.get_jittery() < 100) //Same check as feral triggers to stop them immediately re-feralling
 			xc.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
 			if(xc.feral <=0) //Check if they're unferalled
 				xc.feral = 0
@@ -917,21 +917,21 @@
 	if(issmall(M)) effective_dose *= 2
 	if(effective_dose < 1 * threshold)
 		M.apply_effect(3, STUTTER)
-		M.make_dizzy(5)
+		M.AdjustDizzy(5)
 		if(prob(3))
 			M.emote(pick("twitch", "giggle"))
 	else if(effective_dose < 2 * threshold)
 		M.apply_effect(3, STUTTER)
-		M.make_jittery(5)
-		M.make_dizzy(5)
+		M.AdjustJittery(5)
+		M.AdjustDizzy(5)
 		M.druggy = max(M.druggy, 35)
 		M.hallucination = max(M.hallucination, drug_strength * threshold)
 		if(prob(5))
 			M.emote(pick("twitch", "giggle"))
 	else
 		M.apply_effect(3, STUTTER)
-		M.make_jittery(10)
-		M.make_dizzy(10)
+		M.AdjustJittery(10)
+		M.AdjustDizzy(10)
 		M.druggy = max(M.druggy, 40)
 		M.hallucination = max(M.hallucination, drug_strength * threshold)
 		if(prob(10))

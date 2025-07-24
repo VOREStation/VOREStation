@@ -38,5 +38,5 @@
 /mob/living/proc/delayed_gib()
 	visible_message(span_danger(span_bold("[src]") + " starts convulsing violently!"), span_danger("You feel as if your body is tearing itself apart!"))
 	Weaken(30)
-	make_jittery(1000)
+	AdjustJittery(1000)
 	addtimer(CALLBACK(src, PROC_REF(gib)), rand(2 SECONDS, 10 SECONDS))

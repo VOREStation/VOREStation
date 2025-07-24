@@ -124,7 +124,7 @@
 		var/effective_dose = dose * strength_mod * (1 + volume/60) //drinking a LOT will make you go down faster
 
 		if(effective_dose >= (strength * M.species.chem_strength_alcohol)) // Early warning
-			M.make_dizzy(18) // It is decreased at the speed of 3 per tick
+			M.AdjustDizzy(18) // It is decreased at the speed of 3 per tick
 		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 2) // Slurring
 			M.slurring = max(M.slurring, 90)
 		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 3) // Confusion - walking in random directions
@@ -170,7 +170,7 @@
 		M.add_chemical_effect(CE_ALCOHOL, 1)
 
 		if(effective_dose >= (strength * M.species.chem_strength_alcohol)) // Early warning
-			M.make_dizzy(6) // It is decreased at the speed of 3 per tick
+			M.AdjustDizzy(6) // It is decreased at the speed of 3 per tick
 		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 2) // Slurring
 			M.slurring = max(M.slurring, 30)
 		if(effective_dose >= (strength * M.species.chem_strength_alcohol) * 3) // Confusion - walking in random directions
@@ -229,7 +229,7 @@
 			if(current_addiction < 90 && prob(10))
 				to_chat(M, span_warning("[pick("You feel miserable.","You feel nauseous.","You get a raging headache.")]"))
 				M.adjustHalLoss(7)
-				M.make_jittery(25) //Restlessness.
+				M.AdjustJittery(25) //Restlessness.
 			else if(current_addiction <= 20)
 				to_chat(M, span_danger("You feel absolutely awful. You need some some liquor. Now."))
 				if(realistic_addiction && prob(20)) //1 in 5 on a 1 in 50, so 1 in 250 chance. DTs
@@ -239,7 +239,7 @@
 							continue
 						O.show_message(span_danger("[M] starts having a seizure!"), 1)
 					M.Paralyse(10)
-					M.make_jittery(1000)
+					M.AdjustJittery(1000)
 			else if(current_addiction <= 50)
 				to_chat(M, span_warning("You're really craving some alcohol. You feel nauseated."))
 				if(realistic_addiction)
@@ -260,7 +260,7 @@
 			if(current_addiction < 90 && prob(10))
 				to_chat(M, span_warning("[pick("You feel a light throbbing in your head.","Your stomach feels upset.","Your .")]"))
 				M.adjustHalLoss(3)
-				M.make_jittery(10) //Restlessness.
+				M.AdjustJittery(10) //Restlessness.
 			else if(current_addiction <= 20)
 				to_chat(M, span_warning("You feel nauseated."))
 				if(realistic_addiction)

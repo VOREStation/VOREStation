@@ -44,7 +44,7 @@
 /obj/item/melee/cultblade/pickup(mob/living/user as mob)
 	if(!iscultist(user) && !istype(user, /mob/living/simple_mob/construct))
 		to_chat(user, span_warning("An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly."))
-		user.make_dizzy(120)
+		user.AdjustDizzy(120)
 	if(istype(user, /mob/living/simple_mob/construct))
 		to_chat(user, span_warning("\The [src] hisses, as it is discontent with your acquisition of it. It would be wise to return it to a worthy mortal quickly."))
 
