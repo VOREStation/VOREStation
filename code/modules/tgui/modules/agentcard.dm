@@ -64,7 +64,7 @@
 				to_chat(ui.user, span_notice("Appearance changed to [choice]."))
 				. = TRUE
 		if("assignment")
-			var/new_job = sanitize(tgui_input_text(ui.user,"What assignment would you like to put on this card?\nChanging assignment will not grant or remove any access levels.","Agent Card Assignment", S.assignment))
+			var/new_job = tgui_input_text(ui.user,"What assignment would you like to put on this card?\nChanging assignment will not grant or remove any access levels.","Agent Card Assignment", S.assignment, MAX_MESSAGE_LEN)
 			if(!isnull(new_job) && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				S.assignment = new_job
 				to_chat(ui.user, span_notice("Occupation changed to '[new_job]'."))
@@ -76,7 +76,7 @@
 				var/mob/living/carbon/human/H = ui.user
 				if(H.dna)
 					default = H.dna.b_type
-			var/new_blood_type = sanitize(tgui_input_text(ui.user,"What blood type would you like to be written on this card?","Agent Card Blood Type",default))
+			var/new_blood_type = tgui_input_text(ui.user,"What blood type would you like to be written on this card?","Agent Card Blood Type",default, MAX_MESSAGE_LEN)
 			if(!isnull(new_blood_type) && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				S.blood_type = new_blood_type
 				to_chat(ui.user, span_notice("Blood type changed to '[new_blood_type]'."))
@@ -87,7 +87,7 @@
 				var/mob/living/carbon/human/H = ui.user
 				if(H.dna)
 					default = H.dna.unique_enzymes
-			var/new_dna_hash = sanitize(tgui_input_text(ui.user,"What DNA hash would you like to be written on this card?","Agent Card DNA Hash",default))
+			var/new_dna_hash = tgui_input_text(ui.user,"What DNA hash would you like to be written on this card?","Agent Card DNA Hash",default, MAX_MESSAGE_LEN)
 			if(!isnull(new_dna_hash) && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				S.dna_hash = new_dna_hash
 				to_chat(ui.user, span_notice("DNA hash changed to '[new_dna_hash]'."))
@@ -98,7 +98,7 @@
 				var/mob/living/carbon/human/H = ui.user
 				if(H.dna)
 					default = md5(H.dna.uni_identity)
-			var/new_fingerprint_hash = sanitize(tgui_input_text(ui.user,"What fingerprint hash would you like to be written on this card?","Agent Card Fingerprint Hash",default))
+			var/new_fingerprint_hash = tgui_input_text(ui.user,"What fingerprint hash would you like to be written on this card?","Agent Card Fingerprint Hash",default, MAX_MESSAGE_LEN)
 			if(!isnull(new_fingerprint_hash) && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				S.fingerprint_hash = new_fingerprint_hash
 				to_chat(ui.user, span_notice("Fingerprint hash changed to '[new_fingerprint_hash]'."))
@@ -115,13 +115,13 @@
 			to_chat(ui.user, span_notice("Photo changed."))
 			. = TRUE
 		if("sex")
-			var/new_sex = sanitize(tgui_input_text(ui.user,"What sex would you like to put on this card?","Agent Card Sex", S.sex))
+			var/new_sex = tgui_input_text(ui.user,"What sex would you like to put on this card?","Agent Card Sex", S.sex, MAX_MESSAGE_LEN)
 			if(!isnull(new_sex) && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				S.sex = new_sex
 				to_chat(ui.user, span_notice("Sex changed to '[new_sex]'."))
 				. = TRUE
 		if("species")
-			var/new_species = sanitize(tgui_input_text(ui.user,"What species would you like to put on this card?","Agent Card Species", S.species))
+			var/new_species = tgui_input_text(ui.user,"What species would you like to put on this card?","Agent Card Species", S.species, MAX_MESSAGE_LEN)
 			if(!isnull(new_species) && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				S.species = new_species
 				to_chat(ui.user, span_notice("Species changed to '[new_species]'."))

@@ -37,7 +37,7 @@
 			return
 
 		var/tmp_label = ""
-		var/label_text = sanitizeSafe(tgui_input_text(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label,MAX_NAME_LEN), MAX_NAME_LEN)
+		var/label_text = sanitizeSafe(tgui_input_text(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label,MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(length(label_text) > 20)
 			to_chat(user, span_red("The inscription can be at most 20 characters long."))
 		else if(!label_text)

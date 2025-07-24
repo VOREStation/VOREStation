@@ -93,7 +93,7 @@
 			if(!current_account)
 				return TRUE
 
-			var/newpass = sanitize(tgui_input_text(ui.user,"Enter new password for account [current_account.login]", "Password", null, 100), 100)
+			var/newpass = tgui_input_text(ui.user,"Enter new password for account [current_account.login]", "Password", null, 100)
 			if(!newpass)
 				return TRUE
 			current_account.password = newpass
@@ -118,10 +118,10 @@
 			return TRUE
 
 		if("newaccount")
-			var/newdomain = sanitize(tgui_input_list(ui.user,"Pick domain:", "Domain name", using_map.usable_email_tlds))
+			var/newdomain = tgui_input_list(ui.user,"Pick domain:", "Domain name", using_map.usable_email_tlds, MAX_MESSAGE_LEN)
 			if(!newdomain)
 				return TRUE
-			var/newlogin = sanitize(tgui_input_text(ui.user,"Pick account name (@[newdomain]):", "Account name", null, 100), 100)
+			var/newlogin = tgui_input_text(ui.user,"Pick account name (@[newdomain]):", "Account name", null, 100)
 			if(!newlogin)
 				return TRUE
 

@@ -67,7 +67,7 @@
 
 /obj/item/secbot_assembly/ed209_assembly/slime/attackby(var/obj/item/W, var/mob/user) // Here in the event it's added into a PoI or some such. Standard construction relies on the standard ED up until taser.
 	if(istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && src.loc != user)

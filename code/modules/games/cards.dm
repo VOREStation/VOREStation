@@ -188,7 +188,7 @@
 		if(P.name != "Blank Card")
 			to_chat(user,span_notice("You cannot write on that card."))
 			return
-		var/cardtext = sanitize(tgui_input_text(user, "What do you wish to write on the card?", "Card Editing", null, MAX_PAPER_MESSAGE_LEN), MAX_PAPER_MESSAGE_LEN)
+		var/cardtext = tgui_input_text(user, "What do you wish to write on the card?", "Card Editing", null, MAX_PAPER_MESSAGE_LEN)
 		if(!cardtext)
 			return
 		P.name = cardtext

@@ -152,7 +152,7 @@
 	if(tgui_alert(pai, "Do you want to load your pAI data?", "Load", list("Yes", "No")) == "Yes")
 		pai.savefile_load(pai)
 	else
-		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI"))
+		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE))
 		card.setPersonality(pai)
 	for(var/datum/paiCandidate/candidate in paiController.pai_candidates)
 		if(candidate.key == choice.key)

@@ -868,7 +868,7 @@
 	if(!M.mind)
 		return 0
 
-	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name the plushie?", ,""), MAX_NAME_LEN)
+	var/input = tgui_input_text(usr, "What do you want to name the plushie?", ,"", MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input

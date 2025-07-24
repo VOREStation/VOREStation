@@ -323,7 +323,7 @@
 	. = TRUE
 	switch(action)
 		if("rename")
-			var/new_name = sanitizeSafe(tgui_input_text(ui.user,"Please enter your name.","Communicator",ui.user.name) )
+			var/new_name = sanitizeSafe(tgui_input_text(ui.user,"Please enter your name.","Communicator",ui.user.name, encode = FALSE))
 			if(new_name)
 				register_device(new_name)
 
@@ -377,7 +377,7 @@
 				to_chat(ui.user, span_danger("Error: Cannot connect to Exonet node."))
 				return FALSE
 			var/their_address = params["message"]
-			var/text = sanitizeSafe(tgui_input_text(ui.user,"Enter your message.","Text Message"))
+			var/text = sanitizeSafe(tgui_input_text(ui.user,"Enter your message.","Text Message", encode = FALSE))
 			if(text)
 				exonet.send_message(their_address, "text", text)
 				im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))

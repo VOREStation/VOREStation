@@ -165,7 +165,7 @@
 					var/obj/item/borg/upgrade/U = new new_upgrade(src)
 					if(selected_module_upgrade == "Rename Module")
 						var/obj/item/borg/upgrade/utility/rename/UN = U
-						var/new_name = sanitizeSafe(tgui_input_text(usr, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN), MAX_NAME_LEN)
+						var/new_name = sanitizeSafe(tgui_input_text(usr, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 						if(new_name)
 							UN.heldname = new_name
 						U = UN

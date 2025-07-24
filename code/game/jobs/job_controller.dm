@@ -736,7 +736,7 @@ var/global/datum/controller/occupations/job_master
 						confirm = tgui_alert(pred, "[C.prefs.real_name] is attempting to spawn into your [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
 				if(confirm != "Yes")
 					to_chat(C, span_warning("[pred] has declined your spawn request."))
-					var/message = sanitizeSafe(tgui_input_text(pred,"Do you want to leave them a message?", "Notify Prey"))
+					var/message = tgui_input_text(pred,"Do you want to leave them a message?", "Notify Prey", max_length = MAX_MESSAGE_LEN)
 					if(message)
 						to_chat(C, span_notice("[pred] message : [message]"))
 					return
@@ -813,7 +813,7 @@ var/global/datum/controller/occupations/job_master
 						confirm = tgui_alert(prey, "[C.prefs.real_name] is attempting to televore you into their [vore_spawn_gut]. Let them?", "Confirm", list("No", "Yes"))
 				if(confirm != "Yes")
 					to_chat(C, span_warning("[prey] has declined your spawn request."))
-					var/message = sanitizeSafe(tgui_input_text(prey,"Do you want to leave them a message?", "Notify Pred"))
+					var/message = tgui_input_text(prey,"Do you want to leave them a message?", "Notify Pred", max_length = MAX_MESSAGE_LEN)
 					if(message)
 						to_chat(C, span_notice("[prey] message : [message]"))
 					return
@@ -897,7 +897,7 @@ var/global/datum/controller/occupations/job_master
 					var/confirm = tgui_alert(carrier, "[C.prefs.real_name] is attempting to join as the [item_name] in your possession.", "Confirm", list("No", "Yes"))
 					if(confirm != "Yes")
 						to_chat(C, span_warning("[carrier] has declined your spawn request."))
-						var/message = sanitizeSafe(tgui_input_text(carrier,"Do you want to leave them a message?", "Notify Spawner"))
+						var/message = tgui_input_text(carrier,"Do you want to leave them a message?", "Notify Spawner", max_length = MAX_MESSAGE_LEN)
 						if(message)
 							to_chat(C, span_notice("[carrier] message : [message]"))
 						return

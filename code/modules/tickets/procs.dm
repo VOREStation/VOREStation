@@ -237,7 +237,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = tgui_input_text(src,"Message:", "Mentor-PM to [whom]", multiline = TRUE)
+		msg = tgui_input_text(src,"Message:", "Mentor-PM to [whom]", multiline = TRUE, encode = FALSE)
 
 		if(!msg)
 			return

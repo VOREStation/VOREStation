@@ -426,7 +426,7 @@
 		to_chat(src, "You can't pick another custom name. [isshell(src) ? "" : "Go ask for a name change."]")
 		return 0
 
-	var/newname = sanitizeSafe(tgui_input_text(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
+	var/newname = sanitizeSafe(tgui_input_text(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if (newname)
 		custom_name = newname
 		sprite_name = newname

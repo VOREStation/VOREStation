@@ -422,7 +422,7 @@
 					setting["value"] = new_value
 
 			if ("string")
-				setting["value"] = tgui_input_text(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"], encode = TRUE)
+				setting["value"] = tgui_input_text(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"])
 			if ("number")
 				setting["value"] = tgui_input_number(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]")
 			if ("color")

@@ -133,7 +133,7 @@
 				if(tgui_alert(ui.user, "Would you like to save your changes first?","Save Changes",list("Yes","No")) == "Yes")
 					save_file(open_file)
 
-			var/newname = sanitize(tgui_input_text(ui.user, "Enter file name:", "New File"))
+			var/newname = tgui_input_text(ui.user, "Enter file name:", "New File", "", MAX_MESSAGE_LEN)
 			if(!newname)
 				return TRUE
 			var/datum/computer_file/data/F = create_file(newname)
@@ -146,7 +146,7 @@
 			return TRUE
 
 		if("PRG_saveasfile")
-			var/newname = sanitize(tgui_input_text(ui.user, "Enter file name:", "Save As"))
+			var/newname = tgui_input_text(ui.user, "Enter file name:", "Save As", "", MAX_MESSAGE_LEN)
 			if(!newname)
 				return TRUE
 			var/datum/computer_file/data/F = create_file(newname, loaded_data)
@@ -158,7 +158,7 @@
 
 		if("PRG_savefile")
 			if(!open_file)
-				open_file = sanitize(tgui_input_text(ui.user, "Enter file name:", "Save As"))
+				open_file = tgui_input_text(ui.user, "Enter file name:", "Save As", "", MAX_MESSAGE_LEN)
 				if(!open_file)
 					return 0
 			if(!save_file(open_file))
@@ -169,7 +169,7 @@
 			var/oldtext = html_decode(loaded_data)
 			oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-			var/newtext = sanitize(replacetext(tgui_input_text(ui.user, "Editing file '[open_file]'. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
+			var/newtext = replacetext(tgui_input_text(ui.user, "Editing file '[open_file]'. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]")
 			if(!newtext)
 				return
 			loaded_data = newtext

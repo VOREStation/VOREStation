@@ -127,8 +127,8 @@
 			if(can_change(owner, APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(owner.change_species(params["race"]))
 					if(params["race"] == "Custom Species")
-						owner.custom_species = sanitize(tgui_input_text(ui.user, "Input custom species name:",
-							"Custom Species Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
+						owner.custom_species = tgui_input_text(ui.user, "Input custom species name:",
+							"Custom Species Name", null, MAX_NAME_LEN)
 					cut_data()
 					generate_data(ui.user, owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
@@ -466,14 +466,14 @@
 						return TRUE
 		if("char_name")
 			if(DC) // Only body designer does this. no hrefing
-				var/new_name = sanitize(tgui_input_text(ui.user, "Input character's name:", "Name", owner.name, MAX_NAME_LEN), MAX_NAME_LEN)
+				var/new_name = tgui_input_text(ui.user, "Input character's name:", "Name", owner.name, MAX_NAME_LEN)
 				if(can_change(owner, APPEARANCE_RACE)) // new name can be empty, it uses base species if so
 					owner.name = new_name
 					owner.real_name = owner.name
 					owner.dna.real_name = owner.name
 					return TRUE
 		if("race_name")
-			var/new_name = sanitize(tgui_input_text(ui.user, "Input custom species name:", "Custom Species Name", owner.custom_species, MAX_NAME_LEN), MAX_NAME_LEN)
+			var/new_name = tgui_input_text(ui.user, "Input custom species name:", "Custom Species Name", owner.custom_species, MAX_NAME_LEN)
 			if(can_change(owner, APPEARANCE_RACE)) // new name can be empty, it uses base species if so
 				owner.custom_species = new_name
 				return TRUE

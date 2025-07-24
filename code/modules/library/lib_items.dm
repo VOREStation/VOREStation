@@ -34,7 +34,7 @@
 		O.loc = src
 		update_icon()
 	else if(istype(O, /obj/item/pen))
-		var/newname = sanitizeSafe(tgui_input_text(user, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/newname = sanitizeSafe(tgui_input_text(user, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!newname)
 			return
 		else
@@ -231,7 +231,7 @@ Book Cart End
 		var/choice = tgui_input_list(user, "What would you like to change?", "Change What?", list("Title", "Contents", "Author", "Cancel"))
 		switch(choice)
 			if("Title")
-				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(user, "Write a new title:")))
+				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(user, "Write a new title:", encode = FALSE)))
 				if(!newtitle)
 					to_chat(user, "The title is invalid.")
 					return
@@ -239,14 +239,14 @@ Book Cart End
 					src.name = newtitle
 					src.title = newtitle
 			if("Contents")
-				var/content = sanitize(tgui_input_text(user, "Write your book's contents (HTML NOT allowed):", max_length=MAX_BOOK_MESSAGE_LEN, multiline=TRUE), MAX_BOOK_MESSAGE_LEN)
+				var/content = tgui_input_text(user, "Write your book's contents (HTML NOT allowed):", max_length=MAX_BOOK_MESSAGE_LEN, multiline=TRUE)
 				if(!content)
 					to_chat(user, "The content is invalid.")
 					return
 				else
 					src.dat += content
 			if("Author")
-				var/newauthor = sanitize(tgui_input_text(user, "Write the author's name:"))
+				var/newauthor = tgui_input_text(user, "Write the author's name:", "", "", MAX_LNAME_LEN)
 				if(!newauthor)
 					to_chat(user, "The name is invalid.")
 					return
