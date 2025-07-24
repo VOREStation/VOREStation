@@ -7,13 +7,13 @@
 
 	var/datum/eventkit/modify_robot/modify_robot = new()
 	modify_robot.target = isrobot(target) ? target : null
-	modify_robot.selected_ai = target.is_slaved()
+	modify_robot.selected_ai = target.connected_ai
 	modify_robot.tgui_interact(src.mob)
 
 /datum/eventkit/modify_robot
 	var/mob/living/silicon/robot/target
 	var/mob/living/silicon/robot/source
-	var/selected_ai
+	var/mob/living/silicon/ai/selected_ai
 	var/ion_law	= "IonLaw"
 	var/zeroth_law = "ZerothLaw"
 	var/inherent_law = "InherentLaw"
@@ -30,6 +30,8 @@
 	law_list = dd_sortedObjectList(law_list)
 
 /datum/eventkit/modify_robot/tgui_close()
+	target = null
+	selected_ai = null
 	if(source)
 		qdel(source)
 
@@ -149,7 +151,7 @@
 			continue
 		active_ais += list(list("displayText" = "[ai]", "value" = "\ref[ai]"))
 	.["active_ais"] = active_ais
-	.["selected_ai"] = selected_ai ? selected_ai : null
+	.["selected_ai"] = selected_ai ? selected_ai.name : null
 
 	var/list/channels = list()
 	for(var/ch_name in target.law_channels())
@@ -586,7 +588,10 @@
 				to_chat(ui.user, span_notice("Laws displayed."))
 			return TRUE
 		if("select_ai")
-			selected_ai = locate(params["new_ai"])
+			for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
+				if(ai.name == params["new_ai"])
+					selected_ai = ai
+					break
 			return TRUE
 		if("swap_sync")
 			var/new_ai = selected_ai ? selected_ai : select_active_ai_with_fewest_borgs()
