@@ -58,7 +58,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/sizeoxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.AdjustDizzy(1)
+	M.make_dizzy(1)
 	if(!M.confused) M.confused = 1
 	M.confused = max(M.confused, 20)
 	return
@@ -75,7 +75,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/ickypak/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.AdjustDizzy(1)
+	M.make_dizzy(1)
 	M.adjustHalLoss(2)
 
 	for(var/obj/belly/B as anything in M.vore_organs)
@@ -97,7 +97,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/unsorbitol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.AdjustDizzy(1)
+	M.make_dizzy(1)
 	M.adjustHalLoss(1)
 	if(!M.confused) M.confused = 1
 	M.confused = max(M.confused, 20)

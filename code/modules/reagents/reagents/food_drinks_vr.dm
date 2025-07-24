@@ -51,7 +51,7 @@
 	// Deathbell effects.
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
 		if(dose * strength >= strength)
-			M.AdjustDizzy(24)
+			M.make_dizzy(24)
 		if(dose * strength >= strength * 2.5)
 			M.slurring = max(M.slurring, 30)
 		// Simulating heat effects of spice. Without spice.
@@ -193,7 +193,7 @@
 
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
 		if(dose * strength >= strength) // Early warning
-			M.AdjustDizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
+			M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
 		if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
 			M.slurring = max(M.slurring, 30)
 
@@ -917,21 +917,21 @@
 	if(issmall(M)) effective_dose *= 2
 	if(effective_dose < 1 * threshold)
 		M.apply_effect(3, STUTTER)
-		M.AdjustDizzy(5)
+		M.make_dizzy(5)
 		if(prob(3))
 			M.emote(pick("twitch", "giggle"))
 	else if(effective_dose < 2 * threshold)
 		M.apply_effect(3, STUTTER)
-		M.AdjustJittery(5)
-		M.AdjustDizzy(5)
+		M.make_jittery(5)
+		M.make_dizzy(5)
 		M.druggy = max(M.druggy, 35)
 		M.hallucination = max(M.hallucination, drug_strength * threshold)
 		if(prob(5))
 			M.emote(pick("twitch", "giggle"))
 	else
 		M.apply_effect(3, STUTTER)
-		M.AdjustJittery(10)
-		M.AdjustDizzy(10)
+		M.make_jittery(10)
+		M.make_dizzy(10)
 		M.druggy = max(M.druggy, 40)
 		M.hallucination = max(M.hallucination, drug_strength * threshold)
 		if(prob(10))

@@ -151,7 +151,7 @@
 	if(strength && alien != IS_DIONA)
 		M.adjustToxLoss(poison_strength * removed)
 		M.druggy = max(M.druggy, 10)
-		M.AdjustJittery(5)
+		M.make_jittery(5)
 		M.add_chemical_effect(CE_SLOWDOWN, 5)
 
 /datum/reagent/toxin/phoron
@@ -841,7 +841,7 @@
 	if(alien == IS_SLIME)
 		drug_strength *= 0.15 //~ 1/6
 
-	M.AdjustDizzy(drug_strength)
+	M.make_dizzy(drug_strength)
 	M.Confuse(drug_strength * 5)
 
 /datum/reagent/impedrezene
@@ -857,7 +857,7 @@
 /datum/reagent/impedrezene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.AdjustJittery(-5)
+	M.make_jittery(-5)
 	if(prob(80))
 		M.adjustBrainLoss(0.1 * removed)
 	if(prob(50))

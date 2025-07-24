@@ -21,7 +21,7 @@
 	if(prob(5) && prob(7))
 		owner.stuttering = max(15, owner.stuttering)
 		if(owner.get_jittery() < 50)
-			owner.AdjustJittery(65)
+			owner.make_jittery(65)
 
 /datum/component/nervousness_disability/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_HANDLE_DISABILITIES)

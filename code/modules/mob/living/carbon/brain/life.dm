@@ -78,9 +78,9 @@
 
 	// decrement dizziness counter, clamped to 0
 	if(resting)
-		AdjustDizzy(-5)
+		make_dizzy(-5)
 	else
-		AdjustDizzy(-1)
+		make_dizzy(-1)
 
 	updatehealth()
 

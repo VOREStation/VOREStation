@@ -151,7 +151,7 @@
 						M.Stun(10)
 						M.Paralyse(4)
 					else
-						M.AdjustJittery(50)
+						M.make_jittery(50)
 			insults--
 		else
 			user.audible_message(span_critical("*BZZZZzzzzzt*"))

@@ -102,7 +102,7 @@
 					to_chat(H, span_red("[pick(messages)]"))
 
 			if(prob(50))
-				H.AdjustDizzy(rand(3,5))
+				H.make_dizzy(rand(3,5))
 				if(feeling_type == CANNIBAL_FEELING)
 					H.nutrition = H.nutrition / 1.5
 
@@ -118,7 +118,7 @@
 					to_chat(H, span_red("<font size='[num2text(rand(1,5))]'> " + span_bold("[pick(drastic_messages)]") + " </font>"))
 
 				if(prob(10))
-					H.AdjustDizzy(rand(3,5))
+					H.make_dizzy(rand(3,5))
 					if(feeling_type == CANNIBAL_FEELING)
 						H.nutrition = H.nutrition / 2
 		return 1
@@ -135,9 +135,9 @@
 					to_chat(H, span_red("[pick(messages)]"))
 
 			if(prob(50))
-				H.AdjustDizzy(rand(3,5))
+				H.make_dizzy(rand(3,5))
 			else if(prob(25))
-				H.AdjustDizzy(rand(5,15))
+				H.make_dizzy(rand(5,15))
 				if(feeling_type == CANNIBAL_FEELING)
 					H.nutrition = H.nutrition / 4
 		return 1

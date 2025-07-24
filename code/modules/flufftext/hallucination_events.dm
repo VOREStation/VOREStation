@@ -40,7 +40,7 @@
 								"Your body feels as if it's trying to rip itself open..."
 								)
 	if(prob(20) && our_human.get_jittery() < 50)
-		our_human.AdjustJittery(120)
+		our_human.make_jittery(120)
 	to_chat(our_human, span_danger(pick(pain_message)))
 
 /datum/component/hallucinations/proc/event_fake_item()

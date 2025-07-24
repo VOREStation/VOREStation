@@ -149,14 +149,14 @@
 	if(issmall(M)) effective_dose *= 2
 	if(effective_dose < 1 * threshold)
 		M.apply_effect(3, STUTTER)
-		M.AdjustDizzy(5)
+		M.make_dizzy(5)
 		if(prob(3) && prob_proc == TRUE)
 			M.emote(pick("twitch", "giggle"))
 			prob_proc = FALSE
 	else if(effective_dose < 2 * threshold)
 		M.apply_effect(3, STUTTER)
-		M.AdjustJittery(5)
-		M.AdjustDizzy(5)
+		M.make_jittery(5)
+		M.make_dizzy(5)
 		M.druggy = max(M.druggy, 35)
 		M.hallucination = max(M.hallucination, drug_strength * threshold)
 		if(prob(5) && prob_proc == TRUE)
@@ -164,8 +164,8 @@
 			prob_proc = FALSE
 	else
 		M.apply_effect(3, STUTTER)
-		M.AdjustJittery(10)
-		M.AdjustDizzy(10)
+		M.make_jittery(10)
+		M.make_dizzy(10)
 		M.druggy = max(M.druggy, 40)
 		M.hallucination = max(M.hallucination, drug_strength * threshold)
 		if(prob(10) && prob_proc == TRUE)

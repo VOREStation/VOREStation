@@ -372,7 +372,7 @@
 			to_chat(M, span_danger("It's cold. Something causes your cellular mass to harden occasionally, resulting in vibration."))
 			M.Weaken(10)
 			M.silent = max(M.silent, 10)
-			M.AdjustJittery(4)
+			M.make_jittery(4)
 		M.adjustCloneLoss(-10 * removed * chem_effective)
 		M.adjustOxyLoss(-10 * removed * chem_effective)
 		M.heal_organ_damage(10 * removed, 10 * removed * chem_effective)
@@ -398,7 +398,7 @@
 			chem_effective = 0.5
 			M.Weaken(20)
 			M.silent = max(M.silent, 20)
-			M.AdjustJittery(4)
+			M.make_jittery(4)
 		M.adjustCloneLoss(-30 * removed * chem_effective)
 		M.adjustOxyLoss(-30 * removed * chem_effective)
 		M.heal_organ_damage(30 * removed, 30 * removed * chem_effective)
@@ -428,7 +428,7 @@
 			chem_effective = 0.5
 			M.Weaken(10)
 			M.silent = max(M.silent, 10)
-			M.AdjustJittery(4)
+			M.make_jittery(4)
 		if(M.stat != DEAD)
 			M.adjustCloneLoss(-5 * removed * chem_effective)
 		M.adjustOxyLoss(-10 * removed * chem_effective)
@@ -464,7 +464,7 @@
 			chem_effective = 0.5
 			M.Weaken(20)
 			M.silent = max(M.silent, 20)
-			M.AdjustJittery(4)
+			M.make_jittery(4)
 		if(M.stat != DEAD)
 			M.adjustCloneLoss(-5 * removed * chem_effective)
 		M.adjustOxyLoss(-20 * removed * chem_effective)
@@ -600,7 +600,7 @@
 	if(alien == IS_TAJARA)
 		removed *= 1.25
 	if(alien == IS_SLIME)
-		M.AdjustJittery(4) //Hyperactive fluid pumping results in unstable 'skeleton', resulting in vibration.
+		M.make_jittery(4) //Hyperactive fluid pumping results in unstable 'skeleton', resulting in vibration.
 		if(dose >= 5)
 			M.adjust_nutrition(-removed * 2) // Sadly this movement starts burning food in higher doses.
 	..()
@@ -1159,7 +1159,7 @@
 					M.Weaken(2)
 		if(dose >= 10 || M.toxloss >= 25) //Internal skeletal tubes are rupturing, allowing the chemical to breach them.
 			M.adjustToxLoss(removed * 4)
-			M.AdjustJittery(5)
+			M.make_jittery(5)
 		if(dose >= 20 || M.toxloss >= 60) //Core disentigration, cellular mass begins treating itself as an enemy, while maintaining regeneration. Slime-cancer.
 			M.adjustBrainLoss(2 * removed)
 			M.adjust_nutrition(-20)
@@ -1176,7 +1176,7 @@
 	if(prob(20))
 		M.Weaken(5)
 	if(prob(20))
-		M.AdjustDizzy(5)
+		M.make_dizzy(5)
 	if(prob(20))
 		M.hallucination = max(M.hallucination, 10)
 
@@ -1350,8 +1350,8 @@
 	if(dose > 3)
 		M.status_flags &= ~DISFIGURED
 	if(dose > 10)
-		M.AdjustDizzy(5)
-		M.AdjustJittery(5)
+		M.make_dizzy(5)
+		M.make_jittery(5)
 
 // This exists to cut the number of chemicals a merc borg has to juggle on their hypo.
 /datum/reagent/healing_nanites

@@ -404,7 +404,7 @@
 				if(!paralysis && prob(30) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //CNS is shutting down.
 					to_chat(src, span_critical("You have a seizure!"))
 					Paralyse(10)
-					AdjustJittery(1000)
+					make_jittery(1000)
 					if(!lying)
 						emote("collapse")
 				if(get_active_hand() && prob(15)) //CNS is shutting down.
@@ -464,7 +464,7 @@
 				if(!paralysis && prob(1) && prob(100 * RADIATION_SPEED_COEFFICIENT)) //1 in 1000 chance per tick.
 					to_chat(src, span_critical("You have a seizure!"))
 					Paralyse(10)
-					AdjustJittery(1000)
+					make_jittery(1000)
 					if(!lying)
 						emote("collapse")
 

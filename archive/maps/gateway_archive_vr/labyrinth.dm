@@ -182,7 +182,7 @@
 				M.Stun(10)
 				M.Paralyse(4)
 			else
-				M.AdjustJittery(500)
+				M.make_jittery(500)
 		chassis.use_power(energy_drain)
 		log_message("Honked from [src.name]. HONK!")
 		do_after_cooldown()
