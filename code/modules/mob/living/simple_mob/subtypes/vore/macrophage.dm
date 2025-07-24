@@ -156,14 +156,9 @@
 	digest_mode = DM_ABSORB
 	affects_vore_sprites = FALSE
 
-/mob/living/simple_mob/vore/aggressive/macrophage/init_vore()
-
-	if(!voremob_loaded || LAZYLEN(vore_organs))
-		return TRUE
-
+/mob/living/simple_mob/vore/aggressive/macrophage/load_default_bellies()
 	var/obj/belly/B = new /obj/belly/macrophage(src)
 	vore_selected = B
-	. = ..()
 
 /datum/ai_holder/simple_mob/melee/macrophage
 	var/datum/disease/virus = null
