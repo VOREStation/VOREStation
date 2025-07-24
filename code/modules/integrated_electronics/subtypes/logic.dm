@@ -53,6 +53,8 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/equals/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
+	if(istext(A.data) && istext(B.data)) // Also compare strings to better match circuit description.
+		return lowertext(A.data) == lowertext(B.data)
 	return A.data == B.data
 
 /obj/item/integrated_circuit/logic/binary/jklatch
@@ -154,6 +156,8 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/not_equals/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
+	if(istext(A.data) && istext(B.data)) // Also compare strings to better match circuit description.
+		return lowertext(A.data) != lowertext(B.data)
 	return A.data != B.data
 
 /obj/item/integrated_circuit/logic/binary/and

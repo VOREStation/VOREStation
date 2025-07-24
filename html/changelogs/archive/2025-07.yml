@@ -185,3 +185,61 @@
   - balance: rng of trashpiles altered
   - code_imp: trash piles and loot piles now use a unified looting element for handling
       drops and rarity. Not limited to just loot piles.
+2025-07-21:
+  Kashargul:
+  - code_imp: replace eslint with biome
+2025-07-22:
+  Diana:
+  - bugfix: Bunny taur will no longer hide all worn clothing
+  - bugfix: Empty Contents no longer shows up on ore satchels
+  - bugfix: feline 3color taur fat vwag is fixed
+  Willburd:
+  - code_imp: Gamma loot global list moved to proper file
+2025-07-23:
+  Diana:
+  - bugfix: Emotes now can be used the first time someone emotes instead of *help
+      having to be used
+  - rscadd: Auto floortile placement if crowbarring floor tiles up with a floor tile
+      in your offhand
+  - bugfix: Changeling fleshmend gives you activation text now
+  - bugfix: Makes the resurrection artifact respect anomaly clothing.
+  - bugfix: Fixes a xenoarch exploit pertaining to item stacking.
+  - qol: Changeling lesserform informs you of its failstates
+  Diana, Asher:
+  - rscadd: Ninja syndicate borgs (Comes with a cloaking module and special esword)
+  - balance: Syndicate borgs now spawn with AI trackers
+  - qol: AI Tracker now tells you info about what the states mean if you're an antag
+  - code_imp: being hit now screams the information into the void
+  Kashargul:
+  - admin: refactors the banning panel as tgui interface
+2025-07-24:
+  Diana:
+  - bugfix: You can no longer noclip your hands through oven doors
+  SatinIsle:
+  - bugfix: Fixed an exploit that allowed dense objects to be pushed in front of the
+      containment field when it was already active. It now instantly shuts off when
+      a dense object crosses over it.
+  TheCaramelion:
+  - bugfix: Fixed Calcium Carbonate not preventing vomiting
+  - rscadd: Added "Choreomania", "Tissue Hydration", and "Biometallic Replication"
+      symptoms
+  - rscadd: Added Roanoake Syndrome as a disease.
+  - rscadd: Added a dormant version of Roanoake Syndrome that xenochimeras spawn with.
+  - rscadd: Added infective component
+  - balance: Lowered the damage done by macrophages when they emerge
+  - balance: Lowered the damage output of macrophages
+  - balance: Bio suits now cover hands and feet
+  - bugfix: Fixed Macrophages symptom acting too fast
+  - qol: Added "Chicken Noodle Soup" to possible cures for Cold, Flu, and Food Poisoning
+  - qol: Changed the text in the advanced medical scanner to diferentiate better between
+      diseases or viruses
+  Zizzi:
+  - rscadd: Advanced Locator and Examiner can now ignore dead mobs.
+  - qol: Advanced locator can now find mob by type from string ref. For example /mob/living/carbon
+  - rscadd: Slightly improved Advanced locator description to signify changes.
+  - rscadd: Examiner now outputs if mob is alive.
+  - rscdel: Removed video camera circuit due to excessive server load, and not functioning
+      correctly.
+  - qol: EQUAL and NOT EQUAL gate now compare strings correctly.
+  - qol: Textpad can now write messages longer than 58 characters.
+  - bugfix: Textpad now supports special characters.

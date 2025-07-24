@@ -6,36 +6,36 @@
 labelPRBasedOnFilePath:
   # Add 'Type: Map' to any changes to .dmm files
   "Type: Map":
-    - '**/*.dmm'
+    - "**/*.dmm"
 
   # Add 'Type: Map' to any changes to image files
   "Type: Icon":
-    - '**/*.dmi'
-    - '**/*.png'
-    - '**/*.jpg'
+    - "**/*.dmi"
+    - "**/*.png"
+    - "**/*.jpg"
 
   # Add 'Type: Sound' to any change to sound files
   "Type: Sound":
-    - '**/*.ogg'
-    - '**/*.mp3'
-    - '**/*.wav'
+    - "**/*.ogg"
+    - "**/*.mp3"
+    - "**/*.wav"
 
   # Add 'Type: Fluff' to any change to *custom_items*
   "Type: Fluff":
-    - '**/*custom_items*'
-    - '**/*loadout_fluff*'
-    - 'config/alienwhitelist.txt'
-    - 'config/jobwhitelist.txt'
-    - 'config/custom_sprites.txt'
+    - "**/*custom_items*"
+    - "**/*loadout_fluff*"
+    - "config/alienwhitelist.txt"
+    - "config/jobwhitelist.txt"
+    - "config/custom_sprites.txt"
 
   # Contains changes to system folders
   "Type: .git or .github":
-    - '.github/**'
-    - '.git/**'
-    
+    - ".github/**"
+    - ".git/**"
+
   # Contains changes to the TGUI bundle
   "Type: TGUI Bundle":
-    - 'tgui/public/**'
+    - "tgui/public/**"
 
 ##### Greetings ########################################################################################################
 # Comment to be posted to welcome users when they open their first PR
@@ -95,7 +95,7 @@ firstIssueWelcomeComment: >
 ###### PR/Branch Up-To-Date Checker ####################################################################################
 # Check if the branch is up to date with master when certain files are modified
 #checkUpToDate:
-#  # The default branch is "master", change the branch if you want to check against a different target branch  
+#  # The default branch is "master", change the branch if you want to check against a different target branch
 #  targetBranch: master
 #  files:
 #  # File paths that you want to check for

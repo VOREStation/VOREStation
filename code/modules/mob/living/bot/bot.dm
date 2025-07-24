@@ -564,7 +564,6 @@
 
 /mob/living/bot/Login()
 	no_vore = FALSE // ROBOT VORE
-	init_vore() // ROBOT VORE
 	add_verb(src, /mob/proc/insidePanel)
 
 	return ..()

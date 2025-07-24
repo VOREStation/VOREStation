@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(vr_mob_tf_options, list(
 	"Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 	"Seagull" =/mob/living/simple_mob/vore/seagull,
 	"Fox" = /mob/living/simple_mob/animal/passive/fox,
-	//"Racoon" = /mob/living/simple_mob/animal/passive/raccoon_ch, //TODO: Port from Downstream
+	"Racoon" = /mob/living/simple_mob/animal/passive/raccoon,
 	"Shantak" = /mob/living/simple_mob/animal/sif/shantak,
 	"Goose" = /mob/living/simple_mob/animal/space/goose,
 	"Space shark" = /mob/living/simple_mob/animal/space/shark,
@@ -488,7 +488,7 @@ GLOBAL_LIST_INIT(vr_mob_spawner_options, list(
 	"Seagull" =/mob/living/simple_mob/vore/seagull,
 	"Corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
 	//"Armadillo" = /mob/living/simple_mob/animal/passive/armadillo, //TODO: Port from Downstream
-	//"Racoon" = /mob/living/simple_mob/animal/passive/raccoon_ch, //TODO: Port from Downstream
+	"Racoon" = /mob/living/simple_mob/animal/passive/raccoon,
 	"Goose" = /mob/living/simple_mob/animal/space/goose,
 	"Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 	"Dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
@@ -579,10 +579,10 @@ GLOBAL_LIST_EMPTY(random_maps)
 GLOBAL_LIST_EMPTY(map_count)
 GLOBAL_LIST_EMPTY(narsie_list)
 GLOBAL_LIST_EMPTY(id_card_states)
-GLOBAL_LIST_EMPTY(allocated_gamma)
+GLOBAL_LIST_EMPTY(allocated_gamma_loot)
 GLOBAL_LIST_EMPTY(semirandom_mob_spawner_decisions)
 
-GLOBAL_LIST_INIT(unique_gamma, list(
+GLOBAL_LIST_INIT(unique_gamma_loot, list(
 	/obj/item/perfect_tele,
 	/obj/item/bluespace_harpoon,
 	/obj/item/clothing/glasses/thermal/syndi,
@@ -971,6 +971,76 @@ GLOBAL_LIST_INIT(special_roles, list(
 	"Ship Survivor" = 1,								// 22
 ))
 
+GLOBAL_LIST_INIT(maint_mob_pred_options, list(
+	"Rabbit" = /mob/living/simple_mob/vore/rabbit,
+	"Red Panda" = /mob/living/simple_mob/vore/redpanda,
+	"Fennec" = /mob/living/simple_mob/vore/fennec,
+	"Fennix" = /mob/living/simple_mob/vore/fennix,
+	"Fox" = /mob/living/simple_mob/animal/passive/fox,
+	"Syndi-Fox" = /mob/living/simple_mob/animal/passive/fox/syndicate,
+	"Raccoon" = /mob/living/simple_mob/animal/passive/raccoon,
+	"Cat" = /mob/living/simple_mob/animal/passive/cat,
+	"Space Bumblebee" = /mob/living/simple_mob/vore/bee,
+	"Space Bear" = /mob/living/simple_mob/animal/space/bear,
+	"Voracious Lizard" = /mob/living/simple_mob/vore/aggressive/dino,
+	"Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
+	"Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
+	"Jelly Blob" = /mob/living/simple_mob/vore/jelly,
+	"Wolf" = /mob/living/simple_mob/vore/wolf,
+	"Dire Wolf" = /mob/living/simple_mob/vore/wolf/direwolf,
+	"Large Dog" = /mob/living/simple_mob/vore/wolf/direwolf/dog,
+	"Juvenile Solargrub" = /mob/living/simple_mob/vore/solargrub,
+	"Sect Queen" = /mob/living/simple_mob/vore/sect_queen,
+	"Sect Drone" = /mob/living/simple_mob/vore/sect_drone,
+	"Defanged Xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
+	"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
+	"Giant Snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
+	"Deathclaw" = /mob/living/simple_mob/vore/aggressive/deathclaw,
+	"Otie" = /mob/living/simple_mob/vore/otie,
+	"Chubby Otie" = /mob/living/simple_mob/vore/otie/friendly/chubby,
+	"Mutated Otie" = /mob/living/simple_mob/vore/otie/feral,
+	"Chubby Mutated Otie" = /mob/living/simple_mob/vore/otie/feral/chubby,
+	"Red Otie" = /mob/living/simple_mob/vore/otie/red,
+	"Chubby Red Otie" = /mob/living/simple_mob/vore/otie/red/chubby,
+	"Corrupt Hound" = /mob/living/simple_mob/vore/aggressive/corrupthound,
+	"Corrupt Corrupt Hound" = /mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi,
+	"Hunter Giant Spider" = /mob/living/simple_mob/animal/giant_spider/hunter,
+	"Lurker Giant Spider" = /mob/living/simple_mob/animal/giant_spider/lurker,
+	"Pepper Giant Spider" = /mob/living/simple_mob/animal/giant_spider/pepper,
+	"Thermic Giant Spider" = /mob/living/simple_mob/animal/giant_spider/thermic,
+	"Webslinger Giant Spider" = /mob/living/simple_mob/animal/giant_spider/webslinger,
+	"Frost Giant Spider" = /mob/living/simple_mob/animal/giant_spider/frost,
+	"Nurse Giant Spider" = /mob/living/simple_mob/animal/giant_spider/nurse/eggless,
+	"Giant Spider Queen" = /mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless,
+	"Red Dragon" = /mob/living/simple_mob/vore/aggressive/dragon,
+	"Phoron Dragon" = /mob/living/simple_mob/vore/aggressive/dragon/virgo3b,
+	"Space Dragon" = /mob/living/simple_mob/vore/aggressive/dragon/space,
+	"Crypt Drake" = /mob/living/simple_mob/vore/cryptdrake,
+	"Weretiger" = /mob/living/simple_mob/vore/weretiger,
+	"Catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
+	"Squirrel" = /mob/living/simple_mob/vore/squirrel/big,
+	"Pakkun" =/mob/living/simple_mob/vore/pakkun,
+	"Snapdragon" =/mob/living/simple_mob/vore/pakkun/snapdragon,
+	"Sand pakkun" = /mob/living/simple_mob/vore/pakkun/sand,
+	"Fire pakkun" = /mob/living/simple_mob/vore/pakkun/fire,
+	"Amethyst pakkun" = /mob/living/simple_mob/vore/pakkun/purple,
+	"Raptor" = /mob/living/simple_mob/vore/raptor,
+	"Giant Bat" = /mob/living/simple_mob/vore/bat,
+	"Scel (Orange)" = /mob/living/simple_mob/vore/scel/orange,
+	"Scel (Blue)" = /mob/living/simple_mob/vore/scel/blue,
+	"Scel (Purple)" = /mob/living/simple_mob/vore/scel/purple,
+	"Scel (Red)" = /mob/living/simple_mob/vore/scel/red,
+	"Scel (Green)" = /mob/living/simple_mob/vore/scel/green,
+	"Cave Stalker" = /mob/living/simple_mob/vore/stalker,
+	"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
+	"Scrubble" = /mob/living/simple_mob/vore/scrubble,
+	"Sonadile" = /mob/living/simple_mob/vore/sonadile,
+	"kururak" = /mob/living/simple_mob/animal/sif/kururak,
+	"Statue of Temptation" = /mob/living/simple_mob/vore/devil,
+	"Meowl" = /mob/living/simple_mob/vore/meowl,
+	"Abyss Leaper" = /mob/living/simple_mob/vore/vore_hostile/leaper,
+	"Abyss Lurker" = /mob/living/simple_mob/vore/vore_hostile/abyss_lurker
+	))
 
 // GLOB.alldirs in global.dm is the same list of directions, but since
 //  the specific order matters to get a usable icon_state, it is
@@ -1302,7 +1372,8 @@ GLOBAL_LIST_INIT(robot_modules, list(
 	"Lost"			= /obj/item/robot_module/robot/lost,
 	"Protector" 	= /obj/item/robot_module/robot/syndicate/protector,
 	"Mechanist" 	= /obj/item/robot_module/robot/syndicate/mechanist,
-	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic
+	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic,
+	"Ninja" 		= /obj/item/robot_module/robot/syndicate/ninja,
 	))
 
 

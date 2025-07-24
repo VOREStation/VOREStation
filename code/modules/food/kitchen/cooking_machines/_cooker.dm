@@ -80,7 +80,7 @@
 
 				if(istype(I) && can_insert(I)) // Why do hard work when we can just make them smack us?
 					attackby(I, ui.user)
-				else if(istype(CI))
+				else if(istype(CI) && can_remove_items(ui.user))
 					eject(CI, ui.user)
 				return TRUE
 			if(istype(I)) // Why do hard work when we can just make them smack us?

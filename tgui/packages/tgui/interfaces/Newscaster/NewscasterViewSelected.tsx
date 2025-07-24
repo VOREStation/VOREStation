@@ -12,7 +12,9 @@ import { decodeHtmlEntities } from 'tgui-core/string';
 import { NEWSCASTER_SCREEN_VIEWLIST } from './constants';
 import type { Data } from './types';
 
-export const NewscasterViewSelected = (props: { setScreen: Function }) => {
+export const NewscasterViewSelected = (props: {
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { act, data } = useBackend<Data>();
 
   const { viewing_channel, securityCaster, company } = data;

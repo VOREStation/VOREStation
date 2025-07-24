@@ -19,14 +19,14 @@ export async function removeGuideComments({ github, context }) {
   let newBody = context.payload.pull_request.body;
 
   if (!newBody) {
-	console.log("PR body is empty, skipping...");
-	return;
+    console.log("PR body is empty, skipping...");
+    return;
   }
 
   for (const comment of comments) {
     newBody = newBody.replace(
       new RegExp(`^\\s*${escapeRegex(comment)}\\s*`, "gm"),
-      "\n"
+      "\n",
     );
   }
 

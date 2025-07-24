@@ -256,81 +256,85 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 1)
 
-/obj/item/integrated_circuit/output/video_camera
-	name = "video camera circuit"
-	desc = "This small camera allows a remote viewer to see what it sees."
-	var/list/networks = list(
-		"research"			= NETWORK_CIRCUITS,
-		"engine"			= NETWORK_ENGINE,
-		"engineering"		= NETWORK_ENGINEERING,
-		"mining"			= NETWORK_MINE,
-		"medical"			= NETWORK_MEDICAL,
-		"entertainment"		= NETWORK_THUNDER,
-		"security"			= NETWORK_SECURITY,
-		"command"			= NETWORK_COMMAND
-		)
-	icon_state = "video_camera"
-	w_class = ITEMSIZE_SMALL
-	complexity = 10
-	inputs = list(
-		"camera name" = IC_PINTYPE_STRING,
-		"camera network" = IC_PINTYPE_STRING,
-		"camera active" = IC_PINTYPE_BOOLEAN
-		)
-	inputs_default = list(
-		"1" = "video camera circuit",
-		"2" = "research"
-		)
-	outputs = list()
-	activators = list()
-	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	power_draw_idle = 5 // Raises to 80 when on.
-	var/obj/machinery/camera/network/circuits/camera
 
-/obj/item/integrated_circuit/output/video_camera/Initialize(mapload)
-	. = ..()
-	extended_desc = list()
-	extended_desc += "Network choices are; "
-	extended_desc += jointext(networks, ", ")
-	extended_desc += "."
-	extended_desc = jointext(extended_desc, null)
-	camera = new(src)
-	on_data_written()
+// Temporarily removing video camera circuit due to excessive server load it can cause.
+// And being badly implemented at present. (We have handheld camera's anyway)
 
-/obj/item/integrated_circuit/output/video_camera/Destroy()
-	QDEL_NULL(camera)
-	return ..()
+// /obj/item/integrated_circuit/output/video_camera
+// 	name = "video camera circuit"
+// 	desc = "This small camera allows a remote viewer to see what it sees."
+// 	var/list/networks = list(
+// 		"research"			= NETWORK_CIRCUITS,
+// 		"engine"			= NETWORK_ENGINE,
+// 		"engineering"		= NETWORK_ENGINEERING,
+// 		"mining"			= NETWORK_MINE,
+// 		"medical"			= NETWORK_MEDICAL,
+// 		"entertainment"		= NETWORK_THUNDER,
+// 		"security"			= NETWORK_SECURITY,
+// 		"command"			= NETWORK_COMMAND
+// 		)
+// 	icon_state = "video_camera"
+// 	w_class = ITEMSIZE_SMALL
+// 	complexity = 10
+// 	inputs = list(
+// 		"camera name" = IC_PINTYPE_STRING,
+// 		"camera network" = IC_PINTYPE_STRING,
+// 		"camera active" = IC_PINTYPE_BOOLEAN
+// 		)
+// 	inputs_default = list(
+// 		"1" = "video camera circuit",
+// 		"2" = "research"
+// 		)
+// 	outputs = list()
+// 	activators = list()
+// 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+// 	power_draw_idle = 5 // Raises to 80 when on.
+// 	var/obj/machinery/camera/network/circuits/camera
 
-/obj/item/integrated_circuit/output/video_camera/proc/set_camera_status(var/status)
-	if(camera)
-		camera.set_status(status)
-		power_draw_idle = camera.status ? 80 : 5
-		if(camera.status) // Ensure that there's actually power.
-			if(!draw_idle_power())
-				power_fail()
+// /obj/item/integrated_circuit/output/video_camera/Initialize(mapload)
+// 	. = ..()
+// 	extended_desc = list()
+// 	extended_desc += "Network choices are; "
+// 	extended_desc += jointext(networks, ", ")
+// 	extended_desc += "."
+// 	extended_desc = jointext(extended_desc, null)
+// 	camera = new(src)
+// 	on_data_written()
 
-/obj/item/integrated_circuit/output/video_camera/on_data_written()
-	if(camera)
-		var/cam_name = get_pin_data(IC_INPUT, 1)
-		var/cam_network = get_pin_data(IC_INPUT, 2)
-		var/cam_active = get_pin_data(IC_INPUT, 3)
-		if(!isnull(cam_name))
-			camera.c_tag = cam_name
-		camera.replace_networks(list(cam_network))
-		set_camera_status(cam_active)
-		if(isnull(cam_network))
-			camera.clear_all_networks()
-			return
-		var/selected_network = networks[cam_network]
-		if(!selected_network)
-			camera.clear_all_networks()
-			return
-		camera.replace_networks(list(selected_network))
+// /obj/item/integrated_circuit/output/video_camera/Destroy()
+// 	QDEL_NULL(camera)
+// 	return ..()
 
-/obj/item/integrated_circuit/output/video_camera/power_fail()
-	if(camera)
-		set_camera_status(0)
-		set_pin_data(IC_INPUT, 2, FALSE)
+// /obj/item/integrated_circuit/output/video_camera/proc/set_camera_status(var/status)
+// 	if(camera)
+// 		camera.set_status(status)
+// 		power_draw_idle = camera.status ? 80 : 5
+// 		if(camera.status) // Ensure that there's actually power.
+// 			if(!draw_idle_power())
+// 				power_fail()
+
+// /obj/item/integrated_circuit/output/video_camera/on_data_written()
+// 	if(camera)
+// 		var/cam_name = get_pin_data(IC_INPUT, 1)
+// 		var/cam_network = get_pin_data(IC_INPUT, 2)
+// 		var/cam_active = get_pin_data(IC_INPUT, 3)
+// 		if(!isnull(cam_name))
+// 			camera.c_tag = cam_name
+// 		camera.replace_networks(list(cam_network))
+// 		set_camera_status(cam_active)
+// 		if(isnull(cam_network))
+// 			camera.clear_all_networks()
+// 			return
+// 		var/selected_network = networks[cam_network]
+// 		if(!selected_network)
+// 			camera.clear_all_networks()
+// 			return
+// 		camera.replace_networks(list(selected_network))
+
+// /obj/item/integrated_circuit/output/video_camera/power_fail()
+// 	if(camera)
+// 		set_camera_status(0)
+// 		set_pin_data(IC_INPUT, 2, FALSE)
 
 /obj/item/integrated_circuit/output/led
 	name = "light-emitting diode"

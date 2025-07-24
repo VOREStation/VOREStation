@@ -6,8 +6,8 @@ let files = {};
 let count = 0;
 
 while (queue.length) {
-  let entries = await Promise.all(
-    queue.slice(0, 100).map((path) => readdir(path, { withFileTypes: true }))
+  const entries = await Promise.all(
+    queue.slice(0, 100).map((path) => readdir(path, { withFileTypes: true })),
   );
   for (let i = 0; i < entries.length; ++i) {
     for (const entry of entries[i]) {
@@ -24,8 +24,8 @@ while (queue.length) {
 files = Object.keys(files);
 
 while (files.length) {
-  let queue = files.slice(0, 100);
-  let buffers = await Promise.all(queue.map((path) => readFile(path)));
+  const queue = files.slice(0, 100);
+  const buffers = await Promise.all(queue.map((path) => readFile(path)));
   for (let i = 0; i < queue.length; ++i) {
     if (!isValidUTF8(buffers[i])) {
       console.log(queue[i]);

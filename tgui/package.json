@@ -1,45 +1,30 @@
 {
-  "private": true,
-  "name": "tgui-workspace",
-  "version": "6.0.0",
-  "packageManager": "bun@1.2.18",
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "tgui:analyze": "rspack --analyze",
-    "tgui:build": "rspack build",
-    "tgui:dev": "bun --smol packages/tgui-dev-server/index.ts",
-    "tgui:lint": "eslint packages --ext .js,.cjs,.ts,.tsx",
-    "tgui:prettier": "prettier --check .",
-    "tgui:test": "bun test",
-    "tgui:tsc": "tsc",
-    "tgui:prettier-fix": "prettier --write .",
-    "tgui:eslint-fix": "eslint --fix packages --ext .js,.cjs,.ts,.jsx,.tsx"
-  },
-  "dependencies": {
-    "@rspack/cli": "^1.4.8",
-    "@rspack/core": "^1.4.8",
-    "@typescript-eslint/eslint-plugin": "^8.37.0",
-    "@typescript-eslint/parser": "^8.37.0",
-    "@typescript-eslint/utils": "^8.37.0",
-    "css-loader": "^7.1.2",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-unused-imports": "^4.1.4",
-    "prettier": "^3.6.2",
-    "sass-embedded": "^1.89.2",
-    "sass-loader": "^16.0.5",
-    "typescript": "^5.8.3"
-  },
-  "devDependencies": {
-    "@happy-dom/global-registrator": "^17.6.3",
-    "@types/bun": "^1.2.18",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@types/webpack-env": "^1.18.8",
-    "@types/wicg-file-system-access": "^2023.10.6"
-  }
+	"private": true,
+	"name": "tgui-workspace",
+	"version": "6.0.0",
+	"packageManager": "bun@1.2.19",
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"tgui:analyze": "rspack --analyze",
+		"tgui:build": "rspack build",
+		"tgui:dev": "bun --smol packages/tgui-dev-server/index.ts",
+		"tgui:test": "bun test",
+		"tgui:tsc": "tsc"
+	},
+	"devDependencies": {
+		"@happy-dom/global-registrator": "^17.6.3",
+		"@rspack/cli": "^1.4.9",
+		"@rspack/core": "^1.4.9",
+		"@types/bun": "^1.2.19",
+		"@types/react": "^19.1.8",
+		"@types/react-dom": "^19.1.6",
+		"@types/webpack-env": "^1.18.8",
+		"@types/wicg-file-system-access": "^2023.10.6",
+		"css-loader": "^7.1.2",
+		"sass-embedded": "^1.89.2",
+		"sass-loader": "^16.0.5",
+		"typescript": "^5.8.3"
+	}
 }

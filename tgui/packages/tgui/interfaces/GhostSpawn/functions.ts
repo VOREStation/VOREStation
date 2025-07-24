@@ -1,4 +1,4 @@
-import type { describeReturnData, DroneData, MouseData } from './types';
+import type { DroneData, describeReturnData, MouseData } from './types';
 
 export function describeMouseData(
   data: MouseData,
@@ -23,9 +23,7 @@ export function describeMouseData(
   }
   if (data.respawn_time) {
     returnData.text =
-      'You must wait ' +
-      data.respawn_time +
-      ' before being able to respawn again.';
+      'You must wait ' + data.respawn_time + ' before being able to respawn.';
     returnData.state = false;
     return returnData;
   }
@@ -64,9 +62,7 @@ export function describeDroneData(
   }
   if (data.respawn_time) {
     returnData.text =
-      'You must wait ' +
-      data.respawn_time +
-      ' before being able to respawn again.';
+      'You must wait ' + data.respawn_time + ' before being able to respawn.';
     returnData.state = false;
     return returnData;
   }
@@ -86,23 +82,20 @@ export function describeSpecialData(
   respawn: string,
   action: string,
 ): describeReturnData {
-  const text = 'Span as ' + role.toLowerCase() + '.';
+  const text = `Span as ${role.toLowerCase()}.`;
   const returnData = { text: text, state: true, name: role, action: action };
   if (banned) {
-    returnData.text =
-      'You are banned from playing as ' + role.toLowerCase() + '.';
+    returnData.text = `You are banned from playing as ${role.toLowerCase()}.`;
     returnData.state = false;
     return returnData;
   }
   if (!spawn_exists) {
-    returnData.text =
-      'There are no available ' + role.toLowerCase() + ' spawn points, sorry.';
+    returnData.text = `There are no available ${role.toLowerCase()} spawn points, sorry.`;
     returnData.state = false;
     return returnData;
   }
   if (respawn) {
-    returnData.text =
-      'You must wait ' + respawn + ' before being able to respawn again.';
+    returnData.text = `You must wait ${respawn} before being able to respawn.`;
     returnData.state = false;
     return returnData;
   }
