@@ -725,7 +725,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/max_length = 50
 
-	var/message = sanitize(tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", max_length), encode = FALSE)
+	var/message = tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", max_length)
 
 	if (message)
 
@@ -899,7 +899,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/living/M = tgui_input_list(src, "Select who to whisper to:", "Whisper to?", options)
 		if(!M)
 			return 0
-		var/msg = sanitize(tgui_input_text(src, "Message:", "Spectral Whisper"), encode = FALSE)
+		var/msg = tgui_input_text(src, "Message:", "Spectral Whisper", "", MAX_MESSAGE_LEN)
 		if(msg)
 			log_say("(SPECWHISP to [key_name(M)]): [msg]", src)
 			to_chat(M, span_warning(" You hear a strange, unidentifiable voice in your head... [span_purple("[msg]")]"))

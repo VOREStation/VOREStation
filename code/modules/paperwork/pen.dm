@@ -283,7 +283,7 @@
 	if(new_signature)
 		signature = new_signature
 	*/
-	signature = sanitize(tgui_input_text(user, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature), encode = FALSE)
+	signature = tgui_input_text(user, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature, MAX_MESSAGE_LEN)
 
 /obj/item/pen/proc/get_signature(var/mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"

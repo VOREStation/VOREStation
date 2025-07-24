@@ -44,8 +44,8 @@ ADMIN_VERB_AND_CONTEXT_MENU(add_mob_for_narration, R_FUN, "Narrate Entity (Add r
 			gets logged in case of abuse."))
 			log_and_message_admins("has added [L.ckey]'s mob to their entity narrate list", user)
 			return
-		var/unique_name = sanitize(tgui_input_text(user, "Please give the entity a unique name to track internally. \
-		This doesn't override how it appears in game", "tracker", L.name), encode = FALSE)
+		var/unique_name = tgui_input_text(user, "Please give the entity a unique name to track internally. \
+		This doesn't override how it appears in game", "tracker", L.name, MAX_MESSAGE_LEN)
 		if(unique_name in holder.entity_names)
 			to_chat(user, span_notice("[unique_name] is not unique! Pick another!"))
 			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/add_mob_for_narration, L) //Recursively calling ourselves until cancelled or a unique name is given.
@@ -57,8 +57,8 @@ ADMIN_VERB_AND_CONTEXT_MENU(add_mob_for_narration, R_FUN, "Narrate Entity (Add r
 	//Covering functionality for turfs and objs. We need static type to access the name var
 	else if(istype(E, /atom))
 		var/atom/A = E
-		var/unique_name = sanitize(tgui_input_text(user, "Please give the entity a unique name to track internally. \
-		This doesn't override how it appears in game", "tracker", A.name), encode = FALSE)
+		var/unique_name = tgui_input_text(user, "Please give the entity a unique name to track internally. \
+		This doesn't override how it appears in game", "tracker", A.name, MAX_MESSAGE_LEN)
 		if(unique_name in holder.entity_names)
 			to_chat(user, span_notice("[unique_name] is not unique! Pick another!"))
 			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/add_mob_for_narration, A)

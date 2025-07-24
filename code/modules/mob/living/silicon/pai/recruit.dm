@@ -70,7 +70,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 		switch(option)
 			if("name")
-				t = sanitizeSafe(tgui_input_text(usr, "Enter a name for your pAI", "pAI Name", candidate.name, MAX_NAME_LEN), MAX_NAME_LEN, encode = FALSE)
+				t = sanitizeSafe(tgui_input_text(usr, "Enter a name for your pAI", "pAI Name", candidate.name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 				if(t)
 					candidate.name = t
 			if("desc")

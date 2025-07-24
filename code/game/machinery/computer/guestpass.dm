@@ -197,7 +197,7 @@
 			if(nam)
 				giv_name = nam
 		if("reason")
-			var/reas = sanitize(tgui_input_text(ui.user, "Reason why pass is issued", "Reason", reason), encode = FALSE)
+			var/reas = tgui_input_text(ui.user, "Reason why pass is issued", "Reason", reason, MAX_MESSAGE_LEN)
 			if(reas)
 				reason = reas
 		if("duration")

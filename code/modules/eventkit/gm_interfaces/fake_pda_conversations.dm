@@ -28,12 +28,12 @@
 	var/datum/eventkit/fake_pdaconvos/FPC = fakeConversations
 
 	if(choice == "Add new identity")
-		var/newRef = sanitize(tgui_input_text(usr, "Input unique reference. Duplicates are FORBIDDEN!. Players can't see this.\
-		Used to uniquely identify conversations in PDAs", null), encode = FALSE)
+		var/newRef = tgui_input_text(usr, "Input unique reference. Duplicates are FORBIDDEN!. Players can't see this.\
+		Used to uniquely identify conversations in PDAs", null, MAX_MESSAGE_LEN)
 		if(!newRef) return
 		FPC.fakeRefs.Add(newRef)
-		FPC.names[newRef] = sanitize(tgui_input_text(usr, "Input fake name",newRef), encode = FALSE)
-		FPC.fakeJobs[newRef] = sanitize(tgui_input_text(usr, "Input fake assignment.",newRef), encode = FALSE)
+		FPC.names[newRef] = tgui_input_text(usr, "Input fake name",newRef, "", MAX_MESSAGE_LEN)
+		FPC.fakeJobs[newRef] = tgui_input_text(usr, "Input fake assignment.",newRef, "", MAX_MESSAGE_LEN)
 		to_chat(usr, span_notice("You have created [newRef]. Current name: [FPC.names[newRef]]. Current assignment: [FPC.fakeJobs[newRef]]"))
 		return
 
@@ -42,10 +42,10 @@
 		to_chat(usr, span_notice("You are editing [ref]. Current name: [FPC.names[ref]]. Current assignment: [FPC.fakeJobs[ref]]"))
 		var/editChoice = tgui_alert(usr, "What do you wish to edit?", "Details", list("Name", "Job", "Cancel"))
 		if(editChoice == "Name")
-			FPC.names[ref] = sanitize(tgui_input_text(usr, "Input fake name", FPC.names[ref]), encode = FALSE)
+			FPC.names[ref] = tgui_input_text(usr, "Input fake name", FPC.names[ref], "", MAX_MESSAGE_LEN)
 			to_chat(usr, span_notice("Current data for [ref] are : Current name: [FPC.names[ref]]. Current assignment: [FPC.fakeJobs[ref]]"))
 		if(editChoice == "Job")
-			FPC.fakeJobs[ref] = sanitize(tgui_input_text(usr, "Input fake name", FPC.fakeJobs[ref]), encode = FALSE)
+			FPC.fakeJobs[ref] = tgui_input_text(usr, "Input fake name", FPC.fakeJobs[ref], "", MAX_MESSAGE_LEN)
 			to_chat(usr, span_notice("Current data for [ref] are : Current name: [FPC.names[ref]]. Current assignment: [FPC.fakeJobs[ref]]"))
 		return
 	if(choice == "Delete existing identity")
@@ -85,8 +85,7 @@ Invoked by vv topic "fakepdapropconvo" in code\modules\admin\view_variables\topi
 		var/safetyLimit = 0
 		while(safetyLimit < 30)
 			safetyLimit += 1
-			var/message = sanitize(tgui_input_text(M, "Input fake message. Leave empty to cancel. Can create up to 30 messages in a row",null),
-			MAX_MESSAGE_LEN, encode = FALSE)
+			var/message = tgui_input_text(M, "Input fake message. Leave empty to cancel. Can create up to 30 messages in a row",null, "", MAX_MESSAGE_LEN)
 			if(!message) return
 			var/input = tgui_alert(M, "Received or Sent?", "Direction", list("Received", "Sent"))
 			if(!input)

@@ -295,8 +295,7 @@
 				. = TRUE
 
 		if("network")
-			var/newnet = tgui_input_text(ui.user, "Specify the new network for this machine. This will break all current links.", src, network)
-			newnet = sanitize(newnet,15, encode = FALSE)
+			var/newnet = tgui_input_text(ui.user, "Specify the new network for this machine. This will break all current links.", src, network, 15)
 			if(newnet && canAccess(ui.user))
 
 				if(length(newnet) > 15)

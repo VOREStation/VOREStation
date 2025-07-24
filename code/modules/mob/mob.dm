@@ -311,7 +311,7 @@
 	set src in usr
 	if(usr != src)
 		to_chat(src, "No.")
-	var/msg = sanitize(tgui_input_text(src,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text), multiline = TRUE, prevent_enter = TRUE), extra = 0, encode = FALSE)	//VOREStation Edit: separating out OOC notes
+	var/msg = tgui_input_text(src,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text), MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 
 	if(msg != null)
 		flavor_text = msg
@@ -1573,7 +1573,7 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 			qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
 		L.ai_holder_type = tgui_input_list(usr, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
 		L.initialize_ai_holder()
-		L.faction = sanitize(tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral"), encode = FALSE)
+		L.faction = tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral", MAX_MESSAGE_LEN)
 		L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
 		if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 			L.AdjustSleeping(-100)

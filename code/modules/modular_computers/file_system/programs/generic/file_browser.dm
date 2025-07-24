@@ -30,7 +30,7 @@
 		if("PRG_newtextfile")
 			if(!HDD)
 				return
-			var/newname = sanitize(tgui_input_text(ui.user, "Enter file name or leave blank to cancel:", "File rename"), encode = FALSE)
+			var/newname = tgui_input_text(ui.user, "Enter file name or leave blank to cancel:", "File rename", "", MAX_MESSAGE_LEN)
 			if(!newname)
 				return
 			if(HDD.find_file_by_name(newname))
@@ -66,7 +66,7 @@
 			var/oldtext = html_decode(F.stored_data)
 			oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-			var/newtext = sanitize(replacetext(tgui_input_text(ui.user, "Editing file [F.filename].[F.filetype]. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH, encode = FALSE)
+			var/newtext = replacetext(tgui_input_text(ui.user, "Editing file [F.filename].[F.filetype]. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]")
 			if(!newtext)
 				return
 

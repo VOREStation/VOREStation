@@ -28,7 +28,7 @@
 
 	if(istype(I, /obj/item/multitool))
 		if(panel_open)
-			var/input = sanitize(tgui_input_text(user, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id), encode = FALSE)
+			var/input = tgui_input_text(user, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id, MAX_KEYPAD_INPUT_LEN)
 			if(!input)
 				to_chat(user, "No input found please hang up and try your call again.")
 				return

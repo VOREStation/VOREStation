@@ -180,7 +180,7 @@
 	if(!check_interactivity(M))
 		return
 
-	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name this?", "Rename", src.name, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name this?", "Rename", src.name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if(src && input)
 		to_chat(M, span_notice("The machine now has a label reading '[input]'."))
 		name = input

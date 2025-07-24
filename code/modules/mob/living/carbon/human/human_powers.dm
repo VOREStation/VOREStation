@@ -96,8 +96,6 @@
 
 	text = tgui_input_text(src, "What would you like to say?", "Speak to creature", null, MAX_MESSAGE_LEN)
 
-	text = sanitize(text, MAX_MESSAGE_LEN, encode = FALSE)
-
 	if(!text) return
 
 	var/mob/M = targets[target]
@@ -121,7 +119,7 @@
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities.General"
 
-	var/msg = sanitize(tgui_input_text(src, "Message:", "Psychic Whisper"), encode = FALSE)
+	var/msg = tgui_input_text(src, "Message:", "Psychic Whisper", "", MAX_MESSAGE_LEN)
 	if(msg)
 		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
 		to_chat(M, span_filter_say("[span_green("You hear a strange, alien voice in your head... <i>[msg]</i>")]"))

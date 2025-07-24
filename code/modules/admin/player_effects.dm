@@ -750,7 +750,7 @@
 				qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
 			L.ai_holder_type = tgui_input_list(ui.user, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
 			L.initialize_ai_holder()
-			L.faction = sanitize(tgui_input_text(ui.user, "Please input AI faction", "AI faction", "neutral"), encode = FALSE)
+			L.faction = tgui_input_text(ui.user, "Please input AI faction", "AI faction", "neutral", MAX_MESSAGE_LEN)
 			L.a_intent = tgui_input_list(ui.user, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
 			if(tgui_alert(ui.user, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 				L.AdjustSleeping(-100)

@@ -123,7 +123,6 @@
 	var/input = tgui_input_text(user, "Would you like to change the holoengraving on the ring?", "Name your spouse", "Bae", MAX_NAME_LEN)
 	if(!input)
 		return
-	partnername = sanitize(input, encode = FALSE)
 	name = "[initial(name)] - [partnername]"
 
 /obj/item/clothing/accessory/ring/wedding/silver

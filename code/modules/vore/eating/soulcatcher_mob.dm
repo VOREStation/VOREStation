@@ -197,20 +197,18 @@
 	set desc = "Speak to your Soulcatcher (circumventing SR speaking)."
 	set category = "Soulcatcher"
 
-	var/message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", multiline=TRUE, encode = FALSE)
+	var/message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", "", MAX_MESSAGE_LEN, TRUE)
 	if(message)
-		var/sane_message = sanitize(message)
-		gem.use_speech(sane_message, src)
+		gem.use_speech(message, src)
 
 /mob/living/carbon/brain/caught_soul/vore/nme_brain()
 	set name = "NMe"
 	set desc = "Emote to your Soulcatcher (circumventing SR speaking)."
 	set category = "Soulcatcher"
 
-	var/message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", multiline=TRUE, encode = FALSE)
+	var/message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", "", MAX_MESSAGE_LEN, TRUE)
 	if(message)
-		var/sane_message = sanitize(message)
-		gem.use_emote(sane_message, src)
+		gem.use_emote(message, src)
 
 // Allows the captured owner to transfer themselves to valid nearby objects
 /mob/living/carbon/brain/caught_soul/vore/proc/transfer_self()

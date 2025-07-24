@@ -322,11 +322,11 @@
 					post_status(src, params["statdisp"], user = ui.user)
 
 		if("setmsg1")
-			stat_msg1 = reject_bad_text(sanitize(tgui_input_text(ui.user, "Line 1", "Enter Message Text", stat_msg1, 40), 40), 40, encode = FALSE)
+			stat_msg1 = reject_bad_text(tgui_input_text(ui.user, "Line 1", "Enter Message Text", stat_msg1, 40), 40)
 			setMenuState(ui.user, COMM_SCREEN_STAT)
 
 		if("setmsg2")
-			stat_msg2 = reject_bad_text(sanitize(tgui_input_text(ui.user, "Line 2", "Enter Message Text", stat_msg2, 40), 40), 40, encode = FALSE)
+			stat_msg2 = reject_bad_text(tgui_input_text(ui.user, "Line 2", "Enter Message Text", stat_msg2, 40), 40)
 			setMenuState(ui.user, COMM_SCREEN_STAT)
 
 		// OMG CENTCOMM LETTERHEAD
@@ -335,10 +335,10 @@
 				if(centcomm_message_cooldown > world.time)
 					to_chat(ui.user, span_warning("Arrays recycling. Please stand by."))
 					return
-				var/input = sanitize(tgui_input_text(ui.user, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement. \
+				var/input = tgui_input_text(ui.user, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement. \
 				Please be aware that this process is very expensive, and abuse will lead to... termination.  \
 				Transmission does not guarantee a response. \
-				There is a 30 second delay before you may send another message, be clear, full and concise.", "Central Command Quantum Messaging", multiline = TRUE, prevent_enter = TRUE), encode = FALSE)
+				There is a 30 second delay before you may send another message, be clear, full and concise.", "Central Command Quantum Messaging", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 				if(!input || ..() || !(is_authenticated(ui.user) == COMM_AUTHENTICATION_MAX))
 					return
 				if(length(input) < COMM_CCMSGLEN_MINIMUM)
@@ -356,7 +356,7 @@
 				if(centcomm_message_cooldown > world.time)
 					to_chat(ui.user, "Arrays recycling.  Please stand by.")
 					return
-				var/input = sanitize(tgui_input_text(ui.user, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""), encode = FALSE)
+				var/input = tgui_input_text(ui.user, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "", MAX_MESSAGE_LEN)
 				if(!input || ..() || !(is_authenticated(ui.user) == COMM_AUTHENTICATION_MAX))
 					return
 				if(length(input) < COMM_CCMSGLEN_MINIMUM)

@@ -129,7 +129,7 @@
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	else if(panel_open && istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for \the [src].", src.name, initial(src.name), MAX_NAME_LEN), MAX_NAME_LEN)
+		var/t = tgui_input_text(user, "Enter the name for \the [src].", src.name, initial(src.name), MAX_NAME_LEN)
 		if(t && in_range(src, user))
 			name = t
 	else if(panel_open && istype(W, /obj/item/multitool))

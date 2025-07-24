@@ -115,7 +115,7 @@
 
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	AI.remove_target() // So hostile things stop attacking people even if not hostile anymore.
-	var/newname = copytext(sanitize(tgui_input_text(user, "Would you like to give \the [M] a name?", "Name your new pet", M.name, MAX_NAME_LEN), encode = FALSE),1,MAX_NAME_LEN)
+	var/newname = copytext(tgui_input_text(user, "Would you like to give \the [M] a name?", "Name your new pet", M.name, MAX_NAME_LEN),1,MAX_NAME_LEN)
 
 	if(newname)
 		M.name = newname

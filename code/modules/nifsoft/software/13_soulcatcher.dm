@@ -157,7 +157,6 @@
 				printed after an intro ending with: \"Around you, you see...\" to the prey. If you already \
 				have prey, this will be printed to them after \"Your surroundings change to...\". Limit 2048 char.", \
 				"VR Environment", html_decode(inside_flavor), MAX_MESSAGE_LEN*2, TRUE, prevent_enter = TRUE)
-				new_flavor = sanitize(new_flavor, MAX_MESSAGE_LEN*2, encode = FALSE)
 				inside_flavor = new_flavor
 				nif.notify("Updating VR environment...")
 				for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)

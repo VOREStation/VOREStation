@@ -43,10 +43,10 @@
 		return
 	var/new_ambitions = tgui_input_text(src, "Write a short sentence of what your character hopes to accomplish \
 	today as an antagonist.  Remember that this is purely optional.  It will be shown at the end of the \
-	round for everybody else.", "Ambitions", mind.ambitions, multiline = TRUE)
+	round for everybody else.", "Ambitions", mind.ambitions, MAX_MESSAGE_LEN, TRUE)
 	if(isnull(new_ambitions))
 		return
-	new_ambitions = sanitize(new_ambitions, encode = FALSE)
+	new_ambitions = new_ambitions
 	mind.ambitions = new_ambitions
 	if(new_ambitions)
 		to_chat(src, span_notice("You've set your goal to be '[new_ambitions]'."))

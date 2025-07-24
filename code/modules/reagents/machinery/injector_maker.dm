@@ -191,7 +191,7 @@
 						if(src.count_small_injector < injector_amount)
 							to_chat(user, span_warning("Not enough autoinjectors! You only have [src.count_small_injector]"))
 							return
-				var/name = sanitize(tgui_input_text(user, "Name Injector", "Naming", null, 32, 0, 0, 0, 0),32,0,0,0)
+				var/name = tgui_input_text(user, "Name Injector", "Naming", null, 32)
 				make_injector("small injector", injector_amount, name, material, user)
 				update_icon()
 
@@ -222,7 +222,7 @@
 						if(src.count_large_injector < injector_amount)
 							to_chat(user, span_warning("Not enough autoinjectors! You only have [src.count_large_injector]"))
 							return
-				var/name = sanitize(tgui_input_text(user, "Name Injector", "Naming", null, 32, 0, 0, 0, 0),32,0,0,0)
+				var/name = tgui_input_text(user, "Name Injector", "Naming", null, 32)
 				make_injector("large injector", injector_amount, name, material,user)
 				update_icon()
 
