@@ -271,23 +271,23 @@
 
 	if(istype(I, /obj/item/gripper))
 		var/obj/item/gripper/GR = I
-		var/obj/item/Wrap = GR.wrapped
-		if(Wrap)
-			Wrap.loc = get_turf(src)
-			var/result = can_insert(Wrap, user)
+		var/obj/item/wrap = GR.get_current_pocket()
+		if(wrap)
+			wrap.loc = get_turf(src)
+			var/result = can_insert(wrap, user)
 			if(!result)
-				Wrap.forceMove(GR)
+				wrap.forceMove(GR)
 				if(!(default_deconstruction_screwdriver(user, I)))
 					default_part_replacement(user, I)
 				return
 
-			if(QDELETED(GR.wrapped))
-				GR.wrapped = null
+			if(QDELETED(wrap))
+				GR.WR = null
 
-			if(GR?.wrapped.loc != src)
+			if(wrap.loc != src)
 				GR.drop_item_nm()
 
-			ToCook = Wrap
+			ToCook = wrap
 		else
 			attack_hand(user)
 			return

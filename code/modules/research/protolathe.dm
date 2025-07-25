@@ -117,7 +117,7 @@
 		if(istype(robot.module_active, /obj/item/gripper))
 			var/obj/item/gripper/gripper = robot.module_active
 			O = gripper.get_current_pocket()
-			gripper.wrapped = null
+			gripper.WR = null
 			gripper.current_pocket = pick(gripper.pockets)
 	if(default_deconstruction_screwdriver(user, O))
 		if(linked_console)

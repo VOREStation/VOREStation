@@ -72,7 +72,8 @@
 		stripping = TRUE
 		if(is_robot_module(held) && istype(held, /obj/item/gripper))
 			var/obj/item/gripper/G = held
-			if(istype(G.wrapped))
+			var/obj/item/wrapped = G.get_current_pocket()
+			if(istype(wrapped))
 				stripping = FALSE
 	else
 		var/obj/item/holder/holder = held
@@ -97,10 +98,11 @@
 			visible_message(span_danger("\The [user] is trying to put \a [held] on \the [src]!"))
 	else
 		var/obj/item/gripper/G = held
-		if(slot_to_strip == slot_wear_mask && istype(G.wrapped, /obj/item/grenade))
-			visible_message(span_danger("\The [user] is trying to put \a [G.wrapped] in \the [src]'s mouth!"))
+		var/obj/item/wrapped = G.get_current_pocket()
+		if(slot_to_strip == slot_wear_mask && istype(wrapped, /obj/item/grenade))
+			visible_message(span_danger("\The [user] is trying to put \a [wrapped] in \the [src]'s mouth!"))
 		else
-			visible_message(span_danger("\The [user] is trying to put \a [G.wrapped] on \the [src]!"))
+			visible_message(span_danger("\The [user] is trying to put \a [wrapped] on \the [src]!"))
 
 	if(!do_after(user,HUMAN_STRIP_DELAY,src))
 		return
@@ -118,10 +120,10 @@
 		unEquip(target_slot)
 	else if(is_robot_module(held) && istype(held, /obj/item/gripper))
 		var/obj/item/gripper/G = held
-		var/obj/item/wrapped = G.wrapped
+		var/obj/item/wrapped = G.get_current_pocket()
 		if(istype(wrapped))
 			if(equip_to_slot_if_possible(wrapped, text2num(slot_to_strip), 0, 1, 1))
-				G.wrapped = null
+				wrapped = null
 				G.generate_icons()
 				G.current_pocket = pick(G.pockets)
 	else if(user.unEquip(held))
