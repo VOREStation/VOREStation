@@ -15,17 +15,19 @@ export const meta = {
 };
 
 function Story(props: {
-  readonly theme: string;
-  readonly setTheme: (value: React.SetStateAction<string>) => void;
+  theme: string;
+  setTheme: (value: React.SetStateAction<string>) => void;
 }) {
+  const { theme, setTheme } = props;
+
   return (
     <Section>
       <LabeledList>
         <LabeledList.Item label="Use theme">
           <Input
             placeholder="theme_name"
-            value={props.theme}
-            onChange={(value) => props.setTheme(value)}
+            value={theme}
+            onChange={(value) => setTheme(value)}
           />
         </LabeledList.Item>
       </LabeledList>

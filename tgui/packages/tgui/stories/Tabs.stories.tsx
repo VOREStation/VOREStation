@@ -120,24 +120,26 @@ function Story() {
 function TabsPrefab(props) {
   const [tabIndex, setTabIndex] = useState(0);
 
+  const { tabProps } = props;
+
   return (
     <Tabs
-      vertical={props.tabProps.vertical}
-      fluid={props.tabProps.fluid}
-      textAlign={props.tabProps.centered && 'center'}
+      vertical={tabProps.vertical}
+      fluid={tabProps.fluid}
+      textAlign={tabProps.centered && 'center'}
     >
       {TAB_RANGE.map((text, i) => (
         <Tabs.Tab
           key={i}
           selected={i === tabIndex}
-          icon={props.tabProps.icon ? 'info-circle' : undefined}
+          icon={tabProps.icon ? 'info-circle' : undefined}
           leftSlot={
-            props.tabProps.leftSlot && (
+            tabProps.leftSlot && (
               <Button circular compact color="transparent" icon="times" />
             )
           }
           rightSlot={
-            props.tabProps.rightSlot && (
+            tabProps.rightSlot && (
               <Button circular compact color="transparent" icon="times" />
             )
           }
