@@ -76,11 +76,7 @@
 			else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest)
 				icon_state = "[icon_rest]_vore_[upper_shows]_[tail_shows]"
 
-/mob/living/simple_mob/vore/lamia/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/lamia/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 

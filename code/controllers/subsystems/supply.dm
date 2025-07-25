@@ -119,6 +119,25 @@ SUBSYSTEM_DEF(supply)
 						EC.contents[EC.contents.len]["quantity"] = cashmoney.worth
 						EC.value += EC.contents[EC.contents.len]["value"]
 
+					//Sell research samples and containers with samples in them
+					if(istype(A, /obj/item/research_sample))
+						var/obj/item/research_sample/sample = A
+						EC.contents[EC.contents.len]["value"] = sample.supply_value
+						EC.contents[EC.contents.len]["quantity"] = 1
+						EC.value += EC.contents[EC.contents.len]["value"]
+
+					if(istype(A, /obj/item/storage/sample_container))
+						var/obj/item/storage/sample_container/sample_can = A
+						var/sample_sum = 0
+						var/obj/item/research_sample/stored_sample
+						if(LAZYLEN(sample_can.contents))
+							for(stored_sample in sample_can.contents)
+								sample_sum += stored_sample.supply_value
+						EC.contents[EC.contents.len]["quantity"] = "[A.contents.len] sample(s) "
+						EC.contents[EC.contents.len]["value"] = sample_sum
+						EC.value += sample_sum
+
+					//Sell vaccine samples
 					if(istype(A, /obj/item/reagent_containers/glass/beaker/vial/vaccine))
 						var/obj/item/reagent_containers/glass/beaker/vial/vaccine/sale_bottle = A
 						if(!istype(CR, /obj/structure/closet/crate/freezer))

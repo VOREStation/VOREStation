@@ -140,8 +140,7 @@
 		if(isanimal(O)) //On-demand belly loading.
 			var/mob/living/simple_mob/SM = O
 			if(SM.vore_active && !SM.voremob_loaded)
-				SM.voremob_loaded = TRUE
-				SM.init_vore()
+				SM.init_vore(TRUE)
 		if(O.vore_organs.len > 0)
 			return TRUE
 
