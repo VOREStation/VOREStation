@@ -595,7 +595,8 @@
 				if(ai.name == selected_ai)
 					our_ai = ai
 					break
-			our_ai = our_ai ? our_ai : select_active_ai_with_fewest_borgs()
+			if(!our_ai)
+				our_ai = select_active_ai_with_fewest_borgs()
 			if(our_ai)
 				target.lawupdate = 1
 				target.connect_to_ai(our_ai)
