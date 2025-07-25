@@ -43,7 +43,7 @@ function Story() {
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(value) => setNumber(value)}
+            onChange={(value) => setNumber(value)}
           />
         </LabeledList.Item>
         <LabeledList.Item label="NumberInput (onDrag)">
