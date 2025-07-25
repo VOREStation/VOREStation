@@ -13,9 +13,18 @@ const r = import.meta.webpackContext('../stories', {
   regExp: /\.stories\.tsx$/,
 });
 
+/**
+ * @returns {{
+ *   meta: {
+ *     title: string,
+ *     render: () => any,
+ *   },
+ * }[]}
+ */
 function getStories() {
   return r.keys().map((path) => r(path));
 }
+
 export function KitchenSink(props) {
   const { panel } = props;
   const [theme, setTheme] = useState(undefined);
