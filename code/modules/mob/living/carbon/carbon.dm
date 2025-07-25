@@ -120,7 +120,8 @@
 	..()
 
 /mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(SEND_SIGNAL(src, COMSIG_BEING_ELECTROCUTED, shock_damage, source, siemens_coeff, def_zone, stun) & COMPONENT_CARBON_CANCEL_ELECTROCUTE)
+		return 0	// Cancelled by a component
 	if(def_zone == BP_L_HAND || def_zone == BP_R_HAND) //Diona (And any other potential plant people) hands don't get shocked.
 		if(species.flags & IS_PLANT)
 			return 0

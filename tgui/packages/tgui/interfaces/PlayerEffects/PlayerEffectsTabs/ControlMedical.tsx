@@ -6,6 +6,9 @@ export const ControlMedical = (props) => {
 
   return (
     <Section title="Medical Effects">
+      <Button fluid onClick={() => act('health_scan')}>
+        Health Analysis
+      </Button>
       <Button fluid onClick={() => act('appendicitis')}>
         Appendicitis
       </Button>
