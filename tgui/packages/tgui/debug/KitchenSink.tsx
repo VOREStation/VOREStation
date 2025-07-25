@@ -34,7 +34,7 @@ export function KitchenSink(props) {
   if (stories.length === 0) {
     return <div>Loading stories...</div>;
   }
-  console.log(r.keys()); // Should list your stories
+
   const story = stories[pageIndex];
   const Layout = panel ? Pane : Window;
 
