@@ -32,7 +32,7 @@
 		return
 
 	EC.contents[EC.contents.len]["value"] = calculate_sell_value(source)
-	EC.contents[EC.contents.len]["quantity"] = calculate_sell_quantity(obj/source)
+	EC.contents[EC.contents.len]["quantity"] = calculate_sell_quantity(source)
 	EC.value += EC.contents[EC.contents.len]["value"]
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
