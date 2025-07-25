@@ -126,3 +126,15 @@
 		RND_CATEGORY_CIRCUITRY + RND_SUBCATEGORY_CIRCUITRY_SHELLS
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/circuit_bug
+	name = "Circuitry Bug"
+	desc = "A tiny circuit assembly that can easily be hidden."
+	id = "circuit-bug"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000)
+	build_path = /obj/item/electronic_assembly/circuit_bug
+	category = list(
+		RND_CATEGORY_CIRCUITRY + RND_SUBCATEGORY_CIRCUITRY_SHELLS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

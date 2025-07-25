@@ -1,0 +1,7 @@
+author: "Zizzi"
+delete-after: True
+changes:
+  - rscadd: "Targeted pathfinding circuit"
+  - rscadd: "Pathfinding locomotion circuit"
+  - rscadd: "Ability to ID lock circuit assemblies"
+  - rscadd: "ID access circuit"

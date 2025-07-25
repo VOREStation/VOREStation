@@ -12,6 +12,7 @@
 		"assembly-medium",
 		"assembly-large",
 		"assembly-device",
+		"circuit-bug",
 	)
 
 /datum/techweb_node/circuit_shells
