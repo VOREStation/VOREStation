@@ -940,3 +940,4 @@
 
 	A.replaced(src, target_organ)
 	to_chat(src, span_notice("You absorb [A] into your [target_organ]."))
+	log_admin("[key_name(src)] protean self-implanted [A].")
