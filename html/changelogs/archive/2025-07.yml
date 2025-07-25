@@ -243,3 +243,16 @@
   - qol: EQUAL and NOT EQUAL gate now compare strings correctly.
   - qol: Textpad can now write messages longer than 58 characters.
   - bugfix: Textpad now supports special characters.
+2025-07-25:
+  Kashargul:
+  - bugfix: admin spawned simple mobs not getting their vore verbs if they weren't
+      vore mobs
+  - spellcheck: fixed bite pref text
+  KillianKirilenko:
+  - rscadd: Added the ability to export research samples to earn extra supply points,
+      both loose and in sample containers
+  SatinIsle:
+  - rscadd: Added a new GM tool that allows them to create custom medical issues on
+      the fly for setting up medical based events.
+  Willburd:
+  - bugfix: Stuttering text is no longer suppressed by jittering.

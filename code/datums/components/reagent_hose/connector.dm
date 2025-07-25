@@ -75,6 +75,8 @@
 
 /datum/component/hose_connector/proc/force_pump()
 	SIGNAL_HANDLER
+	if(!my_hose)
+		return
 	process()
 	if(prob(5))
 		carrier.visible_message(span_infoplain(span_bold("\The [carrier]") + " gurgles as it pumps fluid."))
