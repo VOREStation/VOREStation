@@ -97,3 +97,12 @@
 	materials = list(MAT_STEEL = 2000)
 	build_path = /obj/item/implant/integrated_circuit
 	sort_string = "UDAAF"
+
+/datum/design/item/integrated_circuitry/assembly/circuit_bug
+	name = "Circuitry Bug"
+	desc = "A tiny circuit assembly that can easily be hidden."
+	id = "circuit-bug"
+	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_POWER = 2)
+	materials = list(MAT_STEEL = 2000)
+	build_path = /obj/item/electronic_assembly/circuit_bug
+	sort_string = "UDAAG"
