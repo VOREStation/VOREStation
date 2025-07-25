@@ -86,16 +86,9 @@ SUBSYSTEM_DEF(supply)
 				if(CR.points_per_crate)
 					base_value = CR.points_per_crate
 
-				var/find_slip = TRUE
+				// For each thing in the crate, get the value and quantity
 				for(var/atom/A in CR)
-					if(istype(A,/obj/item/paper/manifest))
-						// Special handling to only allow a single manifest
-						if(find_slip)
-							SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
-							find_slip = FALSE
-					else
-						// For each thing in the crate, get the value and quantity
-						SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
+					SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
 			else
 				// Selling things that are not in crates.
 				// Usually it just makes a log that it wasn't shipped properly, and so isn't worth anything
