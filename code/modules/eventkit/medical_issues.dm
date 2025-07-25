@@ -100,7 +100,7 @@
 		if("permanent sleeping")
 			owner.sleeping = min(owner.sleeping,10)
 		if("jittery")
-			owner.make_jittery(min(owner.jitteriness,10))
+			owner.make_jittery(min(owner.get_jittery(),10))
 		if("paralysed")
 			owner.paralysis = min(owner.paralysis,10)
 
