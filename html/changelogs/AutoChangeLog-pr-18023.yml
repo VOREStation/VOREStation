@@ -1,0 +1,7 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added the ability to use alt-clicks in advanced build mode to open VV or call proc."
+  - rscadd: "Added the ability to spawn someone with a custom job title from Spawn Character."
+  - rscadd: "Added the ability to give ColorMate to Simple Mobs or Borgs through player effects."
+  - rscadd: "Added the ability to health scan any living mobs from player effects."

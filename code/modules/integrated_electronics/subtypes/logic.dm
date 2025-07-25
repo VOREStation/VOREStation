@@ -223,3 +223,30 @@
 
 /obj/item/integrated_circuit/logic/unary/not/do_check(var/datum/integrated_io/A)
 	return !A.data
+
+/obj/item/integrated_circuit/logic/toggler // Allows parts of circuits to be toggled on/off.
+	name = "circuit toggler"
+	desc = "Outputs its input data if enabled, otherwise does nothing. Used for enable/disabling parts of your circuit boards"
+	icon_state = "toggle_button"
+	inputs = list(
+		"input" = IC_PINTYPE_ANY,
+		"enabled" = IC_PINTYPE_BOOLEAN,
+		"toggle enable" = IC_PINTYPE_PULSE_IN,
+	)
+	inputs_default = list("2" = TRUE)
+	outputs = list("output" = IC_PINTYPE_ANY)
+	activators = list(
+		"pulse in" = IC_PINTYPE_PULSE_IN,
+		"pulse out" = IC_PINTYPE_PULSE_OUT
+		)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/logic/toggler/do_work()
+	pull_data()
+	var/enabled_input = get_pin_data(IC_INPUT, 2)
+	if(!enabled_input)
+		return
+	else
+		set_pin_data(IC_OUTPUT, 1, get_pin_data(IC_INPUT, 1))
+		push_data()
+		activate_pin(2)

@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Damage now updates immediately, instead of waiting for the next life tick."
+  - code_imp: "Godmode works better now"
