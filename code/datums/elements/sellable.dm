@@ -22,7 +22,7 @@
 	return null // returns a string explaining why the item couldn't be sold. Otherwise null to allow it to be sold.
 
 /datum/element/sellable/proc/calculate_sell_value(obj/source)
-	return 2
+	return 1
 
 /datum/element/sellable/proc/calculate_sell_quantity(obj/source)
 	return 1
@@ -40,8 +40,11 @@
 		EC.contents = list("error" = sell_error)
 		return FALSE
 
-	EC.contents[EC.contents.len]["value"] = calculate_sell_value(source)
-	EC.contents[EC.contents.len]["quantity"] = calculate_sell_quantity(source)
+	EC.contents[++EC.contents.len] = list(
+		"object" = "\proper[source.name]",
+		"value" = calculate_sell_value(source),
+		"quantity" = calculate_sell_quantity(source)
+	)
 	EC.value += EC.contents[EC.contents.len]["value"]
 	return TRUE
 
@@ -54,6 +57,14 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // Subtypes
 //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Manifest papers
+/datum/element/sellable/manifest/calculate_sell_value(obj/source)
+	var/obj/item/paper/manifest/slip = source
+	if(!slip.is_copy && slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
+		return SSsupply.points_per_slip
+	return 0
+
 
 // Material stacks
 /datum/element/sellable/material_stack/calculate_sell_value(obj/source)

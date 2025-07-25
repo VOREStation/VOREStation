@@ -85,21 +85,13 @@ SUBSYSTEM_DEF(supply)
 				points += CR.points_per_crate
 				if(CR.points_per_crate)
 					base_value = CR.points_per_crate
+
 				var/find_slip = TRUE
-
 				for(var/atom/A in CR)
-					EC.contents[++EC.contents.len] = list(
-							"object" = "\proper[A.name]",
-							"value" = 0,
-							"quantity" = 1
-						)
-
-					// Sell manifests
-					if(find_slip && istype(A,/obj/item/paper/manifest))
-						var/obj/item/paper/manifest/slip = A
-						if(!slip.is_copy && slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
-							points += points_per_slip
-							EC.contents[EC.contents.len]["value"] = points_per_slip
+					if(istype(A,/obj/item/paper/manifest))
+						// Special handling to only allow a single manifest
+						if(find_slip)
+							SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
 							find_slip = FALSE
 					else
 						// For each thing in the crate, get the value and quantity
