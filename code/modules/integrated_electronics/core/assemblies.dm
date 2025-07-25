@@ -206,21 +206,6 @@
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
 
-
-/obj/item/electronic_assembly/GetAccess()
-	. = list()
-	if(access_card)
-		. |= access_card.access
-	for(var/obj/item/integrated_circuit/part in contents)
-		. |= part.GetAccess()
-
-/obj/item/electronic_assembly/GetIdCard()
-	. = list()
-	for(var/obj/item/integrated_circuit/part in contents)
-		var/id_card = part.GetIdCard()
-		if(id_card)
-			return id_card
-
 /obj/item/electronic_assembly/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
