@@ -8,37 +8,29 @@ import { Section, Stack, Tabs } from 'tgui-core/components';
 
 import { Pane, Window } from '../layouts';
 
-const r = import.meta.webpackContext('../', {
+const r = import.meta.webpackContext('../stories', {
   recursive: false,
-  include: /\.stories\.tsx$/,
+  regExp: /\.stories\.tsx$/,
 });
 
-/**
- * @returns {{
- *   meta: {
- *     title: string,
- *     render: () => any,
- *   },
- * }[]}
- */
 function getStories() {
   return r.keys().map((path) => r(path));
 }
-
 export function KitchenSink(props) {
   const { panel } = props;
+  const [theme, setTheme] = useState(undefined);
   const [pageIndex, setPageIndex] = useState(0);
 
   const stories = getStories();
   if (stories.length === 0) {
     return <div>Loading stories...</div>;
   }
-
+  console.log(r.keys()); // Should list your stories
   const story = stories[pageIndex];
   const Layout = panel ? Pane : Window;
 
   return (
-    <Layout title="Kitchen Sink" width={600} height={500}>
+    <Layout title="Kitchen Sink" width={600} height={500} theme={theme}>
       <Layout.Content>
         <Stack fill>
           <Stack.Item>
@@ -57,7 +49,7 @@ export function KitchenSink(props) {
               </Tabs>
             </Section>
           </Stack.Item>
-          <Stack.Item grow>{story.meta.render()}</Stack.Item>
+          <Stack.Item grow>{story.meta.render(theme, setTheme)}</Stack.Item>
         </Stack>
       </Layout.Content>
     </Layout>

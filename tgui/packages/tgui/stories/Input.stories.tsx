@@ -55,7 +55,7 @@ function Story() {
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(value) => setNumber(value)}
+            onChange={(value) => setNumber(value)}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Slider (onDrag)">
@@ -65,7 +65,7 @@ function Story() {
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(e, value) => setNumber(value)}
+            onChange={(e, value) => setNumber(value)}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Knob (onDrag)">
@@ -77,7 +77,7 @@ function Story() {
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(e, value) => setNumber(value)}
+            onChange={(e, value) => setNumber(value)}
           />
           <Knob
             ml={1}
@@ -89,7 +89,7 @@ function Story() {
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(e, value) => setNumber(value)}
+            onChange={(e, value) => setNumber(value)}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Rotating Icon">
@@ -101,7 +101,7 @@ function Story() {
               dragMatrix={[0, -1]}
               step={1}
               stepPixelSize={5}
-              onDrag={(e, value) => setNumber(value)}
+              onChange={(e, value) => setNumber(value)}
             >
               {(control) => (
                 <Box onMouseDown={control.handleDragStart}>
