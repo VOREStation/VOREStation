@@ -425,7 +425,6 @@
 	return L
 
 // Diagonal-friendly version of CardinalTurfWithAccess
-// Handles not gettin stuck on corners in most cases.
 /turf/proc/AdjacentTurfsWithAccess(obj/item/card/id/ID)
 	var/list/L = new()
 
