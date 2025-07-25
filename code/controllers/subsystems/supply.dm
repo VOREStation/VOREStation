@@ -103,13 +103,11 @@ SUBSYSTEM_DEF(supply)
 							find_slip = FALSE
 					else
 						// For each thing in the crate, get the value and quantity
-						SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC)
-
-			// Make a log of it, but it wasn't shipped properly, and so isn't worth anything
+						SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
 			else
-				EC.contents = list(
-						"error" = "Error: Product was improperly packaged. Payment rendered null under terms of agreement."
-					)
+				// Selling things that are not in crates.
+				// Usually it just makes a log that it wasn't shipped properly, and so isn't worth anything
+				SEND_SIGNAL(MA,COMSIG_ITEM_SOLD,EC,FALSE)
 
 			exported_crates += EC
 			points += EC.value
