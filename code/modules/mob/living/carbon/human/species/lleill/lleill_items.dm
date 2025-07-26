@@ -113,8 +113,7 @@
 	var/image/coolanimation = image('icons/obj/glamour.dmi', null, "animation")
 	coolanimation.plane = PLANE_LIGHTING_ABOVE
 	thing.overlays += coolanimation
-	sleep(14)
-	thing.overlays -= coolanimation
+	addtimer(CALLBACK(src, PROC_REF(animate_action_finished),thing,coolanimation), 1.4 SECOND, TIMER_DELETE_ME)
 
 //Face of Glamour (creates a clone of a target)
 

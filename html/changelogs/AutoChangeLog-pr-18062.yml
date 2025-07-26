@@ -1,0 +1,5 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "tiny memory leak on capture crystal animations"
+  - code_imp: "capture crystals use timers instead of sleeps to animate"

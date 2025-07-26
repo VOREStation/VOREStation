@@ -90,7 +90,7 @@ BONUS
 		ready_to_pop = TRUE
 
 /datum/symptom/blobspores/OnDeath(datum/disease/advance/A)
-	if(neutered)
+	if(!..())
 		return
 	var/mob/living/M = A.affected_mob
 	M.visible_message(span_danger("[M] starts swelling grotesquely!"))
