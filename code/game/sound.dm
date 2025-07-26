@@ -189,6 +189,8 @@
 				soundin = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 			if("clownstep")
 				soundin = pick('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
+			if("clownstep_jester")
+				soundin = pick('sound/effects/jinglebell1.ogg','sound/effects/jinglebell2.ogg','sound/effects/jinglebell3.ogg','sound/effects/jinglebell4.ogg')
 			if("swing_hit")
 				soundin = pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
 			if("hiss")
