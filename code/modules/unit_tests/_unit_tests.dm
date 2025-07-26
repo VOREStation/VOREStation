@@ -107,7 +107,6 @@
 #include "reagent_tests.dm"
 #include "recipe_tests.dm"
 #include "recycler_vendor_tests.dm"
-#include "research_tests.dm"
 #include "robot_tests.dm"
 #include "spritesheets.dm"
 #include "sqlite_tests.dm"
