@@ -1,0 +1,7 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a new \"Poison Fruit\" ability to Alraune. It applies any poison that can be used by the injecting venom ability to fruit grown from the Alraune. There is a notice attached to the selection that states this is intended for scenes and to not leave the poisoned fruit out for people who do not OOC consent, as well as admin logging when this fruit is produced."
+  - rscadd: "Added a new thorns ability for alraune that will cause anyone touching them, or simple mobs attacking them, to take a small amount of brute damage. This starts off and can be toggled off and on at will."
+  - code_imp: "Added variables to seed harvesting so that code can force them to spawn with specific reagents inside."
+  - balance: "Allowed alraune to change the type of fruit they spawn more than once."
