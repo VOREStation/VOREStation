@@ -6,12 +6,9 @@
 			if(!src.client)	. += "It appears to be in stand-by mode." //afk
 		if(UNCONSCIOUS)		. += span_warning("It doesn't seem to be responding.")
 		if(DEAD)			. += span_deadsay("It looks completely unsalvageable.")
-	. += examine_reagent_bellies() // reagent bellies
 
-	// VOREStation Edit: Start
-	. += examine_bellies() //VOREStation Edit
+	. += formatted_vore_examine()
 	if(print_flavor_text()) . += "\n[print_flavor_text()]\n"
-	// VOREStation Edit: End
 	. += ""
 	if (pose)
 		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]

@@ -420,6 +420,24 @@
 	return ..()
 
 //
+// Formats the belly texts if possible
+//
+
+/mob/living/proc/formatted_vore_examine()
+	var/reagent_examine = examine_reagent_bellies()
+	var/list/examine_belly = examine_bellies()
+	if(!reagent_examine && !LAZYLEN(examine_belly))
+		return ""
+	var/list/vore_examine_data = list()
+	vore_examine_data += reagent_examine
+	vore_examine_data += examine_belly
+	if(!client?.prefs?.read_preference(/datum/preference/toggle/vchat_enable))
+		return vore_examine_data
+
+	return span_details("🤰 | Vore Descriptions", vore_examine_data.Join("\n"))
+
+
+//
 // Clearly super important. Obviously.
 //
 /mob/living/proc/lick(mob/living/tasted in living_mobs_in_view(1, TRUE))
