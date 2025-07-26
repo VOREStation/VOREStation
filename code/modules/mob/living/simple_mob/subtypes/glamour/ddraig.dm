@@ -273,7 +273,7 @@
 	can_flee = TRUE
 	flee_when_dying = FALSE
 
-/datum/ai_holder/simple_mob/vore/find_target(list/possible_targets, has_targets_list)
+/datum/ai_holder/simple_mob/vore/ddraig/find_target(list/possible_targets, has_targets_list)
 	if(!vore_hostile)
 		return ..()
 	if(!isanimal(holder))	//Only simplemobs have the vars we need
@@ -290,7 +290,7 @@
 	for(var/mob/living/possible_target in possible_targets)
 		if(!can_attack(possible_target))
 			continue
-		if(isanimal(target) && !check_attacker(target)) //Do not target simple mobs who didn't attack you (disengage with TF'd mobs)
+		if(isanimal(possible_target) && !check_attacker(possible_target)) //Do not target simple mobs who didn't attack you (disengage with TF'd mobs)
 			continue
 		. |= possible_target
 		if(!isliving(possible_target))
