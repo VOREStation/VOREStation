@@ -53,7 +53,17 @@
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
+	if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
+		if(src != M)
+			if(istype(M,/mob/living))
+				var/mob/living/L = M
+				L.apply_damage(3, BRUTE)
+				L.visible_message( \
+					span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
+					span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
+
 	if(!istype(M, /mob/living/carbon)) return
+
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
