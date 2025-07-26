@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - bugfix: "Fixed vore hostile mobs (those that eat people unprompted) not being able to target players with mob vore enabled."
