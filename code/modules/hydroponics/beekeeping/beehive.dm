@@ -190,7 +190,7 @@
 	default_apply_parts()
 	update_icon()
 
-obj/machinery/honey_extractor/update_icon()
+/obj/machinery/honey_extractor/update_icon()
 	cut_overlays()
 
 	icon_state = initial(icon_state)
