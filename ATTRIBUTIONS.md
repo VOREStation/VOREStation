@@ -118,6 +118,6 @@
 <br>
 **Folder:** `sound/effects`<br>
 **Title:** jinglebell3.ogg (originally jesterstep1.ogg) and jinglebell4.ogg (originally jesterstep2.ogg)<br>
-**Creator / Copyright:** Toriate (https://github.com/Rotwood-Vale/Ratwood-Keep/pull/1910)<br>
+**Creator / Copyright:** GentleJester#8754 on the SS14 Discord<br>
 **License:** [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/)<br>
 **URL:** [Discord Channel - SS14 Discord](https://discord.com/channels/310555209753690112/311537926376783886/1097222920813674527)<br>
