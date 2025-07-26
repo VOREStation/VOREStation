@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(skybox)
 		speedspace_cache["EW_[i]"] = MA
 
 	//Over-the-edge images
-	for (var/dir in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+	for (var/dir in ALL_POSSIBLE_DIRS)
 		var/mutable_appearance/MA = new(normal_space)
 		var/matrix/M = matrix()
 		var/horizontal = (dir & (WEST|EAST))
