@@ -390,9 +390,9 @@
 
 
 /datum/admins/proc/check_antagonists()
-	if (ticker && ticker.current_state >= GAME_STATE_PLAYING)
+	if (SSticker && SSticker.current_state >= GAME_STATE_PLAYING)
 		var/dat = "<html><head><title>Round Status</title></head><body><h1>" + span_bold("Round Status") + "</h1>"
-		dat += "Current Game Mode: " + span_bold("[ticker.mode.name]") + "<BR>"
+		dat += "Current Game Mode: " + span_bold("[SSticker.mode.name]") + "<BR>"
 		dat += "Round Duration: " + span_bold("[roundduration2text()]") + "<BR>"
 		dat += span_bold("Emergency shuttle") + "<BR>"
 		if (!emergency_shuttle.online())
@@ -410,7 +410,7 @@
 			if (emergency_shuttle.shuttle.moving_status == SHUTTLE_WARMUP)
 				dat += "Launching now..."
 
-		dat += "<a href='byond://?src=\ref[src];[HrefToken()];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
+		dat += "<a href='byond://?src=\ref[src];[HrefToken()];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
 		dat += "<hr>"
 		for(var/antag_type in GLOB.all_antag_types)
 			var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
