@@ -136,7 +136,7 @@
 	stat_modules +=	new/atom/movable/stat_rig_module/charge(src)
 
 /obj/item/rig_module/Destroy()
-	holder.installed_modules -= src
+	holder?.installed_modules -= src
 	holder = null
 	QDEL_NULL_LIST(stat_modules)
 	. = ..()

@@ -158,20 +158,24 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 
 /client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
-	set name = "Godmode"
+	set name = "Toggle Godmode"
 
 	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	M.status_flags ^= GODMODE
+	if(M.status_flags & GODMODE)
+		M.RemoveElement(/datum/element/godmode)
+
+	else if(!(M.status_flags & GODMODE))
+		M.AddElement(/datum/element/godmode)
+
 	to_chat(usr, span_blue("Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"))
 
-	log_admin("[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]")
-	var/msg = "[key_name_admin(usr)] has toggled [ADMIN_LOOKUPFLW(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]"
+	log_admin("[key_name(usr)] has toggled [key_name(M)]'s godmode to [(M.status_flags & GODMODE) ? "On" : "Off"]")
+	var/msg = "[key_name_admin(usr)] has toggled [ADMIN_LOOKUPFLW(M)]'s godmode to [(M.status_flags & GODMODE) ? "On" : "Off"]"
 	message_admins(msg)
 	admin_ticket_log(M, msg)
-	feedback_add_details("admin_verb","GOD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
+	feedback_add_details("admin_verb","GOD_ENABLE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
@@ -453,6 +457,18 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 		else
 			equipment = 0
 
+	var/custom_job
+	var/custom_job_title
+	if(charjob)
+		custom_job = tgui_alert(src,"Customise Job Title?", "Custom Job", list("No", "Yes", "Cancel"))
+		if(!custom_job || equipment == "Cancel")
+			return
+		else if(custom_job == "Yes")
+			custom_job = 1
+			custom_job_title = tgui_input_text(src,"Choose a Job Title for the character.","Job Title")
+		else
+			custom_job = 0
+
 	//For logging later
 	var/admin = key_name_admin(src)
 	var/player_key = picked_client.key
@@ -559,6 +575,19 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 			if(new_character.mind)
 				new_character.mind.assigned_role = charjob
 				new_character.mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
+
+	//If customised job title, modify here.
+	if(custom_job && custom_job_title)
+		var/character_name = new_character.name
+		for(var/obj/item/card/id/I in new_character.contents)
+			I.name = "[character_name]'s ID Card ([custom_job_title])"
+			I.assignment = custom_job_title
+		for(var/obj/item/pda/P in new_character.contents)
+			P.name = "PDA-[character_name] ([custom_job_title])"
+			P.ownjob = custom_job_title
+		new_character.mind.assigned_role = custom_job_title
+		new_character.mind.role_alt_title = custom_job_title
+		to_chat(new_character, "Your job title has been changed to [custom_job_title].")
 
 	//If desired, add records.
 	if(records)

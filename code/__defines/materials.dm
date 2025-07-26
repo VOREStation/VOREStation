@@ -118,3 +118,5 @@
 #define MATCONTAINER_SILENT (1<<3)
 
 #define GET_MATERIAL_REF(arguments...) _GetMaterialRef(list(##arguments))
+/// Makes sure only integer values are used when consuming, removing & checking for mats
+#define OPTIMAL_COST(cost)(max(1, round(cost)))
