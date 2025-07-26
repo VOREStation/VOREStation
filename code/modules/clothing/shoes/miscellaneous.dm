@@ -98,18 +98,18 @@
 	slowdown = SHOES_SLOWDOWN+0.5
 	force = 0
 	var/footstep = 1	//used for squeeks whilst walking
-	var/squeek_sound = "clownstep" // VOREStation Edit
+	var/squeek_sound = "clownstep"
 	species_restricted = null
 
 /obj/item/clothing/shoes/clown_shoes/handle_movement(var/turf/walking, var/running)
 	if(running)
 		if(footstep >= 2)
 			footstep = 0
-			playsound(src, squeek_sound, 50, 1) // this will get annoying very fast. // VOREStation Edit - Replaced "clownstep" with "squeek_sound"
+			playsound(src, squeek_sound, 50, 1) // this will get annoying very fast.
 		else
 			footstep++
 	else
-		playsound(src, squeek_sound, 20, 1) // VOREStation Edit - Replaced "clownstep" with "squeek_sound"
+		playsound(src, squeek_sound, 20, 1)
 
 /obj/item/clothing/shoes/cult
 	name = "boots"

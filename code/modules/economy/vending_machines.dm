@@ -1802,9 +1802,9 @@
 		/obj/item/clothing/mask/gas/sexyclown = 1,
 		/obj/item/clothing/mask/emotions = 1,
 		/obj/item/clothing/shoes/clown_shoes = 1,
-		/obj/item/clothing/under/clown/jester = 1, // VOREStation Edit
-		/obj/item/clothing/shoes/clown_shoes/jester = 1, // VOREStation Edit
-		/obj/item/clothing/head/jester = 1, // VOREStation Edit
+		/obj/item/clothing/under/clown/jester = 1,
+		/obj/item/clothing/shoes/clown_shoes/jester = 1,
+		/obj/item/clothing/head/jester = 1,
 		/obj/item/reagent_containers/food/snacks/pie = 5,
 		/obj/item/bananapeel = 5
 		)
