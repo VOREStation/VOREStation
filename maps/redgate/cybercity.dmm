@@ -765,7 +765,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "aZr" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/ripper)
 "aZU" = (
