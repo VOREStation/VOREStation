@@ -19,6 +19,10 @@
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
+/obj/item/spacecash/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/sellable/spacecash)
+
 /obj/item/spacecash/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/spacecash))
 		if(istype(W, /obj/item/spacecash/ewallet)) return 0

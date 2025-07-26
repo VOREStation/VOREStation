@@ -69,6 +69,7 @@
 		rand_tech = pick(valid_techs)	//assign techs last
 		LAZYSET(new_tech, rand_tech, tech_value)
 	origin_tech = new_tech
+	AddElement(/datum/element/sellable/research_sample)
 
 /obj/item/research_sample/attack_hand(mob/user)
 	. = ..()

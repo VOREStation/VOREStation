@@ -45,6 +45,7 @@
 				starting_amount = 1
 		set_amount(starting_amount, TRUE)
 	update_icon()
+	AddElement(/datum/element/sellable/material_stack)
 
 /obj/item/stack/Destroy()
 	if(uses_charge)
