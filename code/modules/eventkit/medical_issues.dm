@@ -93,17 +93,21 @@
 			if(prob(5))
 				owner.AdjustWeakened(5)
 		if("permanent weakness")
-			owner.weakened = min(owner.weakened,10)
+			owner.weakened = max(owner.weakened,10)
 		if("temporary sleeping")
 			if(prob(5))
 				owner.AdjustSleeping(5)
 		if("permanent sleeping")
-			owner.sleeping = min(owner.sleeping,10)
+			owner.sleeping = max(owner.sleeping+10,10)
 		if("jittery")
-			owner.make_jittery(min(owner.jitteriness,10))
+			owner.make_jittery(100)
 		if("paralysed")
-			owner.paralysis = min(owner.paralysis,10)
-
+			owner.paralysis = max(owner.paralysis,10)
+		if("cough")
+			if(prob(3))
+				owner.emote("cough")
+		if("confusion")
+			owner.confused = max(owner.confused,10)
 
 // Proc for setting all this up for GMs
 
@@ -163,8 +167,10 @@
 		if(!cure_surgery)
 			return
 
+	var/list/possible_symptoms = list("vomit","temporary weakness","permanent weakness","temporary sleeping","permanent sleeping","jittery","paralysed","cough","confusion","None")
+
 	var/symptom_text = tgui_input_text(user,"What text should be displayed to the affected patient about their symptoms?","Symptoms")
-	var/symptom_affect = tgui_input_list(user, "What observable symptom should they display?", "Symptoms", list("vomit","temporary weakness","permanent weakness","temporary sleeping","permanent sleeping","jittery","paralysed","None"))
+	var/symptom_affect = tgui_input_list(user, "What observable symptom should they display?", "Symptoms", possible_symptoms)
 	if(!symptom_affect)
 		return
 

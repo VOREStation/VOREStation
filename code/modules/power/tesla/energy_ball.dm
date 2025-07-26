@@ -224,7 +224,9 @@
 		else if(isliving(A))
 			var/dist = get_dist(source, A)
 			var/mob/living/L = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.status_flags & GODMODE))
+			if(SEND_SIGNAL(L, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+				continue
+			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD)
 				closest_mob = L
 				closest_atom = A
 				closest_dist = dist
