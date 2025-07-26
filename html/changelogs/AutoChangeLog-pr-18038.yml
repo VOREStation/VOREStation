@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Removing a shadekin's shadekin properties properly removes their shadekin UI elements."
-  - rscadd: "Shadekin can toggle if they wish to return to the Retreat upon death. This is round persistent."
-  - qol: "Adjust Tail Layer now persists per character between rounds."
-  - qol: "Shadekin nutrition adjustment is now in the Shadekin Control Panel instead of it's own separate proc. This is also round persistent as well."
-  - code_imp: "The shadekin component now has framework to have abilities added/removed from it at will."

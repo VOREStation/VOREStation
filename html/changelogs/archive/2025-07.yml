@@ -256,3 +256,39 @@
       the fly for setting up medical based events.
   Willburd:
   - bugfix: Stuttering text is no longer suppressed by jittering.
+2025-07-26:
+  Diana:
+  - qol: Damage now updates immediately, instead of waiting for the next life tick.
+  - code_imp: Godmode works better now
+  - bugfix: Removing a shadekin's shadekin properties properly removes their shadekin
+      UI elements.
+  - rscadd: Shadekin can toggle if they wish to return to the Retreat upon death.
+      This is round persistent.
+  - qol: Adjust Tail Layer now persists per character between rounds.
+  - qol: Shadekin nutrition adjustment is now in the Shadekin Control Panel instead
+      of it's own separate proc. This is also round persistent as well.
+  - code_imp: The shadekin component now has framework to have abilities added/removed
+      from it at will.
+  SatinIsle:
+  - rscadd: Added the ability to use alt-clicks in advanced build mode to open VV
+      or call proc.
+  - rscadd: Added the ability to spawn someone with a custom job title from Spawn
+      Character.
+  - rscadd: Added the ability to give ColorMate to Simple Mobs or Borgs through player
+      effects.
+  - rscadd: Added the ability to health scan any living mobs from player effects.
+  - bugfix: Fixed some symptoms doing doing nothing and added a couple more options.
+  ShadowLarkens:
+  - balance: Proteans can now use some implants.
+  Willburd:
+  - bugfix: Hose connectors that force pump no longer pump if no hose is connected
+  Zizzi:
+  - rscadd: Targeted pathfinding circuit
+  - rscadd: Pathfinding locomotion circuit
+  - rscadd: Ability to ID lock circuit assemblies
+  - rscadd: ID access circuit
+  - rscadd: Added a new circuitry assembly.
+  - rscadd: Added two new circuits
+  - rscadd: Added unique speaker to electronic earpiece.
+  - bugfix: Fixed reagent circuitry not supporting reagent storage circuits.
+  - bugfix: Fixed text pad input buffer size
