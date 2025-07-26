@@ -58,8 +58,6 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/stage_act()
 	if(!..())
 		return FALSE
-	if(global_flag_check(virus_modifiers, DORMANT))
-		return FALSE
 	if(symptoms && length(symptoms))
 
 		if(!s_processing)
