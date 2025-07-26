@@ -1,0 +1,3 @@
+#define MEDIGUN_IDLE 0
+#define MEDIGUN_CANCELLED 1
+#define MEDIGUN_BUSY 2

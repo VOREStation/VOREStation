@@ -55,7 +55,7 @@ export const SubtabEquipment = (props: {
                     })
                   }
                 >
-                  {/* eslint-disable-next-line react/no-danger */}
+                  {/** biome-ignore lint/security/noDangerouslySetInnerHtml: For now needed */}
                   <div dangerouslySetInnerHTML={{ __html: tweak.contents }} />
                 </Button>
               ))}
