@@ -91,11 +91,7 @@
 	emote_hear = list("thrumms","clicks","rattles","groans","burbles")
 
 
-/mob/living/simple_mob/vore/alienanimals/startreader/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/alienanimals/startreader/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "gastric sac"

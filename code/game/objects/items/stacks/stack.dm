@@ -55,6 +55,11 @@
 		synths.Cut()
 	return ..()
 
+/obj/item/stack/get_material_composition(breakdown_flags)
+	. = ..()
+	for(var/M in .)
+		.[M] *= amount
+
 /obj/item/stack/update_icon()
 	if(no_variants)
 		icon_state = initial(icon_state)

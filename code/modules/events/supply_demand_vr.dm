@@ -32,7 +32,6 @@
 			if(DEPARTMENT_MEDICAL)
 				choose_chemistry_items(roll(severity, 2))
 			if(DEPARTMENT_RESEARCH) // Would be nice to differentiate between research diciplines
-				choose_research_items(roll(severity, 2))
 				choose_robotics_items(roll(1, severity))
 			if(DEPARTMENT_CARGO)
 				choose_alloy_items(rand(1, severity))
@@ -258,16 +257,6 @@
 		types -= R // Don't pick the same thing twice
 		var/chosen_path = initial(R.result)
 		var/chosen_qty = rand(1, 5)
-		required_items += new /datum/supply_demand_order/thing(chosen_qty, chosen_path)
-	return
-
-/datum/event/supply_demand/proc/choose_research_items(var/differentTypes)
-	var/list/types = subtypesof(/datum/design)
-	for(var/i in 1 to differentTypes)
-		var/datum/design/D = pick(types)
-		types -= D // Don't pick the same thing twice
-		var/chosen_path = initial(D.build_path)
-		var/chosen_qty = rand(1, 3)
 		required_items += new /datum/supply_demand_order/thing(chosen_qty, chosen_path)
 	return
 

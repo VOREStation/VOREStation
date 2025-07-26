@@ -43,6 +43,7 @@
 	var/vore_sound = 'sound/effects/metalscrape2.ogg'
 
 /obj/structure/closet/Initialize(mapload)
+	ADD_TRAIT(src, TRAIT_ALT_CLICK_BLOCKER, ROUNDSTART_TRAIT)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

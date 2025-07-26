@@ -225,7 +225,7 @@
 			if(!def_value)//If it's a custom objective, it will be an empty string.
 				def_value = "custom"
 
-		var/list/choices = list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
+		var/list/choices = list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "mercenary", "capture", "absorb", "custom")
 		var/new_obj_type = tgui_input_list(usr, "Select objective type:", "Objective type", choices, def_value)
 		if (!new_obj_type) return
 
@@ -294,7 +294,7 @@
 				if (!steal.select_target())
 					return
 
-			if("download","capture","absorb", "vore")
+			if("capture","absorb", "vore")
 				var/def_num
 				if(objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
 					def_num = objective.target_amount
@@ -304,9 +304,6 @@
 					return
 
 				switch(new_obj_type)
-					if("download")
-						new_objective = new /datum/objective/download
-						new_objective.explanation_text = "Download [target_number] research levels."
 					if("capture")
 						new_objective = new /datum/objective/capture
 						new_objective.explanation_text = "Accumulate [target_number] capture points."

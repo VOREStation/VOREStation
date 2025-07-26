@@ -215,6 +215,7 @@
 	if(A.flag_check(AREA_FORBID_EVENTS))
 		return 0
 	var/protected = 0
+	var/susceptibility = 1
 
 	//anomaly suits give best protection, but excavation suits are almost as good
 	if(istype(H.back,/obj/item/rig/hazmat))
@@ -239,4 +240,5 @@
 	if(istype(H.glasses,/obj/item/clothing/glasses/science))
 		protected += 0.1
 
-	return 1 - protected
+	susceptibility = CLAMP01(susceptibility - protected) //Clamp the susceptibility to be between 0 and 1. No negative numbers allowed.
+	return susceptibility

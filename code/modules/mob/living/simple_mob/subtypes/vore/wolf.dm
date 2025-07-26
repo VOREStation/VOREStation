@@ -34,22 +34,16 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/wolf)
 
 	allow_mind_transfer = TRUE
+	vore_active = TRUE
+	vore_capacity = 1
+	vore_icons = SA_ICON_LIVING
 
 	can_be_drop_prey = FALSE
 	species_sounds = "Canine"
 	pain_emote_1p = list("yelp", "whine", "bark", "growl")
 	pain_emote_3p = list("yelps", "whines", "barks", "growls")
 
-// Activate Noms!
-/mob/living/simple_mob/vore/wolf
-	vore_active = 1
-	vore_icons = SA_ICON_LIVING
-
-/mob/living/simple_mob/animal/wolf/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/animal/vore/wolf/load_default_bellies()
 	. = ..()
 
 	var/obj/belly/B = vore_selected

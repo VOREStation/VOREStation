@@ -1,4 +1,3 @@
-/* eslint react/no-danger: "off" */
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
 import { Box, Button, Section, Table } from 'tgui-core/components';
@@ -95,10 +94,9 @@ export const NtosWordProcessor = (props) => {
                   Print
                 </Button>
               </Box>
-              {/* This dangerouslySetInnerHTML is only ever passed data that has passed through pencode2html
-               * It should be safe enough to support pencode in this way.
-               */}
               <Section mt={1}>
+                {/** biome-ignore lint/security/noDangerouslySetInnerHtml: is only ever passed data that has passed through pencode2html
+                 * It should be safe enough to support pencode in this way.*/}
                 <div dangerouslySetInnerHTML={{ __html: filedata! }} />
               </Section>
             </Section>

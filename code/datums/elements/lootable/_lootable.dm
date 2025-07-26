@@ -1,13 +1,3 @@
-GLOBAL_LIST_INIT(allocated_gamma_loot,list())
-GLOBAL_LIST_INIT(unique_gamma_loot,list(\
-		/obj/item/perfect_tele,\
-		/obj/item/bluespace_harpoon,\
-		/obj/item/clothing/glasses/thermal/syndi,\
-		/obj/item/gun/energy/netgun,\
-		/obj/item/gun/projectile/dartgun,\
-		/obj/item/clothing/gloves/black/bloodletter,\
-		/obj/item/gun/energy/mouseray/metamorphosis))
-
 /datum/element/lootable
 	var/chance_nothing = 0			// Unlucky people might need to loot multiple spots to find things.
 	var/chance_uncommon = 10		// Probability of pulling from the uncommon_loot list.

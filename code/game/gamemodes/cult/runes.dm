@@ -475,7 +475,7 @@ var/list/sacrificed = list()
 			chose_name = 1
 			break
 	D.universal_speak = 1
-	D.status_flags &= ~GODMODE
+	D.RemoveElement(/datum/element/godmode)
 	D.b_eyes = 200
 	D.r_eyes = 200
 	D.g_eyes = 200

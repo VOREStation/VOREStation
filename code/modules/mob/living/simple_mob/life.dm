@@ -23,6 +23,11 @@
 
 //Should we be dead?
 /mob/living/simple_mob/updatehealth()
+	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
+		health = getMaxHealth()
+		set_stat(CONSCIOUS)
+		return
+	get_injury_level()
 	health = getMaxHealth() - getFireLoss() - getBruteLoss() - getToxLoss() - getOxyLoss() - getCloneLoss()
 
 	//Alive, becoming dead

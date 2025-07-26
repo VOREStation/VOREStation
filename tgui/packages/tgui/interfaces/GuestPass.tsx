@@ -1,4 +1,3 @@
-/* eslint react/no-danger: "off" */
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
@@ -45,9 +44,9 @@ export const GuestPass = (props) => {
               Print
             </Button>
             <Section title="Logs">
-              {/* These are internally generated only. */}
               {(log.length &&
                 log.map((l) => (
+                  // biome-ignore lint/security/noDangerouslySetInnerHtml: These are internally generated only.
                   <div key={l} dangerouslySetInnerHTML={{ __html: l }} />
                 ))) || <Box>No logs.</Box>}
             </Section>
