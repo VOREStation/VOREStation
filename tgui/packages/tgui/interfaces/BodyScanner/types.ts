@@ -54,7 +54,7 @@ export type internalOrgan = {
   dead: BooleanLike;
   inflamed: BooleanLike;
   missing: BooleanLike;
-  medical_issues_I: string[];
+  medical_issues_I?: string[];
 };
 
 export type externalOrgan = {

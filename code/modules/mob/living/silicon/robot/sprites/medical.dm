@@ -475,4 +475,5 @@
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
 /datum/robot_sprite/dogborg/crisis/smolraptor/alt
+	name = "Small Raptor Alt"
 	sprite_icon_state = "smolraptor_alt"
