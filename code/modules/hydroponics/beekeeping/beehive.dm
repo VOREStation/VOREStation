@@ -164,20 +164,55 @@
 			++trays
 	honeycombs = min(honeycombs + 0.1 * coef * min(trays, 5), length(frames) * 100)
 
+/obj/item/circuitboard/honey_extractor
+    name = T_BOARD("honey_extractor")
+    board_type = new /datum/frame/frame_types/machine
+    build_path = /obj/machinery/honey_extractor
+    req_components = list(
+                            /obj/item/stack/cable_coil = 4,
+                            /obj/item/stock_parts/motor = 1,
+                            /obj/item/stock_parts/console_screen = 1)
+
 /obj/machinery/honey_extractor
 	name = "honey extractor"
 	desc = "A machine used to turn honeycombs on the frame into honey and wax."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "centrifuge"
+	circuit = /obj/item/circuitboard/honey_extractor
 
 	density = TRUE
 
 	var/processing = 0
 	var/honey = 0
 
+/obj/machinery/honey_extractor/Initialize(mapload)
+	. = ..()
+	component_parts = list()
+	component_parts += new /obj/item/stock_parts/console_screen(src)
+	component_parts += new /obj/item/stock_parts/motor(src)
+	component_parts += new /obj/item/stack/cable_coil(src, 4)
+	RefreshParts()
+	update_icon()
+
+obj/machinery/honey_extractor/update_icon()
+    cut_overlays()
+
+    icon_state = initial(icon_state)
+
+    if(panel_open)
+        add_overlay("[icon_state]_panel")
+//    if(stat & NOPOWER)					quoted out, is standard structure, but already uses the moving icon in the code.
+//       return
+//    if(busy)
+//        icon_state = "[icon_state]_moving"
+
 /obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
 	if(processing)
 		to_chat(user, span_notice("\The [src] is currently spinning, wait until it's finished."))
+		return
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
 		return
 	else if(istype(I, /obj/item/honey_frame))
 		var/obj/item/honey_frame/H = I
