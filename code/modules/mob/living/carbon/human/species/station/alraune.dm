@@ -413,7 +413,7 @@
 		return
 	fruit_gland.fruit_type = selection
 	add_verb(src, /mob/living/carbon/human/proc/alraune_fruit_pick)
-	remove_verb(src, /mob/living/carbon/human/proc/alraune_fruit_select)
+	// remove_verb(src, /mob/living/carbon/human/proc/alraune_fruit_select)
 	fruit_gland.organ_owner = src
 	fruit_gland.emote_descriptor = list("fruit right off of [fruit_gland.organ_owner]!", "a fruit from [fruit_gland.organ_owner]!")
 
