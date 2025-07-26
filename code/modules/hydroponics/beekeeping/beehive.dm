@@ -165,13 +165,13 @@
 	honeycombs = min(honeycombs + 0.1 * coef * min(trays, 5), length(frames) * 100)
 
 /obj/item/circuitboard/honey_extractor
-    name = T_BOARD("honey_extractor")
-    board_type = new /datum/frame/frame_types/machine
-    build_path = /obj/machinery/honey_extractor
-    req_components = list(
-                            /obj/item/stack/cable_coil = 4,
-                            /obj/item/stock_parts/motor = 1,
-                            /obj/item/stock_parts/console_screen = 1)
+	name = T_BOARD("honey_extractor")
+	board_type = new /datum/frame/frame_types/machine
+	build_path = /obj/machinery/honey_extractor
+	req_components = list(
+							/obj/item/stack/cable_coil = 4,
+							/obj/item/stock_parts/motor = 1,
+							/obj/item/stock_parts/console_screen = 1)
 
 /obj/machinery/honey_extractor
 	name = "honey extractor"
@@ -187,20 +187,20 @@
 
 /obj/machinery/honey_extractor/Initialize(mapload)
 	. = ..()
-    default_apply_parts()
+	default_apply_parts()
 	update_icon()
 
 obj/machinery/honey_extractor/update_icon()
-    cut_overlays()
+	cut_overlays()
 
-    icon_state = initial(icon_state)
+	icon_state = initial(icon_state)
 
-    if(panel_open)
-        add_overlay("[icon_state]_panel")
-//    if(stat & NOPOWER)					quoted out, is standard structure, but already uses the moving icon in the code.
-//       return
-//    if(busy)
-//        icon_state = "[icon_state]_moving"
+	if(panel_open)
+		add_overlay("[icon_state]_panel")
+//	if(stat & NOPOWER)					quoted out, is standard structure, but already uses the moving icon in the code.
+//		return
+//	if(busy)
+//		icon_state = "[icon_state]_moving"
 
 /obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
 	if(processing)
