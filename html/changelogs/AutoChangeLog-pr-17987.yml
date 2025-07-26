@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - balance: "Completely rewrote R&D to be made up of \"techweb nodes\" that you research with experiments + passive point generation. This turns it from a question of how to max all levels as fast as possible, to figuring out what paths you want to go down and unlock with a time gate."

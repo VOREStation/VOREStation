@@ -29,8 +29,16 @@
 
 	var/filtertext
 
+	/// Reference to a remote material inventory, such as an ore silo.
+	var/datum/component/remote_materials/rmat
+
 /obj/machinery/autolathe/Initialize(mapload)
-	AddComponent(/datum/component/material_container, subtypesof(/datum/material), 0, MATCONTAINER_EXAMINE, _after_insert = CALLBACK(src, PROC_REF(AfterMaterialInsert)))
+	rmat = AddComponent( \
+		/datum/component/remote_materials, \
+		mapload, \
+		mat_container_signals = list( \
+			COMSIG_MATCONTAINER_ITEM_CONSUMED = TYPE_PROC_REF(/obj/machinery/autolathe, AfterMaterialInsert) \
+		))
 	. = ..()
 	if(!autolathe_recipes)
 		autolathe_recipes = new()
@@ -57,6 +65,8 @@
 
 /obj/machinery/autolathe/tgui_static_data(mob/user)
 	var/list/data = ..()
+
+	data += rmat.mat_container.tgui_static_data(user)
 
 	var/list/categories = list()
 	var/list/recipes = list()
@@ -89,8 +99,7 @@
 /obj/machinery/autolathe/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 	data["busy"] = busy
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	data["materials"] = materials.tgui_data(user, TRUE)
+	data["materials"] = rmat.mat_container.tgui_data(user, TRUE)
 	data["mat_efficiency"] = mat_efficiency
 	return data
 
@@ -160,7 +169,7 @@
 			if(making.hidden && !hacked)
 				return
 
-			var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+			var/datum/component/material_container/materials = rmat.mat_container
 
 			var/list/materials_used = list()
 
@@ -183,15 +192,11 @@
 			//Check if we still have the materials.
 			var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
 
-			for(var/datum/material/used_material as anything in making.resources)
-				var/amount_needed = making.resources[used_material] * coeff * multiplier
-				materials_used[used_material] = amount_needed
-
 			if(LAZYLEN(materials_used))
-				if(!materials.has_materials(materials_used))
+				if(!materials.has_materials(making.resources))
 					return
 
-				materials.use_materials(materials_used)
+				rmat.use_materials(making.resources, coeff, multiplier)
 
 			busy = making.name
 			update_use_power(USE_POWER_ACTIVE)
@@ -261,17 +266,11 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	materials.max_amount = mb_rating * 75000
+	rmat.set_local_size(mb_rating * 75000)
 
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.6. Maximum rating of parts is 5
 	update_tgui_static_data(usr)
-
-/obj/machinery/autolathe/dismantle()
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	materials.retrieve_all()
-	return ..()
 
 /obj/machinery/autolathe/proc/AfterMaterialInsert(obj/item/item_inserted, id_inserted, amount_inserted)
 	flick("autolathe_loading", src)//plays metal insertion animation
@@ -280,6 +279,5 @@
 
 /obj/machinery/autolathe/examine(mob/user)
 	. = ..()
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[mat_efficiency*100]%</b>.")
+		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[mat_efficiency*100]%</b>.")

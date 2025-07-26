@@ -27,7 +27,6 @@
 	var/list/deliveryslot_1 = list()
 	var/list/deliveryslot_2 = list()
 	var/list/deliveryslot_3 = list()
-	var/datum/research/techonly/files //Analyzerbelly var.
 	var/synced = FALSE
 	var/startdrain = 500
 	var/max_item_count = 1
@@ -47,7 +46,6 @@
 
 /obj/item/dogborg/sleeper/Initialize(mapload)
 	. = ..()
-	files = new /datum/research/techonly(src)
 	med_analyzer = new /obj/item/healthanalyzer
 
 /obj/item/dogborg/sleeper/Destroy()
@@ -92,12 +90,6 @@
 				target.forceMove(src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [target.name] slips inside."), span_notice("Your [src.name] groans lightly as [target] slips inside."))
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
-				if(analyzer && istype(target,/obj/item))
-					var/obj/item/tech_item = target
-					var/list/tech_levels = list()
-					for(var/T in tech_item.origin_tech)
-						tech_levels += "\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)]."
-					to_chat(user, span_notice("[jointext(tech_levels, "<br>")]"))
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= target
@@ -295,9 +287,6 @@
 		dat += span_red("Cargo compartment slot: Fuel.") + "<BR>"
 		dat += span_red("([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])") + "<BR><BR>"
 
-	if(analyzer && !synced)
-		dat += "<A href='byond://?src=\ref[src];sync=1'>Sync Files</A><BR>"
-
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
 		dat += span_red(span_bold("Self-cleaning mode.") + " [length(contents - items_preserved)] object(s) remaining.") + "<BR>"
@@ -429,25 +418,6 @@
 			deliverylists[delivery_tag].Cut()
 		sleeperUI(usr)
 		return
-	if(href_list["sync"])
-		synced = TRUE
-		var/success = 0
-		for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
-			for(var/datum/tech/T in files.known_tech) //Uploading
-				S.files.AddTech2Known(T)
-			for(var/datum/tech/T in S.files.known_tech) //Downloading
-				files.AddTech2Known(T)
-			success = 1
-			files.RefreshResearch()
-		if(success)
-			to_chat(usr, "You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.")
-			playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-		else
-			to_chat(usr, "Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator.")
-			playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
-		sleeperUI(usr)
-		return
-
 	if(patient && !(patient.stat & DEAD)) //What is bitwise NOT? ... Thought it was tilde.
 		if(href_list["inject"] == REAGENT_ID_INAPROVALINE || patient.health > min_health)
 			inject_chem(usr, href_list["inject"])
@@ -650,11 +620,6 @@
 				if(!digested)
 					items_preserved |= T
 				else
-					if(analyzer && digested)
-						var/obj/item/tech_item = T
-						for(var/tech in tech_item.origin_tech)
-							files.UpdateTech(tech, tech_item.origin_tech[tech])
-							synced = FALSE
 					if(recycles && T.matter)
 						for(var/material in T.matter)
 							var/total_material = T.matter[material]
