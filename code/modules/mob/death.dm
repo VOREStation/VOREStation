@@ -83,9 +83,6 @@
 
 	update_canmove()
 
-	dizziness = 0
-	jitteriness = 0
-
 	layer = MOB_LAYER
 
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS

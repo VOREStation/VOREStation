@@ -857,7 +857,7 @@
 /datum/reagent/impedrezene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.jitteriness = max(M.jitteriness - 5, 0)
+	M.make_jittery(-5)
 	if(prob(80))
 		M.adjustBrainLoss(0.1 * removed)
 	if(prob(50))

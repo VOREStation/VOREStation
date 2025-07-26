@@ -196,12 +196,12 @@
 	M.SetStunned(0)
 	M.SetParalysis(0)
 	M.silent = 0
-	M.dizziness = 0
+	M.clear_dizzy()
+	M.clear_jittery()
 	M.drowsyness = 0
 	M.stuttering = 0
 	M.SetConfused(0)
 	M.SetSleeping(0)
-	M.jitteriness = 0
 	M.radiation = 0
 	M.ExtinguishMob()
 	M.fire_stacks = 0

@@ -19,7 +19,7 @@
 		return
 	if(prob(5) && prob(7))
 		owner.stuttering = max(15, owner.stuttering)
-		if(owner.jitteriness < 50)
+		if(owner.get_jittery() < 50)
 			owner.make_jittery(65)
 
 /datum/component/nervousness_disability/Destroy(force = FALSE)
