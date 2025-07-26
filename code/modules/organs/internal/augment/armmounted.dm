@@ -16,7 +16,7 @@
 
 	target_slot = slot_l_hand
 
-	target_parent_classes = list(ORGAN_FLESH, ORGAN_ROBOT)
+	target_parent_classes = list(ORGAN_FLESH, ORGAN_ROBOT, ORGAN_NANOFORM)
 
 	integrated_object_type = /obj/item/gun/energy/laser/mounted/augment
 

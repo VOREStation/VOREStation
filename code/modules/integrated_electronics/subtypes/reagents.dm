@@ -18,8 +18,12 @@
 	flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 30 SECONDS
-	inputs = list()
-	outputs = list("volume used" = IC_PINTYPE_NUMBER,"self reference" = IC_PINTYPE_REF)
+	inputs = list(
+		"reagent storage" = IC_PINTYPE_REF)
+	outputs = list(
+		"volume held" = IC_PINTYPE_NUMBER,
+		"self reference" = IC_PINTYPE_REF
+		)
 	activators = list("create smoke" = IC_PINTYPE_PULSE_IN,"on smoked" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_BIO = 3)
@@ -37,6 +41,15 @@
 	..()
 
 /obj/item/integrated_circuit/reagent/smoke/do_work()
+	// Attempt to fill self from input storage before acting
+	var/input_storage = get_pin_data(IC_INPUT, 1)
+	if(input_storage && istype(input_storage, /obj/item/integrated_circuit/reagent/storage))
+		var/obj/item/integrated_circuit/reagent/storage/storage = input_storage
+		if(storage.reagents && storage.reagents.total_volume > 0)
+			var/amount_to_transfer = min(storage.reagents.total_volume, reagents.get_free_space())
+			if(amount_to_transfer > 0)
+				storage.reagents.trans_to(src, amount_to_transfer)
+
 	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
 	var/datum/effect/effect/system/smoke_spread/chem/smoke_system = new()
 	smoke_system.set_up(reagents, 10, 0, get_turf(src))
@@ -55,10 +68,19 @@
 	flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 6 SECONDS
-	inputs = list("target" = IC_PINTYPE_REF, "injection amount" = IC_PINTYPE_NUMBER)
+	inputs = list("target" = IC_PINTYPE_REF,
+	"injection amount" = IC_PINTYPE_NUMBER,
+	"reagent storage" = IC_PINTYPE_REF)
 	inputs_default = list("2" = 5)
-	outputs = list("volume used" = IC_PINTYPE_NUMBER,"self reference" = IC_PINTYPE_REF)
-	activators = list("inject" = IC_PINTYPE_PULSE_IN, "on injected" = IC_PINTYPE_PULSE_OUT, "on fail" = IC_PINTYPE_PULSE_OUT)
+	outputs = list(
+		"volume contained" = IC_PINTYPE_NUMBER,
+		"self reference" = IC_PINTYPE_REF,
+		)
+	activators = list(
+		"inject" = IC_PINTYPE_PULSE_IN,
+		"on injected" = IC_PINTYPE_PULSE_OUT,
+		"on fail" = IC_PINTYPE_PULSE_OUT
+		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	volume = 30
 	power_draw_per_use = 15
@@ -89,6 +111,16 @@
 
 /obj/item/integrated_circuit/reagent/injector/do_work()
 	set waitfor = 0 // Don't sleep in a proc that is called by a processor without this set, otherwise it'll delay the entire thing
+
+	// Attempt to fill self from input storage before acting
+	var/input_storage = get_pin_data(IC_INPUT, 3)
+	if(input_storage && istype(input_storage, /obj/item/integrated_circuit/reagent/storage))
+		var/obj/item/integrated_circuit/reagent/storage/storage = input_storage
+		if(storage.reagents && storage.reagents.total_volume > 0)
+			var/amount_to_transfer = min(storage.reagents.total_volume, transfer_amount)
+			if(amount_to_transfer > 0)
+				storage.reagents.trans_to(src, amount_to_transfer)
+
 	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
 	if(!istype(AM)) //Invalid input
 		activate_pin(3)

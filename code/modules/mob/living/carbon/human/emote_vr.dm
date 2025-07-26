@@ -49,18 +49,21 @@
 /mob/living/carbon/human/verb/switch_tail_layer()
 	set name = "Switch tail layer"
 	set category = "IC.Game"
-	set desc = "Switch tail layer on top."
+	set desc = "Switch tail layer to show below/above/between clothing or other things such as wings!."
 
 	var/input = tgui_input_list(src, "Select a tail layer.", "Set Tail Layer", list(SWITCH_TAIL_LAYER_UPPER, SWITCH_TAIL_LAYER_STANDARD, SWITCH_TAIL_LAYER_LOWER))
 	if(isnull(input))
 		return
 	switch(input)
 		if(SWITCH_TAIL_LAYER_UPPER)
-			tail_alt = TAIL_UPPER_LAYER_HIGH
+			tail_layering = input
+			write_preference_directly(/datum/preference/numeric/human/tail_layering, TAIL_UPPER_LAYER_HIGH)
 		if(SWITCH_TAIL_LAYER_STANDARD)
-			tail_alt = TAIL_UPPER_LAYER
+			tail_layering = input
+			write_preference_directly(/datum/preference/numeric/human/tail_layering, TAIL_UPPER_LAYER)
 		if(SWITCH_TAIL_LAYER_LOWER)
-			tail_alt = TAIL_UPPER_LAYER_LOW
+			tail_layering = input
+			write_preference_directly(/datum/preference/numeric/human/tail_layering, TAIL_UPPER_LAYER_LOW)
 
 	update_tail_showing()
 

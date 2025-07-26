@@ -864,7 +864,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 		suit_sprite = INV_SUIT_DEF_ICON
 
 	var/icon/c_mask = null
-	var/tail_is_rendered = overlays_standing[TAIL_LOWER_LAYER] || overlays_standing[tail_alt]
+	var/tail_is_rendered = overlays_standing[TAIL_LOWER_LAYER] || overlays_standing[tail_layering]
 	var/valid_clip_mask = tail_style?.clip_mask
 
 	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
@@ -1005,7 +1005,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(src.tail_style && src.tail_style.clip_mask_state)
 		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
 	if(tail_layer == TAIL_UPPER_LAYER)
-		tail_layer = tail_alt
+		tail_layer = tail_layering
 
 	var/obj/item/organ/external/chest = organs_by_name[BP_TORSO]
 
@@ -1052,7 +1052,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(src.tail_style && src.tail_style.clip_mask_state)
 		tail_layer = TAIL_UPPER_LAYER		// Use default, let clip mask handle everything
 	if(tail_layer == TAIL_UPPER_LAYER)
-		tail_layer = tail_alt
+		tail_layer = tail_layering
 	var/image/tail_overlay = overlays_standing[tail_layer]
 
 	remove_layer(TAIL_UPPER_LAYER)
