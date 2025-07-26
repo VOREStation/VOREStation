@@ -187,11 +187,7 @@
 
 /obj/machinery/honey_extractor/Initialize(mapload)
 	. = ..()
-	component_parts = list()
-	component_parts += new /obj/item/stock_parts/console_screen(src)
-	component_parts += new /obj/item/stock_parts/motor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 4)
-	RefreshParts()
+    default_apply_parts()
 	update_icon()
 
 obj/machinery/honey_extractor/update_icon()
