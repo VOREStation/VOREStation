@@ -57,13 +57,13 @@
 	switch(input)
 		if(SWITCH_TAIL_LAYER_UPPER)
 			tail_layering = input
-			write_preference_directly(/datum/preference/numeric/human/tail_layering, TAIL_UPPER_LAYER_HIGH)
+			write_preference_directly(/datum/preference/choiced/human/tail_layering, TAIL_UPPER_LAYER_HIGH)
 		if(SWITCH_TAIL_LAYER_STANDARD)
 			tail_layering = input
-			write_preference_directly(/datum/preference/numeric/human/tail_layering, TAIL_UPPER_LAYER)
+			write_preference_directly(/datum/preference/choiced/human/tail_layering, TAIL_UPPER_LAYER)
 		if(SWITCH_TAIL_LAYER_LOWER)
 			tail_layering = input
-			write_preference_directly(/datum/preference/numeric/human/tail_layering, TAIL_UPPER_LAYER_LOW)
+			write_preference_directly(/datum/preference/choiced/human/tail_layering, TAIL_UPPER_LAYER_LOW)
 
 	update_tail_showing()
 
