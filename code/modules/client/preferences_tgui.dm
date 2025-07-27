@@ -195,7 +195,7 @@
 	PMH.screen_loc = LAZYACCESS(preview_screen_locs, "PMH")
 
 /datum/preferences/tgui_close(mob/user)
-	load_character(default_slot)
+	load_character()
 	save_preferences()
 
 /datum/preferences/proc/create_character_profiles()
