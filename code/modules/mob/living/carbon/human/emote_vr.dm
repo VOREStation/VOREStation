@@ -51,7 +51,7 @@
 	set category = "IC.Game"
 	set desc = "Switch tail layer to show below/above/between clothing or other things such as wings!."
 
-	var/input = tgui_input_list(src, "Select a tail layer.", "Set Tail Layer", GLOB.tail_layer_options)
+	var/input = tgui_input_list(src, "Select a tail layer.", "Set Tail Layer", GLOB.tail_layer_options, read_preference(/datum/preference/choiced/human/tail_layering))
 	if(!input)
 		return
 	var/tail_option =  GLOB.tail_layer_options[input]
