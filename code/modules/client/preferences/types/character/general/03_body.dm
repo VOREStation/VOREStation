@@ -219,11 +219,11 @@
 	savefile_key = "tail_layering"
 	can_randomize = FALSE
 
-/datum/preference/choiced/tail_layering/init_possible_values()
+/datum/preference/choiced/human/tail_layering/init_possible_values()
 	return assoc_to_keys(GLOB.tail_layer_options)
 
-/datum/preference/choiced/tail_layering/create_default_value()
-	return GLOB.tail_layer_options[1]
+/datum/preference/choiced/human/tail_layering/create_default_value()
+	return GLOB.tail_layer_options[2]
 
-/datum/preference/choiced/tail_layering/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/human/tail_layering/apply_to_human(mob/living/carbon/human/target, value)
 	target.tail_layering = GLOB.tail_layer_options[value]
