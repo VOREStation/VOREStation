@@ -1,6 +1,5 @@
 /datum/component/nervousness_disability
 	var/mob/owner
-	var/gutdeathpressure = 0
 
 /datum/component/nervousness_disability/Initialize()
 	if (!ishuman(parent))

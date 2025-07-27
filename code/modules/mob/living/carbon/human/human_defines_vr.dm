@@ -11,6 +11,6 @@
 	var/markings_len = 0 //mostly an arbitrary number
 	var/low_sorting_priority = FALSE
 
-	tail_alt = TAIL_UPPER_LAYER // not a toggle for humans but a pointer for what layer the tail should be when facing North/East/West
+	tail_layering = TAIL_UPPER_LAYER // not a toggle for humans but a pointer for what layer the tail should be when facing North/East/West
 
 	var/list/body_writing // assoc list by BP_ key

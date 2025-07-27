@@ -46,3 +46,17 @@
 	ability_objects.Add(A)
 	if(my_mob && my_mob.client) //If a shadekin is made (mannequins) prior to initialize being finished, my_mob won't be assigned and this will runtime. Mannequins need massive fixing because they shouldn't be getting all these special huds and overlays when they don't need them.
 		toggle_open(2) //forces the icons to refresh on screen
+
+
+/obj/screen/movable/ability_master/proc/remove_shadekin_ability(var/object_given, var/verb_given, var/arguments)
+	if(!object_given)
+		message_admins("ERROR: remove_shadekin_ability() was not given an object in its arguments.")
+	if(!verb_given)
+		message_admins("ERROR: remove_shadekin_ability() was not given a verb/proc in its arguments.")
+	var/obj/screen/ability/verb_based/shadekin/A = get_ability_by_proc_ref(verb_given)
+	if(!A)
+		return // We don't have the ability, so ignore it.
+	ability_objects.Remove(A)
+	qdel(A)
+	if(my_mob && my_mob.client) //If a shadekin is made (mannequins) prior to initialize being finished, my_mob won't be assigned and this will runtime. Mannequins need massive fixing because they shouldn't be getting all these special huds and overlays when they don't need them.
+		toggle_open(2) //forces the icons to refresh on screen

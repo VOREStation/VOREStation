@@ -59,3 +59,25 @@
 	var/datum/component/shadekin/our_SK = target.get_shadekin_component()
 	if(our_SK)
 		our_SK.flicker_distance = value
+
+/datum/preference/toggle/living/dark_retreat_toggle
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "DARK_RETREAT_TOGGLE"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/living/dark_retreat_toggle/apply_to_living(mob/living/target, value)
+	var/datum/component/shadekin/our_SK = target.get_shadekin_component()
+	if(our_SK)
+		our_SK.no_retreat = value
+
+/datum/preference/toggle/living/shadekin_nutrition_conversion
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_key = "SHADEKIN_NUTRITION_CONVERSION"
+	default_value = FALSE
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/living/shadekin_nutrition_conversion/apply_to_living(mob/living/target, value)
+	var/datum/component/shadekin/our_SK = target.get_shadekin_component()
+	if(our_SK)
+		our_SK.nutrition_energy_conversion = value

@@ -73,7 +73,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	return 1
 
 /mob/AirflowCanMove(n)
-	if(status_flags & GODMODE)
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 		return 0
 	if(buckled)
 		return 0
