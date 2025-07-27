@@ -213,16 +213,17 @@
 	return 255 //no randomization here.
 
 ///Tail style.
-/datum/preference/numeric/human/tail_layering
+/datum/preference/choiced/human/tail_layering
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "tail_layering"
 	can_randomize = FALSE
-	minimum = TAIL_UPPER_LAYER
-	maximum = TAIL_UPPER_LAYER_HIGH
 
-/datum/preference/numeric/human/tail_layering/create_default_value()
-	return TAIL_UPPER_LAYER
+/datum/preference/choiced/tail_layering/init_possible_values()
+    return assoc_to_keys(GLOB.tail_layer_options)
 
-/datum/preference/numeric/human/tail_layering/apply_to_human(mob/living/carbon/human/target, value)
-	target.tail_layering = value
+/datum/preference/choiced/tail_layering/create_default_value()
+	return GLOB.tail_layer_options[1]
+
+/datum/preference/choiced/tail_layering/apply_to_human(mob/living/carbon/human/target, value)
+	target.tail_layering = GLOB.tail_layer_options[value]
