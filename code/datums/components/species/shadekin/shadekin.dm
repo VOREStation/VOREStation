@@ -212,6 +212,9 @@
 
 	return data
 
+/datum/component/shadekin/tgui_close(mob/user)
+	user.client?.prefs?.save_character()
+	. = ..()
 
 /datum/component/shadekin/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
