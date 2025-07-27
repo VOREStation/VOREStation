@@ -213,7 +213,7 @@
 	return data
 
 /datum/component/shadekin/tgui_close(mob/user)
-	user.client?.prefs?.save_preferences()
+	SScharacter_setup.queue_preferences_save(user?.client?.prefs)
 	. = ..()
 
 /datum/component/shadekin/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)

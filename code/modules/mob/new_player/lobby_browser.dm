@@ -157,6 +157,7 @@
 			return TRUE
 		if("open_changelog")
 			write_preference_directly(/datum/preference/text/lastchangelog, GLOB.changelog_hash)
+			SScharacter_setup.queue_preferences_save(ui.user?.client?.prefs)
 			client.changes()
 			return TRUE
 		if("keyboard")
