@@ -36,4 +36,4 @@
 		to_chat(src, span_notice("You are now [age]! Happy birthday!"))
 		write_preference_directly(/datum/preference/numeric/human/age, age)	//Set the age on the character sheet
 
-	client?.prefs.save_character()	//Save the info
+	client?.prefs.save_preferences()	//Save the info
