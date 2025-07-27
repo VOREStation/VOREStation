@@ -56,8 +56,8 @@
 		return
 	var/tail_option =  GLOB.tail_layer_options[input]
 	if(tail_option)
-		tail_layering = input
-		write_preference_directly(/datum/preference/choiced/human/tail_layering, tail_option)
+		tail_layering = tail_option
+		write_preference_directly(/datum/preference/choiced/human/tail_layering, input)
 
 	update_tail_showing()
 
