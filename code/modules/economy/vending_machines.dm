@@ -1335,7 +1335,8 @@
 		/obj/item/clothing/accessory/holster/hip = 2,
 		/obj/item/clothing/accessory/holster/hip/black = 2,
 		/obj/item/clothing/accessory/holster/leg = 2,
-		/obj/item/clothing/accessory/holster/leg/black = 2
+		/obj/item/clothing/accessory/holster/leg/black = 2,
+		/obj/item/clothing/accessory/holster/waist/lanyard = 2
 	)
 	req_log_access = access_hop
 	has_logs = 1
