@@ -94,7 +94,6 @@
 /datum/tgui_color_picker/tgui_close(mob/user)
 	if(user)
 		user.write_preference_directly(/datum/preference/text/preset_colors, preset_colors)
-		SScharacter_setup.queue_preferences_save(user?.client?.prefs)
 	. = ..()
 	closed = TRUE
 

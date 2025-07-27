@@ -18,7 +18,7 @@
 /mob/living/carbon/human/proc/birthday(var/birthday = 0)
 	var/msg
 	var/lastyear = read_preference(/datum/preference/numeric/human/last_bday_note)
-	write_preference_directly(/datum/preference/numeric/human/last_bday_note, GLOB.world_time_year)	//We only want to ask once a year per character, this persists, update early in case of shenanigans
+	write_preference_directly(/datum/preference/numeric/human/last_bday_note, GLOB.world_time_year, FALSE)	//We only want to ask once a year per character, this persists, update early in case of shenanigans
 	if(birthday)	//woo
 		msg = "Today is your birthday! Do you want to increase your character's listed age?"
 		if(read_preference(/datum/preference/toggle/human/bday_announce))
@@ -34,6 +34,6 @@
 			var/howmuch = GLOB.world_time_year - lastyear
 			age += howmuch
 		to_chat(src, span_notice("You are now [age]! Happy birthday!"))
-		write_preference_directly(/datum/preference/numeric/human/age, age)	//Set the age on the character sheet
+		write_preference_directly(/datum/preference/numeric/human/age, age, FALSE)	//Set the age on the character sheet
 
 	SScharacter_setup.queue_preferences_save(client?.prefs)

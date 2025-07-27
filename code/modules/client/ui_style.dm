@@ -30,10 +30,10 @@
 	usr.update_ui_style(UI_style_new, UI_style_alpha_new, UI_style_color_new)
 
 	if(tgui_alert(src, "Like it? Save changes?","Save?",list("Yes", "No")) == "Yes")
-		usr.write_preference_directly(/datum/preference/choiced/ui_style, UI_style_new)
-		usr.write_preference_directly(/datum/preference/numeric/ui_style_alpha, UI_style_alpha_new)
-		usr.write_preference_directly(/datum/preference/color/ui_style_color, UI_style_color_new)
-		SScharacter_setup.queue_preferences_save(prefs)
+		usr.write_preference_directly(/datum/preference/choiced/ui_style, UI_style_new, FALSE)
+		usr.write_preference_directly(/datum/preference/numeric/ui_style_alpha, UI_style_alpha_new, FALSE)
+		usr.write_preference_directly(/datum/preference/color/ui_style_color, UI_style_color_new, FALSE)
+		SScharacter_setup.queue_preferences_save(client?.prefs)
 		to_chat(src, "UI was saved")
 		return
 

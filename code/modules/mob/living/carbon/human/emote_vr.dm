@@ -59,7 +59,6 @@
 		return
 	tail_layering = tail_option
 	write_preference_directly(/datum/preference/choiced/human/tail_layering, input)
-	SScharacter_setup.queue_preferences_save(client?.prefs)
 
 	update_tail_showing()
 
