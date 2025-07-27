@@ -1541,4 +1541,4 @@ GLOBAL_LIST(chamelion_belt_choices)
 //Accessory
 GLOBAL_LIST(chamelion_accessory_choices)
 
-GLOBAL_LIST_INIT(tail_layer_options, list("Lower layer" = TAIL_UPPER_LAYER_LOW ,"Default layer" = TAIL_UPPER_LAYER , "Upper layer" = TAIL_UPPER_LAYER_HIGH ))
+GLOBAL_LIST_INIT(tail_layer_options, list("Lower layer" = TAIL_UPPER_LAYER_LOW , "Default layer" = TAIL_UPPER_LAYER , "Upper layer" = TAIL_UPPER_LAYER_HIGH ))
