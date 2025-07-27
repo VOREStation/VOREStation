@@ -59,7 +59,7 @@
 		return
 	tail_layering = tail_option
 	write_preference_directly(/datum/preference/choiced/human/tail_layering, input)
-	client?.prefs.save_character()
+	client?.prefs?.save_character()
 
 	update_tail_showing()
 
