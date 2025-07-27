@@ -1,7 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - qol: "Extrapolator shows if normal diseases are dormant as well"
-  - bugfix: "Fixed blob spores acting on death regardless of dormant or not"
-  - bugfix: "Fixed common diseases losing their dormant flag when applied"
-  - spellcheck: "Roanoake to Roanoke"
