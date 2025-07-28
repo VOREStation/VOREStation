@@ -282,7 +282,7 @@
 	sprite_icon_state = "dullahanninja"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	sprite_decals = list("decals")
+	sprite_decals = list("halo")
 	rest_sprite_options = list("Default", "Sit")
 	pixel_x = -16
 	icon_x = 64
