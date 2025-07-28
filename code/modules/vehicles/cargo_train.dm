@@ -432,6 +432,7 @@
 	AddComponent(/datum/component/hose_connector/input)
 	AddComponent(/datum/component/hose_connector/output)
 	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/sellable/trolly_tank)
 
 /obj/vehicle/train/trolly_tank/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
 	return
