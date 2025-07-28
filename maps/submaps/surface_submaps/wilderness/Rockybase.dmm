@@ -830,11 +830,11 @@
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "cN" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "cO" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "cP" = (

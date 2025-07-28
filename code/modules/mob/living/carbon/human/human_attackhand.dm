@@ -417,6 +417,14 @@
 	return
 
 /mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/armor_type = "melee", var/armor_pen = 0, var/a_sharp = 0, var/a_edge = 0)
+	if(istype(user,/mob/living))
+		var/mob/living/L = user
+		if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
+			if((src != L))
+				L.apply_damage(3, BRUTE)
+				L.visible_message( \
+					span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
+					span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
 
 	if(!damage)
 		return
