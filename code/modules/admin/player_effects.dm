@@ -331,6 +331,12 @@
 
 		////////MEDICAL//////////////
 
+		if("health_scan")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.scan_mob(user)
+
 		if("appendicitis")
 			var/mob/living/carbon/human/Tar = target
 			if(istype(Tar))
@@ -589,6 +595,14 @@
 			if(!istype(Tar))
 				return
 			add_verb(Tar, /mob/living/proc/toggle_active_cloaking)
+
+		if("colormate")
+			if(istype(target,/mob/living/simple_mob))
+				var/mob/living/simple_mob/Tar = target
+				add_verb(Tar, /mob/living/simple_mob/proc/ColorMate)
+			if(istype(target,/mob/living/silicon/robot))
+				var/mob/living/silicon/robot/Tar = target
+				add_verb(Tar, /mob/living/silicon/robot/proc/ColorMate)
 
 
 		////////INVENTORY//////////////

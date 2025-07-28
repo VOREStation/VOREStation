@@ -2817,10 +2817,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "fp" = (
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 1
 	},
-/obj/item/reagent_containers/glass/beaker/sulphuric,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -3783,6 +3782,15 @@
 /obj/machinery/firealarm/angled,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
+"hn" = (
+/obj/machinery/rnd/server,
+/turf/simulated/floor/bluegrid{
+	name = "Server Base";
+	nitrogen = 500;
+	oxygen = 0;
+	temperature = 80
+	},
+/area/stellardelight/deck1/researchserver)
 "ho" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -6486,8 +6494,7 @@
 	name = "Robotics RC";
 	pixel_y = 30
 	},
-/obj/machinery/r_n_d/circuit_imprinter,
-/obj/item/reagent_containers/glass/beaker/sulphuric,
+/obj/machinery/rnd/production/circuit_imprinter,
 /turf/simulated/floor/tiled/steel,
 /area/assembly/robotics)
 "mO" = (
@@ -6849,7 +6856,7 @@
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "nE" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -10767,7 +10774,7 @@
 /area/chapel/main)
 "wc" = (
 /obj/machinery/firealarm/angled,
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled/steel,
 /area/assembly/robotics)
 "we" = (
@@ -11038,7 +11045,6 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "wK" = (
-/obj/machinery/computer/rdconsole/robotics,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/camera/network/research,
 /turf/simulated/floor/tiled/steel,
@@ -12552,7 +12558,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "zX" = (
-/obj/machinery/r_n_d/server/robotics,
+/obj/machinery/rnd/server/master,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
 	nitrogen = 500;
@@ -14558,7 +14564,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenobiology)
 "Es" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -16633,13 +16639,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenobiology)
 "IP" = (
-/obj/machinery/r_n_d/protolathe{
-	dir = 1
-	},
 /obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/rnd/production/protolathe/department/science,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "IQ" = (
@@ -22168,7 +22172,6 @@
 /turf/simulated/floor/carpet,
 /area/library)
 "UA" = (
-/obj/machinery/r_n_d/destructive_analyzer,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
@@ -23877,6 +23880,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/rnd/production/protolathe/department/security,
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "Ya" = (
@@ -36464,7 +36468,7 @@ WR
 sY
 LP
 qA
-zX
+hn
 yY
 yQ
 du

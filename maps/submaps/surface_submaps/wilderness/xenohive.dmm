@@ -352,13 +352,6 @@
 /obj/effect/alien/weeds,
 /turf/simulated/floor,
 /area/submap/XenoHive)
-"Hx" = (
-/obj/item/portable_destructive_analyzer,
-/obj/effect/alien/weeds,
-/turf/simulated/floor/outdoors/dirt{
-	outdoors = 0
-	},
-/area/submap/XenoHive)
 "Hz" = (
 /obj/effect/alien/weeds,
 /obj/structure/simple_door/resin,
@@ -617,7 +610,7 @@ sy
 xB
 xB
 Tv
-Hx
+dn
 dm
 ps
 xB

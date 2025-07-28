@@ -523,8 +523,8 @@
 
 
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)
-	if(status_flags & GODMODE)
-		return
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 0	// Cancelled by a component
 
 	if(mNobreath in mutations)
 		return
@@ -910,8 +910,8 @@
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature >= species.heat_level_1)
 		//Body temperature is too hot.
-		if(status_flags & GODMODE)
-			return 1	//godmode
+		if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+			return 1	// Cancelled by a component
 
 		var/burn_dam = 0
 
@@ -933,8 +933,8 @@
 	else if(bodytemperature <= species.cold_level_1)
 		//Body temperature is too cold.
 
-		if(status_flags & GODMODE)
-			return 1	//godmode
+		if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+			return 1	// Cancelled by a component
 
 
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
@@ -954,8 +954,8 @@
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
-	if(status_flags & GODMODE)
-		return 1	//godmode
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 1	// Cancelled by a component
 
 	if(adjusted_pressure >= species.hazard_high_pressure)
 		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
@@ -1151,11 +1151,10 @@
 							r_hand_blocked = 1-(100-getarmor(BP_R_HAND, "bio"))/100	//This should get a number between 0 and 1
 							total_phoronloss += vsc.plc.CONTAMINATION_LOSS * r_hand_blocked
 			if(total_phoronloss)
-				if(!(status_flags & GODMODE))
-					adjustToxLoss(total_phoronloss)
+				adjustToxLoss(total_phoronloss)
 
-	if(status_flags & GODMODE)
-		return 0	//godmode
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 0	// Cancelled by a component
 
 	// nutrition decrease
 	// Species controls hunger rate for humans, otherwise use defaults
@@ -1201,7 +1200,8 @@
 	if(skip_some_updates())
 		return 0
 
-	if(status_flags & GODMODE)	return 0
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 0	// Cancelled by a component
 
 	//SSD check, if a logged player is awake put them back to sleep!
 	if(species.get_ssd(src) && !client && !teleop)
@@ -1842,7 +1842,8 @@
 
 /mob/living/carbon/human/handle_shock()
 	..()
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 0	// Cancelled by a component
 	if(traumatic_shock >= 80 && can_feel_pain())
 		shock_stage += 1
 	else

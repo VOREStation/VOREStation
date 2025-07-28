@@ -84,7 +84,8 @@ SUBSYSTEM_DEF(circuit)
 		/obj/item/clothing/shoes/circuitry,
 		/obj/item/clothing/head/circuitry,
 		/obj/item/clothing/ears/circuitry,
-		/obj/item/clothing/suit/circuitry
+		/obj/item/clothing/suit/circuitry,
+		/obj/item/electronic_assembly/circuit_bug
 		)
 
 	circuit_fabricator_recipe_list["Tools"] = list(

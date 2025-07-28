@@ -248,7 +248,7 @@
 	minbodytemp = 0
 
 /mob/living/simple_mob/vore/aggressive/rat/pet
-	name = "pet rat"
+	name = "Giant Rat Siblings"
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
 /mob/living/simple_mob/vore/aggressive/rat/pet/Initialize(mapload)
