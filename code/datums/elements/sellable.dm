@@ -164,4 +164,5 @@
 	var/obj/vehicle/train/trolley_tank/tank = source
 	if(!tank.reagents || tank.reagents.reagent_list.len == 0)
 		return "0u "
-	return "[tank.reagents.total_volume]u "
+	var/datum/reagent/R = tank.reagents.reagent_list[1]
+	return "[R.name] [tank.reagents.total_volume]u "
