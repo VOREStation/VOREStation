@@ -6,6 +6,39 @@
 /obj/item/integrated_circuit/input/proc/ask_for_input(mob/user)
 	return
 
+/obj/item/integrated_circuit/input/reference_grabber // Allows grabbing non-adjacet refs, and their coords. (relative)
+	name = "reference grabber"
+	desc = "A handheld mechanism that can be aimed to attain distant references."
+	extended_desc = "When used, it will capture the reference of the target, and output coordinates relative to the user."
+	icon_state = "video_camera"
+	complexity = 4
+	inputs = list()
+	outputs = list(
+		"clicked ref" = IC_PINTYPE_REF,
+		"X" = IC_PINTYPE_NUMBER,
+		"Y" = IC_PINTYPE_NUMBER
+	)
+	activators = list(
+		"on success" = IC_PINTYPE_PULSE_OUT,
+		"on failure" = IC_PINTYPE_PULSE_OUT
+	)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/input/reference_grabber/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(!assembly || user.get_active_hand() != assembly)
+		activate_pin(2) // Failure pin, not in assembly, or not held.
+		return
+
+	if(!target || get_dist(user, target) > 7 || !(target in view(user)))
+		activate_pin(2) // Failure pin, out of range or not visible.
+		return
+
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(target))
+	set_pin_data(IC_OUTPUT, 2, target.x - user.x)
+	set_pin_data(IC_OUTPUT, 3, target.y - user.y)
+	push_data()
+	activate_pin(1) // Success pin
+
 /obj/item/integrated_circuit/input/button
 	name = "button"
 	desc = "This tiny button must do something, right?"
@@ -16,8 +49,6 @@
 	outputs = list()
 	activators = list("on pressed" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-
-
 
 /obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
 	to_chat(user, span_notice("You press the button labeled '[src.displayed_name]'."))
@@ -72,7 +103,7 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
-	var/new_input = tgui_input_text(user, "Enter some words, please.","Number pad", get_pin_data(IC_OUTPUT, 1),MAX_NAME_LEN, encode=FALSE)
+	var/new_input = tgui_input_text(user, "Enter some words, please.","Number pad", get_pin_data(IC_OUTPUT, 1),MAX_KEYPAD_INPUT_LEN, encode=FALSE)
 	new_input = sanitize(new_input,MAX_KEYPAD_INPUT_LEN) // Slightly increase the size of the character limit.
 	if(istext(new_input) && CanInteract(user, GLOB.tgui_physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_input)
@@ -500,6 +531,12 @@
 	var/message = get_pin_data(IC_INPUT, 2)
 	var/text = get_pin_data(IC_INPUT, 3)
 
+	var/is_communicator = FALSE // improved communicator support
+	for(var/obj/item/communicator/comm in all_communicators)
+		if(comm.exonet && comm.exonet.address == target_address)
+			is_communicator = TRUE
+			break
+
 	if(target_address && istext(target_address))
 		if(!get_connection_to_tcomms())
 			set_pin_data(IC_OUTPUT, 1, null)
@@ -509,6 +546,9 @@
 			push_data()
 			activate_pin(2)
 		else
+			if(is_communicator)
+				text = message // For communicators, we need to set the text to the message.
+				message = "text"
 			exonet.send_message(target_address, message, text)
 
 /obj/item/integrated_circuit/input/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
