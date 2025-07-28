@@ -4,16 +4,21 @@
  * @license MIT
  */
 
-import { useState } from 'react';
 import { Input, LabeledList, Section } from 'tgui-core/components';
 
 export const meta = {
   title: 'Themes',
-  render: () => <Story />,
+  render: (
+    theme: string,
+    setTheme: (value: React.SetStateAction<string>) => void,
+  ) => <Story theme={theme} setTheme={setTheme} />,
 };
 
-function Story() {
-  const [theme, setTheme] = useState('');
+function Story(props: {
+  theme: string;
+  setTheme: (value: React.SetStateAction<string>) => void;
+}) {
+  const { theme, setTheme } = props;
 
   return (
     <Section>

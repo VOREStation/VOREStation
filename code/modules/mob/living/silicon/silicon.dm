@@ -63,6 +63,8 @@
 	return
 
 /mob/living/silicon/emp_act(severity)
+	if(SEND_SIGNAL(src, COMSIG_SILICON_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
+		return
 	switch(severity)
 		if(1)
 			src.take_organ_damage(0,20,emp=1)

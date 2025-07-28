@@ -211,3 +211,18 @@
 
 /datum/preference/numeric/human/ears_alpha/create_default_value()
 	return 255 //no randomization here.
+
+///Tail style.
+/datum/preference/numeric/human/tail_layering
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "tail_layering"
+	can_randomize = FALSE
+	minimum = TAIL_UPPER_LAYER
+	maximum = TAIL_UPPER_LAYER_HIGH
+
+/datum/preference/numeric/human/tail_layering/create_default_value()
+	return TAIL_UPPER_LAYER
+
+/datum/preference/numeric/human/tail_layering/apply_to_human(mob/living/carbon/human/target, value)
+	target.tail_layering = value

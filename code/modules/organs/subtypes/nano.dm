@@ -218,13 +218,6 @@
 /obj/item/organ/internal/nano/digest_act(atom/movable/item_storage = null)
 	return FALSE
 
-/datum/design/item/protean_reboot
-	name = "Protean Reboot Programmer"
-	id = "protean_reboot"
-	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_PLASTEEL = 10000)
-	build_path = /obj/item/protean_reboot
-	sort_string = "JVAAZ"
-
 /obj/item/protean_reboot
 	name = "Protean Reboot Programmer"
 	desc = "A small, highly specialized programmer used to form the basis of a Protean swarm. A necessary component in reconstituting a Protean who has lost total body cohesion."

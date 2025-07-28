@@ -767,7 +767,7 @@
 	return (P ? P : 0)
 
 //Place the plant products at the feet of the user.
-/datum/seed/proc/harvest(var/mob/user,var/yield_mod,var/harvest_sample,var/force_amount)
+/datum/seed/proc/harvest(var/mob/user,var/yield_mod,var/harvest_sample,var/force_amount,var/reagent_mod,var/reagent_mod_amount)
 
 	if(!user)
 		return
@@ -823,6 +823,9 @@
 				if (istype(product,/obj/item/reagent_containers/food))
 					var/obj/item/reagent_containers/food/food = product
 					food.filling_color = get_trait(TRAIT_PRODUCT_COLOUR)
+
+			if(reagent_mod && reagent_mod_amount)
+				product.reagents.add_reagent(reagent_mod,reagent_mod_amount)
 
 			if(mysterious)
 				product.name += "?"

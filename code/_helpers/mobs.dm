@@ -45,6 +45,8 @@
 			continue
 		if(gender == FEMALE && S.gender == MALE)
 			continue
+		if(S.name == DEVELOPER_WARNING_NAME)
+			continue
 		if( !(species in S.species_allowed))
 			continue
 		valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
@@ -63,6 +65,8 @@
 		if(gender == MALE && S.gender == FEMALE)
 			continue
 		if(gender == FEMALE && S.gender == MALE)
+			continue
+		if(S.name == DEVELOPER_WARNING_NAME)
 			continue
 		if( !(species in S.species_allowed))
 			continue

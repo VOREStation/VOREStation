@@ -214,54 +214,59 @@
 // Returns a string which shoul be appended to the Examine output.
 // Yes I know it doesnt look great with 5 almost identical procs in a row, I didnt have a better idea at the time - Jack
 /obj/belly/proc/get_reagent_examine_msg1()
-	if(fullness1_messages.len)
-		var/formatted_message
-		var/raw_message = pick(fullness1_messages)
+	if(!fullness1_messages.len)
+		return ""
+	var/formatted_message
+	var/raw_message = pick(fullness1_messages)
 
-		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-		formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
+	formatted_message = replacetext(formatted_message,"%pred",owner)
 
-		return(span_red("[formatted_message]<BR>"))
+	return(span_red("[formatted_message]<BR>"))
 
 /obj/belly/proc/get_reagent_examine_msg2()
-	if(fullness1_messages.len)
-		var/formatted_message
-		var/raw_message = pick(fullness2_messages)
+	if(!fullness1_messages.len)
+		return ""
+	var/formatted_message
+	var/raw_message = pick(fullness2_messages)
 
-		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-		formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
+	formatted_message = replacetext(formatted_message,"%pred",owner)
 
-		return(span_red("[formatted_message]<BR>"))
+	return(span_red("[formatted_message]<BR>"))
 
 /obj/belly/proc/get_reagent_examine_msg3()
-	if(fullness1_messages.len)
-		var/formatted_message
-		var/raw_message = pick(fullness3_messages)
+	if(!fullness1_messages.len)
+		return ""
+	var/formatted_message
+	var/raw_message = pick(fullness3_messages)
 
-		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-		formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
+	formatted_message = replacetext(formatted_message,"%pred",owner)
 
-		return(span_red("[formatted_message]<BR>"))
+	return(span_red("[formatted_message]<BR>"))
 
 /obj/belly/proc/get_reagent_examine_msg4()
-	if(fullness1_messages.len)
-		var/formatted_message
-		var/raw_message = pick(fullness4_messages)
+	if(!fullness1_messages.len)
+		return ""
+	var/formatted_message
+	var/raw_message = pick(fullness4_messages)
 
-		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-		formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
+	formatted_message = replacetext(formatted_message,"%pred",owner)
 
-		return(span_red("[formatted_message]<BR>"))
+	return(span_red("[formatted_message]<BR>"))
 
 /obj/belly/proc/get_reagent_examine_msg5()
-	if(fullness1_messages.len)
-		var/formatted_message
-		var/raw_message = pick(fullness5_messages)
+	if(!fullness1_messages.len)
+		return ""
+	var/formatted_message
+	var/raw_message = pick(fullness5_messages)
 
-		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-		formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
+	formatted_message = replacetext(formatted_message,"%pred",owner)
 
-		return(span_red("[formatted_message]<BR>"))
+	return(span_red("[formatted_message]<BR>"))
 
 /////////////////////////// Process Cycle Lite /////////////////////////// CHOMP PCL
 /obj/belly/proc/quick_cycle() //For manual belly cycling without straining the bellies subsystem.

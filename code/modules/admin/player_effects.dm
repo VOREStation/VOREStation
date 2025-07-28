@@ -104,8 +104,7 @@
 			var/mob/living/simple_mob/shadekin/red/shadekin = new(Ts)
 			//Abuse of shadekin
 			shadekin.real_name = shadekin.name
-			shadekin.voremob_loaded = TRUE
-			shadekin.init_vore()
+			shadekin.init_vore(TRUE)
 			shadekin.ability_flags |= 0x1
 			shadekin.phase_shift()
 			shadekin.ai_holder.give_target(target)
@@ -158,8 +157,7 @@
 			target.transforming = TRUE //Cheap hack to stop them from moving
 			var/mob/living/simple_mob/shadekin/shadekin = new kin_type(Tt)
 			shadekin.real_name = shadekin.name
-			shadekin.voremob_loaded = TRUE
-			shadekin.init_vore()
+			shadekin.init_vore(TRUE)
 			shadekin.can_be_drop_pred = TRUE
 			shadekin.dir = SOUTH
 			shadekin.ability_flags |= 0x1
@@ -333,6 +331,12 @@
 
 		////////MEDICAL//////////////
 
+		if("health_scan")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.scan_mob(user)
+
 		if("appendicitis")
 			var/mob/living/carbon/human/Tar = target
 			if(istype(Tar))
@@ -480,6 +484,18 @@
 			Tar.ingested.clear_reagents()
 			Tar.touching.clear_reagents()
 
+		if("medical_issue")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.custom_medical_issue(user)
+
+		if("clear_issue")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.clear_medical_issue(user)
+
 		////////ABILITIES//////////////
 
 		if("vent_crawl")
@@ -579,6 +595,14 @@
 			if(!istype(Tar))
 				return
 			add_verb(Tar, /mob/living/proc/toggle_active_cloaking)
+
+		if("colormate")
+			if(istype(target,/mob/living/simple_mob))
+				var/mob/living/simple_mob/Tar = target
+				add_verb(Tar, /mob/living/simple_mob/proc/ColorMate)
+			if(istype(target,/mob/living/silicon/robot))
+				var/mob/living/silicon/robot/Tar = target
+				add_verb(Tar, /mob/living/silicon/robot/proc/ColorMate)
 
 
 		////////INVENTORY//////////////
