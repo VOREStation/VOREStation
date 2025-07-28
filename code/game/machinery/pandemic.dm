@@ -19,6 +19,10 @@
 	possible_transfer_amounts = (list(5, 10, 15))
 	volume = 15
 
+/obj/item/reagent_containers/glass/beaker/vial/vaccine/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/sellable/vaccine)
+
 /obj/machinery/computer/pandemic/Initialize(mapload)
 	. = ..()
 	update_icon()
