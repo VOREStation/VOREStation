@@ -354,7 +354,7 @@
 
 	//if we are attaching a trolley to an engine we don't care what direction
 	// it is in and it should probably be attached with the engine in the lead
-	if(istype(T, /obj/vehicle/train/trolley) || istype(T, /obj/vehicle/train/trolly_tank))
+	if(istype(T, /obj/vehicle/train/trolley) || istype(T, /obj/vehicle/train/trolley_tank))
 		T.attach_to(src, user)
 	else
 		var/T_dir = get_dir(src, T)	//figure out where T is wrt src
@@ -414,7 +414,7 @@
 //-------------------------------------------------------
 // Cargo tugs for reagent transport from chemical refinery
 //-------------------------------------------------------
-/obj/vehicle/train/trolly_tank
+/obj/vehicle/train/trolley_tank
 	name = "cargo train tanker"
 	desc = "A large, tank made for transporting liquids."
 	icon = 'icons/obj/vehicles_vr.dmi'
@@ -423,26 +423,24 @@
 	flags = OPENCONTAINER
 	paint_color = "#efdd16"
 
-/obj/vehicle/train/trolly_tank/Initialize(mapload)
+/obj/vehicle/train/trolley_tank/Initialize(mapload)
 	. = ..()
 	create_reagents(CARGOTANKER_VOLUME)
 	update_icon()
 	AddComponent(/datum/component/hose_connector/input)
-	AddComponent(/datum/component/hose_connector/input)
-	AddComponent(/datum/component/hose_connector/input)
 	AddComponent(/datum/component/hose_connector/output)
 	AddElement(/datum/element/climbable)
-	AddElement(/datum/element/sellable/trolly_tank)
+	AddElement(/datum/element/sellable/trolley_tank)
 
-/obj/vehicle/train/trolly_tank/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/trolley_tank/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
 	return
 
-/obj/vehicle/train/trolly_tank/Bump(atom/Obstacle)
+/obj/vehicle/train/trolley_tank/Bump(atom/Obstacle)
 	if(!lead)
 		return //so people can't knock others over by pushing a trolley around
 	..()
 
-/obj/vehicle/train/trolly_tank/MouseDrop_T(var/atom/movable/C, mob/user as mob)
+/obj/vehicle/train/trolley_tank/MouseDrop_T(var/atom/movable/C, mob/user as mob)
 	if(C == user)
 		SEND_SIGNAL(src, COMSIG_CLIMBABLE_START_CLIMB, user)
 		return
@@ -456,14 +454,14 @@
 	if(istype(C,/obj/vehicle/train)) // Only allow latching
 		. = ..()
 
-/obj/vehicle/train/trolly_tank/load(var/atom/movable/C, var/mob/living/user)
+/obj/vehicle/train/trolley_tank/load(var/atom/movable/C, var/mob/living/user)
 	return FALSE // Cannot load anything onto this
 
-/obj/vehicle/train/trolly_tank/RunOver(var/mob/living/M)
+/obj/vehicle/train/trolley_tank/RunOver(var/mob/living/M)
 	..()
 	attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
-/obj/vehicle/train/trolly_tank/attackby(obj/item/W, mob/user)
+/obj/vehicle/train/trolley_tank/attackby(obj/item/W, mob/user)
 
 	if(istype(W,/obj/item/reagent_containers/glass))
 		var/obj/item/reagent_containers/glass/G = W
@@ -501,7 +499,7 @@
 
 	. = ..()
 
-/obj/vehicle/train/trolly_tank/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/trolley_tank/update_car(var/train_length, var/active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
@@ -510,11 +508,11 @@
 	else
 		anchored = TRUE
 
-/obj/vehicle/train/trolly_tank/examine(mob/user, infix, suffix)
+/obj/vehicle/train/trolley_tank/examine(mob/user, infix, suffix)
 	. = ..()
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u."
 
-/obj/vehicle/train/trolly_tank/update_icon()
+/obj/vehicle/train/trolley_tank/update_icon()
 	. = ..()
 	cut_overlays()
 	if(reagents && reagents.total_volume > 0)
@@ -537,5 +535,5 @@
 	Bodypaint.color = paint_color
 	add_overlay(Bodypaint)
 
-/obj/vehicle/train/trolly_tank/on_reagent_change(changetype)
+/obj/vehicle/train/trolley_tank/on_reagent_change(changetype)
 	update_icon()

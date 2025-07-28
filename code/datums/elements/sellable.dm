@@ -125,12 +125,12 @@
 
 
 // Refinery chemical tanks
-/datum/element/sellable/trolly_tank
+/datum/element/sellable/trolley_tank
 	sale_info = "This can be sold on the cargo shuttle if filled with a single reagent."
 	needs_crate = FALSE
 
-/datum/element/sellable/trolly_tank/sell_error(obj/source)
-	var/obj/vehicle/train/trolly_tank/tank = source
+/datum/element/sellable/trolley_tank/sell_error(obj/source)
+	var/obj/vehicle/train/trolley_tank/tank = source
 	if(!tank.reagents || tank.reagents.reagent_list.len == 0)
 		return "Error: Product was not filled with any reagents to sell. Payment rendered null under terms of agreement."
 	var/min_tank = (CARGOTANKER_VOLUME - 100)
@@ -140,8 +140,8 @@
 		return "Error: Product was improperly refined. Send purified mixtures only (too many reagents in tank). Payment rendered null under terms of agreement."
 	return null
 
-/datum/element/sellable/trolly_tank/calculate_sell_value(obj/source)
-	var/obj/vehicle/train/trolly_tank/tank = source
+/datum/element/sellable/trolley_tank/calculate_sell_value(obj/source)
+	var/obj/vehicle/train/trolley_tank/tank = source
 
 	// Update export values
 	var/datum/reagent/R = tank.reagents.reagent_list[1]
@@ -160,8 +160,8 @@
 
 	return reagent_value
 
-/datum/element/sellable/trolly_tank/calculate_sell_quantity(obj/source)
-	var/obj/vehicle/train/trolly_tank/tank = source
+/datum/element/sellable/trolley_tank/calculate_sell_quantity(obj/source)
+	var/obj/vehicle/train/trolley_tank/tank = source
 	if(!tank.reagents || tank.reagents.reagent_list.len == 0)
 		return "0u "
 	return "[tank.reagents.total_volume]u "

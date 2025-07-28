@@ -30,7 +30,7 @@
 
 	var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(loc,dir)
 	if(target && target.dir != GLOB.reverse_dir[dir])
-		var/obj/vehicle/train/trolly_tank/tanker = locate(/obj/vehicle/train/trolly_tank) in loc
+		var/obj/vehicle/train/trolley_tank/tanker = locate(/obj/vehicle/train/trolley_tank) in loc
 		if(tanker && tanker.reagents.total_volume > 0 && world.time > tanker.l_move_time + wait_delay)
 			// dump reagents to next refinery machine
 			transfer_tank( tanker.reagents, target, dir)
@@ -67,7 +67,7 @@
 		return 0
 	if(dir != GLOB.reverse_dir[source_forward_dir] ) // The hub must be facing into its source to accept input, unlike others
 		return 0
-	var/obj/vehicle/train/trolly_tank/tanker = locate(/obj/vehicle/train/trolly_tank) in get_turf(src)
+	var/obj/vehicle/train/trolley_tank/tanker = locate(/obj/vehicle/train/trolley_tank) in get_turf(src)
 	if(!tanker)
 		return 0
 	if(world.time < tanker.l_move_time + wait_delay) // await cooldown to avoid spamming moving tanks

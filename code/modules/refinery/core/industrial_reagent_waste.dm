@@ -71,7 +71,7 @@
 /obj/machinery/reagent_refinery/waste_processor/MouseDrop_T(var/atom/movable/C, mob/user as mob)
 	if(user.buckled || user.stat || user.restrained() || !Adjacent(user) || !user.Adjacent(C) || !istype(C) || (user == C && !user.canmove))
 		return
-	if(istype(C,/obj/vehicle/train/trolly_tank))
+	if(istype(C,/obj/vehicle/train/trolley_tank))
 		// Drain it!
 		C.reagents.trans_to_holder( src.reagents, src.reagents.maximum_volume)
 		visible_message("\The [user] drains \the [C] into \the [src].")
