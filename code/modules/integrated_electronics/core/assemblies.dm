@@ -210,7 +210,10 @@
 	. = ..()
 	if(Adjacent(user))
 		for(var/obj/item/integrated_circuit/IC in contents)
-			. += IC.external_examine(user)
+			// Make sure there's actually examine text to prevent empty lines being printed for EVERY component!
+			var/examine_text = IC.external_examine(user)
+			if (length(examine_text))
+				. += examine_text
 		if(opened)
 			tgui_interact(user)
 
