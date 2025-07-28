@@ -306,3 +306,24 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING, CHANNEL_SECURITY, CHANNEL_SCIENCE, CHANNEL_MEDICAL)
+
+/datum/techweb_node/chemical_refinery
+	id = TECHWEB_NODE_CHEM_REFINERY
+	display_name = "Chemical Refining"
+	description = "Reacting and distilling reagents into more complex and useful forms."
+	prereq_ids = list(TECHWEB_NODE_CHEM_SYNTHESIS)
+	design_ids = list(
+		"industrial_reagent_filter",
+		"industrial_reagent_furnace",
+		"industrial_reagent_grinder",
+		"industrial_reagent_hub",
+		"industrial_reagent_pipe",
+		"industrial_reagent_pump",
+		"industrial_reagent_reactor",
+		"industrial_reagent_vat",
+		"industrial_reagent_waste_processor",
+		"smart_centrifuge",
+		"pump_relay"
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING,CHANNEL_MEDICAL)

@@ -6,7 +6,7 @@
 	taste_mult = 1.1
 	reagent_state = SOLID
 	color = "#A8A8A8"
-	supply_conversion_value = 1 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
+	supply_conversion_value = 1  // has sheet value
 	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/calcium
