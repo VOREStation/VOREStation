@@ -127,6 +127,7 @@
 // Refinery chemical tanks
 /datum/element/sellable/trolly_tank
 	sale_info = "This can be sold on the cargo shuttle if filled with a single reagent."
+	needs_crate = FALSE
 
 /datum/element/sellable/trolly_tank/sell_error(obj/source)
 	var/obj/vehicle/train/trolly_tank/tank = source
