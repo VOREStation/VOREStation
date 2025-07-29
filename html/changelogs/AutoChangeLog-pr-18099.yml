@@ -1,0 +1,4 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - qol: "rust-g updated to 4.0.0"
