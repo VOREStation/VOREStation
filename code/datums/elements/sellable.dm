@@ -147,18 +147,22 @@
 	var/datum/reagent/R = tank.reagents.reagent_list[1]
 	var/reagent_value = FLOOR(R.volume * R.supply_conversion_value, 1)
 
-	// Update end round data, has nothing to do with actual cargo sales
-	if(R.industrial_use)
-		if(isnull(GLOB.refined_chems_sold[R.industrial_use]))
-			var/list/data = list()
-			data["units"] = FLOOR(R.volume, 1)
-			data["value"] = reagent_value
-			GLOB.refined_chems_sold[R.industrial_use] = data
-		else
-			GLOB.refined_chems_sold[R.industrial_use]["units"] += FLOOR(R.volume, 1)
-			GLOB.refined_chems_sold[R.industrial_use]["value"] += reagent_value
-
 	return reagent_value
+
+/datum/element/sellable/proc/sell(obj/source, var/datum/exported_crate/EC, var/in_crate)
+	. = ..()
+	if(. && tank.reagents?.reagent_list?.len)
+		// Update end round data, has nothing to do with actual cargo sales
+		var/datum/reagent/R = tank.reagents.reagent_list[1]
+		if(R.industrial_use)
+			if(isnull(GLOB.refined_chems_sold[R.industrial_use]))
+				var/list/data = list()
+				data["units"] = FLOOR(R.volume, 1)
+				data["value"] = reagent_value
+				GLOB.refined_chems_sold[R.industrial_use] = data
+			else
+				GLOB.refined_chems_sold[R.industrial_use]["units"] += FLOOR(R.volume, 1)
+				GLOB.refined_chems_sold[R.industrial_use]["value"] += reagent_value
 
 /datum/element/sellable/trolley_tank/calculate_sell_quantity(obj/source)
 	var/obj/vehicle/train/trolley_tank/tank = source
