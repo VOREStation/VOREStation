@@ -498,6 +498,26 @@
 	desc = "Heavy, royal purple robes threaded with silver lining."
 	icon_state = "psyamp"
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	var/unbuttoned = 0
+
+/obj/item/clothing/suit/fluff/purp_robes/verb/toggle()
+	set name = "Toggle coat buttons"
+	set category = "Object"
+	set src in usr
+
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
+
+	switch(unbuttoned)
+		if(0)
+			icon_state = "[initial(icon_state)]_open"
+			unbuttoned = TRUE
+			to_chat(usr, "You unbutton the coat.")
+		if(1)
+			icon_state = "[initial(icon_state)]"
+			unbuttoned = FALSE
+			to_chat(usr, "You button up the coat.")
+	usr.update_inv_wear_suit()
 
 /obj/item/clothing/head/fluff/pink_tiara
 	name = "pink tourmaline tiara"
