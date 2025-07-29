@@ -498,6 +498,26 @@
 	desc = "Heavy, royal purple robes threaded with silver lining."
 	icon_state = "psyamp"
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	var/unbuttoned = 0
+
+/obj/item/clothing/suit/fluff/purp_robes/verb/toggle()
+	set name = "Toggle coat buttons"
+	set category = "Object"
+	set src in usr
+
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
+
+	switch(unbuttoned)
+		if(0)
+			icon_state = "[initial(icon_state)]_open"
+			unbuttoned = TRUE
+			to_chat(usr, "You unbutton the coat.")
+		if(1)
+			icon_state = "[initial(icon_state)]"
+			unbuttoned = FALSE
+			to_chat(usr, "You button up the coat.")
+	usr.update_inv_wear_suit()
 
 /obj/item/clothing/head/fluff/pink_tiara
 	name = "pink tourmaline tiara"
@@ -555,13 +575,17 @@
 	if((state == 1) && owner && (owner.stat == DEAD))
 		update_state(2)
 		visible_message(span_warning("The [name] begins flashing red."))
-		sleep(30)
-		visible_message(span_warning("The [name] shatters into dust!"))
-		if(owner_c)
-			to_chat(owner_c, span_notice("The HAVENS system is notified of your demise via \the [name]."))
-		update_state(3)
-		name = "broken [initial(name)]"
-		desc = "This seems like a necklace, but the actual pendant is missing."
+		addtimer(CALLBACK(src, PROC_REF(shatter_into_dust)), 3 SECONDS, TIMER_DELETE_ME)
+
+/obj/item/clothing/accessory/collar/khcrystal/proc/shatter_into_dust()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	visible_message(span_warning("The [name] shatters into dust!"))
+	if(owner_c)
+		to_chat(owner_c, span_notice("The HAVENS system is notified of your demise via \the [name]."))
+	update_state(3)
+	name = "broken [initial(name)]"
+	desc = "This seems like a necklace, but the actual pendant is missing."
 
 /obj/item/clothing/accessory/collar/khcrystal/proc/update_state(var/tostate)
 	state = tostate
