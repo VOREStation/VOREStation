@@ -158,6 +158,7 @@
 
 /datum/element/sellable/trolley_tank/sell(obj/source, var/datum/exported_crate/EC, var/in_crate)
 	. = ..()
+	var/obj/vehicle/train/trolley_tank/tank = source
 	if(. && tank.reagents?.reagent_list?.len)
 		// Update end round data, has nothing to do with actual cargo sales
 		var/datum/reagent/R = tank.reagents.reagent_list[1]
