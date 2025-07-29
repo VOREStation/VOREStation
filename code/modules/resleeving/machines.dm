@@ -208,6 +208,7 @@
 	var/datum/transhuman/body_record/current_project = current_br?.resolve()
 	if(!current_project)
 		busy = 0
+		current_br = null
 		update_icon()
 		return
 
