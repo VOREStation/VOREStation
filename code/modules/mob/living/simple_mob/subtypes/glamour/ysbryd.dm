@@ -31,6 +31,7 @@
 	attacktext = list("haunts")
 	see_in_dark = 8
 	ai_holder_type = /datum/ai_holder/simple_mob/ysbryd
+	catalogue_data = list(/datum/category_item/catalogue/fauna/ysbryd)
 
 	var/list/emote_threats = list(
 								"I have come to collect a meal, now that your people have broken the seal.",
@@ -64,6 +65,13 @@
 	var/mob/living/chosen_target
 	var/last_effect = 0
 	var/boost_health = 50
+
+/datum/category_item/catalogue/fauna/ysbryd
+	name = "Extra-Realspace Fauna - Ysbryd"
+	desc = "Classification: Phantasma glamoris\
+	<br><br>\
+	An unusual creature originating from whitespace. Observation has been very limited due to it's physics defying behaviour, only appearing to one observer at any time, and due to it's highly aggressive behaviour. Xenobiologists have not been able to reliably encounter the creature and the few recorded encounters resulted in serious injury or death to the researcher in question. One particular study revealed that it seemed to be agitated by high frequency electromagnetic radiation, outside of the visible sprectrum of light, but results were not conclusive."
+	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/ysbryd/load_default_bellies()
 	. = ..()
