@@ -325,3 +325,16 @@
   Willburd:
   - bugfix: tiny memory leak on capture crystal animations
   - code_imp: capture crystals use timers instead of sleeps to animate
+2025-07-29:
+  Diana:
+  - rscadd: Purple Robes in the loadout now has a teshari variant!
+  - rscadd: Purple robes can now be unbuttoned!
+  Tenryumi:
+  - bugfix: fixed circuit assemblies printing empty lines on examine.
+  WIll:
+  - rscadd: Items that can be sold by cargo now state it at the end of their description
+  - rscadd: Multiple stamped manifests can be sent in the same crate
+  - code_imp: Moved cargo item selling code to an element
+  Willburd:
+  - code_imp: Removes sleep() in modular computer uis
+  - bugfix: Dev disabled styles removed from randomized rolls.

@@ -1,6 +1,0 @@
-author: "WIll"
-delete-after: True
-changes:
-  - rscadd: "Items that can be sold by cargo now state it at the end of their description"
-  - rscadd: "Multiple stamped manifests can be sent in the same crate"
-  - code_imp: "Moved cargo item selling code to an element"
