@@ -149,7 +149,14 @@
 
 	return reagent_value
 
-/datum/element/sellable/proc/sell(obj/source, var/datum/exported_crate/EC, var/in_crate)
+/datum/element/sellable/trolley_tank/calculate_sell_quantity(obj/source)
+	var/obj/vehicle/train/trolley_tank/tank = source
+	if(!tank.reagents || tank.reagents.reagent_list.len == 0)
+		return "0u "
+	var/datum/reagent/R = tank.reagents.reagent_list[1]
+	return "[R.name] [tank.reagents.total_volume]u "
+
+/datum/element/sellable/trolley_tank/sell(obj/source, var/datum/exported_crate/EC, var/in_crate)
 	. = ..()
 	if(. && tank.reagents?.reagent_list?.len)
 		// Update end round data, has nothing to do with actual cargo sales
@@ -163,10 +170,3 @@
 			else
 				GLOB.refined_chems_sold[R.industrial_use]["units"] += FLOOR(R.volume, 1)
 				GLOB.refined_chems_sold[R.industrial_use]["value"] += reagent_value
-
-/datum/element/sellable/trolley_tank/calculate_sell_quantity(obj/source)
-	var/obj/vehicle/train/trolley_tank/tank = source
-	if(!tank.reagents || tank.reagents.reagent_list.len == 0)
-		return "0u "
-	var/datum/reagent/R = tank.reagents.reagent_list[1]
-	return "[R.name] [tank.reagents.total_volume]u "
