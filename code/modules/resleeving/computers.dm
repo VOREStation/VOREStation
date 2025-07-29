@@ -310,7 +310,7 @@
 							return
 
 						//Do the cloning!
-						else if(spod.print(active_br))
+						else if(spod.print(current_br))
 							set_temp("Initiating printing cycle...", "success")
 							current_br = null
 							menu = 1

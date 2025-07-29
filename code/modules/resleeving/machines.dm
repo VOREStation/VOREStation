@@ -136,7 +136,8 @@
 	var/busy = 0       //Busy cloning
 	var/body_cost = 15000  //Cost of a cloned body (metal and glass ea.)
 	var/max_res_amount = 30000 //Max the thing can hold
-	var/datum/transhuman/body_record/current_project
+	var/datum/weakref/current_br
+
 	var/broken = 0
 	var/burn_value = 0 //Setting these to 0, if resleeving as organic with unupgraded sleevers gives them no damage, resleeving synths with unupgraded synthfabs should not give them potentially 105 damage.
 	var/brute_value = 0
@@ -176,7 +177,7 @@
 	if(stat & NOPOWER)
 		if(busy)
 			busy = 0
-			current_project = null
+			current_br = null
 		update_icon()
 		return
 
@@ -188,14 +189,14 @@
 
 	return
 
-/obj/machinery/transhuman/synthprinter/proc/print(var/datum/transhuman/body_record/BR)
-	if(!istype(BR) || busy)
+/obj/machinery/transhuman/synthprinter/proc/print(var/datum/weakref/BR)
+	if(!BR?.resolve() || busy)
 		return 0
 
 	if(stored_material[MAT_STEEL] < body_cost || stored_material[MAT_GLASS] < body_cost)
 		return 0
 
-	current_project = BR
+	current_br = BR
 	busy = 5
 	update_icon()
 
@@ -203,6 +204,8 @@
 
 /obj/machinery/transhuman/synthprinter/proc/make_body()
 	//Manage machine-specific stuff
+
+	var/datum/transhuman/body_record/current_project = current_br?.resolve()
 	if(!current_project)
 		busy = 0
 		update_icon()
