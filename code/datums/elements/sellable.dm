@@ -162,6 +162,7 @@
 	if(. && tank.reagents?.reagent_list?.len)
 		// Update end round data, has nothing to do with actual cargo sales
 		var/datum/reagent/R = tank.reagents.reagent_list[1]
+		var/reagent_value = FLOOR(R.volume * R.supply_conversion_value, 1)
 		if(R.industrial_use)
 			if(isnull(GLOB.refined_chems_sold[R.industrial_use]))
 				var/list/data = list()
