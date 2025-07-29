@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "Dev disabled styles removed from randomized rolls."
