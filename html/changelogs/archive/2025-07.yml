@@ -292,3 +292,57 @@
   - rscadd: Added unique speaker to electronic earpiece.
   - bugfix: Fixed reagent circuitry not supporting reagent storage circuits.
   - bugfix: Fixed text pad input buffer size
+2025-07-27:
+  Guti:
+  - qol: Extrapolator shows if normal diseases are dormant as well
+  - bugfix: Fixed blob spores acting on death regardless of dormant or not
+  - bugfix: Fixed common diseases losing their dormant flag when applied
+  - spellcheck: Roanoake to Roanoke
+  - qol: Geneticist now spawn with a gene scanner
+  Kashargul:
+  - bugfix: manual rendered prefs in the wrong category
+  KillianKirilenko:
+  - rscadd: Baton lanyards can now be acquired from sec wardrobe vendors
+  SatinIsle:
+  - rscadd: Added a new "Poison Fruit" ability to Alraune. It applies any poison that
+      can be used by the injecting venom ability to fruit grown from the Alraune.
+      There is a notice attached to the selection that states this is intended for
+      scenes and to not leave the poisoned fruit out for people who do not OOC consent,
+      as well as admin logging when this fruit is produced.
+  - rscadd: Added a new thorns ability for alraune that will cause anyone touching
+      them, or simple mobs attacking them, to take a small amount of brute damage.
+      This starts off and can be toggled off and on at will.
+  - code_imp: Added variables to seed harvesting so that code can force them to spawn
+      with specific reagents inside.
+  - balance: Allowed alraune to change the type of fruit they spawn more than once.
+  - bugfix: Fixed vore hostile mobs (those that eat people unprompted) not being able
+      to target players with mob vore enabled.
+  ShadowLarkens:
+  - balance: Completely rewrote R&D to be made up of "techweb nodes" that you research
+      with experiments + passive point generation. This turns it from a question of
+      how to max all levels as fast as possible, to figuring out what paths you want
+      to go down and unlock with a time gate.
+  Willburd:
+  - bugfix: tiny memory leak on capture crystal animations
+  - code_imp: capture crystals use timers instead of sleeps to animate
+2025-07-29:
+  Diana:
+  - rscadd: Purple Robes in the loadout now has a teshari variant!
+  - rscadd: Purple robes can now be unbuttoned!
+  Tenryumi:
+  - bugfix: fixed circuit assemblies printing empty lines on examine.
+  WIll:
+  - rscadd: Items that can be sold by cargo now state it at the end of their description
+  - rscadd: Multiple stamped manifests can be sent in the same crate
+  - code_imp: Moved cargo item selling code to an element
+  Willburd:
+  - code_imp: Removes sleep() in modular computer uis
+  - bugfix: Dev disabled styles removed from randomized rolls.
+2025-07-30:
+  ItsSelis:
+  - qol: rust-g updated to 4.0.0
+  Will:
+  - bugfix: Fixed a major runtime in the resleeving computer when a bodyrecord becomes
+      outdated
+  - bugfix: Synthfab not being able to spawn bodies properly
+  - rscadd: New particle smasher recipes
