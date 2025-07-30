@@ -249,7 +249,7 @@
 	// These are broken up into steps, otherwise the proc gets massive and hard to read.
 	var/mob/living/carbon/human/H = internal_producebody(location,backup_name)
 	internal_producebody_handlesleevelock(H,force_unlock)
-	internal_producebody_updatelimbandorgans(H)
+	internal_producebody_updatelimbandorgans(H,is_synthfab)
 	internal_producebody_updatednastate(H,is_synthfab)
 	internal_producebody_virgoOOC(H)
 	internal_producebody_misc(H)
