@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Fixed a major runtime in the resleeving computer when a bodyrecord becomes outdated"
-  - bugfix: "Synthfab not being able to spawn bodies properly"
