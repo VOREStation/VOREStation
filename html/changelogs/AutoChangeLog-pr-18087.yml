@@ -1,4 +1,0 @@
-author: "Tenryumi"
-delete-after: True
-changes:
-  - bugfix: "fixed circuit assemblies printing empty lines on examine."
