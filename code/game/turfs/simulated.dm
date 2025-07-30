@@ -1,6 +1,6 @@
 /turf/simulated
 	name = "station"
-	var/wet = 0
+	var/wet = TURFSLIP_DRY
 	var/image/wet_overlay = null
 
 	//Mining resources (for the large drills).
@@ -24,7 +24,7 @@
 
 // This is not great.
 /turf/simulated/proc/wet_floor(var/wet_val = 1)
-	if(wet > 2)	//Can't mop up ice
+	if(wet >= TURFSLIP_ICE)	//Can't mop up ice
 		return
 	wet = wet_val
 	if(wet_overlay)
@@ -34,13 +34,13 @@
 	if(wet_cleanup_timer)
 		deltimer(wet_cleanup_timer)
 		wet_cleanup_timer = null
-	if(wet == 2)
+	if(wet == TURFSLIP_LUBE)
 		wet_cleanup_timer = addtimer(CALLBACK(src, PROC_REF(wet_floor_finish)), 160 SECONDS, TIMER_STOPPABLE)
 	else
 		wet_cleanup_timer = addtimer(CALLBACK(src, PROC_REF(wet_floor_finish)), 40 SECONDS, TIMER_STOPPABLE)
 
 /turf/simulated/proc/wet_floor_finish()
-	wet = 0
+	wet = TURFSLIP_DRY
 	if(wet_cleanup_timer)
 		deltimer(wet_cleanup_timer)
 		wet_cleanup_timer = null
@@ -51,14 +51,14 @@
 /turf/simulated/proc/freeze_floor()
 	if(!wet) // Water is required for it to freeze.
 		return
-	wet = 3 // icy
+	wet = TURFSLIP_ICE
 	if(wet_overlay)
 		cut_overlay(wet_overlay)
 		wet_overlay = null
 	wet_overlay = image('icons/turf/overlays.dmi',src,"snowfloor")
 	add_overlay(wet_overlay)
 	spawn(5 MINUTES)
-		wet = 0
+		wet = TURFSLIP_DRY
 		if(wet_overlay)
 			cut_overlay(wet_overlay)
 			wet_overlay = null
@@ -95,8 +95,8 @@
 			dirtoverlay.alpha = min((dirt - 50) * 5, 255)
 
 /turf/simulated/Entered(atom/A, atom/OL)
+	var/dirtslip = FALSE
 	if (isliving(A))
-		var/dirtslip = FALSE
 		var/mob/living/M = A
 		if(M.lying || M.flying || M.is_incorporeal() || !(M.flags & ATOM_INITIALIZED)) // Also ignore newly spawning mobs
 			return ..()
@@ -136,56 +136,10 @@
 
 				bloodDNA = null
 
-		var/turf_is_outdoors = is_outdoors()
-		if(src.wet || (dirtslip && (dirt > 50 || turf_is_outdoors == OUTDOORS_YES)))
-			if(M.buckled || (src.wet == 1 && M.m_intent == I_WALK))
-				return
-
-			var/slip_dist = 1
-			var/slip_stun = 6
-			var/floor_type = "wet"
-			if(dirtslip)
-				slip_stun = 10
-				if(dirt > 50)
-					floor_type = "dirty"
-				else if(turf_is_outdoors)
-					floor_type = "uneven"
-				if(src.wet == 0 && M.m_intent == I_WALK)
-					return
-			switch(src.wet)
-				if(2) // Lube
-					floor_type = "slippery"
-					slip_dist = 4
-					slip_stun = 10
-				if(3) // Ice
-					floor_type = "icy"
-					slip_stun = 4
-					slip_dist = rand(1,3)
-
-			if(M.slip("the [floor_type] floor", slip_stun))
-				addtimer(CALLBACK(src, PROC_REF(handle_slipping), M, slip_dist, dirtslip), 0)
-			else
-				M.inertia_dir = 0
-		else
-			M.inertia_dir = 0
+		if(check_slipping(M,dirtslip))
+			var/datum/component/turfslip/TSC = M.LoadComponent(/datum/component/turfslip)
+			TSC.start_slip(src,dirtslip)
 	..()
-
-/turf/simulated/proc/handle_slipping(var/mob/living/M, var/slip_dist, var/dirtslip)
-	PRIVATE_PROC(TRUE)
-	if(!M || !slip_dist)
-		return
-	if(isbelly(M.loc))	// Stop the slip if we're in a belly.
-		return
-	if(!step(M, M.dir) && !dirtslip)
-		return // done sliding, failed to move
-	// check tile for next slip
-	if(!dirtslip)
-		var/turf/simulated/ground = get_turf(M)
-		if(!istype(ground,/turf/simulated))
-			return // stop sliding as it is impossible to be on wet terrain?
-		if(ground.wet != 2)
-			return // done sliding, not lubed
-	addtimer(CALLBACK(src, PROC_REF(handle_slipping), M, --slip_dist, dirtslip), 1)
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/carbon/human/M as mob)

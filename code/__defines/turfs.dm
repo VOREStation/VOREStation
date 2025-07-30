@@ -38,3 +38,9 @@
 	locate(max(CENTER.x-(H_RADIUS),1),          max(CENTER.y-(V_RADIUS),1),          CENTER.z), \
 	locate(min(CENTER.x+(H_RADIUS),world.maxx), min(CENTER.y+(V_RADIUS),world.maxy), CENTER.z) \
 	)
+
+// Wet turfs have different slipping intensities
+#define TURFSLIP_DRY 0
+#define TURFSLIP_WET 1
+#define TURFSLIP_LUBE 2
+#define TURFSLIP_ICE 3
