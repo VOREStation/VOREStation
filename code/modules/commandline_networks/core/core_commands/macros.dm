@@ -42,7 +42,7 @@ Usage: [usage_text]
 - add requires both an alias and a full command; remove needs only the alias.
 "}
 	if(verbose)
-		return "Lets you create or remove shorthand macros that map to full commands. Used in UI and CLI from this node. Quotes around the full command are mandatory. ae: \">command here \"."
+		return "Lets you create or remove shorthand macros that map to full commands. Used in UI and CLI from this node. Quotes around the full command are mandatory. ae:\"[usage_text]\"."
 
 	if(usage)
 		return usage_text

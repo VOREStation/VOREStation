@@ -10,12 +10,19 @@ SUBSYSTEM_DEF(commandline_networks)
 	var/networks_instantiated = 0 //mostly so the names are always 100% unqiue
 
 	var/max_command_cache = 128
-
-
+	var/list/current_run
 
 /datum/controller/subsystem/commandline_networks/fire(resumed = 0)
-	for(var/datum/commandline_network/network in networks)
-		network.process()
+	if(!resumed)
+		current_run = networks.Copy()
+
+	while(current_run.len)
+		var/datum/commandline_network = networks[current_run.len]
+		current_run.len --
+		commandline_network.process()
+
+	if(MC_TICK_CHECK)
+		return
 
 /datum/controller/subsystem/commandline_networks/Initialize()
 	for(var/commandtype in subtypesof(/datum/commandline_network_command))

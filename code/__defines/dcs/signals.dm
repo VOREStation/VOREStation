@@ -259,6 +259,9 @@
 ///from /datum/controller/subsystem/motion_tracker/notice() (/datum/weakref/source_atom,/turf/echo_turf_location)
 #define COMSIG_MOVABLE_MOTIONTRACKER "move_motiontracker"
 
+// (msg, type, alt, alt_type). all over the place, as show_message doesnt have an arg for origin and I'm not refactoring that today.
+#define COMSIG_MOB_RECIEVE_MESSAGE "mob_get_msg"
+
 ///called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"
 
@@ -362,51 +365,71 @@
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 
 ///from base of mob/living/Stun() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_STUN "living_stun"
+#define COMSIG_LIVING_STATUS_STUN "living_stun" //UNUSED
 ///from base of mob/living/Knockdown() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_KNOCKDOWN "living_knockdown"
+#define COMSIG_LIVING_STATUS_KNOCKDOWN "living_knockdown" //UNUSED
 ///from base of mob/living/Paralyze() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_PARALYZE "living_paralyze"
+#define COMSIG_LIVING_STATUS_PARALYZE "living_paralyze" //UNUSED
 ///from base of mob/living/Immobilize() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_IMMOBILIZE "living_immobilize"
+#define COMSIG_LIVING_STATUS_IMMOBILIZE "living_immobilize" //UNUSED
 ///from base of mob/living/Unconscious() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_UNCONSCIOUS "living_unconscious"
+#define COMSIG_LIVING_STATUS_UNCONSCIOUS "living_unconscious" //UNUSED
 ///from base of mob/living/Sleeping() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_SLEEP "living_sleeping"
+#define COMSIG_LIVING_STATUS_SLEEP "living_sleeping" //UNUSED
 	#define COMPONENT_NO_STUN (1<<0)									//For all of them
 ///from base of /mob/living/can_track(): (mob/user)
-#define COMSIG_LIVING_CAN_TRACK "mob_cantrack"
+#define COMSIG_LIVING_CAN_TRACK "mob_cantrack" //UNUSED
 	#define COMPONENT_CANT_TRACK (1<<0)
+
+// /obj/item/organ signals
+
+//whenever the limb itself is disintegrated - called in organ_external.dm
+#define COMSIG_ORGAN_DISINTIGRATED_EXTERNAL "organ_destroy_external"
+
+//from organ/take_damage(amount,silent)
+#define COMSIG_ORGAN_DAMAGE_INTERNAL "organ_damage_internal"
+//from organ/external/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), permutation = FALSE, projectile) only sent if we're not rounding down to 0, otherwise unmodified from the base proc.
+#define COMSIG_ORGAN_DAMAGE_EXTERNAL "organ_damage_external"
+//from organ/die
+#define COMSIG_ORGAN_DEATH	"organ_death"
+
+
+
+//from organ/replaced(mob/living/carbon/human/target)
+#define COMSIG_ORGAN_INSERTED "organ_inserted"
+
+//from organ/removed (mob/living/carbon/human/owner)
+#define COMSIG_ORGAN_REMOVED "organ_removed"
 
 // /mob/living/carbon signals
 
 ///from base of mob/living/carbon/soundbang_act(): (list(intensity))
-#define COMSIG_CARBON_SOUNDBANG "carbon_soundbang"
-///from /item/organ/proc/Insert() (/obj/item/organ/)
+#define COMSIG_CARBON_SOUNDBANG "carbon_soundbang" //UNUSED
+///from /item/organ/proc/replaced() (/obj/item/organ/)
 #define COMSIG_CARBON_GAIN_ORGAN "carbon_gain_organ"
-///from /item/organ/proc/Remove() (/obj/item/organ/)
+///from /item/organ/proc/removed() (/obj/item/organ/)
 #define COMSIG_CARBON_LOSE_ORGAN "carbon_lose_organ"
 ///from /mob/living/carbon/doUnEquip(obj/item/I, force, newloc, no_move, invdrop, silent)
-#define COMSIG_CARBON_EQUIP_HAT "carbon_equip_hat"
+#define COMSIG_CARBON_EQUIP_HAT "carbon_equip_hat" //UNUSED
 ///from /mob/living/carbon/doUnEquip(obj/item/I, force, newloc, no_move, invdrop, silent)
-#define COMSIG_CARBON_UNEQUIP_HAT "carbon_unequip_hat"
+#define COMSIG_CARBON_UNEQUIP_HAT "carbon_unequip_hat" //UNUSED
 ///defined twice, in carbon and human's topics, fired when interacting with a valid embedded_object to pull it out (mob/living/carbon/target, /obj/item, /obj/item/bodypart/L)
-#define COMSIG_CARBON_EMBED_RIP "item_embed_start_rip"
+#define COMSIG_CARBON_EMBED_RIP "item_embed_start_rip" //UNUSED
 ///called when removing a given item from a mob, from mob/living/carbon/remove_embedded_object(mob/living/carbon/target, /obj/item)
-#define COMSIG_CARBON_EMBED_REMOVAL "item_embed_remove_safe"
+#define COMSIG_CARBON_EMBED_REMOVAL "item_embed_remove_safe" //UNUSED
 
 // /obj signals
 
 ///from base of obj/deconstruct(): (disassembled)
-#define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"
+#define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct" //UNUSED
 ///called in /obj/structure/setAnchored(): (value)
-#define COMSIG_OBJ_SETANCHORED "obj_setanchored"
+#define COMSIG_OBJ_SETANCHORED "obj_setanchored" //UNUSED
 ///from base of code/game/machinery
-#define COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH "obj_default_unfasten_wrench"
+#define COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH "obj_default_unfasten_wrench" //UNUSED
 ///from base of /turf/proc/levelupdate(). (intact) true to hide and false to unhide
-#define COMSIG_OBJ_HIDE	"obj_hide"
+#define COMSIG_OBJ_HIDE	"obj_hide" //UNUSED
 ///called in /obj/update_icon()
-#define COMSIG_OBJ_UPDATE_ICON "obj_update_icon"
+#define COMSIG_OBJ_UPDATE_ICON "obj_update_icon" //UNUSED
 
 // climbable signals
 
@@ -418,11 +441,11 @@
 // /obj/machinery signals
 
 ///from /obj/machinery/obj_break(damage_flag): (damage_flag)
-#define COMSIG_MACHINERY_BROKEN "machinery_broken"
+#define COMSIG_MACHINERY_BROKEN "machinery_broken" //UNUSED
 ///from base power_change() when power is lost
-#define COMSIG_MACHINERY_POWER_LOST "machinery_power_lost"
+#define COMSIG_MACHINERY_POWER_LOST "machinery_power_lost" //UNUSED
 ///from base power_change() when power is restored
-#define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored"
+#define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored" //UNUSED
 
 // /obj/item signals
 

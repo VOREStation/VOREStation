@@ -18,18 +18,14 @@
 	var/max_logs = 100 //anything beyond this gets removed, bottom up.
 	var/list/logs = list()
 
-/datum/commandline_network/proc/process_command(var/input as text, var/datum/commandline_network_node/source, var/remoteAccess = FALSE)
-	if(!remoteAccess)
-		if(targetted_network && targetted_network != src)
-			return targetted_network.process_command(input,source,TRUE)
-
+/datum/commandline_network/proc/process_command(var/datum/commandline_network_node/source, var/command as text)
 	var/datum/commandline_log_entry/log = new
 	log.owner = src
-	log.command = input
+	log.command = command
 	log.source = source
 	add_log(log)
 
-	var/list/tokens = TokenizeString(input)
+	var/list/tokens = TokenizeString(command)
 	if(istext(tokens)) //we got an error from the tokenizer
 		log.set_log(src,tokens,COMMAND_OUTPUT_ERROR)
 		return
@@ -47,8 +43,8 @@
 	if(target == null)
 		log.set_log(src,COMMAND_RESULT_NO_TARGET,COMMAND_OUTPUT_ERROR)
 		return
-	var/command = LAZYACCESS(categorized_tokens,COMMAND_ARGUMENT_COMMAND)
-	if(command == null)
+	var/commandtoken = LAZYACCESS(categorized_tokens,COMMAND_ARGUMENT_COMMAND)
+	if(commandtoken == null)
 		log.set_log(src,COMMAND_RESULT_NO_COMMAND,COMMAND_OUTPUT_ERROR)
 		return
 
@@ -81,8 +77,16 @@
 	//find matching nodes based on the target / prefix
 	//forward the command to them
 
-/datum/commandline_network/proc/do_command(var/command as text,var/do_now = FALSE)
-	//add to the queue, or process it instantly if it's "do now"
+/datum/commandline_network/proc/do_command(var/datum/commandline_network_node/source, var/command as text,var/do_now = FALSE)
+	if(targetted_network)//can be src - replace w/ more advanced targetting later.
+		if(do_now) targetted_network.process_command(source,command)
+		else targetted_network.add_to_queue(source,command)
+	else
+		if(do_now) process_command(source,command)
+		else add_to_queue(source,command)
+
+/datum/commandline_network/proc/add_to_queue(var/datum/commandline_network_node/source,var/command)
+	command_queue += list(list(source,command))
 
 /datum/commandline_network/New(var/atom/new_owner, var/new_name)
 	owner = owner
@@ -92,8 +96,7 @@
 /datum/commandline_network/proc/Initialize()
 	SHOULD_NOT_SLEEP(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
-	name = name + "_[SScommandline_networks.networks_instantiated]"
-
+	name = name + "_[SScommandline_networks.networks_instantiated]" //dogshit anti collision prevention. edge cases where it does still happen are probably just emergent gameplay or something idk
 	//oopies!
 
 /datum/commandline_network/proc/contains_verbose_flag(var/list/flags)
@@ -190,3 +193,9 @@
 	for(var/datum/commandline_network_node/n in nodes)
 		if(n.flags & flag)
 			return n //we just need the first one.
+
+/datum/commandline_network/process()
+	while(command_queue.len)
+		var/list/to_process = command_queue[command_queue.len]
+		command_queue.len --
+		process_command(to_process[1],to_process[2])

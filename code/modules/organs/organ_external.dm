@@ -123,6 +123,7 @@
 		I.imp_in = I.part = null
 	implants.Cut()
 
+
 	return ..()
 
 /obj/item/organ/external/emp_act(severity)
@@ -302,6 +303,8 @@
 
 	if((brute <= 0) && (burn <= 0))
 		return 0
+
+	SEND_SIGNAL(src,COMSIG_ORGAN_DAMAGE_EXTERNAL,brute,burn,sharp,edge,used_weapon,forbidden_limbs,permutation,projectile)
 
 	//This tells us how damaged we are prior to this attack.
 	var/prior_damage = brute_dam + burn_dam
@@ -993,6 +996,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			victim.update_icons()
 		dir = 2
 
+
+
 	var/atom/droploc = victim.drop_location()
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
@@ -1037,6 +1042,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				I.forceMove(droploc)
 				I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 
+
 			qdel(src)
 
 		if(DROPLIMB_ACID)
@@ -1054,6 +1060,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(istype(victim.r_hand,/obj/item/material/twohanded))
 			victim.r_hand.update_held_icon()
 
+		//it's called carbon lose organ not organ removed
+	SEND_SIGNAL(victim,COMSIG_CARBON_LOSE_ORGAN,src)
+	//buut there's organ specific uses too
+	SEND_SIGNAL(src,COMSIG_ORGAN_REMOVED,owner)
 /****************************************************
 			   HELPERS
 ****************************************************/

@@ -14,7 +14,7 @@
 	if(action == "sendCommand")
 		to_chat(world,"SENDING COMMAND: [json_encode(params)]")
 		var/command = params["command"]
-		network.process_command(command,source_node,FALSE)
+		network.do_command(source_node,command,TRUE)
 		return TRUE
 
 

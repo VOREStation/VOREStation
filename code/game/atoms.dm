@@ -349,6 +349,7 @@
 				M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), audible = FALSE)
 		else if(blind_message)
 			M.show_message(blind_message, AUDIBLE_MESSAGE)
+		SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,src,VISIBLE_MESSAGE,blind_message,AUDIBLE_MESSAGE)
 
 // Show a message to all mobs and objects in earshot of this atom
 // Use for objects performing audible actions

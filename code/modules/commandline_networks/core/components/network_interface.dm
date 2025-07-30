@@ -66,6 +66,9 @@
 	localhost.network.disconnect_from(remotehost.network)
 	remotehost = null
 
+/datum/component/commandline_network_interface/proc/openInterfaceAsync(datum/source, mob/user)
+	UI.tgui_interact(user)
+
 /datum/component/commandline_network_interface/proc/openInterface(datum/source, mob/user)
 	SIGNAL_HANDLER
-	UI.tgui_interact(user)
+	INVOKE_ASYNC(src,PROC_REF(openInterfaceAsync),source,user)

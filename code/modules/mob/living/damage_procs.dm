@@ -69,6 +69,7 @@
 	var/initial_blocked = blocked
 
 	blocked = (100-blocked)/100
+	SEND_SIGNAL(src,COMSIG_MOB_APPLY_DAMGE,damage,damagetype,def_zone)
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage * blocked)

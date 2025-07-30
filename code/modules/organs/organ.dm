@@ -142,6 +142,8 @@ var/list/organ_cache = list()
 		owner.can_defib = 0
 		owner.death()
 
+	SEND_SIGNAL(src,COMSIG_ORGAN_DEATH)
+
 /obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
 	germ_level = CLAMP(germ_level + amount, 0, INFECTION_LEVEL_MAX)
 
@@ -175,7 +177,7 @@ var/list/organ_cache = list()
 		if(B && prob(40) && !isbelly(loc)) //VOREStation Edit
 			reagents.remove_reagent(REAGENT_ID_BLOOD,0.1)
 			blood_splatter(src,B,1)
-		if(CONFIG_GET(flag/organs_decay) && decays) damage += rand(1,3)
+		if(CONFIG_GET(flag/organs_decay) && decays) take_damage(rand(1,3))
 		if(damage >= max_damage)
 			damage = max_damage
 		adjust_germ_level(rand(2,6))
@@ -342,6 +344,7 @@ var/list/organ_cache = list()
 			var/obj/item/organ/external/parent = owner?.get_organ(parent_organ)
 			if(parent && !silent)
 				owner.custom_pain("Something inside your [parent.name] hurts a lot.", amount)
+	SEND_SIGNAL(src,COMSIG_ORGAN_DAMAGE_INTERNAL, amount, silent)
 
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
@@ -411,6 +414,11 @@ var/list/organ_cache = list()
 
 	handle_organ_mod_special(TRUE)
 
+	//it's called carbon lose organ not organ removed
+	SEND_SIGNAL(owner,COMSIG_CARBON_LOSE_ORGAN,src)
+	//buut there's organ specific uses too
+	SEND_SIGNAL(src,COMSIG_ORGAN_REMOVED,owner)
+
 	owner = null
 
 
@@ -437,6 +445,9 @@ var/list/organ_cache = list()
 	target.internal_organs |= src
 	affected.internal_organs |= src
 	target.internal_organs_by_name[organ_tag] = src
+
+	SEND_SIGNAL(owner,COMSIG_CARBON_GAIN_ORGAN,src)
+	SEND_SIGNAL(src,COMSIG_ORGAN_INSERTED,owner)
 
 	handle_organ_mod_special()
 
