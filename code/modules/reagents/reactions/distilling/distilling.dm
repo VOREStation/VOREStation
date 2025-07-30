@@ -30,6 +30,7 @@
 	var/rejects_xgm_gas = null
 	var/maximum_xgm_pressure = null
 	var/minimum_xgm_pressure = null
+	var/consumes_xgm_gas = 0 // Mols of gas consumed during reaction
 
 /decl/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
 	if(!istype(holder, /datum/reagents/distilling))
@@ -67,14 +68,25 @@
 
 	return ..()
 
-/*
 /decl/chemical_reaction/distilling/on_reaction(var/datum/reagents/holder, var/created_volume)
-	if(istype(holder.my_atom, /obj/item/reagent_containers/glass/distilling))
-		var/obj/item/reagent_containers/glass/distilling/D = holder.my_atom
-		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = D.Master
-		RD.current_temp += temp_shift
-	return
-*/
+	// Handle gas consumption
+	var/datum/gas_mixture/GM = holder.my_atom.return_air()
+	if(consumes_xgm_gas != 0 && GM)
+		GM.adjust_gas(require_xgm_gas,-consumes_xgm_gas)
+
+	// Distilling can change gas temps, handle it here.
+	if(temp_shift != 0)
+		if(istype(holder.my_atom,/obj/distilling_tester))
+			return
+		// Special handling for this
+		if(istype(holder.my_atom,/obj/machinery/portable_atmospherics/powered/reagent_distillery))
+			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = holder.my_atom
+			RD.current_temp += temp_shift
+			return
+		// Change gas temps
+		if(!GM)
+			return
+		GM.add_thermal_energy(temp_shift * 100)
 
 // Subtypes //
 

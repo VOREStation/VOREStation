@@ -16,12 +16,12 @@
 	var/supported = 0
 	var/active = 0
 	var/list/resource_field = list()
-	var/list/gas_field = list() // Outpost 21 edit - gas drilling
+	var/list/gas_field = list()
 	var/obj/item/radio/intercom/faultreporter
 	var/drill_range = 5
 	var/offset = 2
 	var/current_capacity = 0
-	var/drill_moles_per_tick = 0 // Outpost 21 edit - gas drilling
+	var/drill_moles_per_tick = 0
 
 	var/list/stored_ore = list(
 		ORE_SAND = 0,
@@ -402,7 +402,7 @@
 						continue
 					drill_moles_per_tick += 2
 					gas_field.Add(G.gas_type)
-	if(!resource_field.len && !gas_field.len) // Outpost 21 edit - gas mining
+	if(!resource_field.len && !gas_field.len)
 		system_error("Resources depleted.")
 
 /obj/machinery/mining/drill/proc/use_cell_power()
