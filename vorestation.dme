@@ -547,6 +547,8 @@
 #include "code\datums\components\recursive_move.dm"
 #include "code\datums\components\resize_guard.dm"
 #include "code\datums\components\swarm.dm"
+#include "code\datums\components\animations\dizzy.dm"
+#include "code\datums\components\animations\jittery.dm"
 #include "code\datums\components\antags\antag.dm"
 #include "code\datums\components\antags\changeling\changeling.dm"
 #include "code\datums\components\antags\changeling\helpers\absorbed_dna.dm"

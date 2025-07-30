@@ -1,0 +1,4 @@
+author: "TheCaramelion"
+delete-after: True
+changes:
+  - bugfix: "Fixed vaccines not giving vaccine bottles"

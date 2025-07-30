@@ -338,3 +338,11 @@
   Willburd:
   - code_imp: Removes sleep() in modular computer uis
   - bugfix: Dev disabled styles removed from randomized rolls.
+2025-07-30:
+  ItsSelis:
+  - qol: rust-g updated to 4.0.0
+  Will:
+  - bugfix: Fixed a major runtime in the resleeving computer when a bodyrecord becomes
+      outdated
+  - bugfix: Synthfab not being able to spawn bodies properly
+  - rscadd: New particle smasher recipes
