@@ -1,0 +1,259 @@
+:root {
+  --graph-color-localhost: #00ff99; // Green
+  --graph-color-node: #00ffff; // Cyan
+  --graph-color-subnode: #00ff99; // Green
+  --graph-color-glitch: #ff00ff; // Purple
+  --graph-label: #fff;
+  --graph-label-glitch: #ff00ff;
+}
+
+.graph-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  pointer-events: auto;
+  user-select: none;
+  transition:
+    filter 0.3s,
+    box-shadow 0.3s;
+  z-index: 2;
+
+  &--hex {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background: var(--graph-color-localhost);
+    box-shadow: 0 0 10px 2px var(--graph-color-localhost);
+    border: none;
+  }
+
+  &--node {
+    border-radius: 50%;
+    background: var(--graph-color-node);
+    box-shadow: 0 0 6px 1.5px var(--graph-color-node);
+    border: none;
+  }
+
+  &--subnode {
+    border-radius: 50%;
+    background: var(--graph-color-subnode);
+    box-shadow: 0 0 3px 1px var(--graph-color-subnode);
+    border: none;
+    font-size: 10px;
+  }
+
+  &--glitch {
+    background: var(--graph-color-glitch) !important;
+    box-shadow:
+      0 0 8px 2px var(--graph-color-glitch),
+      2px 0 4px 0 #00fff7;
+    animation: glitch-skew 0.7s infinite linear alternate;
+    position: relative;
+    z-index: 2;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 3;
+    }
+    &::before {
+      background: inherit;
+      opacity: 0.7;
+      mix-blend-mode: lighten;
+      animation: glitch-before 0.7s infinite linear alternate;
+      filter: drop-shadow(0 0 6px #00fff7);
+    }
+    &::after {
+      background: inherit;
+      opacity: 0.5;
+      mix-blend-mode: lighten;
+      animation: glitch-after 0.7s infinite linear alternate;
+      filter: drop-shadow(0 0 6px var(--graph-color-glitch));
+    }
+  }
+
+  &--selected {
+    box-shadow: 0 0 12px 4px yellow;
+  }
+
+  &--glow-animate {
+    animation: graph-glow-pulse 1.5s infinite alternate;
+  }
+}
+
+@keyframes graph-glow-pulse {
+  0% {
+    filter: brightness(1) blur(0px);
+    transform: scale(0.9);
+  }
+  50% {
+    filter: brightness(1.1) blur(1px);
+    transform: scale(1.1); // 10% larger at peak
+  }
+  100% {
+    filter: brightness(1) blur(0px);
+    transform: scale(0.9);
+  }
+}
+
+// Glitch keyframes as before...
+@keyframes glitch-skew {
+  0% {
+    transform: skew(0deg, 0deg);
+  }
+  20% {
+    transform: skew(-2deg, 1deg);
+  }
+  40% {
+    transform: skew(1deg, -1deg);
+  }
+  60% {
+    transform: skew(-1deg, 2deg);
+  }
+  80% {
+    transform: skew(2deg, 0deg);
+  }
+  100% {
+    transform: skew(0deg, 0deg);
+  }
+}
+@keyframes glitch-before {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.7;
+  }
+  10% {
+    transform: translate(-2px, -1px);
+    opacity: 0.5;
+  }
+  20% {
+    transform: translate(-4px, 2px);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translate(2px, 1px);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translate(1px, -2px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-1px, 2px);
+    opacity: 0.5;
+  }
+  60% {
+    transform: translate(2px, -1px);
+    opacity: 0.7;
+  }
+  70% {
+    transform: translate(-2px, 1px);
+    opacity: 0.4;
+  }
+  80% {
+    transform: translate(1px, -2px);
+    opacity: 0.7;
+  }
+  90% {
+    transform: translate(-1px, 2px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.7;
+  }
+}
+@keyframes glitch-after {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  10% {
+    transform: translate(2px, 1px);
+    opacity: 0.7;
+  }
+  20% {
+    transform: translate(4px, -2px);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translate(-2px, -1px);
+    opacity: 0.8;
+  }
+  40% {
+    transform: translate(-1px, 2px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(1px, -2px);
+    opacity: 0.7;
+  }
+  60% {
+    transform: translate(-2px, 1px);
+    opacity: 0.5;
+  }
+  70% {
+    transform: translate(2px, -1px);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translate(-1px, 2px);
+    opacity: 0.5;
+  }
+  90% {
+    transform: translate(1px, -2px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+}
+
+.graph-node-label {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 8px);
+  color: var(--graph-label, #fff);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  text-shadow: none;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0.95;
+  z-index: 3;
+}
+
+.network-graph {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.connection-packet {
+  stroke: none;
+  filter: drop-shadow(0 0 4px var(--packet-glow, #0ff));
+  transition: fill 0.2s;
+}
+.connection-glow {
+  opacity: 0.2;
+  animation: connection-glow-fade 1.2s infinite alternate;
+}
+
+@keyframes connection-glow-fade {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
