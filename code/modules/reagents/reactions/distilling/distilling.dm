@@ -86,7 +86,7 @@
 		// Change gas temps
 		if(!GM)
 			return
-		GM.add_thermal_energy(temp_shift * 100)
+		GM.add_thermal_energy(temp_shift * 1000)
 
 // Subtypes //
 

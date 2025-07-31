@@ -1,6 +1,7 @@
 // Condensing atmo gasses into reagents
+// If there is ever work done converting atmogas back and forth from reagent to gas then this should be tuned to avoid creating something from nothing!
 #define CONDENSING_RATE 50
-#define CONDENSING_RESULT 0.5
+#define CONDENSING_RESULT 0.25
 #define CONDENSING_HEAT 2
 #define OIL_CONSUMPTION_RATE 0.01
 
@@ -9,7 +10,7 @@
 	id = "condense_oxygen"
 	result = REAGENT_ID_OXYGEN
 	required_reagents = list(REAGENT_ID_FROSTOIL = OIL_CONSUMPTION_RATE)
-	inhibitors = list(REAGENT_ID_OXYGEN = CONDENSING_RESULT) // Used to limit the reaction
+	inhibitors = list(REAGENT_ID_OXYGEN = 0.1) // Used to limit the reaction
 	result_amount = CONDENSING_RESULT
 
 	temp_range = list(54.36, 90.19) // kelvin
@@ -24,7 +25,7 @@
 	id = "condense_nitrogen"
 	result = REAGENT_ID_NITROGEN
 	required_reagents = list(REAGENT_ID_FROSTOIL = OIL_CONSUMPTION_RATE)
-	inhibitors = list(REAGENT_ID_NITROGEN = CONDENSING_RESULT) // Used to limit the reaction
+	inhibitors = list(REAGENT_ID_NITROGEN = 0.1) // Used to limit the reaction
 	result_amount = CONDENSING_RESULT
 
 	temp_range = list(63.15, 77.36) // kelvin
@@ -39,7 +40,7 @@
 	id = "condense_nitro"
 	result = REAGENT_ID_NITROGEN // Figure out something better
 	required_reagents = list(REAGENT_ID_FROSTOIL = OIL_CONSUMPTION_RATE)
-	inhibitors = list(REAGENT_ID_NITROGEN = CONDENSING_RESULT) // Used to limit the reaction
+	inhibitors = list(REAGENT_ID_NITROGEN = 0.1) // Used to limit the reaction
 	result_amount = CONDENSING_RESULT
 
 	temp_range = list(0, 182.3) // kelvin
@@ -54,7 +55,7 @@
 	id = "condense_carbon"
 	result = REAGENT_ID_CARBON
 	required_reagents = list(REAGENT_ID_FROSTOIL = OIL_CONSUMPTION_RATE)
-	inhibitors = list(REAGENT_ID_CARBON = CONDENSING_RESULT) // Used to limit the reaction
+	inhibitors = list(REAGENT_ID_CARBON = 0.1) // Used to limit the reaction
 	result_amount = CONDENSING_RESULT
 
 	temp_range = list(54.36, 90.19) // kelvin
@@ -69,7 +70,7 @@
 	id = "condense_phoron"
 	result = REAGENT_ID_PHORON
 	required_reagents = list(REAGENT_ID_FROSTOIL = OIL_CONSUMPTION_RATE)
-	inhibitors = list(REAGENT_ID_PHORON = CONDENSING_RESULT) // Used to limit the reaction
+	inhibitors = list(REAGENT_ID_PHORON = 0.1) // Used to limit the reaction
 	result_amount = CONDENSING_RESULT
 
 	temp_range = list(14.60, 52.99) // kelvin
@@ -84,7 +85,7 @@
 	id = "condense_fuel"
 	result = REAGENT_ID_FUEL
 	required_reagents = list(REAGENT_ID_FROSTOIL = OIL_CONSUMPTION_RATE)
-	inhibitors = list(REAGENT_ID_FUEL = CONDENSING_RESULT) // Used to limit the reaction
+	inhibitors = list(REAGENT_ID_FUEL = 0.1) // Used to limit the reaction
 	result_amount = CONDENSING_RESULT
 
 	temp_range = list(91.60, 120.19) // kelvin
