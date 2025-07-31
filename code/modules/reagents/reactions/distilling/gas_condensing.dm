@@ -1,7 +1,7 @@
 // Condensing atmo gasses into reagents
 // If there is ever work done converting atmogas back and forth from reagent to gas then this should be tuned to avoid creating something from nothing!
 #define CONDENSING_RATE 50
-#define CONDENSING_RESULT 0.25
+#define CONDENSING_RESULT 0.5
 #define CONDENSING_HEAT 2
 #define OIL_CONSUMPTION_RATE 0.01
 

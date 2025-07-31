@@ -72,7 +72,7 @@
 	// Handle gas consumption
 	var/datum/gas_mixture/GM = holder.my_atom.return_air()
 	if(consumes_xgm_gas != 0 && GM)
-		GM.adjust_gas(require_xgm_gas,-consumes_xgm_gas)
+		GM.adjust_gas(require_xgm_gas,-consumes_xgm_gas, TRUE)
 
 	// Distilling can change gas temps, handle it here.
 	if(temp_shift != 0)
