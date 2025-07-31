@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - image: "Made the body scanner actually show an outline of the person inside it."
