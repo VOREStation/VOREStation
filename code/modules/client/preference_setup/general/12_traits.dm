@@ -157,12 +157,10 @@
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		if (!(pref.custom_base in pref.get_custom_bases_for_species()))
-			to_world("[pref.custom_base] in [pref.get_custom_bases_for_species()]")
-			to_world("forcing human")
-			pref.custom_base = SPECIES_HUMAN
+			pref.custom_base = selected_species.default_custom_base
 		//otherwise, allowed!
 	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
-		pref.custom_base = SPECIES_HUMAN
+		pref.custom_base = selected_species.default_custom_base
 
 
 /datum/category_item/player_setup_item/general/traits/copy_to_mob(var/mob/living/carbon/human/character)

@@ -917,6 +917,7 @@
 	blood_reagents = REAGENT_ID_COPPER
 	reagent_tag = IS_ZORREN
 	color_mult = 1
+	default_custom_base = SPECIES_ZORREN_HIGH
 
 	selects_bodytype = SELECTS_BODYTYPE_ZORREN
 
@@ -927,6 +928,10 @@
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
+
+/datum/species/hi_zoxxen/get_race_key()
+	var/datum/species/real = GLOB.all_species[base_species]
+	return real.race_key
 
 /datum/species/hi_zoxxen/dark    //alternate sprite base for zorren
 	name = SPECIES_ZORREN_DARK
