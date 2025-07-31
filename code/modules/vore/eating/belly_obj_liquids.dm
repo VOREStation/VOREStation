@@ -206,6 +206,14 @@
 			reagentid = REAGENT_ID_TRICORDRAZINE
 			reagentcolor = "#8040FF"
 			is_beneficial = TRUE
+		if(REAGENT_ETHANOL)
+			generated_reagents = list(REAGENT_ID_ETHANOL = 1)
+			if(reagent_name in our_reagents)
+				reagent_name = lowertext(REAGENT_ETHANOL)
+			gen_amount = 1
+			gen_cost = 5
+			reagentid = REAGENT_ID_ETHANOL
+			reagentcolor = "#bfbfbf"
 
 
 /////////////////////// FULLNESS MESSAGES //////////////////////
