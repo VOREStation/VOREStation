@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Section, Stack, Tabs } from 'tgui-core/components';
@@ -76,6 +75,7 @@ export const TraitDescription = (props) => {
       <br />
       <br />
       <div
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: For now fine
         dangerouslySetInnerHTML={{
           __html: tutorials[name] as unknown as string,
         }}

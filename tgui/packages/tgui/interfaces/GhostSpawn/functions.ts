@@ -22,8 +22,7 @@ export function describeMouseData(
     return returnData;
   }
   if (data.respawn_time) {
-    returnData.text =
-      'You must wait ' + data.respawn_time + ' before being able to respawn.';
+    returnData.text = `You must wait ${data.respawn_time} before being able to respawn.`;
     returnData.state = false;
     return returnData;
   }
@@ -61,8 +60,7 @@ export function describeDroneData(
     return returnData;
   }
   if (data.respawn_time) {
-    returnData.text =
-      'You must wait ' + data.respawn_time + ' before being able to respawn.';
+    returnData.text = `You must wait ${data.respawn_time} before being able to respawn.`;
     returnData.state = false;
     return returnData;
   }
