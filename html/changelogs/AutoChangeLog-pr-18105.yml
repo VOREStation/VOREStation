@@ -1,4 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - bugfix: "Fixes an error occuring when tgs is compiling the rust itself."
