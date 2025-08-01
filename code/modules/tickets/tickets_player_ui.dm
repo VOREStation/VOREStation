@@ -43,23 +43,9 @@
 			var/sane_message = sanitize(params["msg"])
 			switch(T.level)
 				if (0)
-					if(T.initiator == ui.user.client)
-						var/client/handler = T.handler_ref?.resolve()
-						if(handler)
-							ui.user.client.cmd_mentor_pm(handler, sane_message, T)
-							return TRUE
-						T.AddInteraction("[T.initiator_key_name]: [sane_message]")
-						return TRUE
 					ui.user.client.cmd_mentor_pm(T.initiator, sane_message, T)
 					return TRUE
 				if (1)
-					if(T.initiator == ui.user.client)
-						var/client/handler = T.handler_ref?.resolve()
-						if(handler)
-							ui.user.client.cmd_admin_pm(handler, sane_message, T)
-							return TRUE
-						T.AddInteraction("[key_name_admin(ui.user)]: [sane_message]")
-						return TRUE
 					ui.user.client.cmd_admin_pm(T.initiator, sane_message, T)
 					return TRUE
 
