@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - bugfix: "loadout system not working until you switch back and forth"
