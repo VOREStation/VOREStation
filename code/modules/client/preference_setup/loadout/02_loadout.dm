@@ -86,13 +86,15 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout/loadout/sanitize_character()
 	var/mob/preference_mob = preference_mob()
-	if(LAZYLEN(pref.gear_list) < 0)
-		return
 
 	if(pref.gear_slot > LAZYLEN(pref.gear_list))
 		pref.gear_slot = 1
 
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
+	if(!active_gear_list)
+		pref.gear_list["[pref.gear_slot]"] = list()
+		active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
+
 	var/total_cost = 0
 	for(var/gear_name in active_gear_list)
 		if(!gear_datums[gear_name])
