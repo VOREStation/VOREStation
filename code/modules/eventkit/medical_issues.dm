@@ -43,7 +43,7 @@
 		handle_curing()
 
 	if(symptom_text)
-		if(prob(5))
+		if(prob(1))
 			to_chat(owner, span_danger("[symptom_text]"))
 
 	if(symptom_affect)
