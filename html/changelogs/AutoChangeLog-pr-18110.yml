@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - code_imp: "weak_reference added to blacklisted copyvars"
