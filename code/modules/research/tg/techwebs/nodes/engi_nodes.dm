@@ -323,7 +323,8 @@
 		"industrial_reagent_vat",
 		"industrial_reagent_waste_processor",
 		"smart_centrifuge",
-		"pump_relay"
+		"pump_relay",
+		"fluid_pump"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING,CHANNEL_MEDICAL)

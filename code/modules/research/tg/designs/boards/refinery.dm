@@ -107,3 +107,13 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/fluid_pump
+	name = "Fluid Pump"
+	id = "fluid_pump"
+	// req_tech = list(TECH_DATA = 1)
+	build_path = /obj/item/circuitboard/fluidpump
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
