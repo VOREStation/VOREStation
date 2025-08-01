@@ -129,6 +129,8 @@
 
 
 /atom/proc/emp_act(var/severity)
+	//SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src,COMSIG_ATOM_EMP_ACT,severity)
 	return
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
@@ -349,7 +351,7 @@
 				M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), audible = FALSE)
 		else if(blind_message)
 			M.show_message(blind_message, AUDIBLE_MESSAGE)
-		SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,src,VISIBLE_MESSAGE,blind_message,AUDIBLE_MESSAGE)
+		SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,src,message,VISIBLE_MESSAGE,blind_message,AUDIBLE_MESSAGE)
 
 // Show a message to all mobs and objects in earshot of this atom
 // Use for objects performing audible actions
@@ -376,6 +378,7 @@
 		M.show_message(msg, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 		if(runemessage != -1)
 			M.create_chat_message(src, "[runemessage || message]", FALSE, list("emote"))
+		SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,src,message,AUDIBLE_MESSAGE,deaf_message,VISIBLE_MESSAGE)
 
 /atom/movable/proc/dropInto(var/atom/destination)
 	while(istype(destination))

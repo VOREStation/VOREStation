@@ -103,10 +103,10 @@
 				final_message = span_multizsay("[final_message]")
 			// If you are in the same tile, right next to, or being held by a person doing an emote, you should be able to see it while blind
 			if(m_type != AUDIBLE_MESSAGE && (src.Adjacent(M) || (istype(src.loc, /obj/item/holder) && src.loc.loc == M)))
-				SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,final_message,VISIBLE_MESSAGE)
+				SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,src,final_message,VISIBLE_MESSAGE)
 				M.show_message(final_message)
 			else
-				SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,final_message,m_type)
+				SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,src,final_message,m_type)
 				M.show_message(final_message, m_type)
 			M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), (m_type == AUDIBLE_MESSAGE))
 

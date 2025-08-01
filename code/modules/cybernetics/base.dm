@@ -31,22 +31,10 @@
 	maptext_height = 32
 	maptext_width = 32
 
-/obj/item/endoware/proc/can_activate()
-	return TRUE //if we return false here when it's is_activatable, we assume we want to be "grey'd out"
 /obj/item/endoware/Initialize(mapload)
 	. = ..()
 	if(is_activatable)
 		init_radial_image()
-
-/obj/item/endoware/proc/update_radial_image()
-	if(radial_image == null)  return
-	if(can_activate())
-		radial_image.color = null
-	else
-		radial_image.color = "#5B5B5B"
-	radial_image.maptext = image_text
-
-
 
 /obj/item/endoware/verb/debug_install_remove_me()
 	set category = "Object"
@@ -59,18 +47,7 @@
 	if(iscarbon(usr))
 		install_in(usr,fsdfsd)
 
-//check ./human.dm for usage
-/obj/item/endoware/proc/attempt_activate()
-	if(can_activate() && is_activatable)
-		activate()
 
-/obj/item/endoware/proc/activate()
-	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_ENDOWARE_ACTIVATE)
-
-
-/obj/item/endoware/proc/init_radial_image()
-	radial_image = image(icon = src.icon, icon_state = src.icon_state) //this can be more complicated, this is just a baseline.
 
 /obj/item/endoware/proc/install_in(var/mob/living/carbon/host, var/target = BP_TORSO)
 	if(!(target in allowed_in))
@@ -101,6 +78,48 @@ TODO:
 	to_chat(world,"DEBUG: not able to find organ [target] in [host]!")
 	return FALSE
 
+
+
+/obj/item/endoware/proc/damage_implant(damage)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src,COMSIG_ENDOWARE_DAMAGE_TAKEN)
+
+/obj/item/endoware/Destroy()
+	if(host)
+		dissolve_human_components(host)
+		dissolve_human_signals(host)
+		host = null
+
+	if(home)
+		dissolve_organ_signals(home)
+		home = null
+	. = ..()
+
+
+/obj/item/endoware/proc/host_took_damage(var/datum/source, damage, damagetype, def_zone) //TODO
+	to_chat(world,"WOW! DAMAGE: [damage]| [damagetype]| [def_zone]")
+	if(damage_matches_bitflag(damagetype,damage_flags,host))
+		return
+	else
+		return
+
+/obj/item/endoware/proc/damage_matches_bitflag(var/damageType,var/compare_against,var/mob/living/carbon/human/comparing)
+	var/list/converted = list( BRUTE = (ENDOWARE_DAMAGEABLE_BRUTE),
+		BURN = (ENDOWARE_DAMAGEABLE_BURN),
+		TOX = (ENDOWARE_DAMAGEABLE_TOXIN),
+		OXY = (ENDOWARE_DAMAGEABLE_OXYLOSS),
+		CLONE = (ENDOWARE_DAMAGEABLE_CLONE),
+		HALLOSS = (ENDOWARE_DAMAGEABLE_HALLOSS),
+		ELECTROCUTE = (ENDOWARE_DAMAGEABLE_ELECTRO),
+		BIOACID = (comparing.isSynthetic() ? (ENDOWARE_DAMAGEABLE_BURN) : (ENDOWARE_DAMAGEABLE_TOXIN)),
+		SEARING = (ENDOWARE_DAMAGEABLE_CLONE | ENDOWARE_DAMAGEABLE_BURN),
+		ELECTROMAG = (ENDOWARE_DAMAGEABLE_ELECTROMAG)
+	)
+	var/compare_to = converted[damageType]
+	return (compare_against & compare_to)
+
+/* REGISTERING / DEREGISTERING TO/FROM SOMEONE/A ORGAN*/
+
 /obj/item/endoware/proc/post_install(var/obj/item/organ/new_location)
 	SHOULD_CALL_PARENT(TRUE)
 	ASSERT(loc == new_location)
@@ -113,42 +132,6 @@ TODO:
 	SHOULD_CALL_PARENT(TRUE)
 	ASSERT(ishuman(host))
 	SEND_SIGNAL(src,COMSIG_ENDOWARE_UNINSTALLED)
-
-/obj/item/endoware/proc/damage_implant(damage)
-	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src,COMSIG_ENDOWARE_DAMAGE_TAKEN)
-
-/obj/item/endoware/proc/build_human_signals(var/mob/living/carbon/target)
-	SHOULD_CALL_PARENT(TRUE)
-	RegisterSignal(target,COMSIG_CARBON_LOSE_ORGAN,PROC_REF(human_lost_organ))
-	RegisterSignal(target,COMSIG_MOB_APPLY_DAMGE,PROC_REF(host_took_damage))
-
-/obj/item/endoware/proc/dissolve_human_signals(var/mob/living/carbon/target)
-	UnregisterSignal(target,COMSIG_CARBON_LOSE_ORGAN)
-	UnregisterSignal(target,COMSIG_MOB_APPLY_DAMGE)
-
-/obj/item/endoware/proc/human_lost_organ(var/datum/source, var/obj/item/organ/lostorgan)
-	ASSERT(source == host)
-	to_chat(world,"HUMAN LOST ORGAN:[lostorgan]")
-	if(lostorgan == home)
-		if(host)
-			removed_from_human(host)
-
-/obj/item/endoware/proc/human_installed_organ(var/mob/living/carbon/human/owner)
-	added_to_human(owner)
-
-
-
-/*
-for the most part, these are where the magic happens. nearly 100% of the behavior done by these should be component driven!
-*/
-
-/obj/item/endoware/proc/build_human_components()
-
-/obj/item/endoware/proc/dissolve_human_components()
-
-
-/* utility & signal/component handling */
 
 
 /obj/item/endoware/proc/removed_from_human(var/mob/living/carbon/human/human) //either we were uninstalled, organ got removed, or the limb got blown off
@@ -165,41 +148,6 @@ for the most part, these are where the magic happens. nearly 100% of the behavio
 	build_human_signals(host)
 	build_human_components(host)
 	host.installed_endoware |= src
-
-/obj/item/endoware/Destroy()
-	if(host)
-		dissolve_human_components(host)
-		dissolve_human_signals(host)
-		host = null
-
-	if(home)
-		dissolve_organ_signals(home)
-		home = null
-	. = ..()
-
-
-/*
-Signals for:
-Life tick (while installed)
-
-Install
-Uninstall
-
-User Death / Undeath
-
-shutdown
-startup
-reboot
-
-Activation (Verb, Damage, or Menu)
-
-Damage taken to limb/organ
-
-
-make a unified endoware list on /human for easy handling(?)
-
-human helper procs
-*/
 
 /obj/item/endoware/proc/build_organ_signals(var/obj/item/organ/target)
 	RegisterSignal(target,COMSIG_ORGAN_INSERTED,PROC_REF(human_installed_organ))
@@ -230,26 +178,57 @@ human helper procs
 	dissolve_organ_signals(target)
 	home = null
 
-/* Behavior */
+/obj/item/endoware/proc/build_human_signals(var/mob/living/carbon/target)
+	SHOULD_CALL_PARENT(TRUE)
+	RegisterSignal(target,COMSIG_CARBON_LOSE_ORGAN,PROC_REF(human_lost_organ))
+	RegisterSignal(target,COMSIG_MOB_APPLY_DAMGE,PROC_REF(host_took_damage))
 
-/obj/item/endoware/proc/host_took_damage(var/datum/source, damage, damagetype, def_zone) //TODO
-	to_chat(world,"WOW! DAMAGE: [damage]| [damagetype]| [def_zone]")
-	if(damage_matches_bitflag(damagetype,damage_flags,host))
-		return
+/obj/item/endoware/proc/dissolve_human_signals(var/mob/living/carbon/target)
+	UnregisterSignal(target,COMSIG_CARBON_LOSE_ORGAN)
+	UnregisterSignal(target,COMSIG_MOB_APPLY_DAMGE)
+
+/obj/item/endoware/proc/human_lost_organ(var/datum/source, var/obj/item/organ/lostorgan)
+	ASSERT(source == host)
+	to_chat(world,"HUMAN LOST ORGAN:[lostorgan]")
+	if(lostorgan == home)
+		if(host)
+			removed_from_human(host)
+
+/obj/item/endoware/proc/human_installed_organ(var/mob/living/carbon/human/owner)
+	added_to_human(owner)
+
+// for the most part, these are where the magic happens. nearly 100% of the behavior done by these should be component driven! Unless it's simple shit, anyway.
+/obj/item/endoware/proc/build_human_components(var/mob/living/carbon/human/human)
+	return
+
+/obj/item/endoware/proc/dissolve_human_components(var/mob/living/carbon/human/human)
+	return
+/* ACTIVATION */
+
+//check ./human.dm for usage
+/obj/item/endoware/proc/attempt_activate()
+	if(can_activate() && is_activatable)
+		activate()
+
+/obj/item/endoware/proc/activate(var/external)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ENDOWARE_ACTIVATE)
+
+
+/obj/item/endoware/proc/init_radial_image()
+	radial_image = image(icon = src.icon, icon_state = src.icon_state) //this can be more complicated, this is just a baseline.
+
+/obj/item/endoware/proc/activated_externally()
+	activate(TRUE)
+
+/obj/item/endoware/proc/can_activate()
+	return TRUE //if we return false here when it's is_activatable, we assume we want to be "grey'd out"
+
+
+/obj/item/endoware/proc/update_radial_image()
+	if(radial_image == null)  return
+	if(can_activate())
+		radial_image.color = null
 	else
-		return
-
-/obj/item/endoware/proc/damage_matches_bitflag(var/damageType,var/compare_against,var/mob/living/carbon/human/comparing)
-	var/list/converted = list( BRUTE = (ENDOWARE_DAMAGEABLE_BRUTE),
-		BURN = (ENDOWARE_DAMAGEABLE_BURN),
-		TOX = (ENDOWARE_DAMAGEABLE_TOXIN),
-		OXY = (ENDOWARE_DAMAGEABLE_OXYLOSS),
-		CLONE = (ENDOWARE_DAMAGEABLE_CLONE),
-		HALLOSS = (ENDOWARE_DAMAGEABLE_HALLOSS),
-		ELECTROCUTE = (ENDOWARE_DAMAGEABLE_ELECTRO),
-		BIOACID = (comparing.isSynthetic() ? (ENDOWARE_DAMAGEABLE_BURN) : (ENDOWARE_DAMAGEABLE_TOXIN)),
-		SEARING = (ENDOWARE_DAMAGEABLE_CLONE | ENDOWARE_DAMAGEABLE_BURN),
-		ELECTROMAG = (ENDOWARE_DAMAGEABLE_ELECTROMAG)
-	)
-	var/compare_to = converted[damageType]
-	return (compare_against & compare_to)
+		radial_image.color = "#5B5B5B"
+	radial_image.maptext = image_text

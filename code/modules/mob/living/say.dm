@@ -290,6 +290,7 @@ var/list/channel_to_radio_key = list()
 
 		if(msg)
 			for(var/mob/living/M in hearers(5, src) - src)
+				SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,src,msg,AUDIBLE_MESSAGE)
 				M.show_message(msg)
 
 		if(speech_sound)
@@ -379,7 +380,8 @@ var/list/channel_to_radio_key = list()
 				//VOREStation Add - Ghosts don't hear whispers
 				if(whispering && isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
 				(!(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || (isbelly(M.loc) && src == M.loc:owner))  && !check_rights_for(M.client, R_HOLDER))))
-					M.show_message(span_game(span_say(span_name(src.name) + " [w_not_heard].")), 2)
+					SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,src,span_game(span_say(span_name(src.name) + " [w_not_heard].")),AUDIBLE_MESSAGE)
+					M.show_message(span_game(span_say(span_name(src.name) + " [w_not_heard].")), AUDIBLE_MESSAGE)
 					return
 				//VOREStation Add End
 
@@ -400,7 +402,8 @@ var/list/channel_to_radio_key = list()
 								images_to_clients[I2] |= M.client
 								M << I2
 					if(dst > w_scramble_range && dst <= world.view) //Inside whisper 'visible' range
-						M.show_message(span_game(span_say(span_name(name) + " [w_not_heard].")), 2)
+						SEND_SIGNAL(M,COMSIG_MOB_RECIEVE_MESSAGE,src,span_game(span_say(span_name(src.name) + " [w_not_heard].")),AUDIBLE_MESSAGE)
+						M.show_message(span_game(span_say(span_name(name) + " [w_not_heard].")), AUDIBLE_MESSAGE)
 
 	//Object message delivery
 	for(var/obj/O in listening_obj)
