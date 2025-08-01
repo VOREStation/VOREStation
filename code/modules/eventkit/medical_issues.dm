@@ -83,6 +83,9 @@
 	for(var/datum/reagent/R in owner.reagents.reagent_list)
 		if(R.name == cure_reagent)
 			unhealth = unhealth - reagent_strength
+	for(var/datum/reagent/R in owner.ingested.reagent_list)
+		if(R.name == cure_reagent)
+			unhealth = unhealth - reagent_strength
 
 /datum/medical_issue/proc/handle_symptoms()
 	switch(symptom_affect)
