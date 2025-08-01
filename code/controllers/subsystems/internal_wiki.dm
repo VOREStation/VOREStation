@@ -430,11 +430,11 @@ SUBSYSTEM_DEF(internal_wiki)
 	return null
 
 /datum/controller/subsystem/internal_wiki/proc/assemble_sintering(var/sinter)
-	if(sinter == "FLAG_EXPLODE")
+	if(sinter == REFINERY_SINTERING_EXPLODE)
 		return "violent detonation"
-	if(sinter == "FLAG_SMOKE")
+	if(sinter == REFINERY_SINTERING_SMOKE)
 		return "toxic fumes"
-	if(sinter == "FLAG_SPIDERS")
+	if(sinter == REFINERY_SINTERING_SPIDERS)
 		return "OH GOD WHY!?"
 	return sinter
 
@@ -1160,7 +1160,7 @@ SUBSYSTEM_DEF(internal_wiki)
 	var/value = R.supply_conversion_value * REAGENTS_PER_SHEET * SSsupply.points_per_money
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
 	data["market_price"] = value
-	data["sintering"] = SSinternal_wiki.assemble_sintering(global.reagent_sheets[R.id])
+	data["sintering"] = SSinternal_wiki.assemble_sintering(GLOB.reagent_sheets[R.id])
 	data["overdose"] = R.overdose
 	data["flavor"] = R.taste_description
 	data["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)

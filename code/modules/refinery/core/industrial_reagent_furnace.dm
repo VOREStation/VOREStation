@@ -68,7 +68,7 @@
 		var/played_sound = FALSE
 		while(beaker.reagents.total_volume >= REAGENTS_PER_SHEET) // at least enough reagents to bother checking
 			var/datum/reagent/R = beaker.reagents.reagent_list[1]
-			var/mat_id = global.reagent_sheets[R.id]
+			var/mat_id = GLOB.reagent_sheets[R.id]
 			beaker.reagents.remove_reagent(R.id,REAGENTS_PER_SHEET)
 			switch(mat_id)
 				if(REFINERY_SINTERING_SMOKE)
@@ -147,7 +147,7 @@
 	var/list/tgui_list = list("Disabled" = "","Bypass" = "-1")
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R)
-			var/mat_id = global.reagent_sheets[R.id]
+			var/mat_id = GLOB.reagent_sheets[R.id]
 			if(!mat_id) // No reaction
 				continue
 			var/id_string = "[R.name] - ???"

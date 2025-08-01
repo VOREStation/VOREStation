@@ -829,7 +829,6 @@
 #include "code\datums\wires\wires.dm"
 #include "code\defines\gases.dm"
 #include "code\defines\obj.dm"
-#include "code\defines\refinery.dm"
 #include "code\defines\obj\weapon.dm"
 #include "code\defines\procs\announce.dm"
 #include "code\defines\procs\AStar.dm"

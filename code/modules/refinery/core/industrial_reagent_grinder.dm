@@ -65,7 +65,7 @@
 		return FALSE
 
 	// Needs to be sheet, ore, or grindable reagent containing things
-	if(!global.sheet_reagents[O.type] && !global.ore_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
+	if(!GLOB.sheet_reagents[O.type] && !GLOB.ore_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
 		to_chat(user, "\The [O] is not suitable for blending.")
 		return FALSE
 
@@ -113,7 +113,7 @@
 		return
 	if(ismob(AM)) // No mob bumping YET
 		return
-	if(!global.sheet_reagents[AM.type] && !global.ore_reagents[AM.type] && (!AM.reagents || !AM.reagents.total_volume))
+	if(!GLOB.sheet_reagents[AM.type] && !GLOB.ore_reagents[AM.type] && (!AM.reagents || !AM.reagents.total_volume))
 		return
 
 	AM.forceMove(src)
