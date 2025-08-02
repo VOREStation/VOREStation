@@ -1,41 +1,6 @@
 /// converted unit test, maybe should be fully refactored
 /// MIGHT REQUIRE BIGGER REWORK
 
-// Used to test distillations without hacking the other machinery's code up
-/obj/distilling_tester
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "cartridge"
-	var/datum/gas_mixture/GM = new()
-	var/current_temp = 0
-
-/obj/distilling_tester/Initialize(mapload)
-	create_reagents(5000,/datum/reagents/distilling)
-	. = ..()
-
-/obj/distilling_tester/return_air()
-	return GM
-
-/obj/distilling_tester/proc/test_distilling(var/decl/chemical_reaction/distilling/D, var/temp_prog)
-	qdel_swap(GM,new())
-	if(D.require_xgm_gas)
-		GM.gas[D.require_xgm_gas] = 100
-	else
-		if(D.rejects_xgm_gas == GAS_N2)
-			GM.gas[GAS_O2] = 100
-		else
-			GM.gas[GAS_N2] = 100
-	if(D.minimum_xgm_pressure)
-		GM.temperature = (D.minimum_xgm_pressure * CELL_VOLUME) / (GM.gas[D.require_xgm_gas] * R_IDEAL_GAS_EQUATION)
-
-	// Try this 10 times, We need to know if something is blocking at multiple temps.
-	// If it passes unit test, it might still be awful to make though, gotta find the right gas mix!
-	current_temp = LERP( D.temp_range[1], D.temp_range[2], temp_prog)
-	reagents.handle_reactions()
-
-/obj/distilling_tester/Destroy(force, ...)
-	qdel_null(GM)
-	. = ..()
-
 /// Test that makes sure that reagent ids and names are unique
 /datum/unit_test/reagent_shall_have_unique_name_and_id
 
@@ -138,7 +103,6 @@
 /// Test that makes sure that chemical reactions do not conflict
 /datum/unit_test/chemical_reactions_shall_not_conflict
 	var/obj/fake_beaker = null
-	var/obj/distilling_tester/dist_tester = null
 	var/list/result_reactions = list()
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/Run()
@@ -168,8 +132,8 @@
 			fake_beaker.reagents.maximum_volume = 5000
 		else if(istype(CR, /decl/chemical_reaction/distilling))
 			// distilling
-			dist_tester = new()
-			qdel_swap(fake_beaker, dist_tester)
+			var/obj/distilling_tester/D = new()
+			qdel_swap(fake_beaker, D)
 			fake_beaker.reagents.maximum_volume = 5000
 		else
 			// regular beaker
@@ -219,8 +183,8 @@
 		// Check distillation at 10 points along its temperature range!
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
-		dist_tester = fake_beaker
-		dist_tester.test_distilling(CR,temp_test)
+		var/obj/distilling_tester/DD = fake_beaker
+		DD.test_distilling(CR,temp_test)
 
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return FALSE // Distilling success
