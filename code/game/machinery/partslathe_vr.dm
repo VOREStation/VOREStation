@@ -236,7 +236,7 @@
 
 /obj/machinery/partslathe/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
+		get_asset_datum(/datum/asset/spritesheet_batched/sheetmaterials)
 	)
 
 /obj/machinery/partslathe/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
@@ -258,6 +258,7 @@
 			"removable" = materials[M] >= SHEET_MATERIAL_AMOUNT,
 		)))
 	data["materials"] = materials_ui
+	data["SHEET_MATERIAL_AMOUNT"] = SHEET_MATERIAL_AMOUNT
 
 	data["copyBoard"] = null
 	data["copyBoardReqComponents"] = null

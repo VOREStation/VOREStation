@@ -351,7 +351,7 @@
 	id = "basic_cell"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
-	build_path = /obj/item/cell
+	build_path = /obj/item/cell/empty
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
@@ -363,7 +363,7 @@
 	id = "high_cell"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 60)
-	build_path = /obj/item/cell/high
+	build_path = /obj/item/cell/high/empty
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_2
 	)
@@ -375,7 +375,7 @@
 	id = "super_cell"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 70)
-	build_path = /obj/item/cell/super
+	build_path = /obj/item/cell/super/empty
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_3
 	)
@@ -388,7 +388,7 @@
 	// req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 400, MAT_GOLD = 150, MAT_SILVER = 150, MAT_GLASS = 70)
-	build_path = /obj/item/cell/hyper
+	build_path = /obj/item/cell/hyper/empty
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_4
 	)
@@ -400,7 +400,7 @@
 	id = "device_cell"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 350, MAT_GLASS = 25)
-	build_path = /obj/item/cell/device
+	build_path = /obj/item/cell/device/empty
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
@@ -410,7 +410,7 @@
 	id = "weapon_cell"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
-	build_path = /obj/item/cell/device/weapon
+	build_path = /obj/item/cell/device/weapon/empty
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)

@@ -16,7 +16,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Materials } from './ExosuitFabricator/Material';
+import { MaterialAccessBar } from './common/MaterialAccessBar';
 import type { Material } from './Fabrication/Types';
 
 type Machine = {
@@ -88,7 +88,16 @@ export const OreSilo = (props: any) => {
           </Stack.Item>
           <Stack.Item>
             <Section fill>
-              <Materials />
+              <MaterialAccessBar
+                SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+                availableMaterials={data.materials}
+                onEjectRequested={(mat: Material, qty: number) =>
+                  act('remove_mat', {
+                    id: mat.name,
+                    amount: qty,
+                  })
+                }
+              />
             </Section>
           </Stack.Item>
         </Stack>

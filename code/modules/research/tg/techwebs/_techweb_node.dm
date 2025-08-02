@@ -117,10 +117,10 @@
 ///Proc called when the Station (Science techweb specific) researches a node.
 /datum/techweb_node/proc/on_station_research(atom/research_source)
 	SHOULD_CALL_PARENT(TRUE)
-	var/channels_to_use = announce_channels
-	if(length(channels_to_use) && !starting_node)
-		for(var/channel in channels_to_use)
-			GLOB.global_announcer.autosay("Science just researched node \"[display_name]\".", "Science Announcer", channel)
+	// var/channels_to_use = announce_channels
+	// if(length(channels_to_use) && !starting_node)
+	// 	for(var/channel in channels_to_use)
+	// 		GLOB.global_announcer.autosay("Science just researched node \"[display_name]\".", "Science Announcer", channel)
 	// if(istype(research_source, /obj/machinery/computer/rdconsole))
 	// 	var/obj/machinery/computer/rdconsole/console = research_source
 	// 	var/obj/item/circuitboard/computer/rdconsole/board = console.circuit

@@ -464,7 +464,18 @@
 
 /datum/component/material_container/proc/on_attackby(datum/source, obj/item/I, mob/living/user)
 	SIGNAL_HANDLER
+	if(istype(I, /obj/item/storage/bag/sheetsnatcher))
+		return OnSheetSnatcher(source, user, I)
+
 	return attempt_insert(user, I)
+
+/datum/component/material_container/proc/OnSheetSnatcher(datum/source, mob/user, obj/item/storage/bag/sheetsnatcher/S)
+	SIGNAL_HANDLER
+	// this is called both locally and from remote_materials
+
+	var/list/sheets = S.quick_empty()
+	for(var/obj/item/stack/material/M as anything in sheets)
+		attempt_insert(user, M)
 
 /// Proc that allows players to fill the parent with mats
 /datum/component/material_container/proc/attempt_insert(mob/living/user, obj/item/weapon)
@@ -714,16 +725,15 @@
 		return sheet_amt * SHEET_MATERIAL_AMOUNT
 	return FALSE
 
-
 /datum/component/material_container/tgui_static_data(mob/user)
-	var/list/data = list()
+	var/list/data = ..()
 	data["SHEET_MATERIAL_AMOUNT"] = SHEET_MATERIAL_AMOUNT
 	return data
-
 
 /// List format is list(list(name = ..., amount = ..., ref = ..., etc.), list(...))
 /datum/component/material_container/tgui_data(mob/user, skip_empty = FALSE)
 	var/list/data = list()
+
 
 	for(var/datum/material/material as anything in materials)
 		var/amount = materials[material]

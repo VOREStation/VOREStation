@@ -11,10 +11,15 @@ import { type BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Materials } from './ExosuitFabricator/Material';
+import { MaterialAccessBar } from './common/MaterialAccessBar';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
-import type { Design, FabricatorData, MaterialMap } from './Fabrication/Types';
+import type {
+  Design,
+  FabricatorData,
+  Material,
+  MaterialMap,
+} from './Fabrication/Types';
 
 type ExosuitDesign = Design & {
   constructionTime: number;
@@ -77,7 +82,16 @@ export const ExosuitFabricatorTg = (props) => {
               </Stack.Item>
               <Stack.Item>
                 <Section>
-                  <Materials />
+                  <MaterialAccessBar
+                    availableMaterials={data.materials}
+                    SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+                    onEjectRequested={(mat: Material, qty: number) =>
+                      act('remove_mat', {
+                        id: mat.name,
+                        amount: qty,
+                      })
+                    }
+                  />
                 </Section>
               </Stack.Item>
             </Stack>

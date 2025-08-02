@@ -165,6 +165,9 @@ handles linking back and forth.
 	if(mat_container_flags & MATCONTAINER_NO_INSERT)
 		return
 
+	if(istype(target, /obj/item/storage/bag/sheetsnatcher))
+		return mat_container.OnSheetSnatcher(source, target, user)
+
 	return attempt_insert(user, target)
 
 /// Insert mats into silo
