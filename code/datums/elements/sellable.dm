@@ -122,3 +122,53 @@
 
 /datum/element/sellable/vaccine/calculate_sell_value(obj/source)
 	return 5
+
+
+// Refinery chemical tanks
+/datum/element/sellable/trolley_tank
+	sale_info = "This can be sold on the cargo shuttle if filled with a single reagent."
+	needs_crate = FALSE
+
+/datum/element/sellable/trolley_tank/sell_error(obj/source)
+	var/obj/vehicle/train/trolley_tank/tank = source
+	if(!tank.reagents || tank.reagents.reagent_list.len == 0)
+		return "Error: Product was not filled with any reagents to sell. Payment rendered null under terms of agreement."
+	var/min_tank = (CARGOTANKER_VOLUME - 100)
+	if(tank.reagents.total_volume < min_tank)
+		return "Error: Product was improperly packaged. Send full tanks only (minimum [min_tank] units). Payment rendered null under terms of agreement."
+	if(tank.reagents.reagent_list.len > 1)
+		return "Error: Product was improperly refined. Send purified mixtures only (too many reagents in tank). Payment rendered null under terms of agreement."
+	return null
+
+/datum/element/sellable/trolley_tank/calculate_sell_value(obj/source)
+	var/obj/vehicle/train/trolley_tank/tank = source
+
+	// Update export values
+	var/datum/reagent/R = tank.reagents.reagent_list[1]
+	var/reagent_value = FLOOR(R.volume * R.supply_conversion_value, 1)
+
+	return reagent_value
+
+/datum/element/sellable/trolley_tank/calculate_sell_quantity(obj/source)
+	var/obj/vehicle/train/trolley_tank/tank = source
+	if(!tank.reagents || tank.reagents.reagent_list.len == 0)
+		return "0u "
+	var/datum/reagent/R = tank.reagents.reagent_list[1]
+	return "[R.name] [tank.reagents.total_volume]u "
+
+/datum/element/sellable/trolley_tank/sell(obj/source, var/datum/exported_crate/EC, var/in_crate)
+	. = ..()
+	var/obj/vehicle/train/trolley_tank/tank = source
+	if(. && tank.reagents?.reagent_list?.len)
+		// Update end round data, has nothing to do with actual cargo sales
+		var/datum/reagent/R = tank.reagents.reagent_list[1]
+		var/reagent_value = FLOOR(R.volume * R.supply_conversion_value, 1)
+		if(R.industrial_use)
+			if(isnull(GLOB.refined_chems_sold[R.industrial_use]))
+				var/list/data = list()
+				data["units"] = FLOOR(R.volume, 1)
+				data["value"] = reagent_value
+				GLOB.refined_chems_sold[R.industrial_use] = data
+			else
+				GLOB.refined_chems_sold[R.industrial_use]["units"] += FLOOR(R.volume, 1)
+				GLOB.refined_chems_sold[R.industrial_use]["value"] += reagent_value
