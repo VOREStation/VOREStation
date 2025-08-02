@@ -7,7 +7,6 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 300
-	default_max_vol = 240
 	circuit = /obj/item/circuitboard/industrial_reagent_grinder
 	VAR_PRIVATE/limit = 50
 	VAR_PRIVATE/list/holdingitems = list()
