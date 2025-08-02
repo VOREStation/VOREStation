@@ -34,6 +34,8 @@
 /datum/config_entry/number/walk_speed
 	default = 0
 
+/datum/config_entry/flag/force_random_names
+
 ///Mob specific modifiers. NOTE: These will affect different mob types in different ways
 /datum/config_entry/number/human_delay
 	default = 0

@@ -101,7 +101,7 @@
 	while(reaction_occurred)
 	for(var/decl/chemical_reaction/C as anything in effect_reactions)
 		C.post_reaction(src)
-		#ifdef UNIT_TEST
+		#ifdef UNIT_TESTS
 		SEND_SIGNAL(src, COMSIG_UNITTEST_DATA, list(C))
 		#endif
 	update_total()

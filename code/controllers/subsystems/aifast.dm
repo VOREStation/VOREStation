@@ -1,10 +1,13 @@
 SUBSYSTEM_DEF(aifast)
 	name = "AI (Fast)"
-	init_order = INIT_ORDER_AI_FAST
 	priority = FIRE_PRIORITY_AI
 	wait = 0.25 SECONDS // Every quarter second
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+
+	dependencies = list(
+		/datum/controller/subsystem/ai
+	)
 
 	var/list/processing = list()
 	var/list/currentrun = list()

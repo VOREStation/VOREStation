@@ -932,8 +932,8 @@
 
 	//check for nuke disks
 	if(client && stat != DEAD) //if they are clientless and dead don't bother, the parent will treat them as any other container
-		if(ticker && istype(ticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
-			var/datum/game_mode/nuclear/G = ticker.mode
+		if(SSticker && istype(SSticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
+			var/datum/game_mode/nuclear/G = SSticker.mode
 			if(G.check_mob(src))
 				if(x <= TRANSITIONEDGE)
 					inertia_dir = 4
@@ -1429,7 +1429,7 @@
 		"})
 
 /mob/living/update_gravity(has_gravity)
-	if(!ticker)
+	if(!SSticker)
 		return
 	if(has_gravity)
 		clear_alert("weightless")

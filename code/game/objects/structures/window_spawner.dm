@@ -27,7 +27,7 @@
 	return FALSE
 
 /obj/effect/wingrille_spawn/Initialize(mapload)
-	if(win_path && ticker && ticker.current_state < GAME_STATE_PLAYING)
+	if(win_path && SSticker && SSticker.current_state < GAME_STATE_PLAYING)
 		activate()
 	..()
 	return INITIALIZE_HINT_QDEL

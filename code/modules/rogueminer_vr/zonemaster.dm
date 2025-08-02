@@ -70,8 +70,8 @@
 
 	//Add the core to the asteroid's map
 	rm_controller.dbg("ZM(ga): Starting core generation for [A.coresize] size core..")
-	for(var/x = 1; x <= A.coresize, x++)
-		for(var/y = 1; y <= A.coresize, y++)
+	for(var/x = 1, x <= A.coresize, x++)
+		for(var/y = 1, y <= A.coresize, y++)
 			rm_controller.dbg("ZM(ga): Doing core-relative [x],[y] at [A.coresize+x],[A.coresize+y], [A.type_wall].")
 			A.spot_add(A.coresize+x, A.coresize+y, A.type_wall)
 

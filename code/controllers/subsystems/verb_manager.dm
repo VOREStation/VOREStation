@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(verb_manager)
 
 	//we want unit tests to be able to directly call verbs that attempt to queue, and since unit tests should test internal behavior, we want the queue
 	//to happen as if it was actually from player input if its called on a mob.
-#ifdef UNIT_TEST
+#ifdef UNIT_TESTS
 	if(QDELETED(usr) && ismob(incoming_callback.object))
 		incoming_callback.user = WEAKREF(incoming_callback.object)
 		var/datum/callback/new_us = CALLBACK(arglist(list(GLOBAL_PROC, GLOBAL_PROC_REF(_queue_verb)) + args.Copy()))
@@ -120,7 +120,7 @@ SUBSYSTEM_DEF(verb_manager)
 		return TRUE
 
 	if((usr.client?.holder && !can_queue_admin_verbs) \
-	|| (!subsystem_initialized && !(flags & SS_NO_INIT)) \
+	|| (!initialized && !(flags & SS_NO_INIT)) \
 	|| FOR_ADMINS_IF_VERBS_FUCKED_immediately_execute_all_verbs \
 	|| !(runlevels & Master.current_runlevel))
 		return FALSE
