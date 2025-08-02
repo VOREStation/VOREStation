@@ -234,6 +234,7 @@
 #include "code\_global_vars\time_vars.dm"
 #include "code\_global_vars\typecache.dm"
 #include "code\_global_vars\lists\flavor_misc.dm"
+#include "code\_global_vars\lists\icons.dm"
 #include "code\_global_vars\lists\logging.dm"
 #include "code\_global_vars\lists\mapping.dm"
 #include "code\_global_vars\lists\misc.dm"
