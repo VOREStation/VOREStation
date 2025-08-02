@@ -7,6 +7,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 300
+	default_max_vol = 240
 	circuit = /obj/item/circuitboard/industrial_reagent_grinder
 	VAR_PRIVATE/limit = 50
 	VAR_PRIVATE/list/holdingitems = list()
@@ -19,6 +20,12 @@
 	// Update neighbours and self for state
 	update_neighbours()
 	update_icon()
+
+/obj/machinery/reagent_refinery/grinder/Destroy()
+	. = ..()
+	for(var/obj/O in holdingitems)
+		O.forceMove(get_turf(src))
+	holdingitems.Cut()
 
 /obj/machinery/reagent_refinery/grinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	. = ..()
@@ -67,6 +74,9 @@
 	// Needs to be sheet, ore, or grindable reagent containing things
 	if(!GLOB.sheet_reagents[O.type] && !GLOB.ore_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
 		to_chat(user, "\The [O] is not suitable for blending.")
+		return FALSE
+	if(O.reagents && O.reagents.maximum_volume >= reagents.maximum_volume)
+		to_chat(user, "\The [O] is too big to blend.")
 		return FALSE
 
 	user.drop_from_inventory(O,src)
