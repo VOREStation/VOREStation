@@ -1,0 +1,8 @@
+2025-08-01:
+  ShadowLarkens:
+  - image: Made the body scanner actually show an outline of the person inside it.
+2025-08-02:
+  ShadowLarkens:
+  - bugfix: loadout system not working until you switch back and forth
+  Willburd:
+  - code_imp: weak_reference added to blacklisted copyvars

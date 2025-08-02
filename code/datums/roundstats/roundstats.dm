@@ -26,7 +26,7 @@ GLOBAL_VAR_INIT(prey_absorbed_roundstat, 0)		//VOREStation Edit - Obviously
 GLOBAL_VAR_INIT(prey_digested_roundstat, 0)		//VOREStation Edit - Obviously
 GLOBAL_VAR_INIT(items_digested_roundstat, 0)	//VOREStation Edit - Obviously
 GLOBAL_LIST_EMPTY(security_printer_tickets)		//VOREStation Edit
-
+GLOBAL_LIST_EMPTY(refined_chems_sold)
 
 /hook/roundend/proc/RoundTrivia()//bazinga
 	var/list/valid_stats_list = list() //This is to be populated with the good shit
@@ -72,7 +72,6 @@ GLOBAL_LIST_EMPTY(security_printer_tickets)		//VOREStation Edit
 			else
 				good_num = 0
 
-	//VOREStation Add Start - Vore stats lets gooooo
 	if(GLOB.prey_eaten_roundstat > 0)
 		valid_stats_list.Add("A total of [GLOB.prey_eaten_roundstat] individuals were eaten today!")
 	if(GLOB.prey_digested_roundstat > 0)
@@ -81,7 +80,24 @@ GLOBAL_LIST_EMPTY(security_printer_tickets)		//VOREStation Edit
 		valid_stats_list.Add("A total of [GLOB.prey_absorbed_roundstat] individuals were absorbed today!")
 	if(GLOB.items_digested_roundstat > 0)
 		valid_stats_list.Add("A total of [GLOB.items_digested_roundstat] items were digested today!")
-	//VOREStation Add End
+
+	var/points = 0
+	var/units = 0
+	if(GLOB.refined_chems_sold && GLOB.refined_chems_sold.len > 0)
+		valid_stats_list.Add(span_warning("The station exported:"))
+
+		for(var/D in GLOB.refined_chems_sold)
+			units += GLOB.refined_chems_sold[D]["units"]
+			points += GLOB.refined_chems_sold[D]["value"]
+
+			if(GLOB.refined_chems_sold[D]["units"] >= 1000) // Don't spam the list
+				var/dols = GLOB.refined_chems_sold[D]["value"] * SSsupply.points_per_money
+				dols = FLOOR(dols * 100,1) / 100 // Truncate decimals
+				valid_stats_list.Add("[GLOB.refined_chems_sold[D]["units"]]u of [D], for [GLOB.refined_chems_sold[D]["value"]] points! A total of [dols] [dols > 1 ? "thalers" : "thaler"]")
+
+		var/end_dols = points * SSsupply.points_per_money
+		end_dols = FLOOR(end_dols * 100,1) / 100 // Truncate decimals
+		valid_stats_list.Add("For a total of: [points] points, or [end_dols] [end_dols > 1 ? "thalers" : "thaler"]!")
 
 	if(LAZYLEN(valid_stats_list))
 		to_world(span_world("Shift trivia!"))

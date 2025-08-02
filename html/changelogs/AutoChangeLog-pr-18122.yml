@@ -1,0 +1,4 @@
+author: "Reagent Refinery Project"
+delete-after: True
+changes:
+  - qol: "Gas refinery now uses coolant instead of frost oil."
