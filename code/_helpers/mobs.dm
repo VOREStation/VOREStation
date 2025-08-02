@@ -279,6 +279,8 @@ Proc for attack log creation, because really why not
 	if (progress)
 		progbar = new(user, delay, target)
 
+	SEND_SIGNAL(user, COMSIG_DO_AFTER_BEGAN)
+
 	var/endtime = world.time + delay
 	var/starttime = world.time
 
@@ -331,6 +333,7 @@ Proc for attack log creation, because really why not
 
 	if(progbar)
 		qdel(progbar)
+	SEND_SIGNAL(user, COMSIG_DO_AFTER_ENDED)
 
 /atom/proc/living_mobs(var/range = world.view)
 	var/list/viewers = oviewers(src,range)
