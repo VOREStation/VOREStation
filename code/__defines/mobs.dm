@@ -486,7 +486,9 @@
 
 #define VIS_SOULCATCHER		35
 
-#define VIS_COUNT			35 //Must be highest number from above.
+#define VIS_EVENT_INVIS		36
+
+#define VIS_COUNT			36 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100
