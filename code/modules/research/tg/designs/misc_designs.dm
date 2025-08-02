@@ -119,3 +119,16 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/disk/botany
+	name = "flora data disk"
+	desc = "A small disk used for carrying data on plant genetics."
+	id = "disk_botany"
+	// req_tech = list(TECH_DATA = 2, TECH_BIO = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 30, MAT_GLASS = 10, MAT_URANIUM = 5)
+	build_path = /obj/item/disk/botany
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
