@@ -138,6 +138,7 @@
 /// Test that makes sure that chemical reactions do not conflict
 /datum/unit_test/chemical_reactions_shall_not_conflict
 	var/obj/fake_beaker = null
+	var/obj/distilling_tester/dist_tester = null
 	var/list/result_reactions = list()
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/Run()
@@ -167,8 +168,8 @@
 			fake_beaker.reagents.maximum_volume = 5000
 		else if(istype(CR, /decl/chemical_reaction/distilling))
 			// distilling
-			var/obj/distilling_tester/D = new()
-			qdel_swap(fake_beaker, D)
+			dist_tester = new()
+			qdel_swap(fake_beaker, dist_tester)
 			fake_beaker.reagents.maximum_volume = 5000
 		else
 			// regular beaker
@@ -218,8 +219,8 @@
 		// Check distillation at 10 points along its temperature range!
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
-		var/obj/distilling_tester/DD = fake_beaker
-		DD.test_distilling(CR,temp_test)
+		dist_tester = fake_beaker
+		dist_tester.test_distilling(CR,temp_test)
 
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return FALSE // Distilling success
