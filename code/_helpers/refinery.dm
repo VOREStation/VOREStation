@@ -24,7 +24,7 @@
 						R.add_reagent(sheet_components, (amount_to_take*REAGENTS_PER_SHEET))
 					continue
 
-		if(GLOB.ore_reagents[O.type])
+		else if(GLOB.ore_reagents[O.type])
 			var/obj/item/ore/D = O
 			if(istype(D))
 				var/list/ore_components = GLOB.ore_reagents[D.type]
@@ -39,12 +39,17 @@
 						R.add_reagent(ore_components, REAGENTS_PER_ORE)
 					continue
 
-		if(O.reagents)
-			O.reagents.trans_to(R, min(O.reagents.total_volume, remaining_volume), force_open_container = TRUE)
+		else if(O.reagents && O.reagents.total_volume > 0)
+			O.reagents.trans_to_obj(R.my_atom, min(O.reagents.total_volume, remaining_volume))
 			if(O.reagents.total_volume == 0)
 				holdingitems -= O
 				qdel(O)
 			if (R.total_volume >= R.maximum_volume)
 				break
+
+		else
+			// Cronch
+			holdingitems -= O
+			qdel(O)
 
 	return (R.total_volume > start_volume)
