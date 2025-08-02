@@ -49,6 +49,7 @@ export const BeaconLocator = (props) => {
             <LabeledList.Item label="Frequency">
               <NumberInput
                 animated
+                tickWhileDragging
                 unit="kHz"
                 step={0.2}
                 stepPixelSize={10}
@@ -56,7 +57,7 @@ export const BeaconLocator = (props) => {
                 maxValue={maxFrequency / 10}
                 value={rawfreq / 10}
                 format={(value) => toFixed(value, 1)}
-                onDrag={(value: number) =>
+                onChange={(value: number) =>
                   act('setFrequency', {
                     freq: round(value * 10, 0),
                   })
