@@ -155,7 +155,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	if(!mind)
 		return
 	//The current mob is made a changeling AND the mind is made a changeling.
-	var/datum/component/antag/changeling/comp = LoadComponent(/datum/component/antag/changeling)
+	var/datum/component/antag/changeling/comp = LoadComponent(/datum/component/antag/changeling, TRUE)
 	mind.antag_holder.changeling = comp
 	var/lesser_form = !ishuman(src)
 
@@ -423,10 +423,23 @@ var/list/datum/power/changeling/powerinstances = list()
 
 
 //Debug item. Here because during debugging I DO NOT want to have to open the player panel 5000 times.
-/obj/item/toy/katana/changeling_debug
+/obj/item/changeling_debug
 	name = "Katana of the Changeling"
 	desc = "A katana imbued with special powers. It is said that those who wield it will become a changeling."
-/obj/item/toy/katana/changeling_debug/attack_self(mob/user)
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "katana"
+	item_state = "katana"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
+		)
+	slot_flags = SLOT_BELT | SLOT_BACK
+	force = 5
+	throwforce = 5
+	w_class = ITEMSIZE_NORMAL
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
+
+/obj/item/changeling_debug/attack_self(mob/user)
 	user.make_changeling()
 
 ///Changeling Panel
