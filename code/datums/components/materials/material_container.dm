@@ -714,16 +714,15 @@
 		return sheet_amt * SHEET_MATERIAL_AMOUNT
 	return FALSE
 
-
 /datum/component/material_container/tgui_static_data(mob/user)
-	var/list/data = list()
+	var/list/data = ..()
 	data["SHEET_MATERIAL_AMOUNT"] = SHEET_MATERIAL_AMOUNT
 	return data
-
 
 /// List format is list(list(name = ..., amount = ..., ref = ..., etc.), list(...))
 /datum/component/material_container/tgui_data(mob/user, skip_empty = FALSE)
 	var/list/data = list()
+
 
 	for(var/datum/material/material as anything in materials)
 		var/amount = materials[material]
