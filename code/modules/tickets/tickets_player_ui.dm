@@ -43,10 +43,10 @@
 			var/sane_message = sanitize(params["msg"])
 			switch(T.level)
 				if (0)
-					ui.user.client.cmd_mentor_pm(T.initiator, sane_message, T)
+					ui.user.client.cmd_mentor_pm(T.handler_ref?.resolve(), sane_message, T)
 					return TRUE
 				if (1)
-					ui.user.client.cmd_admin_pm(T.initiator, sane_message, T)
+					ui.user.client.cmd_admin_pm(T.handler_ref?.resolve(), sane_message, T)
 					return TRUE
 
 			. = TRUE
