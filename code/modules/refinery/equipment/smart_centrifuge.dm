@@ -65,43 +65,40 @@
 		to_chat(user, "<span class='notice'>You activate \the [src].</span>")
 		working = TRUE
 		flags ^= OPENCONTAINER
-		spawn(200) // Do it itself
-			while(reagents.reagent_list.len > 0)
-				for(var/datum/reagent/RL in reagents.reagent_list)
-					// Handle special bottle types
-					var/obj/item/reagent_containers/CD
-					if(force_canister || (RL.volume >= 500 && !force_bottle))
-						CD = new /obj/item/reagent_containers/chem_canister(src)
-						var/obj/item/reagent_containers/chem_canister/CHEM = CD
-						CHEM.set_canister(RL.name,RL.id)
-					else if(RL.volume > 0)
-						CD = new /obj/item/reagent_containers/glass/bottle(src)
-						CD.name = "[RL.name] bottle"
-						CD.icon_state = "bottle-1"
-					if(CD)
-						// Lets solve how much we need to drain into the container...
-						var/remain_vol = RL.volume - CD.reagents.maximum_volume
-						if(remain_vol < 0)
-							remain_vol = 0
-						var/trans_vol = RL.volume - remain_vol
-						// Transfer if possible
-						if(trans_vol > 0)
-							playsound(src, 'sound/machines/reagent_dispense.ogg', 25, 1)
-							CD.reagents.add_reagent( RL.id, trans_vol, RL.data, FALSE)
-							reagents.remove_reagent( RL.id, trans_vol, FALSE )
-							CD.update_icon()
-							CD.forceMove(loc) // Drop it outside
-							CD.pixel_x = rand(-7, 7) // random position
-							CD.pixel_y = rand(-7, 7)
-							sleep(10)
-						else
-							qdel(CD) // Nah.. nothing...
-			sleep(10)
-			visible_message("\The [src] finishes processing.")
-			playsound(src, 'sound/machines/biogenerator_end.ogg', 50, 1)
-			playsound(src, 'sound/machines/buttonbeep.ogg', 50, 1)
-			working = FALSE
-			flags |= OPENCONTAINER
+	addtimer(CALLBACK(src, PROC_REF(internal_reagent_seperate),force_canister,force_bottle), 10 SECONDS, TIMER_DELETE_ME)
+
+/obj/machinery/smart_centrifuge/proc/internal_reagent_seperate(var/force_canister,var/force_bottle)
+	if(reagents.reagent_list.len <= 0)
+		visible_message("\The [src] finishes processing.")
+		playsound(src, 'sound/machines/biogenerator_end.ogg', 50, 1)
+		playsound(src, 'sound/machines/buttonbeep.ogg', 50, 1)
+		working = FALSE
+		flags |= OPENCONTAINER
+		return
+
+	// Seperate out reagents
+	for(var/datum/reagent/RL in reagents.reagent_list)
+		// Handle special bottle types
+		if(!RL.volume)
+			continue
+		var/obj/item/reagent_containers/CD
+		if(force_canister || (RL.volume >= 500 && !force_bottle))
+			CD = new /obj/item/reagent_containers/chem_canister(src)
+			var/obj/item/reagent_containers/chem_canister/CHEM = CD
+			CHEM.set_canister(RL.name,RL.id)
+		else
+			CD = new /obj/item/reagent_containers/glass/bottle(src)
+			CD.name = "[RL.name] bottle"
+			CD.icon_state = "bottle-1"
+		// Transfer if possible
+		playsound(src, 'sound/machines/reagent_dispense.ogg', 25, 1)
+		reagents.trans_id_to( CD, RL.id, min(RL.volume,CD.reagents.maximum_volume), TRUE)
+		CD.update_icon()
+		CD.forceMove(loc) // Drop it outside
+		CD.pixel_x = rand(-7, 7) // random position
+		CD.pixel_y = rand(-7, 7)
+		break
+	addtimer(CALLBACK(src, PROC_REF(internal_reagent_seperate),force_canister,force_bottle), 1 SECOND, TIMER_DELETE_ME)
 
 /obj/machinery/smart_centrifuge/MouseDrop_T(var/atom/movable/C, mob/user as mob)
 	if(user.buckled || user.stat || user.restrained() || !Adjacent(user) || !user.Adjacent(C) || !istype(C) || (user == C && !user.canmove))
