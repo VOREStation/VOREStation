@@ -1,0 +1,9 @@
+author: "Cameron-The-Raven"
+delete-after: True
+changes:
+  - sound: "Point Defense Turrets now make sounds when they fire"
+  - rscadd: "Point Defense Turrets now have a new effect when they fire"
+  - qol: "Point defense turrets now only pull energy from the turret matrix."
+  - balance: "Point defense turrets now turn slower. They can still hit meteors just fine. Upgrading the turrets is also now more worthwhile!"
+  - maptweak: "Mappers no longer need to have cables running out to point turrets"
+  - bugfix: "fixes a bug where turrets could not be adjusted if they were in an unpowered area"
