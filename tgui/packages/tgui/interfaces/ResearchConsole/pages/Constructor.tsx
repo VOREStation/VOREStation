@@ -338,12 +338,13 @@ const MatStorageTab = (props: {
               <Stack>
                 <Stack.Item>
                   <NumberInput
+                    tickWhileDragging
                     value={matEjectStates[mat] || 0}
                     minValue={0}
                     maxValue={Math.floor(amount / data.sheet_material_amount)}
                     step={1}
                     width="100px"
-                    onDrag={(val) => {
+                    onChange={(val) => {
                       setMatEjectStates({
                         ...matEjectStates,
                         [mat]: val,

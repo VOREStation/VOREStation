@@ -280,12 +280,13 @@ const NanoMapZoomer = (props: NanoMapZoomerProps) => {
       <LabeledList>
         <LabeledList.Item label="Zoom">
           <Slider
+            tickWhileDragging
             minValue={1}
             maxValue={8}
             stepPixelSize={10}
             format={(v) => `${v}x`}
             value={props.zoom}
-            onDrag={(e, v) => props.onZoom(e, v)}
+            onChange={(e, v) => props.onZoom(e, v)}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Z-Level">

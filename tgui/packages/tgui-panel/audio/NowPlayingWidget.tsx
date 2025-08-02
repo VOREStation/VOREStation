@@ -100,13 +100,14 @@ export const NowPlayingWidget = (props) => {
       )}
       <Stack.Item mx={0.5} fontSize="0.9em">
         <Knob
+          tickWhileDragging
           minValue={0}
           maxValue={1}
           value={settings.adminMusicVolume}
           step={0.0025}
           stepPixelSize={1}
           format={(value) => `${toFixed(value * 100)}%`}
-          onDrag={(e, value) =>
+          onChange={(e, value) =>
             settings.update({
               adminMusicVolume: value,
             })
