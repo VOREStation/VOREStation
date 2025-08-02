@@ -33,8 +33,15 @@
 
 /datum/rig_vision/material
 	mode = "material scanner"
+
 /datum/rig_vision/material/New()
 	glasses = new /obj/item/clothing/glasses/material
+
+/datum/rig_vision/graviton
+	mode = "graviton scanner"
+
+/datum/rig_vision/graviton/New()
+	glasses = new /obj/item/clothing/glasses/graviton
 
 /datum/rig_vision/sechud
 	mode = "security HUD"
@@ -85,8 +92,7 @@
 	interface_name = "multi optical visor"
 	interface_desc = "An integrated multi-mode vision system."
 
-	vision_modes = list(/datum/rig_vision/meson,
-						/datum/rig_vision/material,
+	vision_modes = list(/datum/rig_vision/graviton,
 						/datum/rig_vision/nvg,
 						/datum/rig_vision/thermal,
 						/datum/rig_vision/sechud,
@@ -117,6 +123,19 @@
 	interface_desc = "An integrated material scanner."
 
 	vision_modes = list(/datum/rig_vision/material)
+
+/obj/item/rig_module/vision/graviton
+
+	name = "hardsuit graviton visor"
+	desc = "A layered, translucent visor system for a hardsuit."
+	icon_state = "optics"
+
+	usable = 0
+
+	interface_name = "graviton visor"
+	interface_desc = "An integrated graviton scanner."
+
+	vision_modes = list(/datum/rig_vision/graviton)
 
 /obj/item/rig_module/vision/mining
 
