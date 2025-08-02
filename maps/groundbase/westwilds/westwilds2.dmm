@@ -200,7 +200,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
 "br" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "axolotl_pd"
 	},
 /turf/simulated/floor/plating,
@@ -5895,7 +5895,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_hallway)
 "VR" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "axolotl_pd"
 	},
 /turf/simulated/floor/plating,
@@ -5912,7 +5912,7 @@
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)
 "VX" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "axolotl_pd"
 	},
 /turf/simulated/floor/plating,
