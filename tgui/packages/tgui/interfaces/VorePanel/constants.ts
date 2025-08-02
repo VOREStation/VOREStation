@@ -40,6 +40,7 @@ export const reagentToColor = {
   Biomass: 'teal',
   'Concentrated Radium': 'orange',
   Tricordrazine: 'green',
+  Ethanol: undefined,
 };
 
 export const digestModeToPreyMode = {
