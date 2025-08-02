@@ -9,6 +9,8 @@
 	reagent_state = LIQUID
 	color = "#ff2424"
 	strength = 10
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/toxin/plantcolony
 	name = REAGENT_PLANTCOLONY
@@ -18,6 +20,8 @@
 	reagent_state = LIQUID
 	color = "#7ce01f"
 	strength = 10
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/nutriment/grubshake
 	name = REAGENT_GRUBSHAKE
@@ -352,9 +356,6 @@
 
 	glass_name = REAGENT_SCSATW
 	glass_desc = "The best accessory to daydrinking."
-
-/datum/reagent/drink
-	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 
 /datum/reagent/drink/choccymilk
 	name = REAGENT_CHOCCYMILK

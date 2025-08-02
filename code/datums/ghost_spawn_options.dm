@@ -161,7 +161,7 @@
 		if(!user.mind) //No mind yet, aka haven't played in this round.
 			user.mind = new(user.key)
 
-		user.mind.name = name
+		user.mind.name = user.name
 		user.mind.current = user
 		user.mind.active = TRUE
 
@@ -203,7 +203,7 @@
 		if(!user.mind) //No mind yet, aka haven't played in this round.
 			user.mind = new(user.key)
 
-		user.mind.name = name
+		user.mind.name = user.name
 		user.mind.current = user
 		user.mind.active = TRUE
 

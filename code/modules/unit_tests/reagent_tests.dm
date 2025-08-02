@@ -28,6 +28,10 @@
 		TEST_ASSERT(!collection_id[R.id], "[Rpath]: Reagents - reagent ID \"[R.id]\" is not unique, used first in [collection_id[R.id]].")
 		collection_id[R.id] = R.type
 
+		TEST_ASSERT(R.supply_conversion_value, "[Rpath]: Reagents - reagent ID \"[R.id]\" does not have supply_conversion_value set.")
+		TEST_ASSERT(R.industrial_use && R.industrial_use != "", "[Rpath]: Reagents - reagent ID \"[R.id]\" does not have industrial_use set.")
+		TEST_ASSERT_NOTEQUAL(R.description, REAGENT_DESC_DEVELOPER_WARNING, "[Rpath]: Reagents - reagent description unset.")
+
 		qdel(R)
 
 /// Test that makes sure that chemical reactions use and produce valid reagents
@@ -128,9 +132,7 @@
 			fake_beaker.reagents.maximum_volume = 5000
 		else if(istype(CR, /decl/chemical_reaction/distilling))
 			// distilling
-			var/decl/chemical_reaction/distilling/DR = CR
-			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/D = new()
-			D.current_temp = DR.temp_range[1]
+			var/obj/distilling_tester/D = new()
 			qdel_swap(fake_beaker, D)
 			fake_beaker.reagents.maximum_volume = 5000
 		else
@@ -152,24 +154,44 @@
 		TEST_FAIL("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhib = list())
-	// clear for inhibitor searches
-	fake_beaker.reagents.clear_reagents()
-	result_reactions.Cut()
-
 	var/scale = 1
 	if(CR.result_amount < 1)
 		scale = 1 / CR.result_amount // Create at least 1 unit
 
-	if(inhib.len) // taken from argument and not reaction! Put in FIRST!
-		for(var/RR in inhib)
-			fake_beaker.reagents.add_reagent(RR, inhib[RR] * scale)
-	if(CR.catalysts) // Required for reaction
-		for(var/RR in CR.catalysts)
-			fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
-	if(CR.required_reagents)
-		for(var/RR in CR.required_reagents)
-			fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
+	// Weird loop here, but this is used to test both instant and distilling reactions
+	// Instants will meet the while() condition on the first loop and go to the next stuff
+	// but distilling will repeat over and over until the temperature test is finished!
+	var/temp_test = 0
+	do
+		// clear for inhibitor searches
+		fake_beaker.reagents.clear_reagents()
+		result_reactions.Cut()
 
+		if(inhib.len) // taken from argument and not reaction! Put in FIRST!
+			for(var/RR in inhib)
+				fake_beaker.reagents.add_reagent(RR, inhib[RR] * scale)
+		if(CR.catalysts) // Required for reaction
+			for(var/RR in CR.catalysts)
+				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
+		if(CR.required_reagents)
+			for(var/RR in CR.required_reagents)
+				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
+
+		if(!istype(CR, /decl/chemical_reaction/distilling))
+			break // Skip the next section if we're not distilling
+
+		// Check distillation at 10 points along its temperature range!
+		// This is so multiple reactions with the same requirements, but different temps, can be tested.
+		temp_test += 0.1
+		var/obj/distilling_tester/DD = fake_beaker
+		DD.test_distilling(CR,temp_test)
+
+		if(fake_beaker.reagents.has_reagent(CR.result))
+			return FALSE // Distilling success
+
+	while(temp_test > 1)
+
+	// Check beaker to see if we reached our goal!
 	if(fake_beaker.reagents.has_reagent(CR.result))
 		return FALSE // INSTANT SUCCESS!
 
@@ -227,3 +249,38 @@
 
 		for(var/reg_id in results)
 			TEST_ASSERT(SSchemistry.chemical_reagents[reg_id], "[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
+
+// Used to test distillations without hacking the other machinery's code up
+/obj/distilling_tester
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "cartridge"
+	var/datum/gas_mixture/GM = new()
+	var/current_temp = 0
+
+/obj/distilling_tester/Initialize(mapload)
+	create_reagents(5000,/datum/reagents/distilling)
+	. = ..()
+
+/obj/distilling_tester/return_air()
+	return GM
+
+/obj/distilling_tester/proc/test_distilling(var/decl/chemical_reaction/distilling/D, var/temp_prog)
+	qdel_swap(GM,new())
+	if(D.require_xgm_gas)
+		GM.gas[D.require_xgm_gas] = 100
+	else
+		if(D.rejects_xgm_gas == GAS_N2)
+			GM.gas[GAS_O2] = 100
+		else
+			GM.gas[GAS_N2] = 100
+	if(D.minimum_xgm_pressure)
+		GM.temperature = (D.minimum_xgm_pressure * CELL_VOLUME) / (GM.gas[D.require_xgm_gas] * R_IDEAL_GAS_EQUATION)
+
+	// Try this 10 times, We need to know if something is blocking at multiple temps.
+	// If it passes unit test, it might still be awful to make though, gotta find the right gas mix!
+	current_temp = LERP( D.temp_range[1], D.temp_range[2], temp_prog)
+	reagents.handle_reactions()
+
+/obj/distilling_tester/Destroy(force, ...)
+	qdel_null(GM)
+	. = ..()

@@ -44,7 +44,7 @@
 		ORE_SAND = 2
 		)
 	product = /obj/item/stack/material/glass/phoronglass
-/*
+
 /datum/alloy/bronze
 	metaltag = MAT_BRONZE
 	requires = list(
@@ -52,4 +52,3 @@
 		ORE_TIN = 1
 		)
 	product = /obj/item/stack/material/bronze
-*/
