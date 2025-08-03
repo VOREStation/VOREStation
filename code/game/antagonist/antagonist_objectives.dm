@@ -46,7 +46,6 @@
 	round for everybody else.", "Ambitions", mind.ambitions, MAX_MESSAGE_LEN, TRUE)
 	if(isnull(new_ambitions))
 		return
-	new_ambitions = new_ambitions
 	mind.ambitions = new_ambitions
 	if(new_ambitions)
 		to_chat(src, span_notice("You've set your goal to be '[new_ambitions]'."))
