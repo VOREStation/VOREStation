@@ -881,7 +881,7 @@
 /datum/species/hi_zoxxen
 	name = SPECIES_ZORREN_HIGH
 	name_plural = "Zorren"
-	icobase = 'icons/mob/human_races/r_fox_vr.dmi'
+	icobase = 'icons/mob/human_races/r_fox_light_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_fox.dmi'
 	tail = "tail"
 	icobase_tail = 1
@@ -917,6 +917,9 @@
 	blood_reagents = REAGENT_ID_COPPER
 	reagent_tag = IS_ZORREN
 	color_mult = 1
+	default_custom_base = SPECIES_ZORREN_HIGH
+
+	selects_bodytype = SELECTS_BODYTYPE_ZORREN
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
@@ -925,6 +928,15 @@
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
+
+/datum/species/hi_zoxxen/get_race_key()
+	var/datum/species/real = GLOB.all_species[base_species]
+	return real.race_key
+
+/datum/species/hi_zoxxen/dark    //alternate sprite base for zorren
+	name = SPECIES_ZORREN_DARK
+	icobase = 'icons/mob/human_races/r_fox_vr.dmi'
+	spawn_flags = SPECIES_IS_RESTRICTED
 
 /datum/species/vulpkanin
 	name = SPECIES_VULPKANIN
