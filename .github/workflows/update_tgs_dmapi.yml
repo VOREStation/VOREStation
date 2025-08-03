@@ -63,8 +63,8 @@ jobs:
           gh pr create \
             --base master \
             --head tgs-dmapi-update \
-            --title "Automatic TGS DMAPI Update"
-            --body "This pull request updates the TGS DMAPI to the latest version. Please note any changes that may be breaking or unimplemented in your codebase by checking what changes are in the definitions file: code/__DEFINES/tgs.dm before merging.\n\n${{ steps.dmapi-update.outputs.release-notes }}"
+            --title "Automatic TGS DMAPI Update" \
+            --body "This pull request updates the TGS DMAPI to the latest version. Please note any changes that may be breaking or unimplemented in your codebase by checking what changes are in the definitions file: code/__DEFINES/tgs.dm before merging.\n\n${{ steps.dmapi-update.outputs.release-notes }}" \
             --label "Tools"
         env:
           GITHUB_TOKEN: ${{ steps.app-token-generation.outputs.token || secrets.GITHUB_TOKEN }}
