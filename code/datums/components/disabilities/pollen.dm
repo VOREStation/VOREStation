@@ -53,13 +53,13 @@
 
 	// scan irritants!
 	if(things.len)
-		if(/obj/structure/flora in things)
+		if(locate(/obj/structure/flora) in things)
 			trigger_allergy()
 			return
-		if(/obj/effect/plant in things)
+		if(locate(/obj/effect/plant) in things)
 			trigger_allergy()
 			return
-		if(/obj/item/toy/bouquet in things)
+		if(locate(/obj/item/toy/bouquet) in things)
 			trigger_allergy()
 			return
 		for(var/obj/machinery/portable_atmospherics/hydroponics/irritant_tray in things)

@@ -553,8 +553,9 @@
 
 /datum/trait/neutral/allergy/pollen
 	name = "Allergy: Pollen"
-	desc = "You're highly allergic to pollen and many plants. It's probably best to avoid hydroponics in general. NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	desc = "You're highly allergic to pollen and many plants. It's probably best to avoid hydroponics in general. Be sure to configure your allergic reactions, otherwise you will die touching grass. NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
+	custom_only = FALSE
 	allergen = ALLERGEN_POLLEN // Gee billy...
 	added_component_path = /datum/component/pollen_disability // Why does mom let you have two things?
 
@@ -637,6 +638,7 @@
 	cost = 0
 	custom_only = FALSE
 	reaction = AG_GIBBING
+	hidden = TRUE // Disabled on virgo for obvious reasons
 
 /datum/trait/neutral/allergy_reaction/sneeze
 	name = "Allergy Reaction: Sneezing"
