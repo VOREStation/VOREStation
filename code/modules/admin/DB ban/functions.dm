@@ -189,7 +189,7 @@
 	switch(param)
 		if("reason")
 			if(!value)
-				value = tgui_input_text(user, "Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null, MAX_MESSAGE_LEN)
+				value = tgui_input_text(user, "Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", MAX_MESSAGE_LEN)
 				value = sql_sanitize_text(value)
 				if(!value)
 					to_chat(user, "Cancelled")
