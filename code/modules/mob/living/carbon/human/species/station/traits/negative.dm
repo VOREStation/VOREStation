@@ -565,15 +565,15 @@
 /datum/trait/negative/lonely/proc/handle_loneliness(var/mob/living/carbon/human/H)
 	var/ms = ""
 	if(H.loneliness_stage == escalation_speed)
-		ms = "[pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")]" // Outpost 21 edit - More variety
+		ms = "[pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")]"
 	if(H.loneliness_stage >= 50)
-		ms = "[pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")]" // Outpost 21 edit - More variety
+		ms = "[pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")]"
 	if(H.loneliness_stage >= 250)
-		ms = "[pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")]" // Outpost 21 edit - More variety
+		ms = "[pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")]"
 		if(H.stuttering < hallucination_cap)
 			H.stuttering += 5
 	if(H.loneliness_stage >= warning_cap)
-		ms = span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]")) // Outpost 21 edit - More variety
+		ms = span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]"))
 	if(world.time < H.next_loneliness_time)
 		return
 	if(ms != "")

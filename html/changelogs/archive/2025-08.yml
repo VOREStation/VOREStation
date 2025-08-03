@@ -1,0 +1,51 @@
+2025-08-01:
+  ShadowLarkens:
+  - image: Made the body scanner actually show an outline of the person inside it.
+2025-08-02:
+  ShadowLarkens:
+  - bugfix: loadout system not working until you switch back and forth
+  Willburd:
+  - code_imp: weak_reference added to blacklisted copyvars
+2025-08-03:
+  Cameron-The-Raven:
+  - sound: Point Defense Turrets now make sounds when they fire
+  - rscadd: Point Defense Turrets now have a new effect when they fire
+  - qol: Point defense turrets now only pull energy from the turret matrix.
+  - balance: Point defense turrets now turn slower. They can still hit meteors just
+      fine. Upgrading the turrets is also now more worthwhile!
+  - maptweak: Mappers no longer need to have cables running out to point turrets
+  - bugfix: fixes a bug where turrets could not be adjusted if they were in an unpowered
+      area
+  - bugfix: Science can now make mop tech
+  Kashargul:
+  - code_imp: tgui-core 5.0.0
+  - bugfix: admin ticket replies not being relayed to the chat
+  Reagent Refinery Project:
+  - qol: Gas refinery now uses coolant instead of frost oil.
+  SatinIsle:
+  - qol: Added the ability to use "Transfer Liquids (Vore)" with prey inside of your
+      bellies.
+  - rscadd: Added ethanol as an option for liquid belly reagents.
+  - bugfix: Fixed medical issues not proccing for species that can't be infected.
+  - bugfix: Fixed medical issues so that they can be cured by ingested reagents too.
+  - qol: Zorren now have the option to switch between light furred and dark furred
+      base sprites using "Custom Species Icon" in character setup. The now default
+      light furred sprite is very lightly shaded and mostly white, allowing it to
+      be easily customised for light coloured characters. The dark furred zorren option
+      is same as the old base sprite for those that want to preserve their original
+      sprites and shading. Thank you to tt2 for helping get this to work.
+  Will:
+  - rscadd: Reagent refinery machines
+  - rscadd: Gas cracks for fracking that should be made into pois for caves. Deep
+      drills make them produce gas, fluid pumps get reagents.
+  - rscadd: Re-enabled old ores for future use with the refinery
+  - rscadd: '''Metallic'' shades of paint using titanium dioxide'
+  - rscadd: distillation reactions for making ink, to turn into paint
+  - rscadd: various distillation reactions for reagents previously inaccessible, or
+      only obtainable through other means
+  - rscadd: various "condensing" distillation reactions that turn atmo gas into reagents
+      using frost oil
+  - refactor: Distillation reactions are now required to be done under specific atmospheres.
+      The original distillation reactions can be done under normal atmosphere.
+  - bugfix: add missing fluid pump research
+  - code_imp: Extended unit-test for reagents to respect new distillation
