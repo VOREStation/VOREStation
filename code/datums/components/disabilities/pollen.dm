@@ -1,6 +1,6 @@
 /datum/component/pollen_disability
 	var/mob/living/carbon/human/owner
-	var/allergy_chance = 35
+	var/allergy_chance = 20
 
 /datum/component/pollen_disability/Initialize()
 	if (!ishuman(parent))
