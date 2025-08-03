@@ -1,7 +1,3 @@
-#ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
-#endif
-
 /obj/machinery/beehive
 	name = "beehive"
 	icon = 'icons/obj/beekeeping.dmi'
@@ -168,15 +164,6 @@
 			++trays
 	honeycombs = min(honeycombs + 0.1 * coef * min(trays, 5), length(frames) * 100)
 
-/obj/item/circuitboard/honey_extractor
-	name = T_BOARD("honey_extractor")
-	board_type = new /datum/frame/frame_types/machine
-	build_path = /obj/machinery/honey_extractor
-	req_components = list(
-							/obj/item/stack/cable_coil = 4,
-							/obj/item/stock_parts/motor = 1,
-							/obj/item/stock_parts/console_screen = 1)
-
 /obj/machinery/honey_extractor
 	name = "honey extractor"
 	desc = "A machine used to turn honeycombs on the frame into honey and wax."
@@ -200,7 +187,10 @@
 
 /obj/machinery/honey_extractor/power_change()
 	. = ..()
-	spawn(rand(0,15))
+	var/delay = rand(0,15)
+	if(delay)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), delay)
+		return
 	update_icon()
 
 /obj/machinery/honey_extractor/update_icon()
@@ -230,10 +220,10 @@
 	if(default_deconstruction_crowbar(user, I))
 		return
 	if(stat & NOPOWER)
-		to_chat(user, span_notice("\The [src]s is powerless and can't grant your wishes"))
+		to_chat(user, span_notice("\The [src] is powerless and can't grant your wishes"))
 		return
 	if(panel_open)
-		to_chat(user, span_notice("\The [src]s maintenance panel is open, It would not be safe to turn it on."))
+		to_chat(user, span_notice("\The [src]'s maintenance panel is open, It would not be safe to turn it on."))
 		return
 	else if(istype(I, /obj/item/honey_frame))
 		var/obj/item/honey_frame/H = I
