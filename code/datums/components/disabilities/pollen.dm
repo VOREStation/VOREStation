@@ -34,9 +34,11 @@
 			return
 
 	// Time to ENGAGE THE ALLERGY
-	if(prob(8) && istype(owner.loc,/turf/simulated/floor/grass))
+	if(prob(5) && istype(owner.loc,/turf/simulated/floor/grass))
 		trigger_allergy()
 		return
+
+	// Hand check
 	var/things = list()
 	if(prob(32))
 		if(!isnull(owner.r_hand))
@@ -50,16 +52,20 @@
 		things += orange(2,owner.loc)
 
 	// scan irritants!
-	for(var/obj/machinery/portable_atmospherics/hydroponics/irritanttray in things)
-		if(!irritanttray.dead && !isnull(irritanttray.seed))
+	if(things.len)
+		if(/obj/structure/flora in things)
 			trigger_allergy()
 			return
-	for(var/obj/effect/plant/irritant in things)
-		trigger_allergy()
-		return
-	for(var/obj/item/toy/bouquet/irritant in things)
-		trigger_allergy()
-		return
+		if(/obj/effect/plant/irritant in things)
+			trigger_allergy()
+			return
+		if(/obj/item/toy/bouquet/irritant in things)
+			trigger_allergy()
+			return
+		for(var/obj/machinery/portable_atmospherics/hydroponics/irritanttray in things)
+			if(!irritanttray.dead && !isnull(irritanttray.seed))
+				trigger_allergy()
+				return
 
 /datum/component/pollen_disability/proc/trigger_allergy()
 	to_chat(src, span_danger("[pick("The air feels itchy!","Your face feels uncomfortable!","Your body tingles!")]"))

@@ -800,6 +800,11 @@
 	if(H.species.has_vibration_sense)
 		H.motiontracker_subscribe()
 
+	if(H.species.allergens)
+		H.AddElement(/datum/element/allergy)
+	else
+		H.RemoveElement(/datum/element/allergy)
+
 	return new_copy
 
 //We REALLY don't need to go through every variable. Doing so makes this lag like hell on 515

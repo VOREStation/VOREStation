@@ -670,6 +670,7 @@
 #include "code\datums\diseases\advance\symptoms\weight.dm"
 #include "code\datums\diseases\advance\symptoms\youth.dm"
 #include "code\datums\elements\_element.dm"
+#include "code\datums\elements\allergy.dm"
 #include "code\datums\elements\cleaning.dm"
 #include "code\datums\elements\climbable.dm"
 #include "code\datums\elements\conflict_checking.dm"
