@@ -306,6 +306,13 @@
 	taste_description = "tofu"
 	allergen_type = ALLERGEN_BEANS //Made from soy beans
 
+/datum/reagent/nutriment/protein/fungi
+	name = REAGENT_FUNGI
+	id = REAGENT_ID_FUNGI
+	taste_description = "some sort of mushroom"
+	color = "#979797"
+	allergen_type = ALLERGEN_FUNGI
+
 /datum/reagent/nutriment/protein/seafood
 	name = REAGENT_SEAFOOD
 	id = REAGENT_ID_SEAFOOD

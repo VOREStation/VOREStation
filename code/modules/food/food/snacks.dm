@@ -1088,6 +1088,7 @@
 /obj/item/reagent_containers/food/snacks/mushroomslice/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
+	reagents.add_reagent(REAGENT_ID_FUNGI, 1)
 
 /obj/item/reagent_containers/food/snacks/tomatomeat
 	name = "tomato slice"
@@ -1583,6 +1584,7 @@
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_AMATOXIN, 3)
 	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 1)
+	reagents.add_reagent(REAGENT_ID_FUNGI, 2)
 
 /obj/item/reagent_containers/food/snacks/plump_pie
 	name = "plump pie"
@@ -1597,6 +1599,7 @@
 
 /obj/item/reagent_containers/food/snacks/plump_pie/Initialize(mapload)
 	. = ..()
+	reagents.add_reagent(REAGENT_ID_FUNGI, 2)
 	if(prob(10))
 		name = "exceptional plump pie"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
@@ -1902,6 +1905,7 @@
 /obj/item/reagent_containers/food/snacks/spacylibertyduff/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 6)
+	reagents.add_reagent(REAGENT_ID_FUNGI, 1)
 
 /obj/item/reagent_containers/food/snacks/amanitajelly
 	name = "Amanita Jelly"
@@ -1919,6 +1923,7 @@
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_AMATOXIN, 6)
 	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
+	reagents.add_reagent(REAGENT_ID_FUNGI, 2)
 
 /obj/item/reagent_containers/food/snacks/poppypretzel
 	name = "Poppy pretzel"
@@ -2494,6 +2499,7 @@
 
 /obj/item/reagent_containers/food/snacks/plumphelmetbiscuit/Initialize(mapload)
 	. = ..()
+	reagents.add_reagent(REAGENT_ID_FUNGI, 1)
 	if(prob(10))
 		name = "exceptional plump helmet biscuit"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
@@ -2821,6 +2827,7 @@
 	reagents.add_reagent(REAGENT_ID_TOMATOJUICE, 5)
 	reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 5)
+	reagents.add_reagent(REAGENT_ID_FUNGI, 1)
 
 /obj/item/reagent_containers/food/snacks/bearstew
 	name = "bear stew"
@@ -3969,6 +3976,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 5)
+	reagents.add_reagent(REAGENT_ID_FUNGI, 5)
 
 /obj/item/reagent_containers/food/snacks/slice/mushroompizza
 	name = "Mushroompizza slice"
@@ -4671,6 +4679,7 @@
 /obj/item/reagent_containers/food/snacks/skrellsnacks/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
+	reagents.add_reagent(REAGENT_ID_FUNGI, 1)
 
 /obj/item/reagent_containers/food/snacks/unajerky
 	name = "Moghes Imported Sissalik Jerky"
