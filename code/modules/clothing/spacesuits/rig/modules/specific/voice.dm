@@ -44,7 +44,7 @@
 			voice_holder.active = 0
 			to_chat(usr, span_blue("You disable the speech synthesiser."))
 		if("Set Name")
-			var/raw_choice = tgui_input_text(usr, "Please enter a new name.", voice_holder.voice, MAX_NAME_LEN)
+			var/raw_choice = tgui_input_text(usr, "Please enter a new name.", "Change name", voice_holder.voice, MAX_NAME_LEN)
 			if(!raw_choice)
 				return 0
 			voice_holder.voice = raw_choice
