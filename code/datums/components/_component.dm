@@ -503,5 +503,4 @@
  * Loads lateload data for the component. Things such as preferences, which aren't applied if not done at character-spawn. Must be defined per-component.
  */
 /datum/component/proc/lateload_pref_data()
-	PRIVATE_PROC(TRUE)
 	return
