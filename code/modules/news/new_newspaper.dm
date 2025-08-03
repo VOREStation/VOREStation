@@ -135,7 +135,6 @@ obj/item/newspaper/attackby(obj/item/W as obj, mob/user)
 			to_chat(user, span_blue("There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?"))
 		else
 			var/s = tgui_input_text(user, "Write something", "Newspaper", "", MAX_MESSAGE_LEN)
-			s = sanitize(s)
 			if(!s)
 				return
 			if(!in_range(src, user) && loc != user)
