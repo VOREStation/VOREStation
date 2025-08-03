@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - qol: "Zorren now have the option to switch between light furred and dark furred base sprites using \"Custom Species Icon\" in character setup. The now default light furred sprite is very lightly shaded and mostly white, allowing it to be easily customised for light coloured characters. The dark furred zorren option is same as the old base sprite for those that want to preserve their original sprites and shading. Thank you to tt2 for helping get this to work."
