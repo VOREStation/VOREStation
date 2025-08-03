@@ -44,7 +44,6 @@
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/experimental_welder
 	name = "Experimental welding tool"
