@@ -20,13 +20,13 @@
 
 /obj/item/gold_star_printer/proc/make_star(mob/user)
 
-	var/star_title = sanitize(tgui_input_text(user, "Choose a title for the star, this can be an action or name. The name of the star will read Gold Star for 'Title'.", "Title", max_length = 32))
+	var/star_title = tgui_input_text(user, "Choose a title for the star, this can be an action or name. The name of the star will read Gold Star for 'Title'.", "Title", max_length = 32)
 	if(length(star_title) > 32)
 		tgui_alert_async(user, "Entered title too long. 100 character limit.","Error")
 		return
 	if(!star_title)
 		return
-	var/star_desc = sanitize(tgui_input_text(user, "Choose the description of the 'Gold Star for [star_title]', this is what it will read on examination. (Max length: 200)", "Ticket Details", max_length = 200))
+	var/star_desc = tgui_input_text(user, "Choose the description of the 'Gold Star for [star_title]', this is what it will read on examination. (Max length: 200)", "Ticket Details", max_length = 200)
 	if(length(star_desc) > 200)
 		tgui_alert_async(user, "Entered details too long. 200 character limit.","Error")
 		return
