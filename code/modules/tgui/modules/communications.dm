@@ -338,7 +338,7 @@
 				var/input = tgui_input_text(ui.user, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement. \
 				Please be aware that this process is very expensive, and abuse will lead to... termination.  \
 				Transmission does not guarantee a response. \
-				There is a 30 second delay before you may send another message, be clear, full and concise.", "Central Command Quantum Messaging", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
+				There is a 30 second delay before you may send another message, be clear, full and concise.", "Central Command Quantum Messaging", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 				if(!input || ..() || !(is_authenticated(ui.user) == COMM_AUTHENTICATION_MAX))
 					return
 				if(length(input) < COMM_CCMSGLEN_MINIMUM)
