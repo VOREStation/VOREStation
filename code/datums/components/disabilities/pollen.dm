@@ -39,7 +39,7 @@
 		return
 
 	// Hand check
-	var/things = list()
+	var/list/things = list()
 	if(prob(32))
 		if(!isnull(owner.r_hand))
 			things += owner.r_hand
@@ -56,19 +56,19 @@
 		if(/obj/structure/flora in things)
 			trigger_allergy()
 			return
-		if(/obj/effect/plant/irritant in things)
+		if(/obj/effect/plant in things)
 			trigger_allergy()
 			return
-		if(/obj/item/toy/bouquet/irritant in things)
+		if(/obj/item/toy/bouquet in things)
 			trigger_allergy()
 			return
-		for(var/obj/machinery/portable_atmospherics/hydroponics/irritanttray in things)
-			if(!irritanttray.dead && !isnull(irritanttray.seed))
+		for(var/obj/machinery/portable_atmospherics/hydroponics/irritant_tray in things)
+			if(!irritant_tray.dead && !isnull(irritant_tray.seed))
 				trigger_allergy()
 				return
 
 /datum/component/pollen_disability/proc/trigger_allergy()
-	to_chat(src, span_danger("[pick("The air feels itchy!","Your face feels uncomfortable!","Your body tingles!")]"))
+	to_chat(owner, span_danger("[pick("The air feels itchy!","Your face feels uncomfortable!","Your body tingles!")]"))
 	owner.add_chemical_effect(CE_ALLERGEN, rand(5,20) * REM)
 
 /datum/component/pollen_disability/Destroy(force = FALSE)
