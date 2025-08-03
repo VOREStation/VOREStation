@@ -64,9 +64,9 @@
 	interface_name = "optical scanners"
 	interface_desc = "An integrated multi-mode vision system."
 
-	usable = 1
-	toggleable = 1
-	disruptive = 0
+	usable = TRUE
+	toggleable = TRUE
+	disruptive = FALSE
 	module_cooldown = 0
 
 	engage_string = "Cycle Visor Mode"
@@ -105,7 +105,7 @@
 	desc = "A layered, translucent visor system for a hardsuit."
 	icon_state = "meson"
 
-	usable = 0
+	usable = FALSE
 
 	interface_name = "meson scanner"
 	interface_desc = "An integrated meson scanner."
@@ -118,7 +118,7 @@
 	desc = "A layered, translucent visor system for a hardsuit."
 	icon_state = "meson"
 
-	usable = 0
+	usable = FALSE
 
 	interface_name = "material scanner"
 	interface_desc = "An integrated material scanner."
@@ -131,7 +131,7 @@
 	desc = "A layered, translucent visor system for a hardsuit."
 	icon_state = "optics"
 
-	usable = 0
+	usable = FALSE
 
 	interface_name = "graviton visor"
 	interface_desc = "An integrated graviton scanner."
@@ -144,7 +144,7 @@
 	desc = "A layered, translucent visor system for a hardsuit."
 	icon_state = "optics"
 
-	usable = 0
+	usable = FALSE
 
 	interface_name = "mining scanners"
 	interface_desc = "An integrated mining scanner array."
@@ -158,7 +158,7 @@
 	desc = "A layered, translucent visor system for a hardsuit."
 	icon_state = "thermal"
 
-	usable = 0
+	usable = FALSE
 
 	interface_name = "thermal scanner"
 	interface_desc = "An integrated thermal scanner."
@@ -171,7 +171,7 @@
 	desc = "A multi input night vision system for a hardsuit."
 	icon_state = "night"
 
-	usable = 0
+	usable = FALSE
 
 	interface_name = "night vision interface"
 	interface_desc = "An integrated night vision system."
@@ -184,7 +184,7 @@
 	desc = "A simple tactical information system for a hardsuit."
 	icon_state = "securityhud"
 
-	usable = 0
+	usable = FALSE
 
 	interface_name = "security HUD"
 	interface_desc = "An integrated security heads up display."
@@ -197,7 +197,7 @@
 	desc = "A simple medical status indicator for a hardsuit."
 	icon_state = "healthhud"
 
-	usable = 0
+	usable = FALSE
 
 	interface_name = "medical HUD"
 	interface_desc = "An integrated medical heads up display."
@@ -213,12 +213,12 @@
 /obj/item/rig_module/vision/engage()
 
 	if(!..() || !vision_modes)
-		return 0
+		return FALSE
 
 	// Don't cycle if this engage() is being called by activate().
 	if(!active)
 		to_chat(holder.wearer, span_blue("You activate your visual sensors."))
-		return 1
+		return TRUE
 
 	if(vision_modes.len > 1)
 		vision_index++
@@ -229,7 +229,7 @@
 		to_chat(holder.wearer, span_blue("You cycle your sensors to <b>[vision.mode]</b> mode."))
 	else
 		to_chat(holder.wearer, span_blue("Your sensors only have one mode."))
-	return 1
+	return TRUE
 
 /obj/item/rig_module/vision/activate()
 	if((. = ..()) && holder.wearer)

@@ -7,9 +7,9 @@
 	from incoming ionizing radiation and converts it into a significantly less harmful form. This comes at the cost of concerningly high power consumption, \
 	and thus should only be used in short bursts."
 	icon_state = "radsoak"
-	toggleable = 1
-	disruptable = 1
-	disruptive = 0
+	toggleable = TRUE
+	disruptable = TRUE
+	disruptive = FALSE
 
 	use_power_cost = 25
 	active_power_cost = 25
@@ -26,7 +26,7 @@
 /obj/item/rig_module/rad_shield/activate()
 
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 	var/obj/item/clothing/shoes/boots = holder.boots
@@ -49,7 +49,7 @@
 /obj/item/rig_module/rad_shield/deactivate()
 
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 	var/obj/item/clothing/shoes/boots = holder.boots
@@ -86,9 +86,9 @@
 	and thus should only be used in short bursts."
 	icon_state = "atmosoak"
 
-	toggleable = 1
-	disruptable = 1
-	disruptive = 0
+	toggleable = TRUE
+	disruptable = TRUE
+	disruptive = FALSE
 
 	use_power_cost = 25
 	active_power_cost = 25
@@ -106,7 +106,7 @@
 /obj/item/rig_module/atmos_shield/activate()
 
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 	var/obj/item/clothing/shoes/boots = holder.boots
@@ -137,7 +137,7 @@
 /obj/item/rig_module/atmos_shield/deactivate()
 
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 	var/obj/item/clothing/shoes/boots = holder.boots
@@ -180,9 +180,9 @@
 	the suit's operator. This in turn will protect them from electrical attacks from Teslas and other electrical assaults provided the body is \
 	fully covered by the suit. This comes at the cost of concerningly high power consumption, and thus should only be used in short bursts."
 	icon_state = "elecsoak"
-	toggleable = 1
-	disruptable = 1
-	disruptive = 0
+	toggleable = TRUE
+	disruptable = TRUE
+	disruptive = FALSE
 
 	use_power_cost = 25
 	active_power_cost = 25
@@ -199,7 +199,7 @@
 
 /obj/item/rig_module/faraday_shield/activate()
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 	var/obj/item/clothing/shoes/boots = holder.boots
