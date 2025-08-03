@@ -20,6 +20,8 @@
 		return
 	if(owner.transforming)
 		return
+	if(owner.client && (owner.client.prefs.muted & MUTE_IC))
+		return
 	if((prob(1) && prob(2) && owner.paralysis <= 1))
 		owner.Stun(10)
 		owner.make_jittery(100)
@@ -27,7 +29,7 @@
 			if(1)
 				owner.emote("twitch")
 			if(2 to 3)
-				owner.say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
+				owner.direct_say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
 
 
 /datum/component/tourettes_disability/Destroy(force = FALSE)

@@ -56,62 +56,66 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 			return
 		GLOB.recentmessages.Add(signal_message)
 
+		// simulate the network lag if necessary
 		if(signal.data["slow"] > 0)
-			sleep(signal.data["slow"]) // simulate the network lag if necessary
+			addtimer(CALLBACK(src, PROC_REF(receive_information_delayed), signal), signal.data["slow"], TIMER_DELETE_ME)
+			return
+		receive_information_delayed(signal)
 
-		signal.data["level"] |= using_map.get_map_levels(listening_level, TRUE, overmap_range)
+/obj/machinery/telecomms/broadcaster/receive_information_delayed(datum/signal/signal)
+	signal.data["level"] |= using_map.get_map_levels(listening_level, TRUE, overmap_range)
 
-		var/list/forced_radios
-		for(var/datum/weakref/wr in linked_radios_weakrefs)
-			var/obj/item/radio/R = wr.resolve()
-			if(istype(R))
-				LAZYDISTINCTADD(forced_radios, R)
+	var/list/forced_radios
+	for(var/datum/weakref/wr in linked_radios_weakrefs)
+		var/obj/item/radio/R = wr.resolve()
+		if(istype(R))
+			LAZYDISTINCTADD(forced_radios, R)
 
-	   /** #### - Normal Broadcast - #### **/
-		if(signal.data["type"] == SIGNAL_NORMAL)
-			/* ###### Broadcast a message using signal.data ###### */
-			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], DATA_NORMAL,
-							  signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"], forced_radios)
+	/** #### - Normal Broadcast - #### **/
+	if(signal.data["type"] == SIGNAL_NORMAL)
+		/* ###### Broadcast a message using signal.data ###### */
+		Broadcast_Message(signal.data["connection"], signal.data["mob"],
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"], DATA_NORMAL,
+							signal.data["compression"], signal.data["level"], signal.frequency,
+							signal.data["verb"], forced_radios)
 
-	   /** #### - Simple Broadcast - #### **/
+	/** #### - Simple Broadcast - #### **/
 
-		if(signal.data["type"] == SIGNAL_SIMPLE)
+	if(signal.data["type"] == SIGNAL_SIMPLE)
 
-			/* ###### Broadcast a message using signal.data ###### */
-			Broadcast_SimpleMessage(signal.data["name"], signal.frequency,
-								  signal.data["message"], DATA_NORMAL, null,
-								  signal.data["compression"], listening_level, forced_radios)
+		/* ###### Broadcast a message using signal.data ###### */
+		Broadcast_SimpleMessage(signal.data["name"], signal.frequency,
+								signal.data["message"], DATA_NORMAL, null,
+								signal.data["compression"], listening_level, forced_radios)
 
 
-	   /** #### - Artificial Broadcast - #### **/
-	   			// (Imitates a mob)
+	/** #### - Artificial Broadcast - #### **/
+			// (Imitates a mob)
 
-		if(signal.data["type"] == SIGNAL_FAKE)
+	if(signal.data["type"] == SIGNAL_FAKE)
 
-			/* ###### Broadcast a message using signal.data ###### */
-				// Parameter "data" as DATA_FAKE: AI can't track this person/mob
+		/* ###### Broadcast a message using signal.data ###### */
+			// Parameter "data" as DATA_FAKE: AI can't track this person/mob
 
-			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], DATA_FAKE,
-							  signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"], forced_radios)
+		Broadcast_Message(signal.data["connection"], signal.data["mob"],
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"], DATA_FAKE,
+							signal.data["compression"], signal.data["level"], signal.frequency,
+							signal.data["verb"], forced_radios)
 
-		if(!GLOB.message_delay)
-			GLOB.message_delay = 1
-			spawn(10)
-				GLOB.message_delay = 0
-				GLOB.recentmessages = list()
+	if(!GLOB.message_delay)
+		GLOB.message_delay = 1
+		spawn(10)
+			GLOB.message_delay = 0
+			GLOB.recentmessages = list()
 
-		/* --- Do a snazzy animation! --- */
-		flick("broadcaster_send", src)
+	/* --- Do a snazzy animation! --- */
+	flick("broadcaster_send", src)
 
 /obj/machinery/telecomms/broadcaster/Destroy()
 	// In case message_delay is left on 1, otherwise it won't reset the list and people can't say the same thing twice anymore.

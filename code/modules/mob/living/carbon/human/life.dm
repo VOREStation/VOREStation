@@ -65,7 +65,7 @@
 
 		handle_pain()
 
-		handle_allergens()
+		SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
 
 		handle_medical_side_effects()
 
@@ -818,13 +818,6 @@
 		suit_exhale_sound = 'sound/effects/mob_effects/suit_breathe_out.ogg'
 
 	playsound_local(get_turf(src), suit_exhale_sound, 100, pressure_affected = FALSE, volume_channel = VOLUME_CHANNEL_AMBIENCE)
-
-/mob/living/carbon/human/proc/handle_allergens()
-	if(chem_effects[CE_ALLERGEN])
-		//first, multiply the basic species-level value by our allergen effect rating, so consuming multiple seperate allergen typess simultaneously hurts more
-		var/damage_severity = species.allergen_damage_severity * chem_effects[CE_ALLERGEN]
-		var/disable_severity = species.allergen_disable_severity * chem_effects[CE_ALLERGEN]
-		SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS,damage_severity,disable_severity)
 
 /mob/living/carbon/human/proc/handle_species_components()
 	species.handle_species_components(src)

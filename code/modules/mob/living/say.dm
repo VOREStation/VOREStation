@@ -165,22 +165,22 @@ var/list/channel_to_radio_key = list()
 		if(stat == DEAD && !forbid_seeing_deadchat)
 			return say_dead(message)
 		return
-	//VOREStation Addition Start
 	if(forced_psay)
 		psay(message)
 		return
-	if(autowhisper)
-		whispering = 1
-	//VOREStation Addition End
-	//Parse the mode
-	var/message_mode = parse_message_mode(message, "headset")
-
 	//Maybe they are using say/whisper to do a quick emote, so do those
 	switch(copytext(message, 1, 2))
 		if("*") return emote(copytext(message, 2))
 		if("^") return custom_emote(VISIBLE_MESSAGE, copytext(message, 2))
+	direct_say(message, speaking, whispering)
+
+/mob/living/direct_say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+	// Handle automatic whispering mode
+	if(autowhisper)
+		whispering = 1
 
 	//Parse the radio code and consume it
+	var/message_mode = parse_message_mode(message, "headset")
 	if(message_mode)
 		if(message_mode == "headset")
 			message = copytext(message, 2)	//it would be really nice if the parse procs could do this for us.
@@ -318,7 +318,8 @@ var/list/channel_to_radio_key = list()
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
-			custom_emote(VISIBLE_MESSAGE, "[pick(S.speaking.signlang_verb)].")
+			var/sign_action = "[pick(S.speaking.signlang_verb)]."
+			process_normal_emote(VISIBLE_MESSAGE,sign_action,sign_action)
 			do_sound = FALSE
 
 	//These will contain the main receivers of the message

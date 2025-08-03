@@ -10,11 +10,15 @@
 	. = ..()
 	UnregisterSignal(target, COMSIG_HANDLE_ALLERGENS)
 
-/datum/element/allergy/proc/handle_allergic_reaction(datum/source,damage_severity,disable_severity)
+/datum/element/allergy/proc/handle_allergic_reaction(datum/source,var/allergen_CE_amount)
 	SIGNAL_HANDLER
-
+	if(allergen_CE_amount <= 0)
+		return
+	//first, multiply the basic species-level value by our allergen effect rating, so consuming multiple seperate allergen typess simultaneously hurts more
 	var/mob/living/carbon/human/H = source
 	var/datum/species/species = H.species
+	var/damage_severity = species.allergen_damage_severity * allergen_CE_amount
+	var/disable_severity = species.allergen_disable_severity * allergen_CE_amount
 
 	if(species.allergen_reaction & AG_PHYS_DMG)
 		H.adjustBruteLoss(damage_severity)
