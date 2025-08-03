@@ -551,6 +551,19 @@
 	custom_only = FALSE
 	allergen = ALLERGEN_CHOCOLATE
 
+/datum/trait/neutral/allergy/pollen
+	name = "Allergy: Pollen"
+	desc = "You're highly allergic to pollen and many plants. It's probably best to avoid hydroponics in general. NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	cost = 0
+	allergen = ALLERGEN_POLLEN // Gee billy...
+	added_component_path = /datum/component/pollen_disability // Why does mom let you have two things?
+
+/datum/trait/neutral/allergy/salt
+	name = "Allergy: Salt"
+	desc = "You're highly allergic to sodium chloride aka salt. NB: By taking this trait, you acknowledge there is a significant risk your character may suffer a fatal reaction if exposed to this substance."
+	cost = 0
+	allergen = ALLERGEN_SALT
+
 /datum/trait/neutral/allergy_reaction
 	name = "Allergy Reaction: Disable Toxicity"
 	desc = "Take this trait to disable the toxic damage effect of being exposed to one of your allergens. Combine with the Disable Suffocation trait to have purely nonlethal reactions."
@@ -617,6 +630,27 @@
 	cost = 0
 	custom_only = FALSE
 	reaction = AG_CONFUSE
+
+/datum/trait/neutral/allergy_reaction/gibbing
+	name = "Allergy Reaction: Gibbing"
+	desc = "When exposed to one of your allergens, you will explode, god help you. Does nothing if you have no allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_GIBBING
+
+/datum/trait/neutral/allergy_reaction/sneeze
+	name = "Allergy Reaction: Sneezing"
+	desc = "When exposed to one of your allergens, you will begin sneezing harmlessly. Does nothing if you have no allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_SNEEZE
+
+/datum/trait/neutral/allergy_reaction/cough
+	name = "Allergy Reaction: Coughing"
+	desc = "When exposed to one of your allergens, you will begin coughing, potentially dropping items. Does nothing if you have no allergens."
+	cost = 0
+	custom_only = FALSE
+	reaction = AG_COUGH
 
 /datum/trait/neutral/allergen_reduced_effect
 	name = "Allergen Reaction: Reduced Intensity"

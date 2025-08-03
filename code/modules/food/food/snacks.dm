@@ -1784,7 +1784,7 @@
 /obj/item/reagent_containers/food/snacks/carrotfries/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, 3)
-
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/cheesyfries
 	name = "Cheesy Fries"
@@ -2105,6 +2105,7 @@
 /obj/item/reagent_containers/food/snacks/fishandchips/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 3)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/rofflewaffles
 	name = "Roffle Waffles"
@@ -2621,6 +2622,7 @@
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BANANA, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 10)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/vegetablesoup
 	name = "Vegetable soup"
@@ -3502,6 +3504,10 @@
 	nutriment_desc = list("salt" = 1, "cracker" = 2)
 	w_class = ITEMSIZE_TINY
 	nutriment_amt = 1
+
+/obj/item/reagent_containers/food/snacks/cracker/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/sliceable/grilled_carp
 	name = "Njarir Merana Grill"
@@ -4546,6 +4552,10 @@
 	nutriment_amt = 2
 	nutriment_desc = list("salt" = 3)
 
+/obj/item/reagent_containers/food/snacks/roastedsunflower/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
+
 /obj/item/reagent_containers/food/snacks/roastedpeanuts
 	name = "peanuts"
 	desc = "Stopped being the planetary airline food of Earth in 2120."
@@ -4556,6 +4566,10 @@
 	center_of_mass_y = 17
 	nutriment_amt = 2
 	nutriment_desc = list("salt" = 3)
+
+/obj/item/reagent_containers/food/snacks/roastedpeanuts/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/liquidfood
 	name = "\improper LiquidFood Ration"
@@ -4653,6 +4667,10 @@
 	nutriment_amt = 10
 	nutriment_desc = list(PLANT_MUSHROOMS = 5, "salt" = 5)
 	bitesize = 3
+
+/obj/item/reagent_containers/food/snacks/skrellsnacks/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/unajerky
 	name = "Moghes Imported Sissalik Jerky"
@@ -4855,6 +4873,7 @@
 /obj/item/reagent_containers/food/snacks/cubannachos/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_CAPSAICIN, 4)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/curryrice
 	name = "curry rice"
@@ -4867,6 +4886,7 @@
 /obj/item/reagent_containers/food/snacks/curryrice/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_CAPSAICIN, 4)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/piginblanket
 	name = "pig in a blanket"
@@ -6771,6 +6791,10 @@
 	nutriment_desc = list("salt" = 1, "chips" = 2)
 	bitesize = 1
 
+/obj/item/reagent_containers/food/snacks/chips/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
+
 /obj/item/reagent_containers/food/snacks/chips/bbq
 	name = "\improper Legendary BBQ Chips"
 	desc = "You know I can't grab your ghost chips!"
@@ -6804,20 +6828,6 @@
 	nutriment_amt = 6
 	nutriment_desc = list("bread" = 2, "sweetness" = 3)
 	bitesize = 2
-
-/obj/item/reagent_containers/food/snacks/skrellsnacks
-	name = "\improper SkrellSnax"
-	desc = "Cured fungus shipped all the way from Qerr'balak, almost like jerky! Almost."
-	description_fluff = "Despite the packaging, most SkrellSnax sold in Vir are produced using locally-grown, Qerr'Balak-native Go'moa fungi in controversial Skrell-owned biodomes on the suface of Sif. SkrellSnax were originally a product of Natuna, designed to welcome Ue-Katish refugees to their colony. The brand was recreated by Centauri Provisions after Natuna and SolGov broke off diplomatic relations."
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "skrellsnacks"
-	trash = /obj/item/trash/skrellsnax
-	filling_color = "#A66829"
-	center_of_mass_x = 15
-	center_of_mass_y = 12
-	nutriment_amt = 10
-	nutriment_desc = list(PLANT_MUSHROOMS = 5, "salt" = 5)
-	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/sosjerky
 	name = "Scaredy's Private Reserve Beef Jerky"
@@ -6914,6 +6924,7 @@
 /obj/item/reagent_containers/food/snacks/squid/true/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 4)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/croutons
 	name = "\improper Suhariki"
@@ -6944,6 +6955,7 @@
 /obj/item/reagent_containers/food/snacks/salo/true/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 8)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/driedfish
 	name = "\improper Vobla"
@@ -6961,6 +6973,7 @@
 /obj/item/reagent_containers/food/snacks/driedfish/Initialize(mapload)
 	.=..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 4)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/no_raisin
 	name = "4no Raisins"
@@ -7037,6 +7050,10 @@
 	nutriment_amt = 5
 	bitesize = 2
 
+/obj/item/reagent_containers/food/snacks/triton/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 10)
+
 /obj/item/reagent_containers/food/snacks/saturn
 	name = "\improper Saturn-Os"
 	icon = 'icons/obj/food_snacks.dmi'
@@ -7049,6 +7066,10 @@
 	nutriment_desc = list("salt" = 4, PLANT_PEANUT = 2,  "wood?" = 1)
 	nutriment_amt = 5
 	bitesize = 2
+
+/obj/item/reagent_containers/food/snacks/saturn/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/jupiter
 	name = "\improper Jove Gello"
@@ -7166,6 +7187,10 @@
 	nutriment_desc = list("fish" = 2, "salt" = 2, REAGENT_ID_AMMONIA = 1)
 	nutriment_amt = 4
 	bitesize = 1
+
+/obj/item/reagent_containers/food/snacks/hakarl/Initialize(mapload)
+	.=..()
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 ////////////////////weeb_vend (Nippon-tan!)////////////////////////////////////////////////////
 
@@ -7404,6 +7429,7 @@
 /obj/item/reagent_containers/food/snacks/canned/caviar/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SEAFOOD, 5)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/canned/caviar/true
 	name = "\improper Classic Terran Caviar"
@@ -7421,6 +7447,7 @@
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SEAFOOD, 4)
 	reagents.add_reagent(REAGENT_ID_CARPOTOXIN, 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/canned/maps
 	name = "\improper MAPS"
