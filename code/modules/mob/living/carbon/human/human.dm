@@ -511,7 +511,7 @@
 					for (var/datum/data/record/R in GLOB.data_core.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
-								var/t1 = tgui_input_text(usr, "Add Comment:", "Sec. records", null, null, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
+								var/t1 = tgui_input_text(usr, "Add Comment:", "Sec. records", null, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
 									return
 								var/counter = 1
