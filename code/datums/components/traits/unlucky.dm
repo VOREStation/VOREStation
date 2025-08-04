@@ -211,7 +211,8 @@
 
 /**
  * The trait omen. Permanent.
- * Has only a 50% chance of bad things happening, and takes only 25% of normal damage.
+ * Has only a 30% chance of bad things happening, and takes only 25% of normal damage.
+ * Evil is false, so you get less dramatic things happening.
  */
 /datum/component/omen/trait
 	incidents_left = INFINITY
@@ -246,3 +247,16 @@
 	. = ..()
 	var/mob/living/living_parent = parent
 	living_parent.remove_filter("omen")
+
+
+/**
+ * Various procs used when unlucky things happen!
+ */
+/obj/structure/stairs/proc/tumble_down(var/atom/movable/AM)
+	if(!isliving(AM))
+		return
+	var/mob/living/unlucky_soul = AM
+	playsound(unlucky_soul, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
+	unlucky_soul.visible_message(span_danger("[unlucky_soul] slips down the [src]!"), span_userdanger("You trip down the stairs!"))
+	unlucky_soul.apply_damage(15, BRUTE, BP_TORSO, used_weapon = "slipping")
+	unlucky_soul.Weaken(5)

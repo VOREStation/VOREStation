@@ -452,7 +452,8 @@
 				var/mob/living/L = P
 				if(L.client)
 					L.client.Process_Grab() // Update any miscellanous grabs, possibly break grab-chains
-
+		if(prob(1) && HAS_TRAIT(AM, TRAIT_UNLUCKY)) //1% chance to fall down stairs if you're unlucky
+			tumble_down(AM)
 	return TRUE
 
 /obj/structure/stairs/top/use_stairs_instant(var/atom/movable/AM)
