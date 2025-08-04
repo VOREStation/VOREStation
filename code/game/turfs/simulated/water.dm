@@ -97,7 +97,7 @@
 /turf/simulated/floor/water/Entered(atom/movable/AM, atom/oldloc)
 	if(isliving(AM))
 		var/mob/living/L = AM
-		if(L.is_incorporeal())
+		if(L.hovering || L.flying || L.is_incorporeal())
 			return
 		L.update_water()
 		if(L.check_submerged() <= 0)
@@ -110,7 +110,7 @@
 /turf/simulated/floor/water/Exited(atom/movable/AM, atom/newloc)
 	if(isliving(AM))
 		var/mob/living/L = AM
-		if(L.is_incorporeal())
+		if(L.hovering || L.flying || L.is_incorporeal())
 			return
 		L.update_water()
 		if(L.check_submerged() <= 0)
