@@ -132,8 +132,9 @@
 		"dullahanhead" = "#FFFFFF",
 		"dullahanmetal" = "#FFFFFF",
 		"dullahaneyes" = "#FFFFFF",
-		"dullahandecals" = "#FFFFFF",
-		"dullahanextended" = "#FFFFFF"
+		"dullahanlights" = "#FFFFFF",
+		"dullahanextended" = "#FFFFFF",
+		"dullahanclothesempty" = "#FFFFFF"
 		// loads the icons from the DMI file in that order on spawn. they are overlay 1-6.
 	)
 	var/pseudodead = 0

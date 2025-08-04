@@ -393,7 +393,7 @@
 			"slime" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "slime"),
 			"chaos" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "chaos"),
 			"cloud" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "cloud"),
-			/*"catslug" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
+			"catslug" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
 			"cat" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "cat"),
 			"mouse" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "mouse"),
 			"rabbit" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "rabbit"),
@@ -409,7 +409,7 @@
 			"panther" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "panther", pixel_x = -16),
 			"robodrgn" = image(icon = 'icons/mob/species/protean/protean128x64.dmi', icon_state = "robodrgn", pixel_x = -48),
 			"Dragon" = image(icon = 'icons/mob/bigdragon_small.dmi', icon_state = "dragon_small"),
-			"Dullahan" = image(icon = 'icons/mob/robot/dullahan/v1/dullahanicon.dmi', icon_state = "proticon")*/
+			"Dullahan" = image(icon = 'icons/mob/robot/dullahan/v1/dullahanicon.dmi', icon_state = "proticon")
 			)
 	var/blobstyle = show_radial_menu(protie, protie, icon_choices, require_near = TRUE, tooltips = FALSE)
 	if(!blobstyle || QDELETED(protie) || protie.incapacitated())
@@ -531,7 +531,7 @@
 					S.dragon_overlays[S.dragon_overlays[6]] = new_color
 			S.blob_appearance = "dragon"
 		if("Dullahan") //START OF DULLAHAN PORT.
-			var/list/options = list("Metalshell","Eyes","Decals","Import","Export")
+			var/list/options = list("Metalshell","Head","Eyes","Lights","Clothes","Import","Export")
 			for(var/option in options)
 				LAZYSET(options, option, image('icons/mob/robot/dullahan/v1/dullahansigns.dmi', option))
 			var/choice = show_radial_menu(protie, protie, options, radius = 60)
@@ -547,19 +547,30 @@
 			var/list/dullahaneyes_styles = list(
 				"dullahaneyes"
 			)
-			var/list/dullahandecals_styles = list(
-				"dullahandecals",
-				"dullahandecals1",
-				"dullahandecals2",
-				"dullahandecals3",
-				"dullahandecals4",
-				"dullahandecals5",
+			var/list/dullahanlights_styles = list(
+				"dullahanlightsempty",
+				"dullahanlights",
+				"dullahanwings",
+				"dullahanlights2",
+				"dullahanwings2",
+				"dullahanwings3",
 				"emptydecals"
 			)
+			var/list/dullahanhead_styles = list(
+				"dullahanhead",
+				"dullahanhead2"
+			)
+			var/list/dullahanclothes_styles = list(
+				"dullahanclothesempty",
+				"dullahanclothes",
+				"dullahanclothes2",
+				"dullahanclothes3"
+			)
 			var/dmetal
-			var/ddecals
+			var/dlights
 			var/deyes
-			var/ddecalscolor
+			var/dlightscolor
+			var/dclothescolor
 			var/deyescolor
 			var/dmetalcolor
 			switch(choice)
@@ -592,30 +603,52 @@
 					choice = show_radial_menu(protie, protie, options, radius = 90)
 					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
-					var/new_color = tgui_color_picker(protie, "Pick eye color:","Eye Color", S.dullahan_overlays[4])
+					var/new_color = tgui_color_picker(protie, "Pick eye color:","Eye Color", S.dullahan_overlays[2])
 					if(!new_color)
 						return 0
-					S.dullahan_overlays[4] = choice
-					S.dullahan_overlays[S.dullahan_overlays[4]] = new_color
-				if("Decals")
-					options = dullahandecals_styles
+					S.dullahan_overlays[2] = choice
+					S.dullahan_overlays[S.dullahan_overlays[2]] = new_color
+				if("Lights")
+					options = dullahanlights_styles
 					for(var/option in options)
 						var/image/I = image('icons/mob/robot/dullahan/v1/Dullahanprotean64x64.dmi', option, dir = 2, pixel_x = -16, pixel_y = -16)
 						LAZYSET(options, option, I)
 					choice = show_radial_menu(protie, protie, options, radius = 90)
 					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
-					var/new_color = tgui_color_picker(protie, "Pick decal color:","Decal Color", S.dullahan_overlays[5])
+					var/new_color = tgui_color_picker(protie, "Pick light color:","Lights Color", S.dullahan_overlays[5])
 					if(!new_color)
 						return 0
 					S.dullahan_overlays[5] = choice
 					S.dullahan_overlays[S.dullahan_overlays[5]] = new_color
+				if("Clothes")
+					options = dullahanclothes_styles
+					for(var/option in options)
+						var/image/I = image('icons/mob/robot/dullahan/v1/Dullahanprotean64x64.dmi', option, dir = 2, pixel_x = -16, pixel_y = -16)
+						LAZYSET(options, option, I)
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
+						return 0
+					var/new_color = tgui_color_picker(protie, "Pick clothes color:","Clothes Color", S.dullahan_overlays[7])
+					if(!new_color)
+						return 0
+					S.dullahan_overlays[7] = choice //clothes overlay is 7
+					S.dullahan_overlays[S.dullahan_overlays[7]] = new_color
+				if("Head")
+					options = dullahanhead_styles
+					for(var/option in options)
+						var/image/I = image('icons/mob/robot/dullahan/v1/Dullahanprotean64x64.dmi', option, dir = 2, pixel_x = -16, pixel_y = -16)
+						LAZYSET(options, option, I)
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
+						return 0
+					S.dullahan_overlays[4] = choice //head overlay is 2
 				if("Import")
 					var/dinput_style
 					dinput_style = sanitizeSafe(tgui_input_text(protie,"Paste the style string you exported with Export Style.", "Style loading","", 120), 128)
 					if(dinput_style)
 						var/list/dinput_style_list = splittext(dinput_style, ";")
-						if((LAZYLEN(dinput_style_list) == 6) && (dinput_style_list[1] in dullahanmetal_styles) && (dinput_style_list[3] in dullahandecals_styles) && (dinput_style_list[5] in dullahaneyes_styles))
+						if((LAZYLEN(dinput_style_list) == 7) && (dinput_style_list[1] in dullahanmetal_styles) && (dinput_style_list[3] in dullahanlights_styles) && (dinput_style_list[5] in dullahaneyes_styles) && (dinput_style_list[7] in dullahanmetal_styles))
 							try
 								if(dinput_style_list[1] in dullahanmetal_styles)
 									S.dullahan_overlays[3] = dinput_style_list[1]
@@ -628,27 +661,35 @@
 							catch
 								dmetal = dinput_style_list[1]
 							try
-								if(dinput_style_list[3] in dullahandecals_styles)
+								if(dinput_style_list[3] in dullahanlights_styles)
 									S.dullahan_overlays[5] = dinput_style_list[3]
 								if(rgb2num(dinput_style_list[4]))
-									S.dullahan_overlays[S.dullahan_overlays[5]] = dinput_style_list[4] // decals color
+									S.dullahan_overlays[S.dullahan_overlays[5]] = dinput_style_list[4] // lights color
 							catch
-								ddecals = dinput_style_list[3]
+								dlights = dinput_style_list[3]
 							try
 								if(dinput_style_list[5] in dullahaneyes_styles)
-									S.dullahan_overlays[4] = dinput_style_list[5]
+									S.dullahan_overlays[2] = dinput_style_list[5]
 								if(rgb2num(dinput_style_list[6]))
-									S.dullahan_overlays[S.dullahan_overlays[4]] = dinput_style_list[6] //eyes color
+									S.dullahan_overlays[S.dullahan_overlays[2]] = dinput_style_list[6] //eyes color
 							catch
-								ddecals = dinput_style_list[5]
+								dlights = dinput_style_list[5]
+							try
+								if(dinput_style_list[7] in dullahanclothes_styles)
+									S.dullahan_overlays[7] = dinput_style_list[7]
+								if(rgb2num(dinput_style_list[7]))
+									S.dullahan_overlays[S.dullahan_overlays[7]] = dinput_style_list[7] //clothes color
+							catch
+								dlights = dinput_style_list[5]
 				if("Export")
 					dmetal = S.dullahan_overlays[3]
-					ddecals = S.dullahan_overlays[5]
-					deyes = S.dullahan_overlays[4]
+					dlights = S.dullahan_overlays[5]
+					deyes = S.dullahan_overlays[2]
 					dmetalcolor = S.dullahan_overlays[S.dullahan_overlays[3]]
-					ddecalscolor = S.dullahan_overlays[S.dullahan_overlays[5]]
-					deyescolor = S.dullahan_overlays[S.dullahan_overlays[4]]
-					var/output_style = jointext(list(dmetal,dmetalcolor,ddecals,ddecalscolor,deyes,deyescolor), ";")
+					dlightscolor = S.dullahan_overlays[S.dullahan_overlays[5]]
+					dclothescolor = S.dullahan_overlays[S.dullahan_overlays[7]]
+					deyescolor = S.dullahan_overlays[S.dullahan_overlays[2]]
+					var/output_style = jointext(list(dmetal,dmetalcolor,dlights,dlightscolor,deyes,deyescolor,dclothescolor), ";")
 					to_chat(protie, span_notice("Exported style string is \" [output_style] \". Use this to get the same style in the future with import style"))
 			S.blob_appearance = "dullahan" //END OF DULLAHAN PORT.
 		if("Primary")
