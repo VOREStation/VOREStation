@@ -12,7 +12,7 @@
 	command_announcement.Announce("What the fuck was that?!", "General Alert")
 
 /datum/event/clang/start()
-	affecting_z = global.using_map.event_levels
+	affecting_z = global.using_map.station_levels
 
 	var/startz = pick(affecting_z)
 	var/startx = 0
@@ -75,6 +75,7 @@
 	anchored = TRUE
 	movement_type = UNSTOPPABLE
 	var/turf/despawn_loc = null
+	var/has_hunted_unlucky = FALSE
 
 /obj/effect/immovablerod/proc/TakeFlight(var/turf/end)
 	//to_world("Rod in play, starting at [loc.x],[loc.y],[loc.z] and going to [end.loc.x],[end.loc.y],[end.loc.z]")
@@ -84,9 +85,7 @@
 
 	// Get steps needed and then await that to despawn
 	var/despawn_time = sqrt(((end.x - loc.x)**2) + ((end.y - loc.y)**2)) // distance of a line...
-	spawn(despawn_time)
-		//to_world("ROD DESPAWN")
-		qdel(src)
+	QDEL_IN(src, despawn_time + 5 SECONDS) //Give a small extra time before we disappear entirely.
 
 /obj/effect/immovablerod/Bump(atom/clong)
 	//to_world("Rod CLANG [clong] : [clong.x].[clong.y].[clong.z]")
@@ -117,6 +116,25 @@
 	if(despawn_loc != null && (src.x == despawn_loc.x && src.y == despawn_loc.y))
 		//to_world("ENDED ROD PATH")
 		qdel(src)
+		return
+	if(prob(10))
+		hunt_unlucky()
+
+/obj/effect/immovablerod/proc/hunt_unlucky()
+	for(var/mob/living/unlucky_bugger in orange(7,src))
+		if(HAS_TRAIT(unlucky_bugger, TRAIT_UNLUCKY))
+			has_hunted_unlucky = TRUE
+			walk(src, 0)
+			//stone_grinding.ogg
+			addtimer(CALLBACK(src, PROC_REF(fetch_boy), unlucky_bugger), 1 SECOND, TIMER_DELETE_ME)
+
+/obj/effect/immovablerod/proc/fetch_boy(unlucky_bugger)
+	walk_towards(src, unlucky_bugger, 1)
+	addtimer(CALLBACK(src, PROC_REF(resume_path)), 2 SECONDS, TIMER_DELETE_ME)
+
+/obj/effect/immovablerod/proc/resume_path()
+	walk(src, 0)
+	walk_towards(src, despawn_loc, 1)
 
 /obj/effect/immovablerod/Destroy()
 	walk(src, 0) // Because we might have called walk_towards, we must stop the walk loop or BYOND keeps an internal reference to us forever.
