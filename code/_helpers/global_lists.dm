@@ -1452,8 +1452,10 @@ GLOBAL_LIST_INIT(sheet_reagents, list( //have a number of reagents divisible by 
 	/obj/item/stack/material/gold = list(REAGENT_ID_GOLD),
 	/obj/item/stack/material/silver = list(REAGENT_ID_SILVER),
 	/obj/item/stack/material/platinum = list(REAGENT_ID_PLATINUM),
+	/obj/item/stack/material/osmium = list(REAGENT_ID_PLATINUM), // This should be fixed someday
 	/obj/item/stack/material/mhydrogen = list(REAGENT_ID_HYDROGEN),
 	/obj/item/stack/material/steel = list(REAGENT_ID_IRON, REAGENT_ID_CARBON),
+	/obj/item/stack/rods = list(REAGENT_ID_IRON, REAGENT_ID_CARBON), // It's just steel
 	/obj/item/stack/material/plasteel = list(REAGENT_ID_IRON, REAGENT_ID_IRON, REAGENT_ID_CARBON, REAGENT_ID_CARBON, REAGENT_ID_PLATINUM), //8 iron, 8 carbon, 4 platinum,
 	/obj/item/stack/material/snow = list(REAGENT_ID_WATER),
 	/obj/item/stack/material/sandstone = list(REAGENT_ID_SILICON, REAGENT_ID_OXYGEN),

@@ -88,6 +88,17 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 
+	// Get objects from incoming conveyors
+	for(var/D in GLOB.cardinal)
+		var/turf/T = get_step(src,D)
+		if(!T)
+			continue
+		var/obj/machinery/conveyor/C = locate() in T
+		if(C && !C.stat && C.operating && C.dir == GLOB.reverse_dir[D]) // If an operating conveyor points into us... Check if it's moving anything
+			var/obj/item/I = pick(T.contents - list(C))
+			if(istype(I) && conveyor_load(I))
+				break
+
 	if(holdingitems.len > 0 && grind_items_to_reagents(holdingitems,reagents))
 		//Lazy coder sound design moment. THE SEQUEL
 		playsound(src, 'sound/items/poster_being_created.ogg', 50, 1)
@@ -109,21 +120,18 @@
 		var/image/dot = image(icon, icon_state = "grinder_dot_[holdingitems.len ? "on" : "off" ]")
 		add_overlay(dot)
 
-/obj/machinery/reagent_refinery/grinder/Bumped(atom/movable/AM as mob|obj)
-	. = ..()
-	if(!anchored)
-		return
+/obj/machinery/reagent_refinery/grinder/proc/conveyor_load(atom/movable/AM as mob|obj)
 	if(!AM || QDELETED(AM))
-		return
+		return FALSE
 	if(holdingitems.len >= limit)
-		return
+		return FALSE
 	if(ismob(AM)) // No mob bumping YET
-		return
+		return FALSE
 	if(!GLOB.sheet_reagents[AM.type] && !GLOB.ore_reagents[AM.type] && (!AM.reagents || !AM.reagents.total_volume))
-		return
-
+		return FALSE
 	AM.forceMove(src)
 	holdingitems += AM
+	return TRUE
 
 /obj/machinery/reagent_refinery/grinder/examine(mob/user, infix, suffix)
 	. = ..()
