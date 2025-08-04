@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - qol: "moves the vore examine messages into a dropdown, hiding them by default"

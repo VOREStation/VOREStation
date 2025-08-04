@@ -1,4 +1,0 @@
-author: "Tost"
-delete-after: True
-changes:
-  - bugfix: "Bloodsucker hanners now get the right hunger alerts."

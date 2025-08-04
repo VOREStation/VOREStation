@@ -1,6 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - rscadd: "Added a new plane for event use, with the intent of making it so that only specific players can see things on it."
-  - rscadd: "Added two new buttons to player effects, one to make something move to  the new invisible plane and another to allow a player to see things on that plane."
-  - rscadd: "Added a new mob that takes advantage of this new plane to be only visible to one player at a time."
