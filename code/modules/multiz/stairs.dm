@@ -193,7 +193,7 @@
 				var/mob/living/L = P
 				if(L.client)
 					L.client.Process_Grab() // Update any miscellanous grabs, possibly break grab-chains
-
+		SEND_SIGNAL(AM, COMSIG_MOVED_UP_STAIRS, AM, oldloc)
 	return TRUE
 
 /obj/structure/stairs/bottom/use_stairs_instant(var/atom/movable/AM)
@@ -231,6 +231,7 @@
 			L.client.Process_Grab()
 	else
 		AM.forceMove(get_turf(top))
+	SEND_SIGNAL(AM, COMSIG_MOVED_UP_STAIRS, AM)
 
 
 //////////////////////////////////////////////////////////////////////
@@ -452,8 +453,7 @@
 				var/mob/living/L = P
 				if(L.client)
 					L.client.Process_Grab() // Update any miscellanous grabs, possibly break grab-chains
-		if(prob(1) && HAS_TRAIT(AM, TRAIT_UNLUCKY)) //1% chance to fall down stairs if you're unlucky
-			tumble_down(AM)
+		SEND_SIGNAL(AM, COMSIG_MOVED_DOWN_STAIRS, AM, oldloc)
 	return TRUE
 
 /obj/structure/stairs/top/use_stairs_instant(var/atom/movable/AM)
@@ -490,6 +490,7 @@
 			L.client.Process_Grab()
 	else
 		AM.forceMove(get_turf(bottom))
+	SEND_SIGNAL(AM, COMSIG_MOVED_DOWN_STAIRS, AM)
 
 // Mapping pieces, placed at the bottommost part of the stairs
 /obj/structure/stairs/spawner

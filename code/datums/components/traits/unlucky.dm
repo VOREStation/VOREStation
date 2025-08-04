@@ -17,6 +17,8 @@
 	var/damage_mod = 1
 	/// If we want to do more evil events, such as spontaneous combustion
 	var/evil = TRUE
+	/// If our codebase has safe disposals or not
+	var/safe_disposals = FALSE
 
 /datum/component/omen/Initialize(obj/vessel, incidents_left, luck_mod, damage_mod)
 	if(!isliving(parent))
@@ -58,9 +60,10 @@
 /datum/component/omen/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(check_accident))
 	RegisterSignal(parent, COMSIG_ON_CARBON_SLIP, PROC_REF(check_slip))
+	RegisterSignal(parent, COMSIG_MOVED_DOWN_STAIRS, PROC_REF(check_stairs))
 
 /datum/component/omen/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_MOVED_DOWN_STAIRS))
 
 /datum/component/omen/proc/consume_omen()
 	incidents_left--
@@ -134,6 +137,17 @@
 			consume_omen()
 			return
 
+		if(evil || safe_disposals)
+			for(var/obj/machinery/disposal/evil_disposal in the_turf)
+				if(evil_disposal.stat & (BROKEN|NOPOWER))
+					continue
+				our_guy.visible_message(span_danger("[our_guy] slips on a spill near the [evil_disposal] and falls in!"), span_userdanger("You slip on a spill near the [evil_disposal] and fall in!"))
+				evil_disposal.flush = TRUE
+				evil_disposal.update()
+				living_guy.Weaken(5)
+				consume_omen()
+				return
+
 		if(evil)
 			for(var/obj/machinery/light/evil_light in the_turf)
 				if((evil_light.status == LIGHT_BURNED || evil_light.status == LIGHT_BROKEN) || (living_guy.get_shock_protection() == 1)) // we can't do anything :(
@@ -151,35 +165,35 @@
 				living_guy.emote("scream")
 				consume_omen()
 
-		for(var/obj/structure/mirror/evil_mirror in the_turf)
-			to_chat(living_guy, span_warning("You pass by the mirror and glance at it..."))
-			if(evil_mirror.shattered)
-				to_chat(living_guy, span_notice("You feel lucky, somehow."))
-				return
-			switch(rand(1, 5))
-				if(1)
-					to_chat(living_guy, span_warning("The mirror explodes into a million pieces! Wait, does that mean you're even more unlucky?"))
-					evil_mirror.shatter()
-					if(prob(50 * effective_luck)) // sometimes
-						luck_mod += 0.25
-						damage_mod += 0.25
-				if(2 to 3)
-					to_chat(living_guy, span_large(span_cult("Oh god, you can't see your reflection!!")))
-					living_guy.emote("scream")
+			for(var/obj/structure/mirror/evil_mirror in the_turf)
+				to_chat(living_guy, span_warning("You pass by the mirror and glance at it..."))
+				if(evil_mirror.shattered)
+					to_chat(living_guy, span_notice("You feel lucky, somehow."))
+					return
+				switch(rand(1, 5))
+					if(1)
+						to_chat(living_guy, span_warning("The mirror explodes into a million pieces! Wait, does that mean you're even more unlucky?"))
+						evil_mirror.shatter()
+						if(prob(50 * effective_luck)) // sometimes
+							luck_mod += 0.25
+							damage_mod += 0.25
+					if(2 to 3)
+						to_chat(living_guy, span_large(span_cult("Oh god, you can't see your reflection!!")))
+						living_guy.emote("scream")
 
-				if(4 to 5)
-					to_chat(living_guy, span_userdanger("You see your reflection, but it is grinning malevolently and staring directly at you!"))
-					living_guy.emote("scream")
+					if(4 to 5)
+						to_chat(living_guy, span_userdanger("You see your reflection, but it is grinning malevolently and staring directly at you!"))
+						living_guy.emote("scream")
 
-			living_guy.make_jittery(250)
-			if(evil && prob(7 * effective_luck))
-				to_chat(living_guy, span_warning("You are completely shocked by this turn of events!"))
-				if(ishuman(living_guy))
-					var/mob/living/carbon/human/human_guy = living_guy
-					if(human_guy.should_have_organ(O_HEART))
-						for(var/obj/item/organ/internal/heart/heart in human_guy.internal_organs)
-							heart.bruise() //Closest thing we have to a heart attack.
-						to_chat(living_guy, span_userdanger("You clutch at your heart!"))
+				living_guy.make_jittery(250)
+				if(evil && prob(7 * effective_luck))
+					to_chat(living_guy, span_warning("You are completely shocked by this turn of events!"))
+					if(ishuman(living_guy))
+						var/mob/living/carbon/human/human_guy = living_guy
+						if(human_guy.should_have_organ(O_HEART))
+							for(var/obj/item/organ/internal/heart/heart in human_guy.internal_organs)
+								heart.bruise() //Closest thing we have to a heart attack.
+							to_chat(living_guy, span_userdanger("You clutch at your heart!"))
 
 			consume_omen()
 
@@ -209,6 +223,14 @@
 
 	return
 
+/datum/component/omen/proc/check_stairs(mob/living/unlucky_soul)
+	if(prob(3 * luck_mod)) /// Bonk!
+		playsound(unlucky_soul, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
+		unlucky_soul.visible_message(span_danger("One of the stairs give way as [unlucky_soul] steps onto it, tumbling them down to the bottom!"), span_userdanger("A stair gives way and you trip to the bottom!"))
+		for(var/obj/item/organ/external/limb in unlucky_soul.organs) //In total, you should have 11 limbs (generally, unless you have an amputation). The full omen variant we want to leave you at 1 hp, the trait version less. As of writing, the trait version is 25% of the damage, so you take 24.75 across all limbs.
+			unlucky_soul.apply_damage(9 * damage_mod, BRUTE, limb.organ_tag, used_weapon = "slipping")
+		unlucky_soul.Weaken(5)
+
 /**
  * The trait omen. Permanent.
  * Has only a 30% chance of bad things happening, and takes only 25% of normal damage.
@@ -223,10 +245,14 @@
 /datum/component/omen/trait/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(check_accident))
 	RegisterSignal(parent, COMSIG_ON_CARBON_SLIP, PROC_REF(check_slip))
+	RegisterSignal(parent, COMSIG_MOVED_DOWN_STAIRS, PROC_REF(check_stairs))
 
 /datum/component/omen/trait/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_MOVED_DOWN_STAIRS))
 
+///Variant trait for downstreams that have safe disposals.
+/datum/component/omen/trait/safe_disposals
+	safe_disposals = TRUE
 
 /**
  * The bible omen.
@@ -252,11 +278,3 @@
 /**
  * Various procs used when unlucky things happen!
  */
-/obj/structure/stairs/proc/tumble_down(var/atom/movable/AM)
-	if(!isliving(AM))
-		return
-	var/mob/living/unlucky_soul = AM
-	playsound(unlucky_soul, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
-	unlucky_soul.visible_message(span_danger("[unlucky_soul] slips down the [src]!"), span_userdanger("You trip down the stairs!"))
-	unlucky_soul.apply_damage(15, BRUTE, BP_TORSO, used_weapon = "slipping")
-	unlucky_soul.Weaken(5)

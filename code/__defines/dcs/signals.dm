@@ -163,6 +163,11 @@
 ///from base of atom/attack_paw(): (mob/user)
 //This signal return value bitflags can be found in __DEFINES/misc.dm
 
+///from base of /obj/structure/stairs/top/use_stairs(var/atom/movable/AM, var/atom/oldloc)
+#define COMSIG_MOVED_DOWN_STAIRS "atom_moved_down_stairs"
+///from base of /obj/structure/stairs/bottom/use_stairs(var/atom/movable/AM, var/atom/oldloc)
+#define COMSIG_MOVED_UP_STAIRS "atom_moved_up_stairs"
+
 ///called for each movable in a turf contents on /turf/zImpact(): (atom/movable/A, levels)
 #define COMSIG_ATOM_INTERCEPT_Z_FALL "movable_intercept_z_impact"
 ///called on a movable (NOT living) when someone starts pulling it (atom/movable/puller, state, force)
