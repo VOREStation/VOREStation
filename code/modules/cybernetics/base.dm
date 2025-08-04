@@ -26,6 +26,8 @@
 	var/image/radial_image //only generated if is_activatable
 	var/image_text = "FSDFSD"
 
+	var/datum/commandline_network_node/networkNode //instantiating this is handled via the subtypes.
+
 	health = 30 //fsdfsd
 
 	maptext_height = 32
@@ -71,7 +73,7 @@ TODO:
 	if(targetOrgan)
 		installed_in = target
 		forceMove(targetOrgan)
-		post_install(targetOrgan) //get the
+		post_install(targetOrgan, target) //get the
 		SEND_SIGNAL(src, COMSIG_ENDOWARE_INSTALLED)
 		return TRUE
 
@@ -120,13 +122,49 @@ TODO:
 
 /* REGISTERING / DEREGISTERING TO/FROM SOMEONE/A ORGAN*/
 
-/obj/item/endoware/proc/post_install(var/obj/item/organ/new_location)
+/obj/item/endoware/proc/post_install(var/obj/item/organ/new_location, var/target_loc)
 	SHOULD_CALL_PARENT(TRUE)
 	ASSERT(loc == new_location)
 	ASSERT(ishuman(loc.loc)) //can't install on a standalone limb.
 
+	if(networkNode)
+		networkNode.network_locs = loc_to_locs(target_loc) //TODO, make a more flexible table. ae: eyes in head. hand in arms etc.
+
 	added_to_organ(new_location)
 	added_to_human(loc.loc)
+
+/obj/item/endoware/proc/loc_to_locs(var/target_loc)
+	var/list/conversion_table = list(
+		BP_L_FOOT = list("legs","feet","l_foot","l_leg"),
+		BP_R_FOOT = list("legs","feet","r_foot","r_leg"),
+		BP_L_LEG = list("l_leg","legs"),
+		BP_R_LEG = list("r_leg","legs"),
+		BP_L_HAND = list("l_hand","l_arm","arms","hands"),
+		BP_R_HAND = list("r_hand","r_arm","arms","hands"),
+		BP_L_ARM = list("l_arm","arms"),
+		BP_R_ARM = list("r_arm","arms"),
+		BP_HEAD = list("head"),
+		BP_TORSO = list("torso","spine"),
+		BP_GROIN = list("groin","torso"),
+
+		O_EYES = list("head","eyes"),
+		O_HEART = list("torso","heart"),
+		O_LUNGS = list("torso","lungs"),
+		O_BRAIN = list("head","brain"),
+		O_LIVER = list("liver","torso"),
+		O_APPENDIX = list("appendix","torso"),
+		O_VOICE = list("larynx","head"),
+		O_SPLEEN = list("spleen","torso"),
+		O_INTESTINE = list("intestine","torso"),
+
+		O_PUMP = list("hydraulics","torso"),
+		O_CYCLER = list("reagent_cycler","pump","torso"),
+		O_HEATSINK = list("heatsink","torso"),
+		O_DIAGNOSTIC = list("diagnostics","torso"),
+	)
+	if(target_loc in conversion_table)
+		return conversion_table[target_loc]
+	return ckey(target_loc)
 
 /obj/item/endoware/proc/uninstalled(var/mob/living/carbon/host)
 	SHOULD_CALL_PARENT(TRUE)
@@ -147,6 +185,7 @@ TODO:
 	host = human
 	build_human_signals(host)
 	build_human_components(host)
+
 	host.installed_endoware |= src
 
 /obj/item/endoware/proc/build_organ_signals(var/obj/item/organ/target)
@@ -199,9 +238,16 @@ TODO:
 
 // for the most part, these are where the magic happens. nearly 100% of the behavior done by these should be component driven! Unless it's simple shit, anyway.
 /obj/item/endoware/proc/build_human_components(var/mob/living/carbon/human/human)
+	SHOULD_CALL_PARENT(TRUE)
+	human.InitNetworkIfNeeded()
+	if(networkNode)
+		human.cmdNetwork.add_node(networkNode)
 	return
 
 /obj/item/endoware/proc/dissolve_human_components(var/mob/living/carbon/human/human)
+	SHOULD_CALL_PARENT(TRUE)
+	if(networkNode)
+		human.cmdNetwork.remove_node(networkNode)
 	return
 /* ACTIVATION */
 

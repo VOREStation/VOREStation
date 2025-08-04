@@ -9,6 +9,12 @@ Simple Size Implant.
 	is_activatable = TRUE
 	image_text =  "SIZE"
 
+/obj/item/endoware/size_voice/Initialize(mapload)
+	. = ..()
+	networkNode = new /datum/commandline_network_node/endoware/size()
+	networkNode.assigned_to = src
+	networkNode.Initialize() //TODO, move this to SS
+
 /obj/item/endoware/size/activate()
 	. = ..()
 	if(!host)

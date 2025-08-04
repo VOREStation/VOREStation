@@ -9,10 +9,17 @@ voice control size implant
 
 	var/list/components_added = list()
 
+/obj/item/endoware/size_voice/Initialize(mapload)
+	. = ..()
+	networkNode = new /datum/commandline_network_node/endoware/size_verbal()
+	networkNode.assigned_to = src
+
 /obj/item/endoware/size_voice/build_human_components(var/mob/living/carbon/human/human)
-	human.AddComponent(/datum/component/resize_by_verbal_command,whitelisted_mobs,src)
 	.=..()
+	var/SizeHear = human.AddComponent(/datum/component/resize_by_verbal_command,whitelisted_mobs,src)
+	components_added |= SizeHear
 
 /obj/item/endoware/size_voice/dissolve_human_components(var/mob/living/carbon/human/human)
 	for(var/datum/component/x in components_added)
 		qdel(x)
+	.=..()

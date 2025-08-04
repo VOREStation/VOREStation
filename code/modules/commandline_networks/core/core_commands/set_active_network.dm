@@ -32,23 +32,30 @@ Selects a network for remote command targeting. Must be physically connected to 
 	if(!arguments.len) //we want the extra help info here.
 		if(verbose)
 			var/x = ""
-			for(var/y in from.owner.connected_networks)
-				x += y + ", "
+			for(var/datum/commandline_network/y in from.owner.connected_networks)
+				x += y.name + ", "
 			logs.set_log(from,"Err: No Target Network Alias Provided: Avaliable Options: [x].",COMMAND_OUTPUT_ERROR)
 			return
 		logs.set_log(from,"Err: No Target Network Alias Provided.",COMMAND_OUTPUT_ERROR)
 		return
 
 	var/target = arguments[1]
-	if(!(target in from.owner.connected_networks))
+	var/datum/commandline_network/found = null
+
+	for(var/datum/commandline_network/y in from.owner.connected_networks)
+		if(y.name == target)
+			found = y
+
+	if(!found)
 		if(verbose)
 			var/x = ""
-			for(var/networkName in from.owner.connected_networks)
-				x += "[networkName]" + ", "
+			for(var/datum/commandline_network/y in from.owner.connected_networks)
+				x += "[y.name]" + ", "
 			logs.set_log(from,"Err: Invalid Target Alias \"[target]\". Avaliable Options: [x]",COMMAND_OUTPUT_ERROR)
 			return
 		else
 			logs.set_log(from,"Err: Invalid Target Alias \"[target]\".",COMMAND_OUTPUT_ERROR)
 			return
-	from.owner.targetted_network = from.owner.connected_networks[target]
+
+	from.owner.targetted_network = found
 	logs.set_log(from,"Target Network Set To: [target].")

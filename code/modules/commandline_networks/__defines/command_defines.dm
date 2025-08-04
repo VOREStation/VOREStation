@@ -65,5 +65,15 @@ var/list/sorted_tokens, \
 var/datum/commandline_log_entry/logs, \
 var/verbose
 
-#define COMMAND_ACTION_DEFINE(action,procname,min)  dispatch_table["[ckey(action)]"] = list(CALLBACK(src,PROC_REF(procname),min))
+#define COMMAND_ACTION_DEFINE(action,procname,min)  dispatch_table["[ckey(action)]"] = list(CALLBACK(src,PROC_REF(procname)),min)
 #define COMMAND_STANDALONE_ACTION_DEFINE(procname,min) standalone = CALLBACK(src,PROC_REF(procname)); min_args_standalone=min
+
+#define ERROR_REQUIRES_MOB: "Err: Endoware not installed in valid target."
+#define ERROR_NO_FROM "FUCK!! Command sent without owner! You likely need a priest. you should never see this."
+#define ERROR_NO_SOURCE "Err: Command sent with invalid origin"
+#define ERROR_MISSING_TABLE "Err: Command Binary in invalid state"
+
+#define ERROR_ARGUMENT_NOT_IN_TABLE(possible) "Err: Invalid action. Valid actions: [possible]"
+#define ERROR_NO_ARGUMENTS_NON_STANDALONE "Err: This command requires arguments. use help for usage."
+
+#define ERROR_NOT_ENOUGH_ARGUMENTS(action,minarguments) "Err: Insufficient arguments provided for [action]. Required: [minarguments]"

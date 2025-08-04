@@ -37,15 +37,6 @@ source: what node sent the command?
 from: what node are we running the command on?
 arguments: what arguments were given? -> full list of tokens.
 */
-#define ERROR_NO_FROM "FUCK!! Command sent without owner! You likely need a priest. you should never see this."
-#define ERROR_NO_SOURCE "Err: Command sent with invalid origin"
-#define ERROR_MISSING_TABLE "Err: Command Binary in invalid state"
-
-#define ERROR_ARGUMENT_NOT_IN_TABLE(possible) "Err: Invalid action. Valid actions: [possible]"
-#define ERROR_NO_ARGUMENTS_NON_STANDALONE "Err: This command requires arguments. use help for usage."
-
-#define ERROR_NOT_ENOUGH_ARGUMENTS(action,minarguments) "Err: Insufficient arguments provided for [action]. Required: [minarguments]"
-
 /datum/commandline_network_command/proc/runCommand(var/datum/commandline_network_node/source, var/datum/commandline_network_node/from, var/list/sorted_tokens, var/datum/commandline_log_entry/logs, var/verbose = FALSE)
 	SHOULD_CALL_PARENT(FALSE) //if you're overwriting logic you probably don't wanna call this anyway. if you DO feel free to comment this out
 
@@ -71,7 +62,7 @@ arguments: what arguments were given? -> full list of tokens.
 		logs.set_log(from,ERROR_MISSING_TABLE,COMMAND_OUTPUT_ERROR)
 		return
 
-	if(argument_count < 1)
+	if(arguments.len < 1) //no action provided.
 		logs.set_log(from,ERROR_NO_ARGUMENTS_NON_STANDALONE,COMMAND_OUTPUT_ERROR)
 		return
 
