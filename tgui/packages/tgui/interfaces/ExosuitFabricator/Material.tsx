@@ -35,12 +35,13 @@ const EjectMaterial = (props: { material: material }) => {
     <>
       <NumberInput
         width="30px"
+        tickWhileDragging
         animated
         value={removeMaterials}
         minValue={1}
         maxValue={sheets || 1}
         step={1}
-        onDrag={(val) => {
+        onChange={(val) => {
           const newVal = val;
           if (Number.isInteger(newVal)) {
             setRemoveMaterials(newVal);

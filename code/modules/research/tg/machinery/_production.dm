@@ -206,7 +206,7 @@
 
 /obj/machinery/rnd/production/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/sheetmaterials),
+		get_asset_datum(/datum/asset/spritesheet_batched/sheetmaterials),
 		get_asset_datum(/datum/asset/spritesheet_batched/research_designs)
 	)
 
@@ -254,6 +254,7 @@
 
 	data["designs"] = designs
 	data["fabName"] = name
+	data += materials.mat_container.tgui_static_data()
 
 	return data
 

@@ -71,7 +71,7 @@
 	M.eye_blurry = min(M.eye_blurry + wound_heal, 250)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/obj/item/organ/external/O in H.bad_external_organs)
+		for(var/obj/item/organ/external/O in H.organs)
 			for(var/datum/wound/W in O.wounds)
 				if(W.bleeding())
 					W.damage = max(W.damage - wound_heal, 0)
@@ -804,7 +804,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/wound_heal = removed * repair_strength
-		for(var/obj/item/organ/external/O in H.bad_external_organs)
+		for(var/obj/item/organ/external/O in H.organs)
 			for(var/datum/wound/W in O.wounds)
 				if(W.bleeding())
 					W.bandage() //This is the ACTUAL clotting being performed.

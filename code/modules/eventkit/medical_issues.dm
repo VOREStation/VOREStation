@@ -43,7 +43,7 @@
 		handle_curing()
 
 	if(symptom_text)
-		if(prob(5))
+		if(prob(1))
 			to_chat(owner, span_danger("[symptom_text]"))
 
 	if(symptom_affect)
@@ -81,6 +81,9 @@
 
 /datum/medical_issue/proc/handle_curing()
 	for(var/datum/reagent/R in owner.reagents.reagent_list)
+		if(R.name == cure_reagent)
+			unhealth = unhealth - reagent_strength
+	for(var/datum/reagent/R in owner.ingested.reagent_list)
 		if(R.name == cure_reagent)
 			unhealth = unhealth - reagent_strength
 

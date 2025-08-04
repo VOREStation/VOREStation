@@ -460,6 +460,9 @@
 	if(pulledby && isturf(loc))
 		combine_in_loc()
 
+/obj/item/stack/proc/reagents_per_sheet()
+	return REAGENTS_PER_SHEET // units total of reagents when grinded
+
 /*
  * Recipe datum
  */
