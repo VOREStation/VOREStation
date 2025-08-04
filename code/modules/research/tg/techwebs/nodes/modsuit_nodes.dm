@@ -66,7 +66,7 @@
 		// "mod_patienttransport",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	required_experiments = list(/datum/experiment/scanning/points/basic_med_rig)
+	discount_experiments = list(/datum/experiment/scanning/points/basic_med_rig = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_MEDICAL)
 
 /datum/techweb_node/mod_engi
@@ -89,7 +89,7 @@
 		// "mod_mister_atmos",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	required_experiments = list(/datum/experiment/scanning/points/basic_engi_rig)
+	discount_experiments = list(/datum/experiment/scanning/points/basic_engi_rig = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_ENGINEERING)
 
 /datum/techweb_node/mod_security
@@ -118,8 +118,8 @@
 		// "mod_projectile_dampener",
 		// "mod_criminalcapture",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	required_experiments = list(/datum/experiment/scanning/points/basic_sec_rig)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/points/basic_sec_rig = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_SECURITY)
 
 /datum/techweb_node/mod_engi_adv
@@ -153,8 +153,8 @@
 		"rig_device_excdrill",
 		"rig_device_anomscanner",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
-	required_experiments = list(/datum/experiment/scanning/points/basic_sci_rig)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/points/basic_sci_rig = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/mod_supply
@@ -168,6 +168,6 @@
 		"rig_device_orescanner",
 		"rig_component_material",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
-	required_experiments = list(/datum/experiment/scanning/points/basic_min_rig)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/points/basic_min_rig = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE, CHANNEL_SUPPLY)
