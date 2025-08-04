@@ -8,7 +8,7 @@
 	idle_power_usage = 5
 	active_power_usage = 300
 	circuit = /obj/item/circuitboard/industrial_reagent_grinder
-	VAR_PRIVATE/limit = 50
+	var/static/limit = 50
 	VAR_PRIVATE/list/holdingitems = list()
 
 /obj/machinery/reagent_refinery/grinder/Initialize(mapload)
@@ -89,15 +89,16 @@
 		return
 
 	// Get objects from incoming conveyors
-	for(var/D in GLOB.cardinal)
-		var/turf/T = get_step(src,D)
-		if(!T)
-			continue
-		var/obj/machinery/conveyor/C = locate() in T
-		if(C && !C.stat && C.operating && C.dir == GLOB.reverse_dir[D]) // If an operating conveyor points into us... Check if it's moving anything
-			var/obj/item/I = pick(T.contents - list(C))
-			if(istype(I) && conveyor_load(I))
-				break
+	if(holdingitems.len < limit)
+		for(var/D in GLOB.cardinal)
+			var/turf/T = get_step(src,D)
+			if(!T)
+				continue
+			var/obj/machinery/conveyor/C = locate() in T
+			if(C && !C.stat && C.operating && C.dir == GLOB.reverse_dir[D]) // If an operating conveyor points into us... Check if it's moving anything
+				var/obj/item/I = pick(T.contents - list(C))
+				if(istype(I) && conveyor_load(I))
+					break
 
 	if(holdingitems.len > 0 && grind_items_to_reagents(holdingitems,reagents))
 		//Lazy coder sound design moment. THE SEQUEL
