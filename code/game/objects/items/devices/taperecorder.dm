@@ -188,7 +188,9 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		to_chat(M, span_notice("Recording stopped."))
-
+	else if(isturf(loc)) // If not hidden away in a bag
+		playsound(src, 'sound/machines/click.ogg', 50, 1)
+		visible_message("\The [src] clicks as it stops recording.","click")
 
 /obj/item/taperecorder/verb/stop()
 	set name = "Stop"
