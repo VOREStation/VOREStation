@@ -1422,13 +1422,13 @@ About the new airlock wires panel:
 	adjustBruteLoss(crush_damage)
 	return 0
 
-/obj/machinery/door/airlock/close(var/forced=0)
+/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE)
 	if(!can_close(forced))
 		return 0
 
 	hold_open = null //if it passes the can close check, always make sure to clear hold open
 
-	if(safe)
+	if(safe && !ignore_safties)
 		for(var/turf/turf in locs)
 			for(var/atom/movable/AM in turf)
 				if(AM.blocks_airlock())

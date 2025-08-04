@@ -438,7 +438,8 @@
 ///called when being electrocuted, from /mob/living/carbon/electrocute_act(shock_damage, source, siemens_coeff, def_zone, stun)
 #define COMSIG_BEING_ELECTROCUTED "being_electrocuted"
 	#define COMPONENT_CARBON_CANCEL_ELECTROCUTE (1<<0) //If this is set, the carbon will be not be electrocuted.
-
+///called when a carbon slipps, from /mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+#define COMSIG_ON_CARBON_SLIP "carbon_slip"
 
 // /mob/living/silicon signals
 ///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity)

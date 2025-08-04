@@ -743,9 +743,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
-/obj/machinery/vending/proc/throw_item()
+/obj/machinery/vending/proc/throw_item(forced_target)
 	var/obj/item/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
+	if(forced_target && isliving(forced_target))
+		target = forced_target
 	if(!target)
 		return 0
 
