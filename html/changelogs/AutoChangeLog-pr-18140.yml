@@ -1,0 +1,8 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Deep drill boreholes can be fracked with fluid pumps"
+  - rscadd: "More sheet types can be grinded"
+  - rscadd: "Refinery grinder can accept conveyor fed input"
+  - rscadd: "grinding rods, logs, and hulls"
+  - bugfix: "Reagent scanner can get the reagents inside refinery machines even if they are sealed"
