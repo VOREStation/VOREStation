@@ -448,7 +448,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			return TRUE
 
 		if("set_new_message")
-			msg = sanitize(tgui_input_text(ui.user, "Write your Feed story", "Network Channel Handler","", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE), MAX_MESSAGE_LEN, FALSE, FALSE, TRUE)
+			msg = sanitize(tgui_input_text(ui.user, "Write your Feed story", "Network Channel Handler","", MAX_MESSAGE_LEN, TRUE, encode = FALSE, prevent_enter = TRUE), MAX_MESSAGE_LEN, FALSE, FALSE, TRUE)
 			return TRUE
 
 		if("set_new_title")
