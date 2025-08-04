@@ -1,5 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - bugfix: "Fixed medical issues not proccing for species that can't be infected."
-  - bugfix: "Fixed medical issues so that they can be cured by ingested reagents too."
