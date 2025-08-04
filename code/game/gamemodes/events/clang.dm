@@ -127,6 +127,7 @@
 			walk(src, 0)
 			//stone_grinding.ogg
 			addtimer(CALLBACK(src, PROC_REF(fetch_boy), unlucky_bugger), 1 SECOND, TIMER_DELETE_ME)
+			break
 
 /obj/effect/immovablerod/proc/fetch_boy(unlucky_bugger)
 	walk_towards(src, unlucky_bugger, 1)
