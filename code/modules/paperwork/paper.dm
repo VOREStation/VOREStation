@@ -694,3 +694,7 @@
 /obj/item/paper/manifest
 	name = "supply manifest"
 	var/is_copy = 1
+
+/obj/item/paper/manifest/Initialize(mapload, text, title)
+	. = ..()
+	AddElement(/datum/element/sellable/manifest)

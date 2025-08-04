@@ -11,12 +11,13 @@ export const FilterTransformEntry = (props: FilterEntryProps) => {
     <Box>
       {value?.map((current_value: number, current_index: number) => (
         <NumberInput
+          tickWhileDragging
           key={current_index}
           value={current_value}
           minValue={0}
           maxValue={1}
           step={1}
-          onDrag={(new_value) =>
+          onChange={(new_value) =>
             act('modify_filter_value', {
               name: filterName,
               new_data: {

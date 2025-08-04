@@ -25,9 +25,7 @@
 		else
 			. += span_notice("It can be [harvest_verb] now.")
 
-	. += attempt_vr(src,"examine_reagent_bellies",args)
-
-	. += attempt_vr(src,"examine_bellies",args)
+	. += formatted_vore_examine()
 	. += ""
 
 	if(print_flavor_text()) . += "<br>[print_flavor_text()]"

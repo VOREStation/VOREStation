@@ -133,9 +133,17 @@
 		active_program.kill_program(forced)
 		active_program = null
 	var/mob/user = usr
-	if(user && istype(user))
-		tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+	addtimer(CALLBACK(src, PROC_REF(delayed_reopen_ui), user), 1, TIMER_DELETE_ME)
 	update_icon()
+
+/obj/item/modular_computer/proc/delayed_reopen_ui(var/mob/user)
+	// Re-open the UI on this computer. It should show the main screen now.
+	// Expected from kill_program()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!user || !istype(user))
+		return
+	tgui_interact(user)
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(var/specific_action = 0)

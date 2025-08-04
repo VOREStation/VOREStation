@@ -1736,7 +1736,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
 "oz" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "axolotl_pd"
 	},
 /turf/simulated/floor/plating,
@@ -2796,7 +2796,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_q1)
 "xo" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "axolotl_pd"
 	},
 /turf/simulated/floor/plating,
@@ -4171,7 +4171,7 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/substation)
 "Ix" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "axolotl_pd"
 	},
 /turf/simulated/floor/plating,

@@ -16,7 +16,7 @@
 
 	target_slot = slot_l_hand
 
-	target_parent_classes = list(ORGAN_FLESH, ORGAN_ROBOT)
+	target_parent_classes = list(ORGAN_FLESH, ORGAN_ROBOT, ORGAN_NANOFORM)
 
 	integrated_object_type = /obj/item/gun/energy/laser/mounted/augment
 
@@ -67,7 +67,7 @@
 	parent_organ = BP_R_HAND
 	target_slot = slot_r_hand
 
-	integrated_object_type = /obj/item/portable_scanner
+	integrated_object_type = null
 
 /obj/item/organ/internal/augment/armmounted/hand/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))

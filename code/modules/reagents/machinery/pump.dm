@@ -4,8 +4,9 @@
 
 	description_info = "A machine that can pump fluid from certain turfs.<br>\
 	Water can be pumped from any body of water. Certain locations or environmental\
-	conditions  can cause different byproducts to be produced.<br>\
-	Magma or Lava can be pumped to produce mineralized fluid."
+	conditions can cause different byproducts to be produced.<br>\
+	Magma or Lava can be pumped to produce mineralized fluid.<br>\
+	Deep bore mining drills can create boreholes that can be fracked for fluids."
 
 	anchored = TRUE
 	density = TRUE
@@ -192,8 +193,8 @@
 	if(air.temperature <= T0C) // Uses the current air temp, instead of the turf starting temp
 		R.add_reagent(REAGENT_ID_ICE, round(volume / 2, 0.1))
 
-	for(var/turf/simulated/mineral/M in orange(5,src)) // Uses the turf as center instead of an unset usr
-		if(M.mineral && prob(40)) // v
+	for(var/turf/simulated/mineral/M in orange(5,src))
+		if(M.mineral && prob(40) && M.mineral.reagent) // v
 			R.add_reagent(M.mineral.reagent, round(volume / 5, 0.1)) // Was the turf's reagents variable not the R argument, and changed ore_reagent to M.mineral.reagent because of above change. Also nerfed amount to 1/5 instead of 1/2
 
 /turf/simulated/floor/water/pool/pump_reagents(var/datum/reagents/R, var/volume)
@@ -207,3 +208,26 @@
 /turf/simulated/floor/water/contaminated/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_VATSTABILIZER, round(volume / 2, 0.1))
+
+/turf/simulated/mineral/pump_reagents(var/datum/reagents/R, var/volume)
+	. = ..()
+	if(density)
+		return
+	if(!sand_dug)
+		return
+	var/turf/simulated/mineral/M = pick(orange(5,src))
+	if(!istype(M))
+		return
+	// Use nearby ores as well
+	if(M.mineral && M.mineral.reagent && prob(40))
+		R.add_reagent(M.mineral.reagent, rand(0,volume / 8))
+	// Pump deep reagents from deepdrill boreholes
+	for(var/metal in GLOB.deepore_fracking_reagents)
+		if(!M.resources[metal])
+			continue
+		var/list/ore_list = GLOB.deepore_fracking_reagents[metal]
+		if(!ore_list || !ore_list.len)
+			continue
+		var/reagent_id = pick(ore_list)
+		if(reagent_id && prob(60))
+			R.add_reagent(reagent_id, rand(0,volume / 6))

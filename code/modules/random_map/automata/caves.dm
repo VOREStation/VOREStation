@@ -60,7 +60,6 @@
 	if(!current_cell)
 		return 0
 	var/turf/simulated/mineral/T = locate((origin_x-1)+x,(origin_y-1)+y,origin_z)
-	//VOREStation Edit Start
 	if(istype(T) && !T.ignore_mapgen)
 		if(!T.ignore_cavegen)
 			if(map[current_cell] == FLOOR_CHAR)
@@ -75,7 +74,6 @@
 			else if(map[current_cell] == EMPTY_CHAR)
 				T.turf_resource_types |= TURF_HAS_RARE_ORE
 		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
-	//VOREStation Edit End
 	return T
 
 /datum/random_map/automata/cave_system/apply_to_map()

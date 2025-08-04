@@ -424,7 +424,7 @@
 ///////////////////
 //A projected AR soul thing
 /mob/observer/eye/ar_soul
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	plane = PLANE_AUGMENTED
 	icon = 'icons/obj/machines/ar_elements.dmi'
 	icon_state = "beacon"

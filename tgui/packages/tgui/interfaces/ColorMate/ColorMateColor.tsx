@@ -24,12 +24,13 @@ export const ColorMateHSV = (props) => {
         <center>Hue:</center>
         <Table.Cell width="85%">
           <Slider
+            tickWhileDragging
             minValue={0}
             maxValue={360}
             step={1}
             value={buildhue}
             format={(value: number) => toFixed(value)}
-            onDrag={(e, value: number) =>
+            onChange={(e, value: number) =>
               act('set_hue', {
                 buildhue: value,
               })
@@ -41,12 +42,13 @@ export const ColorMateHSV = (props) => {
         <center>Saturation:</center>
         <Table.Cell>
           <Slider
+            tickWhileDragging
             minValue={-10}
             maxValue={10}
             step={0.01}
             value={buildsat}
             format={(value: number) => toFixed(value, 2)}
-            onDrag={(e, value: number) =>
+            onChange={(e, value: number) =>
               act('set_sat', {
                 buildsat: value,
               })
@@ -58,12 +60,13 @@ export const ColorMateHSV = (props) => {
         <center>Value:</center>
         <Table.Cell>
           <Slider
+            tickWhileDragging
             minValue={-10}
             maxValue={10}
             step={0.01}
             value={buildval}
             format={(value: number) => toFixed(value, 2)}
-            onDrag={(e, value: number) =>
+            onChange={(e, value: number) =>
               act('set_val', {
                 buildval: value,
               })
