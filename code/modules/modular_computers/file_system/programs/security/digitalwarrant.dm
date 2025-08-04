@@ -112,7 +112,7 @@ var/warrant_uid = 0
 			var/namelist = list()
 			for(var/datum/data/record/t in GLOB.data_core.general)
 				namelist += t.fields["name"]
-			var/new_name = sanitize(tgui_input_list(ui.user, "Please input name:", "Name Choice", namelist), encode = FALSE)
+			var/new_name = tgui_input_list(ui.user, "Please input name:", "Name Choice", namelist)
 			if(tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				if (!new_name)
 					return
