@@ -87,3 +87,12 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/scanning_module = 1,
 	)
+
+/obj/item/circuitboard/honey_extractor
+	name = T_BOARD("honey_extractor")
+	board_type = new /datum/frame/frame_types/machine
+	build_path = /obj/machinery/honey_extractor
+	req_components = list(
+		/obj/item/stack/cable_coil = 4,
+		/obj/item/stock_parts/motor = 1,
+		/obj/item/stock_parts/console_screen = 1)

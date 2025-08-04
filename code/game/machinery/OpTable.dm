@@ -81,6 +81,8 @@
 	if(C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
+	if(C.pulledby)
+		C.pulledby.stop_pulling()
 	C.resting = 1
 	C.loc = src.loc
 	for(var/obj/O in src)

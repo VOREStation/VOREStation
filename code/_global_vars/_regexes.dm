@@ -6,6 +6,9 @@ GLOBAL_DATUM_INIT(is_valid_url, /regex, regex("((?:https://)\[-a-zA-Z0-9@:%._+~#
 //All < and > characters
 GLOBAL_DATUM_INIT(angular_brackets, /regex, regex(@"[<>]", "g"))
 
+//All characters between < a > inclusive of the bracket
+GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
+
 GLOBAL_DATUM_INIT(is_color, /regex, regex("^#\[0-9a-fA-F]{6}$"))
 
 //All characters forbidden by filenames: ", \, \n, \t, /, ?, %, *, :, |, <, >, ..
