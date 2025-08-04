@@ -600,8 +600,9 @@
 		return
 	var/obj/item/wrapped = get_current_pocket()
 	//Checks two things:
-	//Is our wrapped object currently in our borg still? If not, reset WR.
-	if(wrapped.loc != loc)
+	//Is our wrapped object currently in our borg still?
+	//AND Is it not a gripper pocket? If not, reset WR.
+	if(wrapped.loc != loc && !isgripperpocket(wrapped.loc))
 		WR = null
 
 //This is the code that updates our pockets and decides if they should have icons or not.
@@ -613,7 +614,7 @@
 
 		photo_images = list()
 
-		for(var/obj/item/storage/internal/pocket_to_check in pockets)
+		for(var/obj/item/storage/internal/gripper/pocket_to_check in pockets)
 			if(!LAZYLEN(pocket_to_check.contents))
 				pockets_by_name[pocket_to_check.name] = pocket_to_check
 				photo_images[pocket_to_check.name] = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing")
@@ -803,8 +804,7 @@
 		if(!resolved && wrapped && target)
 			wrapped.afterattack(target,user,1)
 
-		if((QDELETED(wrapped))) //We put our wrapped thing INTO something!
-			WR = null
+		if(!WR) //We put our wrapped thing INTO something!
 			current_pocket = pick(pockets)
 			return
 		//If we had a previous pocket and the wrapped isn't put into something, put it back in our pocket.
