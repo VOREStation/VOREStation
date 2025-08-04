@@ -78,7 +78,7 @@
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 	no_variants = FALSE
 	pass_color = TRUE
-	apply_colour = TRUE =
+	apply_colour = TRUE
 
 /obj/item/stack/material/stick/reagents_per_sheet()
 	return REAGENTS_PER_ROD
