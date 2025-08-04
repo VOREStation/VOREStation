@@ -1460,7 +1460,7 @@ GLOBAL_LIST_INIT(sheet_reagents, list( //have a number of reagents divisible by 
 	/obj/item/stack/material/fiber = list(REAGENT_ID_CARBON,REAGENT_ID_CARBON,REAGENT_ID_CARBON,REAGENT_ID_PROTEIN,REAGENT_ID_SODIUM),
 	/obj/item/stack/material/fur = list(REAGENT_ID_CARBON,REAGENT_ID_CARBON,REAGENT_ID_CARBON,REAGENT_ID_SULFUR,REAGENT_ID_SODIUM),
 	/obj/item/stack/material/algae = list(REAGENT_ID_CARBON,REAGENT_ID_NITROGEN,REAGENT_ID_NITROGEN,REAGENT_ID_PHOSPHORUS,REAGENT_ID_PHOSPHORUS),
-	/obj/item/stack/material/concrete = list(REAGENT_ID_SILICON, REAGENT_ID_CALCIUM),
+	/obj/item/stack/material/concrete = list(REAGENT_ID_SILICATE, REAGENT_ID_CALCIUM),
 	/obj/item/stack/material/cardboard = list(REAGENT_ID_WOODPULP),
 	// Woods
 	/obj/item/stack/material/wood = list(REAGENT_ID_CARBON,REAGENT_ID_WOODPULP,REAGENT_ID_NITROGEN,REAGENT_ID_POTASSIUM,REAGENT_ID_SODIUM),
