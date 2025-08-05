@@ -84,6 +84,6 @@
 	avatar.virtual_reality_mob = TRUE
 	log_and_message_admins("[key_name_admin(avatar)] joined virtual reality from the ghost menu.")
 
-	var/newname = sanitize(tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/newname = tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN)
 	if(newname)
 		avatar.real_name = newname

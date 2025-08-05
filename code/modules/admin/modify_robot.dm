@@ -319,7 +319,7 @@
 			var/obj/item/borg/upgrade/U = new new_upgrade(null)
 			if(new_upgrade == /obj/item/borg/upgrade/utility/rename)
 				var/obj/item/borg/upgrade/utility/rename/UN = U
-				var/new_name = sanitizeSafe(tgui_input_text(ui.user, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN), MAX_NAME_LEN)
+				var/new_name = sanitizeSafe(tgui_input_text(ui.user, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 				if(new_name)
 					UN.heldname = new_name
 				U = UN
@@ -550,7 +550,7 @@
 		if("edit_law")
 			var/datum/ai_law/AL = locate(params["edit_law"]) in target.laws.all_laws()
 			if(AL)
-				var/new_law = sanitize(tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
+				var/new_law = tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law, MAX_MESSAGE_LEN)
 				if(new_law && new_law != AL.law)
 					AL.law = new_law
 					target.lawsync()
