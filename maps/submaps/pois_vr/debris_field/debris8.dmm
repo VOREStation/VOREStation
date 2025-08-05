@@ -9,7 +9,7 @@
 /turf/simulated/floor/hull/airless,
 /area/tether_away/debrisfield/shuttle_buffer)
 "d" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	dir = 4
 	},
 /turf/simulated/floor/hull/airless,

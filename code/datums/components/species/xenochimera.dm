@@ -79,7 +79,7 @@
 	var/shock = 0.75*owner.traumatic_shock
 
 	//Caffeinated or otherwise overexcited xenochimera can become feral and have special messages
-	var/jittery = max(0, owner.jitteriness - 100)
+	var/jittery = max(0, owner.get_jittery() - 100)
 
 	//Are we in danger of ferality?
 	var/danger = FALSE

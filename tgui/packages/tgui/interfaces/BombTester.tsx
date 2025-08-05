@@ -111,10 +111,11 @@ export const BombTester = (props) => {
               {canister && (
                 <LabeledList.Item label="Canister Release Pressure">
                   <Slider
+                    tickWhileDragging
                     minValue={0}
                     value={sim_canister_output}
                     maxValue={1013.25}
-                    onDrag={(e, val: number) =>
+                    onChange={(e, val: number) =>
                       act('set_can_pressure', { pressure: val })
                     }
                   />

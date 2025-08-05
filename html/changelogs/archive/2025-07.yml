@@ -325,3 +325,34 @@
   Willburd:
   - bugfix: tiny memory leak on capture crystal animations
   - code_imp: capture crystals use timers instead of sleeps to animate
+2025-07-29:
+  Diana:
+  - rscadd: Purple Robes in the loadout now has a teshari variant!
+  - rscadd: Purple robes can now be unbuttoned!
+  Tenryumi:
+  - bugfix: fixed circuit assemblies printing empty lines on examine.
+  WIll:
+  - rscadd: Items that can be sold by cargo now state it at the end of their description
+  - rscadd: Multiple stamped manifests can be sent in the same crate
+  - code_imp: Moved cargo item selling code to an element
+  Willburd:
+  - code_imp: Removes sleep() in modular computer uis
+  - bugfix: Dev disabled styles removed from randomized rolls.
+2025-07-30:
+  ItsSelis:
+  - qol: rust-g updated to 4.0.0
+  Will:
+  - bugfix: Fixed a major runtime in the resleeving computer when a bodyrecord becomes
+      outdated
+  - bugfix: Synthfab not being able to spawn bodies properly
+  - rscadd: New particle smasher recipes
+2025-07-31:
+  ItsSelis:
+  - bugfix: Fixes an error occuring when tgs is compiling the rust itself.
+  Tenryumi:
+  - rscadd: Added a variant of neck fur that doesn't have a north-facing sprite.
+  TheCaramelion:
+  - bugfix: Fixed vaccines not giving vaccine bottles
+  Will:
+  - code_imp: Moves dizzy and jitter code to components.
+  - bugfix: Teshari can no longer pass through deployed security barriers

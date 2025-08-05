@@ -6,6 +6,8 @@
 	taste_mult = 1.1
 	reagent_state = SOLID
 	color = "#A8A8A8"
+	supply_conversion_value = 1  // has sheet value
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/calcium
 	name = REAGENT_CALCIUM
@@ -15,6 +17,8 @@
 	taste_mult = 1.3
 	reagent_state = SOLID
 	color = "#e9e6e4"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 //VOREStation Edit
 /datum/reagent/calcium/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -37,6 +41,8 @@
 	reagent_state = SOLID
 	color = "#1C1300"
 	ingest_met = REM * 5
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -65,6 +71,8 @@
 	taste_description = "pool water"
 	reagent_state = GAS
 	color = "#808080"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/chlorine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.take_organ_damage(1*REM, 0)
@@ -78,6 +86,8 @@
 	description = "A highly ductile metal."
 	taste_description = "pennies"
 	color = "#6E3B08"
+	supply_conversion_value = 0.5 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/ethanol
 	name = REAGENT_ETHANOL //Parent class for all alcoholic reagents.
@@ -105,6 +115,8 @@
 
 	affects_robots = 1 //kiss my shiny metal ass
 	wiki_flag = WIKI_DRINK
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
 	..()
@@ -290,6 +302,8 @@
 	taste_description = "acid"
 	reagent_state = GAS
 	color = "#808080"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/fluorine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustToxLoss(removed)
@@ -304,6 +318,8 @@
 	taste_mult = 0 //no taste
 	reagent_state = GAS
 	color = "#808080"
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/iron
 	name = REAGENT_IRON
@@ -312,6 +328,8 @@
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#353535"
+	supply_conversion_value = 1 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/lithium
 	name = REAGENT_LITHIUM
@@ -320,6 +338,8 @@
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#808080"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
@@ -335,6 +355,8 @@
 	taste_mult = 0 //mercury apparently is tasteless. IDK
 	reagent_state = LIQUID
 	color = "#484848"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
@@ -351,6 +373,8 @@
 	taste_mult = 0 //no taste
 	reagent_state = GAS
 	color = "#808080"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/oxygen
 	name = REAGENT_OXYGEN
@@ -359,6 +383,8 @@
 	taste_mult = 0
 	reagent_state = GAS
 	color = "#808080"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/oxygen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
@@ -371,6 +397,8 @@
 	taste_description = "vinegar"
 	reagent_state = SOLID
 	color = "#832828"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/potassium
 	name = REAGENT_POTASSIUM
@@ -379,6 +407,8 @@
 	taste_description = "sweetness" //potassium is bitter in higher doses but sweet in lower ones.
 	reagent_state = SOLID
 	color = "#A0A0A0"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/radium
 	name = REAGENT_RADIUM
@@ -387,6 +417,8 @@
 	taste_mult = 0	//Apparently radium is tasteless
 	reagent_state = SOLID
 	color = "#C7C7C7"
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
@@ -408,6 +440,8 @@
 	taste_mult = 0	//Apparently radium is tasteless
 	reagent_state = SOLID
 	color = "#C7C7C7"
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
@@ -428,6 +462,8 @@
 	touch_met = 50 // It's acid!
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/acid/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
@@ -512,6 +548,8 @@
 	taste_mult = 0
 	reagent_state = SOLID
 	color = "#A8A8A8"
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/sodium
 	name = REAGENT_SODIUM
@@ -520,6 +558,8 @@
 	taste_description = "salty metal"
 	reagent_state = SOLID
 	color = "#808080"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/sugar
 	name = REAGENT_SUGAR
@@ -533,6 +573,9 @@
 	glass_name = REAGENT_ID_SUGAR
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	glass_icon = DRINK_ICON_NOISY
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(removed * 3)
@@ -562,6 +605,8 @@
 	taste_description = "old eggs"
 	reagent_state = SOLID
 	color = "#BF8C00"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_RAW
 
 /datum/reagent/tungsten
 	name = REAGENT_TUNGSTEN
@@ -571,3 +616,38 @@
 	taste_mult = 0 //no taste
 	reagent_state = SOLID
 	color = "#DCDCDC"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
+
+/datum/reagent/titanium_dioxide
+	name = REAGENT_TITANIUMDIOX
+	id = REAGENT_ID_TITANIUMDIOX
+	description = "A crumbly white powder, often used in dyes."
+	taste_description = "metal"
+	taste_mult = 0 //no taste
+	reagent_state = SOLID
+	color = "#cadcef"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_COSMETIC
+
+/datum/reagent/titanium
+	name = REAGENT_TITANIUM
+	id = REAGENT_ID_TITANIUM
+	description = "A chemical element, lightweight and biologically inert."
+	taste_description = "metal"
+	taste_mult = 0 //no taste
+	reagent_state = SOLID
+	color = "#cadcef"
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_INDUSTRY
+
+/datum/reagent/tin
+	name = REAGENT_TIN
+	id = REAGENT_ID_TIN
+	description = "A chemical element, soft and highly flexible."
+	taste_description = "metal"
+	taste_mult = 0 //no taste
+	reagent_state = SOLID
+	color = "#efe9ca"
+	supply_conversion_value = 0.5 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR

@@ -65,11 +65,6 @@
 	name = "Creature Container (Red panda)"
 	spawner_type = /mob/living/simple_mob/vore/redpanda
 
-/obj/item/grenade/spawnergrenade/casino/snake
-	desc = "It is set to detonate in 5 seconds. It will release a snake won from the prize vendor!"
-	name = "Creature Container (Snake)"
-	spawner_type = /mob/living/simple_mob/animal/passive/snake
-
 /obj/item/grenade/spawnergrenade/casino/otie
 	desc = "It is set to detonate in 5 seconds. It will release a otie won from the prize vendor!"
 	name = "Creature Container (Otie)"

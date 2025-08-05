@@ -212,7 +212,7 @@
 			if(!choice)
 				return TOPIC_NOACTION
 			if(choice == "Other")
-				var/raw_choice = sanitize(tgui_input_text(user, "Please enter a custom ringtone. If this doesn't match any of the other listed choices, your PDA will use the default (\"beep\") sound.", "Character Preference", null, 20), 20)
+				var/raw_choice = tgui_input_text(user, "Please enter a custom ringtone. If this doesn't match any of the other listed choices, your PDA will use the default (\"beep\") sound.", "Character Preference", null, 20)
 				if(raw_choice)
 					pref.ringtone = raw_choice
 			else
