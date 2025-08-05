@@ -20,6 +20,7 @@
 	required_points = 1
 	required_atoms = list(
 		/mob/living/simple_mob/animal/passive/mouse = 1,
+		/mob/living/simple_mob/animal/passive/mothroach = 1,
 		/mob/living/simple_mob/vore/otie/red/chubby/cocoa = 1,
 		/mob/living/simple_mob/vore/aggressive/rat/pet = 1,
 	)

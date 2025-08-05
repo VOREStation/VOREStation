@@ -10095,6 +10095,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
+"aqB" = (
+/mob/living/simple_mob/animal/passive/mothroach/bar,
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "aqC" = (
 /obj/item/radio/intercom{
 	dir = 1;
@@ -62207,7 +62211,7 @@ anj
 aKl
 aGx
 bgz
-bgz
+aqB
 ato
 bcp
 atN
