@@ -21,7 +21,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 	coordinates = "(X:[loc.x];Y:[loc.y];Z:[loc.z])"
 
 /obj/effect/landmark/event_trigger/proc/set_vars(mob/M)
-	var/new_name = sanitize(tgui_input_text(M, "Input Name for the trigger", "Naming", "Event Trigger"))
+	var/new_name = tgui_input_text(M, "Input Name for the trigger", "Naming", "Event Trigger", MAX_MESSAGE_LEN)
 	if(!new_name)
 		return
 	name = new_name
@@ -95,7 +95,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 
 /obj/effect/landmark/event_trigger/auto_narrate/set_vars(mob/M)
 	..()
-	message = encode_html_emphasis(sanitize(tgui_input_text(M, "What should the automatic narration say?", "Message"), encode = FALSE))
+	message = encode_html_emphasis(tgui_input_text(M, "What should the automatic narration say?", "Message", "", MAX_MESSAGE_LEN))
 	isPersonal_orVis_orAud = (tgui_alert(M, "Should it send directly to the player, or send to the turf?", "Target", list("Player", "Turf")) == "Player" ? 0 : 1)
 	if(isPersonal_orVis_orAud == 0)
 		isWarning = (tgui_alert(M, "Should it be a normal message or a big scary red text?", "Scary Red", list("Big Red", "Normal")) == "Big Red" ? TRUE : FALSE)
