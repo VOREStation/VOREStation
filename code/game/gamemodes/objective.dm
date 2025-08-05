@@ -481,7 +481,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		var/tmp_obj = new custom_target
 		var/custom_name = tmp_obj:name
 		qdel(tmp_obj)
-		custom_name = sanitize(tgui_input_text(usr, "Enter target name:", "Objective target", custom_name))
+		custom_name = tgui_input_text(usr, "Enter target name:", "Objective target", custom_name, MAX_MESSAGE_LEN)
 		if (!custom_name) return
 		target_name = custom_name
 		steal_target = custom_target
@@ -541,39 +541,6 @@ GLOBAL_LIST_EMPTY(all_objectives)
 				if(istype(I, steal_target))
 					return 1
 	return 0
-
-
-
-/datum/objective/download/proc/gen_amount_goal()
-	target_amount = rand(10,20)
-	explanation_text = "Download [target_amount] research levels."
-	return target_amount
-
-
-/datum/objective/download/check_completion()
-	if(!ishuman(owner.current))
-		return 0
-	if(!owner.current || owner.current.stat == 2)
-		return 0
-
-	var/current_amount
-	var/obj/item/rig/S
-	if(ishuman(owner.current))
-		var/mob/living/carbon/human/H = owner.current
-		S = H.back
-
-	if(!istype(S) || !S.installed_modules || !S.installed_modules.len)
-		return 0
-
-	var/obj/item/rig_module/datajack/stolen_data = locate() in S.installed_modules
-	if(!istype(stolen_data))
-		return 0
-
-	for(var/datum/tech/current_data in stolen_data.stored_research)
-		if(current_data.level > 1)
-			current_amount += (current_data.level-1)
-
-	return (current_amount<target_amount) ? 0 : 1
 
 /datum/objective/capture/proc/gen_amount_goal()
 	target_amount = rand(5,10)

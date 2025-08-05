@@ -187,33 +187,28 @@ h4 {
   color: #ff0000;
 }
 
-.brute
-{
-	color: #FF3333;
+.brute {
+  color: #ff3333;
 }
 
-.burn
-{
-	color: #FF9933;
+.burn {
+  color: #ff9933;
 }
 
-.tox
-{
-	color: #00CC66;
+.tox {
+  color: #00cc66;
 }
 
-.oxy
-{
-	color: #0053FA;
+.oxy {
+  color: #0053fa;
 }
 
-.clone
-{
-	color: #00CCCC;
+.clone {
+  color: #00cccc;
 }
 
 .highlight {
-  color: #8BA5C4;
+  color: #8ba5c4;
 }
 
 .dark {
@@ -241,7 +236,7 @@ h4 {
 }
 
 .blue {
-  color: #0000ff;
+  color: #4ea0ff;
 }
 
 .black {
@@ -288,8 +283,8 @@ h4 {
 
 .boldnotice {
   position: relative;
-  background: #E9C183;
-  color: #15345A;
+  background: #e9c183;
+  color: #15345a;
   font-weight: bold;
   font-size: 10px;
   font-style: italic;
@@ -462,31 +457,31 @@ div.notice {
   background-color: #b4b4b4;
 }
 
-input:checked+.slider {
+input:checked + .slider {
   background-color: #40628a;
 }
 
-input:checked+.slider.red {
+input:checked + .slider.red {
   background-color: #a92621;
 }
 
-input:checked+.slider.locked {
+input:checked + .slider.locked {
   background-color: #707070;
 }
 
-input:focus+.slider {
+input:focus + .slider {
   box-shadow: 0 0 1px #2196f3;
 }
 
-input:focus+.slider.red {
+input:focus + .slider.red {
   box-shadow: 0 0 1px #f3212d;
 }
 
-input:focus+.slider.locked {
+input:focus + .slider.locked {
   box-shadow: 0 0 1px #979797;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
   transform: translateX(24px);
 }
 

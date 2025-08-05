@@ -168,6 +168,20 @@
 	contains = list(/obj/vehicle/train/trolley)
 	cost = 15
 
+/datum/supply_pack/supply/cargotank
+	name = "Cargo Train Tanker"
+	desc = "A cargo train tanker. For selling large volumes of a reagent."
+	contains = list(/obj/vehicle/train/trolley_tank)
+	cost = 15
+
+/datum/supply_pack/supply/freezer
+	name = "Freezer crate"
+	desc = "An empty freezer for storing perishable items."
+	contains = list()
+	cost = 20
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "Freezer crate"
+
 /datum/supply_pack/explorergear
 	name= JOB_EXPLORER + " gear"
 	desc = "Standard issue equipment for Explorers. Requires EVA and Exploration access."

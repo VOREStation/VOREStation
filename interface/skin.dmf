@@ -1284,7 +1284,7 @@ window "mapwindow"
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		font-family = "Arial Rounded MT Bold,Arial Black,Arial,sans-serif"
+		font-family = "Grand9K Pixel"
 		font-size = 7
 		text-color = none
 		is-default = true

@@ -1,4 +1,0 @@
-author: "TeleTubby2"
-delete-after: True
-changes:
-  - bugfix: "fixed the recycler deciding plebeians weren't allowed to use it after someone tried to buy an access locked item."

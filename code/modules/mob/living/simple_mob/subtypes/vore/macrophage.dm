@@ -43,6 +43,7 @@
 
 	vore_active = TRUE
 	vore_capacity = 1
+	vore_pounce_chance = 45
 
 	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
@@ -90,20 +91,11 @@
 	else
 		death()
 
-/mob/living/simple_mob/vore/aggressive/macrophage/green
-	icon_state = "macrophage-2"
-
-/mob/living/simple_mob/vore/aggressive/macrophage/pink
-	icon_state = "macrophage-3"
-
-/mob/living/simple_mob/vore/aggressive/macrophage/blue
-	icon_state = "macrophage-4"
-
 /mob/living/simple_mob/vore/aggressive/macrophage/apply_melee_effects(atom/A)
 	if(ishuman(A) && prob(25))
 		var/mob/living/carbon/human/H = A
 		H.ContractDisease(base_disease)
-
+/*
 /mob/living/simple_mob/vore/aggressive/macrophage/do_special_attack(var/atom/A)
 	. = TRUE
 	set_AI_busy(TRUE)
@@ -132,17 +124,20 @@
 		var/mob/living/carbon/human/H = target
 		H.ContractDisease(base_disease)
 	set_AI_busy(FALSE)
-
+*/
 /mob/living/simple_mob/vore/aggressive/macrophage/death()
 	..()
-	visible_message(span_warning("\The [src] shrivels up and dies, unable to survive!"))
 	if(isbelly(loc))
 		var/obj/belly/belly = loc
 		if(belly)
 			var/mob/living/pred = belly.owner
 			pred.ForceContractDisease(base_disease)
 	else
-		var/obj/effect/decal/cleanable/mucus/sick = new(loc)
+		visible_message(span_warning("\The [src] shrivels up and dies, unable to survive!"))
+		var/obj/effect/decal/cleanable/blood/sick = new(loc)
+		sick.name = "plasma"
+		sick.basecolor = "#47cbcf"
+		sick.update_icon()
 		sick.pixel_x = rand(-24, 24)
 		sick.pixel_y = rand(-24, 24)
 		sick.viruses += base_disease
@@ -161,14 +156,9 @@
 	digest_mode = DM_ABSORB
 	affects_vore_sprites = FALSE
 
-/mob/living/simple_mob/vore/aggressive/macrophage/init_vore()
-
-	if(!voremob_loaded || LAZYLEN(vore_organs))
-		return TRUE
-
+/mob/living/simple_mob/vore/aggressive/macrophage/load_default_bellies()
 	var/obj/belly/B = new /obj/belly/macrophage(src)
 	vore_selected = B
-	. = ..()
 
 /datum/ai_holder/simple_mob/melee/macrophage
 	var/datum/disease/virus = null

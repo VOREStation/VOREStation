@@ -75,8 +75,8 @@ var/global/narsie_cometh = 0
 /obj/singularity/narsie/mezzer()
 	for(var/mob/living/carbon/M in oviewers(8, src))
 		if(M.stat == CONSCIOUS)
-			if(M.status_flags & GODMODE)
-				continue
+			if(SEND_SIGNAL(M, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+				return 0	// Cancelled by a component
 			if(!iscultist(M))
 				to_chat(M, span_danger("You feel your sanity crumble away in an instant as you gaze upon [src.name]..."))
 				M.apply_effect(3, STUN)
@@ -169,8 +169,8 @@ var/global/narsie_cometh = 0
 	if (istype(A, /mob/) && (get_dist(A, src) <= 7))
 		var/mob/M = A
 
-		if(M.status_flags & GODMODE)
-			return 0
+		if(SEND_SIGNAL(M, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+			return 0	// Cancelled by a component
 
 		M.cultify()
 
@@ -201,8 +201,8 @@ var/global/narsie_cometh = 0
 	if (istype(A, /mob/living/))
 		var/mob/living/C2 = A
 
-		if(C2.status_flags & GODMODE)
-			return 0
+		if(SEND_SIGNAL(C2, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+			return 0	// Cancelled by a component
 
 		C2.dust() // Changed from gib(), just for less lag.
 
@@ -233,8 +233,8 @@ var/global/narsie_cometh = 0
 	if (istype(A, /mob/living/))
 		var/mob/living/C2 = A
 
-		if(C2.status_flags & GODMODE)
-			return 0
+		if(SEND_SIGNAL(C2, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+			return 0	// Cancelled by a component
 
 		C2.dust() // Changed from gib(), just for less lag.
 
@@ -258,7 +258,7 @@ var/global/narsie_cometh = 0
 				if(!(AM2.singuloCanEat()))
 					continue
 
-				if (101 == AM2.invisibility)
+				if (INVISIBILITY_ABSTRACT == AM2.invisibility)
 					continue
 
 				spawn (0)

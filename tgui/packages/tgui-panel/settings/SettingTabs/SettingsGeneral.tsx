@@ -138,13 +138,14 @@ export const SettingsGeneral = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Line height">
           <Slider
+            tickWhileDragging
             width="100%"
             step={0.01}
             minValue={0.8}
             maxValue={5}
             value={lineHeight}
             format={(value) => toFixed(value, 2)}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               dispatch(
                 updateSettings({
                   lineHeight: value,

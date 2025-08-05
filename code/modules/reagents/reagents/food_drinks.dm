@@ -14,6 +14,9 @@
 	affects_robots = 1	//VOREStation Edit
 	wiki_flag = WIKI_FOOD
 
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_FOOD
+
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 
 	if(!islist(newdata) || !newdata.len)
@@ -660,6 +663,8 @@
 	reagent_state = LIQUID
 	color = "#BBEDA4"
 	overdose = REAGENTS_OVERDOSE
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_DIET
 
 /datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(-10 * removed)
@@ -676,6 +681,8 @@
 	overdose = REAGENTS_OVERDOSE
 	ingest_met = REM
 	cup_prefix = "salty"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/sodiumchloride/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -697,6 +704,8 @@
 	color = "#000000"
 	cup_prefix = "peppery"
 	wiki_flag = WIKI_FOOD
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/enzyme
 	name = REAGENT_ENZYME
@@ -708,6 +717,8 @@
 	color = "#365E30"
 	overdose = REAGENTS_OVERDOSE
 	wiki_flag = WIKI_FOOD
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/spacespice
 	name = REAGENT_SPACESPICE
@@ -717,6 +728,8 @@
 	color = "#e08702"
 	cup_prefix = "spicy"
 	wiki_flag = WIKI_FOOD
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/browniemix
 	name = REAGENT_BROWNIEMIX
@@ -726,6 +739,8 @@
 	color = "#441a03"
 	allergen_type = ALLERGEN_CHOCOLATE
 	wiki_flag = WIKI_FOOD
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/cakebatter
 	name = REAGENT_CAKEBATTER
@@ -734,6 +749,8 @@
 	reagent_state = LIQUID
 	color = "#F0EDDA"
 	wiki_flag = WIKI_FOOD
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/frostoil
 	name = REAGENT_FROSTOIL
@@ -745,6 +762,8 @@
 	ingest_met = REM
 	color = "#B31008"
 	wiki_flag = WIKI_FOOD
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -783,6 +802,8 @@
 	reagent_state = LIQUID
 	color = "#B31008"
 	metabolism = REM * 0.5
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/capsaicin
 	name = REAGENT_CAPSAICIN
@@ -795,6 +816,8 @@
 	color = "#B31008"
 	cup_prefix = "hot"
 	wiki_flag = WIKI_FOOD
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
 /datum/reagent/capsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -839,6 +862,8 @@
 	ingest_met = REM
 	color = "#B31008"
 	cup_prefix = "dangerously hot"
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
 /datum/reagent/condensedcapsaicin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -973,7 +998,7 @@
 /* Drinks */
 
 /datum/reagent/drink
-	name = REAGENT_DRINK
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 	id = REAGENT_ID_DRINK
 	description = "Uh, some kind of drink."
 	ingest_met = REM
@@ -986,6 +1011,8 @@
 	var/adj_temp = 0
 	var/water_based = TRUE
 	wiki_flag = WIKI_DRINK
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/strength_mod = 1
@@ -998,7 +1025,7 @@
 	if(!(M.species.allergens & allergen_type))
 		var/bonus = M.food_preference(allergen_type)
 		M.adjust_nutrition((nutrition + bonus) * removed)
-	M.dizziness = max(0, M.dizziness + adj_dizzy)
+	M.make_dizzy(adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
 	M.AdjustSleeping(adj_sleepy)
 	if(adj_temp > 0 && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
@@ -1184,6 +1211,8 @@
 	glass_name = "poison berry juice"
 	glass_desc = "A glass of deadly juice."
 	cup_prefix = "poison"
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/drink/juice/potato
 	name = REAGENT_POTATOJUICE
@@ -2189,7 +2218,7 @@
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 	M.make_jittery(20)
 	M.druggy = max(M.druggy, 30)
-	M.dizziness += 5
+	M.make_dizzy(5)
 	M.drowsyness = 0
 
 /datum/reagent/drink/grenadine 	//Description implies that the grenadine we would be working with does not contain fruit, so no allergens.
@@ -2492,8 +2521,7 @@
 	M.adjustOxyLoss(-4 * removed)
 	M.heal_organ_damage(2 * removed, 2 * removed)
 	M.adjustToxLoss(-2 * removed)
-	if(M.dizziness)
-		M.dizziness = max(0, M.dizziness - 15)
+	M.make_dizzy(-15)
 	if(M.confused)
 		M.Confuse(-5)
 
@@ -3042,7 +3070,7 @@
 		if(alien == IS_DIONA)
 			return
 		M.adjust_nutrition((M.food_preference(allergen_type) / 2) * removed) //RS edit
-		M.jitteriness = max(M.jitteriness - 3, 0)
+		M.make_jittery(-3)
 
 /datum/reagent/ethanol/beer/lite
 	name = REAGENT_LITEBEER
@@ -3103,7 +3131,7 @@
 	if(alien == IS_DIONA)
 		return
 	if(M.species.robo_ethanol_drunk || !(M.isSynthetic()))
-		M.dizziness +=5
+		M.make_dizzy(5)
 
 /datum/reagent/ethanol/firepunch
 	name = REAGENT_FIREPUNCH
@@ -3141,7 +3169,7 @@
 		if(alien == IS_DIONA)
 			return
 		..()
-		M.dizziness = max(0, M.dizziness - 5)
+		M.make_dizzy(-5)
 		M.drowsyness = max(0, M.drowsyness - 3)
 		M.AdjustSleeping(-2)
 		if(M.bodytemperature > 310)
@@ -5029,6 +5057,9 @@
 	glass_name = REAGENT_ID_CINNAMONPOWDER
 	glass_desc = "A glass of ground cinnamon. Dare you take the challenge?"
 
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_FOOD
+
 /datum/reagent/gelatin
 	name = REAGENT_GELATIN
 	id = REAGENT_ID_GELATIN
@@ -5038,3 +5069,6 @@
 
 	glass_name = REAGENT_GELATIN
 	glass_desc = "It's like flavourless slime."
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_FOOD

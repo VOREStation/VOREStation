@@ -3,7 +3,10 @@
 	set name = "Check Player Attack Logs"
 	set desc = "Check a player's attack logs."
 
+	show_cmd_admin_check_player_logs(M)
+
 //Views specific attack logs belonging to one player.
+/client/proc/show_cmd_admin_check_player_logs(mob/living/M)
 	var/dat = span_bold("[M]'s Attack Log:<HR>")
 	dat += span_bold("Viewing attack logs of [M]") + " - (Played by ([key_name(M)]).<br>"
 	if(M.mind)
@@ -33,8 +36,10 @@
 	set category = "Admin.Logs"
 	set name = "Check Player Dialogue Logs"
 	set desc = "Check a player's dialogue logs."
+	show_cmd_admin_check_dialogue_logs(M)
 
 //Views specific dialogue logs belonging to one player.
+/client/proc/show_cmd_admin_check_dialogue_logs(mob/living/M)
 	var/dat = span_bold("[M]'s Dialogue Log:<HR>")
 	dat += span_bold("Viewing say and emote logs of [M]") + " - (Played by ([key_name(M)]).<br>"
 	if(M.mind)

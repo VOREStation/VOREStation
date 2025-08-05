@@ -28,7 +28,7 @@ export const NowPlayingWidget = (props) => {
     upload_date = audio.meta?.upload_date || 'Unknown Date',
     album = audio.meta?.album || 'Unknown Album',
     duration = audio.meta?.duration,
-    date = !isNaN(Number(upload_date))
+    date = !Number.isNaN(Number(upload_date))
       ? upload_date?.substring(0, 4) +
         '-' +
         upload_date?.substring(4, 6) +
@@ -100,13 +100,14 @@ export const NowPlayingWidget = (props) => {
       )}
       <Stack.Item mx={0.5} fontSize="0.9em">
         <Knob
+          tickWhileDragging
           minValue={0}
           maxValue={1}
           value={settings.adminMusicVolume}
           step={0.0025}
           stepPixelSize={1}
-          format={(value) => toFixed(value * 100) + '%'}
-          onDrag={(e, value) =>
+          format={(value) => `${toFixed(value * 100)}%`}
+          onChange={(e, value) =>
             settings.update({
               adminMusicVolume: value,
             })

@@ -74,11 +74,7 @@
 	. = ..()
 	src.adjust_nutrition(src.max_nutrition)
 
-/mob/living/simple_mob/vore/leopardmander/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/leopardmander/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -147,11 +143,7 @@
 	. = ..()
 	add_verb(src, /mob/living/simple_mob/vore/leopardmander/exotic/proc/toggle_glow)
 
-/mob/living/simple_mob/vore/leopardmander/exotic/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/leopardmander/exotic/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

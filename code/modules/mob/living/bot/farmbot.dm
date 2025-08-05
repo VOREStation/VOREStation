@@ -410,7 +410,6 @@
 
 	else if(istype(W, /obj/item/pen))
 		var/t = tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN)
-		t = sanitize(t, MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)

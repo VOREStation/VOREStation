@@ -65,9 +65,9 @@ BONUS
 		if(1)
 			to_chat(M, span_notice("You feel bloated."))
 
-			if(!M.jitteriness)
+			if(!M.get_jittery())
 				to_chat(M, span_notice("You feel a bit jittery."))
-				M.jitteriness = 10
+				M.make_jittery(100 + rand(12,16))
 
 		if(2)
 			if(ishuman(M))
@@ -90,7 +90,7 @@ BONUS
 		ready_to_pop = TRUE
 
 /datum/symptom/blobspores/OnDeath(datum/disease/advance/A)
-	if(neutered)
+	if(!..())
 		return
 	var/mob/living/M = A.affected_mob
 	M.visible_message(span_danger("[M] starts swelling grotesquely!"))

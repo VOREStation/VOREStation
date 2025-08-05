@@ -92,3 +92,26 @@
 			break; \
 		} \
 	}
+
+/**
+ * Splits a stack. we don't use /obj/item/stack/proc/split_stack because Byond complains that should only be called asynchronously.
+ * This proc is also more faster because it doesn't deal with mobs, copying evidences or refreshing atom storages
+ * Has special internal uses for e.g. by the material container & RPED
+ *
+ * Arguments:
+ * - [target][obj/item/stack]: the stack to split
+ * - [amount]: amount to split by
+ */
+/proc/fast_split_stack(obj/item/stack/target, amount)
+	if(!target.use(amount))
+		return null
+
+	. = new target.type(target.drop_location(), amount)
+
+//Special return values of [/datum/component/material_container/insert_item]
+/// No material was found inside them item
+#define MATERIAL_INSERT_ITEM_NO_MATS -1
+/// The container does not have the space for the item
+#define MATERIAL_INSERT_ITEM_NO_SPACE -2
+/// The item material type was not accepted or other reasons
+#define MATERIAL_INSERT_ITEM_FAILURE 0

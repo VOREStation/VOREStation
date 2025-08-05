@@ -21,6 +21,8 @@
 	reagent_state = LIQUID
 	color = "#ffffff"
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/glamour_transparent/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!target.cloaked)
@@ -58,6 +60,8 @@
 	color = "#ffffff"
 	scannable = 1
 	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/glamour_scaling/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!(/mob/living/proc/set_size in target.verbs))
@@ -90,6 +94,8 @@
 	reagent_state = LIQUID
 	color = "#ffffff"
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/glamour_twinkling/affect_blood(var/mob/living/carbon/human/target, var/removed)
 	if(target.species.darksight < 10)
@@ -113,8 +119,7 @@
 	var/image/coolanimation = image('icons/obj/glamour.dmi', null, "animation")
 	coolanimation.plane = PLANE_LIGHTING_ABOVE
 	thing.overlays += coolanimation
-	sleep(14)
-	thing.overlays -= coolanimation
+	addtimer(CALLBACK(src, PROC_REF(animate_action_finished),thing,coolanimation), 1.4 SECOND, TIMER_DELETE_ME)
 
 //Face of Glamour (creates a clone of a target)
 

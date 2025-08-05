@@ -41,6 +41,7 @@
 	var/ghost_sprite = null
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
+	var/selecting_ghostrole = FALSE
 
 	invisibility = INVISIBILITY_OBSERVER
 	layer = BELOW_MOB_LAYER
@@ -648,61 +649,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/rads = SSradiation.get_rads_at_turf(t)
 		to_chat(src, span_notice("Radiation level: [rads ? rads : "0"] Bq."))
 
-
-/mob/observer/dead/verb/become_mouse()
-	set name = "Become mouse"
-	set category = "Ghost.Join"
-
-	if(CONFIG_GET(flag/disable_player_mice))
-		to_chat(src, span_warning("Spawning as a mouse is currently disabled."))
-		return
-
-	//VOREStation Add Start
-	if(jobban_isbanned(src, JOB_GHOSTROLES))
-		to_chat(src, span_warning("You cannot become a mouse because you are banned from playing ghost roles."))
-		return
-	//VOREStation Add End
-
-	if(!MayRespawn(1))
-		return
-
-	var/turf/T = get_turf(src)
-	if(!T || (T.z in using_map.admin_levels))
-		to_chat(src, span_warning("You may not spawn as a mouse on this Z-level."))
-		return
-
-	var/timedifference = world.time - client.time_died_as_mouse
-	if(client.time_died_as_mouse && timedifference <= CONFIG_GET(number/mouse_respawn_time) MINUTES)
-		var/timedifference_text
-		timedifference_text = time2text(CONFIG_GET(number/mouse_respawn_time) MINUTES - timedifference,"mm:ss")
-		to_chat(src, span_warning("You may only spawn again as a mouse more than [CONFIG_GET(number/mouse_respawn_time)] minutes after your death. You have [timedifference_text] left."))
-		return
-
-	var/response = tgui_alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?",list("Squeek!","Nope!"))
-	if(response != "Squeek!") return  //Hit the wrong key...again.
-
-
-	//find a viable mouse candidate
-	var/mob/living/simple_mob/animal/passive/mouse/host
-	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
-	var/list/found_vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/v in GLOB.machines)
-		if(!v.welded && v.z == T.z && v.network && v.network.normal_members.len > 20)
-			found_vents.Add(v)
-	if(found_vents.len)
-		vent_found = pick(found_vents)
-		host = new /mob/living/simple_mob/animal/passive/mouse(vent_found)
-	else
-		to_chat(src, span_warning("Unable to find any unwelded vents to spawn mice at."))
-
-	if(host)
-		if(CONFIG_GET(flag/uneducated_mice))
-			host.universal_understand = 0
-		announce_ghost_joinleave(src, 0, "They are now a mouse.")
-		host.ckey = src.ckey
-		host.add_ventcrawl(vent_found)
-		to_chat(host, span_info("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
-
 /mob/observer/dead/verb/view_manfiest()
 	set name = "Show Crew Manifest"
 	set category = "Ghost.Game"
@@ -779,7 +725,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/max_length = 50
 
-	var/message = sanitize(tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", max_length))
+	var/message = tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", max_length)
 
 	if (message)
 
@@ -916,7 +862,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
 		if(feedback)
-			to_chat(src, span_warning("Your non-dead body prevent you from respawning."))
+			to_chat(src, span_warning("Your non-dead body prevents you from respawning."))
 		return 0
 	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD == 1)
 		if(feedback)
@@ -953,7 +899,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/living/M = tgui_input_list(src, "Select who to whisper to:", "Whisper to?", options)
 		if(!M)
 			return 0
-		var/msg = sanitize(tgui_input_text(src, "Message:", "Spectral Whisper"))
+		var/msg = tgui_input_text(src, "Message:", "Spectral Whisper", "", MAX_MESSAGE_LEN)
 		if(msg)
 			log_say("(SPECWHISP to [key_name(M)]): [msg]", src)
 			to_chat(M, span_warning(" You hear a strange, unidentifiable voice in your head... [span_purple("[msg]")]"))

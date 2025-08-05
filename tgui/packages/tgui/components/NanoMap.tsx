@@ -1,11 +1,11 @@
-import React, { Component, type PropsWithChildren } from 'react';
+import { Component, type CSSProperties, type PropsWithChildren } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
-import { KeyListener } from 'tgui-core/components';
 import {
   Box,
   Button,
   Icon,
+  KeyListener,
   LabeledList,
   Slider,
   Tooltip,
@@ -193,18 +193,18 @@ export class NanoMap extends Component<Props, State> {
     const WxH = this.getWxH(zoom);
 
     const mapUrl = resolveAsset(`minimap_${config.mapZLevel}.png`);
-    const newStyle: {} = {
+    const newStyle: CSSProperties = {
       width: `${WxH[0]}px`,
       height: `${WxH[1]}px`,
-      'margin-top': `${offsetY}px`,
-      'margin-left': `${offsetX}px`,
+      marginTop: `${offsetY}px`,
+      marginLeft: `${offsetX}px`,
       overflow: 'hidden',
       position: 'relative',
-      'image-rendering': 'pixelated',
-      'background-image': `url(${mapUrl})`,
-      'background-size': 'cover',
-      'background-repeat': 'no-repeat',
-      'text-align': 'center',
+      imageRendering: 'pixelated',
+      backgroundImage: `url(${mapUrl})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      textAlign: 'center',
       cursor: dragging ? 'move' : 'auto',
     };
 
@@ -280,12 +280,13 @@ const NanoMapZoomer = (props: NanoMapZoomerProps) => {
       <LabeledList>
         <LabeledList.Item label="Zoom">
           <Slider
+            tickWhileDragging
             minValue={1}
             maxValue={8}
             stepPixelSize={10}
             format={(v) => `${v}x`}
             value={props.zoom}
-            onDrag={(e, v) => props.onZoom(e, v)}
+            onChange={(e, v) => props.onZoom(e, v)}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Z-Level">
