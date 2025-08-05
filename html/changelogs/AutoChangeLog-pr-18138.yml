@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Changelings will no longer suffer organ rejection upon transformation."
+  - rscadd: "Changelings now have a new test to confirm if they are a changeling."
