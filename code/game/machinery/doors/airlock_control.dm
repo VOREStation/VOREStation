@@ -128,7 +128,7 @@
 	if(!surpress_send) send_status()
 
 
-/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE)
+/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
 	. = ..()
 	if(!forced) send_status()
 

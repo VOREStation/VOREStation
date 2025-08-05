@@ -199,7 +199,7 @@
 			consume_omen()
 
 /datum/component/omen/proc/slam_airlock(obj/machinery/door/airlock/darth_airlock)
-	. = darth_airlock.close(forced = TRUE, ignore_safties = TRUE)
+	. = darth_airlock.close(forced = TRUE, ignore_safties = TRUE, crush_damage = 15) //Not enough to cause any IB or massively injured organs.
 	if(.)
 		consume_omen()
 

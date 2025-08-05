@@ -1422,7 +1422,7 @@ About the new airlock wires panel:
 	adjustBruteLoss(crush_damage)
 	return 0
 
-/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE)
+/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
 	if(!can_close(forced))
 		return 0
 
@@ -1440,8 +1440,8 @@ About the new airlock wires panel:
 
 	for(var/turf/turf in locs)
 		for(var/atom/movable/AM in turf)
-			if(AM.airlock_crush(DOOR_CRUSH_DAMAGE))
-				take_damage(DOOR_CRUSH_DAMAGE)
+			if(AM.airlock_crush(crush_damage))
+				take_damage(crush_damage)
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	has_beeped = 0
