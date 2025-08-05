@@ -1,0 +1,9 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - bugfix: "Infinite material glitch with autolathes"
+  - bugfix: "Everything using the old ExosuitFabricator's Material display, now uses MaterialAccessBar"
+  - rscdel: "Research node announcements silenced."
+  - bugfix: "Guaranteed-correct icons for every material, instead of best-guess."
+  - balance: "Cells now spawn empty"
+  - rscadd: "Sheetsnatchers now dump happily into material storages"

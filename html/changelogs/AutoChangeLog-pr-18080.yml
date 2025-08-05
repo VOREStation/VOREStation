@@ -1,0 +1,13 @@
+author: "SaintLuther"
+delete-after: True
+changes:
+  - rscadd: "a circuit for honey_extractors in the Autolathe"
+  - rscadd: "A construction path for the Honey_extractor"
+  - rscadd: "A texture for when you open the panel."
+  - rscadd: "A floral Disk able to be printed with the new way protalathes works."
+  - code_imp: "made the honey_extractor anchorable."
+  - bugfix: "ensured the honey_extractor can’t run when the maintenance panel is open."
+  - bugfix: "honey_extractor can now lose power and can’t run when so."
+  - qol: "honey_extractor will now use power 5*200watts for processing 1 honey_frame.\n(can be easily changed if needed)"
+  - rscadd: "appropriorate messages for the new states."
+  - rscadd: "appropriorate icons and overlays for the new states."
