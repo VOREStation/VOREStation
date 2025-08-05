@@ -34,6 +34,7 @@
 	if(!proximity)
 		return
 	if(in_use)
+		to_chat(user, span_danger("You must choose which connector this hose will connect to before you can attach the hose to something else."))
 		return
 
 	var/datum/component/hose_connector/REMB = remembered?.resolve()
