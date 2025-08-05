@@ -5,6 +5,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerCargo.dmi'
 	rest_sprite_options = list("Default", "Sit")
@@ -17,6 +18,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerMining.dmi'
 	rest_sprite_options = list("Default", "Sit")
@@ -30,6 +32,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerEngi.dmi'
 	rest_sprite_options = list("Default", "Sit")
@@ -42,6 +45,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerJani.dmi'
 	rest_sprite_options = list("Default", "Sit")
@@ -53,6 +57,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerMedical.dmi'
 	rest_sprite_options = list("Default", "Sit")
@@ -66,6 +71,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerSci.dmi'
 	rest_sprite_options = list("Default", "Sit")
@@ -78,6 +84,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerSec.dmi'
 	rest_sprite_options = list("Default", "Sit")
@@ -91,6 +98,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerService.dmi'
 	rest_sprite_options = list("Default", "Sit")
@@ -103,6 +111,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/ProjectMyomerSyndi.dmi'
 	rest_sprite_options = list("Default", "Sit")
@@ -118,6 +127,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/custom/ProjectMyomerCustom.dmi'
 	rest_sprite_options = list("Default", "Sit")
