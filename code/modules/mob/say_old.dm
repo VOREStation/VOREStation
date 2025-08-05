@@ -44,16 +44,6 @@
 	if(message)
 		me_verb_subtle(message)
 
-/mob/verb/me_verb_subtle_custom_old()
-	set name = "Subtle (Custom) Old"
-	set category = "IC.Subtle"
-	set desc = "Emote to nearby people, with ability to choose which specific portion of people you wish to target."
-
-	var/message = tgui_input_text(src, "Emote to nearby people, with ability to choose which specific portion of people you wish to target.\nType your message:", "Subtle (Custom)", multiline = TRUE)
-
-	if(message)
-		me_verb_subtle_custom(message)
-
 /mob/verb/psay_old()
 	set name = "Psay Old"
 	set category = "IC.Subtle"

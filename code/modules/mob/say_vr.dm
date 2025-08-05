@@ -21,9 +21,11 @@
 	else
 		emote_vr(message)
 
-/mob/verb/me_verb_subtle_custom(message as message) // Literally same as above but with mode_selection set to true
+/mob/verb/me_verb_subtle_custom() // Literally same as above but with mode_selection set to true
 	set name = "Subtle (Custom)"
 	set desc = "Emote to nearby people, with ability to choose which specific portion of people you wish to target."
+
+	var/message = tgui_input_text(src, "Emote to nearby people, with ability to choose which specific portion of people you wish to target.\nType your message:", "Subtle (Custom)", multiline = TRUE, encode = FALSE)
 
 	if(forced_psay)
 		pme(message)
