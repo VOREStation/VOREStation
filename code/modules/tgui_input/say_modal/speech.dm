@@ -45,7 +45,7 @@
 			client.mob.whisper(entry)
 			return TRUE
 		if(SUBTLE_CHANNEL)
-			client.mob.me_verb_subtle(entry)
+			client.mob.subtle_handler(entry)
 			return TRUE
 		if(OOC_CHANNEL)
 			client.ooc(entry)
