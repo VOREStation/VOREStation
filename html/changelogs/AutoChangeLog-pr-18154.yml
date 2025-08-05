@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Mobs dragged onto a operating table will be released from pulling, as if they were buckled."
