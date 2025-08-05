@@ -247,3 +247,11 @@
 	material = get_material_by_name("holowood")
 	. = ..()
 */
+
+/obj/structure/table/bench/glamour
+	icon_state = "plain_preview"
+	color = "#fffce6"
+
+/obj/structure/table/bench/glamour/Initialize(mapload)
+	material = get_material_by_name(MAT_GLAMOUR)
+	. = ..()

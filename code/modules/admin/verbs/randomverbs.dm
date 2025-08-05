@@ -641,7 +641,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", ""))
+	var/input = tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN)
 	if(!input)
 		return
 	for(var/mob/living/silicon/ai/M in GLOB.mob_list)
@@ -693,8 +693,8 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, prevent_enter = TRUE), extra = 0)
-	var/customname = sanitizeSafe(tgui_input_text(usr, "Pick a title for the report.", "Title"))
+	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
+	var/customname = sanitizeSafe(tgui_input_text(usr, "Pick a title for the report.", "Title", encode = FALSE))
 	if(!input)
 		return
 	if(!customname)
