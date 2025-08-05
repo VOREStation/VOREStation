@@ -54,7 +54,8 @@
 
 		if(act == "custom")
 			if(!message)
-				message = sanitize_or_reflect(tgui_input_text(src,"Choose an emote to display."), src) //VOREStation Edit - Reflect too long messages, within reason
+				message = tgui_input_text(src,"Choose an emote to display.", max_length=MAX_HUGE_MESSAGE_LEN)
+			reflect_if_needed(message, src)
 			if(!message)
 				return
 			if (!m_type)

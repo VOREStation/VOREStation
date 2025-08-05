@@ -476,8 +476,8 @@
 		to_chat(L, span_warning("You cannot speak in IC (muted)."))
 		return
 	if (!message)
-		message = tgui_input_text(usr, "Type a message to emote.","Emote Beyond")
-	message = sanitize_or_reflect(message,L)
+		message = tgui_input_text(usr, "Type a message to emote.","Emote Beyond", null, MAX_HUGE_MESSAGE_LEN)
+	reflect_if_needed(message,L)
 	if (!message)
 		return
 	if (L.stat == DEAD)
@@ -1142,8 +1142,8 @@
 		to_chat(L, span_warning("You cannot speak in IC (muted)."))
 		return
 	if (!message)
-		message = tgui_input_text(L, "Type a message to emote.","Emote Beyond")
-	message = sanitize_or_reflect(message,L)
+		message = tgui_input_text(L, "Type a message to emote.","Emote Beyond", null, MAX_HUGE_MESSAGE_LEN)
+	reflect_if_needed(message, L)
 	if (!message)
 		return
 	if (L.stat == DEAD)

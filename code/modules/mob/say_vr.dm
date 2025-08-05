@@ -69,7 +69,8 @@
 
 	var/input
 	if(!message)
-		input = sanitize_or_reflect(tgui_input_text(src,"Choose an emote to display."), src)
+		input = tgui_input_text(src, "Choose an emote to display.", max_length=MAX_HUGE_MESSAGE_LEN)
+		reflect_if_needed(input, src)
 	else
 		input = message
 
@@ -216,8 +217,6 @@
 	if(act == "me")
 		return custom_emote_vr(type, message, mode_selection)
 
-#define MAX_HUGE_MESSAGE_LEN 8192
-#define POST_DELIMITER_STR "\<\>"
 /proc/sanitize_or_reflect(message,user)
 	//Way too long to send
 	if(length(message) > MAX_HUGE_MESSAGE_LEN)
@@ -249,8 +248,6 @@
 	var/posts = CEILING((length/MAX_MESSAGE_LEN), 1)
 	to_chat(user,message)
 	to_chat(user, span_danger("^ This message was NOT SENT ^ -- It was [length] characters, and the limit is [MAX_MESSAGE_LEN]. It would fit in [posts] separate messages."))
-#undef MAX_HUGE_MESSAGE_LEN
-#undef POST_DELIMITER_STR
 
 ///// PSAY /////
 
@@ -263,8 +260,8 @@
 			to_chat(src, span_warning("You cannot speak in IC (muted)."))
 			return
 	if (!message)
-		message = tgui_input_text(src, "Type a message to say.","Psay")
-	message = sanitize_or_reflect(message,src)
+		message = tgui_input_text(src, "Type a message to say.","Psay", null, MAX_HUGE_MESSAGE_LEN)
+	reflect_if_needed(message, src)
 	if (!message)
 		return
 	message = capitalize(message)
@@ -360,8 +357,8 @@
 			to_chat(src, span_warning("You cannot speak in IC (muted)."))
 			return
 	if (!message)
-		message = tgui_input_text(src, "Type a message to emote.","Pme")
-	message = sanitize_or_reflect(message,src)
+		message = tgui_input_text(src, "Type a message to emote.", "Pme", null, MAX_HUGE_MESSAGE_LEN)
+	reflect_if_needed(message, src)
 	if (!message)
 		return
 	if (stat == DEAD)
@@ -455,8 +452,8 @@
 			to_chat(src, span_warning("You cannot speak in IC (muted)."))
 			return
 	if(!message)
-		message = tgui_input_text(src, "Type a message to narrate.","Narrate")
-	message = sanitize_or_reflect(message,src)
+		message = tgui_input_text(src, "Type a message to narrate.", "Narrate", null, MAX_HUGE_MESSAGE_LEN)
+	reflect_if_needed(message, src)
 	if(!message)
 		return
 	if(stat == DEAD)

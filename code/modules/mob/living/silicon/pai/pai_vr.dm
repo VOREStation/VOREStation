@@ -448,8 +448,8 @@
 	if(loc != card)
 		to_chat(src, span_warning("Your message won't be visible while unfolded!"))
 	if (!message)
-		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message")
-	message = sanitize_or_reflect(message,src)
+		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message", null, MAX_HUGE_MESSAGE_LEN)
+	reflect_if_needed(message,src)
 	if (!message)
 		return
 	message = capitalize(message)

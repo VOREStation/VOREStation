@@ -23,7 +23,8 @@
 
 	var/input
 	if(!message)
-		input = sanitize_or_reflect(tgui_input_text(src, "Choose an emote to display."), src) //VOREStation Edit - Reflect too long messages, within reason
+		input = tgui_input_text(src, "Choose an emote to display.", max_length=MAX_HUGE_MESSAGE_LEN)
+		reflect_if_needed(input, src)
 	else
 		input = message
 
