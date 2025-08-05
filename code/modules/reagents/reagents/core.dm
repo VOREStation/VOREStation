@@ -1,5 +1,5 @@
 /datum/reagent/blood
-	data = new/list("donor" = null, "viruses" = null, "species" = SPECIES_HUMAN, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, REAGENT_ID_ANTIBODIES = list())
+	data = new/list("donor" = null, "viruses" = null, "species" = SPECIES_HUMAN, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, REAGENT_ID_ANTIBODIES = list(), "changeling" = FALSE)
 	name = REAGENT_BLOOD
 	id = REAGENT_ID_BLOOD
 	description = "Blood."
@@ -111,6 +111,9 @@
 /datum/reagent/blood/mix_data(newdata, newamount)
 	if(!data || !newdata)
 		return
+
+	if(newdata["species"] != "synthetic" && (data["changeling"] || newdata["changeling"]))
+		data["changeling"] = TRUE // Spread to other samples as an antag tactic
 
 	if(data["viruses"] || newdata["viruses"])
 		var/list/mix1 = data["viruses"]
