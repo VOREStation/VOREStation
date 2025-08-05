@@ -35,7 +35,7 @@
 		/obj/item/storage/box/commandkeys,
 		/obj/item/storage/box/servicekeys,
 		/obj/item/flash,
-		/obj/item/storage/box/monkeycubes/pets/NT_basic,
+		/obj/item/storage/box/monkeycubes/pets/NT_standard,
 		/obj/item/storage/box/monkeycubes/pets/NT_special)
 
 /obj/structure/closet/secure_closet/hop2

@@ -371,11 +371,11 @@
 	desc = "Drymate brand pet cubes, formulated for NT stations everywhere. Just add water!"
 	pet_list = list("Lisa" = /mob/living/simple_mob/animal/passive/dog/corgi/Lisa,
 					"Tom" = /mob/living/simple_mob/animal/passive/mouse/brown/Tom,
+					"Jones" = /mob/living/simple_mob/animal/passive/cat/jones,
 					"Bones" = /mob/living/simple_mob/animal/passive/cat/bones,
 					"Noodle" = /mob/living/simple_mob/animal/passive/snake/python/noodle,
 					"Apple" = /mob/living/simple_mob/animal/passive/mouse/white/apple,
 					"Poppy" = /mob/living/simple_mob/animal/passive/opossum/poppy,
-					"Clucky" = /mob/living/simple_mob/animal/passive/chicken/clucky,
 					)
 
 /obj/item/storage/box/ids
