@@ -172,10 +172,6 @@
 
 			if(!H.isSynthetic() && data["species"] == "synthetic")	// Remember not to inject oil into your veins, it's bad for you.
 				H.reagents.add_reagent(REAGENT_ID_TOXIN, removed * 1.5)
-
-			if(data["changeling"] && !((!isnull(H.mind) && is_changeling(H.mind)) || H.species?.ambulant_blood)) // Best not to inject changling blood if you are not one yourself
-				H.reagents.add_reagent(REAGENT_ID_TOXIN, removed * 1.5)
-
 			return
 
 	M.inject_blood(src, volume * volume_mod)
