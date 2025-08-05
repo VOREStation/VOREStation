@@ -80,4 +80,4 @@
 	client?.stop_thinking()
 
 	if(message)
-		me_verb_subtle(message)
+		subtle_handler(message)

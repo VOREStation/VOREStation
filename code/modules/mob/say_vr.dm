@@ -7,7 +7,9 @@
 	set desc = "Emote to nearby people (and your pred/prey)"
 
 	var/message = tgui_input_text(src, "Emote to nearby people (and your pred/prey).\nType your message:", "Subtle", multiline = TRUE, encode = FALSE)
+	subtle_handler(message)
 
+/mob/proc/subtle_handler(var/message)
 	if(forced_psay)
 		pme(message)
 		return
