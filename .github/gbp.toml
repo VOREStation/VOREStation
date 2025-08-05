@@ -1,0 +1,22 @@
+no_balance_label = "GBP: No Update"
+reset_label = "GBP: Reset"
+
+[points]
+"Accessibility" = 3
+"Administration" = 2
+"Balance" = -5
+"Code Improvement" = 2
+"Documentation" = 1
+"Feature" = -6
+"Good First PR" = 6
+"Fix" = 3
+"Grammar and Formatting" = 1
+"Logging" = 1
+"Sev: 0" = 20
+"Sev: 1-Blocker" = 20
+"Sev: 2-High" = 15
+"Quality of Life" = 1
+"Refactor" = 10
+"Sound" = 3
+"Sprites" = 3
+"Unit Tests" = 6
