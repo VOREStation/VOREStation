@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "smoke effects no longer choke you if you have the no breathing mutation"
