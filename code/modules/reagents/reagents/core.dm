@@ -173,10 +173,25 @@
 			if(!H.isSynthetic() && data["species"] == "synthetic")	// Remember not to inject oil into your veins, it's bad for you.
 				H.reagents.add_reagent(REAGENT_ID_TOXIN, removed * 1.5)
 
+			if(data["changeling"] && !((!isnull(H.mind) && is_changeling(H.mind)) || H.species?.ambulant_blood)) // Best not to inject changling blood if you are not one yourself
+				H.reagents.add_reagent(REAGENT_ID_TOXIN, removed * 1.5)
+
 			return
 
 	M.inject_blood(src, volume * volume_mod)
 	remove_self(volume)
+
+/datum/reagent/blood/proc/changling_blood_test(var/datum/reagents/holder)
+	if(data["changeling"])
+		var/location = get_turf(holder.my_atom)
+		holder.my_atom.visible_message(span_danger("The blood in \the [holder.my_atom] screams and leaps out!"))
+		if(istype(holder.my_atom,/obj/item/reagent_containers/glass))
+			holder.splash(location, holder.total_volume)
+		holder.clear_reagents() // lets be sure it's all gone if it was in something weird instead
+		playsound(holder.my_atom, 'sound/effects/splat.ogg', 50, 1)
+		playsound(holder.my_atom, 'sound/voice/hiss6.ogg', 50, 1)
+		return TRUE
+	return FALSE
 
 /datum/reagent/blood/proc/get_diseases()
 	. = list()
