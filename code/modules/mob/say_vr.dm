@@ -359,7 +359,9 @@
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, span_warning("You cannot speak in IC (muted)."))
 			return
-	if (!message)
+	if(message) //We used the command directly OR another command was used which fed us the message.
+		message = sanitize_or_reflect(message,src)
+	else
 		message = tgui_input_text(src, "Type a message to emote.", "Pme", null, MAX_HUGE_MESSAGE_LEN)
 	reflect_if_needed(message, src)
 	if (!message)
