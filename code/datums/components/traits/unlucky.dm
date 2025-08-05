@@ -79,7 +79,7 @@
 /datum/component/omen/proc/check_accident(atom/movable/our_guy)
 	SIGNAL_HANDLER
 
-	if(!isliving(our_guy) || isbelly(our_guy))
+	if(!isliving(our_guy) || isbelly(our_guy.loc))
 		return
 
 	var/mob/living/living_guy = our_guy
@@ -119,12 +119,13 @@
 				continue
 			to_chat(living_guy, span_warning("The airlock suddenly closes on you!"))
 			living_guy.Paralyse(1 SECONDS)
-			INVOKE_ASYNC(src, PROC_REF(slam_airlock), darth_airlock)
+			slam_airlock(darth_airlock)
 			return
 
 	for(var/turf/the_turf as anything in our_guy_pos.AdjacentTurfs(check_blockage = TRUE))
 		if(the_turf.CanZPass(our_guy, DOWN))
 			to_chat(living_guy, span_warning("You lose your balance and slip towards the edge!"))
+			living_guy.Weaken(5)
 			living_guy.throw_at(the_turf, 1, 20)
 			consume_omen()
 			return
@@ -133,7 +134,7 @@
 			if(darth_vendor.stat & (BROKEN|NOPOWER))
 				continue
 			to_chat(living_guy, span_warning("A malevolent force pulls the delivery chute up from the [darth_vendor]..."))
-			INVOKE_ASYNC(darth_vendor, TYPE_PROC_REF(/obj/machinery/vending, throw_item), living_guy)
+			darth_vendor.throw_item(living_guy)
 			consume_omen()
 			return
 
