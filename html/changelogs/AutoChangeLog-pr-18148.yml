@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "If not hidden inside a container, tape recorders will make a click sound when they stop recording"
