@@ -2,8 +2,15 @@
 ////////////////////SUBTLE COMMAND////////////////////
 //////////////////////////////////////////////////////
 
-/mob/verb/me_verb_subtle() //This would normally go in say.dm
+/mob/verb/me_verb_subtle(message as message) //This would normally go in say.dm
 	set name = "Subtle"
+	set desc = "Emote to nearby people (and your pred/prey)"
+	set hidden = TRUE //This one is where you type subtle "words" in chat...so has to stay like this
+
+	subtle_handler(message)
+
+/mob/verb/me_verb_subtle_tgui() // This is the TGUI version of the above
+	set name = "Subtle (TGUI)"
 	set desc = "Emote to nearby people (and your pred/prey)"
 
 	var/message = tgui_input_text(src, "Emote to nearby people (and your pred/prey).\nType your message:", "Subtle", multiline = TRUE, encode = FALSE)
