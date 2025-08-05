@@ -97,7 +97,7 @@
 			if(!T)
 				continue
 			var/obj/machinery/conveyor/C = locate() in T
-			if(C && !C.stat && C.operating && C.dir == GLOB.reverse_dir[D]) // If an operating conveyor points into us... Check if it's moving anything
+			if(C && !C.stat && C.operating && C.dir == GLOB.reverse_dir[D] && T.contents.len > 1) // If an operating conveyor points into us... Check if it's moving anything
 				var/obj/item/I = pick(T.contents - list(C))
 				if(istype(I) && conveyor_load(I))
 					break
