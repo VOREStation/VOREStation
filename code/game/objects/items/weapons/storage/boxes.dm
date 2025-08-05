@@ -333,6 +333,51 @@
 	desc = "Drymate brand neaera cubes, shipped from Qerr'balak. Just add water!"
 	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube = 4)
 
+// Pet cubes!
+/obj/item/storage/box/monkeycubes/pets
+	icon_state = "petcubebox"
+	starts_with = null // Don't add monkeys, we run our own setup
+	var/pet_list = list("Ian" = /mob/living/simple_mob/animal/passive/dog/corgi/Ian) // Should be capped at 7 per box!
+
+/obj/item/storage/box/monkeycubes/pets/Initialize(mapload)
+	. = ..()
+	// spawn each pet in the box
+	var/first = TRUE
+	for(var/pet in pet_list)
+		if(first)
+			desc += " Contains: "
+			first = FALSE
+		else
+			desc += ", "
+		var/obj/item/reagent_containers/food/snacks/monkeycube/pet/wrapped/C = new(src)
+		C.name ="[pet] pet cube"
+		C.pet_path = pet_list[pet]
+		desc += "[pet]"
+
+/obj/item/storage/box/monkeycubes/pets/NT_standard
+	name = "pet cube box (NT standard)"
+	desc = "Drymate brand pet cubes, formulated for NT stations everywhere. Just add water!"
+	pet_list = list("Ian" = /mob/living/simple_mob/animal/passive/dog/corgi/Ian,
+					"Renault" = /mob/living/simple_mob/animal/passive/fox/renault,
+					"Runtime" = /mob/living/simple_mob/animal/passive/cat/runtime,
+					"Scruffy" = /mob/living/simple_mob/animal/sif/shantak/scruffy,
+					"Poly" = /mob/living/simple_mob/animal/passive/bird/parrot/poly,
+					"Kendrick" = /mob/living/simple_mob/slime/xenobio/rainbow/kendrick,
+					"Fleming" = /mob/living/simple_mob/animal/passive/mouse/white/virology,
+					)
+
+/obj/item/storage/box/monkeycubes/pets/NT_special
+	name = "pet cube box (NT special)"
+	desc = "Drymate brand pet cubes, formulated for NT stations everywhere. Just add water!"
+	pet_list = list("Lisa" = /mob/living/simple_mob/animal/passive/dog/corgi/Lisa,
+					"Tom" = /mob/living/simple_mob/animal/passive/mouse/brown/Tom,
+					"Bones" = /mob/living/simple_mob/animal/passive/cat/bones,
+					"Noodle" = /mob/living/simple_mob/animal/passive/snake/python/noodle,
+					"Apple" = /mob/living/simple_mob/animal/passive/mouse/white/apple,
+					"Poppy" = /mob/living/simple_mob/animal/passive/opossum/poppy,
+					"Clucky" = /mob/living/simple_mob/animal/passive/chicken/clucky,
+					)
+
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
 	desc = "Has so many empty IDs."
@@ -523,3 +568,60 @@
 	desc = span_bold("Instructions:") + " " + span_italics("Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.")
 	icon_state = "donk_kit"
 	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/sinpocket = 7)
+
+/obj/item/storage/box/explorerkeys
+	name = "box of volunteer headsets"
+	desc = "A box full of volunteer headsets, for issuing out to exploration volunteers."
+	starts_with = list(/obj/item/radio/headset/explorer = 7)
+
+/obj/item/storage/box/commandkeys
+	name = "box of command keys"
+	desc = "A box full of command keys, for command to give out as necessary."
+	starts_with = list(/obj/item/encryptionkey/headset_com = 7)
+
+/obj/item/storage/box/servicekeys
+	name = "box of service keys"
+	desc = "A box full of service keys, for the HoP to give out as necessary."
+	starts_with = list(/obj/item/encryptionkey/headset_service = 7)
+
+/obj/item/storage/box/survival/space
+	name = "boxed emergency suit and helmet"
+	icon_state = "survival_comp3"
+	starts_with = list(
+		/obj/item/clothing/suit/space/emergency,
+		/obj/item/clothing/head/helmet/space/emergency,
+		/obj/item/clothing/mask/breath,
+		/obj/item/tank/emergency/oxygen/double
+	)
+
+/obj/item/storage/secure/briefcase/trashmoney
+	starts_with = list(/obj/item/spacecash/c200 = 10)
+
+/obj/item/storage/box/brainzsnax
+	name = "\improper BrainzSnax box"
+	icon_state = "brainzsnax_box"
+	desc = "A box designed to hold canned food. This one has BrainzSnax branding printed on it."
+	can_hold = list(/obj/item/reagent_containers/food/snacks/canned)
+	max_storage_space = ITEMSIZE_COST_NORMAL * 6
+	starts_with = list(/obj/item/reagent_containers/food/snacks/canned/brainzsnax = 6)
+
+/obj/item/storage/box/brainzsnax/red
+	starts_with = list(/obj/item/reagent_containers/food/snacks/canned/brainzsnax/red = 6)
+
+/obj/item/storage/box/freezer
+	can_hold = list(/obj/item/organ, /obj/item/reagent_containers/blood, /obj/item/reagent_containers/glass, /obj/item/reagent_containers/food)
+
+/obj/item/storage/box/altevian_ammo
+	name = "SAM .48 ammo box"
+	desc = "A box of ratty ammo."
+	icon_state = "secbox"
+	starts_with = list(/obj/item/ammo_magazine/sam48 = 3)
+	max_storage_space = ITEMSIZE_COST_NORMAL * 3
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
+
+/obj/item/storage/box/weapon_cells
+	name = "box of weapon cells"
+	desc = "A box full of weapon power cells. For all your portable energy storage needs."
+	icon_state = "secbox"
+	starts_with = list(/obj/item/cell/device/weapon = 7)
