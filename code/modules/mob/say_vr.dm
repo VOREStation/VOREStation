@@ -2,10 +2,11 @@
 ////////////////////SUBTLE COMMAND////////////////////
 //////////////////////////////////////////////////////
 
-/mob/verb/me_verb_subtle(message as message) //This would normally go in say.dm
+/mob/verb/me_verb_subtle() //This would normally go in say.dm
 	set name = "Subtle"
 	set desc = "Emote to nearby people (and your pred/prey)"
-	set hidden = 1
+
+	var/message = tgui_input_text(src, "Emote to nearby people (and your pred/prey).\nType your message:", "Subtle", multiline = TRUE, encode = FALSE)
 
 	if(forced_psay)
 		pme(message)

@@ -33,17 +33,6 @@
 	if(message)
 		whisper(message)
 
-
-/mob/verb/me_verb_subtle_old()
-	set name = "Subtle Old"
-	set category = "IC.Subtle"
-	set desc = "Emote to nearby people (and your pred/prey)"
-
-	var/message = tgui_input_text(src, "Emote to nearby people (and your pred/prey).\nType your message:", "Subtle", multiline = TRUE)
-
-	if(message)
-		me_verb_subtle(message)
-
 /mob/verb/psay_old()
 	set name = "Psay Old"
 	set category = "IC.Subtle"
