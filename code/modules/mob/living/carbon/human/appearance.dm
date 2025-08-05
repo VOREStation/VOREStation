@@ -203,6 +203,9 @@
 	for(var/hairstyle in GLOB.hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
 
+		if(S.name == DEVELOPER_WARNING_NAME)
+			continue
+
 		if(check_gender && gender != NEUTER)
 			if(gender == MALE && S.gender == FEMALE)
 				continue
@@ -228,6 +231,9 @@
 	var/list/valid_facial_hairstyles = new()
 	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
+
+		if(S.name == DEVELOPER_WARNING_NAME)
+			continue
 
 		if(gender != NEUTER)
 			if(gender == MALE && S.gender == FEMALE)
