@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "Cows can be milked with reagent hoses"
-  - rscadd: "Toilets can be used as reagent hose drains like sinks"
