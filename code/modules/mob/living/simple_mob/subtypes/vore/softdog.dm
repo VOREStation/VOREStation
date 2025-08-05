@@ -265,11 +265,10 @@
 			M.visible_message("The petting was interrupted!!!", runemessage = "The petting was interrupted")
 	return
 
-var/global/wolf_killswitch = FALSE
 /mob/living/simple_mob/vore/woof/hostile/aweful
 	maxHealth = 100
 	health = 100
-	var/killswitch = FALSE
+	var/static/killswitch = FALSE
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/Initialize(mapload)
 	. = ..()
@@ -279,9 +278,7 @@ var/global/wolf_killswitch = FALSE
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
 	. = ..()
 	var/thismany = rand(0,3)
-	if(!thismany || killswitch || global.wolf_killswitch)
-		if(killswitch) //If we kill switch one, they all get killswitched.
-			global.wolf_killswitch = TRUE
+	if(!thismany || killswitch)
 		visible_message(span_notice("\The [src] evaporates into nothing..."))
 		qdel(src)
 		return
