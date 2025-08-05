@@ -147,7 +147,6 @@
 	has_eye_sprites = TRUE
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
-	has_vore_belly_resting_sprites = TRUE
 	has_dead_sprite = FALSE
 	has_glow_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/myomer_dogborg/custom/ProjectMyomerCustom.dmi'
