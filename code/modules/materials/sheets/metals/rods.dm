@@ -70,6 +70,9 @@
 
 	..()
 
+/obj/item/stack/rods/reagents_per_sheet()
+	return REAGENTS_PER_ROD
+
 /*
 /obj/item/stack/rods/attack_self(mob/user)
 	src.add_fingerprint(user)
