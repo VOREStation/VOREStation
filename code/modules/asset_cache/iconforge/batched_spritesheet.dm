@@ -197,6 +197,7 @@
 		CRASH("Spritesheet [name] JOB PANIC")
 	else if(!findtext(data_out, "{", 1, 2))
 		log_world("We have the following job ID: [job_id]")
+		log_world("JOB DATA: [data_out]")
 		rustg_file_write(entries_json, "[GLOB.log_directory]/spritesheet_debug_[name].json")
 		CRASH("Spritesheet [name] UNKNOWN ERROR: [data_out]")
 	var/data = json_decode(data_out)
