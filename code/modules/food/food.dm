@@ -26,7 +26,7 @@
 	if(user.stat == DEAD || !(ishuman(user) || isrobot(user)))
 		to_chat(user, span_warning("You can't cook!"))
 		return
-	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to name \the [src]? Leave blank to reset.", "Food Naming", initial(name), MAX_NAME_LEN))
+	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to name \the [src]? Leave blank to reset.", "Food Naming", initial(name), MAX_NAME_LEN, encode = FALSE))
 	if(!n_name)
 		n_name = initial(name)
 

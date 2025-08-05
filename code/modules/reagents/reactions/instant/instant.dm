@@ -576,9 +576,9 @@
 	var/sheet_to_give = /obj/item/stack/material/iron
 
 /decl/chemical_reaction/instant/solidification/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new sheet_to_give(get_turf(holder.my_atom), created_volume)
-	return
-
+	var/sheets = FLOOR(created_volume,1)
+	if(sheets)
+		new sheet_to_give(get_turf(holder.my_atom), sheets)
 
 /decl/chemical_reaction/instant/solidification/phoron
 	name = "Solid Phoron"
@@ -646,8 +646,9 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/plastication/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new /obj/item/stack/material/plastic(get_turf(holder.my_atom), created_volume)
-	return
+	var/sheets = FLOOR(created_volume,1)
+	if(sheets)
+		new /obj/item/stack/material/plastic(get_turf(holder.my_atom), sheets)
 
 /decl/chemical_reaction/instant/soapification
 	name = "Soapification"
@@ -685,8 +686,9 @@
 	var/carpet_type = /obj/item/stack/tile/carpet
 
 /decl/chemical_reaction/instant/carpetify/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new carpet_type(get_turf(holder.my_atom), created_volume)
-	return
+	var/sheets = FLOOR(created_volume,1)
+	if(sheets)
+		new carpet_type(get_turf(holder.my_atom), sheets)
 
 /decl/chemical_reaction/instant/carpetify/bcarpet
 	name = "Black Carpet"
@@ -737,8 +739,9 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/concrete/on_reaction(var/datum/reagents/holder, var/created_volume)
-	new /obj/item/stack/material/concrete(get_turf(holder.my_atom), round(created_volume))
-	return
+	var/sheets = FLOOR(created_volume,1)
+	if(sheets)
+		new /obj/item/stack/material/concrete(get_turf(holder.my_atom), sheets)
 
 /* Grenade reactions */
 
