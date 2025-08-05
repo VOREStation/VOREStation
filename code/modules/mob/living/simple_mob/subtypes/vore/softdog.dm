@@ -265,11 +265,11 @@
 			M.visible_message("The petting was interrupted!!!", runemessage = "The petting was interrupted")
 	return
 
+var/global/wolf_killswitch = FALSE
 /mob/living/simple_mob/vore/woof/hostile/aweful
 	maxHealth = 100
 	health = 100
 	var/killswitch = FALSE
-
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/Initialize(mapload)
 	. = ..()
@@ -278,25 +278,17 @@
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
 	. = ..()
-	if(killswitch)
+	var/thismany = rand(0,3)
+	if(!thismany || killswitch || global.wolf_killswitch)
+		if(killswitch) //If we kill switch one, they all get killswitched.
+			global.wolf_killswitch = TRUE
 		visible_message(span_notice("\The [src] evaporates into nothing..."))
 		qdel(src)
 		return
-	var/thismany = rand(0,3)
 	var/list/possiblewoofs = list(/mob/living/simple_mob/vore/woof/hostile/aweful/melee, /mob/living/simple_mob/vore/woof/hostile/aweful/ranged)
-	if(thismany == 0)
-		visible_message(span_notice("\The [src] evaporates into nothing..."))
-	if(thismany >= 1)
-		var/thiswoof = pick(possiblewoofs)
-		new thiswoof(loc, src)
-		visible_message(span_warning("Another [src] appears!"))
-	if(thismany >= 2)
-		var/thiswoof = pick(possiblewoofs)
-		new thiswoof(loc, src)
-		visible_message(span_warning("Another [src] appears!"))
-	if(thismany >= 3)
-		var/thiswoof = pick(possiblewoofs)
-		new thiswoof(loc, src)
+	for(var/i = 1 to thismany)
+		var/mob/living/simple_mob/vore/woof/hostile/aweful/woof = pick(possiblewoofs)
+		new woof(loc, src)
 		visible_message(span_warning("Another [src] appears!"))
 	qdel(src)
 
