@@ -1601,8 +1601,8 @@
 /mob/living/carbon/human/put_in_l_hand(var/obj/item/W)
 	if(!..() || l_hand)
 		return 0
-	W.forceMove(src)
 	l_hand = W
+	W.forceMove(src)
 	W.equipped(src,slot_l_hand)
 	W.add_fingerprint(src)
 	update_inv_l_hand()
@@ -1611,8 +1611,8 @@
 /mob/living/carbon/human/put_in_r_hand(var/obj/item/W)
 	if(!..() || r_hand)
 		return 0
-	W.forceMove(src)
 	r_hand = W
+	W.forceMove(src)
 	W.equipped(src,slot_r_hand)
 	W.add_fingerprint(src)
 	update_inv_r_hand()
