@@ -168,6 +168,7 @@
 			to_chat(user, span_notice("There is a power cell already installed."))
 			return FALSE
 		user.drop_from_inventory(W, src)
+		cell = W // Link the cell to us
 		to_chat(user, span_notice("You insert the power cell."))
 
 	else
