@@ -265,6 +265,7 @@
 			M.visible_message("The petting was interrupted!!!", runemessage = "The petting was interrupted")
 	return
 
+GLOBAL_VAR_INIT(woof_maximum, 0)
 /mob/living/simple_mob/vore/woof/hostile/aweful
 	maxHealth = 100
 	health = 100
@@ -278,7 +279,7 @@
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
 	. = ..()
 	var/thismany = rand(0,3)
-	if(!thismany || killswitch)
+	if(!thismany || killswitch || GLOB.woof_maximum >= 20)
 		visible_message(span_notice("\The [src] evaporates into nothing..."))
 		qdel(src)
 		return
@@ -286,6 +287,7 @@
 	for(var/i = 1 to thismany)
 		var/mob/living/simple_mob/vore/woof/hostile/aweful/woof = pick(possiblewoofs)
 		new woof(loc, src)
+		GLOB.woof_maximum++
 		visible_message(span_warning("Another [src] appears!"))
 	qdel(src)
 
