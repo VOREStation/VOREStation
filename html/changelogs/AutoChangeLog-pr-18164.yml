@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - code_imp: "Scalpel uses a clamp_chance var instead of typechecking during surgery"

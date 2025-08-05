@@ -512,7 +512,7 @@
 					for (var/datum/data/record/R in GLOB.data_core.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
-								var/t1 = sanitize(tgui_input_text(usr, "Add Comment:", "Sec. records", null, null, multiline = TRUE, prevent_enter = TRUE))
+								var/t1 = tgui_input_text(usr, "Add Comment:", "Sec. records", null, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
 									return
 								var/counter = 1
@@ -632,7 +632,7 @@
 					for (var/datum/data/record/R in GLOB.data_core.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
-								var/t1 = sanitize(tgui_input_text(usr, "Add Comment:", "Med. records", null, null, multiline = TRUE, prevent_enter = TRUE))
+								var/t1 = tgui_input_text(usr, "Add Comment:", "Med. records", null, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")) )
 									return
 								var/counter = 1
@@ -718,7 +718,7 @@
 					for (var/datum/data/record/R in GLOB.data_core.general)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"best"))
-								var/t1 = sanitize(tgui_input_text(usr, "Add Comment:", "Emp. records", null, null, multiline = TRUE, prevent_enter = TRUE))
+								var/t1 = tgui_input_text(usr, "Add Comment:", "Emp. records", null, MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE)
 								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"best")) )
 									return
 								var/counter = 1
@@ -974,7 +974,7 @@
 	if (isnull(target))
 		return
 
-	var/say = sanitize(tgui_input_text(src, "What do you wish to say?"))
+	var/say = tgui_input_text(src, "What do you wish to say?", "", "", MAX_MESSAGE_LEN)
 	if(mRemotetalk in target.mutations)
 		target.show_message(span_filter_say("[span_blue("You hear [src.real_name]'s voice: [say]")]"))
 	else
@@ -1383,7 +1383,7 @@
 
 	var/max_length = bloody_hands * 30 //tweeter style
 
-	var/message = sanitize(tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", ""))
+	var/message = tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", MAX_MESSAGE_LEN)
 
 	if (message)
 		var/used_blood_amount = round(length(message) / 30, 1)
