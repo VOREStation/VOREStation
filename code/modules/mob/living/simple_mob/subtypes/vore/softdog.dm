@@ -286,7 +286,6 @@ GLOBAL_VAR_INIT(woof_current, 0)
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
 	. = ..()
-	GLOB.woof_current--
 	var/thismany = rand(0,3)
 	if(!thismany || killswitch || GLOB.woof_maximum >= 20)
 		visible_message(span_notice("\The [src] evaporates into nothing..."))
