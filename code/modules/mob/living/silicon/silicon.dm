@@ -28,6 +28,7 @@
 	var/sensor_type = 0 //VOREStation add - silicon omni "is sensor on or nah"
 
 	var/hudmode = null
+	fire_stack_decay_rate = -0.55
 
 /mob/living/silicon/Initialize(mapload, is_decoy = FALSE)
 	. = ..()

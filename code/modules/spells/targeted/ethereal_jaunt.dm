@@ -29,7 +29,7 @@
 			animation.plane = MOB_PLANE
 			animation.layer = ABOVE_MOB_LAYER
 			animation.master = holder
-			target.ExtinguishMob()
+			target.extinguish_mob()
 			if(target.buckled)
 				target.buckled = null
 			jaunt_disappear(animation, target)

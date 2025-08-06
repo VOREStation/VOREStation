@@ -55,7 +55,7 @@ default behaviour is:
 		var/mob/living/tmob = AM
 
 		//Even if we don't push/swap places, we "touched" them, so spread fire
-		spread_fire(tmob)
+		spreadFire(tmob)
 
 		for(var/mob/living/M in range(tmob, 1))
 			if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )

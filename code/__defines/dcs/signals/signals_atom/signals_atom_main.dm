@@ -4,3 +4,6 @@
 
 ///When the transform or an atom is varedited through vv topic.
 #define COMSIG_ATOM_VV_MODIFY_TRANSFORM "atom_vv_modify_transform"
+
+/// from base of [/atom/proc/extinguish]
+#define COMSIG_ATOM_EXTINGUISH "atom_extinguish"

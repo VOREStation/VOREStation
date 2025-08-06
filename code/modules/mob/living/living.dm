@@ -725,8 +725,6 @@
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
-	ExtinguishMob()
-	fire_stacks = 0
 	if(ai_holder) // AI gets told to sleep when killed. Since they're not dead anymore, wake it up.
 		ai_holder.go_wake()
 
@@ -1173,10 +1171,6 @@
 	if(isSynthetic())
 		return FALSE
 	return TRUE
-
-// Gets the correct icon_state for being on fire. See OnFire.dmi for the icons.
-/mob/living/proc/get_fire_icon_state()
-	return "generic"
 
 // Called by job_controller.
 /mob/living/proc/equip_post_job()

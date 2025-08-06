@@ -289,7 +289,7 @@
 		// Then extinguish people on fire.
 		var/needed = max(0,L.fire_stacks) * 5
 		if(amount > needed)
-			L.ExtinguishMob()
+			L.extinguish_mob()
 		L.water_act(amount / 25) // Div by 25, as water_act multiplies it by 5 in order to calculate firestack modification.
 		remove_self(needed)
 		// Put out cigarettes if splashed.

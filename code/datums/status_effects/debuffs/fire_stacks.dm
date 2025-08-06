@@ -1,0 +1,388 @@
+/////////// BUBBER EDIT THIS WILL BE FORCED TO CONFLICT READ THIS
+/*
+	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
+	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
+	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
+	RESET THIS FILE BACK TO TG ONCE YOU GET FISH INFUSION
+
+*/
+/datum/status_effect/fire_handler
+	duration = STATUS_EFFECT_PERMANENT
+	id = STATUS_EFFECT_ID_ABSTRACT
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH //Custom code
+	on_remove_on_mob_delete = TRUE
+	tick_interval = 2 SECONDS
+	processing_speed = STATUS_EFFECT_PRIORITY
+	/// Current amount of stacks we have
+	var/stacks
+	/// Maximum of stacks that we could possibly get
+	var/stack_limit = MAX_FIRE_STACKS
+	/// What status effect types do we remove uppon being applied. These are just deleted without any deduction from our or their stacks when forced.
+	var/list/enemy_types
+	/// What status effect types do we merge into if they exist. Ignored when forced.
+	var/list/merge_types
+	/// What status effect types do we override if they exist. These are simply deleted when forced.
+	var/list/override_types
+	/// For how much firestacks does one our stack count
+	var/stack_modifier = 1
+
+/datum/status_effect/fire_handler/refresh(mob/living/new_owner, new_stacks, forced = FALSE)
+	if(forced)
+		set_stacks(new_stacks)
+	else
+		adjust_stacks(new_stacks)
+
+/datum/status_effect/fire_handler/on_creation(mob/living/new_owner, new_stacks, forced = FALSE)
+	. = ..()
+
+	if(isanimal(owner))
+		qdel(src)
+		return
+	// if(isbasicmob(owner))
+	// 	if(!check_basic_mob_immunity(owner))
+	// 		qdel(src)
+	// 		return
+
+	owner = new_owner
+	set_stacks(new_stacks)
+
+	for(var/enemy_type in enemy_types)
+		var/datum/status_effect/fire_handler/enemy_effect = owner.has_status_effect(enemy_type)
+		if(enemy_effect)
+			if(forced)
+				qdel(enemy_effect)
+				continue
+
+			var/cur_stacks = stacks
+			adjust_stacks(-abs(enemy_effect.stacks * enemy_effect.stack_modifier / stack_modifier))
+			enemy_effect.adjust_stacks(-abs(cur_stacks * stack_modifier / enemy_effect.stack_modifier))
+			if(enemy_effect.stacks <= 0)
+				qdel(enemy_effect)
+
+			if(stacks <= 0)
+				qdel(src)
+				return
+
+	if(!forced)
+		var/list/merge_effects = list()
+		for(var/merge_type in merge_types)
+			var/datum/status_effect/fire_handler/merge_effect = owner.has_status_effect(merge_type)
+			if(merge_effect)
+				merge_effects += merge_effects
+
+		if(LAZYLEN(merge_effects))
+			for(var/datum/status_effect/fire_handler/merge_effect in merge_effects)
+				merge_effect.adjust_stacks(stacks * stack_modifier / merge_effect.stack_modifier / LAZYLEN(merge_effects))
+			qdel(src)
+			return
+
+	for(var/override_type in override_types)
+		var/datum/status_effect/fire_handler/override_effect = owner.has_status_effect(override_type)
+		if(override_effect)
+			if(forced)
+				qdel(override_effect)
+				continue
+
+			adjust_stacks(override_effect.stacks)
+			qdel(override_effect)
+
+/**
+ * Setter and adjuster procs for firestacks
+ *
+ * Arguments:
+ * - new_stacks
+ *
+ */
+
+/datum/status_effect/fire_handler/proc/set_stacks(new_stacks)
+	stacks = max(0, min(stack_limit, new_stacks))
+	cache_stacks()
+
+/datum/status_effect/fire_handler/proc/adjust_stacks(new_stacks)
+	stacks = max(0, min(stack_limit, stacks + new_stacks))
+	cache_stacks()
+
+/// Checks if the applicable basic mob is immune to the status effect we're trying to apply. Returns TRUE if it is, FALSE if it isn't.
+// /datum/status_effect/fire_handler/proc/check_basic_mob_immunity(mob/living/basic/basic_owner)
+// 	return (basic_owner.basic_mob_flags & FLAMMABLE_MOB)
+
+/**
+ * Refresher for mob's fire_stacks
+ */
+
+/datum/status_effect/fire_handler/proc/cache_stacks()
+	owner.fire_stacks = 0
+	var/was_on_fire = owner.on_fire
+	owner.on_fire = FALSE
+	for(var/datum/status_effect/fire_handler/possible_fire in owner.status_effects)
+		owner.fire_stacks += possible_fire.stacks * possible_fire.stack_modifier
+
+		if(!istype(possible_fire, /datum/status_effect/fire_handler/fire_stacks))
+			continue
+
+		var/datum/status_effect/fire_handler/fire_stacks/our_fire = possible_fire
+		if(our_fire.on_fire)
+			owner.on_fire = TRUE
+
+	if(was_on_fire && !owner.on_fire)
+		owner.clear_alert(ALERT_FIRE)
+	else if(!was_on_fire && owner.on_fire)
+		owner.throw_alert(ALERT_FIRE, /obj/screen/alert/fire)
+	// owner.update_appearance(UPDATE_OVERLAYS)
+	owner.update_fire()
+	update_particles()
+
+/datum/status_effect/fire_handler/fire_stacks
+	id = "fire_stacks" //fire_stacks and wet_stacks should have different IDs or else has_status_effect won't work
+	remove_on_fullheal = TRUE
+
+	enemy_types = list(/datum/status_effect/fire_handler/wet_stacks)
+	stack_modifier = 1
+
+	/// If we're on fire
+	var/on_fire = FALSE
+	/// Reference to the mob light emitter itself
+	var/obj/effect/dummy/lighting_obj/moblight
+	/// Type of mob light emitter we use when on fire
+	var/moblight_type = /obj/effect/dummy/lighting_obj/moblight/fire
+	/// Cached particle type
+	var/cached_state
+
+/datum/status_effect/fire_handler/fire_stacks/get_examine_text()
+	if(owner.on_fire)
+		return
+
+	var/datum/gender/T = GLOB.gender_datums[owner.get_visible_gender()]
+	return "[T.He] [T.is] covered in something flammable."
+
+// /datum/status_effect/fire_handler/fire_stacks/proc/owner_touched_sparks()
+// 	SIGNAL_HANDLER
+
+// 	ignite()
+
+/datum/status_effect/fire_handler/fire_stacks/on_creation(mob/living/new_owner, new_stacks, forced = FALSE)
+	. = ..()
+	// RegisterSignal(owner, COMSIG_ATOM_TOUCHED_SPARKS, PROC_REF(owner_touched_sparks))
+
+/datum/status_effect/fire_handler/fire_stacks/on_remove()
+	// UnregisterSignal(owner, COMSIG_ATOM_TOUCHED_SPARKS)
+	if (cached_state)
+		owner.remove_shared_particles(cached_state)
+
+/datum/status_effect/fire_handler/fire_stacks/tick(seconds_between_ticks)
+	if(stacks <= 0)
+		qdel(src)
+		return TRUE
+
+	if(!on_fire)
+		return TRUE
+
+	var/decay_multiplier = 1 // HAS_TRAIT(owner, TRAIT_HUSK) ? 2 : 1 // husks decay twice as fast
+	adjust_stacks(owner.fire_stack_decay_rate * decay_multiplier * seconds_between_ticks)
+
+	if(stacks <= 0)
+		qdel(src)
+		return TRUE
+
+	var/datum/gas_mixture/air = owner.loc.return_air()
+	if(air.gas[GAS_O2] < 1)
+		qdel(src)
+		return TRUE
+
+	deal_damage(seconds_between_ticks)
+
+/datum/status_effect/fire_handler/fire_stacks/update_particles()
+	if (!on_fire)
+		if (cached_state)
+			owner.remove_shared_particles(cached_state)
+		cached_state = null
+		return
+
+	var/particle_type = /particles/embers/minor
+	if(stacks > MOB_BIG_FIRE_STACK_THRESHOLD)
+		particle_type = /particles/embers
+
+	if (cached_state == particle_type)
+		return
+
+	if (cached_state)
+		owner.remove_shared_particles(cached_state)
+	owner.add_shared_particles(particle_type)
+	cached_state = particle_type
+
+/**
+ * Proc that handles damage dealing and all special effects
+ *
+ * Arguments:
+ * - seconds_between_ticks
+ *
+ */
+
+/datum/status_effect/fire_handler/fire_stacks/proc/deal_damage(seconds_per_tick)
+	owner.on_fire_stack(seconds_per_tick, src)
+
+	var/turf/location = get_turf(owner)
+	location.hotspot_expose(700, 25 * seconds_per_tick, TRUE)
+
+/**
+ * Used to deal damage to humans and count their protection.
+ *
+ * Arguments:
+ * - seconds_between_ticks
+ * - no_protection: When set to TRUE, fire will ignore any possible fire protection
+ *
+ */
+
+/datum/status_effect/fire_handler/fire_stacks/proc/harm_human(seconds_per_tick, no_protection = FALSE)
+	var/mob/living/carbon/human/victim = owner
+	var/thermal_protection = victim.get_heat_protection(stacks)
+
+	if(!no_protection)
+		if(thermal_protection == 1) // IMMUNE
+			return
+
+	var/fire_temp_add = (BODYTEMP_HEATING_MAX + (stacks + 15)) * (1 - thermal_protection)
+	victim.bodytemperature += fire_temp_add
+
+	// var/mob/living/carbon/human/victim = owner
+	// var/thermal_protection = victim.get_heat_protection(stacks)
+
+	// if(!no_protection)
+	// 	if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT)
+	// 		return
+	// 	if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT)
+	// 		victim.adjust_bodytemperature(5.5 * seconds_per_tick)
+	// 		return
+
+	// var/amount_to_heat = (BODYTEMP_HEATING_MAX + (stacks * 12)) * 0.5 * seconds_per_tick
+	// if(owner.bodytemperature > BODYTEMP_FIRE_TEMP_SOFTCAP)
+	// 	// Apply dimishing returns upon temp beyond the soft cap
+	// 	amount_to_heat = amount_to_heat ** (BODYTEMP_FIRE_TEMP_SOFTCAP / owner.bodytemperature)
+
+	// victim.adjust_bodytemperature(amount_to_heat)
+	// if (!(HAS_TRAIT(victim, TRAIT_RESISTHEAT)))
+	// 	victim.add_mood_event("on_fire", /datum/mood_event/on_fire)
+	// 	victim.add_mob_memory(/datum/memory/was_burning)
+
+/**
+ * Handles mob ignition, should be the only way to set on_fire to TRUE
+ *
+ * Arguments:
+ * - silent: When set to TRUE, no message is displayed
+ *
+ */
+
+/datum/status_effect/fire_handler/fire_stacks/proc/ignite(silent = FALSE)
+	if(HAS_TRAIT(owner, TRAIT_NOFIRE))
+		return FALSE
+
+	on_fire = TRUE
+	if(!silent)
+		owner.visible_message(span_warning("[owner] catches fire!"), span_userdanger("You're set on fire!"))
+
+	if(moblight_type)
+		if(moblight)
+			qdel(moblight)
+		moblight = new moblight_type(owner)
+
+	cache_stacks()
+	SEND_SIGNAL(owner, COMSIG_LIVING_IGNITED, owner)
+	return TRUE
+
+/**
+ * Handles mob extinguishing, should be the only way to set on_fire to FALSE
+ */
+
+/datum/status_effect/fire_handler/fire_stacks/proc/extinguish()
+	QDEL_NULL(moblight)
+	on_fire = FALSE
+	// owner.clear_mood_event("on_fire")
+	SEND_SIGNAL(owner, COMSIG_LIVING_EXTINGUISHED, owner)
+	cache_stacks()
+	for(var/obj/item/equipped in (owner.get_equipped_items()))
+		equipped.extinguish()
+
+/datum/status_effect/fire_handler/fire_stacks/on_remove()
+	if(on_fire)
+		extinguish()
+	set_stacks(0)
+	owner.update_fire()
+	// UnregisterSignal(owner, COMSIG_MOB_UPDATE_ICONS)
+	// owner.update_appearance(UPDATE_OVERLAYS)
+	return ..()
+
+/datum/status_effect/fire_handler/fire_stacks/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_ATOM_EXTINGUISH, PROC_REF(extinguish))
+	owner.update_fire()
+	// add_fire_overlay(owner)
+	// owner.update_appearance(UPDATE_OVERLAYS)
+
+/datum/status_effect/fire_handler/fire_stacks/proc/add_fire_overlay(mob/living/source)
+	SIGNAL_HANDLER
+
+	if(stacks <= 0 || !on_fire)
+		return
+
+	var/mutable_appearance/created_overlay = owner.get_fire_overlay(stacks, on_fire)
+	if(isnull(created_overlay))
+		return
+
+	source.overlays |= created_overlay
+
+
+// WET
+/datum/status_effect/fire_handler/wet_stacks
+	id = "wet_stacks"
+
+	enemy_types = list(/datum/status_effect/fire_handler/fire_stacks)
+	stack_modifier = -1
+	/// If the mob has the TRAIT_SLIPPERY_WHEN_WET trait, the mob gets this component while it's wet
+	var/datum/component/slippery/slipperiness
+
+/datum/status_effect/fire_handler/wet_stacks/on_apply()
+	. = ..()
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_WET_FOR_LONGER), SIGNAL_REMOVETRAIT(TRAIT_WET_FOR_LONGER)), PROC_REF(update_wet_stack_modifier))
+	update_wet_stack_modifier()
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_SLIPPERY_WHEN_WET), PROC_REF(become_slippery))
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_SLIPPERY_WHEN_WET), PROC_REF(no_longer_slippery))
+	if(HAS_TRAIT(owner, TRAIT_SLIPPERY_WHEN_WET))
+		become_slippery()
+	ADD_TRAIT(owner, TRAIT_IS_WET,  TRAIT_STATUS_EFFECT(id))
+	owner.add_shared_particles(/particles/droplets)
+
+/datum/status_effect/fire_handler/wet_stacks/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_IS_WET, TRAIT_STATUS_EFFECT(id))
+	if(HAS_TRAIT(owner, TRAIT_SLIPPERY_WHEN_WET))
+		no_longer_slippery()
+	owner.remove_shared_particles(/particles/droplets)
+
+/datum/status_effect/fire_handler/wet_stacks/proc/update_wet_stack_modifier()
+	SIGNAL_HANDLER
+	stack_modifier = HAS_TRAIT(owner, TRAIT_WET_FOR_LONGER) ? -3.5 : -1
+
+/datum/status_effect/fire_handler/wet_stacks/proc/become_slippery()
+	SIGNAL_HANDLER
+	// slipperiness = owner.AddComponent(/datum/component/slippery, 5 SECONDS, lube_flags = SLIPPERY_WHEN_LYING_DOWN|NO_SLIP_WHEN_WALKING|WEAK_SLIDE)
+	ADD_TRAIT(owner, TRAIT_NO_SLIP_WATER, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/fire_handler/wet_stacks/proc/no_longer_slippery()
+	SIGNAL_HANDLER
+	// QDEL_NULL(slipperiness)
+	REMOVE_TRAIT(owner, TRAIT_NO_SLIP_WATER, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/fire_handler/wet_stacks/get_examine_text()
+	var/datum/gender/T = GLOB.gender_datums[owner.get_visible_gender()]
+	return "[T.He] look[T.s] a little soaked."
+
+/datum/status_effect/fire_handler/wet_stacks/tick(seconds_between_ticks)
+	var/decay = HAS_TRAIT(owner, TRAIT_WET_FOR_LONGER) ? -0.035 : -0.5
+	adjust_stacks(decay * seconds_between_ticks)
+	if(stacks <= 0)
+		qdel(src)
+
+// /datum/status_effect/fire_handler/wet_stacks/check_basic_mob_immunity(mob/living/basic/basic_owner)
+// 	return !(basic_owner.basic_mob_flags & IMMUNE_TO_GETTING_WET)
+/// BUBBER EDIT END

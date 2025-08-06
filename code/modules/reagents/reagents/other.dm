@@ -212,7 +212,7 @@
 	M.SetConfused(0)
 	M.SetSleeping(0)
 	M.radiation = 0
-	M.ExtinguishMob()
+	M.extinguish_mob()
 	M.fire_stacks = 0
 	M.add_chemical_effect(CE_ANTIBIOTIC, ANTIBIO_SUPER)
 	M.add_chemical_effect(CE_STABLE, 15)
