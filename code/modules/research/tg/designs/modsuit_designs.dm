@@ -92,7 +92,7 @@
 	id = "rig_component_pat"
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_MAGNET = 5, TECH_BIO = 4)
 	materials = list(MAT_PLASTEEL = 3000, MAT_GRAPHITE = 2000, MAT_SILVER = 1750, MAT_GOLD = 1250, MAT_OSMIUM = 2000)
-	build_path = /obj/item/rig_module/rescue_pharm
+	build_path = /obj/item/rig_module/pat_module
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_MEDICAL
 	)
