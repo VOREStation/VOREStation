@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(robot_sprites)
 			qdel(RS)
 			continue
 
-		all_cyborg_sprites |= src
+		all_cyborg_sprites |= RS
 
 		if(islist(RS.module_type))
 			for(var/M in RS.module_type)
