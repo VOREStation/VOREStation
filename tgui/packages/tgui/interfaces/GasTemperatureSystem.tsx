@@ -7,6 +7,7 @@ import {
   LabeledControls,
   LabeledList,
   Section,
+  RoundGauge,
   Slider,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
@@ -38,6 +39,9 @@ export const GasTemperatureSystem = (props) => {
     targetGasTemperature,
     gasTemperatureClass,
     powerSetting,
+    reagentPower,
+    reagentMaximum,
+    reagentVolume,
   } = data;
 
   return (
@@ -69,6 +73,23 @@ export const GasTemperatureSystem = (props) => {
             <LabeledControls.Item label="Gas Pressure">
               {gasPressure} kPa
             </LabeledControls.Item>
+            <LabeledControls.Item label="Coolant Reserve">
+              {toFixed((reagentVolume / reagentMaximum) * 100)} %
+            </LabeledControls.Item>
+            <RoundGauge
+              size={2}
+              value={reagentPower}
+              ranges={{
+                bad: [-3, 0.5],
+                average: [0.5,1.5],
+                good: [1.5,5],
+              }}
+              format={(value) => {
+                return `${toFixed(value,1)} x`;
+              }}
+              minValue={-3}
+              maxValue={5}
+            />
           </LabeledControls>
         </Section>
         <Section title="Gas Temperature">

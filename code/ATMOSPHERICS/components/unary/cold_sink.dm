@@ -1,6 +1,8 @@
 //TODO: Put this under a common parent type with heaters to cut down on the copypasta
 #define FREEZER_PERF_MULT 2.5
-#define REAGENT_COOLING_MAXMOD 3
+#define REAGENT_COOLING_CONSUMED 0.1
+#define REAGENT_COOLING_MINMOD 0.15
+#define REAGENT_COOLING_MAXMOD 5
 
 /obj/machinery/atmospherics/unary/freezer
 	name = "gas cooling system"
@@ -117,12 +119,12 @@
 /obj/machinery/atmospherics/unary/freezer/process()
 	..()
 
+	reagent_cooling = 1 + (reagents.machine_cooling_power(reagents) / reagents.maximum_volume)
 	if(stat & (NOPOWER|BROKEN) || !use_power)
 		cooling = 0
 		update_icon()
 		return
 
-	reagent_cooling = CLAMP(reagents.machine_cooling_power(reagents) / reagents.maximum_volume,0.5,REAGENT_COOLING_MAXMOD)
 	if(network && air_contents.temperature > set_temperature)
 		cooling = 1
 
@@ -134,8 +136,8 @@
 		heat_transfer = min(heat_transfer, cop * power_rating)	//limit heat transfer by available power
 
 		// Process coolant
-		heat_transfer *= (1 + reagent_cooling)
-		reagents.remove_any(0.01)
+		heat_transfer *= CLAMP(reagent_cooling,REAGENT_COOLING_MINMOD,REAGENT_COOLING_MAXMOD)
+		reagents.remove_any(REAGENT_COOLING_CONSUMED)
 
 		var/removed = -air_contents.add_thermal_energy(-heat_transfer)		//remove the heat
 		if(debug)
@@ -188,5 +190,7 @@
 	if(panel_open)
 		. += "The maintenance hatch is open."
 
+#undef REAGENT_COOLING_MINMOD
 #undef REAGENT_COOLING_MAXMOD
+#undef REAGENT_COOLING_CONSUMED
 #undef FREEZER_PERF_MULT
