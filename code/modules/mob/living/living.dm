@@ -731,6 +731,7 @@
 		ai_holder.go_wake()
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DNA_FINALIZED)
+	SEND_SIGNAL(src, COMSIG_LIVING_AHEAL)
 
 /mob/living/proc/rejuvenate()
 	if(reagents)

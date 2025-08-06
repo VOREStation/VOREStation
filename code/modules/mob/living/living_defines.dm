@@ -115,3 +115,6 @@
 	var/ooc_notes_favs = null
 	var/ooc_notes_maybes = null
 	var/ooc_notes_style = FALSE
+
+	///a list of all status effects the mob has
+	var/list/status_effects
