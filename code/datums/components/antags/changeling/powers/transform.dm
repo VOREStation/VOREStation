@@ -57,6 +57,12 @@
 		for(var/datum/modifier/mod in chosen_dna.genMods)
 			self.modifiers.Add(mod.type)
 	regenerate_icons()
+	if(isliving(src)) //Prevents organ rejection. Less intensive than adding a changeling check to blood_incompatible.
+		var/mob/living/owner = src
+		for(var/obj/item/organ/O in owner.organs) //I guess you can also consider this a changeling test if you take out their organ and implant it into someone else and it doesn't reject.
+			O.can_reject = FALSE
+		for(var/obj/item/organ/O in owner.internal_organs)
+			O.can_reject = FALSE
 
 	feedback_add_details("changeling_powers","TR")
 	return TRUE

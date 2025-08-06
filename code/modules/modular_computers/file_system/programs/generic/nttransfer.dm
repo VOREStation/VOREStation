@@ -134,7 +134,7 @@ var/global/nttransfer_uid = 0
 			if(!remote || !remote.provided_file)
 				return
 			if(remote.server_password)
-				var/pass = sanitize(tgui_input_text(ui.user, "Code 401 Unauthorized. Please enter password:", "Password required"))
+				var/pass = tgui_input_text(ui.user, "Code 401 Unauthorized. Please enter password:", "Password required", "", MAX_MESSAGE_LEN)
 				if(pass != remote.server_password)
 					error = "Incorrect Password"
 					return
@@ -152,7 +152,7 @@ var/global/nttransfer_uid = 0
 			provided_file = null
 			return TRUE
 		if("PRG_setpassword")
-			var/pass = sanitize(tgui_input_text(ui.user, "Enter new server password. Leave blank to cancel, input 'none' to disable password.", "Server security", "none"))
+			var/pass = tgui_input_text(ui.user, "Enter new server password. Leave blank to cancel, input 'none' to disable password.", "Server security", "none", MAX_MESSAGE_LEN)
 			if(!pass)
 				return
 			if(pass == "none")
