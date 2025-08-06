@@ -1,0 +1,4 @@
+author: "Willburd"
+delete-after: True
+changes:
+  - bugfix: "Reagent hoses can only connect to one connector at a time"
