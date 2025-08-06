@@ -175,7 +175,8 @@
 	return
 
 /mob/living/water_act(amount)
-	adjust_fire_stacks(-amount * 5)
+	// adjust_fire_stacks(-amount * 5)
+	adjust_wet_stacks(amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
 	inflict_water_damage(20 * amount) // Only things vulnerable to water will actually be harmed (slimes/prommies).

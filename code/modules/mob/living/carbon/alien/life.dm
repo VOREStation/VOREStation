@@ -154,8 +154,5 @@
 	else
 		clear_alert("alien_fire")
 
-// /mob/living/carbon/alien/handle_fire()
-// 	if(..())
-// 		return
-// 	bodytemperature += BODYTEMP_HEATING_MAX //If you're on fire, you heat up!
-// 	return
+/mob/living/carbon/alien/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)
+	bodytemperature += BODYTEMP_HEATING_MAX

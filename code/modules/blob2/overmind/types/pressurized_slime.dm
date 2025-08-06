@@ -52,5 +52,5 @@
 
 /datum/blob_type/pressurized_slime/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)	// Drenches you in water.
 	if(user)
-		user.adjust_fire_stacks(-1)
+		user.adjust_wet_stacks(2.5)
 		user.extinguish_mob()

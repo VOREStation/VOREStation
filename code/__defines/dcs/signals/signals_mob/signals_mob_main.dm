@@ -18,3 +18,6 @@
 
 /// From /datum/status_effect/proc/Destroy() : (datum/status_effect/effect)
 #define COMSIG_LIVING_STATUS_REMOVED "living_status_removed"
+
+///from /datum/species/handle_fire. Called when the human is set on fire and burning clothes and stuff
+#define COMSIG_HUMAN_BURNING "human_burning"

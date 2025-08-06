@@ -2184,26 +2184,13 @@
 
 	hud_updateflag = 0
 
-// /mob/living/carbon/human/handle_fire()
-// 	if(..())
-// 		return
-
-// 	var/thermal_protection = get_heat_protection(fire_stacks * 1500) // Arbitrary but below firesuit max temp when below 20 stacks.
-
-// 	if(thermal_protection == 1) // Immune.
-// 		return
-// 	else
-// 		var/fire_temp_add = (BODYTEMP_HEATING_MAX + (fire_stacks * 15)) * (1-thermal_protection)
-// 		//This is to prevent humans from heating up indefinitely. A human being on fire (fat burns at 250C) can't magically
-// 		//   increase your body temperature beyond 250C, but it's possible something else (atmos) has heated us up beyond it,
-// 		//   so don't worry about the firestacks at that point. Really, we should be cooling the room down, because it has
-// 		//   to expend energy to heat our body up! But let's not worry about that.
-
-// 		// This whole section above is ABSOLUTELY STUPID and makes no sense and this would prevent too-high-heat from even being able to hurt someone. No. We will heat up for as long as needed.
-// 		//if((bodytemperature + fire_temp_add) > HUMAN_COMBUSTION_TEMP)
-// 		//	return
-
-// 		bodytemperature += fire_temp_add
+/mob/living/carbon/human/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)
+	SEND_SIGNAL(src, COMSIG_HUMAN_BURNING)
+	// burn_clothing(seconds_per_tick, fire_handler.stacks)
+	var/no_protection = FALSE
+	if(HAS_TRAIT(src, TRAIT_IGNORE_FIRE_PROTECTION))
+		no_protection = TRUE
+	fire_handler.harm_human(seconds_per_tick, no_protection)
 
 /mob/living/carbon/human/rejuvenate()
 	restore_blood()

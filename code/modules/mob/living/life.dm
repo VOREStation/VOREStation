@@ -59,9 +59,6 @@
 	if(environment)
 		handle_environment(environment)
 
-	//Check if we're on fire
-	// handle_fire()
-
 	if(client)	// Handle re-running ambience to mobs if they've remained in an area, AND have an active client assigned to them, and do not have repeating ambience disabled.
 		handle_ambience()
 
