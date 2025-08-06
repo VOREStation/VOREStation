@@ -266,6 +266,7 @@
 	return
 
 GLOBAL_VAR_INIT(woof_maximum, 0)
+GLOBAL_VAR_INIT(woof_current, 0)
 /mob/living/simple_mob/vore/woof/hostile/aweful
 	maxHealth = 100
 	health = 100
@@ -275,9 +276,13 @@ GLOBAL_VAR_INIT(woof_maximum, 0)
 	. = ..()
 	var/thismany = (rand(25,500)) / 100
 	resize(thismany, animate = FALSE, uncapped = TRUE, ignore_prefs = TRUE)
+	if(!GLOB.woof_current) //all our previous brothers have gone to valhallah
+		GLOB.woof_maximum = 0 //Let's start duplicating again
+	GLOB.woof_current++
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
 	. = ..()
+	GLOB.woof_current--
 	var/thismany = rand(0,3)
 	if(!thismany || killswitch || GLOB.woof_maximum >= 20)
 		visible_message(span_notice("\The [src] evaporates into nothing..."))
