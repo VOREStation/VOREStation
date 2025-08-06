@@ -515,9 +515,11 @@
 		to_chat(user, span_warning("The world is not ready for such a technological singularity."))
 		return
 	to_chat(user, span_notice("You assimilate the [R] into the [src]. Mimicking its stats and appearance."))
+
+	rigsuit_max_pressure = R.rigsuit_max_pressure
 	for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 		piece.armor = R.armor.Copy()
-		piece.max_pressure_protection = R.max_pressure_protection
+		piece.max_pressure_protection = R.rigsuit_max_pressure
 		piece.max_heat_protection_temperature = R.max_heat_protection_temperature
 	//I dislike this piece of code, but not every rig has the full set of parts
 	if(R.gloves)
@@ -560,10 +562,11 @@
 	set category = "Object"
 
 	if(assimilated_rig)
+		rigsuit_max_pressure = initial(rigsuit_max_pressure)
 		for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 			piece.armor = armor.Copy()
-			piece.max_pressure_protection = initial(piece.max_pressure_protection)
-			piece.max_heat_protection_temperature = initial(piece.max_heat_protection_temperature)
+			piece.max_pressure_protection = rigsuit_max_pressure
+			piece.max_heat_protection_temperature = max_heat_protection_temperature
 			piece.icon_state = src.icon_state
 			piece.icon = initial(piece.icon)
 			piece.default_worn_icon = initial(piece.default_worn_icon)
