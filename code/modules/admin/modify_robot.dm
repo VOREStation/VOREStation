@@ -46,14 +46,15 @@
 	. = ..()
 
 /datum/eventkit/modify_robot/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
-	)
+	var/list/our_assets = list()
+	for(var/entry in GLOB.robot_sprite_sheets)
+		our_assets += GLOB.robot_sprite_sheets[entry]
+	return our_assets
 
 /datum/eventkit/modify_robot/tgui_data(mob/user)
 	. = list()
 	// Target section for general data
-	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
+	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = GLOB.robot_sprite_sheets[target.modtype]
 
 	if(target)
 		.["target"] = list()

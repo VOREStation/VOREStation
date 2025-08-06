@@ -1,0 +1,4 @@
+author: "zeskorion"
+delete-after: True
+changes:
+  - bugfix: "Pain simulation now simulates traumatic shock"
