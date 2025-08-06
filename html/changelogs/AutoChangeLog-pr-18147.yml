@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Mapper anchored flashers start active when the round begins"

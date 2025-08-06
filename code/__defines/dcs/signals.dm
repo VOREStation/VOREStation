@@ -197,6 +197,11 @@
 ///from base of atom/MouseDrop_T: (/atom/from, /mob/user)
 #define COMSIG_MOUSEDROPPED_ONTO "mousedropped_onto"
 
+///from base of atom/MouseDrop_T: do_after(mob/user, delay, atom/target, needhand, progress, incapacitation_flags, ignore_movement, max_distance, exclusive)
+#define COMSIG_DO_AFTER_BEGAN "do_after_began"
+///from base of atom/MouseDrop_T: do_after(mob/user, delay, atom/target, needhand, progress, incapacitation_flags, ignore_movement, max_distance, exclusive)
+#define COMSIG_DO_AFTER_ENDED "do_after_ended"
+
 // /area signals
 
 ///from base of area/Entered(): (atom/movable/M)
