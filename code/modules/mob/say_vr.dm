@@ -272,8 +272,8 @@
 			to_chat(src, span_warning("You cannot speak in IC (muted)."))
 			return
 	if (!message)
-		message = tgui_input_text(src, "Type a message to say.","Psay", null, MAX_HUGE_MESSAGE_LEN)
-	reflect_if_needed(message, src)
+		message = tgui_input_text(src, "Type a message to say.","Psay", null, MAX_HUGE_MESSAGE_LEN, encode = FALSE)
+	sanitize_or_reflect(message, src)
 	if (!message)
 		return
 	message = capitalize(message)
@@ -466,8 +466,8 @@
 			to_chat(src, span_warning("You cannot speak in IC (muted)."))
 			return
 	if(!message)
-		message = tgui_input_text(src, "Type a message to narrate.", "Narrate", null, MAX_HUGE_MESSAGE_LEN)
-	reflect_if_needed(message, src)
+		message = tgui_input_text(src, "Type a message to narrate.", "Narrate", null, MAX_HUGE_MESSAGE_LEN, encode = FALSE)
+	message = sanitize_or_reflect(message, src)
 	if(!message)
 		return
 	if(stat == DEAD)
