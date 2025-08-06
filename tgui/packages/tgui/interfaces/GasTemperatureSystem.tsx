@@ -21,6 +21,9 @@ type Data = {
   targetGasTemperature: number;
   powerSetting: number;
   gasTemperatureClass: string;
+  reagentVolume: number;
+  reagentMaximum: number;
+  reagentPower: number;
 };
 
 export const GasTemperatureSystem = (props) => {

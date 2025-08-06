@@ -1,9 +1,10 @@
 //TODO: Put this under a common parent type with heaters to cut down on the copypasta
 #define FREEZER_PERF_MULT 2.5
+#define REAGENT_COOLING_MAXMOD 3
 
 /obj/machinery/atmospherics/unary/freezer
 	name = "gas cooling system"
-	desc = "Cools gas when connected to pipe network"
+	desc = "Cools gas when connected to pipe network. Can be filled by hose with coolant to increase efficiency."
 	icon = 'icons/obj/Cryogenic2_vr.dmi'
 	icon_state = "freezer_0"
 	density = TRUE
@@ -20,10 +21,14 @@
 
 	var/set_temperature = T20C		// Thermostat
 	var/cooling = 0
+	var/reagent_cooling = 0
 
 /obj/machinery/atmospherics/unary/freezer/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
+	create_reagents(120)
+	AddComponent(/datum/component/hose_connector/input)
+	AddComponent(/datum/component/hose_connector/output)
 
 /obj/machinery/atmospherics/unary/freezer/atmos_init()
 	if(node)
@@ -75,6 +80,10 @@
 	data["targetGasTemperature"] = round(set_temperature)
 	data["powerSetting"] = power_setting
 
+	data["reagentVolume"] = reagents.total_volume
+	data["reagentMaximum"] = reagents.maximum_volume
+	data["reagentPower"] = reagent_cooling
+
 	var/temp_class = "good"
 	if(air_contents.temperature > (T0C - 20))
 		temp_class = "bad"
@@ -113,6 +122,7 @@
 		update_icon()
 		return
 
+	reagent_cooling = CLAMP(reagents.machine_cooling_power(reagents) / reagents.maximum_volume,0.5,REAGENT_COOLING_MAXMOD)
 	if(network && air_contents.temperature > set_temperature)
 		cooling = 1
 
@@ -122,6 +132,10 @@
 		//not /really/ proper thermodynamics but whatever
 		var/cop = FREEZER_PERF_MULT * air_contents.temperature/heatsink_temperature	//heatpump coefficient of performance from thermodynamics -> power used = heat_transfer/cop
 		heat_transfer = min(heat_transfer, cop * power_rating)	//limit heat transfer by available power
+
+		// Process coolant
+		heat_transfer *= (1 + reagent_cooling)
+		reagents.remove_any(0.01)
 
 		var/removed = -air_contents.add_thermal_energy(-heat_transfer)		//remove the heat
 		if(debug)
@@ -174,4 +188,5 @@
 	if(panel_open)
 		. += "The maintenance hatch is open."
 
+#undef REAGENT_COOLING_MAXMOD
 #undef FREEZER_PERF_MULT

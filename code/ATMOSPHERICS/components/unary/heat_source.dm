@@ -1,9 +1,10 @@
 //TODO: Put this under a common parent type with freezers to cut down on the copypasta
 #define HEATER_PERF_MULT 2.5
+#define REAGENT_COOLING_MAXMOD 3
 
 /obj/machinery/atmospherics/unary/heater
 	name = "gas heating system"
-	desc = "Heats gas when connected to a pipe network"
+	desc = "Heats gas when connected to a pipe network. Can be filled by hose with coolant to increase efficiency."
 	icon = 'icons/obj/Cryogenic2_vr.dmi'
 	icon_state = "heater_0"
 	density = TRUE
@@ -20,10 +21,14 @@
 
 	var/set_temperature = T20C	//thermostat
 	var/heating = 0		//mainly for icon updates
+	var/reagent_cooling = 0
 
 /obj/machinery/atmospherics/unary/heater/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
+	create_reagents(120)
+	AddComponent(/datum/component/hose_connector/input)
+	AddComponent(/datum/component/hose_connector/output)
 
 /obj/machinery/atmospherics/unary/heater/atmos_init()
 	if(node)
@@ -63,9 +68,13 @@
 		update_icon()
 		return
 
+	reagent_cooling = CLAMP(reagents.machine_cooling_power(reagents) / reagents.maximum_volume,0.5,REAGENT_COOLING_MAXMOD)
 	if(network && air_contents.total_moles && air_contents.temperature < set_temperature)
-		air_contents.add_thermal_energy(power_rating * HEATER_PERF_MULT)
+		air_contents.add_thermal_energy(power_rating * reagent_cooling * HEATER_PERF_MULT)
 		use_power(power_rating)
+
+		// Process coolant
+		reagents.remove_any(0.01)
 
 		heating = 1
 		network.update = 1
@@ -96,6 +105,10 @@
 	data["maxGasTemperature"] = round(max_temperature)
 	data["targetGasTemperature"] = round(set_temperature)
 	data["powerSetting"] = power_setting
+
+	data["reagentVolume"] = reagents.total_volume
+	data["reagentMaximum"] = reagents.maximum_volume
+	data["reagentPower"] = reagent_cooling
 
 	var/temp_class = "average"
 	if(air_contents.temperature > (T20C+40))
@@ -161,4 +174,5 @@
 	if(panel_open)
 		. += "The maintenance hatch is open."
 
+#undef REAGENT_COOLING_MAXMOD
 #undef HEATER_PERF_MULT
