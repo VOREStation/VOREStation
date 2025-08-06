@@ -280,6 +280,10 @@ GLOBAL_VAR_INIT(woof_current, 0)
 		GLOB.woof_maximum = 0 //Let's start duplicating again
 	GLOB.woof_current++
 
+/mob/living/simple_mob/vore/woof/hostile/aweful/Destroy()
+	GLOB.woof_current--
+	. = ..()
+
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
 	. = ..()
 	GLOB.woof_current--
