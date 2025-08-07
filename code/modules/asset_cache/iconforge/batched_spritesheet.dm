@@ -135,7 +135,6 @@
 	if (!name)
 		CRASH("spritesheet [type] cannot register without a name")
 
-	log_world("WE got the following sheet in RUN [src]")
 	// Create our input data first, so we can compare to the cache.
 	create_spritesheets()
 
