@@ -17,6 +17,7 @@
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
+	coolant_modifier = 0.25
 
 
 /datum/reagent/blood/initialize_data(var/newdata)
@@ -188,6 +189,7 @@
 	id = REAGENT_ID_SYNTHBLOOD
 	color = "#999966"
 	volume_mod = 2
+	coolant_modifier = 0.25
 
 /datum/reagent/blood/synthblood/initialize_data(var/newdata)
 	..()
@@ -202,6 +204,7 @@
 	id = REAGENT_ID_SYNTHBLOOD_DILUTE
 	color = "#cacaaf"
 	volume_mod = 1.2
+	coolant_modifier = 0.5
 
 // pure concentrated antibodies
 /datum/reagent/antibodies
@@ -238,6 +241,7 @@
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_NO
 	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 1 // Water!
 
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
@@ -336,6 +340,7 @@
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 0.15
 
 /datum/reagent/fuel/touch_turf(var/turf/T, var/amount)
 	..()
