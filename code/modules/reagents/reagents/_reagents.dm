@@ -49,6 +49,8 @@
 	var/supply_conversion_value = null
 	var/industrial_use = null // unique description for export off station
 
+	var/coolant_modifier = -0.5 // this is multiplied by the volume of the reagent. Most things are not good coolant. EX: Water is 1, coolant is 2. -1 would be a bad reagent for cooling.
+
 /datum/reagent/proc/remove_self(var/amount) // Shortcut
 	if(holder)
 		holder.remove_reagent(id, amount)

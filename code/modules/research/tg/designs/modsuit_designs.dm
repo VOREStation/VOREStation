@@ -92,7 +92,7 @@
 	id = "rig_component_pat"
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_MAGNET = 5, TECH_BIO = 4)
 	materials = list(MAT_PLASTEEL = 3000, MAT_GRAPHITE = 2000, MAT_SILVER = 1750, MAT_GOLD = 1250, MAT_OSMIUM = 2000)
-	build_path = /obj/item/rig_module/rescue_pharm
+	build_path = /obj/item/rig_module/pat_module
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_MEDICAL
 	)
@@ -526,11 +526,11 @@
 
 /datum/design_techweb/mechfab/modsuit/modules/atmosshield_adv
 	name = "hardsuit advanced atmospheric protection enhancement suite"
-	desc = "An advanced atmospheric protection suite, providing protection against both pressure and heat. At the cost of concerningly high power draw."
+	desc = "An advanced atmospheric protection suite, providing protection against both pressure and heat. Reduced Power Draw."
 	id = "rig_component_atmosshield_adv"
 	//req_tech = list(TECH_MATERIAL = 7, TECH_ENGINEERING = 5, TECH_MAGNET = 5, TECH_POWER = 6, TECH_BLUESPACE = 4)
 	materials = list(MAT_PLASTEEL = 8000, MAT_DURASTEEL = 4000, MAT_GRAPHITE = 9000, MAT_OSMIUM = 7500, MAT_PHORON = 6000, MAT_SILVER = 8000, MAT_GOLD = 6000)
-	build_path = /obj/item/rig_module/atmos_shield
+	build_path = /obj/item/rig_module/atmos_shield/advanced
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)

@@ -1,0 +1,4 @@
+author: "moonshineTheleocat"
+delete-after: True
+changes:
+  - bugfix: "Fixed the ability to print the Advanced Atmospheric Protection Suite in robotics."

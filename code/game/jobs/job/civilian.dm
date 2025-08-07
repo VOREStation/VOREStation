@@ -237,7 +237,7 @@
 	access = list(access_lawyer, access_sec_doors, access_maint_tunnels, access_heads)
 	minimal_access = list(access_lawyer, access_sec_doors, access_heads)
 	minimal_player_age = 7
-	banned_job_species = list(SPECIES_PROMETHEAN, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_ZADDAT, "digital")
+	banned_job_species = list(SPECIES_PROMETHEAN, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_ZADDAT, FBP_DIGITAL)
 
 	outfit_type = /decl/hierarchy/outfit/job/internal_affairs_agent
 	job_description = "An " + JOB_INTERNAL_AFFAIRS_AGENT + " makes sure that the crew is following Standard Operating Procedure. They also \
