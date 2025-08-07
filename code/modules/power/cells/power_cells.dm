@@ -196,7 +196,6 @@
 	charge = 720
 	maxcharge = 720 //Emergency lights use 0.2 W per tick, meaning ~60 minutes of emergency power from a cell
 	matter = list(MAT_GLASS = 20)
-	icon = 'icons/obj/power_cells_old.dmi'
 	icon_state = "em_light"
 	connector_type = "emergency"
 	w_class = ITEMSIZE_TINY
