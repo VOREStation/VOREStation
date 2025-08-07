@@ -340,6 +340,11 @@
 #define SPECIES_HANNER			"Hanner"
 #define SPECIES_SPARKLE			"Sparkle Dog"
 
+// FBG types
+#define FBP_ASSISTED		"assisted"
+#define FBP_MECHANICAL		"mechanical"
+#define FBP_DIGITAL			"digital"
+
 // Monkey and alien monkeys.
 #define SPECIES_MONKEY				"Monkey"
 #define SPECIES_MONKEY_TAJ			"Farwa"

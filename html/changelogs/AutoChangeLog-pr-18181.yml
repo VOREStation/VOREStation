@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - admin: "R_DEBUG is now required to apply/remove components/elements."
-  - code_imp: "component/shadekin now fails when applied to silicons"

@@ -184,11 +184,11 @@
 		var/obj/item/organ/I = character.internal_organs_by_name[name]
 		if(I)
 			if(istype(I, /obj/item/organ/internal/mmi_holder/robot))
-				prefs.organ_data[name] = "digital" // Need a better way to detect this special type
+				prefs.organ_data[name] = FBP_DIGITAL // Need a better way to detect this special type
 			else if(I.robotic == ORGAN_ASSISTED)
-				prefs.organ_data[name] = "assisted"
+				prefs.organ_data[name] = FBP_ASSISTED
 			else if(I.robotic >= ORGAN_ROBOT)
-				prefs.organ_data[name] = "mechanical"
+				prefs.organ_data[name] = FBP_MECHANICAL
 			else
 				prefs.organ_data.Remove(name) // Missing organ_data entry means normal
 
