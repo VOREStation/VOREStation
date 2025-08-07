@@ -278,6 +278,15 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	popup.set_content(dat.Join(null))
 	popup.open()
 
+/obj/item/gps/proc/set_tag_prompt(mob/user)
+	var/a = tgui_input_text(user, "Please enter desired tag.", name, gps_tag, 10)
+	a = uppertext(copytext(a, 1, 11))
+	if(in_range(src, user))
+		gps_tag = a
+		name = "global positioning system ([gps_tag])"
+		to_chat(user, "You set your GPS's tag to '[gps_tag]'.")
+		. = TRUE
+
 /obj/item/gps/Topic(var/href, var/list/href_list)
 	if(..())
 		return TRUE
@@ -327,13 +336,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 				. = TRUE
 
 	if(href_list["tag"])
-		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag, 10)
-		a = uppertext(copytext(a, 1, 11))
-		if(in_range(src, usr))
-			gps_tag = a
-			name = "global positioning system ([gps_tag])"
-			to_chat(usr, "You set your GPS's tag to '[gps_tag]'.")
-			. = TRUE
+		set_tag_prompt(usr)
 
 	if(href_list["range"])
 		local_mode = !local_mode
