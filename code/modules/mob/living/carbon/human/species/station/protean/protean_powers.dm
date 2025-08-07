@@ -553,8 +553,7 @@
 				"dullahanwings",
 				"dullahanlights2",
 				"dullahanwings2",
-				"dullahanwings3",
-				"emptydecals"
+				"dullahanwings3"
 			)
 			var/list/dullahanhead_styles = list(
 				"dullahanhead",
