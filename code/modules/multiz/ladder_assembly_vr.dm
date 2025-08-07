@@ -16,7 +16,7 @@
 
 /obj/structure/ladder_assembly/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the ladder.", "Ladder Name", src.created_name, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the ladder.", "Ladder Name", src.created_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(in_range(src, user))
 			created_name = t
 		return

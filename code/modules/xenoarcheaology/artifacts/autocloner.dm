@@ -37,6 +37,7 @@
 		/mob/living/simple_mob/animal/passive/bird/parrot,
 		/mob/living/simple_mob/animal/passive/crab,
 		/mob/living/simple_mob/animal/passive/mouse,
+		/mob/living/simple_mob/animal/passive/mothroach,
 		/mob/living/simple_mob/animal/goat)
 
 //todo: how the hell is the asteroid permanently powered?

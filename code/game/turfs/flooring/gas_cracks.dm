@@ -23,24 +23,6 @@
 	oxygen = 0
 	nitrogen = 0
 
-	// Fracking results for fluid pump
-	var/static/list/ore_types = list(
-		ORE_HEMATITE = list(REAGENT_ID_SILICATE,REAGENT_ID_IRON,REAGENT_ID_CARBON),
-		ORE_URANIUM = list(REAGENT_ID_RADIUM,REAGENT_ID_RADIUM,REAGENT_ID_CALCIUM,REAGENT_ID_PHOSPHORUS), // Doesn't produce uranium due to low use in reagents, and emp reaction
-		ORE_COPPER = list(REAGENT_ID_GOLD,REAGENT_ID_COPPER,REAGENT_ID_LEAD), // Commonly
-		ORE_GOLD = list(REAGENT_ID_GOLD,REAGENT_ID_COPPER,REAGENT_ID_LEAD), // Found
-		ORE_TIN = list(REAGENT_ID_GOLD,REAGENT_ID_COPPER,REAGENT_ID_LEAD), // Together
-		ORE_SILVER = list(REAGENT_ID_SILVER,REAGENT_ID_LEAD,REAGENT_ID_COPPER), // lead loves this one too
-		ORE_DIAMOND = list(REAGENT_ID_TITANIUMDIOX,REAGENT_ID_PHOSPHORUS,REAGENT_ID_SULFUR,REAGENT_ID_CARBON), // Ignius process
-		ORE_PHORON = list(REAGENT_ID_PHORON,REAGENT_ID_RADIUM,REAGENT_ID_PHOSPHORUS,REAGENT_ID_SULFUR), // Ignius heavymetals?
-		ORE_PLATINUM = list(REAGENT_ID_PLATINUM,REAGENT_ID_COPPER), // Don't have much to group it with
-		ORE_MHYDROGEN = list(REAGENT_ID_SILICATE,REAGENT_ID_HYDROGEN),
-		ORE_SAND = list(REAGENT_ID_SILICATE,REAGENT_ID_SILICON,REAGENT_ID_LITHIUM,REAGENT_ID_PHOSPHORUS,REAGENT_ID_CALCIUM,REAGENT_ID_SODIUMCHLORIDE,REAGENT_ID_CARBON), // Catch all sedimentry
-		ORE_CARBON = list(REAGENT_ID_SILICATE,REAGENT_ID_CARBON,REAGENT_ID_SODIUMCHLORIDE), // Salty coal
-		ORE_BAUXITE = list(REAGENT_ID_TITANIUMDIOX,REAGENT_ID_ALUMINIUM,REAGENT_ID_SODIUMCHLORIDE), // ore's general components and neighbours
-		ORE_RUTILE = list(REAGENT_ID_TITANIUMDIOX,REAGENT_ID_SILICATE,REAGENT_ID_SILICON,REAGENT_ID_SODIUMCHLORIDE) // ore's general components and neighbours
-		)
-
 /turf/simulated/floor/gas_crack/pump_reagents(var/datum/reagents/R, var/volume)
 	// pick random turfs in range, then use their deep ores to get some extra reagents
 	var/i = 0
@@ -48,15 +30,16 @@
 		var/turf/simulated/mineral/M = pick(orange(5,src))
 		if(!istype(M))
 			return
-		for(var/metal in ore_types)
+		for(var/metal in GLOB.deepore_fracking_reagents)
 			if(!M.resources[metal])
-				return
-			var/list/ore_list = ore_types[metal]
+				continue
+			var/list/ore_list = GLOB.deepore_fracking_reagents[metal]
 			if(!ore_list || !ore_list.len)
-				return
+				continue
 			if(prob(60))
 				var/reagent_id = pick(ore_list)
-				R.add_reagent(reagent_id, round(volume, 0.1))
+				if(reagent_id)
+					R.add_reagent(reagent_id, round(volume, 0.1))
 
 
 /turf/simulated/floor/gas_crack/oxygen

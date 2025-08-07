@@ -211,12 +211,12 @@
 				mins = min(525599,mins)
 				minutes = CMinutes + mins
 				duration = GetExp(minutes)
-				reason = sanitize(tgui_input_text(usr,"Reason?","reason",reason2))
+				reason = tgui_input_text(usr,"Reason?","reason",reason2, MAX_MESSAGE_LEN)
 				if(!reason)	return
 			if("No")
 				temp = 0
 				duration = "Perma"
-				reason = sanitize(tgui_input_text(usr,"Reason?","reason",reason2))
+				reason = tgui_input_text(usr,"Reason?","reason",reason2, MAX_MESSAGE_LEN)
 				if(!reason)	return
 
 		log_admin("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
@@ -630,7 +630,7 @@
 					if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > CONFIG_GET(number/mod_job_tempban_max))
 						to_chat(usr, span_filter_adminlog(span_warning("Moderators can only job tempban up to [CONFIG_GET(number/mod_job_tempban_max)] minutes!")))
 						return
-					var/reason = sanitize(tgui_input_text(usr,"Reason?","Please State Reason",""))
+					var/reason = tgui_input_text(usr,"Reason?","Please State Reason","", MAX_MESSAGE_LEN)
 					if(!reason)
 						return
 
@@ -655,7 +655,7 @@
 					return 1
 				if("No")
 					if(!check_rights(R_BAN))  return
-					var/reason = sanitize(tgui_input_text(usr,"Reason?","Please State Reason",""))
+					var/reason = tgui_input_text(usr,"Reason?","Please State Reason","", MAX_MESSAGE_LEN)
 					if(reason)
 						var/msg
 						for(var/job in notbannedlist)
@@ -712,7 +712,7 @@
 		if (ismob(M))
 			if(!check_if_greater_rights_than(M.client))
 				return
-			var/reason = sanitize(tgui_input_text(usr, "Please enter reason.", multiline = TRUE, prevent_enter = TRUE))
+			var/reason = tgui_input_text(usr, "Please enter reason.", "", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 			if(!reason)
 				return
 
@@ -763,7 +763,7 @@
 					to_chat(usr, span_warning("Moderators can only job tempban up to [CONFIG_GET(number/mod_tempban_max)] minutes!"))
 					return
 				if(mins >= 525600) mins = 525599
-				var/reason = sanitize(tgui_input_text(usr,"Reason?","reason","Griefer"))
+				var/reason = tgui_input_text(usr,"Reason?","reason","Griefer", MAX_MESSAGE_LEN)
 				if(!reason)
 					return
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
@@ -787,7 +787,7 @@
 				//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 			if("No")
 				if(!check_rights(R_BAN))   return
-				var/reason = sanitize(tgui_input_text(usr,"Reason?","reason","Griefer"))
+				var/reason = tgui_input_text(usr,"Reason?","reason","Griefer", MAX_MESSAGE_LEN)
 				if(!reason)
 					return
 				switch(tgui_alert(usr,"IP ban?","IP Ban",list("Yes","No","Cancel")))
@@ -1329,7 +1329,7 @@
 			return
 
 		if(L.can_centcom_reply())
-			var/input = sanitize(tgui_input_text(src.owner, "Please enter a message to reply to [key_name(L)] via their headset.","Outgoing message from CentCom", ""))
+			var/input = tgui_input_text(src.owner, "Please enter a message to reply to [key_name(L)] via their headset.","Outgoing message from CentCom", "", MAX_MESSAGE_LEN)
 			if(!input)		return
 
 			to_chat(src.owner, span_filter_adminlog("You sent [input] to [L] via a secure channel."))
@@ -1354,7 +1354,7 @@
 			to_chat(usr, span_filter_adminlog("The person you are trying to contact is not wearing a headset"))
 			return
 
-		var/input = sanitize(tgui_input_text(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from a shadowy figure...", ""))
+		var/input = tgui_input_text(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from a shadowy figure...", "", MAX_MESSAGE_LEN)
 		if(!input)	return
 
 		to_chat(src.owner, span_filter_adminlog("You sent [input] to [H] via a secure channel."))
@@ -1651,7 +1651,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_channel_name"])
-		src.admincaster_feed_channel.channel_name = sanitizeSafe(tgui_input_text(usr, "Provide a Feed Channel Name", "Network Channel Handler", ""))
+		src.admincaster_feed_channel.channel_name = sanitizeSafe(tgui_input_text(usr, "Provide a Feed Channel Name", "Network Channel Handler", "", encode = FALSE))
 		src.access_news_network()
 
 	else if(href_list["ac_set_channel_lock"])
@@ -1679,15 +1679,15 @@
 		var/list/available_channels = list()
 		for(var/datum/feed_channel/F in news_network.network_channels)
 			available_channels += F.channel_name
-		src.admincaster_feed_channel.channel_name = sanitizeSafe(tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels ))
+		src.admincaster_feed_channel.channel_name = tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels)
 		src.access_news_network()
 
 	else if(href_list["ac_set_new_title"])
-		src.admincaster_feed_message.title = sanitize(tgui_input_text(usr, "Enter the Feed title", "Network Channel Handler", ""))
+		src.admincaster_feed_message.title = tgui_input_text(usr, "Enter the Feed title", "Network Channel Handler", "", MAX_MESSAGE_LEN)
 		src.access_news_network()
 
 	else if(href_list["ac_set_new_message"])
-		src.admincaster_feed_message.body = sanitize(tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", "", multiline = TRUE, prevent_enter = TRUE))
+		src.admincaster_feed_message.body = tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 		src.access_news_network()
 
 	else if(href_list["ac_submit_new_message"])
@@ -1729,11 +1729,11 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_wanted_name"])
-		src.admincaster_feed_message.author = sanitize(tgui_input_text(usr, "Provide the name of the Wanted person", "Network Security Handler", ""))
+		src.admincaster_feed_message.author = tgui_input_text(usr, "Provide the name of the Wanted person", "Network Security Handler", "", MAX_MESSAGE_LEN)
 		src.access_news_network()
 
 	else if(href_list["ac_set_wanted_desc"])
-		src.admincaster_feed_message.body = sanitize(tgui_input_text(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", ""))
+		src.admincaster_feed_message.body = tgui_input_text(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", "", MAX_MESSAGE_LEN)
 		src.access_news_network()
 
 	else if(href_list["ac_submit_wanted"])
@@ -1838,7 +1838,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_signature"])
-		src.admincaster_signature = sanitize(tgui_input_text(usr, "Provide your desired signature", "Network Identity Handler", ""))
+		src.admincaster_signature = tgui_input_text(usr, "Provide your desired signature", "Network Identity Handler", "", MAX_MESSAGE_LEN)
 		src.access_news_network()
 
 	else if(href_list["populate_inactive_customitems"])

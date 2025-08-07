@@ -92,7 +92,7 @@
 
 /datum/component/shadekin/Initialize()
 	//normal component bs
-	if(!isliving(parent))
+	if(!isliving(parent) || issilicon(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
 	if(ishuman(owner))
