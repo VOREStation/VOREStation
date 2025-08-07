@@ -1,0 +1,8 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "heater and cooler atmo machines now have hose connectors"
+  - rscadd: "heater and cooler atmo machines can now use coolants to increase their performance."
+  - rscadd: "Coolant tanks can now be ordered from Cargo"
+  - code_imp: "reagents now have a cooling factor for machine efficiency calculations"
+  - qol: "Heaters can have micro-lasers installed in them, allowing them to heat faster."

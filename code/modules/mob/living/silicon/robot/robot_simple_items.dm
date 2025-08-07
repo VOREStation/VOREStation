@@ -734,6 +734,8 @@
 //FORCES the item onto the ground and resets the
 /obj/item/gripper/proc/drop_item_nm()
 	var/obj/item/wrapped = get_current_pocket()
+	if(!wrapped)
+		return
 	if((wrapped == current_pocket && !istype(wrapped.loc, /obj/item/storage/internal/gripper))) //We have wrapped selected as our current_pocket AND wrapped is not in a gripper storage
 		WR = null
 		current_pocket = pick(pockets)
