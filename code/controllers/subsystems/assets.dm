@@ -1,7 +1,8 @@
 SUBSYSTEM_DEF(assets)
 	name = "Assets"
 	dependencies = list(
-		/datum/controller/subsystem/atoms
+		/datum/controller/subsystem/holomaps,
+		/datum/controller/subsystem/robot_sprites
 		///datum/controller/subsystem/persistent_paintings,
 		///datum/controller/subsystem/greyscale_previews,
 	)

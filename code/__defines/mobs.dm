@@ -340,6 +340,11 @@
 #define SPECIES_HANNER			"Hanner"
 #define SPECIES_SPARKLE			"Sparkle Dog"
 
+// FBG types
+#define FBP_ASSISTED		"assisted"
+#define FBP_MECHANICAL		"mechanical"
+#define FBP_DIGITAL			"digital"
+
 // Monkey and alien monkeys.
 #define SPECIES_MONKEY				"Monkey"
 #define SPECIES_MONKEY_TAJ			"Farwa"
@@ -494,7 +499,9 @@
 
 #define VIS_SOULCATCHER		35
 
-#define VIS_COUNT			35 //Must be highest number from above.
+#define VIS_EVENT_INVIS		36
+
+#define VIS_COUNT			36 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100
