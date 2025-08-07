@@ -10,7 +10,7 @@
 	active_power_usage = 40000	//40 kW
 	var/efficiency = 40000 //will provide the modified power rate when upgraded
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/modular_computer, /obj/item/computer_hardware/battery_module, /obj/item/cell, /obj/item/suit_cooling_unit/emergency, /obj/item/flashlight, /obj/item/electronic_assembly, /obj/item/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/flash, /obj/item/defib_kit, /obj/item/ammo_casing/microbattery, /obj/item/paicard, /obj/item/personal_shield_generator)  //VOREStation Add - NSFW Batteries
+	var/list/allowed_devices = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/modular_computer, /obj/item/computer_hardware/battery_module, /obj/item/cell, /obj/item/suit_cooling_unit/emergency, /obj/item/flashlight, /obj/item/electronic_assembly, /obj/item/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/flash, /obj/item/defib_kit, /obj/item/ammo_casing/microbattery, /obj/item/paicard, /obj/item/personal_shield_generator, /obj/item/medigun_backpack)  //VOREStation Add - NSFW Batteries
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
