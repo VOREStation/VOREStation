@@ -73,6 +73,7 @@
 	color = "#808080"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 0.15
 
 /datum/reagent/chlorine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.take_organ_damage(1*REM, 0)
@@ -117,6 +118,7 @@
 	wiki_flag = WIKI_DRINK
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_FOOD
+	coolant_modifier = 1.15
 
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
 	..()
@@ -340,6 +342,7 @@
 	color = "#808080"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
+	coolant_modifier = 0.15
 
 /datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
@@ -375,6 +378,7 @@
 	color = "#808080"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 0.25
 
 /datum/reagent/oxygen
 	name = REAGENT_OXYGEN
@@ -385,6 +389,7 @@
 	color = "#808080"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 0.25
 
 /datum/reagent/oxygen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
@@ -560,6 +565,7 @@
 	color = "#808080"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 0.25
 
 /datum/reagent/sugar
 	name = REAGENT_SUGAR
@@ -576,6 +582,7 @@
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_FOOD
+	coolant_modifier = -0.25
 
 /datum/reagent/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(removed * 3)
@@ -607,6 +614,7 @@
 	color = "#BF8C00"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = -0.25
 
 /datum/reagent/tungsten
 	name = REAGENT_TUNGSTEN
