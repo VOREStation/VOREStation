@@ -156,3 +156,10 @@
   - bugfix: Reagent hoses can only connect to one connector at a time
   zeskorion:
   - bugfix: Pain simulation now simulates traumatic shock
+2025-08-07:
+  Diana:
+  - code_imp: Grippers should be less buggy. Please keep reporting any gripper bugs.
+  - admin: R_DEBUG is now required to apply/remove components/elements.
+  - code_imp: component/shadekin now fails when applied to silicons
+  Will:
+  - bugfix: Borgs don't jitter
