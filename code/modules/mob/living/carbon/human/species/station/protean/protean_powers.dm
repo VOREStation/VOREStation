@@ -563,7 +563,7 @@
 				"dullahanclothesempty",
 				"dullahanclothes",
 				"dullahanclothes2",
-				"dullahanclothes3"
+				"dullahanengibreastplate"
 			)
 			var/dmetal
 			var/dlights
