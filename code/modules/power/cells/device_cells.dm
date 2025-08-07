@@ -166,3 +166,16 @@
 	icon = 'icons/obj/power_vr.dmi'
 	icon_state = "cellb"
 	swaps_to = /obj/item/cell/void/hybrid
+
+/obj/item/cell/device/weapon/recharge/alien/omni
+	name = "omni weapon power cell"
+	desc = "A mix between alien technology and phoron-based tech. Not quite as good as a true void cell though."
+	charge_amount = 90 // 2.5%.
+	charge = 3600
+	maxcharge = 3600
+	charge_delay = 50
+	swaps_to = null
+	origin_tech = list(TECH_POWER = 8, TECH_ENGINEERING = 6, TECH_PHORON = 6, TECH_ARCANE = 1, TECH_PRECURSOR = 1)
+
+/obj/item/cell/device/weapon/recharge/alien/omni/empty
+	charge = 0
