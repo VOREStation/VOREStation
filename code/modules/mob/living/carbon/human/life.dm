@@ -1549,7 +1549,7 @@
 			fat_alert = /obj/screen/alert/fat/synth
 			hungry_alert = /obj/screen/alert/hungry/synth
 			starving_alert = /obj/screen/alert/starving/synth
-		else if(get_species() == SPECIES_CUSTOM)
+		else if(get_species() in list(SPECIES_CUSTOM, SPECIES_HANNER))
 			var/datum/species/custom/C = species
 			if(/datum/trait/neutral/bloodsucker in C.traits)
 				fat_alert = /obj/screen/alert/fat/vampire

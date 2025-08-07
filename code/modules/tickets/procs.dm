@@ -19,7 +19,7 @@
 	//remove out adminhelp verb temporarily to prevent spamming of admins.
 	remove_verb(src,/client/verb/mentorhelp)
 	spawn(600)
-		add_verb(src,/client/verb/mentorhelp	) // 1 minute cool-down for mentorhelps
+		add_verb(src,/client/verb/mentorhelp) // 1 minute cool-down for mentorhelps
 
 	feedback_add_details("admin_verb","Mentorhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_ticket)
@@ -237,7 +237,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = tgui_input_text(src,"Message:", "Mentor-PM to [whom]", multiline = TRUE)
+		msg = tgui_input_text(src,"Message:", "Mentor-PM to [whom]", multiline = TRUE, encode = FALSE)
 
 		if(!msg)
 			return
