@@ -444,7 +444,7 @@ var/list/channel_to_radio_key = list()
 #define BLOOPER_MAX_BLOOPERS 24
 #define BLOOPER_MAX_TIME (1.5 SECONDS)
 
-/mob/living/proc/blooper(extrarange = 0, volume, sound_preference = /datum/preference/toggle/say_sounds)
+/mob/living/proc/blooper(extrarange = 0, volume, sound_preference = /datum/preference/toggle/bloop_sounds)
 	playsound(\
 		src,\
 		pick(voice_sounds_list),\
@@ -458,13 +458,14 @@ var/list/channel_to_radio_key = list()
 		preference = sound_preference,
 	)
 
-/mob/living/proc/blooploop(message, extrarange = 0, volume, sound_preference = /datum/preference/toggle/say_sounds)
+/mob/living/proc/blooploop(message, extrarange = 0, volume, sound_preference = /datum/preference/toggle/say_sounds, bloop_preference = /datum/preference/toggle/bloop_sounds)
 	var/bloopers = min(round((LAZYLEN(message) / BLOOPER_SPEED)) + 1, BLOOPER_MAX_BLOOPERS)
 	var/total_delay
+	playsound(src, pick(voice_sounds_list), 75, TRUE, extrarange = extrarange, falloff = 1 , is_global = TRUE, frequency = voice_freq > 0 ? voice_freq : null, ignore_walls = FALSE, preference = /datum/preference/toggle/say_sounds)
 	for(var/i in 1 to bloopers)
 		if(total_delay > BLOOPER_MAX_TIME)
 			break
-		addtimer(CALLBACK(src, PROC_REF(blooper), extrarange, volume, sound_preference), total_delay)
+		addtimer(CALLBACK(src, PROC_REF(blooper), extrarange, volume, bloop_preference), total_delay)
 		total_delay += rand(\
 			DS2TICKS(BLOOPER_SPEED / BLOOPER_SPEED_BASELINE), \
 			DS2TICKS(BLOOPER_SPEED / BLOOPER_SPEED_BASELINE) + DS2TICKS(BLOOPER_SPEED / BLOOPER_SPEED_BASELINE)) TICKS
