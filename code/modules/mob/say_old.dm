@@ -28,7 +28,11 @@
 	set name = "Whisper Old"
 	set category = "IC.Subtle"
 
+	if(client?.prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))
+		client?.start_thinking()
+		client?.start_typing()
 	var/message = tgui_input_text(src, "Speak to nearby people.\nType your message:", "Whisper", encode = FALSE)
+	client?.stop_thinking()
 
 	if(message)
 		whisper(message)
@@ -39,7 +43,11 @@
 	set category = "IC.Subtle"
 	set desc = "Emote to nearby people (and your pred/prey)"
 
+	if(client?.prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))
+		client?.start_thinking()
+		client?.start_typing()
 	var/message = tgui_input_text(src, "Emote to nearby people (and your pred/prey).\nType your message:", "Subtle", multiline = TRUE, encode = FALSE)
+	client?.stop_thinking()
 
 	if(message)
 		me_verb_subtle(message)
