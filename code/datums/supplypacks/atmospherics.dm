@@ -58,7 +58,7 @@
 	contains = list(/obj/machinery/portable_atmospherics/canister/carbon_dioxide)
 
 /datum/supply_pack/atmos/coolant_tank
-	name = "Carbon dioxide gas canister"
+	name = "Coolant Tank"
 	desc = "A large tank full of liquid coolant."
 	cost = 15
 	contains = list(/obj/structure/reagent_dispensers/coolanttank)
