@@ -424,7 +424,7 @@ var/list/channel_to_radio_key = list()
 		message = "([message_mode == "headset" ? "Common" : capitalize(message_mode)]) [message]" //Adds radio keys used if available
 	if(whispering)
 		if(do_sound && message)
-			blooploop(message, extrarange = -6, volume = 25)
+			blooploop(message, extrarange = -6, volume = 25, sound_preference = /datum/preference/toggle/whisper_sounds)
 			// playsound(T, pick(voice_sounds_list), 25, TRUE, extrarange = -6, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/whisper_sounds)
 
 		log_whisper(message, src)
@@ -444,7 +444,7 @@ var/list/channel_to_radio_key = list()
 #define BLOOPER_MAX_BLOOPERS 24
 #define BLOOPER_MAX_TIME (1.5 SECONDS)
 
-/mob/living/proc/blooper(extrarange = 0, volume)
+/mob/living/proc/blooper(extrarange = 0, volume, sound_preference = /datum/preference/toggle/say_sounds)
 	playsound(\
 		src,\
 		pick(voice_sounds_list),\
@@ -455,16 +455,16 @@ var/list/channel_to_radio_key = list()
 		is_global = TRUE,\
 		frequency = voice_freq > 0 ? voice_freq : null,\
 		ignore_walls = FALSE,\
-		preference = /datum/preference/toggle/say_sounds,
+		preference = sound_preference,
 	)
 
-/mob/living/proc/blooploop(message, extrarange = 0, volume)
+/mob/living/proc/blooploop(message, extrarange = 0, volume, sound_preference = /datum/preference/toggle/say_sounds)
 	var/bloopers = min(round((LAZYLEN(message) / BLOOPER_SPEED)) + 1, BLOOPER_MAX_BLOOPERS)
 	var/total_delay
 	for(var/i in 1 to bloopers)
 		if(total_delay > BLOOPER_MAX_TIME)
 			break
-		addtimer(CALLBACK(src, PROC_REF(blooper), extrarange, volume), total_delay)
+		addtimer(CALLBACK(src, PROC_REF(blooper), extrarange, volume, sound_preference), total_delay)
 		total_delay += rand(\
 			DS2TICKS(BLOOPER_SPEED / BLOOPER_SPEED_BASELINE), \
 			DS2TICKS(BLOOPER_SPEED / BLOOPER_SPEED_BASELINE) + DS2TICKS(BLOOPER_SPEED / BLOOPER_SPEED_BASELINE)) TICKS
