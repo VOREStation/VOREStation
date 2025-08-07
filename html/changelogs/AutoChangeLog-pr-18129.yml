@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a new Gold Star Printer to HoP offices. This printer prints gold stars with a short title of \"Gold Star for X\" and a custom description for more info. These gold stars can be used as accessories on underclothing. They can also be stuck to ANY object that doesn't have a custom attack interaction."
