@@ -4344,6 +4344,13 @@
 /obj/random/tech_supply,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engine_eva)
+"jh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/mob/living/simple_mob/animal/passive/mothroach/bar,
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "ji" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -34382,7 +34389,7 @@ sP
 dw
 On
 py
-fp
+jh
 Dj
 Sx
 po

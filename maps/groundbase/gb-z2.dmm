@@ -6425,6 +6425,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/gold_star_printer,
 /turf/simulated/floor/carpet,
 /area/groundbase/command/hop)
 "rv" = (

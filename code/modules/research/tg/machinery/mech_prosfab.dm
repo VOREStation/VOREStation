@@ -117,13 +117,15 @@
 
 		var/datum/robolimb/manf = GLOB.all_robolimbs[manufacturer]
 
-		if(manf)
-			if(species in manf.species_alternates)	// If the prosthetics fab is set to say, Unbranded, and species set to 'Tajaran', it will make the Taj variant of Unbranded, if it exists.
-				manf = manf.species_alternates[species]
-			if(!species || (species in manf.species_cannot_use))
-				newspecies = manf.suggested_species
-			else
-				newspecies = species
+		if(!manf)
+			manf = GLOB.all_robolimbs["Unbranded"]
+
+		if(species in manf.species_alternates)	// If the prosthetics fab is set to say, Unbranded, and species set to 'Tajaran', it will make the Taj variant of Unbranded, if it exists.
+			manf = manf.species_alternates[species]
+		if(!species || (species in manf.species_cannot_use))
+			newspecies = manf.suggested_species
+		else
+			newspecies = species
 
 		var/mob/living/carbon/human/H = new(src, newspecies)
 		H.set_stat(DEAD)
@@ -137,10 +139,11 @@
 		for(var/obj/item/organ/external/O in H.organs)
 			O.data.setup_from_species(GLOB.all_species[newspecies])
 
-			if(!(O.organ_tag in manf.parts))	// Make sure we're using an actually present icon.
-				manf = GLOB.all_robolimbs["Unbranded"]
+			var/datum/robolimb/manufacturer_for_this_part = manf
+			if(!(O.organ_tag in manufacturer_for_this_part.parts))	// Make sure we're using an actually present icon.
+				manufacturer_for_this_part = GLOB.all_robolimbs["Unbranded"]
 
-			O.robotize(manf.company)
+			O.robotize(manufacturer_for_this_part.company)
 			O.data.setup_from_dna()
 
 			// Skincolor weirdness.

@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Making the PAT in R&D will no longer make a rescue pharmacy"
