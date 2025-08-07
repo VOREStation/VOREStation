@@ -17,6 +17,7 @@
 
 	var/max_temperature = T20C + 680
 	var/internal_volume = 600	//L
+	var/heating_efficiency = 1
 
 	var/max_power_rating = 20000	//power rating when the usage is turned up to 100
 	var/power_setting = 100
@@ -72,7 +73,7 @@
 		return
 
 	if(network && air_contents.total_moles && air_contents.temperature < set_temperature)
-		air_contents.add_thermal_energy(power_rating * CLAMP(reagent_cooling,REAGENT_COOLING_MINMOD,REAGENT_COOLING_MAXMOD) * HEATER_PERF_MULT)
+		air_contents.add_thermal_energy(power_rating * CLAMP(reagent_cooling,REAGENT_COOLING_MINMOD,REAGENT_COOLING_MAXMOD) * HEATER_PERF_MULT * heating_efficiency)
 		use_power(power_rating)
 
 		// Process coolant
@@ -145,16 +146,21 @@
 	..()
 	var/cap_rating = 0
 	var/bin_rating = 0
+	var/laser_rating = 0
 
 	for(var/obj/item/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/stock_parts/capacitor))
 			cap_rating += P.rating
 		if(istype(P, /obj/item/stock_parts/matter_bin))
 			bin_rating += P.rating
+		if(istype(P, /obj/item/stock_parts/micro_laser))
+			laser_rating += (P.rating * 0.25)
+
 
 	max_power_rating = initial(max_power_rating) * cap_rating / 2
 	max_temperature = max(initial(max_temperature) - T20C, 0) * ((bin_rating * 4 + cap_rating) / 5) + T20C
 	air_contents.volume = max(initial(internal_volume) - 200, 0) + 200 * bin_rating
+	heating_efficiency = max(initial(heating_efficiency), (laser_rating-1))
 	set_power_level(power_setting)
 
 /obj/machinery/atmospherics/unary/heater/proc/set_power_level(var/new_power_setting)
