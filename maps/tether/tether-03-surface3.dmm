@@ -29588,6 +29588,7 @@
 /obj/item/folder/blue,
 /obj/item/folder/red,
 /obj/item/pen/multi,
+/obj/item/gold_star_printer,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "aZQ" = (
