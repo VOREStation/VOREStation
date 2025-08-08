@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(robot_sprite_sheets)
 	name = "robot_icons_miner"
 	module_type = "Miner"
 
-/* Module not in use
+/* Modul not in use
 /datum/asset/spritesheet_batched/robot_icons/crisis
 	name = "robot_icons_crisis"
 	module_type = "Crisis"
