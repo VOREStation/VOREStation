@@ -131,4 +131,4 @@
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate", "maidoutfit")
 	icon_x = 32
-	pixel_x = 0
+	pixel_x = -16

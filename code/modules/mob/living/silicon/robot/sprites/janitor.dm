@@ -233,7 +233,7 @@
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate")
 	icon_x = 32
-	pixel_x = 0
+	pixel_x = -16
 
 /datum/robot_sprite/dogborg/tall/janitor/dullahanv3
 	name = "Dullahan v3"

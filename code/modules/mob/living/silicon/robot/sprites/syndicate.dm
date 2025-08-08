@@ -325,3 +325,4 @@
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate", "breastplatehalo","swordhalo","tophalo")
 	rest_sprite_options = list("Default")
+	pixel_x = -16
