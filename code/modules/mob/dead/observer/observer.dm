@@ -935,6 +935,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 			ghost_sprite = GLOB.possible_ghost_sprites[choice]
 
+			if(ghost_sprite == "blank")
+				log_and_message_admins("[key_name(src)] has set their ghost sprite to invisible.", src)
+
 			if(!finalized || finalized == "No")
 				icon_state = previous_state
 
