@@ -9,7 +9,7 @@
 
 /obj/item/clothing/gloves/telekinetic/Initialize(mapload)
 	. = ..()
-	cell = new(src)
+	cell = new /obj/item/cell/device(src)
 
 /obj/item/clothing/gloves/telekinetic/proc/has_grip_power()
 	if(cell && cell.charge >= use_power_amount)
@@ -32,7 +32,7 @@
 			cell.update_icon()
 			user.put_in_hands(cell)
 			cell = null
-			to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
+			to_chat(user, span_notice("You remove the cell from the [src]."))
 			playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
 			return
 		..()
@@ -41,32 +41,31 @@
 
 /obj/item/clothing/gloves/telekinetic/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/cell))
-		if(!istype(W, /obj/item/cell/device))
+		if(istype(W, /obj/item/cell/device))
 			if(!cell)
 				user.drop_item()
 				W.loc = src
 				cell = W
-				to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
+				to_chat(user, span_notice("You install a cell in \the [src]."))
 				playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
 			else
-				to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
+				to_chat(user, span_warning("\The [src] already has a cell."))
 		else
-			to_chat(user, "<span class='notice'>\The [src] cannot use that type of cell.</span>")
+			to_chat(user, span_warning("\The [src] cannot use that type of cell."))
 	else
 		..()
 
 /obj/item/clothing/gloves/telekinetic/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += "\The [src] has a \the [cell] attached."
-
+		. += span_info("\The [src] has a \the [cell] attached.")
 		if(cell.charge <= cell.maxcharge*0.25)
-			. += "It appears to have a low amount of power remaining."
+			. += span_warning("It appears to have a low amount of power remaining.")
 		else if(cell.charge > cell.maxcharge*0.25 && cell.charge <= cell.maxcharge*0.5)
-			. += "It appears to have an average amount of power remaining."
+			. += span_notice("It appears to have an average amount of power remaining.")
 		else if(cell.charge > cell.maxcharge*0.5 && cell.charge <= cell.maxcharge*0.75)
-			. += "It appears to have an above average amount of power remaining."
+			. += span_info("It appears to have an above average amount of power remaining.")
 		else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
-			. += "It appears to have a high amount of power remaining."
+			. += span_info("It appears to have a high amount of power remaining.")
 	else
-		. += "\The [src] has an empty powercell slot."
+		. += span_warning("\The [src] has an empty powercell slot.")
