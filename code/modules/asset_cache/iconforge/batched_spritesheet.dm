@@ -190,7 +190,7 @@
 	if(yield || !isnull(job_id))
 		if(isnull(job_id))
 			job_id = rustg_iconforge_generate_async("data/spritesheets/", name, entries_json, do_cache, FALSE, TRUE)
-		while(data_out != RUSTG_JOB_NO_RESULTS_YET)
+		while(data_out == RUSTG_JOB_NO_RESULTS_YET)
 			data_out = rustg_iconforge_check(job_id)
 			sleep(1)
 	else
