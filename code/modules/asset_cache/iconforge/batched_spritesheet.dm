@@ -46,6 +46,7 @@
 	var/cache_dmi_hashes_json = null
 	/// Used to prevent async cache refresh jobs from looping on failure.
 	var/cache_result = null
+	var/getting_genned = FALSE
 
 /datum/asset/spritesheet_batched/proc/should_load_immediately()
 #ifdef DO_NOT_DEFER_ASSETS
@@ -168,6 +169,9 @@
 	if(!length(entries))
 		CRASH("Spritesheet [name] ([type]) is empty! What are you doing?")
 
+	if(getting_genned)
+		CRASH("WTF WHO CALLED IT TWICE?")
+	getting_genned = TRUE
 	if(isnull(entries_json))
 		entries_json = json_encode(entries)
 
