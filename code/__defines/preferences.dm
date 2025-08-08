@@ -62,3 +62,7 @@
 #define EMOTE_SOUND_NO_FREQ "Default"
 #define EMOTE_SOUND_VOICE_FREQ "Voice Frequency"
 #define EMOTE_SOUND_VOICE_LIST "Voice Sound"
+
+#define WRITE_PREF_NORMAL 1
+#define WRITE_PREF_INSTANT 2
+#define WRITE_PREF_MANUAL 3
