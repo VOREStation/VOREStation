@@ -68,3 +68,5 @@
 			. += "It appears to have an above average amount of power remaining."
 		else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
 			. += "It appears to have a high amount of power remaining."
+	else
+		. += "\The [src] has an empty powercell slot."

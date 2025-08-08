@@ -131,7 +131,7 @@ var/const/tk_maxrange = 15
 	else
 		apply_focus_overlay()
 		focus.throw_at(target, 10, 1, user)
-		last_throw = world.		if(ishuman(user))
+		last_throw = world.time
 		if(ishuman(user))
 			var/mob/living/carbon/human/H_user = user
 			if(istype(H_user.gloves,/obj/item/clothing/gloves/telekinetic))
