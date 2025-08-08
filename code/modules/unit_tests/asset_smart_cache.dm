@@ -51,6 +51,7 @@
 	sheet.cache_data = null
 	sheet.cache_job_id = null
 	sheet.fully_generated = FALSE
+	sheet.getting_genned = FALSE
 
 	sheet.register()
 	TEST_ASSERT(sheet.fully_generated, "Spritesheet did not load from smart cache properly!")
