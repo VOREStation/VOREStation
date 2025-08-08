@@ -165,22 +165,22 @@ var/list/channel_to_radio_key = list()
 		if(stat == DEAD && !forbid_seeing_deadchat)
 			return say_dead(message)
 		return
-	//VOREStation Addition Start
 	if(forced_psay)
 		psay(message)
 		return
-	if(autowhisper)
-		whispering = 1
-	//VOREStation Addition End
-	//Parse the mode
-	var/message_mode = parse_message_mode(message, "headset")
-
 	//Maybe they are using say/whisper to do a quick emote, so do those
 	switch(copytext(message, 1, 2))
 		if("*") return emote(copytext(message, 2))
 		if("^") return custom_emote(VISIBLE_MESSAGE, copytext(message, 2))
+	direct_say(message, speaking, whispering)
+
+/mob/living/direct_say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+	// Handle automatic whispering mode
+	if(autowhisper)
+		whispering = 1
 
 	//Parse the radio code and consume it
+	var/message_mode = parse_message_mode(message, "headset")
 	if(message_mode)
 		if(message_mode == "headset")
 			message = copytext(message, 2)	//it would be really nice if the parse procs could do this for us.
@@ -301,7 +301,7 @@ var/list/channel_to_radio_key = list()
 		message_range = 1
 		sound_vol *= 0.5
 
-	//VOREStation edit - allows for custom say verbs, overriding all other say-verb types- e.g. "says loudly" instead of "shouts"
+	//allows for custom say verbs, overriding all other say-verb types- e.g. "says loudly" instead of "shouts"
 	//You'll still stammer if injured or slur if drunk, but it won't have those specific words
 	var/ending = copytext(message, length(message))
 
@@ -313,12 +313,12 @@ var/list/channel_to_radio_key = list()
 		verb = "[custom_ask]"
 	else if(custom_say)
 		verb = "[custom_say]"
-	//VOREStation edit ends
 
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
-			custom_emote(VISIBLE_MESSAGE, "[pick(S.speaking.signlang_verb)].")
+			var/sign_action = "[pick(S.speaking.signlang_verb)]."
+			process_normal_emote(VISIBLE_MESSAGE,sign_action,sign_action)
 			do_sound = FALSE
 
 	//These will contain the main receivers of the message
@@ -358,10 +358,8 @@ var/list/channel_to_radio_key = list()
 	var/image/speech_bubble = generate_speech_bubble(src, "[speech_type][speech_bubble_test]")
 	var/sb_alpha = 255
 	var/atom/loc_before_turf = src
-	//VOREStation Add
 	if(isbelly(loc))
 		speech_bubble.pixel_y = -13 //teehee
-	//VOREStation Add End
 	while(loc_before_turf && !isturf(loc_before_turf.loc))
 		loc_before_turf = loc_before_turf.loc
 		sb_alpha -= 50
@@ -376,12 +374,11 @@ var/list/channel_to_radio_key = list()
 		spawn(0) //Using spawns to queue all the messages for AFTER this proc is done, and stop runtimes
 
 			if(M && src) //If we still exist, when the spawn processes
-				//VOREStation Add - Ghosts don't hear whispers
+				// Ghosts don't hear whispers
 				if(whispering && isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
 				(!(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || (isbelly(M.loc) && src == M.loc:owner))  && !check_rights_for(M.client, R_HOLDER))))
 					M.show_message(span_game(span_say(span_name(src.name) + " [w_not_heard].")), 2)
 					return
-				//VOREStation Add End
 
 				var/dst = get_dist(get_turf(M),get_turf(src))
 				var/runechat_enabled = M.client?.prefs?.read_preference(/datum/preference/toggle/runechat_mob)
