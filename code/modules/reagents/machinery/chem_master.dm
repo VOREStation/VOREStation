@@ -158,6 +158,7 @@
 						var/datum/reagent/blood/B = R
 						result["blood_type"] = B.data["blood_type"]
 						result["blood_dna"] = B.data["blood_DNA"]
+						result["changeling"] = B.data["changeling"]
 
 					arguments["analysis"] = result
 					tgui_modal_message(src, id, "", null, arguments)
