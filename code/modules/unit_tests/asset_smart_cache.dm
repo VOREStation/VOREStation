@@ -27,8 +27,6 @@
 			SSassets.transport.unregister_asset("[name]_[size_id].png")
 
 /datum/unit_test/test_asset_smart_cache/Run()
-	pass()
-	/*
 	fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.test.json")
 	fdel("data/spritesheets/spritesheet_test.css")
 	var/datum/asset/spritesheet_batched/test/sheet = new()
@@ -63,4 +61,3 @@
 	fdel("data/spritesheets/spritesheet_test.css")
 	for(var/size in sheet.sizes)
 		fdel("data/spritesheets/test_[size].png")
-*/
