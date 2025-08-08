@@ -130,5 +130,5 @@
 	has_rest_lights_sprites = TRUE
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate", "maidoutfit")
-	icon_x = 32
+	icon_x = 64
 	pixel_x = -16
