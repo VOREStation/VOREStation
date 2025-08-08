@@ -63,6 +63,12 @@
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
+/datum/preference/toggle/bloop_sounds
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "BLOOP_SOUNDS"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
 /datum/preference/toggle/emote_sounds
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "EMOTE_SOUNDS"

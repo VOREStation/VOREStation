@@ -175,8 +175,6 @@
 	faction = FACTION_THEATRE
 	gender = PLURAL
 	ai_holder_type = /datum/ai_holder/simple_mob/woof/cass
-
-/mob/living/simple_mob/vore/woof/cass
 	vore_digest_chance = 0
 	vore_escape_chance = 25
 	digestable = 0
