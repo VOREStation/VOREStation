@@ -84,7 +84,6 @@ GLOBAL_LIST_EMPTY(robot_sprite_sheets)
 
 /datum/asset/spritesheet_batched/robot_icons/ninja
 	name = "robot_icons_ninja"
-	fully_generated = FALSE
 	module_type = "Ninja"
 
 /datum/asset/spritesheet_batched/robot_icons/create_spritesheets()
