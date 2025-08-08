@@ -723,6 +723,16 @@ GLOBAL_LIST_INIT(device_ringtones, list("beep" = 'sound/machines/twobeep.ogg',
 										"roark" = 'sound/voice/roarbark.ogg',
 										"chitter" = 'sound/voice/moth/moth_chitter.ogg',
 										"squish" = 'sound/effects/slime_squish.ogg',
+										"bubble"= 'sound/effects/bubbles.ogg',
+										"silly" = 'sound/effects/whistle.ogg',
+										"frog" = 'sound/voice/Croak.ogg',
+										"peep" = 'sound/voice/peep.ogg',
+										"quack" = 'sound/voice/quack.ogg',
+										"ough" = 'sound/misc/ough.ogg',
+										"stamp" = 'sound/bureaucracy/stamp.ogg',
+										"gnome" = 'sound/items/hooh.ogg',
+										"ratchet" = 'sound/items/Ratchet.ogg',
+										"tether" = 'sound/items/tinytether.ogg'
 										))
 
 GLOBAL_LIST_EMPTY(seen_citizenships)
