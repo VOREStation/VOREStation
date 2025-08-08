@@ -515,3 +515,10 @@
 	for(var/datum/reagent/reagent as anything in cached_reagents)
 		reagent.on_update(A)
 	update_total()
+
+// Get the cooling power value for machinery that uses reagents for coolant. It's up to the machines themselves to cap and translate this value in a useful way.
+/datum/reagents/proc/machine_cooling_power()
+	var/cooling_power = 0
+	for(var/datum/reagent/R in reagent_list)
+		cooling_power += R.coolant_modifier * R.volume
+	return cooling_power

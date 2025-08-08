@@ -13,6 +13,7 @@
 	color = "#664330"
 	affects_robots = 1	//VOREStation Edit
 	wiki_flag = WIKI_FOOD
+	coolant_modifier = -1
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
 	industrial_use = REFINERYEXPORT_REASON_FOOD
@@ -163,6 +164,7 @@
 	taste_mult = 0.1
 	nutriment_factor = 27//The caloric ratio of carb/protein/fat is 4:4:9
 	color = "#CCCCCC"
+	coolant_modifier = 1.5
 
 /datum/reagent/nutriment/triglyceride/oil
 	//Having this base class incase we want to add more variants of oil
@@ -278,6 +280,7 @@
 	cup_prefix = "sweetened"
 
 	injectable = 1
+	coolant_modifier = 1.25
 
 /datum/reagent/nutriment/protein // Bad for Skrell!
 	name = REAGENT_PROTEIN
@@ -764,6 +767,7 @@
 	wiki_flag = WIKI_FOOD
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_FOOD
+	coolant_modifier = 2.5
 
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -804,6 +808,7 @@
 	metabolism = REM * 0.5
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
+	coolant_modifier = 3
 
 /datum/reagent/capsaicin
 	name = REAGENT_CAPSAICIN
@@ -1013,6 +1018,7 @@
 	wiki_flag = WIKI_DRINK
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_FOOD
+	coolant_modifier = 0.8
 
 /datum/reagent/drink/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/strength_mod = 1
@@ -4596,6 +4602,7 @@
 
 	glass_name = REAGENT_VOXDELIGHT
 	glass_desc = "Not recommended if you enjoy having organs."
+	coolant_modifier = 1.25
 
 /datum/reagent/ethanol/voxdelight/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -4797,6 +4804,7 @@
 	glass_desc = "Minty, rich, and painfully cold. It's a blizzard in a cup."
 
 	allergen_type = ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Made from iced coffee(coffee)
+	coolant_modifier = 1.15
 
 /datum/reagent/ethanol/mintjulep
 	name = REAGENT_MINTJULEP
@@ -5017,6 +5025,7 @@
 	reagent_state = LIQUID
 	nutriment_factor = 40 //very filling
 	color = "#d169b2"
+	coolant_modifier = 3 // HOOH!
 
 /datum/reagent/nutriment/magicdust/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()

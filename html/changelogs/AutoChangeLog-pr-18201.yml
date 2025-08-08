@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - qol: "Added a preference for \"Multiple Say Sounds\", which is enabled by default. If you have it enabled it plays multiple say sounds for long sentences as normal. If disabled it will play only one say sound, if say sounds are enabled. It does mean there's an extra bloop at the beginning now, but it doesn't change the effect much in my testing."

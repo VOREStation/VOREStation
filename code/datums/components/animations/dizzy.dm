@@ -83,3 +83,10 @@ below 100 is not dizzy
 	if(!DC)
 		return 0
 	return max(DC.dizziness,0)
+
+// Disabled on borgs
+/mob/living/silicon/make_dizzy(var/amount)
+	return
+
+/mob/living/silicon/get_dizzy()
+	return 0
