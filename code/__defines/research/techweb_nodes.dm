@@ -5,6 +5,7 @@
 #define TECHWEB_NODE_ALIENTECH "alientech"
 #define TECHWEB_NODE_ANOMALY_RESEARCH "anomaly_research"
 #define TECHWEB_NODE_ANOMALY_SHELLS "anomaly_shells"
+#define TECHWEB_NODE_TELEKINETIC_RESEARCH "telekinetic_research"
 #define TECHWEB_NODE_APPLIED_BLUESPACE "applied_bluespace"
 #define TECHWEB_NODE_ATMOS "atmos"
 #define TECHWEB_NODE_AUGMENTATION "augmentation"
