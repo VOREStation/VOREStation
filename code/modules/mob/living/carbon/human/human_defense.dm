@@ -58,7 +58,7 @@ emp_act
 
 	return (..(P , def_zone))
 
-/mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
+/mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
 	if(fire_stacks < 0) // Water makes you more conductive.
@@ -87,7 +87,7 @@ emp_act
 						var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 						automatic_custom_emote(VISIBLE_MESSAGE, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!", check_stat = TRUE)
 
-	..(stun_amount, agony_amount, def_zone)
+	..(stun_amount, agony_amount, def_zone, used_weapon, electric)
 
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)
 	var/armorval = 0

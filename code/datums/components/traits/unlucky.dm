@@ -61,9 +61,10 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(check_accident))
 	RegisterSignal(parent, COMSIG_ON_CARBON_SLIP, PROC_REF(check_slip))
 	RegisterSignal(parent, COMSIG_MOVED_DOWN_STAIRS, PROC_REF(check_stairs))
+	RegisterSignal(parent, COMSIG_STUN_EFFECT_ACT, PROC_REF(check_taser))
 
 /datum/component/omen/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_MOVED_DOWN_STAIRS))
+	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS))
 
 /datum/component/omen/proc/consume_omen()
 	incidents_left--
@@ -122,7 +123,7 @@
 			slam_airlock(darth_airlock)
 			return
 
-	for(var/turf/the_turf as anything in our_guy_pos.AdjacentTurfs(check_blockage = TRUE))
+	for(var/turf/the_turf as anything in our_guy_pos.AdjacentTurfs(check_blockage = FALSE)) //need false so we can check disposal units
 		if(the_turf.CanZPass(our_guy, DOWN))
 			to_chat(living_guy, span_warning("You lose your balance and slip towards the edge!"))
 			living_guy.Weaken(5)
@@ -142,7 +143,10 @@
 			for(var/obj/machinery/disposal/evil_disposal in the_turf)
 				if(evil_disposal.stat & (BROKEN|NOPOWER))
 					continue
+				if(evil_disposal.loc == living_guy.loc) //Let's not do a continual loop of them falling into it as soon as they climb out, as funny as that is.
+					continue
 				our_guy.visible_message(span_danger("[our_guy] slips on a spill near the [evil_disposal] and falls in!"), span_userdanger("You slip on a spill near the [evil_disposal] and fall in!"))
+				living_guy.forceMove(evil_disposal)
 				evil_disposal.flush = TRUE
 				evil_disposal.update()
 				living_guy.Weaken(5)
@@ -231,6 +235,25 @@
 		for(var/obj/item/organ/external/limb in unlucky_soul.organs) //In total, you should have 11 limbs (generally, unless you have an amputation). The full omen variant we want to leave you at 1 hp, the trait version less. As of writing, the trait version is 25% of the damage, so you take 24.75 across all limbs.
 			unlucky_soul.apply_damage(9 * damage_mod, BRUTE, limb.organ_tag, used_weapon = "slipping")
 		unlucky_soul.Weaken(5)
+		consume_omen()
+
+/datum/component/omen/proc/check_taser(mob/living/unlucky_soul, stun_amount, agony_amount, def_zone, used_weapon, electric)
+	if(!electric) //If it's not electric we don't care!
+		return
+	if(!ishuman(unlucky_soul))
+		return
+	if(prob(3 * luck_mod))
+		var/mob/living/carbon/human/human_guy = unlucky_soul
+		if(human_guy.should_have_organ(O_HEART))
+			for(var/obj/item/organ/internal/heart/heart in human_guy.internal_organs)
+				if(heart.robotic)
+					continue //Robotic hearts are immune to this.
+				heart.take_damage(10 * stun_amount * damage_mod)
+				heart.take_damage(0.25 * agony_amount * damage_mod)
+			src << sound('sound/effects/singlebeat.ogg',0,0,0,50)
+			to_chat(unlucky_soul, span_userdanger("You feel as though your heart stopped"))
+			human_guy.Stun(5)
+			consume_omen()
 
 /**
  * The trait omen. Permanent.
@@ -242,14 +265,6 @@
 	luck_mod = 0.3 // 30% chance of bad things happening
 	damage_mod = 0.25 // 25% of normal damage
 	evil = FALSE
-
-/datum/component/omen/trait/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(check_accident))
-	RegisterSignal(parent, COMSIG_ON_CARBON_SLIP, PROC_REF(check_slip))
-	RegisterSignal(parent, COMSIG_MOVED_DOWN_STAIRS, PROC_REF(check_stairs))
-
-/datum/component/omen/trait/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_MOVED_DOWN_STAIRS))
 
 ///Variant trait for downstreams that have safe disposals.
 /datum/component/omen/trait/safe_disposals

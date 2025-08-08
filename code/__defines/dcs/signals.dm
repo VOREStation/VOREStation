@@ -399,6 +399,8 @@
 #define COMSIG_TAKING_APPLY_EFFECT "applying_effect"
 ///Return this in response if you don't want the effect to be applied
 	#define COMSIG_CANCEL_EFFECT (1<<0)
+///from /mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
+#define COMSIG_STUN_EFFECT_ACT "stun_effect_act"
 
 ///Misc signal for checking for godmode. Used by /datum/element/godmode
 #define COMSIG_CHECK_FOR_GODMODE "check_for_godmode"

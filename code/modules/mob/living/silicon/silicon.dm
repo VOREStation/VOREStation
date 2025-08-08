@@ -83,7 +83,7 @@
 	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
 	..()
 
-/mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
+/mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	return	//immune
 
 /mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 0.0, var/def_zone = null, var/stun = 1)

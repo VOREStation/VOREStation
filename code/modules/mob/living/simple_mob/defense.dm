@@ -224,7 +224,7 @@
 	. = min(., 1.0)
 
 // Shot with taser/stunvolver
-/mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	if(taser_kill)
 		var/stunDam = 0
 		var/agonyDam = 0

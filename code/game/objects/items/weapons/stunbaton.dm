@@ -205,7 +205,7 @@
 
 	//stun effects
 	if(status)
-		target.stun_effect_act(stun, agony, hit_zone, src)
+		target.stun_effect_act(stun, agony, hit_zone, src, electric = TRUE)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 
 		if(ishuman(target))
