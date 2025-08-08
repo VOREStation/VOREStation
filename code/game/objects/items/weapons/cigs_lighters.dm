@@ -38,7 +38,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/flame/match/process()
 	if(isliving(loc))
 		var/mob/living/M = loc
-		M.IgniteMob()
+		M.ignite_mob()
 	var/turf/location = get_turf(src)
 	smoketime--
 	if(smoketime < 1)
@@ -644,7 +644,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	if(lit == 1)
-		M.IgniteMob()
+		M.ignite_mob()
 		add_attack_logs(user,M,"Lit on fire with [src]")
 
 	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
@@ -844,7 +844,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	if(lit == 1)
-		M.IgniteMob()
+		M.ignite_mob()
 		add_attack_logs(user,M,"Lit on fire with [src]")
 
 	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
@@ -915,7 +915,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	if(lit == 1)
-		M.IgniteMob()
+		M.ignite_mob()
 		add_attack_logs(user,M,"Lit on fire with [src]")
 
 	if(istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)
@@ -1081,7 +1081,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	if (lit == 1)
-		M.IgniteMob()
+		M.ignite_mob()
 		add_attack_logs(user, M, "Lit on fire with [src]")
 
 	if (istype(M.wear_mask, /obj/item/clothing/mask/smokable/cigarette) && user.zone_sel.selecting == O_MOUTH && lit)

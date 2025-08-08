@@ -12,7 +12,7 @@
 			span_danger("[src] has successfully extinguished themselves!"),
 			span_notice("You extinguish yourself.")
 			)
-		ExtinguishMob()
+		extinguish_mob()
 	return TRUE
 
 /mob/living/carbon/resist_restraints()

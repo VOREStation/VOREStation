@@ -331,10 +331,8 @@
 
 /obj/item/projectile/bullet/incendiary/flamethrower/tiny
 	damage = 2
-	incendiary = 0
+	incendiary = 10
 	flammability = 2
-	modifier_type_to_apply = /datum/modifier/fire/stack_managed/weak
-	modifier_duration = 20 SECONDS
 	range = 6
 	agony = 0
 	hud_state = "flame"
