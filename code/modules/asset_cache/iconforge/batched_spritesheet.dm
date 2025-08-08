@@ -46,6 +46,7 @@
 	var/cache_dmi_hashes_json = null
 	/// Used to prevent async cache refresh jobs from looping on failure.
 	var/cache_result = null
+	var/data_out
 
 /datum/asset/spritesheet_batched/proc/should_load_immediately()
 #ifdef DO_NOT_DEFER_ASSETS
@@ -186,14 +187,10 @@
 	fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[name].json")
 
 	var/do_cache = CONFIG_GET(flag/smart_cache_assets) || force_cache
-	var/data_out
 	if(yield || !isnull(job_id))
 		if(isnull(job_id))
 			job_id = rustg_iconforge_generate_async("data/spritesheets/", name, entries_json, do_cache, FALSE, TRUE)
-		data_out = rustg_iconforge_check(job_id)
-		while(data_out == RUSTG_JOB_NO_RESULTS_YET)
-			data_out = rustg_iconforge_check(job_id)
-			sleep(1)
+		UNTIL((data_out = rustg_iconforge_check(job_id)) != RUSTG_JOB_NO_RESULTS_YET)
 	else
 		data_out = rustg_iconforge_generate("data/spritesheets/", name, entries_json, do_cache, FALSE, TRUE)
 	if (data_out == RUSTG_JOB_ERROR)
