@@ -74,7 +74,7 @@
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
 	plane_slots = list(slot_glasses)
 	var/ar_toggled = TRUE //Used for toggle_ar_planes() verb
-
+	var/can_shade = TRUE
 
 /obj/item/clothing/glasses/omnihud/Initialize(mapload)
 	. = ..()
@@ -168,7 +168,7 @@
 			flags_inv &= ~HIDEEYES
 			icon_state = "glasses"
 		else
-			to_chat(usr, "The [src] don't seem to support this functionality.")
+			to_chat(usr, "It doesn't seem possible to do that with \the [src].")
 	else if(!prescription)
 		if(icon_state == "glasses")
 			to_chat(usr, "You darken the electrochromic lenses of \the [src] to one-way transparency.")
@@ -181,7 +181,9 @@
 			flags_inv &= ~HIDEEYES
 			icon_state = "glasses"
 		else
-			to_chat(usr, "The [src] don't seem to support this functionality.")
+			to_chat(usr, "It doesn't seem possible to do that with \the [src].")
+	else if(!can_shade)
+		to_chat(usr, "It doesn't seem possible to do that with \the [src].")
 	update_clothing_icon()
 
 /obj/item/clothing/glasses/omnihud/verb/toggle_ar_planes()
@@ -195,11 +197,11 @@
 	if(ar_toggled)
 		away_planes = enables_planes
 		enables_planes = null
-		to_chat(usr, span_notice("You disabled the Augmented Reality HUD of your [src.name]."))
+		to_chat(usr, span_notice("You disable the Augmented Reality HUD of your [src.name]."))
 	else
 		enables_planes = away_planes
 		away_planes = null
-		to_chat(usr, span_notice("You enabled the Augmented Reality HUD of your [src.name]."))
+		to_chat(usr, span_notice("You enable the Augmented Reality HUD of your [src.name]."))
 	ar_toggled = !ar_toggled
 	usr.update_mob_action_buttons()
 	usr.recalculate_vis()
@@ -216,6 +218,8 @@
 	icon = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "visor_CIV"
 	item_state = "visor_CIV"
+
+	can_shade = FALSE
 
 /obj/item/clothing/glasses/omnihud/med
 	name = "\improper AR-M glasses"
@@ -280,6 +284,7 @@
 	toggleable = 1
 	vision_flags = SEE_TURFS //but they can spot breaches. Due to the way HUDs work, they don't provide darkvision up-close the way mesons do.
 	flash_protection = 0 //it's an open, single-eye retinal projector. there's no way it protects your eyes from flashes or welders.
+	can_shade = FALSE
 
 /obj/item/clothing/glasses/omnihud/eng/meson/attack_self(mob/user)
 	if(!active)
@@ -437,3 +442,58 @@
 	The lenses will not protect against sudden bright flashes or welding. \
 	These have been equipped with prescription lenses."
 	prescription = TRUE
+
+/obj/item/clothing/glasses/omnihud/mantle
+	name = "AR mantle"
+	desc = "A full-face, partially-obscuring visor favoured by certain subcultures and those with sensitive eyes. Covers the face and eyes, but it's not enough to actually hide your identity. The interior has a simple augmented-reality display that aids with daily tasks. It can be toggled in and out of corrective vision mode via integrated subroutine."
+	icon_state = "mantle_HUD"
+	item_state = "mantle_HUD"
+	body_parts_covered = FACE|EYES
+	can_shade = FALSE
+
+/obj/item/clothing/glasses/omnihud/mantle/verb/switcheye()
+	set name = "Toggle Autocorrective Vision"
+	set category = "Object"
+	set src in usr
+	if(!isliving(usr)) return
+	if(usr.stat) return
+
+	prescription = !prescription
+	if(prescription)
+		to_chat(usr, "You switch the [src] into autocorrective mode.")
+	else
+		to_chat(usr, "You switch the [src] out of autocorrective mode.")
+
+/obj/item/clothing/glasses/omnihud/mantle/sec
+	name = "security AR mantle"
+	desc = "A full-face, partially-obscuring visor favoured by certain subcultures and those with sensitive eyes. Covers the face and eyes, but it's not enough to actually hide your identity. The interior has a simple augmented-reality display that aids with daily tasks. It can be toggled in and out of corrective vision mode via integrated subroutine. This version includes extra security-related functions."
+	mode = "sec"
+	flash_protection = FLASH_PROTECTION_MODERATE
+	actions_types = list(/datum/action/item_action/ar_console_security_alerts)
+	tgarscreen_path = /datum/tgui_module/alarm_monitor/security/glasses
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
+
+/obj/item/clothing/glasses/omnihud/mantle/med
+	name = "medical AR mantle"
+	desc = "A full-face, partially-obscuring visor favoured by certain subcultures and those with sensitive eyes. Covers the face and eyes, but it's not enough to actually hide your identity. The interior has a simple augmented-reality display that aids with daily tasks. It can be toggled in and out of corrective vision mode via integrated subroutine. This version includes extra medical-related functions."
+	mode = "med"
+	actions_types = list(/datum/action/item_action/ar_console_crew)
+	tgarscreen_path = /datum/tgui_module/crew_monitor/glasses
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
+
+/obj/item/clothing/glasses/omnihud/mantle/eng
+	name = "engineering AR mantle"
+	desc = "A full-face, partially-obscuring visor favoured by certain subcultures and those with sensitive eyes. Covers the face and eyes, but it's not enough to actually hide your identity. The interior has a simple augmented-reality display that aids with daily tasks. It can be toggled in and out of corrective vision mode via integrated subroutine. This version includes extra engineering-related functions."
+	mode = "eng"
+	flash_protection = FLASH_PROTECTION_MAJOR
+	actions_types = list(/datum/action/item_action/ar_console_station_alerts)
+	tgarscreen_path = /datum/tgui_module/alarm_monitor/engineering/glasses
+
+/obj/item/clothing/glasses/omnihud/mantle/cmd
+	name = "command AR mantle"
+	desc = "A full-face, partially-obscuring visor favoured by certain subcultures and those with sensitive eyes. Covers the face and eyes, but it's not enough to actually hide your identity. The interior has a simple augmented-reality display that aids with daily tasks. It can be toggled in and out of corrective vision mode via integrated subroutine. This version includes extra command-related functions."
+	mode = "best"
+	flash_protection = FLASH_PROTECTION_MAJOR
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED,VIS_AUGMENTED)
+	actions_types = list(/datum/action/item_action/ar_console_all_alerts)
+	tgarscreen_path = /datum/tgui_module/alarm_monitor/all/glasses
