@@ -236,8 +236,7 @@
 
 /datum/asset/spritesheet_batched/ensure_ready()
 	if(!fully_generated)
-		pass()
-		//realize_spritesheets(yield = FALSE)
+		realize_spritesheets(yield = FALSE)
 	return ..()
 
 /datum/asset/spritesheet_batched/send(client/client)
