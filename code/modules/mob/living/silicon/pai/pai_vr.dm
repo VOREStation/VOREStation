@@ -448,7 +448,7 @@
 	if(loc != card)
 		to_chat(src, span_warning("Your message won't be visible while unfolded!"))
 	if (!message)
-		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message")
+		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message", encode = FALSE)
 	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return
