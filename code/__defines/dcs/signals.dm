@@ -362,6 +362,8 @@
 #define COMSIG_LIVING_LIFE "living_life"
 ///From /living/handle_disabilities().
 #define COMSIG_HANDLE_DISABILITIES "handle_disabilities"
+///From /living/handle_allergens().
+#define COMSIG_HANDLE_ALLERGENS "handle_allergens"
 ///From /mob/living/proc/updatehealth().
 #define COMSIG_UPDATE_HEALTH "update_health"
 	#define COMSIG_UPDATE_HEALTH_GOD_MODE (1<<0) //If this will set health to 100 and stat to conscious.

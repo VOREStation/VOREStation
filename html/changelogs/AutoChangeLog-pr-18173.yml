@@ -1,4 +1,0 @@
-author: "ShadowLarkens"
-delete-after: True
-changes:
-  - sound: "Character talk sounds now repeat over the course of longer messages, up to a point."

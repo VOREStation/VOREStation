@@ -5,7 +5,7 @@
 	seed_noun = "spores"
 	display_name = "chanterelle mushrooms"
 	mutants = list(PLANT_REISHI,PLANT_AMANITA,PLANT_PLUMPHELMET)
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_FUNGI =  list(1,4))
 	splat_type = /obj/effect/plant
 	kitchen_tag = PLANT_MUSHROOMS
 
@@ -44,7 +44,7 @@
 	seed_name = "plump helmet"
 	display_name = "plump helmet mushrooms"
 	mutants = list("walkingmushroom",PLANT_TOWERCAP)
-	chems = list(REAGENT_ID_NUTRIMENT = list(2,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(5,10), REAGENT_ID_FUNGI = 1)
 	kitchen_tag = PLANT_PLUMPHELMET
 
 /datum/seed/mushroom/plump/New()
@@ -62,7 +62,7 @@
 	seed_name = PLANT_REISHI
 	display_name = PLANT_REISHI
 	mutants = list(PLANT_LIBERTYCAP,PLANT_GLOWSHROOM)
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_PSILOCYBIN = list(3,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_PSILOCYBIN = list(3,5), REAGENT_ID_FUNGI = list(1,5))
 
 /datum/seed/mushroom/hallucinogenic/New()
 	..()
@@ -80,7 +80,7 @@
 	seed_name = "liberty cap"
 	display_name = "liberty cap mushrooms"
 	mutants = null
-	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_STOXIN = list(3,3), REAGENT_ID_BLISS = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_STOXIN = list(3,3), REAGENT_ID_BLISS = list(1,12), REAGENT_ID_FUNGI = list(1,12))
 
 /datum/seed/mushroom/hallucinogenic/strong/New()
 	..()
@@ -96,7 +96,7 @@
 	seed_name = "fly amanita"
 	display_name = "fly amanita mushrooms"
 	mutants = list(PLANT_DESTROYINGANGEL,PLANT_PLASTIC)
-	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_AMATOXIN = list(3,3), REAGENT_ID_PSILOCYBIN = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_AMATOXIN = list(3,3), REAGENT_ID_PSILOCYBIN = list(1,25), REAGENT_ID_FUNGI = list(1,4))
 
 /datum/seed/mushroom/poison/New()
 	..()
@@ -114,7 +114,7 @@
 	seed_name = "destroying angel"
 	display_name = "destroying angel mushrooms"
 	mutants = null
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_AMATOXIN = list(13,3), REAGENT_ID_PSILOCYBIN = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_AMATOXIN = list(13,3), REAGENT_ID_PSILOCYBIN = list(1,25), REAGENT_ID_FUNGI = list(1,2))
 
 /datum/seed/mushroom/poison/death/New()
 	..()
@@ -146,7 +146,7 @@
 	name = PLANT_REDCAP
 	seed_name = "red cap"
 	display_name = "red caps"
-	chems = list(REAGENT_ID_WOODPULP = list(10,1), REAGENT_ID_TANNIN = list(1,10))
+	chems = list(REAGENT_ID_WOODPULP = list(1,10), REAGENT_ID_TANNIN = list(1,10), REAGENT_ID_FUNGI = list(1,2))
 	mutants = null
 	has_item_product = null
 
@@ -159,7 +159,7 @@
 	seed_name = PLANT_GLOWSHROOM
 	display_name = "glowshrooms"
 	mutants = null
-	chems = list(REAGENT_ID_RADIUM = list(1,20))
+	chems = list(REAGENT_ID_RADIUM = list(1,20), REAGENT_ID_FUNGI = list(1,5))
 
 /datum/seed/mushroom/glowshroom/New()
 	..()
@@ -179,7 +179,7 @@
 	seed_name = "plastellium"
 	display_name = "plastellium"
 	mutants = null
-	chems = list(REAGENT_ID_PLASTICIDE = list(1,10))
+	chems = list(REAGENT_ID_PLASTICIDE = list(1,10), REAGENT_ID_FUNGI = list(2,6))
 
 /datum/seed/mushroom/plastic/New()
 	..()
@@ -197,7 +197,7 @@
 	seed_name = "corpellian"
 	display_name = "corpellian"
 	mutants = null
-	chems = list(REAGENT_ID_SEROTROTIUM = list(5,10), REAGENT_ID_MOLD = list(1,10))
+	chems = list(REAGENT_ID_SEROTROTIUM = list(5,10), REAGENT_ID_MOLD = list(1,10), REAGENT_ID_FUNGI = list(1,4))
 
 /datum/seed/mushroom/spore/New()
 	..()
