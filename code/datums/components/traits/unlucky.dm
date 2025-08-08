@@ -196,7 +196,7 @@
 				if(evil)
 					mirror_rand = rand(1, 5) // going crazy, or did you actually see something?
 				else
-					mirror_rand = rand(1, 3) // 33% chance of something bad happening
+					mirror_rand = rand(1, 3)
 				switch(mirror_rand)
 					if(1)
 						to_chat(living_guy, span_warning("The mirror explodes into a million pieces! Wait, does that mean you're even more unlucky?"))
@@ -299,6 +299,10 @@
 	damage_mod = 0.25 // 25% of normal damage
 	evil = FALSE
 
+///Major variant of the trait.
+/datum/component/omen/trait/major
+	evil = TRUE
+
 ///Variant trait for downstreams that have safe disposals.
 /datum/component/omen/trait/safe_disposals
 	safe_disposals = TRUE
@@ -322,8 +326,3 @@
 	. = ..()
 	var/mob/living/living_parent = parent
 	living_parent.remove_filter("omen")
-
-
-/**
- * Various procs used when unlucky things happen!
- */
