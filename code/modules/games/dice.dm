@@ -103,6 +103,9 @@
 		else if(prob(75)) //makeshift weighted dice don't always work
 			result = loaded
 	icon_state = "[name][result]"
+	var/result_override = SEND_SIGNAL(user, COMSIG_MOB_ROLLED_DICE, src, silent, result) //We can override dice rolls!
+	if(result_override)
+		result = result_override
 
 	if(!silent)
 		var/comment = ""

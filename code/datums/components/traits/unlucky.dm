@@ -19,6 +19,8 @@
 	var/evil = TRUE
 	/// If our codebase has safe disposals or not
 	var/safe_disposals = FALSE
+	/// If we have vore interactions or not
+	var/vorish = TRUE
 
 /datum/component/omen/Initialize(obj/vessel, incidents_left, luck_mod, damage_mod)
 	if(!isliving(parent))
@@ -62,9 +64,10 @@
 	RegisterSignal(parent, COMSIG_ON_CARBON_SLIP, PROC_REF(check_slip))
 	RegisterSignal(parent, COMSIG_MOVED_DOWN_STAIRS, PROC_REF(check_stairs))
 	RegisterSignal(parent, COMSIG_STUN_EFFECT_ACT, PROC_REF(check_taser))
+	RegisterSignal(parent, COMSIG_MOB_ROLLED_DICE, PROC_REF(check_roll))
 
 /datum/component/omen/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS))
+	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE))
 
 /datum/component/omen/proc/consume_omen()
 	incidents_left--
@@ -131,15 +134,28 @@
 			consume_omen()
 			return
 
+		if(vorish)
+			for(var/mob/living/living_mob in the_turf)
+				if(living_mob == our_guy)
+					continue //Don't do anything to ourselves.
+				if(living_mob.stat)
+					continue
+				if(!living_mob.CanStumbleVore(living_guy) && !living_guy.CanStumbleVore(living_mob)) //Works both ways! Either way, someone's getting eaten!
+					continue
+				living_mob.stumble_into(living_guy) //logic reversed here because the game is DUMB. This means that living_guy is stumbling into the target!
+				living_guy.visible_message(span_danger("[living_guy] loses their balance and slips into [living_mob]!"), span_userdanger("You lose your balance, slipping into [living_mob]!"))
+				consume_omen()
+				return
+
 		for(var/obj/machinery/vending/darth_vendor in the_turf)
 			if(darth_vendor.stat & (BROKEN|NOPOWER))
 				continue
-			to_chat(living_guy, span_warning("A malevolent force pulls the delivery chute up from the [darth_vendor]..."))
+			to_chat(living_guy, span_warning("The delivery chute of [darth_vendor] raises up..."))
 			darth_vendor.throw_item(living_guy)
 			consume_omen()
 			return
 
-		if(evil || safe_disposals)
+		if(evil || safe_disposals) //On servers without safe disposals, this is a death sentence. With servers with safe disposals, it's just funny.
 			for(var/obj/machinery/disposal/evil_disposal in the_turf)
 				if(evil_disposal.stat & (BROKEN|NOPOWER))
 					continue
@@ -169,13 +185,19 @@
 				living_guy.electrocute_act(35 * (damage_mod * 0.5), evil_light, stun = 3)
 				living_guy.emote("scream")
 				consume_omen()
+				return
 
 			for(var/obj/structure/mirror/evil_mirror in the_turf)
 				to_chat(living_guy, span_warning("You pass by the mirror and glance at it..."))
 				if(evil_mirror.shattered)
 					to_chat(living_guy, span_notice("You feel lucky, somehow."))
 					return
-				switch(rand(1, 5))
+				var/mirror_rand
+				if(evil)
+					mirror_rand = rand(1, 5) // going crazy, or did you actually see something?
+				else
+					mirror_rand = rand(1, 3) // 33% chance of something bad happening
+				switch(mirror_rand)
 					if(1)
 						to_chat(living_guy, span_warning("The mirror explodes into a million pieces! Wait, does that mean you're even more unlucky?"))
 						evil_mirror.shatter()
@@ -200,9 +222,11 @@
 								heart.bruise() //Closest thing we have to a heart attack.
 							to_chat(living_guy, span_userdanger("You clutch at your heart!"))
 
-			consume_omen()
+				consume_omen()
+				return
 
 /datum/component/omen/proc/slam_airlock(obj/machinery/door/airlock/darth_airlock)
+	SIGNAL_HANDLER
 	. = darth_airlock.close(forced = TRUE, ignore_safties = TRUE, crush_damage = 15) //Not enough to cause any IB or massively injured organs.
 	if(.)
 		consume_omen()
@@ -228,7 +252,15 @@
 
 	return
 
+/datum/component/omen/proc/check_roll(mob/living/unlucky_soul, var/obj/item/dice/the_dice, silent, result)
+	SIGNAL_HANDLER
+	if(prob(10 * luck_mod))
+		unlucky_soul.visible_message(span_danger("[unlucky_soul] rolls [the_dice] with it landing on the edge of [result] before tilting over!"), span_userdanger("You feel dreadfully unlucky as you roll the dice!"))
+		consume_omen()
+		return 1 // We override the roll to a 1.
+
 /datum/component/omen/proc/check_stairs(mob/living/unlucky_soul)
+	SIGNAL_HANDLER
 	if(prob(3 * luck_mod)) /// Bonk!
 		playsound(unlucky_soul, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		unlucky_soul.visible_message(span_danger("One of the stairs give way as [unlucky_soul] steps onto it, tumbling them down to the bottom!"), span_userdanger("A stair gives way and you trip to the bottom!"))
@@ -238,7 +270,8 @@
 		consume_omen()
 
 /datum/component/omen/proc/check_taser(mob/living/unlucky_soul, stun_amount, agony_amount, def_zone, used_weapon, electric)
-	if(!electric) //If it's not electric we don't care!
+	SIGNAL_HANDLER
+	if(!electric || !evil) //If it's not electric we don't care! Likewise, if we don't have the evil variant, don't care!
 		return
 	if(!ishuman(unlucky_soul))
 		return
