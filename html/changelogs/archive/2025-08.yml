@@ -202,3 +202,26 @@
   moonshineTheleocat:
   - bugfix: Fixed the ability to print the Advanced Atmospheric Protection Suite in
       robotics.
+2025-08-09:
+  Cameron-The-Raven:
+  - bugfix: Dullataur chat bubble will appear in the proper place
+  - image: Dullataur .dmi 32x64->64x64
+  Kashargul:
+  - bugfix: several bad encodings
+  SatinIsle:
+  - qol: Added a preference for "Multiple Say Sounds", which is enabled by default.
+      If you have it enabled it plays multiple say sounds for long sentences as normal.
+      If disabled it will play only one say sound, if say sounds are enabled. It does
+      mean there's an extra bloop at the beginning now, but it doesn't change the
+      effect much in my testing.
+  Will:
+  - rscadd: Pollen allergy
+  - rscadd: Salt allergy
+  - rscadd: coughing allergic reaction
+  - rscadd: sneezing allergic reaction
+  - rscadd: gibbing allergic  reaction (disabled on virgo)
+  - bugfix: Mushroom allergy reacts to more foods
+  - code_imp: allergic reaction handling code moved to an element
+  - code_imp: added missing SIGNAL_HANDLER macros to other elements
+  - code_imp: split say() into a second nonblocking half, direct_say()
+  - code_imp: telecomms uses timers instead of sleep for transmission delay
