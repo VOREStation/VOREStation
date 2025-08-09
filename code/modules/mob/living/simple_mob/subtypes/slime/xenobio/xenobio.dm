@@ -132,10 +132,13 @@
 
 /mob/living/simple_mob/slime/xenobio/update_mood()
 	var/old_mood = mood
+	var/pacified = FALSE //Tracks if we are currently pacified (and if we can be drop prey or not)
 	if(incapacitated(INCAPACITATION_DISABLED))
 		mood = "sad"
+		pacified = TRUE
 	else if(harmless)
 		mood = ":33"
+		pacified = TRUE
 	else if(has_AI())
 		var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
 		if(AI.rabid)
@@ -144,13 +147,31 @@
 			mood = "mischevous"
 		else if(AI.discipline)
 			mood = "pout"
+			pacified = TRUE
 		else
 			mood = ":3"
+			pacified = TRUE
 	else
 		mood = ":3"
+		pacified = TRUE
+
+	if(!client) //Only update if we don't have a client.
+		if(old_mood == "angry" && !harmless) //We were recently angry, so we're still upset and won't let you eat us no matter what!
+			update_allowed_vore_types(FALSE)
+		else
+			update_allowed_vore_types(pacified)
 
 	if(old_mood != mood)
 		update_icon()
+
+/mob/living/simple_mob/slime/proc/update_allowed_vore_types(allowed)
+	devourable = allowed
+	can_be_drop_prey = allowed
+	stumble_vore = allowed
+	slip_vore = allowed
+	drop_vore = allowed
+	throw_vore = allowed
+	devourable = allowed
 
 /mob/living/simple_mob/slime/xenobio/proc/enrage()
 	if(harmless)
