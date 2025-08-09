@@ -862,3 +862,15 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/telekinetic_gloves
+	name = "Kinesis Assistance Module"
+	id = "tk_gloves"
+	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_BLUESPACE = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_VERDANTIUM = 1000, MAT_SILVER = 300, MAT_PLASTEEL = 1000)
+	build_path = /obj/item/clothing/gloves/telekinetic
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
