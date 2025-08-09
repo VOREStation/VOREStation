@@ -170,7 +170,7 @@
 		CRASH("Spritesheet [name] ([type]) is empty! What are you doing?")
 
 	if(getting_genned)
-		stack_trace("Sprite sheet batching has been called twice. This is illegal.")
+		stack_trace("Spritesheet batching has been called twice. This is illegal!")
 	if(isnull(entries_json))
 		entries_json = json_encode(entries)
 
