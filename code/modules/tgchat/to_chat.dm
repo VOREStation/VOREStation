@@ -76,7 +76,7 @@
 	confidential = FALSE
 )
 	//if(isnull(Master) || !SSchat?.initialized || !MC_RUNNING(SSchat.init_stage))
-	if(isnull(Master) || !SSchat?.subsystem_initialized)
+	if(isnull(Master) || !SSchat?.initialized)
 		to_chat_immediate(target, html, type, text, avoid_highlighting)
 		return
 

@@ -181,6 +181,16 @@
 	skybox_pixel_x = 450
 	skybox_pixel_y = 200
 
+GLOBAL_LIST_EMPTY(all_stellar_delights)
+
+/obj/effect/overmap/visitable/ship/stellar_delight/Initialize(mapload)
+	. = ..()
+	GLOB.all_stellar_delights += src
+
+/obj/effect/overmap/visitable/ship/stellar_delight/Destroy()
+	GLOB.all_stellar_delights -= src
+	. = ..()
+
 /obj/effect/overmap/visitable/sector/virgo2
 	name = "Virgo 2"
 	desc = "Includes the Remmi Aerostat and associated ground mining complexes."

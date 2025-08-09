@@ -34,11 +34,11 @@
 
 /mob/living/silicon/robot/platform/attack_ghost(mob/observer/dead/user)
 
-	if(client || key || stat == DEAD || !ticker || !ticker.mode)
+	if(client || key || stat == DEAD || !SSticker || !SSticker.mode)
 		return ..()
 
 	var/confirm = tgui_alert(user, "Do you wish to take control of \the [src]?", "Platform Control", list("No", "Yes"))
-	if(confirm != "Yes" || QDELETED(src) || client || key || stat == DEAD || !ticker || !ticker.mode)
+	if(confirm != "Yes" || QDELETED(src) || client || key || stat == DEAD || !SSticker || !SSticker.mode)
 		return ..()
 
 	if(jobban_isbanned(user, "Robot"))

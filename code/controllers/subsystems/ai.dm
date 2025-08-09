@@ -1,10 +1,14 @@
 SUBSYSTEM_DEF(ai)
 	name = "AI"
-	init_order = INIT_ORDER_AI
 	priority = FIRE_PRIORITY_AI
 	wait = 2 SECONDS
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+
+	dependencies = list(
+		/datum/controller/subsystem/air,
+		/datum/controller/subsystem/mobs
+	)
 
 	var/list/processing = list()
 	var/list/currentrun = list()

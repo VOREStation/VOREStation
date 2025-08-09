@@ -13,10 +13,11 @@ SUBSYSTEM_DEF(asset_loading)
 	while(length(generate_queue))
 		var/datum/asset/to_load = generate_queue[generate_queue.len]
 
-		to_load.queued_generation()
-
 		if(MC_TICK_CHECK)
 			return
+
+		to_load.queued_generation()
+
 		last_queue_len = length(generate_queue)
 		generate_queue.len--
 	// We just emptied the queue

@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(robot_sprites)
 	name = "Robot Sprites"
-	init_order = INIT_ORDER_ROBOT_SPRITES
+	dependencies = list(
+		/datum/controller/subsystem/garbage
+	)
 	flags = SS_NO_FIRE
 	var/list/all_cyborg_sprites = list()
 	var/list/cyborg_sprites_by_module = list()
