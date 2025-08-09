@@ -73,7 +73,7 @@
 				L+=T
 
 	if(!L.len)
-		to_chat(user, "The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry.")
+		to_chat(user, span_warning("The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry."))
 		return
 
 	if(user && user.buckled)
@@ -91,7 +91,7 @@
 			break
 
 	if(!success)
-		to_chat(user, "The spell matrix was unable to locate a suitable teleport destination, because the destination area is entirely obstructed. Sorry.")
+		to_chat(user, span_warning("The spell matrix was unable to locate a suitable teleport destination, because the destination area is entirely obstructed. Sorry."))
 		user.forceMove(pick(L))
 
 	smoke.start()
