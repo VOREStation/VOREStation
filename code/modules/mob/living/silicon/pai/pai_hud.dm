@@ -69,6 +69,9 @@
 		if("ar hud")
 			p.ar_hud()
 
+		if("death alarm")
+			p.death_alarm()
+
 /obj/screen/pai/pai_fold_display
 	name = "fold/unfold"
 	icon = 'icons/mob/pai_hud.dmi'
@@ -321,6 +324,14 @@
 	using.name = "ar hud"
 	using.base_state = "ar_hud"
 	using.screen_loc = "WEST:6,SOUTH+4:18"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
+
+	using = new /obj/screen/pai()
+	using.name = "death alarm"
+	using.base_state = "death_alarm"
+	using.screen_loc = "WEST:6,SOUTH+5:2"
 	using.color = ui_color
 	using.alpha = ui_alpha
 	other |= using
