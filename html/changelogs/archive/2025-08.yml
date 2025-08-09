@@ -119,3 +119,109 @@
   - bugfix: Reagent scanner can get the reagents inside refinery machines even if
       they are sealed
   - bugfix: Mobs that glow will hide their light while ventcrawling
+2025-08-06:
+  Jordhin Xenshire:
+  - rscadd: Added Industrial Hardsuit for printing at the Exo-Suit Lathe
+  - rscadd: ' Added EVA and Advanced EVA Hardsuit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added Rescue Hardsuit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added Hazard Suit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added AMI Hardsuit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added Null Hardsuit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added Thermal, Graviton Visors, Multi-Visor for printing at the Exo-Suit
+      Lathe.'
+  - rscadd: P.A.T. (Point Access Tunneling)  for printing at the Exo-Suit Lathe.
+  - rscadd: ' Added F.P.S. (Faraday Protective Shielding) hardsuit, and Advanced F.P.S.
+      which protects from electrical hazards,  but not EMPs. You will be completely
+      insulated from Teslas, Electrical wiring, lightning strikes, and the wrath of
+      zeus.'
+  - rscadd: Added Advanced Atmospheric Protection Suite. A more energy efficient version
+      of A.P.S.
+  - qol: Tweaked AMI bomb resistance from 80 to 100. Like the EOD Suit, it will not
+      keep you alive. But your body won't be gibbed.
+  - balance: Tier-1 RIG suit research now has increased cost and a discount experiment
+  - bugfix: Protean RIG Suit pressure resistance not correctly copying from assimilated
+      rig.
+  - bugfix: Protean Rig Suit's thermal resistance dropping to 375K instead of the
+      expected 5000K when removing an assimilated rig.
+  Will:
+  - bugfix: TODO - FIX ME, finally fixed. Cosmetic menus properly hides illegal cosmetics.
+  - bugfix: Mapper anchored flashers start active when the round begins
+  - rscadd: Ports an emote interaction
+  - code_imp: Scalpel uses a clamp_chance var instead of typechecking during surgery
+  - rscadd: Fence gates can be lockpicked
+  - bugfix: Borgs can open fence gates
+  - bugfix: smoke effects no longer choke you if you have the no breathing mutation
+  Willburd:
+  - bugfix: Refinery runtime when checking empty conveyors
+  - bugfix: Reagent hoses can only connect to one connector at a time
+  zeskorion:
+  - bugfix: Pain simulation now simulates traumatic shock
+2025-08-07:
+  Diana:
+  - code_imp: Grippers should be less buggy. Please keep reporting any gripper bugs.
+  - admin: R_DEBUG is now required to apply/remove components/elements.
+  - code_imp: component/shadekin now fails when applied to silicons
+  Will:
+  - bugfix: Borgs don't jitter
+2025-08-08:
+  Cameron-The-Raven:
+  - spellcheck: gives the coolant tank cargo package the proper name
+  - bugfix: Sensor pref is now taken into account when deciding what level your suit
+      sensors will be on.
+  Diana:
+  - bugfix: Making the PAT in R&D will no longer make a rescue pharmacy
+  - bugfix: Wolves will no longer crash the server
+  - bugfix: Bloopers will respect their appropriate say/whisper prefs
+  Kashargul:
+  - code_imp: moves FBP strings to defines
+  - bugfix: some species ages which had been set too low according to their lore
+  KillianKirilenko:
+  - qol: you can now order crates of alien wood from cargo
+  SatinIsle:
+  - rscadd: Added a new Gold Star Printer to HoP offices. This printer prints gold
+      stars with a short title of "Gold Star for X" and a custom description for more
+      info. These gold stars can be used as accessories on underclothing. They can
+      also be stuck to ANY object that doesn't have a custom attack interaction.
+  ShadowLarkens:
+  - rscadd: A new passive animal, Mothroaches! They're a cross between a cockroach
+      and a mothperson.
+  - bugfix: runtime in prosfab
+  - sound: Character talk sounds now repeat over the course of longer messages, up
+      to a point.
+  StrangeWeirdKitten:
+  - rscadd: 'New borg model: Myomer'
+  Will:
+  - rscadd: heater and cooler atmo machines now have hose connectors
+  - rscadd: heater and cooler atmo machines can now use coolants to increase their
+      performance.
+  - rscadd: Coolant tanks can now be ordered from Cargo
+  - code_imp: reagents now have a cooling factor for machine efficiency calculations
+  - qol: Heaters can have micro-lasers installed in them, allowing them to heat faster.
+  - rscadd: Changeling blood test
+  - rscadd: Ambulant blood genetrait
+  moonshineTheleocat:
+  - bugfix: Fixed the ability to print the Advanced Atmospheric Protection Suite in
+      robotics.
+2025-08-09:
+  Cameron-The-Raven:
+  - bugfix: Dullataur chat bubble will appear in the proper place
+  - image: Dullataur .dmi 32x64->64x64
+  Kashargul:
+  - bugfix: several bad encodings
+  SatinIsle:
+  - qol: Added a preference for "Multiple Say Sounds", which is enabled by default.
+      If you have it enabled it plays multiple say sounds for long sentences as normal.
+      If disabled it will play only one say sound, if say sounds are enabled. It does
+      mean there's an extra bloop at the beginning now, but it doesn't change the
+      effect much in my testing.
+  Will:
+  - rscadd: Pollen allergy
+  - rscadd: Salt allergy
+  - rscadd: coughing allergic reaction
+  - rscadd: sneezing allergic reaction
+  - rscadd: gibbing allergic  reaction (disabled on virgo)
+  - bugfix: Mushroom allergy reacts to more foods
+  - code_imp: allergic reaction handling code moved to an element
+  - code_imp: added missing SIGNAL_HANDLER macros to other elements
+  - code_imp: split say() into a second nonblocking half, direct_say()
+  - code_imp: telecomms uses timers instead of sleep for transmission delay

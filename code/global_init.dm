@@ -14,15 +14,6 @@ var/global/datum/global_init/init = new ()
 	Pre-map initialization stuff should go here.
 */
 /datum/global_init/New()
-/* VOREStation Removal - Ours is even earlier, in world/New()
-	//logs
-	GLOB.log_directory += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
-	diary = file("[GLOB.log_directory].log")
-	GLOB.href_logfile = file("[GLOB.log_directory]-hrefs.htm")
-	GLOB.error_log = file("[GLOB.log_directory]-error.log")
-	GLOB.debug_log = file("[GLOB.log_directory]-debug.log")
-	GLOB.debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
-*/ //VOREStation Removal End
 	decls_repository = new()
 
 	initialize_integrated_circuits_list()

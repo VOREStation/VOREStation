@@ -616,6 +616,8 @@
 #define REAGENT_ID_TOFU "tofu"
 #define REAGENT_SEAFOOD "seafood protein"
 #define REAGENT_ID_SEAFOOD "seafood"
+#define REAGENT_FUNGI "fungal protein"
+#define REAGENT_ID_FUNGI "fungi"
 #define REAGENT_CHEESE "cheese"
 #define REAGENT_ID_CHEESE "cheese"
 #define REAGENT_EGG "egg yolk"

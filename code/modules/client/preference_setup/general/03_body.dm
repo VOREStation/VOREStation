@@ -231,11 +231,11 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 			if(E.robotic < ORGAN_ASSISTED)
 				continue
 		if(I)
-			if(status == "assisted")
+			if(status == FBP_ASSISTED)
 				I.mechassist()
-			else if(status == "mechanical")
+			else if(status == FBP_MECHANICAL)
 				I.robotize()
-			else if(status == "digital")
+			else if(status == FBP_DIGITAL)
 				I.digitize()
 
 	for(var/N in character.organs_by_name)
@@ -931,9 +931,9 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 							pref.organ_data[other_limb] = "cyborg"
 							pref.rlimb_data[other_limb] = choice
 						if(!pref.organ_data[O_BRAIN])
-							pref.organ_data[O_BRAIN] = "assisted"
+							pref.organ_data[O_BRAIN] = FBP_ASSISTED
 						for(var/internal_organ in list(O_HEART,O_EYES))
-							pref.organ_data[internal_organ] = "mechanical"
+							pref.organ_data[internal_organ] = FBP_MECHANICAL
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -970,15 +970,15 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 				if("Normal")
 					pref.organ_data[zone] = null
 				if("Assisted")
-					pref.organ_data[zone] = "assisted"
+					pref.organ_data[zone] = FBP_ASSISTED
 				if("Cybernetic")
-					pref.organ_data[zone] = "assisted"
+					pref.organ_data[zone] = FBP_ASSISTED
 				if("Mechanical")
-					pref.organ_data[zone] = "mechanical"
+					pref.organ_data[zone] = FBP_MECHANICAL
 				if("Drone")
-					pref.organ_data[zone] = "digital"
+					pref.organ_data[zone] = FBP_DIGITAL
 				if("Positronic")
-					pref.organ_data[zone] = "mechanical"
+					pref.organ_data[zone] = FBP_MECHANICAL
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
