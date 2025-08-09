@@ -1,0 +1,13 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Pollen allergy"
+  - rscadd: "Salt allergy"
+  - rscadd: "coughing allergic reaction"
+  - rscadd: "sneezing allergic reaction"
+  - rscadd: "gibbing allergic  reaction (disabled on virgo)"
+  - bugfix: "Mushroom allergy reacts to more foods"
+  - code_imp: "allergic reaction handling code moved to an element"
+  - code_imp: "added missing SIGNAL_HANDLER macros to other elements"
+  - code_imp: "split say() into a second nonblocking half, direct_say()"
+  - code_imp: "telecomms uses timers instead of sleep for transmission delay"

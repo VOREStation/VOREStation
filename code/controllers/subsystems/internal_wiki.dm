@@ -420,12 +420,10 @@ SUBSYSTEM_DEF(internal_wiki)
 			allergies.Add("Stimulant")
 		if(allergens & ALLERGEN_CHOCOLATE)
 			allergies.Add("Chocolate")
-		/* Downstream features
 		if(allergens & ALLERGEN_POLLEN)
 			allergies.Add("Pollen")
 		if(allergens & ALLERGEN_SALT)
 			allergies.Add("Salt")
-		*/
 		return allergies
 	return null
 
