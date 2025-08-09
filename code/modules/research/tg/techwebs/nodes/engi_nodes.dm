@@ -57,6 +57,7 @@
 		"phasic_sensor",
 		"ultra_micro_laser",
 		"hyper_cell",
+		"hyper_device_cell",
 		"arped",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
