@@ -318,7 +318,7 @@ var/list/channel_to_radio_key = list()
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
 			var/sign_action = "[pick(S.speaking.signlang_verb)]."
-			process_normal_emote(VISIBLE_MESSAGE,sign_action,sign_action)
+			automatic_custom_emote(VISIBLE_MESSAGE,sign_action)
 			do_sound = FALSE
 
 	//These will contain the main receivers of the message
