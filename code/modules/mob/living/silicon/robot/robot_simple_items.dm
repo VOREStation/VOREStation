@@ -596,9 +596,9 @@
 ///Allows use of the gripper (and clears the weakref) after do_after is completed. Clears the weakref if the wrapped item is no longer in our borg's contents (items get moved into the borgs contents when using the gripper)
 /obj/item/gripper/proc/end_using()
 	gripper_in_use = FALSE
-	if(!WR)
-		return
 	var/obj/item/wrapped = get_current_pocket()
+	if(!wrapped)
+		return
 	//Checks two things:
 	//Is our wrapped object currently in our borg still?
 	//AND Is it not a gripper pocket? If not, reset WR.
@@ -883,9 +883,7 @@
 //HELPER PROCS
 ///Use this to get what the current pocket is. Returns NULL if no
 /obj/item/gripper/proc/get_current_pocket() //done as a proc so snowflake code can be found later down the line and consolidated.
-	if(!WR)
-		return null
-	var/obj/item/wrapped = WR.resolve()
+	var/obj/item/wrapped = WR?.resolve()
 	return wrapped
 
 /// Consolidates material stacks by searching our pockets to see if we currently have any stacks. Done in /obj/item/stack/attackby
