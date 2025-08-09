@@ -337,7 +337,7 @@
 /datum/trait/negative/agoraphobia/handle_environment_special(var/mob/living/carbon/human/H)
 	spawn(0)
 		if(isbelly(H.loc)) //I don't need to be told every 2 seconds I'm freaking out when I'm in a belly trying to WRITE!!! We can handle all the stress of it when (IF) we are let out of the gut.
-			return FALSE
+			return
 		var/list/in_range = list()
 		// If they're dead or unconcious they're a bit beyond this kind of thing.
 		if(H.stat)
