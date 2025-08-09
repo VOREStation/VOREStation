@@ -291,9 +291,9 @@ var/list/organ_cache = list()
 		handle_organ_mod_special()
 	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
 		var/status = owner.client.prefs.organ_data[organ_tag]
-		if(status == "assisted")
+		if(status == FBP_ASSISTED)
 			mechassist()
-		else if(status == "mechanical")
+		else if(status == FBP_MECHANICAL)
 			robotize()
 
 /obj/item/organ/proc/is_damaged()
