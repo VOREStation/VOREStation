@@ -23,24 +23,28 @@
 		// Because this is a 'all in one' machine, we're gonna just cheat.
 		//signal.data["level"] = using_map.contact_levels.Copy()
 
+		// simulate the network lag if necessary
 		if(signal.data["slow"] > 0)
-			sleep(signal.data["slow"]) // simulate the network lag if necessary
+			addtimer(CALLBACK(src, PROC_REF(receive_information_delayed), signal), signal.data["slow"], TIMER_DELETE_ME)
+			return
+		receive_information_delayed(signal)
 
-		/* ###### Broadcast a message using signal.data ###### */
+/obj/machinery/telecomms/allinone/ert/receive_information_delayed(datum/signal/signal)
+	/* ###### Broadcast a message using signal.data ###### */
 
-		var/datum/radio_frequency/connection = signal.data["connection"]
+	var/datum/radio_frequency/connection = signal.data["connection"]
 
-		var/list/forced_radios
-		for(var/datum/weakref/wr in linked_radios_weakrefs)
-			var/obj/item/radio/R = wr.resolve()
-			if(istype(R))
-				LAZYDISTINCTADD(forced_radios, R)
+	var/list/forced_radios
+	for(var/datum/weakref/wr in linked_radios_weakrefs)
+		var/obj/item/radio/R = wr.resolve()
+		if(istype(R))
+			LAZYDISTINCTADD(forced_radios, R)
 
-		if(connection.frequency in CENT_FREQS) // if ert broadcast, just
-			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], DATA_NORMAL,
-							  signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"], forced_radios)
+	if(connection.frequency in CENT_FREQS) // if ert broadcast, just
+		Broadcast_Message(signal.data["connection"], signal.data["mob"],
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"], DATA_NORMAL,
+							signal.data["compression"], list(0), connection.frequency,
+							signal.data["verb"], forced_radios)
