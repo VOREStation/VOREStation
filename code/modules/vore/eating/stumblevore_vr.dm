@@ -31,7 +31,8 @@
 
 /mob/living/stumble_into(mob/living/M)
 	var/mob/living/carbon/human/S = src
-
+	if(S.buckled || M.buckled)
+		return
 	playsound(src, "punch", 25, 1, -1)
 	M.Weaken(4)
 	M.stop_flying()

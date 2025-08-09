@@ -51,11 +51,11 @@
 				L+=T
 
 	if(!L.len)
-		to_chat(user, "The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry.")
+		to_chat(user, span_warning("The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry."))
 		return
 
 	if(user && user.buckled)
-		user.buckled = null
+		user.buckled.unbuckle_mob( user, TRUE)
 
 	var/attempt = null
 	var/success = 0
@@ -68,7 +68,8 @@
 			break
 
 	if(!success)
-		user.loc = pick(L)
+		to_chat(user, span_warning("The spell matrix was unable to locate a suitable teleport destination, because the destination area is entirely obstructed. Sorry."))
+		user.forceMove(pick(L))
 
 	return
 
