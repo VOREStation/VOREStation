@@ -71,3 +71,7 @@
 	if(Adjacent(user))
 		gps.tracking = !gps.tracking
 		to_chat(user,span_notice("You turn the micro beacon [gps.tracking ? "on" : "off"]."))
+
+/obj/item/clothing/accessory/watch/survival/attack_self(mob/user)
+	. = ..()
+	gps.set_tag_prompt(user)
