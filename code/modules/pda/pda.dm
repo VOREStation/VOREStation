@@ -26,30 +26,6 @@
 	var/mimeamt = 0 //How many silence left when infected with mime.exe
 	var/detonate = 1 // Can the PDA be blown up?
 	var/ttone = "beep" //The ringtone!
-	var/list/ttone_sound = list("beep" = 'sound/machines/twobeep.ogg',
-								"boom" = 'sound/effects/explosionfar.ogg',
-								"slip" = 'sound/misc/slip.ogg',
-								"honk" = 'sound/items/bikehorn.ogg',
-								"SKREE" = 'sound/voice/shriek1.ogg',
-								"xeno" = 'sound/voice/hiss1.ogg',
-								"spark" = 'sound/effects/sparks4.ogg',
-								"rad" = 'sound/items/geiger/high1.ogg',
-								"servo" = 'sound/machines/rig/rigservo.ogg',
-								"buh-boop" = 'sound/misc/buh-boop.ogg',
-								"trombone" = 'sound/misc/sadtrombone.ogg',
-								"whistle" = 'sound/misc/boatswain.ogg',
-								"chirp" = 'sound/misc/nymphchirp.ogg',
-								"slurp" = 'sound/items/drink.ogg',
-								"pwing" = 'sound/items/nif_tone_good.ogg',
-								"clack" = 'sound/items/storage/toolbox.ogg',
-								"bzzt" = 'sound/misc/null.ogg',	//vibrate mode
-								"chimes" = 'sound/misc/notice3.ogg',
-								"prbt" = 'sound/voice/prbt.ogg',
-								"bark" = 'sound/voice/bark2.ogg',
-								"bork" = 'sound/voice/bork.ogg',
-								"roark" = 'sound/voice/roarbark.ogg',
-								"chitter" = 'sound/voice/moth/moth_chitter.ogg',
-								"squish" = 'sound/effects/slime_squish.ogg')
 	var/hidden = 0 // Is the PDA hidden from the PDA list?
 	var/touch_silent = 0 //If 1, no beeps on interacting.
 
@@ -101,8 +77,8 @@
 /obj/item/pda/proc/play_ringtone()
 	var/S
 
-	if(ttone in ttone_sound)
-		S = ttone_sound[ttone]
+	if(ttone in GLOB.device_ringtones)
+		S = GLOB.device_ringtones[ttone]
 	else
 		S = 'sound/machines/twobeep.ogg'
 	playsound(loc, S, 50, 1)

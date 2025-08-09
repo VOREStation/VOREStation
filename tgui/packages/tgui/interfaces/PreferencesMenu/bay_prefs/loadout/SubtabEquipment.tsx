@@ -61,7 +61,7 @@ export const SubtabEquipment = (props: {
               ))}
             </LabeledList.Item>
           ))}
-          <LabeledList.Item label="Communicator Visibile">
+          <LabeledList.Item label="Communicator Visible">
             <Button onClick={() => act('toggle_comm_visibility')}>
               {communicator_visibility ? 'Yes' : 'No'}
             </Button>
@@ -70,6 +70,7 @@ export const SubtabEquipment = (props: {
             <Button onClick={() => act('set_ringtone')}>
               {ringtone || 'None'}
             </Button>
+            <Button icon="volume-high" onClick={() => act('test_ringtone')}/>
           </LabeledList.Item>
           <LabeledList.Item label="Spawn With Shoes">
             <Button onClick={() => act('toggle_shoes')}>

@@ -75,17 +75,6 @@
 
 	// Ringtones! (Based on the PDA ones)
 	var/ttone = "beep" //The ringtone!
-	var/list/ttone_sound = list("beep" = 'sound/machines/twobeep.ogg',
-								"boom" = 'sound/effects/explosionfar.ogg',
-								"slip" = 'sound/misc/slip.ogg',
-								"honk" = 'sound/items/bikehorn.ogg',
-								"SKREE" = 'sound/voice/shriek1.ogg',
-								// "holy" = 'sound/items/PDA/ambicha4-short.ogg',
-								"xeno" = 'sound/voice/hiss1.ogg',
-								"dust" = 'sound/effects/supermatter.ogg',
-								"spark" = 'sound/effects/sparks4.ogg',
-								"rad" = 'sound/items/geiger/high1.ogg',
-								"servo" = 'sound/machines/rig/rigservo.ogg')
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
