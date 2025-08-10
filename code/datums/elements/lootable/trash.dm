@@ -153,4 +153,7 @@
 		/obj/item/clothing/gloves/bluespace,
 		/obj/item/gun/energy/mouseray,
 		/obj/item/clothing/accessory/collar/shock/bluespace/modified,
-		/obj/item/gun/energy/sizegun/backfire)
+		/obj/item/gun/energy/sizegun/backfire,
+		/obj/item/storage/box/monkeycubes,
+		/obj/item/storage/box/monkeycubes/pets/NT_standard,
+		/obj/item/storage/box/monkeycubes/pets/NT_special)
