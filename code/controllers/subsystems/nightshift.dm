@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(nightshift)
 	name = "Night Shift"
-	init_order = INIT_ORDER_NIGHTSHIFT
+	dependencies = list(
+		/datum/controller/subsystem/lighting
+	)
 	priority = FIRE_PRIORITY_NIGHTSHIFT
 	wait = 60 SECONDS
 	flags = SS_NO_TICK_CHECK

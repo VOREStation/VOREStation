@@ -124,7 +124,7 @@ export const BellyOptionsLeft = (props: {
             stepPixel={0.1}
             digits={2}
             unit="%"
-            tooltip="The multiplier for nutrition you'll fain from prey."
+            tooltip="The multiplier for nutrition you'll gain from prey."
           />
         </LabeledList.Item>
         <LabeledList.Item label="Required Examine Size">

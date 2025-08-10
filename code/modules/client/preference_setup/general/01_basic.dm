@@ -49,9 +49,9 @@
 		var/firstspace = findtext(pref.real_name, " ")
 		var/name_length = length(pref.real_name)
 		if(!firstspace)	//we need a surname
-			pref.real_name += " [pick(last_names)]"
+			pref.real_name += " [pick(GLOB.last_names)]"
 		else if(firstspace == name_length)
-			pref.real_name += "[pick(last_names)]"
+			pref.real_name += "[pick(GLOB.last_names)]"
 
 	character.real_name = pref.real_name
 	character.name = character.real_name

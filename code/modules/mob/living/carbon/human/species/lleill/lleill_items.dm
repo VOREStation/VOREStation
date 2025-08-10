@@ -306,6 +306,7 @@
 	var/tf_possible_types = list(
 		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
 		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
+		"mothroach" = /mob/living/simple_mob/animal/passive/mothroach,
 		"giant rat" = /mob/living/simple_mob/vore/aggressive/rat,
 		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
 		"woof" = /mob/living/simple_mob/vore/woof,
