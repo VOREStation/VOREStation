@@ -124,10 +124,9 @@
 
 
 /datum/data/pda/app/messenger/proc/create_message(var/mob/living/U, var/obj/item/pda/P)
-	var/t = tgui_input_text(U, "Please enter message", name, null)
+	var/t = tgui_input_text(U, "Please enter message", name, null, MAX_MESSAGE_LEN)
 	if(!t)
 		return
-	t = sanitize(copytext(t, 1, MAX_MESSAGE_LEN))
 	t = readd_quotes(t)
 	if(!t || !istype(P))
 		return

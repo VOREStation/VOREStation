@@ -1379,6 +1379,7 @@
 	scannable = 1
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_CLONEDRUG
+	coolant_modifier = 0.5 // Okay substitute coolant
 
 /datum/reagent/leporazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)

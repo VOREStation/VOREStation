@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - code_imp: "Grippers should be less buggy. Please keep reporting any gripper bugs."

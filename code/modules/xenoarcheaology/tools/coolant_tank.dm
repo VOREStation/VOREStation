@@ -1,3 +1,4 @@
+#define COOLING_FACTOR 12500 //5000 in a near empty 7x7 room with a heat cap of 478325 drops it by 20.9C. 125000 drops it by 52.25C. This seems appropriate.
 /obj/structure/reagent_dispensers/coolanttank
 	name = "coolant tank"
 	desc = "A tank of industrial coolant"
@@ -11,8 +12,7 @@
 
 /obj/structure/reagent_dispensers/coolanttank/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
-		if(!istype(Proj ,/obj/item/projectile/beam/lasertag) && !istype(Proj ,/obj/item/projectile/beam/practice) ) // TODO: make this not terrible
-			explode()
+		explode()
 
 /obj/structure/reagent_dispensers/coolanttank/ex_act()
 	explode()
@@ -22,18 +22,13 @@
 	S.set_up(5, 0, src.loc)
 
 	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
-	spawn(0)
-		S.start()
-
+	S.start()
 	var/datum/gas_mixture/env = src.loc.return_air()
 	if(env)
-		if (reagents.total_volume > 750)
-			env.temperature = 0
-		else if (reagents.total_volume > 500)
-			env.temperature -= 100
-		else
-			env.temperature -= 50
+		var/cooling_strength = reagents.machine_cooling_power()
+		if(cooling_strength > 0)
+			env.add_thermal_energy(-(cooling_strength * COOLING_FACTOR))
 
-	sleep(10)
-	if(src)
-		qdel(src)
+	QDEL_IN(src, 10)
+
+#undef COOLING_FACTOR
