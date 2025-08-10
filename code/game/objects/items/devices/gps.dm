@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	if(in_range(src, user))
 		gps_tag = a
 		name = "global positioning system ([gps_tag])"
-		to_chat(user, "You set your GPS's tag to '[gps_tag]'.")
+		to_chat(user, span_normal("You set your GPS's tag to '[gps_tag]'."))
 		. = TRUE
 
 /obj/item/gps/Topic(var/href, var/list/href_list)
