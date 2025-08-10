@@ -28,8 +28,6 @@
 	var/load_immediately = FALSE
 	/// If we should avoid propogating 'invalid dir' errors from rust-g. Because sometimes, you just don't know what dirs are valid.
 	var/ignore_dir_errors = FALSE
-	/// Avoid propogating 'Could not find associated icon state' errors because we know our input data fucking sucks
-	var/ignore_associated_icon_state_errors = FALSE
 
 	/// Forces use of the smart cache. This is for unit tests, please respect the config <3
 	var/force_cache = FALSE
@@ -48,6 +46,7 @@
 	var/cache_dmi_hashes_json = null
 	/// Used to prevent async cache refresh jobs from looping on failure.
 	var/cache_result = null
+	var/getting_genned = FALSE
 
 /datum/asset/spritesheet_batched/proc/should_load_immediately()
 #ifdef DO_NOT_DEFER_ASSETS
@@ -78,7 +77,7 @@
 		if(cached_rustg_version != rustg_version)
 			log_asset("Invalidated cache for spritesheet_[name] due to rustg updating from [cached_rustg_version] to [rustg_version].")
 			return CACHE_INVALID
-		// Invalidate cache if the DM version changes
+				// Invalidate cache if the DM version changes
 		var/cached_dm_version = cache_json["dm_version"]
 		if(isnull(cached_dm_version))
 			log_asset("Cache for spritesheet_[name] did not contain a dm_version!")
@@ -108,8 +107,8 @@
 	if (data_out == RUSTG_JOB_ERROR)
 		CRASH("Spritesheet [name] cache JOB PANIC")
 	else if(!findtext(data_out, "{", 1, 2))
-		rustg_file_write(cache_data, "[GLOB.log_directory]-spritesheet_cache_debug.[name].json")
-		rustg_file_write(entries_json, "[GLOB.log_directory]-spritesheet_debug_[name].json")
+		rustg_file_write(cache_data, "[GLOB.log_directory]/spritesheet_cache_debug.[name].json")
+		rustg_file_write(entries_json, "[GLOB.log_directory]/spritesheet_debug_[name].json")
 		CRASH("Spritesheet [name] cache check UNKNOWN ERROR: [data_out]")
 	var/result = json_decode(data_out)
 	var/fail = result["fail_reason"]
@@ -127,6 +126,8 @@
 /datum/asset/spritesheet_batched/proc/insert_icon(sprite_name, datum/universal_icon/entry)
 	if(!istext(sprite_name) || !length(sprite_name))
 		CRASH("Invalid sprite_name \"[sprite_name]\" given to insert_icon()! Providing non-strings will break icon generation.")
+	if(!istype(entry))
+		CRASH("Invalid type provided to insert_icon()! Value: [entry] (type: [entry?.type])")
 	entries[sprite_name] = entry.to_list()
 
 /datum/asset/spritesheet_batched/register()
@@ -148,7 +149,6 @@
 
 /// Call insert_icon or insert_all_icons here, building a spritesheet!
 /datum/asset/spritesheet_batched/proc/create_spritesheets()
-	SHOULD_CALL_PARENT(FALSE)
 	CRASH("create_spritesheets() not implemented for [type]!")
 
 /datum/asset/spritesheet_batched/proc/insert_all_icons(prefix, icon/I, list/directions, prefix_with_dirs = TRUE)
@@ -159,8 +159,6 @@
 		directions = list(SOUTH)
 
 	for (var/icon_state_name in icon_states(I))
-		if(icon_state_name == "")
-			icon_state_name = "byond-default"
 		for (var/direction in directions)
 			var/prefix2 = (directions.len > 1 && prefix_with_dirs) ? "[dir2text(direction)]-" : ""
 			insert_icon("[prefix][prefix2][icon_state_name]", uni_icon(I, icon_state_name, direction))
@@ -171,6 +169,8 @@
 	if(!length(entries))
 		CRASH("Spritesheet [name] ([type]) is empty! What are you doing?")
 
+	if(getting_genned)
+		stack_trace("Spritesheet batching has been called twice. This is illegal!")
 	if(isnull(entries_json))
 		entries_json = json_encode(entries)
 
@@ -192,15 +192,16 @@
 	var/data_out
 	if(yield || !isnull(job_id))
 		if(isnull(job_id))
+			getting_genned = TRUE
 			job_id = rustg_iconforge_generate_async("data/spritesheets/", name, entries_json, do_cache, FALSE, TRUE)
 		UNTIL((data_out = rustg_iconforge_check(job_id)) != RUSTG_JOB_NO_RESULTS_YET)
+		getting_genned = FALSE
 	else
-		//rustg_file_write(entries_json, "fuckoff.json")
 		data_out = rustg_iconforge_generate("data/spritesheets/", name, entries_json, do_cache, FALSE, TRUE)
 	if (data_out == RUSTG_JOB_ERROR)
 		CRASH("Spritesheet [name] JOB PANIC")
 	else if(!findtext(data_out, "{", 1, 2))
-		rustg_file_write(entries_json, "[GLOB.log_directory]-spritesheet_debug_[name].json")
+		rustg_file_write(entries_json, "[GLOB.log_directory]/spritesheet_debug_[name].json")
 		CRASH("Spritesheet [name] UNKNOWN ERROR: [data_out]")
 	var/data = json_decode(data_out)
 	sizes = data["sizes"]
@@ -209,30 +210,31 @@
 	var/dmi_hashes = data["dmi_hashes"] // this only contains values if do_cache is TRUE.
 
 	for(var/size_id in sizes)
-		var/file_path = "data/spritesheets/[name]_[size_id].png"
-		var/file_hash = rustg_hash_file("md5", file_path)
-		SSassets.transport.register_asset("[name]_[size_id].png", fcopy_rsc(file_path), file_hash)
-	var/res_name = "spritesheet_[name].css"
-	var/fname = "data/spritesheets/[res_name]"
+		var/png_name = "[name]_[size_id].png"
+		var/file_directory = "data/spritesheets/[png_name]"
+		var/file_hash = rustg_hash_file(RUSTG_HASH_MD5, file_directory)
+		SSassets.transport.register_asset(png_name, fcopy_rsc(file_directory), file_hash)
+		if(CONFIG_GET(flag/save_spritesheets))
+			save_to_logs(file_name = png_name, file_location = file_directory)
+	var/css_name = "spritesheet_[name].css"
+	var/file_directory = "data/spritesheets/[css_name]"
 
-	fdel(fname)
+	fdel(file_directory)
 	var/css = generate_css()
-	rustg_file_write(css, fname)
-	var/css_hash = rustg_hash_string("md5", css)
-	SSassets.transport.register_asset(res_name, fcopy_rsc(fname), file_hash=css_hash)
+	rustg_file_write(css, file_directory)
+	var/css_hash = rustg_hash_string(RUSTG_HASH_MD5, css)
+	SSassets.transport.register_asset(css_name, fcopy_rsc(file_directory), file_hash=css_hash)
+
+	if(CONFIG_GET(flag/save_spritesheets))
+		save_to_logs(file_name = css_name, file_location = file_directory)
 
 	if (do_cache)
 		write_cache_meta(input_hash, dmi_hashes)
 	fully_generated = TRUE
 	// If we were ever in there, remove ourselves
 	SSasset_loading.dequeue_asset(src)
-	if(data["error"])
-		var/err = data["error"]
-		if(ignore_dir_errors && findtext(err, "is not in the set of valid dirs"))
-			return
-		if(ignore_associated_icon_state_errors && findtext(err, "Could not find associated icon state"))
-			return
-		CRASH("Error during spritesheet generation for [name]: [err]")
+	if(data["error"] && !(ignore_dir_errors && findtext(data["error"], "is not in the set of valid dirs")))
+		CRASH("Error during spritesheet generation for [name]: [data["error"]]")
 
 /datum/asset/spritesheet_batched/queued_generation()
 	realize_spritesheets(yield = TRUE)
@@ -266,7 +268,7 @@
 		var/size_split = splittext(size_id, "x")
 		var/width = text2num(size_split[1])
 		var/height = text2num(size_split[2])
-		out += ".[name][size_id]{display:inline-block;width:[width]px;height:[height]px;background-image:url('[get_background_url("[name]_[size_id].png")]');background-repeat: no-repeat;}"
+		out += ".[name][size_id]{display:inline-block;width:[width]px;height:[height]px;background-image:url('[get_background_url("[name]_[size_id].png")]');background-repeat:no-repeat;}"
 
 	for (var/sprite_id in sprites)
 		var/sprite = sprites[sprite_id]
@@ -286,7 +288,8 @@
 	if(!CONFIG_GET(flag/smart_cache_assets) && !force_cache)
 		return FALSE
 	// this is already guaranteed to exist.
-	var/css_fname = "data/spritesheets/spritesheet_[name].css"
+	var/css_name = "spritesheet_[name].css"
+	var/css_file_directory = "data/spritesheets/[css_name]"
 
 	// sizes gets filled during should_refresh()
 	for(var/size_id in sizes)
@@ -294,12 +297,15 @@
 		if(!fexists(fname))
 			return FALSE
 
-	var/css_hash = rustg_hash_file("md5", css_fname)
-	SSassets.transport.register_asset("spritesheet_[name].css", fcopy_rsc(css_fname), file_hash=css_hash)
+	var/css_hash = rustg_hash_file(RUSTG_HASH_MD5, css_file_directory)
+	SSassets.transport.register_asset(css_name, fcopy_rsc(css_file_directory), file_hash=css_hash)
 	for(var/size_id in sizes)
 		var/fname = "data/spritesheets/[name]_[size_id].png"
-		var/hash = rustg_hash_file("md5", fname)
+		var/hash = rustg_hash_file(RUSTG_HASH_MD5, fname)
 		SSassets.transport.register_asset("[name]_[size_id].png", fcopy_rsc(fname), file_hash=hash)
+
+	if(CONFIG_GET(flag/save_spritesheets))
+		save_to_logs(file_name = css_name, file_location = css_file_directory)
 
 	return TRUE
 

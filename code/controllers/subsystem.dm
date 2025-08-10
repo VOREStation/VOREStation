@@ -13,27 +13,48 @@
 	/// Name of the subsystem - you must change this
 	name = "fire coderbus"
 
-	/// Order of initialization. Higher numbers are initialized first, lower numbers later. Use or create defines such as [INIT_ORDER_DEFAULT] so we can see the order in one file.
-	var/init_order = INIT_ORDER_DEFAULT
+	/// Determines which subsystems this subsystem is dependant on to initialize. Will initialize after all specified subsystems.
+	/// If init_stage is earlier than a dependent subsystem, will throw an error and push the init stage forward to that subsystem.
+	/// Usage: Put the typepaths of the subsystems that need to init before this one in this list.
+	var/list/dependencies = list()
+
+	/// The inverse of the dependencies. Can be set manually, but will also get evaluated at runtime. Turns into a list of instances at runtime.
+	/// Usage: Put the typepaths of the subsystems that need to init after this one in this list.
+	var/list/dependents
+
+	/// ID of the subsystem. Set automatically when the dependency graph is evaluated. Used primarily in determining order.
+	var/ordering_id = 0
+
+	/// Do not modify. Automatically set when the dependency graph is evaluated. Similar to ordering_id, but evaluated after init_stage.
+	var/init_order = 0
 
 	/// Time to wait (in deciseconds) between each call to fire(). Must be a positive integer.
 	var/wait = 20
 
-	/// Priority Weight: When mutiple subsystems need to run in the same tick, higher priority subsystems will be given a higher share of the tick before MC_TICK_CHECK triggers a sleep, higher priority subsystems also run before lower priority subsystems.
+	/// Priority Weight: When multiple subsystems need to run in the same tick, higher priority subsystems will be given a higher share of the tick before MC_TICK_CHECK triggers a sleep, higher priority subsystems also run before lower priority subsystems
 	var/priority = FIRE_PRIORITY_DEFAULT
 
 	/// [Subsystem Flags][SS_NO_INIT] to control binary behavior. Flags must be set at compile time or before preinit finishes to take full effect. (You can also restart the mc to force them to process again)
 	var/flags = NONE
 
-	/// This var is set to TRUE after the subsystem has been initialized.
-	var/subsystem_initialized = FALSE
+	/// Which stage does this subsystem init at. Earlier stages can fire while later stages init.
+	var/init_stage = INITSTAGE_MAIN
+
+	/// This var is set to `INITIALIZATION_INNEW_REGULAR` after the subsystem has been initialized.
+	var/initialized = FALSE
 
 	/// Set to 0 to prevent fire() calls, mostly for admin use or subsystems that may be resumed later
 	/// use the [SS_NO_FIRE] flag instead for systems that never fire to keep it from even being added to list that is checked every tick
 	var/can_fire = TRUE
 
 	///Bitmap of what game states can this subsystem fire at. See [RUNLEVELS_DEFAULT] for more details.
-	var/runlevels = RUNLEVELS_DEFAULT
+	var/runlevels = RUNLEVELS_DEFAULT //points of the game at which the SS can fire
+
+	/**
+	 * boolean set by admins. if TRUE then this subsystem will stop the world profiler after ignite() returns and start it again when called.
+	 * used so that you can audit a specific subsystem or group of subsystems' synchronous call chain.
+	 */
+	var/profiler_focused = FALSE
 
 	/*
 	 * The following variables are managed by the MC and should not be modified directly.
@@ -53,6 +74,9 @@
 
 	/// Running average of the amount of tick usage (in percents of a game tick) the subsystem has spent past its allocated time without pausing
 	var/tick_overrun = 0
+
+	/// Flat list of usage and time, every odd index is a log time, every even index is a usage
+	var/list/rolling_usage = list()
 
 	/// How much of a tick (in percents of a tick) were we allocated last fire.
 	var/tick_allocation_last = 0
@@ -78,6 +102,9 @@
 	/// Tracks the amount of completed runs for the subsystem
 	var/times_fired = 0
 
+	/// How many fires have we been requested to postpone
+	var/postponed_fires = 0
+
 	/// Time the subsystem entered the queue, (for timing and priority reasons)
 	var/queued_time = 0
 
@@ -92,8 +119,12 @@
 	/// Previous subsystem in the queue of subsystems to run this tick
 	var/datum/controller/subsystem/queue_prev
 
+	/// String to store an applicable error message for a subsystem crashing, used to help debug crashes in contexts such as Continuous Integration/Unit Tests
+	var/initialization_failure_message = null
+
 	//Do not blindly add vars here to the bottom, put it where it goes above
 	//If your var only has two values, put it in as a flag.
+
 
 //Do not override
 ///datum/controller/subsystem/New()
@@ -107,7 +138,7 @@
 ///This is used so the mc knows when the subsystem sleeps. do not override.
 /datum/controller/subsystem/proc/ignite(resumed = FALSE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	set waitfor = 0
+	set waitfor = FALSE
 	. = SS_IDLE
 
 	tick_allocation_last = Master.current_ticklimit-(TICK_USAGE)
@@ -131,7 +162,7 @@
 ///Sleeping in here prevents future fires until returned.
 /datum/controller/subsystem/proc/fire(resumed = FALSE)
 	flags |= SS_NO_FIRE
-	throw EXCEPTION("Subsystem [src]([type]) does not fire() but did not set the SS_NO_FIRE flag. Please add the SS_NO_FIRE flag to any subsystem that doesn't fire so it doesn't get added to the processing list and waste cpu.")
+	CRASH("Subsystem [src]([type]) does not fire() but did not set the SS_NO_FIRE flag. Please add the SS_NO_FIRE flag to any subsystem that doesn't fire so it doesn't get added to the processing list and waste cpu.")
 
 /datum/controller/subsystem/Destroy()
 	dequeue()
@@ -140,6 +171,31 @@
 	if (Master)
 		Master.subsystems -= src
 	return ..()
+
+
+/** Update next_fire for the next run.
+ *  reset_time (bool) - Ignore things that would normally alter the next fire, like tick_overrun, and last_fire. (also resets postpone)
+ */
+/datum/controller/subsystem/proc/update_nextfire(reset_time = FALSE)
+	var/queue_node_flags = flags
+
+	if (reset_time)
+		postponed_fires = 0
+		if (queue_node_flags & SS_TICKER)
+			next_fire = world.time + (world.tick_lag * wait)
+		else
+			next_fire = world.time + wait
+		return
+
+	if (queue_node_flags & SS_TICKER)
+		next_fire = world.time + (world.tick_lag * wait)
+	else if (queue_node_flags & SS_POST_FIRE_TIMING)
+		next_fire = world.time + wait + (world.tick_lag * (tick_overrun/100))
+	else if (queue_node_flags & SS_KEEP_TIMING)
+		next_fire += wait
+	else
+		next_fire = queued_time + wait + (world.tick_lag * (tick_overrun/100))
+
 
 ///Queue it to run.
 /// (we loop thru a linked list until we get to the end or find the right point)
@@ -155,8 +211,8 @@
 		queue_node_priority = queue_node.queued_priority
 		queue_node_flags = queue_node.flags
 
-		if (queue_node_flags & SS_TICKER)
-			if (!(SS_flags & SS_TICKER))
+		if (queue_node_flags & (SS_TICKER|SS_BACKGROUND) == SS_TICKER)
+			if ((SS_flags & (SS_TICKER|SS_BACKGROUND)) != SS_TICKER)
 				continue
 			if (queue_node_priority < SS_priority)
 				break
@@ -207,9 +263,9 @@
 		queue_next.queue_prev = queue_prev
 	if (queue_prev)
 		queue_prev.queue_next = queue_next
-	if (src == Master.queue_tail)
+	if (Master && (src == Master.queue_tail))
 		Master.queue_tail = queue_prev
-	if (src == Master.queue_head)
+	if (Master && (src == Master.queue_head))
 		Master.queue_head = queue_next
 	queued_time = 0
 	if (state == SS_QUEUED)
@@ -228,14 +284,13 @@
 /datum/controller/subsystem/proc/OnConfigLoad()
 
 /**
- * Used to initialize the subsystem. This is expected to be overriden by subtypes.
+ * Used to initialize the subsystem. This is expected to be overridden by subtypes.
  */
 /datum/controller/subsystem/Initialize()
 	return SS_INIT_NONE
 
-//hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
 /datum/controller/subsystem/stat_entry(msg)
-	if(can_fire && !(SS_NO_FIRE & flags))
+	if(can_fire && !(SS_NO_FIRE & flags) && init_stage <= Master.init_stage_completed)
 		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
 	else
 		msg = "OFFLINE\t[msg]"
@@ -254,45 +309,30 @@
 		if (SS_IDLE)
 			. = "  "
 
-//could be used to postpone a costly subsystem for (default one) var/cycles, cycles
-//for instance, during cpu intensive operations like explosions
+/// Causes the next "cycle" fires to be missed. Effect is accumulative but can reset by calling update_nextfire(reset_time = TRUE)
 /datum/controller/subsystem/proc/postpone(cycles = 1)
-	if(next_fire - world.time < wait)
-		next_fire += (wait*cycles)
+	if (can_fire && cycles >= 1)
+		postponed_fires += cycles
+
+/// Prunes out of date entries in our rolling usage list
+/datum/controller/subsystem/proc/prune_rolling_usage()
+	var/list/rolling_usage = src.rolling_usage
+	var/cut_to = 0
+	while(cut_to + 2 <= length(rolling_usage) && rolling_usage[cut_to + 1] < DS2TICKS(world.time - Master.rolling_usage_length))
+		cut_to += 2
+	if(cut_to)
+		rolling_usage.Cut(1, cut_to + 1)
 
 //usually called via datum/controller/subsystem/New() when replacing a subsystem (i.e. due to a recurring crash)
 //should attempt to salvage what it can from the old instance of subsystem
 /datum/controller/subsystem/Recover()
 
-// Suspends this subsystem from being queued for running.  If already in the queue, sleeps until idle. Returns FALSE if the subsystem was already suspended.
-/datum/controller/subsystem/proc/suspend()
-	. = (can_fire > 0) // Return true if we were previously runnable, false if previously suspended.
-	can_fire = FALSE
-	// Safely sleep in a loop until the subsystem is idle, (or its been un-suspended somehow)
-	while(can_fire <= 0 && state != SS_IDLE)
-		stoplag() // Safely sleep in a loop until
-
-// Wakes a suspended subsystem.
-/datum/controller/subsystem/proc/wake()
-	can_fire = TRUE
-
-// This subsystem has destabilized the game and is being put on warning. At this point there may be
-// an opportunity to clean up the subsystem or check it for errors in ways that would otherwise be too slow.
-// You should log the errors/cleanup results, so you can fix the problem rather than using this as a crutch.
-/datum/controller/subsystem/proc/fail()
-	var/msg = "[name] subsystem being blamed for MC failure"
-	log_world(msg)
-	log_game(msg)
-
-// DO NOT ATTEMPT RECOVERY. Only log debugging info. You should leave the subsystem as it is.
-// Attempting recovery here could make things worse, create hard recursions with the MC disabling it every run, etc.
-/datum/controller/subsystem/proc/critfail()
-	var/msg = "[name] subsystem received final blame for MC failure"
-	log_world(msg)
-	log_game(msg)
-
 /datum/controller/subsystem/vv_edit_var(var_name, var_value)
 	switch (var_name)
+		if (NAMEOF(src, can_fire))
+			//this is so the subsystem doesn't rapid fire to make up missed ticks causing more lag
+			if (var_value)
+				update_nextfire(reset_time = TRUE)
 		if (NAMEOF(src, queued_priority)) //editing this breaks things.
 			return FALSE
 	. = ..()

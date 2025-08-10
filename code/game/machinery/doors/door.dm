@@ -99,12 +99,12 @@
 	START_MACHINE_PROCESSING(src)
 
 /obj/machinery/door/proc/can_open()
-	if(!density || operating || !ticker)
+	if(!density || operating || !SSticker)
 		return 0
 	return 1
 
 /obj/machinery/door/proc/can_close()
-	if(density || operating || !ticker)
+	if(density || operating || !SSticker)
 		return 0
 	return 1
 
