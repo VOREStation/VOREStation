@@ -76,7 +76,7 @@
 	if(!tail_option)
 		return
 	tail_layering = tail_option
-	write_preference_directly(/datum/preference/choiced/human/tail_layering, input)
+	write_preference_directly(/datum/preference/choiced/human/tail_layering, input, save_to_played_slot = TRUE)
 
 	update_tail_showing()
 
