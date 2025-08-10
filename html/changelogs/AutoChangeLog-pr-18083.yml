@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "tail layering pref breaking the entire character"
+  - bugfix: "several issues with accidental pref saves"
