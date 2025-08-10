@@ -37,4 +37,6 @@ SUBSYSTEM_DEF(character_setup)
 			return
 
 /datum/controller/subsystem/character_setup/proc/queue_preferences_save(var/datum/preferences/prefs)
+	if(!prefs)
+		return
 	save_queue |= prefs
