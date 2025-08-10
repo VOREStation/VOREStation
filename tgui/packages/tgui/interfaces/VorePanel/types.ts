@@ -126,6 +126,7 @@ export type bellyOptionData = {
   selective_preference: string;
   save_digest_mode: BooleanLike;
   eating_privacy_local: string;
+  vore_death_privacy: string;
   vorespawn_blacklist: BooleanLike;
   vorespawn_whitelist: string[];
   vorespawn_absorbed: number;
@@ -328,6 +329,7 @@ export type prefData = {
   food_vore: BooleanLike;
   digest_pain: BooleanLike;
   eating_privacy_global: BooleanLike;
+  vore_death_privacy: BooleanLike;
   allow_mimicry: BooleanLike;
   soulcatcher_allow_capture: BooleanLike;
   soulcatcher_allow_transfer: BooleanLike;
@@ -432,6 +434,7 @@ export type localPrefs = {
   mind_transfer: preferenceData;
   strippref: preferenceData;
   eating_privacy_global: preferenceData;
+  vore_death_privacy: preferenceData;
   allow_mimicry: preferenceData;
   autotransferable: preferenceData;
   liquid_receive: preferenceData;
