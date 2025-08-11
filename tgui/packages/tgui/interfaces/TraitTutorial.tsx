@@ -76,6 +76,7 @@ export const TraitDescription = (props) => {
       <br />
       <br />
       <div
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: Internal trait data
         dangerouslySetInnerHTML={{
           __html: tutorials[name] as unknown as string,
         }}

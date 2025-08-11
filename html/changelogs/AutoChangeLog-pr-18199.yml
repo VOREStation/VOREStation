@@ -1,0 +1,5 @@
+author: "TankTheBirb"
+delete-after: True
+changes:
+  - rscadd: "Added circuit debugger and circuit wirer to the integrated circuit printer supply pack"
+  - rscadd: "removed one of the two circuit printers in the integrated circuit printer supply pack to keep the point cost reasonable"

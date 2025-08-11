@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - qol: "Added a vore death privacy pref, which prevents \"X has died at Y [jump]\" from popping up to ghosts when you die in a belly."
