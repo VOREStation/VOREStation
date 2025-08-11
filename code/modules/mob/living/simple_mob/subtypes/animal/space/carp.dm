@@ -43,7 +43,7 @@
 	density = FALSE
 
 	vore_active = TRUE
-	vore_icons = SA_ICON_LIVING
+	vore_icons = 0
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
@@ -86,6 +86,7 @@
 	var/static/list/carp_colors_rare = list(\
 	"silver" = "#fdfbf3", \
 	)
+	can_be_drop_prey = FALSE
 
 /mob/living/simple_mob/animal/space/carp/Initialize(mapload)
 	. = ..()
@@ -147,7 +148,7 @@
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
-			L.Weaken(3)
+			L.add_modifier(/datum/modifier/entangled, 4 SECONDS) // replacing weaken/slowdown with slow down
 			L.visible_message(span_danger("\The [src] knocks down \the [L]!"))
 
 // Subtypes.
@@ -164,7 +165,6 @@
 	icon_state = "shark"
 	icon_living = "shark"
 	icon_dead = "shark_dead"
-	vore_icons = FALSE
 
 	maxHealth = 50
 	health = 50
@@ -182,11 +182,11 @@
 /mob/living/simple_mob/animal/space/carp/large/huge
 	name = "great white carp"
 	desc = "A very rare breed of carp- and a very aggressive one."
-	icon = 'icons/mob/64x64.dmi'
+	icon = 'icons/mob/vore64x64.dmi'
 	icon_dead = "megacarp_dead"
 	icon_living = "megacarp"
 	icon_state = "megacarp"
-	vore_icons = FALSE
+	vore_icons = SA_ICON_LIVING
 
 	maxHealth = 230
 	health = 230
@@ -207,10 +207,6 @@
 /mob/living/simple_mob/animal/space/carp/large/huge/vorny
 	name = "great white carp"
 	desc = "A very rare breed of carp- and a very hungry one."
-	icon = 'icons/mob/64x64.dmi'
-	icon_dead = "megacarp_dead"
-	icon_living = "megacarp"
-	icon_state = "megacarp"
 
 	maxHealth = 230
 	health = 230
@@ -235,7 +231,6 @@
 	B.name = "stomach"
 	B.desc = "You've been swallowed whole and alive by a massive white carp! The stomach around you is oppressively tight, squeezing and grinding wrinkled walls across your body, making it hard to make any movement at all. The chamber is flooded with fluids that completely overwhelm you."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1

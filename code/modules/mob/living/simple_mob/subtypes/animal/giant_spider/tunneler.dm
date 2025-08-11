@@ -116,7 +116,7 @@
 
 		visible_message(span_danger("\The [src] erupts from underneath, and hits \the [L]!"))
 		playsound(src, 'sound/weapons/heavysmash.ogg', 75, 1)
-		L.Weaken(3)
+		L.add_modifier(/datum/modifier/entangled, 3 SECONDS) //L.Weaken(3)
 		overshoot = FALSE
 
 	if(!overshoot) // We hit the target, or something, at destination, so we're done.

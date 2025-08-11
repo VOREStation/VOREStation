@@ -43,9 +43,10 @@
 	var/mount_offset_x = 5				// Horizontal riding offset.
 	var/mount_offset_y = 8				// Vertical riding offset
 
-	var/obj/item/radio/headset/mob_headset/mob_radio		//Adminbus headset for simplemob shenanigans.
+	var/obj/item/radio/headset/mob_radio		//Adminbus headset for simplemob shenanigans.
 	does_spin = FALSE
 	can_be_drop_pred = TRUE				// Mobs are pred by default.
+	can_be_drop_prey = TRUE
 	var/damage_threshold  = 0 //For some mobs, they have a damage threshold required to deal damage to them.
 
 	var/nom_mob = FALSE //If a mob is meant to be hostile for vore purposes but is otherwise not hostile, if true makes certain AI ignore the mob
@@ -62,6 +63,11 @@
 
 //For all those ID-having mobs
 /mob/living/simple_mob/GetIdCard()
+	if(get_active_hand())
+		var/obj/item/I = get_active_hand()
+		var/id = I.GetID()
+		if(id)
+			return id
 	if(myid)
 		return myid
 
@@ -138,7 +144,7 @@
 			return PounceTarget(L, pouncechance)
 
 		// We're not attempting a pounce, if they're down or we can eat standing, do it as long as they're edible. Otherwise, hit normally.
-		if(will_eat(L) && (!L.canmove || vore_standing_too))
+		if(will_eat(L) && (L.lying || vore_standing_too))
 			return EatTarget(L)
 		else
 			return ..()
@@ -272,7 +278,10 @@
 		"The juices pooling beneath you sizzle against your sore skin.",
 		"The churning walls slowly pulverize you into meaty nutrients.",
 		"The stomach glorps and gurgles as it tries to work you into slop.")
-	B.belly_fullscreen = "yet_another_tumby"
+	can_be_drop_pred = TRUE // Mobs will eat anyone that decides to drop/slip into them by default.
+	B.belly_fullscreen = "a_tumby"
+	B.belly_fullscreen_color = "#823232"
+	B.belly_fullscreen_color2 = "#823232"
 
 /mob/living/simple_mob/Bumped(var/atom/movable/AM, yes)
 	if(tryBumpNom(AM))
@@ -390,21 +399,20 @@
 		visible_message(span_notice("[M] starts riding [name]!"))
 
 /mob/living/simple_mob/handle_message_mode(message_mode, message, verb, used_radios, speaking, alt_name)
-	if(mob_radio)
-		switch(message_mode)
-			if("intercom")
-				for(var/obj/item/radio/intercom/I in view(1, null))
-					I.talk_into(src, message, verb, speaking)
-					used_radios += I
-			if("headset")
-				if(mob_radio && istype(mob_radio,/obj/item/radio/headset/mob_headset))
-					mob_radio.talk_into(src,message,null,verb,speaking)
+	if(message_mode)
+		if(message_mode == "intercom")
+			for(var/obj/item/radio/intercom/I in view(1, null))
+				I.talk_into(src,message,message_mode,verb,speaking)
+				used_radios += I
+		if(message_mode == "headset")
+			if(mob_radio && istype(mob_radio,/obj/item/radio/headset))
+				mob_radio.talk_into(src,message,message_mode,verb,speaking)
+				used_radios += mob_radio
+		else
+			if(mob_radio && istype(mob_radio,/obj/item/radio/headset))
+				if(mob_radio.channels[message_mode])
+					mob_radio.talk_into(src,message,message_mode,verb,speaking)
 					used_radios += mob_radio
-			else
-				if(message_mode)
-					if(mob_radio && istype(mob_radio,/obj/item/radio/headset/mob_headset))
-						mob_radio.talk_into(src,message, message_mode, verb, speaking)
-						used_radios += mob_radio
 	else
 		..()
 
@@ -464,5 +472,5 @@
 	var/armor_block = run_armor_check(T, "melee")
 	var/armor_soak = get_armor_soak(T, "melee")
 	T.apply_damage(20, HALLOSS,, armor_block, armor_soak)
-	if(prob(33))
+	if(prob(75))
 		T.apply_effect(3, WEAKEN, armor_block)

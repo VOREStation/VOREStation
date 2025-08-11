@@ -111,6 +111,10 @@
 	var/melee_attack_delay = 2			// If set, the mob will do a windup animation and can miss if the target moves out of the way.
 	var/ranged_attack_delay = null
 	var/special_attack_delay = null
+	var/ranged_cooldown = 0
+	var/ranged_cooldown_time = 0
+	var/picked_color = FALSE
+	var/picked_size = FALSE
 
 	//Special attacks
 //	var/special_attack_prob = 0				// The chance to ATTEMPT a special_attack_target(). If it fails, it will do a regular attack instead.
@@ -168,10 +172,10 @@
 	var/list/myid_access = list() //VOREStation Edit
 	var/ID_provided = FALSE //VOREStation Edit
 	// VOREStation Add: Move/Shoot/Attack delays based on damage
-	var/damage_fatigue_mult = 0			// Our multiplier for how heavily mobs are affected by injury. [UPDATE THIS IF THE FORMULA CHANGES]: Formula = injury_level = round(rand(1,3) * damage_fatigue_mult * clamp(((rand(2,5) * (h / getMaxHealth())) - rand(0,2)), 1, 5))
+	var/damage_fatigue_mult = 1			// Our multiplier for how heavily mobs are affected by injury. [UPDATE THIS IF THE FORMULA CHANGES]: Formula = injury_level = round(rand(1,3) * damage_fatigue_mult * clamp(((rand(2,5) * (h / getMaxHealth())) - rand(0,2)), 1, 5))
 	var/injury_level = 0 				// What our injury level is. Rather than being the flat damage, this is the amount added to various delays to simulate injuries in a manner as lightweight as possible.
 	var/threshold = 0.6					// When we start slowing down. Configure this setting per-mob. Default is 60%
-	var/injury_enrages = FALSE				// Do injuries enrage (aka strengthen) our mob? If yes, we'll interpret how hurt we are differently.
+	var/injury_enrages = FALSE			// Do injuries enrage (aka strengthen) our mob? If yes, we'll interpret how hurt we are differently.
 	// VOREStation Add End
 
 	var/has_recoloured = FALSE
@@ -202,6 +206,11 @@
 
 	if(has_eye_glow)
 		add_eyes()
+
+	if(vore_active)	// Moved here so the verb is useable before initialising vorgans.
+		add_verb(src,/mob/living/simple_mob/proc/animal_nom)
+		add_verb(src,/mob/living/proc/shred_limb)
+	add_verb(src,/mob/living/simple_mob/proc/nutrition_heal)
 
 	if(organ_names)
 		organ_names = GET_DECL(organ_names)
@@ -234,11 +243,46 @@
 //Client attached
 /mob/living/simple_mob/Login()
 	. = ..()
+	add_verb(src,/mob/living/simple_mob/proc/pick_size)
 	to_chat(src,span_boldnotice("You are \the [src].") + " [player_msg]")
 	if(vore_active && !voremob_loaded)
 		init_vore(TRUE)
 	if(hasthermals)
 		add_verb(src, /mob/living/simple_mob/proc/hunting_vision) //So that maint preds can see prey through walls, to make it easier to find them.
+
+
+/mob/living/simple_mob/proc/pick_size()
+	set name = "Pick Size"
+	set category = "Abilities.Settings"
+
+	if(picked_size)
+		to_chat(src, span_notice("You have already picked a size! If you picked the wrong size, ask an admin to change your picked_size variable to 0."))
+		return
+	if(!resizable)
+		to_chat(src, span_warning("You are immune to resizing!"))
+		return
+
+	var/nagmessage = "Pick a size between [RESIZE_MINIMUM * 100] to [RESIZE_MAXIMUM * 100]%. (Only usable once!)"
+	var/new_size = tgui_input_number(src, nagmessage, "Pick a Size", size_multiplier*100, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
+	if(size_range_check(new_size))
+		resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
+		picked_size = TRUE
+		if(temporary_form)	//resizing both our forms
+			var/mob/living/L = temporary_form
+			L.resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
+
+/mob/living/simple_mob/proc/pick_color()
+	set name = "Pick Color"
+	set category = "Abilities.Settings"
+	set desc = "You can set your color!"
+	if(picked_color)
+		to_chat(src, span_notice("You have already picked a color! If you picked the wrong color, ask an admin to change your picked_color variable to 0."))
+		return
+	var/newcolor = tgui_color_picker(usr, "Choose a color.", "", color)
+	if(newcolor)
+		color = newcolor
+	picked_color = TRUE
+	update_icon()
 
 /mob/living/simple_mob/SelfMove(turf/n, direct, movetime)
 	var/turf/old_turf = get_turf(src)
@@ -352,7 +396,7 @@
 
 //Makes it so that simplemobs can understand galcomm without being able to speak it.
 /mob/living/simple_mob/say_understands(var/mob/other, var/datum/language/speaking = null)
-	if(understands_common && speaking?.name == LANGUAGE_GALCOM)
+	if(understands_common && (speaking?.name == LANGUAGE_GALCOM || !speaking))
 		return TRUE
 	return ..()
 
@@ -369,6 +413,8 @@
 		if((h / getMaxHealth()) <= threshold) 				// Essentially, did our health go down? We don't modify want to modify our total slowdown if we didn't actually take damage, and aren't below our threshold %
 			var/totaldelay = round(rand(1,3) * damage_fatigue_mult * clamp(((rand(2,5) * (h / getMaxHealth())) - rand(0,2)), 1, 5)) 	// totaldelay is how much delay we're going to feed into attacks and movement. Do NOT change this formula unless you know how to math.
 			injury_level = totaldelay 						// Adds our returned slowdown to the mob's injury level
+		else if((h / getMaxHealth()) >= threshold)			// If our health has gone up somehow, and we're over our threshold percentage now, reset it to full
+			injury_level = 0								// Reset to no slowdown
 
 /mob/living/simple_mob/proc/ColorMate()
 	set name = "Recolour"

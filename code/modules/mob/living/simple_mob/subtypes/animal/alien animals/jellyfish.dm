@@ -78,6 +78,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	vore_default_contamination_flavor = "Wet"
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
+	can_be_drop_prey = FALSE
 
 	var/reproduction_cooldown = 0
 

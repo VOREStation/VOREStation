@@ -142,7 +142,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	if(!M)
 		return
 
-	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to your target:"))
+	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to your target:", encode = FALSE))
 	if(msg && !(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 
