@@ -109,3 +109,41 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 		"Light occasionally filters down through the gaslamp’s various membranes, but it is becoming hard to notice, your eyelids feeling leaden, weighed down as the looming creature comes ever closer to claiming you!",
 		"The gaslamp’s rhythmically undulating innards abruptly squish and massage down into your curled-up body, each squeeze bringing another brief increase to the heat already sinking deep into you... making it harder to tell where you end, and it begins!",
 		"Every moment longer spent trapped within the gaslamp drains evermore energy out of you, squelching away your will to resist its possessive advances… and as its innards force submission into you, the swell you make visibly softens away!")
+
+/mob/living/simple_mob/animal/passive/gaslamp/snow //Frostlamnp
+	name = "Frostlit Lamp"
+	desc = "Some sort of floaty alien with a surprisingly warm glow. This creature is looks like an evolutionary offshute of the Gaslamp family."
+	tt_desc = "Semaeostomeae virginus"
+	icon = 'icons/mob/vore32x64.dmi'
+	icon_state = "gaslamp_snow"
+	icon_living = "gaslamp_snow"
+	icon_dead = "gaslamp_snow-dead"
+
+	faction = "virgo3b"
+	maxHealth = 100
+	health = 100
+	movement_cooldown = 12
+
+	say_list_type = /datum/say_list/gaslamp
+	ai_holder_type = /datum/ai_holder/simple_mob/gaslamp
+
+	melee_damage_lower = 5 // Because fuck anyone who hurts this sweet, innocent creature. CHOMPS KSC 8/12/20 "I don't care if they are sweet, 30 damage a wrong way to balance cuteness"
+	melee_damage_upper = 10
+	attacktext = list("thrashed")
+	friendly = "caressed"
+
+	response_help   = "brushes"	// If clicked on help intent
+	response_disarm = "pushes" // If clicked on disarm intent
+	response_harm   = "swats"	// If clicked on harm intent
+
+	minbodytemp = 0
+	maxbodytemp = 350
+
+	min_oxy = 1	//Needs Oxy to survive on cryogaia
+	max_oxy = 0 // Hopefully no Max oxy
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0

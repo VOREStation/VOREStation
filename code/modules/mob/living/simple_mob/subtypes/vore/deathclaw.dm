@@ -2,13 +2,13 @@
 	name = "Creature - Deathclaw"
 	desc = "Classification: Trioceros dominus\
 	<br><br>\
-	Originally the Deathclaw was a top secret genetics project that was run by ancestral Zorren which was \
-	lost to time. While it is not immediately evident in their body structure, these creatures bare a \
+	Originally the deathclaw was a top secret genetics project that was run by ancestral zorren. \
+	While it is not immediately evident in their body structure, these creatures bare a \
 	subtle genetic connection to Zorren, however, this connection is marred by the other genes that \
 	have been grafted onto the DNA structure of the Deathclaw. The creatures are known to attack humans \
 	and other animals regularly to protect their territory or to hunt for food. It is speculated that \
-	they escaped roughly around the time as whatever calamity befell the Zorren many centuries ago \
-	as sighting of these beasts in the wild began around that time according to recovered Zorren texts. \
+	they escaped roughly around the time as whatever calamity befell the zorren many centuries ago \
+	as sighting of these beasts in the wild began around that time according to recovered zorren texts. \
 	<br>\
 	Deathclaws are a large, carnivorous, bipedal reptile species, designed for maximum lethality. \
 	Deathclaws are made even more dangerous by their reproductive instincts. deathclaws are an oviparous species, \
@@ -24,10 +24,10 @@
 	tt_desc = "Trioceros dominus"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/deathclaw)
 
-	icon_dead = "deathclaw-dead"
-	icon_living = "deathclaw"
-	icon_state = "deathclaw"
-	icon = 'icons/mob/vore64x64.dmi'
+	icon_dead = "deathclaw_new-dead"
+	icon_living = "deathclaw_new"
+	icon_state = "deathclaw_new"
+	icon = 'icons/mob/vore64x64.dmi' //CHOMPEdit changed filepath
 	vis_height = 64
 
 	attacktext = list("mauled")
@@ -70,6 +70,8 @@
 	vore_pounce_chance = 0 // Beat them into crit before eating.
 	vore_icons = SA_ICON_LIVING
 
+	can_be_drop_prey = FALSE
+
 /mob/living/simple_mob/vore/aggressive/deathclaw/Login()
 	. = ..()
 	if(!riding_datum)
@@ -106,3 +108,12 @@
 /datum/ai_holder/simple_mob/melee/deathclaw
 	can_breakthrough = TRUE
 	violent_breakthrough = TRUE
+
+/mob/living/simple_mob/vore/aggressive/deathclaw/den
+
+	maxHealth = 400
+	health = 400
+	see_in_dark = 8
+	desc = "Big! Big! The size of three men! Claws as long as my forearm! Ripped apart! Ripped apart! This one seems angrier than most."
+	melee_damage_lower = 10
+	melee_damage_upper = 40

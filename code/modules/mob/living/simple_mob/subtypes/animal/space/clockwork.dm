@@ -1,41 +1,3 @@
-/mob/living/simple_mob/animal/passive/gaslamp/snow //Frostlamnp
-	name = "Frostlit Lamp"
-	desc = "Some sort of floaty alien with a surprisingly warm glow. This creature is looks like an evolutionary offshute of the Gaslamp family."
-	tt_desc = "Semaeostomeae virginus"
-	icon = 'icons/mob/vore32x64.dmi'
-	icon_state = "gaslamp_snow"
-	icon_living = "gaslamp_snow"
-	icon_dead = "gaslamp_snow-dead"
-
-	faction = "virgo3b"
-	maxHealth = 100
-	health = 100
-	movement_cooldown = 12
-
-	say_list_type = /datum/say_list/gaslamp
-	ai_holder_type = /datum/ai_holder/simple_mob/gaslamp
-
-	melee_damage_lower = 5 // Because fuck anyone who hurts this sweet, innocent creature. CHOMPS KSC 8/12/20 "I don't care if they are sweet, 30 damage a wrong way to balance cuteness"
-	melee_damage_upper = 10
-	attacktext = list("thrashed")
-	friendly = "caressed"
-
-	response_help   = "brushes"	// If clicked on help intent
-	response_disarm = "pushes" // If clicked on disarm intent
-	response_harm   = "swats"	// If clicked on harm intent
-
-	minbodytemp = 0
-	maxbodytemp = 350
-
-	min_oxy = 1	//Needs Oxy to survive on cryogaia
-	max_oxy = 0 // Hopefully no Max oxy
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
-
 //Code for chaplains pet.
 /mob/living/simple_mob/clockwork
 	name = "Clockwork Marauder"
@@ -159,34 +121,3 @@
 //	icon_dead = "fallen_armor"
 //	icon_rest = "ignis"
 //	retaliate = 1 // In theory this will make Ignis fight back. Maybe. -RF
-
-/mob/living/simple_mob/animal/passive/mouse/mining
-	body_color = "brown"
-	icon = 'icons/mob/animal.dmi'
-	icon_state = "mouse_miner"
-	item_state = "mouse_miner"
-	icon_living = "mouse_miner"
-	name = "Cooper"
-	desc = "A lonely miner's best friend."
-
-/mob/living/simple_mob/animal/passive/mouse/mining/Initialize(mapload)
-	. = ..()
-
-	add_verb(src,/mob/living/proc/ventcrawl) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/proc/hide) //CHOMPEdit TGPanel
-	icon_state = "mouse_miner"
-	item_state = "mouse_miner"
-	icon_living = "mouse_miner"
-	icon_dead = "mouse_miner_dead"
-	icon_rest = "mouse_miner_sleep"
-	desc = "A lonely miner's best friend."
-
-
-/mob/living/simple_mob/animal/passive/mouse/mining/splat()
-	src.health = 0
-	src.set_stat(DEAD)
-	src.icon_dead = "mouse_miner_splat"
-	src.icon_state = "mouse_miner_splat"
-	layer = MOB_LAYER
-	if(client)
-		client.time_died_as_mouse = world.time

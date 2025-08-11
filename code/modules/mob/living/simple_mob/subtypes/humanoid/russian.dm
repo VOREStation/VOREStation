@@ -23,6 +23,10 @@
 
 	corpse = /obj/effect/landmark/mobcorpse/russian
 
+/mob/living/simple_mob/humanoid/russian
+	loot_list = list(/obj/item/salvage/loot/russian = 10)
+
+
 /mob/living/simple_mob/humanoid/russian/ranged
 	icon_state = "russianranged"
 	icon_living = "russianranged"
