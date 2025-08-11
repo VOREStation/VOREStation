@@ -825,8 +825,8 @@
 	result_amount = 2
 	log_is_important = 1
 
-#ifndef UNIT_TEST
-// If it becomes possible to make this without exploding and clearing reagents, remove the UNIT_TEST wrapper
+#ifndef UNIT_TESTS
+// If it becomes possible to make this without exploding and clearing reagents, remove the UNIT_TESTS wrapper
 /decl/chemical_reaction/instant/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/2, 1), holder.my_atom, 0, 0)

@@ -815,6 +815,26 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 	var/icon/I = getFlatIcon(thing, force_south = force_south)
 	return icon2html(I, target, sourceonly = sourceonly)
 
+/// Returns rustg-parsed metadata for an icon, universal icon, or DMI file, using cached values where possible
+/// Returns null if passed object is not a filepath or icon with a valid DMI file
+/proc/icon_metadata(file)
+	var/static/list/icon_metadata_cache = list()
+	if(istype(file, /datum/universal_icon))
+		var/datum/universal_icon/u_icon = file
+		file = u_icon.icon_file
+	var/file_string = "[file]"
+	if(!istext(file) && !(isfile(file) && length(file_string)))
+		return null
+	var/list/cached_metadata = icon_metadata_cache[file_string]
+	if(islist(cached_metadata))
+		return cached_metadata
+	var/list/metadata_result = rustg_dmi_read_metadata(file_string)
+	if(!islist(metadata_result) || !length(metadata_result))
+		CRASH("Error while reading DMI metadata for path '[file_string]': [metadata_result]")
+	else
+		icon_metadata_cache[file_string] = metadata_result
+		return metadata_result
+
 /// Checks whether a given icon state exists in a given icon file. If `file` and `state` both exist,
 /// this will return `TRUE` - otherwise, it will return `FALSE`.
 ///
@@ -836,3 +856,25 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 				icon_states_cache[file][istate] = TRUE
 
 	return !isnull(icon_states_cache[file][state])
+
+/// Cached, rustg-based alternative to icon_states()
+/proc/icon_states_fast(file)
+	if(isnull(file))
+		return null
+	if(isnull(GLOB.icon_states_cache[file]))
+		compile_icon_states_cache(file)
+	return GLOB.icon_states_cache[file]
+
+/proc/compile_icon_states_cache(file)
+	GLOB.icon_states_cache[file] = list()
+	GLOB.icon_states_cache_lookup[file] = list()
+	// Try to use rustg first
+	var/list/metadata = icon_metadata(file)
+	if(islist(metadata) && islist(metadata["states"]))
+		for(var/list/state_data as anything in metadata["states"])
+			GLOB.icon_states_cache[file] += state_data["name"]
+			GLOB.icon_states_cache_lookup[file][state_data["name"]] = TRUE
+	else // Otherwise, we have to use the slower BYOND proc
+		for(var/istate in icon_states(file))
+			GLOB.icon_states_cache[file] += istate
+			GLOB.icon_states_cache_lookup[file][istate] = TRUE
