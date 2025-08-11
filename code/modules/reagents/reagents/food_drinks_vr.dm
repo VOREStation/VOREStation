@@ -9,6 +9,8 @@
 	reagent_state = LIQUID
 	color = "#ff2424"
 	strength = 10
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/toxin/plantcolony
 	name = REAGENT_PLANTCOLONY
@@ -18,6 +20,8 @@
 	reagent_state = LIQUID
 	color = "#7ce01f"
 	strength = 10
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/nutriment/grubshake
 	name = REAGENT_GRUBSHAKE
@@ -102,7 +106,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
-			if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+			if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.get_jittery() < 100) //Same check as feral triggers to stop them immediately re-feralling
 				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
 				if (xc.feral <=0) //check if they're unferalled
 					xc.feral = 0
@@ -353,9 +357,6 @@
 	glass_name = REAGENT_SCSATW
 	glass_desc = "The best accessory to daydrinking."
 
-/datum/reagent/drink
-	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
-
 /datum/reagent/drink/choccymilk
 	name = REAGENT_CHOCCYMILK
 	id = REAGENT_ID_CHOCCYMILK
@@ -468,7 +469,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
-			if(xc && xc.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
+			if(xc && xc.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.get_jittery() < 100) // same check as feral triggers to stop them immediately re-feralling
 				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
 				if (xc.feral <=0) //check if they're unferalled
 					xc.feral = 0
@@ -558,7 +559,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/datum/component/xenochimera/xc = M.get_xenochimera_component()
-		if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+		if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.get_jittery() < 100) //Same check as feral triggers to stop them immediately re-feralling
 			xc.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
 			if(xc.feral <=0) //Check if they're unferalled
 				xc.feral = 0

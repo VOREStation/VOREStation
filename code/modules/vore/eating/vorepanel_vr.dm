@@ -15,7 +15,7 @@
 	set name = "Vore Panel"
 	set category = "IC.Vore"
 
-	if(SSticker.current_state == GAME_STATE_INIT)
+	if(SSticker.current_state == GAME_STATE_STARTUP)
 		return
 
 	if(!isliving(src))

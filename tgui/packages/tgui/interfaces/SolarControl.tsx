@@ -119,6 +119,7 @@ export const SolarControl = (props) => {
             <LabeledList.Item label="Azimuth">
               {(tracking_state === 0 || tracking_state === 1) && (
                 <NumberInput
+                  tickWhileDragging
                   width="52px"
                   unit="°"
                   step={1}
@@ -130,11 +131,12 @@ export const SolarControl = (props) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
                     return toFixed(Math.abs(rate)) + sign;
                   }}
-                  onDrag={(value) => act('azimuth', { value })}
+                  onChange={(value) => act('azimuth', { value })}
                 />
               )}
               {tracking_state === 1 && (
                 <NumberInput
+                  tickWhileDragging
                   width="80px"
                   unit="deg/h"
                   step={1}
@@ -145,7 +147,7 @@ export const SolarControl = (props) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
                     return toFixed(Math.abs(rate)) + sign;
                   }}
-                  onDrag={(value) => act('azimuth_rate', { value })}
+                  onChange={(value) => act('azimuth_rate', { value })}
                 />
               )}
               {tracking_state === 2 && (

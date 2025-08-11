@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Slimes can be eaten if they are obedient to the point that you can command them and you discipline them OR you make them harmless with a docility potion"

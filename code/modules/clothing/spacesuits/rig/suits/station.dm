@@ -172,7 +172,7 @@
 	suit_type = "hazmat hardsuit"
 	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
 	icon_state = "science_rig"
-	armor = list(melee = 45, bullet = 5, laser = 45, energy = 80, bomb = 60, bio = 100, rad = 100)
+	armor = list(melee = 45, bullet = 5, laser = 45, energy = 80, bomb = 100, bio = 100, rad = 100)
 	slowdown = 0.5
 	offline_vision_restriction = 1
 	siemens_coefficient= 0.75

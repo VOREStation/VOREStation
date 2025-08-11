@@ -70,6 +70,7 @@
 #define FACTION_MEOWL "meowl"
 #define FACTION_MIMIC "mimic"
 #define FACTION_MOUSE "mouse"
+#define FACTION_MOTHROACH "mothroach"
 #define FACTION_NANOMACHINES "nanomachines"
 #define FACTION_NEUTRAL "neutral"
 #define FACTION_OTIE "otie"

@@ -58,8 +58,6 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/stage_act()
 	if(!..())
 		return FALSE
-	if(global_flag_check(virus_modifiers, DORMANT))
-		return FALSE
 	if(symptoms && length(symptoms))
 
 		if(!s_processing)
@@ -491,8 +489,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			return main_symptom.name
 
 	// Prefixes. These need a space right after.
-	var/list/prefixes = list("Spacer's ", "Space ", "Infectious ","Viral ", "The ", "[capitalize(prob(50) ? pick(first_names_male) : pick(first_names_female))]'s ", "[capitalize(pick(last_names))]'s ", "Acute ")
-	var/list/bodies = list(pick("[capitalize(prob(50) ? pick(first_names_male) : pick(first_names_female))]", "[pick(last_names)]"), "Space", "Disease", "Noun", "Cold", "Germ", "Virus")
+	var/list/prefixes = list("Spacer's ", "Space ", "Infectious ","Viral ", "The ", "[capitalize(prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female))]'s ", "[capitalize(pick(GLOB.last_names))]'s ", "Acute ")
+	var/list/bodies = list(pick("[capitalize(prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female))]", "[pick(GLOB.last_names)]"), "Space", "Disease", "Noun", "Cold", "Germ", "Virus")
 	// These might need some space before the word, depends on what you want to add.
 	var/list/suffixes = list("ism", "itis", "osis", "itosis", " #[rand(1,10000)]", "-[rand(1,100)]", "s", "y", " Virus", " Bug", " Infection", " Disease", " Complex", " Syndrome", " Sickness")
 

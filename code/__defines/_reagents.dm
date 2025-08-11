@@ -83,7 +83,12 @@
 #define REAGENT_ID_TUNGSTEN "tungsten"
 #define REAGENT_NUTRIMENT "Nutriment"
 #define REAGENT_ID_NUTRIMENT "nutriment"
-
+#define REAGENT_TITANIUM "Titanium"
+#define REAGENT_ID_TITANIUM "titanium"
+#define REAGENT_TITANIUMDIOX "Titanium dioxide"
+#define REAGENT_ID_TITANIUMDIOX "titanium_diox"
+#define REAGENT_TIN	"Tin"
+#define REAGENT_ID_TIN "tin"
 
 // Xeno chem react
 #define XENO_CHEM_NUTRI "nutr"
@@ -611,6 +616,8 @@
 #define REAGENT_ID_TOFU "tofu"
 #define REAGENT_SEAFOOD "seafood protein"
 #define REAGENT_ID_SEAFOOD "seafood"
+#define REAGENT_FUNGI "fungal protein"
+#define REAGENT_ID_FUNGI "fungi"
 #define REAGENT_CHEESE "cheese"
 #define REAGENT_ID_CHEESE "cheese"
 #define REAGENT_EGG "egg yolk"

@@ -9,6 +9,8 @@
 	RegisterSignal(owner, COMSIG_HANDLE_DISABILITIES, PROC_REF(process_component))
 
 /datum/component/nervousness_disability/proc/process_component()
+	SIGNAL_HANDLER
+
 	if(QDELETED(parent))
 		return
 	if(isbelly(owner.loc))
@@ -19,7 +21,7 @@
 		return
 	if(prob(5) && prob(7))
 		owner.stuttering = max(15, owner.stuttering)
-		if(owner.jitteriness < 50)
+		if(owner.get_jittery() < 50)
 			owner.make_jittery(65)
 
 /datum/component/nervousness_disability/Destroy(force = FALSE)

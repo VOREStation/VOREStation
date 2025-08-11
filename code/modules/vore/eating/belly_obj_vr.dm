@@ -241,7 +241,8 @@
 	REAGENT_LUBE,
 	REAGENT_BIOMASS,
 	REAGENT_CONCENTRATEDRADIUM,
-	REAGENT_TRICORDRAZINE
+	REAGENT_TRICORDRAZINE,
+	REAGENT_ETHANOL
 	)
 
 	// Special var section
@@ -1078,6 +1079,7 @@
 			M.reagents.del_reagent(REAGENT_ID_CLEANER)
 			M.reagents.del_reagent(REAGENT_ID_CONCENTRATEDRADIUM)
 			M.reagents.del_reagent(REAGENT_ID_TRICORDRAZINE)
+			M.reagents.del_reagent(REAGENT_ID_ETHANOL)
 			M.reagents.trans_to_holder(Pred.ingested, M.reagents.total_volume, 0.5, TRUE)
 
 	owner.handle_belly_update()
