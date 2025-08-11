@@ -44,6 +44,7 @@
 				"bomb" = 10,
 				"bio" = 100,
 				"rad" = 100)
+	ai_holder_type = /datum/ai_holder/simple_mob/destructive
 
 /mob/living/simple_mob/construct/juggernaut/Life()
 	SetWeakened(0)
