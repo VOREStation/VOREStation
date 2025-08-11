@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - admin: "Added admin logging to ghosts for when they make their sprite invisible, so that they can be tracked if needs be."
