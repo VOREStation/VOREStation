@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Eating a prey with Drippy will not longer make you drip them."

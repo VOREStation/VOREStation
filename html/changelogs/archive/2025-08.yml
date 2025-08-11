@@ -247,3 +247,11 @@
   Willburd:
   - rscadd: You can now make decaf tea using decaffeinated tea powder and water
   - bugfix: missing fragmentation grenade iconstate
+2025-08-11:
+  Diana:
+  - bugfix: Eating a prey with Drippy will not longer make you drip them.
+  - bugfix: white chocolate will not annihilate you if you're allergic to chocolate
+  Will:
+  - bugfix: Hippo death sprites fixed
+  - bugfix: Hippos no longer pretend to be squids when eating you
+  - rscadd: Pai death alarm software
