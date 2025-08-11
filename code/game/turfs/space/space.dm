@@ -137,7 +137,7 @@
 /turf/space/Entered(var/atom/movable/A)
 	. = ..()
 
-	if(edge && ticker?.mode && !density) // !density so 'fake' space turfs don't fling ghosts everywhere
+	if(edge && SSticker?.mode && !density) // !density so 'fake' space turfs don't fling ghosts everywhere
 		if(isliving(A))
 			var/mob/living/L = A
 			if(L.pulling)
