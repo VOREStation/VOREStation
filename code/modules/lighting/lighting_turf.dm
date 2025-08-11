@@ -127,7 +127,7 @@
 
 
 /turf/proc/change_area(area/old_area, area/new_area)
-	if(SSlighting.subsystem_initialized)
+	if(SSlighting.initialized)
 		if (new_area.dynamic_lighting != old_area.dynamic_lighting)
 			if (new_area.dynamic_lighting)
 				lighting_build_overlay()
