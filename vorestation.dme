@@ -1967,6 +1967,7 @@
 #include "code\js\byjax.dm"
 #include "code\js\menus.dm"
 #include "code\matrices\color_matrix.dm"
+#include "code\modules\salvage.dm"
 #include "code\modules\admin\admin.dm"
 #include "code\modules\admin\admin_attack_log.dm"
 #include "code\modules\admin\admin_investigate.dm"
