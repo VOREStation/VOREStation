@@ -1,0 +1,6 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - rscadd: "Added a range of AR mantles, essentially reskinned AR glasses"
+  - bugfix: "fixed the description for tracking implants in loadouts"
+  - bugfix: "fixed being able to \"shade\" the AR-VZR which just made it disappear instead"

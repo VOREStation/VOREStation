@@ -87,3 +87,4 @@
 	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN, src)
 
 	set_listening(LISTENING_PLAYER)
+	GLOB.tickets.ClientLogin(client, TRUE)

@@ -249,6 +249,7 @@
 	var/rad_levels = NORMAL_RADIATION_RESISTANCE		//For handle_mutations_and_radiation
 	var/rad_removal_mod = 1
 
+	var/ambulant_blood = FALSE								// Force changeling blood effects
 
 	var/rarity_value = 1									// Relative rarity/collector value for this species.
 	var/economic_modifier = 2								// How much money this species makes
@@ -799,6 +800,11 @@
 
 	if(H.species.has_vibration_sense)
 		H.motiontracker_subscribe()
+
+	if(H.species.allergens)
+		H.AddElement(/datum/element/allergy)
+	else
+		H.RemoveElement(/datum/element/allergy)
 
 	return new_copy
 

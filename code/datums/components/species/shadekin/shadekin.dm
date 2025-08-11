@@ -92,7 +92,7 @@
 
 /datum/component/shadekin/Initialize()
 	//normal component bs
-	if(!isliving(parent))
+	if(!isliving(parent) || issilicon(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
 	if(ishuman(owner))
@@ -212,6 +212,9 @@
 
 	return data
 
+/datum/component/shadekin/tgui_close(mob/user)
+	SScharacter_setup.queue_preferences_save(user?.client?.prefs)
+	. = ..()
 
 /datum/component/shadekin/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
@@ -224,14 +227,14 @@
 			if(!isnum(new_time))
 				return FALSE
 			flicker_time = new_time
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_time, new_time)
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_time, new_time, WRITE_PREF_MANUAL)
 			return TRUE
 		if("adjust_color")
 			var/set_new_color = tgui_color_picker(ui.user, "Select a color you wish the lights to flicker as (Default is #E0EFF0)", "Color Selector", flicker_color)
 			if(!set_new_color)
 				return FALSE
 			flicker_color = set_new_color
-			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color)
+			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color, WRITE_PREF_MANUAL)
 			return TRUE
 		if("adjust_break")
 			var/new_break_chance = text2num(params["val"])
@@ -239,7 +242,7 @@
 			if(!isnum(new_break_chance))
 				return FALSE
 			flicker_break_chance = new_break_chance
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_break_chance)
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_break_chance, WRITE_PREF_MANUAL)
 			return TRUE
 		if("adjust_distance")
 			var/new_distance = text2num(params["val"])
@@ -247,16 +250,16 @@
 			if(!isnum(new_distance))
 				return FALSE
 			flicker_distance = new_distance
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_distance, new_distance)
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_distance, new_distance, WRITE_PREF_MANUAL)
 			return TRUE
 		if("toggle_retreat")
 			var/new_retreat = !no_retreat
 			no_retreat = !no_retreat
-			ui.user.write_preference_directly(/datum/preference/toggle/living/dark_retreat_toggle, new_retreat)
+			ui.user.write_preference_directly(/datum/preference/toggle/living/dark_retreat_toggle, new_retreat, WRITE_PREF_MANUAL)
 		if("toggle_nutrition")
 			var/new_retreat = !nutrition_energy_conversion
 			nutrition_energy_conversion = !nutrition_energy_conversion
-			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_nutrition_conversion, new_retreat)
+			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_nutrition_conversion, new_retreat, WRITE_PREF_MANUAL)
 
 /mob/living/proc/shadekin_control_panel()
 	set name = "Shadekin Control Panel"
