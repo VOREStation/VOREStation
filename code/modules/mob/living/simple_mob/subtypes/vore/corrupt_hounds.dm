@@ -53,7 +53,7 @@
 	max_co2 = 0
 	min_n2 = 0
 	max_n2 = 0
-	minbodytemp = 150
+	minbodytemp = 0
 	maxbodytemp = 900
 
 	say_list_type = /datum/say_list/corrupthound
@@ -75,6 +75,7 @@
 
 	loot_list = list(/obj/item/borg/upgrade/basic/syndicate = 6, /obj/item/borg/upgrade/basic/vtec = 6, /obj/item/material/knife/ritual = 6, /obj/item/disk/nifsoft/compliance = 6)
 
+	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi

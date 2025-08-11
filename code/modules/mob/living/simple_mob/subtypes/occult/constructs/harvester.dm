@@ -7,11 +7,8 @@
 	real_name = "Harvester"
 	construct_type = "harvester"
 	desc = "A tendril-laden construct piloted by a chained mind."
-	icon = 'icons/mob/mob.dmi'
 	icon_state = "harvester"
 	icon_living = "harvester"
-	maxHealth = 150
-	health = 150
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	attack_sharp = TRUE
