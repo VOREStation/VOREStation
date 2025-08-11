@@ -6,7 +6,12 @@
 SUBSYSTEM_DEF(internal_wiki)
 	name = "Wiki"
 	wait = 1
-	init_order = INIT_ORDER_WIKI
+	//dependencies = list(
+	//	/datum/controller/subsystem/chemistry,
+	//	/datum/controller/subsystem/plants,
+	//	/datum/controller/subsystem/supply
+	//)
+	init_stage = INITSTAGE_LAST
 	flags = SS_NO_FIRE
 
 	VAR_PRIVATE/list/pages = list()
@@ -420,12 +425,10 @@ SUBSYSTEM_DEF(internal_wiki)
 			allergies.Add("Stimulant")
 		if(allergens & ALLERGEN_CHOCOLATE)
 			allergies.Add("Chocolate")
-		/* Downstream features
 		if(allergens & ALLERGEN_POLLEN)
 			allergies.Add("Pollen")
 		if(allergens & ALLERGEN_SALT)
 			allergies.Add("Salt")
-		*/
 		return allergies
 	return null
 

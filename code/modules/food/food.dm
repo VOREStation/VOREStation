@@ -38,6 +38,10 @@
 		src.pixel_x = rand(-6.0, 6) //Randomizes postion
 		src.pixel_y = rand(-6.0, 6)
 
+/obj/item/reagent_containers/food/attackby(obj/item/W, mob/user)
+	. = ..()
+	attempt_changeling_test(W,user)
+
 /obj/item/reagent_containers/food/afterattack(atom/A, mob/user, proximity, params)
 	if((center_of_mass_x || center_of_mass_y) && proximity && params && istype(A, /obj/structure/table))
 		//Places the item on a grid
