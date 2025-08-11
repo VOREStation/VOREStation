@@ -77,8 +77,8 @@
 
 	if(ringer)
 		var/S
-		if(ttone in ttone_sound)
-			S = ttone_sound[ttone]
+		if(ttone in GLOB.device_ringtones)
+			S = GLOB.device_ringtones[ttone]
 		else
 			S = 'sound/machines/twobeep.ogg'
 
