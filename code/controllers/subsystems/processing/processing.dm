@@ -96,14 +96,6 @@ SUBSYSTEM_DEF(processing)
 	log_game(msg)
 	log_world(msg)
 
-/datum/controller/subsystem/processing/fail()
-	..()
-	log_recent()
-
-/datum/controller/subsystem/processing/critfail()
-	..()
-	log_recent()
-
 /datum/proc/DebugSubsystemProcess(var/wait, var/times_fired, var/datum/controller/subsystem/processing/subsystem)
 	subsystem.debug_last_thing = src
 	var/start_tick = world.time

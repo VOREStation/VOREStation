@@ -206,6 +206,14 @@
 /client/proc/_Topic(datum/hsrc, href, list/href_list)
 	return hsrc.Topic(href, href_list)
 
+/client/proc/is_localhost()
+	var/static/localhost_addresses = list(
+		"127.0.0.1",
+		"::1",
+		null,
+	)
+	return address in localhost_addresses
+
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
 	if(filelength > UPLOAD_LIMIT)
