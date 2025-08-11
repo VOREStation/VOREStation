@@ -5,7 +5,7 @@ Scour its code if you dare.
 
 Here's a summary, however.
 
-This is a 128x92px mob with sprites drawn by Przyjaciel (thanks mate) and some codersprites.
+This is a 128x64px mob with sprites drawn by Przyjaciel (thanks mate) and some codersprites.
 
 The bigdragon is an 800 health hostile boss mob with three special attacks.
 The first (disarm intent) is a charge attack that activates when the target is >5 tiles away and requires line of sight.
@@ -182,6 +182,8 @@ I think I covered everything.
 	)
 	var/eyes
 
+	can_be_drop_prey = FALSE
+
 ///
 ///		Subtypes
 ///
@@ -204,6 +206,7 @@ I think I covered everything.
 	maxHealth = 200
 	melee_damage_lower = 20
 	melee_damage_upper = 15
+	allow_mind_transfer = TRUE
 
 ///
 ///		Misc define stuff
@@ -247,8 +250,6 @@ I think I covered everything.
 	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/sprite_toggle)
 	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/flame_toggle)
 	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/special_toggle)
-	//add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/set_name) //Implemented upstream
-	//add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/set_desc) //Implemented upstream
 	faction = FACTION_NEUTRAL
 
 /mob/living/simple_mob/vore/bigdragon/Initialize(mapload)
@@ -412,7 +413,7 @@ I think I covered everything.
 
 	var/list/options = list("Underbelly","Body","Ears","Mane","Horns","Eyes")
 	for(var/option in options)
-		LAZYSET(options, option, image('icons/effects/bigdragon_labels.dmi', option))
+		LAZYSET(options, option, new /image('icons/effects/bigdragon_labels.dmi', option))
 	var/choice = show_radial_menu(src, src, options, radius = 60)
 	if(!choice || QDELETED(src) || src.incapacitated())
 		return FALSE
@@ -421,7 +422,7 @@ I think I covered everything.
 		if("Underbelly")
 			options = underbelly_styles
 			for(var/option in options)
-				var/image/I = image(icon, "dragon_under[option]", dir = 4, pixel_x = -48)
+				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_under[option]", dir = 4, pixel_x = -48)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -434,7 +435,7 @@ I think I covered everything.
 		if("Body")
 			options = body_styles
 			for(var/option in options)
-				var/image/I = image(icon, "dragon_body[option]", dir = 4, pixel_x = -48)
+				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_body[option]", dir = 4, pixel_x = -48)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -447,7 +448,7 @@ I think I covered everything.
 		if("Ears")
 			options = ear_styles
 			for(var/option in options)
-				var/image/I = image(icon, "dragon_ears[option]", dir = 4, pixel_x = -76, pixel_y = -50)
+				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_ears[option]", dir = 4, pixel_x = -76, pixel_y = -50)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -460,7 +461,7 @@ I think I covered everything.
 		if("Mane")
 			options = mane_styles
 			for(var/option in options)
-				var/image/I = image(icon, "dragon_mane[option]", dir = 4, pixel_x = -76, pixel_y = -50)
+				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_mane[option]", dir = 4, pixel_x = -76, pixel_y = -50)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -473,7 +474,7 @@ I think I covered everything.
 		if("Horns")
 			options = horn_styles
 			for(var/option in options)
-				var/image/I = image(icon, "dragon_horns[option]", dir = 4, pixel_x = -86, pixel_y = -50)
+				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_horns[option]", dir = 4, pixel_x = -86, pixel_y = -50)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -486,7 +487,7 @@ I think I covered everything.
 		if("Eyes")
 			options = eye_styles
 			for(var/option in options)
-				var/image/I = image(icon, "dragon_eyes[option]", dir = 2, pixel_x = -48, pixel_y = -50)
+				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_eyes[option]", dir = 2, pixel_x = -48, pixel_y = -50)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -570,7 +571,7 @@ I think I covered everything.
 	contamination_color = "grey"
 	contamination_flavor = "Wet"
 	vore_verb = "slurp"
-	//belly_fullscreen_color = "#711e1e"
+	belly_fullscreen_color = "#711e1e"
 
 /obj/belly/dragon/maw
 	name = "Maw"
@@ -980,7 +981,7 @@ I think I covered everything.
 	holder.a_intent = I_HURT
 	return 1
 
-/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/can_attack(atom/movable/the_target, vision_required = TRUE)
 	if(istype(holder,/mob/living/simple_mob/vore/bigdragon))
 		var/mob/living/simple_mob/vore/bigdragon/BG = holder
 		if(holder.IIsAlly(the_target))
@@ -1015,7 +1016,7 @@ I think I covered everything.
 	if(last_warning + 1 MINUTE < world.time)
 		warnings = 0	//calm down
 
-/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/react_to_attack(atom/movable/attacker, ignore_timers = FALSE)
+/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/react_to_attack(atom/movable/attacker)
 	if(holder.stat)
 		return
 	if(istype(holder,/mob/living/simple_mob/vore/bigdragon))
