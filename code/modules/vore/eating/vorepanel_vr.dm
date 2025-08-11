@@ -407,6 +407,12 @@
 				host.eating_privacy_global = host.eating_privacy_global
 			unsaved_changes = TRUE
 			return TRUE
+		if("toggle_death_privacy")
+			host.vore_death_privacy = !host.vore_death_privacy
+			if(host.client.prefs_vr)
+				host.vore_death_privacy = host.vore_death_privacy
+			unsaved_changes = TRUE
+			return TRUE
 		if("toggle_mimicry")
 			host.allow_mimicry = !host.allow_mimicry
 			if(host.client.prefs_vr)
