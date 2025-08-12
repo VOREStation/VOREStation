@@ -658,6 +658,7 @@
 	var/recent_squish = 0
 
 /obj/item/clothing/shoes/Initialize(mapload)
+	. = ..()
 	inside_emotes = list(
 		span_red("You feel weightless for a moment as \the [name] moves upwards."),
 		span_red("\The [name] are a ride you've got no choice but to participate in as the wearer moves."),
