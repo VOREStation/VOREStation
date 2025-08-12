@@ -36,7 +36,7 @@
 	name = "Cultist"
 	desc = "An awfully frail and ghastly looking individual"
 	tt_desc = "NULL"
-	icon = "icons/mob/cultists.dmi'
+	icon = 'icons/mob/cultists.dmi'
 	icon_state = "initiate"
 	faction = "cult"
 	mob_class = MOB_CLASS_DEMONIC
@@ -643,7 +643,7 @@
 
 	base_attack_cooldown = 7.5
 
-	loot_list = list(/obj/item/material/butterfly/saw = 100, /obj/item/gun/projectile/shotgun/doublebarrel/sawn/alt = 100)
+	// loot_list = list(/obj/item/material/butterfly/saw = 100, /obj/item/gun/projectile/shotgun/doublebarrel/sawn/alt = 100) // Downstream
 
 	needs_reload = TRUE
 	reload_max = 2

@@ -10,7 +10,7 @@
 	desc = "A large sized construct of the purity worshippers mechanical followers, one of their most advanced, it is the left hand of purification, tasked with the ultimate protection and ultimately defense of all under its charge, it will stop at nothing to protect its flock from harm."
 	icon_state = "cardinal"
 	icon_living = "cardinal"
-	ui_icons = 'modular_chomp/icons/mob/screen1_purity.dmi'
+	ui_icons = 'icons/mob/screen1_purity.dmi'
 	maxHealth = 300
 	health = 300
 	response_harm = "harmlessly punches"

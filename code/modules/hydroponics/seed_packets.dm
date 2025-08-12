@@ -363,3 +363,6 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/megashroom
 	seed_type = PLANT_MEGAM
+
+/obj/item/seeds/pitcherseed
+	seed_type = PLANT_PITCHERPLANT

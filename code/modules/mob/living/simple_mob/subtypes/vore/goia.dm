@@ -134,7 +134,7 @@
 
 	var/list/options = list("Belly","Spike","Ears","Spots","Claws","Spines","Fluff","Underbelly","Eyes")
 	for(var/option in options)
-		LAZYSET(options, option, image('modular_chomp/icons/effects/goia_labels.dmi', option))
+		LAZYSET(options, option, image('icons/effects/goia_labels.dmi', option))
 	var/choice = show_radial_menu(src, src, options, radius = 60)
 	if(!choice || QDELETED(src) || src.incapacitated())
 		return FALSE
@@ -144,7 +144,7 @@
 		if("Ears")
 			options = ear_styles
 			for(var/option in options)
-				var/image/I = image('modular_chomp/icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
+				var/image/I = image('icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -159,7 +159,7 @@
 		if("Spots")
 			options = spots_styles
 			for(var/option in options)
-				var/image/I = image('modular_chomp/icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
+				var/image/I = image('icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -174,7 +174,7 @@
 		if("Claws")
 			options = claws_styles
 			for(var/option in options)
-				var/image/I = image('modular_chomp/icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
+				var/image/I = image('icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -189,7 +189,7 @@
 		if("Spines")
 			options = spines_styles
 			for(var/option in options)
-				var/image/I = image('modular_chomp/icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
+				var/image/I = image('icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -204,7 +204,7 @@
 		if("Fluff")
 			options = fluff_styles
 			for(var/option in options)
-				var/image/I = image('modular_chomp/icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
+				var/image/I = image('icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -219,7 +219,7 @@
 		if("Underbelly")
 			options = underbelly_styles
 			for(var/option in options)
-				var/image/I = image('modular_chomp/icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
+				var/image/I = image('icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -234,7 +234,7 @@
 		if("Eyes")
 			options = eyes_styles
 			for(var/option in options)
-				var/image/I = image('modular_chomp/icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
+				var/image/I = image('icons/mob/zorgoia64x32.dmi', option, dir = 4, pixel_x = -16)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -249,7 +249,7 @@
 		if("Spike")
 			options = spiky_styles
 			for(var/option in options)
-				var/image/I = image('modular_chomp/icons/mob/zorgoia64x32.dmi', option, dir = 4)
+				var/image/I = image('icons/mob/zorgoia64x32.dmi', option, dir = 4)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -264,7 +264,7 @@
 		if("Belly")
 			options = belly_styles
 			for(var/option in options)
-				var/image/I = image('modular_chomp/icons/mob/zorgoia64x32.dmi', option, dir = 4)
+				var/image/I = image('icons/mob/zorgoia64x32.dmi', option, dir = 4)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -294,7 +294,7 @@
 	src.trait_injection_reagents += REAGENT_ID_RAINBOWTOXIN			// Funny flashing lights.
 	src.trait_injection_reagents += REAGENT_ID_PARALYSISTOXIN 		// Paralysis!
 	src.trait_injection_reagents += REAGENT_ID_PAINENZYME			// Pain INCREASER
-	src.trait_injection_reagents += REAGENT_ID_APHRODISIAC			// Horni
+	// src.trait_injection_reagents += REAGENT_ID_APHRODISIAC			// Horni // Downstream only
 
 	var/list/goia_colors = list("#1a00ff", "#6c5bff", "#ff00fe", "#ff0000", "#00d3ff", "#00ff7c", "#00ff35", "#e1ff00", "#ff9f00", "#393939")
 	var/bodycolor = pick(goia_colors)
@@ -329,7 +329,7 @@
 	else
 		plane = ABOVE_MOB_PLANE
 	cut_overlays()
-	icon = 'modular_chomp/icons/mob/zorgoia64x32.dmi'
+	icon = 'icons/mob/zorgoia64x32.dmi'
 	vore_capacity = 3
 	//Heads up, the order of these overlays stacking on top of each other is different from the array order. So goia_overlay[1] is the belly, but rendering on top of everything at the end instead
 

@@ -10,7 +10,7 @@
 	desc = "A small construct of the purity worshippers mechanical followers, hardy but mostly harmless."
 	icon_state = "deacon"
 	icon_living = "deacon"
-	ui_icons = 'modular_chomp/icons/mob/screen1_purity.dmi'
+	ui_icons = 'icons/mob/screen1_purity.dmi'
 	maxHealth = 150
 	health = 150
 	melee_damage_lower = 8 //not meant for combat but can hold its own in a pinch

@@ -40,6 +40,7 @@
 	// Grenade special attack vars
 	var/grenade_type = /obj/item/grenade/concussion
 	special_attack_cooldown = 45 SECONDS
+	var/grenade_timer = 50
 	special_attack_min_range = 2
 	special_attack_max_range = 7
 
@@ -72,7 +73,8 @@
 	var/obj/item/grenade/G = new grenade_type(get_turf(src))
 	if(istype(G))
 		G.throw_at(A, G.throw_range, G.throw_speed, src)
-		G.attack_self(src)
+		G.det_time = grenade_timer
+		G.activate(src)
 		special_attack_charges = max(special_attack_charges-1, 0)
 
 	set_AI_busy(FALSE)
@@ -485,7 +487,7 @@
 	reload_time = 0.5  // Meant to Simulate controlled Supressive Bursts
 	projectiletype = /obj/item/projectile/beam/weaklaser
 	projectilesound = 'sound/weapons/Laser.ogg'
-	loot_list = list(/obj/item/gun/energy/tommylaser = 100)
+	// loot_list = list(/obj/item/gun/energy/tommylaser = 100) // Downstream
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/suppressor
 
 /mob/living/simple_mob/humanoid/merc/ranged/space/fal
@@ -495,7 +497,7 @@
 	icon_living = "syndicatespace-commando"
 	projectiletype = /obj/item/projectile/bullet/rifle/a762
 	projectilesound = 'sound/weapons/Gunshot_heavy.ogg'
-	loot_list = list(/obj/item/gun/projectile/automatic/fal = 100)
+	// loot_list = list(/obj/item/gun/projectile/automatic/fal = 100)// Downstream
 	reload_max = 20
 
 /mob/living/simple_mob/humanoid/merc/ranged/space/suppressor // adminspawn only, and also Probably Going To Kill The Unprepared

@@ -92,6 +92,7 @@
 #define PLANT_WURMWOAD "wurmwoad"
 #define PLANT_MICROM "microm"
 #define PLANT_MEGAM "megam"
+#define PLANT_PITCHERPLANT "pitcher plant"
 
 GLOBAL_LIST_INIT(acceptable_fruit_types, list(
 											PLANT_AMBROSIA,

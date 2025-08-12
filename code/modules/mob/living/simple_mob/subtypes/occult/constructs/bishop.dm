@@ -10,7 +10,7 @@
 	desc = "A medium sized construct of the purity worshippers mechanical followers, sturdy and deadly, these constructs are commanded by an archbishop, tasked with patrolling and eliminating threats to their flock."
 	icon_state = "bishop"
 	icon_living = "bishop"
-	ui_icons = 'modular_chomp/icons/mob/screen1_purity.dmi'
+	ui_icons = 'icons/mob/screen1_purity.dmi'
 	maxHealth = 250
 	health = 250
 	melee_damage_lower = 15
@@ -51,7 +51,7 @@
 	desc = "A large sized construct of the purity worshippers mechanical followers, one of their most advanced, it is the right hand of purification, dedicated to the pursuit of eradicating those who cause harm their charge."
 	icon_state = "archbishop"
 	icon_living = "archbishop"
-	ui_icons = 'modular_chomp/icons/mob/screen1_purity.dmi'
+	ui_icons = 'icons/mob/screen1_purity.dmi'
 	maxHealth = 200
 	health = 200
 	melee_damage_lower = 20 //hits much harder then most purity constructs

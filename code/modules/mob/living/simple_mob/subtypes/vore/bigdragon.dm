@@ -5,7 +5,7 @@ Scour its code if you dare.
 
 Here's a summary, however.
 
-This is a 128x64px mob with sprites drawn by Przyjaciel (thanks mate) and some codersprites.
+This is a 128x92px mob with sprites drawn by Przyjaciel (thanks mate) and some codersprites.
 
 The bigdragon is an 800 health hostile boss mob with three special attacks.
 The first (disarm intent) is a charge attack that activates when the target is >5 tiles away and requires line of sight.
@@ -54,12 +54,14 @@ I think I covered everything.
 	catalogue_data = list(/datum/category_item/catalogue/fauna/bigdragon)
 	tt_desc = "S Draco Ignis"
 	icon = 'icons/mob/vore128x64.dmi'
-	icon_state = "dragon_maneNone"	//Invisible, necessary for examine stuff
+	icon_state = "dragon_bodyScaled"
 	icon_rest = "dragon_maneNone"
 	icon_living = "dragon_maneNone"
 	player_msg = "You can perform a charge attack by disarm intent clicking somewhere. Grab intent clicking will perform a tail sweep and fling any nearby mobs. You can fire breath with harm intent. Your attacks have cooldowns associated with them. You can heal slowly by resting. Check your abilities tab for other functions!"
 	meat_amount = 40
 	meat_type = /obj/item/reagent_containers/food/snacks/meat
+	pixel_x = -48
+	default_pixel_x = -48
 	old_x = -48
 	old_y = 0
 	vis_height = 92
@@ -108,7 +110,7 @@ I think I covered everything.
 	special_attack_max_range = 10
 	special_attack_cooldown = 80
 
-	plane = ABOVE_MOB_PLANE
+	plane = MOB_PLANE
 
 	//Dragon vars
 	var/notame
@@ -250,6 +252,8 @@ I think I covered everything.
 	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/sprite_toggle)
 	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/flame_toggle)
 	add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/special_toggle)
+	add_verb(src,/mob/living/simple_mob/vore/bigdragon/proc/export_style)
+	add_verb(src,/mob/living/simple_mob/vore/bigdragon/proc/import_style)
 	faction = FACTION_NEUTRAL
 
 /mob/living/simple_mob/vore/bigdragon/Initialize(mapload)
@@ -259,6 +263,7 @@ I think I covered everything.
 	add_language(LANGUAGE_DRUDAKAR)
 	add_language(LANGUAGE_UNATHI)
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)	//We always give radios to spawned mobs anyway
+	icon_state = "dragon_maneNone"
 
 /mob/living/simple_mob/vore/bigdragon/MouseDrop_T(mob/living/M, mob/living/user)
 	return
@@ -353,55 +358,55 @@ I think I covered everything.
 		eyes = pick(eye_styles)
 		overlay_colors["Eyes"] = get_random_colour(1)
 
-	var/image/I = image(icon, "dragon_under[under][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -48)
+	var/image/I = image(icon, "dragon_under[under][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]")
 	I.color = overlay_colors["Underbelly"]
 	I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
 	I.plane = MOB_PLANE
 	I.layer = MOB_LAYER
 	add_overlay(I)
 
-	I = image(icon, "dragon_body[body][resting? "-rest" : null]", pixel_x = -48)
+	I = image(icon, "dragon_body[body][resting? "-rest" : null]")
 	I.color = overlay_colors["Body"]
 	I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
 	I.plane = MOB_PLANE
 	I.layer = MOB_LAYER
 	add_overlay(I)
 
-	I = image(icon, "dragon_ears[ears][resting? "-rest" : null]", pixel_x = -48)
+	I = image(icon, "dragon_ears[ears][resting? "-rest" : null]")
 	I.color = overlay_colors["Ears"]
 	I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
 	I.plane = MOB_PLANE
 	I.layer = MOB_LAYER
 	add_overlay(I)
 
-	I = image(icon, "dragon_mane[mane][resting? "-rest" : null]", pixel_x = -48)
+	I = image(icon, "dragon_mane[mane][resting? "-rest" : null]")
 	I.color = overlay_colors["Mane"]
 	I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
 	I.plane = MOB_PLANE
 	I.layer = MOB_LAYER
 	add_overlay(I)
 
-	I = image(icon, "dragon_horns[horns][resting? "-rest" : null]", pixel_x = -48)
+	I = image(icon, "dragon_horns[horns][resting? "-rest" : null]")
 	I.color = overlay_colors["Horns"]
 	I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
 	I.plane = MOB_PLANE
 	I.layer = MOB_LAYER
 	add_overlay(I)
 
-	I = image(icon, "dragon_eyes[eyes][resting? "-rest" : null]", pixel_x = -48)
+	I = image(icon, "dragon_eyes[eyes][resting? "-rest" : null]")
 	I.color = overlay_colors["Eyes"]
 	I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
 	I.plane = PLANE_LIGHTING_ABOVE
 	add_overlay(I)
 
 	if(enraged)
-		I = image(icon, "dragon_rage", pixel_x = -48)
+		I = image(icon, "dragon_rage")
 		I.appearance_flags |= PIXEL_SCALE
 		I.plane = MOB_PLANE
 		I.layer = MOB_LAYER
 		add_overlay(I)
 	if(flames)
-		I = image(icon, "dragon_flame[resting? "-rest" : null]", pixel_x = -48)
+		I = image(icon, "dragon_flame[resting? "-rest" : null]")
 		I.appearance_flags |= PIXEL_SCALE
 		I.plane = PLANE_LIGHTING_ABOVE
 		add_overlay(I)
@@ -413,7 +418,7 @@ I think I covered everything.
 
 	var/list/options = list("Underbelly","Body","Ears","Mane","Horns","Eyes")
 	for(var/option in options)
-		LAZYSET(options, option, new /image('icons/effects/bigdragon_labels.dmi', option))
+		LAZYSET(options, option, image('icons/effects/bigdragon_labels.dmi', option))
 	var/choice = show_radial_menu(src, src, options, radius = 60)
 	if(!choice || QDELETED(src) || src.incapacitated())
 		return FALSE
@@ -422,7 +427,7 @@ I think I covered everything.
 		if("Underbelly")
 			options = underbelly_styles
 			for(var/option in options)
-				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_under[option]", dir = 4, pixel_x = -48)
+				var/image/I = image(icon, "dragon_under[option]", dir = 4, pixel_x = -48)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -435,7 +440,7 @@ I think I covered everything.
 		if("Body")
 			options = body_styles
 			for(var/option in options)
-				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_body[option]", dir = 4, pixel_x = -48)
+				var/image/I = image(icon, "dragon_body[option]", dir = 4, pixel_x = -48)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -448,7 +453,7 @@ I think I covered everything.
 		if("Ears")
 			options = ear_styles
 			for(var/option in options)
-				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_ears[option]", dir = 4, pixel_x = -76, pixel_y = -50)
+				var/image/I = image(icon, "dragon_ears[option]", dir = 4, pixel_x = -76, pixel_y = -50)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -461,7 +466,7 @@ I think I covered everything.
 		if("Mane")
 			options = mane_styles
 			for(var/option in options)
-				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_mane[option]", dir = 4, pixel_x = -76, pixel_y = -50)
+				var/image/I = image(icon, "dragon_mane[option]", dir = 4, pixel_x = -76, pixel_y = -50)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -474,7 +479,7 @@ I think I covered everything.
 		if("Horns")
 			options = horn_styles
 			for(var/option in options)
-				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_horns[option]", dir = 4, pixel_x = -86, pixel_y = -50)
+				var/image/I = image(icon, "dragon_horns[option]", dir = 4, pixel_x = -86, pixel_y = -50)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -487,7 +492,7 @@ I think I covered everything.
 		if("Eyes")
 			options = eye_styles
 			for(var/option in options)
-				var/image/I = new /image('icons/mob/vore128x64.dmi', "dragon_eyes[option]", dir = 2, pixel_x = -48, pixel_y = -50)
+				var/image/I = image(icon, "dragon_eyes[option]", dir = 2, pixel_x = -48, pixel_y = -50)
 				LAZYSET(options, option, I)
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
@@ -564,6 +569,7 @@ I think I covered everything.
 /obj/belly/dragon
 	autotransferchance = 50
 	autotransferwait = 150
+	autotransfer_enabled = TRUE
 	escapable = TRUE
 	escapechance = 100
 	escapetime = 15
@@ -925,10 +931,7 @@ I think I covered everything.
 		if(H.will_eat(P))
 			if(issilicon(P))
 				return
-			if(iscarbon(P))
-				if(P.isSynthetic()) //Sorry robits
-					return
-			else
+			if(!iscarbon(P))	//CHOMPEdit. Makes healbelly mobs target synths now. Man.. feels weird writing chompedit on my own code from chomp.
 				if(!P.client)	//Don't target simple mobs that aren't player controlled
 					return
 			if(P.stat == DEAD)
@@ -981,7 +984,7 @@ I think I covered everything.
 	holder.a_intent = I_HURT
 	return 1
 
-/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/can_attack(atom/movable/the_target, vision_required = TRUE)
+/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/can_attack(atom/movable/the_target, var/vision_required = TRUE)
 	if(istype(holder,/mob/living/simple_mob/vore/bigdragon))
 		var/mob/living/simple_mob/vore/bigdragon/BG = holder
 		if(holder.IIsAlly(the_target))
@@ -1016,7 +1019,7 @@ I think I covered everything.
 	if(last_warning + 1 MINUTE < world.time)
 		warnings = 0	//calm down
 
-/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/react_to_attack(atom/movable/attacker)
+/datum/ai_holder/simple_mob/healbelly/retaliate/dragon/react_to_attack(atom/movable/attacker, ignore_timers = FALSE)
 	if(holder.stat)
 		return
 	if(istype(holder,/mob/living/simple_mob/vore/bigdragon))
@@ -1067,3 +1070,63 @@ I think I covered everything.
 		if(istype(holder,/mob/living/simple_mob/vore/bigdragon))
 			var/mob/living/simple_mob/vore/bigdragon/H = holder
 			H.chargeend(chump,1,1)
+
+/mob/living/simple_mob/vore/bigdragon/proc/export_style()
+	set name = "Export style string"
+	set desc = "Export a string of text that can be used to instantly get the current style back using the import style verb"
+	set category = "Abilities.Settings"
+	var/output_style = jointext(list(
+		overlay_colors["Underbelly"],
+		under,
+		overlay_colors["Body"],
+		body,
+		overlay_colors["Ears"],
+		ears,
+		overlay_colors["Mane"],
+		mane,
+		overlay_colors["Horns"],
+		horns,
+		overlay_colors["Eyes"],
+		eyes), ";")
+	to_chat(src, span_notice("Exported style string is \" [output_style] \". Use this to get the same style in the future with import style"))
+
+/mob/living/simple_mob/vore/bigdragon/proc/import_style()
+	set name = "Import style string"
+	set desc = "Import a string of text that was made using the import style verb to get back that style"
+	set category = "Abilities.Settings"
+	var/input_style
+	input_style = sanitizeSafe(tgui_input_text(src,"Paste the style string you exported with Export Style.", "Style loading"))
+	if(input_style)
+		var/list/input_style_list = splittext(input_style, ";")
+		if((LAZYLEN(input_style_list) == 12) && (input_style_list[2] in underbelly_styles) && (input_style_list[4] in body_styles) && (input_style_list[6] in ear_styles) && (input_style_list[8] in mane_styles) && (input_style_list[10] in horn_styles) && (input_style_list[12] in ear_styles))
+			try
+				if(rgb2num(input_style_list[1]))
+					overlay_colors["Underbelly"] = input_style_list[1]
+			catch
+			under = input_style_list[2]
+			try
+				if(rgb2num(input_style_list[3]))
+					overlay_colors["Body"] = input_style_list[3]
+			catch
+			body = input_style_list[4]
+			try
+				if(rgb2num(input_style_list[5]))
+					overlay_colors["Ears"] = input_style_list[5]
+			catch
+			ears = input_style_list[6]
+			try
+				if(rgb2num(input_style_list[7]))
+					overlay_colors["Mane"] = input_style_list[7]
+			catch
+			mane = input_style_list[8]
+			try
+				if(rgb2num(input_style_list[9]))
+					overlay_colors["Horns"] = input_style_list[9]
+			catch
+			horns = input_style_list[10]
+			try
+				if(rgb2num(input_style_list[11]))
+					overlay_colors["Eyes"] = input_style_list[11]
+			catch
+			eyes = input_style_list[12]
+			build_icons()

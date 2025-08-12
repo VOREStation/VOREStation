@@ -1492,3 +1492,10 @@
 
 /decl/chemical_reaction/instant/potato_juice_metal_paint/send_data()
 	return "#2e2a21"
+
+/decl/chemical_reaction/instant/aphrodisiac
+	name = REAGENT_APHRODISIAC
+	id = REAGENT_ID_APHRODISIAC
+	result = REAGENT_ID_APHRODISIAC
+	required_reagents = list(REAGENT_ID_CARBON = 2, REAGENT_ID_HYDROGEN = 2, REAGENT_ID_OXYGEN = 2, REAGENT_ID_WATER = 1)
+	result_amount = 6

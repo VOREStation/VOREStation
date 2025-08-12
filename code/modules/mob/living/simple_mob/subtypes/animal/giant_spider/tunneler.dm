@@ -207,3 +207,18 @@
 
 	incoming_damage_percent = 2
 	evasion = -100
+
+/mob/living/simple_mob/animal/giant_spider/tunneler/cave
+	name = "cave spider"
+	desc = "Sandy and brown, it makes you shudder to look at it. However, this one doesn't seem very interested in bothering you."
+	maxHealth = 25
+	health = 25
+	harm_intent_damage = 5
+	melee_damage_lower = 5
+	melee_damage_upper = 5
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	meat_amount = 1 // Scrawny little things! It's no wonder they don't want to fight you!
+
+/mob/living/simple_mob/animal/giant_spider/tunneler/cave/Initialize(mapload)
+	. = ..()
+	resize(0.50)

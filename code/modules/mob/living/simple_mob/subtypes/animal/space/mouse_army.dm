@@ -363,7 +363,7 @@
 	name = "\improper Whisker Tank"
 	desc = "A shockingly functional, miniaturized tank. Its inventor is unknown, but widely reviled."
 	catalogue_data = list(/datum/category_item/catalogue/technology/mouse_tank)
-	icon = 'modular_chomp/icons/mob/animal_ch.dmi'
+	icon = 'icons/mob/mouse_army.dmi'
 	icon_state = "whisker"
 	wreckage = /obj/structure/loot_pile/mecha/mouse_tank
 	faction = "mouse_army"

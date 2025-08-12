@@ -27,6 +27,8 @@
 #define REAGENT_ID_FLUORINE "fluorine"
 #define REAGENT_CHLORINE "Chlorine"
 #define REAGENT_ID_CHLORINE "chlorine"
+#define REAGENT_MIASMA "Miasma"
+#define REAGENT_ID_MIASMA "miasma"
 
 
 // Fluid Reagents
@@ -147,6 +149,8 @@
 #define REAGENT_ID_PAROXETINE "paroxetine"
 #define REAGENT_QERRQUEM "Qerr-quem"
 #define REAGENT_ID_QERRQUEM "qerr_quem"
+#define REAGENT_APHRODISIAC "Aphrodisiac"
+#define REAGENT_ID_APHRODISIAC "aphrodisiac"
 
 
 // Modifiers
@@ -433,6 +437,8 @@
 #define REAGENT_ID_LIQUIDCARPETO "liquidcarpeto"
 #define REAGENT_ESSENTIALOIL "Essential Oils"
 #define REAGENT_ID_ESSENTIALOIL "essential_oil"
+#define REAGENT_PITCHERNECTAR "Pitcher Nectar"
+#define REAGENT_ID_PITCHERNECTAR "pitcher_nectar"
 
 
 // Admin chems
@@ -1369,6 +1375,11 @@
 #define REAGENT_ID_METAMORPHIC "metamorphic"
 #define REAGENT_BINDING "Binding Metal"
 #define REAGENT_ID_BINDING "binding"
+#define REAGENT_NUMBING_FLUID "Numbing Fluid"
+#define REAGENT_ID_NUMBING_FLUID "succubi_numbing"
+#define REAGENT_PARALYZE_FLUID "Paralyzing Fluid"
+#define REAGENT_ID_PARALYZE_FLUID "succubi_paralize"
+#define REAGENT_ID_APHRODIAC_FLUID "succubi_aphrodisiac"
 
 
 // Xenoslimes

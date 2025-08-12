@@ -48,7 +48,7 @@
 	minbodytemp = 0
 
 	corpse = /obj/effect/landmark/mobcorpse/vox/pirate
-	loot_list = list(/obj/item/gun/projectile/shotgun/pump/rifle/vox_hunting = 100,
+	loot_list = list(/*/obj/item/gun/projectile/shotgun/pump/rifle/vox_hunting = 100, Downstream */
 					/obj/item/ammo_magazine/clip/c762 = 30,
 					/obj/item/ammo_magazine/clip/c762 = 30
 					)

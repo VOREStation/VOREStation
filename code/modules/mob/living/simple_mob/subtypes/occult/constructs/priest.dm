@@ -10,7 +10,7 @@
 	desc = "A medium sized construct of the purity worshippers mechanical followers, sturdy but lacking strength."
 	icon_state = "priest"
 	icon_living = "priest"
-	ui_icons = 'modular_chomp/icons/mob/screen1_purity.dmi'
+	ui_icons = 'icons/mob/screen1_purity.dmi'
 	maxHealth = 200
 	health = 200
 	response_harm = "viciously beaten"
