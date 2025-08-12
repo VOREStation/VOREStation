@@ -96,6 +96,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	add_verb(src,/mob/living/simple_mob/proc/animal_mount)
 	add_verb(src,/mob/living/proc/toggle_rider_reins)
+	add_verb(src,/mob/living/simple_mob/proc/pick_color)
 	movement_cooldown = -1.5 // 1.5 Downstream
 
 /mob/living/simple_mob/vore/greatwolf/MouseDrop_T(mob/living/M, mob/living/user)
