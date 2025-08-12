@@ -192,6 +192,12 @@
 		stun_time -= min(flicker_break_chance / 5, 1)
 	return stun_time
 
+///Sees if the savefile we have selected in CHARACTER SETUP is the same as our ACTIVE CHARACTER savefile.
+/datum/component/shadekin/proc/correct_savefile_selected()
+	if(owner.client.prefs.default_slot == owner.mind.loaded_from_slot)
+		return TRUE
+	return FALSE
+
 /datum/component/shadekin/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -208,6 +214,7 @@
 		"no_retreat" = no_retreat,
 		"nutrition_energy_conversion" = nutrition_energy_conversion,
 		"extended_kin" = extended_kin,
+		"savefile_selected" = correct_savefile_selected()
 	)
 
 	return data
