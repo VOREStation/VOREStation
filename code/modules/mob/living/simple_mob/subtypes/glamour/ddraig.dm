@@ -35,7 +35,17 @@
 	can_buckle = TRUE
 	buckle_movable = TRUE
 	buckle_lying = FALSE
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
 	minbodytemp = 0
+	maxbodytemp = 99999
+	heat_resist = 1
 
 	var/flames
 	var/firebreathtimer
@@ -48,6 +58,8 @@
 
 	var/leap_warmup = 2 SECOND // How long the leap telegraphing is.
 	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
+
+	status_flags = null
 
 /mob/living/simple_mob/vore/ddraig
 
@@ -64,6 +76,13 @@
 	vore_default_mode = DM_DIGEST
 	vore_pounce_maxhealth = 125
 	vore_bump_emote = "tries to devour"
+
+/mob/living/simple_mob/vore/ddraig/faster
+	special_attack_cooldown = 10 SECONDS
+	charge_warmup = 1.5 SECOND
+	tf_warmup = 1 SECOND
+	leap_warmup = 1 SECOND
+	movement_cooldown = -3
 
 /mob/living/simple_mob/vore/ddraig/Login()
 	. = ..()

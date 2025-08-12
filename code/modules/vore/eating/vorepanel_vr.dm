@@ -15,7 +15,7 @@
 	set name = "Vore Panel"
 	set category = "IC.Vore"
 
-	if(SSticker.current_state == GAME_STATE_INIT)
+	if(SSticker.current_state == GAME_STATE_STARTUP)
 		return
 
 	if(!isliving(src))
@@ -405,6 +405,12 @@
 			host.eating_privacy_global = !host.eating_privacy_global
 			if(host.client.prefs_vr)
 				host.eating_privacy_global = host.eating_privacy_global
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_death_privacy")
+			host.vore_death_privacy = !host.vore_death_privacy
+			if(host.client.prefs_vr)
+				host.vore_death_privacy = host.vore_death_privacy
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_mimicry")
