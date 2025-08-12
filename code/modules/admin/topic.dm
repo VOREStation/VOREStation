@@ -1862,6 +1862,7 @@
 				return
 			var/lang2toggle = href_list["lang"]
 			var/datum/language/L = GLOB.all_languages[lang2toggle]
+			to_world("Do we have one? [lang2toggle]")
 
 			if(L in M.languages)
 				if(!M.remove_language(lang2toggle))
