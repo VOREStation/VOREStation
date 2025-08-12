@@ -31,7 +31,6 @@ const connectionsMatch = (a: Client, b: Client) =>
 export const telemetryMiddleware = (store) => {
   let telemetry: Telemetry;
   let wasRequestedWithPayload: Telemetry | null;
-  let firstMutate: boolean = true;
   return (next) => (action) => {
     const { type, payload } = action;
     // Handle telemetry requests
@@ -88,8 +87,8 @@ export const telemetryMiddleware = (store) => {
             telemetry.connections.pop();
           }
         }
-        if (firstMutate) {
-          firstMutate = false;
+        // Save telemetry
+        if (telemetryMutated) {
           store.dispatch(
             getChatData({ ckey: client.ckey, token: client.chatlog_token }),
           );
@@ -99,9 +98,6 @@ export const telemetryMiddleware = (store) => {
               token: client.chatlog_token,
             }),
           );
-        }
-        // Save telemetry
-        if (telemetryMutated) {
           logger.debug('saving telemetry to storage', telemetry);
           storage.set('telemetry', telemetry);
         }
