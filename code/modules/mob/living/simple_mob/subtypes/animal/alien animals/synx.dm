@@ -2,7 +2,7 @@
 #define SYNX_UPPER_DAMAGE 6
 
 
-/mob/living/simple_mob/animal/synx/ //Player controlled variant
+/mob/living/simple_mob/animal/synx //Player controlled variant
 	//on inteligence https://synx.fandom.com/wiki/Behavior/Intelligence //keeping this here for player controlled synxes.
 	name = "Synx"
 	desc = "A cold blooded, genderless, parasitic eel from the more distant and stranger areas of the cosmos. Plain, white, perpetually grinning and possessing a hunger as enthusiastic and endless as humanity's sense of exploration."
