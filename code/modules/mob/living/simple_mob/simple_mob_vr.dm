@@ -229,6 +229,8 @@
 	add_verb(src, /mob/living/simple_mob/proc/animal_nom)
 	add_verb(src, /mob/living/proc/shred_limb)
 	add_verb(src, /mob/living/simple_mob/proc/nutrition_heal)
+	add_verb(src, /mob/living/proc/eat_trash)
+	add_verb(src, /mob/living/proc/toggle_trash_catching)
 
 	if(LAZYLEN(vore_organs))
 		return
