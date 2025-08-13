@@ -99,6 +99,7 @@ export const telemetryMiddleware = (store) => {
               token: client.chatlog_token,
             }),
           );
+        }
           // Save telemetry
           if (telemetryMutated) {
           logger.debug('saving telemetry to storage', telemetry);
