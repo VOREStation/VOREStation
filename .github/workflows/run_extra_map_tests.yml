@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Ensure +x on CI directory
         run: |
           chmod -R +x ./tools/ci

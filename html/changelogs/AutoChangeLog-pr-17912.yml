@@ -1,7 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - refactor: "Ticker subsystem heavily updated"
-  - refactor: "Master Controller heavily updated"
-  - refactor: "Unit testing system reworked"
-  - rscadd: "Master Controller overview & subsystem UI for maintainers to debug with"

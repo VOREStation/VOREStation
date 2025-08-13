@@ -225,3 +225,75 @@
   - code_imp: added missing SIGNAL_HANDLER macros to other elements
   - code_imp: split say() into a second nonblocking half, direct_say()
   - code_imp: telecomms uses timers instead of sleep for transmission delay
+2025-08-10:
+  Diana:
+  - bugfix: Whisper will now be the correct volume
+  ItsSelis:
+  - refactor: Ticker subsystem heavily updated
+  - refactor: Master Controller heavily updated
+  - refactor: Unit testing system reworked
+  - rscadd: Master Controller overview & subsystem UI for maintainers to debug with
+  Kashargul:
+  - bugfix: tail layering pref breaking the entire character
+  - bugfix: several issues with accidental pref saves
+  TankTheBirb:
+  - spellcheck: fain -> gain in the belly tooltips for nutrition
+  Tenryumi:
+  - maptweak: 'Added privacy features to the redgate train: Shutters, windows tints,
+      and privacy switches.'
+  Will:
+  - rscadd: Offices chairs now spin when you spin
+  - rscadd: Petcube boxes with dehydrated backup department pets
+  Willburd:
+  - rscadd: You can now make decaf tea using decaffeinated tea powder and water
+  - bugfix: missing fragmentation grenade iconstate
+2025-08-11:
+  Diana:
+  - bugfix: Eating a prey with Drippy will not longer make you drip them.
+  - bugfix: white chocolate will not annihilate you if you're allergic to chocolate
+  Will:
+  - bugfix: Hippo death sprites fixed
+  - bugfix: Hippos no longer pretend to be squids when eating you
+  - rscadd: Pai death alarm software
+2025-08-12:
+  Cameron-The-Raven:
+  - balance: Remove 100% invisi
+  Diana:
+  - bugfix: Agoraphobia no longer makes you hallucinate and lose your mind while in
+      a tummy
+  - rscadd: Slimes can be eaten if they are obedient to the point that you can command
+      them and you discipline them OR you make them harmless with a docility potion
+  Kashargul:
+  - qol: sorts cyborg modules again
+  KillianKirilenko:
+  - rscadd: Added a range of AR mantles, essentially reskinned AR glasses
+  - bugfix: fixed the description for tracking implants in loadouts
+  - bugfix: fixed being able to "shade" the AR-VZR which just made it disappear instead
+  SatinIsle:
+  - admin: Added admin logging to ghosts for when they make their sprite invisible,
+      so that they can be tracked if needs be.
+  - balance: Tweaked some glamour mobs to make better use of them in dangerous environments,
+      and make them not perma-locked by magnetic weapons. Includes a stronger version
+      of the ddraig, more suited for tough boss encounters.
+  - qol: Added a vore death privacy pref, which prevents "X has died at Y [jump]"
+      from popping up to ghosts when you die in a belly.
+  TankTheBirb:
+  - rscadd: Added circuit debugger and circuit wirer to the integrated circuit printer
+      supply pack
+  - rscadd: removed one of the two circuit printers in the integrated circuit printer
+      supply pack to keep the point cost reasonable
+  Will:
+  - rscadd: Adds the ability to test ringtones in the character editor loadout screen
+  - rscadd: Communicators get more ringtones
+  - rscadd: Adds some downstream ringtones
+  - code_imp: Moves ringtones to a shared global list
+  - bugfix: Typo in communicator loadout
+  - rscadd: Deconstructing ladders
+  - bugfix: Illegal initialize call from ladder assemblies.
+2025-08-13:
+  Aroliacue:
+  - bugfix: Cell-Loaded Revolver's 'Scatterstun' mode now has projectile icons.
+  - spellcheck: Fixed some errors in the Revolver's description.
+  Diana:
+  - qol: Makes placing ti
+  - code_imp: Fixes some backend logic for hitting floors
