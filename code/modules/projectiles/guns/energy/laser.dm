@@ -467,3 +467,6 @@
 	charge_cost = 1500 //You got 1 shot...
 	projectile_type = /obj/item/projectile/beam/heavylaser //But it hurts a lot
 	cell_type = /obj/item/cell/device/weapon
+
+/obj/item/gun/energy/zip/craftable
+	battery_lock = 1 //makeshift gun has flaws

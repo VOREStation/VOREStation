@@ -973,7 +973,7 @@
 
 				for(var/obj/item/organ/E in H.bad_external_organs)
 					var/obj/item/organ/external/affected = E
-					if((affected.damage < affected.min_broken_damage * CONFIG_GET(number/organ_health_multiplier)) && (affected.status & ORGAN_BROKEN)) // CHOMPEdit
+					if((affected.damage < affected.min_broken_damage * CONFIG_GET(number/organ_health_multiplier)) && (affected.status & ORGAN_BROKEN))
 						affected.status &= ~ORGAN_BROKEN
 
 					for(var/datum/wound/W in affected.wounds)

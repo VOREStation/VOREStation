@@ -127,7 +127,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	say_list_type = /datum/say_list/gaslamp
 	ai_holder_type = /datum/ai_holder/simple_mob/gaslamp
 
-	melee_damage_lower = 5 // Because fuck anyone who hurts this sweet, innocent creature. CHOMPS KSC 8/12/20 "I don't care if they are sweet, 30 damage a wrong way to balance cuteness"
+	melee_damage_lower = 5
 	melee_damage_upper = 10
 	attacktext = list("thrashed")
 	friendly = "caressed"

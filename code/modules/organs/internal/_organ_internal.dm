@@ -6,6 +6,11 @@
 
 	var/supply_conversion_value = 0
 
+/obj/item/organ/internal/Initialize(mapload, internal)
+	. = ..()
+	if(supply_conversion_value)
+		AddElement(/datum/element/sellable/organ)
+
 /obj/item/organ/internal/die()
 	..()
 	if((status & ORGAN_DEAD) && dead_icon)

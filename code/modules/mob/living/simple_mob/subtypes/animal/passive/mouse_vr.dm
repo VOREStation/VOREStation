@@ -78,8 +78,8 @@
 /mob/living/simple_mob/animal/passive/mouse/mining/Initialize(mapload)
 	. = ..()
 
-	add_verb(src,/mob/living/proc/ventcrawl) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/proc/hide) //CHOMPEdit TGPanel
+	add_verb(src,/mob/living/proc/ventcrawl)
+	add_verb(src,/mob/living/proc/hide)
 	icon_state = "mouse_miner"
 	item_state = "mouse_miner"
 	icon_living = "mouse_miner"

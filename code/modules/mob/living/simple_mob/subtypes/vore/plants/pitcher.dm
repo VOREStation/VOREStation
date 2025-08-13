@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 	"Doesn't the pitcher plant smell amazing?")) //Messages sent to nearby players if the pitcher is trying to lure prey. This is global to prevent a new list every time a new pitcher plant spawns.
 
 //Pitcher plants, a passive carnivorous plant mob for xenobio and space vine spawning.
-//Consider making immune to space vine entangling. Check entangle_immunity in the old CHOMPstation github for an example.
+//Consider making immune to space vine entangling.
 /mob/living/simple_mob/vore/pitcher_plant
 	name = "pitcher plant"
 	desc = "A carnivorous pitcher plant, bigger than a man."

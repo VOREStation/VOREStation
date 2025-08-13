@@ -82,7 +82,7 @@ They're also cool, and Rykka/Nyria wrote this uwu
 
 	say_list_type = /datum/say_list/hyena
 
-	allow_mind_transfer = TRUE //CHOMPAdd
+	allow_mind_transfer = TRUE
 
 	var/obj/item/clothing/head/hat = null // The hat the yeen is wearing when initialized, var will update with the chosen hat.
 
@@ -113,7 +113,7 @@ They're also cool, and Rykka/Nyria wrote this uwu
 /mob/living/simple_mob/animal/hyena/verb/give_hat()
 	set name = "Give Hat"
 	set desc = "Give the yeen a hat. You wonderful bean. <3"
-	set category = "Abilities.Hyena" //CHOMPEdit
+	set category = "Abilities.Hyena"
 	set src in view(1)
 
 	take_hat(usr)

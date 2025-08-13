@@ -376,11 +376,11 @@
 /mob/living/simple_mob/vore/retaliate/corrupthound/janihound/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
-	B.vore_sound = "Tauric Swallow"				// CHOMPedit - Fancy Vore Sounds
-	B.release_sound = "Pred Escape"				// CHOMPedit - Fancy Vore Sounds
-	B.fancy_vore = 1							// CHOMPedit - Fancy Vore Sounds
-	B.belly_fullscreen_color = "#380000" 		// CHOMPedit - Belly Fullscreen
-	B.belly_fullscreen = "anim_belly" 			// CHOMPedit - Belly Fullscreen
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.belly_fullscreen_color = "#380000"
+	B.belly_fullscreen = "anim_belly"
 	B.name = "fuel processor"
 	B.desc = "Uttering distorted growls and fragmented voice clips all the while, the corrupted hound gulps the rest of your squirming figure past its jaws... which snap shut with an audible click of metal on metal. Your trip down its slickly lubricated, rubbery gullet is a tight and efficient one... and once you spill out into the machine's fuel processor, your weight making it sag slightly, hot-and-thick slime begins oozing all over your form. Only time will tell if you're destined to become fuel for its next bout of rampaging... be it days, hours, or just mere minutes..."
 

@@ -2,7 +2,7 @@
 #define SYNX_UPPER_DAMAGE 6
 
 
-/mob/living/simple_mob/animal/synx/ //Player controlled variant
+/mob/living/simple_mob/animal/synx //Player controlled variant
 	//on inteligence https://synx.fandom.com/wiki/Behavior/Intelligence //keeping this here for player controlled synxes.
 	name = "Synx"
 	desc = "A cold blooded, genderless, parasitic eel from the more distant and stranger areas of the cosmos. Plain, white, perpetually grinning and possessing a hunger as enthusiastic and endless as humanity's sense of exploration."
@@ -110,13 +110,6 @@
 	attack_edge = 1
 	attack_armor_type = "melee" //Default is melee but I'm stating this explicitly to make it more obvious to anybody reading this
 
-/mob/living/simple_mob/animal/synx/Initialize(mapload)
-	. = ..()
-	src.adjust_nutrition(src.max_nutrition)
-	build_icons(1)
-	voremob_loaded = 1
-	mob_radio = new /obj/item/radio/headset/mob_headset(src)	//We always give radios to spawned mobs anyway
-
 //Vore stuff//leaving most of this here even though its no going to be an AI controlled variant.
 	vore_active = 1
 	vore_capacity = 2
@@ -145,6 +138,16 @@
 	min_n2 = 0
 	max_n2 = 0 //Maybe add a max
 	// TODO: Set a max temperature of about 20-30 above room temperatures. Synx don't like the heat.
+
+
+/mob/living/simple_mob/animal/synx/Initialize(mapload)
+	. = ..()
+	src.adjust_nutrition(src.max_nutrition)
+	build_icons(1)
+	if(!voremob_loaded)
+		voremob_loaded = TRUE
+		init_vore()
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)	//We always give radios to spawned mobs anyway
 
 /mob/living/simple_mob/animal/synx/get_available_emotes()
 	. = ..()
@@ -214,14 +217,14 @@
 	. = ..()
 	if(is_pet)
 		return
-	add_verb(src,/mob/living/proc/ventcrawl) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/distend_stomach) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/proc/contort) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/sonar_ping) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/proc/shred_limb) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/disguise) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/randomspeech) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/set_style) //CHOMPEdit TGPanel
+	add_verb(src,/mob/living/proc/ventcrawl)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/distend_stomach)
+	add_verb(src,/mob/living/simple_mob/proc/contort)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/sonar_ping)
+	add_verb(src,/mob/living/proc/shred_limb)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/disguise)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/randomspeech)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/set_style)
 	realname = name
 	voices += "Garbled voice"
 	voices += "Unidentifiable Voice"
@@ -957,9 +960,9 @@
 
 /mob/living/simple_mob/animal/synx/ai/pet/debug/Initialize(mapload)
 	. = ..(mapload, TRUE)
-	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/rename) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/resprite) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/redesc) //CHOMPEdit TGPanel
+	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/rename)
+	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/resprite)
+	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/redesc)
 
 ////////////////////////////////////////
 ////////////////SYNX SPAWNER////////////

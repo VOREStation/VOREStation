@@ -1039,6 +1039,8 @@
 #define REAGENT_ID_CHAMPAGNE "champagne"
 #define REAGENT_CIDER "Cider"
 #define REAGENT_ID_CIDER "cider"
+#define REAGENT_TEAMUSH "Tea mush"
+#define REAGENT_ID_TEAMUSH "teamush"
 
 // Cocktails
 #define REAGENT_ACIDSPIT "Acid Spit"
