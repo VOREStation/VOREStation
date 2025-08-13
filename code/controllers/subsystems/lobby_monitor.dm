@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(lobby_monitor)
 			continue
 
 		log_tgui(player, "Reinitialized [player.client.ckey]'s lobby window: [ui ? "ui" : "no ui"], status: [player.lobby_window?.status].", "lobby_monitor/Fire")
-		addtimer(CALLBACK(src, PROC_REF(do_reinit), player), 0.5 SECONDS)
+		do_reinit(player)
 
 	var/initialize_queue = list()
 	for(var/mob/new_player/player as anything in new_players)
