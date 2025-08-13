@@ -290,3 +290,10 @@
   - bugfix: Typo in communicator loadout
   - rscadd: Deconstructing ladders
   - bugfix: Illegal initialize call from ladder assemblies.
+2025-08-13:
+  Aroliacue:
+  - bugfix: Cell-Loaded Revolver's 'Scatterstun' mode now has projectile icons.
+  - spellcheck: Fixed some errors in the Revolver's description.
+  Diana:
+  - qol: Makes placing ti
+  - code_imp: Fixes some backend logic for hitting floors
