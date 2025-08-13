@@ -63,16 +63,16 @@
 
 	var/rank //pyro, operative, ammo, stealth. more to come. Do not leave blank.
 
-	can_be_drop_prey = FALSE //CHOMP Add
+	can_be_drop_prey = FALSE
 	species_sounds = "Mouse"
-	pain_emote_1p = list("squeak", "squik") // CHOMP Addition: Pain/etc sounds
-	pain_emote_1p = list("squeaks", "squiks") // CHOMP Addition: Pain/etc sounds
+	pain_emote_1p = list("squeak", "squik")
+	pain_emote_1p = list("squeaks", "squiks")
 
 /mob/living/simple_mob/animal/space/mouse_army/Initialize(mapload)
 	. = ..()
 
-	add_verb(src,/mob/living/proc/ventcrawl) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/proc/hide) //CHOMPEdit TGPanel
+	add_verb(src,/mob/living/proc/ventcrawl)
+	add_verb(src,/mob/living/proc/hide)
 
 	if(name == initial(name))
 		name = "[name] ([rand(1, 1000)])"

@@ -135,7 +135,7 @@
 		visible_message(span_danger("\The [src] suddenly rises from a pool of blood \the [L]!"))
 		new /obj/effect/decal/cleanable/blood (src.loc)
 		playsound(L, 'sound/weapons/heavysmash.ogg', 75, 1)
-		L.add_modifier(/datum/modifier/entangled, 1 SECONDS) //L.Weaken(3) CHOMPedit: Trying to remove hardstuns, replacing it with slow down
+		L.add_modifier(/datum/modifier/entangled, 1 SECONDS)
 		overshoot = FALSE
 
 	if(!overshoot) // We hit the target, or something, at destination, so we're done.
