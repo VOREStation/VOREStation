@@ -1,0 +1,4 @@
+author: "Fracshun"
+delete-after: True
+changes:
+  - rscadd: "Absorbed prey can now be renamed"
