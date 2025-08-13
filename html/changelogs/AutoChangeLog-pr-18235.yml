@@ -1,5 +1,0 @@
-author: "Aroliacue"
-delete-after: True
-changes:
-  - bugfix: "Cell-Loaded Revolver's 'Scatterstun' mode now has projectile icons."
-  - spellcheck: "Fixed some errors in the Revolver's description."
