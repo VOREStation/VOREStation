@@ -6,10 +6,10 @@ on:
 jobs:
   linters:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
             fetch-depth: 0
       # Caches

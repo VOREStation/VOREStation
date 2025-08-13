@@ -42,6 +42,7 @@
 		"consume_liquid_belly" = owner.consume_liquid_belly,
 		"digest_pain" = owner.digest_pain,
 		"eating_privacy_global" = owner.eating_privacy_global,
+		"vore_death_privacy" = owner.vore_death_privacy,
 		"allow_mimicry" = owner.allow_mimicry,
 		//Soulcatcher
 		"soulcatcher_allow_capture" = owner.soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE,
