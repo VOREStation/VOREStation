@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "Deconstructing ladders"
-  - bugfix: "Illegal initialize call from ladder assemblies."

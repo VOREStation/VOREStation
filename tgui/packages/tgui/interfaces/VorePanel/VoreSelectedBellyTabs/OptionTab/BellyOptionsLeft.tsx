@@ -176,7 +176,7 @@ export const BellyOptionsLeft = (props: {
             active={!!absorbedrename_enabled}
             tooltip={
               (absorbedrename_enabled ? 'Dis' : 'En') +
-              'ables renaming absorbed prey.'
+              'ables renaming absorbed prey. Please keep in mind bystander consent when enabling this setting. This is your only warning.'
             }
           />
         </LabeledList.Item>

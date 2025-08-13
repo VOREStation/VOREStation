@@ -76,6 +76,14 @@
 	if(input)
 		log_subtle(message,src)
 		message = span_emote_subtle(span_bold("[src]") + " " + span_italics("[input]"))
+		if(src.absorbed && isbelly(src.loc))
+			var/obj/belly/B = src.loc
+			if(B.absorbedrename_enabled)
+				var/formatted_name = B.absorbedrename_name
+				formatted_name = replacetext(formatted_name,"%pred",B.owner)
+				formatted_name = replacetext(formatted_name,"%belly",B.name)
+				formatted_name = replacetext(formatted_name,"%prey",name)
+				message = span_emote_subtle(span_bold("[formatted_name]") + " " + span_italics("[input]"))
 		if(!(subtle_mode == "Adjacent Turfs (Default)"))
 			message = span_bold("(T) ") + message
 	else
