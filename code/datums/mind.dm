@@ -2,7 +2,7 @@
 		The way datum/mind stuff works has been changed a lot.
 		Minds now represent IC characters rather than following a client around constantly.
 	Guidelines for using minds properly:
-	-	Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
+	-	Never mind.transfer_to(ghost). The var/current and var/original_character of a mind must always be of type mob/living!
 		ghost.mind is however used as a reference to the ghost's corpse
 	-	When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
 		the existing mind of the old mob should be transfered to the new mob like so:
@@ -23,7 +23,7 @@
 	var/key
 	var/name				//replaces mob/var/original_name
 	var/mob/living/current
-	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
+	var/datum/weakref/original_character //replaces /mob/living/original
 	var/active = 0
 
 	var/memory
@@ -508,7 +508,7 @@
 		mind.key = key
 	else
 		mind = new /datum/mind(key)
-		mind.original = src
+		mind.original_character = WEAKREF(src)
 		if(SSticker)
 			SSticker.minds += mind
 		else

@@ -10,7 +10,7 @@
 		player.current = new mob_path(get_turf(player.current))
 		player.transfer_to(player.current)
 		if(holder) qdel(holder)
-	player.original = player.current
+	player.original_character = WEAKREF(player.current)
 	if(!preserve_appearance && (flags & ANTAG_SET_APPEARANCE))
 		spawn(3)
 			var/mob/living/carbon/human/H = player.current

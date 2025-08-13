@@ -192,6 +192,12 @@
 		stun_time -= min(flicker_break_chance / 5, 1)
 	return stun_time
 
+///Sees if the savefile we have selected in CHARACTER SETUP is the same as our ACTIVE CHARACTER savefile.
+/datum/component/shadekin/proc/correct_savefile_selected()
+	if(owner.client.prefs.default_slot == owner.mind.loaded_from_slot)
+		return TRUE
+	return FALSE
+
 /datum/component/shadekin/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -208,6 +214,7 @@
 		"no_retreat" = no_retreat,
 		"nutrition_energy_conversion" = nutrition_energy_conversion,
 		"extended_kin" = extended_kin,
+		"savefile_selected" = correct_savefile_selected()
 	)
 
 	return data
@@ -227,14 +234,14 @@
 			if(!isnum(new_time))
 				return FALSE
 			flicker_time = new_time
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_time, new_time, WRITE_PREF_MANUAL)
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_time, new_time, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 			return TRUE
 		if("adjust_color")
 			var/set_new_color = tgui_color_picker(ui.user, "Select a color you wish the lights to flicker as (Default is #E0EFF0)", "Color Selector", flicker_color)
 			if(!set_new_color)
 				return FALSE
 			flicker_color = set_new_color
-			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color, WRITE_PREF_MANUAL)
+			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 			return TRUE
 		if("adjust_break")
 			var/new_break_chance = text2num(params["val"])
@@ -242,7 +249,7 @@
 			if(!isnum(new_break_chance))
 				return FALSE
 			flicker_break_chance = new_break_chance
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_break_chance, WRITE_PREF_MANUAL)
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_break_chance, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 			return TRUE
 		if("adjust_distance")
 			var/new_distance = text2num(params["val"])
@@ -250,16 +257,16 @@
 			if(!isnum(new_distance))
 				return FALSE
 			flicker_distance = new_distance
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_distance, new_distance, WRITE_PREF_MANUAL)
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_distance, new_distance, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 			return TRUE
 		if("toggle_retreat")
 			var/new_retreat = !no_retreat
 			no_retreat = !no_retreat
-			ui.user.write_preference_directly(/datum/preference/toggle/living/dark_retreat_toggle, new_retreat, WRITE_PREF_MANUAL)
+			ui.user.write_preference_directly(/datum/preference/toggle/living/dark_retreat_toggle, new_retreat, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 		if("toggle_nutrition")
 			var/new_retreat = !nutrition_energy_conversion
 			nutrition_energy_conversion = !nutrition_energy_conversion
-			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_nutrition_conversion, new_retreat, WRITE_PREF_MANUAL)
+			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_nutrition_conversion, new_retreat, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 
 /mob/living/proc/shadekin_control_panel()
 	set name = "Shadekin Control Panel"
