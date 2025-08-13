@@ -1,0 +1,5 @@
+author: "Cameron-The-Raven"
+delete-after: True
+changes:
+  - bugfix: "Slimes are devourable again"
+  - bugfix: "Loyalty potions make slimes able to be spont vored."
