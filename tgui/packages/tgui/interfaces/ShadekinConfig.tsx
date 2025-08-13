@@ -53,7 +53,7 @@ export const ShadekinConfig = (props) => {
               <NoticeBox>Subtle Phasing, causes {stun_time} s stun.</NoticeBox>
             </Stack.Item>
           )}
-          {!!!savefile_selected && (
+          {!savefile_selected && (
             <Stack.Item>
               <NoticeBox>WARNING: Your current selected savefile (in Character Setup) is not the same as your currently loaded savefile. Please select it to prevent savefile corruption.</NoticeBox>
             </Stack.Item>
@@ -140,7 +140,7 @@ export const ShadekinConfig = (props) => {
               </LabeledList>
             </Section>
           </Stack.Item>
-          {!!extended_kin && (
+          {extended_kin && (
             <Stack.Item>
               <Section fill title="Misc Settings">
                 <LabeledList.Item label="Retreat on Death">
