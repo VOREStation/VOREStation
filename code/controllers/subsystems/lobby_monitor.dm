@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(lobby_monitor)
 	name = "Lobby Art"
 	init_stage = INITSTAGE_EARLY
 	flags = SS_NO_INIT
-	wait = 1 SECOND
+	wait = 2 SECONDS
 	runlevels = ALL
 
 	/// The clients who we've waited a [wait] duration to start working. If they haven't, we reboot them
