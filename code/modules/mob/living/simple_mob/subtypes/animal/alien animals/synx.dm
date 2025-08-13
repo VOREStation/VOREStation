@@ -214,14 +214,14 @@
 	. = ..()
 	if(is_pet)
 		return
-	add_verb(src,/mob/living/proc/ventcrawl) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/distend_stomach) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/proc/contort) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/sonar_ping) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/proc/shred_limb) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/disguise) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/randomspeech) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/proc/set_style) //CHOMPEdit TGPanel
+	add_verb(src,/mob/living/proc/ventcrawl)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/distend_stomach)
+	add_verb(src,/mob/living/simple_mob/proc/contort)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/sonar_ping)
+	add_verb(src,/mob/living/proc/shred_limb)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/disguise)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/randomspeech)
+	add_verb(src,/mob/living/simple_mob/animal/synx/proc/set_style)
 	realname = name
 	voices += "Garbled voice"
 	voices += "Unidentifiable Voice"
@@ -957,9 +957,9 @@
 
 /mob/living/simple_mob/animal/synx/ai/pet/debug/Initialize(mapload)
 	. = ..(mapload, TRUE)
-	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/rename) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/resprite) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/redesc) //CHOMPEdit TGPanel
+	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/rename)
+	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/resprite)
+	add_verb(src,/mob/living/simple_mob/animal/synx/ai/pet/debug/proc/redesc)
 
 ////////////////////////////////////////
 ////////////////SYNX SPAWNER////////////
