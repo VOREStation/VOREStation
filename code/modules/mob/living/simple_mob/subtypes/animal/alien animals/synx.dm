@@ -110,13 +110,6 @@
 	attack_edge = 1
 	attack_armor_type = "melee" //Default is melee but I'm stating this explicitly to make it more obvious to anybody reading this
 
-/mob/living/simple_mob/animal/synx/Initialize(mapload)
-	. = ..()
-	src.adjust_nutrition(src.max_nutrition)
-	build_icons(1)
-	voremob_loaded = 1
-	mob_radio = new /obj/item/radio/headset/mob_headset(src)	//We always give radios to spawned mobs anyway
-
 //Vore stuff//leaving most of this here even though its no going to be an AI controlled variant.
 	vore_active = 1
 	vore_capacity = 2
@@ -145,6 +138,16 @@
 	min_n2 = 0
 	max_n2 = 0 //Maybe add a max
 	// TODO: Set a max temperature of about 20-30 above room temperatures. Synx don't like the heat.
+
+
+/mob/living/simple_mob/animal/synx/Initialize(mapload)
+	. = ..()
+	src.adjust_nutrition(src.max_nutrition)
+	build_icons(1)
+	if(!voremob_loaded)
+		voremob_loaded = TRUE
+		init_vore()
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)	//We always give radios to spawned mobs anyway
 
 /mob/living/simple_mob/animal/synx/get_available_emotes()
 	. = ..()
