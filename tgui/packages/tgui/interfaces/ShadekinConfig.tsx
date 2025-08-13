@@ -11,6 +11,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   stun_time: number;
@@ -18,9 +19,9 @@ type Data = {
   flicker_color: string | null;
   flicker_break_chance: number;
   flicker_distance: number;
-  no_retreat: number;
-  extended_kin: number;
-  savefile_selected: number;
+  no_retreat: BooleanLike;
+  extended_kin: BooleanLike;
+  savefile_selected: BooleanLike;
   nutrition_energy_conversion: number;
 };
 
@@ -140,7 +141,7 @@ export const ShadekinConfig = (props) => {
               </LabeledList>
             </Section>
           </Stack.Item>
-          {extended_kin && (
+          {!!extended_kin && (
             <Stack.Item>
               <Section fill title="Misc Settings">
                 <LabeledList.Item label="Retreat on Death">
