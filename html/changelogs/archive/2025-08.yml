@@ -255,3 +255,45 @@
   - bugfix: Hippo death sprites fixed
   - bugfix: Hippos no longer pretend to be squids when eating you
   - rscadd: Pai death alarm software
+2025-08-12:
+  Cameron-The-Raven:
+  - balance: Remove 100% invisi
+  Diana:
+  - bugfix: Agoraphobia no longer makes you hallucinate and lose your mind while in
+      a tummy
+  - rscadd: Slimes can be eaten if they are obedient to the point that you can command
+      them and you discipline them OR you make them harmless with a docility potion
+  Kashargul:
+  - qol: sorts cyborg modules again
+  KillianKirilenko:
+  - rscadd: Added a range of AR mantles, essentially reskinned AR glasses
+  - bugfix: fixed the description for tracking implants in loadouts
+  - bugfix: fixed being able to "shade" the AR-VZR which just made it disappear instead
+  SatinIsle:
+  - admin: Added admin logging to ghosts for when they make their sprite invisible,
+      so that they can be tracked if needs be.
+  - balance: Tweaked some glamour mobs to make better use of them in dangerous environments,
+      and make them not perma-locked by magnetic weapons. Includes a stronger version
+      of the ddraig, more suited for tough boss encounters.
+  - qol: Added a vore death privacy pref, which prevents "X has died at Y [jump]"
+      from popping up to ghosts when you die in a belly.
+  TankTheBirb:
+  - rscadd: Added circuit debugger and circuit wirer to the integrated circuit printer
+      supply pack
+  - rscadd: removed one of the two circuit printers in the integrated circuit printer
+      supply pack to keep the point cost reasonable
+  Will:
+  - rscadd: Adds the ability to test ringtones in the character editor loadout screen
+  - rscadd: Communicators get more ringtones
+  - rscadd: Adds some downstream ringtones
+  - code_imp: Moves ringtones to a shared global list
+  - bugfix: Typo in communicator loadout
+  - rscadd: Deconstructing ladders
+  - bugfix: Illegal initialize call from ladder assemblies.
+2025-08-13:
+  Aroliacue:
+  - bugfix: Cell-Loaded Revolver's 'Scatterstun' mode now has projectile icons.
+  - spellcheck: Fixed some errors in the Revolver's description.
+  Diana:
+  - qol: Makes placing ti
+  - code_imp: Fixes some backend logic for hitting floors

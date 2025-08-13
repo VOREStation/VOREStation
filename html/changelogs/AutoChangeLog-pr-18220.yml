@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - qol: "sorts cyborg modules again"
+  - rscadd: "rig usage for crew kin"
