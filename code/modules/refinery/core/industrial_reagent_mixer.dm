@@ -8,7 +8,7 @@
 	idle_power_usage = 0
 	active_power_usage = 50
 	circuit = /obj/item/circuitboard/industrial_reagent_mixer
-	default_max_vol = REAGENT_VAT_VOLUME
+	default_max_vol = 240 // Two large beakers of volume
 	var/mixer_angle = 0
 	var/mixer_rotation_rate = 45
 	var/got_input = FALSE
@@ -37,8 +37,11 @@
 			update_icon()
 	else
 		// Check if we were filled...
-		if(!(locate(/obj/machinery/reagent_refinery) in get_step(src,angle2dir(mixer_angle)))) // If nothing, keep rotating
+		if(mixer_angle % 90 != 0) // Not cardinal, keep going
 			got_input = TRUE
+		else if(!(locate(/obj/machinery/reagent_refinery) in get_step(src,angle2dir(mixer_angle)))) // If nothing, keep rotating
+			got_input = TRUE
+
 		if(got_input)
 			mixer_angle += mixer_rotation_rate
 			got_input = FALSE
@@ -119,7 +122,7 @@
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
 	tutorial(REFINERY_TUTORIAL_SINGLEOUTPUT, .)
 
-/obj/machinery/reagent_refinery/mixer/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
+/obj/machinery/reagent_refinery/mixer/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
 	// no back/forth, filters don't use just their forward, they send the side too!
 	if(mixer_angle % 90 != 0) // Only handle proper directions
 		return 0
@@ -130,8 +133,9 @@
 	if(get_turf(origin_machine) != get_step(src,angle2dir(mixer_angle))) // Check if the mixer arm is pointing at the machine too!
 		return 0
 
-	. = ..(origin_machine, RT, source_forward_dir, filter_id)
+	. = ..(origin_machine, RT, source_forward_dir, transfer_rate, filter_id)
 
 	// If we transfered anything, then inform process() of it!
 	if(.)
 		got_input = TRUE
+		update_icon()

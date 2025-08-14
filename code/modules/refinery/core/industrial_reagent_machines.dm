@@ -100,19 +100,19 @@
 		return 0
 	if(!istype(target,/obj/machinery/reagent_refinery)) // cannot transfer into grinders anyway, so it's fine to do it this way.
 		return 0
-	var/transfered = target.handle_transfer(src,RT,source_forward_dir,filter_id)
+	var/transfered = target.handle_transfer(src,RT,source_forward_dir, amount_per_transfer_from_this, filter_id)
 	if(transfered > 0 && active_power_usage > 0)
 		use_power_oneoff(active_power_usage)
 	return transfered
 
 /// Handles reagent recieving from transfer_tank(), returns how much reagent was transfered if successful. Overriden to prevent access from certain sides or for filtering.
-/obj/machinery/reagent_refinery/proc/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "") // Handle transfers in an override, instead of one monster function that typechecks like transfer_tank() used to be
+/obj/machinery/reagent_refinery/proc/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "") // Handle transfers in an override, instead of one monster function that typechecks like transfer_tank() used to be
 	// Transfer to target in amounts every process tick!
 	if(filter_id == "")
-		var/amount = RT.trans_to_obj(src, amount_per_transfer_from_this)
+		var/amount = RT.trans_to_obj(src, transfer_rate)
 		return amount
 	// Split out reagent...
-	return RT.trans_id_to(src, filter_id, amount_per_transfer_from_this, TRUE)
+	return RT.trans_id_to(src, filter_id, transfer_rate, TRUE)
 
 /obj/machinery/reagent_refinery/proc/refinery_transfer()
 	if(amount_per_transfer_from_this <= 0 || reagents.total_volume <= 0)
@@ -120,9 +120,9 @@
 
 	// dump reagents to next refinery machine
 	var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(get_turf(src),dir)
-	if(reagents.total_volume < minimum_reagents_for_transfer(target))
-		return 0
 	if(!target)
+		return 0
+	if(reagents.total_volume < minimum_reagents_for_transfer(target))
 		return 0
 
 	return transfer_tank( reagents, target, dir)
