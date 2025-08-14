@@ -862,6 +862,7 @@
 			I.loc = selected_pocket
 			if(selected_pocket == current_pocket) //If we put the item into our current pocket, we need to set WR to the item.
 				WR = WEAKREF(I)
+				current_pocket = I
 			return
 		else
 			to_chat(user, span_danger("Your gripper cannot hold \the [target]."))
