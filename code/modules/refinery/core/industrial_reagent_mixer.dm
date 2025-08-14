@@ -1,7 +1,7 @@
 /obj/machinery/reagent_refinery/mixer
 	name = "Industrial Chemical Mixer"
 	desc = "A large mixing machine. Each input is only fed into the mixer once during each rotation."
-	icon_state = "vat"
+	icon_state = "mixer"
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -37,6 +37,8 @@
 			update_icon()
 	else
 		// Check if we were filled...
+		if(!(locate(/obj/machinery/reagent_refinery) in get_step(src,angle2dir(mixer_angle)))) // If nothing, keep rotating
+			got_input = TRUE
 		if(got_input)
 			mixer_angle += mixer_rotation_rate
 			got_input = FALSE
@@ -95,7 +97,7 @@
 /obj/machinery/reagent_refinery/mixer/attack_hand(mob/user)
 	set_rotation()
 
-/obj/machinery/reagent_refinery/filter/verb/set_rotation()
+/obj/machinery/reagent_refinery/mixer/verb/set_rotation()
 	PRIVATE_PROC(TRUE)
 	set name = "Set Mixer Rotation"
 	set category = "Object"
@@ -125,7 +127,8 @@
 		return 0
 	if(dir == GLOB.reverse_dir[source_forward_dir])
 		return 0
-	if(angle2dir(mixer_angle))
+	if(get_turf(origin_machine) != get_step(src,angle2dir(mixer_angle))) // Check if the mixer arm is pointing at the machine too!
+		return 0
 
 	. = ..(origin_machine, RT, source_forward_dir, filter_id)
 
