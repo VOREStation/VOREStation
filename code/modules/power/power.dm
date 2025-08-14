@@ -81,8 +81,6 @@
 
 // remove and disconnect the machine from its current powernet
 /obj/machinery/power/proc/disconnect_from_network()
-	if(SSmachines.powernet_is_defered()) return 0;
-
 	if(!powernet)
 		return 0
 	powernet.remove_machine(src)

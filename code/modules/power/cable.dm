@@ -460,8 +460,6 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 // cut the cable's powernet at this cable and updates the powergrid
 /obj/structure/cable/proc/cut_cable_from_powernet()
-	if(SSmachines.powernet_is_defered()) return;
-
 	var/turf/T1 = loc
 	var/list/P_list
 	if(!T1)	return
