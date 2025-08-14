@@ -100,8 +100,8 @@ export const telemetryMiddleware = (store) => {
             }),
           );
         }
-          // Save telemetry
-          if (telemetryMutated) {
+        // Save telemetry
+        if (telemetryMutated) {
           logger.debug('saving telemetry to storage', telemetry);
           storage.set('telemetry', telemetry);
         }
