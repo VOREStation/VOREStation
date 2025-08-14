@@ -37,7 +37,7 @@
 		cell = new cell(src)
 
 /obj/item/suit_cooling_unit/Destroy()
-	qdel_null(cell)
+	QDEL_NULL(cell)
 	return ..()
 
 /obj/item/suit_cooling_unit/process()

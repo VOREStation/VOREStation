@@ -128,16 +128,16 @@
 			if(!SR.required)
 				continue
 			var/obj/item/slime_extract/E = new SR.required()
-			qdel_swap(fake_beaker, E)
+			QDEL_SWAP(fake_beaker, E)
 			fake_beaker.reagents.maximum_volume = 5000
 		else if(istype(CR, /decl/chemical_reaction/distilling))
 			// distilling
 			var/obj/distilling_tester/D = new()
-			qdel_swap(fake_beaker, D)
+			QDEL_SWAP(fake_beaker, D)
 			fake_beaker.reagents.maximum_volume = 5000
 		else
 			// regular beaker
-			qdel_swap(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
+			QDEL_SWAP(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
 			fake_beaker.reagents.maximum_volume = 5000
 
 		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
@@ -147,7 +147,7 @@
 		// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
 		TEST_ASSERT(!perform_reaction(CR), "[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
-	qdel_null(fake_beaker)
+	QDEL_NULL(fake_beaker)
 	#endif
 
 	if(failed)

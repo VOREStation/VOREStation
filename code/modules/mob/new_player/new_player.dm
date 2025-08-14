@@ -413,7 +413,7 @@
 
 	if(mind)
 		mind.active = 0					//we wish to transfer the key manually
-		mind.original = new_character
+		mind.original_character = WEAKREF(new_character)
 		mind.loaded_from_ckey = client.ckey
 		mind.loaded_from_slot = client.prefs.default_slot
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
