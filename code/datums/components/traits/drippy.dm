@@ -17,6 +17,8 @@
 		return
 	if(!prob(drip_chance))
 		return
+	if(isbelly(living_guy.loc))
+		return
 	if(living_guy.stat == DEAD)
 		return
 	if(living_guy.inStasisNow())

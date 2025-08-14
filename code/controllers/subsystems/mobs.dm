@@ -12,6 +12,12 @@ SUBSYSTEM_DEF(mobs)
 	flags = SS_KEEP_TIMING|SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/points_of_interest,
+		/datum/controller/subsystem/shuttles
+	)
+
 	var/list/currentrun = list()
 	var/log_extensively = FALSE
 	var/list/timelog = list()
@@ -96,22 +102,14 @@ SUBSYSTEM_DEF(mobs)
 	log_game(msg)
 	log_world(msg)
 
-/datum/controller/subsystem/mobs/fail()
-	..()
-	log_recent()
-
-/datum/controller/subsystem/mobs/critfail()
-	..()
-	log_recent()
-
 /datum/controller/subsystem/mobs/proc/report_death(var/mob/living/L)
 	if(!L)
 		return
 	if(!L.key || !L.mind)
 		return
-	if(!ticker || !ticker.mode)
+	if(!SSticker || !SSticker.mode)
 		return
-	ticker.mode.check_win()
+	SSticker.mode.check_win()
 
 	// Don't bother with the rest if we've not got a DB to do anything with
 	if(!CONFIG_GET(flag/enable_stat_tracking) || !CONFIG_GET(flag/sql_enabled))

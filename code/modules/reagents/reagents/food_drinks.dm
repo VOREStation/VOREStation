@@ -2981,7 +2981,7 @@
 	color = "#c4c6a5"
 	cup_prefix = "white chocolate"
 
-	allergen_type = ALLERGEN_SUGARS|ALLERGEN_CHOCOLATE
+	allergen_type = ALLERGEN_SUGARS //|ALLERGEN_CHOCOLATE //commenting this out and leaving this comment to inform that WHITE CHOCOLATE IS NOT CHOCOLATE!!!!
 
 /datum/reagent/drink/syrup/strawberry
 	name = REAGENT_SYRUPSTRAWBERRY
