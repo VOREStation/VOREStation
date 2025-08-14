@@ -147,7 +147,7 @@
 		if(istype(target, /obj/structure/portal_target))
 			var/obj/structure/portal_target/P = target
 			P.target = null
-		qdel_null(target)
+		QDEL_NULL(target)
 	. = ..()
 
 /obj/structure/portal_target

@@ -31,7 +31,7 @@
 
 /obj/machinery/reagent_refinery/furnace/Destroy()
 	. = ..()
-	qdel_null(beaker)
+	QDEL_NULL(beaker)
 
 /obj/machinery/reagent_refinery/furnace/process()
 	if(!anchored)
