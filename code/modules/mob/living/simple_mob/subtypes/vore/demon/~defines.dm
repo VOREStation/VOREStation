@@ -1,3 +1,0 @@
-#undef AB_SHIFT_NONE
-#undef AB_SHIFT_PASSIVE
-#undef AB_SHIFT_ACTIVE

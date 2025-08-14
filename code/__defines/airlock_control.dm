@@ -1,1 +1,0 @@
-#define AIRLOCK_CONTROL_RANGE 22

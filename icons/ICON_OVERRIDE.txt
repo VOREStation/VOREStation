@@ -1,5 +1,0 @@
-These files are overridden by Virgo. If a mirror PR needs to edit these files, there will be a conflict.
-
-icons/obj/food_custom.dmi
-icons/obj/turbolift.dmi
-icons/mob/custom_items/mob.dmi
