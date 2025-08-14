@@ -14,11 +14,11 @@
 	var/got_input = FALSE
 
 /obj/machinery/reagent_refinery/mixer/Initialize(mapload)
+	mixer_angle = dir2angle(dir)
 	. = ..()
 	default_apply_parts()
 	// Can't be set on these
 	src.verbs -= /obj/machinery/reagent_refinery/verb/set_APTFT
-	mixer_angle = dir2angle(dir)
 
 /obj/machinery/reagent_refinery/mixer/process()
 	if(!anchored)
@@ -26,7 +26,6 @@
 
 	power_change()
 	if(stat & (NOPOWER|BROKEN))
-		mixer_angle = dir2angle(dir)
 		return
 
 	if(mixer_angle == dir2angle(dir))
@@ -35,11 +34,13 @@
 		got_input = FALSE
 		if(reagents.total_volume <= 0)
 			mixer_angle += mixer_rotation_rate
+			update_icon()
 	else
 		// Check if we were filled...
 		if(got_input)
 			mixer_angle += mixer_rotation_rate
 			got_input = FALSE
+			update_icon()
 
 	// Modulus for sanity
 	mixer_angle = (360 + mixer_angle) % 360
@@ -63,7 +64,7 @@
 	add_overlay(pipe)
 	if(anchored)
 		if(!(stat & (NOPOWER|BROKEN)))
-			var/image/dot = image(icon, icon_state = "mixer_dot_[ amount_per_transfer_from_this > 0 ? "on" : "off" ]")
+			var/image/dot = image(icon, icon_state = "mixer_dot_[ got_input ? "on" : "off" ]")
 			add_overlay(dot)
 		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(get_turf(src),direction)
@@ -87,6 +88,9 @@
 				if(other.dir == GLOB.reverse_dir[direction] && dir != direction)
 					var/image/intake = image(icon, icon_state = "mixer_intakes", dir = direction)
 					add_overlay(intake)
+	// Get mixer overlay
+	var/image/arm = image(icon, icon_state = "mixer_arm", dir = angle2dir(mixer_angle))
+	add_overlay(arm)
 
 /obj/machinery/reagent_refinery/mixer/attack_hand(mob/user)
 	set_rotation()
