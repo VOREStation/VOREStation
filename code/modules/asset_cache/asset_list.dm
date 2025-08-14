@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	SSasset_loading.dequeue_asset(src)
 
 /datum/asset/spritesheet/queued_generation()
-	INVOKE_ASYNC(src, PROC_REF(realize_spritesheets), TRUE)
+	realize_spritesheets(yield = TRUE)
 
 /datum/asset/spritesheet/ensure_ready()
 	if(!fully_generated)
