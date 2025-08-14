@@ -25,7 +25,6 @@
 	if(!client)
 		return FALSE
 
-	persistent_ckey = client.ckey
 	client.persistent_client.set_mob(src)
 
 	GLOB.player_list |= src

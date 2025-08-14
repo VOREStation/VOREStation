@@ -262,9 +262,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
-	var/reconnecting = FALSE
+	//var/reconnecting = FALSE we are not using this var yet
 	if(GLOB.persistent_clients_by_ckey[ckey])
-		reconnecting = TRUE
+		//reconnecting = TRUE
 		persistent_client = GLOB.persistent_clients_by_ckey[ckey]
 	else
 		persistent_client = new(ckey)

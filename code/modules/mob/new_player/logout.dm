@@ -17,6 +17,6 @@
 	return
 
 /mob/new_player/proc/disable_lobby_browser()
-	var/client/exiting_client = GLOB.directory[persistent_ckey]
+	var/client/exiting_client = GLOB.persistent_clients_by_ckey[ckey]
 	if(exiting_client)
 		winset(exiting_client, "lobby_browser", "is-disabled=true;is-visible=false")
