@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# nb: must be bash to support shopt globstar
+#nb: must be bash to support shopt globstar
 shopt -s globstar extglob
 
 source dependencies.sh
