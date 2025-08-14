@@ -44,8 +44,9 @@
 	if(mind)
 		if(mind.current == src)
 			mind.current = null
-		if(mind.original == src)
-			mind.original = null
+		var/mob/living/original = mind.original_character?.resolve()
+		if(original && original == src)
+			mind.original_character = null
 
 	. = ..()
 	update_client_z(null)

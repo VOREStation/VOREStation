@@ -184,6 +184,10 @@
 				"vorespawn_whitelist" = selected.vorespawn_whitelist,
 				"vorespawn_absorbed" = (global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_YES) + global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_PREY)),
 				"private_struggle" = selected.private_struggle,
+				"absorbedrename_enabled" = selected.absorbedrename_enabled,
+				"absorbedrename_name" = selected.absorbedrename_name,
+				"absorbedrename_name_max" = BELLIES_NAME_MAX,
+				"absorbedrename_name_min" = BELLIES_NAME_MIN,
 				"drainmode" = selected.drainmode,
 				"drainmode_options" = selected.drainmodes,
 			)
