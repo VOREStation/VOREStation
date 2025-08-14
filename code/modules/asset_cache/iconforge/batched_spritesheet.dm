@@ -193,9 +193,11 @@
 	if(yield || !isnull(job_id))
 		if(isnull(job_id))
 			getting_genned = TRUE
+			SSasset_loading.assets_generating++
 			job_id = rustg_iconforge_generate_async("data/spritesheets/", name, entries_json, do_cache, FALSE, TRUE)
 		UNTIL((data_out = rustg_iconforge_check(job_id)) != RUSTG_JOB_NO_RESULTS_YET)
 		getting_genned = FALSE
+		SSasset_loading.assets_generating--
 	else
 		data_out = rustg_iconforge_generate("data/spritesheets/", name, entries_json, do_cache, FALSE, TRUE)
 	if (data_out == RUSTG_JOB_ERROR)
