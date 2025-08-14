@@ -30,6 +30,7 @@
 	law_list = dd_sortedObjectList(law_list)
 
 /datum/eventkit/modify_robot/tgui_close()
+	target = null
 	if(source)
 		qdel(source)
 
@@ -45,14 +46,15 @@
 	. = ..()
 
 /datum/eventkit/modify_robot/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
-	)
+	var/list/our_assets = list()
+	for(var/entry in GLOB.robot_sprite_sheets)
+		our_assets += GLOB.robot_sprite_sheets[entry]
+	return our_assets
 
 /datum/eventkit/modify_robot/tgui_data(mob/user)
 	. = list()
 	// Target section for general data
-	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
+	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = GLOB.robot_sprite_sheets[target.modtype]
 
 	if(target)
 		.["target"] = list()
@@ -318,7 +320,7 @@
 			var/obj/item/borg/upgrade/U = new new_upgrade(null)
 			if(new_upgrade == /obj/item/borg/upgrade/utility/rename)
 				var/obj/item/borg/upgrade/utility/rename/UN = U
-				var/new_name = sanitizeSafe(tgui_input_text(ui.user, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN), MAX_NAME_LEN)
+				var/new_name = sanitizeSafe(tgui_input_text(ui.user, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 				if(new_name)
 					UN.heldname = new_name
 				U = UN
@@ -388,7 +390,7 @@
 				target.radio.syndie = 1
 			target.module.channels += list("[selected_radio_channel]" = 1)
 			target.radio.channels[selected_radio_channel] = target.module.channels[selected_radio_channel]
-			target.radio.secure_radio_connections[selected_radio_channel] = radio_controller.add_object(target.radio, radiochannels[selected_radio_channel],  RADIO_CHAT)
+			target.radio.secure_radio_connections[selected_radio_channel] = SSradio.add_object(target.radio, radiochannels[selected_radio_channel],  RADIO_CHAT)
 			return TRUE
 		if("rem_channel")
 			var/selected_radio_channel = params["channel"]
@@ -402,7 +404,7 @@
 			target.radio.channels = list()
 			for(var/n_chan in target.module.channels)
 				target.radio.channels[n_chan] = target.module.channels[n_chan]
-			radio_controller.remove_object(target.radio, radiochannels[selected_radio_channel])
+			SSradio.remove_object(target.radio, radiochannels[selected_radio_channel])
 			target.radio.secure_radio_connections -= selected_radio_channel
 			return TRUE
 		if("add_component")
@@ -549,7 +551,7 @@
 		if("edit_law")
 			var/datum/ai_law/AL = locate(params["edit_law"]) in target.laws.all_laws()
 			if(AL)
-				var/new_law = sanitize(tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
+				var/new_law = tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law, MAX_MESSAGE_LEN)
 				if(new_law && new_law != AL.law)
 					AL.law = new_law
 					target.lawsync()
@@ -586,13 +588,19 @@
 				to_chat(ui.user, span_notice("Laws displayed."))
 			return TRUE
 		if("select_ai")
-			selected_ai = locate(params["new_ai"])
+			selected_ai = params["new_ai"]
 			return TRUE
 		if("swap_sync")
-			var/new_ai = selected_ai ? selected_ai : select_active_ai_with_fewest_borgs()
-			if(new_ai)
+			var/mob/living/silicon/ai/our_ai
+			for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
+				if(ai.name == selected_ai)
+					our_ai = ai
+					break
+			if(!our_ai)
+				our_ai = select_active_ai_with_fewest_borgs()
+			if(our_ai)
 				target.lawupdate = 1
-				target.connect_to_ai(new_ai)
+				target.connect_to_ai(our_ai)
 			return TRUE
 		if("disconnect_ai")
 			if(target.is_slaved())
@@ -649,7 +657,7 @@
 	var/list/all_upgrades = list()
 	var/list/whitelisted_upgrades = list()
 	var/list/blacklisted_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/restricted/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/restricted))
 		if(!upgrade.name)
 			continue
 		if(!(initial(upgrade.build_path) in target.module.supported_upgrades))
@@ -659,14 +667,14 @@
 	all_upgrades["whitelisted_upgrades"] = whitelisted_upgrades
 	all_upgrades["blacklisted_upgrades"] = blacklisted_upgrades
 	var/list/utility_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/utility/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/utility/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/utility))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
 			utility_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
 	all_upgrades["utility_upgrades"] = utility_upgrades
 	var/list/basic_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/basic/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/basic/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/basic))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
@@ -675,7 +683,7 @@
 			basic_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
 	all_upgrades["basic_upgrades"] = basic_upgrades
 	var/list/advanced_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/advanced/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/advanced/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/advanced))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
@@ -684,7 +692,7 @@
 			advanced_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
 	all_upgrades["advanced_upgrades"] = advanced_upgrades
 	var/list/restricted_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/restricted/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/restricted))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))

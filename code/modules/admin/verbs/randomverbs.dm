@@ -158,20 +158,24 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 
 /client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
-	set name = "Godmode"
+	set name = "Toggle Godmode"
 
 	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	M.status_flags ^= GODMODE
+	if(M.status_flags & GODMODE)
+		M.RemoveElement(/datum/element/godmode)
+
+	else if(!(M.status_flags & GODMODE))
+		M.AddElement(/datum/element/godmode)
+
 	to_chat(usr, span_blue("Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"))
 
-	log_admin("[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]")
-	var/msg = "[key_name_admin(usr)] has toggled [ADMIN_LOOKUPFLW(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]"
+	log_admin("[key_name(usr)] has toggled [key_name(M)]'s godmode to [(M.status_flags & GODMODE) ? "On" : "Off"]")
+	var/msg = "[key_name_admin(usr)] has toggled [ADMIN_LOOKUPFLW(M)]'s godmode to [(M.status_flags & GODMODE) ? "On" : "Off"]"
 	message_admins(msg)
 	admin_ticket_log(M, msg)
-	feedback_add_details("admin_verb","GOD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
+	feedback_add_details("admin_verb","GOD_ENABLE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
@@ -453,6 +457,18 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 		else
 			equipment = 0
 
+	var/custom_job
+	var/custom_job_title
+	if(charjob)
+		custom_job = tgui_alert(src,"Customise Job Title?", "Custom Job", list("No", "Yes", "Cancel"))
+		if(!custom_job || equipment == "Cancel")
+			return
+		else if(custom_job == "Yes")
+			custom_job = 1
+			custom_job_title = tgui_input_text(src,"Choose a Job Title for the character.","Job Title")
+		else
+			custom_job = 0
+
 	//For logging later
 	var/admin = key_name_admin(src)
 	var/player_key = picked_client.key
@@ -560,6 +576,19 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 				new_character.mind.assigned_role = charjob
 				new_character.mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
 
+	//If customised job title, modify here.
+	if(custom_job && custom_job_title)
+		var/character_name = new_character.name
+		for(var/obj/item/card/id/I in new_character.contents)
+			I.name = "[character_name]'s ID Card ([custom_job_title])"
+			I.assignment = custom_job_title
+		for(var/obj/item/pda/P in new_character.contents)
+			P.name = "PDA-[character_name] ([custom_job_title])"
+			P.ownjob = custom_job_title
+		new_character.mind.assigned_role = custom_job_title
+		new_character.mind.role_alt_title = custom_job_title
+		to_chat(new_character, "Your job title has been changed to [custom_job_title].")
+
 	//If desired, add records.
 	if(records)
 		GLOB.data_core.manifest_inject(new_character)
@@ -612,7 +641,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", ""))
+	var/input = tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN)
 	if(!input)
 		return
 	for(var/mob/living/silicon/ai/M in GLOB.mob_list)
@@ -664,8 +693,8 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, prevent_enter = TRUE), extra = 0)
-	var/customname = sanitizeSafe(tgui_input_text(usr, "Pick a title for the report.", "Title"))
+	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
+	var/customname = sanitizeSafe(tgui_input_text(usr, "Pick a title for the report.", "Title", encode = FALSE))
 	if(!input)
 		return
 	if(!customname)
@@ -838,7 +867,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Admin.Events"
 	set name = "Call Shuttle"
 
-	if ((!( ticker ) || !emergency_shuttle.location()))
+	if ((!( SSticker ) || !emergency_shuttle.location()))
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -847,7 +876,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(confirm != "Yes") return
 
 	var/choice
-	if(ticker.mode.auto_recall_shuttle)
+	if(SSticker.mode.auto_recall_shuttle)
 		choice = tgui_input_list(usr, "The shuttle will just return if you call it. Call anyway?", "Shuttle Call", list("Confirm", "Cancel"))
 		if(choice == "Confirm")
 			emergency_shuttle.auto_recall = 1	//enable auto-recall
@@ -874,7 +903,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	if(tgui_alert(src, "You sure?", "Confirm", list("Yes", "No")) != "Yes") return
 
-	if(!ticker || !emergency_shuttle.can_recall())
+	if(!SSticker || !emergency_shuttle.can_recall())
 		return
 
 	emergency_shuttle.recall()
@@ -888,7 +917,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Admin.Events"
 	set name = "Toggle Deny Shuttle"
 
-	if (!ticker)
+	if (!SSticker)
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -915,12 +944,12 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	if(!check_rights(R_FUN))	return
 
-	if (ticker && ticker.mode)
+	if (SSticker && SSticker.mode)
 		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
 		return
 
-	if(ticker.random_players)
-		ticker.random_players = 0
+	if(CONFIG_GET(flag/force_random_names))
+		CONFIG_SET(flag/force_random_names, FALSE)
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
 		to_chat(usr, "Disabled.")
 		return
@@ -938,7 +967,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
 
-	ticker.random_players = 1
+	CONFIG_SET(flag/force_random_names, TRUE)
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 

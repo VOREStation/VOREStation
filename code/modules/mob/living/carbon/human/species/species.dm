@@ -249,6 +249,7 @@
 	var/rad_levels = NORMAL_RADIATION_RESISTANCE		//For handle_mutations_and_radiation
 	var/rad_removal_mod = 1
 
+	var/ambulant_blood = FALSE								// Force changeling blood effects
 
 	var/rarity_value = 1									// Relative rarity/collector value for this species.
 	var/economic_modifier = 2								// How much money this species makes
@@ -374,6 +375,8 @@
 	var/lightweight_light = 0 //NYI - Used Downstream
 	var/unarmed_bonus = 0 //do you have stronger unarmed attacks?
 	var/shredding = FALSE //do you shred when attacking? Affects escaping restraints, and punching normally unpunchable things
+
+	var/default_custom_base = SPECIES_HUMAN
 
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
@@ -766,7 +769,7 @@
 	new_copy.race_key = race_key
 	if (selects_bodytype && custom_base)
 		new_copy.base_species = custom_base
-		if(selects_bodytype == SELECTS_BODYTYPE_CUSTOM) //If race selects a bodytype, retrieve the custom_base species and copy needed variables.
+		if(selects_bodytype == SELECTS_BODYTYPE_CUSTOM || SELECTS_BODYTYPE_ZORREN) //If race selects a bodytype, retrieve the custom_base species and copy needed variables.
 			var/datum/species/S = GLOB.all_species[custom_base]
 			S.copy_variables(new_copy, copy_vars)
 
@@ -797,6 +800,11 @@
 
 	if(H.species.has_vibration_sense)
 		H.motiontracker_subscribe()
+
+	if(H.species.allergens)
+		H.AddElement(/datum/element/allergy)
+	else
+		H.RemoveElement(/datum/element/allergy)
 
 	return new_copy
 

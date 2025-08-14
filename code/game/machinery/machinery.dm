@@ -429,6 +429,7 @@ Class Procs:
 	. = dismantle()
 
 /obj/machinery/proc/dismantle()
+	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT)
 	playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	for(var/obj/I in contents)
 		if(istype(I,/obj/item/card/id))

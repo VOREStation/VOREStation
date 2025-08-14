@@ -236,8 +236,7 @@
 	. = ..()
 	to_chat(src,span_boldnotice("You are \the [src].") + " [player_msg]")
 	if(vore_active && !voremob_loaded)
-		voremob_loaded = TRUE
-		init_vore()
+		init_vore(TRUE)
 	if(hasthermals)
 		add_verb(src, /mob/living/simple_mob/proc/hunting_vision) //So that maint preds can see prey through walls, to make it easier to find them.
 
@@ -272,7 +271,7 @@
 
 	// Turf related slowdown
 	var/turf/T = get_turf(src)
-	if(T && T.movement_cost && (!hovering || !flying)) // Flying mobs ignore turf-based slowdown. Aquatic mobs ignore water slowdown, and can gain bonus speed in it.
+	if(T && T.movement_cost && !(hovering || flying || is_incorporeal())) // Flying mobs ignore turf-based slowdown. Aquatic mobs ignore water slowdown, and can gain bonus speed in it.
 		if(istype(T,/turf/simulated/floor/water) && aquatic_movement)
 			. -= aquatic_movement - 1
 		else
@@ -370,10 +369,6 @@
 		if((h / getMaxHealth()) <= threshold) 				// Essentially, did our health go down? We don't modify want to modify our total slowdown if we didn't actually take damage, and aren't below our threshold %
 			var/totaldelay = round(rand(1,3) * damage_fatigue_mult * clamp(((rand(2,5) * (h / getMaxHealth())) - rand(0,2)), 1, 5)) 	// totaldelay is how much delay we're going to feed into attacks and movement. Do NOT change this formula unless you know how to math.
 			injury_level = totaldelay 						// Adds our returned slowdown to the mob's injury level
-
-/mob/living/simple_mob/updatehealth()	// We don't want to fully override the check, just hook our own code in
-	get_injury_level()					// We check how injured we are, then actually update the mob on how hurt we are.
-	. = ..() 							// Calling parent here, actually updating our mob on how hurt we are.
 
 /mob/living/simple_mob/proc/ColorMate()
 	set name = "Recolour"

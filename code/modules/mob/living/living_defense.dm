@@ -98,6 +98,12 @@
 	if(istype(L) && L.a_intent != I_HELP)
 		if(ai_holder) // Using disarm, grab, or harm intent is considered a hostile action to the mob's AI.
 			ai_holder.react_to_attack(L)
+	if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
+		if(src != L)
+			L.apply_damage(3, BRUTE)
+			L.visible_message( \
+				span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
+				span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
@@ -393,6 +399,15 @@
 // End BS12 momentum-transfer code.
 
 /mob/living/attack_generic(var/mob/user, var/damage, var/attack_message)
+	if(istype(user,/mob/living))
+		var/mob/living/L = user
+		if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
+			if((src != L))
+				L.apply_damage(3, BRUTE)
+				L.visible_message( \
+					span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
+					span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
+
 	if(!damage)
 		return
 
@@ -596,7 +611,6 @@
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
-	if(status_flags & GODMODE)	return 0	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()
@@ -609,7 +623,6 @@
 
 // damage MANY external organs, in random order
 /mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-	if(status_flags & GODMODE)	return 0	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()

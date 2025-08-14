@@ -157,19 +157,20 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	return L
 
 //Reassociate still open ticket if one exists
-/datum/tickets/proc/ClientLogin(client/C)
+/datum/tickets/proc/ClientLogin(client/C, only_alert = FALSE)
 	C.current_ticket = CKey2ActiveTicket(C.ckey)
 	if(C.current_ticket)
-		C.current_ticket.AddInteraction("Client reconnected.")
+		if(!only_alert)
+			C.current_ticket.AddInteraction("Client reconnected.")
 		C.current_ticket.initiator = C
-		C.current_ticket.initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
+		C.current_ticket.initiator.mob?.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 
 //Dissasociate ticket
 /datum/tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
 		var/datum/ticket/T = C.current_ticket
 		T.AddInteraction("Client disconnected.")
-		T.initiator.mob.clear_alert("open ticket")
+		T.initiator?.mob?.clear_alert("open ticket")
 		T.initiator = null
 		T = null
 
@@ -413,7 +414,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	switch(level)
 		if(0)
 			for (var/client/C in GLOB.admins)
-				var/chat_msg = span_mentor_channel(span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(" (Mentor): [LinkedReplyName(ref_src)] [FullMonty(ref_src, check_rights_for(C, (R_ADMIN|R_SERVER|R_MOD)))]:") + msg))
+				var/chat_msg = span_mentor_channel(span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(" (Mentor): [LinkedReplyName(ref_src)] [FullMonty(ref_src, check_rights_for(C, (R_ADMIN|R_SERVER|R_MOD)))]: ") + msg))
 				if (C.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
 					C << 'sound/effects/mentorhelp.mp3'
 				to_chat(C, chat_msg)

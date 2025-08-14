@@ -177,14 +177,14 @@ ADMIN_VERB(jobbans, R_BAN, "Display Job bans", "View job bans here.", "Admin.Inv
 	if(CONFIG_GET(flag/ban_legacy_system))
 		user.holder.Jobbans()
 	else
-		user.holder.DB_ban_panel()
+		user.holder.DB_ban_panel(user)
 	feedback_add_details("admin_verb","VJB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(unban_panel, R_BAN, "Unbanning Panel", "Unban players here.", ADMIN_CATEGORY_GAME)
 	if(CONFIG_GET(flag/ban_legacy_system))
 		user.holder.unbanpanel()
 	else
-		user.holder.DB_ban_panel()
+		user.holder.DB_ban_panel(user)
 	feedback_add_details("admin_verb","UBP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state of the game.", ADMIN_CATEGORY_GAME)
@@ -331,7 +331,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
 	if(O)
-		var/message = sanitize(tgui_input_text(usr, "What do you want the message to be?", "Make Sound"))
+		var/message = tgui_input_text(usr, "What do you want the message to be?", "Make Sound", "", MAX_MESSAGE_LEN)
 		if(!message)
 			return
 		O.audible_message(message)
@@ -368,7 +368,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	log_admin("[key_name(usr)] used 'kill air'.")
 	message_admins(span_blue("[key_name_admin(usr)] used 'kill air'."), 1)
 
-ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MISC)
 	user.holder.deactivate()
 	to_chat(user, span_interface("You are now a normal player."))
 	log_admin("[key_name(user)] deadminned themselves.")
@@ -403,7 +403,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	var/mob/living/silicon/S = tgui_input_list(usr, "Select silicon.", "Rename Silicon.", GLOB.silicon_mob_list)
 	if(!S) return
 
-	var/new_name = sanitizeSafe(tgui_input_text(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
+	var/new_name = sanitizeSafe(tgui_input_text(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name, encode = FALSE))
 	if(new_name && new_name != S.real_name)
 		log_and_message_admins("has renamed the silicon '[S.real_name]' to '[new_name]'")
 		S.SetName(new_name)

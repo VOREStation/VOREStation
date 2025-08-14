@@ -2450,7 +2450,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "gd" = (
-/obj/machinery/r_n_d/protolathe{
+/obj/machinery/rnd/production/protolathe{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3078,7 +3078,6 @@
 	name = "Privacy Shutter Control";
 	pixel_y = 30
 	},
-/obj/machinery/computer/rdconsole/robotics,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "hV" = (
@@ -5540,7 +5539,7 @@
 /area/groundbase/medical/Chemistry)
 "ph" = (
 /obj/item/reagent_containers/glass/beaker/sulphuric,
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -6426,6 +6425,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/gold_star_printer,
 /turf/simulated/floor/carpet,
 /area/groundbase/command/hop)
 "rv" = (
@@ -7001,7 +7001,7 @@
 	pixel_x = -32;
 	pixel_y = 32
 	},
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /obj/machinery/requests_console{
 	department = "Robotics";
 	departmentType = 2;
@@ -7174,7 +7174,6 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "tI" = (
-/obj/machinery/r_n_d/destructive_analyzer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/rnd)
 "tJ" = (
@@ -9425,7 +9424,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "Ao" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "Ap" = (
@@ -11607,7 +11606,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/science/server)
 "Gu" = (
-/obj/machinery/r_n_d/server/robotics,
+/obj/machinery/rnd/server/master,
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 8;
 	external_pressure_bound = 0;
@@ -11709,7 +11708,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/circuits)
 "GK" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /obj/machinery/light{
 	dir = 1
@@ -13946,7 +13945,7 @@
 /turf/simulated/wall,
 /area/groundbase/civilian/chapel/office)
 "MF" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -15156,7 +15155,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "Qa" = (
-/obj/machinery/r_n_d/server/robotics,
+/obj/machinery/rnd/server,
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 4;
 	icon_state = "map_vent_out";

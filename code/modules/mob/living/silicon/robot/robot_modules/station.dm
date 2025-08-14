@@ -663,7 +663,7 @@
 
 /obj/item/robot_module/robot/research/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
-	src.modules += new /obj/item/portable_destructive_analyzer(src)
+	src.modules += new /obj/item/experi_scanner(src)
 	src.modules += new /obj/item/robotanalyzer(src)
 	src.modules += new /obj/item/card/robot(src)
 	src.modules += new /obj/item/gripper/research(src)

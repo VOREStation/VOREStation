@@ -1054,6 +1054,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 6
 	},
+/obj/machinery/rnd/server/master,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -1064,6 +1065,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 9
 	},
+/obj/machinery/rnd/server,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -3536,6 +3538,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/kitchen)
+"ix" = (
+/obj/machinery/mecha_part_fabricator_tg,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iy" = (
 /obj/structure/lattice,
 /turf/simulated/floor/airless,
@@ -3546,6 +3552,32 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
+"iA" = (
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iC" = (
+/obj/machinery/rnd/production/protolathe,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iD" = (
+/obj/machinery/computer/rdconsole_tg,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"iE" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/ore_silo,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "iJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -9560,7 +9592,7 @@ aa
 aa
 aa
 fY
-gk
+iE
 gf
 gr
 gf
@@ -9969,9 +10001,9 @@ eM
 eM
 gc
 gh
-gf
-gt
-gf
+iC
+iB
+ix
 gf
 gf
 gf
@@ -10173,9 +10205,9 @@ aa
 aa
 fY
 gf
-gf
+iD
 gv
-gf
+iA
 gf
 pG
 gv

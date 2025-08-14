@@ -1,6 +1,11 @@
 /mob/proc/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	return
 
+// MUST BE NON-BLOCKING, signals can call this
+/mob/proc/direct_say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+	SHOULD_NOT_SLEEP(TRUE)
+	return
+
 /mob/verb/whisper(message as text)
 	set name = "Whisper"
 	set hidden = 1

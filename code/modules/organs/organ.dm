@@ -45,6 +45,7 @@ var/list/organ_cache = list()
 
 	var/butcherable = TRUE
 	var/meat_type	// What does butchering, if possible, make?
+	var/list/medical_issues = list()
 
 /obj/item/organ/Destroy()
 
@@ -164,6 +165,9 @@ var/list/organ_cache = list()
 		die()
 
 	handle_organ_proc_special()
+
+	for(var/datum/medical_issue/I in medical_issues)
+		I.handle_effects()
 
 	//Process infections
 	if(robotic >= ORGAN_ROBOT || (istype(owner) && (owner.species && (owner.species.flags & (IS_PLANT | NO_INFECT)))))
@@ -287,9 +291,9 @@ var/list/organ_cache = list()
 		handle_organ_mod_special()
 	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
 		var/status = owner.client.prefs.organ_data[organ_tag]
-		if(status == "assisted")
+		if(status == FBP_ASSISTED)
 			mechassist()
-		else if(status == "mechanical")
+		else if(status == FBP_MECHANICAL)
 			robotize()
 
 /obj/item/organ/proc/is_damaged()
@@ -332,6 +336,9 @@ var/list/organ_cache = list()
 
 //Note: external organs have their own version of this proc
 /obj/item/organ/take_damage(amount, var/silent=0)
+	if(owner)
+		if(SEND_SIGNAL(owner, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, amount, silent) & COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE)
+			return 0
 	if(src.robotic >= ORGAN_ROBOT)
 		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
 	else
@@ -342,7 +349,8 @@ var/list/organ_cache = list()
 			var/obj/item/organ/external/parent = owner?.get_organ(parent_organ)
 			if(parent && !silent)
 				owner.custom_pain("Something inside your [parent.name] hurts a lot.", amount)
-
+	if(owner)
+		SEND_SIGNAL(owner, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, amount, silent)
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
 

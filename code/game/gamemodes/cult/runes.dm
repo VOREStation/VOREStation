@@ -475,7 +475,7 @@ var/list/sacrificed = list()
 			chose_name = 1
 			break
 	D.universal_speak = 1
-	D.status_flags &= ~GODMODE
+	D.RemoveElement(/datum/element/godmode)
 	D.b_eyes = 200
 	D.r_eyes = 200
 	D.g_eyes = 200
@@ -611,7 +611,7 @@ var/list/sacrificed = list()
 // returns 0 if the rune is not used. returns 1 if the rune is used.
 /obj/effect/rune/proc/communicate()
 	. = 1 // Default output is 1. If the rune is deleted it will return 1
-	var/input = tgui_input_text(usr, "Please choose a message to tell to the other acolytes.", "Voice of Blood", "")//sanitize() below, say() and whisper() have their own
+	var/input = tgui_input_text(usr, "Please choose a message to tell to the other acolytes.", "Voice of Blood", "", MAX_MESSAGE_LEN)//sanitize() below, say() and whisper() have their own
 	if(!input)
 		if (istype(src))
 			fizzle()
@@ -624,7 +624,6 @@ var/list/sacrificed = list()
 	else
 		usr.whisper("O bidai nabora se[pick("'","`")]sma!")
 
-	input = sanitize(input)
 	log_and_message_admins("used a communicate rune to say '[input]'")
 	for(var/datum/mind/H in cult.current_antagonists)
 		if (H.current)
@@ -666,7 +665,7 @@ var/list/sacrificed = list()
 			if(lamb.species.rarity_value > 3)
 				worth = 1
 
-		if (ticker.mode.name == "cult")
+		if (SSticker.mode.name == "cult")
 			if(H.mind == cult.sacrifice_target)
 				if(cultsinrange.len >= 3)
 					sacrificed += H.mind
@@ -991,7 +990,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/bloodboil() //cultists need at least one DANGEROUS rune. Even if they're all stealthy.
 /*
 	var/list/mob/living/carbon/cultists = new
-	for(var/datum/mind/H in ticker.mode.cult)
+	for(var/datum/mind/H in SSticker.mode.cult)
 		if (istype(H.current,/mob/living/carbon))
 			cultists+=H.current
 */

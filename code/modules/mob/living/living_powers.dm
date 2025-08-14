@@ -41,7 +41,7 @@
 		to_chat(src,span_notice("You will no longer bite hands who pat or boop you."))
 	else
 		touch_reaction_flags |= SPECIES_TRAIT_PATTING_DEFENCE
-		to_chat(src,span_notice("You will now longer bite hands who pat or boop you."))
+		to_chat(src,span_notice("You will now bite hands who pat or boop you."))
 
 /mob/living/proc/toggle_personal_space()
 	set name = "Toggle Personal Space"
@@ -54,6 +54,18 @@
 	else
 		touch_reaction_flags |= SPECIES_TRAIT_PERSONAL_BUBBLE
 		to_chat(src,span_notice("You will now dodge all attempts at hugging, patting, booping, licking, smelling and hand shaking."))
+
+/mob/living/proc/toggle_thorns()
+	set name = "Toggle Thorns"
+	set desc = "Toggles defensive thorns across your body."
+	set category = "Abilities.General"
+
+	if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
+		touch_reaction_flags &= ~(SPECIES_TRAIT_THORNS)
+		to_chat(src,span_notice("You will no longer be covered in defensive thorns."))
+	else
+		touch_reaction_flags |= SPECIES_TRAIT_THORNS
+		to_chat(src,span_notice("You will now be covered in defensive thorns that may hurt those who touch you."))
 
 /mob/living/proc/toggle_sparkles()
 	set name = "Toggle Sparkles"

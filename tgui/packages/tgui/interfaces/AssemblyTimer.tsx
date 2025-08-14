@@ -33,13 +33,14 @@ export const AssemblyTimer = (props) => {
             >
               <NumberInput
                 animated
+                tickWhileDragging
                 fluid
                 step={1}
                 value={time}
                 minValue={0}
                 maxValue={600}
                 format={(val: number) => formatTime(round(val * 10, 0))}
-                onDrag={(val: number) => act('set_time', { time: val })}
+                onChange={(val: number) => act('set_time', { time: val })}
               />
             </LabeledList.Item>
           </LabeledList>

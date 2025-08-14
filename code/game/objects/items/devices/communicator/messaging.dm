@@ -77,8 +77,8 @@
 
 	if(ringer)
 		var/S
-		if(ttone in ttone_sound)
-			S = ttone_sound[ttone]
+		if(ttone in GLOB.device_ringtones)
+			S = GLOB.device_ringtones[ttone]
 		else
 			S = 'sound/machines/twobeep.ogg'
 
@@ -118,7 +118,7 @@
 	set name = "Text Communicator"
 	set desc = "If there is a communicator available, send a text message to it."
 
-	if(ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(src, span_danger("The game hasn't started yet!"))
 		return
 
@@ -153,7 +153,7 @@
 	if(choice)
 		var/obj/item/communicator/chosen_communicator = choice
 		var/mob/observer/dead/O = src
-		var/text_message = sanitize(tgui_input_text(src, "What do you want the message to say?", multiline = TRUE))
+		var/text_message = sanitize(tgui_input_text(src, "What do you want the message to say?", encode = FALSE, multiline = TRUE), MAX_MESSAGE_LEN, FALSE, FALSE, TRUE)
 		if(text_message && O.exonet)
 			O.exonet.send_message(chosen_communicator.exonet.address, "text", text_message)
 

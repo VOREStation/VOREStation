@@ -88,11 +88,7 @@
 	var/instinct	// The points used by Kururaks to decide Who Is The Boss
 	var/obey_pack_rule = TRUE	// Decides if the Kururak will automatically assign itself to follow the one with the highest instinct.
 
-/mob/living/simple_mob/animal/sif/kururak/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/animal/sif/kururak/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

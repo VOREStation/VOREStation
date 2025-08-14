@@ -28,6 +28,9 @@
 		choices = GLOB.custom_species_bases.Copy()
 		if(new_species != SPECIES_CUSTOM)
 			choices = (choices | new_species)
+	else if (spec.selects_bodytype == SELECTS_BODYTYPE_ZORREN)
+		choices = list(SPECIES_ZORREN_HIGH,SPECIES_ZORREN_DARK)
+		choices = choices.Copy()
 	return choices
 
 /datum/category_item/player_setup_item/general/traits/proc/get_pref_choice_from_trait(var/mob/user, var/datum/trait/trait, var/preference)
@@ -154,10 +157,10 @@
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		if (!(pref.custom_base in pref.get_custom_bases_for_species()))
-			pref.custom_base = SPECIES_HUMAN
+			pref.custom_base = selected_species.default_custom_base
 		//otherwise, allowed!
 	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
-		pref.custom_base = SPECIES_HUMAN
+		pref.custom_base = selected_species.default_custom_base
 
 
 /datum/category_item/player_setup_item/general/traits/copy_to_mob(var/mob/living/carbon/human/character)

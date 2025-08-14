@@ -53,6 +53,12 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 #define testing_profile_output_all(LIST)
 #endif
 
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
+/proc/log_test(text)
+	WRITE_LOG(GLOB.test_log, text)
+	SEND_TEXT(world.log, text)
+#endif
+
 #if defined(REFERENCE_TRACKING_LOG_APART)
 #define log_reftracker(msg) log_harddel("## REF SEARCH [msg]")
 

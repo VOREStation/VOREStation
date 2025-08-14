@@ -185,3 +185,174 @@
   - balance: rng of trashpiles altered
   - code_imp: trash piles and loot piles now use a unified looting element for handling
       drops and rarity. Not limited to just loot piles.
+2025-07-21:
+  Kashargul:
+  - code_imp: replace eslint with biome
+2025-07-22:
+  Diana:
+  - bugfix: Bunny taur will no longer hide all worn clothing
+  - bugfix: Empty Contents no longer shows up on ore satchels
+  - bugfix: feline 3color taur fat vwag is fixed
+  Willburd:
+  - code_imp: Gamma loot global list moved to proper file
+2025-07-23:
+  Diana:
+  - bugfix: Emotes now can be used the first time someone emotes instead of *help
+      having to be used
+  - rscadd: Auto floortile placement if crowbarring floor tiles up with a floor tile
+      in your offhand
+  - bugfix: Changeling fleshmend gives you activation text now
+  - bugfix: Makes the resurrection artifact respect anomaly clothing.
+  - bugfix: Fixes a xenoarch exploit pertaining to item stacking.
+  - qol: Changeling lesserform informs you of its failstates
+  Diana, Asher:
+  - rscadd: Ninja syndicate borgs (Comes with a cloaking module and special esword)
+  - balance: Syndicate borgs now spawn with AI trackers
+  - qol: AI Tracker now tells you info about what the states mean if you're an antag
+  - code_imp: being hit now screams the information into the void
+  Kashargul:
+  - admin: refactors the banning panel as tgui interface
+2025-07-24:
+  Diana:
+  - bugfix: You can no longer noclip your hands through oven doors
+  SatinIsle:
+  - bugfix: Fixed an exploit that allowed dense objects to be pushed in front of the
+      containment field when it was already active. It now instantly shuts off when
+      a dense object crosses over it.
+  TheCaramelion:
+  - bugfix: Fixed Calcium Carbonate not preventing vomiting
+  - rscadd: Added "Choreomania", "Tissue Hydration", and "Biometallic Replication"
+      symptoms
+  - rscadd: Added Roanoake Syndrome as a disease.
+  - rscadd: Added a dormant version of Roanoake Syndrome that xenochimeras spawn with.
+  - rscadd: Added infective component
+  - balance: Lowered the damage done by macrophages when they emerge
+  - balance: Lowered the damage output of macrophages
+  - balance: Bio suits now cover hands and feet
+  - bugfix: Fixed Macrophages symptom acting too fast
+  - qol: Added "Chicken Noodle Soup" to possible cures for Cold, Flu, and Food Poisoning
+  - qol: Changed the text in the advanced medical scanner to diferentiate better between
+      diseases or viruses
+  Zizzi:
+  - rscadd: Advanced Locator and Examiner can now ignore dead mobs.
+  - qol: Advanced locator can now find mob by type from string ref. For example /mob/living/carbon
+  - rscadd: Slightly improved Advanced locator description to signify changes.
+  - rscadd: Examiner now outputs if mob is alive.
+  - rscdel: Removed video camera circuit due to excessive server load, and not functioning
+      correctly.
+  - qol: EQUAL and NOT EQUAL gate now compare strings correctly.
+  - qol: Textpad can now write messages longer than 58 characters.
+  - bugfix: Textpad now supports special characters.
+2025-07-25:
+  Kashargul:
+  - bugfix: admin spawned simple mobs not getting their vore verbs if they weren't
+      vore mobs
+  - spellcheck: fixed bite pref text
+  KillianKirilenko:
+  - rscadd: Added the ability to export research samples to earn extra supply points,
+      both loose and in sample containers
+  SatinIsle:
+  - rscadd: Added a new GM tool that allows them to create custom medical issues on
+      the fly for setting up medical based events.
+  Willburd:
+  - bugfix: Stuttering text is no longer suppressed by jittering.
+2025-07-26:
+  Diana:
+  - qol: Damage now updates immediately, instead of waiting for the next life tick.
+  - code_imp: Godmode works better now
+  - bugfix: Removing a shadekin's shadekin properties properly removes their shadekin
+      UI elements.
+  - rscadd: Shadekin can toggle if they wish to return to the Retreat upon death.
+      This is round persistent.
+  - qol: Adjust Tail Layer now persists per character between rounds.
+  - qol: Shadekin nutrition adjustment is now in the Shadekin Control Panel instead
+      of it's own separate proc. This is also round persistent as well.
+  - code_imp: The shadekin component now has framework to have abilities added/removed
+      from it at will.
+  SatinIsle:
+  - rscadd: Added the ability to use alt-clicks in advanced build mode to open VV
+      or call proc.
+  - rscadd: Added the ability to spawn someone with a custom job title from Spawn
+      Character.
+  - rscadd: Added the ability to give ColorMate to Simple Mobs or Borgs through player
+      effects.
+  - rscadd: Added the ability to health scan any living mobs from player effects.
+  - bugfix: Fixed some symptoms doing doing nothing and added a couple more options.
+  ShadowLarkens:
+  - balance: Proteans can now use some implants.
+  Willburd:
+  - bugfix: Hose connectors that force pump no longer pump if no hose is connected
+  Zizzi:
+  - rscadd: Targeted pathfinding circuit
+  - rscadd: Pathfinding locomotion circuit
+  - rscadd: Ability to ID lock circuit assemblies
+  - rscadd: ID access circuit
+  - rscadd: Added a new circuitry assembly.
+  - rscadd: Added two new circuits
+  - rscadd: Added unique speaker to electronic earpiece.
+  - bugfix: Fixed reagent circuitry not supporting reagent storage circuits.
+  - bugfix: Fixed text pad input buffer size
+2025-07-27:
+  Guti:
+  - qol: Extrapolator shows if normal diseases are dormant as well
+  - bugfix: Fixed blob spores acting on death regardless of dormant or not
+  - bugfix: Fixed common diseases losing their dormant flag when applied
+  - spellcheck: Roanoake to Roanoke
+  - qol: Geneticist now spawn with a gene scanner
+  Kashargul:
+  - bugfix: manual rendered prefs in the wrong category
+  KillianKirilenko:
+  - rscadd: Baton lanyards can now be acquired from sec wardrobe vendors
+  SatinIsle:
+  - rscadd: Added a new "Poison Fruit" ability to Alraune. It applies any poison that
+      can be used by the injecting venom ability to fruit grown from the Alraune.
+      There is a notice attached to the selection that states this is intended for
+      scenes and to not leave the poisoned fruit out for people who do not OOC consent,
+      as well as admin logging when this fruit is produced.
+  - rscadd: Added a new thorns ability for alraune that will cause anyone touching
+      them, or simple mobs attacking them, to take a small amount of brute damage.
+      This starts off and can be toggled off and on at will.
+  - code_imp: Added variables to seed harvesting so that code can force them to spawn
+      with specific reagents inside.
+  - balance: Allowed alraune to change the type of fruit they spawn more than once.
+  - bugfix: Fixed vore hostile mobs (those that eat people unprompted) not being able
+      to target players with mob vore enabled.
+  ShadowLarkens:
+  - balance: Completely rewrote R&D to be made up of "techweb nodes" that you research
+      with experiments + passive point generation. This turns it from a question of
+      how to max all levels as fast as possible, to figuring out what paths you want
+      to go down and unlock with a time gate.
+  Willburd:
+  - bugfix: tiny memory leak on capture crystal animations
+  - code_imp: capture crystals use timers instead of sleeps to animate
+2025-07-29:
+  Diana:
+  - rscadd: Purple Robes in the loadout now has a teshari variant!
+  - rscadd: Purple robes can now be unbuttoned!
+  Tenryumi:
+  - bugfix: fixed circuit assemblies printing empty lines on examine.
+  WIll:
+  - rscadd: Items that can be sold by cargo now state it at the end of their description
+  - rscadd: Multiple stamped manifests can be sent in the same crate
+  - code_imp: Moved cargo item selling code to an element
+  Willburd:
+  - code_imp: Removes sleep() in modular computer uis
+  - bugfix: Dev disabled styles removed from randomized rolls.
+2025-07-30:
+  ItsSelis:
+  - qol: rust-g updated to 4.0.0
+  Will:
+  - bugfix: Fixed a major runtime in the resleeving computer when a bodyrecord becomes
+      outdated
+  - bugfix: Synthfab not being able to spawn bodies properly
+  - rscadd: New particle smasher recipes
+2025-07-31:
+  ItsSelis:
+  - bugfix: Fixes an error occuring when tgs is compiling the rust itself.
+  Tenryumi:
+  - rscadd: Added a variant of neck fur that doesn't have a north-facing sprite.
+  TheCaramelion:
+  - bugfix: Fixed vaccines not giving vaccine bottles
+  Will:
+  - code_imp: Moves dizzy and jitter code to components.
+  - bugfix: Teshari can no longer pass through deployed security barriers

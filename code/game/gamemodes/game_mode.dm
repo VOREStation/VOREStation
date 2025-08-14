@@ -104,9 +104,9 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			return
 		var/datum/antagonist/antag = GLOB.all_antag_types[choice]
 		if(antag)
-			if(!islist(ticker.mode.antag_templates))
-				ticker.mode.antag_templates = list()
-			ticker.mode.antag_templates |= antag
+			if(!islist(SSticker.mode.antag_templates))
+				SSticker.mode.antag_templates = list()
+			SSticker.mode.antag_templates |= antag
 			message_admins("Admin [key_name_admin(usr)] added [antag.role_text] template to game mode.")
 
 	// I am very sure there's a better way to do this, but I'm not sure what it might be. ~Z
@@ -219,8 +219,8 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 	feedback_set_details("round_start","[time2text(world.realtime)]")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore, SetRoundStart))
-	if(ticker && ticker.mode)
-		feedback_set_details("game_mode","[ticker.mode]")
+	if(SSticker && SSticker.mode)
+		feedback_set_details("game_mode","[SSticker.mode]")
 	feedback_set_details("server_ip","[world.internet_address]:[world.port]")
 	return 1
 
@@ -394,7 +394,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		return candidates
 
 	// If this is being called post-roundstart then it doesn't care about ready status.
-	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+	if(SSticker && SSticker.current_state == GAME_STATE_PLAYING)
 		for(var/mob/player in GLOB.player_list)
 			if(!player.client)
 				continue
@@ -502,21 +502,23 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 			continue //Happy connected client
 		for(var/mob/observer/dead/D in GLOB.dead_mob_list)
-			if(D.mind && (D.mind.original == L || D.mind.current == L))
-				if(L.stat == DEAD)
-					if(L.suiciding)	//Suicider
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
-						continue //Disconnected client
+			if(D.mind)
+				var/mob/living/original = D.mind.original_character?.resolve()
+				if((original && original == L) || D.mind.current == L)
+					if(L.stat == DEAD)
+						if(L.suiciding)	//Suicider
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
+							continue //Disconnected client
+						else
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
+							continue //Dead mob, ghost abandoned
 					else
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
-						continue //Dead mob, ghost abandoned
-				else
-					if(D.can_reenter_corpse)
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Adminghosted"))])<br>"
-						continue //Lolwhat
-					else
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Ghosted"))])<br>"
-						continue //Ghosted while alive
+						if(D.can_reenter_corpse)
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Adminghosted"))])<br>"
+							continue //Lolwhat
+						else
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Ghosted"))])<br>"
+							continue //Ghosted while alive
 
 	msg = span_notice(msg)// close the span from right at the top
 
@@ -549,16 +551,16 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	set name = "Check Round Info"
 	set category = "OOC.Game"
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		to_chat(usr, span_warning("Something is terribly wrong; there is no gametype."))
 		return
 
 	if(GLOB.master_mode != "secret")
-		to_chat(usr, span_boldnotice("The roundtype is [capitalize(ticker.mode.name)]"))
-		if(ticker.mode.round_description)
-			to_chat(usr, span_notice(span_italics("[ticker.mode.round_description]")))
-		if(ticker.mode.extended_round_description)
-			to_chat(usr, span_notice("[ticker.mode.extended_round_description]"))
+		to_chat(usr, span_boldnotice("The roundtype is [capitalize(SSticker.mode.name)]"))
+		if(SSticker.mode.round_description)
+			to_chat(usr, span_notice(span_italics("[SSticker.mode.round_description]")))
+		if(SSticker.mode.extended_round_description)
+			to_chat(usr, span_notice("[SSticker.mode.extended_round_description]"))
 	else
 		to_chat(usr, span_notice(span_italics("Shhhh") + ". It's a secret."))
 	return

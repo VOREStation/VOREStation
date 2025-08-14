@@ -100,3 +100,4 @@
 	client.init_verbs()
 
 	set_listening(LISTENING_PLAYER)
+	GLOB.tickets.ClientLogin(client, TRUE)

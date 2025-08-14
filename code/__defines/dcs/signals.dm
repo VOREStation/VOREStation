@@ -197,6 +197,11 @@
 ///from base of atom/MouseDrop_T: (/atom/from, /mob/user)
 #define COMSIG_MOUSEDROPPED_ONTO "mousedropped_onto"
 
+///from base of atom/MouseDrop_T: do_after(mob/user, delay, atom/target, needhand, progress, incapacitation_flags, ignore_movement, max_distance, exclusive)
+#define COMSIG_DO_AFTER_BEGAN "do_after_began"
+///from base of atom/MouseDrop_T: do_after(mob/user, delay, atom/target, needhand, progress, incapacitation_flags, ignore_movement, max_distance, exclusive)
+#define COMSIG_DO_AFTER_ENDED "do_after_ended"
+
 // /area signals
 
 ///from base of area/Entered(): (atom/movable/M)
@@ -292,6 +297,8 @@
 ///from base of /obj/item/attack(): (mob/M, mob/user)
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)
+///from the base of /mob/living/silicon/robot/ClickOn(): (var/atom/A, var/params)
+#define COMSIG_ROBOT_ITEM_ATTACK "robot_item_attack"
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 #define COMSIG_MOB_APPLY_DAMGE	"mob_apply_damage"
 ///from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
@@ -335,9 +342,6 @@
 #define COMSIG_LIVING_IGNITED "living_ignite"
 ///from base of mob/living/ExtinguishMob() (/mob/living)
 #define COMSIG_LIVING_EXTINGUISHED "living_extinguished"
-///from base of mob/living/electrocute_act(): (shock_damage, source, siemens_coeff, flags)
-#define COMSIG_LIVING_ELECTROCUTE_ACT "living_electrocute_act"
-///sent when items with siemen coeff. of 0 block a shock: (power_source, source, siemens_coeff, dist_check)
 #define COMSIG_LIVING_SHOCK_PREVENTED "living_shock_prevented"
 ///sent by stuff like stunbatons and tasers: ()
 #define COMSIG_LIVING_MINOR_SHOCK "living_minor_shock"
@@ -358,6 +362,50 @@
 #define COMSIG_LIVING_LIFE "living_life"
 ///From /living/handle_disabilities().
 #define COMSIG_HANDLE_DISABILITIES "handle_disabilities"
+///From /living/handle_allergens().
+#define COMSIG_HANDLE_ALLERGENS "handle_allergens"
+///From /mob/living/proc/updatehealth().
+#define COMSIG_UPDATE_HEALTH "update_health"
+	#define COMSIG_UPDATE_HEALTH_GOD_MODE (1<<0) //If this will set health to 100 and stat to conscious.
+
+// Damage specific signals for /mob/living
+///from /mob/living/proc/adjustBrainLoss(amount) and /mob/living/proc/setBrainLoss(amount)
+#define COMSIG_TAKING_BRAIN_DAMAGE "taking_brain_damage"
+///Return this in response if you don't want brain damage to be dealt via the normal proc.
+	#define COMSIG_CANCEL_BRAIN_DAMAGE (1<<0)
+///from /mob/living/proc/adjustOxyLoss(amount) and /mob/living/proc/setOxyLoss(amount)
+#define COMSIG_TAKING_OXY_DAMAGE "taking_oxy_damage"
+///Return this in response if you don't want brain damage to be dealt via the normal proc.
+	#define COMSIG_CANCEL_OXY_DAMAGE (1<<0)
+///from /mob/living/proc/adjustToxLoss(amount) and /mob/living/proc/setToxLoss(amount)
+#define COMSIG_TAKING_TOX_DAMAGE "taking_tox_damage"
+///Return this in response if you don't want tox damage to be dealt via the normal proc.
+	#define COMSIG_CANCEL_TOX_DAMAGE (1<<0)
+///from /mob/living/proc/adjustCloneLoss(amount) and /mob/living/proc/setCloneLoss(amount)
+#define COMSIG_TAKING_CLONE_DAMAGE "taking_clone_damage"
+///Return this in response if you don't want clone damage to be dealt via the normal proc.
+	#define COMSIG_CANCEL_CLONE_DAMAGE (1<<0)
+///from /mob/living/proc/adjustFireLoss(amount, include_robo)
+#define COMSIG_TAKING_FIRE_DAMAGE "taking_fire_damage"
+///Return this in response if you don't want fire damage to be dealt via the normal proc.
+	#define COMSIG_CANCEL_FIRE_DAMAGE (1<<0)
+///from /mob/living/proc/adjustBruteLoss(amount, include_robo) and /mob/living/carbon/human/adjustBruteLoss(amount, include_robo)
+#define COMSIG_TAKING_BRUTE_DAMAGE "taking_brute_damage"
+///Return this in response if you don't want brute damage to be dealt via the normal proc.
+	#define COMSIG_CANCEL_BRUTE_DAMAGE (1<<0)
+///from /mob/living/proc/adjustHalLoss(amount)
+#define COMSIG_TAKING_HALO_DAMAGE "taking_halo_damage"
+///Return this in response if you don't want halo damage to be dealt via the normal proc.
+	#define COMSIG_CANCEL_HALO_DAMAGE (1<<0)
+///from /mob/living/proc/apply_effect(effect, effecttype, blocked, check_protection)
+#define COMSIG_TAKING_APPLY_EFFECT "applying_effect"
+///Return this in response if you don't want the effect to be applied
+	#define COMSIG_CANCEL_EFFECT (1<<0)
+
+///Misc signal for checking for godmode. Used by /datum/element/godmode
+#define COMSIG_CHECK_FOR_GODMODE "check_for_godmode"
+///Returned by /datum/element/godmode if the target is in godmode and whatever we're checking we want to cancel
+	#define COMSIG_GODMODE_CANCEL (1<<0)
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 
@@ -394,8 +442,19 @@
 #define COMSIG_CARBON_EMBED_RIP "item_embed_start_rip"
 ///called when removing a given item from a mob, from mob/living/carbon/remove_embedded_object(mob/living/carbon/target, /obj/item)
 #define COMSIG_CARBON_EMBED_REMOVAL "item_embed_remove_safe"
+///called when being electrocuted, from /mob/living/carbon/electrocute_act(shock_damage, source, siemens_coeff, def_zone, stun)
+#define COMSIG_BEING_ELECTROCUTED "being_electrocuted"
+	#define COMPONENT_CARBON_CANCEL_ELECTROCUTE (1<<0) //If this is set, the carbon will be not be electrocuted.
 
-// /obj signals
+
+// /mob/living/silicon signals
+///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity)
+#define COMSIG_SILICON_EMP_ACT "silicon_emp_act"
+	#define COMPONENT_BLOCK_EMP (1<<0) //If this is set, the EMP will not go through. Used by other EMP acts as well.
+
+// /mob/living/silicon/robot signals
+///called when a robot is emp'd. from /mob/living/silicon/robot/emp_act(severity)
+#define COMSIG_ROBOT_EMP_ACT "robot_emp_act"
 
 ///from base of obj/deconstruct(): (disassembled)
 #define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"
@@ -478,6 +537,8 @@
 // /obj/item signals for economy
 ///called when an item is sold by the exports subsystem
 #define COMSIG_ITEM_SOLD "item_sold"
+///called when an item's cargo sale value is scanned
+#define COMSIG_ITEM_SCAN_PROFIT "item_scan_profit"
 ///called when a wrapped up structure is opened by hand
 #define COMSIG_STRUCTURE_UNWRAPPED "structure_unwrapped"
 #define COMSIG_ITEM_UNWRAPPED "item_unwrapped"
@@ -579,6 +640,25 @@
 #define COMSIG_JOB_RECEIVED "job_received"
 ///When the mob's dna and species have been fully applied
 #define COMSIG_HUMAN_DNA_FINALIZED "human_dna_finished"
+
+// Organ specific signals
+
+///from /obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon, forbidden_limbs, permutation, projectile)
+#define COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION "external_organ_pre_damage_application"
+///Return this in response if you don't want external organ damage to be dealt via the normal proc.
+	#define COMPONENT_CANCEL_EXTERNAL_ORGAN_DAMAGE (1<<0)
+///from /obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon, forbidden_limbs, permutation, projectile)
+#define COMSIG_EXTERNAL_ORGAN_POST_DAMAGE_APPLICATION "external_organ_post_damage_application"
+///from /obj/item/organ/take_damage(amount, silent)
+#define COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION "internal_organ_pre_damage_application"
+///Return this in response if you don't want internal organ damage to be dealt via the normal proc.
+	#define COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE (1<<0)
+///from /obj/item/organ/take_damage(amount, silent)
+#define COMSIG_INTERNAL_ORGAN_POST_DAMAGE_APPLICATION "internal_organ_post_damage_application"
+///From /obj/item/organ/external/proc/embed(W, silent)
+#define COMSIG_EMBED_OBJECT "embed_object"
+///Return this in response if you don't want the embed to go through.
+	#define COMSIG_CANCEL_EMBED (1<<0)
 
 // /datum/species signals
 
@@ -849,6 +929,6 @@
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"
 
 //Unittest data update
-#ifdef UNIT_TEST
+#ifdef UNIT_TESTS
 #define COMSIG_UNITTEST_DATA "unittest_send_data"
 #endif

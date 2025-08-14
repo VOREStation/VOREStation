@@ -71,16 +71,12 @@ export const Pda = (props) => {
 
   const [settingsMode, setSettingsMode] = useState<BooleanLike>(false);
 
-  function handleSettingsMode(value: BooleanLike) {
-    setSettingsMode(value);
-  }
-
   return (
     <Window width={580} height={670} theme={useRetro ? 'pda_retro' : undefined}>
       <Window.Content scrollable>
         <PDAHeader
           settingsMode={settingsMode}
-          onSettingsMode={handleSettingsMode}
+          onSettingsMode={setSettingsMode}
         />
         {(settingsMode && <PDASettings />) || (
           <Section
@@ -96,7 +92,7 @@ export const Pda = (props) => {
           </Section>
         )}
         <Box mb={8} />
-        <PDAFooter onSettingsMode={handleSettingsMode} />
+        <PDAFooter onSettingsMode={setSettingsMode} />
       </Window.Content>
     </Window>
   );
@@ -104,7 +100,7 @@ export const Pda = (props) => {
 
 const PDAHeader = (props: {
   settingsMode: BooleanLike;
-  onSettingsMode: Function;
+  onSettingsMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { act, data } = useBackend<Data>();
 
@@ -181,7 +177,9 @@ const PDASettings = (props) => {
   );
 };
 
-const PDAFooter = (props: { onSettingsMode: Function }) => {
+const PDAFooter = (props: {
+  onSettingsMode: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { act, data } = useBackend<Data>();
 
   const { app, useRetro } = data;

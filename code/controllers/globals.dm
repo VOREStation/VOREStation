@@ -1,9 +1,10 @@
+// See initialization order in /code/game/world.dm
 GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 /datum/controller/global_vars
 	name = "Global Variables"
 
-	var/list/gvars_datum_protected_varlist
+	var/static/list/gvars_datum_protected_varlist
 	var/list/gvars_datum_in_built_vars
 	var/list/gvars_datum_init_order
 
@@ -13,36 +14,38 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	GLOB = src
 
 	var/datum/controller/exclude_these = new
-	gvars_datum_in_built_vars = exclude_these.vars + list("gvars_datum_protected_varlist", "gvars_datum_in_built_vars", "gvars_datum_init_order")
+	// I know this is dumb but the nested vars list hangs a ref to the datum. This fixes that
+	// I have an issue report open, lummox has not responded. It might be a FeaTuRE
+	// Sooo we gotta be dumb
+	var/list/controller_vars = exclude_these.vars.Copy()
+	controller_vars["vars"] = null
+	gvars_datum_in_built_vars = controller_vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
 
-	log_world("[vars.len - gvars_datum_in_built_vars.len] global variables")
+	QDEL_IN(exclude_these, 0) //signal logging isn't ready
 
-	Initialize(exclude_these)
+	Initialize()
 
 /datum/controller/global_vars/Destroy(force)
-	stack_trace("There was an attempt to qdel the global vars holder!")
-	if(!force)
-		return QDEL_HINT_LETMELIVE
-
-	QDEL_NULL(statclick)
-	gvars_datum_protected_varlist.Cut()
-	gvars_datum_in_built_vars.Cut()
-
-	GLOB = null
-
-	return ..()
+	// This is done to prevent an exploit where admins can get around protected vars
+	SHOULD_CALL_PARENT(FALSE)
+	return QDEL_HINT_IWILLGC
 
 /datum/controller/global_vars/stat_entry(msg)
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
-
-	msg = "GLOB: [statclick.update("Edit")]"
+	msg = "Edit"
 	return msg
 
 /datum/controller/global_vars/vv_edit_var(var_name, var_value)
 	if(gvars_datum_protected_varlist[var_name])
 		return FALSE
 	return ..()
+
+/*
+/datum/controller/global_vars/vv_get_var(var_name)
+	switch(var_name)
+		if (NAMEOF(src, vars))
+			return debug_variable(var_name, list(), 0, src)
+	return debug_variable(var_name, vars[var_name], 0, src, display_flags = VV_ALWAYS_CONTRACT_LIST)
+*/
 
 /datum/controller/global_vars/Initialize()
 	gvars_datum_init_order = list()
@@ -55,8 +58,8 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 			var/list/expected_global_procs = vars - gvars_datum_in_built_vars
 			for(var/I in global_procs)
 				expected_global_procs -= replacetext("[I]", "InitGlobal", "")
-			var/english_missing = expected_global_procs.Join(", ")
-			log_world("Missing procs: [english_missing]")
+			log_world("Missing procs: [expected_global_procs.Join(", ")]")
+
 	for(var/I in global_procs)
 		var/start_tick = world.time
 		call(src, I)()
@@ -64,4 +67,5 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 		if(end_tick - start_tick)
 			WARNING("Global [replacetext("[I]", "InitGlobal", "")] slept during initialization!")
 
+	// Someone make it so this call isn't necessary
 	populate_legacy_globals()

@@ -22,7 +22,7 @@
 
 /obj/structure/drop_pod/Destroy()
 	. = ..()
-	qdel_null(air)
+	QDEL_NULL(air)
 
 /obj/structure/drop_pod/proc/podfall(auto_open)
 	var/turf/T = get_turf(src)
@@ -105,7 +105,7 @@
 	for(var/atom/movable/AM in src)
 		AM.forceMove(loc)
 		AM.set_dir(SOUTH) // cus
-	qdel_null(air)
+	QDEL_NULL(air)
 	finished = TRUE
 
 /obj/structure/drop_pod/attack_hand(mob/living/user)

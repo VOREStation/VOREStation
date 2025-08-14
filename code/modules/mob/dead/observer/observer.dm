@@ -74,9 +74,9 @@
 				name = M.real_name
 			else
 				if(gender == MALE)
-					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+					name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 				else
-					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+					name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
 		mind = M.mind	//we don't transfer the mind but we keep a reference to it.
 
@@ -96,7 +96,7 @@
 		to_chat(src, span_danger("Could not locate an observer spawn point. Use the Teleport verb to jump to the station map."))
 
 	if(!name)							//To prevent nameless ghosts
-		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+		name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	real_name = name
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
@@ -683,7 +683,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0 //something is terribly wrong
 
 	var/ghosts_can_write
-	if(ticker.mode.name == "cult")
+	if(SSticker.mode.name == "cult")
 		if(cult.current_antagonists.len > CONFIG_GET(number/cult_ghostwriter_req_cultists))
 			ghosts_can_write = 1
 
@@ -725,7 +725,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/max_length = 50
 
-	var/message = sanitize(tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", max_length))
+	var/message = tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", max_length)
 
 	if (message)
 
@@ -899,7 +899,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/living/M = tgui_input_list(src, "Select who to whisper to:", "Whisper to?", options)
 		if(!M)
 			return 0
-		var/msg = sanitize(tgui_input_text(src, "Message:", "Spectral Whisper"))
+		var/msg = tgui_input_text(src, "Message:", "Spectral Whisper", "", MAX_MESSAGE_LEN)
 		if(msg)
 			log_talk("(SPECWHISP to [key_name(M)]): [msg]", LOG_WHISPER)
 			to_chat(M, span_warning(" You hear a strange, unidentifiable voice in your head... [span_purple("[msg]")]"))
@@ -934,6 +934,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			finalized = tgui_alert(src, "Look at your sprite. Is this what you wish to use?","Ghost Sprite",list("No","Yes"))
 
 			ghost_sprite = GLOB.possible_ghost_sprites[choice]
+
+			if(ghost_sprite == "blank")
+				log_and_message_admins("[key_name(src)] has set their ghost sprite to invisible.", src)
 
 			if(!finalized || finalized == "No")
 				icon_state = previous_state

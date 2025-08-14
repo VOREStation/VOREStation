@@ -5,19 +5,19 @@
 
 # byond version
 export BYOND_MAJOR=516
-export BYOND_MINOR=1664
+export BYOND_MINOR=1667
 
 # Macro Count
-export MACRO_COUNT=9
+export MACRO_COUNT=6
 
 #rust_g git tag
-export RUST_G_VERSION=3.11.0
+export RUST_G_VERSION=4.0.0
 
 # node version
 export NODE_VERSION_LTS=22.14.0
 
 # Bun version
-export BUN_VERSION=1.2.18
+export BUN_VERSION=1.2.20
 
 # SpacemanDMM git tag
 export SPACEMAN_DMM_VERSION=suite-1.10

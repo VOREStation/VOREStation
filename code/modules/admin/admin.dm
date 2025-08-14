@@ -625,29 +625,69 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
 //i.e. buttons/verbs
 
+#define REGULAR_RESTART "Regular Restart"
+#define REGULAR_RESTART_DELAYED "Regular Restart (with delay)"
+#define HARD_RESTART "Hard Restart (No Delay/Feedback Reason)"
+#define HARDEST_RESTART "Hardest Restart (No actions, just reboot)"
+#define TGS_RESTART "Server Restart (Kill and restart DD)"
+ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.", "Server.Game")
+	var/list/options = list(REGULAR_RESTART, REGULAR_RESTART_DELAYED, HARD_RESTART)
 
-/datum/admins/proc/restart()
-	set category = "Server.Game"
-	set name = "Restart"
-	set desc="Restarts the world"
-	if (!check_rights_for(usr.client, R_HOLDER))
+	// this option runs a codepath that can leak db connections because it skips subsystem (specifically SSdbcore) shutdown
+	if(!SSdbcore.IsConnected())
+		options += HARDEST_RESTART
+
+	if(world.TgsAvailable())
+		options += TGS_RESTART;
+
+	if(SSticker.admin_delay_notice)
+		if(alert(user, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") != "Yes")
+			return FALSE
+
+	var/result = input(user, "Select reboot method", "World Reboot", options[1]) as null|anything in options
+	if(isnull(result))
 		return
-	var/confirm = alert(usr, "Restart the game world?", "Restart", "Yes", "Cancel") // Not tgui_alert for safety
-	if(!confirm || confirm == "Cancel")
+
+	feedback_add_details("admin_verb","R")
+	if(blackbox)
+		blackbox.save_all_data_to_sql()
+
+	var/init_by = "Initiated by [user.holder.fakekey ? "Admin" : user.key]."
+	switch(result)
+		if(REGULAR_RESTART)
+			if(!user.is_localhost())
+				if(alert(user, "Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+					return FALSE
+			SSticker.Reboot(init_by, "admin reboot - by [user.key] [user.holder.fakekey ? "(stealth)" : ""]", 10)
+		if(REGULAR_RESTART_DELAYED)
+			var/delay = input("What delay should the restart have (in seconds)?", "Restart Delay", 5) as num|null
+			if(!delay)
+				return FALSE
+			if(!user.is_localhost())
+				if(alert(user,"Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+					return FALSE
+			SSticker.Reboot(init_by, "admin reboot - by [user.key] [user.holder.fakekey ? "(stealth)" : ""]", delay * 10)
+		if(HARD_RESTART)
+			to_chat(world, "World reboot - [init_by]")
+			world.Reboot()
+		if(HARDEST_RESTART)
+			to_chat(world, "Hard world reboot - [init_by]")
+			world.Reboot(fast_track = TRUE)
+		if(TGS_RESTART)
+			to_chat(world, "Server restart - [init_by]")
+			world.TgsEndProcess()
+
+#undef REGULAR_RESTART
+#undef REGULAR_RESTART_DELAYED
+#undef HARD_RESTART
+#undef HARDEST_RESTART
+#undef TGS_RESTART
+
+ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world reboot.", "Server.Game")
+	if(!SSticker.cancel_reboot(user))
 		return
-	if(confirm == "Yes")
-		to_chat(world, span_danger("Restarting world!" ) + span_notice("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"))
-		log_admin("[key_name(usr)] initiated a reboot.")
-
-		feedback_set_details("end_error","admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
-		feedback_add_details("admin_verb","R") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-		if(blackbox)
-			blackbox.save_all_data_to_sql()
-
-		sleep(50)
-		world.Reboot()
-
+	log_admin("[key_name(user)] cancelled the pending world reboot.")
+	message_admins("[key_name_admin(user)] cancelled the pending world reboot.")
 
 /datum/admins/proc/announce()
 	set category = "Admin.Chat"
@@ -880,7 +920,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!SSticker.start_immediately)
 		SSticker.start_immediately = TRUE
 		var/msg = ""
-		if(SSticker.current_state == GAME_STATE_INIT)
+		if(SSticker.current_state == GAME_STATE_STARTUP)
 			msg = " (The server is still setting up, but the round will be started as soon as possible.)"
 		log_admin("[key_name(usr)] has started the game.[msg]")
 		message_admins(span_notice("[key_name_admin(usr)] has started the game.[msg]"))
@@ -1017,24 +1057,6 @@ var/datum/announcement/minor/admin_min_announcer = new
 	message_admins(span_blue("Toggled reviving to [CONFIG_GET(flag/allow_admin_rev)]."))
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/immreboot()
-	set category = "Server.Game"
-	set desc="Reboots the server post haste"
-	set name="Immediate Reboot"
-	if(!check_rights_for(usr.client, R_HOLDER))	return
-	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
-		return
-	to_chat(world, span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
-	log_admin("[key_name(usr)] initiated an immediate reboot.")
-
-	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
-	feedback_add_details("admin_verb","IR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-	if(blackbox)
-		blackbox.save_all_data_to_sql()
-
-	world.Reboot()
-
 /datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Moderation"
 	set name = "Unprison"
@@ -1052,7 +1074,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /proc/is_special_character(var/character) // returns 1 for special characters and 2 for heroes of gamemode
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		return 0
 	var/datum/mind/M
 	if (ismob(character))
@@ -1062,8 +1084,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 		M = character
 
 	if(M)
-		if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
-			for(var/datum/antagonist/antag in ticker.mode.antag_templates)
+		if(SSticker.mode.antag_templates && SSticker.mode.antag_templates.len)
+			for(var/datum/antagonist/antag in SSticker.mode.antag_templates)
 				if(antag.is_antagonist(M))
 					return 2
 		if(M.special_role)
@@ -1197,70 +1219,70 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Show the current round configuration."
 	set name = "Show Game Mode"
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		tgui_alert_async(usr, "Not before roundstart!", "Alert")
 		return
 
-	var/out = span_large(span_bold("Current mode: [ticker.mode.name] (<a href='byond://?src=\ref[ticker.mode];[HrefToken()];debug_antag=self'>[ticker.mode.config_tag]</a>)")) + "<br/>"
+	var/out = span_large(span_bold("Current mode: [SSticker.mode.name] (<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=self'>[SSticker.mode.config_tag]</a>)")) + "<br/>"
 	out += "<hr>"
 
-	if(ticker.mode.ert_disabled)
-		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=ert'>disabled</a>"
+	if(SSticker.mode.ert_disabled)
+		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=ert'>disabled</a>"
 	else
-		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=ert'>enabled</a>"
+		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=ert'>enabled</a>"
 	out += "<br/>"
 
-	if(ticker.mode.deny_respawn)
-		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=respawn'>disallowed</a>"
+	if(SSticker.mode.deny_respawn)
+		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=respawn'>disallowed</a>"
 	else
-		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=respawn'>allowed</a>"
+		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=respawn'>allowed</a>"
 	out += "<br/>"
 
-	out += span_bold("Shuttle delay multiplier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=shuttle_delay'>[ticker.mode.shuttle_delay]</a><br/>"
+	out += span_bold("Shuttle delay multiplier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=shuttle_delay'>[SSticker.mode.shuttle_delay]</a><br/>"
 
-	if(ticker.mode.auto_recall_shuttle)
-		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=shuttle_recall'>enabled</a>"
+	if(SSticker.mode.auto_recall_shuttle)
+		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=shuttle_recall'>enabled</a>"
 	else
-		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=shuttle_recall'>disabled</a>"
+		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=shuttle_recall'>disabled</a>"
 	out += "<br/><br/>"
 
-	if(ticker.mode.event_delay_mod_moderate)
-		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_moderate'>[ticker.mode.event_delay_mod_moderate]</a><br/>"
+	if(SSticker.mode.event_delay_mod_moderate)
+		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_moderate'>[SSticker.mode.event_delay_mod_moderate]</a><br/>"
 	else
-		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_moderate'>unset</a><br/>"
+		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_moderate'>unset</a><br/>"
 
-	if(ticker.mode.event_delay_mod_major)
-		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_severe'>[ticker.mode.event_delay_mod_major]</a><br/>"
+	if(SSticker.mode.event_delay_mod_major)
+		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_severe'>[SSticker.mode.event_delay_mod_major]</a><br/>"
 	else
-		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_severe'>unset</a><br/>"
+		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_severe'>unset</a><br/>"
 
 	out += "<hr>"
 
-	if(ticker.mode.antag_tags && ticker.mode.antag_tags.len)
+	if(SSticker.mode.antag_tags && SSticker.mode.antag_tags.len)
 		out += span_bold("Core antag templates:") + "</br>"
-		for(var/antag_tag in ticker.mode.antag_tags)
-			out += "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
+		for(var/antag_tag in SSticker.mode.antag_tags)
+			out += "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
 
-	if(ticker.mode.round_autoantag)
-		out += span_bold("Autotraitor <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=autotraitor'>enabled</a>.")
-		if(ticker.mode.antag_scaling_coeff > 0)
-			out += " (scaling with <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=antag_scaling'>[ticker.mode.antag_scaling_coeff]</a>)"
+	if(SSticker.mode.round_autoantag)
+		out += span_bold("Autotraitor <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=autotraitor'>enabled</a>.")
+		if(SSticker.mode.antag_scaling_coeff > 0)
+			out += " (scaling with <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=antag_scaling'>[SSticker.mode.antag_scaling_coeff]</a>)"
 		else
-			out += " (not currently scaling, <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=antag_scaling'>set a coefficient</a>)"
+			out += " (not currently scaling, <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=antag_scaling'>set a coefficient</a>)"
 		out += "<br/>"
 	else
-		out += span_bold("Autotraitor <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=autotraitor'>disabled</a>.") + "<br/>"
+		out += span_bold("Autotraitor <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=autotraitor'>disabled</a>.") + "<br/>"
 
 	out += span_bold("All antag ids:")
-	if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
-		for(var/datum/antagonist/antag in ticker.mode.antag_templates)
+	if(SSticker.mode.antag_templates && SSticker.mode.antag_templates.len)
+		for(var/datum/antagonist/antag in SSticker.mode.antag_templates)
 			antag.update_current_antag_max()
-			out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];debug_antag=[antag.id]'>[antag.id]</a>"
+			out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=[antag.id]'>[antag.id]</a>"
 			out += " ([antag.get_antag_count()]/[antag.cur_max]) "
-			out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
+			out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
 	else
 		out += " None."
-	out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
+	out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
 	var/datum/browser/popup = new(owner, "edit_mode[src]", "Edit Game Mode")
 	popup.set_content(out)
@@ -1404,7 +1426,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		to_chat(usr, "Mode has not started.")
 		return
 
@@ -1428,12 +1450,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		to_chat(usr, "Mode has not started.")
 		return
 
 	log_and_message_admins("attempting to force mode autospawn.")
-	ticker.mode.try_latespawn()
+	SSticker.mode.try_latespawn()
 
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin.Events"

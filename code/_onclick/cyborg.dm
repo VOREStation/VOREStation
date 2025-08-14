@@ -79,7 +79,7 @@
 	if(A == loc || (A in loc) || (A in contents))
 		// No adjacency checks
 
-		var/resolved = A.attackby(W, src, 1)
+		var/resolved = W.resolve_attackby(A, src, click_parameters = params)
 		if(!resolved && A && W)
 			W.afterattack(A,src,1,params)
 		return
@@ -90,8 +90,8 @@
 	// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc && isturf(A.loc.loc))
 	if(isturf(A) || isturf(A.loc))
 		if(A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach))) // see adjacent.dm, allows robots to use ranged melee weapons
-
-			var/resolved = A.attackby(W, src, 1)
+			SEND_SIGNAL(src, COMSIG_ROBOT_ITEM_ATTACK, W, src, params) //This is we ATTEMPTED to attack someone.
+			var/resolved = W.resolve_attackby(A, src, click_parameters = params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params)
 			return

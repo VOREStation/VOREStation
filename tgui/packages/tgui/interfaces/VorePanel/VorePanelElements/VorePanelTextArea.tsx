@@ -27,18 +27,19 @@ const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
     const regexCopy = new RegExp(SYNTAX_REGEX);
 
     let lastIndex = 0;
-    let result;
-    while ((result = regexCopy.exec(desc)) !== null) {
-      elements.push(<>{desc.substring(lastIndex, result.index)}</>);
+    let result = regexCopy.exec(desc);
+    while (result !== null) {
+      elements.push(desc.substring(lastIndex, result.index));
       elements.push(
         <Box inline color={SYNTAX_COLOR[result[0]] || 'purple'}>
           {result[0]}
         </Box>,
       );
       lastIndex = result.index + result[0].length;
+      result = regexCopy.exec(desc);
     }
 
-    elements.push(<>{desc.substring(lastIndex)}</>);
+    elements.push(desc.substring(lastIndex));
 
     setHtmlDesc(elements);
   }, [desc]);
@@ -49,7 +50,7 @@ const DescriptionSyntaxHighlighting = (props: { desc: string }) => {
 const CountedTextElement = (props: {
   limit: number;
   entry: string;
-  action: Function;
+  action: (value: string | string[], index?: number) => void;
   index?: number;
 }) => {
   const { entry, limit, action, index } = props;
@@ -90,7 +91,7 @@ const CountedTextElement = (props: {
 const AreaMapper = (props: {
   limit: number;
   entry: string[];
-  action: Function;
+  action: (value: string | string[], index?: number) => void;
   exactLength: boolean;
   maxEntries: number;
 }) => {
@@ -163,7 +164,7 @@ export const VorePanelEditTextArea = (props: {
     noHighlight,
   } = props;
 
-  function doAct(value: string | string[]) {
+  function doAct(value: string | string[]): void {
     if (Array.isArray(value)) {
       act(action, { attribute: listAction, msgtype: subAction, val: value });
       return;

@@ -47,7 +47,7 @@
 	if(LAZYLEN(iterated_turfs) && iterated_turfs.len > total_turf_memory)
 		iterated_turfs.Cut(total_turf_memory + 1)
 
-	for(var/direction in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST) - turn(src.dir,180))
+	for(var/direction in GLOB.alldirs - turn(src.dir,180))
 		var/turf/T = get_step(src, direction)
 		if(T in iterated_turfs)
 			continue

@@ -194,7 +194,7 @@
 			minor_problems += "<br>" + span_warning("Ethanol intoxication detected - suggest close observation to alleviate risk of injury.")
 		if(user.getHalLoss())
 			minor_problems += "<br>" + span_warning("Mild concussion detected - advising bed rest until feeling better.")
-		if(user.jitteriness || user.dizziness)
+		if(user.get_jittery() || user.get_dizzy())
 			minor_problems += "<br>" + span_warning("Neurological symptoms detected - advising bed rest until feeling better.") //Resting fixes dizziness and jitteryness!
 		else
 			minor_problems += "<br>" + span_notice("No anatomical issues detected.")

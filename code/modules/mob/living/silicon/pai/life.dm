@@ -44,8 +44,11 @@
 		adjustFireLoss(-0.5)
 
 /mob/living/silicon/pai/updatehealth()
-	if(status_flags & GODMODE)
-		health = 100
+	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
+		health = getMaxHealth()
 		set_stat(CONSCIOUS)
 	else
-		health = 100 - getBruteLoss() - getFireLoss()
+		health = getMaxHealth() - getBruteLoss() - getFireLoss()
+		if(health <= -getMaxHealth()) //die only once
+			death()
+			return

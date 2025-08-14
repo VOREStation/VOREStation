@@ -68,6 +68,8 @@
 	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
 	var/private_struggle = FALSE			// If struggles are made public or not
 	var/prevent_saving = FALSE				// Can this belly be saved? For special bellies that mobs and adminbus might have.
+	var/absorbedrename_enabled = FALSE		// If absorbed prey are renamed.
+	var/absorbedrename_name = "%pred's %belly"	// What absorbed prey are renamed to.
 
 
 	var/vore_sprite_flags = DM_FLAG_VORESPRITE_BELLY
@@ -241,7 +243,8 @@
 	REAGENT_LUBE,
 	REAGENT_BIOMASS,
 	REAGENT_CONCENTRATEDRADIUM,
-	REAGENT_TRICORDRAZINE
+	REAGENT_TRICORDRAZINE,
+	REAGENT_ETHANOL
 	)
 
 	// Special var section
@@ -438,6 +441,8 @@
 	"entrance_logs",
 	"noise_freq",
 	"private_struggle",
+	"absorbedrename_enabled",
+	"absorbedrename_name",
 	"item_digest_logs",
 	"show_fullness_messages",
 	"digest_max",
@@ -1078,6 +1083,7 @@
 			M.reagents.del_reagent(REAGENT_ID_CLEANER)
 			M.reagents.del_reagent(REAGENT_ID_CONCENTRATEDRADIUM)
 			M.reagents.del_reagent(REAGENT_ID_TRICORDRAZINE)
+			M.reagents.del_reagent(REAGENT_ID_ETHANOL)
 			M.reagents.trans_to_holder(Pred.ingested, M.reagents.total_volume, 0.5, TRUE)
 
 	owner.handle_belly_update()

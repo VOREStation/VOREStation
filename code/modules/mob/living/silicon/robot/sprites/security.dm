@@ -244,8 +244,8 @@
 	has_rest_lights_sprites = TRUE
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate")
-	icon_x = 32
-	pixel_x = 0
+	icon_x = 64
+	pixel_x = -16
 
 /datum/robot_sprite/dogborg/tall/security/dullahanv3
 	name = "Dullahan security v3"
@@ -286,5 +286,6 @@
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
 
 /datum/robot_sprite/dogborg/security/smolraptor/alt
+	name = "Small Raptor Alt"
 
 	sprite_icon_state = "smolraptor_alt"

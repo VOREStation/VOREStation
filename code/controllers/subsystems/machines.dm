@@ -9,8 +9,10 @@
 
 SUBSYSTEM_DEF(machines)
 	name = "Machines"
+	dependencies = list(
+		/datum/controller/subsystem/points_of_interest
+	)
 	priority = FIRE_PRIORITY_MACHINES
-	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 

@@ -39,7 +39,7 @@
 /mob/living/proc/handle_special_unlocks()
 	return
 
-/mob/proc/init_vore()
+/mob/proc/init_vore(force = FALSE)
 	//Something else made organs, meanwhile.
 	if(!isnewplayer(src))
 		AddElement(/datum/element/slosh)
@@ -74,7 +74,7 @@
 			soulgem = new(src)
 		return TRUE
 
-/mob/living/init_vore()
+/mob/living/init_vore(force)
 	if(no_vore)
 		return FALSE
 	return ..()
@@ -418,6 +418,24 @@
 			return FALSE
 
 	return ..()
+
+//
+// Formats the belly texts if possible
+//
+
+/mob/living/proc/formatted_vore_examine()
+	var/reagent_examine = examine_reagent_bellies()
+	var/list/examine_belly = examine_bellies()
+	if(!reagent_examine && !LAZYLEN(examine_belly))
+		return ""
+	var/list/vore_examine_data = list()
+	vore_examine_data += reagent_examine
+	vore_examine_data += examine_belly
+	if(!client?.prefs?.read_preference(/datum/preference/toggle/vchat_enable))
+		return vore_examine_data
+
+	return span_details("🤰 | Vore Descriptions", vore_examine_data.Join("\n"))
+
 
 //
 // Clearly super important. Obviously.
@@ -1357,9 +1375,9 @@
 	if(screen_icon)
 		owner?.client?.screen -= screen_icon
 		UnregisterSignal(screen_icon, COMSIG_CLICK)
-		qdel_null(screen_icon)
+		QDEL_NULL(screen_icon)
 	remove_verb(owner, /mob/proc/insidePanel)
-	qdel_null(owner.vorePanel)
+	QDEL_NULL(owner.vorePanel)
 
 /datum/component/vore_panel/proc/create_mob_button(mob/user)
 	SIGNAL_HANDLER
@@ -1404,18 +1422,25 @@
 	for (var/belly in vore_organs)
 		var/obj/belly/B = belly
 
-		var/fill_percentage = B.reagents.maximum_volume > 0 ? B.reagents.total_volume / B.reagents.maximum_volume : 0
+		var/fill_percentage = round((B.custom_max_volume > 0 ? B.reagents.total_volume / B.custom_max_volume : 0) * 100)
 
-		if(0 <= fill_percentage && fill_percentage <= 0.2 && B.show_fullness_messages)
-			message += B.get_reagent_examine_msg1()
-		if(0.2 < fill_percentage && fill_percentage <= 0.4 && B.show_fullness_messages)
-			message += B.get_reagent_examine_msg2()
-		if(0.4 < fill_percentage && fill_percentage <= 0.6 && B.show_fullness_messages)
-			message += B.get_reagent_examine_msg3()
-		if(0.6 < fill_percentage && fill_percentage <= 0.8 && B.show_fullness_messages)
-			message += B.get_reagent_examine_msg4()
-		if(0.8 < fill_percentage && fill_percentage <= 1 && B.show_fullness_messages)
-			message += B.get_reagent_examine_msg5()
+		if(B.show_fullness_messages)
+			switch(fill_percentage)
+				if(0 to 20)
+					if(B.liquid_fullness1_messages)
+						message += B.get_reagent_examine_msg1()
+				if(20 to 40)
+					if(B.liquid_fullness2_messages)
+						message += B.get_reagent_examine_msg2()
+				if(40 to 60)
+					if(B.liquid_fullness3_messages)
+						message += B.get_reagent_examine_msg3()
+				if(60 to 80)
+					if(B.liquid_fullness4_messages)
+						message += B.get_reagent_examine_msg4()
+				if(80 to 100)
+					if(B.liquid_fullness5_messages)
+						message += B.get_reagent_examine_msg5()
 
 	return message
 
@@ -1446,7 +1471,11 @@
 
 	var/mob/living/user = src
 
-	var/mob/living/TG = tgui_input_list(user, "Choose who to transfer from", "Transfer From", mobs_in_view(1,user))
+	var/list/transfer_from = mobs_in_view(1,user)
+	for(var/obj/belly/B in vore_organs)
+		for(var/mob/living/L in B.contents)
+			transfer_from |= L
+	var/mob/living/TG = tgui_input_list(user, "Choose who to transfer from", "Transfer From", transfer_from)
 	if(!TG)
 		return FALSE
 	if(TG.give_reagents == FALSE && user != TG) //User isnt forced to allow giving in prefs if they are the one doing it
@@ -1468,7 +1497,11 @@
 		if("Cancel")
 			return FALSE
 		if("Vore belly")
-			var/mob/living/TR = tgui_input_list(user,"Choose who to transfer to","Select Target", mobs_in_view(1,user))
+			var/list/transfer_to = mobs_in_view(1,user)
+			for(var/obj/belly/B in vore_organs)
+				for(var/mob/living/L in B.contents)
+					transfer_to |= L
+			var/mob/living/TR = tgui_input_list(user,"Choose who to transfer to","Select Target", transfer_to)
 			if(!TR)  return FALSE
 
 			if(TR == user) //Proceed, we dont need to have prefs enabled for transfer within user
@@ -1518,7 +1551,11 @@
 
 
 		if("Stomach")
-			var/mob/living/TR = tgui_input_list(user,"Choose who to transfer to","Select Target", mobs_in_view(1,user))
+			var/list/transfer_to = mobs_in_view(1,user)
+			for(var/obj/belly/B in vore_organs)
+				for(var/mob/living/L in B.contents)
+					transfer_to |= L
+			var/mob/living/TR = tgui_input_list(user,"Choose who to transfer to","Select Target", transfer_to)
 			if(!TR)  return
 			if(!Adjacent(TR) || !Adjacent(TG))
 				return //No long distance transfer

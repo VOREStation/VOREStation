@@ -25,7 +25,7 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
-	if(ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))
+	if(SSticker.mode && SSticker.mode.check_antagonists_topic(href, href_list))
 		check_antagonists()
 		return
 
@@ -44,87 +44,6 @@
 		GLOB.tickets.BrowseTickets(text2num(href_list["tickets"]))
 
 	// mentor_commands(href, href_list, src) - Skip because client is already admin & contents handled above
-
-	if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
-
-		var/adminckey = href_list["dbsearchadmin"]
-		var/playerckey = href_list["dbsearchckey"]
-		var/playerip = href_list["dbsearchip"]
-		var/playercid = href_list["dbsearchcid"]
-		var/dbbantype = text2num(href_list["dbsearchbantype"])
-		var/match = 0
-
-		if("dbmatch" in href_list)
-			match = 1
-
-		DB_ban_panel(playerckey, adminckey, playerip, playercid, dbbantype, match)
-		return
-
-	else if(href_list["dbbanedit"])
-		var/banedit = href_list["dbbanedit"]
-		var/banid = text2num(href_list["dbbanid"])
-		if(!banedit || !banid)
-			return
-
-		DB_ban_edit(banid, banedit)
-		return
-
-	else if(href_list["dbbanaddtype"])
-
-		var/bantype = text2num(href_list["dbbanaddtype"])
-		var/banckey = href_list["dbbanaddckey"]
-		var/banip = href_list["dbbanaddip"]
-		var/bancid = href_list["dbbanaddcid"]
-		var/banduration = text2num(href_list["dbbaddduration"])
-		var/banjob = href_list["dbbanaddjob"]
-		var/banreason = href_list["dbbanreason"]
-
-		banckey = ckey(banckey)
-
-		switch(bantype)
-			if(BANTYPE_PERMA)
-				if(!banckey || !banreason)
-					to_chat(usr, span_filter_adminlog("Not enough parameters (Requires ckey and reason)"))
-					return
-				banduration = null
-				banjob = null
-			if(BANTYPE_TEMP)
-				if(!banckey || !banreason || !banduration)
-					to_chat(usr, span_filter_adminlog("Not enough parameters (Requires ckey, reason and duration)"))
-					return
-				banjob = null
-			if(BANTYPE_JOB_PERMA)
-				if(!banckey || !banreason || !banjob)
-					to_chat(usr, span_filter_adminlog("Not enough parameters (Requires ckey, reason and job)"))
-					return
-				banduration = null
-			if(BANTYPE_JOB_TEMP)
-				if(!banckey || !banreason || !banjob || !banduration)
-					to_chat(usr, span_filter_adminlog("Not enough parameters (Requires ckey, reason and job)"))
-					return
-
-		var/mob/playermob
-
-		for(var/mob/M in GLOB.player_list)
-			if(M.ckey == banckey)
-				playermob = M
-				break
-
-
-		banreason = "(MANUAL BAN) "+banreason
-
-		if(!playermob)
-			if(banip)
-				banreason = "[banreason] (CUSTOM IP)"
-			if(bancid)
-				banreason = "[banreason] (CUSTOM CID)"
-		else
-			message_admins("Ban process: A mob matching [playermob.ckey] was found at location [playermob.x], [playermob.y], [playermob.z]. Custom ip and computer id fields replaced with the ip and computer id from the located mob")
-		notes_add(banckey,banreason,usr)
-
-		DB_ban_record(bantype, playermob, banduration, banreason, banjob, null, banckey, banip, bancid )
-		if((bantype == BANTYPE_PERMA || bantype == BANTYPE_TEMP) && playermob.client)
-			qdel(playermob.client)
 
 	else if(href_list["editrightsbrowser"])
 		edit_admin_permissions(0)
@@ -147,13 +66,13 @@
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
 
-		if( ticker.mode.name == "blob" )
+		if( SSticker.mode.name == "blob" )
 			tgui_alert_async(usr, "You can't call the shuttle during blob!")
 			return
 
 		switch(href_list["call_shuttle"])
 			if("1")
-				if ((!( ticker ) || !emergency_shuttle.location()))
+				if ((!( SSticker ) || !emergency_shuttle.location()))
 					return
 				if (emergency_shuttle.can_call())
 					emergency_shuttle.call_evac()
@@ -161,7 +80,7 @@
 					message_admins(span_blue("[key_name_admin(usr)] called the Emergency Shuttle to the station."), 1)
 
 			if("2")
-				if (!( ticker ) || !emergency_shuttle.location())
+				if (!( SSticker ) || !emergency_shuttle.location())
 					return
 				if (emergency_shuttle.can_call())
 					emergency_shuttle.call_evac()
@@ -200,9 +119,9 @@
 	else if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))	return
 
-		ticker.delay_end = !ticker.delay_end
-		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins(span_blue("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"]."), 1)
+		SSticker.delay_end = !SSticker.delay_end
+		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+		message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."), 1)
 		href_list["secretsadmin"] = "check_antagonist"
 
 	else if(href_list["simplemake"])
@@ -292,12 +211,12 @@
 				mins = min(525599,mins)
 				minutes = CMinutes + mins
 				duration = GetExp(minutes)
-				reason = sanitize(tgui_input_text(usr,"Reason?","reason",reason2))
+				reason = tgui_input_text(usr,"Reason?","reason",reason2, MAX_MESSAGE_LEN)
 				if(!reason)	return
 			if("No")
 				temp = 0
 				duration = "Perma"
-				reason = sanitize(tgui_input_text(usr,"Reason?","reason",reason2))
+				reason = tgui_input_text(usr,"Reason?","reason",reason2, MAX_MESSAGE_LEN)
 				if(!reason)	return
 
 		log_admin("[key_name(usr)] edited [banned_key]'s ban. Reason: [reason] Duration: [duration]")
@@ -711,7 +630,7 @@
 					if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > CONFIG_GET(number/mod_job_tempban_max))
 						to_chat(usr, span_filter_adminlog(span_warning("Moderators can only job tempban up to [CONFIG_GET(number/mod_job_tempban_max)] minutes!")))
 						return
-					var/reason = sanitize(tgui_input_text(usr,"Reason?","Please State Reason",""))
+					var/reason = tgui_input_text(usr,"Reason?","Please State Reason","", MAX_MESSAGE_LEN)
 					if(!reason)
 						return
 
@@ -736,7 +655,7 @@
 					return 1
 				if("No")
 					if(!check_rights(R_BAN))  return
-					var/reason = sanitize(tgui_input_text(usr,"Reason?","Please State Reason",""))
+					var/reason = tgui_input_text(usr,"Reason?","Please State Reason","", MAX_MESSAGE_LEN)
 					if(reason)
 						var/msg
 						for(var/job in notbannedlist)
@@ -763,7 +682,7 @@
 		if(joblist.len) //at least 1 banned job exists in joblist so we have stuff to unban.
 			if(!CONFIG_GET(flag/ban_legacy_system))
 				to_chat(usr, span_filter_adminlog("Unfortunately, database based unbanning cannot be done through this panel"))
-				DB_ban_panel(M.ckey)
+				DB_ban_panel(usr.client, M.ckey)
 				return
 			var/msg
 			for(var/job in joblist)
@@ -793,7 +712,7 @@
 		if (ismob(M))
 			if(!check_if_greater_rights_than(M.client))
 				return
-			var/reason = sanitize(tgui_input_text(usr, "Please enter reason.", multiline = TRUE, prevent_enter = TRUE))
+			var/reason = tgui_input_text(usr, "Please enter reason.", "", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 			if(!reason)
 				return
 
@@ -844,7 +763,7 @@
 					to_chat(usr, span_warning("Moderators can only job tempban up to [CONFIG_GET(number/mod_tempban_max)] minutes!"))
 					return
 				if(mins >= 525600) mins = 525599
-				var/reason = sanitize(tgui_input_text(usr,"Reason?","reason","Griefer"))
+				var/reason = tgui_input_text(usr,"Reason?","reason","Griefer", MAX_MESSAGE_LEN)
 				if(!reason)
 					return
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
@@ -868,7 +787,7 @@
 				//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 			if("No")
 				if(!check_rights(R_BAN))   return
-				var/reason = sanitize(tgui_input_text(usr,"Reason?","reason","Griefer"))
+				var/reason = tgui_input_text(usr,"Reason?","reason","Griefer", MAX_MESSAGE_LEN)
 				if(!reason)
 					return
 				switch(tgui_alert(usr,"IP ban?","IP Ban",list("Yes","No","Cancel")))
@@ -913,7 +832,7 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
 
-		if(ticker && ticker.mode)
+		if(SSticker && SSticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
 		for(var/mode in config.modes)
@@ -926,7 +845,7 @@
 	else if(href_list["f_secret"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
 
-		if(ticker && ticker.mode)
+		if(SSticker && SSticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
 		if(GLOB.master_mode != "secret")
 			return tgui_alert_async(usr, "The game mode has to be secret!")
@@ -940,7 +859,7 @@
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER|R_EVENT))	return
 
-		if (ticker && ticker.mode)
+		if (SSticker && SSticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
 		GLOB.master_mode = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the mode as [config.mode_names[GLOB.master_mode]].")
@@ -953,7 +872,7 @@
 	else if(href_list["f_secret2"])
 		if(!check_rights(R_ADMIN|R_SERVER|R_EVENT))	return
 
-		if(ticker && ticker.mode)
+		if(SSticker && SSticker.mode)
 			return tgui_alert_async(usr, "The game has already started.")
 		if(GLOB.master_mode != "secret")
 			return tgui_alert_async(usr, "The game mode has to be secret!")
@@ -1410,7 +1329,7 @@
 			return
 
 		if(L.can_centcom_reply())
-			var/input = sanitize(tgui_input_text(src.owner, "Please enter a message to reply to [key_name(L)] via their headset.","Outgoing message from CentCom", ""))
+			var/input = tgui_input_text(src.owner, "Please enter a message to reply to [key_name(L)] via their headset.","Outgoing message from CentCom", "", MAX_MESSAGE_LEN)
 			if(!input)		return
 
 			to_chat(src.owner, span_filter_adminlog("You sent [input] to [L] via a secure channel."))
@@ -1435,7 +1354,7 @@
 			to_chat(usr, span_filter_adminlog("The person you are trying to contact is not wearing a headset"))
 			return
 
-		var/input = sanitize(tgui_input_text(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from a shadowy figure...", ""))
+		var/input = tgui_input_text(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from a shadowy figure...", "", MAX_MESSAGE_LEN)
 		if(!input)	return
 
 		to_chat(src.owner, span_filter_adminlog("You sent [input] to [H] via a secure channel."))
@@ -1576,7 +1495,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD|R_EVENT))	return
 
-		if(!ticker || !ticker.mode)
+		if(!SSticker|| !SSticker.mode)
 			tgui_alert_async(usr, "The game hasn't started yet!")
 			return
 
@@ -1732,7 +1651,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_channel_name"])
-		src.admincaster_feed_channel.channel_name = sanitizeSafe(tgui_input_text(usr, "Provide a Feed Channel Name", "Network Channel Handler", ""))
+		src.admincaster_feed_channel.channel_name = sanitizeSafe(tgui_input_text(usr, "Provide a Feed Channel Name", "Network Channel Handler", "", encode = FALSE))
 		src.access_news_network()
 
 	else if(href_list["ac_set_channel_lock"])
@@ -1760,15 +1679,15 @@
 		var/list/available_channels = list()
 		for(var/datum/feed_channel/F in news_network.network_channels)
 			available_channels += F.channel_name
-		src.admincaster_feed_channel.channel_name = sanitizeSafe(tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels ))
+		src.admincaster_feed_channel.channel_name = tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels)
 		src.access_news_network()
 
 	else if(href_list["ac_set_new_title"])
-		src.admincaster_feed_message.title = sanitize(tgui_input_text(usr, "Enter the Feed title", "Network Channel Handler", ""))
+		src.admincaster_feed_message.title = tgui_input_text(usr, "Enter the Feed title", "Network Channel Handler", "", MAX_MESSAGE_LEN)
 		src.access_news_network()
 
 	else if(href_list["ac_set_new_message"])
-		src.admincaster_feed_message.body = sanitize(tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", "", multiline = TRUE, prevent_enter = TRUE))
+		src.admincaster_feed_message.body = tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 		src.access_news_network()
 
 	else if(href_list["ac_submit_new_message"])
@@ -1810,11 +1729,11 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_wanted_name"])
-		src.admincaster_feed_message.author = sanitize(tgui_input_text(usr, "Provide the name of the Wanted person", "Network Security Handler", ""))
+		src.admincaster_feed_message.author = tgui_input_text(usr, "Provide the name of the Wanted person", "Network Security Handler", "", MAX_MESSAGE_LEN)
 		src.access_news_network()
 
 	else if(href_list["ac_set_wanted_desc"])
-		src.admincaster_feed_message.body = sanitize(tgui_input_text(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", ""))
+		src.admincaster_feed_message.body = tgui_input_text(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", "", MAX_MESSAGE_LEN)
 		src.access_news_network()
 
 	else if(href_list["ac_submit_wanted"])
@@ -1919,7 +1838,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_signature"])
-		src.admincaster_signature = sanitize(tgui_input_text(usr, "Provide your desired signature", "Network Identity Handler", ""))
+		src.admincaster_signature = tgui_input_text(usr, "Provide your desired signature", "Network Identity Handler", "", MAX_MESSAGE_LEN)
 		src.access_news_network()
 
 	else if(href_list["populate_inactive_customitems"])

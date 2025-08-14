@@ -164,3 +164,10 @@
 	EXTRAPOLATOR_ACT_SET(., EXTRAPOLATOR_ACT_PRIORITY_ISOLATE)
 	var/datum/reagent/blood/blood = reagents.get_reagent(REAGENT_ID_BLOOD)
 	EXTRAPOLATOR_ACT_ADD_DISEASES(., blood?.get_diseases())
+
+/obj/item/reagent_containers/proc/attempt_changeling_test(var/obj/item/W,var/mob/user)
+	if(is_open_container() && W.is_hot())
+		var/datum/reagent/blood/B = reagents.get_reagent("blood")
+		if(B)
+			balloon_alert(user, "\The [W] burns the blood in \the [src].")
+			B.changling_blood_test(reagents)

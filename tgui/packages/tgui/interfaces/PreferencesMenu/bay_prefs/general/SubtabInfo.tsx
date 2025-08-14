@@ -195,7 +195,7 @@ export const SubtabInfo = (props: {
               {selects_bodytype ? (
                 <LabeledList.Item
                   label="Custom Species Icon"
-                  tooltip="Your selected species can choose any other race for it's base sprites"
+                  tooltip="Your selected species can pick from different base sprite options"
                 >
                   <Button onClick={() => act('custom_base')}>
                     {custom_base || 'Human'}

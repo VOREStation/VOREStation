@@ -92,6 +92,17 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor/ignore_oregen)
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral/ignore_cavegen)
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor/ignore_cavegen)
 
+//GasCracks, despite the pathnames these give them atmos that let you place them anywhere on 3B
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/oxygen)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/nitrogen)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/carbon)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/nitro)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/phoron)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/air)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/terrible)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/random)
+
 //Vault2
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/freezer)
 

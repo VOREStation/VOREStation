@@ -367,6 +367,38 @@
 		if(M.client)
 			viewing += M.client
 	flick_overlay(I, viewing, duration, gc_after)
+/**
+ * Helper atom that copies an appearance and exists for a period
+*/
+/atom/movable/flick_visual
+
+/// Takes the passed in MA/icon_state, mirrors it onto ourselves, and displays that in world for duration seconds
+/// Returns the displayed object, you can animate it and all, but you don't own it, we'll delete it after the duration
+/atom/proc/flick_overlay_view_atom(mutable_appearance/display, duration)
+	if(!display)
+		return null
+
+	var/mutable_appearance/passed_appearance = \
+		istext(display) \
+			? mutable_appearance(icon, display, layer) \
+			: display
+
+	// If you don't give it a layer, we assume you want it to layer on top of this atom
+	// Because this is vis_contents, we need to set the layer manually (you can just set it as you want on return if this is a problem)
+	if(passed_appearance.layer == FLOAT_LAYER)
+		passed_appearance.layer = layer + 0.1
+	// This is faster then pooling. I promise
+	var/atom/movable/flick_visual/visual = new()
+	visual.appearance = passed_appearance
+	visual.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	// I hate /area
+	var/atom/movable/lies_to_children = src
+	lies_to_children.vis_contents += visual
+	QDEL_IN_CLIENT_TIME(visual, duration)
+	return visual
+
+/area/flick_overlay_view_atom(mutable_appearance/display, duration)
+	return
 
 /proc/isInSight(var/atom/A, var/atom/B)
 	var/turf/Aturf = get_turf(A)
@@ -615,10 +647,15 @@
 /proc/SecondsToTicks(var/seconds)
 	return seconds * 10
 
-/proc/window_flash(var/client_or_usr)
-	if (!client_or_usr)
+///Flash the window of a player
+/proc/window_flash(client/flashed_client, ignorepref = FALSE)
+	if(ismob(flashed_client))
+		var/mob/player_mob = flashed_client
+		if(player_mob.client)
+			flashed_client = player_mob.client
+	if(!flashed_client || (!flashed_client.prefs.read_preference(/datum/preference/toggle/window_flashing) && !ignorepref))
 		return
-	winset(client_or_usr, "mainwindow", "flash=5")
+	winset(flashed_client, "mainwindow", "flash=5")
 
 /**
  * Get a bounding box of a list of atoms.
