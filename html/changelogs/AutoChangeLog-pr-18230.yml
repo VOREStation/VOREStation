@@ -1,9 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - qol: "You can swap between character slots mid-round once more."
-  - qol: "Tail layering is now selectable in Character Setup"
-  - bugfix: "Fixes pref saving issue where it'd save preferences to the slot you had selected instead of the slot you spawned in as"
-  - bugfix: "Tail Layering adjustments in-game will no longer cause character data to be lost."
-  - bugfix: "Updating someone's records in game has been hotfixed. Now informs the user to swap to their played slot to prevent savefile corruption."
-  - bugfix: "Shadekin Control Panel will inform you when your selected savefile does not match your current savefile and inform you to change it."
