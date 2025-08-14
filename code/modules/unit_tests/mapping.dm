@@ -12,7 +12,7 @@
 		// and various ruins frequently intentionally doing non-standard things.
 		if(!test_areacoord_regex.Find(log_entry))
 			continue
-		var/z = text2num(test_areacoord_regex.group[1])
+		// var/z = text2num(test_areacoord_regex.group[1])
 		//if(!is_station_level(z) && !is_mining_level(z)) // FIXME: We cannot check for these yet!
 		//	continue
 
