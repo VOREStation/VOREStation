@@ -2,6 +2,10 @@
 	var/datum/component/shadekin/SK = get_shadekin_component()
 	if(SK && SK.in_phase)
 		return ""
+	if(absorbed && isbelly(loc))
+		var/obj/belly/B = loc
+		if(B.absorbedrename_enabled)
+			return "" // Don't use alt name if under absorbed rename.
 	if(name != GetVoice())
 		return " (as [get_id_name("Unknown")])"
 
@@ -107,6 +111,14 @@
 		return comp.mimicing
 	if(GetSpecialVoice())
 		return GetSpecialVoice()
+	if(absorbed && isbelly(loc)) // If absorbed in a belly, check and apply absorbed rename if applicable.
+		var/obj/belly/B = loc
+		if(B.absorbedrename_enabled)
+			var/formatted_name = B.absorbedrename_name
+			formatted_name = replacetext(formatted_name,"%pred",B.owner)
+			formatted_name = replacetext(formatted_name,"%belly",B.name)
+			formatted_name = replacetext(formatted_name,"%prey",name)
+			return formatted_name
 	return real_name
 
 /mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
@@ -133,7 +145,7 @@
 			message_data[2] = pick(M.say_verbs)
 			. = 1
 
-	else if((CE_SPEEDBOOST in chem_effects) || (is_jittery && !stuttering)) // motor mouth, check for stuttering so anxiety doesn't do hyperzine text
+	else if((CE_SPEEDBOOST in chem_effects) || (get_jittery() >= 100 && !stuttering)) // motor mouth, check for stuttering so anxiety doesn't do hyperzine text
 		// Despite trying to url/html decode these, byond is just being bad and I dunno.
 		var/static/regex/speedboost_initial = new (@"&[a-z]{2,5};|&#\d{2};","g")
 		// Not herestring because bad vs code syntax highlight panics at apostrophe

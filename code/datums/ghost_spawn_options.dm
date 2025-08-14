@@ -57,7 +57,7 @@
 		to_chat(host, span_info("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
 
 /datum/tgui_module/ghost_spawn_menu/proc/become_drone(mob/observer/dead/user, fabricator)
-	if(ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(user, span_danger("The game hasn't started yet!"))
 		return
 
@@ -161,7 +161,7 @@
 		if(!user.mind) //No mind yet, aka haven't played in this round.
 			user.mind = new(user.key)
 
-		user.mind.name = name
+		user.mind.name = user.name
 		user.mind.current = user
 		user.mind.active = TRUE
 
@@ -203,7 +203,7 @@
 		if(!user.mind) //No mind yet, aka haven't played in this round.
 			user.mind = new(user.key)
 
-		user.mind.name = name
+		user.mind.name = user.name
 		user.mind.current = user
 		user.mind.active = TRUE
 

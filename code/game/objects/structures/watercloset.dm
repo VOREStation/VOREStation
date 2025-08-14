@@ -16,6 +16,7 @@
 	. = ..()
 	open = round(rand(0, 1))
 	update_icon()
+	AddComponent(/datum/component/hose_connector/endless_drain) // Cannot suck from toilet... for obvious reasons.
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
 	if(swirlie)

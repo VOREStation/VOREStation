@@ -109,8 +109,8 @@
 		init_from_mob(copyfrom, add_to_db, ckeylock)
 
 /datum/transhuman/body_record/Destroy()
-	qdel_null(mydna.dna)
-	qdel_null(mydna)
+	QDEL_NULL(mydna.dna)
+	QDEL_NULL(mydna)
 	client_ref = null
 	mind_ref = null
 	limb_data.Cut()
@@ -156,7 +156,7 @@
 
 	//The DNA2 stuff
 	mydna = new ()
-	qdel_swap(mydna.dna, M.dna.Clone())
+	QDEL_SWAP(mydna.dna, M.dna.Clone())
 	mydna.ckey = M.ckey
 	mydna.id = copytext(md5(M.real_name), 2, 6)
 	mydna.name = M.dna.real_name
@@ -332,7 +332,7 @@
 	//Apply DNA from record
 	if(!mydna.dna) // This case should never happen, but copied from clone pod... Who knows with this codebase.
 		mydna.dna = new /datum/dna()
-	qdel_swap(H.dna, mydna.dna.Clone())
+	QDEL_SWAP(H.dna, mydna.dna.Clone())
 	H.original_player = ckey
 
 	//Apply genetic modifiers, synths don't use these

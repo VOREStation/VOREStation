@@ -102,6 +102,15 @@
 	description = "A small cabin; turned into a shelter capsule. Includes dorm amenities, and a nice dinner."
 	mappath = "maps/submaps/shelters/shelter_cab.dmm"
 
+/datum/map_template/shelter/cabin_deluxe
+	name = "Shelter Deluxe Cabin"
+	shelter_id = "shelter_cab_deluxe"
+	description = "A glamorously furnished cabin packed away in your pocket. \
+		Includes a private dormitory, bathroom, dining room, and a very \
+		compactly designed kitchen. Designed for a comfortable extended \
+		stay in isolated wilderness survival scenarios."
+	mappath = "maps/submaps/shelters/shelter_luxury_cabin.dmm"
+
 /datum/map_template/shelter/phi
 	name = "Shelter Phi"
 	shelter_id = "shelter_phi"

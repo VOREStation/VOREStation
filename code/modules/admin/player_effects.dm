@@ -604,6 +604,28 @@
 				var/mob/living/silicon/robot/Tar = target
 				add_verb(Tar, /mob/living/silicon/robot/proc/ColorMate)
 
+		if("be_event_invis")
+			var/mob/living/Tar = target
+			if(!istype(Tar)) //Technically does not need this restriction, but prevents ghosts accidentally being placed in mob layer
+				return
+			if(Tar.plane != PLANE_INVIS_EVENT)
+				Tar.plane = PLANE_INVIS_EVENT
+				if(!(VIS_EVENT_INVIS in Tar.vis_enabled))
+					Tar.plane_holder.set_vis(VIS_EVENT_INVIS,TRUE)
+					Tar.vis_enabled += VIS_EVENT_INVIS
+			else
+				Tar.plane = MOB_LAYER
+				if(VIS_EVENT_INVIS in Tar.vis_enabled)
+					Tar.plane_holder.set_vis(VIS_EVENT_INVIS,FALSE)
+					Tar.vis_enabled -= VIS_EVENT_INVIS
+
+		if("see_event_invis")
+			if(!(VIS_EVENT_INVIS in target.vis_enabled))
+				target.plane_holder.set_vis(VIS_EVENT_INVIS,TRUE)
+				target.vis_enabled += VIS_EVENT_INVIS
+			else if(VIS_EVENT_INVIS in target.vis_enabled)
+				target.plane_holder.set_vis(VIS_EVENT_INVIS,FALSE)
+				target.vis_enabled -= VIS_EVENT_INVIS
 
 		////////INVENTORY//////////////
 
@@ -774,7 +796,7 @@
 				qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
 			L.ai_holder_type = tgui_input_list(ui.user, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
 			L.initialize_ai_holder()
-			L.faction = sanitize(tgui_input_text(ui.user, "Please input AI faction", "AI faction", "neutral"))
+			L.faction = tgui_input_text(ui.user, "Please input AI faction", "AI faction", "neutral", MAX_MESSAGE_LEN)
 			L.a_intent = tgui_input_list(ui.user, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
 			if(tgui_alert(ui.user, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 				L.AdjustSleeping(-100)

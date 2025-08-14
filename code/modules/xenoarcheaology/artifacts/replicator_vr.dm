@@ -16,6 +16,7 @@
 	/mob/living/simple_mob/animal/passive/chicken,
 	/mob/living/simple_mob/animal/passive/opossum,
 	/mob/living/simple_mob/animal/passive/mouse,
+	/mob/living/simple_mob/animal/passive/mothroach,
 	/mob/living/simple_mob/vore/rabbit,
 	/mob/living/simple_mob/animal/goat,
 	/mob/living/simple_mob/animal/sif/tymisian,

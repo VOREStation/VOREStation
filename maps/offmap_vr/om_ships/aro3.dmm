@@ -331,7 +331,7 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/suite_starboard_wc)
 "bU" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -537,7 +537,7 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -565,7 +565,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/kitchen)
 "do" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -1058,7 +1058,7 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/wc_port)
 "gD" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -1880,7 +1880,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_port)
 "ln" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -2629,7 +2629,7 @@
 /turf/space,
 /area/space)
 "qg" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -3696,7 +3696,7 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/medical)
 "xm" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -4936,7 +4936,7 @@
 /turf/simulated/wall/rpshull,
 /area/aro3/bar)
 "EW" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan,
@@ -5136,7 +5136,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "Gz" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -5579,7 +5579,7 @@
 /turf/simulated/wall/tgmc/durawall,
 /area/aro3/cockpit)
 "KI" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan,
@@ -5778,7 +5778,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/surfluid)
 "LR" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -6787,7 +6787,7 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 6
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{

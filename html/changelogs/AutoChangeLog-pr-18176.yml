@@ -1,0 +1,5 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - rscadd: "Added GBP system"
+  - rscadd: "Added CODEOWNERS workflow in order to add reviews from codeowners that do not have write permissions on the repository (This is not a feature in GitHub since 2019)"

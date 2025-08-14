@@ -49,7 +49,7 @@
 /obj/structure/cable/pink{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "dauntless_pd"
 	},
 /turf/simulated/floor/airless,
@@ -318,7 +318,7 @@
 /turf/simulated/floor/airless,
 /area/itglight/captain)
 "bq" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "dauntless_pd"
 	},
 /obj/structure/cable/pink{
@@ -1908,7 +1908,7 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "mo" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "dauntless_pd"
 	},
 /obj/structure/cable/pink{
@@ -5463,7 +5463,7 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/shuttlebay)
 "Kv" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "dauntless_pd"
 	},
 /obj/structure/cable/pink{
@@ -7144,7 +7144,7 @@
 /turf/space,
 /area/itglight/starboardengi)
 "We" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "dauntless_pd"
 	},
 /obj/structure/cable/pink{
@@ -7430,7 +7430,7 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew1)
 "XO" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "dauntless_pd"
 	},
 /obj/structure/cable/pink{

@@ -514,7 +514,6 @@
 	required_atmos_temp_max = 6000
 	probability = 40
 
-/* Currently missing Tin reagent
 /datum/particle_smasher_recipe/copper_gold
 	display_name = MAT_GOLD + " from " + MAT_COPPER
 	reagents = list(REAGENT_ID_TIN = 10)
@@ -528,7 +527,6 @@
 	required_atmos_temp_min = 5000
 	required_atmos_temp_max = 8000
 	probability = 40
-*/
 
 /datum/particle_smasher_recipe/hydrogen_deuterium
 	display_name = MAT_DEUTERIUM + " from " + MAT_GRAPHITE

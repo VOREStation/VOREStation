@@ -228,7 +228,7 @@
 				return FALSE
 
 			var/timeout = world.time + 600
-			var/reason = sanitize(tgui_input_text(ui.user, "Reason:","Why do you require this item?",""))
+			var/reason = tgui_input_text(ui.user, "Reason:","Why do you require this item?","", MAX_MESSAGE_LEN)
 			if(world.time > timeout)
 				to_chat(ui.user, span_warning("Error. Request timed out."))
 				return FALSE
@@ -282,7 +282,7 @@
 				return FALSE
 
 			var/timeout = world.time + 600
-			var/reason = sanitize(tgui_input_text(ui.user, "Reason:","Why do you require this item?",""))
+			var/reason = tgui_input_text(ui.user, "Reason:","Why do you require this item?","", MAX_MESSAGE_LEN)
 			if(world.time > timeout)
 				to_chat(ui.user, span_warning("Error. Request timed out."))
 				return FALSE
@@ -325,7 +325,7 @@
 				return FALSE
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			var/new_val = sanitize(tgui_input_text(ui.user, params["edit"], "Enter the new value for this field:", params["default"]))
+			var/new_val = tgui_input_text(ui.user, params["edit"], "Enter the new value for this field:", params["default"], MAX_MESSAGE_LEN)
 			if(!new_val)
 				return FALSE
 
@@ -400,7 +400,7 @@
 			if(!field)
 				return FALSE
 
-			var/new_val = sanitize(tgui_input_text(ui.user, field, "Enter the new value for this field:", L[lowertext(field)]))
+			var/new_val = tgui_input_text(ui.user, field, "Enter the new value for this field:", L[lowertext(field)], MAX_MESSAGE_LEN)
 			if(!new_val)
 				return
 
@@ -443,7 +443,7 @@
 				return FALSE
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			var/new_val = sanitize(tgui_input_text(ui.user, params["edit"], "Enter the new value for this field:", params["default"]))
+			var/new_val = tgui_input_text(ui.user, params["edit"], "Enter the new value for this field:", params["default"], MAX_MESSAGE_LEN)
 			if(!new_val)
 				return
 
@@ -488,7 +488,7 @@
 	add_fingerprint(ui.user)
 
 /obj/machinery/computer/supplycomp/proc/post_signal(var/command)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 
 	if(!frequency) return
 

@@ -543,5 +543,5 @@
 
 /obj/structure/reagent_dispensers/bloodbarrel/Initialize(mapload)
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_BLOOD, 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+	reagents.add_reagent(REAGENT_ID_BLOOD, 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null,"changeling"=FALSE))
 	AddElement(/datum/element/climbable)

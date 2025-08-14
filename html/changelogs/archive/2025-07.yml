@@ -346,3 +346,13 @@
       outdated
   - bugfix: Synthfab not being able to spawn bodies properly
   - rscadd: New particle smasher recipes
+2025-07-31:
+  ItsSelis:
+  - bugfix: Fixes an error occuring when tgs is compiling the rust itself.
+  Tenryumi:
+  - rscadd: Added a variant of neck fur that doesn't have a north-facing sprite.
+  TheCaramelion:
+  - bugfix: Fixed vaccines not giving vaccine bottles
+  Will:
+  - code_imp: Moves dizzy and jitter code to components.
+  - bugfix: Teshari can no longer pass through deployed security barriers
