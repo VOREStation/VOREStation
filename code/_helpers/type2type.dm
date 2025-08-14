@@ -29,45 +29,6 @@
 		else //regex everything else (works for /proc too)
 			return lowertext(replacetext("[the_type]", "[type2parent(the_type)]/", ""))
 
-// Returns an integer given a hexadecimal number string as input.
-/proc/hex2num(hex)
-	if (!istext(hex))
-		return
-
-	var/num   = 0
-	var/power = 1
-	var/i     = length(hex)
-
-	while (i)
-		var/char = text2ascii(hex, i)
-		switch(char)
-			if(48)       pass()                     // 0 -- do nothing
-			if(49 to 57) num += (char - 48) * power // 1-9
-			if(97,  65)  num += power * 10          // A
-			if(98,  66)  num += power * 11          // B
-			if(99,  67)  num += power * 12          // C
-			if(100, 68)  num += power * 13          // D
-			if(101, 69)  num += power * 14          // E
-			if(102, 70)  num += power * 15          // F
-			else
-				return
-		power *= 16
-		i--
-	return num
-
-// Returns the hex value of a number given a value assumed to be a base-ten value
-/proc/num2hex(num, padlength)
-	. = ""
-	while(num > 0)
-		var/hexdigit = GLOB.hexNums[(num & 0xF) + 1]
-		. = "[hexdigit][.]"
-		num >>= 4 //go to the next half-byte
-
-	//pad with zeroes
-	var/left = padlength - length(.)
-	while (left-- > 0)
-		. = "0[.]"
-
 /proc/text2numlist(text, delimiter="\n")
 	var/list/num_list = list()
 	for(var/x in splittext(text, delimiter))

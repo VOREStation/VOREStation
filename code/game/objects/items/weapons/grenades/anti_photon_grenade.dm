@@ -22,7 +22,7 @@
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(prob(10+extra_delay))
-		set_light(10, 10, "#[num2hex(rand(64,255))][num2hex(rand(64,255))][num2hex(rand(64,255))]")
+		set_light(10, 10, "#[num2hex(rand(64,255), 2)][num2hex(rand(64,255), 2)][num2hex(rand(64,255), 2)]")
 	addtimer(CALLBACK(src, PROC_REF(grenade_blast)), 10, TIMER_DELETE_ME)
 
 /obj/item/grenade/anti_photon/proc/grenade_blast()
