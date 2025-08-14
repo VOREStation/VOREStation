@@ -225,9 +225,9 @@
 			)
 			var/list/belly_fullscreens
 			if(selected.colorization_enabled)
-				belly_fullscreens = icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
+				belly_fullscreens = cached_icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
 			else
-				belly_fullscreens = icon_states('icons/mob/screen_full_vore.dmi') //Non colorable
+				belly_fullscreens = cached_icon_states('icons/mob/screen_full_vore.dmi') //Non colorable
 
 			var/list/vs_flags = list()
 			for(var/flag_name in selected.vore_sprite_flag_list)
