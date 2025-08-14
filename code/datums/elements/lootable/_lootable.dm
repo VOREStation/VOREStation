@@ -66,7 +66,7 @@
 	if(istype(loot,/obj/random))
 		var/obj/random/randy = loot
 		var/new_I = randy.spawn_item()
-		qdel_swap(loot,new_I)
+		QDEL_SWAP(loot,new_I)
 
 	//We either have an item to hand over or we don't, at this point!
 	if(!loot)

@@ -25,7 +25,7 @@
 			inserted_id.forceMove(T)
 			inserted_id = null
 		else
-			qdel_null(inserted_id)
+			QDEL_NULL(inserted_id)
 	QDEL_NULL_LIST(prize_list)
 	. = ..()
 
