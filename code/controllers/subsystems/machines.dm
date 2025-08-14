@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(machines)
 
 // Call when you need the network rebuilt, but we should wait until we have a good time to do it
 /datum/controller/subsystem/machines/proc/defer_powernet_rebuild()
-	if(SSticker.PreRoundStart())
+	if(!SSticker.HasRoundStarted())
 		return
 	// Use with responsibility... Must regen the entire power network after deferal is finished.
 	if(!defering_powernets)

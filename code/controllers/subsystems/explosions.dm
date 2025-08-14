@@ -3,6 +3,9 @@ SUBSYSTEM_DEF(explosions)
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	wait = 0.5 SECONDS
+	dependencies = list(
+		/datum/controller/subsystem/machines
+	)
 
 	VAR_PRIVATE/resolve_explosions = FALSE
 	VAR_PRIVATE/list/currentrun = null
@@ -26,6 +29,13 @@ SUBSYSTEM_DEF(explosions)
 	msg = "E: [explosion_signals.len] | P: [pending_explosions.len] | R: [resolving_explosions.len] | CR : [currentrun.len] | CS : [currentsignals.len] - [resolve_explosions ? "RESOLVING" : currentrun.len ? "PREPARING" : "IDLING"] [meme]"
 	return ..()
 
+/datum/controller/subsystem/explosions/proc/gotosleep()
+	can_fire = FALSE
+
+/datum/controller/subsystem/explosions/proc/wakeup()
+	can_fire = TRUE
+	next_fire = world.time
+
 /datum/controller/subsystem/explosions/fire(resumed)
 	// Build both queues. The first one gets the explosion power in each turf
 	// The second queue applies that explosion power to all turfs and objects in them
@@ -39,7 +49,7 @@ SUBSYSTEM_DEF(explosions)
 			pending_explosions.Cut()
 			explosion_signals.Cut()
 	if(currentrun.len == 0 && !resolve_explosions) // Wait till we're useful if we have nothing to do!
-		suspend()
+		gotosleep()
 		return
 
 	// The heavy lifting part...
@@ -166,8 +176,7 @@ SUBSYSTEM_DEF(explosions)
 	// waking from sleep, we are absolutely not resuming, and INSTANT feedback to players is required here.
 	if(can_fire) // already awake
 		return
-	wake()
-	next_fire = 0
+	wakeup()
 
 /datum/controller/subsystem/explosions/proc/suspend_and_invoke_deferred_subsystems()
 	// Resolve all the stuff we put off for after the explosion resolved
@@ -176,7 +185,7 @@ SUBSYSTEM_DEF(explosions)
 	// we've finished. Pause because was have no more work to do.
 	if(!can_fire) // already asleep
 		return
-	suspend()
+	gotosleep()
 
 /datum/controller/subsystem/explosions/proc/abort()
 	if(!currentrun.len)
@@ -254,7 +263,8 @@ SUBSYSTEM_DEF(explosions)
 		resolving_explosions["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,max_starting)
 
 /proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, shaped)
-	if(SSticker.PreRoundStart())
+	// Rarely objects might explode during init... Don't.
+	if(!SSticker.HasRoundStarted())
 		return
 
 	// Lets assume recursive prey has happened...
