@@ -11,7 +11,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   stun_time: number;
@@ -43,7 +43,10 @@ export const ShadekinConfig = (props) => {
   const isSubtle =
     flicker_time < 5 || flicker_break_chance < 5 || flicker_distance < 5;
 
-  const windowHeight = (isSubtle ? 220 : 190) + (extended_kin ? 95 : 0) + (savefile_selected ? 0 : 90);
+  const windowHeight =
+    (isSubtle ? 220 : 190) +
+    (extended_kin ? 95 : 0) +
+    (savefile_selected ? 0 : 90);
 
   return (
     <Window width={300} height={windowHeight} theme="abductor">
@@ -56,7 +59,11 @@ export const ShadekinConfig = (props) => {
           )}
           {!savefile_selected && (
             <Stack.Item>
-              <NoticeBox>WARNING: Your current selected savefile (in Character Setup) is not the same as your currently loaded savefile. Please select it to prevent savefile corruption.</NoticeBox>
+              <NoticeBox>
+                WARNING: Your current selected savefile (in Character Setup) is
+                not the same as your currently loaded savefile. Please select it
+                to prevent savefile corruption.
+              </NoticeBox>
             </Stack.Item>
           )}
           <Stack.Item>

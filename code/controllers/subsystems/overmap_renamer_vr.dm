@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(overmap_renamer)
 	//Loaded very late in initializations. Must come before mapping and objs. Uses both as inputs.
 	init_stage = INITSTAGE_LAST
 	dependencies = list(
-		/datum/controller/subsystem/skybox
+		/datum/controller/subsystem/atoms
 	)
 	runlevels = RUNLEVEL_SETUP
 	flags = SS_NO_FIRE
