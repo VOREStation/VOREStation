@@ -1091,7 +1091,7 @@
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	//Don't let glows stick
-	glow_toggle = FALSE
+	M.glow_toggle = FALSE
 	M.set_light(0)
 	// Delete the digested mob
 	// Changed qdel to a forceMove to allow reforming, and... handled robots special.
