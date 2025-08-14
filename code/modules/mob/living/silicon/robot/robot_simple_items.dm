@@ -555,8 +555,8 @@
 
 /obj/item/gripper/Destroy()
 	current_pocket = null
-	qdel_null(WR)
-	qdel_null(pockets)
+	QDEL_NULL(WR)
+	QDEL_LIST(pockets)
 	if(our_robot) //In case we returned INITIALIZE_HINT_QDEL earlier in initalize.
 		UnregisterSignal(our_robot, COMSIG_DO_AFTER_BEGAN)
 		UnregisterSignal(our_robot, COMSIG_DO_AFTER_ENDED)
