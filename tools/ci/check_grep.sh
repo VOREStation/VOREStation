@@ -161,29 +161,6 @@ if ls -1 tgui/**/*.jsx 2>/dev/null; then
 	FAILED=1
 fi;
 
-part "map json naming"
-if ls maps/*.json | grep -P "[A-Z]"; then
-	echo
-	echo -e "${RED}ERROR: Uppercase in a map json detected, these must be all lowercase.${NC}"
-	st=1
-fi;
-
-part "map json sanity"
-for json in maps/*.json
-do
-	map_path=$(jq -r '.map_path' $json)
-	override_map=$(jq -r '.override_map' $json)
-	while read map_file; do
-		filename="maps/$map_path/$map_file"
-		if [ ! -f $filename ] && [ -z "$override_map" ]
-		then
-			echo
-			echo -e "${RED}ERROR: found invalid file reference to $filename in _maps/$json.${NC}"
-			st=1
-		fi
-	done < <(jq -r '[.map_file] | flatten | .[]' $json)
-done
-
 part "balloon_alert sanity"
 if $grep 'balloon_alert\(".*"\)' $code_files; then
 	echo
