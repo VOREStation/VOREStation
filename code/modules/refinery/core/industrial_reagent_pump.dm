@@ -33,6 +33,11 @@
 
 	refinery_transfer()
 
+/obj/machinery/reagent_refinery/proc/minimum_reagents_for_transfer(var/obj/machinery/reagent_refinery/target)
+	if(istype(target,/obj/machinery/reagent_refinery/mixer))
+		return amount_per_transfer_from_this // Special handling for mixing vats. Don't pump unless we can pump all of it!
+	return 0
+
 /obj/machinery/reagent_refinery/pump/update_icon()
 	cut_overlays()
 	if(reagents && reagents.total_volume >= 5)

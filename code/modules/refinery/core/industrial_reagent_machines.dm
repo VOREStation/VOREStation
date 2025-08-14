@@ -120,10 +120,16 @@
 
 	// dump reagents to next refinery machine
 	var/obj/machinery/reagent_refinery/target = locate(/obj/machinery/reagent_refinery) in get_step(get_turf(src),dir)
+	if(reagents.total_volume < minimum_reagents_for_transfer(target))
+		return 0
 	if(!target)
 		return 0
 
 	return transfer_tank( reagents, target, dir)
+
+/// Handle transfers that require a minimum amount of reagents to happen
+/obj/machinery/reagent_refinery/proc/minimum_reagents_for_transfer(var/obj/machinery/reagent_refinery/target)
+	return 0
 
 /obj/machinery/reagent_refinery/verb/rotate_clockwise()
 	set name = "Rotate Machine Clockwise"

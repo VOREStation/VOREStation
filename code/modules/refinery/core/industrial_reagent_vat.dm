@@ -1,6 +1,6 @@
 /obj/machinery/reagent_refinery/vat
 	name = "Industrial Chemical Vat"
-	desc = "A large mixing vat for huge quantities of chemicals. Don't fall in!"
+	desc = "A large storage vat for huge quantities of chemicals. Don't fall in!"
 	icon_state = "vat"
 	density = TRUE
 	anchored = TRUE
