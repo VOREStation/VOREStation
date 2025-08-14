@@ -9,9 +9,9 @@ PROCESSING_SUBSYSTEM_DEF(projectiles)
 	var/global_iterations_per_move = 16
 
 /datum/controller/subsystem/processing/projectiles/Recover()
-	log_debug("[name] subsystem Recover().")
+	log_runtime("[name] subsystem Recover().")
 	if(SSprojectiles.current_thing)
-		log_debug("current_thing was: (\ref[SSprojectiles.current_thing])[SSprojectiles.current_thing]([SSprojectiles.current_thing.type]) - currentrun: [SSprojectiles.currentrun.len] vs total: [SSprojectiles.processing.len]")
+		log_runtime("current_thing was: (\ref[SSprojectiles.current_thing])[SSprojectiles.current_thing]([SSprojectiles.current_thing.type]) - currentrun: [SSprojectiles.currentrun.len] vs total: [SSprojectiles.processing.len]")
 	var/list/old_processing = SSprojectiles.processing.Copy()
 	for(var/datum/D in old_processing)
 		if(CHECK_BITFIELD(D.datum_flags, DF_ISPROCESSING))

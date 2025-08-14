@@ -147,7 +147,7 @@ SUBSYSTEM_DEF(shuttles)
 	if(initial(shuttle.category) != shuttle_type) // Skip if its an "abstract class" datum
 		shuttle = new shuttle()
 		shuttle_areas |= shuttle.shuttle_area
-		log_debug("Initialized shuttle [shuttle] ([shuttle.type])")
+		log_world("Initialized shuttle [shuttle] ([shuttle.type])")
 		return shuttle
 		// Historical note:  No need to call shuttle.init_docking_controllers(), controllers register themselves
 		// and shuttles fetch refs in New().  Shuttles also dock() themselves in new if they want.

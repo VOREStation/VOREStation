@@ -53,10 +53,10 @@ SUBSYSTEM_DEF(webhooks)
 	if(webhook)
 		if(webhook.send(wdata))
 			log_world("Sent webhook [webhook.id].")
-			log_debug("Webhook sent: [webhook.id].")
+			// to_chat(world, "Webhook sent: [webhook.id].")
 		else
 			log_world("Failed to send webhook [webhook.id].")
-			log_debug("Webhook failed to send: [webhook.id].")
+			// to_chat(world, "Webhook failed to send: [webhook.id].")
 
 /client/proc/reload_webhooks()
 	set name = "Reload Webhooks"

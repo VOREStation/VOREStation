@@ -30,10 +30,10 @@ SUBSYSTEM_DEF(event_ticker)
 	event_started(E)
 
 /datum/controller/subsystem/event_ticker/proc/event_started(datum/event2/event/E)
-	log_debug("Event [E.type] is now being ran.")
+	log_game("Event [E.type] is now being ran.")
 	active_events += E
 
 /datum/controller/subsystem/event_ticker/proc/event_finished(datum/event2/event/E)
-	log_debug("Event [E.type] has finished.")
+	log_game("Event [E.type] has finished.")
 	active_events -= E
 	finished_events += E

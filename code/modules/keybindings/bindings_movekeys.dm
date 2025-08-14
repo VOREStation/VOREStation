@@ -42,7 +42,7 @@
 
 	// Validate input.  Must be one (and only one) of the key codes)
 	if(isnull(movekey) || (movekey & ~0xFFF) || (movekey & (movekey - 1)))
-		// log_debug("Client [ckey] sent an illegal movement key up: [movekeyName] ([movekey])")  // We forward tgui keys nowadays
+		// log_tgui("Client [ckey] sent an illegal movement key up: [movekeyName] ([movekey])")  // We forward tgui keys nowadays
 		return
 
 	// Clear bit indicating we were holding the key

@@ -21,8 +21,6 @@
 
 #define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
 
-#define ARGS_DEBUG log_debug("[__FILE__] - [__LINE__]") ; for(var/arg in args) { log_debug("\t[log_info_line(arg)]") }
-
 #define WORLD_ICON_SIZE 32 //Needed for the R-UST port
 
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port

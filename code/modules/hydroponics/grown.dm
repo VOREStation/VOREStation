@@ -28,13 +28,13 @@
 		plantname = planttype
 
 	if(!plantname)
-		log_debug("Plantname not provided and and [src] requires it at [x],[y],[z]")
+		log_runtime("Plantname not provided and [src] requires it at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
 
 	seed = SSplants.seeds[plantname]
 
 	if(!seed)
-		log_debug("Plant name '[plantname]' does not exist and [src] requires it at [x],[y],[z]")
+		log_runtime("Plant name '[plantname]' does not exist and [src] requires it at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
 
 	name = "[seed.seed_name]"

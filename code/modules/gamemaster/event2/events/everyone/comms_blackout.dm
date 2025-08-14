@@ -29,12 +29,12 @@
 /datum/event2/event/comms_blackout/start()
 	if(prob(50))
 		// One in two chance for the radios to turn i%t# t&_)#%, which can be more alarming than radio silence.
-		log_debug("Doing partial outage of telecomms.")
+		log_game("Doing partial outage of telecomms.")
 		for(var/obj/machinery/telecomms/processor/P in telecomms_list)
 			P.emp_act(1)
 	else
 		// Otherwise just shut everything down, madagascar style.
-		log_debug("Doing complete outage of telecomms.")
+		log_game("Doing complete outage of telecomms.")
 		for(var/obj/machinery/telecomms/T in telecomms_list)
 			T.emp_act(1)
 

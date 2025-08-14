@@ -20,6 +20,6 @@
 		if(!C.destroyed && (C.z in using_map.station_levels) && C.air_contents.total_moles >= MOLES_CELLSTANDARD)
 			all_canisters += C
 	var/obj/machinery/portable_atmospherics/canister/C = pick(all_canisters)
-	log_debug("canister_leak event: Canister [C] ([C.x],[C.y],[C.z]) destroyed.")
+	log_game("canister_leak event: Canister [C] ([C.x],[C.y],[C.z]) destroyed.")
 	C.health = 0
 	C.healthcheck()

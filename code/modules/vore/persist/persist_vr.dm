@@ -28,7 +28,7 @@
 		else
 			var/turf/playerTurf = get_turf(Player)
 			if(!playerTurf)
-				log_debug("Player [Player.name] ([Player.ckey]) playing as [Player.species] was in nullspace at round end.")
+				log_runtime("Player [Player.name] ([Player.ckey]) playing as [Player.species] was in nullspace at round end.")
 				continue
 			if(isAdminLevel(playerTurf.z))
 				// Evac'd - Next round they arrive on the shuttle.
@@ -61,7 +61,7 @@
 
 		// For now as a safety measure we will only save if the name matches.
 		if(prefs.real_name != persister.real_name)
-			log_debug("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs.real_name].")
+			NOTICE("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs.real_name].")
 			return
 
 		return prefs

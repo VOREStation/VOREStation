@@ -67,6 +67,7 @@
 #define LOG_CATEGORY_QDEL "qdel"
 #define LOG_CATEGORY_RUNTIME "runtime"
 #define LOG_CATEGORY_SUSPICIOUS_LOGIN "suspicious-logins"
+#define LOG_CATEGORY_VORE "vore"
 
 // Admin categories
 #define LOG_CATEGORY_ADMIN "admin"

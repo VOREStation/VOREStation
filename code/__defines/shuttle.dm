@@ -23,5 +23,5 @@
 #ifndef DEBUG_SHUTTLES
 	#define log_shuttle(M)
 #else
-	#define log_shuttle(M) log_debug("[M]")
+	#define log_shuttle(M) log_world("[M]")
 #endif

@@ -11,7 +11,7 @@ var/list/all_maps = list()
 		else
 			M = new type
 		if(!M.path)
-			log_debug("Map '[M]' does not have a defined path, not adding to map list!")
+			log_mapping("Map '[M]' does not have a defined path, not adding to map list!")
 		else
 			all_maps[M.path] = M
 	return 1

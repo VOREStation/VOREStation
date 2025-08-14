@@ -25,11 +25,11 @@ GLOBAL_DATUM_INIT(news_data, /datum/lore/news, new)
 
 /datum/lore/news/proc/fill_codex_news()
 	if(!news_network)
-		log_debug("Load: Could not find newscaster network.")
+		log_runtime("Load: Could not find newscaster network.")
 		return
 
 	if(!station_newspaper)
-		log_debug("Load: Could not find news channel Vir News Network to populate news articles.")
+		log_runtime("Load: Could not find news channel Vir News Network to populate news articles.")
 		return
 
 	//Feed the Lore Codex into the News Machine

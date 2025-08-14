@@ -217,7 +217,7 @@
 
 		for(var/obj/effect/shield/S in startends)
 			var/adjacent = startends[S]
-			log_debug("Processing startend [S] at [S?.x],[S?.y] adjacent=[adjacent]")
+			// to_chat(world, "Processing startend [S] at [S?.x],[S?.y] adjacent=[adjacent]")
 			var/turf/T = get_step(S, adjacent)
 			var/obj/effect/shield/SO = locate() in T
 			S.set_dir(SO.dir)

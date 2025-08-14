@@ -38,7 +38,7 @@
 	if(ai_holder_type)
 		ai_holder = new ai_holder_type(src)
 		if(!ai_holder)
-			log_debug("[src] could not initialize ai_holder of type [ai_holder_type]")
+			log_runtime("[src] could not initialize ai_holder of type [ai_holder_type]")
 			return
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src

@@ -164,7 +164,7 @@
 	//Delete ourselves if we find extra mapped in arfgs
 	for(var/obj/machinery/atmospheric_field_generator/F in loc)
 		if(F != src)
-			log_debug("Duplicate ARFGS at [x],[y],[z]")
+			log_mapping("Duplicate ARFGS at [x],[y],[z]")
 			return INITIALIZE_HINT_QDEL
 
 	var/area/A = get_area(src)

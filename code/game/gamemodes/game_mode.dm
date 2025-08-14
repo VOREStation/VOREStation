@@ -403,7 +403,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			if(isobserver(player) && !ghosts_only)
 				continue
 			if(!role || (player.client.prefs.be_special & role))
-				log_debug("[player.key] had [antag_id] enabled, so we are drafting them.")
+				log_game("[player.key] had [antag_id] enabled, so we are drafting them.")
 				candidates |= player.mind
 	else
 		// Assemble a list of active players without jobbans.
@@ -414,7 +414,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		// Get a list of all the people who want to be the antagonist for this round
 		for(var/mob/new_player/player in players)
 			if(!role || (player.client.prefs.be_special & role))
-				log_debug("[player.key] had [antag_id] enabled, so we are drafting them.")
+				log_game("[player.key] had [antag_id] enabled, so we are drafting them.")
 				candidates += player.mind
 				players -= player
 
@@ -424,7 +424,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		if(candidates.len < required_enemies)
 			for(var/mob/new_player/player in players)
 				if(player.ckey in round_voters)
-					log_debug("[player.key] voted for this round, so we are drafting them.")
+					log_game("[player.key] voted for this round, so we are drafting them.")
 					candidates += player.mind
 					players -= player
 					break

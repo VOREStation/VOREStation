@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(transcore)
 
 		//Invalid record
 		if(!curr_MR)
-			log_debug("Tried to process [name] in transcore w/o a record!")
+			log_runtime("Tried to process [name] in transcore w/o a record!")
 			db.backed_up -= curr_MR.mindname
 			continue
 
@@ -266,7 +266,6 @@ SUBSYSTEM_DEF(transcore)
 	ASSERT(MR)
 	backed_up[MR.mindname] = MR
 	backed_up = sortAssoc(backed_up)
-	log_debug("Added [MR.mindname] to transcore DB.")
 
 // Remove a mind_record from the backup-checking list.  Keeps track of it in has_left // Why do we do that? ~Leshana
 /datum/transcore_db/proc/stop_backup(var/datum/transhuman/mind_record/MR)
@@ -274,7 +273,6 @@ SUBSYSTEM_DEF(transcore)
 	has_left[MR.mindname] = MR
 	backed_up.Remove("[MR.mindname]")
 	MR.cryo_at = world.time
-	log_debug("Put [MR.mindname] in transcore suspended DB.")
 
 // Called from body_record to add itself to the transcore.
 /datum/transcore_db/proc/add_body(var/datum/transhuman/body_record/BR)
@@ -283,13 +281,11 @@ SUBSYSTEM_DEF(transcore)
 		qdel(body_scans[BR.mydna.name])
 	body_scans[BR.mydna.name] = BR
 	body_scans = sortAssoc(body_scans)
-	log_debug("Added [BR.mydna.name] to transcore body DB.")
 
 // Remove a body record from the database (Usually done when someone cryos)  // Why? ~Leshana
 /datum/transcore_db/proc/remove_body(var/datum/transhuman/body_record/BR)
 	ASSERT(BR)
 	body_scans.Remove("[BR.mydna.name]")
-	log_debug("Removed [BR.mydna.name] from transcore body DB.")
 
 // Moves all mind records from the databaes into the disk and shuts down all backup canary processing.
 /datum/transcore_db/proc/core_dump(var/obj/item/disk/transcore/disk)

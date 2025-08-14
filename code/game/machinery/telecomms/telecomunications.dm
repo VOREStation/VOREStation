@@ -676,7 +676,7 @@
 //Generic telecomm connectivity test proc
 /proc/can_telecomm(var/atom/A, var/atom/B, var/ad_hoc = FALSE)
 	if(!A || !B)
-		log_debug("can_telecomm(): Undefined endpoints!")
+		log_mapping("can_telecomm(): Undefined endpoints!")
 		return FALSE
 
 	//Can't in this case, obviously!

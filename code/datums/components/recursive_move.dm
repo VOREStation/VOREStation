@@ -25,11 +25,11 @@
 	var/recursion = 0 // safety check - max iterations
 	while(istype(cur_parent) && (recursion < 64))
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
-			log_debug("RECURSIVE_MOVE: Parent is inside itself. ([holder]) ([holder.type])")
+			log_runtime("RECURSIVE_MOVE: Parent is inside itself. ([holder]) ([holder.type])")
 			reset_parents()
 			break
 		if(cur_parent in parents) //safety check incase of circular contents. (A inside B, B inside C, C inside A), cancel
-			log_debug("RECURSIVE_MOVE: Parent is inside a circular inventory. ([holder]) ([holder.type])")
+			log_runtime("RECURSIVE_MOVE: Parent is inside a circular inventory. ([holder]) ([holder.type])")
 			reset_parents()
 			break
 		recursion++
@@ -40,7 +40,7 @@
 		cur_parent = cur_parent.loc
 
 	if(recursion >= 64) // If we escaped due to iteration limit, cancel
-		log_debug("RECURSIVE_MOVE: Parent hit recursion limit. ([holder]) ([holder.type])")
+		log_runtime("RECURSIVE_MOVE: Parent hit recursion limit. ([holder]) ([holder.type])")
 		reset_parents()
 		parents.Cut()
 

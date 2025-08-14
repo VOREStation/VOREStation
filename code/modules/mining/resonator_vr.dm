@@ -37,12 +37,10 @@
 		to_chat(creator, span_warning("You've exceeded the field limit! Wait for them to dissipate."))
 		return
 	if(spreadmode)
-		//log_debug("Starting cascade...")
 		cascading = TRUE
 		var/depth = 0
 		var/fields = 0
 		if(depth == 0)
-			//log_debug("Creating resonance at the target spot.")
 			playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
 			new /obj/effect/resonance(T, WEAKREF(creator), burst_time)
 			fields++
@@ -51,9 +49,7 @@
 		var/dir
 		while(fields < fieldlimit)
 			for(var/i=0, i<=2, i++)
-				//log_debug("Fields are [fields], doing [i] iteration of subloop")
 				if(fields >= fieldlimit)
-					//log_debug("[fields] exceeded fieldlimit, exiting procedure.")
 					sleep(burst_time)
 					cascading = FALSE
 					return
@@ -66,7 +62,6 @@
 						dir = turn(origin_dir, -90)
 				var/turf/newT = T
 				for(var/step = 1, step<=depth, step++)
-					//log_debug("Taking a step until [depth] steps taken.")
 					var/turf/oldT = newT
 					newT = get_step(oldT, dir)
 					if(step == depth)

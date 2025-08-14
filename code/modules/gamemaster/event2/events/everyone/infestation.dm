@@ -58,7 +58,7 @@
 /datum/event2/event/infestation/set_up()
 	turfs = find_random_turfs(max_vermin)
 	if(!turfs.len)
-		log_debug("Infestation event failed to find any valid turfs. Aborting.")
+		log_game("Infestation event failed to find any valid turfs. Aborting.")
 		abort()
 		return
 

@@ -558,7 +558,7 @@
 			return 0
 		if(!fexists("data/persistent/paintings/[persistence_id]/[painting["md5"]].png"))
 			to_chat(usr, span_warning("Chosen painting could not be loaded! Incident was logged, but no action taken at this time"))
-			log_debug("[usr] tried to spawn painting of list id [which_painting] in all_paintings list and associated file could not be found. \n \
+			log_runtime("[usr] tried to spawn painting of list id [which_painting] in all_paintings list and associated file could not be found. \n \
 			Painting was titled [title] by [author_ckey] of [persistence_id]")
 			return 0
 
@@ -596,7 +596,7 @@
 		Proceed? It will likely have over 500 entries", "Generate list?", list("Proceed!", "Cancel")) != "Proceed!")
 			return
 
-		log_debug("[usr] generated list of paintings from SSPersistence")
+		// to_chat(world, "[usr] generated list of paintings from SSPersistence")
 		var/list/paintings = list()
 		var/current = 1
 		for(var/entry in SSpersistence.all_paintings)

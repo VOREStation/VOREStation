@@ -226,7 +226,7 @@
 /mob/proc/can_speak(datum/language/speaking)
 //Prevents someone from speaking a null language.
 	if(!speaking)
-		log_debug("[src] attempted to speak a null language.")
+		log_runtime("[src] attempted to speak a null language.")
 		return 0
 
 	if(speaking == GLOB.all_languages["Noise"])

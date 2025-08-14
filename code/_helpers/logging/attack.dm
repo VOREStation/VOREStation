@@ -34,3 +34,7 @@
 	if(user != target)
 		var/reverse_message = "was [what_done] by [ssource][postfix]"
 		target.log_message(reverse_message, LOG_VICTIM, color="orange", log_globally=FALSE)
+
+/// Log for vore interactions
+/proc/log_vore(text, list/data)
+	logger.Log(LOG_CATEGORY_VORE, text, data)

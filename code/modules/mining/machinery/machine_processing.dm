@@ -23,7 +23,7 @@
 	if (machine)
 		machine.console = src
 	else
-		log_debug("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
+		log_mapping("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
 		qdel(src)
 
 /obj/machinery/mineral/processing_unit_console/Destroy()

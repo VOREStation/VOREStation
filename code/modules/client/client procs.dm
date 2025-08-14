@@ -554,7 +554,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 
-	// VOREStation Edit Start - Department Hours
 	var/datum/db_query/query_hours = SSdbcore.NewQuery("SELECT department, hours, total_hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
 	if(query_hours.Execute())
 		while(query_hours.NextRow())
@@ -562,9 +561,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			play_hours[query_hours.item[1]] = text2num(query_hours.item[3])
 	else
 		var/error_message = query_hours.ErrorMsg() // Need this out here since the spawn below will split the stack and who knows what'll happen by the time it runs
-		log_debug("Error loading play hours for [ckey]: [error_message]")
+		log_sql("Error loading play hours for [ckey]: [error_message]")
 		tgui_alert_async(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
-	// VOREStation Edit End - Department Hours
 	qdel(query_hours)
 
 	if(sql_id)

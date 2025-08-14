@@ -495,7 +495,7 @@
 
 	// Vore deaths get a fake modifier labeled as such
 	if(!occupant.mind)
-		log_debug("[occupant] didn't have a mind to check for vore_death, which may be problematic.")
+		log_runtime("[occupant] didn't have a mind to check for vore_death, which may be problematic.")
 
 	if(occupant.mind)
 		if(occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)

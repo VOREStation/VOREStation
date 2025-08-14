@@ -35,10 +35,6 @@
 /datum/config_entry/flag/log_admin
 	protection = CONFIG_ENTRY_LOCKED
 
-/// log debug output
-/datum/config_entry/flag/log_debug
-	default = TRUE
-
 /// log game events
 /datum/config_entry/flag/log_game
 
@@ -885,3 +881,6 @@
 /// If admins with +DEBUG can queue byond-tracy to run the next round.
 /datum/config_entry/flag/allow_tracy_queue
 	protection = CONFIG_ENTRY_LOCKED
+
+/// log vore interactions
+/datum/config_entry/flag/log_vore

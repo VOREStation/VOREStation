@@ -70,3 +70,6 @@ LOG_WORLD_TOPIC
 
 ## Enables log entries for logins that failed due to suspicious circumstances (banned player, CID randomiser, spoofed BYOND version, etc.) to a dedicated file.
 LOG_SUSPICIOUS_LOGIN
+
+## log all vore interactions
+LOG_VORE

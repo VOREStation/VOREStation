@@ -349,13 +349,13 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if (!injected)
 		return
 	if(!our)
-		log_debug("[src] has no blood reagent, proceeding with fallback reinitialization.")
+		log_runtime("[src] has no blood reagent, proceeding with fallback reinitialization.")
 		var/vessel_old = vessel
 		vessel = null
 		qdel(vessel_old)
 		make_blood(amount)
 		if(!vessel)
-			log_debug("Failed to re-initialize blood datums on [src]!")
+			log_runtime("Failed to re-initialize blood datums on [src]!")
 			return
 		if(vessel.total_volume < species.blood_volume)
 			vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
@@ -364,7 +364,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		fixblood()
 		our = get_blood(vessel)
 		if(!our)
-			log_debug("Failed to re-initialize blood datums on [src]!")
+			log_runtime("Failed to re-initialize blood datums on [src]!")
 			return
 	if(is_changeling(src)) //Changelings don't reject blood!
 		vessel.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
@@ -430,7 +430,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 	//Someone fed us a weird source. Let's log it.
 	if(source && !istype(source, /datum/reagent/blood))
-		log_debug("A blood splatter was made using non-blood datum [source]!")
+		log_runtime("A blood splatter was made using non-blood datum [source]!")
 		source = null //Clear the source since it's invalid. Fallback to non-source behavior.
 
 	// Are we dripping or splattering?

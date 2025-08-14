@@ -352,7 +352,7 @@
 			if(skip_obstacle)
 				continue
 
-			log_debug("R-UST DEBUG: [AM] is [AM.type]")
+			// to_chat(world, "R-UST DEBUG: [AM] is [AM.type]")
 			AM.visible_message(span_danger("The field buckles visibly around \the [AM]!"))
 			tick_instability += rand(15,30)
 			AM.emp_act(empsev)

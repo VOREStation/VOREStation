@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(sqlite)
 
 	if(!sqlite_db)
 		log_sql("Failed to load or create a SQLite database.")
-		log_debug("ERROR: SQLite database is active in config but failed to load.")
+		log_sql("ERROR: SQLite database is active in config but failed to load.")
 	else
 		log_sql("Sqlite database connected.")
 
@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(sqlite)
 // The desc parameter should be unique for each call, to make it easier to track down where the error occured.
 /datum/controller/subsystem/sqlite/proc/sqlite_check_for_errors(var/database/query/query_used, var/desc)
 	if(query_used && query_used.ErrorMsg())
-		log_debug("SQLite Error: [desc] : [query_used.ErrorMsg()]")
+		log_sql("SQLite Error: [desc] : [query_used.ErrorMsg()]")
 		return TRUE
 	return FALSE
 

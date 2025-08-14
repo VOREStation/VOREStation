@@ -168,7 +168,7 @@ SUBSYSTEM_DEF(supply)
 					A.req_access = L.Copy()
 					LAZYCLEARLIST(A.req_one_access)
 				else
-					log_debug(span_danger("Supply pack with invalid access restriction [SP.access] encountered!"))
+					log_runtime(span_danger("Supply pack with invalid access restriction [SP.access] encountered!"))
 
 		//supply manifest generation begin
 		var/obj/item/paper/manifest/slip

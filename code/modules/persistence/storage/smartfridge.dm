@@ -56,7 +56,7 @@
 	for(var/obj/item/stack/material/S as anything in L)
 		var/real_path = istext(S) ? text2path(S) : S
 		if(!ispath(real_path, /obj/item/stack/material) || ispath(real_path, /obj/item/stack/material/cyborg))
-			log_debug("Warning: Sheet_storage persistent datum tried to create [S]")
+			WARNING("Warning: Sheet_storage persistent datum tried to create [S]")
 			continue
 
 		// Skip entire stack if we hit the chance

@@ -72,7 +72,7 @@
 /datum/shuttle_destination/New(var/new_master)
 	my_landmark = SSshuttles.get_landmark(my_landmark)
 	if(!my_landmark)
-		log_debug("Web shuttle destination '[name]' could not find its landmark '[my_landmark]'.") // Important error message
+		log_mapping("Web shuttle destination '[name]' could not find its landmark '[my_landmark]'.") // Important error message
 	master = new_master
 
 /datum/shuttle_destination/Destroy()
