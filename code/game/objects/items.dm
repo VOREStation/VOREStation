@@ -123,6 +123,7 @@
 	var/item_tf_spawn_allowed = FALSE
 	var/list/ckeys_allowed_itemspawn = null
 	var/datum/weakref/exploit_for //if this obj is an exploit for somebody, this points to them
+	var/preserve_item = 0 //whether this object is preserved when its owner goes into cryo-storage, gateway, etc
 
 /obj/item/Initialize(mapload)
 	. = ..()
