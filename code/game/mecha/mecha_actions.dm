@@ -230,9 +230,7 @@
 
 
 /datum/action/innate/mecha/mech_switch_damtype/Activate()
-
-
-	button_icon_state = "mech_damtype_[chassis.damtype]"
+	button_icon_state = "mech_damtype_[chassis.damage_type]"
 	playsound(src, 'sound/mecha/mechmove01.ogg', 50, 1)
 	build_all_button_icons()
 	chassis.query_damtype()
