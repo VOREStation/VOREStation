@@ -148,7 +148,7 @@
 	if(!owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
 	else if(!istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
-		qdel_null(owner.ability_master)
+		QDEL_NULL(owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
 
 //Clears up our verbs. Used when rebuilding our verbs list..
@@ -167,7 +167,7 @@
 	if(!owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master(owner)
 	else if(istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
-		qdel_null(owner.ability_master)
+		QDEL_NULL(owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master(owner)
 	clear_shadekin_abilities()
 
@@ -255,3 +255,13 @@
 		to_chat(owner, span_danger("The VR systems cannot comprehend this power! This is useless to you!"))
 		return TRUE
 	return FALSE
+
+///Gets late-load preferences for the shadekin component. Used when the component is applied post-spawn.
+/datum/component/shadekin/lateload_pref_data()
+	if(owner.client)
+		flicker_color = owner.read_preference(/datum/preference/color/living/flicker_color)
+		flicker_time = owner.read_preference(/datum/preference/numeric/living/flicker_time)
+		flicker_break_chance = owner.read_preference(/datum/preference/numeric/living/flicker_break_chance)
+		flicker_distance = owner.read_preference(/datum/preference/numeric/living/flicker_distance)
+		no_retreat = owner.read_preference(/datum/preference/toggle/living/dark_retreat_toggle)
+		nutrition_energy_conversion = owner.read_preference(/datum/preference/toggle/living/shadekin_nutrition_conversion)

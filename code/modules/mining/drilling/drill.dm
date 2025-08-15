@@ -115,8 +115,8 @@
 	AddElement(/datum/element/climbable)
 
 /obj/machinery/mining/drill/Destroy()
-	qdel_null(faultreporter)
-	qdel_null(cell)
+	QDEL_NULL(faultreporter)
+	QDEL_NULL(cell)
 	return ..()
 
 /obj/machinery/mining/drill/dismantle()
@@ -237,7 +237,7 @@
 /obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
 	if(!active)
 		if(istype(O, /obj/item/multitool))
-			var/newtag = text2num(sanitizeSafe(tgui_input_text(user, "Enter new ID number or leave empty to cancel.", "Assign ID number", null, 4), 4))
+			var/newtag = text2num(sanitizeSafe(tgui_input_text(user, "Enter new ID number or leave empty to cancel.", "Assign ID number", null, 4, encode = FALSE), 4))
 			if(newtag)
 				name = "[initial(name)] #[newtag]"
 				to_chat(user, span_notice("You changed the drill ID to: [newtag]"))

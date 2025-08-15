@@ -16,6 +16,11 @@ SUBSYSTEM_DEF(airflow)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	priority = FIRE_PRIORITY_AIRFLOW
 
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/air
+	)
+
 	var/list/processing = list()
 	var/list/currentrun = list()
 

@@ -336,9 +336,9 @@
 	for(var/mob/living/M in contents)
 		M.forceMove(get_turf(src))
 	if(ring)
-		qdel_null(ring)
+		QDEL_NULL(ring)
 	if(gloves)
-		qdel_null(gloves)
+		QDEL_NULL(gloves)
 	wearer = null
 	return ..()
 
@@ -656,9 +656,9 @@
 
 /obj/item/clothing/shoes/Destroy()
 	if(shoes)
-		qdel_null(shoes)
+		QDEL_NULL(shoes)
 	if(holding)
-		qdel_null(holding)
+		QDEL_NULL(holding)
 	return ..()
 
 /obj/item/clothing/shoes/proc/draw_knife(mob/living/user)
@@ -1195,15 +1195,15 @@
 	update_clothing_icon()
 
 /obj/item/clothing/under/rank/Initialize(mapload)
-	. = ..()
 	sensor_mode = pick(0,1,2,3)
+	. = ..()
 
 /obj/item/clothing/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(IC)
 		IC.clothing = null
 		action_circuit = null // Will get deleted by qdel-ing the IC assembly.
-		qdel_null(IC)
+		QDEL_NULL(IC)
 	for(var/mob/living/M in contents)
 		M.forceMove(get_turf(src))
 	wearer = null

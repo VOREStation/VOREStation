@@ -269,6 +269,10 @@
 	if(!uses_charge)
 		amount -= used
 		if (amount <= 0)
+			// Tell container that we used up a stack
+			if(istype( loc, /obj/item/storage))
+				var/obj/item/storage/holder = loc
+				holder.remove_from_storage( src, null)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
 		update_icon()
 		return 1

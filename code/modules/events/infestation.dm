@@ -1,5 +1,6 @@
 #define VERM_MICE 0
 #define VERM_LIZARDS 1
+#define VERM_MOTHROACH 2
 
 /datum/event/infestation
 	announceWhen = 10
@@ -16,7 +17,7 @@
 	var/list/spawn_locations = list()
 
 /datum/event/infestation/start()
-	vermin = rand(0,1)
+	vermin = rand(0,2)
 	switch(vermin)
 		if(VERM_MICE)
 			spawn_types = /mob/living/simple_mob/animal/passive/mouse/gray
@@ -28,6 +29,11 @@
 			prep_size_min = 1
 			prep_size_max = 3
 			vermstring = "lizards"
+		if(VERM_MOTHROACH)
+			spawn_types = /mob/living/simple_mob/animal/passive/mothroach
+			prep_size_min = 1
+			prep_size_max = 3
+			vermstring = "mothroaches"
 	// Check if any landmarks exist!
 	for(var/obj/effect/landmark/C in GLOB.landmarks_list)
 		if(C.name == "verminstart")
@@ -77,3 +83,4 @@
 
 #undef VERM_MICE
 #undef VERM_LIZARDS
+#undef VERM_MOTHROACH

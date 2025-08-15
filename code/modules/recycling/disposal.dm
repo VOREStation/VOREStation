@@ -1234,7 +1234,7 @@
 		name = initial(name)
 
 /obj/structure/disposalpipe/sortjunction/Destroy()
-	qdel_null(wires)
+	QDEL_NULL(wires)
 	. = ..()
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedir()

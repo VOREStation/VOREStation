@@ -44,6 +44,9 @@ REVIVAL_BRAIN_LIFE -1
 RUN_SPEED 3
 WALK_SPEED 9
 
+## Force Random Names.
+## I think this also randomizes bodies for some reason.
+# FORCE_RANDOM_NAMES
 
 ## The variables below affect the movement of specific mob types.
 HUMAN_DELAY 0
