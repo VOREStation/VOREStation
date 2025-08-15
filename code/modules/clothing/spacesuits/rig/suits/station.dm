@@ -298,7 +298,7 @@
 	sprite_sheets = null
 
 /obj/item/clothing/suit/space/rig/focalpoint
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "techno_rig"
 	// No animal people sprites for these yet, sad times
@@ -358,7 +358,7 @@
 	sprite_sheets = null
 
 /obj/item/clothing/suit/space/rig/hephaestus
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "ihs_rig"
 	// No animal people sprites for these yet, sad times
@@ -418,11 +418,11 @@
 	slowdown = 0
 
 /obj/item/clothing/suit/space/rig/zero
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "null_rig"
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS // like a voidsuit
 	slowdown = 0
 
@@ -469,12 +469,12 @@
 	camera_networks = list(NETWORK_MEDICAL)
 
 /obj/item/clothing/suit/space/rig/baymed
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "medical_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/shoes/magboots/rig/ce/baymed
 	icon = 'icons/inventory/feet/item_vr.dmi'
@@ -535,12 +535,12 @@
 	camera_networks = list(NETWORK_ENGINEERING)
 
 /obj/item/clothing/suit/space/rig/bayeng
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "engineering_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/shoes/magboots/rig/ce/bayeng
 	icon = 'icons/inventory/feet/item_vr.dmi'
@@ -599,12 +599,12 @@
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 /obj/item/clothing/suit/space/rig/pathfinder
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "pathfinder_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/shoes/magboots/rig/pathfinder
 	icon = 'icons/inventory/feet/item_vr.dmi'

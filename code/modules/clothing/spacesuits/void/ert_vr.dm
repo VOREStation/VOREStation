@@ -7,7 +7,7 @@
 	slowdown = 0.5
 	siemens_coefficient = 0.5
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX,SPECIES_TESHARI,SPECIES_ALTEVIAN)	//this thing can autoadapt
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	w_class = ITEMSIZE_NORMAL //the mark vii packs itself down when not in use, thanks future-materials
 	breach_threshold = 16 //Extra Thicc
@@ -188,22 +188,22 @@
 		SPECIES_ZADDAT			= 'icons/inventory/suit/mob.dmi'
 		)
 	sprite_sheets_obj = list(
-		SPECIES_TAJARAN			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_SKRELL			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_UNATHI			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_XENOHYBRID		= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_AKULA			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_SERGAL			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_VULPKANIN		= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_FENNEC			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_SHADEKIN		= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_VASILISSAN		= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_NEVREAN			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_RAPALA			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_ALRAUNE			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_ZADDAT			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_LLEILL			= 'icons/inventory/suit/item_vr.dmi'
+		SPECIES_TAJARAN			= 'icons/inventory/suit/item.dmi',
+		SPECIES_SKRELL			= 'icons/inventory/suit/item.dmi',
+		SPECIES_UNATHI			= 'icons/inventory/suit/item.dmi',
+		SPECIES_XENOHYBRID		= 'icons/inventory/suit/item.dmi',
+		SPECIES_AKULA			= 'icons/inventory/suit/item.dmi',
+		SPECIES_SERGAL			= 'icons/inventory/suit/item.dmi',
+		SPECIES_VULPKANIN		= 'icons/inventory/suit/item.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/item.dmi',
+		SPECIES_FENNEC			= 'icons/inventory/suit/item.dmi',
+		SPECIES_SHADEKIN		= 'icons/inventory/suit/item.dmi',
+		SPECIES_VASILISSAN		= 'icons/inventory/suit/item.dmi',
+		SPECIES_NEVREAN			= 'icons/inventory/suit/item.dmi',
+		SPECIES_RAPALA			= 'icons/inventory/suit/item.dmi',
+		SPECIES_ALRAUNE			= 'icons/inventory/suit/item.dmi',
+		SPECIES_ZADDAT			= 'icons/inventory/suit/item.dmi',
+		SPECIES_LLEILL			= 'icons/inventory/suit/item.dmi'
 		)
 
 /obj/item/clothing/head/helmet/space/void/responseteam
@@ -242,5 +242,5 @@
 		SPECIES_RAPALA			= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_ALRAUNE			= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_ZADDAT			= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_LLEILL			= 'icons/inventory/suit/item_vr.dmi'
+		SPECIES_LLEILL			= 'icons/inventory/suit/item.dmi'
 		)

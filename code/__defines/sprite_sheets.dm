@@ -54,7 +54,7 @@ SPECIES_VULPKANIN = 'icons/inventory/feet/mob_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/feet/mob_vr_vulpkanin.dmi',\
 SPECIES_FENNEC = 'icons/inventory/feet/mob_vr_vulpkanin.dmi')
 
-#define VR_SPECIES_SPRITE_SHEETS_SUIT_ITEM list(\
+#define SPECIES_SPRITE_SHEETS_SUIT_ITEM list(\
 SPECIES_HUMAN = 'icons/inventory/suit/item.dmi',\
 SPECIES_TAJARAN = 'icons/inventory/suit/item_tajaran.dmi',\
 SPECIES_SKRELL = 'icons/inventory/suit/item_skrell.dmi',\
@@ -149,20 +149,6 @@ SPECIES_VULPKANIN = 'icons/inventory/feet/mob_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/feet/mob_vr_vulpkanin.dmi',\
 SPECIES_FENNEC = 'icons/inventory/feet/mob_vr_vulpkanin.dmi')
 
-#define ALL_VR_SPRITE_SHEETS_SUIT_ITEM list(\
-SPECIES_HUMAN = 'icons/inventory/suit/item_vr.dmi',\
-SPECIES_TAJARAN = 'icons/inventory/suit/item_vr_tajaran.dmi',\
-SPECIES_SKRELL = 'icons/inventory/suit/item_vr_skrell.dmi',\
-SPECIES_UNATHI = 'icons/inventory/suit/item_vr_unathi.dmi',\
-SPECIES_TESHARI = 'icons/inventory/suit/item_vr_teshari.dmi',\
-SPECIES_XENOHYBRID = 'icons/inventory/suit/item_vr_unathi.dmi',\
-SPECIES_AKULA = 'icons/inventory/suit/item_akula.dmi',\
-SPECIES_SERGAL = 'icons/inventory/suit/item_sergal.dmi',\
-SPECIES_NEVREAN = 'icons/inventory/suit/item_sergal.dmi',\
-SPECIES_VULPKANIN = 'icons/inventory/suit/item_vulpkanin.dmi',\
-SPECIES_ZORREN_HIGH = 'icons/inventory/suit/item_vulpkanin.dmi',\
-SPECIES_FENNEC = 'icons/inventory/suit/item_vulpkanin.dmi',\
-SPECIES_ALTEVIAN = 'icons/inventory/suit/item_altevian.dmi')
 #define ALL_VR_SPRITE_SHEETS_HEAD_ITEM list(\
 SPECIES_HUMAN = 'icons/inventory/head/item_vr.dmi',\
 SPECIES_TAJARAN = 'icons/inventory/head/item_vr_tajaran.dmi',\

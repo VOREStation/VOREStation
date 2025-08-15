@@ -50,7 +50,7 @@
 	icon_state = "odst"
 	item_state = "odst"
 	item_state_slots = null
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	icon_override = 'icons/inventory/suit/mob.dmi'
 	species_restricted = null
 	breach_threshold = 16 //Extra Thicc

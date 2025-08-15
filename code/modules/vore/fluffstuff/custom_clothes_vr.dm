@@ -1199,7 +1199,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/storage/trek/ds9
 	name = "Padded Overcoat"
 	desc = "The overcoat worn by all officers of the 2380s."
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "trek_ds9_coat"
 	body_parts_covered = CHEST|ARMS

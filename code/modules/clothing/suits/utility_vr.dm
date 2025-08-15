@@ -5,7 +5,7 @@
 /obj/item/clothing/suit/storage/toggle/paramedic
 	name = "paramedic vest"
 	desc = "A vest that protects against minor chemical spills."
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	icon_override = 'icons/inventory/suit/mob.dmi'
 	icon_state = "paramedic-vest"
 	item_state = "paramedic-vest"

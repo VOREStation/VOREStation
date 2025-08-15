@@ -89,12 +89,12 @@
 	name = "hazardous environment suit"
 	desc = "Has a strange smell to it, but you feel like it might be an old friend."
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "hev_orange"
 
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/suit/space/void/hev/violet
 	icon_state = "hev_violet"
@@ -120,14 +120,14 @@
 	name = "makeshift voidsuit"
 	desc = "This is not something you should use if you have other options, but it's better than nothing!"
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "makeshift_void"
 
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0)
 
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/makeshift
 	name = "makeshift voidsuit helmet"
@@ -147,14 +147,14 @@
 	name = "custodian suit"
 	desc = "Vacuum-capable armor for a Custodian to do their duty."
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "custodian"
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 40, "bio" = 0, "rad" = 20)
 
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/custodian
 	name = "custodian helmet"
@@ -174,14 +174,14 @@
 	name = "\improper Aether voidsuit"
 	desc = "This suit seems rather high-end for a standard voidsuit. The air in it has a hint of 'new car smell', courtesy of Aether Atmospherics."
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "moebiussuit"
 
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 20)
 
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/aether
 	name = "\improper Aether voidsuit helmet"
@@ -213,12 +213,12 @@
 	name = "\improper Excelsior voidsuit"
 	desc = "A space suit from a particular spaceship: Excelsior."
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "excelsior"
 
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/excelsior
 	name = "\improper Excelsior voidsuit helmet"
@@ -263,7 +263,7 @@
 	name = "\improper CSC industrial voidsuit"
 	desc = "A heavy-duty Kirillov-Y771 voidsuit intended for use in hazardous shipbreaking, salvage, and industrial operations, manufactured (or more likely refurbished) by the Coyote Salvage Corporation. It's slow and awkward if used outside of microgravity, but it offers good protection for what is technically a civilian-legal voidsuit."
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "breaker_suit"
 
@@ -273,7 +273,7 @@
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING)
 
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/salvagecorp_shipbreaker
 	name = "\improper CSC industrial voidsuit helmet"
