@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(explosions)
 	dependencies = list(
 		/datum/controller/subsystem/machines
 	)
+	flags = SS_NO_INIT
 
 	VAR_PRIVATE/resolve_explosions = FALSE
 	VAR_PRIVATE/list/currentrun = null
