@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Grippers will no longer delete things when your inventory is full"
+  - code_imp: "Gripper code is more readable."

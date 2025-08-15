@@ -4202,6 +4202,7 @@
 #include "code\modules\refinery\core\industrial_reagent_grinder.dm"
 #include "code\modules\refinery\core\industrial_reagent_hub.dm"
 #include "code\modules\refinery\core\industrial_reagent_machines.dm"
+#include "code\modules\refinery\core\industrial_reagent_mixer.dm"
 #include "code\modules\refinery\core\industrial_reagent_pipe.dm"
 #include "code\modules\refinery\core\industrial_reagent_pump.dm"
 #include "code\modules\refinery\core\industrial_reagent_reactor.dm"

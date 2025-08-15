@@ -78,6 +78,16 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
+/datum/design_techweb/board/industrial_reagent_mixer
+	name = "Industrial Reagent Mixer"
+	id = "industrial_reagent_mixer"
+	// req_tech = list(TECH_DATA = 1)
+	build_path = /obj/item/circuitboard/industrial_reagent_mixer
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+
 /datum/design_techweb/board/industrial_reagent_waste_processor
 	name = "Industrial Reagent Waste Processor"
 	id = "industrial_reagent_waste_processor"

@@ -47,10 +47,10 @@
 	if(seed.chems)
 		for(var/rid in seed.chems)
 			var/list/reagent_data = seed.chems[rid]
-			if(reagent_data && reagent_data.len)
+			if(reagent_data && LAZYLEN(reagent_data))
 				var/rtotal = reagent_data[1]
 				var/list/data = list()
-				if(reagent_data.len > 1 && potency > 0)
+				if(LAZYLEN(reagent_data) > 1 && potency > 0)
 					rtotal += round(potency/reagent_data[2])
 				if(rid == REAGENT_ID_NUTRIMENT)
 					data[seed.seed_name] = max(1,rtotal)
