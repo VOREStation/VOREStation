@@ -31,7 +31,7 @@
 		SPECIES_PROMETHEAN		= 'icons/inventory/suit/mob_skrell.dmi',
 		SPECIES_VOX 			= 'icons/inventory/suit/mob_vox.dmi',
 		SPECIES_TESHARI 		= 'icons/inventory/suit/mob_teshari.dmi',
-		SPECIES_ALTEVIAN 		= 'icons/inventory/suit/mob_vr_altevian.dmi'
+		SPECIES_ALTEVIAN 		= 'icons/inventory/suit/mob_altevian.dmi'
 		)
 
 /obj/item/clothing/head/helmet/space/rig

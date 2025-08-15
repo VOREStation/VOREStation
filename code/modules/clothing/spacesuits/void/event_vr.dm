@@ -237,7 +237,7 @@
 	desc = "The altevians' newest iteration of their armored suits. This one is tailored for zero-g environments, and while it can still be worn in an area with gravity, it'll put a strain on even the most athletic of individuals."
 
 	icon = 'icons/inventory/suit/item_altevian.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr_altevian.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_altevian.dmi'
 	icon_state = "rig-heartbreaker"
 
 	armor = list(melee = 70, bullet = 70, laser = 70, energy = 30, bomb = 80, bio = 100, rad = 40)
