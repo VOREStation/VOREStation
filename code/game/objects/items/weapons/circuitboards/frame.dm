@@ -343,6 +343,16 @@
 							/obj/item/stock_parts/motor = 1,
 							/obj/item/stack/material/glass/reinforced = 1)
 
+/obj/item/circuitboard/industrial_reagent_mixer
+	name = T_BOARD("industrial chemical mixer")
+	build_path = /obj/machinery/reagent_refinery/mixer
+	board_type = new /datum/frame/frame_types/industrial_reagent_mixer
+	req_components = list(
+							/obj/item/stock_parts/motor = 2,
+							/obj/item/stock_parts/gear = 2,
+							/obj/item/stock_parts/scanning_module = 1,
+							/obj/item/stack/material/glass/reinforced = 1)
+
 /obj/item/circuitboard/industrial_reagent_pipe
 	name = T_BOARD("industrial chemical pipe")
 	build_path = /obj/machinery/reagent_refinery/pipe
