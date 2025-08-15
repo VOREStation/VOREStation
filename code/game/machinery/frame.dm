@@ -237,6 +237,11 @@ GLOBAL_LIST(construction_frame_floor)
 	icon_override = 'icons/obj/stock_parts_refinery.dmi'
 	frame_class = FRAME_CLASS_MACHINE
 
+/datum/frame/frame_types/industrial_reagent_mixer
+	name = "Industrial Chemical Mixer"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
 /datum/frame/frame_types/industrial_reagent_pipe
 	name = "Industrial Chemical Pipe"
 	icon_override = 'icons/obj/stock_parts_refinery.dmi'
