@@ -156,7 +156,7 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/volume_pump/proc/broadcast_status()
 	if(!radio_connection)
-		return 0
+		return FALSE
 
 	var/datum/signal/signal = new
 	signal.transmission_method = TRANSMISSION_RADIO //radio signal
@@ -172,7 +172,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/binary/volume_pump/tgui_interact(mob/user, datum/tgui/ui)
 	if(stat & (BROKEN|NOPOWER))
@@ -184,7 +184,7 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/volume_pump/tgui_data(mob/user)
 	// this is the data which will be sent to the ui
-	var/data[0]
+	var/list/data = list()
 
 	data = list(
 		"on" = use_power,
@@ -275,8 +275,8 @@ Thus, the two variables affect pump operation are set in New():
 	. = ..()
 	. += "This device is designed to move large volumes of gasses quickly, but with no gurantee of exact pressures.\
 	Meaning that this can naievely over-pressurize pipes and devices past the device's designed limit."
-	. += "<b>The [src]'s pressure limit is [VOLUME_PUMP_MAX_OUTPUT_PRESSURE].</b>"
-	. += span_notice("Its pressure limits could be [overclocked ? "en" : "dis"]abled with a <b>multitool</b>.")
+	. += span_bold("The [src]'s pressure limit is [VOLUME_PUMP_MAX_OUTPUT_PRESSURE].")
+	. += span_notice("Its pressure limits could be [overclocked ? "en" : "dis"]abled with a" + span_bold("multitool") + ".")
 	if(overclocked)
 		. += "Its warning light is on[use_power ? " and it's spewing gas!" : "."]"
 
@@ -301,10 +301,10 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/binary/volume_pump/proc/multitool_act(var/obj/item/W as obj, var/mob/user as mob)
 	if(!overclocked)
 		overclocked = TRUE
-		to_chat(user, "The pump makes a grinding noise and air starts to hiss out as you disable its pressure limits.")
+		to_chat(user, span_notice("The pump makes a grinding noise and air starts to hiss out as you disable its pressure limits."))
 	else
 		overclocked = FALSE
-		to_chat(user, "The pump quiets down as you turn its limiters back on.")
+		to_chat(user, span_notice("The pump quiets down as you turn its limiters back on."))
 	update_icon()
 
 #undef VOLUME_PUMP_MAX_OUTPUT_PRESSURE

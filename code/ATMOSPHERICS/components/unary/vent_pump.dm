@@ -453,7 +453,7 @@
 	var/choice = tgui_input_list(user, "[src] has an ID of \"[id_tag]\" and a frequency of [frequency]. What would you like to change?", "[src] Config", options)
 	switch(choice)
 		if("ID Tag")
-			var/new_id = tgui_input_text(user, "[src] has an ID of \"[id_tag]\". What would you like it to be?", "[src] ID", id_tag, 30, FALSE, TRUE)
+			var/new_id = tgui_input_text(user, "[src] has an ID of \"[id_tag]\". What would you like it to be?", "[src] ID", id_tag, 30)
 			if(new_id)
 				id_tag = new_id
 
@@ -469,7 +469,7 @@
 
 		if("Direction")
 			pump_direction = !pump_direction
-			to_chat(user, "[src] is now [pump_direction ? "pumping in" : "siphoning out"].")
+			to_chat(user, span_notice("[src] is now [pump_direction ? "pumping in" : "siphoning out"]."))
 			update_icon()
 
 #undef DEFAULT_PRESSURE_DELTA

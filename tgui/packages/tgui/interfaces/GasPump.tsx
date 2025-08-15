@@ -90,11 +90,11 @@ export const GasPump = (props) => {
             </LabeledControls.Item>
             {max_rate ? (
               <LabeledControls.Item label="Desired Transfer Rate">
-                {toFixed(rate / 100, 2)} L/s
+                 {`${toFixed(rate / 100, 2)} L/s`}
               </LabeledControls.Item>
             ) : (
               <LabeledControls.Item label="Desired Output Pressure">
-                {toFixed(pressure_set / 100, 2)} kPa
+                {`${toFixed(pressure_set / 100, 2)} kPa`}
               </LabeledControls.Item>
             )}
           </LabeledControls>

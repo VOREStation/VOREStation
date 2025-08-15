@@ -82,7 +82,7 @@
 		SSradio.remove_object(src,frequency)
 	. = ..()
 
-/obj/machinery/air_sensor/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/air_sensor/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		return wrench_act(user, W)
 
@@ -93,7 +93,7 @@
 
 /obj/machinery/air_sensor/proc/wrench_act(var/mob/living/user, var/obj/item/tool/wrench/W)
 	playsound(src, W.usesound, 50, 1)
-	user.visible_message("[user] unfastens \the [src].", "<span class='notice'>You have unfastened \the [src].</span>", "You hear ratchet.")
+	user.visible_message("[user] unfastens \the [src].", span_notice("You have unfastened \the [src]."), "You hear ratcheting.")
 	var/obj/item/pipe_gsensor/gsensor = new /obj/item/pipe_gsensor(loc)
 	gsensor.id_tag = id_tag
 	gsensor.output = output
@@ -146,7 +146,7 @@
 
 				var/obj/item/multitool/M = tool
 				M.connectable = src
-				to_chat(user, "<span class='notice'>You save [src] into [M]'s buffer</span>")
+				to_chat(user, span_notice("You save [src] into [M]'s buffer."))
 
 	return TRUE
 #undef ONOFF_TOGGLE
@@ -173,7 +173,7 @@
 
 	tgui_interact(user)
 
-/obj/machinery/computer/general_air_control/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/computer/general_air_control/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_MULTITOOL))
 		return multitool_act(W, user)
 
@@ -213,7 +213,7 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/computer/general_air_control/proc/multitool_act(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/computer/general_air_control/proc/multitool_act(obj/item/W, mob/user)
 	var/list/options = list("Sensors", "Frequency", "Cancel")
 	var/answer = tgui_input_list(user, "[src] has a frequency of [frequency]. What would you like to change?", "Options!", options)
 	. = TRUE
@@ -243,12 +243,12 @@
 			// Device must be a meter or gas sensor.
 			var/obj/machinery/device = tool.connectable
 			if(!device || !(istype(device, /obj/machinery/meter)) && !(istype(device, /obj/machinery/air_sensor)))
-				to_chat(user, "<span class='warning'>Error: No device in multitool buffer, or incompatible device is not a sensor or meter.</span>")
+				to_chat(user, span_warning("Error: No device in multitool buffer, or incompatible device is not a sensor or meter."))
 				return
 
 			var/device_name = tgui_input_text(user, "Enter a name for the Sensor/Meter.", "Name")
 			if (!device_name || !Adjacent(user))
-				to_chat(user, "<span class='warning'>Error: No name was given for [tool.connectable].</span>")
+				to_chat(user, span_warning("Error: No name was given for [tool.connectable]."))
 				return
 
 			if(istype(device, /obj/machinery/air_sensor))
@@ -258,7 +258,7 @@
 				var/obj/machinery/meter/M = device
 				sensors[M.id] = device_name
 
-			to_chat(user, "You have added the [tool.connectable] to the [src] under the name [device_name]!")
+			to_chat(user, span_notice("You have added the [tool.connectable] to the [src] under the name [device_name]!"))
 
 		if("Remove")
 			// Creates an associative mapping of Names to Tags, from Tags to Names.
@@ -271,11 +271,11 @@
 				return
 
 			var/confirm = tgui_alert(user, "Are you sure you want to remove the sensor/meter '[to_remove]'?", "Warning", list("Yes", "No"))
-			if(confirm == "No" || !Adjacent(user))
+			if(confirm != "Yes" || !Adjacent(user))
 				return
 
 			sensors -= sensor_names[to_remove]
-			to_chat(user, "<span class='notice'>Successfully removed sensor/meter with name <code>[to_remove]</code></span>")
+			to_chat(user, span_notice("Successfully removed sensor/meter with name [to_remove]"))
 
 /obj/machinery/computer/general_air_control/Initialize(mapload)
 	. = ..()
@@ -383,7 +383,7 @@
 	signal.data["sigtype"]="command"
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
-/obj/machinery/computer/general_air_control/large_tank_control/multitool_act(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/computer/general_air_control/large_tank_control/multitool_act(obj/item/W, mob/user)
 	var/list/options =  list("Inlet", "Outlet", "Sensors", "Frequency", "Cancel")
 	var/choice = tgui_input_list(user, "[src] has a frequency of [frequency]. What would you like to change?", "Configuration", options)
 	if(!choice || choice == "Cancel" || !Adjacent(user))
@@ -416,7 +416,7 @@
 		if ("Set")
 			to_chat(user, "The buffer is [tool.connectable]")
 			if (!istype(tool.connectable, /obj/machinery/atmospherics/unary/vent_pump))
-				to_chat(user, "<span class='warning'>Error: Buffer is either empty, or object in buffer is invalid. Device should be a Unary Vent</span>")
+				to_chat(user, span_notice("Error: Buffer is either empty, or object in buffer is invalid. Device should be a Unary Vent."))
 				return
 
 			var/obj/machinery/atmospherics/unary/vent_pump/pump = tool.connectable
@@ -428,7 +428,7 @@
 
 		if ("Clear")
 			output_tag = null
-			to_chat(user, "You have cleared the outlet!")
+			to_chat(user, span_notice("You have cleared the outlet!"))
 			return
 
 /obj/machinery/computer/general_air_control/large_tank_control/proc/configure_inlet(mob/living/user, obj/item/multitool/tool)
@@ -439,17 +439,17 @@
 	switch(choice)
 		if ("Set")
 			if (!istype(tool.connectable, /obj/machinery/atmospherics/unary/outlet_injector))
-				to_chat(user, "<span class='warning'>Error: Buffer is either empty, or object in buffer is invalid. Device should be Injector</span>")
+				to_chat(user, span_notice("Error: Buffer is either empty, or object in buffer is invalid. Device should be Injector"))
 				return
 
 			var/obj/machinery/atmospherics/unary/outlet_injector/injector = tool.connectable
 			input_tag = injector.id
-			to_chat(user, "You have set the inlet")
+			to_chat(user, span_notice("You have set the inlet"))
 			return
 
 		if ("Clear")
 			input_tag = null
-			to_chat(user, "You have cleared the inlet!")
+			to_chat(user, span_notice("You have cleared the inlet!"))
 			return
 
 /obj/machinery/computer/general_air_control/supermatter_core
@@ -553,7 +553,7 @@
 	signal.data["sigtype"]="command"
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
-/obj/machinery/computer/general_air_control/supermatter_core/multitool_act(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/computer/general_air_control/supermatter_core/multitool_act(obj/item/W, mob/user)
 	var/list/options =  list("Inlet", "Outlet", "Sensors", "Frequency", "Cancel")
 	var/choice = tgui_input_list(user, "[src] has a frequency of [frequency]. What would you like to change?", "Configuration", options)
 	if(!choice || choice == "Cancel" || !Adjacent(user))
@@ -585,7 +585,7 @@
 	switch(choice)
 		if ("Set")
 			if (!istype(tool.connectable, /obj/machinery/atmospherics/unary/vent_pump))
-				to_chat(user, "<span class='warning'>Error: Buffer is either empty, or object in buffer is invalid. Device should be Air Vent</span>")
+				to_chat(user, span_warning("Error: Buffer is either empty, or object in buffer is invalid. Device should be Air Vent"))
 				return
 
 			var/obj/machinery/atmospherics/unary/vent_pump/pump = tool.connectable
@@ -607,19 +607,19 @@
 
 	switch(choice)
 		if ("Set")
-			to_chat(user, "The buffer is [tool.connectable]")
+			to_chat(user, span_notice("The buffer is [tool.connectable]"))
 			if (!istype(tool.connectable, /obj/machinery/atmospherics/unary/outlet_injector))
-				to_chat(user, "<span class='warning'>Error: Buffer is either empty, or object in buffer is invalid. Device should be Injector</span>")
+				to_chat(user, span_warning("Error: Buffer is either empty, or object in buffer is invalid. Device should be Injector"))
 				return
 
 			var/obj/machinery/atmospherics/unary/outlet_injector/injector = tool.connectable
 			input_tag = injector.id
-			to_chat(user, "You have set the inlet!")
+			to_chat(user, span_notice("You have set the inlet!"))
 			return
 
 		if ("Clear")
 			input_tag = null
-			to_chat(user, "You have cleared the inlet!")
+			to_chat(user, span_notice("You have cleared the inlet!"))
 			return
 
 /obj/machinery/computer/general_air_control/fuel_injection

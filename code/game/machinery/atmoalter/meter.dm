@@ -120,13 +120,13 @@
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 50, 1)
-		to_chat(user, "You have [open ? "closed" : "opened"] the maintenance panel for [src].")
+		to_chat(user, span_notice("You have [open ? "closed" : "opened"] the maintenance panel for [src]."))
 		open = !open
 		return
 
 	if(W.has_tool_quality(TOOL_MULTITOOL))
 		if(open) // For setting up the meter to be used by other devices over radio.
-			id = tgui_input_text(user, "Please insert an ID tag for [src], example 'exhaust_pipe'.", "Set ID Tag", id, MAX_NAME_LEN, FALSE)
+			id = tgui_input_text(user, "Please insert an ID tag for [src], example 'exhaust_pipe'.", "Set ID Tag", id, MAX_NAME_LEN)
 			var/obj/item/multitool/tool = W
 			tool.connectable = src
 			return

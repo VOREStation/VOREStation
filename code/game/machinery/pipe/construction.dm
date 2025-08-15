@@ -305,12 +305,12 @@ Buildable meters
 	var/id_tag
 	var/output = 3
 
-/obj/item/pipe_gsensor/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/pipe_gsensor/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		return wrench_act(user, W)
 	return ..()
 
-/obj/item/pipe_gsensor/proc/wrench_act(var/mob/living/user, var/obj/item/tool/wrench/W)
+/obj/item/pipe_gsensor/proc/wrench_act(mob/living/user, obj/item/tool/wrench/W)
 	var/obj/machinery/air_sensor/air_sensor = new /obj/machinery/air_sensor(loc)
 	air_sensor.id_tag = id_tag
 	air_sensor.output = output

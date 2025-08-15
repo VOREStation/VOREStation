@@ -174,17 +174,17 @@
 				if(new_frequency)
 					new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 					set_frequency(new_frequency)
-					to_chat(user, "You set the [src]'s frequency to [frequency].")
+					to_chat(user, span_notice("You set the [src]'s frequency to [frequency]."))
 
 			if("ID Tag")
-				id = tgui_input_text(user, "Please insert an ID tag for [src], example 'exhaust_port'.", "Set ID Tag", id, MAX_NAME_LEN, FALSE)
+				id = tgui_input_text(user, "Please insert an ID tag for [src], example 'exhaust_port'.", "Set ID Tag", id, MAX_NAME_LEN)
 				if(id)
-					to_chat(user, "You set the [src]'s ID Tag to \"[id]\".")
+					to_chat(user, span_notice("You set the [src]'s ID Tag to \"[id]\"."))
 
 			if("-SAVE TO BUFFER-")
 				var/obj/item/multitool/tool = W
 				tool.connectable = src
-				to_chat(user, "You copied the [src] into the [tool]'s buffer!")
+				to_chat(user, span_notice("You copied the [src] into the [tool]'s buffer!"))
 
 		return ..()
 
@@ -205,5 +205,5 @@
 		return ..()
 
 	volume_rate = ATMOS_DEFAULT_VOLUME_PUMP + 500
-	to_chat(user,span_notice("You have set \the [src] to [volume_rate]"))
+	to_chat(user, span_notice("You have set \the [src] to [volume_rate]"))
 	update_icon()
