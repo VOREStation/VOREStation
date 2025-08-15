@@ -136,9 +136,6 @@
 	switch(action)
 		// Basic actions
 		if("load")
-			if(!isnewplayer(ui.user))
-				to_chat(ui.user, span_userdanger("You can't change your character slot while being in round."))
-				return FALSE
 			if(!IsGuestKey(ui.user.key))
 				open_load_dialog(ui.user)
 			. = TRUE

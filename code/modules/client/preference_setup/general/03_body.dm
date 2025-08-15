@@ -319,6 +319,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 
 	data["b_type"] = pref.b_type
 	data["digitigrade"] = pref.digitigrade
+	data["tail_layering"] = pref.read_preference(/datum/preference/choiced/human/tail_layering)
 
 	data["synth_color_toggle"] = pref.synth_color
 	data["synth_color"] = pref.read_preference(/datum/preference/color/human/synth_color)
@@ -995,6 +996,13 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 		if("digitigrade")
 			pref.digitigrade = !pref.digitigrade
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+		if("set_tail_layering")
+			var/new_tail_layering = tgui_input_list(user, "Select a tail layer.", "Set Tail Layer", GLOB.tail_layer_options,
+				pref.read_preference(/datum/preference/choiced/human/tail_layering))
+			if(new_tail_layering)
+				pref.update_preference_by_type(/datum/preference/choiced/human/tail_layering, new_tail_layering)
+				return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("synth_color_toggle")
 			pref.synth_color = !pref.synth_color

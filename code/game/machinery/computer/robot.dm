@@ -92,7 +92,8 @@
 			return TRUE
 	if(!isAI(user))
 		return FALSE
-	return (user.mind.special_role && user.mind.original == user)
+	var/mob/living/original = user.mind.original_character?.resolve()
+	return (user.mind.special_role && (original && original == user))
 
 /**
  * Check if the user is allowed to hack a specific borg
