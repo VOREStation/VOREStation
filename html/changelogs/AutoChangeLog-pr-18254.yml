@@ -1,0 +1,5 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Refinery mixing machine for use with refinery pumps"
+  - bugfix: "Refinery machines use the sending machine's transfer value and not the receiving machine"
