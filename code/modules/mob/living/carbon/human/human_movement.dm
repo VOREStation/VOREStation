@@ -241,14 +241,22 @@
 */
 #undef HUMAN_LOWEST_SLOWDOWN
 
+///Gets whatever jetpack we may have and returns it. Checks back -> rig -> suit storage -> suit
 /mob/living/carbon/human/get_jetpack()
 	if(back)
-		var/obj/item/rig/rig = get_rig()
 		if(istype(back, /obj/item/tank/jetpack))
 			return back
-		else if(istype(rig))
+		var/obj/item/rig/rig = get_rig()
+		if(istype(rig))
 			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
 				return module.jets
+	if(s_store && istype(s_store, /obj/item/tank/jetpack))
+		return s_store
+	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/space/void))
+		var/obj/item/clothing/suit/space/void/v = wear_suit
+		if(v.tank && istype(v.tank, /obj/item/tank/jetpack))
+			return v.tank
+
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act?
