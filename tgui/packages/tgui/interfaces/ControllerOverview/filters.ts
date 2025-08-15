@@ -1,4 +1,4 @@
-import { type SortType } from './types';
+import type { SortType } from './types';
 
 export type FilterState = {
   ascending: boolean;
