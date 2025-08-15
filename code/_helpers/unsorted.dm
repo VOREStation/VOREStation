@@ -1629,7 +1629,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
  * * multiplier - multiplier passed to set_custom_materials
  * * [target_object][atom] - the target object who's custom materials we are trying to modify
  */
-/proc/split_materials_uniformly(list/custom_materials, multiplier, obj/target_object)
+/proc/split_materials_uniformly(list/custom_materials, multiplier, obj/item/target_object)
 	target_object.set_custom_materials(custom_materials)
 
 	// if(!length(target_object.contents)) //most common case where the object is just 1 thing

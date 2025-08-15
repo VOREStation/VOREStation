@@ -196,8 +196,8 @@
 		if(recipe.use_material)
 			O = new recipe.result_type(user.loc, recipe.use_material)
 
-			if(istype(O, /obj))
-				var/obj/Ob = O
+			if(istype(O, /obj/item))
+				var/obj/item/Ob = O
 
 				if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
 					Ob.matter.Cut()
@@ -213,8 +213,8 @@
 			O = new recipe.result_type(user.loc)
 
 			if(recipe.matter_material)
-				if(istype(O, /obj))
-					var/obj/Ob = O
+				if(istype(O, /obj/item))
+					var/obj/item/Ob = O
 
 					if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
 						Ob.matter.Cut()
