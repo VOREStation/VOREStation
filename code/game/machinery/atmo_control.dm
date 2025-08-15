@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(gas_sensors)
-
 #define SENSOR_PRESSURE		(1<<0)
 #define SENSOR_TEMPERATURE	(1<<1)
 #define SENSOR_O2			(1<<2)
@@ -742,3 +740,11 @@ GLOBAL_LIST_EMPTY(gas_sensors)
 
 			radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 			. = TRUE
+
+#undef SENSOR_PRESSURE
+#undef SENSOR_TEMPERATURE
+#undef SENSOR_O2
+#undef SENSOR_PLASMA
+#undef SENSOR_N2
+#undef SENSOR_CO2
+#undef SENSOR_N2O
