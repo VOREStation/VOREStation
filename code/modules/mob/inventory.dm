@@ -250,7 +250,7 @@ var/list/slot_equipment_priority = list( \
 	if(l_hand) items += l_hand
 	if(r_hand) items += r_hand
 	if(wear_mask) items += wear_mask
-	return .
+	return items
 
 /mob/living/carbon/human/get_equipped_items()
 	var/list/items = ..()
@@ -265,7 +265,7 @@ var/list/slot_equipment_priority = list( \
 	if(wear_id) items += wear_id
 	if(wear_suit) items += wear_suit
 	if(w_uniform) items += w_uniform
-	return .
+	return items
 
 /mob/proc/delete_inventory()
 	for(var/entry in get_equipped_items())
