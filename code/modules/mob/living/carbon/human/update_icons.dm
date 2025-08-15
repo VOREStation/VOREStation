@@ -399,7 +399,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/image/both = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing", layer = BODY_LAYER+BLOOD_LAYER)
 
 	//Bloody hands
-	if(bloody_mess)
+	if(LAZYLEN(bloody_mess))
 		var/image/bloodsies	= image(icon = species.get_blood_mask(src), icon_state = "bloodyhands", layer = BODY_LAYER+BLOOD_LAYER)
 		bloodsies.color = hand_blood_color
 		both.add_overlay(bloodsies)

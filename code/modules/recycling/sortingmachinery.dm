@@ -407,7 +407,7 @@
 	return
 
 /obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
-	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect) || istype(AM, /obj/mecha))	return
+	if(QDELETED(AM) || istype(AM, /obj/item/projectile) || istype(AM, /obj/effect) || istype(AM, /obj/mecha))	return
 	switch(dir)
 		if(NORTH)
 			if(AM.loc.y != src.loc.y+1) return
@@ -425,6 +425,20 @@
 		var/mob/M = AM
 		M.loc = src
 	src.flush()
+
+/obj/machinery/disposal/deliveryChute/hitby(atom/movable/AM)
+	if(!QDELETED(AM) || (istype(AM, /obj/item) || istype(AM, /mob/living)) && !istype(AM, /obj/item/projectile))
+		switch(dir)
+			if(NORTH)
+				if(AM.loc.y != src.loc.y+1) return ..()
+			if(EAST)
+				if(AM.loc.x != src.loc.x+1) return ..()
+			if(SOUTH)
+				if(AM.loc.y != src.loc.y-1) return ..()
+			if(WEST)
+				if(AM.loc.x != src.loc.x-1) return ..()
+		AM.forceMove(src)
+		src.flush()
 
 /obj/machinery/disposal/deliveryChute/flush()
 	flushing = 1

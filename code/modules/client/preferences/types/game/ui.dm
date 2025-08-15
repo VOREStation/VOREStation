@@ -66,6 +66,12 @@
 /datum/preference/toggle/tgui_say_light/apply_to_client(client/client, value)
 	client.tgui_say?.load()
 
+/datum/preference/toggle/tgui_use_spellcheck
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "TGUI_ENABLE_SPELLCHECK"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
 /datum/preference/toggle/tgui_say_emotes
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "tgui_say_emotes"
