@@ -44,6 +44,7 @@
 	var/lights = 0
 	var/lights_power = 6
 	var/force = 0
+	var/damage_type = BRUTE
 
 	var/mech_faction = null
 	var/firstactivation = 0 			//It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.
@@ -997,7 +998,7 @@
 ////////  Health related procs  ////////
 ////////////////////////////////////////
 
-/obj/mecha/take_damage(amount, type="brute")
+/obj/mecha/take_damage(amount, type=BRUTE)
 	update_damage_alerts()
 	if(amount)
 		var/damage = absorbDamage(amount,type)
