@@ -757,7 +757,7 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi')
+		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_werebeast.dmi')
 	max_heat_protection_temperature = T0C+100
 	allowed = list(POCKET_EMERGENCY)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)

@@ -27,5 +27,5 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi'
+		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_werebeast.dmi'
 		)
