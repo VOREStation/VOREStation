@@ -1,0 +1,4 @@
+author: "Guti"
+delete-after: True
+changes:
+  - bugfix: "Fixes hands becoming white after washed when blodied"
