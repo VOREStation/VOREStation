@@ -123,7 +123,8 @@
 	for(var/obj/effect/abstract/dark_maw/dm as anything in active_dark_maws) //if the component gets destroyed so does your precious maws
 		if(!QDELETED(dm))
 			qdel(dm)
-	owner.shadekin_display.invisibility = INVISIBILITY_ABSTRACT //hide it
+	if(owner.shadekin_display)
+		owner.shadekin_display.invisibility = INVISIBILITY_ABSTRACT //hide it
 	replace_shadekin_master()
 	active_dark_maws.Cut()
 	shadekin_abilities.Cut()
