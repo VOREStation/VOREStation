@@ -32,7 +32,7 @@
 	var/armor_penetration = 0
 	var/catchable = TRUE
 	var/can_cleave = FALSE // If true, a 'cleaving' attack will occur.
-
+	var/pry = 0			//Used in attackby() to open doors
 	var/list/matter
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
@@ -122,6 +122,7 @@
 	var/digestable = TRUE
 	var/item_tf_spawn_allowed = FALSE
 	var/list/ckeys_allowed_itemspawn = null
+	var/datum/weakref/exploit_for //if this obj is an exploit for somebody, this points to them
 
 /obj/item/Initialize(mapload)
 	. = ..()
