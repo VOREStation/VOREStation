@@ -1,6 +1,6 @@
 /obj/item
 	name = "item"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/weapons.dmi' //'icons/obj/items.dmi' //It was accidentally set to weapons.dmi 11 months ago...leaving it as is until further analysis
 	w_class = ITEMSIZE_NORMAL
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
@@ -13,7 +13,7 @@
 	var/health = null
 	var/burn_point = null
 	var/burning = null
-	var/hitsound = null
+	var/hitsound = "swing_hit"
 	var/usesound = null // Like hitsound, but for when used properly and not to kill someone.
 	var/storage_cost = null
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
@@ -126,6 +126,28 @@
 	var/preserve_item = 0 //whether this object is preserved when its owner goes into cryo-storage, gateway, etc
 	var/persist_storable = TRUE		//If this is true, this item can be stored in the item bank.
 									//This is automatically set to false when an item is removed from storage
+
+	var/list/possessed_voice //Allows for items to be possessed/inhabited by voices.
+	var/list/warned_of_possession //Checks to see who has been informed this item is possessed.
+	var/cleaving = FALSE // Used to avoid infinite cleaving.
+	var/list/tool_qualities
+	var/destroy_on_drop = FALSE	// Used by augments to determine if the item should destroy itself when dropped, or return to its master.
+	var/obj/item/organ/my_augment = null	// Used to reference the object's host organ.
+	var/datum/identification/identity = null
+	var/identity_type = /datum/identification
+	var/init_hide_identity = FALSE // Set to true to automatically obscure the object on initialization.
+
+	//Vorestuff
+	var/trash_eatable = TRUE
+	var/digest_stage = null
+	var/d_mult_old = 1 //digest stage descriptions
+	var/d_mult = 1 //digest stage descriptions
+	var/d_stage_overlay //digest stage effects
+	var/gurgled = FALSE
+	var/oldname
+	var/cleanname
+	var/cleandesc
+	var/gurgled_color
 
 /obj/item/Initialize(mapload)
 	. = ..()
