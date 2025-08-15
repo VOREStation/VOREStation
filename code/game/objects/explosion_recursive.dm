@@ -3,9 +3,6 @@
 	var/turf/T = get_turf(src.mob)
 	explosion_rec(T, power)
 
-/obj
-	var/explosion_resistance
-
 /proc/explosion_rec(turf/epicenter, power)
 	var/list/explosion_turfs = list()
 	var/explosion_in_progress = 0
