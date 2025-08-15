@@ -176,10 +176,10 @@
 	name = "long fur coat"
 	desc = "A sophisticated long coat made of fur."
 
-	icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "russofurcoat"
 
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	item_state = "russofurcoat"
 
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -1200,7 +1200,7 @@ Departamental Swimsuits, for general use
 	name = "Padded Overcoat"
 	desc = "The overcoat worn by all officers of the 2380s."
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "trek_ds9_coat"
 	body_parts_covered = CHEST|ARMS
 	permeability_coefficient = 0.50

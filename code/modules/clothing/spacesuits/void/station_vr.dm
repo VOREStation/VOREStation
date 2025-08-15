@@ -3,7 +3,7 @@
 	desc = "A surplus Commonwealth mining voidsuit! Slightly more comfortable and easier to move in than your average voidsuit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "void_mining_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -25,7 +25,7 @@
 	desc = "A surplus Commonwealth anomaly suit! Slightly more comfortable and easier to move in than your average anomaly suit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "void_excavation_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -48,7 +48,7 @@
 	desc = "A surplus Commonwealth riot control voidsuit! Slightly more comfortable and easier to move in than your average voidsuit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "void_secalt_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -70,7 +70,7 @@
 	desc = "A surplus Commonwealth pilot voidsuit! Slightly more comfortable and easier to move in than your average voidsuit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "void_pilot_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -92,7 +92,7 @@
 	desc = "A surplus Commonwealth medical voidsuit! Slightly more comfortable and easier to move in than your average voidsuit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "void_medicalalt_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -114,7 +114,7 @@
 	desc = "A surplus Commonwealth exploration voidsuit! Slightly more comfortable and easier to move in than your average voidsuit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "void_explorer_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -136,7 +136,7 @@
 	desc = "A surplus Commonwealth engineering voidsuit! Slightly more comfortable and easier to move in than your average voidsuit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "void_engineeringalt_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -158,7 +158,7 @@
 	desc = "A surplus Commonwealth atmospherics voidsuit! Slightly more comfortable and easier to move in than your average voidsuit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "void_atmosalt_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -180,7 +180,7 @@
 	desc = "A surplus Commonwealth Navy captain voidsuit! Slightly more comfortable and easier to move in than your average voidsuit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "void_command_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB

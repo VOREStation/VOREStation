@@ -3,7 +3,7 @@
 	name = "modern labcoat"
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "labcoat_mod"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/modern/cmo
@@ -16,7 +16,7 @@
 	name = "modern bio suit"
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "bio_mod"
 
 /obj/item/clothing/head/bio_hood/modern
@@ -33,33 +33,33 @@
 	name = "old-school labcoat"
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "labcoat_old"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/old/tox
 	name = "old-school scientist's labcoat"
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "labcoat_old_tox"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/old/chem
 	name = "old-school chemist's labcoat"
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "labcoat_old_chem"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/old/vir
 	name = "old-school virologist's labcoat"
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "labcoat_old_vir"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/old/cmo
 	name = "old-school CMO's labcoat"
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "labcoat_old_cmo"

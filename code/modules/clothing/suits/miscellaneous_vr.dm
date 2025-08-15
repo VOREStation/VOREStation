@@ -6,14 +6,14 @@
 	desc = "A traditional piece of clothing from Greece."
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	icon_state = "chiton"
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 
 /obj/item/clothing/suit/oversize
 	name = "oversized t-shirt"
 	desc = "This ain't your daddy's shirt! Well, it might be..."
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	icon_state = "oversize"
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 
 //HERE BE TAUR RELATED CLOTHES
 
@@ -98,7 +98,7 @@
 	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "cyberpunksleek"
 
 /obj/item/clothing/suit/storage/det_trench/alt2
@@ -106,7 +106,7 @@
 	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "cyberpunksleek_long"
 
 /obj/item/clothing/suit/storage/det_trench/alt/black
@@ -120,7 +120,7 @@
 	name = "Talon hoodie"
 	desc = "A warm, blue sweatshirt bearing ITV Talon markings."
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	icon_state = "talonhoodie"
 	item_state_slots = list(slot_r_hand_str = "suit_blue", slot_l_hand_str = "suit_blue")
 
@@ -130,7 +130,7 @@
 	desc = "An old leather coat. Has probably seen things you wouldn't believe."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "bladerunner_coat"
 
 // Cyberpunk 'orange' vest
@@ -139,7 +139,7 @@
 	desc = "A red vest with golden streaks. It's made out of tough materials, and can protect fairly well against bullets. Wake the fuck up, Samurai."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "cyberpunk"
 	armor = list("melee" = 10, "bullet" = 20, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)
 

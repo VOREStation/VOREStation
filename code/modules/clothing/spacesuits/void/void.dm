@@ -33,7 +33,7 @@
 	special_hood_handling = TRUE
 	actions_types = list(/datum/action/item_action/toggle_helmet)
 	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
-	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = VR_SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.

@@ -39,7 +39,7 @@
 	icon_state = "hostile_env"
 	item_state = "hostile_env"
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	slowdown = 1.5
 	armor = list(melee = 60, bullet = 35, laser = 35, energy = 15, bomb = 55, bio = 100, rad = 20)
 
@@ -60,7 +60,7 @@
 	icon_state = "syndicate-contract"
 	item_state = "syndicate-contract"
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.6
 
@@ -78,7 +78,7 @@
 	icon_state = "chronosuit"
 	item_state = "chronosuit"
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 
 /obj/item/clothing/suit/space/void/autolok
 	name = "AutoLok pressure suit"
@@ -93,7 +93,7 @@
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt
 	breach_threshold = 6 //this thing is basically tissue paper
 	w_class = ITEMSIZE_NORMAL //if it's snug, high-tech, and made of relatively soft materials, it should be much easier to store!
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = null
 

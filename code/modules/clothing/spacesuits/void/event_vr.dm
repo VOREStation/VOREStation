@@ -90,7 +90,7 @@
 	desc = "Has a strange smell to it, but you feel like it might be an old friend."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "hev_orange"
 
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -121,7 +121,7 @@
 	desc = "This is not something you should use if you have other options, but it's better than nothing!"
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "makeshift_void"
 
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0)
@@ -148,7 +148,7 @@
 	desc = "Vacuum-capable armor for a Custodian to do their duty."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "custodian"
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 40, "bio" = 0, "rad" = 20)
@@ -175,7 +175,7 @@
 	desc = "This suit seems rather high-end for a standard voidsuit. The air in it has a hint of 'new car smell', courtesy of Aether Atmospherics."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "moebiussuit"
 
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 20)
@@ -214,7 +214,7 @@
 	desc = "A space suit from a particular spaceship: Excelsior."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "excelsior"
 
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -264,7 +264,7 @@
 	desc = "A heavy-duty Kirillov-Y771 voidsuit intended for use in hazardous shipbreaking, salvage, and industrial operations, manufactured (or more likely refurbished) by the Coyote Salvage Corporation. It's slow and awkward if used outside of microgravity, but it offers good protection for what is technically a civilian-legal voidsuit."
 
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "breaker_suit"
 
 	armor = list("melee" = 50, "bullet" = 15, "laser" = 15, "energy" = 25, "bomb" = 45, "bio" = 100, "rad" = 80)

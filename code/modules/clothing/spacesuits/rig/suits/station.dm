@@ -299,7 +299,7 @@
 
 /obj/item/clothing/suit/space/rig/focalpoint
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "techno_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
@@ -359,7 +359,7 @@
 
 /obj/item/clothing/suit/space/rig/hephaestus
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "ihs_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
@@ -419,7 +419,7 @@
 
 /obj/item/clothing/suit/space/rig/zero
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "null_rig"
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
@@ -470,7 +470,7 @@
 
 /obj/item/clothing/suit/space/rig/baymed
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "medical_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -536,7 +536,7 @@
 
 /obj/item/clothing/suit/space/rig/bayeng
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "engineering_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -600,7 +600,7 @@
 
 /obj/item/clothing/suit/space/rig/pathfinder
 	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "pathfinder_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
