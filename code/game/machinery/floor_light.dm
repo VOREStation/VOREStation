@@ -13,6 +13,7 @@ var/list/floor_light_cache = list()
 		to_chat(user, span_warning("You need to be on a floor to install this."))
 		return
 	new /obj/machinery/floor_light(T)
+	qdel(src)
 
 /obj/machinery/floor_light
 	name = "floor light"
