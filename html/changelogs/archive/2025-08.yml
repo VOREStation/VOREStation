@@ -320,3 +320,13 @@
   - rscadd: Added a new mining points reward - a deluxe cabin shelter capsule! Complete
       with a kitchen and privacy-enabled dorms and bathrooms for private scenes! Buy
       today for 10,000 mining points!
+2025-08-15:
+  ItsSelis:
+  - rscadd: Added GBP system
+  - rscadd: Added CODEOWNERS workflow in order to add reviews from codeowners that
+      do not have write permissions on the repository (This is not a feature in GitHub
+      since 2019)
+  Kashargul:
+  - qol: chat examines are now also spoilered
+  - code_imp: more grep checks, tgui dependency up
+  - code_imp: tgui style cleanup
