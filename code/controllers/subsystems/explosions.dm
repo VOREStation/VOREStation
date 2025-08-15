@@ -14,9 +14,6 @@ SUBSYSTEM_DEF(explosions)
 	VAR_PRIVATE/list/resolving_explosions = list()
 	VAR_PRIVATE/list/explosion_signals = list()
 
-/datum/controller/subsystem/explosions/Initialize()
-	return SS_INIT_SUCCESS
-
 /datum/controller/subsystem/explosions/stat_entry(msg)
 	var/meme = ""
 	switch(resolving_explosions.len)
