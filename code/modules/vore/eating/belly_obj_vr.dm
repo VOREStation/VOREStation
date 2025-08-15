@@ -1245,7 +1245,7 @@
 		return owner.drop_location()
 	//Sketchy fallback for safety, put them somewhere safe.
 	else
-		log_debug("[src] (\ref[src]) doesn't have an owner, and dropped someone at a latespawn point!")
+		log_runtime("[src] (\ref[src]) doesn't have an owner, and dropped someone at a latespawn point!")
 		var/fallback = pick(GLOB.latejoin)
 		return get_turf(fallback)
 

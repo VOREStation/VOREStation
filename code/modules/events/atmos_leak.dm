@@ -32,7 +32,7 @@
 	for(var/i in 1 to 10)
 		var/area/A = pick(grand_list_of_areas)
 		if(is_area_occupied(A))
-			log_debug("atmos_leak event: Rejected [A] because it is occupied.")
+			log_game("atmos_leak event: Rejected [A] because it is occupied.")
 			continue
 		// A good area, great! Lets try and pick a turf
 		var/list/turfs = list()
@@ -40,14 +40,14 @@
 			if(turf_clear(F))
 				turfs += F
 		if(turfs.len == 0)
-			log_debug("atmos_leak event: Rejected [A] because it has no clear turfs.")
+			log_game("atmos_leak event: Rejected [A] because it has no clear turfs.")
 			continue
 		target_area = A
 		target_turf = pick(turfs)
 
 	// If we can't find a good target, give up
 	if(!target_area)
-		log_debug("atmos_leak event: Giving up after too many failures to pick target area")
+		log_game("atmos_leak event: Giving up after too many failures to pick target area")
 		kill()
 		return
 

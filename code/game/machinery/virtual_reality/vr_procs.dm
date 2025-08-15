@@ -1,12 +1,12 @@
 // Gross proc which is called on Life() to check for escaped VR mobs. Tried to do this with Exited() on area/vr but ended up being too heavy.
 /mob/living/proc/handle_vr_derez()
 	if(virtual_reality_mob && !istype(get_area(src), /area/vr))
-		log_debug("[src] escaped virtual reality")
+		log_admin("[src] escaped virtual reality")
 		visible_message("[src] blinks out of existence.")
 		return_from_vr()
 		for(var/obj/belly/B in vore_organs) // Assume anybody inside an escaped VR mob is also an escaped VR mob.
 			for(var/mob/living/L in B)
-				log_debug("[L] was inside an escaped VR mob and has been deleted.")
+				log_vore("[L] was inside an escaped VR mob ([src]) and has been deleted.")
 				L.handle_vr_derez() //Recursive! Let's get EVERYONE properly out of here!
 				if(!QDELETED(L)) //This is so we don't double qdel() things when we're doing recursive removal.
 					qdel(L)

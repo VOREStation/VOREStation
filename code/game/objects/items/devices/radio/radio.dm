@@ -82,7 +82,7 @@
 					AIO.link_radio(src)
 					break
 		if(!bs_tx_weakref)
-			testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
+			log_mapping("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
 
 	if(bs_rx_preload_id)
 		var/found = 0
@@ -100,7 +100,7 @@
 					found = 1
 					break
 		if(!found)
-			testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
+			log_mapping("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
 
 /obj/item/radio/Destroy()
 	qdel(wires)
@@ -819,3 +819,35 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	bs_rx_preload_id = "Broadcaster A" //Recveive from a transmitter
 
 #undef CANBROADCAST_INNERBOX
+
+/obj/item/radio/phone
+	subspace_transmission = TRUE
+	canhear_range = 0
+	adhoc_fallback = TRUE
+
+/obj/item/radio/emergency
+	name = "Medbay Emergency Radio Link"
+	icon_state = "med_walkietalkie"
+	frequency = MED_I_FREQ
+	subspace_transmission = TRUE
+	adhoc_fallback = TRUE
+
+/obj/item/radio/emergency/Initialize(mapload)
+	. = ..()
+	internal_channels = GLOB.default_medbay_channels.Copy()
+
+/obj/item/bluespaceradio/tether_prelinked
+	name = "bluespace radio (tether)"
+	handset = /obj/item/radio/bluespacehandset/linked/tether_prelinked
+
+/obj/item/radio/bluespacehandset/linked/tether_prelinked
+	bs_tx_preload_id = "tether_rx" //Transmit to a receiver
+	bs_rx_preload_id = "tether_tx" //Recveive from a transmitter
+
+/obj/item/bluespaceradio/talon_prelinked
+	name = "bluespace radio (talon)"
+	handset = /obj/item/radio/bluespacehandset/linked/talon_prelinked
+
+/obj/item/radio/bluespacehandset/linked/talon_prelinked
+	bs_tx_preload_id = "talon_aio" //Transmit to a receiver
+	bs_rx_preload_id = "talon_aio" //Recveive from a transmitter

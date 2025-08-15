@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(refined_chems_sold)
 		valid_stats_list.Add("For a total of: [points] points, or [end_dols] [end_dols > 1 ? "thalers" : "thaler"]!")
 
 	if(LAZYLEN(valid_stats_list))
-		to_world(span_world("Shift trivia!"))
+		to_chat(world, span_world("Shift trivia!"))
 
 		for(var/body in valid_stats_list)
-			to_world(span_filter_system("[body]"))
+			to_chat(world, span_filter_system("[body]"))

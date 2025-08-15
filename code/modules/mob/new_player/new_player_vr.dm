@@ -3,7 +3,7 @@
 	var/datum/job/J = SSjob.get_job(rank)
 
 	if(!J)
-		log_debug("Couldn't find job: [rank] for spawn_checks_vr, panic-returning that it's fine to spawn.")
+		NOTICE("Couldn't find job: [rank] for spawn_checks_vr, panic-returning that it's fine to spawn.")
 		return TRUE
 
 	//No Flavor Text

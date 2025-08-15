@@ -13,7 +13,7 @@
 	. = ..()
 	our_landmark = locate() in src
 	if(!our_landmark)
-		testing("Looking glass area [name] couldn't find a landmark")
+		log_mapping("Looking glass area [name] couldn't find a landmark")
 	for(var/turf/simulated/floor/looking_glass/lgt in src)
 		our_turfs += lgt
 		if(lgt.optional)

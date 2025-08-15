@@ -124,8 +124,8 @@ Divergence proc, used in mutation to make unique datums.
 			var/chosen = pick(speech_buffer)
 			speak.Add(chosen)
 		/*	Uncoment for logging of speech list.
-			log_debug("Added [chosen] to speak list.")
-		log_debug("Speechlist cut.") */
+			log_world("### DEBUG Added [chosen] to speak list.")
+		log_world("### DEBUG Speechlist cut.") */
 		speech_buffer.Cut()
 //
 /mob/living/simple_mob/xeno/proc/BuildReagentLists()

@@ -24,7 +24,7 @@
 
 	var/list/turfs = find_random_turfs()
 	if(!turfs.len)
-		log_debug("Gas Leak event failed to find any available turfs to leak into. Aborting.")
+		log_game("Gas Leak event failed to find any available turfs to leak into. Aborting.")
 		abort()
 		return
 	chosen_turf = pick(turfs)

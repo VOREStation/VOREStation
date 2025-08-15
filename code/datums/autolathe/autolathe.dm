@@ -5,7 +5,7 @@
 		I = new path()
 
 	if(!I)	// Something has gone horribly wrong, or right.
-		log_debug("[name] created an Autolathe design without an assigned path.")
+		log_runtime("[name] created an Autolathe design without an assigned path.")
 		return
 
 	if(I.matter && !resources)

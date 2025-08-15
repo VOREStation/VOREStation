@@ -17,7 +17,7 @@
 		message = sanitize(message)
 		if (!message)
 			return
-		log_say(message,src)
+		log_talk(message, LOG_SAY)
 		if (stat == 2)
 			return say_dead(message)
 

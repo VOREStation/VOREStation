@@ -263,8 +263,8 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		return "```Invalid command, missing fax id```"
 	var/faxid = all_params[1]
 	if(!all_params[1] || !fexists("[CONFIG_GET(string/fax_export_dir)]/fax_[faxid].html"))
-		return "I’m sorry Dave, I’m afraid I can’t do that"
-	var/faxmsg = return_file_text("[CONFIG_GET(string/fax_export_dir)]/fax_[faxid].html")
+		return "I'm sorry Dave, I'm afraid I can't do that"
+	var/faxmsg = file2text("[CONFIG_GET(string/fax_export_dir)]/fax_[faxid].html")
 	return "FAX: ```[strip_html_properly(faxmsg)]```"
 
 // Reply to admin tickets

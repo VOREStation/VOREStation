@@ -3,7 +3,7 @@ ADMIN_VERB(cmd_admin_say, R_ADMIN, "ASay", "Send a message to other admins", "Ad
 	if(!msg)
 		return
 
-	log_adminsay(msg, user)
+	user.mob.log_talk(message, LOG_ASAY)
 
 	for(var/client/C in GLOB.admins)
 		if(check_rights_for(C, R_ADMIN))

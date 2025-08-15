@@ -46,16 +46,16 @@ SUBSYSTEM_DEF(vote)
 		break
 
 	if(!players_are_in_round)
-		log_debug("The crew transfer shuttle was automatically called at vote time due to no players being present.")
+		log_game("The crew transfer shuttle was automatically called at vote time due to no players being present.")
 		init_shift_change(null, 1)
 		return
 
 	initiate_vote(VOTE_CREW_TRANSFER, "the server", 1)
-	log_debug("The server has called a crew transfer vote.")
+	log_game("The server has called a crew transfer vote.")
 
 /datum/controller/subsystem/vote/proc/autogamemode()
 	initiate_vote(VOTE_GAMEMODE, "the server", 1)
-	log_debug("The server has called a gamemode vote.")
+	log_game("The server has called a gamemode vote.")
 
 /datum/controller/subsystem/vote/proc/reset()
 	initiator = null

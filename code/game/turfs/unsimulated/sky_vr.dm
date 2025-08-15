@@ -14,7 +14,7 @@
 /turf/unsimulated/floor/sky/Initialize(mapload)
 	. = ..()
 	if(does_skyfall && !LAZYLEN(skyfall_levels))
-		error("[x],[y],[z], [get_area(src)] doesn't have skyfall_levels defined! Can't skyfall!")
+		log_mapping("## ERROR [x],[y],[z], [get_area(src)] doesn't have skyfall_levels defined! Can't skyfall!")
 	if(locate(/turf/simulated) in orange(src,1))
 		set_light(2, 2, color)
 

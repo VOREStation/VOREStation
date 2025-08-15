@@ -57,7 +57,7 @@
 
 //For holopads only. Usable by AI.
 /mob/living/silicon/ai/proc/holopad_talk(list/message_pieces, verb)
-	log_say("(HPAD) [multilingual_to_message(message_pieces)]",src)
+	log_talk("(HPAD) [multilingual_to_message(message_pieces)]", LOG_SAY)
 
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])//If there is a hologram and its master is the user.
@@ -108,7 +108,7 @@
 				if(O)
 					O.see_emote(src, message)
 
-		log_emote("(HPAD) [message]", src)
+		log_message("(HPAD) [message]", LOG_EMOTE)
 
 	else //This shouldn't occur, but better safe then sorry.
 		to_chat(src, span_filter_notice("No holopad connected."))

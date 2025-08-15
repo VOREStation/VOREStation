@@ -74,7 +74,7 @@
 /obj/structure/stairs/bottom/Initialize(mapload)
 	. = ..()
 	if(!GetAbove(src))
-		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
+		WARNING("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
 
 /obj/structure/stairs/bottom/Destroy()
@@ -247,7 +247,7 @@
 /obj/structure/stairs/middle/Initialize(mapload)
 	. = ..()
 	if(!GetAbove(src))
-		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
+		WARNING("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
 	AddElement(/datum/element/climbable)
 
@@ -330,7 +330,7 @@
 /obj/structure/stairs/top/Initialize(mapload)
 	. = ..()
 	if(!GetBelow(src))
-		warning("Stair created without level below: ([loc.x], [loc.y], [loc.z])")
+		WARNING("Stair created without level below: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
 
 /obj/structure/stairs/top/Destroy()
@@ -504,10 +504,10 @@
 	var/turf/T2 = GetAbove(B2)
 
 	if(!istype(B1) || !istype(B2))
-		warning("Stair created at invalid loc: ([loc.x], [loc.y], [loc.z])")
+		WARNING("Stair created at invalid loc: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
 	if(!istype(T1) || !istype(T2))
-		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
+		WARNING("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
 
 	// Spawn the stairs

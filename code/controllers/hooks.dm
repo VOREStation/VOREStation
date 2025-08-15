@@ -26,14 +26,14 @@
 /proc/callHook(hook, list/arguments=null)
 	var/hook_path = text2path("/hook/[hook]")
 	if(!hook_path)
-		error("Invalid hook '/hook/[hook]' called.")
+		log_world("## ERROR Invalid hook '/hook/[hook]' called.")
 		return 0
 
 	var/requester = new hook_path
 	var/status = 1
 	for(var/P in typesof("[hook_path]/proc"))
 		if(!call(requester, P)(arglist(arguments)))
-			error("Hook '[P]' failed or runtimed.")
+			log_world("## ERROR Hook '[P]' failed or runtimed.")
 			status = 0
 
 	return status

@@ -13,7 +13,7 @@
 */
 /mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
 	if(GLOB.Debug2)
-		to_world_log("## DEBUG: getarmor() was called.")
+		log_world("## DEBUG: getarmor() was called.")
 
 	if(armour_pen >= 100)
 		return 0 //might as well just skip the processing
@@ -23,7 +23,7 @@
 		var/armor_variance_range = round(armor * 0.25) //Armor's effectiveness has a +25%/-25% variance.
 		var/armor_variance = rand(-armor_variance_range, armor_variance_range) //Get a random number between -25% and +25% of the armor's base value
 		if(GLOB.Debug2)
-			to_world_log("## DEBUG: The range of armor variance is [armor_variance_range].  The variance picked by RNG is [armor_variance].")
+			log_world("## DEBUG: The range of armor variance is [armor_variance_range].  The variance picked by RNG is [armor_variance].")
 
 		armor = min(armor + armor_variance, 100)	//Now we calcuate damage using the new armor percentage.
 		armor = max(armor - armour_pen, 0)			//Armor pen makes armor less effective.
@@ -39,7 +39,7 @@
 			else
 				to_chat(src, span_danger("Your armor softens the blow!"))
 		if(GLOB.Debug2)
-			to_world_log("## DEBUG: Armor when [src] was attacked was [armor].")
+			log_world("## DEBUG: Armor when [src] was attacked was [armor].")
 	return armor
 
 /*

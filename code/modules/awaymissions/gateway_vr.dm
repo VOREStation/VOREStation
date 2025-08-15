@@ -56,7 +56,7 @@
 		destination = CL
 
 	if(!destination)
-		warning("A gateway is trying to spawn it's mcguffin but there are no mapped in spawner landmarks")
+		WARNING("A gateway is trying to spawn it's mcguffin but there are no mapped in spawner landmarks")
 		destination = get_turf(src)
 
 	key = new mcguffin_type(destination)

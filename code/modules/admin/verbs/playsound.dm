@@ -103,7 +103,7 @@ var/list/sounds_cache = list()
 	if(!check_rights(R_SOUNDS))
 		return
 
-	var/list/sounds = file2list("sound/serversound_list.txt");
+	var/list/sounds = world.file2list("sound/serversound_list.txt");
 	sounds += "--CANCEL--"
 	sounds += sounds_cache
 

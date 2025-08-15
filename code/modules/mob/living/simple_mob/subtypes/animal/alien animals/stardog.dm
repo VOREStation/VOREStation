@@ -488,7 +488,7 @@
 
 	var/mob/living/simple_mob/vore/overmap/stardog/m = s.parent
 
-	log_subtle(message,L)
+	L.log_message("(SUBTLE) [message]", LOG_EMOTE)
 	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
 	message = span_bold("(From the back of \the [m]) ") + message
 	message = encode_html_emphasis(message)
@@ -704,7 +704,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_flora.len)
-		to_world_log("[src] does not have a set valid flora list!")
+		log_mapping("[src] does not have a set valid flora list!")
 		return TRUE
 
 	var/obj/F
@@ -720,7 +720,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_mobs.len)
-		to_world_log("[src] does not have a set valid mobs list!")
+		log_mapping("[src] does not have a set valid mobs list!")
 		return TRUE
 
 	var/mob/M
@@ -747,7 +747,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_mobs.len)
-		to_world_log("[src] does not have a set valid mobs list!")
+		log_mapping("[src] does not have a set valid mobs list!")
 		return
 
 	if(!prob(mob_chance))
@@ -766,7 +766,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_flora.len)
-		to_world_log("[src] does not have a set valid flora list!")
+		log_mapping("[src] does not have a set valid flora list!")
 		return
 
 	var/obj/F
@@ -784,7 +784,7 @@
 	if(treasure_chance <= 0)
 		return
 	if(!valid_treasure.len)
-		to_world_log("[src] does not have a set valid treasure list!")
+		log_mapping("[src] does not have a set valid treasure list!")
 		return
 
 	var/obj/F
@@ -1153,7 +1153,7 @@
 		to_chat(L, span_warning("You can't do that here."))
 		return
 
-	log_subtle(message,L)
+	L.log_message("(SUBTLE) [message]", LOG_EMOTE)
 	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
 	message = span_bold("(From within \the [s]) ") + message
 	message = encode_html_emphasis(message)
