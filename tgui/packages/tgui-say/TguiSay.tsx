@@ -28,6 +28,7 @@ type ByondProps = {
   minimumWidth: number;
   lightMode: BooleanLike;
   scale: BooleanLike;
+  spellcheck: BooleanLike;
 };
 
 export function TguiSay() {
@@ -38,6 +39,7 @@ export function TguiSay() {
   const scale = useRef(true);
   const minimumHeight = useRef(WindowSize.Small);
   const minimumWidth = useRef(WindowSize.Width);
+  const spellcheck = useRef(true);
 
   // I initially wanted to make these an object or a reducer, but it's not really worth it.
   // You lose the granulatity and add a lot of boilerplate.
@@ -320,7 +322,7 @@ export function TguiSay() {
     );
     minimumHeight.current = data.minimumHeight;
     minimumWidth.current = minWidth;
-    setLightMode(!!data.lightMode);
+    spellcheck.current = !!data.spellcheck;
     scale.current = !!data.scale;
   }
 
@@ -388,7 +390,7 @@ export function TguiSay() {
           {buttonContent}
         </button>
         <textarea
-          spellCheck
+          spellCheck={spellcheck.current}
           autoCorrect="off"
           className={classes([
             'textarea',
