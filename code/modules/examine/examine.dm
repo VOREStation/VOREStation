@@ -120,7 +120,7 @@
 	if(is_antagish && antag_info_temp)
 		. += span_details("🏴‍☠️ | Antag Information", antag_info_temp)
 	var/list/interaction_info = A.get_description_interaction()
-	if(interaction_info && LAZYLEN(interaction_info))
+	if(LAZYLEN(interaction_info))
 		var/temp = ""
 		for(var/a in interaction_info)
 			temp += a + "\n"
