@@ -94,7 +94,7 @@
 	breach_threshold = 6 //this thing is basically tissue paper
 	w_class = ITEMSIZE_NORMAL //if it's snug, high-tech, and made of relatively soft materials, it should be much easier to store!
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = null
 
 /obj/item/clothing/suit/space/void/autolok/Initialize(mapload)

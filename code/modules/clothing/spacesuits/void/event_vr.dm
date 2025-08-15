@@ -93,7 +93,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "hev_orange"
 
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/suit/space/void/hev/violet
@@ -126,7 +126,7 @@
 
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0)
 
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/makeshift
@@ -153,7 +153,7 @@
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 40, "bio" = 0, "rad" = 20)
 
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/custodian
@@ -180,7 +180,7 @@
 
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 20)
 
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/aether
@@ -217,7 +217,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "excelsior"
 
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/excelsior
@@ -272,7 +272,7 @@
 	breach_threshold = 14
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING)
 
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/salvagecorp_shipbreaker

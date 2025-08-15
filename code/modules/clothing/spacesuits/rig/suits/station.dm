@@ -421,7 +421,7 @@
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "null_rig"
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS // like a voidsuit
 	slowdown = 0
@@ -473,7 +473,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "medical_rig_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/shoes/magboots/rig/ce/baymed
@@ -539,7 +539,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "engineering_rig_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/shoes/magboots/rig/ce/bayeng
@@ -603,7 +603,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "pathfinder_rig_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/shoes/magboots/rig/pathfinder

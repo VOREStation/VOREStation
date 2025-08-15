@@ -6,7 +6,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "void_mining_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	slowdown = 0
 
@@ -28,7 +28,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "void_excavation_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	slowdown = 0.5
 
@@ -51,7 +51,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "void_secalt_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	slowdown = 0.5
 
@@ -73,7 +73,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "void_pilot_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	slowdown = 0
 
@@ -95,7 +95,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "void_medicalalt_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	slowdown = 0
 
@@ -117,7 +117,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "void_explorer_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	slowdown = 0
 
@@ -139,7 +139,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "void_engineeringalt_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	slowdown = 0.5
 
@@ -161,7 +161,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "void_atmosalt_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	slowdown = 0.5
 
@@ -183,7 +183,7 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "void_command_bay"
 	item_state = null
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 	slowdown = 1.0
 
