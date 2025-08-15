@@ -953,6 +953,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(LAZYLEN(item_icons))
 		var/sheet = item_icons[slot_name]
 		if(sheet)
+			/* //Alerts that we are equipping an item that has no item_state for the slot-specific icon sheet. Commented out because it's not really too important.
+			if(!icon_exists(sheet, icon_state))
+				log_debug("Item [src] is equippable on the [slot_name] but has no sprite for it!")
+			*/
 			return sheet
 
 	//4: item's default icon
