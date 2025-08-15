@@ -123,7 +123,7 @@
 			else
 				to_chat(user, span_notice("Unable to repair while [src] is off."))
 
-	else if(hasvar(W,"force") && hasvar(W,"damtype"))
+	else if(W.force && W.damtype)
 		user.setClickCooldown(user.get_attack_speed(W))
 		switch(W.damtype)
 			if("fire")
