@@ -73,20 +73,32 @@
 		var/mob/living/carbon/human/H = M
 
 		if("exclude" in species_restricted)
-			exclusive = 1
+			exclusive = TRUE
 
 		if(H.species)
+			var/our_species = H.species.get_bodytype(H)
 			if(exclusive)
-				if(!(H.species.get_bodytype(H) in species_restricted))
-					wearable = 1
+				if(!(our_species in species_restricted))
+					wearable = TRUE
 			else
-				if(H.species.get_bodytype(H) in species_restricted)
-					wearable = 1
+				if(our_species in species_restricted)
+					wearable = TRUE
+				else if(CONFIG_GET(flag/allow_metamorphic_clothing))
+
+					///Prevent us from wearing clothing that is restricted to vox, werebeast, or teshari. This generally means it's custom designed for them and them only.
+					if((((SPECIES_VOX in species_restricted) && our_species != SPECIES_VOX) || ((SPECIES_WEREBEAST in species_restricted) && our_species != SPECIES_WEREBEAST) || ((SPECIES_TESHARI in species_restricted) && our_species != SPECIES_TESHARI)))
+						wearable = FALSE
+
+					///Prevent us from from wearing clothing if we ARE a teshari or werebeast. This is due to these two having different anatomy that don't fix most clothing.
+					else if((our_species == SPECIES_TESHARI || our_species == SPECIES_WEREBEAST) && !sprite_sheets[our_species]) //teshari and werebeasts must have their own sprites. Vox can get away...somewhat
+						wearable = FALSE
+					else
+						wearable = TRUE
 
 			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
 				to_chat(H, span_danger("Your species cannot wear [src]."))
-				return 0
-	return 1
+				return FALSE
+	return TRUE
 
 /obj/item/clothing/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	. = ..()
@@ -140,18 +152,22 @@
 
 	//Set species_restricted list
 	switch(target_species)
-		//VOREStation Edit Start
 		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN)
+			species_restricted = SPECIES_HUMANOID_CAN_WEAR
 		if(SPECIES_UNATHI)
-			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
+			species_restricted = SPECIES_UNATHI_CAN_WEAR
 		if(SPECIES_TAJARAN)
-			species_restricted = list(SPECIES_TAJARAN, SPECIES_XENOCHIMERA)
+			species_restricted = SPECIES_TAJARAN_CAN_WEAR
 		if(SPECIES_VULPKANIN)
-			species_restricted = list(SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+			species_restricted = SPECIES_VULPKANIN_CAN_WEAR
 		if(SPECIES_SERGAL)
-			species_restricted = list(SPECIES_SERGAL, SPECIES_NEVREAN)
-		//VOREStation Edit End
+			species_restricted = SPECIES_SERGAL_CAN_WEAR
+		if("Metamorphic")
+			if(CONFIG_GET(flag/allow_metamorphic_cycler)) //href exploit prevention
+				if(sprite_sheets[SPECIES_TESHARI]) //We have a custom teshari species sprite. Sorry teshari, but otherwise the fallback looks awful on you.
+					species_restricted = SPECIES_ALL_CAN_WEAR
+				else
+					species_restricted = SPECIES_ALL_BUT_TESHARI_CAN_WEAR
 		else
 			species_restricted = list(target_species)
 
@@ -178,33 +194,6 @@
 	update_icon()
 	update_clothing_icon()
 //VOREStation edit end
-
-/obj/item/clothing/head/helmet/refit_for_species(var/target_species)
-	if(!species_restricted)
-		return //this item doesn't use the species_restricted system
-
-	//Set species_restricted list
-	switch(target_species)
-		//VOREStation Edit Start
-		if(SPECIES_HUMAN)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
-		if(SPECIES_SKRELL)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
-		if(SPECIES_UNATHI)
-			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
-		if(SPECIES_VULPKANIN)
-			species_restricted = list(SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
-		if(SPECIES_SERGAL)
-			species_restricted = list(SPECIES_SERGAL, SPECIES_NEVREAN)
-		//VOREStation Edit End
-		else
-			species_restricted = list(target_species)
-
-	//Set icon
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
