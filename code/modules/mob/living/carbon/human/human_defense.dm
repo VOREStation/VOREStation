@@ -533,7 +533,9 @@ emp_act
 					src.pinned += O
 
 // This does a prob check to catch the thing flying at you, with a minimum of 1%
-/mob/living/carbon/human/proc/can_catch(var/obj/O)
+/mob/living/carbon/human/proc/can_catch(var/obj/item/O)
+	if(!isitem(O))
+		return FALSE
 	if(!get_active_hand())	// If active hand is empty
 		var/obj/item/organ/external/temp = organs_by_name[BP_R_HAND]
 		if (hand)

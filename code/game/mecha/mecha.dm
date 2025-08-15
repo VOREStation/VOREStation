@@ -1147,10 +1147,9 @@
 		if(isliving(A))
 			var/mob/living/M = A
 			M.take_organ_damage(10)
-	else if(istype(A, /obj))
-		var/obj/O = A
+	else if(istype(A, /obj/item))
+		var/obj/item/O = A
 		if(O.throwforce)
-
 			var/pass_damage = O.throwforce
 			var/pass_damage_reduc_mod
 			if(pass_damage <= temp_damage_minimum)//Too little to go through.

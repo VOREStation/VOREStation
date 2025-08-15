@@ -1067,8 +1067,8 @@ GLOBAL_LIST_INIT(common_tools, list(
 			return 0
 
 //Whether or not the given item counts as sharp in terms of dealing damage
-/proc/is_sharp(obj/O as obj)
-	if(!O)
+/proc/is_sharp(obj/item/O)
+	if(!isitem(O))
 		return FALSE
 	if(O.sharp)
 		return TRUE
@@ -1077,8 +1077,8 @@ GLOBAL_LIST_INIT(common_tools, list(
 	return FALSE
 
 //Whether or not the given item counts as cutting with an edge in terms of removing limbs
-/proc/has_edge(obj/O as obj)
-	if(!O)
+/proc/has_edge(obj/item/O)
+	if(!isitem(O))
 		return FALSE
 	if(O.edge)
 		return TRUE
