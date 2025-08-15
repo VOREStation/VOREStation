@@ -482,8 +482,9 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	loc = null
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
-	var/datum/powernet/newPN = new()// creates a new powernet...
-	propagate_network(P_list[1], newPN)//... and propagates it to the other side of the cable
+	if(!SSmachines.powernet_is_defered()) // Deferring until rebuild
+		var/datum/powernet/newPN = new()// creates a new powernet...
+		propagate_network(P_list[1], newPN)//... and propagates it to the other side of the cable
 
 	// Disconnect machines connected to nodes
 	if(d1 == 0) // if we cut a node (O-X) cable
