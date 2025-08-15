@@ -1,5 +1,18 @@
 var/list/floor_light_cache = list()
 
+/obj/item/floor_light
+	name = "floor light kit"
+	desc = "A backlit floor panel, ready for installation!"
+	icon = 'icons/obj/machines/floor_light.dmi'
+	icon_state = "item"
+
+/obj/item/floor_light/attack_self(mob/user)
+	var/turf/T = get_turf(user)
+	if(!T)
+		to_chat(user, span_warning("You need to be on a floor to install this."))
+		return
+	new /obj/machinery/floor_light(T)
+
 /obj/machinery/floor_light
 	name = "floor light"
 	icon = 'icons/obj/machines/floor_light.dmi'
