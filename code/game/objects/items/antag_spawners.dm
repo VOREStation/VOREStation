@@ -41,7 +41,7 @@
 	else
 		reset_search()
 	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
-	qdel_null(Q) //get rid of the query
+	QDEL_NULL(Q) //get rid of the query
 	return
 
 /obj/item/antag_spawner/proc/reset_search()
