@@ -293,3 +293,30 @@ Buildable meters
 
 /obj/item/pipe_meter/proc/setAttachLayer(new_layer = PIPING_LAYER_DEFAULT)
 	piping_layer = new_layer
+
+/obj/item/pipe_gsensor
+	name = "gas sensor"
+	desc = "A sensor that can be hooked to a computer."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "gsensor0"
+	item_state = "buildpipe"
+	w_class = ITEMSIZE_LARGE
+	var/label = null
+	var/id_tag
+	var/output = 3
+
+/obj/item/pipe_gsensor/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(W.has_tool_quality(TOOL_WRENCH))
+		return wrench_act(user, W)
+	return ..()
+
+/obj/item/pipe_gsensor/proc/wrench_act(var/mob/living/user, var/obj/item/tool/wrench/W)
+	var/obj/machinery/air_sensor/air_sensor = new /obj/machinery/air_sensor(loc)
+	air_sensor.id_tag = id_tag
+	air_sensor.output = output
+	playsound(src, W.usesound, 50, 1)
+	to_chat(user, span_notice("You fasten the meter to the pipe."))
+	qdel(src)
+
+/obj/item/pipe_gsensor/dropped(mob/user)
+	. = ..()

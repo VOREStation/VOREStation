@@ -1,3 +1,13 @@
+GLOBAL_LIST_EMPTY(gas_sensors)
+
+#define SENSOR_PRESSURE		(1<<0)
+#define SENSOR_TEMPERATURE	(1<<1)
+#define SENSOR_O2			(1<<2)
+#define SENSOR_PLASMA		(1<<3)
+#define SENSOR_N2			(1<<4)
+#define SENSOR_CO2			(1<<5)
+#define SENSOR_N2O			(1<<6)
+
 /obj/machinery/air_sensor
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "gsensor1"
@@ -74,6 +84,75 @@
 		SSradio.remove_object(src,frequency)
 	. = ..()
 
+/obj/machinery/air_sensor/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(W.has_tool_quality(TOOL_WRENCH))
+		return wrench_act(user, W)
+
+	if(W.has_tool_quality(TOOL_MULTITOOL))
+		return multitool_act(user, W)
+
+	return ..()
+
+/obj/machinery/air_sensor/proc/wrench_act(var/mob/living/user, var/obj/item/tool/wrench/W)
+	playsound(src, W.usesound, 50, 1)
+	user.visible_message("[user] unfastens \the [src].", "<span class='notice'>You have unfastened \the [src].</span>", "You hear ratchet.")
+	var/obj/item/pipe_gsensor/gsensor = new /obj/item/pipe_gsensor(loc)
+	gsensor.id_tag = id_tag
+	gsensor.output = output
+	qdel(src)
+	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
+
+#define ONOFF_TOGGLE(flag) "\[[(output & flag) ? "YES" : "NO"]]"
+/obj/machinery/air_sensor/proc/multitool_act(mob/living/user, obj/item/multitool/tool)
+	var/list/options = list(
+		"Pressure: [ONOFF_TOGGLE(SENSOR_PRESSURE)]" = SENSOR_PRESSURE,
+		"Temperature: [ONOFF_TOGGLE(SENSOR_TEMPERATURE)]" = SENSOR_TEMPERATURE,
+		"Oxygen: [ONOFF_TOGGLE(SENSOR_O2)]" = SENSOR_O2,
+		"Toxins: [ONOFF_TOGGLE(SENSOR_PLASMA)]" = SENSOR_PLASMA,
+		"Nitrogen: [ONOFF_TOGGLE(SENSOR_N2)]" = SENSOR_N2,
+		"Carbon Dioxide: [ONOFF_TOGGLE(SENSOR_CO2)]" = SENSOR_CO2,
+		"Nitrous Oxide: [ONOFF_TOGGLE(SENSOR_N2O)]" = SENSOR_N2O,
+		"-SAVE TO BUFFER-" = "multitool"
+	)
+
+	var/answer = tgui_input_list(user, "[src] has an ID of \"[id_tag]\" and a frequency of [frequency]. What would you like to change?", "Options!", options)
+
+	if(!(src in view(5, user)))
+		return TRUE
+
+	if(answer in options) // Null will break us out
+		switch(options[answer])
+			if(SENSOR_PRESSURE)
+				output ^= SENSOR_PRESSURE
+			if(SENSOR_TEMPERATURE)
+				output ^= SENSOR_TEMPERATURE
+			if(SENSOR_O2)
+				output ^= SENSOR_O2
+			if(SENSOR_PLASMA)
+				output ^= SENSOR_PLASMA
+			if(SENSOR_N2)
+				output ^= SENSOR_N2
+			if(SENSOR_CO2)
+				output ^= SENSOR_CO2
+			if(SENSOR_N2O)
+				output ^= SENSOR_N2O
+			if("frequency")
+				var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be?", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
+				if(new_frequency)
+					new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+					set_frequency(new_frequency)
+			if("multitool")
+				id_tag = tgui_input_text(user, "Please insert an ID tag for [src], example 'burn_chamber'.", "Set ID Tag", id_tag, MAX_NAME_LEN, FALSE)
+				if(!id_tag || !Adjacent(user))
+					return
+
+				var/obj/item/multitool/M = tool
+				M.connectable = src
+				to_chat(user, "<span class='notice'>You save [src] into [M]'s buffer</span>")
+
+	return TRUE
+#undef ONOFF_TOGGLE
+
 /obj/machinery/computer/general_air_control
 	icon_keyboard = "atmos_key"
 	icon_screen = "tank"
@@ -95,6 +174,12 @@
 		return
 
 	tgui_interact(user)
+
+/obj/machinery/computer/general_air_control/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(W.has_tool_quality(TOOL_MULTITOOL))
+		return multitool_act(W, user)
+
+	. = ..(W, user)
 
 /obj/machinery/computer/general_air_control/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption) return
@@ -129,6 +214,70 @@
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/computer/general_air_control/proc/multitool_act(var/obj/item/W as obj, var/mob/user as mob)
+	var/list/options = list("Sensors", "Frequency", "Cancel")
+	var/answer = tgui_input_list(user, "[src] has a frequency of [frequency]. What would you like to change?", "Options!", options)
+	. = TRUE
+	if(!answer || answer == "Cancel" || !Adjacent(user))
+		return
+
+	switch(answer)
+		if("Sensors")
+			configure_sensors(user, W)
+
+		if("Frequency")
+			var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be?", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
+			if(new_frequency)
+				new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+				set_frequency(new_frequency)
+
+	return
+
+/obj/machinery/computer/general_air_control/proc/configure_sensors(mob/living/user, obj/item/multitool/tool)
+	to_chat(user, "CONFIGURE SENSOR FUNC")
+	var/choice = tgui_input_list(user, "Would you like to add or remove a sensor/meter?", "Configuration", list("Add", "Remove","Cancel"))
+	if( !choice || choice == "Cancel" || !Adjacent(user))
+		return
+
+	switch(choice)
+		if("Add")
+			// Device must be a meter or gas sensor.
+			var/obj/machinery/device = tool.connectable
+			if(!device || !(istype(device, /obj/machinery/meter)) && !(istype(device, /obj/machinery/air_sensor)))
+				to_chat(user, "<span class='warning'>Error: No device in multitool buffer, or incompatible device is not a sensor or meter.</span>")
+				return
+
+			var/device_name = tgui_input_text(user, "Enter a name for the Sensor/Meter.", "Name")
+			if (!device_name || !Adjacent(user))
+				to_chat(user, "<span class='warning'>Error: No name was given for [tool.connectable].</span>")
+				return
+
+			if(istype(device, /obj/machinery/air_sensor))
+				var/obj/machinery/air_sensor/AS = device
+				sensors[AS.id_tag] = device_name
+			else
+				var/obj/machinery/meter/M = device
+				sensors[M.id] = device_name
+
+			to_chat(user, "You have added the [tool.connectable] to the [src] under the name [device_name]!")
+
+		if("Remove")
+			// Creates an associative mapping of Names to Tags, from Tags to Names.
+			var/list/sensor_names = list()
+			for(tag in sensors)
+				sensor_names[sensors[tag]] = sensors[tag]
+
+			var/to_remove = tgui_input_list(user, "Select a sensor/meter to remove", "Sensor/Meter Removal", sensor_names)
+			if(!to_remove)
+				return
+
+			var/confirm = tgui_alert(user, "Are you sure you want to remove the sensor/meter '[to_remove]'?", "Warning", list("Yes", "No"))
+			if(confirm == "No" || !Adjacent(user))
+				return
+
+			sensors -= sensor_names[to_remove]
+			to_chat(user, "<span class='notice'>Successfully removed sensor/meter with name <code>[to_remove]</code></span>")
 
 /obj/machinery/computer/general_air_control/Initialize(mapload)
 	. = ..()
@@ -234,6 +383,75 @@
 	signal.data["sigtype"]="command"
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
+/obj/machinery/computer/general_air_control/large_tank_control/multitool_act(var/obj/item/W as obj, var/mob/user as mob)
+	var/list/options =  list("Inlet", "Outlet", "Sensors", "Frequency", "Cancel")
+	var/choice = tgui_input_list(user, "[src] has a frequency of [frequency]. What would you like to change?", "Configuration", options)
+	if(!choice || choice == "Cancel" || !Adjacent(user))
+		return
+
+	switch(choice)
+		if ("Inlet")
+			configure_inlet(user, W)
+
+		if ("Outlet")
+			configure_outlet(user, W)
+
+		if ("Sensors")
+			configure_sensors(user, W)
+
+		if ("Frequency")
+			var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be?", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
+			if(new_frequency)
+				new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+				set_frequency(new_frequency)
+
+	return TRUE
+
+/obj/machinery/computer/general_air_control/large_tank_control/proc/configure_outlet(mob/living/user, obj/item/multitool/tool)
+	var/choice = tgui_alert(user, "Would you like to set an outlet or clear it?", "Configuration", list("Set", "Clear", "Cancel"))
+	if(!choice || !Adjacent(user) || choice == "Cancel")
+		return
+
+	switch(choice)
+		if ("Set")
+			to_chat(user, "The buffer is [tool.connectable]")
+			if (!istype(tool.connectable, /obj/machinery/atmospherics/unary/vent_pump))
+				to_chat(user, "<span class='warning'>Error: Buffer is either empty, or object in buffer is invalid. Device should be a Unary Vent</span>")
+				return
+
+			var/obj/machinery/atmospherics/unary/vent_pump/pump = tool.connectable
+			output_tag = pump.id_tag
+			pump.external_pressure_bound = 0
+			pump.external_pressure_bound_default = 0
+			to_chat(user, "You have set the outlet!")
+			return
+
+		if ("Clear")
+			output_tag = null
+			to_chat(user, "You have cleared the outlet!")
+			return
+
+/obj/machinery/computer/general_air_control/large_tank_control/proc/configure_inlet(mob/living/user, obj/item/multitool/tool)
+	var/choice = tgui_alert(user, "Would you like to set an inlet or clear it?", "Configuration", list("Set", "Clear", "Cancel"))
+	if(!choice || !Adjacent(user) || choice == "Cancel")
+		return
+
+	switch(choice)
+		if ("Set")
+			if (!istype(tool.connectable, /obj/machinery/atmospherics/unary/outlet_injector))
+				to_chat(user, "<span class='warning'>Error: Buffer is either empty, or object in buffer is invalid. Device should be Injector</span>")
+				return
+
+			var/obj/machinery/atmospherics/unary/outlet_injector/injector = tool.connectable
+			input_tag = injector.id
+			to_chat(user, "You have set the inlet")
+			return
+
+		if ("Clear")
+			input_tag = null
+			to_chat(user, "You have cleared the inlet!")
+			return
+
 /obj/machinery/computer/general_air_control/supermatter_core
 	icon = 'icons/obj/computer.dmi'
 	frequency = 1433
@@ -334,6 +552,75 @@
 
 	signal.data["sigtype"]="command"
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
+
+/obj/machinery/computer/general_air_control/supermatter_core/multitool_act(var/obj/item/W as obj, var/mob/user as mob)
+	var/list/options =  list("Inlet", "Outlet", "Sensors", "Frequency", "Cancel")
+	var/choice = tgui_input_list(user, "[src] has a frequency of [frequency]. What would you like to change?", "Configuration", options)
+	if(!choice || choice == "Cancel" || !Adjacent(user))
+		return
+
+	switch(choice)
+		if ("Inlet")
+			configure_inlet(user, W)
+
+		if ("Outlet")
+			configure_outlet(user, W)
+
+		if ("Sensors")
+			configure_sensors(user, W)
+
+		if ("Frequency")
+			var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be?", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
+			if(new_frequency)
+				new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+				set_frequency(new_frequency)
+
+	return TRUE
+
+/obj/machinery/computer/general_air_control/supermatter_core/proc/configure_outlet(mob/living/user, obj/item/multitool/tool)
+	var/choice = tgui_alert(user, "Would you like to set an outlet or clear it?", "Configuration", list("Set", "Clear", "Cancel"))
+	if(!choice || !Adjacent(user) || choice == "Cancel")
+		return
+
+	switch(choice)
+		if ("Set")
+			if (!istype(tool.connectable, /obj/machinery/atmospherics/unary/vent_pump))
+				to_chat(user, "<span class='warning'>Error: Buffer is either empty, or object in buffer is invalid. Device should be Air Vent</span>")
+				return
+
+			var/obj/machinery/atmospherics/unary/vent_pump/pump = tool.connectable
+			output_tag = pump.id_tag
+			pump.external_pressure_bound = 0
+			pump.external_pressure_bound_default = 0
+			to_chat(user, "You have set the outlet!")
+			return
+
+		if ("Clear")
+			output_tag = null
+			to_chat(user, "You have cleared the outlet!")
+			return
+
+/obj/machinery/computer/general_air_control/supermatter_core/proc/configure_inlet(mob/living/user, obj/item/multitool/tool)
+	var/choice = tgui_alert(user, "Would you like to set an inlet or clear it?", "Configuration", list("Set", "Clear", "Cancel"))
+	if(!choice || !Adjacent(user) || choice == "Cancel")
+		return
+
+	switch(choice)
+		if ("Set")
+			to_chat(user, "The buffer is [tool.connectable]")
+			if (!istype(tool.connectable, /obj/machinery/atmospherics/unary/outlet_injector))
+				to_chat(user, "<span class='warning'>Error: Buffer is either empty, or object in buffer is invalid. Device should be Injector</span>")
+				return
+
+			var/obj/machinery/atmospherics/unary/outlet_injector/injector = tool.connectable
+			input_tag = injector.id
+			to_chat(user, "You have set the inlet!")
+			return
+
+		if ("Clear")
+			input_tag = null
+			to_chat(user, "You have cleared the inlet!")
+			return
 
 /obj/machinery/computer/general_air_control/fuel_injection
 	icon = 'icons/obj/computer.dmi'

@@ -13,6 +13,8 @@ import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   on: BooleanLike;
+  max_rate: number;
+  rate: number;
   pressure_set: number;
   last_flow_rate: number;
   last_power_draw: number;
@@ -22,8 +24,15 @@ type Data = {
 export const GasPump = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { on, pressure_set, last_flow_rate, last_power_draw, max_power_draw } =
-    data;
+  const {
+    on,
+    max_rate,
+    rate,
+    pressure_set,
+    last_flow_rate,
+    last_power_draw,
+    max_power_draw,
+  } = data;
 
   return (
     <Window width={470} height={290}>
@@ -79,9 +88,15 @@ export const GasPump = (props) => {
                 SET
               </Button>
             </LabeledControls.Item>
-            <LabeledControls.Item label="Desired Output Pressure">
-              {toFixed(pressure_set / 100, 2)} kPa
-            </LabeledControls.Item>
+            {max_rate ? (
+              <LabeledControls.Item label="Desired Transfer Rate">
+                {toFixed(rate / 100, 2)} L/s
+              </LabeledControls.Item>
+            ) : (
+              <LabeledControls.Item label="Desired Output Pressure">
+                {toFixed(pressure_set / 100, 2)} kPa
+              </LabeledControls.Item>
+            )}
           </LabeledControls>
         </Section>
       </Window.Content>
