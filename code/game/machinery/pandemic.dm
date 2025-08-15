@@ -19,6 +19,10 @@
 	possible_transfer_amounts = (list(5, 10, 15))
 	volume = 15
 
+/obj/item/reagent_containers/glass/beaker/vial/vaccine/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/sellable/vaccine)
+
 /obj/machinery/computer/pandemic/Initialize(mapload)
 	. = ..()
 	update_icon()
@@ -222,7 +226,7 @@
 		traits["name"] = disease.name
 		if(istype(disease, /datum/disease/advance))
 			var/datum/disease/advance/adv_disease = disease
-			traits["can_rename"] = (adv_disease.name == "Unknown")
+			traits["can_rename"] = TRUE // Allow for all diseases to change currently. Mutable trait maybe?
 			traits["name"] = disease.name
 			traits["is_adv"] = TRUE
 			traits["symptoms"] = list()
@@ -275,7 +279,7 @@
 	use_power(active_power_usage)
 	var/id = index
 	var/datum/disease/disease = GLOB.archive_diseases[id]
-	var/obj/item/reagent_containers/glass/beaker/vial/bottle = new(drop_location())
+	var/obj/item/reagent_containers/glass/beaker/vial/vaccine/bottle = new(drop_location())
 	bottle.name = "[disease.name] vaccine"
 	bottle.reagents.add_reagent(REAGENT_ID_VACCINE, 15, list(get_by_index("resistances", id)))
 	beaker.reagents.remove_reagent(REAGENT_ID_BLOOD, 5)

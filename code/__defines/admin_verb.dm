@@ -81,6 +81,8 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 #define ADMIN_CATEGORY_FUN "Admin.Fun"
 #define ADMIN_CATEGORY_GAME "Admin.Game"
 #define ADMIN_CATEGORY_SHUTTLE "Admin.Shuttle"
+#define ADMIN_CATEGORY_LOGS "Admin.Logs"
+#define ADMIN_CATEGORY_MISC "Admin.Misc"
 
 // Special categories that are separated
 #define ADMIN_CATEGORY_DEBUG "Debug"
@@ -92,3 +94,8 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 
 // Visibility flags
 #define ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG "Map-Debug"
+
+// Tgui input list options
+#define TGUI_VIEW_ATTACK_LOGS	"Check Player Attack Logs"
+#define TGUI_VIEW_DIALOG_LOGS	"Check Player Dialogue Logs"
+#define TGUI_RESIZE				"Resize player"

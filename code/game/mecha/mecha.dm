@@ -232,7 +232,7 @@
 	removeVerb(/obj/mecha/verb/disconnect_from_port)
 	log_message("[src.name] created.")
 	loc.Entered(src)
-	mechas_list += src //global mech list
+	GLOB.mechas_list += src //global mech list
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -327,7 +327,7 @@
 
 	STOP_PROCESSING(SSobj, src)
 
-	mechas_list -= src //global mech list
+	GLOB.mechas_list -= src //global mech list
 	. = ..()
 
 // The main process loop to replace the ancient global iterators.
@@ -2550,7 +2550,7 @@
 		return
 	if (href_list["change_name"])
 		if(usr != src.occupant)	return
-		var/newname = sanitizeSafe(tgui_input_text(occupant,"Choose new exosuit name","Rename exosuit",initial(name), MAX_NAME_LEN), MAX_NAME_LEN)
+		var/newname = sanitizeSafe(tgui_input_text(occupant,"Choose new exosuit name","Rename exosuit",initial(name), MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(newname)
 			name = newname
 		else

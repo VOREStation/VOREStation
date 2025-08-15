@@ -43,7 +43,7 @@
 	data["server_name"] = displayed_name
 	data["map"] = using_map.full_name
 	data["station_time"] = stationtime2text()
-	data["display_loading"] = SSticker.current_state == GAME_STATE_INIT
+	data["display_loading"] = SSticker.current_state == GAME_STATE_STARTUP
 	data["round_start"] = !SSticker.mode || SSticker.current_state <= GAME_STATE_PREGAME
 	data["round_time"] = roundduration2text()
 	data["ready"] = ready
@@ -82,7 +82,7 @@
 			ViewManifest()
 			return TRUE
 		if("late_join")
-			if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+			if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 				to_chat(usr, span_red("The round is either not ready, or has already finished..."))
 				return TRUE
 
@@ -97,7 +97,7 @@
 		if("observe")
 			if(QDELETED(src))
 				return FALSE
-			if(!SSticker || SSticker.current_state == GAME_STATE_INIT)
+			if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 				to_chat(src, span_warning("The game is still setting up, please try again later."))
 				return TRUE
 			if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Observe Round?",list("Yes","No")) == "Yes")
@@ -129,7 +129,7 @@
 					client.prefs.real_name = random_name(client.prefs.identifying_gender)
 				observer.real_name = client.prefs.real_name
 				observer.name = observer.real_name
-				if(!client.holder && !CONFIG_GET(flag/antag_hud_allowed))           // For new ghosts we remove the verb from even showing up if it's not allowed.
+				if(!check_rights_for(client, R_HOLDER) && !CONFIG_GET(flag/antag_hud_allowed))           // For new ghosts we remove the verb from even showing up if it's not allowed.
 					remove_verb(observer, /mob/observer/dead/verb/toggle_antagHUD)        // Poor guys, don't know what they are missing!
 
 				observer.key = key
@@ -160,7 +160,7 @@
 			client.changes()
 			return TRUE
 		if("keyboard")
-			if(!SSsounds.subsystem_initialized)
+			if(!SSsounds.initialized)
 				return
 
 			playsound_local(ui.user, get_sfx("keyboard"), vol = 20)

@@ -490,7 +490,7 @@
 /area/shuttle/blue_fo)
 "bj" = (
 /obj/machinery/door/airlock/alien/blue{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "hybrid_shuttle_afts";
 	req_one_access = list(19,43,67)
 	},
@@ -519,7 +519,7 @@
 	specialfunctions = 4
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "hybrid_shuttle_docker";
 	pixel_x = -6;
 	pixel_y = 0;

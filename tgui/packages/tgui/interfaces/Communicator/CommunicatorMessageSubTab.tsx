@@ -6,7 +6,7 @@ import type { Data } from './types';
 
 export const CommunicatorMessageSubTab = (props: {
   clipboardMode: boolean;
-  onClipboardMode: Function;
+  onClipboardMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { act, data } = useBackend<Data>();
 
@@ -156,7 +156,7 @@ const IsIMOurs = (
 const enforceLengthLimit = (prefix: string, name: string, length: number) => {
   if ((prefix + name).length > length) {
     if (name.length > length) {
-      return name.slice(0, length) + '...';
+      return `${name.slice(0, length)}...`;
     }
     return name;
   }

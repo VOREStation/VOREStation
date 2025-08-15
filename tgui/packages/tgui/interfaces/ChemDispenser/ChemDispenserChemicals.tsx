@@ -32,7 +32,7 @@ export const ChemDispenserChemicals = (props) => {
                 })
               }
             >
-              {c.name + ' (' + c.volume + ')'}
+              {`${c.name} (${c.volume})`}
             </Button>
           </Stack.Item>
         ))}

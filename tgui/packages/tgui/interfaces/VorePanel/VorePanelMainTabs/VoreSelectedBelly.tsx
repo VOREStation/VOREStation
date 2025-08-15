@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Stack, Tabs } from 'tgui-core/components';
+import { Section, Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { tabToNames } from '../constants';
@@ -73,7 +73,6 @@ export const VoreSelectedBelly = (props: {
     <VoreSelectedBellyOptions
       editMode={editMode}
       bellyOptionData={belly_option_data}
-      host_mobtype={host_mobtype}
     />
   );
   tabs[3] = belly_sound_data && (
@@ -86,6 +85,7 @@ export const VoreSelectedBelly = (props: {
     <VoreSelectedBellyVisuals
       editMode={editMode}
       bellyVisualData={belly_visual_data}
+      hostMobtype={host_mobtype}
     />
   );
   tabs[5] = belly_interaction_data && (
@@ -124,12 +124,16 @@ export const VoreSelectedBelly = (props: {
               onClick={() => act('change_vore_tab', { tab: index })}
             >
               {tabToNames[index]}
-              {!!(index === 6) && '(' + content_length + ')'}
+              {!!(index === 6) && `(${content_length})`}
             </Tabs.Tab>
           ))}
         </Tabs>
       </Stack.Item>
-      <Stack.Item grow>{tabs[activeVoreTab] || 'Error'}</Stack.Item>
+      <Stack.Item grow>
+        <Section noTopPadding fill scrollable>
+          {tabs[activeVoreTab] || 'Error'}
+        </Section>
+      </Stack.Item>
     </Stack>
   );
 };

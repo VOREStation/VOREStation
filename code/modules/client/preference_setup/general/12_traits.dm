@@ -2,8 +2,6 @@
 #define NEUTRAL_MODE 2
 #define NEGATIVE_MODE 3
 
-var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_COPPER,REAGENT_ID_PHORON,REAGENT_ID_SILVER,REAGENT_ID_GOLD,REAGENT_ID_SLIMEJELLY)	//allowlist-based so people don't make their blood restored by alcohol or something really silly. use reagent IDs!
-
 /datum/preferences
 	var/custom_base		// What to base the custom species on
 	var/blood_color = "#A10808"
@@ -30,6 +28,9 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		choices = GLOB.custom_species_bases.Copy()
 		if(new_species != SPECIES_CUSTOM)
 			choices = (choices | new_species)
+	else if (spec.selects_bodytype == SELECTS_BODYTYPE_ZORREN)
+		choices = list(SPECIES_ZORREN_HIGH,SPECIES_ZORREN_DARK)
+		choices = choices.Copy()
 	return choices
 
 /datum/category_item/player_setup_item/general/traits/proc/get_pref_choice_from_trait(var/mob/user, var/datum/trait/trait, var/preference)
@@ -156,10 +157,10 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		if (!(pref.custom_base in pref.get_custom_bases_for_species()))
-			pref.custom_base = SPECIES_HUMAN
+			pref.custom_base = selected_species.default_custom_base
 		//otherwise, allowed!
 	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
-		pref.custom_base = SPECIES_HUMAN
+		pref.custom_base = selected_species.default_custom_base
 
 
 /datum/category_item/player_setup_item/general/traits/copy_to_mob(var/mob/living/carbon/human/character)
@@ -253,7 +254,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 				pref.blood_color = new_blood
 			return TOPIC_REFRESH
 		if("blood_reagents")
-			var/new_blood_reagents = tgui_input_list(user, "Choose your character's blood restoration reagent:", "Character Preference", valid_bloodreagents)
+			var/new_blood_reagents = tgui_input_list(user, "Choose your character's blood restoration reagent:", "Character Preference", GLOB.valid_bloodreagents)
 			if(new_blood_reagents && CanUseTopic(user))
 				pref.blood_reagents = new_blood_reagents
 				return TOPIC_REFRESH

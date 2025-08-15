@@ -27,14 +27,11 @@
 		if(world.time < next_emote)
 			to_chat(src, span_warning("You cannot use another emote yet."))
 			return
-		//VOREStation Addition Start
 		if(forced_psay)
 			pme(message)
 			return
 		if(autowhisper)
 			return me_verb_subtle(message)
-
-		//VOREStation Addition End
 
 		if(act == "help")
 			if(world.time >= next_emote_refresh)
@@ -57,7 +54,7 @@
 
 		if(act == "custom")
 			if(!message)
-				message = sanitize_or_reflect(tgui_input_text(src,"Choose an emote to display."), src) //VOREStation Edit - Reflect too long messages, within reason
+				message = sanitize_or_reflect(tgui_input_text(src,"Choose an emote to display.", encode = FALSE), src) //VOREStation Edit - Reflect too long messages, within reason
 			if(!message)
 				return
 			if (!m_type)

@@ -1,4 +1,4 @@
-import { type PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 import { Button, Icon } from 'tgui-core/components';
 import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from 'tgui-core/constants';
 import { type BooleanLike, classes } from 'tgui-core/react';
@@ -24,7 +24,6 @@ function statusToColor(status: number): string {
       return 'good';
     case UI_UPDATE:
       return 'average';
-    case UI_DISABLED:
     default:
       return 'bad';
   }

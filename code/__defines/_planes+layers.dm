@@ -105,6 +105,8 @@ What is the naming convention for planes or layers?
 // Invisible things plane
 #define CLOAKED_PLANE			-15
 
+#define PLANE_INVIS_EVENT		-13 //For events where something should be invisible or only visible to one player
+
 #define PLANE_CH_STOMACH		-11 //Stomach Plane
 
 // Top plane (in the sense that it's the highest in 'the world' and not a UI element)
@@ -203,6 +205,12 @@ What is the naming convention for planes or layers?
 #define RADIAL_CONTENT_LAYER 1000
 
 #define PLANE_ADMIN3			99 //Purely for shenanigans (above HUD)
+
+///Plane of the "splash" icon used that shows on the lobby screen
+#define SPLASHSCREEN_PLANE 100
+
+///cinematics are "below" the splash screen
+#define CINEMATIC_LAYER -1
 
 
 //////////////////////////

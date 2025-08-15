@@ -68,6 +68,8 @@
 	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
 	var/private_struggle = FALSE			// If struggles are made public or not
 	var/prevent_saving = FALSE				// Can this belly be saved? For special bellies that mobs and adminbus might have.
+	var/absorbedrename_enabled = FALSE		// If absorbed prey are renamed.
+	var/absorbedrename_name = "%pred's %belly"	// What absorbed prey are renamed to.
 
 
 	var/vore_sprite_flags = DM_FLAG_VORESPRITE_BELLY
@@ -241,7 +243,8 @@
 	REAGENT_LUBE,
 	REAGENT_BIOMASS,
 	REAGENT_CONCENTRATEDRADIUM,
-	REAGENT_TRICORDRAZINE
+	REAGENT_TRICORDRAZINE,
+	REAGENT_ETHANOL
 	)
 
 	// Special var section
@@ -438,6 +441,8 @@
 	"entrance_logs",
 	"noise_freq",
 	"private_struggle",
+	"absorbedrename_enabled",
+	"absorbedrename_name",
 	"item_digest_logs",
 	"show_fullness_messages",
 	"digest_max",
@@ -662,7 +667,10 @@
 			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly, severity) // preserving save data
 			var/datum/belly_overlays/lookup_belly_path = text2path("/datum/belly_overlays/[lowertext(belly_fullscreen)]")
 			if(!lookup_belly_path)
-				CRASH("Icon datum was not defined for [belly_fullscreen]")
+				var/used_fullscreen = belly_fullscreen
+				to_chat(owner, span_warning("The belly overlay ([used_fullscreen]) you've selected for [src] no longer exists. Please reselect your overlay."))
+				belly_fullscreen = null
+				CRASH("Icon datum was not defined for [used_fullscreen]")
 
 			var/alpha = min(belly_fullscreen_alpha, L.max_voreoverlay_alpha)
 			F.icon = initial(lookup_belly_path.belly_icon)
@@ -1003,6 +1011,7 @@
 /obj/belly/proc/digestion_death(mob/living/M)
 	digested_prey_count++
 	add_attack_logs(owner, M, "Digested in [lowertext(name)]")
+	owner.changeling_obtain_dna(M)
 
 	// Reverts TF on death. This fixes a bug with posibrains or similar, and also makes reforming easier.
 	if(M.tf_mob_holder && M.tf_mob_holder.loc == M)
@@ -1074,6 +1083,7 @@
 			M.reagents.del_reagent(REAGENT_ID_CLEANER)
 			M.reagents.del_reagent(REAGENT_ID_CONCENTRATEDRADIUM)
 			M.reagents.del_reagent(REAGENT_ID_TRICORDRAZINE)
+			M.reagents.del_reagent(REAGENT_ID_ETHANOL)
 			M.reagents.trans_to_holder(Pred.ingested, M.reagents.total_volume, 0.5, TRUE)
 
 	owner.handle_belly_update()
@@ -1149,6 +1159,7 @@
 		// TODO - Find a way to make the absorbed prey share the effects with the pred.
 		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
 		// problems when A absorbs B, and then C absorbs A,  resulting in B holding onto an invalid reagent container.
+		Pred.changeling_obtain_dna(Prey)
 
 	//This is probably already the case, but for sub-prey, it won't be.
 	if(M.loc != src)

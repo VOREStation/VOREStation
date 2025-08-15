@@ -53,7 +53,14 @@
 	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
 		return FALSE
 	var/obj/item/I = user.get_active_hand() // ctrl-shift-click doesn't give us the item, we have to fetch it
-	if(!I)
+
+	if(isrobot(user)) //snowflake gripper BS because it can't be done in get_active_hand without breaking everything
+		var/mob/living/silicon/robot/robot = user
+		if(istype(robot.module_active, /obj/item/gripper))
+			var/obj/item/gripper/gripper = robot.module_active
+			I = gripper.get_current_pocket()
+
+	else if(!I)
 		return FALSE
 	return IC.attackby(I, user)
 
@@ -93,6 +100,13 @@
 	setup_integrated_circuit(/obj/item/electronic_assembly/clothing)
 	return ..()
 
+/obj/item/clothing/under/circuitry/equipped(mob/user, slot) // Set wearer var when equiped.
+	wearer = WEAKREF(user)
+	..()
+
+/obj/item/clothing/under/circuitry/dropped(mob/user) // Remove wearer var.
+	wearer = null
+	..()
 
 // Gloves.
 /obj/item/clothing/gloves/circuitry
@@ -107,6 +121,13 @@
 	setup_integrated_circuit(/obj/item/electronic_assembly/clothing/small)
 	return ..()
 
+/obj/item/clothing/gloves/circuitry/equipped(mob/user, slot)
+	wearer = WEAKREF(user)
+	..()
+
+/obj/item/clothing/gloves/circuitry/dropped(mob/user)
+	wearer = null
+	..()
 
 // Glasses.
 /obj/item/clothing/glasses/circuitry
@@ -121,6 +142,14 @@
 	setup_integrated_circuit(/obj/item/electronic_assembly/clothing/small)
 	return ..()
 
+/obj/item/clothing/glasses/circuitry/equipped(mob/user, slot)
+	wearer = WEAKREF(user)
+	..()
+
+/obj/item/clothing/glasses/circuitry/dropped(mob/user)
+	wearer = null
+	..()
+
 // Shoes
 /obj/item/clothing/shoes/circuitry
 	name = "electronic boots"
@@ -133,6 +162,14 @@
 /obj/item/clothing/shoes/circuitry/Initialize(mapload)
 	setup_integrated_circuit(/obj/item/electronic_assembly/clothing/small)
 	return ..()
+
+/obj/item/clothing/shoes/circuitry/equipped(mob/user, slot)
+	wearer = WEAKREF(user)
+	..()
+
+/obj/item/clothing/shoes/circuitry/dropped(mob/user)
+	wearer = null
+	..()
 
 // Head
 /obj/item/clothing/head/circuitry
@@ -147,6 +184,14 @@
 	setup_integrated_circuit(/obj/item/electronic_assembly/clothing/small)
 	return ..()
 
+/obj/item/clothing/head/circuitry/equipped(mob/user, slot)
+	wearer = WEAKREF(user)
+	..()
+
+/obj/item/clothing/head/circuitry/dropped(mob/user)
+	wearer = null
+	..()
+
 // Ear
 /obj/item/clothing/ears/circuitry
 	name = "electronic earwear"
@@ -158,7 +203,17 @@
 
 /obj/item/clothing/ears/circuitry/Initialize(mapload)
 	setup_integrated_circuit(/obj/item/electronic_assembly/clothing/small)
+	var/obj/item/integrated_circuit/built_in/earpiece_speaker/built_in_speaker = new(IC)
+	IC.force_add_circuit(built_in_speaker)
 	return ..()
+
+/obj/item/clothing/ears/circuitry/equipped(mob/user, slot)
+	wearer = WEAKREF(user)
+	..()
+
+/obj/item/clothing/ears/circuitry/dropped(mob/user)
+	wearer = null
+	..()
 
 // Exo-slot
 /obj/item/clothing/suit/circuitry
@@ -172,3 +227,11 @@
 /obj/item/clothing/suit/circuitry/Initialize(mapload)
 	setup_integrated_circuit(/obj/item/electronic_assembly/clothing/large)
 	return ..()
+
+/obj/item/clothing/suit/circuitry/equipped(mob/user, slot)
+	wearer = WEAKREF(user)
+	..()
+
+/obj/item/clothing/suit/circuitry/dropped(mob/user)
+	wearer = null
+	..()

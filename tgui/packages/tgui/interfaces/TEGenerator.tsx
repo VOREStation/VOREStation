@@ -86,7 +86,7 @@ const TEGCirculator = (props: { name: string; values: Circulator }) => {
   } = values;
 
   return (
-    <Section title={name + ' (' + dir + ')'}>
+    <Section title={`${name} (${dir})`}>
       <Stack vertical fill>
         <Stack.Item>
           <Stack align="center" fill justify="space-around">
@@ -100,7 +100,7 @@ const TEGCirculator = (props: { name: string; values: Circulator }) => {
               <Box>
                 <AnimatedNumber
                   value={flowCapacity}
-                  format={(val) => val.toFixed(2) + '%'}
+                  format={(val) => `${val.toFixed(2)}%`}
                 />
               </Box>
             </Stack.Item>

@@ -940,7 +940,7 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/aro/centralarea)
 "cr" = (
-/obj/machinery/mecha_part_fabricator/pros{
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
 	req_access = list()
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -954,7 +954,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/aro/centralarea)
 "ct" = (
-/obj/machinery/mecha_part_fabricator{
+/obj/machinery/mecha_part_fabricator_tg{
 	req_access = list()
 	},
 /obj/machinery/light{
@@ -2382,7 +2382,7 @@
 /area/ship/aro/midshipshangars)
 "fx" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aroship_boatbay";
 	pixel_y = 28;
 	tag_door = null
@@ -2618,7 +2618,7 @@
 "gc" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aroboat_docker";
 	pixel_x = 28
 	},
@@ -2698,7 +2698,7 @@
 /area/ship/aro/engineering)
 "gp" = (
 /obj/machinery/door/airlock/alien/blue{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "aroboat_doors"
 	},
 /obj/structure/fans/hardlight,

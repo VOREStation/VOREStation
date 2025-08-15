@@ -53,7 +53,7 @@
 	Log(message, message_title)
 
 /datum/announcement/proc/Message(message as text, message_title as text, var/list/zlevels)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && !isdeaf(M))
 			to_chat(M, "<h2 class='alert'>[title]</h2>")
 			to_chat(M, span_alert("[message]"))
@@ -79,7 +79,7 @@
 
 	command += "<br>[span_alert(message)]<br>"
 	command += "<br>"
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(zlevels && !(get_z(M) in zlevels))
 			continue
 		if(!isnewplayer(M) && !isdeaf(M))
@@ -107,7 +107,7 @@
 	announce_newscaster_news(news)
 
 /datum/announcement/proc/PlaySound(var/message_sound, var/list/zlevels)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(zlevels && !(M.z in zlevels))
 			continue
 		if(!isnewplayer(M) && !isdeaf(M))
@@ -117,7 +117,7 @@
 		return
 
 	spawn(22) // based on length of preamble.ogg + arbitrary delay
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(zlevels && !(M.z in zlevels))
 				continue
 			if(!isnewplayer(M) && !isdeaf(M))
@@ -142,7 +142,7 @@
 	command_announcement.Announce("It has come to our attention that \the [station_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 /proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message, var/channel = "Common", var/zlevel)
-	if (ticker.current_state == GAME_STATE_PLAYING)
+	if (SSticker.current_state == GAME_STATE_PLAYING)
 		var/list/zlevels = zlevel ? using_map.get_map_levels(zlevel, TRUE, om_range = DEFAULT_OVERMAP_RANGE) : null
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title

@@ -68,7 +68,7 @@ export const Canister = (props) => {
                 }}
                 format={(value) => {
                   if (value < 10000) {
-                    return toFixed(value) + ' kPa';
+                    return `${toFixed(value)} kPa`;
                   }
                   return formatSiUnit(value * 1000, 1, 'Pa');
                 }}
@@ -79,6 +79,7 @@ export const Canister = (props) => {
             <LabeledControls.Item label="Regulator">
               <Box position="relative" left="-8px">
                 <Knob
+                  tickWhileDragging
                   format={(value) => toFixed(value, 2)}
                   size={1.25}
                   color={!!valveOpen && 'yellow'}
@@ -87,7 +88,7 @@ export const Canister = (props) => {
                   minValue={minReleasePressure}
                   maxValue={maxReleasePressure}
                   stepPixelSize={1}
-                  onDrag={(e, value: number) =>
+                  onChange={(e, value: number) =>
                     act('pressure', {
                       pressure: value,
                     })

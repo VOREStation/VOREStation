@@ -28,7 +28,7 @@
 
 	valid_turfs:
 		for(var/turf/simulated/T in range(AM, range))
-			if(T.density || T.block_tele || istype(T, /turf/simulated/mineral)) //Don't blink to vacuum or a wall
+			if(T.density || T.block_tele || ismineralturf(T)) //Don't blink to vacuum or a wall
 				continue
 			for(var/atom/movable/stuff in T.contents)
 				if(stuff.density)

@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(webhooks)
 	name = "Webhooks"
-	init_order = INIT_ORDER_WEBHOOKS
+	dependencies = list(
+		/datum/controller/subsystem/server_maint,
+	)
 	flags = SS_NO_FIRE
 	var/list/webhook_decls = list()
 
@@ -60,10 +62,10 @@ SUBSYSTEM_DEF(webhooks)
 	set name = "Reload Webhooks"
 	set category = "Debug"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	if(!SSwebhooks.subsystem_initialized)
+	if(!SSwebhooks.initialized)
 		to_chat(usr, span_warning("Let the webhook subsystem initialize before trying to reload it."))
 		return
 
@@ -75,7 +77,7 @@ SUBSYSTEM_DEF(webhooks)
 	set name = "Ping Webhook"
 	set category = "Debug"
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	if(!length(SSwebhooks.webhook_decls))

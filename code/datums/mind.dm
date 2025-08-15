@@ -2,7 +2,7 @@
 		The way datum/mind stuff works has been changed a lot.
 		Minds now represent IC characters rather than following a client around constantly.
 	Guidelines for using minds properly:
-	-	Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
+	-	Never mind.transfer_to(ghost). The var/current and var/original_character of a mind must always be of type mob/living!
 		ghost.mind is however used as a reference to the ghost's corpse
 	-	When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
 		the existing mind of the old mob should be transfered to the new mob like so:
@@ -23,13 +23,15 @@
 	var/key
 	var/name				//replaces mob/var/original_name
 	var/mob/living/current
-	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
+	var/datum/weakref/original_character //replaces /mob/living/original
 	var/active = 0
 
 	var/memory
 
 	var/assigned_role
 	var/special_role
+
+	var/datum/antag_holder/antag_holder
 
 	var/role_alt_title
 
@@ -41,7 +43,6 @@
 	var/has_been_rev = 0//Tracks if this mind has been a rev or not
 
 	var/datum/faction/faction 			//associated faction
-	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0
 	var/tcrystals = 0
@@ -70,15 +71,18 @@
 /datum/mind/New(var/key)
 	src.key = key
 	purchase_log = list()
+	antag_holder = new
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character, force = FALSE)
 	if(!istype(new_character))
 		to_world_log("## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn")
-	if(current)					//remove ourself from our old body's mind variable
-		if(changeling)
+	var/datum/component/antag/changeling/comp
+	if(current)
+		comp = is_changeling(current)			//remove ourself from our old body's mind variable
+		if(comp)
 			current.remove_changeling_powers()
-			remove_verb(current, /datum/changeling/proc/EvolutionMenu)
+			remove_verb(current, /mob/proc/EvolutionMenu)
 		current.mind = null
 
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
@@ -87,7 +91,7 @@
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
 
-	if(changeling)
+	if(comp)
 		new_character.make_changeling()
 
 	if(active || force)
@@ -95,7 +99,6 @@
 
 	if(new_character.client)
 		new_character.client.init_verbs() // re-initialize character specific verbs
-		new_character.set_listed_turf(null)
 
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"
@@ -120,7 +123,7 @@
 	popup.open()
 
 /datum/mind/proc/edit_memory()
-	if(!ticker || !ticker.mode)
+	if(!SSticker || !SSticker.mode)
 		tgui_alert_async(usr, "Not before round-start!", "Alert")
 		return
 
@@ -185,12 +188,12 @@
 		if(antag) antag.place_mob(src.current)
 
 	else if (href_list["role_edit"])
-		var/new_role = tgui_input_list(usr, "Select new role", "Assigned role", assigned_role, joblist)
+		var/new_role = tgui_input_list(usr, "Select new role", "Assigned role", assigned_role, GLOB.joblist)
 		if (!new_role) return
 		assigned_role = new_role
 
 	else if (href_list["memory_edit"])
-		var/new_memo = sanitize(tgui_input_text(usr, "Write new memory", "Memory", memory, multiline = TRUE, prevent_enter = TRUE))
+		var/new_memo = tgui_input_text(usr, "Write new memory", "Memory", memory, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 		if (isnull(new_memo)) return
 		memory = new_memo
 
@@ -198,11 +201,11 @@
 		var/datum/mind/mind = locate(href_list["amb_edit"])
 		if(!mind)
 			return
-		var/new_ambition = tgui_input_text(usr, "Enter a new ambition", "Memory", mind.ambitions, multiline = TRUE, prevent_enter = TRUE)
+		var/new_ambition = tgui_input_text(usr, "Enter a new ambition", "Memory", mind.ambitions, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 		if(isnull(new_ambition))
 			return
 		if(mind)
-			mind.ambitions = sanitize(new_ambition)
+			mind.ambitions = new_ambition
 			to_chat(mind.current, span_warning("Your ambitions have been changed by higher powers, they are now: [mind.ambitions]"))
 		log_and_message_admins("made [key_name(mind.current)]'s ambitions be '[mind.ambitions]'.")
 
@@ -222,7 +225,7 @@
 			if(!def_value)//If it's a custom objective, it will be an empty string.
 				def_value = "custom"
 
-		var/list/choices = list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
+		var/list/choices = list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "mercenary", "capture", "absorb", "custom")
 		var/new_obj_type = tgui_input_list(usr, "Select objective type:", "Objective type", choices, def_value)
 		if (!new_obj_type) return
 
@@ -236,7 +239,7 @@
 				var/objective_type = "[objective_type_capital][objective_type_text]"//Add them together into a text string.
 
 				var/list/possible_targets = list("Free objective")
-				for(var/datum/mind/possible_target in ticker.minds)
+				for(var/datum/mind/possible_target in SSticker.minds)
 					if ((possible_target != src) && ishuman(possible_target.current))
 						possible_targets += possible_target.current
 
@@ -291,7 +294,7 @@
 				if (!steal.select_target())
 					return
 
-			if("download","capture","absorb", "vore")
+			if("capture","absorb", "vore")
 				var/def_num
 				if(objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
 					def_num = objective.target_amount
@@ -301,9 +304,6 @@
 					return
 
 				switch(new_obj_type)
-					if("download")
-						new_objective = new /datum/objective/download
-						new_objective.explanation_text = "Download [target_number] research levels."
 					if("capture")
 						new_objective = new /datum/objective/capture
 						new_objective.explanation_text = "Accumulate [target_number] capture points."
@@ -317,7 +317,7 @@
 				new_objective.target_amount = target_number
 
 			if ("custom")
-				var/expl = sanitize(tgui_input_text(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : ""))
+				var/expl = tgui_input_text(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : "", MAX_MESSAGE_LEN)
 				if (!expl) return
 				new_objective = new /datum/objective
 				new_objective.owner = src
@@ -471,7 +471,7 @@
 	role_alt_title =  null
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
-	changeling =      null
+	//changeling =    null //TODO: Figure out where this is all used and move it from mind to mob.
 	initial_account = null
 	objectives =      list()
 	special_verbs =   list()
@@ -490,7 +490,7 @@
 		return 0
 
 /datum/mind/proc/get_ghost(even_if_they_cant_reenter)
-	for(var/mob/observer/dead/G in player_list)
+	for(var/mob/observer/dead/G in GLOB.player_list)
 		if(G.mind == src)
 			if(G.can_reenter_corpse || even_if_they_cant_reenter)
 				return G
@@ -508,9 +508,9 @@
 		mind.key = key
 	else
 		mind = new /datum/mind(key)
-		mind.original = src
-		if(ticker)
-			ticker.minds += mind
+		mind.original_character = WEAKREF(src)
+		if(SSticker)
+			SSticker.minds += mind
 		else
 			to_world_log("## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn")
 	if(!mind.name)	mind.name = real_name

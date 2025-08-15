@@ -2,20 +2,19 @@ import { LabeledList, Stack } from 'tgui-core/components';
 
 import { eatingMessagePrivacy } from '../../constants';
 import { sanitize_color } from '../../functions';
-import type { bellyOptionData, hostMob } from '../../types';
+import type { bellyOptionData } from '../../types';
 import { VorePanelColorBox } from '../../VorePanelElements/VorePanelCommonElements';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
 import { VorePanelEditSwitch } from '../../VorePanelElements/VorePanelEditSwitch';
+import { VorePanelEditText } from '../../VorePanelElements/VorePanelEditText';
 import { VoreSelectedWhitelist } from '../VisualTab/VoreSelecetedWhitelist';
-import { VoreSelectedMobTypeBellyButtons } from '../VisualTab/VoreSelectedMobTypeBellyButtons';
 
 export const BellyOptionsLeft = (props: {
   editMode: boolean;
   bellyOptionData: bellyOptionData;
-  host_mobtype: hostMob;
 }) => {
-  const { editMode, bellyOptionData, host_mobtype } = props;
+  const { editMode, bellyOptionData } = props;
   const {
     can_taste,
     is_feedable,
@@ -29,7 +28,10 @@ export const BellyOptionsLeft = (props: {
     save_digest_mode,
     eating_privacy_local,
     private_struggle,
-    mob_belly_controls,
+    absorbedrename_enabled,
+    absorbedrename_name,
+    absorbedrename_name_max,
+    absorbedrename_name_min,
     vorespawn_blacklist,
     vorespawn_whitelist,
     vorespawn_absorbed,
@@ -127,7 +129,7 @@ export const BellyOptionsLeft = (props: {
             stepPixel={0.1}
             digits={2}
             unit="%"
-            tooltip="The multiplier for nutrition you'll fain from prey."
+            tooltip="The multiplier for nutrition you'll gain from prey."
           />
         </LabeledList.Item>
         <LabeledList.Item label="Required Examine Size">
@@ -166,6 +168,31 @@ export const BellyOptionsLeft = (props: {
             }
           />
         </LabeledList.Item>
+        <LabeledList.Item label="Toggle Absorbed Rename">
+          <VorePanelEditSwitch
+            action="set_attribute"
+            subAction="b_absorbedrename_enabled"
+            editMode={editMode}
+            active={!!absorbedrename_enabled}
+            tooltip={
+              (absorbedrename_enabled ? 'Dis' : 'En') +
+              'ables renaming absorbed prey. Please keep in mind bystander consent when enabling this setting. This is your only warning.'
+            }
+          />
+        </LabeledList.Item>
+        {!!absorbedrename_enabled && (
+          <LabeledList.Item label="Absorbed Prey Name">
+            <VorePanelEditText
+              action="set_attribute"
+              subAction="b_absorbedrename_name"
+              editMode={editMode}
+              limit={absorbedrename_name_max}
+              min={absorbedrename_name_min}
+              entry={absorbedrename_name}
+              tooltip="Name your absorbed prey, works with %pred, %prey and %belly."
+            />
+          </LabeledList.Item>
+        )}
         <LabeledList.Item label="Save Digest Mode">
           <VorePanelEditSwitch
             action="set_attribute"
@@ -179,11 +206,6 @@ export const BellyOptionsLeft = (props: {
           />
         </LabeledList.Item>
       </LabeledList>
-      <VoreSelectedMobTypeBellyButtons
-        editMode={editMode}
-        bellyControl={mob_belly_controls}
-        host_mobtype={host_mobtype}
-      />
       <VoreSelectedWhitelist
         editMode={editMode}
         vorespawnBlacklist={vorespawn_blacklist}

@@ -29,7 +29,6 @@
 	idle_power_usage = 15
 	active_power_usage = 200
 	light_color = "#FF0000"
-	//var/global/list/vr_mob_tf_options // Global var located in global_lists.dm
 
 /obj/machinery/vr_sleeper/perfect
 	perfect_replica = TRUE
@@ -266,7 +265,7 @@
 		// Get the desired spawn location to put the body
 		var/S = null
 		var/list/vr_landmarks = list()
-		for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
+		for(var/obj/effect/landmark/virtual_reality/sloc in GLOB.landmarks_list)
 			vr_landmarks += sloc.name
 
 		S = tgui_input_list(occupant, "Please select a location to spawn your avatar at:", "Spawn location", vr_landmarks)
@@ -275,12 +274,12 @@
 
 		var/tf = null
 		if(tgui_alert(occupant, "Would you like to play as a different creature?", "Join as a mob?", list("Yes", "No")) == "Yes")
-			var/k = tgui_input_list(occupant, "Please select a creature:", "Mob list", vr_mob_tf_options)
+			var/k = tgui_input_list(occupant, "Please select a creature:", "Mob list", GLOB.vr_mob_tf_options)
 			if(!k || !occupant) //Our occupant can walk out.
 				return 0
-			tf = vr_mob_tf_options[k]
+			tf = GLOB.vr_mob_tf_options[k]
 
-		for(var/obj/effect/landmark/virtual_reality/i in landmarks_list)
+		for(var/obj/effect/landmark/virtual_reality/i in GLOB.landmarks_list)
 			if(i.name == S)
 				S = i
 				break
@@ -326,7 +325,7 @@
 		avatar.Sleeping(1)
 
 		// Prompt for username after they've enterred the body.
-		var/newname = sanitize(tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/newname = tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN)
 		if(newname)
 			avatar.real_name = newname
 			avatar.name = newname

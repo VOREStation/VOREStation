@@ -24,7 +24,7 @@
 
 /mob/living/bot/cleanbot/Destroy()
 	if(target)
-		cleanbot_reserved_turfs -= target
+		GLOB.cleanbot_reserved_turfs -= target
 	return ..()
 
 /mob/living/bot/cleanbot/handleIdle()
@@ -79,17 +79,17 @@
 				continue // already checked this one
 			else if(confirmTarget(D))
 				target = D
-				cleanbot_reserved_turfs += D
+				GLOB.cleanbot_reserved_turfs += D
 				return
 
 /mob/living/bot/resetTarget()
-	cleanbot_reserved_turfs -= target
+	GLOB.cleanbot_reserved_turfs -= target
 	..()
 
 /mob/living/bot/cleanbot/confirmTarget(var/obj/effect/decal/cleanable/D)
 	if(!..())
 		return FALSE
-	if(D.loc in cleanbot_reserved_turfs)
+	if(D.loc in GLOB.cleanbot_reserved_turfs)
 		return FALSE
 	for(var/T in target_types)
 		if(istype(D, T))
@@ -127,7 +127,7 @@
 				return
 			qdel(D)
 			if(D == target)
-				cleanbot_reserved_turfs -= target
+				GLOB.cleanbot_reserved_turfs -= target
 				target = null
 	else if(D == src)
 		for(var/obj/effect/O in loc)
@@ -269,7 +269,7 @@
 		qdel(src)
 
 	else if(istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && src.loc != user)

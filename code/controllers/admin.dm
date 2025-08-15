@@ -27,7 +27,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	var/class
 
 /obj/effect/statclick/debug/Click()
-	if(!usr.client.holder || !target)
+	if(!check_rights_for(usr.client, R_HOLDER) || !target)
 		return
 	if(!class)
 		if(istype(target, /datum/controller/subsystem))
@@ -79,7 +79,7 @@ ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various per
 	//Goon PS stuff, and other yet-to-be-subsystem things.
 	options["LEGACY: master_controller"] = master_controller
 	options["LEGACY: job_master"] = job_master
-	options["LEGACY: radio_controller"] = radio_controller
+	options["LEGACY: SSradio"] = SSradio
 	options["LEGACY: emergency_shuttle"] = emergency_shuttle
 	options["LEGACY: paiController"] = paiController
 	options["LEGACY: cameranet"] = cameranet

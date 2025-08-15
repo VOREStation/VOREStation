@@ -635,7 +635,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_docker_pump_out_external"
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -3288,7 +3288,7 @@
 /turf/simulated/floor/plating,
 /area/shuttle/bearcat/maintenance_engine_pod_starboard)
 "sg" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "bearcat_pd"
 	},
 /turf/simulated/floor/airless,
@@ -3348,7 +3348,7 @@
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/bearcat/maintenance_engine_pod_starboard)
 "Di" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "bearcat_pd"
 	},
 /turf/simulated/floor/airless,

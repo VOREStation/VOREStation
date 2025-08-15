@@ -15,11 +15,11 @@
 	set name = "Vore Panel"
 	set category = "IC.Vore"
 
-	if(SSticker.current_state == GAME_STATE_INIT)
+	if(SSticker.current_state == GAME_STATE_STARTUP)
 		return
 
 	if(!isliving(src))
-		init_vore()
+		init_vore(TRUE)
 
 	if(!vorePanel)
 		if(!isnewplayer(src))
@@ -405,6 +405,12 @@
 			host.eating_privacy_global = !host.eating_privacy_global
 			if(host.client.prefs_vr)
 				host.eating_privacy_global = host.eating_privacy_global
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_death_privacy")
+			host.vore_death_privacy = !host.vore_death_privacy
+			if(host.client.prefs_vr)
+				host.vore_death_privacy = host.vore_death_privacy
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_mimicry")
@@ -1118,10 +1124,10 @@
 										should_proceed_with_revive = FALSE
 										break
 						if(should_proceed_with_revive)
-							dead_mob_list.Remove(H)
-							if((H in living_mob_list) || (H in dead_mob_list))
+							GLOB.dead_mob_list.Remove(H)
+							if((H in GLOB.living_mob_list) || (H in GLOB.dead_mob_list))
 								WARNING("Mob [H] was reformed but already in the living or dead list still!")
-							living_mob_list += H
+							GLOB.living_mob_list += H
 
 							H.timeofdeath = 0
 							H.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.
@@ -1208,10 +1214,10 @@
 										should_proceed_with_revive = FALSE
 										break
 						if(should_proceed_with_revive)
-							dead_mob_list.Remove(H)
-							if((H in living_mob_list) || (H in dead_mob_list))
+							GLOB.dead_mob_list.Remove(H)
+							if((H in GLOB.living_mob_list) || (H in GLOB.dead_mob_list))
 								WARNING("Mob [H] was defibbed but already in the living or dead list still!")
-							living_mob_list += H
+							GLOB.living_mob_list += H
 
 							H.timeofdeath = 0
 							H.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.

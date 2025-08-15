@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(media_tracks)
 	name = "Media Tracks"
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_MEDIA_TRACKS
+	init_stage = INITSTAGE_EARLY
 
 	/// Every track, including secret
 	var/list/all_tracks = list()
@@ -206,7 +206,7 @@ SUBSYSTEM_DEF(media_tracks)
 	. = ..()
 	IF_VV_OPTION("add_track")
 		manual_track_add()
-		href_list["datumrefresh"] = "\ref[src]"
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 	IF_VV_OPTION("remove_track")
 		manual_track_remove()
-		href_list["datumrefresh"] = "\ref[src]"
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"

@@ -1,6 +1,11 @@
 /mob/proc/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	return
 
+// MUST BE NON-BLOCKING, signals can call this
+/mob/proc/direct_say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+	SHOULD_NOT_SLEEP(TRUE)
+	return
+
 /mob/verb/whisper(message as text)
 	set name = "Whisper"
 	set hidden = 1
@@ -50,7 +55,7 @@
 	if(!client)
 		return // Clientless mobs shouldn't be trying to talk in deadchat.
 
-	if(!client.holder)
+	if(!check_rights_for(client, R_HOLDER))
 		if(!CONFIG_GET(flag/dsay_allowed))
 			to_chat(src, span_danger("Deadchat is globally muted."))
 			return

@@ -426,7 +426,7 @@
 		to_chat(src, "You can't pick another custom name. [isshell(src) ? "" : "Go ask for a name change."]")
 		return 0
 
-	var/newname = sanitizeSafe(tgui_input_text(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
+	var/newname = sanitizeSafe(tgui_input_text(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if (newname)
 		custom_name = newname
 		sprite_name = newname
@@ -1041,7 +1041,7 @@
 		for(var/belly_class in vore_fullness_ex)
 			reset_belly_lights(belly_class)
 			var/vs_fullness = vore_fullness_ex[belly_class]
-			if(belly_class == "sleeper")
+			if(belly_class == "sleeper" && vore_selected)
 				if(sleeper_state == 0 && vore_selected.silicon_belly_overlay_preference == "Sleeper") continue
 				if(sleeper_state != 0 && !(vs_fullness + 1 > vore_capacity_ex[belly_class]))
 					if(vore_selected.silicon_belly_overlay_preference == "Sleeper")

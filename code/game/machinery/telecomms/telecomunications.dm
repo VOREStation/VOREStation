@@ -13,7 +13,6 @@
 	Look at radio.dm for the prequel to this code.
 */
 
-var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms
 	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Add
@@ -101,6 +100,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms/proc/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// receive information from linked machinery
+	return
+
+/obj/machinery/telecomms/proc/receive_information_delayed(datum/signal/signal, obj/machinery/telecomms/machine_from)
+	// The second half of receive_information(), called after the slowness delay from its first half.
+	PROTECTED_PROC(TRUE)
 	return
 
 /obj/machinery/telecomms/proc/is_freq_listening(datum/signal/signal)

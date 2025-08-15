@@ -21,7 +21,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 	is_funmin = check_rights(R_FUN)
 
 /datum/secrets_menu/tgui_state(mob/user)
-	return GLOB.tgui_admin_state// TGUI_ADMIN_STATE(R_NONE)
+	return ADMIN_STATE(R_HOLDER)
 
 /datum/secrets_menu/tgui_close()
 	qdel(src)
@@ -79,7 +79,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 		if("show_traitors_and_objectives") // Not implemented in the UI
 			holder.holder.check_antagonists()
 		if("show_game_mode")
-			if (ticker.mode) tgui_alert_async(holder, "The game mode is [ticker.mode.name]")
+			if (SSticker.mode) tgui_alert_async(holder, "The game mode is [SSticker.mode.name]")
 			else tgui_alert_async(holder, "For some reason there's a ticker, but not a game mode")
 
 		//Buttons for debug.
@@ -108,7 +108,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 			holder.holder.list_fingerprints()
 
 		if("prison_warp")
-			for(var/mob/living/carbon/human/H in mob_list)
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
 				var/turf/T = get_turf(H)
 				var/security = 0
 				if((T in using_map.admin_levels) || GLOB.prisonwarped.Find(H))
@@ -244,7 +244,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 		if("ghost_mode")
 			var/list/affected_mobs = list()
 			var/list/affected_areas = list()
-			for(var/mob/M in living_mob_list)
+			for(var/mob/M in GLOB.living_mob_list)
 				if(M.stat == CONSCIOUS && !(M in affected_mobs))
 					affected_mobs |= M
 					switch(rand(1,4))
@@ -368,7 +368,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 				return
 			//SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Bomb Cap"))
 
-			//var/newBombCap = input(holder,"What would you like the new bomb cap to be. (entered as the light damage range (the 3rd number in common (1,2,3) notation)) Must be above 4)", "New Bomb Cap", GLOB.MAX_EX_LIGHT_RANGE) as num|null
+			//var/newBombCap = tgui_input_list(holder,"What would you like the new bomb cap to be. (entered as the light damage range (the 3rd number in common (1,2,3) notation)) Must be above 4)", "New Bomb Cap", GLOB.MAX_EX_LIGHT_RANGE)
 			//if (!CONFIG_SET(number/bombcap, newBombCap))
 			//	return
 
@@ -409,7 +409,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 
 		//buttons that are fun for exactly you and nobody else.
 		if("corgie")
-			for(var/mob/living/carbon/human/H in mob_list)
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
 				spawn(0)
 					H.corgize()
 
@@ -419,7 +419,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 			//SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Monkeyize All Humans"))
 			message_admins("[key_name_admin(holder)] made everyone into monkeys.")
 			log_admin("[key_name_admin(holder)] made everyone into monkeys.")
-			for(var/i in mob_list)
+			for(var/i in GLOB.mob_list)
 				var/mob/living/carbon/human/H = i
 				INVOKE_ASYNC(H, TYPE_PROC_REF(/mob/living/carbon/human, monkeyize))
 

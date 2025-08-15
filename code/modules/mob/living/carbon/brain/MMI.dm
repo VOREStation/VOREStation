@@ -69,8 +69,8 @@
 		brainmob.container = src
 		brainmob.set_stat(CONSCIOUS)
 		brainmob.blinded = 0 //VOREedit Fixes MMIs vision
-		dead_mob_list -= brainmob//Update dem lists
-		living_mob_list += brainmob
+		GLOB.dead_mob_list -= brainmob//Update dem lists
+		GLOB.living_mob_list += brainmob
 
 		user.drop_item()
 		brainobj = O
@@ -115,7 +115,7 @@
 		brain.preserved = FALSE
 		brainmob.container = null//Reset brainmob mmi var.
 		brainmob.loc = brain//Throw mob into brain.
-		living_mob_list -= brainmob//Get outta here
+		GLOB.living_mob_list -= brainmob//Get outta here
 		brain.brainmob = brainmob//Set the brain to use the brainmob
 		brainmob = null//Set mmi brainmob var to null
 
@@ -126,7 +126,7 @@
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
-	qdel_swap(brainmob.dna, H.dna.Clone())
+	QDEL_SWAP(brainmob.dna, H.dna.Clone())
 	brainmob.container = src
 
 	// Copy modifiers.
@@ -196,7 +196,7 @@
 	src.brainmob.container = src
 	src.brainmob.set_stat(CONSCIOUS)
 	src.brainmob.silent = 0
-	dead_mob_list -= src.brainmob
+	GLOB.dead_mob_list -= src.brainmob
 
 /obj/item/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these
@@ -232,7 +232,7 @@
 	..()
 
 /obj/item/mmi/digital/transfer_identity(var/mob/living/carbon/H)
-	qdel_swap(brainmob.dna, H.dna.Clone())
+	QDEL_SWAP(brainmob.dna, H.dna.Clone())
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.set_stat(CONSCIOUS)
 	if(H.mind)
@@ -262,7 +262,7 @@
 	else
 		reset_search()
 	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
-	qdel_null(Q) //get rid of the query
+	QDEL_NULL(Q) //get rid of the query
 
 /obj/item/mmi/digital/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 	if(src.brainmob && src.brainmob.key)

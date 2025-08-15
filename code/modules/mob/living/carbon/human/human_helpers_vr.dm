@@ -119,7 +119,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	//does not really need to happen, that kinda thing will only happen when putting another person's limb onto your own body
 	return sorted
 
-/mob/living/carbon/human/proc/transform_into_other_human(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/convert_to_prosthetics = FALSE)
+/mob/living/carbon/human/proc/transform_into_other_human(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/convert_to_prosthetics = FALSE, var/apply_bloodtype = TRUE)
 	/*
 	name, nickname, flavour, OOC notes
 	gender, sex
@@ -161,7 +161,8 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	grad_style = character.grad_style
 	f_style = character.f_style
 	grad_style = character.grad_style
-	dna?.b_type = character.dna ? character.dna.b_type : DEFAULT_BLOOD_TYPE
+	if(apply_bloodtype)
+		dna?.b_type = character.dna ? character.dna.b_type : DEFAULT_BLOOD_TYPE //This actually just straight up kills whoever uses it if the blood types aren't compatible on TF
 	synth_color = character.synth_color
 	r_synth = character.r_synth
 	g_synth = character.g_synth
@@ -179,6 +180,9 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	b_ears3 = character.b_ears3
 	g_ears3 = character.g_ears3
 	a_ears = character.a_ears
+
+	ear_secondary_style = character.ear_secondary_style
+	ear_secondary_colors = character.ear_secondary_colors
 
 	tail_style = character.tail_style
 	r_tail = character.r_tail

@@ -350,7 +350,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				return	//took too long
 			newname = sanitizeName(newname, ,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
 
-			for(var/mob/living/M in player_list)
+			for(var/mob/living/M in GLOB.player_list)
 				if(M == src)
 					continue
 				if(!newname || M.real_name == newname)
@@ -385,7 +385,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
+	for (var/mob/living/silicon/robot/A in GLOB.player_list)
 		if (A.stat == 2 || A.connected_ai || A.scrambledcodes || istype(A,/mob/living/silicon/robot/drone))
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
@@ -399,7 +399,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
+	for(var/mob/living/silicon/ai/A in GLOB.living_mob_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled == 1)
@@ -426,48 +426,36 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Returns a list of all mobs with their name
 /proc/getmobs()
-	return observe_list_format(sortmobs())
+	return observe_list_format(sort_mobs())
 
 //Orders mobs by type then by name
-/proc/sortmobs()
+/proc/sort_mobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortAtom(mob_list)
+	var/list/sortmob = sort_names(GLOB.mob_list)
 	for(var/mob/observer/eye/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/observer/blob/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/silicon/ai/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/silicon/pai/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/silicon/robot/M in sortmob)
-		moblist.Add(M)
-	var/list/delaylist = list()
+		moblist += M
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(M.low_sorting_priority && !M.client)
-			delaylist.Add(M)
-		else
-			moblist.Add(M)
-	moblist.Add(delaylist)
+		moblist += M
 	for(var/mob/living/carbon/brain/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/carbon/alien/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/observer/dead/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/new_player/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/simple_mob/M in sortmob)
-		moblist.Add(M)
-	//VOREStation Addition Start
+		moblist += M
 	for(var/mob/living/dominated_brain/M in sortmob)
-		moblist.Add(M)
-	//VOREStation Addition End
-
-//	for(var/mob/living/silicon/hivebot/M in sortmob)
-//		mob_list.Add(M)
-//	for(var/mob/living/silicon/hive_mainframe/M in sortmob)
-//		mob_list.Add(M)
+		moblist += M
 	return moblist
 
 /proc/observe_list_format(input_list)
@@ -984,7 +972,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/get_mob_with_client_list()
 	var/list/mobs = list()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.client)
 			mobs += M
 	return mobs
@@ -1017,7 +1005,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 //Quick type checks for some tools
-var/global/list/common_tools = list(
+GLOBAL_LIST_INIT(common_tools, list(
 /obj/item/stack/cable_coil,
 /obj/item/tool/wrench,
 /obj/item/weldingtool,
@@ -1025,10 +1013,10 @@ var/global/list/common_tools = list(
 /obj/item/tool/wirecutters,
 /obj/item/multitool,
 /obj/item/tool/crowbar,
-/obj/item/tool/transforming)
+/obj/item/tool/transforming))
 
 /proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
+	if(O && is_type_in_list(O, GLOB.common_tools))
 		return 1
 	return 0
 
@@ -1236,16 +1224,16 @@ var/mob/dview/dview_mob
 /mob/dview/Initialize(mapload)
 	. = ..()
 	// We don't want to be in any mob lists; we're a dummy not a mob.
-	mob_list -= src
+	GLOB.mob_list -= src
 	if(stat == DEAD)
-		dead_mob_list -= src
+		GLOB.dead_mob_list -= src
 	else
-		living_mob_list -= src
+		GLOB.living_mob_list -= src
 
 /mob/dview/Life()
-	mob_list -= src
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.living_mob_list -= src
 
 /mob/dview/Destroy(var/force)
 	stack_trace("Attempt to delete the dview_mob: [log_info_line(src)]")
@@ -1607,3 +1595,80 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return "CLIENT: [D]"
 	else
 		return "Unknown data type: [D]"
+
+/**
+ * - is_valid_z_level
+ *
+ * Checks if source_loc and checking_loc is both on the station, or on the same z level.
+ * This is because the station's several levels aren't considered the same z, so multi-z stations need this special case.
+ *
+ * Args:
+ * source_loc - turf of the source we're comparing.
+ * checking_loc - turf we are comparing to source_loc.
+ *
+ * returns TRUE if connection is valid, FALSE otherwise.
+ */
+/proc/is_valid_z_level(turf/source_loc, turf/checking_loc)
+	return is_on_same_plane_or_station(source_loc.z, checking_loc.z)
+
+/**
+ * divides a list of materials uniformly among all contents of the target_object recursively
+ * Used to set materials of printed items with their design cost by taking into consideration their already existing materials
+ * e.g. if 12 iron is to be divided uniformly among 2 objects A, B who's current iron contents are 3 & 7
+ * Then first we normalize those values i.e. find their weights to decide who gets an higher share of iron
+ * total_sum = 3 + 7 = 10, A = 3/10 = 0.3, B = 7/10 = 0.7
+ * Then we finally multiply those weights with the user value of 12 we get
+ * A = 0.3 * 12 = 3.6, B = 0.7 * 12 = 8.4 i.e. 3.6 + 8.4 = 12!!
+ * Off course we round the values so we don't have to deal with floating point materials so the actual value
+ * ends being less but that's not an issue
+ * Arguments
+ *
+ * * [custom_materials][list] - the list of materials to set for the object
+ * * multiplier - multiplier passed to set_custom_materials
+ * * [target_object][atom] - the target object who's custom materials we are trying to modify
+ */
+/proc/split_materials_uniformly(list/custom_materials, multiplier, obj/target_object)
+	target_object.set_custom_materials(custom_materials)
+
+	// if(!length(target_object.contents)) //most common case where the object is just 1 thing
+	// 	target_object.set_custom_materials(custom_materials, multiplier)
+	// 	return
+
+	// //Step 1: Get recursive contents of all objects, only filter obj cause that what's material container accepts
+	// var/list/reccursive_contents = target_object.get_all_contents_type(/obj/item)
+
+	// //Step 2: find the sum of each material type per object and record their amounts into an 2D list
+	// var/list/material_map_sum = list()
+	// var/list/material_map_amounts = list()
+	// for(var/obj/object as anything in reccursive_contents)
+	// 	var/list/item_materials = object.matter
+	// 	for(var/mat as anything in custom_materials)
+	// 		var/mat_amount = 1 //no materials mean we assign this default amount
+	// 		if(length(item_materials))
+	// 			mat_amount = item_materials[mat] || 1 //if this object doesn't have our material type then assign a default value of 1
+
+	// 		//record the sum of mats for normalizing
+	// 		material_map_sum[mat] += mat_amount
+	// 		//record the material amount for each item into an 2D list
+	// 		var/list/mat_list_per_item = material_map_amounts[mat]
+	// 		if(isnull(mat_list_per_item))
+	// 			material_map_amounts[mat] = list(mat_amount)
+	// 		else
+	// 			mat_list_per_item += mat_amount
+
+	// //Step 3: normalize & scale material_map_amounts with material_map_sum
+	// for(var/mat as anything in material_map_amounts)
+	// 	var/mat_sum = material_map_sum[mat]
+	// 	var/list/mat_per_item = material_map_amounts[mat]
+	// 	for(var/i in 1 to mat_per_item.len)
+	// 		mat_per_item[i] = (mat_per_item[i] / mat_sum) * custom_materials[mat]
+
+	// //Step 4 flatten the 2D list and assign the final values to each atom
+	// var/index = 1
+	// for(var/obj/object as anything in reccursive_contents)
+	// 	var/list/final_material_list = list()
+	// 	for(var/mat as anything in material_map_amounts)
+	// 		var/list/mat_per_item = material_map_amounts[mat]
+	// 		final_material_list[mat] = mat_per_item[index]
+	// 	object.set_custom_materials(final_material_list, multiplier)
+		// index += 1

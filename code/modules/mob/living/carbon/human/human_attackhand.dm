@@ -417,6 +417,14 @@
 	return
 
 /mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/armor_type = "melee", var/armor_pen = 0, var/a_sharp = 0, var/a_edge = 0)
+	if(istype(user,/mob/living))
+		var/mob/living/L = user
+		if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
+			if((src != L))
+				L.apply_damage(3, BRUTE)
+				L.visible_message( \
+					span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
+					span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
 
 	if(!damage)
 		return
@@ -603,10 +611,10 @@
 		visible_message(span_warning("\The [src]'s body convulses a bit."))
 
 		// REVIVE TIME, basically stolen from defib.dm
-		dead_mob_list.Remove(src)
-		if((src in living_mob_list) || (src in dead_mob_list))
+		GLOB.dead_mob_list.Remove(src)
+		if((src in GLOB.living_mob_list) || (src in GLOB.dead_mob_list))
 			WARNING("Mob [src] was cpr revived by [reviver], but already in the living or dead list still!")
-		living_mob_list += src
+		GLOB.living_mob_list += src
 
 		timeofdeath = 0
 		set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.

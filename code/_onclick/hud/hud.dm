@@ -547,6 +547,31 @@ GLOBAL_LIST_INIT(global_huds, list(
 /mob/new_player/add_click_catcher()
 	return
 
+/mob/living/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
+	..()
+
+	var/list/hud_elements = list()
+	shadekin_display = new /obj/screen/shadekin()
+	shadekin_display.screen_loc = ui_shadekin_display
+	shadekin_display.icon_state = "shadekin"
+	hud_elements |= shadekin_display
+
+	xenochimera_danger_display = new /obj/screen/xenochimera/danger_level()
+	xenochimera_danger_display.screen_loc = ui_xenochimera_danger_display
+	xenochimera_danger_display.icon_state = "danger00"
+	hud_elements |= xenochimera_danger_display
+
+	lleill_display = new /obj/screen/lleill()
+	lleill_display.screen_loc = ui_lleill_display
+	lleill_display.icon_state = "lleill"
+	hud_elements |= lleill_display
+
+	if(client)
+		client.screen = list()
+
+		client.screen += hud_elements
+		client.screen += client.void
+
 /* TGMC Ammo HUD Port
  * These procs call to screen_objects.dm's respective procs.
  * All these do is manage the amount of huds on screen and set the HUD.

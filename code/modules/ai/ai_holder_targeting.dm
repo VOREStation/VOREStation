@@ -332,6 +332,10 @@
 	preferred_target = null
 
 /datum/ai_holder/proc/vore_check(mob/living/L)
+	if(isanimal(holder))
+		var/mob/living/simple_mob/M = holder
+		if(!M.voremob_loaded)	//init vore if it's not already
+			M.init_vore(TRUE)
 	if(!holder.vore_selected)	//We probably don't have a belly so don't even try
 		return FALSE
 	if(!isliving(L))	//We only want mob/living

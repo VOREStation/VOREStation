@@ -736,7 +736,7 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
 	},
-/obj/machinery/mecha_part_fabricator{
+/obj/machinery/mecha_part_fabricator_tg{
 	req_access = list()
 	},
 /obj/machinery/light{
@@ -960,7 +960,6 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 10
 	},
-/obj/machinery/r_n_d/destructive_analyzer,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "nC" = (
@@ -1054,7 +1053,7 @@
 /area/lunaship/office)
 "px" = (
 /obj/structure/lattice,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "luna_ship_pd"
 	},
 /obj/structure/cable/cyan{
@@ -1936,7 +1935,7 @@
 /area/lunaship/cockpit)
 "Ad" = (
 /obj/structure/lattice,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "luna_ship_pd"
 	},
 /obj/structure/cable/cyan,
@@ -2213,7 +2212,7 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 4
 	},
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/acid{
@@ -2401,7 +2400,7 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
 	},
-/obj/machinery/r_n_d/protolathe{
+/obj/machinery/rnd/production/protolathe{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -2711,7 +2710,7 @@
 	},
 /area/lunaship/cockpit)
 "MX" = (
-/obj/machinery/mecha_part_fabricator/pros{
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
 	req_access = list()
 	},
 /obj/effect/floor_decal/milspec/color/black/half{
@@ -2811,7 +2810,7 @@
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
 	},
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,

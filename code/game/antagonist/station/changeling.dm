@@ -13,11 +13,24 @@
 	antaghud_indicator = "hudchangeling"
 
 /datum/antagonist/changeling/get_special_objective_text(var/datum/mind/player)
-	return "<br><b>Changeling ID:</b> [player.changeling.changelingID].<br><b>Genomes Absorbed:</b> [player.changeling.absorbedcount]"
+	if(player.current)
+		var/datum/component/antag/changeling/comp = player.current.GetComponent(/datum/component/antag/changeling)
+		if(comp)
+			return "<br><b>Changeling ID:</b> [comp.changelingID].<br><b>Genomes Absorbed:</b> [comp.absorbedcount]"
 
 /datum/antagonist/changeling/update_antag_mob(var/datum/mind/player)
 	..()
 	player.current.make_changeling()
+
+/datum/antagonist/changeling/remove_antagonist(datum/mind/player, show_message, implanted)
+	. = ..()
+	var/datum/component/antag/changeling/comp = player.current.GetComponent(/datum/component/antag/changeling)
+	if(comp)
+		comp.owner.remove_changeling_powers()
+		remove_verb(comp.owner, /mob/proc/EvolutionMenu)
+		comp.RemoveComponent()
+		if(comp.owner.mind)
+			comp.owner.mind.antag_holder.changeling = null
 
 /datum/antagonist/changeling/create_objectives(var/datum/mind/changeling)
 	if(!..())
@@ -77,12 +90,12 @@
 				return 1
 	return 0
 
-/datum/antagonist/changeling/print_player_full(var/datum/mind/ply)
-	var/text = print_player_lite(ply)
+/datum/antagonist/changeling/print_player_full(var/datum/mind/player)
+	var/text = print_player_lite(player)
 
-	if(ply.changeling)
-		var/datum/changeling/ling_datum = ply.changeling
-		text += " (had [ling_datum.max_geneticpoints] genomes)"
-		text += "<br>Bought [english_list(ling_datum.purchased_powers_history)]."
+	var/datum/component/antag/changeling/comp = player.current.GetComponent(/datum/component/antag/changeling)
+	if(comp)
+		text += " (had [comp.max_geneticpoints] genomes)"
+		text += "<br>Bought [english_list(comp.purchased_powers_history)]."
 
 	return text

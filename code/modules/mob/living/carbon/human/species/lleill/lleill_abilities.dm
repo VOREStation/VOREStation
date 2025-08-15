@@ -264,7 +264,7 @@
 		return
 
 	var/list/targets = list()
-	for(var/mob/living/carbon/human/M in mob_list)
+	for(var/mob/living/carbon/human/M in GLOB.mob_list)
 		if(M.z != src.z || get_dist(src,M) > 1)
 			continue
 		if(src == M)

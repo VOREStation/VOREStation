@@ -138,7 +138,7 @@ This device records all warnings given and teleport events for admin review in c
 			to_chat(user, span_warning("The translocator can't support any more beacons!"))
 			return
 
-		var/new_name = html_encode(tgui_input_text(user,"New beacon's name (2-20 char):","[src]",null,20))
+		var/new_name = tgui_input_text(user,"New beacon's name (2-20 char):","[src]",null,20)
 		if(!check_menu(user))
 			return
 

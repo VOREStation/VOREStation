@@ -8,7 +8,7 @@
 
 	var/input
 	if(!message)
-		input = sanitize(tgui_input_text(src,"Choose an emote to display."))
+		input = tgui_input_text(src,"Choose an emote to display.", max_length = MAX_MESSAGE_LEN)
 	else
 		input = message
 	process_normal_emote(m_type, message, input, range)
@@ -65,6 +65,14 @@
 /mob/proc/build_the_emote(m_type, message, input, range, runemessage)
 	if(client)
 		message = span_emote(span_bold("[src]") + " [input]")
+		if(src.absorbed && isbelly(src.loc))
+			var/obj/belly/B = src.loc
+			if(B.absorbedrename_enabled)
+				var/formatted_name = B.absorbedrename_name
+				formatted_name = replacetext(formatted_name,"%pred",B.owner)
+				formatted_name = replacetext(formatted_name,"%belly",B.name)
+				formatted_name = replacetext(formatted_name,"%prey",name)
+				message = span_emote(span_bold("[formatted_name]") + " [input]")
 	else
 		message = span_npc_emote(span_bold("[src]") + " [input]")
 

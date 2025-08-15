@@ -26,13 +26,13 @@
 	if(ispath(mytape))
 		mytape = new mytape(src)
 		update_icon()
-	listening_objects += src
+	GLOB.listening_objects += src
 
 /obj/item/taperecorder/empty
 	mytape = null
 
 /obj/item/taperecorder/Destroy()
-	listening_objects -= src
+	GLOB.listening_objects -= src
 	if(mytape)
 		qdel(mytape)
 		mytape = null
@@ -188,7 +188,9 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		to_chat(M, span_notice("Recording stopped."))
-
+	else if(isturf(loc)) // If not hidden away in a bag
+		playsound(src, 'sound/machines/click.ogg', 50, 1)
+		visible_message("\The [src] clicks as it stops recording.","click")
 
 /obj/item/taperecorder/verb/stop()
 	set name = "Stop"

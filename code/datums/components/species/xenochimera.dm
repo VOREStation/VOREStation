@@ -19,13 +19,15 @@
 	owner = parent
 	RegisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT, PROC_REF(handle_comp))
 	RegisterSignal(owner, COMSIG_HUMAN_DNA_FINALIZED, PROC_REF(handle_record))
+	if(owner.dna)
+		handle_record()
 	add_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
 
 /datum/component/xenochimera/Destroy(force)
 	UnregisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT)
 	UnregisterSignal(owner, COMSIG_HUMAN_DNA_FINALIZED)
 	remove_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
-	qdel_null(revival_record)
+	QDEL_NULL(revival_record)
 	owner = null
 	. = ..()
 
@@ -33,7 +35,7 @@
 	SIGNAL_HANDLER
 	if(QDELETED(owner))
 		return
-	qdel_null(revival_record)
+	QDEL_NULL(revival_record)
 	revival_record = new(owner)
 
 /datum/component/xenochimera/proc/handle_comp()
@@ -77,7 +79,7 @@
 	var/shock = 0.75*owner.traumatic_shock
 
 	//Caffeinated or otherwise overexcited xenochimera can become feral and have special messages
-	var/jittery = max(0, owner.jitteriness - 100)
+	var/jittery = max(0, owner.get_jittery() - 100)
 
 	//Are we in danger of ferality?
 	var/danger = FALSE

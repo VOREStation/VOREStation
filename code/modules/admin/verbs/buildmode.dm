@@ -13,7 +13,7 @@
 
 GLOBAL_LIST_EMPTY(active_buildmode_holders)
 
-/proc/togglebuildmode(mob/M as mob in player_list)
+/proc/togglebuildmode(mob/M as mob in GLOB.player_list)
 	set name = "Toggle Build Mode"
 	set category = "Special Verbs"
 	if(M.client)
@@ -109,7 +109,9 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 							Middle Mouse Button on turf/obj        = Capture object type<br>\
 							Left Mouse Button on turf/obj          = Place objects<br>\
 							Right Mouse Button                     = Delete objects<br>\
-							Mouse Button + ctrl                    = Copy object type<br><br>\
+							Mouse Button + ctrl                    = Copy object type<br>\
+							Left Mouse Button + alt                = Open View Variable<br>\
+							Right Mouse Button + alt               = Call Proc<br><br>\
 							Use the button in the upper left corner to<br>\
 							change the direction of built objects.<br>\
 							***********************************************************"))
@@ -292,7 +294,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 					if("number")
 						master.buildmode.valueholder = tgui_input_number(usr,"Enter variable value:" ,"Value", 123)
 					if("mob-reference")
-						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", mob_list)
+						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", GLOB.mob_list)
 					if("obj-reference")
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 					if("turf-reference")
@@ -412,19 +414,23 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 
 
 		if(BUILDMODE_ADVANCED)
-			if(pa.Find("left") && !pa.Find("ctrl"))
+			if(pa.Find("left") && !pa.Find("ctrl") && !pa.Find("alt"))
 				if(ispath(holder.buildmode.objholder,/turf))
 					var/turf/T = get_turf(object)
 					T.ChangeTurf(holder.buildmode.objholder)
 				else if(ispath(holder.buildmode.objholder))
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
 					A.set_dir(holder.builddir.dir)
-			else if(pa.Find("right"))
+			else if(pa.Find("right") && !pa.Find("alt"))
 				if(isobj(object))
 					qdel(object)
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
 				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
+			else if(pa.Find("left") && pa.Find("alt"))
+				user.client.debug_variables(object)
+			else if(pa.Find("right") && pa.Find("alt"))
+				SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/call_proc_datum, object)
 			if(pa.Find("middle"))
 				holder.buildmode.objholder = text2path("[object.type]")
 				if(holder.buildmode.objsay)
@@ -706,7 +712,7 @@ GLOBAL_LIST_EMPTY(active_buildmode_holders)
 			var/z = c1.z //Eh
 
 			var/i = 0
-			for(var/mob/living/L in living_mob_list)
+			for(var/mob/living/L in GLOB.living_mob_list)
 				if(L.z != z || L.client)
 					continue
 				if(L.x >= low_x && L.x <= hi_x && L.y >= low_y && L.y <= hi_y)

@@ -25,7 +25,7 @@
 			inserted_id.forceMove(T)
 			inserted_id = null
 		else
-			qdel_null(inserted_id)
+			QDEL_NULL(inserted_id)
 	QDEL_NULL_LIST(prize_list)
 	. = ..()
 
@@ -140,6 +140,7 @@
 		EQUIPMENT("Laser Pointer",				/obj/item/laser_pointer,													900),
 		EQUIPMENT("Luxury Shelter Capsule",		/obj/item/survivalcapsule/luxury,											3100),
 		EQUIPMENT("Bar Shelter Capsule",		/obj/item/survivalcapsule/luxurybar,										10000),
+		EQUIPMENT("Deluxe Cabin Shelter Capsule",/obj/item/survivalcapsule/luxurycabin,										10000),
 		EQUIPMENT("Plush Toy",					/obj/random/plushie,														300),
 		EQUIPMENT("Soap",						/obj/item/soap/nanotrasen,													200),
 		EQUIPMENT("Thalers - 100",				/obj/item/spacecash/c100,													1000),
@@ -309,16 +310,23 @@
 	to_chat(redeemer, span_notice("You insert your voucher into the machine!"))
 	var/selection = tgui_input_list(redeemer, "Pick your equipment.", "Mining Voucher Redemption", list("Kinetic Accelerator + KA Addon", "Resonator + Advanced Ore Scanner", "Survival Pistol & Machete + Survival Addon","1000 Points"))
 	var/drop_location = drop_location()
+	if(QDELETED(voucher))
+		return
 	if(!Adjacent(redeemer))
 		to_chat(redeemer, span_warning("You must stay near the machine to use it."))
 		return
 	if(!selection)
 		to_chat(redeemer, span_notice("You decide not to redeem anything for now."))
 		return
+	if(QDELETED(voucher))
+		to_chat(redeemer, span_warning("The voucher has already been redeemed."))
+		return
 	switch(selection)
 
 		if("Kinetic Accelerator + KA Addon") //1250-2100 points worth
 			var/addon_selection = tgui_input_list(redeemer, "Pick your addon", "Mining Voucher Redemption", list("Cooldown", "Range","Holster")) //Just the basics. Nothing too crazy.
+			if(QDELETED(voucher))
+				return
 			if(!addon_selection)
 				to_chat(redeemer, span_warning("You must select an addon."))
 				return
@@ -335,10 +343,11 @@
 		if("Resonator + Advanced Ore Scanner") //1400 points worth
 			new /obj/item/resonator(drop_location)
 			new /obj/item/mining_scanner/advanced(drop_location)
-			qdel(voucher)
 
 		if("Survival Pistol & Machete + Survival Addon") // ~3000-3500 points worth.
 			var/addon_selection = tgui_input_list(redeemer, "Pick your survival addon", "Mining Voucher Redemption", list("Shelter Capsule", "Glucose", "Panacea", "Trauma", "Medipens")) //Just the basics. Nothing too crazy.
+			if(QDELETED(voucher))
+				return
 			if(!addon_selection)
 				to_chat(redeemer, span_warning("You must select an addon."))
 				return

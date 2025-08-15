@@ -221,7 +221,7 @@ Any-Mode: (hotkey doesn't need to be on)
 	else
 		to_chat(src,hotkey_mode)
 		to_chat(src,other)
-	if(holder)
+	if(check_rights_for(src, R_HOLDER))
 		to_chat(src,admin)
 
 // Set the DreamSeeker input macro to the type appropriate for its mob

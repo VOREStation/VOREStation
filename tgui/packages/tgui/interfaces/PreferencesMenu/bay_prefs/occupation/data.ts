@@ -1,4 +1,4 @@
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export enum AlternateOption {
   GET_RANDOM_JOB = 0,
@@ -38,5 +38,5 @@ export type OccupationData = {
   jobs: Record<string, Job[]>;
 };
 
-export type OccupationDataStatic = {};
-export type OccupationDataConstant = {};
+export type OccupationDataStatic = undefined;
+export type OccupationDataConstant = undefined;

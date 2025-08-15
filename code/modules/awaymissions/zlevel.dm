@@ -1,5 +1,5 @@
 /proc/createRandomZlevel()
-	#ifdef UNIT_TEST
+	#ifdef UNIT_TESTS
 	return
 	#endif
 	if(GLOB.awaydestinations.len)	//crude, but it saves another var! //VOREStation Edit - No loading away missions during CI testing
@@ -48,7 +48,7 @@
 			template.load_new_z()
 			to_world_log("away mission loaded: [map]")
 		/* VOREStation Removal - We do this in the special landmark init instead.
-		for(var/obj/effect/landmark/L in landmarks_list)
+		for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 			if (L.name != "awaystart")
 				continue
 			awaydestinations.Add(L)

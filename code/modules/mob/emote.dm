@@ -15,7 +15,7 @@
 		to_chat(src, span_danger("You have deadchat muted."))
 		return
 
-	if(!src.client.holder && !check_rights(R_HOLDER, FALSE))
+	if(!check_rights(R_HOLDER, FALSE))
 		if(!CONFIG_GET(flag/dsay_allowed))
 			to_chat(src, span_danger("Deadchat is globally muted."))
 			return
@@ -23,7 +23,7 @@
 
 	var/input
 	if(!message)
-		input = sanitize_or_reflect(tgui_input_text(src, "Choose an emote to display."), src) //VOREStation Edit - Reflect too long messages, within reason
+		input = sanitize_or_reflect(tgui_input_text(src, "Choose an emote to display.", encode = FALSE), src) //VOREStation Edit - Reflect too long messages, within reason
 	else
 		input = message
 

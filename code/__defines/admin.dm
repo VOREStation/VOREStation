@@ -46,13 +46,21 @@
 #define R_DEFAULT R_NONE
 
 #define R_EVERYTHING (1<<17)-1 //the sum of all other rank permissions, used for +EVERYTHING
-#define R_HOLDER ((R_EVERYTHING) & (~R_MENTOR))
+#define R_HOLDER ((R_EVERYTHING) & (~(R_MENTOR | R_STEALTH)))
 
 #define SMITE_BREAKLEGS				"Break Legs"
 #define SMITE_BLUESPACEARTILLERY	"Bluespace Artillery"
 #define SMITE_SPONTANEOUSCOMBUSTION	"Spontaneous Combustion"
 #define SMITE_LIGHTNINGBOLT			"Lightning Bolt"
 #define SMITE_TERROR				"Terrify"
+#define SMITE_SHADEKIN_ATTACK		"Shadekin (Attack)"
+#define SMITE_SHADEKIN_NOMF			"Shadekin (Devour)"
+#define SMITE_REDSPACE_ABDUCT		"Redspace Abduction"
+#define SMITE_AD_SPAM				"Ad Spam"
+#define SMITE_AUTOSAVE				"10 Second Autosave"
+#define SMITE_AUTOSAVE_WIDE			"10 Second Autosave (AoE)"
+#define SMITE_SPICEREQUEST			"Give Them Spice (Harmless)"
+#define SMITE_PEPPERNADE			"Give Them Spice (Extra Spicy)"
 
 #define ADMIN_QUE(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=\ref[user]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=\ref[user]'>FLW</a>)"
@@ -70,10 +78,30 @@
 #define ADMIN_LOOKUPFLW(user) "[key_name_admin(user)][ADMIN_QUE(user)] [ADMIN_FLW(user)]"
 #define ADMIN_FULLMONTY_NONAME(user) "[ADMIN_QUE(user)] [ADMIN_PP(user)] [ADMIN_VV(user)] [ADMIN_SM(user)] [ADMIN_FLW(user)] [ADMIN_TP(user)]"
 #define ADMIN_FULLMONTY(user) "[key_name_admin(user)] [ADMIN_FULLMONTY_NONAME(user)]"
-#define ADMIN_JMP(src) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
-#define COORD(src) "[src ? "([src.x],[src.y],[src.z])" : "nonexistent location"]"
-#define ADMIN_COORDJMP(src) "[src ? "[COORD(src)] [ADMIN_JMP(src)]" : "nonexistent location"]"
+#define ADMIN_JMP(src) "(<a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
+#define COORD(src) "[src ? src.Admin_Coordinates_Readable() : "nonexistent location"]"
+#define AREACOORD(src) "[src ? src.Admin_Coordinates_Readable(TRUE) : "nonexistent location"]"
+#define ADMIN_COORDJMP(src) "[src ? src.Admin_Coordinates_Readable(FALSE, TRUE) : "nonexistent location"]"
+#define ADMIN_VERBOSEJMP(src) "[src ? src.Admin_Coordinates_Readable(TRUE, TRUE) : "nonexistent location"]"
 #define ADMIN_CA(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];secretsadmin=check_antagonist'>?</a>)"
+
+/atom/proc/Admin_Coordinates_Readable(area_name, admin_jump_ref)
+	var/turf/turf_at_coords = Safe_COORD_Location()
+	return turf_at_coords ? "[area_name ? "[get_area_name(turf_at_coords, TRUE)] " : " "]([turf_at_coords.x],[turf_at_coords.y],[turf_at_coords.z])[admin_jump_ref ? " [ADMIN_JMP(turf_at_coords)]" : ""]" : "nonexistent location"
+
+/atom/proc/Safe_COORD_Location()
+	var/atom/drop_atom = drop_location()
+	if(!drop_atom)
+		return //not a valid atom.
+	var/turf/drop_turf = get_step(drop_atom, 0) //resolve where the thing is.
+	if(!drop_turf) //incase it's inside a valid drop container, inside another container. ie if a mech picked up a closet and has it inside its internal storage.
+		var/atom/last_try = drop_atom.loc?.drop_location() //one last try, otherwise fuck it.
+		if(last_try)
+			drop_turf = get_step(last_try, 0)
+	return drop_turf
+
+/turf/Safe_COORD_Location()
+	return src
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2

@@ -132,7 +132,7 @@
 		if(do_after(protie, 40,exclusive = TASK_ALL_EXCLUSIVE))
 			if(protie.client.prefs)	//Make sure we didn't d/c
 				var/obj/item/rig/protean/Rig = species?:OurRig
-				protie.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, TRUE)
+				protie.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, TRUE, FALSE)
 				species?:OurRig = Rig	//Get a reference to our Rig and put it back after reassembling
 				protie.visible_message(span_notify("[protie] adopts a new form!"), span_danger("You have reassembled."))
 
@@ -201,7 +201,7 @@
 			return
 		if(protie.client)	//Make sure we didn't d/c
 			var/obj/item/rig/protean/Rig = species?:OurRig
-			transform_into_other_human(victim, FALSE, flavour, TRUE)
+			transform_into_other_human(victim, FALSE, flavour, TRUE, FALSE)
 			species?:OurRig = Rig	//Get a reference to our Rig and put it back after reassembling
 			protie.visible_message(span_notify("[protie] adopts the form of [victim]!"), span_danger("You have reassembled into [victim]."))
 
@@ -612,7 +612,7 @@
 					S.dullahan_overlays[S.dullahan_overlays[5]] = new_color
 				if("Import")
 					var/dinput_style
-					dinput_style = sanitizeSafe(tgui_input_text(protie,"Paste the style string you exported with Export Style.", "Style loading","", 120), 128)
+					dinput_style = sanitizeSafe(tgui_input_text(protie,"Paste the style string you exported with Export Style.", "Style loading","", 120, encode = FALSE), 128)
 					if(dinput_style)
 						var/list/dinput_style_list = splittext(dinput_style, ";")
 						if((LAZYLEN(dinput_style_list) == 6) && (dinput_style_list[1] in dullahanmetal_styles) && (dinput_style_list[3] in dullahandecals_styles) && (dinput_style_list[5] in dullahaneyes_styles))
@@ -901,3 +901,43 @@
 	icon = 'icons/obj/slimeborg/slimecore.dmi'
 	icon_state = "core"
 	to_call = /mob/living/carbon/human/proc/transparency_toggle
+
+/obj/effect/protean_ability/absorb_implant
+	ability_name = "Absorb Implant"
+	desc = "Absorb an implant into your system."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "heart-on"
+	to_call = /mob/living/carbon/human/proc/absorb_implant
+
+/mob/living/carbon/human/proc/absorb_implant()
+	set name = "Absorb Implant"
+	set category = "Abilities.Protean"
+	if(stat || world.time < last_special)
+		return
+	last_special = world.time + 50
+
+	var/obj/item/organ/internal/augment/A = get_active_hand()
+	if(!istype(A))
+		to_chat(src, span_danger("You cannot integrate this into your body."))
+		return
+
+	if(!(ORGAN_NANOFORM in A.target_parent_classes))
+		to_chat(src, span_danger("This implant is incompatible with our nanoform."))
+		return
+
+	var/obj/item/organ/external/target_organ = get_organ(zone_sel.selecting)
+	if(!istype(target_organ) || target_organ.is_stump())
+		to_chat(src, span_danger("Your [target_organ] is currently unsuitable for implants."))
+		return
+
+	if(target_organ.organ_tag != A.parent_organ)
+		to_chat(src, span_danger("[A] does not go in [target_organ]."))
+		return
+
+	if(!unEquip(A))
+		to_chat(src, span_danger("[A] is stuck to your hand."))
+		return
+
+	A.replaced(src, target_organ)
+	to_chat(src, span_notice("You absorb [A] into your [target_organ]."))
+	log_admin("[key_name(src)] protean self-implanted [A].")

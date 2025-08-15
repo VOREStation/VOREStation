@@ -20,7 +20,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d1a3";
 	pixel_x = 28
 	},
@@ -506,18 +506,18 @@
 "bt" = (
 /obj/machinery/light/small,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d2a1";
 	pixel_y = 28
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a1_sensor";
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a1_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -1623,11 +1623,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_pump"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_sensor";
 	pixel_x = 30;
 	pixel_y = 8
@@ -1960,7 +1960,7 @@
 "jI" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1l";
 	name = "interior access button";
 	pixel_x = -28;
@@ -2883,7 +2883,7 @@
 "pr" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a1";
 	name = "exterior access button";
 	pixel_x = -5;
@@ -4194,7 +4194,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d2a3";
 	pixel_x = 28
 	},
@@ -4525,11 +4525,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_pump"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_sensor";
 	pixel_x = 30;
 	pixel_y = 8
@@ -4683,7 +4683,7 @@
 "Av" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1l";
 	name = "interior access button";
 	pixel_x = -28;
@@ -4709,7 +4709,7 @@
 "Ay" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a1";
 	name = "interior access button";
 	pixel_x = -28;
@@ -5373,17 +5373,17 @@
 "Ee" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a3_pump"
 	},
 /obj/machinery/light/small,
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a3_sensor";
 	pixel_y = -25
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d1a2";
 	pixel_y = 28
 	},
@@ -5955,7 +5955,7 @@
 "Ht" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a1";
 	name = "exterior access button";
 	pixel_x = -5;
@@ -6336,18 +6336,18 @@
 "JK" = (
 /obj/machinery/light/small,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d1a1";
 	pixel_y = 28
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a1_sensor";
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a1_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -6681,7 +6681,7 @@
 "Lk" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1l";
 	name = "exterior access button";
 	pixel_x = 28;
@@ -6997,7 +6997,7 @@
 "Mk" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a3";
 	name = "exterior access button";
 	pixel_x = -5;
@@ -7482,7 +7482,7 @@
 "Or" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a1";
 	name = "interior access button";
 	pixel_x = -28;
@@ -7703,7 +7703,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -8398,17 +8398,17 @@
 "SS" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a3_pump"
 	},
 /obj/machinery/light/small,
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a3_sensor";
 	pixel_y = -25
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d2a2";
 	pixel_y = 28
 	},
@@ -8782,7 +8782,7 @@
 "Um" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1l";
 	name = "exterior access button";
 	pixel_x = 28;
@@ -8859,7 +8859,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -8990,7 +8990,7 @@
 "Vx" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a3";
 	name = "exterior access button";
 	pixel_x = -5;

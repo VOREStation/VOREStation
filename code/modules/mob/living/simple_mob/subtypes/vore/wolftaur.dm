@@ -68,11 +68,7 @@
 	base_wander_delay = 8
 	belly_attack = FALSE
 
-/mob/living/simple_mob/vore/wolftaur/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/wolftaur/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

@@ -20,7 +20,7 @@
 			C.toggle_power()
 
 		if(WIRE_PARTICLE_STRENGTH)
-			C.add_strength()
+			C.add_strength(usr)
 
 		if(WIRE_PARTICLE_INTERFACE)
 			C.interface_control = !C.interface_control

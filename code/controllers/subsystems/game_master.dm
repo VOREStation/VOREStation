@@ -96,7 +96,7 @@ SUBSYSTEM_DEF(game_master)
 // These are ran before committing to an event.
 // Returns TRUE if the system is allowed to procede, otherwise returns FALSE.
 /datum/controller/subsystem/game_master/proc/pre_event_checks(quiet = FALSE)
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		if(!quiet)
 			log_game_master("Unable to start event: Ticker is nonexistent, or the game is not ongoing.")
 		return FALSE
@@ -234,7 +234,7 @@ SUBSYSTEM_DEF(game_master)
 	dat += "<th colspan='2'>Players</td>"
 	dat += "</tr>"
 
-	for(var/mob/M as anything in player_list)
+	for(var/mob/M as anything in GLOB.player_list)
 		dat += "<tr>"
 		dat += "<td>[M] ([M.ckey])</td>"
 		dat += "<td>[GLOB.metric.assess_player_activity(M)]%</td>"

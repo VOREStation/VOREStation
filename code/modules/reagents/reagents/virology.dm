@@ -4,6 +4,8 @@
 	description = "Liquid vaccine against some type of virus."
 	color = "#C81040"
 	taste_description = "antibodies"
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/vaccine/affect_blood(mob/living/carbon/M, alien, removed)
 	if(islist(data))

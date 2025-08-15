@@ -65,7 +65,7 @@
 
 		handle_pain()
 
-		handle_allergens()
+		SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
 
 		handle_medical_side_effects()
 
@@ -523,8 +523,8 @@
 
 
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)
-	if(status_flags & GODMODE)
-		return
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 0	// Cancelled by a component
 
 	if(mNobreath in mutations)
 		return
@@ -819,35 +819,6 @@
 
 	playsound_local(get_turf(src), suit_exhale_sound, 100, pressure_affected = FALSE, volume_channel = VOLUME_CHANNEL_AMBIENCE)
 
-/mob/living/carbon/human/proc/handle_allergens()
-	if(chem_effects[CE_ALLERGEN])
-		//first, multiply the basic species-level value by our allergen effect rating, so consuming multiple seperate allergen typess simultaneously hurts more
-		var/damage_severity = species.allergen_damage_severity * chem_effects[CE_ALLERGEN]
-		var/disable_severity = species.allergen_disable_severity * chem_effects[CE_ALLERGEN]
-		if(species.allergen_reaction & AG_PHYS_DMG)
-			adjustBruteLoss(damage_severity)
-		if(species.allergen_reaction & AG_BURN_DMG)
-			adjustFireLoss(damage_severity)
-		if(species.allergen_reaction & AG_TOX_DMG)
-			adjustToxLoss(damage_severity)
-		if(species.allergen_reaction & AG_OXY_DMG)
-			adjustOxyLoss(damage_severity)
-			if(prob(disable_severity/2))
-				emote(pick("cough","gasp","choke"))
-		if(species.allergen_reaction & AG_EMOTE)
-			if(prob(disable_severity/2))
-				emote(pick("pale","shiver","twitch"))
-		if(species.allergen_reaction & AG_PAIN)
-			adjustHalLoss(disable_severity)
-		if(species.allergen_reaction & AG_WEAKEN)
-			Weaken(disable_severity)
-		if(species.allergen_reaction & AG_BLURRY)
-			eye_blurry = max(eye_blurry, disable_severity)
-		if(species.allergen_reaction & AG_SLEEPY)
-			drowsyness = max(drowsyness, disable_severity)
-		if(species.allergen_reaction & AG_CONFUSE)
-			Confuse(disable_severity/4)
-
 /mob/living/carbon/human/proc/handle_species_components()
 	species.handle_species_components(src)
 
@@ -910,8 +881,8 @@
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature >= species.heat_level_1)
 		//Body temperature is too hot.
-		if(status_flags & GODMODE)
-			return 1	//godmode
+		if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+			return 1	// Cancelled by a component
 
 		var/burn_dam = 0
 
@@ -933,8 +904,8 @@
 	else if(bodytemperature <= species.cold_level_1)
 		//Body temperature is too cold.
 
-		if(status_flags & GODMODE)
-			return 1	//godmode
+		if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+			return 1	// Cancelled by a component
 
 
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
@@ -954,8 +925,8 @@
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
-	if(status_flags & GODMODE)
-		return 1	//godmode
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 1	// Cancelled by a component
 
 	if(adjusted_pressure >= species.hazard_high_pressure)
 		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
@@ -1151,11 +1122,10 @@
 							r_hand_blocked = 1-(100-getarmor(BP_R_HAND, "bio"))/100	//This should get a number between 0 and 1
 							total_phoronloss += vsc.plc.CONTAMINATION_LOSS * r_hand_blocked
 			if(total_phoronloss)
-				if(!(status_flags & GODMODE))
-					adjustToxLoss(total_phoronloss)
+				adjustToxLoss(total_phoronloss)
 
-	if(status_flags & GODMODE)
-		return 0	//godmode
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 0	// Cancelled by a component
 
 	// nutrition decrease
 	// Species controls hunger rate for humans, otherwise use defaults
@@ -1201,7 +1171,8 @@
 	if(skip_some_updates())
 		return 0
 
-	if(status_flags & GODMODE)	return 0
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 0	// Cancelled by a component
 
 	//SSD check, if a logged player is awake put them back to sleep!
 	if(species.get_ssd(src) && !client && !teleop)
@@ -1379,12 +1350,8 @@
 
 		//Resting
 		if(resting)
-			dizziness = max(0, dizziness - 15)
-			jitteriness = max(0, jitteriness - 15)
 			adjustHalLoss(-3)
 		else
-			dizziness = max(0, dizziness - 3)
-			jitteriness = max(0, jitteriness - 3)
 			adjustHalLoss(-1)
 
 		if (drowsyness)
@@ -1553,7 +1520,7 @@
 			fat_alert = /obj/screen/alert/fat/synth
 			hungry_alert = /obj/screen/alert/hungry/synth
 			starving_alert = /obj/screen/alert/starving/synth
-		else if(get_species() == SPECIES_CUSTOM)
+		else if(get_species() in list(SPECIES_CUSTOM, SPECIES_HANNER))
 			var/datum/species/custom/C = species
 			if(/datum/trait/neutral/bloodsucker in C.traits)
 				fat_alert = /obj/screen/alert/fat/vampire
@@ -1794,14 +1761,19 @@
 			playsound_local(src,pick(GLOB.scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/proc/handle_changeling()
-	if(mind && mind.changeling)
-		mind.changeling.regenerate()
+	var/datum/component/antag/changeling/comp = is_changeling(src)
+	if(!comp)
+		if(mind && hud_used)
+			ling_chem_display.invisibility = INVISIBILITY_ABSTRACT
+		return
+	else
+		comp.regenerate()
 		if(hud_used)
 			ling_chem_display.invisibility = INVISIBILITY_NONE
 //			ling_chem_display.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(mind.changeling.chem_charges)]</font></div>"
-			switch(mind.changeling.chem_storage)
+			switch(comp.chem_storage)
 				if(1 to 50)
-					switch(mind.changeling.chem_charges)
+					switch(comp.chem_charges)
 						if(0 to 9)
 							ling_chem_display.icon_state = "ling_chems0"
 						if(10 to 19)
@@ -1815,7 +1787,7 @@
 						if(50)
 							ling_chem_display.icon_state = "ling_chems50"
 				if(51 to 80) //This is a crappy way of checking for engorged sacs...
-					switch(mind.changeling.chem_charges)
+					switch(comp.chem_charges)
 						if(0 to 9)
 							ling_chem_display.icon_state = "ling_chems0e"
 						if(10 to 19)
@@ -1834,13 +1806,11 @@
 							ling_chem_display.icon_state = "ling_chems70e"
 						if(80)
 							ling_chem_display.icon_state = "ling_chems80e"
-	else
-		if(mind && hud_used)
-			ling_chem_display.invisibility = INVISIBILITY_ABSTRACT
 
 /mob/living/carbon/human/handle_shock()
 	..()
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+		return 0	// Cancelled by a component
 	if(traumatic_shock >= 80 && can_feel_pain())
 		shock_stage += 1
 	else

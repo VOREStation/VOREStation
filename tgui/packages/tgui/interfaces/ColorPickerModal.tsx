@@ -6,8 +6,8 @@
 
 import {
   colorList,
-  hexToHsva,
   type HsvaColor,
+  hexToHsva,
   hsvaToHex,
   hsvaToHslString,
   hsvaToRgba,
@@ -47,7 +47,8 @@ interface ColorPickerData {
   presets: string;
 }
 
-interface ColorPickerModalProps {}
+// biome-ignore lint/complexity/noBannedTypes:Ingored here
+type ColorPickerModalProps = {};
 
 export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const { act, data } = useBackend<ColorPickerData>();
@@ -195,7 +196,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         }}
                       >
                         <Box
-                          backgroundColor={'#' + entry}
+                          backgroundColor={`#${entry}`}
                           width="21px"
                           height="14px"
                         />
@@ -225,7 +226,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         }}
                       >
                         <Box
-                          backgroundColor={'#' + entry}
+                          backgroundColor={`#${entry}`}
                           width="21px"
                           height="14px"
                         />

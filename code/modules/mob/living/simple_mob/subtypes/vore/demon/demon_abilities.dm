@@ -105,7 +105,7 @@
 		density = FALSE
 		force_max_speed = TRUE
 
-/mob/living/simple_mob/vore/demon/verb/phase_shift()
+/mob/living/simple_mob/vore/demon/verb/demonic_phase_shift()
 	set name = "Phase Shift"
 	set desc = "Shift out of reality temporarily"
 	set category = "Abilities.Demon"

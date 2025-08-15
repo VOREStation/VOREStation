@@ -31,7 +31,7 @@
 
 /mob/living/silicon/Initialize(mapload, is_decoy = FALSE)
 	. = ..()
-	silicon_mob_list += src
+	GLOB.silicon_mob_list += src
 	if(!is_decoy)
 		add_language(LANGUAGE_GALCOM)
 		apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
@@ -41,7 +41,7 @@
 		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6)
 
 /mob/living/silicon/Destroy()
-	silicon_mob_list -= src
+	GLOB.silicon_mob_list -= src
 	for(var/datum/alarm_handler/AH in SSalarm.all_handlers)
 		AH.unregister_alarm(src)
 	return ..()
@@ -63,6 +63,8 @@
 	return
 
 /mob/living/silicon/emp_act(severity)
+	if(SEND_SIGNAL(src, COMSIG_SILICON_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
+		return
 	switch(severity)
 		if(1)
 			src.take_organ_damage(0,20,emp=1)

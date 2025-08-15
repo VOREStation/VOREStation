@@ -145,7 +145,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/failure_timer = 0
 	var/force_update = 0
 	var/updating_icon = 0
-	var/global/list/status_overlays_environ
 	var/alarms_hidden = FALSE //If power alarms from this APC are visible on consoles
 
 	var/nightshift_lights = FALSE
@@ -483,7 +482,7 @@ GLOBAL_LIST_EMPTY(apcs)
 							span_warning("[user.name] has broken the charred power control board inside [name]!"),\
 							span_notice("You broke the charred power control board and remove the remains."),
 							"You hear a crack!")
-						//ticker.mode:apcs-- //XSI said no and I agreed. -rastaf0
+						//SSticker.mode:apcs-- //XSI said no and I agreed. -rastaf0
 					else
 						user.visible_message(\
 							span_warning("[user.name] has removed the power control board from [name]!"),\

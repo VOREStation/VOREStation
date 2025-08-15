@@ -26,9 +26,9 @@
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 
 	var/full_name = ""
 	var/new_name = ""
@@ -137,18 +137,18 @@
 	//VOREStation Edit Start
 	if(speaker.hive_lang_range == -1)
 		var/turf/t = get_turf(speaker)
-		for(var/mob/player in player_list)
+		for(var/mob/player in GLOB.player_list)
 			var/turf/b = get_turf(player)
 			if (t.z == b.z)
 				player.hear_broadcast(src, speaker, speaker_mask, message)
 	else if(speaker.hive_lang_range)
 		var/turf/t = get_turf(speaker)
-		for(var/mob/player in player_list)
+		for(var/mob/player in GLOB.player_list)
 			var/turf/b = get_turf(player)
 			if(get_dist(t,b) <= speaker.hive_lang_range)
 				player.hear_broadcast(src, speaker, speaker_mask, message)
 	else
-		for(var/mob/player in player_list)
+		for(var/mob/player in GLOB.player_list)
 			player.hear_broadcast(src, speaker, speaker_mask, message)
 	//VOREStation Edit End
 

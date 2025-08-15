@@ -9,8 +9,10 @@
 
 SUBSYSTEM_DEF(machines)
 	name = "Machines"
+	dependencies = list(
+		/datum/controller/subsystem/points_of_interest
+	)
 	priority = FIRE_PRIORITY_MACHINES
-	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 
@@ -53,7 +55,7 @@ SUBSYSTEM_DEF(machines)
 	for(var/datum/powernet/PN as anything in powernets)
 		qdel(PN)
 	powernets.Cut()
-	setup_powernets_for_cables(cable_list)
+	setup_powernets_for_cables(GLOB.cable_list)
 
 /datum/controller/subsystem/machines/proc/setup_powernets_for_cables(list/cables)
 	for(var/obj/structure/cable/PC as anything in cables)

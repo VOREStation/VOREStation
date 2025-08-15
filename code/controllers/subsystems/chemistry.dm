@@ -2,7 +2,9 @@ SUBSYSTEM_DEF(chemistry)
 	name = "Chemistry"
 	wait = 20
 	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_CHEMISTRY
+	dependencies = list(
+		/datum/controller/subsystem/garbage
+	)
 
 	var/list/chemical_reactions = list()
 	var/list/chemical_reactions_by_product = list()

@@ -291,7 +291,7 @@
 
 /mob/living/silicon/pai/proc/hackloop()
 	var/turf/T = get_turf(src)
-	for(var/mob/living/silicon/ai/AI in player_list)
+	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		if(T.loc)
 			to_chat(AI, span_bolddanger("Network Alert: Brute-force encryption crack in progress in [T.loc]."))
 		else
@@ -506,3 +506,14 @@
 				else
 					R.code = initial(R.code)
 				. = TRUE
+
+/datum/pai_software/deathalarm
+	name = "Death Alarm"
+	ram_cost = 25
+	id = "death_alarm"
+
+/datum/pai_software/deathalarm/toggle(mob/living/silicon/pai/user)
+	user.paiDA = !user.paiDA
+
+/datum/pai_software/deathalarm/is_active(mob/living/silicon/pai/user)
+	return user.paiDA

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, type CSSProperties } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -111,10 +111,11 @@ export const BombTester = (props) => {
               {canister && (
                 <LabeledList.Item label="Canister Release Pressure">
                   <Slider
+                    tickWhileDragging
                     minValue={0}
                     value={sim_canister_output}
                     maxValue={1013.25}
-                    onDrag={(e, val: number) =>
+                    onChange={(e, val: number) =>
                       act('set_can_pressure', { pressure: val })
                     }
                   />
@@ -213,10 +214,10 @@ class BombTesterSimulation extends Component {
   render() {
     const { x, y } = this.state;
 
-    const newStyle: {} = {
+    const newStyle: CSSProperties = {
       position: 'relative',
-      left: x + 'px',
-      top: y + 'px',
+      left: `${x}px`,
+      top: `${y}px`,
     };
 
     return (

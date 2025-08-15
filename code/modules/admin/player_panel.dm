@@ -1,6 +1,6 @@
 
 /datum/admins/proc/player_panel_new()//The new one
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 	var/ui_scale = owner.prefs.read_preference(/datum/preference/toggle/ui_scale)
 	var/dat = "<html><head><title>Admin Player Panel</title></head>"
@@ -216,7 +216,7 @@
 		<span id='maintable_data_archive'>
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
-	var/list/mobs = sortmobs()
+	var/list/mobs = sort_mobs()
 	var/i = 1
 	for(var/mob/M in mobs)
 		if(M.ckey)
@@ -324,14 +324,14 @@
 
 //The old one
 /datum/admins/proc/player_panel_old()
-	if (!usr.client.holder)
+	if (!check_rights_for(usr.client, R_HOLDER))
 		return
 
 	var/dat = "<html><head><title>Player Menu</title></head>"
 	dat += "<body><table border=1 cellspacing=5>" + span_bold("<tr><th>Name</th><th>Real Name</th><th>Assigned Job</th><th>Key</th><th>Options</th><th>PM</th><th>Traitor?</th></tr>")
 	//add <th>IP:</th> to this if wanting to add back in IP checking
 	//add <td>(IP: [M.lastKnownIP])</td> if you want to know their ip to the lists below
-	var/list/mobs = sortmobs()
+	var/list/mobs = sort_mobs()
 
 	for(var/mob/M in mobs)
 		if(!M.ckey) continue
@@ -390,9 +390,9 @@
 
 
 /datum/admins/proc/check_antagonists()
-	if (ticker && ticker.current_state >= GAME_STATE_PLAYING)
+	if (SSticker && SSticker.current_state >= GAME_STATE_PLAYING)
 		var/dat = "<html><head><title>Round Status</title></head><body><h1>" + span_bold("Round Status") + "</h1>"
-		dat += "Current Game Mode: " + span_bold("[ticker.mode.name]") + "<BR>"
+		dat += "Current Game Mode: " + span_bold("[SSticker.mode.name]") + "<BR>"
 		dat += "Round Duration: " + span_bold("[roundduration2text()]") + "<BR>"
 		dat += span_bold("Emergency shuttle") + "<BR>"
 		if (!emergency_shuttle.online())
@@ -410,7 +410,7 @@
 			if (emergency_shuttle.shuttle.moving_status == SHUTTLE_WARMUP)
 				dat += "Launching now..."
 
-		dat += "<a href='byond://?src=\ref[src];[HrefToken()];delay_round_end=1'>[ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
+		dat += "<a href='byond://?src=\ref[src];[HrefToken()];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
 		dat += "<hr>"
 		for(var/antag_type in GLOB.all_antag_types)
 			var/datum/antagonist/A = GLOB.all_antag_types[antag_type]

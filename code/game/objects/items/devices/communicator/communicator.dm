@@ -2,8 +2,6 @@
 //
 // Allows ghosts to roleplay with crewmembers without having to commit to joining the round, and also allows communications between two communicators.
 
-var/global/list/obj/item/communicator/all_communicators = list() //Don't change this to GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator) for now. Sortatoms goes berserk.
-
 // List of core tabs the communicator can switch to
 #define HOMETAB 1
 #define PHONTAB 2
@@ -77,17 +75,6 @@ var/global/list/obj/item/communicator/all_communicators = list() //Don't change 
 
 	// Ringtones! (Based on the PDA ones)
 	var/ttone = "beep" //The ringtone!
-	var/list/ttone_sound = list("beep" = 'sound/machines/twobeep.ogg',
-								"boom" = 'sound/effects/explosionfar.ogg',
-								"slip" = 'sound/misc/slip.ogg',
-								"honk" = 'sound/items/bikehorn.ogg',
-								"SKREE" = 'sound/voice/shriek1.ogg',
-								// "holy" = 'sound/items/PDA/ambicha4-short.ogg',
-								"xeno" = 'sound/voice/hiss1.ogg',
-								"dust" = 'sound/effects/supermatter.ogg',
-								"spark" = 'sound/effects/sparks4.ogg',
-								"rad" = 'sound/items/geiger/high1.ogg',
-								"servo" = 'sound/machines/rig/rigservo.ogg')
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
@@ -98,7 +85,7 @@ var/global/list/obj/item/communicator/all_communicators = list() //Don't change 
 /obj/item/communicator/Initialize(mapload)
 	. = ..()
 	all_communicators += src
-	all_communicators = sortAtom(all_communicators)
+	all_communicators = sort_names(all_communicators)
 	node = get_exonet_node()
 	START_PROCESSING(SSobj, src)
 	camera = new(src)
@@ -191,7 +178,7 @@ var/global/list/obj/item/communicator/all_communicators = list() //Don't change 
 		if(!comm || !comm.exonet || !comm.exonet.address || comm.exonet.address == src.exonet.address) //Don't add addressless devices, and don't add ourselves.
 			continue
 		src.known_devices |= comm
-	for(var/mob/observer/dead/O in dead_mob_list)
+	for(var/mob/observer/dead/O in GLOB.dead_mob_list)
 		if(!O.client || O.client.prefs.communicator_visibility == 0)
 			continue
 		src.known_devices |= O
@@ -281,7 +268,7 @@ var/global/list/obj/item/communicator/all_communicators = list() //Don't change 
 /mob/observer/dead/Destroy()
 	if(exonet)
 		exonet.remove_address()
-		qdel_null(exonet)
+		QDEL_NULL(exonet)
 	. = ..()
 
 // Proc: register_device()
@@ -316,7 +303,7 @@ var/global/list/obj/item/communicator/all_communicators = list() //Don't change 
 	//Clean up references that might point at us
 	all_communicators -= src
 	STOP_PROCESSING(SSobj, src)
-	listening_objects.Remove(src)
+	GLOB.listening_objects.Remove(src)
 	QDEL_NULL(camera)
 	QDEL_NULL(exonet)
 

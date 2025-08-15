@@ -94,7 +94,7 @@
 	},
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "ninja_shuttle";
 	name = "interior access button";
 	pixel_x = -25;
@@ -495,7 +495,7 @@
 /obj/machinery/embedded_controller/radio/docking_port_multi{
 	child_names_txt = "Airlock One;Airlock Two";
 	child_tags_txt = "arrivals_dock_north_airlock;arrivals_dock_south_airlock";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock";
 	pixel_y = -32
 	},
@@ -561,7 +561,7 @@
 /obj/machinery/atmospherics/pipe/manifold4w/visible,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "merc_shuttle";
 	name = "interior access button";
 	pixel_x = 25;
@@ -837,7 +837,7 @@
 "aTS" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "vox_west_control";
 	req_one_access = list(150)
 	},
@@ -1329,7 +1329,7 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/voidcraft{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_shuttle_outer";
 	name = "Ship External Access";
 	req_access = list(150)
@@ -1811,7 +1811,7 @@
 /area/shuttle/arrival/pre_game)
 "bYU" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "centcom_dock_airlock";
 	locked = 1;
@@ -1866,7 +1866,7 @@
 /area/holodeck/source_courtroom)
 "ccc" = (
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ninja_shuttle_sensor";
 	pixel_y = 28
 	},
@@ -2139,7 +2139,7 @@
 /area/syndicate_station)
 "ctM" = (
 /obj/machinery/door/airlock/hatch{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_southwest_lock";
 	req_access = list(150)
 	},
@@ -2376,7 +2376,7 @@
 /area/shuttle/supply)
 "cKC" = (
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_east_sensor";
 	pixel_x = -25
 	},
@@ -2390,7 +2390,7 @@
 /area/skipjack_station/start)
 "cLf" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "supply_shuttle_hatch";
 	locked = 1;
@@ -2873,7 +2873,7 @@
 "dqX" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "skipjack_shuttle";
 	req_access = list(150)
 	},
@@ -3205,7 +3205,7 @@
 /area/shuttle/merchant/home)
 "dJB" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "trade_shuttle_bay";
 	name = "shuttle bay controller";
 	pixel_x = 25;
@@ -3556,7 +3556,7 @@
 /area/space)
 "egp" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "centcom_shuttle";
 	pixel_y = -25;
 	tag_door = "centcom_shuttle_hatch"
@@ -4103,7 +4103,7 @@
 /area/ninja_dojo/start)
 "eOt" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ninja_shuttle_outer";
 	name = "Ship External Hatch";
 	req_access = list(150)
@@ -4419,7 +4419,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "skipjack_shuttle";
 	pixel_x = 22;
 	req_access = list(150)
@@ -5121,7 +5121,7 @@
 	dir = 4
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_elite_shuttle";
 	pixel_x = -25;
 	req_one_access = list(150);
@@ -5155,7 +5155,7 @@
 /area/centcom/main_hall)
 "fTK" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	glass = 1380;
 	icon_state = "door_locked";
 	id_tag = "centcom_shuttle_bay_door";
@@ -5728,7 +5728,7 @@
 /area/skipjack_station)
 "gBq" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "response_base";
 	name = "docking port controller";
 	pixel_y = -25;
@@ -6590,7 +6590,7 @@
 /area/tdome/tdome1)
 "hEt" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_shuttle";
 	pixel_y = 25;
 	req_one_access = list(13);
@@ -6675,7 +6675,7 @@
 /area/centcom/evac)
 "hIM" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "trade_shuttle_bay_door";
 	locked = 1
@@ -7113,7 +7113,7 @@
 /area/syndicate_station/start)
 "idR" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_west_control";
 	pixel_x = 24;
 	req_access = list(150);
@@ -7124,7 +7124,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_west_vent"
 	},
 /obj/machinery/light/small,
@@ -7246,7 +7246,7 @@
 /obj/machinery/embedded_controller/radio/docking_port_multi{
 	child_names_txt = "Airlock Three;Airlock Four";
 	child_tags_txt = "escape_dock_snorth_airlock;escape_dock_ssouth_airlock";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock";
 	pixel_y = -32;
 	req_one_access = list(13)
@@ -7580,7 +7580,7 @@
 /area/shuttle/administration/centcom)
 "iHa" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "large_escape_pod_1_recovery";
 	pixel_x = -25;
 	pixel_y = 25;
@@ -8472,7 +8472,7 @@
 /area/syndicate_station/start)
 "jGa" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "admin_shuttle_hatch";
 	locked = 1;
@@ -8621,7 +8621,7 @@
 "jQJ" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_pod_1_recovery";
 	pixel_x = 25;
 	pixel_y = -25;
@@ -9166,7 +9166,7 @@
 "kqh" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_shuttle_pump"
 	},
 /obj/machinery/light/small,
@@ -9177,7 +9177,7 @@
 /area/skipjack_station/start)
 "kqS" = (
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_west_sensor";
 	pixel_x = 25
 	},
@@ -9237,7 +9237,7 @@
 /area/centcom/medical)
 "kuN" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_shuttle_hatch";
 	locked = 1;
@@ -9538,7 +9538,7 @@
 /area/beach)
 "kHc" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "centcom_dock_airlock";
 	locked = 1;
@@ -9697,7 +9697,7 @@
 /area/centcom/command)
 "kOA" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "admin_shuttle";
 	pixel_y = -25;
 	req_one_access = list(101);
@@ -10182,7 +10182,7 @@
 /area/tdome)
 "lqf" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "arrivals_shuttle_hatch";
 	locked = 1;
@@ -10224,7 +10224,7 @@
 /area/shuttle/merchant/home)
 "luW" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_shuttle";
 	pixel_y = 25;
 	req_one_access = list(13);
@@ -10379,7 +10379,7 @@
 /area/centcom/suppy)
 "lFo" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "centcom_shuttle_bay";
 	pixel_y = -32;
 	tag_door = "centcom_shuttle_bay_door"
@@ -11087,7 +11087,7 @@
 /area/holodeck/source_picnicarea)
 "mrF" = (
 /obj/machinery/door/airlock/hatch{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_southeast_lock";
 	req_access = list(150)
 	},
@@ -11128,7 +11128,7 @@
 /area/syndicate_station)
 "mvX" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "trade_shuttle_hatch";
 	locked = 1;
@@ -11968,7 +11968,7 @@
 /area/centcom/specops)
 "nsa" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_west_vent"
 	},
 /turf/simulated/shuttle/plating,
@@ -12135,7 +12135,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "centcom_dock";
 	name = "docking port controller";
 	pixel_x = -25;
@@ -12333,7 +12333,7 @@
 /area/centcom/bar)
 "nSY" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_pod_1_recovery_hatch";
 	locked = 1;
@@ -12455,7 +12455,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ninja_shuttle_inner";
 	name = "Ship Internal Hatch";
 	req_access = list(150)
@@ -12845,7 +12845,7 @@
 /area/syndicate_station/start)
 "otk" = (
 /obj/machinery/door/airlock/hatch{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_northeast_lock";
 	req_access = list(150)
 	},
@@ -13910,7 +13910,7 @@
 "pFK" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "merc_shuttle";
 	name = "interior access button";
 	pixel_x = -25;
@@ -13921,7 +13921,7 @@
 /area/syndicate_station/start)
 "pFT" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "response_base_door";
 	locked = 1
@@ -13980,7 +13980,7 @@
 /area/centcom/living)
 "pHS" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "response_shuttle_door";
 	locked = 1;
@@ -14195,7 +14195,7 @@
 /area/shuttle/trade)
 "pVs" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "response_shuttle";
 	pixel_y = -25;
 	tag_door = "response_shuttle_door"
@@ -15057,7 +15057,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "vox_west_control";
 	pixel_x = -22;
 	req_one_access = list(150)
@@ -15276,7 +15276,7 @@
 /area/tdome/tdomeobserve)
 "rbD" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "trade_shuttle";
 	pixel_x = -25;
 	req_one_access = list(101);
@@ -15515,7 +15515,7 @@
 /area/space)
 "rnN" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "large_escape_pod_1_recovery_hatch";
 	locked = 1;
@@ -15817,7 +15817,7 @@
 "rzx" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_shuttle_pump"
 	},
 /obj/effect/shuttle_landmark{
@@ -15967,7 +15967,7 @@
 /area/syndicate_station/start)
 "rGU" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_shuttle_inner";
 	name = "Ship External Access";
 	req_access = list(150)
@@ -15979,7 +15979,7 @@
 /area/syndicate_station/start)
 "rHT" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_east_vent"
 	},
 /turf/simulated/shuttle/plating,
@@ -16022,7 +16022,7 @@
 "rKS" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_shuttle_pump"
 	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
@@ -16131,7 +16131,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_shuttle_inner";
 	name = "Ship External Access";
 	req_access = list(150)
@@ -16736,7 +16736,7 @@
 	id = "QMLoad"
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "supply_shuttle_hatch";
 	locked = 1;
@@ -17249,7 +17249,7 @@
 /area/skipjack_station)
 "sVW" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "large_escape_pod_2_recovery_hatch";
 	locked = 1;
@@ -17387,18 +17387,18 @@
 "teW" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_shuttle_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_shuttle";
 	pixel_x = 24;
 	pixel_y = -2;
 	req_access = list(150)
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "merc_shuttle_sensor";
 	pixel_x = 28;
 	pixel_y = 8
@@ -17853,7 +17853,7 @@
 /area/centcom/main_hall)
 "tJi" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "centcom_dock_airlock";
 	locked = 1;
@@ -18293,7 +18293,7 @@
 /area/shuttle/arrival/pre_game)
 "ucM" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "centcom_shuttle_hatch";
 	locked = 1;
@@ -20542,7 +20542,7 @@
 /area/centcom/main_hall)
 "wGI" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "supply_shuttle";
 	pixel_x = 25;
 	req_one_access = list(13,31);
@@ -20642,7 +20642,7 @@
 	id = "QMLoad2"
 	},
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "supply_shuttle_hatch";
 	locked = 1;
@@ -20693,7 +20693,7 @@
 /area/syndicate_station/start)
 "wJs" = (
 /obj/machinery/door/airlock/hatch{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_northwest_lock";
 	req_access = list(150)
 	},
@@ -20741,12 +20741,12 @@
 "wNk" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "vox_east_vent"
 	},
 /obj/machinery/light/small,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "skipjack_shuttle";
 	pixel_x = -24;
 	req_access = list(150);
@@ -20990,7 +20990,7 @@
 /area/shuttle/transport1/centcom)
 "xbf" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "large_escape_pod_2_recovery";
 	pixel_x = -25;
 	pixel_y = 25;
@@ -22185,14 +22185,14 @@
 /area/shuttle/escape/centcom)
 "ymb" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ninja_shuttle";
 	pixel_y = -25;
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ninja_shuttle_pump"
 	},
 /obj/machinery/button/remote/blast_door{

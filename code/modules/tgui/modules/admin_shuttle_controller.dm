@@ -29,7 +29,7 @@
 	return data
 
 /datum/tgui_module/admin_shuttle_controller/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/admin_shuttle_controller/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())

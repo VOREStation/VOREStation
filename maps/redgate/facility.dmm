@@ -2186,7 +2186,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/medbay)
 "dki" = (
-/obj/machinery/mecha_part_fabricator{
+/obj/machinery/mecha_part_fabricator_tg{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -2958,7 +2958,10 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/office8)
 "eku" = (
-/obj/machinery/telecomms/allinone,
+/obj/structure/prop/machine/core{
+	icon = 'icons/obj/stationobjs_vr.dmi';
+	icon_state = "allinone"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/facility/lab3)
 "ekR" = (
@@ -4012,7 +4015,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/tram)
 "fHW" = (
-/obj/machinery/mecha_part_fabricator/pros{
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
@@ -10310,7 +10313,7 @@
 /turf/simulated/floor/carpet/blue2,
 /area/redgate/facility/ne)
 "oyh" = (
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -10704,12 +10707,6 @@
 /area/redgate/facility/sw)
 "piE" = (
 /obj/structure/table/steel_reinforced,
-/turf/simulated/floor/tiled/techfloor,
-/area/redgate/facility/cell14)
-"pjb" = (
-/obj/machinery/computer/rdconsole/robotics{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/facility/cell14)
 "pjC" = (
@@ -14355,9 +14352,12 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/entrance)
 "ulm" = (
-/obj/machinery/telecomms/bus,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/prop/machine/core{
+	icon = 'icons/obj/stationobjs_vr.dmi';
+	icon_state = "bus"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/facility/lab3)
@@ -14747,7 +14747,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/facility/cell9)
 "uMg" = (
-/obj/machinery/telecomms/server,
+/obj/structure/prop/machine/core{
+	icon = 'icons/obj/stationobjs_vr.dmi';
+	icon_state = "comm_server"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/facility/lab3)
 "uMq" = (
@@ -31253,7 +31256,7 @@ bXk
 alk
 tvs
 oXQ
-pjb
+tvs
 bXk
 tvs
 bXk
