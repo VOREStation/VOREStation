@@ -5,6 +5,7 @@ var/list/floor_light_cache = list()
 	desc = "A backlit floor panel, ready for installation!"
 	icon = 'icons/obj/machines/floor_light.dmi'
 	icon_state = "item"
+	matter = list(MAT_STEEL = 2500, MAT_GLASS = 2750)
 
 /obj/item/floor_light/attack_self(mob/user)
 	var/turf/T = get_turf(user)
