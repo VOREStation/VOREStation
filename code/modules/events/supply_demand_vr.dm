@@ -75,7 +75,7 @@
 		// Success!
 		SSsupply.points += 100 * severity
 		var/msg = "Great work! With those items you delivered our inventory levels all match up. "
-		msg += "[capitalize(pick(first_names_female))] from accounting will have nothing to complain about. "
+		msg += "[capitalize(pick(GLOB.first_names_female))] from accounting will have nothing to complain about. "
 		msg += "I think you'll find a little something in your supply account."
 		command_announcement.Announce(msg, my_department)
 	else

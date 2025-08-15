@@ -45,7 +45,7 @@
 		return FALSE
 	add_attack_logs(src,T,"Transformation sting (changeling)")
 	T.visible_message(span_warning("[T] transforms!"))
-	qdel_swap(T.dna, chosen_dna.dna.Clone())
+	QDEL_SWAP(T.dna, chosen_dna.dna.Clone())
 	T.real_name = chosen_dna.dna.real_name
 	T.UpdateAppearance()
 	domutcheck(T, null)

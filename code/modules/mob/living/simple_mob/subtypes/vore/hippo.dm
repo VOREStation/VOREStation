@@ -5,8 +5,8 @@
 
 	icon_state = "hippo"
 	icon_living = "hippo"
-	icon_dead = "hippo_dead"
-	icon_gib = "hippo_gib"
+	icon_dead = "hippo-dead"
+	icon_gib = "hippo-dead" // No gib sprite yet
 	icon = 'icons/mob/vore64x64.dmi'
 
 	maxHealth = 200
@@ -55,7 +55,7 @@
 	vore_active = 1
 	vore_capacity = 1
 	vore_bump_chance = 15
-	vore_bump_emote = "lazily wraps its tentacles around"
+	vore_bump_emote = "lazily wraps its mouth around"
 	vore_standing_too = 1
 	vore_ignores_undigestable = 0
 	vore_default_mode = DM_HOLD

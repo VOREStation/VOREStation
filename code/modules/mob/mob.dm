@@ -44,8 +44,9 @@
 	if(mind)
 		if(mind.current == src)
 			mind.current = null
-		if(mind.original == src)
-			mind.original = null
+		var/mob/living/original = mind.original_character?.resolve()
+		if(original && original == src)
+			mind.original_character = null
 
 	. = ..()
 	update_client_z(null)
@@ -340,7 +341,7 @@
 	// Try to figure out what time to use
 
 	// Special cases, can never respawn
-	if(ticker?.mode?.deny_respawn)
+	if(SSticker?.mode?.deny_respawn)
 		time = -1
 	else if(!CONFIG_GET(flag/abandon_allowed))
 		time = -1
@@ -348,7 +349,7 @@
 		time = -1
 
 	// Special case for observing before game start
-	else if(ticker?.current_state <= GAME_STATE_SETTING_UP)
+	else if(SSticker?.current_state <= GAME_STATE_SETTING_UP)
 		time = 1 MINUTE
 
 	// Wasn't given a time, use the config time
@@ -377,7 +378,7 @@
 		to_chat(src, span_boldnotice("You are already in the lobby!"))
 		return
 
-	if(stat != DEAD || !ticker)
+	if(stat != DEAD || !SSticker)
 		to_chat(src, span_boldnotice("You must be dead to use this!"))
 		return
 

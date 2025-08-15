@@ -42,11 +42,11 @@
 	// if(SSvote.mode)
 	// 	. += "Vote: [capitalize(SSvote.mode)] Time Left: [SSvote.time_remaining] s"
 
-	if(SSticker.current_state == GAME_STATE_INIT)
+	if(SSticker.current_state == GAME_STATE_STARTUP)
 		. += "Time To Start: Server Initializing"
 
 	else if(SSticker.current_state == GAME_STATE_PREGAME)
-		. += "Time To Start: [round(SSticker.pregame_timeleft,1)][GLOB.round_progressing ? "" : " (DELAYED)"]"
+		. += "Time To Start: [round(SSticker.timeLeft, 1)][GLOB.round_progressing ? "" : " (DELAYED)"]"
 		. += "Players: [totalPlayers]"
 		. += "Players Ready: [totalPlayersReady]"
 		totalPlayers = 0
@@ -223,7 +223,7 @@
 /mob/new_player/proc/AttemptLateSpawn(rank,var/spawning_at)
 	if (src != usr)
 		return 0
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(src, span_red("The round is either not ready, or has already finished..."))
 		return 0
 	if(!CONFIG_GET(flag/enter_allowed))
@@ -297,7 +297,7 @@
 		character = character.AIize(move = FALSE) // Dupe of code in /datum/controller/subsystem/ticker/proc/create_characters() for non-latespawn, unify?
 
 		AnnounceCyborg(character, rank, "has been transferred to the empty core in \the [character.loc.loc]")
-		ticker.mode.latespawn(character)
+		SSticker.mode.latespawn(character)
 
 		qdel(C) //Deletes empty core (really?)
 		qdel(src) //Deletes new_player
@@ -308,22 +308,22 @@
 		character.buckled.loc = character.loc
 		character.buckled.set_dir(character.dir)
 
-	ticker.mode.latespawn(character)
+	SSticker.mode.latespawn(character)
 
 	if(rank == JOB_OUTSIDER)
 		log_and_message_admins("has joined the round as non-crew. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)",character)
 		if(!(J.mob_type & JOB_SILICON))
-			ticker.minds += character.mind
+			SSticker.minds += character.mind
 	else if(rank == JOB_ANOMALY)
 		log_and_message_admins("has joined the round as anomaly. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)",character)
 		if(!(J.mob_type & JOB_SILICON))
-			ticker.minds += character.mind
+			SSticker.minds += character.mind
 	else if(J.mob_type & JOB_SILICON)
 		AnnounceCyborg(character, rank, join_message, announce_channel, character.z)
 	else
 		AnnounceArrival(character, rank, join_message, announce_channel, character.z)
 		GLOB.data_core.manifest_inject(character)
-		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+		SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 	if(ishuman(character))
 		if(character.client.prefs.auto_backup_implant)
 			var/obj/item/implant/backup/imp = new(src)
@@ -370,7 +370,7 @@
 	qdel(src) // Delete new_player mob
 
 /mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message, var/channel, var/zlevel)
-	if (ticker.current_state == GAME_STATE_PLAYING)
+	if (SSticker.current_state == GAME_STATE_PLAYING)
 		var/list/zlevels = zlevel ? using_map.get_map_levels(zlevel, TRUE, om_range = DEFAULT_OVERMAP_RANGE) : null
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title
@@ -402,7 +402,7 @@
 	if(!new_character)
 		new_character = new(T)
 
-	if(ticker.random_players)
+	if(CONFIG_GET(flag/force_random_names))
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
 	else
@@ -413,7 +413,7 @@
 
 	if(mind)
 		mind.active = 0					//we wish to transfer the key manually
-		mind.original = new_character
+		mind.original_character = WEAKREF(new_character)
 		mind.loaded_from_ckey = client.ckey
 		mind.loaded_from_slot = client.prefs.default_slot
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active

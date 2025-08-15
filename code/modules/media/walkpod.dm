@@ -251,7 +251,7 @@
 
 	if(istype(potential_holder))
 		potential_holder.unEquip(deployed_headpods, force = TRUE)
-	qdel_null(deployed_headpods)
+	QDEL_NULL(deployed_headpods)
 	update_icon()
 
 /obj/item/walkpod/proc/check_headpods()
