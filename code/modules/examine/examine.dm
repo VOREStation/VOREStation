@@ -96,20 +96,29 @@
 	//do pref check here
 	var/desc_info_temp = A.get_description_info()
 	if(desc_info_temp)
-		. += span_details("ℹ️ | Information",desc_info_temp)
+		. += span_details("ℹ️ | Information", desc_info_temp)
 	var/fluff_info_temp = A.get_description_fluff()
 	if(fluff_info_temp && fluff_info_temp != "")
 		var/title = "🪐 | Flavor Information"
+		var/examine_text = splittext(fluff_info_temp, "||")
+		var/index = 0
+		var/rendered_text = ""
+		for(var/part in examine_text)
+			if(index % 2)
+				rendered_text += span_spoiler("[part]")
+			else
+				rendered_text += "[part]"
+			index++
 		if(isliving(A)) //ehhh
 			var/mob/living/B = A
 			if(B.flavor_text)
 				title = "🔍 | Flavor Text"
 
-		. += span_details(title,fluff_info_temp)
+		. += span_details(title, rendered_text)
 	var/is_antagish = antag_check()
 	var/antag_info_temp = A.get_description_antag()
 	if(is_antagish && antag_info_temp)
-		. += span_details("🏴‍☠️ | Antag Information",antag_info_temp)
+		. += span_details("🏴‍☠️ | Antag Information", antag_info_temp)
 	var/list/interaction_info = A.get_description_interaction()
 	if(interaction_info.len > 0)
 		var/temp = ""

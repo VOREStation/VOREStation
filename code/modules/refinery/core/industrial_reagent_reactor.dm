@@ -34,7 +34,7 @@
 
 /obj/machinery/reagent_refinery/reactor/Destroy()
 	. = ..()
-	qdel_null(internal_tank)
+	QDEL_NULL(internal_tank)
 
 /obj/machinery/reagent_refinery/reactor/process()
 	if(!anchored)
