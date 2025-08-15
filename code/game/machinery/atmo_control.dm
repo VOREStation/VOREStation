@@ -287,6 +287,8 @@ GLOBAL_LIST_EMPTY(gas_sensors)
 /obj/machinery/computer/general_air_control/large_tank_control
 	icon = 'icons/obj/computer.dmi'
 	frequency = 1441
+	name = "Large Tank Computer"
+	desc = "Controls various devices for managing a gas tank."
 	var/input_tag
 	var/output_tag
 	var/list/input_info

@@ -120,7 +120,7 @@
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 50, 1)
-		to_chat("You have [open ? "closed" : "opened"] the maintenance panel for [src].")
+		to_chat(user, "You have [open ? "closed" : "opened"] the maintenance panel for [src].")
 		open = !open
 		return
 
