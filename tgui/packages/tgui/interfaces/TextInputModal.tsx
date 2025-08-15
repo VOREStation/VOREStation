@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Section, Stack, TextArea } from 'tgui-core/components';
-import { isEscape } from 'tgui-core/keys';
-import { KEY } from 'tgui-core/keys';
-
+import { isEscape, KEY } from 'tgui-core/keys';
+import type { BooleanLike } from 'tgui-core/react';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
@@ -16,6 +15,7 @@ type TextInputData = {
   placeholder: string;
   timeout: number;
   title: string;
+  spellcheck: BooleanLike;
 };
 
 export const sanitizeMultiline = (toSanitize: string) => {
@@ -36,6 +36,7 @@ export const TextInputModal = (props) => {
     placeholder = '',
     timeout,
     title,
+    spellcheck,
   } = data;
 
   const [input, setInput] = useState(placeholder || '');
@@ -80,7 +81,7 @@ export const TextInputModal = (props) => {
                 autoFocus
                 autoSelect
                 fluid
-                spellcheck
+                spellcheck={!!spellcheck}
                 userMarkup={{ u: '_', i: '|', b: '+' }}
                 height={multiline || input.length >= 30 ? '100%' : '1.8rem'}
                 maxLength={max_length}
