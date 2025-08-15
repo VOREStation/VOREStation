@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "C-shift clowns will properly delete their component on death."
+  - bugfix: "Walls will no longer runtime when spam-clicked with tools."

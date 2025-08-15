@@ -322,6 +322,7 @@
 		"industrial_reagent_pump",
 		"industrial_reagent_reactor",
 		"industrial_reagent_vat",
+		"industrial_reagent_mixer",
 		"industrial_reagent_waste_processor",
 		"smart_centrifuge",
 		"pump_relay",
