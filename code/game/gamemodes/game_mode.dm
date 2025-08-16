@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 /datum/game_mode/proc/declare_completion()
 
-	var/is_antag_mode = (antag_templates && antag_templates.len)
+	var/is_antag_mode = LAZYLEN(antag_templates)
 	check_victory()
 	if(is_antag_mode)
 		sleep(10)

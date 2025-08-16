@@ -5,7 +5,7 @@
 		roundend_callbacks.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
 
-	to_world(span_filter_system("<br><br><br><H1>A round of [mode.name] has ended!</H1>"))
+	to_chat(world, span_filter_system("<br><br><br><H1>A round of [mode.name] has ended!</H1>"))
 	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
@@ -28,20 +28,20 @@
 						to_chat(Player, span_filter_system(span_red(span_bold("You did not survive the events on [station_name()]..."))))
 				else
 					to_chat(Player, span_filter_system(span_red(span_bold("You did not survive the events on [station_name()]..."))))
-	to_world(span_filter_system("<br>"))
+	to_chat(world, span_filter_system("<br>"))
 
 	for (var/mob/living/silicon/ai/aiPlayer in GLOB.mob_list)
 		if (aiPlayer.stat != 2)
-			to_world(span_filter_system(span_bold("[aiPlayer.name]'s laws at the end of the round were:"))) // VOREStation edit
+			to_chat(world, span_filter_system(span_bold("[aiPlayer.name]'s laws at the end of the round were:"))) // VOREStation edit
 		else
-			to_world(span_filter_system(span_bold("[aiPlayer.name]'s laws when it was deactivated were:"))) // VOREStation edit
+			to_chat(world, span_filter_system(span_bold("[aiPlayer.name]'s laws when it was deactivated were:"))) // VOREStation edit
 		aiPlayer.show_laws(1)
 
 		if (aiPlayer.connected_robots.len)
 			var/robolist = span_bold("The AI's loyal minions were:") + " "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				robolist += "[robo.name][robo.stat?" (Deactivated), ":", "]"  // VOREStation edit
-			to_world(span_filter_system("[robolist]"))
+			to_chat(world, span_filter_system("[robolist]"))
 
 	var/dronecount = 0
 
@@ -58,17 +58,18 @@
 
 		if (!robo.connected_ai)
 			if (robo.stat != 2)
-				to_world(span_filter_system(span_bold("[robo.name] survived as an AI-less stationbound synthetic! Its laws were:"))) // VOREStation edit
+				to_chat(world, span_filter_system(span_bold("[robo.name] survived as an AI-less stationbound synthetic! Its laws were:"))) // VOREStation edit
 			else
-				to_world(span_filter_system(span_bold("[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:"))) // VOREStation edit
+				to_chat(world, span_filter_system(span_bold("[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:"))) // VOREStation edit
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
 
 	if(dronecount)
-		to_world(span_filter_system(span_bold("There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.")))
+		to_chat(world, span_filter_system(span_bold("There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.")))
 
 	mode.declare_completion()//To declare normal completion.
+	RoundTrivia()
 
 	//Ask the event manager to print round end information
 	SSevents.RoundEnd()
@@ -92,9 +93,8 @@
 
 	SSdbcore.SetRoundEnd()
 
-	sleep(5 SECONDS)
 	ready_for_reboot = TRUE
-	standard_reboot()
+	addtimer(CALLBACK(src, PROC_REF(standard_reboot)), 5 SECONDS)
 
 /datum/controller/subsystem/ticker/proc/standard_reboot()
 	if(ready_for_reboot)
