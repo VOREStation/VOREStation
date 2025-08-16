@@ -87,6 +87,10 @@
 	. = ..()
 	movement_cooldown = 10
 
+/mob/living/simple_mob/vore/alienanimals/dustjumper/begin_instant_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
+	. = ..()
+	movement_cooldown = 10
+
 /datum/ai_holder/simple_mob/melee/evasive/dustjumper
 	hostile = FALSE
 	retaliate = TRUE

@@ -276,7 +276,7 @@
 		explode()
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/Move()
+/obj/structure/reagent_dispensers/fueltank/Move(atom/newloc, direct, movetime)
 	if (..() && modded)
 		leak_fuel(amount_per_transfer_from_this/10.0)
 
