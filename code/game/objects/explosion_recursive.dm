@@ -3,9 +3,6 @@
 	var/turf/T = get_turf(src.mob)
 	explosion(T, power)
 
-/obj
-	var/explosion_resistance
-
 /turf
 	var/explosion_resistance
 

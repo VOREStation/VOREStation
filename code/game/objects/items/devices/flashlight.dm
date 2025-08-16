@@ -448,14 +448,14 @@
 	if(.)
 		user.visible_message(span_notice("[user] activates the flare."), span_notice("You pull the cord on the flare, activating it!"))
 		src.force = on_damage
-		src.damtype = "fire"
+		src.damtype = BURN
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/proc/ignite() //Used for flare launchers.
 	on = !on
 	update_brightness()
 	force = on_damage
-	damtype = "fire"
+	damtype = BURN
 	START_PROCESSING(SSobj, src)
 	return 1
 

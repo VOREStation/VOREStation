@@ -3,26 +3,21 @@
 	plane = OBJ_PLANE
 	vis_flags = VIS_INHERIT_PLANE //when this be added to vis_contents of something it inherit something.plane, important for visualisation of obj in openspace.
 	//Used to store information about the contents of the object.
-	var/list/matter
 	var/w_class // Size of the object.
 	var/unacidable = FALSE //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
-	var/throwforce = 1
-	var/catchable = 1	// can it be caught on throws/flying?
-	var/sharp = FALSE		// whether this object cuts
-	var/edge = FALSE		// whether this object is more likely to dismember
-	var/pry = 0			//Used in attackby() to open doors
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
-	var/damtype = "brute"
-	var/armor_penetration = 0
 	var/show_messages
-	var/preserve_item = 0 //whether this object is preserved when its owner goes into cryo-storage, gateway, etc
 	var/can_speak = 0 //For MMIs and admin trickery. If an object has a brainmob in its contents, set this to 1 to allow it to speak.
 
 	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
 
 	var/redgate_allowed = TRUE	//can we be taken through the redgate, in either direction?
-	var/being_used = 0
+	var/rad_resistance = 0  // Allow overriding rad resistance
+	var/being_shocked = FALSE
+	var/micro_accepted_scale = 0.5
+	var/micro_target = FALSE
+	var/explosion_resistance
 
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)

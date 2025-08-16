@@ -36,9 +36,9 @@
 /obj/structure/ghost_pod/automatic/xenomorph_egg/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed(W))
 	switch(W.damtype)
-		if("fire")
+		if(BURN)
 			health -= W.force * 1.25 //It really doesn't like fire
-		if("brute")
+		if(BRUTE)
 			health -= W.force * 0.75 //Bit hard to cut
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 	healthcheck()
@@ -46,10 +46,10 @@
 	return
 
 /obj/structure/ghost_pod/automatic/xenomorph_egg/bullet_act(var/obj/item/projectile/Proj)
-	switch(damtype)
-		if("fire")
+	switch(Proj.damtype)
+		if(BURN)
 			health -= Proj.damage * 1.5 //It burns!
-		if("brute")
+		if(BRUTE)
 			health -= Proj.damage //It hurts a bit more then a sharp stick
 	healthcheck()
 	..()

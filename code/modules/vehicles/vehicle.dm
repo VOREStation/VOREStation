@@ -123,12 +123,12 @@
 			else
 				to_chat(user, span_notice("Unable to repair while [src] is off."))
 
-	else if(hasvar(W,"force") && hasvar(W,"damtype"))
+	else if(W.force && W.damtype)
 		user.setClickCooldown(user.get_attack_speed(W))
 		switch(W.damtype)
-			if("fire")
+			if(BURN)
 				health -= W.force * fire_dam_coeff
-			if("brute")
+			if(BRUTE)
 				health -= W.force * brute_dam_coeff
 		..()
 		healthcheck()

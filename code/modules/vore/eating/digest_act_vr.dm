@@ -241,10 +241,3 @@
 	return FALSE
 
 //moved prot organ digest to their appropriate file
-
-// Gradual damage measurement
-/obj/item
-	var/digest_stage = null
-	var/d_mult_old = 1 //digest stage descriptions
-	var/d_mult = 1 //digest stage descriptions
-	var/d_stage_overlay //digest stage effects

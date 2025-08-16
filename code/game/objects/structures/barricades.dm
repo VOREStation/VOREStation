@@ -45,9 +45,9 @@
 		return
 	else
 		switch(W.damtype)
-			if("fire")
+			if(BURN)
 				health -= W.force * 1
-			if("brute")
+			if(BRUTE)
 				health -= W.force * 0.75
 		if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
 			playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)
