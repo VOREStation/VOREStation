@@ -2336,6 +2336,7 @@
 #include "code\modules\clothing\gloves\gauntlets.dm"
 #include "code\modules\clothing\gloves\miscellaneous.dm"
 #include "code\modules\clothing\gloves\miscellaneous_vr.dm"
+#include "code\modules\clothing\gloves\telekinetic.dm"
 #include "code\modules\clothing\head\collectable.dm"
 #include "code\modules\clothing\head\fishing.dm"
 #include "code\modules\clothing\head\flowercrowns.dm"
