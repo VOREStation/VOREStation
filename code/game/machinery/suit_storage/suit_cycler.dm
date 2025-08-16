@@ -109,6 +109,8 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			if(istype(thing, /datum/suit_cycler_choice/species/noop))
 				loaded[thing.name] = thing
 				continue
+			if(istype(thing, /datum/suit_cycler_choice/species/metamorphic) && !CONFIG_GET(flag/allow_metamorphic_cycler))
+				continue
 			if(limit_species && !is_type_in_list(thing, limit_species))
 				continue
 			loaded[thing.name] = thing

@@ -3,8 +3,8 @@
 	name = "cargo jacket"
 	desc = "A jacket typically assigned to cargo technicians when it's chilly in cargonia."
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "cargo_jacket"
 
 // QM Coat
@@ -12,8 +12,8 @@
 	name = "\improper QM coat"
 	desc = "A coat typically assigned to quartermasters when it's chilly in cargonia."
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "qm_coat"
 
 //Atmos-coloured hazard vest
@@ -21,8 +21,8 @@
 	name = "light blue hazard vest"
 	desc = "A high-visibility vest used in work zones. This one is in the colors of atmospherics!"
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "hazard_a"
 	item_state = "hazard_a"
 	item_icons = list(
