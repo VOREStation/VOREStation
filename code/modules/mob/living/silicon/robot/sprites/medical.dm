@@ -168,8 +168,8 @@
 	has_rest_lights_sprites = TRUE
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate")
-	icon_x = 32
-	pixel_x = 0
+	icon_x = 64
+	pixel_x = -16
 
 /datum/robot_sprite/dogborg/tall/medical/dullahanmedv3
 	name = "Dullahan medical v3"

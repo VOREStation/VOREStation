@@ -2,31 +2,28 @@
 	var/drip_chance = 5
 	var/blood_color = "#A10808"
 
-	var/mob/living/owner
-
 /datum/component/drippy/Initialize()
 
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	owner = parent
-
-	if(ishuman(parent))
-		var/mob/living/carbon/human/temp_owner = parent
-		blood_color = rgb(temp_owner.r_skin,temp_owner.g_skin,temp_owner.b_skin)
-
-	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process_component))
+	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(process_component))
+	RegisterSignal(parent, COMSIG_HUMAN_DNA_FINALIZED, PROC_REF(create_color))
 
 /datum/component/drippy/proc/process_component()
+	SIGNAL_HANDLER
+	var/mob/living/living_guy = parent
 	if(QDELETED(parent))
 		return
 	if(!prob(drip_chance))
 		return
-	if(owner.stat == DEAD)
+	if(isbelly(living_guy.loc))
 		return
-	if(owner.inStasisNow())
+	if(living_guy.stat == DEAD)
 		return
-	var/turf/T = get_turf(owner.loc)
+	if(living_guy.inStasisNow())
+		return
+	var/turf/T = get_turf(living_guy.loc)
 	if(!isturf(T))
 		return
 	var/obj/effect/decal/cleanable/blood/B
@@ -63,8 +60,12 @@
 	B.fluorescent  = 0
 	B.invisibility = INVISIBILITY_NONE
 
+/datum/component/drippy/proc/create_color()
+	SIGNAL_HANDLER
+	if(ishuman(parent))
+		var/mob/living/carbon/human/temp_human = parent
+		blood_color = rgb(temp_human.r_skin,temp_human.g_skin,temp_human.b_skin)
 
 /datum/component/drippy/Destroy(force = FALSE)
-	UnregisterSignal(owner, COMSIG_LIVING_LIFE)
-	owner = null
+	UnregisterSignal(parent, list(COMSIG_LIVING_LIFE, COMSIG_HUMAN_DNA_FINALIZED))
 	. = ..()

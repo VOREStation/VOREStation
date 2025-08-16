@@ -17,6 +17,7 @@
 	var/soft_as = FALSE	//atmosphere sensor
 	var/soft_si = FALSE	//signaler
 	var/soft_ar = FALSE	//ar hud
+	var/soft_da = FALSE //death alarm
 
 	vore_capacity = 1
 	vore_capacity_ex = list("stomach" = 1)
@@ -448,7 +449,7 @@
 	if(loc != card)
 		to_chat(src, span_warning("Your message won't be visible while unfolded!"))
 	if (!message)
-		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message")
+		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message", encode = FALSE)
 	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return
@@ -536,6 +537,8 @@
 			soft_ut = TRUE
 		if(istype(soft,/datum/pai_software/signaller))
 			soft_si = TRUE
+		if(istype(soft,/datum/pai_software/deathalarm))
+			soft_da = TRUE
 	for(var/obj/screen/pai/button in hud_used.other)
 		if(button.name == "medical records")
 			if(soft_mr)
@@ -572,6 +575,11 @@
 				button.icon_state = "[button.base_state]"
 			else
 				button.icon_state = "[button.base_state]_o"
+		if(button.name == "death alarm")
+			if(soft_da && paiDA)
+				button.icon_state = "[button.base_state]"
+			else
+				button.icon_state = "[button.base_state]_o"
 
 //Procs for using the various UI buttons for your softwares
 /mob/living/silicon/pai/proc/directives()
@@ -600,6 +608,9 @@
 
 /mob/living/silicon/pai/proc/ar_hud()
 	touch_window("AR HUD")
+
+/mob/living/silicon/pai/proc/death_alarm()
+	touch_window("Death Alarm")
 
 /mob/living/silicon/pai/proc/get_character_icon()
 	if(!client || !client.prefs) return FALSE

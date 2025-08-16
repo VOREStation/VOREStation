@@ -93,23 +93,29 @@ export const VoreUserPreferencesMechanical = (props: {
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
-            spec={preferences.spontaneous_tf}
+            spec={preferences.vore_death_privacy}
             tooltipPosition="right"
           />
         </Stack.Item>
         <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem
-            spec={preferences.mind_transfer}
+            spec={preferences.spontaneous_tf}
             tooltipPosition="top"
           />
         </Stack.Item>
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem
-            spec={preferences.allow_mimicry}
+            spec={preferences.mind_transfer}
             tooltipPosition="left"
           />
         </Stack.Item>
-        <Stack.Item basis="34%">
+        <Stack.Item basis="32%">
+          <VoreUserPreferenceItem
+            spec={preferences.allow_mimicry}
+            tooltipPosition="right"
+          />
+        </Stack.Item>
+        <Stack.Item basis="32%">
           <VoreUserPreferenceItem
             spec={preferences.toggle_consume_liquid_belly}
             tooltipPosition="top"

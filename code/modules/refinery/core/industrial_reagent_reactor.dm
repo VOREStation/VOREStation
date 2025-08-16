@@ -34,7 +34,7 @@
 
 /obj/machinery/reagent_refinery/reactor/Destroy()
 	. = ..()
-	qdel_null(internal_tank)
+	QDEL_NULL(internal_tank)
 
 /obj/machinery/reagent_refinery/reactor/process()
 	if(!anchored)
@@ -98,14 +98,14 @@
 					var/image/intake = image(icon, icon_state = "reactor_intakes", dir = direction)
 					add_overlay(intake)
 
-/obj/machinery/reagent_refinery/reactor/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
+/obj/machinery/reagent_refinery/reactor/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
 	// no back/forth, filters don't use just their forward, they send the side too!
 	if(dir == GLOB.reverse_dir[source_forward_dir])
 		return 0
 	// locked until distilling mode
 	if(toggle_mode == REACTOR_MODE_OUTPUT)
 		return 0
-	. = ..(origin_machine, RT, source_forward_dir, filter_id)
+	. = ..(origin_machine, RT, source_forward_dir, transfer_rate, filter_id)
 
 /obj/machinery/reagent_refinery/reactor/examine(mob/user, infix, suffix)
 	. = ..()

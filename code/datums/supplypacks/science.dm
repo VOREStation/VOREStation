@@ -48,8 +48,12 @@
 
 /datum/supply_pack/sci/integrated_circuit_printer
 	name = "Integrated circuit printer"
-	desc = "Two portable integrated circuit printers."
-	contains = list(/obj/item/integrated_circuit_printer = 2)
+	desc = "A portable integrated circuit printer, debugger tool, and wiring tool."
+	contains = list(
+			/obj/item/integrated_circuit_printer = 1,
+			/obj/item/integrated_electronics/debugger = 1,
+			/obj/item/integrated_electronics/wirer = 1
+			)
 	cost = 15
 	containertype = /obj/structure/closet/crate/ward
 	containername = "Integrated circuit crate"

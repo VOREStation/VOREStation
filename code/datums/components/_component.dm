@@ -49,7 +49,7 @@
  * Arguments:
  * * datum/P the parent datum this component reacts to signals from
  */
-/datum/component/New(list/raw_args)
+/datum/component/New(list/raw_args, manual)
 	parent = raw_args[1]
 	var/list/arguments = raw_args.Copy(2)
 	if(Initialize(arglist(arguments)) == COMPONENT_INCOMPATIBLE)
@@ -58,6 +58,8 @@
 		return
 
 	_JoinParent(parent)
+	if(manual)
+		lateload_pref_data()
 
 /**
  * Called during component creation with the same arguments as in new excluding parent.
@@ -310,7 +312,7 @@
  *
  * Properly handles duplicate situations based on the `dupe_mode` var
  */
-/datum/proc/_AddComponent(list/raw_args, source)
+/datum/proc/_AddComponent(list/raw_args, source, manual)
 	var/original_type = raw_args[1]
 	var/datum/component/component_type = original_type
 
@@ -349,14 +351,14 @@
 			switch(dupe_mode)
 				if(COMPONENT_DUPE_UNIQUE)
 					if(!new_component)
-						new_component = new component_type(raw_args)
+						new_component = new component_type(raw_args, manual)
 					if(!QDELETED(new_component))
 						old_component.InheritComponent(new_component, TRUE)
 						QDEL_NULL(new_component)
 
 				if(COMPONENT_DUPE_HIGHLANDER)
 					if(!new_component)
-						new_component = new component_type(raw_args)
+						new_component = new component_type(raw_args, manual)
 					if(!QDELETED(new_component))
 						new_component.InheritComponent(old_component, FALSE)
 						QDEL_NULL(old_component)
@@ -378,7 +380,7 @@
 						return null
 
 		else if(!new_component)
-			new_component = new component_type(raw_args) // There's a valid dupe mode but there's no old component, act like normal
+			new_component = new component_type(raw_args, manual) // There's a valid dupe mode but there's no old component, act like normal
 
 	else if(dupe_mode == COMPONENT_DUPE_SELECTIVE)
 		var/list/arguments = raw_args.Copy()
@@ -390,19 +392,19 @@
 				QDEL_NULL(new_component)
 				break
 		if(!new_component && make_new_component)
-			new_component = new component_type(raw_args)
+			new_component = new component_type(raw_args, manual)
 
 	else if(dupe_mode == COMPONENT_DUPE_SOURCES)
-		new_component = new component_type(raw_args)
+		new_component = new component_type(raw_args, manual)
 		if(new_component.on_source_add(arglist(list(source) + raw_args.Copy(2))) == COMPONENT_INCOMPATIBLE)
 			stack_trace("incompatible source added to a [new_component.type]. Args: [json_encode(raw_args)]")
 			return null
 
 	else if(!new_component)
-		new_component = new component_type(raw_args) // Dupes are allowed, act like normal
+		new_component = new component_type(raw_args, manual) // Dupes are allowed, act like normal
 
 	if(!old_component && !QDELETED(new_component)) // Nothing related to duplicate components happened and the new component is healthy
-		SEND_SIGNAL(src, COMSIG_COMPONENT_ADDED, new_component)
+		SEND_SIGNAL(src, COMSIG_COMPONENT_ADDED, new_component, manual)
 		return new_component
 
 	return old_component
@@ -424,12 +426,13 @@
  *
  * Arguments:
  * * component_type The typepath of the component to create or return
+ * * manual_load If we are manually adding this (post-spawn) or not.
  * * ... additional arguments to be passed when creating the component if it does not exist
  */
-/datum/proc/_LoadComponent(list/arguments)
+/datum/proc/_LoadComponent(list/arguments, manual_load)
 	. = GetComponent(arguments[1])
 	if(!.)
-		return _AddComponent(arguments)
+		return _AddComponent(arguments, manual = manual_load)
 /**
  * Removes the component from parent, ends up with a null parent
  * Used as a helper proc by the component transfer proc, does not clean up the component like Destroy does
@@ -495,3 +498,9 @@
  */
 /datum/component/tgui_host()
 	return parent
+
+/**
+ * Loads lateload data for the component. Things such as preferences, which aren't applied if not done at character-spawn. Must be defined per-component.
+ */
+/datum/component/proc/lateload_pref_data()
+	return

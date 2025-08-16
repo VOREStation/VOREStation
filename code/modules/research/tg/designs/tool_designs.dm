@@ -459,6 +459,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/phasic_analyzer
+	name = "phasic health analyzer"
+	desc = "State of the art handheld health scanner, containing not only a full biosign monitor, on-board radiation, and neurological analysis suites, but also a chemical-analysis suite."
+	id = "phasic_analyzer"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 4000, MAT_SILVER = 3500, MAT_GOLD = 2500, MAT_DIAMOND = 2500, MAT_PHORON = 1250)
+	build_path = /obj/item/healthanalyzer/phasic
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/gene_scanner
 	name = "Gene Scanner"
 	id = "gene_scanner"
@@ -862,3 +874,15 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/telekinetic_gloves
+	name = "Kinesis Assistance Module"
+	id = "tk_gloves"
+	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_BLUESPACE = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_VERDANTIUM = 1000, MAT_SILVER = 300, MAT_PLASTEEL = 1000)
+	build_path = /obj/item/clothing/gloves/telekinetic
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING

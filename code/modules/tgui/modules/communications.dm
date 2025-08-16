@@ -175,7 +175,7 @@
 	return global_message_listener
 
 /proc/post_status(atom/source, command, data1, data2, mob/user = null)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 
 	if(!frequency)
 		return
@@ -381,7 +381,7 @@
 		PS.allowedtocall = !(PS.allowedtocall)
 
 /proc/call_shuttle_proc(var/mob/user)
-	if ((!( ticker ) || !emergency_shuttle.location()))
+	if ((!( SSticker ) || !emergency_shuttle.location()))
 		return
 
 	if(!GLOB.universe.OnShuttleCall(user))
@@ -408,7 +408,7 @@
 		to_chat(user, "The emergency shuttle is already on its way.")
 		return
 
-	if(ticker.mode.name == "blob")
+	if(SSticker.mode.name == "blob")
 		to_chat(user, "Under directive 7-10, [station_name()] is quarantined until further notice.")
 		return
 
@@ -420,7 +420,7 @@
 	return
 
 /proc/init_shift_change(var/mob/user, var/force = 0)
-	if ((!( ticker ) || !emergency_shuttle.location()))
+	if ((!( SSticker ) || !emergency_shuttle.location()))
 		return
 
 	if(emergency_shuttle.going_to_centcom())
@@ -445,11 +445,11 @@
 			to_chat(user, "The shuttle is refueling. Please wait another [round((54000-world.time)/60)] minutes before trying again.")
 			return
 
-		if(ticker.mode.auto_recall_shuttle)
+		if(SSticker.mode.auto_recall_shuttle)
 			//New version pretends to call the shuttle but cause the shuttle to return after a random duration.
 			emergency_shuttle.auto_recall = 1
 
-		if(ticker.mode.name == "blob" || ticker.mode.name == "epidemic")
+		if(SSticker.mode.name == "blob" || SSticker.mode.name == "epidemic")
 			to_chat(user, "Under directive 7-10, [station_name()] is quarantined until further notice.")
 			return
 
@@ -467,9 +467,9 @@
 	return
 
 /proc/cancel_call_proc(var/mob/user)
-	if (!( ticker ) || !emergency_shuttle.can_recall())
+	if (!( SSticker ) || !emergency_shuttle.can_recall())
 		return
-	if((ticker.mode.name == "blob")||(ticker.mode.name == "Meteor"))
+	if((SSticker.mode.name == "blob")||(SSticker.mode.name == "Meteor"))
 		return
 
 	if(!emergency_shuttle.going_to_centcom()) //check that shuttle isn't already heading to CentCom

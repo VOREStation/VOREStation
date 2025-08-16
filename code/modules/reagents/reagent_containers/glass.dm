@@ -164,6 +164,7 @@
 	if(W && W.w_class <= w_class && (flags & OPENCONTAINER) && user.a_intent != I_HELP)
 		balloon_alert(user, "[W] dipped into \the [src].")
 		reagents.touch_obj(W, reagents.total_volume)
+	attempt_changeling_test(W,user)
 
 /obj/item/reagent_containers/glass/proc/update_name_label()
 	if(label_text == "")

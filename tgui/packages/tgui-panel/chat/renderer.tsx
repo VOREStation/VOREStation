@@ -191,11 +191,11 @@ class ChatRenderer {
   ensureScrollTracking: () => void;
   highlightParsers:
     | {
-        highlightWords: string;
+        highlightWords: string[];
         highlightRegex: RegExp;
         highlightColor: string;
         highlightWholeMessage: boolean;
-        highlightBlacklist: string;
+        highlightBlacklist: boolean;
         blacklistregex: RegExp;
       }[]
     | null;
@@ -668,16 +668,15 @@ class ChatRenderer {
 
           const reactRoot = createRoot(childNode);
 
-          /* eslint-disable react/no-danger */
           reactRoot.render(
             <>
               <Element {...outputProps}>
+                {/** biome-ignore lint/security/noDangerouslySetInnerHtml: Chat rendere */}
                 <span dangerouslySetInnerHTML={oldHtml} />
               </Element>
               {childNode}
             </>,
           );
-          /* eslint-enable react/no-danger */
         }
 
         // Highlight text

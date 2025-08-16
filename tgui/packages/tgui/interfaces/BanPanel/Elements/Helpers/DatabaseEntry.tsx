@@ -122,7 +122,7 @@ export const DatabaseEntry = (props: { databaseRecord: DatabaseRecord }) => {
           </Table.Row>
           <Table.Row backgroundColor={getBoxColor(!!unbanned, !!auto)[1]}>
             <Table.Cell colSpan={7}>
-              {/* eslint-disable-next-line react/no-danger*/}
+              {/** biome-ignore lint/security/noDangerouslySetInnerHtml: DB data */}
               <div dangerouslySetInnerHTML={{ __html: edits }} />
             </Table.Cell>
           </Table.Row>
