@@ -28,6 +28,9 @@
 	response_disarm = "pushes"
 	response_harm   = "punches"
 
+	has_langs = list(LANGUAGE_MOUSE)
+	universal_understand = 1
+
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 	attack_sharp = FALSE

@@ -404,7 +404,7 @@
 			"rat" = image(icon = 'icons/mob/species/protean/protean64x32.dmi', icon_state = "rat", pixel_x = -16),
 			"lizard" = image(icon = 'icons/mob/species/protean/protean64x32.dmi', icon_state = "lizard", pixel_x = -16),
 			"wolf" = image(icon = 'icons/mob/species/protean/protean64x32.dmi', icon_state = "wolf", pixel_x = -16),
-			//"drake" = image(icon = 'modular_chomp/icons/mob/species/protean/protean64x64.dmi', icon_state = "drake", pixel_x = -16),
+			//"drake" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "drake", pixel_x = -16),
 			"teppi" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "teppi", pixel_x = -16),
 			"panther" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "panther", pixel_x = -16),
 			"robodrgn" = image(icon = 'icons/mob/species/protean/protean128x64.dmi', icon_state = "robodrgn", pixel_x = -48),

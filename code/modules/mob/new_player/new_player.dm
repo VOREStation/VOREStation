@@ -46,7 +46,7 @@
 		. += "Time To Start: Server Initializing"
 
 	else if(SSticker.current_state == GAME_STATE_PREGAME)
-		. += "Time To Start: [round(SSticker.timeLeft, 1)][GLOB.round_progressing ? "" : " (DELAYED)"]"
+		. += "Time To Start: [round(SSticker.timeLeft / 10, 1)][GLOB.round_progressing ? "" : " (DELAYED)"]"
 		. += "Players: [totalPlayers]"
 		. += "Players Ready: [totalPlayersReady]"
 		totalPlayers = 0

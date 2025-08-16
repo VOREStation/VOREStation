@@ -3,17 +3,17 @@
 	desc = "Classification: V Insecta gigantus\
 	<br><br>\
 	A massively-sized insect that is native to Virgo 3B. Much like its queen, it bears the combined physical traits \
-	of several of Earth's insects. Its forelegs have claws bearing serrated edges much like a Mantis, which it uses \
-	in both self-defense and during its hunts. On it's back are two large semi transparent wings like a beetle that it \
-	uses for increased mobility. Covering its body is a layer of light, thick, and protective chitin, resilient enough to absorb \
-	most physical damage while being light enough for the Sect Drone to hover. \
+	of several of Earth's insects. Its forelegs have claws bearing serrated edges much like a mantis, which it uses \
+	in both self-defense and during its hunts. On the back are two large semi transparent wings like a beetle which \
+	are used for increased mobility. Covering the body is a layer of light, thick, and protective chitin, resilient enough to absorb \
+	most physical damage while being light enough for the sect drone to hover. \
 	<br>\
-	It is not uncommon for a Sect Drone to go out alone to search for potential prey to bring back to the nest. \
-	Regardless of reason, it is cautioned against approaching a Sect Drone as, like their queen, their behaviour is wildly \
-	inconsistent. A Sect Drone can vary from hostile to docile depending on certain factors that scientists have \
+	It is not uncommon for a sect drone to go out alone to search for potential prey to bring back to the nest. \
+	Regardless of reason, it is cautioned against approaching a sect drone as, like the queen, their behaviour is wildly \
+	inconsistent. A sect drone can vary from hostile to docile depending on certain factors that scientists have \
 	yet to uncover. \
 	<br>\
-	The lack  of chitin on the underside of its abdomen is deliberate, as the flesh is very elastic and stretchable, \
+	The lack of chitin on the underside of its abdomen is very elastic and stretchable, \
 	allowing the drone to carry multiple large prey inside of its stomach with relative ease."
 	value = CATALOGUER_REWARD_MEDIUM
 

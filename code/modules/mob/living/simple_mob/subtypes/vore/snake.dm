@@ -54,6 +54,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
+	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
 
 // Activate Noms!

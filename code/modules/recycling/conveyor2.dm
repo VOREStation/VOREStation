@@ -337,7 +337,6 @@
 			playsound(src, I.usesound, 50, 1)
 			return
 
-	//Ports making conveyors fast from CHOMPstation
 	if(I.has_tool_quality(TOOL_WIRECUTTER))
 		toggle_speed()
 		to_chat(user, "You adjust the speed of the conveyor switch")

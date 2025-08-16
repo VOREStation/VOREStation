@@ -50,6 +50,8 @@
 	say_list_type = /datum/say_list/hippo
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
+	can_be_drop_prey = FALSE
+
 // Activate Noms!
 /mob/living/simple_mob/vore/hippo //I don't know why it's in a seperate line but everyone does it so i do it
 	vore_active = 1

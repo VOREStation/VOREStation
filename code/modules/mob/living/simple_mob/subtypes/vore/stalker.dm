@@ -7,7 +7,7 @@
 	icon_dead = "stalker-dead"
 	icon_living = "stalker"
 	icon_state = "stalker"
-	icon_rest = "stalker-rest"
+	icon_rest = "stalker_rest"
 	faction = FACTION_STALKER
 	old_x = -16
 	old_y = 0

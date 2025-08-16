@@ -78,7 +78,6 @@
 	B.name = "stummy"
 	B.desc = "It's a star shaped stomach. A stummy, if you will. It's warm and soft, not unlike plush, but it's tight!"
 	B.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING
-	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 0
 	B.digest_burn = 0
 	B.digest_oxy = 12

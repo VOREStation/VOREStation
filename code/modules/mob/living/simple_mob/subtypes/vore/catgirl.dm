@@ -35,6 +35,8 @@
 		"catgirlbrown"
 	)
 
+	can_be_drop_prey = FALSE
+
 	faction = FACTION_CATGIRL
 
 /mob/living/simple_mob/vore/catgirl/Initialize(mapload)

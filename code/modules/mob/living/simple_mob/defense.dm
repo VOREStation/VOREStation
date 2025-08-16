@@ -14,6 +14,9 @@
 	switch(L.a_intent)
 		if(I_HELP)
 			if(health > 0)
+				if(L.zone_sel.selecting == BP_GROIN)
+					if(L.vore_bellyrub(src))
+						return
 				L.visible_message(span_notice("\The [L] [response_help] \the [src]."))
 
 		if(I_DISARM)
@@ -199,7 +202,8 @@
 
 // Electricity
 /mob/living/simple_mob/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
-	shock_damage *= siemens_coeff
+	var/zap = min((1-get_shock_protection()), siemens_coeff)
+	shock_damage *= zap
 	if(shock_damage < 1)
 		return 0
 

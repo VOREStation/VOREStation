@@ -39,6 +39,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
+	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
 
 // Activate Noms!

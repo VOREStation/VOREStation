@@ -33,6 +33,9 @@
 	can_pain_emote = FALSE
 
 
+	can_be_drop_prey = FALSE
+	can_pain_emote = FALSE
+
 // Strong Variant
 /mob/living/simple_mob/creature/strong
 	maxHealth = 160

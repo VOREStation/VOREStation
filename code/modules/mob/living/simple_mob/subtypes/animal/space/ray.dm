@@ -69,7 +69,7 @@
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
-			L.Weaken(4)
+			L.add_modifier(/datum/modifier/entangled, 4 SECONDS) // replacing weaken/slowdown with slow down
 			L.visible_message(span_danger("\The [src] buffets \the [L]!"))
 			src.ai_holder.remove_target()
 			L.visible_message(span_notice("\The [src] seems to lose interest in \the [L]..."))

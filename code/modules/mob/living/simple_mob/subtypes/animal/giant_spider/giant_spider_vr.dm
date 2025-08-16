@@ -55,6 +55,12 @@
 
 	egg_type = /obj/effect/spider/eggcluster/royal
 
+/mob/living/simple_mob/animal/giant_spider/webslinger/event
+	ai_holder_type = /datum/ai_holder/simple_mob/event
+
+/mob/living/simple_mob/animal/giant_spider/nurse/queen/event
+	ai_holder_type = /datum/ai_holder/simple_mob/event
+
 /mob/living/simple_mob/animal/giant_spider/nurse
 	var/can_lay_eggs = TRUE
 

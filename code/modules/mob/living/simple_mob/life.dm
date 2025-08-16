@@ -61,7 +61,7 @@
 			healths.icon_state = "health7"
 
 	//Updates the nutrition while we're here
-	var/food_per = (nutrition / 500) * 100 //VOREStation Edit: Bandaid hardcode number to avoid misleading percentage based hunger alerts with our 6k cap.
+	var/food_per = (nutrition / max_nutrition) * 100
 	switch(food_per)
 		if(90 to INFINITY)
 			clear_alert("nutrition")
@@ -187,6 +187,9 @@
 	if(purge)
 		purge -= 1
 
+/mob/living/simple_mob/
+	var/update_icon_timer
+
 /mob/living/simple_mob/death(gibbed, deathmessage = "dies!")
 	density = FALSE //We don't block even if we did before
 
@@ -198,7 +201,14 @@
 			if(prob(loot_list[path]))
 				new path(get_turf(src))
 
-	spawn(3) //We'll update our icon in a sec
-		update_icon()
+	update_icon_timer = addtimer(CALLBACK(src, PROC_REF(callback_update_icon)), 3, TIMER_STOPPABLE)
 
 	return ..(gibbed,deathmessage)
+
+/mob/living/simple_mob/proc/callback_update_icon()
+	update_icon()
+
+/mob/living/simple_mob/Destroy()
+	deltimer(update_icon_timer)
+	update_icon_timer = null
+	. = ..()

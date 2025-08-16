@@ -38,7 +38,11 @@
 		return
 
 	// Advance plant age.
-	if(prob(30)) age += 1 * HYDRO_SPEED_MULTIPLIER
+	if(prob(30))
+		age += 1 * HYDRO_SPEED_MULTIPLIER
+		if(age_mod >= 1) //Age reagents double the speed of plant growth in sufficient quantities
+			age += 1 * HYDRO_SPEED_MULTIPLIER
+			age_mod -= 1
 
 	//Highly mutable plants have a chance of mutating every tick.
 	if(seed.get_trait(TRAIT_IMMUTABLE) == -1)
