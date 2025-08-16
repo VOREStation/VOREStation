@@ -25,31 +25,31 @@
 	var/default_program = "Empty Court"
 
 	var/list/supported_programs = list(
-	"Empty Court" 		= new/datum/holodeck_program(/area/holodeck/source_emptycourt, list('sound/music/THUNDERDOME.ogg')),
-	"Boxing Ring" 		= new/datum/holodeck_program(/area/holodeck/source_boxingcourt, list('sound/music/THUNDERDOME.ogg')),
-	"Basketball" 		= new/datum/holodeck_program(/area/holodeck/source_basketball, list('sound/music/THUNDERDOME.ogg')),
-	"Thunderdome"		= new/datum/holodeck_program(/area/holodeck/source_thunderdomecourt, list('sound/music/THUNDERDOME.ogg')),
+	"Empty Court" 		= new/datum/holodeck_program(/area/holodeck/source_emptycourt, list('sound/music/thunderdome.ogg')),
+	"Boxing Ring" 		= new/datum/holodeck_program(/area/holodeck/source_boxingcourt, list('sound/music/thunderdome.ogg')),
+	"Basketball" 		= new/datum/holodeck_program(/area/holodeck/source_basketball, list('sound/music/thunderdome.ogg')),
+	"Thunderdome"		= new/datum/holodeck_program(/area/holodeck/source_thunderdomecourt, list('sound/music/thunderdome.ogg')),
 	"Beach" 			= new/datum/holodeck_program(/area/holodeck/source_beach),
 	"Desert" 			= new/datum/holodeck_program(/area/holodeck/source_desert,
 													list(
 														'sound/effects/weather/wind/wind_2_1.ogg',
-											 			'sound/effects/weather/wind/wind_2_2.ogg',
-											 			'sound/effects/weather/wind/wind_3_1.ogg',
-											 			'sound/effects/weather/wind/wind_4_1.ogg',
-											 			'sound/effects/weather/wind/wind_4_2.ogg',
-											 			'sound/effects/weather/wind/wind_5_1.ogg'
-												 		)
-		 											),
+														'sound/effects/weather/wind/wind_2_2.ogg',
+														'sound/effects/weather/wind/wind_3_1.ogg',
+														'sound/effects/weather/wind/wind_4_1.ogg',
+														'sound/effects/weather/wind/wind_4_2.ogg',
+														'sound/effects/weather/wind/wind_5_1.ogg'
+														)
+													),
 	"Snowfield" 		= new/datum/holodeck_program(/area/holodeck/source_snowfield,
 													list(
 														'sound/effects/weather/wind/wind_2_1.ogg',
-											 			'sound/effects/weather/wind/wind_2_2.ogg',
-											 			'sound/effects/weather/wind/wind_3_1.ogg',
-											 			'sound/effects/weather/wind/wind_4_1.ogg',
-											 			'sound/effects/weather/wind/wind_4_2.ogg',
-											 			'sound/effects/weather/wind/wind_5_1.ogg'
-												 		)
-		 											),
+														'sound/effects/weather/wind/wind_2_2.ogg',
+														'sound/effects/weather/wind/wind_3_1.ogg',
+														'sound/effects/weather/wind/wind_4_1.ogg',
+														'sound/effects/weather/wind/wind_4_2.ogg',
+														'sound/effects/weather/wind/wind_5_1.ogg'
+														)
+													),
 	"Space" 			= new/datum/holodeck_program(/area/holodeck/source_space,
 													list(
 														'sound/ambience/ambispace.ogg',
@@ -187,8 +187,8 @@
 		if (last_to_emag)
 			C.friends = list(last_to_emag)
 
-/obj/machinery/computer/HolodeckControl/New()
-	..()
+/obj/machinery/computer/HolodeckControl/Initialize(mapload)
+	. = ..()
 	current_program = powerdown_program
 	linkedholodeck = locate(projection_area)
 	if(!linkedholodeck)
@@ -197,7 +197,7 @@
 //This could all be done better, but it works for now.
 /obj/machinery/computer/HolodeckControl/Destroy()
 	emergencyShutdown()
-	..()
+	. = ..()
 
 /obj/machinery/computer/HolodeckControl/ex_act(severity)
 	emergencyShutdown()

@@ -44,6 +44,7 @@
 	var/list/valid_wingstyles = list()
 	var/list/valid_gradstyles = list()
 	var/list/markings = null
+	var/cooldown //Anti-spam. If spammed, this can be REALLY laggy.
 
 /datum/tgui_module/appearance_changer/New(
 		host,
@@ -60,7 +61,7 @@
 	cam_screen.name = "screen"
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
-	cam_screen.screen_loc = "[map_name]:1,1"
+	cam_screen.screen_loc = "[map_name]:3:-32,3:-48"
 
 	cam_plane_masters = get_tgui_plane_masters()
 
@@ -83,11 +84,19 @@
 	whitelist = species_whitelist
 	blacklist = species_blacklist
 
+/datum/tgui_module/appearance_changer/proc/jiggle_map()
+	// Fix for weird byond bug, jiggles the map around a little
+	sleep(0.1 SECONDS)
+	cam_screen.screen_loc = "[map_name]:1,1"
+	sleep(0.1 SECONDS)
+	cam_screen.screen_loc = "[map_name]:3:-32,3:-48" // Align for larger icons and scales
+
 /datum/tgui_module/appearance_changer/tgui_close(mob/user)
 	. = ..()
 	if(owner == user || !customize_usr)
 		close_ui()
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+		SEND_SIGNAL(owner, COMSIG_HUMAN_DNA_FINALIZED) // Update any components using our saved appearance
 		owner = null
 		last_camera_turf = null
 		cut_data()
@@ -101,6 +110,11 @@
 /datum/tgui_module/appearance_changer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
+	if(cooldown > world.time)
+		to_chat(ui.user, span_warning("You are changing appearance too fast!"))
+		return FALSE
+	else
+		cooldown = world.time + 0.5 SECONDS
 
 	var/obj/machinery/computer/transhuman/designer/DC = null
 	var/datum/tgui_module/appearance_changer/body_designer/BD = null
@@ -113,8 +127,8 @@
 			if(can_change(owner, APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(owner.change_species(params["race"]))
 					if(params["race"] == "Custom Species")
-						owner.custom_species = sanitize(tgui_input_text(ui.user, "Input custom species name:",
-							"Custom Species Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
+						owner.custom_species = tgui_input_text(ui.user, "Input custom species name:",
+							"Custom Species Name", null, MAX_NAME_LEN)
 					cut_data()
 					generate_data(ui.user, owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
@@ -263,6 +277,23 @@
 					owner.update_hair()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+		if("ears_alpha")
+			var/new_alpha = clamp(params["ears_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_ears = new_alpha
+				update_dna(owner)
+				owner.update_hair()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+		if("secondary_ears_alpha")
+			var/new_alpha = clamp(params["secondary_ears_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_ears2 = new_alpha
+				update_dna(owner)
+				owner.update_hair()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+
 		if("ears_secondary_color")
 			if(can_change(owner, APPEARANCE_HAIR_COLOR))
 				var/channel = params["channel"]
@@ -321,6 +352,15 @@
 					owner.update_tail_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+		if("tail_alpha")
+			var/new_alpha = clamp(params["tail_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_tail = new_alpha
+				update_dna(owner)
+				owner.update_tail_showing()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+
 		if("wing")
 			if(can_change(owner, APPEARANCE_ALL_HAIR))
 				var/datum/sprite_accessory/wing/instance = locate(params["ref"])
@@ -366,6 +406,16 @@
 					owner.update_wing_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+
+		if("wing_alpha")
+			var/new_alpha = clamp(params["wing_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_wing = new_alpha
+				update_dna(owner)
+				owner.update_wing_showing()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+
 		if("marking")
 			if(can_change(owner, APPEARANCE_ALL_HAIR))
 				var/todo = params["todo"]
@@ -373,35 +423,34 @@
 				switch (todo)
 					if (0) //delete
 						if (name_marking)
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 							if (owner.remove_marking(mark_datum))
 								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 								return TRUE
 					if (1) //add
 						if(name_marking && can_still_topic(ui.user, state))
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 							if (owner.add_marking(mark_datum))
 								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 								return TRUE
 					if (2) //move up
-						var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+						var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 						if (owner.change_priority_of_marking(mark_datum, FALSE))
 							return TRUE
 					if (3) //move down
-						var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+						var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 						if (owner.change_priority_of_marking(mark_datum, TRUE))
 							return TRUE
 					if (4) //color
 						var/current = markings[name_marking] ? markings[name_marking]["color"] : "#000000"
 						var/marking_color = tgui_color_picker(ui.user, "Please select marking color", "Marking color", current)
 						if(marking_color && can_still_topic(ui.user, state))
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 							if (owner.change_marking_color(mark_datum, marking_color))
 								return TRUE
 		if("rotate_view")
-			if(can_change(owner, APPEARANCE_RACE))
-				owner.set_dir(turn(owner.dir, 90))
-				return TRUE
+			owner.set_dir(turn(owner.dir, 90))
+			return TRUE
 		if("rename")
 			if(owner)
 				var/raw_name = tgui_input_text(ui.user, "Choose the a name:", "Sleeve Name")
@@ -417,47 +466,42 @@
 						return TRUE
 		if("char_name")
 			if(DC) // Only body designer does this. no hrefing
-				var/new_name = sanitize(tgui_input_text(ui.user, "Input character's name:", "Name", owner.name, MAX_NAME_LEN), MAX_NAME_LEN)
+				var/new_name = tgui_input_text(ui.user, "Input character's name:", "Name", owner.name, MAX_NAME_LEN)
 				if(can_change(owner, APPEARANCE_RACE)) // new name can be empty, it uses base species if so
 					owner.name = new_name
 					owner.real_name = owner.name
 					owner.dna.real_name = owner.name
 					return TRUE
 		if("race_name")
-			var/new_name = sanitize(tgui_input_text(ui.user, "Input custom species name:", "Custom Species Name", owner.custom_species, MAX_NAME_LEN), MAX_NAME_LEN)
+			var/new_name = tgui_input_text(ui.user, "Input custom species name:", "Custom Species Name", owner.custom_species, MAX_NAME_LEN)
 			if(can_change(owner, APPEARANCE_RACE)) // new name can be empty, it uses base species if so
 				owner.custom_species = new_name
 				return TRUE
 		if("base_icon")
-			if(owner.species.selects_bodytype == SELECTS_BODYTYPE_FALSE)
-				var/datum/species/S = GLOB.all_species[owner.species.name]
-				owner.species.base_species = S.base_species // Return to original form
-				generate_data(ui.user, owner)
-				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
-				return TRUE
-			var/list/choices
-			var/datum/species/S = GLOB.all_species[owner.species.name]
-			if(S.selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER)
-				choices = S.get_valid_shapeshifter_forms()
-			else if(S.selects_bodytype == SELECTS_BODYTYPE_CUSTOM)
-				choices = GLOB.custom_species_bases
-			var/new_species = tgui_input_list(ui.user, "Please select basic shape.", "Body Shape", choices)
-			if(new_species && can_change(owner, APPEARANCE_RACE))
-				owner.species.base_species = new_species
-				owner.regenerate_icons()
-				generate_data(ui.user, owner)
-				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
-				return TRUE
-		if("blood_reagent")
-			var/new_blood_reagents = tgui_input_list(ui.user, "Please select blood restoration reagent:", "Character Preference", valid_bloodreagents)
-			if(new_blood_reagents && can_change(owner, APPEARANCE_RACE))
-				owner.dna.blood_reagents = new_blood_reagents
-				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
-				return TRUE
+			if(can_change(owner, APPEARANCE_MISC))
+				var/new_species = tgui_input_list(ui.user, "Please select basic shape.", "Body Shape", GLOB.custom_species_bases)
+				if(new_species)
+					owner.species.base_species = new_species
+					owner.species.icobase = owner.species.get_icobase()
+					owner.species.deform = owner.species.get_icobase(get_deform = TRUE)
+					owner.species.vanity_base_fit = new_species
+					if(istype(owner.species, /datum/species/shapeshifter)) //TODO: See if this is still needed.
+						wrapped_species_by_ref["\ref[owner]"] = new_species
+					owner.regenerate_icons()
+					generate_data(ui.user, owner)
+					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
+					return TRUE
+		if("blood_reagent") //you know, this feels REALLY odd to be able to change at will but WHATEVER, WE BALL.
+			if(can_change(owner, APPEARANCE_MISC))
+				var/new_blood_reagents = tgui_input_list(ui.user, "Please select blood restoration reagent:", "Character Preference", GLOB.valid_bloodreagents)
+				if(new_blood_reagents)
+					owner.dna.blood_reagents = new_blood_reagents
+					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
+					return TRUE
 		if("blood_color")
 			var/current = owner.species.blood_color ? owner.species.blood_color : "#A10808"
-			var/blood_col = tgui_color_picker(ui.user, "Please select marking color", "Marking color", current)
-			if(blood_col && can_change(owner, APPEARANCE_RACE))
+			var/blood_col = tgui_color_picker(ui.user, "Please select blood color", "Blood color", current)
+			if(blood_col && can_change(owner, APPEARANCE_MISC))
 				owner.dna.blood_color = blood_col
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
@@ -465,9 +509,9 @@
 			var/new_weight = tgui_input_number(ui.user, "Choose tbe character's relative body weight.\n\
 			This measurement should be set relative to a normal 5'10'' person's body and not the actual size of the character.\n\
 			([WEIGHT_MIN]-[WEIGHT_MAX])", "Character Preference", null, WEIGHT_MAX, WEIGHT_MIN, round_value=FALSE)
-			if(new_weight && can_change(owner, APPEARANCE_RACE))
+			if(new_weight && can_change(owner, APPEARANCE_MISC))
 				var/unit_of_measurement = tgui_alert(ui.user, "Is that number in pounds (lb) or kilograms (kg)?", "Confirmation", list("Pounds", "Kilograms"))
-				if(unit_of_measurement && can_change(owner, APPEARANCE_RACE))
+				if(unit_of_measurement)
 					if(unit_of_measurement == "Pounds")
 						new_weight = round(text2num(new_weight),4)
 					if(unit_of_measurement == "Kilograms")
@@ -477,7 +521,7 @@
 					return TRUE
 		if("size_scale")
 			var/new_size = tgui_input_number(ui.user, "Choose size, ranging from [RESIZE_MINIMUM * 100]% to [RESIZE_MAXIMUM * 100]%", "Set Size", null, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
-			if(new_size && ISINRANGE(new_size,RESIZE_MINIMUM * 100,RESIZE_MAXIMUM * 100) && can_change(owner, APPEARANCE_RACE))
+			if(new_size && ISINRANGE(new_size,RESIZE_MINIMUM * 100,RESIZE_MAXIMUM * 100) && can_change(owner, APPEARANCE_MISC))
 				owner.size_multiplier = new_size / 100
 				owner.update_transform(TRUE)
 				owner.regenerate_icons()
@@ -485,49 +529,61 @@
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
 		if("scale_appearance")
-			if(can_change(owner, APPEARANCE_RACE))
+			if(can_change(owner, APPEARANCE_MISC))
 				owner.dna.scale_appearance = !owner.dna.scale_appearance
 				owner.fuzzy = owner.dna.scale_appearance
 				owner.regenerate_icons()
 				owner.set_dir(owner.dir) // Causes a visual update for fuzzy/offset
 				return TRUE
 		if("offset_override")
-			if(can_change(owner, APPEARANCE_RACE))
+			if(can_change(owner, APPEARANCE_MISC))
 				owner.dna.offset_override = !owner.dna.offset_override
 				owner.offset_override = owner.dna.offset_override
 				owner.regenerate_icons()
 				owner.set_dir(owner.dir) // Causes a visual update for fuzzy/offset
 				return TRUE
 		if("digitigrade")
-			if(can_change(owner, APPEARANCE_RACE))
+			if(can_change(owner, APPEARANCE_MISC))
 				owner.dna.digitigrade = !owner.dna.digitigrade
 				owner.digitigrade = owner.dna.digitigrade
 				owner.regenerate_icons()
 				generate_data(ui.user, owner)
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
-		/*if("species_sound") //TODO: UP PORT SPECIES_SOUNDS
+		if("species_sound")
 			var/list/possible_species_sound_types = species_sound_map
 			var/choice = tgui_input_list(ui.user, "Which set of sounds would you like to use? (Cough, Sneeze, Scream, Pain, Gasp, Death)", "Species Sounds", possible_species_sound_types)
-			if(choice && can_change(owner, APPEARANCE_RACE))
+			if(choice && can_change(owner, APPEARANCE_MISC))
 				owner.species.species_sounds = choice
 				return TRUE
-		*/
 		if("flavor_text")
 			var/select_key = params["target"]
-			if(select_key && can_change(owner, APPEARANCE_RACE))
+			if(select_key && can_change(owner, APPEARANCE_MISC))
 				if(select_key in owner.flavor_texts)
 					switch(select_key)
 						if("general")
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
-							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							if(can_change(owner, APPEARANCE_MISC)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
 						else
-							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
-							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in \"!clear\" to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							if(can_change(owner, APPEARANCE_MISC)) // allows empty to wipe flavor
+								if(msg == "!clear")
+									msg = ""
 								owner.flavor_texts[select_key] = msg
 								return TRUE
+		if("load_saveslot") //saveslot_load
+			if(can_change(owner, APPEARANCE_ALL_COSMETIC))
+				if(tgui_alert(owner, "Are you certain you wish to load the currently selected savefile?", "Load Savefile", list("No","Yes")) == "Yes")
+					if(owner && owner.client) //sanity
+						owner.client.prefs.vanity_copy_to(owner, FALSE, TRUE, FALSE, FALSE, FALSE)
+						return TRUE
+					return TRUE
+				else
+					return TRUE
 		// ***********************************
 		// Body designer UI
 		// ***********************************
@@ -537,6 +593,7 @@
 				if(DC.allowed(ui.user) || BR.ckey == ui.user.ckey)
 					BD.load_record_to_body(BR)
 					owner.resleeve_lock = BR.locked
+					owner.changeling_locked = BR.changeling_locked
 					DC.selected_record = TRUE
 			return TRUE
 		if("view_stock_brec")
@@ -565,7 +622,9 @@
 				return FALSE
 			if(!DC.disk)
 				return FALSE
-			if(owner.resleeve_lock)
+			if(owner.changeling_locked)
+				to_chat(ui.user, span_warning("ERROR: Record too complex. Disk does not have enough space to store this record."))
+			else if(owner.resleeve_lock)
 				var/answer = tgui_alert(ui.user,"This body record will be written to a disk and allow any mind to inhabit it. This is against the current body owner's configured OOC preferences for body impersonation. Please confirm that you have permission to do this, and are sure! Admins will be notified.","Mind Compatability",list("No","Yes"))
 				if(!answer)
 					return
@@ -574,11 +633,12 @@
 				else
 					message_admins("[ui.user] wrote an unlocked version of [owner.real_name]'s bodyrecord to a disk. Their preferences do not allow body impersonation, but may be allowed with OOC consent.")
 					owner.resleeve_lock = FALSE // unlock it, even though it's only temp, so you don't get the warning every time
-			if(!owner.resleeve_lock && can_change(owner, APPEARANCE_RACE))
+			if(!owner.changeling_locked && (!owner.resleeve_lock && can_change(owner, APPEARANCE_RACE)))
 				// Create it from the mob
 				if(DC.disk.stored)
-					qdel_null(DC.disk.stored)
+					QDEL_NULL(DC.disk.stored)
 				to_chat(ui.user,span_notice("\The [owner]'s bodyrecord was saved to the disk."))
+				owner.update_dna()
 				DC.disk.stored = new /datum/transhuman/body_record(owner, FALSE, FALSE) // Saves a COPY!
 				DC.disk.stored.locked = FALSE // remove lock
 				DC.disk.name = "[initial(DC.disk.name)] ([owner.real_name])"
@@ -608,6 +668,8 @@
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
+	if(!owner || !owner.species) //We tried to update our UI and no longer have an owner!
+		return
 	if(!ui)
 		owner.AddComponent(/datum/component/recursive_move)
 		RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
@@ -619,6 +681,7 @@
 		// Open UI
 		ui = new(user, src, tgui_id, name)
 		ui.open()
+		CallAsync(src, PROC_REF(jiggle_map))
 	if(custom_state)
 		ui.set_state(custom_state)
 	update_active_camera_screen()
@@ -637,7 +700,7 @@
 	if(can_change(owner, APPEARANCE_HAIR))
 		var/hair_styles[0]
 		for(var/hair_style in valid_hairstyles)
-			var/datum/sprite_accessory/hair/S = hair_styles_list[hair_style]
+			var/datum/sprite_accessory/hair/S = GLOB.hair_styles_list[hair_style]
 			hair_styles[++hair_styles.len] = list("name" = hair_style, "icon" = S.icon, "icon_state" = "[S.icon_state]_s")
 		data["hair_styles"] = hair_styles
 		data["ear_styles"] = valid_earstyles
@@ -645,10 +708,12 @@
 		data["wing_styles"] = valid_wingstyles
 
 		markings = owner.get_prioritised_markings()
-		var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
+		var/list/usable_markings = markings.Copy() ^ GLOB.body_marking_styles_list.Copy()
 		var/marking_styles[0]
 		for(var/marking_style in usable_markings)
-			var/datum/sprite_accessory/marking/S = body_marking_styles_list[marking_style]
+			if(marking_style == DEVELOPER_WARNING_NAME)
+				continue
+			var/datum/sprite_accessory/marking/S = GLOB.body_marking_styles_list[marking_style]
 			var/our_iconstate = S.icon_state
 			if(LAZYLEN(S.body_parts))
 				our_iconstate += "-[S.body_parts[1]]"
@@ -658,7 +723,7 @@
 	if(can_change(owner, APPEARANCE_FACIAL_HAIR))
 		var/facial_hair_styles[0]
 		for(var/facial_hair_style in valid_facial_hairstyles)
-			var/datum/sprite_accessory/facial_hair/S = facial_hair_styles_list[facial_hair_style]
+			var/datum/sprite_accessory/facial_hair/S = GLOB.facial_hair_styles_list[facial_hair_style]
 			facial_hair_styles[++facial_hair_styles.len] = list("name" = facial_hair_style, "icon" = S.icon, "icon_state" = "[S.icon_state]_s")
 		data["facial_hair_styles"] = facial_hair_styles
 
@@ -704,6 +769,7 @@
 				stock_bodyrecords_list_ui += N
 			data["stock_records"] = stock_bodyrecords_list_ui
 			data["change_race"] = can_change(owner, APPEARANCE_RACE)
+			data["change_misc"] = can_change(owner, APPEARANCE_MISC)
 			data["gender_id"] = can_change(owner, APPEARANCE_GENDER)
 			data["change_gender"] = can_change(owner, APPEARANCE_GENDER)
 			data["change_hair"] = can_change(owner, APPEARANCE_HAIR)
@@ -724,11 +790,11 @@
 	data["digitigrade"] = owner.digitigrade
 	data["blood_reagent"] = owner.dna.blood_reagents
 	data["blood_color"] = owner.dna.blood_color
-	//data["species_sound"] = owner.species.species_sounds //TODO: RAISE UP FROM CHOMP
+	data["species_sound"] = owner.species.species_sounds
 	// Are these needed? It seems to be only used if above is unset??
-	//data["species_sounds_gendered"] = owner.species.gender_specific_species_sounds
-	//data["species_sounds_female"] = owner.species.species_sounds_female
-	//data["species_sounds_male"] = owner.species.species_sounds_male
+	data["species_sounds_gendered"] = owner.species.gender_specific_species_sounds
+	data["species_sounds_female"] = owner.species.species_sounds_female
+	data["species_sounds_male"] = owner.species.species_sounds_male
 	// flavor
 	if(!owner.flavor_texts.len)
 		owner.flavor_texts["general"] = ""
@@ -747,6 +813,8 @@
 	data["gender"] = owner.gender
 	data["gender_id"] = owner.identifying_gender //This is saved to your MIND.
 	data["change_race"] = can_change(owner, APPEARANCE_RACE)
+	data["saveslot_load"] = can_change(owner, APPEARANCE_ALL_COSMETIC)
+	data["change_misc"] = can_change(owner, APPEARANCE_MISC)
 
 	data["change_gender"] = can_change(owner, APPEARANCE_GENDER)
 	if(data["change_gender"])
@@ -807,6 +875,10 @@
 		data["wing_color"] = rgb(owner.r_wing, owner.g_wing, owner.b_wing)
 		data["wing2_color"] = rgb(owner.r_wing2, owner.g_wing2, owner.b_wing2)
 		data["wing3_color"] = rgb(owner.r_wing3, owner.g_wing3, owner.b_wing3)
+		data["wing_alpha"] = owner.a_wing
+		data["tail_alpha"] = owner.a_tail
+		data["ears_alpha"] = owner.a_ears
+		data["secondary_ears_alpha"] = owner.a_ears2
 
 	data["change_facial_hair_color"] = can_change(owner, APPEARANCE_FACIAL_HAIR_COLOR)
 	if(data["change_facial_hair_color"])
@@ -819,13 +891,14 @@
 	return data
 
 /datum/tgui_module/appearance_changer/proc/update_active_camera_screen()
+	SIGNAL_HANDLER
 	cam_screen.vis_contents = list(owner) // Copied from the vore version.
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)
 	local_skybox.cut_overlays()
 
 /datum/tgui_module/appearance_changer/proc/update_dna(mob/living/carbon/human/target)
-	if(target && (flags & APPEARANCE_UPDATE_DNA))
+	if(target)
 		target.update_dna()
 
 /datum/tgui_module/appearance_changer/proc/can_change(mob/living/carbon/human/target, var/flag)
@@ -858,8 +931,8 @@
 		valid_facial_hairstyles = target.generate_valid_facial_hairstyles()
 
 	if(!LAZYLEN(valid_earstyles))
-		for(var/path in ear_styles_list)
-			var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
+		for(var/path in GLOB.ear_styles_list)
+			var/datum/sprite_accessory/ears/instance = GLOB.ear_styles_list[path]
 			if(can_use_sprite(instance, target, user))
 				valid_earstyles.Add(list(list(
 					"name" = instance.name,
@@ -871,8 +944,8 @@
 				)))
 
 	if(!LAZYLEN(valid_tailstyles))
-		for(var/path in tail_styles_list)
-			var/datum/sprite_accessory/tail/instance = tail_styles_list[path]
+		for(var/path in GLOB.tail_styles_list)
+			var/datum/sprite_accessory/tail/instance = GLOB.tail_styles_list[path]
 			if(can_use_sprite(instance, target, user))
 				valid_tailstyles.Add(list(list(
 					"name" = instance.name,
@@ -884,8 +957,8 @@
 				)))
 
 	if(!LAZYLEN(valid_wingstyles))
-		for(var/path in wing_styles_list)
-			var/datum/sprite_accessory/wing/instance = wing_styles_list[path]
+		for(var/path in GLOB.wing_styles_list)
+			var/datum/sprite_accessory/wing/instance = GLOB.wing_styles_list[path]
 			if(can_use_sprite(instance, target, user))
 				valid_wingstyles.Add(list(list(
 					"name" = instance.name,
@@ -990,12 +1063,11 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/cocoon
 	name ="Appearance Editor (Cocoon)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN
+	flags = APPEARANCE_ALL_COSMETIC
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
-	//if(!istype(owner.loc, /obj/item/storage/vore_egg/bugcocoon))
-	if(!owner.transforming)
+	if(!istype(owner.loc, /obj/item/holder/micro))
 		return STATUS_CLOSE
 	return ..()
 
@@ -1004,12 +1076,25 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/superpower
 	name ="Appearance Editor (Superpower)"
-	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN
+	flags = APPEARANCE_ALL_COSMETIC
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
 	var/datum/gene/G = get_gene_from_trait(/datum/trait/positive/superpower_morph)
 	if(!owner.dna.GetSEState(G.block))
+		return STATUS_CLOSE
+	return ..()
+
+// *******************************************************
+// Innate Species Transformation.
+// *******************************************************
+/datum/tgui_module/appearance_changer/innate
+	name ="Appearance Editor (Innate)"
+	flags = APPEARANCE_ALL_COSMETIC
+	customize_usr = TRUE
+
+/datum/tgui_module/appearance_changer/innate/tgui_status(mob/user, datum/tgui_state/state)
+	if(owner.stat != CONSCIOUS)
 		return STATUS_CLOSE
 	return ..()
 
@@ -1037,11 +1122,11 @@
 	// checks for monkey to tell if on the menu
 	if(owner)
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-		qdel_null(owner)
+		QDEL_NULL(owner)
 	owner = new(src)
 	owner.set_species(SPECIES_LLEILL)
 	owner.species.produceCopy(owner.species.traits.Copy(),owner,null,FALSE)
-	owner.invisibility = 101
+	owner.invisibility = INVISIBILITY_ABSTRACT
 	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
@@ -1049,53 +1134,11 @@
 /datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
 	if(owner)
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-		qdel_null(owner)
-	//Get the DNA and generate a new mob
-	var/datum/dna2/record/R = current_project.mydna
-	owner = new /mob/living/carbon/human(src, R.dna.species)
-	//Fix the external organs
-	for(var/part in current_project.limb_data)
-		var/status = current_project.limb_data[part]
-		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
-		var/obj/item/organ/external/O = owner.organs_by_name[part]
-		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
-		if(status == 1) //Normal limbs
-			continue
-		else if(status == 0) //Missing limbs
-			O.remove_rejuv()
-		else if(status) //Anything else is a manufacturer
-			O.remove_rejuv() //Don't robotize them, leave them removed so robotics can attach a part.
-	for(var/part in current_project.organ_data)
-		var/status = current_project.organ_data[part]
-		if(status == null) continue //Species doesn't have organ? Child of missing part?
-		var/obj/item/organ/I = owner.internal_organs_by_name[part]
-		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
-		if(status == 0) //Normal organ
-			continue
-		else if(status == 1) //Assisted organ
-			I.mechassist()
-		else if(status == 2) //Mechanical organ
-			I.robotize()
-		else if(status == 3) //Digital organ
-			I.digitize()
-	//Set the name or generate one
-	owner.real_name = R.dna.real_name
-	owner.name = owner.real_name
-	//Apply DNA
-	owner.dna = R.dna.Clone()
-	owner.original_player = current_project.ckey
-	//Apply legs
-	owner.digitigrade = R.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
-	if(owner.dna.digitigrade <> R.dna.digitigrade)
-		owner.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
-	//Update appearance, remake icons
-	owner.UpdateAppearance()
-	owner.sync_dna_traits(FALSE)
-	owner.sync_organ_dna()
-	owner.initialize_vessel()
-	owner.dna.blood_reagents = R.dna.blood_reagents
-	owner.dna.blood_color = R.dna.blood_color
-	owner.regenerate_icons()
+		QDEL_NULL(owner)
+	owner = current_project.produce_human_mob(src,FALSE,FALSE,"Designer [rand(999)]")
+	// Update some specifics from the current record
+	owner.dna.blood_reagents = current_project.mydna.dna.blood_reagents
+	owner.dna.blood_color = current_project.mydna.dna.blood_color
 	owner.flavor_texts = current_project.mydna.flavor.Copy()
 	owner.resize(current_project.sizemult, FALSE)
 	owner.appearance_flags = current_project.aflags

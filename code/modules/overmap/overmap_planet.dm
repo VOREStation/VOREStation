@@ -19,7 +19,7 @@
 	var/skybox_offset_x = 0
 	var/skybox_offset_y = 0
 
-/obj/effect/overmap/visitable/planet/Initialize()
+/obj/effect/overmap/visitable/planet/Initialize(mapload)
 	. = ..()
 
 /obj/effect/overmap/visitable/planet/get_skybox_representation()

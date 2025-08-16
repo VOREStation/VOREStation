@@ -8,11 +8,11 @@ var/inactive_keys = "None<br>"
 	var/dat = span_bold("Inactive players with custom items") + "<br>"
 	dat += "<br>"
 	dat += "The list below contains players with custom items that have not logged\
-	 in for the past two months, or have not logged in since this system was implemented.\
-	 This system requires the feedback SQL database to be properly setup and linked.<br>"
+		in for the past two months, or have not logged in since this system was implemented.\
+		This system requires the feedback SQL database to be properly setup and linked.<br>"
 	dat += "<br>"
 	dat += "Populating this list is done automatically, but must be manually triggered on a per\
-	 round basis. Populating the list may cause a lag spike, so use it sparingly.<br>"
+		round basis. Populating the list may cause a lag spike, so use it sparingly.<br>"
 	dat += "<hr>"
 	if(checked_for_inactives)
 		dat += inactive_keys
@@ -21,7 +21,9 @@ var/inactive_keys = "None<br>"
 	else
 		dat += "<a href='byond://?src=\ref[src];_src_=holder;[HrefToken()];populate_inactive_customitems=1'>Populate list (requires an active database connection)</a><br>"
 
-	usr << browse("<html>[dat]</html>", "window=inactive_customitems;size=600x480")
+	var/datum/browser/popup = new(src, "inactive_customitems", "Inactive Custom Items", 600, 480)
+	popup.set_content(dat)
+	popup.open()
 
 /proc/populate_inactive_customitems_list(var/client/C)
 	set background = 1

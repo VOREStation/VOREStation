@@ -1,16 +1,16 @@
-/var/global/list/construction_frame_wall
-/var/global/list/construction_frame_floor
+GLOBAL_LIST(construction_frame_wall)
+GLOBAL_LIST(construction_frame_floor)
 
 /proc/populate_frame_types()
 	//Create global frame type list if it hasn't been made already.
-	construction_frame_wall = list()
-	construction_frame_floor = list()
+	GLOB.construction_frame_wall = list()
+	GLOB.construction_frame_floor = list()
 	for(var/R in subtypesof(/datum/frame/frame_types))
 		var/datum/frame/frame_types/type = new R
 		if(type.frame_style == FRAME_STYLE_WALL)
-			construction_frame_wall += type
+			GLOB.construction_frame_wall += type
 		else
-			construction_frame_floor += type
+			GLOB.construction_frame_floor += type
 
 //////////////////////////////
 // Frame Type Datum - Describes the frame structures that can be created from a frame item.
@@ -216,6 +216,57 @@
 	circuit = /obj/machinery/atmospheric_field_generator
 	frame_size = 3
 
+// Refinery machines
+/datum/frame/frame_types/industrial_reagent_grinder
+	name = "Industrial Chemical Grinder"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_pump
+	name = "Industrial Chemical Pump"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_filter
+	name = "Industrial Chemical Filter"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_vat
+	name = "Industrial Chemical Vat"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_mixer
+	name = "Industrial Chemical Mixer"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_pipe
+	name = "Industrial Chemical Pipe"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_waste_processor
+	name = "Industrial Chemical Waste Processor"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_hub
+	name = "Industrial Chemical Hub"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_reactor
+	name = "Industrial Chemical Reactor"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_furnace
+	name = "Industrial Chemical Sintering Furnace"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
 //////////////////////////////
 // Frame Object (Structure)
 //////////////////////////////
@@ -247,7 +298,7 @@
 /obj/structure/frame/proc/update_desc()
 	var/D
 	if(req_components)
-		var/list/component_list = new
+		var/list/component_list = list()
 		for(var/I in req_components)
 			if(req_components[I] > 0)
 				component_list += "[num2text(req_components[I])] [req_component_names[I]]"
@@ -269,17 +320,14 @@
 	for(var/obj/ct as anything in req_components)
 		req_component_names[ct] = initial(ct.name)
 
-/obj/structure/frame/New(var/loc, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
-	..()
+/obj/structure/frame/Initialize(mapload, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
+	. = ..()
 	if(building)
 		frame_type = type
 		state = FRAME_PLACED
 
 		if(dir)
 			set_dir(dir)
-
-		if(loc)
-			src.loc = loc
 
 		if(frame_type.x_offset)
 			pixel_x = (dir & 3)? 0 : (dir == EAST ? -frame_type.x_offset : frame_type.x_offset)
@@ -298,6 +346,8 @@
 		density = TRUE
 
 	update_icon()
+
+	AddElement(/datum/element/climbable)
 
 /obj/structure/frame/attackby(obj/item/P as obj, mob/user as mob)
 	if(P.has_tool_quality(TOOL_WRENCH))

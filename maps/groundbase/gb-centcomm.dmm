@@ -17,9 +17,7 @@
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "ac" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/green/border,
@@ -90,9 +88,7 @@
 	},
 /obj/structure/closet/secure_closet/nanotrasen_security,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "au" = (
 /obj/machinery/cryopod/robot/door/gateway,
 /turf/simulated/floor/tiled/dark,
@@ -264,9 +260,7 @@
 	pixel_y = 27
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "aT" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
@@ -297,9 +291,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "aU" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-22"
@@ -344,11 +336,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "be" = (
 /turf/simulated/floor/tiled,
@@ -1186,9 +1174,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "ef" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -1212,9 +1198,7 @@
 	},
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "el" = (
 /obj/structure/table/rack,
 /obj/item/gun/projectile/shotgun/pump,
@@ -1260,7 +1244,7 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_shuttle_hatch";
 	locked = 1;
 	name = "Shuttle Airlock"
@@ -1316,9 +1300,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "eD" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -1614,9 +1596,7 @@
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "fr" = (
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled,
@@ -1714,7 +1694,7 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_shuttle_hatch";
 	locked = 1;
 	name = "Docking Port Airlock"
@@ -1787,9 +1767,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "gk" = (
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 4;
@@ -1808,9 +1786,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "gm" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -2299,7 +2275,7 @@
 "ib" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
@@ -2473,9 +2449,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "iH" = (
 /turf/simulated/wall/r_wall,
 /area/centcom/bathroom)
@@ -2634,9 +2608,7 @@
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "js" = (
 /obj/item/stool/padded,
 /obj/effect/floor_decal/corner/yellow/diagonal,
@@ -2715,9 +2687,7 @@
 /obj/item/book/manual/wiki/security_space_law,
 /obj/item/book/manual/wiki/security_space_law,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "jF" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 9
@@ -2847,7 +2817,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_shuttle_hatch_station";
 	locked = 1;
@@ -3208,11 +3178,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "ll" = (
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -3367,7 +3333,7 @@
 /area/centcom/security)
 "lL" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_external,
@@ -3487,9 +3453,7 @@
 /obj/item/melee/baton/loaded,
 /obj/item/gun/energy/taser,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "mj" = (
 /obj/structure/table/rack,
 /obj/item/shield/energy,
@@ -3634,11 +3598,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "mM" = (
 /obj/machinery/pipedispenser/orderable,
@@ -3670,9 +3630,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "mR" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -3714,9 +3672,7 @@
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "mY" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -3748,7 +3704,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_shuttle_hatch";
 	locked = 1;
 	name = "Docking Port Airlock"
@@ -3932,9 +3888,7 @@
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "nJ" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/glass/bottle/biomass{
@@ -3971,11 +3925,7 @@
 /area/shuttle/ccboat)
 "nN" = (
 /obj/effect/floor_decal/industrial/warning/corner,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "nO" = (
 /obj/structure/table/rack,
@@ -4094,7 +4044,7 @@
 /area/centcom/holding)
 "of" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_shuttle";
 	pixel_y = 25;
 	req_one_access = list(13);
@@ -4223,9 +4173,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "oz" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -4259,7 +4207,7 @@
 	},
 /area/tdome/tdomeobserve)
 "oE" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/production/protolathe,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "oF" = (
@@ -4291,9 +4239,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "oL" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
@@ -4349,11 +4295,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "oV" = (
 /obj/machinery/door/airlock/security{
@@ -4420,9 +4362,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "pm" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/skills,
@@ -4973,7 +4913,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/security)
 "qN" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "qQ" = (
@@ -5378,9 +5318,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "rX" = (
 /obj/machinery/camera/network/crescent{
 	dir = 10
@@ -5725,7 +5663,7 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "supply_shuttle_hatch";
 	locked = 1;
 	name = "Shuttle Hatch"
@@ -5742,9 +5680,7 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "ts" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/window/reinforced,
@@ -5779,12 +5715,10 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "tz" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "supply_shuttle";
 	pixel_y = 24;
 	req_one_access = list(13,31);
@@ -5811,7 +5745,7 @@
 	},
 /area/centcom/specops)
 "tE" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "tH" = (
@@ -6121,9 +6055,7 @@
 /area/centcom/security)
 "uH" = (
 /turf/simulated/wall/r_wall,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "uJ" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -6389,7 +6321,7 @@
 /area/centcom/control)
 "vF" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -6405,9 +6337,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "vJ" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
@@ -6438,12 +6368,12 @@
 "vP" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ccboat";
 	pixel_y = 29
 	},
@@ -6558,9 +6488,7 @@
 	req_one_access = list(1)
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "wb" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -6758,9 +6686,7 @@
 	},
 /obj/effect/floor_decal/corner/blue/bordercorner2,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "wP" = (
 /obj/structure/bed,
 /turf/simulated/floor/tiled{
@@ -6990,9 +6916,7 @@
 	name = "Security"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "xx" = (
 /obj/structure/table/woodentable{
 	dir = 5
@@ -7039,9 +6963,7 @@
 	opacity = 0
 	},
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "xF" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 10
@@ -7051,9 +6973,7 @@
 	},
 /obj/structure/closet/secure_closet/nanotrasen_security,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "xH" = (
 /obj/structure/table/rack,
 /obj/item/gun/projectile/shotgun/pump/USDF,
@@ -7301,11 +7221,7 @@
 /area/centcom/command)
 "ys" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "yu" = (
 /obj/machinery/power/thermoregulator,
@@ -7419,9 +7335,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "yO" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/centcom/terminal)
@@ -7461,9 +7375,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "yV" = (
 /obj/machinery/cryopod/robot/door/dorms{
 	base_icon_state = "door_closed";
@@ -7503,9 +7415,7 @@
 /area/centcom/main_hall)
 "zf" = (
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "zh" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 4
@@ -7533,11 +7443,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "zm" = (
 /obj/structure/closet{
@@ -7554,9 +7460,7 @@
 "zo" = (
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "zp" = (
 /obj/machinery/light{
 	dir = 1
@@ -8423,7 +8327,7 @@
 "Cy" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "cc_landing_pad";
 	name = "docking port controller";
 	pixel_x = 24;
@@ -8603,9 +8507,7 @@
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "CX" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -8886,10 +8788,6 @@
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
-"Ea" = (
-/obj/machinery/computer/rdconsole/robotics,
-/turf/simulated/floor/tiled/white,
-/area/centcom/control)
 "Eb" = (
 /obj/structure/reagent_dispensers/water_cooler/full,
 /turf/simulated/floor/tiled/freezer,
@@ -8971,9 +8869,7 @@
 /obj/item/gun/energy/gun,
 /obj/item/shield/riot,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "En" = (
 /obj/structure/sign/painting/public{
 	pixel_x = 30
@@ -9044,11 +8940,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "EA" = (
 /obj/structure/bed/chair/office/dark{
@@ -9061,9 +8953,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "EB" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -9360,9 +9250,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "FC" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
@@ -9390,9 +9278,7 @@
 "FG" = (
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "FK" = (
 /obj/structure/table/rack,
 /obj/item/rig/ert/security,
@@ -9604,9 +9490,7 @@
 	pixel_y = 27
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Gz" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
@@ -9766,10 +9650,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/centcom)
-"GV" = (
-/obj/machinery/r_n_d/destructive_analyzer,
-/turf/simulated/floor/tiled/white,
-/area/centcom/control)
 "GW" = (
 /obj/structure/sign/nosmoking_2,
 /turf/simulated/wall/r_wall,
@@ -10001,9 +9881,7 @@
 /obj/item/gun/energy/gun,
 /obj/item/shield/riot,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "HI" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/white,
@@ -10173,9 +10051,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Io" = (
 /obj/machinery/vending/snack,
 /turf/unsimulated/floor/steel,
@@ -10454,9 +10330,7 @@
 	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "IY" = (
 /obj/machinery/light{
 	dir = 1
@@ -10511,7 +10385,7 @@
 /turf/simulated/floor/reinforced,
 /area/centcom/terminal)
 "Jj" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
@@ -10717,9 +10591,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "JQ" = (
 /obj/machinery/atm{
 	pixel_y = 30
@@ -11188,14 +11060,14 @@
 "Lp" = (
 /obj/machinery/airlock_sensor{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null;
 	pixel_x = 24
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
@@ -11368,9 +11240,7 @@
 	},
 /obj/machinery/computer/skills,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "LQ" = (
 /obj/machinery/vending/cigarette{
 	name = "hacked cigarette machine";
@@ -11545,15 +11415,9 @@
 	pixel_y = 27
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Mn" = (
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "Mp" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -11634,9 +11498,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "MB" = (
 /obj/effect/floor_decal/derelict/d15,
 /turf/simulated/floor/tiled,
@@ -11784,7 +11646,7 @@
 "MX" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "centcom_starboard_dock";
 	name = "docking port controller";
 	pixel_x = 24;
@@ -11815,9 +11677,7 @@
 	},
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Nd" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
@@ -12013,9 +11873,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "NO" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 4
@@ -12141,7 +11999,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/bathroom)
 "On" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
@@ -12279,9 +12137,7 @@
 /obj/item/camera,
 /obj/item/storage/box/ids,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "OI" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/armor/riot,
@@ -12349,9 +12205,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "OS" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloor,
@@ -12518,9 +12372,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Ps" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -12726,7 +12578,7 @@
 "PW" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_shuttle_hatch";
 	locked = 1;
 	name = "Shuttle Airlock"
@@ -12807,9 +12659,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Qk" = (
 /obj/structure/table/marble,
 /obj/machinery/door/blast/shutters{
@@ -12823,9 +12673,7 @@
 "Ql" = (
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Qn" = (
 /obj/machinery/sleep_console{
 	dir = 4
@@ -13026,9 +12874,7 @@
 /area/centcom/security)
 "QK" = (
 /turf/simulated/floor/tiled,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "QL" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor/tiled/white,
@@ -13183,7 +13029,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "Ri" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -13213,9 +13059,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Ro" = (
 /obj/machinery/gibber,
 /turf/simulated/floor/tiled{
@@ -13346,9 +13190,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "RH" = (
 /obj/machinery/status_display{
 	pixel_x = -31
@@ -13436,9 +13278,7 @@
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "RX" = (
 /obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
@@ -13476,9 +13316,7 @@
 	},
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Sc" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
@@ -13581,9 +13419,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Sp" = (
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
@@ -13910,9 +13746,7 @@
 /area/tdome/tdome1)
 "TG" = (
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "TJ" = (
 /obj/effect/floor_decal/emblem/stellardelight/center,
 /turf/simulated/shuttle/floor/white,
@@ -14139,9 +13973,7 @@
 	},
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "UA" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled,
@@ -14196,9 +14028,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "UK" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
@@ -14273,9 +14103,7 @@
 	pixel_y = 27
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "UR" = (
 /obj/machinery/fitness/punching_bag/clown,
 /turf/simulated/floor/tiled/dark,
@@ -14371,9 +14199,7 @@
 	name = "Security"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Vh" = (
 /obj/structure/sink{
 	dir = 4;
@@ -14465,7 +14291,7 @@
 /area/centcom/control)
 "Vu" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -14790,9 +14616,7 @@
 	req_one_access = list(1)
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "Wy" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2
@@ -14821,7 +14645,7 @@
 "WG" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "centcom_port_dock";
 	name = "docking port controller";
 	pixel_x = 24;
@@ -14831,9 +14655,7 @@
 /area/centcom)
 "WH" = (
 /turf/simulated/wall/r_wall,
-/area/centcom/security{
-	name = "\improper CentCom Security Arrivals"
-	})
+/area/centcom/security/arrivals)
 "WJ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -15071,9 +14893,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/dark,
-/area/centcom/security{
-	name = "\improper CentCom Residential Security"
-	})
+/area/centcom/security/residential)
 "Xy" = (
 /obj/item/paper{
 	info = "You're not supposed to be here.";
@@ -15190,7 +15010,7 @@
 "XY" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
@@ -15330,7 +15150,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_shuttle_hatch_offsite";
 	locked = 1;
@@ -15546,10 +15366,6 @@
 /obj/item/storage/box/syringes,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
-"Zu" = (
-/obj/machinery/r_n_d/server/centcom,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "Zv" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -29416,7 +29232,7 @@ Vt
 jm
 hW
 Kr
-Zu
+Sp
 jm
 Vt
 Vt
@@ -32943,7 +32759,7 @@ bR
 cI
 MP
 HI
-GV
+hZ
 Ri
 lm
 VE
@@ -33935,7 +33751,7 @@ wZ
 wZ
 wZ
 cI
-Ea
+hZ
 kd
 Vt
 Vt

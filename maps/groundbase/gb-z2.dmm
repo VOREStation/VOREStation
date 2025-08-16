@@ -312,6 +312,11 @@
 /area/groundbase/level2/nw)
 "aH" = (
 /obj/structure/table/glass,
+/obj/item/extrapolator,
+/obj/item/extrapolator{
+	pixel_x = -5;
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "aI" = (
@@ -909,6 +914,16 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"bJ" = (
+/obj/structure/table/woodentable,
+/obj/machinery/librarywikicomp,
+/turf/simulated/floor/carpet,
+/area/groundbase/civilian/library)
+"bK" = (
+/obj/item/key/janicart,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/janitor)
 "bL" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -958,6 +973,13 @@
 /obj/structure/bookcase,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
+"bR" = (
+/obj/machinery/light,
+/obj/vehicle/train/engine/janicart{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/janitor)
 "bS" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1332,6 +1354,11 @@
 "cZ" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/lights/mixed,
+/obj/item/mail_scanner{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/mail_scanner,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "da" = (
@@ -2048,6 +2075,11 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_x = -30;
+	pixel_y = -27
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
 "fc" = (
@@ -2418,7 +2450,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "gd" = (
-/obj/machinery/r_n_d/protolathe{
+/obj/machinery/rnd/production/protolathe{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3046,7 +3078,6 @@
 	name = "Privacy Shutter Control";
 	pixel_y = 30
 	},
-/obj/machinery/computer/rdconsole/robotics,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "hV" = (
@@ -3701,6 +3732,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
+	},
+/obj/structure/privacyswitch{
+	pixel_y = -27;
+	dir = 8;
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room5)
@@ -5503,7 +5539,7 @@
 /area/groundbase/medical/Chemistry)
 "ph" = (
 /obj/item/reagent_containers/glass/beaker/sulphuric,
-/obj/machinery/r_n_d/circuit_imprinter{
+/obj/machinery/rnd/production/circuit_imprinter{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -6389,6 +6425,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/gold_star_printer,
 /turf/simulated/floor/carpet,
 /area/groundbase/command/hop)
 "rv" = (
@@ -6964,7 +7001,7 @@
 	pixel_x = -32;
 	pixel_y = 32
 	},
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /obj/machinery/requests_console{
 	department = "Robotics";
 	departmentType = 2;
@@ -7008,12 +7045,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/closet/crate/medical,
-/obj/item/reagent_containers/glass/bottle/culture/cold{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/glass/bottle/culture/flu,
+/mob/living/simple_mob/animal/passive/mouse/white/virology,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "tm" = (
@@ -7142,7 +7174,6 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "tI" = (
-/obj/machinery/r_n_d/destructive_analyzer,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/rnd)
 "tJ" = (
@@ -8826,6 +8857,11 @@
 	dir = 1;
 	pixel_y = -30
 	},
+/obj/structure/privacyswitch{
+	dir = 1;
+	pixel_y = -30;
+	pixel_x = -5
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room1)
 "yC" = (
@@ -9388,7 +9424,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "Ao" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "Ap" = (
@@ -9720,6 +9756,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
+	},
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_x = -30;
+	pixel_y = -27
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room6)
@@ -11565,7 +11606,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/science/server)
 "Gu" = (
-/obj/machinery/r_n_d/server/robotics,
+/obj/machinery/rnd/server/master,
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 8;
 	external_pressure_bound = 0;
@@ -11667,7 +11708,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/circuits)
 "GK" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /obj/machinery/light{
 	dir = 1
@@ -12043,6 +12084,11 @@
 	dir = 1
 	},
 /obj/machinery/light,
+/obj/item/storage/bag/mail,
+/obj/item/storage/bag/mail{
+	pixel_x = -5;
+	pixel_y = -5
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "HK" = (
@@ -13403,6 +13449,11 @@
 	pixel_x = 7;
 	id = "dorm8"
 	},
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_x = -30;
+	pixel_y = -27
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
 "Lu" = (
@@ -13894,7 +13945,7 @@
 /turf/simulated/wall,
 /area/groundbase/civilian/chapel/office)
 "MF" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -15104,7 +15155,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "Qa" = (
-/obj/machinery/r_n_d/server/robotics,
+/obj/machinery/rnd/server,
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 4;
 	icon_state = "map_vent_out";
@@ -15391,6 +15442,11 @@
 	pixel_y = 27;
 	pixel_x = -7;
 	id = "dorm7"
+	},
+/obj/structure/privacyswitch{
+	pixel_y = -27;
+	dir = 8;
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room7)
@@ -15760,6 +15816,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
+	},
+/obj/structure/privacyswitch{
+	pixel_y = -27;
+	dir = 8;
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room3)
@@ -16177,12 +16238,10 @@
 /area/groundbase/civilian/chapel)
 "SX" = (
 /obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant/small{
-	pixel_y = 12
-	},
 /obj/structure/sign/painting/library_secure{
 	pixel_x = -30
 	},
+/obj/machinery/librarywikicomp,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
 "SY" = (
@@ -16974,6 +17033,11 @@
 	pixel_y = -7;
 	pixel_x = -27;
 	id = "dorm2"
+	},
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_y = 27;
+	pixel_x = -30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room2)
@@ -18370,7 +18434,7 @@
 /obj/effect/floor_decal/industrial/outline,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "cargo_bay";
 	pixel_x = -23
 	},
@@ -21250,7 +21314,7 @@ eE
 nd
 ey
 Vb
-Vb
+bK
 Do
 bY
 bY
@@ -21392,7 +21456,7 @@ Vb
 Vb
 qr
 Vb
-zb
+bR
 Do
 GY
 bY
@@ -23064,7 +23128,7 @@ rP
 rP
 rP
 rP
-cX
+bJ
 cX
 cX
 MY

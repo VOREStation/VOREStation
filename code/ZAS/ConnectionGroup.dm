@@ -20,7 +20,7 @@ Class Vars:
 		B - This holds the second zone with which the first zone equalizes.
 
 		direct - This counts the number of direct (i.e. with no doors) connections on this edge.
-		         Any value of this is sufficient to make the zones mergeable.
+					Any value of this is sufficient to make the zones mergeable.
 
 	connection_edge/unsimulated
 
@@ -99,9 +99,10 @@ Class Procs:
 
 		//Check for knocking people over
 		if(ismob(M) && differential > vsc.airflow_stun_pressure)
-			if(M:status_flags & GODMODE) continue
-			M:airflow_stun()
-
+			var/mob/target = M
+			if(SEND_SIGNAL(target, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+				continue
+			target.airflow_stun()
 		if(M.check_airflow_movable(differential))
 			//Check for things that are in range of the midpoint turfs.
 			var/list/close_turfs = list()

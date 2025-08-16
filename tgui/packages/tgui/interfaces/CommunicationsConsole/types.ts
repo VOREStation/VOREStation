@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   is_ai: BooleanLike;
@@ -30,4 +30,4 @@ export type Data = {
   esc_status: BooleanLike | string;
 };
 
-type message = { id: string; title: String; contents: string };
+type message = { id: string; title: string; contents: string };

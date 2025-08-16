@@ -107,6 +107,7 @@
 	name = "oven"
 	desc = "Old fashioned cookies are ready, dear."
 	icon_state = "yeoldovenopen"
+	tgui_id = "CookingOvenOld"
 
 /obj/machinery/appliance/cooker/oven/yeoldoven/update_icon()
 	if(!open)
@@ -179,7 +180,7 @@
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return
 
-/obj/structure/toilet/wooden/Initialize()
+/obj/structure/toilet/wooden/Initialize(mapload)
 	open = 1 //just to make sure it works
 	icon_state = "toilet3"
 	. = ..()
@@ -264,7 +265,7 @@
 		else //Otherwise bad luck!!
 			to_chat(user, span_warning("It's dirty!"))
 			return 1
-	else if(is_type_in_list(O,acceptable_items))
+	else if(is_type_in_list(O,GLOB.acceptable_items))
 		var/list/workingList = cookingContents()
 		if(workingList.len>=(max_n_of_items + circuit_item_capacity))	//Adds component_parts to the maximum number of items. changed 1 to actually just be the circuit item capacity var.
 			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
@@ -320,7 +321,7 @@
 		if (!O.reagents)
 			return 1
 		for (var/datum/reagent/R in O.reagents.reagent_list)
-			if (!(R.id in acceptable_reagents))
+			if (!(R.id in GLOB.acceptable_reagents))
 				to_chat(user, span_warning("Your [O] contains components unsuitable for cookery."))
 				return 1
 		return
@@ -479,7 +480,7 @@
 
 /obj/item/perfect_tele/magic/attack_self(mob/user, var/radial_menu_anchor = src)
 	if(loc_network)
-		for(var/obj/item/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
+		for(var/obj/item/perfect_tele_beacon/stationary/nb in GLOB.premade_tele_beacons)
 			if(nb.tele_network == loc_network)
 				beacons[nb.tele_name] = nb
 		loc_network = null //Consumed
@@ -501,7 +502,7 @@ This device records all warnings given and teleport events for admin review in c
 			to_chat(user, span_warning("The tome can't support any more pages!"))
 			return
 
-		var/new_name = html_encode(tgui_input_text(user,"New pages's name (2-20 char):","[src]",null,20))
+		var/new_name = tgui_input_text(user,"New pages's name (2-20 char):","[src]",null,20)
 		if(!check_menu(user))
 			return
 

@@ -1,8 +1,8 @@
 /proc/createRandomZlevel()
-	#ifdef UNIT_TEST
+	#ifdef UNIT_TESTS
 	return
 	#endif
-	if(awaydestinations.len)	//crude, but it saves another var! //VOREStation Edit - No loading away missions during CI testing
+	if(GLOB.awaydestinations.len)	//crude, but it saves another var! //VOREStation Edit - No loading away missions during CI testing
 		return
 
 	var/list/potentialRandomZlevels = list()
@@ -24,11 +24,11 @@
 	//	var/value = null
 
 		if (pos)
-            // No, don't do lowertext here, that breaks paths on linux
+			// No, don't do lowertext here, that breaks paths on linux
 			name = copytext(t, 1, pos)
 		//	value = copytext(t, pos + 1)
 		else
-            // No, don't do lowertext here, that breaks paths on linux
+			// No, don't do lowertext here, that breaks paths on linux
 			name = t
 
 		if (!name)
@@ -48,7 +48,7 @@
 			template.load_new_z()
 			to_world_log("away mission loaded: [map]")
 		/* VOREStation Removal - We do this in the special landmark init instead.
-		for(var/obj/effect/landmark/L in landmarks_list)
+		for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 			if (L.name != "awaystart")
 				continue
 			awaydestinations.Add(L)
@@ -62,9 +62,9 @@
 //VOREStation Add - This landmark type so it's not so ghetto.
 /obj/effect/landmark/gateway_scatter
 	name = "uncalibrated gateway destination"
-/obj/effect/landmark/gateway_scatter/Initialize()
+/obj/effect/landmark/gateway_scatter/Initialize(mapload)
 	. = ..()
-	awaydestinations += src
+	GLOB.awaydestinations += src
 
 /obj/effect/landmark/gateway_scatter/abduct
 	name = "uncalibrated gateway abductor"
@@ -72,9 +72,9 @@
 
 /obj/effect/landmark/event_scatter
 	name = "uncalibrated event destination"
-/obj/effect/landmark/event_scatter/Initialize()
+/obj/effect/landmark/event_scatter/Initialize(mapload)
 	. = ..()
-	eventdestinations += src
+	GLOB.eventdestinations += src
 
 /obj/effect/landmark/event_scatter/abduct
 	name = "uncalibrated event abductor"
@@ -82,13 +82,13 @@
 
 /obj/effect/landmark/gateway_abduct_dest
 	name = "abductor gateway destination"
-/obj/effect/landmark/gateway_abduct_dest/Initialize()
+/obj/effect/landmark/gateway_abduct_dest/Initialize(mapload)
 	. = ..()
-	awayabductors += src
+	GLOB.awayabductors += src
 
 /obj/effect/landmark/event_abduct_dest
 	name = "abductor event destination"
-/obj/effect/landmark/event_abduct_dest/Initialize()
+/obj/effect/landmark/event_abduct_dest/Initialize(mapload)
 	. = ..()
-	eventabductors += src
+	GLOB.eventabductors += src
 //VOREStation Add End

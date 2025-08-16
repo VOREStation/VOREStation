@@ -8,7 +8,7 @@
 	// If the effect's color is not set, it will be chosen at random.
 	var/color_secondary	// The hexcode for the desired secondary color of your graffiti. If blank, it will inherit this effect's color.
 
-/obj/effect/graffitispawner/Initialize()
+/obj/effect/graffitispawner/Initialize(mapload)
 	..()
 
 	if(!color)

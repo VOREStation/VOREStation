@@ -24,11 +24,11 @@
 // The Magazine //
 /obj/item/ammo_magazine/cell_mag/combat
 	name = "microbattery magazine"
-	desc = "A microbattery holder for the \'NSFW\'"
+	desc = "A microbattery holder for the \'NSFW\'."
 	icon_state = "nsfw_mag"
 	max_ammo = 4
 	x_offset = 4
-	description_info = "This magazine holds NSFW microbatteries to power the NSFW handgun. Up to three can be loaded at once, and each provides four shots of their respective energy type. Loading multiple of the same type will provide additional shots of that type. The batteries can be recharged in a normal recharger."
+	description_info = "This magazine holds NSFW microbatteries to power the NSFW handgun. Up to four can be loaded at once, and each provides four shots of their respective energy type. Loading multiple of the same type will provide additional shots of that type. The batteries can be recharged in a normal recharger."
 	ammo_type = /obj/item/ammo_casing/microbattery/combat
 
 /obj/item/ammo_magazine/cell_mag/combat/prototype
@@ -48,8 +48,8 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/gun/projectile/cell_loaded/combat,/obj/item/ammo_magazine/cell_mag/combat,/obj/item/ammo_casing/microbattery/combat)
 
-/obj/item/storage/secure/briefcase/nsfw_pack/New()
-	..()
+/obj/item/storage/secure/briefcase/nsfw_pack/Initialize(mapload)
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded/combat(src)
 	new /obj/item/ammo_magazine/cell_mag/combat(src)
 	for(var/path in subtypesof(/obj/item/ammo_casing/microbattery/combat))
@@ -62,8 +62,8 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/gun/projectile/cell_loaded/combat,/obj/item/ammo_magazine/cell_mag/combat,/obj/item/ammo_casing/microbattery/combat)
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hos/New()
-	..()
+/obj/item/storage/secure/briefcase/nsfw_pack_hos/Initialize(mapload)
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded/combat(src)
 	new /obj/item/ammo_magazine/cell_mag/combat(src)
 	new /obj/item/ammo_casing/microbattery/combat/lethal(src)

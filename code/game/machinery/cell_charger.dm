@@ -13,7 +13,7 @@
 	var/chargelevel = -1
 	circuit = /obj/item/circuitboard/cell_charger
 
-/obj/machinery/cell_charger/Initialize()
+/obj/machinery/cell_charger/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	add_overlay("ccharger1")

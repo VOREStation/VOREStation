@@ -85,15 +85,14 @@
 	scan_blood(A, user)
 
 /datum/data/pda/utility/scanmode/dna/proc/scan_blood(atom/A, mob/user)
-	if(!A.blood_DNA)
+	var/list/blood_dna = A.forensic_data?.get_blooddna()
+	if(!blood_dna)
 		to_chat(user, span_notice("No blood found on [A]"))
-		if(A.blood_DNA)
-			qdel(A.blood_DNA)
 	else
 		to_chat(user, span_notice("Blood found on [A]. Analysing..."))
 		spawn(15)
-			for(var/blood in A.blood_DNA)
-				to_chat(user, span_notice("Blood type: [A.blood_DNA[blood]]\nDNA: [blood]"))
+			for(var/blood in blood_dna)
+				to_chat(user, span_notice("Blood type: [blood_dna[blood]]\nDNA: [blood]"))
 
 /datum/data/pda/utility/scanmode/halogen
 	base_name = "Halogen Counter"
@@ -187,7 +186,7 @@
 		var/scannedtitle = "Paper"
 		if(!isnull(notes.notetitle) && notes.notetitle != "")
 			scannedtitle = "'[notes.notetitle]'"
-		to_chat(user, span_notice("[scannedtitle] scanned to Notekeeper in note [alphabet_uppercase[notes.currentnote]]."))//concept of scanning paper copyright brainoblivion 2009
+		to_chat(user, span_notice("[scannedtitle] scanned to Notekeeper in note [GLOB.alphabet_upper[notes.currentnote]]."))//concept of scanning paper copyright brainoblivion 2009
 
 	else
 		to_chat(user, span_warning("Error scanning [A]."))

@@ -1,0 +1,50 @@
+/datum/atc_chatter/emerg/squak()
+	//mayday call
+	switch(phase)
+		if(1)
+			var/problem = pick("We have hull breaches on multiple decks","We have unknown hostile life forms on board","Our primary drive is failing","We have [pick("asteroids","space debris")] impacting the hull","We're experiencing a total loss of engine power","We have hostile ships closing fast","There's smoke [pick("in the cockpit","on the bridge")]","We have unidentified boarders","Our reaction control system is malfunctioning and we're losing stability","Our life support [pick("is failing","has failed")]")
+			SSatc.msg("+[pick("Mayday, mayday, mayday!","Mayday, mayday!","Mayday! Mayday!")]+ [combined_first_name], declaring an emergency! [problem]!","[comm_first_name]")
+			next()
+		if(2)
+			SSatc.msg("[combined_first_name], [callname]. Switch to emergency responder channel [SSatc.ertchannel].")
+			next()
+		else
+			SSatc.msg("[callname], [combined_first_name] switching now.","[comm_first_name]")
+			finish()
+
+/datum/atc_chatter/distress
+	VAR_PRIVATE/state = null
+
+/datum/atc_chatter/distress/squak()
+	//Ship event: distress call, under attack
+	if(!state)
+		state = pick(66;"calm",34;"panic")
+	switch(state)
+		if("calm")
+			switch(phase)
+				if(1)
+					SSatc.msg("[using_map.starsys_name] Defense Control, [combined_first_name].","[comm_first_name]")
+					next()
+				if(2)
+					SSatc.msg("[combined_first_name], [using_map.starsys_name] Defense Control.","[using_map.starsys_name] Defense Control")
+					next()
+				if(3)
+					SSatc.msg("Another vessel in our area is moving [pick("aggressively","suspiciously","erratically","unpredictably","with clear hostile intent")], please advise? Forwarding sensor data now.","[comm_first_name]","[comm_first_name]")
+					next()
+				if(4)
+					SSatc.msg("[combined_first_name], [using_map.starsys_name] Defense Control copies. Sensor data matches logged profile for [secondprefix] |[secondshipname]|. SDF units are en route to your location.","[using_map.starsys_name] Defense Control")
+					next()
+				else
+					SSatc.msg("[pick("Appreciated","Copy that","Understood")], Control. Switching to [SSatc.sdfchannel] to coordinate.","[comm_first_name]")
+					finish()
+		if("panic")
+			switch(phase)
+				if(1)
+					SSatc.msg("+Mayday, mayday, mayday!+ This is [combined_first_name] declaring an emergency! We are under attack! Requesting immediate assistance!","[comm_first_name]")
+					next()
+				if(2)
+					SSatc.msg("[combined_first_name], [using_map.starsys_name] Defense Control. SDF is en route, contact on [SSatc.sdfchannel].")
+					next()
+				else
+					SSatc.msg("[pick("Copy that","Understood")] [using_map.starsys_name] Defense Control, switching now!","[comm_first_name]")
+					finish()

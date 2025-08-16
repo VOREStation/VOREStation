@@ -17,7 +17,7 @@ export const SupplyConsoleMenuOrderList = (props) => {
   }
 
   return (
-    <Section scrollable fill height="290px">
+    <Section scrollable fill>
       {mode === 'Requested' && order_auth ? (
         <Button
           mt={-1}
@@ -34,7 +34,7 @@ export const SupplyConsoleMenuOrderList = (props) => {
       )}
       {displayedOrders.map((order, i) => (
         <Section
-          title={'Order ' + (i + 1)}
+          title={`Order ${i + 1}`}
           key={i}
           buttons={
             mode === 'All' && order_auth ? (
@@ -57,7 +57,7 @@ export const SupplyConsoleMenuOrderList = (props) => {
                   key={i}
                   label={field.field}
                   buttons={
-                    order_auth ? (
+                    !!order_auth && (
                       <Button
                         icon="pen"
                         onClick={() => {
@@ -70,8 +70,6 @@ export const SupplyConsoleMenuOrderList = (props) => {
                       >
                         Edit
                       </Button>
-                    ) : (
-                      ''
                     )
                   }
                 >

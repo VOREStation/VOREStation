@@ -12,13 +12,13 @@
 		var/sayselect = tgui_alert(src, "Which say-verb do you wish to customize?", "Select Verb", list("Say","Whisper","Ask (?)","Exclaim/Shout/Yell (!)","Cancel"))
 
 		if(sayselect == "Say")
-			custom_say =  lowertext(sanitize(tgui_input_text(src, "This word or phrase will appear instead of 'says': [src] says, \"Hi.\"", "Custom Say", null)))
+			custom_say =  lowertext(tgui_input_text(src, "This word or phrase will appear instead of 'says': [src] says, \"Hi.\"", "Custom Say", null, MAX_MESSAGE_LEN))
 		else if(sayselect == "Whisper")
-			custom_whisper =  lowertext(sanitize(tgui_input_text(src, "This word or phrase will appear instead of 'whispers': [src] whispers, \"Hi...\"", "Custom Whisper", null)))
+			custom_whisper =  lowertext(tgui_input_text(src, "This word or phrase will appear instead of 'whispers': [src] whispers, \"Hi...\"", "Custom Whisper", null, MAX_MESSAGE_LEN))
 		else if(sayselect == "Ask (?)")
-			custom_ask =  lowertext(sanitize(tgui_input_text(src, "This word or phrase will appear instead of 'asks': [src] asks, \"Hi?\"", "Custom Ask", null)))
+			custom_ask =  lowertext(tgui_input_text(src, "This word or phrase will appear instead of 'asks': [src] asks, \"Hi?\"", "Custom Ask", null, MAX_MESSAGE_LEN))
 		else if(sayselect == "Exclaim/Shout/Yell (!)")
-			custom_exclaim =  lowertext(sanitize(tgui_input_text(src, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [src] exclaims, \"Hi!\"", "Custom Exclaim", null)))
+			custom_exclaim =  lowertext(tgui_input_text(src, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [src] exclaims, \"Hi!\"", "Custom Exclaim", null, MAX_MESSAGE_LEN))
 		else
 			return
 
@@ -87,15 +87,53 @@
 	if(client.prefs.save_character())
 		to_chat(src, span_filter_notice("Character preferences saved."))
 
-/mob/living/proc/print_ooc_notes_to_chat(mob/user)
+/mob/living/proc/print_ooc_notes_chat(mob/user)
 	if(!ooc_notes)
 		return
 	var/msg = ooc_notes
-	if(ooc_notes_likes)
-		msg += "<br><br><b>LIKES</b><br><br>[ooc_notes_likes]"
-	if(ooc_notes_dislikes)
-		msg += "<br><br><b>DISLIKES</b><br><br>[ooc_notes_dislikes]"
-	to_chat(src, span_chatexport("[src]'s Metainfo:<br>[msg]"))
+	if(ooc_notes_style && (ooc_notes_favs || ooc_notes_likes || ooc_notes_maybes || ooc_notes_dislikes) && !user.client?.prefs?.read_preference(/datum/preference/toggle/vchat_enable)) // Oldchat hates proper formatting
+		msg += "<br><br>"
+		msg += "<table><tr>"
+		if(ooc_notes_favs)
+			msg += "<th><b>\t[span_blue("FAVOURITES")]</b></th>"
+		if(ooc_notes_likes)
+			msg += "<th><b>\t[span_green("LIKES")]</b></th>"
+		if(ooc_notes_maybes)
+			msg += "<th><b>\t[span_yellow("MAYBES")]</b></th>"
+		if(ooc_notes_dislikes)
+			msg += "<th><b>\t[span_red("DISLIKES")]</b></th>"
+		msg += "</tr><tr>"
+		if(ooc_notes_favs)
+			msg += "<td>"
+			for(var/line in splittext(ooc_notes_favs, "\n"))
+				msg += "\t[line]\n"
+			msg += "</td>"
+		if(ooc_notes_likes)
+			msg += "<td>"
+			for(var/line in splittext(ooc_notes_likes, "\n"))
+				msg += "\t[line]\n"
+			msg += "</td>"
+		if(ooc_notes_maybes)
+			msg += "<td>"
+			for(var/line in splittext(ooc_notes_maybes, "\n"))
+				msg += "\t[line]\n"
+			msg += "</td>"
+		if(ooc_notes_dislikes)
+			msg += "<td>"
+			for(var/line in splittext(ooc_notes_dislikes, "\n"))
+				msg += "\t[line]\n"
+			msg += "</td>"
+		msg += "</tr></table>"
+	else
+		if(ooc_notes_favs)
+			msg += "<br><br><b>[span_blue("FAVOURITES")]</b><br>[ooc_notes_favs]"
+		if(ooc_notes_likes)
+			msg += "<br><br><b>[span_green("LIKES")]</b><br>[ooc_notes_likes]"
+		if(ooc_notes_maybes)
+			msg += "<br><br><b>[span_yellow("MAYBES")]</b><br>[ooc_notes_maybes]"
+		if(ooc_notes_dislikes)
+			msg += "<br><br><b>[span_red("DISLIKES")]</b><br>[ooc_notes_dislikes]"
+	to_chat(user, span_chatexport("<b>[src]'s Metainfo:</b><br>[msg]"))
 
 /mob/living/verb/set_custom_link()
 	set name = "Set Custom Link"
@@ -140,10 +178,9 @@
 	set desc = "Sets your voice style!"
 	set category = "OOC.Game Settings"
 
-	var/list/possible_voice_types = get_talk_sound()
-	var/choice = tgui_input_list(src, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", possible_voice_types)
+	var/choice = tgui_input_list(src, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", SSsounds.talk_sound_map)
 	if(!choice)
-		voice_sounds_list = talk_sound
+		voice_sounds_list = DEFAULT_TALK_SOUNDS
 	voice_sounds_list = get_talk_sound(choice)
 
 /mob/living/proc/save_private_notes(mob/user)
@@ -155,17 +192,17 @@
 	if(client.prefs.save_character())
 		to_chat(src, span_filter_notice("Character preferences saved."))
 
-/mob/living/verb/open_private_notes(mob/user)
+/mob/living/verb/open_private_notes()
 	set name = "Private Notes"
 	set desc = "View and edit your character's private notes, that persist between rounds!"
 	set category = "IC.Notes"
 
-	private_notes_window(user)
+	private_notes_window(src)
 
 /mob/living/proc/set_metainfo_private_notes(mob/user)
 	if(user != src)
 		return
-	var/new_metadata = sanitize(tgui_input_text(src,"Write some notes for yourself. These can be anything that is useful, whether it's character events that you want to remember or a bit of lore. Things that you would normally stick in a txt file for yourself! This will not be saved unless you press save in the private notes panel.", "Private Notes", html_decode(private_notes), multiline = TRUE, prevent_enter = TRUE), extra = 0)
+	var/new_metadata = tgui_input_text(src,"Write some notes for yourself. These can be anything that is useful, whether it's character events that you want to remember or a bit of lore. Things that you would normally stick in a txt file for yourself! This will not be saved unless you press save in the private notes panel.", "Private Notes", html_decode(private_notes), MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 	if(new_metadata && CanUseTopic(src))
 		private_notes = new_metadata
 		client.prefs.update_preference_by_type(/datum/preference/text/living/private_notes, new_metadata)

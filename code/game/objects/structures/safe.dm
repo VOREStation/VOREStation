@@ -22,7 +22,7 @@ FLOOR SAFES
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 
 
-/obj/structure/safe/Initialize()
+/obj/structure/safe/Initialize(mapload)
 	. = ..()
 	tumbler_1_pos = rand(0, 72)
 	tumbler_1_open = rand(0, 72)
@@ -34,7 +34,6 @@ FLOOR SAFES
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/safe/LateInitialize()
-	. = ..()
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
 			return
@@ -139,7 +138,7 @@ FLOOR SAFES
 		return
 
 	if(href_list["retrieve"])
-		user << browse("", "window=safe") // Close the menu
+		user << browse(null, "window=safe") // Close the menu
 
 		var/obj/item/P = locate(href_list["retrieve"]) in src
 		if(open)
@@ -178,7 +177,7 @@ FLOOR SAFES
 	plane = PLATING_PLANE
 	layer = ABOVE_UTILITY
 
-/obj/structure/safe/floor/Initialize()
+/obj/structure/safe/floor/Initialize(mapload)
 	. = ..()
 	var/turf/T = loc
 	if(istype(T) && !T.is_plating())
@@ -186,7 +185,7 @@ FLOOR SAFES
 	update_icon()
 
 /obj/structure/safe/floor/hide(var/intact)
-	invisibility = intact ? 101 : 0
+	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 
 /obj/structure/safe/floor/hides_under_flooring()
 	return 1

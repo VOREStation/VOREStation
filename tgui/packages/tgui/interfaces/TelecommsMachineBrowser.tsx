@@ -6,6 +6,7 @@ import {
   LabeledList,
   NoticeBox,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -49,7 +50,7 @@ export const TelecommsMachineBrowser = (props) => {
           </NoticeBox>
         )) ||
           (temp && temp.color !== 'bad' && (
-            <NoticeBox warning>
+            <NoticeBox>
               <Box inline verticalAlign="middle">
                 {temp.text}
               </Box>
@@ -73,19 +74,23 @@ export const TelecommsMachineBrowser = (props) => {
             <LabeledList.Item
               label="Current Network"
               buttons={
-                <>
-                  <Button icon="search" onClick={() => act('scan')}>
-                    Probe Network
-                  </Button>
-                  <Button
-                    color="bad"
-                    icon="exclamation-triangle"
-                    disabled={machinelist.length === 0}
-                    onClick={() => act('release')}
-                  >
-                    Flush Buffer
-                  </Button>
-                </>
+                <Stack>
+                  <Stack.Item>
+                    <Button icon="search" onClick={() => act('scan')}>
+                      Probe Network
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      color="bad"
+                      icon="exclamation-triangle"
+                      disabled={machinelist.length === 0}
+                      onClick={() => act('release')}
+                    >
+                      Flush Buffer
+                    </Button>
+                  </Stack.Item>
+                </Stack>
               }
             >
               <Button icon="pen" onClick={() => act('network')}>
@@ -94,11 +99,11 @@ export const TelecommsMachineBrowser = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        {machinelist && machinelist.length ? (
+        {machinelist?.length ? (
           <TelecommsBrowser
             title={
               selectedMachine
-                ? selectedMachine.name + ' (' + selectedMachine.id + ')'
+                ? `${selectedMachine.name} (${selectedMachine.id})`
                 : 'Detected Network Entities'
             }
             list={selectedMachine ? selectedMachine.links : machinelist}
@@ -140,7 +145,7 @@ const TelecommsBrowser = (props) => {
           list.map((machine) => (
             <LabeledList.Item
               key={machine.id}
-              label={machine.name + ' (' + machine.id + ')'}
+              label={`${machine.name} (${machine.id})`}
             >
               <Button
                 icon="eye"

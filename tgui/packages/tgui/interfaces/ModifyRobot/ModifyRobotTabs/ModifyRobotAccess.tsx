@@ -28,7 +28,7 @@ export const ModifyRobotAccess = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Stack height={!target.active ? '75%' : '80%'}>
+      <Stack fill>
         <Stack.Item width="30%">
           <AccessSection
             title="Add Access"
@@ -42,6 +42,7 @@ export const ModifyRobotAccess = (props: {
         </Stack.Item>
         <Stack.Item width="40%">
           <Image
+            fixErrors
             src={tab_icon}
             style={{
               display: 'block',
@@ -120,7 +121,7 @@ export const ModifyRobotAccess = (props: {
 const AccessSection = (props: {
   title: string;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   access: Access[];
   action: string;
   buttonColor: string;
@@ -142,7 +143,7 @@ const AccessSection = (props: {
         fluid
         value={searchText}
         placeholder="Search for access..."
-        onInput={(e, value: string) => onSearchText(value)}
+        onChange={(value: string) => onSearchText(value)}
       />
       <Divider />
       <Stack>

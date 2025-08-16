@@ -18,9 +18,10 @@
 	pipe_flags = PIPING_DEFAULT_LAYER_ONLY
 	density = TRUE
 
-/obj/machinery/atmospherics/pipe/tank/Initialize()
+/obj/machinery/atmospherics/pipe/tank/Initialize(mapload)
 	icon_state = "air"
 	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/atmospherics/pipe/tank/init_dir()
 	initialize_directions = dir
@@ -74,13 +75,13 @@
 	name = "Pressure Tank (Air)"
 	icon_state = "air_map"
 
-/obj/machinery/atmospherics/pipe/tank/air/Initialize()
+/obj/machinery/atmospherics/pipe/tank/air/Initialize(mapload)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
 	air_temporary.adjust_multi(GAS_O2,  (start_pressure*O2STANDARD)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature), \
-	                           GAS_N2,(start_pressure*N2STANDARD)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+								GAS_N2,(start_pressure*N2STANDARD)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
 
 
 	. = ..()
@@ -90,7 +91,7 @@
 	name = "Pressure Tank (Oxygen)"
 	icon_state = "o2_map"
 
-/obj/machinery/atmospherics/pipe/tank/oxygen/Initialize()
+/obj/machinery/atmospherics/pipe/tank/oxygen/Initialize(mapload)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -105,7 +106,7 @@
 	icon_state = "n2_map"
 	volume = 40000 //Vorestation edit
 
-/obj/machinery/atmospherics/pipe/tank/nitrogen/Initialize()
+/obj/machinery/atmospherics/pipe/tank/nitrogen/Initialize(mapload)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -119,7 +120,7 @@
 	name = "Pressure Tank (Carbon Dioxide)"
 	icon_state = "co2_map"
 
-/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/Initialize()
+/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/Initialize(mapload)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -134,7 +135,7 @@
 	icon_state = "phoron_map"
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
-/obj/machinery/atmospherics/pipe/tank/phoron/Initialize()
+/obj/machinery/atmospherics/pipe/tank/phoron/Initialize(mapload)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
@@ -148,7 +149,7 @@
 	name = "Pressure Tank (Nitrous Oxide)"
 	icon_state = "n2o_map"
 
-/obj/machinery/atmospherics/pipe/tank/nitrous_oxide/Initialize()
+/obj/machinery/atmospherics/pipe/tank/nitrous_oxide/Initialize(mapload)
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C

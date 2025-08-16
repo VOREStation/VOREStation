@@ -26,10 +26,10 @@
 	for(var/obj/structure/cable/C in src.loc)
 		qdel(C)
 	. = ..()
-	for(var/datum/tgui_module/rcon/R in world)
+	for(var/datum/tgui_module/rcon/R in SStgui.all_uis)
 		R.FindDevices()
 
-/obj/machinery/power/breakerbox/Initialize()
+/obj/machinery/power/breakerbox/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
@@ -37,7 +37,7 @@
 	icon_state = "bbox_on"
 
 // Enabled on server startup. Used in substations to keep them in bypass mode.
-/obj/machinery/power/breakerbox/activated/Initialize()
+/obj/machinery/power/breakerbox/activated/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -97,7 +97,6 @@
 /obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/multitool))
 		var/newtag = tgui_input_text(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system", "", MAX_NAME_LEN)
-		newtag = sanitize(newtag,MAX_NAME_LEN)
 		if(newtag)
 			RCon_tag = newtag
 			to_chat(user, span_notice("You changed the RCON tag to: [newtag]"))

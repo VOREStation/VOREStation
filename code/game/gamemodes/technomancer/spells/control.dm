@@ -76,7 +76,7 @@
 			continue
 		L.ai_holder.give_target(target)
 
-/obj/item/spell/control/Initialize()
+/obj/item/spell/control/Initialize(mapload)
 	control_overlay = image('icons/obj/spells.dmi',"controlled")
 	return ..()
 

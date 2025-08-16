@@ -148,9 +148,7 @@
 	if(ai_holder)
 		ai_holder.remove_target()
 
-/mob/living/simple_mob/vore/pakkun/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/pakkun/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -165,15 +163,15 @@
 	B.digest_mode = DM_SELECT
 
 /mob/living/simple_mob/vore/pakkun/attackby(var/obj/item/O, var/mob/user) //if they're newspapered, they'll spit out any junk they've eaten for whatever reason
-    if(istype(O, /obj/item/newspaper) && !ckey && isturf(user.loc))
-        user.visible_message(span_info("[user] swats [src] with [O]!"))
-        release_vore_contents()
-        for(var/mob/living/L in living_mobs(0))
-            if(!(LAZYFIND(prey_excludes, L)))
-                LAZYSET(prey_excludes, L, world.time)
-                addtimer(CALLBACK(src, PROC_REF(removeMobFromPreyExcludes), WEAKREF(L)), 5 MINUTES)
-    else
-        ..()
+	if(istype(O, /obj/item/newspaper) && !ckey && isturf(user.loc))
+		user.visible_message(span_info("[user] swats [src] with [O]!"))
+		release_vore_contents()
+		for(var/mob/living/L in living_mobs(0))
+			if(!(LAZYFIND(prey_excludes, L)))
+				LAZYSET(prey_excludes, L, world.time)
+				addtimer(CALLBACK(src, PROC_REF(removeMobFromPreyExcludes), WEAKREF(L)), 5 MINUTES)
+	else
+		..()
 
 //a palette-swapped version that's a bit bossier, in JRPG tradition
 
@@ -274,9 +272,7 @@
 		petters -= pick(petters)
 	..()
 
-/mob/living/simple_mob/vore/pakkun/snapdragon/snappy/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/pakkun/snapdragon/snappy/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.digest_mode = DM_HOLD

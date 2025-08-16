@@ -1,13 +1,13 @@
-import { uniqBy } from 'common/collections';
+import { uniqBy } from 'es-toolkit';
 import { createSearch } from 'tgui-core/string';
 
 import { COLOR_AVERAGE, COLOR_BAD, COLOR_NONE } from './constants';
-import { material, part, queueFormat } from './types';
+import type { MatFormat, material, part, queueFormat } from './types';
 
 export function materialArrayToObj(
   materials: material[],
 ): Record<string, number> {
-  let materialObj = {};
+  const materialObj = {};
 
   materials.forEach((m) => {
     materialObj[m.name] = m.amount;
@@ -41,13 +41,13 @@ export function partCondFormat(
   tally: Record<string, number>,
   part: part,
 ) {
-  let format = { textColor: COLOR_NONE };
+  const format = { textColor: COLOR_NONE };
 
   Object.keys(part.cost).forEach((mat) => {
     format[mat] = partBuildColor(part.cost[mat], tally[mat], materials[mat]);
 
-    if (format[mat].color > format['textColor']) {
-      format['textColor'] = format[mat].color;
+    if (format[mat].color > format.textColor) {
+      format.textColor = format[mat].color;
     }
   });
 
@@ -55,38 +55,37 @@ export function partCondFormat(
 }
 
 export function queueCondFormat(
-  materials: material | {},
+  materials: Record<string, number>,
   queue: part[] | null,
 ): queueFormat {
-  let materialTally = {};
-  let matFormat = {};
-  let missingMatTally = {};
-  let textColors = {};
+  const materialTally: Record<string, number> = {};
+  const matFormat: Record<string, MatFormat> = {};
+  const missingMatTally: Record<string, number> = {};
+  const textColors: Record<number, number> = {};
 
-  queue &&
-    queue.forEach((part, i) => {
-      textColors[i] = COLOR_NONE;
-      Object.keys(part.cost).forEach((mat) => {
-        materialTally[mat] = materialTally[mat] || 0;
-        missingMatTally[mat] = missingMatTally[mat] || 0;
+  queue?.forEach((part, i) => {
+    textColors[i] = COLOR_NONE;
+    Object.keys(part.cost).forEach((mat) => {
+      materialTally[mat] = materialTally[mat] || 0;
+      missingMatTally[mat] = missingMatTally[mat] || 0;
 
-        matFormat[mat] = partBuildColor(
-          part.cost[mat],
-          materialTally[mat],
-          materials[mat],
-        );
+      matFormat[mat] = partBuildColor(
+        part.cost[mat],
+        materialTally[mat],
+        materials[mat],
+      );
 
-        if (matFormat[mat].color !== COLOR_NONE) {
-          if (textColors[i] < matFormat[mat].color) {
-            textColors[i] = matFormat[mat].color;
-          }
-        } else {
-          materialTally[mat] += part.cost[mat];
+      if (matFormat[mat].color !== COLOR_NONE) {
+        if (textColors[i] < matFormat[mat].color) {
+          textColors[i] = matFormat[mat].color;
         }
+      } else {
+        materialTally[mat] += part.cost[mat];
+      }
 
-        missingMatTally[mat] += matFormat[mat].deficit;
-      });
+      missingMatTally[mat] += matFormat[mat].deficit;
     });
+  });
   return { materialTally, missingMatTally, textColors, matFormat };
 }
 
@@ -121,7 +120,7 @@ export function getFirstValidPartSet(
   sets: string[],
   buildableParts: Record<string, part[]> | [],
 ): string | null {
-  for (let set of sets) {
+  for (const set of sets) {
     if (buildableParts[set]) {
       return set;
     }

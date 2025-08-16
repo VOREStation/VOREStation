@@ -26,7 +26,7 @@
 	/// Saves all the recipes recorded by the machine
 	var/list/saved_recipes = list()
 
-/obj/machinery/chemical_dispenser/Initialize()
+/obj/machinery/chemical_dispenser/Initialize(mapload)
 	. = ..()
 	if(spawn_cartridges)
 		for(var/type in spawn_cartridges)

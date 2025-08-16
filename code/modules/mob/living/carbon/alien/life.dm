@@ -1,7 +1,7 @@
 // Alien larva are quite simple.
 /mob/living/carbon/alien/Life()
 
-	set invisibility = 0
+	set invisibility = INVISIBILITY_NONE
 
 	if (transforming)	return
 	if(!loc)			return
@@ -35,7 +35,8 @@
 
 /mob/living/carbon/alien/handle_regular_status_updates()
 
-	if(status_flags & GODMODE)	return 0
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL) //I don't want to go in and do HUD stuff imediately, so... no.
+		return 0	// Cancelled by a component
 
 	if(stat == DEAD)
 		blinded = 1
@@ -121,7 +122,7 @@
 			healths.icon_state = "health7"
 
 	if (client)
-		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
+		client.screen.Remove(GLOB.global_hud.blurry,GLOB.global_hud.druggy,GLOB.global_hud.vimpaired)
 
 	if ( stat != 2)
 		if ((blinded))

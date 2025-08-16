@@ -154,7 +154,7 @@ export const ModifyRobotComponent = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Stack height={!target.active ? '75%' : '80%'}>
+      <Stack fill>
         <Stack.Item width="35%">
           <ComponentSection
             title="Repair Component"
@@ -176,7 +176,7 @@ export const ModifyRobotComponent = (props: {
                   <Box
                     className={classes([
                       target.sprite_size,
-                      target.sprite + 'E',
+                      `${target.sprite}E`,
                     ])}
                   />
                 </Stack.Item>
@@ -218,7 +218,7 @@ export const ModifyRobotComponent = (props: {
 const ComponentSection = (props: {
   title: string;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   components: Component[];
   action: string;
   buttonColor: string;
@@ -242,7 +242,7 @@ const ComponentSection = (props: {
         fluid
         value={searchText}
         placeholder="Search for components..."
-        onInput={(e, value: string) => onSearchText(value)}
+        onChange={(value: string) => onSearchText(value)}
       />
       <Divider />
       <Stack>
@@ -276,9 +276,9 @@ const ComponentSection = (props: {
                   <Stack.Item>
                     <Stack align="center">
                       <Stack.Item>
-                        {capitalize(component.name)}{' '}
+                        {capitalize(component.name)}
                         {action === 'add_component' &&
-                          '(' + component.max_damage + ')'}
+                          ` (${component.max_damage})`}
                       </Stack.Item>
                       <Stack.Item grow />
                       <Stack.Item>
@@ -304,10 +304,10 @@ const ComponentSection = (props: {
                   <Stack.Item />
                   <Stack.Item>
                     {action === 'add_component' &&
-                      'Brute Damage: ' + component.brute_damage}
+                      `Brute Damage: ${component.brute_damage}`}
                   </Stack.Item>
                   {action === 'add_component' &&
-                    'Electronics Damage: ' + component.electronics_damage}
+                    `Electronics Damage: ${component.electronics_damage}`}
                   <Stack.Item />
                 </Stack>
               </Button>

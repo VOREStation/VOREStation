@@ -71,10 +71,9 @@
 	update_icon()
 	..()
 
-/obj/item/melee/shock_maul/New()
-	..()
+/obj/item/melee/shock_maul/Initialize(mapload)
+	. = ..()
 	update_held_icon()
-	return
 
 /obj/item/melee/shock_maul/get_cell()
 	return bcell
@@ -111,11 +110,10 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/melee/shock_maul/loaded/New() //this one starts with a cell pre-installed.
-	..()
+/obj/item/melee/shock_maul/loaded/Initialize(mapload) //this one starts with a cell pre-installed.
+	. = ..()
 	bcell = new/obj/item/cell/device/weapon(src)
 	update_icon()
-	return
 
 /obj/item/melee/shock_maul/proc/deductcharge()
 	if(status == 1)		//Only deducts charge when it's on

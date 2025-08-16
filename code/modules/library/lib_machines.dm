@@ -74,26 +74,16 @@
 		return
 
 	if(href_list["settitle"])
-		var/newtitle = tgui_input_text(usr, "Enter a title to search for:")
-		if(newtitle)
-			title = sanitize(newtitle)
-		else
-			title = null
-		title = sanitizeSQL(title)
+		var/newtitle = tgui_input_text(usr, "Enter a title to search for:", max_length = MAX_MESSAGE_LEN)
+		title = sanitizeSQL(newtitle)
 	if(href_list["setcategory"])
 		var/newcategory = tgui_input_list(usr, "Choose a category to search for:", "Category", list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
-		if(newcategory)
-			category = sanitize(newcategory)
-		else
+		if(!newcategory)
 			category = "Any"
 		category = sanitizeSQL(category)
 	if(href_list["setauthor"])
-		var/newauthor = tgui_input_text(usr, "Enter an author to search for:")
-		if(newauthor)
-			author = sanitize(newauthor)
-		else
-			author = null
-		author = sanitizeSQL(author)
+		var/newauthor = tgui_input_text(usr, "Enter an author to search for:", max_length = MAX_MESSAGE_LEN)
+		author = sanitizeSQL(newauthor)
 	if(href_list["search"])
 		SQLquery = "SELECT author, title, category, id FROM library WHERE "
 		if(category == "Any")
@@ -139,7 +129,7 @@
 
 	var/static/list/base_genre_books
 
-/obj/machinery/librarycomp/Initialize()
+/obj/machinery/librarycomp/Initialize(mapload)
 	. = ..()
 
 	if(!base_genre_books || !base_genre_books.len)
@@ -186,7 +176,7 @@
 				dat += "<A href='byond://?src=\ref[src];switchscreen=7'>7. Access the Forbidden Lore Vault</A><BR>"
 			if(src.arcanecheckout)
 				new /obj/item/book/tome(src.loc)
-				var/datum/gender/T = gender_datums[user.get_visible_gender()]
+				var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 				to_chat(user, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it."))
 				user.visible_message(span_infoplain(span_bold("\The [user]") + " stares at the blank screen for a few moments, [T.his] expression frozen in fear. When [T.he] finally awakens from it, [T.he] looks a lot older."), 2)
 				src.arcanecheckout = 0
@@ -405,9 +395,9 @@
 		if(checkoutperiod < 1)
 			checkoutperiod = 1
 	if(href_list["editbook"])
-		buffer_book = sanitizeSafe(tgui_input_text(usr, "Enter the book's title:"))
+		buffer_book = sanitizeSafe(tgui_input_text(usr, "Enter the book's title:", encode = FALSE))
 	if(href_list["editmob"])
-		buffer_mob = sanitize(tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
+		buffer_mob = tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN)
 	if(href_list["checkout"])
 		var/datum/borrowbook/b = new /datum/borrowbook
 		b.bookname = sanitizeSafe(buffer_book)
@@ -422,7 +412,7 @@
 		var/obj/item/book/b = locate(href_list["delbook"])
 		inventory.Remove(b)
 	if(href_list["setauthor"])
-		var/newauthor = sanitize(tgui_input_text(usr, "Enter the author's name: "))
+		var/newauthor = tgui_input_text(usr, "Enter the author's name: ", "", "", MAX_MESSAGE_LEN)
 		if(newauthor)
 			scanner.cache.author = newauthor
 	if(href_list["setcategory"])
@@ -583,6 +573,10 @@
 	icon_state = "binder"
 	anchored = TRUE
 	density = TRUE
+
+/obj/machinery/bookbinder/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/paper) || istype(O, /obj/item/paper_bundle))

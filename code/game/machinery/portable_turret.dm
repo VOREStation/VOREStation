@@ -274,7 +274,7 @@
 	)
 	return data
 
-/obj/machinery/porta_turret/Initialize()
+/obj/machinery/porta_turret/Initialize(mapload)
 	//Sets up a spark system
 	spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
@@ -289,8 +289,7 @@
 	return ..()
 
 /obj/machinery/porta_turret/Destroy()
-	qdel(spark_system)
-	spark_system = null
+	QDEL_NULL(spark_system)
 	return ..()
 
 /obj/machinery/porta_turret/update_icon()
@@ -373,7 +372,7 @@
 			lethal_projectile = /obj/item/projectile/beam/xray
 			projectile = /obj/item/projectile/beam/stun // Otherwise we fire xrays on both modes.
 			lethal_shot_sound = 'sound/weapons/eluger.ogg'
-			shot_sound = 'sound/weapons/Taser.ogg'
+			shot_sound = 'sound/weapons/taser.ogg'
 
 /obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(locked && !issilicon(user))
@@ -588,7 +587,7 @@
 
 	health -= force
 	if(force > 5 && prob(45))
-		spark_system.start()
+		spark_system?.start()
 	if(health <= 0)
 		die()	//the death process :(
 
@@ -1079,7 +1078,7 @@
 				return
 
 	if(istype(I, /obj/item/pen))	//you can rename turrets like bots!
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter new turret name", name, finish_name, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new turret name", name, finish_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)

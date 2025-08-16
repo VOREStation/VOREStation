@@ -58,6 +58,7 @@
 	matter = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
+	hitsound = 'sound/items/wirecutter.ogg'
 	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
@@ -105,7 +106,9 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MAT_STEEL = 10000, MAT_GLASS = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	drop_sound = 'sound/items/drop/knife.ogg'
+	var/clamp_chance = 0 // chance that the scalpel will perform cautery on its own
 
 /*
  * Researchable Scalpels
@@ -115,26 +118,33 @@
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks basic and could be improved."
 	icon_state = "scalpel_laser1"
 	damtype = "fire"
+	hitsound = 'sound/weapons/blade1.ogg'
+	clamp_chance = 75
 
 /obj/item/surgical/scalpel/laser2
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks somewhat advanced."
 	icon_state = "scalpel_laser2"
 	damtype = "fire"
+	hitsound = 'sound/weapons/blade1.ogg'
 	force = 12.0
+	clamp_chance = 85
 
 /obj/item/surgical/scalpel/laser3
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks to be the pinnacle of precision energy cutlery!"
 	icon_state = "scalpel_laser3"
 	damtype = "fire"
+	hitsound = 'sound/weapons/blade1.ogg'
 	force = 15.0
+	clamp_chance = 95
 
 /obj/item/surgical/scalpel/manager
 	name = "incision management system"
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	icon_state = "scalpel_manager"
 	force = 7.5
+	clamp_chance = 100
 
 /obj/item/surgical/scalpel/ripper
 	name = "jagged scalpel"
@@ -220,46 +230,7 @@
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
 
-/*
- * Cyborg Tools
- */
-/obj/item/surgical/retractor/cyborg
-	icon_state = "cyborg_retractor"
-	toolspeed = 0.5
 
-/obj/item/surgical/hemostat/cyborg
-	icon_state = "cyborg_hemostat"
-	toolspeed = 0.5
-
-/obj/item/surgical/cautery/cyborg
-	icon_state = "cyborg_cautery"
-	toolspeed = 0.5
-
-/obj/item/surgical/surgicaldrill/cyborg
-	icon_state = "cyborg_drill"
-	toolspeed = 0.5
-
-/obj/item/surgical/scalpel/cyborg
-	icon_state = "cyborg_scalpel"
-	toolspeed = 0.5
-
-/obj/item/surgical/circular_saw/cyborg
-	icon_state = "cyborg_saw"
-	toolspeed = 0.5
-
-/obj/item/surgical/bonegel/cyborg
-	toolspeed = 0.5
-
-/obj/item/surgical/FixOVein/cyborg
-	toolspeed = 0.5
-
-/obj/item/surgical/bonesetter/cyborg
-	icon_state = "cyborg_setter"
-	toolspeed = 0.5
-
-/obj/item/surgical/bioregen/cyborg //VoreStation edit: let the borgs S U C C
-	icon_state = "cyborg_bioregen"
-	toolspeed = 0.5
 
 /*
  * Alien Tools

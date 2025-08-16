@@ -24,12 +24,17 @@
 
 
 // Claim machine ID
-/obj/item/retail_scanner/New()
-	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
+/obj/item/retail_scanner/Initialize(mapload)
+	. = ..()
+	machine_id = "[station_name()] RETAIL #[GLOB.num_financial_terminals++]"
 	if(locate(/obj/structure/table) in loc)
 		pixel_y = 3
-	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
+	GLOB.transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
+
+/obj/item/retail_scanner/Destroy()
+	GLOB.transaction_devices -= src
+	. = ..()
 
 // Always face the user when put on a table
 /obj/item/retail_scanner/afterattack(atom/movable/AM, mob/user, proximity)
@@ -83,11 +88,10 @@
 		dat += "<br>"
 	dat += "<i>Device ID:</i> [machine_id]"
 
-	dat = "<html><head><title>Retail Scanner</title></head><body>[dat]</body></html>"
-
-	user << browse(dat, "window=retail;size=350x500")
-	onclose(user, "retail")
-
+	var/datum/browser/popup = new(user, "retail", "Retail", 350, 500)
+	popup.add_head_content("<title>Retail Scanner</title>")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/item/retail_scanner/Topic(var/href, var/href_list)
 	if(..())
@@ -114,7 +118,7 @@
 				else
 					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account not found."))
 			if("custom_order")
-				var/t_purpose = sanitize(tgui_input_text(usr, "Enter purpose", "New purpose"))
+				var/t_purpose = tgui_input_text(usr, "Enter purpose", "New purpose", "", MAX_MESSAGE_LEN)
 				if (!t_purpose || !Adjacent(usr)) return
 				transaction_purpose = t_purpose
 				item_list += t_purpose
@@ -237,7 +241,7 @@
 					T.purpose = transaction_purpose
 					T.amount = "([transaction_amount])"
 					T.source_terminal = machine_id
-					T.date = current_date_string
+					T.date = GLOB.current_date_string
 					T.time = stationtime2text()
 					D.transaction_log.Add(T)
 
@@ -247,7 +251,7 @@
 					T.purpose = transaction_purpose
 					T.amount = "[transaction_amount]"
 					T.source_terminal = machine_id
-					T.date = current_date_string
+					T.date = GLOB.current_date_string
 					T.time = stationtime2text()
 					linked_account.transaction_log.Add(T)
 
@@ -280,7 +284,7 @@
 			T.purpose = transaction_purpose
 			T.amount = "[transaction_amount]"
 			T.source_terminal = machine_id
-			T.date = current_date_string
+			T.date = GLOB.current_date_string
 			T.time = stationtime2text()
 			linked_account.transaction_log.Add(T)
 

@@ -264,7 +264,7 @@
 		return
 
 	var/list/targets = list()
-	for(var/mob/living/carbon/human/M in mob_list)
+	for(var/mob/living/carbon/human/M in GLOB.mob_list)
 		if(M.z != src.z || get_dist(src,M) > 1)
 			continue
 		if(src == M)
@@ -313,9 +313,8 @@
 		if(contact_type == "Custom")
 			src.visible_message(span_infoplain("[custom_text]"))
 		if(!do_after(src, 10 SECONDS, chosen_target, exclusive = TASK_USER_EXCLUSIVE))
-			return
-		else
 			src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] break contact before energy has been transferred."))
+			return
 		src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] complete their contact."))
 		species.lleill_energy = species.lleill_energy_max
 		nutrition += (chosen_target.nutrition / 2)
@@ -481,6 +480,7 @@
 			new_mob.real_name = M.real_name
 			add_verb(new_mob, /mob/living/proc/revert_beast_form)
 			add_verb(new_mob, /mob/living/proc/set_size)
+			add_verb(new_mob, /mob/living/simple_mob/proc/ColorMate)
 			for(var/lang in M.languages)
 				new_mob.languages |= lang
 			M.copy_vore_prefs_to_mob(new_mob)
@@ -689,6 +689,7 @@
 			new_mob.real_name = M.real_name
 			add_verb(new_mob, /mob/living/proc/revert_beast_form)
 			add_verb(new_mob, /mob/living/proc/set_size)
+			add_verb(new_mob, /mob/living/simple_mob/proc/ColorMate)
 			new_mob.hasthermals = 0
 			new_mob.health = M.health
 			new_mob.maxHealth = M.health

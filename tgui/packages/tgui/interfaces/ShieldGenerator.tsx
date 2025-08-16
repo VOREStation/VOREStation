@@ -109,10 +109,10 @@ const ShieldGeneratorContent = (props) => {
             {toFixed(average_field_strength, 2) +
               ' Renwick (' +
               (target_field_strength &&
-                toFixed(
+                `${toFixed(
                   (100 * average_field_strength) / target_field_strength,
                   1,
-                ) + '%)') || 'NA)'}
+                )}%)`) || 'NA)'}
           </LabeledList.Item>
           <LabeledList.Item label="Upkeep Power">
             {formatPower(upkeep)}
@@ -127,7 +127,7 @@ const ShieldGeneratorContent = (props) => {
             <LabeledList>
               {capacitorLen ? (
                 capacitors.map((cap, i) => (
-                  <LabeledList.Item key={i} label={'Capacitor #' + i}>
+                  <LabeledList.Item key={i} label={`Capacitor #${i}`}>
                     {cap.active ? (
                       <Box color="good">Online</Box>
                     ) : (
@@ -178,30 +178,33 @@ const ShieldGeneratorContent = (props) => {
           <LabeledList.Item label="Coverage Radius">
             <NumberInput
               fluid
+              tickWhileDragging
               stepPixelSize={6}
               step={1}
               minValue={0}
               maxValue={max_radius}
               value={radius}
               unit="m"
-              onDrag={(val: number) => act('change_radius', { val: val })}
+              onChange={(val: number) => act('change_radius', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Vertical Shielding">
             <NumberInput
               fluid
+              tickWhileDragging
               stepPixelSize={12}
               step={1}
               minValue={0}
               maxValue={max_z_range}
               value={z_range}
               unit="vertical range"
-              onDrag={(val: number) => act('z_range', { val: val })}
+              onChange={(val: number) => act('z_range', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Charge Rate">
             <NumberInput
               fluid
+              tickWhileDragging
               stepPixelSize={12}
               minValue={0}
               step={0.1}
@@ -209,19 +212,20 @@ const ShieldGeneratorContent = (props) => {
               value={strengthen_rate}
               format={(val: number) => toFixed(val, 1)}
               unit="Renwick/s"
-              onDrag={(val: number) => act('strengthen_rate', { val: val })}
+              onChange={(val: number) => act('strengthen_rate', { val: val })}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Maximum Field Strength">
             <NumberInput
               fluid
+              tickWhileDragging
               stepPixelSize={12}
               step={1}
               minValue={1}
               maxValue={max_field_strength}
               value={target_field_strength}
               unit="Renwick"
-              onDrag={(val: number) =>
+              onChange={(val: number) =>
                 act('target_field_strength', { val: val })
               }
             />

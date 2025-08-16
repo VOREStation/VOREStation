@@ -48,7 +48,7 @@
 
 /obj/item/organ/internal/mmi_holder/Initialize(mapload, var/internal, var/obj/item/mmi/installed)
 	. = ..(mapload, internal)
-	if(!ishuman(loc) || istype(loc, /mob/living/carbon/human/dummy/mannequin))
+	if(!ishuman(loc) || ismannequin(loc))
 		return
 	if(installed)
 		stored_mmi = installed
@@ -57,7 +57,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/mmi_holder/LateInitialize()
-	. = ..()
 	update_from_mmi()
 
 // This sits in the brain organ slot, but is not a brain. Posibrains and dronecores aren't brains either.
@@ -92,8 +91,8 @@
 
 	if(owner && owner.stat == DEAD)
 		owner.set_stat(CONSCIOUS)
-		dead_mob_list -= owner
-		living_mob_list |= owner
+		GLOB.dead_mob_list -= owner
+		GLOB.living_mob_list |= owner
 		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
 /obj/item/organ/internal/mmi_holder/removed(var/mob/living/user)

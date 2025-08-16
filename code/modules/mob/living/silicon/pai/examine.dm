@@ -7,10 +7,8 @@
 		if(UNCONSCIOUS)		. += span_warning("It doesn't seem to be responding.")
 		if(DEAD)			. += span_deadsay("It looks completely unsalvageable.")
 
-	// VOREStation Edit: Start
-	. += attempt_vr(src,"examine_bellies",args) //VOREStation Edit
+	. += formatted_vore_examine()
 	if(print_flavor_text()) . += "\n[print_flavor_text()]\n"
-	// VOREStation Edit: End
 	. += ""
 	if (pose)
 		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]

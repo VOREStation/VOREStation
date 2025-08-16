@@ -5,6 +5,7 @@
 #define CHEM_TOUCH 1
 #define CHEM_INGEST 2
 #define CHEM_BLOOD 3
+#define CHEM_VORE 4 // vore belly interactions
 
 #define MINIMUM_CHEMICAL_VOLUME 0.01
 
@@ -41,7 +42,10 @@
 #define CE_DARKSIGHT "darksight" // Gives perfect vision in dark
 
 #define REAGENTS_PER_SHEET 20
+#define REAGENTS_PER_ROD 10
 #define REAGENTS_PER_ORE 20
+#define REAGENTS_PER_LOG 40
+#define REAGENTS_PER_HULL 40
 
 // Attached to CE_ANTIBIOTIC
 #define ANTIBIO_NORM	1

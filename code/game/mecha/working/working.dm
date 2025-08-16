@@ -6,7 +6,7 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
-/obj/mecha/working/Initialize()
+/obj/mecha/working/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(isPlayerLevel(T.z))

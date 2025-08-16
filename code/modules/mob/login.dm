@@ -5,7 +5,7 @@
 	computer_id	= client.computer_id
 	log_access_in(client)
 	if(CONFIG_GET(flag/log_access))
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M == src)	continue
 			if( M.key && (M.key != key) )
 				var/matches
@@ -25,8 +25,9 @@
 						log_adminwarn("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
 
 /mob/Login()
+	persistent_ckey = client.ckey
 
-	player_list |= src
+	GLOB.player_list |= src
 	update_Login_details()
 	world.update_status()
 
@@ -56,6 +57,8 @@
 	if(!vis_enabled)
 		vis_enabled = list()
 	client.screen += plane_holder.plane_masters
+	if(GLOB.global_vantag_hud)
+		vantag_hud = TRUE
 	recalculate_vis()
 
 	// AO support
@@ -81,3 +84,7 @@
 		client.images += cloaked_selfimage
 	client.init_verbs()
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
+	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN, src)
+
+	set_listening(LISTENING_PLAYER)
+	GLOB.tickets.ClientLogin(client, TRUE)

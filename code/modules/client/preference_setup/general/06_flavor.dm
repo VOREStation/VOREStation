@@ -15,7 +15,7 @@
 	pref.custom_link				= save_data["custom_link"]
 	//Flavour text for robots.
 	pref.flavour_texts_robot["Default"] = save_data["flavour_texts_robot_Default"]
-	for(var/module in robot_module_types)
+	for(var/module in GLOB.robot_module_types)
 		pref.flavour_texts_robot[module] = save_data["flavour_texts_robot_[module]"]
 
 /datum/category_item/player_setup_item/general/flavor/save_character(list/save_data)
@@ -31,7 +31,7 @@
 	save_data["custom_link"]			= pref.custom_link
 
 	save_data["flavour_texts_robot_Default"] = pref.flavour_texts_robot["Default"]
-	for(var/module in robot_module_types)
+	for(var/module in GLOB.robot_module_types)
 		save_data["flavour_texts_robot_[module]"] = pref.flavour_texts_robot[module]
 
 /datum/category_item/player_setup_item/general/flavor/sanitize_character()
@@ -50,37 +50,71 @@
 	character.flavor_texts["feet"]		= pref.flavor_texts["feet"]
 	character.custom_link				= pref.custom_link
 
-/datum/category_item/player_setup_item/general/flavor/content(var/mob/user)
-	. += span_bold("Flavor:") + "<br>"
-	. += "<a href='byond://?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>"
-	. += "<a href='byond://?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>"
-	. += "<a href='byond://?src=\ref[src];custom_link=1'>Set Custom Link</a><br/>"
+/datum/category_item/player_setup_item/general/flavor/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 
+	data["flavor_text_length"] = LAZYLEN(pref.flavor_texts["general"])
+
+	return data
+
+/datum/category_item/player_setup_item/general/flavor/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	var/mob/user = ui.user
+
+	switch(action)
+		if("flavor_text")
+			SetFlavorText(user)
+			return TOPIC_HANDLED
+		if("flavour_text_robot")
+			SetFlavourTextRobot(user)
+			return TOPIC_HANDLED
+		if("custom_link")
+			var/new_link = strip_html_simple(tgui_input_text(user, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(pref.custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
+			if(new_link)
+				if(length(new_link) > 100)
+					to_chat(user, span_warning("Your entry is too long, it must be 100 characters or less."))
+					return
+				pref.custom_link = new_link
+				log_admin("[user]/[user.ckey] set their custom link to [pref.custom_link]")
+
+// README: This must stay for SetFlavorText to work!
 /datum/category_item/player_setup_item/general/flavor/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["flavor_text"])
 		switch(href_list["flavor_text"])
 			if("open")
+				pass()
 			if("general")
-				var/msg = strip_html_simple(tgui_input_text(user,"Give a general description of your character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
+				var/msg = strip_html_simple(tgui_input_text(user,"Give a general description of your character. This will be shown regardless of clothings. Put in \"!clear\" to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
 				if(CanUseTopic(user) && msg)
+					if(msg == "!clear")
+						msg = ""
 					pref.flavor_texts[href_list["flavor_text"]] = msg
 			else
-				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavor text for your [href_list["flavor_text"]]. Put in a single space to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavor text for your [href_list["flavor_text"]]. Put in \"!clear\" to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))
 				if(CanUseTopic(user) && msg)
+					if(msg == "!clear")
+						msg = ""
 					pref.flavor_texts[href_list["flavor_text"]] = msg
 		SetFlavorText(user)
 		return TOPIC_HANDLED
-
 	else if(href_list["flavour_text_robot"])
 		switch(href_list["flavour_text_robot"])
 			if("open")
+				pass()
 			if("Default")
-				var/msg = strip_html_simple(tgui_input_text(user,"Set the default flavour text for your robot. It will be used for any module without individual setting. Put in a single space to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Set the default flavour text for your robot. It will be used for any module without individual setting. Put in \"!clear\" to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"]), multiline = TRUE, prevent_enter = TRUE))
 				if(CanUseTopic(user) && msg)
+					if(msg == "!clear")
+						msg = ""
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 			else
-				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this blank, default flavour text will be used for this module. Put in a single space to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this blank, default flavour text will be used for this module. Put in \"!clear\" to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), multiline = TRUE, prevent_enter = TRUE))
 				if(CanUseTopic(user) && msg)
+					if(msg == "!clear")
+						msg = ""
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 		SetFlavourTextRobot(user)
 		return TOPIC_HANDLED
@@ -141,7 +175,7 @@
 	HTML += "<a href='byond://?src=\ref[src];flavour_text_robot=Default'>Default:</a> "
 	HTML += TextPreview(pref.flavour_texts_robot["Default"])
 	HTML += "<hr />"
-	for(var/module in robot_module_types)
+	for(var/module in GLOB.robot_module_types)
 		HTML += "<a href='byond://?src=\ref[src];flavour_text_robot=[module]'>[module]:</a> "
 		HTML += TextPreview(pref.flavour_texts_robot[module])
 		HTML += "<br>"

@@ -106,7 +106,7 @@
 	icon_state = "ore_lead"
 	material = ORE_LEAD
 	origin_tech = list(TECH_MATERIAL = 3)
-/*
+
 /obj/item/ore/copper
 	name = "raw copper"
 	icon_state = "ore_copper"
@@ -121,12 +121,12 @@
 	name = "raw bauxite"
 	icon_state = "ore_bauxite"
 	material = ORE_BAUXITE
-*/
+
 /obj/item/ore/rutile
 	name = "raw rutile"
 	icon_state = "ore_rutile"
 	material = ORE_RUTILE
-/*
+
 /obj/item/ore/void_opal
 	name = "raw void opal"
 	icon_state = "ore_void_opal"
@@ -141,14 +141,14 @@
 	name = "raw quartz"
 	icon_state = "ore_quartz"
 	material = ORE_QUARTZ
-*/
+
 /obj/item/ore/slag
 	name = "Slag"
 	desc = "Someone screwed up..."
 	icon_state = "slag"
 	material = null
 
-/obj/item/ore/Initialize()
+/obj/item/ore/Initialize(mapload)
 	. = ..()
 	randpixel_xy()
 
@@ -159,7 +159,6 @@
 	else
 		return ..()
 
-//VOREStation Add
 /obj/item/ore/attack(mob/living/M as mob, mob/living/user as mob)
 	if(M.handle_eat_minerals(src, user))
 		return
@@ -169,7 +168,6 @@
 	if(user.handle_eat_minerals(src))
 		return
 	..()
-//VOREStation Add End
 
 /obj/item/ore_chunk
 	name = "ore chunk"

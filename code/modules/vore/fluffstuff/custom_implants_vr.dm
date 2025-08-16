@@ -306,7 +306,7 @@
 	filling_color = "#FDFFD1"
 	volume = 12
 
-/obj/item/reagent_containers/food/snacks/egg/teshari/Initialize()
+/obj/item/reagent_containers/food/snacks/egg/teshari/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_EGG, 10)
 	bitesize = 2
@@ -409,7 +409,7 @@
 	filling_color = "#FDFFD1"
 	volume = 12
 
-/obj/item/reagent_containers/food/snacks/egg/roiz/Initialize()
+/obj/item/reagent_containers/food/snacks/egg/roiz/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_EGG, 9)
 	bitesize = 2
@@ -439,7 +439,7 @@
 	icon_state = "friedegg"
 	volume = 12
 
-/obj/item/reagent_containers/food/snacks/friedegg/roiz/Initialize()
+/obj/item/reagent_containers/food/snacks/friedegg/roiz/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 9)
 	bitesize = 2
@@ -451,7 +451,7 @@
 	icon_state = "egg_roiz"
 	volume = 12
 
-/obj/item/reagent_containers/food/snacks/boiledegg/roiz/Initialize()
+/obj/item/reagent_containers/food/snacks/boiledegg/roiz/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
 	bitesize = 2
@@ -466,7 +466,7 @@
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 5)
 	volume = 18
 
-/obj/item/reagent_containers/food/snacks/chocolateegg/roiz/Initialize()
+/obj/item/reagent_containers/food/snacks/chocolateegg/roiz/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SUGAR, 6)
 	reagents.add_reagent(REAGENT_ID_COCO, 6)

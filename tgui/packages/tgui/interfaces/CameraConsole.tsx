@@ -96,7 +96,7 @@ export const CameraConsole = (props) => {
       <div className="CameraConsole__right">
         <div className="CameraConsole__toolbar">
           <b>Camera: </b>
-          {(activeCamera && activeCamera.name) || '—'}
+          {activeCamera?.name || '—'}
         </div>
         <div className="CameraConsole__toolbarRight">
           SEL:
@@ -155,7 +155,7 @@ export const CameraConsoleContent = (props) => {
           fluid
           mt={1}
           placeholder="Search for a camera"
-          onInput={(e, value: string) => setSearchText(value)}
+          onChange={(value: string) => setSearchText(value)}
         />
       </Stack.Item>
       <Stack.Item>

@@ -591,10 +591,10 @@ const rank2color = {
   'Off-duty Explorer': 'white',
   'Off-duty Worker': 'white',
   // AI / Robot
-  AI: 'darkgrey',
-  Cyborg: 'darkgrey',
-  Robot: 'darkgrey',
-  Drone: 'darkgrey',
+  AI: '#800000',
+  Cyborg: '#800000',
+  Robot: '#800000',
+  Drone: '#800000',
   // Clown / Mime
   Clown: 'green',
   Jester: 'green',
@@ -627,11 +627,11 @@ const rank2color = {
   Security: 'red',
   Combat: 'yellow',
   Engineering: 'orange',
-  Gravekeeper: 'dark-grey',
+  Gravekeeper: '#800000',
   Lost: 'grey',
-  Protector: 'darkred',
-  Mechanist: 'darkred',
-  'Combat Medic': 'darkred',
+  Protector: '#800000',
+  Mechanist: '#800000',
+  'Combat Medic': '#800000',
 };
 
 type rank_icon = { rank: string; color: string };
@@ -639,7 +639,7 @@ type rank_icon = { rank: string; color: string };
 export const RankIcon = (props: rank_icon) => {
   const { rank, color = 'label' } = props;
 
-  let rankObj = rank2icon[rank];
+  const rankObj = rank2icon[rank];
   if (typeof rankObj === 'string') {
     return <Icon inline color={color} name={rankObj} size={2} />;
   } else if (Array.isArray(rankObj)) {

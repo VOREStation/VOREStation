@@ -65,8 +65,8 @@
 	vore_pounce_maxhealth = 125
 	vore_bump_emote = "tries to snap up"
 
-/mob/living/simple_mob/vore/raptor/New()
-	..()
+/mob/living/simple_mob/vore/raptor/Initialize(mapload)
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		initial_icon = icon_living
@@ -82,9 +82,7 @@
 	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = -1
 
-/mob/living/simple_mob/vore/raptor/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/raptor/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -117,13 +115,13 @@
 	consider_wg()
 
 /mob/living/simple_mob/vore/raptor/proc/consider_wg()
-  var/past_state = wg_state
-  if(nutrition >= 900)
-    wg_state = 1
-  else
-    wg_state = 0
-  if(past_state != wg_state)
-    update_icon()
+	var/past_state = wg_state
+	if(nutrition >= 900)
+		wg_state = 1
+	else
+		wg_state = 0
+	if(past_state != wg_state)
+		update_icon()
 
 /mob/living/simple_mob/vore/raptor/update_icon()
 	if(wg_state == 1)

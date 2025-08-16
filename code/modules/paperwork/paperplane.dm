@@ -11,7 +11,7 @@
 
 	var/obj/item/paper/internalPaper
 
-/obj/item/paperplane/New(loc, obj/item/paper/newPaper)
+/obj/item/paperplane/Initialize(mapload, obj/item/paper/newPaper)
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)

@@ -72,7 +72,7 @@
 /obj/effect/spider/stickyweb
 	icon_state = "stickyweb1"
 
-/obj/effect/spider/stickyweb/Initialize()
+/obj/effect/spider/stickyweb/Initialize(mapload)
 	if(prob(50))
 		icon_state = "stickyweb2"
 	return ..()
@@ -98,15 +98,15 @@
 	var/spider_type = /obj/effect/spider/spiderling
 	var/faction = FACTION_SPIDERS
 
-/obj/effect/spider/eggcluster/Initialize()
+/obj/effect/spider/eggcluster/Initialize(mapload)
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	START_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/spider/eggcluster/New(var/location, var/atom/parent)
+/obj/effect/spider/eggcluster/Initialize(mapload, var/atom/parent)
+	. = ..()
 	get_light_and_color(parent)
-	..()
 
 /obj/effect/spider/eggcluster/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -169,7 +169,8 @@
 			/mob/living/simple_mob/animal/giant_spider/webslinger, /mob/living/simple_mob/animal/giant_spider/phorogenic, /mob/living/simple_mob/animal/giant_spider/carrier,
 			/mob/living/simple_mob/animal/giant_spider/ion)
 
-/obj/effect/spider/spiderling/New(var/location, var/atom/parent)
+/obj/effect/spider/spiderling/Initialize(mapload, var/atom/parent)
+	. = ..()
 	pixel_x = rand(6,-6)
 	pixel_y = rand(6,-6)
 	START_PROCESSING(SSobj, src)
@@ -177,7 +178,6 @@
 	if(amount_grown != -1 && prob(50))
 		amount_grown = 1
 	get_light_and_color(parent)
-	..()
 
 /obj/effect/spider/spiderling/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -207,7 +207,6 @@
 			entry_vent = null
 	else if(entry_vent)
 		if(get_dist(src, entry_vent) <= 1)
-	//VOREStation Edit Start
 			var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = get_safe_ventcrawl_target(entry_vent)
 			if(!exit_vent)
 				return
@@ -223,6 +222,7 @@
 
 					if(prob(50))
 						src.visible_message(span_notice("You hear something squeezing through the ventilation ducts."),2)
+						SSmotiontracker.ping(src,10)
 					sleep(travel_time)
 
 					if(!exit_vent || exit_vent.welded)
@@ -234,8 +234,6 @@
 					var/area/new_area = get_area(loc)
 					if(new_area)
 						new_area.Entered(src)
-	//VOREStation Edit End
-	//=================
 
 	if(isturf(loc))
 		skitter()
@@ -269,6 +267,7 @@
 				walk_to(src, target_atom, 5)
 				if(prob(25))
 					src.visible_message(span_notice("\The [src] skitters[pick(" away"," around","")]."))
+				SSmotiontracker.ping(src,10)
 		else if(amount_grown < 75 && prob(5))
 			//vent crawl!
 			for(var/obj/machinery/atmospherics/unary/vent_pump/v in view(7,src))
@@ -298,8 +297,8 @@
 	desc = "There's a special aura about this one."
 	grow_as = list(/mob/living/simple_mob/animal/giant_spider/nurse/queen)
 
-/obj/effect/spider/spiderling/princess/New(var/location, var/atom/parent)
-	..()
+/obj/effect/spider/spiderling/princess/Initialize(mapload, var/atom/parent)
+	. = ..()
 	amount_grown = 50
 
 /obj/effect/decal/cleanable/spiderling_remains
@@ -314,11 +313,27 @@
 	icon_state = "cocoon1"
 	health = 60
 
-/obj/effect/spider/cocoon/New()
-		icon_state = pick("cocoon1","cocoon2","cocoon3")
+/obj/effect/spider/cocoon/Initialize(mapload)
+	. = ..()
+	icon_state = pick("cocoon1","cocoon2","cocoon3")
 
 /obj/effect/spider/cocoon/Destroy()
 	src.visible_message(span_warning("\The [src] splits open."))
 	for(var/atom/movable/A in contents)
 		A.loc = src.loc
 	return ..()
+
+/obj/effect/spider/spiderling/non_growing/horror
+	icon_state = "tendrils"
+
+/obj/effect/spider/spiderling/non_growing/horror/die()
+	visible_message(span_cult("[src] stops squirming."))
+	var/obj/effect/decal/cleanable/tendril_remains/remains = new /obj/effect/decal/cleanable/tendril_remains(src.loc)
+	remains.color = color
+	qdel(src)
+
+/obj/effect/decal/cleanable/tendril_remains
+	name = "tendril remains"
+	desc = "A disgusting pile of unmoving fleshy tendrils."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "tendril_dead"

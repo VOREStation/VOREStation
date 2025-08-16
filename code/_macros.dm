@@ -7,6 +7,7 @@
 #define get_z(A) (get_step(A, 0)?.z || 0)
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
+#define DEFAULT_BLOOD_TYPE "A+"
 
 // #define to_chat(target, message) target << message Not anymore!
 //#define to_chat to_chat_filename=__FILE__;to_chat_line=__LINE__;to_chat_src=src;__to_chat
@@ -22,7 +23,6 @@
 #define open_link(target, url) target << link(url)
 
 // From TG, might be useful to have.
-// Didn't port SEND_TEXT() since to_chat() appears to serve the same purpose.
 #define DIRECT_OUTPUT(A, B) A << B
 #define DIRECT_INPUT(A, B) A >> B
 #define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
@@ -30,10 +30,6 @@
 //#define WRITE_LOG is in logging.dm
 
 #define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
-
-#define qdel_null(x) if(x) { qdel(x) ; x = null }
-
-#define qdel_swap(x,y) if(x) { qdel(x) }; x = y;
 
 #define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
 
@@ -46,3 +42,7 @@
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port
 
 #define JOINTEXT(X) jointext(X, null)
+
+#define isbelly(A)				istype(A, /obj/belly)
+#define isgripperpocket(A)		istype(A, /obj/item/storage/internal/gripper)
+#define iscapturecrystal(A)		istype(A, /obj/item/capture_crystal)

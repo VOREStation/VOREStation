@@ -43,6 +43,7 @@
 
 	vore_active = TRUE
 	vore_capacity = 1
+	vore_pounce_chance = 45
 
 	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
@@ -56,56 +57,89 @@
 	name = "Giant Germ"
 	desc = "An incredibly huge virus!"
 
-	size_multiplier = 1.5
+	size_multiplier = 1.75
 
 	maxHealth = 40
 	health = 40
 
 	pass_flags = PASSTABLE | PASSGRILLE
 
-/mob/living/simple_mob/vore/aggressive/macrophage/Initialize()
+/mob/living/simple_mob/vore/aggressive/macrophage/Initialize(mapload)
 	. = ..()
 	var/datum/disease/advance/random/macrophage/D = new
-	health += D.totalResistance()
-	maxHealth += D.totalResistance()
-	melee_damage_lower += max(0, D.totalResistance())
-	melee_damage_upper += max(0, D.totalResistance())
+	health += D.resistance
+	maxHealth += D.resistance
+	melee_damage_lower += max(0, D.resistance)
+	melee_damage_upper += max(0, D.resistance)
 	infections += D
 	base_disease = D
 
+/mob/living/simple_mob/vore/aggressive/macrophage/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., base_disease)
+	// Still no idea why extrapolator == src, but I'll leave this for later if I find out.
+	// if(!dry_run && !EXTRAPOLATOR_ACT_CHECK(., EXTRAPOLATOR_ACT_PRIORITY_SPECIAL) && extrapolator.create_culture(user, base_disease))
+	if(do_after(user, 2 SECONDS))
+		user.visible_message(span_danger("[user] stabs [src] with [extrapolator], sucking it up!"), \
+			span_danger("You stab [src] with [extrapolator]'s probe, destroying it!"))
+		death()
+		EXTRAPOLATOR_ACT_SET(., EXTRAPOLATOR_ACT_PRIORITY_SPECIAL)
+
 /mob/living/simple_mob/vore/aggressive/macrophage/proc/deathcheck()
 	if(locate(/mob/living/carbon/human) in vore_selected)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3000)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3 MINUTES)
 	else
 		death()
 
-/mob/living/simple_mob/vore/aggressive/macrophage/green
-	icon_state = "macrophage-2"
+/mob/living/simple_mob/vore/aggressive/macrophage/apply_melee_effects(atom/A)
+	if(ishuman(A) && prob(25))
+		var/mob/living/carbon/human/H = A
+		H.ContractDisease(base_disease)
+/*
+/mob/living/simple_mob/vore/aggressive/macrophage/do_special_attack(var/atom/A)
+	. = TRUE
+	set_AI_busy(TRUE)
+	do_windup_animation(A, 20)
+	addtimer(CALLBACK(src, PROC_REF(charge), A), 20, TIMER_STOPPABLE)
 
-/mob/living/simple_mob/vore/aggressive/macrophage/pink
-	icon_state = "macrophage-3"
+/mob/living/simple_mob/vore/aggressive/macrophage/proc/charge(var/atom/A)
+	if(QDELETED(A) || !isturf(get_turf(A)))
+		set_AI_busy(FALSE)
+		return
+	status_flags |= LEAPING
+	flying = TRUE
+	hovering = TRUE
+	visible_message(span_warning("The [src] lunges at \the [A]!"))
+	throw_at(A, 7, 2)
+	if(status_flags & LEAPING)
+		status_flags &= ~LEAPING
+	flying = FALSE
+	hovering = FALSE
 
-/mob/living/simple_mob/vore/aggressive/macrophage/blue
-	icon_state = "macrophage-4"
+	var/mob/living/target = null
+	if(Adjacent(A))
+		target = A
 
-/mob/living/simple_mob/vore/aggressive/macrophage/do_attack(atom/A, turf/T)
-	. = ..()
-	if(iscarbon(A))
-		var/mob/living/carbon/human/victim = A
-		if((victim.HasDisease(base_disease) || !victim.CanContractDisease(base_disease)) && prob(75))
-			ai_holder.lose_target()
-		victim.ContractDisease(base_disease)
-
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.ContractDisease(base_disease)
+	set_AI_busy(FALSE)
+*/
 /mob/living/simple_mob/vore/aggressive/macrophage/death()
 	..()
-	visible_message(span_warning("\The [src] shrivels up and dies, unable to survive!"))
 	if(isbelly(loc))
 		var/obj/belly/belly = loc
 		if(belly)
 			var/mob/living/pred = belly.owner
 			pred.ForceContractDisease(base_disease)
 	else
-		var/obj/effect/decal/cleanable/mucus/sick = new(loc)
+		visible_message(span_warning("\The [src] shrivels up and dies, unable to survive!"))
+		var/obj/effect/decal/cleanable/blood/sick = new(loc)
+		sick.name = "plasma"
+		sick.basecolor = "#47cbcf"
+		sick.update_icon()
+		sick.pixel_x = rand(-24, 24)
+		sick.pixel_y = rand(-24, 24)
 		sick.viruses += base_disease
 	qdel(src)
 
@@ -115,18 +149,14 @@
 	contamination_color = "green"
 	vore_verb = "absorb"
 	escapable = TRUE
-	escapable = 20
+	escapechance = 20
 	desc = "In an attempt to get away from the giant virus, it's oversized envelope proteins dragged you right past it's matrix, encapsulating you deep inside it's capsid... The strange walls kneading and keeping you tight along within it's nucleoprotein."
 	belly_fullscreen = "VBO_gematically_angular"
 	belly_fullscreen_color = "#87d8d8"
 	digest_mode = DM_ABSORB
 	affects_vore_sprites = FALSE
 
-/mob/living/simple_mob/vore/aggressive/macrophage/init_vore()
-
-	if(!voremob_loaded || LAZYLEN(vore_organs))
-		return TRUE
-
+/mob/living/simple_mob/vore/aggressive/macrophage/load_default_bellies()
 	var/obj/belly/B = new /obj/belly/macrophage(src)
 	vore_selected = B
 
@@ -138,7 +168,7 @@
 	var/mob/living/simple_mob/vore/aggressive/macrophage/macrophage = holder
 	for(var/list_target in our_targets)
 		var/mob/living/victim = list_target
-		if(victim.viruses)
+		if(victim.IsInfected())
 			if(victim.HasDisease(macrophage.base_disease) && prob(75)) // Less likely to be a target if you're infected
 				our_targets -= list_target
 				continue

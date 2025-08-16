@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves/arm_guard
-	name = "arm guards"
+	name = DEVELOPER_WARNING_NAME // "arm guards"
 	desc = "These arm guards will protect your hands and arms."
 	body_parts_covered = HANDS|ARMS
 	overgloves = 1

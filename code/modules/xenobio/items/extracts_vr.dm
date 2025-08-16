@@ -16,7 +16,7 @@
 	flags = OPENCONTAINER
 
 
-/obj/item/slime_extract/Initialize()
+/obj/item/slime_extract/Initialize(mapload)
 	. = ..()
 	create_reagents(60)
 
@@ -134,7 +134,7 @@
 
 /decl/chemical_reaction/instant/slime/metal_materials_basic/on_reaction(var/datum/reagents/holder)
 	for(var/i = 1 to 3)
-		var/type_to_spawn = pickweight(xenobio_metal_materials_normal)
+		var/type_to_spawn = pickweight(GLOB.xenobio_metal_materials_normal)
 		new type_to_spawn(get_turf(holder.my_atom), 10)
 	..()
 
@@ -148,7 +148,7 @@
 
 /decl/chemical_reaction/instant/slime/metal_materials_adv/on_reaction(var/datum/reagents/holder)
 	for(var/i = 1 to 2)
-		var/type_to_spawn = pickweight(xenobio_metal_materials_adv)
+		var/type_to_spawn = pickweight(GLOB.xenobio_metal_materials_adv)
 		new type_to_spawn(get_turf(holder.my_atom), 10)
 	..()
 
@@ -162,7 +162,7 @@
 
 /decl/chemical_reaction/instant/slime/metal_materials_weird/on_reaction(var/datum/reagents/holder)
 	for(var/i = 1 to 3)
-		var/type_to_spawn = pickweight(xenobio_metal_materials_weird)
+		var/type_to_spawn = pickweight(GLOB.xenobio_metal_materials_weird)
 		new type_to_spawn(get_turf(holder.my_atom), 5)
 	..()
 
@@ -332,7 +332,7 @@
 	required = /obj/item/slime_extract/orange
 
 /decl/chemical_reaction/instant/slime/orange_fire/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Orange extract reaction (fire) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Orange extract reaction (fire) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 	holder.my_atom.visible_message(span_danger("\The [src] begins to vibrate violently!"))
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	spawn(5 SECONDS)
@@ -370,7 +370,7 @@
 	if(!Z) // Paranoid.
 		return
 
-	log_and_message_admins("Orange extract reaction (heat wave) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Orange extract reaction (heat wave) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 
 	var/list/nearby_things = view(T)
 
@@ -453,12 +453,14 @@
 	required = /obj/item/slime_extract/yellow
 
 /decl/chemical_reaction/instant/slime/yellow_lightning/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Yellow extract reaction (lightning) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Yellow extract reaction (lightning) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 	holder.my_atom.visible_message(span_danger("\The [src] begins to vibrate violently!"))
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	spawn(5 SECONDS)
 		if(holder && holder.my_atom)
-			lightning_strike(get_turf(holder.my_atom))
+			var/turf/T = get_turf(holder.my_atom)
+			if(istype(T))
+				lightning_strike(T)
 	..()
 
 
@@ -482,7 +484,7 @@
 	required = /obj/item/slime_extract/yellow
 
 /decl/chemical_reaction/instant/slime/yellow_emp/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Yellow extract reaction (emp) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Yellow extract reaction (emp) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 	holder.my_atom.visible_message(span_danger("\The [src] begins to vibrate violently!"))
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	spawn(5 SECONDS)
@@ -523,15 +525,15 @@
 	required = /obj/item/slime_extract/gold
 
 /decl/chemical_reaction/instant/slime/gold_random_mobs/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Gold extract reaction (random mobs) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Gold extract reaction (random mobs) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 	var/type_to_spawn
 	var/list/all_spawnable_types = list()
-	all_spawnable_types += xenobio_gold_mobs_safe
-	all_spawnable_types += xenobio_gold_mobs_hostile
-	all_spawnable_types += xenobio_gold_mobs_birds
+	all_spawnable_types += GLOB.xenobio_gold_mobs_safe
+	all_spawnable_types += GLOB.xenobio_gold_mobs_hostile
+	all_spawnable_types += GLOB.xenobio_gold_mobs_birds
 	for(var/j = 1, j <= 3, j++)
 		if(prob(1))
-			type_to_spawn = pickweight(xenobio_gold_mobs_bosses)
+			type_to_spawn = pickweight(GLOB.xenobio_gold_mobs_bosses)
 		else
 			type_to_spawn = pickweight(all_spawnable_types)
 
@@ -549,8 +551,8 @@
 	required = /obj/item/slime_extract/gold
 
 /decl/chemical_reaction/instant/slime/gold_hostile_mob/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Gold extract reaction (dangerous mob) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
-	var/type_to_spawn = pickweight(xenobio_gold_mobs_hostile)
+	log_and_message_admins("Gold extract reaction (dangerous mob) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
+	var/type_to_spawn = pickweight(GLOB.xenobio_gold_mobs_hostile)
 	var/mob/living/C = new type_to_spawn(get_turf(holder.my_atom))
 	for(var/l = 1, l <= rand(1, 3), l++)
 		step(C, pick(NORTH,SOUTH,EAST,WEST))
@@ -566,10 +568,10 @@
 
 /decl/chemical_reaction/instant/slime/gold_safe_mob/on_reaction(var/datum/reagents/holder)
 	var/type_to_spawn
-	if(prob(100/(xenobio_gold_mobs_safe.len + 1)))
-		type_to_spawn = pickweight(xenobio_gold_mobs_birds)
+	if(prob(100/(GLOB.xenobio_gold_mobs_safe.len + 1)))
+		type_to_spawn = pickweight(GLOB.xenobio_gold_mobs_birds)
 	else
-		type_to_spawn = pickweight(xenobio_gold_mobs_safe)
+		type_to_spawn = pickweight(GLOB.xenobio_gold_mobs_safe)
 	var/mob/living/C = new type_to_spawn(get_turf(holder.my_atom))
 	for(var/l = 1, l <= rand(1, 3), l++)
 		step(C, pick(NORTH,SOUTH,EAST,WEST))
@@ -608,7 +610,7 @@
 
 /decl/chemical_reaction/instant/slime/silver_materials_basic/on_reaction(var/datum/reagents/holder)
 	for(var/i = 1 to 2)
-		var/type_to_spawn = pickweight(xenobio_silver_materials_basic)
+		var/type_to_spawn = pickweight(GLOB.xenobio_silver_materials_basic)
 		new type_to_spawn(get_turf(holder.my_atom), 5)
 	..()
 
@@ -621,7 +623,7 @@
 	required = /obj/item/slime_extract/silver
 
 /decl/chemical_reaction/instant/slime/silver_materials_adv/on_reaction(var/datum/reagents/holder)
-	var/type_to_spawn = pickweight(xenobio_silver_materials_adv)
+	var/type_to_spawn = pickweight(GLOB.xenobio_silver_materials_adv)
 	new type_to_spawn(get_turf(holder.my_atom), 3)
 	..()
 
@@ -637,15 +639,15 @@
 	var/type_to_spawn
 	var/amount = 5
 	var/all_spawnable_types = list()
-	all_spawnable_types += xenobio_metal_materials_normal
-	all_spawnable_types += xenobio_metal_materials_adv
-	all_spawnable_types += xenobio_metal_materials_weird
-	all_spawnable_types += xenobio_silver_materials_basic
-	all_spawnable_types += xenobio_silver_materials_adv
-	all_spawnable_types += xenobio_silver_materials_special
+	all_spawnable_types += GLOB.xenobio_metal_materials_normal
+	all_spawnable_types += GLOB.xenobio_metal_materials_adv
+	all_spawnable_types += GLOB.xenobio_metal_materials_weird
+	all_spawnable_types += GLOB.xenobio_silver_materials_basic
+	all_spawnable_types += GLOB.xenobio_silver_materials_adv
+	all_spawnable_types += GLOB.xenobio_silver_materials_special
 	for(var/i = 1 to 3)
 		type_to_spawn = pickweight(all_spawnable_types)
-		if(type_to_spawn in xenobio_silver_materials_special)
+		if(type_to_spawn in GLOB.xenobio_silver_materials_special)
 			amount = 1
 		new type_to_spawn(get_turf(holder.my_atom), amount)
 	..()
@@ -722,7 +724,7 @@
 	if(!Z) // Paranoid.
 		return
 
-	log_and_message_admins("Dark Blue extract reaction (cold snap) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Dark Blue extract reaction (cold snap) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 
 	var/list/nearby_things = view(T)
 
@@ -872,7 +874,7 @@
 			H.add_modifier(/datum/modifier/berserk, 30 SECONDS)
 			to_chat(H, span_warning("An intense wave of rage is felt from inside, but you remain in control of yourself."))
 
-	log_and_message_admins("Red extract reaction (enrage) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Red extract reaction (enrage) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	..()
@@ -918,7 +920,7 @@
 	required = /obj/item/slime_extract/green
 
 /decl/chemical_reaction/instant/slime/green_radpulse/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Green extract reaction (radiation pulse) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Green extract reaction (radiation pulse) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	holder.my_atom.visible_message(span_danger("\The [holder.my_atom] begins to vibrate violently!"))
 	spawn(5 SECONDS)
@@ -934,7 +936,7 @@
 	required = /obj/item/slime_extract/green
 
 /decl/chemical_reaction/instant/slime/green_emitter/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Green extract reaction (radiation emitter) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Green extract reaction (radiation emitter) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 	new /obj/item/slime_irradiator(get_turf(holder.my_atom))
 	..()
 
@@ -1077,7 +1079,7 @@
 
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	holder.my_atom.visible_message(span_danger("\The [holder.my_atom] begins to vibrate violently!"))
-	log_and_message_admins("Oil extract reaction (explosion) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Oil extract reaction (explosion) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 
 	spawn(5 SECONDS)
 		if(holder && holder.my_atom)
@@ -1131,7 +1133,7 @@
 	required = /obj/item/slime_extract/bluespace
 
 /decl/chemical_reaction/instant/slime/bluespace_chaotic_tele/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Bluespace extract reaction (chaos teleport) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Bluespace extract reaction (chaos teleport) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 	for(var/mob/living/M in range(2,get_turf(holder.my_atom)))
 		if(M.buckled)
 			M.buckled.unbuckle_mob()
@@ -1216,7 +1218,7 @@
 	required = /obj/item/slime_extract/cerulean
 
 /decl/chemical_reaction/instant/slime/cerulean_random_potion/on_reaction(var/datum/reagents/holder)
-	var/spawn_type = pickweight(xenobio_cerulean_potions)
+	var/spawn_type = pickweight(GLOB.xenobio_cerulean_potions)
 	new spawn_type(get_turf(holder.my_atom))
 	..()
 
@@ -1518,7 +1520,7 @@
 	required = /obj/item/slime_extract/emerald
 
 /decl/chemical_reaction/instant/slime/emerald_hell/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Emerald extract reaction (slip hell) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	log_and_message_admins("Emerald extract reaction (slip hell) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.forensic_data?.get_lastprint()]")
 	for(var/turf/simulated/T in trange(5, get_turf(holder.my_atom)))
 		if(!istype(T))
 			continue
@@ -1631,7 +1633,7 @@
 	required = /obj/item/slime_extract/rainbow
 
 /decl/chemical_reaction/instant/slime/rainbow_random_extract/on_reaction(var/datum/reagents/holder)
-	var/spawn_type = pickweight(xenobio_rainbow_extracts)
+	var/spawn_type = pickweight(GLOB.xenobio_rainbow_extracts)
 	new spawn_type(get_turf(holder.my_atom))
 	..()
 

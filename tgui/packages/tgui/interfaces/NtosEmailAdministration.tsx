@@ -106,7 +106,7 @@ const ViewAccount = (props) => {
   const { current_account, cur_suspended, messages = [] } = data;
   return (
     <Section
-      title={'Viewing ' + current_account + ' in admin mode'}
+      title={`Viewing ${current_account} in admin mode`}
       buttons={
         <Button icon="undo" onClick={() => act('back')}>
           Back
@@ -118,7 +118,7 @@ const ViewAccount = (props) => {
           <Button
             color={cur_suspended ? 'bad' : ''}
             icon="ban"
-            tooltip={(cur_suspended ? 'Uns' : 'S') + 'uspend Account?'}
+            tooltip={`${cur_suspended ? 'Uns' : 'S'}uspend Account?`}
             onClick={() => act('ban')}
           >
             {cur_suspended ? 'Suspended' : 'Normal'}

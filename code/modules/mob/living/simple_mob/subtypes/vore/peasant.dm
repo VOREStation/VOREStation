@@ -30,8 +30,8 @@
 
 	faction = FACTION_PEASANT
 
-/mob/living/simple_mob/vore/peasant/New()
-	..()
+/mob/living/simple_mob/vore/peasant/Initialize(mapload)
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]asleep"
@@ -54,9 +54,7 @@
 	emote_hear = list("yawns","'s stomach grumbles","shuffles")
 	emote_see = list("exists","just stands there","smiles","looks around")
 
-/mob/living/simple_mob/vore/peasant/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/peasant/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

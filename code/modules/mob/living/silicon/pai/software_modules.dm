@@ -70,7 +70,7 @@
 			count++
 
 		// Check the carrier
-		var/datum/gender/TM = gender_datums[M.get_visible_gender()]
+		var/datum/gender/TM = GLOB.gender_datums[M.get_visible_gender()]
 		var/answer = tgui_alert(M, "[P] is requesting a DNA sample from you. Will you allow it to confirm your identity?", "[P] Check DNA", list("Yes", "No"))
 		if(answer == "Yes")
 			var/turf/T = get_turf(P.loc)
@@ -111,9 +111,9 @@
 
 /datum/pai_software/crew_manifest/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	if(data_core)
-		data_core.get_manifest_list()
-	data["manifest"] = PDA_Manifest
+	if(GLOB.data_core)
+		GLOB.data_core.get_manifest_list()
+	data["manifest"] = GLOB.PDA_Manifest
 	return data
 
 /datum/pai_software/messenger
@@ -142,7 +142,7 @@
 	var/list/data = ..()
 
 	var/list/records = list()
-	for(var/datum/data/record/general in sortRecord(data_core.general))
+	for(var/datum/data/record/general in sortRecord(GLOB.data_core.general))
 		var/list/record = list()
 		record["name"] = general.fields["name"]
 		record["ref"] = "\ref[general]"
@@ -169,11 +169,11 @@
 		if(record)
 			var/datum/data/record/R = record
 			var/datum/data/record/M = null
-			if (!( data_core.general.Find(R) ))
+			if (!( GLOB.data_core.general.Find(R) ))
 				P.medical_cannotfind = 1
 			else
 				P.medical_cannotfind = 0
-				for(var/datum/data/record/E in data_core.medical)
+				for(var/datum/data/record/E in GLOB.data_core.medical)
 					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 						M = E
 				P.medicalActive1 = R
@@ -198,7 +198,7 @@
 	var/list/data = ..()
 
 	var/list/records = list()
-	for(var/datum/data/record/general in sortRecord(data_core.general))
+	for(var/datum/data/record/general in sortRecord(GLOB.data_core.general))
 		var/list/record = list()
 		record["name"] = general.fields["name"]
 		record["ref"] = "\ref[general]"
@@ -225,13 +225,13 @@
 		if(record)
 			var/datum/data/record/R = record
 			var/datum/data/record/S = null
-			if (!( data_core.general.Find(R) ))
+			if (!( GLOB.data_core.general.Find(R) ))
 				P.securityActive1 = null
 				P.securityActive2 = null
 				P.security_cannotfind = 1
 			else
 				P.security_cannotfind = 0
-				for(var/datum/data/record/E in data_core.security)
+				for(var/datum/data/record/E in GLOB.data_core.security)
 					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 						S = E
 				P.securityActive1 = R
@@ -291,7 +291,7 @@
 
 /mob/living/silicon/pai/proc/hackloop()
 	var/turf/T = get_turf(src)
-	for(var/mob/living/silicon/ai/AI in player_list)
+	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
 		if(T.loc)
 			to_chat(AI, span_bolddanger("Network Alert: Brute-force encryption crack in progress in [T.loc]."))
 		else
@@ -506,3 +506,14 @@
 				else
 					R.code = initial(R.code)
 				. = TRUE
+
+/datum/pai_software/deathalarm
+	name = "Death Alarm"
+	ram_cost = 25
+	id = "death_alarm"
+
+/datum/pai_software/deathalarm/toggle(mob/living/silicon/pai/user)
+	user.paiDA = !user.paiDA
+
+/datum/pai_software/deathalarm/is_active(mob/living/silicon/pai/user)
+	return user.paiDA

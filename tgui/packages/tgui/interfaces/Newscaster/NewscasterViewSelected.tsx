@@ -1,11 +1,20 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Image,
+  LabeledList,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { NEWSCASTER_SCREEN_VIEWLIST } from './constants';
 import type { Data } from './types';
 
-export const NewscasterViewSelected = (props: { setScreen: Function }) => {
+export const NewscasterViewSelected = (props: {
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { act, data } = useBackend<Data>();
 
   const { viewing_channel, securityCaster, company } = data;
@@ -34,26 +43,30 @@ export const NewscasterViewSelected = (props: { setScreen: Function }) => {
     <Section
       title={decodeHtmlEntities(viewing_channel.name)}
       buttons={
-        <>
+        <Stack>
           {!!securityCaster && (
-            <Button.Confirm
-              color="bad"
-              icon="ban"
-              confirmIcon="ban"
-              onClick={() =>
-                act('toggle_d_notice', { ref: viewing_channel.ref })
-              }
-            >
-              Issue D-Notice
-            </Button.Confirm>
+            <Stack.Item>
+              <Button.Confirm
+                color="bad"
+                icon="ban"
+                confirmIcon="ban"
+                onClick={() =>
+                  act('toggle_d_notice', { ref: viewing_channel.ref })
+                }
+              >
+                Issue D-Notice
+              </Button.Confirm>
+            </Stack.Item>
           )}
-          <Button
-            icon="undo"
-            onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}
-          >
-            Back
-          </Button>
-        </>
+          <Stack.Item>
+            <Button
+              icon="undo"
+              onClick={() => setScreen(NEWSCASTER_SCREEN_VIEWLIST)}
+            >
+              Back
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <LabeledList>
@@ -84,11 +97,11 @@ export const NewscasterViewSelected = (props: { setScreen: Function }) => {
       {(!!viewing_channel.messages.length &&
         viewing_channel.messages.map((message) => (
           <Section key={message.ref}>
-            {message.title && decodeHtmlEntities(message.title) + ' - '}
+            {message.title && `${decodeHtmlEntities(message.title)} - `}
             {decodeHtmlEntities(message.body)}
             {!!message.img && (
               <Box>
-                <Image src={'data:image/png;base64,' + message.img} />
+                <Image src={`data:image/png;base64,${message.img}`} />
                 {(!!message.caption && decodeHtmlEntities(message.caption)) ||
                   null}
               </Box>

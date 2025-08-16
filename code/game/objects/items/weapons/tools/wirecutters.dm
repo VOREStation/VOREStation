@@ -28,7 +28,8 @@
 	tool_qualities = list(TOOL_WIRECUTTER)
 	var/random_color = TRUE
 
-/obj/item/tool/wirecutters/New()
+/obj/item/tool/wirecutters/Initialize(mapload)
+	. = ..()
 	if(random_color)
 		switch(pick("red","blue","yellow"))
 			if ("red")
@@ -42,8 +43,7 @@
 				item_state = "cutters_yellow"
 
 	if (prob(75))
-		src.pixel_y = rand(0, 16)
-	..()
+		pixel_y = rand(0, 16)
 
 /obj/item/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
@@ -80,12 +80,6 @@
 	toolspeed = 0.1
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	random_color = FALSE
-
-/obj/item/tool/wirecutters/cyborg
-	name = "wirecutters"
-	desc = "This cuts wires. With science."
-	usesound = 'sound/items/jaws_cut.ogg'
-	toolspeed = 0.5
 
 /obj/item/tool/wirecutters/hybrid
 	name = "strange wirecutters"

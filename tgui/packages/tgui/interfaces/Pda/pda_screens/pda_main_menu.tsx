@@ -76,7 +76,7 @@ export const pda_main_menu = (props) => {
       <Section title="Functions">
         <LabeledList>
           {categories.map((name) => {
-            let valid_apps = apps[name];
+            const valid_apps = apps[name];
 
             if (!valid_apps || !valid_apps.length) {
               return null;

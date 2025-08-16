@@ -76,7 +76,7 @@
 	name = "alternate undersuit, sleeveless"
 	desc = "A skin-tight synthetic bodysuit designed for comfort and mobility underneath hardsuits and voidsuits. This one is designed to stop at the mid-bicep, allowing total freedom to the wearer's forearms."
 	item_state = "altbodysuit_sleeveless"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 /obj/item/clothing/under/undersuit/alt/fem
 	name = "alternate undersuit, feminine"

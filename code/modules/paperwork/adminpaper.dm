@@ -16,8 +16,8 @@
 	var/footer = null
 	var/footerOn = FALSE
 
-/obj/item/paper/admin/New()
-	..()
+/obj/item/paper/admin/Initialize(mapload, text, title)
+	. = ..()
 	generateInteractions()
 
 
@@ -44,18 +44,17 @@
 	if(!logo)
 		return
 	if(logo == "SolGov")
-		logo = "sglogo.png"
+		logo = 'html/images/sglogo.png'
 	//VOREStation Edit/Add
 	else if(logo == "NanoTrasen")
-		logo = "ntlogo.png"
+		logo = 'html/images/ntlogo.png'
 	else
-		logo = "trader.png"
+		logo = 'html/images/trader.png'
 	//VOREStation Edit/Add End
 	//TODO change logo based on who you're contacting.
-	text = "<center><img src = [logo]></br>"
+	text = "<center><img src=\ref[logo]></br>"
 	text += span_bold("[origin] Quantum Uplink Signed Message") + "<br>"
-	text += "<font size = \"1\">Encryption key: [originhash]<br>"
-	text += "Challenge: [timehash]<br></font></center><hr>"
+	text += span_small("Encryption key: [originhash]<br>Challenge: [timehash]") + "<br></center><hr>"
 
 	header = text
 
@@ -89,10 +88,7 @@
 			to_chat(usr, span_info("There isn't enough space left on \the [src] to write anything."))
 			return
 
-		var/raw_t = tgui_input_text(usr, "Enter what you want to write:", "Write", multiline = TRUE, prevent_enter = TRUE)
-		if(!raw_t)
-			return
-		var/t =  sanitize(raw_t, free_space, extra = 0)
+		var/t = tgui_input_text(usr, "Enter what you want to write:", "Write", "", free_space, TRUE, prevent_enter = TRUE)
 		if(!t)
 			return
 

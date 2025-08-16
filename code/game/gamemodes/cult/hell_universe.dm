@@ -41,7 +41,7 @@ In short:
 	set background = 1
 //	garbage_collector.garbage_collect = 0
 
-	escape_list = get_area_turfs(locate(/area/hallway/secondary/exit))
+	GLOB.escape_list = get_area_turfs(locate(/area/hallway/secondary/exit))
 
 	//Separated into separate procs for profiling
 	AreaSet()
@@ -50,7 +50,7 @@ In short:
 	OverlayAndAmbientSet()
 	lightsout(0,0)
 
-	runedec += 9000	//basically removing the rune cap
+	GLOB.runedec += 9000	//basically removing the rune cap
 
 
 /datum/universal_state/hell/proc/AreaSet()
@@ -73,7 +73,7 @@ In short:
 		if(!T.holy && prob(1))
 			new /obj/effect/gateway/active/cult(T)
 
-	for (var/obj/machinery/firealarm/alm in machines)
+	for (var/obj/machinery/firealarm/alm in GLOB.machines)
 		if (!(alm.stat & BROKEN))
 			alm.ex_act(2)
 

@@ -29,6 +29,7 @@ export const MESSAGE_TYPE_PLOCALCHAT = 'plocalchat';
 export const MESSAGE_TYPE_VORE = 'vore';
 export const MESSAGE_TYPE_HIVEMIND = 'hivemind';
 export const MESSAGE_TYPE_RADIO = 'radio';
+export const MESSAGE_TYPE_ENT_RADIO = 'entradio';
 export const MESSAGE_TYPE_NIF = 'nif';
 export const MESSAGE_TYPE_INFO = 'info';
 export const MESSAGE_TYPE_WARNING = 'warning';
@@ -101,6 +102,12 @@ export const MESSAGE_TYPES = [
     description: 'All departments of radio messages',
     selector:
       '.alert, .minorannounce, .syndradio, .centradio, .airadio, .comradio, .secradio, .gangradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster, .resonate, .abductor, .alien, .changeling',
+  },
+  {
+    type: MESSAGE_TYPE_ENT_RADIO,
+    name: 'Entertainment',
+    description: 'Entertainment radio messages',
+    selector: '.entradio',
   },
   {
     type: MESSAGE_TYPE_NIF,

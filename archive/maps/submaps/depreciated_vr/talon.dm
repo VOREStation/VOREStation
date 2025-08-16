@@ -1,13 +1,13 @@
 ///////////////////////////
 //// Spawning and despawning
-var/global/list/latejoin_talon = list()
+GLOBAL_LIST_EMPTY(latejoin_talon)
 /obj/effect/landmark/talon
 	name = "JoinLateTalon"
 	delete_me = 1
 
-/obj/effect/landmark/talon/New()
-	latejoin_talon += loc // Register this turf as tram latejoin.
-	..()
+/obj/effect/landmark/talon/Initialize(mapload)
+	GLOB.latejoin_talon += loc // Register this turf as tram latejoin.
+	. = ..()
 
 /datum/spawnpoint/talon
 	display_name = "ITV Talon Cryo"
@@ -17,7 +17,7 @@ var/global/list/latejoin_talon = list()
 
 /datum/spawnpoint/talon/New()
 	..()
-	turfs = latejoin_talon
+	turfs = GLOB.latejoin_talon
 
 /obj/machinery/cryopod/talon
 	announce_channel = "Talon"
@@ -33,7 +33,7 @@ var/global/list/latejoin_talon = list()
 	on_store_name = "ITV Talon Robotic Storage"
 
 /obj/effect/landmark/map_data/talon
-    height = 2
+	height = 2
 
 ///////////////////////////
 //// The Talon
@@ -171,12 +171,12 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	item_state = "tdgreen"
 	assignment = "Talon synthetic"
 
-/obj/item/card/id/synthetic/talon/Initialize()
+/obj/item/card/id/synthetic/talon/Initialize(mapload)
 	. = ..()
 	access = list(access_talon, access_synth)
 
-/obj/machinery/power/smes/buildable/offmap_spawn/New()
-	..(1)
+/obj/machinery/power/smes/buildable/offmap_spawn/Initialize(mapload)
+	. = ..()
 	charge = 1e7
 	RCon = TRUE
 	input_level = input_level_max

@@ -5,7 +5,7 @@
 	icon_state = "no name"
 	var/seedtype = null
 
-/obj/fruitspawner/Initialize()
+/obj/fruitspawner/Initialize(mapload)
 	..()
 	if(!seedtype || !SSplants.seeds[seedtype])
 		return

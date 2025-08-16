@@ -28,7 +28,7 @@
 	var/static/list/field_edit_choices
 
 
-/obj/machinery/computer/med_data/Initialize()
+/obj/machinery/computer/med_data/Initialize(mapload)
 	. = ..()
 	field_edit_questions = list(
 		// General
@@ -125,15 +125,15 @@
 	if(authenticated)
 		switch(screen)
 			if(MED_DATA_R_LIST)
-				if(!isnull(data_core.general))
+				if(!isnull(GLOB.data_core.general))
 					var/list/records = list()
 					data["records"] = records
-					for(var/datum/data/record/R in sortRecord(data_core.general))
+					for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
 						records[++records.len] = list("ref" = "\ref[R]", "id" = R.fields["id"], "name" = R.fields["name"])
 			if(MED_DATA_RECORD)
 				var/list/general = list()
 				data["general"] = general
-				if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+				if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 					var/list/fields = list()
 					general["fields"] = fields
 					fields[++fields.len] = FIELD("Name", active1.fields["name"], null)
@@ -155,7 +155,7 @@
 
 				var/list/medical = list()
 				data["medical"] = medical
-				if(istype(active2, /datum/data/record) && data_core.medical.Find(active2))
+				if(istype(active2, /datum/data/record) && GLOB.data_core.medical.Find(active2))
 					var/list/fields = list()
 					medical["fields"] = fields
 					fields[++fields.len] = MED_FIELD("Gender identity", active2.fields["id_gender"], "id_gender", TRUE)
@@ -172,14 +172,11 @@
 					medical["empty"] = 1
 			if(MED_DATA_V_DATA)
 				data["virus"] = list()
-				for(var/datum/disease/D in active_diseases)
-					if(!D.discovered)
-						continue
-					var/datum/data/record/v = active_diseases[D]
+				for(var/datum/data/record/v in GLOB.virusDB)
 					data["virus"] += list(list("name" = v.fields["name"], "D" = "\ref[v]"))
 			if(MED_DATA_MEDBOT)
 				data["medbots"] = list()
-				for(var/mob/living/bot/medbot/M in mob_list)
+				for(var/mob/living/bot/medbot/M in GLOB.mob_list)
 					if(M.z != z)
 						continue
 					var/turf/T = get_turf(M)
@@ -206,9 +203,9 @@
 	if(..())
 		return TRUE
 
-	if(!data_core.general.Find(active1))
+	if(!GLOB.data_core.general.Find(active1))
 		active1 = null
-	if(!data_core.medical.Find(active2))
+	if(!GLOB.data_core.medical.Find(active2))
 		active2 = null
 
 	. = TRUE
@@ -276,7 +273,7 @@
 					return FALSE
 				tgui_modal_message(src, "virus", "", null, v.fields["tgui_description"])
 			if("del_all")
-				for(var/datum/data/record/R in data_core.medical)
+				for(var/datum/data/record/R in GLOB.data_core.medical)
 					qdel(R)
 				set_temp("All medical records deleted.")
 			if("del_r")
@@ -285,12 +282,12 @@
 					qdel(active2)
 			if("d_rec")
 				var/datum/data/record/general_record = locate(params["d_rec"] || "")
-				if(!data_core.general.Find(general_record))
+				if(!GLOB.data_core.general.Find(general_record))
 					set_temp("Record not found.", "danger")
 					return
 
 				var/datum/data/record/medical_record
-				for(var/datum/data/record/M in data_core.medical)
+				for(var/datum/data/record/M in GLOB.data_core.medical)
 					if(M.fields["name"] == general_record.fields["name"] && M.fields["id"] == general_record.fields["id"])
 						medical_record = M
 						break
@@ -300,13 +297,13 @@
 				screen = MED_DATA_RECORD
 			if("sync_r")
 				if(active2)
-					set_temp(client_update_record(src,usr))
+					set_temp(client_update_record(src,ui.user))
 			if("edit_notes")
 				// The modal input in tgui is busted for this sadly...
-				var/new_notes = strip_html_simple(tgui_input_text(usr,"Enter new information here.","Character Preference", html_decode(active2.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
-				if(usr.Adjacent(src))
-					if(new_notes != "" || tgui_alert(usr, "Are you sure you want to delete the current record's notes?", "Confirm Delete", list("Delete", "No")) == "Delete")
-						if(usr.Adjacent(src))
+				var/new_notes = strip_html_simple(tgui_input_text(ui.user,"Enter new information here.","Character Preference", html_decode(active2.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
+				if(ui.user.Adjacent(src))
+					if(new_notes != "" || tgui_alert(ui.user, "Are you sure you want to delete the current record's notes?", "Confirm Delete", list("Delete", "No")) == "Delete")
+						if(ui.user.Adjacent(src))
 							active2.fields["notes"] = new_notes
 			if("new")
 				if(istype(active1, /datum/data/record) && !istype(active2, /datum/data/record))
@@ -326,7 +323,7 @@
 					R.fields["cdi"] = "None"
 					R.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
 					R.fields["notes"] = "No notes."
-					data_core.medical += R
+					GLOB.data_core.medical += R
 					active2 = R
 					screen = MED_DATA_RECORD
 					set_temp("Medical record created.", "success")
@@ -346,14 +343,14 @@
 				if(!length(t1))
 					return
 
-				for(var/datum/data/record/R in data_core.medical)
+				for(var/datum/data/record/R in GLOB.data_core.medical)
 					if(t1 == lowertext(R.fields["name"]) || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"]))
 						active2 = R
 						break
 				if(!active2)
 					set_temp("Medical record not found. You must enter the person's exact name, ID or DNA.", "danger")
 					return
-				for(var/datum/data/record/E in data_core.general)
+				for(var/datum/data/record/E in GLOB.data_core.general)
 					if(E.fields["name"] == active2.fields["name"] && E.fields["id"] == active2.fields["id"])
 						active1 = E
 						break
@@ -368,12 +365,12 @@
 				return FALSE
 
 /**
-  * Called in tgui_act() to process modal actions
-  *
-  * Arguments:
-  * * action - The action passed by tgui
-  * * params - The params passed by tgui
-  */
+ * Called in tgui_act() to process modal actions
+ *
+ * Arguments:
+ * * action - The action passed by tgui
+ * * params - The params passed by tgui
+ */
 /obj/machinery/computer/med_data/proc/tgui_act_modal(action, params)
 	. = TRUE
 	var/id = params["id"] // The modal's ID
@@ -427,12 +424,12 @@
 
 
 /**
-  * Called when the print timer finishes
-  */
+ * Called when the print timer finishes
+ */
 /obj/machinery/computer/med_data/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center>" + span_bold("Medical Record") + "</center><br>"
-	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+	if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
 		<br>\nSpecies: [active1.fields["species"]]
@@ -442,7 +439,7 @@
 		<br>\nMental Status: [active1.fields["m_stat"]]<br>"}
 	else
 		P.info += span_bold("General Record Lost!") + "<br>"
-	if(istype(active2, /datum/data/record) && data_core.medical.Find(active2))
+	if(istype(active2, /datum/data/record) && GLOB.data_core.medical.Find(active2))
 		P.info += {"<br>\n<center><b>Medical Data</b></center>
 		<br>\nGender Identity: [active2.fields["id_gender"]]
 		<br>\nBlood Type: [active2.fields["b_type"]]
@@ -470,12 +467,12 @@
 	SStgui.update_uis(src)
 
 /**
-  * Sets a temporary message to display to the user
-  *
-  * Arguments:
-  * * text - Text to display, null/empty to clear the message from the UI
-  * * style - The style of the message: (color name), info, success, warning, danger, virus
-  */
+ * Sets a temporary message to display to the user
+ *
+ * Arguments:
+ * * text - Text to display, null/empty to clear the message from the UI
+ * * style - The style of the message: (color name), info, success, warning, danger, virus
+ */
 /obj/machinery/computer/med_data/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)
@@ -486,11 +483,11 @@
 		..(severity)
 		return
 
-	for(var/datum/data/record/R in data_core.medical)
+	for(var/datum/data/record/R in GLOB.data_core.medical)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(first_names_male), pick(first_names_female))] [pick(last_names)]"
+					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)
@@ -499,8 +496,8 @@
 					R.fields["b_type"] = pick("A-", "B-", "AB-", "O-", "A+", "B+", "AB+", "O+")
 				if(5)
 					R.fields["p_stat"] = pick("*SSD*", "Active", "Physically Unfit", "Disabled")
-					if(PDA_Manifest.len)
-						PDA_Manifest.Cut()
+					if(GLOB.PDA_Manifest.len)
+						GLOB.PDA_Manifest.Cut()
 				if(6)
 					R.fields["m_stat"] = pick("*Insane*", "*Unstable*", "*Watch*", "Stable")
 			continue

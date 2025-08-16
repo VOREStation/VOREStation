@@ -30,28 +30,32 @@ export const BodyScannerMainOrgansInternal = (props: {
           <Table.Row key={i} style={{ textTransform: 'capitalize' }}>
             <Table.Cell width="33%">{o.name}</Table.Cell>
             <Table.Cell textAlign="center">
-              <ProgressBar
-                minValue={0}
-                maxValue={o.maxHealth / 100}
-                value={o.damage / 100}
-                mt={i > 0 && '0.5rem'}
-                ranges={damageRange}
-              >
-                {toFixed(o.damage)}
-              </ProgressBar>
+              {!o.missing && (
+                <ProgressBar
+                  minValue={0}
+                  maxValue={o.maxHealth ? o.maxHealth / 100 : 0}
+                  value={o.damage ? o.damage / 100 : 0}
+                  mt={i > 0 && '0.5rem'}
+                  ranges={damageRange}
+                >
+                  {!!o.damage && toFixed(o.damage)}
+                </ProgressBar>
+              )}
             </Table.Cell>
             <Table.Cell textAlign="right" width="33%">
               <Box color="average" inline>
                 {reduceOrganStatus([
-                  germStatus(o.germ_level),
+                  !!o.germ_level && germStatus(o.germ_level),
                   !!o.inflamed && 'Appendicitis detected.',
                 ])}
+                {o.medical_issues_I && reduceOrganStatus(o.medical_issues_I)}
               </Box>
               <Box inline>
                 {reduceOrganStatus([
                   o.robotic === 1 && 'Robotic',
                   o.robotic === 2 && 'Assisted',
                   !!o.dead && <Box color="bad">DEAD</Box>,
+                  !!o.missing && <Box color="bad">MISSING</Box>,
                 ])}
               </Box>
             </Table.Cell>

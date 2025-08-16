@@ -5,47 +5,38 @@
 /obj/item/clothing/head/helmet/space/rig
 	name = "helmet"
 	item_flags = THICKMATERIAL|ALLOW_SURVIVALFOOD
-	flags_inv = 		 HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
-	body_parts_covered = HEAD|FACE|EYES
-	heat_protection =    HEAD|FACE|EYES
-	cold_protection =    HEAD|FACE|EYES
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	light_range = 4
 	sprite_sheets = list(
 		SPECIES_TAJARAN = 'icons/inventory/head/mob_tajaran.dmi',
 		SPECIES_SKRELL = 'icons/inventory/head/mob_skrell.dmi',
 		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi',
 		SPECIES_VOX = 'icons/inventory/head/mob_vox.dmi',
-		SPECIES_TESHARI = 'icons/inventory/head/mob_teshari.dmi'
+		SPECIES_TESHARI = 'icons/inventory/head/mob_teshari.dmi',
+		SPECIES_SHADEKIN = 'icons/inventory/suit/mob_tajaran.dmi'
 		)
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI, SPECIES_SHADEKIN) //vox, diona, and zaddat can't use hardsuits not designed for them
 	max_pressure_protection = null
 	min_pressure_protection = null
 
 /obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
+	icon_state = "security_rig"
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
-	body_parts_covered = HANDS
-	heat_protection =    HANDS
-	cold_protection =    HANDS
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)
-	gender = PLURAL
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI, SPECIES_SHADEKIN)
 
 /obj/item/clothing/shoes/magboots/rig
 	name = "boots"
-	body_parts_covered = FEET
-	cold_protection = FEET
-	heat_protection = FEET
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)
-	gender = PLURAL
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI, SPECIES_SHADEKIN)
 	icon_base = null
 
 /obj/item/clothing/suit/space/rig
 	name = "chestpiece"
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	heat_protection =	 UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection =	 UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS)
+	body_parts_covered = CHEST|LEGS|ARMS
+	heat_protection =	 CHEST|LEGS|ARMS
+	cold_protection =	 CHEST|LEGS|ARMS
 	flags_inv =			 HIDEJUMPSUIT|HIDETAIL
 	item_flags =		 THICKMATERIAL | AIRTIGHT
 	slowdown = 0
@@ -60,7 +51,7 @@
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi'
 		)
 	supporting_limbs = list()
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI, SPECIES_SHADEKIN) //vox, diona, and zaddat can't use hardsuits not designed for them
 	var/obj/item/material/knife/tacknife
 	max_pressure_protection = null
 	min_pressure_protection = null
@@ -115,36 +106,18 @@
 //Rig pieces for non-spacesuit based rigs
 
 /obj/item/clothing/head/lightrig
-	name = "mask"
+	name = DEVELOPER_WARNING_NAME // "mask"
 	body_parts_covered = HEAD|FACE|EYES
-	heat_protection =    HEAD|FACE|EYES
-	cold_protection =    HEAD|FACE|EYES
 	flags =              THICKMATERIAL|AIRTIGHT
-	species_restricted = null
 
 /obj/item/clothing/suit/lightrig
-	name = "suit"
-	allowed = list(/obj/item/flashlight)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	name = DEVELOPER_WARNING_NAME // "suit"
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
 	flags_inv =          HIDEJUMPSUIT
 	flags =              THICKMATERIAL
-	species_restricted = null
 
 /obj/item/clothing/shoes/lightrig
-	name = "boots"
-	body_parts_covered = FEET
-	cold_protection = FEET
-	heat_protection = FEET
-	species_restricted = null
-	gender = PLURAL
+	name = DEVELOPER_WARNING_NAME // "boots"
 
 /obj/item/clothing/gloves/gauntlets/lightrig
-	name = "gloves"
 	flags = THICKMATERIAL
-	body_parts_covered = HANDS
-	heat_protection =    HANDS
-	cold_protection =    HANDS
-	species_restricted = null
-	gender = PLURAL

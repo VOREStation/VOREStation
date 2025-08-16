@@ -1,29 +1,267 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/floor/outdoors/snow/sif,/area/template_noop)
-"e" = (/turf/simulated/floor/outdoors/snow/sif,/area/submap/ChemSpill1)
-"f" = (/obj/effect/decal/remains/deer,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
-"g" = (/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
-"h" = (/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill1)
-"i" = (/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill1)
-"j" = (/obj/structure/prop/poicanister,/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill1)
-"k" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill1)
-"l" = (/turf/simulated/floor/outdoors/rocks,/area/submap/ChemSpill1)
-"m" = (/obj/effect/decal/remains/ribcage,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
-"n" = (/obj/effect/decal/remains/lizard,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/floor/outdoors/snow/sif,
+/area/template_noop)
+"e" = (
+/turf/simulated/floor/outdoors/snow/sif,
+/area/submap/ChemSpill1)
+"f" = (
+/obj/effect/decal/remains/deer,
+/turf/simulated/floor/outdoors/dirt/sif,
+/area/submap/ChemSpill1)
+"g" = (
+/turf/simulated/floor/outdoors/dirt/sif,
+/area/submap/ChemSpill1)
+"h" = (
+/turf/simulated/floor/outdoors/mud,
+/area/submap/ChemSpill1)
+"i" = (
+/turf/simulated/floor/water/contaminated,
+/area/submap/ChemSpill1)
+"j" = (
+/obj/structure/prop/poicanister,
+/turf/simulated/floor/water/contaminated,
+/area/submap/ChemSpill1)
+"k" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/water/contaminated,
+/area/submap/ChemSpill1)
+"l" = (
+/turf/simulated/floor/outdoors/rocks,
+/area/submap/ChemSpill1)
+"m" = (
+/obj/effect/decal/remains/ribcage,
+/turf/simulated/floor/outdoors/dirt/sif,
+/area/submap/ChemSpill1)
+"n" = (
+/obj/effect/decal/remains/lizard,
+/turf/simulated/floor/outdoors/dirt/sif,
+/area/submap/ChemSpill1)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaa
-aaeaaaaaegeaaa
-agggeeegeggeee
-agggggggggggee
-aegfgggeggggga
-eeggllggggegga
-gggggihhggeeea
-aggghhihhggeaa
-aeeghijiihllaa
-aeelghikhgglaa
-aeellhhihmleaa
-aeeglghhheeaab
-aagngggeggggga
-aalgeegeeaggaa
+a
+a
+a
+a
+a
+e
+g
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+g
+g
+e
+e
+g
+g
+e
+e
+e
+e
+a
+a
+"}
+(3,1,1) = {"
+a
+e
+g
+g
+g
+g
+g
+g
+e
+e
+e
+e
+g
+l
+"}
+(4,1,1) = {"
+a
+a
+g
+g
+f
+g
+g
+g
+g
+l
+l
+g
+n
+g
+"}
+(5,1,1) = {"
+a
+a
+e
+g
+g
+l
+g
+h
+h
+g
+l
+l
+g
+e
+"}
+(6,1,1) = {"
+a
+a
+e
+g
+g
+l
+i
+h
+i
+h
+h
+g
+g
+e
+"}
+(7,1,1) = {"
+a
+a
+e
+g
+g
+g
+h
+i
+j
+i
+h
+h
+g
+g
+"}
+(8,1,1) = {"
+a
+a
+g
+g
+e
+g
+h
+h
+i
+k
+i
+h
+e
+e
+"}
+(9,1,1) = {"
+a
+e
+e
+g
+g
+g
+g
+h
+i
+h
+h
+h
+g
+e
+"}
+(10,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+h
+g
+m
+e
+g
+a
+"}
+(11,1,1) = {"
+a
+e
+g
+g
+g
+e
+e
+g
+l
+g
+l
+e
+g
+g
+"}
+(12,1,1) = {"
+a
+a
+e
+g
+g
+g
+e
+e
+l
+l
+e
+a
+g
+g
+"}
+(13,1,1) = {"
+a
+a
+e
+e
+g
+g
+e
+a
+a
+a
+a
+a
+g
+a
+"}
+(14,1,1) = {"
+a
+a
+e
+e
+a
+a
+a
+a
+a
+a
+a
+b
+a
+a
 "}

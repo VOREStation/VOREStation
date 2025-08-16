@@ -26,7 +26,7 @@
 	. = ..()
 
 /datum/eventkit/mob_spawner/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/eventkit/mob_spawner/tgui_static_data(mob/user)
 	var/list/data = list()
@@ -65,7 +65,7 @@
 					intent  = (L.a_intent ? L.a_intent : I_HELP)
 					new_path = FALSE
 
-					data["max_health"] = L.maxHealth
+					data["max_health"] = L.getMaxHealth()
 					data["health"] = L.health
 					if(isanimal(L))
 						var/mob/living/simple_mob/S = L
@@ -99,7 +99,7 @@
 			use_custom_ai = !use_custom_ai
 			return TRUE
 		if("set_faction")
-			faction = sanitize(tgui_input_text(ui.user, "Please input your mobs' faction", "Faction", (faction ? faction : "neutral")))
+			faction = tgui_input_text(ui.user, "Please input your mobs' faction", "Faction", (faction ? faction : "neutral"), MAX_MESSAGE_LEN)
 			return TRUE
 		if("set_intent")
 			intent = tgui_input_list(ui.user, "Please select preferred intent", "Select Intent", list(I_HELP, I_HURT), (intent ? intent : I_HELP))

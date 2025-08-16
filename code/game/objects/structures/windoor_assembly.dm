@@ -32,8 +32,8 @@
 	secure = "secure_"
 	icon_state = "l_secure_windoor_assembly01"
 
-/obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
-	..()
+/obj/structure/windoor_assembly/Initialize(mapload, start_dir=NORTH, constructed=0)
+	. = ..()
 	if(constructed)
 		state = "01"
 		anchored = FALSE
@@ -49,7 +49,7 @@
 /obj/structure/windoor_assembly/Destroy()
 	density = FALSE
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/structure/windoor_assembly/update_icon()
 	icon_state = "[facing]_[secure]windoor_assembly[state]"
@@ -57,7 +57,7 @@
 /obj/structure/windoor_assembly/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+	if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 
@@ -70,7 +70,7 @@
 		return TRUE
 
 /obj/structure/windoor_assembly/proc/rename_door(mob/living/user)
-	var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the windoor.", src.name, src.created_name, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the windoor.", src.name, src.created_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if(!in_range(src, user) && src.loc != user)	return
 	created_name = t
 	update_state()

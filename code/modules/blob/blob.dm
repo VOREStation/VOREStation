@@ -17,10 +17,10 @@
 	var/fire_resist = 1
 	var/expandType = /obj/effect/blob
 
-/obj/effect/blob/New(loc)
+/obj/effect/blob/Initialize(mapload)
+	. = ..()
 	health = maxHealth
 	update_icon()
-	return ..(loc)
 
 /obj/effect/blob/CanPass(var/atom/movable/mover, var/turf/target)
 	return FALSE
@@ -53,7 +53,7 @@
 	update_icon()
 
 /obj/effect/blob/proc/expand(var/turf/T)
-	if(istype(T, /turf/unsimulated/) || istype(T, /turf/space) || (istype(T, /turf/simulated/mineral) && T.density))
+	if(istype(T, /turf/unsimulated/) || isopenturf(T) || (ismineralturf(T) && T.density))
 		return
 	if(istype(T, /turf/simulated/wall))
 		var/turf/simulated/wall/SW = T
@@ -164,9 +164,9 @@
 /obj/effect/blob/core/update_icon()
 	return
 
-/obj/effect/blob/core/New(loc)
+/obj/effect/blob/core/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
-	return ..(loc)
 
 /obj/effect/blob/core/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -188,14 +188,14 @@
 	brute_resist = 1
 	fire_resist = 2
 
-/obj/effect/blob/shield/New()
-	..()
+/obj/effect/blob/shield/Initialize(mapload)
+	. = ..()
 	update_nearby_tiles()
 
 /obj/effect/blob/shield/Destroy()
 	density = FALSE
 	update_nearby_tiles()
-	..()
+	. = ..()
 
 /obj/effect/blob/shield/update_icon()
 	if(health > maxHealth * 2 / 3)

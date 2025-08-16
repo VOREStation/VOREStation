@@ -1,5 +1,3 @@
-var/global/list/datum/supply_drop_loot/supply_drop
-
 /proc/supply_drop_random_loot_types()
 	if(!supply_drop)
 		supply_drop = init_subtypes(/datum/supply_drop_loot)
@@ -230,7 +228,9 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/toy/katana,
 		/obj/item/toy/katana,
 		/obj/item/inflatable_duck,
-		/obj/item/inflatable_duck)
+		/obj/item/inflatable_duck,
+		/obj/item/toy/plushie/tinytin,
+		/obj/item/toy/plushie/tinytin_sec)
 
 /datum/supply_drop_loot/christmas
 	name = "Surplus Christmas Supplies"

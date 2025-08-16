@@ -3,9 +3,9 @@ import { NtosWindow } from 'tgui/layouts';
 import { Button, ByondUi } from 'tgui-core/components';
 
 import {
-  camera,
+  type camera,
   CameraConsoleContent,
-  Data,
+  type Data,
   prevNextCamera,
   selectCameras,
 } from './CameraConsole';
@@ -27,7 +27,7 @@ export const NtosCameraConsole = (props) => {
         <div className="CameraConsole__right">
           <div className="CameraConsole__toolbar">
             <b>Camera: </b>
-            {(activeCamera && activeCamera.name) || '—'}
+            {activeCamera?.name || '—'}
           </div>
           <div className="CameraConsole__toolbarRight">
             SEL:

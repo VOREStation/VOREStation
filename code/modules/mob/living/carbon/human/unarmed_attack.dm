@@ -1,5 +1,3 @@
-var/global/list/sparring_attack_cache = list()
-
 //Species unarmed attacks
 /datum/unarmed_attack
 	var/attack_name = "fist"
@@ -21,32 +19,32 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/proc/get_sparring_variant()
 	if(sparring_variant_type)
-		if(!sparring_attack_cache[sparring_variant_type])
-			sparring_attack_cache[sparring_variant_type] = new sparring_variant_type()
-		return sparring_attack_cache[sparring_variant_type]
+		if(!GLOB.sparring_attack_cache[sparring_variant_type])
+			GLOB.sparring_attack_cache[sparring_variant_type] = new sparring_variant_type()
+		return GLOB.sparring_attack_cache[sparring_variant_type]
 
 /datum/unarmed_attack/proc/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
 	if(user.restrained())
 		return FALSE
 
 	// Check if they have a functioning hand.
-	var/obj/item/organ/external/E = user.organs_by_name["l_hand"]
+	var/obj/item/organ/external/E = user.organs_by_name[BP_L_HAND]
 	if(E && !E.is_stump())
 		return TRUE
 
-	E = user.organs_by_name["r_hand"]
+	E = user.organs_by_name[BP_R_HAND]
 	if(E && !E.is_stump())
 		return TRUE
 
 	return FALSE
 
-/datum/unarmed_attack/proc/get_unarmed_damage()
-	return damage
+/datum/unarmed_attack/proc/get_unarmed_damage(var/mob/living/carbon/human/user)
+	return damage + user.species.unarmed_bonus
 
 /datum/unarmed_attack/proc/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
 
 	var/stun_chance = rand(0, 100)
-	var/datum/gender/TT = gender_datums[target.get_visible_gender()]
+	var/datum/gender/TT = GLOB.gender_datums[target.get_visible_gender()]
 
 	if(attack_damage >= 5 && armour < 2 && !(target == user) && stun_chance <= attack_damage * 5) // 25% standard chance
 		switch(zone) // strong punches can have effects depending on where they hit
@@ -74,12 +72,12 @@ var/global/list/sparring_attack_cache = list()
 					else
 						target.visible_message(span_danger("[target] slams into [T]!"))
 					if(prob(50))
-						target.set_dir(reverse_dir[target.dir])
+						target.set_dir(GLOB.reverse_dir[target.dir])
 					target.apply_effect(attack_damage * 0.4, WEAKEN, armour)
 			if(BP_GROIN)
 				target.visible_message(span_warning("[target] looks like [TT.he] [TT.is] in pain!"), span_warning("[(target.gender=="female") ? "Oh god that hurt!" : "Oh no, not your[pick("testicles", "crown jewels", "clockweights", "family jewels", "marbles", "bean bags", "teabags", "sweetmeats", "goolies")]!"]")) // I see no easy way to fix this for non-organic or neuter characters.
 				target.apply_effects(stutter = attack_damage * 2, agony = attack_damage* 3, blocked = armour)
-			if("l_leg", "l_foot", "r_leg", "r_foot")
+			if(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT)
 				if(!target.lying)
 					target.visible_message(span_warning("[target] gives way slightly."))
 					target.apply_effect(attack_damage*3, AGONY, armour)
@@ -97,8 +95,8 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/proc/handle_eye_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target)
 	var/obj/item/organ/internal/eyes/eyes = target.internal_organs_by_name[O_EYES]
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	var/datum/gender/TT = gender_datums[target.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
+	var/datum/gender/TT = GLOB.gender_datums[target.get_visible_gender()]
 	if(eyes)
 		eyes.take_damage(rand(3,4), 1)
 		user.visible_message(span_danger("[user] presses [TU.his] [eye_attack_text] into [target]'s [eyes.name]!"))
@@ -145,8 +143,8 @@ var/global/list/sparring_attack_cache = list()
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	var/datum/gender/TT = gender_datums[target.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
+	var/datum/gender/TT = GLOB.gender_datums[target.get_visible_gender()]
 
 	attack_damage = CLAMP(attack_damage, 1, 5) // We expect damage input of 1 to 5 for this proc. But we leave this check juuust in case.
 
@@ -199,14 +197,14 @@ var/global/list/sparring_attack_cache = list()
 	if(user.legcuffed || user.buckled)
 		return FALSE
 
-	if(!(zone in list("l_leg", "r_leg", "l_foot", "r_foot", BP_GROIN)))
+	if(!(zone in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_GROIN)))
 		return FALSE
 
-	var/obj/item/organ/external/E = user.organs_by_name["l_foot"]
+	var/obj/item/organ/external/E = user.organs_by_name[BP_L_FOOT]
 	if(E && !E.is_stump())
 		return TRUE
 
-	E = user.organs_by_name["r_foot"]
+	E = user.organs_by_name[BP_R_FOOT]
 	if(E && !E.is_stump())
 		return TRUE
 
@@ -215,12 +213,12 @@ var/global/list/sparring_attack_cache = list()
 /datum/unarmed_attack/kick/get_unarmed_damage(var/mob/living/carbon/human/user)
 	var/obj/item/clothing/shoes = user.shoes
 	if(!istype(shoes))
-		return damage
-	return damage + (shoes ? shoes.force : 0)
+		return user.species.unarmed_bonus + damage
+	return user.species.unarmed_bonus + damage + (shoes ? shoes.force : 0)
 
 /datum/unarmed_attack/kick/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
-	var/datum/gender/TT = gender_datums[target.get_visible_gender()]
+	var/datum/gender/TT = GLOB.gender_datums[target.get_visible_gender()]
 	var/organ = affecting.name
 
 	attack_damage = CLAMP(attack_damage, 1, 5)
@@ -247,14 +245,14 @@ var/global/list/sparring_attack_cache = list()
 	if(!istype(target))
 		return FALSE
 
-	if (!user.lying && (target.lying || (zone in list("l_foot", "r_foot"))))
+	if (!user.lying && (target.lying || (zone in list(BP_L_FOOT, BP_R_FOOT))))
 		if(target.grabbed_by == user && target.lying)
 			return FALSE
-		var/obj/item/organ/external/E = user.organs_by_name["l_foot"]
+		var/obj/item/organ/external/E = user.organs_by_name[BP_L_FOOT]
 		if(E && !E.is_stump())
 			return TRUE
 
-		E = user.organs_by_name["r_foot"]
+		E = user.organs_by_name[BP_R_FOOT]
 		if(E && !E.is_stump())
 			return TRUE
 
@@ -262,13 +260,13 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/stomp/get_unarmed_damage(var/mob/living/carbon/human/user)
 	var/obj/item/clothing/shoes = user.shoes
-	return damage + (shoes ? shoes.force : 0)
+	return user.species.unarmed_bonus + damage + (shoes ? shoes.force : 0)
 
 /datum/unarmed_attack/stomp/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 	var/obj/item/clothing/shoes = user.shoes
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 
 	attack_damage = CLAMP(attack_damage, 1, 5)
 

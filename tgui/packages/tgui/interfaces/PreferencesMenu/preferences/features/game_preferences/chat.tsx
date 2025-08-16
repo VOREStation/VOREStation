@@ -1,4 +1,9 @@
-import { CheckboxInput, FeatureToggle } from '../base';
+import {
+  CheckboxInput,
+  type FeatureChoiced,
+  type FeatureToggle,
+} from '../base';
+import { FeatureDropdownInput } from '../dropdowns';
 
 export const CHAT_SHOWICONS: FeatureToggle = {
   name: 'Chat Tags',
@@ -50,14 +55,6 @@ export const CHAT_MENTION: FeatureToggle = {
   component: CheckboxInput,
 };
 
-export const VORE_HEALTH_BARS: FeatureToggle = {
-  name: 'Vore Health Bars',
-  category: 'CHAT',
-  description:
-    'Periodically shows status health bars in chat occasionally during vore absorption/digestion.',
-  component: CheckboxInput,
-};
-
 export const NEWS_POPUP: FeatureToggle = {
   name: 'Lore News Popups',
   category: 'CHAT',
@@ -78,4 +75,24 @@ export const PAIN_FREQUENCY: FeatureToggle = {
   description:
     'When enabled, reduces the amount of pain messages for minor wounds that you see.',
   component: CheckboxInput,
+};
+
+export const EXAMINE_MODE: FeatureChoiced = {
+  name: 'Examine Mode',
+  category: 'CHAT',
+  description:
+    'Choose how you want to examine items. "Verbose" will include all information found in the examine panel as foldable groups, "Switch To Panel" will switch you to the examine panel upon examining, and "Slim" will do neither. ',
+  component: FeatureDropdownInput,
+};
+
+export const MULTI_LANGUAGE_YAP_MODE: FeatureChoiced = {
+  name: 'Multilingual Speech Parsing Mode',
+  category: 'CHAT',
+  description: `
+    Default: Multilingual parsing will only check for the delimiter-key combination (e.g., ,0galcom-2tradeband).\n
+    Space: Multilingual parsing will enforce a space after the delimiter-key combination (,0 galcom -2still galcom). The extra space will be consumed by the pattern-matching.\n
+    Double Delimiter: Multilingual parsing will enforce the language delimiter after the delimiter-key combination (,0,galcom -2 still galcom). The extra delimiter will be consumed by the pattern-matching.\n
+    Off: Multilingual parsing is now disabled. Entire messages will be in the language specified at the start of the message.
+  `,
+  component: FeatureDropdownInput,
 };

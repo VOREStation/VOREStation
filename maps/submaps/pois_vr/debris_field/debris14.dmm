@@ -38,10 +38,6 @@
 /obj/item/material/shard/shrapnel,
 /turf/simulated/floor/airless,
 /area/tether_away/debrisfield/shuttle_buffer)
-"j" = (
-/obj/structure/lattice,
-/turf/space,
-/area/tether_away/debrisfield/shuttle_buffer)
 "k" = (
 /turf/template_noop,
 /area/space)
@@ -52,27 +48,27 @@
 (1,1,1) = {"
 b
 l
-j
-j
+h
+h
 e
 "}
 (2,1,1) = {"
 c
 a
 f
-j
+h
 k
 "}
 (3,1,1) = {"
 i
 d
 d
-j
+h
 k
 "}
 (4,1,1) = {"
 k
-j
+h
 g
 h
 k

@@ -1,6 +1,6 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { field } from '../GeneralRecords/types';
+import type { field } from '../GeneralRecords/types';
 
 export type Data = {
   temp: { color: string; text: string } | null;
@@ -41,6 +41,7 @@ type record = {
 export type modalData = {
   id: string;
   text: string;
+  // biome-ignore lint/complexity/noBannedTypes: In this case we got any type of Object
   args: {};
-  modal_type: string;
+  type: string;
 };

@@ -172,7 +172,7 @@
 		/obj/item/capture_crystal
 	)
 
-/obj/item/storage/backpack/sport/hyd/catchemall/Initialize() //gotta have your starter 'mon too (or an improved way to catch one)
+/obj/item/storage/backpack/sport/hyd/catchemall/Initialize(mapload) //gotta have your starter 'mon too (or an improved way to catch one)
 	. = ..()
 	var/path = pick(subtypesof(/obj/item/capture_crystal))
 	contents += new path()

@@ -27,17 +27,18 @@
 	dat += span_bold("Charge progress: [reload]/180:") + "<BR>"
 	dat += "<A href='byond://?src=\ref[src];fire=1'>Open Fire</A><BR>"
 	dat += "Deployment of weapon authorized by <br>[using_map.company_name] Naval Command<br><br>Remember, friendly fire is grounds for termination of your contract and life.<HR>"
-	user << browse("<html>[dat]</html>", "window=scroll")
-	onclose(user, "scroll")
-	return
+
+	var/datum/browser/popup = new(user, "artillery", "Artillery")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/artillerycontrol/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained())
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		var/A = tgui_input_list(usr, "Area to jump bombard", "Open Fire", teleportlocs)
-		var/area/thearea = teleportlocs[A]
+		var/A = tgui_input_list(usr, "Area to jump bombard", "Open Fire", GLOB.teleportlocs)
+		var/area/thearea = GLOB.teleportlocs[A]
 		if (usr.stat || usr.restrained()) return
 		if(src.reload < 180) return
 		if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))

@@ -146,6 +146,8 @@
 	return // No overlays please.
 
 /obj/item/cell/device/weapon/recharge/alien/attack_self(var/mob/user)
+	if(!swaps_to)
+		return
 	user.remove_from_mob(src)
 	to_chat(user, span_notice("You swap [src] to 'machinery cell' mode."))
 	var/obj/item/cell/newcell = new swaps_to(null)

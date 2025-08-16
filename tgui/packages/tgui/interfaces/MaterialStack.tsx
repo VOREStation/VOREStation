@@ -30,14 +30,14 @@ export const MaterialStack = (props) => {
   return (
     <Window width={400} height={600}>
       <Window.Content scrollable>
-        <Section title={'Amount: ' + amount}>
+        <Section title={`Amount: ${amount}`}>
           <Stack vertical>
             <Stack.Item>
               <Input
                 fluid
                 placeholder="Search for recipe..."
                 value={searchText}
-                onInput={(e, val) => setSearchText(val)}
+                onChange={(val) => setSearchText(val)}
               />
             </Stack.Item>
             <Stack.Item>
@@ -81,7 +81,7 @@ const RecipeList = (props: {
     //     </Box>
     //   );
     // }
-    let recipe = recipes[title];
+    const recipe = recipes[title];
     if (recipe.ref === undefined) {
       return (
         <Collapsible key={index} ml={1} mb={-0.7} color="label" title={title}>
@@ -109,7 +109,7 @@ const Multipliers = (props) => {
 
   const { recipe, maxMultiplier } = props;
 
-  let maxM = Math.min(
+  const maxM = Math.min(
     maxMultiplier,
     Math.floor(recipe.max_res_amount / recipe.res_amount),
   );
@@ -118,7 +118,7 @@ const Multipliers = (props) => {
 
   const finalResult: React.JSX.Element[] = [];
 
-  for (let multiplier of multipliers) {
+  for (const multiplier of multipliers) {
     if (maxM >= multiplier) {
       finalResult.push(
         <Button
@@ -129,7 +129,7 @@ const Multipliers = (props) => {
             })
           }
         >
-          {multiplier * recipe.res_amount + 'x'}
+          {`${multiplier * recipe.res_amount}x`}
         </Button>,
       );
     }
@@ -145,7 +145,7 @@ const Multipliers = (props) => {
           })
         }
       >
-        {maxM * recipe.res_amount + 'x'}
+        {`${maxM * recipe.res_amount}x`}
       </Button>,
     );
   }
@@ -164,15 +164,15 @@ const Recipe = (props: { recipe: recipe; title: string }) => {
 
   let buttonName = title;
   buttonName += ' (';
-  buttonName += req_amount + ' ';
-  buttonName += 'sheet' + (req_amount > 1 ? 's' : '');
+  buttonName += `${req_amount} `;
+  buttonName += `sheet${req_amount > 1 ? 's' : ''}`;
   buttonName += ')';
 
   if (res_amount > 1) {
-    buttonName = res_amount + 'x ' + buttonName;
+    buttonName = `${res_amount}x ${buttonName}`;
   }
 
-  let maxMultiplier = buildMultiplier(recipe, amount);
+  const maxMultiplier = buildMultiplier(recipe, amount);
 
   return (
     <Box>

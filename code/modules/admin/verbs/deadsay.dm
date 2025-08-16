@@ -2,7 +2,7 @@
 	set category = "Admin.Chat"
 	set name = "Dsay" //Gave this shit a shorter name so you only have to time out "dsay" rather than "dead say" to use it --NeoFite
 	set hidden = 1
-	if(!src.holder)
+	if(!check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 	if(!src.mob)
@@ -15,7 +15,7 @@
 		to_chat(src, span_warning("You have deadchat muted."))
 		return
 
-	var/stafftype = uppertext(holder.rank)
+	var/stafftype = uppertext(holder.rank_names())
 
 	msg = sanitize(msg)
 	log_admin("DSAY: [key_name(src)] : [msg]")

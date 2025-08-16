@@ -41,7 +41,7 @@ var/warrant_uid = 0
 		data["type"] = activewarrant.fields["arrestsearch"]
 
 	var/list/allwarrants = list()
-	for(var/datum/data/record/warrant/W in data_core.warrants)
+	for(var/datum/data/record/warrant/W in GLOB.data_core.warrants)
 		allwarrants.Add(list(list(
 			"warrantname" = W.fields["namewarrant"],
 			"charges" = "[copytext(W.fields["charges"],1,min(length(W.fields["charges"]) + 1, 50))]...",
@@ -64,7 +64,7 @@ var/warrant_uid = 0
 
 		if("editwarrant")
 			. = TRUE
-			for(var/datum/data/record/warrant/W in data_core.warrants)
+			for(var/datum/data/record/warrant/W in GLOB.data_core.warrants)
 				if(W.warrant_id == text2num(params["id"]))
 					activewarrant = W
 					break
@@ -99,20 +99,20 @@ var/warrant_uid = 0
 
 		if("savewarrant")
 			. = TRUE
-			data_core.warrants |= activewarrant
+			GLOB.data_core.warrants |= activewarrant
 			activewarrant = null
 
 		if("deletewarrant")
 			. = TRUE
-			data_core.warrants -= activewarrant
+			GLOB.data_core.warrants -= activewarrant
 			activewarrant = null
 
 		if("editwarrantname")
 			. = TRUE
 			var/namelist = list()
-			for(var/datum/data/record/t in data_core.general)
+			for(var/datum/data/record/t in GLOB.data_core.general)
 				namelist += t.fields["name"]
-			var/new_name = sanitize(tgui_input_list(ui.user, "Please input name:", "Name Choice", namelist))
+			var/new_name = tgui_input_list(ui.user, "Please input name:", "Name Choice", namelist)
 			if(tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				if (!new_name)
 					return
@@ -120,7 +120,7 @@ var/warrant_uid = 0
 
 		if("editwarrantnamecustom")
 			. = TRUE
-			var/new_name = sanitize(tgui_input_text(ui.user, "Please input name"))
+			var/new_name = tgui_input_text(ui.user, "Please input name", max_length = MAX_MESSAGE_LEN)
 			if(tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				if (!new_name)
 					return
@@ -128,7 +128,7 @@ var/warrant_uid = 0
 
 		if("editwarrantcharges")
 			. = TRUE
-			var/new_charges = sanitize(tgui_input_text(ui.user, "Please input charges", "Charges", activewarrant.fields["charges"]))
+			var/new_charges = tgui_input_text(ui.user, "Please input charges", "Charges", activewarrant.fields["charges"], max_length = MAX_MESSAGE_LEN)
 			if(tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				if (!new_charges)
 					return

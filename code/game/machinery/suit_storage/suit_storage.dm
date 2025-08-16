@@ -26,7 +26,7 @@
 	var/safetieson = 1
 	var/cycletime_left = 0
 
-/obj/machinery/suit_storage_unit/Initialize()
+/obj/machinery/suit_storage_unit/Initialize(mapload)
 	. = ..()
 	if(suit_type)
 		SUIT = new suit_type(src)
@@ -283,11 +283,11 @@
 		if(i==3) //End of the cycle
 			if(!issuperUV)
 				if(HELMET)
-					HELMET.clean_blood()
+					HELMET.wash(CLEAN_SCRUB)
 				if(SUIT)
-					SUIT.clean_blood()
+					SUIT.wash(CLEAN_SCRUB)
 				if(MASK)
-					MASK.clean_blood()
+					MASK.wash(CLEAN_SCRUB)
 			else //It was supercycling, destroy everything
 				if(HELMET)
 					HELMET = null

@@ -52,7 +52,7 @@ var/list/_cat_default_emotes = list(
 	var/named = FALSE //have I been named yet?
 	var/friend_name = null //VOREStation Edit - Lock befriending to this character
 
-/mob/living/simple_mob/animal/passive/cat/Initialize()
+/mob/living/simple_mob/animal/passive/cat/Initialize(mapload)
 	icon_living = "[initial(icon_state)]"
 	icon_dead = "[initial(icon_state)]_dead"
 	icon_rest = "[initial(icon_state)]_rest"
@@ -147,7 +147,7 @@ var/list/_cat_default_emotes = list(
 	gender = NEUTER
 	holder_type = /obj/item/holder/cat/kitten //VOREStation Edit
 
-/mob/living/simple_mob/animal/passive/cat/kitten/Initialize()
+/mob/living/simple_mob/animal/passive/cat/kitten/Initialize(mapload)
 	if(gender == NEUTER)
 		gender = pick(MALE, FEMALE)
 	return ..()
@@ -260,7 +260,7 @@ var/list/_cat_default_emotes = list(
 		if(named)
 			to_chat(user, span_notice("\The [name] already has a name!"))
 		else
-			var/tmp_name = sanitizeSafe(tgui_input_text(user, "Give \the [name] a name", "Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
+			var/tmp_name = sanitizeSafe(tgui_input_text(user, "Give \the [name] a name", "Name", null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 			if(length(tmp_name) > 50)
 				to_chat(user, span_notice("The name can be at most 50 characters long."))
 			else

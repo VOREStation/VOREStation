@@ -16,7 +16,7 @@
 
 	// Check if any landmarks exist!
 	var/list/spawn_locations = list()
-	for(var/obj/effect/landmark/C in landmarks_list)
+	for(var/obj/effect/landmark/C in GLOB.landmarks_list)
 		if(C.name == landmark_name && (C.z in valid_z_levels))
 			spawn_locations.Add(C.loc)
 
@@ -93,5 +93,6 @@
 
 // If simple_mob is bomphed, remove it from the list.
 /datum/event2/event/mob_spawning/proc/on_mob_destruction(mob/M)
+	SIGNAL_HANDLER
 	spawned_mobs -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)

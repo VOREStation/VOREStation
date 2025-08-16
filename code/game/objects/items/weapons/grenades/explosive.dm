@@ -33,7 +33,7 @@
 /obj/item/grenade/explosive/frag
 	name = "fragmentation grenade"
 	desc = "A military fragmentation grenade, designed to explode in a deadly shower of fragments."
-	icon_state = "frag"
+	icon_state = "frggrenade"
 	loadable = null
 
 	fragment_types = list(/obj/item/projectile/bullet/pellet/fragment)
@@ -65,7 +65,7 @@
 			else if(!M.lying && src.loc != get_turf(src)) //if it's not on the turf, it must be in the mob!
 				P.attack_mob(M, 0, 25) //you're holding a grenade, dude!
 			else
-				P.attack_mob(M, 0, 100) //otherwise, allow a decent amount of fragments to pass
+				P.attack_mob(M, 0, 75) //otherwise, allow a decent amount of fragments to pass
 
 /obj/item/grenade/explosive/mini
 	name = "mini fragmentation grenade"

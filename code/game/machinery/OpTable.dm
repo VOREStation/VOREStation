@@ -15,8 +15,8 @@
 	var/strapped = 0.0
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/optable/New()
-	..()
+/obj/machinery/optable/Initialize(mapload)
+	. = ..()
 	for(var/direction in list(NORTH,EAST,SOUTH,WEST))
 		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
 		if(computer)
@@ -39,7 +39,6 @@
 		if(3.0)
 			if(prob(25))
 				density = FALSE
-		else
 	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
@@ -82,6 +81,8 @@
 	if(C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
+	if(C.pulledby)
+		C.pulledby.stop_pulling()
 	C.resting = 1
 	C.loc = src.loc
 	for(var/obj/O in src)
@@ -106,7 +107,7 @@
 
 	take_victim(target, user)
 
-/obj/machinery/optable/verb/climb_on()
+/obj/machinery/optable/verb/climb_onto()
 	set name = "Climb On Table"
 	set category = "Object"
 	set src in oview(1)

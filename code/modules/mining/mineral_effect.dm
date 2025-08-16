@@ -9,15 +9,18 @@
 	var/image/scanner_image
 	var/ore_reagent	// Reagent from pumping water near this ore.
 
-/obj/effect/mineral/New(var/newloc, var/ore/M)
-	..(newloc)
+/obj/effect/mineral/Initialize(mapload)
+	. = ..()
+	var/turf/simulated/mineral/min_turf = loc
+	if(!istype(min_turf))
+		return INITIALIZE_HINT_QDEL
+	var/ore/M = min_turf.mineral
 	name = "[M.display_name] deposit"
 	ore_key = M.name
 	if(M.reagent)
 		ore_reagent = M.reagent
 	icon_state = "rock_[ore_key]"
-	var/turf/T = get_turf(src)
-	layer = T.layer+0.1
+	layer = min_turf.layer+0.1
 
 /obj/effect/mineral/proc/get_scan_overlay()
 	if(!scanner_image)

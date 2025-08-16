@@ -77,7 +77,7 @@
 		return ..()
 	var/list/possible_targets = list()
 
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(!(player.z in child_om_marker.map_z))
 			continue
 		if(!(isliving(player) && istype(player.loc,/turf/simulated/floor/outdoors/fur) && player.client))
@@ -127,7 +127,7 @@
 	if(istype(loc, /turf/unsimulated/map))
 		if(!invisibility)
 			invisibility = INVISIBILITY_ABSTRACT
-			child_om_marker.invisibility = 0
+			child_om_marker.invisibility = INVISIBILITY_NONE
 			ai_holder.base_wander_delay = 50
 			ai_holder.wander_delay = 1
 			melee_damage_lower = 50
@@ -137,7 +137,7 @@
 			movement_cooldown = 5
 
 	else if(invisibility)
-		invisibility = 0
+		invisibility = INVISIBILITY_NONE
 		child_om_marker.invisibility = INVISIBILITY_ABSTRACT
 		ai_holder.base_wander_delay = 5
 		ai_holder.wander_delay = 1
@@ -147,12 +147,16 @@
 		child_om_marker.set_light(0)
 		movement_cooldown = 0
 
-/mob/living/simple_mob/vore/overmap/stardog/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay)
+/mob/living/simple_mob/vore/overmap/stardog/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
 	to_chat(src, span_warning("You can't do that."))	//The dog can move back and forth between the overmap.
 	return															//If it can do normal vore mechanics, it can carry players to the OM,
 																	//and release them there. I think that's probably a bad idea.
 
-/mob/living/simple_mob/vore/overmap/stardog/Initialize()
+/mob/living/simple_mob/vore/overmap/stardog/begin_instant_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
+	to_chat(src, span_warning("You can't do that."))
+	return
+
+/mob/living/simple_mob/vore/overmap/stardog/Initialize(mapload)
 	. = ..()
 	child_om_marker.set_light(5, 1, "#ff8df5")
 
@@ -314,7 +318,7 @@
 		if(!our_maps.len)
 			to_chat(src, span_warning("There is nowhere nearby to go to! You need to get closer to somewhere you can transition to before you can transition."))
 			return
-		for(var/obj/effect/landmark/l in landmarks_list)
+		for(var/obj/effect/landmark/l in GLOB.landmarks_list)
 			if(l.z in our_maps)
 				if(istype(l,/obj/effect/landmark/stardog))
 					destinations |= l
@@ -322,7 +326,7 @@
 		if(!destinations.len)
 			to_chat(src, span_warning("There is nowhere nearby to land! You need to get closer to somewhere else that you can transition to before you can transition."))
 			return
-		for(var/obj/effect/landmark/stardog/l in destinations)
+		//for(var/obj/effect/landmark/stardog/l in destinations)
 		var/obj/effect/overmap/visitable/our_dest = tgui_input_list(src, "Where would you like to try to go?", "Transition", destinations, timeout = 15 SECONDS, strict_modern = TRUE)
 		if(!our_dest)
 			to_chat(src, span_warning("You decide not to transition."))
@@ -429,7 +433,7 @@
 	icon_state = "furX"
 	tree_chance = 0
 
-/turf/simulated/floor/outdoors/fur/Initialize()
+/turf/simulated/floor/outdoors/fur/Initialize(mapload)
 	. = ..()
 	if(tree_chance && prob(tree_chance) && !check_density())
 		var/obj/structure/flora/tree/tree = new tree_type(src)
@@ -476,7 +480,7 @@
 		to_chat(L, span_warning("You cannot speak in IC (muted)."))
 		return
 	if (!message)
-		message = tgui_input_text(usr, "Type a message to emote.","Emote Beyond")
+		message = tgui_input_text(usr, "Type a message to emote.","Emote Beyond", encode = FALSE)
 	message = sanitize_or_reflect(message,L)
 	if (!message)
 		return
@@ -501,7 +505,7 @@
 		if(isnewplayer(M))
 			continue
 		if(isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
-		!L.client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) && !M.client?.holder))
+		!L.client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) && !check_rights_for(M.client, R_HOLDER)))
 			spawn(0)
 				M.show_message(undisplayed_message, 2)
 		else
@@ -518,13 +522,6 @@
 	has_base_range = 15
 
 	can_paint = TRUE
-
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/carpet1.ogg',
-		'sound/effects/footstep/carpet2.ogg',
-		'sound/effects/footstep/carpet3.ogg',
-		'sound/effects/footstep/carpet4.ogg',
-		'sound/effects/footstep/carpet5.ogg'))
 
 /obj/structure/flora/tree/fur
 	name = "tall fur"
@@ -1102,22 +1099,22 @@
 	icon = 'icons/obj/landmark_vr.dmi'
 	icon_state = "transition"
 
-/obj/effect/landmark/stardog/Initialize()
+/obj/effect/landmark/stardog/Initialize(mapload)
 	. = ..()
 	var/area/a = get_area(src)
 	name = a.name
 
 /obj/effect/landmark/area_gatherer
 	name = "stardog area gatherer"
-/obj/effect/landmark/area_gatherer/Initialize()
+
+/obj/effect/landmark/area_gatherer/Initialize(mapload)
 	. = ..()
-	LateInitialize()
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/landmark/area_gatherer/LateInitialize()	//I am very afraid
 	var/obj/effect/overmap/visitable/ship/simplemob/stardog/s = get_overmap_sector(z)
 	var/mob/living/simple_mob/vore/overmap/stardog/dog = s.parent
 	dog.weather_areas |= get_area(src)
-	for(var/thing in dog.weather_areas)
 	qdel(src)
 
 /obj/machinery/computer/ship/navigation/telescreen/dog_eye
@@ -1149,7 +1146,7 @@
 		to_chat(L, span_warning("You cannot speak in IC (muted)."))
 		return
 	if (!message)
-		message = tgui_input_text(L, "Type a message to emote.","Emote Beyond")
+		message = tgui_input_text(L, "Type a message to emote.","Emote Beyond", encode = FALSE)
 	message = sanitize_or_reflect(message,L)
 	if (!message)
 		return
@@ -1173,7 +1170,7 @@
 		if(isnewplayer(M))
 			continue
 		if(isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
-		!L.client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) && !M.client?.holder))
+		!L.client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) && !check_rights_for(M.client, R_HOLDER)))
 			spawn(0)
 				M.show_message(undisplayed_message, 2)
 		else
@@ -1246,7 +1243,7 @@
 	if(L.client)
 		to_chat(L, span_notice("A hot breath rushes up from under your feet, before the air rushes back down into the dog's nose as the dog sniffs you! SNEEF SNEEF!!!"))
 
-/obj/effect/dog_eye/Initialize()
+/obj/effect/dog_eye/Initialize(mapload)
 	. = ..()
 	var/area/redgate/stardog/eyes/e = get_area(src)
 	if(istype(e,/area/redgate/stardog/eyes))
@@ -1257,7 +1254,7 @@
 	desc = "It's waiting to accept treats!"
 	icon = 'icons/obj/flesh_machines.dmi'
 	icon_state = "mouth"
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	anchored = TRUE
 	pixel_x = -16
 	var/id = "mouth_a"							//same id will be linked
@@ -1270,7 +1267,7 @@
 	var/check_keys = FALSE
 	var/check_prefs = TRUE
 
-/obj/effect/dog_teleporter/Initialize()
+/obj/effect/dog_teleporter/Initialize(mapload)
 	. = ..()
 	dog_teleporters |= src
 	do_setup()
@@ -1632,7 +1629,7 @@
 		)
 	var/faction = FACTION_MACROBACTERIA
 
-/obj/structure/auto_flesh_door/Initialize()
+/obj/structure/auto_flesh_door/Initialize(mapload)
 	. = ..()
 	countdown = rand(50,250)
 	START_PROCESSING(SSobj, src)

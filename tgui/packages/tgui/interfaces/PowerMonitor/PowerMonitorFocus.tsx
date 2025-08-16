@@ -103,7 +103,7 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
                   maxValue={maxValue}
                   color="teal"
                 >
-                  {toFixed(supply / 1000) + ' kW'}
+                  {`${toFixed(supply / 1000)} kW`}
                 </ProgressBar>
               </LabeledList.Item>
               <LabeledList.Item label="Draw">
@@ -113,14 +113,14 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
                   maxValue={maxValue}
                   color="pink"
                 >
-                  {toFixed(demand / 1000) + ' kW'}
+                  {`${toFixed(demand / 1000)} kW`}
                 </ProgressBar>
               </LabeledList.Item>
             </LabeledList>
           </Section>
         </Stack.Item>
         <Stack.Item mx={0.5} grow>
-          <Section position="relative" height="100%">
+          <Section position="relative" fill>
             <Chart.Line
               fillPositionedParent
               data={supplyData}

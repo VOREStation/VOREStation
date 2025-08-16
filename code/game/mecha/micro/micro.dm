@@ -1,11 +1,3 @@
-/obj/mecha
-	var/max_micro_utility_equip = 0
-	var/max_micro_weapon_equip = 0
-	var/list/micro_utility_equipment = new
-	var/list/micro_weapon_equipment = new
-
-
-
 /obj/mecha/micro
 	icon = 'icons/mecha/micro.dmi'
 	force = 10 //still a robot
@@ -118,10 +110,9 @@
 
 // override move_inside() so only micro crew can use them
 
-/obj/mecha/micro/move_inside()
-	var/mob/living/carbon/C = usr
-	if (C.get_effective_size(TRUE) >= 0.5)
-		to_chat(C, span_warning("You can't fit in this suit!"))
+/obj/mecha/micro/move_inside(mob/user)
+	if (user.get_effective_size(TRUE) >= 0.5)
+		to_chat(user, span_warning("You can't fit in this suit!"))
 		return
 	else
 		..()

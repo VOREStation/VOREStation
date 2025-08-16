@@ -46,7 +46,6 @@
 
 	var/age = 30		//Player's age (pure fluff)
 
-	var/b_type = "A+"	//Player's bloodtype
 	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso). Also holds the datum for the type of robolimb.
 
 	var/list/all_underwear = list()
@@ -92,7 +91,6 @@
 	var/hand_blood_color
 
 	var/list/flavor_texts = list()
-	var/gunshot_residue
 	var/pulling_punches    // Are you trying not to hurt your opponent?
 	var/robolimb_count = 0 // Total number of external robot parts.
 	var/robobody_count = 0 // Counts torso, groin, and head, if they're robotic
@@ -102,8 +100,6 @@
 	mob_swap_flags = ~HEAVY
 
 	var/identifying_gender // In case the human identifies as another gender than it's biological
-
-	var/list/descriptors	// For comparative examine code
 
 	var/step_count = 0 // Track how many footsteps have been taken to know when to play footstep sounds
 
@@ -130,6 +126,8 @@
 	var/r_ears3 = 30 //Trust me, we could always use more colour. No japes.
 	var/g_ears3 = 30
 	var/b_ears3 = 30
+	var/a_ears = 255 //applied to the ears
+	var/a_ears2 = 255 //applied to the horns
 
 	/// secondary ears sprite accessory reference
 	var/datum/sprite_accessory/ears/ear_secondary_style
@@ -146,6 +144,10 @@
 	var/r_tail3 = 30
 	var/g_tail3 = 30
 	var/b_tail3 = 30
+	var/a_tail = 255 //applied to the entire tail
+
+	var/wagging = 0 //UGH.
+
 	var/datum/sprite_accessory/wing/wing_style = null
 	var/r_wing = 30
 	var/g_wing = 30
@@ -157,7 +159,8 @@
 	var/g_wing3 = 30
 	var/b_wing3 = 30
 
-	var/wagging = 0 //UGH.
+	var/a_wing = 255 //applied to both portions.
+
 	var/flapping = 0
 
 	// Custom Species Name
@@ -169,3 +172,7 @@
 
 	var/loneliness_stage = 0
 	var/next_loneliness_time = 0
+
+	var/redgate_restricted = FALSE
+	var/hide_headset = FALSE
+	var/hide_glasses = FALSE

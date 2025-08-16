@@ -1,0 +1,43 @@
+.Wires__Outlined {
+  text-shadow:
+    -1px -1px 2px #000,
+    1px -1px 2px #000,
+    -1px 1px 2px #000,
+    1px 1px 2px #000;
+}
+
+.Wires__Terminal {
+  background-image: url('../assets/wires/terminal.svg');
+  background-repeat: no-repeat;
+  background-position: 0px;
+  background-size: 50px;
+}
+
+.Wires__Signaller {
+  background-image: url('../assets/wires/signaller_outline.svg');
+  background-repeat: no-repeat;
+  background-position: -16px -24px;
+  background-size: 64px;
+}
+
+.Wires__Signaller.active {
+  background-image: url('../assets/wires/signaller.svg');
+}
+
+.Wires__Cursor__Wirecutters {
+  cursor:
+    url('../assets/wires/wirecutters.svg') 51 33,
+    pointer;
+}
+
+.Wires__Cursor__Multitool {
+  cursor:
+    url('../assets/wires/multitool.svg') 32 12,
+    pointer;
+}
+
+.Wires__Cursor__Signaller {
+  cursor:
+    url('../assets/wires/signaller.svg') 32 12,
+    pointer;
+}

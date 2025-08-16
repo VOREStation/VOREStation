@@ -1,10 +1,10 @@
-import { Component, ComponentProps } from 'react';
+import { Component, type ComponentProps } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Stack } from 'tgui-core/components';
 import { shallowDiffers } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { Port, PortProps } from './Port';
+import { Port, type PortProps } from './Port';
 import {
   type CircuitData,
   PortTypesToColor as PORT_TYPES_TO_COLOR,
@@ -102,8 +102,8 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
     e.preventDefault();
 
     const { screenZoomX, screenZoomY, screenX, screenY } = e;
-    let xPos = screenZoomX || screenX;
-    let yPos = screenZoomY || screenY;
+    const xPos = screenZoomX || screenX;
+    const yPos = screenZoomY || screenY;
 
     if (lastMousePos) {
       this.setState({
@@ -152,10 +152,11 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
     }
 
     return (
-      <Box
+      <Box<HTMLDivElement>
+        className="ObjectComponent"
         position="absolute"
-        left={x_pos + 'px'}
-        top={y_pos + 'px'}
+        left={`${x_pos}px`}
+        top={`${y_pos}px`}
         onMouseDown={this.handleStartDrag}
         onMouseUp={this.handleStopDrag}
         {...rest}
@@ -186,8 +187,7 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
                     <Box mb={1}>
                       {
                         <div
-                          // All of the descriptions are pulled from the game files
-                          // eslint-disable-next-line react/no-danger
+                          // biome-ignore lint/security/noDangerouslySetInnerHtml: All of the descriptions are pulled from the game files
                           dangerouslySetInnerHTML={{
                             __html: circuit.extended_desc,
                           }}

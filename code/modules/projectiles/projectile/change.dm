@@ -48,7 +48,7 @@
 			if("robot")
 				new_mob = new /mob/living/silicon/robot(M.loc)
 				new_mob.gender = M.gender
-				new_mob.invisibility = 0
+				new_mob.invisibility = INVISIBILITY_NONE
 				new_mob.job = JOB_CYBORG
 				var/mob/living/silicon/robot/Robot = new_mob
 				Robot.mmi = new /obj/item/mmi(new_mob)
@@ -66,21 +66,19 @@
 
 				if(M.gender == MALE)
 					H.gender = MALE
-					H.name = pick(first_names_male)
+					H.name = pick(GLOB.first_names_male)
 				else if(M.gender == FEMALE)
 					H.gender = FEMALE
-					H.name = pick(first_names_female)
+					H.name = pick(GLOB.first_names_female)
 				else
 					H.gender = NEUTER
-					H.name = pick(first_names_female|first_names_male)
+					H.name = pick(GLOB.first_names_female|GLOB.first_names_male)
 
-				H.name += " [pick(last_names)]"
+				H.name += " [pick(GLOB.last_names)]"
 				H.real_name = H.name
 
 				H.set_species(randomize)
 				H.universal_speak = 1
-				var/datum/preferences/A = new() //Randomize appearance for the human
-				A.randomize_appearance_and_body_for(H)
 
 		if(new_mob)
 			for (var/spell/S in M.spell_list)

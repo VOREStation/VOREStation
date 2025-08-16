@@ -127,7 +127,7 @@
 	name = "\improper WARNING"
 	icon_state = "securearea"
 
-/obj/structure/sign/warning/Initialize()
+/obj/structure/sign/warning/Initialize(mapload)
 	. = ..()
 	desc = "A warning sign which reads '[name]'."
 
@@ -184,7 +184,7 @@
 	name = "\improper LETHAL TURRETS"
 	icon_state = "turrets"
 
-/obj/structure/sign/warning/lethal_turrets/Initialize()
+/obj/structure/sign/warning/lethal_turrets/Initialize(mapload)
 	. = ..()
 	desc += " Enter at own risk!."
 
@@ -336,7 +336,7 @@
 //disabled this proc, it serves no purpose except to overwrite the description that already exists. may have been intended for making your own signs?
 //seems to defeat the point of having a generic directional sign that mappers could edit and use in POIs? left it here in case something breaks.
 /*
-/obj/structure/sign/directions/Initialize()
+/obj/structure/sign/directions/Initialize(mapload)
 	. = ..()
 	desc = "A direction sign, pointing out the way to \the [src]."
 */
@@ -1493,8 +1493,8 @@
 /obj/structure/sign/calendar/examine(mob/user)
 	. = ..()
 	. += "The calendar shows that the date is [stationdate2text()]."
-	if (Holiday.len)
-		. += "Today is " + span_bold(span_green("[english_list(Holiday)]")) + "."
+	if (GLOB.Holiday.len)
+		. += "Today is " + span_bold(span_green("[english_list(GLOB.Holiday)]")) + "."
 
 /obj/structure/sign/explosive
 	name = "\improper HIGH EXPLOSIVES sign"
@@ -1543,7 +1543,7 @@
 		return
 
 	var/placement_dir = get_dir(user, A)
-	if (!(placement_dir in cardinal))
+	if (!(placement_dir in GLOB.cardinal))
 		to_chat(user, span_warning("You must stand directly in front of the location you wish to place that on."))
 		return
 
@@ -1833,7 +1833,7 @@
 	desc = "The red flag of the Five Arrows."
 	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to perceived \
 	failures in aiding the Sagittarius Heights during the Skathari Incursion. The success of the government in achieving effective local defense and prosperity has \
-	since attracted the membership of Kauq'xum, a remote Skrellian colony. \The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
+	since attracted the membership of Kauq'xum, a remote Skrellian colony. The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
 	icon_state = "fivearrows"
 	flagtype = /obj/item/flag/fivearrows
 
@@ -1848,7 +1848,7 @@
 	desc = "The red flag of the Five Arrows."
 	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to perceived \
 	failures in aiding the Sagittarius Heights during the Skathari Incursion. The success of the government in achieving effective local defense and prosperity has \
-	since attracted the membership of Kauq'xum, a remote Skrellian colony. \The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
+	since attracted the membership of Kauq'xum, a remote Skrellian colony. The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
 	flag_path = "fivearrows"
 
 /obj/item/flag/fivearrows/l

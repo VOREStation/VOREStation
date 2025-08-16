@@ -24,8 +24,8 @@
 
 /obj/effect/decal/cleanable/greenglow
 
-/obj/effect/decal/cleanable/greenglow/New()
-	..()
+/obj/effect/decal/cleanable/greenglow/Initialize(mapload, _age)
+	. = ..()
 	QDEL_IN(src, 2 MINUTES)
 
 /obj/effect/decal/cleanable/dirt
@@ -37,19 +37,27 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dirt"
 	mouse_opacity = 0
+	var/delete_me = FALSE
 
 /obj/effect/decal/cleanable/dirt/Initialize(mapload, var/_age, var/dirt)
 	.=..()
+	if(delete_me)
+		return INITIALIZE_HINT_QDEL
 	var/turf/simulated/our_turf = src.loc
 	if(our_turf && istype(our_turf) && our_turf.can_dirty)
 		our_turf.dirt = clamp(max(age ? (dirt ? dirt : 101) : our_turf.dirt, our_turf.dirt), 0, 101)
+		if(mapload && !our_turf.dirt)
+			our_turf.dirt = rand(51, 100)
 		var/calcalpha = our_turf.dirt > 50 ? min((our_turf.dirt - 50) * 5, 255) : 0
 		var/alreadyfound = FALSE
 		for (var/obj/effect/decal/cleanable/dirt/alreadythere in our_turf) //in case of multiple
 			if (alreadythere == src)
 				continue
 			else if (alreadyfound)
-				qdel(alreadythere)
+				if(!(alreadythere.flags & ATOM_INITIALIZED))
+					delete_me = TRUE
+				else
+					qdel(alreadythere)
 				continue
 			alreadyfound = TRUE
 			alreadythere.alpha = calcalpha //don't need to constantly recalc for all of them in it because it'll just max if a non-persistent dirt overlay gets added, and then the new dirt overlay will be deleted
@@ -114,6 +122,40 @@
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	var/list/datum/disease/viruses = list()
+
+/obj/effect/decal/cleanable/vomit/old
+	name = "crusty dried vomit"
+	desc = "You try not to look at the chunks, and fail."
+
+/obj/effect/decal/cleanable/vomit/old/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	icon_state += "-old"
+	if(length(diseases))
+		viruses += diseases
+	if(prob(65))
+		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(2, 4), rand(7, 9), 4)
+		src.viruses += new_disease
+
+/obj/effect/decal/cleanable/vomit/old/Crossed(mob/living/carbon/human/perp)
+	return // Don't spread our viruses
+
+/obj/effect/decal/cleanable/blood/old
+	dryname = "nasty dried blood"
+	drydesc = "Why hasn't anyone cleaned this up yet?"
+
+/obj/effect/decal/cleanable/blood/old/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	basecolor = get_random_colour(rand(0, 1))
+	update_icon()
+	if(length(diseases))
+		viruses += diseases
+	if(prob(75))
+		var/datum/disease/advance/new_disease = new /datum/disease/advance/random(rand(2, 4), rand(7, 9), 4)
+		src.viruses += new_disease
+	dry()
+
+/obj/effect/decal/cleanable/blood/old/Crossed(mob/living/carbon/human/perp)
+	return
 
 /obj/effect/decal/cleanable/tomato_smudge
 	name = "tomato smudge"

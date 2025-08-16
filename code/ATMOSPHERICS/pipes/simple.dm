@@ -26,7 +26,7 @@
 
 	level = 1
 
-/obj/machinery/atmospherics/pipe/simple/Initialize()
+/obj/machinery/atmospherics/pipe/simple/Initialize(mapload)
 	. = ..()
 
 	// Pipe colors and icon states are handled by an image cache - so color and icon should
@@ -132,7 +132,7 @@
 	var/node1_dir
 	var/node2_dir
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		if(direction&initialize_directions)
 			if (!node1_dir)
 				node1_dir = direction

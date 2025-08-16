@@ -15,7 +15,7 @@
 	the rural communities that dot this infinite frontier."
 	icon_state = "boltaction"
 	item_state = "boltaction"
-	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
+	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	max_shells = 5
 	caliber = "7.62mm"
 	origin_tech = list(TECH_COMBAT = 1)// Old as shit rifle doesn't have very good tech.
@@ -68,10 +68,10 @@
 	var/sawn_off = FALSE
 
 /obj/item/gun/projectile/shotgun/pump/rifle/ceremonial/attackby(var/obj/item/A as obj, mob/user as mob)
-	if(sawn_off)
-		to_chat(user, span_warning("The [src] is already shortened!"))
-		return
 	if(istype(A, /obj/item/surgical/circular_saw) || istype(A, /obj/item/melee/energy) || istype(A, /obj/item/pickaxe/plasmacutter) && w_class != ITEMSIZE_NORMAL)
+		if(sawn_off)
+			to_chat(user, span_warning("The [src] is already shortened!"))
+			return
 		to_chat(user, span_notice("You begin to shorten the barrel and stock of \the [src]."))
 		if(loaded.len)
 			afterattack(user, user)
@@ -105,7 +105,7 @@
 	as any modern interpretation. Uses 7.62mm rounds."
 	icon_state = "surplus"
 	item_state = "rifle"
-	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
+	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	max_shells = 4
 	slot_flags = null
 	caliber = "7.62mm"
@@ -132,7 +132,7 @@
 	the rural communities that dot this infinite frontier."
 	icon_state = "scoped-boltaction"
 	item_state = "boltaction_scoped"
-	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
+	fire_sound = 'sound/weapons/gunshot_generic_rifle.ogg'
 	max_shells = 5
 	caliber = "7.62mm"
 	origin_tech = list(TECH_COMBAT = 2)// Old as shit rifle doesn't have very good tech, but it does have a scope.

@@ -59,7 +59,7 @@
 // A multiplier for the production amount. This should really only ever be lower than one, otherwise you end up with duping.
 	var/efficiency = 1
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/Initialize()
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/Initialize(mapload)
 	. = ..()
 
 	create_reagents(600, /datum/reagents/distilling)
@@ -99,7 +99,7 @@
 		qdel(OutputBeaker)
 		OutputBeaker = null
 
-	..()
+	. = ..()
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/examine(mob/user)
 	. = ..()
@@ -204,7 +204,9 @@
 				OutputBeaker = null
 
 		if("adjust temp")
-			target_temp = tgui_input_number(user, "Choose a target temperature.", "Temperature.", T20C, max_temp, min_temp, round_value = FALSE)
+			var/new_temp = tgui_input_number(user, "Choose a target temperature.", "Temperature.", T20C, max_temp, min_temp, round_value = FALSE)
+			if(isnum(new_temp))
+				target_temp = new_temp
 
 	update_icon()
 

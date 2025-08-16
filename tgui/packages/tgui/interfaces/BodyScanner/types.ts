@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   occupied: BooleanLike;
@@ -7,6 +7,7 @@ export type Data = {
 
 export type occupant = {
   name: string;
+  species: string;
   stat: number;
   health: number;
   maxHealth: number;
@@ -31,6 +32,7 @@ export type occupant = {
   intOrgan: internalOrgan[];
   blind: BooleanLike;
   nearsighted: BooleanLike;
+  brokenspine: BooleanLike;
   livingPrey: number;
   humanPrey: number;
   objectPrey: number;
@@ -42,15 +44,17 @@ type reagent = { name: string; amount: number; overdose: BooleanLike };
 
 export type internalOrgan = {
   name: string;
-  desc: string | null;
-  germ_level: number;
-  damage: number;
-  maxHealth: number;
-  bruised: number;
-  broken: number;
+  desc?: string | null;
+  germ_level?: number;
+  damage?: number;
+  maxHealth?: number;
+  bruised?: number;
+  broken?: number;
   robotic: BooleanLike;
   dead: BooleanLike;
   inflamed: BooleanLike;
+  missing: BooleanLike;
+  medical_issues_I?: string[];
 };
 
 export type externalOrgan = {
@@ -75,4 +79,5 @@ export type externalOrgan = {
   };
   lungRuptured: BooleanLike;
   internalBleeding: BooleanLike;
+  medical_issues_E: string[];
 };

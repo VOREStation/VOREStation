@@ -3,6 +3,9 @@
 // Adds a generic box around whatever message you're sending in chat. Really makes things stand out.
 #define examine_block(str) ("<div class='examine_block'>" + str + "</div>")
 
+//for the foldout stuff
+#define span_details(title, content) ("<details>"+"<summary>" + title + "</summary>" + content + "</details>")
+
 // Filtered both under OOC!
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")
 #define span_aooc(str) ("<span class='aooc'>" + str + "</span>")
@@ -178,6 +181,7 @@
 // Admin log filters
 #define span_log_message(str) ("<span class='log_message'>" + str + "</span>")
 #define span_filter_adminlog(str) ("<span class='filter_adminlog'>" + str + "</span>") // (Uses the chat message type directly)
+#define span_adminprefix(str) ("<span class='admin prefix'>" + str + "</span>")
 
 // Attack log filter
 #define span_filter_attacklog(str) ("<span class='filter_attacklog'>" + str + "</span>") // (Uses the chat message type directly)
@@ -200,8 +204,8 @@
 
 // Mentor pm filter
 #define span_mentor(str) ("<span class='mentor'>" + str + "</span>")
-#define span_mentor_pm_notice(str) ("<span class='mentor notice'>" + str + "</span>")
-#define span_mentor_pm_warning(str) ("<span class='mentor warning'>" + str + "</span>")
+#define span_mentor_notice(str) ("<span class='mentor notice'>" + str + "</span>")
+#define span_mentor_warning(str) ("<span class='mentor warning'>" + str + "</span>")
 
 /* Adminchat */
 // All of those have their own filter
@@ -212,23 +216,25 @@
 
 /* Byond Sizes */
 // Sizes only!
-#define span_small(str) "<font size='1'>" + str + "</font>"
+#define span_small(str) ("<font size='1'>" + str + "</font>")
 
-#define span_normal(str) "<font size='2'>" + str + "</font>"
+#define span_normal(str) ("<font size='2'>" + str + "</font>")
 
-#define span_large(str) "<font size='3'>" + str + "</font>"
+#define span_large(str) ("<font size='3'>" + str + "</font>")
 
-#define span_huge(str) "<font size='4'>" + str + "</font>"
+#define span_huge(str) ("<font size='4'>" + str + "</font>")
 
-#define span_giant(str) "<font size='5'>" + str + "</font>"
+#define span_giant(str) ("<font size='5'>" + str + "</font>")
 
-#define span_giganteus(str) "<font size='6'>" + str + "</font>"
+#define span_giganteus(str) ("<font size='6'>" + str + "</font>")
 
-#define span_massive(str) "<font size='7'>" + str + "</font>"
+#define span_massive(str) ("<font size='7'>" + str + "</font>")
 
-#define span_narsie(str) "<font size='15'>" + str + "</font>"
+#define span_extramassive(str) ("<font size='8'>" + str + "</font>")
 
-#define span_cascade(str) "<span style='font-size:22pt'>" + str + "</span>"
+#define span_narsie(str) ("<font size='15'>" + str + "</font>")
+
+#define span_cascade(str) ("<span style='font-size:22pt'>" + str + "</span>")
 
 /* Style spans */
 // text style only
@@ -247,3 +253,16 @@
 #define span_major_announcement_title(str) ("<span class='major_announcement_title'>" + str + "</span>")
 #define span_ooc_announcement_text(str) ("<span class='ooc_announcement_text'>" + str + "</span>")
 #define span_subheader_announcement_text(str) ("<span class='subheader_announcement_text'>" + str + "</span>")
+
+// special spans
+#define span_spoiler(str) ("<span class='spoiler'>" + str + "</span>")
+
+// damage type spans, mostly used for admin for now
+#define span_brute(str) ("<span class='brute'>" + str + "</span>")
+#define span_burn(str) ("<span class='burn'>" + str + "</span>")
+#define span_tox(str) ("<span class='tox'>" + str + "</span>")
+#define span_oxy(str) ("<span class='oxy'>" + str + "</span>")
+#define span_clone(str) ("<span class='clone'>" + str + "</span>")
+
+// Admin VV
+#define span_value(str) ("<span class='value'>" + str + "</span>")

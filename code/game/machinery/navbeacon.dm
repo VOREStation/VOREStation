@@ -1,7 +1,7 @@
 // Navigation beacon for AI robots
 // Functions as a transponder: looks for incoming signal matching
 
-var/global/list/navbeacons = list()	// no I don't like putting this in, but it will do for now
+GLOBAL_LIST_EMPTY(navbeacons) // no I don't like putting this in, but it will do for now
 
 /obj/machinery/navbeacon
 	icon = 'icons/obj/objects.dmi'
@@ -26,7 +26,7 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 
 	var/turf/T = loc
 	hide(!T.is_plating())
-	navbeacons += src
+	GLOB.navbeacons += src
 
 // set the transponder codes assoc list from codes_txt
 // DEPRECATED - This is kept only for compatibilty with old map files! Do not use this!
@@ -54,7 +54,7 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 // called when turf state changes
 // hide the object if turf is intact
 /obj/machinery/navbeacon/hide(var/intact)
-	invisibility = intact ? 101 : 0
+	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	update_icon()
 
 // update the icon_state
@@ -137,9 +137,9 @@ Transponder Codes:<UL>"}
 		t += "<small><A href='byond://?src=\ref[src];add=1;'>(add new)</A></small><BR>"
 		t+= "<UL></TT>"
 
-	user << browse("<html>[t]</html>", "window=navbeacon")
-	onclose(user, "navbeacon")
-	return
+	var/datum/browser/popup = new(user, "navbeacon", "Navbeacon")
+	popup.set_content(t)
+	popup.open()
 
 /obj/machinery/navbeacon/Topic(href, href_list)
 	..()
@@ -150,7 +150,7 @@ Transponder Codes:<UL>"}
 			usr.set_machine(src)
 
 			if(href_list["locedit"])
-				var/newloc = sanitize(tgui_input_text(usr, "Enter New Location", "Navigation Beacon", location, MAX_NAME_LEN))
+				var/newloc = tgui_input_text(usr, "Enter New Location", "Navigation Beacon", location, MAX_NAME_LEN)
 				if(newloc)
 					location = newloc
 					updateDialog()
@@ -159,13 +159,11 @@ Transponder Codes:<UL>"}
 				var/codekey = href_list["code"]
 
 				var/newkey = tgui_input_text(usr, "Enter Transponder Code Key", "Navigation Beacon", codekey, MAX_NAME_LEN)
-				newkey = sanitize(newkey,MAX_NAME_LEN)
 				if(!newkey)
 					return
 
 				var/codeval = codes[codekey]
 				var/newval = tgui_input_text(usr, "Enter Transponder Code Value", "Navigation Beacon", codeval, MAX_NAME_LEN)
-				newval = sanitize(newval,MAX_NAME_LEN)
 				if(!newval)
 					newval = codekey
 					return
@@ -183,12 +181,10 @@ Transponder Codes:<UL>"}
 			else if(href_list["add"])
 
 				var/newkey = tgui_input_text(usr, "Enter New Transponder Code Key", "Navigation Beacon", null, MAX_NAME_LEN)
-				newkey = sanitize(newkey,MAX_NAME_LEN)
 				if(!newkey)
 					return
 
 				var/newval = tgui_input_text(usr, "Enter New Transponder Code Value", "Navigation Beacon", null, MAX_NAME_LEN)
-				newval = sanitize(newval,MAX_NAME_LEN)
 				if(!newval)
 					newval = "1"
 					return
@@ -201,8 +197,8 @@ Transponder Codes:<UL>"}
 				updateDialog()
 
 /obj/machinery/navbeacon/Destroy()
-	navbeacons.Remove(src)
-	..()
+	GLOB.navbeacons.Remove(src)
+	. = ..()
 
 
 //

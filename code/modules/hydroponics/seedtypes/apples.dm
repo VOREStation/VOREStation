@@ -24,6 +24,7 @@
 	name = PLANT_POISONAPPLE
 	mutants = null
 	chems = list(REAGENT_ID_CYANIDE = list(1,5))
+	wiki_flag = WIKI_SPOILER
 
 /datum/seed/apple/gold
 	name = PLANT_GOLDAPPLE

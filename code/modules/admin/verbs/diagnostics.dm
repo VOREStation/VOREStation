@@ -23,7 +23,7 @@
 			else
 				inactive_on_main_station++
 
-	var/output = {"<html><B>AIR SYSTEMS REPORT</B><HR>
+	var/output = {"<B>AIR SYSTEMS REPORT</B><HR>
 <B>General Processing Data</B><BR>
 	Cycle: [SSair.current_cycle]<br>
 	Groups: [SSair.zones.len]<BR>
@@ -36,10 +36,12 @@
 	Hotspot Processing: [hotspots]<BR>
 <br>
 <B>Geometry Processing Data</B><BR>
-	Tile Update: [SSair.tiles_to_update.len]<BR></html>
+	Tile Update: [SSair.tiles_to_update.len]<BR>
 "}
 
-	usr << browse(output,"window=airreport")
+	var/datum/browser/popup = new(src, "airreport", "Airreport")
+	popup.set_content(output)
+	popup.open()
 
 /client/proc/fix_next_move()
 	set category = "Debug.Game"
@@ -48,7 +50,7 @@
 	var/largest_click_time = 0
 	var/mob/largest_move_mob = null
 	var/mob/largest_click_mob = null
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(!M.client)
 			continue
 		if(M.next_move >= largest_move_time)
@@ -77,9 +79,9 @@
 	set name = "Radio report"
 
 	var/output = "<b>Radio Report</b><hr>"
-	for (var/fq in radio_controller.frequencies)
+	for (var/fq in SSradio.frequencies)
 		output += "<b>Freq: [fq]</b><br>"
-		var/datum/radio_frequency/fqs = radio_controller.frequencies[fq]
+		var/datum/radio_frequency/fqs = SSradio.frequencies[fq]
 		if (!fqs)
 			output += "&nbsp;&nbsp;<b>ERROR</b><br>"
 			continue
@@ -95,7 +97,9 @@
 				else
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device]<br>"
 
-	usr << browse("<html>[output]</html>","window=radioreport")
+	var/datum/browser/popup = new(src, "radioreport", "Radioreport")
+	popup.set_content(output)
+	popup.open()
 	feedback_add_details("admin_verb","RR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/reload_admins()

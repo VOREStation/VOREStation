@@ -83,8 +83,8 @@
 		t += text("Dispenser [] - <A href='byond://?src=\ref[];toggleOn=1'>[]?</a><br>\n", disabled?"deactivated":"activated", src, disabled?"Enable":"Disable")
 		t += text("Uses Left: [uses]. <A href='byond://?src=\ref[src];toggleUse=1'>Activate the dispenser?</A><br>\n")
 
-	user << browse("<html>[t]</html>", "window=computer;size=575x450")
-	onclose(user, "computer")
+	user << browse("<html>[t]</html>", "window=ai_slipper;size=575x450")
+	onclose(user, "ai_slipper")
 	return
 
 /obj/machinery/ai_slipper/Topic(href, href_list)

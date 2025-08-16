@@ -9,8 +9,10 @@
 
 SUBSYSTEM_DEF(machines)
 	name = "Machines"
+	dependencies = list(
+		/datum/controller/subsystem/points_of_interest
+	)
 	priority = FIRE_PRIORITY_MACHINES
-	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 
@@ -24,11 +26,15 @@ SUBSYSTEM_DEF(machines)
 	var/list/current_run = list()
 
 	var/list/all_machines = list()
+	var/list/hibernating_vents = list()
 
 	var/list/networks = list()
 	var/list/processing_machines = list()
 	var/list/powernets = list()
 	var/list/powerobjs = list()
+
+	// Wait to rebuild powernets
+	VAR_PRIVATE/defering_powernets = FALSE
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
@@ -45,14 +51,33 @@ SUBSYSTEM_DEF(machines)
 	INTERNAL_PROCESS_STEP(SSMACHINES_MACHINERY,FALSE,process_machinery,cost_machinery,SSMACHINES_POWERNETS)
 	INTERNAL_PROCESS_STEP(SSMACHINES_POWERNETS,FALSE,process_powernets,cost_powernets,SSMACHINES_POWER_OBJECTS)
 
-// rebuild all power networks from scratch - only called at world creation or by the admin verb
-// The above is a lie. Turbolifts also call this proc.
+// Call when you need the network rebuilt, but we should wait until we have a good time to do it
+/datum/controller/subsystem/machines/proc/defer_powernet_rebuild()
+	if(!SSticker.HasRoundStarted())
+		return
+	// Use with responsibility... Must regen the entire power network after deferal is finished.
+	if(!defering_powernets)
+		defering_powernets = TRUE
+		message_admins("Powernet generation deferred...")
+
+
+// This MUST be called if request_powernet_rebuild is called with defer = TRUE once the network is free to regen
+/datum/controller/subsystem/machines/proc/release_powernet_defer()
+	if(defering_powernets)
+		defering_powernets = FALSE
+		message_admins("Powernet generation resumed. Rebuilding network...")
+		makepowernets()
+
+/datum/controller/subsystem/machines/proc/powernet_is_defered()
+	return defering_powernets
+
+// rebuild all power networks from scratch - Called when major network changes happen, like shuttles/turbolifts with wires moving, or huge explosions, where doing it per-wire does not make sense.
 /datum/controller/subsystem/machines/proc/makepowernets()
 	// TODO - check to not run while in the middle of a tick!
 	for(var/datum/powernet/PN as anything in powernets)
 		qdel(PN)
 	powernets.Cut()
-	setup_powernets_for_cables(cable_list)
+	setup_powernets_for_cables(GLOB.cable_list)
 
 /datum/controller/subsystem/machines/proc/setup_powernets_for_cables(list/cables)
 	for(var/obj/structure/cable/PC as anything in cables)
@@ -91,8 +116,9 @@ SUBSYSTEM_DEF(machines)
 	msg += "} "
 	msg += "PI:[SSmachines.networks.len]|"
 	msg += "MC:[SSmachines.processing_machines.len]|"
-	msg += "PN:[SSmachines.powernets.len]|"
+	msg += "PN:[SSmachines.powernets.len][defering_powernets ? " - !!DEFER!!" : ""]|"
 	msg += "PO:[SSmachines.powerobjs.len]|"
+	msg += "HV:[SSmachines.hibernating_vents.len]|"
 	msg += "MC/MS:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
 	return ..()
 
@@ -115,6 +141,7 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
 	if (!resumed)
+		update_hibernating_vents()
 		src.current_run = processing_machines.Copy()
 
 	var/wait = src.wait
@@ -185,6 +212,40 @@ SUBSYSTEM_DEF(machines)
 	processing_machines = SSmachines.processing_machines
 	powernets = SSmachines.powernets
 	powerobjs = SSmachines.powerobjs
+
+/datum/controller/subsystem/machines/proc/update_hibernating_vents()
+	// pick at random
+	var/i = rand(20,40)
+	while(i-- > 0)
+		if(!hibernating_vents.len)
+			break
+		wake_vent(hibernating_vents[pick(hibernating_vents)])
+	// do first 10 entries
+	i = 10
+	for(var/key in hibernating_vents)
+		if(i <= 0 || !hibernating_vents.len)
+			break
+		wake_vent(hibernating_vents[key])
+		i--
+
+/datum/controller/subsystem/machines/proc/hibernate_vent(var/obj/machinery/atmospherics/unary/V)
+	if(!V)
+		return
+	var/datum/weakref/WR = WEAKREF(V)
+	if(!WR)
+		return
+	hibernating_vents[WR.reference] = WR
+	STOP_MACHINE_PROCESSING(V)
+
+/datum/controller/subsystem/machines/proc/wake_vent(var/datum/weakref/WR)
+	if(!WR)
+		return
+	var/obj/machinery/atmospherics/unary/V = WR.resolve()
+	if(V)
+		START_MACHINE_PROCESSING(V)
+	if(WR.reference)
+		hibernating_vents[WR.reference] = null
+		hibernating_vents.Remove(WR.reference)
 
 #undef SSMACHINES_PIPENETS
 #undef SSMACHINES_MACHINERY

@@ -80,9 +80,7 @@
 					SSxenoarch.digsite_spawning_turfs.Remove(T)
 
 		if(SSxenoarch && ((nearestTargetDist == -1) || (nearestSimpleTargetDist == -1)) && user.z && (world.time - last_repopulation_time >= repopulation_delay))
-			if(user.z in using_map.xenoarch_exempt_levels) //We found no artifacts and our Z level is not spawn exempt. Time for random generation.
-				//Yeah we do nothing here. I tried to make the above a !user.z ... but VSC compiler screeched at me.
-			else
+			if(!(user.z in using_map.xenoarch_exempt_levels)) //We found no artifacts and our Z level is not spawn exempt. Time for random generation.
 				last_repopulation_time = world.time
 				to_chat(user, "The [src] beeps and buzzes, a warning popping up on screen stating 'No artifacts detected on current wavelength. Swapping to different wavelength. Please try scanning momentarily.'")
 				SSxenoarch.continual_generation(user)
@@ -180,9 +178,9 @@
 			"index" = current.record_index,
 		)
 		data["current"]["material"] = "Unknown"
-		var/index = responsive_carriers.Find(current.material)
-		if(index > 0 && index <= LAZYLEN(finds_as_strings))
-			data["current"]["material"] = finds_as_strings[index]
+		var/index = GLOB.responsive_carriers.Find(current.material)
+		if(index > 0 && index <= LAZYLEN(GLOB.finds_as_strings))
+			data["current"]["material"] = GLOB.finds_as_strings[index]
 
 	var/list/plocs = list()
 	data["positive_locations"] = plocs
@@ -238,7 +236,7 @@
 
 /obj/item/beacon_locator/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/beacon_locator/process()
 	if(target_radio)
@@ -262,7 +260,7 @@
 					if(datum_flags & DF_ISPROCESSING)
 						//scan radios in the world to try and find one
 						var/cur_dist = 999
-						for(var/obj/item/radio/beacon/R in all_beacons)
+						for(var/obj/item/radio/beacon/R in GLOB.all_beacons)
 							if(R.z == src.z && R.frequency == src.frequency)
 								var/check_dist = get_dist(src,R)
 								if(check_dist < cur_dist)

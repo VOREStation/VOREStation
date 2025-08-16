@@ -79,9 +79,9 @@ steam.start() -- spawns the effect
 			var/obj/effect/effect/steam/steam = new /obj/effect/effect/steam(src.location)
 			var/direction
 			if(src.cardinals)
-				direction = pick(cardinal)
+				direction = pick(GLOB.cardinal)
 			else
-				direction = pick(alldirs)
+				direction = pick(GLOB.alldirs)
 			for(i=0, i<pick(1,2,3), i++)
 				sleep(5)
 				step(steam,direction)
@@ -102,7 +102,7 @@ steam.start() -- spawns the effect
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/effect/effect/sparks/Initialize()
+/obj/effect/effect/sparks/Initialize(mapload)
 	. = ..()
 	playsound(src, "sparks", 100, 1)
 	var/turf/T = src.loc
@@ -147,9 +147,9 @@ steam.start() -- spawns the effect
 			src.total_sparks++
 			var/direction
 			if(src.cardinals)
-				direction = pick(cardinal)
+				direction = pick(GLOB.cardinal)
 			else
-				direction = pick(alldirs)
+				direction = pick(GLOB.alldirs)
 			for(i=0, i<pick(1,2,3), i++)
 				sleep(5)
 				step(sparks,direction)
@@ -179,7 +179,7 @@ steam.start() -- spawns the effect
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/effect/smoke/Initialize()
+/obj/effect/effect/smoke/Initialize(mapload)
 	. = ..()
 	if(time_to_live)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), time_to_live, TIMER_DELETE_ME)
@@ -288,7 +288,7 @@ steam.start() -- spawns the effect
 	opacity = FALSE
 	var/strength = 5 // How much damage to do inside each affect()
 
-/obj/effect/effect/smoke/elemental/Initialize()
+/obj/effect/effect/smoke/elemental/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	return ..()
 
@@ -382,9 +382,9 @@ steam.start() -- spawns the effect
 			var/direction = src.direction
 			if(!direction)
 				if(src.cardinals)
-					direction = pick(cardinal)
+					direction = pick(GLOB.cardinal)
 				else
-					direction = pick(alldirs)
+					direction = pick(GLOB.alldirs)
 			for(i=0, i<pick(0,1,1,1,2,2,2,3), i++)
 				sleep(10)
 				step(smoke,direction)
@@ -586,3 +586,30 @@ steam.start() -- spawns the effect
 			round(min(light, BOMBCAP_LIGHT_RADIUS)),
 			round(min(flash, BOMBCAP_FLASH_RADIUS))
 			)
+
+/obj/effect/effect/teleport_greyscale
+	name = "teleportation"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "teleport_greyscale"
+	anchored = 1
+	mouse_opacity = 0
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
+
+/obj/effect/effect/teleport_greyscale/Initialize(mapload)
+	. = ..()
+	QDEL_IN(src, 2 SECONDS)
+
+/datum/effect/effect/system/teleport_greyscale
+	var/color = "#FFFFFF"
+
+/datum/effect/effect/system/teleport_greyscale/set_up(cl, loca)
+	if(istype(loca, /turf/))
+		location = loca
+	else
+		location = get_turf(loca)
+	color = cl
+
+/datum/effect/effect/system/teleport_greyscale/start()
+	var/obj/effect/effect/teleport_greyscale/tele = new /obj/effect/effect/teleport_greyscale(src.location)
+	tele.color = color

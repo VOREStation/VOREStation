@@ -20,6 +20,7 @@
 #define MAT_SIFLOG			"alien log"
 #define MAT_HARDWOOD		"hardwood"
 #define MAT_HARDLOG			"hardwood log"
+#define MAT_WOODEN_STICK	"wooden stick"
 #define MAT_STEELHULL		"steel hull"
 #define MAT_PLASTEEL		"plasteel"
 #define MAT_PLASTEELHULL	"plasteel hull"
@@ -67,6 +68,9 @@
 #define MAT_DARKGLASS		"darkglass"
 #define MAT_FLESH			"flesh"
 #define MAT_FANCYBLACK		"fancyblack"
+#define MAT_FOAM			"foam"
+#define MAT_FLOKIUM			"flockium"
+#define MAT_SMOLEBRICKS		"smolebricks"
 
 // cloth materials
 #define MAT_WOOL			"wool"
@@ -99,6 +103,7 @@
 #define MATERIAL_UNMELTABLE 0x1
 #define MATERIAL_BRITTLE    0x2
 #define MATERIAL_PADDING    0x4
+#define MATERIAL_NO_SYNTH	0x8
 
 #define TABLE_BRITTLE_MATERIAL_MULTIPLIER 4 // Amount table damage is multiplied by if it is made of a brittle material (e.g. glass)
 
@@ -113,3 +118,5 @@
 #define MATCONTAINER_SILENT (1<<3)
 
 #define GET_MATERIAL_REF(arguments...) _GetMaterialRef(list(##arguments))
+/// Makes sure only integer values are used when consuming, removing & checking for mats
+#define OPTIMAL_COST(cost)(max(1, round(cost)))

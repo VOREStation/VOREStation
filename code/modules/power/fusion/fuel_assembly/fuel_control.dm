@@ -10,14 +10,14 @@
 	var/scan_range = 25
 	var/datum/tgui_module/rustfuel_control/monitor
 
-/obj/machinery/computer/fusion_fuel_control/New()
-	..()
+/obj/machinery/computer/fusion_fuel_control/Initialize(mapload)
+	. = ..()
 	monitor = new(src)
 	monitor.fuel_tag = id_tag
 
 /obj/machinery/computer/fusion_fuel_control/Destroy()
 	QDEL_NULL(monitor)
-	..()
+	. = ..()
 
 /obj/machinery/computer/fusion_fuel_control/attack_ai(var/mob/user)
 	attack_hand(user)
@@ -118,7 +118,6 @@
 	..()
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "Fuel Control", monitor.fuel_tag, MAX_NAME_LEN)
-		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			monitor.fuel_tag = new_ident
 		return

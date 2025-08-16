@@ -8,11 +8,11 @@
 	random_color = FALSE
 
 /obj/item/tool/wirecutters/clippers/trimmers
-    name = "hedgetrimmers"
-    desc = "An old pair of trimmers with a pretty dull blade. You would probably have a hard time cutting anything but plants with it."
-    icon_state = "hedget"
-    item_state = "hedget"
-    force = 7 //One point extra than standard wire cutters.
+	name = "hedgetrimmers"
+	desc = "An old pair of trimmers with a pretty dull blade. You would probably have a hard time cutting anything but plants with it."
+	icon_state = "hedget"
+	item_state = "hedget"
+	force = 7 //One point extra than standard wire cutters.
 
 /obj/item/tool/wirecutters/clippers/trimmers/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
@@ -146,11 +146,11 @@
 	var/dat = "<h3>Plant data for [form_title]</h3>"
 	dat += "<h2>General Data</h2>"
 	dat += "<table>"
-	dat += "<tr><td><b>Endurance</b></td><td>[grown_seed.get_trait(TRAIT_ENDURANCE)]</td></tr>"
-	dat += "<tr><td><b>Yield</b></td><td>[grown_seed.get_trait(TRAIT_YIELD)]</td></tr>"
-	dat += "<tr><td><b>Maturation time</b></td><td>[grown_seed.get_trait(TRAIT_MATURATION)]</td></tr>"
-	dat += "<tr><td><b>Production time</b></td><td>[grown_seed.get_trait(TRAIT_PRODUCTION)]</td></tr>"
-	dat += "<tr><td><b>Potency</b></td><td>[grown_seed.get_trait(TRAIT_POTENCY)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Endurance") + "</td><td>[grown_seed.get_trait(TRAIT_ENDURANCE)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Yield") + "</td><td>[grown_seed.get_trait(TRAIT_YIELD)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Maturation time") + "</td><td>[grown_seed.get_trait(TRAIT_MATURATION)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Production time") + "</td><td>[grown_seed.get_trait(TRAIT_PRODUCTION)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Potency") + "</td><td>[grown_seed.get_trait(TRAIT_POTENCY)]</td></tr>"
 	dat += "</table>"
 
 	if(LAZYLEN(last_reagents))
@@ -179,7 +179,7 @@
 	data["name"] = seed_name
 	data["uid"] = uid
 	data["endurance"] = get_trait(TRAIT_ENDURANCE)
-	data["yield"] = get_trait(TRAIT_YIELD)
+	data["crop_yield"] = get_trait(TRAIT_YIELD)
 	data["maturation_time"] = get_trait(TRAIT_MATURATION)
 	data["production_time"] = get_trait(TRAIT_PRODUCTION)
 	data["potency"] = get_trait(TRAIT_POTENCY)
@@ -297,7 +297,7 @@
 				amount = "large amounts of "
 			else if (exude_gasses[gas] < 5)
 				amount = "small amounts of "
-			data["trait_info"] += "It will release [amount][gas_data.name[gas]] into the environment."
+			data["trait_info"] += "It will release [amount][GLOB.gas_data.name[gas]] into the environment."
 
 	if(consume_gasses && consume_gasses.len)
 		for(var/gas in consume_gasses)
@@ -306,6 +306,6 @@
 				amount = "large amounts of "
 			else if (consume_gasses[gas] < 5)
 				amount = "small amounts of "
-			data["trait_info"] += "It will consume [amount][gas_data.name[gas]] from the environment."
+			data["trait_info"] += "It will consume [amount][GLOB.gas_data.name[gas]] from the environment."
 
 	return data

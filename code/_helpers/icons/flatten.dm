@@ -90,8 +90,11 @@
 	var/ourdir = dir
 	if(!none && ourdir != SOUTH)
 		if(length(icon_states(icon(icon, state, NORTH))))
+			pass()
 		else if(length(icon_states(icon(icon, state, EAST))))
+			pass()
 		else if(length(icon_states(icon(icon, state, WEST))))
+			pass()
 		else
 			ourdir = SOUTH
 

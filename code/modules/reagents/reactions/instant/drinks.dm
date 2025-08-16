@@ -15,6 +15,13 @@
 	required_reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_TEAPOWDER = 1)
 	result_amount = 5
 
+/decl/chemical_reaction/instant/drinks/decaftea
+	name = "Decaf tea"
+	id = REAGENT_ID_TEADECAF
+	result = REAGENT_ID_TEADECAF
+	required_reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_DECAFTEAPOWDER = 1)
+	result_amount = 5
+
 /decl/chemical_reaction/instant/drinks/hot_coco
 	name = "Hot Coco"
 	id = REAGENT_ID_HOTCOCO
@@ -87,7 +94,7 @@
 
 /decl/chemical_reaction/instant/drinks/icecoffee/alt
 	name = "Iced Drip Coffee"
-	id = REAGENT_ID_ICECOFFEE
+	id = REAGENT_ID_ICECOFFEE + "_drip"
 	result = REAGENT_ID_ICECOFFEE
 	required_reagents = list(REAGENT_ID_ICE = 1, REAGENT_ID_DRIPCOFFEE = 2)
 	result_amount = 3
@@ -150,14 +157,14 @@
 
 /decl/chemical_reaction/instant/drinks/mocha
 	name = REAGENT_MOCHA
-	id = REAGENT_ID_MOCHA
+	id = REAGENT_ID_MOCHA + "_milk"
 	result = REAGENT_ID_MOCHA
 	required_reagents = list(REAGENT_ID_MILK = 1, REAGENT_ID_CREAM = 1, REAGENT_ID_MILKFOAM = 1, REAGENT_ID_HOTCOCO = 2, REAGENT_ID_BREVE = 5) // 2 coffee, 2 milk, 2 cream, 2 milk foam and 2 hot coco
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/mocha/alt //incase they use cream before milk
 	name = REAGENT_MOCHA
-	id = REAGENT_ID_MOCHA
+	id = REAGENT_ID_MOCHA + "_cream"
 	result = REAGENT_ID_MOCHA
 	required_reagents = list(REAGENT_ID_CREAM = 2, REAGENT_ID_HOTCOCO = 2, REAGENT_ID_CAPPUCCINO = 6) // 2 coffee, 2 milk, 2 cream, 2 milk foam and 2 hot coco
 	result_amount = 10
@@ -563,7 +570,7 @@
 
 /decl/chemical_reaction/instant/drinks/iced_beer2
 	name = REAGENT_ICEDBEER
-	id = REAGENT_ID_ICEDBEER
+	id = REAGENT_ID_ICEDBEER + "_ice"
 	result = REAGENT_ID_ICEDBEER
 	required_reagents = list(REAGENT_ID_BEER = 5, REAGENT_ID_ICE = 1)
 	result_amount = 6
@@ -1042,12 +1049,12 @@
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/winebrandy
-    name = "Wine brandy"
-    id = REAGENT_ID_WINEBRANDY
-    result = REAGENT_ID_WINEBRANDY
-    required_reagents = list(REAGENT_ID_REDWINE = 10)
-    catalysts = list(REAGENT_ID_ENZYME = 10) //10u enzyme so it requires more than is usually added. Stops overlap with wine recipe
-    result_amount = 5
+	name = "Wine brandy"
+	id = REAGENT_ID_WINEBRANDY
+	result = REAGENT_ID_WINEBRANDY
+	required_reagents = list(REAGENT_ID_REDWINE = 10)
+	catalysts = list(REAGENT_ID_ENZYME = 10) //10u enzyme so it requires more than is usually added. Stops overlap with wine recipe
+	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/love_potion
 	name = REAGENT_LOVEPOTION
@@ -1325,14 +1332,14 @@
 	result_amount = 15
 
 /decl/chemical_reaction/instant/drinks/nuclearwaste_radium
-	name = REAGENT_NUCLEARWASTE
+	name = REAGENT_NUCLEARWASTE + " 226"
 	id = "nuclearwasterad"
 	result = REAGENT_ID_NUCLEARWASTE
 	required_reagents = list(REAGENT_ID_OILSLICK = 1, REAGENT_ID_RADIUM = 1, REAGENT_ID_LIMEJUICE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/nuclearwaste_uranium
-	name = REAGENT_NUCLEARWASTE
+	name = REAGENT_NUCLEARWASTE + " 238"
 	id = "nuclearwasteuran"
 	result = REAGENT_ID_NUCLEARWASTE
 	required_reagents = list(REAGENT_ID_OILSLICK = 2, REAGENT_ID_URANIUM = 1)

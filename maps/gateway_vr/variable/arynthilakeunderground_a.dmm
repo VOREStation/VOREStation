@@ -86,9 +86,7 @@
 	light_range = 5
 	},
 /turf/simulated/floor/beach/sand/desert,
-/area/gateway/arynthilake/underground/intocave{
-	enter_message = "There is some light filtering from the center of this patch of sand. You could probably climb up from there."
-	})
+/area/gateway/arynthilake/underground/intocave/entry)
 "lN" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/machinery/light/small{
@@ -301,9 +299,7 @@
 /area/gateway/arynthilake/underground/maintenance)
 "LY" = (
 /turf/simulated/floor/beach/sand/desert,
-/area/gateway/arynthilake/underground/intocave{
-	enter_message = "There is some light filtering from the center of this patch of sand. You could probably climb up from there."
-	})
+/area/gateway/arynthilake/underground/intocave/entry)
 "Mj" = (
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/eris/techmaint,

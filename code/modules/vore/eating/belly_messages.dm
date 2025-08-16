@@ -93,6 +93,18 @@
 	var/list/secondary_transfer_messages_prey = list(
 		"Your attempt to escape %pred's %belly has failed and your struggles only results in you sliding into %pred's %dest!")
 
+	var/list/primary_autotransfer_messages_owner = list(
+		"%prey moves along into your %dest!")
+
+	var/list/primary_autotransfer_messages_prey = list(
+		"%pred's %belly moves you along into their %dest!")
+
+	var/list/secondary_autotransfer_messages_owner = list(
+		"%prey moves along into your %dest!")
+
+	var/list/secondary_autotransfer_messages_prey = list(
+		"%pred's %belly moves you along into their %dest!")
+
 	var/list/digest_chance_messages_owner = list(
 		"You feel your %belly beginning to become active!")
 
@@ -155,6 +167,13 @@
 		"Their body looks somewhat larger than usual around the area of their %belly.",
 		"Their %belly looks larger than usual.")
 
+	var/list/trash_eater_in = list(
+		"%pred demonstrates their voracious capabilities by swallowing %item whole!"
+	)
+	var/list/trash_eater_out = list( //handles all item expulsions regardless of whether they have the trash perk
+		"%pred expels %item from their %belly!"
+	)
+
 GLOBAL_LIST_INIT(vore_words_goo, list("muck","goo","sludge","slime","mire","ectoplasm","quagmire","glop","jelly","ooze","slush","mush","quicksand"))//%goo
 GLOBAL_LIST_INIT(vore_words_hbellynoises, list("gurgle","gloorp","squelch","gloosh","squish","groan","grrrrrrn","sloooooOrp","slooosh","grrrbles","worbles"))//%happybelly
 GLOBAL_LIST_INIT(vore_words_fat, list("love handles","fat","pudge","plumpness","squish","chunk","meat","softness","blubber","flab","paunch","hip dip","mass","dough","chub","marshmellowy goodness","girth","fluff","thickness","jello","adipose "))//%fat
@@ -170,7 +189,10 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 /// `prey` may be a string or a specific prey ref.
 /obj/belly/proc/belly_format_string(message, prey, use_absorbed_count = FALSE, item = null, dest = null, use_first_only = FALSE)
 	if(islist(message))
-		. = "[pick(message)]"
+		if(!LAZYLEN(message))
+			. = ""
+		else
+			. = "[pick(message)]"
 	else
 		. = "[message]"
 
@@ -217,13 +239,15 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	. = replacetext(., "%snack", use_first_only ? GLOB.vore_words_snackname[1] : pick(GLOB.vore_words_snackname))
 	. = replacetext(., "%hot", use_first_only ? GLOB.vore_words_hot[1] : pick(GLOB.vore_words_hot))
 	. = replacetext(., "%snake", use_first_only ? GLOB.vore_words_snake[1] : pick(GLOB.vore_words_snake))
+	if(!.)
+		. = "No message set for this action. Please inform your pred to fix this."
 
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,
 // but can easily make the message vary based on how many people are inside, etc.
 // Returns a string which shoul be appended to the Examine output.
 /obj/belly/proc/get_examine_msg()
-	if(!(contents.len) || !(examine_messages.len))
+	if(!(LAZYLEN(contents)) || !(LAZYLEN(examine_messages)))
 		return ""
 
 	var/raw_message = pick(examine_messages)
@@ -244,7 +268,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	return(span_red(span_italics("[belly_format_string(raw_message, english_list(vore_contents))]")))
 
 /obj/belly/proc/get_examine_msg_absorbed()
-	if(!(contents.len) || !(examine_messages_absorbed.len) || !display_absorbed_examine)
+	if(!(LAZYLEN(contents)) || !(LAZYLEN(examine_messages_absorbed)) || !display_absorbed_examine)
 		return ""
 
 	var/raw_message = pick(examine_messages_absorbed)
@@ -265,106 +289,129 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "escao" || type == "escap" || type == "escp" || type == "esco" || type == "escout" || type == "escip" || type == "escio" || type == "esciout" || type == "escfp" || type == "escfo" || type == "aescao" || type == "aescap" || type == "aescp" || type == "aesco" || type == "aescout" || type == "aescfp" || type == "aescfo" || type == "trnspp" || type == "trnspo" || type == "trnssp" || type == "trnsso" || type == "stmodp" || type == "stmodo" || type == "stmoap" || type == "stmoao" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
+	VB_MESSAGE_SANITY(type)
 
 	var/list/raw_messages
 	switch(type)
-		if("smo")
+		if(STRUGGLE_OUTSIDE)
 			raw_messages = struggle_messages_outside
-		if("smi")
+		if(STRUGGLE_INSIDE)
 			raw_messages = struggle_messages_inside
-		if("asmo")
+		if(ABSORBED_STRUGGLE_OUSIDE)
 			raw_messages = absorbed_struggle_messages_outside
-		if("asmi")
+		if(ABSORBED_STRUGGLE_INSIDE)
 			raw_messages = absorbed_struggle_messages_inside
-		if("escao")
+		if(ESCAPE_ATTEMPT_OWNER)
 			raw_messages = escape_attempt_messages_owner
-		if("escap")
+		if(ESCAPE_ATTEMPT_PREY)
 			raw_messages = escape_attempt_messages_prey
-		if("esco")
+		if(ESCAPE_OWNER)
 			raw_messages = escape_messages_owner
-		if("escp")
+		if(ESCAPE_PREY)
 			raw_messages = escape_messages_prey
-		if("escout")
+		if(ESCAPE_OUTSIDE)
 			raw_messages = escape_messages_outside
-		if("escio")
+		if(ESCAPE_ITEM_OWNER)
 			raw_messages = escape_item_messages_owner
-		if("escip")
+		if(ESCAPE_ITEM_PREY)
 			raw_messages = escape_item_messages_prey
-		if("esciout")
+		if(ESCAPE_ITEM_OUTSIDE)
 			raw_messages = escape_item_messages_outside
-		if("escfo")
+		if(ESCAPE_FAIL_OWNER)
 			raw_messages = escape_fail_messages_owner
-		if("escfp")
+		if(ESCAPE_FAIL_PREY)
 			raw_messages = escape_fail_messages_prey
-		if("aescao")
+		if(ABSORBED_ESCAPE_ATTEMPT_OWNER)
 			raw_messages = escape_attempt_absorbed_messages_owner
-		if("aescap")
+		if(ABSORBED_ESCAPE_ATTEMPT_PREY)
 			raw_messages = escape_attempt_absorbed_messages_prey
-		if("aesco")
+		if(ABSORBED_ESCAPE_OWNER)
 			raw_messages = escape_absorbed_messages_owner
-		if("aescp")
+		if(ABSORBED_ESCAPE_PREY)
 			raw_messages = escape_absorbed_messages_prey
-		if("aescout")
+		if(ABSORBED_ESCAPE_OUTSIDE)
 			raw_messages = escape_absorbed_messages_outside
-		if("aescfo")
+		if(ABSORBED_ESCAPE_FAIL_OWNER)
 			raw_messages = escape_fail_absorbed_messages_owner
-		if("aescfp")
+		if(ABSORBED_ESCAPE_FAIL_PREY)
 			raw_messages = escape_fail_absorbed_messages_prey
-		if("trnspo")
+		if(PRIMARY_TRANSFER_OWNER)
 			raw_messages = primary_transfer_messages_owner
-		if("trnspp")
+		if(PRIMARY_TRANSFER_PREY)
 			raw_messages = primary_transfer_messages_prey
-		if("trnsso")
+		if(SECONDARY_TRANSFER_OWNER)
 			raw_messages = secondary_transfer_messages_owner
-		if("trnssp")
+		if(SECONDARY_TRANSFER_PREY)
 			raw_messages = secondary_transfer_messages_prey
-		if("stmodo")
+		if(PRIMARY_AUTO_TRANSFER_OWNER)
+			raw_messages = primary_autotransfer_messages_owner
+		if(PRIMARY_AUTO_TRANSFER_PREY)
+			raw_messages = primary_autotransfer_messages_prey
+		if(SECONDARY_AUTO_TRANSFER_OWNER)
+			raw_messages = secondary_autotransfer_messages_owner
+		if(SECONDARY_AUTO_TRANSFER_PREY)
+			raw_messages = secondary_autotransfer_messages_prey
+		if(DIGEST_CHANCE_OWNER)
 			raw_messages = digest_chance_messages_owner
-		if("stmodp")
+		if(DIGEST_CHANCE_PREY)
 			raw_messages = digest_chance_messages_prey
-		if("stmoao")
+		if(ABSORB_CHANCE_OWNER)
 			raw_messages = absorb_chance_messages_owner
-		if("stmoap")
+		if(ABSORB_CHANCE_PREY)
 			raw_messages = absorb_chance_messages_prey
-		if("dmo")
+		if(DIGEST_OWNER)
 			raw_messages = digest_messages_owner
-		if("dmp")
+		if(DIGEST_PREY)
 			raw_messages = digest_messages_prey
-		if("em")
+		if(EXAMINES)
 			raw_messages = examine_messages
-		if("ema")
+		if(EXAMINES_ABSORBED)
 			raw_messages = examine_messages_absorbed
-		if("amo")
+		if(ABSORB_OWNER)
 			raw_messages = absorb_messages_owner
-		if("amp")
+		if(ABSORB_PREY)
 			raw_messages = absorb_messages_prey
-		if("uamo")
+		if(UNABSORBS_OWNER)
 			raw_messages = unabsorb_messages_owner
-		if("uamp")
+		if(UNABSORBS_PREY)
 			raw_messages = unabsorb_messages_prey
-		if("im_digest")
+		if(BELLY_MODE_DIGEST)
 			raw_messages = emote_lists[DM_DIGEST]
-		if("im_hold")
+		if(BELLY_MODE_HOLD)
 			raw_messages = emote_lists[DM_HOLD]
-		if("im_holdabsorbed")
+		if(BELLY_MODE_HOLD_ABSORB)
 			raw_messages = emote_lists[DM_HOLD_ABSORBED]
-		if("im_absorb")
+		if(BELLY_MODE_ABSORB)
 			raw_messages = emote_lists[DM_ABSORB]
-		if("im_heal")
+		if(BELLY_MODE_HEAL)
 			raw_messages = emote_lists[DM_HEAL]
-		if("im_drain")
+		if(BELLY_MODE_DRAIN)
 			raw_messages = emote_lists[DM_DRAIN]
-		if("im_steal")
+		if(BELLY_MODE_STEAL)
 			raw_messages = emote_lists[DM_SIZE_STEAL]
-		if("im_egg")
+		if(BELLY_MODE_EGG)
 			raw_messages = emote_lists[DM_EGG]
-		if("im_shrink")
+		if(BELLY_MODE_SHRINK)
 			raw_messages = emote_lists[DM_SHRINK]
-		if("im_grow")
+		if(BELLY_MODE_GROW)
 			raw_messages = emote_lists[DM_GROW]
-		if("im_unabsorb")
+		if(BELLY_MODE_UNABSORB)
 			raw_messages = emote_lists[DM_UNABSORB]
+		if(BELLY_TRASH_EATER_IN)
+			raw_messages = trash_eater_in
+		if(BELLY_TRASH_EATER_OUT)
+			raw_messages = trash_eater_out
+		if(BELLY_LIQUID_MESSAGE1)
+			raw_messages = fullness1_messages
+		if(BELLY_LIQUID_MESSAGE2)
+			raw_messages = fullness2_messages
+		if(BELLY_LIQUID_MESSAGE3)
+			raw_messages = fullness3_messages
+		if(BELLY_LIQUID_MESSAGE4)
+			raw_messages = fullness4_messages
+		if(BELLY_LIQUID_MESSAGE5)
+			raw_messages = fullness5_messages
+
 	var/messages = null
 	if(raw_messages)
 		messages = raw_messages.Join(delim)
@@ -377,15 +424,19 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n", limit)
 	if(!limit)
 		CRASH("[src] set message called without limit!")
-	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "escao" || type == "escap" || type == "escp" || type == "esco" || type == "escout" || type == "escip" || type == "escio" || type == "esciout" || type == "escfp" || type == "escfo" || type == "aescao" || type == "aescap" || type == "aescp" || type == "aesco" || type == "aescout" || type == "aescfp" || type == "aescfo" || type == "trnspp" || type == "trnspo" || type == "trnssp" || type == "trnsso" || type == "stmodp" || type == "stmodo" || type == "stmoap" || type == "stmoao" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
+	VB_MESSAGE_SANITY(type)
 
 	var/list/raw_list
 
-	if(findtext(raw_text, delim))
-		raw_list = splittext(html_encode(raw_text), delim)
+	if(islist(raw_text))
+		raw_list = raw_text
+	else if(findtext(raw_text, delim))
+		raw_list = splittext(raw_text, delim)
 	else
 		raw_list = list(raw_text)
+
 	for(var/i = 1, i <= raw_list.len, i++)
+		raw_list[i] = html_encode(raw_list[i])
 		if(!length(raw_list[i]))
 			raw_list.Cut(i, i + 1)
 			i--
@@ -410,99 +461,121 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	ASSERT(raw_list.len <= 10) //Sanity
 
 	switch(type)
-		if("smo")
+		if(STRUGGLE_OUTSIDE)
 			struggle_messages_outside = raw_list
-		if("smi")
+		if(STRUGGLE_INSIDE)
 			struggle_messages_inside = raw_list
-		if("asmo")
+		if(ABSORBED_STRUGGLE_OUSIDE)
 			absorbed_struggle_messages_outside = raw_list
-		if("asmi")
+		if(ABSORBED_STRUGGLE_INSIDE)
 			absorbed_struggle_messages_inside = raw_list
-		if("escao")
+		if(ESCAPE_ATTEMPT_OWNER)
 			escape_attempt_messages_owner = raw_list
-		if("escap")
+		if(ESCAPE_ATTEMPT_PREY)
 			escape_attempt_messages_prey = raw_list
-		if("esco")
+		if(ESCAPE_OWNER)
 			escape_messages_owner = raw_list
-		if("escp")
+		if(ESCAPE_PREY)
 			escape_messages_prey = raw_list
-		if("escout")
+		if(ESCAPE_OUTSIDE)
 			escape_messages_outside = raw_list
-		if("escio")
+		if(ESCAPE_ITEM_OWNER)
 			escape_item_messages_owner = raw_list
-		if("escip")
+		if(ESCAPE_ITEM_PREY)
 			escape_item_messages_prey = raw_list
-		if("esciout")
+		if(ESCAPE_ITEM_OUTSIDE)
 			escape_item_messages_outside = raw_list
-		if("escfo")
+		if(ESCAPE_FAIL_OWNER)
 			escape_fail_messages_owner = raw_list
-		if("escfp")
+		if(ESCAPE_FAIL_PREY)
 			escape_fail_messages_prey = raw_list
-		if("aescao")
+		if(ABSORBED_ESCAPE_ATTEMPT_OWNER)
 			escape_attempt_absorbed_messages_owner = raw_list
-		if("aescap")
+		if(ABSORBED_ESCAPE_ATTEMPT_PREY)
 			escape_attempt_absorbed_messages_prey = raw_list
-		if("aesco")
+		if(ABSORBED_ESCAPE_OWNER)
 			escape_absorbed_messages_owner = raw_list
-		if("aescp")
+		if(ABSORBED_ESCAPE_PREY)
 			escape_absorbed_messages_prey = raw_list
-		if("aescout")
+		if(ABSORBED_ESCAPE_OUTSIDE)
 			escape_absorbed_messages_outside = raw_list
-		if("aescfo")
+		if(ABSORBED_ESCAPE_FAIL_OWNER)
 			escape_fail_absorbed_messages_owner = raw_list
-		if("aescfp")
+		if(ABSORBED_ESCAPE_FAIL_PREY)
 			escape_fail_absorbed_messages_prey = raw_list
-		if("trnspo")
+		if(PRIMARY_TRANSFER_OWNER)
 			primary_transfer_messages_owner = raw_list
-		if("trnspp")
+		if(PRIMARY_TRANSFER_PREY)
 			primary_transfer_messages_prey = raw_list
-		if("trnsso")
+		if(SECONDARY_TRANSFER_OWNER)
 			secondary_transfer_messages_owner = raw_list
-		if("trnssp")
+		if(SECONDARY_TRANSFER_PREY)
 			secondary_transfer_messages_prey = raw_list
-		if("stmodo")
+		if(PRIMARY_AUTO_TRANSFER_OWNER)
+			primary_autotransfer_messages_owner = raw_list
+		if(PRIMARY_AUTO_TRANSFER_PREY)
+			primary_autotransfer_messages_prey = raw_list
+		if(SECONDARY_AUTO_TRANSFER_OWNER)
+			secondary_autotransfer_messages_owner = raw_list
+		if(SECONDARY_AUTO_TRANSFER_PREY)
+			secondary_autotransfer_messages_prey = raw_list
+		if(DIGEST_CHANCE_OWNER)
 			digest_chance_messages_owner = raw_list
-		if("stmodp")
+		if(DIGEST_CHANCE_PREY)
 			digest_chance_messages_prey = raw_list
-		if("stmoao")
+		if(ABSORB_CHANCE_OWNER)
 			absorb_chance_messages_owner = raw_list
-		if("stmoap")
+		if(ABSORB_CHANCE_PREY)
 			absorb_chance_messages_prey = raw_list
-		if("dmo")
+		if(DIGEST_OWNER)
 			digest_messages_owner = raw_list
-		if("dmp")
+		if(DIGEST_PREY)
 			digest_messages_prey = raw_list
-		if("amo")
+		if(ABSORB_OWNER)
 			absorb_messages_owner = raw_list
-		if("amp")
+		if(ABSORB_PREY)
 			absorb_messages_prey = raw_list
-		if("uamo")
+		if(UNABSORBS_OWNER)
 			unabsorb_messages_owner = raw_list
-		if("uamp")
+		if(UNABSORBS_PREY)
 			unabsorb_messages_prey = raw_list
-		if("em")
+		if(EXAMINES)
 			examine_messages = raw_list
-		if("ema")
+		if(EXAMINES_ABSORBED)
 			examine_messages_absorbed = raw_list
-		if("im_digest")
+		if(BELLY_MODE_DIGEST)
 			emote_lists[DM_DIGEST] = raw_list
-		if("im_hold")
+		if(BELLY_MODE_HOLD)
 			emote_lists[DM_HOLD] = raw_list
-		if("im_holdabsorbed")
+		if(BELLY_MODE_HOLD_ABSORB)
 			emote_lists[DM_HOLD_ABSORBED] = raw_list
-		if("im_absorb")
+		if(BELLY_MODE_ABSORB)
 			emote_lists[DM_ABSORB] = raw_list
-		if("im_heal")
+		if(BELLY_MODE_HEAL)
 			emote_lists[DM_HEAL] = raw_list
-		if("im_drain")
+		if(BELLY_MODE_DRAIN)
 			emote_lists[DM_DRAIN] = raw_list
-		if("im_steal")
+		if(BELLY_MODE_STEAL)
 			emote_lists[DM_SIZE_STEAL] = raw_list
-		if("im_egg")
+		if(BELLY_MODE_EGG)
 			emote_lists[DM_EGG] = raw_list
-		if("im_shrink")
+		if(BELLY_MODE_SHRINK)
 			emote_lists[DM_SHRINK] = raw_list
-		if("im_grow")
+		if(BELLY_MODE_GROW)
 			emote_lists[DM_GROW] = raw_list
-		if("im_unabsorb")
+		if(BELLY_MODE_UNABSORB)
 			emote_lists[DM_UNABSORB] = raw_list
+		if(BELLY_TRASH_EATER_IN)
+			trash_eater_in = raw_list
+		if(BELLY_TRASH_EATER_OUT)
+			trash_eater_out = raw_list
+		if(BELLY_LIQUID_MESSAGE1)
+			fullness1_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE2)
+			fullness2_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE3)
+			fullness3_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE4)
+			fullness4_messages = raw_list
+		if(BELLY_LIQUID_MESSAGE5)
+			fullness5_messages = raw_list

@@ -29,11 +29,11 @@
 	else
 		. += span_warning("It is not secured!")
 
-/obj/machinery/power/tesla_coil/New()
-	..()
+/obj/machinery/power/tesla_coil/Initialize(mapload)
+	. = ..()
 	wires = new(src)
 
-/obj/machinery/power/tesla_coil/Initialize()
+/obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
@@ -236,6 +236,10 @@
 	can_buckle = TRUE
 	buckle_lying = FALSE
 	circuit = /obj/item/circuitboard/grounding_rod
+
+/obj/machinery/power/grounding_rod/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/power/grounding_rod/examine()
 	. = ..()

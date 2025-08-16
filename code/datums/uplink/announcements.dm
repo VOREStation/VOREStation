@@ -16,17 +16,17 @@
 	item_cost = 20
 
 /datum/uplink_item/abstract/announcements/fake_centcom/extra_args(var/mob/user)
-	var/title = sanitize(tgui_input_text(usr, "Enter your announcement title.", "Announcement Title"))
+	var/title = tgui_input_text(usr, "Enter your announcement title.", "Announcement Title", "", MAX_MESSAGE_LEN)
 	if(!title)
 		return
-	var/message = sanitize(tgui_input_text(usr, "Enter your announcement message.", "Announcement Title"))
+	var/message = tgui_input_text(usr, "Enter your announcement message.", "Announcement Title", "", MAX_MESSAGE_LEN)
 	if(!message)
 		return
 	return list("title" = title, "message" = message)
 
-/datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/uplink/U, var/loc, var/mob/user, var/list/args)
-	post_comm_message(args["title"], replacetext(args["message"], "\n", "<br/>"))
-	command_announcement.Announce(args["message"], args["title"])
+/datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/uplink/U, var/location, var/mob/user, var/list/arguments)
+	post_comm_message(arguments["title"], replacetext(arguments["message"], "\n", "<br/>"))
+	command_announcement.Announce(arguments["message"], arguments["title"])
 	return 1
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival
@@ -34,18 +34,18 @@
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Trigger with care!"
 	item_cost = 15
 
-/datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/uplink/U, var/loc, var/mob/user, var/list/args)
+/datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/uplink/U, var/location, var/mob/user, var/list/arguments)
 	if(!user)
 		return 0
 
 	var/obj/item/card/id/I = user.GetIdCard()
 	var/datum/data/record/random_general_record
 	var/datum/data/record/random_medical_record
-	if(data_core.general.len)
-		random_general_record	= pick(data_core.general)
+	if(GLOB.data_core.general.len)
+		random_general_record	= pick(GLOB.data_core.general)
 		random_medical_record	= find_medical_record("id", random_general_record.fields["id"])
 
-	var/datum/data/record/general = data_core.CreateGeneralRecord(user)
+	var/datum/data/record/general = GLOB.data_core.CreateGeneralRecord(user)
 	if(I)
 		general.fields["age"] = I.age
 		general.fields["rank"] = I.assignment
@@ -66,8 +66,8 @@
 		general.fields["sex"] = capitalize(user.gender)
 
 	general.fields["species"] = user.get_species()
-	var/datum/data/record/medical = data_core.CreateMedicalRecord(general.fields["name"], general.fields["id"])
-	data_core.CreateSecurityRecord(general.fields["name"], general.fields["id"])
+	var/datum/data/record/medical = GLOB.data_core.CreateMedicalRecord(general.fields["name"], general.fields["id"])
+	GLOB.data_core.CreateSecurityRecord(general.fields["name"], general.fields["id"])
 
 	if(!random_general_record)
 		general.fields["citizenship"]	= random_general_record.fields["citizenship"]
@@ -93,7 +93,7 @@
 	desc = "Interferes with the station's ion sensors. Triggers immediately upon investment."
 	item_cost = 10
 
-/datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/uplink/U, var/loc)
+/datum/uplink_item/abstract/announcements/fake_ion_storm/get_goods(var/obj/item/uplink/U, var/location)
 	ion_storm_announcement()
 	return 1
 
@@ -102,7 +102,7 @@
 	desc = "Interferes with the station's radiation sensors. Triggers immediately upon investment."
 	item_cost = 15
 
-/datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/uplink/U, var/loc)
+/datum/uplink_item/abstract/announcements/fake_radiation/get_goods(var/obj/item/uplink/U, var/location)
 	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
 	new/datum/event/radiation_storm/syndicate(EM)
 	return 1

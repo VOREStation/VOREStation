@@ -4,7 +4,7 @@
 		for(var/turf/simulated/floor/T in orange(1,xmas))
 			for(var/i=1,i<=rand(1,5),i++)
 				new /obj/item/a_gift(T)
-	//for(var/mob/living/simple_mob/corgi/Ian/Ian in mob_list)
+	//for(var/mob/living/simple_mob/corgi/Ian/Ian in GLOB.mob_list)
 	//	Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
 
 /proc/ChristmasEvent()
@@ -22,9 +22,6 @@
 	icon_state = "cracker"
 	desc = "Directions for use: Requires two people, one to pull each end."
 	var/cracked = 0
-
-/obj/item/toy/xmas_cracker/New()
-	..()
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
 	if( !cracked && (issilicon(target) || (ishuman(target) && !target.get_active_hand())) && target.stat == CONSCIOUS)

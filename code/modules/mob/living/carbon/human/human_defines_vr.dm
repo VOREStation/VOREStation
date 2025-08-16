@@ -11,42 +11,6 @@
 	var/markings_len = 0 //mostly an arbitrary number
 	var/low_sorting_priority = FALSE
 
-/mob/living/carbon/human/proc/shadekin_get_energy()
-	var/datum/species/shadekin/SK = species
+	tail_layering = TAIL_UPPER_LAYER // not a toggle for humans but a pointer for what layer the tail should be when facing North/East/West
 
-	if(!istype(SK))
-		return 0
-
-	return SK.get_energy(src)
-
-/mob/living/carbon/human/proc/shadekin_get_max_energy()
-	var/datum/species/shadekin/SK = species
-
-	if(!istype(SK))
-		return 0
-
-	return SK.get_max_energy(src)
-
-/mob/living/carbon/human/proc/shadekin_set_energy(var/new_energy)
-	var/datum/species/shadekin/SK = species
-
-	if(!istype(SK))
-		return 0
-
-	SK.set_energy(src, new_energy)
-
-/mob/living/carbon/human/proc/shadekin_set_max_energy(var/new_max_energy)
-	var/datum/species/shadekin/SK = species
-
-	if(!istype(SK))
-		return 0
-
-	SK.set_max_energy(src, new_max_energy)
-
-/mob/living/carbon/human/proc/shadekin_adjust_energy(var/amount)
-	var/datum/species/shadekin/SK = species
-
-	if(!istype(SK))
-		return 0
-
-	SK.set_energy(src, SK.get_energy(src) + amount)
+	var/list/body_writing // assoc list by BP_ key

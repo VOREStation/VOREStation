@@ -13,11 +13,24 @@
 	antaghud_indicator = "hudchangeling"
 
 /datum/antagonist/changeling/get_special_objective_text(var/datum/mind/player)
-	return "<br><b>Changeling ID:</b> [player.changeling.changelingID].<br><b>Genomes Absorbed:</b> [player.changeling.absorbedcount]"
+	if(player.current)
+		var/datum/component/antag/changeling/comp = player.current.GetComponent(/datum/component/antag/changeling)
+		if(comp)
+			return "<br><b>Changeling ID:</b> [comp.changelingID].<br><b>Genomes Absorbed:</b> [comp.absorbedcount]"
 
 /datum/antagonist/changeling/update_antag_mob(var/datum/mind/player)
 	..()
 	player.current.make_changeling()
+
+/datum/antagonist/changeling/remove_antagonist(datum/mind/player, show_message, implanted)
+	. = ..()
+	var/datum/component/antag/changeling/comp = player.current.GetComponent(/datum/component/antag/changeling)
+	if(comp)
+		comp.owner.remove_changeling_powers()
+		remove_verb(comp.owner, /mob/proc/EvolutionMenu)
+		comp.RemoveComponent()
+		if(comp.owner.mind)
+			comp.owner.mind.antag_holder.changeling = null
 
 /datum/antagonist/changeling/create_objectives(var/datum/mind/changeling)
 	if(!..())
@@ -64,25 +77,25 @@
 			var/mob/living/carbon/human/H = player.current
 			if(H.isSynthetic())
 				return 0
-			if(H.species.flags & NO_SCAN)
+			if(H.species.flags & (NO_SLEEVE|NO_DNA))
 				return 0
 			return 1
 		else if(isnewplayer(player.current))
 			if(player.current.client && player.current.client.prefs)
 				var/datum/species/S = GLOB.all_species[player.current.client.prefs.species]
-				if(S && (S.flags & NO_SCAN))
+				if(S && (S.flags & (NO_SLEEVE|NO_DNA)))
 					return 0
-				if(player.current.client.prefs.organ_data["torso"] == "cyborg") // Full synthetic.
+				if(player.current.client.prefs.organ_data[BP_TORSO] == "cyborg") // Full synthetic. // TODO, this to issynthetic()?
 					return 0
 				return 1
 	return 0
 
-/datum/antagonist/changeling/print_player_full(var/datum/mind/ply)
-	var/text = print_player_lite(ply)
+/datum/antagonist/changeling/print_player_full(var/datum/mind/player)
+	var/text = print_player_lite(player)
 
-	if(ply.changeling)
-		var/datum/changeling/ling_datum = ply.changeling
-		text += " (had [ling_datum.max_geneticpoints] genomes)"
-		text += "<br>Bought [english_list(ling_datum.purchased_powers_history)]."
+	var/datum/component/antag/changeling/comp = player.current.GetComponent(/datum/component/antag/changeling)
+	if(comp)
+		text += " (had [comp.max_geneticpoints] genomes)"
+		text += "<br>Bought [english_list(comp.purchased_powers_history)]."
 
 	return text

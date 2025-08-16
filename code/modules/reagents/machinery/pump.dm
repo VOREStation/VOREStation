@@ -4,11 +4,12 @@
 
 	description_info = "A machine that can pump fluid from certain turfs.<br>\
 	Water can be pumped from any body of water. Certain locations or environmental\
-	conditions  can cause different byproducts to be produced.<br>\
-	Magma or Lava can be pumped to produce mineralized fluid."
+	conditions can cause different byproducts to be produced.<br>\
+	Magma or Lava can be pumped to produce mineralized fluid.<br>\
+	Deep bore mining drills can create boreholes that can be fracked for fluids."
 
-	anchored = 0
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	icon = 'icons/obj/machines/reagent.dmi'
 	icon_state = "pump"
@@ -17,26 +18,26 @@
 	active_power_usage = 200 * CELLRATE
 
 	var/obj/item/cell/cell = null
-	var/obj/item/hose_connector/output/Output = null
 	var/reagents_per_cycle = 5 // severe nerf to unupgraded speed
 	var/on = 0
 	var/unlocked = 0
 	var/open = 0
 
-/obj/machinery/pump/Initialize()
+/obj/machinery/pump/Initialize(mapload)
 	create_reagents(200)
 	. = ..()
 	default_apply_parts()
 	cell = default_use_hicell()
 
-	Output = new(src)
+	AddComponent(/datum/component/hose_connector/output)
 
 	RefreshParts()
 	update_icon()
 
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/pump/Destroy()
 	QDEL_NULL(cell)
-	QDEL_NULL(Output)
 	. = ..()
 
 /obj/machinery/pump/RefreshParts()
@@ -94,11 +95,7 @@
 	T.pump_reagents(reagents, reagents_per_cycle)
 	update_icon()
 
-	if(Output.get_pairing())
-		reagents.trans_to_holder(Output.reagents, Output.reagents.maximum_volume)
-		if(prob(5))
-			visible_message(span_notice("\The [src] gurgles as it pumps fluid."))
-
+	SEND_SIGNAL(src, COMSIG_HOSE_FORCEPUMP)
 
 // Sets the power state, if possible.
 // Returns TRUE/FALSE on power state changing
@@ -171,6 +168,7 @@
 			to_chat(user, span_notice("There is a power cell already installed."))
 			return FALSE
 		user.drop_from_inventory(W, src)
+		cell = W // Link the cell to us
 		to_chat(user, span_notice("You insert the power cell."))
 
 	else
@@ -196,8 +194,8 @@
 	if(air.temperature <= T0C) // Uses the current air temp, instead of the turf starting temp
 		R.add_reagent(REAGENT_ID_ICE, round(volume / 2, 0.1))
 
-	for(var/turf/simulated/mineral/M in orange(5,src)) // Uses the turf as center instead of an unset usr
-		if(M.mineral && prob(40)) // v
+	for(var/turf/simulated/mineral/M in orange(5,src))
+		if(M.mineral && prob(40) && M.mineral.reagent) // v
 			R.add_reagent(M.mineral.reagent, round(volume / 5, 0.1)) // Was the turf's reagents variable not the R argument, and changed ore_reagent to M.mineral.reagent because of above change. Also nerfed amount to 1/5 instead of 1/2
 
 /turf/simulated/floor/water/pool/pump_reagents(var/datum/reagents/R, var/volume)
@@ -211,3 +209,26 @@
 /turf/simulated/floor/water/contaminated/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
 	R.add_reagent(REAGENT_ID_VATSTABILIZER, round(volume / 2, 0.1))
+
+/turf/simulated/mineral/pump_reagents(var/datum/reagents/R, var/volume)
+	. = ..()
+	if(density)
+		return
+	if(!sand_dug)
+		return
+	var/turf/simulated/mineral/M = pick(orange(5,src))
+	if(!istype(M))
+		return
+	// Use nearby ores as well
+	if(M.mineral && M.mineral.reagent && prob(40))
+		R.add_reagent(M.mineral.reagent, rand(0,volume / 8))
+	// Pump deep reagents from deepdrill boreholes
+	for(var/metal in GLOB.deepore_fracking_reagents)
+		if(!M.resources[metal])
+			continue
+		var/list/ore_list = GLOB.deepore_fracking_reagents[metal]
+		if(!ore_list || !ore_list.len)
+			continue
+		var/reagent_id = pick(ore_list)
+		if(reagent_id && prob(60))
+			R.add_reagent(reagent_id, rand(0,volume / 6))

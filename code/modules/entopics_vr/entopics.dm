@@ -1,9 +1,4 @@
 //Augmented reality objects and their associated systems for attaching to things
-var/global/list/entopic_images = list()
-var/global/list/entopic_users = list()
-
-var/global/list/alt_farmanimals = list()
-
 /datum/entopic
 	var/name
 	var/suffix
@@ -76,8 +71,8 @@ var/global/list/alt_farmanimals = list()
 		return
 
 	registered = TRUE
-	entopic_images += my_image
-	for(var/mob/M as anything in entopic_users)
+	GLOB.entopic_images += my_image
+	for(var/mob/M as anything in GLOB.entopic_users)
 		if(M.client)
 			M.client.images += my_image
 
@@ -86,8 +81,8 @@ var/global/list/alt_farmanimals = list()
 		return
 
 	registered = FALSE
-	entopic_images -= my_image
-	for(var/mob/M as anything in entopic_users)
+	GLOB.entopic_images -= my_image
+	for(var/mob/M as anything in GLOB.entopic_users)
 		if(M.client)
 			M.client.images -= my_image
 
@@ -96,7 +91,7 @@ var/global/list/alt_farmanimals = list()
 		return
 
 	my_image.mouse_opacity = 1
-	my_image.invisibility = 0
+	my_image.invisibility = INVISIBILITY_NONE
 	my_image.alpha = alpha
 	my_image.override = override
 
@@ -105,7 +100,7 @@ var/global/list/alt_farmanimals = list()
 		return
 
 	my_image.mouse_opacity = 0
-	my_image.invisibility = 101
+	my_image.invisibility = INVISIBILITY_ABSTRACT
 	my_image.alpha = 0
 	my_image.override = FALSE
 
@@ -119,8 +114,8 @@ var/global/list/alt_farmanimals = list()
 
 	var/datum/entopic/ent_debug
 
-/obj/item/entopic_debug/New()
-	..()
+/obj/item/entopic_debug/Initialize(mapload)
+	. = ..()
 	ent_debug = new(aholder = src, aicon = icon, aicon_state = "holo_Jin")
 
 /proc/entopic_icon_helper(var/atom/A,var/holo = TRUE)

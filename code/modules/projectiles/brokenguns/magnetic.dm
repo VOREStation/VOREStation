@@ -1,3 +1,3 @@
 
-/obj/item/broken_gun/flechette/New(var/newloc)
-	..(newloc, /obj/item/gun/magnetic/railgun/flechette)
+/obj/item/broken_gun/flechette/Initialize(mapload)
+	. = ..(mapload, /obj/item/gun/magnetic/railgun/flechette)

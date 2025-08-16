@@ -28,6 +28,8 @@
 	return ..()
 
 /obj/item/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+	if(!istype(C))
+		return
 
 	if(!user.IsAdvancedToolUser())
 		return
@@ -127,7 +129,7 @@ var/last_chew = 0
 	var/obj/item/organ/external/O = H.organs_by_name[(H.hand ? BP_L_HAND : BP_R_HAND)]
 	if (!O) return
 
-	var/datum/gender/T = gender_datums[H.get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
 
 	var/s = span_warning("[H.name] chews on [T.his] [O.name]!")
 	H.visible_message(s, span_warning("You chew on your [O.name]!"))
@@ -215,6 +217,9 @@ var/last_chew = 0
 	return ..()
 
 /obj/item/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+	if(!istype(C))
+		return
+
 	if(!user.IsAdvancedToolUser())
 		return
 

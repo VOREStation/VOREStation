@@ -15,12 +15,12 @@
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 15* ONE_ATMOSPHERE
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE+10000
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/melee/energy/sword,/obj/item/handcuffs)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_ALL_TANKS, POCKET_SUIT_REGULATORS, POCKET_SECURITY)
 
 /obj/item/clothing/suit/space/void/responseteam/command
 	name = "Mark VII-C Emergency Response Team Commander Suit"
 
-/obj/item/clothing/suit/space/void/responseteam/command/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/command/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/command) //autoinstall the helmet
 
@@ -29,7 +29,7 @@
 	icon_state = "ertsuit_m"
 	item_state = "ertsuit_m"
 
-/obj/item/clothing/suit/space/void/responseteam/medical/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/medical/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/medical) //autoinstall the helmet
 
@@ -38,7 +38,7 @@
 	icon_state = "ertsuit_e"
 	item_state = "ertsuit_e"
 
-/obj/item/clothing/suit/space/void/responseteam/engineer/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/engineer/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/engineer) //autoinstall the helmet
 
@@ -47,7 +47,7 @@
 	icon_state = "ertsuit_s"
 	item_state = "ertsuit_s"
 
-/obj/item/clothing/suit/space/void/responseteam/security/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/security/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/security) //autoinstall the helmet
 
@@ -59,7 +59,7 @@
 	slowdown = 0 //light armor means no slowdown
 	item_flags = NOSLIP //INBUILT NANOGALOSHES
 
-/obj/item/clothing/suit/space/void/responseteam/janitor/Initialize()
+/obj/item/clothing/suit/space/void/responseteam/janitor/Initialize(mapload)
 	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/janitor) //autoinstall the helmet
 
@@ -180,7 +180,7 @@
 		SPECIES_VULPKANIN		= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
 		SPECIES_FENNEC			= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
-		SPECIES_SHADEKIN_CREW		= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
+		SPECIES_SHADEKIN		= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
 		SPECIES_VASILISSAN		= 'icons/inventory/suit/mob_vr.dmi',
 		SPECIES_NEVREAN			= 'icons/inventory/suit/mob_vr.dmi',
 		SPECIES_RAPALA			= 'icons/inventory/suit/mob_vr.dmi',
@@ -197,7 +197,7 @@
 		SPECIES_VULPKANIN		= 'icons/inventory/suit/item_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/item_vr.dmi',
 		SPECIES_FENNEC			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_SHADEKIN_CREW		= 'icons/inventory/suit/item_vr.dmi',
+		SPECIES_SHADEKIN		= 'icons/inventory/suit/item_vr.dmi',
 		SPECIES_VASILISSAN		= 'icons/inventory/suit/item_vr.dmi',
 		SPECIES_NEVREAN			= 'icons/inventory/suit/item_vr.dmi',
 		SPECIES_RAPALA			= 'icons/inventory/suit/item_vr.dmi',
@@ -219,7 +219,7 @@
 		SPECIES_VULPKANIN		= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
 		SPECIES_FENNEC			= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
-		SPECIES_SHADEKIN_CREW		= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
+		SPECIES_SHADEKIN		= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
 		SPECIES_VASILISSAN		= 'icons/inventory/head/mob_vr.dmi',
 		SPECIES_NEVREAN			= 'icons/inventory/head/mob_vr.dmi',
 		SPECIES_RAPALA			= 'icons/inventory/head/mob_vr.dmi',
@@ -236,7 +236,7 @@
 		SPECIES_VULPKANIN		= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_FENNEC			= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_SHADEKIN_CREW		= 'icons/inventory/head/item_vr.dmi',
+		SPECIES_SHADEKIN		= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_VASILISSAN		= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_NEVREAN			= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_RAPALA			= 'icons/inventory/head/item_vr.dmi',

@@ -235,7 +235,7 @@
 	var/kin_to_el_ratio = 0.1	//How much kinetic energy will be taken from turbine and converted into electricity
 	var/obj/machinery/atmospherics/pipeturbine/turbine
 
-/obj/machinery/power/turbinemotor/Initialize()
+/obj/machinery/power/turbinemotor/Initialize(mapload)
 	. = ..()
 	updateConnection()
 

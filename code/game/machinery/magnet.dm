@@ -27,22 +27,20 @@
 	var/center_y = 0
 	var/max_dist = 20 // absolute value of center_x,y cannot exceed this integer
 
-/obj/machinery/magnetic_module/New()
-	..()
+/obj/machinery/magnetic_module/Initialize(mapload)
+	. = ..()
 	var/turf/T = loc
 	hide(!T.is_plating())
 	center = T
 
-	spawn(10)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_controller.add_object(src, freq, RADIO_MAGNETS)
+	if(SSradio)
+		SSradio.add_object(src, freq, RADIO_MAGNETS)
 
-	spawn()
-		magnetic_process()
+	magnetic_process()
 
 // update the invisibility and icon
 /obj/machinery/magnetic_module/hide(var/intact)
-	invisibility = intact ? 101 : 0
+	invisibility = intact ? INVISIBILITY_ABSTRACT : INVISIBILITY_NONE
 	update_icon()
 
 // update the icon_state
@@ -159,10 +157,14 @@
 
 	update_icon()
 
-/obj/machinery/magnetic_module/proc/magnetic_process() // proc that actually does the pulling
-	if(pulling) return
-	while(on)
+/obj/machinery/magnetic_module/proc/magnetic_process(var/called_back) // proc that actually does the pulling
+	if(called_back)
+		pulling = 0
 
+	if(pulling)
+		return
+
+	if(on)
 		pulling = 1
 		center = locate(x+center_x, y+center_y, z)
 		if(center)
@@ -175,14 +177,14 @@
 				step_towards(S, center)
 
 		use_power(electricity_level * 5)
-		sleep(13 - electricity_level)
+		addtimer(CALLBACK(src, PROC_REF(magnetic_process), TRUE), 13 - electricity_level, TIMER_DELETE_ME)
 
 	pulling = 0
 
 /obj/machinery/magnetic_module/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, freq)
-	..()
+	if(SSradio)
+		SSradio.remove_object(src, freq)
+	. = ..()
 
 /obj/machinery/magnetic_controller
 	name = "Magnetic Control Console"
@@ -209,18 +211,17 @@
 	var/datum/radio_frequency/radio_connection
 
 
-/obj/machinery/magnetic_controller/New()
-	..()
+/obj/machinery/magnetic_controller/Initialize(mapload)
+	. = ..()
 
 	if(autolink)
-		for(var/obj/machinery/magnetic_module/M in machines)
+		for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 
 
-	spawn(45)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_connection = radio_controller.add_object(src, frequency, RADIO_MAGNETS)
+	if(SSradio)
+		radio_connection = SSradio.add_object(src, frequency, RADIO_MAGNETS)
 
 
 	if(path) // check for default path
@@ -229,7 +230,7 @@
 
 /obj/machinery/magnetic_controller/process()
 	if(magnets.len == 0 && autolink)
-		for(var/obj/machinery/magnetic_module/M in machines)
+		for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 
@@ -241,7 +242,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)
-	var/dat = span_bold("Magnetic Control Console") + "<BR><BR>"
+	var/dat = ""
 	if(!autolink)
 		dat += {"
 		Frequency: <a href='byond://?src=\ref[src];operation=setfreq'>[frequency]</a><br>
@@ -262,8 +263,9 @@
 	dat += "Moving: <a href='byond://?src=\ref[src];operation=togglemoving'>[moving ? "Enabled":"Disabled"]</a>"
 
 
-	user << browse("<html>[dat]</html>", "window=magnet;size=400x500")
-	onclose(user, "magnet")
+	var/datum/browser/popup = new(user, "magnet", "Magnetic Control Console", 400, 500)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/magnetic_controller/Topic(href, href_list)
 	if(stat & (BROKEN|NOPOWER))
@@ -311,7 +313,7 @@
 				if(speed <= 0)
 					speed = 1
 			if("setpath")
-				var/newpath = sanitize(tgui_input_text(usr, "Please define a new path!",,path))
+				var/newpath = tgui_input_text(usr, "Please define a new path!",,path, MAX_MESSAGE_LEN)
 				if(newpath && newpath != "")
 					moving = 0 // stop moving
 					path = newpath
@@ -388,6 +390,6 @@
 		// there doesn't HAVE to be separators but it makes paths syntatically visible
 
 /obj/machinery/magnetic_controller/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
-	..()
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
+	. = ..()

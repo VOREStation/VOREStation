@@ -85,59 +85,14 @@ SUBSYSTEM_DEF(supply)
 				points += CR.points_per_crate
 				if(CR.points_per_crate)
 					base_value = CR.points_per_crate
-				var/find_slip = 1
 
+				// For each thing in the crate, get the value and quantity
 				for(var/atom/A in CR)
-					EC.contents[++EC.contents.len] = list(
-							"object" = "\proper[A.name]",
-							"value" = 0,
-							"quantity" = 1
-						)
-
-					// Sell manifests
-					if(find_slip && istype(A,/obj/item/paper/manifest))
-						var/obj/item/paper/manifest/slip = A
-						if(!slip.is_copy && slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
-							points += points_per_slip
-							EC.contents[EC.contents.len]["value"] = points_per_slip
-							find_slip = 0
-						continue
-
-					// Sell phoron and platinum
-					if(istype(A, /obj/item/stack))
-						var/obj/item/stack/P = A
-						var/datum/material/mat = P.get_material()
-						if(mat?.supply_conversion_value)
-							EC.contents[EC.contents.len]["value"] = P.get_amount() * mat.supply_conversion_value
-						EC.contents[EC.contents.len]["quantity"] = P.get_amount()
-						EC.value += EC.contents[EC.contents.len]["value"]
-
-					//Sell spacebucks
-					if(istype(A, /obj/item/spacecash))
-						var/obj/item/spacecash/cashmoney = A
-						EC.contents[EC.contents.len]["value"] = cashmoney.worth * points_per_money
-						EC.contents[EC.contents.len]["quantity"] = cashmoney.worth
-						EC.value += EC.contents[EC.contents.len]["value"]
-
-					if(istype(A, /obj/item/reagent_containers/glass/bottle/vaccine))
-						var/obj/item/reagent_containers/glass/bottle/vaccine/sale_bottle = A
-						if(!istype(CR, /obj/structure/closet/crate/freezer))
-							EC.contents = list(
-								"error" = "Error: Product was improperly packaged. Send conents in freezer crate to preserve contents for transport."
-							)
-						else if(sale_bottle.reagents.reagent_list.len != 1 || sale_bottle.reagents.get_reagent_amount(REAGENT_ID_VACCINE) < sale_bottle.volume)
-							EC.contents = list(
-								"error" = "Error: Tainted product in batch. Was opened, contaminated, or was full. Payment rendered null under terms of agreement."
-							)
-						else
-							EC.contents[EC.contents.len]["value"] = 5
-							EC.value += EC.contents[EC.contents.len]["value"]
-
-			// Make a log of it, but it wasn't shipped properly, and so isn't worth anything
+					SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
 			else
-				EC.contents = list(
-						"error" = "Error: Product was improperly packaged. Payment rendered null under terms of agreement."
-					)
+				// Selling things that are not in crates.
+				// Usually it just makes a log that it wasn't shipped properly, and so isn't worth anything
+				SEND_SIGNAL(MA,COMSIG_ITEM_SOLD,EC,FALSE)
 
 			exported_crates += EC
 			points += EC.value

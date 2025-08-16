@@ -2,15 +2,15 @@
 @use '../base.scss';
 @use '../colors.scss';
 
-$color-background: hsla(0, 100%, 50%, 0.35) !default;
-$color-separator: hsla(0, 100%, 50%, 1) !default;
-
 .Section--elevator--fire {
-  background-color: color.adjust($color-background, $lightness: 10%, $alpha: 1);
-  background-color: $color-background;
+  background-color: hsl(
+    from var(--turbolift-background) h s calc(l + 10) 1
+  ) !important;
+
+  background-color: var(--turbolift-background);
 }
 
 .Section--elevator--fire > .Section__title {
   padding: 0.5em;
-  border-bottom: base.em(2px) solid $color-separator;
+  border-bottom: base.em(2px) solid var(--turbolift-separator);
 }

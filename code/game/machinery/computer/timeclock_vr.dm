@@ -22,7 +22,7 @@
 	var/obj/item/radio/intercom/announce	// Integreated announcer
 
 
-/obj/machinery/computer/timeclock/Initialize()
+/obj/machinery/computer/timeclock/Initialize(mapload)
 	. = ..()
 	announce = new /obj/item/radio/intercom(src)
 
@@ -157,14 +157,14 @@
 
 /obj/machinery/computer/timeclock/proc/isOpenOnDutyJob(var/mob/user, var/department, var/datum/job/job)
 	return job \
-		   && job.is_position_available() \
-		   && !job.whitelist_only \
-		   && !jobban_isbanned(user,job.title) \
-		   && job.player_old_enough(user.client) \
-		   && job.player_has_enough_playtime(user.client) \
-		   && job.pto_type == department \
-		   && !job.disallow_jobhop \
-		   && job.timeoff_factor > 0
+		&& job.is_position_available() \
+		&& !job.whitelist_only \
+		&& !jobban_isbanned(user,job.title) \
+		&& job.player_old_enough(user.client) \
+		&& job.player_has_enough_playtime(user.client) \
+		&& job.pto_type == department \
+		&& !job.disallow_jobhop \
+		&& job.timeoff_factor > 0
 
 /obj/machinery/computer/timeclock/proc/makeOnDuty(var/newrank, var/newassignment, var/mob/user)
 	var/datum/job/oldjob = job_master.GetJob(card.rank)
@@ -178,7 +178,7 @@
 		card.rank = newjob.title
 		card.assignment = newassignment
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
-		data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
+		GLOB.data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
 		newjob.current_positions++
@@ -204,7 +204,7 @@
 		card.rank = ptojob.title
 		card.assignment = ptojob.title
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
-		data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
+		GLOB.data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
 		var/mob/living/carbon/human/H = user
@@ -246,8 +246,8 @@
 /obj/item/card/id
 	var/last_job_switch
 
-/obj/item/card/id/New()
-	.=..()
+/obj/item/card/id/Initialize(mapload)
+	. = ..()
 	last_job_switch = world.time
 
 //

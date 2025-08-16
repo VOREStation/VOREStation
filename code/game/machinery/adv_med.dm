@@ -17,7 +17,7 @@
 	var/obj/machinery/body_scanconsole/console
 	var/printing_text = null
 
-/obj/machinery/bodyscanner/Initialize()
+/obj/machinery/bodyscanner/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
@@ -56,7 +56,7 @@
 			return
 		M.forceMove(src)
 		occupant = M
-		update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+		update_icon()
 		playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 		add_fingerprint(user)
 		qdel(G)
@@ -75,7 +75,7 @@
 	if(O.anchored)
 		return 0 //mob is anchored???
 	if(get_dist(user, src) > 1 || get_dist(user, O) > 1)
-		return 0 //doesn't use adjacent() to allow for non-cardinal (fuck my life)
+		return 0 //doesn't use adjacent() to allow for non-GLOB.cardinal (fuck my life)
 	if(!ishuman(user) && !isrobot(user))
 		return 0 //not a borg or human
 	if(panel_open)
@@ -101,7 +101,7 @@
 
 	O.forceMove(src)
 	occupant = O
-	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+	update_icon()
 	playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 	add_fingerprint(user)
 	SStgui.update_uis(src)
@@ -137,7 +137,7 @@
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+				A.forceMove(src.loc)
 				ex_act(severity)
 				//Foreach goto(35)
 			//SN src = null
@@ -146,7 +146,7 @@
 		if(2.0)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+					A.forceMove(src.loc)
 					ex_act(severity)
 					//Foreach goto(108)
 				//SN src = null
@@ -155,13 +155,12 @@
 		if(3.0)
 			if (prob(25))
 				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+					A.forceMove(src.loc)
 					ex_act(severity)
 					//Foreach goto(181)
 				//SN src = null
 				qdel(src)
 				return
-		else
 	return
 
 /obj/machinery/bodyscanner/tgui_host(mob/user)
@@ -185,11 +184,19 @@
 		update_icon() //VOREStation Edit - Health display for consoles with light and such.
 		var/mob/living/carbon/human/H = occupant
 		occupantData["name"] = H.name
+		occupantData["species"] = H.species.name
+		if(H.custom_species)
+			if( H.species.name == SPECIES_CUSTOM || H.species.name == SPECIES_HANNER )
+				// Fully custom species
+				occupantData["species"] = "[H.custom_species]"
+			else
+				// Using another species as base, doctors should know this to avoid some meds
+				occupantData["species"] = "[H.custom_species] \[Similar biology to [H.species.name]\]"
 		occupantData["stat"] = H.stat
 		occupantData["health"] = H.health
 		occupantData["maxHealth"] = H.getMaxHealth()
 
-		occupantData["hasVirus"] = LAZYLEN(H.viruses)
+		occupantData["hasVirus"] = H.isInfective()
 
 		occupantData["bruteLoss"] = H.getBruteLoss()
 		occupantData["oxyLoss"] = H.getOxyLoss()
@@ -216,7 +223,7 @@
 			var/blood_volume = round(H.vessel.get_reagent_amount(REAGENT_ID_BLOOD))
 			var/blood_max = H.species.blood_volume
 			bloodData["volume"] = blood_volume
-			bloodData["percent"] = round(((blood_volume / blood_max)*100))
+			bloodData["percent"] = blood_max ? round(((blood_volume / blood_max)*100)) : 0
 
 		occupantData["blood"] = bloodData
 
@@ -259,11 +266,17 @@
 			organData["bruised"] = E.min_bruised_damage
 			organData["broken"] = E.min_broken_damage
 
+			var/list/medical_issueDataE = list()
+			for(var/datum/medical_issue/MI in E.medical_issues)
+				if(MI.showscanner)
+					medical_issueDataE += MI.name
+
+			organData["medical_issues_E"] = medical_issueDataE
+
 			var/implantData[0]
 			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
 				var/obj/item/implant/I = thing
-			//VOREStation Block Edit Start
 				var/obj/item/nif/N = thing
 				if(istype(I))
 					implantSubData["name"] =  I.name
@@ -273,7 +286,6 @@
 					implantSubData["name"] =  N.name
 					implantSubData["known"] = istype(N) && N.known_implant
 					implantData.Add(list(implantSubData))
-			//VOREStation Block Edit End
 
 			organData["implants"] = implantData
 			organData["implants_len"] = implantData.len
@@ -307,6 +319,16 @@
 		occupantData["extOrgan"] = extOrganData
 
 		var/intOrganData[0]
+		for(var/organ_tag in H.species.has_organ) //Check to see if we are missing any organs
+			var/organData[0]
+			var/obj/item/organ/O = H.species.has_organ[organ_tag]
+			var/name = initial(O.name)
+			organData["name"] = name
+			O = H.internal_organs_by_name[organ_tag]
+			if(!O)
+				organData["missing"] = TRUE
+				intOrganData.Add(list(organData))
+
 		for(var/obj/item/organ/I in H.internal_organs)
 			var/organData[0]
 			organData["name"] = I.name
@@ -330,12 +352,20 @@
 
 			intOrganData.Add(list(organData))
 
+			var/list/medical_issueDataI = list()
+			for(var/datum/medical_issue/MI in I.medical_issues)
+				if(MI.showscanner)
+					medical_issueDataI += MI.name
+
+			organData["medical_issues_I"] = medical_issueDataI
+
 		occupantData["intOrgan"] = intOrganData
 
 		occupantData["blind"] = (H.sdisabilities & BLIND)
 		occupantData["nearsighted"] = (H.disabilities & NEARSIGHTED)
-		occupantData["husked"] = (HUSK in H.mutations) // VOREstation edit
-		occupantData = attempt_vr(src, "get_occupant_data_vr", list(occupantData, H)) //VOREStation Insert
+		occupantData["brokenspine"] = (H.disabilities & SPINE)
+		occupantData["husked"] = (HUSK in H.mutations)
+		occupantData = attempt_vr(src, "get_occupant_data_vr", list(occupantData, H))
 	data["occupant"] = occupantData
 
 	return data
@@ -367,6 +397,17 @@
 
 	dat = span_blue(span_bold("Occupant Statistics:")) + "<br>" //Blah obvious
 	if(istype(occupant)) //is there REALLY someone in there?
+		if(ishuman(occupant))
+			var/mob/living/carbon/human/H = occupant
+			var/speciestext = H.species.name
+			if(H.custom_species)
+				if(H.species.name == SPECIES_CUSTOM )
+					// Fully custom species
+					speciestext = "[H.custom_species]"
+					dat += span_blue("Sapient Species: [speciestext]") + "<BR>"
+				else
+					speciestext = "[H.custom_species] \[Similar biology to [H.species.name]\]"
+					dat += span_blue("Sapient Species: [speciestext]") + "<BR>"
 		var/t1
 		switch(occupant.stat) // obvious, see what their status is
 			if(0)
@@ -379,12 +420,12 @@
 		dat += (occupant.health > (occupant.getMaxHealth() / 2) ? span_blue(health_text) : span_red(health_text))
 		dat += "<br>"
 
-		if(LAZYLEN(occupant.viruses))
+		if(occupant.IsInfected())
 			for(var/datum/disease/D in occupant.GetViruses())
 				if(D.visibility_flags & HIDDEN_SCANNER)
 					continue
 				else
-					dat += span_red("Viral pathogen detected in blood stream.") + "<BR>"
+					dat += span_red("Disease detected in blood stream.") + "<BR>"
 
 		var/damage_string = null
 		damage_string = "\t-Brute Damage %: [occupant.getBruteLoss()]"
@@ -452,6 +493,7 @@
 			var/internal_bleeding = ""
 			var/lung_ruptured = ""
 			var/o_dead = ""
+			var/mi = ""
 			for(var/datum/wound/W in e.wounds) if(W.internal)
 				internal_bleeding = "<br>Internal bleeding"
 				break
@@ -495,18 +537,22 @@
 				else
 					unknown_body++
 
+			for(var/datum/medical_issue/MI in e.medical_issues)
+				mi += "[MI.name] detected:"
+
 			if(unknown_body)
 				imp += "Unknown body present:"
-			if(!AN && !open && !infected && !imp)
+			if(!AN && !open && !infected && !imp && !mi)
 				AN = "None:"
 			if(!(e.status & ORGAN_DESTROYED))
-				dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured][o_dead]</td>"
+				dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][mi][internal_bleeding][lung_ruptured][o_dead]</td>"
 			else
 				dat += "<td>[e.name]</td><td>-</td><td>-</td><td>Not Found</td>"
 			dat += "</tr>"
 		for(var/obj/item/organ/i in occupant.internal_organs)
 			var/mech = ""
 			var/i_dead = ""
+			var/mi = ""
 			if(i.status & ORGAN_ASSISTED)
 				mech = "Assisted:"
 			if(i.robotic >= ORGAN_ROBOT)
@@ -534,10 +580,22 @@
 				var/obj/item/organ/internal/appendix/A = i
 				if(A.inflamed)
 					infection = "Inflammation detected!"
+			for(var/datum/medical_issue/MI in i.medical_issues)
+				mi += "[MI.name] detected:"
 
 			dat += "<tr>"
-			dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech][i_dead]</td><td></td>"
+			dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mi][mech][i_dead]</td><td></td>"
 			dat += "</tr>"
+		for(var/organ_tag in occupant.species.has_organ) //Check to see if we are missing any organs
+			var/organData[0]
+			var/obj/item/organ/O = occupant.species.has_organ[organ_tag]
+			var/name = initial(O.name)
+			organData["name"] = name
+			O = occupant.internal_organs_by_name[organ_tag]
+			if(!O) // Missing organ
+				dat += "<tr>"
+				dat += "<td>[name]</td><td>N/A</td><td>NA</td><td>MISSING</td><td></td>"
+				dat += "</tr>"
 		dat += "</table>"
 		if(occupant.sdisabilities & BLIND)
 			dat += span_red("Cataracts detected.") + "<BR>"
@@ -617,7 +675,6 @@
 				//SN src = null
 				qdel(src)
 				return
-		else
 	return
 
 /obj/machinery/body_scanconsole/proc/findscanner()

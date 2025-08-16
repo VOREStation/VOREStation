@@ -22,14 +22,14 @@
 /datum/component/orbiter/RegisterWithParent()
 	. = ..()
 	var/atom/target = parent
-	while(ismovable(target))
+	if(ismovable(target))
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 		target = target.loc
 
 /datum/component/orbiter/UnregisterFromParent()
 	. = ..()
 	var/atom/target = parent
-	while(ismovable(target))
+	if(ismovable(target))
 		UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 		target = target.loc
 
@@ -101,6 +101,7 @@
 
 // This proc can receive signals by either the thing being directly orbited or anything holding it
 /datum/component/orbiter/proc/move_react(atom/orbited, atom/oldloc, direction)
+	SIGNAL_HANDLER
 	set waitfor = FALSE // Transfer calls this directly and it doesnt care if the ghosts arent done moving
 
 	var/atom/movable/master = parent
@@ -119,12 +120,12 @@
 	// These are prety rarely activated, how often are you following something in a bag?
 	if(oldloc && !isturf(oldloc)) // We used to be registered to it, probably
 		var/atom/target = oldloc
-		while(ismovable(target))
+		if(ismovable(target))
 			UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 			target = target.loc
 	if(orbited?.loc && orbited.loc != newturf) // We want to know when anything holding us moves too
 		var/atom/target = orbited.loc
-		while(ismovable(target))
+		if(ismovable(target))
 			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(move_react), TRUE)
 			target = target.loc
 
@@ -134,12 +135,13 @@
 		if(QDELETED(thing) || thing.loc == newturf)
 			continue
 		thing.forceMove(newturf, movetime = MOVE_GLIDE_CALC(glide_size,0))
-		if(CHECK_TICK && master.loc != curloc)
+		if(TICK_CHECK && master.loc != curloc)
 			// We moved again during the checktick, cancel current operation
 			break
 
 
 /datum/component/orbiter/proc/orbiter_move_react(atom/movable/orbiter, atom/oldloc, direction)
+	SIGNAL_HANDLER
 	if(orbiter.loc == get_turf(parent))
 		return
 	end_orbit(orbiter)

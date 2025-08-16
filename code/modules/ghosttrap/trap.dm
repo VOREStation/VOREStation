@@ -1,18 +1,18 @@
 // This system is used to grab a ghost from observers with the required preferences and
 // lack of bans set. See posibrain.dm for an example of how they are called/used. ~Z
 
-var/list/ghost_traps
+GLOBAL_LIST(ghost_traps)
 
 /proc/get_ghost_trap(var/trap_key)
-	if(!ghost_traps)
+	if(!GLOB.ghost_traps)
 		populate_ghost_traps()
-	return ghost_traps[trap_key]
+	return GLOB.ghost_traps[trap_key]
 
 /proc/populate_ghost_traps()
-	ghost_traps = list()
+	GLOB.ghost_traps = list()
 	for(var/traptype in typesof(/datum/ghosttrap))
 		var/datum/ghosttrap/G = new traptype
-		ghost_traps[G.object] = G
+		GLOB.ghost_traps[G.object] = G
 
 /datum/ghosttrap
 	var/object = "positronic brain"
@@ -39,7 +39,7 @@ var/list/ghost_traps
 /datum/ghosttrap/proc/request_player(var/mob/target, var/request_string)
 	if(!target)
 		return
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
 		if(islist(ban_checks))
@@ -93,7 +93,7 @@ var/list/ghost_traps
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
 /datum/ghosttrap/proc/set_new_name(var/mob/target)
-	var/newname = sanitizeSafe(tgui_input_text(target,"Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
+	var/newname = sanitizeSafe(tgui_input_text(target,"Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if (newname != "")
 		target.real_name = newname
 		target.name = target.real_name

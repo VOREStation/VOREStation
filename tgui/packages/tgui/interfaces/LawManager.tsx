@@ -6,6 +6,7 @@ import {
   LabeledList,
   NoticeBox,
   Section,
+  Stack,
   Table,
   Tabs,
 } from 'tgui-core/components';
@@ -218,7 +219,7 @@ export const LawManagerLaws = (props: {
       {has_ion_laws ? (
         <LawsTable
           laws={ion_laws}
-          title={ion_law_nr + ' Laws:'}
+          title={`${ion_law_nr} Laws:`}
           isAdmin={isAdmin}
           isMalf={isMalf}
           mt={-2}
@@ -293,10 +294,9 @@ export const LawManagerLaws = (props: {
                 <Table.Cell collapsing>Zero</Table.Cell>
                 <Table.Cell>
                   <Input
-                    updateOnPropsChange
                     value={zeroth_law}
                     fluid
-                    onChange={(e, val: string) =>
+                    onBlur={(val: string) =>
                       act('change_zeroth_law', { val: val })
                     }
                   />
@@ -315,12 +315,9 @@ export const LawManagerLaws = (props: {
               <Table.Cell collapsing>Ion</Table.Cell>
               <Table.Cell>
                 <Input
-                  updateOnPropsChange
                   value={ion_law}
                   fluid
-                  onChange={(e, val: string) =>
-                    act('change_ion_law', { val: val })
-                  }
+                  onBlur={(val: string) => act('change_ion_law', { val: val })}
                 />
               </Table.Cell>
               <Table.Cell>N/A</Table.Cell>
@@ -334,10 +331,9 @@ export const LawManagerLaws = (props: {
               <Table.Cell>Inherent</Table.Cell>
               <Table.Cell>
                 <Input
-                  updateOnPropsChange
                   value={inherent_law}
                   fluid
-                  onChange={(e, val: string) =>
+                  onBlur={(val: string) =>
                     act('change_inherent_law', { val: val })
                   }
                 />
@@ -353,10 +349,9 @@ export const LawManagerLaws = (props: {
               <Table.Cell>Supplied</Table.Cell>
               <Table.Cell>
                 <Input
-                  updateOnPropsChange
                   value={supplied_law}
                   fluid
-                  onChange={(e, val: string) =>
+                  onBlur={(val: string) =>
                     act('change_supplied_law', { val: val })
                   }
                 />
@@ -470,7 +465,7 @@ export const LawManagerLawSets = (props: {
   law_sets: law_pack[];
   ion_law_nr: string;
   searchLawName: string;
-  onSearchLawName: Function;
+  onSearchLawName: React.Dispatch<React.SetStateAction<string>>;
   isAdmin: BooleanLike;
   isMalf: BooleanLike;
 }) => {
@@ -495,7 +490,7 @@ export const LawManagerLawSets = (props: {
         fluid
         value={searchLawName}
         placeholder="Search for laws..."
-        onInput={(e, value: string) => onSearchLawName(value)}
+        onChange={(value: string) => onSearchLawName(value)}
       />
       {law_sets.length
         ? prepareSearch(law_sets, searchLawName).map((laws) => (
@@ -503,32 +498,36 @@ export const LawManagerLawSets = (props: {
               key={laws.name}
               title={laws.name}
               buttons={
-                <>
-                  <Button
-                    disabled={!isMalf}
-                    icon="sync"
-                    onClick={() =>
-                      act('transfer_laws', { transfer_laws: laws.ref })
-                    }
-                  >
-                    Load Laws
-                  </Button>
-                  <Button
-                    icon="volume-up"
-                    onClick={() =>
-                      act('state_law_set', { state_law_set: laws.ref })
-                    }
-                  >
-                    State Laws
-                  </Button>
-                </>
+                <Stack>
+                  <Stack.Item>
+                    <Button
+                      disabled={!isMalf}
+                      icon="sync"
+                      onClick={() =>
+                        act('transfer_laws', { transfer_laws: laws.ref })
+                      }
+                    >
+                      Load Laws
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="volume-up"
+                      onClick={() =>
+                        act('state_law_set', { state_law_set: laws.ref })
+                      }
+                    >
+                      State Laws
+                    </Button>
+                  </Stack.Item>
+                </Stack>
               }
             >
               {laws.laws.has_ion_laws ? (
                 <LawsTable
                   noButtons
                   laws={laws.laws.ion_laws}
-                  title={ion_law_nr + ' Laws:'}
+                  title={`${ion_law_nr} Laws:`}
                   isAdmin={isAdmin}
                   isMalf={isMalf}
                 />

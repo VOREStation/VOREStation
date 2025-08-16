@@ -17,7 +17,7 @@
 	circuit = /obj/item/circuitboard/artifact_harvester
 
 /// If you want it to load smoothly, set it's dir to wherever the scanpad is!
-/obj/machinery/artifact_harvester/Initialize()
+/obj/machinery/artifact_harvester/Initialize(mapload)
 	. = ..()
 	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
 	if(!owned_scanner)
@@ -27,12 +27,12 @@
 
 /obj/machinery/artifact_harvester/RefreshParts(var/limited = 0)
 	harvesting_speed = 0
-	 // Rating goes from 1 to 5 and this bad boy has 5 caps. Let's say we want a normal one to charge a battery in 100 seconds.
-	 // Every machine process happens every 2 seconds. So, we should have it do 5 charge every second. So 10 charge a process.
-	 // Tier 3 is commonly availabe. Tier 4/5 is much harder to get.
-	 // Applying a straight rating * X resultes in either being too strong early or too weak late. So we do a switch depending on rating.
-	 // This means for a base 500 battery: Tier 1 takes 100 seconds, tier 2 takes 40 seconds, tier 3 takes 20 seconds, tier 4 takes 4 seconds, tier 5 takes 1 second.
-	 // Tier 4 and 5 may seem overkill, but when you get to the REALLY strong batteries, you'll want them.
+	// Rating goes from 1 to 5 and this bad boy has 5 caps. Let's say we want a normal one to charge a battery in 100 seconds.
+	// Every machine process happens every 2 seconds. So, we should have it do 5 charge every second. So 10 charge a process.
+	// Tier 3 is commonly availabe. Tier 4/5 is much harder to get.
+	// Applying a straight rating * X resultes in either being too strong early or too weak late. So we do a switch depending on rating.
+	// This means for a base 500 battery: Tier 1 takes 100 seconds, tier 2 takes 40 seconds, tier 3 takes 20 seconds, tier 4 takes 4 seconds, tier 5 takes 1 second.
+	// Tier 4 and 5 may seem overkill, but when you get to the REALLY strong batteries, you'll want them.
 	for(var/obj/item/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/stock_parts/capacitor))
 			switch(P.rating)
@@ -297,138 +297,3 @@
 				inserted_battery.battery_effect.ToggleActivate()
 			src.visible_message(span_bold("[name]") + " states, \"Battery dump completed.\"")
 			icon_state = "incubator"
-/* //This is old and unused.
-/obj/machinery/artifact_harvester/Topic(href, href_list)
-
-	if (href_list["harvest"])
-		if(!inserted_battery)
-			src.visible_message(span_bold("[src]") + " states, \"Cannot harvest. No battery inserted.\"")
-
-		else if(inserted_battery.stored_charge >= inserted_battery.capacity)
-			src.visible_message(span_bold("[src]") + " states, \"Cannot harvest. battery is full.\"")
-
-		else
-
-			//locate artifact on analysis pad
-			cur_artifact = null
-			var/articount = 0
-			var/obj/machinery/artifact/analysed
-			for(var/obj/A in get_turf(owned_scanner))
-				analysed = A
-				articount++
-
-			if(articount <= 0)
-				var/message = span_bold("[src]") + " states, \"Cannot harvest. No noteworthy energy signature isolated.\""
-				src.visible_message(message)
-
-			else if(analysed && analysed.being_used)
-				src.visible_message(span_bold("[src]") + " states, \"Cannot harvest. Source already being harvested.\"")
-
-			else
-				if(articount > 1)
-					state("Cannot harvest. Too many artifacts on the pad.")
-				else if(analysed)
-					cur_artifact = analysed
-
-					//if both effects are active, we can't harvest either
-					var/datum/component/artifact_master/ScannedMaster = analysed.GetComponent(/datum/component/artifact_master)
-					if(ScannedMaster && istype(ScannedMaster))
-						active_effects = ScannedMaster.get_all_effects()
-					var/list/active_effects = ScannedMaster.artifact_id.get_active_effects()
-
-					if(active_effects.len > 1)
-						src.visible_message(span_bold("[src]") + " states, \"Cannot harvest. Source is emitting conflicting energy signatures.\"")
-					else if(!active_effects.len)
-						src.visible_message(span_bold("[src]") + " states, \"Cannot harvest. No energy emitting from source.\"")
-
-					else
-						//see if we can clear out an old effect
-						//delete it when the ids match to account for duplicate ids having different effects
-						if(inserted_battery.battery_effect && inserted_battery.stored_charge <= 0)
-							qdel(inserted_battery.battery_effect)
-							inserted_battery.battery_effect = null
-
-						//
-						var/datum/artifact_effect/source_effect
-						var/datum/artifact_effect/active_effect = active_effects[1]
-
-						//if we already have charge in the battery, we can only recharge it from the source artifact
-						if(inserted_battery.stored_charge > 0)
-							var/battery_matches_primary_id = 0
-							if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == cur_artifact.artifact_master.artifact_id)
-								battery_matches_primary_id = 1
-							if(battery_matches_primary_id && active_effect.activated)
-								//we're good to recharge the primary effect!
-								source_effect = active_effect
-
-							if(!source_effect)
-								src.visible_message(span_bold("[src]") + " states, \"Cannot harvest. Battery is charged with a different energy signature.\"")
-						else
-							//we're good to charge either
-							if(active_effect.activated)
-								//charge the primary effect
-								source_effect = active_effect
-
-						if(source_effect)
-							harvesting = 1
-							update_use_power(USE_POWER_ACTIVE)
-							cur_artifact.anchored = 1
-							cur_artifact.being_used = 1
-							icon_state = "incubator_on"
-							var/message = span_bold("[src]") + " states, \"Beginning energy harvesting.\""
-							src.visible_message(message)
-							last_process = world.time
-
-							//duplicate the artifact's effect datum
-							if(!inserted_battery.battery_effect)
-								var/effecttype = source_effect.type
-								var/datum/artifact_effect/E = new effecttype(inserted_battery)
-
-								//duplicate it's unique settings
-								for(var/varname in list("chargelevelmax","artifact_id","effect","effectrange","trigger"))
-									E.vars[varname] = source_effect.vars[varname]
-
-								//copy the new datum into the battery
-								inserted_battery.battery_effect = E
-								inserted_battery.stored_charge = 0
-
-	if (href_list["stopharvest"])
-		if(harvesting)
-			if(harvesting < 0 && inserted_battery.battery_effect && inserted_battery.battery_effect.activated)
-				inserted_battery.battery_effect.ToggleActivate()
-			harvesting = 0
-			cur_artifact.anchored = 0
-			cur_artifact.being_used = 0
-			cur_artifact = null
-			src.visible_message(span_bold("[name]") + " states, \"Energy harvesting interrupted.\"")
-			icon_state = "incubator"
-
-	if (href_list["ejectbattery"])
-		src.inserted_battery.loc = src.loc
-		src.inserted_battery = null
-
-	if (href_list["drainbattery"])
-		if(inserted_battery)
-			if(inserted_battery.battery_effect && inserted_battery.stored_charge > 0)
-				if(tgui_alert(usr, "This action will dump all charge, safety gear is recommended before proceeding","Warning",list("Continue","Cancel")) == "Continue")
-					if(!inserted_battery.battery_effect.activated)
-						inserted_battery.battery_effect.ToggleActivate(1)
-					last_process = world.time
-					harvesting = -1
-					update_use_power(USE_POWER_ACTIVE)
-					icon_state = "incubator_on"
-					var/message = span_bold("[src]") + " states, \"Warning, battery charge dump commencing.\""
-					src.visible_message(message)
-			else
-				var/message = span_bold("[src]") + " states, \"Cannot dump energy. Battery is drained of charge already.\""
-				src.visible_message(message)
-		else
-			var/message = span_bold("[src]") + " states, \"Cannot dump energy. No battery inserted.\""
-			src.visible_message(message)
-
-	if(href_list["close"])
-		usr << browse(null, "window=artharvester")
-		usr.unset_machine(src)
-
-	updateDialog()
-*/

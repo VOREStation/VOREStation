@@ -48,11 +48,11 @@
 	current_filter = filter
 
 /datum/tgui_module/player_notes/proc/open_legacy()
-	var/datum/admins/A = admin_datums[usr.ckey]
+	var/datum/admins/A = GLOB.admin_datums[usr.ckey]
 	A.PlayerNotesLegacy()
 
 /datum/tgui_module/player_notes/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/player_notes/tgui_fallback(payload)
 	if(..())
@@ -107,13 +107,13 @@
 	var/key = null
 
 /datum/tgui_module/player_notes_info/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/player_notes_info/tgui_fallback(payload)
 	if(..())
 		return TRUE
 
-	var/datum/admins/A = admin_datums[usr.ckey]
+	var/datum/admins/A = GLOB.admin_datums[usr.ckey]
 	A.show_player_info_legacy(key)
 
 /datum/tgui_module/player_notes_info/tgui_act(action, params, datum/tgui/ui)
@@ -121,24 +121,31 @@
 		return TRUE
 
 	switch(action)
+		if("cahngekey")
+			key = sanitize(params["ckey"])
+			return TRUE
+
 		if("add_player_info")
 			var/key = params["ckey"]
 			var/add = tgui_input_text(ui.user, "Write your comment below.", "Add Player Info", multiline = TRUE, prevent_enter = TRUE)
-			if(!add) return
+			if(!add)
+				return FALSE
 
 			notes_add(key,add,ui.user)
+			return TRUE
 
 		if("remove_player_info")
 			var/key = params["ckey"]
 			var/index = params["index"]
 
 			notes_del(key, index)
+			return TRUE
 
 /datum/tgui_module/player_notes_info/tgui_data(mob/user)
 	var/list/data = list()
 
 	if(!key)
-		return
+		return data
 
 	var/p_age = "unknown"
 	for(var/client/C in GLOB.clients)
@@ -238,7 +245,9 @@
 			if(index == page)
 				dat = span_bold(dat)
 
-	usr << browse("<html>[dat]</html>", "window=player_notes;size=400x400")
+	var/datum/browser/popup = new(usr, "player_notes", "Admin Playernotes", 480, 480)
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/proc/player_has_info_legacy(var/key as text)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
@@ -253,8 +262,7 @@
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
-	var/dat = "<html><head><title>Info on [key]</title></head>"
-	dat += "<body>"
+	var/dat = ""
 
 	var/p_age = "unknown"
 	for(var/client/C in GLOB.clients)
@@ -279,7 +287,7 @@
 			if(!I.rank)
 				I.rank = "N/A"
 				update_file = 1
-			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
+			dat += span_green("[I.content]") + " " + span_italics("by [I.author] ([I.rank])") + " on " + span_italics(span_blue("[I.timestamp]")) + " "
 			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
 				dat += "<A href='byond://?src=\ref[src];[HrefToken()];remove_player_info_legacy=[key];remove_index=[i]'>Remove</A>"
 			dat += "<br><br>"
@@ -288,15 +296,17 @@
 	dat += "<br>"
 	dat += "<A href='byond://?src=\ref[src];[HrefToken()];add_player_info_legacy=[key]'>Add Comment</A><br>"
 
-	dat += "</body></html>"
-	usr << browse(dat, "window=adminplayerinfo;size=480x480")
+	var/datum/browser/popup = new(usr, "adminplayerinfo", "Admin Playerinfo", 480, 480)
+	popup.add_head_content("<title>Info on [key]</title>")
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/Topic(href, href_list)
 	..()
 
 	if(href_list["add_player_info_legacy"])
 		var/key = href_list["add_player_info_legacy"]
-		var/add = sanitize(tgui_input_text(usr, "Add Player Info (Legacy)", multiline=TRUE))
+		var/add = tgui_input_text(usr, "Add Player Info (Legacy)", max_length = MAX_MESSAGE_LEN, multiline=TRUE)
 		if(!add) return
 
 		notes_add(key,add,usr)

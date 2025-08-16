@@ -23,12 +23,9 @@
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
 
-/obj/singularity/energy_ball/New(loc, starting_energy = 50, is_miniball = FALSE)
-	..()
-	miniball = is_miniball
-
-/obj/singularity/energy_ball/Initialize()
+/obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	. = ..()
+	miniball = is_miniball
 	if(!miniball)
 		set_light(10, 7, "#EEEEFF")
 
@@ -78,7 +75,7 @@
 	//we face the last thing we zapped, so this lets us favor that direction a bit
 	var/move_bias = dir
 	for(var/i in 0 to move_amount)
-		var/move_dir = pick(global.alldirs + move_bias) //ensures large-ball teslas don't just sit around
+		var/move_dir = pick(GLOB.alldirs + move_bias) //ensures large-ball teslas don't just sit around
 		if(target && prob(10))
 			move_dir = get_dir(src,target)
 		var/turf/T = get_step(src, move_dir)
@@ -118,7 +115,7 @@
 	if(!loc)
 		return
 	var/obj/singularity/energy_ball/EB = new(loc, 0, TRUE)
-	all_singularities -= EB //why are these miniballs even singularities in the first place, they don't do anything
+	GLOB.all_singularities -= EB //why are these miniballs even singularities in the first place, they don't do anything
 
 	EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 	var/icon/I = icon(icon,icon_state,dir)
@@ -156,7 +153,7 @@
 
 
 /obj/singularity/energy_ball/proc/dust_mob(mob/living/L)
-	if(!istype(L) || L.incorporeal_move)
+	if(!istype(L) || L.is_incorporeal())
 		return
 	// L.dust() - Changing to do fatal elecrocution instead
 	L.electrocute_act(500, src, def_zone = BP_TORSO)
@@ -227,7 +224,9 @@
 		else if(isliving(A))
 			var/dist = get_dist(source, A)
 			var/mob/living/L = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.status_flags & GODMODE))
+			if(SEND_SIGNAL(L, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
+				continue
+			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD)
 				closest_mob = L
 				closest_atom = A
 				closest_dist = dist

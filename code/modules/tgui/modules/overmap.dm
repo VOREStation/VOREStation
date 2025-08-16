@@ -85,6 +85,7 @@
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/unlook(var/mob/user)
+	SIGNAL_HANDLER
 	user.reset_view()
 	user.set_viewsize() // reset to default
 	if(map_view_used)
@@ -180,7 +181,7 @@
 	var/obj/machinery/shipsensors/sensors
 
 /datum/tgui_module/ship/fullmonty/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/tgui_module/ship/fullmonty/New(host, obj/effect/overmap/visitable/ship/new_linked)
 	. = ..()
@@ -198,7 +199,7 @@
 			R.fields["y"] = S.y
 			known_sectors[S.name] = R
 	// SENSORS
-	for(var/obj/machinery/shipsensors/S in global.machines)
+	for(var/obj/machinery/shipsensors/S in GLOB.machines)
 		if(linked.check_ownership(S))
 			sensors = S
 			break
@@ -336,7 +337,6 @@
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
 			var/sec_name = tgui_input_text(ui.user, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
-			sec_name = sanitize(sec_name,MAX_NAME_LEN)
 			if(!sec_name)
 				sec_name = "Sector #[known_sectors.len]"
 			R.fields["name"] = sec_name

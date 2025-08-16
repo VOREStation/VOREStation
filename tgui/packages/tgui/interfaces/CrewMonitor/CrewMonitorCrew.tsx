@@ -79,7 +79,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
                   fluid
                   value={nameSearch}
                   placeholder="Search for Name..."
-                  onChange={(e, val) => setNameSearch(val)}
+                  onChange={(val) => setNameSearch(val)}
                 />
               </Stack.Item>
               <Stack.Item>
@@ -206,10 +206,10 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
                       })
                     }
                   >
-                    {cm.area + ' (' + cm.x + ', ' + cm.y + ')'}
+                    {`${cm.area} (${cm.x}, ${cm.y})`}
                   </Button>
                 ) : (
-                  cm.area + ' (' + cm.x + ', ' + cm.y + ', ' + cm.z + ')'
+                  `${cm.area} (${cm.x}, ${cm.y}, ${cm.z})`
                 )
               ) : (
                 'Not Available'

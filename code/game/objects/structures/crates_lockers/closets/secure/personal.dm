@@ -9,7 +9,7 @@
 		/obj/item/radio/headset)
 	*/
 
-/obj/structure/closet/secure_closet/personal/Initialize()
+/obj/structure/closet/secure_closet/personal/Initialize(mapload)
 	/* //VOREStation Removal
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack

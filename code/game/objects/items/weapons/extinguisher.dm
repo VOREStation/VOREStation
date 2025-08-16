@@ -43,14 +43,14 @@
 	icon_state = "atmos_extinguisher0"
 	item_state = "atmos_extinguisher"
 	throwforce = 12
+	force = 12
 	w_class = ITEMSIZE_LARGE
-	force = 3.0
 	max_water = 600
 	spray_particles = 3
 	sprite_name = "atmos_extinguisher"
 	rand_overlays = 0
 
-/obj/item/extinguisher/Initialize()
+/obj/item/extinguisher/Initialize(mapload)
 	create_reagents(max_water)
 	reagents.add_reagent(REAGENT_ID_FIREFOAM, max_water)
 	if(rand_overlays)

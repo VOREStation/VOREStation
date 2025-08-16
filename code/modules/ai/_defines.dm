@@ -5,7 +5,7 @@
 #define AI_SMART		3 // Will do more processing to be a little smarter, like not walking while confused if it could risk stepping randomly onto a bad tile.
 
 //#define ai_log(M,V)	if(debug_ai) ai_log_output(M,V)
-#define ai_log(M,V)
+#define ai_log(M,V) // If you restore this, also remove the extra pass() calls in ai_holder_movement
 
 // Logging level defines.
 #define AI_LOG_OFF		0 // Don't show anything.

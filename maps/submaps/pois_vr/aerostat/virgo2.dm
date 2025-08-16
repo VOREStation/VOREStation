@@ -30,11 +30,6 @@
 #include "SamplePocket.dmm"
 #endif
 
-/datum/map_template/virgo2
-	name = "Surface Content - Virgo 2"
-	desc = "For seeding submaps on Virgo 2"
-	allow_duplicates = FALSE
-
 /datum/map_template/virgo2/Flake
 	name = "Forest Lake"
 	desc = "A serene lake sitting amidst the surface."

@@ -1,5 +1,5 @@
 import { binaryInsertWith } from 'common/collections';
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -132,12 +132,7 @@ export const GamePreferencesPage = (props) => {
       )}
       <Box position="absolute" right={4} top={4} style={{ zIndex: '100' }}>
         {searchVisible && (
-          <Input
-            width={16}
-            value={search}
-            onInput={(e, val) => setSearch(val)}
-            onChange={(e, val) => setSearch(val)}
-          />
+          <Input width={16} value={search} onChange={(val) => setSearch(val)} />
         )}
         <Button
           selected={searchVisible}

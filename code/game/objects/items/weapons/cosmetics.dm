@@ -26,7 +26,8 @@
 /obj/item/lipstick/random
 	name = "lipstick"
 
-/obj/item/lipstick/random/New()
+/obj/item/lipstick/random/Initialize(mapload)
+	. = ..()
 	colour = pick("red","purple","jade","black")
 	name = "[colour] lipstick"
 
@@ -50,15 +51,15 @@
 			return
 		if(H == user)
 			user.visible_message(span_notice("[user] does their lips with \the [src]."), \
-								 span_notice("You take a moment to apply \the [src]. Perfect!"))
+									span_notice("You take a moment to apply \the [src]. Perfect!"))
 			H.lip_style = colour
 			H.update_icons_body()
 		else
 			user.visible_message(span_warning("[user] begins to do [H]'s lips with \the [src]."), \
-								 span_notice("You begin to apply \the [src]."))
+									span_notice("You begin to apply \the [src]."))
 			if(do_after(user, 20, H))	//user needs to keep their active hand, H does not.
 				user.visible_message(span_notice("[user] does [H]'s lips with \the [src]."), \
-									 span_notice("You apply \the [src]."))
+										span_notice("You apply \the [src]."))
 				H.lip_style = colour
 				H.update_icons_body()
 	else
@@ -99,7 +100,7 @@
 	icon_state = "trinketbox"
 	var/datum/tgui_module/appearance_changer/mirror/coskit/M
 
-/obj/item/makeover/Initialize()
+/obj/item/makeover/Initialize(mapload)
 	. = ..()
 	M = new(src, null)
 
@@ -111,3 +112,7 @@
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(istype(E))
 			E.change_eye_color()
+
+/obj/item/makeover/Destroy()
+	qdel(M)
+	. = ..()

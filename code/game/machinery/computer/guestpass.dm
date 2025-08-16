@@ -59,7 +59,7 @@
 			expired = 1
 	return ..()
 
-/obj/item/card/id/guest/Initialize()
+/obj/item/card/id/guest/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	update_icon()
@@ -197,7 +197,7 @@
 			if(nam)
 				giv_name = nam
 		if("reason")
-			var/reas = sanitize(tgui_input_text(ui.user, "Reason why pass is issued", "Reason", reason))
+			var/reas = tgui_input_text(ui.user, "Reason why pass is issued", "Reason", reason, MAX_MESSAGE_LEN)
 			if(reas)
 				reason = reas
 		if("duration")

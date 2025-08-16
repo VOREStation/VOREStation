@@ -43,7 +43,10 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 	allow_mind_transfer = TRUE
-
+	can_be_drop_prey = FALSE
+	species_sounds = "Feline"
+	pain_emote_1p = list("yowl", "growl")
+	pain_emote_3p = list("yowls", "growls")
 // Activate Noms!
 /mob/living/simple_mob/vore/aggressive/panther
 	vore_active = 1
@@ -62,9 +65,7 @@
 /mob/living/simple_mob/vore/aggressive/panther/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
-/mob/living/simple_mob/vore/aggressive/panther/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/aggressive/panther/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

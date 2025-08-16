@@ -11,7 +11,9 @@
 
 #define LAST_BUILDMODE		10
 
-/proc/togglebuildmode(mob/M as mob in player_list)
+GLOBAL_LIST_EMPTY(active_buildmode_holders)
+
+/proc/togglebuildmode(mob/M as mob in GLOB.player_list)
 	set name = "Toggle Build Mode"
 	set category = "Special Verbs"
 	if(M.client)
@@ -20,7 +22,7 @@
 			M.client.buildmode = 0
 			M.client.show_popup_menus = 1
 			M.plane_holder.set_vis(VIS_BUILDMODE, FALSE)
-			for(var/obj/effect/bmode/buildholder/H)
+			for(var/obj/effect/bmode/buildholder/H in GLOB.active_buildmode_holders)
 				if(H.cl == M.client)
 					qdel(H)
 		else
@@ -107,7 +109,9 @@
 							Middle Mouse Button on turf/obj        = Capture object type<br>\
 							Left Mouse Button on turf/obj          = Place objects<br>\
 							Right Mouse Button                     = Delete objects<br>\
-							Mouse Button + ctrl                    = Copy object type<br><br>\
+							Mouse Button + ctrl                    = Copy object type<br>\
+							Left Mouse Button + alt                = Open View Variable<br>\
+							Right Mouse Button + alt               = Call Proc<br><br>\
 							Use the button in the upper left corner to<br>\
 							change the direction of built objects.<br>\
 							***********************************************************"))
@@ -205,7 +209,12 @@
 	var/copied_faction = null
 	var/warned = 0
 
+/obj/effect/bmode/buildholder/Initialize(mapload)
+	. = ..()
+	GLOB.active_buildmode_holders += src
+
 /obj/effect/bmode/buildholder/Destroy()
+	GLOB.active_buildmode_holders -= src
 	qdel(builddir)
 	builddir = null
 	qdel(buildhelp)
@@ -275,7 +284,7 @@
 				var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "virus", "viruses", "cuffed", "ka", "last_eaten", "urine")
 
 				master.buildmode.varholder = tgui_input_text(usr,"Enter variable name:" ,"Name", "name")
-				if(master.buildmode.varholder in locked && !check_rights(R_DEBUG,0))
+				if((master.buildmode.varholder in locked) && !check_rights(R_DEBUG,0))
 					return 1
 				var/thetype = tgui_input_list(usr,"Select variable type:", "Type", list("text","number","mob-reference","obj-reference","turf-reference"))
 				if(!thetype) return 1
@@ -285,7 +294,7 @@
 					if("number")
 						master.buildmode.valueholder = tgui_input_number(usr,"Enter variable value:" ,"Value", 123)
 					if("mob-reference")
-						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", mob_list)
+						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", GLOB.mob_list)
 					if("obj-reference")
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 					if("turf-reference")
@@ -405,19 +414,23 @@
 
 
 		if(BUILDMODE_ADVANCED)
-			if(pa.Find("left") && !pa.Find("ctrl"))
+			if(pa.Find("left") && !pa.Find("ctrl") && !pa.Find("alt"))
 				if(ispath(holder.buildmode.objholder,/turf))
 					var/turf/T = get_turf(object)
 					T.ChangeTurf(holder.buildmode.objholder)
 				else if(ispath(holder.buildmode.objholder))
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
 					A.set_dir(holder.builddir.dir)
-			else if(pa.Find("right"))
+			else if(pa.Find("right") && !pa.Find("alt"))
 				if(isobj(object))
 					qdel(object)
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
 				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
+			else if(pa.Find("left") && pa.Find("alt"))
+				user.client.debug_variables(object)
+			else if(pa.Find("right") && pa.Find("alt"))
+				SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/call_proc_datum, object)
 			if(pa.Find("middle"))
 				holder.buildmode.objholder = text2path("[object.type]")
 				if(holder.buildmode.objsay)
@@ -575,7 +588,7 @@
 						AI.wander = FALSE
 				if(pa.Find("alt") && isatom(object))
 					to_chat(user, span_notice("Adding [object] to Entity Narrate List!"))
-					user.client.add_mob_for_narration(object)
+					SSadmin_verbs.dynamic_invoke_verb(user.client, /datum/admin_verb/add_mob_for_narration, object)
 
 
 			if(pa.Find("right"))
@@ -600,7 +613,7 @@
 							AI.give_target(A)
 							i++
 						to_chat(user, span_notice("Commanded [i] mob\s to attack \the [A]."))
-						var/image/orderimage = image(buildmode_hud,A,"ai_targetorder")
+						var/image/orderimage = image(GLOB.buildmode_hud,A,"ai_targetorder")
 						orderimage.plane = PLANE_BUILDMODE
 						flick_overlay(orderimage, list(user.client), 8, TRUE)
 						return
@@ -627,7 +640,7 @@
 					if(j)
 						message += "[j] mob\s to follow \the [L]."
 					to_chat(user, span_notice(message))
-					var/image/orderimage = image(buildmode_hud,L,"ai_targetorder")
+					var/image/orderimage = image(GLOB.buildmode_hud,L,"ai_targetorder")
 					orderimage.plane = PLANE_BUILDMODE
 					flick_overlay(orderimage, list(user.client), 8, TRUE)
 					return
@@ -646,7 +659,7 @@
 							AI.give_destination(T, 1, pa.Find("shift")) // If shift is held, the mobs will not stop moving to attack a visible enemy.
 							told++
 					to_chat(user, span_notice("Commanded [told] mob\s to move to \the [T], and manually placed [forced] of them."))
-					var/image/orderimage = image(buildmode_hud,T,"ai_turforder")
+					var/image/orderimage = image(GLOB.buildmode_hud,T,"ai_turforder")
 					orderimage.plane = PLANE_BUILDMODE
 					flick_overlay(orderimage, list(user.client), 8, TRUE)
 					return
@@ -658,12 +671,10 @@
 				return
 			if(pa.Find("left") && !pa.Find("ctrl"))
 				if(ispath(holder.buildmode.objholder))
-					var/obj/effect/falling_effect/FE = new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder)
-					FE.crushing = FALSE
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, FALSE)
 			else if(pa.Find("right"))
 				if(ispath(holder.buildmode.objholder))
-					var/obj/effect/falling_effect/FE = new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder)
-					FE.crushing = TRUE
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, TRUE)
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
 				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
@@ -701,7 +712,7 @@
 			var/z = c1.z //Eh
 
 			var/i = 0
-			for(var/mob/living/L in living_mob_list)
+			for(var/mob/living/L in GLOB.living_mob_list)
 				if(L.z != z || L.client)
 					continue
 				if(L.x >= low_x && L.x <= hi_x && L.y >= low_y && L.y <= hi_y)
@@ -820,12 +831,12 @@
 /proc/detect_room_buildmode(var/turf/first, var/allowedAreas = AREA_SPACE)
 	if(!istype(first))
 		return
-	var/list/turf/found = new
+	var/list/turf/found = list()
 	var/list/turf/pending = list(first)
 	while(pending.len)
 		var/turf/T = pending[1]
 		pending -= T
-		for (var/dir in cardinal)
+		for (var/dir in GLOB.cardinal)
 			var/turf/NT = get_step(T,dir)
 			if (!isturf(NT) || (NT in found) || (NT in pending))
 				continue
@@ -855,11 +866,11 @@
 	if(A.outdoors)
 		return AREA_SPACE
 
-	for (var/type in BUILDABLE_AREA_TYPES)
+	for (var/type in GLOB.BUILDABLE_AREA_TYPES)
 		if ( istype(A,type) )
 			return AREA_SPACE
 
-	for (var/type in SPECIALS)
+	for (var/type in GLOB.SPECIALS)
 		if ( istype(A,type) )
 			return AREA_SPECIAL
 	return AREA_STATION

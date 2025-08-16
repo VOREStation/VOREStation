@@ -1,15 +1,17 @@
 /obj/effect/falling_effect
 	name = DEVELOPER_WARNING_NAME
 	desc = "no data"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	anchored = TRUE
 	density = FALSE
 	unacidable = TRUE
 	var/falling_type = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
 	var/crushing = TRUE
 
-/obj/effect/falling_effect/Initialize(mapload, type)
+/obj/effect/falling_effect/Initialize(mapload, type, var/crushing_type)
 	..()
+	if(!isnull(crushing_type))
+		crushing = crushing_type
 	if(type)
 		falling_type = type
 	return INITIALIZE_HINT_LATELOAD

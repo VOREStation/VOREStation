@@ -9,7 +9,7 @@
 	var/datum/pipe_network/network1
 	var/datum/pipe_network/network2
 
-/obj/machinery/atmospherics/binary/Initialize()
+/obj/machinery/atmospherics/binary/Initialize(mapload)
 	. = ..()
 
 	air1 = new

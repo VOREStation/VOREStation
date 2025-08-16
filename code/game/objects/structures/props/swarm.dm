@@ -22,7 +22,7 @@
 			return TRUE
 	return ..()
 
-/obj/structure/cult/pylon/swarm/Initialize()
+/obj/structure/cult/pylon/swarm/Initialize(mapload)
 	. = ..()
 	active_beams = list()
 
@@ -30,7 +30,7 @@
 	for(var/datum/beam/B in active_beams)
 		QDEL_NULL(B)
 	active_beams = null
-	..()
+	. = ..()
 
 /obj/structure/cult/pylon/swarm/pylonhit(var/damage)
 	if(!isbroken)

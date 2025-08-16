@@ -15,15 +15,16 @@
 	var/obj/scanned_object
 	var/report_num = 0
 	var/list/priority_objects = list(/obj/machinery/artifact,
-									 /obj/machinery/auto_cloner,
-									 /obj/machinery/power/supermatter,
-									 /obj/structure/constructshell,
-									 /obj/machinery/giga_drill,
-									 /obj/structure/cult/pylon,
-									 /obj/machinery/replicator,
-									 /obj/structure/crystal)
+										/obj/machinery/auto_cloner,
+										/obj/machinery/power/supermatter,
+										/obj/structure/constructshell,
+										/obj/machinery/giga_drill,
+										/obj/structure/cult/pylon,
+										/obj/machinery/replicator,
+										/obj/structure/crystal
+									)
 
-/obj/machinery/artifact_analyser/Initialize()
+/obj/machinery/artifact_analyser/Initialize(mapload)
 	. = ..()
 	reconnect_scanner()
 

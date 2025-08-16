@@ -17,14 +17,14 @@
 		"Jelly" = /obj/item/reagent_containers/food/snacks/variable/jelly
 		)
 
-/obj/machinery/appliance/mixer/candy/Initialize()
+/obj/machinery/appliance/mixer/candy/Initialize(mapload)
 	. = ..()
-	
+
 	candymaker_loop = new(list(src), FALSE)
-	
+
 /obj/machinery/appliance/mixer/candy/Destroy()
 	. = ..()
-	
+
 	QDEL_NULL(candymaker_loop)
 
 /obj/machinery/appliance/mixer/candy/update_icon()

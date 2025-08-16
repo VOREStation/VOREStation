@@ -41,7 +41,7 @@
 /obj/item/modular_computer/proc/install_default_programs()
 	return 1
 
-/obj/item/modular_computer/Initialize()
+/obj/item/modular_computer/Initialize(mapload)
 	if(!overlay_icon)
 		overlay_icon = icon
 	START_PROCESSING(SSobj, src)
@@ -119,6 +119,7 @@
 		else
 			to_chat(user, "You press the power button and start up \the [src]")
 		enable_computer(user)
+		playsound(src, 'sound/machines/console_power_on.ogg', 60, 1, volume_channel = VOLUME_CHANNEL_MACHINERY)
 
 	else // Unpowered
 		if(issynth)
@@ -132,9 +133,17 @@
 		active_program.kill_program(forced)
 		active_program = null
 	var/mob/user = usr
-	if(user && istype(user))
-		tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+	addtimer(CALLBACK(src, PROC_REF(delayed_reopen_ui), user), 1, TIMER_DELETE_ME)
 	update_icon()
+
+/obj/item/modular_computer/proc/delayed_reopen_ui(var/mob/user)
+	// Re-open the UI on this computer. It should show the main screen now.
+	// Expected from kill_program()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!user || !istype(user))
+		return
+	tgui_interact(user)
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(var/specific_action = 0)

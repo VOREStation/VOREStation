@@ -1,65 +1,45 @@
-@use 'sass:color';
-@use 'sass:meta';
-
-@use '../colors.scss' with (
-  $primary: hsl(0, 0%, 0%),
-  $label: hsl(0, 0%, 0%),
-  $average: hsl(0, 0%, 0%)
-);
-@use '../base.scss' with (
-  $color-bg: hsl(85, 11%, 43%),
-  $color-bg-grad-spread: 0%,
-  $color-fg: hsl(0, 0%, 0%),
-  $border-radius: 0
-);
-
-// A fat warning to anyone who wants to use this: this only half works.
-// It was made almost purely for the pda ui, and requires a good amount of manual hacks to get it working as intended.
-.theme-pda-retro {
-  // Atomic classes
-  @include meta.load-css('../atomic/color.scss');
+.theme-pda_retro:root {
+  // Base
+  --color-base: hsl(85, 11%, 43%);
+  --color-primary: hsl(0, 0%, 0%);
+  --color-label: hsl(0, 0%, 0%);
+  --color-average: hsl(0, 0%, 0%);
+  --base-gradient-spread: 0;
+  --color-text: var(--color-black);
+  --border-radius-unit: 0;
 
   // Components
-  @include meta.load-css(
-    '~tgui-core/styles/components/Button.scss',
-    $with: (
-      'color-default': hsl(52, 40%, 85%),
-      'color-disabled': hsl(0, 0%, 31%),
-      'color-selected': hsl(0, 90%, 32%),
-      'color-caution': hsl(30, 91%, 39%),
-      'color-danger': hsl(61, 100%, 31%)
-    )
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/ProgressBar.scss',
-    $with: ('background-color': hsla(0, 0%, 0%, 0.502))
-  );
-  @include meta.load-css(
-    '~tgui-core/styles/components/Section.scss',
-    $with: ('background-color': hsla(0, 0%, 0%, 0.102))
-  );
+  --button-background-default: hsl(52, 40%, 85%);
+  --button-background-selected: hsl(0, 90%, 32%);
+  --button-background-caution: hsl(30, 91%, 39%);
+  --button-background-danger: hsl(61, 100%, 31%);
+
+  --progress-bar-background: hsla(0, 0%, 0%, 0.502);
+
+  --color-section: hsla(0, 0%, 0%, 0.102);
 
   // Interfaces
-  @include meta.load-css(
-    '../interfaces/TinderMessaging.scss',
-    $with: (
-      'color-sent': hsl(86, 13%, 62%),
-      'color-received': hsl(55, 30%, 60%)
-    )
-  );
-
-  // Layouts
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css(
-    '../layouts/TitleBar.scss',
-    $with: ('background-color': hsl(0, 0%, 21%))
-  );
+  --tinder-sent-color: hsl(86, 13%, 62%);
+  --tinder-received-color: hsl(55, 30%, 60%);
 
   .Button {
     color: #161613;
     background-color: hsl(83, 11%, 33%);
     border: 1px solid hsl(0, 0%, 0%);
+
+    &-disabled {
+      color: hsl(0, 0%, 31%);
+      font-family: var(--font-family-mono);
+
+      &:hover {
+        color: hsl(0, 0%, 67%);
+      }
+    }
+
+    &--selected {
+      color: var(--color-white);
+      border-style: inset;
+    }
   }
 
   .Layout__content {

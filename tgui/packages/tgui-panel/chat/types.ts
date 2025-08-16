@@ -1,5 +1,5 @@
 export type message = {
-  node?: Element | string;
+  node?: HTMLElement | string;
   type: string;
   text?: string;
   html?: string;
@@ -17,4 +17,10 @@ export type Page = {
   unreadCount: number;
   hideUnreadCount: boolean;
   createdAt: number;
+};
+
+export type NewPageData = {
+  isMain: boolean;
+  name: string;
+  acceptedTypes: Record<string, boolean>;
 };

@@ -10,7 +10,7 @@
 	var/locked = 1
 	var/emagged = 0
 
-/obj/item/circuitboard/security/Initialize()
+/obj/item/circuitboard/security/Initialize(mapload)
 	. = ..()
 	network = using_map.station_networks
 
@@ -23,9 +23,9 @@
 	build_path = /obj/machinery/computer/security/engineering
 	req_access = list()
 
-/obj/item/circuitboard/security/engineering/Initialize()
+/obj/item/circuitboard/security/engineering/Initialize(mapload)
 	. = ..()
-	network = engineering_networks
+	network = GLOB.engineering_networks
 
 /obj/item/circuitboard/security/mining
 	name = T_BOARD("mining camera monitor")
@@ -39,7 +39,7 @@
 	board_type = new /datum/frame/frame_types/display
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
-/obj/item/circuitboard/security/telescreen/entertainment/Initialize()
+/obj/item/circuitboard/security/telescreen/entertainment/Initialize(mapload)
 	. = ..()
 	network = NETWORK_THUNDER
 
@@ -75,7 +75,7 @@
 			to_chat(user, span_warning("Circuit controls are locked."))
 			return
 		var/existing_networks = jointext(network,",")
-		var/input = sanitize(tgui_input_text(user, "Which networks would you like to connect this camera console circuit to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
+		var/input = tgui_input_text(user, "Which networks would you like to connect this camera console circuit to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks, MAX_MESSAGE_LEN)
 		if(!input)
 			to_chat(user, "No input found please hang up and try your call again.")
 			return

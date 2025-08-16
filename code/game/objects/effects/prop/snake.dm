@@ -6,7 +6,7 @@
 
 	icon_state = "arrow_omni"
 
-	invisibility = 100
+	invisibility = INVISIBILITY_MAXIMUM
 
 // The atom which created this.
 	var/atom/movable/creator
@@ -22,14 +22,13 @@
 // Is the snake hunting a specific atom? (Will always try to meander toward this target.)
 	var/atom/hunting
 
-/obj/effect/temporary_effect/pulse/snake/New(var/turf/T, var/atom/hunt_target, var/atom/Creator)
+/obj/effect/temporary_effect/pulse/snake/Initialize(mapload, var/atom/hunt_target, var/atom/Creator)
+	. = ..()
 	if(hunt_target)
 		hunting = hunt_target
 
 	if(Creator)
 		creator = Creator
-
-	..()
 
 /obj/effect/temporary_effect/pulse/snake/pulse_loop()	// Override needed unfortunately to handle the possibility of not finding a target turf.
 	set waitfor = FALSE
@@ -48,7 +47,7 @@
 	if(LAZYLEN(iterated_turfs) && iterated_turfs.len > total_turf_memory)
 		iterated_turfs.Cut(total_turf_memory + 1)
 
-	for(var/direction in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST) - turn(src.dir,180))
+	for(var/direction in GLOB.alldirs - turn(src.dir,180))
 		var/turf/T = get_step(src, direction)
 		if(T in iterated_turfs)
 			continue

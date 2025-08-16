@@ -133,7 +133,7 @@
 			else if(firer)
 				var/obj/T
 
-				if(original in target.contents && istype(original, /obj))
+				if((original in target.contents) && istype(original, /obj))
 					T = original
 
 				var/list/possible_targets = list()

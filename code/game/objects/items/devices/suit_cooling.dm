@@ -31,13 +31,13 @@
 /obj/item/suit_cooling_unit/ui_action_click(mob/user, actiontype)
 	toggle(user)
 
-/obj/item/suit_cooling_unit/Initialize()
+/obj/item/suit_cooling_unit/Initialize(mapload)
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
 
 /obj/item/suit_cooling_unit/Destroy()
-	qdel_null(cell)
+	QDEL_NULL(cell)
 	return ..()
 
 /obj/item/suit_cooling_unit/process()

@@ -13,6 +13,7 @@ import {
   Tabs,
   TextArea,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -56,63 +57,39 @@ export const MobSpawner = (props) => {
   const [sizeMultiplier, setSizeMultiplier] = useState<number>(100);
   const [amount, setAmount] = useState<number>(1);
 
-  function handleHealth(value: number) {
+  function handleHealth(value: number): void {
     data.health = value;
     renderData(value);
   }
 
-  function handleMaxHealth(value: number) {
+  function handleMaxHealth(value: number): void {
     data.max_health = value;
     renderData(value);
   }
 
-  function handleMeleeDamageLower(value: number) {
+  function handleMeleeDamageLower(value: number): void {
     data.melee_damage_lower = value;
     renderData(value);
   }
 
-  function handleMeleeDamageupper(value: number) {
+  function handleMeleeDamageupper(value: number): void {
     data.melee_damage_upper = value;
     renderData(value);
   }
 
-  function handleName(value: string) {
+  function handleName(value: string): void {
     data.path_name = value;
     renderData(value);
   }
 
-  function handleDesc(value: string) {
+  function handleDesc(value: string): void {
     data.desc = value;
     renderData(value);
   }
 
-  function handleFlavor(value: string) {
+  function handleFlavor(value: string): void {
     data.flavor_text = value;
     renderData(value);
-  }
-
-  function handleRadius(value: number) {
-    setRadius(value);
-  }
-
-  function handleX(value: number) {
-    setX(value);
-  }
-
-  function handleY(value: number) {
-    setY(value);
-  }
-
-  function handleZ(value: number) {
-    setZ(value);
-  }
-
-  function handleSizeMultiplier(value: number) {
-    setSizeMultiplier(value);
-  }
-
-  function handleAmount(value: number) {
-    setAmount(value);
   }
 
   const tabs: React.JSX.Element[] = [];
@@ -125,7 +102,7 @@ export const MobSpawner = (props) => {
       z={z}
       sizeMultiplier={sizeMultiplier}
       amount={amount}
-      onRadius={handleRadius}
+      onRadius={setRadius}
       onHealth={handleHealth}
       onMaxHealth={handleMaxHealth}
       onMeleeDamageLower={handleMeleeDamageLower}
@@ -133,11 +110,11 @@ export const MobSpawner = (props) => {
       onName={handleName}
       onDesc={handleDesc}
       onFlavor={handleFlavor}
-      onX={handleX}
-      onY={handleY}
-      onZ={handleZ}
-      onSizeMultiplier={handleSizeMultiplier}
-      onAmount={handleAmount}
+      onX={setX}
+      onY={setY}
+      onZ={setZ}
+      onSizeMultiplier={setSizeMultiplier}
+      onAmount={setAmount}
     />
   );
   tabs[1] = <VoreMobSettings />;
@@ -166,19 +143,19 @@ const GeneralMobSettings = (props: {
   z: number;
   sizeMultiplier: number;
   amount: number;
-  onRadius: Function;
-  onHealth: Function;
-  onMaxHealth: Function;
-  onMeleeDamageLower: Function;
-  onMeleeDamageUpper: Function;
-  onName: Function;
-  onDesc: Function;
-  onFlavor: Function;
-  onX: Function;
-  onY: Function;
-  onZ: Function;
-  onSizeMultiplier: Function;
-  onAmount: Function;
+  onRadius: React.Dispatch<React.SetStateAction<number>>;
+  onHealth: React.Dispatch<React.SetStateAction<number>>;
+  onMaxHealth: React.Dispatch<React.SetStateAction<number>>;
+  onMeleeDamageLower: React.Dispatch<React.SetStateAction<number>>;
+  onMeleeDamageUpper: React.Dispatch<React.SetStateAction<number>>;
+  onName: React.Dispatch<React.SetStateAction<string>>;
+  onDesc: React.Dispatch<React.SetStateAction<string>>;
+  onFlavor: React.Dispatch<React.SetStateAction<string>>;
+  onX: React.Dispatch<React.SetStateAction<number>>;
+  onY: React.Dispatch<React.SetStateAction<number>>;
+  onZ: React.Dispatch<React.SetStateAction<number>>;
+  onSizeMultiplier: React.Dispatch<React.SetStateAction<number>>;
+  onAmount: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { act, data } = useBackend<Data>();
   return (
@@ -189,7 +166,7 @@ const GeneralMobSettings = (props: {
             <Input
               fluid
               value={data.path_name}
-              onChange={(e, val: string) => props.onName(val)}
+              onChange={(val: string) => props.onName(val)}
             />
           </LabeledList.Item>
           <LabeledList.Item label="Mob Path">
@@ -206,8 +183,9 @@ const GeneralMobSettings = (props: {
               onChange={(val: number) => props.onAmount(val)}
             />
           </LabeledList.Item>
-          <LabeledList.Item label={'Size (' + props.sizeMultiplier + '%)'}>
+          <LabeledList.Item label={`Size (${props.sizeMultiplier}%)`}>
             <Knob
+              format={(value) => toFixed(value)}
               value={props.sizeMultiplier}
               minValue={50}
               maxValue={200}
@@ -361,8 +339,9 @@ const GeneralMobSettings = (props: {
             Description:
             <br />
             <TextArea
+              fluid
               height={'18rem'}
-              onChange={(e, val: string) => props.onDesc(val)}
+              onBlur={(val: string) => props.onDesc(val)}
               value={data.desc}
             />
           </Stack.Item>
@@ -370,9 +349,10 @@ const GeneralMobSettings = (props: {
             Flavor Text:
             <br />
             <TextArea
+              fluid
               height={'18rem'}
               value={data.flavor_text}
-              onChange={(e, val: string) => props.onFlavor(val)}
+              onBlur={(val: string) => props.onFlavor(val)}
             />
           </Stack.Item>
         </Stack>

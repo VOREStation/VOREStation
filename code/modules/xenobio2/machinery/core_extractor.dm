@@ -18,7 +18,7 @@
 	var/operatingcolor = "#FFFF22"
 
 
-/obj/machinery/slime/extractor/Initialize()
+/obj/machinery/slime/extractor/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	update_light_color()

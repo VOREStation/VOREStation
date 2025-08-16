@@ -36,7 +36,7 @@
 	var/standard_overlays = TRUE
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
-/obj/item/cell/Initialize()
+/obj/item/cell/Initialize(mapload)
 	. = ..()
 	c_uid = cell_uid++
 	update_icon()
@@ -146,6 +146,27 @@
 		loc.update_icon()
 	return amount_used
 
+/// Recharges the cell over time. 100 per second multiplied by the multiplier.
+/obj/item/cell/proc/gradual_charge(iterations, multiplier, sparks, mob/living/user)
+	var/charged_object = src
+	if(!multiplier || iterations <= 0)
+		return
+	if(user) //If we have a user, time to check to make sure they're adjacent/holding us!
+		if(istype(loc, /obj/machinery/power/apc)) //We're in an APC!
+			charged_object = loc
+		if(loc != user && !(user in orange(1,charged_object))) //If we have a user fed to us, they need to hold us or be in range of us.
+			if(loc.loc && !istype(loc.loc, user)) //Are we inside of something the user is holding?
+				return
+	charge += 100 * multiplier
+	if(charge > maxcharge)
+		charge = maxcharge
+	if(sparks)
+		var/T = get_turf(src)
+		new /obj/effect/effect/sparks(T)
+	update_icon()
+	iterations--
+	addtimer(CALLBACK(src, PROC_REF(gradual_charge), iterations, multiplier, sparks, user), 1 SECOND, TIMER_DELETE_ME)
+
 
 /obj/item/cell/examine(mob/user)
 	. = ..()
@@ -189,8 +210,8 @@
 		return
 	//explosion(T, 0, 1, 2, 2)
 
-	log_admin("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
-	message_admins("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
+	log_admin("LOG: Rigged power cell explosion, last touched by [forensic_data?.get_lastprint()]")
+	message_admins("LOG: Rigged power cell explosion, last touched by [forensic_data?.get_lastprint()]")
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 

@@ -1,6 +1,6 @@
+import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
 import type { ActiveBodyRecordData } from './types';
 
 export const BodyRecordModal = (props: { data: ActiveBodyRecordData }) => {
@@ -19,7 +19,7 @@ export const BodyRecordModal = (props: { data: ActiveBodyRecordData }) => {
     <Section
       backgroundColor="#252525"
       m={2}
-      title={'Body Record (' + realname + ')'}
+      title={`Body Record (${realname})`}
       buttons={
         <Button icon="times" color="red" onClick={() => act('clear_b_rec')} />
       }

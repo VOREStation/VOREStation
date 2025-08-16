@@ -4,17 +4,17 @@
 	icon = 'icons/obj/outcrop.dmi'
 	density = TRUE
 	throwpass = 1
-	climbable = TRUE
 	anchored = TRUE
 	icon_state = "outcrop"
 	var/mindrop = 5
 	var/upperdrop = 10
 	var/outcropdrop = /obj/item/ore/glass
 
-/obj/structure/outcrop/Initialize()
+/obj/structure/outcrop/Initialize(mapload)
 	. = ..()
 	if(prob(1))
 		add_overlay("[initial(icon_state)]-egg")
+	AddElement(/datum/element/climbable)
 
 /obj/structure/outcrop/diamond
 	name = "shiny outcrop"

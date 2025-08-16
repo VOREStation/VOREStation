@@ -39,7 +39,7 @@ const ResearchControllerContent = (props) => {
     null,
   );
 
-  let realServer = servers.find((s) => s.id === selectedServer);
+  const realServer = servers.find((s) => s.id === selectedServer);
 
   if (realServer) {
     return (
@@ -65,7 +65,7 @@ const ResearchControllerContent = (props) => {
 
 const ResearchServer = (props: {
   server: server;
-  setSelectedServer: Function;
+  setSelectedServer: React.Dispatch<React.SetStateAction<number | null>>;
 }) => {
   const { data } = useBackend<Data>();
   const { badmin } = data;
@@ -131,7 +131,7 @@ const ResearchServerAccess = (props: { server: server }) => {
           consoles.map((console) => (
             <LabeledList.Item
               key={console.name}
-              label={console.name + ' (' + console.loc + ')'}
+              label={`${console.name} (${console.loc})`}
             >
               <Button
                 icon={hasUploadAccess(server, console) ? 'lock-open' : 'lock'}

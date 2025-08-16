@@ -51,13 +51,14 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
+	VAR_PROTECTED/color_grading = null // Color blending for clients that enter this area
 
 /area/New()
 	// Used by the maploader, this must be done in New, not init
 	GLOB.areas_by_type[type] = src
 	return ..()
 
-/area/Initialize()
+/area/Initialize(mapload)
 	. = ..()
 	luminosity = !(dynamic_lighting)
 	icon_state = ""
@@ -85,7 +86,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	A.contents.Add(T)
 	if(old_area)
 		// Handle dynamic lighting update if
-		if(SSlighting.subsystem_initialized && T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
+		if(SSlighting.initialized && T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
 			if(A.dynamic_lighting)
 				T.lighting_build_overlay()
 			else
@@ -117,9 +118,11 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 			atmosphere_alarm.triggerAlarm(src, alarm_source, severity = danger_level)
 
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
-	for (var/obj/machinery/alarm/AA in src)
-		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
-			danger_level = max(danger_level, AA.danger_level)
+	var/obj/machinery/alarm/AM = main_air_alarm?.resolve()
+	if(!(AM && AM.shorted))
+		for(var/obj/machinery/alarm/AA in src)
+			if(!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
+				danger_level = max(danger_level, AA.danger_level)
 
 	if(danger_level != atmosalm)
 		atmosalm = danger_level
@@ -138,21 +141,17 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	if(fire || party || atmosalm)
 		firedoors_close()
 		arfgs_activate()
-		// VOREStation Edit - Make the lights colored!
 		if(fire)
 			for(var/obj/machinery/light/L in src)
 				L.set_alert_fire()
 		else if(atmosalm)
 			for(var/obj/machinery/light/L in src)
 				L.set_alert_atmos()
-		// VOREStation Edit End
 	else
 		firedoors_open()
 		arfgs_deactivate()
-		// VOREStation Edit - Put the lights back!
 		for(var/obj/machinery/light/L in src)
 			L.reset_alert()
-		// VOREStation Edit End
 
 // Close all firedoors in the area
 /area/proc/firedoors_close()
@@ -351,7 +350,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 		if(!check_rights(R_DEBUG))
 			return
 		src.check_static_power(usr)
-		href_list["datumrefresh"] = "\ref[src]"
+		href_list[VV_HK_DATUM_REFRESH] = "\ref[src]"
 
 // Debugging proc to report if static power is correct or not.
 /area/proc/check_static_power(var/user)
@@ -370,7 +369,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 
 //////////////////////////////////////////////////////////////////
 
-var/list/mob/living/forced_ambiance_list = new
+var/list/mob/living/forced_ambiance_list = list()
 
 /area/Entered(mob/M)
 	if(!istype(M) || !M.ckey)
@@ -393,7 +392,11 @@ var/list/mob/living/forced_ambiance_list = new
 	play_ambience(L, initial = TRUE)
 	if(flag_check(AREA_NO_SPOILERS))
 		L.disable_spoiler_vision()
-	check_phase_shift(M)	//RS Port #658
+	check_phase_shift(M)
+
+	// Update the area's color grading
+	if(L.client && L.client.color != get_color_tint()) // Try to check if we should bother changing before doing blending
+		L.update_client_color()
 
 /area/proc/play_ambience(var/mob/living/L, initial = TRUE)
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
@@ -445,7 +448,7 @@ var/list/mob/living/forced_ambiance_list = new
 			return // Being buckled to something solid keeps you in place.
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
-		if(H.incorporeal_move) // VOREstation edit - Phaseshifted beings should not be affected by gravity
+		if(H.is_incorporeal()) // Phaseshifted beings should not be affected by gravity
 			return
 		if(H.species.can_zero_g_move || H.species.can_space_freemove)
 			return
@@ -502,35 +505,35 @@ var/list/mob/living/forced_ambiance_list = new
 
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
-var/list/teleportlocs = list()
+GLOBAL_LIST_EMPTY(teleportlocs)
 
 /hook/startup/proc/setupTeleportLocs()
 	for(var/area/AR in world)
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
-		if(teleportlocs.Find(AR.name)) continue
+		if(GLOB.teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
 		if (picked.z in using_map.station_levels)
-			teleportlocs += AR.name
-			teleportlocs[AR.name] = AR
+			GLOB.teleportlocs += AR.name
+			GLOB.teleportlocs[AR.name] = AR
 
-	teleportlocs = sortAssoc(teleportlocs)
+	GLOB.teleportlocs = sortAssoc(GLOB.teleportlocs)
 
 	return 1
 
-var/list/ghostteleportlocs = list()
+GLOBAL_LIST_EMPTY(ghostteleportlocs)
 
 /hook/startup/proc/setupGhostTeleportLocs()
 	for(var/area/AR in world)
-		if(ghostteleportlocs.Find(AR.name)) continue
+		if(GLOB.ghostteleportlocs.Find(AR.name)) continue
 		if(istype(AR, /area/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))
-			ghostteleportlocs += AR.name
-			ghostteleportlocs[AR.name] = AR
+			GLOB.ghostteleportlocs += AR.name
+			GLOB.ghostteleportlocs[AR.name] = AR
 		var/turf/picked = pick(get_area_turfs(AR.type))
 		if (picked.z in using_map.player_levels)
-			ghostteleportlocs += AR.name
-			ghostteleportlocs[AR.name] = AR
+			GLOB.ghostteleportlocs += AR.name
+			GLOB.ghostteleportlocs[AR.name] = AR
 
-	ghostteleportlocs = sortAssoc(ghostteleportlocs)
+	GLOB.ghostteleportlocs = sortAssoc(GLOB.ghostteleportlocs)
 
 	return 1
 
@@ -552,24 +555,31 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		cut_overlay(GLOB.spoiler_obfuscation_image)
 
 /area/proc/flag_check(var/flag, var/match_all = FALSE)
-    if(match_all)
-        return (flags & flag) == flag
-    return flags & flag
+	if(match_all)
+		return (flags & flag) == flag
+	return flags & flag
 
-// RS Port #658 Start
-/area/proc/check_phase_shift(var/mob/ourmob)
-	if(!flag_check(AREA_BLOCK_PHASE_SHIFT) || !ourmob.incorporeal_move)
+/area/proc/check_phase_shift(var/mob/living/ourmob)
+	if(!flag_check(AREA_BLOCK_PHASE_SHIFT) || !ourmob.is_incorporeal())
 		return
 	if(!isliving(ourmob))
 		return
-	if(ourmob.client?.holder)
+	if(check_rights_for(ourmob.client, R_HOLDER)) //If we're an admin, we don't get affected by phase blockers.
 		return
-	if(issimplekin(ourmob))
-		var/mob/living/simple_mob/shadekin/SK = ourmob
-		if(SK.ability_flags & AB_PHASE_SHIFTED)
-			SK.phase_in(SK.loc)
-	if(ishuman(ourmob))
-		var/mob/living/carbon/human/SK = ourmob
-		if(SK.ability_flags & AB_PHASE_SHIFTED)
-			SK.phase_in(SK.loc)
-// RS Port #658 End
+	var/datum/component/shadekin/SK = ourmob.get_shadekin_component()
+	if(SK && SK.in_phase)
+		SK.attack_dephase(ourmob.loc, src)
+
+/area/proc/isAlwaysIndoors()
+	return FALSE
+
+/area/shuttle/isAlwaysIndoors()
+	return TRUE
+
+/area/turbolift/isAlwaysIndoors()
+	return TRUE
+
+/// Gets a hex color value for blending with a player's client.color. Allows for primitive color grading per area.
+/area/proc/get_color_tint()
+	SHOULD_CALL_PARENT(TRUE)
+	return color_grading

@@ -87,6 +87,7 @@
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
+		SSmotiontracker.ping(src,100)
 
 
 /obj/item/grenade/attackby(obj/item/W as obj, mob/user as mob)

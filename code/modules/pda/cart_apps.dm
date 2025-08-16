@@ -31,7 +31,7 @@
 			return TRUE
 
 /datum/data/pda/app/status_display/proc/post_status(var/command, var/data1, var/data2)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 	if(!frequency)
 		return
 
@@ -44,7 +44,7 @@
 		if("message")
 			status_signal.data["msg1"] = data1
 			status_signal.data["msg2"] = data2
-			var/mob/user = pda.fingerprintslast
+			var/mob/user = pda.forensic_data?.get_lastprint()
 			if(isliving(pda.loc))
 				user = pda.loc
 			log_admin("STATUS: [user] set status screen with [pda]. Message: [data1] [data2]")
@@ -131,12 +131,12 @@
 /datum/data/pda/app/crew_records/update_ui(mob/user as mob, list/data)
 	var/list/records[0]
 
-	if(general_records && (general_records in data_core.general))
+	if(general_records && (general_records in GLOB.data_core.general))
 		data["records"] = records
 		records["general"] = general_records.fields
 		return records
 	else
-		for(var/datum/data/record/R as anything in sortRecord(data_core.general))
+		for(var/datum/data/record/R as anything in sortRecord(GLOB.data_core.general))
 			if(R)
 				records += list(list(name = R.fields["name"], "ref" = "\ref[R]"))
 		data["recordsList"] = records
@@ -149,7 +149,7 @@
 	switch(action)
 		if("Records")
 			var/datum/data/record/R = locate(params["target"])
-			if(R && (R in data_core.general))
+			if(R && (R in GLOB.data_core.general))
 				load_records(R)
 			return TRUE
 		if("Back")
@@ -174,14 +174,14 @@
 	if(!records)
 		return
 
-	if(medical_records && (medical_records in data_core.medical))
+	if(medical_records && (medical_records in GLOB.data_core.medical))
 		records["medical"] = medical_records.fields
 
 	return records
 
 /datum/data/pda/app/crew_records/medical/load_records(datum/data/record/R)
 	..(R)
-	for(var/datum/data/record/E as anything in data_core.medical)
+	for(var/datum/data/record/E as anything in GLOB.data_core.medical)
 		if(E && (E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 			medical_records = E
 			break
@@ -199,14 +199,14 @@
 	if(!records)
 		return
 
-	if(security_records && (security_records in data_core.security))
+	if(security_records && (security_records in GLOB.data_core.security))
 		records["security"] = security_records.fields
 
 	return records
 
 /datum/data/pda/app/crew_records/security/load_records(datum/data/record/R)
 	..(R)
-	for(var/datum/data/record/E as anything in data_core.security)
+	for(var/datum/data/record/E as anything in GLOB.data_core.security)
 		if(E && (E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 			security_records = E
 			break
@@ -264,7 +264,7 @@
 		JaniData["user_loc"] = list("x" = 0, "y" = 0)
 
 	var/MopData[0]
-	for(var/obj/item/mop/M in all_mops)//GLOB.janitorial_equipment)
+	for(var/obj/item/mop/M in GLOB.all_mops)//GLOB.janitorial_equipment)
 		var/turf/ml = get_turf(M)
 		if(ml)
 			if(ml.z != cl.z)
@@ -273,7 +273,7 @@
 			MopData[++MopData.len] = list ("x" = ml.x, "y" = ml.y, "dir" = uppertext(dir2text(direction)), "status" = M.reagents.total_volume ? "Wet" : "Dry")
 
 	var/BucketData[0]
-	for(var/obj/structure/mopbucket/B in all_mopbuckets)//GLOB.janitorial_equipment)
+	for(var/obj/structure/mopbucket/B in GLOB.all_mopbuckets)//GLOB.janitorial_equipment)
 		var/turf/bl = get_turf(B)
 		if(bl)
 			if(bl.z != cl.z)
@@ -282,7 +282,7 @@
 			BucketData[++BucketData.len] = list ("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "volume" = B.reagents.total_volume, "max_volume" = B.reagents.maximum_volume)
 
 	var/CbotData[0]
-	for(var/mob/living/bot/cleanbot/B in mob_list)
+	for(var/mob/living/bot/cleanbot/B in GLOB.mob_list)
 		var/turf/bl = get_turf(B)
 		if(bl)
 			if(bl.z != cl.z)
@@ -291,7 +291,7 @@
 			CbotData[++CbotData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.on ? "Online" : "Offline")
 
 	var/CartData[0]
-	for(var/obj/structure/janitorialcart/B in all_janitorial_carts)//GLOB.janitorial_equipment)
+	for(var/obj/structure/janitorialcart/B in GLOB.all_janitorial_carts)//GLOB.janitorial_equipment)
 		var/turf/bl = get_turf(B)
 		if(bl)
 			if(bl.z != cl.z)

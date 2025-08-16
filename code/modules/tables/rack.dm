@@ -7,8 +7,8 @@
 	can_reinforce = 0
 	flipped = -1
 
-/obj/structure/table/rack/New()
-	..()
+/obj/structure/table/rack/Initialize(mapload)
+	. = ..()
 	verbs -= /obj/structure/table/verb/do_flip
 	verbs -= /obj/structure/table/proc/do_put
 

@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   shuttle_auth: BooleanLike;
@@ -24,7 +24,7 @@ export type modalData = {
     ref: string;
     random: number;
   };
-  modal_type: string;
+  type: string;
 };
 
 export type supplyPack = {

@@ -13,9 +13,10 @@
 	var/open = 0
 	var/brightness_on = 8		//can't remember what the maxed out value is
 
-/obj/machinery/floodlight/New()
+/obj/machinery/floodlight/Initialize(mapload)
+	. = ..()
 	cell = new(src)
-	..()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/floodlight/update_icon()
 	cut_overlays()

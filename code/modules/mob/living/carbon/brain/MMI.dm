@@ -18,8 +18,10 @@
 	var/obj/item/organ/internal/brain/brainobj = null	//The current brain organ.
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/obj/item/radio/headset/mmi_radio/radio = null//Let's give it a radio.
+	var/mob/living/body_backup = null //add reforming
 
-/obj/item/mmi/New()
+/obj/item/mmi/Initialize(mapload)
+	. = ..()
 	radio = new(src)//Spawns a radio inside the MMI.
 
 /obj/item/mmi/verb/toggle_radio()
@@ -67,8 +69,8 @@
 		brainmob.container = src
 		brainmob.set_stat(CONSCIOUS)
 		brainmob.blinded = 0 //VOREedit Fixes MMIs vision
-		dead_mob_list -= brainmob//Update dem lists
-		living_mob_list += brainmob
+		GLOB.dead_mob_list -= brainmob//Update dem lists
+		GLOB.living_mob_list += brainmob
 
 		user.drop_item()
 		brainobj = O
@@ -113,7 +115,7 @@
 		brain.preserved = FALSE
 		brainmob.container = null//Reset brainmob mmi var.
 		brainmob.loc = brain//Throw mob into brain.
-		living_mob_list -= brainmob//Get outta here
+		GLOB.living_mob_list -= brainmob//Get outta here
 		brain.brainmob = brainmob//Set the brain to use the brainmob
 		brainmob = null//Set mmi brainmob var to null
 
@@ -124,7 +126,7 @@
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
-	qdel_swap(brainmob.dna, H.dna.Clone())
+	QDEL_SWAP(brainmob.dna, H.dna.Clone())
 	brainmob.container = src
 
 	// Copy modifiers.
@@ -146,6 +148,8 @@
 			rig.forced_move(direction, user)
 
 /obj/item/mmi/Destroy()
+	if(body_backup)
+		qdel(body_backup)
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/borg = loc
 		borg.mmi = null
@@ -180,18 +184,19 @@
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/ghost_query_type = null
+	var/datum/ghost_query/Q //This is used so we can unregister ourself.
 
-/obj/item/mmi/digital/New()
+/obj/item/mmi/digital/Initialize(mapload)
+	. = ..()
 	src.brainmob = new(src)
-//	src.brainmob.add_language("Robot Talk")//No binary without a binary communication device
+//	src.brainmob.add_language(LANGUAGE_ROBOT_TALK)//No binary without a binary communication device
 	src.brainmob.add_language(LANGUAGE_GALCOM)
 	src.brainmob.add_language(LANGUAGE_EAL)
 	src.brainmob.loc = src
 	src.brainmob.container = src
 	src.brainmob.set_stat(CONSCIOUS)
 	src.brainmob.silent = 0
-	radio = new(src)
-	dead_mob_list -= src.brainmob
+	GLOB.dead_mob_list -= src.brainmob
 
 /obj/item/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these
@@ -227,7 +232,7 @@
 	..()
 
 /obj/item/mmi/digital/transfer_identity(var/mob/living/carbon/H)
-	qdel_swap(brainmob.dna, H.dna.Clone())
+	QDEL_SWAP(brainmob.dna, H.dna.Clone())
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.set_stat(CONSCIOUS)
 	if(H.mind)
@@ -245,13 +250,19 @@
 		return
 	searching = 1
 
-	var/datum/ghost_query/Q = new ghost_query_type()
-	var/list/winner = Q.query()
-	if(winner.len)
-		var/mob/observer/dead/D = winner[1]
+	Q = new ghost_query_type()
+	RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
+	Q.query()
+
+/obj/item/mmi/digital/proc/get_winner()
+	SIGNAL_HANDLER
+	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
+		var/mob/observer/dead/D = Q.candidates[1]
 		transfer_personality(D)
 	else
 		reset_search()
+	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+	QDEL_NULL(Q) //get rid of the query
 
 /obj/item/mmi/digital/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 	if(src.brainmob && src.brainmob.key)
@@ -291,8 +302,8 @@
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	ghost_query_type = /datum/ghost_query/drone_brain
 
-/obj/item/mmi/digital/robot/New()
-	..()
+/obj/item/mmi/digital/robot/Initialize(mapload)
+	. = ..()
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN","NJS","SKS","DRD","IOS","CRM","IBM","TEX","LVM","BSD",))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
 
@@ -334,8 +345,8 @@
 	..()
 	icon_state = "posibrain"
 
-/obj/item/mmi/digital/posibrain/New()
-	..()
+/obj/item/mmi/digital/posibrain/Initialize(mapload)
+	. = ..()
 	src.brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	src.brainmob.real_name = src.brainmob.name
 

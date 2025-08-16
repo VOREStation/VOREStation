@@ -4,9 +4,10 @@
 	var/ghost_query_type = null
 	var/searching = FALSE
 	var/datum/effect/effect/system/spark_spread/sparks
+	var/datum/ghost_query/Q //This is used so we can unregister ourself.
 
-/obj/item/antag_spawner/New()
-	..()
+/obj/item/antag_spawner/Initialize(mapload)
+	. = ..()
 	sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
@@ -28,13 +29,19 @@
 		return // Already searching.
 	searching = TRUE
 
-	var/datum/ghost_query/Q = new ghost_query_type()
-	var/list/winner = Q.query()
-	if(winner.len)
-		var/mob/observer/dead/D = winner[1]
+	Q = new ghost_query_type()
+	RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
+	Q.query()
+
+/obj/item/antag_spawner/proc/get_winner()
+	SIGNAL_HANDLER
+	if(Q && Q.candidates.len)
+		var/mob/observer/dead/D = Q.candidates[1]
 		spawn_antag(D.client, get_turf(src))
 	else
 		reset_search()
+	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+	QDEL_NULL(Q) //get rid of the query
 	return
 
 /obj/item/antag_spawner/proc/reset_search()
@@ -80,7 +87,7 @@
 		qdel(src)
 
 /obj/item/antag_spawner/technomancer_apprentice/equip_antag(mob/technomancer_mob)
-	var/datum/antagonist/technomancer/antag_datum = all_antag_types[MODE_TECHNOMANCER]
+	var/datum/antagonist/technomancer/antag_datum = GLOB.all_antag_types[MODE_TECHNOMANCER]
 	antag_datum.equip_apprentice(technomancer_mob)
 
 

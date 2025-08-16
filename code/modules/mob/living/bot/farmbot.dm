@@ -338,8 +338,8 @@
 	w_class = ITEMSIZE_NORMAL
 
 
-/obj/item/farmbot_arm_assembly/New(var/newloc, var/theTank)
-	..(newloc)
+/obj/item/farmbot_arm_assembly/Initialize(mapload, var/theTank)
+	. = ..()
 	if(!theTank) // If an admin spawned it, it won't have a watertank it, so lets make one for em!
 		tank = new /obj/structure/reagent_dispensers/watertank(src)
 	else
@@ -410,7 +410,6 @@
 
 	else if(istype(W, /obj/item/pen))
 		var/t = tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN)
-		t = sanitize(t, MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)

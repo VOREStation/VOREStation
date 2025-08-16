@@ -168,6 +168,20 @@
 	contains = list(/obj/vehicle/train/trolley)
 	cost = 15
 
+/datum/supply_pack/supply/cargotank
+	name = "Cargo Train Tanker"
+	desc = "A cargo train tanker. For selling large volumes of a reagent."
+	contains = list(/obj/vehicle/train/trolley_tank)
+	cost = 15
+
+/datum/supply_pack/supply/freezer
+	name = "Freezer crate"
+	desc = "An empty freezer for storing perishable items."
+	contains = list()
+	cost = 20
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "Freezer crate"
+
 /datum/supply_pack/explorergear
 	name= JOB_EXPLORER + " gear"
 	desc = "Standard issue equipment for Explorers. Requires EVA and Exploration access."
@@ -181,13 +195,13 @@
 					/obj/item/storage/belt/explorer,
 					/obj/item/clothing/mask/gas/explorer,
 					/obj/item/cartridge/explorer,
-			 		/obj/item/gps/explorer,
-			 		/obj/item/clothing/under/explorer,
-			 		/obj/item/radio/headset/explorer,
-			 		/obj/item/clothing/shoes/boots/winter/explorer,
+					/obj/item/gps/explorer,
+					/obj/item/clothing/under/explorer,
+					/obj/item/radio/headset/explorer,
+					/obj/item/clothing/shoes/boots/winter/explorer,
 					/obj/item/material/knife/tacknife/survival,
 					/obj/item/material/knife/machete,
-			 		/obj/item/clothing/accessory/holster/machete,
+					/obj/item/clothing/accessory/holster/machete,
 					/obj/item/clothing/accessory/watch/survival
 					)
 	cost=25
@@ -208,7 +222,7 @@
 					/obj/item/gps/explorer,
 					/obj/item/clothing/gloves/fingerless,
 					/obj/item/clothing/suit/storage/toggle/bomber/pilot,
-			 		/obj/item/clothing/shoes/boots/winter/explorer,
+					/obj/item/clothing/shoes/boots/winter/explorer,
 					/obj/item/flashlight,
 					/obj/item/material/knife/tacknife/survival,
 					/obj/item/clothing/head/pilot_vr,
@@ -243,18 +257,32 @@
 					/obj/item/storage/belt/explorer/pathfinder,
 					/obj/item/clothing/mask/gas/explorer,
 					/obj/item/cartridge/explorer,
-			 		/obj/item/gps/explorer,
-			 		/obj/item/clothing/under/explorer,
-			 		/obj/item/radio/headset/pathfinder,
-			 		/obj/item/clothing/shoes/boots/winter/explorer,
+					/obj/item/gps/explorer,
+					/obj/item/clothing/under/explorer,
+					/obj/item/radio/headset/pathfinder,
+					/obj/item/clothing/shoes/boots/winter/explorer,
 					/obj/item/material/knife/tacknife/survival,
 					/obj/item/material/knife/machete/deluxe,
-			 		/obj/item/clothing/accessory/holster/machete,
+					/obj/item/clothing/accessory/holster/machete,
 					/obj/item/storage/box/explorerkeys,
 					/obj/item/mapping_unit,
-					/obj/item/clothing/accessory/watch/survival
+					/obj/item/clothing/accessory/watch/survival,
+					/obj/item/personal_shield_generator/belt/melee/loaded
 					)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = JOB_PATHFINDER + " equipment"
 	access = list(access_explorer)
+
+/datum/supply_pack/supply/postal_service
+	name = "Postal Service Supplies"
+	contains = list(
+		/obj/item/mail/blank = 10,
+		/obj/item/pen/fountain,
+		/obj/item/pen/multi,
+		/obj/item/destTagger,
+		/obj/item/storage/bag/mail
+	)
+	cost = 15
+	containertype = /obj/structure/closet/crate/nanotrasen
+	containername = "Postal Service crate"

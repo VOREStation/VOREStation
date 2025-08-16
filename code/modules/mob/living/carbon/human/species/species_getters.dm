@@ -26,6 +26,13 @@
 	return name
 
 /datum/species/proc/get_icobase(var/mob/living/carbon/human/H, var/get_deform)
+	if(base_species == name) //We don't have a custom base_species? Return the normal icobase.
+		return (get_deform ? deform : icobase)
+	else
+		var/datum/species/S = GLOB.all_species[base_species]
+		if(S) //So species can have multiple iconbases.
+			return S.get_icobase(H, get_deform)
+	//fallback
 	return (get_deform ? deform : icobase)
 
 /datum/species/proc/get_station_variant()
@@ -110,11 +117,11 @@
 /datum/species/proc/get_random_name(var/gender)
 	if(!name_language)
 		if(gender == FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else if(gender == MALE)
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 		else
-			return capitalize(prob(50) ? pick(first_names_male) : pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(prob(50) ? pick(GLOB.first_names_male) : pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
 	var/datum/language/species_language = GLOB.all_languages[name_language]
 	if(!species_language)
@@ -125,3 +132,16 @@
 
 /datum/species/proc/get_vision_flags(var/mob/living/carbon/human/H)
 	return vision_flags
+
+/datum/species/proc/get_wing_hair(var/mob/living/carbon/human/H) //I have no idea what this is even used for other than teshari, but putting it in just in case.
+	return wing_hair //Since the tail has it.
+/datum/species/proc/get_wing(var/mob/living/carbon/human/H)
+		return wing
+/datum/species/proc/get_wing_animation(var/mob/living/carbon/human/H)
+	return wing_animation
+
+/datum/species/proc/get_perfect_belly_air_type(var/mob/living/carbon/human/H)
+	if(ideal_air_type)
+		return ideal_air_type						//Whatever we want
+	else
+		return /datum/gas_mixture/belly_air 		//Default

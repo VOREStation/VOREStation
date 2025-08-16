@@ -4,7 +4,6 @@
 	desc = "A round dark muzzle made of LEDs."
 	flags = PHORONGUARD //Since it cant easily be removed...
 	item_flags = AIRTIGHT | FLEXIBLEMATERIAL | BLOCK_GAS_SMOKE_EFFECT //This should make it properly work as a mask... and allow you to eat stuff through it!
-	body_parts_covered = FACE|EYES
 	icon = 'icons/mob/species/teshari/synth_facemask.dmi'
 	icon_override = 'icons/mob/species/teshari/synth_facemask.dmi'
 	icon_state = "synth_facemask"
@@ -28,6 +27,7 @@
 	return ..()
 
 /obj/item/clothing/mask/synthfacemask/Destroy()
+	maskmaster = null
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 

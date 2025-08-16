@@ -13,7 +13,7 @@
 
 /obj/machinery/computer/shutoff_monitor/Destroy()
 	QDEL_NULL(monitor)
-	..()
+	. = ..()
 
 /obj/machinery/computer/shutoff_monitor/attack_hand(var/mob/user as mob)
 	..()

@@ -7,7 +7,7 @@
 
 	language = "Sol Common" //todo?
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch)
-	flags = NO_PAIN | NO_SCAN | NO_POISON | NO_MINOR_CUT | NO_DEFIB
+	flags = NO_PAIN | NO_DNA | NO_SLEEVE | NO_POISON | NO_MINOR_CUT | NO_DEFIB
 	spawn_flags = SPECIES_IS_RESTRICTED
 	siemens_coefficient = 0
 
@@ -22,7 +22,7 @@
 	virus_immune = 1
 
 	has_organ = list(
-		"brain" = /obj/item/organ/internal/brain/golem
+		O_BRAIN = /obj/item/organ/internal/brain/golem
 		)
 
 	death_message = "becomes completely motionless..."

@@ -1,6 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, Knob, Section, Table } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 export const GyrotronControl = () => (
@@ -32,6 +33,8 @@ export const GyrotronControlContent = (props) => {
 
   return (
     <Section
+      fill
+      scrollable
       title="Gyrotrons"
       buttons={
         <Button icon="pencil-alt" onClick={() => act('set_tag')}>
@@ -69,6 +72,8 @@ export const GyrotronControlContent = (props) => {
             </Table.Cell>
             <Table.Cell>
               <Knob
+                tickWhileDragging
+                format={(value) => toFixed(value)}
                 size={1.25}
                 color={!!gyro.active && 'yellow'}
                 value={gyro.fire_delay}
@@ -76,7 +81,7 @@ export const GyrotronControlContent = (props) => {
                 minValue={1}
                 maxValue={60}
                 stepPixelSize={1}
-                onDrag={(e, value) =>
+                onChange={(e, value) =>
                   act('set_rate', {
                     gyro: gyro.ref,
                     rate: value,
@@ -86,6 +91,8 @@ export const GyrotronControlContent = (props) => {
             </Table.Cell>
             <Table.Cell>
               <Knob
+                tickWhileDragging
+                format={(value) => toFixed(value)}
                 size={1.25}
                 color={!!gyro.active && 'yellow'}
                 value={gyro.strength}
@@ -93,7 +100,7 @@ export const GyrotronControlContent = (props) => {
                 minValue={1}
                 maxValue={50}
                 stepPixelSize={1}
-                onDrag={(e, value) =>
+                onChange={(e, value) =>
                   act('set_str', {
                     gyro: gyro.ref,
                     str: value,

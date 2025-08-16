@@ -1,10 +1,51 @@
-"a" = (/turf/template_noop,/area/submap/BuriedTreasure)
-"b" = (/obj/structure/closet/grave,/obj/random/gun/random,/obj/random/contraband,/obj/random/cash,/obj/random/cigarettes,/obj/random/trash,/obj/random/junk,/obj/random/drinkbottle,/turf/template_noop,/area/submap/BuriedTreasure)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/submap/BuriedTreasure)
+"b" = (
+/obj/structure/closet/grave,
+/obj/random/gun/random,
+/obj/random/contraband,
+/obj/random/cash,
+/obj/random/cigarettes,
+/obj/random/trash,
+/obj/random/junk,
+/obj/random/drinkbottle,
+/turf/template_noop,
+/area/submap/BuriedTreasure)
 
 (1,1,1) = {"
-aaaaa
-aaaaa
-aabaa
-aaaaa
-aaaaa
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+b
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
 "}

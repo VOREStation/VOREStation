@@ -18,7 +18,7 @@
 	economic_modifier = 5
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station, access_RC_announce)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station, access_RC_announce)
-	banned_job_species = list("digital", SPECIES_PROMETHEAN)
+	banned_job_species = list(FBP_DIGITAL, SPECIES_PROMETHEAN)
 
 	ideal_character_age = 40
 	dept_time_required = 20
@@ -62,7 +62,7 @@
 						because Central Command gives a partial refund."
 
 	alt_titles = list(JOB_ALT_CARGO_LOADER = /datum/alt_title/cargo_loader, JOB_ALT_CARGO_HANDLER = /datum/alt_title/cargo_handler, JOB_ALT_SUPPLY_COURIER = /datum/alt_title/supply_courier,
-					JOB_ALT_DISPOSALS_SORTER = /datum/alt_title/disposal_sorter)
+					JOB_ALT_DISPOSALS_SORTER = /datum/alt_title/disposal_sorter, JOB_ALT_MAILMAN = /datum/alt_title/mailman)
 
 /datum/alt_title/supply_courier
 	title = JOB_ALT_SUPPLY_COURIER
@@ -79,6 +79,11 @@
 /datum/alt_title/disposal_sorter
 	title = JOB_ALT_DISPOSALS_SORTER
 	title_blurb = "A " + JOB_ALT_DISPOSALS_SORTER + " is usually tasked with operating disposals delivery system, sorting the trash and tagging parcels for delivery."
+
+/datum/alt_title/mailman
+	title = JOB_ALT_MAILMAN
+	title_blurb = "A Mail Carrier is tasked with delivering packages or mail to whoever it might adress."
+	title_outfit = /decl/hierarchy/outfit/job/cargo/cargo_tech/mailman
 
 //////////////////////////////////
 //			Shaft Miner

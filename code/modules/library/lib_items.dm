@@ -20,12 +20,13 @@
 	density = TRUE
 	opacity = 1
 
-/obj/structure/bookcase/Initialize()
+/obj/structure/bookcase/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))
 			I.loc = src
 	update_icon()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/bookcase/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/book))
@@ -33,7 +34,7 @@
 		O.loc = src
 		update_icon()
 	else if(istype(O, /obj/item/pen))
-		var/newname = sanitizeSafe(tgui_input_text(user, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/newname = sanitizeSafe(tgui_input_text(user, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!newname)
 			return
 		else
@@ -87,7 +88,6 @@
 					b.loc = (get_turf(src))
 				qdel(src)
 			return
-		else
 	return
 
 /obj/structure/bookcase/update_icon()
@@ -128,20 +128,18 @@ Book Cart End
 /obj/structure/bookcase/manuals/medical
 	name = "Medical Manuals bookcase"
 
-/obj/structure/bookcase/manuals/medical/New()
-	..()
+/obj/structure/bookcase/manuals/medical/Initialize(mapload)
 	new /obj/item/book/manual/medical_cloning(src)
 	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
 	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
 	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
-	update_icon()
+	. = ..()
 
 
 /obj/structure/bookcase/manuals/engineering
 	name = "Engineering Manuals bookcase"
 
-/obj/structure/bookcase/manuals/engineering/New()
-	..()
+/obj/structure/bookcase/manuals/engineering/Initialize(mapload)
 	new /obj/item/book/manual/wiki/engineering_construction(src)
 	new /obj/item/book/manual/engineering_particle_accelerator(src)
 	new /obj/item/book/manual/wiki/engineering_hacking(src)
@@ -149,15 +147,14 @@ Book Cart End
 	new /obj/item/book/manual/atmospipes(src)
 	new /obj/item/book/manual/engineering_singularity_safety(src)
 	new /obj/item/book/manual/evaguide(src)
-	update_icon()
+	. = ..()
 
 /obj/structure/bookcase/manuals/research_and_development
 	name = "R&D Manuals bookcase"
 
-/obj/structure/bookcase/manuals/research_and_development/New()
-	..()
+/obj/structure/bookcase/manuals/research_and_development/Initialize(mapload)
 	new /obj/item/book/manual/research_and_development(src)
-	update_icon()
+	. = ..()
 
 
 /*
@@ -208,9 +205,9 @@ Book Cart End
 		to_chat(user, "This book is completely blank!")
 
 /obj/item/book/proc/display_content(mob/living/user)
-	if(!findtext(dat, regex("^<html")))
-		dat = "<html>[dat]</html>"
-	user << browse(replacetext(dat, "<html>", "<html><TT><I>Penned by [author].</I></TT> <BR>"), "window=book")
+	var/datum/browser/popup = new(user, "book", "<TT><I>Penned by [author].</I></TT>")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/item/book/attackby(obj/item/W, mob/user)
 	if(carved)
@@ -234,7 +231,7 @@ Book Cart End
 		var/choice = tgui_input_list(user, "What would you like to change?", "Change What?", list("Title", "Contents", "Author", "Cancel"))
 		switch(choice)
 			if("Title")
-				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(user, "Write a new title:")))
+				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(user, "Write a new title:", encode = FALSE)))
 				if(!newtitle)
 					to_chat(user, "The title is invalid.")
 					return
@@ -242,14 +239,14 @@ Book Cart End
 					src.name = newtitle
 					src.title = newtitle
 			if("Contents")
-				var/content = sanitize(tgui_input_text(user, "Write your book's contents (HTML NOT allowed):", max_length=MAX_BOOK_MESSAGE_LEN, multiline=TRUE), MAX_BOOK_MESSAGE_LEN)
+				var/content = tgui_input_text(user, "Write your book's contents (HTML NOT allowed):", max_length=MAX_BOOK_MESSAGE_LEN, multiline=TRUE)
 				if(!content)
 					to_chat(user, "The content is invalid.")
 					return
 				else
 					src.dat += content
 			if("Author")
-				var/newauthor = sanitize(tgui_input_text(user, "Write the author's name:"))
+				var/newauthor = tgui_input_text(user, "Write the author's name:", "", "", MAX_LNAME_LEN)
 				if(!newauthor)
 					to_chat(user, "The name is invalid.")
 					return

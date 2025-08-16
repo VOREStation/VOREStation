@@ -92,6 +92,17 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor/ignore_oregen)
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral/ignore_cavegen)
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor/ignore_cavegen)
 
+//GasCracks, despite the pathnames these give them atmos that let you place them anywhere on 3B
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/oxygen)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/nitrogen)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/carbon)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/nitro)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/phoron)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/air)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/terrible)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/gas_crack/random)
+
 //Vault2
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/freezer)
 
@@ -102,7 +113,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/voidcraft)
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/kafel_full/yellow)
 
 //Mechbay
-/obj/mecha/working/ripley/abandoned/Initialize()
+/obj/mecha/working/ripley/abandoned/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)	//Deletes the beacon so it can't be found easily
 		qdel(B)

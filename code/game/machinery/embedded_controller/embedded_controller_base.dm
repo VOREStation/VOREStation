@@ -1,5 +1,6 @@
 /obj/machinery/embedded_controller
 	name = "Embedded Controller"
+	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
@@ -7,7 +8,7 @@
 	var/list/valid_actions = list()
 	var/on = 1
 
-/obj/machinery/embedded_controller/Initialize()
+/obj/machinery/embedded_controller/Initialize(mapload)
 	if(ispath(program))
 		program = new program(src)
 	return ..()
@@ -83,14 +84,14 @@
 	var/radio_filter = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/embedded_controller/radio/Initialize()
+/obj/machinery/embedded_controller/radio/Initialize(mapload)
 	set_frequency(frequency) // Set it before parent instantiates program
 	. = ..()
 
 /obj/machinery/embedded_controller/radio/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
-	..()
+	if(SSradio)
+		SSradio.remove_object(src,frequency)
+	. = ..()
 
 /obj/machinery/embedded_controller/radio/update_icon()
 	if(on && program)
@@ -110,6 +111,6 @@
 		qdel(signal)
 
 /obj/machinery/embedded_controller/radio/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, radio_filter)
+	radio_connection = SSradio.add_object(src, frequency, radio_filter)

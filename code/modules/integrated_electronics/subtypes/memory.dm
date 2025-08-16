@@ -11,12 +11,12 @@
 	power_draw_per_use = 1
 	var/number_of_pins = 1
 
-/obj/item/integrated_circuit/memory/New()
+/obj/item/integrated_circuit/memory/Initialize(mapload)
 	for(var/i = 1 to number_of_pins)
 		inputs["input [i]"] = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
 		outputs["output [i]"] = IC_PINTYPE_ANY
+	. = ..()
 	complexity = number_of_pins
-	..()
 
 /obj/item/integrated_circuit/memory/examine(mob/user)
 	. = ..()
@@ -96,14 +96,13 @@
 	switch(type_to_use)
 		if("string")
 			accepting_refs = 0
-			new_data = tgui_input_text(user, "Now type in a string.","[src] string writing", MAX_NAME_LEN)
-			new_data = sanitize(new_data,MAX_NAME_LEN)
+			new_data = tgui_input_text(user, "Now type in a string.","[src] string writing","", MAX_NAME_LEN)
 			if(istext(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				O.data = new_data
 				to_chat(user, span_notice("You set \the [src]'s memory to [O.display_data(O.data)]."))
 		if("number")
 			accepting_refs = 0
-			new_data = tgui_input_number(user, "Now type in a number.","[src] number writing", MAX_NAME_LEN)
+			new_data = tgui_input_number(user, "Now type in a number.","[src] number writing", 0)
 			if(isnum(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				O.data = new_data
 				to_chat(user, span_notice("You set \the [src]'s memory to [O.display_data(O.data)]."))

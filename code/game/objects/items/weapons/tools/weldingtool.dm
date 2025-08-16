@@ -38,12 +38,13 @@
 	var/eye_safety_modifier = 0 // Increasing this will make less eye protection needed to stop eye damage.  IE at 1, sunglasses will fully protect.
 	var/burned_fuel_for = 0 // Keeps track of how long the welder's been on, used to gradually empty the welder if left one, without RNG.
 	var/always_process = FALSE // If true, keeps the welder on the process list even if it's off.  Used for when it needs to regenerate fuel.
+	var/no_passive_burn = FALSE // If true, the welder will not passively burn fuel. Used for things like electric welders.
 	toolspeed = 1
 	drop_sound = 'sound/items/drop/weldingtool.ogg'
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
 	tool_qualities = list(TOOL_WELDER)
 
-/obj/item/weldingtool/Initialize()
+/obj/item/weldingtool/Initialize(mapload)
 	. = ..()
 //	var/random_fuel = min(rand(10,20),max_fuel)
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
@@ -111,38 +112,26 @@
 			to_chat(user, span_notice("You secure the welder."))
 		else
 			to_chat(user, span_notice("The welder can now be attached and modified."))
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 	if((!status) && (istype(W,/obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
-		var/obj/item/flamethrower/F = new/obj/item/flamethrower(user.loc)
-		src.loc = F
+		var/obj/item/flamethrower/F = new/obj/item/flamethrower(get_turf(user))
+		user.drop_from_inventory(src,F)
 		F.weldtool = src
-		if (user.client)
-			user.client.screen -= src
-		if (user.r_hand == src)
-			user.remove_from_mob(src)
-		else
-			user.remove_from_mob(src)
-		src.master = F
-		src.layer = initial(src.layer)
-		user.remove_from_mob(src)
-		if (user.client)
-			user.client.screen -= src
-		src.loc = F
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 	..()
-	return
 
 /obj/item/weldingtool/process()
 	if(welding)
-		++burned_fuel_for
-		if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
-			remove_fuel(1)
+		if(!no_passive_burn)
+			++burned_fuel_for
+			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
+				remove_fuel(1)
 		if(get_fuel() < 1)
 			setWelding(0)
 		else			//Only start fires when its on and has enough fuel to actually keep working
@@ -327,6 +316,8 @@
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
 			return
+		if(user.isSynthetic()) //Fixes robots going blind when doing the equivalent of a bruise pack.
+			return
 		if(H.nif && H.nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION)) return //VOREStation Add - NIF
 		switch(safety)
 			if(1)
@@ -372,11 +363,6 @@
 	max_fuel = 40
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_PHORON = 2)
 	matter = list(MAT_STEEL = 70, MAT_GLASS = 60)
-
-/obj/item/weldingtool/largetank/cyborg
-	name = "integrated welding tool"
-	desc = "An advanced welder designed to be used in robotic systems."
-	toolspeed = 0.5
 
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
@@ -493,13 +479,13 @@
 	always_process = TRUE
 	var/obj/item/weldpack/mounted_pack = null
 
-/obj/item/weldingtool/tubefed/New(location)
-	..()
-	if(istype(location, /obj/item/weldpack))
-		var/obj/item/weldpack/holder = location
+/obj/item/weldingtool/tubefed/Initialize(mapload)
+	. = ..()
+	if(istype(loc, /obj/item/weldpack))
+		var/obj/item/weldpack/holder = loc
 		mounted_pack = holder
 	else
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/item/weldingtool/tubefed/Destroy()
 	mounted_pack.nozzle = null
@@ -556,11 +542,12 @@
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
-/obj/item/weldingtool/electric/unloaded/New()
+/obj/item/weldingtool/electric/unloaded/Initialize(mapload)
 	cell_type = null
+	. = ..()
 
-/obj/item/weldingtool/electric/New()
-	..()
+/obj/item/weldingtool/electric/Initialize(mapload)
+	. = ..()
 	if(cell_type == null)
 		update_icon()
 	else if(cell_type)
@@ -649,6 +636,10 @@
 		..()
 
 /obj/item/weldingtool/electric/proc/get_external_power_supply()
+	if(istype(src.loc, /obj/item/robotic_multibelt)) //We are in a multibelt
+		if(istype(src.loc.loc, /mob/living/silicon/robot))  //We are in a multibelt that is in a robot! This is sanity in case someone spawns a multibelt in via admin commands.
+			var/mob/living/silicon/robot/R = src.loc.loc
+			return R.cell
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return R.cell
@@ -669,16 +660,13 @@
 /obj/item/weldingtool/electric/mounted
 	use_external_power = 1
 
-/obj/item/weldingtool/electric/mounted/cyborg
-	toolspeed = 0.5
-
 /obj/item/weldingtool/electric/mounted/exosuit
 	var/obj/item/mecha_parts/mecha_equipment/equip_mount = null
 	flame_intensity = 1
 	eye_safety_modifier = 2
 	always_process = TRUE
 
-/obj/item/weldingtool/electric/mounted/exosuit/Initialize()
+/obj/item/weldingtool/electric/mounted/exosuit/Initialize(mapload)
 	. = ..()
 
 	if(istype(loc, /obj/item/mecha_parts/mecha_equipment))

@@ -53,6 +53,9 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
 	allow_mind_transfer = TRUE
+	pain_emote_1p = list("yelp", "whine", "bark", "growl")
+	pain_emote_3p = list("yelps", "whines", "barks", "growls")
+	species_sounds = "Vulpine"
 
 // Activate Noms!
 /mob/living/simple_mob/vore/fennec
@@ -117,7 +120,7 @@
 	var/image/bigshadow
 	var/autodoom = TRUE
 
-/mob/living/simple_mob/vore/fennec/huge/Initialize()
+/mob/living/simple_mob/vore/fennec/huge/Initialize(mapload)
 	. = ..()
 	bigshadow = image(icon, icon_state = "shadow")
 	bigshadow.plane = MOB_PLANE
@@ -129,9 +132,7 @@
 	. = ..()
 	add_overlay(bigshadow)
 
-/mob/living/simple_mob/vore/fennec/huge/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/fennec/huge/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -155,12 +156,12 @@
 		var/mob/living/L = A
 		if(will_eat(L))
 			var/obj/belly/B = vore_organs[1]
-			custom_emote(message = "snatches and devours [L]!")
+			automatic_custom_emote(message = "snatches and devours [L]!")
 			B.nom_mob(L)
 			ai_holder.find_target()
 			return
 		else if(L.size_multiplier <= 0.5 && L.step_mechanics_pref)
-			custom_emote(message = "stomps [L] into oblivion!")
+			automatic_custom_emote(message = "stomps [L] into oblivion!")
 			L.gib()
 			return
 		else

@@ -68,7 +68,6 @@
 /area/template_noop)
 "iX" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "2"
 	},
@@ -255,13 +254,10 @@
 /area/submap/GreatWolfDen)
 "zV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/ledge/ledge_stairs,
 /turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
 "AG" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/rocks2,
 /obj/structure/ledge/ledge_stairs,
@@ -380,8 +376,6 @@
 /area/submap/GreatWolfDen)
 "LP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/rocks2,
 /obj/structure/ledge/ledge_stairs,
 /turf/simulated/floor/outdoors/dirt,
@@ -433,11 +427,6 @@
 /obj/structure/cliff/automatic/ramp,
 /turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
-"Pf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/mineral/floor/ignore_mapgen,
-/area/submap/GreatWolfDen)
 "Pl" = (
 /obj/effect/decal/remains/lizard,
 /obj/effect/decal/cleanable/dirt,
@@ -454,8 +443,6 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/GreatWolfDen)
 "Qb" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/rocks1,
 /obj/structure/ledge/ledge_stairs,
@@ -562,7 +549,6 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/GreatWolfDen)
 "WY" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/rocks1,
 /turf/simulated/floor/outdoors/dirt,
@@ -1061,7 +1047,7 @@ Pa
 OV
 tm
 LJ
-Pf
+CR
 CR
 tm
 ju

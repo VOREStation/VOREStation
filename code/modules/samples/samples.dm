@@ -1,6 +1,6 @@
 /obj/item/research_sample
 	name = "research sample"
-	desc = "A curious sample of unknown material. Destructive analysis might yield scientific advances. Alternatively, it may be possible to stabilize it to yield useful resources instead.<br/>" + span_warning("It looks dangerous to handle without heavy gloves or other protective equipment.")
+	desc = "A curious sample of unknown material. It may be possible to stabilize it to yield useful resources, or it could be shipped back to Central for research purposes.<br/>" + span_warning("It looks dangerous to handle without heavy gloves or other protective equipment.")
 	icon = 'icons/obj/samples.dmi'
 	icon_state = "sample"
 	w_class = ITEMSIZE_TINY
@@ -9,7 +9,7 @@
 	var/fixed_tech = null	//do we have a predetermined tech-group, per request? if so, overrides randomization for icon and name
 	var/rand_tech = null	//randomized tech-group from the list below
 	var/list/valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL,TECH_ARCANE,TECH_PRECURSOR)
-	origin_tech = list()	//blank list creation, or else we get a runtime trying to assign the new techgroup
+	var/supply_value = 5
 
 	persist_storable = FALSE //don't shove hazardous shinies into the item bank!! also their properties are (usually) randomized on creation, so saving them is pointless-- you won't get out what you put in
 
@@ -24,11 +24,17 @@
 	var/max_ore			= 5
 	var/list/resource_list	=	list(/obj/item/ore/glass,/obj/item/ore/coal,/obj/item/ore/iron,/obj/item/ore/lead,/obj/item/ore/marble,/obj/item/ore/phoron,/obj/item/ore/silver,/obj/item/ore/gold)
 
-/obj/item/research_sample/New()
-	var/tech_mod = rand(0,rand_level)
-	var/tech_value = tech_level+tech_mod
+/obj/item/research_sample/Initialize(mapload)
+	. = ..()
+	var/new_tech
+	if(LAZYLEN(origin_tech))
+		new_tech = origin_tech.Copy()
+	else
+		new_tech = list()
+	var/tech_mod = rand(0, rand_level)
+	var/tech_value = tech_level + tech_mod
 	if(fixed_tech)
-		origin_tech.Add(list("[fixed_tech]" = tech_value))
+		LAZYSET(new_tech, fixed_tech, tech_value)
 	else	//if we're not a preset, randomize the name, icon, and associated tech, to make sure samples aren't predictable/metagamable
 		var/name_prefix = "[pick("strange","anomalous","exotic","atypical","unusual","incongruous","weird","aberrant","eccentric")]"
 		var/name_suffix		//blank because it's randomized per sample appearance
@@ -61,7 +67,9 @@
 				name_suffix = "[pick("object","sample","thing","fragment","specimen","element","alloy","chunk","remnant","scrap","sliver")]"
 		name = "[name_prefix] [name_suffix]"
 		rand_tech = pick(valid_techs)	//assign techs last
-		origin_tech.Add(list("[rand_tech]" = tech_value))
+		LAZYSET(new_tech, rand_tech, tech_value)
+	origin_tech = new_tech
+	AddElement(/datum/element/sellable/research_sample)
 
 /obj/item/research_sample/attack_hand(mob/user)
 	. = ..()
@@ -87,12 +95,12 @@
 			switch(damage_type)
 				if("BRUTE")
 					H.visible_message(span_danger("\The [src] creaks as it ravages [H]'s hands!"))
-					H.apply_damage(rand(min_damage,max_damage), BRUTE, "r_hand", used_weapon="Anomalous Material")
-					H.apply_damage(rand(min_damage,max_damage), BRUTE, "l_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, BP_R_HAND, used_weapon=src)
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, BP_L_HAND, used_weapon=src)
 				if("BURN")
 					H.visible_message(span_danger("\The [src] flashes as it scorches [H]'s hands!"))
-					H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon="Anomalous Material")
-					H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BURN, BP_R_HAND, used_weapon=src)
+					H.apply_damage(rand(min_damage,max_damage), BURN, BP_L_HAND, used_weapon=src)
 				if("TOX")
 					H.visible_message(span_danger("\The [src] seethes and hisses like burning acid!"))
 					if(!H.isSynthetic())
@@ -119,7 +127,7 @@
 		burn_user = FALSE
 
 	if(burn_user)
-		M.apply_damage(rand(min_damage,max_damage), BURN, null, used_weapon="Anomalous Material")
+		M.apply_damage(rand(min_damage,max_damage), BURN, null, used_weapon=src)
 
 /obj/item/research_sample/attack_self(mob/user)
 	var/mob/living/M = user
@@ -144,12 +152,12 @@
 			switch(damage_type)
 				if("BRUTE")
 					H.visible_message(span_danger("\The [src] creaks as it ravages [H]'s hands!"))
-					H.apply_damage(rand(min_damage,max_damage), BRUTE, "r_hand", used_weapon="Anomalous Material")
-					H.apply_damage(rand(min_damage,max_damage), BRUTE, "l_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, BP_R_HAND, used_weapon=src)
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, BP_L_HAND, used_weapon=src)
 				if("BURN")
 					H.visible_message(span_danger("\The [src] flashes as it scorches [H]'s hands!"))
-					H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon="Anomalous Material")
-					H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BURN, BP_R_HAND, used_weapon=src)
+					H.apply_damage(rand(min_damage,max_damage), BURN, BP_L_HAND, used_weapon=src)
 				if("TOX")
 					H.visible_message(span_danger("\The [src] seethes and hisses like burning acid!"))
 					if(!H.isSynthetic())
@@ -186,7 +194,7 @@
 		burn_user = FALSE
 
 	if(burn_user)
-		M.apply_damage(rand(min_damage,max_damage), BURN, null, used_weapon="Anomalous Material")
+		M.apply_damage(rand(min_damage,max_damage), BURN, null, used_weapon=src)
 
 /obj/item/research_sample/attackby(obj/item/P as obj, mob/user as mob)
 	..()
@@ -211,12 +219,14 @@
 	rand_level = 1
 	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/common)
+	supply_value = 15
 
 /obj/item/research_sample/uncommon
 	tech_level = 4 //4~6
 	rand_level = 2
 	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/uncommon)
+	supply_value = 35
 
 	handle_risk		= 50
 	min_damage		= 4
@@ -232,6 +242,7 @@
 	rand_level = 2
 	valid_techs = list(TECH_COMBAT,TECH_MAGNET,TECH_POWER,TECH_BIO,TECH_DATA,TECH_ENGINEERING,TECH_PHORON,TECH_MATERIAL,TECH_BLUESPACE,TECH_ILLEGAL,TECH_ARCANE,TECH_PRECURSOR)
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/rare)
+	supply_value = 75
 
 	handle_risk		= 80
 	min_damage		= 5
@@ -251,6 +262,7 @@
 	fixed_tech = TECH_BLUESPACE
 	var/lightcolor = "#0066CC"
 	catalogue_data = list(/datum/category_item/catalogue/information/research_sample/bluespace)
+	supply_value = 100
 
 	handle_risk		= 80
 	min_damage		= 5
@@ -261,8 +273,8 @@
 	max_ore			= 1
 	resource_list	=	list(/obj/item/bluespace_crystal)
 
-/obj/item/research_sample/bluespace/New()
-	..()
+/obj/item/research_sample/bluespace/Initialize(mapload)
+	. = ..()
 	set_light(1, 3, lightcolor)
 
 //catalogue data

@@ -31,7 +31,7 @@
 	var/nextstate = null
 	var/net_id
 	var/list/areas_added
-	var/list/users_to_open = new
+	var/list/users_to_open = list()
 	var/next_process_time = 0
 
 	var/hatch_open = 0
@@ -49,7 +49,7 @@
 		"cold"
 	)
 
-/obj/machinery/door/firedoor/Initialize()
+/obj/machinery/door/firedoor/Initialize(mapload)
 	. = ..()
 	//Delete ourselves if we find extra mapped in firedoors
 	for(var/obj/machinery/door/firedoor/F in loc)
@@ -63,7 +63,7 @@
 	LAZYADD(A.all_doors, src)
 	areas_added = list(A)
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		A = get_area(get_step(src,direction))
 		if(istype(A) && !(A in areas_added))
 			LAZYADD(A.all_doors, src)
@@ -464,7 +464,7 @@
 			add_overlay("palert")
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
-				var/cdir = cardinal[d]
+				var/cdir = GLOB.cardinal[d]
 				for(var/i=1;i<=ALERT_STATES.len;i++)
 					if(dir_alerts[d] & (1<<(i-1)))
 						add_overlay(new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir))

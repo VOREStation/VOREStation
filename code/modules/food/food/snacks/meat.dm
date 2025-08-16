@@ -7,7 +7,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 14
 
-/obj/item/reagent_containers/food/snacks/meat/Initialize()
+/obj/item/reagent_containers/food/snacks/meat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
 	reagents.add_reagent(REAGENT_ID_TRIGLYCERIDE, 2)
@@ -54,7 +54,7 @@
 	cooked_icon = "chickensteak"
 	filling_color = "#BBBBAA"
 
-/obj/item/reagent_containers/food/snacks/meat/chicken/Initialize()
+/obj/item/reagent_containers/food/snacks/meat/chicken/Initialize(mapload)
 	. = ..()
 	reagents.remove_reagent(REAGENT_ID_TRIGLYCERIDE, INFINITY)
 	//Chicken is low fat. Less total calories than other meats
@@ -65,7 +65,7 @@
 	icon_state = "crabmeat"
 	bitesize = 1
 
-/obj/item/reagent_containers/food/snacks/crabmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/crabmeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SEAFOOD, 2)
 
@@ -80,9 +80,10 @@
 	nutriment_desc = list("raw" = 2, PLANT_MUSHROOMS = 2)
 	bitesize = 6
 
-/obj/item/reagent_containers/food/snacks/hugemushroomslice/Initialize()
+/obj/item/reagent_containers/food/snacks/hugemushroomslice/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
+	reagents.add_reagent(REAGENT_ID_FUNGI, 1)
 
 /obj/item/reagent_containers/food/snacks/tomatomeat
 	name = "tomato slice"
@@ -104,7 +105,7 @@
 	center_of_mass_y = 10
 	bitesize = 3
 
-/obj/item/reagent_containers/food/snacks/bearmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/bearmeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 12)
 	reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
@@ -118,7 +119,7 @@
 	center_of_mass_y = 10
 	bitesize = 6
 
-/obj/item/reagent_containers/food/snacks/xenomeat/Initialize()
+/obj/item/reagent_containers/food/snacks/xenomeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
 	reagents.add_reagent(REAGENT_ID_PACID,6)
@@ -132,7 +133,7 @@
 	center_of_mass_y = 10
 	bitesize = 6
 
-/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat/Initialize()
+/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SPIDERTOXIN,6)
 	reagents.remove_reagent(REAGENT_ID_PACID,6)
@@ -143,7 +144,7 @@
 	icon_state = "rawturkey"
 	bitesize = 2.5
 
-/obj/item/reagent_containers/food/snacks/rawturkey/Initialize()
+/obj/item/reagent_containers/food/snacks/rawturkey/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 10)
 
@@ -159,31 +160,14 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-/obj/item/reagent_containers/food/snacks/meat/grubmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/meat/grubmeat/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PROTEIN, 1)
 	reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
 	bitesize = 6
 
-/obj/item/reagent_containers/food/snacks/meat/worm
-	name = "weird meat"
-	desc = "A chunk of pulsating meat."
-	icon_state = "wormmeat"
-	health = 180
-	filling_color = "#551A8B"
-	center_of_mass_x = 16
-	center_of_mass_y = 14
-
-/obj/item/reagent_containers/food/snacks/meat/worm/Initialize()
-	. = ..()
-	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
-	reagents.add_reagent(REAGENT_ID_PHORON, 3)
-	reagents.add_reagent(REAGENT_ID_MYELAMINE, 3)
-	src.bitesize = 3
-
-/obj/item/reagent_containers/food/snacks/meat/worm/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/material/knife))
-		var/to_spawn = pickweight(/obj/random/junk = 30,
+var/static/list/worm_meat_spawns = list (
+		/obj/random/junk = 30,
 		/obj/random/trash = 30,
 		/obj/random/maintenance/clean = 15,
 		/obj/random/tool = 15,
@@ -196,7 +180,27 @@
 		/obj/random/handgun = 1,
 		/obj/random/toolbox = 4,
 		/obj/random/drinkbottle = 5
-		)
+)
+
+/obj/item/reagent_containers/food/snacks/meat/worm
+	name = "weird meat"
+	desc = "A chunk of pulsating meat."
+	icon_state = "wormmeat"
+	health = 180
+	filling_color = "#551A8B"
+	center_of_mass_x = 16
+	center_of_mass_y = 14
+
+/obj/item/reagent_containers/food/snacks/meat/worm/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
+	reagents.add_reagent(REAGENT_ID_PHORON, 3)
+	reagents.add_reagent(REAGENT_ID_MYELAMINE, 3)
+	src.bitesize = 3
+
+/obj/item/reagent_containers/food/snacks/meat/worm/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/material/knife))
+		var/to_spawn = pickweight(worm_meat_spawns)
 
 		new to_spawn(get_turf(src))
 

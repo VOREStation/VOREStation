@@ -9,10 +9,10 @@
 
 //supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
 #define RANGE_TURFS(RADIUS, CENTER) \
-  block( \
-    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-  )
+	block( \
+		locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
+		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
+	)
 
 //Inverts the colour of an HTML string
 /proc/invertHTML(HTMLstring)
@@ -303,7 +303,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
+		for(var/list/L in list(GLOB.data_core.general, GLOB.data_core.medical, GLOB.data_core.security, GLOB.data_core.locked))
 			for(var/datum/data/record/R in L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
@@ -350,7 +350,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				return	//took too long
 			newname = sanitizeName(newname, ,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
 
-			for(var/mob/living/M in player_list)
+			for(var/mob/living/M in GLOB.player_list)
 				if(M == src)
 					continue
 				if(!newname || M.real_name == newname)
@@ -368,7 +368,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
 				//to_world(span_world("[newname] is the AI!"))
-				//world << sound('sound/AI/newAI.ogg')
+				//world << sound('sound/AI/newai.ogg')
 				// Set eyeobj name
 				A.SetName(newname)
 
@@ -385,7 +385,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
+	for (var/mob/living/silicon/robot/A in GLOB.player_list)
 		if (A.stat == 2 || A.connected_ai || A.scrambledcodes || istype(A,/mob/living/silicon/robot/drone))
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
@@ -399,7 +399,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
+	for(var/mob/living/silicon/ai/A in GLOB.living_mob_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled == 1)
@@ -426,48 +426,36 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Returns a list of all mobs with their name
 /proc/getmobs()
-	return observe_list_format(sortmobs())
+	return observe_list_format(sort_mobs())
 
 //Orders mobs by type then by name
-/proc/sortmobs()
+/proc/sort_mobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortAtom(mob_list)
+	var/list/sortmob = sort_names(GLOB.mob_list)
 	for(var/mob/observer/eye/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/observer/blob/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/silicon/ai/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/silicon/pai/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/silicon/robot/M in sortmob)
-		moblist.Add(M)
-	var/list/delaylist = list()
+		moblist += M
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(M.low_sorting_priority && !M.client)
-			delaylist.Add(M)
-		else
-			moblist.Add(M)
-	moblist.Add(delaylist)
+		moblist += M
 	for(var/mob/living/carbon/brain/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/carbon/alien/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/observer/dead/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/new_player/M in sortmob)
-		moblist.Add(M)
+		moblist += M
 	for(var/mob/living/simple_mob/M in sortmob)
-		moblist.Add(M)
-	//VOREStation Addition Start
+		moblist += M
 	for(var/mob/living/dominated_brain/M in sortmob)
-		moblist.Add(M)
-	//VOREStation Addition End
-
-//	for(var/mob/living/silicon/hivebot/M in sortmob)
-//		mob_list.Add(M)
-//	for(var/mob/living/silicon/hive_mainframe/M in sortmob)
-//		mob_list.Add(M)
+		moblist += M
 	return moblist
 
 /proc/observe_list_format(input_list)
@@ -566,13 +554,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //returns random gauss number
 /proc/GaussRand(var/sigma)
-  var/x,y,rsq
-  do
-    x=2*rand()-1
-    y=2*rand()-1
-    rsq=x*x+y*y
-  while(rsq>1 || !rsq)
-  return sigma*y*sqrt(-2*log(rsq)/rsq)
+	var/x,y,rsq
+	do
+		x=2*rand()-1
+		y=2*rand()-1
+		rsq=x*x+y*y
+	while(rsq>1 || !rsq)
+	return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 //returns random gauss number, rounded to 'roundto'
 /proc/GaussRandRound(var/sigma,var/roundto)
@@ -757,7 +745,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					if(istype(T,/turf/simulated/shuttle))
 						shuttlework = 1
 						var/turf/simulated/shuttle/SS = T
-						if(!SS.landed_holder) SS.landed_holder = new(turf = SS)
+						if(!SS.landed_holder) SS.landed_holder = new(SS)
 						X = SS.landed_holder.land_on(B)
 
 					//Generic non-shuttle turf move.
@@ -831,18 +819,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	else
 		O=new original.type(locate(0,0,0))
 
-	var/static/list/blacklisted_var_names = list(
-		"ATOM_TOPIC_EXAMINE",
-		"type",
-		"loc",
-		"locs",
-		"vars",
-		"parent",
-		"parent_type",
-		"verbs",
-		"ckey",
-		"key"
-	)
+	var/static/list/blacklisted_var_names = list(BLACKLISTED_COPY_VARS)
 	if(perfectcopy)
 		if((O) && (original))
 			for(var/V in original.vars)
@@ -995,25 +972,25 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/get_mob_with_client_list()
 	var/list/mobs = list()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.client)
 			mobs += M
 	return mobs
 
 
 /proc/parse_zone(zone)
-	if(zone == "r_hand") return "right hand"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "l_arm") return "left arm"
-	else if (zone == "r_arm") return "right arm"
-	else if (zone == "l_leg") return "left leg"
-	else if (zone == "r_leg") return "right leg"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "r_hand") return "right hand"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
+	if(zone == BP_R_HAND) return "right hand"
+	else if (zone == BP_L_HAND) return "left hand"
+	else if (zone == BP_L_ARM) return "left arm"
+	else if (zone == BP_R_ARM) return "right arm"
+	else if (zone == BP_L_LEG) return "left leg"
+	else if (zone == BP_R_LEG) return "right leg"
+	else if (zone == BP_L_FOOT) return "left foot"
+	else if (zone == BP_R_FOOT) return "right foot"
+	else if (zone == BP_L_HAND) return "left hand"
+	else if (zone == BP_R_HAND) return "right hand"
+	else if (zone == BP_L_FOOT) return "left foot"
+	else if (zone == BP_R_FOOT) return "right foot"
 	else return zone
 
 /proc/get(atom/loc, type)
@@ -1028,7 +1005,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 //Quick type checks for some tools
-var/global/list/common_tools = list(
+GLOBAL_LIST_INIT(common_tools, list(
 /obj/item/stack/cable_coil,
 /obj/item/tool/wrench,
 /obj/item/weldingtool,
@@ -1036,10 +1013,10 @@ var/global/list/common_tools = list(
 /obj/item/tool/wirecutters,
 /obj/item/multitool,
 /obj/item/tool/crowbar,
-/obj/item/tool/transforming)
+/obj/item/tool/transforming))
 
 /proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
+	if(O && is_type_in_list(O, GLOB.common_tools))
 		return 1
 	return 0
 
@@ -1124,13 +1101,10 @@ var/global/list/common_tools = list(
 // check if mob is lying down on something we can operate him on.
 // The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M, mob/living/user)
-	. = M.lying
-
-	if(user && M == user && user.allow_self_surgery && user.a_intent == I_HELP)	// You can, technically, always operate on yourself after standing still. Inadvised, but you can.
-
-		if(!M.isSynthetic())
-			. = TRUE
-
+	if(M != user)
+		. = M.lying
+	else if(user && user.allow_self_surgery && user.a_intent == I_HELP)    // You can, technically, always operate on yourself after standing still. Inadvised, but you can.
+		. = TRUE
 	return .
 
 // Returns an instance of a valid surgery surface.
@@ -1145,8 +1119,8 @@ var/global/list/common_tools = list(
 	if(surface)
 		return surface
 
-/proc/reverse_direction(var/dir)
-	return global.reverse_dir[dir]
+/proc/reverse_direction(dir)
+	return GLOB.reverse_dir[dir]
 
 /*
 Checks if that loc and dir has a item on the wall
@@ -1217,7 +1191,7 @@ var/list/WALLITEMS = list(
 	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
 	return "<span style='font-face: fixedsys; font-size: 14px; background-color: [color]; color: [color]'>___</span>"
 
-var/mob/dview/dview_mob = new
+var/mob/dview/dview_mob
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
@@ -1225,7 +1199,6 @@ var/mob/dview/dview_mob = new
 		return
 	if(!dview_mob) //VOREStation Add: Debugging
 		dview_mob = new
-		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
 
@@ -1235,7 +1208,7 @@ var/mob/dview/dview_mob = new
 	dview_mob.loc = null
 
 /mob/dview
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	density = FALSE
 
 	anchored = TRUE
@@ -1248,19 +1221,19 @@ var/mob/dview/dview_mob = new
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
-/mob/dview/Initialize()
+/mob/dview/Initialize(mapload)
 	. = ..()
 	// We don't want to be in any mob lists; we're a dummy not a mob.
-	mob_list -= src
+	GLOB.mob_list -= src
 	if(stat == DEAD)
-		dead_mob_list -= src
+		GLOB.dead_mob_list -= src
 	else
-		living_mob_list -= src
+		GLOB.living_mob_list -= src
 
 /mob/dview/Life()
-	mob_list -= src
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.living_mob_list -= src
 
 /mob/dview/Destroy(var/force)
 	stack_trace("Attempt to delete the dview_mob: [log_info_line(src)]")
@@ -1445,7 +1418,7 @@ var/mob/dview/dview_mob = new
 	return pre_generated_list
 
 /proc/filter_fancy_list(list/L, filter as text)
-	var/list/matches = new
+	var/list/matches = list()
 	for(var/key in L)
 		var/value = L[key]
 		if(findtext("[key]", filter) || findtext("[value]", filter))
@@ -1498,6 +1471,10 @@ var/mob/dview/dview_mob = new
 	if(istype(D))
 		return !QDELETED(D)
 	return FALSE
+
+/// No op
+/proc/pass(...)
+	return
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
@@ -1580,6 +1557,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	. += new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
 	. += new /obj/screen/plane_master{plane = PLANE_CH_STOMACH}				//Stomachs
 	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
+	. += new /obj/screen/plane_master{plane = PLANE_SOULCATCHER}			//Soulcatcher
 	//VOREStation Add End
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
@@ -1617,3 +1595,80 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return "CLIENT: [D]"
 	else
 		return "Unknown data type: [D]"
+
+/**
+ * - is_valid_z_level
+ *
+ * Checks if source_loc and checking_loc is both on the station, or on the same z level.
+ * This is because the station's several levels aren't considered the same z, so multi-z stations need this special case.
+ *
+ * Args:
+ * source_loc - turf of the source we're comparing.
+ * checking_loc - turf we are comparing to source_loc.
+ *
+ * returns TRUE if connection is valid, FALSE otherwise.
+ */
+/proc/is_valid_z_level(turf/source_loc, turf/checking_loc)
+	return is_on_same_plane_or_station(source_loc.z, checking_loc.z)
+
+/**
+ * divides a list of materials uniformly among all contents of the target_object recursively
+ * Used to set materials of printed items with their design cost by taking into consideration their already existing materials
+ * e.g. if 12 iron is to be divided uniformly among 2 objects A, B who's current iron contents are 3 & 7
+ * Then first we normalize those values i.e. find their weights to decide who gets an higher share of iron
+ * total_sum = 3 + 7 = 10, A = 3/10 = 0.3, B = 7/10 = 0.7
+ * Then we finally multiply those weights with the user value of 12 we get
+ * A = 0.3 * 12 = 3.6, B = 0.7 * 12 = 8.4 i.e. 3.6 + 8.4 = 12!!
+ * Off course we round the values so we don't have to deal with floating point materials so the actual value
+ * ends being less but that's not an issue
+ * Arguments
+ *
+ * * [custom_materials][list] - the list of materials to set for the object
+ * * multiplier - multiplier passed to set_custom_materials
+ * * [target_object][atom] - the target object who's custom materials we are trying to modify
+ */
+/proc/split_materials_uniformly(list/custom_materials, multiplier, obj/target_object)
+	target_object.set_custom_materials(custom_materials)
+
+	// if(!length(target_object.contents)) //most common case where the object is just 1 thing
+	// 	target_object.set_custom_materials(custom_materials, multiplier)
+	// 	return
+
+	// //Step 1: Get recursive contents of all objects, only filter obj cause that what's material container accepts
+	// var/list/reccursive_contents = target_object.get_all_contents_type(/obj/item)
+
+	// //Step 2: find the sum of each material type per object and record their amounts into an 2D list
+	// var/list/material_map_sum = list()
+	// var/list/material_map_amounts = list()
+	// for(var/obj/object as anything in reccursive_contents)
+	// 	var/list/item_materials = object.matter
+	// 	for(var/mat as anything in custom_materials)
+	// 		var/mat_amount = 1 //no materials mean we assign this default amount
+	// 		if(length(item_materials))
+	// 			mat_amount = item_materials[mat] || 1 //if this object doesn't have our material type then assign a default value of 1
+
+	// 		//record the sum of mats for normalizing
+	// 		material_map_sum[mat] += mat_amount
+	// 		//record the material amount for each item into an 2D list
+	// 		var/list/mat_list_per_item = material_map_amounts[mat]
+	// 		if(isnull(mat_list_per_item))
+	// 			material_map_amounts[mat] = list(mat_amount)
+	// 		else
+	// 			mat_list_per_item += mat_amount
+
+	// //Step 3: normalize & scale material_map_amounts with material_map_sum
+	// for(var/mat as anything in material_map_amounts)
+	// 	var/mat_sum = material_map_sum[mat]
+	// 	var/list/mat_per_item = material_map_amounts[mat]
+	// 	for(var/i in 1 to mat_per_item.len)
+	// 		mat_per_item[i] = (mat_per_item[i] / mat_sum) * custom_materials[mat]
+
+	// //Step 4 flatten the 2D list and assign the final values to each atom
+	// var/index = 1
+	// for(var/obj/object as anything in reccursive_contents)
+	// 	var/list/final_material_list = list()
+	// 	for(var/mat as anything in material_map_amounts)
+	// 		var/list/mat_per_item = material_map_amounts[mat]
+	// 		final_material_list[mat] = mat_per_item[index]
+	// 	object.set_custom_materials(final_material_list, multiplier)
+		// index += 1

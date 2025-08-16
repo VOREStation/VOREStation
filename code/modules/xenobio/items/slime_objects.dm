@@ -18,7 +18,7 @@
 
 // Sometime down the road it would be great to make all of these 'ask ghosts if they want to be X' procs into a generic datum.
 /obj/item/slime_cube/proc/request_player()
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
 		if(O.client)
@@ -57,7 +57,7 @@
 	S.set_species("Promethean")
 	S.shapeshifter_set_colour("#2398FF")
 	visible_message(span_warning("The monkey cube suddenly takes the shape of a humanoid!"))
-	var/newname = sanitize(tgui_input_text(S, "You are a Promethean. Would you like to change your name to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/newname = tgui_input_text(S, "You are a Promethean. Would you like to change your name to something else?", "Name change", null, MAX_NAME_LEN)
 	if(newname)
 		S.real_name = newname
 		S.name = S.real_name
@@ -123,7 +123,7 @@
 	nutriment_amt = 25 // Very filling.
 	nutriment_desc = list("slime" = 10, "sweetness" = 10, REAGENT_ID_BLISS = 5)
 
-/obj/item/reagent_containers/food/snacks/slime/Initialize()
+/obj/item/reagent_containers/food/snacks/slime/Initialize(mapload)
 	. = ..()
 	bitesize = 5
 
@@ -143,7 +143,7 @@
 	on = 1 //Bio-luminesence has one setting, on.
 	power_use = 0
 
-/obj/item/flashlight/slime/Initialize()
+/obj/item/flashlight/slime/Initialize(mapload)
 	. = ..()
 	set_light(light_range, light_power, light_color)
 
@@ -166,7 +166,7 @@
 	light_range = 2
 	w_class = ITEMSIZE_TINY
 
-/obj/item/slime_irradiator/Initialize()
+/obj/item/slime_irradiator/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	set_light(light_range, light_power, light_color)
@@ -217,3 +217,4 @@
 	color = "#FABA3A"
 	nutriment_factor = 30
 	taste_description = "slimy nectar"
+	wiki_flag = WIKI_FOOD|WIKI_SPOILER

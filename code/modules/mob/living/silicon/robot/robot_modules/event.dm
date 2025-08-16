@@ -8,7 +8,7 @@
 /obj/item/robot_module/robot/lost/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// Sec
-	src.modules += new /obj/item/melee/baton/shocker/robot(src)
+	src.modules += new /obj/item/melee/robotic/baton/shocker(src)
 	src.modules += new /obj/item/handcuffs/cyborg(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 
@@ -22,7 +22,7 @@
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/tool/wirecutters/cyborg(src)
-	src.modules += new /obj/item/multitool(src)
+	src.modules += new /obj/item/multitool/cyborg(src)
 
 	// Sci
 	src.modules += new /obj/item/robotanalyzer(src)
@@ -32,10 +32,6 @@
 
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
 	synths += wire
-
-	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
-	C.synths = list(wire)
-	src.modules += C
 
 	src.modules += new /obj/item/dogborg/sleeper/lost(src)
 	src.modules += new /obj/item/dogborg/pounce(src)
@@ -47,7 +43,7 @@
 /obj/item/robot_module/robot/gravekeeper/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// For fending off animals and looters
-	src.modules += new /obj/item/melee/baton/shocker/robot(src)
+	src.modules += new /obj/item/melee/robotic/baton/shocker(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 
 	// For repairing gravemarkers
@@ -56,11 +52,7 @@
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 
 	// For growing flowers
-	src.modules += new /obj/item/material/minihoe(src)
-	src.modules += new /obj/item/material/knife/machete/hatchet(src)
-	src.modules += new /obj/item/analyzer/plant_analyzer(src)
-	src.modules += new /obj/item/storage/bag/plants(src)
-	src.modules += new /obj/item/robot_harvester(src)
+	src.modules += new /obj/item/robotic_multibelt/botanical(src)
 
 	// For digging and beautifying graves
 	src.modules += new /obj/item/shovel(src)

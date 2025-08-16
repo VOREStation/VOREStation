@@ -16,7 +16,7 @@
 	var/slogan = ""
 	var/hatsize = 0
 
-/obj/item/clothing/head/fishing/Initialize()
+/obj/item/clothing/head/fishing/Initialize(mapload)
 	. = ..()
 	//short phrases that women and fish may have about you
 	var/feelings = list("love me",

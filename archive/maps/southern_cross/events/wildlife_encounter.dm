@@ -7,7 +7,7 @@
 	event_type = /datum/event2/event/wildlife_encounter
 
 /datum/event2/meta/wildlife_encounter/get_weight()
-	var/explorers = metric.count_people_with_job(/datum/job/explorer) + metric.count_people_with_job(/datum/job/sar)
+	var/explorers = GLOB.metric.count_people_with_job(/datum/job/explorer) + GLOB.metric.count_people_with_job(/datum/job/sar)
 
 	if(!explorers)
 		return 0
@@ -18,7 +18,7 @@
 	var/list/potential_victims = list()
 
 /datum/event2/event/wildlife_encounter/set_up()
-	for(var/mob/living/L in player_list)
+	for(var/mob/living/L in GLOB.player_list)
 		//if(!(L.z in get_location_z_levels()))
 		//	log_debug("Not on the right z-level")
 		//	continue // Not on the right z-level.

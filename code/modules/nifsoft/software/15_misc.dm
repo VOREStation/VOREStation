@@ -122,8 +122,8 @@
 	name = "Mass Alteration"
 	desc = "A system that allows one to change their size, through drastic mass rearrangement. Causes significant wear when installed."
 	list_pos = NIF_SIZECHANGE
-	cost = 375
-	wear = 6
+	cost = 300
+	wear = 1
 
 /datum/nifsoft/sizechange/activate()
 	if((. = ..()))
@@ -157,22 +157,22 @@
 /datum/nifsoft/worldbend/activate()
 	if((. = ..()))
 		var/list/justme = list(nif.human)
-		for(var/human in human_mob_list)
+		for(var/human in GLOB.human_mob_list)
 			if(human == nif.human)
 				continue
 			var/mob/living/carbon/human/H = human
 			H.display_alt_appearance("animals", justme)
-			alt_farmanimals += nif.human
+			GLOB.alt_farmanimals += nif.human
 
 /datum/nifsoft/worldbend/deactivate(var/force = FALSE)
 	if((. = ..()))
 		var/list/justme = list(nif.human)
-		for(var/human in human_mob_list)
+		for(var/human in GLOB.human_mob_list)
 			if(human == nif.human)
 				continue
 			var/mob/living/carbon/human/H = human
 			H.hide_alt_appearance("animals", justme)
-			alt_farmanimals -= nif.human
+			GLOB.alt_farmanimals -= nif.human
 
 /datum/nifsoft/malware
 	name = "Cool Kidz Toolbar"

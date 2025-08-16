@@ -33,35 +33,21 @@ export const CasinoPrizeDispenser = () => {
   const [sortOrder, setSortOrder] = useState<string>('Alphabetical');
   const [descending, setDescending] = useState<boolean>(false);
 
-  function handleSearchText(value: string) {
-    setSearchText(value);
-  }
-
-  function handleSortOrder(value: string) {
-    setSortOrder(value);
-  }
-
-  function handleDescending(value: boolean) {
-    setDescending(value);
-  }
-
   return (
     <Window width={400} height={450}>
       <Window.Content className="Layout__content--flexColumn" scrollable>
-        <>
-          <CasinoPrizeDispenserSearch
-            sortOrder={sortOrder}
-            descending={descending}
-            onSearchText={handleSearchText}
-            onSortOrder={handleSortOrder}
-            onDescending={handleDescending}
-          />
-          <CasinoPrizeDispenserItems
-            searchText={searchText}
-            sortOrder={sortOrder}
-            descending={descending}
-          />
-        </>
+        <CasinoPrizeDispenserSearch
+          sortOrder={sortOrder}
+          descending={descending}
+          onSearchText={setSearchText}
+          onSortOrder={setSortOrder}
+          onDescending={setDescending}
+        />
+        <CasinoPrizeDispenserItems
+          searchText={searchText}
+          sortOrder={sortOrder}
+          descending={descending}
+        />
       </Window.Content>
     </Window>
   );
@@ -70,9 +56,9 @@ export const CasinoPrizeDispenser = () => {
 const CasinoPrizeDispenserSearch = (props: {
   sortOrder: string;
   descending: boolean;
-  onSearchText: Function;
-  onSortOrder: Function;
-  onDescending: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
+  onSortOrder: React.Dispatch<React.SetStateAction<string>>;
+  onDescending: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <Box mb="0.5rem">
@@ -81,7 +67,7 @@ const CasinoPrizeDispenserSearch = (props: {
           <Input
             placeholder="Search by item name.."
             width="100%"
-            onInput={(_e, value) => props.onSearchText(value)}
+            onChange={(value) => props.onSearchText(value)}
           />
         </Stack.Item>
         <Stack.Item basis="30%">
@@ -125,7 +111,7 @@ const CasinoPrizeDispenserItems = (props: {
   );
 
   let has_contents = false;
-  let contents = Object.entries(items).map((kv) => {
+  const contents = Object.entries(items).map((kv) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
       .map((kv2) => {

@@ -51,7 +51,7 @@
 			//Moving around with fractured ribs won't do you any good
 				if (prob(10) && !stat && can_feel_pain() && chem_effects[CE_PAINKILLER] < 50 && E.is_broken() && E.internal_organs.len)
 					custom_pain("Pain jolts through your broken [E.encased ? E.encased : E.name], staggering you!", 50)
-					emote("pain")
+					emote("scream")
 					drop_item(loc)
 					Stun(2)
 
@@ -73,8 +73,8 @@
 	if (istype(buckled, /obj/structure/bed))
 		return
 
-	var/limb_pain
-	for(var/limb_tag in list("l_leg","r_leg","l_foot","r_foot"))
+	var/limb_pain = FALSE
+	for(var/limb_tag in list(BP_L_LEG,BP_R_LEG,BP_L_FOOT,BP_R_FOOT))
 		var/obj/item/organ/external/E = organs_by_name[limb_tag]
 		if(!E || !E.is_usable())
 			stance_damage += 2 // let it fail even if just foot&leg
@@ -110,8 +110,9 @@
 		if(!(lying || resting) && !isbelly(loc))
 			if(limb_pain)
 				emote("scream")
-			custom_emote(1, "collapses!")
-		Weaken(5) //can't emote while weakened, apparently.
+			automatic_custom_emote(VISIBLE_MESSAGE, "collapses!", check_stat = TRUE)
+		if(!(lying || resting)) // stops permastun with SPINE sdisability
+			Weaken(5) //can't emote while weakened, apparently.
 
 /mob/living/carbon/human/proc/handle_grasp()
 	if(!l_hand && !r_hand)
@@ -154,7 +155,7 @@
 
 			if(!isbelly(loc))
 				var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-				custom_emote(VISIBLE_MESSAGE, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+				automatic_custom_emote(VISIBLE_MESSAGE, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!", check_stat = TRUE)
 				if(can_feel_pain())
 					emote("pain")
 
@@ -170,7 +171,7 @@
 					drop_from_inventory(r_hand)
 
 			if(!isbelly(loc))
-				custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [E.name] malfunctioning!")
+				automatic_custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [E.name] malfunctioning!", check_stat = TRUE)
 
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src)
@@ -191,14 +192,14 @@
 	SHOULD_NOT_OVERRIDE(TRUE) //Don't. Even. /Think/. About. It.
 	if(!dna || !species)
 		return
-	// Traitgenes NO_SCAN and Synthetics cannot be mutated
+	// Traitgenes NO_DNA and Synthetics cannot be mutated
 	if(isSynthetic())
 		return
-	if(species.flags & NO_SCAN)
+	if(species.flags & NO_DNA)
 		return
 	if(refresh_traits && species.traits)
 		for(var/TR in species.traits)
-			var/datum/trait/T = all_traits[TR]
+			var/datum/trait/T = GLOB.all_traits[TR]
 			if(!T)
 				continue
 			if(!T.linked_gene)

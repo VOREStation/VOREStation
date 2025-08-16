@@ -1,0 +1,64 @@
+@keyframes fade-in {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.RIGSuit__FadeIn {
+  animation: 2s linear fade-in forwards;
+  opacity: 0.1;
+}
+
+.RIGSuit__Name {
+  animation: 1.5s linear wipe-in-left both;
+  animation-delay: 1.8s;
+}
+
+@keyframes wipe-in-left {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.RIGSuit__Line {
+  animation: 1s linear wipe-in-left both;
+  animation-delay: 1s;
+}
+
+.RIGSuit__Animation__WipeLeft {
+  animation: 1s linear wipe-in-left both;
+}
+
+.RIGSuit__Icon {
+  cursor: pointer;
+  transition:
+    0.2s filter linear,
+    0.2s -webkit-filter linear;
+  user-select: none;
+}
+
+.RIGSuit__Icon > img {
+  transition:
+    0.2s filter linear,
+    0.2s -webkit-filter linear;
+  -webkit-user-drag: none;
+}
+
+@keyframes wipe-in-up {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.RIGSuit__Animation__WipeUp {
+  animation: 1s linear wipe-in-up both;
+}

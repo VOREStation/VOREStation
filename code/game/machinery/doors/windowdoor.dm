@@ -17,13 +17,12 @@
 	can_atmos_pass = ATMOS_PASS_PROC
 	air_properties_vary_with_direction = 1
 
-/obj/machinery/door/window/New()
-	..()
+/obj/machinery/door/window/Initialize(mapload)
+	. = ..()
 	update_nearby_tiles()
 	if(LAZYLEN(req_access))
-		src.icon_state = "[src.icon_state]"
-		src.base_state = src.icon_state
-	return
+		icon_state = "[icon_state]"
+		base_state = icon_state
 
 /obj/machinery/door/window/update_icon()
 	if(density)
@@ -75,7 +74,7 @@
 					open()
 					addtimer(CALLBACK(src, PROC_REF(close)), 50)
 		return
-	if (!( ticker ))
+	if (!( SSticker ))
 		return
 	if (src.operating)
 		return
@@ -86,7 +85,7 @@
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+	if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 
@@ -107,14 +106,17 @@
 /obj/machinery/door/window/open()
 	if (operating == 1 || !density) //doors can still open when emag-disabled
 		return 0
-	if (!ticker)
+	if (!SSticker)
 		return 0
 	if (!operating) //in case of emag
 		operating = 1
 	flick(text("[src.base_state]opening"), src)
 	playsound(src, 'sound/machines/door/windowdoor.ogg', 100, 1)
-	sleep(10)
+	addtimer(CALLBACK(src, PROC_REF(finish_open)), 1 SECONDS, TIMER_DELETE_ME)
 
+/obj/machinery/door/window/proc/finish_open()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	explosion_resistance = 0
 	density = FALSE
 	update_icon()
@@ -135,8 +137,11 @@
 	update_icon()
 	explosion_resistance = initial(explosion_resistance)
 	update_nearby_tiles()
+	addtimer(CALLBACK(src, PROC_REF(finish_close)), 1 SECONDS, TIMER_DELETE_ME)
 
-	sleep(10)
+/obj/machinery/door/window/proc/finish_close()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	operating = FALSE
 	return TRUE
 

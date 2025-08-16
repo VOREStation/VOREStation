@@ -1,4 +1,4 @@
-var/global/list/env_messages = list()
+GLOBAL_LIST_EMPTY(env_messages)
 
 /obj/effect/env_message
 	name = "Env message"
@@ -12,10 +12,10 @@ var/global/list/env_messages = list()
 
 /obj/effect/env_message/Initialize(mapload)
 	.=..()
-	env_messages += src
+	GLOB.env_messages += src
 
 /obj/effect/env_message/Destroy()
-	env_messages -= src
+	GLOB.env_messages -= src
 	return ..()
 
 /obj/effect/env_message/examine(mob/user)
@@ -60,19 +60,19 @@ var/global/list/env_messages = list()
 	..()
 
 /proc/clear_env_message(var/tckey)
-	for(var/obj/effect/env_message/EM in env_messages)
+	for(var/obj/effect/env_message/EM in GLOB.env_messages)
 		if(tckey in EM.message_list)
 			EM.remove_message(tckey)
 
 /mob/living/verb/create_env_message()
 	set name = "Create Env Message"
 	set desc = "Create an ooc message in the environment for other players to see."
-	set category = "OOC"
+	set category = "OOC.Game"
 
 	if(!istype(src) || !get_turf(src) || !src.ckey)
 		return
 
-	var/new_message = sanitize(tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now. If you already have a message somewhere, it will be removed in the process. Please refrain from abusive or deceptive messages, but otherwise, feel free to be creative!", "Env Message"))
+	var/new_message = tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now. If you already have a message somewhere, it will be removed in the process. Please refrain from abusive or deceptive messages, but otherwise, feel free to be creative!", "Env Message", MAX_MESSAGE_LEN)
 
 	if(!new_message)
 		return
@@ -92,7 +92,7 @@ var/global/list/env_messages = list()
 /mob/living/verb/remove_env_message()
 	set name = "Remove Env Message"
 	set desc = "Remove your current env message."
-	set category = "OOC"
+	set category = "OOC.Game"
 
 	if(!istype(src) || !src.ckey)
 		return
@@ -136,7 +136,7 @@ var/global/list/env_messages = list()
 	if(!get_turf(mob) || !src.ckey)
 		return
 
-	var/new_message = sanitize(tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now.", "Env Message"))
+	var/new_message = tgui_input_text(src, "Type in your message. It will be displayed to players who hover over the spot where you are right now.", "Env Message", "", MAX_MESSAGE_LEN)
 
 	if(!new_message)
 		return

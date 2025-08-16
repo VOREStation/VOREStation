@@ -23,7 +23,7 @@
 	var/db_key
 	var/datum/transcore_db/our_db // These persist all round and are never destroyed, just keep a hard ref
 
-/obj/machinery/computer/transhuman/designer/Initialize()
+/obj/machinery/computer/transhuman/designer/Initialize(mapload)
 	. = ..()
 	our_db = SStranscore.db_by_key(db_key)
 
@@ -59,6 +59,7 @@
 	if(!designer_gui)
 		designer_gui = new(src, null)
 		designer_gui.linked_body_design_console = WEAKREF(src)
+		CallAsync(designer_gui, TYPE_PROC_REF(/datum/tgui_module/appearance_changer,jiggle_map))
 	if(!designer_gui.owner)
 		designer_gui.make_fake_owner()
 		selected_record = FALSE
@@ -85,8 +86,8 @@
 	desc = "A box of body record disks, apparently."
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/body_record_disk/New()
-	..()
+/obj/item/storage/box/body_record_disk/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/body_record(src)
 

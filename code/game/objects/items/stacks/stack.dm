@@ -29,6 +29,7 @@
 
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
+	var/is_building = FALSE
 
 /obj/item/stack/Initialize(mapload, var/starting_amount)
 	. = ..()
@@ -44,13 +45,21 @@
 				starting_amount = 1
 		set_amount(starting_amount, TRUE)
 	update_icon()
+	AddElement(/datum/element/sellable/material_stack)
 
 /obj/item/stack/Destroy()
 	if(uses_charge)
 		return 1
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
+	if(islist(synths))
+		synths.Cut()
 	return ..()
+
+/obj/item/stack/get_material_composition(breakdown_flags)
+	. = ..()
+	for(var/M in .)
+		.[M] *= amount
 
 /obj/item/stack/update_icon()
 	if(no_variants)
@@ -156,6 +165,9 @@
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 
+	if(is_building)
+		return
+
 	if (!can_use(required))
 		if (produced>1)
 			to_chat(user, span_warning("You haven't got enough [src] to build \the [produced] [recipe.title]\s!"))
@@ -173,9 +185,12 @@
 
 	if (recipe.time)
 		to_chat(user, span_notice("Building [recipe.title] ..."))
+		is_building = TRUE
 		if (!do_after(user, recipe.time))
+			is_building = FALSE
 			return
 
+	is_building = FALSE
 	if (use(required))
 		var/atom/O
 		if(recipe.use_material)
@@ -254,6 +269,10 @@
 	if(!uses_charge)
 		amount -= used
 		if (amount <= 0)
+			// Tell container that we used up a stack
+			if(istype( loc, /obj/item/storage))
+				var/obj/item/storage/holder = loc
+				holder.remove_from_storage( src, null)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
 		update_icon()
 		return 1
@@ -333,11 +352,7 @@
 		S.add(transfer)
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
-			if(blood_DNA)
-				if(S.blood_DNA)
-					S.blood_DNA |= blood_DNA
-				else
-					S.blood_DNA = blood_DNA.Copy()
+			transfer_blooddna_to(S)
 		return transfer
 	return 0
 
@@ -360,8 +375,7 @@
 		newstack.color = color
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(newstack)
-			if(blood_DNA)
-				newstack.blood_DNA |= blood_DNA
+			transfer_blooddna_to(newstack)
 		return newstack
 	return null
 
@@ -421,7 +435,11 @@
 	return
 
 /obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/stack))
+	if(istype(W, /obj/item/gripper))
+		var/obj/item/gripper/G = W
+		G.consolidate_stacks(src)
+
+	else if(istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 		src.transfer_to(S)
 
@@ -445,6 +463,9 @@
 	. = ..()
 	if(pulledby && isturf(loc))
 		combine_in_loc()
+
+/obj/item/stack/proc/reagents_per_sheet()
+	return REAGENTS_PER_SHEET // units total of reagents when grinded
 
 /*
  * Recipe datum

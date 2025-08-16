@@ -179,3 +179,6 @@
 	nitrogen	= MOLES_N2SIF
 	temperature	= TEMPERATURE_SIF
 	outdoors = OUTDOORS_YES
+
+/turf/simulated/sky/moving/north/sif/planet_fall/find_planet()
+	return planet_sif

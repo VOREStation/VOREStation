@@ -32,6 +32,9 @@
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
+/obj/item/stack/material/log/reagents_per_sheet()
+	return REAGENTS_PER_LOG
+
 /obj/item/stack/material/log/sif
 	name = MAT_SIFLOG
 	default_type = MAT_SIFLOG
@@ -66,9 +69,9 @@
 		return ..()
 
 /obj/item/stack/material/stick
-	name = "wooden stick"
+	name = MAT_WOODEN_STICK
 	icon_state = "sheet-stick"
-	default_type = "wooden stick"
+	default_type = MAT_WOODEN_STICK
 	strict_color_stacking = TRUE
 	apply_colour = 1
 	drop_sound = 'sound/items/drop/wooden.ogg'
@@ -76,6 +79,9 @@
 	no_variants = FALSE
 	pass_color = TRUE
 	apply_colour = TRUE
+
+/obj/item/stack/material/stick/reagents_per_sheet()
+	return REAGENTS_PER_ROD
 
 /obj/item/stack/material/stick/fivestack
 	amount = 5

@@ -24,7 +24,7 @@
 /obj/machinery/computer/area_atmos/tag/validscrubber(var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
 	if(!istype(scrubber))
 		return FALSE
-	
+
 	if(scrubber.scrub_id == src.scrub_id)
 		return TRUE
 

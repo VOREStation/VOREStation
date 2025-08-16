@@ -43,7 +43,7 @@
 	. = ..()
 	. += "There [uses == 1 ? "is" : "are"] [uses] [material] [uses == 1 ? src.material.sheet_singular_name : src.material.sheet_plural_name] left for use."
 
-/obj/item/material/sharpeningkit/New()
+/obj/item/material/sharpeningkit/Initialize(mapload)
 	. = ..()
 	setrepair()
 

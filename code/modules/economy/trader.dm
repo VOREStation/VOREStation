@@ -265,7 +265,7 @@
 	desc = "A trader can be moved to here!"
 	icon = 'icons/obj/landmark_vr.dmi'
 	icon_state = "blue-x"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	mouse_opacity = 0
 	density = 0
 	anchored = 1
@@ -343,6 +343,7 @@
 		/obj/item/survivalcapsule = 25,
 		/obj/item/survivalcapsule/luxury = 20,
 		/obj/item/survivalcapsule/luxurybar = 15,
+		/obj/item/survivalcapsule/luxurycabin = 15,
 		/obj/item/survivalcapsule/popcabin = 20,
 		/obj/item/perfect_tele/frontier/unknown/one = 1
 		)

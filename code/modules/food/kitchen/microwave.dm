@@ -19,9 +19,6 @@
 	var/broken = 0 // ={0,1,2} How broken is it???
 	var/circuit_item_capacity = 1 //how many items does the circuit add to max number of items
 	var/item_level = 0 // items microwave can handle, 0 foodstuff, 1 materials
-	var/global/list/acceptable_items // List of the items you can put in
-	var/global/list/available_recipes // List of the recipes you can use
-	var/global/list/acceptable_reagents // List of the reagents you can put in
 
 	var/global/max_n_of_items = 20
 	var/appliancetype = MICROWAVE
@@ -34,7 +31,7 @@
 *   Initialising
 ********************/
 
-/obj/machinery/microwave/Initialize()
+/obj/machinery/microwave/Initialize(mapload)
 	. = ..()
 
 	reagents = new/datum/reagents(100)
@@ -42,26 +39,23 @@
 
 	default_apply_parts()
 
-	if(!available_recipes)
-		available_recipes = new
+	if(!LAZYLEN(GLOB.available_recipes))
 		for(var/datum/recipe/typepath as anything in subtypesof(/datum/recipe))
 			if((initial(typepath.appliance) & appliancetype))
-				available_recipes += new typepath
+				GLOB.available_recipes += new typepath
 
-		acceptable_items = new
-		acceptable_reagents = new
-		for (var/datum/recipe/recipe in available_recipes)
+		for (var/datum/recipe/recipe in GLOB.available_recipes)
 			for (var/item in recipe.items)
-				acceptable_items |= item
+				GLOB.acceptable_items |= item
 			for (var/reagent in recipe.reagents)
-				acceptable_reagents |= reagent
+				GLOB.acceptable_reagents |= reagent
 		// This will do until I can think of a fun recipe to use dionaea in -
 		// will also allow anything using the holder item to be microwaved into
 		// impure carbon. ~Z
-		acceptable_items |= /obj/item/holder
-		acceptable_items |= /obj/item/reagent_containers/food/snacks/grown
-		acceptable_items |= /obj/item/soulstone
-		acceptable_items |= /obj/item/fuel_assembly/supermatter
+		GLOB.acceptable_items |= /obj/item/holder
+		GLOB.acceptable_items |= /obj/item/reagent_containers/food/snacks/grown
+		GLOB.acceptable_items |= /obj/item/soulstone
+		GLOB.acceptable_items |= /obj/item/fuel_assembly/supermatter
 
 	soundloop = new(list(src), FALSE)
 
@@ -126,7 +120,7 @@
 		else //Otherwise bad luck!!
 			to_chat(user, span_warning("It's dirty!"))
 			return 1
-	else if(is_type_in_list(O,acceptable_items))
+	else if(is_type_in_list(O,GLOB.acceptable_items))
 		var/list/workingList = cookingContents()
 		if(workingList.len>=(max_n_of_items + circuit_item_capacity))	//Adds component_parts to the maximum number of items. changed 1 to actually just be the circuit item capacity var.
 			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
@@ -184,7 +178,7 @@
 		if (!O.reagents)
 			return 1
 		for (var/datum/reagent/R in O.reagents.reagent_list)
-			if (!(R.id in acceptable_reagents))
+			if (!(R.id in GLOB.acceptable_reagents))
 				to_chat(user, span_warning("Your [O] contains components unsuitable for cookery."))
 				return 1
 		// gotta let afterattack resolve
@@ -253,13 +247,14 @@
 
 /obj/machinery/microwave/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet_batched/kitchen_recipes)
+		get_asset_datum(/datum/asset/spritesheet_batched/kitchen_recipes),
+		get_asset_datum(/datum/asset/simple/microwave)
 	)
 
 /obj/machinery/microwave/tgui_static_data(mob/user)
 	var/list/data = ..()
 
-	var/datum/recipe/recipe = select_recipe(available_recipes,src)
+	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes,src)
 	data["recipe"] = recipe ? sanitize_css_class_name("[recipe.type]") : null
 	data["recipe_name"] = recipe ? initial(recipe.result:name) : null
 
@@ -370,7 +365,7 @@
 		abort()
 		return
 
-	var/datum/recipe/recipe = select_recipe(available_recipes,src)
+	var/datum/recipe/recipe = select_recipe(GLOB.available_recipes,src)
 	var/obj/cooked
 	if(!recipe)
 		dirty += 1
@@ -426,7 +421,7 @@
 
 		valid = 0
 		recipe.after_cook(src)
-		recipe = select_recipe(available_recipes,src)
+		recipe = select_recipe(GLOB.available_recipes,src)
 		if(recipe && recipe.result == result)
 			valid = 1
 			sleep(2)
@@ -594,7 +589,7 @@
 	circuit_item_capacity = 100
 	item_level = 1
 
-/obj/machinery/microwave/advanced/Initialize()
+/obj/machinery/microwave/advanced/Initialize(mapload)
 	. = ..()
 	reagents.maximum_volume = 1000
 
@@ -603,6 +598,7 @@
 		/obj/item/holder
 	)
 	result = /obj/effect/decal/cleanable/blood/gibs
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/splat/before_cook(obj/container)
 	if(istype(container, /obj/machinery/microwave))

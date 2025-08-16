@@ -251,7 +251,7 @@ I think I covered everything.
 	//add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/set_desc) //Implemented upstream
 	faction = FACTION_NEUTRAL
 
-/mob/living/simple_mob/vore/bigdragon/Initialize()
+/mob/living/simple_mob/vore/bigdragon/Initialize(mapload)
 	. = ..()
 	src.adjust_nutrition(src.max_nutrition)
 	build_icons(1)
@@ -504,9 +504,7 @@ I think I covered everything.
 ///
 ///	My thanks to Raeschen for these descriptions
 
-/mob/living/simple_mob/vore/bigdragon/init_vore()
-	if(!voremob_loaded || LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/bigdragon/load_default_bellies()
 	var/obj/belly/B = new /obj/belly/dragon/maw(src)
 	B.affects_vore_sprites = FALSE
 	B.emote_lists[DM_HOLD] = list(
@@ -560,16 +558,15 @@ I think I covered everything.
 		"A soft swaying, like the waves of an ocean, squish you to one side, and then to the other. The dragon's gentle movements seem to sway you side to side, as if in a tight possessive hammock on it's underside.",
 		"Nearby, a louder cacophany of gushing glrrrbles, deep dull squelches, and even deeper glrrns call out. This safe pocket of flesh seems to be up close and intimate with the dragon's normal, larger stomach, thus you rest safely spectating the sounds it makes.",
 		"The rushing breathing of the beast continues at a slow pace, indicating the calm it has. Holding you like this seems quite enjoyable to them, the chamber's folds just as calm and lazy in their motions of squelching the slimy contents all over your form.")
-	.=..()
 
 //Making unique belly subtypes for cleanliness and my sanity
 /obj/belly/dragon
 	autotransferchance = 50
 	autotransferwait = 150
-	escapable = 1
+	escapable = TRUE
 	escapechance = 100
 	escapetime = 15
-	fancy_vore = 1
+	fancy_vore = TRUE
 	contamination_color = "grey"
 	contamination_flavor = "Wet"
 	vore_verb = "slurp"
@@ -937,7 +934,7 @@ I think I covered everything.
 				return
 			if(P.suiciding)
 				return
-			if(P.health <= (P.maxHealth * 0.95))	//Nom em'
+			if(P.health <= (P.getMaxHealth() * 0.95))	//Nom em'
 				if(vocal)
 					if(last_speak + 30 SECONDS < world.time)
 						var/message_options = list(

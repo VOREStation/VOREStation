@@ -7,16 +7,16 @@
 GLOBAL_LIST(tgui_modals)
 
 /**
-  * Call this from a proc that is called in tgui_act() to process modal actions
-  *
-  * Example: /obj/machinery/chem_master/proc/tgui_act_modal
-  * You can then switch based on the return value and show different
-  * modals depending on the answer.
-  * Arguments:
-  * * source - The source datum
-  * * action - The called action
-  * * params - The params to the action
-  */
+ * Call this from a proc that is called in tgui_act() to process modal actions
+ *
+ * Example: /obj/machinery/chem_master/proc/tgui_act_modal
+ * You can then switch based on the return value and show different
+ * modals depending on the answer.
+ * Arguments:
+ * * source - The source datum
+ * * action - The called action
+ * * params - The params to the action
+ */
 /datum/proc/tgui_modal_act(datum/source = src, action = "", params)
 	ASSERT(istype(source))
 
@@ -36,11 +36,11 @@ GLOBAL_LIST(tgui_modals)
 			return TGUI_MODAL_CLOSE
 
 /**
-  * Call this from tgui_data() to return modal information if needed
+ * Call this from tgui_data() to return modal information if needed
 
-  * Arguments:
-  * * source - The source datum
-  */
+ * Arguments:
+ * * source - The source datum
+ */
 /datum/proc/tgui_modal_data(datum/source = src)
 	ASSERT(istype(source))
 
@@ -51,11 +51,11 @@ GLOBAL_LIST(tgui_modals)
 	return current.to_data()
 
 /**
-  * Clears the current modal for a given datum
-  *
-  * Arguments:
-  * * source - The source datum
-  */
+ * Clears the current modal for a given datum
+ *
+ * Arguments:
+ * * source - The source datum
+ */
 /datum/proc/tgui_modal_clear(datum/source = src)
 	ASSERT(istype(source))
 
@@ -74,15 +74,15 @@ GLOBAL_LIST(tgui_modals)
 	return TRUE
 
 /**
-  * Opens a message TGUI modal
-  *
-  * Arguments:
-  * * source - The source datum
-  * * id - The ID of the modal
-  * * text - The text to display above the answers
-  * * delegate - The proc to call when closed
-  * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
-  */
+ * Opens a message TGUI modal
+ *
+ * Arguments:
+ * * source - The source datum
+ * * id - The ID of the modal
+ * * text - The text to display above the answers
+ * * delegate - The proc to call when closed
+ * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
+ */
 /datum/proc/tgui_modal_message(datum/source = src, id, text = "Default modal message", delegate, arguments)
 	ASSERT(length(id))
 
@@ -90,17 +90,17 @@ GLOBAL_LIST(tgui_modals)
 	return tgui_modal_new(source, modal)
 
 /**
-  * Opens a text input TGUI modal
-  *
-  * Arguments:
-  * * source - The source datum
-  * * id - The ID of the modal
-  * * text - The text to display above the answers
-  * * delegate - The proc to call when submitted
-  * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
-  * * value - The default value of the input
-  * * max_length - The maximum char length of the input
-  */
+ * Opens a text input TGUI modal
+ *
+ * Arguments:
+ * * source - The source datum
+ * * id - The ID of the modal
+ * * text - The text to display above the answers
+ * * delegate - The proc to call when submitted
+ * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
+ * * value - The default value of the input
+ * * max_length - The maximum char length of the input
+ */
 /datum/proc/tgui_modal_input(datum/source = src, id, text = "Default modal message", delegate, arguments, value = "", max_length = TGUI_MODAL_INPUT_MAX_LENGTH)
 	ASSERT(length(id))
 	ASSERT(max_length > 0)
@@ -109,18 +109,18 @@ GLOBAL_LIST(tgui_modals)
 	return tgui_modal_new(source, modal)
 
 /**
-  * Opens a dropdown input TGUI modal
-  *
-  * Internally checks if the answer is in the list of choices.
-  * Arguments:
-  * * source - The source datum
-  * * id - The ID of the modal
-  * * text - The text to display above the answers
-  * * delegate - The proc to call when submitted
-  * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
-  * * value - The default value of the dropdown
-  * * choices - The list of available choices in the dropdown
-  */
+ * Opens a dropdown input TGUI modal
+ *
+ * Internally checks if the answer is in the list of choices.
+ * Arguments:
+ * * source - The source datum
+ * * id - The ID of the modal
+ * * text - The text to display above the answers
+ * * delegate - The proc to call when submitted
+ * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
+ * * value - The default value of the dropdown
+ * * choices - The list of available choices in the dropdown
+ */
 /datum/proc/tgui_modal_choice(datum/source = src, id, text = "Default modal message", delegate, arguments, value = "", choices)
 	ASSERT(length(id))
 
@@ -128,18 +128,18 @@ GLOBAL_LIST(tgui_modals)
 	return tgui_modal_new(source, modal)
 
 /**
-  * Opens a bento input TGUI modal
-  *
-  * Internally checks if the answer is in the list of choices.
-  * Arguments:
-  * * source - The source datum
-  * * id - The ID of the modal
-  * * text - The text to display above the answers
-  * * delegate - The proc to call when submitted
-  * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
-  * * value - The default value of the bento
-  * * choices - The list of available choices in the bento
-  */
+ * Opens a bento input TGUI modal
+ *
+ * Internally checks if the answer is in the list of choices.
+ * Arguments:
+ * * source - The source datum
+ * * id - The ID of the modal
+ * * text - The text to display above the answers
+ * * delegate - The proc to call when submitted
+ * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
+ * * value - The default value of the bento
+ * * choices - The list of available choices in the bento
+ */
 /datum/proc/tgui_modal_bento(datum/source = src, id, text = "Default modal message", delegate, arguments, value, choices)
 	ASSERT(length(id))
 
@@ -154,18 +154,18 @@ GLOBAL_LIST(tgui_modals)
 	return tgui_modal_new(source, modal)
 
 /**
-  * Opens a yes/no TGUI modal
-  *
-  * Arguments:
-  * * source - The source datum
-  * * id - The ID of the modal
-  * * text - The text to display above the answers
-  * * delegate - The proc to call when "Yes" is pressed
-  * * delegate_no - The proc to call when "No" is pressed
-  * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
-  * * yes_text - The text to show in the "Yes" button
-  * * no_text - The text to show in the "No" button
-  */
+ * Opens a yes/no TGUI modal
+ *
+ * Arguments:
+ * * source - The source datum
+ * * id - The ID of the modal
+ * * text - The text to display above the answers
+ * * delegate - The proc to call when "Yes" is pressed
+ * * delegate_no - The proc to call when "No" is pressed
+ * * arguments - List of arguments passed to and from JS (mostly useful for chaining modals)
+ * * yes_text - The text to show in the "Yes" button
+ * * no_text - The text to show in the "No" button
+ */
 /datum/proc/tgui_modal_boolean(datum/source = src, id, text = "Default modal message", delegate, delegate_no, arguments, yes_text = "Yes", no_text = "No")
 	ASSERT(length(id))
 
@@ -173,14 +173,14 @@ GLOBAL_LIST(tgui_modals)
 	return tgui_modal_new(source, modal)
 
 /**
-  * Registers a given modal to a source. Private.
-  *
-  * Arguments:
-  * * source - The source datum
-  * * modal - The datum/tgui_modal to register
-  * * replace_previous - Whether any modal currently assigned to source should be replaced
-  * * instant_update - Whether the changes should reflect immediately
-  */
+ * Registers a given modal to a source. Private.
+ *
+ * Arguments:
+ * * source - The source datum
+ * * modal - The datum/tgui_modal to register
+ * * replace_previous - Whether any modal currently assigned to source should be replaced
+ * * instant_update - Whether the changes should reflect immediately
+ */
 /datum/proc/tgui_modal_new(datum/source = src, datum/tgui_modal/modal = null, replace_previous = TRUE, instant_update = TRUE)
 	ASSERT(istype(source))
 	ASSERT(istype(modal))
@@ -198,13 +198,13 @@ GLOBAL_LIST(tgui_modals)
 	return TRUE
 
 /**
-  * Calls the source's currently assigned modal's (if there is one) on_answer() proc. Private.
-  *
-  * Arguments:
-  * * source - The source datum
-  * * id - The ID of the modal
-  * * answer - The provided answer
-  */
+ * Calls the source's currently assigned modal's (if there is one) on_answer() proc. Private.
+ *
+ * Arguments:
+ * * source - The source datum
+ * * id - The ID of the modal
+ * * answer - The provided answer
+ */
 /datum/proc/tgui_modal_answer(datum/source = src, id, answer = "")
 	ASSERT(istype(source))
 
@@ -215,14 +215,14 @@ GLOBAL_LIST(tgui_modals)
 	return current.on_answer(answer)
 
 /**
-  * Passes an answer from JS through the modal's proc.
-  *
-  * Used namely for cutting the text short if it's longer
-  * than an input modal's max_length.
-  * Arguments:
-  * * source - The source datum
-  * * answer - The provided answer
-  */
+ * Passes an answer from JS through the modal's proc.
+ *
+ * Used namely for cutting the text short if it's longer
+ * than an input modal's max_length.
+ * Arguments:
+ * * source - The source datum
+ * * answer - The provided answer
+ */
 /datum/proc/tgui_modal_preprocess_answer(datum/source = src, answer = "")
 	ASSERT(istype(source))
 
@@ -233,8 +233,8 @@ GLOBAL_LIST(tgui_modals)
 	return current.preprocess_answer(answer)
 
 /**
-  * Modal datum (contains base information for a modal)
-  */
+ * Modal datum (contains base information for a modal)
+ */
 /datum/tgui_modal
 	var/datum/owning_source
 	var/id
@@ -250,28 +250,28 @@ GLOBAL_LIST(tgui_modals)
 	src.arguments = arguments
 
 /**
-  * Called when it's time to pre-process the answer before using it
-  *
-  * Arguments:
-  * * answer - The answer, a nullable text
-  */
+ * Called when it's time to pre-process the answer before using it
+ *
+ * Arguments:
+ * * answer - The answer, a nullable text
+ */
 /datum/tgui_modal/proc/preprocess_answer(answer)
 	return reject_bad_text(answer, TGUI_MODAL_INPUT_MAX_LENGTH) // bleh
 
 /**
-  * Called when a modal receives an answer
-  *
-  * Arguments:
-  * * answer - The answer, a nullable text
-  */
+ * Called when a modal receives an answer
+ *
+ * Arguments:
+ * * answer - The answer, a nullable text
+ */
 /datum/tgui_modal/proc/on_answer(answer)
 	if(delegate)
 		return call(owning_source, delegate)(answer, arguments)
 	return FALSE
 
 /**
-  * Creates a list that describes a modal visually to be passed to JS
-  */
+ * Creates a list that describes a modal visually to be passed to JS
+ */
 /datum/tgui_modal/proc/to_data()
 	. = list()
 	.["id"] = id
@@ -280,8 +280,8 @@ GLOBAL_LIST(tgui_modals)
 	.["type"] = modal_type
 
 /**
-  * Input modal - has a text entry that can be used to enter an answer
-  */
+ * Input modal - has a text entry that can be used to enter an answer
+ */
 /datum/tgui_modal/input
 	modal_type = "input"
 	var/value
@@ -302,8 +302,8 @@ GLOBAL_LIST(tgui_modals)
 	.["value"] = value
 
 /**
-  * Choice modal - has a dropdown menu that can be used to select an answer
-  */
+ * Choice modal - has a dropdown menu that can be used to select an answer
+ */
 /datum/tgui_modal/input/choice
 	modal_type = "choice"
 	var/choices
@@ -322,10 +322,10 @@ GLOBAL_LIST(tgui_modals)
 	.["choices"] = choices
 
 /**
-  * Bento modal - Similar to choice, it displays the choices in a grid of images
-  *
-  * The returned answer is the index of the choice.
-  */
+ * Bento modal - Similar to choice, it displays the choices in a grid of images
+ *
+ * The returned answer is the index of the choice.
+ */
 /datum/tgui_modal/input/bento
 	modal_type = "bento"
 	var/choices
@@ -351,8 +351,8 @@ GLOBAL_LIST(tgui_modals)
 	modal_type = "bentospritesheet"
 
 /**
-  * Boolean modal - has yes/no buttons that do different actions depending on which is pressed
-  */
+ * Boolean modal - has yes/no buttons that do different actions depending on which is pressed
+ */
 /datum/tgui_modal/boolean
 	modal_type = "boolean"
 	var/delegate_no

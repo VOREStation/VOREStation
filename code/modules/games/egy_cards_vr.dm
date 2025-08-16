@@ -8,8 +8,8 @@
 
 
 
-/obj/item/deck/egy/New()
-	..()
+/obj/item/deck/egy/Initialize(mapload)
+	. = ..()
 	var/datum/playingcard/P
 	//Universal cards
 	for(var/i=0; i<=3; i++)
@@ -44,4 +44,3 @@
 				P.card_icon = "[colour]_[number]"
 				P.back_icon = "deck1"
 				cards += P
-

@@ -149,7 +149,7 @@
 			var/obj/item/stack/rods/R = W
 			if (R.use(1))
 				bolt = new /obj/item/arrow/rod(src)
-				bolt.fingerprintslast = src.fingerprintslast
+				bolt.add_fingerprint(user)
 				bolt.loc = src
 				update_icon()
 				user.visible_message("[user] jams [bolt] into [src].","You jam [bolt] into [src].")

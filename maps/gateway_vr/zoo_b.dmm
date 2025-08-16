@@ -2624,7 +2624,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "wq" = (
-/obj/machinery/power/fractal_reactor/fluff/converter{
+/obj/machinery/power/fractal_reactor/fluff/smes{
 	mapped_in = 1;
 	power_generation_rate = 10000
 	},
@@ -5100,15 +5100,6 @@
 	},
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/zoo)
-"RY" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/darkred,
-/area/awaymission/zoo/syndieship)
 "Sc" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/simulated/floor/beach/water,
@@ -18905,7 +18896,7 @@ yY
 yY
 mf
 vs
-RY
+vs
 vs
 vs
 yY

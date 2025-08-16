@@ -14,7 +14,7 @@
 		appearance = master_controller
 	. = ..()
 
-/obj/machinery/dummy_airlock_controller/Initialize()
+/obj/machinery/dummy_airlock_controller/Initialize(mapload)
 	. = ..()
 	if(id_tag)
 		for(var/obj/machinery/embedded_controller/radio/airlock/_master in SSmachines.machinery)

@@ -12,6 +12,10 @@
 	var/list/frames = list()	// List of frames inside.
 	var/maxFrames = 5
 
+/obj/machinery/beehive/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/beehive/update_icon()
 	cut_overlays()
 	icon_state = "beehive"
@@ -165,15 +169,61 @@
 	desc = "A machine used to turn honeycombs on the frame into honey and wax."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "centrifuge"
-
+	circuit = /obj/item/circuitboard/honey_extractor
+	anchored = TRUE
 	density = TRUE
+	idle_power_usage = 15
+	active_power_usage = 200
+	use_power = USE_POWER_IDLE
 
 	var/processing = 0
 	var/honey = 0
 
+/obj/machinery/honey_extractor/Initialize(mapload)
+	. = ..()
+	default_apply_parts()
+	RefreshParts()
+	update_icon()
+
+/obj/machinery/honey_extractor/power_change()
+	. = ..()
+	var/delay = rand(0,15)
+	if(delay)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), delay)
+		return
+	update_icon()
+
+/obj/machinery/honey_extractor/update_icon()
+	cut_overlays()
+
+	icon_state = initial(icon_state)
+
+	if(panel_open)
+		add_overlay("[icon_state]_panel")
+	if(stat & NOPOWER)
+		icon_state = "[icon_state]_off"
+		return
+	if(processing)
+		icon_state = "[icon_state]_moving"
+
 /obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
 	if(processing)
 		to_chat(user, span_notice("\The [src] is currently spinning, wait until it's finished."))
+		return
+	if(I.has_tool_quality(TOOL_WRENCH))
+		anchored = !anchored
+		playsound(src, I.usesound, 50, 1)
+		user.visible_message(span_notice("[user] [anchored ? "wrenches" : "unwrenches"] \the [src]."), span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+		return
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
+	if(stat & NOPOWER)
+		to_chat(user, span_notice("\The [src] is powerless and can't grant your wishes"))
+		return
+	if(panel_open)
+		to_chat(user, span_notice("\The [src]'s maintenance panel is open, It would not be safe to turn it on."))
 		return
 	else if(istype(I, /obj/item/honey_frame))
 		var/obj/item/honey_frame/H = I
@@ -182,14 +232,15 @@
 			return
 		user.visible_message(span_notice("[user] loads \the [H]'s comb into \the [src] and turns it on."), span_notice("You load \the [H] into \the [src] and turn it on."))
 		processing = H.honey
-		icon_state = "[initial(icon_state)]_moving"
+		update_icon()
+		use_power_oneoff(active_power_usage * 5) //uses 5 second of active power at once, because I could not figure out how active powerdraw works and if or how the work is timed.
 		H.honey = 0
-		H.update_icon()
+		H.update_icon() //updates the honeyframe
 		spawn(50)
 			new /obj/item/stack/material/wax(loc)
 			honey += processing
 			processing = 0
-			icon_state = "[initial(icon_state)]"
+			update_icon()
 	else if(istype(I, /obj/item/reagent_containers/glass))
 		if(!honey)
 			to_chat(user, span_notice("There is no honey in \the [src]."))
@@ -217,7 +268,7 @@
 
 	var/honey = 0
 
-/obj/item/honey_frame/Initialize()
+/obj/item/honey_frame/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -258,7 +309,7 @@
 	pass_color = TRUE
 	strict_color_stacking = TRUE
 
-/obj/item/stack/material/wax/Initialize()
+/obj/item/stack/material/wax/Initialize(mapload)
 	. = ..()
 	recipes = wax_recipes
 
@@ -270,9 +321,7 @@
 	weight = 1
 	pass_stack_colors = TRUE
 
-var/global/list/datum/stack_recipe/wax_recipes = list( \
-	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
-)
+
 
 /obj/item/bee_pack
 	name = "bee pack"
@@ -281,8 +330,8 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 	icon_state = "beepack"
 	var/full = 1
 
-/obj/item/bee_pack/New()
-	..()
+/obj/item/bee_pack/Initialize(mapload)
+	. = ..()
 	add_overlay("beepack-full")
 
 /obj/item/bee_pack/proc/empty()

@@ -17,7 +17,7 @@
 	var/datum/signal/S = new()
 	S.source = src
 	S.data = list("command" = "supply")
-	var/datum/radio_frequency/F = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/F = SSradio.return_frequency(1435)
 	F.post_signal(src, S)
 
 	//it would be cool to play a sound here
@@ -38,6 +38,7 @@
 			return
 
 		if (!at_station())	//at centcom
+			SSmail.create_mail()
 			SSsupply.buy()
 
 		//We pretend it's a long_jump by making the shuttle stay at centcom for the "in-transit" period.
@@ -93,4 +94,14 @@
 //returns the ETA in deciseconds
 /datum/shuttle/autodock/ferry/supply/proc/eta_deciseconds()
 	return round(arrive_time - world.time)
-	
+
+/datum/shuttle/autodock/ferry/supply/cargo
+	name = "Supply"
+	location = FERRY_LOCATION_OFFSITE
+	shuttle_area = /area/shuttle/supply
+	warmup_time = 10
+	landmark_offsite = "supply_cc"
+	landmark_station = "supply_station"
+	docking_controller_tag = "supply_shuttle"
+	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
+	move_direction = WEST

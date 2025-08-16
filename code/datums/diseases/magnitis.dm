@@ -1,5 +1,6 @@
 /datum/disease/magnitis
 	name = "Magnitis"
+	medical_name = "Acquired Magnetotaxis Disorder"
 	max_stages = 4
 	spread_text = "Airbone"
 	cure_text = REAGENT_IRON
@@ -8,7 +9,7 @@
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 0.75
 	desc = "This disease disrupts the magnetic field of your body, making it act as if a powerful magnet. Injections of iron help stabilize the field."
-	severity = MINOR
+	danger = DISEASE_MINOR
 
 /datum/disease/magnitis/stage_act()
 	if(!..())

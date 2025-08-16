@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: MIT
  */
 
- /**
-  * tgui state: contained_state
-  *
-  * Checks that the user is inside the src_object.
+/**
+ * tgui state: contained_state
+ *
+ * Checks that the user is inside the src_object.
  **/
 
 GLOBAL_DATUM_INIT(tgui_contained_state, /datum/tgui_state/contained_state, new)

@@ -1,34 +1,279 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/wall/log_sif,/area/submap/Shack1)
-"c" = (/turf/template_noop,/area/submap/Shack1)
-"d" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Shack1)
-"e" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken1"},/area/submap/Shack1)
-"f" = (/obj/structure/table/wooden_reinforced,/obj/item/storage/fancy/candle_box,/obj/item/storage/box/matches,/turf/simulated/floor/wood,/area/submap/Shack1)
-"g" = (/obj/structure/closet/cabinet,/obj/item/clothing/suit/storage/apron/overalls,/obj/item/clothing/under/overalls,/obj/random/mre,/turf/simulated/floor/wood,/area/submap/Shack1)
-"h" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/wood,/area/submap/Shack1)
-"i" = (/turf/simulated/floor/wood,/area/submap/Shack1)
-"j" = (/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken0"},/area/submap/Shack1)
-"k" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken5"},/area/submap/Shack1)
-"l" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Shack1)
-"m" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/Shack1)
-"n" = (/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken3"},/area/submap/Shack1)
-"o" = (/obj/structure/table/bench/wooden,/turf/simulated/floor/wood,/area/submap/Shack1)
-"p" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/wooden_reinforced,/obj/item/storage/toolbox,/turf/simulated/floor/wood,/area/submap/Shack1)
-"q" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/wooden_reinforced,/obj/item/material/twohanded/fireaxe/scythe,/turf/simulated/floor/wood,/area/submap/Shack1)
-"r" = (/obj/effect/decal/cleanable/spiderling_remains,/turf/simulated/floor/wood,/area/submap/Shack1)
-"s" = (/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken6"},/area/submap/Shack1)
-"t" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/wooden_reinforced,/obj/item/flashlight/lamp,/turf/simulated/floor/wood,/area/submap/Shack1)
-"u" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/Shack1)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/wall/log_sif,
+/area/submap/Shack1)
+"c" = (
+/turf/template_noop,
+/area/submap/Shack1)
+"d" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Shack1)
+"e" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken1"
+	},
+/area/submap/Shack1)
+"f" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/box/matches,
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"g" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/storage/apron/overalls,
+/obj/item/clothing/under/overalls,
+/obj/random/mre,
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"i" = (
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"j" = (
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken0"
+	},
+/area/submap/Shack1)
+"k" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken5"
+	},
+/area/submap/Shack1)
+"l" = (
+/obj/structure/flora/tree/sif,
+/turf/template_noop,
+/area/submap/Shack1)
+"m" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"n" = (
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken3"
+	},
+/area/submap/Shack1)
+"o" = (
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"p" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wooden_reinforced,
+/obj/item/storage/toolbox,
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wooden_reinforced,
+/obj/item/material/twohanded/fireaxe/scythe,
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"r" = (
+/obj/effect/decal/cleanable/spiderling_remains,
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"s" = (
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken6"
+	},
+/area/submap/Shack1)
+"t" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wooden_reinforced,
+/obj/item/flashlight/lamp,
+/turf/simulated/floor/wood,
+/area/submap/Shack1)
+"u" = (
+/obj/structure/flora/tree/dead,
+/turf/template_noop,
+/area/submap/Shack1)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaa
-abbbbbbbccccdca
-abefghhbcccddca
-abhijhkbclcddca
-abiiiiimdddddla
-abniiiimdddddca
-abhoiiibcccddca
-abpqrstbcucdcca
-abbbbbbbcccccca
-aaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+e
+h
+i
+n
+h
+p
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+f
+i
+i
+i
+o
+q
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+g
+j
+i
+i
+i
+r
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+h
+h
+i
+i
+i
+s
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+h
+k
+i
+i
+i
+t
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+m
+m
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+c
+c
+c
+d
+d
+c
+c
+c
+a
+"}
+(10,1,1) = {"
+a
+c
+c
+l
+d
+d
+c
+u
+c
+a
+"}
+(11,1,1) = {"
+a
+c
+c
+c
+d
+d
+c
+c
+c
+a
+"}
+(12,1,1) = {"
+a
+c
+d
+d
+d
+d
+d
+d
+c
+a
+"}
+(13,1,1) = {"
+a
+d
+d
+d
+d
+d
+d
+c
+c
+a
+"}
+(14,1,1) = {"
+a
+c
+c
+c
+l
+c
+c
+c
+c
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

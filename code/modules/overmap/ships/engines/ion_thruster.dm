@@ -49,7 +49,7 @@
 	var/burn_cost = 7500
 	var/generated_thrust = 2.5
 
-/obj/machinery/ion_engine/Initialize()
+/obj/machinery/ion_engine/Initialize(mapload)
 	. = ..()
 	controller = new(src)
 	add_glow()

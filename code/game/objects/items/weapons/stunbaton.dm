@@ -21,14 +21,12 @@
 	var/status = 0		//whether the thing is on or not
 	var/obj/item/cell/bcell = null
 	var/hitcost = 240
-	var/use_external_power = FALSE //only used to determine if it's a cyborg baton
 	var/grip_safety = TRUE
 	var/taped_safety = FALSE
 
-/obj/item/melee/baton/New()
-	..()
+/obj/item/melee/baton/Initialize(mapload)
+	. = ..()
 	update_icon()
-	return
 
 /obj/item/melee/baton/get_cell()
 	return bcell
@@ -65,11 +63,9 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/melee/baton/loaded/New() //this one starts with a cell pre-installed.
-	..()
+/obj/item/melee/baton/loaded/Initialize(mapload) //this one starts with a cell pre-installed.
 	bcell = new/obj/item/cell/device/weapon(src)
-	update_icon()
-	return
+	. = ..()
 
 /obj/item/melee/baton/proc/deductcharge()
 	if(status == 1)		//Only deducts charge when it's on
@@ -118,8 +114,6 @@
 			. += span_warning("The baton does not have a power source installed.")
 
 /obj/item/melee/baton/attackby(obj/item/W, mob/user)
-	if(use_external_power)
-		return
 	if(istype(W, /obj/item/cell))
 		if(istype(W, /obj/item/cell/device))
 			if(!bcell)
@@ -159,11 +153,6 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
-	if(use_external_power)
-		//try to find our power cell
-		var/mob/living/silicon/robot/R = loc
-		if (istype(R))
-			bcell = R.cell
 	if(bcell && bcell.charge >= hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
@@ -212,7 +201,7 @@
 			target.visible_message(span_danger("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
 		else
 			target.visible_message(span_danger("[target] has been prodded with [src] by [user]!"))
-		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+		playsound(src, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
 	//stun effects
 	if(status)
@@ -221,18 +210,13 @@
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			H.forcesay(hit_appends)
+			H.forcesay(GLOB.hit_appends)
 	powercheck()
 
 /obj/item/melee/baton/emp_act(severity)
 	if(bcell)
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
-
-//secborg stun baton module
-/obj/item/melee/baton/robot
-	hitcost = 500
-	use_external_power = TRUE
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod
@@ -291,7 +275,3 @@
 	..(target, user, hit_zone)
 	if(status && target.has_AI())
 		target.taunt(user)
-
-// Borg version, for the lost module.
-/obj/item/melee/baton/shocker/robot
-	use_external_power = TRUE

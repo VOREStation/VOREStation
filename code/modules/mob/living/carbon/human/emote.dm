@@ -42,6 +42,7 @@ var/list/_human_default_emotes = list(
 	/decl/emote/human/deathgasp,
 	/decl/emote/audible/giggle,
 	/decl/emote/audible/scream,
+	/decl/emote/audible/pain,
 	/decl/emote/visible/airguitar,
 	/decl/emote/visible/blink_r,
 	/decl/emote/visible/bow,
@@ -61,6 +62,7 @@ var/list/_human_default_emotes = list(
 	/decl/emote/visible/stare,
 	/decl/emote/visible/look,
 	/decl/emote/visible/point,
+	/decl/emote/visible/bellyrub,
 	/decl/emote/visible/raise,
 	/decl/emote/visible/grin,
 	/decl/emote/visible/shrug,
@@ -214,6 +216,7 @@ var/list/_simple_mob_default_emotes = list(
 	/decl/emote/human/deathgasp,
 	/decl/emote/audible/giggle,
 	/decl/emote/audible/scream,
+	/decl/emote/audible/pain,
 	/decl/emote/visible/airguitar,
 	/decl/emote/visible/blink_r,
 	/decl/emote/visible/bow,
@@ -233,6 +236,7 @@ var/list/_simple_mob_default_emotes = list(
 	/decl/emote/visible/stare,
 	/decl/emote/visible/look,
 	/decl/emote/visible/point,
+	/decl/emote/visible/bellyrub,
 	/decl/emote/visible/raise,
 	/decl/emote/visible/grin,
 	/decl/emote/visible/shrug,
@@ -335,7 +339,7 @@ var/list/_simple_mob_default_emotes = list(
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC.Settings"
 
-	var/datum/gender/T = gender_datums[get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 
 	pose = strip_html_simple(tgui_input_text(src, "This is [src]. [T.he]...", "Pose", null))
 
@@ -378,7 +382,10 @@ var/list/_simple_mob_default_emotes = list(
 	HTML += "<hr />"
 	HTML +="<a href='byond://?src=\ref[src];flavor_change=done'>\[Done\]</a>"
 	HTML += "<tt></body></html>"
-	src << browse(HTML, "window=flavor_changes;size=430x300")
+
+	var/datum/browser/popup = new(src, "flavor_changes", "Change Flavortexts", 430, 300)
+	popup.set_content(HTML)
+	popup.open()
 
 /mob/living/carbon/human/proc/toggle_tail(var/setting,var/message = 0)
 	if(!tail_style || !tail_style.ani_state)

@@ -17,14 +17,21 @@
 	inserting = /obj/item/inserted_spell/mend_burns
 
 /obj/item/inserted_spell/mend_burns/on_insert()
-	spawn(1)
-		if(ishuman(host))
-			var/mob/living/carbon/human/H = host
-			var/heal_power = host == origin ? 10 : 30
-			heal_power = round(heal_power * spell_power_at_creation, 1)
-			origin.adjust_instability(10)
-			for(var/i = 0, i<5,i++)
-				if(H)
-					H.adjustFireLoss(-heal_power / 5)
-					sleep(1 SECOND)
-		on_expire()
+	if(ishuman(host))
+		var/mob/living/carbon/human/H = host
+		var/heal_power = host == origin ? 10 : 30
+		heal_power = round(heal_power * spell_power_at_creation, 1)
+		origin.adjust_instability(10)
+		looped_insert(5, H)
+
+
+/obj/item/inserted_spell/mend_wires/looped_insert(remaining_callbacks, mob/living/carbon/human/H)
+	if(H)
+		remaining_callbacks --
+		H.adjustFireLoss(-heal_power / 5)
+
+		if(remaining_callbacks > 0)
+			addtimer(CALLBACK(src, PROC_REF(looped_insert), remaining_callbacks, H), 1 SECOND, TIMER_DELETE_ME)
+			return
+
+	on_expire()

@@ -96,7 +96,7 @@
 	var/turf/T = get_turf(src)
 	if(!T)
 		return 0
-	for(var/mob/living/L in player_list)
+	for(var/mob/living/L in GLOB.player_list)
 		var/turf/L_T
 		if(L.stat == DEAD)
 			continue
@@ -154,7 +154,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	total_spawns = -1
 	destructible = 0
 	anchored = TRUE
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	spawn_types = list(
 	/mob/living/simple_mob/animal/passive/gaslamp = 20,
 //	/mob/living/simple_mob/vore/otie/feral = 10,

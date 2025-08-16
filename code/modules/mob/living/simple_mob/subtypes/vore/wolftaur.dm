@@ -38,8 +38,8 @@
 	pixel_y = 0
 	faction = FACTION_WOLFTAUR
 
-/mob/living/simple_mob/vore/wolftaur/New()
-	..()
+/mob/living/simple_mob/vore/wolftaur/Initialize(mapload)
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]_rest"
@@ -68,9 +68,7 @@
 	base_wander_delay = 8
 	belly_attack = FALSE
 
-/mob/living/simple_mob/vore/wolftaur/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/wolftaur/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

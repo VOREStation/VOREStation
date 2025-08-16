@@ -13,7 +13,7 @@
 	var/obj/item/mining_scanner/my_scanner = null
 	var/exact_scan = FALSE
 
-/obj/item/mecha_parts/mecha_equipment/tool/orescanner/Initialize()
+/obj/item/mecha_parts/mecha_equipment/tool/orescanner/Initialize(mapload)
 	my_scanner = new(src)
 	return ..()
 

@@ -1,7 +1,12 @@
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
-	init_order = INIT_ORDER_PERSISTENCE
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/points_of_interest
+	)
 	flags = SS_NO_FIRE
+
 	var/list/tracking_values = list()
 	var/list/persistence_datums = list()
 
@@ -49,11 +54,11 @@ SUBSYSTEM_DEF(persistence)
 
 
 /datum/controller/subsystem/persistence/proc/show_info(var/mob/user)
-	if(!user.client.holder)
+	if(!check_rights_for(user.client, R_HOLDER))
 		return
 
 	var/list/dat = list("<table width = '100%'>")
-	var/can_modify = check_rights(R_ADMIN, 0, user)
+	var/can_modify = check_rights_for(user.client, (R_ADMIN|R_DEBUG))
 	for(var/thing in persistence_datums)
 		var/datum/persistent/P = persistence_datums[thing]
 		if(P.has_admin_data)

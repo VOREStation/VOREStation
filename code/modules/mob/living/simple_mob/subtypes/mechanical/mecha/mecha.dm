@@ -42,7 +42,7 @@
 	var/has_repair_droid = FALSE // If true, heals 2 damage every tick and gets a repair droid overlay.
 
 
-/mob/living/simple_mob/mechanical/mecha/Initialize()
+/mob/living/simple_mob/mechanical/mecha/Initialize(mapload)
 	sparks = new (src)
 	sparks.set_up(3, 1, src)
 	sparks.attach(src)
@@ -59,7 +59,7 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/Destroy()
-	qdel_null(sparks)
+	QDEL_NULL(sparks)
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/death()
@@ -74,7 +74,8 @@
 		var/mob/living/L = new pilot_type(loc)
 		L.faction = src.faction
 
-	new wreckage(loc) // Leave some wreckage.
+	if(wreckage)
+		new wreckage(loc) // Leave some wreckage.
 
 	qdel(src) // Then delete us since we don't actually have a body.
 
@@ -123,9 +124,9 @@
 /mob/living/simple_mob/mechanical/mecha/proc/deflect_sprite()
 	var/image/deflect_image = image('icons/effects/effects.dmi', "deflect_static")
 	add_overlay(deflect_image)
-	sleep(1 SECOND)
-	cut_overlay(deflect_image)
-	qdel(deflect_image)
+	spawn(1 SECOND)
+		cut_overlay(deflect_image)
+		qdel(deflect_image)
 //	flick_overlay_view(deflect_image, src, duration = 1 SECOND, gc_after = TRUE)
 
 /mob/living/simple_mob/mechanical/mecha/attackby(obj/item/I, mob/user)

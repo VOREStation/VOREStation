@@ -108,8 +108,12 @@
 
 /datum/robot_sprite/security/worm
 	name = "W02M"
-	sprite_icon_state = "worm"
-	has_custom_open_sprites = TRUE
+	sprite_icon_state = "worm-security"
+	sprite_icon = 'icons/mob/robot/wormborg.dmi'
+	has_dead_sprite_overlay = FALSE
+	has_custom_open_sprites = FALSE
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite = TRUE
 
 /datum/robot_sprite/security/uptall
 	name = "Feminine Humanoid"
@@ -212,13 +216,76 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/security/dullahanv3
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
-	//named v3 to avoid conflicts with downstream
-
-/datum/robot_sprite/dogborg/tall/security/dullahanv3/securitydully
-	name = "Dullahan security v3"
-	sprite_icon_state = "dullahansecurity"
+/datum/robot_sprite/dogborg/tall/security/dullahan
+	name = "Dullahan"
+	sprite_icon_state = "dullahansec"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_sec.dmi'
+	sprite_decals = list("breastplate","loincloth","eyecover")
+	sprite_hud_icon_state = "k9"
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
+	has_vore_belly_resting_sprites = TRUE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
+	icon_x = 32
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/security/dullataur
+	name = "Dullataur"
+	sprite_icon_state = "dullataursec"
+	sprite_icon = 'icons/mob/robot/dullahan/dullataurs/dullataur.dmi'
+	rest_sprite_options = list("Default")
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	has_vore_belly_resting_sprites = FALSE
+	has_rest_lights_sprites = TRUE
+	has_rest_eyes_sprites = TRUE
+	sprite_decals = list("breastplate")
+	icon_x = 64
+	pixel_x = -16
+
+/datum/robot_sprite/dogborg/tall/security/dullahanv3
+	name = "Dullahan security v3"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/security.dmi'
+	sprite_icon_state = "dullahansecurity"
+	has_eye_light_sprites = TRUE
+	has_rest_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	sprite_decals = list("decals")
+	rest_sprite_options = list("Default", "Sit")
+	icon_x = 64
+	pixel_x = -16
+
+
+/datum/robot_sprite/dogborg/security/vale2
+	name = "Secborg model V-3"
+	sprite_icon = 'icons/mob/robot/widerobot/widerobot.dmi'
+	sprite_icon_state = "secvale"
+	sprite_hud_icon_state = "k9"
+	has_eye_light_sprites = TRUE
+	rest_sprite_options = list("Default")
+
+/datum/robot_sprite/dogborg/security/cat
+	name = "Cat"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixsec"
+	sprite_hud_icon_state = "k9"
+	has_eye_light_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+
+/datum/robot_sprite/dogborg/security/smolraptor
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_sec.dmi'
+	name = "Small Raptor"
+	sprite_icon_state = "smolraptor"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default", "Sit", "Bellyup")
+
+/datum/robot_sprite/dogborg/security/smolraptor/alt
+	name = "Small Raptor Alt"
+
+	sprite_icon_state = "smolraptor_alt"

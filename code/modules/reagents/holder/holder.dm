@@ -83,31 +83,37 @@
 	var/reaction_occurred
 	var/list/eligible_reactions = list()
 	var/list/effect_reactions = list()
+	var/from_belly
 	do
+		from_belly = FALSE
 		reaction_occurred = FALSE
 		for(var/datum/reagent/R as anything in reagent_list)
 			if(SSchemistry.instant_reactions_by_reagent[R.id])
 				eligible_reactions |= SSchemistry.instant_reactions_by_reagent[R.id]
+				if(!from_belly)
+					from_belly = R.from_belly
 
 		for(var/decl/chemical_reaction/C as anything in eligible_reactions)
-			if(C.can_happen(src) && C.process(src))
+			if(C.can_happen(src) && C.process(src, from_belly))
 				effect_reactions |= C
 				reaction_occurred = TRUE
 		eligible_reactions.len = 0
 	while(reaction_occurred)
 	for(var/decl/chemical_reaction/C as anything in effect_reactions)
 		C.post_reaction(src)
+		#ifdef UNIT_TESTS
+		SEND_SIGNAL(src, COMSIG_UNITTEST_DATA, list(C))
+		#endif
 	update_total()
 
 /* Holder-to-chemical */
 
-/datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0)
+/datum/reagents/proc/add_reagent(var/id, var/amount, var/data = null, var/safety = 0, var/was_from_belly)
 	if(!isnum(amount) || amount <= 0)
 		return 0
 
 	update_total()
 	amount = min(amount, get_free_space())
-
 
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
@@ -115,6 +121,8 @@
 				if(LAZYLEN(data) && !isnull(data["species"]) && !isnull(current.data["species"]) && data["species"] != current.data["species"])	// Species bloodtypes are already incompatible, this just stops it from mixing into the one already in a container.
 					continue
 
+			if(was_from_belly)
+				current.from_belly = was_from_belly
 			current.volume += amount
 			if(!isnull(data)) // For all we know, it could be zero or empty string and meaningful
 				current.mix_data(data, amount)
@@ -131,6 +139,9 @@
 		R.holder = src
 		R.volume = amount
 		R.initialize_data(data)
+		SetViruses(R,data)
+		if(was_from_belly)
+			R.from_belly = was_from_belly
 		update_total()
 		if(!safety)
 			handle_reactions()
@@ -250,9 +261,11 @@
 
 	var/part = amount / total_volume
 
+	var/target_is_belly = isbelly(target.my_atom) // Sending reagents into bellies turns them into belly reagents
+
 	for(var/datum/reagent/current in reagent_list)
 		var/amount_to_transfer = current.volume * part
-		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1) // We don't react until everything is in place
+		target.add_reagent(current.id, amount_to_transfer * multiplier, current.get_data(), safety = 1, was_from_belly = (current.from_belly || target_is_belly)) // We don't react until everything is in place
 		if(!copy)
 			remove_reagent(current.id, amount_to_transfer, 1)
 
@@ -267,14 +280,14 @@
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
+/datum/reagents/proc/trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0, var/force_open_container = FALSE)
 	touch(target) //First, handle mere touch effects
 
 	if(ismob(target))
 		return splash_mob(target, amount, copy)
 	if(isturf(target))
 		return trans_to_turf(target, amount, multiplier, copy)
-	if(isobj(target) && target.is_open_container())
+	if(isobj(target) && (target.is_open_container() || force_open_container) && !isbelly(target.loc))
 		return trans_to_obj(target, amount, multiplier, copy)
 	return 0
 
@@ -318,7 +331,7 @@
 	else if (istype(target, /datum/reagents))
 		return F.trans_to_holder(target, amount)
 
-/datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1)
+/datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1, var/force_open_container = FALSE)
 	if (!target || !target.reagents)
 		return
 
@@ -332,7 +345,7 @@
 	F.add_reagent(id, amount, tmpdata)
 	remove_reagent(id, amount)
 
-	return F.trans_to(target, amount) // Let this proc check the atom's type
+	return F.trans_to(target, amount, force_open_container = force_open_container) // Let this proc check the atom's type
 
 // When applying reagents to an atom externally, touch() is called to trigger any on-touch effects of the reagent.
 // This does not handle transferring reagents to things.
@@ -502,3 +515,10 @@
 	for(var/datum/reagent/reagent as anything in cached_reagents)
 		reagent.on_update(A)
 	update_total()
+
+// Get the cooling power value for machinery that uses reagents for coolant. It's up to the machines themselves to cap and translate this value in a useful way.
+/datum/reagents/proc/machine_cooling_power()
+	var/cooling_power = 0
+	for(var/datum/reagent/R in reagent_list)
+		cooling_power += R.coolant_modifier * R.volume
+	return cooling_power

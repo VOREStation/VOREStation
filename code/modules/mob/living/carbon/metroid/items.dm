@@ -26,8 +26,8 @@
 		enhanced = 1
 		qdel(O)
 */
-/obj/item/slime_extract/New()
-	..()
+/obj/item/slime_extract/Initialize(mapload)
+	. = ..()
 	create_reagents(5)
 //	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 30)
 
@@ -151,7 +151,7 @@
 
 	qdel(M)
 
-	var/newname = sanitize(tgui_input_text(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime", MAX_NAME_LEN))
+	var/newname = tgui_input_text(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime", MAX_NAME_LEN)
 
 	if (!newname)
 		newname = "pet slime"
@@ -203,7 +203,7 @@
 		pet.colour = "[M.colour]"
 		to_chat(user, "You feed the slime the potion, removing it's powers and calming it.")
 		qdel(M)
-		var/newname = sanitize(tgui_input_text(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime", MAX_NAME_LEN))
+		var/newname = tgui_input_text(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime", MAX_NAME_LEN)
 
 		if (!newname)
 			newname = "pet slime"
@@ -298,7 +298,7 @@
 
 
 	proc/announce_to_ghosts()
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(G.client)
 				var/area/A = get_area(src)
 				if(A)
@@ -326,8 +326,8 @@
 	var/Flush = 30
 	var/Uses = 5 // uses before it goes inert
 
-/obj/item/slime_core/New()
-		..()
+/obj/item/slime_core/Initialize(mapload)
+		. = ..()
 		create_reagents(100)
 		POWERFLAG = rand(1,10)
 		Uses = rand(7, 25)
@@ -356,7 +356,7 @@
 	origin_tech = list(TECH_BIO = 4)
 	var/grown = 0
 
-/obj/item/reagent_containers/food/snacks/egg/slime/Initialize()
+/obj/item/reagent_containers/food/snacks/egg/slime/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 4)
 	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 1)

@@ -18,18 +18,18 @@
 	var/blood = 1
 	var/list/target_types = list()
 
-/mob/living/bot/cleanbot/Initialize()
+/mob/living/bot/cleanbot/Initialize(mapload)
 	. = ..()
 	get_targets()
 
 /mob/living/bot/cleanbot/Destroy()
 	if(target)
-		cleanbot_reserved_turfs -= target
+		GLOB.cleanbot_reserved_turfs -= target
 	return ..()
 
 /mob/living/bot/cleanbot/handleIdle()
 	if(!wet_floors && !spray_blood && vocal && prob(2))
-		custom_emote(2, "makes an excited booping sound!")
+		automatic_custom_emote(AUDIBLE_MESSAGE, "makes an excited booping sound!")
 		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 
 	if(wet_floors && prob(5)) // Make a mess
@@ -79,17 +79,17 @@
 				continue // already checked this one
 			else if(confirmTarget(D))
 				target = D
-				cleanbot_reserved_turfs += D
+				GLOB.cleanbot_reserved_turfs += D
 				return
 
 /mob/living/bot/resetTarget()
-	cleanbot_reserved_turfs -= target
+	GLOB.cleanbot_reserved_turfs -= target
 	..()
 
 /mob/living/bot/cleanbot/confirmTarget(var/obj/effect/decal/cleanable/D)
 	if(!..())
 		return FALSE
-	if(D.loc in cleanbot_reserved_turfs)
+	if(D.loc in GLOB.cleanbot_reserved_turfs)
 		return FALSE
 	for(var/T in target_types)
 		if(istype(D, T))
@@ -118,7 +118,7 @@
 	if(istype(D, /obj/effect/decal/cleanable))
 		cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
 		if(prob(20))
-			custom_emote(2, "begins to clean up \the [D]")
+			automatic_custom_emote(AUDIBLE_MESSAGE, "begins to clean up \the [D]")
 		if(do_after(src, cleantime * cTimeMult))
 			if(istype(loc, /turf/simulated))
 				var/turf/simulated/f = loc
@@ -127,7 +127,7 @@
 				return
 			qdel(D)
 			if(D == target)
-				cleanbot_reserved_turfs -= target
+				GLOB.cleanbot_reserved_turfs -= target
 				target = null
 	else if(D == src)
 		for(var/obj/effect/O in loc)
@@ -137,10 +137,10 @@
 				cleantime += 50
 		if(cleantime != 0)
 			if(prob(20))
-				custom_emote(2, "begins to clean up \the [loc]")
+				automatic_custom_emote(AUDIBLE_MESSAGE, "begins to clean up \the [loc]")
 			if(do_after(src, cleantime * cTimeMult))
 				if(blood)
-					clean_blood()
+					wash(CLEAN_TYPE_BLOOD)
 				if(istype(loc, /turf/simulated))
 					var/turf/simulated/T = loc
 					T.dirt = 0
@@ -269,7 +269,7 @@
 		qdel(src)
 
 	else if(istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && src.loc != user)

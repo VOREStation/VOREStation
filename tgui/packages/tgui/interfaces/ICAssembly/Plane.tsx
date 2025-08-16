@@ -5,18 +5,19 @@ import { useBackend, useSharedState } from 'tgui/backend';
 import { InfinitePlane } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { Connection, Connections } from '../common/Connections';
+import { type Connection, Connections } from '../common/Connections';
 import { CircuitComponent } from './CircuitComponent';
-import { PortProps } from './Port';
+import type { PortProps } from './Port';
 import {
   ABSOLUTE_Y_OFFSET,
-  CircuitData,
-  Data,
+  type CircuitData,
+  type Data,
   MOUSE_BUTTON_LEFT,
-  PortData,
+  type PortData,
   PortTypesToColor,
 } from './types';
 
+// biome-ignore lint/complexity/noBannedTypes:Ingored here
 export type PlaneProps = {};
 
 type PlaneState = {
@@ -72,8 +73,8 @@ export class Plane extends Component<PlaneProps, PlaneState> {
     const position = this.getPosition(dom);
 
     if (
-      isNaN(position.x) ||
-      isNaN(position.y) ||
+      Number.isNaN(position.x) ||
+      Number.isNaN(position.y) ||
       (lastPosition &&
         lastPosition.x === position.x &&
         lastPosition.y === position.y)
@@ -231,8 +232,8 @@ export class Plane extends Component<PlaneProps, PlaneState> {
       const { zoom } = this.state;
       const portLocation = locations[selectedPort.ref];
       const mouseCoords = {
-        x: mouseX * Math.pow(zoom, -1),
-        y: (mouseY + ABSOLUTE_Y_OFFSET) * Math.pow(zoom, -1),
+        x: mouseX * zoom ** -1,
+        y: (mouseY + ABSOLUTE_Y_OFFSET) * zoom ** -1,
       };
       connections.push({
         color:
@@ -289,7 +290,7 @@ const Circuit = (
     onPortRightClick,
   } = props;
 
-  const [pos, setPos] = useSharedState('component-pos-' + circuit.ref, {
+  const [pos, setPos] = useSharedState(`component-pos-${circuit.ref}`, {
     x: 0,
     y: 0,
   });

@@ -27,7 +27,7 @@
 	var/list/data = list()
 	var/mob/living/host = user
 
-	data["db_version"] = "0.1"
+	data["db_version"] = "0.2"
 	data["db_repo"] = "vorestation"
 	data["mob_name"] = host.real_name
 
@@ -42,6 +42,7 @@
 			belly_data["absorbed_desc"] = B.absorbed_desc
 			belly_data["vore_verb"] = B.vore_verb
 			belly_data["release_verb"] = B.release_verb
+			belly_data["prevent_saving"] = B.prevent_saving
 
 			// Controls
 			belly_data["mode"] = B.digest_mode
@@ -154,7 +155,6 @@
 			for(var/msg in B.secondary_transfer_messages_prey)
 				belly_data["secondary_transfer_messages_prey"] += msg
 
-			/* Not yet implemented on virgo
 			belly_data["primary_autotransfer_messages_owner"] = list()
 			for(var/msg in B.primary_autotransfer_messages_owner)
 				belly_data["primary_autotransfer_messages_owner"] += msg
@@ -170,7 +170,6 @@
 			belly_data["secondary_autotransfer_messages_prey"] = list()
 			for(var/msg in B.secondary_autotransfer_messages_prey)
 				belly_data["secondary_autotransfer_messages_prey"] += msg
-			*/
 
 			belly_data["digest_chance_messages_owner"] = list()
 			for(var/msg in B.digest_chance_messages_owner)
@@ -219,6 +218,14 @@
 			belly_data["examine_messages_absorbed"] = list()
 			for(var/msg in B.examine_messages_absorbed)
 				belly_data["examine_messages_absorbed"] += msg
+
+			belly_data["trash_eater_in"] = list()
+			for(var/msg in B.trash_eater_in)
+				belly_data["trash_eater_in"] += msg
+
+			belly_data["trash_eater_out"] = list()
+			for(var/msg in B.trash_eater_out)
+				belly_data["trash_eater_out"] += msg
 
 			//belly_data["emote_list"] = list()
 			//for(var/EL in B.emote_lists)
@@ -280,7 +287,7 @@
 			belly_data["digest_clone"] = B.digest_clone
 
 			belly_data["can_taste"] = B.can_taste
-			// belly_data["is_feedable"] = B.is_feedable // Not yet implemented on virgo
+			belly_data["is_feedable"] = B.is_feedable
 			belly_data["contaminates"] = B.contaminates
 			belly_data["contamination_flavor"] = B.contamination_flavor
 			belly_data["contamination_color"] = B.contamination_color
@@ -291,25 +298,21 @@
 			belly_data["emote_active"] = B.emote_active
 			belly_data["emote_time"] = B.emote_time
 			belly_data["shrink_grow_size"] = B.shrink_grow_size
-			/* Not yet implemented on virgo
 			belly_data["vorespawn_blacklist"] = B.vorespawn_blacklist
 			belly_data["vorespawn_whitelist"] = B.vorespawn_whitelist
 			belly_data["vorespawn_absorbed"] = B.vorespawn_absorbed
-			*/
 			belly_data["egg_type"] = B.egg_type
-			/* Not yet implemented on virgo
 			belly_data["egg_name"] = B.egg_name
 			belly_data["egg_size"] = B.egg_size
-			*/
 			belly_data["selective_preference"] = B.selective_preference
-			/* Not yet implemented on virgo
 			belly_data["recycling"] = B.recycling
 			belly_data["storing_nutrition"] = B.storing_nutrition
 			belly_data["entrance_logs"] = B.entrance_logs
 			belly_data["item_digest_logs"] = B.item_digest_logs
 			belly_data["eating_privacy_local"] = B.eating_privacy_local
 			belly_data["private_struggle"] = B.private_struggle
-			*/
+			belly_data["absorbedrename_enabled"] = B.absorbedrename_enabled
+			belly_data["absorbedrename_name"] = B.absorbedrename_name
 
 			// Sounds
 			belly_data["is_wet"] = B.is_wet
@@ -317,10 +320,8 @@
 			belly_data["fancy_vore"] = B.fancy_vore
 			belly_data["vore_sound"] = B.vore_sound
 			belly_data["release_sound"] = B.release_sound
-			/*  Not yet implemented on virgo
 			belly_data["sound_volume"] = B.sound_volume
 			belly_data["noise_freq"] = B.noise_freq
-			*/
 
 			// Visuals
 			belly_data["affects_vore_sprites"] = B.affects_vore_sprites
@@ -331,8 +332,8 @@
 			belly_data["vore_sprite_flags"] = sprite_flags
 			belly_data["count_absorbed_prey_for_sprite"] = B.count_absorbed_prey_for_sprite
 			belly_data["absorbed_multiplier"] = B.absorbed_multiplier
-			// belly_data["count_liquid_for_sprite"] = B.count_liquid_for_sprite // Not yet implemented on virgo
-			// belly_data["liquid_multiplier"] = B.liquid_multiplier // Not yet implemented on virgo
+			belly_data["count_liquid_for_sprite"] = B.count_liquid_for_sprite
+			belly_data["liquid_multiplier"] = B.liquid_multiplier
 			belly_data["count_items_for_sprite"] = B.count_items_for_sprite
 			belly_data["item_multiplier"] = B.item_multiplier
 			belly_data["health_impacts_size"] = B.health_impacts_size
@@ -348,18 +349,16 @@
 			//belly_data["tail_extra_overlay2"] = B.tail_extra_overlay2
 
 			// Visuals (Belly Fullscreens Preview and Coloring)
-			/* Not yet implemented on virgo
 			belly_data["belly_fullscreen_color"] = B.belly_fullscreen_color
 			belly_data["belly_fullscreen_color2"] = B.belly_fullscreen_color2
 			belly_data["belly_fullscreen_color3"] = B.belly_fullscreen_color3
 			belly_data["belly_fullscreen_color4"] = B.belly_fullscreen_color4
 			belly_data["belly_fullscreen_alpha"] = B.belly_fullscreen_alpha
 			belly_data["colorization_enabled"] = B.colorization_enabled
-			*/
 
 			// Visuals (Vore FX)
 			belly_data["disable_hud"] = B.disable_hud
-			// belly_data["belly_fullscreen"] = B.belly_fullscreen // Not yet implemented on virgo
+			belly_data["belly_fullscreen"] = B.belly_fullscreen
 
 			// Interactions
 			belly_data["escapable"] = B.escapable
@@ -368,7 +367,7 @@
 			belly_data["escapechance_absorbed"] = B.escapechance_absorbed
 			belly_data["escapetime"] = B.escapetime/10
 
-			// belly_data["belchchance"] = B.belchchance //  Not yet implemented on virgo
+			belly_data["belchchance"] = B.belchchance
 
 			belly_data["transferchance"] = B.transferchance
 			belly_data["transferlocation"] = B.transferlocation
@@ -380,7 +379,6 @@
 			belly_data["digestchance"] = B.digestchance
 
 			// Interactions (Auto-Transfer)
-			/* Not yet implemented on virgo
 			belly_data["autotransferchance"] = B.autotransferchance
 			belly_data["autotransferwait"] = B.autotransferwait/10
 			belly_data["autotransferlocation"] = B.autotransferlocation
@@ -463,12 +461,10 @@
 				if(B.reagent_mode_flags & B.reagent_mode_flag_list[flag_name])
 					reagent_flags.Add(flag_name)
 			belly_data["reagent_mode_flag_list"] = reagent_flags
-			*/
 
 			data["bellies"] += list(belly_data)
 
 			// Liquid Messages
-			/* Not yet implemented on virgo
 			belly_data["show_fullness_messages"] = B.show_fullness_messages
 			belly_data["liquid_fullness1_messages"] = B.liquid_fullness1_messages
 			belly_data["liquid_fullness2_messages"] = B.liquid_fullness2_messages
@@ -495,6 +491,21 @@
 			belly_data["fullness5_messages"] = list()
 			for(var/msg in B.fullness5_messages)
 				belly_data["fullness5_messages"] += msg
-			*/
+
+	// Soulcatcher export
+	if(user.soulgem)
+		var/obj/soulgem/gem = user.soulgem
+		var/list/soulcatcher_data = list()
+		soulcatcher_data["name"] = gem.name
+		soulcatcher_data["setting_flags"] = gem.setting_flags
+		soulcatcher_data["inside_flavor"] = gem.inside_flavor
+		soulcatcher_data["capture_message"] = gem.capture_message
+		soulcatcher_data["transit_message"] = gem.transit_message
+		soulcatcher_data["release_message"] = gem.release_message
+		soulcatcher_data["transfer_message"] = gem.transfer_message
+		soulcatcher_data["delete_message"] = gem.delete_message
+		soulcatcher_data["linked_belly"] = gem.linked_belly
+
+		data["soulcatcher"] = soulcatcher_data
 
 	return data

@@ -129,10 +129,29 @@
 			t_He 	= "Shi"
 			t_His 	= "Hir"
 			t_his 	= "hir"
-	if(revive_ready == REVIVING_NOW || revive_ready == REVIVING_DONE)
-		if(stat == DEAD)
-			return span_warning("[t_His] body is twitching subtly.")
-		else
-			return span_notice("[t_He] [t_appear] to be in some sort of torpor.")
-	if(feral)
-		return span_warning("[t_He] [t_has] a crazed, wild look in [t_his] eyes!")
+	var/datum/component/xenochimera/xc = get_xenochimera_component()
+	if(xc)
+		if((xc.revive_ready == REVIVING_NOW || xc.revive_ready == REVIVING_DONE))
+			if(stat == DEAD)
+				return span_warning("[t_His] body is twitching subtly.")
+			else
+				return span_notice("[t_He] [t_appear] to be in some sort of torpor.")
+		else if(xc.feral)
+			return span_warning("[t_He] [t_has] a crazed, wild look in [t_his] eyes!")
+
+/mob/living/carbon/human/proc/examine_body_writing(list/hidden, datum/gender/G)
+	. = list()
+
+	for(var/bodypart in hidden)
+		var/is_hidden = hidden[bodypart]
+		if(is_hidden)
+			continue
+
+		var/writing = LAZYACCESS(body_writing, bodypart)
+		if(writing)
+			var/obj/item/organ/external/affecting = get_organ(bodypart)
+			if(!affecting || affecting.is_stump())
+				LAZYREMOVE(body_writing, bodypart)
+				continue
+
+			. += span_notice("[G.He] [G.has] \"[writing]\" written on [G.his] [parse_zone(bodypart)].")

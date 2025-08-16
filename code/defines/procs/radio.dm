@@ -5,13 +5,13 @@
 
 /proc/register_radio(source, old_frequency, new_frequency, radio_filter)
 	if(old_frequency)
-		radio_controller.remove_object(source, old_frequency)
+		SSradio.remove_object(source, old_frequency)
 	if(new_frequency)
-		return radio_controller.add_object(source, new_frequency, radio_filter)
+		return SSradio.add_object(source, new_frequency, radio_filter)
 
 /proc/unregister_radio(source, frequency)
-	if(radio_controller)
-		radio_controller.remove_object(source, frequency)
+	if(SSradio)
+		SSradio.remove_object(source, frequency)
 
 /proc/get_frequency_name(var/display_freq)
 	var/freq_text
@@ -39,7 +39,7 @@
 /datum/receptions
 	var/obj/machinery/message_server/message_server = null
 	var/sender_reception = TELECOMMS_RECEPTION_NONE
-	var/list/receiver_reception = new
+	var/list/receiver_reception = list()
 
 /proc/get_message_server()
 	if(message_servers)

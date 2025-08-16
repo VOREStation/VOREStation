@@ -22,9 +22,10 @@
 		R.selecting_module = TRUE
 
 /datum/tgui_module/robot_ui_module/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
-	)
+	var/list/our_assets = list()
+	for(var/entry in GLOB.robot_sprite_sheets)
+		our_assets += GLOB.robot_sprite_sheets[entry]
+	return our_assets
 
 /datum/tgui_module/robot_ui_module/tgui_static_data()
 	var/list/data = ..()
@@ -39,13 +40,13 @@
 		if(LAZYLEN(R.restrict_modules_to) > 0)
 			modules.Add(R.restrict_modules_to)
 		else if(R.shell)
-			modules.Add(shell_module_types)
+			modules.Add(GLOB.shell_module_types)
 		else
-			modules.Add(robot_module_types)
-			if(R.crisis || security_level >= SEC_LEVEL_RED || R.crisis_override)
+			modules.Add(GLOB.robot_module_types)
+			if(R.crisis || GLOB.security_level >= SEC_LEVEL_RED || R.crisis_override)
 				to_chat(R, span_red("Crisis mode active. Combat module available."))
-				modules |= emergency_module_types
-			for(var/module_name in whitelisted_module_types)
+				modules |= GLOB.emergency_module_types
+			for(var/module_name in GLOB.whitelisted_module_types)
 				if(is_borg_whitelisted(R, module_name))
 					modules |= module_name
 	data["possible_modules"] = modules
@@ -61,7 +62,6 @@
 	var/list/data = ..()
 
 	var/mob/living/silicon/robot/R = host
-	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
 
 	data["currentName"] = new_name ? new_name : R.name
 	data["isDefaultName"] = !new_name
@@ -92,6 +92,7 @@
 		data["sprite_datum_class"] = null
 		data["sprite_datum_size"] = null
 		if(sprite_datum)
+			var/datum/asset/spritesheet_batched/robot_icons/spritesheet = GLOB.robot_sprite_sheets[selected_module]
 			data["sprite_datum_class"] = sanitize_css_class_name("[sprite_datum.type]")
 			data["sprite_datum_size"] = spritesheet.icon_size_id(data["sprite_datum_class"] + "S") // just get the south icon's size, the rest will be the same
 
@@ -109,7 +110,7 @@
 			if(R.module)
 				return
 			var/new_module = params["value"]
-			if(!(new_module in robot_modules))
+			if(!(new_module in GLOB.robot_modules))
 				return
 			if(!is_borg_whitelisted(R, new_module))
 				return
@@ -155,7 +156,7 @@
 
 /mob/living/silicon/robot/proc/apply_module(var/datum/robot_sprite/new_datum, var/new_module)
 	icon_selected = TRUE
-	var/module_type = robot_modules[new_module]
+	var/module_type = GLOB.robot_modules[new_module]
 	if(modtype != new_module || !module)
 		if(module)
 			qdel(module)
@@ -171,6 +172,7 @@
 		sprite_type = sprite_datum.name
 
 /mob/living/silicon/robot/proc/transform_module()
+	resize(size_multiplier, animate = FALSE) //Gets the size down to a normal size.
 	transform_with_anim()
 	var/tempheight = vis_height
 	update_icon()

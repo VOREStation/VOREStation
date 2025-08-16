@@ -1,47 +1,16 @@
-//Normal map defs
-#define Z_LEVEL_SURFACE_LOW					1
-#define Z_LEVEL_SURFACE_MID					2
-#define Z_LEVEL_SURFACE_HIGH				3
-#define Z_LEVEL_TRANSIT						4
-#define Z_LEVEL_SPACE_LOW					5
-#define Z_LEVEL_SURFACE_MINE				6
-#define Z_LEVEL_SOLARS						7
-#define Z_LEVEL_CENTCOM						8
-#define Z_LEVEL_MISC						9
-#define Z_LEVEL_UNDERDARK					10
-#define Z_LEVEL_PLAINS						11
-#define Z_LEVEL_OFFMAP1						12
-//#define Z_LEVEL_OFFMAP2						12
-#define Z_LEVEL_ROGUEMINE_1					13
-#define Z_LEVEL_ROGUEMINE_2					14
-#define Z_LEVEL_BEACH						15
-#define Z_LEVEL_BEACH_CAVE					16
-#define Z_LEVEL_AEROSTAT					17
-#define Z_LEVEL_AEROSTAT_SURFACE			18
-#define Z_LEVEL_DEBRISFIELD					19
-#define Z_LEVEL_FUELDEPOT					20
-#define Z_LEVEL_GATEWAY						21
-#define Z_LEVEL_OM_ADVENTURE				22
-#define Z_LEVEL_REDGATE						23
-
-
-//Camera networks
-#define NETWORK_TETHER "Tether"
-#define NETWORK_OUTSIDE "Outside"
-
 /datum/map/tether/New()
 	..()
 	var/choice = pickweight(list(
-		"title" = 10,
-		"tether" = 50,
-		"tether_night" = 50,
-		"tether2_night" = 50,
-		"tether2_dog" = 1,
-		"tether2_love" = 1,
-		"tether_future" = 10,
-		"logo1" = 20,
-		"logo2" = 20,
-		"gateway" = 5
+		'html/lobby/title.png' = 10,
+		'html/lobby/tether.png' = 50,
+		'html/lobby/tether_night.png' = 50,
+		'html/lobby/tether2_night.png' = 50,
+		'html/lobby/tether2_dog.png' = 1,
+		'html/lobby/tether2_love.png' = 1,
+		'html/lobby/tether_future.png' = 10,
+		'html/lobby/logo1.png' = 20,
+		'html/lobby/logo2.png' = 20,
+		'html/lobby/gateway.png' = 5
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -52,22 +21,22 @@
 	path = "tether"
 
 	use_overmap = TRUE
-	overmap_z = Z_LEVEL_MISC
+	overmap_z = Z_NAME_ALIAS_MISC
 	overmap_size = 50
 	overmap_event_areas = 44
 	usable_email_tlds = list("virgo.nt")
 
 	zlevel_datum_type = /datum/map_z_level/tether
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether2_night")
+	lobby_screens = list('html/lobby/tether2_night.png')
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	holomap_smoosh = list(list(
-		Z_LEVEL_SURFACE_LOW,
-		Z_LEVEL_SURFACE_MID,
-		Z_LEVEL_SURFACE_HIGH,
-		Z_LEVEL_SPACE_LOW))
+		Z_LEVEL_TETHER_SURFACE_LOW,
+		Z_LEVEL_TETHER_SURFACE_MID,
+		Z_LEVEL_TETHER_SURFACE_HIGH,
+		Z_LEVEL_TETHER_SPACE_LOW,
+		))
 
 	station_name  = "NSB Adephagia"
 	station_short = "Tether"
@@ -107,7 +76,7 @@
 							NETWORK_ROBOTS,
 							NETWORK_SECURITY,
 							NETWORK_TELECOM,
-							NETWORK_TETHER
+							NETWORK_TETHER,
 							)
 	secondary_networks = list(
 							NETWORK_ERT,
@@ -118,7 +87,7 @@
 							NETWORK_ALARM_POWER,
 							NETWORK_ALARM_FIRE,
 							NETWORK_TALON_HELMETS,
-							NETWORK_TALON_SHIP
+							NETWORK_TALON_SHIP,
 							)
 
 	bot_patrolling = FALSE
@@ -166,78 +135,80 @@
 		)
 
 	unit_test_z_levels = list(
-		Z_LEVEL_SURFACE_LOW,
-		Z_LEVEL_SURFACE_MID,
-		Z_LEVEL_SURFACE_HIGH,
-		Z_LEVEL_TRANSIT,
-		Z_LEVEL_SPACE_LOW
+		Z_LEVEL_TETHER_SURFACE_LOW,
+		Z_LEVEL_TETHER_SURFACE_MID,
+		Z_LEVEL_TETHER_SURFACE_HIGH,
+		Z_LEVEL_TETHER_TRANSIT,
+		Z_LEVEL_TETHER_SPACE_LOW,
 	)
 
 	lateload_z_levels = list(
-		list("Tether - Centcom","Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
-		list("Offmap Ship - Talon V2"),
-		list("Asteroid Belt 1","Asteroid Belt 2"),
-		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
-		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
-		list("Debris Field - Z1 Space"),
-		list("Fuel Depot - Z1 Space")
+		list(Z_NAME_TETHER_CENTCOM, Z_NAME_TETHER_MISC, Z_NAME_TETHER_UNDERDARK, Z_NAME_TETHER_PLAINS), //Stock Tether lateload maps
+		list(Z_NAME_OFFMAP1),
+		list(Z_NAME_TETHER_ROGUEMINE_1, Z_NAME_TETHER_ROGUEMINE_2),
+		list(Z_NAME_BEACH, Z_NAME_BEACH_CAVE),
+		list(Z_NAME_AEROSTAT, Z_NAME_AEROSTAT_SURFACE),
+		list(Z_NAME_DEBRISFIELD),
+		list(Z_NAME_FUELDEPOT),
 		)
 
 	lateload_gateway = list(
-		list("Gateway - Carp Farm"),
-		list("Gateway - Snow Field"),
-		list("Gateway - Listening Post"),
-		list(list("Gateway - Honleth Highlands A", "Gateway - Honleth Highlands B")),
-		list("Gateway - Arynthi Lake Underground A","Gateway - Arynthi Lake A"),
-		list("Gateway - Arynthi Lake Underground B","Gateway - Arynthi Lake B"),
-		list("Gateway - Wild West")
+		list(Z_NAME_GATEWAY_CARP_FARM),
+		list(Z_NAME_GATEWAY_SNOW_FIELD),
+		list(Z_NAME_GATEWAY_LISTENING_POST),
+		list(list(Z_NAME_GATEWAY_HONLETH_A, Z_NAME_GATEWAY_HONLETH_B)),
+		list(Z_NAME_GATEWAY_ARYNTHI_CAVE_A,Z_NAME_GATEWAY_ARYNTHI_A),
+		list(Z_NAME_GATEWAY_ARYNTHI_CAVE_B,Z_NAME_GATEWAY_ARYNTHI_B),
+		list(Z_NAME_GATEWAY_WILD_WEST),
 		)
 
 	lateload_overmap = list(
-		list("Grass Cave")
+		list(Z_NAME_OM_GRASS_CAVE),
 		)
 
 	lateload_redgate = list(
-		list("Redgate - Teppi Ranch"),
-		list("Redgate - Innland"),
-//		list("Redgate - Abandoned Island"),	//This will come back later
-		list("Redgate - Dark Adventure"),
-		list("Redgate - Eggnog Town Underground","Redgate - Eggnog Town"),
-		list("Redgate - Star Dog"),
-		list("Redgate - Hotsprings"),
-		list("Redgate - Rain City"),
-		list("Redgate - Islands Underwater","Redgate - Islands"),
-		list("Redgate - Moving Train", "Redgate - Moving Train Upper Level"),
-		list("Redgate - Fantasy Dungeon", "Redgate - Fantasy Town"),
-		list("Redgate - Laserdome"),
-		list("Redgate - Cascading Falls"),
-		list("Redgate - Jungle Underground", "Redgate - Jungle"),
-		list("Redgate - Facility")
+		list(Z_NAME_REDGATE_TEPPI_RANCH),
+		list(Z_NAME_REDGATE_INNLAND),
+//		list(Z_NAME_REDGATE_ABANDONED_ISLAND),	//This will come back later
+		list(Z_NAME_REDGATE_DARK_ADVENTURE),
+		list(Z_NAME_REDGATE_EGGNOG_CAVE,Z_NAME_REDGATE_EGGNOG_TOWN),
+		list(Z_NAME_REDGATE_STAR_DOG),
+		list(Z_NAME_REDGATE_HOTSPRINGS),
+		list(Z_NAME_REDGATE_RAIN_CITY),
+		list(Z_NAME_REDGATE_ISLANDS_UNDERWATER,Z_NAME_REDGATE_ISLANDS),
+		list(Z_NAME_REDGATE_MOVING_TRAIN, Z_NAME_REDGATE_MOVING_TRAIN_UPPER),
+		list(Z_NAME_REDGATE_FANTASY_DUNGEON, Z_NAME_REDGATE_FANTASY_TOWN),
+		list(Z_NAME_REDGATE_LASERDOME),
+		list(Z_NAME_REDGATE_CASCADING_FALLS),
+		list(Z_NAME_REDGATE_JUNGLE_CAVE, Z_NAME_REDGATE_JUNGLE),
+		list(Z_NAME_REDGATE_FACILITY),
 		)
 
 	ai_shell_restricted = TRUE
 	ai_shell_allowed_levels = list(
-		Z_LEVEL_SURFACE_LOW,
-		Z_LEVEL_SURFACE_MID,
-		Z_LEVEL_SURFACE_HIGH,
-		Z_LEVEL_TRANSIT,
-		Z_LEVEL_SPACE_LOW,
-		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SOLARS,
-		Z_LEVEL_MISC,
-		Z_LEVEL_BEACH
+		Z_LEVEL_TETHER_SURFACE_LOW,
+		Z_LEVEL_TETHER_SURFACE_MID,
+		Z_LEVEL_TETHER_SURFACE_HIGH,
+		Z_LEVEL_TETHER_TRANSIT,
+		Z_LEVEL_TETHER_SPACE_LOW,
+		Z_LEVEL_TETHER_SURFACE_MINE,
+		Z_LEVEL_TETHER_SOLARS,
+		Z_NAME_ALIAS_MISC,
+		Z_NAME_BEACH,
 		)
 
-	belter_docked_z = 		list(Z_LEVEL_SPACE_LOW)
-	belter_transit_z =	 	list(Z_LEVEL_MISC)
-	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
-						 		 Z_LEVEL_ROGUEMINE_2)
+	belter_docked_z = 		list(Z_LEVEL_TETHER_SPACE_LOW)
+	belter_transit_z =		list(Z_NAME_ALIAS_MISC)
+	belter_belt_z = 		list(Z_NAME_TETHER_ROGUEMINE_1,
+									Z_NAME_TETHER_ROGUEMINE_2)
 
-	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
-	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
+	mining_station_z =		list(Z_LEVEL_TETHER_SPACE_LOW)
+	mining_outpost_z =		list(Z_LEVEL_TETHER_SURFACE_MINE)
 
-	planet_datums_to_make = list(/datum/planet/virgo3b,
-								/datum/planet/virgo4)
+	planet_datums_to_make = list(
+		/datum/planet/virgo3b,
+		/datum/planet/virgo4,
+		)
 
 /datum/map/tether/get_map_info()
 	. = list()
@@ -249,11 +220,11 @@
 
 /datum/map/tether/perform_map_generation()
 
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_TETHER_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_TETHER_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
 
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SOLARS, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SOLARS, 64, 64)         // Create the mining ore distribution map.
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_TETHER_SOLARS, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_TETHER_SOLARS, 64, 64)         // Create the mining ore distribution map.
 
 	return 1
 
@@ -263,36 +234,22 @@
 
 /datum/planet/virgo3b
 	expected_z_levels = list(
-		Z_LEVEL_SURFACE_LOW,
-		Z_LEVEL_SURFACE_MID,
-		Z_LEVEL_SURFACE_HIGH,
-		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SOLARS,
-		Z_LEVEL_PLAINS,
-		Z_LEVEL_CENTCOM
+		Z_LEVEL_TETHER_SURFACE_LOW,
+		Z_LEVEL_TETHER_SURFACE_MID,
+		Z_LEVEL_TETHER_SURFACE_HIGH,
+		Z_LEVEL_TETHER_SURFACE_MINE,
+		Z_LEVEL_TETHER_SOLARS,
+		Z_NAME_TETHER_PLAINS,
+		Z_NAME_ALIAS_CENTCOM
 		)
 /datum/planet/virgo4
 	expected_z_levels = list(
-		Z_LEVEL_BEACH
+		Z_NAME_BEACH
 	)
 
 // Overmap represetation of tether
 /obj/effect/overmap/visitable/sector/virgo3b
-	name = "Virgo 3B"
-	desc = "Full of phoron, and home to the NSB Adephagia, where you can dock and refuel your craft."
-	scanner_desc = @{"[i]Registration[/i]: NSB Adephagia
-[i]Class[/i]: Installation
-[i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
-[b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	base = 1
-
-	icon = 'icons/obj/overmap_vr.dmi'
-	icon_state = "virgo3b"
-
-	skybox_icon = 'icons/skybox/virgo3b.dmi'
-	skybox_icon_state = "small"
-	skybox_pixel_x = 0
-	skybox_pixel_y = 0
 
 	initial_generic_waypoints = list(
 		"tether_dockarm_d1a1", //Bottom left,
@@ -312,14 +269,13 @@
 	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
 	//Despite not being in the multi-z complex, these levels are part of the overmap sector
 	extra_z_levels = list(
-		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SOLARS,
-		Z_LEVEL_PLAINS,
-		Z_LEVEL_UNDERDARK
+		Z_LEVEL_TETHER_SURFACE_MINE,
+		Z_LEVEL_TETHER_SOLARS,
+		Z_NAME_TETHER_PLAINS,
+		Z_NAME_TETHER_UNDERDARK
 	)
 
-	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
-	var/mob_announce_cooldown = 0
+	levels_for_distress = list(Z_NAME_OFFMAP1, Z_NAME_BEACH, Z_NAME_AEROSTAT, Z_NAME_DEBRISFIELD, Z_NAME_FUELDEPOT)
 
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
@@ -330,9 +286,9 @@
 	announce_atc(AM,going = TRUE)
 
 /obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
-	return list(Z_LEVEL_SPACE_LOW)
+	return list(Z_LEVEL_TETHER_SPACE_LOW)
 
-/obj/effect/overmap/visitable/sector/virgo3b/proc/announce_atc(var/atom/movable/AM, var/going = FALSE)
+/obj/effect/overmap/visitable/sector/virgo3b/announce_atc(var/atom/movable/AM, var/going = FALSE)
 	if(istype(AM, /obj/effect/overmap/visitable/ship/simplemob))
 		if(world.time < mob_announce_cooldown)
 			return
@@ -344,17 +300,17 @@
 		var/obj/effect/overmap/visitable/ship/landable/SL = AM //Phew
 		var/datum/shuttle/autodock/multi/shuttle = SSshuttles.shuttles[SL.shuttle]
 		if(!istype(shuttle) || !shuttle.cloaked) //Not a multishuttle (the only kind that can cloak) or not cloaked
-			atc.msg(message)
+			SSatc.msg(message)
 
 	//For ships, it's safe to assume they're big enough to not be sneaky
 	else if(istype(AM, /obj/effect/overmap/visitable/ship))
-		atc.msg(message)
+		SSatc.msg(message)
 
 /obj/effect/overmap/visitable/sector/virgo3b/generate_skybox(zlevel)
 	var/static/image/bigone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "large")
 	var/static/image/smallone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "small")
 
-	if(zlevel == Z_LEVEL_TRANSIT)
+	if(zlevel == Z_LEVEL_TETHER_TRANSIT)
 		return bigone
 	else
 		return smallone
@@ -367,57 +323,57 @@
 
 // We have a bunch of stuff common to the station z levels
 /datum/map_z_level/tether/station
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST|MAP_LEVEL_VORESPAWN
 	holomap_legend_x = 220
 	holomap_legend_y = 160
 
 /datum/map_z_level/tether/station/surface_low
-	z = Z_LEVEL_SURFACE_LOW
+	z = Z_LEVEL_TETHER_SURFACE_LOW
 	name = "Surface 1"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST|MAP_LEVEL_VORESPAWN
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y
 
 /datum/map_z_level/tether/station/surface_mid
-	z = Z_LEVEL_SURFACE_MID
+	z = Z_LEVEL_TETHER_SURFACE_MID
 	name = "Surface 2"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST|MAP_LEVEL_VORESPAWN
 	base_turf = /turf/simulated/open
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE
 
 /datum/map_z_level/tether/station/surface_high
-	z = Z_LEVEL_SURFACE_HIGH
+	z = Z_LEVEL_TETHER_SURFACE_HIGH
 	name = "Surface 3"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST|MAP_LEVEL_VORESPAWN
 	base_turf = /turf/simulated/open
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X + TETHER_HOLOMAP_CENTER_GUTTER + TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y
 
 /datum/map_z_level/tether/transit
-	z = Z_LEVEL_TRANSIT
+	z = Z_LEVEL_TETHER_TRANSIT
 	name = "Transit"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_SEALED|MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_SEALED|MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_VORESPAWN
 	base_turf = /turf/space/v3b_midpoint // Special type that spawns fall triggers
 
 /datum/map_z_level/tether/station/space_low
-	z = Z_LEVEL_SPACE_LOW
+	z = Z_LEVEL_TETHER_SPACE_LOW
 	name = "Asteroid 1"
 	base_turf = /turf/space
 	transit_chance = 33
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST|MAP_LEVEL_BELOW_BLOCKED
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST|MAP_LEVEL_BELOW_BLOCKED|MAP_LEVEL_VORESPAWN
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X + TETHER_HOLOMAP_CENTER_GUTTER + TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE
 
 /datum/map_z_level/tether/mine
-	z = Z_LEVEL_SURFACE_MINE
+	z = Z_LEVEL_TETHER_SURFACE_MINE
 	name = "Mining Outpost"
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
 
 /datum/map_z_level/tether/solars
-	z = Z_LEVEL_SOLARS
+	z = Z_LEVEL_TETHER_SOLARS
 	name = "Solar Field"
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b

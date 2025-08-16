@@ -33,7 +33,7 @@
 	//component vars
 	circuit = /obj/item/circuitboard/protean_reconstitutor
 
-/obj/machinery/protean_reconstitutor/Initialize()
+/obj/machinery/protean_reconstitutor/Initialize(mapload)
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/stock_parts/manipulator(src)
@@ -270,6 +270,8 @@
 					var/datum/language/def_lang = GLOB.all_languages[posibrain_client.prefs.preferred_language]
 					if(def_lang)
 						P.default_language = def_lang
+
+				SEND_SIGNAL(P, COMSIG_HUMAN_DNA_FINALIZED)
 
 				protean_brain.brainmob.mind.transfer_to(P)
 				protean_brain.loc = BR

@@ -9,6 +9,8 @@
 	reagent_state = LIQUID
 	color = "#ff2424"
 	strength = 10
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/toxin/plantcolony
 	name = REAGENT_PLANTCOLONY
@@ -18,6 +20,8 @@
 	reagent_state = LIQUID
 	color = "#7ce01f"
 	strength = 10
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/nutriment/grubshake
 	name = REAGENT_GRUBSHAKE
@@ -27,6 +31,7 @@
 	taste_mult = 1.3
 	nutriment_factor = 5
 	color = "#fff200"
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjust_nutrition(-20 * removed)
@@ -87,6 +92,7 @@
 		if(M.species.organic_food_coeff) //it's still food!
 			switch(alien)
 				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
+					pass()
 				if(IS_SKRELL)
 					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
 				if(IS_TESHARI)
@@ -99,17 +105,16 @@
 					M.adjust_nutrition(alt_nutriment_factor * removed)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
-				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
-				if (H.feral <=0) //check if they're unferalled
-					H.feral = 0
+			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+			if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.get_jittery() < 100) //Same check as feral triggers to stop them immediately re-feralling
+				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
+				if (xc.feral <=0) //check if they're unferalled
+					xc.feral = 0
 					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
 /datum/reagent/ethanol/monstertamer/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_SKRELL)
-		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
 	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.adjust_nutrition(alt_nutriment_factor * removed)
@@ -352,9 +357,6 @@
 	glass_name = REAGENT_SCSATW
 	glass_desc = "The best accessory to daydrinking."
 
-/datum/reagent/drink
-	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
-
 /datum/reagent/drink/choccymilk
 	name = REAGENT_CHOCCYMILK
 	id = REAGENT_ID_CHOCCYMILK
@@ -453,6 +455,7 @@
 		if(M.species.organic_food_coeff) //it's still food!
 			switch(alien)
 				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
+					pass()
 				if(IS_SKRELL)
 					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
 				if(IS_TESHARI)
@@ -465,17 +468,16 @@
 					M.nutrition += (alt_nutriment_factor * removed)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
-				H.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
-				if (H.feral <=0) //check if they're unferalled
-					H.feral = 0
+			var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+			if(xc && xc.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.get_jittery() < 100) // same check as feral triggers to stop them immediately re-feralling
+				xc.feral -= removed * 3 // should calm them down quick, provided they're actually in a state to STAY calm.
+				if (xc.feral <=0) //check if they're unferalled
+					xc.feral = 0
 					to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 					log_and_message_admins("is no longer feral.", H)
 
 /datum/reagent/ethanol/hairoftherat/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	if(alien == IS_SKRELL)
-		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
 	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.nutrition += (alt_nutriment_factor * removed)
@@ -545,6 +547,7 @@
 	id = REAGENT_ID_BRAINPROTEIN
 	taste_description = "fatty, mushy meat and allspice"
 	color = "#caa3c9"
+	wiki_flag = WIKI_FOOD|WIKI_SPOILER
 
 /datum/reagent/nutriment/protein/brainzsnax/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -555,10 +558,11 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
-			H.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
-			if(H.feral <=0) //Check if they're unferalled
-				H.feral = 0
+		var/datum/component/xenochimera/xc = M.get_xenochimera_component()
+		if(xc && xc.feral > 0 && H.nutrition > 150 && H.traumatic_shock < 20 && H.get_jittery() < 100) //Same check as feral triggers to stop them immediately re-feralling
+			xc.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
+			if(xc.feral <=0) //Check if they're unferalled
+				xc.feral = 0
 				to_chat(H, span_info("Your mind starts to clear, soothed into a state of clarity as your senses return."))
 				log_and_message_admins("is no longer feral.", H)
 
@@ -582,6 +586,7 @@
 	description = "A mixture of water and protein commonly used as a meal supplement."
 	taste_description = "pure protein"
 	color = "#ebd8cb"
+	wiki_flag = WIKI_DRINK
 
 /datum/reagent/nutriment/protein_powder/vanilla
 	name = REAGENT_VANILLAPROTEINPOWDER
@@ -727,7 +732,7 @@
 
 	glass_name = REAGENT_ID_NUKIE
 	glass_desc = "A drink to perk you up and refresh you!"
-	overdose = 30
+	overdose = REAGENTS_OVERDOSE
 
 	taste_description = "flavourless energy"
 
@@ -898,12 +903,12 @@
 
 /datum/reagent/drink/coffee/nukie/mega/high/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	var/threshold = 1 * M.species.chem_strength_tox
-	if(alien == IS_SKRELL)
-		threshold = 1.2
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		threshold = 0.8
+		threshold *= 0.15 //~1/6
 
 	M.druggy = max(M.druggy, 30)
 	M.adjust_nutrition(-10 * removed)
@@ -954,3 +959,29 @@
 	..()
 	var/new_size = clamp((M.size_multiplier + 0.01), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
 	M.resize(new_size, uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
+
+/////////////////////////////Event only nukie//////////////////////////////////////
+
+/datum/reagent/drink/coffee/nukie/mega/one //Basically macrocillin but for ingesting
+	name = REAGENT_NUKIEONE
+	id = REAGENT_ID_NUKIEONE
+	color = "#90ed87"
+	taste_description = "everything"
+	overdose = 10
+	adj_drowsy = -50
+	adj_sleepy = -100
+
+/datum/reagent/drink/coffee/nukie/mega/one/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.add_chemical_effect(CE_DARKSIGHT, 1)
+	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.heal_organ_damage(1.5 * removed, 1.5 * removed)
+
+/datum/reagent/drink/coffee/nukie/mega/one/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.eye_blurry += 20
+		H.adjustToxLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 1))
+		H.adjustFireLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 1))
+		H.adjustBruteLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 1))
+		H.add_modifier(/datum/modifier/berserk, 2 SECONDS, suppress_failure = TRUE)

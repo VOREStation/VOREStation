@@ -69,7 +69,7 @@
 	var/ignoreunarmed = TRUE
 	var/allowedtools = list(/obj/item/pickaxe, /obj/item/gun/energy/kinetic_accelerator, /obj/item/gun/magnetic/matfed/phoronbore, /obj/item/kinetic_crusher, /obj/item/melee/shock_maul)
 
-/mob/living/simple_mob/mechanical/mining_drone/Initialize()
+/mob/living/simple_mob/mechanical/mining_drone/Initialize(mapload)
 	ion_trail = new
 	ion_trail.set_up(src)
 	ion_trail.start()

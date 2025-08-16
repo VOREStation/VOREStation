@@ -212,7 +212,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 
 	var/list/original_armor
 
-var/global/list/wounds_being_tended_by_drakes = list()
+GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 /mob/living/simple_mob/animal/sif/grafadreka/proc/can_tend_wounds(var/mob/living/friend)
 
 	// We can't heal robots.
@@ -220,7 +220,7 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		return FALSE
 
 	// Check if someone else is looking after them already.
-	if(global.wounds_being_tended_by_drakes["\ref[friend]"] > world.time)
+	if(GLOB.wounds_being_tended_by_drakes["\ref[friend]"] > world.time)
 		return FALSE
 
 	// Humans need to have a bleeding external organ to qualify.
@@ -237,9 +237,9 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		return critter.health < (critter.getMaxHealth() * critter.sap_heal_threshold)
 
 	// Other animals just need to be injured.
-	return (friend.health < friend.maxHealth)
+	return (friend.health < friend.getMaxHealth())
 
-/mob/living/simple_mob/animal/sif/grafadreka/Initialize()
+/mob/living/simple_mob/animal/sif/grafadreka/Initialize(mapload)
 
 	charisma = rand(5, 15)
 	stored_sap = rand(20, 30)
@@ -435,12 +435,12 @@ var/global/list/wounds_being_tended_by_drakes = list()
 
 		if(!can_tend_wounds(friend))
 			if(friend == src)
-				if(health == maxHealth)
+				if(health == getMaxHealth())
 					to_chat(src, span_warning("You are unwounded."))
 				else
 					to_chat(src, span_warning("You cannot tend any of your wounds."))
 			else
-				if(friend.health == friend.maxHealth)
+				if(friend.health == friend.getMaxHealth())
 					return ..()
 				to_chat(src, span_warning("You cannot tend any of \the [friend]'s wounds."))
 			return TRUE

@@ -15,7 +15,7 @@
 	color = _color
 	compass_overlay = new /image/compass_marker
 	compass_overlay.loc = src
-	compass_overlay.maptext = "<center><font color = '[color]' size = '2px'><b>|</b>\n[name]</font></center>"
+	compass_overlay.maptext = "<center><font color = '[color]' size = '2px'>" + span_bold("|") + "\n[name]</font></center>"
 	compass_overlay.filters = filter(type="drop_shadow", color = "[color]" + "aa", size = 2, offset = 1,x = 0, y = 0)
 	compass_overlay.layer = LAYER_HUD_UNDER
 	compass_overlay.plane = PLANE_PLAYER_HUD

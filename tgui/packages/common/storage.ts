@@ -46,7 +46,7 @@ class HubStorageBackend implements StorageBackend {
   }
 
   async get(key: string): Promise<any> {
-    const value = await window.hubStorage.getItem('virgo-' + key);
+    const value = await window.hubStorage.getItem(`virgo-${key}`);
     if (typeof value === 'string') {
       return JSON.parse(value);
     }
@@ -54,11 +54,11 @@ class HubStorageBackend implements StorageBackend {
   }
 
   async set(key: string, value: any): Promise<void> {
-    window.hubStorage.setItem('virgo-' + key, JSON.stringify(value));
+    window.hubStorage.setItem(`virgo-${key}`, JSON.stringify(value));
   }
 
   async remove(key: string): Promise<void> {
-    window.hubStorage.removeItem('virgo-' + key);
+    window.hubStorage.removeItem(`virgo-${key}`);
   }
 
   async clear(): Promise<void> {
@@ -76,19 +76,17 @@ class StorageProxy implements StorageBackend {
 
   constructor() {
     this.backendPromise = (async () => {
-      if (!Byond.TRIDENT) {
-        if (!testHubStorage()) {
-          return new Promise((resolve) => {
-            const listener = () => {
-              document.removeEventListener('byondstorageupdated', listener);
-              resolve(new HubStorageBackend());
-            };
+      if (!testHubStorage()) {
+        return new Promise((resolve) => {
+          const listener = () => {
+            document.removeEventListener('byondstorageupdated', listener);
+            resolve(new HubStorageBackend());
+          };
 
-            document.addEventListener('byondstorageupdated', listener);
-          });
-        }
-        return new HubStorageBackend();
+          document.addEventListener('byondstorageupdated', listener);
+        });
       }
+      return new HubStorageBackend();
     })() as Promise<StorageBackend>;
   }
 

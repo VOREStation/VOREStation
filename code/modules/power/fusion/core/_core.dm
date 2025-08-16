@@ -20,8 +20,6 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 
 	circuit = /obj/item/circuitboard/fusion_core
 
-	var/obj/item/hose_connector/output/Output
-
 	var/obj/effect/fusion_em_field/owned_field
 	var/field_strength = 1//0.01
 	var/target_field_strength = 1
@@ -32,21 +30,22 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 /obj/machinery/power/fusion_core/mapped
 	anchored = TRUE
 
-/obj/machinery/power/fusion_core/Initialize()
+/obj/machinery/power/fusion_core/Initialize(mapload)
 	. = ..()
 	GLOB.fusion_cores += src
 
-	Output = new(src)
+	AddComponent(/datum/component/hose_connector/output)
+
 	create_reagents(10000)
 
 	default_apply_parts()
 
-/obj/machinery/power/fusion_core/mapped/Initialize()
+/obj/machinery/power/fusion_core/mapped/Initialize(mapload)
 	. = ..()
 	connect_to_network()
 
 /obj/machinery/power/fusion_core/Destroy()
-	for(var/obj/machinery/computer/fusion_core_control/FCC in machines)
+	for(var/obj/machinery/computer/fusion_core_control/FCC in GLOB.machines)
 		FCC.connected_devices -= src
 		if(FCC.cur_viewed_device == src)
 			FCC.cur_viewed_device = null
@@ -64,10 +63,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 	if((stat & BROKEN) || !powernet || !owned_field)
 		Shutdown()
 
-	if(Output.get_pairing())
-		reagents.trans_to_holder(Output.reagents, Output.reagents.maximum_volume)
-		if(prob(5))
-			visible_message(span_infoplain(span_bold("\The [src]") + " gurgles as it exports fluid."))
+	SEND_SIGNAL(src, COMSIG_HOSE_FORCEPUMP)
 
 	if(owned_field)
 
@@ -150,7 +146,6 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 
 	if(istype(W, /obj/item/multitool))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "Fusion Core", id_tag, MAX_NAME_LEN)
-		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return

@@ -67,7 +67,7 @@ var/datum/antagonist/wizard/wizards
 /datum/antagonist/wizard/update_antag_mob(var/datum/mind/wizard)
 	..()
 	wizard.store_memory(span_bold("Remember:") + " do not forget to prepare your spells.")
-	wizard.current.real_name = "[pick(wizard_first)] [pick(wizard_second)]"
+	wizard.current.real_name = "[pick(GLOB.wizard_first)] [pick(GLOB.wizard_second)]"
 	wizard.current.name = wizard.current.real_name
 
 /datum/antagonist/wizard/equip(var/mob/living/carbon/human/wizard_mob)
@@ -101,6 +101,11 @@ var/datum/antagonist/wizard/wizards
 		feedback_set_details("round_end_result","loss - wizard killed")
 		to_world(span_boldannounce(span_large("The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew!")))
 
+// Removing antag should remove spells
+/datum/antagonist/wizard/remove_antagonist(datum/mind/player, show_message, implanted)
+	. = ..()
+	player.current.spellremove()
+
 //To batch-remove wizard spells. Linked to mind.dm.
 /mob/proc/spellremove()
 	for(var/spell/spell_to_remove in src.spell_list)
@@ -131,3 +136,7 @@ Made a proc so this is not repeated 14 (or more) times.*/
 		to_chat(src, span_warning("I don't feel strong enough without my hat."))
 		return 0
 	return 1
+
+/datum/antagonist/wizard/remove_antagonist(datum/mind/player, show_message, implanted)
+	. = ..()
+	player.current.spellremove()

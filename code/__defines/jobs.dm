@@ -107,6 +107,7 @@
 	#define JOB_ALT_CARGO_HANDLER "Cargo Handler"
 	#define JOB_ALT_SUPPLY_COURIER "Supply Courier"
 	#define JOB_ALT_DISPOSALS_SORTER "Disposals Sorter"
+	#define JOB_ALT_MAILMAN "Mailman"
 
 #define JOB_SHAFT_MINER "Shaft Miner"
 	// Shaft Miner alt titles
@@ -209,6 +210,7 @@
 	#define JOB_ALT_ATMOSPHERIC_MAINTAINER "Atmospheric Maintainer"
 	#define JOB_ALT_DISPOSALS_TECHNICIAN "Disposals Technician"
 	#define JOB_ALT_FUEL_TECHNICIAN "Fuel Technician"
+	#define JOB_ALT_FIREFIGHTER "Firefighter"
 //___________________________________________________________
 
 
@@ -421,3 +423,14 @@
 #define JOB_BORER "Borer"
 #define JOB_EMERGENCY_RESPONSE_TEAM "Emergency Response Team"
 #define JOB_MAINT_LURKER "Maintenance Lurker"
+
+#define DEPARTMENT_BITFLAG_SECURITY (1<<0)
+#define DEPARTMENT_BITFLAG_COMMAND (1<<1)
+#define DEPARTMENT_BITFLAG_SERVICE (1<<2)
+#define DEPARTMENT_BITFLAG_CARGO (1<<3)
+#define DEPARTMENT_BITFLAG_ENGINEERING (1<<4)
+#define DEPARTMENT_BITFLAG_SCIENCE (1<<5)
+#define DEPARTMENT_BITFLAG_MEDICAL (1<<6)
+#define DEPARTMENT_BITFLAG_SILICON (1<<7)
+#define DEPARTMENT_BITFLAG_ASSISTANT (1<<8)
+#define DEPARTMENT_BITFLAG_CAPTAIN (1<<9)

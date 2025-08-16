@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   menu: number;
@@ -37,5 +37,5 @@ export type modalData = {
     unidentity: string;
     strucenzymes: string;
   };
-  modal_type: string;
+  type: string;
 };

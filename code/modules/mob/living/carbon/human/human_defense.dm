@@ -82,10 +82,10 @@ emp_act
 				drop_from_inventory(c_hand)
 				if(!isbelly(loc)) //VOREStation Add
 					if (affected.robotic >= ORGAN_ROBOT)
-						custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [affected.name] malfunctioning!")
+						automatic_custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [affected.name] malfunctioning!", check_stat = TRUE)
 					else
 						var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-						custom_emote(VISIBLE_MESSAGE, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!")
+						automatic_custom_emote(VISIBLE_MESSAGE, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!", check_stat = TRUE)
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -253,7 +253,7 @@ emp_act
 	if(user == src) // Attacking yourself can't miss
 		return target_zone
 
-	var/hit_zone = get_zone_with_miss_chance(target_zone, src, user.get_accuracy_penalty())
+	var/hit_zone = get_zone_with_miss_chance(target_zone, src, user.get_accuracy_penalty(), attacker = user)
 
 	if(!hit_zone)
 		user.do_attack_animation(src)
@@ -312,7 +312,7 @@ emp_act
 		return 0
 
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
-		forcesay(hit_appends)	//forcesay checks stat already
+		forcesay(GLOB.hit_appends)	//forcesay checks stat already
 
 	if(prob(25 + (effective_force * 2)))
 		if(!((I.damtype == BRUTE) || (I.damtype == HALLOSS)))
@@ -390,6 +390,8 @@ emp_act
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
+	if(src.is_incorporeal())
+		return
 //	if(buckled && buckled == AM)
 //		return // Don't get hit by the thing we're buckled to.
 
@@ -398,7 +400,7 @@ emp_act
 	// I put more comments here for ease of reading.
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
-		if(isanimal(thrown_mob) && !allowmobvore) //Is the thrown_mob an animal and we don't allow mobvore?
+		if(isanimal(thrown_mob) && !allowmobvore && !thrown_mob.ckey) //Is the thrown_mob an animal and we don't allow mobvore?
 			return
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
@@ -425,13 +427,13 @@ emp_act
 		var/obj/O = AM
 		if(stat != DEAD && istype(O,/obj/item) && trash_catching && vore_selected) //Ported from chompstation
 			var/obj/item/I = O
-			if(adminbus_trash || is_type_in_list(I,edible_trash) && I.trash_eatable && !is_type_in_list(I,item_vore_blacklist))
-				visible_message(span_warning("[I] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
+			if(adminbus_trash || is_type_in_list(I, GLOB.edible_trash) && I.trash_eatable && !is_type_in_list(I, GLOB.item_vore_blacklist))
+				visible_message(span_vwarning("[I] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
 				I.throwing = 0
 				I.forceMove(vore_selected)
 				return
 		if(in_throw_mode && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
-			if(canmove && !restrained())
+			if(canmove && !restrained() && !src.is_incorporeal())
 				if(isturf(O.loc))
 					if(can_catch(O))
 						put_in_active_hand(O)
@@ -458,7 +460,7 @@ emp_act
 		if (O.throw_source)
 			var/distance = get_dist(O.throw_source, loc)
 			miss_chance = max(15*(distance-2), 0)
-		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1)
+		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1, attacker = O.thrower)
 
 		if(zone && O.thrower != src)
 			var/shield_check = check_shields(throw_damage, O, thrower, zone, "[O]")
@@ -539,9 +541,9 @@ emp_act
 // This does a prob check to catch the thing flying at you, with a minimum of 1%
 /mob/living/carbon/human/proc/can_catch(var/obj/O)
 	if(!get_active_hand())	// If active hand is empty
-		var/obj/item/organ/external/temp = organs_by_name["r_hand"]
+		var/obj/item/organ/external/temp = organs_by_name[BP_R_HAND]
 		if (hand)
-			temp = organs_by_name["l_hand"]
+			temp = organs_by_name[BP_L_HAND]
 		if(temp && !temp.is_usable())
 			return FALSE	// The hand isn't working in the first place
 
@@ -575,11 +577,9 @@ emp_act
 		var/obj/item/clothing/gloves/gl = gloves
 		gl.add_blood(source)
 		gl.transfer_blood = amount
-		gl.bloody_hands_mob = source
 	else
 		add_blood(source)
 		bloody_hands = amount
-		bloody_hands_mob = source
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
 
 /mob/living/carbon/human/proc/bloody_body(var/mob/living/source)
@@ -690,3 +690,12 @@ emp_act
 		flick(G.hud.icon_state, G.hud)
 
 	return 1
+
+/mob/living/carbon/human/is_mouth_covered(head_only, mask_only)
+	if(!check_has_mouth())
+		return TRUE
+
+	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
+		return TRUE
+
+	return FALSE

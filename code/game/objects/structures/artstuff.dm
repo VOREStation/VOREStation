@@ -13,6 +13,10 @@
 	//max_integrity = 60
 	var/obj/item/canvas/painting = null
 
+/obj/structure/easel/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 //Adding canvases
 /obj/structure/easel/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/canvas))
@@ -68,9 +72,10 @@
 	pixel_x = 10
 	pixel_y = 9
 
-/obj/item/canvas/Initialize()
+/obj/item/canvas/Initialize(mapload)
 	. = ..()
 	reset_grid()
+	desc += " (Canvas size is [width]x[height].)"
 
 /obj/item/canvas/proc/reset_grid()
 	grid = new/list(width,height)
@@ -269,7 +274,7 @@
 	var/image/color_drop
 	var/hud_level = FALSE
 
-/obj/item/paint_brush/Initialize()
+/obj/item/paint_brush/Initialize(mapload)
 	. = ..()
 	color_drop = image(icon, null, "brush_color")
 	color_drop.color = selected_color
@@ -535,7 +540,7 @@
  * For now, we do it this way because calling this on a canvas itself might cause issues due to the whole dimension thing.
 */
 /obj/structure/sign/painting/proc/admin_lateload_painting(var/spawn_specific = 0, var/which_painting = 0)
-	if(!usr.client.holder)
+	if(!check_rights_for(usr.client, R_HOLDER))
 		return 0
 	if(spawn_specific && isnum(which_painting))
 		var/list/painting = SSpersistence.all_paintings[which_painting]

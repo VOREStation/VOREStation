@@ -145,7 +145,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/failure_timer = 0
 	var/force_update = 0
 	var/updating_icon = 0
-	var/global/list/status_overlays_environ
 	var/alarms_hidden = FALSE //If power alarms from this APC are visible on consoles
 
 	var/nightshift_lights = FALSE
@@ -190,8 +189,8 @@ GLOBAL_LIST_EMPTY(apcs)
 
 	return drained_energy
 
-/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
-	..()
+/obj/machinery/power/apc/Initialize(mapload, ndir, building)
+	. = ..()
 	wires = new(src)
 	GLOB.apcs += src
 
@@ -211,15 +210,12 @@ GLOBAL_LIST_EMPTY(apcs)
 		name = "[area.name] APC"
 		stat |= MAINT
 		update_icon()
+		return
 
-/obj/machinery/power/apc/Initialize(mapload, ndir, building)
-	. = ..()
-	if(!building)
-		init()
-		return INITIALIZE_HINT_LATELOAD
+	init()
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/power/apc/LateInitialize()
-	. = ..()
 	update()
 
 /obj/machinery/power/apc/Destroy()
@@ -486,7 +482,7 @@ GLOBAL_LIST_EMPTY(apcs)
 							span_warning("[user.name] has broken the charred power control board inside [name]!"),\
 							span_notice("You broke the charred power control board and remove the remains."),
 							"You hear a crack!")
-						//ticker.mode:apcs-- //XSI said no and I agreed. -rastaf0
+						//SSticker.mode:apcs-- //XSI said no and I agreed. -rastaf0
 					else
 						user.visible_message(\
 							span_warning("[user.name] has removed the power control board from [name]!"),\
@@ -767,7 +763,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 			cell = null
 			user.visible_message(span_warning("[user.name] removes the power cell from [name]!"),\
-								 span_notice("You remove the power cell."))
+									span_notice("You remove the power cell."))
 			charging = 0
 			update_icon()
 		return

@@ -14,7 +14,12 @@
 			ORE_SILVER = 8,
 			ORE_PHORON = 18,
 			ORE_LEAD = 2,
-			ORE_VERDANTIUM = 1))
+			ORE_VERDANTIUM = 1,
+			ORE_TIN = 3,
+			ORE_COPPER = 2,
+			ORE_BAUXITE = 9,
+			ORE_QUARTZ = 5,
+			ORE_PAINITE = 1))
 	else
 		mineral_name = pickweight(list(
 			ORE_MARBLE = 2,
@@ -25,7 +30,9 @@
 			ORE_GOLD = 3,
 			ORE_SILVER = 3,
 			ORE_PHORON = 25,
-			ORE_LEAD = 1))
+			ORE_LEAD = 1,
+			ORE_TIN = 12,
+			ORE_COPPER = 9))
 
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
@@ -39,13 +46,3 @@
 
 /datum/random_map/noise/ore/mining/check_map_sanity()
 	return 1 //Totally random, but probably beneficial.
-
-/area/gb_mine/
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
-	base_turf = /turf/simulated/mineral/floor
-/area/gb_mine/unexplored
-	name = "Virgo 3c Underground"
-	icon_state = "unexplored"
-/area/gb_mine/explored
-	name = "Virgo 3c Underground"
-	icon_state = "explored"

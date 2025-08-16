@@ -33,8 +33,8 @@
 
 	var/random_start_ammo = FALSE	//randomize amount of starting ammo
 
-/obj/item/gun/projectile/New(loc, var/starts_loaded = 1)
-	..()
+/obj/item/gun/projectile/Initialize(mapload, var/starts_loaded = 1)
+	. = ..()
 	if(starts_loaded)
 		if(ispath(ammo_type) && (load_method & (SINGLE_CASING|SPEEDLOADER)))
 			for(var/i in 1 to max_shells)
@@ -87,10 +87,10 @@
 		var/mob/living/carbon/human/H = loc
 		if(istype(H))
 			if(!istype(H.gloves, /obj/item/clothing))
-				H.gunshot_residue = chambered.caliber
+				H.add_gunshotresidue(chambered)
 			else
 				var/obj/item/clothing/G = H.gloves
-				G.gunshot_residue = chambered.caliber
+				G.add_gunshotresidue(chambered)
 
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.

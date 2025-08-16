@@ -15,8 +15,8 @@
 	var/graffiti_age = 0
 	var/author = "unknown"
 
-/obj/effect/decal/writing/New(var/newloc, var/_age, var/_message, var/_author)
-	..(newloc)
+/obj/effect/decal/writing/Initialize(mapload, var/_age, var/_message, var/_author)
+	. = ..()
 	if(!isnull(_age))
 		graffiti_age = _age
 	if(!isnull(_message))
@@ -55,7 +55,7 @@
 			to_chat(user, span_warning("You are banned from leaving persistent information across rounds."))
 			return
 
-		var/_message = sanitize(tgui_input_text(user, "Enter an additional message to engrave.", "Graffiti"), trim = TRUE)
+		var/_message = tgui_input_text(user, "Enter an additional message to engrave.", "Graffiti", "", MAX_MESSAGE_LEN)
 		if(_message && loc && user && !user.incapacitated() && user.Adjacent(loc) && thing.loc == user)
 			user.visible_message(span_warning("\The [user] begins carving something into \the [loc]."))
 			if(do_after(user, max(20, length(_message)), src) && loc)

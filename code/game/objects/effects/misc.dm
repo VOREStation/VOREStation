@@ -11,10 +11,10 @@
 	name = "self deleting effect"
 	desc = "How are you examining what which cannot be seen?"
 	icon = 'icons/effects/effects.dmi'
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	var/time_to_die = 10 SECONDS // Afer which, it will delete itself.
 
-/obj/effect/temporary_effect/Initialize()
+/obj/effect/temporary_effect/Initialize(mapload)
 	. = ..()
 	if(time_to_die)
 		QDEL_IN(src, time_to_die)
@@ -33,7 +33,7 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/temporary_effect/cleave_attack/Initialize() // Makes the slash fade smoothly. When completely transparent it should qdel itself.
+/obj/effect/temporary_effect/cleave_attack/Initialize(mapload) // Makes the slash fade smoothly. When completely transparent it should qdel itself.
 	. = ..()
 	animate(src, alpha = 0, time = time_to_die - 1)
 
@@ -59,7 +59,7 @@
 	time_to_die = 1 SECOND
 	pixel_x = -32
 
-/obj/effect/temporary_effect/lightning_strike/Initialize()
+/obj/effect/temporary_effect/lightning_strike/Initialize(mapload)
 	icon_state += "[rand(1,2)]" // To have two variants of lightning sprites.
 	animate(src, alpha = 0, time = time_to_die - 1)
 	. = ..()
@@ -110,11 +110,12 @@
 	pixel_y = -16
 
 /obj/effect/abstract/directional_lighting
-	var/obj/effect/abstract/light_spot/light_spot = new
+	var/obj/effect/abstract/light_spot/light_spot
 	var/trans_angle
 	var/icon_dist
 
-/obj/effect/abstract/directional_lighting/Initialize()
+/obj/effect/abstract/directional_lighting/Initialize(mapload)
+	light_spot = new
 	. = ..()
 	vis_contents += light_spot
 
@@ -147,6 +148,6 @@
 		return QDEL_HINT_LETMELIVE
 
 	vis_contents.Cut()
-	qdel_null(light_spot)
+	QDEL_NULL(light_spot)
 
 	return ..()

@@ -46,7 +46,7 @@
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
 	set category = "Server.Config"
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 	switch(task)
 		if("update")
 			ToRban_update()
@@ -67,7 +67,11 @@
 				dat = "<table width='100%'>[dat]</table>"
 			else
 				dat = "No addresses in list."
-			src << browse("<html>[dat]</html>","window=ToRban_show")
+
+			var/datum/browser/popup = new(src, "ToRban_show", "Torban")
+			popup.set_content(dat)
+			popup.open()
+
 		if("remove")
 			var/savefile/F = new(TORFILE)
 			var/choice = tgui_input_list(src,"Please select an IP address to remove from the ToR banlist:","Remove ToR ban", F.dir)

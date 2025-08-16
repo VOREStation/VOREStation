@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: MIT
  */
 
- /**
-  * tgui state: notcontained_state
-  *
-  * Checks that the user is not inside src_object, and then makes the default checks.
+/**
+ * tgui state: notcontained_state
+ *
+ * Checks that the user is not inside src_object, and then makes the default checks.
  **/
 
 GLOBAL_DATUM_INIT(tgui_notcontained_state, /datum/tgui_state/notcontained_state, new)

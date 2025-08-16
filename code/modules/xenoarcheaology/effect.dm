@@ -20,11 +20,13 @@
 
 	// The last time the effect was toggled.
 	var/last_activation = 0
+	// If we can start activated or not! Note: This is only really disabled on artifacts that can REALLY do some MAJOR DAMAGE to the server itself. See: Atmos & temperature artifacts destroying an entire Z-level's atmos.
+	var/can_start_activated = TRUE
 
 /datum/artifact_effect/Destroy()
-	master = null //Master still exists even if our effect gets destroyed. No need to qdel_null.
-	qdel_null(active_effect)
-	..()
+	master = null //Master still exists even if our effect gets destroyed. No need to QDEL_NULL.
+	QDEL_NULL(active_effect)
+	. = ..()
 
 /datum/artifact_effect/proc/get_master_holder()	// Return the effectmaster's holder, if it is set to an effectmaster. Otherwise, master is the target object.
 	if(istype(master))
@@ -49,41 +51,52 @@
 	artifact_id = "[pick("kappa","sigma","antaeres","beta","omicron","iota","epsilon","omega","gamma","delta","tau","alpha")]-[rand(100,999)]"
 
 	//random charge time and distance
-	switch(pick(100;1, 50;2, 25;3))
-		if(1)
-			//short range, short charge time
-			chargelevelmax = rand(3, 20)
-			effectrange = rand(1, 3)
-		if(2)
-			//medium range, medium charge time
-			chargelevelmax = rand(15, 40)
-			effectrange = rand(5, 15)
-		if(3)
-			//large range, long charge time
-			chargelevelmax = rand(20, 120)
-			effectrange = rand(20, 100) //VOREStation Edit - Map size.
+	switch(effect)
+		if(EFFECT_PULSE)
+			switch(pick(100;1, 50;2, 25;3))
+				if(1)
+					//short range, short charge time
+					chargelevelmax = rand(3, 20)
+					effectrange = rand(1, 3)
+				if(2)
+					//medium range, medium charge time
+					chargelevelmax = rand(15, 40)
+					effectrange = rand(5, 15)
+				if(3)
+					//large range, long charge time
+					chargelevelmax = rand(20, 120)
+					effectrange = rand(20, 100)
+		if(EFFECT_AURA)
+			if(prob(1)) //1% chance for a BIG range.
+				effectrange = rand(1, 100)
+			else
+				effectrange = rand(2,7)
+		if(EFFECT_TOUCH)
+			effectrange = 1
+	if(can_start_activated && prob(50))
+		ToggleActivate(TRUE, TRUE)
 
-/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = 1)
+/datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = TRUE, var/spawn_toggle = FALSE)
 	//so that other stuff happens first
 	set waitfor = FALSE
 
 	var/atom/target = get_master_holder()
 
+
 	if(world.time - last_activation > 1 SECOND)
 		last_activation = world.time
 		if(activated)
-			activated = 0
+			activated = FALSE
 		else
-			activated = 1
+			activated = TRUE
 		if(reveal_toggle && target)
-			if(!isliving(target))
-				target.update_icon()
+			if(!isliving(target) && !(spawn_toggle && istype(target, /obj/machinery/artifact))) //This is to keep it from updating icons if our owner is a large artifact
+				target.update_icon() //As it will runtime since it hasn't set it's artifact_master yet. The update icon is handled in /obj/machinery/artifact/Initialize()
 			var/display_msg
 			if(activated)
 				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flickers slightly!","vibrates!","shimmers slightly for a moment!")
 			else
 				display_msg = pick("grows dull!","fades in intensity!","suddenly becomes very still!","suddenly becomes very quiet!")
-
 			if(active_effect)
 				if(activated)
 					target.underlays.Add(active_effect)
@@ -192,6 +205,7 @@
 			. += " Activation index involves " + span_bold("precise temperature conditions.") + " Heating/Cooling the atmosphere (>[ARTIFACT_HEAT_TRIGGER]K or <[ARTIFACT_COLD_TRIGGER]K) or using a welder are potential triggers."
 		else
 			. += " Unable to determine any data about activation trigger."
+	. += "<br>"
 
 //returns 0..1, with 1 being no protection and 0 being fully protected
 /proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
@@ -201,6 +215,7 @@
 	if(A.flag_check(AREA_FORBID_EVENTS))
 		return 0
 	var/protected = 0
+	var/susceptibility = 1
 
 	//anomaly suits give best protection, but excavation suits are almost as good
 	if(istype(H.back,/obj/item/rig/hazmat))
@@ -225,4 +240,5 @@
 	if(istype(H.glasses,/obj/item/clothing/glasses/science))
 		protected += 0.1
 
-	return 1 - protected
+	susceptibility = CLAMP01(susceptibility - protected) //Clamp the susceptibility to be between 0 and 1. No negative numbers allowed.
+	return susceptibility

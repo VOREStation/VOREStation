@@ -8,10 +8,12 @@ import { MESSAGE_TYPES } from '../chat/constants';
 import {
   addHighlightSetting,
   changeSettingsTab,
+  importSettings,
   loadSettings,
   openChatSettings,
   removeHighlightSetting,
   toggleSettings,
+  toggleTTSSetting,
   updateHighlightSetting,
   updateSettings,
   updateToggle,
@@ -57,7 +59,6 @@ const initialState = {
   exportEnd: 0,
   lastId: null,
   initialized: false,
-  firstLoad: false,
   storedTypes: {},
   hideImportantInAdminTab: false,
   interleave: false,
@@ -65,6 +66,8 @@ const initialState = {
   statLinked: true,
   statFontSize: 12,
   statTabsStyle: 'default',
+  ttsCategories: {},
+  ttsVoice: '',
 } as const;
 
 export function settingsReducer(
@@ -97,7 +100,7 @@ export function settingsReducer(
             ...state,
             ...payload,
           };
-          nextState.firstLoad = true;
+          nextState.initialized = true;
           return nextState;
         }
 
@@ -107,8 +110,8 @@ export function settingsReducer(
           ...payload,
         };
         nextState.initialized = true;
-        let newFilters = {};
-        for (let typeDef of MESSAGE_TYPES) {
+        const newFilters = {};
+        for (const typeDef of MESSAGE_TYPES) {
           if (
             nextState.storedTypes[typeDef.type] === null ||
             nextState.storedTypes[typeDef.type] === undefined
@@ -146,6 +149,18 @@ export function settingsReducer(
       }
     }
 
+    case importSettings.type: {
+      const newSettings = payload.newSettings;
+      if (!newSettings) {
+        return state;
+      }
+      const nextState = {
+        ...state,
+        ...newSettings,
+      };
+      return nextState;
+    }
+
     case toggleSettings.type: {
       return {
         ...state,
@@ -176,6 +191,18 @@ export function settingsReducer(
           ...state.view,
           activeTab: tabId,
         },
+      };
+    }
+
+    case toggleTTSSetting.type: {
+      const { type } = payload;
+      const ttsCategories = { ...state.ttsCategories };
+
+      ttsCategories[type] = !ttsCategories[type];
+
+      return {
+        ...state,
+        ttsCategories,
       };
     }
 

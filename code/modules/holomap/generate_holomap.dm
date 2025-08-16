@@ -121,11 +121,13 @@
 	extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[zLevel]"] = actual_small_map
 
 // For tiny multi-z maps like the tether, we want to smoosh em together into a nice big one!
-/datum/controller/subsystem/holomaps/proc/smooshTetherHolomaps(var/list/zlevels)
+/datum/controller/subsystem/holomaps/proc/smooshTetherHolomaps(list/zlevels)
 	var/icon/big_map = icon(HOLOMAP_ICON, "stationmap")
 	var/icon/small_map = icon(HOLOMAP_ICON, "blank")
 	// For each zlevel in turn, overlay them on top of each other
 	for(var/zLevel in zlevels)
+		if(!isnum(zLevel))
+			zLevel = GLOB.map_templates_loaded[zLevel]
 		var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel) || 1
 		var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel) || 1
 

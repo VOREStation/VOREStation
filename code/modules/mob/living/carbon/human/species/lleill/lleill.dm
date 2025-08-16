@@ -21,15 +21,13 @@
 	language = LANGUAGE_LLEILL
 	name_language = LANGUAGE_LLEILL
 
-	flags =  NO_SCAN | NO_MINOR_CUT | NO_INFECT |  NO_HALLUCINATION
+	flags =  NO_SLEEVE | NO_MINOR_CUT | NO_INFECT |  NO_HALLUCINATION
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_UNDERWEAR
 
 	max_age = 200
 
 	economic_modifier = 15
-
-	digi_allowed = TRUE
 
 	//Specific abilities
 
@@ -127,11 +125,11 @@
 	base_species = SPECIES_LLEILL
 
 	var/list/lleill_abilities = list(/datum/power/lleill/invisibility,
-									   /datum/power/lleill/transmute,
-									   /datum/power/lleill/rings,
-									   /datum/power/lleill/contact,
-									   /datum/power/lleill/alchemy,
-									   /datum/power/lleill/beastform)
+										/datum/power/lleill/transmute,
+										/datum/power/lleill/rings,
+										/datum/power/lleill/contact,
+										/datum/power/lleill/alchemy,
+										/datum/power/lleill/beastform)
 
 	var/list/lleill_ability_datums = list()
 
@@ -219,13 +217,13 @@
 					)
 	spawn (50)
 		if(H.lleill_display)
-			H.lleill_display.invisibility = 0
+			H.lleill_display.invisibility = INVISIBILITY_NONE
 			H.lleill_display.icon_state = "lleill-4"
 
 /datum/species/proc/update_lleill_hud(var/mob/living/carbon/human/H)
-	var/relative_energy = ((lleill_energy/lleill_energy_max)*100)
+	var/relative_energy = lleill_energy_max ? ((lleill_energy/lleill_energy_max)*100) : 0
 	if(H.lleill_display)
-		H.lleill_display.invisibility = 0
+		H.lleill_display.invisibility = INVISIBILITY_NONE
 		switch(relative_energy)
 			if(0 to 24)
 				H.lleill_display.icon_state = "lleill-0"

@@ -42,7 +42,7 @@
 	if(Adjacent(user))
 		. += "There are [crystals.len ? crystals.len : "no"] bluespace crystal\s in the crystal slots."
 
-/obj/machinery/computer/telescience/Initialize()
+/obj/machinery/computer/telescience/Initialize(mapload)
 	. = ..()
 	recalibrate()
 	for(var/i = 1; i <= starting_crystals; i++)
@@ -195,7 +195,7 @@
 			return
 		if(86 to 90)
 			// Irradiate everyone in telescience!
-			for(var/obj/machinery/telepad/E in machines)
+			for(var/obj/machinery/telepad/E in GLOB.machines)
 				var/L = get_turf(E)
 				sparks()
 				for(var/mob/living/carbon/human/M in viewers(L, null))

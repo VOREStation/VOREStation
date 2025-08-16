@@ -20,7 +20,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d1a3";
 	pixel_x = 28
 	},
@@ -506,18 +506,18 @@
 "bt" = (
 /obj/machinery/light/small,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d2a1";
 	pixel_y = 28
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a1_sensor";
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a1_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -687,12 +687,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/privateroom/vip)
-"cH" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/obj/structure/grille,
-/turf/space,
-/area/space)
 "cI" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -1629,11 +1623,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_pump"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_sensor";
 	pixel_x = 30;
 	pixel_y = 8
@@ -1966,7 +1960,7 @@
 "jI" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1l";
 	name = "interior access button";
 	pixel_x = -28;
@@ -2275,11 +2269,6 @@
 /obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled,
 /area/awaymission/lucky7/hall1)
-"lE" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "lF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -2894,7 +2883,7 @@
 "pr" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a1";
 	name = "exterior access button";
 	pixel_x = -5;
@@ -4205,7 +4194,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d2a3";
 	pixel_x = 28
 	},
@@ -4375,12 +4364,6 @@
 "yi" = (
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/privateroom/four)
-"yk" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/awaymission/lucky7/entry)
 "yo" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
@@ -4542,11 +4525,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_pump"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_sensor";
 	pixel_x = 30;
 	pixel_y = 8
@@ -4700,7 +4683,7 @@
 "Av" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1l";
 	name = "interior access button";
 	pixel_x = -28;
@@ -4726,7 +4709,7 @@
 "Ay" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a1";
 	name = "interior access button";
 	pixel_x = -28;
@@ -5390,17 +5373,17 @@
 "Ee" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a3_pump"
 	},
 /obj/machinery/light/small,
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a3_sensor";
 	pixel_y = -25
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d1a2";
 	pixel_y = 28
 	},
@@ -5972,7 +5955,7 @@
 "Ht" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a1";
 	name = "exterior access button";
 	pixel_x = -5;
@@ -6017,12 +6000,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/carpet/blue2,
 /area/awaymission/lucky7/privategameroom/three)
-"HF" = (
-/obj/structure/lattice,
-/obj/structure/grille,
-/obj/structure/grille,
-/turf/space,
-/area/space)
 "HH" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/mopbucket,
@@ -6359,18 +6336,18 @@
 "JK" = (
 /obj/machinery/light/small,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d1a1";
 	pixel_y = 28
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a1_sensor";
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a1_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -6691,15 +6668,6 @@
 	},
 /turf/simulated/floor/carpet/blue2,
 /area/awaymission/lucky7/privategameroom/three)
-"Li" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating,
-/area/awaymission/lucky7/maint2)
 "Lj" = (
 /obj/machinery/door/airlock{
 	name = "Breakroom"
@@ -6713,7 +6681,7 @@
 "Lk" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1l";
 	name = "exterior access button";
 	pixel_x = 28;
@@ -7029,7 +6997,7 @@
 "Mk" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a3";
 	name = "exterior access button";
 	pixel_x = -5;
@@ -7514,7 +7482,7 @@
 "Or" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a1";
 	name = "interior access button";
 	pixel_x = -28;
@@ -7735,7 +7703,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -8430,17 +8398,17 @@
 "SS" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a3_pump"
 	},
 /obj/machinery/light/small,
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1a3_sensor";
 	pixel_y = -25
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "l7_dock_d2a2";
 	pixel_y = 28
 	},
@@ -8814,7 +8782,7 @@
 "Um" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1l";
 	name = "exterior access button";
 	pixel_x = 28;
@@ -8891,7 +8859,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "dock_d1l_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -9022,7 +8990,7 @@
 "Vx" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "dock_d1a3";
 	name = "exterior access button";
 	pixel_x = -5;
@@ -9244,12 +9212,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/kitchen)
-"WE" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/awaymission/lucky7/hall1)
 "WG" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 9
@@ -16902,11 +16864,11 @@ YX
 ZL
 Yk
 FF
-WE
-WE
-WE
-WE
-WE
+JC
+JC
+JC
+JC
+JC
 EB
 Jz
 MG
@@ -16914,10 +16876,10 @@ SE
 MG
 MG
 SP
-WE
-WE
+JC
+JC
 Fw
-yk
+sV
 TK
 Zj
 lu
@@ -20175,15 +20137,15 @@ vT
 Be
 WV
 Gr
-Li
-Li
-Li
+va
+va
+va
 Gr
 Gr
 Gr
 Gr
 EO
-Li
+va
 ao
 hh
 hh
@@ -20912,10 +20874,10 @@ rm
 vO
 vO
 id
-cH
+id
 vO
 vO
-cH
+id
 id
 vO
 vO
@@ -21922,7 +21884,7 @@ uu
 uu
 vO
 vO
-lE
+vO
 vO
 rm
 rm
@@ -22490,7 +22452,7 @@ KK
 KK
 vO
 vO
-cH
+id
 id
 vO
 rm
@@ -23058,7 +23020,7 @@ uR
 uR
 vO
 vO
-cH
+id
 rm
 rm
 rm
@@ -23626,7 +23588,7 @@ DL
 DL
 vO
 vO
-cH
+id
 rm
 rm
 rm
@@ -24337,7 +24299,7 @@ Tv
 Ou
 Lw
 vO
-cH
+id
 rm
 rm
 rm
@@ -25189,7 +25151,7 @@ qB
 Sv
 Lw
 vO
-cH
+id
 rm
 rm
 rm
@@ -25711,7 +25673,7 @@ id
 id
 vO
 id
-HF
+id
 id
 vO
 rm

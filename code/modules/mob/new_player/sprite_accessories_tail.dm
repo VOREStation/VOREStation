@@ -28,10 +28,12 @@
 	var/mob_offset_x = 0
 	var/mob_offset_y = 0
 
-	// Taur Loafing
+	// Taur Loafing - IMPORTANT, READ BELOW.
+	///IF SET TO TRUE, THE icon_state, extra_overlay, and extra_overlay2 MUST BE IN WHATEVER YOU SET icon_loaf to!
+	///ADDITIONALLY, IF YOU ADD A SPECIAL VWAG, YOU NEED TO INCLUDE ani_state, extra_overlay_w, and extra_overlay2_w INTO icon_loaf TOO!
 	var/can_loaf = FALSE
 	var/loaf_offset = 0
-	var/list/lower_layer_dirs = list(SOUTH)
+	var/list/lower_layer_dirs = list(SOUTH, WEST, EAST)
 	var/icon_loaf = null
 
 	// Taur Vore
@@ -126,22 +128,22 @@
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/rabbit
-    name = "rabbit, colourable (vwag)"
-    desc = ""
-    icon_state = "rabbit"
-    do_colouration = TRUE
-    color_blend_mode = ICON_MULTIPLY
-    ani_state = "rabbit_w"
+	name = "rabbit, colourable (vwag)"
+	desc = ""
+	icon_state = "rabbit"
+	do_colouration = TRUE
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "rabbit_w"
 
 /datum/sprite_accessory/tail/rabbitalt
-    name = "rabbit, dual color (vwag)"
-    desc = ""
-    icon_state = "rabbitalt"
-    extra_overlay = "rabbitalt-tips"
-    do_colouration = TRUE
-    color_blend_mode = ICON_MULTIPLY
-    ani_state = "rabbitalt_w"
-    extra_overlay_w = "rabbitalt-tips_w"
+	name = "rabbit, dual color (vwag)"
+	desc = ""
+	icon_state = "rabbitalt"
+	extra_overlay = "rabbitalt-tips"
+	do_colouration = TRUE
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "rabbitalt_w"
+	extra_overlay_w = "rabbitalt-tips_w"
 
 /datum/sprite_accessory/tail/bear_brown
 	name = "bear, brown"
@@ -1169,14 +1171,14 @@
 	extra_overlay = "ninekitsune-tips"
 
 /datum/sprite_accessory/tail/hideableninetails
-    name = "Kitsune 9-in-1 tail, colourable (vwag)"
-    desc = ""
-    icon_state = "ninekitsune"
-    extra_overlay = "ninekitsune-tips"
-    do_colouration = TRUE
-    color_blend_mode = ICON_MULTIPLY
-    ani_state = "foxtail_w"
-    extra_overlay_w = "foxtail-tips_w"
+	name = "Kitsune 9-in-1 tail, colourable (vwag)"
+	desc = ""
+	icon_state = "ninekitsune"
+	extra_overlay = "ninekitsune-tips"
+	do_colouration = TRUE
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "foxtail_w"
+	extra_overlay_w = "foxtail-tips_w"
 
 /datum/sprite_accessory/tail/shadekin_short
 	name = "Shadekin Short Tail, colorable"
@@ -1512,6 +1514,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "narrowtail_2color-1"
 
+/datum/sprite_accessory/tail/demi_tesh_feathered
+	name = "Demi-Teshari tail"
+	desc = ""
+	icon_state = "demi-tesh-kit-tail"
+	do_colouration = 1
+	extra_overlay = "demi-tesh-kit-tail_floof"
+	color_blend_mode = ICON_MULTIPLY
+
 // Dino Tails
 
 /datum/sprite_accessory/tail/clubtail
@@ -1591,7 +1601,65 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-//RS backport tails
+/datum/sprite_accessory/tail/longtail/longflufftail
+	name = "Long fluffy tail"
+	icon_state = "longflufftail"
+
+/datum/sprite_accessory/tail/longtail/ringtailbig
+	name = "Long ring tail"
+	icon_state = "bigringtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "bigringtail_markings"
+
+/datum/sprite_accessory/tail/longtail/desert_nightstalker
+	name = "Desert Nightstalker Tail (vwag)"
+	icon_state = "nightstalker_desert"
+	ani_state = "nightstalker_desert_w"
+	do_colouration = 0 // We're not coloring this, these are pre-colored
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/tail/longtail/diamondback_nightstalker
+	name = "Diamondback Nightstalker Tail (dual-color, vwag)"
+	icon_state = "nightstalker_diamondback"
+	ani_state = "nightstalker_diamondback_w"
+	extra_overlay = "nightstalker_diamondback_markings"
+	extra_overlay_w = "nightstalker_diamondback_markings_w"
+
+/datum/sprite_accessory/tail/longtail/demitesh_fluffytail
+
+	name = "demi-teshari tail, alternative"
+	icon_state = "demitesh_fluffytail"
+	extra_overlay = "demitesh_fluffytail_marks"
+
+/datum/sprite_accessory/tail/longtail/largeshark
+	name = "Large Shark"
+	icon_state = "large-shark"
+	extra_overlay = "large-shark-underbelly"
+	extra_overlay2 = "large-shark-tips"
+
+/datum/sprite_accessory/tail/longtail/largeshark/finless
+	name = "Large Shark (finless)"
+	icon_state = "large-shark-finless"
+	extra_overlay2 = "large-shark-tips-finless"
+
+/datum/sprite_accessory/tail/longtail/largeshark/stripes
+	name = "Large Shark (striped)"
+	extra_overlay = "large-shark-stripes"
+	extra_overlay2 = "large-shark-stripes-underbelly"
+
+/datum/sprite_accessory/tail/longtail/largeshark/stripes2
+	name = "Large Shark (striped, underbelly)"
+	extra_overlay = "large-shark-underbelly"
+	extra_overlay2 = "large-shark-stripes-underbelly"
+
+/datum/sprite_accessory/tail/longtail/largeshark/stripes/finless
+	name = "Large Shark (striped, finless)"
+	icon_state = "large-shark-finless"
+
+/datum/sprite_accessory/tail/longtail/largeshark/stripes2/finless
+	name = "Large Shark (striped, finless, underbelly)"
+	icon_state = "large-shark-finless"
 
 /datum/sprite_accessory/tail/longtail/flagtail
 	name = "Flagtail"
@@ -1606,6 +1674,139 @@
 	icon_state = "chonksqrl"
 	extra_overlay = "chonksqrl-m1"
 	extra_overlay2 = "chonksqrl-m2"
+
+/datum/sprite_accessory/tail/longtail/qaavos
+	name = "Qaavos Tail"
+	icon_state = "qaavos_tail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/longtail/anteater
+	name = "Anteater tail"
+	icon_state = "anteater_tail"
+
+
+/datum/sprite_accessory/tail/small_bugbum
+	name = "Bug Abdomen, Alt, Small (Dual-Color)"
+	icon_state = "smallbug1"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "smallbug2"
+
+/datum/sprite_accessory/tail/mid_bugbum
+	name = "Bug Abdomen, Alt, Medium (Dual-Color)"
+	icon_state = "midbug1"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "midbug2"
+
+/datum/sprite_accessory/tail/big_bugbum
+	name = "Bug Abdomen, Alt, Big (Dual-Color)"
+	icon_state = "bigbug1"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "bigbug2"
+
+/datum/sprite_accessory/tail/succubustail
+	name = "Succubus Tail"
+	icon_state = "Succubustail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/snaketail_stripes
+	name = "snake tail with stripes, dual-color"
+	desc = ""
+	icon_state = "snaketail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "snaketail_stripes"
+
+/datum/sprite_accessory/tail/leopard
+	name = "Leopard tail, dual-color (vwag)"
+	icon_state = "leopard"
+	ani_state = "leopard_w"
+	extra_overlay = "leopard_spots"
+	extra_overlay_w = "leopard_spots_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/vale_tail
+	name = "Vale Tail, dual color (vwag)"
+	desc = ""
+	icon_state = "valetail"
+	ani_state = "valetail_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "valetail_mark"
+	extra_overlay_w = "valetail_mark_w"
+
+/datum/sprite_accessory/tail/orca_f
+	name = "Orca tail (Female)"
+	icon_state = "orca_tail_f"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "orca_tail_markings"
+
+/datum/sprite_accessory/tail/anthrovirus_tail
+	name = "Anthro Virus Tail"
+	icon_state = "anthrovirustail_mark"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "anthrovirustail"
+
+/datum/sprite_accessory/tail/tyranid_tail
+	name = "Tyranid"
+	icon_state = "tyranid"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/bigsnaketeshari
+	name = "Large snake tail, Teshari"
+	icon_state = "snaketailteshari"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/featheredraptor
+	name = "feathered Raptor"
+	icon_state = "feathered_raptor"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/featheredraptor/twotone
+	name = "feathered Raptor, dual colorable"
+	extra_overlay = "feather_raptor-overlay"
+
+/datum/sprite_accessory/tail/wolf_tail
+	name = "Wolf Tail"
+	desc = ""
+	icon_state = "wolf_tail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/vulpkanin_alt_color
+	name = "Vulpkanin alt"
+	desc = ""
+	icon_state = "vulpkanin_alt_color"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "vulpkanin_alt_color_tips"
+	ani_state = "vulpkanin_alt_color_w"
+	extra_overlay_w = "vulpkanin_alt_color_tips_w"
+
+/datum/sprite_accessory/tail/raccoon_tail
+	name = "Raccoon gray tail"
+	desc = ""
+	icon_state = "raccoon_tail"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/striped_tail
+	name = "Striped tail, colorable"
+	desc = ""
+	icon_state = "stripedtail_colorable"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "stripedtail_colorable_w"
 
 // Exclusive Tails
 
@@ -1702,44 +1903,19 @@
 	ckeys_allowed = list("arokha")
 
 /datum/sprite_accessory/tail/cabletail
-    name = "cabletail"
-    desc = "cabletail"
-    icon_state = "cabletail"
-    ckeys_allowed = list("tucker0666")
+	name = "cabletail"
+	desc = "cabletail"
+	icon_state = "cabletail"
+	ckeys_allowed = list("tucker0666")
 
 /datum/sprite_accessory/tail/featherfluff_tail
-    name = "featherfluff_tail"
-    desc = ""
-    icon_state = "featherfluff_tail"
-    ckeys_allowed = list("tucker0666")
+	name = "featherfluff_tail"
+	desc = ""
+	icon_state = "featherfluff_tail"
+	ckeys_allowed = list("tucker0666")
 
 /datum/sprite_accessory/tail/holly
 	name = "tigress tail (Holly)"
 	desc = ""
 	icon_state = "tigresstail"
 	ckeys_allowed = list("hoodoo")
-
-/datum/sprite_accessory/tail/longtail/longflufftail
-	name = "Long fluffy tail"
-	icon_state = "longflufftail"
-
-/datum/sprite_accessory/tail/longtail/ringtailbig
-	name = "Long ring tail"
-	icon_state = "bigringtail"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-	extra_overlay = "bigringtail_markings"
-
-/datum/sprite_accessory/tail/longtail/desert_nightstalker
-	name = "Desert Nightstalker Tail (vwag)"
-	icon_state = "nightstalker_desert"
-	ani_state = "nightstalker_desert_w"
-	do_colouration = 0 // We're not coloring this, these are pre-colored
-	color_blend_mode = ICON_ADD
-
-/datum/sprite_accessory/tail/longtail/diamondback_nightstalker
-	name = "Diamondback Nightstalker Tail (dual-color, vwag)"
-	icon_state = "nightstalker_diamondback"
-	ani_state = "nightstalker_diamondback_w"
-	extra_overlay = "nightstalker_diamondback_markings"
-	extra_overlay_w = "nightstalker_diamondback_markings_w"

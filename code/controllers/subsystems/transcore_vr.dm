@@ -12,7 +12,9 @@ SUBSYSTEM_DEF(transcore)
 	wait = 3 MINUTES
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME
-	init_order = INIT_ORDER_TRANSCORE
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 
 	// THINGS
 	var/overdue_time = 6 MINUTES			// Has to be a multiple of wait var, or else will just round up anyway.
@@ -76,7 +78,6 @@ SUBSYSTEM_DEF(transcore)
 
 		if(H == imp.imp_in && H.mind && H.stat < DEAD)
 			db.m_backup(H.mind,H.nif)
-			persist_nif_data(H)
 
 		if(MC_TICK_CHECK)
 			return
@@ -256,9 +257,9 @@ SUBSYSTEM_DEF(transcore)
 	var/datum/transcore_db/db = SStranscore.db_by_mind_name(MR.mindname)
 	var/datum/transhuman/body_record/BR = db.body_scans[MR.mindname]
 	if(!BR)
-		global_announcer.autosay("[MR.mindname] is past-due for a mind backup, but lacks a corresponding body record.", "TransCore Oversight", "Medical")
+		GLOB.global_announcer.autosay("[MR.mindname] is past-due for a mind backup, but lacks a corresponding body record.", "TransCore Oversight", "Medical")
 		return
-	global_announcer.autosay("[MR.mindname] is past-due for a mind backup.", "TransCore Oversight", BR.synthetic ? "Science" : "Medical")
+	GLOB.global_announcer.autosay("[MR.mindname] is past-due for a mind backup.", "TransCore Oversight", BR.synthetic ? "Science" : "Medical")
 
 // Called from mind_record to add itself to the transcore.
 /datum/transcore_db/proc/add_backup(var/datum/transhuman/mind_record/MR)
@@ -293,8 +294,8 @@ SUBSYSTEM_DEF(transcore)
 // Moves all mind records from the databaes into the disk and shuts down all backup canary processing.
 /datum/transcore_db/proc/core_dump(var/obj/item/disk/transcore/disk)
 	ASSERT(disk)
-	global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
-	global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
+	GLOB.global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
+	GLOB.global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
 
 	disk.stored += backed_up
 	backed_up.Cut()

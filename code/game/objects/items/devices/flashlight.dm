@@ -33,10 +33,11 @@
 	var/cell_type = /obj/item/cell/device
 	var/power_usage = 1
 	var/power_use = 1
+	var/flickering = FALSE
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/flashlight/Initialize()
+/obj/item/flashlight/Initialize(mapload)
 	. = ..()
 
 	if(power_use && cell_type)
@@ -46,7 +47,7 @@
 
 /obj/item/flashlight/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	qdel_null(cell)
+	QDEL_NULL(cell)
 	return ..()
 
 /obj/item/flashlight/get_cell()
@@ -88,6 +89,9 @@
 			. += "It appears to have a high amount of power remaining."
 
 /obj/item/flashlight/attack_self(mob/user)
+	if(flickering)
+		to_chat(user, "The light is currently malfunctioning and you're unable to adjust it!") //To prevent some lighting anomalities.
+		return
 	if(power_use)
 		if(!isturf(user.loc))
 			to_chat(user, "You cannot turn the light on while in this [user.loc].") //To prevent some lighting anomalities.
@@ -129,13 +133,13 @@
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
 				user.visible_message(span_infoplain(span_bold("\The [user]") + " directs [src] at [M]'s face."), \
-								 	 span_notice("You direct [src] at [M]'s face."))
+										span_notice("You direct [src] at [M]'s face."))
 				to_chat(user, span_warning("You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!"))
 				user.setClickCooldown(user.get_attack_speed(src))
 				return
 
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " directs [src] to [M]'s eyes."), \
-							 	 span_notice("You direct [src] to [M]'s eyes."))
+									span_notice("You direct [src] to [M]'s eyes."))
 			if(H != user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
 					to_chat(user, span_warning("\The [M]'s pupils do not react to the light!"))
@@ -239,6 +243,48 @@
 			return
 		var/turf/T = get_turf(target)
 		OL.place_directional_light(T)
+
+/obj/item/flashlight/proc/flicker(var/amount = rand(10, 20), var/flicker_color, var/forced)
+	if(flickering)
+		return
+	if(!flicker_color)
+		flicker_color = light_color //If we don't have a flicker color, use our current light color.
+	if((!power_use && !forced) || (!power_usage && !forced))
+		return //We don't use power / have no power, so we're probably a flare or dead.
+	flickering = TRUE
+	var/original_color = light_color
+	var/original_on = on
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting) //BEWARE, ESOTERIC BULLSHIT HERE.
+	if(flicker_color && light_color != flicker_color)
+		set_light_color(flicker_color)
+		OL.directional_atom.color = flicker_color
+	do_flicker(amount, flicker_color, original_color, original_on, OL, 1)
+
+
+/// Args:
+/// amount is how many timer to flicker.
+/// flicker_color is what to set the flashlight to when we flicker.
+/// original_color is what our original color was prior to flickering
+/// original_on is if we were originally on or not.
+/// OL is our overlay for lighting.
+/// ticker is how many times we have flickered so far.
+/obj/item/flashlight/proc/do_flicker(var/amount = rand(10, 20), var/flicker_color, var/original_color, var/original_on, var/datum/component/overlay_lighting/OL, var/ticker)
+	if(ticker >= amount) //We have flickered enough times. Terminate the cycle.
+		finish_flicker(original_color, original_on, OL)
+		return
+	on = !on
+	update_brightness()
+	if(!on) // Only play when the light turns off.
+		playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
+	addtimer(CALLBACK(src, PROC_REF(do_flicker), amount, flicker_color, original_color, original_on, OL, ++ticker), rand(5,15), TIMER_DELETE_ME)
+
+/obj/item/flashlight/proc/finish_flicker(var/original_color, var/original_on, var/datum/component/overlay_lighting/OL)
+	set_light_color(original_color)
+	OL.directional_atom.color = original_color
+	on = original_on
+	flickering = FALSE
+	update_brightness()
+
 
 /obj/item/flashlight/pen
 	name = "penlight"
@@ -367,7 +413,7 @@
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
 
-/obj/item/flashlight/flare/Initialize()
+/obj/item/flashlight/flare/Initialize(mapload)
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	. = ..()
 
@@ -430,7 +476,7 @@
 	var/fuel = 0
 	power_use = 0
 
-/obj/item/flashlight/glowstick/Initialize()
+/obj/item/flashlight/glowstick/Initialize(mapload)
 	fuel = rand(1600, 2000)
 	. = ..()
 

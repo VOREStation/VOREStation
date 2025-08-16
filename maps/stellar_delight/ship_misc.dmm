@@ -1512,10 +1512,6 @@
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm3)
-"eG" = (
-/turf/space,
-/turf/space/transit/north,
-/area/space)
 "eH" = (
 /obj/effect/shuttle_landmark/transit{
 	base_area = /area/space;
@@ -2424,31 +2420,6 @@
 /obj/structure/prop/alien/power,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm6)
-"hG" = (
-/obj/effect/step_trigger/thrower{
-	affect_ghosts = 1;
-	name = "thrower_throwdown";
-	nostop = 1;
-	stopper = 0;
-	tiles = 0
-	},
-/turf/space,
-/turf/space/transit/north,
-/area/space)
-"hH" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "escapeshuttle_leave";
-	teleport_x = 25;
-	teleport_x_offset = 245;
-	teleport_y = 25;
-	teleport_y_offset = 245;
-	teleport_z = 4;
-	teleport_z_offset = 4
-	},
-/turf/space,
-/turf/space/transit/north,
-/area/space)
 "hX" = (
 /obj/structure/table/woodentable/holotable,
 /obj/effect/landmark/costume/pirate,
@@ -2968,10 +2939,6 @@
 	icon_state = "monotile"
 	},
 /area/holodeck/source_gym)
-"PL" = (
-/turf/space,
-/turf/space,
-/area/space)
 "PM" = (
 /turf/simulated/floor/smole/megablocks,
 /area/holodeck/source_smoleworld)
@@ -14476,9 +14443,9 @@ ZC
 ZC
 ZC
 ZC
-hH
-hH
-hH
+ZC
+ZC
+ZC
 ap
 eI
 eI
@@ -14618,9 +14585,9 @@ ZF
 ZF
 ZF
 ZF
-eG
-eG
-hH
+ZF
+ZF
+ZC
 ap
 eI
 eI
@@ -14760,9 +14727,9 @@ ZF
 ZF
 ZF
 ZF
-eG
-eG
-hH
+ZF
+ZF
+ZC
 ap
 eI
 eI
@@ -14902,9 +14869,9 @@ ZF
 ZF
 ZF
 ZF
-eG
-eG
-hH
+ZF
+ZF
+ZC
 ap
 eI
 eI
@@ -15044,9 +15011,9 @@ ZF
 ZF
 ZF
 ZF
-eG
-eG
-hH
+ZF
+ZF
+ZC
 ap
 eI
 eI
@@ -15186,9 +15153,9 @@ ZF
 ZF
 ZF
 ZF
-eG
-eG
-hH
+ZF
+ZF
+ZC
 ap
 eI
 eI
@@ -15328,9 +15295,9 @@ ZF
 ZF
 ZF
 ZF
-eG
-eG
-hH
+ZF
+ZF
+ZC
 ap
 eI
 eI
@@ -15470,9 +15437,9 @@ ZF
 ZF
 ZF
 ZF
-eG
-eG
-hH
+ZF
+ZF
+ZC
 ap
 eI
 eI
@@ -15592,29 +15559,29 @@ Yx
 Yx
 Yx
 Yx
-hG
-hG
-hG
-hG
-hG
-hG
-eG
-eG
-hG
-hG
-eG
-eG
-eG
-eG
-eG
-eG
-eG
-eG
-eG
-eG
-eG
-eG
-hH
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+ZF
+ZF
+Yx
+Yx
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
+ZC
 ap
 eI
 eI
@@ -16817,11 +16784,11 @@ ap
 ap
 ap
 ap
-PL
 ap
 ap
 ap
-PL
+ap
+ap
 ap
 xp
 ap
@@ -17243,11 +17210,11 @@ ap
 ap
 ap
 ap
-PL
 ap
 ap
 ap
-PL
+ap
+ap
 ap
 xp
 ap

@@ -78,9 +78,10 @@
 		add_overlay("bioprinter_working")
 	//VOREStation Edit End
 
-/obj/machinery/organ_printer/Initialize()
+/obj/machinery/organ_printer/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/organ_printer/examine(var/mob/user)
 	. = ..()
@@ -227,7 +228,7 @@
 	O.status |= ORGAN_CUT_AWAY
 	var/mob/living/carbon/human/C = loaded_dna["donor"]
 	O.set_dna(C.dna)
-	O.species = C.species
+	O.data.setup_from_species(C.species)
 
 	var/malfunctioned = FALSE
 
@@ -237,7 +238,7 @@
 		var/new_species = pick(possible_species)
 		if(!GLOB.all_species[new_species])
 			new_species = SPECIES_HUMAN
-		O.species = GLOB.all_species[new_species]
+		O.data.setup_from_species(GLOB.all_species[new_species])
 
 	if(istype(O, /obj/item/organ/external) && !malfunctioned)
 		var/obj/item/organ/external/E = O
@@ -246,9 +247,9 @@
 	O.pixel_x = rand(-6.0, 6)
 	O.pixel_y = rand(-6.0, 6)
 
-	if(O.species)
+	if(O.data)
 		// This is a very hacky way of doing of what organ/New() does if it has an owner
-		O.w_class = max(O.w_class + mob_size_difference(O.species.mob_size, MOB_MEDIUM), 1)
+		O.w_class = max(O.w_class + mob_size_difference(O.data.get_species_mob_size(), MOB_MEDIUM), 1)
 
 	return O
 // END GENERIC PRINTER
@@ -271,7 +272,7 @@
 	icon_state = "bioprinter"
 	circuit = /obj/item/circuitboard/bioprinter
 
-/obj/machinery/organ_printer/flesh/full/Initialize()
+/obj/machinery/organ_printer/flesh/full/Initialize(mapload)
 	. = ..()
 	container = new /obj/item/reagent_containers/glass/bottle/biomass(src)
 
@@ -296,7 +297,7 @@
 		var/obj/item/reagent_containers/syringe/S = W
 		var/datum/reagent/blood/injected = locate() in S.reagents.reagent_list //Grab some blood
 		if(injected && injected.data)
-			loaded_dna = injected.data
+			loaded_dna = injected.data.Copy()
 			S.reagents.remove_reagent(REAGENT_ID_BLOOD, injected.volume)
 			to_chat(user, span_info("You scan the blood sample into the bioprinter."))
 		return
@@ -338,7 +339,7 @@
 	var/matter_amount_per_sheet = 10
 	var/matter_type = MAT_STEEL
 
-/obj/machinery/organ_printer/robot/full/Initialize()
+/obj/machinery/organ_printer/robot/full/Initialize(mapload)
 	. = ..()
 	stored_matter = max_stored_matter
 

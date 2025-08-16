@@ -34,11 +34,24 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/wolf)
 
 	allow_mind_transfer = TRUE
-
-// Activate Noms!
-/mob/living/simple_mob/vore/wolf
-	vore_active = 1
+	vore_active = TRUE
+	vore_capacity = 1
 	vore_icons = SA_ICON_LIVING
+
+	can_be_drop_prey = FALSE
+	species_sounds = "Canine"
+	pain_emote_1p = list("yelp", "whine", "bark", "growl")
+	pain_emote_3p = list("yelps", "whines", "barks", "growls")
+
+/mob/living/simple_mob/animal/vore/wolf/load_default_bellies()
+	. = ..()
+
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.belly_fullscreen_color = "#c47cb4"
+	B.belly_fullscreen = "anim_belly"
 
 // Space edition, stronger and bitier
 /mob/living/simple_mob/vore/wolf/space

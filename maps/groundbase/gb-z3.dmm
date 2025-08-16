@@ -1160,7 +1160,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_dock";
 	pixel_y = 19;
 	req_one_access = list(19,43,67)
@@ -1928,7 +1928,7 @@
 /obj/structure/handrail,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ex_docker";
 	pixel_x = 27;
 	pixel_y = 4
@@ -3207,6 +3207,14 @@
 /obj/structure/flora/pottedplant/minitree,
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
+"WN" = (
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_y = 27;
+	pixel_x = -28
+	},
+/turf/simulated/floor/carpet/retro,
+/area/groundbase/dorms/bathroom)
 "WO" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
@@ -9350,7 +9358,7 @@ mr
 Rq
 jP
 ip
-ip
+WN
 TU
 Rq
 jv

@@ -6,14 +6,6 @@
 		else if (nutrition <= MAX_NUTRITION_TO_LOSE && stat != 2 && weight > MIN_MOB_WEIGHT && weight_loss)
 			weight -= species.metabolism*(0.01*weight_loss) // starvation weight loss
 
-/mob/living/carbon/human/proc/process_weaver_silk()
-	if(!species || !(species.is_weaver))
-		return
-
-	if(species.silk_reserve < species.silk_max_reserve && species.silk_production == TRUE && nutrition > 100)
-		species.silk_reserve = min(species.silk_reserve + 2, species.silk_max_reserve)
-		adjust_nutrition(-0.4)
-
 //Our call for the NIF to do whatever
 /mob/living/carbon/human/proc/handle_nif()
 	if(!nif) return

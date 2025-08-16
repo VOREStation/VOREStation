@@ -11,9 +11,6 @@
 
 	var/has_sockets = TRUE
 
-	var/obj/item/hose_connector/input/active/InputSocket
-	var/obj/item/hose_connector/output/active/OutputSocket
-
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
@@ -22,13 +19,7 @@
 /obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
-/obj/structure/reagent_dispensers/Destroy()
-	QDEL_NULL(InputSocket)
-	QDEL_NULL(OutputSocket)
-
-	..()
-
-/obj/structure/reagent_dispensers/Initialize()
+/obj/structure/reagent_dispensers/Initialize(mapload)
 	var/datum/reagents/R = new/datum/reagents(5000)
 	reagents = R
 	R.my_atom = src
@@ -36,10 +27,8 @@
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 
 	if(has_sockets)
-		InputSocket = new(src)
-		InputSocket.carrier = src
-		OutputSocket = new(src)
-		OutputSocket.carrier = src
+		AddComponent(/datum/component/hose_connector/input)
+		AddComponent(/datum/component/hose_connector/output)
 
 	. = ..()
 
@@ -76,7 +65,6 @@
 				new /obj/effect/effect/water(src.loc)
 				qdel(src)
 				return
-		else
 	return
 
 /obj/structure/reagent_dispensers/blob_act()
@@ -106,16 +94,17 @@
 	icon_state = "water"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/watertank/Initialize()
+/obj/structure/reagent_dispensers/watertank/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_WATER, 1000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/watertank/high
 	name = "high-capacity water tank"
 	desc = "A highly-pressurized water tank made to hold vast amounts of water.."
 	icon_state = "water_high"
 
-/obj/structure/reagent_dispensers/watertank/high/Initialize()
+/obj/structure/reagent_dispensers/watertank/high/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_WATER, 4000)
 
@@ -133,16 +122,17 @@
 	var/modded = 0
 	var/obj/item/assembly_holder/rig = null
 
-/obj/structure/reagent_dispensers/fueltank/Initialize()
+/obj/structure/reagent_dispensers/fueltank/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_FUEL,1000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/fueltank/high
 	name = "high-capacity fuel tank"
 	desc = "A highly-pressurized fuel tank made to hold vast amounts of fuel."
 	icon_state = "fuel_high"
 
-/obj/structure/reagent_dispensers/fueltank/high/Initialize()
+/obj/structure/reagent_dispensers/fueltank/high/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_FUEL,4000)
 
@@ -153,20 +143,22 @@
 	icon_state = "foam"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/foam/Initialize()
+/obj/structure/reagent_dispensers/foam/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_FIREFOAM,1000)
+	AddElement(/datum/element/climbable)
 
 //Helium3
 /obj/structure/reagent_dispensers/he3
-	name = "/improper He3 tank"
+	name = "He3 tank"
 	desc = "A Helium3 tank."
 	icon_state = "he3"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispenser/he3/Initialize()
+/obj/structure/reagent_dispensers/he3/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_HELIUM3,1000)
+	AddElement(/datum/element/climbable)
 
 /*
  * Misc
@@ -284,17 +276,15 @@
 		explode()
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/Move()
+/obj/structure/reagent_dispensers/fueltank/Move(atom/newloc, direct, movetime)
 	if (..() && modded)
 		leak_fuel(amount_per_transfer_from_this/10.0)
 
 /obj/structure/reagent_dispensers/fueltank/proc/leak_fuel(amount)
 	if (reagents.total_volume == 0)
 		return
-
 	amount = min(amount, reagents.total_volume)
-	reagents.remove_reagent(REAGENT_ID_FUEL,amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
+	reagents.trans_to_turf(get_turf(src),amount)
 
 /obj/structure/reagent_dispensers/peppertank
 	name = "Pepper Spray Refiller"
@@ -305,7 +295,7 @@
 	density = FALSE
 	amount_per_transfer_from_this = 45
 
-/obj/structure/reagent_dispensers/peppertank/Initialize()
+/obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN,1000)
 
@@ -318,7 +308,7 @@
 	density = FALSE
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/virusfood/Initialize()
+/obj/structure/reagent_dispensers/virusfood/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_VIRUSFOOD, 1000)
 
@@ -331,7 +321,7 @@
 	density = FALSE
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/acid/Initialize()
+/obj/structure/reagent_dispensers/acid/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SACID, 1000)
 
@@ -353,11 +343,12 @@
 	cupholder = 1
 	cups = 10
 
-/obj/structure/reagent_dispensers/water_cooler/Initialize()
+/obj/structure/reagent_dispensers/water_cooler/Initialize(mapload)
 	. = ..()
 	if(bottle)
 		reagents.add_reagent(REAGENT_ID_WATER,2000)
 	update_icon()
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
 	. = ..()
@@ -493,9 +484,10 @@
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/beerkeg/Initialize()
+/obj/structure/reagent_dispensers/beerkeg/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BEER,1000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/beerkeg/wood
 	name = "beer keg"
@@ -507,7 +499,7 @@
 	desc = "A wine casket with a tap on it."
 	icon_state = "beertankfantasy"
 
-/obj/structure/reagent_dispensers/beerkeg/wine/Initialize()
+/obj/structure/reagent_dispensers/beerkeg/wine/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_REDWINE,1000)
 
@@ -525,9 +517,10 @@
 	icon_state = "oiltank"
 	amount_per_transfer_from_this = 120
 
-/obj/structure/reagent_dispensers/cookingoil/Initialize()
+/obj/structure/reagent_dispensers/cookingoil/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_COOKINGOIL,5000)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
@@ -548,6 +541,7 @@
 	icon_state = "bloodbarrel"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/bloodbarrel/Initialize()
+/obj/structure/reagent_dispensers/bloodbarrel/Initialize(mapload)
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_BLOOD, 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+	reagents.add_reagent(REAGENT_ID_BLOOD, 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null,"changeling"=FALSE))
+	AddElement(/datum/element/climbable)

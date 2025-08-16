@@ -119,7 +119,7 @@
 	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "tajblind"
 	item_state = "tajblind"
-	prescription = 1
+	prescription = TRUE
 	body_parts_covered = EYES
 	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
@@ -140,7 +140,7 @@
 	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "tajblind_sec"
 	item_state = "tajblind_sec"
-	prescription = 1
+	prescription = TRUE
 	body_parts_covered = EYES
 	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
@@ -167,8 +167,18 @@
 	sprite_sheets = list(SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi')
 
 /obj/item/clothing/glasses
+	name = DEVELOPER_WARNING_NAME
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/eyes/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/eyes/mob_werebeast.dmi'
+		SPECIES_TESHARI 	= 'icons/inventory/eyes/mob_teshari.dmi',
+		SPECIES_VOX 		= 'icons/inventory/eyes/mob_vox.dmi',
+		SPECIES_WEREBEAST 	= 'icons/inventory/eyes/mob_werebeast.dmi',
+		SPECIES_TAJARAN 	= 'icons/inventory/eyes/mob_tajaran.dmi',
+		SPECIES_UNATHI 		= 'icons/inventory/eyes/mob_unathi.dmi',
+		SPECIES_SERGAL 		= 'icons/inventory/eyes/mob_sergal.dmi',
+		SPECIES_NEVREAN 	= 'icons/inventory/eyes/mob_nevrean.dmi',
+		SPECIES_ZORREN_HIGH	= 'icons/inventory/eyes/mob_fox.dmi',
+		SPECIES_ZORREN_FLAT	= 'icons/inventory/eyes/mob_fennec.dmi',
+		SPECIES_AKULA 		= 'icons/inventory/eyes/mob_akula.dmi',
+		SPECIES_VULPKANIN 	= 'icons/inventory/eyes/mob_vulpkanin.dmi',
+		SPECIES_XENOCHIMERA	= 'icons/inventory/eyes/mob_tajaran.dmi'
 		)

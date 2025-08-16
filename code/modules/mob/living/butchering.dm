@@ -62,8 +62,6 @@
 						var/mob/living/simple_mob/SM = src
 						if(SM.limb_icon)
 							neworg.force_icon = SM.limb_icon
-							neworg.force_icon_key = SM.limb_icon_key
-
 					organs |= neworg
 					organs -= path
 

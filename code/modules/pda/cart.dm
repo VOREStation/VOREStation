@@ -150,7 +150,7 @@ var/list/civilian_cartridges = list(
 	desc = "A data cartridge with an integrated radio signaler module."
 	programs = list(new/datum/data/pda/app/signaller)
 
-/obj/item/cartridge/signal/Initialize()
+/obj/item/cartridge/signal/Initialize(mapload)
 	radio = new /obj/item/radio/integrated/signal(src)
 	. = ..()
 
@@ -236,7 +236,7 @@ var/list/civilian_cartridges = list(
 
 		new/datum/data/pda/app/status_display)
 
-/obj/item/cartridge/rd/Initialize()
+/obj/item/cartridge/rd/Initialize(mapload)
 	radio = new /obj/item/radio/integrated/signal(src)
 	. = ..()
 
@@ -271,14 +271,15 @@ var/list/civilian_cartridges = list(
 	programs = list(new/datum/data/pda/utility/toggle_door)
 	messenger_plugins = list(new/datum/data/pda/messenger_plugin/virus/detonate)
 
-/obj/item/cartridge/syndicate/New()
+/obj/item/cartridge/syndicate/Initialize(mapload)
+	. = ..()
 	var/datum/data/pda/utility/toggle_door/D = programs[1]
 	if(istype(D))
 		D.remote_door_id = initial_remote_door_id
 
 /obj/item/cartridge/proc/post_status(var/command, var/data1, var/data2)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 	if(!frequency) return
 
 	var/datum/signal/status_signal = new
@@ -292,7 +293,7 @@ var/list/civilian_cartridges = list(
 			status_signal.data["msg2"] = data2
 			if(loc)
 				var/obj/item/PDA = loc
-				var/mob/user = PDA.fingerprintslast
+				var/mob/user = PDA.forensic_data?.get_lastprint()
 				log_admin("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 				message_admins("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 

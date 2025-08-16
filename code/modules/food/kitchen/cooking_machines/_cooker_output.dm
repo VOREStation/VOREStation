@@ -4,7 +4,7 @@
 	icon = 'icons/obj/food_custom.dmi'
 	desc = "If you can see this description then something is wrong. Please report the bug on the tracker."
 	bitesize = 2
-	
+
 	var/size = 5 //The quantity of reagents which is considered "normal" for this kind of food
 	//These objects will change size depending on the ratio of reagents to this value
 	var/min_scale = 0.5
@@ -14,7 +14,7 @@
 	w_class = 2
 	var/prefix
 
-/obj/item/reagent_containers/food/snacks/variable/Initialize()
+/obj/item/reagent_containers/food/snacks/variable/Initialize(mapload)
 	. = ..()
 	if (reagents)
 		reagents.maximum_volume = size*8 + 10
@@ -149,7 +149,7 @@
 	size = 30
 	w_class = 3
 
-/obj/item/reagent_containers/food/snacks/variable/cereal/Initialize()
+/obj/item/reagent_containers/food/snacks/variable/cereal/Initialize(mapload)
 	. =..()
 	name = pick(list("flakes", "krispies", "crunch", "pops", "O's", "crisp", "loops", "jacks", "clusters"))
 

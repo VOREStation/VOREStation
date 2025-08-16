@@ -125,7 +125,7 @@
 	name = "Undercoat"
 	desc =  "A Teshari traditional garb, with a modern twist! Made of micro and nanofibres to make it light and billowy, perfect for going fast and stylishly!"
 	icon_state = "tesh_uniform_bo"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 /obj/item/clothing/under/teshari/undercoat/standard/black_orange
 	name = "black and orange undercoat"

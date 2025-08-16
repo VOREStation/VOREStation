@@ -1,10 +1,8 @@
 // Hit by a projectile.
 /mob/living/simple_mob/bullet_act(var/obj/item/projectile/P)
 	//Projectiles with bonus SA damage
-	if(!P.nodamage)
-	//	if(!P.SA_vulnerability || P.SA_vulnerability == intelligence_level)
-		if(P.SA_vulnerability & mob_class)
-			P.damage += P.SA_bonus_damage
+	if(!P.nodamage && P.mob_bonus_damage && !mind) //If the projectile is NOT a nodamage projectile, we HAVE A BONUS damage, AND the mob is not player controlled (it has no mind), we do bonus damage
+		P.damage += P.mob_bonus_damage
 
 	. = ..()
 
@@ -45,22 +43,33 @@
 
 		if(I_HURT)
 			var/armor = run_armor_check(def_zone = null, attack_flag = "melee")
-			if(ishuman(L)) //VOREStation EDIT START Is it a human?
+			if(ishuman(L))
 				var/mob/living/carbon/human/attacker = L //We are a human!
 				var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(src, BP_TORSO) //What attack are we using? Also, just default to attacking the chest.
 				var/rand_damage = rand(1, 5) //Like normal human attacks, let's randomize the damage...
 				var/real_damage = rand_damage //Let's go ahead and start calculating our damage.
 				var/hit_dam_type = attack.damage_type //Let's get the type of damage. Brute? Burn? Defined by the unarmed_attack.
 				real_damage += attack.get_unarmed_damage(attacker) //Add the damage that their special attack has. Some have 0. Some have 15.
+				if(attacker.gloves && attack.is_punch)
+					if(istype(attacker.gloves, /obj/item/clothing/gloves))
+						var/obj/item/clothing/gloves/G = attacker.gloves
+						real_damage += G.punch_force
+						hit_dam_type = G.punch_damtype
+					else if(istype(attacker.gloves, /obj/item/clothing/accessory))
+						var/obj/item/clothing/accessory/G = attacker.gloves
+						real_damage += G.punch_force
+						hit_dam_type = G.punch_damtype
+					if(HULK in attacker.mutations)
+						real_damage *= 2
 				if(real_damage <= damage_threshold)
 					L.visible_message(span_warning("\The [L] uselessly hits \the [src]!"))
 					L.do_attack_animation(src)
 					return
-				apply_damage(damage = real_damage, damagetype = hit_dam_type, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
+				apply_damage(damage = real_damage, damagetype = hit_dam_type, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null)
 				L.visible_message(span_warning("\The [L] [pick(attack.attack_verb)] \the [src]!"))
 				L.do_attack_animation(src)
-				return //VOREStation EDIT END
-			apply_damage(damage = harm_intent_damage, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE) //VOREStation EDIT Somebody set this to burn instead of brute.
+				return
+			apply_damage(damage = harm_intent_damage, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null) //VOREStation EDIT Somebody set this to burn instead of brute.
 			L.visible_message(span_warning("\The [L] [response_harm] \the [src]!"))
 			L.do_attack_animation(src)
 
@@ -78,7 +87,7 @@
 					adjustBruteLoss(-MED.heal_brute)
 					visible_message(span_infoplain(span_bold("\The [user]") + " applies the [MED] on [src]."))
 		else
-			var/datum/gender/T = gender_datums[src.get_visible_gender()]
+			var/datum/gender/T = GLOB.gender_datums[src.get_visible_gender()]
 			to_chat(user, span_notice("\The [src] is dead, medical items won't bring [T.him] back to life.")) // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
 	if(can_butcher(user, O))	//if the animal can be butchered, do so and return. It's likely to be gibbed.
 		harvest(user, O)
@@ -145,7 +154,7 @@
 		if (3.0)
 			bombdam = 30
 
-	apply_damage(damage = bombdam, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
+	apply_damage(damage = bombdam, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null)
 
 	if(bombdam > maxHealth)
 		gib()
@@ -194,7 +203,7 @@
 	if(shock_damage < 1)
 		return 0
 
-	apply_damage(damage = shock_damage, damagetype = BURN, def_zone = null, blocked = null, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
+	apply_damage(damage = shock_damage, damagetype = BURN, def_zone = null, blocked = null, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = null)
 	playsound(src, "sparks", 50, 1, -1)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -223,11 +232,11 @@
 
 		if(stun_amount)
 			stunDam += stun_amount * 0.5
-			apply_damage(damage = stunDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = used_weapon, sharp = FALSE, edge = FALSE)
+			apply_damage(damage = stunDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = used_weapon)
 
 		if(agony_amount)
 			agonyDam += agony_amount * 0.5
-			apply_damage(damage = agonyDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = used_weapon, sharp = FALSE, edge = FALSE)
+			apply_damage(damage = agonyDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, sharp = FALSE, edge = FALSE, used_weapon = used_weapon)
 
 
 // Electromagnetism

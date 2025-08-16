@@ -29,7 +29,7 @@
 	var/static/list/field_edit_questions
 	var/static/list/field_edit_choices
 
-/obj/machinery/computer/skills/Initialize()
+/obj/machinery/computer/skills/Initialize(mapload)
 	. = ..()
 	field_edit_questions = list(
 		// General
@@ -98,10 +98,10 @@
 	if(authenticated)
 		switch(screen)
 			if(GENERAL_RECORD_LIST)
-				if(!isnull(data_core.general))
+				if(!isnull(GLOB.data_core.general))
 					var/list/records = list()
 					data["records"] = records
-					for(var/datum/data/record/R in sortRecord(data_core.general))
+					for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
 						records[++records.len] = list(
 							"ref" = "\ref[R]",
 							"id" = R.fields["id"],
@@ -110,7 +110,7 @@
 			if(GENERAL_RECORD_DATA)
 				var/list/general = list()
 				data["general"] = general
-				if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+				if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 					var/list/fields = list()
 					general["fields"] = fields
 					fields[++fields.len] = FIELD("Name", active1.fields["name"], "name")
@@ -149,7 +149,7 @@
 
 	add_fingerprint(ui.user)
 
-	if(!data_core.general.Find(active1))
+	if(!GLOB.data_core.general.Find(active1))
 		active1 = null
 
 	. = TRUE
@@ -209,42 +209,42 @@
 				screen = clamp(text2num(params["screen"]) || 0, GENERAL_RECORD_LIST, GENERAL_RECORD_MAINT)
 				active1 = null
 			if("del_all")
-				if(PDA_Manifest)
-					PDA_Manifest.Cut()
-				for(var/datum/data/record/R in data_core.general)
+				if(GLOB.PDA_Manifest)
+					GLOB.PDA_Manifest.Cut()
+				for(var/datum/data/record/R in GLOB.data_core.general)
 					qdel(R)
 				set_temp("All employment records deleted.")
 			if("sync_r")
 				if(active1)
-					set_temp(client_update_record(src,active1,usr))
+					set_temp(client_update_record(src,ui.user))
 			if("edit_notes")
 				// The modal input in tgui is busted for this sadly...
-				var/new_notes = strip_html_simple(tgui_input_text(usr,"Enter new information here.","Character Preference", html_decode(active1.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
-				if(usr.Adjacent(src))
-					if(new_notes != "" || tgui_alert(usr, "Are you sure you want to delete the current record's notes?", "Confirm Delete", list("Delete", "No")) == "Delete")
-						if(usr.Adjacent(src))
+				var/new_notes = strip_html_simple(tgui_input_text(ui.user,"Enter new information here.","Character Preference", html_decode(active1.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
+				if(ui.user.Adjacent(src))
+					if(new_notes != "" || tgui_alert(ui.user, "Are you sure you want to delete the current record's notes?", "Confirm Delete", list("Delete", "No")) == "Delete")
+						if(ui.user.Adjacent(src))
 							active1.fields["notes"] = new_notes
 			if("del_r")
-				if(PDA_Manifest)
-					PDA_Manifest.Cut()
+				if(GLOB.PDA_Manifest)
+					GLOB.PDA_Manifest.Cut()
 				if(active1)
-					for(var/datum/data/record/R in data_core.medical)
+					for(var/datum/data/record/R in GLOB.data_core.medical)
 						if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 							qdel(R)
 					set_temp("Employment record deleted.")
 					QDEL_NULL(active1)
 			if("d_rec")
 				var/datum/data/record/general_record = locate(params["d_rec"] || "")
-				if(!data_core.general.Find(general_record))
+				if(!GLOB.data_core.general.Find(general_record))
 					set_temp("Record not found.", "danger")
 					return
 
 				active1 = general_record
 				screen = GENERAL_RECORD_DATA
 			if("new")
-				if(PDA_Manifest)
-					PDA_Manifest.Cut()
-				active1 = data_core.CreateGeneralRecord()
+				if(GLOB.PDA_Manifest)
+					GLOB.PDA_Manifest.Cut()
+				active1 = GLOB.data_core.CreateGeneralRecord()
 				screen = GENERAL_RECORD_DATA
 				set_temp("Employment record created.", "success")
 			if("del_c")
@@ -266,12 +266,12 @@
 				return FALSE
 
 /**
-  * Called in tgui_act() to process modal actions
-  *
-  * Arguments:
-  * * action - The action passed by tgui
-  * * params - The params passed by tgui
-  */
+ * Called in tgui_act() to process modal actions
+ *
+ * Arguments:
+ * * action - The action passed by tgui
+ * * params - The params passed by tgui
+ */
 /obj/machinery/computer/skills/proc/tgui_act_modal(action, params)
 	. = TRUE
 	var/id = params["id"] // The modal's ID
@@ -323,12 +323,12 @@
 			return FALSE
 
 /**
-  * Called when the print timer finishes
-  */
+ * Called when the print timer finishes
+ */
 /obj/machinery/computer/skills/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
 	P.info = "<center>" + span_bold("Medical Record") + "</center><br>"
-	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
+	if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
 		<br>\nSpecies: [active1.fields["species"]]
@@ -355,12 +355,12 @@
 	SStgui.update_uis(src)
 
 /**
-  * Sets a temporary message to display to the user
-  *
-  * Arguments:
-  * * text - Text to display, null/empty to clear the message from the UI
-  * * style - The style of the message: (color name), info, success, warning, danger, virus
-  */
+ * Sets a temporary message to display to the user
+ *
+ * Arguments:
+ * * text - Text to display, null/empty to clear the message from the UI
+ * * style - The style of the message: (color name), info, success, warning, danger, virus
+ */
 /obj/machinery/computer/skills/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)
@@ -371,11 +371,11 @@
 		..(severity)
 		return
 
-	for(var/datum/data/record/R in data_core.security)
+	for(var/datum/data/record/R in GLOB.data_core.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(first_names_male), pick(first_names_female))] [pick(last_names)]"
+					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)
@@ -384,8 +384,8 @@
 					R.fields["criminal"] = pick("None", "*Arrest*", "Incarcerated", "Parolled", "Released")
 				if(5)
 					R.fields["p_stat"] = pick("*Unconcious*", "Active", "Physically Unfit")
-					if(PDA_Manifest.len)
-						PDA_Manifest.Cut()
+					if(GLOB.PDA_Manifest.len)
+						GLOB.PDA_Manifest.Cut()
 				if(6)
 					R.fields["m_stat"] = pick("*Insane*", "*Unstable*", "*Watch*", "Stable")
 			continue

@@ -56,7 +56,6 @@
 /obj/machinery/atmospherics/unary/engine{
 	dir = 8
 	},
-/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/tinyshuttle/engine)
 "ai" = (
@@ -105,7 +104,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "debris_carrier_docker";
 	pixel_x = 24;
 	pixel_y = -6
@@ -737,7 +736,7 @@
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/submap/debrisfield/tinyshuttle/hangar)
 "br" = (
-/obj/machinery/mecha_part_fabricator{
+/obj/machinery/mecha_part_fabricator_tg{
 	req_access = list()
 	},
 /obj/machinery/light{
@@ -1088,7 +1087,6 @@
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield/tinyshuttle/hangar)
 "cb" = (
-/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/tinyshuttle/hangar)
 "cc" = (
@@ -1127,7 +1125,6 @@
 /area/submap/debrisfield/tinyshuttle/engine)
 "cf" = (
 /obj/item/material/shard/titaniumglass,
-/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/tinyshuttle/hangar)
 "cg" = (
@@ -1151,7 +1148,6 @@
 "ci" = (
 /obj/structure/lattice,
 /mob/living/simple_mob/mechanical/combat_drone/lesser,
-/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/tinyshuttle/hangar)
 "cj" = (
@@ -1175,7 +1171,6 @@
 /area/submap/debrisfield/tinyshuttle/crew)
 "cl" = (
 /obj/effect/decal/mecha_wreckage/baron,
-/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield/tinyshuttle/hangar)
 "cm" = (

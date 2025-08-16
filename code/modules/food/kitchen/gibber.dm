@@ -23,9 +23,9 @@
 /obj/machinery/gibber/autogibber
 	var/turf/input_plate
 
-/obj/machinery/gibber/autogibber/Initialize()
+/obj/machinery/gibber/autogibber/Initialize(mapload)
 	. = ..()
-	for(var/i in cardinal)
+	for(var/i in GLOB.cardinal)
 		var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
 		if(input_obj)
 			if(isturf(input_obj.loc))
@@ -57,8 +57,8 @@
 			M.gib()
 
 
-/obj/machinery/gibber/New()
-	..()
+/obj/machinery/gibber/Initialize(mapload)
+	. = ..()
 	add_overlay("grjam")
 
 /obj/machinery/gibber/update_icon()

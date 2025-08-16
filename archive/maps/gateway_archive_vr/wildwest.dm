@@ -75,7 +75,7 @@
 			if("To Kill")
 				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
 				to_chat(user, span_warning("The Wish Granter punishes you for your wickedness, claiming your soul and warping your body to match the darkness in your heart."))
-				ticker.mode.traitors += user.mind
+				SSticker.mode.traitors += user.mind
 				user.mind.special_role = "traitor"
 				var/datum/objective/hijack/hijack = new
 				hijack.owner = user.mind
@@ -90,7 +90,7 @@
 			if("Peace")
 				to_chat(user, span_infoplain(span_bold("Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.")))
 				to_chat(user, span_infoplain("You feel as if you just narrowly avoided a terrible fate..."))
-				for(var/mob/living/simple_mob/faithless/F in living_mob_list)
+				for(var/mob/living/simple_mob/faithless/F in GLOB.living_mob_list)
 					F.health = -10
 					F.set_stat(DEAD)
 					F.icon_state = "faithless_dead"
@@ -109,7 +109,7 @@
 	var/triggerproc = "explode" //name of the proc thats called when the mine is triggered
 	var/triggered = 0
 
-/obj/effect/meatgrinder/Initialize()
+/obj/effect/meatgrinder/Initialize(mapload)
 	icon_state = "blob"
 	. = ..()
 
@@ -154,8 +154,8 @@
 
 	spawn(rand(800,1200))
 		if(stat == DEAD)
-			dead_mob_list -= src
-			living_mob_list += src
+			GLOB.dead_mob_list -= src
+			GLOB.living_mob_list += src
 		set_stat(CONSCIOUS)
 		tod = null
 		setToxLoss(0)

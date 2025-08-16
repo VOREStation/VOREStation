@@ -234,7 +234,6 @@
 "tL" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "tQ" = (
@@ -288,13 +287,7 @@
 /obj/structure/curtain/black,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/methlab)
-"yY" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel_dirty,
-/area/submap/methlab)
 "zu" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
@@ -330,8 +323,6 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "BP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
@@ -434,18 +425,12 @@
 /obj/machinery/light,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/barricade,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "Ih" = (
 /obj/structure/sign/warning/lethal_turrets,
 /turf/simulated/wall,
-/area/submap/methlab)
-"IH" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
 "IQ" = (
 /obj/item/clothing/accessory/stethoscope,
@@ -480,12 +465,10 @@
 "LM" = (
 /obj/random/trash,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "LX" = (
 /obj/item/stool,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
@@ -500,7 +483,6 @@
 /area/submap/methlab)
 "Ol" = (
 /obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
@@ -523,11 +505,6 @@
 /obj/item/module/power_control,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
-"PZ" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/old_tile/green/virgo3b,
-/area/submap/methlab)
 "QP" = (
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/steel_dirty,
@@ -539,8 +516,6 @@
 "Sn" = (
 /obj/structure/barricade,
 /obj/effect/floor_decal/steeldecal/steel_decals_central5,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
@@ -615,7 +590,6 @@
 /area/submap/methlab)
 "Vf" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
@@ -626,7 +600,6 @@
 /turf/template_noop,
 /area/submap/methlab)
 "Vw" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance,
 /turf/simulated/floor/tiled/steel_dirty,
@@ -781,8 +754,8 @@ Lh
 Xi
 HA
 HA
-PZ
-PZ
+Ol
+Ol
 wd
 Xo
 wd
@@ -828,7 +801,7 @@ HA
 zu
 Ol
 Vf
-IH
+zu
 QW
 HA
 ps
@@ -950,7 +923,7 @@ Of
 Gs
 DP
 iN
-yY
+tL
 AB
 LX
 HX

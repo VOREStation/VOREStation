@@ -6,6 +6,9 @@ export const ControlMedical = (props) => {
 
   return (
     <Section title="Medical Effects">
+      <Button fluid onClick={() => act('health_scan')}>
+        Health Analysis
+      </Button>
       <Button fluid onClick={() => act('appendicitis')}>
         Appendicitis
       </Button>
@@ -38,6 +41,12 @@ export const ControlMedical = (props) => {
       </Button>
       <Button fluid onClick={() => act('purge')}>
         Purge Reagents
+      </Button>
+      <Button fluid onClick={() => act('medical_issue')}>
+        Create Custom Medical Issue
+      </Button>
+      <Button fluid onClick={() => act('clear_issue')}>
+        Clear Custom Medical Issues
       </Button>
     </Section>
   );

@@ -74,12 +74,12 @@
 		var/ascii = text2ascii(input, i)
 		if(ascii >= 65 && ascii <= 90)
 			ascii += rotation
-			if(ascii > 90) 
+			if(ascii > 90)
 				ascii -= 26
 
 		else if(ascii >= 97 && ascii <= 122)
 			ascii += rotation
-			if(ascii > 122) 
+			if(ascii > 122)
 				ascii -= 26
 
 		result += ascii2text(ascii)

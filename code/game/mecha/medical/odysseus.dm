@@ -48,9 +48,9 @@
 		set name = "Set client perspective."
 		set category = "Exosuit Interface"
 		set src = usr.loc
-		var/perspective = input(usr, "Select a perspective type.",
-                      "Client perspective",
-                      occupant.client.perspective) in list(MOB_PERSPECTIVE,EYE_PERSPECTIVE)
+		var/perspective = tgui_input_list(usr, "Select a perspective type.",
+					"Client perspective",
+					list(MOB_PERSPECTIVE,EYE_PERSPECTIVE), occupant.client.perspective)
 		to_world("[perspective]")
 		occupant.client.perspective = perspective
 		return
@@ -104,7 +104,7 @@
 				holder.icon_state = "hudhealth-100"
 				C.images += holder
 			else
-				holder.icon_state = RoundHealth((patient.health-config.health_threshold_crit)/(patient.getMaxHealth()-config.health_threshold_crit)*100)
+				holder.icon_state = RoundHealth((-patient.getMaxHealth()*0.5))/(patient.getMaxHealth()-(-getMaxHealth()*0.5)*100)
 				C.images += holder
 
 			holder = patient.hud_list[STATUS_HUD]

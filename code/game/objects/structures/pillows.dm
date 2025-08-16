@@ -51,7 +51,7 @@
 	plane = MOB_PLANE
 	var/sourcepillow = "/obj/item/bedsheet/pillow"
 
-/obj/structure/bed/pillowpile/Initialize()
+/obj/structure/bed/pillowpile/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	new pillowpilefront(T)

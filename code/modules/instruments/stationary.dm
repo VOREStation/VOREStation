@@ -17,7 +17,7 @@
 /obj/structure/musician/attack_hand(mob/M)
 	if(!M.IsAdvancedToolUser())
 		return
-	
+
 	interact(M)
 
 /obj/structure/musician/proc/should_stop_playing(mob/user)

@@ -29,8 +29,8 @@
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
-	var/anim_length_before_density = 3
-	var/anim_length_before_finalize = 7
+	var/anim_length_before_density = 0.3 SECONDS
+	var/anim_length_before_finalize = 0.7 SECONDS
 
 	//Multi-tile doors
 	dir = EAST
@@ -88,8 +88,7 @@
 	if(close_door_at && world.time >= close_door_at)
 		if(autoclose)
 			close_door_at = world.time + next_close_wait()
-			spawn(0)
-				close()
+			close()
 		else
 			close_door_at = 0
 	if (..() == PROCESS_KILL && !close_door_at)
@@ -100,12 +99,12 @@
 	START_MACHINE_PROCESSING(src)
 
 /obj/machinery/door/proc/can_open()
-	if(!density || operating || !ticker)
+	if(!density || operating || !SSticker)
 		return 0
 	return 1
 
 /obj/machinery/door/proc/can_close()
-	if(density || operating || !ticker)
+	if(density || operating || !SSticker)
 		return 0
 	return 1
 
@@ -277,10 +276,14 @@
 /obj/machinery/door/emag_act(var/remaining_charges)
 	if(density && operable())
 		do_animate("spark")
-		sleep(6)
-		open()
-		operating = -1
+		addtimer(CALLBACK(src, PROC_REF(trigger_emag)), 0.6 SECONDS)
 		return 1
+
+/obj/machinery/door/proc/trigger_emag()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	open()
+	operating = -1
 
 /obj/machinery/door/take_damage(var/damage)
 	var/initialhealth = src.health
@@ -320,8 +323,7 @@
 
 /obj/machinery/door/emp_act(severity)
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
-		spawn(0)
-			open()
+		open()
 	..()
 
 
@@ -346,8 +348,7 @@
 /obj/machinery/door/blob_act()
 	if(density) // If it's closed.
 		if(stat & BROKEN)
-			spawn(0)
-				open(1)
+			open(1)
 		else
 			take_damage(100)
 
@@ -420,7 +421,7 @@
 /obj/machinery/door/proc/next_close_wait()
 	var/lowest_temp = T20C
 	var/highest_temp = T0C
-	for(var/D in cardinal)
+	for(var/D in GLOB.cardinal)
 		var/turf/target = get_step(loc, D)
 		if(!target.density)
 			var/datum/gas_mixture/airmix = target.return_air()

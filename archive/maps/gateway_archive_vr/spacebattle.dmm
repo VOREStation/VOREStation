@@ -2504,7 +2504,6 @@
 	name = "Dan Hedricks"
 	},
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "hn" = (

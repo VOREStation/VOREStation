@@ -49,7 +49,7 @@
 		/obj/item/mecha_parts/component/electrical
 		)
 
-/obj/mecha/combat/fighter/Initialize()
+/obj/mecha/combat/fighter/Initialize(mapload)
 	. = ..()
 	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
 	ion_trail.set_up(src)
@@ -186,9 +186,9 @@
 		playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
 
 /obj/mecha/combat/fighter/get_step_delay()
-    . = ..()
-    if(get_gravity() && !landing_gear_raised)
-        . += 4
+	. = ..()
+	if(get_gravity() && !landing_gear_raised)
+		. += 4
 
 /obj/mecha/combat/fighter/handle_equipment_movement()
 	. = ..()
@@ -237,7 +237,7 @@
 /obj/mecha/combat/fighter/Bump(atom/obstacle)
 	. = ..()
 	if(istype(obstacle, /obj) || istype(obstacle, /turf))
-		occupant_message("<B><FONT COLOR=red SIZE=+2>COLLISION ALERT!</B></FONT>")
+		occupant_message(span_bolddanger(span_large("COLLISION ALERT!")))
 		take_damage(20, "brute")
 		playsound(src, 'sound/mecha/fighter/fighter_collision.ogg', 50)
 
@@ -263,14 +263,14 @@
 	var/image/stripe1_overlay
 	var/image/stripe2_overlay
 
-/obj/mecha/combat/fighter/gunpod/loaded/Initialize() //Loaded version with guns
+/obj/mecha/combat/fighter/gunpod/loaded/Initialize(mapload) //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
 	ME.attach(src)
 
-/obj/mecha/combat/fighter/gunpod/recon/Initialize() //Blinky
+/obj/mecha/combat/fighter/gunpod/recon/Initialize(mapload) //Blinky
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/teleporter(src)
 	ME.attach(src)
@@ -335,7 +335,7 @@
 
 	ground_capable = FALSE
 
-/obj/mecha/combat/fighter/baron/loaded/Initialize() //Loaded version with guns
+/obj/mecha/combat/fighter/baron/loaded/Initialize(mapload) //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
@@ -372,7 +372,7 @@
 
 	ground_capable = FALSE
 
-/obj/mecha/combat/fighter/scoralis/loaded/Initialize() //Loaded version with guns
+/obj/mecha/combat/fighter/scoralis/loaded/Initialize(mapload) //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
 	ME.attach(src)
@@ -411,7 +411,7 @@
 	health = 500
 	maxhealth = 500
 
-/obj/mecha/combat/fighter/allure/loaded/Initialize() //Loaded version with guns
+/obj/mecha/combat/fighter/allure/loaded/Initialize(mapload) //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/cloak
 	ME.attach(src)
@@ -448,7 +448,7 @@
 	health = 200
 	maxhealth = 200
 
-/obj/mecha/combat/fighter/pinnace/loaded/Initialize() //Loaded version with guns
+/obj/mecha/combat/fighter/pinnace/loaded/Initialize(mapload) //Loaded version with guns
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)

@@ -28,9 +28,9 @@
 	desc = "The top of this twisted chunk of metal is faintly stamped with a five pointed star. 'Property of US Army, Pascal B - 1957'."
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/pascalb)
 
-/obj/item/poi/pascalb/New()
+/obj/item/poi/pascalb/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
-	return ..()
 
 /obj/item/poi/pascalb/process()
 	SSradiation.radiate(src, 5)
@@ -64,10 +64,14 @@
 	icon = 'icons/obj/closets/poireactor.dmi'
 	closet_appearance = null
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/oldreactor)
-	climbable = FALSE
 
 	starts_with = list(
 		/obj/item/fuel_assembly/deuterium = 6)
+
+/obj/structure/closet/crate/oldreactor/Initialize(mapload)
+	. = ..()
+	// Not climbable!
+	RemoveElement(/datum/element/climbable)
 
 /obj/item/poi/brokenoldreactor
 	icon_state = "poireactor_broken"
@@ -75,9 +79,9 @@
 	desc = "This broken hunk of machinery looks extremely dangerous."
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/oldreactor)
 
-/obj/item/poi/brokenoldreactor/New()
+/obj/item/poi/brokenoldreactor/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
-	return ..()
 
 /obj/item/poi/brokenoldreactor/process()
 	SSradiation.radiate(src, 25)
@@ -136,7 +140,8 @@
 	var/has_paper = FALSE
 
 
-/obj/item/poi/broken_drone_circuit/New()
+/obj/item/poi/broken_drone_circuit/Initialize(mapload)
+	. = ..()
 	drone_name = "[pick(list("ADA","DOS","GNU","MAC","WIN","NJS","SKS","DRD","IOS","CRM","IBM","TEX","LVM","BSD",))]-[rand(1000, 9999)]]"
 	var/new_canalyzer = "[drone_name] [examine_canalyzer]"	//Only way I could think to dynamically insert drone name here
 	examine_canalyzer = new_canalyzer

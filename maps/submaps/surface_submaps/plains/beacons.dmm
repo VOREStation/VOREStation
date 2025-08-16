@@ -1,19 +1,210 @@
-"a" = (/turf/template_noop,/area/submap/beacons)
-"b" = (/obj/structure/marker_beacon,/turf/template_noop,/area/submap/beacons)
-"c" = (/obj/item/stack/marker_beacon{amount = 3},/turf/template_noop,/area/submap/beacons)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/submap/beacons)
+"b" = (
+/obj/structure/marker_beacon,
+/turf/template_noop,
+/area/submap/beacons)
+"c" = (
+/obj/item/stack/marker_beacon{
+	amount = 3
+	},
+/turf/template_noop,
+/area/submap/beacons)
 
 (1,1,1) = {"
-abaaaaabaaaaa
-abaaaaababaaa
-abaaaaababaaa
-abaaaaababaaa
-aaaaaaaaaaaaa
-aaaaaaaaaaaaa
-aaaaaaaaaaaaa
-ababaaabaaaaa
-ababaaabaaaaa
-ababaaababbbb
-ababaaabaaaaa
-aaaaaaaaaaaaa
-aaaaacaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+b
+b
+b
+b
+a
+a
+a
+b
+b
+b
+b
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+b
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+c
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+b
+b
+b
+b
+a
+a
+a
+b
+b
+b
+b
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+b
+b
+b
+a
+a
+a
+a
+a
+b
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+a
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+a
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+a
+a
+a
 "}

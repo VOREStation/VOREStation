@@ -7,14 +7,14 @@
 import { createUuid } from 'tgui-core/uuid';
 
 import { MESSAGE_TYPE_INTERNAL, MESSAGE_TYPES } from './constants';
-import { message, Page } from './types';
+import type { message, NewPageData, Page } from './types';
 
 export const canPageAcceptType = (page: Page, type: string): string | boolean =>
   type.startsWith(MESSAGE_TYPE_INTERNAL) || page.acceptedTypes[type];
 
 export const typeIsImportant = (type: string): boolean => {
   let isImportant = false;
-  for (let typeDef of MESSAGE_TYPES) {
+  for (const typeDef of MESSAGE_TYPES) {
     if (typeDef.type === type && !!typeDef.important) {
       isImportant = true;
       break;
@@ -26,7 +26,7 @@ export const typeIsImportant = (type: string): boolean => {
 export const adminPageOnly = (page: Page): boolean => {
   let adminTab = true;
   let checked = 0;
-  for (let typeDef of MESSAGE_TYPES) {
+  for (const typeDef of MESSAGE_TYPES) {
     if (
       page.acceptedTypes[typeDef.type] &&
       !(!!typeDef.important || !!typeDef.admin)
@@ -41,13 +41,15 @@ export const adminPageOnly = (page: Page): boolean => {
   return checked > 0 && adminTab;
 };
 
-export const canStoreType = (storedTypes: Object, type: string) =>
-  storedTypes[type];
+export const canStoreType = (
+  storedTypes: Record<string, string>,
+  type: string,
+) => storedTypes[type];
 
-export const createPage = (obj?: Object): Page => {
-  let acceptedTypes = {};
+export const createPage = (obj?: NewPageData): Page => {
+  const acceptedTypes = {};
 
-  for (let typeDef of MESSAGE_TYPES) {
+  for (const typeDef of MESSAGE_TYPES) {
     acceptedTypes[typeDef.type] = !!typeDef.important;
   }
 
@@ -64,8 +66,8 @@ export const createPage = (obj?: Object): Page => {
 };
 
 export const createMainPage = (): Page => {
-  const acceptedTypes = {};
-  for (let typeDef of MESSAGE_TYPES) {
+  const acceptedTypes: Record<string, boolean> = {};
+  for (const typeDef of MESSAGE_TYPES) {
     acceptedTypes[typeDef.type] = true;
   }
   return createPage({

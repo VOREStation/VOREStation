@@ -26,6 +26,7 @@
 	var/has_item_product           // Item products. (Eggy)
 	var/force_layer
 	var/harvest_sound = null		//Vorestation edit - sound the plant makes when harvested
+	var/wiki_flag = 0
 
 // Making the assumption anything in HYDRO-ponics is capable of processing water, and nutrients commonly associated with it, leaving us with the below to be tweaked.
 	var/list/beneficial_reagents   // Reagents considered uniquely 'beneficial' by a plant.
@@ -140,7 +141,7 @@
 
 		if(affecting)
 			to_chat(target, span_danger("\The [fruit]'s thorns pierce your [affecting.name] greedily!"))
-			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge, "Thorns")
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge)
 		else
 			to_chat(target, span_danger("\The [fruit]'s thorns pierce your flesh greedily!"))
 			target.adjustBruteLoss(damage)
@@ -149,7 +150,7 @@
 		has_edge = prob(get_trait(TRAIT_POTENCY)/5)
 		if(affecting)
 			to_chat(target, span_danger("\The [fruit]'s thorns dig deeply into your [affecting.name]!"))
-			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge, "Thorns")
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge)
 		else
 			to_chat(target, span_danger("\The [fruit]'s thorns dig deeply into your flesh!"))
 			target.adjustBruteLoss(damage)
@@ -160,7 +161,7 @@
 		return
 	if(chems && chems.len)
 
-		var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+		var/body_coverage = HEAD|FACE|EYES|CHEST|LEGS|FEET|ARMS|HANDS
 
 		for(var/obj/item/clothing/clothes in target)
 			if(target.item_is_in_hands(clothes))
@@ -204,7 +205,7 @@
 		for(var/mob/living/M in T.contents)
 			if(!M.reagents)
 				continue
-			var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+			var/body_coverage = HEAD|FACE|EYES|CHEST|LEGS|FEET|ARMS|HANDS
 			for(var/obj/item/clothing/clothes in M)
 				if(M.item_is_in_hands(clothes))
 					continue
@@ -243,7 +244,7 @@
 			closed_turfs |= T
 			valid_turfs |= T
 
-			for(var/dir in alldirs)
+			for(var/dir in GLOB.alldirs)
 				var/turf/neighbor = get_step(T,dir)
 				if(!neighbor || (neighbor in closed_turfs) || (neighbor in open_turfs))
 					continue
@@ -295,7 +296,7 @@
 		var/missing_gas = 0
 		for(var/gas in consume_gasses)
 			if(environment && environment.gas && environment.gas[gas] && \
-			 environment.gas[gas] >= consume_gasses[gas])
+				environment.gas[gas] >= consume_gasses[gas])
 				if(!check_only)
 					environment.adjust_gas(gas,-consume_gasses[gas],1)
 			else
@@ -460,23 +461,15 @@
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
-		// VOREStation Edit Start: Modified exclusion list
-		var/list/banned_chems = list(
-			REAGENT_ID_ADMINORDRAZINE,
-			REAGENT_ID_NUTRIMENT,
-			REAGENT_ID_MACROCILLIN,
-			REAGENT_ID_MICROCILLIN,
-			REAGENT_ID_NORMALCILLIN,
-			REAGENT_ID_MAGICDUST
-			)
-		// VOREStation Edit End: Modified exclusion list
 
 		for(var/x=1;x<=additional_chems;x++)
 
 			var/new_chem = pick(SSchemistry.chemical_reagents)
-			if(new_chem in banned_chems)
+			var/list/currently_banned_chems = list()
+			currently_banned_chems += GLOB.obtainable_chemical_blacklist
+			if(new_chem in currently_banned_chems)
 				continue
-			banned_chems += new_chem
+			currently_banned_chems += new_chem
 			chems[new_chem] = list(rand(1,10),rand(10,20))
 
 	if(prob(5))
@@ -774,7 +767,7 @@
 	return (P ? P : 0)
 
 //Place the plant products at the feet of the user.
-/datum/seed/proc/harvest(var/mob/user,var/yield_mod,var/harvest_sample,var/force_amount)
+/datum/seed/proc/harvest(var/mob/user,var/yield_mod,var/harvest_sample,var/force_amount,var/reagent_mod,var/reagent_mod_amount)
 
 	if(!user)
 		return
@@ -830,6 +823,9 @@
 				if (istype(product,/obj/item/reagent_containers/food))
 					var/obj/item/reagent_containers/food/food = product
 					food.filling_color = get_trait(TRAIT_PRODUCT_COLOUR)
+
+			if(reagent_mod && reagent_mod_amount)
+				product.reagents.add_reagent(reagent_mod,reagent_mod_amount)
 
 			if(mysterious)
 				product.name += "?"

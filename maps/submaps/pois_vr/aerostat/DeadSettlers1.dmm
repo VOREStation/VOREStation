@@ -1,31 +1,308 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"d" = (/obj/item/flashlight/flare,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"e" = (/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"g" = (/obj/item/trash/meatration,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"n" = (/obj/tether_away_spawner/aerostat_surface,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"o" = (/obj/item/gun/projectile/shotgun/pump/rifle/lever/trailgun,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"p" = (/turf/template_noop,/area/submap/virgo2/DeadSettlers1)
-"q" = (/obj/item/ammo_casing,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"t" = (/obj/random/multiple/voidsuit,/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"B" = (/obj/item/radio/off,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"K" = (/obj/effect/decal/remains,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"Q" = (/obj/item/ammo_magazine/ammo_box/b44,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
-"W" = (/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers1)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"d" = (
+/obj/item/flashlight/flare,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"e" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"g" = (
+/obj/item/trash/meatration,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"n" = (
+/obj/tether_away_spawner/aerostat_surface,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"o" = (
+/obj/item/gun/projectile/shotgun/pump/rifle/lever/trailgun,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"p" = (
+/turf/template_noop,
+/area/submap/virgo2/DeadSettlers1)
+"q" = (
+/obj/item/ammo_casing,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"t" = (
+/obj/random/multiple/voidsuit,
+/obj/effect/decal/remains,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"B" = (
+/obj/item/radio/off,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"K" = (
+/obj/effect/decal/remains,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"Q" = (
+/obj/item/ammo_magazine/ammo_box/b44,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
+"W" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DeadSettlers1)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaa
-apppppppppppppa
-apppeeeeppppppa
-appeeeeeeeppppa
-apeeeneeeeepppa
-apeeeeeQeegpppa
-apeeeeeeqKeeppa
-appeeeedeBeeppa
-apppeqtWeeneppa
-apppeoqeeeeeppa
-appppeWeeeepppa
-appppppeeeppppa
-apppppppepppppa
-apppppppppppppa
-aaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+a
+"}
+(3,1,1) = {"
+a
+p
+p
+p
+e
+e
+e
+p
+p
+p
+p
+p
+p
+p
+a
+"}
+(4,1,1) = {"
+a
+p
+p
+e
+e
+e
+e
+e
+p
+p
+p
+p
+p
+p
+a
+"}
+(5,1,1) = {"
+a
+p
+e
+e
+e
+e
+e
+e
+e
+e
+p
+p
+p
+p
+a
+"}
+(6,1,1) = {"
+a
+p
+e
+e
+n
+e
+e
+e
+q
+o
+e
+p
+p
+p
+a
+"}
+(7,1,1) = {"
+a
+p
+e
+e
+e
+e
+e
+e
+t
+q
+W
+p
+p
+p
+a
+"}
+(8,1,1) = {"
+a
+p
+e
+e
+e
+Q
+e
+d
+W
+e
+e
+e
+p
+p
+a
+"}
+(9,1,1) = {"
+a
+p
+p
+e
+e
+e
+q
+e
+e
+e
+e
+e
+e
+p
+a
+"}
+(10,1,1) = {"
+a
+p
+p
+e
+e
+e
+K
+B
+e
+e
+e
+e
+p
+p
+a
+"}
+(11,1,1) = {"
+a
+p
+p
+p
+e
+g
+e
+e
+n
+e
+e
+p
+p
+p
+a
+"}
+(12,1,1) = {"
+a
+p
+p
+p
+p
+p
+e
+e
+e
+e
+p
+p
+p
+p
+a
+"}
+(13,1,1) = {"
+a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+a
+"}
+(14,1,1) = {"
+a
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+p
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

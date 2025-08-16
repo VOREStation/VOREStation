@@ -40,7 +40,7 @@
 	//turning this off prevents awkward zone geometry in places like medbay lobby, for example.
 	block_air_zones = 0
 
-/obj/machinery/door/blast/Initialize()
+/obj/machinery/door/blast/Initialize(mapload)
 	. = ..()
 	implicit_material = get_material_by_name(MAT_PLASTEEL)
 
@@ -396,8 +396,8 @@
 // SUBTYPE: Multi-tile
 // Pod doors ported from Paradise
 
- // Whoever wrote the old code for multi-tile spesspod doors needs to burn in hell. - Unknown
- // Wise words. - Bxil
+// Whoever wrote the old code for multi-tile spesspod doors needs to burn in hell. - Unknown
+// Wise words. - Bxil
 /obj/machinery/door/blast/multi_tile
 	name = "large blast door"
 

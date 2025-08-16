@@ -5,6 +5,7 @@ import {
   LabeledList,
   Section,
   Slider,
+  Stack,
 } from 'tgui-core/components';
 
 import type { Data } from './types';
@@ -56,7 +57,7 @@ export const AtmoControlTankCore = (props) => {
         info={input_info}
         maxSliderValue={max_flowrate}
         sliderControl={input_flow_setting}
-        sliderFill={input_info && input_info.volume_rate}
+        sliderFill={input_info?.volume_rate}
         unit="L/s"
         name={core ? 'Coolant Input' : 'Input'}
         limitName="Flow Rate Limit"
@@ -66,7 +67,7 @@ export const AtmoControlTankCore = (props) => {
         info={output_info}
         maxSliderValue={max_pressure}
         sliderControl={pressure_setting}
-        sliderFill={output_info && output_info.output_pressure}
+        sliderFill={output_info?.output_pressure}
         unit="kPa"
         name={core ? 'Core Outpump' : 'Output'}
         limitName={core ? 'Min Core Pressure' : 'Max Output Pressure'}
@@ -92,23 +93,27 @@ const AtmoControlTankCoreControl = (props) => {
     <Section
       title={name}
       buttons={
-        <>
-          <Button
-            icon="sync"
-            disabled={!info}
-            onClick={() => actions.refresh()}
-          >
-            Refresh
-          </Button>
-          <Button
-            icon="power-off"
-            selected={info ? info.power : false}
-            disabled={!info}
-            onClick={() => actions.power()}
-          >
-            Power
-          </Button>
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              icon="sync"
+              disabled={!info}
+              onClick={() => actions.refresh()}
+            >
+              Refresh
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="power-off"
+              selected={info ? info.power : false}
+              disabled={!info}
+              onClick={() => actions.power()}
+            >
+              Power
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <LabeledList>

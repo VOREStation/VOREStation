@@ -51,7 +51,7 @@
 	var/last_pet				// This tracks the last time someone patted us.
 	var/grump_decay = 5 SECONDS // This is how quickly our grumpiness decays.
 
-/mob/living/simple_mob/vore/rabbit/New()
+/mob/living/simple_mob/vore/rabbit/Initialize(mapload)
 	. = ..()
 
 	if(!body_color)

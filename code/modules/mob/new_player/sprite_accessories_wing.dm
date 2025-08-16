@@ -21,7 +21,7 @@
 	var/extra_overlay_w // Flapping state for extra overlay
 	var/extra_overlay2_w
 
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER)
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER, SPECIES_SPARKLE, SPECIES_PROMETHEAN, SPECIES_ZORREN_DARK)
 
 	var/wing_offset = 0
 	var/multi_dir = FALSE		// Does it use different sprites at different layers? _front will be added for sprites on low layer, _back to high layer
@@ -180,6 +180,14 @@
 	name = "neck fur"
 	desc = ""
 	icon_state = "neckfur"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "neckfur_markings"
+
+/datum/sprite_accessory/wing/neckfur_noback
+	name = "neck fur (without back part)"
+	desc = ""
+	icon_state = "neckfur_noback"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "neckfur_markings"
@@ -569,11 +577,11 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/mothwings_luna_colorable
-    name = "Moth Wings (Luna, Colorable)"
-    desc = ""
-    icon_state = "mothwings_luna_colorable"
-    do_colouration = 1
-    color_blend_mode = ICON_MULTIPLY
+	name = "Moth Wings (Luna, Colorable)"
+	desc = ""
+	icon_state = "mothwings_luna_colorable"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/sect_drone_alt
 	name = "Sect drone wings Alt. (To use with bodytype marking)"
@@ -607,6 +615,15 @@
 	desc = ""
 	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
 	icon_state = "Harpy_wings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	wing_offset = 16
+
+/datum/sprite_accessory/wing/naga_wings
+	name = "Naga wings"
+	desc = ""
+	icon = 'icons/mob/human_races/sprite_accessories/wings64.dmi'
+	icon_state = "naga_wing"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16

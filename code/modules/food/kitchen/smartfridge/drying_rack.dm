@@ -5,6 +5,10 @@
 	icon_state = "drying_rack"
 	icon_base = "drying_rack"
 
+/obj/machinery/smartfridge/drying_rack/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/))
 		var/obj/item/reagent_containers/food/snacks/S = O

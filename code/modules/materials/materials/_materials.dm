@@ -78,6 +78,22 @@ var/list/name_to_material
 			else
 				.[M] = matter[mat]
 
+/obj/proc/set_custom_materials(list/materials, multiplier = 1)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(!LAZYLEN(materials))
+		matter = null
+		return
+
+	materials = materials.Copy()
+
+	if(multiplier != 1)
+		for(var/x in materials)
+			materials[x] *= multiplier
+
+	matter = materials
+
+
 // Builds the datum list above.
 /proc/populate_material_list(force_remake=0)
 	if(name_to_material && !force_remake) return // Already set up!
@@ -96,7 +112,10 @@ var/list/name_to_material
 	return name_to_material[name]
 
 /proc/material_display_name(name)
-	var/datum/material/material = get_material_by_name(name)
+	if(istype(name, /datum/material)) //We were fed a datum.
+		var/datum/material/M = name
+		return M.display_name
+	var/datum/material/material = get_material_by_name(name) //If not a datum, we were fed a name.
 	if(material)
 		return material.display_name
 	return null
@@ -235,6 +254,8 @@ var/list/name_to_material
 	// Wallrot crumble message.
 	var/rotting_touch_message = "crumbles under your touch"
 
+	var/wiki_flag = 0
+
 // Placeholders for light tiles and rglass.
 /datum/material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!rod_product)
@@ -306,6 +327,7 @@ var/list/name_to_material
 // Used by walls when qdel()ing to avoid neighbor merging.
 /datum/material/placeholder
 	name = "placeholder"
+	wiki_flag = WIKI_SPOILER
 
 // Places a girder object when a wall is dismantled, also applies reinforced material.
 /datum/material/proc/place_dismantled_girder(var/turf/target, var/datum/material/reinf_material, var/datum/material/girder_material)
@@ -314,8 +336,6 @@ var/list/name_to_material
 		G.reinf_material = reinf_material
 		G.reinforce_girder()
 	if(girder_material)
-		if(istype(girder_material, /datum/material))
-			girder_material = girder_material.name
 		G.set_material(girder_material)
 
 

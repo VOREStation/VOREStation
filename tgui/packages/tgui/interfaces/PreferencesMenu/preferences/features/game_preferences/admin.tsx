@@ -1,8 +1,8 @@
 import {
   CheckboxInput,
-  Feature,
+  type Feature,
   FeatureColorInput,
-  FeatureToggle,
+  type FeatureToggle,
 } from '../base';
 
 export const CHAT_ATTACKLOGS: FeatureToggle = {
@@ -51,6 +51,21 @@ export const CHAT_ADSAY: FeatureToggle = {
   name: 'Living Deadchat',
   category: 'ADMIN',
   description: 'Enables seeing deadchat when not observing.',
+  component: CheckboxInput,
+};
+
+export const vvdark: FeatureToggle = {
+  name: 'VV: Dark Theme',
+  category: 'ADMIN',
+  description: 'When enabled, View Variables will use a dark theme',
+  component: CheckboxInput,
+};
+
+export const vvgfi: FeatureToggle = {
+  name: 'VV: Use getFlatIcon',
+  category: 'ADMIN',
+  description:
+    'When enabled, View Variables will use getFlatIcon for icon previews. Warning: Increases load time.',
   component: CheckboxInput,
 };
 

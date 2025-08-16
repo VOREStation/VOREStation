@@ -16,6 +16,7 @@
 	has_vore_belly_sprites = TRUE
 	has_rest_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit", "Bellyup")
+	sprite_icon_state = "argonne-russ-sec" //This is overwritten. This borg should never be seen as it's just a parent for the actual subtypes.
 	has_dead_sprite = TRUE
 	has_dead_sprite_overlay = TRUE
 	pixel_x = -16
@@ -38,7 +39,7 @@
 	sprite_hud_icon_state = "medihound"
 
 /datum/robot_sprite/fluff/argonne/surgical
-	module_type = "Surgeon"
+	module_type = "Crisis"
 
 	sprite_icon_state = "argonne-russ-surg"
 	sprite_hud_icon_state = "medihound"
@@ -137,17 +138,24 @@
 	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 
-/datum/robot_sprite/fluff/catborg/do_equipment_glamour(var/obj/item/robot_module/module)
-	if(!has_custom_equipment_sprites)
-		return
+/// T
 
-	var/obj/item/tool/crowbar/cyborg/C = locate() in module.modules
-	if(C)
-		C.name = "puppy jaws"
-		C.desc = "The jaws of a small dog. Still strong enough to pry things."
-		C.icon = 'icons/mob/dogborg_vr.dmi'
-		C.icon_state = "smalljaws_textless"
-		C.hitsound = 'sound/weapons/bite.ogg'
-		C.attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
+//thesharkenning's custom borg sprite
+/datum/robot_sprite/dogborg/custom_myomer
+	name = CUSTOM_BORGSPRITE("HERO")
+	sprite_icon_state = "base"
+	has_eye_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = FALSE
+	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/myomer_dogborg/custom/ProjectMyomerCustom.dmi'
+	rest_sprite_options = list("Default", "Sit")
+	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
+	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
+	sprite_flags = ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_SHIELD_SPRITE
+	is_whitelisted = TRUE
+	whitelist_ckey = "thesharkenning"
 
 #undef CUSTOM_BORGSPRITE

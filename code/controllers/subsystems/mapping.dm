@@ -1,26 +1,35 @@
 // Handles map-related tasks, mostly here to ensure it does so after the MC initializes.
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
-	init_order = INIT_ORDER_MAPPING
+	//dependencies = list(
+	//	/datum/controller/subsystem/job,
+		///datum/controller/subsystem/processing/station,
+	//	/datum/controller/subsystem/chemistry
+	//	///datum/controller/subsystem/processing/reagents
+	//)
+	dependencies = list(
+		///datum/controller/subsystem/garbage,
+		/datum/controller/subsystem/vis_overlays,
+		/datum/controller/subsystem/chemistry
+	)
 	flags = SS_NO_FIRE
 
 	var/list/map_templates = list()
 	var/obj/effect/landmark/engine_loader/engine_loader
 	var/list/shelter_templates = list()
 
+	// TODO: Implement Later
+	var/datum/map/current_map
+
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 	shelter_templates = SSmapping.shelter_templates
 
 /datum/controller/subsystem/mapping/Initialize()
-	if(subsystem_initialized)
+	if(initialized)
 		return
 	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
 	load_map_templates()
-
-	if(CONFIG_GET(flag/generate_map))
-		// Map-gen is still very specific to the map, however putting it here should ensure it loads in the correct order.
-		using_map.perform_map_generation()
 
 	loadEngine()
 	preloadShelterTemplates() // VOREStation EDIT: Re-enable Shelter Capsules
@@ -28,7 +37,12 @@ SUBSYSTEM_DEF(mapping)
 	// TODO - Other stuff related to maps and areas could be moved here too.  Look at /tg
 	// Lateload Code related to Expedition areas.
 	if(using_map) // VOREStation Edit: Re-enable this.
+		current_map = using_map
 		loadLateMaps()
+
+	if(CONFIG_GET(flag/generate_map))  // VOREStation Edit: Re-order this.
+		// Map-gen is still very specific to the map, however putting it here should ensure it loads in the correct order.
+		using_map.perform_map_generation()
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/mapping/proc/load_map_templates()
@@ -157,6 +171,51 @@ SUBSYSTEM_DEF(mapping)
 				admin_notice("Redgate: [MT]", R_DEBUG)
 				MT.load_new_z(centered = FALSE)
 
+	// Convert ai_shell_allowed_levels to actual Zs
+	for(var/i in 1 to length(using_map.ai_shell_allowed_levels))
+		var/current = using_map.ai_shell_allowed_levels[i]
+		if(isnum(current))
+			continue
+		using_map.ai_shell_allowed_levels[i] = GLOB.map_templates_loaded[current]
+
+	// Convert overmap_z to actual Z
+	if(using_map.use_overmap && !isnum(using_map.overmap_z))
+		using_map.overmap_z = GLOB.map_templates_loaded[using_map.overmap_z]
+
+	// Convert belter_belt_z to actual Z
+	for(var/i in 1 to length(using_map.belter_belt_z))
+		var/current = using_map.belter_belt_z[i]
+		if(isnum(current))
+			continue
+		using_map.belter_belt_z[i] = GLOB.map_templates_loaded[current]
+
+	// Convert belter_transit_z to actual Z
+	for(var/i in 1 to length(using_map.belter_transit_z))
+		var/current = using_map.belter_transit_z[i]
+		if(isnum(current))
+			continue
+		using_map.belter_transit_z[i] = GLOB.map_templates_loaded[current]
+
+	// Convert belter_docked_z to actual Z (Unnecessary atm)
+	/*for(var/i in 1 to length(using_map.belter_docked_z))
+		var/current = using_map.belter_docked_z[i]
+		if(isnum(current))
+			continue
+		using_map.belter_docked_z[i] = GLOB.map_templates_loaded[current]*/
+
+	// Convert mining_station_z to actual Z (Unnecessary atm)
+	/*for(var/i in 1 to length(using_map.mining_station_z))
+		var/current = using_map.mining_station_z[i]
+		if(isnum(current))
+			continue
+		using_map.mining_station_z[i] = GLOB.map_templates_loaded[current]*/
+
+	// Convert mining_outpost_z to actual Z (Unnecessary atm)
+	/*for(var/i in 1 to length(using_map.mining_outpost_z))
+		var/current = using_map.mining_outpost_z[i]
+		if(isnum(current))
+			continue
+		using_map.mining_outpost_z[i] = GLOB.map_templates_loaded[current]*/
 
 /datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
 	for(var/datum/map_template/shelter/shelter_type as anything in subtypesof(/datum/map_template/shelter))
@@ -168,7 +227,7 @@ SUBSYSTEM_DEF(mapping)
 // VOREStation Edit End: Re-enable this
 
 /datum/controller/subsystem/mapping/stat_entry(msg)
-	if (!Debug2)
+	if (!GLOB.Debug2)
 		return // Only show up in stat panel if debugging is enabled.
 	. = ..()
 

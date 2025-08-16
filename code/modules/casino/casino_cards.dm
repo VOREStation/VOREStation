@@ -2,7 +2,8 @@
 //Original Casino Code created by Shadowfire117#1269 - Ported from CHOMPstation
 //Modified by GhostActual#2055 for use with VOREstation
 
-/obj/item/deck/cards/casino/New()
+/obj/item/deck/cards/casino/Initialize(mapload)
+	. = ..()
 	var/datum/playingcard/casino/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 

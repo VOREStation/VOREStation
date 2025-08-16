@@ -21,7 +21,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
 		/obj/item/clothing/shoes/white)
 
-/obj/structure/closet/secure_closet/CMO_wardrobe/Initialize()
+/obj/structure/closet/secure_closet/CMO_wardrobe/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/medic
 	else

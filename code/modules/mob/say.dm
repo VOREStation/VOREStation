@@ -1,6 +1,11 @@
 /mob/proc/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	return
 
+// MUST BE NON-BLOCKING, signals can call this
+/mob/proc/direct_say(var/message, var/datum/language/speaking = null, var/whispering = 0)
+	SHOULD_NOT_SLEEP(TRUE)
+	return
+
 /mob/verb/whisper(message as text)
 	set name = "Whisper"
 	set hidden = 1
@@ -50,7 +55,7 @@
 	if(!client)
 		return // Clientless mobs shouldn't be trying to talk in deadchat.
 
-	if(!client.holder)
+	if(!check_rights_for(client, R_HOLDER))
 		if(!CONFIG_GET(flag/dsay_allowed))
 			to_chat(src, span_danger("Deadchat is globally muted."))
 			return
@@ -179,6 +184,7 @@
 		// The first character in the selection will always be the prefix (if this is a valid language invocation)
 		var/prefix = copytext(selection, 1, 2)
 		var/language_key = copytext(selection, 2, 3)
+		var/multilingual_mode = client?.prefs?.read_preference(/datum/preference/choiced/multilingual_mode)
 		if(is_language_prefix(prefix))
 			// Okay, we're definitely now trying to invoke a language (probably)
 			// This "[]" is probably unnecessary but BYOND will runtime if a number is used
@@ -187,14 +193,14 @@
 				L = language_keys[language_key]
 
 			// MULTILINGUAL_SPACE enforces a space after the language key
-			if(client && (client.prefs.multilingual_mode == MULTILINGUAL_SPACE) && (text2ascii(copytext(selection, 3, 4)) != 32)) // If we're looking for a space and we don't find one
+			if(client && (multilingual_mode == MULTILINGUAL_SPACE) && (text2ascii(copytext(selection, 3, 4)) != 32)) // If we're looking for a space and we don't find one
 				continue
 
 			// MULTILINGUAL_DOUBLE_DELIMITER enforces a delimiter (valid prefix) after the language key
-			if(client && (client.prefs.multilingual_mode == MULTILINGUAL_DOUBLE_DELIMITER) && !is_language_prefix(copytext(selection, 3, 4)))
+			if(client && (multilingual_mode == MULTILINGUAL_DOUBLE_DELIMITER) && !is_language_prefix(copytext(selection, 3, 4)))
 				continue
 
-			if(client && (client.prefs.multilingual_mode in list(MULTILINGUAL_DEFAULT)))
+			if(client && (multilingual_mode in list(MULTILINGUAL_DEFAULT)))
 				selection = copytext(selection, 1, 3) // These modes only use two characters, not three
 
 			// It's kinda silly that we have to check L != null and this isn't done for us by can_speak (it runtimes instead), but w/e
@@ -211,7 +217,7 @@
 			prefixes[++prefixes.len] = list(get_default_language(), i, i)
 
 		// If multilingualism is disabled, then after the first pass we're guaranteed to have either found a language key at the start, or else there isn't one and we're using the default for the whole message
-		if(client && (client.prefs.multilingual_mode == MULTILINGUAL_OFF))
+		if(client && (multilingual_mode == MULTILINGUAL_OFF))
 			break
 
 	return prefixes

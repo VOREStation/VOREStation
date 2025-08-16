@@ -12,32 +12,35 @@ const regexParseNode = (params: {
   regex: RegExp;
   createNode: (text: string) => Node;
   captureAdjust?: (str: string) => string;
-}): { nodes?: HTMLElement; n?: number } => {
+}): { nodes?: Node[]; n?: number } => {
   const { node, regex, createNode, captureAdjust } = params;
-  const text = node.textContent || '';
+  const text = node.textContent;
+
+  if (!text || !regex) {
+    return { nodes: [], n: 0 };
+  }
+
   const textLength = text.length;
-  let nodes;
-  let new_node;
-  let match;
+  const nodes: Node[] = [];
+  let fragment: Node | undefined;
+  let new_node: Node;
+  let match: RegExpExecArray | null;
   let lastIndex = 0;
-  let fragment;
   let n = 0;
   let count = 0;
   // eslint-disable-next-line no-cond-assign
-  while ((match = regex.exec(text))) {
+  while (true) {
+    match = regex.exec(text);
+    if (!match) break;
     n += 1;
     // Safety check to prevent permanent
     // client crashing
     if (++count > 9999) {
-      return {};
+      return { nodes: [], n: 0 };
     }
     // Lazy init fragment
     if (!fragment) {
       fragment = document.createDocumentFragment();
-    }
-    // Lazy init nodes
-    if (!nodes) {
-      nodes = [];
     }
     const matchText = captureAdjust ? captureAdjust(match[0]) : match[0];
     const matchLength = matchText.length;
@@ -64,7 +67,7 @@ const regexParseNode = (params: {
       fragment.appendChild(new_node);
     }
     // Commit the fragment
-    if (node && node.parentNode) {
+    if (node?.parentNode) {
       node.parentNode.replaceChild(fragment, node);
     }
   }
@@ -82,7 +85,7 @@ const regexParseNode = (params: {
 export const replaceInTextNode =
   (
     regex: RegExp,
-    words: string | null,
+    words: string[] | null,
     createNode: (text: string) => Node,
   ): ((node: Node) => number) =>
   (node: Node) => {
@@ -103,10 +106,10 @@ export const replaceInTextNode =
     if (words) {
       let i = 0;
       let wordRegexStr = '(';
-      for (let word of words) {
+      for (const word of words) {
         // Capture if the word is at the beginning, end, middle,
         // or by itself in a message
-        wordRegexStr += `^${word}\\W|\\W${word}\\W|\\W${word}$|^${word}$`;
+        wordRegexStr += `^${word}\\s\\W|\\s\\W${word}\\s\\W|\\s\\W${word}$|^${word}\\s\\W$`;
         // Make sure the last character for the expression is NOT '|'
         if (++i !== words.length) {
           wordRegexStr += '|';
@@ -115,7 +118,7 @@ export const replaceInTextNode =
       wordRegexStr += ')';
       const wordRegex = new RegExp(wordRegexStr, 'gi');
       if (regex && nodes) {
-        for (let a_node of nodes) {
+        for (const a_node of nodes) {
           result = regexParseNode({
             node: a_node,
             regex: wordRegex,
@@ -161,7 +164,7 @@ const createHighlightNode = (text: string): HTMLSpanElement => {
 export const highlightNode = (
   node: Node,
   regex: RegExp,
-  words: string,
+  words: string[],
   createNode: (text: string) => Node = createHighlightNode,
 ) => {
   if (!createNode) {

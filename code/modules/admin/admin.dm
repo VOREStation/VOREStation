@@ -1,4 +1,4 @@
-var/global/floorIsLava = 0
+GLOBAL_VAR_INIT(floorIsLava, 0)
 
 
 ////////////////////////////////
@@ -7,7 +7,7 @@ var/global/floorIsLava = 0
 	//log_adminwarn(msg) //log_and_message_admins is for this
 
 	for(var/client/C in GLOB.admins)
-		if((R_ADMIN|R_MOD) & C.holder.rights)
+		if(check_rights_for(C, (R_ADMIN|R_MOD|R_SERVER)))
 			to_chat(C,
 					type = MESSAGE_TYPE_ADMINLOG,
 					html = msg,
@@ -16,7 +16,7 @@ var/global/floorIsLava = 0
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	var/rendered = span_filter_attacklog(span_log_message(span_prefix("ATTACK:") + span_message("[text]")))
 	for(var/client/C in GLOB.admins)
-		if((R_ADMIN|R_MOD) & C.holder.rights)
+		if(check_rights_for(C, (R_ADMIN|R_MOD)))
 			if(C.prefs?.read_preference(/datum/preference/toggle/show_attack_logs))
 				var/msg = rendered
 				to_chat(C,
@@ -25,121 +25,121 @@ var/global/floorIsLava = 0
 						confidential = TRUE)
 
 /proc/admin_notice(var/message, var/rights)
-	for(var/mob/M in mob_list)
-		if(check_rights(rights, 0, M))
-			to_chat(M,message)
+	for(var/mob/M in GLOB.mob_list)
+		var/C = M.client
+
+		if(!C)
+			return
+
+		if(!(istype(C, /client)))
+			return
+
+		if(check_rights_for(C, rights))
+			to_chat(C, message)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
-/datum/admins/proc/show_player_panel(var/mob/M in mob_list)
-	set category = "Admin.Game"
-	set name = "Show Player Panel"
-	set desc="Edit player (respawn, ban, heal, etc)"
+ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", mob/player in world)
+	log_admin("[key_name(user)] checked the individual player panel for [key_name(player)][isobserver(user.mob)?"":" while in game"].")
 
-	if(!M)
-		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.")
-		return
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
+	if(!player)
+		to_chat(user, "You seem to be selecting a mob that doesn't exist anymore.")
 		return
 
-	var/body = "<html><head><title>Options for [M.key]</title></head>"
-	body += "<body>Options panel for <b>[M]</b>"
-	if(M.client)
-		body += " played by <b>[M.client]</b> "
-		body += "\[<A href='byond://?src=\ref[src];[HrefToken()];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
+	var/body = "Options panel for " + span_bold("[player]")
+	if(player.client)
+		body += " played by " + span_bold("[player.client]")
+		body += "\[<A href='byond://?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[player.client.ckey] || GLOB.deadmins[player.client.ckey]) ? "rank" : "add"];key=[player.key]'>[player.client.holder ? player.client.holder.rank_names() : "Player"]</A>\]"
 
-	if(isnewplayer(M))
-		body += " <B>Hasn't Entered Game</B> "
+	if(isnewplayer(player))
+		body += span_bold("Hasn't Entered Game")
 	else
-		body += " \[<A href='byond://?src=\ref[src];[HrefToken()];revive=\ref[M]'>Heal</A>\] "
+		body += " \[<A href='byond://?_src_=holder;[HrefToken()];revive=[REF(player)]'>Heal</A>\] "
 
-	if(M.client)
-		body += "<br><b>First connection:</b> [M.client.player_age] days ago"
-		body += "<br><b>BYOND account created:</b> [M.client.account_join_date]"
-		body += "<br><b>BYOND account age (days):</b> [M.client.account_age]"
+	if(player.client)
+		body += "<br>" + span_bold("First connection:") + "[player.client.player_age] days ago"
+		body += "<br>" + span_bold("BYOND account created:") + "[player.client.account_join_date]"
+		body += "<br>" + span_bold("BYOND account age (days):") + "[player.client.account_age]"
 
 	body += {"
 		<br><br>\[
-		<a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[M]'>VV</a> -
-		<a href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'>TP</a> -
-		<a href='byond://?src=\ref[usr];[HrefToken()];priv_msg=\ref[M]'>PM</a> -
-		<a href='byond://?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>SM</a> -
-		[admin_jump_link(M, src)]\] <br>
-		<b>Mob type:</b> [M.type]<br>
-		<b>Inactivity time:</b> [M.client ? "[M.client.inactivity/600] minutes" : "Logged out"]<br/><br/>
-		<A href='byond://?src=\ref[src];[HrefToken()];boot2=\ref[M]'>Kick</A> |
-		<A href='byond://?_src_=holder;[HrefToken()];warn=[M.ckey]'>Warn</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];newban=\ref[M]'>Ban</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];jobban2=\ref[M]'>Jobban</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];notes=show;mob=\ref[M]'>Notes</A>
+		<a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[player]'>VV</a> -
+		<a href='byond://?_src_=holder;[HrefToken()];traitor=\ref[player]'>TP</a> -
+		<a href='byond://??_src_=holder;[HrefToken()];priv_msg=\ref[player]'>PM</a> -
+		<a href='byond://?_src_=holder;[HrefToken()];subtlemessage=\ref[player]'>SM</a> -
+		[admin_jump_link(player, src)]\] <br>
+		"} + span_bold("Mob type:") + {"[player.type]<br>
+		"} + span_bold("Inactivity time:") + {" [player.client ? "[player.client.inactivity/600] minutes" : "Logged out"]<br/><br/>
+		<A href='byond://?_src_=holder;[HrefToken()];boot2=\ref[player]'>Kick</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];warn=[player.ckey]'>Warn</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];newban=\ref[player]'>Ban</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];jobban2=\ref[player]'>Jobban</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];notes=show;mob=\ref[player]'>Notes</A>
 	"}
 
-	if(M.client)
-		body += "| <A href='byond://?src=\ref[src];[HrefToken()];sendtoprison=\ref[M]'>Prison</A> | "
-		body += "\ <A href='byond://?src=\ref[src];[HrefToken()];sendbacktolobby=\ref[M]'>Send back to Lobby</A> | "
-		var/muted = M.client.prefs.muted
-		body += {"<br><b>Mute: </b>
-			\[<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC)?"red":"blue"]'>LOOC</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
-			<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
-			(<A href='byond://?src=\ref[src];[HrefToken()];mute=\ref[M];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
+	if(player.client)
+		body += "| <A href='byond://?_src_=holder;[HrefToken()];sendtoprison=\ref[player]'>Prison</A> | "
+		body += "\ <A href='byond://?_src_=holder;[HrefToken()];sendbacktolobby=\ref[player]'>Send back to Lobby</A> | "
+		var/muted = player.client.prefs.muted
+		body += {"<br>"} + span_bold("Mute: ") + {"
+			\[<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_IC]'>[(muted & MUTE_IC) ? span_red("IC") : span_blue("IC")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_OOC]'>[(muted & MUTE_OOC) ? span_red("OOC") : span_blue("OOC")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_LOOC]'>[(muted & MUTE_LOOC) ? span_red("LOOC") : span_blue("LOOC")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_PRAY]'>[(muted & MUTE_PRAY) ? span_red("PRAY") : span_blue("PRAY")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_ADMINHELP]'>[(muted & MUTE_ADMINHELP) ? span_red("ADMINHELP") : span_blue("ADMINHELP")]</a> |
+			<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_DEADCHAT]'>[(muted & MUTE_DEADCHAT) ? span_red("DEADCHAT") : span_blue("DEADCHAT")]</a>\]
+			(<A href='byond://?_src_=holder;[HrefToken()];mute=\ref[player];mute_type=[MUTE_ALL]'>[(muted & MUTE_ALL) ? span_red("toggle all") : span_blue("toggle all")]</a>)
 		"}
 
 	body += {"<br><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];jumpto=\ref[M]'><b>Jump to</b></A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];getmob=\ref[M]'>Get</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];sendmob=\ref[M]'>Send To</A>
+		<A href='byond://?_src_=holder;[HrefToken()];jumpto=\ref[player]'>"} + span_bold("Jump to") + {"</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];getmob=\ref[player]'>Get</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];sendmob=\ref[player]'>Send To</A>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD|R_EVENT,0) ? "<A href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'>Traitor panel</A> | " : "" ]
-		<A href='byond://?src=\ref[src];[HrefToken()];narrateto=\ref[M]'>Narrate to</A> |
-		<A href='byond://?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>Subtle message</A>
+		[check_rights(R_ADMIN|R_MOD|R_EVENT,0) ? "<A href='byond://?_src_=holder;[HrefToken()];traitor=\ref[player]'>Traitor panel</A> | " : "" ]
+		<A href='byond://?_src_=holder;[HrefToken()];narrateto=\ref[player]'>Narrate to</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];subtlemessage=\ref[player]'>Subtle message</A>
 	"}
 
-	if (M.client)
-		if(!isnewplayer(M))
+	if (player.client)
+		if(!isnewplayer(player))
 			body += "<br><br>"
 			body += span_bold("Transformation:")
 			body += "<br>"
 
 			//Monkey
-			if(issmall(M))
-				body += "<B>Monkeyized</B> | "
+			if(issmall(player))
+				body += span_bold("Monkeyized") + " | "
 			else
-				body += "<A href='byond://?src=\ref[src];[HrefToken()];monkeyone=\ref[M]'>Monkeyize</A> | "
+				body += "<A href='byond://?_src_=holder;[HrefToken()];turn_monkey=\ref[player]'>Monkeyize</A> | "
 
 			//Corgi
-			if(iscorgi(M))
-				body += "<B>Corgized</B> | "
+			if(iscorgi(player))
+				body += span_bold("Corgized") + " | "
 			else
-				body += "<A href='byond://?src=\ref[src];[HrefToken()];corgione=\ref[M]'>Corgize</A> | "
+				body += "<A href='byond://?_src_=holder;[HrefToken()];corgione=\ref[player]'>Corgize</A> | "
 
 			//AI / Cyborg
-			if(isAI(M))
-				body += "<B>Is an AI</B> "
-			else if(ishuman(M))
-				body += {"<A href='byond://?src=\ref[src];[HrefToken()];makeai=\ref[M]'>Make AI</A> |
-					<A href='byond://?src=\ref[src];[HrefToken()];makerobot=\ref[M]'>Make Robot</A> |
-					<A href='byond://?src=\ref[src];[HrefToken()];makealien=\ref[M]'>Make Alien</A>
+			if(isAI(player))
+				body += span_bold("Is an AI ")
+			else if(ishuman(player))
+				body += {"<A href='byond://?_src_=holder;[HrefToken()];turn_ai=\ref[player]'>Make AI</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];turn_robot=\ref[player]'>Make Robot</A> |
+					<A href='byond://?_src_=holder;[HrefToken()];turn_alien=\ref[player]'>Make Alien</A>
 				"}
 
 			//Simple Animals
-			if(isanimal(M))
-				body += "<A href='byond://?src=\ref[src];[HrefToken()];makeanimal=\ref[M]'>Re-Animalize</A> | "
+			if(isanimal(player))
+				body += "<A href='byond://?_src_=holder;[HrefToken()];makeanimal=\ref[player]'>Re-Animalize</A> | "
 			else
-				body += "<A href='byond://?src=\ref[src];[HrefToken()];makeanimal=\ref[M]'>Animalize</A> | "
+				body += "<A href='byond://?_src_=holder;[HrefToken()];makeanimal=\ref[player]'>Animalize</A> | "
 
-			body += "<A href='byond://?src=\ref[src];[HrefToken()];respawn=\ref[M.client]'>Respawn</A> | "
+			body += "<A href='byond://?_src_=holder;[HrefToken()];respawn=\ref[player.client]'>Respawn</A> | "
 
 			// DNA2 - Admin Hax
-			if(M.dna && iscarbon(M))
+			if(player.dna && iscarbon(player))
 				body += "<br><br>"
-				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
+				body += span_bold("DNA Blocks:") + "<br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
 				var/list/output_list = list()
 				// Traitgenes more reliable way to check gene states
@@ -158,81 +158,88 @@ var/global/floorIsLava = 0
 						bname = ""
 					body += "<td>"
 					if(bname)
-						var/bstate=(bname in M.active_genes) // Traitgenes more reliable way to check gene states
+						var/bstate=(bname in player.active_genes) // Traitgenes more reliable way to check gene states
 						// Traitgenes show trait linked names on mouseover
 						var/tname = bname
 						if(istype(gene,/datum/gene/trait))
 							var/datum/gene/trait/T = gene
 							tname = T.get_name()
-						var/bcolor="[(bstate)?"#006600":"#ff0000"]"
-						if(!bstate && M.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
-							bcolor="#d88d00"
-						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' style='color:[bcolor];' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
+						if(bstate)
+							bname = span_green(bname)
+						else if(!bstate && player.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
+							bname = span_orange(bname)
+						else
+							bname = span_red(bname)
+						body += "<A href='byond://?_src_=holder;[HrefToken()];togmutate=\ref[player];block=[block]' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
 					else
 						body += "[block]"
 					body+="</td>"
 				body += "</tr></table>"
 
 			body += {"<br><br>
-				<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.</font><br>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=observer;mob=\ref[M]'>Observer</A> |
-				\[ Xenos: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=larva;mob=\ref[M]'>Larva</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Xenomorph Drone;mob=\ref[M]'>Drone</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Xenomorph Hunter;mob=\ref[M]'>Hunter</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Xenomorph Sentinel;mob=\ref[M]'>Sentinel</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \] |
-				\[ Crew: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;mob=\ref[M]'>Human</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Unathi;mob=\ref[M]'>Unathi</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Tajaran;mob=\ref[M]'>Tajaran</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species=Skrell;mob=\ref[M]'>Skrell</A> \] | \[
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=nymph;mob=\ref[M]'>Nymph</A>
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=human;species='Diona';mob=\ref[M]'>Diona</A> \] |
-				\[ slime: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=slime;mob=\ref[M]'>Baby</A>,
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=adultslime;mob=\ref[M]'>Adult</A> \]
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=monkey;mob=\ref[M]'>Monkey</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=robot;mob=\ref[M]'>Cyborg</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=cat;mob=\ref[M]'>Cat</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=runtime;mob=\ref[M]'>Runtime</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=corgi;mob=\ref[M]'>Corgi</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=ian;mob=\ref[M]'>Ian</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=crab;mob=\ref[M]'>Crab</A> |
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=coffee;mob=\ref[M]'>Coffee</A> |
-				\[ Construct: <A href='byond://?src=\ref[src];[HrefToken()];simplemake=constructarmoured;mob=\ref[M]'>Armoured</A> ,
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=constructbuilder;mob=\ref[M]'>Builder</A> ,
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=constructwraith;mob=\ref[M]'>Wraith</A> \]
-				<A href='byond://?src=\ref[src];[HrefToken()];simplemake=shade;mob=\ref[M]'>Shade</A>
+				"} + span_bold("Rudimentary transformation:") + span_normal("<br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.") + {"<br>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=\ref[player]'>Observer</A> |
+				\[ Xenos: <A href='byond://?_src_=holder;[HrefToken()];simplemake=larva;mob=\ref[player]'>Larva</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Drone;mob=\ref[player]'>Drone</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Hunter;mob=\ref[player]'>Hunter</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Sentinel;mob=\ref[player]'>Sentinel</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Xenomorph Queen;mob=\ref[player]'>Queen</A> \] |
+				\[ Crew: <A href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=\ref[player]'>Human</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Unathi;mob=\ref[player]'>Unathi</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Tajaran;mob=\ref[player]'>Tajaran</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species=Skrell;mob=\ref[player]'>Skrell</A> \] | \[
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=nymph;mob=\ref[player]'>Nymph</A>
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;species='Diona';mob=\ref[player]'>Diona</A> \] |
+				\[ slime: <A href='byond://?_src_=holder;[HrefToken()];simplemake=slime;mob=\ref[player]'>Baby</A>,
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=adultslime;mob=\ref[player]'>Adult</A> \]
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=\ref[player]'>Monkey</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=robot;mob=\ref[player]'>Cyborg</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=cat;mob=\ref[player]'>Cat</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=runtime;mob=\ref[player]'>Runtime</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=corgi;mob=\ref[player]'>Corgi</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=ian;mob=\ref[player]'>Ian</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=crab;mob=\ref[player]'>Crab</A> |
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=coffee;mob=\ref[player]'>Coffee</A> |
+				\[ Construct: <A href='byond://?_src_=holder;[HrefToken()];simplemake=constructarmoured;mob=\ref[player]'>Armoured</A> ,
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=constructbuilder;mob=\ref[player]'>Builder</A> ,
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=constructwraith;mob=\ref[player]'>Wraith</A> \]
+				<A href='byond://?_src_=holder;[HrefToken()];simplemake=shade;mob=\ref[player]'>Shade</A>
 				<br>
 			"}
 	body += {"<br><br>
-			<b>Other actions:</b>
+			"} + span_bold("Other actions:") + {"
 			<br>
-			<A href='byond://?src=\ref[src];[HrefToken()];forcespeech=\ref[M]'>Forcesay</A>
+			<A href='byond://?_src_=holder;[HrefToken()];forcespeech=\ref[player]'>Forcesay</A>
 			"}
-	if (M.client)
+	if (player.client)
 		body += {" |
-			<A href='byond://?src=\ref[src];[HrefToken()];tdome1=\ref[M]'>Thunderdome 1</A> |
-			<A href='byond://?src=\ref[src];[HrefToken()];tdome2=\ref[M]'>Thunderdome 2</A> |
-			<A href='byond://?src=\ref[src];[HrefToken()];tdomeadmin=\ref[M]'>Thunderdome Admin</A> |
-			<A href='byond://?src=\ref[src];[HrefToken()];tdomeobserve=\ref[M]'>Thunderdome Observer</A> |
+			<A href='byond://?_src_=holder;[HrefToken()];tdome1=\ref[player]'>Thunderdome 1</A> |
+			<A href='byond://?_src_=holder;[HrefToken()];tdome2=\ref[player]'>Thunderdome 2</A> |
+			<A href='byond://?_src_=holder;[HrefToken()];tdomeadmin=\ref[player]'>Thunderdome Admin</A> |
+			<A href='byond://?_src_=holder;[HrefToken()];tdomeobserve=\ref[player]'>Thunderdome Observer</A> |
 		"}
 	// language toggles
-	body += "<br><br><b>Languages:</b><br>"
+	body += "<br><br>" + span_bold("Languages:") + "<br>"
 	var/f = 1
 	for(var/k in GLOB.all_languages)
 		var/datum/language/L = GLOB.all_languages[k]
 		if(!(L.flags & INNATE))
 			if(!f) body += " | "
 			else f = 0
-			if(L in M.languages)
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#006600'>[k]</a>"
+			if(L in player.languages)
+				k = span_green(k)
+				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[k]</a>"
 			else
-				body += "<a href='byond://?src=\ref[src];[HrefToken()];toglang=\ref[M];lang=[html_encode(k)]' style='color:#ff0000'>[k]</a>"
+				k = span_red(k)
+				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[k]</a>"
 
-	body += {"<br>
-		</body></html>
-	"}
+	body += {"<br>"}
 
-	usr << browse(body, "window=adminplayeropts;size=550x515")
+	var/datum/browser/popup = new(user, "adminplayeropts", "Edit Player", 550, 515)
+	popup.add_head_content("<title>Options for [player.key]</title>")
+	popup.set_content(body)
+	popup.open()
+
 	feedback_add_details("admin_verb","SPP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -306,7 +313,7 @@ var/global/floorIsLava = 0
 		to_chat(usr, "Error: you are not an admin!")
 		return
 	var/dat
-	dat = text("<HEAD><TITLE>Admin Newscaster</TITLE></HEAD><H3>Admin Newscaster Unit</H3>")
+	dat = text("<H3>Admin Newscaster Unit</H3>")
 
 	switch(admincaster_screen)
 		if(0)
@@ -327,11 +334,11 @@ var/global/floorIsLava = 0
 			if(news_network.wanted_issue)
 				wanted_already = 1
 
-			dat+={"<HR><B>Feed Security functions:</B><BR>
+			dat+={"<HR>"} + span_bold("Feed Security functions:") + {"<BR>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_censor_story=1'>Censor Feed Stories</A>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_menu_censor_channel=1'>Mark Feed Channel with [using_map.company_name] D-Notice (disables and locks the channel.</A>
-				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>The newscaster recognises you as:<BR> <FONT COLOR='green'>[src.admincaster_signature]</FONT></A>
+				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>The newscaster recognises you as:<BR>"} + span_green("[src.admincaster_signature]") + {"</A>
 			"}
 		if(1)
 			dat+= "Station Feed Channels<HR>"
@@ -340,9 +347,9 @@ var/global/floorIsLava = 0
 			else
 				for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
 					if(CHANNEL.is_admin_channel)
-						dat+="<B><FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT></B><BR>"
+						dat+=span_bold("<FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT>") + "<BR>"
 					else
-						dat+=span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>")
+						dat+=span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>")
 			dat+={"<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>
 			"}
@@ -350,17 +357,17 @@ var/global/floorIsLava = 0
 		if(2)
 			dat+={"
 				Creating new Feed Channel...
-				<HR><B><A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_name=1'>Channel Name</A>:</B> [src.admincaster_feed_channel.channel_name]<BR>
-				<B><A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>Channel Author</A>:</B> <FONT COLOR='green'>[src.admincaster_signature]</FONT><BR>
-				<B><A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_lock=1'>Will Accept Public Feeds</A>:</B> [(src.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<BR><BR>
+				<HR>"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_name=1'>Channel Name</A>:") + {" [src.admincaster_feed_channel.channel_name]<BR>
+				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_signature=1'>Channel Author</A>:") + {" "} + span_green("[src.admincaster_signature]") + {"<BR>
+				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_lock=1'>Will Accept Public Feeds</A>:") + {" [(src.admincaster_feed_channel.locked) ? ("NO") : ("YES")]<BR><BR>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_new_channel=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
 			"}
 		if(3)
 			dat+={"
 				Creating new Feed Message...
-				<HR><B><A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_receiving=1'>Receiving Channel</A>:</B> [src.admincaster_feed_channel.channel_name]<BR>
-				<B>Message Author:</B> <FONT COLOR='green'>[src.admincaster_signature]</FONT><BR>
-				<B><A href='byond://?src=\ref[src];[HrefToken()];ac_set_new_message=1'>Message Body</A>:</B> [src.admincaster_feed_message.body] <BR>
+				<HR>"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_channel_receiving=1'>Receiving Channel</A>:") + {" [src.admincaster_feed_channel.channel_name]<BR>
+				"} + span_bold("Message Author:") + {" "} + span_green("[src.admincaster_signature]") + {"<BR>
+				"} + span_bold("<A href='byond://?src=\ref[src];[HrefToken()];ac_set_new_message=1'>Message Body</A>:") + {" [src.admincaster_feed_message.body] <BR>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_new_message=1'>Submit</A><BR><BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A><BR>
 			"}
 		if(4)
@@ -374,34 +381,34 @@ var/global/floorIsLava = 0
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		if(6)
-			dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed story to Network.</B></FONT><HR><BR>"
+			dat+=span_bold(span_maroon("ERROR: Could not submit Feed story to Network.")) + "<HR><BR>"
 			if(src.admincaster_feed_channel.channel_name=="")
-				dat+="<FONT COLOR='maroon'>Invalid receiving channel name.</FONT><BR>"
+				dat+=span_maroon("Invalid receiving channel name.") + "<BR>"
 			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]" || admincaster_feed_message.title == "")
-				dat+="<FONT COLOR='maroon'>Invalid message body.</FONT><BR>"
+				dat+=span_maroon("Invalid message body.") + "<BR>"
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[3]'>Return</A><BR>"
 		if(7)
-			dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed Channel to Network.</B></FONT><HR><BR>"
+			dat+=span_bold(span_maroon("ERROR: Could not submit Feed Channel to Network.")) + "<HR><BR>"
 			if(src.admincaster_feed_channel.channel_name =="" || src.admincaster_feed_channel.channel_name == "\[REDACTED\]")
-				dat+="<FONT COLOR='maroon'>Invalid channel name.</FONT><BR>"
+				dat+=span_maroon("Invalid channel name.") + "<BR>"
 			var/check = 0
 			for(var/datum/feed_channel/FC in news_network.network_channels)
 				if(FC.channel_name == src.admincaster_feed_channel.channel_name)
 					check = 1
 					break
 			if(check)
-				dat+="<FONT COLOR='maroon'>Channel name already in use.</FONT><BR>"
+				dat+=span_maroon("Channel name already in use.") + "<BR>"
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[2]'>Return</A><BR>"
 		if(9)
-			dat+="<B>[src.admincaster_feed_channel.channel_name]: </B><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[src.admincaster_feed_channel.author]</FONT>\]</FONT><HR>"
+			dat+=span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[created by: [span_maroon("[src.admincaster_feed_channel.author]")]\]") + "<HR>"
 			if(src.admincaster_feed_channel.censored)
 				dat+={"
-					<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
+					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
 					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
 				"}
 			else
 				if( isemptylist(src.admincaster_feed_channel.messages) )
-					dat+="<I>No feed messages found in channel...</I><BR>"
+					dat+=span_italics("No feed messages found in channel...") + "<BR>"
 				else
 					var/i = 0
 					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
@@ -413,68 +420,68 @@ var/global/floorIsLava = 0
 							pic_data+="<img src='tmp_photo[i].png' width = '180'><BR>"
 						dat+= get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author,"#d4cec1", pic_data)
 						dat+="<BR>"
-						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author] - [MESSAGE.time_stamp]</FONT>\]</FONT><BR>"
+						dat+=span_small("\[Story by [span_maroon("[MESSAGE.author] - [MESSAGE.time_stamp]")]\]") + "<BR>"
 			dat+={"
 				<BR><HR><A href='byond://?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[1]'>Back</A>
 			"}
 		if(10)
 			dat+={"
-				<B>[using_map.company_name] Feed Censorship Tool</B><BR>
-				<FONT SIZE=1>NOTE: Due to the nature of news Feeds, total deletion of a Feed Story is not possible.<BR>
-				Keep in mind that users attempting to view a censored feed will instead see the \[REDACTED\] tag above it.</FONT>
+				"} + span_bold("[using_map.company_name] Feed Censorship Tool") + {"<BR>
+				"} + span_small("NOTE: Due to the nature of news Feeds, total deletion of a Feed Story is not possible.<BR>") + {"
+				"} + span_small("Keep in mind that users attempting to view a censored feed will instead see the \[REDACTED\] tag above it.") + {"
 				<HR>Select Feed channel to get Stories from:<BR>
 			"}
 			if(isemptylist(news_network.network_channels))
-				dat+="<I>No feed channels found active...</I><BR>"
+				dat+=span_italics("No feed channels found active...") + "<BR>"
 			else
 				for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
-					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
+					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
 		if(11)
 			dat+={"
-				<B>[using_map.company_name] D-Notice Handler</B><HR>
-				<FONT SIZE=1>A D-Notice is to be bestowed upon the channel if the handling Authority deems it as harmful for the station's
-				morale, integrity or disciplinary behaviour. A D-Notice will render a channel unable to be updated by anyone, without deleting any feed
-				stories it might contain at the time. You can lift a D-Notice if you have the required access at any time.</FONT><HR>
+				"} + span_bold("[using_map.company_name] D-Notice Handler") + {"<HR>
+				"} + span_small("A D-Notice is to be bestowed upon the channel if the handling Authority deems it as harmful for the station's") + {"
+				"} + span_small("morale, integrity or disciplinary behaviour. A D-Notice will render a channel unable to be updated by anyone, without deleting any feed") + {"
+				"} + span_small("stories it might contain at the time. You can lift a D-Notice if you have the required access at any time.") + {"<HR>
 			"}
 			if(isemptylist(news_network.network_channels))
-				dat+="<I>No feed channels found active...</I><BR>"
+				dat+=span_italics("No feed channels found active...") + "<BR>"
 			else
 				for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
-					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
+					dat+="<A href='byond://?src=\ref[src];[HrefToken()];ac_pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? (span_red("***")) : null]<BR>"
 
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>"
 		if(12)
 			dat+={"
-				<B>[src.admincaster_feed_channel.channel_name]: </B><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[src.admincaster_feed_channel.author]</FONT> \]</FONT><BR>
-				<FONT SIZE=2><A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_author=\ref[src.admincaster_feed_channel]'>[(src.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A></FONT><HR>
+				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<BR>
+				"} + span_normal("<A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_author=\ref[src.admincaster_feed_channel]'>[(src.admincaster_feed_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A>") + {"<HR>
 			"}
 			if( isemptylist(src.admincaster_feed_channel.messages) )
-				dat+="<I>No feed messages found in channel...</I><BR>"
+				dat+=span_italics("No feed messages found in channel...") + "<BR>"
 			else
 				for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
 					dat+={"
-						-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>
-						<FONT SIZE=2><A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A></FONT><BR>
+						-[MESSAGE.body] <BR>"} + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + {"<BR>
+						"} + span_normal("<A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[src];[HrefToken()];ac_censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A>") + {"<BR>
 					"}
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[10]'>Back</A>"
 		if(13)
 			dat+={"
-				<B>[src.admincaster_feed_channel.channel_name]: </B><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[src.admincaster_feed_channel.author]</FONT> \]</FONT><BR>
+				"} + span_bold("[src.admincaster_feed_channel.channel_name]: ") + span_small("\[ created by: [span_maroon("[src.admincaster_feed_channel.author]")] \]") + {"<BR>
 				Channel messages listed below. If you deem them dangerous to the station, you can <A href='byond://?src=\ref[src];[HrefToken()];ac_toggle_d_notice=\ref[src.admincaster_feed_channel]'>Bestow a D-Notice upon the channel</A>.<HR>
 			"}
 			if(src.admincaster_feed_channel.censored)
 				dat+={"
-					<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
+					"} + span_red(span_bold("ATTENTION: ")) + {"This channel has been deemed as threatening to the welfare of the station, and marked with a [using_map.company_name] D-Notice.<BR>
 					No further feed story additions are allowed while the D-Notice is in effect.<BR><BR>
 				"}
 			else
 				if( isemptylist(src.admincaster_feed_channel.messages) )
-					dat+="<I>No feed messages found in channel...</I><BR>"
+					dat+=span_italics("No feed messages found in channel...") + "<BR>"
 				else
 					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
-						dat+="-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
+						dat+="-[MESSAGE.body] <BR>" + span_small("\[Story by [span_maroon("[MESSAGE.author]")]\]") + "<BR>"
 
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[11]'>Back</A>"
 		if(14)
@@ -485,43 +492,43 @@ var/global/floorIsLava = 0
 				wanted_already = 1
 				end_param = 2
 			if(wanted_already)
-				dat+="<FONT SIZE=2><BR><I>A wanted issue is already in Feed Circulation. You can edit or cancel it below.</FONT></I>"
+				dat+=span_normal(span_italics("<BR>A wanted issue is already in Feed Circulation. You can edit or cancel it below."))
 			dat+={"
 				<HR>
 				<A href='byond://?src=\ref[src];[HrefToken()];ac_set_wanted_name=1'>Criminal Name</A>: [src.admincaster_feed_message.author] <BR>
 				<A href='byond://?src=\ref[src];[HrefToken()];ac_set_wanted_desc=1'>Description</A>: [src.admincaster_feed_message.body] <BR>
 			"}
 			if(wanted_already)
-				dat+="<B>Wanted Issue created by:</B><FONT COLOR='green'> [news_network.wanted_issue.backup_author]</FONT><BR>"
+				dat+=span_bold("Wanted Issue created by:") + span_green(" [news_network.wanted_issue.backup_author]") + "<BR>"
 			else
-				dat+="<B>Wanted Issue will be created under prosecutor:</B><FONT COLOR='green'> [src.admincaster_signature]</FONT><BR>"
+				dat+=span_bold("Wanted Issue will be created under prosecutor:") + span_green(" [src.admincaster_signature]") + "<BR>"
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</A>"
 			if(wanted_already)
 				dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_cancel_wanted=1'>Take down Issue</A>"
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Cancel</A>"
 		if(15)
 			dat+={"
-				<FONT COLOR='green'>Wanted issue for [src.admincaster_feed_message.author] is now in Network Circulation.</FONT><BR><BR>
+				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] is now in Network Circulation.") + {"<BR><BR>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		if(16)
-			dat+="<B><FONT COLOR='maroon'>ERROR: Wanted Issue rejected by Network.</B></FONT><HR><BR>"
+			dat+=span_bold(span_maroon("ERROR: Wanted Issue rejected by Network.")) + "<HR><BR>"
 			if(src.admincaster_feed_message.author =="" || src.admincaster_feed_message.author == "\[REDACTED\]")
-				dat+="<FONT COLOR='maroon'>Invalid name for person wanted.</FONT><BR>"
+				dat+=span_maroon("Invalid name for person wanted.") + "<BR>"
 			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
-				dat+="<FONT COLOR='maroon'>Invalid description.</FONT><BR>"
+				dat+=span_maroon("Invalid description.") + "<BR>"
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>"
 		if(17)
 			dat+={"
-				<B>Wanted Issue successfully deleted from Circulation</B><BR>
+				"} + span_bold("Wanted Issue successfully deleted from Circulation") + {"<BR>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		if(18)
 			dat+={"
-				<B><FONT COLOR ='maroon'>-- STATIONWIDE WANTED ISSUE --</B></FONT><BR><FONT SIZE=2>\[Submitted by: <FONT COLOR='green'>[news_network.wanted_issue.backup_author]</FONT>\]</FONT><HR>
-				<B>Criminal</B>: [news_network.wanted_issue.author]<BR>
-				<B>Description</B>: [news_network.wanted_issue.body]<BR>
-				<B>Photo:</B>:
+				"} + span_bold(span_maroon("-- STATIONWIDE WANTED ISSUE --")) + {"<BR>"} + span_normal("\[Submitted by: [span_green("[news_network.wanted_issue.backup_author]")]\]") + {"<HR>
+				"} + span_bold("Criminal") + {": [news_network.wanted_issue.author]<BR>
+				"} + span_bold("Description") + {": [news_network.wanted_issue.body]<BR>
+				"} + span_bold("Photo:") + {":
 			"}
 			if(news_network.wanted_issue.img)
 				usr << browse_rsc(news_network.wanted_issue.img, "tmp_photow.png")
@@ -531,7 +538,7 @@ var/global/floorIsLava = 0
 			dat+="<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A><BR>"
 		if(19)
 			dat+={"
-				<FONT COLOR='green'>Wanted issue for [src.admincaster_feed_message.author] successfully edited.</FONT><BR><BR>
+				"} + span_green("Wanted issue for [src.admincaster_feed_message.author] successfully edited.") + {"<BR><BR>
 				<BR><A href='byond://?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Return</A><BR>
 			"}
 		else
@@ -539,31 +546,36 @@ var/global/floorIsLava = 0
 
 	//to_world("Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
 	//to_world("Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
-	usr << browse("<html>[dat]</html>", "window=admincaster_main;size=400x600")
-	onclose(usr, "admincaster_main")
 
-
+	var/datum/browser/popup = new(owner, "admincaster_main", "Admin Newscaster", 400, 600)
+	popup.add_head_content("<TITLE>Admin Newscaster</TITLE>")
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/proc/Jobbans()
 	if(!check_rights(R_BAN))	return
 
-	var/dat = "<B>Job Bans!</B><HR><table>"
+	var/dat = span_bold("Job Bans!") + "<HR><table>"
 	for(var/t in jobban_keylist)
 		var/r = t
 		if( findtext(r,"##") )
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='byond://?src=\ref[src];[HrefToken()];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
-	usr << browse("<html>[dat]</html>", "window=ban;size=400x400")
+
+	var/datum/browser/popup = new(owner, "ban", "Job Bans", 400, 400)
+	popup.add_head_content("<TITLE>Admin Newscaster</TITLE>")
+	popup.set_content(dat)
+	popup.open()
 
 /datum/admins/proc/Game()
 	if(!check_rights(0))	return
 
 	var/dat = {"
-		<html><center><B>Game Panel</B></center><hr>\n
+		<center>"} + span_bold("Game Panel") + {"</center><hr>\n
 		<A href='byond://?src=\ref[src];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
-	if(master_mode == "secret")
+	if(GLOB.master_mode == "secret")
 		dat += "<A href='byond://?src=\ref[src];[HrefToken()];f_secret=1'>(Force Secret Mode)</A><br>"
 
 	dat += {"
@@ -574,17 +586,19 @@ var/global/floorIsLava = 0
 		<A href='byond://?src=\ref[src];[HrefToken()];create_mob=1'>Create Mob</A><br>
 		<br><A href='byond://?src=\ref[src];[HrefToken()];vsc=airflow'>Edit Airflow Settings</A><br>
 		<A href='byond://?src=\ref[src];[HrefToken()];vsc=phoron'>Edit Phoron Settings</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br></html>
+		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
 		"}
 
-	usr << browse(dat, "window=admin2;size=210x280")
-	return
+	var/datum/browser/popup = new(owner, "admin2", "Game Panel", 220, 295)
+	popup.set_content(dat)
+	popup.open()
 
+/*
 /datum/admins/proc/Secrets(var/datum/admin_secret_category/active_category = null)
 	if(!check_rights(0))	return
 
 	// Print the header with category selection buttons.
-	var/dat = "<B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>"
+	var/dat = span_bold("The first rule of adminbuse is: you don't talk about the adminbuse.") + "<HR>"
 	for(var/datum/admin_secret_category/category in admin_secrets.categories)
 		if(!category.can_view(usr))
 			continue
@@ -593,9 +607,9 @@ var/global/floorIsLava = 0
 
 	// If a category is selected, print its description and then options
 	if(istype(active_category) && active_category.can_view(usr))
-		dat += "<B>[active_category.name]</B><BR>"
+		dat += span_bold("[active_category.name]") + "<BR>"
 		if(active_category.desc)
-			dat += "<I>[active_category.desc]</I><BR>"
+			dat += span_italics("[active_category.desc]") + "<BR>"
 		for(var/datum/admin_secret_item/item in active_category.items)
 			if(!item.can_view(usr))
 				continue
@@ -606,33 +620,74 @@ var/global/floorIsLava = 0
 	popup.set_content(dat)
 	popup.open()
 	return
+*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
 //i.e. buttons/verbs
 
+#define REGULAR_RESTART "Regular Restart"
+#define REGULAR_RESTART_DELAYED "Regular Restart (with delay)"
+#define HARD_RESTART "Hard Restart (No Delay/Feedback Reason)"
+#define HARDEST_RESTART "Hardest Restart (No actions, just reboot)"
+#define TGS_RESTART "Server Restart (Kill and restart DD)"
+ADMIN_VERB(restart, R_SERVER, "Reboot World", "Restarts the world immediately.", "Server.Game")
+	var/list/options = list(REGULAR_RESTART, REGULAR_RESTART_DELAYED, HARD_RESTART)
 
-/datum/admins/proc/restart()
-	set category = "Server.Game"
-	set name = "Restart"
-	set desc="Restarts the world"
-	if (!usr.client.holder)
+	// this option runs a codepath that can leak db connections because it skips subsystem (specifically SSdbcore) shutdown
+	if(!SSdbcore.IsConnected())
+		options += HARDEST_RESTART
+
+	if(world.TgsAvailable())
+		options += TGS_RESTART;
+
+	if(SSticker.admin_delay_notice)
+		if(alert(user, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") != "Yes")
+			return FALSE
+
+	var/result = input(user, "Select reboot method", "World Reboot", options[1]) as null|anything in options
+	if(isnull(result))
 		return
-	var/confirm = alert(usr, "Restart the game world?", "Restart", "Yes", "Cancel") // Not tgui_alert for safety
-	if(!confirm || confirm == "Cancel")
+
+	feedback_add_details("admin_verb","R")
+	if(blackbox)
+		blackbox.save_all_data_to_sql()
+
+	var/init_by = "Initiated by [user.holder.fakekey ? "Admin" : user.key]."
+	switch(result)
+		if(REGULAR_RESTART)
+			if(!user.is_localhost())
+				if(alert(user, "Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+					return FALSE
+			SSticker.Reboot(init_by, "admin reboot - by [user.key] [user.holder.fakekey ? "(stealth)" : ""]", 10)
+		if(REGULAR_RESTART_DELAYED)
+			var/delay = input("What delay should the restart have (in seconds)?", "Restart Delay", 5) as num|null
+			if(!delay)
+				return FALSE
+			if(!user.is_localhost())
+				if(alert(user,"Are you sure you want to restart the server?","This server is live", "Restart", "Cancel") != "Restart")
+					return FALSE
+			SSticker.Reboot(init_by, "admin reboot - by [user.key] [user.holder.fakekey ? "(stealth)" : ""]", delay * 10)
+		if(HARD_RESTART)
+			to_chat(world, "World reboot - [init_by]")
+			world.Reboot()
+		if(HARDEST_RESTART)
+			to_chat(world, "Hard world reboot - [init_by]")
+			world.Reboot(fast_track = TRUE)
+		if(TGS_RESTART)
+			to_chat(world, "Server restart - [init_by]")
+			world.TgsEndProcess()
+
+#undef REGULAR_RESTART
+#undef REGULAR_RESTART_DELAYED
+#undef HARD_RESTART
+#undef HARDEST_RESTART
+#undef TGS_RESTART
+
+ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world reboot.", "Server.Game")
+	if(!SSticker.cancel_reboot(user))
 		return
-	if(confirm == "Yes")
-		to_world(span_danger("Restarting world!" ) + span_notice("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"))
-		log_admin("[key_name(usr)] initiated a reboot.")
-
-		feedback_set_details("end_error","admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
-		feedback_add_details("admin_verb","R") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-		if(blackbox)
-			blackbox.save_all_data_to_sql()
-
-		sleep(50)
-		world.Reboot()
-
+	log_admin("[key_name(user)] cancelled the pending world reboot.")
+	message_admins("[key_name_admin(user)] cancelled the pending world reboot.")
 
 /datum/admins/proc/announce()
 	set category = "Admin.Chat"
@@ -674,7 +729,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 					msgverb = sanitize(msgverb, 50, extra = 0)
 				else
 					msgverb = "states"
-				global_announcer.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]", states = msgverb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
+				GLOB.global_announcer.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]", states = msgverb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
 				//VOREStation Edit End
 				log_admin("Intercom: [key_name(usr)] : [sender]:[message]")
 
@@ -764,7 +819,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			var/this_sender = decomposed[i]
 			var/this_message = decomposed[++i]
 			var/this_wait = decomposed[++i]
-			global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", states = speech_verb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.	//VOREStation Edit
+			GLOB.global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", states = speech_verb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.	//VOREStation Edit
 			sleep(this_wait SECONDS)
 
 /datum/admins/proc/toggleooc()
@@ -865,7 +920,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!SSticker.start_immediately)
 		SSticker.start_immediately = TRUE
 		var/msg = ""
-		if(SSticker.current_state == GAME_STATE_INIT)
+		if(SSticker.current_state == GAME_STATE_STARTUP)
 			msg = " (The server is still setting up, but the round will be started as soon as possible.)"
 		log_admin("[key_name(usr)] has started the game.[msg]")
 		message_admins(span_notice("[key_name_admin(usr)] has started the game.[msg]"))
@@ -969,8 +1024,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."), 1)
 		return
-	round_progressing = !round_progressing
-	if (!round_progressing)
+	GLOB.round_progressing = !GLOB.round_progressing
+	if (!GLOB.round_progressing)
 		to_world(span_world("The game start has been delayed."))
 		log_admin("[key_name(usr)] delayed the game.")
 	else
@@ -1002,30 +1057,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 	message_admins(span_blue("Toggled reviving to [CONFIG_GET(flag/allow_admin_rev)]."))
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/immreboot()
-	set category = "Server.Game"
-	set desc="Reboots the server post haste"
-	set name="Immediate Reboot"
-	if(!usr.client.holder)	return
-	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
-		return
-	to_world(span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
-	log_admin("[key_name(usr)] initiated an immediate reboot.")
-
-	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
-	feedback_add_details("admin_verb","IR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-	if(blackbox)
-		blackbox.save_all_data_to_sql()
-
-	world.Reboot()
-
-/datum/admins/proc/unprison(var/mob/M in mob_list)
+/datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Moderation"
 	set name = "Unprison"
 	if (M.z == 2)
 		if (CONFIG_GET(flag/allow_admin_jump))
-			M.loc = pick(latejoin)
+			M.loc = get_turf(pick(GLOB.latejoin))
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 		else
@@ -1037,7 +1074,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /proc/is_special_character(var/character) // returns 1 for special characters and 2 for heroes of gamemode
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		return 0
 	var/datum/mind/M
 	if (ismob(character))
@@ -1047,8 +1084,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 		M = character
 
 	if(M)
-		if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
-			for(var/datum/antagonist/antag in ticker.mode.antag_templates)
+		if(SSticker.mode.antag_templates && SSticker.mode.antag_templates.len)
+			for(var/datum/antagonist/antag in SSticker.mode.antag_templates)
 				if(antag.is_antagonist(M))
 					return 2
 		if(M.special_role)
@@ -1162,7 +1199,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Events"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
@@ -1182,72 +1219,74 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Show the current round configuration."
 	set name = "Show Game Mode"
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		tgui_alert_async(usr, "Not before roundstart!", "Alert")
 		return
 
-	var/out = "<font size=3><b>Current mode: [ticker.mode.name] (<a href='byond://?src=\ref[ticker.mode];[HrefToken()];debug_antag=self'>[ticker.mode.config_tag]</a>)</b></font><br/>"
+	var/out = span_large(span_bold("Current mode: [SSticker.mode.name] (<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=self'>[SSticker.mode.config_tag]</a>)")) + "<br/>"
 	out += "<hr>"
 
-	if(ticker.mode.ert_disabled)
-		out += "<b>Emergency Response Teams:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=ert'>disabled</a>"
+	if(SSticker.mode.ert_disabled)
+		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=ert'>disabled</a>"
 	else
-		out += "<b>Emergency Response Teams:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=ert'>enabled</a>"
+		out += span_bold("Emergency Response Teams:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=ert'>enabled</a>"
 	out += "<br/>"
 
-	if(ticker.mode.deny_respawn)
-		out += "<b>Respawning:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=respawn'>disallowed</a>"
+	if(SSticker.mode.deny_respawn)
+		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=respawn'>disallowed</a>"
 	else
-		out += "<b>Respawning:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=respawn'>allowed</a>"
+		out += span_bold("Respawning:") + "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=respawn'>allowed</a>"
 	out += "<br/>"
 
-	out += "<b>Shuttle delay multiplier:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=shuttle_delay'>[ticker.mode.shuttle_delay]</a><br/>"
+	out += span_bold("Shuttle delay multiplier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=shuttle_delay'>[SSticker.mode.shuttle_delay]</a><br/>"
 
-	if(ticker.mode.auto_recall_shuttle)
-		out += "<b>Shuttle auto-recall:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=shuttle_recall'>enabled</a>"
+	if(SSticker.mode.auto_recall_shuttle)
+		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=shuttle_recall'>enabled</a>"
 	else
-		out += "<b>Shuttle auto-recall:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=shuttle_recall'>disabled</a>"
+		out += span_bold("Shuttle auto-recall:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=shuttle_recall'>disabled</a>"
 	out += "<br/><br/>"
 
-	if(ticker.mode.event_delay_mod_moderate)
-		out += "<b>Moderate event time modifier:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_moderate'>[ticker.mode.event_delay_mod_moderate]</a><br/>"
+	if(SSticker.mode.event_delay_mod_moderate)
+		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_moderate'>[SSticker.mode.event_delay_mod_moderate]</a><br/>"
 	else
-		out += "<b>Moderate event time modifier:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_moderate'>unset</a><br/>"
+		out += span_bold("Moderate event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_moderate'>unset</a><br/>"
 
-	if(ticker.mode.event_delay_mod_major)
-		out += "<b>Major event time modifier:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_severe'>[ticker.mode.event_delay_mod_major]</a><br/>"
+	if(SSticker.mode.event_delay_mod_major)
+		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_severe'>[SSticker.mode.event_delay_mod_major]</a><br/>"
 	else
-		out += "<b>Major event time modifier:</b> <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=event_modifier_severe'>unset</a><br/>"
+		out += span_bold("Major event time modifier:") + " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=event_modifier_severe'>unset</a><br/>"
 
 	out += "<hr>"
 
-	if(ticker.mode.antag_tags && ticker.mode.antag_tags.len)
-		out += "<b>Core antag templates:</b></br>"
-		for(var/antag_tag in ticker.mode.antag_tags)
-			out += "<a href='byond://?src=\ref[ticker.mode];[HrefToken()];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
+	if(SSticker.mode.antag_tags && SSticker.mode.antag_tags.len)
+		out += span_bold("Core antag templates:") + "</br>"
+		for(var/antag_tag in SSticker.mode.antag_tags)
+			out += "<a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
 
-	if(ticker.mode.round_autoantag)
-		out += "<b>Autotraitor <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=autotraitor'>enabled</a></b>."
-		if(ticker.mode.antag_scaling_coeff > 0)
-			out += " (scaling with <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=antag_scaling'>[ticker.mode.antag_scaling_coeff]</a>)"
+	if(SSticker.mode.round_autoantag)
+		out += span_bold("Autotraitor <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=autotraitor'>enabled</a>.")
+		if(SSticker.mode.antag_scaling_coeff > 0)
+			out += " (scaling with <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=antag_scaling'>[SSticker.mode.antag_scaling_coeff]</a>)"
 		else
-			out += " (not currently scaling, <a href='byond://?src=\ref[ticker.mode];[HrefToken()];set=antag_scaling'>set a coefficient</a>)"
+			out += " (not currently scaling, <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];set=antag_scaling'>set a coefficient</a>)"
 		out += "<br/>"
 	else
-		out += "<b>Autotraitor <a href='byond://?src=\ref[ticker.mode];[HrefToken()];toggle=autotraitor'>disabled</a></b>.<br/>"
+		out += span_bold("Autotraitor <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];toggle=autotraitor'>disabled</a>.") + "<br/>"
 
 	out += span_bold("All antag ids:")
-	if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
-		for(var/datum/antagonist/antag in ticker.mode.antag_templates)
+	if(SSticker.mode.antag_templates && SSticker.mode.antag_templates.len)
+		for(var/datum/antagonist/antag in SSticker.mode.antag_templates)
 			antag.update_current_antag_max()
-			out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];debug_antag=[antag.id]'>[antag.id]</a>"
+			out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];debug_antag=[antag.id]'>[antag.id]</a>"
 			out += " ([antag.get_antag_count()]/[antag.cur_max]) "
-			out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
+			out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
 	else
 		out += " None."
-	out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
+	out += " <a href='byond://?src=\ref[SSticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
-	usr << browse("<html>[out]</html>", "window=edit_mode[src]")
+	var/datum/browser/popup = new(owner, "edit_mode[src]", "Edit Game Mode")
+	popup.set_content(out)
+	popup.open()
 	feedback_add_details("admin_verb","SGM")
 
 
@@ -1277,33 +1316,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."), 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/output_ai_laws()
-	var/ai_number = 0
-	for(var/mob/living/silicon/S in mob_list)
-		ai_number++
-		if(isAI(S))
-			to_chat(usr, span_bold("AI [key_name(S, usr)]'s laws:"))
-		else if(isrobot(S))
-			var/mob/living/silicon/robot/R = S
-			to_chat(usr, span_bold("CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independent)"]: laws:"))
-		else if (ispAI(S))
-			to_chat(usr, span_bold("pAI [key_name(S, usr)]'s laws:"))
-		else
-			to_chat(usr, span_bold("SOMETHING SILICON [key_name(S, usr)]'s laws:"))
-
-		if (S.laws == null)
-			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.")
-		else
-			S.laws.show_laws(usr)
-	if(!ai_number)
-		to_chat(usr, span_bold("No AIs located")) //Just so you know the thing is actually working and not just ignoring you.
-
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
 	set category = "Admin.Game"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
 
-	if (!holder)
+	if (!check_rights_for(src, R_HOLDER))
 		to_chat(src, "Only administrators may use this command.")
 		return
 
@@ -1353,7 +1371,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(istype(whom, /mob))
 		M = whom
 		C = M.client
-	if(R_HOST & C.holder.rights)
+	if(check_rights_for(C, R_HOST))
 		return 1
 	else
 		return 0
@@ -1408,16 +1426,16 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		to_chat(usr, "Mode has not started.")
 		return
 
-	var/antag_type = tgui_input_list(usr, "Choose a template.","Force Latespawn", all_antag_types)
-	if(!antag_type || !all_antag_types[antag_type])
+	var/antag_type = tgui_input_list(usr, "Choose a template.","Force Latespawn", GLOB.all_antag_types)
+	if(!antag_type || !GLOB.all_antag_types[antag_type])
 		to_chat(usr, "Aborting.")
 		return
 
-	var/datum/antagonist/antag = all_antag_types[antag_type]
+	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
 	message_admins("[key_name(usr)] attempting to force latespawn with template [antag.id].")
 	antag.attempt_late_spawn()
 
@@ -1432,12 +1450,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		to_chat(usr, "Mode has not started.")
 		return
 
 	log_and_message_admins("attempting to force mode autospawn.")
-	ticker.mode.try_latespawn()
+	SSticker.mode.try_latespawn()
 
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
 	set category = "Admin.Events"
@@ -1494,8 +1512,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Fun.Event Kit"
 	set name = "Send Fax"
 	set desc = "Sends a fax to this machine"
-	var/department = tgui_input_list(usr, "Choose a fax", "Fax", alldepartments)
-	for(var/obj/machinery/photocopier/faxmachine/sendto in allfaxes)
+	var/department = tgui_input_list(usr, "Choose a fax", "Fax", GLOB.alldepartments)
+	for(var/obj/machinery/photocopier/faxmachine/sendto in GLOB.allfaxes)
 		if(sendto.department == department)
 
 			if (!istype(src,/datum/admins))
@@ -1530,7 +1548,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			shouldStamp = 0
 
 	if(shouldStamp)
-		P.stamps += "<hr><i>This paper has been stamped by the [P.origin] Quantum Relay.</i>"
+		P.stamps += "<hr>" + span_italics("This paper has been stamped by the [P.origin] Quantum Relay.")
 
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
 		var/x = rand(-2, 0)
@@ -1553,7 +1571,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/obj/item/rcvdcopy
 	rcvdcopy = destination.copy(P)
 	rcvdcopy.loc = null //hopefully this shouldn't cause trouble
-	adminfaxes += rcvdcopy
+	GLOB.adminfaxes += rcvdcopy
 
 
 
@@ -1562,12 +1580,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 		if(P.sender) // sent as a reply
 			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(P.sender)]")
 			for(var/client/C in GLOB.admins)
-				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
+				if(check_rights_for(C, (R_ADMIN | R_MOD | R_EVENT)))
 					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] replied to a fax message from [key_name_admin(P.sender)] (<a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
 		else
 			log_admin("[key_name(src.owner)] has sent a fax message to [destination.department]")
 			for(var/client/C in GLOB.admins)
-				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
+				if(check_rights_for(C, (R_ADMIN | R_MOD | R_EVENT)))
 					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
 
 		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]"
@@ -1590,3 +1608,18 @@ var/datum/announcement/minor/admin_min_announcer = new
 		qdel(P)
 		faxreply = null
 	return
+
+/datum/admins/proc/set_uplink(mob/living/carbon/human/H as mob)
+	set category = "Debug.Events"
+	set name = "Set Uplink"
+	set desc = "Allows admins to set up an uplink on a character. This will be required for a character to use telecrystals."
+	set popup_menu = FALSE
+
+	if(check_rights(R_ADMIN|R_DEBUG))
+		traitors.spawn_uplink(H)
+		H.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
+		H.mind.accept_tcrystals = 1
+		var/msg = "[key_name(usr)] has given [H.ckey] an uplink."
+		message_admins(msg)
+	else
+		to_chat(usr, "You do not have access to this command.")

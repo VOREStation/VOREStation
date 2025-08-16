@@ -1,4 +1,4 @@
-import { CheckboxInput, FeatureToggle } from '../base';
+import { CheckboxInput, type FeatureToggle } from '../base';
 
 export const RUNECHAT_MOB: FeatureToggle = {
   name: 'Runechat: Mobs',
@@ -25,5 +25,13 @@ export const RUNECHAT_LONG: FeatureToggle = {
   name: 'Runechat: Long Messages',
   category: 'RUNECHAT',
   description: 'Sets runechat to show more characters.',
+  component: CheckboxInput,
+};
+
+export const RUNECHAT_BALLOON_MESSAGES: FeatureToggle = {
+  name: 'Runechat: Balloon Messages',
+  category: 'RUNECHAT',
+  description:
+    'Enables or Disables the "Balloon Messages" performed by visible actions.',
   component: CheckboxInput,
 };

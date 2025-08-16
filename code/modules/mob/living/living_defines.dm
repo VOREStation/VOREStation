@@ -22,7 +22,6 @@
 	var/max_nutrition = MAX_NUTRITION
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
-	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/base_attack_cooldown = DEFAULT_ATTACK_COOLDOWN
@@ -76,7 +75,7 @@
 	var/allow_self_surgery = FALSE	// Used to determine if the mob can perform surgery on itself.
 
 
-	var/tail_alt = 0
+	var/tail_layering = 0
 	var/flying = 0				// Allows flight
 	var/inventory_panel_type = /datum/inventory_panel
 	var/datum/inventory_panel/inventory_panel
@@ -105,3 +104,14 @@
 									"'s hands are shaking.",
 									" is rocking slightly from side to side."
 									)
+
+	var/touch_reaction_flags
+
+	var/virtual_reality_mob = FALSE // gross boolean for keeping VR mobs in VR
+
+	var/mob/living/tf_form // Shapeshifter shenanigans
+	var/tf_form_ckey
+
+	var/ooc_notes_favs = null
+	var/ooc_notes_maybes = null
+	var/ooc_notes_style = FALSE

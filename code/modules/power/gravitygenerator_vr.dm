@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	use_power = USE_POWER_ACTIVE
 	current_overlay = "activated"
 
-/obj/machinery/gravity_generator/main/station/Initialize()
+/obj/machinery/gravity_generator/main/station/Initialize(mapload)
 	. = ..()
 	setup_parts()
 	middle.add_overlay("activated")
@@ -127,14 +127,13 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	var/list/levels = list()
 	var/list/areas = list()
 
-/obj/machinery/gravity_generator/main/Initialize()
+/obj/machinery/gravity_generator/main/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/gravity_generator/main/LateInitialize() //Needs to happen after overmap sectors are initialized so we can figure out where we are
 	update_list()
 	update_areas()
-	return ..()
 
 /obj/machinery/gravity_generator/main/set_fix()
 	. = ..()
@@ -268,7 +267,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	switch(action)
 		if("gentoggle")
 			breaker = !breaker
-			investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(ui.user)].", "gravity")
+			investigate_log("was toggled [breaker ? span_green("ON") : span_red("OFF")] by [key_name(ui.user)].", "gravity")
 			set_power()
 			return TOPIC_REFRESH
 
@@ -390,7 +389,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 // Shake everyone on the z level to let them know that gravity was enagaged/disenagaged.
 /obj/machinery/gravity_generator/main/proc/shake_everyone()
 	var/sound/alert_sound = sound('sound/effects/alert.ogg')
-	for(var/mob/M as anything in player_list)
+	for(var/mob/M as anything in GLOB.player_list)
 		if(!(M.z in levels))
 			continue
 		M.update_gravity(M.mob_get_gravity())

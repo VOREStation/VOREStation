@@ -2,7 +2,7 @@
 
 Note that these have to be in the same /area that the controller is in for them to function.
 You still need to set the controller's "id_tag" to something unique.
-Any frequency works, it's self-setting, but it seems like people have decided 1380 for airlocks so maybe set that on the controller too.
+Any frequency works, it's self-setting, but it seems like people have decided 1381 for airlocks so maybe set that on the controller too.
 
 */
 
@@ -21,7 +21,7 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 	//Most things have a radio tag of some sort that needs adjusting
 	var/tag_addon
 
-/obj/effect/map_helper/airlock/Initialize()
+/obj/effect/map_helper/airlock/Initialize(mapload)
 	..()
 	my_controller = get_controller(get_area(src))
 	my_device = locate(my_device_type) in get_turf(src)

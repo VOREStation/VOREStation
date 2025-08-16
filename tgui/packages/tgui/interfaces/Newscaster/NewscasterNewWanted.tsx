@@ -5,7 +5,9 @@ import { decodeHtmlEntities } from 'tgui-core/string';
 import { NEWSCASTER_SCREEN_MAIN } from './constants';
 import type { Data } from './types';
 
-export const NewscasterNewWanted = (props: { setScreen: Function }) => {
+export const NewscasterNewWanted = (props: {
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { act, data } = useBackend<Data>();
 
   const { channel_name, msg, photo_data, user, wanted_issue } = data;
@@ -31,17 +33,15 @@ export const NewscasterNewWanted = (props: { setScreen: Function }) => {
         <LabeledList.Item label="Criminal Name">
           <Input
             fluid
-            updateOnPropsChange
             value={decodeHtmlEntities(channel_name)}
-            onInput={(e, val) => act('set_channel_name', { val: val })}
+            onBlur={(val) => act('set_channel_name', { val: val })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Description">
           <Input
             fluid
-            updateOnPropsChange
             value={decodeHtmlEntities(msg)}
-            onInput={(e, val) => act('set_wanted_desc', { val: val })}
+            onBlur={(val) => act('set_wanted_desc', { val: val })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Attach Photo">

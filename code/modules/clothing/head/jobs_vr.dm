@@ -5,4 +5,3 @@
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
-	

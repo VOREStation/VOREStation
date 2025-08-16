@@ -1,4 +1,4 @@
-var/global/list/micro_tunnels = list()
+GLOBAL_LIST_EMPTY(micro_tunnels)
 
 /obj/structure/micro_tunnel
 	name = "mouse hole"
@@ -20,12 +20,9 @@ var/global/list/micro_tunnels = list()
 		/mob/living/simple_mob/slime
 	)
 
-/obj/structure/micro_tunnel/New()
+/obj/structure/micro_tunnel/Initialize(mapload)
 	. = ..()
-	micro_tunnels.Add(src)
-
-/obj/structure/micro_tunnel/Initialize()
-	. = ..()
+	GLOB.micro_tunnels.Add(src)
 	if(name == initial(name))
 		var/area/our_area = get_area(src)
 		name = "[our_area.name] [name]"
@@ -40,7 +37,7 @@ var/global/list/micro_tunnels = list()
 		thing.forceMove(get_turf(src.loc))
 		thing.cancel_camera()
 
-	micro_tunnels.Remove(src)
+	GLOB.micro_tunnels.Remove(src)
 
 	return ..()
 
@@ -70,8 +67,7 @@ var/global/list/micro_tunnels = list()
 	for(var/datum/planet/P in SSplanets.planets)
 		if(myturf.z in P.expected_z_levels)
 			planet = P
-		else
-	for(var/obj/structure/micro_tunnel/t in micro_tunnels)
+	for(var/obj/structure/micro_tunnel/t in GLOB.micro_tunnels)
 		if(t == src)
 			continue
 		if(magic || t.magic)
@@ -85,7 +81,6 @@ var/global/list/micro_tunnels = list()
 			if(targetturf.z in planet.expected_z_levels)
 				destinations |= t
 				continue
-			else
 		var/above = GetAbove(myturf)
 		if(above && t.z == z + 1)
 			destinations |= t
@@ -453,11 +448,11 @@ var/global/list/micro_tunnels = list()
 	name = "mouse hole spawner"
 	icon = 'icons/obj/landmark_vr.dmi'
 	icon_state = "blue-x"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 	var/chance_to_spawn = 25
 
-/obj/effect/mouse_hole_spawner/Initialize()
+/obj/effect/mouse_hole_spawner/Initialize(mapload)
 	. = ..()
 
 	if(prob(chance_to_spawn))

@@ -23,7 +23,7 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/train/Initialize()
+/obj/vehicle/train/Initialize(mapload)
 	. = ..()
 	for(var/obj/vehicle/train/T in orange(1, src))
 		if(latch_on_start)
@@ -110,9 +110,8 @@
 		return
 	if(istype(C,/obj/vehicle/train))
 		latch(C, user)
-	else
-		if(!load(C, user))
-			to_chat(user, span_red("You were unable to load [C] on [src]."))
+	else if(!load(C, user))
+		to_chat(user, span_red("You were unable to load [C] on [src]."))
 
 /obj/vehicle/train/attack_hand(mob/user as mob)
 	if(user.stat || user.restrained() || !Adjacent(user))

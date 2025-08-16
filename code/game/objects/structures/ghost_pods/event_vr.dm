@@ -1,5 +1,5 @@
 /obj/structure/ghost_pod/proc/reset_ghostpod()	//Makes the ghost pod usable again and re-adds it to the active ghost pod list if it is not on it.
-	active_ghost_pods |= src
+	GLOB.active_ghost_pods |= src
 	used = FALSE
 	busy = FALSE
 
@@ -15,63 +15,6 @@
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
 	var/announce_prob = 35
-	var/list/possible_mobs = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
-								  "Red Panda" = /mob/living/simple_mob/vore/redpanda,
-								  "Fennec" = /mob/living/simple_mob/vore/fennec,
-								  "Fennix" = /mob/living/simple_mob/vore/fennix,
-								  "Space Bumblebee" = /mob/living/simple_mob/vore/bee,
-								  "Space Bear" = /mob/living/simple_mob/animal/space/bear,
-								  "Voracious Lizard" = /mob/living/simple_mob/vore/aggressive/dino,
-								  "Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
-								  "Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
-								  "Jelly Blob" = /mob/living/simple_mob/vore/jelly,
-								  "Wolf" = /mob/living/simple_mob/vore/wolf,
-								  "Juvenile Solargrub" = /mob/living/simple_mob/vore/solargrub,
-								  "Sect Queen" = /mob/living/simple_mob/vore/sect_queen,
-								  "Sect Drone" = /mob/living/simple_mob/vore/sect_drone,
-								  "Defanged Xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
-								  "Panther" = /mob/living/simple_mob/vore/aggressive/panther,
-								  "Giant Snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
-								  "Deathclaw" = /mob/living/simple_mob/vore/aggressive/deathclaw,
-								  "Otie" = /mob/living/simple_mob/vore/otie,
-								  "Mutated Otie" =/mob/living/simple_mob/vore/otie/feral,
-								  "Red Otie" = /mob/living/simple_mob/vore/otie/red,
-								  "Corrupt Hound" = /mob/living/simple_mob/vore/aggressive/corrupthound,
-								  "Corrupt Corrupt Hound" = /mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi,
-								  "Hunter Giant Spider" = /mob/living/simple_mob/animal/giant_spider/hunter,
-								  "Lurker Giant Spider" = /mob/living/simple_mob/animal/giant_spider/lurker,
-								  "Pepper Giant Spider" = /mob/living/simple_mob/animal/giant_spider/pepper,
-								  "Thermic Giant Spider" = /mob/living/simple_mob/animal/giant_spider/thermic,
-								  "Webslinger Giant Spider" = /mob/living/simple_mob/animal/giant_spider/webslinger,
-								  "Frost Giant Spider" = /mob/living/simple_mob/animal/giant_spider/frost,
-								  "Nurse Giant Spider" = /mob/living/simple_mob/animal/giant_spider/nurse/eggless,
-								  "Giant Spider Queen" = /mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless,
-								  "Red Dragon" = /mob/living/simple_mob/vore/aggressive/dragon,
-								  "Phoron Dragon" = /mob/living/simple_mob/vore/aggressive/dragon/virgo3b,
-								  "Space Dragon" = /mob/living/simple_mob/vore/aggressive/dragon/space,
-								  "Crypt Drake" = /mob/living/simple_mob/vore/cryptdrake,
-								  "Weretiger" = /mob/living/simple_mob/vore/weretiger,
-								  "Catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
-								  "Squirrel" = /mob/living/simple_mob/vore/squirrel/big,
-								  "Pakkun" =/mob/living/simple_mob/vore/pakkun,
-								  "Snapdragon" =/mob/living/simple_mob/vore/pakkun/snapdragon,
-								  "Sand pakkun" = /mob/living/simple_mob/vore/pakkun/sand,
-								  "Fire pakkun" = /mob/living/simple_mob/vore/pakkun/fire,
-								  "Amethyst pakkun" = /mob/living/simple_mob/vore/pakkun/purple,
-								  "Raptor" = /mob/living/simple_mob/vore/raptor,
-								  "Giant Bat" = /mob/living/simple_mob/vore/bat,
-								  "Scel (Orange)" = /mob/living/simple_mob/vore/scel/orange,
-								  "Scel (Blue)" = /mob/living/simple_mob/vore/scel/blue,
-								  "Scel (Purple)" = /mob/living/simple_mob/vore/scel/purple,
-								  "Scel (Red)" = /mob/living/simple_mob/vore/scel/red,
-								  "Scel (Green)" = /mob/living/simple_mob/vore/scel/green,
-								  "Cave Stalker" = /mob/living/simple_mob/vore/stalker,
-								  "Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
-								  "Scrubble" = /mob/living/simple_mob/vore/scrubble,
-								  "Sonadile" = /mob/living/simple_mob/vore/sonadile,
-								  "kururak" = /mob/living/simple_mob/animal/sif/kururak,
-								  "Statue of Temptation" = /mob/living/simple_mob/vore/devil
-								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)
 	..()
@@ -88,7 +31,7 @@
 		return
 
 	while(finalized != "Yes" && M.client)
-		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
+		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", GLOB.maint_mob_pred_options)
 		if(!choice)	//We probably pushed the cancel button on the mob selection. Let's just put the ghost pod back in the list.
 			to_chat(M, span_notice("No mob selected, cancelling."))
 			reset_ghostpod()
@@ -101,12 +44,10 @@
 		reset_ghostpod()
 		return
 
-	var/mobtype = possible_mobs[choice]
+	var/mobtype = GLOB.maint_mob_pred_options[choice]
 	var/mob/living/simple_mob/newPred = new mobtype(get_turf(src))
 	qdel(newPred.ai_holder)
 	newPred.ai_holder = null
-	newPred.voremob_loaded = TRUE // On-demand belly loading.
-	newPred.init_vore() // On-demand belly loading.
 	//newPred.movement_cooldown = 0			// The "needless artificial speed cap" exists for a reason
 	if(M.mind)
 		M.mind.transfer_to(newPred)
@@ -118,6 +59,10 @@
 	newPred.ckey = M.ckey
 	newPred.visible_message(span_warning("[newPred] emerges from somewhere!"))
 	log_and_message_admins("successfully entered \a [src] and became a [newPred].")
+	if(tgui_alert(newPred, "Do you want to load the vore bellies from your current slot?", "Load Bellies", list("Yes", "No")) == "Yes")
+		newPred.copy_from_prefs_vr()
+		if(LAZYLEN(newPred.vore_organs))
+			newPred.vore_selected = newPred.vore_organs[1]
 	qdel(src)
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/no_announce
@@ -145,7 +90,6 @@
 
 	var/mob/living/simple_mob/vore/morph/newMorph = new /mob/living/simple_mob/vore/morph(get_turf(src))
 	newMorph.voremob_loaded = TRUE // On-demand belly loading.
-	newMorph.init_vore() // On-demand belly loading.
 	if(M.mind)
 		M.mind.transfer_to(newMorph)
 	to_chat(M, span_notice("You are a " + span_bold("Morph") + ", somehow having gotten aboard the station in your wandering. \
@@ -160,6 +104,10 @@
 	newMorph.ckey = M.ckey
 	newMorph.visible_message(span_warning("A morph appears to crawl out of somewhere."))
 	log_and_message_admins("successfully entered \a [src] and became a Morph.")
+	if(tgui_alert(newMorph, "Do you want to load the vore bellies from your current slot?", "Load Bellies", list("Yes", "No")) == "Yes")
+		newMorph.copy_from_prefs_vr()
+		if(LAZYLEN(newMorph.vore_organs))
+			newMorph.vore_selected = newMorph.vore_organs[1]
 	qdel(src)
 
 /obj/structure/ghost_pod/ghost_activated/morphspawn/no_announce
@@ -172,10 +120,9 @@
 	icon_state = "redgate_hole"
 	icon_state_opened = "redgate_hole"
 
-/obj/structure/ghost_pod/ghost_activated/maintpred/redgate/Initialize()
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate/Initialize(mapload)
 	. = ..()
-	if(!(src in active_ghost_pods))
-		active_ghost_pods += src
+	GLOB.active_ghost_pods += src
 
 /obj/structure/ghost_pod/ghost_activated/maint_lurker
 	name = "strange maintenance hole"
@@ -188,6 +135,7 @@
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
+	var/redgate_restricted = FALSE
 
 //override the standard attack_ghost proc for custom messages
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/attack_ghost(var/mob/observer/dead/user)
@@ -196,7 +144,7 @@
 		return
 
 	//No whitelist
-	if(!is_alien_whitelisted(user, GLOB.all_species[user.client.prefs.species]))
+	if(!is_alien_whitelisted(user.client, GLOB.all_species[user.client.prefs.species]))
 		to_chat(user, span_warning("You cannot use this spawnpoint to spawn as a species you are not whitelisted for!"))
 		return
 
@@ -207,7 +155,7 @@
 
 	var/choice = tgui_alert(user, "Using this spawner will spawn you as your currently loaded character slot in a special role. It should not be used with characters you regularly play on station. Are you absolutely sure you wish to continue?", "Maint Lurker Spawner", list("Yes", "No"))
 
-	if(!choice || choice == "No")
+	if(choice != "Yes")
 		return
 
 	create_occupant(user)
@@ -228,6 +176,7 @@
 	M.client.prefs.copy_to(new_character)
 	new_character.dna.ResetUIFrom(new_character)
 	new_character.sync_organ_dna()
+	new_character.sync_addictions()
 	new_character.key = M.key
 	new_character.mind.loaded_from_ckey = picked_ckey
 	new_character.mind.loaded_from_slot = picked_slot
@@ -237,21 +186,54 @@
 	for(var/lang in new_character.client.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]
 		if(chosen_language)
-			if(is_lang_whitelisted(src,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+			if(is_lang_whitelisted(M, chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
+
+	SEND_SIGNAL(new_character, COMSIG_HUMAN_DNA_FINALIZED)
 
 	new_character.regenerate_icons()
 
 	new_character.update_transform()
-
-	to_chat(new_character, span_notice("You are a " + span_bold(JOB_MAINT_LURKER) + ", a loose end... you have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to maintenance areas along with any of your chosen loadout items that are not role restricted, and can make use of anything you can find in maintenance."))
+	if(redgate_restricted)
+		new_character.redgate_restricted = TRUE
+		to_chat(new_character, span_notice("You are an inhabitant of this redgate location, you have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to basic doors along with any of your chosen loadout items that are not role restricted, and can make use of anything you can find in the redgate map."))
+	else
+		to_chat(new_character, span_notice("You are a " + span_bold(JOB_MAINT_LURKER) + ", a loose end... you have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to maintenance areas along with any of your chosen loadout items that are not role restricted, and can make use of anything you can find in maintenance."))
 	to_chat(new_character, span_critical("Please be advised, this role is " + span_bold("NOT AN ANTAGONIST.")))
 	to_chat(new_character, span_notice("Whoever or whatever your chosen character slot is, your role is to facilitate roleplay focused around that character; this role is not free license to attack and murder people without provocation or explicit out-of-character consent. You should probably be cautious around high-traffic and highly sensitive areas (e.g. Telecomms) as Security personnel would be well within their rights to treat you as a trespasser. That said, good luck!"))
 
 	new_character.visible_message(span_warning("[new_character] appears to crawl out of somewhere."))
 	qdel(src)
 
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/Initialize()
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/Initialize(mapload)
 	. = ..()
-	if(!(src in active_ghost_pods))
-		active_ghost_pods += src
+	GLOB.active_ghost_pods += src
+
+/// redspace variant
+
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate
+	name = "Redspace inhabitant hole"
+	desc = "A starting location for characters who exist inside of the redgate!"
+	redgate_restricted = TRUE
+
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate/attack_ghost(var/mob/observer/dead/user)
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
+		to_chat(user, span_warning("You cannot use this spawnpoint because you are banned from playing ghost roles."))
+		return
+
+	//No whitelist
+	if(!is_alien_whitelisted(user.client, GLOB.all_species[user.client.prefs.species]))
+		to_chat(user, span_warning("You cannot use this spawnpoint to spawn as a species you are not whitelisted for!"))
+		return
+
+	//No OOC notes/FT
+	if(not_has_ooc_text(user))
+		//to_chat(user, span_warning("You must have proper out-of-character notes and flavor text configured for your current character slot to use this spawnpoint."))
+		return
+
+	var/choice = tgui_alert(user, "Using this spawner will spawn you as your currently loaded character slot in a special role. It should be a character who has a suitable reason for existing within this redspace location. You will not be able to leave through the redgate until another character grants you permission by clicking on the redgate with you nearby. Are you absolutely sure you wish to continue?", "Redspace Inhabitant Spawner", list("Yes", "No"))
+
+	if(choice != "Yes")
+		return
+
+	create_occupant(user)

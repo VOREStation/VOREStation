@@ -13,14 +13,14 @@
 	icecaps = "icecaps"
 	icon_state = "frozen"
 
-/obj/effect/overmap/visitable/planet/Sif/Initialize()
+/obj/effect/overmap/visitable/planet/Sif/Initialize(mapload)
 	atmosphere = new(CELL_VOLUME)
 	atmosphere.adjust_gas_temp(GAS_O2, MOLES_O2STANDARD, 273)
 	atmosphere.adjust_gas_temp(GAS_N2, MOLES_N2STANDARD, 273)
 
 	. = ..()
 
-/obj/effect/overmap/visitable/planet/Sif/Initialize()
+/obj/effect/overmap/visitable/planet/Sif/Initialize(mapload)
 	. = ..()
 	docking_codes = null
 
@@ -40,6 +40,6 @@
 	map_z = list(Z_LEVEL_STATION_ONE, Z_LEVEL_STATION_TWO, Z_LEVEL_STATION_THREE)
 	extra_z_levels = list(Z_LEVEL_TRANSIT) // Hopefully temporary, so arrivals announcements work.
 
-/obj/effect/overmap/visitable/planet/Sif/Initialize()
+/obj/effect/overmap/visitable/planet/Sif/Initialize(mapload)
 	. = ..()
 	docking_codes = null

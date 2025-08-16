@@ -1,9 +1,12 @@
 /mob/living/silicon/robot/updatehealth()
-	if(status_flags & GODMODE)
+	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
 		health = getMaxHealth()
 		set_stat(CONSCIOUS)
 		return
 	health = getMaxHealth() - (getBruteLoss() + getFireLoss())
+	if(health <= -getMaxHealth()) //die only once
+		death()
+		return
 	return
 
 /mob/living/silicon/robot/getMaxHealth()
@@ -48,7 +51,7 @@
 	return parts
 
 /mob/living/silicon/robot/proc/get_damageable_components()
-	var/list/rval = new
+	var/list/rval = list()
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
 		if(C.installed == 1) rval += C
@@ -73,7 +76,7 @@
 	if(!components.len)
 		return
 
-	 //Combat shielding absorbs a percentage of damage directly into the cell.
+	//Combat shielding absorbs a percentage of damage directly into the cell.
 	if(has_active_type(/obj/item/borg/combat/shield))
 		var/obj/item/borg/combat/shield/shield = locate() in src
 		if(shield && shield.active)
@@ -115,10 +118,11 @@
 		parts -= picked
 
 /mob/living/silicon/robot/take_overall_damage(var/brute = 0, var/burn = 0, var/sharp = FALSE, var/used_weapon = null)
-	if(status_flags & GODMODE)	return	//godmode
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL) //Normally we'd let this proc continue on, but it's much less time consumptive to just do a godmode check here.
+		return 0	// Cancelled by a component
 	var/list/datum/robot_component/parts = get_damageable_components()
 
-	 //Combat shielding absorbs a percentage of damage directly into the cell.
+	//Combat shielding absorbs a percentage of damage directly into the cell.
 	if(has_active_type(/obj/item/borg/combat/shield))
 		var/obj/item/borg/combat/shield/shield = locate() in src
 		if(shield)
@@ -153,5 +157,7 @@
 		parts -= picked
 
 /mob/living/silicon/robot/emp_act(severity)
+	if(SEND_SIGNAL(src, COMSIG_ROBOT_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
+		return // Cancelled by a component
 	uneq_all()
 	..() //Damage is handled at /silicon/ level.

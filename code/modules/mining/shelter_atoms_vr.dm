@@ -107,6 +107,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	desc = "A luxury bar in a capsule. " + JOB_BARTENDER + " required and not included. There's a license for use printed on the bottom."
 	template_id = "shelter_gamma"
 
+/obj/item/survivalcapsule/luxurycabin
+	name = "luxury surfluid cabin capsule"
+	desc = "A luxury cabin and kitchen in a capsule. There's a license for use printed on the bottom."
+	template_id = "shelter_cab_deluxe"
+
 /obj/item/survivalcapsule/military
 	name = "military surfluid shelter capsule"
 	desc = "A prefabricated firebase in a capsule. Contains basic weapons, building materials, and combat suits. There's a license for use printed on the bottom."
@@ -145,6 +150,9 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	name = "survival airlock"
 	block_air_zones = 1
 
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical
+	icon = 'icons/obj/doors/shuttledoors_vertical.dmi'
+
 //Door access setter button
 /obj/machinery/button/remote/airlock/survival_pod
 	name = "shelter privacy control"
@@ -161,6 +169,19 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	if(door)
 		door.glass = !door.glass
 		door.opacity = !door.opacity
+
+//Subtype that actually bolts doors!
+/obj/machinery/button/remote/airlock/survival_pod/bolts
+	name = "shelter privacy control"
+	desc = "You can ensure some privacy with this."
+
+/obj/machinery/button/remote/airlock/survival_pod/bolts/attack_hand(obj/item/W, mob/user as mob)
+	if(..()) return 1 //1 is failure on machines (for whatever reason)
+	if(door)
+		if(door.locked)
+			door.unlock()
+		else
+			door.lock()
 
 //Windows
 /obj/structure/window/reinforced/survival_pod
@@ -193,11 +214,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 /obj/structure/table/survival_pod/update_icon()
 	icon_state = "table"
 
-/obj/structure/table/survival_pod/New()
+/obj/structure/table/survival_pod/Initialize(mapload)
 	material = get_material_by_name(MAT_STEEL)
+	. = ..()
 	verbs -= /obj/structure/table/verb/do_flip
 	verbs -= /obj/structure/table/proc/do_put
-	..()
 
 /obj/structure/table/survival_pod/dismantle(obj/item/tool/wrench/W, mob/user)
 	to_chat(user, span_warning("You cannot dismantle \the [src]."))
@@ -262,7 +283,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	pixel_y = -4
 	max_n_of_items = 100
 
-/obj/machinery/smartfridge/survival_pod/Initialize()
+/obj/machinery/smartfridge/survival_pod/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/O in loc)
 		if(accept_check(O))

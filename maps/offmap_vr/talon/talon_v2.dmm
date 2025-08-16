@@ -201,11 +201,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/workroom)
 "aw" = (
-/obj/structure/table/standard,
 /obj/item/clothing/gloves/sterile/nitrile,
 /obj/item/clothing/mask/surgical,
 /obj/item/clothing/suit/surgicalapron,
-/obj/structure/table/standard,
 /obj/structure/table/standard,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -294,26 +292,6 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering)
-"aF" = (
-/obj/machinery/door/firedoor/glass/talon,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/blast/regular/open{
-	dir = 2;
-	id = "talon_bridge_shields"
-	},
-/obj/machinery/door/blast/regular/open{
-	dir = 2;
-	id = "talon_bridge_shields"
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/bridge)
 "aG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -2204,7 +2182,7 @@
 "gH" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talon_podbay";
 	pixel_x = 26
 	},
@@ -2220,7 +2198,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/maintenance/fore_port)
 "gK" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green,
@@ -2452,7 +2430,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
 "hz" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -2480,7 +2458,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talonpod_docker";
 	pixel_x = -8;
 	pixel_y = -24;
@@ -2877,7 +2855,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/maintenance/fore_port)
 "iM" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -3534,7 +3512,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "ly" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green,
@@ -4246,7 +4224,7 @@
 	specialfunctions = 4
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1420;
+	frequency = 1421;
 	id_tag = "tal_shuttle_sb";
 	req_one_access = list(301)
 	},
@@ -4516,7 +4494,7 @@
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/cap_room)
 "pc" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -5697,7 +5675,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "tc" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -6192,7 +6170,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway)
 "uO" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -6274,7 +6252,7 @@
 "va" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talon_boatbay";
 	pixel_y = 26
 	},
@@ -6470,7 +6448,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/maintenance/aft_port)
 "vL" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -6659,7 +6637,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway)
 "ww" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -6723,7 +6701,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/maintenance/wing_starboard)
 "wG" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -6793,7 +6771,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "wT" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -10215,20 +10193,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/hangar)
-"IO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/structure/catwalk,
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/maintenance/aft_port)
 "IP" = (
 /turf/simulated/wall/shull,
 /area/talon_v2/maintenance/aft_port)
@@ -10763,7 +10727,7 @@
 	channels = list("Talon" = 1)
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "talonboat_docker";
 	pixel_x = -6;
 	pixel_y = 24
@@ -10924,7 +10888,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -12407,7 +12371,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "PT" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -13248,7 +13212,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway/fore)
 "SS" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -13608,7 +13572,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
 "Ue" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -14025,7 +13989,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/refining)
 "Vy" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -14264,7 +14228,7 @@
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/restrooms)
 "Wl" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -15245,7 +15209,7 @@
 /area/talon_v2/maintenance/wing_starboard)
 "Zr" = (
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1420;
+	frequency = 1421;
 	id_tag = "tal_shuttle_sb";
 	req_one_access = list(301)
 	},
@@ -15377,7 +15341,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/maintenance/wing_port)
 "ZK" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -23201,7 +23165,7 @@ Zc
 uG
 vK
 vK
-IO
+DN
 tC
 uL
 tC
@@ -25836,7 +25800,7 @@ XP
 XP
 XP
 WL
-aF
+LB
 ZC
 WL
 MW

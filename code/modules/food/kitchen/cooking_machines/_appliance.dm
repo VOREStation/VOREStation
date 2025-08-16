@@ -36,19 +36,19 @@
 	// If the machine has multiple output modes, define them here.
 	var/selected_option
 	var/list/output_options = list()
-	var/list/datum/recipe/available_recipes
+	var/list/datum/recipe/appliance_available_recipes = list()
 
 	var/container_type = null
 
 	var/combine_first = FALSE // If TRUE, this appliance will do combination cooking before checking recipes
-	var/food_safety = FALSE	//RS ADD - If true, the appliance automatically ejects food instead of burning it
+	var/food_safety = FALSE	// If true, the appliance automatically ejects food instead of burning it
 
 	var/static/radial_eject = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_eject")
 	var/static/radial_power = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_power")
 	var/static/radial_safety = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_safety")
 	var/static/radial_output = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_change_output")
 
-/obj/machinery/appliance/Initialize()
+/obj/machinery/appliance/Initialize(mapload)
 	. = ..()
 
 	default_apply_parts()
@@ -56,12 +56,10 @@
 	if(output_options.len)
 		verbs += /obj/machinery/appliance/proc/choose_output
 
-	if (!available_recipes)
-		available_recipes = new
-
-	for(var/datum/recipe/test as anything in subtypesof(/datum/recipe))
-		if((appliancetype & initial(test.appliance)))
-			available_recipes += new test
+	if(!LAZYLEN(appliance_available_recipes))
+		for(var/datum/recipe/test as anything in subtypesof(/datum/recipe))
+			if((appliancetype & initial(test.appliance)))
+				appliance_available_recipes += new test
 
 /obj/machinery/appliance/Destroy()
 	for(var/datum/cooking_item/CI as anything in cooking_objs)
@@ -273,23 +271,23 @@
 
 	if(istype(I, /obj/item/gripper))
 		var/obj/item/gripper/GR = I
-		var/obj/item/Wrap = GR.wrapped
-		if(Wrap)
-			Wrap.loc = get_turf(src)
-			var/result = can_insert(Wrap, user)
+		var/obj/item/wrap = GR.get_current_pocket()
+		if(wrap)
+			wrap.loc = get_turf(src)
+			var/result = can_insert(wrap, user)
 			if(!result)
-				Wrap.forceMove(GR)
+				wrap.forceMove(GR)
 				if(!(default_deconstruction_screwdriver(user, I)))
 					default_part_replacement(user, I)
 				return
 
-			if(QDELETED(GR.wrapped))
-				GR.wrapped = null
+			if(QDELETED(wrap))
+				GR.WR = null
 
-			if(GR?.wrapped.loc != src)
+			if(wrap.loc != src)
 				GR.drop_item_nm()
 
-			ToCook = Wrap
+			ToCook = wrap
 		else
 			attack_hand(user)
 			return
@@ -434,9 +432,58 @@
 			cooking = FALSE
 			update_icon()
 
+/obj/machinery/appliance/proc/predict_cooking(datum/cooking_item/CI)
+	var/datum/recipe/recipe = null
+	var/atom/C = null
+	if(CI.container)
+		C = CI.container
+	else
+		C = src
+	recipe = select_recipe(appliance_available_recipes, C)
+
+	var/list/results = list()
+	if(recipe)
+		var/obj/O = recipe.result
+		results += initial(O.name)
+	else if(CI.combine_target)
+		results += predict_combination(CI)
+	else
+		for(var/obj/item/I in CI.container)
+			results += predict_modification(I, CI)
+
+	return jointext(results, ", ")
+
+/obj/machinery/appliance/proc/predict_combination(datum/cooking_item/CI)
+	var/obj/cook_path = output_options[CI.combine_target]
+
+	var/list/words = list()
+	var/list/cooktypes = list()
+
+	for(var/obj/item/reagent_containers/food/snacks/S in CI.container)
+		words |= splittext(S.name, " ")
+		cooktypes |= S.cooked
+
+	//Set the name.
+	words -= list("and", "the", "in", "is", "bar", "raw", "sticks", "boiled", "fried", "deep", "-o-", "warm", "two", "flavored")
+	//Remove common connecting words and unsuitable ones from the list. Unsuitable words include those describing
+	//the shape, cooked-ness/temperature or other state of an ingredient which doesn't apply to the finished product
+	var/name = initial(cook_path.name)
+	words.Remove(name)
+	shuffle(words)
+	var/num = 6 //Maximum number of words
+	while (num > 0)
+		num--
+		if (!words.len)
+			break
+		//Add prefixes from the ingredients in a random order until we run out or hit limit
+		name = "[pop(words)] [name]"
+
+	return name
+
+/obj/machinery/appliance/proc/predict_modification(obj/item/input, datum/cooking_item/CI)
+	return "[cook_type] [input.name]"
 
 /obj/machinery/appliance/proc/finish_cooking(var/datum/cooking_item/CI)
-
 	src.visible_message(span_infoplain(span_bold("\The [src]") + " pings!"))
 	if(cooked_sound)
 		playsound(get_turf(src), cooked_sound, 50, 1)
@@ -447,7 +494,7 @@
 		C = CI.container
 	else
 		C = src
-	recipe = select_recipe(available_recipes,C)
+	recipe = select_recipe(appliance_available_recipes,C)
 
 	if (recipe)
 		CI.result_type = 4//Recipe type, a specific recipe will transform the ingredients into a new food
@@ -459,7 +506,7 @@
 			AM.forceMove(temp)
 
 		//making multiple copies of a recipe from one container. For example, tons of fries
-		while (select_recipe(available_recipes,C) == recipe)
+		while (select_recipe(appliance_available_recipes,C) == recipe)
 			var/list/TR = list()
 			TR += recipe.make_food(C)
 			for (var/atom/movable/AM in TR) //Move results to buffer
@@ -537,8 +584,8 @@
 	CI.container.reagents.trans_to_holder(buffer, CI.container.reagents.total_volume)
 
 	var/obj/item/reagent_containers/food/snacks/result = new cook_path(CI.container)
-	buffer.trans_to_holder(result.reagents, buffer.total_volume) //trans_to doesn't handle food items well, so
-																 //just call trans_to_holder instead
+	buffer.trans_to_holder(result.reagents, buffer.total_volume)	//trans_to doesn't handle food items well, so
+																	//just call trans_to_holder instead
 
 	// Reagent-only foods.
 	if(reagents_determine_color)

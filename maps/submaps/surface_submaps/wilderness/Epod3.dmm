@@ -1,31 +1,294 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/template_noop,/area/submap/Epod3)
-"c" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Epod3)
-"d" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Epod3)
-"e" = (/turf/simulated/shuttle/wall,/area/submap/Epod3)
-"f" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/dirt,/area/submap/Epod3)
-"g" = (/obj/effect/spider/stickyweb,/turf/template_noop,/area/submap/Epod3)
-"h" = (/obj/structure/bed/chair{dir = 4},/obj/structure/closet/walllocker/emerglocker{pixel_y = 28},/obj/item/radio/intercom{pixel_y = -26},/turf/simulated/shuttle/floor,/area/submap/Epod3)
-"i" = (/obj/structure/bed/chair{dir = 4},/obj/machinery/vending/wallmed1{name = "Emergency NanoMed"; pixel_y = 28},/obj/machinery/light,/obj/item/weldingtool/largetank,/turf/simulated/shuttle/floor,/area/submap/Epod3)
-"j" = (/obj/machinery/status_display{density = 0; layer = 4; pixel_x = 0; pixel_y = -32},/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 8},/obj/effect/decal/remains,/obj/effect/decal/cleanable/blood/splatter,/obj/item/ammo_casing/spent,/obj/item/clothing/under/suit_jacket/really_black,/obj/item/clothing/shoes/dress,/obj/item/clothing/glasses/sunglasses,/obj/random/multiple/gun/projectile/handgun,/turf/simulated/shuttle/floor,/area/submap/Epod3)
-"k" = (/obj/structure/shuttle/engine/propulsion/burst{icon_state = "propulsion"; dir = 8},/turf/simulated/shuttle/wall,/area/submap/Epod3)
-"l" = (/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/dirt,/area/submap/Epod3)
-"m" = (/obj/machinery/door/airlock/external{name = "Escape Pod Hatch"; welded = 1},/turf/simulated/shuttle/floor,/area/submap/Epod3)
-"n" = (/obj/effect/spider/eggcluster/small/frost,/turf/simulated/floor/outdoors/dirt,/area/submap/Epod3)
-"o" = (/mob/living/simple_mob/animal/giant_spider/carrier{ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase},/turf/template_noop,/area/submap/Epod3)
-"p" = (/obj/effect/spider/stickyweb,/obj/effect/spider/stickyweb,/turf/template_noop,/area/submap/Epod3)
-"q" = (/mob/living/simple_mob/animal/giant_spider/frost/sif{ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase},/turf/simulated/floor/outdoors/dirt,/area/submap/Epod3)
-"r" = (/obj/structure/shuttle/window,/obj/structure/grille,/turf/simulated/shuttle/plating,/area/submap/Epod3)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/template_noop,
+/area/submap/Epod3)
+"c" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Epod3)
+"d" = (
+/obj/structure/flora/tree/sif,
+/turf/template_noop,
+/area/submap/Epod3)
+"e" = (
+/turf/simulated/shuttle/wall,
+/area/submap/Epod3)
+"f" = (
+/obj/structure/flora/tree/sif,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Epod3)
+"g" = (
+/obj/effect/spider/stickyweb,
+/turf/template_noop,
+/area/submap/Epod3)
+"h" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_y = 28
+	},
+/obj/item/radio/intercom{
+	pixel_y = -26
+	},
+/turf/simulated/shuttle/floor,
+/area/submap/Epod3)
+"i" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/vending/wallmed1{
+	name = "Emergency NanoMed";
+	pixel_y = 28
+	},
+/obj/machinery/light,
+/obj/item/weldingtool/largetank,
+/turf/simulated/shuttle/floor,
+/area/submap/Epod3)
+"j" = (
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/obj/structure/bed/chair{
+	icon_state = "chair_preview";
+	dir = 8
+	},
+/obj/effect/decal/remains,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/item/ammo_casing/spent,
+/obj/item/clothing/under/suit_jacket/really_black,
+/obj/item/clothing/shoes/dress,
+/obj/item/clothing/glasses/sunglasses,
+/obj/random/multiple/gun/projectile/handgun,
+/turf/simulated/shuttle/floor,
+/area/submap/Epod3)
+"k" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	icon_state = "propulsion";
+	dir = 8
+	},
+/turf/simulated/shuttle/wall,
+/area/submap/Epod3)
+"l" = (
+/obj/effect/spider/stickyweb,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Epod3)
+"m" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Hatch";
+	welded = 1
+	},
+/turf/simulated/shuttle/floor,
+/area/submap/Epod3)
+"n" = (
+/obj/effect/spider/eggcluster/small/frost,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Epod3)
+"o" = (
+/mob/living/simple_mob/animal/giant_spider/carrier{
+	ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase
+	},
+/turf/template_noop,
+/area/submap/Epod3)
+"p" = (
+/obj/effect/spider/stickyweb,
+/obj/effect/spider/stickyweb,
+/turf/template_noop,
+/area/submap/Epod3)
+"q" = (
+/mob/living/simple_mob/animal/giant_spider/frost/sif{
+	ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Epod3)
+"r" = (
+/obj/structure/shuttle/window,
+/obj/structure/grille,
+/turf/simulated/shuttle/plating,
+/area/submap/Epod3)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaa
-abbbgggcccbbbba
-abbbgdgllllbbba
-abdggkeeeefgbba
-abggbmhijrngdba
-abbgokeeeellgba
-abbpgccllllfgba
-abbdggggccqbbba
-abbbbbbdbbbbbba
-aaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+d
+g
+b
+b
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+g
+g
+g
+p
+d
+b
+a
+"}
+(5,1,1) = {"
+a
+g
+g
+g
+b
+o
+g
+g
+b
+a
+"}
+(6,1,1) = {"
+a
+g
+d
+k
+m
+k
+c
+g
+b
+a
+"}
+(7,1,1) = {"
+a
+g
+g
+e
+h
+e
+c
+g
+b
+a
+"}
+(8,1,1) = {"
+a
+c
+l
+e
+i
+e
+l
+g
+d
+a
+"}
+(9,1,1) = {"
+a
+c
+l
+e
+j
+e
+l
+c
+b
+a
+"}
+(10,1,1) = {"
+a
+c
+l
+e
+r
+e
+l
+c
+b
+a
+"}
+(11,1,1) = {"
+a
+b
+l
+f
+n
+l
+l
+q
+b
+a
+"}
+(12,1,1) = {"
+a
+b
+b
+g
+g
+l
+f
+b
+b
+a
+"}
+(13,1,1) = {"
+a
+b
+b
+b
+d
+g
+g
+b
+b
+a
+"}
+(14,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

@@ -1,10 +1,12 @@
 SUBSYSTEM_DEF(planets)
 	name = "Planets"
-	init_order = INIT_ORDER_PLANETS
 	priority = FIRE_PRIORITY_PLANETS
 	wait = 2 SECONDS
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	dependencies = list(
+		/datum/controller/subsystem/plants
+	)
 
 	var/static/list/planets = list()
 	var/static/list/z_to_planet = list()
@@ -24,8 +26,12 @@ SUBSYSTEM_DEF(planets)
 	for(var/P in planet_datums)
 		var/datum/planet/NP = new P()
 		planets.Add(NP)
-		for(var/Z in NP.expected_z_levels)
-			if(Z > z_to_planet.len)
+		for(var/index in 1 to length(NP.expected_z_levels))
+			var/Z = NP.expected_z_levels[index]
+			if(!isnum(Z))
+				Z = GLOB.map_templates_loaded[Z]
+				NP.expected_z_levels[index] = Z
+			if(Z > length(z_to_planet))
 				z_to_planet.len = Z
 			if(z_to_planet[Z])
 				admin_notice(span_danger("Z[Z] is shared by more than one planet!"), R_DEBUG)
@@ -71,7 +77,7 @@ SUBSYSTEM_DEF(planets)
 		if(MC_TICK_CHECK)
 			return
 
-	#ifndef UNIT_TEST // Don't be updating temperatures and such during unit tests
+	#ifndef UNIT_TESTS // Don't be updating temperatures and such during unit tests
 	var/list/needs_temp_update = src.needs_temp_update
 	while(needs_temp_update.len)
 		var/datum/planet/P = needs_temp_update[needs_temp_update.len]

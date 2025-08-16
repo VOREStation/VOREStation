@@ -5,11 +5,11 @@
 
 	if(!check_rights(R_FUN)) return
 
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Admin", human_mob_list)
+	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Admin", GLOB.human_mob_list)
 	if(!H) return
 
 	log_and_message_admins("is altering the appearance of [H].")
-	H.change_appearance(APPEARANCE_ALL, usr, check_species_whitelist = 0, state = GLOB.tgui_admin_state)
+	H.change_appearance(APPEARANCE_ALL, usr, check_species_whitelist = 0, state = ADMIN_STATE(R_FUN))
 	feedback_add_details("admin_verb","CHAA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_human_appearance_self()
@@ -19,13 +19,13 @@
 
 	if(!check_rights(R_FUN)) return
 
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Self", human_mob_list)
+	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Self", GLOB.human_mob_list)
 	if(!H) return
 
 	if(!H.client)
 		to_chat(usr, span_filter_warning(" Only mobs with clients can alter their own appearance."))
 		return
-	var/datum/gender/T = gender_datums[H.get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
 	switch(tgui_alert(usr, "Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
 		if("Yes")
 			log_and_message_admins("has allowed [H] to change [T.his] appearance, without whitelisting of races.")
@@ -41,7 +41,7 @@
 
 	if(!check_rights(R_FUN))	return
 
-	var/mob/living/carbon/human/M = tgui_input_list(usr, "Select mob.", "Edit Appearance", human_mob_list)
+	var/mob/living/carbon/human/M = tgui_input_list(usr, "Select mob.", "Edit Appearance", GLOB.human_mob_list)
 
 	if(!ishuman(M))
 		to_chat(usr, span_warning("You can only do this to humans!"))
@@ -80,12 +80,12 @@
 		M.s_tone =  -M.s_tone + 35
 
 	// hair
-	var/new_hstyle = tgui_input_list(usr, "Select a hair style", "Grooming", hair_styles_list)
+	var/new_hstyle = tgui_input_list(usr, "Select a hair style", "Grooming", GLOB.hair_styles_list)
 	if(new_hstyle)
 		M.h_style = new_hstyle
 
 	// facial hair
-	var/new_fstyle = tgui_input_list(usr, "Select a facial hair style", "Grooming", facial_hair_styles_list)
+	var/new_fstyle = tgui_input_list(usr, "Select a facial hair style", "Grooming", GLOB.facial_hair_styles_list)
 	if(new_fstyle)
 		M.f_style = new_fstyle
 

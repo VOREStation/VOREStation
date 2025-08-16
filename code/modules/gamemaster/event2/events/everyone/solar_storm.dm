@@ -4,8 +4,8 @@
 	event_type = /datum/event2/event/solar_storm
 
 /datum/event2/meta/solar_storm/get_weight()
-	var/population_factor = metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10
-	var/space_factor = metric.count_all_space_mobs() * 50
+	var/population_factor = GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10
+	var/space_factor = GLOB.metric.count_all_space_mobs() * 50
 	return (20 + population_factor + space_factor) / (times_ran + 1)
 
 
@@ -40,7 +40,7 @@
 
 /datum/event2/event/solar_storm/proc/radiate()
 	// Note: Too complicated to be worth trying to use the radiation system for this.  Its only in space anyway, so we make an exception in this case.
-	for(var/mob/living/L in player_list)
+	for(var/mob/living/L in GLOB.player_list)
 		var/turf/T = get_turf(L)
 		if(!T)
 			continue

@@ -14,10 +14,10 @@ export const DNAModifierBlocks = (props: {
     props;
 
   const characters: string[] = dnaString.split('');
-  let dnaBlocks: React.JSX.Element[] = [];
+  const dnaBlocks: React.JSX.Element[] = [];
   for (let block = 0; block < characters.length; block += blockSize) {
     const realBlock: number = block / blockSize + 1;
-    let subBlocks: React.JSX.Element[] = [];
+    const subBlocks: React.JSX.Element[] = [];
     for (let subblock = 0; subblock < blockSize; subblock++) {
       const realSubblock: number = subblock + 1;
       subBlocks.push(
@@ -40,10 +40,7 @@ export const DNAModifierBlocks = (props: {
       );
     }
     dnaBlocks.push(
-      <Stack.Item
-        mb="1rem"
-        style={realBlock === 1 ? { marginLeft: '0.5em' } : {}} // Remove once tgui core uses gap
-      >
+      <Stack.Item mb="1rem">
         <Box
           inline
           width="20px"

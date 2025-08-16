@@ -24,6 +24,7 @@
 	. = ..()
 	if(!skip_cell)
 		cell = new/obj/item/cell/apc(src)
+	AddElement(/datum/element/climbable)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -173,6 +174,9 @@
 
 	name = "[name] (ID [id])"
 
+	// Not climbable!
+	RemoveElement(/datum/element/climbable)
+
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(var/mob/user as mob)
 		to_chat(user, span_notice("You can't directly interact with this machine. Use the scrubber control console."))
 
@@ -245,7 +249,7 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
 	name = "Stationary Air Scrubber"
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize()
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize(mapload)
 	. = ..()
 	desc += "This one seems to be tightly secured with large bolts."
 

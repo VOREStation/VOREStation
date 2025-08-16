@@ -45,7 +45,7 @@
 
 		//Cosmetics mostly
 		flick("phasein",src)
-		custom_emote(1,"phases in!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
 		sleep(30) //The duration of the TP animation
 		is_shifting = FALSE
 		canmove = original_canmove
@@ -68,7 +68,7 @@
 		//Affect nearby lights
 		var/destroy_lights = 0
 
-		for(var/obj/machinery/light/L in machines)
+		for(var/obj/machinery/light/L in GLOB.machines)
 			if(L.z != z || get_dist(src,L) > 10)
 				continue
 
@@ -83,7 +83,7 @@
 	else
 		shifted_out = TRUE
 		shift_state = AB_SHIFT_PASSIVE
-		custom_emote(1,"phases out!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 		real_name = name
 		name = "Something"
 		health = maxHealth	//Fullheal
@@ -105,7 +105,7 @@
 		density = FALSE
 		force_max_speed = TRUE
 
-/mob/living/simple_mob/vore/demon/verb/phase_shift()
+/mob/living/simple_mob/vore/demon/verb/demonic_phase_shift()
 	set name = "Phase Shift"
 	set desc = "Shift out of reality temporarily"
 	set category = "Abilities.Demon"
@@ -139,7 +139,7 @@
 	is_shifting = TRUE
 
 	shifted_out = TRUE
-	custom_emote(1,"phases out!")
+	automatic_custom_emote(VISIBLE_MESSAGE,"phases out!")
 	real_name = name
 	name = "Something"
 
@@ -179,7 +179,7 @@
 
 		//Cosmetics mostly
 		flick("phasein",src)
-		custom_emote(1,"phases in!")
+		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
 		sleep(30) //The duration of the TP animation
 		is_shifting = FALSE
 		canmove = original_canmove

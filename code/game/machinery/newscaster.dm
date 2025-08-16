@@ -99,11 +99,11 @@
 	alert_readers(FC.announcement)
 
 /datum/feed_network/proc/alert_readers(var/annoncement)
-	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
+	for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 		NEWSCASTER.newsAlert(annoncement)
 		NEWSCASTER.update_icon()
 
-	// var/list/receiving_pdas = new
+	// var/list/receiving_pdas = list()
 	// for (var/obj/item/pda/P in PDAs)
 	// 	if(!P.owner)
 	// 		continue
@@ -171,9 +171,9 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	name = "Security Newscaster"
 	securityCaster = 1
 
-/obj/machinery/newscaster/Initialize()
+/obj/machinery/newscaster/Initialize(mapload)
 	..()
-	allCasters += src
+	GLOB.allCasters += src
 	unit_no = ++unit_no_cur
 	paper_remaining = 15
 	update_icon()
@@ -184,7 +184,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	update_icon()
 
 /obj/machinery/newscaster/Destroy()
-	allCasters -= src
+	GLOB.allCasters -= src
 	node = null
 	return ..()
 
@@ -276,12 +276,12 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	tgui_interact(user)
 
 /**
-  * Sets a temporary message to display to the user
-  *
-  * Arguments:
-  * * text - Text to display, null/empty to clear the message from the UI
-  * * style - The style of the message: (color name), info, success, warning, danger, virus
-  */
+ * Sets a temporary message to display to the user
+ *
+ * Arguments:
+ * * text - Text to display, null/empty to clear the message from the UI
+ * * style - The style of the message: (color name), info, success, warning, danger, virus
+ */
 /obj/machinery/newscaster/proc/set_temp(text = "", style = "info", update_now = FALSE)
 	temp = list(text = text, style = style)
 	if(update_now)
@@ -448,11 +448,11 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			return TRUE
 
 		if("set_new_message")
-			msg = sanitize(tgui_input_text(ui.user, "Write your Feed story", "Network Channel Handler", multiline = TRUE, prevent_enter = TRUE))
+			msg = sanitize(tgui_input_text(ui.user, "Write your Feed story", "Network Channel Handler","", MAX_MESSAGE_LEN, TRUE, encode = FALSE, prevent_enter = TRUE), MAX_MESSAGE_LEN, FALSE, FALSE, TRUE)
 			return TRUE
 
 		if("set_new_title")
-			title = sanitize(tgui_input_text(ui.user, "Enter your Feed title", "Network Channel Handler"))
+			title = tgui_input_text(ui.user, "Enter your Feed title", "Network Channel Handler", "", MAX_KEYPAD_INPUT_LEN)
 			return TRUE
 
 		if("set_attachment")
@@ -541,7 +541,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			var/choice = tgui_alert(ui.user, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
 			if(choice=="Confirm")
 				news_network.wanted_issue = null
-				for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
+				for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
 					NEWSCASTER.update_icon()
 				set_temp("Wanted issue taken down.", "success", FALSE)
 			return TRUE

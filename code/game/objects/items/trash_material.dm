@@ -4,7 +4,7 @@
 	var/matter_chances = list()	//List of lists: list(mat_name, chance, amount)
 
 
-/obj/item/trash/material/Initialize()
+/obj/item/trash/material/Initialize(mapload)
 	. = ..()
 	if(!matter)
 		matter = list()
@@ -29,7 +29,7 @@
 		list(MAT_PLASTEEL, 5, 10)
 	)
 
-/obj/item/trash/material/metal/Initialize()
+/obj/item/trash/material/metal/Initialize(mapload)
 	. = ..()
 	icon_state = "metal[rand(4)]"
 
@@ -48,7 +48,7 @@
 		list(MAT_DIAMOND, 4, 2),
 	)
 
-/obj/item/trash/material/circuit/Initialize()
+/obj/item/trash/material/circuit/Initialize(mapload)
 	. = ..()
 	icon_state = "circuit[rand(3)]"
 
@@ -67,6 +67,6 @@
 		list(MAT_DIAMOND, 5, 2),
 	)
 
-/obj/item/trash/material/device/Initialize()
+/obj/item/trash/material/device/Initialize(mapload)
 	. = ..()
 	icon_state = "device[rand(3)]"

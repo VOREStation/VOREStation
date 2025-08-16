@@ -158,7 +158,7 @@
 	var/visible = 0
 	anchored = TRUE
 
-/obj/effect/beam/i_beam/Initialize()
+/obj/effect/beam/i_beam/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

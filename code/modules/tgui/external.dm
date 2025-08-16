@@ -94,6 +94,11 @@
 	// If UI is not interactive or usr calling Topic is not the UI user, bail.
 	if(!ui || ui.status != STATUS_INTERACTIVE)
 		return TRUE
+	if(action == "change_ui_state")
+		var/mob/living/user = ui.user
+		//write_preferences will make sure it's valid for href exploits.
+		user.client.prefs.write_preference(GLOB.preference_entries[/datum/preference/choiced/tgui_layout], params["new_state"])
+		to_world("We have the curent [user.client.prefs.read_preference(/datum/preference/choiced/tgui_layout)]")
 
 /**
  * public
@@ -102,7 +107,7 @@
  *
  * required payload list A list of the payload supposed to be set on the regular UI.
  */
-/datum/proc/tgui_fallback(list/payload)
+/datum/proc/tgui_fallback(list/payload, mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_UI_FALLBACK, usr)
 

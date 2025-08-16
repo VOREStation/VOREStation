@@ -1,11 +1,11 @@
-var/global/universe_has_ended = 0
+GLOBAL_VAR_INIT(universe_has_ended, 0)
 
 
 /datum/universal_state/supermatter_cascade
- 	name = "Supermatter Cascade"
- 	desc = "Unknown harmonance affecting universal substructure, converting nearby matter to supermatter."
+	name = "Supermatter Cascade"
+	desc = "Unknown harmonance affecting universal substructure, converting nearby matter to supermatter."
 
- 	decay_rate = 5 // 5% chance of a turf decaying on lighting update/airflow (there's no actual tick for turfs)
+	decay_rate = 5 // 5% chance of a turf decaying on lighting update/airflow (there's no actual tick for turfs)
 
 /datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
 	if(user)
@@ -41,7 +41,7 @@ var/global/universe_has_ended = 0
 
 	world << sound('sound/effects/cascade.ogg')
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		M.flash_eyes()
 
 	if(emergency_shuttle.can_recall())
@@ -58,29 +58,40 @@ var/global/universe_has_ended = 0
 
 	PlayerSet()
 
-	new /obj/singularity/narsie/large/exit(pick(endgame_exits))
+	new /obj/singularity/narsie/large/exit(pick(GLOB.endgame_exits))
 	spawn(rand(30,60) SECONDS)
 		var/txt = {"
-There's been a galaxy-wide electromagnetic pulse.  All of our systems are heavily damaged and many personnel are dead or dying. We are seeing increasing indications of the universe itself beginning to unravel.
+					There's been a galaxy-wide electromagnetic pulse.  All of our systems are heavily damaged and many personnel are dead or dying. We are seeing increasing indications of the universe itself beginning to unravel.
 
-[station_name()], you are the only facility nearby a bluespace rift, which is near your research outpost. You are hereby directed to enter the rift using all means necessary, quite possibly as the last of your species alive.
+					[station_name()], you are the only facility nearby a bluespace rift, which is near your research outpost. You are hereby directed to enter the rift using all means necessary, quite possibly as the last of your species alive.
 
-You have five minutes before the universe collapses. Good l\[\[###!!!-
+					You have five minutes before the universe collapses. Good l\[\[###!!!-
+					AUTOMATED ALERT: Link to [command_name()] lost.
 
-AUTOMATED ALERT: Link to [command_name()] lost.
-
-The access requirements on the Asteroid Shuttles' consoles have now been revoked.
-"}
+					The access requirements on the Asteroid Shuttles' consoles have now been revoked.
+				"}
 		priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
 
-		for(var/obj/machinery/computer/shuttle_control/C in machines)
+		for(var/obj/machinery/computer/shuttle_control/C in GLOB.machines)
 			if(istype(C, /obj/machinery/computer/shuttle_control/research) || istype(C, /obj/machinery/computer/shuttle_control/mining))
 				C.req_access = list()
 				C.req_one_access = list()
 
 		spawn(5 MINUTES)
-			ticker.station_explosion_cinematic(0,null) // TODO: Custom cinematic
-			universe_has_ended = 1
+			play_cinematic(/datum/cinematic/nuke/self_destruct) // TODO: Custom cinematic
+
+			// FIXME: Probably a better way
+			for(var/mob/living/M in GLOB.living_mob_list)
+				switch(M.z)
+					if(0)	//inside a crate or something
+						var/turf/T = get_turf(M)
+						if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
+							M.health = 0
+							M.set_stat(DEAD)
+					if(1)	//on a z-level 1 turf.
+						M.health = 0
+						M.set_stat(DEAD)
+			GLOB.universe_has_ended = 1
 		return
 
 /datum/universal_state/supermatter_cascade/proc/AreaSet()
@@ -104,7 +115,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			OnTurfChange(T)
 	*/
 /datum/universal_state/supermatter_cascade/proc/MiscSet()
-	for (var/obj/machinery/firealarm/alm in machines)
+	for (var/obj/machinery/firealarm/alm in GLOB.machines)
 		if (!(alm.stat & BROKEN))
 			alm.ex_act(2)
 
@@ -118,7 +129,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			APC.queue_icon_update()
 
 /datum/universal_state/supermatter_cascade/proc/PlayerSet()
-	for(var/datum/mind/M in player_list)
+	for(var/datum/mind/M in GLOB.player_list)
 		if(!isliving(M.current))
 			continue
 		if(M.current.stat!=2)

@@ -85,11 +85,6 @@ this file deals with suits/overwear. */
 	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
 	icon_state = "neo_police"
 
-/obj/item/clothing/suit/storage/toggle/labcoat/neo_ranger
-	name = "ranger's cloak"
-	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
-	icon_state = "neo_ranger"
-
 /obj/item/clothing/suit/storage/toggle/labcoat/neo_bodyguard_dep
 	name = "bodyguard's jacket"
 	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
@@ -112,6 +107,11 @@ this file deals with suits/overwear. */
 
 /obj/item/clothing/suit/storage/toggle/labcoat/neo_leather
 	name = "leather hoodie"
+	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
+	icon_state = "neo_leather"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/neo_ranger //Some maps have this mapspawned in AND it had a missing icon_state. So it just gets the neo_leather icon state instead to keep from having to fix a bunch of maps.
+	name = "ranger's cloak"
 	desc = "it bears a tag that says 'Product of Total Gear & Co.'"
 	icon_state = "neo_leather"
 

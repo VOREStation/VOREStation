@@ -10,7 +10,7 @@
 	var/frequency = 1
 	hitscan = 1
 	embed_chance = 0
-	invisibility = 99	//beam projectiles are invisible as they are rendered by the effect engine
+	invisibility = INVISIBILITY_BADMIN	//beam projectiles are invisible as they are rendered by the effect engine
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FF0D00"
@@ -320,7 +320,7 @@
 /obj/item/projectile/beam/stun
 	name = "stun beam"
 	icon_state = "stun"
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/taser.ogg'
 	nodamage = 1
 	taser_effect = 1
 	agony = 35
@@ -382,18 +382,18 @@
 	hud_state = "laser_disabler"
 
 /obj/item/projectile/beam/disable
-    name = "disabler beam"
-    icon_state = "omnilaser"
-    nodamage = 1
-    taser_effect = 1
-    agony = 100 //One shot stuns for the time being until adjustments are fully made.
-    damage_type = HALLOSS
-    light_color = "#00CECE"
-   	hud_state = "laser_disabler"
+	name = "disabler beam"
+	icon_state = "omnilaser"
+	nodamage = 1
+	taser_effect = 1
+	agony = 100 //One shot stuns for the time being until adjustments are fully made.
+	damage_type = HALLOSS
+	light_color = "#00CECE"
+	hud_state = "laser_disabler"
 
-    muzzle_type = /obj/effect/projectile/muzzle/laser_omni
-    tracer_type = /obj/effect/projectile/tracer/laser_omni
-    impact_type = /obj/effect/projectile/impact/laser_omni
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 /obj/item/projectile/beam/shock
 	name = "shock beam"
@@ -443,6 +443,29 @@
 	impact_type = /obj/effect/projectile/impact/rainbow
 	hud_state = "laser"
 	damage = 20
+
+/obj/item/projectile/beam/sparkledog
+	name = "rainbow"
+	fire_sound = 'sound/weapons/sparkle.ogg'
+	icon_state = "rainbow"
+	light_color = "#ffffff"
+	muzzle_type = /obj/effect/projectile/muzzle/rainbow
+	tracer_type = /obj/effect/projectile/tracer/rainbow
+	impact_type = /obj/effect/projectile/impact/rainbow
+	hud_state = "laser"
+	damage = 0
+	nodamage = TRUE
+
+/obj/item/projectile/beam/sparkledog/on_hit(var/atom/target, var/blocked = 0)
+	if(ishuman(target))
+		var/mob/living/carbon/human/M = target
+		M.druggy = max(M.druggy, 20)
+		if(M.health < M.getMaxHealth())
+			to_chat(target, span_notice("As the beam strikes you, you feel a little healthier!"))
+			M.adjustBruteLoss(-5)
+			M.adjustFireLoss(-5)
+	return 1
+
 //
 // Projectile Beam Definitions
 //
@@ -459,6 +482,20 @@
 	muzzle_type = /obj/effect/projectile/muzzle/pointdefense
 	tracer_type = /obj/effect/projectile/tracer/pointdefense
 	impact_type = /obj/effect/projectile/impact/pointdefense
+
+/obj/item/projectile/beam/coildefense
+	name = "defense coil salvo"
+	icon_state = "coil"
+	damage = 15
+	damage_type = ELECTROCUTE //You should be safe inside a voidsuit
+	sharp = FALSE //"Wide" spectrum beam
+	light_color = "#FFFFFF"
+
+	excavation_amount = 200 // Good at shooting rocks
+
+	muzzle_type = /obj/effect/projectile/muzzle/coildefense
+	tracer_type = /obj/effect/projectile/tracer/coildefense
+	impact_type = /obj/effect/projectile/impact/coildefense
 
 //
 // Energy Net
@@ -507,7 +544,7 @@
 /obj/item/projectile/beam/medigun/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if(M.health < M.maxHealth)
+		if(M.health < M.getMaxHealth())
 			var/obj/effect/overlay/pulse = new /obj/effect/overlay(get_turf(M))
 			pulse.icon = 'icons/effects/effects.dmi'
 			pulse.icon_state = XENO_CHEM_HEAL

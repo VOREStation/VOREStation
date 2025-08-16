@@ -107,8 +107,8 @@
 
 	device_type = /obj/item/pickaxe/excavationdrill
 
-/obj/item/rig_module/device/New()
-	..()
+/obj/item/rig_module/device/Initialize(mapload)
+	. = ..()
 	if(device_type) device = new device_type(src)
 
 /obj/item/rig_module/device/engage(atom/target)
@@ -307,8 +307,8 @@
 
 	var/obj/item/voice_changer/voice_holder
 
-/obj/item/rig_module/voice/New()
-	..()
+/obj/item/rig_module/voice/Initialize(mapload)
+	. = ..()
 	voice_holder = new(src)
 	voice_holder.active = 0
 
@@ -336,7 +336,7 @@
 			voice_holder.active = 0
 			to_chat(usr, span_blue("You disable the speech synthesiser."))
 		if("Set Name")
-			var/raw_choice = sanitize(tgui_input_text(usr, "Please enter a new name.", max_length=MAX_NAME_LEN))
+			var/raw_choice = tgui_input_text(usr, "Please enter a new name.", max_length=MAX_NAME_LEN)
 			if(!raw_choice)
 				return 0
 			voice_holder.voice = raw_choice
@@ -396,8 +396,8 @@
 		jets.toggle()
 	return 1
 
-/obj/item/rig_module/maneuvering_jets/New()
-	..()
+/obj/item/rig_module/maneuvering_jets/Initialize(mapload)
+	. = ..()
 	jets = new(src)
 
 /obj/item/rig_module/maneuvering_jets/installed()
@@ -584,8 +584,8 @@
 	var/iastamp
 	var/deniedstamp
 
-/obj/item/rig_module/device/stamp/New()
-	..()
+/obj/item/rig_module/device/stamp/Initialize(mapload)
+	. = ..()
 	iastamp = new /obj/item/stamp/internalaffairs(src)
 	deniedstamp = new /obj/item/stamp/denied(src)
 	device = iastamp

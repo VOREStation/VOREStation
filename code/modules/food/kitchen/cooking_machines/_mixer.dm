@@ -20,7 +20,7 @@ fundamental differences
 	if(Adjacent(user))
 		. += span_notice("It is currently set to make a [selected_option]")
 
-/obj/machinery/appliance/mixer/Initialize()
+/obj/machinery/appliance/mixer/Initialize(mapload)
 	. = ..()
 	cooking_objs += new /datum/cooking_item(new /obj/item/reagent_containers/cooking_container(src))
 	cooking = FALSE
@@ -46,7 +46,7 @@ fundamental differences
 		to_chat(usr, span_notice("You can't operate [src]."))
 		return
 
-	if(output_options.len)
+	if(LAZYLEN(output_options))
 		var/choice = tgui_input_list(usr, "What specific food do you wish to make with \the [src]?", "Food Output Choice", output_options)
 		if(!choice)
 			return

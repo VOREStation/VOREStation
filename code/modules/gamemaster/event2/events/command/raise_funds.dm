@@ -6,11 +6,11 @@
 	event_type = /datum/event2/event/raise_funds
 
 /datum/event2/meta/raise_funds/get_weight()
-	var/command = metric.count_people_in_department(DEPARTMENT_COMMAND)
+	var/command = GLOB.metric.count_people_in_department(DEPARTMENT_COMMAND)
 	if(!command) // Need someone to read the centcom message.
 		return 0
 
-	var/cargo = metric.count_people_in_department(DEPARTMENT_CARGO)
+	var/cargo = GLOB.metric.count_people_in_department(DEPARTMENT_CARGO)
 	return (command * 20) + (cargo * 20)
 
 
@@ -84,9 +84,9 @@
 // Returns the sum of the station account and all the departmental accounts.
 /datum/event2/event/raise_funds/proc/count_money()
 	. = 0
-	. += station_account.money
+	. += GLOB.station_account.money
 	for(var/i = 1 to SSjob.department_datums.len)
-		var/datum/money_account/account = LAZYACCESS(department_accounts, SSjob.department_datums[i])
+		var/datum/money_account/account = LAZYACCESS(GLOB.department_accounts, SSjob.department_datums[i])
 		if(istype(account))
 			. += account.money
 

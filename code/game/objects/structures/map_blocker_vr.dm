@@ -11,7 +11,7 @@
 	plane = PLANE_BUILDMODE
 
 /*	//VOREStation Edit
-/obj/effect/blocker/Initialize() // For non-gateway maps.
+/obj/effect/blocker/Initialize(mapload) // For non-gateway maps.
 	. = ..()
 	icon = null
 	icon_state = null

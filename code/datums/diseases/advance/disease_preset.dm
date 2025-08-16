@@ -1,14 +1,12 @@
 /datum/disease/advance/random
-	name = "Experimental Disease"
 	var/randomname = TRUE
 	var/datum/symptom/setsymptom = null
 	var/max_symptoms_override
 
 /datum/disease/advance/random/minor
-	name = "Minor Experimental Disease"
 	max_symptoms_override = 4
 
-/datum/disease/advance/random/New(max_symptoms, max_level = 6, min_level = 1, list/guaranteed_symptoms = setsymptom)
+/datum/disease/advance/random/New(max_symptoms, max_level = 6, min_level = 1, list/guaranteed_symptoms = setsymptom, var/atom/infected)
 	if(!max_symptoms)
 		max_symptoms = (2 + rand(1, (VIRUS_SYMPTOM_LIMIT - 2)))
 	if(max_symptoms_override)
@@ -35,9 +33,42 @@
 			symptoms += new chosen_symptom
 	for(var/guaranteed_symptom in guaranteed_symptoms)
 		symptoms += new guaranteed_symptom
+	Finalize()
+
+	if(randomname)
+		var/randname = random_disease_name(infected)
+		AssignName(randname)
+		name = randname
+
+/mob/living/carbon/human/proc/give_random_dormant_disease(biohazard = 25, min_symptoms = 2, max_symptoms = 4, min_level = 4, max_level = 9, list/guaranteed_symptoms = list())
+	. = FALSE
+	var/sickrisk = 1
+
+	if(isSynthetic() || HAS_TRAIT(src, STRONG_IMMUNITY_TRAIT)) // Don't bother
+		return
+
+	switch(get_species())
+		if(SPECIES_UNATHI, SPECIES_TAJARAN) // Mice devourers
+			sickrisk = 0.5
+		if(SPECIES_XENOCHIMERA)
+			var/datum/disease/roanoke/dormant_roanoke = new
+			dormant_roanoke.virus_modifiers |= DORMANT
+			ForceContractDisease(dormant_roanoke, TRUE)
+			return TRUE
+		if(SPECIES_PROMETHEAN) // Too clean
+			return
+
+	if(prob(min(100, (biohazard * sickrisk))))
+		var/symptom_amt = rand(min_symptoms, max_symptoms)
+		var/datum/disease/advance/dormant_disease = new /datum/disease/advance/random(symptom_amt, max_level, min_level, guaranteed_symptoms, infected = src)
+		dormant_disease.virus_modifiers |= DORMANT
+		dormant_disease.spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
+		dormant_disease.spread_text = "None"
+		dormant_disease.visibility_flags |= HIDDEN_SCANNER
+		ForceContractDisease(dormant_disease, TRUE)
+		return TRUE
 
 /datum/disease/advance/random/macrophage
-	name = "Unknown Disease"
 	setsymptom = /datum/symptom/macrophage
 
 /datum/disease/advance/random/blob

@@ -49,7 +49,7 @@
 	if(!job.minimum_character_age && !job.min_age_by_species)
 		return TRUE
 
-	var/min_age = job.get_min_age(prefs.species, prefs.organ_data["brain"])
+	var/min_age = job.get_min_age(prefs.species, prefs.organ_data[O_BRAIN])
 	if(prefs.read_preference(/datum/preference/numeric/human/age) >= min_age)
 		return TRUE
 	return FALSE
@@ -82,7 +82,7 @@
 
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.mind?.assigned_role == job.title && M.client?.inactivity <= 10 MINUTES)
 					active++
 
@@ -121,12 +121,12 @@
 			if(!CONFIG_GET(flag/enter_allowed))
 				to_chat(new_user, span_notice("There is an administrative lock on entering the game!"))
 				return
-			else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
+			else if(SSticker && SSticker.mode && SSticker.mode.explosion_in_progress)
 				to_chat(new_user, span_danger("The station is currently exploding. Joining would go poorly."))
 				return
 
 			var/datum/species/S = GLOB.all_species[new_user.client.prefs.species]
-			if(!is_alien_whitelisted(new_user, S))
+			if(!is_alien_whitelisted(new_user.client, S))
 				tgui_alert(new_user, "You are currently not whitelisted to play [new_user.client.prefs.species].")
 				return 0
 

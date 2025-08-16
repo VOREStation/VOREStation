@@ -18,9 +18,9 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	var/mopping = 0
 	var/mopcount = 0
 
-/obj/item/mop/New()
+/obj/item/mop/Initialize(mapload)
+	. = ..()
 	create_reagents(30)
-	..()
 
 /obj/item/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
@@ -34,7 +34,8 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 		if(do_after(user, 40))
 			var/turf/T = get_turf(A)
 			if(T)
-				T.clean(src, user)
+				T.wash(CLEAN_SCRUB)
+				reagents.trans_to_turf(T, 1, 10)
 			to_chat(user, span_notice("You have finished mopping!"))
 
 
@@ -59,9 +60,9 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	flags = NOCONDUCT
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 
-/obj/item/mop/advanced/New()
+/obj/item/mop/advanced/Initialize(mapload)
+	. = ..()
 	create_reagents(30)
-	..()
 
 /obj/item/mop/advanced/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
@@ -75,5 +76,6 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 		if(do_after(user, 20))
 			var/turf/T = get_turf(A)
 			if(T)
-				T.clean(src, user)
+				T.wash(CLEAN_SCRUB)
+				reagents.trans_to_turf(T, 1, 10)
 			to_chat(user, span_notice("You have finished mopping!"))

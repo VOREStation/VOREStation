@@ -21,6 +21,8 @@
 	reagent_state = LIQUID
 	color = "#ffffff"
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/glamour_transparent/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!target.cloaked)
@@ -57,6 +59,9 @@
 	reagent_state = LIQUID
 	color = "#ffffff"
 	scannable = 1
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/glamour_scaling/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!(/mob/living/proc/set_size in target.verbs))
@@ -89,6 +94,8 @@
 	reagent_state = LIQUID
 	color = "#ffffff"
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/glamour_twinkling/affect_blood(var/mob/living/carbon/human/target, var/removed)
 	if(target.species.darksight < 10)
@@ -112,8 +119,7 @@
 	var/image/coolanimation = image('icons/obj/glamour.dmi', null, "animation")
 	coolanimation.plane = PLANE_LIGHTING_ABOVE
 	thing.overlays += coolanimation
-	sleep(14)
-	thing.overlays -= coolanimation
+	addtimer(CALLBACK(src, PROC_REF(animate_action_finished),thing,coolanimation), 1.4 SECOND, TIMER_DELETE_ME)
 
 //Face of Glamour (creates a clone of a target)
 
@@ -127,7 +133,7 @@
 /obj/item/glamour_face/attack_self(var/mob/user)
 	if(!homunculus)
 		var/list/targets = list()
-		for(var/mob/living/carbon/human/M in mob_list)
+		for(var/mob/living/carbon/human/M in GLOB.mob_list)
 			if(M.z != user.z || get_dist(user,M) > 10)
 				continue
 			if(!M.allow_mimicry)
@@ -227,7 +233,7 @@
 	var/connected_mob
 	var/area_name
 
-/obj/structure/glamour_ring/Initialize()
+/obj/structure/glamour_ring/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	area_name = A.name
@@ -300,6 +306,7 @@
 	var/tf_possible_types = list(
 		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
 		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
+		"mothroach" = /mob/living/simple_mob/animal/passive/mothroach,
 		"giant rat" = /mob/living/simple_mob/vore/aggressive/rat,
 		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
 		"woof" = /mob/living/simple_mob/vore/woof,

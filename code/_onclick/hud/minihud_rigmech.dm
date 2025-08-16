@@ -35,7 +35,7 @@
 	if(!owner_rig)
 		qdel(src)
 		return
-	
+
 	var/obj/item/cell/rigcell = owner_rig.cell
 	var/obj/item/tank/rigtank = owner_rig.air_supply
 
@@ -84,7 +84,7 @@
 	if(!owner_mech)
 		qdel(src)
 		return
-	
+
 	var/obj/item/cell/mechcell = owner_mech.cell
 	var/obj/machinery/portable_atmospherics/canister/mechtank = owner_mech.internal_tank
 
@@ -97,7 +97,7 @@
 	air.icon_state = "air[round(air_percentage / 0.2, 1)]"
 	health.icon_state = "health[round(health_percentage / 0.2, 1)]"
 	airtoggle.icon_state = "airon[air_on]"
-	
+
 // Screen objects
 /obj/screen/rig
 	icon = 'icons/mob/screen_rigmech.dmi'
@@ -209,7 +209,7 @@
 
 	var/list/adding = list()
 	HUD.adding = adding
-	
+
 	var/obj/screen/using
 	using = new /obj/screen/ghost/jumptomob()
 	using.screen_loc = ui_ghost_jumptomob

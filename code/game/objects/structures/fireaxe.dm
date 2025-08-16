@@ -14,7 +14,7 @@
 	var/smashed = 0
 	var/starts_with_axe = TRUE
 
-/obj/structure/fireaxecabinet/Initialize()
+/obj/structure/fireaxecabinet/Initialize(mapload)
 	. = ..()
 	if(starts_with_axe)
 		fireaxe = new /obj/item/material/twohanded/fireaxe()

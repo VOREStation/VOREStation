@@ -8,6 +8,6 @@
 	possible_transfer_amounts = list(5,10)
 	volume = 250
 
-/obj/item/reagent_containers/spray/luminol/Initialize()
+/obj/item/reagent_containers/spray/luminol/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_LUMINOL, 250)

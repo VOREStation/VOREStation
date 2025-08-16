@@ -267,8 +267,7 @@
 	..(A,user,flag,params)
 
 /obj/item/disk/nifsoft/compliance/attack_self(mob/user)
-	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, multiline = TRUE, prevent_enter = TRUE)
-	newlaws = sanitize(newlaws,2048)
+	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, 2048, TRUE, prevent_enter = TRUE)
 	if(newlaws)
 		to_chat(user,span_filter_notice("You set the laws to: <br>" + span_notice("[newlaws]")))
 		laws = newlaws
@@ -297,8 +296,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_sec"
 
-/obj/item/storage/box/nifsofts_security/New()
-	..()
+/obj/item/storage/box/nifsofts_security/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/security(src)
 
@@ -323,8 +322,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_eng"
 
-/obj/item/storage/box/nifsofts_engineering/New()
-	..()
+/obj/item/storage/box/nifsofts_engineering/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/engineering(src)
 
@@ -348,8 +347,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_med"
 
-/obj/item/storage/box/nifsofts_medical/New()
-	..()
+/obj/item/storage/box/nifsofts_medical/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/medical(src)
 
@@ -377,8 +376,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_mining"
 
-/obj/item/storage/box/nifsofts_mining/New()
-	..()
+/obj/item/storage/box/nifsofts_mining/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/mining(src)
 
@@ -406,8 +405,8 @@
 	icon = 'icons/obj/boxes_vr.dmi'
 	icon_state = "nifsoft_kit_pilot"
 
-/obj/item/storage/box/nifsofts_pilot/New()
-	..()
+/obj/item/storage/box/nifsofts_pilot/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/pilot(src)
 
@@ -429,7 +428,7 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_mining"
 
-/obj/item/storage/box/nifsofts_sizechange/New()
-	..()
+/obj/item/storage/box/nifsofts_sizechange/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/sizechange(src)

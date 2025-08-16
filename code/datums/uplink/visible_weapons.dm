@@ -138,7 +138,7 @@
 	name = "Combat Shotgun"
 	item_cost = 75
 	path = /obj/item/gun/projectile/shotgun/pump/combat
-	
+
 /datum/uplink_item/item/visible_weapons/semishotgun
 	name = "Semi-Automatic Shotgun"
 	item_cost = 100

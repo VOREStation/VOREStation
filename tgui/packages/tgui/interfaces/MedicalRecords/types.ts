@@ -1,6 +1,6 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { field } from '../GeneralRecords/types';
+import type { field } from '../GeneralRecords/types';
 
 export type Data = {
   temp: { color: string; text: string } | null;
@@ -63,7 +63,7 @@ export type modalData = {
     }[];
     record: string;
   };
-  modal_type: string;
+  type: string;
 };
 
 type record = {

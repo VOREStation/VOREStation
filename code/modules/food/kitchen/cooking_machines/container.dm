@@ -19,7 +19,7 @@
 		/obj/item/clothing/head/beret
 	)
 
-/obj/item/reagent_containers/cooking_container/Initialize()
+/obj/item/reagent_containers/cooking_container/Initialize(mapload)
 	. = ..()
 	create_reagents(max_reagents)
 	flags |= OPENCONTAINER | NOREACT
@@ -39,14 +39,15 @@
 /obj/item/reagent_containers/cooking_container/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/gripper))
 		var/obj/item/gripper/GR = I
-		if(GR.wrapped)
-			GR.wrapped.forceMove(get_turf(src))
-			attackby(GR.wrapped, user)
-			if(QDELETED(GR.wrapped))
-				GR.wrapped = null
+		var/obj/item/wrapped = GR.get_current_pocket()
+		if(wrapped)
+			wrapped.forceMove(get_turf(src))
+			attackby(wrapped, user)
+			if(QDELETED(wrapped))
+				wrapped = null
 
-			if(GR?.wrapped.loc != src)
-				GR.wrapped = null
+			else if(wrapped.loc != src)
+				wrapped = null
 
 			return
 
@@ -92,7 +93,9 @@
 	for (var/atom/movable/A in contents)
 		A.forceMove(get_turf(src))
 
+	food_items = 0
 	to_chat(user, span_notice("You remove all the solid items from the [src]."))
+	update_icon()
 
 /obj/item/reagent_containers/cooking_container/proc/check_contents()
 	if (contents.len == 0)
@@ -105,8 +108,6 @@
 
 /obj/item/reagent_containers/cooking_container/AltClick(var/mob/user)
 	do_empty(user)
-	food_items = 0
-	update_icon()
 
 //Deletes contents of container.
 //Used when food is burned, before replacing it with a burned mess
@@ -188,7 +189,7 @@
 	max_space = 30
 	max_reagents = 120
 
-/obj/item/reagent_containers/cooking_container/oven/Initialize()
+/obj/item/reagent_containers/cooking_container/oven/Initialize(mapload)
 	. = ..()
 
 	// We add to the insertable list specifically for the oven trays, to allow specialty cakes.
@@ -208,7 +209,7 @@
 	desc = "Put ingredients 'in'/on this; designed for use with a grill. Warranty void if used incorrectly. Alt click to remove contents."
 	icon_state = "grillrack"
 
-/obj/item/reagent_containers/cooking_container/grill/Initialize()
+/obj/item/reagent_containers/cooking_container/grill/Initialize(mapload)
 	. = ..()
 
 	// Needed for the special recipes of the grill

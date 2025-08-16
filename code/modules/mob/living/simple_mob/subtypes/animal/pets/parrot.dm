@@ -94,7 +94,7 @@
 	if(my_headset)
 		. += "It is wearing \a [my_headset]."
 
-/mob/living/simple_mob/animal/passive/bird/parrot/Initialize()
+/mob/living/simple_mob/animal/passive/bird/parrot/Initialize(mapload)
 	if(my_headset)
 		my_headset = new my_headset(src)
 	return ..()
@@ -135,7 +135,7 @@
 	icon_dead = "eclectus-dead"
 	tt_desc = "E Eclectus roratus"
 
-/mob/living/simple_mob/animal/passive/bird/parrot/eclectus/Initialize()
+/mob/living/simple_mob/animal/passive/bird/parrot/eclectus/Initialize(mapload)
 	gender = pick(MALE, FEMALE)
 	if(gender == FEMALE)
 		icon_state = "eclectusf"

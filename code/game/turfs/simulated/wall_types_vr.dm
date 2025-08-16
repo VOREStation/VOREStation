@@ -47,7 +47,7 @@ var/list/flesh_overlay_cache = list()
 	if(density)
 		icon = 'icons/turf/stomach_vr.dmi'
 		icon_state = "flesh"
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(src,direction)
 			if(istype(T) && !T.density)
 				var/place_dir = turn(direction, 180)
@@ -56,7 +56,7 @@ var/list/flesh_overlay_cache = list()
 				add_overlay(flesh_overlay_cache["flesh_side_[place_dir]"])
 
 	if(update_neighbors)
-		for(var/direction in alldirs)
+		for(var/direction in GLOB.alldirs)
 			if(istype(get_step(src, direction), /turf/simulated/flesh))
 				var/turf/simulated/flesh/F = get_step(src, direction)
 				F.update_icon()
@@ -86,7 +86,7 @@ var/list/flesh_overlay_cache = list()
 	hard_corner = 1 //They're all HC
 	true_name = "wall"
 
-/turf/simulated/shuttle/wall/flock/Initialize()
+/turf/simulated/shuttle/wall/flock/Initialize(mapload)
 	. = ..()
 	set_light(3,3,"#26c5a9")
 

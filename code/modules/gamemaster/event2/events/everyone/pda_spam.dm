@@ -4,7 +4,7 @@
 	event_type = /datum/event2/event/pda_spam
 
 /datum/event2/meta/pda_spam/get_weight()
-	return metric.count_people_in_department(DEPARTMENT_EVERYONE) * 2
+	return GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) * 2
 
 
 /datum/event2/event/pda_spam
@@ -34,7 +34,7 @@
 	var/obj/item/pda/P = null
 	var/list/viables = list()
 
-	for(var/obj/item/pda/check_pda in sortAtom(PDAs))
+	for(var/obj/item/pda/check_pda in sort_names(PDAs))
 		if (!check_pda.owner || check_pda == src || check_pda.hidden)
 			continue
 
@@ -88,7 +88,7 @@
 		if(2)
 			sender = pick(300;"QuickDatingSystem",200;"Find your russian bride",50;"Tajaran beauties are waiting",50;"Find your secret skrell crush",50;"Beautiful unathi brides")
 			message = pick("Your profile caught my attention and I wanted to write and say hello (QuickDating).",\
-			"If you will write to me on my email [pick(first_names_female)]@[pick(last_names)].[pick("ru","ck","tj","ur","nt")] I shall necessarily send you a photo (QuickDating).",\
+			"If you will write to me on my email [pick(GLOB.first_names_female)]@[pick(GLOB.last_names)].[pick("ru","ck","tj","ur","nt")] I shall necessarily send you a photo (QuickDating).",\
 			"I want that we write each other and I hope, that you will like my profile and you will answer me (QuickDating).",\
 			"You have (1) new message!",\
 			"You have (2) new profile views!")

@@ -12,13 +12,20 @@
 	var/range_warning = 14		// Will turn yellow if the AI's eye is near the holder.
 	var/detect_state = PROXIMITY_NONE
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_ILLEGAL = 2)
+	description_antag = "Functions as a normal multitool with one added benefit.<br>\
+	This will change colors and make sounds (that only you can hear) during various events.<br>\
+	BLUE: You are outside of camera range.<br>\
+	GREEN: You are inside of camera range.<br>\
+	RED: You are currently being watched by the AI.<br>\
+	FLASHING RED AND ORANGE: You are currently being TRACKED by the AI.<br>\
+	FLASHING ORANGE AND BLUE: The AI has attempted to track you but has failed to do so due to being outside camera range."
 
-/obj/item/multitool/ai_detector/New()
+/obj/item/multitool/ai_detector/Initialize(mapload)
+	. = ..()
 	// It's really really unlikely for the view range to change.  But why not be futureproof anyways?
 	range_alert = world.view
 	range_warning = world.view * 2
 	START_PROCESSING(SSobj, src)
-	..()
 
 /obj/item/multitool/ai_detector/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -37,7 +44,7 @@
 	var/mob/living/carrier = isliving(loc) ? loc : null
 
 	// First, let's check if any AIs are actively tracking them.
-	for(var/mob/living/silicon/ai/AI in silicon_mob_list)
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mob_list)
 		if(carrier && AI.cameraFollow == carrier)
 			if(!carrier.tracking_status()) // Successful tracking returns a 0, so we need to invert it.
 				return PROXIMITY_TRACKING
@@ -48,16 +55,6 @@
 	var/turf/T = get_turf(src)
 	if(!T)
 		return PROXIMITY_OFF_CAMERANET
-
-	// Security is also a concern, so we need to see if any cameras are in use.
-	// Note that this will trigger upon the security console being used, regardless if someone is actually watching,
-	// because there isn't a nice way to test if someone is actually looking.  Probably better that way too.
-	var/list/our_local_area = range(range_alert, T)
-	for(var/obj/machinery/camera/C in our_local_area)
-		if(C.camera_computers_using_this.len) // Only check cameras actively being used.
-			var/list/their_local_area = C.can_see(range_alert)
-			if(T in their_local_area)
-				return PROXIMITY_ON_SCREEN
 
 	// Now for the somewhat harder AI cameranet checks.
 

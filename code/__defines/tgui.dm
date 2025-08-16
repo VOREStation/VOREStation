@@ -28,6 +28,16 @@
 	"%7b%22type%22%3a%22[type]%22%2c%22payload%22%3a[url_encode(json_encode(payload))]%7d" \
 )
 
+/// Though not the maximum renderable ByondUis within tgui, this is the maximum that the server will manage per-UI
+#define TGUI_MANAGED_BYONDUI_LIMIT 10
+
+// These are defines instead of being inline, as they're being sent over
+// from tgui-core, so can't be easily played with
+#define TGUI_MANAGED_BYONDUI_TYPE_RENDER "renderByondUi"
+#define TGUI_MANAGED_BYONDUI_TYPE_UNMOUNT "unmountByondUi"
+
+#define TGUI_MANAGED_BYONDUI_PAYLOAD_ID "renderByondUi"
+
 /// Max length for Modal Input
 #define TGUI_MODAL_INPUT_MAX_LENGTH 1024
 /// Max length for Modal Input for names
@@ -37,3 +47,11 @@
 #define TGUI_MODAL_DELEGATE 2
 #define TGUI_MODAL_ANSWER 3
 #define TGUI_MODAL_CLOSE 4
+
+/**
+ * Gets a ui_state that checks to see if the user has specific admin permissions.
+ *
+ * Arguments:
+ * * required_perms: Which admin permission flags to check the user for, such as [R_ADMIN]
+ */
+#define ADMIN_STATE(required_perms) (GLOB.admin_states[required_perms] ||= new /datum/tgui_state/admin_state(required_perms))

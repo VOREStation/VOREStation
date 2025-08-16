@@ -1,11 +1,11 @@
 //Space stragglers go here
 /obj/effect/overmap/visitable/sector/temporary
 	name = "Deep Space"
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 	known = FALSE
 	in_space = TRUE
 
-/obj/effect/overmap/visitable/sector/temporary/Initialize()
+/obj/effect/overmap/visitable/sector/temporary/Initialize(mapload)
 	if(!istype(loc, /turf/unsimulated/map))
 		CRASH("Attempt to create deepspace which is not on overmap: [log_info_line(loc)]")
 	// Tell sector initializer where are is where we want to be.
@@ -33,7 +33,7 @@
 		log_and_message_admins("CANARY: [src] tried to check is_empty, but map_z is `[map_z || "null"]`")
 		return TRUE
 	testing("Checking if sector at [map_z[1]] has no players.")
-	for(var/mob/M in global.player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M != observer && (M.z in map_z))
 			testing("There are people on it.")
 			return FALSE

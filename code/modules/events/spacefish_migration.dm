@@ -49,7 +49,7 @@
 
 	// Check if any landmarks exist!
 	var/list/spawn_locations = list()
-	for(var/obj/effect/landmark/C in landmarks_list)
+	for(var/obj/effect/landmark/C in GLOB.landmarks_list)
 		if(C.name == "carpspawn" && (C.z in affecting_z))
 			spawn_locations.Add(C.loc)
 	if(spawn_locations.len) // Okay we've got landmarks, lets use those!
@@ -99,6 +99,7 @@
 
 // If fish is bomphed, remove it from the list.
 /datum/event/spacefish_migration/proc/on_fish_destruction(var/mob/M)
+	SIGNAL_HANDLER
 	spawned_fish -= M
 	UnregisterSignal(M, COMSIG_OBSERVER_DESTROYED)
 

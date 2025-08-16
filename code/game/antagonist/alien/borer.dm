@@ -43,7 +43,7 @@ var/datum/antagonist/borer/borers
 	var/mob/living/simple_mob/animal/borer/borer = mob
 	if(istype(borer))
 		var/mob/living/carbon/human/host
-		for(var/mob/living/carbon/human/H in mob_list)
+		for(var/mob/living/carbon/human/H in GLOB.mob_list)
 			if(H.stat != DEAD && !H.has_brain_worms())
 				var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 				if(head && !(head.robotic >= ORGAN_ROBOT))
@@ -59,7 +59,7 @@ var/datum/antagonist/borer/borers
 			borer.host_brain.name = host.name
 			borer.host_brain.real_name = host.real_name
 			return
-		 // Place them at a vent if they can't get a host.
+		// Place them at a vent if they can't get a host.
 		borer.forceMove(get_turf(pick(get_vents())))
 
 /datum/antagonist/borer/attempt_random_spawn()
@@ -67,7 +67,7 @@ var/datum/antagonist/borer/borers
 
 /datum/antagonist/borer/proc/get_vents()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOB.machines)
 		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in using_map.station_levels))
 			if(temp_vent.network.normal_members.len > 50)
 				vents += temp_vent

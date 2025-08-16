@@ -13,7 +13,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
 		/obj/item/clothing/shoes/boots/winter/science)
 
-/obj/structure/closet/secure_closet/scientist/Initialize()
+/obj/structure/closet/secure_closet/scientist/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/dufflebag/sci
 	else
@@ -71,7 +71,8 @@
 		/obj/item/radio/headset/headset_sci,
 		/obj/item/storage/belt/archaeology,
 		/obj/item/storage/excavation,
-		/obj/item/pickaxe/excavationdrill)
+		/obj/item/pickaxe/excavationdrill,
+		/obj/item/storage/sample_container)
 
 /obj/structure/closet/excavation
 	name = "Excavation tools"

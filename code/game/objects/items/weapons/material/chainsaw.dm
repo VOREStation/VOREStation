@@ -12,7 +12,7 @@
 	var/active_force = 55
 	var/inactive_force = 10
 
-/obj/item/chainsaw/Initialize()
+/obj/item/chainsaw/Initialize(mapload)
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
 	R.my_atom = src
@@ -22,7 +22,7 @@
 
 /obj/item/chainsaw/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/chainsaw/proc/turnOn(mob/user as mob)
 	if(on) return

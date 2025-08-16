@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/holofloor/bmarble,
+/area/redgate/structure/powered/teppi_ranch)
 "ak" = (
 /obj/structure/bonfire,
 /turf/simulated/floor/beach/sand{
@@ -10954,7 +10958,7 @@ YW
 Qw
 Qw
 Qw
-Qw
+aa
 Qw
 Qw
 Qw

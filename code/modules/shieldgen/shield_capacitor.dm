@@ -20,6 +20,10 @@
 	var/obj/machinery/shield_gen/owned_gen
 	interact_offline = TRUE
 
+/obj/machinery/shield_capacitor/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/climbable)
+
 /obj/machinery/shield_capacitor/advanced
 	name = "advanced shield capacitor"
 	desc = "A machine that charges a shield generator.  This version can store, input, and output more electricity."
@@ -101,7 +105,7 @@
 	var/datum/powernet/PN
 	var/turf/T = get_turf(src)
 	var/obj/structure/cable/C = T.get_cable_node()
-	if (C)
+	if (C && anchored) //Make sure its anchored too.
 		PN = C.powernet
 
 	if (PN)

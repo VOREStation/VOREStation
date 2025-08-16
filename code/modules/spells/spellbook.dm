@@ -78,9 +78,10 @@
 		// END AUTOFIX
 		if(op)
 			dat += "<A href='byond://?src=\ref[src];spell_choice=rememorize'>Re-memorize Spells</A><BR>"
-	user << browse("<html>[dat]</html>", "window=radio")
-	onclose(user, "radio")
-	return
+
+	var/datum/browser/popup = new(user, "radio", "Spellbook")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/item/spellbook/Topic(href, href_list)
 	..()
@@ -332,7 +333,7 @@
 
 /obj/item/spellbook/oneuse/mindswap/recoil(mob/user as mob)
 	..()
-	if(stored_swap in dead_mob_list)
+	if(stored_swap in GLOB.dead_mob_list)
 		stored_swap = null
 	if(!stored_swap)
 		stored_swap = user
@@ -405,7 +406,7 @@
 
 /obj/item/spellbook/oneuse/horsemask/recoil(mob/living/carbon/user as mob)
 	if(ishuman(user))
-		to_chat(user, "<font size='15' color='red'><b>HOR-SIE HAS RISEN</b></font>")
+		to_chat(user, span_narsie(span_bolddanger("HOR-SIE HAS RISEN")))
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
 		magichead.canremove = FALSE		//curses!
 		magichead.flags_inv = null	//so you can still see their face

@@ -49,6 +49,8 @@
 		/datum/material/durasteel/hull,
 		/datum/material/titanium/hull,
 		/datum/material/morphium/hull,
+		/datum/material/plastitanium/hull,
+		/datum/material/gold/hull,
 		/datum/material/steel/holographic,
 		/datum/material/plastic/holographic,
 		/datum/material/wood/holographic,
@@ -208,7 +210,7 @@
 			var/list/banned_sheet_materials = list(
 				// Include if you enable in the .dme /obj/item/stack/material/debug
 				)
-			var/new_metal = /obj/item/stack/material/supermatter
+			var/obj/item/stack/new_metal = /obj/item/stack/material/supermatter
 			for(var/x=1;x<=10;x++) //You got 10 chances to hit a metal that is NOT banned.
 				var/picked_metal = pick(possible_object_paths) //We select
 				if(picked_metal in banned_sheet_materials)
@@ -216,8 +218,9 @@
 				else
 					new_metal = picked_metal
 					break
-			new_item = new new_metal(src.loc)
-			new_item:amount = rand(5,45)
+			new_metal = new new_metal(src.loc)
+			new_metal.amount = rand(5,45)
+			new_item = new_metal
 		if(ARCHAEO_PEN)
 			var/new_pen = pick(/obj/item/pen, /obj/item/pen/blade/fountain, /obj/item/pen/reagent/sleepy) //There are WAY too many pen blade variants that it'd drown out the others in this list.
 			new_item = new new_pen(src.loc)
@@ -343,7 +346,7 @@
 			possible_laser_paths += /obj/item/projectile/ion
 			possible_laser_paths += subtypesof(/obj/item/projectile/energy/floramut)
 			// THE BLACKLIST
-			possible_laser_paths -= list(/obj/item/projectile/beam/pulse, /obj/item/projectile/beam/pulse/heavy)
+			// possible_laser_paths -= list(/obj/item/projectile/beam/pulse, /obj/item/projectile/beam/pulse/heavy, /obj/item/projectile/beam/final_option) //These are very very rare...Disabling the blacklist for now because the chance of finding them is so low that it feels like a nice treat when you DO find them. If it ends up being problemmatic, just reenable this line.
 			var/new_laser = pick(possible_laser_paths)
 			new_gun.projectile_type = new_laser
 			new_item = new_gun
@@ -445,8 +448,13 @@
 			possible_object_paths -= list(/obj/item/organ/internal/mmi_holder, /obj/item/organ/internal/stack/vox)
 			//BLACKLIST ABOVE
 
-			var/new_organ = pick(possible_object_paths)
+			var/obj/item/organ/internal/new_organ = pick(possible_object_paths)
 			new_item = new new_organ(src.loc)
+
+			//Code to prevent rejection.
+			new_organ = new_item
+			new_organ.can_reject = FALSE
+
 
 		if(ARCHAEO_REMAINS_ROBOT)
 			//robot remains
@@ -476,10 +484,17 @@
 			/obj/item/organ/internal/xenos/hivenode,
 			/obj/item/organ/internal/xenos/resinspinner)
 
-			var/new_vessel = pick(possible_plasma_vessel)
-			var/new_organ = pick(possible_organ)
+			var/obj/item/organ/internal/xenos/plasmavessel/new_vessel = pick(possible_plasma_vessel)
+			var/obj/item/organ/internal/xenos/new_organ = pick(possible_organ)
 			new_item = new new_vessel(src.loc)
 			secondary_item = new new_organ(src.loc)
+
+			//Code to prevent rejection.
+			new_vessel = new_item
+			new_organ = secondary_item
+			new_vessel.can_reject = FALSE
+			new_organ.can_reject = FALSE
+
 		if(ARCHAEO_GASMASK)
 			//gas mask
 			if(prob(50))
@@ -604,21 +619,14 @@
 			//However, in that case Initialize will set the maximum volume to the volume for us, so we don't need to do anything.
 			S.reagents?.maximum_volume = 15
 			item_type = new_item.name
-			//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.
-			var/list/banned_chems = list(
-				REAGENT_ID_ADMINORDRAZINE,
-				REAGENT_ID_NUTRIMENT,
-				REAGENT_ID_MACROCILLIN,
-				REAGENT_ID_MICROCILLIN,
-				REAGENT_ID_NORMALCILLIN,
-				REAGENT_ID_MAGICDUST
-				)
 			var/additional_chems = 5 //5 random chems added to the syringe! 15u of RANDOM stuff! (I tried to keep this 30, but this was...Horribly bugged. There is no icon_state for 16-30, so the icon was invisible when filled.)
 			for(var/x=1;x<=additional_chems;x++)
 				var/new_chem = pick(SSchemistry.chemical_reagents)
-				if(new_chem in banned_chems)
+				var/list/currently_banned_chems = list()
+				currently_banned_chems += GLOB.obtainable_chemical_blacklist
+				if(new_chem in currently_banned_chems)
 					continue
-				banned_chems += new_chem
+				currently_banned_chems += new_chem
 				S.reagents.add_reagent(new_chem, 3)
 
 		if(ARCHAEO_RING)

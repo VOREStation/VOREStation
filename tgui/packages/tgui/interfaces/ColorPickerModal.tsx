@@ -6,8 +6,8 @@
 
 import {
   colorList,
+  type HsvaColor,
   hexToHsva,
-  HsvaColor,
   hsvaToHex,
   hsvaToHslString,
   hsvaToRgba,
@@ -16,11 +16,12 @@ import {
 } from 'common/colorpicker';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pointer } from 'tgui/components';
-import { Interaction, Interactive } from 'tgui/components/Interactive';
+import { type Interaction, Interactive } from 'tgui/components/Interactive';
 import {
   Autofocus,
   Box,
   Button,
+  Input,
   NumberInput,
   Section,
   Stack,
@@ -46,7 +47,8 @@ interface ColorPickerData {
   presets: string;
 }
 
-interface ColorPickerModalProps {}
+// biome-ignore lint/complexity/noBannedTypes:Ingored here
+type ColorPickerModalProps = {};
 
 export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const { act, data } = useBackend<ColorPickerData>();
@@ -178,11 +180,11 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
           right="4px"
           icon="arrow-left"
         />
-        <Stack justify="center" vertical>
+        <Stack justify="center" vertical g={0}>
           <Stack.Item>
             {colorList.map((row, index) => (
               <Stack.Item key={index} width="100%">
-                <Stack justify="center">
+                <Stack justify="center" g={0}>
                   {row.map((entry) => (
                     <Box key={entry} p="1px" backgroundColor="black">
                       <Box
@@ -194,7 +196,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         }}
                       >
                         <Box
-                          backgroundColor={'#' + entry}
+                          backgroundColor={`#${entry}`}
                           width="21px"
                           height="14px"
                         />
@@ -205,10 +207,10 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
               </Stack.Item>
             ))}
           </Stack.Item>
-          <Stack.Item>
+          <Stack.Item mt={0.5}>
             {presetList.map((row, index) => (
               <Stack.Item key={index} grow>
-                <Stack justify="center">
+                <Stack justify="center" g={0}>
                   {row.map((entry, i) => (
                     <Box key={i} p="1px" backgroundColor="black">
                       <Box
@@ -224,7 +226,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         }}
                       >
                         <Box
-                          backgroundColor={'#' + entry}
+                          backgroundColor={`#${entry}`}
                           width="21px"
                           height="14px"
                         />
@@ -579,9 +581,8 @@ const HexColorInput: React.FC<HexColorInputProps> = React.memo(
       [alpha],
     );
 
-    const handleChangeEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const inputValue = e.currentTarget.value;
-      const strippedValue = inputValue
+    const handleChangeEvent = (value: string) => {
+      const strippedValue = value
         .replace(/[^0-9A-Fa-f]/g, '')
         .substring(0, 6)
         .toUpperCase();
@@ -601,30 +602,18 @@ const HexColorInput: React.FC<HexColorInputProps> = React.memo(
       }
     }, [initialColor, isValidFullHex, localValue, onChange]);
 
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const handleKeyDown = (value: string) => {
       commitOrRevert();
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') {
-        commitOrRevert();
-        (e.currentTarget as HTMLInputElement).blur();
-      }
-    };
-
     return (
-      <Box className={classes(['Input', fluid && 'Input--fluid'])}>
-        <div className="Input__baseline">.</div>
-        <input
-          className="Input__input"
-          value={localValue}
-          spellCheck={false}
-          onChange={handleChangeEvent}
-          onBlur={handleBlur}
-          onKeyDown={handleKeyDown}
-          {...rest}
-        />
-      </Box>
+      <Input
+        fluid
+        value={localValue}
+        onChange={handleChangeEvent}
+        onEnter={handleKeyDown}
+        {...rest}
+      />
     );
   },
 );

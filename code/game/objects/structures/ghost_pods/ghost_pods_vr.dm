@@ -1,7 +1,6 @@
 /obj/structure/ghost_pod/Destroy()
-	if(src in active_ghost_pods)
-		active_ghost_pods -= src
-	..()
+	GLOB.active_ghost_pods -= src
+	. = ..()
 
 /obj/structure/ghost_pod
 	var/spawn_active = FALSE
@@ -47,12 +46,14 @@
 	create_occupant(user)
 
 /obj/structure/ghost_pod/proc/ghostpod_startup(var/notify = FALSE)
-	if(!(src in active_ghost_pods))
-		active_ghost_pods += src
+	GLOB.active_ghost_pods |= src
 	if(notify)
 		trigger()
 
 /obj/structure/ghost_pod/ghost_activated/Initialize(mapload)
 	. = ..()
 	if(!mapload)
-		ghostpod_startup(spawn_active)
+		return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/ghost_pod/ghost_activated/LateInitialize()
+	ghostpod_startup(spawn_active)

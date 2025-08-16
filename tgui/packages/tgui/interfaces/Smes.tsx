@@ -121,6 +121,7 @@ export const Smes = (props) => {
                 </Stack.Item>
                 <Stack.Item grow mx={1}>
                   <Slider
+                    tickWhileDragging
                     value={inputLevel / POWER_MUL}
                     fillValue={inputAvailable / POWER_MUL}
                     minValue={0}
@@ -130,7 +131,7 @@ export const Smes = (props) => {
                     format={(value: number) =>
                       formatPower(value * POWER_MUL, 1)
                     }
-                    onDrag={(e, value: number) =>
+                    onChange={(e, value: number) =>
                       act('input', {
                         target: value * POWER_MUL,
                       })
@@ -210,6 +211,7 @@ export const Smes = (props) => {
                 </Stack.Item>
                 <Stack.Item grow mx={1}>
                   <Slider
+                    tickWhileDragging
                     value={outputLevel / POWER_MUL}
                     minValue={0}
                     maxValue={outputLevelMax / POWER_MUL}
@@ -218,7 +220,7 @@ export const Smes = (props) => {
                     format={(value: number) =>
                       formatPower(value * POWER_MUL, 1)
                     }
-                    onDrag={(e, value: number) =>
+                    onChange={(e, value: number) =>
                       act('output', {
                         target: value * POWER_MUL,
                       })

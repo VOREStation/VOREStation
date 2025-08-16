@@ -1,4 +1,5 @@
 /obj/item/clothing/accessory/shiny
+	name = DEVELOPER_WARNING_NAME
 	icon_override = 'icons/mob/modular_shiny_vr.dmi'
 	icon = 'icons/obj/clothing/modular_shiny_vr.dmi'
 	w_class = ITEMSIZE_NORMAL

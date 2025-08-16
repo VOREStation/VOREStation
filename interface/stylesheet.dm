@@ -19,11 +19,11 @@ em						{font-style: normal;font-weight: bold;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
 						{color: #638500;}
 
-.italics				{					font-style: italic;}
+.italics				{font-style: italic;}
 
-.bold					{					font-weight: bold;}
+.bold					{font-weight: bold;}
 
-.underline				{			text-decoration: underline;}
+.underline				{text-decoration: underline;}
 
 .prefix					{font-weight: bold;}
 .log_message			{color: #386AFF;	font-weight: bold;}
@@ -147,6 +147,7 @@ h1.alert, h2.alert		{color: #000000;}
 .teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}
 .marish 				{color: #9e31a4;}
 .shadekin				{color: #be3cc5; font-size: 150%; font-weight: bold; font-family: "Gabriola", cursive, sans-serif;}
+.rainbow-text			{color: #ff00ff;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
 
@@ -180,5 +181,14 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 
 .pnarrate				{color: #009AB2;}
 
+.spoiler				{background-color: gray;color: transparent;user-select: none;}
+
+.spoiler:hover			{background-color: inherit;color: inherit;}
+
+.brute					{color: #FF3333;}
+.burn					{color: #FF9933;}
+.tox					{color: #00CC66;}
+.oxy					{color: #0053FA;}
+.clone					{color: #00CCCC;}
 
 </style>"}

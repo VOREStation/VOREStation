@@ -27,7 +27,7 @@ export const OperatingComputerPatient = (props: { occupant: occupant }) => {
             />
           </LabeledList.Item>
           {damages.map((d, i) => (
-            <LabeledList.Item key={i} label={d[0] + ' Damage'}>
+            <LabeledList.Item key={i} label={`${d[0]} Damage`}>
               <ProgressBar
                 key={i}
                 minValue={0}

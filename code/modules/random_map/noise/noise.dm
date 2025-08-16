@@ -59,15 +59,15 @@
 	var/hsize = round(input_size/2)
 
 	/*
-	(x,y+isize)----(x+hsize,y+isize)----(x+size,y+isize)
-	  |                 |                  |
-	  |                 |                  |
-	  |                 |                  |
-	(x,y+hsize)----(x+hsize,y+hsize)----(x+isize,y)
-	  |                 |                  |
-	  |                 |                  |
-	  |                 |                  |
-	(x,y)----------(x+hsize,y)----------(x+isize,y)
+		* (x,y+isize)----(x+hsize,y+isize)----(x+size,y+isize)
+		*  |                 |                  |
+		*  |                 |                  |
+		*  |                 |                  |
+		* (x,y+hsize)----(x+hsize,y+hsize)----(x+isize,y)
+		*  |                 |                  |
+		*  |                 |                  |
+		*  |                 |                  |
+		* (x,y)----------(x+hsize,y)----------(x+isize,y)
 	*/
 	// Central edge values become average of corners.
 	map[TRANSLATE_COORD(x+hsize,y+isize)] = round((\
@@ -103,9 +103,9 @@
 		map[current_cell] *= (rand(1,2)==1 ? (1.0-random_element) : (1.0+random_element))
 		map[current_cell] = max(0,min(cell_range,map[current_cell]))
 
- 	// Recurse until size is too small to subdivide.
+	// Recurse until size is too small to subdivide.
 	if(isize>3)
-		if(!priority_process) 
+		if(!priority_process)
 			CHECK_TICK
 		iteration++
 		subdivide(iteration, x,       y,       hsize)
@@ -167,7 +167,7 @@
 					map[current_cell]-=cell_smooth_amt
 				map[current_cell] = max(0,min(cell_range,map[current_cell]))
 		map = next_map
-	
+
 	if(smooth_single_tiles)
 		var/list/buddies = list()
 		for(var/x in 1 to limit_x - 1)

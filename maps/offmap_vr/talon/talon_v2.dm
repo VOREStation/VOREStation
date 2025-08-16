@@ -1,13 +1,13 @@
 ///////////////////////////
 //// Spawning and despawning
-var/global/list/latejoin_talon = list()
+GLOBAL_LIST_EMPTY(latejoin_talon)
 /obj/effect/landmark/talon
 	name = "JoinLateTalon"
 	delete_me = 1
 
-/obj/effect/landmark/talon/New()
-	latejoin_talon += loc // Register this turf as tram latejoin.
-	..()
+/obj/effect/landmark/talon/Initialize(mapload)
+	GLOB.latejoin_talon += loc // Register this turf as tram latejoin.
+	. = ..()
 
 /datum/spawnpoint/talon
 	display_name = "ITV Talon Cryo"
@@ -17,7 +17,7 @@ var/global/list/latejoin_talon = list()
 
 /datum/spawnpoint/talon/New()
 	..()
-	turfs = latejoin_talon
+	turfs = GLOB.latejoin_talon
 
 /obj/machinery/cryopod/talon
 	announce_channel = "Talon"
@@ -54,7 +54,7 @@ var/global/list/latejoin_talon = list()
 	skybox_pixel_x = 270
 	skybox_pixel_y = 60
 
-	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	levels_for_distress = list(1, Z_NAME_BEACH, Z_NAME_AEROSTAT, Z_NAME_DEBRISFIELD, Z_NAME_FUELDEPOT)
 	unowned_areas = list(/area/shuttle/talonboat,/area/shuttle/talonpod)
 
 // The shuttle's 'shuttle' computer
@@ -70,7 +70,7 @@ var/global/list/latejoin_talon = list()
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Talon's Shuttle"
 
-	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	levels_for_distress = list(1, Z_NAME_BEACH, Z_NAME_AEROSTAT, Z_NAME_DEBRISFIELD, Z_NAME_FUELDEPOT)
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/talonboat
@@ -113,7 +113,7 @@ var/global/list/latejoin_talon = list()
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Talon's Escape Pod"
 
-	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	levels_for_distress = list(1, Z_NAME_BEACH, Z_NAME_AEROSTAT, Z_NAME_DEBRISFIELD, Z_NAME_FUELDEPOT)
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/talonpod
@@ -280,12 +280,12 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	item_state = "tdgreen"
 	assignment = "Talon synthetic"
 
-/obj/item/card/id/synthetic/talon/Initialize()
+/obj/item/card/id/synthetic/talon/Initialize(mapload)
 	. = ..()
 	access = list(access_talon, access_synth)
 
-/obj/machinery/power/smes/buildable/offmap_spawn/New()
-	..(1)
+/obj/machinery/power/smes/buildable/offmap_spawn/Initialize(mapload)
+	. = ..()
 	charge = 1e7
 	RCon = TRUE
 	input_level = input_level_max

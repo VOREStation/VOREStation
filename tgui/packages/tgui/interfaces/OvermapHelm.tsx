@@ -208,20 +208,24 @@ const OvermapMapView = (props) => {
       fill
       height="97%"
       buttons={
-        <>
-          <Button
-            selected={manual_control}
-            onClick={() => act('manual')}
-            icon="compass"
-          >
-            Direct Control
-          </Button>
-          <Button
-            icon="refresh"
-            tooltip="Update Camera View"
-            onClick={() => act('update_camera_view')}
-          />
-        </>
+        <Stack>
+          <Stack.Item>
+            <Button
+              selected={manual_control}
+              onClick={() => act('manual')}
+              icon="compass"
+            >
+              Direct Control
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="refresh"
+              tooltip="Update Camera View"
+              onClick={() => act('update_camera_view')}
+            />
+          </Stack.Item>
+        </Stack>
       }
     >
       <ByondUi

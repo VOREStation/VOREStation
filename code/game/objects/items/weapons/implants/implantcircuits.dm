@@ -8,15 +8,15 @@
 /obj/item/implant/integrated_circuit/islegal()
 	return TRUE
 
-/obj/item/implant/integrated_circuit/New()
-	..()
+/obj/item/implant/integrated_circuit/Initialize(mapload)
+	. = ..()
 	IC = new(src)
 	IC.implant = src
 
 /obj/item/implant/integrated_circuit/Destroy()
 	IC.implant = null
 	qdel(IC)
-	..()
+	. = ..()
 
 /obj/item/implant/integrated_circuit/get_data()
 	var/dat = {"

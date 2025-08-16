@@ -6,7 +6,7 @@
 	density = TRUE
 	var/list/starts_with
 
-/obj/structure/largecrate/Initialize()
+/obj/structure/largecrate/Initialize(mapload)
 	. = ..()
 	if(starts_with)
 		create_objects_in_loc(src, starts_with)
@@ -37,11 +37,11 @@
 				if(!AMBLINAL.mind)
 					AMBLINAL.ghostjoin = 1
 					AMBLINAL.ghostjoin_icon()
-					active_ghost_pods |= AMBLINAL
+					GLOB.active_ghost_pods |= AMBLINAL
 			//VOREStation Add End
 		user.visible_message(span_notice("[user] pries \the [src] open."), \
-							 span_notice("You pry open \the [src]."), \
-							 span_notice("You hear splitting wood."))
+								span_notice("You pry open \the [src]."), \
+								span_notice("You hear splitting wood."))
 		qdel(src)
 	else
 		return attack_hand(user)
@@ -75,7 +75,7 @@
 	desc = "Wulf Aeronautics says it comes in a box for the consumer's sake... How is this so light?"
 	icon_state = "vehiclecrate"
 
-/obj/structure/largecrate/vehicle/Initialize()
+/obj/structure/largecrate/vehicle/Initialize(mapload)
 	. = ..()
 	for(var/obj/O in contents)
 		O.update_icon()
@@ -134,3 +134,7 @@
 /obj/structure/largecrate/animal/catslug
 	name = "catslug carrier"
 	starts_with = list(/mob/living/simple_mob/vore/alienanimals/catslug)
+
+/obj/structure/largecrate/animal/mothroach
+	name = "mothroach carrier"
+	starts_with = list(/mob/living/simple_mob/animal/passive/mothroach)

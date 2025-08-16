@@ -1,8 +1,8 @@
 import {
   CheckboxInput,
-  FeatureNumeric,
+  type FeatureNumeric,
   FeatureSliderInput,
-  FeatureToggle,
+  type FeatureToggle,
 } from '../base';
 
 export const BROWSER_STYLED: FeatureToggle = {
@@ -69,10 +69,24 @@ export const TGUI_SAY_LIGHT_MODE: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const ui_scale: FeatureToggle = {
+  name: 'Toggle UI scaling',
+  category: 'UI',
+  description: 'If UIs should scale up to match your monitor scaling.',
+  component: CheckboxInput,
+};
+
 export const tgui_say_emotes: FeatureToggle = {
   name: 'Say: Use TGUI For Emotes',
   category: 'UI',
   description: 'Sets whether to use TGUI Say for emotes.',
+  component: CheckboxInput,
+};
+
+export const TGUI_ENABLE_SPELLCHECK: FeatureToggle = {
+  name: 'TGUI: Spellcheck',
+  category: 'UI',
+  description: 'Enables spellchecking on TGUI text areas and TGUI Say.',
   component: CheckboxInput,
 };
 
@@ -88,4 +102,14 @@ export const tgui_say_width: FeatureNumeric = {
   category: 'UI',
   description: 'The width to show in the tgui say input.',
   component: FeatureSliderInput,
+};
+
+export const windowflashing: FeatureToggle = {
+  name: 'Enable window flashing',
+  category: 'UI',
+  description: `
+    When toggled, some important events will make your game icon flash on your
+    task tray.
+  `,
+  component: CheckboxInput,
 };

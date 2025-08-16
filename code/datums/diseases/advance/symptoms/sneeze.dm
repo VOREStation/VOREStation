@@ -18,30 +18,46 @@ Bonus
 
 /datum/symptom/sneeze
 	name = "Sneezing"
+	desc = "The virus causes irritation of the nasal cavity, making the host sneeze occasionally."
 	stealth = -2
 	resistance = 3
 	stage_speed = 0
-	transmittable = 4
+	transmission = 4
+	symptom_delay_min = 15 SECONDS
+	symptom_delay_max = 40 SECONDS
 	level = 1
-	severity = 1
+	severity = 0
+
+	var/infective = FALSE
+
+	threshold_descs = list(
+		"Stealth 4" = "The symptom remains hidden until active.",
+		"Trasmission 12" = "The host may spread the disease through sneezing."
+	)
+
+	prefixes = list("Nasal ")
+	bodies = list("Cold")
+
+/datum/symptom/sneeze/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.stealth >= 4)
+		supress_warning = TRUE
+	if(A.transmission >= 12)
+		infective = TRUE
 
 /datum/symptom/sneeze/Activate(datum/disease/advance/A)
-	..()
-	if(prob(SYMPTOM_ACTIVATION_PROB))
-		var/mob/living/M = A.affected_mob
-		switch(A.stage)
-			if(1, 2, 3)
+	if(!..())
+		return
+	var/mob/living/M = A.affected_mob
+	switch(A.stage)
+		if(1, 2, 3)
+			if(!supress_warning)
 				M.emote("sniff")
-			else
-				M.emote("sneeze")
-				if(!M.wear_mask) // Spread only if they're not covering their face
-					A.spread(5)
-
-				if(prob(30) && !M.wear_mask) // Same for mucus
-					var/obj/effect/decal/cleanable/mucus/icky = new(get_turf(M))
-					icky.viruses |= A.Copy()
-
-	return
+		else
+			M.emote("sneeze")
+			if(infective && !(A.spread_flags & DISEASE_SPREAD_FALTERED))
+				addtimer(CALLBACK(A, TYPE_PROC_REF(/datum/disease, spread), 4), 20)
 
 /*
 //////////////////////////////////////
@@ -61,33 +77,33 @@ Bonus
 //////////////////////////////////////
 */
 
-/datum/symptom/sneeze/bluespace
+/datum/symptom/bsneeze
 	name = "Bluespace Sneezing"
+	desc = "The virus condenses bluespace particles in the host's nasal cavity, teleporting the host on sneeze."
 	stealth = -2
 	resistance = 3
 	stage_speed = 0
-	transmittable = 1
+	transmission = 1
+	symptom_delay_min = 20 SECONDS
+	symptom_delay_max = 30 SECONDS
 	level = 4
 	severity = 3
 
-/datum/symptom/sneeze/bluespace/Activate(datum/disease/advance/A)
-	..()
-	if(prob(SYMPTOM_ACTIVATION_PROB))
-		var/mob/living/M = A.affected_mob
-		switch(A.stage)
-			if(1, 2, 3)
+	prefixes = list("Nasal ", "Displacing ")
+	bodies = list("Cold", "Bluespace")
+
+/datum/symptom/bsneeze/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/M = A.affected_mob
+	switch(A.stage)
+		if(1, 2, 3)
+			if(!supress_warning)
 				M.emote("sniff")
-			else
-				SneezeTeleport(A, M)
-				if(!M.wear_mask)
-					A.spread(A.stage)
-				if(prob(30) && !M.wear_mask)
-					var/obj/effect/decal/cleanable/mucus/icky = new(get_turf(M))
-					icky.viruses |= A.Copy()
+		else
+			SneezeTeleport(A, A.affected_mob)
 
-	return
-
-/datum/symptom/sneeze/bluespace/proc/SneezeTeleport(datum/disease/advance/A, var/mob/living/mob)
+/datum/symptom/bsneeze/proc/SneezeTeleport(datum/disease/advance/A, var/mob/living/mob)
 	var/list/destination = list()
 	var/place
 
@@ -108,7 +124,7 @@ Bonus
 
 	var/mob/living/unlucky = locate() in place
 
-	if(unlucky)
+	if(unlucky && !unlucky.is_incorporeal())
 		if(unlucky.can_be_drop_pred && mob.can_be_drop_prey && mob.devourable)
 			place = unlucky.vore_selected
 		else if(unlucky.devourable && unlucky.can_be_drop_prey && mob.can_be_drop_pred)

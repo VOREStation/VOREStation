@@ -1,8 +1,6 @@
 //NEVER USE THIS IT SUX	-PETETHEGOAT
 //THE GOAT WAS RIGHT - RKF
 
-var/global/list/cached_icons = list()
-
 /obj/item/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
 	name = "paint bucket"
@@ -26,7 +24,7 @@ var/global/list/cached_icons = list()
 	else
 		return ..()
 
-/obj/item/reagent_containers/glass/paint/Initialize()
+/obj/item/reagent_containers/glass/paint/Initialize(mapload)
 	.=..()
 	if(paint_type)
 		reagents.add_reagent(REAGENT_ID_PAINT, volume, paint_type)

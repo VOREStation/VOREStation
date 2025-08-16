@@ -1,9 +1,7 @@
 /obj/item/clothing/head/hood
 	name = "hood"
 	desc = "A generic hood."
-	icon_state = "generic_hood"
-	body_parts_covered = HEAD
-	cold_protection = HEAD
+	icon_state = "chaplain_hood" //just default to this, whatever. default_hood never existed.
 	flags_inv = HIDEEARS | BLOCKHAIR
 
 // Winter coats
@@ -57,7 +55,7 @@
 /obj/item/clothing/head/hood/winter/medical/para
 	name = "paramedic winter hood"
 	desc = "A white winter coat hood with blue markings."
-	icon_state = "winterhood_para"
+	icon_state = "winterhood_medicalalt" //winterhood_para didn't exist, so...Sorry, paramedic.
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
 
 /obj/item/clothing/head/hood/winter/medical/chemist
@@ -224,22 +222,22 @@
 
 //hooded cloak hoods
 /obj/item/clothing/head/hood/cloak
-    name  = "maroon cloak hood"
-    desc = "A hood attached to a maroon cloak."
-    icon_state = "maroon_cloakhood"
-    flags_inv = HIDEEARS|BLOCKHAIR
+	name  = "maroon cloak hood"
+	desc = "A hood attached to a maroon cloak."
+	icon_state = "maroon_cloakhood"
+	flags_inv = HIDEEARS|BLOCKHAIR
 
 /obj/item/clothing/head/hood/cloak/winter
-    name = "winter cloak hood"
-    desc = "A hood attached to a winter cloak."
-    icon_state = "winter_cloakhood"
+	name = "winter cloak hood"
+	desc = "A hood attached to a winter cloak."
+	icon_state = "winter_cloakhood"
 
 /obj/item/clothing/head/hood/cloak/asymmetric
-    name = "asymmetric cloak hood"
-    desc = "A hood attached to an asymmetric cloak."
-    icon_state = "royalist_cloakhood"
+	name = "asymmetric cloak hood"
+	desc = "A hood attached to an asymmetric cloak."
+	icon_state = "asymmetric_cloakhood"
 
 /obj/item/clothing/head/hood/cloak/fancy
-    name = "fancy cloak hood"
-    desc = "A hood attached to a fancy cloak."
-    icon_state = "hb_cloakhood"
+	name = "fancy cloak hood"
+	desc = "A hood attached to a fancy cloak."
+	icon_state = "hb_cloakhood"

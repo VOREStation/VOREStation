@@ -1,6 +1,13 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, LabeledList, Section, Table } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  LabeledList,
+  Section,
+  Stack,
+  Table,
+} from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 const getStatusText = (port) => {
@@ -42,21 +49,25 @@ export const OmniMixer = (props) => {
         <Section
           title={config ? 'Configuration' : 'Status'}
           buttons={
-            <>
-              <Button
-                icon="power-off"
-                selected={power}
-                disabled={config}
-                onClick={() => act('power')}
-              >
-                {power ? 'On' : 'Off'}
-              </Button>
-              <Button
-                icon="wrench"
-                selected={config}
-                onClick={() => act('configure')}
-              />
-            </>
+            <Stack>
+              <Stack.Item>
+                <Button
+                  icon="power-off"
+                  selected={power}
+                  disabled={config}
+                  onClick={() => act('power')}
+                >
+                  {power ? 'On' : 'Off'}
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="wrench"
+                  selected={config}
+                  onClick={() => act('configure')}
+                />
+              </Stack.Item>
+            </Stack>
           }
         >
           <Table>
@@ -90,10 +101,10 @@ export const OmniMixer = (props) => {
             <LabeledList.Item label="Flow Rate Limit">
               {config ? (
                 <Button icon="wrench" onClick={() => act('set_flow_rate')}>
-                  {set_flow_rate + ' L/s'}
+                  {`${set_flow_rate} L/s`}
                 </Button>
               ) : (
-                set_flow_rate + ' L/s'
+                `${set_flow_rate} L/s`
               )}
             </LabeledList.Item>
           </LabeledList>
@@ -109,7 +120,7 @@ const PortRow = (props) => {
 
   return (
     <Table.Row>
-      <Table.Cell textAlign="center">{port.dir + ' Port'}</Table.Cell>
+      <Table.Cell textAlign="center">{`${port.dir} Port`}</Table.Cell>
       <Table.Cell textAlign="center">
         {config ? (
           <Button
@@ -144,7 +155,7 @@ const PortRow = (props) => {
             OUT
           </Button>
         ) : (
-          port.concentration * 100 + '%'
+          `${port.concentration * 100}%`
         )}
       </Table.Cell>
       {config ? (
@@ -160,7 +171,7 @@ const PortRow = (props) => {
                 })
               }
             >
-              {!port.input ? '-' : port.concentration * 100 + ' %'}
+              {!port.input ? '-' : `${port.concentration * 100} %`}
             </Button>
           </Table.Cell>
           <Table.Cell textAlign="center">

@@ -14,13 +14,13 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/eftpos/Initialize()
+/obj/item/eftpos/Initialize(mapload)
 	. = ..()
 	//by default, connect to the station account
 	//the user of the EFTPOS device can change the target account though, and no-one will be the wiser (except whoever's being charged)
-	linked_account = station_account
+	linked_account = GLOB.station_account
 
-	machine_id = "[station_name()] EFTPOS #[num_financial_terminals++]"
+	machine_id = "[station_name()] EFTPOS #[GLOB.num_financial_terminals++]"
 	access_code = rand(1111,111111)
 	print_reference()
 
@@ -130,7 +130,7 @@
 						T.purpose = (transaction_purpose ? transaction_purpose : "None supplied.")
 						T.amount = transaction_amount
 						T.source_terminal = machine_id
-						T.date = current_date_string
+						T.date = GLOB.current_date_string
 						T.time = stationtime2text()
 						linked_account.transaction_log.Add(T)
 					else
@@ -160,7 +160,7 @@
 			if("change_id")
 				var/attempt_code = tgui_input_number(usr, "Re-enter the current EFTPOS access code", "Confirm EFTPOS code")
 				if(attempt_code == access_code)
-					eftpos_name = sanitize(tgui_input_text(usr, "Enter a new terminal ID for this device", "Enter new EFTPOS ID",max_length=MAX_NAME_LEN), MAX_NAME_LEN) + " EFTPOS scanner"
+					eftpos_name = tgui_input_text(usr, "Enter a new terminal ID for this device", "Enter new EFTPOS ID",max_length=MAX_NAME_LEN) + " EFTPOS scanner"
 					print_reference()
 				else
 					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Incorrect code entered."))
@@ -175,7 +175,7 @@
 				else
 					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account not found."))
 			if("trans_purpose")
-				var/choice = sanitize(tgui_input_text(usr, "Enter reason for EFTPOS transaction", "Transaction purpose"))
+				var/choice = tgui_input_text(usr, "Enter reason for EFTPOS transaction", "Transaction purpose", MAX_MESSAGE_LEN)
 				if(choice)
 					transaction_purpose = choice
 			if("trans_value")
@@ -255,7 +255,7 @@
 								else
 									T.amount = "[transaction_amount]"
 								T.source_terminal = machine_id
-								T.date = current_date_string
+								T.date = GLOB.current_date_string
 								T.time = stationtime2text()
 								D.transaction_log.Add(T)
 								//
@@ -264,7 +264,7 @@
 								T.purpose = transaction_purpose
 								T.amount = "[transaction_amount]"
 								T.source_terminal = machine_id
-								T.date = current_date_string
+								T.date = GLOB.current_date_string
 								T.time = stationtime2text()
 								linked_account.transaction_log.Add(T)
 							else

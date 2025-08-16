@@ -44,7 +44,7 @@
 		to_chat(M, span_notice("You don't feel cool enough to name this gun, chump."))
 		return 0
 
-	var/input = sanitizeSafe(tgui_input_text(M, "What do you want to name the gun?","Rename Gun" ,"",MAX_NAME_LEN))
+	var/input = sanitizeSafe(tgui_input_text(M, "What do you want to name the gun?","Rename Gun" ,"",MAX_NAME_LEN, encode = FALSE))
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
@@ -151,7 +151,7 @@
 	item_state = "deagle"
 	force = 14.0
 	caliber = ".44"
-	fire_sound = 'sound/weapons/Gunshot_deagle.ogg'
+	fire_sound = 'sound/weapons/gunshot_deagle.ogg'
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m44
 	allowed_magazines = list(/obj/item/ammo_magazine/m44)
@@ -334,30 +334,13 @@
 	load_method = SINGLE_CASING
 	max_shells = 1 //literally just a barrel
 
-	var/global/list/ammo_types = list(
-		/obj/item/ammo_casing/a357              = ".357",
-		/obj/item/ammo_casing/a9mm		        = "9mm",
-		/obj/item/ammo_casing/a45				= ".45",
-		/obj/item/ammo_casing/a10mm             = "10mm",
-		/obj/item/ammo_casing/a12g              = "12g",
-		/obj/item/ammo_casing/a12g              = "12g",
-		/obj/item/ammo_casing/a12g/pellet       = "12g",
-		/obj/item/ammo_casing/a12g/pellet       = "12g",
-		/obj/item/ammo_casing/a12g/pellet       = "12g",
-		/obj/item/ammo_casing/a12g/beanbag      = "12g",
-		/obj/item/ammo_casing/a12g/stunshell    = "12g",
-		/obj/item/ammo_casing/a12g/flash        = "12g",
-		/obj/item/ammo_casing/a762              = "7.62mm",
-		/obj/item/ammo_casing/a545              = "5.45mm"
-		)
-
-/obj/item/gun/projectile/pirate/New()
-	ammo_type = pick(ammo_types)
-	desc += " Uses [ammo_types[ammo_type]] rounds."
+/obj/item/gun/projectile/pirate/Initialize(mapload)
+	ammo_type = pick(GLOB.global_ammo_types)
+	desc += " Uses [GLOB.global_ammo_types[ammo_type]] rounds."
 
 	var/obj/item/ammo_casing/ammo = ammo_type
 	caliber = initial(ammo.caliber)
-	..()
+	. = ..()
 
 /*
  * Derringer

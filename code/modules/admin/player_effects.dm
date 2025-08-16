@@ -1,4 +1,4 @@
-/client/proc/player_effects(var/mob/target in mob_list)
+/client/proc/player_effects(var/mob/target in GLOB.mob_list)
 	set name = "Player Effects"
 	set desc = "Modify a player character with various 'special treatments' from a list."
 	set category = "Fun.Event Kit"
@@ -37,7 +37,7 @@
 	return data
 
 /datum/eventkit/player_effects/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/eventkit/player_effects/tgui_act(action, list/params, datum/tgui/ui)
 	. = ..()
@@ -94,7 +94,7 @@
 			var/turf/Ts //Turf for shadekin
 
 			//Try to find nondense turf
-			for(var/direction in cardinal)
+			for(var/direction in GLOB.cardinal)
 				var/turf/T = get_step(target,direction)
 				if(T && !T.density)
 					Ts = T //Found shadekin spawn turf
@@ -104,8 +104,7 @@
 			var/mob/living/simple_mob/shadekin/red/shadekin = new(Ts)
 			//Abuse of shadekin
 			shadekin.real_name = shadekin.name
-			shadekin.voremob_loaded = TRUE
-			shadekin.init_vore()
+			shadekin.init_vore(TRUE)
 			shadekin.ability_flags |= 0x1
 			shadekin.phase_shift()
 			shadekin.ai_holder.give_target(target)
@@ -158,13 +157,12 @@
 			target.transforming = TRUE //Cheap hack to stop them from moving
 			var/mob/living/simple_mob/shadekin/shadekin = new kin_type(Tt)
 			shadekin.real_name = shadekin.name
-			shadekin.voremob_loaded = TRUE
-			shadekin.init_vore()
+			shadekin.init_vore(TRUE)
 			shadekin.can_be_drop_pred = TRUE
 			shadekin.dir = SOUTH
 			shadekin.ability_flags |= 0x1
 			shadekin.phase_shift() //Homf
-			shadekin.energy = initial(shadekin.energy)
+			shadekin.comp.dark_energy = initial(shadekin.comp.dark_energy)
 			//For fun
 			sleep(1 SECOND)
 			shadekin.dir = WEST
@@ -325,8 +323,19 @@
 			spawned_obj.unacidable = !M.digestable
 			M.forceMove(possessed_voice)
 
+		if("elder_smite")
+			if(!target.ckey)
+				return
+			target.overlay_fullscreen("scrolls", /obj/screen/fullscreen/scrolls, 1)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, clear_fullscreen), "scrolls"), 20 SECONDS)
 
 		////////MEDICAL//////////////
+
+		if("health_scan")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.scan_mob(user)
 
 		if("appendicitis")
 			var/mob/living/carbon/human/Tar = target
@@ -475,6 +484,18 @@
 			Tar.ingested.clear_reagents()
 			Tar.touching.clear_reagents()
 
+		if("medical_issue")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.custom_medical_issue(user)
+
+		if("clear_issue")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.clear_medical_issue(user)
+
 		////////ABILITIES//////////////
 
 		if("vent_crawl")
@@ -575,6 +596,36 @@
 				return
 			add_verb(Tar, /mob/living/proc/toggle_active_cloaking)
 
+		if("colormate")
+			if(istype(target,/mob/living/simple_mob))
+				var/mob/living/simple_mob/Tar = target
+				add_verb(Tar, /mob/living/simple_mob/proc/ColorMate)
+			if(istype(target,/mob/living/silicon/robot))
+				var/mob/living/silicon/robot/Tar = target
+				add_verb(Tar, /mob/living/silicon/robot/proc/ColorMate)
+
+		if("be_event_invis")
+			var/mob/living/Tar = target
+			if(!istype(Tar)) //Technically does not need this restriction, but prevents ghosts accidentally being placed in mob layer
+				return
+			if(Tar.plane != PLANE_INVIS_EVENT)
+				Tar.plane = PLANE_INVIS_EVENT
+				if(!(VIS_EVENT_INVIS in Tar.vis_enabled))
+					Tar.plane_holder.set_vis(VIS_EVENT_INVIS,TRUE)
+					Tar.vis_enabled += VIS_EVENT_INVIS
+			else
+				Tar.plane = MOB_LAYER
+				if(VIS_EVENT_INVIS in Tar.vis_enabled)
+					Tar.plane_holder.set_vis(VIS_EVENT_INVIS,FALSE)
+					Tar.vis_enabled -= VIS_EVENT_INVIS
+
+		if("see_event_invis")
+			if(!(VIS_EVENT_INVIS in target.vis_enabled))
+				target.plane_holder.set_vis(VIS_EVENT_INVIS,TRUE)
+				target.vis_enabled += VIS_EVENT_INVIS
+			else if(VIS_EVENT_INVIS in target.vis_enabled)
+				target.plane_holder.set_vis(VIS_EVENT_INVIS,FALSE)
+				target.vis_enabled -= VIS_EVENT_INVIS
 
 		////////INVENTORY//////////////
 
@@ -618,7 +669,7 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			if(!user.client.holder)
+			if(!check_rights_for(user.client, R_HOLDER))
 				return
 			var/obj/item/X = user.client.holder.marked_datum
 			if(!istype(X))
@@ -629,7 +680,7 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			if(!user.client.holder)
+			if(!check_rights_for(user.client, R_HOLDER))
 				return
 			var/obj/item/X = user.client.holder.marked_datum
 			if(!istype(X))
@@ -652,7 +703,7 @@
 			if(Tar.nif)
 				to_chat(user,span_warning("Target already has a NIF."))
 				return
-			if(Tar.species.flags & NO_SCAN)
+			if(Tar.species.flags & NO_DNA)
 				var/obj/item/nif/S = /obj/item/nif/bioadap
 				input_NIF = initial(S.name)
 				new /obj/item/nif/bioadap(Tar)
@@ -676,7 +727,7 @@
 			log_and_message_admins("Quick NIF'd [Tar.real_name] with a [input_NIF].", user)
 
 		if("resize")
-			user.client.resize(target)
+			SSadmin_verbs.dynamic_invoke_verb(user.client, /datum/admin_verb/resize, target)
 
 		if("teleport")
 			var/where = tgui_alert(user, "Where to teleport?", "Where?", list("To Me", "To Mob", "To Area", "Cancel"))
@@ -685,7 +736,7 @@
 			if(where == "To Me")
 				user.client.Getmob(target)
 			if(where == "To Mob")
-				var/mob/selection = tgui_input_list(ui.user, "Select a mob to jump [target] to:", "Jump to mob", mob_list)
+				var/mob/selection = tgui_input_list(ui.user, "Select a mob to jump [target] to:", "Jump to mob", GLOB.mob_list)
 				target.on_mob_jump()
 				target.forceMove(get_turf(selection))
 				log_admin("[key_name(user)] jumped [target] to [selection]")
@@ -719,7 +770,7 @@
 			user.client.cmd_admin_direct_narrate(target)
 
 		if("player_panel")
-			user.client.holder.show_player_panel(target)
+			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/show_player_panel, target)
 
 		if("view_variables")
 			user.client.debug_variables(target)
@@ -745,7 +796,7 @@
 				qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
 			L.ai_holder_type = tgui_input_list(ui.user, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
 			L.initialize_ai_holder()
-			L.faction = sanitize(tgui_input_text(ui.user, "Please input AI faction", "AI faction", "neutral"))
+			L.faction = tgui_input_text(ui.user, "Please input AI faction", "AI faction", "neutral", MAX_MESSAGE_LEN)
 			L.a_intent = tgui_input_list(ui.user, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
 			if(tgui_alert(ui.user, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 				L.AdjustSleeping(-100)

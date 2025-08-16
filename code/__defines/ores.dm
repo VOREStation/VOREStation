@@ -1,3 +1,7 @@
+#define TURF_HAS_MINERALS	0x1
+#define TURF_HAS_ORE		0x2
+#define TURF_HAS_RARE_ORE	0x4
+
 #define ORE_MARBLE "marble"
 #define ORE_QUARTZ "quartz"
 #define ORE_COPPER "copper"

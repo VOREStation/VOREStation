@@ -25,15 +25,16 @@
 
 /obj/structure/droppod_door/attack_hand(var/mob/user)
 	if(deploying) return
+	deploying = TRUE
 	to_chat(user, span_danger("You prime the explosive bolts. Better get clear!"))
-	sleep(30)
-	deploy()
+	addtimer(CALLBACK(src, PROC_REF(deploy)), 3 SECONDS, TIMER_DELETE_ME)
 
 /obj/structure/droppod_door/proc/deploy()
 	if(deployed)
 		return
 
-	deployed = 1
+	deploying = FALSE
+	deployed = TRUE
 	visible_message(span_danger("The explosive bolts on \the [src] detonate, throwing it open!"))
 	playsound(src, 'sound/effects/bang.ogg', 50, 1, 5)
 
@@ -72,7 +73,7 @@
 	set_opacity(0)
 	icon_state = "ramptop"
 	var/obj/structure/droppod_door/door_bottom = new(T)
-	door_bottom.deployed = 1
+	door_bottom.deployed = TRUE
 	door_bottom.density = FALSE
 	door_bottom.set_opacity(0)
 	door_bottom.dir = src.dir

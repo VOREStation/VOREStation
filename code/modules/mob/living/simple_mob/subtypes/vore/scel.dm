@@ -58,8 +58,8 @@
 
 	allow_mind_transfer = TRUE
 
-/mob/living/simple_mob/vore/scel/New()
-	..()
+/mob/living/simple_mob/vore/scel/Initialize(mapload)
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]-rest"
@@ -94,9 +94,7 @@
 	add_verb(src, /mob/living/proc/target_lunge)
 	movement_cooldown = -1
 
-/mob/living/simple_mob/vore/scel/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/scel/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

@@ -4,12 +4,13 @@
 	preserve_item = 1
 	var/obj/item/master_item
 
-/obj/item/storage/internal/New(obj/item/MI)
-	master_item = MI
-	loc = master_item
+/obj/item/storage/internal/Initialize(mapload)
+	. = ..()
+	master_item = loc
+	if(!istype(master_item))
+		return INITIALIZE_HINT_QDEL
 	name = master_item.name
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
-	..()
 
 /obj/item/storage/internal/Destroy()
 	master_item = null

@@ -42,13 +42,12 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 /datum/managed_browser/feedback_form/get_html()
 	var/list/dat = list("<html><body>")
 	dat += "<center>"
-	dat += "<font size='2'>"
-	dat += "Here, you can write some feedback for the server.<br>"
-	dat += "Note that HTML is NOT supported!<br>"
-	dat += "Click the edit button to begin writing.<br>"
+	var/dat_text = "Here, you can write some feedback for the server.<br>"
+	dat_text += "Note that HTML is NOT supported!<br>"
+	dat_text += "Click the edit button to begin writing.<br>"
 
-	dat += "Your feedback is currently [length(feedback_body)]/[MAX_FEEDBACK_LENGTH] letters long."
-	dat += "</font>"
+	dat_text += "Your feedback is currently [length(feedback_body)]/[MAX_FEEDBACK_LENGTH] letters long."
+	dat += span_normal(dat_text)
 	dat += "<hr>"
 
 	dat += "<h2>Preview</h2></center>"
@@ -142,7 +141,4 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 				return
 
 			my_client.mob << browse(null, "window=[browser_id]") // Closes the window.
-			if(isnewplayer(my_client.mob))
-				var/mob/new_player/NP = my_client.mob
-				NP.new_player_panel_proc() // So the feedback button goes away, if the user gets put on cooldown.
 			qdel(src)

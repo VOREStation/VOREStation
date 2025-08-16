@@ -15,13 +15,14 @@
 	var/mopcount = 0
 
 
-/obj/item/mop_deploy/New()
+/obj/item/mop_deploy/Initialize(mapload)
+	. = ..()
 	create_reagents(5)
 	START_PROCESSING(SSobj, src)
 
 /turf/proc/clean_deploy(atom/source)
 	if(source.reagents.has_reagent(REAGENT_ID_WATER, 1))
-		clean_blood()
+		wash(CLEAN_SCRUB)
 		if(istype(src, /turf/simulated))
 			var/turf/simulated/T = src
 			T.dirt = 0

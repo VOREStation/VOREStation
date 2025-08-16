@@ -1,5 +1,3 @@
-var/list/flooring_cache = list()
-
 var/image/no_ceiling_image = null
 
 /hook/startup/proc/setup_no_ceiling_image()
@@ -25,7 +23,7 @@ var/image/no_ceiling_image = null
 			icon_state = flooring.icon_base
 									//VOREStation Addition Start
 			if(flooring.check_season)
-				icon_state = "[icon_state]-[world_time_season]"	//VOREStation Addition End
+				icon_state = "[icon_state]-[GLOB.world_time_season]"	//VOREStation Addition End
 			if(flooring.has_base_range)
 				icon_state = "[icon_state][rand(0,flooring.has_base_range)]"
 				flooring_override = icon_state
@@ -33,7 +31,7 @@ var/image/no_ceiling_image = null
 		// Apply edges, corners, and inner corners.
 		var/has_border = 0
 		if(flooring.flags & TURF_HAS_EDGES)
-			for(var/step_dir in cardinal)
+			for(var/step_dir in GLOB.cardinal)
 				var/turf/simulated/floor/T = get_step(src, step_dir)
 				if(!flooring.test_link(src, T))
 					has_border |= step_dir
@@ -103,7 +101,7 @@ var/image/no_ceiling_image = null
 // This updates an edge from an adjacent turf onto us, not our own 'internal' edges.
 // For e.g. we might be outdoor metal plating, and we want to find sand next to us to have it 'spill onto' our turf with an overlay.
 /turf/simulated/proc/update_icon_edge()
-	for(var/checkdir in cardinal) // Check every direction
+	for(var/checkdir in GLOB.cardinal) // Check every direction
 		var/turf/simulated/T = get_step(src, checkdir) // Get the turf in that direction
 		// Our conditions:
 		// Has to be a /turf/simulated
@@ -182,7 +180,7 @@ var/image/no_ceiling_image = null
 							break
 				else if(floor_smooth == SMOOTH_BLACKLIST)
 					is_linked = TRUE //Default to true for the blacklist, then make it false if a match comes up
-					for (var/v in flooring_whitelist)
+					for (var/v in flooring_blacklist)
 						if (istype(t.flooring, v))
 							//Found a match on the list
 							is_linked = FALSE
@@ -278,10 +276,3 @@ var/image/no_ceiling_image = null
 							is_linked = FALSE
 
 	return is_linked
-
-/turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
-	if(!flooring_cache[cache_key])
-		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)
-		I.layer = layer
-		flooring_cache[cache_key] = I
-	return flooring_cache[cache_key]

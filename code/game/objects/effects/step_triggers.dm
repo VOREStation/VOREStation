@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(mapped_autostrips_mob)
 /obj/effect/step_trigger
 	var/affect_ghosts = 0
 	var/stopper = 1 // stops throwers
-	invisibility = 99 // nope cant see this shit
+	invisibility = INVISIBILITY_BADMIN // nope cant see this shit
 	plane = ABOVE_PLANE
 	anchored = TRUE
 	icon = 'icons/mob/screen1.dmi' //VS Edit
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(mapped_autostrips_mob)
 	var/obj/effect/landmark/the_landmark = null
 	var/landmark_id = null
 
-/obj/effect/step_trigger/teleporter/landmark/Initialize()
+/obj/effect/step_trigger/teleporter/landmark/Initialize(mapload)
 	. = ..()
 	for(var/obj/effect/landmark/teleport_mark/mark in GLOB.tele_landmarks)
 		if(mark.landmark_id == landmark_id)
@@ -190,7 +190,7 @@ GLOBAL_LIST_EMPTY(tele_landmarks)
 /obj/effect/landmark/teleport_mark
 	var/landmark_id = null
 
-/obj/effect/landmark/teleport_mark/Initialize()
+/obj/effect/landmark/teleport_mark/Initialize(mapload)
 	. = ..()
 	GLOB.tele_landmarks += src
 
@@ -203,53 +203,20 @@ GLOBAL_LIST_EMPTY(tele_landmarks)
 /obj/effect/step_trigger/teleporter/planetary_fall
 	var/datum/planet/planet = null
 
+
+/obj/effect/step_trigger/teleporter/planetary_fall/Destroy()
+	. = ..()
+	planet = null
+
 // First time setup, which planet are we aiming for?
 /obj/effect/step_trigger/teleporter/planetary_fall/proc/find_planet()
 	return
 
 /obj/effect/step_trigger/teleporter/planetary_fall/Trigger(var/atom/movable/A)
-	if(!planet)
-		find_planet()
-
-	if(planet)
-		if(!planet.planet_floors.len)
-			message_admins("ERROR: planetary_fall step trigger's list of outdoor floors was empty.")
-			return
-		var/turf/simulated/T = null
-		var/safety = 100 // Infinite loop protection.
-		while(!T && safety)
-			var/turf/simulated/candidate = pick(planet.planet_floors)
-			if(!istype(candidate) || istype(candidate, /turf/simulated/sky))
-				safety--
-				continue
-			else if(candidate && !candidate.is_outdoors())
-				safety--
-				continue
-			else
-				T = candidate
-				break
-
-		if(!T)
-			message_admins("ERROR: planetary_fall step trigger could not find a suitable landing turf.")
-			return
-
-		if(isobserver(A))
-			A.forceMove(T) // Harmlessly move ghosts.
-			return
-		//VOREStation Edit Start
-		if(!(A.can_fall()))
-			return // Phased shifted kin should not fall
-		//VOREStation Edit End
-
-		A.forceMove(T)
-		// Living things should probably be logged when they fall...
-		if(isliving(A))
-			message_admins("\The [A] fell out of the sky.")
-		// ... because they're probably going to die from it.
-		A.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
-	else
-		message_admins("ERROR: planetary_fall step trigger lacks a planet to fall onto.")
+	var/turf/T = get_turf(A)
+	if(!T)
 		return
+	T.trigger_fall(A, planet)
 
 //Death
 
@@ -320,7 +287,7 @@ But for now, for what it's been used for, it works.
 			return
 	if(Mtarget)
 		H.forceMove(Mtarget.loc)
-	var/obj/locker = new /obj/structure/closet/secure_closet/mind(target.loc, mind_target = H.mind)
+	var/obj/locker = new /obj/structure/closet/secure_closet/mind(target.loc, H.mind)
 	for(var/obj/item/W in H)
 		if(istype(W, /obj/item/implant/backup || istype(W, /obj/item/nif)))
 			continue
@@ -366,7 +333,7 @@ But for now, for what it's been used for, it works.
 	unacidable = 1
 	layer = 99
 	anchored = 1
-	invisibility = 99
+	invisibility = INVISIBILITY_BADMIN
 
 
 /obj/effect/autostriptarget/Initialize(mapload)
@@ -378,5 +345,6 @@ But for now, for what it's been used for, it works.
 	name = "Autostrip target to send mobs to."
 
 /obj/effect/autostriptarget/mob/Initialize(mapload)
+	. = ..()
 	if(targetid)
 		GLOB.mapped_autostrips_mob[targetid] = src

@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   source: Source;
@@ -66,6 +66,7 @@ export type Target = {
   radio_channels: string[];
   availalbe_channels: string[];
   pka: PKA | undefined;
+  multibelt: Multibelt[] | undefined;
   components: Component[];
   active_access: Access[];
 };
@@ -109,6 +110,16 @@ export type PKA = {
   installed_modkits: { name: string; ref: string; costs: number }[];
   capacity: number;
   max_capacity: number;
+};
+
+export type Multibelt = {
+  name: string;
+  tools: {
+    name: string;
+    path: string;
+  }[];
+  ref: string;
+  integrated_tools: { name: string; ref: string }[];
 };
 
 export type InstalledCell = {

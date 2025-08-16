@@ -7,15 +7,15 @@ import type { Data } from './types';
 
 export const CrewMonitorMapView = (props: {
   zoom: number;
-  onZoom: Function;
+  onZoom: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { config, data } = useBackend<Data>();
 
-  const { zoomScale, crewmembers } = data;
+  const { crewmembers } = data;
 
   return (
     <Box height="526px" mb="0.5rem" overflow="hidden">
-      <NanoMap zoomScale={zoomScale} onZoom={(v: number) => props.onZoom(v)}>
+      <NanoMap onZoom={(v: number) => props.onZoom(v)}>
         {crewmembers
           .filter(
             (x) => x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel,
@@ -27,7 +27,7 @@ export const CrewMonitorMapView = (props: {
               y={cm.y}
               zoom={props.zoom}
               icon="circle"
-              tooltip={cm.name + ' (' + cm.assignment + ')'}
+              tooltip={`${cm.name} (${cm.assignment})`}
               color={getStatColor(cm)}
             />
           ))}

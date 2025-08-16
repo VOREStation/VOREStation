@@ -51,7 +51,7 @@
 
 /datum/antagonist/proc/print_player_lite(var/datum/mind/ply)
 	var/role = ply.assigned_role ? "\improper[ply.assigned_role]" : "\improper[ply.special_role]"
-	var/text = "<br>" + span_bold("[ply.name]") + " (" + span_bold("[ply.key]") + ") as \a " + span_bold("[role]") + " ("
+	var/text = "<br>" + span_bold("[ply.name]") + " (" + span_bold("[ply.key]") + ") as " + span_bold("\a [role]") + " ("
 	if(ply.current)
 		if(ply.current.stat == DEAD)
 			text += "died"
@@ -73,7 +73,7 @@
 	var/TC_uses = FALSE
 	var/uplink_true = FALSE
 	var/purchases = ""
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.mind && M.mind.used_TC)
 			TC_uses += M.mind.used_TC
 			uplink_true = TRUE

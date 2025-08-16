@@ -1,5 +1,5 @@
 /mob/living/simple_mob/vore/sonadile
-	name = "Sonadile"
+	name = "sonadile"
 	desc = "A tall, oddly proportioned bipedal reptile. Whilst its body is fairly large on its own, the incredibly long neck brings its height up to near 14 feet tall. Covered in green scales with a yellow underbelly, with a long thin tail, short legs and stubby arms. It has orange frills down its spine and the eyes are an odd grey colour, it doesn't appear to be able to see very well."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/sonadile)
 	tt_desc = "Crocodylidae"
@@ -43,9 +43,7 @@
 	vore_pounce_maxhealth = 1000
 	vore_bump_emote = "pounces on"
 
-/mob/living/simple_mob/vore/sonadile/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/sonadile/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

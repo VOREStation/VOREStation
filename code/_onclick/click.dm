@@ -118,7 +118,6 @@
 		trigger_aiming(TARGET_CAN_CLICK)
 		return 1
 
-	// VOREStation Addition Start: inbelly item interaction
 	if(!currently_restrained && isbelly(loc) && (loc == A.loc))
 		if(W)
 			var/resolved = W.resolve_attackby(A,src)
@@ -129,7 +128,6 @@
 				setClickCooldown(get_attack_speed())
 			UnarmedAttack(A, 1)
 		return
-	// VOREStation Addition End
 
 	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
 		return
@@ -196,7 +194,7 @@
 	if(is_incorporeal())
 		return 0
 
-	if(!ticker)
+	if(!SSticker)
 		to_chat(src, "You cannot attack people before the game has started.")
 		return 0
 
@@ -295,11 +293,37 @@
 	A.AltClick(src)
 	return
 
+/**
+ * Alt click on an atom.
+ * Performs alt-click actions before attempting to open a loot window.
+ * Returns TRUE if successful, FALSE if not.
+ */
 /atom/proc/AltClick(var/mob/user)
-	var/turf/T = get_turf(src)
-	if(T && user.TurfAdjacent(T))
-		user.set_listed_turf(T)
-	return 1
+	// if(!user.can_interact_with(src))
+	// 	return FALSE
+
+	// if(SEND_SIGNAL(src, COMSIG_CLICK_ALT, user) & COMPONENT_CANCEL_CLICK_ALT)
+	// 	return TRUE
+
+	if(HAS_TRAIT(src, TRAIT_ALT_CLICK_BLOCKER) && !isobserver(user))
+		return TRUE
+
+	var/turf/tile = get_turf(src)
+	if(isnull(tile))
+		return FALSE
+
+	if(!isturf(loc) && !isturf(src))
+		return FALSE
+
+	if(!user.TurfAdjacent(tile))
+		return FALSE
+
+	var/datum/lootpanel/panel = user.client?.loot_panel
+	if(isnull(panel))
+		return FALSE
+
+	panel.open(tile)
+	return TRUE
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)

@@ -28,7 +28,12 @@
 /*
 /obj/item/storage/backpack/dropped(mob/user)
 	if (loc == user && src.use_sound)
-		playsound(src, src.use_sound, 50, 1, -5)
+		if(isbelly(user.loc))
+			var/obj/belly/B = user.loc
+			if(B.mode_flags & DM_FLAG_MUFFLEITEMS)
+				return
+		else
+			playsound(src, src.use_sound, 50, 1, -5)
 	..(user)
 */
 
@@ -50,7 +55,7 @@
 	var/tilted = 0
 	icon_state = "holdingduffle"
 
-/obj/item/storage/backpack/holding/duffle/Initialize()
+/obj/item/storage/backpack/holding/duffle/Initialize(mapload)
 	. = ..()
 	if(prob(50))
 		icon_state = "[icon_state]_tilted"
@@ -176,7 +181,7 @@
 	var/can_tilt = 1
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
 
-/obj/item/storage/backpack/dufflebag/Initialize()
+/obj/item/storage/backpack/dufflebag/Initialize(mapload)
 	. = ..()
 	if(prob(50))
 		icon_state = "[icon_state]_tilted"
@@ -547,6 +552,6 @@
 /obj/item/storage/backpack/satchel/ranger
 	name = "ranger satchel"
 	desc = "A satchel designed for the Go Go ERT Rangers series to allow for slightly bigger carry capacity for the ERT-Rangers.\
-	 Unlike the show claims, it is not a phoron-enhanced satchel of holding with plot-relevant content."
+		Unlike the show claims, it is not a phoron-enhanced satchel of holding with plot-relevant content."
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_satchel"

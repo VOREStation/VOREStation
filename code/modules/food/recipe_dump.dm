@@ -3,15 +3,15 @@
 	set category = "Server.Admin"
 	set desc = "Dumps food and drink recipe info and images for wiki or other use."
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return
 
 	//////////////////////// DRINK
 	var/list/drink_recipes = list()
 	for(var/decl/chemical_reaction/instant/drinks/CR in SSchemistry.chemical_reactions)
 		drink_recipes[CR.type] = list("Result" = CR.name,
-        						"ResAmt" = CR.result_amount,
-        						"Reagents" = CR.required_reagents,
+								"ResAmt" = CR.result_amount,
+								"Reagents" = CR.required_reagents,
 								"Catalysts" = CR.catalysts)
 
 	//////////////////////// FOOD

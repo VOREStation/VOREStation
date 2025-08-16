@@ -255,6 +255,16 @@
 		if(T.density)
 			return TRUE
 
+/mob/living/silicon/pai/can_ztravel()
+	if(incapacitated())
+		return FALSE
+
+	if(Process_Spacemove())
+		return TRUE
+
+	if(!restrained())
+		return TRUE
+
 // TODO - Leshana Experimental
 
 //Execution by grand piano!
@@ -435,7 +445,7 @@
 	var/turf/oldloc = loc
 
 	// Now lets move there!
-	if(!Move(landing))
+	if(!Move(landing, direct = dir)) //infinite fall fix
 		return 1
 
 	// Detect if we made a silent landing.

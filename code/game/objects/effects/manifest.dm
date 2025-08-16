@@ -4,14 +4,14 @@
 	icon_state = "x"
 	unacidable = TRUE//Just to be sure.
 
-/obj/effect/manifest/Initialize()
+/obj/effect/manifest/Initialize(mapload)
 	. = ..()
 
-	invisibility = 101
+	invisibility = INVISIBILITY_ABSTRACT
 
 /obj/effect/manifest/proc/manifest()
 	var/dat = span_bold("Crew Manifest") + ":<BR>"
-	for(var/mob/living/carbon/human/M in mob_list)
+	for(var/mob/living/carbon/human/M in GLOB.mob_list)
 		dat += text("    <B>[]</B> -  []<BR>", M.name, M.get_assignment())
 	var/obj/item/paper/P = new /obj/item/paper( src.loc )
 	P.info = dat

@@ -74,7 +74,7 @@
 	new /obj/effect/temp_visual/resonance_crush(T)
 
 	// Mineral turfs get drilled!
-	if(istype(T, /turf/simulated/mineral))
+	if(ismineralturf(T))
 		var/turf/simulated/mineral/M = T
 		M.GetDrilled()
 		qdel(src)
@@ -99,7 +99,7 @@
 	layer = ABOVE_MOB_LAYER
 	duration = 4
 
-/obj/effect/temp_visual/resonance_crush/Initialize()
+/obj/effect/temp_visual/resonance_crush/Initialize(mapload)
 	. = ..()
 	transform = matrix()*1.5
 	animate(src, transform = matrix()*0.1, alpha = 50, time = 4)

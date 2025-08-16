@@ -19,7 +19,7 @@ var/global/client_record_update_lock = FALSE
 	if(!COM || QDELETED(COM))
 		return "Invalid console"
 
-	if(jobban_isbanned(user, "Records") )
+	if(jobban_isbanned(user, JOB_RECORDS) )
 		COM.visible_message(span_notice("\The [COM] buzzes!"))
 		playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return "Update syncronization denied (OOC: You are banned from editing records)"
@@ -76,6 +76,14 @@ var/global/client_record_update_lock = FALSE
 			playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return "Update syncronization failed (OOC: Record's owner is offline)"
 
+	var/datum/preferences/P = C.prefs
+	if(P.default_slot != M.mind.loaded_from_slot)
+		if(COM && !QDELETED(COM))
+			COM.visible_message(span_notice("\The [COM] buzzes!"))
+			playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
+			to_chat(M, span_warning("[user] attempted to update your [record_string] record, but your current character slot does not match your played slot. Please ensure your currently played character is selected in your Character Setup."))
+		return "Update syncronization failed (OOC: Player's current character slot does not match their played slot. They have been informed.)"
+
 	var/choice = tgui_alert(M, "Your [record_string] record has been updated from the a records console by [user]. Please review the changes made to your [record_string] record. Accepting these changes will SAVE your CURRENT character slot! If your new [record_string] record has errors, it is recomended to have it corrected IC instead of editing it yourself.", "Record Updated", list("Review Changes","DENY"))
 	if(!choice || choice == "DENY")
 		message_admins("[active.fields["name"]] refused [record_string] record update from [user] without review.")
@@ -84,7 +92,6 @@ var/global/client_record_update_lock = FALSE
 			playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return "Update syncronization failed (OOC: Player refused without review)"
 
-	var/datum/preferences/P = C.prefs
 	var/new_data = strip_html_simple(tgui_input_text(M,"Please review [user]'s changes to your [record_string] record before confirming. Confirming will SAVE your CURRENT character slot! If your new [record_string] record major errors, it is recomended to have it corrected IC instead of editing it yourself.","Character Preference", html_decode(active.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
 	if(!new_data)
 		message_admins("[active.fields["name"]] refused [record_string] record update from [user] with review.")

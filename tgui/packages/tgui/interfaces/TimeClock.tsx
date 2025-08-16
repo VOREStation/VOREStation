@@ -54,7 +54,7 @@ export const TimeClock = (props) => {
             OOC Note: PTO acquired is account-wide and shared across all
             characters. Info listed below is not IC information.
           </NoticeBox>
-          <Section title={'Time Off Balance for ' + user_name}>
+          <Section title={`Time Off Balance for ${user_name}`}>
             <LabeledList>
               {!!department_hours &&
                 Object.keys(department_hours).map((key) => (
@@ -152,7 +152,7 @@ export const TimeClock = (props) => {
               (!!job_choices &&
                 Object.keys(job_choices).length &&
                 Object.keys(job_choices).map((job) => {
-                  let alt_titles = job_choices[job];
+                  const alt_titles = job_choices[job];
 
                   return alt_titles.map((title) => (
                     <Button

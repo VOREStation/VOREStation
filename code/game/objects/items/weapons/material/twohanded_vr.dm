@@ -9,22 +9,22 @@
 	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
 
 /obj/item/material/twohanded/longsword
-    w_class = ITEMSIZE_NORMAL
-    name = "longsword"
-    desc = "a more elegant weapon from a more civilised age"
-    icon= 'icons/obj/weapons_vr.dmi'
-    icon_state = "longsword"
-    base_icon = "longsword"
-    item_icons = list(
+	w_class = ITEMSIZE_NORMAL
+	name = "longsword"
+	desc = "a more elegant weapon from a more civilised age"
+	icon= 'icons/obj/weapons_vr.dmi'
+	icon_state = "longsword"
+	base_icon = "longsword"
+	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
 			)
-    item_state = "saber"
-    unwielded_force_divisor = 0.1
-    force_divisor = 0.3
-    attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-    edge = TRUE
-    sharp = TRUE
+	item_state = "saber"
+	unwielded_force_divisor = 0.1
+	force_divisor = 0.3
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	edge = TRUE
+	sharp = TRUE
 
 /obj/item/material/twohanded/saber/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if (src.wielded == 1)

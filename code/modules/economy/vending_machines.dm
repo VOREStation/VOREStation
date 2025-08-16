@@ -120,6 +120,55 @@
 	has_logs = 1
 	vending_sound = "machines/vending/vending_cans.ogg"
 
+/obj/machinery/vending/boozeomat/virgin
+	name = "Virgin-O-Mat"
+	products = list(/obj/item/reagent_containers/food/drinks/glass2/square = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/rocks = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/shake = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/cocktail = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/shot = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/pint = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/mug = 10,
+					/obj/item/reagent_containers/food/drinks/glass2/carafe = 2,	//VOREStation Add - Carafes and Pitchers
+					/obj/item/reagent_containers/food/drinks/glass2/pitcher = 2,	//VOREStation Add - Carafes and Pitchers
+					/obj/item/reagent_containers/food/drinks/glass2/wine = 10,
+					/obj/item/reagent_containers/food/drinks/bottle/whitewine = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/grapejuice = 5,
+					/obj/item/reagent_containers/food/drinks/metaglass = 10,
+					/obj/item/reagent_containers/food/drinks/metaglass/metapint = 10,
+					/obj/item/reagent_containers/glass/beaker/stopperedbottle = 10,
+					/obj/item/reagent_containers/food/drinks/bottle/grenadine = 5,
+					/obj/item/reagent_containers/food/condiment/cookingoil = 5,
+					/obj/item/reagent_containers/food/condiment/cornoil = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/orangejuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/tomatojuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/limejuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/lemonjuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/applejuice = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/milk = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/cream = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/cola = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/decaf_cola = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/space_up = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/dr_gibb = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/small/cola = 15,
+					/obj/item/reagent_containers/food/drinks/bottle/small/space_up = 15,
+					/obj/item/reagent_containers/food/drinks/bottle/small/space_mountain_wind = 15,
+					/obj/item/reagent_containers/food/drinks/bottle/small/dr_gibb = 15,
+					/obj/item/reagent_containers/food/drinks/cans/sodawater = 15,
+					/obj/item/reagent_containers/food/drinks/cans/tonic = 15,
+					/obj/item/reagent_containers/food/drinks/cans/gingerale = 15,
+					/obj/item/reagent_containers/food/drinks/flask/barflask = 5,
+					/obj/item/reagent_containers/food/drinks/flask/vacuumflask = 5,
+					/obj/item/reagent_containers/food/drinks/ice = 10,
+					/obj/item/reagent_containers/food/drinks/tea = 15,
+					/obj/item/glass_extra/stick = 30,
+					/obj/item/glass_extra/straw = 30)
+
+	product_slogans = "I hope hope someone asks me for a cup o' tea...;Alcohol is humanity's enemy. Would you join a foe?;Quite delighted to serve you!;Is nobody thirsty on this station?"
+	product_ads = "Drink up responsibly!;Booze is bad for you!;Alcohol is humanity's worst enemy.;Quite delighted to serve you!;Care for a nice, cold ginger ale?;Nothing cures you like tea!;Have a sip!;Have a drink!;Have a water!;Beer is not good for you!;Only the finest non-alcoholic beverages!;Best quality soft drinks since 2053!;Award-winning lemonade!;Minimum alcohol!;Man loathes beer.;A toast for sobriety!"
+
 /obj/machinery/vending/assist
 	products = list(	/obj/item/assembly/prox_sensor = 5,
 						/obj/item/assembly/igniter = 3,
@@ -408,6 +457,7 @@
 					/obj/item/reagent_containers/glass/bottle/toxin = 4,
 					/obj/item/reagent_containers/syringe/antiviral = 4,
 					/obj/item/reagent_containers/syringe = 12,
+					/obj/item/reagent_containers/hypospray/autoinjector/allergen = 6,
 					/obj/item/healthanalyzer = 5,
 					/obj/item/reagent_containers/glass/beaker = 4,
 					/obj/item/reagent_containers/dropper = 2,
@@ -794,7 +844,7 @@
 					/obj/item/paper/card/cat = 3,
 					/obj/item/paper/card/flower = 3,
 					/obj/item/clothing/accessory/bracelet/friendship = 5,
-					/obj/item/toy/plushie/therapy/red = 2,
+					/obj/item/toy/plushie/therapy = 2,
 					/obj/item/toy/plushie/therapy/purple = 2,
 					/obj/item/toy/plushie/therapy/blue = 2,
 					/obj/item/toy/plushie/therapy/yellow = 2,
@@ -813,7 +863,6 @@
 					/obj/item/toy/plushie/deer = 1,
 					/obj/item/toy/plushie/tabby_cat = 1,
 					/obj/item/threadneedle = 3,
-					//VOREStation Add Start
 					/obj/item/toy/plushie/lizardplushie/kobold = 1,
 					/obj/item/toy/plushie/slimeplushie = 1,
 					/obj/item/toy/plushie/box = 1,
@@ -825,8 +874,9 @@
 					/obj/item/toy/plushie/otter = 1,
 					/obj/item/toy/plushie/vox = 1,
 					/obj/item/toy/plushie/shark = 1,
-					/obj/item/toy/mistletoe = 1)
-					//VOREStation Add End
+					/obj/item/toy/mistletoe = 1,
+					/obj/item/toy/plushie/tinytin = 1,
+					/obj/item/toy/plushie/tinytin_sec = 1)
 	premium = list(/obj/item/reagent_containers/food/drinks/bottle/champagne = 1,
 					/obj/item/storage/trinketbox = 2)
 	prices = list(/obj/item/storage/fancy/heartbox = 15,
@@ -837,7 +887,7 @@
 					/obj/item/paper/card/cat = 1,
 					/obj/item/paper/card/flower = 1,
 					/obj/item/clothing/accessory/bracelet/friendship = 5,
-					/obj/item/toy/plushie/therapy/red = 20,
+					/obj/item/toy/plushie/therapy = 20,
 					/obj/item/toy/plushie/therapy/purple = 20,
 					/obj/item/toy/plushie/therapy/blue = 20,
 					/obj/item/toy/plushie/therapy/yellow = 20,
@@ -856,7 +906,6 @@
 					/obj/item/toy/plushie/deer = 50,
 					/obj/item/toy/plushie/tabby_cat = 50,
 					/obj/item/threadneedle = 2,
-					//VOREStation Add Start
 					/obj/item/toy/plushie/lizardplushie/kobold = 50,
 					/obj/item/toy/plushie/slimeplushie = 50,
 					/obj/item/toy/plushie/box = 50,
@@ -868,8 +917,9 @@
 					/obj/item/toy/plushie/otter = 50,
 					/obj/item/toy/plushie/vox = 50,
 					/obj/item/toy/plushie/shark = 50,
-					/obj/item/toy/mistletoe = 50)
-					//VOREStation Add End
+					/obj/item/toy/mistletoe = 50,
+					/obj/item/toy/plushie/tinytin = 35,
+					/obj/item/toy/plushie/tinytin_sec = 50)
 
 
 /obj/machinery/vending/fishing
@@ -1285,7 +1335,8 @@
 		/obj/item/clothing/accessory/holster/hip = 2,
 		/obj/item/clothing/accessory/holster/hip/black = 2,
 		/obj/item/clothing/accessory/holster/leg = 2,
-		/obj/item/clothing/accessory/holster/leg/black = 2
+		/obj/item/clothing/accessory/holster/leg/black = 2,
+		/obj/item/clothing/accessory/holster/waist/lanyard = 2
 	)
 	req_log_access = access_hop
 	has_logs = 1

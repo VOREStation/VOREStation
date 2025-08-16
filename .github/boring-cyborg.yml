@@ -3,39 +3,39 @@
 # * matches anything but /
 # ** matches anything including /
 
-labelPRBasedOnFilePath:
-  # Add 'Type: Map' to any changes to .dmm files
-  "Type: Map":
-    - '**/*.dmm'
+#labelPRBasedOnFilePath:
+# Add 'Type: Map' to any changes to .dmm files
+#  "Type: Map":
+#    - "**/*.dmm"
 
-  # Add 'Type: Map' to any changes to image files
-  "Type: Icon":
-    - '**/*.dmi'
-    - '**/*.png'
-    - '**/*.jpg'
+# Add 'Type: Map' to any changes to image files
+#  "Type: Icon":
+#    - "**/*.dmi"
+#    - "**/*.png"
+#    - "**/*.jpg"
 
-  # Add 'Type: Sound' to any change to sound files
-  "Type: Sound":
-    - '**/*.ogg'
-    - '**/*.mp3'
-    - '**/*.wav'
+# Add 'Type: Sound' to any change to sound files
+#  "Type: Sound":
+#    - "**/*.ogg"
+#    - "**/*.mp3"
+#    - "**/*.wav"
 
-  # Add 'Type: Fluff' to any change to *custom_items*
-  "Type: Fluff":
-    - '**/*custom_items*'
-    - '**/*loadout_fluff*'
-    - 'config/alienwhitelist.txt'
-    - 'config/jobwhitelist.txt'
-    - 'config/custom_sprites.txt'
+# Add 'Type: Fluff' to any change to *custom_items*
+#  "Type: Fluff":
+#    - "**/*custom_items*"
+#    - "**/*loadout_fluff*"
+#    - "config/alienwhitelist.txt"
+#   - "config/jobwhitelist.txt"
+#    - "config/custom_sprites.txt"
 
-  # Contains changes to system folders
-  "Type: .git or .github":
-    - '.github/**'
-    - '.git/**'
-    
-  # Contains changes to the TGUI bundle
-  "Type: TGUI Bundle":
-    - 'tgui/public/**'
+# Contains changes to system folders
+#  "Type: .git or .github":
+#    - ".github/**"
+#    - ".git/**"
+
+# Contains changes to the TGUI bundle
+#  "Type: TGUI Bundle":
+#    - "tgui/public/**"
 
 ##### Greetings ########################################################################################################
 # Comment to be posted to welcome users when they open their first PR
@@ -95,7 +95,7 @@ firstIssueWelcomeComment: >
 ###### PR/Branch Up-To-Date Checker ####################################################################################
 # Check if the branch is up to date with master when certain files are modified
 #checkUpToDate:
-#  # The default branch is "master", change the branch if you want to check against a different target branch  
+#  # The default branch is "master", change the branch if you want to check against a different target branch
 #  targetBranch: master
 #  files:
 #  # File paths that you want to check for

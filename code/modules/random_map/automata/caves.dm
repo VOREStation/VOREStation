@@ -2,6 +2,7 @@
 	iterations = 5
 	descriptor = "moon caves"
 	var/list/ore_turfs = list()
+	var/list/turfs_changed
 	var/make_cracked_turfs = TRUE
 
 /datum/random_map/automata/cave_system/no_cracks
@@ -27,7 +28,9 @@
 			if (CELL_ALIVE(map[tmp_cell]))
 				ore_turfs += tmp_cell
 
+	#ifdef TESTING
 	testing("ASGEN: Found [ore_turfs.len] ore turfs.")
+	#endif
 	var/ore_count = round(map.len/20)
 	var/door_count = 0
 	var/empty_count = 0
@@ -46,8 +49,10 @@
 			empty_count += 1
 		ore_count--
 
+	#ifdef TESTING
 	testing("ASGEN: Set [door_count] turfs to random minerals.")
 	testing("ASGEN: Set [empty_count] turfs to high-chance random minerals.")
+	#endif
 	return 1
 
 /datum/random_map/automata/cave_system/apply_to_turf(var/x,var/y)
@@ -55,19 +60,26 @@
 	if(!current_cell)
 		return 0
 	var/turf/simulated/mineral/T = locate((origin_x-1)+x,(origin_y-1)+y,origin_z)
-	//VOREStation Edit Start
 	if(istype(T) && !T.ignore_mapgen)
 		if(!T.ignore_cavegen)
 			if(map[current_cell] == FLOOR_CHAR)
 				T.make_floor()
 			else
 				T.make_wall()
+			LAZYSET(turfs_changed, T, TRUE)
 
 		if(T.density && !T.ignore_oregen)
 			if(map[current_cell] == DOOR_CHAR)
-				T.make_ore()
+				T.turf_resource_types |= TURF_HAS_ORE
 			else if(map[current_cell] == EMPTY_CHAR)
-				T.make_ore(1)
+				T.turf_resource_types |= TURF_HAS_RARE_ORE
 		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
-	//VOREStation Edit End
 	return T
+
+/datum/random_map/automata/cave_system/apply_to_map()
+	. = ..()
+
+	for(var/turf/simulated/mineral/T as anything in turfs_changed)
+		T.update_icon(1, turfs_changed)
+
+	LAZYCLEARLIST(turfs_changed)

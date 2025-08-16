@@ -8,8 +8,8 @@
 
 /datum/event2/meta/gas_leak/get_weight()
 	// Synthetics are counted in higher value because they can wirelessly connect to alarms.
-	var/engineering_factor = metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10
-	var/synthetic_factor =  metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 30
+	var/engineering_factor = GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10
+	var/synthetic_factor =  GLOB.metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 30
 	return (15 + engineering_factor + synthetic_factor) / (times_ran + 1)
 
 
@@ -31,7 +31,7 @@
 
 /datum/event2/event/gas_leak/announce()
 	if(chosen_turf)
-		command_announcement.Announce("Warning, hazardous [lowertext(gas_data.name[chosen_gas])] gas leak detected in \the [chosen_turf.loc], evacuate the area.", "Hazard Alert")
+		command_announcement.Announce("Warning, hazardous [lowertext(GLOB.gas_data.name[chosen_gas])] gas leak detected in \the [chosen_turf.loc], evacuate the area.", "Hazard Alert")
 
 /datum/event2/event/gas_leak/start()
 	// Okay, time to actually put the gas in the room!

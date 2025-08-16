@@ -47,7 +47,7 @@
 	var/obj/effect/overlay/vis/vector
 	render_map = TRUE
 
-/obj/effect/overmap/visitable/ship/Initialize()
+/obj/effect/overmap/visitable/ship/Initialize(mapload)
 	. = ..()
 	min_speed = round(min_speed, SHIP_MOVE_RESOLUTION)
 	max_speed = round(max_speed, SHIP_MOVE_RESOLUTION)
@@ -79,7 +79,7 @@
 
 	var/life = 0
 
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L in GLOB.living_mob_list)
 		if(L.z in map_z) //Things inside things we'll consider shielded, otherwise we'd want to use get_z(L)
 			life++
 
@@ -133,12 +133,12 @@
 	else if(still)
 		STOP_PROCESSING(SSprocessing, src)
 		for(var/zz in map_z)
-			toggle_move_stars(zz)
+			SSstarmover.toggle_move_stars(zz)
 		if(last_sound + sound_cooldown >= world.time)
 			return
 		//VOREStation Add Start
 		last_sound = world.time
-		for(var/mob/potential_mob as anything in player_list)
+		for(var/mob/potential_mob as anything in GLOB.player_list)
 			if(potential_mob.z in map_z)
 				SEND_SOUND(potential_mob, 'sound/ambience/shutdown.ogg')
 		//VOREStation Add End
@@ -148,12 +148,12 @@
 		START_PROCESSING(SSprocessing, src)
 		glide_size = WORLD_ICON_SIZE/max(DS2TICKS(SSprocessing.wait), 1) //Down to whatever decimal
 		for(var/zz in map_z)
-			toggle_move_stars(zz, fore_dir)
+			SSstarmover.toggle_move_stars(zz, fore_dir)
 		if(last_sound + sound_cooldown >= world.time)
 			return
 		//VOREStation Add Start
 		last_sound = world.time
-		for(var/mob/potential_mob as anything in player_list)
+		for(var/mob/potential_mob as anything in GLOB.player_list)
 			if(potential_mob.z in map_z)
 				SEND_SOUND(potential_mob, 'sound/ambience/startup.ogg')
 		//VOREStation Add End
@@ -284,7 +284,7 @@
 
 /obj/effect/overmap/visitable/ship/populate_sector_objects()
 	..()
-	for(var/obj/machinery/computer/ship/S in global.machines)
+	for(var/obj/machinery/computer/ship/S in GLOB.machines)
 		S.attempt_hook_up(src)
 	for(var/datum/ship_engine/E in ship_engines)
 		if(check_ownership(E.holder))

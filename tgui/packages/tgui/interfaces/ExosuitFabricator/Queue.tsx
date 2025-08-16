@@ -27,33 +27,39 @@ export const Queue = (props: {
           title="Queue"
           overflowY="auto"
           buttons={
-            <>
-              <Button.Confirm
-                disabled={disabled}
-                color="bad"
-                icon="minus-circle"
-                onClick={() => act('clear_queue')}
-              >
-                Clear Queue
-              </Button.Confirm>
+            <Stack>
+              <Stack.Item>
+                <Button.Confirm
+                  disabled={disabled}
+                  color="bad"
+                  icon="minus-circle"
+                  onClick={() => act('clear_queue')}
+                >
+                  Clear Queue
+                </Button.Confirm>
+              </Stack.Item>
               {(!!isProcessingQueue && (
-                <Button
-                  disabled={disabled}
-                  icon="stop"
-                  onClick={() => act('stop_queue')}
-                >
-                  Stop
-                </Button>
+                <Stack.Item>
+                  <Button
+                    disabled={disabled}
+                    icon="stop"
+                    onClick={() => act('stop_queue')}
+                  >
+                    Stop
+                  </Button>
+                </Stack.Item>
               )) || (
-                <Button
-                  disabled={disabled}
-                  icon="play"
-                  onClick={() => act('build_queue')}
-                >
-                  Build Queue
-                </Button>
+                <Stack.Item>
+                  <Button
+                    disabled={disabled}
+                    icon="play"
+                    onClick={() => act('build_queue')}
+                  >
+                    Build Queue
+                  </Button>
+                </Stack.Item>
               )}
-            </>
+            </Stack>
           }
         >
           <Stack vertical height="100%">
@@ -114,7 +120,7 @@ const QueueList = (props: { textColors: Record<number, number> }) => {
   const { queue = [] } = data;
 
   if (!queue || !queue.length) {
-    return <>No parts in queue.</>;
+    return 'No parts in queue.';
   }
 
   return queue.map((part, index) => (
@@ -170,7 +176,7 @@ const BeingBuilt = (props) => {
             <Stack.Item>{name}</Stack.Item>
             <Stack.Item grow />
             <Stack.Item>
-              {(timeLeft >= 0 && timeLeft + 's') || 'Dispensing...'}
+              {(timeLeft >= 0 && `${timeLeft}s`) || 'Dispensing...'}
             </Stack.Item>
           </Stack>
         </ProgressBar>

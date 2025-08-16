@@ -29,7 +29,7 @@
 /client/proc/investigate_show( subject in list("hrefs","notes","singulo","telesci") )
 	set name = "Investigate"
 	set category = "Admin.Investigate"
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 	switch(subject)
 		if("singulo", "telesci")			//general one-round-only stuff
 			var/F = investigate_subject2file(subject)
@@ -40,8 +40,8 @@
 
 		if("hrefs")				//persistant logs and stuff
 			if(config && CONFIG_GET(flag/log_hrefs))
-				if(href_logfile)
-					src << browse("<html>[href_logfile]</html>","window=investigate[subject];size=800x300")
+				if(GLOB.href_logfile)
+					src << browse("<html>[GLOB.href_logfile]</html>","window=investigate[subject];size=800x300")
 				else
 					to_chat(src, span_filter_adminlog(span_warning("Error: admin_investigate: No href logfile found.")))
 					return

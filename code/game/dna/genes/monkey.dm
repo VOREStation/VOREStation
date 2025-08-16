@@ -26,7 +26,7 @@
 		M.transforming = 1
 		M.canmove = 0
 		M.icon = null
-		M.invisibility = 101
+		M.invisibility = INVISIBILITY_ABSTRACT
 		var/atom/movable/overlay/animation = new( M.loc )
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
@@ -45,7 +45,7 @@
 
 	if(M)
 		if (M.dna)
-			qdel_swap(O.dna, M.dna.Clone())
+			QDEL_SWAP(O.dna, M.dna.Clone())
 			QDEL_NULL(M.dna)
 
 		if (M.suiciding)
@@ -94,7 +94,7 @@
 		M.transforming = 1
 		M.canmove = 0
 		M.icon = null
-		M.invisibility = 101
+		M.invisibility = INVISIBILITY_ABSTRACT
 		var/atom/movable/overlay/animation = new( M.loc )
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
@@ -116,7 +116,7 @@
 
 	if (M)
 		if (M.dna)
-			qdel_swap(O.dna, M.dna.Clone())
+			QDEL_SWAP(O.dna, M.dna.Clone())
 			QDEL_NULL(M.dna)
 
 		if (M.suiciding)

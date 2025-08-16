@@ -4,7 +4,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	name = "brain"
 	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?
 	desc = "A piece of juicy meat found in a person's head."
-	organ_tag = "brain"
+	organ_tag = O_BRAIN
 	parent_organ = BP_HEAD
 	vital = 1
 	icon_state = "brain2"
@@ -85,7 +85,6 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/organ/internal/brain/LateInitialize()
-	. = ..()
 	if(brainmob)
 		butcherable = FALSE
 
@@ -106,11 +105,14 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		brainmob.real_name = H.real_name
 
 		if(istype(H))
-			qdel_swap(brainmob.dna, H.dna.Clone())
+			QDEL_SWAP(brainmob.dna, H.dna.Clone())
 			brainmob.timeofhostdeath = H.timeofdeath
 			brainmob.ooc_notes = H.ooc_notes
 			brainmob.ooc_notes_likes = H.ooc_notes_likes
 			brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
+			brainmob.ooc_notes_favs = H.ooc_notes_favs
+			brainmob.ooc_notes_maybes = H.ooc_notes_maybes
+			brainmob.ooc_notes_style = H.ooc_notes_style
 
 		// Copy modifiers.
 		for(var/datum/modifier/M in H.modifiers)
@@ -169,7 +171,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/pariah_brain
 	name = "brain remnants"
 	desc = "Did someone tread on this? It looks useless for cloning or cyborgification."
-	organ_tag = "brain"
+	organ_tag = O_BRAIN
 	parent_organ = BP_HEAD
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
@@ -203,7 +205,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 /obj/item/organ/internal/brain/slime/LateInitialize()
 	. = ..()
-	 //Match the core to the Promethean's starting color.
+	//Match the core to the Promethean's starting color.
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		color = rgb(min(H.r_skin + 40, 255), min(H.g_skin + 40, 255), min(H.b_skin + 40, 255))
@@ -214,8 +216,11 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	..()
 
 /obj/item/organ/internal/brain/slime/proc/reviveBody()
+	// TODO - Reference how xenochimera component handles revival from bodyrecord in the future.
+	// This requires a promie/protean component for transformation and regeneration.
+	// This shouldn't use a brain mob for caching dna. That's what BRs are for.
 	var/datum/dna2/record/R = new /datum/dna2/record()
-	qdel_swap(R.dna, brainmob.dna.Clone())
+	QDEL_SWAP(R.dna, brainmob.dna.Clone())
 	R.ckey = brainmob.ckey
 	R.id = copytext(md5(brainmob.real_name), 2, 6)
 	R.name = R.dna.real_name
@@ -238,7 +243,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		if(ckey(clonemind.key) != R.ckey)
 			return 0
 	else
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(G.ckey == R.ckey)
 				if(G.can_reenter_corpse)
 					break
@@ -255,7 +260,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		H.dna = new /datum/dna()
 		H.dna.real_name = H.real_name
 	else
-		qdel_swap(H.dna, R.dna.Clone())
+		QDEL_SWAP(H.dna, R.dna.Clone())
 
 	H.UpdateAppearance()
 	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
@@ -286,8 +291,10 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	for(var/datum/language/L in R.languages)
 		H.add_language(L.name)
 	H.flavor_texts = R.flavor.Copy()
-	qdel(R.dna)
-	qdel(R)
+
+	SEND_SIGNAL(H, COMSIG_HUMAN_DNA_FINALIZED)
+
+	qdel(R) // Record already deletes dna
 	qdel(src)
 	return 1
 

@@ -35,9 +35,7 @@
 	projectile_dispersion = 7
 	projectile_accuracy = -20
 
-/mob/living/simple_mob/vore/horse/unicorn/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/horse/unicorn/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

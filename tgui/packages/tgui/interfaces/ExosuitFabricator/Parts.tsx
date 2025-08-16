@@ -76,14 +76,14 @@ export const PartLists = (props: {
   let partsObj: { Parts: internalPart[] } = {
     Parts: [],
   };
-  let partsList: internalPart[] = [];
+  const partsList: internalPart[] = [];
   // Build list of sub-categories if not using a search filter.
   if (!searchText) {
     partsObj = { Parts: [] };
     buildableParts[selectedPartTab!].forEach((part) => {
-      part['format'] = partCondFormat(materials, queueMaterials, part);
+      part.format = partCondFormat(materials, queueMaterials, part);
       if (!part.subCategory) {
-        partsObj['Parts'].push(part);
+        partsObj.Parts.push(part);
         return;
       }
       if (!(part.subCategory in partsObj)) {
@@ -93,7 +93,7 @@ export const PartLists = (props: {
     });
   } else {
     searchFilter(searchText, buildableParts).forEach((part: internalPart) => {
-      part['format'] = partCondFormat(materials, queueMaterials, part);
+      part.format = partCondFormat(materials, queueMaterials, part);
       partsList.push(part);
     });
   }
@@ -110,7 +110,7 @@ export const PartLists = (props: {
               fluid
               placeholder="Search for..."
               value={searchText}
-              onInput={(e, v) => setSearchText(v)}
+              onChange={(v) => setSearchText(v)}
             />
           </Stack.Item>
         </Stack>
@@ -203,9 +203,7 @@ const PartCategory = (props: {
                   icon="question-circle"
                   color="transparent"
                   height="20px"
-                  tooltip={
-                    'Build Time: ' + part.printTime + 's. ' + (part.desc || '')
-                  }
+                  tooltip={`Build Time: ${part.printTime}s. ${part.desc || ''}`}
                   tooltipPosition="left"
                 />
               </Stack.Item>

@@ -53,7 +53,7 @@
 			var/obj/item/paper/monitorkey/MK = new/obj/item/paper/monitorkey
 			MK.loc = loc
 			// Will help make emagging the console not so easy to get away with.
-			MK.info += "<br><br><font color='red'>£%@%(*$%&(£&?*(%&£/{}</font>"
+			MK.info += "<br><br>" + span_red("£%@%(*$%&(£&?*(%&£/{}")
 			spawn(100*length(linkedServer.decryptkey)) UnmagConsole()
 			temp = rebootmsg
 			update_icon()
@@ -68,12 +68,11 @@
 		icon_screen = initial(icon_screen)
 	..()
 
-/obj/machinery/computer/message_monitor/Initialize()
+/obj/machinery/computer/message_monitor/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/message_monitor/LateInitialize()
-	. = ..()
 	//Is the server isn't linked to a server, and there's a server available, default it to the first one in the list.
 	if(!linkedServer)
 		if(message_servers && message_servers.len > 0)
@@ -145,8 +144,8 @@
 				continue
 			sendPDAs["[P.name]"] = "\ref[P]"
 		data["possibleRecipients"] = sendPDAs
-
-	data["isMalfAI"] = ((isAI(user) || isrobot(user)) && (user.mind.special_role && user.mind.original == user))
+	var/mob/living/original = user.mind.original_character?.resolve()
+	data["isMalfAI"] = ((isAI(user) || isrobot(user)) && (user.mind.special_role && (original && original == user)))
 
 	return data
 
@@ -211,7 +210,8 @@
 				temp = noserver
 		//Hack the Console to get the password
 		if("hack")
-			if((isAI(ui.user) || isrobot(ui.user)) && (ui.user.mind.special_role && ui.user.mind.original == ui.user))
+			var/mob/living/original = ui.user.mind.original_character?.resolve()
+			if((isAI(ui.user) || isrobot(ui.user)) && (ui.user.mind.special_role && (original && original == ui.user)))
 				hacking = 1
 				update_icon()
 				//Time it takes to bruteforce is dependant on the password length.
@@ -341,7 +341,7 @@
 /obj/item/paper/monitorkey
 	name = "Monitor Decryption Key"
 
-/obj/item/paper/monitorkey/Initialize()
+/obj/item/paper/monitorkey/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

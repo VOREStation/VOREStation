@@ -12,18 +12,20 @@
 	filtered_organs = list(O_LIVER, O_KIDNEYS)
 	var/strength = 4 // How much damage it deals per unit
 	var/skin_danger = 0.2 // The multiplier for how effective the toxin is when making skin contact.
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	strength *= M.species.chem_strength_tox
+	var/poison_strength = strength * M.species.chem_strength_tox
 	if(strength && alien != IS_DIONA)
 		if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 		if(alien == IS_SLIME)
 			removed *= 0.25 // Results in half the standard tox as normal. Prometheans are 'Small' for flaps.
 			if(dose >= 10)
-				M.adjust_nutrition(strength * removed) // Body has to deal with the massive influx of toxins, rather than try using them to repair.
+				M.adjust_nutrition(poison_strength * removed) // Body has to deal with the massive influx of toxins, rather than try using them to repair.
 			else
-				M.heal_organ_damage((10/strength) * removed, (10/strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
-		M.adjustToxLoss(strength * removed)
+				M.heal_organ_damage((10/poison_strength) * removed, (10/poison_strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
+		M.adjustToxLoss(poison_strength * removed)
 
 /datum/reagent/toxin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	affect_blood(M, alien, removed * 0.2)
@@ -36,6 +38,8 @@
 	reagent_state = LIQUID
 	color = "#CF3600"
 	strength = 5
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/toxin/amatoxin
 	name = REAGENT_AMATOXIN
@@ -45,6 +49,8 @@
 	reagent_state = LIQUID
 	color = "#792300"
 	strength = 10
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/toxin/amatoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	// Trojan horse. Waits until most of the toxin has gone through the body before dealing the bulk of it in one big strike.
@@ -59,6 +65,8 @@
 	reagent_state = LIQUID
 	color = "#003333"
 	strength = 10
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/toxin/carpotoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -73,6 +81,9 @@
 	color = "#005555"
 	strength = 8
 	skin_danger = 0.4
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/toxin/neurotoxic_protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_CHIMERA)
@@ -80,7 +91,7 @@
 	..()
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-			step(M, pick(cardinal))
+			step(M, pick(GLOB.cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
 		if(prob(20))
@@ -94,6 +105,8 @@
 	description = "An exceptionally flammable molecule formed from deuterium synthesis."
 	strength = 80
 	var/fire_mult = 30
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/toxin/hydrophoron/touch_mob(var/mob/living/L, var/amount)
 	..()
@@ -130,6 +143,8 @@
 	description = "Elemental Lead."
 	color = "#273956"
 	strength = 4
+	supply_conversion_value = 0.5 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/toxin/spidertoxin
 	name = REAGENT_SPIDERTOXIN
@@ -137,6 +152,23 @@
 	description = "A liquifying toxin produced by giant spiders."
 	color = "#2CE893"
 	strength = 5
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
+
+/datum/reagent/toxin/warningtoxin
+	name = REAGENT_WARNINGTOXIN
+	id = REAGENT_ID_WARNINGTOXIN
+	description = "A weaker toxin produced by giant spiders applied only in warning bites, known to slow a people down a lot."
+	color = "#2CE893"
+	strength = 1
+
+/datum/reagent/toxin/warningtoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/poison_strength = strength * M.species.chem_strength_tox
+	if(strength && alien != IS_DIONA)
+		M.adjustToxLoss(poison_strength * removed)
+		M.druggy = max(M.druggy, 10)
+		M.make_jittery(5)
+		M.add_chemical_effect(CE_SLOWDOWN, 5)
 
 /datum/reagent/toxin/phoron
 	name = REAGENT_PHORON
@@ -148,6 +180,9 @@
 	strength = 30
 	touch_met = 5
 	skin_danger = 1
+	supply_conversion_value = 5 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
+	industrial_use = REFINERYEXPORT_REASON_PHORON
+	coolant_modifier = 0.85
 
 /datum/reagent/toxin/phoron/touch_mob(var/mob/living/L, var/amount)
 	..()
@@ -188,6 +223,8 @@
 	color = "#CF3600"
 	strength = 15
 	metabolism = REM * 0.5
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -201,6 +238,9 @@
 	taste_description = "mold"
 	reagent_state = SOLID
 	strength = 5
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/toxin/mold/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -215,6 +255,9 @@
 	reagent_state = LIQUID
 	strength = 5
 	filtered_organs = list(O_SPLEEN)
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/toxin/expired_medicine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -236,6 +279,8 @@
 	overdose = 10
 	overdose_mod = 0.5
 	strength = 3
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/toxin/stimm/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_TAJARA)
@@ -251,10 +296,10 @@
 /datum/reagent/toxin/stimm/overdose(var/mob/living/carbon/M, var/alient, var/removed)
 	..()
 	if(prob(10)) // 1 in 10. This thing's made with welder fuel and fertilizer, what do you expect?
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/ht = H.internal_organs_by_name[O_HEART]
-		ht?.take_damage(1)
-		to_chat(M, span_warning("Huh... Is this what a heart attack feels like?"))
+		var/obj/item/organ/internal/heart/ht = M.internal_organs_by_name[O_HEART]
+		if(ht)
+			ht.take_damage(1)
+			to_chat(M, span_warning("Huh... Is this what a heart attack feels like?"))
 
 /datum/reagent/toxin/potassium_chloride
 	name = REAGENT_POTASSIUMCHLORIDE
@@ -266,6 +311,8 @@
 	strength = 0
 	overdose = REAGENTS_OVERDOSE
 	filtered_organs = list(O_SPLEEN, O_KIDNEYS)
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/toxin/potassium_chloride/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -292,6 +339,8 @@
 	strength = 10
 	overdose = 20
 	filtered_organs = list(O_SPLEEN, O_KIDNEYS)
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/toxin/potassium_chlorophoride/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -315,6 +364,8 @@
 	metabolism = REM
 	strength = 3
 	mrate_static = TRUE
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/toxin/zombiepowder/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -341,6 +392,8 @@
 	metabolism = REM * 0.75
 	strength = 2
 	mrate_static = TRUE
+	supply_conversion_value = REFINERYEXPORT_VALUE_MASSINDUSTRY
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/toxin/lichpowder/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -370,6 +423,8 @@
 	reagent_state = LIQUID
 	strength = 0.5 // It's not THAT poisonous.
 	color = "#664330"
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_FOOD
 
 /datum/reagent/toxin/fertilizer/eznutrient
 	name = REAGENT_EZNUTRIENT
@@ -408,6 +463,8 @@
 	reagent_state = LIQUID
 	color = "#49002E"
 	strength = 4
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/toxin/plantbgone/touch_turf(var/turf/T)
 	..()
@@ -444,6 +501,8 @@
 	color = "#C6E2FF"
 	strength = 2
 	overdose = 20
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
 
 /datum/reagent/toxin/sifslurry/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA) // Symbiotic bacteria.
@@ -474,6 +533,8 @@
 	color = "#8E18A9"
 	power = 10
 	meltdose = 4
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_INDUSTRY
 
 /datum/reagent/acid/digestive
 	name = REAGENT_STOMACID
@@ -484,6 +545,22 @@
 	color = "#664330"
 	power = 2
 	meltdose = 30
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
+
+/datum/reagent/acid/diet_digestive
+	name = REAGENT_DIETSTOMACID
+	id = REAGENT_ID_DIETSTOMACID
+	description = "Some form of digestive slurry."
+	taste_description = "vomit"
+	reagent_state = LIQUID
+	color = "#664330"
+	power = 0.4
+	meltdose = 150
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/thermite/venom
 	name = REAGENT_THERMITEV
@@ -493,6 +570,9 @@
 	reagent_state = SOLID
 	color = "#673910"
 	touch_met = 50
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/thermite/venom/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustFireLoss(3 * removed)
@@ -514,6 +594,9 @@
 	taste_description = "fire"
 	color = "#B31008"
 	filtered_organs = list(O_SPLEEN)
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/condensedcapsaicin/venom/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -537,6 +620,8 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/lexorin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -548,14 +633,9 @@
 			to_chat(M, span_warning("Your cellular mass hardens for a moment."))
 			M.Stun(6)
 		return
-	if(alien == IS_SKRELL)
-		M.take_organ_damage(2.4 * removed, 0)
-		if(M.losebreath < 10)
-			M.AdjustLosebreath(1)
-	else
-		M.take_organ_damage(3 * removed, 0)
-		if(M.losebreath < 15)
-			M.AdjustLosebreath(1)
+	M.take_organ_damage(3 * removed, 0)
+	if(M.losebreath < 15)
+		M.AdjustLosebreath(1)
 
 /datum/reagent/mutagen
 	name = REAGENT_MUTAGEN
@@ -565,6 +645,8 @@
 	taste_mult = 0.9
 	reagent_state = LIQUID
 	color = "#13BC5E"
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/mutagen/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(prob(33))
@@ -605,7 +687,7 @@
 						H.b_hair = max(0, min(255, H.b_hair + color_shift))
 					if(H.b_facial)
 						H.b_facial = max(0, min(255, H.b_facial + color_shift))
-		if(H.species.flags & NO_SCAN)
+		if(H.species.flags & NO_DNA)
 			return
 
 //The original coder comment here wanted it to be "Approx. one mutation per 10 injected/20 ingested/30 touching units"
@@ -630,6 +712,9 @@
 	taste_mult = 1.3
 	reagent_state = LIQUID
 	color = "#801E28"
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/slimejelly/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -657,17 +742,19 @@
 	metabolism = REM * 0.5
 	ingest_met = REM * 1.5
 	overdose = REAGENTS_OVERDOSE
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1 * M.species.chem_strength_tox
-	if(alien == IS_SKRELL)
-		threshold = 1.2
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		threshold = 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
+		threshold *= 0.15 //~1/6	//Evens to 3 due to the fact they are considered 'small' for flaps.
 
 	var/effective_dose = dose
 	if(issmall(M))
@@ -705,17 +792,19 @@
 	ingest_met = REM * 1.5
 	overdose = REAGENTS_OVERDOSE * 0.5
 	overdose_mod = 2	//For that good, lethal feeling // Reduced with overdose changes. Slightly stronger than before
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1 * M.species.chem_strength_tox
-	if(alien == IS_SKRELL)
-		threshold = 1.2
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		threshold = 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
+		threshold *= 0.15 //~1/6
 
 	var/effective_dose = dose
 	if(issmall(M))
@@ -755,6 +844,7 @@
 
 	glass_name = REAGENT_ID_BEER
 	glass_desc = "A freezing pint of beer"
+	wiki_flag = WIKI_SPOILER
 
 /* Drugs */
 
@@ -767,6 +857,9 @@
 	color = "#202040"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/serotrotium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -781,6 +874,8 @@
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans. This appears to be a biologically produced form, resulting in a specifically toxic nature."
 	taste_description = "chalky bitterness"
 	filtered_organs = list(O_SPLEEN)
+	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/serotrotium/venom/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -800,17 +895,18 @@
 	color = "#000055"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/cryptobiolin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	var/drug_strength = 4 * M.species.chem_strength_tox
-
-	if(alien == IS_SKRELL)
-		drug_strength = drug_strength * 0.8
+	var/drug_strength = 4
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		drug_strength *= M.species.chem_strength_tox
 
 	if(alien == IS_SLIME)
-		drug_strength = drug_strength * 1.2
+		drug_strength *= 0.15 //~ 1/6
 
 	M.make_dizzy(drug_strength)
 	M.Confuse(drug_strength * 5)
@@ -824,11 +920,13 @@
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 	filtered_organs = list(O_SPLEEN)
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
 /datum/reagent/impedrezene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.jitteriness = max(M.jitteriness - 5, 0)
+	M.make_jittery(-5)
 	if(prob(80))
 		M.adjustBrainLoss(0.1 * removed)
 	if(prob(50))
@@ -839,24 +937,27 @@
 /datum/reagent/mindbreaker
 	name = REAGENT_MINDBREAKER
 	id = REAGENT_ID_MINDBREAKER
-	description = "A powerful hallucinogen, it can cause fatal effects in users."
+	description = "A powerful hallucinogen that causes immediate, prolonged hallucinations in its users."
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#B31008"
-	metabolism = REM * 0.25
+	metabolism = REM * 4 //0.8 per second...This is an 'immediate effect' drug that you hit someone with and they have effects for a prolonged period after.
 	overdose = REAGENTS_OVERDOSE
+	supply_conversion_value = REFINERYEXPORT_VALUE_HIGHREFINED
+	industrial_use = REFINERYEXPORT_REASON_WEAPONS
 
 /datum/reagent/mindbreaker/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 
-	var/drug_strength = 100 * M.species.chem_strength_tox
-
-	if(alien == IS_SKRELL)
-		drug_strength *= 0.8
+	var/drug_strength = 100
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		drug_strength *= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) drug_strength would = 10000
 
 	if(alien == IS_SLIME)
-		drug_strength *= 1.2
+		drug_strength *= 0.15 //~ 1/6
+
+	drug_strength = CLAMP(drug_strength, 0, 150) //Let's not have users be hallucinating more than 5 minutes.
 
 	M.hallucination = max(M.hallucination, drug_strength)
 
@@ -869,13 +970,16 @@
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#13BC5E"
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/slimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.isSynthetic())
 		return
 
 	var/mob/living/carbon/human/H = M
-	if(istype(H) && (H.species.flags & NO_SCAN))
+	if(istype(H) && (H.species.flags & NO_DNA))
 		return
 
 	if(M.dna)
@@ -895,13 +999,16 @@
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#FF69B4"
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/aslimetoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.isSynthetic())
 		return
 
 	var/mob/living/carbon/human/H = M
-	if(istype(H) && (H.species.flags & NO_SCAN))
+	if(istype(H) && (H.species.flags & NO_DNA))
 		return
 
 	if(M.dna)
@@ -928,6 +1035,9 @@
 	color = "#555555"
 	metabolism = REM * 4 // Nanomachines. Fast.
 	affects_robots = TRUE
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/shredding_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustBruteLoss(4 * removed)
@@ -942,6 +1052,9 @@
 	color = "#555555"
 	metabolism = REM * 4
 	affects_robots = TRUE
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/irradiated_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	SSradiation.radiate(get_turf(M), 20)	// Irradiate people around you.
@@ -957,6 +1070,9 @@
 	metabolism = REM * 4
 	filtered_organs = list(O_SPLEEN)
 	affects_robots = TRUE
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/neurophage_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustBrainLoss(2 * removed)	// Their job is to give you a bad time.
@@ -969,6 +1085,9 @@
 	reagent_state = LIQUID
 	color = "#1E4600"
 	taste_mult = 0
+	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
 
 /datum/reagent/salmonella/on_mob_life(mob/living/carbon/M)
 	M.ForceContractDisease(new /datum/disease/food_poisoning(0))

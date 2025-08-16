@@ -65,10 +65,6 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			contaminated = 1
 			add_overlay(contamination_overlay)
 
-/obj/item/proc/decontaminate()
-	contaminated = 0
-	cut_overlay(contamination_overlay)
-
 /mob/proc/contaminate()
 
 /mob/living/carbon/human/contaminate()
@@ -172,7 +168,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	if(vsc.plc.PHORONGUARD_ONLY)
 		return 1
 
-	return BIT_TEST_ALL(coverage, UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS)
+	return BIT_TEST_ALL(coverage, CHEST|LEGS|FEET|ARMS|HANDS)
 
 /mob/living/carbon/human/proc/suit_contamination()
 	//Runs over the things that can be contaminated and does so.
@@ -192,6 +188,6 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 		if(!env)
 			return
 		for(var/g in env.gas)
-			if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && env.gas[g] > gas_data.overlay_limit[g] + 1)
+			if(GLOB.gas_data.flags[g] & XGM_GAS_CONTAMINANT && env.gas[g] > GLOB.gas_data.overlay_limit[g] + 1)
 				I.contaminate()
 				break

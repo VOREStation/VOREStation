@@ -4,7 +4,7 @@
 	var/image/wet_overlay = null
 
 	//Mining resources (for the large drills).
-	var/has_resources
+	var/turf_resource_types
 	var/list/resources
 
 	var/thermite = 0
@@ -63,11 +63,6 @@
 			cut_overlay(wet_overlay)
 			wet_overlay = null
 
-/turf/simulated/clean_blood()
-	for(var/obj/effect/decal/cleanable/blood/B in contents)
-		B.clean_blood()
-	..()
-
 /turf/simulated/Initialize(mapload)
 	. = ..()
 	if(istype(loc, /area/chapel))
@@ -103,7 +98,7 @@
 	if (isliving(A))
 		var/dirtslip = FALSE
 		var/mob/living/M = A
-		if(M.lying || M.flying || M.is_incorporeal())
+		if(M.lying || M.flying || M.is_incorporeal() || !(M.flags & ATOM_INITIALIZED)) // Also ignore newly spawning mobs
 			return ..()
 
 		if(M.dirties_floor())
@@ -123,8 +118,8 @@
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(istype(S))
 					S.handle_movement(src,(H.m_intent == I_RUN ? 1 : 0), H) // handle_movement now needs to know who is moving, for inshoe steppies
-					if(S.track_blood && S.blood_DNA)
-						bloodDNA = S.blood_DNA
+					if(S.track_blood && S.forensic_data?.has_blooddna())
+						bloodDNA = S.forensic_data.get_blooddna()
 						bloodcolor=S.blood_color
 						S.track_blood--
 			else
@@ -141,7 +136,8 @@
 
 				bloodDNA = null
 
-		if(src.wet || (dirtslip && (dirt > 50 || outdoors == 1)))
+		var/turf_is_outdoors = is_outdoors()
+		if(src.wet || (dirtslip && (dirt > 50 || turf_is_outdoors == OUTDOORS_YES)))
 			if(M.buckled || (src.wet == 1 && M.m_intent == I_WALK))
 				return
 
@@ -152,7 +148,7 @@
 				slip_stun = 10
 				if(dirt > 50)
 					floor_type = "dirty"
-				else if(outdoors)
+				else if(turf_is_outdoors)
 					floor_type = "uneven"
 				if(src.wet == 0 && M.m_intent == I_WALK)
 					return
@@ -172,8 +168,8 @@
 				M.inertia_dir = 0
 		else
 			M.inertia_dir = 0
-
 	..()
+
 /turf/simulated/proc/handle_slipping(var/mob/living/M, var/slip_dist, var/dirtslip)
 	PRIVATE_PROC(TRUE)
 	if(!M || !slip_dist)
@@ -198,12 +194,9 @@
 
 	if(istype(M))
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
-			if(!B.blood_DNA)
-				B.blood_DNA = list()
-			if(!B.blood_DNA[M.dna.unique_enzymes])
-				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-				if(M.viruses)
-					B.viruses = M.viruses.Copy()
+			var/fresh = B.init_forensic_data().add_blooddna(M.dna,M)
+			if(fresh && M.IsInfected())
+				B.viruses = M.GetViruses()
 			return 1 //we bloodied the floor
 		blood_splatter(src,M.get_blood(M.vessel),1)
 		return 1 //we bloodied the floor
@@ -213,7 +206,7 @@
 /turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
 	if( istype(M, /mob/living/carbon/alien ))
 		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
-		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
+		this.init_forensic_data().add_blooddna(M.dna,M)
 	else if( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)
 	else if(ishuman(M))

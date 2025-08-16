@@ -9,13 +9,18 @@ import { storage } from 'common/storage';
 import { setClientTheme } from '../themes';
 import {
   addHighlightSetting,
+  exportSettings,
+  importSettings,
   loadSettings,
   removeHighlightSetting,
+  toggleTTSSetting,
   updateHighlightSetting,
   updateSettings,
+  updateToggle,
 } from './actions';
 import { FONTS_DISABLED } from './constants';
 import { selectSettings } from './selectors';
+import { exportChatSettings } from './settingsImExport';
 
 let statFontTimer: NodeJS.Timeout;
 let statTabsTimer: NodeJS.Timeout;
@@ -89,12 +94,21 @@ export function settingsMiddleware(store) {
         store.dispatch(loadSettings(settings));
       });
     }
+    if (type === exportSettings.type) {
+      const state = store.getState();
+      const settings = selectSettings(state);
+      exportChatSettings(settings, state.chat.pageById);
+      return;
+    }
     if (
       type !== updateSettings.type &&
+      type !== updateToggle.type &&
       type !== loadSettings.type &&
       type !== addHighlightSetting.type &&
       type !== removeHighlightSetting.type &&
-      type !== updateHighlightSetting.type
+      type !== updateHighlightSetting.type &&
+      type !== toggleTTSSetting.type &&
+      type !== importSettings.type
     ) {
       return next(action);
     }
@@ -110,6 +124,9 @@ export function settingsMiddleware(store) {
 
     const settings = selectSettings(store.getState());
 
+    if (importSettings.type) {
+      setClientTheme(settings.theme);
+    }
     // Update stat panel settings
     setStatTabsStyle(settings.statTabsStyle);
 

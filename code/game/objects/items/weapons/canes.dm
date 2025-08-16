@@ -22,14 +22,14 @@
 /obj/item/cane/concealed
 	var/concealed_blade
 
-/obj/item/cane/concealed/Initialize()
+/obj/item/cane/concealed/Initialize(mapload)
 	. = ..()
 	var/obj/item/material/sword/katana/caneblade/temp_blade = new(src)
 	concealed_blade = temp_blade
 	temp_blade.attack_self()
 
 /obj/item/cane/concealed/attack_self(var/mob/user)
-	var/datum/gender/T = gender_datums[user.get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 	if(concealed_blade)
 		user.visible_message(span_warning("[user] has unsheathed \a [concealed_blade] from [T.his] [src]!"), "You unsheathe \the [concealed_blade] from \the [src].")
 		// Calling drop/put in hands to properly call item drop/pickup procs
@@ -46,7 +46,7 @@
 
 /obj/item/cane/concealed/attackby(var/obj/item/material/sword/katana/caneblade/W, var/mob/user)
 	if(!src.concealed_blade && istype(W))
-		var/datum/gender/T = gender_datums[user.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 		user.visible_message(span_warning("[user] has sheathed \a [W] into [T.his] [src]!"), "You sheathe \the [W] into \the [src].")
 		playsound(src, 'sound/weapons/holster/sheathin.ogg', 50, 1)
 		user.drop_from_inventory(W)
@@ -72,11 +72,11 @@
 	icon_state = "whitecane"
 
 /obj/item/cane/white/attack(mob/M as mob, mob/user as mob)
-    if(user.a_intent == I_HELP)
-        user.visible_message(span_notice("\The [user] has lightly tapped [M] on the ankle with their white cane!"))
-        return TRUE
-    else
-        . = ..()
+	if(user.a_intent == I_HELP)
+		user.visible_message(span_notice("\The [user] has lightly tapped [M] on the ankle with their white cane!"))
+		return TRUE
+	else
+		. = ..()
 
 
 //Code for Telescopic White Cane writen by Gozulio

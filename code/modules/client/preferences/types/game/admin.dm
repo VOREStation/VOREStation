@@ -9,7 +9,7 @@
 	if(!.)
 		return
 
-	return check_rights(R_MOD|R_ADMIN, FALSE, preferences.client)
+	return check_rights_for(preferences.client, R_MOD|R_ADMIN)
 
 /datum/preference/toggle/show_debug_logs
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -22,7 +22,7 @@
 	if(!.)
 		return
 
-	return check_rights(R_DEBUG|R_ADMIN, FALSE, preferences.client)
+	return check_rights_for(preferences.client, R_DEBUG|R_ADMIN)
 
 /datum/preference/toggle/show_chat_prayers
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -35,7 +35,7 @@
 	if(!.)
 		return
 
-	return check_rights(R_EVENT|R_ADMIN, FALSE, preferences.client)
+	return check_rights_for(preferences.client, R_EVENT|R_ADMIN)
 
 // General holder prefs
 /datum/preference/toggle/holder
@@ -46,7 +46,7 @@
 	if(!.)
 		return
 
-	return preferences.client.holder
+	return check_rights_for(preferences.client, R_HOLDER)
 
 /datum/preference/toggle/holder/play_adminhelp_ping
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -72,6 +72,18 @@
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
+/datum/preference/toggle/holder/vv_dark
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "vvdark"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/holder/vv_gfi
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "vvgfi"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
 /// The color admins will speak in for OOC.
 /datum/preference/color/ooc_color
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -85,4 +97,4 @@
 	if(!..(preferences))
 		return FALSE
 
-	return CONFIG_GET(flag/allow_admin_ooccolor) && check_rights(R_ADMIN|R_EVENT|R_FUN, 0, preferences.client)
+	return CONFIG_GET(flag/allow_admin_ooccolor) && check_rights_for(preferences.client, R_ADMIN|R_EVENT|R_FUN)

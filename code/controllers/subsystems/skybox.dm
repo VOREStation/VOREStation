@@ -2,8 +2,7 @@
 //Exists to handle a few global variables that change enough to justify this. Technically a parallax, but it exhibits a skybox effect.
 SUBSYSTEM_DEF(skybox)
 	name = "Space skybox"
-	init_order = INIT_ORDER_SKYBOX
-	flags = SS_NO_FIRE
+	flags = SS_NO_FIRE | SS_NO_INIT
 	var/static/list/skybox_cache = list()
 
 	var/static/mutable_appearance/normal_space
@@ -64,7 +63,7 @@ SUBSYSTEM_DEF(skybox)
 		speedspace_cache["EW_[i]"] = MA
 
 	//Over-the-edge images
-	for (var/dir in alldirs)
+	for (var/dir in ALL_POSSIBLE_DIRS)
 		var/mutable_appearance/MA = new(normal_space)
 		var/matrix/M = matrix()
 		var/horizontal = (dir & (WEST|EAST))
@@ -89,11 +88,8 @@ SUBSYSTEM_DEF(skybox)
 
 	. = ..()
 
-/datum/controller/subsystem/skybox/Initialize()
-	return SS_INIT_SUCCESS
-
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
-	if(!subsystem_initialized)
+	if(!initialized)
 		return // WAIT
 	if(!skybox_cache["[z]"])
 		skybox_cache["[z]"] = generate_skybox(z)

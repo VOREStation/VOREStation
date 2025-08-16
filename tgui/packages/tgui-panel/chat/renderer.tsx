@@ -5,11 +5,14 @@
  */
 
 import { createRoot } from 'react-dom/client';
+import { useSelector } from 'tgui/backend';
 import { createLogger } from 'tgui/logging';
 import { Tooltip } from 'tgui-core/components';
 import { EventEmitter } from 'tgui-core/events';
 import { classes } from 'tgui-core/react';
 
+import { selectSettings } from '../settings/selectors';
+import { exportToDisk } from './chatExport';
 import {
   IMAGE_RETRY_DELAY,
   IMAGE_RETRY_LIMIT,
@@ -29,7 +32,7 @@ import {
   typeIsImportant,
 } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
-import type { message } from './types';
+import type { message, Page } from './types';
 
 const logger = createLogger('chatRenderer');
 
@@ -67,12 +70,12 @@ const findNearestScrollableParent = (startingNode: HTMLElement) => {
 const createHighlightNode = (text: string, color: string): HTMLElement => {
   const node = document.createElement('span');
   node.className = 'Chat__highlight';
-  node.setAttribute('style', 'background-color:' + color);
+  node.setAttribute('style', `background-color:${color}`);
   node.textContent = text;
   return node;
 };
 
-const createMessageNode = (): HTMLElement => {
+export const createMessageNode = (): HTMLElement => {
   const node = document.createElement('div');
   node.className = 'ChatMessage';
   return node;
@@ -84,7 +87,7 @@ const interleaveMessage = (
   color: string,
 ): HTMLElement => {
   if (interleave) {
-    node.setAttribute('style', 'background-color:' + color);
+    node.setAttribute('style', `background-color:${color}`);
     node.setAttribute('display', 'block');
   } else {
     node.removeAttribute('style');
@@ -123,18 +126,19 @@ const handleImageError = (e: ErrorEvent) => {
   setTimeout(() => {
     /** @type {HTMLImageElement} */
     const node = e.target as HTMLImageElement;
-    if (node) {
-      const attempts =
-        parseInt(node.getAttribute('data-reload-n') || '', 10) || 0;
-      if (attempts >= IMAGE_RETRY_LIMIT) {
-        logger.error(`failed to load an image after ${attempts} attempts`);
-        return;
-      }
-      const src = node.src;
-      node.src = '';
-      node.src = src + '#' + attempts;
-      node.setAttribute('data-reload-n', (attempts + 1).toString());
+    if (!node) {
+      return;
     }
+    const attempts =
+      parseInt(node.getAttribute('data-reload-n') || '', 10) || 0;
+    if (attempts >= IMAGE_RETRY_LIMIT) {
+      // logger.error(`failed to load an image after ${attempts} attempts`);
+      return;
+    }
+    const src = node.src;
+    node.src = '';
+    node.src = `${src}#${attempts}`;
+    node.setAttribute('data-reload-n', (attempts + 1).toString());
   }, IMAGE_RETRY_DELAY);
 };
 
@@ -162,11 +166,11 @@ const updateMessageBadge = (message: message) => {
 class ChatRenderer {
   loaded: boolean;
   rootNode: HTMLElement | null;
-  queue: string[];
+  queue: message[];
   messages: message[];
   archivedMessages: message[];
   visibleMessages: message[];
-  page: null;
+  page: Page | null;
   events: EventEmitter;
   prependTimestamps: boolean;
   visibleMessageLimit: number;
@@ -176,7 +180,7 @@ class ChatRenderer {
   logLimit: number;
   logEnable: boolean;
   roundId: null | number;
-  storedTypes: {};
+  storedTypes: Record<string, string>;
   interleave: boolean;
   interleaveEnabled: boolean;
   interleaveColor: string;
@@ -187,14 +191,19 @@ class ChatRenderer {
   ensureScrollTracking: () => void;
   highlightParsers:
     | {
-        highlightWords: string;
+        highlightWords: string[];
         highlightRegex: RegExp;
         highlightColor: string;
         highlightWholeMessage: boolean;
-        highlightBlacklist: string;
+        highlightBlacklist: boolean;
         blacklistregex: RegExp;
       }[]
     | null;
+  databaseBackendEnabled: boolean;
+  lastScrollHeight: number;
+  ttsVoice: string;
+  ttsCategories: Record<string, boolean>;
+
   constructor() {
     /** @type {HTMLElement} */
     this.loaded = false;
@@ -219,22 +228,26 @@ class ChatRenderer {
     this.interleaveEnabled = false;
     this.interleaveColor = '#909090';
     this.hideImportantInAdminTab = false;
+    this.databaseBackendEnabled = false;
     // Scroll handler
     /** @type {HTMLElement} */
     this.scrollNode = null;
     this.scrollTracking = true;
+    this.lastScrollHeight = 0;
     this.handleScroll = (type) => {
       const node = this.scrollNode;
-      if (node) {
-        const height = node.scrollHeight;
-        const bottom = node.scrollTop + node.offsetHeight;
-        const scrollTracking =
-          Math.abs(height - bottom) < SCROLL_TRACKING_TOLERANCE;
-        if (scrollTracking !== this.scrollTracking) {
-          this.scrollTracking = scrollTracking;
-          this.events.emit('scrollTrackingChanged', scrollTracking);
-          logger.debug('tracking', this.scrollTracking);
-        }
+      if (!node) {
+        return;
+      }
+      const height = node.scrollHeight;
+      const bottom = node.scrollTop + node.offsetHeight;
+      const scrollTracking =
+        Math.abs(height - bottom) < SCROLL_TRACKING_TOLERANCE ||
+        this.lastScrollHeight === 0;
+      if (scrollTracking !== this.scrollTracking) {
+        this.scrollTracking = scrollTracking;
+        this.events.emit('scrollTrackingChanged', scrollTracking);
+        logger.debug('tracking', this.scrollTracking);
       }
     };
     this.ensureScrollTracking = () => {
@@ -259,18 +272,8 @@ class ChatRenderer {
     else {
       this.rootNode = node;
     }
-    // Find scrollable parent
-    if (this.rootNode) {
-      this.scrollNode = findNearestScrollableParent(
-        this.rootNode,
-      ) as HTMLElement;
-    }
-    if (this.scrollNode) {
-      this.scrollNode.addEventListener('scroll', this.handleScroll);
-    }
-    setTimeout(() => {
-      this.scrollToBottom();
-    });
+    // Attempts to find the scroll node on mount
+    this.tryFindScrollable();
     // Flush the queue
     this.tryFlushQueue();
   }
@@ -284,11 +287,16 @@ class ChatRenderer {
     if (this.isReady() && this.queue.length > 0) {
       this.processBatch(this.queue, { doArchive: doArchive });
       this.queue = [];
+      // In case we had no vaclid scroll node before
+      setTimeout(() => {
+        this.tryFindScrollable();
+        this.scrollToBottom();
+      });
     }
   }
 
   assignStyle(style = {}) {
-    for (let key of Object.keys(style)) {
+    for (const key of Object.keys(style)) {
       if (this.rootNode) {
         this.rootNode.style.setProperty(key, style[key]);
       }
@@ -309,8 +317,10 @@ class ChatRenderer {
       const highlightWholeMessage = setting.highlightWholeMessage;
       const matchWord = setting.matchWord;
       const matchCase = setting.matchCase;
-      const allowedRegex = /^[a-z0-9_\-$/^[\s\]\\]+$/gi;
+      const allowedRegex = /^[a-zа-яё0-9_\-$/^[\s\]\\]+$/gi;
       const regexEscapeCharacters = /[!#$%^&*)(+=.<>{}[\]:;'"|~`_\-\\/]/g;
+      // Reset lastIndex so it does not mess up the next word
+      allowedRegex.lastIndex = 0;
       const lines = String(text)
         .split(',')
         .map((str) => str.trim())
@@ -320,9 +330,7 @@ class ChatRenderer {
             str &&
             str.length > 1 &&
             // Must be alphanumeric (with some punctuation)
-            allowedRegex.test(str) &&
-            // Reset lastIndex so it does not mess up the next word
-            ((allowedRegex.lastIndex = 0) || true),
+            allowedRegex.test(str),
         );
       let highlightWords;
       let highlightRegex;
@@ -330,6 +338,8 @@ class ChatRenderer {
       if (lines.length === 0) {
         return;
       }
+      // Reset lastIndex so it does not mess up the next word
+      allowedRegex.lastIndex = 0;
       const blacklistLines = String(blacklist)
         .split(',')
         .map((str) => str.trim())
@@ -339,14 +349,11 @@ class ChatRenderer {
             str &&
             str.length > 1 &&
             // Must be alphanumeric (with some punctuation)
-            allowedRegex.test(str) &&
-            // Reset lastIndex so it does not mess up the next word
-            ((allowedRegex.lastIndex = 0) || true),
+            allowedRegex.test(str),
         );
-      let blacklistWords;
       let blacklistregex;
       if (highlightBlacklist && blacklistLines.length > 0) {
-        let blacklistRegexExpressions: string[] = [];
+        const blacklistRegexExpressions: string[] = [];
         for (let line of blacklistLines) {
           // Regex expression syntax is /[exp]/
           if (line.charAt(0) === '/' && line.charAt(line.length - 1) === '/') {
@@ -357,29 +364,24 @@ class ChatRenderer {
             }
             blacklistRegexExpressions.push(expr);
           } else {
-            // Lazy init
-            if (!blacklistWords) {
-              blacklistWords = [];
-            }
             // We're not going to let regex characters fuck up our RegEx operation.
             line = line.replace(regexEscapeCharacters, '\\$&');
 
-            blacklistWords.push('^\\s*' + line);
-            blacklistWords.push('^\\[\\d+:\\d+\\]\\s*' + line);
+            blacklistRegexExpressions.push(`^${line}`);
           }
         }
-        const regexStrBL = blacklistWords.join('|');
+        const regexStrBL = blacklistRegexExpressions.join('|');
         const flagsBL = 'i';
         // We wrap this in a try-catch to ensure that broken regex doesn't break
         // the entire chat.
         try {
-          blacklistregex = new RegExp('(' + regexStrBL + ')', flagsBL);
+          blacklistregex = new RegExp(`(${regexStrBL})`, flagsBL);
         } catch {
           // We just reset it if it's invalid.
           blacklistregex = null;
         }
       }
-      let regexExpressions: string[] = [];
+      const regexExpressions: string[] = [];
       // Organize each highlight entry into regex expressions and words
       for (let line of lines) {
         // Regex expression syntax is /[exp]/
@@ -402,13 +404,13 @@ class ChatRenderer {
         }
       }
       const regexStr = regexExpressions.join('|');
-      const flags = 'g' + (matchCase ? '' : 'i');
+      const flags = `g${matchCase ? '' : 'i'}`;
       // We wrap this in a try-catch to ensure that broken regex doesn't break
       // the entire chat.
       try {
         // setting regex overrides matchword
         if (regexStr) {
-          highlightRegex = new RegExp('(' + regexStr + ')', flags);
+          highlightRegex = new RegExp(`(${regexStr})`, flags);
         } else {
           const pattern = `${matchWord ? '\\b' : ''}(${highlightWords.join(
             '|',
@@ -442,18 +444,35 @@ class ChatRenderer {
     }
   }
 
+  tryFindScrollable() {
+    // Find scrollable parent
+    if (this.rootNode) {
+      if (!this.scrollNode || this.scrollNode.scrollHeight === undefined) {
+        this.scrollNode = findNearestScrollableParent(
+          this.rootNode,
+        ) as HTMLElement;
+        if (this.scrollNode) {
+          this.scrollNode.addEventListener('scroll', this.handleScroll);
+        }
+      }
+    }
+  }
+
   setVisualChatLimits(
     visibleMessageLimit: number,
     combineMessageLimit: number,
     combineIntervalLimit: number,
     logEnable: boolean,
     logLimit: number,
-    storedTypes: {},
+    storedTypes: Record<string, string>,
     roundId: number | null,
     prependTimestamps: boolean,
     hideImportantInAdminTab: boolean,
     interleaveEnabled: boolean,
     interleaveColor: string,
+    databaseBackendEnabled: boolean,
+    ttsVoice: string,
+    ttsCategories: Record<string, boolean>,
   ) {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
@@ -466,9 +485,12 @@ class ChatRenderer {
     this.hideImportantInAdminTab = hideImportantInAdminTab;
     this.interleaveEnabled = interleaveEnabled;
     this.interleaveColor = interleaveColor;
+    this.databaseBackendEnabled = databaseBackendEnabled;
+    this.ttsVoice = ttsVoice;
+    this.ttsCategories = ttsCategories;
   }
 
-  changePage(page) {
+  changePage(page: Page) {
     if (!this.isReady()) {
       this.page = page;
       this.tryFlushQueue();
@@ -483,7 +505,7 @@ class ChatRenderer {
     // Re-add message nodes
     const fragment = document.createDocumentFragment();
     let node;
-    for (let message of this.messages) {
+    for (const message of this.messages) {
       if (
         canPageAcceptType(page, message.type) &&
         !(
@@ -509,7 +531,7 @@ class ChatRenderer {
     }
   }
 
-  getCombinableMessage(predicate) {
+  getCombinableMessage(predicate: message) {
     const now = Date.now();
     const len = this.visibleMessages.length;
     const from = len - 1;
@@ -531,14 +553,29 @@ class ChatRenderer {
     return null;
   }
 
+  tryTTS(message: message, node: HTMLElement) {
+    if (this.ttsCategories[message.type]) {
+      const utterance = new SpeechSynthesisUtterance(node.innerText);
+
+      const voice = window.speechSynthesis
+        .getVoices()
+        .find((val) => val.name === this.ttsVoice);
+      utterance.voice = voice || null;
+
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+
+  // eslint-disable-next-line complexity
   processBatch(
-    batch,
+    batch: message[],
     options: {
       prepend?: boolean;
       notifyListeners?: boolean;
       doArchive?: boolean;
     } = {},
   ) {
+    const settings = useSelector(selectSettings);
     const { prepend, notifyListeners = true, doArchive = false } = options;
     const now = Date.now();
     // Queue up messages until chat is ready
@@ -550,11 +587,15 @@ class ChatRenderer {
       }
       return;
     }
+    // Store last scroll position
+    if (this.scrollNode) {
+      this.lastScrollHeight = this.scrollNode.scrollHeight;
+    }
     // Insert messages
     const fragment = document.createDocumentFragment();
     const countByType = {};
     let node;
-    for (let payload of batch) {
+    for (const payload of batch) {
       const message = createMessage(payload);
       // Combine messages
       const combinable = this.getCombinableMessage(message);
@@ -596,7 +637,7 @@ class ChatRenderer {
           const childNode = nodes[i];
           const targetName = childNode.getAttribute('data-component');
           // Let's pull out the attibute info we need
-          let outputProps = {};
+          const outputProps = {};
           for (let j = 0; j < childNode.attributes.length; j++) {
             const attribute = childNode.attributes[j];
 
@@ -607,9 +648,9 @@ class ChatRenderer {
               working_value = true;
             } else if (working_value === '$false') {
               working_value = false;
-            } else if (!isNaN(working_value)) {
+            } else if (!Number.isNaN(working_value)) {
               const parsed_float = parseFloat(working_value);
-              if (!isNaN(parsed_float)) {
+              if (!Number.isNaN(parsed_float)) {
                 working_value = parsed_float;
               }
             }
@@ -627,24 +668,30 @@ class ChatRenderer {
 
           const reactRoot = createRoot(childNode);
 
-          /* eslint-disable react/no-danger */
           reactRoot.render(
-            <Element {...outputProps}>
-              <span dangerouslySetInnerHTML={oldHtml} />
-            </Element>,
-            childNode,
+            <>
+              <Element {...outputProps}>
+                {/** biome-ignore lint/security/noDangerouslySetInnerHtml: Chat rendere */}
+                <span dangerouslySetInnerHTML={oldHtml} />
+              </Element>
+              {childNode}
+            </>,
           );
-          /* eslint-enable react/no-danger */
         }
 
         // Highlight text
         if (!message.avoidHighlighting && this.highlightParsers) {
           this.highlightParsers.map((parser) => {
+            const ourUser = node.getElementsByClassName('name');
+            const isEmote = node.getElementsByClassName('emote');
             if (
               !(
                 parser.highlightBlacklist &&
                 parser.blacklistregex &&
-                parser.blacklistregex.test(node.textContent)
+                ((ourUser.length > 0 &&
+                  parser.blacklistregex.test(ourUser[0].textContent)) ||
+                  (isEmote.length > 0 &&
+                    parser.blacklistregex.test(isEmote[0].textContent)))
               )
             ) {
               const highlighted = highlightNode(
@@ -689,9 +736,17 @@ class ChatRenderer {
       countByType[message.type] += 1;
       // TODO: Detect duplicates
       this.messages.push(message);
+
+      // TTS
+      // Only TTS on new messages
+      if (doArchive) {
+        this.tryTTS(message, node);
+      }
+
       if (
         doArchive &&
         this.logEnable &&
+        !this.databaseBackendEnabled &&
         this.storedTypes &&
         canStoreType(this.storedTypes, message.type)
       ) {
@@ -792,7 +847,7 @@ class ChatRenderer {
     }
   }
 
-  rebuildChat(rebuildLimit) {
+  rebuildChat(rebuildLimit: number) {
     if (!this.isReady()) {
       return;
     }
@@ -800,7 +855,7 @@ class ChatRenderer {
     const fromIndex = Math.max(0, this.messages.length - rebuildLimit);
     const messages = this.messages.slice(fromIndex);
     // Remove existing nodes
-    for (let message of messages) {
+    for (const message of messages) {
       message.node = undefined;
     }
     // Fast clear of the root node
@@ -815,7 +870,38 @@ class ChatRenderer {
     });
   }
 
-  saveToDisk(logLineCount, startLine = 0, endLine = 0) {
+  /**
+   * @clearChat
+   * @copyright 2023
+   * @author Cheffie
+   * @link https://github.com/CheffieGithub
+   * @license MIT
+   */
+  clearChat() {
+    const messages = this.visibleMessages;
+    this.visibleMessages = [];
+    for (let i = 0; i < messages.length; i++) {
+      const message = messages[i];
+      if (this.rootNode && message.node instanceof HTMLElement) {
+        this.rootNode.removeChild(message.node);
+      }
+      // Mark this message as pruned
+      message.node = 'pruned';
+    }
+    // Remove pruned messages from the message array
+    this.messages = this.messages.filter(
+      (message) => message.node !== 'pruned',
+    );
+    logger.log(`Cleared chat`);
+  }
+
+  saveToDisk(
+    logLineCount: number = 0,
+    startLine: number = 0,
+    endLine: number = 0,
+    startRound: number = 0,
+    endRound: number = 0,
+  ) {
     // Compile currently loaded stylesheets as CSS text
     let cssText = '';
     const styleSheets = document.styleSheets;
@@ -824,65 +910,76 @@ class ChatRenderer {
       for (let i = 0; i < cssRules.length; i++) {
         const rule = cssRules[i];
         if (rule && typeof rule.cssText === 'string') {
-          cssText += rule.cssText + '\n';
+          cssText += `${rule.cssText}\n`;
         }
       }
     }
     cssText += 'body, html { background-color: #141414 }\n';
     // Compile chat log as HTML text
-    let messagesHtml = '';
 
-    let tmpMsgArray: message[] = [];
-    if (startLine || endLine) {
-      if (!endLine) {
-        tmpMsgArray = this.archivedMessages.slice(startLine);
-      } else {
-        tmpMsgArray = this.archivedMessages.slice(startLine, endLine);
-      }
-      if (logLineCount > 0) {
-        tmpMsgArray = tmpMsgArray.slice(-logLineCount);
-      }
-    } else if (logLineCount > 0) {
-      tmpMsgArray = this.archivedMessages.slice(-logLineCount);
+    if (this.databaseBackendEnabled) {
+      exportToDisk(
+        cssText,
+        startRound,
+        endRound,
+        this.prependTimestamps,
+        this.page,
+      );
     } else {
-      tmpMsgArray = this.archivedMessages;
-    }
-
-    // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
-    for (let message of tmpMsgArray) {
-      // Filter messages according to active tab for export
-      if (this.page && canPageAcceptType(this.page, message.type)) {
-        messagesHtml += message.html + '\n';
+      // Fetch from chat storage
+      let messagesHtml = '';
+      let tmpMsgArray: message[] = [];
+      if (startLine || endLine) {
+        if (!endLine) {
+          tmpMsgArray = this.archivedMessages.slice(startLine);
+        } else {
+          tmpMsgArray = this.archivedMessages.slice(startLine, endLine);
+        }
+        if (logLineCount > 0) {
+          tmpMsgArray = tmpMsgArray.slice(-logLineCount);
+        }
+      } else if (logLineCount > 0) {
+        tmpMsgArray = this.archivedMessages.slice(-logLineCount);
+      } else {
+        tmpMsgArray = this.archivedMessages;
       }
-      // if (message.node) {
-      //  messagesHtml += message.node.outerHTML + '\n';
-      // }
-    }
-    // Create a page
 
-    const pageHtml =
-      '<!doctype html>\n' +
-      '<html>\n' +
-      '<head>\n' +
-      '<title>SS13 Chat Log</title>\n' +
-      '<style>\n' +
-      cssText +
-      '</style>\n' +
-      '</head>\n' +
-      '<body>\n' +
-      '<div class="Chat">\n' +
-      messagesHtml +
-      '</div>\n' +
-      '</body>\n' +
-      '</html>\n';
-    // Create and send a nice blob
-    const blob = new Blob([pageHtml], { type: 'text/plain' });
-    const timestamp = new Date()
-      .toISOString()
-      .substring(0, 19)
-      .replace(/[-:]/g, '')
-      .replace('T', '-');
-    Byond.saveBlob(blob, `ss13-chatlog-${timestamp}.html`, '.html');
+      // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
+      for (const message of tmpMsgArray) {
+        // Filter messages according to active tab for export
+        if (this.page && canPageAcceptType(this.page, message.type)) {
+          messagesHtml += `${message.html}\n`;
+        }
+        // if (message.node) {
+        //  messagesHtml += message.node.outerHTML + '\n';
+        // }
+      }
+
+      // Create a page
+      const pageHtml =
+        '<!doctype html>\n' +
+        '<html>\n' +
+        '<head>\n' +
+        '<title>SS13 Chat Log</title>\n' +
+        '<style>\n' +
+        cssText +
+        '</style>\n' +
+        '</head>\n' +
+        '<body>\n' +
+        '<div class="Chat">\n' +
+        messagesHtml +
+        '</div>\n' +
+        '</body>\n' +
+        '</html>\n';
+      // Create and send a nice blob
+      const blob = new Blob([pageHtml], { type: 'text/plain' });
+      const timestamp = new Date()
+        .toISOString()
+        .substring(0, 19)
+        .replace(/[-:]/g, '')
+        .replace('T', '-');
+      Byond.saveBlob(blob, `ss13-chatlog-${timestamp}.html`, '.html');
+    }
   }
 
   purgeMessageArchive() {

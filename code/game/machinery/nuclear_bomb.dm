@@ -1,4 +1,4 @@
-var/bomb_set
+GLOBAL_VAR(bomb_set)
 
 /obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
@@ -22,11 +22,11 @@ var/bomb_set
 	var/safety_wire
 	var/timing_wire
 	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open,
-	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
+	  					// 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	use_power = USE_POWER_OFF
 
-/obj/machinery/nuclearbomb/New()
-	..()
+/obj/machinery/nuclearbomb/Initialize(mapload)
+	. = ..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
 	wires["Red"] = 0
 	wires["Blue"] = 0
@@ -45,14 +45,14 @@ var/bomb_set
 
 /obj/machinery/nuclearbomb/process()
 	if(timing)
-		bomb_set = 1 //So long as there is one nuke timing, it means one nuke is armed.
+		GLOB.bomb_set = 1 //So long as there is one nuke timing, it means one nuke is armed.
 		timeleft--
 		if(timeleft <= 0)
 			explode()
 		for(var/mob/M in viewers(1, src))
 			if((M.client && M.machine == src))
 				attack_hand(M)
-	return
+	return ..()
 
 /obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.has_tool_quality(TOOL_SCREWDRIVER))
@@ -274,7 +274,7 @@ var/bomb_set
 							if(icon_state == "nuclearbomb2")
 								icon_state = "nuclearbomb1"
 						timing = 0
-						bomb_set = 0
+						GLOB.bomb_set = 0
 					if(light_wire == temp_wire)
 						lighthack = !lighthack
 
@@ -321,18 +321,18 @@ var/bomb_set
 						if(!lighthack)
 							icon_state = "nuclearbomb2"
 						if(!safety)
-							bomb_set = 1//There can still be issues with this reseting when there are multiple bombs. Not a big deal tho for Nuke/N
+							GLOB.bomb_set = 1//There can still be issues with this reseting when there are multiple bombs. Not a big deal tho for Nuke/N
 						else
-							bomb_set = 0
+							GLOB.bomb_set = 0
 					else
-						bomb_set = 0
+						GLOB.bomb_set = 0
 						if(!lighthack)
 							icon_state = "nuclearbomb1"
 				if(href_list["safety"])
 					safety = !(safety)
 					if(safety)
 						timing = 0
-						bomb_set = 0
+						GLOB.bomb_set = 0
 				if(href_list["anchor"])
 
 					if(removal_stage == 5)
@@ -371,8 +371,8 @@ var/bomb_set
 	if(!lighthack)
 		icon_state = "nuclearbomb3"
 	playsound(src,'sound/machines/Alarm.ogg',100,0,5)
-	if(ticker && ticker.mode)
-		ticker.mode.explosion_in_progress = 1
+	if(SSticker && SSticker.mode)
+		SSticker.mode.explosion_in_progress = 1
 	sleep(100)
 
 	var/off_station = 0
@@ -383,21 +383,47 @@ var/bomb_set
 	else
 		off_station = 2
 
-	if(ticker)
-		if(ticker.mode && ticker.mode.name == "Mercenary")
+	if(SSticker)
+		if(SSticker.mode && SSticker.mode.name == "Mercenary")
 			var/obj/machinery/computer/shuttle_control/multi/syndicate/syndie_location = locate(/obj/machinery/computer/shuttle_control/multi/syndicate)
 			if(syndie_location)
-				ticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
-			ticker.mode:nuke_off_station = off_station
-		ticker.station_explosion_cinematic(off_station,null)
-		if(ticker.mode)
-			ticker.mode.explosion_in_progress = 0
+				SSticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
+			SSticker.mode:nuke_off_station = off_station
+
+		switch(off_station)
+			if(0)
+				if(SSticker.mode.name == "mercenary")
+					play_cinematic(/datum/cinematic/nuke/ops_victory)
+				else
+					play_cinematic(/datum/cinematic/nuke/self_destruct)
+
+					// FIXME: Probably a better way
+					for(var/mob/living/M in GLOB.living_mob_list)
+						switch(M.z)
+							if(0)	//inside a crate or something
+								var/turf/T = get_turf(M)
+								if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
+									M.health = 0
+									M.set_stat(DEAD)
+							if(1)	//on a z-level 1 turf.
+								M.health = 0
+								M.set_stat(DEAD)
+			if(1)
+				if(SSticker.mode.name == "mercenary")
+					play_cinematic(/datum/cinematic/nuke/ops_miss)
+				else
+					play_cinematic(/datum/cinematic/nuke/self_destruct_miss)
+			if(2)
+				play_cinematic(/datum/cinematic/nuke/far_explosion)
+
+		if(SSticker.mode)
+			SSticker.mode.explosion_in_progress = 0
 			to_world(span_boldannounce("The station was destoyed by the nuclear blast!"))
 
-			ticker.mode.station_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
+			SSticker.mode.station_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
 															//kinda shit but I couldn't  get permission to do what I wanted to do.
 
-			if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
+			if(!SSticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
 				to_world(span_boldannounce("Resetting in 30 seconds!"))
 
 				feedback_set_details("end_error","nuke - unhandled ending")
@@ -412,16 +438,16 @@ var/bomb_set
 
 #undef NUKERANGE
 
-/obj/item/disk/nuclear/New()
-	..()
-	nuke_disks |= src
+/obj/item/disk/nuclear/Initialize(mapload)
+	. = ..()
+	GLOB.nuke_disks += src
 
 /obj/item/disk/nuclear/Destroy()
-	if(!nuke_disks.len && blobstart.len > 0)
-		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
+	if(!GLOB.nuke_disks.len && GLOB.blobstart.len > 0)
+		var/obj/D = new /obj/item/disk/nuclear(pick(GLOB.blobstart))
 		message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 		log_game("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
-	..()
+	. = ..()
 
 /obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)

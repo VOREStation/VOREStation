@@ -33,6 +33,10 @@ export const SETTINGS_TABS = [
     id: 'statPanel',
     name: 'Stat Panel',
   },
+  {
+    id: 'ttsSettings',
+    name: 'TTS/Accessibility',
+  },
 ];
 
 export const FONTS_DISABLED = 'Default';
@@ -52,3 +56,5 @@ export const FONTS = [
 ];
 
 export const MAX_HIGHLIGHT_SETTINGS = 10;
+
+export const blacklisted_tags = ['a', 'iframe', 'link', 'video'];

@@ -280,8 +280,9 @@
 /obj/item/clothing/head/terran/navy/service
 	name = "Ares service cover"
 	desc = "A service uniform cover, worn by low-ranking crew within the Ares Confederation Navy."
+	icon_state = "beret_navy_service"
 
 /obj/item/clothing/head/terran/navy/service/command
 	name = "Ares command service cover"
 	desc = "A service uniform cover, worn by high-ranking crew within the Ares Confederation Navy."
-
+	icon_state = "beret_navy_service"

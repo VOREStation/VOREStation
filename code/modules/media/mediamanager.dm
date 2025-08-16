@@ -27,7 +27,7 @@
 /hook/roundend/proc/stop_all_media()
 	log_debug("Stopping all playing media...")
 	// Stop all music.
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(M && M.client)
 			M.stop_all_music()
 	//  SHITTY HACK TO AVOID RACE CONDITION WITH SERVER REBOOT.
@@ -122,15 +122,9 @@
 /datum/media_manager/proc/open()
 	if(!owner.prefs)
 		return
-	if(isnum(owner.prefs.media_volume))
-		volume = owner.prefs.media_volume
-	switch(owner.prefs.media_player)
-		if(0)
-			playerstyle = PLAYER_VLC_HTML
-		if(1)
-			playerstyle = PLAYER_WMP_HTML
-		if(2)
-			playerstyle = PLAYER_HTML5_HTML
+	if(isnum(owner.prefs.read_preference(/datum/preference/numeric/living/jukebox_volume)))
+		volume = owner.prefs.read_preference(/datum/preference/numeric/living/jukebox_volume) / 100
+	playerstyle = PLAYER_HTML5_HTML // we're in the 516 era baby
 	owner << browse(null, "window=[WINDOW_ID]")
 	owner << browse(playerstyle, "window=[WINDOW_ID]")
 	send_update()

@@ -35,7 +35,17 @@
 	can_buckle = TRUE
 	buckle_movable = TRUE
 	buckle_lying = FALSE
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
 	minbodytemp = 0
+	maxbodytemp = 99999
+	heat_resist = 1
 
 	var/flames
 	var/firebreathtimer
@@ -48,6 +58,8 @@
 
 	var/leap_warmup = 2 SECOND // How long the leap telegraphing is.
 	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
+
+	status_flags = null
 
 /mob/living/simple_mob/vore/ddraig
 
@@ -65,6 +77,13 @@
 	vore_pounce_maxhealth = 125
 	vore_bump_emote = "tries to devour"
 
+/mob/living/simple_mob/vore/ddraig/faster
+	special_attack_cooldown = 10 SECONDS
+	charge_warmup = 1.5 SECOND
+	tf_warmup = 1 SECOND
+	leap_warmup = 1 SECOND
+	movement_cooldown = -3
+
 /mob/living/simple_mob/vore/ddraig/Login()
 	. = ..()
 	if(!riding_datum)
@@ -76,9 +95,7 @@
 	verbs |= /mob/living/proc/glamour_invisibility
 	movement_cooldown = -1
 
-/mob/living/simple_mob/vore/ddraig/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/ddraig/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -275,7 +292,7 @@
 	can_flee = TRUE
 	flee_when_dying = FALSE
 
-/datum/ai_holder/simple_mob/vore/find_target(list/possible_targets, has_targets_list)
+/datum/ai_holder/simple_mob/vore/ddraig/find_target(list/possible_targets, has_targets_list)
 	if(!vore_hostile)
 		return ..()
 	if(!isanimal(holder))	//Only simplemobs have the vars we need
@@ -292,7 +309,7 @@
 	for(var/mob/living/possible_target in possible_targets)
 		if(!can_attack(possible_target))
 			continue
-		if(isanimal(target) && !check_attacker(target)) //Do not target simple mobs who didn't attack you (disengage with TF'd mobs)
+		if(isanimal(possible_target) && !check_attacker(possible_target)) //Do not target simple mobs who didn't attack you (disengage with TF'd mobs)
 			continue
 		. |= possible_target
 		if(!isliving(possible_target))
@@ -317,7 +334,7 @@
 		set_stance(STANCE_FLEE)
 		return
 
-	if((holder.health < (holder.maxHealth / 4)) && !used_invis)
+	if((holder.health < (holder.getMaxHealth() / 4)) && !used_invis)
 		holder.cloak()
 		used_invis = 1
 		step_away(holder, target, 8)
@@ -368,7 +385,7 @@
 		on_engagement(target)
 		if(firing_lanes && !test_projectile_safety(target))
 			// Nudge them a bit, maybe they can shoot next time.
-			var/turf/T = get_step(holder, pick(cardinal))
+			var/turf/T = get_step(holder, pick(GLOB.cardinal))
 			if(T)
 				holder.IMove(T) // IMove() will respect movement cooldown.
 				holder.face_atom(target)

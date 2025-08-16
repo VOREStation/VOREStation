@@ -31,7 +31,7 @@ var/list/overminds = list()
 /mob/observer/blob/get_default_language()
 	return default_language
 
-/mob/observer/blob/Initialize(newloc, pre_placed = 0, starting_points = 60, desired_blob_type = null)
+/mob/observer/blob/Initialize(mapload, pre_placed = 0, starting_points = 60, desired_blob_type = null)
 	blob_points = starting_points
 	if(pre_placed) //we already have a core!
 		placed = 1
@@ -54,7 +54,7 @@ var/list/overminds = list()
 	if(languages.len)
 		default_language = languages[1]
 
-	return ..(newloc)
+	return ..()
 
 /mob/observer/blob/Destroy()
 	for(var/obj/structure/blob/B as anything in GLOB.all_blobs)
@@ -146,7 +146,7 @@ var/list/overminds = list()
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if(S.speaking.flags & NONVERBAL)
-			custom_emote(1, "[pick(S.speaking.signlang_verb)].")
+			custom_emote(VISIBLE_MESSAGE, "[pick(S.speaking.signlang_verb)].")
 
 	for(var/mob/M in listening)
 		spawn()

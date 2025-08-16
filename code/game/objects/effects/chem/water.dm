@@ -5,7 +5,7 @@
 	mouse_opacity = 0
 	pass_flags = PASSTABLE | PASSGRILLE | PASSBLOB
 
-/obj/effect/effect/water/Initialize()
+/obj/effect/effect/water/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 15 SECONDS)
 

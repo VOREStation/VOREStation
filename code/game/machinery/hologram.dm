@@ -40,7 +40,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	var/power_per_hologram = 500 //per usage per hologram
 	idle_power_usage = 5
 	use_power = USE_POWER_IDLE
-	var/list/mob/living/silicon/ai/masters = new() //List of AIs that use the holopad
+	var/list/mob/living/silicon/ai/masters = list() //List of AIs that use the holopad
 	var/last_request = 0 //to prevent request spam. ~Carn
 	var/holo_range = 5 // Change to change how far the AI can move away from the holopad before deactivating.
 
@@ -59,7 +59,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 			last_request = world.time
 			to_chat(user, span_notice("You request an AI's presence."))
 			var/area/area = get_area(src)
-			for(var/mob/living/silicon/ai/AI in living_mob_list)
+			for(var/mob/living/silicon/ai/AI in GLOB.living_mob_list)
 				if(!AI.client)	continue
 				to_chat(AI, span_info("Your presence is requested at <a href='byond://?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>."))
 		else
@@ -133,6 +133,9 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	else
 		hologram.set_light(2)
 
+	for(var/obj/belly/B as anything in A.vore_organs)
+		B.forceMove(hologram)
+
 	masters[A] = hologram
 	set_light(2)			//pad lighting
 	icon_state = "holopad1"
@@ -140,6 +143,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	A.holo = src
 	if(LAZYLEN(masters))
 		START_MACHINE_PROCESSING(src)
+
 	return 1
 
 /obj/machinery/hologram/holopad/proc/clear_holo(mob/living/silicon/ai/user)
@@ -165,18 +169,8 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 /obj/machinery/hologram/holopad/proc/move_hologram(mob/living/silicon/ai/user)
 	if(masters[user])
-		/*VOREStation Removal, using our own code
-		step_to(masters[user], user.eyeobj) // So it turns.
-		var/obj/effect/overlay/H = masters[user]
-		H.loc = get_turf(user.eyeobj)
-		masters[user] = H
-		*/
-		//VOREStation Add - Solid mass holovore tracking stuff
 		var/obj/effect/overlay/aiholo/H = masters[user]
-		if(H.bellied)
-			walk_to(H, user.eyeobj) //Walk-to respects obstacles
-		else
-			walk_towards(H, user.eyeobj) //Walk-towards does not
+		walk_towards(H, user.eyeobj)
 		//Hologram left the screen (got stuck on a wall or something)
 		if(get_dist(H, user.eyeobj) > world.view)
 			clear_holo(user)

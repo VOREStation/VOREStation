@@ -3,7 +3,7 @@
 	desc = "This box contains blood packs."
 	icon_state = "sterile"
 
-/obj/item/storage/box/bloodpacks/Initialize()
+/obj/item/storage/box/bloodpacks/Initialize(mapload)
 		. = ..()
 		new /obj/item/reagent_containers/blood/empty(src)
 		new /obj/item/reagent_containers/blood/empty(src)
@@ -29,14 +29,14 @@
 	var/blood_type = null
 	var/reag_id = REAGENT_ID_BLOOD
 
-/obj/item/reagent_containers/blood/Initialize()
+/obj/item/reagent_containers/blood/Initialize(mapload)
 	. = ..()
 	base_name = name
 	base_desc = desc
 	if(blood_type != null)
 		label_text = "[blood_type]"
 		update_iv_label()
-		reagents.add_reagent(reag_id, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
+		reagents.add_reagent(reag_id, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null,"changeling"=FALSE))
 		update_icon()
 
 /obj/item/reagent_containers/blood/on_reagent_change()
@@ -56,7 +56,7 @@
 
 /obj/item/reagent_containers/blood/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen) || istype(W, /obj/item/flashlight/pen))
-		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a label for [name]", "Label", label_text, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a label for [name]", "Label", label_text, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(length(tmp_label) > 50)
 			to_chat(user, span_notice("The label can be at most 50 characters long."))
 		else if(length(tmp_label) > 10)
@@ -109,3 +109,11 @@
 	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
 	icon_state = "empty"
 	item_state = "bloodpack_empty"
+
+/obj/item/reagent_containers/blood/random_bloodsucker
+	name = "Ration BloodPack"
+	desc = "A standard issue BloodPack Ration given to crew that require blood to be sustained!"
+
+/obj/item/reagent_containers/blood/random_bloodsucker/Initialize(mapload)
+	blood_type = pick("A+", "A-", "B+", "B-", "O-", "O+", "AB+", "AB-")
+	. = ..()

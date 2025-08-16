@@ -37,8 +37,8 @@ export const ShuttleList = (props) => {
   shuttles.sort((a, b) => a.name.localeCompare(b.name));
 
   overmap_ships.sort((a, b) => {
-    let a_cmp = a.name?.toLowerCase() || a.name || a.ref;
-    let b_cmp = a.name?.toLowerCase() || a.name || a.ref;
+    const a_cmp = a.name?.toLowerCase() || a.name || a.ref;
+    const b_cmp = a.name?.toLowerCase() || a.name || a.ref;
 
     return a_cmp.localeCompare(b_cmp);
   });

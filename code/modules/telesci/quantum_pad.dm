@@ -21,7 +21,7 @@
 	var/map_pad_id = "" as text //what's my name
 	var/map_pad_link_id = "" as text //who's my friend
 
-/obj/machinery/power/quantumpad/Initialize()
+/obj/machinery/power/quantumpad/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 	connect_to_network()
@@ -289,7 +289,7 @@
 	return TRUE
 
 /obj/machinery/power/quantumpad/proc/gateway_scatter(mob/user)
-	var/obj/effect/landmark/dest = pick(awaydestinations)
+	var/obj/effect/landmark/dest = pick(GLOB.awaydestinations)
 	if(!dest)
 		to_chat(user, span_warning("Nothing happens... maybe there's no signal to the remote pad?"))
 		return

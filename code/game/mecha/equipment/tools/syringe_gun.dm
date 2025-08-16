@@ -18,7 +18,7 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_MAGNET = 4, TECH_DATA = 3)
 	required_type = list(/obj/mecha/medical)
 
-/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/Initialize()
+/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/Initialize(mapload)
 	. = ..()
 	flags |= NOREACT
 	syringes = new
@@ -75,7 +75,7 @@
 			if(!S)
 				break
 			if(step_towards(S,trg))
-				var/list/mobs = new
+				var/list/mobs = list()
 				for(var/mob/living/carbon/M in S.loc)
 					mobs += M
 				var/mob/living/carbon/M = safepick(mobs)
@@ -311,7 +311,7 @@
 
 	equip_type = EQUIP_HULL
 
-/obj/item/mecha_parts/mecha_equipment/crisis_drone/Initialize()
+/obj/item/mecha_parts/mecha_equipment/crisis_drone/Initialize(mapload)
 	. = ..()
 	drone_overlay = new(src.icon, icon_state = droid_state)
 

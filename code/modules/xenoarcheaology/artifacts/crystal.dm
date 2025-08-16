@@ -4,7 +4,7 @@
 	icon_state = "crystal"
 	density = TRUE
 
-/obj/structure/crystal/Initialize()
+/obj/structure/crystal/Initialize(mapload)
 	. = ..()
 
 	icon_state = pick("ano70","ano80")
@@ -30,6 +30,6 @@
 		new /obj/item/material/shard(src.loc)
 	if(prob(25))
 		new /obj/item/material/shard(src.loc)
-	..()
+	. = ..()
 
 //todo: laser_act

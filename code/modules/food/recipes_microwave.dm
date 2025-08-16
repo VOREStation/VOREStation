@@ -49,6 +49,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meatball
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/donkpocket/proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
 	being_cooked.heat()
@@ -111,6 +112,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough
 	)
 	result = /obj/item/reagent_containers/food/snacks/berryclafoutis/poison
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/wingfangchu
 	reagents = list(REAGENT_ID_SOYSAUCE = 5)
@@ -480,6 +482,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/doughslice
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket/dankpocket
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/validsalad/make_food(var/obj/container as obj)
 	. = ..(container)
@@ -545,6 +548,7 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/roastedsunflower
 	result_quantity = 2
+	wiki_flag = WIKI_SPOILER // Other recipies are other oils
 
 /datum/recipe/roastedsunflowerseeds
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1, REAGENT_ID_COOKINGOIL = 1)
@@ -561,6 +565,7 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/roastedsunflower
 	result_quantity = 2
+	wiki_flag = WIKI_SPOILER // Other recipies are other oils
 
 /datum/recipe/roastedpeanuts
 	fruit = list(PLANT_PEANUT = 2)
@@ -573,12 +578,14 @@ I said no!
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, REAGENT_ID_CORNOIL = 1)
 	result = /obj/item/reagent_containers/food/snacks/roastedpeanuts
 	result_quantity = 2
+	wiki_flag = WIKI_SPOILER // other recipies are just other oils
 
 /datum/recipe/roastedpeanutspeanut
 	fruit = list(PLANT_PEANUT = 2)
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, REAGENT_ID_PEANUTOIL = 1)
 	result = /obj/item/reagent_containers/food/snacks/roastedpeanuts
 	result_quantity = 2
+	wiki_flag = WIKI_SPOILER // other recipies are just other oils
 
 /datum/recipe/mint
 	reagents = list(REAGENT_ID_SUGAR = 5, REAGENT_ID_FROSTOIL = 5)
@@ -629,6 +636,7 @@ I said no!
 	fruit = list(PLANT_POISONBERRIES = 1)
 	result = /obj/item/reagent_containers/food/snacks/berrymuffin/poison
 	result_quantity = 2
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/ghostmuffin
 	reagents = list(REAGENT_ID_MILK = 5, REAGENT_ID_SUGAR = 5)
@@ -649,6 +657,7 @@ I said no!
 	fruit = list(PLANT_POISONBERRIES = 1)
 	result = /obj/item/reagent_containers/food/snacks/ghostmuffin/poison
 	result_quantity = 2
+	wiki_flag = WIKI_SPOILER
 
 /datum/recipe/eggroll
 	reagents = list(REAGENT_ID_SOYSAUCE = 10)
@@ -953,7 +962,6 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/meatball
 	)
-	result
 	result = /obj/item/reagent_containers/food/snacks/burrito_hell
 	reagent_mix = RECIPE_REAGENT_REPLACE //Already hot sauce
 

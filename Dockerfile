@@ -14,12 +14,13 @@ RUN apt-get install -y --no-install-recommends \
 	curl \
 	unzip \
 	make \
-	libstdc++6:i386
+	libstdc++6:i386 \
+    libcurl4:i386
 
 COPY dependencies.sh .
 
 RUN . ./dependencies.sh \
-	&& curl "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip \
+	&& curl -H "User-Agent: vstation/1.0 CI Script" "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip \
 	&& unzip byond.zip \
 	&& cd byond \
 	&& sed -i 's|install:|&\n\tmkdir -p $(MAN_DIR)/man6|' Makefile \
@@ -34,11 +35,12 @@ FROM byond AS build
 WORKDIR /vorestation
 
 RUN apt-get install -y --no-install-recommends \
-	curl
+	curl \
+    unzip
 
 COPY . .
 
-RUN env TG_BOOTSTRAP_NODE_LINUX=1 tools/build/build
+RUN env TG_BOOTSTRAP_NODE_LINUX=1 tools/build/build.sh
 
 FROM base AS rust
 RUN apt-get install -y --no-install-recommends \
@@ -68,7 +70,8 @@ WORKDIR /vorestation
 
 RUN apt-get install -y --no-install-recommends \
         libssl3 \
-        zlib1g:i386
+        zlib1g:i386 \
+        libcurl4:i386
 
 COPY --from=build /vorestation/ ./
 COPY --from=rust_g /rust_g/target/i686-unknown-linux-gnu/release/librust_g.so ./librust_g.so

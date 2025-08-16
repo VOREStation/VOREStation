@@ -5,6 +5,6 @@
 /obj/item/card/emag/used
 	uses = 1
 
-/obj/item/card/emag/used/Initialize()
+/obj/item/card/emag/used/Initialize(mapload)
 	. = ..()
 	uses = rand(1, 5)

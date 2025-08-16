@@ -3,16 +3,16 @@
 	name = "zone divider"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x3"
-	invisibility = 101 		//nope, can't see this
+	invisibility = INVISIBILITY_ABSTRACT 		//nope, can't see this
 	anchored = TRUE
 	density = FALSE
 	opacity = 0
 	can_atmos_pass = ATMOS_PASS_PROC
 
 /obj/effect/zone_divider/CanZASPass(turf/T, is_zone)
- 	// Special case to prevent us from being part of a zone during the first air master tick.
- 	// We must merge ourselves into a zone on next tick.  This will cause a bit of lag on
- 	// startup, but it can't really be helped you know?
+	// Special case to prevent us from being part of a zone during the first air master tick.
+	// We must merge ourselves into a zone on next tick.  This will cause a bit of lag on
+	// startup, but it can't really be helped you know?
 	if(SSair && SSair.current_cycle == 0)
 		spawn(1)
 			SSair.mark_for_update(get_turf(src))

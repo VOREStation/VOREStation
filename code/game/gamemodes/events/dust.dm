@@ -24,7 +24,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 			numbers = rand(15,25)
 			dust_type = /obj/effect/space_dust/super
 
-	var/startside = pick(cardinal)
+	var/startside = pick(GLOB.cardinal)
 	for(var/i = 0 to numbers)
 		var/startx = 0
 		var/starty = 0

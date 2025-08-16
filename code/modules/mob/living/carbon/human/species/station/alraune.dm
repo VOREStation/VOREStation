@@ -44,11 +44,12 @@
 	breath_heat_level_3 = 800 //lower incineration threshold though
 
 	spawn_flags = SPECIES_CAN_JOIN
-	flags = NO_SCAN | IS_PLANT | NO_MINOR_CUT
+	flags = NO_DNA | NO_SLEEVE | IS_PLANT | NO_MINOR_CUT
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	inherent_verbs = list(/mob/living/carbon/human/proc/alraune_fruit_select, //Give them the voremodes related to wrapping people in vines and sapping their fluids
-		/mob/living/carbon/human/proc/tie_hair)
+		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/proc/toggle_thorns)
 
 	color_mult = 1
 	icobase = 'icons/mob/human_races/r_human_vr.dmi'
@@ -134,18 +135,18 @@
 	if(H.does_not_breathe)
 		H.failed_last_breath = 0
 		H.adjustOxyLoss(-5)
-		return // if somehow they don't breathe, abort breathing.
+		return ..()// if somehow they don't breathe, abort breathing.
 
 	if(!breath || (breath.total_moles == 0))
 		H.failed_last_breath = 1
-		if(H.health > CONFIG_GET(number/health_threshold_crit))
+		if(H.health > H.get_crit_point())
 			H.adjustOxyLoss(ALRAUNE_MAX_OXYLOSS)
 		else
 			H.adjustOxyLoss(ALRAUNE_CRIT_MAX_OXYLOSS)
 
 		H.throw_alert("pressure", /obj/screen/alert/lowpressure)
 
-		return // skip air processing if there's no air
+		return ..() // skip air processing if there's no air
 	else
 		H.clear_alert("pressure")
 
@@ -268,19 +269,19 @@
 		var/bodypart = pick(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
 		if(breath.temperature >= breath_heat_level_1)
 			if(breath.temperature < breath_heat_level_2)
-				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, bodypart, used_weapon = "Excessive Heat")
+				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, bodypart)
 			else if(breath.temperature < breath_heat_level_3)
-				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, bodypart, used_weapon = "Excessive Heat")
+				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, bodypart)
 			else
-				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, bodypart, used_weapon = "Excessive Heat")
+				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, bodypart)
 
 		else if(breath.temperature <= breath_cold_level_1)
 			if(breath.temperature > breath_cold_level_2)
-				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, bodypart, used_weapon = "Excessive Cold")
+				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, bodypart)
 			else if(breath.temperature > breath_cold_level_3)
-				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, bodypart, used_weapon = "Excessive Cold")
+				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, bodypart)
 			else
-				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, bodypart, used_weapon = "Excessive Cold")
+				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, bodypart)
 
 
 		//breathing in hot/cold air also heats/cools you a bit
@@ -304,7 +305,7 @@
 		get_environment_discomfort(src,"cold")
 
 	breath.update_values()
-	return 1
+	..()
 
 /obj/item/organ/internal/brain/alraune
 	icon = 'icons/mob/species/alraune/organs.dmi'
@@ -351,6 +352,21 @@
 	var/fruit_type = PLANT_APPLE
 	var/mob/living/organ_owner = null
 	var/gen_cost = 0.5
+	var/poison_reagent
+
+	var/list/poison_options = list(
+								REAGENT_ID_MICROCILLIN,
+								REAGENT_ID_MACROCILLIN,
+								REAGENT_ID_NORMALCILLIN,
+								REAGENT_ID_NUMBENZYME,
+								REAGENT_ID_ANDROROVIR,
+								REAGENT_ID_GYNOROVIR,
+								REAGENT_ID_ANDROGYNOROVIR,
+								REAGENT_ID_STOXIN,
+								REAGENT_ID_RAINBOWTOXIN,
+								REAGENT_ID_PARALYSISTOXIN,
+								REAGENT_ID_PAINENZYME
+	)
 
 /obj/item/organ/internal/fruitgland/Initialize(mapload, internal)
 	. = ..()
@@ -389,22 +405,22 @@
 			fruit_gland = F
 			break
 
-	if(fruit_gland)
-		var/selection = tgui_input_list(src, "Choose your character's fruit type. Choosing nothing will result in a default of apples.", "Fruit Type", GLOB.acceptable_fruit_types)
-		if(selection)
-			fruit_gland.fruit_type = selection
-		add_verb(src, /mob/living/carbon/human/proc/alraune_fruit_pick)
-		remove_verb(src, /mob/living/carbon/human/proc/alraune_fruit_select)
-		fruit_gland.organ_owner = src
-		fruit_gland.emote_descriptor = list("fruit right off of [fruit_gland.organ_owner]!", "a fruit from [fruit_gland.organ_owner]!")
-
-	else
+	if(!fruit_gland)
 		to_chat(src, span_notice("You lack the organ required to produce fruit."))
 		return
+	var/selection = tgui_input_list(src, "Choose your character's fruit type. Choosing nothing will result in a default of apples.", "Fruit Type", GLOB.acceptable_fruit_types)
+	if(!selection)
+		return
+	fruit_gland.fruit_type = selection
+	add_verb(src, /mob/living/carbon/human/proc/alraune_fruit_pick)
+	add_verb(src, /mob/living/carbon/human/proc/alraune_fruit_reagent)
+	// remove_verb(src, /mob/living/carbon/human/proc/alraune_fruit_select)
+	fruit_gland.organ_owner = src
+	fruit_gland.emote_descriptor = list("fruit right off of [fruit_gland.organ_owner]!", "a fruit from [fruit_gland.organ_owner]!")
 
 /mob/living/carbon/human/proc/alraune_fruit_pick()
 	set name = "Pick Fruit"
-	set desc = "Pick fruit off of [src]."
+	set desc = "Pick fruit off of the fruit gland."
 	set category = "Object"
 	set src in view(1)
 
@@ -426,7 +442,12 @@
 			return
 
 		var/datum/seed/S = SSplants.seeds["[fruit_gland.fruit_type]"]
-		S.harvest(usr,0,0,1)
+
+		if(fruit_gland.poison_reagent)
+			S.harvest(usr,0,0,1,fruit_gland.poison_reagent,10)
+			log_admin("[src] played by [src.ckey] has produced a fruit containing [fruit_gland.poison_reagent]. It was picked by [usr].")
+		else
+			S.harvest(usr,0,0,1)
 
 		var/index = rand(0,2)
 
@@ -441,6 +462,34 @@
 								span_notice("You [pick(fruit_gland.self_emote_descriptor)] a fruit."))
 
 		fruit_gland.reagents.remove_any(fruit_gland.transfer_amount)
+
+/mob/living/carbon/human/proc/alraune_fruit_reagent()
+	set name = "Poison Fruit"
+	set desc = "Select a reagent to be placed in your fruit."
+	set category = "Abilities.Alraune"
+
+	if(!isliving(usr) || !usr.checkClickCooldown())
+		return
+
+	if(usr.incapacitated() || usr.stat > CONSCIOUS)
+		return
+
+	var/obj/item/organ/internal/fruitgland/fruit_gland
+	for(var/I in contents)
+		if(istype(I, /obj/item/organ/internal/fruitgland))
+			fruit_gland = I
+			break
+
+	if(fruit_gland)
+		var/poison_choice = tgui_input_list(src, "Choose which reagent to poison your fruit with! Be aware, this option is intended for use in scenes and ERP. This is not for use as pranks or to change the gender of unsuspecting crew, and you must be aware of the preferences of the people who eat it. Do not just leave it out unattended.", "Select reagent", fruit_gland.poison_options)
+		if(!poison_choice)
+			to_chat(src, span_notice("You have chosen no poison to add, any previously chosen poisons have been cleared and no poison will be added to produced fruits."))
+			fruit_gland.poison_reagent = null
+			return
+		else
+			fruit_gland.poison_reagent = poison_choice
+			to_chat(src, span_notice("Fruit that you produce will now contain [poison_choice]. Be aware of out of character consent."))
+			return
 
 //End of fruit gland code.
 

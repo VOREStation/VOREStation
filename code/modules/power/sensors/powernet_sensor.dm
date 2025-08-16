@@ -25,14 +25,12 @@
 	var/next_record = 0
 	var/is_secret_monitor = FALSE
 
-// Proc: New()
+// Proc: Initialize(mapload)
 // Parameters: None
 // Description: Automatically assigns name according to ID tag.
-/obj/machinery/power/sensor/New()
-	..()
-	auto_set_name()
-/obj/machinery/power/sensor/Initialize()
+/obj/machinery/power/sensor/Initialize(mapload)
 	. = ..()
+	auto_set_name()
 	history["supply"] = list()
 	history["demand"] = list()
 
@@ -45,7 +43,7 @@
 /obj/machinery/power/sensor/Destroy()
 	. = ..()
 	// TODO - Switch power_monitor to register deletion events instead of this.
-	for(var/obj/machinery/computer/power_monitor/PM in machines)
+	for(var/obj/machinery/computer/power_monitor/PM in GLOB.machines)
 		if(PM.power_monitor)
 			PM.power_monitor.refresh_sensors()
 	history.Cut()

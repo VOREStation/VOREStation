@@ -55,7 +55,7 @@
 
 	// Rate limiting
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
-	if (!holder && mtl)
+	if (!check_rights_for(src, R_HOLDER) && mtl)
 		var/minute = round(world.time, 600)
 		if (!topiclimiter)
 			topiclimiter = new(LIMITER_SIZE)
@@ -73,7 +73,7 @@
 			return
 
 	var/stl = CONFIG_GET(number/second_topic_limit)
-	if (!holder && stl && href_list["window_id"] != "statbrowser")
+	if (!check_rights_for(src, R_HOLDER) && stl && href_list["window_id"] != "statbrowser")
 		var/second = round(world.time, 10)
 		if (!topiclimiter)
 			topiclimiter = new(LIMITER_SIZE)
@@ -112,16 +112,6 @@
 		cmd_mentor_pm(C, null)
 		return
 
-	if(href_list["irc_msg"])
-		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
-			to_chat(src, span_warning("You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you"))
-			return
-		if(mute_irc)
-			to_chat(usr, span_warning("You cannot use this as your client has been muted from sending messages to the admins on IRC"))
-			return
-		send2adminirc(href_list["irc_msg"])
-		return
-
 	//VOREStation Add
 	if(href_list["discord_reg"])
 		var/their_id = html_decode(href_list["discord_reg"])
@@ -151,7 +141,10 @@
 			log_and_message_admins("[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord snowflake ID is: [their_id]", src)
 			admin_chat_message(message = "[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord is: <@[their_id]>", color = "#4eff22")
 			notes_add(ckey, "Discord ID: [their_id]")
-			world.VgsAddMemberRole(their_id)
+			var/port = CONFIG_GET(number/register_server_port)
+			if(port)
+				// Designed to be used with `tools/registration`
+				world.Export("http://127.0.0.1:[port]?member=[url_encode(json_encode(their_id))]")
 		else
 			to_chat(src, span_warning("There was an error registering your Discord ID in the database. Contact an administrator."))
 			log_and_message_admins("[ckey] failed to register their Discord ID. Their Discord snowflake ID is: [their_id]. Is the database connected?", src)
@@ -162,8 +155,8 @@
 		stat_panel.reinitialize()
 
 	//Logs all hrefs
-	if(config && CONFIG_GET(flag/log_hrefs) && href_logfile)
-		WRITE_LOG(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
+	if(config && CONFIG_GET(flag/log_hrefs) && GLOB.href_logfile)
+		WRITE_LOG(GLOB.href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
 
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
@@ -179,7 +172,6 @@
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
-		if("mentorholder")	hsrc = (check_rights(R_ADMIN, 0) ? holder : mentorholder)
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
@@ -204,6 +196,14 @@
 /client/proc/_Topic(datum/hsrc, href, list/href_list)
 	return hsrc.Topic(href, href_list)
 
+/client/proc/is_localhost()
+	var/static/localhost_addresses = list(
+		"127.0.0.1",
+		"::1",
+		null,
+	)
+	return address in localhost_addresses
+
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
 	if(filelength > UPLOAD_LIMIT)
@@ -213,7 +213,7 @@
 	//Helps prevent multiple files being uploaded at once. Or right after eachother.
 	var/time_to_wait = fileaccess_timer - world.time
 	if(time_to_wait > 0)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): Spam prevention. Please wait [round(time_to_wait/10)] seconds.</font>")
+		to_chat(src, span_red("Error: AllowUpload(): Spam prevention. Please wait [round(time_to_wait/10)] seconds."))
 		return 0
 	fileaccess_timer = world.time + FTPDELAY	*/
 	return 1
@@ -244,27 +244,26 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	if (CONFIG_GET(flag/chatlog_database_backend))
+		chatlog_token = vchatlog_generate_token(ckey, GLOB.round_id)
+
 	// Instantiate stat panel
 	stat_panel = new(src, "statbrowser")
-	stat_panel.subscribe(src, .proc/on_stat_panel_message)
+	stat_panel.subscribe(src, PROC_REF(on_stat_panel_message))
 
 	// Instantiate tgui panel
 	tgui_say = new(src, "tgui_say")
+	tgui_shocker = new(src, "tgui_shock")
 	initialize_commandbar_spy()
 	tgui_panel = new(src, "browseroutput")
 
-	GLOB.ahelp_tickets.ClientLogin(src)
-	GLOB.mhelp_tickets.ClientLogin(src)
+	GLOB.tickets.ClientLogin(src)
 
 	//Admin Authorisation
-	holder = admin_datums[ckey]
+	holder = GLOB.admin_datums[ckey]
 	if(holder)
 		GLOB.admins += src
 		holder.owner = src
-
-	mentorholder = mentor_datums[ckey]
-	if (mentorholder)
-		mentorholder.associate(GLOB.directory[ckey])
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -278,7 +277,7 @@
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
-	hook_vr("client_new",list(src)) //VOREStation Code. For now this only loads vore prefs, so better put before mob.Login() call but after normal prefs are loaded.
+	prefs_vr = new/datum/vore_preferences(src)
 
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()
@@ -293,18 +292,24 @@
 	)
 	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
 
+	INVOKE_ASYNC(src, PROC_REF(acquire_dpi))
+
+	tgui_panel.initialize()
+
 	// Initialize tgui panel
 	tgui_say.initialize()
-	tgui_panel.initialize()
+	tgui_shocker.initialize()
+
+	loot_panel = new(src)
 
 	connection_time = world.time
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
 
-	if(custom_event_msg && custom_event_msg != "")
+	if(GLOB.custom_event_msg && GLOB.custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, span_alert("[custom_event_msg]"))
+		to_chat(src, span_alert("[GLOB.custom_event_msg]"))
 		to_chat(src, "<br>")
 
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
@@ -314,13 +319,7 @@
 		add_admin_verbs()
 		admin_memo_show()
 
-	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.
-	// (but turn them off first, since sometimes BYOND doesn't turn them on properly otherwise)
-	spawn(5) // And wait a half-second, since it sounds like you can do this too fast.
-		if(src)
-			winset(src, null, "command=\".configure graphics-hwmode off\"")
-			sleep(2) // wait a bit more, possibly fixes hardware mode not re-activating right
-			winset(src, null, "command=\".configure graphics-hwmode on\"")
+	winset(src, null, "command=\".configure graphics-hwmode on\"")
 
 	log_client_to_db()
 
@@ -346,6 +345,8 @@
 			alert = TRUE
 		if(alert)
 			for(var/client/X in GLOB.admins)
+				if(!check_rights_for(X, R_HOLDER))
+					continue
 				if(X.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
 					X << 'sound/effects/tones/newplayerping.ogg'
 				window_flash(X)
@@ -366,8 +367,7 @@
 		if (!QDELING(src))
 			stack_trace("Client does not purport to be QDELING, this is going to cause bugs in other places!")
 
-		GLOB.ahelp_tickets.ClientLogout(src)
-		GLOB.mhelp_tickets.ClientLogout(src)
+		GLOB.tickets.ClientLogout(src)
 
 		// Yes this is the same as what's found in qdel(). Yes it does need to be here
 		// Get off my back
@@ -379,12 +379,10 @@
 	if(holder)
 		holder.owner = null
 		GLOB.admins -= src
-	if (mentorholder)
-		mentorholder.owner = null
-		GLOB.mentors -= src
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 
+	QDEL_NULL(loot_panel)
 	..()
 	return QDEL_HINT_HARDDEL_NOW
 
@@ -462,7 +460,7 @@
 
 	var/admin_rank = "Player"
 	if(src.holder)
-		admin_rank = src.holder.rank
+		admin_rank = src.holder.rank_names()
 
 	var/sql_ip = sql_sanitize_text(src.address)
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
@@ -472,7 +470,7 @@
 
 	//Panic bunker code
 	if (isnum(player_age) && player_age == 0) //first connection
-		if (CONFIG_GET(flag/panic_bunker) && !holder && !deadmin_holder)
+		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[key])
 			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins(span_adminnotice("Failed Login: [key] - New account attempting to connect during panic bunker"))
 			disconnect_with_message("Sorry but the server is currently not accepting connections from never before seen players.")
@@ -574,14 +572,18 @@
 /client/verb/character_setup()
 	set name = "Character Setup"
 	set category = "Preferences.Character"
-	if(prefs)
-		prefs.ShowChoices(usr)
+
+	prefs.current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
+	prefs.update_tgui_static_data(mob)
+	prefs.tgui_interact(mob)
 
 /client/verb/game_options()
 	set name = "Game Options"
 	set category = "Preferences.Game"
-	if(prefs)
-		prefs.tgui_interact(usr)
+
+	prefs.current_window = PREFERENCE_TAB_GAME_PREFERENCES
+	prefs.update_tgui_static_data(mob)
+	prefs.tgui_interact(mob)
 
 /client/proc/findJoinDate()
 	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
@@ -662,7 +664,7 @@
 		return TRUE
 
 /client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
-	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center><b>[message]</b></center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
+	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center>" + span_bold("[message]") + "</center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
 	window_flash(src)
 	src << browse("<html>[message]</html>","window=dropmessage;size=480x360;can_close=1")
 	qdel(src)
@@ -770,7 +772,7 @@
 // Mouse stuff
 /client/Click(atom/object, atom/location, control, params)
 	var/mcl = CONFIG_GET(number/minute_click_limit)
-	if (!holder && mcl)
+	if (!check_rights_for(src, R_HOLDER) && mcl)
 		var/minute = round(world.time, 600)
 
 		if (!clicklimiter)
@@ -793,7 +795,7 @@
 			return
 
 	var/scl = CONFIG_GET(number/second_click_limit)
-	if (!holder && scl)
+	if (!check_rights_for(src, R_HOLDER) && scl)
 		var/second = round(world.time, 10)
 		if (!clicklimiter)
 			clicklimiter = new(LIMITER_SIZE)
@@ -809,6 +811,21 @@
 			return
 	SEND_SIGNAL(src, COMSIG_CLIENT_CLICK, object, location, control, params, usr)
 	. = ..()
+
+/// This grabs the DPI of the user per their skin
+/client/proc/acquire_dpi()
+	window_scaling = text2num(winget(src, null, "dpi"))
+
+/client/proc/open_filter_editor(atom/in_atom)
+	if(check_rights_for(src, R_HOLDER))
+		holder.filteriffic = new /datum/filter_editor(in_atom)
+		holder.filteriffic.tgui_interact(mob)
+
+///opens the particle editor UI for the in_atom object for this client
+/client/proc/open_particle_editor(atom/movable/in_atom)
+	if(check_rights_for(src, R_HOLDER))
+		holder.particle_test = new /datum/particle_editor(in_atom)
+		holder.particle_test.tgui_interact(mob)
 
 #undef ADMINSWARNED_AT
 #undef CURRENT_MINUTE

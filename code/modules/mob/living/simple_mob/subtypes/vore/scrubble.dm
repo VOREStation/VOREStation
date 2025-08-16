@@ -1,5 +1,5 @@
 /mob/living/simple_mob/vore/scrubble
-	name = "Scrubble"
+	name = "scrubble"
 	desc = "A small skittish animal with some features resembling rodents and foxes. Usually seen coated with beige and brown fur, the scrubble has four ears that pivot quickly, two long fluffy tails and dark red eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/scrubble)
 	tt_desc = "vuldentia"
@@ -40,9 +40,7 @@
 	vore_pounce_falloff = 0 //Always eat someone at full health
 	vore_standing_too = 1
 
-/mob/living/simple_mob/vore/scrubble/init_vore()
-	if(!voremob_loaded)
-		return
+/mob/living/simple_mob/vore/scrubble/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

@@ -42,7 +42,7 @@
 	tank1 = null //Base machine Destroy()
 	tank2 = null //handles deleting contents
 	test_canister = null
-	..()
+	. = ..()
 
 /obj/machinery/bomb_tester/dismantle()
 	if(tank1)
@@ -371,7 +371,7 @@
 	if(G.total_moles)
 		results += "<br>Temperature: [round(G.temperature-T0C)]&deg;C"
 		for(var/mix in G.gas)
-			results += "<br>[gas_data.name[mix]]: [round((G.gas[mix] / G.total_moles) * 100)]%"
+			results += "<br>[GLOB.gas_data.name[mix]]: [round((G.gas[mix] / G.total_moles) * 100)]%"
 
 	return results
 

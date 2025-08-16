@@ -50,6 +50,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			if(isSynthetic())
 				B.data["species"] = "synthetic"
 
+			B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood
 			B.color = B.data["blood_colour"]
 			B.name = B.data["blood_name"]
 
@@ -179,8 +180,34 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 		//This 30 is the "baseline" of a cut in the "vital" regions (head and torso).
 		for(var/obj/item/organ/external/temp in bad_external_organs)
-			if(!(temp.status & ORGAN_BLEEDING) || (temp.robotic >= ORGAN_ROBOT))
+
+			///First, we make sure it's not robotic.
+			if(temp.robotic >= ORGAN_ROBOT)
 				continue
+
+			///Second, we process internal bleeding.
+			for(var/datum/wound/internal_bleeding/W in temp.wounds)
+				blood_loss_divisor = blood_loss_divisor+10 //IB is slower bloodloss than normal.
+				var/bicardose = reagents.get_reagent_amount(REAGENT_ID_BICARIDINE)
+				var/inaprovaline = reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE)
+				var/myeldose = reagents.get_reagent_amount(REAGENT_ID_MYELAMINE)
+				if(!(W.can_autoheal() || (bicardose && inaprovaline) || myeldose))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
+					W.open_wound(0.1)
+				if(prob(1))
+					custom_pain("You feel a stabbing pain in your [name]!", 50)
+				if(CE_STABLE in chem_effects)
+					blood_loss_divisor = max(blood_loss_divisor + 30, 1) //Inaprovaline is great on internal wounds.
+				if(temp.applied_pressure) //Putting pressure on the afflicted wound helps stop the arterial bleeding.
+					if(ishuman(temp.applied_pressure))
+						var/mob/living/carbon/human/H = temp.applied_pressure
+						H.bloody_hands(src, 0)
+						blood_loss_divisor += 30 //If you're putting pressure on that limb due to there being an external bleed there, you apply some pressure to the internal bleed as well.
+				remove_blood(W.damage/blood_loss_divisor) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place. //Hi. 2025 here. Just did that. ~Diana
+
+			///Thirdly, we check to see if the limb is bleeding EXTERNALLY
+			if(!(temp.status & ORGAN_BLEEDING))
+				continue
+			///Finally, we process external wounds.
 			for(var/datum/wound/W in temp.wounds)
 				if(W.bleeding())
 					if(W.damage_type == PIERCE) //gunshots and spear stabs bleed more
@@ -249,9 +276,10 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!B.data["viruses"])
 		B.data["viruses"] = list()
 
-	for(var/datum/disease/D in GetViruses())
-		if(D.spread_flags & SPECIAL)
-			continue
+	for(var/datum/disease/D in GetSpreadableViruses())
+		B.data["viruses"] |= D.Copy()
+
+	for(var/datum/disease/D in GetDormantDiseases())
 		B.data["viruses"] |= D.Copy()
 
 	if(!B.data["resistances"])
@@ -261,6 +289,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		B.data["resistances"] |= GetResistances()
 	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
+	B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood
 
 	// Putting this here due to return shenanigans.
 	if(ishuman(src))
@@ -294,7 +323,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	var/list/sniffles = injected.data["viruses"]
 	for(var/ID in sniffles)
 		var/datum/disease/D = ID
-		if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS)) // You can't put non-contagius diseases in blood, but just in case
+		if(D.spread_flags & (DISEASE_SPREAD_SPECIAL | DISEASE_SPREAD_NON_CONTAGIOUS)) // You can't put non-contagius diseases in blood, but just in case
 			continue
 		ContractDisease(D)
 	if (injected.data["resistances"] && prob(5))
@@ -337,9 +366,10 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		if(!our)
 			log_debug("Failed to re-initialize blood datums on [src]!")
 			return
-
-
-	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
+	if(is_changeling(src)) //Changelings don't reject blood!
+		vessel.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
+		vessel.update_total()
+	else if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
 		reagents.add_reagent(REAGENT_ID_TOXIN,amount * 0.5)
 		reagents.update_total()
 	else
@@ -398,6 +428,11 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		if(M.isSynthetic()) synth = 1
 		source = M.get_blood(M.vessel)
 
+	//Someone fed us a weird source. Let's log it.
+	if(source && !istype(source, /datum/reagent/blood))
+		log_debug("A blood splatter was made using non-blood datum [source]!")
+		source = null //Clear the source since it's invalid. Fallback to non-source behavior.
+
 	// Are we dripping or splattering?
 	var/list/drips = list()
 	// Only a certain number of drips (or one large splatter) can be on a given turf.
@@ -432,18 +467,19 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 	// Update blood information.
 	if(source.data["blood_DNA"])
-		B.blood_DNA = list()
+		var/list/new_data = list()
 		if(source.data["blood_type"])
-			B.blood_DNA[source.data["blood_DNA"]] = source.data["blood_type"]
+			new_data[source.data["blood_DNA"]] = source.data["blood_type"]
 		else
-			B.blood_DNA[source.data["blood_DNA"]] = "O+"
+			new_data[source.data["blood_DNA"]] = "O+"
+		B.init_forensic_data().merge_blooddna(null,new_data)
 
 	// Update virus information.
 	if(source.data["viruses"])
 		B.viruses = source.data["viruses"]
 
 	B.fluorescent  = 0
-	B.invisibility = 0
+	B.invisibility = INVISIBILITY_NONE
 	return B
 
 #undef BLOOD_MINIMUM_STOP_PROCESS

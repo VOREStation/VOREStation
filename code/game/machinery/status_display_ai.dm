@@ -31,7 +31,7 @@ var/list/ai_status_emotions = list(
 	)
 
 /proc/get_ai_emotions(var/ckey)
-	var/list/emotions = new
+	var/list/emotions = list()
 	for(var/emotion_name in ai_status_emotions)
 		var/datum/ai_emotion/emotion = ai_status_emotions[emotion_name]
 		if(!emotion.ckey || emotion.ckey == ckey)
@@ -44,7 +44,7 @@ var/list/ai_status_emotions = list(
 	var/emote = tgui_input_list(user, "Please, select a status:", "AI Status", ai_emotions)
 	if(!emote)
 		return
-	for (var/obj/machinery/M in machines) //change status
+	for (var/obj/machinery/M in GLOB.machines) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
 			var/obj/machinery/ai_status_display/AISD = M
 			AISD.emotion = emote

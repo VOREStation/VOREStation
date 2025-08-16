@@ -42,6 +42,8 @@
 	if(vorgans == "No")
 		organs = 0
 
+	var/flavor = tgui_alert(src, "Spawn mob with their character's flavor text?", "Flavor text", list("General", "Robot", "Cancel"))
+
 	var/spawnloc
 	if(!src.mob)
 		to_chat(src, "Can't spawn them in unless you're in a valid spawn location!")
@@ -61,10 +63,18 @@
 
 
 	new_mob.key = picked_client.key //Finally put them in the mob
+	if(flavor == "General")
+		new_mob.flavor_text = new_mob?.client?.prefs?.flavor_texts["general"]
+	if(flavor == "Robot")
+		new_mob.flavor_text = new_mob?.client?.prefs?.flavour_texts_robot["Default"]
 	if(organs)
 		new_mob.copy_from_prefs_vr()
 		if(LAZYLEN(new_mob.vore_organs))
 			new_mob.vore_selected = new_mob.vore_organs[1]
+			if(isanimal(new_mob))
+				var/mob/living/simple_mob/Sm = new_mob
+				if(!Sm.voremob_loaded || !Sm.vore_active)
+					Sm.init_vore(TRUE)
 
 	log_admin("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].")
 	message_admins("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].", 1)
@@ -75,14 +85,7 @@
 
 	return new_mob
 
-/client/proc/cmd_admin_z_narrate() // Allows administrators to fluff events a little easier -- TLE
-	set category = "Fun.Narrate"
-	set name = "Z Narrate"
-	set desc = "Narrates to your Z level."
-
-	if (!holder)
-		return
-
+ADMIN_VERB(cmd_admin_z_narrate, (R_ADMIN|R_MOD|R_EVENT), "Z Narrate", "Narrates to your Z level.", "Fun.Narrate") // Allows administrators to fluff events a little easier -- TLE
 	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to everyone:"))
 
 	if (!msg)
@@ -94,14 +97,14 @@
 	if (!msg)
 		return
 
-	var/pos_z = get_z(src.mob)
+	var/pos_z = get_z(user.mob)
 	if (!pos_z)
 		return
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.z == pos_z)
 			to_chat(M, msg)
-	log_admin("ZNarrate: [key_name(usr)] : [msg]")
-	message_admins(span_blue(span_bold(" ZNarrate: [key_name_admin(usr)] : [msg]<BR>")), 1)
+	log_admin("ZNarrate: [key_name(user)] : [msg]")
+	message_admins(span_blue(span_bold(" ZNarrate: [key_name_admin(user)] : [msg]<BR>")), 1)
 	feedback_add_details("admin_verb","GLNA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_vantag_hud(var/mob/target as mob)

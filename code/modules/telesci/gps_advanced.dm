@@ -14,7 +14,7 @@
 	gps_tag = "COM0"
 	emped = 0
 
-/obj/item/gps/advanced/Initialize()
+/obj/item/gps/advanced/Initialize(mapload)
 	. = ..()
 	add_overlay("working")
 
@@ -47,14 +47,13 @@
 
 	var/datum/browser/popup = new(user, "GPS", name, 600, 450)
 	popup.set_content(t)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/item/gps/advanced/Topic(href, href_list)
 	..()
 	if(href_list["advtag"] )
-		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag)
-		a = uppertext(copytext(sanitize(a), 1, 5))
+		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag, 4)
+		a = uppertext(copytext(a, 1, 5))
 		if(src.loc == usr)
 			gps_tag = a
 			name = "global positioning system ([gps_tag])"

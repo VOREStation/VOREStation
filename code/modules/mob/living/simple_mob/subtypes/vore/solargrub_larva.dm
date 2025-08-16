@@ -1,4 +1,4 @@
-var/global/list/grub_machine_overlays = list()
+GLOBAL_LIST_EMPTY(grub_machine_overlays)
 
 /mob/living/simple_mob/animal/solargrub_larva
 	name = "solargrub larva"
@@ -53,9 +53,9 @@ var/global/list/grub_machine_overlays = list()
 
 	glow_override = TRUE
 
-/mob/living/simple_mob/animal/solargrub_larva/New()
-	..()
-	existing_solargrubs += src
+/mob/living/simple_mob/animal/solargrub_larva/Initialize(mapload)
+	. = ..()
+	GLOB.existing_solargrubs += src
 	powermachine = new(src)
 	sparks = new(src)
 	sparks.set_up()
@@ -68,7 +68,7 @@ var/global/list/grub_machine_overlays = list()
 	return ..()
 
 /mob/living/simple_mob/animal/solargrub_larva/Destroy()
-	existing_solargrubs -= src
+	GLOB.existing_solargrubs -= src
 	QDEL_NULL(powermachine)
 	QDEL_NULL(sparks)
 	QDEL_NULL(machine_effect)
@@ -89,7 +89,7 @@ var/global/list/grub_machine_overlays = list()
 
 	if(istype(loc, /obj/machinery))
 		if(machine_effect && SSair.current_cycle%30)
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				M << machine_effect
 		if(prob(10))
 			sparks.start()
@@ -123,17 +123,17 @@ var/global/list/grub_machine_overlays = list()
 	forceMove(M)
 	powermachine.draining = 2
 	visible_message(span_warning("\The [src] finds an opening and crawls inside \the [M]."))
-	if(!(M.type in grub_machine_overlays))
+	if(!(M.type in GLOB.grub_machine_overlays))
 		generate_machine_effect(M)
-	machine_effect = image(grub_machine_overlays[M.type], M) //Can't do this the reasonable way with an overlay,
-	for(var/mob/L in player_list)				//because nearly every machine updates its icon by removing all overlays first
+	machine_effect = image(GLOB.grub_machine_overlays[M.type], M) //Can't do this the reasonable way with an overlay,
+	for(var/mob/L in GLOB.player_list)				//because nearly every machine updates its icon by removing all overlays first
 		L << machine_effect
 
 /mob/living/simple_mob/animal/solargrub_larva/proc/generate_machine_effect(var/obj/machinery/M)
 	var/icon/I = new /icon(M.icon, M.icon_state)
 	I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
 	I.Blend(new /icon('icons/effects/alert.dmi', "_red"),ICON_MULTIPLY)
-	grub_machine_overlays[M.type] = I
+	GLOB.grub_machine_overlays[M.type] = I
 
 /mob/living/simple_mob/animal/solargrub_larva/proc/eject_from_machine(var/obj/machinery/M)
 	if(!M)
@@ -253,13 +253,13 @@ var/global/list/grub_machine_overlays = list()
 		ignored_targets += A
 
 
-/obj/machinery/abstract_grub_machine/New()
-	..()
+/obj/machinery/abstract_grub_machine/Initialize(mapload)
+	. = ..()
 	shuffle_power_usages()
 	grub = loc
 	if(!istype(grub))
 		grub = null
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/abstract_grub_machine/Destroy()
 	grub = null
