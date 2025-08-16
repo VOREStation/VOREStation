@@ -39,13 +39,13 @@ var/const/tk_maxrange = 15
 
 /obj/item/attack_tk(mob/user)
 	if(user.stat || !isturf(loc)) return
-	if((TK in user.mutations) && !user.get_active_hand()) // both should already be true to get here
+	if(user.has_telegrip() && !user.get_active_hand()) // both should already be true to get here
 		var/obj/item/tk_grab/O = new(src)
 		user.put_in_active_hand(O)
 		O.host = user
 		O.focus_object(src)
 	else
-		warning("Strange attack_tk(): TK([TK in user.mutations]) empty hand([!user.get_active_hand()])")
+		warning("Strange attack_tk(): TK([user.has_telegrip()]) empty hand([!user.get_active_hand()])")
 	return
 
 
@@ -101,7 +101,7 @@ var/const/tk_maxrange = 15
 	if(!host || host != user)
 		qdel(src)
 		return
-	if(!(TK in host.mutations))
+	if(!host.has_telegrip())
 		qdel(src)
 		return
 	if(isobj(target) && !isturf(target.loc))
@@ -132,6 +132,13 @@ var/const/tk_maxrange = 15
 		apply_focus_overlay()
 		focus.throw_at(target, 10, 1, user)
 		last_throw = world.time
+		if(ishuman(user))
+			var/mob/living/carbon/human/H_user = user
+			if(istype(H_user.gloves,/obj/item/clothing/gloves/telekinetic))
+				var/obj/item/clothing/gloves/telekinetic/TKG = H_user.gloves
+				TKG.use_grip_power(user,TRUE)
+				if(!TKG.has_grip_power())
+					qdel(src) // Drop TK
 	return
 
 /obj/item/tk_grab/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
