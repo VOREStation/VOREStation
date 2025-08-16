@@ -268,7 +268,7 @@
 /mob/observer/dead/Destroy()
 	if(exonet)
 		exonet.remove_address()
-		qdel_null(exonet)
+		QDEL_NULL(exonet)
 	. = ..()
 
 // Proc: register_device()

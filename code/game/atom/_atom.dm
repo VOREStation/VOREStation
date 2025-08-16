@@ -209,8 +209,7 @@
 					borg = span_boldnotice("\The [G]") + span_notice(" can hold this.")
 					break
 
-	var/examine_text = replacetext(get_examine_desc(), "||", "")
-	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix] [borg]", examine_text)
+	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix] [borg]", get_examine_desc())
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
