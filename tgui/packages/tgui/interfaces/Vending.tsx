@@ -17,6 +17,7 @@ import {
 import { flow } from 'tgui-core/fp';
 import { type BooleanLike, classes } from 'tgui-core/react';
 import { capitalizeAll, createSearch } from 'tgui-core/string';
+import { getLayoutState, LAYOUT, LayoutToggle } from './common/LayoutToggle';
 
 type Data = {
   chargesMoney: BooleanLike;
@@ -92,17 +93,12 @@ export const Vending = (props) => {
   );
 };
 
-enum Layout {
-  GRID = 0,
-  LIST = 1,
-}
-
 export const VendingMain = (props) => {
   const { act, data } = useBackend<Data>();
   const { coin, chargesMoney, user, userMoney, guestNotice, products } = data;
 
   const [searchText, setSearchText] = useState<string>('');
-  const [toggleLayout, setToggleLayout] = useState(Layout.GRID);
+  const [toggleLayout, setToggleLayout] = useState(getLayoutState());
 
   // Just in case we still have undefined values in the list
   let myproducts = products.filter((item) => !!item);
@@ -115,31 +111,23 @@ export const VendingMain = (props) => {
       fill
       scrollable
       buttons={
-        <Box>
-          <Box inline color="good" fontSize={1.2} mr={1}>
-            {userMoney}₮
-            <Icon ml={1} name="coins" color="gold" />
-          </Box>
-          <Input
-            inline
-            expensive
-            placeholder="Search..."
-            onChange={(val) => setSearchText(val)}
-          />
-          <Button
-            ml={1}
-            icon={toggleLayout === Layout.GRID ? 'list' : 'border-all'}
-            tooltip={
-              toggleLayout === Layout.GRID ? 'View as List' : 'View as Grid'
-            }
-            tooltipPosition="bottom-end"
-            onClick={() =>
-              setToggleLayout(
-                toggleLayout === Layout.GRID ? Layout.LIST : Layout.GRID,
-              )
-            }
-          />
-        </Box>
+        <Stack>
+          <Stack.Item>
+            <Box inline color="good" fontSize={1.2} mr={1}>
+              {userMoney}₮
+              <Icon ml={1} name="coins" color="gold" />
+            </Box>
+          </Stack.Item>
+          <Stack.Item>
+            <Input
+              inline
+              expensive
+              placeholder="Search..."
+              onChange={(val) => setSearchText(val)}
+            />
+          </Stack.Item>
+          <LayoutToggle state={toggleLayout} setState={setToggleLayout} />
+        </Stack>
       }
     >
       <VendingProducts layout={toggleLayout} products={myproducts} />
@@ -148,12 +136,12 @@ export const VendingMain = (props) => {
 };
 
 export const VendingProducts = (props: {
-  layout: Layout;
+  layout: string;
   products: product[];
 }) => {
   const { layout, products } = props;
 
-  if (layout === Layout.GRID) {
+  if (layout === LAYOUT.Grid) {
     return <VendingProductsGrid products={products} />;
   } else {
     return <VendingProductsList products={products} />;
