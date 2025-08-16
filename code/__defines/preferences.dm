@@ -68,3 +68,7 @@
 #define TGUI_LAYOUT_GRID "grid"
 /// Force list layout, even if default is a grid.
 #define TGUI_LAYOUT_LIST "list"
+
+#define WRITE_PREF_NORMAL 1
+#define WRITE_PREF_INSTANT 2
+#define WRITE_PREF_MANUAL 3

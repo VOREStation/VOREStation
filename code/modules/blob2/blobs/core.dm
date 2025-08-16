@@ -196,7 +196,7 @@ var/list/blob_cores = list()
 		C = D.client
 		overmind_creation(C)
 	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
-	qdel_null(Q) //get rid of the query
+	QDEL_NULL(Q) //get rid of the query
 
 
 

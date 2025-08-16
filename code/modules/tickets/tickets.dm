@@ -157,19 +157,20 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	return L
 
 //Reassociate still open ticket if one exists
-/datum/tickets/proc/ClientLogin(client/C)
+/datum/tickets/proc/ClientLogin(client/C, only_alert = FALSE)
 	C.current_ticket = CKey2ActiveTicket(C.ckey)
 	if(C.current_ticket)
-		C.current_ticket.AddInteraction("Client reconnected.")
+		if(!only_alert)
+			C.current_ticket.AddInteraction("Client reconnected.")
 		C.current_ticket.initiator = C
-		C.current_ticket.initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
+		C.current_ticket.initiator.mob?.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 
 //Dissasociate ticket
 /datum/tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
 		var/datum/ticket/T = C.current_ticket
 		T.AddInteraction("Client disconnected.")
-		T.initiator.mob?.clear_alert("open ticket")
+		T.initiator?.mob?.clear_alert("open ticket")
 		T.initiator = null
 		T = null
 

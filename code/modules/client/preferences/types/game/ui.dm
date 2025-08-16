@@ -84,6 +84,12 @@
 /datum/preference/toggle/tgui_say_light/apply_to_client(client/client, value)
 	client.tgui_say?.load()
 
+/datum/preference/toggle/tgui_use_spellcheck
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "TGUI_ENABLE_SPELLCHECK"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
 /datum/preference/toggle/tgui_say_emotes
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "tgui_say_emotes"
@@ -145,3 +151,9 @@
 
 	INVOKE_ASYNC(client, TYPE_VERB_REF(/client, refresh_tgui))
 	client.tgui_say?.load()
+
+/// Enables flashing the window in your task tray for important events
+/datum/preference/toggle/window_flashing
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "windowflashing"
+	savefile_identifier = PREFERENCE_PLAYER

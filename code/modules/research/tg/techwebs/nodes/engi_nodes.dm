@@ -321,6 +321,7 @@
 		"industrial_reagent_pump",
 		"industrial_reagent_reactor",
 		"industrial_reagent_vat",
+		"industrial_reagent_mixer",
 		"industrial_reagent_waste_processor",
 		"smart_centrifuge",
 		"pump_relay",
@@ -328,3 +329,46 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING,CHANNEL_MEDICAL)
+
+/datum/techweb_node/thermal_vision
+	id = TECHWEB_NODE_THERMAL_VISION
+	display_name = "Thermal Visor Technology"
+	description = "Inspired by some form of big-game-hunter species, we have adapted the technology without the annoying colorization filter."
+	prereq_ids = list(TECHWEB_NODE_HUD)
+	design_ids = list(
+		"rig_component_thermal",
+		// "diagnostic_hud_night",
+		// "health_hud_night",
+		// "night_visision_goggles",
+		// "nvgmesons",
+		// "nv_scigoggles",
+		// "security_hud_night",
+	)
+
+/datum/techweb_node/graviton_vision
+	id = TECHWEB_NODE_GRAVITON_VISION
+	display_name = "Graviton Visor Technology"
+	description = "Our Graviton Scanning technology compressed into visors suitable for use in hardsuits. Quite handy."
+	prereq_ids = list(TECHWEB_NODE_HUD)
+	design_ids = list(
+		"rig_component_graviton",
+		// "diagnostic_hud_night",
+		// "health_hud_night",
+		// "night_visision_goggles",
+		// "nvgmesons",
+		// "nv_scigoggles",
+		// "security_hud_night",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_SECURITY, CHANNEL_SCIENCE)
+
+/datum/techweb_node/advanced_visor
+	id = TECHWEB_NODE_ADVANCED_VISORS
+	display_name = "Advanced Visor Technology"
+	description = "With careful research over transparent electrochromic glass and display project we have compressed multiple visors into a single handy package."
+	prereq_ids = list(TECHWEB_NODE_GRAVITON_VISION, TECHWEB_NODE_THERMAL_VISION, TECHWEB_NODE_HUD)
+	design_ids = list(
+		"rig_component_multi_visor",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_SECURITY, CHANNEL_SCIENCE)

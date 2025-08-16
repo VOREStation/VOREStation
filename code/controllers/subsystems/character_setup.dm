@@ -1,6 +1,5 @@
 SUBSYSTEM_DEF(character_setup)
 	name = "Character Setup"
-	init_order = INIT_ORDER_DEFAULT
 	priority = FIRE_PRIORITY_CHARSETUP
 	flags = SS_BACKGROUND | SS_NO_INIT
 	wait = 1 SECOND
@@ -38,4 +37,6 @@ SUBSYSTEM_DEF(character_setup)
 			return
 
 /datum/controller/subsystem/character_setup/proc/queue_preferences_save(var/datum/preferences/prefs)
+	if(!prefs)
+		return
 	save_queue |= prefs

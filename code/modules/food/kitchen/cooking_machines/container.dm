@@ -39,14 +39,15 @@
 /obj/item/reagent_containers/cooking_container/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/gripper))
 		var/obj/item/gripper/GR = I
-		if(GR.wrapped)
-			GR.wrapped.forceMove(get_turf(src))
-			attackby(GR.wrapped, user)
-			if(QDELETED(GR.wrapped))
-				GR.wrapped = null
+		var/obj/item/wrapped = GR.get_current_pocket()
+		if(wrapped)
+			wrapped.forceMove(get_turf(src))
+			attackby(wrapped, user)
+			if(QDELETED(wrapped))
+				wrapped = null
 
-			if(GR?.wrapped.loc != src)
-				GR.wrapped = null
+			else if(wrapped.loc != src)
+				wrapped = null
 
 			return
 
