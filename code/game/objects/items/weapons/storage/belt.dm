@@ -78,6 +78,9 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/tape_roll,
 		/obj/item/integrated_electronics/wirer,
+		/obj/item/pipe_dispenser,
+		/obj/item/holosign_creator/combifan,
+		/obj/item/rcd,
 		/obj/item/integrated_electronics/debugger, //Vorestation edit adding debugger to toolbelt can hold list
 		/obj/item/shovel/spade, //VOREStation edit. If it can hold minihoes and hatchers, why not the gardening spade?
 		/obj/item/stack/nanopaste, //VOREStation edit. Think of it as a tube of superglue. Belts hold that all the time.
