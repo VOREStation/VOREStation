@@ -289,7 +289,6 @@
 /obj/structure/bed/chair/sofa
 	name = "sofa"
 	desc = "It's a sofa. You sit on it. Possibly with someone else."
-	icon = 'icons/obj/sofas.dmi'
 	base_icon = "sofamiddle"
 	icon_state = "sofamiddle"
 	applies_material_colour = 1
@@ -343,7 +342,6 @@
 /obj/structure/bed/chair/sofa/pew
 	name = "pew bench"
 	desc = "If they want you to go to church, why do they make these so uncomfortable?"
-	icon = 'icons/obj/sofas.dmi'
 	base_icon = "pewmiddle"
 	icon_state = "pewmiddle"
 	applies_material_colour = FALSE
@@ -360,7 +358,6 @@
 /obj/structure/bed/chair/sofa/bench
 	name = "metal bench"
 	desc = "Almost as comfortable as waiting at a bus station for hours on end."
-	icon = 'icons/obj/sofas.dmi'
 	base_icon = "benchmiddle"
 	icon_state = "benchmiddle"
 	applies_material_colour = FALSE
@@ -397,7 +394,6 @@
 // Corporate sofa - one color fits all
 /obj/structure/bed/chair/sofa/corp
 	name = "black leather sofa"
-	icon = 'icons/obj/sofas.dmi'
 	desc = "How corporate!"
 	base_icon = "corp_sofamiddle"
 	icon_state = "corp_sofamiddle"
