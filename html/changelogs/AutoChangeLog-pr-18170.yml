@@ -1,0 +1,4 @@
+author: "ShadowLarkens"
+delete-after: True
+changes:
+  - rscadd: "Vending machines now have a pretty grid view mode as their default. You can switch back to rows if necessary."

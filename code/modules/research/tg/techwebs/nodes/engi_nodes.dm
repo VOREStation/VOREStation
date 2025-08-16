@@ -57,6 +57,7 @@
 		"phasic_sensor",
 		"ultra_micro_laser",
 		"hyper_cell",
+		"hyper_device_cell",
 		"arped",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
@@ -321,6 +322,7 @@
 		"industrial_reagent_pump",
 		"industrial_reagent_reactor",
 		"industrial_reagent_vat",
+		"industrial_reagent_mixer",
 		"industrial_reagent_waste_processor",
 		"smart_centrifuge",
 		"pump_relay",

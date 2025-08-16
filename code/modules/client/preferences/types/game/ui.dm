@@ -51,6 +51,24 @@
 	default_value = FALSE
 	savefile_identifier = PREFERENCE_PLAYER
 
+/datum/preference/choiced/tgui_layout
+	savefile_key = "tgui_layout"
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/choiced/tgui_layout/init_possible_values()
+	return list(
+		TGUI_LAYOUT_GRID,
+		TGUI_LAYOUT_LIST,
+	)
+
+/datum/preference/choiced/tgui_layout/create_default_value()
+	return TGUI_LAYOUT_GRID
+
+/datum/preference/choiced/tgui_layout/apply_to_client(client/client, value)
+	for (var/datum/tgui/tgui as anything in client.mob?.tgui_open_uis)
+		// Force it to reload either way
+		tgui.update_tgui_static_data(client.mob)
+
 /datum/preference/toggle/tgui_say
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "TGUI_SAY"
@@ -65,6 +83,12 @@
 
 /datum/preference/toggle/tgui_say_light/apply_to_client(client/client, value)
 	client.tgui_say?.load()
+
+/datum/preference/toggle/tgui_use_spellcheck
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "TGUI_ENABLE_SPELLCHECK"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
 
 /datum/preference/toggle/tgui_say_emotes
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES

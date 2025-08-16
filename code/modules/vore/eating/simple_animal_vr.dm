@@ -37,6 +37,11 @@
 		belly = vore_selected
 	return ..()
 
+/mob/living/simple_mob/begin_instant_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
+	if(vore_active && !voremob_loaded && pred == src) //Only init your own bellies.
+		init_vore(TRUE)
+		belly = vore_selected
+	return ..()
 //
 // Simple proc for animals to have their digestion toggled on/off externally
 // Added as a verb in /mob/living/simple_mob/init_vore() if vore is enabled for this mob.

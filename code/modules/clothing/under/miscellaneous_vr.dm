@@ -119,7 +119,7 @@
 /obj/item/clothing/gloves/bluespace
 	name = "size standardization bracelet"
 	desc = "A somewhat bulky metal bracelet featuring a crystal, glowing blue. The outer side of the bracelet has an elongated case that one might imagine contains electronic components. This bracelet is used to standardize the size of crewmembers who may need a non-permanent size assist."
-	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "bs_bracelet"
 	w_class = ITEMSIZE_TINY
 	glove_level = 1
