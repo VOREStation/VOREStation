@@ -111,7 +111,7 @@
 	if(despawn_loc != null && (src.x == despawn_loc.x && src.y == despawn_loc.y))
 		qdel(src)
 		return
-/*
+/* //Used in conjunction with the Unlucky/Cursed trait. NYI.
 	if(prob(10))
 		hunt_unlucky()
 
