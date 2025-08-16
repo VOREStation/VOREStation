@@ -645,6 +645,7 @@
 		/obj/item/cataloguer,
 		/obj/item/radio,
 		/obj/item/mapping_unit,
+		/obj/item/binoculars,
 		/obj/item/kinetic_crusher,
 		/obj/item/analyzer,
 		/obj/item/storage/sample_container
