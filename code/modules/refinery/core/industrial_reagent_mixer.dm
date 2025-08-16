@@ -34,6 +34,7 @@
 		got_input = FALSE
 		if(reagents.total_volume <= 0)
 			mixer_angle += mixer_rotation_rate
+			mixer_angle = (360 + mixer_angle) % 360
 			update_icon()
 	else
 		// Check if we were filled...
@@ -44,11 +45,9 @@
 
 		if(got_input)
 			mixer_angle += mixer_rotation_rate
-			got_input = FALSE
+			mixer_angle = (360 + mixer_angle) % 360
 			update_icon()
-
-	// Modulus for sanity
-	mixer_angle = (360 + mixer_angle) % 360
+			got_input = FALSE
 
 /obj/machinery/reagent_refinery/mixer/update_icon()
 	cut_overlays()
