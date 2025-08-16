@@ -244,6 +244,8 @@
 		"fryer_board",
 		"cerealmaker_board",
 		"candymachine_board",
+		// "food_replicator",
+		"borgos1",
 		// "range",
 		// "souppot",
 		// "processor",
