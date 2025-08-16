@@ -163,6 +163,7 @@
 /obj/structure/bed/chair/comfy/rounded
 	name = "rounded chair"
 	desc = "It's a rounded chair. It looks comfy."
+	icon = 'icons/obj/furniture_vr.dmi'
 	icon_state = "roundedchair"
 	base_icon = "roundedchair"
 
@@ -288,7 +289,6 @@
 /obj/structure/bed/chair/sofa
 	name = "sofa"
 	desc = "It's a sofa. You sit on it. Possibly with someone else."
-	icon = 'icons/obj/sofas.dmi'
 	base_icon = "sofamiddle"
 	icon_state = "sofamiddle"
 	applies_material_colour = 1
