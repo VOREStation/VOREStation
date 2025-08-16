@@ -480,7 +480,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/announce_countodwn(remaining_time)
 	if(remaining_time >= 60 SECONDS)
 		remaining_time -= 60 SECONDS
-		to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]."))
+		to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(remaining_time)]."))
 		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), remaining_time), 60 SECONDS)
 		return
 	if(remaining_time > 0)
