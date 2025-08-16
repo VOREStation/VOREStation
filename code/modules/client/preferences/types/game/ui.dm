@@ -62,7 +62,7 @@
 	)
 
 /datum/preference/choiced/tgui_layout/create_default_value()
-	return TGUI_LAYOUT_LIST
+	return TGUI_LAYOUT_GRID
 
 /datum/preference/choiced/tgui_layout/apply_to_client(client/client, value)
 	for (var/datum/tgui/tgui as anything in client.mob?.tgui_open_uis)
