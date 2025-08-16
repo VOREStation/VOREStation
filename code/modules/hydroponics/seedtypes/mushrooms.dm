@@ -44,7 +44,7 @@
 	seed_name = "plump helmet"
 	display_name = "plump helmet mushrooms"
 	mutants = list("walkingmushroom",PLANT_TOWERCAP)
-	chems = list(REAGENT_ID_NUTRIMENT = list(5,10), REAGENT_ID_FUNGI = 1)
+	chems = list(REAGENT_ID_NUTRIMENT = list(5,10), REAGENT_ID_FUNGI = list(1,5))
 	kitchen_tag = PLANT_PLUMPHELMET
 
 /datum/seed/mushroom/plump/New()

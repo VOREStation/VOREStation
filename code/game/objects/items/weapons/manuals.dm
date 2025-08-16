@@ -1726,6 +1726,10 @@
 					<h3>Pumps:</h3>
 					<p>Pumps allow for the high volume exchange of reagents from one machine to another, but they are also useful for their multiple hose connectors. Allowing you to pump reagents from any other hose connector equipped tool. With this feature, they can serve as the input connection for long distance fracking networks.</p>
 
+					<h3>Mixers:</h3>
+					<p>While not required for reagents to react together, a mixing vat will allow you to easily control the portion of reagents mixed. Mixers will take input from three directions, and output in the last direction. The mixing arm will stop at each input, and will not proceed until it has recieved the reagents.</p>
+					<p>Using a pump, the amount of reagents transfered can be configured much more finely compared to handling reactions in vats. A mixer will refuse to take inputs if it cannot fully empty itself on a complete rotation. The rotation direction may be swapped at any time.</p>
+
 					<h3>Fluid Pumps:</h3>
 					<p>While not directly a refinery machine, they serve a core function outside of the refinery. Fluid pumps will extract eroded ores from bodies of water near mineral rich deposits. Discussion of high value ores with an experienced miner is recommended. Ores must remain intact near a body of water to be collected by the pump.</p>
 					<p>Fluid pumps operate on an internal power cell, protected behind a water proof panel. A crowbar is handy for opening it. Hoses can be connected to a fluid pump, allowing it to connect to long distance tube networks.</p>

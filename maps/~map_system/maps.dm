@@ -215,7 +215,7 @@ var/list/all_maps = list()
 	// Try to free up a z level from existing temp sectors
 	if(!empty_levels.len)
 		for(var/Z in GLOB.map_sectors)
-			var/obj/effect/overmap/visitable/sector/temporary/T = GLOB.map_sectors[Z]
+			var/obj/effect/overmap/visitable/sector/temporary/T = GLOB.map_sectors["[Z]"]
 			T.cleanup() // If we can release some of these, do that.
 
 	// Else, we need to buy a new one.

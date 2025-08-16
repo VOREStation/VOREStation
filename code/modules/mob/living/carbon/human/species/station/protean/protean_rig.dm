@@ -491,8 +491,8 @@
 	..()
 
 /obj/item/rig/protean/get_description_interaction()
+	var/list/results = list()
 	if(dead)
-		var/list/results = list()
 		switch(dead)
 			if(1)
 				results += "Use a screwdriver to start repairs."
@@ -502,7 +502,7 @@
 				results += "Use some Nanopaste."
 			if(4)
 				results += "Use either a defib or jumper cables to start the reboot sequence."
-		return results
+	return results
 
 //Effectively a round about way of letting a Protean wear other rigs.
 /obj/item/rig/protean/proc/AssimilateRig(mob/user, var/obj/item/rig/R)
