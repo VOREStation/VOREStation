@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Instant vore events (Tongue vore, wing vore, dizzy vore, chair vore, etc) will now only send their completion message, not an attempt message as well."
+  - refactor: "Refactors vore to allow for instant vore types properly."

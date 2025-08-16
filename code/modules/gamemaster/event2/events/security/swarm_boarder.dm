@@ -9,7 +9,7 @@
 	var/safe_for_extended = FALSE
 
 /datum/event2/meta/swarm_boarder/get_weight()
-	if(istype(ticker.mode, /datum/game_mode/extended) && !safe_for_extended)
+	if(istype(SSticker.mode, /datum/game_mode/extended) && !safe_for_extended)
 		return 0
 
 	var/security = GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY)

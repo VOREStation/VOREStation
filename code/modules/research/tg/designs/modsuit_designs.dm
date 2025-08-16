@@ -17,6 +17,56 @@
 	materials = list(MAT_PLASTEEL = 12000, MAT_GOLD = 3000, MAT_GRAPHITE = 3000, MAT_OSMIUM = 1000, MAT_PLASTIC = 5000)
 	build_path = /obj/item/rig/robotics
 
+// Station Suits
+/datum/design_techweb/mechfab/modsuit/eva_controller
+	name = "EVA Suit Control Module"
+	desc = "An engineering Hardsuit featuring a visor with welding protection, iommunity to radiation, and insulated gauntlets. It is well insulated against the heat."
+	id = "eva_rig_module"
+	materials = list(MAT_PLASTEEL = 16000, MAT_GOLD = 3000, MAT_GRAPHITE = 4500, MAT_OSMIUM = 1000, MAT_PLASTIC = 4500, MAT_LEAD = 2000, MAT_STEEL = 2000)
+	build_path = /obj/item/rig/eva
+
+/datum/design_techweb/mechfab/modsuit/eva_ce_controller
+	name = "Advanced EVA Suit Control Module"
+	desc = "A more advanced EVA hardsuit with the same features, plus additional atmospheric protection and advanced magboots. Finely polished for engineering clout."
+	id = "advanced_eva_rig_module"
+	materials = list(MAT_PLASTEEL = 16000, MAT_GOLD = 6000, MAT_GRAPHITE = 4500, MAT_OSMIUM = 4000, MAT_PLASTIC = 8000, MAT_LEAD = 2000, MAT_PHORON = 6000, MAT_STEEL = 3000, MAT_TITANIUM = 2000)
+	build_path = /obj/item/rig/ce
+
+/datum/design_techweb/mechfab/modsuit/ami_controller
+	name = "AMI Suit Control Module"
+	desc = "A hardsuit for the rigors of science. In theory it should protect the wearer from the stranger things that the universe can offer. In 'theory.'"
+	id = "ami_rig_module"
+	materials = list(MAT_PLASTEEL = 12000, MAT_GOLD = 3000, MAT_GRAPHITE = 3000, MAT_OSMIUM = 2000, MAT_PLASTIC = 6000, MAT_LEAD = 2000, MAT_PHORON = 12000)
+	build_path = /obj/item/rig/hazmat
+
+/datum/design_techweb/mechfab/modsuit/industrial_controller
+	name = "Industrial Suit Control Module"
+	desc = "Ugly as hell, and heavier than I-Beam. Designed to protect thickly beardered miners in the depths."
+	id = "industrial_rig_module"
+	materials = list(MAT_PLASTEEL = 14000, MAT_GOLD = 4000, MAT_GRAPHITE = 5000, MAT_OSMIUM = 1000, MAT_PLASTIC = 5000, MAT_STEEL = 10000, MAT_TITANIUM = 2000)
+	build_path = /obj/item/rig/industrial
+
+/datum/design_techweb/mechfab/modsuit/hazard_controller
+	name = "Hazard Suit Control Module"
+	desc = "A security hardsuit with protection for bringing justice into the blackness of the void."
+	id = "hazard_rig_module"
+	materials = list(MAT_PLASTEEL = 14000, MAT_GOLD = 4000, MAT_GRAPHITE = 5000, MAT_OSMIUM = 1000, MAT_PLASTIC = 5000, MAT_STEEL = 10000, MAT_TITANIUM = 2000)
+	build_path = /obj/item/rig/hazard
+
+/datum/design_techweb/mechfab/modsuit/rescue_controller
+	name = "Rescue Suit Control Module"
+	desc = "A hardsuit designed for medical rescue in hazardous environments. Just don't expect it to stop a bullet."
+	id = "medical_rig_module"
+	materials = list(MAT_PLASTEEL = 12000, MAT_GOLD = 6000, MAT_GRAPHITE = 3000, MAT_OSMIUM = 4000, MAT_PLASTIC = 10000, MAT_LEAD = 2000)
+	build_path = /obj/item/rig/medical
+
+/datum/design_techweb/mechfab/modsuit/zero_controller
+	name = "Zero Suit Control Module"
+	desc = "A very bare bones and stylish suit designed for pilots with advanced holographic interfaces for the task."
+	id = "zero_rig_module"
+	materials = list(MAT_PLASTEEL = 12000, MAT_GOLD = 3000, MAT_GRAPHITE = 3000, MAT_OSMIUM = 1000, MAT_PLASTIC = 5000)
+	build_path =/obj/item/rig/zero
+
 ///Modsuit Modules
 /datum/design_techweb/mechfab/modsuit/modules
 	//req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5, TECH_PHORON = 3, TECH_MAGNET = 4, TECH_POWER = 6)
@@ -34,7 +84,19 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_MEDICAL
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design_techweb/mechfab/modsuit/pat
+	name = "hardsuit mounted P.A.T."
+	desc = "Pre-emptive Access Tunneling for first responders to access areas they normally cannot. Use responsibly."
+	id = "rig_component_pat"
+	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_MAGNET = 5, TECH_BIO = 4)
+	materials = list(MAT_PLASTEEL = 3000, MAT_GRAPHITE = 2000, MAT_SILVER = 1750, MAT_GOLD = 1250, MAT_OSMIUM = 2000)
+	build_path = /obj/item/rig_module/pat_module
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design_techweb/mechfab/modsuit/mounted_sizegun
 	name = "hardsuit mounted size gun"
@@ -43,7 +105,7 @@
 	//req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	materials = list(MAT_STEEL = 3000, MAT_GLASS = 2000, MAT_URANIUM = 2000)
 	build_path = /obj/item/rig_module/mounted/sizegun
-	//Not giving this a department flag intentionally.
+	//Not giving this a department flag intentionally.tIT
 
 /datum/design_techweb/mechfab/modsuit/modules/jetpack
 	name = "hardsuit maneuvering jets"
@@ -87,7 +149,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SUPPLY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/modsuit/modules/healthanalyzer
 	name = "hardsuit health analyzer"
@@ -99,7 +161,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_MEDICAL
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design_techweb/mechfab/modsuit/modules/drill
 	name = "hardsuit mounted drill"
@@ -111,7 +173,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SUPPLY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_CARGO
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/mechfab/modsuit/modules/excdrill
 	name = "hardsuit mounted excavation drill"
@@ -123,7 +185,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SCIENCE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/mechfab/modsuit/modules/anomscanner
 	name = "hardsuit mounted anomaly scanner"
@@ -135,7 +197,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SCIENCE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/mechfab/modsuit/modules/orescanner
 	name = "hardsuit mounted ore scanner"
@@ -147,7 +209,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SUPPLY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_CARGO
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/mechfab/modsuit/modules/rcd
 	name = "hardsuit mounted rcd"
@@ -159,7 +221,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/mechfab/modsuit/modules/paperdispenser
 	name = "hardsuit mounted paper dispenser"
@@ -171,7 +233,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SERVICE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design_techweb/mechfab/modsuit/modules/pen
 	name = "hardsuit mounted pen"
@@ -183,7 +245,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SERVICE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design_techweb/mechfab/modsuit/modules/grenade_metalfoam
 	name = "hardsuit metalfoam-bomb launcher"
@@ -195,7 +257,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/mechfab/modsuit/modules/grenade_flash
 	name = "hardsuit flashbang launcher"
@@ -207,7 +269,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/modsuit/modules/grenade_cleanfoam
 	name = "hardsuit cleaning-foam-bomb launcher"
@@ -219,7 +281,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SERVICE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/modsuit/modules/taser
 	name = "hardsuit taser"
@@ -231,7 +293,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/modsuit/modules/egun
 	name = "hardsuit egun"
@@ -243,7 +305,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/modsuit/modules/mop
 	name = "hardsuit intense cleaning device"
@@ -255,7 +317,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SERVICE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design_techweb/mechfab/modsuit/modules/sprinter
 	name = "hardsuit overclocker"
@@ -275,7 +337,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/mechfab/modsuit/modules/material
 	name = "hardsuit material visor"
@@ -287,7 +349,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SUPPLY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_CARGO
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
 /datum/design_techweb/mechfab/modsuit/modules/nvg
 	name = "hardsuit night-vision visor"
@@ -299,7 +361,51 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/mechfab/modsuit/modules/thermal
+	name = "hardsuit thermal scanning visor"
+	desc = "A compact thermal visor for a hardsuit."
+	id = "rig_component_thermal"
+	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500, MAT_URANIUM = 1000)
+	build_path = /obj/item/rig_module/vision/thermal
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design_techweb/mechfab/modsuit/modules/multi
+	name = "hardsuit complete visor suite"
+	desc = "An optical package for the bounty-hunter in you. Contains all available visors in a tight package."
+	id = "rig_component_multi_visor"
+	materials = list(MAT_PLASTEEL = 8000, MAT_GRAPHITE = 5500, MAT_OSMIUM = 4500, MAT_URANIUM = 6000, MAT_MORPHIUM = 2000)
+	build_path = /obj/item/rig_module/vision/multi
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
+	)
+
+/datum/design_techweb/mechfab/modsuit/modules/mining
+	name = "hardsuit mining scanners"
+	desc = "A visor suite for miners featuring Material and Mesons."
+	id = "rig_component_mining"
+	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 4, TECH_POWER = 5)
+	materials = list(MAT_PLASTEEL = 3500, MAT_GRAPHITE = 2000, MAT_OSMIUM = 1000)
+	build_path = /obj/item/rig_module/vision/mining
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SUPPLY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/mechfab/modsuit/modules/graviton
+	name = "hardsuit graviton scanners"
+	desc = "Advanced Visor suite that combines the features of mesons and material into a single package."
+	id = "rig_component_graviton"
+	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 4, TECH_POWER = 5)
+	materials = list(MAT_PLASTEEL = 3500, MAT_GRAPHITE = 2000, MAT_OSMIUM = 1000)
+	build_path = /obj/item/rig_module/vision/mining
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SCIENCE
+	)
 
 /datum/design_techweb/mechfab/modsuit/modules/sechud
 	name = "hardsuit security visor"
@@ -311,7 +417,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design_techweb/mechfab/modsuit/modules/medhud
 	name = "hardsuit medical visor"
@@ -323,7 +429,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_MEDICAL
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design_techweb/mechfab/modsuit/modules/voice
 	name = "hardsuit voice-changer"
@@ -346,7 +452,6 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SCIENCE
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design_techweb/mechfab/modsuit/modules/datajack
 	name = "hardsuit datajack"
@@ -369,7 +474,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_MEDICAL
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design_techweb/mechfab/modsuit/modules/teleporter
 	name = "hardsuit teleporter system"
@@ -381,7 +486,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/mechfab/modsuit/modules/radshield
 	name = "hardsuit radiation absorption device"
@@ -393,7 +498,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/mechfab/modsuit/modules/radshield_adv
 	name = "hardsuit advanced radiation absorption device"
@@ -405,7 +510,7 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/mechfab/modsuit/modules/atmosshield
 	name = "hardsuit atmospheric protection enhancement suite"
@@ -417,4 +522,38 @@
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/mechfab/modsuit/modules/atmosshield_adv
+	name = "hardsuit advanced atmospheric protection enhancement suite"
+	desc = "An advanced atmospheric protection suite, providing protection against both pressure and heat. Reduced Power Draw."
+	id = "rig_component_atmosshield_adv"
+	//req_tech = list(TECH_MATERIAL = 7, TECH_ENGINEERING = 5, TECH_MAGNET = 5, TECH_POWER = 6, TECH_BLUESPACE = 4)
+	materials = list(MAT_PLASTEEL = 8000, MAT_DURASTEEL = 4000, MAT_GRAPHITE = 9000, MAT_OSMIUM = 7500, MAT_PHORON = 6000, MAT_SILVER = 8000, MAT_GOLD = 6000)
+	build_path = /obj/item/rig_module/atmos_shield/advanced
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/mechfab/modsuit/modules/faradayshield
+	name = "hardsuit electrical protection enhancement suite"
+	desc = "An advanced faraday shielding suite, providing protection against electrical discharges. At the cost of concerningly high power draw."
+	id = "rig_component_faradayshield"
+	materials = list(MAT_PLASTEEL = 8000, MAT_GRAPHITE = 8000, MAT_OSMIUM = 6000, MAT_PHORON = 6000, MAT_SILVER = 4000, MAT_GOLD = 4000, MAT_PLASTIC = 6000)
+	build_path = /obj/item/rig_module/faraday_shield
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/mechfab/modsuit/modules/faradayshield/advanced
+	name = "hardsuit advanced electrical protection enhancement suite"
+	desc = "An optimized faraday shielding suite, providing protection against electrical discharges. At the cost of concerningly high power draw."
+	id = "rig_component_faradayshield_adv"
+	materials = list(MAT_PLASTEEL = 8000, MAT_GRAPHITE = 8000, MAT_OSMIUM = 8000, MAT_PHORON = 7000, MAT_SILVER = 5500, MAT_GOLD = 5500, MAT_PLASTIC = 6000)
+	build_path = /obj/item/rig_module/faraday_shield/advanced
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING

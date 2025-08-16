@@ -15,6 +15,7 @@
 	target.digest_pain = source.digest_pain;											\
 	target.noisy_full = source.noisy_full;												\
 	target.eating_privacy_global = source.eating_privacy_global;						\
+	target.vore_death_privacy = source.vore_death_privacy;								\
 																						\
 	target.can_be_drop_prey = source.can_be_drop_prey;									\
 	target.can_be_drop_pred = source.can_be_drop_pred;									\

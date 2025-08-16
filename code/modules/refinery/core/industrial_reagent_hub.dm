@@ -62,7 +62,7 @@
 		var/image/pipe = image(icon, icon_state = "hub_cons", dir = dir)
 		add_overlay(pipe)
 
-/obj/machinery/reagent_refinery/hub/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
+/obj/machinery/reagent_refinery/hub/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
 	if(istype(origin_machine,/obj/machinery/reagent_refinery/hub)) // Hubs cannot send into other hubs
 		return 0
 	if(dir != GLOB.reverse_dir[source_forward_dir] ) // The hub must be facing into its source to accept input, unlike others
@@ -74,10 +74,10 @@
 		return 0
 	// Don't call parent, we're transfering into the holding tank instead
 	if(filter_id == "")
-		return RT.trans_to_obj(tanker, amount_per_transfer_from_this)
+		return RT.trans_to_obj(tanker, transfer_rate)
 	else
 		// Split out reagent...
-		return RT.trans_id_to(tanker, filter_id, amount_per_transfer_from_this)
+		return RT.trans_id_to(tanker, filter_id, transfer_rate)
 
 /obj/machinery/reagent_refinery/hub/examine(mob/user, infix, suffix)
 	. = ..()

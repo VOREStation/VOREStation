@@ -311,6 +311,8 @@
 			belly_data["item_digest_logs"] = B.item_digest_logs
 			belly_data["eating_privacy_local"] = B.eating_privacy_local
 			belly_data["private_struggle"] = B.private_struggle
+			belly_data["absorbedrename_enabled"] = B.absorbedrename_enabled
+			belly_data["absorbedrename_name"] = B.absorbedrename_name
 
 			// Sounds
 			belly_data["is_wet"] = B.is_wet

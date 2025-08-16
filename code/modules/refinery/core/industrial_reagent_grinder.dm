@@ -62,11 +62,12 @@
 	// Borgos!
 	if(istype(O,/obj/item/gripper))
 		var/obj/item/gripper/B = O	//B, for Borg.
-		if(!B.wrapped)
+		var/obj/item/wrapped = B.get_current_pocket()
+		if(!wrapped)
 			to_chat(user, "\The [B] is not holding anything.")
 			return FALSE
 		else
-			var/B_held = B.wrapped
+			var/B_held = wrapped
 			to_chat(user, "You use \the [B] to load \the [src] with \the [B_held].")
 		return FALSE
 
@@ -142,6 +143,6 @@
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
 	tutorial(REFINERY_TUTORIAL_NOINPUT, .)
 
-/obj/machinery/reagent_refinery/grinder/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
+/obj/machinery/reagent_refinery/grinder/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
 	// Grinder forbids input
 	return 0

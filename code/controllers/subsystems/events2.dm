@@ -5,6 +5,9 @@ SUBSYSTEM_DEF(event_ticker)
 	name = "Events (Ticker)"
 	wait = 2 SECONDS
 	runlevels = RUNLEVEL_GAME
+	dependencies = list(
+		/datum/controller/subsystem/events
+	)
 
 	// List of `/datum/event2/event`s that are currently active, and receiving process() ticks.
 	var/list/active_events = list()
