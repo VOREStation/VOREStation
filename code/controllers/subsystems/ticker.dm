@@ -478,12 +478,15 @@ SUBSYSTEM_DEF(ticker)
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(reboot_callback), reason, end_string), delay - (world.time - start_wait), TIMER_STOPPABLE)
 
 /datum/controller/subsystem/ticker/proc/announce_countodwn(remaining_time)
-	remaining_time -= 60 SECONDS
-	if(remaining_time >= 0)
+	if(remaining_time >= 60 SECONDS)
+		remaining_time -= 60 SECONDS
 		to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]."))
-		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), remaining_time), remaining_time)
-	else
-		to_chat(world, span_boldannounce("Rebooting World."))
+		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), remaining_time), 60 SECONDS)
+		return
+	if(remaining_time > 0)
+		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), 0), remaining_time)
+		return
+	to_chat(world, span_boldannounce("Rebooting World."))
 
 /datum/controller/subsystem/ticker/proc/reboot_callback(reason, end_string)
 	if(end_string)
