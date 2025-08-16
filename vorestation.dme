@@ -2368,7 +2368,6 @@
 #include "code\modules\clothing\masks\tesh_synth_facemask.dm"
 #include "code\modules\clothing\masks\voice.dm"
 #include "code\modules\clothing\shoes\boots.dm"
-#include "code\modules\clothing\shoes\boots_vr.dm"
 #include "code\modules\clothing\shoes\colour.dm"
 #include "code\modules\clothing\shoes\leg_guards.dm"
 #include "code\modules\clothing\shoes\leg_guards_vr.dm"
