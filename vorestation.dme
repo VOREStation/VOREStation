@@ -4546,6 +4546,7 @@
 #include "code\modules\vore\eating\stumblevore_vr.dm"
 #include "code\modules\vore\eating\transforming_vr.dm"
 #include "code\modules\vore\eating\vertical_nom_vr.dm"
+#include "code\modules\vore\eating\vore_procs.dm"
 #include "code\modules\vore\eating\vore_vr.dm"
 #include "code\modules\vore\eating\vorepanel_vr.dm"
 #include "code\modules\vore\eating\panel_databackend\vorepanel_pref_data.dm"
