@@ -1,0 +1,9 @@
+help: "Icons are not allowed to be altered on map edits"
+/obj:
+  banned_variables: -icon
+
+/turf:
+  banned_variables: -icon
+
+/mob:
+  banned_variables: -icon
