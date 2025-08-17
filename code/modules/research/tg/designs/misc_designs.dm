@@ -132,3 +132,15 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/borgos
+	name = "Borg-O's Recipe"
+	desc = "A recipe for the cult classic Borg-O's meal. Warning: Not suitable for organic consumption."
+	id = "borgos1"
+	materials = list(MAT_STEEL = 5000)
+	build_path = /obj/item/trash/rkibble
+	build_type = PROTOLATHE //I...I guess???
+	category = list(
+		RND_CATEGORY_EQUIPMENT
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SCIENCE
