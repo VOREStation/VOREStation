@@ -387,8 +387,8 @@
 /obj/item/card/id/event/accessset/itg
 	name = "identification card"
 	desc = "A small card designating affiliation with the Ironcrest Transport Group."
-	icon = 'icons/obj/card_vr.dmi'
-	base_icon = 'icons/obj/card_vr.dmi'
+	icon = 'icons/obj/card.dmi'
+	base_icon = 'icons/obj/card.dmi'
 	icon_state = "itg"
 
 /obj/item/card/id/event/accessset/itg/green
@@ -473,8 +473,8 @@
 	access = list(777, 778)
 
 /obj/item/card/id/event/altcard
-	icon = 'icons/obj/card_alt_vr.dmi'
-	base_icon = 'icons/obj/card_alt_vr.dmi'
+	icon = 'icons/obj/card_alt.dmi'
+	base_icon = 'icons/obj/card_alt.dmi'
 	icon_state = "id"
 
 /obj/item/card/id/event/altcard/spare
@@ -528,8 +528,8 @@
 		return ..()
 
 /obj/item/card/id/event/polymorphic/altcard
-	icon = 'icons/obj/card_alt_vr.dmi'
-	base_icon = 'icons/obj/card_alt_vr.dmi'
+	icon = 'icons/obj/card_alt.dmi'
+	base_icon = 'icons/obj/card_alt.dmi'
 	icon_state = "blank"
 	name = "contractor identification card"
 	desc = "An ID card typically used by contractors."
@@ -602,8 +602,8 @@
 
 
 /obj/item/card/id/event/polymorphic/itg
-	icon = 'icons/obj/card_vr.dmi'
-	base_icon = 'icons/obj/card_vr.dmi'
+	icon = 'icons/obj/card.dmi'
+	base_icon = 'icons/obj/card.dmi'
 	icon_state = "itg"
 	name = "\improper ITG identification card"
 	desc = "A small card designating affiliation with the Ironcrest Transport Group. It has a NanoTrasen insignia and a lot of very small print on the back to do with practices and regulations for contractors to use."
