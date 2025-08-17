@@ -330,3 +330,26 @@
   - qol: chat examines are now also spoilered
   - code_imp: more grep checks, tgui dependency up
   - code_imp: tgui style cleanup
+2025-08-16:
+  Diana:
+  - bugfix: Instant vore events (Tongue vore, wing vore, dizzy vore, chair vore, etc)
+      will now only send their completion message, not an attempt message as well.
+  - refactor: Refactors vore to allow for instant vore types properly.
+  - bugfix: Grippers will no longer delete things when your inventory is full
+  - code_imp: Gripper code is more readable.
+  - bugfix: C-shift clowns will properly delete their component on death.
+  - bugfix: Walls will no longer runtime when spam-clicked with tools.
+  Guti:
+  - bugfix: Fixes hands becoming white after washed when blodied
+  Kash:
+  - code_imp: Chat spritesheet now instantly loads, preventing a double generation
+      on slower CPUs
+  Kashargul:
+  - code_imp: cleans up tgui again
+  - qol: adds spellcheck pref
+  Will:
+  - rscadd: Refinery mixing machine for use with refinery pumps
+  - bugfix: Refinery machines use the sending machine's transfer value and not the
+      receiving machine
+  - refactor: Explosions moved to a subsystem to substantially reduce lag of massive
+      explosions.

@@ -1,0 +1,4 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - refactor: "cleaned up icon files for accessories - there shouldn't be any player-facing changes, but please report any invisible or bugged clothes in appropriate channels"

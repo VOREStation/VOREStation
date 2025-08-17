@@ -191,11 +191,11 @@ class ChatRenderer {
   ensureScrollTracking: () => void;
   highlightParsers:
     | {
-        highlightWords: string;
+        highlightWords: string[];
         highlightRegex: RegExp;
         highlightColor: string;
         highlightWholeMessage: boolean;
-        highlightBlacklist: string;
+        highlightBlacklist: boolean;
         blacklistregex: RegExp;
       }[]
     | null;
