@@ -168,7 +168,7 @@ SPECIES_FENNEC = 'icons/inventory/feet/mob_vr_vulpkanin.dmi')
 #define ALL_VR_SPRITE_SHEETS_SUIT_ITEM list(\
 SPECIES_HUMAN = 'icons/inventory/suit/item_vr.dmi',\
 SPECIES_TAJARAN = 'icons/inventory/suit/item_vr_tajaran.dmi',\
-SPECIES_SKRELL = 'icons/inventory/suit/item_vr_skrell.dmi',\
+SPECIES_SKRELL = 'icons/inventory/suit/item_vr_unathi.dmi',\
 SPECIES_UNATHI = 'icons/inventory/suit/item_vr_unathi.dmi',\
 SPECIES_TESHARI = 'icons/inventory/suit/item_vr_teshari.dmi',\
 SPECIES_XENOHYBRID = 'icons/inventory/suit/item_vr_unathi.dmi',\
