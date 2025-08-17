@@ -365,7 +365,7 @@
 	fill_type = FILL_METAL
 
 	base_icon = 'icons/obj/doors/angled/elevator/door.dmi'
-	metal_fill_icon = 'icons/obj/doors/angled/elevator/fill_steel.dmi'
+	metal_fill_icon = 'icons/obj/doors/angled/elevator/fill_glass.dmi'
 	glass_fill_icon = 'icons/obj/doors/angled/elevator/fill_glass.dmi'
 	lights_deny_icon = 'icons/obj/doors/angled/elevator/lights_bolts.dmi'
 	lights_green_icon = 'icons/obj/doors/angled/elevator/lights_green.dmi'
