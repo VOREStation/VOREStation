@@ -246,7 +246,7 @@
 	if(new_holder == current_holder)
 		return
 	if(istype(new_holder,/obj/structure/closet))
-		new_holder = null // Forbid crates from holding lights
+		new_holder = null // Forbid crates from holding lights, this only applies to contents 'holding', when you put a flashlight into a crate for example. Not crates with lights... Not that there are any.
 	if(current_holder)
 		if(current_holder != parent && current_holder != parent_attached_to)
 			UnregisterSignal(current_holder, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED, COMSIG_LIGHT_EATER_QUEUE))
