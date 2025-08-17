@@ -704,7 +704,7 @@
 /obj/structure/prop/machine/centrifuge
 	name = "centrifuge"
 	desc = "Used to separate things with different weight. Spin 'em round, round, right round."
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "centrifuge"
 	var/on = FALSE
 
@@ -725,7 +725,7 @@
 /obj/structure/prop/machine/incubator
 	name = "incubator"
 	desc = "Encourages the growth of diseases. This model comes with a dispenser system and a small radiation generator."
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "incubator"
 	var/on = FALSE
 
@@ -746,7 +746,7 @@
 /obj/structure/prop/machine/disease_analyser
 	name = "disease analyser"
 	desc = "Analyzes diseases to find out information about them!"
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "analyser"
 	var/on = FALSE
 
@@ -767,7 +767,7 @@
 /obj/structure/prop/machine/isolator
 	name = "disease isolator"
 	desc = "Used to isolate and identify diseases, allowing for comparison with a remote database."
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "isolator_in"
 	var/on = FALSE
 
