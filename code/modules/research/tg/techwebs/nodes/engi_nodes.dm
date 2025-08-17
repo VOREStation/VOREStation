@@ -15,6 +15,7 @@
 		"device_cell",
 		"weapon_cell",
 		"high_mech_cell",
+		"potato_cell",
 		// "basic_scanning",
 		// "condenser",
 		// "igniter",
@@ -57,6 +58,8 @@
 		"phasic_sensor",
 		"ultra_micro_laser",
 		"hyper_cell",
+		"super_device",
+		"hyper_device_cell",
 		"arped",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
@@ -77,6 +80,7 @@
 		"hyper_sensor",
 		"hyper_micro_laser",
 		"hyper_cell",
+		"hyper_device",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier3_any = TECHWEB_TIER_4_POINTS)
@@ -122,6 +126,8 @@
 		"omni_capacitor",
 		"omni_sensor",
 		"omni_micro_laser",
+		"giga_device",
+		"giga_cell",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier4_any = TECHWEB_TIER_5_POINTS)
@@ -256,6 +262,7 @@
 		"advancedtscanner",
 		"rapidpipedispenser",
 		"protohypospray",
+		"atmos_holosign",
 		// "flatpacker",
 		// "rangedanalyzer",
 		// "rtd_loaded",
@@ -321,6 +328,7 @@
 		"industrial_reagent_pump",
 		"industrial_reagent_reactor",
 		"industrial_reagent_vat",
+		"industrial_reagent_mixer",
 		"industrial_reagent_waste_processor",
 		"smart_centrifuge",
 		"pump_relay",
@@ -328,6 +336,42 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING,CHANNEL_MEDICAL)
+
+/datum/techweb_node/cells_empproof
+	id = TECHWEB_NODE_PARTS_EMP_PROOF
+	display_name = "EMP-Proof Parts"
+	description = "Advanced batteries that are able to withstand strong bursts of energy without failure."
+	prereq_ids = list(TECHWEB_NODE_PARTS_HYPER)
+	design_ids = list(
+		"empproof_device",
+		"empproof_advanced_device",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
+
+/datum/techweb_node/cells_recharging
+	id = TECHWEB_NODE_PARTS_RECHARGING
+	display_name = "Self Charging Batteries"
+	description = "The end-game of battery technology, these batteries self charge."
+	prereq_ids = list(TECHWEB_NODE_PARTS_OMNI)
+	design_ids = list(
+		"recharging_advanced_device",
+		"omni-device",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
+
+/datum/techweb_node/teleporter
+	id = TECHWEB_NODE_TELEPORTER
+	display_name = "Teleportation Machinery"
+	description = "Allows for the creation of teleportation machinery that spontaneously transports an entity."
+	prereq_ids = list(TECHWEB_NODE_PARTS_ADV)
+	design_ids = list(
+		"teleporter_hub",
+		"teleporter_station",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
 
 /datum/techweb_node/thermal_vision
 	id = TECHWEB_NODE_THERMAL_VISION

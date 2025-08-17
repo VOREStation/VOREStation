@@ -94,6 +94,11 @@
 	// If UI is not interactive or usr calling Topic is not the UI user, bail.
 	if(!ui || ui.status != STATUS_INTERACTIVE)
 		return TRUE
+	if(action == "change_ui_state")
+		var/mob/living/user = ui.user
+		//write_preferences will make sure it's valid for href exploits.
+		user.client.prefs.write_preference(GLOB.preference_entries[/datum/preference/choiced/tgui_layout], params["new_state"])
+		to_world("We have the curent [user.client.prefs.read_preference(/datum/preference/choiced/tgui_layout)]")
 
 /**
  * public
