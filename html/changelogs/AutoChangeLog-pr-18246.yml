@@ -1,8 +1,0 @@
-author: "Drathek"
-delete-after: True
-changes:
-  - bugfix: "Fixes a few issues where some unit tests would never qdel what they new'd because they called `continue`"
-  - code_imp: "Increases usage of `cached_icon_states`"
-  - code_imp: "Adds css validation to spritesheets unit testing (must comply with https://www.w3.org/TR/CSS2/syndata.html#value-def-identifier )"
-  - code_imp: "Cleans up various single var usage"
-  - refactor: "Refactors `sprite_accessories_shall_be_unique` to use initial values instead of newing the datum"
