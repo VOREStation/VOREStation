@@ -49,9 +49,9 @@
 		var/datum/reagent/R = reagents.get_master_reagent()
 		if(!((R.id == REAGENT_ID_ICE) || (REAGENT_ID_ICE in R.glass_special))) // if it's not a cup of ice, and it's not already supposed to have ice in, see if the bartender's put ice in it
 			if(reagents.has_reagent(REAGENT_ID_ICE, reagents.total_volume / 10)) // 10% ice by volume
-				return 1
+				return TRUE
 
-	return 0
+	return FALSE
 
 /obj/item/reagent_containers/food/drinks/glass2/proc/has_fizz()
 	if(reagents.reagent_list.len > 0)
@@ -62,8 +62,8 @@
 				if("fizz" in re.glass_special)
 					totalfizzy += re.volume
 			if(totalfizzy >= reagents.total_volume / 5) // 20% fizzy by volume
-				return 1
-	return 0
+				return TRUE
+	return FALSE
 
 /obj/item/reagent_containers/food/drinks/glass2/Initialize(mapload)
 	. = ..()
@@ -75,9 +75,9 @@
 
 /obj/item/reagent_containers/food/drinks/glass2/proc/can_add_extra(obj/item/glass_extra/GE)
 	if(!icon_exists(icon, "[base_icon]_[GE.glass_addition]left") || !icon_exists(icon, "[base_icon]_[GE.glass_addition]right"))
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /obj/item/reagent_containers/food/drinks/glass2/update_icon()
 	underlays.Cut()
@@ -148,13 +148,13 @@
 /obj/item/reagent_containers/food/drinks/glass2/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(user.a_intent == I_HURT) //We only want splashing to be done if they are on harm intent.
 		if(!is_open_container() || !proximity)
-			return 1
+			return TRUE
 		if(standard_splash_mob(user, target))
-			return 1
+			return TRUE
 		if(reagents && reagents.total_volume) //They are on harm intent, aka wanting to spill it.
 			to_chat(user, span_notice("You splash the solution onto [target]."))
 			reagents.splash(target, reagents.total_volume)
-			return 1
+			return TRUE
 	..()
 
 /obj/item/reagent_containers/food/drinks/glass2/standard_feed_mob(var/mob/user, var/mob/target)
