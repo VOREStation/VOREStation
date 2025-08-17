@@ -176,4 +176,6 @@
 	. = ..()
 	if(!Adjacent(user))
 		return
-	set_APTFT()
+	var/N = tgui_input_list(user, "Amount per transfer from this:","[src]", possible_transfer_amounts)
+	if(N)
+		amount_per_transfer_from_this = N
