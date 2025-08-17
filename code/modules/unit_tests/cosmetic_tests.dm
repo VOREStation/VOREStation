@@ -45,11 +45,13 @@
 
 	if(istype(A,/datum/sprite_accessory/hair))
 		actual_icon_state = "[A.icon_state]_s"
-		TEST_ASSERT(actual_icon_state in cached_icon_states(A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
+		TEST_ASSERT(icon_exists(actual_icon_state, A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
+		//TEST_ASSERT(actual_icon_state in cached_icon_states(A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
 
 	if(istype(A,/datum/sprite_accessory/facial_hair))
 		actual_icon_state = "[A.icon_state]_s"
-		TEST_ASSERT(actual_icon_state in cached_icon_states(A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
+		TEST_ASSERT(icon_exists(actual_icon_state, A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
+		//TEST_ASSERT(actual_icon_state in cached_icon_states(A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
 
 	if(istype(A,/datum/sprite_accessory/marking))
 		var/datum/sprite_accessory/marking/MA = A
@@ -57,4 +59,5 @@
 			TEST_ASSERT(BP in BP_ALL, "[A] - [A.type]: Cosmetic - Has an illegal bodypart \"[BP]\". ONLY use parts listed in BP_ALL.")
 
 			actual_icon_state = "[A.icon_state]-[BP]"
-			TEST_ASSERT(actual_icon_state in cached_icon_states(A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
+			TEST_ASSERT(icon_exists(actual_icon_state, A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
+			//TEST_ASSERT(actual_icon_state in cached_icon_states(A.icon), "[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
