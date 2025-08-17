@@ -165,7 +165,8 @@
 				return
 
 			// All that matters
-			if(!("[set_state]" in cached_icon_states(set_icon)))
+			if(!icon_exists(set_state, set_icon))
+			//if(!("[set_state]" in cached_icon_states(set_icon)))
 				TEST_NOTICE("[item_path]: Clothing - Testing \"[species]\" state \"[set_state]\" for slot \"[slot_name]\", but it was not in dmi \"[set_icon]\"")
 				signal_failed = TRUE
 				return
