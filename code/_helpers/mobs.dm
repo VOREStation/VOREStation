@@ -183,7 +183,7 @@ Proc for attack log creation, because really why not
 	else
 		return pick(BP_TORSO, BP_GROIN)
 
-/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE, exclusive = FALSE, max_distance = null)
+/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE, exclusive = FALSE)
 	if(!user || !target)
 		return FALSE
 	if(!time)
@@ -240,9 +240,6 @@ Proc for attack log creation, because really why not
 		if(target_zone && user.zone_sel?.selecting != target_zone)
 			. = FALSE
 			break
-		if(max_distance && target && get_dist(user, target) > max_distance)
-			. = FALSE
-			break
 
 	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags &= ~DOING_TASK
@@ -280,7 +277,7 @@ Proc for attack log creation, because really why not
  *
  * @param {iconstate} iconstate - The icon state of the cog. Default: "Cog"
  */
-/proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1, hidden = FALSE, icon = 'icons/effects/progressbar.dmi', iconstate = "cog")
+/proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1, hidden = FALSE, icon = 'icons/effects/progressbar.dmi', iconstate = "cog", max_distance = null)
 	if(!user)
 		return FALSE
 	if(!isnum(delay))
@@ -338,6 +335,7 @@ Proc for attack log creation, because really why not
 			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && user.loc != user_loc) \
 			|| (!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_hand() != holding) \
 			|| (!(timed_action_flags & IGNORE_INCAPACITATED) && HAS_TRAIT(user, TRAIT_INCAPACITATED)) \
+			|| (max_distance && target && get_dist(user, target) > max_distance) \
 			|| (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
