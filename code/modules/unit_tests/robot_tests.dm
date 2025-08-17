@@ -152,7 +152,7 @@
 		if(robot.has_dead_sprite)
 			check_state(robot,"-wreck")
 		if(robot.has_dead_sprite_overlay) // Only one per dmi
-			TEST_ASSERT(icon_exists(I, "wreck-overlay"), "[robot.type]: Robots - Robot sprite \"[robot.name]\", missing icon_state wreck-overlay, in dmi \"[robot.sprite_icon]\".")
+			TEST_ASSERT(icon_exists(robot.sprite_icon, "wreck-overlay"), "[robot.type]: Robots - Robot sprite \"[robot.name]\", missing icon_state wreck-overlay, in dmi \"[robot.sprite_icon]\".")
 			//TEST_ASSERT("wreck-overlay" in cached_icon_states(robot.sprite_icon), "[robot.type]: Robots - Robot sprite \"[robot.name]\", missing icon_state wreck-overlay, in dmi \"[robot.sprite_icon]\".")
 		// offset
 		var/icon/I = new(robot.sprite_icon)
