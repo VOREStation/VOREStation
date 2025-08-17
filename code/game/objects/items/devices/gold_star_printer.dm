@@ -3,7 +3,7 @@
 /obj/item/gold_star_printer
 	name = "gold star dispenser"
 	desc = "It prints gold stickers to reward the crew for their excellent contributions!"
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "gold_star_printer"
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	var/print_cooldown = 1 MINUTE

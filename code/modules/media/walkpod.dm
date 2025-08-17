@@ -7,7 +7,7 @@
 	description_fluff = "A prestigious set: The ZuMan music player, and the HeadPods headphones, both 90th anniversary releases! Together they form the PodZu Music Player, famous in the local galactic cluster for pumping sick beats directly into your head."
 	description_info = "An easy way to access the menu while the player is in a pocket is Alt-Click. Wearing the headphones is not actually necessary to listen to music, but you can if you want, by right-clicking on the player and using 'Take HeadPods'."
 
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "podzu" // podzu_o, headpod, zuman
 
 	var/loop_mode = JUKEMODE_PLAY_ONCE	// Behavior when finished playing a song
@@ -262,7 +262,7 @@
 /obj/item/headpods
 	name = "\improper pair of HeadPods"
 	desc = "Portable listening in Hi-Fi!"
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "headpods"
 	item_state = "headphones_on"
 	w_class = ITEMSIZE_SMALL

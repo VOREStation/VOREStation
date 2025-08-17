@@ -1,7 +1,7 @@
 /obj/item/ticket_printer
 	name = "ticket printer"
 	desc = "It prints security citations!"
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "sec_ticket_printer"
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	var/print_cooldown = 1 MINUTE
@@ -64,7 +64,7 @@
 /obj/item/ticket_printer/train
 	name = "permission ticket printer"
 	desc = "It prints permit tickets!"
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "train_ticket_printer"
 
 /obj/item/ticket_printer/train/print_a_ticket(mob/user)

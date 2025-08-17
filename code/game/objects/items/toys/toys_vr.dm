@@ -98,7 +98,7 @@
 	bubble_icon = "synthetic"
 
 /obj/item/toy/plushie/borgplushie/drake
-	icon = 'icons/obj/drakietoy_vr.dmi'
+	icon = 'icons/obj/drakietoy.dmi'
 	var/lights_glowing = FALSE
 
 /obj/item/toy/plushie/borgplushie/drake/AltClick(mob/living/user)
