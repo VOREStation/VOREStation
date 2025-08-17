@@ -68,7 +68,7 @@
 	if(dronecount)
 		to_chat(world, span_filter_system(span_bold("There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.")))
 
-	mode.declare_completion()//To declare normal completion.
+	var/extra_delay = mode.declare_completion()//To declare normal completion.
 	RoundTrivia()
 
 	//Ask the event manager to print round end information
@@ -94,7 +94,7 @@
 	SSdbcore.SetRoundEnd()
 
 	ready_for_reboot = TRUE
-	addtimer(CALLBACK(src, PROC_REF(standard_reboot)), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(standard_reboot)), 5 SECONDS + extra_delay)
 
 /datum/controller/subsystem/ticker/proc/standard_reboot()
 	if(ready_for_reboot)
