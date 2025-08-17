@@ -1,6 +1,6 @@
 /obj/structure/medical_stand
 	name = "medical stand"
-	icon = 'icons/obj/medical_stand_vr.dmi'
+	icon = 'icons/obj/medical_stand.dmi'
 	desc = "Medical stand used to hang reagents for transfusion and to hold anesthetic tank."
 	icon_state = "medical_stand_empty"
 
