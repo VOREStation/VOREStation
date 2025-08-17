@@ -1,16 +1,16 @@
 help: "Icons are not allowed to be altered on map edits"
 /atom:
   banned_variables:
-    -icon
+    - icon
 
 /obj:
   banned_variables:
-    -icon
+    - icon
 
 /turf:
   banned_variables:
-    -icon
+    - icon
 
 /mob:
   banned_variables:
-    -icon
+    - icon
