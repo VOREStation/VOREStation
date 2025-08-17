@@ -91,7 +91,7 @@
 			if(!isbelly(loc) || !vore_death_privacy)
 				for(var/mob/observer/dead/O in GLOB.mob_list)
 					if(O.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
-						to_chat(O, span_deadsay(span_bold("[src]") + " has died in " + span_bold("[A]") + ". [ghost_follow_link(src, O)] "))
+						to_chat(O, span_deadsay(span_bold("[src]") + " has died in " + span_bold(strip_improper("[A]")) + ". [ghost_follow_link(src, O)] "))
 
 	if(!gibbed && !isbelly(loc))
 		playsound(src, pick(get_species_sound(get_gendered_sound(src))["death"]), src.species.death_volume, 1, 20, volume_channel = VOLUME_CHANNEL_DEATH_SOUNDS)
