@@ -11,4 +11,3 @@
 		if(D.icon_override)
 			I = D.icon_override
 		TEST_ASSERT(icon_exists(I, D.icon_state), "[D.type]: Poster - missing icon_state \"[D.icon_state]\" in \"[I]\", as [D.icon_override ? "override" : "base"] dmi.")
-		//TEST_ASSERT(D.icon_state in cached_icon_states(I), "[D.type]: Poster - missing icon_state \"[D.icon_state]\" in \"[I]\", as [D.icon_override ? "override" : "base"] dmi.")

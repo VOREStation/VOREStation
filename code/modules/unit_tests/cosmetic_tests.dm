@@ -39,13 +39,11 @@
 	if(istype(accessory, /datum/sprite_accessory/hair))
 		actual_icon_state += "_s"
 		TEST_ASSERT(icon_exists(accessory::icon, actual_icon_state), "[accessory::name] - [accessory::type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [accessory::icon].")
-		//TEST_ASSERT(actual_icon_state in cached_icon_states(accessory::icon), "[accessory::name] - [accessory::type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [accessory::icon].")
 		return
 
 	if(istype(accessory, /datum/sprite_accessory/facial_hair))
 		actual_icon_state += "_s"
 		TEST_ASSERT(icon_exists(accessory::icon, actual_icon_state), "[accessory::name] - [accessory::type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [accessory::icon].")
-		//TEST_ASSERT(actual_icon_state in cached_icon_states(accessory::icon), "[accessory::name] - [accessory::type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [accessory::icon].")
 		return
 
 	if(istype(accessory, /datum/sprite_accessory/marking))
@@ -55,5 +53,4 @@
 
 			actual_icon_state = "[accessory::icon_state]-[body_part]"
 			TEST_ASSERT(icon_exists(accessory::icon, actual_icon_state), "[accessory::name] - [accessory::type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [accessory::icon].")
-			//TEST_ASSERT(actual_icon_state in cached_icon_states(accessory::icon), "[accessory::name] - [accessory::type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [accessory::icon].")
 		return
