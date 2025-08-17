@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 				if(!choice)
 					return
 				to_chat(user,span_notice("You begin moving..."))
-				if(!do_after(user, 10 SECONDS, exclusive = TRUE))
+				if(!do_after(user, 10 SECONDS))
 					return
 				user.forceMove(choice)
 				user.cancel_camera()
@@ -179,7 +179,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 
 	if(!can_enter(user))
 		user.visible_message(span_warning("\The [user] reaches into \the [src]. . ."),span_warning("You reach into \the [src]. . ."))
-		if(!do_after(user, 3 SECONDS, exclusive = TRUE))
+		if(!do_after(user, 3 SECONDS))
 			user.visible_message(span_notice("\The [user] pulls their hand out of \the [src]."),span_warning("You pull your hand out of \the [src]"))
 			return
 		if(!src.contents.len)
@@ -218,7 +218,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 			return
 
 	user.visible_message(span_notice("\The [user] begins climbing into \the [src]!"))
-	if(!do_after(user, 10 SECONDS, exclusive = TRUE))
+	if(!do_after(user, 10 SECONDS))
 		to_chat(user, span_warning("You didn't go into \the [src]!"))
 		return
 
@@ -245,7 +245,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 	var/mob/living/k = M
 
 	k.visible_message(span_notice("\The [k] begins climbing into \the [src]!"))
-	if(!do_after(k, 3 SECONDS, exclusive = TRUE))
+	if(!do_after(k, 3 SECONDS))
 		to_chat(k, span_warning("You didn't go into \the [src]!"))
 		return
 
@@ -341,7 +341,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 				if(!choice)
 					return
 				to_chat(usr,span_notice("You begin moving..."))
-				if(!do_after(usr, 10 SECONDS, exclusive = TRUE))
+				if(!do_after(usr, 10 SECONDS))
 					return
 				if(QDELETED(src))
 					return
@@ -379,7 +379,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 
 	if(!(usr.mob_size <= MOB_TINY || usr.get_effective_size(TRUE) <= micro_accepted_scale))
 		usr.visible_message(span_warning("\The [usr] reaches into \the [src]. . ."),span_warning("You reach into \the [src]. . ."))
-		if(!do_after(usr, 3 SECONDS, exclusive = TRUE))
+		if(!do_after(usr, 3 SECONDS))
 			usr.visible_message(span_notice("\The [usr] pulls their hand out of \the [src]."),span_warning("You pull your hand out of \the [src]"))
 			return
 
@@ -420,7 +420,7 @@ GLOBAL_LIST_EMPTY(micro_tunnels)
 			return
 
 	usr.visible_message(span_notice("\The [usr] begins climbing into \the [src]!"))
-	if(!do_after(usr, 10 SECONDS, exclusive = TRUE))
+	if(!do_after(usr, 10 SECONDS))
 		to_chat(usr, span_warning("You didn't go into \the [src]!"))
 		return
 

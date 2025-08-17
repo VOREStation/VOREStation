@@ -464,7 +464,7 @@
 		return
 
 	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
-	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(src, 10 SECONDS, src))
 		visible_message("<b>\The [src]</b> ceases shifting their form.")
 		return 0
 

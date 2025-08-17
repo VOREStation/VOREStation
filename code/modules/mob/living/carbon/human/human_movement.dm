@@ -135,7 +135,11 @@
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
 // Also its nice to have these things seperated.
 
-/mob/living/carbon/human/proc/calculate_item_encumbrance()
+//Return FALSE for no encumberance
+/mob/proc/calculate_item_encumbrance()
+	return FALSE
+
+/mob/living/carbon/human/calculate_item_encumbrance()
 	/// We check for all the items the wearer has that cause slowdown (positive or negative)
 	/// We then multiply the postive ones by our species.item_slowdown_mod to slow us down more, while we leave negative ones untouched.
 	/// Heavy things in your hands are affected by this change, UNLESS the thing in your hand speeds you up, in which case it doesn't.

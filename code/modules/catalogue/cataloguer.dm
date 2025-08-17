@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 	// The delay, and test for if the scan succeeds or not.
 	var/scan_start_time = world.time
-	if(do_after(user, scan_delay, target, ignore_movement = TRUE, max_distance = scan_range))
+	if(do_after(user, scan_delay, target, timed_action_flags = IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, max_distance = scan_range))
 		if(target.can_catalogue(user))
 			to_chat(user, span_notice("You successfully scan \the [target] with \the [src]."))
 			playsound(src, 'sound/machines/ping.ogg', 50)
