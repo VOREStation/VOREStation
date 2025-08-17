@@ -61,7 +61,7 @@
 	that can be recharged away from civilization."
 	icon_state = "phaserkill"
 	item_state = "phaser"
-	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/inventory/belt/mob_vr.dmi')
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/inventory/belt/mob.dmi')
 	fire_sound = 'sound/weapons/laser2.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_POWER = 4)
 	charge_cost = 300

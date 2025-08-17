@@ -131,6 +131,10 @@ export type bellyOptionData = {
   vorespawn_whitelist: string[];
   vorespawn_absorbed: number;
   private_struggle: BooleanLike;
+  absorbedrename_enabled: BooleanLike;
+  absorbedrename_name: string;
+  absorbedrename_name_max: number;
+  absorbedrename_name_min: number;
   drainmode_options: string[];
   drainmode: string;
 };

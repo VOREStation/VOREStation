@@ -181,6 +181,7 @@ export type BodyData = {
   body_markings: Record<string, BodyMarking>;
 
   tail_style: string;
+  tail_layering: string;
   tail_color1: string;
   tail_color2: string;
   tail_color3: string;

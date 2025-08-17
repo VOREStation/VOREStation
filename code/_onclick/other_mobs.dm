@@ -33,6 +33,16 @@
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	return
 
+/mob/proc/has_telegrip()
+	return TK in mutations
+
+/mob/living/carbon/human/has_telegrip()
+	if(istype(gloves,/obj/item/clothing/gloves/telekinetic))
+		var/obj/item/clothing/gloves/telekinetic/G = gloves
+		if(G.has_grip_power())
+			return TRUE
+	return ..()
+
 /mob/living/carbon/human/RangedAttack(var/atom/A)
 	if(!gloves && !mutations.len && !spitting)
 		return
@@ -43,7 +53,10 @@
 	else if(istype(G) && G.Touch(A,0)) // for magic gloves
 		return
 
-	else if(TK in mutations)
+	else if(has_telegrip())
+		if(istype(gloves,/obj/item/clothing/gloves/telekinetic))
+			var/obj/item/clothing/gloves/telekinetic/TKG = gloves
+			TKG.use_grip_power(src,TRUE)
 		A.attack_tk(src)
 
 	else if(spitting) //Only used by xenos right now, can be expanded.

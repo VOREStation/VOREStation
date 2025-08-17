@@ -31,20 +31,21 @@
 
 /mob/living/stumble_into(mob/living/M)
 	var/mob/living/carbon/human/S = src
-
+	if(S.buckled || M.buckled)
+		return
 	playsound(src, "punch", 25, 1, -1)
 	M.Weaken(4)
 	M.stop_flying()
 	if(CanStumbleVore(M)) //This is if the person stumbling into us is able to eat us!
 		visible_message(span_vwarning("[M] flops carelessly into [src]!"))
 		M.forceMove(get_turf(src))
-		perform_the_nom(src,M,src,src.vore_selected,-1)
+		begin_instant_nom(src,M,src,src.vore_selected)
 		return
 
 	if(M.CanStumbleVore(src)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
 		visible_message(span_vwarning("[M] flops carelessly into [src]!"))
 		M.forceMove(get_turf(src))
-		perform_the_nom(M,src,M,M.vore_selected,-1)
+		begin_instant_nom(M,src,M,M.vore_selected)
 		return
 
 	if(istype(S) && S.species.lightweight == 1)

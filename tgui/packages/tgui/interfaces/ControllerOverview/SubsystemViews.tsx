@@ -1,11 +1,10 @@
 import { type Dispatch, useEffect, useState } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack, Table } from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
 import { SORTING_TYPES } from './constants';
-import { type FilterState } from './filters';
+import type { FilterState } from './filters';
 import { SubsystemRow } from './SubsystemRow';
-import { type ControllerData, type SubsystemData } from './types';
+import type { ControllerData, SubsystemData } from './types';
 
 type Props = {
   filterOpts: FilterState;
