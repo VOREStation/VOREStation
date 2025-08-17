@@ -58,7 +58,7 @@
 		var/datum/reagents/reagents = beaker.reagents
 		var/percent = round((reagents.total_volume / beaker.volume) * 100)
 		if(reagents.total_volume)
-			var/image/filling = image('icons/obj/medical_stand_vr.dmi', src, "reagent")
+			var/image/filling = image('icons/obj/medical_stand.dmi', src, "reagent")
 
 			switch(percent)
 				if(10 to 24) 	filling.icon_state = "reagent10"
