@@ -144,7 +144,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 //// VOREstation Additions Below
 
-/datum/ticket/proc/send2adminchat()
+/datum/ticket/proc/send2adminchatwebhook()
 	if(!CONFIG_GET(string/chat_webhook_url))
 		return
 

@@ -330,3 +330,76 @@
   - qol: chat examines are now also spoilered
   - code_imp: more grep checks, tgui dependency up
   - code_imp: tgui style cleanup
+2025-08-16:
+  Diana:
+  - bugfix: Instant vore events (Tongue vore, wing vore, dizzy vore, chair vore, etc)
+      will now only send their completion message, not an attempt message as well.
+  - refactor: Refactors vore to allow for instant vore types properly.
+  - bugfix: Grippers will no longer delete things when your inventory is full
+  - code_imp: Gripper code is more readable.
+  - bugfix: C-shift clowns will properly delete their component on death.
+  - bugfix: Walls will no longer runtime when spam-clicked with tools.
+  Guti:
+  - bugfix: Fixes hands becoming white after washed when blodied
+  Kash:
+  - code_imp: Chat spritesheet now instantly loads, preventing a double generation
+      on slower CPUs
+  Kashargul:
+  - code_imp: cleans up tgui again
+  - qol: adds spellcheck pref
+  Will:
+  - rscadd: Refinery mixing machine for use with refinery pumps
+  - bugfix: Refinery machines use the sending machine's transfer value and not the
+      receiving machine
+  - refactor: Explosions moved to a subsystem to substantially reduce lag of massive
+      explosions.
+2025-08-17:
+  Cameron-The-Raven:
+  - qol: Cargo can make batteries
+  - rscadd: Hyper device cell can be researched and created
+  - rscadd: Adds the newly added cells to the techweb
+  - rscadd: Makes mail scanner, atmos/medical hologisgns, confetti cannon, and floor
+      painter able to be researched
+  - rscadd: Makes the teleporter able to be accessed via the techweb
+  - image: Adds more battery icons for the newer batteries
+  Diana:
+  - image: Battery icons able to be swapped to battery variants
+  - balance: Hyper device cell now has 2400 charge, up from 600
+  - balance: Void cell and recharging alien device cell adjusted.
+  - balance: Yellow slime extract now  has 20000 charge. Self charges 500 instead
+      of 25 now.
+  Drathek:
+  - bugfix: Fixes a few issues where some unit tests would never qdel what they new'd
+      because they called `continue`
+  - code_imp: Increases usage of `cached_icon_states`
+  - code_imp: Adds css validation to spritesheets unit testing (must comply with https://www.w3.org/TR/CSS2/syndata.html#value-def-identifier
+      )
+  - code_imp: Cleans up various single var usage
+  - refactor: Refactors `sprite_accessories_shall_be_unique` to use initial values
+      instead of newing the datum
+  ItsSelis:
+  - rscdel: removed some of the old (non-functional) irc code
+  - code_imp: removed some unticked DM files
+  KillianKirilenko:
+  - refactor: cleaned up icon files for backpacks, bags, and belts - there shouldn't
+      be any player-facing changes, but please report any invisible or bugged clothes
+      in appropriate channels
+  - refactor: cleaned up icon files for gloves - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels
+  - refactor: cleaned up icon files for boots - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels
+  - refactor: cleaned up icon files for accessories - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels
+  ShadowLarkens:
+  - rscadd: Vending machines now have a pretty grid view mode as their default. You
+      can switch back to rows if necessary.
+  Will:
+  - bugfix: Multiple buckling related fixes
+  - bugfix: Wizard forcewall is now visible
+  - bugfix: Mime forcewall is now invisible
+  - bugfix: Tiny animals with hands can no longer pick themselves up, causing the
+      universe to collapse.
+  - bugfix: Refinery mixer wouldn't show its angle correctly when rotating counter
+      clockwise in the northwest direction.
+  - bugfix: Refinery mixer status light properly shows if it is in a locked state
+  - rscadd: Telekinetic gloves

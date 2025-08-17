@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "cleans up tgui again"
-  - qol: "adds spellcheck pref"

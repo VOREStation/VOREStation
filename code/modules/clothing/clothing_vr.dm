@@ -1,35 +1,6 @@
 /obj/item/clothing
 	var/recent_struggle = 0
 
-/obj/item/clothing/shoes
-	var/list/inside_emotes = list()
-	var/recent_squish = 0
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/feet/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/feet/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/feet/mob_vr_werebeast.dmi')
-
-/obj/item/clothing/shoes/Initialize(mapload)
-	inside_emotes = list(
-		span_red("You feel weightless for a moment as \the [name] moves upwards."),
-		span_red("\The [name] are a ride you've got no choice but to participate in as the wearer moves."),
-		span_red("The wearer of \the [name] moves, pressing down on you."),
-		span_red("More motion while \the [name] move, feet pressing down against you.")
-	)
-
-	. = ..()
-/* //Must be handled in clothing.dm
-/obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
-	if(prob(1) && !recent_squish)
-		recent_squish = 1
-		spawn(100)
-			recent_squish = 0
-		for(var/mob/living/M in contents)
-			var/emote = pick(inside_emotes)
-			to_chat(M,emote)
-	return
-*/
-
 //This is a crazy 'sideways' override.
 /obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I,/obj/item/holder/micro))
@@ -51,51 +22,11 @@
 	else
 		..()
 
-/obj/item/clothing/shoes/attack_self(var/mob/user)
-	for(var/mob/M in src)
-		if(isvoice(M)) //Don't knock voices out!
-			continue
-		M.forceMove(get_turf(user))
-		to_chat(M, span_warning("[user] shakes you out of \the [src]!"))
-		to_chat(user, span_notice("You shake [M] out of \the [src]!"))
-
-	..()
-
-/obj/item/clothing/shoes/container_resist(mob/living/micro)
-	var/mob/living/carbon/human/macro = loc
-	if(isvoice(micro)) //Voices shouldn't be able to resist but we have this here just in case.
-		return
-	if(!istype(macro))
-		to_chat(micro, span_notice("You start to climb out of [src]!"))
-		if(do_after(micro, 50, src))
-			to_chat(micro, span_notice("You climb out of [src]!"))
-			micro.forceMove(loc)
-		return
-
-	var/escape_message_micro = "You start to climb out of [src]!"
-	var/escape_message_macro = "Something is trying to climb out of your [src]!"
-	var/escape_time = 60
-
-	if(macro.shoes == src)
-		escape_message_micro = "You start to climb around the larger creature's feet and ankles!"
-		escape_time = 100
-
-	to_chat(micro, span_notice("[escape_message_micro]"))
-	to_chat(macro, span_danger("[escape_message_macro]"))
-	if(!do_after(micro, escape_time, macro))
-		to_chat(micro, span_danger("You're pinned underfoot!"))
-		to_chat(macro, span_danger("You pin the escapee underfoot!"))
-		return
-
-	to_chat(micro, span_notice("You manage to escape [src]!"))
-	to_chat(macro, span_danger("Someone has climbed out of your [src]!"))
-	micro.forceMove(macro.loc)
-
 /obj/item/clothing/gloves
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/hands/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/hands/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/hands/mob_vr_werebeast.dmi')
+		SPECIES_WEREBEAST = 'icons/inventory/hands/mob_werebeast.dmi')
 
 /obj/item/clothing/ears
 	sprite_sheets = list(
