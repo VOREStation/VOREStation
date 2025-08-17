@@ -184,6 +184,9 @@
 /obj/structure/prop/machine/core/starts_on
 	icon_state = "core_active"
 
+/obj/structure/prop/machine/core/allinone
+	icon_state = "allinone"
+
 /**
  * Possible 'state' options for change_state(state) are:
  * down: In the ground, glowing
