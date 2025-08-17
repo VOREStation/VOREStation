@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - image: "Battery icons able to be swapped to battery variants"
+  - balance: "Hyper device cell now has 2400 charge, up from 600"
+  - balance: "Void cell and recharging alien device cell adjusted."
+  - balance: "Yellow slime extract now  has 20000 charge. Self charges 500 instead of 25 now."

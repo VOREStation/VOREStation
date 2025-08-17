@@ -114,7 +114,6 @@
 /obj/item/clothing/accessory/ring/wedding
 	name = "golden wedding ring"
 	desc = "For showing your devotion to another person. It has a golden glimmer to it."
-	icon = 'icons/inventory/hands/item_vr.dmi'
 	icon_state = "wedring_g"
 	item_state = "wedring_g"
 	var/partnername = ""
