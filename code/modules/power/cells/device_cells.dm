@@ -179,3 +179,30 @@
 
 /obj/item/cell/device/weapon/recharge/alien/omni/empty
 	charge = 0
+
+/*
+ * Giga
+ */
+/obj/item/cell/device/giga
+	name = "giga device power cell"
+	desc = "A small power cell that holds a blistering amount of energy, constructed by clever scientists using secrets gleaned from alien technology."
+	icon_state = "meb_m_hi"
+	charge = 10000
+	maxcharge = 10000
+	charge_amount = 20
+	origin_tech = list(TECH_POWER = 8)
+
+/obj/item/cell/device/giga/empty
+	charge = 0
+
+/obj/item/cell/device/super
+	name = "super device power cell"
+	desc = "A small upgraded power cell designed to power handheld devices."
+	icon_state = "m_hy"
+	charge = 3600
+	maxcharge = 3600
+	charge_amount = 20
+	origin_tech = list(TECH_POWER = 3)
+
+/obj/item/cell/device/super/empty
+	charge = 0

@@ -312,8 +312,6 @@
 	sprite_sheets = null
 
 /obj/item/clothing/gloves/gauntlets/rig/focalpoint
-	icon = 'icons/inventory/hands/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/hands/mob_vr.dmi'
 	icon_state = "techno_rig"
 	siemens_coefficient = 0
 	// No animal people sprites for these yet, sad times
@@ -370,8 +368,6 @@
 	sprite_sheets = null
 
 /obj/item/clothing/gloves/gauntlets/rig/hephaestus
-	icon = 'icons/inventory/hands/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/hands/mob_vr.dmi'
 	icon_state = "ihs_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
@@ -479,8 +475,6 @@
 	sprite_sheets_obj = null
 
 /obj/item/clothing/gloves/gauntlets/rig/baymed
-	icon = 'icons/inventory/hands/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/hands/mob_vr.dmi'
 	icon_state = "medical_rig_bay"
 	item_state = null
 	sprite_sheets = null
@@ -543,8 +537,6 @@
 	sprite_sheets_obj = null
 
 /obj/item/clothing/gloves/gauntlets/rig/bayeng
-	icon = 'icons/inventory/hands/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/hands/mob_vr.dmi'
 	icon_state = "engineering_rig_bay"
 	item_state = null
 	sprite_sheets = null
@@ -605,8 +597,6 @@
 	sprite_sheets_obj = null
 
 /obj/item/clothing/gloves/gauntlets/rig/pathfinder
-	icon = 'icons/inventory/hands/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/hands/mob_vr.dmi'
 	icon_state = "pathfinder_rig_bay"
 	item_state = null
 	sprite_sheets = null

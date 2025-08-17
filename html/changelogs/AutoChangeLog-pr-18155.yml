@@ -1,7 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Multiple buckling related fixes"
-  - bugfix: "Wizard forcewall is now visible"
-  - bugfix: "Mime forcewall is now invisible"
-  - bugfix: "Tiny animals with hands can no longer pick themselves up, causing the universe to collapse."
