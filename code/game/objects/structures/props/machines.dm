@@ -187,6 +187,12 @@
 /obj/structure/prop/machine/core/allinone
 	icon_state = "allinone"
 
+/obj/structure/prop/machine/core/bus
+	icon_state = "bus"
+
+/obj/structure/prop/machine/core/comm_server
+	icon_state = "comm_server"
+
 /**
  * Possible 'state' options for change_state(state) are:
  * down: In the ground, glowing
