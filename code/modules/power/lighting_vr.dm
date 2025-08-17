@@ -68,7 +68,7 @@
 /obj/machinery/light_construct/floortube
 	name = "floor light fixture frame"
 	desc = "A floor light fixture under construction."
-	icon = 'icons/obj/lighting_vr.dmi'
+	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floortube-construct-stage1"
 	stage = 1
 	anchored = FALSE
@@ -152,7 +152,7 @@
 
 
 /obj/machinery/light/small/fairylights
-	icon = 'icons/obj/lighting_vr.dmi'
+	icon = 'icons/obj/lighting.dmi'
 	icon_state = "fairy_lights1"
 	base_state = "fairy_lights"
 	desc = "A set of lights on a long string of wire, anchored to the walls."
@@ -240,7 +240,7 @@
 	init_brightness_range = 6
 
 /obj/machinery/light/small/torch
-	icon = 'icons/obj/lighting_vr.dmi'
+	icon = 'icons/obj/lighting.dmi'
 	name = "wall torch"
 	icon_state = "torch1"
 	base_state = "torch"
