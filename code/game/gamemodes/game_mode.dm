@@ -369,7 +369,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	if(escaped_on_pod_5 > 0)
 		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
 
-	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
+	// send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
 	SSwebhooks.send(
 		WEBHOOK_ROUNDEND,
 		list(
@@ -502,21 +502,23 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 			continue //Happy connected client
 		for(var/mob/observer/dead/D in GLOB.dead_mob_list)
-			if(D.mind && (D.mind.original == L || D.mind.current == L))
-				if(L.stat == DEAD)
-					if(L.suiciding)	//Suicider
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
-						continue //Disconnected client
+			if(D.mind)
+				var/mob/living/original = D.mind.original_character?.resolve()
+				if((original && original == L) || D.mind.current == L)
+					if(L.stat == DEAD)
+						if(L.suiciding)	//Suicider
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
+							continue //Disconnected client
+						else
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
+							continue //Dead mob, ghost abandoned
 					else
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
-						continue //Dead mob, ghost abandoned
-				else
-					if(D.can_reenter_corpse)
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Adminghosted"))])<br>"
-						continue //Lolwhat
-					else
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Ghosted"))])<br>"
-						continue //Ghosted while alive
+						if(D.can_reenter_corpse)
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Adminghosted"))])<br>"
+							continue //Lolwhat
+						else
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Ghosted"))])<br>"
+							continue //Ghosted while alive
 
 	msg = span_notice(msg)// close the span from right at the top
 

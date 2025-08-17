@@ -60,8 +60,8 @@
 		recipe = first_atmos
 
 /obj/item/pipe_dispenser/Destroy()
-	qdel_null(spark_system)
-	qdel_null(tool)
+	QDEL_NULL(spark_system)
+	QDEL_NULL(tool)
 	return ..()
 
 /obj/item/pipe_dispenser/attack_self(mob/user)

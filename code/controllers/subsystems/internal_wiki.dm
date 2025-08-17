@@ -6,12 +6,10 @@
 SUBSYSTEM_DEF(internal_wiki)
 	name = "Wiki"
 	wait = 1
-	//dependencies = list(
-	//	/datum/controller/subsystem/chemistry,
-	//	/datum/controller/subsystem/plants,
-	//	/datum/controller/subsystem/supply
-	//)
-	init_stage = INITSTAGE_LAST
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/supply
+	)
 	flags = SS_NO_FIRE
 
 	VAR_PRIVATE/list/pages = list()

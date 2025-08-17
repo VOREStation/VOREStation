@@ -26,7 +26,7 @@
 	for(var/obj/structure/cable/C in src.loc)
 		qdel(C)
 	. = ..()
-	for(var/datum/tgui_module/rcon/R in world)
+	for(var/datum/tgui_module/rcon/R in SStgui.all_uis)
 		R.FindDevices()
 
 /obj/machinery/power/breakerbox/Initialize(mapload)

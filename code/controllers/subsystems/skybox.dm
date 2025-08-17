@@ -2,8 +2,7 @@
 //Exists to handle a few global variables that change enough to justify this. Technically a parallax, but it exhibits a skybox effect.
 SUBSYSTEM_DEF(skybox)
 	name = "Space skybox"
-	init_stage = INITSTAGE_LAST
-	flags = SS_NO_FIRE
+	flags = SS_NO_FIRE | SS_NO_INIT
 	var/static/list/skybox_cache = list()
 
 	var/static/mutable_appearance/normal_space
@@ -88,9 +87,6 @@ SUBSYSTEM_DEF(skybox)
 		mapedge_cache["[dir]"] = MA
 
 	. = ..()
-
-/datum/controller/subsystem/skybox/Initialize()
-	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
 	if(!initialized)

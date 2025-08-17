@@ -148,7 +148,7 @@
 	if(!owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
 	else if(!istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
-		qdel_null(owner.ability_master)
+		QDEL_NULL(owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
 
 //Clears up our verbs. Used when rebuilding our verbs list..
@@ -167,7 +167,7 @@
 	if(!owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master(owner)
 	else if(istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
-		qdel_null(owner.ability_master)
+		QDEL_NULL(owner.ability_master)
 		owner.ability_master = new /obj/screen/movable/ability_master(owner)
 	clear_shadekin_abilities()
 

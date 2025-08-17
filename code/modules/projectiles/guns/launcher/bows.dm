@@ -124,7 +124,7 @@
 	desc = "An energy bow, capable of producing arrows from an internal power supply."
 
 /obj/item/gun/launcher/crossbow/bow/hardlight/unload(mob/user)
-	qdel_null(bolt)
+	QDEL_NULL(bolt)
 	update_icon()
 
 /obj/item/gun/launcher/crossbow/bow/hardlight/attack_self(mob/living/user)

@@ -1,8 +1,6 @@
 /obj/item/clothing/accessory/jacket/altevian
 	name = "Altevian Hegemony Civilian Jacket"
 	desc = "A form fitting half-jacket that leaves ones body exposed to the elements. This attire is great for those summer days, or if you're someone that runs a high internal temperature."
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "altevian-jacket-civ"
 	item_state = "altevian-jacket-civ"
 	overlay_state = "altevian-jacket-civ"
@@ -47,8 +45,6 @@
 /obj/item/clothing/accessory/scarf/altevian
 	name = "Blue Comfortable Scarf"
 	desc = "A soft silk like scarf made of synthetic material. It's soft to the touch."
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "altevian-scarf-blue"
 	item_state = "altevian-scarf-blue"
 	overlay_state = "altevian-scarf-blue"
