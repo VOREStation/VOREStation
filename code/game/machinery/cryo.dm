@@ -300,7 +300,7 @@
 		M.client.eye = src
 	M.stop_pulling()
 	M.loc = src
-	M.ExtinguishMob()
+	M.extinguish_mob()
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M

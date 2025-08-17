@@ -73,7 +73,7 @@
 			if(!istype(Tar))
 				return
 			Tar.adjust_fire_stacks(10)
-			Tar.IgniteMob()
+			Tar.ignite_mob()
 			Tar.visible_message(span_danger("[target] bursts into flames!"))
 
 		if("lightning_strike")

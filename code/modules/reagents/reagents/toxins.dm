@@ -135,7 +135,7 @@
 		if(prob(10))
 			to_chat(M, span_critical("You feel something boiling within you!"))
 			spawn(rand(30, 60))
-				M.IgniteMob()
+				M.ignite_mob()
 
 /datum/reagent/toxin/lead
 	name = REAGENT_LEAD
@@ -584,7 +584,7 @@
 		to_chat(M, span_warning("Your veins feel like they're on fire!"))
 		M.adjust_fire_stacks(0.1)
 	else if(prob(5))
-		M.IgniteMob()
+		M.ignite_mob()
 		to_chat(M, span_critical("Some of your veins rupture, the exposed blood igniting!"))
 
 /datum/reagent/condensedcapsaicin/venom
