@@ -171,3 +171,9 @@
 		if(B)
 			balloon_alert(user, "\The [W] burns the blood in \the [src].")
 			B.changling_blood_test(reagents)
+
+/obj/item/reagent_containers/AltClick(mob/user)
+	. = ..()
+	if(!Adjacent(user))
+		return
+	set_APTFT()
