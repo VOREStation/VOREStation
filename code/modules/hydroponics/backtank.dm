@@ -136,7 +136,7 @@
 	item_state = "mister"
 	w_class = ITEMSIZE_LARGE
 	amount_per_transfer_from_this = 50
-	possible_transfer_amounts = list(50)
+	max_transfer_amount = null
 	volume = 500
 	item_flags = NOBLUDGEON
 	slot_flags = NONE
@@ -187,7 +187,7 @@
 	icon_state = "misterjani"
 	item_state = "misterjani"
 	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = list(5,10)
+	max_transfer_amount = 10
 	spray_size = 4
 
 /*
@@ -216,7 +216,7 @@
 	icon_state = "mistersec"
 	item_state = "mistersec"
 	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = list(5,10)
+	max_transfer_amount = 10
 	spray_size = 6
 
 /*
@@ -252,7 +252,7 @@
 	w_class = ITEMSIZE_HUGE
 	volume = 2000
 	amount_per_transfer_from_this = 100
-	possible_transfer_amounts = list(75,100,150)
+	max_transfer_amount = 150
 
 /*
  * Atmos tank
@@ -282,7 +282,7 @@
 	w_class = ITEMSIZE_HUGE
 	volume = 200
 	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = list(5,10)
+	max_transfer_amount = 10
 	spray_size = null
 
 /obj/item/reagent_containers/spray/mister/atmos/Spray_at(atom/A as mob|obj)

@@ -11,7 +11,7 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "emptycondiment"
 	flags = OPENCONTAINER
-	possible_transfer_amounts = list(1,5,10)
+	max_transfer_amount = 10
 	center_of_mass_x = 16
 	center_of_mass_y = 6
 	volume = 50
@@ -241,7 +241,8 @@
 	reagents.add_reagent(REAGENT_ID_SPRINKLES, 50)
 
 /obj/item/reagent_containers/food/condiment/small
-	possible_transfer_amounts = list(1,20)
+	max_transfer_amount = 20
+	min_transfer_amount = 1
 	amount_per_transfer_from_this = 1
 	volume = 20
 	center_of_mass_x = 0
@@ -297,7 +298,8 @@
 /obj/item/reagent_containers/food/condiment/small/packet
 	icon_state = "packet_small"
 	w_class = ITEMSIZE_TINY
-	possible_transfer_amounts = "1;5;10"
+	max_transfer_amount = 5
+	min_transfer_amount = 1
 	amount_per_transfer_from_this = 1
 	volume = 5
 
@@ -542,7 +544,7 @@
 	name = "space spices"
 	desc = "An exotic blend of spices for cooking. Definitely not worms."
 	icon_state = "spacespicebottle"
-	possible_transfer_amounts = list(1,40) //for clown turning the lid off
+	max_transfer_amount = 40
 	amount_per_transfer_from_this = 1
 	volume = 40
 

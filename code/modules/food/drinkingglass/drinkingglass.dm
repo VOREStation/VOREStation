@@ -22,7 +22,7 @@
 	center_of_mass_y = 10
 
 	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = list(5,10,15,30)
+	max_transfer_amount = 30
 	flags = OPENCONTAINER
 
 	matter = list(MAT_GLASS = 60)

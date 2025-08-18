@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items_vr.dmi'
 	icon_state = "windowsealant"
 	item_state = "spraycan"
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 80
 
 /obj/item/reagent_containers/spray/windowsealant/Initialize(mapload)
