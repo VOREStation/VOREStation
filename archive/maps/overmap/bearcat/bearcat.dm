@@ -22,6 +22,11 @@
 	landing_area = /area/shuttle/escape_pod1/centcom
 	name = "Communications Relay"
 
+/obj/effect/mapinfo/sector/abandoned
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "ore2"
+	landing_area = /area/shuttle/escape_pod2/centcom
+	name = "Abandoned Outpost"
 
 /area/ship/scrap
 	name = "\improper Generic Ship"
