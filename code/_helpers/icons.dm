@@ -369,18 +369,22 @@
 	return composite
 
 GLOBAL_LIST_EMPTY(icon_state_lists)
-/proc/cached_icon_states(var/icon/I)
+/// Gets the cached icon_state for the provided icon (only cached if its a file).
+/// mode=0 will only show the sub-states ("open 0,0" and so on)
+/// mode=1 will show the main state names ("open")
+/// mode=2 will show all of the states
+/proc/cached_icon_states(icon/I, mode=1)
 	if(!I)
 		return list()
 	var/key = I
 	var/returnlist = GLOB.icon_state_lists[key]
 	if(!returnlist)
-		returnlist = icon_states(I)
+		returnlist = icon_states(I, mode)
 		if(isfile(I)) // It's something that will stick around
 			GLOB.icon_state_lists[key] = returnlist
 	return returnlist
 
-/proc/expire_states_cache(var/key)
+/proc/expire_states_cache(key)
 	if(GLOB.icon_state_lists[key])
 		GLOB.icon_state_lists -= key
 		return TRUE

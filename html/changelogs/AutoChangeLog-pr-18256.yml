@@ -1,4 +1,0 @@
-author: "Kash"
-delete-after: True
-changes:
-  - code_imp: "Chat spritesheet now instantly loads, preventing a double generation on slower CPUs"
