@@ -7,7 +7,7 @@
 /obj/machinery/atmospherics/unary/freezer
 	name = "gas cooling system"
 	desc = "Cools gas when connected to pipe network. Can be filled by hose with coolant to increase efficiency."
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "freezer_0"
 	density = TRUE
 	anchored = TRUE

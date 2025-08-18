@@ -1,7 +1,7 @@
 /obj/machinery/meter
 	name = "meter"
 	desc = "It measures something."
-	icon = 'icons/obj/meter_vr.dmi'
+	icon = 'icons/obj/meter.dmi'
 	icon_state = "meterX"
 	var/obj/machinery/atmospherics/pipe/target = null
 	var/list/pipes_on_turf = list()

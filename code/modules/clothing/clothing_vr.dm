@@ -26,13 +26,7 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/hands/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/hands/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/hands/mob_vr_werebeast.dmi')
-
-/obj/item/clothing/ears
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/ears/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/ears/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/ears/mob_vr_werebeast.dmi')
+		SPECIES_WEREBEAST = 'icons/inventory/hands/mob_werebeast.dmi')
 
 /obj/item/clothing/relaymove(var/mob/living/user,var/direction)
 

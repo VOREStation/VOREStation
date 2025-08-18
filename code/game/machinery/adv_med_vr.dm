@@ -1,9 +1,9 @@
 /obj/machinery/bodyscanner
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_open"
 
 /obj/machinery/body_scanconsole
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_terminal_off"
 	density = TRUE
 
