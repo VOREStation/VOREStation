@@ -20,3 +20,15 @@
 	name = "reinforced floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "reinforced"
+
+/turf/unsimulated/floor/wood
+	icon = 'icons/turf/floors_vr.dmi'
+	icon_state = "wood"
+
+/turf/unsimulated/floor/grass
+	icon = 'icons/turf/outdoors.dmi'
+	icon_state = "grass-dark0"
+
+/turf/unsimulated/floor/circuit
+	icon = 'icons/turf/flooring/circuit.dmi'
+	icon_state = "bcircuit"
