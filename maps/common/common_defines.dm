@@ -217,5 +217,5 @@ GLOBAL_LIST_EMPTY(all_stellar_delights)
 	name = "Virgo 5"
 	scanner_desc = "Mahir, or Virgo 5, is the fifth planet from the star Virgo-Erigone. It suffers from Kessler Syndrome, making landing difficult and only possible at specific time intervals. The surface sits well below inhabitable temperatures and the atmosphere consists primarily of carbon dioxide."
 	skybox_icon = 'icons/skybox/virgo5.dmi'
-	skybox_icon_state = 'v5'
+	skybox_icon_state = "v5"
 	unknown_name = "unknown planet"

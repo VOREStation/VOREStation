@@ -18,6 +18,6 @@
 
 /turf/unsimulated/wall/planetary/virgo3b_unpassable
 	desc = "You can't go there!"
-	icon = 'icons/turf/flooring/plating_vr.dmi'
+	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = ""
 	name = "impassible landscape"

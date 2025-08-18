@@ -62,7 +62,7 @@
 /obj/structure/prop/cryopod
 	name = "cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation. This one is room temperature."
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryopod_0"
 
 /obj/structure/prop/grid_checker
