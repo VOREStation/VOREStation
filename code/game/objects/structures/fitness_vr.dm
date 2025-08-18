@@ -1,7 +1,7 @@
 /obj/structure/fitness/boxing_ropes
 	name = "ropes"
 	desc = "Firm yet springy, perhaps this could be useful!"
-	icon = 'icons/obj/fitness_vr.dmi'
+	icon = 'icons/obj/fitness.dmi'
 	icon_state = "ropes"
 	density = TRUE
 	throwpass = TRUE
@@ -34,7 +34,7 @@
 /obj/structure/fitness/boxing_ropes/turnbuckle
 	name = "turnbuckle"
 	desc = "A sturdy post that looks like it could support even the most heaviest of heavy weights!"
-	icon = 'icons/obj/fitness_vr.dmi'
+	icon = 'icons/obj/fitness.dmi'
 	icon_state = "turnbuckle"
 	layer = WINDOW_LAYER
 

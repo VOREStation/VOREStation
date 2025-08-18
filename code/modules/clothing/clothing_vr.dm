@@ -26,13 +26,7 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/hands/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/hands/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/hands/mob_vr_werebeast.dmi')
-
-/obj/item/clothing/ears
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/ears/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/ears/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/ears/mob_vr_werebeast.dmi')
+		SPECIES_WEREBEAST = 'icons/inventory/hands/mob_werebeast.dmi')
 
 /obj/item/clothing/relaymove(var/mob/living/user,var/direction)
 
@@ -83,7 +77,7 @@
 		SPECIES_SERGAL 		= 'icons/inventory/face/mob_vr_sergal.dmi',
 		SPECIES_NEVREAN 	= 'icons/inventory/face/mob_vr_nevrean.dmi',
 		SPECIES_ZORREN_HIGH	= 'icons/inventory/face/mob_vr_fox.dmi',
-		SPECIES_ZORREN_FLAT = 'icons/inventory/face/mob_vr_fennec.dmi',
+		SPECIES_ZORREN_FLAT = 'icons/inventory/face/mob_vr_fox.dmi',
 		SPECIES_AKULA 		= 'icons/inventory/face/mob_vr_akula.dmi',
 		SPECIES_VULPKANIN 	= 'icons/inventory/face/mob_vr_vulpkanin.dmi',
 		SPECIES_XENOCHIMERA	= 'icons/inventory/face/mob_vr_tajaran.dmi',
