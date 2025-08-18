@@ -214,8 +214,6 @@
 /obj/item/clothing/glasses/omnihud/visor
 	name = "AR visor"
 	desc = "The VZR-AR are a product based upon the classic AR Glasses, just more fashionable."
-	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
-	icon = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "visor_CIV"
 	item_state = "visor_CIV"
 
@@ -354,8 +352,6 @@
 /obj/item/clothing/glasses/hud/security/eyepatch2
 	name = "Security Hudpatch MKII"
 	desc = "An eyepatch with built in scanners, that analyzes those in view and provides accurate data about their ID status and security records. This updated model offers better ergonomics and updated sensors."
-	icon = 'icons/inventory/eyes/item_vr.dmi'
-	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "sec_eyepatch"
 	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
 	body_parts_covered = 0
