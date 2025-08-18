@@ -9,7 +9,7 @@
 
 /datum/supply_pack/randomised/recreation
 	group = "Recreation"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/recreation/foam_weapons
 	name = "Foam Weapon Crate"

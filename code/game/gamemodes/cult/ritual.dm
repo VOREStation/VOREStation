@@ -69,15 +69,15 @@ GLOBAL_LIST_INIT(rnwords, list("ire","ego","nahlizet","certum","veri","jatkaa","
 	. = ..()
 	blood_image = image(loc = src)
 	blood_image.override = 1
-	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
-		if(AI.client)
-			AI.client.images += blood_image
+	for(var/mob/living/silicon/ai/our_ai in GLOB.player_list)
+		if(our_ai.client)
+			our_ai.client.images += blood_image
 	GLOB.rune_list.Add(src)
 
 /obj/effect/rune/Destroy()
-	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
-		if(AI.client)
-			AI.client.images -= blood_image
+	for(var/mob/living/silicon/ai/our_ai in GLOB.player_list)
+		if(our_ai.client)
+			our_ai.client.images -= blood_image
 	qdel(blood_image)
 	blood_image = null
 	GLOB.rune_list.Remove(src)

@@ -5,7 +5,7 @@
 
 /obj/structure/closet/secure_closet/engineering_chief_wardrobe
 	name = "chief engineer's wardrobe"
-	req_access = list(access_ce)
+	req_access = list(ACCESS_CE)
 	closet_appearance = /decl/closet_appearance/secure_closet/engineering/ce
 
 	starts_with = list(

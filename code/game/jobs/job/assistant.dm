@@ -25,7 +25,7 @@
 
 /datum/job/assistant/get_access()
 	if(CONFIG_GET(flag/assistant_maint))
-		return list(access_maint_tunnels)
+		return list(ACCESS_MAINT_TUNNELS)
 	else
 		return list()
 
@@ -142,7 +142,7 @@
 
 /datum/job/intern/get_access()
 	if(CONFIG_GET(flag/assistant_maint))
-		return list(access_maint_tunnels)
+		return list(ACCESS_MAINT_TUNNELS)
 	else
 		return list()
 

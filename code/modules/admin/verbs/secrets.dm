@@ -118,7 +118,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 				if(H.wear_id)
 					var/obj/item/card/id/id = H.get_idcard()
 					for(var/A in id.GetAccess())
-						if(A == access_security)
+						if(A == ACCESS_SECURITY)
 							security++
 				if(!security)
 					//strip their stuff before they teleport into a cell :downs:

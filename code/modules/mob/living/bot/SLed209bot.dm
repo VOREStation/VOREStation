@@ -19,8 +19,8 @@
 
 	stun_strength = 10
 	xeno_harm_strength = 9
-	req_one_access = list(access_research, access_robotics)
-	botcard_access = list(access_research, access_robotics, access_xenobiology, access_xenoarch, access_tox, access_tox_storage, access_maint_tunnels)
+	req_one_access = list(ACCESS_RESEARCH, ACCESS_ROBOTICS)
+	botcard_access = list(ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_XENOARCH, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_MAINT_TUNNELS)
 	retaliates = FALSE
 	var/xeno_stun_strength = 6
 

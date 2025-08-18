@@ -7,19 +7,19 @@
 /datum/map/tether/default_internal_channels()
 	return list(
 		num2text(PUB_FREQ) = list(),
-		num2text(AI_FREQ)  = list(access_synth),
+		num2text(AI_FREQ)  = list(ACCESS_SYNTH),
 		num2text(ENT_FREQ) = list(),
-		num2text(ERT_FREQ) = list(access_cent_specops),
-		num2text(COMM_FREQ)= list(access_heads),
-		num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
-		num2text(MED_FREQ) = list(access_medical_equip),
-		num2text(MED_I_FREQ)=list(access_medical_equip),
-		num2text(SEC_FREQ) = list(access_security),
-		num2text(SEC_I_FREQ)=list(access_security),
-		num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
-		num2text(SUP_FREQ) = list(access_cargo),
-		num2text(SRV_FREQ) = list(access_janitor, access_hydroponics),
-		num2text(EXP_FREQ) = list(access_explorer)
+		num2text(ERT_FREQ) = list(ACCESS_CENT_SPECOPS),
+		num2text(COMM_FREQ)= list(ACCESS_HEADS),
+		num2text(ENG_FREQ) = list(ACCESS_ENGINE_EQUIP, ACCESS_ATMOSPHERICS),
+		num2text(MED_FREQ) = list(ACCESS_MEDICAL_EQUIP),
+		num2text(MED_I_FREQ)=list(ACCESS_MEDICAL_EQUIP),
+		num2text(SEC_FREQ) = list(ACCESS_SECURITY),
+		num2text(SEC_I_FREQ)=list(ACCESS_SECURITY),
+		num2text(SCI_FREQ) = list(ACCESS_TOX,ACCESS_ROBOTICS,ACCESS_XENOBIOLOGY),
+		num2text(SUP_FREQ) = list(ACCESS_CARGO),
+		num2text(SRV_FREQ) = list(ACCESS_JANITOR, ACCESS_HYDROPONICS),
+		num2text(EXP_FREQ) = list(ACCESS_EXPLORER)
 	)
 
 /obj/item/multitool/station_buffered

@@ -2,10 +2,10 @@
 
 var/const/EXPLORER 			=(1<<14)
 
-var/const/access_explorer = 43
+var/const/ACCESS_EXPLORER = 43
 
 /datum/access/explorer
-	id = access_explorer
+	id = ACCESS_EXPLORER
 	desc = "Explorer"
 	region = ACCESS_REGION_GENERAL
 
@@ -27,8 +27,8 @@ var/const/access_explorer = 43
 	supervisors = "the Research Director"
 	selection_color =  "#633D63"
 	economic_modifier = 4
-	access = list(access_explorer, access_research)
-	minimal_access = list(access_explorer, access_research)
+	access = list(ACCESS_EXPLORER, ACCESS_RESEARCH)
+	minimal_access = list(ACCESS_EXPLORER, ACCESS_RESEARCH)
 
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 	job_description = "An Explorer searches for interesting things on the surface of Sif, and returns them to the station."
@@ -37,16 +37,16 @@ var/const/access_explorer = 43
 		JOB_PILOT = /decl/hierarchy/outfit/job/pilot)
 
 /datum/job/rd
-	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
-						access_tox_storage, access_teleporter, access_sec_doors,
-						access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-						access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch,
-						access_network, access_maint_tunnels, access_explorer, access_eva, access_external_airlocks)
-	minimal_access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
-						access_tox_storage, access_teleporter, access_sec_doors,
-						access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-						access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch,
-						access_network, access_maint_tunnels, access_explorer, access_eva, access_external_airlocks)
+	access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
+						ACCESS_TOX_STORAGE, ACCESS_TELEPORTER, ACCESS_SEC_DOORS,
+						ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD, ACCESS_TECH_STORAGE,
+						ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_XENOARCH,
+						ACCESS_NETWORK, ACCESS_MAINT_TUNNELS, ACCESS_EXPLORER, ACCESS_EVA, ACCESS_EXTERNAL_AIRLOCKS)
+	minimal_access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
+						ACCESS_TOX_STORAGE, ACCESS_TELEPORTER, ACCESS_SEC_DOORS,
+						ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD, ACCESS_TECH_STORAGE,
+						ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_XENOARCH,
+						ACCESS_NETWORK, ACCESS_MAINT_TUNNELS, ACCESS_EXPLORER, ACCESS_EVA, ACCESS_EXTERNAL_AIRLOCKS)
 
 /*
 	alt_titles = list(

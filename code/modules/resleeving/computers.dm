@@ -10,7 +10,7 @@
 	light_color = "#315ab4"
 	bubble_icon = "medical"
 	circuit = /obj/item/circuitboard/resleeving_control
-	req_access = list(access_heads) //Only used for record deletion right now.
+	req_access = list(ACCESS_HEADS) //Only used for record deletion right now.
 	var/list/pods = null //Linked grower pods.
 	var/list/spods = null
 	var/list/sleevers = null //Linked resleeving booths.

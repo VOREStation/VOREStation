@@ -221,13 +221,13 @@
 	icon_state = "blood"
 	vend_delay = 7
 	idle_power_usage = 211
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 	products = list(/obj/item/reagent_containers/blood/prelabeled/APlus = 3,/obj/item/reagent_containers/blood/prelabeled/AMinus = 3,
 					/obj/item/reagent_containers/blood/prelabeled/BPlus = 3,/obj/item/reagent_containers/blood/prelabeled/BMinus = 3,
 					/obj/item/reagent_containers/blood/prelabeled/OPlus = 2,/obj/item/reagent_containers/blood/prelabeled/OMinus = 5,
 					/obj/item/reagent_containers/blood/empty = 5)
 	contraband = list(/obj/item/reagent_containers/glass/bottle/stoxin = 2)
-	req_log_access = access_cmo
+	req_log_access = ACCESS_CMO
 	has_logs = 1
 
 //Airlock antitox vendor
@@ -238,7 +238,7 @@
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/reagent_containers/pill/airlock = 20)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 2)
-	req_log_access = access_cmo
+	req_log_access = ACCESS_CMO
 	has_logs = 1
 
 /obj/machinery/seed_storage/brig

@@ -5,7 +5,7 @@
 
 /obj/structure/closet/secure_closet/hos_wardrobe
 	name = "head of security's locker"
-	req_access = list(access_hos)
+	req_access = list(ACCESS_HOS)
 	closet_appearance = /decl/closet_appearance/secure_closet/security/hos
 
 	starts_with = list(

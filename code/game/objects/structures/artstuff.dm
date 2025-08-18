@@ -354,7 +354,7 @@
 	desc = "For masterpieces hand-picked by the librarian."
 	desc_with_canvas = "A masterpiece hand-picked by the librarian, supposedly."
 	persistence_id = "library"
-	req_one_access = list(access_library)
+	req_one_access = list(ACCESS_LIBRARY)
 	curator = JOB_LIBRARIAN
 
 /obj/structure/sign/painting/chapel_secure
@@ -362,7 +362,7 @@
 	desc = "For masterpieces hand-picked by the chaplain."
 	desc_with_canvas = "A masterpiece hand-picked by the chaplain, supposedly."
 	persistence_id = "chapel"
-	req_one_access = list(access_chapel_office)
+	req_one_access = list(ACCESS_CHAPEL_OFFICE)
 	curator = JOB_CHAPLAIN
 
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
@@ -370,7 +370,7 @@
 	desc = "For art pieces deemed too subversive or too illegal to be shared outside of librarians."
 	desc_with_canvas = "A painting hung away from lesser minds."
 	persistence_id = "library_private"
-	req_one_access = list(access_library)
+	req_one_access = list(ACCESS_LIBRARY)
 	curator = JOB_LIBRARIAN
 
 /obj/structure/sign/painting/away_areas // for very hard-to-get-to areas

@@ -215,9 +215,9 @@
 			setMenuState(ui.user, COMM_SCREEN_MAIN)
 			return
 		// Login function.
-		if(check_access(ui.user, access_heads))
+		if(check_access(ui.user, ACCESS_HEADS))
 			authenticated = COMM_AUTHENTICATION_MIN
-		if(check_access(ui.user, access_captain))
+		if(check_access(ui.user, ACCESS_CAPTAIN))
 			authenticated = COMM_AUTHENTICATION_MAX
 			var/obj/item/card/id = ui.user.GetIdCard()
 			if(istype(id))

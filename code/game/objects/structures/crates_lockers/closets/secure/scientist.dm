@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/scientist
 	name = "scientist's locker"
-	req_access = list(access_tox_storage)
+	req_access = list(ACCESS_TOX_STORAGE)
 	closet_appearance = /decl/closet_appearance/secure_closet/science
 
 	starts_with = list(
@@ -21,9 +21,9 @@
 	return ..()
 
 
-/obj/structure/closet/secure_closet/RD
+/obj/structure/closet/secure_closet/research_director
 	name = "research director's locker"
-	req_access = list(access_rd)
+	req_access = list(ACCESS_RD)
 	closet_appearance = /decl/closet_appearance/secure_closet/science/rd
 
 	starts_with = list(
@@ -58,7 +58,7 @@
 
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist Locker"
-	req_access = list(access_tox_storage)
+	req_access = list(ACCESS_TOX_STORAGE)
 	closet_appearance = /decl/closet_appearance/secure_closet/science/xenoarch
 
 	starts_with = list(

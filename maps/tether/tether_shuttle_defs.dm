@@ -11,7 +11,7 @@
 /obj/machinery/computer/shuttle_control/multi/mercenary
 	name = "vessel control console"
 	shuttle_tag = "Mercenary"
-	req_one_access = list(access_syndicate)
+	req_one_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/shuttle_control/multi/ninja
 	name = "vessel control console"
@@ -21,17 +21,17 @@
 /obj/machinery/computer/shuttle_control/multi/specops
 	name = "vessel control console"
 	shuttle_tag = "NDV Phantom"
-	req_one_access = list(access_cent_specops)
+	req_one_access = list(ACCESS_CENT_SPECOPS)
 
 /obj/machinery/computer/shuttle_control/multi/trade
 	name = "vessel control console"
 	shuttle_tag = "Trade"
-	req_one_access = list(access_trader)
+	req_one_access = list(ACCESS_TRADER)
 
 /obj/machinery/computer/shuttle_control/surface_mining_outpost
 	name = "surface mining outpost shuttle control console"
 	shuttle_tag = "Mining Outpost"
-	req_one_access = list(access_mining)
+	req_one_access = list(ACCESS_MINING)
 	ai_control = TRUE
 
 ////////////////////////////////////////
@@ -49,7 +49,7 @@
 /obj/machinery/computer/shuttle_control/explore/excursion
 	name = "short jump console"
 	shuttle_tag = "Excursion Shuttle"
-	req_one_access = list(access_pilot)
+	req_one_access = list(ACCESS_PILOT)
 
 ////////////////////////////////////////
 ////////      Tour Bus     /////////////
@@ -66,7 +66,7 @@
 /obj/machinery/computer/shuttle_control/explore/tourbus
 	name = "short jump console"
 	shuttle_tag = "Tour Bus"
-	req_one_access = list(access_pilot)
+	req_one_access = list(ACCESS_PILOT)
 
 ////////////////////////////////////////
 ////////      Medivac      /////////////

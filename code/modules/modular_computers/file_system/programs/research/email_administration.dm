@@ -9,7 +9,7 @@
 	requires_ntnet = TRUE
 	available_on_ntnet = TRUE
 	tgui_id = "NtosEmailAdministration"
-	required_access = access_network
+	required_access = ACCESS_NETWORK
 	category = PROG_ADMIN
 
 	var/datum/computer_file/data/email_account/current_account = null
@@ -67,7 +67,7 @@
 
 	// High security - can only be operated when the user has an ID with access on them.
 	var/obj/item/card/id/I = ui.user.GetIdCard()
-	if(!istype(I) || !(access_network in I.GetAccess()))
+	if(!istype(I) || !(ACCESS_NETWORK in I.GetAccess()))
 		return TRUE
 
 	switch(action)

@@ -13,7 +13,7 @@
 	icon_screen = "explosive"
 	light_color = "#315ab4"
 	circuit = /obj/item/circuitboard/body_designer
-	req_access = list(access_medical) // Used for loading people's designs
+	req_access = list(ACCESS_MEDICAL) // Used for loading people's designs
 	var/datum/tgui_module/appearance_changer/body_designer/designer_gui
 	var/obj/item/disk/body_record/disk = null
 	var/selected_record = FALSE

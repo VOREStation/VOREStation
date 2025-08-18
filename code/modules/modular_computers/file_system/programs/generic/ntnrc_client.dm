@@ -84,7 +84,7 @@
 				if(channel)
 					channel.remove_client(src) // We shouldn't be in channel's user list, but just in case...
 				return TRUE
-			if(isliving(ui.user) && can_run(ui.user, TRUE, access_network))
+			if(isliving(ui.user) && can_run(ui.user, TRUE, ACCESS_NETWORK))
 				for(var/datum/ntnet_conversation/chan as anything in ntnet_global.chat_channels)
 					chan.remove_client(src)
 				netadmin_mode = TRUE
@@ -169,7 +169,7 @@
 
 /datum/computer_file/program/chatclient/tgui_static_data(mob/user)
 	var/list/data = list()
-	data["can_admin"] = can_run(user, FALSE, access_network)
+	data["can_admin"] = can_run(user, FALSE, ACCESS_NETWORK)
 	return data
 
 /datum/computer_file/program/chatclient/tgui_data(mob/user)

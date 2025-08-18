@@ -551,77 +551,77 @@
 
 		if("AI Core")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.view_core()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.view_core()
 
 		if("Show Camera List")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				var/camera = tgui_input_list(AI, "Pick Camera:", "Camera Choice", AI.get_camera_list())
-				AI.ai_camera_list(camera)
+				var/mob/living/silicon/ai/ai_user = usr
+				var/camera = tgui_input_list(ai_user, "Pick Camera:", "Camera Choice", ai_user.get_camera_list())
+				ai_user.ai_camera_list(camera)
 
 		if("Track With Camera")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				var/target_name = tgui_input_list(AI, "Pick Mob:", "Mob Choice", AI.trackable_mobs())
-				AI.ai_camera_track(target_name)
+				var/mob/living/silicon/ai/ai_user = usr
+				var/target_name = tgui_input_list(ai_user, "Pick Mob:", "Mob Choice", ai_user.trackable_mobs())
+				ai_user.ai_camera_track(target_name)
 
 		if("Toggle Camera Light")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.toggle_camera_light()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.toggle_camera_light()
 
 		if("Crew Monitoring")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.subsystem_crew_monitor()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.subsystem_crew_monitor()
 
 		if("Show Crew Manifest")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.subsystem_crew_manifest()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.subsystem_crew_manifest()
 
 		if("Show Alerts")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.subsystem_alarm_monitor()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.subsystem_alarm_monitor()
 
 		if("Announcement")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.ai_announcement()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.ai_announcement()
 
 		if("Call Emergency Shuttle")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.ai_call_shuttle()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.ai_call_shuttle()
 
 		if("State Laws")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.ai_checklaws()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.ai_checklaws()
 
 		if("PDA - Send Message")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.aiPDA.start_program(AI.aiPDA.find_program(/datum/data/pda/app/messenger))
-				AI.aiPDA.cmd_pda_open_ui(usr)
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.aiPDA.start_program(ai_user.aiPDA.find_program(/datum/data/pda/app/messenger))
+				ai_user.aiPDA.cmd_pda_open_ui(usr)
 
 		if("PDA - Show Message Log")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.aiPDA.start_program(AI.aiPDA.find_program(/datum/data/pda/app/messenger))
-				AI.aiPDA.cmd_pda_open_ui(usr)
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.aiPDA.start_program(ai_user.aiPDA.find_program(/datum/data/pda/app/messenger))
+				ai_user.aiPDA.cmd_pda_open_ui(usr)
 
 		if("Take Image")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.take_image()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.take_image()
 
 		if("View Images")
 			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
-				AI.view_images()
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.view_images()
 		else
 			return attempt_vr(src,"Click_vr",list(location,control,params))
 	return 1

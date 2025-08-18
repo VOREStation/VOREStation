@@ -5,7 +5,7 @@
 	desc = "Nothing is being built."
 	anchored = TRUE
 	density = TRUE
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/mechfab
 	speed_process = TRUE
 

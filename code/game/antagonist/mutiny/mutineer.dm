@@ -47,7 +47,7 @@ var/datum/antagonist/mutineer/mutineers
 		var/list/candidates[0]
 		for(var/mob/mutineer in GLOB.player_list)
 			if(mutineer.client.prefs.be_special & BE_MUTINEER)
-				for(var/job in command_positions - JOB_SITE_MANAGER)
+				for(var/job in GLOB.command_positions - JOB_SITE_MANAGER)
 					if(mutineer.mind && mutineer.mind.assigned_role == job)
 						candidates.Add(mutineer.mind)
 		return candidates

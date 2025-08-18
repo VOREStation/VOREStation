@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(gyrotrons)
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	desc = "It is a heavy duty industrial gyrotron suited for powering fusion reactors."
 	icon_state = "emitter-off"
-	req_access = list(access_engine)
+	req_access = list(ACCESS_ENGINE)
 	use_power = USE_POWER_IDLE
 	active_power_usage = 50000
 

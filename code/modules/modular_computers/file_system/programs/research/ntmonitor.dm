@@ -7,7 +7,7 @@
 	extended_desc = "This program monitors the local NTNet network, provides access to logging systems, and allows for configuration changes"
 	size = 12
 	requires_ntnet = TRUE
-	required_access = access_network
+	required_access = ACCESS_NETWORK
 	available_on_ntnet = TRUE
 	tgui_id = "NtosNetMonitor"
 	category = PROG_ADMIN

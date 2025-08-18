@@ -124,7 +124,7 @@
 			. = TRUE
 		if("claim")
 			if(istype(inserted_id))
-				if(access_mining_station in inserted_id.GetAccess())
+				if(ACCESS_MINING_STATION in inserted_id.GetAccess())
 					inserted_id.adjust_mining_points(machine.points)
 					machine.points = 0
 				else

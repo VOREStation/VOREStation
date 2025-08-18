@@ -89,7 +89,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Hydroponics crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/cow
 	name = "Cow crate"
@@ -97,7 +97,7 @@
 	cost = 25
 	containertype = /obj/structure/largecrate/animal/cow
 	containername = "Cow crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/goat
 	name = "Goat crate"
@@ -105,7 +105,7 @@
 	cost = 25
 	containertype = /obj/structure/largecrate/animal/goat
 	containername = "Goat crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/chicken
 	name = "Chicken crate"
@@ -113,7 +113,7 @@
 	cost = 25
 	containertype = /obj/structure/largecrate/animal/chick
 	containername = "Chicken crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/turkey
 	name = "Turkey crate"
@@ -121,7 +121,7 @@
 	cost = 25
 	containertype = /obj/structure/largecrate/animal/turkey
 	containername = "Turkey crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/seeds
 	name = "Seeds crate"
@@ -148,7 +148,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/carp
 	containername = "Seeds crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/weedcontrol
 	name = "Weed control crate"
@@ -163,7 +163,7 @@
 	cost = 45
 	containertype = /obj/structure/closet/crate/grayson
 	containername = "Weed control crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/watertank
 	name = "Water tank crate"
@@ -185,7 +185,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/carp
 	containername = "Beekeeping crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/tray
 	name = "Empty hydroponics trays"
@@ -194,7 +194,7 @@
 	containertype = /obj/structure/closet/crate/aether
 	containername = "Hydroponics tray crate"
 	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = FALSE} = 3)
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/birds
 	name = "Birds Crate"
@@ -202,7 +202,7 @@
 	cost = 200 //You're getting 22 birds. Of course it's going to be a lot!
 	containertype = /obj/structure/largecrate/birds
 	containername = "Bird crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 /datum/supply_pack/hydro/sobaka
 	name = "Sobaka crate"

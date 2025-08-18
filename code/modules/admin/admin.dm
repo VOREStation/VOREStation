@@ -713,7 +713,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Send an intercom message, like an arrivals announcement."
 	if(!check_rights(0))	return
 
-	var/channel = tgui_input_list(usr, "Channel for message:","Channel", radiochannels)
+	var/channel = tgui_input_list(usr, "Channel for message:","Channel", GLOB.radiochannels)
 
 	if(channel) //They picked a channel
 		var/sender = tgui_input_text(usr, "Name of sender (max 75):", "Announcement", "Announcement Computer")
@@ -742,7 +742,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set waitfor = FALSE //Why bother? We have some sleeps. You can leave tho!
 	if(!check_rights(0))	return
 
-	var/channel = tgui_input_list(usr, "Channel for message:","Channel", radiochannels)
+	var/channel = tgui_input_list(usr, "Channel for message:","Channel", GLOB.radiochannels)
 
 	if(!channel) //They picked a channel
 		return

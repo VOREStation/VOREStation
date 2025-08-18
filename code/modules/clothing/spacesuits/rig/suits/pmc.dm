@@ -9,7 +9,7 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/pmc
 
-	req_access = list(access_cent_specops)
+	req_access = list(ACCESS_CENT_SPECOPS)
 
 	armor = list(melee = 60, bullet = 50, laser = 35,energy = 15, bomb = 30, bio = 100, rad = 95)
 

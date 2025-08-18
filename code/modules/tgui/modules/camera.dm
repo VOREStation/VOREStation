@@ -244,10 +244,10 @@
 	// Access Based
 	if(access_based)
 		for(var/network in using_map.station_networks)
-			if(can_access_network(user, get_camera_access(network), 1))
+			if(can_ACCESS_NETWORK(user, get_camera_access(network), 1))
 				all_networks.Add(network)
 		for(var/network in using_map.secondary_networks)
-			if(can_access_network(user, get_camera_access(network), 0))
+			if(can_ACCESS_NETWORK(user, get_camera_access(network), 0))
 				all_networks.Add(network)
 	// Network Based
 	else
@@ -269,13 +269,13 @@
 			D["[ckey(C.c_tag)]"] = C
 	return D
 
-/datum/tgui_module/camera/proc/can_access_network(mob/user, network_access, station_network = 0)
+/datum/tgui_module/camera/proc/can_ACCESS_NETWORK(mob/user, network_access, station_network = 0)
 	// No access passed, or 0 which is considered no access requirement. Allow it.
 	if(!network_access)
 		return 1
 
 	if(station_network)
-		return check_access(user, network_access) || check_access(user, access_security) || check_access(user, access_heads)
+		return check_access(user, network_access) || check_access(user, ACCESS_SECURITY) || check_access(user, ACCESS_HEADS)
 	else
 		return check_access(user, network_access)
 

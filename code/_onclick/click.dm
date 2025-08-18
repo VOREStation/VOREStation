@@ -220,7 +220,7 @@
 	if((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 	else if(has_telegrip())
-		if(get_dist(src, A) > tk_maxrange)
+		if(get_dist(src, A) > TK_MAXRANGE)
 			return
 		A.attack_tk(src)
 /*

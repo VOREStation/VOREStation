@@ -3203,7 +3203,7 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/patient_c)
 "afc" = (
-/obj/structure/closet/secure_closet/CMO,
+/obj/structure/closet/secure_closet/chief_medical_officer,
 /obj/item/storage/belt/medical,
 /obj/item/flashlight/pen,
 /obj/item/clothing/accessory/stethoscope,
@@ -19565,7 +19565,7 @@
 /turf/simulated/floor/plating,
 /area/rnd/rdoffice)
 "aJk" = (
-/obj/structure/closet/secure_closet/RD,
+/obj/structure/closet/secure_closet/research_director,
 /obj/item/aicard,
 /obj/item/clothing/glasses/omnihud/rnd,
 /obj/effect/floor_decal/borderfloor{
