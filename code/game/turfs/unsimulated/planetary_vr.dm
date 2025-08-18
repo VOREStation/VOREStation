@@ -16,6 +16,8 @@
 	alpha = 0xFF
 	VIRGO3BB_SET_ATMOS
 
-//other set - for map building
-/turf/unsimulated/wall2/planetary/virgo3b_better
-	icon_state = "riveted2"
+/turf/unsimulated/wall/planetary/virgo3b_unpassable
+	desc = "You can't go there!"
+	icon = 'icons/turf/flooring/plating_vr.dmi'
+	icon_state = ""
+	name = "impassible landscape"
