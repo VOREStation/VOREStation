@@ -26,6 +26,16 @@
 /turf/unsimulated/floor/transit
 	icon = 'icons/turf/transit_vr.dmi'
 
+//Unsim turf to constantly fill the atmos in the area. Made for v5_outpost_build
+/turf/unsimulated/floor/steel/v5_snow
+	carbon_dioxide = 75
+	icon = 'icons/turf/outdoors.dmi'
+	icon_state = "snow"
+	nitrogen = 17
+	outdoors = 1
+	oxygen = 8
+	temperature = 150
+
 /obj/effect/floor_decal/transit/orange
 	icon = 'icons/turf/transit_vr.dmi'
 	icon_state = "transit_techfloororange_edges"
