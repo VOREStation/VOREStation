@@ -16,6 +16,11 @@
 	shuttle_tag = "Exploration"
 	landing_type = /area/ship/scrap/shuttle/outgoing
 
+/obj/effect/mapinfo/sector/commsrelay
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "treatment_disk"
+	landing_area = /area/shuttle/escape_pod1/centcom
+	name = "Communications Relay"
 
 
 /area/ship/scrap
