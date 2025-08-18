@@ -59,6 +59,14 @@
 	icon_state = "big_skeleton"
 	density = 0
 
+/obj/structure/prop/cryopod
+	name = "cryogenic freezer"
+	desc = "A man-sized pod for entering suspended animation. This one is room temperature."
+	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon_state = "cryopod_0"
+
+
+
 /**
  *
  * Notes on change_state

@@ -116,6 +116,10 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	icon_state = "drone_dead"
 	loot_element_path = /datum/element/lootable/surface/drone
 
+/obj/structure/loot_pile/surface/drone/large
+	icon = 'icons/mob/animal_vr64x64.dmi'
+	icon_state = "drone"
+
 // Mechaparts loot piles
 /obj/structure/loot_pile/mecha
 	name = "pod wreckage"
