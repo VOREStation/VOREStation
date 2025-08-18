@@ -7,6 +7,12 @@ var/list/mining_overlay_cache = list()
 	icon_state = "rock-dark"
 	density = TRUE
 
+//For the tram
+/turf/unsimulated/mineral/moving
+	icon = 'icons/turf/transit_vr.dmi'
+	icon_state = "rock"
+
+
 /turf/simulated/mineral //wall piece
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'

@@ -6,6 +6,10 @@
 	density = TRUE
 	blocks_air = TRUE
 
+//For the tram
+/turf/unsimulated/wall/moving
+	icon = 'icons/turf/transit_vr.dmi'
+
 //other set - for map building
 /turf/unsimulated/wall/wall1
 	icon_state = "riveted1"
