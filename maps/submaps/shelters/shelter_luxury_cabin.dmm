@@ -254,6 +254,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/fruitspawner/tomato,
+/obj/fruitspawner/tomato,
+/obj/fruitspawner/tomato,
+/obj/fruitspawner/tomato,
+/obj/fruitspawner/apple,
+/obj/fruitspawner/apple,
+/obj/fruitspawner/apple,
+/obj/fruitspawner/apple,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/survivalpod)
 "ry" = (
