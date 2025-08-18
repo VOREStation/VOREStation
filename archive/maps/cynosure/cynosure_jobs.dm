@@ -1,9 +1,5 @@
 // Pilots
 
-var/const/EXPLORER 			=(1<<14)
-
-var/const/ACCESS_EXPLORER = 43
-
 /datum/access/explorer
 	id = ACCESS_EXPLORER
 	desc = "Explorer"
