@@ -215,7 +215,8 @@
 	slot_flags = SLOT_EARS
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/ears/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/hands/mob_vox.dmi')
+		SPECIES_VOX = 'icons/inventory/ears/mob_vox.dmi',
+		SPECIES_WEREBEAST = 'icons/inventory/ears/mob_werebeast.dmi')
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
