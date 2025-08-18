@@ -4829,8 +4829,7 @@
 /area/awaymission/zoo)
 "nq" = (
 /obj/structure/bed/chair,
-/obj/structure/showcase/human
-/turf/simulated/floor/lino,
+/obj/structure/showcase/human/turf/simulated/floor/lino,
 /area/awaymission/zoo)
 "nr" = (
 /turf/simulated/mineral/ignore_mapgen,
@@ -6307,12 +6306,10 @@
 /area/awaymission/zoo)
 "rF" = (
 /obj/effect/floor_decal/spline/asteroid/west,
-/obj/effect/floor_decal/spline/asteroid/north
-/turf/simulated/floor/holofloor/desert/scorched,
+/obj/effect/floor_decal/spline/asteroid/north/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rG" = (
-/obj/effect/floor_decal/spline/asteroid/north
-/turf/simulated/floor/holofloor/desert/scorched,
+/obj/effect/floor_decal/spline/asteroid/north/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rH" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -6330,8 +6327,7 @@
 "rK" = (
 /obj/effect/floor_decal/spline/asteroid/west,
 /obj/effect/floor_decal/spline/asteroid/east,
-/obj/effect/floor_decal/spline/asteroid/north
-/turf/simulated/floor/holofloor/desert/scorched,
+/obj/effect/floor_decal/spline/asteroid/north/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rL" = (
 /mob/living/simple_mob/animal/space/alien{
@@ -6341,8 +6337,7 @@
 /area/awaymission/zoo)
 "rM" = (
 /obj/effect/floor_decal/spline/asteroid/east,
-/obj/effect/floor_decal/spline/asteroid/north
-/turf/simulated/floor/holofloor/desert/scorched,
+/obj/effect/floor_decal/spline/asteroid/north/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rN" = (
 /obj/effect/floor_decal/spline/asteroid/east,
@@ -6633,8 +6628,7 @@
 "sy" = (
 /obj/effect/floor_decal/spline/asteroid/east,
 /obj/effect/floor_decal/spline/asteroid/south,
-/obj/effect/floor_decal/spline/asteroid/north
-/turf/simulated/floor/holofloor/desert/scorched,
+/obj/effect/floor_decal/spline/asteroid/north/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sz" = (
 /obj/effect/floor_decal/spline/asteroid/west,
@@ -6798,8 +6792,7 @@
 "sW" = (
 /obj/effect/floor_decal/spline/asteroid/west,
 /obj/effect/floor_decal/spline/asteroid/south,
-/obj/effect/floor_decal/spline/asteroid/north
-/turf/simulated/floor/holofloor/desert/scorched,
+/obj/effect/floor_decal/spline/asteroid/north/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sX" = (
 /obj/effect/spider/stickyweb{

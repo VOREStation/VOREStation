@@ -419,8 +419,8 @@
 /obj/item/ore/gold,
 /obj/item/ore/iron,
 /obj/structure/mob_spawner/recycler{
-	density = 1
-    },
+	density = 1    
+	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
 "aR" = (
