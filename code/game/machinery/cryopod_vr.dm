@@ -12,7 +12,7 @@
 /obj/machinery/cryopod/robot/door/dorms
 	spawnpoint_type = /datum/spawnpoint/tram
 
-///Door specifically for a site in tether.
+///Door specifically for a site in tether. Or other places that uses a 2x1 glass door.
 /obj/machinery/cryopod/robot/door/dorms/tether_glass
 	name = "elevator"
 	desc = "A small elevator"
