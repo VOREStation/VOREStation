@@ -403,3 +403,17 @@
       clockwise in the northwest direction.
   - bugfix: Refinery mixer status light properly shows if it is in a locked state
   - rscadd: Telekinetic gloves
+2025-08-18:
+  Diana:
+  - image: Adds a bear to stationobjs.dmi
+  - image: Consolidates a lot of _vr files.
+  - image: Deletes a lot of duplicate icon states.
+  - code_imp: Makes egg code better, just swaps to _open instead of changing the icon.
+  - maptweak: Removes hardcoded icon varset from redgate map
+  - bugfix: Weavers can walk through weaver walls
+  Kashargul:
+  - rscadd: adds a bunch of missing states in a 1:1 compare with downstream
+  KillianKirilenko:
+  - refactor: cleaned up icon files for headsets and ear-things - there shouldn't
+      be any player-facing changes, but please report any invisible or bugged clothes
+      in appropriate channels
