@@ -4123,12 +4123,7 @@
 	dir = 1;
 	icon_state = "spline_plain_full"
 	},
-/obj/structure/showcase{
-	desc = "It looks almost lifelike.";
-	icon = 'icons/obj/statue.dmi';
-	icon_state = "monkey";
-	name = "Statue"
-	},
+/obj/structure/showcase/monkey,
 /turf/simulated/floor/grass,
 /area/awaymission/zoo)
 "lz" = (
@@ -4810,17 +4805,11 @@
 /turf/simulated/floor/beach/water,
 /area/awaymission/zoo)
 "nm" = (
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "nn" = (
 /obj/structure/flora/ausbushes,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "no" = (
 /obj/structure/window/reinforced{
@@ -4840,12 +4829,7 @@
 /area/awaymission/zoo)
 "nq" = (
 /obj/structure/bed/chair,
-/obj/structure/showcase{
-	desc = "It looks almost lifelike.";
-	icon = 'icons/obj/statue.dmi';
-	icon_state = "Human_male";
-	name = "Statue"
-	},
+/obj/structure/showcase/human
 /turf/simulated/floor/lino,
 /area/awaymission/zoo)
 "nr" = (
@@ -4917,25 +4901,15 @@
 	},
 /area/awaymission/zoo)
 "nD" = (
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/turf/flooring/misc_vr.dmi';
-	icon_state = "hive";
-	name = "giant honeycomb"
-	},
+/turf/simulated/floor/holofloor/grass/hive,
 /area/awaymission/zoo)
 "nE" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "nF" = (
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "nG" = (
 /turf/simulated/floor/holofloor/beach/water{
@@ -5130,19 +5104,13 @@
 /area/awaymission/zoo)
 "oe" = (
 /obj/structure/flora/ausbushes/leafybush,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "of" = (
 /mob/living/simple_mob/vore/aggressive/frog{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "og" = (
 /turf/simulated/floor/holofloor/beach/water{
@@ -5212,24 +5180,15 @@
 /area/awaymission/zoo)
 "oq" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "or" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "os" = (
 /obj/structure/flora/ausbushes/genericbush,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "ot" = (
 /turf/simulated/floor/holofloor/beach/water,
@@ -5282,25 +5241,15 @@
 /mob/living/simple_mob/vore/bee{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/turf/flooring/misc_vr.dmi';
-	icon_state = "hive";
-	name = "giant honeycomb"
-	},
+/turf/simulated/floor/holofloor/grass/hive,
 /area/awaymission/zoo)
 "oC" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "oD" = (
 /obj/structure/flora/ausbushes/palebush,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "oE" = (
 /obj/structure/bed/chair,
@@ -5572,10 +5521,7 @@
 /area/awaymission/zoo)
 "pp" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "pq" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -5634,10 +5580,7 @@
 /area/awaymission/zoo)
 "pz" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "pA" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -6176,10 +6119,7 @@
 /mob/living/carbon/human/neaera{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "rc" = (
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -6335,199 +6275,79 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "rx" = (
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "ry" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid,
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rz" = (
-/turf/simulated/floor/holofloor/reinforced{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "lava";
-	name = "hololava"
-	},
+/turf/simulated/floor/holofloor/reinforced/lava,
 /area/awaymission/zoo)
 "rA" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rB" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_s";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/east,
+/obj/effect/floor_decal/spline/asteroid/south,
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rC" = (
 /turf/simulated/floor/holofloor/space,
 /area/awaymission/zoo)
 "rD" = (
 /obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rE" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_s";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
+/obj/effect/floor_decal/spline/asteroid/south,
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rF" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_n";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
+/obj/effect/floor_decal/spline/asteroid/north
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rG" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_n";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/north
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rH" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "rI" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
 /obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rJ" = (
 /obj/structure/flora/bush,
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "rK" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_n";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
+/obj/effect/floor_decal/spline/asteroid/east,
+/obj/effect/floor_decal/spline/asteroid/north
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rL" = (
 /mob/living/simple_mob/animal/space/alien{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rM" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_n";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/east,
+/obj/effect/floor_decal/spline/asteroid/north
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rN" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
+/obj/effect/floor_decal/spline/asteroid/east,
 /obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rO" = (
 /obj/structure/closet/crate,
@@ -6559,11 +6379,7 @@
 /mob/living/simple_mob/animal/space/alien/drone{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "rT" = (
 /obj/structure/window/reinforced{
@@ -6630,36 +6446,16 @@
 	},
 /area/awaymission/zoo)
 "sa" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_s";
-	name = "rocky edge"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
+/obj/effect/floor_decal/spline/asteroid/south,
 /mob/living/simple_mob/animal/space/alien/drone{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sb" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_s";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/south,
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sc" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -6732,36 +6528,16 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "sn" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
+/obj/effect/floor_decal/spline/asteroid/east,
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "so" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
+/obj/effect/floor_decal/spline/asteroid/east,
 /mob/living/simple_mob/animal/space/alien/drone{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sp" = (
 /obj/structure/window/reinforced{
@@ -6855,42 +6631,18 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "sy" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_s";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_n";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/east,
+/obj/effect/floor_decal/spline/asteroid/south,
+/obj/effect/floor_decal/spline/asteroid/north
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sz" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
 /mob/living/simple_mob/animal/space/alien{
 	faction = "zoo";
 	name = "invisible alien hunter"
 	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sA" = (
 /obj/effect/spider/stickyweb{
@@ -6944,19 +6696,11 @@
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "sF" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
+/obj/effect/floor_decal/spline/asteroid/east,
 /mob/living/simple_mob/animal/space/alien/queen{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sG" = (
 /obj/effect/landmark/away,
@@ -6998,11 +6742,7 @@
 	faction = "zoo";
 	name = "invisible alien hunter"
 	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sN" = (
 /obj/effect/decal/remains,
@@ -7022,26 +6762,10 @@
 	},
 /area/awaymission/zoo)
 "sQ" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_e";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_s";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
+/obj/effect/floor_decal/spline/asteroid/east,
+/obj/effect/floor_decal/spline/asteroid/south,
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sR" = (
 /obj/effect/spider/stickyweb{
@@ -7072,26 +6796,10 @@
 /turf/simulated/floor/beach/water,
 /area/awaymission/zoo)
 "sW" = (
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_w";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_s";
-	name = "rocky edge"
-	},
-/obj/effect/floor_decal/spline{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroid_edge_n";
-	name = "rocky edge"
-	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/obj/effect/floor_decal/spline/asteroid/west,
+/obj/effect/floor_decal/spline/asteroid/south,
+/obj/effect/floor_decal/spline/asteroid/north
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "sX" = (
 /obj/effect/spider/stickyweb{
@@ -7112,11 +6820,7 @@
 /mob/living/simple_mob/animal/space/alien{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "tb" = (
 /obj/structure/grille,
@@ -7168,39 +6872,24 @@
 /area/awaymission/zoo)
 "tf" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tg" = (
 /obj/structure/flora/ausbushes/genericbush,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "th" = (
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "ti" = (
 /mob/living/simple_mob/animal/passive/yithian{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tj" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil/invisible,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tk" = (
 /turf/simulated/floor/cult,
@@ -7222,17 +6911,11 @@
 /area/awaymission/zoo)
 "to" = (
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tp" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tq" = (
 /mob/living/carbon/human/farwa{
@@ -7256,34 +6939,22 @@
 /area/awaymission/zoo)
 "tu" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tv" = (
 /obj/structure/flora/ausbushes/palebush,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tw" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tx" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /mob/living/simple_mob/animal/passive/yithian{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "ty" = (
 /obj/structure/flora/tree/pine{
@@ -7310,10 +6981,7 @@
 /area/awaymission/zoo)
 "tC" = (
 /obj/structure/flora/ausbushes/leafybush,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tD" = (
 /obj/effect/decal/remains/human,
@@ -7325,10 +6993,7 @@
 /area/awaymission/zoo)
 "tF" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/simulated/floor/holofloor/wood{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "diona"
-	},
+/turf/simulated/floor/holofloor/wood/diona,
 /area/awaymission/zoo)
 "tG" = (
 /obj/structure/grille,
@@ -7464,11 +7129,7 @@
 /area/awaymission/zoo)
 "tU" = (
 /obj/effect/decal/remains/human,
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "tV" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -7489,11 +7150,7 @@
 /mob/living/simple_mob/vore/aggressive/dragon{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/desert{
-	icon = 'icons/turf/floors.dmi';
-	icon_state = "asteroidplating";
-	name = "scorched sand"
-	},
+/turf/simulated/floor/holofloor/desert/scorched,
 /area/awaymission/zoo)
 "tY" = (
 /mob/living/simple_mob/animal/passive/lizard{
@@ -7853,24 +7510,15 @@
 /area/awaymission/zoo)
 "uS" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "uT" = (
 /obj/effect/overlay/palmtree_r,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "uU" = (
 /obj/effect/overlay/palmtree_l,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "uV" = (
 /obj/structure/window/reinforced{
@@ -7928,17 +7576,11 @@
 /area/awaymission/zoo)
 "vb" = (
 /obj/effect/overlay/coconut,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "vc" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "vd" = (
 /mob/living/simple_mob/animal/passive/crab{
@@ -7958,10 +7600,7 @@
 /mob/living/simple_mob/vore/aggressive/panther{
 	faction = "zoo"
 	},
-/turf/simulated/floor/holofloor/grass{
-	icon = 'icons/jungle.dmi';
-	icon_state = "grass2"
-	},
+/turf/simulated/floor/holofloor/grass/jungle,
 /area/awaymission/zoo)
 "vg" = (
 /obj/structure/window/reinforced{

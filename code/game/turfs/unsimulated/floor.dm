@@ -47,3 +47,13 @@
 
 /turf/unsimulated/floor/broken_wood/alt2
 	icon_state = "wood_broken3"
+
+/turf/simulated/floor/holofloor/desert/scorched
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "asteroidplating"
+	name = "scorched sand"
+
+/turf/simulated/floor/holofloor/reinforced/lava
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "lava"
+	name = "hololava"
