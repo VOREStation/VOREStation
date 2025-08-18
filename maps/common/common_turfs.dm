@@ -14,14 +14,26 @@
 	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_grid"
 
+///Used for train.dmm
+/turf/unsimulated/floor/techfloor_grid/outdoors_tansit
+	icon = 'icons/turf/transit_vr.dmi'
+	outdoors = TRUE
+
 /turf/unsimulated/floor/maglev
 	name = "maglev track"
 	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
 	icon = 'icons/turf/flooring/maglevs.dmi'
 	icon_state = "maglevup"
 
+/turf/unsimulated/floor/maglev/transit
+	icon = 'icons/turf/transit_vr.dmi'
+	outdoors = TRUE
+
 /turf/unsimulated/wall/transit
 	icon = 'icons/turf/transit_vr.dmi'
+
+/turf/unsimulated/wall/transit/outdoors
+	outdoors = TRUE
 
 /turf/unsimulated/floor/transit
 	icon = 'icons/turf/transit_vr.dmi'
