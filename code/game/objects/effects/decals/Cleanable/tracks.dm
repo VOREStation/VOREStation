@@ -190,7 +190,7 @@
 	random_icon_states = null
 	amount = 0
 
-//Used for the otieshelter
+//Used for the otieshelter and drgnplateu
 /obj/effect/decal/cleanable/blood/tracks/suspicious
 	color = "red"
 	desc = "Your instincts say you shouldn't be following these."
