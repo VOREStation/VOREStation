@@ -29,3 +29,8 @@
 
 /turf/unsimulated/wall/other
 	icon_state = "r_wall"
+
+/turf/unsimulated/wall/fake_uranium_door
+	icon = 'icons/obj/doors/Dooruranium.dmi'
+	icon_state = "door_closed"
+	name = "Sealed Door"

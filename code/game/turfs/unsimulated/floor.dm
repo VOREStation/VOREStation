@@ -32,3 +32,18 @@
 /turf/unsimulated/floor/circuit
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_state = "bcircuit"
+
+/turf/unsimulated/floor/snow_new
+	icon = 'icons/turf/snow_new.dmi'
+	icon_state = "snow"
+	name = "snow"
+
+/turf/unsimulated/floor/broken_wood
+	icon = 'icons/turf/flooring/wood.dmi'
+	icon_state = "wood_broken2"
+
+/turf/unsimulated/floor/broken_wood/alt
+	icon_state = "wood_broken1"
+
+/turf/unsimulated/floor/broken_wood/alt2
+	icon_state = "wood_broken3"
