@@ -1090,6 +1090,7 @@
 
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0
+	var/sensorpref = 5
 		/*
 		1 = Report living/dead
 		2 = Report detailed damages
@@ -1102,7 +1103,8 @@
 	var/rolled_sleeves_icon_override = TRUE
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/uniform/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/uniform/mob_vox.dmi'
+		SPECIES_VOX = 'icons/inventory/uniform/mob_vox.dmi',
+		SPECIES_WEREBEAST = 'icons/inventory/uniform/mob_werebeast.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
@@ -1158,6 +1160,21 @@
 		verbs -= /obj/item/clothing/under/verb/rollsuit
 	if(rolled_sleeves == -1)
 		verbs -= /obj/item/clothing/under/verb/rollsleeves
+
+	if(!ishuman(loc))
+		return
+
+	var/mob/living/carbon/human/H = loc
+	sensorpref = isnull(H) ? 1 : (ishuman(H) ? H.sensorpref : 1)
+	switch(sensorpref)
+		if(1) sensor_mode = 0				//Sensors off
+		if(2) sensor_mode = 1				//Sensors on binary
+		if(3) sensor_mode = 2				//Sensors display vitals
+		if(4) sensor_mode = 3				//Sensors display vitals and enables tracking
+		if(5) sensor_mode = pick(0,1,2,3)	//Select a random setting
+		else
+			sensor_mode = pick(0,1,2,3)
+			log_debug("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")
 
 /obj/item/clothing/under/proc/update_rolldown_status()
 	var/mob/living/carbon/human/H
