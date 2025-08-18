@@ -206,3 +206,9 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 	VIRGO3B_SET_ATMOS
 /turf/simulated/floor/virgo3b_indoors/update_graphic(list/graphic_add = null, list/graphic_remove = null)
 	return 0
+
+/turf/simulated/floor/virgo3b_indoors/dirt
+	desc = "Quite dirty!"
+	icon = 'icons/turf/outdoors.dmi'
+	icon_state = "dirt-dark"
+	name = "dirt"
