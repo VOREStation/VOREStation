@@ -24,7 +24,7 @@
 
 
 /obj/item/selectable_item/chemistrykit
-	icon = 'icons/obj/chemical_vr.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "chemkit"
 	selection_string = "Select a chemical:"
 	selection_title = "Chemical Selection"

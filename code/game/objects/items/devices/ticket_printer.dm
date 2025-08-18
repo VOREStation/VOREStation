@@ -1,7 +1,7 @@
 /obj/item/ticket_printer
 	name = "ticket printer"
 	desc = "It prints security citations!"
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "sec_ticket_printer"
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	var/print_cooldown = 1 MINUTE
@@ -48,12 +48,12 @@
 /obj/item/paper/sec_ticket
 	name = "Security Citation"
 	desc = "A citation issued by security for some kind of infraction!"
-	icon = 'icons/obj/bureaucracy_vr.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "sec_ticket"
 
 /obj/item/paper/sec_ticket/Initialize(mapload, text, title)
 	. = ..()
-	icon = 'icons/obj/bureaucracy_vr.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "sec_ticket"
 
 /obj/item/paper/sec_ticket/update_icon()
@@ -64,7 +64,7 @@
 /obj/item/ticket_printer/train
 	name = "permission ticket printer"
 	desc = "It prints permit tickets!"
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "train_ticket_printer"
 
 /obj/item/ticket_printer/train/print_a_ticket(mob/user)
@@ -98,12 +98,12 @@
 /obj/item/paper/permit_ticket
 	name = "Permit Ticket"
 	desc = "A ticket issued to permit someone to do something!"
-	icon = 'icons/obj/bureaucracy_vr.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "permit_ticket"
 
 /obj/item/paper/permit_ticket/Initialize(mapload, text, title)
 	. = ..()
-	icon = 'icons/obj/bureaucracy_vr.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "permit_ticket"
 
 /obj/item/paper/permit_ticket/update_icon()

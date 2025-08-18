@@ -252,7 +252,7 @@
 // -----------------------------
 /obj/item/storage/bag/plants
 	name = "plant bag"
-	icon = 'icons/obj/hydroponics_machines_vr.dmi'
+	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "plantbag"
 	desc = "A sturdy bag used to transport fresh produce with ease."
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25

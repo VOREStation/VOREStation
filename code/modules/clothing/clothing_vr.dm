@@ -77,7 +77,7 @@
 		SPECIES_SERGAL 		= 'icons/inventory/face/mob_vr_sergal.dmi',
 		SPECIES_NEVREAN 	= 'icons/inventory/face/mob_vr_nevrean.dmi',
 		SPECIES_ZORREN_HIGH	= 'icons/inventory/face/mob_vr_fox.dmi',
-		SPECIES_ZORREN_FLAT = 'icons/inventory/face/mob_vr_fennec.dmi',
+		SPECIES_ZORREN_FLAT = 'icons/inventory/face/mob_vr_fox.dmi',
 		SPECIES_AKULA 		= 'icons/inventory/face/mob_vr_akula.dmi',
 		SPECIES_VULPKANIN 	= 'icons/inventory/face/mob_vr_vulpkanin.dmi',
 		SPECIES_XENOCHIMERA	= 'icons/inventory/face/mob_vr_tajaran.dmi',
