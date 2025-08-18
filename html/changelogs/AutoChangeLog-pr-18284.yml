@@ -1,7 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - image: "Consolidates a lot of _vr files."
-  - image: "Deletes a lot of duplicate icon states."
-  - code_imp: "Makes egg code better, just swaps to _open instead of changing the icon."
-  - maptweak: "Removes hardcoded icon varset from redgate map"

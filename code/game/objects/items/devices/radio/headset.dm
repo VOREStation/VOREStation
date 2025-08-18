@@ -9,7 +9,8 @@
 	canhear_range = 0 // can't hear headsets from very far away
 	slot_flags = SLOT_EARS
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/ears/mob_teshari.dmi',
-						SPECIES_WEREBEAST = 'icons/inventory/ears/mob_vr_werebeast.dmi')
+						SPECIES_VOX = 'icons/inventory/hands/mob_vox.dmi',
+						SPECIES_WEREBEAST = 'icons/inventory/ears/mob_werebeast.dmi')
 
 	var/translate_binary = FALSE
 	var/translate_hive = FALSE
