@@ -417,3 +417,19 @@
   - refactor: cleaned up icon files for headsets and ear-things - there shouldn't
       be any player-facing changes, but please report any invisible or bugged clothes
       in appropriate channels
+2025-08-19:
+  Diana:
+  - qol: Borgs can now pick up reagent hoses
+  - spellcheck: Removed the SSsun mentions from solar panels.
+  - bugfix: we no longer have the curent grid
+  - bugfix: Step mechanics will properly take prefs into account
+  SatinIsle:
+  - rscdel: Disabled the telekinesis node in techwebs for the time being.
+  Will:
+  - bugfix: Crates will no longer make flashlight beams vanish when closed over them
+  - bugfix: Crates closed on flashlights and other directional light sources no longer
+      leave the light floating in place where it was closed
+  Will, Diana:
+  - qol: Clang event will now increase security level to blue for the duration of
+      the CLANG event, getting people's attention even if alt-tabbed.
+  - code_imp: Clang event is now better on the backend

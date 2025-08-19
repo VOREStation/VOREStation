@@ -47,7 +47,7 @@ For now, just use this as reference for what is needed for Overmap ships + locat
 **OVERMAP SHIP CREATION INSTRUCTIONS:**
 Build your shuttle however you'd like, though it MUST have:
 
-- Phoron cannister(s) hooked up to proper engines. /obj/machinery/atmospherics/unary/engine
+- Phoron canister(s) hooked up to proper engines. /obj/machinery/atmospherics/unary/engine
 - Engine Control. `/obj/machinery/computer/ship/engines`
 - Helm Control. `/obj/machinery/computer/ship/helm`
 - Fuel port, for short distance jumps and docking. `/obj/structure/fuel_port`
