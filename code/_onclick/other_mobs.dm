@@ -57,8 +57,12 @@
 		if(istype(gloves,/obj/item/clothing/gloves/telekinetic))
 			var/obj/item/clothing/gloves/telekinetic/TKG = gloves
 			TKG.use_grip_power(src,TRUE)
-		A.attack_tk(src)
-
+		if(remoteview_target) // Extremely bad exploits if allowed to TK while remote viewing
+			to_chat(src, span_notice("You are too distracted to focus your telekinesis."))
+		else if(get_dist(src, A) > tk_maxrange)
+			to_chat(src, span_notice("Your telekinesis won't reach that far."))
+		else
+			A.attack_tk(src)
 	else if(spitting) //Only used by xenos right now, can be expanded.
 		Spit(A)
 
