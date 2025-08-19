@@ -221,6 +221,7 @@
 		LaserEyes(A) // moved into a proc below
 	else if(has_telegrip())
 		if(get_dist(src, A) > tk_maxrange)
+			to_chat(src, TK_OUTRANGED_MESSAGE)
 			return
 		A.attack_tk(src)
 /*
