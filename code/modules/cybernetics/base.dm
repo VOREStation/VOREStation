@@ -28,6 +28,8 @@
 
 	var/datum/commandline_network_node/networkNode //instantiating this is handled via the subtypes.
 
+	var/endoware_flags = 0
+
 	health = 30 //fsdfsd
 
 	maptext_height = 32
@@ -178,6 +180,8 @@ TODO:
 	dissolve_human_components(host)
 	dissolve_human_signals(host)
 	host.installed_endoware -= src
+	host.update_endoware_flags()
+	host.update_endoware_vision()
 	host = null
 
 /obj/item/endoware/proc/added_to_human(var/mob/living/carbon/human/human)
@@ -187,6 +191,8 @@ TODO:
 	build_human_components(host)
 
 	host.installed_endoware |= src
+	host.update_endoware_flags()
+	host.update_endoware_vision()
 
 /obj/item/endoware/proc/build_organ_signals(var/obj/item/organ/target)
 	RegisterSignal(target,COMSIG_ORGAN_INSERTED,PROC_REF(human_installed_organ))
@@ -278,3 +284,6 @@ TODO:
 	else
 		radial_image.color = "#5B5B5B"
 	radial_image.maptext = image_text
+
+/obj/item/endoware/proc/get_vision_planes() //override at your descretion
+	return

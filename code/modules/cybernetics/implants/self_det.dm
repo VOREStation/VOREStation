@@ -1,6 +1,5 @@
 /*
 This is mostly just for testing and is not something anyone should ever actually use beyond spawning it in & renaming it as bait for exploration
-
 */
 
 /obj/item/endoware/bomb
@@ -13,5 +12,5 @@ This is mostly just for testing and is not something anyone should ever actually
 
 /obj/item/endoware/bomb/activate()
 	. = ..()
+	to_chat(host,span_warning("FUCK!!! FUCK! You're burning apart!"))
 	host?.apply_damage(500, BURN, installed_in)
-	//host?.adjustBruteLoss(500)

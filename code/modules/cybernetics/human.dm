@@ -1,7 +1,9 @@
 /mob/living/carbon
-	var/list/installed_endoware = list()
+	var/list/installed_endoware = list() //TODO: lazylist
+	var/list/endoware_planes = list() //TODO: lazylist - not happy about this, but alas recalculate_vis is a bitch
+	var/endoware_flags = 0
 
-	var/datum/commandline_network/cmdNetwork //direct hardref to the component's
+	var/datum/commandline_network/cmdNetwork //direct hardref to the component's network
 
 
 
@@ -35,3 +37,16 @@
 		cmdNetwork = cmdNetworkComp?.network
 		if(!cmdNetwork)
 			src.AddComponent(/datum/component/commandline_network/carbon)
+
+/mob/living/carbon/proc/update_endoware_flags()
+	endoware_flags = 0
+	for(var/obj/item/endoware/source in installed_endoware)
+		endoware_flags |= source.endoware_flags
+
+/mob/living/carbon/proc/update_endoware_vision()
+	endoware_planes = list()
+	for(var/obj/item/endoware/source in installed_endoware) //might be better to move this to base endoware
+		var/to_add = source.get_vision_planes()
+		if(to_add)
+			endoware_planes |= to_add
+	recalculate_vis()

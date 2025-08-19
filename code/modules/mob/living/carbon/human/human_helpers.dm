@@ -205,6 +205,9 @@
 	if(soulgem?.flag_check(SOULGEM_SEE_SR_SOULS))
 		compiled_vis += VIS_SOULCATCHER
 
+	if(endoware_planes)
+		compiled_vis += endoware_planes
+
 	if(!compiled_vis.len && !vis_enabled.len)
 		return //Nothin' doin'.
 

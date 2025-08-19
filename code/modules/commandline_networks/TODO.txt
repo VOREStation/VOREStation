@@ -20,3 +20,59 @@ implement other organs
 poke the code in the right spots to handle the failure states for said organs
 
 implement decalibration for limbs & organs. Figure this out.
+
+
+Needed sprites:
+
+
+sweeper leg (lube if emag?)
+size implant (general spine implant??)
+size implant (fucked up for the size control implant)
+
+datajack (little terminal thing)
+datajack wire (standalone wire)
+
+spray nozzle hose
+arm storage generic
+arm storage sugical tools
+arm storage toolbox
+arm storage sprayer
+arm storage datajack
+
+
+arm storage grenade magazine
+arm storage weapons (reuses the existing Icons)
+
+eye repair/nearsightedness implant
+eye implant (general) - recolor this for thermal/mesons/gravitons/etc if ever added
+
+cochlear implant
+
+general spine implant
+spine fixer implant
+
+brain implant (anti seizure)
+
+
+fucked up implant chair
+
+
+TODO:
+
+NIF parity TODO:
+AR overlay (make it just look @ ur job instead of having 50) - eye implant
+Nicotating Membrane (drug)
+Nictitating Membrane (welding)
+Flash Prot (sec only ig)
+Mesons
+Materials
+Low-Light Amp
+
+Respirocytes (lung implant)
+
+
+APC Connector (Syn Only)
+Pressure Seals (Syn Only)
+Heat Sinks (Syn Only)
+
+Job-dependant monitor implant (ae, crew monitor, alarm monitor, sec cameras, maybe research opens up the research menu if that isn't a PITA)
