@@ -656,9 +656,3 @@ TOAST_NOTIFICATION_ON_INIT
 
 ## Uncomment to allow admins with +DEBUG to queue the next round to run the byond-tracy profiler.
 #ALLOW_TRACY_QUEUE
-
-## Determines if we allow metamorphic suit cycling or not
-ALLOW_METAMORPHIC_CYCLER
-
-## Determines if we allow metamorphic clothing or not
-ALLOW_METAMORPHIC_CLOTHING

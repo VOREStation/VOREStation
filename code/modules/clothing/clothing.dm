@@ -83,17 +83,16 @@
 			else
 				if(our_species in species_restricted)
 					wearable = TRUE
-				else if(CONFIG_GET(flag/allow_metamorphic_clothing))
 
-					///Prevent us from wearing clothing that is restricted to vox, werebeast, or teshari. This generally means it's custom designed for them and them only.
-					if((((SPECIES_VOX in species_restricted) && our_species != SPECIES_VOX) || ((SPECIES_WEREBEAST in species_restricted) && our_species != SPECIES_WEREBEAST) || ((SPECIES_TESHARI in species_restricted) && our_species != SPECIES_TESHARI)))
-						wearable = FALSE
+				///Prevent us from wearing clothing that is restricted to vox, werebeast, or teshari. This generally means it's custom designed for them and them only.
+				if((((SPECIES_VOX in species_restricted) && our_species != SPECIES_VOX) || ((SPECIES_WEREBEAST in species_restricted) && our_species != SPECIES_WEREBEAST) || ((SPECIES_TESHARI in species_restricted) && our_species != SPECIES_TESHARI)))
+					wearable = FALSE
 
-					///Prevent us from from wearing clothing if we ARE a teshari or werebeast. This is due to these two having different anatomy that don't fix most clothing.
-					else if((our_species == SPECIES_TESHARI || our_species == SPECIES_WEREBEAST) && !sprite_sheets[our_species]) //teshari and werebeasts must have their own sprites. Vox can get away...somewhat
-						wearable = FALSE
-					else
-						wearable = TRUE
+				///Prevent us from from wearing clothing if we ARE a teshari or werebeast. This is due to these two having different anatomy that don't fix most clothing.
+				else if((our_species == SPECIES_TESHARI || our_species == SPECIES_WEREBEAST) && !sprite_sheets[our_species]) //teshari and werebeasts must have their own sprites. Vox can get away...somewhat
+					wearable = FALSE
+				else
+					wearable = TRUE
 
 			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
 				to_chat(H, span_danger("Your species cannot wear [src]."))
@@ -163,11 +162,10 @@
 		if(SPECIES_SERGAL)
 			species_restricted = SPECIES_SERGAL_CAN_WEAR
 		if("Metamorphic")
-			if(CONFIG_GET(flag/allow_metamorphic_cycler)) //href exploit prevention
-				if(sprite_sheets[SPECIES_TESHARI]) //We have a custom teshari species sprite. Sorry teshari, but otherwise the fallback looks awful on you.
-					species_restricted = SPECIES_ALL_CAN_WEAR
-				else
-					species_restricted = SPECIES_ALL_BUT_TESHARI_CAN_WEAR
+			if(sprite_sheets[SPECIES_TESHARI]) //We have a custom teshari species sprite. Sorry teshari, but otherwise the fallback looks awful on you.
+				species_restricted = SPECIES_ALL_CAN_WEAR
+			else
+				species_restricted = SPECIES_ALL_BUT_TESHARI_CAN_WEAR
 		else
 			species_restricted = list(target_species)
 
