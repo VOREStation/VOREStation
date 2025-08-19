@@ -107,15 +107,15 @@ var/const/tk_maxrange = 15
 	if(isobj(target) && !isturf(target.loc))
 		return
 
-	if(remoteview_target) // Extremely bad exploits if allowed to TK while remote viewing
-		to_chat(user, span_notice("You are too distracted to focus your telekinesis."))
+	if(user.client.eye != user) // Extremely bad exploits if allowed to TK while remote viewing
+		to_chat(user, span_notice(TK_DENIED_MESSAGE))
 		return
 
 	var/d = get_dist(user, target)
 	if(focus)
 		d = max(d, get_dist(user, focus)) // whichever is further
 	if(d > tk_maxrange)
-		to_chat(user, span_notice("Your telekinesis won't reach that far."))
+		to_chat(user, span_notice(TK_OUTRANGED_MESSAGE))
 		return
 
 	if(!focus)
