@@ -108,14 +108,14 @@ var/const/tk_maxrange = 15
 		return
 
 	if(user.client.eye != user) // Extremely bad exploits if allowed to TK while remote viewing
-		to_chat(user, span_notice(TK_DENIED_MESSAGE))
+		to_chat(user, TK_DENIED_MESSAGE)
 		return
 
 	var/d = get_dist(user, target)
 	if(focus)
 		d = max(d, get_dist(user, focus)) // whichever is further
 	if(d > tk_maxrange)
-		to_chat(user, span_notice(TK_OUTRANGED_MESSAGE))
+		to_chat(user, TK_OUTRANGED_MESSAGE)
 		return
 
 	if(!focus)

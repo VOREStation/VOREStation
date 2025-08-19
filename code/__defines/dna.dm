@@ -179,5 +179,5 @@ var/SMALLSIZEBLOCK     = 0
 #define MUTCHK_HIDEMSG       2 // Traitgenes (Hide gene activation/deactivation messages, mostly for resleeving so you don't get spammed)
 
 // Misc
-#define TK_DENIED_MESSAGE "You are too distracted to focus your telekinesis."
-#define TK_OUTRANGED_MESSAGE "Your telekinesis won't reach that far."
+#define TK_DENIED_MESSAGE span_warning("You are too distracted to focus your telekinesis.")
+#define TK_OUTRANGED_MESSAGE span_notice("Your telekinesis won't reach that far.")
