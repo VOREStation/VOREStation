@@ -336,7 +336,7 @@ class ChatRenderer {
       let highlightRegex;
       // Nothing to match, reset highlighting
       if (lines.length === 0) {
-        return;
+        return null;
       }
       // Reset lastIndex so it does not mess up the next word
       allowedRegex.lastIndex = 0;
@@ -433,6 +433,7 @@ class ChatRenderer {
         highlightBlacklist,
         blacklistregex,
       });
+      return null;
     });
   }
 
@@ -704,6 +705,7 @@ class ChatRenderer {
                 node.className += ' ChatMessage--highlighted';
               }
             }
+            return null;
           });
         }
         // Linkify text

@@ -328,7 +328,7 @@ const MatStorageTab = (props: {
     <LabeledList>
       {Object.entries(linked_data.materials).map(([mat, amount]) => {
         if (amount === 0 && !NEVER_HIDE_MATERIALS.includes(mat)) {
-          return;
+          return null;
         }
         return (
           <LabeledList.Item

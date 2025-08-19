@@ -47,6 +47,7 @@ export const setGradientSpace = (
         found = true;
       }
     }
+    return null;
   });
   if (!found) {
     gradient.push({ space: space });
