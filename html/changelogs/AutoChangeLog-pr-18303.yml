@@ -1,0 +1,4 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - bugfix: "Fixes lleill sparking and losing energy when choosing no option when trying teleport to a ring."
