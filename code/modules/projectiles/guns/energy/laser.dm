@@ -359,8 +359,7 @@
 	name = "imperial energy pistol"
 	desc = "An elegant weapon developed by the Imperium Auream. Their weaponsmiths have cleverly found a way to make a gun that \
 	is only about the size of an average energy pistol, yet with the fire power of a laser carbine."
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_override = 'icons/obj/gun_vr.dmi'
+	icon_override = 'icons/obj/gun.dmi'
 	icon_state = "ge_pistol"
 	item_state = "ge_pistol"
 	slot_flags = SLOT_BELT
@@ -377,7 +376,6 @@
 /obj/item/gun/energy/mininglaser
 	name = "mining-laser rifle"
 	desc = "An industrial grade mining laser. Comes with a built-in 'stun' mode for encounters with local wildlife."
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "mininglaser"
 	item_state = "mininglaser"
 	fire_delay = 8

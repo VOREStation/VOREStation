@@ -44,7 +44,6 @@
 /obj/item/gun/energy/kinetic_accelerator
 	name = "proto-kinetic accelerator"
 	desc = "A self recharging, ranged mining tool that does increased damage in low pressure."
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "kineticgun"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi',

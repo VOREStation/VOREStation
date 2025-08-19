@@ -406,7 +406,7 @@
 	name = "teleportation wand"
 	desc = "An odd wand that weighs more than it looks like it should. It has a wire protruding from it and a glass-like tip, suggesting there may be more tech behind this than magic."
 
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "harpoonwand-2"
 
 /obj/item/bluespace_harpoon/wand/update_icon()
@@ -534,7 +534,7 @@ This device records all warnings given and teleport events for admin review in c
 /obj/item/slow_sizegun/magic
 	name = "wand of growth and shrinking"
 	desc = "A wand said to be able to shrink or grow it's targets, it's encrusted with glowing gems and a... trigger?"
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "sizegun-magic-0"
 	base_icon_state = "sizegun-magic"
 
