@@ -15,7 +15,7 @@
 	if(!base_icon)
 		base_icon = icon_state
 
-	if(!("[base_icon]_open" in cached_icon_states(icon)))
+	if(!icon_exists(icon, "[base_icon]_open"))
 		to_chat(user, "\The [src] doesn't seem to open.")
 		return
 
