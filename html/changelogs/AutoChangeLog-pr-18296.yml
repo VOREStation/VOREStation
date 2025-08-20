@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "Seismic charges and plastique explosive blast distance fixed for new explosion subsystem"
