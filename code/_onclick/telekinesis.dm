@@ -100,11 +100,15 @@
 	if(isobj(target) && !isturf(target.loc))
 		return
 
+	if(user.client.eye != user) // Extremely bad exploits if allowed to TK while remote viewing
+		to_chat(user, TK_DENIED_MESSAGE)
+		return
+
 	var/d = get_dist(user, target)
 	if(focus)
 		d = max(d, get_dist(user, focus)) // whichever is further
 	if(d > TK_MAXRANGE)
-		to_chat(user, span_notice("Your mind won't reach that far."))
+		to_chat(user, TK_OUTRANGED_MESSAGE)
 		return
 
 	if(!focus)

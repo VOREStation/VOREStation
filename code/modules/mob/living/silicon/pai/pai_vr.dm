@@ -83,12 +83,12 @@
 
 	// Unfortunately not all these states exist, ugh.
 	else if(vore_fullness && !resting)
-		if("[chassis]_full[fullness_extension]" in cached_icon_states(icon))
+		if(icon_exists(icon, "[chassis]_full[fullness_extension]"))
 			icon_state = "[chassis]_full[fullness_extension]"
 		else
 			icon_state = "[chassis]"
 	else if(vore_fullness && resting)
-		if("[chassis]_rest_full[fullness_extension]" in cached_icon_states(icon))
+		if(icon_exists(icon, "[chassis]_rest_full[fullness_extension]"))
 			icon_state = "[chassis]_rest_full[fullness_extension]"
 		else
 			icon_state = "[chassis]_rest"
