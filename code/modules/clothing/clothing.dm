@@ -1037,7 +1037,7 @@
 /obj/item/clothing/suit/proc/taurize(var/mob/living/carbon/human/taur, has_taur_tail = FALSE)
 	if(has_taur_tail)
 		var/datum/sprite_accessory/tail/taur/taurtail = taur.tail_style
-		if(taurtail.suit_sprites && (get_worn_icon_state(slot_wear_suit_str) in cached_icon_states(taurtail.suit_sprites)))
+		if(taurtail.suit_sprites && (icon_exists(taurtail.suit_sprites, get_worn_icon_state(slot_wear_suit_str))))
 			icon_override = taurtail.suit_sprites
 			taurized = TRUE
 	// means that if a taur puts on an already taurized suit without a taur sprite
@@ -1151,7 +1151,7 @@
 
 	//autodetect rollability
 	if(rolled_down < 0)
-		if(("[worn_state]_d" in cached_icon_states(icon)) || (worn_state in cached_icon_states(rolled_down_icon)) || ("[worn_state]_d" in cached_icon_states(icon_override)))
+		if((icon_exists(icon, "[worn_state]_d") || icon_exists(rolled_down_icon, worn_state) || icon_exists(icon_override, "[worn_state]_d")))
 			rolled_down = 0
 
 	if(rolled_down == -1)
@@ -1171,11 +1171,11 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(LAZYACCESS(item_icons, slot_w_uniform_str))
 		under_icon = item_icons[slot_w_uniform_str]
-	else if (worn_state in cached_icon_states(rolled_down_icon))
+	else if (icon_exists(rolled_down_icon, worn_state))
 		under_icon = rolled_down_icon
 
 	// The _s is because the icon update procs append it.
-	if((under_icon == rolled_down_icon && ("[worn_state]" in cached_icon_states(under_icon))) || ("[worn_state]_d" in cached_icon_states(under_icon)))
+	if((under_icon == rolled_down_icon && (icon_exists(under_icon, worn_state))) || (icon_exists(under_icon, "[worn_state]_d")))
 		if(rolled_down != 1)
 			rolled_down = 0
 	else
@@ -1194,13 +1194,13 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(LAZYACCESS(item_icons, slot_w_uniform_str))
 		under_icon = item_icons[slot_w_uniform_str]
-	else if (worn_state in cached_icon_states(rolled_down_sleeves_icon))
+	else if (icon_exists(rolled_down_sleeves_icon, worn_state))
 		under_icon = rolled_down_sleeves_icon
 	else
 		under_icon = new /icon(INV_W_UNIFORM_DEF_ICON)
 
 	// The _s is because the icon update procs append it.
-	if((under_icon == rolled_down_sleeves_icon && ("[worn_state]" in cached_icon_states(under_icon))) || ("[worn_state]_r" in cached_icon_states(under_icon)))
+	if((under_icon == rolled_down_sleeves_icon && (icon_exists(under_icon, worn_state))) || (icon_exists(under_icon, "[worn_state]_r")))
 		if(rolled_sleeves != 1)
 			rolled_sleeves = 0
 	else
@@ -1284,7 +1284,7 @@
 		body_parts_covered &= ~(UPPER_TORSO|ARMS)
 		heat_protection &= ~(UPPER_TORSO|ARMS)
 		cold_protection &= ~(UPPER_TORSO|ARMS)
-		if(worn_state in cached_icon_states(rolled_down_icon))
+		if(icon_exists(rolled_down_icon, worn_state))
 			icon_override = rolled_down_icon
 			LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 		else
@@ -1321,7 +1321,7 @@
 		body_parts_covered &= ~(ARMS)
 		heat_protection &= ~(ARMS)
 		cold_protection &= ~(ARMS)
-		if(worn_state in cached_icon_states(rolled_down_sleeves_icon))
+		if(icon_exists(rolled_down_sleeves_icon, worn_state))
 			icon_override = rolled_down_sleeves_icon
 			LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 		else
@@ -1369,7 +1369,7 @@
 
 				// only override icon if a corresponding digitigrade replacement icon_state exists
 				// otherwise, keep the old non-digi icon_define (or nothing)
-				if(icon_state && cached_icon_states(update_icon_define_digi):Find(icon_state))
+				if(icon_state && cached_icon_states(update_icon_define_digi):Find(icon_state)) //Unsure what to do to this seeing as it does :Find()
 					update_icon_define = update_icon_define_digi
 
 
