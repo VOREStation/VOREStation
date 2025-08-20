@@ -76,8 +76,7 @@ Notes:
 		content = "<p>[content]</p>"
 
 	// Strip macros from item names
-	title = replacetext(title, "\proper", "")
-	title = replacetext(title, "\improper", "")
+	title = strip_improper(title)
 
 	//Make our dumb param object
 	params = {"{ "cursor": "[params]", "screenLoc": "[thing.screen_loc]" }"}
