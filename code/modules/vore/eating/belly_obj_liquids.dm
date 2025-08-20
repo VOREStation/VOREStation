@@ -227,7 +227,7 @@
 	var/formatted_message
 	var/raw_message = pick(fullness1_messages)
 
-	formatted_message = replacetext(raw_message,"%belly", lowertext(get_belly_name()))
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
 	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
@@ -238,7 +238,7 @@
 	var/formatted_message
 	var/raw_message = pick(fullness2_messages)
 
-	formatted_message = replacetext(raw_message,"%belly", lowertext(get_belly_name()))
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
 	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
@@ -249,7 +249,7 @@
 	var/formatted_message
 	var/raw_message = pick(fullness3_messages)
 
-	formatted_message = replacetext(raw_message,"%belly", lowertext(get_belly_name()))
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
 	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
@@ -260,7 +260,7 @@
 	var/formatted_message
 	var/raw_message = pick(fullness4_messages)
 
-	formatted_message = replacetext(raw_message,"%belly", lowertext(get_belly_name()))
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
 	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
@@ -271,7 +271,7 @@
 	var/formatted_message
 	var/raw_message = pick(fullness5_messages)
 
-	formatted_message = replacetext(raw_message,"%belly", lowertext(get_belly_name()))
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
 	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))

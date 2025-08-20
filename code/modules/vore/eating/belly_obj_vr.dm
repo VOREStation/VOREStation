@@ -2200,5 +2200,8 @@
 		//if(AM.atom_flags & ATOM_HEAR)
 		. += AM
 
-/obj/belly/proc/get_belly_name()
-	return display_name ? display_name : name
+/obj/belly/proc/get_belly_name(original)
+	var/display_name = ""
+	if(original)
+		return display_name ? display_name : name
+	return display_name ? lowertext(display_name) : lowertext(name)

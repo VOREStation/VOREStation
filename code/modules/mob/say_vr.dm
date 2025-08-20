@@ -81,7 +81,7 @@
 			if(B.absorbedrename_enabled)
 				var/formatted_name = B.absorbedrename_name
 				formatted_name = replacetext(formatted_name,"%pred", B.owner)
-				formatted_name = replacetext(formatted_name,"%belly", lowertext(B.get_belly_name()))
+				formatted_name = replacetext(formatted_name,"%belly", B.get_belly_name())
 				formatted_name = replacetext(formatted_name,"%prey", name)
 				message = span_emote_subtle(span_bold("[formatted_name]") + " " + span_italics("[input]"))
 		if(!(subtle_mode == "Adjacent Turfs (Default)"))
@@ -299,7 +299,7 @@
 		if(B.absorbedrename_enabled)
 			formatted_name = B.absorbedrename_name
 			formatted_name = replacetext(formatted_name,"%pred", B.owner)
-			formatted_name = replacetext(formatted_name,"%belly", lowertext(B.get_belly_name()))
+			formatted_name = replacetext(formatted_name,"%belly", B.get_belly_name())
 			formatted_name = replacetext(formatted_name,"%prey", "\The [M]")
 			to_chat(pb, span_psay("[formatted_name] thinks, \"[message]\""))
 		else
@@ -405,7 +405,7 @@
 		if(B.absorbedrename_enabled)
 			formatted_name = B.absorbedrename_name
 			formatted_name = replacetext(formatted_name,"%pred", B.owner)
-			formatted_name = replacetext(formatted_name,"%belly", lowertext(B.get_belly_name()))
+			formatted_name = replacetext(formatted_name,"%belly", B.get_belly_name())
 			formatted_name = replacetext(formatted_name,"%prey", "\The [M]")
 			to_chat(pb, span_pemote("[formatted_name] [message]"))
 		else
