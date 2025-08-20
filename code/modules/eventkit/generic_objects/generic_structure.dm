@@ -59,6 +59,9 @@
 							continue
 						if(FLASHPROOF in H.mutations)
 							continue
+
+						if(ENDOWARE_FLAG_NO_FLASH & H.endoware_flags) continue
+
 						if(!H.eyecheck() <= 0)
 							continue
 						flash_time *= H.species.flash_mod

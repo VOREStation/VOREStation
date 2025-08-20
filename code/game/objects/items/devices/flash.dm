@@ -169,15 +169,18 @@
 		return
 
 	playsound(src, 'sound/weapons/flash.ogg', 100, 1)
-	var/flashfail = 0
+	var/flashfail = FALSE
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.nif && H.nif.flag_check(NIF_V_FLASHPROT,NIF_FLAGS_VISION))
-			flashfail = 1
+			flashfail = TRUE
 			H.nif.notify("High intensity light detected, and blocked!",TRUE)
+		if(ENDOWARE_FLAG_NO_FLASH & H.endoware_flags)
+			flashfail = TRUE
+
 		if(FLASHPROOF in H.mutations)
-			flashfail = 1
+			flashfail = TRUE
 
 	if(iscarbon(M) && !flashfail) //VOREStation Add - NIF
 		var/mob/living/carbon/C = M

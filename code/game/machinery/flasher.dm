@@ -82,6 +82,8 @@
 			if(H.nif && H.nif.flag_check(NIF_V_FLASHPROT,NIF_FLAGS_VISION))
 				H.nif.notify("High intensity light detected, and blocked!",TRUE)
 				continue
+			if(ENDOWARE_FLAG_NO_FLASH & H.endoware_flags) continue
+
 			if(FLASHPROOF in H.mutations)
 				continue
 			if(!H.eyecheck() <= 0)

@@ -60,10 +60,7 @@ fucked up implant chair
 TODO:
 
 NIF parity TODO:
-AR overlay (make it just look @ ur job instead of having 50) - eye implant
 Nicotating Membrane (drug)
-Nictitating Membrane (welding)
-Flash Prot (sec only ig)
 Mesons
 Materials
 Low-Light Amp

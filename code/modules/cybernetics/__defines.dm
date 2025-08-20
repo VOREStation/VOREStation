@@ -14,6 +14,10 @@
 #define ENDOWARE_FLAG_NEUROLOGICAL_STABILITY 	(1 << 1)//minimizes epilepsy
 #define ENDOWARE_FLAG_NO_DEAF 					(1 << 2)//negates the deaf trait
 #define ENDOWARE_FLAG_VISION_CORRECT 			(1 << 3)//blind ass bitch robot fixed eyes
+//not just for traits or whatever either
+#define ENDOWARE_FLAG_NO_WELD_EYE_DMG			(1 << 4) //safety squints, that'll do er
+#define ENDOWARE_FLAG_NO_FLASH					(1 << 5) //god fears the flashbang stare contest winner
+
 
 //how fucked up are we
 #define ENDOWARE_STATE_NOMINAL 0			//cream gravy
