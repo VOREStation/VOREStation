@@ -152,6 +152,10 @@
 	return															//If it can do normal vore mechanics, it can carry players to the OM,
 																	//and release them there. I think that's probably a bad idea.
 
+/mob/living/simple_mob/vore/overmap/stardog/begin_instant_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
+	to_chat(src, span_warning("You can't do that."))
+	return
+
 /mob/living/simple_mob/vore/overmap/stardog/Initialize(mapload)
 	. = ..()
 	child_om_marker.set_light(5, 1, "#ff8df5")

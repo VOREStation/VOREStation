@@ -110,7 +110,7 @@
 /obj/item/denecrotizer //Away map reward. FOR TRAINED NECROMANCERS ONLY. >:C
 	name = "experimental denecrotizer"
 	desc = "It looks simple on the outside but this device radiates some unknown dread. It does not appear to be of any ordinary make, and just how it works is unclear, but this device seems to interact with dead flesh."
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "denecrotizer"
 	w_class = ITEMSIZE_COST_NORMAL
 	var/charges = 5 //your army of minions can only be this big
