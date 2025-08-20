@@ -393,7 +393,7 @@
 			"slime" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "slime"),
 			"chaos" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "chaos"),
 			"cloud" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "cloud"),
-			"catslug" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
+			/*"catslug" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
 			"cat" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "cat"),
 			"mouse" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "mouse"),
 			"rabbit" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "rabbit"),
@@ -409,7 +409,7 @@
 			"panther" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "panther", pixel_x = -16),
 			"robodrgn" = image(icon = 'icons/mob/species/protean/protean128x64.dmi', icon_state = "robodrgn", pixel_x = -48),
 			"Dragon" = image(icon = 'icons/mob/bigdragon_small.dmi', icon_state = "dragon_small"),
-			"Dullahan" = image(icon = 'icons/mob/robot/dullahan/v1/dullahanicon.dmi', icon_state = "proticon")
+			"Dullahan" = image(icon = 'icons/mob/robot/dullahan/v1/dullahanicon.dmi', icon_state = "proticon")*/
 			)
 	var/blobstyle = show_radial_menu(protie, protie, icon_choices, require_near = TRUE, tooltips = FALSE)
 	if(!blobstyle || QDELETED(protie) || protie.incapacitated())
