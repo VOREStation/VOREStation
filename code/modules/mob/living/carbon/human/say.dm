@@ -115,9 +115,9 @@
 		var/obj/belly/B = loc
 		if(B.absorbedrename_enabled)
 			var/formatted_name = B.absorbedrename_name
-			formatted_name = replacetext(formatted_name,"%pred",B.owner)
-			formatted_name = replacetext(formatted_name,"%belly",B.name)
-			formatted_name = replacetext(formatted_name,"%prey",name)
+			formatted_name = replacetext(formatted_name,"%pred", B.owner)
+			formatted_name = replacetext(formatted_name,"%belly", lowertext(B.get_belly_name()))
+			formatted_name = replacetext(formatted_name,"%prey", name)
 			return formatted_name
 	return real_name
 

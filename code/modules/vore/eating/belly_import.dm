@@ -88,8 +88,11 @@
 				break
 		if(!new_belly && length(host.vore_organs) < BELLIES_MAX)
 			new_belly = new(host)
-			new_belly.name = belly_data["name"]
+			new_belly.name = html_encode(belly_data["name"])
 		if(!new_belly) continue
+
+		if(istext(belly_data["display_name"]))
+			new_belly.display_name = html_encode(belly_data["display_name"])
 
 		// Controls
 		if(istext(belly_data["mode"]))

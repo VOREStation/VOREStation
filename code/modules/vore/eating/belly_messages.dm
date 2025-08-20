@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	else
 		. = "[message]"
 
-	. = replacetext(., "%belly", lowertext(name))
+	. = replacetext(., "%belly", lowertext(get_belly_name()))
 	. = replacetext(., "%pred", owner)
 	. = replacetext(., "%prey", prey)
 

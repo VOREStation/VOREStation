@@ -12,6 +12,7 @@ export type Belly = {
   // General Information
   name: string;
   desc: string;
+  display_name: string;
   message_mode: BooleanLike;
   absorbed_desc: string;
   vore_verb: string;

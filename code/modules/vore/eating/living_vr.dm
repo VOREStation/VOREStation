@@ -1073,8 +1073,8 @@
 	if(latejoin_prey)
 		dat += span_bold("Late join prey auto accept:") + " [no_latejoin_prey_warning ? span_green("Enabled") : span_red("Disabled")]<br>"
 	dat += span_bold("Global Vore Privacy is:") + " [eating_privacy_global ? span_green("Subtle") : span_red("Loud")]<br>"
-	dat += span_bold("Current active belly:") + " [vore_selected ? vore_selected.name : "None"]<br>"
-	dat += span_bold("Belly rub target:") + " [belly_rub_target ? belly_rub_target : (vore_selected ? vore_selected.name : "None")]<br>"
+	dat += span_bold("Current active belly:") + " [vore_selected ? vore_selected.get_belly_name() : "None"]<br>"
+	dat += span_bold("Belly rub target:") + " [belly_rub_target ? belly_rub_target : (vore_selected ? vore_selected.get_belly_name() : "None")]<br>"
 	var/datum/browser/popup = new(user, "[name]mvp", "Vore Prefs: [src]", 300, 700, src)
 	popup.set_content(dat)
 	popup.open()
@@ -1542,9 +1542,9 @@
 		var/obj/belly/B = T.vore_selected
 		if(istype(B))
 			if(T == src)
-				custom_emote_vr(1, "rubs their [belly_rub_target ? belly_rub_target : lowertext(B.name)].")
+				custom_emote_vr(1, "rubs their [belly_rub_target ? belly_rub_target : lowertext(B.get_belly_name())].")
 			else
-				custom_emote_vr(1, "gives some rubs over [T]'s [T.belly_rub_target ? T.belly_rub_target : lowertext(B.name)].")
+				custom_emote_vr(1, "gives some rubs over [T]'s [T.belly_rub_target ? T.belly_rub_target : lowertext(B.get_belly_name())].")
 			B.quick_cycle()
 			return TRUE
 	to_chat(src, span_vwarning("There is no suitable belly for rubs."))

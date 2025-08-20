@@ -23,6 +23,12 @@
 
 			host.vore_selected.name = new_name
 			. = TRUE
+		if("b_display_name")
+			var/new_name = html_encode(params["val"])
+			if(length(new_name) > BELLIES_NAME_MAX)
+				return FALSE
+			host.vore_selected.display_name = new_name
+			. = TRUE
 		if("b_message_mode")
 			host.vore_selected.message_mode = !host.vore_selected.message_mode
 			. = TRUE

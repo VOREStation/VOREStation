@@ -12,6 +12,7 @@
 /obj/belly
 	name = "belly"							// Name of this location
 	desc = "It's a belly! You're in it!"	// Flavor text description of inside sight/sound/smells/feels.
+	var/display_name = ""					// Optional display name
 	var/message_mode = FALSE				// If all options for messages are shown
 	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
@@ -269,6 +270,7 @@
 	var/list/saving = list(
 	"name",
 	"desc",
+	"display_name",
 	"absorbed_desc",
 	"message_mode",
 	"vore_sound",
@@ -1687,6 +1689,7 @@
 	//// Non-object variables
 	dupe.name = name
 	dupe.desc = desc
+	dupe.display_name = display_name
 	dupe.message_mode = message_mode
 	dupe.absorbed_desc = absorbed_desc
 	dupe.vore_sound = vore_sound
@@ -2196,3 +2199,6 @@
 	for(var/atom/movable/AM as anything in contents)
 		//if(AM.atom_flags & ATOM_HEAR)
 		. += AM
+
+/obj/belly/proc/get_belly_name()
+	return display_name ? display_name : name
