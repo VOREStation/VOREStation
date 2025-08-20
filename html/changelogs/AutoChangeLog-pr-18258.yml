@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - code_imp: "Suit icons are now smart and will automatically fallback to the original icon if a species does not possess the icon state."
+  - refactor: "Makes all uses of X in cached_icon_states(icon) into the much faster RUST based icon_exists() proc"
