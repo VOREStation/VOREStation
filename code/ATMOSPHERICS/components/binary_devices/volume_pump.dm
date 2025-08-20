@@ -139,12 +139,12 @@ Thus, the two variables affect pump operation are set in New():
 		use_power(power_draw)
 
 		if(network1)
-			network1.update = 1
+			network1.update = TRUE
 
 		if(network2)
-			network2.update = 1
+			network2.update = TRUE
 
-	return 1
+	return TRUE
 
 //Radio remote control
 
@@ -199,7 +199,7 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/volume_pump/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
-		return 0
+		return FALSE
 
 	if(signal.data["power"])
 		if(text2num(signal.data["power"]))
@@ -214,12 +214,10 @@ Thus, the two variables affect pump operation are set in New():
 		transfer_rate = between(0, text2num(signal.data["set_volume_rate"]), air1.volume)
 
 	if(signal.data["status"])
-		spawn(2)
-			broadcast_status()
+		broadcast_status()
 		return //do not update_icon
 
-	spawn(2)
-		broadcast_status()
+	broadcast_status()
 	update_icon()
 	return
 
@@ -284,11 +282,11 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/binary/volume_pump/proc/wrench_act(var/obj/item/W as obj, var/mob/user as mob)
 	if (!(stat & NOPOWER) && use_power)
 		to_chat(user, span_warning("You cannot unwrench this [src], turn it off first."))
-		return 1
+		return TRUE
 	if(!can_unwrench())
 		to_chat(user, span_warning("You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
-		return 1
+		return TRUE
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40 * W.toolspeed))
