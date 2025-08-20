@@ -11,7 +11,9 @@
 			var/obj/item/stack/stack = O
 			if(istype(stack))
 				var/list/sheet_components = GLOB.sheet_reagents[stack.type]
-				var/amount_to_take = max(0,min(stack.get_amount(),round(remaining_volume/REAGENTS_PER_SHEET)))
+				// Some stacks can be made into other stacks with a multiplier. This handles that.
+				var/remove_amount = stack.reagents_per_sheet()
+				var/amount_to_take = max(0,min(stack.get_amount(),round(remaining_volume/remove_amount)))
 				if(amount_to_take)
 					stack.use(amount_to_take)
 					if(QDELETED(stack))
@@ -19,9 +21,9 @@
 					if(islist(sheet_components))
 						amount_to_take = (amount_to_take/(sheet_components.len))
 						for(var/i in sheet_components)
-							R.add_reagent(i, (amount_to_take*REAGENTS_PER_SHEET))
+							R.add_reagent(i, (amount_to_take*remove_amount))
 					else
-						R.add_reagent(sheet_components, (amount_to_take*REAGENTS_PER_SHEET))
+						R.add_reagent(sheet_components, (amount_to_take*remove_amount))
 					continue
 
 		else if(GLOB.ore_reagents[O.type])

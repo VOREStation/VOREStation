@@ -15,7 +15,7 @@
  * * encode - Toggling this determines if input is filtered via html_encode. Setting this to FALSE gives raw input.
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_TGUI_INPUT, multiline = FALSE, encode = FALSE, timeout = 0, prevent_enter = FALSE, ui_state = GLOB.tgui_always_state) // 130k limit due to chunking limit... if we need longer that needs fixing
+/proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_TGUI_INPUT, multiline = FALSE, encode = TRUE, timeout = 0, prevent_enter = FALSE, ui_state = GLOB.tgui_always_state) // 130k limit due to chunking limit... if we need longer that needs fixing
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -126,6 +126,7 @@
 	data["placeholder"] = default // Default is a reserved keyword
 	data["swapped_buttons"] = !user.read_preference(/datum/preference/toggle/tgui_swapped_buttons)
 	data["title"] = title
+	data["spellcheck"] = user.read_preference(/datum/preference/toggle/tgui_use_spellcheck)
 	return data
 
 /datum/tgui_input_text/tgui_data(mob/user)

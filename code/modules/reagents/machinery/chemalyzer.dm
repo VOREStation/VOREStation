@@ -86,6 +86,7 @@
 		// Get internal data
 		subdata["description"] = R.description
 		subdata["addictive"] = 0
+		subdata["cooling_mod"] = R.coolant_modifier
 		if(R.id in get_addictive_reagents(ADDICT_ALL))
 			subdata["addictive"] = TRUE
 		subdata["industrial_use"] = R.industrial_use

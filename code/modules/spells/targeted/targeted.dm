@@ -86,7 +86,7 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 			possible_targets += target
 
 		if(spell_flags & SELECTABLE)
-			for(var/i = 1; i<=max_targets, i++)
+			for(var/i = 1, i<=max_targets, i++)
 				if(!possible_targets.len)
 					break
 				var/mob/M = tgui_input_list(user, "Choose the target for the spell.", "Targeting", possible_targets)
@@ -136,8 +136,8 @@ Targeted spells have two useful flags: INCLUDEUSER and SELECTABLE. These are exp
 	target.Paralyse(amt_paralysis)
 	target.Stun(amt_stunned)
 	if(amt_weakened || amt_paralysis || amt_stunned)
-		if(target.buckled)
-			target.buckled = null
+		if(target && target.buckled)
+			target.buckled.unbuckle_mob( target, TRUE)
 	target.Blind(amt_eye_blind)
 	target.eye_blurry += amt_eye_blurry
 	target.make_dizzy(amt_dizziness)

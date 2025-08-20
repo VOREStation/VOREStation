@@ -82,7 +82,7 @@
 				to_chat(ui.user, "Unauthorized Access.")
 			. = TRUE
 		if("warn")
-			var/warning = sanitize(tgui_input_text(ui.user, "Message:", "Enter your message here!", ""))
+			var/warning = tgui_input_text(ui.user, "Message:", "Enter your message here!", "", MAX_MESSAGE_LEN)
 			if(!warning)
 				return
 			var/obj/item/implant/I = locate(params["imp"])

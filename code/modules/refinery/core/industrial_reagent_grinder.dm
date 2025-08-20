@@ -8,7 +8,7 @@
 	idle_power_usage = 5
 	active_power_usage = 300
 	circuit = /obj/item/circuitboard/industrial_reagent_grinder
-	VAR_PRIVATE/limit = 50
+	var/static/limit = 50
 	VAR_PRIVATE/list/holdingitems = list()
 
 /obj/machinery/reagent_refinery/grinder/Initialize(mapload)
@@ -34,7 +34,7 @@
 	// Insert grindables if not handled by parent proc
 	if(holdingitems && holdingitems.len >= limit)
 		to_chat(user, "The machine cannot hold anymore items.")
-		return TRUE
+		return FALSE
 
 	// Botany/Chemistry gameplay
 	if(istype(O,/obj/item/storage/bag))
@@ -62,15 +62,18 @@
 	// Borgos!
 	if(istype(O,/obj/item/gripper))
 		var/obj/item/gripper/B = O	//B, for Borg.
-		if(!B.wrapped)
+		var/obj/item/wrapped = B.get_current_pocket()
+		if(!wrapped)
 			to_chat(user, "\The [B] is not holding anything.")
 			return FALSE
 		else
-			var/B_held = B.wrapped
+			var/B_held = wrapped
 			to_chat(user, "You use \the [B] to load \the [src] with \the [B_held].")
 		return FALSE
 
 	// Needs to be sheet, ore, or grindable reagent containing things
+	if(istype(O,/obj/item/tool)) // Stops messages about the wrench being unsuitable to grind
+		return FALSE
 	if(!GLOB.sheet_reagents[O.type] && !GLOB.ore_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
 		to_chat(user, "\The [O] is not suitable for blending.")
 		return FALSE
@@ -87,6 +90,18 @@
 	power_change()
 	if(stat & (NOPOWER|BROKEN))
 		return
+
+	// Get objects from incoming conveyors
+	if(holdingitems.len < limit)
+		for(var/D in GLOB.cardinal)
+			var/turf/T = get_step(src,D)
+			if(!T)
+				continue
+			var/obj/machinery/conveyor/C = locate() in T
+			if(C && !C.stat && C.operating && C.dir == GLOB.reverse_dir[D] && T.contents.len > 1) // If an operating conveyor points into us... Check if it's moving anything
+				var/obj/item/I = pick(T.contents - list(C))
+				if(istype(I) && conveyor_load(I))
+					break
 
 	if(holdingitems.len > 0 && grind_items_to_reagents(holdingitems,reagents))
 		//Lazy coder sound design moment. THE SEQUEL
@@ -109,21 +124,18 @@
 		var/image/dot = image(icon, icon_state = "grinder_dot_[holdingitems.len ? "on" : "off" ]")
 		add_overlay(dot)
 
-/obj/machinery/reagent_refinery/grinder/Bumped(atom/movable/AM as mob|obj)
-	. = ..()
-	if(!anchored)
-		return
+/obj/machinery/reagent_refinery/grinder/proc/conveyor_load(atom/movable/AM as mob|obj)
 	if(!AM || QDELETED(AM))
-		return
+		return FALSE
 	if(holdingitems.len >= limit)
-		return
+		return FALSE
 	if(ismob(AM)) // No mob bumping YET
-		return
+		return FALSE
 	if(!GLOB.sheet_reagents[AM.type] && !GLOB.ore_reagents[AM.type] && (!AM.reagents || !AM.reagents.total_volume))
-		return
-
+		return FALSE
 	AM.forceMove(src)
 	holdingitems += AM
+	return TRUE
 
 /obj/machinery/reagent_refinery/grinder/examine(mob/user, infix, suffix)
 	. = ..()
@@ -131,6 +143,6 @@
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."
 	tutorial(REFINERY_TUTORIAL_NOINPUT, .)
 
-/obj/machinery/reagent_refinery/grinder/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
+/obj/machinery/reagent_refinery/grinder/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
 	// Grinder forbids input
 	return 0

@@ -483,6 +483,20 @@
 	tracer_type = /obj/effect/projectile/tracer/pointdefense
 	impact_type = /obj/effect/projectile/impact/pointdefense
 
+/obj/item/projectile/beam/coildefense
+	name = "defense coil salvo"
+	icon_state = "coil"
+	damage = 15
+	damage_type = ELECTROCUTE //You should be safe inside a voidsuit
+	sharp = FALSE //"Wide" spectrum beam
+	light_color = "#FFFFFF"
+
+	excavation_amount = 200 // Good at shooting rocks
+
+	muzzle_type = /obj/effect/projectile/muzzle/coildefense
+	tracer_type = /obj/effect/projectile/tracer/coildefense
+	impact_type = /obj/effect/projectile/impact/coildefense
+
 //
 // Energy Net
 //

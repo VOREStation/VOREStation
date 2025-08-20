@@ -420,6 +420,24 @@
 	return ..()
 
 //
+// Formats the belly texts if possible
+//
+
+/mob/living/proc/formatted_vore_examine()
+	var/reagent_examine = examine_reagent_bellies()
+	var/list/examine_belly = examine_bellies()
+	if(!reagent_examine && !LAZYLEN(examine_belly))
+		return ""
+	var/list/vore_examine_data = list()
+	vore_examine_data += reagent_examine
+	vore_examine_data += examine_belly
+	if(!client?.prefs?.read_preference(/datum/preference/toggle/vchat_enable))
+		return vore_examine_data
+
+	return span_details("🤰 | Vore Descriptions", vore_examine_data.Join("\n"))
+
+
+//
 // Clearly super important. Obviously.
 //
 /mob/living/proc/lick(mob/living/tasted in living_mobs_in_view(1, TRUE))
@@ -661,118 +679,6 @@
 	return perform_the_nom(user, prey, pred, belly)
 
 //
-// Master vore proc that actually does vore procedures
-//
-/mob/living/proc/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
-	//Sanity
-	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
-		log_debug("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
-		return FALSE
-	if(pred == prey)
-		return FALSE
-
-	// The belly selected at the time of noms
-	var/attempt_msg = "ERROR: Vore message couldn't be created. Notify a dev. (at)"
-	var/success_msg = "ERROR: Vore message couldn't be created. Notify a dev. (sc)"
-
-	//Final distance check. Time has passed, menus have come and gone. Can't use do_after adjacent because doesn't behave for held micros
-	var/user_to_pred = get_dist(get_turf(user),get_turf(pred))
-	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
-
-	if(user == pred && isAI(user))
-		var/mob/living/silicon/ai/AI = user
-		if(AI.holo && AI.holo.masters[AI])
-			user_to_prey = get_dist(get_turf(AI.holo.masters[AI]), get_turf(prey))
-
-	if(user_to_pred > 1 || user_to_prey > 1)
-		return FALSE
-
-	if(!prey.devourable)
-		to_chat(user, span_vnotice("They aren't able to be devoured."))
-		log_and_message_admins("attempted to devour [key_name_admin(prey)] against their prefs ([prey ? ADMIN_JMP(prey) : "null"])", src)
-		return FALSE
-	if(prey.absorbed || pred.absorbed)
-		to_chat(user, span_vwarning("They aren't aren't in a state to be devoured."))
-		return FALSE
-
-	//Determining vore attempt privacy
-	var/message_range = world.view
-	if(!pred.is_slipping && !prey.is_slipping) //We only care about privacy preference if it's NOT a spontaneous vore.
-		switch(belly.eating_privacy_local) //if("loud") case not added, as it would not modify message_range
-			if("default")
-				if(pred.eating_privacy_global)
-					message_range = 1
-			if("subtle")
-				message_range = 1
-
-	// Prepare messages
-	if(prey.is_slipping)
-		attempt_msg = span_vwarning("It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!")
-		success_msg = span_vwarning("[prey] suddenly slides into [pred]'s [lowertext(belly.name)]!")
-	else if(pred.is_slipping)
-		attempt_msg = span_vwarning("It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!")
-		success_msg = span_vwarning("[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!")
-	else if(user == pred) //Feeding someone to yourself
-		attempt_msg = span_vwarning("[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
-		success_msg = span_vwarning("[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
-	else //Feeding someone to another person
-		attempt_msg = span_vwarning("[user] is attempting to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
-		success_msg = span_vwarning("[user] manages to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
-
-	// Announce that we start the attempt!
-
-	user.visible_message(attempt_msg, range = message_range)
-
-	// Now give the prey time to escape... return if they did
-	var/swallow_time
-	if(delay_time < 0)
-		swallow_time = 0 //No delay!
-	else if(delay_time)
-		swallow_time = delay_time
-	else
-		swallow_time = ishuman(prey) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
-
-	// Their AI should get notified so they can stab us
-	prey.ai_holder?.react_to_attack(user)
-
-	//Timer and progress bar
-	if(!user.client && prey.weakened > 0) // stop crwaling instantly break swallow attempt for mobvore
-		prey.Stun(min(prey.weakened, 2)) // stop crwaling instantly break swallow attempt for mobvore
-	if(!do_after(user, swallow_time, prey, exclusive = TASK_USER_EXCLUSIVE))
-		return FALSE // Prey escaped (or user disabled) before timer expired.
-
-	// If we got this far, nom successful! Announce it!
-	user.visible_message(success_msg, range = message_range)
-
-	// Actually shove prey into the belly.
-	if(istype(prey.loc, /obj/item/holder))
-		var/obj/item/holder/H = prey.loc
-		for(var/mob/living/M in H.contents)
-			belly.nom_mob(M, user)
-			if(M.loc == H) // In case nom_mob failed somehow.
-				M.forceMove(get_turf(src))
-		H.held_mob = null
-		qdel(H)
-	else
-		belly.nom_mob(prey, user)
-
-	user.update_icon()
-
-	var/mob/living/carbon/victim = prey // Check for afk vore
-	if(istype(victim) && !victim.client && !victim.ai_holder && victim.ckey)
-		log_and_message_admins("ate [key_name_admin(prey)] whilst the prey was AFK ([pred ? ADMIN_JMP(pred) : "null"])", pred)
-	var/mob/living/carbon/victim_pred = pred // Check for afk vore
-	if(istype(victim_pred) && !victim_pred.client && !victim_pred.ai_holder && victim_pred.ckey)
-		log_and_message_admins("ate [key_name_admin(prey)] whilst the pred was AFK ([pred ? ADMIN_JMP(pred) : "null"])", pred)
-
-	// Inform Admins
-	if(pred == user)
-		add_attack_logs(pred, prey, "Eaten via [belly.name]")
-	else
-		add_attack_logs(user, pred, "Forced to eat [key_name(prey)]")
-	return TRUE
-
-//
 // Magical pred-air breathing for inside preds
 // overrides a proc defined on atom called by breathe.dm
 //
@@ -851,7 +757,7 @@
 	if(user.is_incorporeal())
 		return FALSE
 	var/belly = user.vore_selected
-	return perform_the_nom(user, prey, user, belly, -1)
+	return begin_instant_nom(user, prey, user, belly)
 
 /mob/living/proc/glow_toggle()
 	set name = "Glow (Toggle)"
@@ -1357,9 +1263,9 @@
 	if(screen_icon)
 		owner?.client?.screen -= screen_icon
 		UnregisterSignal(screen_icon, COMSIG_CLICK)
-		qdel_null(screen_icon)
+		QDEL_NULL(screen_icon)
 	remove_verb(owner, /mob/proc/insidePanel)
-	qdel_null(owner.vorePanel)
+	QDEL_NULL(owner.vorePanel)
 
 /datum/component/vore_panel/proc/create_mob_button(mob/user)
 	SIGNAL_HANDLER

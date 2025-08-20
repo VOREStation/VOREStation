@@ -397,7 +397,7 @@
 /obj/item/clothing/gloves/bluespace/magic
 	name = "bracer of resilience"
 	desc = "A bracer that is said to make one resistent to size changing magic."
-	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "bs_magic"
 
 //harpoon
@@ -502,7 +502,7 @@ This device records all warnings given and teleport events for admin review in c
 			to_chat(user, span_warning("The tome can't support any more pages!"))
 			return
 
-		var/new_name = html_encode(tgui_input_text(user,"New pages's name (2-20 char):","[src]",null,20))
+		var/new_name = tgui_input_text(user,"New pages's name (2-20 char):","[src]",null,20)
 		if(!check_menu(user))
 			return
 

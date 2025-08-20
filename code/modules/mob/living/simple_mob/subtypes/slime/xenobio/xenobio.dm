@@ -132,10 +132,14 @@
 
 /mob/living/simple_mob/slime/xenobio/update_mood()
 	var/old_mood = mood
+	var/pacified = FALSE //Tracks if we are currently pacified (and if we can be drop prey or not)
+	var/obedient = 0
 	if(incapacitated(INCAPACITATION_DISABLED))
 		mood = "sad"
+		pacified = TRUE
 	else if(harmless)
 		mood = ":33"
+		pacified = TRUE
 	else if(has_AI())
 		var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
 		if(AI.rabid)
@@ -144,13 +148,36 @@
 			mood = "mischevous"
 		else if(AI.discipline)
 			mood = "pout"
+			pacified = TRUE
 		else
 			mood = ":3"
+			pacified = TRUE
+		obedient = AI.obedience
 	else
 		mood = ":3"
+		pacified = TRUE
+	if(obedient < 5)
+		pacified = FALSE //We are not obedient enough to be considered pacified.
+
+	if(!client) //Only update if we don't have a client.
+		if(faction != initial(faction)) //We have had a loyalty potion used on us.
+			update_allowed_vore_types(TRUE)
+		else if(old_mood == "angry") //We were recently angry, so we're still upset and won't let you eat us no matter what! (Unless we had a docility potion put on us, making us harmless)
+			update_allowed_vore_types(FALSE, harmless)
+		else
+			update_allowed_vore_types(pacified, harmless)
 
 	if(old_mood != mood)
 		update_icon()
+
+/mob/living/simple_mob/slime/proc/update_allowed_vore_types(allowed, harmless)
+	if(harmless) // If we're harmless, we should always be able to be eaten.
+		allowed = TRUE
+	can_be_drop_prey = allowed
+	stumble_vore = allowed
+	slip_vore = allowed
+	drop_vore = allowed
+	throw_vore = allowed
 
 /mob/living/simple_mob/slime/xenobio/proc/enrage()
 	if(harmless)

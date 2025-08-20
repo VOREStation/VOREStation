@@ -53,7 +53,7 @@
 	if(href_list[VV_HK_TAG])
 		usr.client.tag_datum(target)
 	if(href_list[VV_HK_ADDCOMPONENT])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/list/names = list()
 		var/list/componentsubtypes = sortList(subtypesof(/datum/component), GLOBAL_PROC_REF(cmp_typepaths_asc))
@@ -88,14 +88,14 @@
 		lst.Insert(1, result)
 		if(result in componentsubtypes)
 			datumname = "component"
-			target._AddComponent(lst, add_source)
+			target._AddComponent(lst, add_source, TRUE)
 		else
 			datumname = "element"
 			target._AddElement(lst)
 		log_admin("[key_name(usr)] has added [result] [datumname] to [key_name(target)].")
 		message_admins(span_notice("[key_name_admin(usr)] has added [result] [datumname] to [key_name_admin(target)]."))
 	if(href_list[VV_HK_REMOVECOMPONENT] || href_list[VV_HK_MASS_REMOVECOMPONENT])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 		var/mass_remove = href_list[VV_HK_MASS_REMOVECOMPONENT]
 		var/list/components = target._datum_components.Copy()

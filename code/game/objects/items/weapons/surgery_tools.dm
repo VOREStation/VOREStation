@@ -16,7 +16,7 @@
 /obj/item/surgical
 	name = "Surgical tool"
 	desc = "This shouldn't be here, ahelp it."
-	icon = 'icons/obj/surgery_vr.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	w_class = ITEMSIZE_SMALL
 	drop_sound = 'sound/items/drop/weldingtool.ogg'
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
@@ -108,6 +108,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	drop_sound = 'sound/items/drop/knife.ogg'
+	var/clamp_chance = 0 // chance that the scalpel will perform cautery on its own
 
 /*
  * Researchable Scalpels
@@ -118,6 +119,7 @@
 	icon_state = "scalpel_laser1"
 	damtype = "fire"
 	hitsound = 'sound/weapons/blade1.ogg'
+	clamp_chance = 75
 
 /obj/item/surgical/scalpel/laser2
 	name = "laser scalpel"
@@ -126,6 +128,7 @@
 	damtype = "fire"
 	hitsound = 'sound/weapons/blade1.ogg'
 	force = 12.0
+	clamp_chance = 85
 
 /obj/item/surgical/scalpel/laser3
 	name = "laser scalpel"
@@ -134,12 +137,14 @@
 	damtype = "fire"
 	hitsound = 'sound/weapons/blade1.ogg'
 	force = 15.0
+	clamp_chance = 95
 
 /obj/item/surgical/scalpel/manager
 	name = "incision management system"
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	icon_state = "scalpel_manager"
 	force = 7.5
+	clamp_chance = 100
 
 /obj/item/surgical/scalpel/ripper
 	name = "jagged scalpel"

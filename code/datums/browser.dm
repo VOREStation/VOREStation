@@ -23,7 +23,7 @@
 	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(user_deleted))
 	src.window_id = window_id
 	if (title)
-		src.title = format_text(title)
+		src.title = strip_improper(title)
 	if (width)
 		src.width = width
 	if (height)
@@ -422,7 +422,7 @@
 					setting["value"] = new_value
 
 			if ("string")
-				setting["value"] = tgui_input_text(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"], encode = TRUE)
+				setting["value"] = tgui_input_text(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"])
 			if ("number")
 				setting["value"] = tgui_input_number(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]")
 			if ("color")

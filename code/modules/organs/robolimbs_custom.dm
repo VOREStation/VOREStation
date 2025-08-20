@@ -17,7 +17,7 @@
 
 /obj/item/disk/limb/eggnerdltd
 	company = "Eggnerd Prototyping Ltd."
-//	icon = 'icons/obj/items_vr.dmi'
+//	icon = 'icons/obj/items.dmi'
 //	icon_state = "verkdisk"
 
 //////////////// General VS-only ones /////////////////
@@ -46,7 +46,7 @@
 
 /obj/item/disk/limb/eggnerdltdred
 	company = "Eggnerd Prototyping Ltd. (Red)"
-	icon = 'icons/obj/items_vr.dmi'	//VOREStation add. Use the right sprites
+	icon = 'icons/obj/items.dmi'	//VOREStation add. Use the right sprites
 	icon_state = "verkdisk"			//VOREStation add. Use the right sprites
 
 

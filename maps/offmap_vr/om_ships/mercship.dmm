@@ -2215,7 +2215,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/hall1)
 "dY" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "merc_pd"
 	},
 /obj/effect/decal/warning_stripes,
@@ -2837,7 +2837,7 @@
 /turf/simulated/floor/plating,
 /area/ship/mercenary/engine)
 "fj" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "merc_pd"
 	},
 /obj/effect/decal/warning_stripes,
@@ -3450,28 +3450,28 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineering)
 "gk" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "merc_pd"
 	},
 /obj/effect/decal/warning_stripes,
 /turf/simulated/floor/plating/external,
 /area/ship/mercenary/bridge)
 "gl" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "merc_pd"
 	},
 /obj/effect/decal/warning_stripes,
 /turf/simulated/floor/plating/external,
 /area/ship/mercenary/engineeringcntrl)
 "gm" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "merc_pd"
 	},
 /obj/effect/decal/warning_stripes,
 /turf/simulated/floor/plating/external,
 /area/ship/mercenary/armoury)
 "gn" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "merc_pd"
 	},
 /obj/effect/decal/warning_stripes,
