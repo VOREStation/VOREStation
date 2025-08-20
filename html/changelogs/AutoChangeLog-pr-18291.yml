@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - spellcheck: "Removed the SSsun mentions from solar panels."
-  - bugfix: "we no longer have the curent grid"

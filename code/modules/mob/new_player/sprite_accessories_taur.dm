@@ -893,14 +893,6 @@
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their paw, forcing you down to the ground!"
 
-/datum/sprite_accessory/tail/taur/noodle
-	name = "Eastern Dragon (Taur)"
-	icon_state = "noodle_s"
-	extra_overlay = "noodle_markings"
-	suit_sprites = 'icons/mob/taursuits_noodle.dmi'
-	clip_mask_state = "taur_clip_mask_noodle"
-	icon_sprite_tag = "noodle"
-
 /datum/sprite_accessory/tail/taur/zorgoia
 	name = "Zorgoia (Taur)"
 	icon_state = "zorgoia"
