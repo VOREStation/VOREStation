@@ -875,6 +875,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/* Decided that we were not keen on this being able to be printed freely as we immediately saw undesirable behaviour
 /datum/design_techweb/telekinetic_gloves
 	name = "Kinesis Assistance Module"
 	id = "tk_gloves"
@@ -886,3 +887,61 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+*/
+
+/datum/design_techweb/mail_scanner
+	name = "Mail Scanner"
+	id = "mail_scanner"
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/mail_scanner
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_MACHINE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/atmos_holosign
+	name = "Atmos Holosign"
+	id = "atmos_holosign"
+	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	build_path = /obj/item/holosign_creator/combifan
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_MACHINE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/confetti_cannon
+	name = "Confetti Cannon"
+	desc = "Stuff it with paper and shoot! You'll be a hit at every party."
+	id = "confetti_cannon"
+	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000)
+	build_path = /obj/item/gun/launcher/confetti_cannon
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_TOOLS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+
+/datum/design_techweb/floor_painter
+	name = "Floor Painter"
+	id = "floor_painter"
+	materials = list(MAT_STEEL = 3000, MAT_GLASS = 500)
+	build_path = /obj/item/floor_painter
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_MACHINE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/medical_holosign
+	name = "Medical Holosign"
+	id = "medical_holosign"
+	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	build_path = /obj/item/holosign_creator/medical
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_MACHINE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL

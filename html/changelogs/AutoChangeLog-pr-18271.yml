@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Explorer belt can now hold binoculars"
+  - qol: "Chembags can be worn on your belt slot"
+  - qol: "Chembags can hold autoinjectors"
+  - qol: "Toolbelts can now hold holofans, RCDs, and RPDs"
