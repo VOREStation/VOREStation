@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "shift trivia display"
+  - bugfix: "game end countdown"
