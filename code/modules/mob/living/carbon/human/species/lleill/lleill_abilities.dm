@@ -204,6 +204,9 @@
 		else
 			var/obj/structure/glamour_ring/R = tgui_input_list(src, "Where do you wish to teleport?", "Teleport", src.teleporters)
 
+			if(!R)
+				return
+
 			var/datum/effect/effect/system/spark_spread/spk
 			spk = new(src)
 

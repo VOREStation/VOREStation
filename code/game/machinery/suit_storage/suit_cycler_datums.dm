@@ -314,7 +314,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 /datum/suit_cycler_choice/species/proc/can_refit_to(...)
 	for(var/obj/item/clothing/C in args)
 		if(LAZYACCESS(C.sprite_sheets_obj, name))
-			if(!(C.icon_state in cached_icon_states(C.sprite_sheets_obj[name])))
+			if(!icon_exists(C.sprite_sheets_obj[name], C.icon_state))
 				return FALSE // Species was in sprite_sheets_obj, but had no sprite for this object in particular
 
 	return TRUE
