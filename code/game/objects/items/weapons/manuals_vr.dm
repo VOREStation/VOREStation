@@ -2,7 +2,7 @@
 	name = "Standard Operating Procedure"
 	desc = "A set of corporate guidelines for keeping space stations running smoothly."
 	icon_state = "sop"
-	icon = 'icons/obj/library_vr.dmi'
+	icon = 'icons/obj/library.dmi'
 	author = "NanoTrasen"
 	title = "Standard Operating Procedure"
 
@@ -25,7 +25,7 @@
 	name = "The Chain of Command"
 	desc = "A set of corporate guidelines outlining the entire command structure of NanoTrasen from top to bottom."
 	icon_state = "commandGuide"
-	icon = 'icons/obj/library_vr.dmi'
+	icon = 'icons/obj/library.dmi'
 	author = "Jeremiah Acacius"
 	title = "Corporate Regulations"
 
@@ -49,7 +49,7 @@
 	name = "Food for Dummies 2"
 	desc = "A helpful guide to the world of cooking."
 	icon_state = "cook-guide"
-	icon = 'icons/obj/library_vr.dmi'
+	icon = 'icons/obj/library.dmi'
 	author = "Ali Big"
 	title = "Food for Dummies 2"
 
@@ -133,7 +133,7 @@
 	name = "How to Alcohol (And other Drinks)"
 	desc = "A helpful guide to the world of barkeeping."
 	icon_state = "bar-guide"
-	icon = 'icons/obj/library_vr.dmi'
+	icon = 'icons/obj/library.dmi'
 	author = "Ali Big"
 	title = "How to Alcohol (And other Drinks)"
 
