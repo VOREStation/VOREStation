@@ -163,7 +163,6 @@
 /obj/structure/bed/chair/comfy/rounded
 	name = "rounded chair"
 	desc = "It's a rounded chair. It looks comfy."
-	icon = 'icons/obj/furniture_vr.dmi'
 	icon_state = "roundedchair"
 	base_icon = "roundedchair"
 
