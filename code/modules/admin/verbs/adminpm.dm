@@ -146,7 +146,6 @@
 		to_chat(src, span_admin_pm_notice("PM to-" + span_bold("Admins") + ": [rawmsg]"))
 		admin_ticket_log(src, span_admin_pm_warning("Reply PM from-" + span_bold("[key_name(src, TRUE, TRUE)]") + " to " + span_italics("IRC") + ": [keywordparsedmsg]"))
 		ircreplyamount--
-		send2irc("Reply: [ckey]",rawmsg)
 	else
 		if(recipient.holder)
 			if(holder)	//both are admins
