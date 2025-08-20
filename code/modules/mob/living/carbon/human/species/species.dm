@@ -535,8 +535,8 @@
 		if(M.wear_mask)
 			if((M.wear_mask.body_parts_covered & FACE) || (M.wear_mask.flags_inv & HIDEFACE))
 				covered_mouth = TRUE
-		if(M.is_muzzled)
-			covered_mouth = TRUE
+	if(target.is_muzzled())
+		covered_mouth = TRUE
 
 	if(H.zone_sel.selecting == BP_HEAD)
 		if((target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE) && !covered_mouth)
