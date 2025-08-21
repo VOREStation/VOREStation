@@ -485,7 +485,7 @@
 	print_end_time = world.time + print_time
 
 	// Use addtimer instead of processing for efficiency
-	addtimer(CALLBACK(src, PROC_REF(finish_printing)), print_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_printing)), print_time, TIMER_DELETE_ME)
 
 	var/print_minutes = round(print_time / 600, 0.1) // Convert to minutes for display
 	to_chat(user, span_notice("Printing '[assembly.name]' with [LAZYLEN(created_components)] component\s. Estimated completion time: [print_minutes] minute\s."))
