@@ -43,39 +43,43 @@ export const ICPrinter = (props) => {
         <Stack fill vertical>
           <Stack.Item>
             <Section fill title="Status">
-              <LabeledList>
-                <LabeledList.Item label="Metal">
-                  <ProgressBar value={metal} maxValue={max_metal}>
-                    {metal / metal_per_sheet} / {max_metal / metal_per_sheet}{' '}
-                    sheets
-                  </ProgressBar>
-                </LabeledList.Item>
-                <LabeledList.Item label="Circuits Available">
-                  {upgraded ? 'Advanced' : 'Regular'}
-                </LabeledList.Item>
-                <LabeledList.Item label="Assembly Cloning">
-                  {can_clone ? 'Available' : 'Unavailable'}
-                </LabeledList.Item>
-              </LabeledList>
-              {!!can_clone && (
-                <Box mt={2}>
-                  <Button
-                    icon="file-import"
-                    content="Import Circuit"
-                    onClick={() => {
-                      act('import_circuit', {
-                        override_type: false,
-                        custom_type: null,
-                      });
-                    }}
-                    tooltip="Import a circuit design from a JSON file"
-                  />
-                </Box>
-              )}
-              <Box mt={1}>
-                Note: A red component name means that the printer must be
-                upgraded to create that component.
-              </Box>
+              <Stack vertical>
+                <Stack.Item>
+                  <LabeledList>
+                    <LabeledList.Item label="Metal">
+                      <ProgressBar value={metal} maxValue={max_metal}>
+                        {metal / metal_per_sheet} /{' '}
+                        {max_metal / metal_per_sheet} sheets
+                      </ProgressBar>
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Circuits Available">
+                      {upgraded ? 'Advanced' : 'Regular'}
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Assembly Cloning">
+                      {can_clone ? 'Available' : 'Unavailable'}
+                    </LabeledList.Item>
+                  </LabeledList>
+                </Stack.Item>
+                {!!can_clone && (
+                  <Stack.Item>
+                    <Button
+                      icon="file-import"
+                      content="Import Circuit"
+                      onClick={() => {
+                        act('import_circuit', {
+                          override_type: false,
+                          custom_type: null,
+                        });
+                      }}
+                      tooltip="Import a circuit design from a JSON file"
+                    />
+                  </Stack.Item>
+                )}
+                <Stack.Item>
+                  Note: A red component name means that the printer must be
+                  upgraded to create that component.
+                </Stack.Item>
+              </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item>

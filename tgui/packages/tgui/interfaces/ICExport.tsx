@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Section, TextArea } from 'tgui-core/components';
+import { Box, Button, Section, Stack, TextArea } from 'tgui-core/components';
 
 type Data = {
   export_data: string;
@@ -43,39 +43,52 @@ export const ICExport = (props) => {
     <Window width={600} height={350}>
       <Window.Content>
         <Section title="Circuit Export Data">
-          <TextArea
-            height="40vh"
-            width="100%"
-            value={export_data || 'No data available'}
-          />
-          <Box mt={2}>
-            <Button
-              icon="download"
-              content="Download as File"
-              onClick={handleDownload}
-              tooltip="Download circuit data as a JSON file"
-            />
-            <Button
-              icon="copy"
-              content="Copy to Clipboard"
-              onClick={() => {
-                if (navigator.clipboard) {
-                  navigator.clipboard.writeText(export_data);
-                }
-                act('copy_export_data');
-              }}
-              tooltip="Copy circuit data to clipboard"
-            />
-            <Button
-              icon="times"
-              content="Close"
-              onClick={() => act('close_export')}
-            />
-          </Box>
-          <Box mt={1}>
-            Note: You can download the circuit as a file or copy to clipboard.
-            Use the circuit printer&apos;s import function to load the circuit.
-          </Box>
+          <Stack vertical>
+            <Stack.Item>
+              <TextArea
+                height="40vh"
+                width="100%"
+                value={export_data || 'No data available'}
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Stack>
+                <Stack.Item>
+                  <Button
+                    icon="download"
+                    content="Download as File"
+                    onClick={handleDownload}
+                    tooltip="Download circuit data as a JSON file"
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="copy"
+                    content="Copy to Clipboard"
+                    onClick={() => {
+                      if (navigator.clipboard) {
+                        navigator.clipboard.writeText(export_data);
+                      }
+                      act('copy_export_data');
+                    }}
+                    tooltip="Copy circuit data to clipboard"
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    icon="times"
+                    content="Close"
+                    onClick={() => act('close_export')}
+                  />
+                </Stack.Item>
+              </Stack>
+            </Stack.Item>
+            <Stack.Item>
+              Note: You can download the circuit as a file or copy to clipboard.
+              Use the circuit printer&apos;s import function to load the
+              circuit.
+            </Stack.Item>
+          </Stack>
         </Section>
       </Window.Content>
     </Window>

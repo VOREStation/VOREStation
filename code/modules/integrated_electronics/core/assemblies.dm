@@ -107,19 +107,13 @@
 
 	switch(action)
 		if("export_circuit")
-			if(usr)
-				if(!contents.len)
-					to_chat(usr, span_warning("There's nothing in the [src] to export!"))
-					return TRUE
-				var/datum/tgui/window = new(usr, src, "ICExport", "Circuit Export")
-				window.open()
+			if(!LAZYLEN(contents))
+				to_chat(ui.user, span_warning("There's nothing in the [src] to export!"))
+				return TRUE
+			var/datum/tgui/window = new(ui.user, src, "ICExport", "Circuit Export")
+			window.open()
 			return TRUE
 
-		if("copy_export_data")
-			return TRUE
-
-		if("close_export")
-			return TRUE
 		// Actual assembly actions
 		if("rename")
 			rename(ui.user)
