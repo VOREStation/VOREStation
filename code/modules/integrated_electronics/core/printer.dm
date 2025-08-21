@@ -288,24 +288,8 @@
 
 /obj/item/integrated_circuit_printer/proc/import_circuit(mob/user, circuit_data, override_type = FALSE, custom_type = null)
 	if(!circuit_data)
-		var/input = null
-		try
-			input = input(user, "Paste the circuit data here (supports up to 32KB):", "Import Circuit", "") as text
-		catch
-			to_chat(user, span_warning("Input dialog failed! Please try again."))
-			return
-
-		if(!input || !user || user.stat || user.restrained() || !Adjacent(user))
-			return
-
-		circuit_data = input
-
-		// Check if the input is Base64 encoded and decode it
-		if(length(circuit_data) > 0 && !findtext(circuit_data, "{"))
-			// If it doesn't contain '{' it's likely Base64 encoded JSON
-			var/decoded_data = rustg_decode_base64(circuit_data)
-			if(decoded_data && length(decoded_data) > 0)
-				circuit_data = decoded_data
+		to_chat(user, span_warning("No circuit data provided!"))
+		return
 
 	// Add safety check before deserializing
 	if(length(circuit_data) > 100000) // Reduced from 50KB to be more conservative
@@ -400,13 +384,13 @@
 			cost = initial(I.w_class)
 
 		total_cost += cost
-		components_to_create += list(list(
+		UNTYPED_LIST_ADD(components_to_create, list(
 			"type" = build_type,
 			"data" = component_data,
 			"cost" = cost
 		))
 
-	if(!components_to_create.len)
+	if(!LAZYLEN(components_to_create))
 		to_chat(user, span_warning("No valid components found in the circuit data!"))
 		return
 
@@ -415,20 +399,9 @@
 		to_chat(user, span_warning("Not enough metal! Need [total_cost / 2] units, have [metal] units."))
 		return
 
-	// Calculate assembly cost
-	var/assembly_cost = 0
-	if(override_type && custom_type)
-		var/custom_path = text2path(custom_type)
-		if(custom_path && ispath(custom_path, /obj/item/electronic_assembly))
-			var/obj/item/electronic_assembly/E = custom_path
-			assembly_cost = round((initial(E.max_complexity) + initial(E.max_components)) / 4)
-	else if(assembly_data["assembly_type"])
-		var/original_path = text2path(assembly_data["assembly_type"])
-		if(original_path && ispath(original_path, /obj/item/electronic_assembly))
-			var/obj/item/electronic_assembly/E = original_path
-			assembly_cost = round((initial(E.max_complexity) + initial(E.max_components)) / 4)
-	else
-		assembly_cost = round((IC_COMPLEXITY_BASE * 2 + IC_COMPONENTS_BASE * 2) / 4)
+	// Calculate assembly cost based on w_class (1 metal per size level)
+	var/assembly_w_class = assembly_data["w_class"] || ITEMSIZE_SMALL  // Default to SMALL if not specified
+	var/assembly_cost = assembly_w_class * 10
 
 	total_cost += assembly_cost
 
@@ -453,7 +426,7 @@
 
 	// Add components to assembly
 	var/list/created_components = add_components_to_assembly(assembly, assembly_data, available_components)
-	if(!created_components || !created_components.len)
+	if(!created_components || !LAZYLEN(created_components))
 		to_chat(user, span_warning("Failed to add components to assembly! No components were created."))
 		qdel(assembly)
 		if(!debug)
@@ -466,7 +439,7 @@
 	// Restore appearance
 	assembly.update_icon()
 	playsound(src, 'sound/machines/ding.ogg', 50, TRUE)
-	to_chat(user, span_notice("Successfully imported '[assembly.name]' with [created_components.len] component\s!"))
+	to_chat(user, span_notice("Successfully imported '[assembly.name]' with [LAZYLEN(created_components)] component\s!"))
 
 	// Try to put assembly in user's hands
 	if(!user.put_in_hands(assembly))

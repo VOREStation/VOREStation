@@ -488,6 +488,3 @@
 			if(!connection_exists)
 				source_pin.linked |= target_pin
 				target_pin.linked |= source_pin
-
-#undef ASSEMBLY_PREFIX
-#undef CIRCUIT_PREFIX
