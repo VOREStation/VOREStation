@@ -282,18 +282,22 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 /datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return
 
-/datum/game_mode/proc/declare_completion()
+/datum/game_mode/proc/declare_antag_goals()
+	for(var/datum/antagonist/antag in antag_templates)
+		sleep(10)
+		antag.check_victory()
+		antag.print_player_summary()
+	addtimer(CALLBACK(src, PROC_REF(finish_completion_declatration)), 1 SECOND)
 
-	var/is_antag_mode = (antag_templates && antag_templates.len)
+/datum/game_mode/proc/declare_completion()
+	var/is_antag_mode = LAZYLEN(antag_templates)
 	check_victory()
 	if(is_antag_mode)
-		sleep(10)
-		for(var/datum/antagonist/antag in antag_templates)
-			sleep(10)
-			antag.check_victory()
-			antag.print_player_summary()
-		sleep(10)
+		is_antag_mode += 2
+		addtimer(CALLBACK(src, PROC_REF(declare_antag_goals)), 1 SECOND)
+	return is_antag_mode SECONDS
 
+/datum/game_mode/proc/finish_completion_declatration()
 	var/clients = 0
 	var/surviving_humans = 0
 	var/surviving_total = 0
@@ -369,7 +373,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	if(escaped_on_pod_5 > 0)
 		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
 
-	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
+	// send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
 	SSwebhooks.send(
 		WEBHOOK_ROUNDEND,
 		list(
@@ -379,8 +383,6 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			"clients" = clients
 		)
 	)
-
-	return 0
 
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
@@ -502,21 +504,23 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 			continue //Happy connected client
 		for(var/mob/observer/dead/D in GLOB.dead_mob_list)
-			if(D.mind && (D.mind.original == L || D.mind.current == L))
-				if(L.stat == DEAD)
-					if(L.suiciding)	//Suicider
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
-						continue //Disconnected client
+			if(D.mind)
+				var/mob/living/original = D.mind.original_character?.resolve()
+				if((original && original == L) || D.mind.current == L)
+					if(L.stat == DEAD)
+						if(L.suiciding)	//Suicider
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
+							continue //Disconnected client
+						else
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
+							continue //Dead mob, ghost abandoned
 					else
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
-						continue //Dead mob, ghost abandoned
-				else
-					if(D.can_reenter_corpse)
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Adminghosted"))])<br>"
-						continue //Lolwhat
-					else
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Ghosted"))])<br>"
-						continue //Ghosted while alive
+						if(D.can_reenter_corpse)
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Adminghosted"))])<br>"
+							continue //Lolwhat
+						else
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Ghosted"))])<br>"
+							continue //Ghosted while alive
 
 	msg = span_notice(msg)// close the span from right at the top
 

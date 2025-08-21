@@ -604,6 +604,18 @@
 			if(new_private_struggle == 1)
 				new_belly.private_struggle = TRUE
 
+		if(isnum(belly_data["absorbedrename_enabled"]))
+			var/new_absorbedrename_enabled = belly_data["absorbedrename_enabled"]
+			if(new_absorbedrename_enabled == 0)
+				new_belly.absorbedrename_enabled = FALSE
+			if(new_absorbedrename_enabled == 1)
+				new_belly.absorbedrename_enabled = TRUE
+
+		if(istext(belly_data["absorbedrename_name"]))
+			var/new_absorbedrename_name = sanitize(belly_data["absorbedrename_name"],MAX_MESSAGE_LEN,0,0,0)
+			if(new_absorbedrename_name)
+				new_belly.absorbedrename_name = new_absorbedrename_name
+
 		if(istext(belly_data["eating_privacy_local"]))
 			var/new_eating_privacy_local = html_encode(belly_data["eating_privacy_local"])
 			if(new_eating_privacy_local && (new_eating_privacy_local in list("default","subtle","loud")))
@@ -823,9 +835,9 @@
 			if(new_disable_hud == 1)
 				new_belly.disable_hud = TRUE
 
-		var/possible_fullscreens = icon_states('icons/mob/screen_full_vore_list.dmi')
+		var/possible_fullscreens = cached_icon_states('icons/mob/screen_full_vore_list.dmi')
 		if(!new_belly.colorization_enabled)
-			possible_fullscreens = icon_states('icons/mob/screen_full_vore.dmi')
+			possible_fullscreens = cached_icon_states('icons/mob/screen_full_vore.dmi')
 		if(!(new_belly.belly_fullscreen in possible_fullscreens))
 			new_belly.belly_fullscreen = ""
 

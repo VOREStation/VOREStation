@@ -178,7 +178,7 @@
 /obj/item/card/id/digest_act(atom/movable/item_storage = null)
 	desc = "A partially digested card that has seen better days. The damage appears to be only cosmetic."
 	if(!sprite_stack || !istype(sprite_stack) || !(sprite_stack.len))
-		icon = 'icons/obj/card_vr.dmi'
+		icon = 'icons/obj/card.dmi'
 		icon_state = "[initial(icon_state)]_digested"
 	else
 		if(!sprite_stack.Find("digested"))

@@ -209,8 +209,7 @@
 					borg = span_boldnotice("\The [G]") + span_notice(" can hold this.")
 					break
 
-	var/examine_text = replacetext(get_examine_desc(), "||", "")
-	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix] [borg]", examine_text)
+	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix] [borg]", get_examine_desc())
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
@@ -563,19 +562,6 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 		"x" = icon_width > world.icon_size && pixel_x != 0 ? (icon_width - world.icon_size) * 0.5 : 0,
 		"y" = icon_height > world.icon_size /*&& pixel_y != 0*/ ? (icon_height - world.icon_size) * 0.5 : 0, // we don't have pixel_y in use
 	)
-
-/// Returns a list containing the width and height of an icon file
-/proc/get_icon_dimensions(icon_path)
-	// Icons can be a real file(), a rsc backed file(), a dynamic rsc (dyn.rsc) reference (known as a cache reference in byond docs), or an /icon which is pointing to one of those.
-	// Runtime generated dynamic icons are an unbounded concept cache identity wise, the same icon can exist millions of ways and holding them in a list as a key can lead to unbounded memory usage if called often by consumers.
-	// Check distinctly that this is something that has this unspecified concept, and thus that we should not cache.
-	if (!isfile(icon_path) || !length("[icon_path]"))
-		var/icon/my_icon = icon(icon_path)
-		return list("width" = my_icon.Width(), "height" = my_icon.Height())
-	if (isnull(GLOB.icon_dimensions[icon_path]))
-		var/icon/my_icon = icon(icon_path)
-		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
-	return GLOB.icon_dimensions[icon_path]
 
 /// Returns the src and all recursive contents as a list.
 /atom/proc/get_all_contents(ignore_flag_1)

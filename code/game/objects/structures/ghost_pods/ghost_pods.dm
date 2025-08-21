@@ -44,7 +44,7 @@
 		if(delay_to_try_again)
 			addtimer(CALLBACK(src, PROC_REF(trigger)), delay_to_try_again)
 	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
-	qdel_null(Q) //get rid of the query
+	QDEL_NULL(Q) //get rid of the query
 	if(deletion_candidate)
 		qdel(src)
 

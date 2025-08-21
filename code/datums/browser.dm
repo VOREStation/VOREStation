@@ -23,7 +23,7 @@
 	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(user_deleted))
 	src.window_id = window_id
 	if (title)
-		src.title = format_text(title)
+		src.title = strip_improper(title)
 	if (width)
 		src.width = width
 	if (height)

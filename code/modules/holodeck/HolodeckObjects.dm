@@ -128,7 +128,7 @@
 /obj/structure/holostool
 	name = "stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/furniture_vr.dmi'
+	icon = 'icons/obj/furniture.dmi'
 	icon_state = "stool_padded_preview"
 	anchored = TRUE
 	unacidable = TRUE

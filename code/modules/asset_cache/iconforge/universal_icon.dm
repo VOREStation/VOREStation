@@ -435,7 +435,7 @@
 			layers[current] = current_layer; \
 		}
 
-	var/datum/universal_icon/flat = uni_icon('icons/blanks/32x32.dmi', "nothing")
+	var/datum/universal_icon/flat = uni_icon('icons/system/blank_32x32.dmi', "nothing")
 
 	if(!appearance || appearance.alpha <= 0)
 		return flat

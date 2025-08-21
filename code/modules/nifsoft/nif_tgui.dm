@@ -44,7 +44,7 @@
 		if(screen_icon)
 			owner?.client?.screen -= screen_icon
 			UnregisterSignal(screen_icon, COMSIG_CLICK)
-			qdel_null(screen_icon)
+			QDEL_NULL(screen_icon)
 		if(ishuman(parent))
 			remove_verb(owner, /mob/living/carbon/human/proc/nif_menu)
 

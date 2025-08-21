@@ -116,7 +116,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	if(owner)
 		remove_verb(owner,/mob/proc/EvolutionMenu)
 		remove_verb(owner,/mob/proc/changeling_respec)
-	qdel_null(power_panel)
+	QDEL_NULL(power_panel)
 	absorbed_dna.Cut()
 	absorbed_languages.Cut()
 	purchased_powers.Cut()
@@ -406,7 +406,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	if(Thepower.make_hud_button && Thepower.isVerb)
 		if(owner.ability_master)
-			qdel_null(owner.ability_master)
+			QDEL_NULL(owner.ability_master)
 			owner.ability_master = new /obj/screen/movable/ability_master(owner)
 		owner.ability_master.add_ling_ability(
 			object_given = owner,
