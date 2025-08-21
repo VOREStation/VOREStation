@@ -459,3 +459,25 @@
   - bugfix: Telekinesis and remote viewing in any form no longer work together
   - bugfix: Seismic charges and plastique explosive blast distance fixed for new explosion
       subsystem
+2025-08-21:
+  Cameron-The-Raven:
+  - qol: Suit cyclers can be used to swap to metamorphic mode, automatically becoming
+      the proper worn state
+  - qol: Clothing can be equipped and it will fallback to the default worn state if
+      your species does not have species specific sprites for it.
+  - code_imp: swapped a few hardcoded "thing" with its appropriate define when used
+  - rscadd: Consolidates all the species mob.dmi sprites together
+  Kashargul:
+  - bugfix: shift trivia display
+  - bugfix: game end countdown
+  - maptweak: rids of legacy vars
+  - bugfix: atmos consoles not working
+  SatinIsle:
+  - bugfix: Prevents reflexive biting from biting through headwear.
+  Will:
+  - bugfix: missing icons fixed for church pews, metal benches, corporate sofas, and
+      rounded chairs
+  - bugfix: Fluidpump pumping speed now scales off of the their manipulator and not
+      their motor, as motors have no upgrades.
+  - rscadd: Deep mining scanner will show some or all fluid pump fracking results
+      depending on if advanced type or not
