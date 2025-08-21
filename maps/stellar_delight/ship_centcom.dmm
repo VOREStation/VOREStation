@@ -11654,18 +11654,8 @@
 	},
 /area/centcom/living)
 "PY" = (
-/obj/machinery/cryopod/robot/door/dorms{
-	base_icon_state = "door_closed";
-	desc = "A small elevator";
-	dir = 2;
-	icon = 'icons/obj/doors/Door2x1glass.dmi';
-	icon_state = "door_closed";
-	name = "elevator";
-	on_enter_occupant_message = "The elevator doors close slowly. You can now head off for the residential, commercial, and other floors.";
-	on_store_message = "has departed for one of the various colony floors";
-	on_store_name = "Colony Oversight";
-	on_store_visible_message_2 = "to the colony districts.";
-	time_till_despawn = 5
+/obj/machinery/cryopod/robot/door/dorms/tether_glass{
+	dir = 2
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/living)

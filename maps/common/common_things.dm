@@ -91,6 +91,10 @@
 
 	var/area/shock_area = /area/tether/surfacebase/tram
 
+//For the tram.
+/turf/simulated/floor/maglev/moving
+	icon = 'icons/turf/transit_vr.dmi'
+
 /turf/simulated/floor/maglev/Initialize(mapload)
 	. = ..()
 	shock_area = locate(shock_area)
