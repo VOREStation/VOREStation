@@ -57,7 +57,7 @@ export const Connections = (props: {
         const from = val.from;
         const to = val.to;
         if (!to || !from) {
-          return;
+          return undefined;
         }
 
         val.color = val.color || 'blue';
