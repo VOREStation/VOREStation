@@ -159,20 +159,20 @@
 
 			if(ispath(path, /obj/item/integrated_circuit))
 				var/obj/item/integrated_circuit/IC = path
-				if((initial(IC.spawn_flags) & IC_SPAWN_RESEARCH) && (!(initial(IC.spawn_flags) & IC_SPAWN_DEFAULT)) && !upgraded)
+				if((IC::spawn_flags & IC_SPAWN_RESEARCH) && (!(IC::spawn_flags & IC_SPAWN_DEFAULT)) && !upgraded)
 					can_build = FALSE
 
 			var/cost = 1
 			if(ispath(path, /obj/item/electronic_assembly))
 				var/obj/item/electronic_assembly/E = path
-				cost = round((initial(E::max_complexity) + initial(E::max_components)) / 4)
+				cost = round((E::max_complexity + E::max_components) / 4)
 			else
 				var/obj/item/I = path
-				cost = initial(I.w_class)
+				cost = I::w_class
 
 			items.Add(list(list(
-				"name" = initial(O.name),
-				"desc" = initial(O.desc),
+				"name" = O::name,
+				"desc" = O::desc,
 				"can_build" = can_build,
 				"cost" = cost,
 				"path" = path,
@@ -225,10 +225,10 @@
 
 			if(ispath(build_type, /obj/item/electronic_assembly))
 				var/obj/item/electronic_assembly/E = build_type
-				cost = round( (initial(E.max_complexity) + initial(E.max_components) ) / 4)
+				cost = round( (E::max_complexity + E::max_components ) / 4)
 			else
 				var/obj/item/I = build_type
-				cost = initial(I::w_class)
+				cost = I::w_class
 
 			var/in_some_category = FALSE
 			for(var/category in SScircuit.circuit_fabricator_recipe_list)
@@ -395,7 +395,7 @@
 		// Check if component requires upgrades
 		if(ispath(build_type, /obj/item/integrated_circuit))
 			var/obj/item/integrated_circuit/IC = build_type
-			var/spawn_flags = initial(IC::spawn_flags)
+			var/spawn_flags = IC::spawn_flags
 			// Component requires upgrades only if it has IC_SPAWN_RESEARCH but NOT IC_SPAWN_DEFAULT
 			if((spawn_flags & IC_SPAWN_RESEARCH) && !(spawn_flags & IC_SPAWN_DEFAULT) && !upgraded)
 				to_chat(user, span_warning("Component '[component_name]' requires printer upgrades. Skipping."))
@@ -405,16 +405,16 @@
 		var/cost = 1
 		if(ispath(build_type, /obj/item/electronic_assembly))
 			var/obj/item/electronic_assembly/E = build_type
-			cost = round((initial(E.max_complexity) + initial(E.max_components)) / 4)
+			cost = round((E::max_complexity + E::max_components) / 4)
 		else
 			var/obj/item/I = build_type
-			cost = initial(I.w_class)
+			cost = I::w_class
 
 		// Calculate complexity for printing time
 		var/complexity = 1
 		if(ispath(build_type, /obj/item/integrated_circuit))
 			var/obj/item/integrated_circuit/IC = build_type
-			complexity = initial(IC.complexity)
+			complexity = IC::complexity
 
 		total_cost += cost
 		total_complexity += complexity
