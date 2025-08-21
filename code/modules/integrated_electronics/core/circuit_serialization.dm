@@ -64,20 +64,19 @@
 	return CIRCUIT_PREFIX + path_string
 
 /**
- * Serializes an electronic assembly into a JSON string
+ * Serializes this electronic assembly into a JSON string
  *
- * @param	assembly The electronic assembly to serialize
  * @return	JSON string representation of the assembly
  */
-/proc/serialize_electronic_assembly(obj/item/electronic_assembly/assembly)
-	if(!istype(assembly))
+/obj/item/electronic_assembly/proc/serialize_electronic_assembly()
+	if(!istype(src))
 		return "Invalid assembly"
 
 	var/list/assembly_data = list(
-		"n" = assembly.name,                    // Shortened: name
-		"d" = assembly.desc,                    // Shortened: desc
-		"t" = strip_assembly_prefix("[assembly.type]"),  // Shortened: type (strip common prefix)
-		"c" = assembly.detail_color,           // Shortened: color
+		"n" = name,                    // Shortened: name
+		"d" = desc,                    // Shortened: desc
+		"t" = strip_assembly_prefix("[type]"),  // Shortened: type (strip common prefix)
+		"c" = detail_color,           // Shortened: color
 		"components" = list(),                  // Keep full name for clarity
 		"connections" = list()                  // Keep full name for clarity
 	)
@@ -87,7 +86,7 @@
 	var/component_index = 1
 
 	// First pass: serialize components and build index lookup
-	for(var/obj/item/integrated_circuit/IC in assembly.contents)
+	for(var/obj/item/integrated_circuit/IC in contents)
 		component_indices[REF(IC)] = component_index
 
 		var/list/component_data = list(
@@ -100,7 +99,7 @@
 			component_data["n"] = IC.displayed_name  // Shortened key: name
 
 		// Include position data if available
-		for(var/list/pos_data in assembly.component_positions)
+		for(var/list/pos_data in component_positions)
 			if(pos_data["ref"] == REF(IC))
 				component_data["x"] = pos_data["x"]  // x position
 				component_data["y"] = pos_data["y"]  // y position
@@ -157,7 +156,7 @@
 	// Second pass: serialize connections using the component indices (avoid duplicates by only processing outputs)
 	var/list/recorded_connections = list()  // Track connections to avoid duplicates
 
-	for(var/obj/item/integrated_circuit/IC in assembly.contents)
+	for(var/obj/item/integrated_circuit/IC in contents)
 		var/source_component_index = component_indices[REF(IC)]
 
 		// Check output connections (only process outputs to avoid duplicates)
@@ -242,7 +241,7 @@
  * @param	json_data The JSON string to deserialize
  * @return	List of information needed to recreate the assembly
  */
-/proc/deserialize_electronic_assembly(json_data)
+/obj/item/integrated_circuit_printer/proc/deserialize_electronic_assembly(json_data)
 	if(!json_data)
 		return null
 
@@ -283,7 +282,7 @@
  * @param	custom_type Custom assembly type path if overriding
  * @return	The created assembly or null if failed
  */
-/proc/create_assembly_from_data(list/assembly_data, override_type = FALSE, custom_type = null)
+/obj/item/integrated_circuit_printer/proc/create_assembly_from_data(list/assembly_data, override_type = FALSE, custom_type = null)
 	if(!assembly_data || !islist(assembly_data))
 		return null
 
@@ -327,7 +326,7 @@
  * @param	available_components List of component types available for creation
  * @return	List of created components indexed by their original index
  */
-/proc/add_components_to_assembly(obj/item/electronic_assembly/assembly, list/assembly_data, list/available_components)
+/obj/item/integrated_circuit_printer/proc/add_components_to_assembly(obj/item/electronic_assembly/assembly, list/assembly_data, list/available_components)
 	if(!assembly || !assembly_data || !assembly_data["components"])
 		return null
 
@@ -417,7 +416,7 @@
  * @param	assembly_data The deserialized assembly data
  * @param	created_components List of created components indexed by original index
  */
-/proc/restore_component_wiring(list/assembly_data, list/created_components)
+/obj/item/integrated_circuit_printer/proc/restore_component_wiring(list/assembly_data, list/created_components)
 	if(!assembly_data["connections"] || !islist(assembly_data["connections"]))
 		return
 

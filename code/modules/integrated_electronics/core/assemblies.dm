@@ -88,7 +88,7 @@
 	data["net_power"] = net_power / CELLRATE
 
 	// Include export data - the UI component will handle displaying it if needed
-	data["export_data"] = serialize_electronic_assembly(src)
+	data["export_data"] = serialize_electronic_assembly()
 	data["assembly_name"] = name
 
 	var/list/circuits = list()
