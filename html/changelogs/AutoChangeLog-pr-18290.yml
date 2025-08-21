@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Loyalty potions now allow slime spawn to be eaten easily"
+  - bugfix: "Loyalty potion now immediately triggers a slime's mood changing, making them able to be eaten."
