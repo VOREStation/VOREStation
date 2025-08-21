@@ -12,20 +12,7 @@ const downloadCircuitFile = (data: string, filename: string) => {
     type: 'application/json',
   });
 
-  // Use Byond.saveBlob if available, otherwise fall back to browser download
-  if (typeof Byond !== 'undefined' && Byond.saveBlob) {
-    Byond.saveBlob(blob, filename, '.json');
-  } else {
-    // Fallback for development/testing
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename + '.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
+  Byond.saveBlob(blob, filename, '.json');
 };
 
 export const ICExport = (props) => {

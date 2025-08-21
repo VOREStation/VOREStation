@@ -20,12 +20,6 @@
 	var/print_end_time = 0		// World time when printing will finish
 	var/obj/item/electronic_assembly/queued_assembly = null	// The assembly being cloned.
 
-/obj/item/integrated_circuit_printer/Initialize(mapload)
-	. = ..()
-
-/obj/item/integrated_circuit_printer/Destroy()
-	return ..()
-
 /obj/item/integrated_circuit_printer/proc/finish_printing()
 	if(!queued_assembly)
 		is_printing = FALSE
@@ -171,7 +165,7 @@
 			var/cost = 1
 			if(ispath(path, /obj/item/electronic_assembly))
 				var/obj/item/electronic_assembly/E = path
-				cost = round((initial(E.max_complexity) + initial(E.max_components)) / 4)
+				cost = round((initial(E::max_complexity) + initial(E::max_components)) / 4)
 			else
 				var/obj/item/I = path
 				cost = initial(I.w_class)
@@ -234,7 +228,7 @@
 				cost = round( (initial(E.max_complexity) + initial(E.max_components) ) / 4)
 			else
 				var/obj/item/I = build_type
-				cost = initial(I.w_class)
+				cost = initial(I::w_class)
 
 			var/in_some_category = FALSE
 			for(var/category in SScircuit.circuit_fabricator_recipe_list)
@@ -401,7 +395,7 @@
 		// Check if component requires upgrades
 		if(ispath(build_type, /obj/item/integrated_circuit))
 			var/obj/item/integrated_circuit/IC = build_type
-			var/spawn_flags = initial(IC.spawn_flags)
+			var/spawn_flags = initial(IC::spawn_flags)
 			// Component requires upgrades only if it has IC_SPAWN_RESEARCH but NOT IC_SPAWN_DEFAULT
 			if((spawn_flags & IC_SPAWN_RESEARCH) && !(spawn_flags & IC_SPAWN_DEFAULT) && !upgraded)
 				to_chat(user, span_warning("Component '[component_name]' requires printer upgrades. Skipping."))
