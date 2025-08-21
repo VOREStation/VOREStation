@@ -1,0 +1,7 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Floorlights can be picked up and placed in backpacks when first created, allowing for easier transport"
+  - refactor: "Inventory code no longer uses hasvar"
+  - code_imp: "Moves a LOT of vars up to /obj/item"
+  - image: "Codersprite for floorlight item!"
