@@ -18,6 +18,7 @@
 	var/locked = FALSE // If true, the assembly cannot be opened with a crowbar
 	var/obj/item/card/id/locked_by = null // The ID that locked this assembly
 	var/obj/item/card/id/access_card = null // ID card for door access
+	var/list/component_positions = list() // Stores circuit positions as list of lists: list("ref" = ref, "x" = x, "y" = y)
 
 
 /obj/item/electronic_assembly/Initialize(mapload)
@@ -48,7 +49,7 @@
 
 
 /obj/item/electronic_assembly/proc/check_interactivity(mob/user)
-	return tgui_status(user, GLOB.tgui_physical_state) == STATUS_INTERACTIVE
+	return user && user.Adjacent(src)
 
 /obj/item/electronic_assembly/get_cell()
 	return battery
@@ -86,10 +87,17 @@
 	data["battery_max"] = round(battery?.maxcharge, 0.1)
 	data["net_power"] = net_power / CELLRATE
 
+	// Include export data - the UI component will handle displaying it if needed
+	data["export_data"] = serialize_electronic_assembly(src)
+	data["assembly_name"] = name
+
 	var/list/circuits = list()
 	for(var/obj/item/integrated_circuit/circuit in contents)
 		UNTYPED_LIST_ADD(circuits, circuit.tgui_data(user, ui, state))
 	data["circuits"] = circuits
+
+	// Include component positions for UI restoration
+	data["component_positions"] = component_positions
 
 	return data
 
@@ -98,6 +106,20 @@
 		return TRUE
 
 	switch(action)
+		if("export_circuit")
+			if(usr)
+				if(!contents.len)
+					to_chat(usr, span_warning("There's nothing in \the [src] to export!"))
+					return TRUE
+				var/datum/tgui/window = new(usr, src, "ICExport", "Circuit Export")
+				window.open()
+			return TRUE
+
+		if("copy_export_data")
+			return TRUE
+
+		if("close_export")
+			return TRUE
 		// Actual assembly actions
 		if("rename")
 			rename(ui.user)
@@ -169,6 +191,30 @@
 			if(!istype(C))
 				return
 			C.remove(ui.user)
+			return TRUE
+
+		if("update_component_position")
+			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
+			if(!istype(C))
+				return FALSE
+
+			var/new_x = params["x"]
+			var/new_y = params["y"]
+			if(!isnum(new_x) || !isnum(new_y))
+				return FALSE
+
+			// Find existing position entry or create new one
+			var/found = FALSE
+			for(var/list/pos_data in component_positions)
+				if(pos_data["ref"] == REF(C))
+					pos_data["x"] = new_x
+					pos_data["y"] = new_y
+					found = TRUE
+					break
+
+			if(!found)
+				component_positions += list(list("ref" = REF(C), "x" = new_x, "y" = new_y))
+
 			return TRUE
 
 	return FALSE

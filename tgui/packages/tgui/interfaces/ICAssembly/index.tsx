@@ -42,6 +42,18 @@ export const ICAssembly = (props) => {
               width={2.5}
               height={2}
               textAlign="center"
+              icon="file-export"
+              tooltip="Export Circuit"
+              tooltipPosition="bottom-start"
+              onClick={() => act('export_circuit')}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              color="transparent"
+              width={2.5}
+              height={2}
+              textAlign="center"
               icon="info"
               tooltip="Circuit Info"
               tooltipPosition="bottom-start"
