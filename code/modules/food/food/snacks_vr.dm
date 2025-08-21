@@ -2,7 +2,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/sushi
 	name = "sushi roll"
 	desc = "A whole sushi roll! Slice it up and enjoy with some soy sauce and wasabi."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "sushi"
 	slice_path = /obj/item/reagent_containers/food/snacks/slice/sushi/filled
 	slices_num = 5
@@ -18,7 +18,7 @@
 	name = "stuffed sushi roll"
 	name = "piece of sushi"
 	desc = "A slice of a larger sushi roll, ready to devour."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "sushi_s"
 	bitesize = 5
 	whole_path = /obj/item/reagent_containers/food/snacks/sliceable/sushi
@@ -29,7 +29,7 @@
 /obj/item/reagent_containers/food/snacks/goulash
 	name = "goulash"
 	desc = "Paprika put to good use, finally, in a soup of meat and vegetables."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "goulash"
 	trash = /obj/item/trash/snack_bowl
 	nutriment_amt = 6
@@ -45,7 +45,7 @@
 /obj/item/reagent_containers/food/snacks/donerkebab
 	name = "doner kebab"
 	desc = "A delicious sandwich-like food from ancient Earth. The meat is typically cooked on a vertical rotisserie."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "doner_kebab"
 	nutriment_amt = 5
 	nutriment_desc = list("vegetables" = 2, "seasoned meat" = 5)
@@ -58,7 +58,7 @@
 /obj/item/reagent_containers/food/snacks/roastbeef
 	name = "roast beef"
 	desc = "It's beef. It's roasted. It's been a staple of dining tradition for centuries."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "roastbeef"
 	trash = /obj/item/trash/plate
 	nutriment_amt = 8
@@ -73,7 +73,7 @@
 /obj/item/reagent_containers/food/snacks/reishicup
 	name = "reishi's cup"
 	desc = "A chocolate treat with an odd flavor."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "reishiscup"
 	nutriment_amt = 3
 	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 4, "colors" = 2)
@@ -86,7 +86,7 @@
 /obj/item/storage/box/wings //This is kinda like the donut box.
 	name = "wing basket"
 	desc = "A basket of chicken wings! Get some before they're all gone! Or maybe you're too late..."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "wings5"
 	var/icon_base = "wings"
 	var/startswith = 5
@@ -111,7 +111,7 @@
 /obj/item/reagent_containers/food/snacks/chickenwing
 	name = "chicken wing"
 	desc = "What flavor even is this? Buffalo? Barbecue? Or something more exotic?"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "wing"
 	nutriment_amt = 2
 	nutriment_desc = list("chicken" = 2, "unplacable flavor sauce" = 4)
@@ -125,7 +125,7 @@
 /obj/item/reagent_containers/food/snacks/hotandsoursoup
 	name = "hot & sour soup"
 	desc = "A soup both spicy and sour from ancient Earth cooking traditions. This one is made with tofu."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "hotandsoursoup"
 	trash = /obj/item/trash/asian_bowl
 	nutriment_amt = 6
@@ -140,7 +140,7 @@
 /obj/item/reagent_containers/food/snacks/kitsuneudon
 	name = "kitsune udon"
 	desc = "A purported favorite of kitsunes in ancient Japanese myth: udon noodles, fried egg, and tofu."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "kitsuneudon"
 	trash = /obj/item/trash/asian_bowl
 	nutriment_amt = 6
@@ -154,7 +154,7 @@
 /obj/item/reagent_containers/food/snacks/generalschicken
 	name = "general's chicken"
 	desc = "Sweet, spicy, and fried. General's Chicken has been around for more than five-hundred years now, and still tastes good."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "generaltso"
 	trash = /obj/item/trash/asian_bowl
 	nutriment_amt = 6
@@ -168,7 +168,7 @@
 /obj/item/reagent_containers/food/snacks/bugball
 	name = "bugball"
 	desc = "A hard piece of chitin, don't chip a tooth!"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "pillbugball"
 	slice_path = /obj/item/reagent_containers/food/snacks/pillbug
 	slices_num = 1
@@ -185,7 +185,7 @@
 /obj/item/reagent_containers/food/snacks/pillbug
 	name = "pillbug"
 	desc = "A delicacy discovered and popularized by a famous restaurant called Mudca's Meat Hut."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "pillbug"
 	trash = /obj/item/reagent_containers/food/snacks/pillbugempty
 	nutriment_amt = 3
@@ -200,7 +200,7 @@
 /obj/item/reagent_containers/food/snacks/pillbugempty
 	name = "pillbug shell"
 	desc = "Waste not, want not."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "pillbugempty"
 	nutriment_amt = 1
 	nutriment_desc = list("crunchy shell bits" = 5)
@@ -214,7 +214,7 @@
 /obj/item/reagent_containers/food/snacks/mammi
 	name = "mämmi"
 	desc = "Traditional Finnish desert, some like it, others don't. It's drifting in some milk, add sugar!"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "mammi"
 	trash = /obj/item/trash/plate
 	nutriment_amt = 3
@@ -227,7 +227,7 @@
 /obj/item/reagent_containers/food/snacks/makaroni
 	name = "makaronilaatikko"
 	desc = "A special kind of macaroni, it's a big dish, and this one has special meat in it."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "makaroni"
 	trash = /obj/item/trash/plate
 	nutriment_amt = 15
@@ -242,7 +242,7 @@
 /obj/item/reagent_containers/food/snacks/lobster
 	name = "raw lobster"
 	desc = "A shifty lobster. You can try eating it, but its shell is extremely tough."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "lobster_raw"
 	nutriment_amt = 5
 
@@ -253,7 +253,7 @@
 /obj/item/reagent_containers/food/snacks/lobstercooked
 	name = "cooked lobster"
 	desc = "A luxurious plate of cooked lobster, its taste accentuated by lemon juice. Reinvigorating!"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "lobster_cooked"
 	trash = /obj/item/trash/plate
 	nutriment_amt = 20
@@ -269,7 +269,7 @@
 /obj/item/reagent_containers/food/snacks/cuttlefish
 	name = "raw cuttlefish"
 	desc = "It's an adorable squid! You couldn't possibly be thinking about eating this, right?"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "cuttlefish_raw"
 	nutriment_amt = 5
 
@@ -280,7 +280,7 @@
 /obj/item/reagent_containers/food/snacks/cuttlefishcooked
 	name = "cooked cuttlefish"
 	desc = "It's a roasted cuttlefish. Rubbery, squishy, an acquired taste."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "cuttlefish_cooked"
 	nutriment_amt = 20
 	nutriment_desc = list("cuttlefish" = 5, "rubber" = 5, "grease" = 1)
@@ -308,7 +308,7 @@
 /obj/item/reagent_containers/food/snacks/monkfishfillet
 	name = "monkfish fillet"
 	desc = "It's a fillet sliced from a monkfish."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "monkfish_fillet"
 	nutriment_amt = 5
 
@@ -320,7 +320,7 @@
 /obj/item/reagent_containers/food/snacks/monkfishcooked
 	name = "seasoned monkfish"
 	desc = "A delicious slice of monkfish prepared with sweet chili and spring onion."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "monkfish_cooked"
 	nutriment_amt = 10
 	nutriment_desc = list("fish" = 3, REAGENT_ID_OIL = 1, "sweet chili" = 3, "spring onion" = 2)
@@ -333,7 +333,7 @@
 
 /obj/item/reagent_containers/food/snacks/sliceable/monkfishremains
 	name = "monkfish remains"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "monkfish_remains"
 	desc = "The work of a madman."
 	w_class = ITEMSIZE_LARGE
@@ -349,7 +349,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/sharkchunk
 	name = "chunk of shark meat"
 	desc = "Still rough, needs to be cut into even smaller chunks."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "sharkmeat_chunk"
 	nutriment_amt = 15
 	w_class = ITEMSIZE_LARGE
@@ -364,7 +364,7 @@
 /obj/item/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
 	name = "slice of sharkmeat"
 	desc = "Now it's small enough to cook with."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "sharkmeat"
 	nutriment_amt = 2
 	toxin_amount = null
@@ -377,7 +377,7 @@
 /obj/item/reagent_containers/food/snacks/sharkmeatcooked
 	name = "shark steak"
 	desc = "Finally, some food for real men."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "sharkmeat_cooked"
 	trash = /obj/item/trash/small_bowl
 	nutriment_amt = 5
@@ -392,7 +392,7 @@
 /obj/item/reagent_containers/food/snacks/sharkmeatdip
 	name = "hot shark shank"
 	desc = "A shank of shark meat dipped in hot sauce."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "sharkmeat_dip"
 	nutriment_amt = 5
 	trash = /obj/item/trash/snack_bowl
@@ -408,7 +408,7 @@
 /obj/item/reagent_containers/food/snacks/sharkmeatcubes
 	name = "shark cubes"
 	desc = "Foul scented fermented shark cubes, it's said to make men fly, or just make them really fat."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "sharkmeat_cubes"
 	nutriment_amt = 8
 	trash = /obj/item/trash/plate
@@ -455,7 +455,7 @@
 /obj/item/reagent_containers/food/snacks/cube
 	name = "protein cube"
 	desc = "A colony of meat cells, Just add water!"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "proteincube"
 	w_class = ITEMSIZE_TINY
 	flags = OPENCONTAINER
@@ -487,7 +487,7 @@
 /obj/item/reagent_containers/food/snacks/proteinslab
 	name = "Protein slab"
 	desc = "A slab of near pure protein, extremely artificial, and thoroughly disgusting."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "proteinslab"
 	bitesize = 10
 	nutriment_amt = 5
@@ -510,7 +510,7 @@
 /obj/item/reagent_containers/food/snacks/nutrimentslab
 	name = "Nutriment slab"
 	desc = "A slab of near pure plant-based nutrients, extremely artificial, and thoroughly disgusting."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "nutrimentslab"
 	bitesize = 10
 	nutriment_amt = 20
@@ -545,7 +545,7 @@
 /obj/item/reagent_containers/food/snacks/honeybun
 	name = "Honeybun"
 	desc = "A delicious and sweet treat made with honey instead of sugar. On the sticky side."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "honeybun"
 	bitesize = 2
 	nutriment_amt = 4
@@ -630,7 +630,7 @@
 /obj/item/reagent_containers/food/snacks/grub
 	name = "grub"
 	desc = "A still writhing grub, soft and squishy."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "grub"
 	nutriment_amt = 3
 	nutriment_desc = list("goo" = 1, "slime" = 1)
@@ -643,7 +643,7 @@
 /obj/item/reagent_containers/food/snacks/grub_pink
 	name = "pink candy grub"
 	desc = "A thoroughly candied grub, it smells of cherry."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "grub_pink"
 	nutriment_amt = 5
 	nutriment_desc = list(PLANT_CHERRY = 4, "goo" = 1)
@@ -655,7 +655,7 @@
 /obj/item/reagent_containers/food/snacks/grub_purple
 	name = "purple candy grub"
 	desc = "A thoroughly candied grub, it smells of grape."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "grub_purple"
 	nutriment_amt = 5
 	nutriment_desc = list("grape" = 4, "goo" = 1)
@@ -667,7 +667,7 @@
 /obj/item/reagent_containers/food/snacks/grub_blue
 	name = "blue candy grub"
 	desc = "A thoroughly candied grub, it smells of blueberry."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "grub_blue"
 	nutriment_amt = 5
 	nutriment_desc = list("blueberry" = 4, "goo" = 1)
@@ -679,7 +679,7 @@
 /obj/item/reagent_containers/food/snacks/scorpion
 	name = "scorpion"
 	desc = "A scorpion from the sandy deserts, don't get stung!"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "scorpion"
 	nutriment_amt = 8
 	nutriment_desc = list("crunchy" = 4, "shell bits" = 1)
@@ -691,7 +691,7 @@
 /obj/item/reagent_containers/food/snacks/scorpion_cooked
 	name = "cooked scorpion"
 	desc = "A scorpion. Baked nice and crispy."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "scorpion_cooked"
 	nutriment_amt = 6
 	nutriment_desc = list("crispy" = 4, "exotic meat" = 1)
@@ -705,7 +705,7 @@
 /obj/item/reagent_containers/food/snacks/ant
 	name = "giant honey ant"
 	desc = "A sweetly scented honey ant. It has a huge swollen abdomen full of yummy."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "honeyant"
 	nutriment_amt = 2
 	nutriment_desc = list("crunchy" = 1, "goo" = 1)
@@ -721,7 +721,7 @@
 /obj/item/reagent_containers/food/snacks/antball
 	name = "giant honey ball"
 	desc = "A sweetly scented honey ball, minus the ant. For those who don't like bug bits between their teeth."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "honeyant_clean"
 	nutriment_amt = 4
 	nutriment_desc = list("goo" = 1)
@@ -734,7 +734,7 @@
 /obj/item/reagent_containers/food/snacks/honey_candy
 	name = "honey candy"
 	desc = "A clever mimicry of a honey ant abdomen, but it's just a piece of candy. Does not contain actual honey!"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "candy_honey"
 	nutriment_amt = 4
 	nutriment_desc = list("goo" = 1, REAGENT_ID_HONEY = 1)
@@ -749,7 +749,7 @@
 /obj/item/reagent_containers/food/snacks/locust
 	name = "yellow jacket locust"
 	desc = "A vibrant bug that looks like a wasp, but is in fact a locust. Crunchy."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "locust"
 	nutriment_amt = 4
 	nutriment_desc = list("crunchy" = 1, "goo" = 1)
@@ -762,7 +762,7 @@
 /obj/item/reagent_containers/food/snacks/locust_cooked
 	name = "fried locust"
 	desc = "A fried locust, extremely crunchy."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "locust_cooked"
 	nutriment_amt = 2
 	nutriment_desc = list("crunchy" = 4)
@@ -775,7 +775,7 @@
 /obj/item/reagent_containers/food/snacks/donkpocket/ascended
 	name = "Donk-pocket EX"
 	desc = "This donk-pocket has seen things beyond comprehension of mortals. It survived because the fire inside it burned brighter than fire around it."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "donkpocket_ascended"
 	nutriment_amt = 5
 	nutriment_desc = list("burning fires of radioactive hell" = 20)
@@ -791,7 +791,7 @@
 /obj/item/reagent_containers/food/snacks/ratprotein
 	name = "AN Flavor Unit C"
 	desc = "A snack made from a group of space-faring rodents that is packed with the maximized potential of caloric intake to cubic inch. This one seems to be flavored of smoked cheddar and salami."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_cheese_block"
 	package_open_state = "altevian_cheese_block-open"
 	package = TRUE
@@ -802,7 +802,7 @@
 /obj/item/reagent_containers/food/snacks/ratveggies
 	name = "Premium Ration Packet - VEG"
 	desc = "A package of a mixture of somehow still fresh from day 1 greens with a light hint of vinegar dressing to add extra kick."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_veggies"
 	package_open_state = "altevian_veggies-open"
 	package = TRUE
@@ -813,7 +813,7 @@
 /obj/item/reagent_containers/food/snacks/ratliquid
 	name = "Admiral's Choice Space-Safe Meal"
 	desc = "A vacuum sealed pouch of a liquid meal. This one seems to be flavored with the accent of steak."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_juice"
 	package_open_state = "altevian_juice-open"
 	package = TRUE
@@ -829,7 +829,7 @@
 /obj/item/reagent_containers/food/snacks/ratsteak
 	name = "altevian traditional steak"
 	desc = "This abomination of processed foods resembles a steak plate. Probably contains nothing a normal steak does, but mimics its flavor and nutrition well-enough."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_steak"
 	trash = /obj/item/trash/plate
 	nutriment_amt = 8
@@ -842,7 +842,7 @@
 /obj/item/reagent_containers/food/snacks/ratfruitcake
 	name = "Premade Fruit Block"
 	desc = "A block of processed material that is infused with a mix of fruits and other nutrients."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_fruitcake"
 	package_open_state = "altevian_fruitcake-open"
 	package = TRUE
@@ -853,7 +853,7 @@
 /obj/item/reagent_containers/food/snacks/ratpackburger
 	name = "Altevian Prepackaged Meal - Burger"
 	desc = "A unique twist on what most know as MREs. This seems to be made with using a specialized compression technology that possibly utilizes Bluespace alongside it. Whatever it is, it seems to keep the freshness of whatever is inside to restaurant quality. This one is a combo of a burger and fries!"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_pack_burger"
 	package_open_state = "altevian_pack_burger-open"
 	package_opening_state = "altevian_pack_burger-opening"
@@ -865,7 +865,7 @@
 /obj/item/reagent_containers/food/snacks/ratpackcheese
 	name = "Generations Novelty Packaged Wedge"
 	desc = "A unique twist on what most know as MREs. This seems to be made with using a specialized compression technology that possibly utilizes Bluespace alongside it. Whatever it is, it seems to keep the freshness of whatever is inside to restaurant quality. This one appears to have no real markings on it, save for its different coloring, and an image of the altevian emblem."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_pack_cheese"
 	package_open_state = "altevian_pack_cheese-open"
 	package_opening_state = "altevian_pack_cheese-opening"
@@ -877,7 +877,7 @@
 /obj/item/reagent_containers/food/snacks/ratpackturkey
 	name = "Compact Holiday Special Bird"
 	desc = "A great gift for that special celebration or holiday for assorted species. This package contains a full freshly cooked turkey. Open and enjoy. Courtesy of altevian packaging."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_pack_turkey"
 	package_open_state = "altevian_pack_turkey-open"
 	package_opening_state = "altevian_pack_turkey-opening"
@@ -889,7 +889,7 @@
 /obj/item/reagent_containers/food/snacks/ratpackramen
 	name = "Big Noodle Package"
 	desc = "A compression sealed package containing a fully cooked ramen meal. It comes with some seafood-and-rice based sides. Utensils included."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_pack_ramen"
 	package_open_state = "altevian_pack_ramen_standard-open"
 	package_opening_state = "altevian_pack_ramen_standard-opening"
@@ -917,7 +917,7 @@
 /obj/item/reagent_containers/food/snacks/ratpacktaco
 	name = "Triple Taco Tuck"
 	desc = "A compression sealed package containing three mini-tacos, miniaturized further via altevian mad science into a convenient container."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_pack_taco"
 	package_open_state = "altevian_pack_taco-open"
 	package_opening_state = "altevian_pack_taco-opening"
@@ -929,7 +929,7 @@
 /obj/item/reagent_containers/food/snacks/ratpackcake
 	name = "Instant Sweet Celebration"
 	desc = "A compressed sweet treat in one easy container. The label states that it's a slice of vanilla cake."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_pack_cake"
 	package_open_state = "altevian_pack_cake-open"
 	package_opening_state = "altevian_pack_cake-opening"
@@ -941,7 +941,7 @@
 /obj/item/reagent_containers/food/snacks/ratpackmeat
 	name = "unmarked compression package"
 	desc = "This package looks familiar to the compression packs commonly seen from the Altevians. However, it looks to be unfinished or a possible test product that somehow ended up in your hands."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "altevian_pack_meat"
 	package_open_state = "altevian_pack_meat-open"
 	package_opening_state = "altevian_pack_meat-opening"
@@ -956,7 +956,7 @@
 /obj/item/reagent_containers/food/snacks/jaffacake
 	name = "Jaffa Cake"
 	desc = "A delicious miniature cake with a soft sponge base, topped with orange jelly and covered with a thin layer of chocolate."
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "jaffacake"
 	nutriment_amt = 1
 	bitesize = 2
@@ -969,7 +969,7 @@
 /obj/item/storage/box/jaffacake //This is kinda like the donut box.
 	name = "Desatti Jaffa Cakes"
 	desc = "A box full of desatti brand jaffa cakes, with twelve in a pack!"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "jaffacake_pack"
 	var/icon_base = "jaffacake_pack"
 	var/startswith = 12

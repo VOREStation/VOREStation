@@ -1,7 +1,7 @@
 /obj/machinery/item_bank
 	name = "electronic lockbox"
 	desc = "A place to store things you might want later!"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "item_bank"
 	idle_power_usage = 1
 	active_power_usage = 5

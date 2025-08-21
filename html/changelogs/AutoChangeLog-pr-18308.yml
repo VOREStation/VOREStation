@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - bugfix: "Organ printer now shows left arms"
+  - bugfix: "Unattaching your left arm will now show a proper sprite"
+  - bugfix: "Skrell stomachs no longer require you to download Counter Strike: Source"

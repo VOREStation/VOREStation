@@ -979,13 +979,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//2: species-specific sprite sheets (skipped for inhands)
 	if(LAZYLEN(sprite_sheets) && !inhands)
 		var/sheet = sprite_sheets[body_type]
-		if(sheet)
+		if(sheet && icon_exists(sheet, icon_state)) //Checks to make sure our custom sheet actually HAS the icon_state
 			return sheet
 
 	//3: slot-specific sprite sheets
 	if(LAZYLEN(item_icons))
 		var/sheet = item_icons[slot_name]
 		if(sheet)
+			/* //Alerts that we are equipping an item that has no item_state for the slot-specific icon sheet. Commented out because it's not really too important.
+			if(!icon_exists(sheet, icon_state))
+				log_debug("Item [src] is equippable on the [slot_name] but has no sprite for it!")
+			*/
 			return sheet
 
 	//4: item's default icon

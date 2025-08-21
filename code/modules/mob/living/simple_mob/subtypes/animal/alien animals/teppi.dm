@@ -813,24 +813,38 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 
 /mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
+	if(!client)
+		var/teppi_checks = teppi_checks(user, prey, pred, belly)
+		if(teppi_checks)
+			belly = teppi_checks
+		ai_holder.set_busy(TRUE)
+		prey.stop_pulling()
+	..()
+	if(!client)
+		ai_holder.set_busy(FALSE)
+
+/mob/living/simple_mob/vore/alienanimals/teppi/begin_instant_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
+	if(!client)
+		var/teppi_checks = teppi_checks(user, prey, pred, belly)
+		if(teppi_checks)
+			belly = teppi_checks
+		ai_holder.set_busy(TRUE)
+		prey.stop_pulling()
+	..()
+	if(!client)
+		ai_holder.set_busy(FALSE)
+
+///Retrns the belly we'll be using if we are friends.
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_checks(mob/living/user, mob/living/prey, mob/living/pred)
 	if(!pred)
 		pred = user
-	if(client)
-		return ..()
 	var/current_affinity = affinity[prey.real_name]
-	ai_holder.set_busy(TRUE)
-	prey.stop_pulling()
 	if(current_affinity >= 50)
-		belly = friend_zone
-		..()
-		ai_holder.set_busy(FALSE)
-		return
+		return friend_zone
 	if(current_affinity <= -50)
 		vore_selected.digest_mode = DM_DIGEST
 	else
 		vore_selected.digest_mode = DM_DRAIN
-	..()
-	ai_holder.set_busy(FALSE)
 
 //Instead of copying this everywhere let's just make a proc
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/lets_eat(person)
