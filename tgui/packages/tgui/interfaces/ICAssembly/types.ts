@@ -7,6 +7,13 @@ export type Data = {
   battery_max: number;
   net_power: number;
   circuits: CircuitData[];
+  component_positions: ComponentPosition[];
+};
+
+export type ComponentPosition = {
+  ref: string;
+  x: number;
+  y: number;
 };
 
 export type CircuitData = {

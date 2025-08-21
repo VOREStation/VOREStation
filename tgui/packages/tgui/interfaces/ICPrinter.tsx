@@ -33,7 +33,7 @@ type item = {
 };
 
 export const ICPrinter = (props) => {
-  const { data } = useBackend<Data>();
+  const { data, act } = useBackend<Data>();
 
   const { metal, max_metal, metal_per_sheet, upgraded, can_clone } = data;
 
@@ -57,6 +57,21 @@ export const ICPrinter = (props) => {
                   {can_clone ? 'Available' : 'Unavailable'}
                 </LabeledList.Item>
               </LabeledList>
+              {can_clone && (
+                <Box mt={2}>
+                  <Button
+                    icon="file-import"
+                    content="Import Circuit"
+                    onClick={() => {
+                      act('import_circuit', {
+                        override_type: false,
+                        custom_type: null,
+                      });
+                    }}
+                    tooltip="Import a circuit design from a JSON file"
+                  />
+                </Box>
+              )}
               <Box mt={1}>
                 Note: A red component name means that the printer must be
                 upgraded to create that component.
