@@ -49,7 +49,7 @@
 
 
 /obj/item/electronic_assembly/proc/check_interactivity(mob/user)
-	return user && user.Adjacent(src)
+	return tgui_status(user, GLOB.tgui_physical_state) == STATUS_INTERACTIVE
 
 /obj/item/electronic_assembly/get_cell()
 	return battery
