@@ -48,26 +48,6 @@ export const ICExport = (props) => {
                     tooltip="Download circuit data as a JSON file"
                   />
                 </Stack.Item>
-                <Stack.Item>
-                  <Button
-                    icon="copy"
-                    content="Copy to Clipboard"
-                    onClick={() => {
-                      if (navigator.clipboard) {
-                        navigator.clipboard.writeText(export_data);
-                      }
-                      act('copy_export_data');
-                    }}
-                    tooltip="Copy circuit data to clipboard"
-                  />
-                </Stack.Item>
-                <Stack.Item>
-                  <Button
-                    icon="times"
-                    content="Close"
-                    onClick={() => act('close_export')}
-                  />
-                </Stack.Item>
               </Stack>
             </Stack.Item>
             <Stack.Item>
