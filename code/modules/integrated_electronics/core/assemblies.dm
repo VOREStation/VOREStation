@@ -109,7 +109,7 @@
 		if("export_circuit")
 			if(usr)
 				if(!contents.len)
-					to_chat(usr, span_warning("There's nothing in \the [src] to export!"))
+					to_chat(usr, span_warning("There's nothing in the [src] to export!"))
 					return TRUE
 				var/datum/tgui/window = new(usr, src, "ICExport", "Circuit Export")
 				window.open()

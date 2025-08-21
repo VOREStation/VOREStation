@@ -15,6 +15,32 @@
 	var/can_clone = FALSE		// Same for above, but will allow the printer to duplicate a specific assembly.
 	var/dirty_items = FALSE
 
+	// Printing state variables
+	var/is_printing = FALSE		// If true, printer is busy cloning.
+	var/print_end_time = 0		// World time when printing will finish
+	var/obj/item/electronic_assembly/queued_assembly = null	// The assembly being cloned.
+
+/obj/item/integrated_circuit_printer/Initialize(mapload)
+	. = ..()
+
+/obj/item/integrated_circuit_printer/Destroy()
+	return ..()
+
+/obj/item/integrated_circuit_printer/proc/finish_printing()
+	if(!queued_assembly)
+		is_printing = FALSE
+		return
+
+	// Drop the assembly on the ground
+	queued_assembly.forceMove(get_turf(src))
+	playsound(src, 'sound/machines/ding.ogg', 50, TRUE)
+	visible_message(span_notice("[src] beeps as it finishes printing '[queued_assembly.name]'."))
+
+	// Clear printing state
+	queued_assembly = null
+	is_printing = FALSE
+	print_end_time = 0
+
 /obj/item/integrated_circuit_printer/all_upgrades
 	upgraded = TRUE
 	illegal_upgraded = TRUE
@@ -172,7 +198,9 @@
 	data["metal_per_sheet"] = metal_per_sheet
 	data["debug"] = debug
 	data["upgraded"] = upgraded
-	data["can_clone"] = can_clone
+	data["can_clone"] = can_clone && !is_printing // Can not clone while printing
+	data["is_printing"] = is_printing
+	data["print_time_remaining"] = is_printing ? max(0, print_end_time - world.time) : 0
 
 	return data
 
@@ -186,6 +214,10 @@
 		if("import_circuit")
 			if(!can_clone)
 				to_chat(ui.user, span_warning("This printer requires a clone upgrade disk to import circuit designs!"))
+				return TRUE
+
+			if(is_printing) // Should not be possible to reach here.
+				to_chat(ui.user, span_warning("The printer is busy! Please wait for the current print job to finish."))
 				return TRUE
 
 			handle_circuit_import(ui.user)
@@ -325,6 +357,7 @@
 
 	// Check if we have enough metal to build all components
 	var/total_cost = 0
+	var/total_complexity = 0
 	var/list/available_components = list()
 	var/list/components_to_create = list()
 
@@ -383,7 +416,14 @@
 			var/obj/item/I = build_type
 			cost = initial(I.w_class)
 
+		// Calculate complexity for printing time
+		var/complexity = 1
+		if(ispath(build_type, /obj/item/integrated_circuit))
+			var/obj/item/integrated_circuit/IC = build_type
+			complexity = initial(IC.complexity)
+
 		total_cost += cost
+		total_complexity += complexity
 		UNTYPED_LIST_ADD(components_to_create, list(
 			"type" = build_type,
 			"data" = component_data,
@@ -412,7 +452,9 @@
 
 	if(!debug)
 		metal = max(0, metal - (total_cost / 2))
-		to_chat(user, span_notice("Deducted [total_cost / 2] metal. Remaining: [metal]"))
+
+	// Calculate printing time based on actual complexity (1 minute per 120 complexity = 5 deciseconds per complexity)
+	var/print_time = total_complexity * 5
 
 	// Create the assembly
 	var/obj/item/electronic_assembly/assembly = create_assembly_from_data(assembly_data, override_type, custom_type)
@@ -421,8 +463,6 @@
 		if(!debug)
 			metal += total_cost
 		return
-
-	assembly.forceMove(get_turf(src))
 
 	// Add components to assembly
 	var/list/created_components = add_components_to_assembly(assembly, assembly_data, available_components)
@@ -438,14 +478,20 @@
 
 	// Restore appearance
 	assembly.update_icon()
-	playsound(src, 'sound/machines/ding.ogg', 50, TRUE)
-	to_chat(user, span_notice("Successfully imported '[assembly.name]' with [LAZYLEN(created_components)] component\s!"))
 
-	// Try to put assembly in user's hands
-	if(!user.put_in_hands(assembly))
-		to_chat(user, span_notice("The imported assembly has been placed on the ground."))
+	// Start the printing process
+	queued_assembly = assembly
+	is_printing = TRUE
+	print_end_time = world.time + print_time
 
-	return assembly
+	// Use addtimer instead of processing for efficiency
+	addtimer(CALLBACK(src, PROC_REF(finish_printing)), print_time)
+
+	var/print_minutes = round(print_time / 600, 0.1) // Convert to minutes for display
+	to_chat(user, span_notice("Printing '[assembly.name]' with [LAZYLEN(created_components)] component\s. Estimated completion time: [print_minutes] minute\s."))
+	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+
+	return TRUE
 
 // FUKKEN UPGRADE DISKS
 /obj/item/disk/integrated_circuit/upgrade

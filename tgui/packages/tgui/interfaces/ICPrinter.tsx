@@ -57,7 +57,7 @@ export const ICPrinter = (props) => {
                   {can_clone ? 'Available' : 'Unavailable'}
                 </LabeledList.Item>
               </LabeledList>
-              {can_clone && (
+              {!!can_clone && (
                 <Box mt={2}>
                   <Button
                     icon="file-import"
