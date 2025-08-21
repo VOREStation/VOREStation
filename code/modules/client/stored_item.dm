@@ -96,7 +96,7 @@
 			busy_bank = FALSE
 			icon_state = "item_bank"
 			return
-		else if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
+		else if(!do_after(user, 10 SECONDS, src) || inoperable())
 			busy_bank = FALSE
 			icon_state = "item_bank"
 			return
@@ -145,7 +145,7 @@
 				return
 		user.visible_message(span_notice("\The [user] begins storing \the [O] in \the [src]."),span_notice("You begin storing \the [O] in \the [src]."))
 		icon_state = "item_bank_o"
-		if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
+		if(!do_after(user, 10 SECONDS, src) || inoperable())
 			busy_bank = FALSE
 			icon_state = "item_bank"
 			return

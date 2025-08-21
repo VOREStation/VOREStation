@@ -57,7 +57,7 @@
 	//Timer and progress bar
 	if(!user.client && prey.weakened > 0) // stop crwaling instantly break swallow attempt for mobvore
 		prey.Stun(min(prey.weakened, 2)) // stop crawling instantly break swallow attempt for mobvore
-	if(!do_after(user, swallow_time, prey, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(user, swallow_time, prey, hidden = TRUE))
 		return FALSE // Prey escaped (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it and move the prey!
