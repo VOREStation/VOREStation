@@ -1,8 +1,3 @@
-/obj/item
-	var/list/possessed_voice //Allows for items to be possessed/inhabited by voices.
-	var/list/warned_of_possession //Checks to see who has been informed this item is possessed.
-
-
 /obj/item/proc/inhabit_item(var/mob/candidate, var/candidate_name, var/mob/living/candidate_original_form, var/is_item_tf = FALSE)
 	//This makes it so that any object in the game can have something put in it like the cursed sword!
 	//This means the proc can also be manually called by admin commands.

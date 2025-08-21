@@ -75,8 +75,8 @@
 	if (use(required))
 		var/atom/O = new recipe.result_type(user.loc, bag_material)
 
-		if(istype(O, /obj))
-			var/obj/Ob = O
+		if(istype(O, /obj/item))
+			var/obj/item/Ob = O
 
 			if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
 				Ob.matter.Cut()

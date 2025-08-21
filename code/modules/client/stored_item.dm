@@ -100,7 +100,7 @@
 			busy_bank = FALSE
 			icon_state = "item_bank"
 			return
-		var/obj/N = new I(get_turf(src))
+		var/obj/item/N = new I(get_turf(src))
 		log_admin("[key_name_admin(user)] retrieved [N] from the item bank.")
 		visible_message(span_notice("\The [src] dispenses the [N] to \the [user]."))
 		user.put_in_hands(N)
@@ -138,7 +138,7 @@
 		if(!choice || choice == "Cancel" || !Adjacent(user) || inoperable() || panel_open)
 			busy_bank = FALSE
 			return
-		for(var/obj/check in O.contents)
+		for(var/obj/item/check in O.contents)
 			if(!check.persist_storable)
 				to_chat(user, span_warning("\The [src] buzzes. \The [O] contains [check], which cannot be stored. Please remove this item before attempting to store \the [O]. As a reminder, any contents of \the [O] will be lost if you store it with contents."))
 				busy_bank = FALSE
@@ -162,12 +162,6 @@
 /////STORABLE ITEMS AND ALL THAT JAZZ/////
 //I am only really intending this to be used for single items. Mostly stuff you got right now, but can't/don't want to use right now.
 //It is not at all intended to be a thing that just lets you hold on to stuff forever, but just until it's the right time to use it.
-
-/obj
-
-	var/persist_storable = TRUE		//If this is true, this item can be stored in the item bank.
-									//This is automatically set to false when an item is removed from storage
-
 /////LIST OF STUFF WE DON'T WANT PEOPLE STORING/////
 
 /obj/item/pda

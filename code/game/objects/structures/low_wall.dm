@@ -263,8 +263,8 @@
 	if(ismob(AM)) // All mobs have a multiplier and a size according to mob_defines.dm
 		var/mob/I = AM
 		tforce = I.mob_size * (speed/THROWFORCE_SPEED_DIVISOR)
-	else
-		var/obj/O = AM
+	else if(isitem(AM))
+		var/obj/item/O = AM
 		tforce = O.throwforce * (speed/THROWFORCE_SPEED_DIVISOR)
 	if (tforce < 15)
 		return

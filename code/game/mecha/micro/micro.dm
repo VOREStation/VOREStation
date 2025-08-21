@@ -30,7 +30,7 @@
 		var/mob/living/M = target
 		if(src.occupant.a_intent == I_HURT)
 			playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
-			if(damtype == "brute")
+			if(damage_type == BRUTE)
 				step_away(M,src,15)
 
 			if(ishuman(target))
@@ -40,12 +40,12 @@
 				var/obj/item/organ/external/temp = H.get_organ(pick(BP_TORSO, BP_TORSO, BP_TORSO, BP_HEAD))
 				if(temp)
 					var/update = 0
-					switch(damtype)
-						if("brute")
+					switch(damage_type)
+						if(BRUTE)
 							update |= temp.take_damage(rand(force/2, force), 0)
-						if("fire")
+						if(BURN)
 							update |= temp.take_damage(0, rand(force/2, force))
-						if("tox")
+						if(TOX)
 							if(H.reagents)
 								if(H.reagents.get_reagent_amount(REAGENT_ID_CARPOTOXIN) + force < force*2)
 									H.reagents.add_reagent(REAGENT_ID_CARPOTOXIN, force)
@@ -57,13 +57,13 @@
 				H.updatehealth()
 
 			else
-				switch(damtype)
-					if("brute")
+				switch(damage_type)
+					if(BRUTE)
 						M.Paralyse(1)
 						M.take_overall_damage(rand(force/2, force))
-					if("fire")
+					if(BURN)
 						M.take_overall_damage(0, rand(force/2, force))
-					if("tox")
+					if(TOX)
 						if(M.reagents)
 							if(M.reagents.get_reagent_amount(REAGENT_ID_CARPOTOXIN) + force < force*2)
 								M.reagents.add_reagent(REAGENT_ID_CARPOTOXIN, force)
@@ -85,7 +85,7 @@
 		return
 
 	else
-		if(damtype == "brute")
+		if(damage_type == BRUTE)
 			for(var/target_type in src.destroyable_obj)
 				if(istype(target, target_type) && hascall(target, "attackby"))
 					src.occupant_message(span_attack("You hit [target]."))
