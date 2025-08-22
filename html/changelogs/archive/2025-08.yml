@@ -481,3 +481,30 @@
       their motor, as motors have no upgrades.
   - rscadd: Deep mining scanner will show some or all fluid pump fracking results
       depending on if advanced type or not
+2025-08-22:
+  Diana:
+  - bugfix: Organ printer now shows left arms
+  - bugfix: Unattaching your left arm will now show a proper sprite
+  - bugfix: 'Skrell stomachs no longer require you to download Counter Strike: Source'
+  - qol: Floorlights can be picked up and placed in backpacks when first created,
+      allowing for easier transport
+  - refactor: Inventory code no longer uses hasvar
+  - code_imp: Moves a LOT of vars up to /obj/item
+  - image: Codersprite for floorlight item!
+  - maptweak: Got rid of all illegal icon = '' edits in the maps
+  - image: Smashed some icon files together
+  - rscadd: When doing an interaction, you now show a small cog above your head to
+      other players!
+  - refactor: Do after code is now revamped.
+  - qol: You can reinforce multiple walls at once (again!)
+  - qol: You can now work on multiple airlocks at once!
+  - bugfix: You can no longer spam-click objects
+  - image: Adds flashing variants of the progress bar when you interrupt them!
+  - bugfix: Loyalty potions now allow slime spawn to be eaten easily
+  - bugfix: Loyalty potion now immediately triggers a slime's mood changing, making
+      them able to be eaten.
+  Kashargul:
+  - bugfix: chat highlight settings can be cleared
+  Tenryumi:
+  - rscadd: Made the luxury cabin capsules more feature-complete with fully privacy-enabled
+      dorms, as well as generally polishing and moving around a few things in them.

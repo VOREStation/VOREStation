@@ -19,20 +19,20 @@
 
 /datum/component/connect_loc_behalf/RegisterWithParent()
 	RegisterSignal(tracked, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
-	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, PROC_REF(handle_tracked_qdel))
+	RegisterSignal(tracked, COMSIG_QDELETING, PROC_REF(handle_tracked_qdel))
 	update_signals()
 
 /datum/component/connect_loc_behalf/UnregisterFromParent()
 	unregister_signals()
 	UnregisterSignal(tracked, list(
 		COMSIG_MOVABLE_MOVED,
-		COMSIG_PARENT_QDELETING,
+		COMSIG_QDELETING,
 	))
 
 	tracked = null
 
 /datum/component/connect_loc_behalf/proc/handle_tracked_qdel()
-	SIGNAL_HANDLER // COMSIG_PARENT_QDELETING
+	SIGNAL_HANDLER // COMSIG_QDELETING
 	qdel(src)
 
 /datum/component/connect_loc_behalf/proc/update_signals()

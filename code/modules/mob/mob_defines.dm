@@ -232,7 +232,11 @@
 
 	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
 
-	var/list/progressbars = null //VOREStation Edit
+	///List of progress bars this mob is currently seeing for actions
+	var/list/progressbars = null //for stacking do_after bars
+
+	///For storing what do_after's someone has, key = string, value = amount of interactions of that type happening.
+	var/list/do_afters
 
 	var/datum/focus //What receives our keyboard inputs. src by default
 	/// dict of custom stat tabs with data

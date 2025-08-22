@@ -20,7 +20,7 @@
 		var/client/client_user = user
 		user = client_user.mob
 	src.user = user
-	RegisterSignal(user, COMSIG_PARENT_QDELETING, PROC_REF(user_deleted))
+	RegisterSignal(user, COMSIG_QDELETING, PROC_REF(user_deleted))
 	src.window_id = window_id
 	if (title)
 		src.title = strip_improper(title)

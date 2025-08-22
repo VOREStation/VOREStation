@@ -373,7 +373,7 @@
 	desc = "Whatever species designed this must've enjoyed relaxation as well. Looks vaguely comfy."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_bed)
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "bed"
+	icon_state = "bed_red"
 	flippable = FALSE
 
 /obj/structure/bed/alien/update_icon()

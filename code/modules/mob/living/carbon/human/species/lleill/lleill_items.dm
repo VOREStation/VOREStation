@@ -255,7 +255,7 @@
 
 	if(m_action == "Yes")
 		to_chat(M, span_warning("You begin to break the lines of the glamour ring."))
-		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(M, 10 SECONDS, src))
 			to_chat(M, span_warning("You leave the glamour ring alone."))
 			return
 		to_chat(M, span_warning("You have destroyed \the [src]."))
@@ -270,7 +270,7 @@
 		if(LL.ring_cooldown + 10 MINUTES > world.time)
 			to_chat(M, span_warning("You must wait a while before drawing energy from the glamour again."))
 			return
-		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(M, 10 SECONDS, src))
 			to_chat(M, span_warning("You stop drawing energy."))
 			return
 		LL.lleill_energy = min((LL.lleill_energy + 75),LL.lleill_energy_max)

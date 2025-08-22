@@ -80,7 +80,7 @@ var/list/runechat_image_cache = list()
 
 /datum/chatmessage/Destroy()
 	if(istype(owned_by, /client)) // hopefully the PARENT_QDELETING on client should beat this if it's a disconnect
-		UnregisterSignal(owned_by, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(owned_by, COMSIG_QDELETING)
 		if(owned_by.seen_messages)
 			LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
 		owned_by.images.Remove(message)
@@ -112,7 +112,7 @@ var/list/runechat_image_cache = list()
 
 	// Register client who owns this message
 	owned_by = owner.client
-	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, PROC_REF(unregister_qdel_self)) // this should only call owned_by if the client is destroyed
+	RegisterSignal(owned_by, COMSIG_QDELETING, PROC_REF(unregister_qdel_self)) // this should only call owned_by if the client is destroyed
 
 	var/extra_length = owned_by.prefs?.read_preference(/datum/preference/toggle/runechat_long_messages)
 	var/maxlen = extra_length ? CHAT_MESSAGE_EXT_LENGTH : CHAT_MESSAGE_LENGTH
@@ -202,7 +202,7 @@ var/list/runechat_image_cache = list()
 	if(!owned_by)
 		qdel(src)
 		return
-	RegisterSignal(message_loc, COMSIG_PARENT_QDELETING, PROC_REF(qdel_self))
+	RegisterSignal(message_loc, COMSIG_QDELETING, PROC_REF(qdel_self))
 	if(owned_by.seen_messages)
 		var/idx = 1
 		var/combined_height = approx_lines
@@ -294,7 +294,7 @@ var/list/runechat_image_cache = list()
 
 /datum/chatmessage/proc/unregister_qdel_self()  // this should only call owned_by if the client is destroyed
 	SIGNAL_HANDLER
-	UnregisterSignal(owned_by, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(owned_by, COMSIG_QDELETING)
 	owned_by = null
 	qdel_self()
 

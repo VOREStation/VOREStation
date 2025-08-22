@@ -562,7 +562,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			return ..()
 		if(resting)
 			user.visible_message(span_attack("\The [user] approaches \the [src]'s neck with \the [O]."),span_attack("You approach \the [src]'s neck with \the [O]."))
-			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
+			if(do_after(user, 5 SECONDS, target = src))
 				if(resting)
 					death()
 					return
@@ -747,7 +747,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		sheartime *= 2
 	else
 		return FALSE
-	if(do_after(user, sheartime, exclusive = TASK_USER_EXCLUSIVE, target = src))
+	if(do_after(user, sheartime, target = src))
 		user.visible_message(span_notice("\The [user] shears \the [src] with \the [tool]."),span_notice("You shear \the [src] with \the [tool]."))
 		amount_grown = rand(0,250)
 		var/obj/item/stack/material/fur/F = new(get_turf(user), rand(10,15))
