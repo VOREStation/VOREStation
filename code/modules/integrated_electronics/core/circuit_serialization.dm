@@ -12,7 +12,7 @@
  * @param	type_path The full assembly type path
  * @return	The shortened path without the common prefix
  */
-/proc/strip_assembly_prefix(type_path)
+/obj/item/electronic_assembly/proc/strip_assembly_prefix(type_path)
 	if(!type_path)
 		return ""
 	var/type_string = "[type_path]"
@@ -25,7 +25,7 @@
  * @param	type_path The full circuit type path
  * @return	The shortened path without the common prefix
  */
-/proc/strip_circuit_prefix(type_path)
+/obj/item/electronic_assembly/proc/strip_circuit_prefix(type_path)
 	if(!type_path)
 		return ""
 	var/type_string = "[type_path]"
@@ -38,7 +38,7 @@
  * @param	shortened_path The shortened assembly path
  * @return	The full assembly type path
  */
-/proc/restore_assembly_prefix(shortened_path)
+/obj/item/integrated_circuit_printer/proc/restore_assembly_prefix(shortened_path)
 	if(!shortened_path)
 		return ""
 	var/path_string = "[shortened_path]"
@@ -53,7 +53,7 @@
  * @param	shortened_path The shortened circuit path
  * @return	The full circuit type path
  */
-/proc/restore_circuit_prefix(shortened_path)
+/obj/item/integrated_circuit_printer/proc/restore_circuit_prefix(shortened_path)
 	if(!shortened_path)
 		return ""
 	var/path_string = "[shortened_path]"
@@ -75,7 +75,7 @@
 	var/list/assembly_data = list(
 		"n" = name,                    // Shortened: name
 		"d" = desc,                    // Shortened: desc
-		"t" = strip_assembly_prefix("[type]"),  // Shortened: type (strip common prefix)
+		"t" = src.strip_assembly_prefix("[type]"),  // Shortened: type (strip common prefix)
 		"c" = detail_color,           // Shortened: color
 		"components" = list(),                  // Keep full name for clarity
 		"connections" = list()                  // Keep full name for clarity
@@ -91,7 +91,7 @@
 
 		var/list/component_data = list(
 			"i" = component_index,  // Shortened key: index
-			"t" = strip_circuit_prefix("[IC.type]")  // Shortened key: type (strip common prefix)
+			"t" = src.strip_circuit_prefix("[IC.type]")  // Shortened key: type (strip common prefix)
 		)
 
 		// Only include custom name if it differs from the default
@@ -296,7 +296,7 @@
 
 	// Use original assembly type if not overriding (use shortened key "t" for type)
 	if(!assembly && assembly_data["t"])
-		var/restored_path = restore_assembly_prefix(assembly_data["t"])
+		var/restored_path = src.restore_assembly_prefix(assembly_data["t"])
 		var/original_path = text2path(restored_path)
 		if(original_path && ispath(original_path, /obj/item/electronic_assembly))
 			assembly = new original_path()
@@ -345,7 +345,7 @@
 		if(!component_data["t"] || !component_data["i"])
 			continue
 
-		var/restored_type_path = restore_circuit_prefix(component_data["t"])
+		var/restored_type_path = src.restore_circuit_prefix(component_data["t"])
 		var/component_type_path = text2path(restored_type_path)
 		if(!component_type_path || !ispath(component_type_path, /obj/item/integrated_circuit))
 			continue
