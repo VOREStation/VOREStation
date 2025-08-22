@@ -41,7 +41,7 @@ ADMIN_VERB(log_viewer_new, R_ADMIN|R_DEBUG, "View Round Logs", "View the rounds 
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(isnull(ui))
-		ui = new(user, src, "LogViewer")
+		ui = new(user, src, "LogViewer", "Log Viewer")
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
