@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui//backend';
 import {
   Button,
   Collapsible,
@@ -7,12 +8,13 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { useBackend } from '../../backend';
 import { validateRegExp } from './functions';
 import type { CategoryViewerProps } from './types';
 
 export const CategoryViewer = (props: CategoryViewerProps) => {
   const { act } = useBackend();
+  const { data, activeCategory } = props;
+
   const [search, setSearch] = useState('');
   const [searchRegex, setSearchRegex] = useState(false);
   const [caseSensitive, setCaseSensitive] = useState(false);
@@ -28,8 +30,8 @@ export const CategoryViewer = (props: CategoryViewerProps) => {
     <Section
       fill
       title={`Category Viewer${
-        props.activeCategory
-          ? ` - ${props.activeCategory}[${props.data?.entry_count}]`
+        activeCategory
+          ? ` - ${activeCategory}[${data?.entry_count}]`
           : ' - Select a category'
       }`}
       buttons={
@@ -77,7 +79,7 @@ export const CategoryViewer = (props: CategoryViewerProps) => {
       <Section fill scrollable>
         <Stack g={0} fill vertical overflowX="hidden">
           {!searchRegex || regexValidation === true ? (
-            props.data?.entries.map((entry) => {
+            data?.entries.map((entry) => {
               if (search) {
                 if (searchRegex) {
                   const regex = new RegExp(search, caseSensitive ? 'g' : 'gi');
@@ -137,9 +139,11 @@ export const CategoryViewer = (props: CategoryViewerProps) => {
 };
 
 const JsonViewer = (props: { data: any; title: string }) => {
+  const { data, title } = props;
+
   return (
-    <Collapsible title={props.title}>
-      <pre>{JSON.stringify(props.data, null, 2)}</pre>
+    <Collapsible title={title}>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </Collapsible>
   );
 };
