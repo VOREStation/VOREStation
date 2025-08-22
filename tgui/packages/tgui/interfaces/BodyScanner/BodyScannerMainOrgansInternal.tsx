@@ -1,5 +1,4 @@
 import { Box, ProgressBar, Section, Table } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { damageRange } from './constants';
 import { germStatus, reduceOrganStatus } from './functions';
@@ -38,7 +37,7 @@ export const BodyScannerMainOrgansInternal = (props: {
                   mt={i > 0 && '0.5rem'}
                   ranges={damageRange}
                 >
-                  {!!o.damage && toFixed(o.damage)}
+                  {!!o.damage && o.damage.toFixed()}
                 </ProgressBar>
               )}
             </Table.Cell>

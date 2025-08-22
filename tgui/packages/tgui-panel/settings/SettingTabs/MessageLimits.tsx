@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'tgui/backend';
 import { Box, LabeledList, NumberInput, Section } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { useGame } from '../../game';
 import { updateSettings } from '../actions';
@@ -28,7 +27,7 @@ export const MessageLimits = (props) => {
             minValue={500}
             maxValue={10000}
             value={visibleMessageLimit}
-            format={(value) => toFixed(value)}
+            format={(value) => value.toFixed()}
             onChange={(value) =>
               dispatch(
                 updateSettings({
@@ -53,7 +52,7 @@ export const MessageLimits = (props) => {
             minValue={0}
             maxValue={10000}
             value={persistentMessageLimit}
-            format={(value) => toFixed(value)}
+            format={(value) => value.toFixed()}
             onChange={(value) =>
               dispatch(
                 updateSettings({
@@ -78,7 +77,7 @@ export const MessageLimits = (props) => {
             minValue={0}
             maxValue={10}
             value={combineMessageLimit}
-            format={(value) => toFixed(value)}
+            format={(value) => value.toFixed()}
             onChange={(value) =>
               dispatch(
                 updateSettings({
@@ -98,7 +97,7 @@ export const MessageLimits = (props) => {
             maxValue={10}
             value={combineIntervalLimit}
             unit="s"
-            format={(value) => toFixed(value)}
+            format={(value) => value.toFixed()}
             onChange={(value) =>
               dispatch(
                 updateSettings({
@@ -119,7 +118,7 @@ export const MessageLimits = (props) => {
               maxValue={10}
               value={saveInterval}
               unit="s"
-              format={(value) => toFixed(value)}
+              format={(value) => value.toFixed()}
               onChange={(value) =>
                 dispatch(
                   updateSettings({

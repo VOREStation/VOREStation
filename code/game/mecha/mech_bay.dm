@@ -15,6 +15,8 @@
 		/obj/mecha,
 		/mob/living/silicon/robot/platform
 	)
+/obj/machinery/mech_recharger/alien
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
 
 /obj/machinery/mech_recharger/Initialize(mapload)
 	. = ..()

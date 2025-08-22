@@ -26,13 +26,13 @@
 /obj/item/glamourcrystal
 	name = "white crytal"
 	desc = "A large white, highly reflective crystal with a slight glow to it."
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "glamourcrystal"
 
 /obj/structure/crystalholder
 	name = "material cart"
 	desc = "A cart designed to fit and carry one large carefully cut crystal."
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "crystalholder"
 	var/crystal = 0
 	density = 1

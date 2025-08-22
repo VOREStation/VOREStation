@@ -96,7 +96,7 @@
 		return
 
 	user.visible_message(span_infoplain(span_bold("[user]") + " starts sipping on [victim] with [src]!"), span_info("You start sipping on [victim] with [src]."))
-	if(!do_after(user, 3 SECONDS, victim, exclusive = TASK_ALL_EXCLUSIVE))
+	if(!do_after(user, 3 SECONDS, victim))
 		return
 
 	user.visible_message(span_infoplain(span_bold("[user]") + " sips some of [victim] with [src]!"), span_info("You take a sip of [victim] with [src]. Yum!"))

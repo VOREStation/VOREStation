@@ -111,7 +111,7 @@ const BiogeneratorItems = (props: {
       })
       .sort(sortTypes[props.sortOrder]);
     if (items_in_cat.length === 0) {
-      return;
+      return undefined;
     }
     if (props.descending) {
       items_in_cat = items_in_cat.reverse();
