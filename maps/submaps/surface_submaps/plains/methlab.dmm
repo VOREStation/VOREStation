@@ -46,12 +46,10 @@
 /area/submap/methlab)
 "cg" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/radio{
+/obj/item/radio/phone{
 	anchored = 1;
 	canhear_range = 1;
 	frequency = 1487;
-	icon = 'icons/obj/items.dmi';
-	icon_state = "red_phone";
 	name = "Reception Emergency Phone"
 	},
 /turf/simulated/floor/tiled/steel_dirty,

@@ -1275,7 +1275,7 @@
 		to_chat(R, escape_attempt_prey_message)
 		to_chat(owner, escape_attempt_owner_message)
 
-		if(do_after(R, escapetime, owner, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
+		if(do_after(R, escapetime, owner, timed_action_flags = IGNORE_INCAPACITATED))
 			if((owner.stat || escapable)) //Can still escape?
 				if(C)
 					release_specific_contents(C)

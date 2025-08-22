@@ -12,6 +12,19 @@
 /obj/machinery/cryopod/robot/door/dorms
 	spawnpoint_type = /datum/spawnpoint/tram
 
+///Door specifically for a site in tether. Or other places that uses a 2x1 glass door.
+/obj/machinery/cryopod/robot/door/dorms/tether_glass
+	name = "elevator"
+	desc = "A small elevator"
+	base_icon_state = "door_closed"
+	icon = 'icons/obj/doors/Door2x1glass.dmi'
+	icon_state = "door_closed"
+	on_enter_occupant_message = "The elevator doors close slowly. You can now head off for the residential, commercial, and other floors.";
+	on_store_message = "has departed for one of the various colony floors"
+	on_store_name = "Colony Oversight"
+	on_store_visible_message_2 = "to the colony districts."
+	time_till_despawn = 5
+
 /obj/machinery/cryopod/robot/door/gateway
 	name = "public teleporter"
 	desc = "The short-range teleporter you might've came in from. You could leave easily using this."

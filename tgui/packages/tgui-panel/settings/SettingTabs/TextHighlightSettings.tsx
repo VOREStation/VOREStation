@@ -80,21 +80,39 @@ const TextHighlightSetting = (props) => {
   return (
     <Stack.Item {...rest}>
       <Stack mb={1} color="label" align="baseline">
-        <Stack.Item grow>
-          <Button
-            color="transparent"
-            icon="times"
-            onClick={() =>
-              dispatch(
-                removeHighlightSetting({
-                  id: id,
-                }),
-              )
-            }
-          >
-            Delete
-          </Button>
-        </Stack.Item>
+        <Button.Confirm
+          icon="times"
+          color="transparent"
+          onClick={() =>
+            dispatch(
+              updateHighlightSetting({
+                id: id,
+                highlightText: '',
+                blacklistText: '',
+              }),
+            )
+          }
+        >
+          Reset
+        </Button.Confirm>
+        {id !== 'default' && (
+          <Stack.Item>
+            <Button.Confirm
+              color="transparent"
+              icon="times"
+              onClick={() =>
+                dispatch(
+                  removeHighlightSetting({
+                    id: id,
+                  }),
+                )
+              }
+            >
+              Delete
+            </Button.Confirm>
+          </Stack.Item>
+        )}
+        <Stack.Item grow />
         <Stack.Item>
           <Button.Checkbox
             checked={highlightBlacklist}

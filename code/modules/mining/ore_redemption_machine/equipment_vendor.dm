@@ -263,7 +263,7 @@
 				return
 
 			remove_points(inserted_id, prize.cost)
-			var/obj/I = new prize.equipment_path(loc)
+			var/obj/item/I = new prize.equipment_path(loc)
 			I.persist_storable = FALSE
 			flick(icon_vend, src)
 		else

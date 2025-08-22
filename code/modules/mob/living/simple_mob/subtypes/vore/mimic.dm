@@ -64,6 +64,9 @@
 /obj/structure/closet/crate/mimic/guaranteed
 	mimic_chance = 100
 
+/obj/structure/closet/crate/mimic/guaranteed/chest
+	icon = 'icons/obj/closets/chest.dmi'
+
 /obj/structure/closet/crate/mimic/dangerous
 	mimic_chance = 70
 
