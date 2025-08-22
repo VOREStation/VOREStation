@@ -1,10 +1,10 @@
 import type { PropsWithChildren } from 'react';
 import { globalStore } from 'tgui/backend';
+import { toggleKitchenSink } from 'tgui/debug/actions';
 import { Button, Icon } from 'tgui-core/components';
 import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from 'tgui-core/constants';
 import { type BooleanLike, classes } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
-import { toggleKitchenSink } from '../debug/actions';
 
 type TitleBarProps = Partial<{
   className: string;
