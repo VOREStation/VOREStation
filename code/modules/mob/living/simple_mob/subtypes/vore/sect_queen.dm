@@ -4,18 +4,18 @@
 	name = "Creature - Sect Queen"
 	desc = "Classification: V Insecta maximus gigantus\
 	<br><br>\
-	A massively-sized insect that is native - although rarely spotted outside of its colony - to Virgo 3B. \
+	A massively-sized insect that is native - although rarely spotted outside of the colony - to Virgo 3B. \
 	It bears the combined physical traits of several of Earth's insects. Its forelegs have claws bearing serrated \
-	edges much like a Mantis, which it uses in both self-defense and during its hunts. Covering its body is a layer \
+	edges much like a mantis, which it uses in both self-defense and during its hunts. Covering its body is a layer \
 	of thick and protective chitin, resilient enough to absorb most physical damage. \
 	<br>\
 	Though rarely seen, it is not uncommon for a queen to go out alone to search for potential new nesting grounds \
 	or perhaps it does so to seek bigger prey that its much smaller drones might be unable to acquire. \
 	Regardless of reason, it is cautioned against approaching a Sect Queen as their behaviour is wildly \
-	inconsistent. A Sect Queen can vary from hostile to docile depending on certain factors that scientists have \
+	inconsistent. A sect queen can vary from hostile to docile depending on certain factors that scientists have \
 	yet to uncover. \
 	<br>\
-	The lack  of chitin on the underside of its abdomen is deliberate, as the flesh is very elastic and stretchable, \
+	The flesh on the underside of its abdomen is very elastic and stretchable, \
 	allowing the queen to carry multiple large prey inside of its stomach with ease. There is no know limit to home much \
 	prey a single specimen can carry and scientists are wary to find said limit."
 	value = CATALOGUER_REWARD_MEDIUM
