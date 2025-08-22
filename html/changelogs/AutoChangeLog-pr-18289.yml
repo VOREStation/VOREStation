@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - maptweak: "Got rid of all illegal icon = '' edits in the maps"
-  - image: "Smashed some icon files together"
