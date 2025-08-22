@@ -5,6 +5,7 @@ import type { CategoryBarProps } from './types';
 
 export const CategoryBar = (props: CategoryBarProps) => {
   const { options, active, setActive } = props;
+
   const sorted = [...options].sort();
   const [categorySearch, setCategorySearch] = useState('');
 
