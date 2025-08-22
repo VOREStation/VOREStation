@@ -467,10 +467,8 @@
 			metal += total_cost
 		return
 
-	// Restore wiring connections
+	// Restore wiring, and appearance
 	restore_component_wiring(assembly_data, created_components)
-
-	// Restore appearance
 	assembly.update_icon()
 
 	// Start the printing process
