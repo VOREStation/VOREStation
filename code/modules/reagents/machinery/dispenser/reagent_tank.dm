@@ -276,7 +276,7 @@
 		explode()
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/Move()
+/obj/structure/reagent_dispensers/fueltank/Move(atom/newloc, direct, movetime)
 	if (..() && modded)
 		leak_fuel(amount_per_transfer_from_this/10.0)
 
@@ -302,7 +302,7 @@
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
 	desc = "A dispenser of virus food. Yum."
-	icon = 'icons/obj/virology_vr.dmi'
+	icon = 'icons/obj/virology.dmi'
 	icon_state = "virusfoodtank"
 	anchored = TRUE
 	density = FALSE

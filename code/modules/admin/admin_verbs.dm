@@ -280,7 +280,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	set desc = "Cause an explosion of varying strength at your location."
 
 	var/turf/epicenter = mob.loc
-	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb", "Cancel")
+	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap Bomb", "SM Blast", "Custom Bomb", "Cancel")
 	var/choice = tgui_input_list(usr, "What size explosion would you like to produce?", "Explosion Choice", choices)
 	switch(choice)
 		if(null)
@@ -293,6 +293,10 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 			explosion(epicenter, 2, 3, 4, 4)
 		if("Big Bomb")
 			explosion(epicenter, 3, 5, 7, 5)
+		if("Maxcap Bomb") // Being able to test what players can legally make themselves sounds good, no?~
+			explosion(epicenter, BOMBCAP_DVSTN_RADIUS, BOMBCAP_HEAVY_RADIUS, BOMBCAP_LIGHT_RADIUS, BOMBCAP_FLASH_RADIUS)
+		if("SM Blast")
+			explosion(epicenter, 8, 16, 24, 32)
 		if("Custom Bomb")
 			var/devastation_range = tgui_input_number(usr, "Devastation range (in tiles):")
 			var/heavy_impact_range = tgui_input_number(usr, "Heavy impact range (in tiles):")

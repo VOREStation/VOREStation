@@ -315,7 +315,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
 			to_chat(C, span_notice("No active admins are online, your adminhelp was sent to the admin discord."))
-	send2adminchat()
+	send2adminchatwebhook()
 
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
@@ -780,6 +780,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
 	. = activemins.len
+	/*
 	if(. <= 0)
 		var/final = ""
 		var/list/afkmins = adm["afk"]
@@ -790,7 +791,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 			final = "[msg] - No admins online"
 		else
 			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
-		send2irc(source,final)
+		send2irc(source,final)*/
 
 /proc/ircadminwho()
 	var/list/message = list("Admins: ")

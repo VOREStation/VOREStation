@@ -16,7 +16,7 @@
 /obj/item/surgical
 	name = "Surgical tool"
 	desc = "This shouldn't be here, ahelp it."
-	icon = 'icons/obj/surgery_vr.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	w_class = ITEMSIZE_SMALL
 	drop_sound = 'sound/items/drop/weldingtool.ogg'
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
@@ -117,7 +117,7 @@
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks basic and could be improved."
 	icon_state = "scalpel_laser1"
-	damtype = "fire"
+	damtype = BURN
 	hitsound = 'sound/weapons/blade1.ogg'
 	clamp_chance = 75
 
@@ -125,7 +125,7 @@
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks somewhat advanced."
 	icon_state = "scalpel_laser2"
-	damtype = "fire"
+	damtype = BURN
 	hitsound = 'sound/weapons/blade1.ogg'
 	force = 12.0
 	clamp_chance = 85
@@ -134,7 +134,7 @@
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks to be the pinnacle of precision energy cutlery!"
 	icon_state = "scalpel_laser3"
-	damtype = "fire"
+	damtype = BURN
 	hitsound = 'sound/weapons/blade1.ogg'
 	force = 15.0
 	clamp_chance = 95

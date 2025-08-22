@@ -7,7 +7,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import { type SubsystemData } from './types';
+import type { SubsystemData } from './types';
 
 type Props = {
   subsystem: SubsystemData;

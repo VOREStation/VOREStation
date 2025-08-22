@@ -88,6 +88,7 @@
 				"rad"		= 100
 				)
 
+	can_be_drop_prey = FALSE
 	glow_override = TRUE
 
 /mob/living/simple_mob/vore/oregrub/lava

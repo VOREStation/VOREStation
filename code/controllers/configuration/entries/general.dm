@@ -500,9 +500,6 @@
 ///datum/config_entry/number/simultaneous_pm_warning_timeout
 //	default = 100
 
-/// Defines whether the server uses recursive or circular explosions.
-/datum/config_entry/flag/use_recursive_explosions
-
 /// Multiplier for how much weaker explosions are on neighboring z levels.
 /datum/config_entry/number/multi_z_explosion_scalar
 	default = 0.5

@@ -1090,6 +1090,9 @@
 
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
+	//Don't let glows stick
+	M.glow_toggle = FALSE
+	M.set_light(0)
 	// Delete the digested mob
 	// Changed qdel to a forceMove to allow reforming, and... handled robots special.
 	if(isrobot(M))
@@ -1275,7 +1278,7 @@
 		to_chat(R, escape_attempt_prey_message)
 		to_chat(owner, escape_attempt_owner_message)
 
-		if(do_after(R, escapetime, owner, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
+		if(do_after(R, escapetime, owner, timed_action_flags = IGNORE_INCAPACITATED))
 			if((owner.stat || escapable)) //Can still escape?
 				if(C)
 					release_specific_contents(C)

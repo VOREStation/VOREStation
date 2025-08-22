@@ -304,7 +304,7 @@
 	transport_objects(get_turf(dest))
 
 /obj/item/quantum_pad_booster
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	name = "quantum pad particle booster"
 	desc = "A deceptively simple interface for increasing the mass of objects a quantum pad is capable of teleporting, at the cost of increased power draw."
 	description_info = "The three prongs at the base of the tool are not, in fact, for show."

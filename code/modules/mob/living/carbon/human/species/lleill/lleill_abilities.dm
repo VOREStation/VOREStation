@@ -145,7 +145,7 @@
 		return
 	else
 		visible_message(span_infoplain(span_bold("\The [src]") + " begins to change the form of \the [I]."))
-		if(!do_after(src, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, I))
 			visible_message(span_infoplain(span_bold("\The [src]") + " leaves \the [I] in its original form."))
 			return 0
 		visible_message(span_infoplain(span_bold("\The [src]") + " transmutes \the [I] into \the [transmute_product.name]."))
@@ -185,7 +185,7 @@
 		if(species.lleill_energy < energy_cost_spawn)
 			to_chat(src, span_warning("You do not have enough energy to do that!"))
 			return
-		if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, src))
 			src.visible_message(span_infoplain(span_bold("\The [src]") + " begins to form white rings on the ground."))
 			return 0
 		to_chat(src, span_warning("You place a new glamour ring at your feet."))
@@ -203,6 +203,9 @@
 			return
 		else
 			var/obj/structure/glamour_ring/R = tgui_input_list(src, "Where do you wish to teleport?", "Teleport", src.teleporters)
+
+			if(!R)
+				return
 
 			var/datum/effect/effect/system/spark_spread/spk
 			spk = new(src)
@@ -312,7 +315,7 @@
 			src.visible_message(span_infoplain(span_bold("\The [src]") + " boops [chosen_target] on the nose."))
 		if(contact_type == "Custom")
 			src.visible_message(span_infoplain("[custom_text]"))
-		if(!do_after(src, 10 SECONDS, chosen_target, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, chosen_target))
 			src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] break contact before energy has been transferred."))
 			return
 		src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] complete their contact."))
@@ -363,7 +366,7 @@
 		return
 	else
 		visible_message(span_infoplain(span_bold("\The [src]") + " begins to change the form of \the [I]."))
-		if(!do_after(src, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, I))
 			visible_message(span_infoplain(span_bold("\The [src]") + " leaves \the [I] in its original form."))
 			return 0
 		visible_message(span_infoplain(span_bold("\The [src]") + " transmutes \the [I] into \the [transmute_product.name]."))
@@ -450,7 +453,7 @@
 		return
 
 	visible_message(span_infoplain(span_bold("\The [src]") + " begins significantly shifting their form."))
-	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(src, 10 SECONDS, src))
 		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 
@@ -530,7 +533,7 @@
 		return
 
 	visible_message(span_infoplain(span_bold("\The [src]") + " begins significantly shifting their form."))
-	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(src, 10 SECONDS, src))
 		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 	visible_message(span_infoplain(span_bold("\The [src]") + " has reverted to their original form."))
@@ -644,7 +647,7 @@
 		return
 
 	visible_message(span_infoplain(span_bold("\The [src]") + " begins significantly shifting their form."))
-	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(src, 10 SECONDS, src))
 		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 

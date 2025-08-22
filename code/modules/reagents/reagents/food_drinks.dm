@@ -5091,3 +5091,14 @@
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
 	industrial_use = REFINERYEXPORT_REASON_FOOD
+
+
+/datum/reagent/drink/teamush
+	name = REAGENT_TEAMUSH
+	id = REAGENT_ID_TEAMUSH
+	description = "Mashed tea leaves, a bit like grass clippings. You can't make proper tea out of this now."
+	taste_description = "overwhelmingly bitter plant"
+	color = "#7db72d"
+
+	glass_name = "blended plant"
+	glass_desc = "Chunky, mashed up plant of some sort. Looks kinda gross."

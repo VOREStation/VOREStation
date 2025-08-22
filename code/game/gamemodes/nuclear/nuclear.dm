@@ -34,8 +34,7 @@ GLOBAL_LIST_EMPTY(nuke_disks)
 
 /datum/game_mode/nuclear/declare_completion()
 	if(CONFIG_GET(flag/objectives_disabled))
-		..()
-		return
+		return ..()
 	var/disk_rescued = 1
 	for(var/obj/item/disk/nuclear/D in GLOB.nuke_disks)
 		var/disk_area = get_area(D)
@@ -89,5 +88,4 @@ GLOBAL_LIST_EMPTY(nuke_disks)
 		to_chat(world, span_filter_system(span_large(span_bold("Neutral Victory"))))
 		to_chat(world, span_filter_system(span_bold("Round was mysteriously interrupted!")))
 
-	..()
-	return
+	return ..()

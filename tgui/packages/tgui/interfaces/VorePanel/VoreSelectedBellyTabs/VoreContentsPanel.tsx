@@ -40,6 +40,7 @@ export const VoreContentsPanel = (props: {
         if (entry.value === value) {
           return entry.displayText;
         }
+        return undefined;
       })
       .filter((value) => value !== undefined);
     if (Array.isArray(bellyName) && bellyName.length) {

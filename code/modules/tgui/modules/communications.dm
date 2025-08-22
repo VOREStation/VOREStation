@@ -141,7 +141,7 @@
 	data["message_current_id"] = current_viewing_message_id
 	data["message_current"] = current_viewing_message
 
-	// data["lastCallLoc"]     = SSshuttle.emergencyLastCallLoc ? format_text(SSshuttle.emergencyLastCallLoc.name) : null
+	// data["lastCallLoc"]     = SSshuttle.emergencyLastCallLoc ? strip_improper(SSshuttle.emergencyLastCallLoc.name) : null
 	data["msg_cooldown"] = message_cooldown ? (round((message_cooldown - world.time) / 10)) : 0
 	data["cc_cooldown"] = centcomm_message_cooldown ? (round((centcomm_message_cooldown - world.time) / 10)) : 0
 

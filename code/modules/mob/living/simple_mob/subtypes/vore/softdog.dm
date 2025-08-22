@@ -251,7 +251,7 @@
 		return ..()
 	if(M.a_intent == I_HELP)
 		M.visible_message("[M] pets [src].", runemessage = "pets [src]")
-		if(do_after(M, 30 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
+		if(do_after(M, 30 SECONDS, target = src))
 			faction = M.faction
 			revive()
 			sight = initial(sight)
