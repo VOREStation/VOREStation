@@ -8,9 +8,7 @@
 	icon_state = "mfloor1"
 	var/basecolor="#030303"
 	desc = ""
-	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
-	matter = list(DEFAULT_WALL_MATERIAL = 18750)
 	var/deployed = 1
 	anchored = 1
 
