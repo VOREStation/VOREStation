@@ -735,9 +735,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
 "cq" = (
-/turf/simulated/floor/maglev{
-	icon = 'icons/turf/transit_vr.dmi'
-	},
+/turf/simulated/floor/maglev/moving,
 /area/space)
 "cr" = (
 /turf/simulated/shuttle/wall/alien/blue/hard_corner,
@@ -985,9 +983,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm6)
 "dg" = (
-/turf/unsimulated/wall{
-	icon = 'icons/turf/transit_vr.dmi'
-	},
+/turf/unsimulated/wall/moving,
 /area/space)
 "dh" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -2494,9 +2490,7 @@
 	stopper = 0;
 	tiles = 0
 	},
-/turf/simulated/floor/maglev{
-	icon = 'icons/turf/transit_vr.dmi'
-	},
+/turf/simulated/floor/maglev/moving,
 /area/space)
 "vW" = (
 /obj/effect/floor_decal/sign/small_a,
@@ -2538,9 +2532,7 @@
 /area/space)
 "yk" = (
 /obj/effect/step_trigger/lost_in_space/tram,
-/turf/simulated/floor/maglev{
-	icon = 'icons/turf/transit_vr.dmi'
-	},
+/turf/simulated/floor/maglev/moving,
 /area/space)
 "yr" = (
 /obj/effect/floor_decal/carpet{
@@ -2592,10 +2584,7 @@
 /obj/effect/transit/light{
 	dir = 8
 	},
-/turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
-	icon_state = "rock"
-	},
+/turf/unsimulated/mineral/moving,
 /area/space)
 "Ax" = (
 /turf/unsimulated/beach/coastline{
@@ -2681,10 +2670,7 @@
 /obj/effect/transit/light{
 	dir = 4
 	},
-/turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
-	icon_state = "rock"
-	},
+/turf/unsimulated/mineral/moving,
 /area/space)
 "FH" = (
 /obj/structure/bed/chair,
@@ -2751,10 +2737,7 @@
 /turf/simulated/floor/holofloor/bmarble,
 /area/holodeck/source_chess)
 "Hy" = (
-/turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
-	icon_state = "rock"
-	},
+/turf/unsimulated/mineral/moving,
 /area/space)
 "HL" = (
 /obj/effect/floor_decal/sign/small_1,

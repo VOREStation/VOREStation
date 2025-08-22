@@ -847,7 +847,7 @@
 	if(bolt)
 		if(!bolt.malfunction)
 			visible_message(span_danger("[src] is trying to break their [bolt]!"), span_warning("You attempt to break your [bolt]. (This will take around 90 seconds and you need to stand still)"))
-			if(do_after(src, 1.5 MINUTES, src, incapacitation_flags = INCAPACITATION_DISABLED))
+			if(do_after(src, 1.5 MINUTES, src, timed_action_flags = IGNORE_INCAPACITATED))
 				visible_message(span_danger("[src] manages to break \the [bolt]!"), span_warning("You successfully break your [bolt]."))
 				bolt.malfunction = MALFUNCTION_PERMANENT
 

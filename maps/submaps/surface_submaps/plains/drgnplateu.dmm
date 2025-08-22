@@ -348,12 +348,8 @@
 /area/template_noop)
 "We" = (
 /obj/effect/decal/remains,
-/obj/effect/decal/cleanable/blood/tracks{
-	color = "red";
-	desc = "Your instincts say you shouldn't be following these.";
-	dir = 4;
-	icon = 'icons/effects/blood.dmi';
-	icon_state = "tracks"
+/obj/effect/decal/cleanable/blood/tracks/suspicious{
+	dir = 4
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)

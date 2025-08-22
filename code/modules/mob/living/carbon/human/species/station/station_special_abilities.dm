@@ -634,7 +634,7 @@
 		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
-	if(do_after(src, 25, exclusive = TASK_USER_EXCLUSIVE))
+	if(do_after(src, 25))
 		var/obj/item/storage/vore_egg/bugcocoon/C = new(loc)
 		forceMove(C)
 
