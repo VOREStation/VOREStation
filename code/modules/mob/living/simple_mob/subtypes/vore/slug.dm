@@ -242,7 +242,7 @@
 			escape_time = 0.5 * base_escape_time
 		else
 			escape_time = base_escape_time //Admeme size scale
-	if(do_after(user, escape_time, src, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
+	if(do_after(user, escape_time, src, timed_action_flags = IGNORE_INCAPACITATED))
 		if(!has_buckled_mobs())
 			return
 		to_chat(user, "You tug free of the tacky, rubbery strands!")
