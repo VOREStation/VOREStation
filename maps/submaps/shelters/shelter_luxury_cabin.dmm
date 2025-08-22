@@ -1,4 +1,106 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/wall,
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
+"ab" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/structure/fans/tiny,
+/obj/effect/floor_decal/industrial/danger/full,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"ac" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod/dorms)
+"ad" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod/dorms)
+"ae" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/dorms)
+"af" = (
+/obj/machinery/disposal/wall{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/survivalpod)
+"ag" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod)
+"ah" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"ai" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod/dorms)
+"aj" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/dorms)
+"ak" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical{
+	name = "Capsule Dorm"
+	},
+/obj/structure/fans/tiny,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod/dorms)
+"al" = (
+/obj/machinery/disposal/wall,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod/dorms)
+"am" = (
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/dorms)
+"an" = (
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod/dorms)
 "ao" = (
 /obj/machinery/door/window/survival_pod{
 	dir = 2
@@ -6,8 +108,60 @@
 /obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/survivalpod)
+"ap" = (
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod/dorms)
+"aq" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/dorms)
+"ar" = (
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod/dorms/bathroom)
+"as" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/dorms/bathroom)
+"at" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical{
+	name = "Capsule Bathroom"
+	},
+/obj/structure/fans/tiny,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod/dorms/bathroom)
+"au" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/dorms/bathroom)
+"av" = (
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/dorms/bathroom)
+"aw" = (
+/obj/structure/sign/mining/survival{
+	dir = 1
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/dorms/bathroom)
 "aD" = (
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/survivalpod)
 "aE" = (
 /obj/structure/table/gamblingtable,
@@ -31,8 +185,12 @@
 	pixel_x = -4;
 	pixel_y = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/survivalpod)
+/area/survivalpod/dorms)
 "dp" = (
 /obj/machinery/door/airlock/voidcraft/survival_pod,
 /obj/structure/fans/tiny,
@@ -48,7 +206,6 @@
 "gf" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/spline/plain,
-/obj/item/storage/firstaid/regular,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -61,15 +218,20 @@
 /obj/item/soap/deluxe,
 /obj/structure/curtain/open/shower,
 /turf/simulated/shuttle/floor/voidcraft/light,
-/area/survivalpod)
+/area/survivalpod/dorms/bathroom)
 "kS" = (
 /obj/machinery/button/remote/airlock/survival_pod/bolts{
-	pixel_x = -11;
-	pixel_y = 24;
+	pixel_x = -23;
+	pixel_y = -21;
 	dir = 8
 	},
+/obj/structure/privacyswitch{
+	dir = 8;
+	pixel_x = -21;
+	pixel_y = -28
+	},
 /turf/simulated/shuttle/floor/voidcraft/light,
-/area/survivalpod)
+/area/survivalpod/dorms/bathroom)
 "la" = (
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
@@ -92,6 +254,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/fruitspawner/tomato,
+/obj/fruitspawner/tomato,
+/obj/fruitspawner/tomato,
+/obj/fruitspawner/tomato,
+/obj/fruitspawner/apple,
+/obj/fruitspawner/apple,
+/obj/fruitspawner/apple,
+/obj/fruitspawner/apple,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/survivalpod)
 "ry" = (
@@ -107,14 +277,18 @@
 	icon_state = "windoor"
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
-/area/survivalpod)
+/area/survivalpod/dorms/bathroom)
 "tj" = (
 /turf/simulated/shuttle/wall/voidcraft,
 /area/survivalpod)
 "tY" = (
 /obj/machinery/light,
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/survivalpod)
+/area/survivalpod/dorms)
 "ua" = (
 /obj/machinery/vending/dinnerware{
 	dir = 4
@@ -130,10 +304,6 @@
 "vq" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/spline/plain,
-/obj/item/book/manual/cook_guide,
-/obj/item/book/manual/chef_recipes{
-	pixel_x = -14
-	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/survivalpod)
 "vP" = (
@@ -182,8 +352,12 @@
 	dir = 1;
 	layer = 2.6
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/shuttle/floor/voidcraft/light,
-/area/survivalpod)
+/area/survivalpod/dorms/bathroom)
 "BN" = (
 /obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
 /obj/structure/fans/tiny,
@@ -194,29 +368,40 @@
 /obj/structure/bed/double/padded,
 /obj/item/bedsheet/browndouble,
 /turf/simulated/floor/carpet/bcarpet,
-/area/survivalpod)
+/area/survivalpod/dorms)
 "DF" = (
 /obj/structure/table/reinforced,
 /obj/item/material/kitchen/rollingpin{
-	pixel_y = 3;
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/dropper{
-	pixel_x = -3;
-	pixel_y = 9
+	pixel_y = 23;
+	pixel_x = 3
 	},
 /obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5;
-	pixel_x = 7;
-	pixel_y = 1
+	pixel_x = -9;
+	pixel_y = 22
 	},
-/obj/item/material/knife/butch,
+/obj/item/material/knife/butch{
+	pixel_y = 15;
+	pixel_x = 4
+	},
+/obj/item/book/manual/chef_recipes{
+	pixel_x = -9;
+	pixel_y = -3
+	},
+/obj/item/book/manual/cook_guide{
+	pixel_x = 6;
+	pixel_y = -3
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/survivalpod)
 "Eb" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
 	pixel_y = 9
+	},
+/obj/item/reagent_containers/dropper{
+	pixel_y = -9;
+	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/survivalpod)
@@ -257,8 +442,13 @@
 /area/survivalpod)
 "Go" = (
 /obj/machinery/washing_machine,
+/obj/machinery/light_switch/survival_pod{
+	dir = 4;
+	pixel_x = -22;
+	pixel_y = -1
+	},
 /turf/simulated/shuttle/floor/voidcraft/light,
-/area/survivalpod)
+/area/survivalpod/dorms/bathroom)
 "Gv" = (
 /obj/random/vendorall{
 	dir = 8
@@ -273,12 +463,17 @@
 	dir = 4
 	},
 /obj/machinery/button/remote/airlock/survival_pod/bolts{
-	pixel_x = -11;
-	pixel_y = 24;
+	pixel_x = -23;
+	pixel_y = -21;
 	dir = 8
 	},
+/obj/structure/privacyswitch{
+	dir = 8;
+	pixel_x = -21;
+	pixel_y = -28
+	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
+/area/survivalpod/dorms)
 "Jj" = (
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
@@ -297,8 +492,9 @@
 	},
 /obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = 4;
-	pixel_y = 4
+	pixel_y = 12
 	},
+/obj/item/storage/firstaid/regular,
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
 "OH" = (
@@ -308,8 +504,17 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/light_switch/survival_pod{
+	dir = 4;
+	pixel_x = -22;
+	pixel_y = -1
+	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
+/area/survivalpod/dorms)
 "OU" = (
 /obj/machinery/light{
 	dir = 1
@@ -336,6 +541,12 @@
 /obj/item/reagent_containers/food/condiment/small/peppermill,
 /obj/random/donkpocketbox,
 /obj/structure/closet/walllocker_double/kitchen/north,
+/obj/item/storage/box/beakers{
+	name = "box of measuring cups";
+	pixel_x = 2;
+	pixel_y = 3;
+	starts_with = list(/obj/item/reagent_containers/glass/beaker/measuring_cup = 7)
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/survivalpod)
 "PY" = (
@@ -352,9 +563,13 @@
 	dir = 5;
 	layer = 2.6
 	},
-/obj/machinery/light,
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
+/obj/machinery/light/floortube,
 /turf/simulated/shuttle/floor/voidcraft/light,
-/area/survivalpod)
+/area/survivalpod/dorms/bathroom)
 "XZ" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/simulated/floor/tiled/eris/cafe,
@@ -418,7 +633,7 @@ XZ
 pM
 oQ
 ZO
-zQ
+af
 ao
 PY
 PY
@@ -431,9 +646,9 @@ tj
 tj
 tj
 tj
-tj
+ag
 aD
-PY
+aa
 PY
 vp
 Ft
@@ -444,73 +659,73 @@ wT
 la
 la
 la
-wT
-dp
+ah
+ab
 PY
 PY
 PY
 dp
 "}
 (7,1,1) = {"
-Jj
-BN
-tj
-tj
-BN
-tj
-tj
+av
+at
+ar
+an
+ak
+ai
+ac
 OU
 PY
 fz
-Jj
+Ft
 "}
 (8,1,1) = {"
-yc
+aw
 kS
 Go
-tj
+an
 Hl
 OH
-tj
+ad
 yF
 PY
 aE
 zW
 "}
 (9,1,1) = {"
-Jj
+av
 ry
 Sh
-tj
-PY
+ap
+al
 tY
-tj
+ac
 vP
 PY
 vp
 Ft
 "}
 (10,1,1) = {"
-yc
+aw
 gE
 AS
-tj
+ad
 CN
 dm
-tj
+ad
 wB
 Gh
 Gv
 zW
 "}
 (11,1,1) = {"
-Jj
-EB
-Jj
-EB
-Jj
-EB
-Jj
+av
+au
+as
+aq
+am
+aj
+ae
 EB
 Ft
 EB

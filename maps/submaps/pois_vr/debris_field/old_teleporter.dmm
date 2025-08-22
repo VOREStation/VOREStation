@@ -11,14 +11,12 @@
 /area/submap/debrisfield/old_tele)
 "d" = (
 /obj/machinery/teleport/station{
-	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "controller_old"
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_tele)
 "e" = (
-/obj/machinery/teleport/hub{
-	icon = 'icons/obj/stationobjs.dmi'
-	},
+/obj/machinery/teleport/hub,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_tele)
 "f" = (

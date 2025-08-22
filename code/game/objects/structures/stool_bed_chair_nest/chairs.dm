@@ -288,7 +288,6 @@
 /obj/structure/bed/chair/sofa
 	name = "sofa"
 	desc = "It's a sofa. You sit on it. Possibly with someone else."
-	icon = 'icons/obj/sofas.dmi'
 	base_icon = "sofamiddle"
 	icon_state = "sofamiddle"
 	applies_material_colour = 1

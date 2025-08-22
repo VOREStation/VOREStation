@@ -784,16 +784,18 @@
 	for(var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
+				if(ishuman(M))
+					var/mob/living/carbon/human/target = M
+					if(istype(target.glasses, /obj/item/clothing/glasses/sunglasses))
 						continue
 
 				M.flash_eyes()
 				M.Weaken(15)
 
 			if(4 to 5)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
+				if(ishuman(M))
+					var/mob/living/carbon/human/target = M
+					if(istype(target.glasses, /obj/item/clothing/glasses/sunglasses))
 						continue
 
 				M.flash_eyes()

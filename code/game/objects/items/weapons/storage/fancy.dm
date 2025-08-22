@@ -439,7 +439,7 @@
 	..()
 
 /obj/item/storage/fancy/cigar/choiba
-	name = "/improper Choiba cigar case"
+	name = "\improper Choiba cigar case"
 	desc = "A fancy case for holding your cigars when you are not smoking them."
 	description_fluff = "The exquisite wooden case bears the markings of the \
 	Choiba cigar company based out of Cuba. The perfectly humidized case keeps \

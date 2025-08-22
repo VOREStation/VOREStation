@@ -1,5 +1,0 @@
-author: "Will, Diana"
-delete-after: True
-changes:
-  - qol: "Clang event will now increase security level to blue for the duration of the CLANG event, getting people's attention even if alt-tabbed."
-  - code_imp: "Clang event is now better on the backend"

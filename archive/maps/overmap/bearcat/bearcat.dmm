@@ -1417,7 +1417,7 @@
 	icon_state = "right";
 	name = "Reception Window";
 	opacity = 1;
-	req_access_txt = "0"
+	req_access = null
 	},
 /obj/machinery/light/small{
 	 icon_state = "bulb1";
@@ -1435,7 +1435,7 @@
 	icon_state = "right";
 	name = "Reception Window";
 	opacity = 1;
-	req_access_txt = "0"
+	req_access = null
 	},
 /turf/simulated/floor{
 	 icon_state = "hydrofloor";
@@ -3225,7 +3225,7 @@
 	dir = 4;
 	icon_state = "right";
 	name = "Interior Door";
-	req_access_txt = "0"
+	req_access = null
 	},
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 4;

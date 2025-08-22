@@ -117,7 +117,7 @@
 		return
 
 	visible_message(span_warning("[src] begins chargin' their lazor!"))
-	if(!do_after(src, 5 SECONDS, chosen_target, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(src, 5 SECONDS, chosen_target))
 		return
 	if(chosen_target.z != src.z || get_dist(src,chosen_target) > 7)
 		return
