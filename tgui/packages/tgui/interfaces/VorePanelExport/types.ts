@@ -29,6 +29,7 @@ export type Belly = {
   digest_oxy: number;
   digest_tox: number;
   digest_clone: number;
+  bellytemperature: number;
 
   can_taste: BooleanLike;
   is_feedable: BooleanLike;

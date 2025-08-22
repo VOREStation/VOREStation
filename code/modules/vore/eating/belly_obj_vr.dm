@@ -263,6 +263,7 @@
 	var/belchchance = 0						// % Chance of pred belching on prey struggle
 
 	var/list/belly_surrounding = list()		// A list of living mobs surrounded by this belly, including inside containers, food, on mobs, etc. Exclusing inside other bellies.
+	var/bellytemperature = T20C				// Temperature applied to humans in the belly.
 
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()
@@ -283,6 +284,7 @@
 	"digest_oxy",
 	"digest_tox",
 	"digest_clone",
+	"bellytemperature",
 	"immutable",
 	"can_taste",
 	"escapable",
@@ -1701,6 +1703,7 @@
 	dupe.digest_oxy = digest_oxy
 	dupe.digest_tox = digest_tox
 	dupe.digest_clone = digest_clone
+	dupe.bellytemperature = bellytemperature
 	dupe.immutable = immutable
 	dupe.can_taste = can_taste
 	dupe.escapable = escapable

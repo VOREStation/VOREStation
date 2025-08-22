@@ -574,6 +574,14 @@
 			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_clone)
 			host.vore_selected.digest_clone = new_damage
 			. = TRUE
+		if("b_bellytemperature")
+			var/new_temp = text2num(params["val"])
+			if(!isnum(new_temp))
+				return FALSE
+			new_temp = new_temp + 273.15
+			new_temp = CLAMP(new_temp, 173.15, 473.15)
+			host.vore_selected.bellytemperature = new_temp
+			. = TRUE
 		if("b_drainmode")
 			var/new_drainmode = params["val"]
 			if(!(new_drainmode in host.vore_selected.drainmodes))
