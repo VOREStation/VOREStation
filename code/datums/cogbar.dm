@@ -71,7 +71,7 @@
 	if(isnull(user_client))
 		return
 
-	blank = image('icons/blanks/32x32.dmi', cog, "nothing")
+	blank = image('icons/system/blank_32x32.dmi', cog, "nothing")
 	blank.plane = ABOVE_PLANE //Change to SET_PLANE_EXPLICIT(blank, HIGH_GAME_PLANE, user)
 	blank.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	blank.override = TRUE
