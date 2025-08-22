@@ -255,3 +255,14 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 /obj/structure/mob_spawner/mouse_nest/mousehole/Initialize(mapload)
 	. = ..()
 	icon_state = "tunnel_hole"
+
+/obj/structure/mob_spawner/recycler
+	desc = "A bizarre mess of robotic limbs, glowing microrefineries, and nanoassemblers gradually converting the pile of raw materials into active hivebots."
+	destructible = 1
+	icon = 'icons/obj/recycling.dmi'
+	icon_state = "grinder-b1"
+	name = "hivebot assembler"
+	simultaneous_spawns = 6
+	spawn_delay = 300
+	spawn_types = list(/mob/living/simple_mob/mechanical/hivebot/swarm = 200, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 50, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 25, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 10, /mob/living/simple_mob/mechanical/hivebot/tank/meatshield = 10)
+

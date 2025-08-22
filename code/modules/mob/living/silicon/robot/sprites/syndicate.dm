@@ -263,12 +263,11 @@
 
 
 // Ninja models
-
+/* //Unused
 /datum/robot_sprite/dogborg/ninja
 	module_type = "Ninja"
-	sprite_icon = 'icons/mob/robot/ninja.dmi'
 	sprite_hud_icon_state = "malf"
-
+*/
 /datum/robot_sprite/dogborg/tall/ninja
 	module_type = "Ninja"
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'

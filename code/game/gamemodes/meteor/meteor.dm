@@ -42,7 +42,6 @@
 	feedback_set_details("round_end_result","end - evacuation")
 	feedback_set("round_end_result",survivors)
 
-	..()
-	return 1
+	return ..()
 
 #undef METEOR_DELAY

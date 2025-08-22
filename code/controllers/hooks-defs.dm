@@ -11,12 +11,6 @@
 /hook/roundstart
 
 /**
- * Roundend hook.
- * Called in gameticker.dm when a round ends.
- */
-/hook/roundend
-
-/**
  * Death hook.
  * Called in death.dm when someone dies.
  * Parameters: var/mob/living/carbon/human, var/gibbed

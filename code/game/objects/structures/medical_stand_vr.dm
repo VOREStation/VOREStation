@@ -1,6 +1,6 @@
 /obj/structure/medical_stand
 	name = "medical stand"
-	icon = 'icons/obj/medical_stand_vr.dmi'
+	icon = 'icons/obj/medical_stand.dmi'
 	desc = "Medical stand used to hang reagents for transfusion and to hold anesthetic tank."
 	icon_state = "medical_stand_empty"
 
@@ -58,7 +58,7 @@
 		var/datum/reagents/reagents = beaker.reagents
 		var/percent = round((reagents.total_volume / beaker.volume) * 100)
 		if(reagents.total_volume)
-			var/image/filling = image('icons/obj/medical_stand_vr.dmi', src, "reagent")
+			var/image/filling = image('icons/obj/medical_stand.dmi', src, "reagent")
 
 			switch(percent)
 				if(10 to 24) 	filling.icon_state = "reagent10"
