@@ -1,7 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, NumberInput, Section, Table } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 export const Signaler = () => {
   return (
@@ -38,7 +37,7 @@ export const SignalerContent = (props) => {
               minValue={minFrequency / 10}
               maxValue={maxFrequency / 10}
               value={frequency / 10}
-              format={(value) => toFixed(value, 1)}
+              format={(value) => value.toFixed(1)}
               width="80px"
               onChange={(value) =>
                 act('freq', {

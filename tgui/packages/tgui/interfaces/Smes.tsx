@@ -10,7 +10,6 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 // Common power multiplier
@@ -69,9 +68,9 @@ export const Smes = (props) => {
               bad: [-Infinity, 0.15],
             }}
           >
-            {toFixed(charge / (1000 * 60), 1) +
+            {(charge / (1000 * 60)).toFixed(1) +
               ' kWh / ' +
-              toFixed(capacity / (1000 * 60)) +
+              (capacity / (1000 * 60)).toFixed() +
               ' kWh (' +
               capacityPercent +
               '%)'}
