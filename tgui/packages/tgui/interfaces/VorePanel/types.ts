@@ -138,6 +138,7 @@ export type bellyOptionData = {
   absorbedrename_name_min: number;
   drainmode_options: string[];
   drainmode: string;
+  temperature_damage: BooleanLike;
 };
 
 export type bellySoundData = {

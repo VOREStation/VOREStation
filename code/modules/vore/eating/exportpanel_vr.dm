@@ -287,6 +287,7 @@
 			belly_data["digest_clone"] = B.digest_clone
 
 			belly_data["bellytemperature"] = B.bellytemperature
+			belly_data["temperature_damage"] = B.temperature_damage
 
 			belly_data["can_taste"] = B.can_taste
 			belly_data["is_feedable"] = B.is_feedable

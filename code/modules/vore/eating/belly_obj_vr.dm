@@ -264,6 +264,7 @@
 
 	var/list/belly_surrounding = list()		// A list of living mobs surrounded by this belly, including inside containers, food, on mobs, etc. Exclusing inside other bellies.
 	var/bellytemperature = T20C				// Temperature applied to humans in the belly.
+	var/temperature_damage = FALSE			// Does temperature damage prey?
 
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()

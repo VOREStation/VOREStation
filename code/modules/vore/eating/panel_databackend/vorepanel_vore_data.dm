@@ -168,6 +168,7 @@
 				"digest_max" = selected.digest_max,
 				"digest_free" = selected.get_unused_digestion_damage(),
 				"bellytemperature" = selected.bellytemperature,
+				"temperature_damage" = selected.temperature_damage,
 				"bulge_size" = selected.bulge_size,
 				"shrink_grow_size" = selected.shrink_grow_size,
 				"contaminates" = selected.contaminates,

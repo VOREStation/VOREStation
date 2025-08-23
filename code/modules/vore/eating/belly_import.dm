@@ -573,6 +573,13 @@
 			if(new_recycling == 1)
 				new_belly.recycling = TRUE
 
+		if(isnum(belly_data["temperature_damage"]))
+			var/new_temp_damage = belly_data["temperature_damage"]
+			if(new_temp_damage == 0)
+				new_belly.temperature_damage = FALSE
+			if(new_temp_damage == 1)
+				new_belly.temperature_damage = TRUE
+
 		if(isnum(belly_data["storing_nutrition"]))
 			var/new_storing_nutrition = belly_data["storing_nutrition"]
 			if(new_storing_nutrition == 0)

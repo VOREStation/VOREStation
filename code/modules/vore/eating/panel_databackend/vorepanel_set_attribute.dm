@@ -582,6 +582,9 @@
 			new_temp = CLAMP(new_temp, 173.15, 473.15)
 			host.vore_selected.bellytemperature = new_temp
 			. = TRUE
+		if("b_temperature_damage")
+			host.vore_selected.temperature_damage = !host.vore_selected.temperature_damage
+			. = TRUE
 		if("b_drainmode")
 			var/new_drainmode = params["val"]
 			if(!(new_drainmode in host.vore_selected.drainmodes))

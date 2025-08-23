@@ -53,6 +53,7 @@ export type Belly = {
   storing_nutrition: BooleanLike;
   entrance_logs: BooleanLike;
   item_digest_logs: BooleanLike;
+  temperature_damage: BooleanLike;
 
   // Messages
   struggle_messages_outside: string[];

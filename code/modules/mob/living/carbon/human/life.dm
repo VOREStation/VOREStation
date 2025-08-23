@@ -899,7 +899,7 @@
 					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
 			else
 				throw_alert("temp", /obj/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
-			if(digestable)
+			if(digestable && b.temperature_damage)
 				take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 		else if(b.bellytemperature <= species.cold_discomfort_level)
 			var/cold_dam = 0
@@ -907,13 +907,16 @@
 				if(b.bellytemperature <= species.cold_level_2)
 					if(b.bellytemperature <= species.cold_level_3)
 						cold_dam = COLD_DAMAGE_LEVEL_3
+						throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
 					else
 						cold_dam = COLD_DAMAGE_LEVEL_2
+						throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
 				else
 					cold_dam = COLD_DAMAGE_LEVEL_1
+					throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
 			else
 				throw_alert("temp", /obj/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
-			if(digestable)
+			if(digestable && b.temperature_damage)
 				take_overall_damage(burn=cold_dam, used_weapon = "Low Body Temperature")
 		else clear_alert("temp")
 
