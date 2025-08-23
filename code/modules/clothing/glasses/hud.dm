@@ -444,8 +444,14 @@
 	desc = "A full-face, partially-obscuring visor favoured by certain subcultures and those with sensitive eyes. Covers the face and eyes, but it's not enough to actually hide your identity. The interior has a simple augmented-reality display that aids with daily tasks. It can be toggled in and out of corrective vision mode via integrated subroutine."
 	icon_state = "mantle_HUD"
 	item_state = "mantle_HUD"
-	body_parts_covered = FACE|EYES
+	body_parts_covered = EYES
+	flags_inv = HIDEFACE
 	can_shade = FALSE
+
+/obj/item/clothing/glasses/omnihud/mantle/ar_interact(var/mob/living/carbon/human/user)
+	if(tgarscreen)
+		tgarscreen.tgui_interact(user)
+	return 1
 
 /obj/item/clothing/glasses/omnihud/mantle/verb/switcheye()
 	set name = "Toggle Autocorrective Vision"
@@ -469,6 +475,11 @@
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/security/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 
+/obj/item/clothing/glasses/omnihud/mantle/sec/ar_interact(var/mob/living/carbon/human/user)
+	if(tgarscreen)
+		tgarscreen.tgui_interact(user)
+	return 1
+
 /obj/item/clothing/glasses/omnihud/mantle/med
 	name = "medical AR mantle"
 	desc = "A full-face, partially-obscuring visor favoured by certain subcultures and those with sensitive eyes. Covers the face and eyes, but it's not enough to actually hide your identity. The interior has a simple augmented-reality display that aids with daily tasks. It can be toggled in and out of corrective vision mode via integrated subroutine. This version includes extra medical-related functions."
@@ -476,6 +487,11 @@
 	actions_types = list(/datum/action/item_action/ar_console_crew)
 	tgarscreen_path = /datum/tgui_module/crew_monitor/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
+
+/obj/item/clothing/glasses/omnihud/mantle/med/ar_interact(var/mob/living/carbon/human/user)
+	if(tgarscreen)
+		tgarscreen.tgui_interact(user)
+	return 1
 
 /obj/item/clothing/glasses/omnihud/mantle/eng
 	name = "engineering AR mantle"
@@ -485,6 +501,11 @@
 	actions_types = list(/datum/action/item_action/ar_console_station_alerts)
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/engineering/glasses
 
+/obj/item/clothing/glasses/omnihud/mantle/med/ar_interact(var/mob/living/carbon/human/user)
+	if(tgarscreen)
+		tgarscreen.tgui_interact(user)
+	return 1
+
 /obj/item/clothing/glasses/omnihud/mantle/cmd
 	name = "command AR mantle"
 	desc = "A full-face, partially-obscuring visor favoured by certain subcultures and those with sensitive eyes. Covers the face and eyes, but it's not enough to actually hide your identity. The interior has a simple augmented-reality display that aids with daily tasks. It can be toggled in and out of corrective vision mode via integrated subroutine. This version includes extra command-related functions."
@@ -493,3 +514,8 @@
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED,VIS_AUGMENTED)
 	actions_types = list(/datum/action/item_action/ar_console_all_alerts)
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/all/glasses
+
+/obj/item/clothing/glasses/omnihud/mantle/cmd/ar_interact(var/mob/living/carbon/human/user)
+	if(tgarscreen)
+		tgarscreen.tgui_interact(user)
+	return 1
