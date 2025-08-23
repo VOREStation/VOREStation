@@ -921,7 +921,7 @@
 		else clear_alert("temp")
 
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
-	else if(bodytemperature >= species.heat_level_1)
+	else if(bodytemperature >= species.heat_discomfort_level)
 		//Body temperature is too hot.
 		if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 			return 1	// Cancelled by a component
@@ -943,7 +943,7 @@
 
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 
-	else if(bodytemperature <= species.cold_level_1)
+	else if(bodytemperature <= species.cold_discomfort_level)
 		//Body temperature is too cold.
 
 		if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
