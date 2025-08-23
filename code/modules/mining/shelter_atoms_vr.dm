@@ -7,6 +7,15 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	requires_power = FALSE
 	has_gravity = TRUE
 
+/area/survivalpod/dorms
+	name = "\improper Emergency Shelter Dorm"
+	icon_state = "away1"
+	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
+
+/area/survivalpod/dorms/bathroom
+	name = "\improper Emergency Shelter Bathroom"
+	icon_state = "away2"
+
 //Survival Capsule
 /obj/item/survivalcapsule
 	name = "surfluid shelter capsule"
@@ -107,6 +116,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	desc = "A luxury bar in a capsule. " + JOB_BARTENDER + " required and not included. There's a license for use printed on the bottom."
 	template_id = "shelter_gamma"
 
+/obj/item/survivalcapsule/luxurycabin
+	name = "luxury surfluid cabin capsule"
+	desc = "A luxury cabin and kitchen in a capsule. There's a license for use printed on the bottom."
+	template_id = "shelter_cab_deluxe"
+
 /obj/item/survivalcapsule/military
 	name = "military surfluid shelter capsule"
 	desc = "A prefabricated firebase in a capsule. Contains basic weapons, building materials, and combat suits. There's a license for use printed on the bottom."
@@ -145,6 +159,9 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	name = "survival airlock"
 	block_air_zones = 1
 
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical
+	icon = 'icons/obj/doors/shuttledoors_vertical.dmi'
+
 //Door access setter button
 /obj/machinery/button/remote/airlock/survival_pod
 	name = "shelter privacy control"
@@ -161,6 +178,51 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	if(door)
 		door.glass = !door.glass
 		door.opacity = !door.opacity
+
+//Subtype that actually bolts doors!
+/obj/machinery/button/remote/airlock/survival_pod/bolts
+	name = "shelter privacy control"
+	desc = "You can ensure some privacy with this."
+
+/obj/machinery/button/remote/airlock/survival_pod/bolts/attack_hand(obj/item/W, mob/user as mob)
+	if(..()) return 1 //1 is failure on machines (for whatever reason)
+	if(door)
+		if(door.locked)
+			door.unlock()
+			door.RemoveElement(/datum/element/light_blocking)
+		else
+			door.lock()
+			// Block light when bolted, since the door is effectively functioning like polarized glass
+			door.AddElement(/datum/element/light_blocking)
+
+// Capsule-specific light switch
+// Turns off only one light in a given direction from its source turf.
+/obj/machinery/light_switch/survival_pod
+	name = "shelter light switch"
+	var/obj/machinery/light/target_light
+
+
+// Deliberately override base light switch behavior because we don't want to toggle ALL lights in the area - just one!
+/obj/machinery/light_switch/survival_pod/attack_hand(obj/item/W, mob/user as mob)
+	on = !on
+	playsound(src, 'sound/machines/button.ogg', 100, 1, 0)
+	if(!target_light)
+		var/turf/dT = get_step(src, dir)
+		target_light = locate() in dT
+	if(target_light)
+		target_light.on = on
+		target_light.update()
+		// I'm so sorry but for some ungodly reason calling update() simply isn't
+		// enough to make the light actually set its lighting.
+		// So I guess we're doing this manually! :')
+		if(target_light.on)
+			target_light.set_light(target_light.brightness_range, target_light.brightness_power, target_light.brightness_color)
+			target_light.overlay_color = target_light.brightness_color
+		else
+			target_light.set_light(0)
+	update_icon()
+
+	GLOB.lights_switched_on_roundstat++
 
 //Windows
 /obj/structure/window/reinforced/survival_pod

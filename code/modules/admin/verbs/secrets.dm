@@ -79,7 +79,7 @@ ADMIN_VERB(secrets, R_HOLDER, "Secrets", "Abuse harder than you ever have before
 		if("show_traitors_and_objectives") // Not implemented in the UI
 			holder.holder.check_antagonists()
 		if("show_game_mode")
-			if (ticker.mode) tgui_alert_async(holder, "The game mode is [ticker.mode.name]")
+			if (SSticker.mode) tgui_alert_async(holder, "The game mode is [SSticker.mode.name]")
 			else tgui_alert_async(holder, "For some reason there's a ticker, but not a game mode")
 
 		//Buttons for debug.

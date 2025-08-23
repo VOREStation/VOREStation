@@ -10,10 +10,6 @@
 	deny_respawn = 0
 	var/next_wave = METEOR_DELAY
 
-/datum/game_mode/meteor/post_setup()
-	defer_powernet_rebuild = 2//Might help with the lag
-	..()
-
 /datum/game_mode/meteor/process()
 	if(world.time >= next_wave)
 		next_wave = world.time + GLOB.meteor_wave_delay
@@ -46,7 +42,6 @@
 	feedback_set_details("round_end_result","end - evacuation")
 	feedback_set("round_end_result",survivors)
 
-	..()
-	return 1
+	return ..()
 
 #undef METEOR_DELAY

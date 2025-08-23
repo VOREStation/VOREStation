@@ -115,8 +115,8 @@
 	AddElement(/datum/element/climbable)
 
 /obj/machinery/mining/drill/Destroy()
-	qdel_null(faultreporter)
-	qdel_null(cell)
+	QDEL_NULL(faultreporter)
+	QDEL_NULL(cell)
 	return ..()
 
 /obj/machinery/mining/drill/dismantle()

@@ -20,6 +20,7 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+	maxbodytemp = 1000
 
 	plane = PLANE_INVIS_EVENT
 
@@ -65,6 +66,9 @@
 	var/mob/living/chosen_target
 	var/last_effect = 0
 	var/boost_health = 50
+
+	status_flags = null
+	density = 0
 
 /datum/category_item/catalogue/fauna/ysbryd
 	name = "Extra-Realspace Fauna - Ysbryd"

@@ -47,10 +47,10 @@
 	if(seed.chems)
 		for(var/rid in seed.chems)
 			var/list/reagent_data = seed.chems[rid]
-			if(reagent_data && reagent_data.len)
+			if(reagent_data && LAZYLEN(reagent_data))
 				var/rtotal = reagent_data[1]
 				var/list/data = list()
-				if(reagent_data.len > 1 && potency > 0)
+				if(LAZYLEN(reagent_data) > 1 && potency > 0)
 					rtotal += round(potency/reagent_data[2])
 				if(rid == REAGENT_ID_NUTRIMENT)
 					data[seed.seed_name] = max(1,rtotal)
@@ -135,7 +135,7 @@
 		var/image/fruit_base = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-product")
 		fruit_base.color = "[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"
 		plant_icon.add_overlay(fruit_base)
-		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in cached_icon_states('icons/obj/hydroponics_products.dmi'))
+		if(icon_exists('icons/obj/hydroponics_products.dmi', "[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf"))
 			var/image/fruit_leaves = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
 			fruit_leaves.color = "[seed.get_trait(TRAIT_PLANT_COLOUR)]"
 			plant_icon.add_overlay(fruit_leaves)

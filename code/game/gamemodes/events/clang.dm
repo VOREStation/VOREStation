@@ -70,15 +70,12 @@
 	desc = "What the fuck is that?"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "immrod"
-	throwforce = 100
 	density = TRUE
 	anchored = TRUE
 	movement_type = UNSTOPPABLE
 	var/turf/despawn_loc = null
-	var/has_hunted_unlucky = FALSE
 
 /obj/effect/immovablerod/proc/TakeFlight(var/turf/end)
-	//to_world("Rod in play, starting at [loc.x],[loc.y],[loc.z] and going to [end.loc.x],[end.loc.y],[end.loc.z]")
 	despawn_loc = end
 	walk_towards(src, despawn_loc, 1)
 	explosion(loc, 2, 3, 5) // start out with a bang
@@ -88,7 +85,6 @@
 	QDEL_IN(src, despawn_time + 5 SECONDS) //Give a small extra time before we disappear entirely.
 
 /obj/effect/immovablerod/Bump(atom/clong)
-	//to_world("Rod CLANG [clong] : [clong.x].[clong.y].[clong.z]")
 
 	if(!istype(clong, /turf/simulated/shuttle)) //Skip shuttles without actually deleting the rod
 		if (istype(clong, /turf) && !istype(clong, /turf/unsimulated))
@@ -97,7 +93,6 @@
 				for (var/mob/O in hearers(src, null))
 					O.show_message("CLANG", 2)
 				if(prob(25))
-					//to_world("Rod BOOM")
 					explosion(clong, 1, 2, 4) // really spice it up
 
 		else if (istype(clong, /obj))
@@ -114,9 +109,9 @@
 			qdel(src)
 
 	if(despawn_loc != null && (src.x == despawn_loc.x && src.y == despawn_loc.y))
-		//to_world("ENDED ROD PATH")
 		qdel(src)
 		return
+
 	if(prob(10))
 		hunt_unlucky()
 

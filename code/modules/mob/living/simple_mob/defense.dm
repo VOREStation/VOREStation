@@ -14,6 +14,9 @@
 	switch(L.a_intent)
 		if(I_HELP)
 			if(health > 0)
+				if(L.zone_sel.selecting == BP_GROIN)
+					if(L.vore_bellyrub(src))
+						return
 				L.visible_message(span_notice("\The [L] [response_help] \the [src]."))
 
 		if(I_DISARM)

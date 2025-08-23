@@ -11,6 +11,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   stun_time: number;
@@ -18,8 +19,9 @@ type Data = {
   flicker_color: string | null;
   flicker_break_chance: number;
   flicker_distance: number;
-  no_retreat: number;
-  extended_kin: number;
+  no_retreat: BooleanLike;
+  extended_kin: BooleanLike;
+  savefile_selected: BooleanLike;
   nutrition_energy_conversion: number;
 };
 
@@ -33,6 +35,7 @@ export const ShadekinConfig = (props) => {
     flicker_break_chance,
     flicker_distance,
     no_retreat,
+    savefile_selected,
     extended_kin,
     nutrition_energy_conversion,
   } = data;
@@ -40,7 +43,10 @@ export const ShadekinConfig = (props) => {
   const isSubtle =
     flicker_time < 5 || flicker_break_chance < 5 || flicker_distance < 5;
 
-  const windowHeight = (isSubtle ? 220 : 190) + (extended_kin ? 95 : 0);
+  const windowHeight =
+    (isSubtle ? 220 : 190) +
+    (extended_kin ? 95 : 0) +
+    (savefile_selected ? 0 : 90);
 
   return (
     <Window width={300} height={windowHeight} theme="abductor">
@@ -49,6 +55,15 @@ export const ShadekinConfig = (props) => {
           {isSubtle && (
             <Stack.Item>
               <NoticeBox>Subtle Phasing, causes {stun_time} s stun.</NoticeBox>
+            </Stack.Item>
+          )}
+          {!savefile_selected && (
+            <Stack.Item>
+              <NoticeBox>
+                WARNING: Your current selected savefile (in Character Setup) is
+                not the same as your currently loaded savefile. Please select it
+                to prevent savefile corruption.
+              </NoticeBox>
             </Stack.Item>
           )}
           <Stack.Item>

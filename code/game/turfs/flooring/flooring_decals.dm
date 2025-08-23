@@ -532,6 +532,24 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/spline/fancy/wood/three_quarters
 	icon_state = "spline_fancy_full"
 
+/obj/effect/floor_decal/spline/asteroid
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "asteroid_edge_e"
+	name = "rocky edge"
+
+/obj/effect/floor_decal/spline/asteroid/west
+	icon_state = "asteroid_edge_w"
+
+/obj/effect/floor_decal/spline/asteroid/east
+	icon_state = "asteroid_edge_e"
+
+/obj/effect/floor_decal/spline/asteroid/south
+	icon_state = "asteroid_edge_s"
+
+/obj/effect/floor_decal/spline/asteroid/north
+	icon_state = "asteroid_edge_n"
+	name = "rocky edge"
+
 /obj/effect/floor_decal/industrial/warning
 	name = "hazard stripes"
 	icon_state = "warning"

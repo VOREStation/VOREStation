@@ -97,7 +97,7 @@
 	if(H.isSynthetic())
 		return
 	corpse = new /mob/living/carbon/human(H.loc)
-	qdel_swap(corpse.dna,H.dna.Clone())
+	QDEL_SWAP(corpse.dna,H.dna.Clone())
 	var/obj/item/clothing/temp = null
 	if(H.get_equipped_item(slot_w_uniform))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/under/chameleon/changeling(corpse), slot_w_uniform)

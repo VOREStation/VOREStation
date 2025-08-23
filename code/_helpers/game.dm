@@ -37,7 +37,7 @@
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
 		return null
-	return format_text ? format_text(A.name) : A.name
+	return format_text ? strip_improper(A.name) : A.name
 
 /** Checks if any living humans are in a given area. */
 /proc/area_is_occupied(var/area/myarea)
@@ -647,10 +647,15 @@
 /proc/SecondsToTicks(var/seconds)
 	return seconds * 10
 
-/proc/window_flash(var/client_or_usr)
-	if (!client_or_usr)
+///Flash the window of a player
+/proc/window_flash(client/flashed_client, ignorepref = FALSE)
+	if(ismob(flashed_client))
+		var/mob/player_mob = flashed_client
+		if(player_mob.client)
+			flashed_client = player_mob.client
+	if(!flashed_client || (!flashed_client.prefs.read_preference(/datum/preference/toggle/window_flashing) && !ignorepref))
 		return
-	winset(client_or_usr, "mainwindow", "flash=5")
+	winset(flashed_client, "mainwindow", "flash=5")
 
 /**
  * Get a bounding box of a list of atoms.

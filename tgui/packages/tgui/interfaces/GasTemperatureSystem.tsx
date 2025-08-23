@@ -6,11 +6,10 @@ import {
   Knob,
   LabeledControls,
   LabeledList,
-  Section,
   RoundGauge,
+  Section,
   Slider,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -62,7 +61,7 @@ export const GasTemperatureSystem = (props) => {
           <LabeledControls>
             <LabeledControls.Item label="Power Level">
               <Knob
-                format={(value) => toFixed(value)}
+                format={(value) => value.toFixed()}
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={1}
@@ -74,18 +73,18 @@ export const GasTemperatureSystem = (props) => {
               {gasPressure} kPa
             </LabeledControls.Item>
             <LabeledControls.Item label="Coolant Reserve">
-              {toFixed((reagentVolume / reagentMaximum) * 100)} %
+              {((reagentVolume / reagentMaximum) * 100).toFixed()} %
             </LabeledControls.Item>
             <RoundGauge
               size={2}
               value={reagentPower}
               ranges={{
                 bad: [-3, 0.5],
-                average: [0.5,1.5],
-                good: [1.5,5],
+                average: [0.5, 1.5],
+                good: [1.5, 5],
               }}
               format={(value) => {
-                return `${toFixed(value,1)} x`;
+                return `${value.toFixed(1)} x`;
               }}
               minValue={-3}
               maxValue={5}
@@ -108,7 +107,7 @@ export const GasTemperatureSystem = (props) => {
             maxValue={maxGasTemperature}
             fillValue={gasTemperature}
             value={targetGasTemperature}
-            format={(value) => `${gasTemperature} / ${toFixed(value)}`}
+            format={(value) => `${gasTemperature} / ${value.toFixed()}`}
             unit="K"
             color={gasTemperatureClass}
             onChange={(e, val) => act('setGasTemperature', { temp: val })}

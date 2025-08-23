@@ -2,7 +2,7 @@
 /obj/machinery/recharger
 	name = "recharger"
 	desc = "A standard recharger for all devices that use power."
-	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger0"
 	anchored = TRUE
 	use_power = USE_POWER_IDLE

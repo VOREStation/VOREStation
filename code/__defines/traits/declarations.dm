@@ -18,3 +18,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 /// Unlucky trait. Given by the 'unlucky' trait in character select. Checked by various things to cause unlucky interactions.
 #define TRAIT_UNLUCKY "trait_unlucky"
+
+#define TRAIT_INCAPACITATED "incapacitated"

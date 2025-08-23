@@ -136,11 +136,13 @@
 	mob_announce_cooldown = 0
 
 /////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
-/obj/effect/overmap/visitable/sector/virgo3b/Initialize()
+/obj/effect/overmap/visitable/sector/virgo3b/Initialize(mapload)
 	. = ..()
-	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in world)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/overmap/visitable/sector/virgo3b/LateInitialize()
+	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in GLOB.all_stellar_delights)
 		sd.forceMove(loc, SOUTH)
-		return
 
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()

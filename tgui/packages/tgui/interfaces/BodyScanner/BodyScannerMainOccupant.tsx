@@ -7,7 +7,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { stats } from './constants';
 import type { occupant } from './types';
@@ -54,30 +53,30 @@ export const BodyScannerMainOccupant = (props: { occupant: occupant }) => {
         <LabeledList.Item label="Temperature">
           <AnimatedNumber
             value={occupant.bodyTempC}
-            format={(value) => toFixed(value)}
+            format={(value) => value.toFixed()}
           />
           &deg;C,&nbsp;
           <AnimatedNumber
             value={occupant.bodyTempF}
-            format={(value) => toFixed(value)}
+            format={(value) => value.toFixed()}
           />
           &deg;F
         </LabeledList.Item>
         <LabeledList.Item label="Blood Volume">
           <AnimatedNumber
             value={occupant.blood.volume}
-            format={(value) => toFixed(value)}
+            format={(value) => value.toFixed()}
           />
           u&nbsp;(
           <AnimatedNumber
             value={occupant.blood.percent}
-            format={(value) => toFixed(value)}
+            format={(value) => value.toFixed()}
           />
           %)
         </LabeledList.Item>
         <LabeledList.Item label="Weight">
-          {`${toFixed(occupant.weight / 2.20463, 1)}kg, `}
-          {`${toFixed(occupant.weight)}lbs`}
+          {`${(occupant.weight / 2.20463).toFixed(1)}kg, `}
+          {`${occupant.weight.toFixed()}lbs`}
         </LabeledList.Item>
       </LabeledList>
     </Section>

@@ -1,6 +1,15 @@
 SUBSYSTEM_DEF(atoms)
 	name = "Atoms"
-	init_order = INIT_ORDER_ATOMS
+	dependencies = list(
+		/datum/controller/subsystem/garbage,
+		/datum/controller/subsystem/mapping,
+		/datum/controller/subsystem/alarm,
+		/datum/controller/subsystem/planets,
+		/datum/controller/subsystem/transcore,
+		/datum/controller/subsystem/chemistry,
+		/datum/controller/subsystem/sounds,
+		/datum/controller/subsystem/job
+	)
 	flags = SS_NO_FIRE
 
 	/// A stack of list(source, desired initialized state)
@@ -8,7 +17,7 @@ SUBSYSTEM_DEF(atoms)
 	var/list/initialized_state = list()
 	var/base_initialized
 
-	var/initialized = INITIALIZATION_INSSATOMS
+	var/atom_initialized = INITIALIZATION_INSSATOMS
 	var/list/late_loaders = list()
 
 	var/list/BadInitializeCalls = list()
@@ -25,19 +34,19 @@ SUBSYSTEM_DEF(atoms)
 	var/list/mapload_init_times = list()
 	#endif
 
-	initialized = INITIALIZATION_INSSATOMS
+	atom_initialized = INITIALIZATION_INSSATOMS
 
 /datum/controller/subsystem/atoms/Initialize()
 	init_start_time = world.time
 
-	initialized = INITIALIZATION_INNEW_MAPLOAD
+	atom_initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
-	initialized = INITIALIZATION_INNEW_REGULAR
+	atom_initialized = INITIALIZATION_INNEW_REGULAR
 
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms, list/atoms_to_return)
-	if(initialized == INITIALIZATION_INSSATOMS)
+	if(atom_initialized == INITIALIZATION_INSSATOMS)
 		return
 
 	// Generate a unique mapload source for this run of InitializeAtoms
@@ -142,9 +151,9 @@ SUBSYSTEM_DEF(atoms)
 /// Accepts a state and a source, the most recent state is used, sources exist to prevent overriding old values accidentally
 /datum/controller/subsystem/atoms/proc/set_tracked_initalized(state, source)
 	if(!length(initialized_state))
-		base_initialized = initialized
+		base_initialized = atom_initialized
 	initialized_state += list(list(source, state))
-	initialized = state
+	atom_initialized = state
 
 /datum/controller/subsystem/atoms/proc/clear_tracked_initalize(source)
 	if(!length(initialized_state))
@@ -155,18 +164,18 @@ SUBSYSTEM_DEF(atoms)
 			break
 
 	if(!length(initialized_state))
-		initialized = base_initialized
+		atom_initialized = base_initialized
 		base_initialized = INITIALIZATION_INNEW_REGULAR
 		return
-	initialized = initialized_state[length(initialized_state)][2]
+	atom_initialized = initialized_state[length(initialized_state)][2]
 
 /// Returns TRUE if anything is currently being initialized
 /datum/controller/subsystem/atoms/proc/initializing_something()
 	return length(initialized_state) > 1
 
 /datum/controller/subsystem/atoms/Recover()
-	initialized = SSatoms.initialized
-	if(initialized == INITIALIZATION_INNEW_MAPLOAD)
+	atom_initialized = SSatoms.atom_initialized
+	if(atom_initialized == INITIALIZATION_INNEW_MAPLOAD)
 		InitializeAtoms()
 	initialized_state = SSatoms.initialized_state
 	BadInitializeCalls = SSatoms.BadInitializeCalls
@@ -187,7 +196,7 @@ SUBSYSTEM_DEF(atoms)
 
 /// Prepares an atom to be deleted once the atoms SS is initialized.
 /datum/controller/subsystem/atoms/proc/prepare_deletion(atom/target)
-	if (initialized == INITIALIZATION_INNEW_REGULAR)
+	if (atom_initialized == INITIALIZATION_INNEW_REGULAR)
 		// Atoms SS has already completed, just kill it now.
 		qdel(target)
 	else

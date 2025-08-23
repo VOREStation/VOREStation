@@ -194,7 +194,7 @@
 	if(is_incorporeal())
 		return 0
 
-	if(!ticker)
+	if(!SSticker)
 		to_chat(src, "You cannot attack people before the game has started.")
 		return 0
 
@@ -219,8 +219,9 @@
 	if(!mutations.len) return
 	if((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
-	else if(TK in mutations)
+	else if(has_telegrip())
 		if(get_dist(src, A) > tk_maxrange)
+			to_chat(src, TK_OUTRANGED_MESSAGE)
 			return
 		A.attack_tk(src)
 /*

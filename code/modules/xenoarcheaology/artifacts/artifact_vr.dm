@@ -1,2 +1,2 @@
 /obj/machinery/artifact
-	icon = 'icons/obj/xenoarchaeology_vr.dmi'
+	icon = 'icons/obj/xenoarchaeology.dmi'

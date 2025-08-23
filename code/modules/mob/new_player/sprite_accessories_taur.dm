@@ -574,7 +574,7 @@
 /datum/sprite_accessory/tail/taur/feline
 	name = "Feline (Taur)"
 	icon_state = "feline_s"
-	suit_sprites = 'icons/mob/taursuits_feline.dmi'
+	suit_sprites = 'icons/mob/taursuits_deer.dmi'
 	icon_sprite_tag = "feline"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi'
@@ -656,7 +656,7 @@
 /datum/sprite_accessory/tail/taur/tiger
 	name = "Tiger (Taur)"
 	icon_state = "tiger_s"
-	suit_sprites = 'icons/mob/taursuits_feline.dmi'
+	suit_sprites = 'icons/mob/taursuits_deer.dmi'
 	icon_sprite_tag = "feline"
 	extra_overlay = "tiger_markings"
 	extra_overlay2 = "tiger_markings_2"
@@ -708,7 +708,7 @@
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug (Taur)"
 	icon_state = "slug_s"
-	suit_sprites = 'icons/mob/taursuits_slug.dmi'
+	suit_sprites = 'icons/mob/taursuits_deer.dmi' //Yes it sounds odd, but they share the same sprites.
 	icon_sprite_tag = "slug"
 	vore_tail_sprite_variant = "Slug"
 	fullness_icons = 1
@@ -892,14 +892,6 @@
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their paw, forcing you down to the ground!"
-
-/datum/sprite_accessory/tail/taur/noodle
-	name = "Eastern Dragon (Taur)"
-	icon_state = "noodle_s"
-	extra_overlay = "noodle_markings"
-	suit_sprites = 'icons/mob/taursuits_noodle.dmi'
-	clip_mask_state = "taur_clip_mask_noodle"
-	icon_sprite_tag = "noodle"
 
 /datum/sprite_accessory/tail/taur/zorgoia
 	name = "Zorgoia (Taur)"

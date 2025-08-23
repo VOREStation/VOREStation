@@ -281,7 +281,7 @@
 		"status" = status,
 		"interface" = list(
 			"name" = interface,
-			"layout" = null, // user.read_preference(/datum/preference/choiced/tgui_layout), // unused
+			"layout" = user.read_preference(/datum/preference/choiced/tgui_layout),
 		),
 		//"refreshing" = refreshing,
 		"refreshing" = FALSE,
