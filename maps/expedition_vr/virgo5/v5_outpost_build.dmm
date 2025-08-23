@@ -2063,15 +2063,7 @@
 /turf/simulated/floor/outdoors/snow/v5,
 /area/submap/v5/outdoors)
 "IZ" = (
-/obj/effect/overmap/visitable{
-	icon = 'icons/obj/overmap_vr.dmi';
-	icon_state = "virgo5";
-	name = "Virgo 5";
-	scanner_desc = "Mahir, or Virgo 5, is the fifth planet from the star Virgo-Erigone. It suffers from Kessler Syndrome, making landing difficult and only possible at specific time intervals. The surface sits well below inhabitable temperatures and the atmosphere consists primarily of carbon dioxide.";
-	skybox_icon = 'icons/skybox/virgo5.dmi';
-	skybox_icon_state = 'v5';
-	unknown_name = "unknown planet"
-	},
+/obj/effect/overmap/visitable/sector/virgo5,
 /turf/unsimulated/mineral{
 	carbon_dioxide = 75;
 	icon_state = "rock-icey";
@@ -3102,15 +3094,7 @@
 /turf/simulated/floor/plating,
 /area/submap/v5/outpost_wr2)
 "XG" = (
-/turf/unsimulated/floor/steel{
-	carbon_dioxide = 75;
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "snow";
-	nitrogen = 17;
-	outdoors = 1;
-	oxygen = 8;
-	temperature = 150
-	},
+/turf/unsimulated/floor/steel/v5_snow,
 /area/submap/v5/outdoors)
 "XJ" = (
 /turf/simulated/floor/plating{

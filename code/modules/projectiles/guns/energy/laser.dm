@@ -453,3 +453,18 @@
 	force = 12
 	accuracy = 0
 	scoped_accuracy = 20
+
+/obj/item/gun/energy/zip
+	name = "Zip-Las"
+	desc = "A homemade (and somehow safe) laser gun designed around shooting single powerful laser beam draining the cell entirely. Better not miss and better have spare cells."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "ziplas"
+	item_state = "ziplas"
+	w_class = ITEMSIZE_SMALL
+	slot_flags = SLOT_BELT|SLOT_BACK
+	charge_cost = 1500 //You got 1 shot...
+	projectile_type = /obj/item/projectile/beam/heavylaser //But it hurts a lot
+	cell_type = /obj/item/cell/device/weapon
+
+/obj/item/gun/energy/zip/craftable
+	battery_lock = 1 //makeshift gun has flaws

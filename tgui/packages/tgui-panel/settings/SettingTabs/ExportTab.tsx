@@ -11,7 +11,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import {
   clearChat,
@@ -101,7 +100,7 @@ export const ExportTab = (props) => {
                 minValue={1}
                 maxValue={8}
                 value={logRetainRounds}
-                format={(value) => toFixed(value)}
+                format={(value) => value.toFixed()}
                 onChange={(value) =>
                   dispatch(
                     updateSettings({
@@ -126,7 +125,7 @@ export const ExportTab = (props) => {
                 minValue={0}
                 maxValue={50000}
                 value={logLimit}
-                format={(value) => toFixed(value)}
+                format={(value) => value.toFixed()}
                 onChange={(value) =>
                   dispatch(
                     updateSettings({
@@ -213,7 +212,7 @@ export const ExportTab = (props) => {
                     minValue={0}
                     maxValue={exportEnd === 0 ? 0 : exportEnd - 1}
                     value={exportStart}
-                    format={(value) => toFixed(value)}
+                    format={(value) => value.toFixed()}
                     onChange={(value) =>
                       dispatch(
                         updateSettings({
@@ -232,7 +231,7 @@ export const ExportTab = (props) => {
                     minValue={exportStart === 0 ? 0 : exportStart + 1}
                     maxValue={storedRounds}
                     value={exportEnd}
-                    format={(value) => toFixed(value)}
+                    format={(value) => value.toFixed()}
                     onChange={(value) =>
                       dispatch(
                         updateSettings({
@@ -267,7 +266,7 @@ export const ExportTab = (props) => {
             minValue={0}
             maxValue={50000}
             value={logLineCount}
-            format={(value) => toFixed(value)}
+            format={(value) => value.toFixed()}
             onChange={(value) =>
               dispatch(
                 updateSettings({
