@@ -508,3 +508,10 @@
   Tenryumi:
   - rscadd: Made the luxury cabin capsules more feature-complete with fully privacy-enabled
       dorms, as well as generally polishing and moving around a few things in them.
+2025-08-23:
+  Diana:
+  - bugfix: Fixes a bug to allow species to wear clothing if vox can also wear it.
+  Kashargul:
+  - code_imp: move to native toFixed in tgui
+  Will:
+  - bugfix: Explosion powernet rebuild lag reduced
