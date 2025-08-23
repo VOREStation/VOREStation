@@ -49,6 +49,7 @@
 	qdel(newPred.ai_holder)
 	newPred.ai_holder = null
 	//newPred.movement_cooldown = 0			// The "needless artificial speed cap" exists for a reason
+	// R.has_hands = TRUE // Downstream
 	if(M.mind)
 		M.mind.transfer_to(newPred)
 	to_chat(M, span_notice("You are " + span_bold("[newPred]") + ", somehow having gotten aboard the station in search of food. \

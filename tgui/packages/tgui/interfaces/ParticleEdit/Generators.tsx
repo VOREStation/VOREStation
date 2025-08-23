@@ -1,6 +1,5 @@
+import { useBackend } from 'tgui/backend';
 import { Dropdown, NumberInput, Stack } from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
 import {
   type GeneratorProps,
   GeneratorTypes,

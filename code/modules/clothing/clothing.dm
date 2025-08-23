@@ -85,7 +85,7 @@
 					wearable = TRUE
 
 				///Prevent us from wearing clothing that is restricted to vox, werebeast, or teshari. This generally means it's custom designed for them and them only.
-				if((((SPECIES_VOX in species_restricted) && our_species != SPECIES_VOX) || ((SPECIES_WEREBEAST in species_restricted) && our_species != SPECIES_WEREBEAST) || ((SPECIES_TESHARI in species_restricted) && our_species != SPECIES_TESHARI)))
+				else if((((SPECIES_VOX in species_restricted) && our_species != SPECIES_VOX) || ((SPECIES_WEREBEAST in species_restricted) && our_species != SPECIES_WEREBEAST) || ((SPECIES_TESHARI in species_restricted) && our_species != SPECIES_TESHARI)))
 					wearable = FALSE
 
 				///Prevent us from from wearing clothing if we ARE a teshari or werebeast. This is due to these two having different anatomy that don't fix most clothing.
