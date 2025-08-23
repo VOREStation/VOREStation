@@ -31,7 +31,7 @@
 	cost = 0
 	var_changes = list("cold_level_1" = 220,  "cold_level_2" = 190, "cold_level_3" = 160, "breath_cold_level_1" = 200, "breath_cold_level_2" = 170, "breath_cold_level_3" = 140, "cold_discomfort_level" = 253, "heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295)
 	can_take = ORGANICS
-	excludes = list(/datum/trait/neutral/hotadapt)
+	excludes = list(/datum/trait/neutral/hotadapt, /datum/trait/neutral/notadapt)
 
 	// Traitgenes Replaces /datum/trait/positive/superpower_cold_resist, made into a genetrait
 	is_genetrait = TRUE
@@ -46,7 +46,7 @@
 	cost = 0
 	var_changes = list("heat_level_1" = 400, "heat_level_2" = 440, "heat_level_3" = 1100, "breath_heat_level_1" = 420, "breath_heat_level_2" = 500, "breath_heat_level_3" = 1200, "heat_discomfort_level" = 360, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
 	can_take = ORGANICS // negates the need for suit coolers entirely for synths, so no
-	excludes = list(/datum/trait/neutral/coldadapt)
+	excludes = list(/datum/trait/neutral/coldadapt, /datum/trait/neutral/notadapt)
 
 	// Traitgenes Made into a genetrait
 	is_genetrait = TRUE
@@ -54,6 +54,14 @@
 
 	activation_message="Your body feels chilly."
 	primitive_expression_messages=list("shivers.")
+
+/datum/trait/neutral/notadapt
+	name = "Temp. UNAdapted" //British
+	desc = "You have trouble handling both very hot and very cold temperatures. That's it. There is no good side."
+	cost = 0
+	var_changes = list("heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
+	can_take = ORGANICS // negates the need for suit coolers entirely for synths, so no
+	excludes = list(/datum/trait/neutral/coldadapt, /datum/trait/neutral/hotadapt)
 
 /datum/trait/neutral/highbodytemp
 	name = "Body Temp., Hot"
