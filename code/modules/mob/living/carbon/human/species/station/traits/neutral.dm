@@ -27,7 +27,7 @@
 
 /datum/trait/neutral/coldadapt
 	name = "Temp. Adapted, Cold"
-	desc = "You are able to withstand much colder temperatures than other species, and can even be comfortable in extremely cold environments. You are also more vulnerable to hot environments."
+	desc = "You are able to withstand much colder temperatures than other species. You are also more vulnerable to hot environments."
 	cost = 0
 	var_changes = list("cold_level_1" = 220,  "cold_level_2" = 190, "cold_level_3" = 160, "breath_cold_level_1" = 200, "breath_cold_level_2" = 170, "breath_cold_level_3" = 140, "cold_discomfort_level" = 253, "heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295)
 	can_take = ORGANICS
@@ -42,7 +42,7 @@
 
 /datum/trait/neutral/hotadapt
 	name = "Temp. Adapted, Heat"
-	desc = "You are able to withstand much hotter temperatures than other species, and can even be comfortable in extremely hot environments. You are also more vulnerable to cold environments."
+	desc = "You are able to withstand much hotter temperatures than other species. You are also more vulnerable to cold environments."
 	cost = 0
 	var_changes = list("heat_level_1" = 400, "heat_level_2" = 440, "heat_level_3" = 1100, "breath_heat_level_1" = 420, "breath_heat_level_2" = 500, "breath_heat_level_3" = 1200, "heat_discomfort_level" = 360, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
 	can_take = ORGANICS // negates the need for suit coolers entirely for synths, so no
@@ -57,14 +57,14 @@
 
 /datum/trait/neutral/highbodytemp
 	name = "Body Temp., Hot"
-	desc = "Your body's temperature is hotter than the galactic average."
+	desc = "Your body's temperature is hotter than the galactic average. This doesn't change what temperatures you can handle."
 	cost = 0
 	var_changes = list("body_temperature" = 330)
 	excludes = list(/datum/trait/neutral/lowbodytemp)
 
 /datum/trait/neutral/lowbodytemp
 	name = "Body Temp., Cold"
-	desc = "Your body's temperature is colder than the galactic average. This doesn't change what temperatures you can handle"
+	desc = "Your body's temperature is colder than the galactic average. This doesn't change what temperatures you can handle."
 	cost = 0
 	var_changes = list("body_temperature" = 290)
 	excludes = list(/datum/trait/neutral/highbodytemp)
