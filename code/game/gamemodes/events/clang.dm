@@ -74,6 +74,7 @@
 	anchored = TRUE
 	movement_type = UNSTOPPABLE
 	var/turf/despawn_loc = null
+	var/has_hunted_unlucky = FALSE
 
 /obj/effect/immovablerod/proc/TakeFlight(var/turf/end)
 	despawn_loc = end
@@ -112,7 +113,7 @@
 		qdel(src)
 		return
 
-	if(prob(10))
+	if(prob(10) && !has_hunted_unlucky)
 		hunt_unlucky()
 
 /obj/effect/immovablerod/proc/hunt_unlucky()
