@@ -64,6 +64,13 @@ if grep -P '^\ttag = \"icon' $map_files;	then
 	FAILED=1
 fi;
 
+part "suspicious symbols in maps"
+if grep -P '[<>]' $map_files;	then
+	echo
+	echo -e "${RED}ERROR: potential html code in maps detected.${NC}"
+	FAILED=1
+fi;
+
 part "step_[xy]"
 #Checking for step_x/step_y defined in any maps anywhere.
 (! $grep 'step_[xy]' $map_files)
