@@ -414,7 +414,7 @@
 
 	switch(choice)
 		if ("Set")
-			to_chat(user, "The buffer is [tool.connectable]")
+			to_chat(user, span_notice("The buffer is [tool.connectable]"))
 			if (!istype(tool.connectable, /obj/machinery/atmospherics/unary/vent_pump))
 				to_chat(user, span_notice("Error: Buffer is either empty, or object in buffer is invalid. Device should be a Unary Vent."))
 				return
@@ -423,7 +423,7 @@
 			output_tag = pump.id_tag
 			pump.external_pressure_bound = 0
 			pump.external_pressure_bound_default = 0
-			to_chat(user, "You have set the outlet!")
+			to_chat(user, span_notice("You have set the outlet!"))
 			return
 
 		if ("Clear")
@@ -554,7 +554,7 @@
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
 /obj/machinery/computer/general_air_control/supermatter_core/multitool_act(obj/item/W, mob/user)
-	var/list/options =  list("Inlet", "Outlet", "Sensors", "Frequency", "Cancel")
+	var/list/options =  list("Inlet", "Outlet", "Sensors", "Frequency")
 	var/choice = tgui_input_list(user, "[src] has a frequency of [frequency]. What would you like to change?", "Configuration", options)
 	if(!choice || choice == "Cancel" || !Adjacent(user))
 		return
@@ -592,12 +592,12 @@
 			output_tag = pump.id_tag
 			pump.external_pressure_bound = 0
 			pump.external_pressure_bound_default = 0
-			to_chat(user, "You have set the outlet!")
+			to_chat(user, span_notice("You have set the outlet!"))
 			return
 
 		if ("Clear")
 			output_tag = null
-			to_chat(user, "You have cleared the outlet!")
+			to_chat(user, span_notice("You have cleared the outlet!"))
 			return
 
 /obj/machinery/computer/general_air_control/supermatter_core/proc/configure_inlet(mob/living/user, obj/item/multitool/tool)

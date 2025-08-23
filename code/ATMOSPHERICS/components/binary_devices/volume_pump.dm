@@ -184,14 +184,12 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/volume_pump/tgui_data(mob/user)
 	// this is the data which will be sent to the ui
-	var/list/data = list()
-
-	data = list(
+	var/list/data = list(
 		"on" = use_power,
-		"rate" = round(transfer_rate*100),	//Nano UI can't handle rounded non-integers, apparently.
+		"rate" = transfer_rate*100,
 		"max_rate" = max_transfer_rate,
-		"last_flow_rate" = round(last_flow_rate*10),
-		"last_power_draw" = round(last_power_draw),
+		"last_flow_rate" = last_flow_rate*10,
+		"last_power_draw" = last_power_draw,
 		"max_power_draw" = power_rating,
 	)
 

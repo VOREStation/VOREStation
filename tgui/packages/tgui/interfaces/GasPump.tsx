@@ -93,7 +93,7 @@ export const GasPump = (props) => {
               </LabeledControls.Item>
             ) : (
               <LabeledControls.Item label="Desired Output Pressure">
-                {`$(pressure_set / 100).toFixed(2)} kPa`}
+                {`${(pressure_set / 100).toFixed(2)} kPa`}
               </LabeledControls.Item>
             )}
           </LabeledControls>
