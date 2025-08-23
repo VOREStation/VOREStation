@@ -50,6 +50,8 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 	say_list_type = /datum/say_list/dragonboss
 
+	can_be_drop_prey = FALSE
+
 /mob/living/simple_mob/vore/aggressive/dragon/Process_Spacemove(var/check_drift = 0)
 	return 1	//No drifting in space for space dragons!
 /*

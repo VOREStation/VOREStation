@@ -15,8 +15,10 @@ import {
   validHex,
 } from 'common/colorpicker';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Pointer } from 'tgui/components';
 import { type Interaction, Interactive } from 'tgui/components/Interactive';
+import { Window } from 'tgui/layouts';
 import {
   Autofocus,
   Box,
@@ -29,9 +31,6 @@ import {
 } from 'tgui-core/components';
 import { clamp } from 'tgui-core/math';
 import { classes } from 'tgui-core/react';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 

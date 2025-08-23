@@ -459,3 +459,59 @@
   - bugfix: Telekinesis and remote viewing in any form no longer work together
   - bugfix: Seismic charges and plastique explosive blast distance fixed for new explosion
       subsystem
+2025-08-21:
+  Cameron-The-Raven:
+  - qol: Suit cyclers can be used to swap to metamorphic mode, automatically becoming
+      the proper worn state
+  - qol: Clothing can be equipped and it will fallback to the default worn state if
+      your species does not have species specific sprites for it.
+  - code_imp: swapped a few hardcoded "thing" with its appropriate define when used
+  - rscadd: Consolidates all the species mob.dmi sprites together
+  Kashargul:
+  - bugfix: shift trivia display
+  - bugfix: game end countdown
+  - maptweak: rids of legacy vars
+  - bugfix: atmos consoles not working
+  SatinIsle:
+  - bugfix: Prevents reflexive biting from biting through headwear.
+  Will:
+  - bugfix: missing icons fixed for church pews, metal benches, corporate sofas, and
+      rounded chairs
+  - bugfix: Fluidpump pumping speed now scales off of the their manipulator and not
+      their motor, as motors have no upgrades.
+  - rscadd: Deep mining scanner will show some or all fluid pump fracking results
+      depending on if advanced type or not
+2025-08-22:
+  Diana:
+  - bugfix: Organ printer now shows left arms
+  - bugfix: Unattaching your left arm will now show a proper sprite
+  - bugfix: 'Skrell stomachs no longer require you to download Counter Strike: Source'
+  - qol: Floorlights can be picked up and placed in backpacks when first created,
+      allowing for easier transport
+  - refactor: Inventory code no longer uses hasvar
+  - code_imp: Moves a LOT of vars up to /obj/item
+  - image: Codersprite for floorlight item!
+  - maptweak: Got rid of all illegal icon = '' edits in the maps
+  - image: Smashed some icon files together
+  - rscadd: When doing an interaction, you now show a small cog above your head to
+      other players!
+  - refactor: Do after code is now revamped.
+  - qol: You can reinforce multiple walls at once (again!)
+  - qol: You can now work on multiple airlocks at once!
+  - bugfix: You can no longer spam-click objects
+  - image: Adds flashing variants of the progress bar when you interrupt them!
+  - bugfix: Loyalty potions now allow slime spawn to be eaten easily
+  - bugfix: Loyalty potion now immediately triggers a slime's mood changing, making
+      them able to be eaten.
+  Kashargul:
+  - bugfix: chat highlight settings can be cleared
+  Tenryumi:
+  - rscadd: Made the luxury cabin capsules more feature-complete with fully privacy-enabled
+      dorms, as well as generally polishing and moving around a few things in them.
+2025-08-23:
+  Diana:
+  - bugfix: Fixes a bug to allow species to wear clothing if vox can also wear it.
+  Kashargul:
+  - code_imp: move to native toFixed in tgui
+  Will:
+  - bugfix: Explosion powernet rebuild lag reduced

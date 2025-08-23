@@ -8,7 +8,6 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -42,7 +41,7 @@ export const GasPump = (props) => {
             <LabeledList.Item label="Flow Rate">
               <AnimatedNumber
                 value={last_flow_rate / 10}
-                format={(value) => `${toFixed(value, 1)} L/s`}
+                format={(value) => `${value.toFixed(1)} L/s`}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Load">
@@ -90,11 +89,11 @@ export const GasPump = (props) => {
             </LabeledControls.Item>
             {max_rate ? (
               <LabeledControls.Item label="Desired Transfer Rate">
-                 {`${toFixed(rate / 100, 2)} L/s`}
+                 {`${(rate / 100).toFixed(2)} L/s`}
               </LabeledControls.Item>
             ) : (
               <LabeledControls.Item label="Desired Output Pressure">
-                {`${toFixed(pressure_set / 100, 2)} kPa`}
+                {`$(pressure_set / 100).toFixed(2)} kPa`}
               </LabeledControls.Item>
             )}
           </LabeledControls>

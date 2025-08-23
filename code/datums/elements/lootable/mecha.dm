@@ -243,3 +243,57 @@
 		/obj/item/mecha_parts/mecha_equipment/repair_droid,
 		/obj/item/mecha_parts/mecha_equipment/teleporter
 		)
+
+// Stuff you may find attached to a mouse tank.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/element/lootable/mecha/mouse_tank
+	loot_left= 5
+
+	common_loot = list(
+		/obj/random/tool,
+		/obj/random/tool,
+		/obj/item/stack/cable_coil/random,
+		/obj/random/tank,
+		/obj/random/tech_supply/component,
+		/obj/random/tech_supply/component,
+		/obj/effect/decal/remains/mouse,
+		/obj/item/stack/material/steel{amount = 20}
+		)
+
+	uncommon_loot = list(
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg/rigged,
+		/obj/item/mecha_parts/mecha_equipment/generator
+		)
+
+	rare_loot = list(
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg,
+		/obj/item/mecha_parts/mecha_equipment/generator/nuclear
+		)
+
+// Stuff you may find attached to a livewire mouse tank.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/element/lootable/mecha/mouse_tank/livewire
+
+	uncommon_loot = list(
+		/obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged,
+		/obj/item/mecha_parts/mecha_equipment/tool/extinguisher
+		)
+
+	rare_loot = list(
+		/obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer,
+		/obj/item/mecha_parts/mecha_equipment/generator
+		)
+
+// Stuff you may find attached to a eraticator mouse tank.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/element/lootable/mecha/mouse_tank/eraticator
+
+	uncommon_loot = list(
+		/obj/item/ammo_magazine/m75,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/mortar
+		)
+
+	rare_loot = list(
+		/obj/item/gun/projectile/gyropistol,
+		/obj/item/mecha_parts/mecha_equipment/generator/nuclear
+		)

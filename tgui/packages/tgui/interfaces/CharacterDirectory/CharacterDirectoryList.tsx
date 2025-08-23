@@ -30,7 +30,7 @@ export const CharacterDirectoryList = (props: {
         <Table.Row bold>
           <Table.Cell collapsing>Photo</Table.Cell>
           <SortButton
-            id="name"
+            ourId="name"
             sortId={sortId}
             sortOrder={sortOrder}
             onSortId={setSortId}
@@ -39,7 +39,7 @@ export const CharacterDirectoryList = (props: {
             Name
           </SortButton>
           <SortButton
-            id="species"
+            ourId="species"
             sortId={sortId}
             sortOrder={sortOrder}
             onSortId={setSortId}
@@ -48,7 +48,7 @@ export const CharacterDirectoryList = (props: {
             Species
           </SortButton>
           <SortButton
-            id="tag"
+            ourId="tag"
             sortId={sortId}
             sortOrder={sortOrder}
             onSortId={setSortId}
@@ -57,7 +57,7 @@ export const CharacterDirectoryList = (props: {
             Vore Tag
           </SortButton>
           <SortButton
-            id="gendertag"
+            ourId="gendertag"
             sortId={sortId}
             sortOrder={sortOrder}
             onSortId={setSortId}
@@ -66,7 +66,7 @@ export const CharacterDirectoryList = (props: {
             Gender
           </SortButton>
           <SortButton
-            id="sexualitytag"
+            ourId="sexualitytag"
             sortId={sortId}
             sortOrder={sortOrder}
             onSortId={setSortId}
@@ -75,7 +75,7 @@ export const CharacterDirectoryList = (props: {
             Sexuality
           </SortButton>
           <SortButton
-            id="erptag"
+            ourId="erptag"
             sortId={sortId}
             sortOrder={sortOrder}
             onSortId={setSortId}
@@ -84,7 +84,7 @@ export const CharacterDirectoryList = (props: {
             ERP Tag
           </SortButton>
           <SortButton
-            id="eventtag"
+            ourId="eventtag"
             sortId={sortId}
             sortOrder={sortOrder}
             onSortId={setSortId}
