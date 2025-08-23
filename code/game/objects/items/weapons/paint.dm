@@ -10,7 +10,7 @@
 	matter = list(MAT_STEEL = 200)
 	w_class = ITEMSIZE_NORMAL
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(10,20,30,60)
+	max_transfer_amount = 60
 	volume = 60
 	unacidable = FALSE
 	flags = OPENCONTAINER

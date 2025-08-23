@@ -16,7 +16,7 @@
 
 // PanDEMIC Vial
 /obj/item/reagent_containers/glass/beaker/vial/vaccine
-	possible_transfer_amounts = (list(5, 10, 15))
+	max_transfer_amount = 15
 	volume = 15
 
 /obj/item/reagent_containers/glass/beaker/vial/vaccine/Initialize(mapload)

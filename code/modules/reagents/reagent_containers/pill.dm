@@ -12,7 +12,7 @@
 
 	var/base_state = "pill"
 
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 60
