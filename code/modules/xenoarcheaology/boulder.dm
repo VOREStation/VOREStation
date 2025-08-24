@@ -57,7 +57,7 @@
 
 		to_chat(user, span_warning("You start [P.drill_verb] [src]."))
 
-		if(!do_after(user, P.digspeed))
+		if(!do_after(user, P.digspeed, target = src))
 			return
 
 		to_chat(user, span_notice("You finish [P.drill_verb] [src]."))

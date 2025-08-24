@@ -88,7 +88,7 @@
 	if(!istype(W))
 		return
 	if(W.has_tool_quality(TOOL_WRENCH) && isturf(loc))
-		if(do_after(5))
+		if(do_after(user, 5, target = src))
 			if(!src) return
 			to_chat(user, span_notice("You dissasemble the desk bell"))
 			new /obj/item/stack/material/steel(get_turf(src), 1)

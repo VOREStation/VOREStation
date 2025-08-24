@@ -35,7 +35,7 @@
 						return
 					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 					to_chat(user, span_notice("You start to add cables to the frame."))
-					if(do_after(user, 20, target = src) && state == 1)
+					if(do_after(user, 2 SECONDS, target = src) && state == 1)
 						if(C.use(5))
 							to_chat(user, span_notice("You add cables to the frame."))
 							state = 2

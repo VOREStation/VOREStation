@@ -304,7 +304,7 @@
 		M.take_damage(damage_to_apply)
 		if(prob(3))
 			visible_message(span_critical("\The [src] begins digging its claws into \the [M]'s hatch!"))
-			if(do_after(src, 1 SECOND))
+			if(do_after(src, 1 SECOND, target = M))
 				visible_message(span_critical("\The [src] rips \the [M]'s access hatch open, dragging [M.occupant] out!"))
 				M.go_out()
 

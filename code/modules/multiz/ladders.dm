@@ -143,7 +143,7 @@
 		var/mob/living/carbon/human/MS = M
 		climb_modifier = MS.species.climb_mult
 
-	if(do_after(M, (climb_time * climb_modifier), src))
+	if(do_after(M, (climb_time * climb_modifier), target = src))
 		var/turf/T = get_turf(target_ladder)
 		for(var/atom/A in T)
 			if(!A.CanPass(M, M.loc, 1.5, 0))

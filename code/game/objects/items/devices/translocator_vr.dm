@@ -262,7 +262,7 @@ This device records all warnings given and teleport events for admin review in c
 				if(L.a_intent != I_HELP || L.has_AI())
 					to_chat(user, span_notice("[L] is resisting your attempt to teleport them with \the [src]."))
 					to_chat(L, span_danger(" [user] is trying to teleport you with \the [src]!"))
-					if(!do_after(user, 30, L))
+					if(!do_after(user, 3 SECONDS, target = L))
 						return
 
 	//Bzzt.
@@ -478,7 +478,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 	user.visible_message(span_notice("[user] opens \the [src] and starts pumping the handle."), \
 						span_notice("You open \the [src] and start pumping the handle."))
 	while(recharging)
-		if(!do_after(user, 10, src))
+		if(!do_after(user, 1 SECOND, target = src))
 			break
 		playsound(src,'sound/items/change_drill.ogg',25,1)
 		if(power_source.give(phase_power) < phase_power)

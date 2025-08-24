@@ -447,7 +447,7 @@
 
 	breakout = 1 //can't think of a better way to do this right now.
 	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
-		if(!do_after(escapee, 50)) //5 seconds
+		if(!do_after(escapee, 5 SECONDS, target = src)) //5 seconds
 			breakout = 0
 			return
 		if(!escapee || escapee.incapacitated() || escapee.loc != src)

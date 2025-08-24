@@ -341,7 +341,7 @@
 
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, span_warning("You begin to disassemble the [src]!"))
-			if (do_after(user, (100 * cur_coils) * W.toolspeed)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s with a normal crowbar
+			if (do_after(user, (10 SECONDS * cur_coils) * W.toolspeed, target = src)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s with a normal crowbar
 
 				if (failure_probability && prob(failure_probability))
 					total_system_failure(failure_probability, user)

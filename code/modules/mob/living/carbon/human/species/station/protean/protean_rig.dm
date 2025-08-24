@@ -311,7 +311,7 @@
 
 		var/obj/item/rig_module/mod = W
 		to_chat(user, "You begin installing \the [mod] into \the [src].")
-		if(!do_after(user,40))
+		if(!do_after(user, 4 SECONDS, target = src))
 			return
 		if(!user || !W)
 			return

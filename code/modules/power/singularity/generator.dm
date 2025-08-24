@@ -40,9 +40,9 @@
 		panel_open = !panel_open
 		playsound(src, W.usesound, 50, 1)
 		visible_message(span_infoplain(span_bold("\The [user]") + " adjusts \the [src]'s mechanisms."))
-		if(panel_open && do_after(user, 30))
+		if(panel_open && do_after(user, 3 SECONDS, target = src))
 			to_chat(user, span_notice("\The [src] looks like it could be modified."))
-			if(panel_open && do_after(user, 80 * W.toolspeed))	// We don't have skills, so a delayed hint for engineers will have to do for now. (Panel open check for sanity)
+			if(panel_open && do_after(user, 8 SECONDS * W.toolspeed, target = src))	// We don't have skills, so a delayed hint for engineers will have to do for now. (Panel open check for sanity)
 				playsound(src, W.usesound, 50, 1)
 				to_chat(user, span_cult("\The [src] looks like it could be adapted to forge advanced materials via particle acceleration, somehow.."))
 		else

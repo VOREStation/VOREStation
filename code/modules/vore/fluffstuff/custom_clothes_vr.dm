@@ -1989,7 +1989,7 @@ Departamental Swimsuits, for general use
 	translocator_unequip(translocator, usr)
 
 /obj/item/clothing/head/fluff/nikki/proc/translocator_equip(var/obj/item/perfect_tele/T, var/mob/living/carbon/human/user)
-	if (do_after(user, 2 SECONDS, T))
+	if (do_after(user, 2 SECONDS, target = T))
 		user.unEquip(T)
 		translocator_unequip(translocator, user)
 		T.forceMove(src)

@@ -222,7 +222,7 @@
 				span_notice("You start to fix part of the cooking pot.") \
 			)
 			playsound(src, O.usesound, 50, 1)
-			if (do_after(user,20 * O.toolspeed))
+			if (do_after(user, 2 SECONDS * O.toolspeed, target = src))
 				user.visible_message( \
 					span_infoplain(span_bold("\The [user]") + " fixes part of the cooking pot."), \
 					span_notice("You have fixed part of the cooking pot.") \
@@ -233,7 +233,7 @@
 				span_infoplain(span_bold("\The [user]") + " starts to fix part of the cooking pot."), \
 				span_notice("You start to fix part of the cooking pot.") \
 			)
-			if (do_after(user,20 * O.toolspeed))
+			if (do_after(user, 2 SECONDS * O.toolspeed, target = src))
 				user.visible_message( \
 					span_infoplain(span_bold("\The [user]") + " fixes the cooking pot."), \
 					span_notice("You have fixed the cooking pot.") \
@@ -252,7 +252,7 @@
 				span_bold("\The [user]") + "starts to clean the cooking pot.", \
 				span_notice("You start to clean the cooking pot.") \
 			)
-			if (do_after(user,20))
+			if (do_after(user, 2 SECONDS, target = src))
 				user.visible_message( \
 					span_notice("\The [user] has cleaned the cooking pot."), \
 					span_notice("You have cleaned the cooking pot.") \
@@ -340,7 +340,7 @@
 				span_notice("\The [user] begins [src.anchored ? "unsecuring" : "securing"] the cooking pot."), \
 				span_notice("You attempt to [src.anchored ? "unsecure" : "secure"] the cooking pot.")
 				)
-			if (do_after(user,20/O.toolspeed))
+			if (do_after(user, (2 SECONDS)/O.toolspeed, target = src))
 				user.visible_message( \
 				span_notice("\The [user] [src.anchored ? "unsecures" : "secures"] the cooking pot."), \
 				span_notice("You [src.anchored ? "unsecure" : "secure"] the cooking pot.")

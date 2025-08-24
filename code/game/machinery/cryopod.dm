@@ -620,7 +620,7 @@
 
 	visible_message("[usr] [on_enter_visible_message] [src].", 3)
 
-	if(do_after(usr, 20))
+	if(do_after(usr, 2 SECONDS, target = src))
 
 		if(!usr || !usr.client)
 			return

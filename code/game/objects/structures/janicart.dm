@@ -181,7 +181,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 	else if (!has_items)
 		if (I.has_tool_quality(TOOL_WRENCH))
-			if (do_after(user, 5 SECONDS, src))
+			if (do_after(user, 5 SECONDS, target = src))
 				dismantle(user)
 			return
 	..()

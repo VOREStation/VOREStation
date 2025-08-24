@@ -92,7 +92,7 @@
 	if(!that_one)
 		return ..()
 	to_chat(that_one, span_danger("\The [user]'s hand reaches toward you!!!"))
-	if(!do_after(user, 3 SECONDS, src))
+	if(!do_after(user, 3 SECONDS, target = src))
 		return ..()
 	if(!istype(that_one.loc,/turf/simulated/floor/outdoors/fur))
 		to_chat(user, span_warning("\The [that_one] got away..."))
@@ -266,7 +266,7 @@
 
 	to_chat(src, span_notice("You begin to eat \the [E]..."))
 
-	if(!do_after(src, 20 SECONDS, E))
+	if(!do_after(src, 20 SECONDS, target = E))
 		return
 	to_chat(src, span_notice("[msg]"))
 	if(nut || aff)
@@ -332,7 +332,7 @@
 			to_chat(src, span_warning("You decide not to transition."))
 			return
 		to_chat(src, span_notice("You begin to transition down to \the [our_dest], stay still..."))
-		if(!do_after(src, 15 SECONDS))
+		if(!do_after(src, 15 SECONDS, target = src))
 			to_chat(src, span_warning("You were interrupted."))
 			return
 		visible_message(span_warning("\The [src] disappears!!!"))
@@ -343,7 +343,7 @@
 
 	else
 		to_chat(src, span_notice("You begin to transition back to space, stay still..."))
-		if(!do_after(src, 15 SECONDS))
+		if(!do_after(src, 15 SECONDS, target = src))
 			to_chat(src, span_warning("You were interrupted."))
 			return
 
@@ -1059,7 +1059,7 @@
 		to_chat(user, span_warning("You can see \the [controller] inside! Tendrils of nerves seem to have attached themselves to \the [controller]! There's no room for you right now!"))
 		return
 	user.visible_message(span_notice("\The [user] reaches out to touch \the [src]..."),span_notice("You reach out to touch \the [src]..."))
-	if(!do_after(user, 10 SECONDS, src))
+	if(!do_after(user, 10 SECONDS, target = src))
 		user.visible_message(span_warning("\The [user] pulls back from \the [src]."),span_warning("You pull back from \the [src]."))
 		return
 	if(controller)	//got busy while you were waiting, get rekt

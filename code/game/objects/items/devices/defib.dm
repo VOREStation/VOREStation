@@ -397,7 +397,7 @@
 
 	//beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
 	user.visible_message(span_warning("\The [user] begins to place [src] on [H]'s chest."), span_warning("You begin to place [src] on [H]'s chest..."))
-	if(!do_after(user, 30, H))
+	if(!do_after(user, 3 SECONDS, target = H))
 		return
 	user.visible_message(span_infoplain(span_bold("\The [user]") + " places [src] on [H]'s chest."), span_warning("You place [src] on [H]'s chest."))
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
@@ -412,7 +412,7 @@
 		make_announcement("buzzes, \"Warning - Patient is in hypovolemic shock.\"", "warning") //also includes heart damage
 
 	//placed on chest and short delay to shock for dramatic effect, revive time is 5sec total
-	if(!do_after(user, chargetime, H))
+	if(!do_after(user, chargetime, target = H))
 		return
 
 	//deduct charge here, in case the base unit was EMPed or something during the delay time
@@ -467,7 +467,7 @@
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
 	audible_message(span_warning("\The [src] lets out a steadily rising hum..."), runemessage = "whines")
 
-	if(!do_after(user, chargetime, H))
+	if(!do_after(user, chargetime, target = H))
 		return
 
 	//deduct charge here, in case the base unit was EMPed or something during the delay time

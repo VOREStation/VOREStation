@@ -242,7 +242,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 		if(anchored)
 			user.visible_message(span_bold("\The [user]") + " starts to unbolt \the [src] from the plating...")
 			playsound(src, W.usesound, 50, 1)
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_bold("\The [user]") + " decides not to unbolt \the [src].")
 				return
 			user.visible_message(span_bold("\The [user]") + " finishes unfastening \the [src]!")
@@ -251,7 +251,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 		else
 			user.visible_message(span_bold("\The [user]") + " starts to bolt \the [src] to the plating...")
 			playsound(src, W.usesound, 50, 1)
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_bold("\The [user]") + " decides not to bolt \the [src].")
 				return
 			user.visible_message(span_bold("\The [user]") + " finishes fastening down \the [src]!")

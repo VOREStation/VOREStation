@@ -66,7 +66,7 @@
 		return 0
 	else
 		to_chat(user, span_notice("You begin to place \the [src.name]."))
-		if(!do_after(user, 10))
+		if(!do_after(user, 1 SECOND, target = src))
 			return 0
 		var/obj/structure/gravemarker/G = new /obj/structure/gravemarker/(user.loc, src.get_material())
 		to_chat(user, span_notice("You place \the [src.name]."))

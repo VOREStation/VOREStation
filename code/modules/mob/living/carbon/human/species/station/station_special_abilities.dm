@@ -117,7 +117,7 @@
 		to_chat(src, span_warning("This is going to cause [B] to keep bleeding!"))
 		to_chat(B, span_danger("You are going to keep bleeding from this bite!"))
 
-	if(do_after(src, 300, B)) //Thrirty seconds.
+	if(do_after(src, 30 SECONDS, target = B))
 		if(!Adjacent(B)) return
 		if(noise)
 			src.visible_message(span_infoplain(span_red(span_bold("[src] suddenly extends their fangs and plunges them down into [B]'s neck!"))))
@@ -493,7 +493,7 @@
 	last_special = world.time + vore_shred_time
 	visible_message(span_danger("[src] appears to be preparing to do something to [T]!")) //Let everyone know that bad times are ahead
 
-	if(do_after(src, vore_shred_time, T)) //Ten seconds. You have to be in a neckgrab for this, so you're already in a bad position.
+	if(do_after(src, vore_shred_time, target = T)) //Ten seconds. You have to be in a neckgrab for this, so you're already in a bad position.
 		if(can_shred(T) != T)
 			to_chat(src,span_warning("Looks like you lost your chance..."))
 			return
@@ -634,7 +634,7 @@
 		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
-	if(do_after(src, 25))
+	if(do_after(src, 25, target = src))
 		var/obj/item/storage/vore_egg/bugcocoon/C = new(loc)
 		forceMove(C)
 
@@ -726,7 +726,7 @@
 	to_chat(target, span_critical("Something begins to circle around you in the water!")) //Dun dun...
 	var/starting_loc = target.loc
 
-	if(do_after(src, 50))
+	if(do_after(src, 5 SECONDS, target))
 		if(target.loc != starting_loc)
 			to_chat(target, span_warning("You got away from whatever that was..."))
 			to_chat(src, span_notice("They got away."))
@@ -1158,7 +1158,7 @@
 
 
 		visible_message(span_warning("[src] is preparing to [trait_injection_verb] [target]!"))
-		if(do_after(src, 50, target)) //A decent enough timer.
+		if(do_after(src, 5 SECONDS, target)) //A decent enough timer.
 			add_attack_logs(src,target,"Injection trait ([trait_injection_selected], [trait_injection_amount])")
 			if(target.reagents && (trait_injection_amount > 0) && !synth)
 				target.reagents.add_reagent(trait_injection_selected, trait_injection_amount)
@@ -1223,7 +1223,7 @@
 
 	src.visible_message(span_bolddanger("[src] moves their head next to [T]'s neck, seemingly looking for something!"))
 
-	if(do_after(src, 300, T)) //Thrirty seconds.
+	if(do_after(src, 30 SECONDS, target = T)) //Thrirty seconds.
 		if(choice == REAGENT_APHRODISIAC)
 			src.show_message(span_warning("You sink your fangs into [T] and inject your aphrodisiac!"))
 			src.visible_message(span_red("[src] sinks their fangs into [T]!"))
@@ -1317,7 +1317,7 @@ var/eggs = 0
 	if(!choice)
 		return
 
-	if(do_after(src, 300)) //Thrirty seconds.
+	if(do_after(src, 30 SECONDS, target = src)) //Thrirty seconds.
 		if(choice == "Make a Egg")
 			src.show_message(span_warning("You feel your belly bulging a bit, you made an egg!"))
 			C.nutrition -=150

@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(paikeys)
 		playsound(src, 'sound/items/pickup/component.ogg', vary = TRUE)
 	else
 		return
-	if(!do_after(user, 3 SECONDS))
+	if(!do_after(user, 3 SECONDS, target = src))
 		return
 	switch(choice)
 		if("cell")

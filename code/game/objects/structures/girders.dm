@@ -251,7 +251,7 @@
 
 	to_chat(user, span_notice("You begin adding the plating..."))
 
-	if(!do_after(user,time_to_reinforce) || !S.use(amount_to_use))
+	if(!do_after(user, time_to_reinforce, target = src) || !S.use(amount_to_use))
 		return TRUE //once we've gotten this far don't call parent attackby()
 
 	if(anchored)
@@ -285,7 +285,7 @@
 		return 0
 
 	to_chat(user, span_notice("Now reinforcing..."))
-	if (!do_after(user,40) || !S.use(1))
+	if (!do_after(user, 4 SECONDS, target = src) || !S.use(1))
 		return 1 //don't call parent attackby() past this point
 	to_chat(user, span_notice("You added reinforcement!"))
 

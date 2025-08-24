@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(smeses)
 		if(!damage)
 			to_chat(user, span_filter_notice("\The [src] is already fully repaired."))
 			return FALSE
-		if(WT.remove_fuel(0,user) && do_after(user, damage, src))
+		if(WT.remove_fuel(0,user) && do_after(user, damage, target = src))
 			to_chat(user, span_filter_notice("You repair all structural damage to \the [src]"))
 			damage = 0
 		return FALSE

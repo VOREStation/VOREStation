@@ -33,7 +33,7 @@
 		to_chat(src, span_warning("There is too much light here for your trap to last!"))
 		return FALSE
 
-	if(do_after(src, 10))
+	if(do_after(src, 1 SECOND, target = src))
 		if(SK.in_phase)
 			new /obj/effect/abstract/dark_maw(loc, src, TRUE)
 		else

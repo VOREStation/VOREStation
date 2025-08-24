@@ -186,7 +186,7 @@
 	if (recipe.time)
 		to_chat(user, span_notice("Building [recipe.title] ..."))
 		is_building = TRUE
-		if (!do_after(user, recipe.time))
+		if (!do_after(user, recipe.time, target = src))
 			is_building = FALSE
 			return
 

@@ -406,7 +406,7 @@
 				return
 			if(UNCONSCIOUS)
 				to_chat(usr, span_notice("You struggle through the haze to hit the eject button. This will take a couple of minutes..."))
-				if(do_after(usr, 2 MINUTES, src))
+				if(do_after(usr, 2 MINUTES, target = src))
 					go_out()
 			if(CONSCIOUS)
 				go_out()

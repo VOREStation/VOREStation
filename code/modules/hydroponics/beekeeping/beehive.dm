@@ -135,7 +135,7 @@
 			to_chat(user, span_notice("The bees won't let you take the honeycombs out like this, smoke them first."))
 			return
 		user.visible_message(span_notice("[user] starts taking the honeycombs out of \the [src]."), span_notice("You start taking the honeycombs out of \the [src]..."))
-		while(honeycombs >= 100 && length(frames) && do_after(user, 30))
+		while(honeycombs >= 100 && length(frames) && do_after(user, 3 SECONDS, target = src))
 			var/obj/item/honey_frame/H = pop(frames)
 			H.honey = 20
 			honeycombs -= 100

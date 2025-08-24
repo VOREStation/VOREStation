@@ -75,7 +75,7 @@
 
 		to_chat(user, "You start mending the damaged portions of \the [src]...")
 
-		if(!do_after(user,30) || !W || !src)
+		if(!do_after(user, 3 SECONDS, target = src) || !W || !src)
 			return
 
 		var/obj/item/stack/nanopaste/paste = W
@@ -100,7 +100,7 @@
 			return
 
 		to_chat(user, "You start mending the damaged portions of \the [src]...")
-		if(!do_after(user,30) || !W || !src)
+		if(!do_after(user, 3 SECONDS, target = src) || !W || !src)
 			return
 
 		damage = 1

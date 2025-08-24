@@ -46,17 +46,8 @@
 			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
 			if(damage_type == BRUTE)
 				step_away(M,src,15)
-			/*
-			if(M.stat>1)
-				M.gib()
-				melee_can_hit = 0
-				if(do_after(melee_cooldown))
-					melee_can_hit = 1
-				return
-			*/
 			if(ishuman(T))
 				var/mob/living/carbon/human/H = T
-	//			if (M.health <= 0) return
 
 				var/obj/item/organ/external/temp = H.get_organ(pick(BP_TORSO, BP_TORSO, BP_TORSO, BP_HEAD))
 				if(temp)

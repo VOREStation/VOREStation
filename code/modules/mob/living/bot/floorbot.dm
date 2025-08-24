@@ -209,12 +209,12 @@
 		update_icons()
 		if(F.flooring)
 			visible_message(span_warning("\The [src] begins to tear the floor tile from the floor!"))
-			if(do_after(src, 50))
+			if(do_after(src, 5 SECONDS, target = A))
 				F.break_tile_to_plating()
 				addTiles(1)
 		else
 			visible_message(span_danger("\The [src] begins to tear through the floor!"))
-			if(do_after(src, 150)) // Extra time because this can and will kill.
+			if(do_after(src, 15 SECONDS, target = A)) // Extra time because this can and will kill.
 				F.ReplaceWithLattice()
 				addTiles(1)
 		target = null
@@ -229,7 +229,7 @@
 		busy = 1
 		update_icons()
 		visible_message(span_infoplain(span_bold("\The [src]") + " begins to repair the hole."))
-		if(do_after(src, 50))
+		if(do_after(src, 5 SECONDS, target = A))
 			if(A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) // Make sure that it still needs repairs
 				var/obj/item/I
 				if(building == 1)
@@ -246,7 +246,7 @@
 			busy = 1
 			update_icons()
 			visible_message(span_infoplain(span_bold("\The [src]") + " begins to remove the broken floor."))
-			if(do_after(src, 50, F))
+			if(do_after(src, 5 SECONDS, target = F))
 				if(F.broken || F.burnt)
 					F.make_plating()
 			target = null
@@ -256,7 +256,7 @@
 			busy = 1
 			update_icons()
 			visible_message(span_infoplain(span_bold("\The [src]") + " begins to improve the floor."))
-			if(do_after(src, 50))
+			if(do_after(src, 5 SECONDS, target = F))
 				if(!F.flooring)
 					F.set_flooring(get_flooring_data(floor_build_type))
 					addTiles(-1)
@@ -268,7 +268,7 @@
 		visible_message(span_infoplain(span_bold("\The [src]") + " begins to collect tiles."))
 		busy = 1
 		update_icons()
-		if(do_after(src, 20))
+		if(do_after(src, 2 SECONDS, target = T))
 			if(T)
 				var/eaten = min(maxAmount - amount, T.get_amount())
 				T.use(eaten)
@@ -282,7 +282,7 @@
 			visible_message(span_infoplain(span_bold("\The [src]") + " begins to make tiles."))
 			busy = 1
 			update_icons()
-			if(do_after(50))
+			if(do_after(src, 5 SECONDS, target = A))
 				if(M)
 					M.use(1)
 					addTiles(4)

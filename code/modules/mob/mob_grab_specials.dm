@@ -135,7 +135,7 @@
 		return
 
 	attacker.visible_message(span_danger("[attacker] starts forcing [target] to the ground!"))
-	if(do_after(attacker, 20) && target)
+	if(do_after(attacker, 2 SECONDS, target) && target)
 		last_action = world.time
 		attacker.visible_message(span_danger("[attacker] forces [target] to the ground!"))
 		apply_pinning(target, attacker)

@@ -40,7 +40,7 @@
 				return
 			visible_message(span_danger("\The [user] is trying to remove \the [src]'s [A.name]!"))
 
-			if(!do_after(user,HUMAN_STRIP_DELAY,src))
+			if(!do_after(user, HUMAN_STRIP_DELAY, target = src))
 				return
 
 			if(!A || suit.loc != src || !(A in suit.accessories))
@@ -104,7 +104,7 @@
 		else
 			visible_message(span_danger("\The [user] is trying to put \a [wrapped] on \the [src]!"))
 
-	if(!do_after(user,HUMAN_STRIP_DELAY,src))
+	if(!do_after(user, HUMAN_STRIP_DELAY, target = src))
 		return
 
 	if(!stripping)

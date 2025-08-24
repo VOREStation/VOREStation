@@ -279,7 +279,7 @@
 				to_chat(user, span_notice("We cannot get through that host's protective gear."))
 				return
 
-	if(!do_after(src,2))
+	if(!do_after(src, 2, target))
 		to_chat(user, span_notice("As [M] moves away, we are dislodged and fall to the ground."))
 		return
 

@@ -35,7 +35,7 @@
 			"You hear the slow creaking of a spring."
 			)
 
-		if (do_after(user, 60))
+		if (do_after(user, 6 SECONDS, target = src))
 			user.visible_message(
 				span_danger("[user] has deployed \the [src]."),
 				span_danger("You have deployed \the [src]!"),
@@ -221,7 +221,7 @@
 			"You hear the rustling of [material.name]."
 			)
 
-		if (do_after(user, 60))
+		if (do_after(user, 6 SECONDS, target = src))
 			user.visible_message(
 				span_danger("[user] has deployed \the [src]."),
 				span_danger("You have deployed \the [src]!"),

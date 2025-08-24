@@ -613,7 +613,7 @@
 	playsound(src, 'sound/effects/sink_long.ogg', 75, 1)
 
 	busy = 1
-	if(!do_after(user, 40, src))
+	if(!do_after(user, 4 SECONDS, target = src))
 		busy = 0
 		to_chat(user, span_notice("You stop washing your hands."))
 		return
@@ -691,7 +691,7 @@
 	to_chat(user, span_notice("You start washing \the [I]."))
 
 	busy = 1
-	if(!do_after(user, 40, src))
+	if(!do_after(user, 4 SECONDS, target = src))
 		busy = 0
 		to_chat(user, span_notice("You stop washing \the [I]."))
 		return

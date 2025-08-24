@@ -180,7 +180,7 @@
 
 	if(M == user)	// Once we determine if we can actually do a step at all, give a slight delay to self-surgery to confirm attempts.
 		to_chat(user, span_critical("You focus on attempting to perform surgery upon yourself."))
-		if(!do_after(user, 3 SECONDS, M))
+		if(!do_after(user, 3 SECONDS, target = M))
 			return 0
 
 	var/datum/surgery_step/selected_surgery
@@ -196,7 +196,7 @@
 	if(istype(selected_surgery,/datum/surgery_step/generic/amputate))
 		var/obj/item/organ/external/affected = M.get_organ(zone)
 		to_chat(user, span_danger("You are preparing to amputate \the [M]'s [affected.name]!"))
-		if(!do_after(user, 3 SECONDS, M))
+		if(!do_after(user, 3 SECONDS, target = M))
 			to_chat(user, span_warning("You reconsider performing an amputation..."))
 			return 0
 	// VOREstation edit end

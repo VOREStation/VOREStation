@@ -206,12 +206,12 @@
 			say(message)
 			playsound(src, messagevoice[message], 70, FALSE)
 
-		if(do_after(H, 3 SECONDS, target=src))
+		if(do_after(H, 3 SECONDS, target = src))
 			tip_over(H)
 
 	else if(istype(H) && H.a_intent == I_HELP && is_tipped)
 		H.visible_message(span_notice("[H] begins righting [src]."), span_notice("You begin righting [src]..."))
-		if(do_after(H, 3 SECONDS, target=src))
+		if(do_after(H, 3 SECONDS, target = src))
 			set_right(H)
 	else
 		tgui_interact(H)

@@ -56,7 +56,7 @@
 		if(H != user && prototype)
 			balloon_alert(user, "injecting [H] with \the [src]")
 			balloon_alert(H, "[user] is trying to inject you with \the [src]")
-			if(!do_after(user, 30, H))
+			if(!do_after(user, 3 SECONDS, target = H))
 				return
 		//VOREstation Add End
 		else if(!H.stat && !prototype)
@@ -64,7 +64,7 @@
 				if(H.a_intent != I_HELP)
 					balloon_alert(user, "[H] resists your attempt to inject them with \the [src].")
 					balloon_alert(H, "[user] is trying to inject you with \the [src]")
-					if(!do_after(user, 30, H))
+					if(!do_after(user, 3 SECONDS, target = H))
 						return
 
 	do_injection(H, user)
@@ -132,7 +132,7 @@
 	if(istype(W, /obj/item/reagent_containers/glass/beaker/vial))
 		if(!loaded_vial)
 			balloon_alert_visible("[user] begins loading [W] into \the [src].", "loading [W] into \the [src].")
-			if(!do_after(user,30) || loaded_vial || !(W in user))
+			if(!do_after(user, 3 SECONDS, target = src) || loaded_vial || !(W in user))
 				return 0
 			if(W.is_open_container())
 				W.flags ^= OPENCONTAINER

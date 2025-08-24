@@ -138,7 +138,7 @@
 
 		H.visible_message(span_danger("\The [H] is trying to perform CPR on \the [src]!"))
 
-		if(!do_after(H, 30))
+		if(!do_after(H, 3 SECONDS, target = src))
 			return FALSE
 
 		H.visible_message(span_danger("\The [H] performs CPR on \the [src]!"))

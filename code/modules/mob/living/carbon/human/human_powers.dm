@@ -290,7 +290,7 @@
 		src.visible_message(span_filter_notice(span_bold("[src]") + "'s flesh begins to mend..."))
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
-	if(do_after(src,delay_length))
+	if(do_after(src, delay_length, target = src))
 		adjust_nutrition(-200)
 
 		for(var/obj/item/organ/I in internal_organs)

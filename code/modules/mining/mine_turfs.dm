@@ -394,7 +394,7 @@ var/list/mining_overlay_cache = list()
 			to_chat(user, span_notice("You start digging."))
 			playsound(user, 'sound/effects/rustle1.ogg', 50, 1)
 
-			if(!do_after(user,digspeed)) return
+			if(!do_after(user, digspeed, target = src)) return
 
 			to_chat(user, span_notice("You dug a hole."))
 			GetDrilled()

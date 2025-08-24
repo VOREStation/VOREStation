@@ -365,7 +365,7 @@
 		to_chat(usr, span_warning("It's too cluttered inside for you to fit in!"))
 		return
 	visible_message(span_info("[usr] starts squeezing into the suit storage unit!"), 3)
-	if(do_after(usr, 10))
+	if(do_after(usr, 1 SECOND, target = src))
 		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src

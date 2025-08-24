@@ -464,7 +464,7 @@
 		return
 
 	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
-	if(!do_after(src, 10 SECONDS, src))
+	if(!do_after(src, 10 SECONDS, target = src))
 		visible_message("<b>\The [src]</b> ceases shifting their form.")
 		return 0
 

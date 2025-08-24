@@ -56,7 +56,7 @@
 		if(A.anchored)
 			return
 		to_chat(user, span_notice("You start attaching the pack to [A]..."))
-		if(do_after(user, 5 SECONDS, target=A))
+		if(do_after(user, 5 SECONDS, target = A))
 			to_chat(user, span_notice("You attach the pack to [A] and activate it."))
 			/* No components, sorry. No convienence for you!
 			if(loc == user && istype(user.back, /obj/item/storage/backpack))
