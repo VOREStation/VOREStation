@@ -88,7 +88,7 @@
 	to_chat(M, "Something slimy begins probing at the opening of your ear canal...")
 	to_chat(src, span_warning("You slither up [M] and begin probing at their ear canal..."))
 
-	if(!do_after(src, 3 SECONDS))
+	if(!do_after(src, 3 SECONDS, target = M))
 		to_chat(src, span_warning("As [M] moves away, you are dislodged and fall to the ground."))
 		return
 
