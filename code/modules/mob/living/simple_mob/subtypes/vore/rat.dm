@@ -62,7 +62,7 @@
 
 	vore_active = TRUE
 	vore_capacity = 1
-	vore_pounce_chance = 45
+	vore_pounce_chance = 65
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
 	var/life_since_foodscan = 0
@@ -70,6 +70,7 @@
 	say_list_type = /datum/say_list/rat
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/rat
 
+	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
 
 /mob/living/simple_mob/vore/aggressive/rat/load_default_bellies()
@@ -77,6 +78,11 @@
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "In a cruel game of cat-and-mouse gone horribly wrong, you struggle to breathe clearly as the giant rat holds your head in its jaws, the rest of its bulk pinning you to the ground. Slimy slurps and its own muffled squeaking fill your senses as it simultaneously tosses its head while backing up. Quickly, ravenously consuming you, bit by bit, packing you down its gullet no matter how you struggle. Passing by its excited heartbeat, your thoroughly slickened head pushes out into its awaiting stomach, a dark and humid hammock eager to accept the rest of you. Soon, those too-warm, plush walls clench and squeeze around you with undeniable need! A need for mere filling, or, perhaps, a proper meal?"
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = TRUE
+	B.belly_fullscreen_color = "#c47cb4"
+	B.belly_fullscreen = "anim_belly"
 
 	B.emote_lists[DM_HOLD] = list(
 		"As time passes, the massive rat's stomach slowly churns and squeezes down around you, packing you into an easier to carry bundle amidst that oddly soothing massage.",
@@ -286,3 +292,39 @@
 
 /datum/ai_holder/simple_mob/melee/rat
 	speak_chance = 2
+
+/mob/living/simple_mob/vore/aggressive/rat/event
+	maxHealth = 50
+	health = 50
+	vore_pounce_chance = 10
+
+	can_be_drop_prey = FALSE
+
+/mob/living/simple_mob/vore/aggressive/rat/labrat
+	name = "giant lab rat"
+	desc = "In what passes for a hierarchy among lab rats, this one is a boss."
+	icon_state = "labrat"
+	icon_living = "labrat"
+	icon_dead = "labrat-dead"
+	icon_rest = "labrat_rest"
+	faction = "neutral"
+	icon = 'icons/mob/vore64x32.dmi'
+
+/mob/living/simple_mob/vore/aggressive/rat/labrat/genetics
+	name = "Nibbles"
+	desc = "A giant rat that made it's nest in an abandoned genetics lab. This one seems fairly docile."
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+
+	vore_active = 1
+	vore_capacity = 1
+	vore_escape_chance = 20
+	swallowTime = 25
+	vore_bump_chance = 100
+	faction_bump_vore = 1
+	vore_standing_too = TRUE
+	vore_pounce_chance = 75
+	vore_pounce_maxhealth = 80
+	vore_bump_emote = "knocks over and attempts to engulf"
+
+	can_be_drop_prey = FALSE
+	allow_mind_transfer = FALSE

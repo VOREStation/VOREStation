@@ -7,7 +7,6 @@ import {
   Slider,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import { capitalize } from 'tgui-core/string';
 
 import { updateSettings } from './actions';
@@ -55,7 +54,7 @@ export function SettingsStatPanel(props) {
                     maxValue={32}
                     value={statFontSize}
                     unit="px"
-                    format={(value) => toFixed(value)}
+                    format={(value) => value.toFixed()}
                     onChange={(e, value) =>
                       dispatch(updateSettings({ statFontSize: value }))
                     }
