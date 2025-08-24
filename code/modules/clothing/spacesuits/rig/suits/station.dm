@@ -153,6 +153,16 @@
 	name = "insulated gauntlets"
 	siemens_coefficient = 0
 
+/obj/item/clothing/shoes/magboots/rig/ce
+	name = "advanced boots"
+/obj/item/clothing/shoes/magboots/rig/ce/set_slowdown()
+	if(magpulse)
+		slowdown = shoes ? max(SHOES_SLOWDOWN, shoes.slowdown) : SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.
+	else if(shoes)
+		slowdown = shoes.slowdown
+	else
+		slowdown = SHOES_SLOWDOWN
+
 /obj/item/rig/ce/equipped
 
 	req_access = list(access_ce)
