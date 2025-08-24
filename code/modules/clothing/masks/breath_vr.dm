@@ -7,8 +7,6 @@
 	name = "Spacer Tuned Mask"
 	desc = "A mask designed for long-term use in areas where breathing comes at a premium."
 	icon_state = "altevian-mask"
-	icon = 'icons/inventory/face/item_vr.dmi'
-	icon_override = 'icons/inventory/face/mob_vr.dmi'
 	sprite_sheets = null
 	item_state_slots = list(slot_r_hand_str = "breath", slot_l_hand_str = "breath")
 	item_flags = AIRTIGHT|FLEXIBLEMATERIAL

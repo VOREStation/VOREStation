@@ -12,7 +12,7 @@ BLIND     // can't see anything
 ///////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/glasses
-	name = "glasses"
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/inventory/eyes/item.dmi'
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_EYES
@@ -31,8 +31,18 @@ BLIND     // can't see anything
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/eyes/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi'
+		SPECIES_TESHARI 	= 'icons/inventory/eyes/mob_teshari.dmi',
+		SPECIES_VOX 		= 'icons/inventory/eyes/mob_vox.dmi',
+		SPECIES_WEREBEAST 	= 'icons/inventory/eyes/mob_werebeast.dmi',
+		SPECIES_TAJARAN 	= 'icons/inventory/eyes/mob_tajaran.dmi',
+		SPECIES_UNATHI 		= 'icons/inventory/eyes/mob_unathi.dmi',
+		SPECIES_SERGAL 		= 'icons/inventory/eyes/mob_sergal.dmi',
+		SPECIES_NEVREAN 	= 'icons/inventory/eyes/mob_nevrean.dmi',
+		SPECIES_ZORREN_HIGH	= 'icons/inventory/eyes/mob_fox.dmi',
+		SPECIES_ZORREN_FLAT	= 'icons/inventory/eyes/mob_fennec.dmi',
+		SPECIES_AKULA 		= 'icons/inventory/eyes/mob_akula.dmi',
+		SPECIES_VULPKANIN 	= 'icons/inventory/eyes/mob_vulpkanin.dmi',
+		SPECIES_XENOCHIMERA	= 'icons/inventory/eyes/mob_tajaran.dmi'
 		)
 	var/glasses_layer_above = FALSE
 
