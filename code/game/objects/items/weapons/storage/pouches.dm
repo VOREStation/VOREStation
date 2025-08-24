@@ -130,6 +130,16 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/circuitboard
 	)
+	// Because you deal with so many parts, and the borg needs this anyway...
+	use_to_pickup = TRUE
+	allow_quick_gather = TRUE
+	allow_quick_empty = TRUE
+	collection_mode = TRUE
+
+/obj/item/storage/pouch/eng_parts/borg
+	name = "parts storage unit"
+	desc = "Can only hold machinery components."
+	max_storage_space = INVENTORY_POUCH_SPACE*5 // Borgs need some love here, so very expanded space
 
 /obj/item/storage/pouch/medical
 	name = "storage pouch (medical)"
