@@ -11,7 +11,7 @@
 
 /datum/robot_sprite/medical/rabbot
 	name = "Rabbot"
-	sprite_icon_state = "medical"
+	sprite_icon_state = "rabbotmedical"
 	has_eye_light_sprites = TRUE
 	has_dead_sprite = TRUE
 	sprite_icon = 'icons/mob/robot/rabbot/rabbotmedical.dmi'
