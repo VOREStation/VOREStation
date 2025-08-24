@@ -166,6 +166,9 @@
 /datum/belly_overlays/vbo_maw26
 	belly_icon = 'icons/mob/vore_fullscreens/VBO_maw26.dmi'
 
+/datum/belly_overlays/vbo_maw27
+	belly_icon = 'icons/mob/vore_fullscreens/VBO_maw27.dmi'
+
 /datum/belly_overlays/vbo_notbelly
 	belly_icon = 'icons/mob/vore_fullscreens/VBO_notbelly.dmi'
 
