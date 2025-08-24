@@ -1,7 +1,7 @@
 /obj/machinery/computer/shuttle_control/multi/response
 	name = "response shuttle console"
 	shuttle_tag = "Response Operations"
-	req_access = list(access_cent_specops)
+	req_access = list(ACCESS_CENT_SPECOPS)
 /*
 /datum/shuttle/multi_shuttle/response
 	name = "Response Operations"
@@ -24,7 +24,7 @@
 */
 /obj/machinery/computer/shuttle_control/web/ert
 	name = "response shuttle control console"
-	req_access = list(access_cent_specops)
+	req_access = list(ACCESS_CENT_SPECOPS)
 	shuttle_tag = "Response Operations"
 
 /datum/shuttle/autodock/web_shuttle/ert

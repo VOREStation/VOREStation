@@ -61,7 +61,7 @@
 /obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id))
 		var/obj/item/card/id/C = W
-		if((access_captain in C.GetAccess()) || (access_security in C.GetAccess()) || (access_engine in C.GetAccess()))
+		if((ACCESS_CAPTAIN in C.GetAccess()) || (ACCESS_SECURITY in C.GetAccess()) || (ACCESS_ENGINE in C.GetAccess()))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()

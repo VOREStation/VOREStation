@@ -9,7 +9,7 @@
 
 /datum/supply_pack/randomised/robotics
 	group = "Robotics"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robotics_assembly
 	name = "Robotics assembly crate"
@@ -23,7 +23,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "Robotics assembly"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /*/datum/supply_pack/robotics/robolimbs_basic
 	name = "Basic robolimb blueprints"
@@ -34,7 +34,7 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Robolimb blueprints (basic)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robolimbs_adv
 	name = "All robolimb blueprints"
@@ -50,7 +50,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Robolimb blueprints (adv)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 */
 
 /datum/supply_pack/robotics/robolimbs/morpheus
@@ -60,7 +60,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/morpheus
 	containername = "Robolimb blueprints (Morpheus)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robolimbs/cybersolutions
 	name = "Cyber Solutions robolimb blueprints"
@@ -69,7 +69,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/cybersolutions
 	containername = "Robolimb blueprints (Cyber Solutions)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robolimbs/xion
 	name = "Xion robolimb blueprints"
@@ -78,7 +78,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Robolimb blueprints (Xion)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robolimbs/grayson
 	name = "Grayson robolimb blueprints"
@@ -87,7 +87,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/grayson
 	containername = "Robolimb blueprints (Grayson)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robolimbs/hephaestus
 	name = "Hephaestus robolimb blueprints"
@@ -96,7 +96,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Robolimb blueprints (Hephaestus)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robolimbs/wardtakahashi
 	name = "Ward-Takahashi robolimb blueprints"
@@ -105,7 +105,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Robolimb blueprints (Ward-Takahashi)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robolimbs/zenghu
 	name = "Zeng Hu robolimb blueprints"
@@ -114,7 +114,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure/zenghu
 	containername = "Robolimb blueprints (Zeng Hu)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robolimbs/bishop
 	name = "Bishop robolimb blueprints"
@@ -123,7 +123,7 @@
 	cost = 70
 	containertype = /obj/structure/closet/crate/secure/bishop
 	containername = "Robolimb blueprints (Bishop)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/robolimbs/cenilimicybernetics
 	name = "Cenilimi Cybernetics robolimb blueprints"
@@ -132,7 +132,7 @@
 	cost = 45
 	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Robolimb blueprints (Cenilimi Cybernetics)"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/mecha_ripley
 	name = "Circuit Crate (\"Ripley\" APLU)"
@@ -145,7 +145,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "APLU \"Ripley\" Circuit Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/mecha_odysseus
 	name = "Circuit Crate (\"Odysseus\")"
@@ -157,7 +157,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "\"Odysseus\" Circuit Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/randomised/robotics/exosuit_mod
 	num_contained = 1
@@ -202,7 +202,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/einstein
 	containername = "Jumper kit crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/restrainingbolt
 	name = "Restraining bolt crate"
@@ -214,7 +214,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/cybersolutions
 	containername = "Restraining bolt crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/bike
 	name = "Spacebike Crate"
@@ -250,7 +250,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/science
 	containername = "APLU \"Gopher\" Circuit Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/mecha_polecat
 	name = "Circuit Crate (\"Polecat\" APLU)"
@@ -263,7 +263,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/science
 	containername = "APLU \"Polecat\" Circuit Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/mecha_weasel
 	name = "Circuit Crate (\"Weasel\" APLU)"
@@ -276,7 +276,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/science
 	containername = "APLU \"Weasel\" Circuit Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/some_robolimbs
 	name = "Basic Robolimb Blueprints"
@@ -289,7 +289,7 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Basic Robolimb Blueprint Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 /datum/supply_pack/robotics/all_robolimbs
 	name = "Advanced Robolimb Blueprints"
@@ -317,4 +317,4 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Advanced Robolimb Blueprint Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS

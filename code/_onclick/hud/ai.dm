@@ -1,22 +1,22 @@
 /obj/screen/ai/multicam/Click()
 	if(..())
 		return
-	var/mob/living/silicon/ai/AI = usr
-	AI.toggle_multicam()
+	var/mob/living/silicon/ai/ai_user = usr
+	ai_user.toggle_multicam()
 
 /obj/screen/ai/add_multicam/Click()
 	if(..())
 		return
-	var/mob/living/silicon/ai/AI = usr
-	AI.drop_new_multicam()
+	var/mob/living/silicon/ai/ai_user = usr
+	ai_user.drop_new_multicam()
 
 /obj/screen/ai/up/Click()
-	var/mob/living/silicon/ai/AI = usr
-	AI.zMove(UP)
+	var/mob/living/silicon/ai/ai_user = usr
+	ai_user.zMove(UP)
 
 /obj/screen/ai/down/Click()
-	var/mob/living/silicon/ai/AI = usr
-	AI.zMove(DOWN)
+	var/mob/living/silicon/ai/ai_user = usr
+	ai_user.zMove(DOWN)
 
 /mob/living/silicon/ai/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()

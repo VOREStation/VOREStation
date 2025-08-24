@@ -17,7 +17,7 @@
 // For debugging.
 /obj/machinery/computer/shuttle_control/arrivals
 	name = "shuttle control console"
-	req_access = list(access_cent_general)
+	req_access = list(ACCESS_CENT_GENERAL)
 	shuttle_tag = "Arrivals"
 
 // Unlike most shuttles, the arrivals shuttle is completely automated, so we need to put some additional code here.

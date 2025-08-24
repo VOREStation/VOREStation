@@ -4,16 +4,16 @@ var/const/SAR 				=(1<<11)
 var/const/PILOT 			=(1<<13)
 var/const/EXPLORER 			=(1<<14)
 
-var/const/access_pilot = 67
-var/const/access_explorer = 43
+var/const/ACCESS_PILOT = 67
+var/const/ACCESS_EXPLORER = 43
 
 /datum/access/pilot
-	id = access_pilot
+	id = ACCESS_PILOT
 	desc = "Pilot"
 	region = ACCESS_REGION_SUPPLY
 
 /datum/access/explorer
-	id = access_explorer
+	id = ACCESS_EXPLORER
 	desc = "Explorer"
 	region = ACCESS_REGION_GENERAL
 
@@ -66,8 +66,8 @@ var/const/access_explorer = 43
 	supervisors = "the Head of Personnel"
 	selection_color = "#515151"
 	economic_modifier = 4
-	access = list(access_pilot, access_cargo, access_mining, access_mining_station)
-	minimal_access = list(access_pilot, access_cargo, access_mining, access_mining_station)
+	access = list(ACCESS_PILOT, ACCESS_CARGO, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_PILOT, ACCESS_CARGO, ACCESS_MINING, ACCESS_MINING_STATION)
 
 	outfit_type = /decl/hierarchy/outfit/job/pilot
 	job_description = "A Pilot flies one of the shuttles between the Southern Cross and the outpost on Sif."
@@ -83,8 +83,8 @@ var/const/access_explorer = 43
 	supervisors = "the Research Director"
 	selection_color =  "#633D63"
 	economic_modifier = 4
-	access = list(access_explorer, access_research)
-	minimal_access = list(access_explorer, access_research)
+	access = list(ACCESS_EXPLORER, ACCESS_RESEARCH)
+	minimal_access = list(ACCESS_EXPLORER, ACCESS_RESEARCH)
 	banned_job_species = list(SPECIES_ZADDAT)
 
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
@@ -107,8 +107,8 @@ var/const/access_explorer = 43
 	supervisors = "the Chief Medical Officer"
 	selection_color = "#515151"
 	economic_modifier = 4
-	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_eva, access_maint_tunnels, access_external_airlocks, access_psychiatrist, access_explorer)
-	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_explorer)
+	access = list(ACCESS_MEDICAL, ACCESS_MEDICAL_EQUIP, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_EVA, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_PSYCHIATRIST, ACCESS_EXPLORER)
+	minimal_access = list(ACCESS_MEDICAL, ACCESS_MEDICAL_EQUIP, ACCESS_MORGUE, ACCESS_EXPLORER)
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar

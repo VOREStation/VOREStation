@@ -77,7 +77,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Surgery crate"
-	access = access_medical
+	access = ACCESS_MEDICAL
 
 /datum/supply_pack/med/deathalarm
 	name = "Death Alarm crate"
@@ -89,7 +89,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Death Alarm crate"
-	access = access_medical
+	access = ACCESS_MEDICAL
 
 /datum/supply_pack/med/clotting
 	name = "Clotting Medicine crate"
@@ -100,7 +100,7 @@
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/zenghu
 	containername = "Clotting Medicine crate"
-	access = access_medical
+	access = ACCESS_MEDICAL
 
 /datum/supply_pack/med/sterile
 	name = "Sterile equipment crate"
@@ -128,7 +128,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical surplus equipment"
-	access = access_medical
+	access = ACCESS_MEDICAL
 
 /datum/supply_pack/med/cmogear
 	name = "Chief Medical Officer equipment"
@@ -154,7 +154,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Chief medical officer equipment"
-	access = access_cmo
+	access = ACCESS_CMO
 
 /datum/supply_pack/med/doctorgear
 	name = JOB_MEDICAL_DOCTOR + " equipment"
@@ -178,7 +178,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = JOB_MEDICAL_DOCTOR + " equipment"
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/chemistgear
 	name = JOB_CHEMIST + " equipment"
@@ -202,7 +202,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = JOB_CHEMIST + " equipment"
-	access = access_chemistry
+	access = ACCESS_CHEMISTRY
 
 /datum/supply_pack/med/paramedicgear
 	name = JOB_PARAMEDIC + " equipment"
@@ -231,7 +231,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = JOB_PARAMEDIC + " equipment"
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/psychiatristgear
 	name = JOB_PSYCHIATRIST + " equipment"
@@ -251,7 +251,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = JOB_PSYCHIATRIST + " equipment"
-	access = access_psychiatrist
+	access = ACCESS_PSYCHIATRIST
 
 /datum/supply_pack/med/medicalscrubs
 	name = "Medical scrubs"
@@ -273,7 +273,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical scrubs crate"
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/autopsy
 	name = "Autopsy equipment"
@@ -291,7 +291,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Autopsy equipment crate"
-	access = access_morgue
+	access = ACCESS_MORGUE
 
 /datum/supply_pack/med/medicaluniforms
 	name = "Medical uniforms"
@@ -319,7 +319,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical uniform crate"
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/medicalbiosuits
 	name = "Medical biohazard gear"
@@ -338,7 +338,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical biohazard equipment"
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/portablefreezers
 	name = "Portable freezers crate"
@@ -347,7 +347,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Portable freezers"
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/virus
 	name = "Virus culture crate"
@@ -356,7 +356,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/zenghu
 	containername = "Virus culture crate"
-	access = access_cmo
+	access = ACCESS_CMO
 
 /datum/supply_pack/med/defib
 	name = "Defibrillator crate"
@@ -420,7 +420,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Virology biohazard equipment"
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/disease
 	name = "Experimental Disease crate"
@@ -430,7 +430,7 @@
 	)
 	cost = 60
 	containertype = /obj/structure/closet/crate/freezer
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/disease_minor
 	name = "Minor Experimental Disease crate"
@@ -440,7 +440,7 @@
 	)
 	cost = 40
 	containertype = /obj/structure/closet/crate/freezer
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP
 
 /datum/supply_pack/med/compactdefib
 	name = "Compact Defibrillator crate"
@@ -449,4 +449,4 @@
 	cost = 90
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Compact Defibrillator crate"
-	access = access_medical_equip
+	access = ACCESS_MEDICAL_EQUIP

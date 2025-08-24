@@ -6,11 +6,11 @@
 
 /datum/supply_pack/security
 	group = "Security"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/randomised/security
 	group = "Security"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/randomised/security/armor
 	name = "Armor - Security armor"
@@ -32,7 +32,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/security/carriersblack
 	name = "Armor - Black modular armor"
@@ -280,7 +280,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Riot gear crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/security/riot_armor
 	name = "Armor - Riot"
@@ -294,7 +294,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Riot armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/security/riot_plates
 	name = "Armor - Riot plates"
@@ -306,7 +306,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Riot armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 /*
 /datum/supply_pack/security/riot_sprayer
 	name = "Gear - Riot sprayer"
@@ -316,7 +316,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Riot sprayer crate"
-	access = access_armory*/
+	access = ACCESS_ARMORY*/
 
 /datum/supply_pack/security/ablative_armor
 	name = "Armor - Ablative"
@@ -330,7 +330,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Ablative armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/security/ablative_plates
 	name = "Armor - Ablative plates"
@@ -342,7 +342,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Ablative armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/security/bullet_resistant_armor
 	name = "Armor - Ballistic"
@@ -356,7 +356,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Ballistic armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 /* VOREStation Removal - Howabout no ERT armor being orderable?
 
 /datum/supply_pack/security/bullet_resistant_plates
@@ -368,7 +368,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Ballistic armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/security/combat_armor
 	name = "Armor - Combat"
@@ -381,14 +381,14 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/saare
 	containername = "Combat armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/security/tactical
 	name = "Armor - Tactical"
 	containertype = /obj/structure/closet/crate/secure/saare
 	containername = "Tactical armor crate"
 	cost = 40
-	access = access_armory
+	access = ACCESS_ARMORY
 	contains = list(
 			/obj/item/clothing/under/tactical,
 			/obj/item/clothing/suit/armor/tactical,
@@ -415,7 +415,7 @@
 	containertype = /obj/structure/closet/crate/secure/saare
 	containername = "Tactical Light armor crate"
 	cost = 75
-	access = access_armory
+	access = ACCESS_ARMORY
 	contains = list(
 				/obj/item/clothing/suit/storage/vest/heavy/flexitac,
 				/obj/item/clothing/head/helmet/flexitac,
@@ -448,7 +448,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Wall shield generators crate"
-	access = access_teleporter
+	access = ACCESS_TELEPORTER
 
 /datum/supply_pack/randomised/security/holster
 	name = "Gear - Holsters"
@@ -506,7 +506,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "Forensic equipment"
-	access = access_forensics_lockers
+	access = ACCESS_FORENSICS_LOCKERS
 
 /datum/supply_pack/security/detectivescan
 	name = "Forensic - Scanning Equipment"
@@ -520,7 +520,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Forensic equipment"
-	access = access_forensics_lockers
+	access = ACCESS_FORENSICS_LOCKERS
 
 /datum/supply_pack/security/detectiveclothes
 	name = "Forensic - Investigation apparel"
@@ -543,7 +543,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "Investigation clothing"
-	access = access_forensics_lockers
+	access = ACCESS_FORENSICS_LOCKERS
 
 /datum/supply_pack/security/officergear
 	name = "Gear - Officer equipment"
@@ -574,7 +574,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "Officer equipment"
-	access = access_brig
+	access = ACCESS_BRIG
 
 /datum/supply_pack/security/wardengear
 	name = "Gear - " + JOB_WARDEN + " equipment"
@@ -604,7 +604,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = JOB_WARDEN + " equipment"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/security/headofsecgear
 	name = "Gear - " + JOB_HEAD_OF_SECURITY + " equipment"
@@ -633,7 +633,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = JOB_HEAD_OF_SECURITY + " equipment"
-	access = access_hos
+	access = ACCESS_HOS
 
 /datum/supply_pack/security/securityclothing
 	name = "Misc - Security uniform red"
@@ -713,7 +713,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "Security biohazard gear"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/security/posters
 	name = "Gear - Morale Posters"
@@ -724,7 +724,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "Morale Posters"
-	access = access_maint_tunnels
+	access = ACCESS_MAINT_TUNNELS
 
 /*/datum/supply_pack/security/guardbeast //VORESTATION AI TEMPORARY REMOVAL
 	name = "VARMAcorp autoNOMous security solution"
@@ -732,8 +732,8 @@
 	containertype = /obj/structure/largecrate/animal/guardbeast
 	containername = "VARMAcorp autoNOMous security solution crate"
 	access = list(
-			access_security,
-			access_xenobiology)
+			ACCESS_SECURITY,
+			ACCESS_XENOBIOLOGY)
 	one_access = TRUE
 
 /datum/supply_pack/security/guardmutant
@@ -742,8 +742,8 @@
 	containertype = /obj/structure/largecrate/animal/guardmutant
 	containername = "VARMAcorp autoNOMous security phoron-proof solution crate"
 	access = list(
-			access_security,
-			access_xenobiology)
+			ACCESS_SECURITY,
+			ACCESS_XENOBIOLOGY)
 	one_access = TRUE
 */
 
@@ -756,7 +756,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Tracking implants"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/security/chemicalimplant
 	name = "Implants - Chemical"
@@ -767,4 +767,4 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Chemical implants"
-	access = access_security
+	access = ACCESS_SECURITY

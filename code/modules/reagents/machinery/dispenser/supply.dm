@@ -78,7 +78,7 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure
 	containername = "chemical crate"
-	access = list(access_chemistry)
+	access = list(ACCESS_CHEMISTRY)
 	group = "Reagents"
 
 /datum/supply_pack/alcohol_reagents
@@ -109,7 +109,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "alcoholic drinks crate"
-	access = list(access_bar)
+	access = list(ACCESS_BAR)
 	group = "Reagents"
 
 /datum/supply_pack/softdrink_reagents
@@ -241,43 +241,43 @@
 
 // Chemistry-restricted (raw reagents excluding sugar/water)
 //      Datum path  Contents type                                                       Supply pack name                  Container name                         Cost  Container access
-SEC_PACK(hydrogen,  /obj/item/reagent_containers/chem_disp_cartridge/hydrogen,   "Reagent refill - Hydrogen",      "hydrogen reagent cartridge crate",      15, access_chemistry)
-SEC_PACK(lithium,   /obj/item/reagent_containers/chem_disp_cartridge/lithium,    "Reagent refill - Lithium",       "lithium reagent cartridge crate",       15, access_chemistry)
-SEC_PACK(carbon,    /obj/item/reagent_containers/chem_disp_cartridge/carbon,     "Reagent refill - Carbon",        "carbon reagent cartridge crate",        15, access_chemistry)
-SEC_PACK(nitrogen,  /obj/item/reagent_containers/chem_disp_cartridge/nitrogen,   "Reagent refill - Nitrogen",      "nitrogen reagent cartridge crate",      15, access_chemistry)
-SEC_PACK(oxygen,    /obj/item/reagent_containers/chem_disp_cartridge/oxygen,     "Reagent refill - Oxygen",        "oxygen reagent cartridge crate",        15, access_chemistry)
-SEC_PACK(fluorine,  /obj/item/reagent_containers/chem_disp_cartridge/fluorine,   "Reagent refill - Fluorine",      "fluorine reagent cartridge crate",      15, access_chemistry)
-SEC_PACK(sodium,    /obj/item/reagent_containers/chem_disp_cartridge/sodium,     "Reagent refill - Sodium",        "sodium reagent cartridge crate",        15, access_chemistry)
-SEC_PACK(aluminium, /obj/item/reagent_containers/chem_disp_cartridge/aluminum,   "Reagent refill - Aluminum",      "aluminum reagent cartridge crate",      15, access_chemistry)
-SEC_PACK(silicon,   /obj/item/reagent_containers/chem_disp_cartridge/silicon,    "Reagent refill - Silicon",       "silicon reagent cartridge crate",       15, access_chemistry)
-SEC_PACK(phosphorus,/obj/item/reagent_containers/chem_disp_cartridge/phosphorus, "Reagent refill - Phosphorus",    "phosphorus reagent cartridge crate",    15, access_chemistry)
-SEC_PACK(sulfur,    /obj/item/reagent_containers/chem_disp_cartridge/sulfur,     "Reagent refill - Sulfur",        "sulfur reagent cartridge crate",        15, access_chemistry)
-SEC_PACK(chlorine,  /obj/item/reagent_containers/chem_disp_cartridge/chlorine,   "Reagent refill - Chlorine",      "chlorine reagent cartridge crate",      15, access_chemistry)
-SEC_PACK(potassium, /obj/item/reagent_containers/chem_disp_cartridge/potassium,  "Reagent refill - Potassium",     "potassium reagent cartridge crate",     15, access_chemistry)
-SEC_PACK(iron,      /obj/item/reagent_containers/chem_disp_cartridge/iron,       "Reagent refill - Iron",          "iron reagent cartridge crate",          15, access_chemistry)
-SEC_PACK(copper,    /obj/item/reagent_containers/chem_disp_cartridge/copper,     "Reagent refill - Copper",        "copper reagent cartridge crate",        15, access_chemistry)
-SEC_PACK(mercury,   /obj/item/reagent_containers/chem_disp_cartridge/mercury,    "Reagent refill - Mercury",       "mercury reagent cartridge crate",       15, access_chemistry)
-SEC_PACK(radium,    /obj/item/reagent_containers/chem_disp_cartridge/radium,     "Reagent refill - Radium",        "radium reagent cartridge crate",        15, access_chemistry)
-SEC_PACK(ethanol,   /obj/item/reagent_containers/chem_disp_cartridge/ethanol,    "Reagent refill - Ethanol",       "ethanol reagent cartridge crate",       15, access_chemistry)
-SEC_PACK(sacid,     /obj/item/reagent_containers/chem_disp_cartridge/sacid,      "Reagent refill - Sulfuric Acid", "sulfuric acid reagent cartridge crate", 15, access_chemistry)
-SEC_PACK(tungsten,  /obj/item/reagent_containers/chem_disp_cartridge/tungsten,   "Reagent refill - Tungsten",      "tungsten reagent cartridge crate",      15, access_chemistry)
-SEC_PACK(calcium,   /obj/item/reagent_containers/chem_disp_cartridge/calcium,    "Reagent refill - Calcium",       "calcium reagent cartridge crate",       15, access_chemistry)
+SEC_PACK(hydrogen,  /obj/item/reagent_containers/chem_disp_cartridge/hydrogen,   "Reagent refill - Hydrogen",      "hydrogen reagent cartridge crate",      15, ACCESS_CHEMISTRY)
+SEC_PACK(lithium,   /obj/item/reagent_containers/chem_disp_cartridge/lithium,    "Reagent refill - Lithium",       "lithium reagent cartridge crate",       15, ACCESS_CHEMISTRY)
+SEC_PACK(carbon,    /obj/item/reagent_containers/chem_disp_cartridge/carbon,     "Reagent refill - Carbon",        "carbon reagent cartridge crate",        15, ACCESS_CHEMISTRY)
+SEC_PACK(nitrogen,  /obj/item/reagent_containers/chem_disp_cartridge/nitrogen,   "Reagent refill - Nitrogen",      "nitrogen reagent cartridge crate",      15, ACCESS_CHEMISTRY)
+SEC_PACK(oxygen,    /obj/item/reagent_containers/chem_disp_cartridge/oxygen,     "Reagent refill - Oxygen",        "oxygen reagent cartridge crate",        15, ACCESS_CHEMISTRY)
+SEC_PACK(fluorine,  /obj/item/reagent_containers/chem_disp_cartridge/fluorine,   "Reagent refill - Fluorine",      "fluorine reagent cartridge crate",      15, ACCESS_CHEMISTRY)
+SEC_PACK(sodium,    /obj/item/reagent_containers/chem_disp_cartridge/sodium,     "Reagent refill - Sodium",        "sodium reagent cartridge crate",        15, ACCESS_CHEMISTRY)
+SEC_PACK(aluminium, /obj/item/reagent_containers/chem_disp_cartridge/aluminum,   "Reagent refill - Aluminum",      "aluminum reagent cartridge crate",      15, ACCESS_CHEMISTRY)
+SEC_PACK(silicon,   /obj/item/reagent_containers/chem_disp_cartridge/silicon,    "Reagent refill - Silicon",       "silicon reagent cartridge crate",       15, ACCESS_CHEMISTRY)
+SEC_PACK(phosphorus,/obj/item/reagent_containers/chem_disp_cartridge/phosphorus, "Reagent refill - Phosphorus",    "phosphorus reagent cartridge crate",    15, ACCESS_CHEMISTRY)
+SEC_PACK(sulfur,    /obj/item/reagent_containers/chem_disp_cartridge/sulfur,     "Reagent refill - Sulfur",        "sulfur reagent cartridge crate",        15, ACCESS_CHEMISTRY)
+SEC_PACK(chlorine,  /obj/item/reagent_containers/chem_disp_cartridge/chlorine,   "Reagent refill - Chlorine",      "chlorine reagent cartridge crate",      15, ACCESS_CHEMISTRY)
+SEC_PACK(potassium, /obj/item/reagent_containers/chem_disp_cartridge/potassium,  "Reagent refill - Potassium",     "potassium reagent cartridge crate",     15, ACCESS_CHEMISTRY)
+SEC_PACK(iron,      /obj/item/reagent_containers/chem_disp_cartridge/iron,       "Reagent refill - Iron",          "iron reagent cartridge crate",          15, ACCESS_CHEMISTRY)
+SEC_PACK(copper,    /obj/item/reagent_containers/chem_disp_cartridge/copper,     "Reagent refill - Copper",        "copper reagent cartridge crate",        15, ACCESS_CHEMISTRY)
+SEC_PACK(mercury,   /obj/item/reagent_containers/chem_disp_cartridge/mercury,    "Reagent refill - Mercury",       "mercury reagent cartridge crate",       15, ACCESS_CHEMISTRY)
+SEC_PACK(radium,    /obj/item/reagent_containers/chem_disp_cartridge/radium,     "Reagent refill - Radium",        "radium reagent cartridge crate",        15, ACCESS_CHEMISTRY)
+SEC_PACK(ethanol,   /obj/item/reagent_containers/chem_disp_cartridge/ethanol,    "Reagent refill - Ethanol",       "ethanol reagent cartridge crate",       15, ACCESS_CHEMISTRY)
+SEC_PACK(sacid,     /obj/item/reagent_containers/chem_disp_cartridge/sacid,      "Reagent refill - Sulfuric Acid", "sulfuric acid reagent cartridge crate", 15, ACCESS_CHEMISTRY)
+SEC_PACK(tungsten,  /obj/item/reagent_containers/chem_disp_cartridge/tungsten,   "Reagent refill - Tungsten",      "tungsten reagent cartridge crate",      15, ACCESS_CHEMISTRY)
+SEC_PACK(calcium,   /obj/item/reagent_containers/chem_disp_cartridge/calcium,    "Reagent refill - Calcium",       "calcium reagent cartridge crate",       15, ACCESS_CHEMISTRY)
 
 // Bar-restricted (alcoholic drinks)
 //      Datum path Contents type                                                      Supply pack name                Container name                      Cost  Container access
-SEC_PACK(beer,     /obj/item/reagent_containers/chem_disp_cartridge/beer,      "Reagent refill - Beer",        "beer reagent cartridge crate",       15, access_bar)
-SEC_PACK(kahlua,   /obj/item/reagent_containers/chem_disp_cartridge/kahlua,    "Reagent refill - Kahlua",      "kahlua reagent cartridge crate",     15, access_bar)
-SEC_PACK(whiskey,  /obj/item/reagent_containers/chem_disp_cartridge/whiskey,   "Reagent refill - Whiskey",     "whiskey reagent cartridge crate",    15, access_bar)
-SEC_PACK(rwine,    /obj/item/reagent_containers/chem_disp_cartridge/redwine,   "Reagent refill - Red Wine",    "red wine reagent cartridge crate",   15, access_bar)
-SEC_PACK(wwine,    /obj/item/reagent_containers/chem_disp_cartridge/whitewine, "Reagent refill - White Wine",  "white wine reagent cartridge crate", 15, access_bar)
-SEC_PACK(vodka,    /obj/item/reagent_containers/chem_disp_cartridge/vodka,     "Reagent refill - Vodka",       "vodka reagent cartridge crate",      15, access_bar)
-SEC_PACK(gin,      /obj/item/reagent_containers/chem_disp_cartridge/gin,       "Reagent refill - Gin",         "gin reagent cartridge crate",        15, access_bar)
-SEC_PACK(rum,      /obj/item/reagent_containers/chem_disp_cartridge/rum,       "Reagent refill - Rum",         "rum reagent cartridge crate",        15, access_bar)
-SEC_PACK(tequila,  /obj/item/reagent_containers/chem_disp_cartridge/tequila,   "Reagent refill - Tequila",     "tequila reagent cartridge crate",    15, access_bar)
-SEC_PACK(vermouth, /obj/item/reagent_containers/chem_disp_cartridge/vermouth,  "Reagent refill - Vermouth",    "vermouth reagent cartridge crate",   15, access_bar)
-SEC_PACK(cognac,   /obj/item/reagent_containers/chem_disp_cartridge/cognac,    "Reagent refill - Cognac",      "cognac reagent cartridge crate",     15, access_bar)
-SEC_PACK(ale,      /obj/item/reagent_containers/chem_disp_cartridge/ale,       "Reagent refill - Ale",         "ale reagent cartridge crate",        15, access_bar)
-SEC_PACK(mead,     /obj/item/reagent_containers/chem_disp_cartridge/mead,      "Reagent refill - Mead",        "mead reagent cartridge crate",       15, access_bar)
+SEC_PACK(beer,     /obj/item/reagent_containers/chem_disp_cartridge/beer,      "Reagent refill - Beer",        "beer reagent cartridge crate",       15, ACCESS_BAR)
+SEC_PACK(kahlua,   /obj/item/reagent_containers/chem_disp_cartridge/kahlua,    "Reagent refill - Kahlua",      "kahlua reagent cartridge crate",     15, ACCESS_BAR)
+SEC_PACK(whiskey,  /obj/item/reagent_containers/chem_disp_cartridge/whiskey,   "Reagent refill - Whiskey",     "whiskey reagent cartridge crate",    15, ACCESS_BAR)
+SEC_PACK(rwine,    /obj/item/reagent_containers/chem_disp_cartridge/redwine,   "Reagent refill - Red Wine",    "red wine reagent cartridge crate",   15, ACCESS_BAR)
+SEC_PACK(wwine,    /obj/item/reagent_containers/chem_disp_cartridge/whitewine, "Reagent refill - White Wine",  "white wine reagent cartridge crate", 15, ACCESS_BAR)
+SEC_PACK(vodka,    /obj/item/reagent_containers/chem_disp_cartridge/vodka,     "Reagent refill - Vodka",       "vodka reagent cartridge crate",      15, ACCESS_BAR)
+SEC_PACK(gin,      /obj/item/reagent_containers/chem_disp_cartridge/gin,       "Reagent refill - Gin",         "gin reagent cartridge crate",        15, ACCESS_BAR)
+SEC_PACK(rum,      /obj/item/reagent_containers/chem_disp_cartridge/rum,       "Reagent refill - Rum",         "rum reagent cartridge crate",        15, ACCESS_BAR)
+SEC_PACK(tequila,  /obj/item/reagent_containers/chem_disp_cartridge/tequila,   "Reagent refill - Tequila",     "tequila reagent cartridge crate",    15, ACCESS_BAR)
+SEC_PACK(vermouth, /obj/item/reagent_containers/chem_disp_cartridge/vermouth,  "Reagent refill - Vermouth",    "vermouth reagent cartridge crate",   15, ACCESS_BAR)
+SEC_PACK(cognac,   /obj/item/reagent_containers/chem_disp_cartridge/cognac,    "Reagent refill - Cognac",      "cognac reagent cartridge crate",     15, ACCESS_BAR)
+SEC_PACK(ale,      /obj/item/reagent_containers/chem_disp_cartridge/ale,       "Reagent refill - Ale",         "ale reagent cartridge crate",        15, ACCESS_BAR)
+SEC_PACK(mead,     /obj/item/reagent_containers/chem_disp_cartridge/mead,      "Reagent refill - Mead",        "mead reagent cartridge crate",       15, ACCESS_BAR)
 
 // Unrestricted (water, sugar, non-alcoholic drinks)
 //  Datum path   Contents type                                                       Supply pack name                        Container name                                          Cost

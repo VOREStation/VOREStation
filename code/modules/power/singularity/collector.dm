@@ -6,7 +6,7 @@
 	icon_state = "ca"
 	anchored = FALSE
 	density = TRUE
-	req_access = list(access_engine_equip)
+	req_access = list(ACCESS_ENGINE_EQUIP)
 //	use_power = 0
 	var/obj/item/tank/phoron/P = null
 	var/last_power = 0

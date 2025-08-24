@@ -80,7 +80,7 @@
 	desc = "This glowing blue badge marks the holder as THE LAW."
 	icon_state = "holobadge"
 	var/emagged //Emagging removes Sec check.
-	var/valid_access = list(access_security) //Default access is security, to be overriden or expanded as desired
+	var/valid_access = list(ACCESS_SECURITY) //Default access is security, to be overriden or expanded as desired
 
 /obj/item/clothing/accessory/badge/holo/cord
 	icon_state = "holobadge-cord"
@@ -162,7 +162,7 @@
 	desc = "This badge marks the holder as an investigative agent."
 	icon_state = "invbadge"
 	badge_string = "Corporate Investigator"
-	valid_access = list(access_security, access_lawyer)	//Permitting both sec and IAA!
+	valid_access = list(ACCESS_SECURITY, ACCESS_LAWYER)	//Permitting both sec and IAA!
 	slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/clothing/accessory/badge/holo/sheriff

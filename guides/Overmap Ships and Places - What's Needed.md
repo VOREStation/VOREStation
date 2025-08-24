@@ -41,7 +41,7 @@ For now, just use this as reference for what is needed for Overmap ships + locat
 /obj/machinery/computer/shuttle_control/explore/SHIPNAME
     name = "short jump console"
     shuttle_tag = "[Name]" // Direct reference to above shuttle. MUST be the same as name.
-    req_one_access = list(access_pilot)
+    req_one_access = list(ACCESS_PILOT)
 ```
 
 **OVERMAP SHIP CREATION INSTRUCTIONS:**
