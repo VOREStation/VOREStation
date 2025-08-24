@@ -1291,6 +1291,7 @@
 /obj/structure/cable/orange{
 	icon_state = "1-8"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engine_eva)
 "cG" = (
