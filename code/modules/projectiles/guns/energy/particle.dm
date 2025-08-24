@@ -157,7 +157,7 @@
 
 /obj/item/pressurelock
 	name = "Pressure interlock"
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "pressurelock"
 	desc = "A safety interlock that can be installed in an antiparticle projector. It prevents the weapon from discharging in pressurised environments."
 	w_class = ITEMSIZE_TINY

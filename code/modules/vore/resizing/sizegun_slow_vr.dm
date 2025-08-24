@@ -4,7 +4,7 @@
 /obj/item/slow_sizegun
 	name = "gradual size gun"
 	desc = "A highly advanced ray gun, designed for progressive and gradual changing of size. Size trading can be toggled on via alt-clicking."
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "sizegun-old-0"
 	var/base_icon_state = "sizegun-old"
 	w_class = ITEMSIZE_NORMAL
