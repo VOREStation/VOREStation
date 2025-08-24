@@ -198,7 +198,7 @@
 	if(!user.IsAdvancedToolUser())
 		return
 	if(!status && bcell && bcell.charge >= hitcost)
-		if(do_after(user, charge_time))
+		if(do_after(user, charge_time, target = src))
 			status = 1
 			user.visible_message(span_warning("[user] charges \the [src]!"),span_warning("You charge \the [src]. <b>It's hammer time!</b>"))
 			playsound(src, "sparks", 75, 1, -1)

@@ -291,7 +291,7 @@
 		user.visible_message(span_cult("[user] aims \the [src] at \the [A]."))
 	if(power_supply && power_supply.charge >= charge_cost) //Do a delay for pointblanking too.
 		power_cycle = TRUE
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			if(A.loc == target_turf)
 				..(A, user, def_zone)
 			else
@@ -321,7 +321,7 @@
 
 	if(!power_cycle)
 		power_cycle = TRUE
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			if(A.loc == target_turf)
 				..(A, user, adjacent, params)
 			else

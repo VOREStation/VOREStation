@@ -61,7 +61,7 @@
 		if(C.get_amount() < 5)
 			to_chat(user, span_warning("You do not have enough length in \the [C] to string this!"))
 			return
-		if(do_after(user, rand(10 SECONDS, 20 SECONDS)))
+		if(do_after(user, rand(10 SECONDS, 20 SECONDS), target = src))
 			C.use(5)
 			strung = TRUE
 			to_chat(user, span_notice("You string \the [src]!"))

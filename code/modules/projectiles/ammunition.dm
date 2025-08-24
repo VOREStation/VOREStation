@@ -64,7 +64,7 @@
 			if(box.caliber == bullet.caliber && bullet.BB)
 				if (boolets < 1)
 					to_chat(user, span_notice("You start collecting shells.")) // Say it here so it doesn't get said if we don't find anything useful.
-				if(do_after(user,5,box))
+				if(do_after(user, 5, target = box))
 					if(box.stored_ammo.len >= box.max_ammo) // Double check because these can change during the wait.
 						break
 					if(bullet.loc != floor)

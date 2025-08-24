@@ -80,7 +80,7 @@
 		return 0
 
 	H.visible_message(span_warning("[H] begins overriding the airlock!"),span_notice("You begin overriding the airlock!"))
-	if(do_after(H,6 SECONDS,A) && A.density)
+	if(do_after(H, 6 SECONDS, target = A) && A.density)
 		A.open()
 
 	var/username = FindNameFromID(H) || "Unknown"

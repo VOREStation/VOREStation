@@ -49,7 +49,7 @@
 	if(P.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(src, P.usesound, 50, 1)
 		to_chat(user, span_notice("You start to cut the shower curtains."))
-		if(do_after(user, 10))
+		if(do_after(user, 1 SECOND, target = src))
 			to_chat(user, span_notice("You cut the shower curtains."))
 			new /obj/item/stack/material/plastic(src.loc, 3)
 			qdel(src)

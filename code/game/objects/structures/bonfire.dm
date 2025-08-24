@@ -76,7 +76,7 @@
 /obj/structure/bonfire/proc/dismantle(mob/user)
 	if(!burning)
 		user.visible_message("[user] starts dismantling \the [src].", "You start dismantling \the [src].")
-		if(do_after(user, 5 SECONDS))
+		if(do_after(user, 5 SECONDS, target = src))
 			for(var/i = 1 to 5)
 				material.place_dismantled_product(get_turf(src))
 			user.visible_message("[user] dismantles down \the [src].", "You dismantle \the [src].")

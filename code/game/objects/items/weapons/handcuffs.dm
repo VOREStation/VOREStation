@@ -79,7 +79,7 @@
 
 	user.visible_message(span_danger("\The [user] is attempting to put [cuff_type] on \the [H]!"))
 
-	if(!do_after(user,use_time))
+	if(!do_after(user, use_time, target = src))
 		return 0
 
 	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
@@ -256,7 +256,7 @@ var/last_chew = 0
 
 	user.visible_message(span_danger("\The [user] is attempting to put [cuff_type] on \the [H]!"))
 
-	if(!do_after(user,use_time))
+	if(!do_after(user, use_time, target = src))
 		return 0
 
 	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime

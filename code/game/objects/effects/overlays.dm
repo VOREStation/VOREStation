@@ -69,7 +69,7 @@
 /obj/effect/overlay/snow/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/shovel))
 		user.visible_message(span_notice("[user] begins to shovel away \the [src]."))
-		if(do_after(user, 40))
+		if(do_after(user, 4 SECONDS, target = src))
 			to_chat(user, span_notice("You have finished shoveling!"))
 			qdel(src)
 		return

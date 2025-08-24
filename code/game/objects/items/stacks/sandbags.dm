@@ -69,7 +69,7 @@
 
 	if (recipe.time)
 		to_chat(user, span_notice("Building [recipe.title] ..."))
-		if (!do_after(user, recipe.time))
+		if (!do_after(user, recipe.time, target = src))
 			return
 
 	if (use(required))
@@ -139,7 +139,7 @@
 	color = M.icon_colour
 
 /obj/item/stack/emptysandbag/attack_self(var/mob/user)
-	while(do_after(user, 1 SECOND) && can_use(1) && istype(get_turf(src), /turf/simulated/floor/outdoors))
+	while(do_after(user, 1 SECOND, target = src) && can_use(1) && istype(get_turf(src), /turf/simulated/floor/outdoors))
 		use(1)
 		var/obj/item/stack/sandbags/SB = new (get_turf(src), 1, bag_material)
 		SB.color = color

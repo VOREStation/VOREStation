@@ -64,7 +64,7 @@
 	smoke.start()
 
 	src.visible_message(span_notice("[src] begins pulling dark energies around themselves."))
-	if(do_after(src, tunnel_time))
+	if(do_after(src, tunnel_time, target = src))
 		if(SK.created_dark_tunnel) //check again because the user may have queued this up multiple times.
 			to_chat(src, span_warning("You have already made a tunnel to the Dark!"))
 			return FALSE

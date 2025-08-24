@@ -78,7 +78,7 @@
 
 	var/obj/structure/sign/poster/P = new poster_type(user.loc, get_dir(user, W), src)
 
-	if(do_after(user, 17)) //Let's check if everything is still there
+	if(do_after(user, 17, target = src)) //Let's check if everything is still there
 		to_chat(user, span_notice("You place the poster!"))
 		qdel(src)
 		return TRUE

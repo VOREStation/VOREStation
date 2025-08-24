@@ -120,7 +120,7 @@
 			return
 		to_chat(user, span_notice("You start dismantling \the [src]..."))
 		playsound(src, I.usesound, 50, 1)
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			user.visible_message(span_notice("[user] dismantles \the [src]."), span_notice("You dismantle \the [src]."))
 			new /obj/item/beehive_assembly(loc)
 			qdel(src)
@@ -135,7 +135,7 @@
 			to_chat(user, span_notice("The bees won't let you take the honeycombs out like this, smoke them first."))
 			return
 		user.visible_message(span_notice("[user] starts taking the honeycombs out of \the [src]."), span_notice("You start taking the honeycombs out of \the [src]..."))
-		while(honeycombs >= 100 && length(frames) && do_after(user, 30))
+		while(honeycombs >= 100 && length(frames) && do_after(user, 3 SECONDS, target = src))
 			var/obj/item/honey_frame/H = pop(frames)
 			H.honey = 20
 			honeycombs -= 100
@@ -292,7 +292,7 @@
 
 /obj/item/beehive_assembly/attack_self(var/mob/user)
 	to_chat(user, span_notice("You start assembling \the [src]..."))
-	if(do_after(user, 30))
+	if(do_after(user, 3 SECONDS, target = src))
 		user.visible_message(span_notice("[user] constructs a beehive."), span_notice("You construct a beehive."))
 		new /obj/machinery/beehive(get_turf(user))
 		user.drop_from_inventory(src)

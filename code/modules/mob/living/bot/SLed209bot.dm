@@ -132,7 +132,7 @@
 					to_chat(user, span_warning("You need one coil of wire to wire [src]."))
 					return
 				to_chat(user, span_notice("You start to wire [src]."))
-				if(do_after(user, 40) && build_step == 6)
+				if(do_after(user, 4 SECONDS, target = src) && build_step == 6)
 					if(C.use(1))
 						build_step++
 						to_chat(user, span_notice("You wire the ED-209 assembly."))

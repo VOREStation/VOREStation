@@ -120,7 +120,7 @@
 	if(O.has_tool_quality(TOOL_WRENCH))
 		if(finished)
 			to_chat(user, span_notice("You start breaking down \the [src]."))
-			if(do_after(user, 10 SECONDS, src))
+			if(do_after(user, 10 SECONDS, target = src))
 				new /obj/item/stack/material/plasteel(loc, 10)
 				playsound(user, O.usesound, 50, 1)
 				qdel(src)

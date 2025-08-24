@@ -79,7 +79,7 @@
 			return
 		else
 			to_chat(user, "You begin inserting \the [I] into \the [src].")
-			if(do_after(user, 25))
+			if(do_after(user, 25, target = src))
 				user.drop_item()
 				I.forceMove(src)
 				attached_cell = I
@@ -90,7 +90,7 @@
 	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(attached_cell)
 			to_chat(user, "You begin removing \the [attached_cell] from \the [src].")
-			if(do_after(user, 10))	// Faster than doing it by hand
+			if(do_after(user, 1 SECOND, target = src))	// Faster than doing it by hand
 				attached_cell.update_icon()
 				attached_cell.forceMove(get_turf(src.loc))
 				attached_cell = null
@@ -113,7 +113,7 @@
 	if(user.get_inactive_hand() == src)
 		if(attached_cell)
 			to_chat(user, "You struggle to remove \the [attached_cell] from \the [src].")
-			if(do_after(user, 40))
+			if(do_after(user, 4 SECONDS, target = src))
 				attached_cell.update_icon()
 				user.put_in_hands(attached_cell)
 				attached_cell = null

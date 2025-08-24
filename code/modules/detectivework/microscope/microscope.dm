@@ -32,7 +32,7 @@
 
 	to_chat(user, span_notice("The microscope whirrs as you examine \the [sample]."))
 
-	if(!do_after(user, 2 SECONDS) || !sample)
+	if(!do_after(user, 2 SECONDS, target = sample) || !sample)
 		to_chat(user, span_notice("You stop examining \the [sample]."))
 		return
 

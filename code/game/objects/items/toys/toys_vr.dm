@@ -647,7 +647,7 @@
 /obj/item/toy/minigibber/attackby(obj/O, mob/user, params)
 	if(istype(O,/obj/item/toy/figure) || istype(O,/obj/item/toy/character) && O.loc == user)
 		to_chat(user, span_notice("You start feeding \the [O] [icon2html(O, user.client)] into \the [src]'s mini-input."))
-		if(do_after(user, 10, target = src))
+		if(do_after(user, 1 SECOND, target = src))
 			if(O.loc != user)
 				to_chat(user, span_warning("\The [O] is too far away to feed into \the [src]!"))
 			else

@@ -29,7 +29,7 @@
 /obj/item/storage/vore_egg/proc/hatch(mob/living/user as mob)
 	visible_message(span_danger("\The [src] begins to shake as something pushes out from within!"))
 	animate_shake()
-	if(do_after(user, 50))
+	if(do_after(user, 5 SECONDS, target = src))
 		if(use_sound)
 			playsound(src, src.use_sound, 50, 0, -5)
 		animate_shake()

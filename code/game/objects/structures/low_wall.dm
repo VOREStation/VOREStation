@@ -96,7 +96,7 @@
 				return
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		to_chat(user, span_notice("Now disassembling the low wall..."))
-		if(do_after(user, 40, src))
+		if(do_after(user, 4 SECONDS, target = src))
 			to_chat(user, span_notice("You dissasembled the low wall!"))
 			dismantle()
 			return
@@ -172,7 +172,7 @@
 		to_chat(user, span_warning("You need at least two rods to do this."))
 		return
 	to_chat(user, span_notice("Assembling grille..."))
-	if(!do_after(user, 1 SECONDS, R))
+	if(!do_after(user, 1 SECONDS, target = R))
 		return
 	if(!R.use(2))
 		return
@@ -192,7 +192,7 @@
 		to_chat(user, span_warning("You need at least four sheets of glass to do this."))
 		return
 	to_chat(user, span_notice("Assembling window..."))
-	if(!do_after(user, 4 SECONDS, G))
+	if(!do_after(user, 4 SECONDS, target = G))
 		return
 	if(!G.use(4))
 		return

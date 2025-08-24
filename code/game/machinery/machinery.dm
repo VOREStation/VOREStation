@@ -401,7 +401,7 @@ Class Procs:
 		return 0
 	to_chat(user, span_notice("You start disconnecting the monitor."))
 	playsound(src, S.usesound, 50, 1)
-	if(do_after(user, 20 * S.toolspeed))
+	if(do_after(user, 2 SECONDS * S.toolspeed, target = src))
 		if(stat & BROKEN)
 			to_chat(user, span_notice("The broken glass falls out."))
 			new /obj/item/material/shard(src.loc)

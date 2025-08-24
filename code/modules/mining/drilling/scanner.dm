@@ -14,7 +14,7 @@
 	to_chat(user, span_notice("You begin sweeping \the [src] about, scanning for metal deposits."))
 	playsound(src, 'sound/items/goggles_charge.ogg', 50, 1, -6)
 
-	if(!do_after(user, scan_time))
+	if(!do_after(user, scan_time, target = src))
 		return
 
 	ScanTurf(get_turf(user), user)

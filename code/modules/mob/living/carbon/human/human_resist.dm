@@ -51,7 +51,7 @@
 			span_warning("You gnaw on \the [SJ]. (This will take around [round(breakouttime / 600)] minutes and you need to stand still.)")
 			)
 
-	if(do_after(src, breakouttime, timed_action_flags = IGNORE_INCAPACITATED))
+	if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_INCAPACITATED))
 		if(!wear_suit)
 			return
 		visible_message(
@@ -74,7 +74,7 @@
 		span_warning("You attempt to rip your [wear_suit.name] apart. (This will take around 5 seconds and you need to stand still)")
 		)
 
-	if(do_after(src, 20 SECONDS, timed_action_flags = IGNORE_INCAPACITATED))	// Same scaling as breaking cuffs, 5 seconds to 120 seconds, 20 seconds to 480 seconds.
+	if(do_after(src, 20 SECONDS, target = src, timed_action_flags = IGNORE_INCAPACITATED))	// Same scaling as breaking cuffs, 5 seconds to 120 seconds, 20 seconds to 480 seconds.
 		if(!wear_suit || buckled)
 			return
 
