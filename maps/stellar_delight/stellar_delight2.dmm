@@ -579,13 +579,10 @@
 "bj" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "\improper HIGH VOLTAGE";
+/obj/structure/low_wall/bay/reinforced/orange,
+/obj/structure/sign/warning/high_voltage{
 	pixel_y = 32
 	},
-/obj/structure/low_wall/bay/reinforced/orange,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "bk" = (
@@ -2825,13 +2822,10 @@
 "fN" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "\improper HIGH VOLTAGE";
+/obj/structure/low_wall/bay/reinforced/orange,
+/obj/structure/sign/warning/high_voltage{
 	pixel_y = -32
 	},
-/obj/structure/low_wall/bay/reinforced/orange,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "fO" = (
@@ -4647,13 +4641,10 @@
 "jO" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "\improper HIGH VOLTAGE";
+/obj/structure/low_wall/bay/reinforced/steel,
+/obj/structure/sign/warning/high_voltage{
 	pixel_y = -32
 	},
-/obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "jP" = (
@@ -5405,12 +5396,6 @@
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)
 "lq" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA";
-	pixel_x = -32
-	},
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
@@ -5931,6 +5916,13 @@
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
+"mp" = (
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/bay/r_wall/steel,
+/area/engineering/engine_room)
 "mq" = (
 /obj/machinery/atmospherics/unary/engine/bigger{
 	dir = 1
@@ -8807,12 +8799,6 @@
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA";
-	pixel_y = 32
-	},
 /obj/machinery/camera/network/engine,
 /turf/simulated/floor/airless,
 /area/engineering/engine_room)
@@ -8901,11 +8887,7 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "tg" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA"
-	},
+/obj/structure/sign/warning/radioactive,
 /turf/simulated/wall/bay/r_wall/orange,
 /area/engineering/engine_room)
 "th" = (
@@ -15195,13 +15177,10 @@
 "Hv" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "\improper HIGH VOLTAGE";
+/obj/structure/low_wall/bay/reinforced/steel,
+/obj/structure/sign/warning/high_voltage{
 	pixel_y = 32
 	},
-/obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "Hw" = (
@@ -15757,12 +15736,6 @@
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA";
-	pixel_y = -32
-	},
 /obj/machinery/camera/network/engine{
 	dir = 1
 	},
@@ -16149,12 +16122,6 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/starboardsolars)
 "Jx" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
-	icon_state = "radiation";
-	name = "\improper RADIOACTIVE AREA";
-	pixel_x = -32
-	},
 /obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/cable/orange{
 	icon_state = "0-2"
@@ -16209,6 +16176,10 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engineering_monitoring)
+"JE" = (
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/bay/r_wall/steel,
+/area/engineering/engine_room)
 "JF" = (
 /obj/structure/sign/directions/bar{
 	dir = 1;
@@ -17841,6 +17812,13 @@
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
+"Ni" = (
+/obj/structure/cable/orange{
+	icon_state = "1-4"
+	},
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/bay/r_wall/steel,
+/area/engineering/storage)
 "Nj" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -37432,7 +37410,7 @@ bT
 bT
 bT
 bT
-MB
+Ni
 sY
 Vf
 EP
@@ -37444,7 +37422,7 @@ Vf
 EP
 Vf
 Ix
-ni
+JE
 Ra
 Ra
 rT
@@ -38000,7 +37978,7 @@ Jh
 Jh
 Jh
 NL
-RY
+mp
 ni
 ni
 Hv
@@ -38012,7 +37990,7 @@ aQ
 jO
 ni
 ni
-ni
+JE
 Wb
 Wb
 NL
