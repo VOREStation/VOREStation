@@ -5,6 +5,7 @@
 	target.absorbable = source.absorbable;												\
 	target.allowmobvore = source.allowmobvore;											\
 	target.permit_healbelly = source.permit_healbelly;									\
+	target.allowtemp = source.allowtemp;												\
 																						\
 	target.vore_taste = source.vore_taste;												\
 	target.vore_smell = source.vore_smell;												\
