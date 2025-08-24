@@ -11623,7 +11623,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/turf/simulated/floor/tiled/eris/dark/danger,
 /area/engineering/engine_room)
 "zz" = (
 /obj/effect/floor_decal/milspec/color/black/corner,
@@ -16209,9 +16209,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engineering_monitoring)
-"JE" = (
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/engineering/engine_room)
 "JF" = (
 /obj/structure/sign/directions/bar{
 	dir = 1;
@@ -19984,7 +19981,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/turf/simulated/floor/tiled/eris/dark/danger,
 /area/engineering/engine_room)
 "RW" = (
 /obj/structure/sign/painting/library_secure{
@@ -36590,7 +36587,7 @@ fZ
 ZP
 RV
 zy
-JE
+Sb
 Lp
 OF
 cN
