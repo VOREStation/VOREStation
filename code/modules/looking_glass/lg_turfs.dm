@@ -84,5 +84,4 @@
 	appearance = MA
 
 	animate(src, color = null, time = 3 SECONDS)
-	sleep(3 SECONDS)
-	icon_state = "origin"
+	VARSET_IN(src, icon_state, "origin", 3 SECONDS)

@@ -608,10 +608,8 @@
 		spawn(5) //gia said so
 			icon_state = "nuketoy"
 			playsound(src, 'sound/machines/alarm.ogg', 10, 0, 0)
-			sleep(135)
-			icon_state = "nuketoycool"
-			sleep(cooldown - world.time)
-			icon_state = "nuketoyidle"
+			VARSET_IN(src, icon_state, "nuketoycool", 135)
+			VARSET_IN(src, icon_state, "nuketoyidle", (135 + (cooldown - world.time)))
 	else
 		var/timeleft = (cooldown - world.time)
 		to_chat(user, span_warning("Nothing happens, and") + " '[round(timeleft/10)]' " + span_warning("appears on a small display."))
@@ -787,8 +785,7 @@
 	s.set_up(5, 1, src)
 	s.start()
 	icon_state = "shoot"
-	sleep(5)
-	icon_state = "[initial(icon_state)]"
+	VARSET_IN(src, icon_state, "[initial(icon_state)]", 5)
 
 /*
  * Toy chainsaw
