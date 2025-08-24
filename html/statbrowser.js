@@ -450,7 +450,7 @@ function iconError(e) {
     }
     const src = node.src;
     node.src = null;
-    node.src = src + '#' + current_attempts;
+    node.src = `${src}#${current_attempts}`;
     node.setAttribute('data-attempts', current_attempts + 1);
   }, imageRetryDelay);
 }
