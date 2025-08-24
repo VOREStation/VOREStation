@@ -39,7 +39,7 @@
 	rest_sprite_options = list("Default", "Sit")
 	belly_capacity_list = list("sleeper" = 1)
 
-/datum/robot_sprite/research/rabbot
+/datum/robot_sprite/science/rabbot
 	name = "Rabbot"
 	sprite_icon_state = "rabbotresearch"
 	has_eye_light_sprites = TRUE
