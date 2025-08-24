@@ -4384,6 +4384,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/starboard)
+"jl" = (
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/bay/r_wall/steel,
+/area/engineering/engine_room)
 "jm" = (
 /obj/structure/table/reinforced,
 /obj/item/gps/engineering{
@@ -4595,6 +4599,13 @@
 /obj/item/pen,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
+"jH" = (
+/obj/structure/cable/orange{
+	icon_state = "1-4"
+	},
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/bay/r_wall/steel,
+/area/engineering/storage)
 "jI" = (
 /obj/structure/table/woodentable,
 /obj/structure/plushie/ian{
@@ -4656,6 +4667,13 @@
 "jQ" = (
 /turf/simulated/floor/reinforced,
 /area/quartermaster/storage)
+"jR" = (
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/bay/r_wall/steel,
+/area/engineering/engine_room)
 "jS" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -5916,13 +5934,6 @@
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
-"mp" = (
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/obj/structure/sign/warning/radioactive,
-/turf/simulated/wall/bay/r_wall/steel,
-/area/engineering/engine_room)
 "mq" = (
 /obj/machinery/atmospherics/unary/engine/bigger{
 	dir = 1
@@ -16176,10 +16187,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engineering_monitoring)
-"JE" = (
-/obj/structure/sign/warning/radioactive,
-/turf/simulated/wall/bay/r_wall/steel,
-/area/engineering/engine_room)
 "JF" = (
 /obj/structure/sign/directions/bar{
 	dir = 1;
@@ -17812,13 +17819,6 @@
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/reception)
-"Ni" = (
-/obj/structure/cable/orange{
-	icon_state = "1-4"
-	},
-/obj/structure/sign/warning/radioactive,
-/turf/simulated/wall/bay/r_wall/steel,
-/area/engineering/storage)
 "Nj" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -37410,7 +37410,7 @@ bT
 bT
 bT
 bT
-Ni
+jH
 sY
 Vf
 EP
@@ -37422,7 +37422,7 @@ Vf
 EP
 Vf
 Ix
-JE
+jl
 Ra
 Ra
 rT
@@ -37978,7 +37978,7 @@ Jh
 Jh
 Jh
 NL
-mp
+jR
 ni
 ni
 Hv
@@ -37990,7 +37990,7 @@ aQ
 jO
 ni
 ni
-JE
+jl
 Wb
 Wb
 NL
