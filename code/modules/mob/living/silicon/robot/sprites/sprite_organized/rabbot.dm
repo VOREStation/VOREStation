@@ -1,4 +1,4 @@
-//Sprites by shy.bandit
+//Sprites by shy.bandit on Discord
 /datum/robot_sprite/mining/rabbot
 	name = "Rabbot"
 	sprite_icon_state = "rabbotcargo"
