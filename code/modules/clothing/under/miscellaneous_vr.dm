@@ -18,8 +18,6 @@
 
 /obj/item/clothing/under/hyperfiber
 	name = "HYPER jumpsuit"
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "hyper"
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_uniforms.dmi',
@@ -263,8 +261,6 @@
 /obj/item/clothing/under/qipao
 	name = "black qipao"
 	desc = "A type of feminine body-hugging dress with distinctive Chinese features of Manchu origin."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "qipao"
 	item_state = "qipao"
 	body_parts_covered = CHEST
@@ -286,9 +282,6 @@
 /obj/item/clothing/under/pizzaguy
 	name = "pizza delivery uniform"
 	desc = "A dedicated outfit for pizza delivery people, one of most dangerous occupations around these parts. Can be rolled up for extra show of skin."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
-	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	rolled_down_icon_override = FALSE
 	icon_state = "pizzadelivery"
 	item_state = "pizzadelivery"
@@ -299,9 +292,6 @@
 /obj/item/clothing/under/rank/talon/basic
 	name = "Talon jumpsuit"
 	desc = "A basic jumpsuit that bares the ITV Talon logo on the breast."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_basic"
 	item_state = "talon_basic"
 	rolled_sleeves = 0
@@ -311,9 +301,6 @@
 /obj/item/clothing/under/rank/talon/proper
 	name = "Talon proper jumpsuit"
 	desc = "A neat and proper uniform for a proper private ship."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_jumpsuit"
 	item_state = "talon_jumpsuit"
 	rolled_sleeves = 0
@@ -323,9 +310,6 @@
 /obj/item/clothing/under/rank/talon/security
 	name = "Talon security jumpsuit"
 	desc = "A sleek, streamlined version of ITV Talon's standard jumpsuit that bares security markings."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_security"
 	item_state = "talon_security"
 	rolled_sleeves = 0
@@ -335,9 +319,6 @@
 /obj/item/clothing/under/rank/talon/pilot
 	name = "Talon pilot jumpsuit"
 	desc = "A sleek, streamlined version of ITV Talon's standard jumpsuit. Made from cushioned fabric to handle intense flight."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_pilot"
 	item_state = "talon_pilot"
 	rolled_sleeves = 0
@@ -347,9 +328,6 @@
 /obj/item/clothing/under/rank/talon/command
 	name = "Talon command jumpsuit"
 	desc = "A commanding jumpsuit fit for a commanding officer."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_captain"
 	item_state = "talon_captain"
 	rolled_sleeves = 0
@@ -360,13 +338,11 @@
 /obj/item/clothing/under/excelsior
 	name = "\improper Excelsior uniform"
 	desc = "A uniform from a particular spaceship: Excelsior."
-
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "excelsior_white"
 
 /obj/item/clothing/under/excelsior/mixed
 	icon_state = "excelsior_mixed"
+
 /obj/item/clothing/under/excelsior/orange
 	icon_state = "excelsior_orange"
 
@@ -374,21 +350,17 @@
 /obj/item/clothing/under/summerdress
 	name = "summer dress"
 	desc = "A nice summer dress."
-
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "summerdress"
 
 /obj/item/clothing/under/summerdress/red
 	icon_state = "summerdress3"
+
 /obj/item/clothing/under/summerdress/blue
 	icon_state = "summerdress2"
 
 /obj/item/clothing/under/dress/dress_cap/femformal // formal in the loosest sense. because it's going to be taken off. or something. funnier in my head i swear
 	name = "site manager's feminine formalwear"
 	desc = "Essentially a skimpy...dress? Leotard? Whatever it is, it has the coloration and markings suitable for a site manager or rough equivalent."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "lewdcap"
 	item_state = "lewdcap"
 	rolled_sleeves = -1
@@ -399,8 +371,6 @@
 /obj/item/clothing/under/color/fjumpsuit //They won't see this so we can make it whatever we want.
 	name = "blue feminine jumpsuit"
 	desc = "It's very smart and in a ladies size!"
-	icon = 'icons/inventory/uniform/item.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "blue"	// In hand
 	worn_state = "bluef"	// On mob
 
@@ -408,66 +378,82 @@
 	name = "blue feminine jumpsuit"
 	icon_state = "blue"
 	worn_state = "bluef"
+
 /obj/item/clothing/under/color/fjumpsuit/aquaf
 	name = "aqua feminine jumpsuit"
 	icon_state = "aqua"
 	worn_state = "aquaf"
+
 /obj/item/clothing/under/color/fjumpsuit/brownf
 	name = "brown feminine jumpsuit"
 	icon_state = "brown"
 	worn_state = "brownf"
+
 /obj/item/clothing/under/color/fjumpsuit/darkbluef
 	name = "dark blue feminine jumpsuit"
 	icon_state = "darkblue"
 	worn_state = "darkbluef"
+
 /obj/item/clothing/under/color/fjumpsuit/darkredf
 	name = "dark red feminine jumpsuit"
 	icon_state = "darkred"
 	worn_state = "darkredf"
+
 /obj/item/clothing/under/color/fjumpsuit/greenf
 	name = "green feminine jumpsuit"
 	icon_state = "green"
 	worn_state = "greenf"
+
 /obj/item/clothing/under/color/fjumpsuit/lightbluef
 	name = "light blue feminine jumpsuit"
 	icon_state = "lightblue"
 	worn_state = "lightbluef"
+
 /obj/item/clothing/under/color/fjumpsuit/lightbrownf
 	name = "light brown feminine jumpsuit"
 	icon_state = "lightbrown"
 	worn_state = "lightbrownf"
+
 /obj/item/clothing/under/color/fjumpsuit/lightgreenf
 	name = "light green feminine jumpsuit"
 	icon_state = "lightgreen"
 	worn_state = "lightgreenf"
+
 /obj/item/clothing/under/color/fjumpsuit/lightpurplef
 	name = "light purple feminine jumpsuit"
 	icon_state = "lightpurple"
 	worn_state = "lightpurplef"
+
 /obj/item/clothing/under/color/fjumpsuit/lightredf
 	name = "light red feminine jumpsuit"
 	icon_state = "lightred"
 	worn_state = "lightredf"
+
 /obj/item/clothing/under/color/fjumpsuit/maroonf
 	name = "maroon feminine jumpsuit"
 	icon_state = "maroon"
 	worn_state = "maroonf"
+
 /obj/item/clothing/under/color/fjumpsuit/pinkf
 	name = "pink feminine jumpsuit"
 	icon_state = "pink"
 	worn_state = "pinkf"
+
 /obj/item/clothing/under/color/fjumpsuit/purplef
 	name = "purple feminine jumpsuit"
 	icon_state = "purple"
 	worn_state = "purplef"
+
 /obj/item/clothing/under/color/fjumpsuit/redf
 	name = "red feminine jumpsuit"
 	icon_state = "red"
 	worn_state = "redf"
+
 /obj/item/clothing/under/color/fjumpsuit/yellowf
 	name = "yellow feminine jumpsuit"
 	icon_state = "yellow"
 	worn_state = "yellowf"
+
 /obj/item/clothing/under/color/fjumpsuit/yellowgreenf
 	name = "yellow-green feminine jumpsuit"
 	icon_state = "yellowgreen"
@@ -476,8 +462,6 @@
 /obj/item/clothing/under/qipao_colorable
 	name = "qipao"
 	desc = "A traditional Chinese women's garment, typically made from silk."
-	icon = 'icons/inventory/uniform/item.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "qipao3"
 	item_state = "qipao3"
 	worn_state = "qipao3"
@@ -486,8 +470,6 @@
 /obj/item/clothing/under/qipao2_colorable
 	name = "slim qipao"
 	desc = "A traditional Chinese women's garment, typically made from silk. This one is fairly slim."
-	icon = 'icons/inventory/uniform/item.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "qipao2"
 	item_state = "qipao2"
 	worn_state = "qipao2"
@@ -496,8 +478,6 @@
 /obj/item/clothing/under/dress/antediluvian
 	name = "antediluvian corset"
 	desc = "A regal black and gold tight corset with silky sleeves. A sheer bodystocking accompanies it."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "antediluvian"
 	item_state = "antediluvian"
 	worn_state = "antediluvian"
@@ -511,8 +491,6 @@
 /obj/item/clothing/under/skirt/colorable
 	name = "skirt"
 	desc = "A rather plain looking skirt."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "skirt_casual"
 	item_state = "skirt_casual"
 	worn_state = "skirt_casual"
@@ -612,29 +590,21 @@
 /obj/item/clothing/under/stripeddungarees
 	name = "striped dungarees"
 	desc = "A colourful set of striped dungarees, pretty funny lookin'."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "striped_clown_uniform"
 
 /obj/item/clothing/under/dress/cdress_fire
 	name = "flame dress"
 	desc = "A small black dress with a flames print on it. Perfect for recoloring!"
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "cflame_dress"
 
 /obj/item/clothing/under/dress/cbridesmaid
 	name = "fancy dress"
 	desc = "A cute, flirty dress. Good for weddings and fancy parties, or if you just want to look fashionable. Perfect for recoloring!"
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "cbridesmaid"
 
 /obj/item/clothing/under/dress/cswoopdress
 	name = "swoop dress"
 	desc = "A fancy gown for those who like to show leg. Perfect for recoloring!"
-	icon = 'icons/inventory/uniform/mob_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "cswoopdress"
 
 //Replikant uniforms
@@ -643,8 +613,6 @@
 	name = "generic"
 	desc = "generic"
 	description_fluff = "These purpose-made interfacing bodysuits are designed and produced by the Singheim Bureau of Biosynthetic Development for their long-running second generation of Biosynthetics, commonly known by the term Replikant. Although anyone could wear these, their overall cut and metallic ports along the spine make it rather uncomfortable to most."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "arar"
 	item_state = "arar"
 	rolled_sleeves = -1
@@ -657,7 +625,6 @@
 	description_fluff = "These purpose-made interfacing bodysuits are designed and produced by the Singheim Bureau of Biosynthetic Development for their long-running second generation of Biosynthetics, commonly known by the term Replikant. Although anyone could wear these, their overall cut and metallic ports along the spine make it rather uncomfortable to most."
 	icon_state = "arar"
 	item_state = "arar"
-
 
 /obj/item/clothing/under/replika/lstr
 	name = "land-survey replikant bodysuit"
@@ -713,8 +680,6 @@
 /obj/item/clothing/under/gestalt
 	name = "generic"
 	desc = "generic"
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "gestalt_skirt"
 	item_state = "gestalt_skirt"
 	rolled_sleeves = -1
@@ -727,20 +692,17 @@
 	icon_state = "gestalt_skirt"
 	item_state = "gestalt_skirt"
 
-
 /obj/item/clothing/under/gestalt/sleek
 	name = "sleek crew uniform"
 	desc = "A tight-fitting black uniform with striking crimson trim."
 	icon_state = "gestalt"
 	item_state = "gestalt"
 
-
 /obj/item/clothing/under/gestalt/sleek_fem
 	name = "sleek female crew uniform"
 	desc = "A tight-fitting black uniform with striking crimson trim."
 	icon_state = "gestalt_fem"
 	item_state = "gestalt_fem"
-
 
 /obj/item/clothing/under/gestalt/sleeveless
 	name = "sleeveless sleek crew uniform"
