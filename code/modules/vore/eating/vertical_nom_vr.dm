@@ -42,6 +42,6 @@
 		if(target.buckled)
 			target.buckled.unbuckle_mob()
 		target.visible_message(span_vwarning("\The [target] suddenly disappears somewhere above!"),\
-			span_vdanger("You are dragged above and feel yourself slipping directly into \the [src]'s [vore_selected]!"))
-		to_chat(src, span_vnotice("You successfully snatch \the [target], slipping them into your [vore_selected]."))
+			span_vdanger("You are dragged above and feel yourself slipping directly into \the [src]'s [vore_selected.get_belly_name()]!"))
+		to_chat(src, span_vnotice("You successfully snatch \the [target], slipping them into your [vore_selected.get_belly_name()]."))
 		target.forceMove(src.vore_selected)

@@ -734,8 +734,8 @@
 		if(target.buckled) //how are you buckled in the water?!
 			target.buckled.unbuckle_mob()
 		target.visible_message(span_vwarning("\The [target] suddenly disappears, being dragged into the water!"),\
-			span_vdanger("You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!"))
-		to_chat(src, span_vnotice("You successfully drag \the [target] into the water, slipping them into your [vore_selected]."))
+			span_vdanger("You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected.get_belly_name()]!"))
+		to_chat(src, span_vnotice("You successfully drag \the [target] into the water, slipping them into your [vore_selected.get_belly_name()]."))
 		target.forceMove(src.vore_selected)
 
 /mob/living/carbon/human/proc/toggle_pain_module()

@@ -39,6 +39,7 @@
 			// General Information
 			belly_data["name"] = B.name
 			belly_data["desc"] = B.desc
+			belly_data["display_name"] = B.display_name
 			belly_data["absorbed_desc"] = B.absorbed_desc
 			belly_data["vore_verb"] = B.vore_verb
 			belly_data["release_verb"] = B.release_verb
