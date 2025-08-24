@@ -87,7 +87,7 @@
 		if(welder.remove_fuel(0,user))
 			to_chat(user, span_notice("You start welding the plasteel into place."))
 			playsound(src, welder.usesound, 50, 1)
-			if(do_after(user, 10 * welder.toolspeed) && welder && welder.isOn())
+			if(do_after(user, 1 SECOND * welder.toolspeed, target = src) && welder && welder.isOn())
 				to_chat(user, span_notice("You finish reinforcing \the [src]."))
 				heat_proof = 1
 				update_icon()

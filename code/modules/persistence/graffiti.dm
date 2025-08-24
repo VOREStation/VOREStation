@@ -58,7 +58,7 @@
 		var/_message = tgui_input_text(user, "Enter an additional message to engrave.", "Graffiti", "", MAX_MESSAGE_LEN)
 		if(_message && loc && user && !user.incapacitated() && user.Adjacent(loc) && thing.loc == user)
 			user.visible_message(span_warning("\The [user] begins carving something into \the [loc]."))
-			if(do_after(user, max(20, length(_message)), src) && loc)
+			if(do_after(user, max(2 SECONDS, length(_message)), target = src) && loc)
 				user.visible_message(span_danger("\The [user] carves some graffiti into \the [loc]."))
 				message = "[message] [_message]"
 				author = user.ckey

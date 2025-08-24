@@ -49,7 +49,7 @@
 			to_chat(user, span_notice("\The [src]'s mechanisms look secure."))
 	if(istype(W, /obj/item/smes_coil/super_io) && panel_open)
 		visible_message(span_infoplain(span_bold("\The [user]") + " begins to modify \the [src] with \the [W]."))
-		if(do_after(user, 300))
+		if(do_after(user, 30 SECONDS, target = src))
 			user.drop_from_inventory(W)
 			visible_message(span_infoplain(span_bold("\The [user]") + " installs \the [W] onto \the [src]."))
 			qdel(W)

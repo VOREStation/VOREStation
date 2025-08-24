@@ -78,7 +78,7 @@
 			playsound(src, fire_sound, 50, 1)
 			user.visible_message(span_danger("[src] goes off!"), span_danger("The rifle goes off in your face!"))
 			return
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			if(sawn_off)
 				return
 			icon_state = "sawn_rifle"

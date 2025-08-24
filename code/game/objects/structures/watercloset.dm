@@ -49,7 +49,7 @@
 	if(I.has_tool_quality(TOOL_CROWBAR))
 		to_chat(user, span_notice("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
 		playsound(src, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			user.visible_message(span_notice("[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!"), span_notice("You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!"), "You hear grinding porcelain.")
 			cistern = !cistern
 			update_icon()
@@ -69,7 +69,7 @@
 				if(open && !swirlie)
 					user.visible_message(span_danger("[user] starts to give [GM.name] a swirlie!"), span_notice("You start to give [GM.name] a swirlie!"))
 					swirlie = GM
-					if(do_after(user, 30, GM))
+					if(do_after(user, 3 SECONDS, target = GM))
 						user.visible_message(span_danger("[user] gives [GM.name] a swirlie!"), span_notice("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
 						if(!GM.internal)
 							GM.adjustOxyLoss(5)
@@ -115,7 +115,7 @@
 				if(open && !swirlie)
 					user.visible_message(span_danger("[user] starts to give [GM.name] a swirlie!"), span_notice("You start to give [GM.name] a swirlie!"))
 					swirlie = GM
-					if(do_after(user, 30, GM))
+					if(do_after(user, 3 SECONDS, target = GM))
 						user.visible_message(span_danger("[user] gives [GM.name] a swirlie!"), span_notice("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
 						if(!GM.internal)
 							GM.adjustOxyLoss(5)
@@ -206,7 +206,7 @@
 		var/newtemp = tgui_input_list(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve", temperature_settings)
 		to_chat(user, span_notice("You begin to adjust the temperature valve with \the [I]."))
 		playsound(src, I.usesound, 50, 1)
-		if(do_after(user, 50 * I.toolspeed))
+		if(do_after(user, 5 SECONDS * I.toolspeed, target = src))
 			watertemp = newtemp
 			user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I]."))
 			add_fingerprint(user)

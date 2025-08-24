@@ -51,7 +51,7 @@
 					user.visible_message("\The [user] starts to weld \the [src] to the floor.", \
 						"You start to weld \the [src] to the floor.", \
 						"You hear welding")
-					if(do_after(user, 2 SECONDS))
+					if(do_after(user, 2 SECONDS, target = src))
 						if(QDELETED(src) || !WT.isOn()) return
 						state = LADDER_CONSTRUCTION_WELDED
 						to_chat(user, "You weld \the [src] to the floor.")
@@ -64,7 +64,7 @@
 					user.visible_message("\The [user] starts to cut \the [src] free from the floor.", \
 						"You start to cut \the [src] free from the floor.", \
 						"You hear welding")
-					if(do_after(user, 2 SECONDS))
+					if(do_after(user, 2 SECONDS, target = src))
 						if(QDELETED(src) || !WT.isOn()) return
 						state = LADDER_CONSTRUCTION_WRENCHED
 						to_chat(user, "You cut \the [src] free from the floor.")

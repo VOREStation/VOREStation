@@ -240,7 +240,7 @@
 		if(WT.remove_fuel(0,user))
 			to_chat(user, span_notice("You start repairing the damage to [src]."))
 			playsound(src, WT.usesound, 100, 1)
-			if(do_after(user, max(5, damage / 5) * WT.toolspeed) && WT && WT.isOn())
+			if(do_after(user, max(5, damage / 5) * WT.toolspeed, target = src) && WT && WT.isOn())
 				to_chat(user, span_notice("You finish repairing the damage to [src]."))
 				take_damage(-damage)
 		else

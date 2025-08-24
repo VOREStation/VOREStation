@@ -96,7 +96,7 @@
 				return
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		to_chat(user, span_notice("Now disassembling the low wall..."))
-		if(do_after(user, 40, src))
+		if(do_after(user, 4 SECONDS, target = src))
 			to_chat(user, span_notice("You dissasembled the low wall!"))
 			dismantle()
 			return

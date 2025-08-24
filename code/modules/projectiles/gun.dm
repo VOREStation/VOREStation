@@ -305,7 +305,7 @@
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			to_chat(user, span_notice("You begin removing \the [attached_lock] from \the [src]."))
 			playsound(src, A.usesound, 50, 1)
-			if(do_after(user, 25 * A.toolspeed))
+			if(do_after(user, 25 * A.toolspeed, target = src))
 				to_chat(user, span_notice("You remove \the [attached_lock] from \the [src]."))
 				user.put_in_hands(attached_lock)
 				dna_lock = 0

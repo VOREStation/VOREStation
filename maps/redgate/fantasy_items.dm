@@ -86,7 +86,7 @@
 			to_chat(user, span_notice("\The [src] already has someone buckled to it."))
 			return
 		user.visible_message(span_notice("[user] attempts to buckle [affecting] into \the [src]!"))
-		if(do_after(user, 20, G.affecting))
+		if(do_after(user, 2 SECONDS, target = G.affecting))
 			affecting.loc = loc
 			spawn(0)
 				if(buckle_mob(affecting))
@@ -156,7 +156,7 @@
 				if(open && !swirlie)
 					user.visible_message(span_danger("[user] starts to give [GM.name] a swirlie!"), span_notice("You start to give [GM.name] a swirlie!"))
 					swirlie = GM
-					if(do_after(user, 30, GM))
+					if(do_after(user, 3 SECONDS, target = GM))
 						user.visible_message(span_danger("[user] gives [GM.name] a swirlie!"), span_notice("You give [GM.name] a swirlie!"), "You hear a toilet flushing.")
 						if(!GM.internal)
 							GM.adjustOxyLoss(5)

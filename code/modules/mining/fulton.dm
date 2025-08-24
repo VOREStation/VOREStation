@@ -56,7 +56,7 @@
 		if(A.anchored)
 			return
 		to_chat(user, span_notice("You start attaching the pack to [A]..."))
-		if(do_after(user,50,target=A))
+		if(do_after(user, 5 SECONDS, target=A))
 			to_chat(user, span_notice("You attach the pack to [A] and activate it."))
 			/* No components, sorry. No convienence for you!
 			if(loc == user && istype(user.back, /obj/item/storage/backpack))
@@ -144,7 +144,7 @@
 /obj/item/fulton_core/attack_self(mob/user)
 	var/turf/T = get_turf(user)
 	var/outdoors = T.is_outdoors()
-	if(do_after(user,15,target = user) && !QDELETED(src) && outdoors)
+	if(do_after(user, 15, target = user) && !QDELETED(src) && outdoors)
 		new /obj/structure/extraction_point(get_turf(user))
 		qdel(src)
 

@@ -168,7 +168,7 @@
 	else if(O.has_tool_quality(TOOL_CROWBAR))
 		if(open && paicard)
 			to_chat(user, span_notice("You are attempting to remove the pAI.."))
-			if(do_after(user,10 * O.toolspeed))
+			if(do_after(user, 1 SECOND * O.toolspeed, target = src))
 				ejectpai(user)
 	else
 		..()

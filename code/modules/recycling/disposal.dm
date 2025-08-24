@@ -79,7 +79,7 @@
 				playsound(src, W.usesound, 100, 1)
 				to_chat(user, "You start slicing the floorweld off the disposal unit.")
 
-				if(do_after(user,20 * W.toolspeed))
+				if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 					if(!src || !W.isOn()) return
 					to_chat(user, "You sliced the floorweld off the disposal unit.")
 					var/obj/structure/disposalconstruct/C = new (src.loc)
@@ -123,7 +123,7 @@
 			var/mob/GM = G.affecting
 			for (var/mob/V in viewers(user))
 				V.show_message("[user] starts putting [GM.name] into the disposal.", 3)
-			if(do_after(user, 20))
+			if(do_after(user, 2 SECONDS, target = src))
 				if (GM.client)
 					GM.client.perspective = EYE_PERSPECTIVE
 					GM.client.eye = src
@@ -912,7 +912,7 @@
 		if(W.remove_fuel(0,user))
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, "You start slicing [src]....")
-			if(do_after(user, 20 * W.toolspeed))
+			if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 				if(!src || !W.isOn()) return
 				to_chat(user, "You slice [src]")
 				welded()
@@ -1543,7 +1543,7 @@
 		if(W.remove_fuel(0,user))
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, "You start slicing the floorweld off the disposal outlet.")
-			if(do_after(user,20 * W.toolspeed))
+			if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 				if(!src || !W.isOn()) return
 				to_chat(user, "You sliced the floorweld off the disposal outlet.")
 				var/obj/structure/disposalconstruct/C = new (src.loc)

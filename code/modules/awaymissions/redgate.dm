@@ -1543,7 +1543,7 @@
 	//set the verb based on matching (or mismatching) outfits, and teleport the flag back to base if it was touched by the owning team
 	if(grabbing_team == laser_team)
 		user.visible_message(span_warning("[user] is returning \the [src]!"))
-		if(do_after(user,flag_return_delay))	//channel return, rather than instant
+		if(do_after(user, flag_return_delay, target = src))	//channel return, rather than instant
 			user.drop_from_inventory(src)
 			src.loc = src.start_pos
 			GLOB.global_announcer.autosay("[capitalize(laser_team)] flag returned by [user]!","Laserdome Announcer","Entertainment")

@@ -51,7 +51,7 @@ var/list/gurgled_overlays = list(
 		to_chat(user, span_notice("You start washing [I]."))
 
 		busy = TRUE
-		if(do_after(user, 40, src))
+		if(do_after(user, 4 SECONDS, target = src))
 			I.wash(CLEAN_SCRUB)
 			user.visible_message(span_notice("[user] washes [I] using [src]."),
 				span_notice("You wash [I] using [src]."))

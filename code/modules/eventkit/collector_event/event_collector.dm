@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(event_collector_blockers,list()) //ditto
 
 		//put it in
 		user.visible_message("[user] begins to [pick(step_initiation_verbs)] \The [O] into \The [src]")
-		if(do_after(user, step_insertion_time, src)) //wait a second or two
+		if(do_after(user, step_insertion_time, target = src)) //wait a second or two
 			user.visible_message("[user] [pick(step_insertion_verbs)] \The [O] into \The [src]!")
 			if(ishuman(user)) //should always be?
 				var/mob/living/carbon/human/h = user

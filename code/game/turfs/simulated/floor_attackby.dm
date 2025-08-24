@@ -153,7 +153,7 @@
 					user.visible_message(span_warning("[user] begins cutting through [src]."), span_warning("You begin cutting through [src]."))
 					// This is slow because it's a potentially hostile action to just cut through places into space in the middle of the bar and such
 					// Presumably also the structural floor is thick?
-					if(do_after(user, 10 SECONDS, src, TRUE))
+					if(do_after(user, 10 SECONDS, target = src))
 						if(!can_remove_plating(user))
 							return // Someone slapped down some flooring or cables or something
 						do_remove_plating(C, user, base_type)

@@ -36,7 +36,7 @@
 		if(istype(O, /obj/item/multitool))
 			to_chat(user, span_warning("Resetting circuitry..."))
 			playsound(src, 'sound/machines/lockreset.ogg', 50, 1)
-			if(do_after(user, 20 * O.toolspeed))
+			if(do_after(user, 2 SECONDS * O.toolspeed, target = src))
 				locked = 0
 				to_chat(user, span_warning("You disable the locking modules."))
 				update_icon()
@@ -87,7 +87,7 @@
 			else
 				to_chat(user, span_warning("Resetting circuitry..."))
 				playsound(src, 'sound/machines/lockenable.ogg', 50, 1)
-				if(do_after(user,20 * O.toolspeed))
+				if(do_after(user, 2 SECONDS * O.toolspeed, target = src))
 					locked = 1
 					to_chat(user, span_warning("You re-enable the locking modules."))
 				return

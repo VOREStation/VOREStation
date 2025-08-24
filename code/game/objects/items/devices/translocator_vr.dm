@@ -412,7 +412,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 		var/obj/belly/bellychoice = tgui_input_list(user, "Which belly?","Select A Belly", L.vore_organs)
 		if(bellychoice)
 			user.visible_message(span_warning("[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice.name]!"),span_notice("You begin putting \the [src] into your [bellychoice.name]!"))
-			if(do_after(user,5 SECONDS,src))
+			if(do_after(user, 5 SECONDS, target = src))
 				user.unEquip(src)
 				forceMove(bellychoice)
 				user.visible_message(span_warning("[user] eats a telebeacon!"),"You eat the the beacon!")

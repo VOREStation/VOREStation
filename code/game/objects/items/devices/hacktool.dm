@@ -80,7 +80,7 @@
 		var/obj/structure/closet/crate/secure/A = target
 		if(A.locked)
 			to_chat(user, span_notice("Overriding access. Stand by."))
-			if(do_after(user, (((5 SECONDS + rand(0, 5 SECONDS) + rand(0, 5 SECONDS))*hackspeed))))
+			if(do_after(user, (((5 SECONDS + rand(0, 5 SECONDS) + rand(0, 5 SECONDS))*hackspeed)), target = src))
 				to_chat(user, span_notice("Override successful!"))
 				A.locked = FALSE
 				A.update_icon()
@@ -92,7 +92,7 @@
 		var/obj/structure/closet/secure_closet/A = target
 		if(A.locked)
 			to_chat(user, span_notice("Overriding access. Stand by."))
-			if(do_after(user, (((5 SECONDS + rand(0, 5 SECONDS) + rand(0, 5 SECONDS))*hackspeed))))
+			if(do_after(user, (((5 SECONDS + rand(0, 5 SECONDS) + rand(0, 5 SECONDS))*hackspeed)), target = src))
 				to_chat(user, span_notice("Override successful!"))
 				A.locked = FALSE
 				A.update_icon()

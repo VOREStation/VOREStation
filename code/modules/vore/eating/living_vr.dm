@@ -174,7 +174,7 @@
 				return TRUE
 			visible_message(span_warning("[user] is trying to stuff a beacon into [src]'s [lowertext(B.name)]!"),
 				span_warning("[user] is trying to stuff a beacon into you!"))
-			if(do_after(user,30,src))
+			if(do_after(user, 3 SECONDS, target = src))
 				user.drop_item()
 				I.forceMove(B)
 				return TRUE

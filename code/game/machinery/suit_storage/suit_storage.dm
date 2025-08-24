@@ -405,7 +405,7 @@
 			to_chat(user, span_warning("The unit's storage area is too cluttered."))
 			return
 		visible_message(span_notice("[user] starts putting [G.affecting.name] into the Suit Storage Unit."), 3)
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return //derpcheck
 			var/mob/M = G.affecting
 			if(M.client)

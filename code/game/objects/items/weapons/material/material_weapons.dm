@@ -126,7 +126,7 @@
 	if(!fragile)
 		if(health < initial(health))
 			user.visible_message("[user] begins repairing \the [src].", "You begin repairing \the [src].")
-			if(do_after(user, repair_time))
+			if(do_after(user, repair_time, target = src))
 				user.visible_message("[user] has finished repairing \the [src]", "You finish repairing \the [src].")
 				health = min(health + repair_amount, initial(health))
 				dulled = 0

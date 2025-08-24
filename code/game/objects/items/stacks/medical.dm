@@ -413,7 +413,7 @@
 				balloon_alert(user, "you can't apply a splint to the arm you're using!")
 				return
 			user.balloon_alert_visible("[user] starts to apply \the [src] to their [limb].", "applying \the [src] to your [limb].", "You hear something being wrapped.")
-		if(do_after(user, 50, M))
+		if(do_after(user, 50, target = M))
 			if(affecting.splinted)
 				balloon_alert(user, "[M]'s [limb] is already splinted!")
 				return

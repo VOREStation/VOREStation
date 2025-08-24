@@ -65,7 +65,7 @@
 
 	if(removal_tool && istype(W, removal_tool))
 		to_chat(user, span_warning("You start uprooting \the [src]..."))
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			visible_message(span_notice("\The [user] uproots and discards \the [src]!"))
 			qdel(src)
 		return
@@ -286,7 +286,7 @@
 		to_chat(user, span_notice("[I] is too big to fit inside [src]."))
 		return
 
-	if(do_after(user, 10))
+	if(do_after(user, 1 SECOND, target = src))
 		user.drop_from_inventory(I, src)
 		I.forceMove(src)
 		stored_item = I
@@ -300,7 +300,7 @@
 	if(!stored_item)
 		to_chat(user, span_filter_notice(span_bold("You see nothing of interest in [src]...")))
 	else
-		if(do_after(user, 10))
+		if(do_after(user, 1 SECOND, target = src))
 			to_chat(user, span_filter_notice("You find [icon2html(stored_item, user.client)] [stored_item] in [src]!"))
 			stored_item.forceMove(get_turf(src))
 			stored_item = null

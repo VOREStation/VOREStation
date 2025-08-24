@@ -100,7 +100,7 @@
 		LAZYREMOVE(stored_atoms, remove_ref)
 	else
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " begins unloading \the [removing] from \the [src]'s cargo compartment."))
-		if(do_after(user, 3 SECONDS, src) && !QDELETED(removing) && removing.loc == src)
+		if(do_after(user, 3 SECONDS, target = src) && !QDELETED(removing) && removing.loc == src)
 			drop_stored_atom(removing, user)
 	return TRUE
 
@@ -127,7 +127,7 @@
 		visible_message(span_infoplain(span_bold("\The [src]") + " begins loading \the [dropping] into its cargo compartment."))
 	else
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " begins loading \the [dropping] into \the [src]'s cargo compartment."))
-	if(do_after(user, 3 SECONDS, src) && can_mouse_drop(dropping, user) && can_store_atom(dropping, user))
+	if(do_after(user, 3 SECONDS, target = src) && can_mouse_drop(dropping, user) && can_store_atom(dropping, user))
 		store_atom(dropping, user)
 	return FALSE
 

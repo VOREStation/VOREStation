@@ -240,7 +240,7 @@
 		message += "Looks like there's a printer without any paper in it."
 
 
-	if(do_after(user, delay = 5 SECONDS))
+	if(do_after(user, delay = 5 SECONDS, target = src))
 		to_chat(user, message)
 
 

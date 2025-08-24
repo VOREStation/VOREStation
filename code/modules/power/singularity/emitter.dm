@@ -229,7 +229,7 @@
 			to_chat(user, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 			return
 		to_chat(user, span_notice("You begin repairing \the [src]..."))
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			if(P.use(amt))
 				to_chat(user, span_notice("You have repaired \the [src]."))
 				integrity = initial(integrity)

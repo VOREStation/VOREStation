@@ -104,7 +104,7 @@
 			src.visible_message("[src] pushes [T] out of the way.")
 
 		melee_can_hit = 0
-		if(do_after(melee_cooldown))
+		if(do_after_action(melee_cooldown))
 			melee_can_hit = 1
 		return
 
@@ -124,7 +124,7 @@
 
 				melee_can_hit = 0
 
-				if(do_after(melee_cooldown))
+				if(do_after_action(melee_cooldown))
 					melee_can_hit = 1
 	return
 

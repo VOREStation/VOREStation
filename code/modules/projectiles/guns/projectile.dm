@@ -127,7 +127,7 @@
 				if(ammo_magazine)
 					to_chat(user, span_warning("[src] already has a magazine loaded.")) //already a magazine here
 					return
-				if(do_after(user, reload_time * AM.w_class))
+				if(do_after(user, reload_time * AM.w_class, target = src))
 					user.remove_from_mob(AM)
 					AM.loc = src
 					ammo_magazine = AM
@@ -148,7 +148,7 @@
 						AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
 						count++
 						user.hud_used.update_ammo_hud(user, src)
-				if(do_after(user, reload_time * AM.w_class))
+				if(do_after(user, reload_time * AM.w_class, target = src))
 					if(count)
 						user.visible_message("[user] reloads [src].", span_notice("You load [count] round\s into [src]."))
 						user.hud_used.update_ammo_hud(user, src)
@@ -162,7 +162,7 @@
 			to_chat(user, span_warning("[src] is full."))
 			return
 
-		if(do_after(user, reload_time * C.w_class))
+		if(do_after(user, reload_time * C.w_class, target = src))
 			user.remove_from_mob(C)
 			C.loc = src
 			loaded.Insert(1, C) //add to the head of the list

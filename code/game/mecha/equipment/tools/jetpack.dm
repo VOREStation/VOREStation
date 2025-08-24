@@ -81,7 +81,7 @@
 					chassis.float_direction = direction
 					chassis.start_process(MECHA_PROC_MOVEMENT)
 					chassis.log_message(span_warning("Movement control lost. Inertial movement started."))
-			if(chassis.do_after(get_step_delay()))
+			if(chassis.do_after_action(get_step_delay()))
 				chassis.can_move = 1
 			return 1
 		return 0

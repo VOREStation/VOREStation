@@ -53,7 +53,7 @@
 	if(W.sharp && W.edge)
 		var/time = (3 SECONDS / max(W.force / 10, 1)) * W.toolspeed
 		user.setClickCooldown(time)
-		if(do_after(user, time, src) && use(1))
+		if(do_after(user, time, target = src) && use(1))
 			to_chat(user, span_notice("You cut up a log into planks."))
 			playsound(src, 'sound/effects/woodcutting.ogg', 50, 1)
 			var/obj/item/stack/material/wood/existing_wood = null

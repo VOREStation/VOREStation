@@ -68,7 +68,7 @@
 			if(src.locked || src.welded)
 				visible_message(span_danger("\The [user] begins breaking into \the [src] internals!"))
 				user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
-				if(do_after(user,10 SECONDS,src))
+				if(do_after(user, 10 SECONDS, target = src))
 					src.locked = 0
 					src.welded = 0
 					update_icon()
@@ -94,7 +94,7 @@
 			if(src.locked || src.welded)
 				visible_message(span_alium("\The [user] begins tearing into \the [src] internals!"))
 				src.do_animate("deny")
-				if(do_after(user,15 SECONDS,src))
+				if(do_after(user, 15 SECONDS, target = src))
 					visible_message(span_danger("\The [user] tears \the [src] open, sparks flying from its electronics!"))
 					src.do_animate("spark")
 					playsound(src, 'sound/machines/door/airlock_tear_apart.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
@@ -105,7 +105,7 @@
 					src.set_broken() //These aren't emags, these be CLAWS
 			else if(src.density)
 				visible_message(span_alium("\The [user] begins forcing \the [src] open!"))
-				if(do_after(user, 5 SECONDS,src))
+				if(do_after(user, 5 SECONDS, target = src))
 					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 					visible_message(span_danger("\The [user] forces \the [src] open!"))
 					open(1)
@@ -1215,7 +1215,7 @@ About the new airlock wires panel:
 		if(can_remove_electronics())
 			playsound(src, C.usesound, 75, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
-			if(do_after(user,40 * C.toolspeed))
+			if(do_after(user, 4 SECONDS * C.toolspeed, target = src))
 				to_chat(user, span_notice("You removed the airlock electronics!"))
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)

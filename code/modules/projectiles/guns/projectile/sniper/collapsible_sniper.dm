@@ -17,7 +17,7 @@
 
 /obj/item/gun/projectile/heavysniper/proc/collapse_rifle(mob/user)
 	to_chat(user, span_warning("You begin removing \the [src]'s barrel."))
-	if(do_after(user, 40))
+	if(do_after(user, 4 SECONDS, target = src))
 		if(user.unEquip(src, force=1))
 			to_chat(user, span_warning("You remove \the [src]'s barrel."))
 			qdel(src)

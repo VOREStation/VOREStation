@@ -90,7 +90,7 @@
 				to_chat(user, span_warning("\The [target] is too large to fit into your [src.name]"))
 				return
 			user.visible_message(span_warning("[hound.name] is ingesting [target.name] into their [src.name]."), span_notice("You start ingesting [target] into your [src.name]..."))
-			if(do_after(user, 30, target) && length(contents) < max_item_count)
+			if(do_after(user, 3 SECONDS, target) && length(contents) < max_item_count)
 				target.forceMove(src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [target.name] slips inside."), span_notice("Your [src.name] groans lightly as [target] slips inside."))
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
@@ -103,7 +103,7 @@
 		if(istype(target, /mob/living/simple_mob/animal/passive/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
 			var/mob/living/simple_mob/trashmouse = target
 			user.visible_message(span_warning("[hound.name] is ingesting [trashmouse] into their [src.name]."), span_notice("You start ingesting [trashmouse] into your [src.name]..."))
-			if(do_after(user, 30, trashmouse) && length(contents) < max_item_count)
+			if(do_after(user, 3 SECONDS, trashmouse) && length(contents) < max_item_count)
 				trashmouse.forceMove(src)
 				trashmouse.reset_view(src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashmouse] slips inside."), span_notice("Your [src.name] groans lightly as [trashmouse] slips inside."))
@@ -123,7 +123,7 @@
 				to_chat(user, span_warning("[trashman] is buckled and can not be put into your [src.name]."))
 				return
 			user.visible_message(span_warning("[hound.name] is ingesting [trashman] into their [src.name]."), span_notice("You start ingesting [trashman] into your [src.name]..."))
-			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
+			if(do_after(user, 3 SECONDS, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
 				START_PROCESSING(SSobj, src)

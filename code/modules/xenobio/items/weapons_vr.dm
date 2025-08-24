@@ -111,7 +111,7 @@
 		var/mob/living/simple_mob/slime/S = AM
 		while(S.cores)
 			playsound(src, 'sound/machines/juicer.ogg', 25, 1)
-			if(do_after(user, 15))
+			if(do_after(user, 15, target = src))
 				new S.coretype(get_turf(AM))
 				playsound(src, 'sound/effects/splat.ogg', 50, 1)
 				S.cores--
@@ -119,7 +119,7 @@
 
 	if(istype(AM, /mob/living/carbon/human/monkey))
 		playsound(src, 'sound/machines/juicer.ogg', 25, 1)
-		if(do_after(user, 15))
+		if(do_after(user, 15, target = src))
 			var/mob/living/carbon/human/M = AM
 			playsound(src, 'sound/effects/splat.ogg', 50, 1)
 			qdel(M)

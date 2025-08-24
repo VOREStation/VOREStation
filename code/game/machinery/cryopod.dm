@@ -716,7 +716,7 @@
 		else
 			visible_message("\The [user] starts putting [M] into \the [src].", 3)
 
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			if(occupant)
 				to_chat(user, span_warning("\The [src] is already occupied."))
 				return
