@@ -44,14 +44,11 @@
 	user.setClickCooldown(4)
 
 	if(reagents.has_reagent(REAGENT_ID_SACID))
-		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
-		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
+		log_and_message_admins("fired sulphuric acid from \a [src].", user)
 	if(reagents.has_reagent(REAGENT_ID_PACID))
-		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
-		log_game("[key_name(user)] fired Polyacid from \a [src].")
+		log_and_message_admins("fired Polyacid from \a [src].", user)
 	if(reagents.has_reagent(REAGENT_ID_LUBE))
-		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
-		log_game("[key_name(user)] fired Space lube from \a [src].")
+		log_and_message_admins("fired Space lube from \a [src].", user)
 	return
 
 /obj/item/reagent_containers/spray/proc/Spray_at(atom/A as mob|obj, mob/user, proximity)
