@@ -183,7 +183,7 @@
 			areas_to_break += A
 
 	if(!areas_to_break.len)
-		log_debug("Prison Break event failed to find any areas to break. Aborting.")
+		log_game("Prison Break event failed to find any areas to break. Aborting.")
 		abort()
 		return
 

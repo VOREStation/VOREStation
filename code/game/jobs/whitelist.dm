@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(whitelist)
 	return 1
 
 /proc/load_whitelist()
-	GLOB.whitelist = file2list(WHITELISTFILE)
+	GLOB.whitelist = world.file2list(WHITELISTFILE)
 	if(!GLOB.whitelist.len)	GLOB.whitelist = null
 
 /proc/check_whitelist(mob/M /*, var/rank*/)
@@ -26,17 +26,17 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 /proc/load_alienwhitelist()
 	var/text = file2text("config/alienwhitelist.txt")
 	if (!text)
-		log_misc("Failed to load config/alienwhitelist.txt")
+		log_world("Failed to load config/alienwhitelist.txt")
 	else
 		var/lines = splittext(text, "\n") // Now we've got a bunch of "ckey = something" strings in a list
 		for(var/line in lines)
 			var/list/left_and_right = splittext(line, " - ") // Split it on the dash into left and right
 			if(LAZYLEN(left_and_right) != 2)
-				warning("Alien whitelist entry is invalid: [line]") // If we didn't end up with a left and right, the line is bad
+				WARNING("Alien whitelist entry is invalid: [line]") // If we didn't end up with a left and right, the line is bad
 				continue
 			var/key = left_and_right[1]
 			if(key != ckey(key))
-				warning("Alien whitelist entry appears to have key, not ckey: [line]") // The key contains invalid ckey characters
+				WARNING("Alien whitelist entry appears to have key, not ckey: [line]") // The key contains invalid ckey characters
 				continue
 			var/list/our_whitelists = GLOB.alien_whitelist[key] // Try to see if we have one already and add to it
 			if(!our_whitelists) // Guess this is their first/only whitelist entry

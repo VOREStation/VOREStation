@@ -25,7 +25,7 @@
 		vending_machines += V
 
 	if(!vending_machines.len)
-		log_debug("Could not find any vending machines on station Z levels. Aborting.")
+		log_game("Brand intelligence event: Could not find any vending machines on station Z levels. Aborting.")
 		abort()
 		return
 

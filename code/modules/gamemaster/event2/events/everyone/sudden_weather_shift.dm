@@ -15,7 +15,7 @@
 
 /datum/event2/event/sudden_weather_shift/set_up()
 	if(!LAZYLEN(SSplanets.planets))
-		log_debug("Weather shift event was ran when no planets exist. Aborting.")
+		log_game("Weather shift event was ran when no planets exist. Aborting.")
 		abort()
 		return
 
@@ -41,5 +41,5 @@
 
 	// Now choose a new weather.
 	var/new_weather = pickweight(new_weather_weights)
-	log_debug("Sudden weather shift event is now changing [chosen_planet.name]'s weather to [new_weather].")
+	log_game("Sudden weather shift event is now changing [chosen_planet.name]'s weather to [new_weather].")
 	chosen_planet.weather_holder.change_weather(new_weather)

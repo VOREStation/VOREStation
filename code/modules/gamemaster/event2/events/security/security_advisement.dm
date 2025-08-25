@@ -83,7 +83,7 @@
 			end_weights -= victim_chosen
 
 	if(!victim)
-		log_debug("Security Screening event failed to find anyone to screen. Aborting.")
+		log_game("Security Screening event failed to find anyone to screen. Aborting.")
 		abort()
 		return
 

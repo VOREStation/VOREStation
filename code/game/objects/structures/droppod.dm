@@ -27,7 +27,7 @@
 /obj/structure/drop_pod/proc/podfall(auto_open)
 	var/turf/T = get_turf(src)
 	if(!T)
-		warning("Drop pod wasn't spawned on a turf")
+		WARNING("Drop pod wasn't spawned on a turf")
 		return
 
 	moveToNullspace()

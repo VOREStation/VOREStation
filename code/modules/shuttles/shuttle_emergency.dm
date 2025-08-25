@@ -73,7 +73,7 @@
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if (emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			to_world(span_boldnotice("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
+			to_chat(world, span_boldnotice("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
 
 	if(usr)
 		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and activated the launch sequence.")
@@ -87,7 +87,7 @@
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if (emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			to_world(span_boldnotice("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
+			to_chat(world, span_boldnotice("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
 
 	if(usr)
 		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and forced immediate launch.")

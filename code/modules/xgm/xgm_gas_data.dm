@@ -22,7 +22,7 @@ GLOBAL_DATUM_INIT(gas_data, /datum/xgm_gas_data, new())
 		var/decl/xgm_gas/gas = new p //avoid initial() because of potential New() actions
 
 		if(gas.id in gases)
-			error("Duplicate gas id `[gas.id]` in `[p]`")
+			log_world("## ERROR Duplicate gas id `[gas.id]` in `[p]`")
 
 		gases += gas.id
 		name[gas.id] = gas.name

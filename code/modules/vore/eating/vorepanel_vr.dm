@@ -23,7 +23,7 @@
 
 	if(!vorePanel)
 		if(!isnewplayer(src))
-			log_debug("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
+			log_vore("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
 		vorePanel = new(src)
 
 	vorePanel.tgui_interact(src)

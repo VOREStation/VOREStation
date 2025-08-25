@@ -32,7 +32,7 @@
 	chassis.use_power(energy_drain)
 	chassis.visible_message(span_warning("[chassis] fires [src]!"))
 	occupant_message(span_warning("You fire [src]!"))
-	log_message("Fired from [src], targeting [target].")
+	src.mecha_log_message("Fired from [src], targeting [target].")
 	var/target_for_log = "unknown"
 	if(ismob(target))
 		target_for_log = target

@@ -79,7 +79,7 @@
 
 					body += "<a href='byond://?src=\ref[src];[HrefToken()];adminplayeropts="+ref+"'>PP</a> - "
 					body += "<a href='byond://?src=\ref[src];[HrefToken()];notes=show;mob="+ref+"'>N</a> - "
-					body += "<a href='byond://?_src_=vars;Vars="+ref+"'>VV</a> - "
+					body += "<a href='byond://?_src_=vars;[HrefToken()];Vars="+ref+"'>VV</a> - "
 					body += "<a href='byond://?src=\ref[src];[HrefToken()];traitor="+ref+"'>TP</a> - "
 					body += "<a href='byond://?src=\ref[usr];[HrefToken()];priv_msg=\ref"+ref+"'>PM</a> - "
 					body += "<a href='byond://?src=\ref[src];[HrefToken()];subtlemessage="+ref+"'>SM</a> - "

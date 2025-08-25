@@ -44,11 +44,11 @@
 		if(shields.active)
 			set_ready_state(FALSE)
 			step_delay = 4
-			log_message("Activated.")
+			src.mecha_log_message("Activated.")
 		else
 			set_ready_state(TRUE)
 			step_delay = initial(step_delay)
-			log_message("Deactivated.")
+			src.mecha_log_message("Deactivated.")
 
 /obj/item/mecha_parts/mecha_equipment/omni_shield/Topic(href, href_list)
 	..()

@@ -54,7 +54,7 @@
 	//Delete ourselves if we find extra mapped in firedoors
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
-			log_debug("Duplicate firedoors at [x],[y],[z]")
+			log_mapping("Duplicate firedoors at [x],[y],[z]")
 			return INITIALIZE_HINT_QDEL
 
 	var/area/A = get_area(src)

@@ -82,7 +82,7 @@
 		connected = FALSE
 	else if(type == "error")
 		connected = FALSE
-		log_debug("WebSocket Error [json_encode(payload)]")
+		log_runtime("WebSocket Error [json_encode(payload)]")
 	else if(type == "incomingMessage")
 		if(payload["lastCall"] == "get_devices")
 			available_devices = json_decode(payload["data"])

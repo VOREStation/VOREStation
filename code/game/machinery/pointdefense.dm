@@ -27,7 +27,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 		//No more than 1 controller please.
 		for(var/obj/machinery/pointdefense_control/PC as anything in GLOB.pointdefense_controllers)
 			if(PC != src && PC.id_tag == id_tag)
-				warning("Two [src] with the same id_tag of [id_tag]")
+				WARNING("Two [src] with the same id_tag of [id_tag]")
 				id_tag = null
 	default_apply_parts()
 

@@ -162,7 +162,7 @@
 /proc/vore_sanity_checks(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
 	//Sanity
 	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
-		log_debug("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
+		log_vore("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
 		return FALSE
 	if(pred == prey)
 		return FALSE

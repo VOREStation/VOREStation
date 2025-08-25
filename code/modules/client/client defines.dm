@@ -86,6 +86,9 @@
 	///Used for limiting the rate of clicks sends by the client to avoid abuse
 	var/list/clicklimiter
 
+	///these persist between logins/logouts during the same round.
+	var/datum/persistent_client/persistent_client
+
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
