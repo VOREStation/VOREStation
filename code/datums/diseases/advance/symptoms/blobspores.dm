@@ -92,6 +92,8 @@ BONUS
 /datum/symptom/blobspores/OnDeath(datum/disease/advance/A)
 	if(!..())
 		return
+	if(!ready_to_pop)
+		return
 	var/mob/living/M = A.affected_mob
 	M.visible_message(span_danger("[M] starts swelling grotesquely!"))
 	addtimer(CALLBACK(src, PROC_REF(pop), A, M), 10 SECONDS)
@@ -107,9 +109,8 @@ BONUS
 	if(node_blob)
 		blob_options += /obj/structure/blob/node
 	var/pick_blob = pick(blob_options)
-	if(ready_to_pop)
-		for(var/i in 1 to rand(1, 6))
-			new /mob/living/simple_mob/blob/spore(M.loc)
-		new pick_blob(M.loc)
+	for(var/i in 1 to rand(1, 6))
+		new /mob/living/simple_mob/blob/spore(M.loc)
+	new pick_blob(M.loc)
 
 	M.visible_message(span_danger("A huge mass of blob and blob spores burst out of [M]!"))

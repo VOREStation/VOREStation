@@ -124,7 +124,7 @@
 			if(prob(5) && bruteheal)
 				if(H.stat != DEAD)
 					to_chat(H, span_userdanger("You retch, and a splatter of gore escapes your gullet!"))
-					H.vomit(lost_nutrition = 0, blood = TRUE, stun = FALSE)
+					H.do_vomit(lost_nutrition = 0, blood = TRUE, stun = FALSE)
 					// Spitting tumors go here! IF they get up-ported.
 				if(tetsuo)
 					var/list/missing = H.get_missing_limbs()
