@@ -207,7 +207,7 @@
 					break
 
 			if(!found)
-				component_positions += list(list("ref" = REF(C), "x" = new_x, "y" = new_y))
+				UNTYPED_LIST_ADD(component_positions, list("ref" = REF(C), "x" = new_x, "y" = new_y))
 
 			return TRUE
 
