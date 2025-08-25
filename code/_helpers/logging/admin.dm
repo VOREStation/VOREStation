@@ -21,13 +21,13 @@
 	logger.Log(LOG_CATEGORY_ADMIN_PRIVATE_ASAY, text, data)
 	logger.Log(LOG_CATEGORY_COMPAT_GAME, "ADMINPRIVATE: ASAY: [text]")
 
-/proc/log_modsay(text, mob/speaker)
-	if (CONFIG_GET(flag/log_adminchat))
-		WRITE_LOG(GLOB.diary, "MODSAY: [speaker.simple_info_line()]: [html_decode(text)]")
+/proc/log_modsay(text, list/data)
+	logger.Log(LOG_CATEGORY_ADMIN_PRIVATE_MSAY, text, data)
+	logger.Log(LOG_CATEGORY_COMPAT_GAME, "ADMINPRIVATE: MODSAY: [text]")
 
-/proc/log_eventsay(text, mob/speaker)
-	if (CONFIG_GET(flag/log_adminchat))
-		WRITE_LOG(GLOB.diary, "EVENTSAY: [speaker.simple_info_line()]: [html_decode(text)]")
+/proc/log_eventsay(text, list/data)
+	logger.Log(LOG_CATEGORY_ADMIN_PRIVATE_ESAY, text, data)
+	logger.Log(LOG_CATEGORY_COMPAT_GAME, "ADMINPRIVATE: EVENTSAY: [text]")
 
 /**
  * Writes to a special log file if the log_suspicious_login config flag is set,

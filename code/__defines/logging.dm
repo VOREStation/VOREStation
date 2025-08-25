@@ -76,6 +76,7 @@
 // Admin private categories
 #define LOG_CATEGORY_ADMIN_PRIVATE "adminprivate"
 #define LOG_CATEGORY_ADMIN_PRIVATE_ASAY "adminprivate-asay"
+#define LOG_CATEGORY_ADMIN_PRIVATE_MSAY "adminprivate-msay"
 #define LOG_CATEGORY_ADMIN_PRIVATE_ESAY "adminprivate-esay"
 
 // Debug categories

@@ -20,7 +20,13 @@
 	config_flag = /datum/config_entry/flag/log_adminchat
 	secret = TRUE
 
-/datum/log_category/admin_asay
+/datum/log_category/admin_msay
+	category = LOG_CATEGORY_ADMIN_PRIVATE_MSAY
+	master_category = /datum/log_category/admin_private
+	config_flag = /datum/config_entry/flag/log_adminchat
+	secret = TRUE
+
+/datum/log_category/admin_esay
 	category = LOG_CATEGORY_ADMIN_PRIVATE_ESAY
 	master_category = /datum/log_category/admin_private
 	config_flag = /datum/config_entry/flag/log_eventchat
