@@ -6,11 +6,13 @@
 	var/msg = !auth ? "no" : "a bad"
 	message_admins("[key_name_admin(usr)] clicked an href with [msg] authorization key!")
 
-	var/debug_admin_hrefs = FALSE // Remove once everything is converted over
+	/* Debug code in case one needs to dig missing token HREFS
+	var/debug_admin_hrefs = TRUE // Remove once everything is converted over
 	if(debug_admin_hrefs)
 		message_admins("Debug mode enabled, call not blocked. Please ask your coders to review this round's logs.")
 		log_world("UAH: [href]")
 		return TRUE
+	*/
 
 	log_admin("[key_name(usr)] clicked an href with [msg] authorization key! [href]")
 
