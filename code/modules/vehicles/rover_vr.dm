@@ -75,7 +75,7 @@
 		return 0
 
 	//space check ~no flying space trains sorry
-	if(on && istype(destination, /turf/space))
+	if(on && isopenturf(destination))
 		return 0
 
 	return ..()
