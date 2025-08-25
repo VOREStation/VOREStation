@@ -1,4 +1,5 @@
 import type { Dispatch } from 'react';
+import { useBackend } from 'tgui/backend';
 import {
   Button,
   Icon,
@@ -7,8 +8,6 @@ import {
   Table,
   Tooltip,
 } from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
 import { SORTING_TYPES } from './constants';
 import { SortType, type SubsystemData } from './types';
 
