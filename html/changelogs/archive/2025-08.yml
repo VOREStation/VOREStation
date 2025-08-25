@@ -515,3 +515,6 @@
   - code_imp: move to native toFixed in tgui
   Will:
   - bugfix: Explosion powernet rebuild lag reduced
+2025-08-24:
+  Diana:
+  - bugfix: Loyalty potions work again. Whoops.
