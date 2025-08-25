@@ -16,6 +16,15 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/board/tank_management
+	name = "tank monitoring console circuit"
+	id = "tank_management"
+	build_path = /obj/item/circuitboard/air_management/tank_control
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_ENGINEERING
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/board/shutoff_monitor
 	name = "Automatic shutoff valve monitor circuit"
 	id = "shutoff_monitor"
