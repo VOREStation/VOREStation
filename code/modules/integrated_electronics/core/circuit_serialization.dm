@@ -125,7 +125,7 @@
 					pin_data = "[input_pin.data]" // Convert other types to text
 
 				// Store pin type, index and data
-				pin_data_list += list(list("t" = "i", "i" = i, "d" = pin_data))
+				UNTYPED_LIST_ADD(pin_data_list, list("t" = "i", "i" = i, "d" = pin_data))
 
 		// Serialize output pins
 		for(var/i = 1, i <= length(IC.outputs), i++)
@@ -144,13 +144,13 @@
 					pin_data = "[output_pin.data]" // Convert other types to text
 
 				// Store pin type, index and data
-				pin_data_list += list(list("t" = "o", "i" = i, "d" = pin_data))
+				UNTYPED_LIST_ADD(pin_data_list, list("t" = "o", "i" = i, "d" = pin_data))
 
 		// Only include pins if there's actual data
 		if(length(pin_data_list) > 0)
 			component_data["p"] = pin_data_list  // Shortened key: pins (inputs and outputs)
 
-		assembly_data["components"] += list(component_data)
+		UNTYPED_LIST_ADD(assembly_data["components"], component_data)
 		component_index++
 
 	// Second pass: serialize connections using the component indices (avoid duplicates by only processing outputs)
@@ -194,7 +194,7 @@
 								"tpt" = target_pin_type,           // target_pin_type -> tpt
 								"tpi" = target_pin_index           // target_pin_index -> tpi
 							)
-							assembly_data["connections"] += list(connection)
+							UNTYPED_LIST_ADD(assembly_data["connections"], connection)
 
 		// Check activator connections
 		for(var/i = 1, i <= IC.activators.len, i++)
@@ -231,7 +231,7 @@
 								"tpt" = target_pin_type,           // target_pin_type -> tpt
 								"tpi" = target_pin_index           // target_pin_index -> tpi
 							)
-							assembly_data["connections"] += list(connection)
+							UNTYPED_LIST_ADD(assembly_data["connections"], connection)
 
 	return json_encode(assembly_data)
 
@@ -390,7 +390,7 @@
 		// Store position data if available
 		if(component_data["x"] != null && component_data["y"] != null)
 			// Store position in assembly for later UI restoration
-			assembly.component_positions += list(list(
+			UNTYPED_LIST_ADD(assembly.component_positions, list(
 				"ref" = REF(IC),
 				"x" = component_data["x"],
 				"y" = component_data["y"]
@@ -399,7 +399,7 @@
 			// Set default positions in a grid layout if no position data
 			var/default_x = ((component_index - 1) % 4) * 200 + 50  // 4 components per row, 200px apart
 			var/default_y = ((component_index - 1) / 4) * 150 + 50  // 150px between rows
-			assembly.component_positions += list(list(
+			UNTYPED_LIST_ADD(assembly.component_positions, list(
 				"ref" = REF(IC),
 				"x" = default_x,
 				"y" = default_y
