@@ -69,7 +69,7 @@
 		turn_off()
 		update_stats()
 		if(load && is_train_head())
-			to_chat(load, "The drive motor briefly whines, then drones to a stop.")
+			to_chat(load, span_notice("The drive motor briefly whines, then drones to a stop."))
 
 	if(is_train_head() && !on)
 		return 0
