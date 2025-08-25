@@ -66,7 +66,6 @@ SUBSYSTEM_DEF(processing)
 	msg += "- Process subsystems are processed tail-first -\n"
 	if(!currentrun || !processing)
 		msg += "ERROR: A critical list [currentrun ? "processing" : "currentrun"] is gone!"
-		log_game(msg)
 		log_world(msg)
 		return
 	msg += "Lists: current_run: [currentrun.len], processing: [processing.len]\n"
@@ -93,7 +92,6 @@ SUBSYSTEM_DEF(processing)
 		for(var/i in start to end)
 			msg += "[describeThis(processing[i])][i == position ? " << TAIL" : ""]\n"
 		msg += "---\n"
-	log_game(msg)
 	log_world(msg)
 
 /datum/proc/DebugSubsystemProcess(var/wait, var/times_fired, var/datum/controller/subsystem/processing/subsystem)
