@@ -13,7 +13,7 @@ ADMIN_VERB(cmd_admin_say, R_ADMIN, "ASay", "Send a message to other admins", "Ad
 
 ADMIN_VERB(cmd_mod_say, (R_ADMIN|R_MOD|R_SERVER), "Msay", "Send a message to other mod", "Admin.Chat", message as text)
 	var/msg = sanitize(message)
-	log_modsay(msg, user)
+	log_modsay(msg, list("speaker" = user))
 
 	if (!msg)
 		return
@@ -29,7 +29,7 @@ ADMIN_VERB(cmd_mod_say, (R_ADMIN|R_MOD|R_SERVER), "Msay", "Send a message to oth
 
 ADMIN_VERB(cmd_event_say, (R_ADMIN|R_MOD|R_EVENT|R_SERVER), "Esay", "Send a message to other event manager", "Admin.Chat", message as text)
 	var/msg = sanitize(message)
-	log_eventsay(msg, user)
+	log_eventsay(msg, list("speaker" = user))
 
 	if (!msg)
 		return
