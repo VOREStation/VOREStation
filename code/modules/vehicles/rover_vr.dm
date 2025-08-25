@@ -69,13 +69,13 @@
 		turn_off()
 		update_stats()
 		if(load && is_train_head())
-			to_chat(load, "The drive motor briefly whines, then drones to a stop.")
+			to_chat(load, span_notice("The drive motor briefly whines, then drones to a stop."))
 
 	if(is_train_head() && !on)
 		return 0
 
 	//space check ~no flying space trains sorry
-	if(on && istype(destination, /turf/space))
+	if(on && isopenturf(destination))
 		return 0
 
 	return ..()

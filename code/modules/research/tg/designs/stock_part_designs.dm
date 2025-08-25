@@ -406,17 +406,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
 
-/datum/design_techweb/hyper_device_cell
-	name = "Hyper Device Cell"
-	id = "hyper_device_cell"
-	build_type = PROTOLATHE
-	materials = list(MAT_STEEL = 800, MAT_GLASS = 120)
-	build_path = /obj/item/cell/device/hyper/empty
-	category = list(
-		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_2
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
-
 /datum/design_techweb/weapon_cell
 	name = "Weapon Cell"
 	id = "weapon_cell"
@@ -501,7 +490,7 @@
 	name = "Giga-Capacity Cell"
 	id = "giga_cell"
 	materials = list(MAT_STEEL = 1000, MAT_GOLD = 300, MAT_SILVER = 300, MAT_GLASS = 100, MAT_PHORON = 1000, MAT_DURASTEEL = 100, MAT_URANIUM = 100)
-	build_path = /obj/item/cell/giga
+	build_path = /obj/item/cell/giga/empty
 	build_type = PROTOLATHE
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
@@ -549,7 +538,7 @@
 	name = "Device Cell, Super"
 	id = "super_device"
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 70, MAT_GOLD = 50, MAT_SILVER = 20)
-	build_path = /obj/item/cell/device/super
+	build_path = /obj/item/cell/device/super/empty
 	build_type = PROTOLATHE
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_3
@@ -560,7 +549,7 @@
 	name = "Device Cell, Hyper"
 	id = "hyper_device"
 	materials = list(MAT_STEEL = 1400, MAT_GLASS = 1400, MAT_GOLD = 150, MAT_SILVER = 150)
-	build_path = /obj/item/cell/device/hyper
+	build_path = /obj/item/cell/device/hyper/empty
 	build_type = PROTOLATHE
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_4
@@ -571,7 +560,7 @@
 	name = "Device Cell, Giga"
 	id = "giga_device"
 	materials = list(MAT_STEEL = 2000, MAT_GOLD = 500, MAT_SILVER = 500, MAT_GLASS = 100, MAT_PHORON = 2000, MAT_DURASTEEL = 200, MAT_URANIUM = 200)
-	build_path = /obj/item/cell/device/giga
+	build_path = /obj/item/cell/device/giga/empty
 	build_type = PROTOLATHE
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5

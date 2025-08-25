@@ -59,7 +59,7 @@
 		"ultra_micro_laser",
 		"hyper_cell",
 		"super_device",
-		"hyper_device_cell",
+		"hyper_device",
 		"arped",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
