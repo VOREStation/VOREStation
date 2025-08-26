@@ -1,0 +1,5 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - refactor: "cleaned up icon files for undersuits - there shouldn't be any player-facing changes, but please report any invisible or bugged clothes in appropriate channels. also cleaned up some text/file formatting."
+  - qol: "non-altevians can now wear altevian uniforms, if you want to. there was no reason for these to be restricted."

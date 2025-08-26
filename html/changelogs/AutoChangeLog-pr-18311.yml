@@ -1,0 +1,7 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Frames now accept parts stored in boxes or bags and load them all at once"
+  - rscadd: "RPED can now install parts in a frame, bluespace RPED can do so at range"
+  - rscadd: "Engineering borgs given an expanded parts pouch"
+  - qol: "Engineering parts pouch can now pick up all stock parts on a turf, and drop them all at once, can be used to mass install parts in frames like any other bag"
