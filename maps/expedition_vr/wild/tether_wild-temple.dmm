@@ -1,11 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/unsimulated/wall/planetary/virgo3b{
-	desc = "You can't go there!";
-	icon = 'icons/turf/flooring/plating_vr.dmi';
-	icon_state = "";
-	name = "impassible landscape"
-	},
+/turf/unsimulated/wall/planetary/virgo3b_unpassable,
 /area/tether/surfacebase/outside/wilderness)
 "b" = (
 /obj/effect/step_trigger/teleporter/wild/to_wild_1,
@@ -41,30 +36,15 @@
 /turf/simulated/wall/sandstonediamond,
 /area/tether/surfacebase/temple)
 "g" = (
-/turf/simulated/floor/outdoors/dirt{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/outdoors/dirt,
 /area/tether/surfacebase/temple)
 "h" = (
 /obj/structure/mob_spawner/scanner/xenos,
-/turf/simulated/floor/outdoors/dirt{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/outdoors/dirt,
 /area/tether/surfacebase/temple)
 "i" = (
 /obj/structure/mob_spawner/scanner/xenos/royal,
-/turf/simulated/floor/outdoors/dirt{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/outdoors/dirt,
 /area/tether/surfacebase/temple)
 "j" = (
 /obj/effect/step_trigger/teleporter/wild/to_wild_6,
@@ -76,43 +56,23 @@
 /area/tether/surfacebase/outside/wilderness)
 "k" = (
 /obj/item/material/star,
-/turf/simulated/floor/outdoors/dirt{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/outdoors/dirt,
 /area/tether/surfacebase/temple)
 "l" = (
 /obj/effect/decal/mecha_wreckage/phazon{
 	anchored = 1;
 	name = "rusted Phazon wreckage"
 	},
-/turf/simulated/floor/outdoors/dirt{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/outdoors/dirt,
 /area/tether/surfacebase/temple)
 "m" = (
 /obj/item/cell/infinite,
 /obj/effect/gibspawner/human,
-/turf/simulated/floor/outdoors/dirt{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/outdoors/dirt,
 /area/tether/surfacebase/temple)
 "n" = (
 /obj/item/material/sword/katana,
-/turf/simulated/floor/outdoors/dirt{
-	desc = "Quite dirty!";
-	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "dirt-dark";
-	name = "dirt"
-	},
+/turf/simulated/floor/outdoors/dirt,
 /area/tether/surfacebase/temple)
 "o" = (
 /obj/effect/step_trigger/teleporter/wild/to_wild_4,

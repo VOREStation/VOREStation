@@ -1,6 +1,5 @@
 import { useBackend } from 'tgui/backend';
 import { LabeledList, Section, Slider, Stack } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { abilitiy_usable } from '../functions';
 import type { abilities, abilitySizeChange } from '../types';
@@ -11,7 +10,7 @@ export const VoreAbilities = (props: { abilities: abilities }) => {
   const { nutrition, size_change } = abilities;
 
   return (
-    <Section title="Abilities" buttons={`Nutrition: ${toFixed(nutrition, 1)}`}>
+    <Section title="Abilities" buttons={`Nutrition: ${nutrition.toFixed(1)}`}>
       <LabeledList>
         <SizeChange nutrition={nutrition} sizeChange={size_change} />
       </LabeledList>
@@ -47,7 +46,7 @@ const SizeChange = (props: {
                   }
                 : { black: [0, 600] }
             }
-            format={(value: number) => `${toFixed(value, 2)}%`}
+            format={(value: number) => `${value.toFixed(2)}%`}
             value={Math.round(current_size * 10000) / 100}
             minValue={minimum_size * 100}
             maxValue={maximum_size * 100}

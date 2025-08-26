@@ -33,6 +33,8 @@
 	var/list/mutagenic_reagents    // Reagents considered uniquely 'mutagenic' by a plant.
 	var/list/toxic_reagents        // Reagents considered uniquely 'toxic' by a plant.
 
+	var/ai_mob_product = 0 //This variable determines whether or not a mob product is meant to be ai-controlled. If set to 0, mob products die without a player to control them.
+
 /datum/seed/New()
 
 	set_trait(TRAIT_IMMUTABLE,            0)            // If set, plant will never mutate. If -1, plant is highly mutable.

@@ -170,7 +170,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 	if (transparent && !istype(src,/obj/item/organ/external/head) && can_apply_transparency && should_apply_transparency) //VORESTATION EDIT: transparent instead of nonsolid
 		mob_icon += rgb(,,,180) //do it here so any markings become transparent as well
 
-	dir = EAST
+	dir = SOUTH
 	icon = mob_icon
 	return mob_icon
 

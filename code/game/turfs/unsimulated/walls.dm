@@ -6,6 +6,10 @@
 	density = TRUE
 	blocks_air = TRUE
 
+//For the tram
+/turf/unsimulated/wall/moving
+	icon = 'icons/turf/transit_vr.dmi'
+
 //other set - for map building
 /turf/unsimulated/wall/wall1
 	icon_state = "riveted1"
@@ -25,3 +29,14 @@
 
 /turf/unsimulated/wall/other
 	icon_state = "r_wall"
+
+/turf/unsimulated/wall/fake_uranium_door
+	icon = 'icons/obj/doors/Dooruranium.dmi'
+	icon_state = "door_closed"
+	name = "Sealed Door"
+
+/turf/unsimulated/wall/fake_pod
+	desc = "That looks like it doesn't open easily."
+	icon = 'icons/obj/doors/rapid_pdoor.dmi'
+	icon_state = "pdoor1"
+	name = "Shuttle Bay Blast Door"

@@ -40,7 +40,7 @@
 
 	disable_duration_percent = 0.7
 	outgoing_melee_damage_percent = 1.3
-	attack_speed_percent = 1.3
+	attack_speed_percent = 0.7
 	accuracy = 30
 	slowdown = -1
 	evasion = 30

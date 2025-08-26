@@ -48,7 +48,7 @@
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			add_overlay(list(em_block), TRUE)
-			RegisterSignal(em_block, COMSIG_PARENT_QDELETING, PROC_REF(emblocker_gc))
+			RegisterSignal(em_block, COMSIG_QDELETING, PROC_REF(emblocker_gc))
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	if(icon_scale_x != DEFAULT_ICON_SCALE_X || icon_scale_y != DEFAULT_ICON_SCALE_Y || icon_rotation != DEFAULT_ICON_ROTATION)
@@ -67,7 +67,7 @@
 /atom/movable/Destroy()
 	if(em_block)
 		cut_overlay(em_block)
-		UnregisterSignal(em_block, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(em_block, COMSIG_QDELETING)
 		QDEL_NULL(em_block)
 	. = ..()
 
@@ -658,7 +658,7 @@
 
 /atom/movable/proc/emblocker_gc(var/datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(source, COMSIG_QDELETING)
 	cut_overlay(source)
 	if(em_block == source)
 		em_block = null
