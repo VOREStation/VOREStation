@@ -435,7 +435,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	else
 		raw_list = list(raw_text)
 
-	for(var/i = 1, i <= LAZYLEN(raw_list) i++)
+	for(var/i = 1, i <= LAZYLEN(raw_list), i++)
 		raw_list[i] = html_encode(raw_list[i])
 		if(!length(raw_list[i]))
 			raw_list.Cut(i, i + 1)
