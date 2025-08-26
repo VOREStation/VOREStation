@@ -213,3 +213,42 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	icon_state = "medicine_cabinet"
 	density = FALSE
 	loot_element_path = /datum/element/lootable/fresh_medicine
+
+//Micro mecha loot.
+/obj/structure/loot_pile/mecha/mouse_tank
+	name = "\improper Whisker wreckage"
+	desc = "The ruins of a small tank. Perhaps some child's toy?"
+	icon = 'icons/mob/mouse_army.dmi'
+	icon_state = "whisker-broken"
+	density = TRUE
+	anchored = FALSE // In case a dead mecha-mob dies in a bad spot.
+
+	loot_element_path = /datum/element/lootable/mecha/mouse_tank
+
+/obj/structure/loot_pile/mecha/mouse_tank/livewire
+	name = "\improper Livewire wreckage"
+	desc = "The smoldering ruins of a small tank. Perhaps some child's toy?"
+	icon_state = "livewire-broken"
+	density = TRUE
+	anchored = FALSE // In case a dead mecha-mob dies in a bad spot.
+
+	loot_element_path = /datum/element/lootable/mecha/mouse_tank/livewire
+
+/obj/structure/loot_pile/mecha/mouse_tank/eraticator
+	name = "\improper Eraticator wreckage"
+	desc = "The blasted ruins of a small tank. Perhaps some child's toy?"
+	icon_state = "eraticator-broken"
+	density = TRUE
+	anchored = FALSE // In case a dead mecha-mob dies in a b
+
+	loot_element_path = /datum/element/lootable/mecha/mouse_tank/eraticator
+
+/obj/structure/loot_pile/mecha/ripley/pirate
+	icon = 'icons/mob/pirates.dmi'
+	icon_state = "pirate-broken"
+
+/obj/structure/loot_pile/maint/technical
+	density = FALSE
+
+/obj/structure/loot_pile/maint/boxfort
+	density = FALSE

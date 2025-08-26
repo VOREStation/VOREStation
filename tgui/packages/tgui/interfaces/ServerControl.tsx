@@ -1,3 +1,5 @@
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Collapsible,
@@ -6,9 +8,6 @@ import {
   Table,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 
 type Data = {
   server_connected: BooleanLike;

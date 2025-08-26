@@ -9,7 +9,6 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -129,7 +128,7 @@ export const SolarControl = (props) => {
                   value={array_angle}
                   format={(rate) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
-                    return toFixed(Math.abs(rate)) + sign;
+                    return Math.abs(rate).toFixed() + sign;
                   }}
                   onChange={(value) => act('azimuth', { value })}
                 />
@@ -145,7 +144,7 @@ export const SolarControl = (props) => {
                   value={rotation_rate}
                   format={(rate) => {
                     const sign = Math.sign(rate) > 0 ? ' (CW)' : ' (CCW)';
-                    return toFixed(Math.abs(rate)) + sign;
+                    return Math.abs(rate).toFixed() + sign;
                   }}
                   onChange={(value) => act('azimuth_rate', { value })}
                 />

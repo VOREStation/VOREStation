@@ -308,7 +308,6 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		var/s = safepick(symptoms)
 		if(s)
 			NeuterSymptom(s)
-			Refresh(TRUE)
 
 // Falter the disease, making it non-spreadable.
 /datum/disease/advance/proc/Falter()
