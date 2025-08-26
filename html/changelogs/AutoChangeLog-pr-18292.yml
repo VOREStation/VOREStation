@@ -1,0 +1,5 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - refactor: "cleaned up icon files for eyewear and masks - there shouldn't be any player-facing changes, but please report any invisible or bugged clothes in appropriate channels"
+  - bugfix: "AR mantles can now access special displays as-intended, they no longer block eating/drinking, and also slightly adjusted the E/W facing sprites for mantles on vulp bases"
