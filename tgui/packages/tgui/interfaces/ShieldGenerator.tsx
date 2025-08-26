@@ -9,7 +9,6 @@ import {
   Section,
 } from 'tgui-core/components';
 import { formatPower, formatSiUnit } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { FullscreenNotice } from './common/FullscreenNotice';
@@ -106,13 +105,12 @@ const ShieldGeneratorContent = (props) => {
             )}
           </LabeledList.Item>
           <LabeledList.Item label="Overall Field Strength">
-            {toFixed(average_field_strength, 2) +
+            {average_field_strength.toFixed(2) +
               ' Renwick (' +
               (target_field_strength &&
-                `${toFixed(
-                  (100 * average_field_strength) / target_field_strength,
-                  1,
-                )}%)`) || 'NA)'}
+                `${(
+                  (100 * average_field_strength) / target_field_strength
+                ).toFixed(1)}%)`) || 'NA)'}
           </LabeledList.Item>
           <LabeledList.Item label="Upkeep Power">
             {formatPower(upkeep)}
@@ -137,8 +135,7 @@ const ShieldGeneratorContent = (props) => {
                       <LabeledList.Item label="Charge">
                         {formatSiUnit(cap.stored_charge, 0, 'J') +
                           ' (' +
-                          toFixed(
-                            100 * (cap.stored_charge / cap.max_charge),
+                          (100 * (cap.stored_charge / cap.max_charge)).toFixed(
                             2,
                           ) +
                           '%)'}
@@ -210,7 +207,7 @@ const ShieldGeneratorContent = (props) => {
               step={0.1}
               maxValue={max_strengthen_rate}
               value={strengthen_rate}
-              format={(val: number) => toFixed(val, 1)}
+              format={(val: number) => val.toFixed(1)}
               unit="Renwick/s"
               onChange={(val: number) => act('strengthen_rate', { val: val })}
             />

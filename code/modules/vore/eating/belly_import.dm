@@ -495,7 +495,7 @@
 			var/new_emote_time = belly_data["emote_time"]
 			new_belly.emote_time = CLAMP(new_emote_time, 60, 600)
 
-		new_belly.set_zero_digestion_damage() // Not implemented on virgo; CHOMPEnale needed for importing a belly to overwrite an existing belly; otherwise pre-existing values throw off the unused digestion damage.
+		new_belly.set_zero_digestion_damage() // Needed for importing a belly to overwrite an existing belly; otherwise pre-existing values throw off the unused digestion damage.
 
 		if(isnum(belly_data["digest_brute"]))
 			var/new_digest_brute = belly_data["digest_brute"]
@@ -1203,7 +1203,7 @@
 
 		// After import updates
 		new_belly.items_preserved.Cut()
-		new_belly.update_internal_overlay() // Signal not implemented! CHOMPEnable
+		new_belly.update_internal_overlay()
 
 	host.handle_belly_update()
 	host.updateVRPanel()
