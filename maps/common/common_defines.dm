@@ -204,3 +204,13 @@ GLOBAL_LIST_EMPTY(all_stellar_delights)
 	skybox_pixel_y = 0
 
 	extra_z_levels = list(Z_NAME_AEROSTAT_SURFACE)
+
+//This is in the v5_outpost_build.dmm. I am unsure if this was maintained, but it's put here because it was a map edit
+/obj/effect/overmap/visitable/sector/virgo5
+	icon = 'icons/obj/overmap_vr.dmi'
+	icon_state = "virgo5"
+	name = "Virgo 5"
+	scanner_desc = "Mahir, or Virgo 5, is the fifth planet from the star Virgo-Erigone. It suffers from Kessler Syndrome, making landing difficult and only possible at specific time intervals. The surface sits well below inhabitable temperatures and the atmosphere consists primarily of carbon dioxide."
+	skybox_icon = 'icons/skybox/virgo5.dmi'
+	skybox_icon_state = "v5"
+	unknown_name = "unknown planet"

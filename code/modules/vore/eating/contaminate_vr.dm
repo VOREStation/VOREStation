@@ -16,13 +16,6 @@ var/list/gurgled_overlays = list(
 								"pink" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "pink")
 								)
 
-/obj/item
-	var/gurgled = FALSE
-	var/oldname
-	var/cleanname
-	var/cleandesc
-	var/gurgled_color
-
 /obj/item/proc/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green")
 	if(!can_gurgle())
 		return FALSE

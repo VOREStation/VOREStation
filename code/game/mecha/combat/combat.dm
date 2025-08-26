@@ -44,7 +44,7 @@
 		var/mob/living/M = T
 		if(src.occupant.a_intent == I_HURT || istype(src.occupant, /mob/living/carbon/brain)) //Brains cannot change intents; Exo-piloting brains lack any form of physical feedback for control, limiting the ability to 'play nice'.
 			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
-			if(damtype == "brute")
+			if(damage_type == BRUTE)
 				step_away(M,src,15)
 			/*
 			if(M.stat>1)
@@ -61,19 +61,19 @@
 				var/obj/item/organ/external/temp = H.get_organ(pick(BP_TORSO, BP_TORSO, BP_TORSO, BP_HEAD))
 				if(temp)
 					var/update = 0
-					switch(damtype)
-						if("brute")
+					switch(damage_type)
+						if(BRUTE)
 							H.Paralyse(1)
 							update |= temp.take_damage(rand(force/2, force), 0)
-						if("fire")
+						if(BURN)
 							update |= temp.take_damage(0, rand(force/2, force))
-						if("tox")
+						if(TOX)
 							if(H.reagents)
 								if(H.reagents.get_reagent_amount(REAGENT_ID_CARPOTOXIN) + force < force*2)
 									H.reagents.add_reagent(REAGENT_ID_CARPOTOXIN, force)
 								if(H.reagents.get_reagent_amount(REAGENT_ID_CRYPTOBIOLIN) + force < force*2)
 									H.reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, force)
-						if("halloss")
+						if(HALLOSS)
 							H.stun_effect_act(1, force / 2, BP_TORSO, src)
 						else
 							return
@@ -81,13 +81,13 @@
 				H.updatehealth()
 
 			else
-				switch(damtype)
-					if("brute")
+				switch(damage_type)
+					if(BRUTE)
 						M.Paralyse(1)
 						M.take_overall_damage(rand(force/2, force))
-					if("fire")
+					if(BURN)
 						M.take_overall_damage(0, rand(force/2, force))
-					if("tox")
+					if(TOX)
 						if(M.reagents)
 							if(M.reagents.get_reagent_amount(REAGENT_ID_CARPOTOXIN) + force < force*2)
 								M.reagents.add_reagent(REAGENT_ID_CARPOTOXIN, force)
@@ -112,15 +112,15 @@
 		if(istype(T, /obj/machinery/disposal)) // Stops mechs from climbing into disposals
 			return
 		if(src.occupant.a_intent == I_HURT || istype(src.occupant, /mob/living/carbon/brain)) // Don't smash unless we mean it
-			if(damtype == "brute")
+			if(damage_type == BRUTE)
 				src.occupant_message("You hit [T].")
 				src.visible_message(span_bolddanger("[src.name] hits [T]"))
 				playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
 
 				if(istype(T, /obj/structure/girder))
-					T:take_damage(force * 3) //Girders have 200 health by default. Steel, non-reinforced walls take four punches, girders take (with this value-mod) two, girders took five without.
+					T.take_damage(force * 3) //Girders have 200 health by default. Steel, non-reinforced walls take four punches, girders take (with this value-mod) two, girders took five without.
 				else
-					T:take_damage(force)
+					T.take_damage(force)
 
 				melee_can_hit = 0
 
