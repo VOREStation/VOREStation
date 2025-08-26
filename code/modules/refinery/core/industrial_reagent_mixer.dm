@@ -28,27 +28,28 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 
+	// Drain it!
 	if(mixer_angle == dir2angle(dir))
-		// Drain it!
 		refinery_transfer()
-		got_input = FALSE
 		if(reagents.total_volume <= 0)
 			mixer_angle += mixer_rotation_rate
+			mixer_angle = (360 + mixer_angle) % 360
 			update_icon()
-	else
-		// Check if we were filled...
-		if(mixer_angle % 90 != 0) // Not cardinal, keep going
-			got_input = TRUE
-		else if(!(locate(/obj/machinery/reagent_refinery) in get_step(src,angle2dir(mixer_angle)))) // If nothing, keep rotating
-			got_input = TRUE
+		got_input = FALSE
+		return
 
-		if(got_input)
-			mixer_angle += mixer_rotation_rate
-			got_input = FALSE
-			update_icon()
+	// Check if we were filled...
+	if(mixer_angle % 90 != 0) // Not cardinal, keep going
+		got_input = TRUE
+	else if(!(locate(/obj/machinery/reagent_refinery) in get_step(src,angle2dir(mixer_angle)))) // If nothing, keep rotating
+		got_input = TRUE
 
-	// Modulus for sanity
+	if(!got_input)
+		return
+	mixer_angle += mixer_rotation_rate
 	mixer_angle = (360 + mixer_angle) % 360
+	update_icon()
+	got_input = FALSE
 
 /obj/machinery/reagent_refinery/mixer/update_icon()
 	cut_overlays()

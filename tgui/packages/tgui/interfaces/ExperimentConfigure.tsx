@@ -1,3 +1,5 @@
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -8,9 +10,6 @@ import {
   Table,
   Tooltip,
 } from 'tgui-core/components';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 
 type Techweb = {
   all_servers: string[];

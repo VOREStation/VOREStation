@@ -1919,7 +1919,7 @@
 	icon_state = "hair_slicker"
 
 /datum/sprite_accessory/facial_hair
-	icon = 'icons/mob/human_face_or_vr.dmi'
+	icon = 'icons/mob/human_face_or_alt.dmi'
 	color_blend_mode = ICON_MULTIPLY
 
 

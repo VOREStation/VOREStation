@@ -105,6 +105,18 @@ GLOBAL_LIST_INIT(acting_rank_prefixes, list("acting", "temporary", "interim", "p
 	anchored = TRUE
 	unacidable = TRUE//temporary until I decide whether the borg can be removed. -veyveyr
 
+/obj/structure/showcase/monkey
+	desc = "It looks almost lifelike."
+	icon = 'icons/obj/statue.dmi'
+	icon_state = "monkey"
+	name = "Statue"
+
+/obj/structure/showcase/human
+	desc = "It looks almost lifelike."
+	icon = 'icons/obj/statue.dmi'
+	icon_state = "Human_male"
+	name = "Statue"
+
 /obj/structure/showcase/sign
 	name = "WARNING: WILDERNESS"
 	icon = 'icons/obj/stationobjs.dmi'

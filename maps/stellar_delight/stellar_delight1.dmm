@@ -6100,12 +6100,10 @@
 /obj/machinery/computer/med_data/laptop{
 	dir = 4
 	},
-/obj/item/radio{
+/obj/item/radio/phone{
 	anchored = 1;
 	canhear_range = 7;
 	frequency = 1487;
-	icon = 'icons/obj/items.dmi';
-	icon_state = "red_phone";
 	name = "Virology Emergency Phone";
 	pixel_x = 7;
 	pixel_y = 9

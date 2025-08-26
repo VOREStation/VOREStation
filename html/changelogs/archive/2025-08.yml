@@ -330,3 +330,200 @@
   - qol: chat examines are now also spoilered
   - code_imp: more grep checks, tgui dependency up
   - code_imp: tgui style cleanup
+2025-08-16:
+  Diana:
+  - bugfix: Instant vore events (Tongue vore, wing vore, dizzy vore, chair vore, etc)
+      will now only send their completion message, not an attempt message as well.
+  - refactor: Refactors vore to allow for instant vore types properly.
+  - bugfix: Grippers will no longer delete things when your inventory is full
+  - code_imp: Gripper code is more readable.
+  - bugfix: C-shift clowns will properly delete their component on death.
+  - bugfix: Walls will no longer runtime when spam-clicked with tools.
+  Guti:
+  - bugfix: Fixes hands becoming white after washed when blodied
+  Kash:
+  - code_imp: Chat spritesheet now instantly loads, preventing a double generation
+      on slower CPUs
+  Kashargul:
+  - code_imp: cleans up tgui again
+  - qol: adds spellcheck pref
+  Will:
+  - rscadd: Refinery mixing machine for use with refinery pumps
+  - bugfix: Refinery machines use the sending machine's transfer value and not the
+      receiving machine
+  - refactor: Explosions moved to a subsystem to substantially reduce lag of massive
+      explosions.
+2025-08-17:
+  Cameron-The-Raven:
+  - qol: Cargo can make batteries
+  - rscadd: Hyper device cell can be researched and created
+  - rscadd: Adds the newly added cells to the techweb
+  - rscadd: Makes mail scanner, atmos/medical hologisgns, confetti cannon, and floor
+      painter able to be researched
+  - rscadd: Makes the teleporter able to be accessed via the techweb
+  - image: Adds more battery icons for the newer batteries
+  Diana:
+  - image: Battery icons able to be swapped to battery variants
+  - balance: Hyper device cell now has 2400 charge, up from 600
+  - balance: Void cell and recharging alien device cell adjusted.
+  - balance: Yellow slime extract now  has 20000 charge. Self charges 500 instead
+      of 25 now.
+  Drathek:
+  - bugfix: Fixes a few issues where some unit tests would never qdel what they new'd
+      because they called `continue`
+  - code_imp: Increases usage of `cached_icon_states`
+  - code_imp: Adds css validation to spritesheets unit testing (must comply with https://www.w3.org/TR/CSS2/syndata.html#value-def-identifier
+      )
+  - code_imp: Cleans up various single var usage
+  - refactor: Refactors `sprite_accessories_shall_be_unique` to use initial values
+      instead of newing the datum
+  ItsSelis:
+  - rscdel: removed some of the old (non-functional) irc code
+  - code_imp: removed some unticked DM files
+  KillianKirilenko:
+  - refactor: cleaned up icon files for backpacks, bags, and belts - there shouldn't
+      be any player-facing changes, but please report any invisible or bugged clothes
+      in appropriate channels
+  - refactor: cleaned up icon files for gloves - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels
+  - refactor: cleaned up icon files for boots - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels
+  - refactor: cleaned up icon files for accessories - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels
+  ShadowLarkens:
+  - rscadd: Vending machines now have a pretty grid view mode as their default. You
+      can switch back to rows if necessary.
+  Will:
+  - bugfix: Multiple buckling related fixes
+  - bugfix: Wizard forcewall is now visible
+  - bugfix: Mime forcewall is now invisible
+  - bugfix: Tiny animals with hands can no longer pick themselves up, causing the
+      universe to collapse.
+  - bugfix: Refinery mixer wouldn't show its angle correctly when rotating counter
+      clockwise in the northwest direction.
+  - bugfix: Refinery mixer status light properly shows if it is in a locked state
+  - rscadd: Telekinetic gloves
+2025-08-18:
+  Diana:
+  - image: Adds a bear to stationobjs.dmi
+  - image: Consolidates a lot of _vr files.
+  - image: Deletes a lot of duplicate icon states.
+  - code_imp: Makes egg code better, just swaps to _open instead of changing the icon.
+  - maptweak: Removes hardcoded icon varset from redgate map
+  - bugfix: Weavers can walk through weaver walls
+  Kashargul:
+  - rscadd: adds a bunch of missing states in a 1:1 compare with downstream
+  KillianKirilenko:
+  - refactor: cleaned up icon files for headsets and ear-things - there shouldn't
+      be any player-facing changes, but please report any invisible or bugged clothes
+      in appropriate channels
+2025-08-19:
+  Diana:
+  - qol: Borgs can now pick up reagent hoses
+  - spellcheck: Removed the SSsun mentions from solar panels.
+  - bugfix: we no longer have the curent grid
+  - bugfix: Step mechanics will properly take prefs into account
+  SatinIsle:
+  - rscdel: Disabled the telekinesis node in techwebs for the time being.
+  Will:
+  - bugfix: Crates will no longer make flashlight beams vanish when closed over them
+  - bugfix: Crates closed on flashlights and other directional light sources no longer
+      leave the light floating in place where it was closed
+  Will, Diana:
+  - qol: Clang event will now increase security level to blue for the duration of
+      the CLANG event, getting people's attention even if alt-tabbed.
+  - code_imp: Clang event is now better on the backend
+2025-08-20:
+  Cameron-The-Raven:
+  - bugfix: Fixes doppler sprite missing
+  Diana:
+  - qol: Explorer belt can now hold binoculars
+  - qol: Chembags can be worn on your belt slot
+  - qol: Chembags can hold autoinjectors
+  - qol: Toolbelts can now hold holofans, RCDs, and RPDs
+  - code_imp: Suit icons are now smart and will automatically fallback to the original
+      icon if a species does not possess the icon state.
+  - refactor: Makes all uses of X in cached_icon_states(icon) into the much faster
+      RUST based icon_exists() proc
+  - qol: Makes it so jetpacks function inside voidsuits/suit storage
+  Kashargul:
+  - bugfix: vending machines allowing to purchase non available items
+  SatinIsle:
+  - bugfix: Fixes lleill sparking and losing energy when choosing no option when trying
+      teleport to a ring.
+  TeleTubby2:
+  - spellcheck: cannisters are now cantisters and have been spellcorrected to be the
+      proper word
+  Willburd:
+  - bugfix: Telekinesis range exploits
+  - bugfix: Telekinesis and remote viewing in any form no longer work together
+  - bugfix: Seismic charges and plastique explosive blast distance fixed for new explosion
+      subsystem
+2025-08-21:
+  Cameron-The-Raven:
+  - qol: Suit cyclers can be used to swap to metamorphic mode, automatically becoming
+      the proper worn state
+  - qol: Clothing can be equipped and it will fallback to the default worn state if
+      your species does not have species specific sprites for it.
+  - code_imp: swapped a few hardcoded "thing" with its appropriate define when used
+  - rscadd: Consolidates all the species mob.dmi sprites together
+  Kashargul:
+  - bugfix: shift trivia display
+  - bugfix: game end countdown
+  - maptweak: rids of legacy vars
+  - bugfix: atmos consoles not working
+  SatinIsle:
+  - bugfix: Prevents reflexive biting from biting through headwear.
+  Will:
+  - bugfix: missing icons fixed for church pews, metal benches, corporate sofas, and
+      rounded chairs
+  - bugfix: Fluidpump pumping speed now scales off of the their manipulator and not
+      their motor, as motors have no upgrades.
+  - rscadd: Deep mining scanner will show some or all fluid pump fracking results
+      depending on if advanced type or not
+2025-08-22:
+  Diana:
+  - bugfix: Organ printer now shows left arms
+  - bugfix: Unattaching your left arm will now show a proper sprite
+  - bugfix: 'Skrell stomachs no longer require you to download Counter Strike: Source'
+  - qol: Floorlights can be picked up and placed in backpacks when first created,
+      allowing for easier transport
+  - refactor: Inventory code no longer uses hasvar
+  - code_imp: Moves a LOT of vars up to /obj/item
+  - image: Codersprite for floorlight item!
+  - maptweak: Got rid of all illegal icon = '' edits in the maps
+  - image: Smashed some icon files together
+  - rscadd: When doing an interaction, you now show a small cog above your head to
+      other players!
+  - refactor: Do after code is now revamped.
+  - qol: You can reinforce multiple walls at once (again!)
+  - qol: You can now work on multiple airlocks at once!
+  - bugfix: You can no longer spam-click objects
+  - image: Adds flashing variants of the progress bar when you interrupt them!
+  - bugfix: Loyalty potions now allow slime spawn to be eaten easily
+  - bugfix: Loyalty potion now immediately triggers a slime's mood changing, making
+      them able to be eaten.
+  Kashargul:
+  - bugfix: chat highlight settings can be cleared
+  Tenryumi:
+  - rscadd: Made the luxury cabin capsules more feature-complete with fully privacy-enabled
+      dorms, as well as generally polishing and moving around a few things in them.
+2025-08-23:
+  Diana:
+  - bugfix: Fixes a bug to allow species to wear clothing if vox can also wear it.
+  Kashargul:
+  - code_imp: move to native toFixed in tgui
+  Will:
+  - bugfix: Explosion powernet rebuild lag reduced
+2025-08-24:
+  Diana:
+  - bugfix: Loyalty potions work again. Whoops.
+2025-08-26:
+  Diana & shy.bandit:
+  - rscadd: Adds Rabbot borg sprites!
+  - image: Adds new rabbot borg sprites, made by shy.bandit
+  Guti:
+  - bugfix: Fixed neutered symptoms un-neutering when faltering a disease
+  - bugfix: Fixed Pituitary Disruption blood vomiting taking too long
+  - balance: Rebalanced Hyperactivity symptom
+  - spellcheck: Fixed spelling mistakes in Hyperactivty and Shivering symptoms

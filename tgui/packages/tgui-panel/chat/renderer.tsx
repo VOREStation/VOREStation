@@ -191,11 +191,11 @@ class ChatRenderer {
   ensureScrollTracking: () => void;
   highlightParsers:
     | {
-        highlightWords: string;
+        highlightWords: string[];
         highlightRegex: RegExp;
         highlightColor: string;
         highlightWholeMessage: boolean;
-        highlightBlacklist: string;
+        highlightBlacklist: boolean;
         blacklistregex: RegExp;
       }[]
     | null;
@@ -336,7 +336,7 @@ class ChatRenderer {
       let highlightRegex;
       // Nothing to match, reset highlighting
       if (lines.length === 0) {
-        return;
+        return undefined;
       }
       // Reset lastIndex so it does not mess up the next word
       allowedRegex.lastIndex = 0;
@@ -433,6 +433,7 @@ class ChatRenderer {
         highlightBlacklist,
         blacklistregex,
       });
+      return undefined;
     });
   }
 
@@ -704,6 +705,7 @@ class ChatRenderer {
                 node.className += ' ChatMessage--highlighted';
               }
             }
+            return undefined;
           });
         }
         // Linkify text

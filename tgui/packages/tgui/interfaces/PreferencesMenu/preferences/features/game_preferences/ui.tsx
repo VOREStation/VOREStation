@@ -83,6 +83,13 @@ export const tgui_say_emotes: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const TGUI_ENABLE_SPELLCHECK: FeatureToggle = {
+  name: 'TGUI: Spellcheck',
+  category: 'UI',
+  description: 'Enables spellchecking on TGUI text areas and TGUI Say.',
+  component: CheckboxInput,
+};
+
 export const tgui_say_height: FeatureNumeric = {
   name: 'Say: TGUI Height (Lines)',
   category: 'UI',

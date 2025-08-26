@@ -18,7 +18,7 @@
 	active_power_usage = 200 * CELLRATE
 
 	var/obj/item/cell/cell = null
-	var/reagents_per_cycle = 5 // severe nerf to unupgraded speed
+	var/reagents_per_cycle = 5
 	var/on = 0
 	var/unlocked = 0
 	var/open = 0
@@ -44,10 +44,10 @@
 	var/obj/item/stock_parts/manipulator/SM = locate() in component_parts
 	active_power_usage = initial(active_power_usage) / SM.rating
 
-	var/motor_power = 0
-	for(var/obj/item/stock_parts/motor/M in component_parts)
-		motor_power += M.rating
-	reagents_per_cycle = initial(reagents_per_cycle) * motor_power / 2
+	var/pump_power = 0
+	for(var/obj/item/stock_parts/manipulator/M in component_parts) // scaling off the manipulator and not motor because motors have no upgrades
+		pump_power += M.rating
+	reagents_per_cycle = initial(reagents_per_cycle) * pump_power
 
 	var/bin_size = 0
 	for(var/obj/item/stock_parts/matter_bin/SB in component_parts)

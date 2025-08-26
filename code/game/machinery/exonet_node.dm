@@ -1,7 +1,7 @@
 /obj/machinery/exonet_node
 	name = "exonet node"
 	desc = null // Gets written in New()
-	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "exonet" //VOREStation Edit
 	idle_power_usage = 2500
 	density = TRUE

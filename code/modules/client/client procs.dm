@@ -112,16 +112,6 @@
 		cmd_mentor_pm(C, null)
 		return
 
-	if(href_list["irc_msg"])
-		if(!check_rights_for(src, R_HOLDER) && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
-			to_chat(src, span_warning("You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you"))
-			return
-		if(mute_irc)
-			to_chat(usr, span_warning("You cannot use this as your client has been muted from sending messages to the admins on IRC"))
-			return
-		send2adminirc(href_list["irc_msg"])
-		return
-
 	//VOREStation Add
 	if(href_list["discord_reg"])
 		var/their_id = html_decode(href_list["discord_reg"])
@@ -381,7 +371,7 @@
 
 		// Yes this is the same as what's found in qdel(). Yes it does need to be here
 		// Get off my back
-		SEND_SIGNAL(src, COMSIG_PARENT_QDELETING, TRUE)
+		SEND_SIGNAL(src, COMSIG_QDELETING, TRUE)
 		Destroy() //Clean up signals and timers.
 	return ..()
 

@@ -8,7 +8,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -181,7 +180,7 @@ const TelecommsSelectedServer = (props: {
       <LabeledList>
         <LabeledList.Item label="Total Recorded Traffic">
           {server.totalTraffic >= 1024
-            ? `${toFixed(server.totalTraffic / 1024)} Terrabytes`
+            ? `${(server.totalTraffic / 1024).toFixed()} Terrabytes`
             : `${server.totalTraffic} Gigabytes`}
         </LabeledList.Item>
       </LabeledList>

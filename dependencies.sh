@@ -23,7 +23,7 @@ export BUN_VERSION=1.2.20
 export SPACEMAN_DMM_VERSION=suite-1.10
 
 # Python version for mapmerge and other tools
-export PYTHON_VERSION=3.11.9
+export PYTHON_VERSION=3.12.3
 
 #dreamluau repo
 export DREAMLUAU_REPO="tgstation/dreamluau"
@@ -35,4 +35,4 @@ export DREAMLUAU_VERSION=0.1.4
 export CUTTER_REPO=spacestation13/hypnagogic
 
 #hypnagogic git tag
-export CUTTER_VERSION=v4.0.0
+export CUTTER_VERSION=v5.0.0
