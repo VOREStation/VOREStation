@@ -30,7 +30,7 @@
 /obj/item/circuitboard/security/mining
 	name = T_BOARD("mining camera monitor")
 	build_path = /obj/machinery/computer/security/mining
-	network = list("Mining Outpost")
+	network = list(NETWORK_MINE)
 	req_access = list()
 
 /obj/item/circuitboard/security/telescreen/entertainment
