@@ -459,7 +459,7 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			raw_list.Cut(i, i + 1)
 			i--
 
-	var/final_length = LZAYLEN(raw_list)
+	var/final_length = LAZYLEN(raw_list)
 	if(!final_length)
 		to_chat(owner, span_warning("At least one message needs to be set for: [type]"))
 		return
