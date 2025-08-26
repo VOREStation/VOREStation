@@ -35,7 +35,7 @@
 	myarea = A
 	myshuttle_landmark = locate(/obj/effect/shuttle_landmark) in myarea
 	if(!istype(myshuttle_landmark))
-		warning("Zonemaster cannot find a shuttle landmark in its area '[A]'")
+		WARNING("Zonemaster cannot find a shuttle landmark in its area '[A]'")
 	spawn(10) //This is called from controller New() and freaks out if this calls back too fast.
 		rm_controller.mark_clean(src)
 
@@ -313,7 +313,7 @@
 				sleep(delay)
 
 	rm_controller.dbg("ZM(p): Zone generation done.")
-	to_world_log("RM(stats): PREP [myarea] at [world.time] with [spawned_mobs.len] mobs, [mineral_rocks.len] minrocks, total of [rockspawns.len] rockspawns, [mobspawns.len] mobspawns.") //DEBUG code for playtest stats gathering.
+	log_world("RM(stats): PREP [myarea] at [world.time] with [spawned_mobs.len] mobs, [mineral_rocks.len] minrocks, total of [rockspawns.len] rockspawns, [mobspawns.len] mobspawns.") //DEBUG code for playtest stats gathering.
 	prepared_at = world.time
 	rm_controller.mark_ready(src)
 	return myarea
@@ -373,13 +373,13 @@
 
 	rm_controller.adjust_difficulty(tally)
 	rm_controller.dbg("ZM(sz): Finished scoring and adjusted by [tally].")
-	to_world_log("RM(stats): SCORE [myarea] for [tally].") //DEBUG code for playtest stats gathering.
+	log_world("RM(stats): SCORE [myarea] for [tally].") //DEBUG code for playtest stats gathering.
 	return tally
 
 //Overall 'destroy' proc (marks as unready)
 /datum/rogue/zonemaster/proc/clean_zone(var/delay = 1)
 	rm_controller.dbg("ZM(cz): Cleaning zone with area [myarea].")
-	to_world_log("RM(stats): CLEAN start [myarea] at [world.time] prepared at [prepared_at].") //DEBUG code for playtest stats gathering.
+	log_world("RM(stats): CLEAN start [myarea] at [world.time] prepared at [prepared_at].") //DEBUG code for playtest stats gathering.
 	rm_controller.unmark_ready(src)
 
 	//Cut these lists so qdel can dereference the things properly
@@ -433,7 +433,7 @@
 	original_mobs = 0
 	prepared_at = 0
 
-	to_world_log("RM(stats): CLEAN done [myarea] at [world.time].") //DEBUG code for playtest stats gathering.
+	log_world("RM(stats): CLEAN done [myarea] at [world.time].") //DEBUG code for playtest stats gathering.
 
 	rm_controller.dbg("ZM(cz): Finished cleaning up zone area [myarea].")
 	rm_controller.mark_clean(src)

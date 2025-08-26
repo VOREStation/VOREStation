@@ -328,7 +328,7 @@
 		break
 
 	if(!T)
-		warning("Hull corner at [x],[y] not placed adjacent to a hull it can find.")
+		WARNING("Hull corner at [x],[y] not placed adjacent to a hull it can find.")
 
 /obj/structure/hull_corner/long_vert
 	icon = 'icons/turf/wall_masks32x64.dmi'

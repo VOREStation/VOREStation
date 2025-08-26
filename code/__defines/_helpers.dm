@@ -13,6 +13,17 @@
 /// The Y/Height dimension of ICON_SIZE. This will more than likely be the smaller axis.
 #define ICON_SIZE_Y 32
 
+//Returns the hex value of a decimal number
+//len == length of returned string
+#define num2hex(X, len) num2text(X, len, 16)
+
+//Returns an integer given a hex input, supports negative values "-ff"
+//skips preceding invalid characters
+#define hex2num(X) text2num(X, 16)
+
+/// Until a condition is true, sleep
+#define UNTIL(X) while(!(X)) stoplag()
+
 /// Takes a datum as input, returns its ref string
 #define text_ref(datum) ref(datum)
 
@@ -24,3 +35,6 @@
 /// A null statement to guard against EmptyBlock lint without necessitating the use of pass()
 /// Used to avoid proc-call overhead. But use sparingly. Probably pointless in most places.
 #define EMPTY_BLOCK_GUARD ;
+
+/// Abstraction over using mob.client to just check if there's a connected player.
+#define HAS_CONNECTED_PLAYER(mob) (mob.client)

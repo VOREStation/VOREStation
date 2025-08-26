@@ -17,7 +17,7 @@
 				return
 
 			if(!islist(picklist)) //So you can have a 'chain' of z-levels that make up one away mission
-				error("Randompick Z level [picklist] is not a list! Must be in a list!")
+				log_mapping("Randompick Z level [picklist] is not a list! Must be in a list!")
 				return
 
 			for(var/map in picklist)
@@ -27,7 +27,7 @@
 					map = pick(map)
 				var/datum/map_template/MT = map_templates[map]
 				if(!istype(MT))
-					error("Randompick Z level \"[map]\" is not a valid map!")
+					log_mapping("Randompick Z level \"[map]\" is not a valid map!")
 				else
 					MT.load_new_z(centered = FALSE)
 

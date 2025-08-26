@@ -83,11 +83,11 @@
 		if(datum_flags & DF_ISPROCESSING)
 			STOP_PROCESSING(SSfastprocess, src)
 			set_ready_state(TRUE)
-			log_message("Deactivated.")
+			src.mecha_log_message("Deactivated.")
 		else
 			START_PROCESSING(SSfastprocess, src)
 			set_ready_state(FALSE)
-			log_message("Activated.")
+			src.mecha_log_message("Activated.")
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_equip_info()

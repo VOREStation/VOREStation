@@ -96,7 +96,7 @@
 	flags = WHITELISTED | SIGNLANG | NO_STUTTER //nonverbal define was not needed here, and i need to use it ~Layne
 
 /datum/language/tajsign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
-	log_say("(SIGN) [message]", speaker)
+	speaker.log_talk("(SIGN) [message]", LOG_SAY)
 	var/verb_to_use = pick(signlang_verb)
 	speaker.say_signlang(message, verb_to_use, verb_to_use, src)
 
@@ -127,8 +127,8 @@
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
 
 /datum/language/skrell/get_random_name(var/gender)
-	var/list/first_names = file2list('strings/names/first_name_skrell.txt')
-	var/list/last_names = file2list('strings/names/last_name_skrell.txt')
+	var/list/first_names = world.file2list('strings/names/first_name_skrell.txt')
+	var/list/last_names = world.file2list('strings/names/last_name_skrell.txt')
 	return "[pick(first_names)] [pick(last_names)]"
 
 /datum/language/human

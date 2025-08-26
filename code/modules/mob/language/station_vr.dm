@@ -159,7 +159,7 @@
 	flags = WHITELISTED
 
 /datum/language/echosong/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
-	log_say("(INAUDIBLE) [message]", speaker)
+	speaker.log_talk("(INAUDIBLE) [message]", LOG_SAY)
 	speaker.say_signlang(format_message(message), pick(signlang_verb), pick(signlang_verb_understood), src, 2)
 
 /datum/language/unathi

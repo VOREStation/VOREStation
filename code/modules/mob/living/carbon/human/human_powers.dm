@@ -104,7 +104,7 @@
 		to_chat(src, span_filter_notice("Not even a [src.species.name] can speak to the dead."))
 		return
 
-	log_say("(COMMUNE to [key_name(M)]) [text]",src)
+	log_talk("(COMMUNE to [key_name(M)]) [text]", LOG_SAY)
 
 	to_chat(M, span_filter_say("[span_blue("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")]"))
 	if(ishuman(M))
@@ -121,7 +121,7 @@
 
 	var/msg = tgui_input_text(src, "Message:", "Psychic Whisper", "", MAX_MESSAGE_LEN)
 	if(msg)
-		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
+		log_talk("(PWHISPER to [key_name(M)]) [msg]", LOG_WHISPER)
 		to_chat(M, span_filter_say("[span_green("You hear a strange, alien voice in your head... <i>[msg]</i>")]"))
 		to_chat(src, span_filter_say("[span_green("You said: \"[msg]\" to [M]")]"))
 	return

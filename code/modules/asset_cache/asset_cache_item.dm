@@ -46,7 +46,7 @@
 		hash = md5(fcopy_rsc(file))
 		if (!hash)
 			CRASH("invalid asset sent to asset cache")
-		log_debug("asset cache unexpected success of second fcopy_rsc")
+		log_runtime("asset cache unexpected success of second fcopy_rsc")
 	src.name = name
 	var/extstart = findlasttext(name, ".")
 	if(extstart)

@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(job_whitelist)
 /proc/load_jobwhitelist()
 	var/text = file2text("config/jobwhitelist.txt")
 	if (!text)
-		log_misc("Failed to load config/jobwhitelist.txt")
+		log_world("Failed to load config/jobwhitelist.txt")
 	else
 		GLOB.job_whitelist = splittext(text, "\n")
 

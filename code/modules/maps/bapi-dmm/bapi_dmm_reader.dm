@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(_preloader_attributes)
 	new_z = FALSE,
 )
 	if(isfile(dmm_file))
-		log_debug("bapi-dmm was passed a file instead of a path string: [dmm_file]")
+		log_mapping("bapi-dmm was passed a file instead of a path string: [dmm_file]")
 		var/name = sanitize_filename("[dmm_file]")
 		var/path = "data/baked_dmm_files/[name]"
 		if(!fexists(path))

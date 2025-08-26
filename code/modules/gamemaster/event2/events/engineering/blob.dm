@@ -99,7 +99,7 @@
 	open_turfs = find_random_turfs(5 + number_of_blobs)
 
 	if(!open_turfs.len)
-		log_debug("Blob infestation event: Giving up after failure to find blob spots.")
+		log_game("Blob infestation event: Giving up after failure to find blob spots.")
 		abort()
 
 /datum/event2/event/blob/start()
@@ -108,7 +108,7 @@
 		var/obj/structure/blob/core/new_blob = new spawn_blob_type(T)
 		blobs += WEAKREF(new_blob)
 		open_turfs -= T // So we can't put two cores on the same tile if doing multiblob.
-		log_debug("Spawned [new_blob.overmind.blob_type.name] blob at [get_area(new_blob)].")
+		log_game("Spawned [new_blob.overmind.blob_type.name] blob at [get_area(new_blob)].")
 
 /datum/event2/event/blob/should_end()
 	for(var/datum/weakref/weakref as anything in blobs)

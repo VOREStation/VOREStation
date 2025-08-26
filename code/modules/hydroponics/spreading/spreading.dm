@@ -89,7 +89,7 @@
 		parent = newparent
 
 	if(!SSplants)
-		to_world(span_danger("Plant controller does not exist and [src] requires it. Aborting."))
+		to_chat(world, span_danger("Plant controller does not exist and [src] requires it. Aborting."))
 		return INITIALIZE_HINT_QDEL
 
 	if(!istype(newseed))

@@ -220,15 +220,11 @@
 
 /datum/reagent/polymorph/affect_blood(var/mob/living/carbon/target, var/removed)
 	var/mob/living/M = target
-	log_debug("polymorph start")
 	if(!istype(M))
-		log_debug("polymorph istype")
 		return
 	if(M.tf_mob_holder)
-		log_debug("polymorph tf_holder")
 		var/mob/living/ourmob = M.tf_mob_holder
 		if(ourmob.ai_holder)
-			log_debug("polymorph ai")
 			var/datum/ai_holder/our_AI = ourmob.ai_holder
 			our_AI.set_stance(STANCE_IDLE)
 		M.tf_mob_holder = null
@@ -252,11 +248,8 @@
 		qdel(target)
 		return
 	else
-		log_debug("polymorph else")
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-			log_debug("polymorph dead")
 			return
-		log_debug("polymorph not dead")
 		var/mob/living/new_mob = spawn_mob(M)
 		new_mob.faction = M.faction
 
@@ -266,14 +259,10 @@
 	target.touching.clear_reagents()
 
 /datum/reagent/polymorph/proc/spawn_mob(var/mob/living/target)
-	log_debug("polymorph proc spawn mob")
 	var/choice = pick(tf_possible_types)
 	tf_type = tf_possible_types[choice]
-	log_debug("polymorph [tf_type]")
 	if(!ispath(tf_type))
-		log_debug("polymorph tf_type fail")
 		return
-	log_debug("polymorph tf_type pass")
 	var/new_mob = new tf_type(get_turf(target))
 	return new_mob
 
