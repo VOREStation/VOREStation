@@ -454,7 +454,7 @@ so as to remain in compliance with the most up-to-date laws."
 	for(var/i in 1 to length(alerts))
 		var/obj/screen/alert/alert = alerts[alerts[i]]
 
-		if(alert.icon_state in cached_icon_states(ui_style))
+		if(icon_exists(ui_style, alert.icon_state))
 			alert.icon = ui_style
 
 		else if(!alert.no_underlay)

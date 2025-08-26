@@ -2,7 +2,7 @@
 
 /obj/item/resonator
 	name = "resonator"
-	icon = 'icons/obj/mining_vr.dmi'
+	icon = 'icons/obj/mining.dmi'
 	icon_state = "resonator"
 	item_state = "resonator"
 	item_icons = list(

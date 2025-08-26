@@ -17,7 +17,7 @@
 	id = "[rand(1000, 9999)]"
 	. = ..()
 	underlays.Cut()
-	underlays += image('icons/obj/stationobjs_vr.dmi', icon_state = "telecomp-wires")	//VOREStation Edit: different direction for wires to account for dirs
+	underlays += image('icons/obj/stationobjs.dmi', icon_state = "telecomp-wires")
 	teleport_control = new(src)
 	var/obj/machinery/teleport/station/station = null
 	var/obj/machinery/teleport/hub/hub = null
@@ -129,7 +129,6 @@
 /obj/machinery/teleport/hub
 	name = "teleporter hub"
 	desc = "It's the hub of a teleporting machine."
-	icon = 'icons/obj/teleporter_vr.dmi' //VOREStation Add
 	icon_state = "tele0"
 	dir = 4
 	var/accurate = 0
@@ -196,7 +195,6 @@
 /obj/machinery/teleport/station
 	name = "station"
 	desc = "It's the station thingy of a teleport thingy." //seriously, wtf.
-	icon = 'icons/obj/teleporter_vr.dmi' //VOREStation Add
 	icon_state = "controller"
 	dir = 4
 	var/active = 0

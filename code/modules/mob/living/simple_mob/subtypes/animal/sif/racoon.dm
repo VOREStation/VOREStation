@@ -29,7 +29,7 @@
 	health = 50
 	has_hands = TRUE
 	humanoid_hands = TRUE
-
+	minbodytemp = 175
 	pass_flags = PASSTABLE
 
 	universal_understand = 1

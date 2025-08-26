@@ -274,7 +274,7 @@
 		var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 
 		if (!affecting || affecting.is_stump())
-			balloon_alert(user, "they are missing that limb!") // CHOMPEdit - Changed to balloon_alert
+			balloon_alert(user, "they are missing that limb!")
 			return
 
 		var/hit_area = affecting.name

@@ -61,7 +61,7 @@ var/list/name_to_material
  * Arguments:
  * - breakdown_flags: A set of flags determining how exactly the materials are broken down. (unused)
  */
-/obj/proc/get_material_composition(breakdown_flags=NONE)
+/obj/item/proc/get_material_composition(breakdown_flags=NONE)
 	. = list()
 	for(var/mat in matter)
 		var/datum/material/M = GET_MATERIAL_REF(mat)
@@ -78,7 +78,7 @@ var/list/name_to_material
 			else
 				.[M] = matter[mat]
 
-/obj/proc/set_custom_materials(list/materials, multiplier = 1)
+/obj/item/proc/set_custom_materials(list/materials, multiplier = 1)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	if(!LAZYLEN(materials))
