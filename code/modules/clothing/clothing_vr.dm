@@ -56,31 +56,6 @@
 		src.visible_message(span_red("\The [src] moves a little!"))
 		to_chat(user, span_red("You throw yourself against the inside of \the [src]!"))
 
-/obj/item/clothing/under
-	sensor_mode = 3
-	var/sensorpref = 5
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/uniform/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/uniform/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/uniform/mob_vr_werebeast.dmi')
-
-/obj/item/clothing/under/Initialize(mapload)
-	. = ..()
-	if(!ishuman(loc))
-		return
-
-	var/mob/living/carbon/human/H = loc
-	sensorpref = isnull(H) ? 1 : (ishuman(H) ? H.sensorpref : 1)
-	switch(sensorpref)
-		if(1) sensor_mode = 0				//Sensors off
-		if(2) sensor_mode = 1				//Sensors on binary
-		if(3) sensor_mode = 2				//Sensors display vitals
-		if(4) sensor_mode = 3				//Sensors display vitals and enables tracking
-		if(5) sensor_mode = pick(0,1,2,3)	//Select a random setting
-		else
-			sensor_mode = pick(0,1,2,3)
-			log_debug("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")
-
 /obj/item/clothing/head
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/head/mob_teshari.dmi',

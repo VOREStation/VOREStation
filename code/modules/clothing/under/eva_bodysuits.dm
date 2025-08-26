@@ -1,9 +1,6 @@
 /obj/item/clothing/under/undersuit // undersuits! intended for wearing under hardsuits or for being too lazy to not wear anything other than it
 	name = "undersuit"
 	desc = "A nondescript undersuit, intended for wearing under a voidsuit or other EVA equipment. Breathable, yet sleek."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
-	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_state = "bodysuit"
 	item_state = "bodysuit"
 	rolled_sleeves = -1
