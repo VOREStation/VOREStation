@@ -11,7 +11,6 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { formatPower, formatSiUnit } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 
 type Data = {
   totalOutput: number;
@@ -116,13 +115,13 @@ const TEGCirculator = (props: { name: string; values: Circulator }) => {
               {formatSiUnit(inletPressure * 1000, 0, 'Pa')}
             </LabeledList.Item>
             <LabeledList.Item label="Inlet Temperature">
-              {toFixed(inletTemperature, 2)} K
+              {inletTemperature.toFixed(2)} K
             </LabeledList.Item>
             <LabeledList.Item label="Outlet Pressure">
               {formatSiUnit(outletPressure * 1000, 0, 'Pa')}
             </LabeledList.Item>
             <LabeledList.Item label="Outlet Temperature">
-              {toFixed(outletTemperature, 2)} K
+              {outletTemperature.toFixed(2)} K
             </LabeledList.Item>
           </LabeledList>
         </Stack.Item>

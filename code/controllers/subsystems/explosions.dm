@@ -248,7 +248,7 @@ SUBSYSTEM_DEF(explosions)
 	explosion_signals.Add(list( list(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,world.time) )) // append a list in a list. Needed so that the data list doesn't get merged into the list of datalists
 
 	// BOINK! Time to wake up sleeping beauty!
-	wake_and_defer_subsystem_updates(devastation_range >= 2 || heavy_impact_range >= 4 || light_impact_range >= 8)
+	wake_and_defer_subsystem_updates(devastation_range >= 8 || heavy_impact_range >= 16 || light_impact_range >= 20)
 
 // Collect prepared explosions for BLAST PROCESSING
 /datum/controller/subsystem/explosions/proc/finalize_explosion(var/x0,var/y0,var/z0,var/pwr,var/max_starting)

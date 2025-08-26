@@ -9,7 +9,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { damageTypes, statNames } from './constants';
 import type { Data } from './types';
@@ -53,7 +52,7 @@ export const CryoContent = (props) => {
               >
                 <AnimatedNumber
                   value={occupant.health}
-                  format={(value) => toFixed(value)}
+                  format={(value) => value.toFixed()}
                 />
               </ProgressBar>
             </LabeledList.Item>
@@ -66,7 +65,7 @@ export const CryoContent = (props) => {
             <LabeledList.Item label="Temperature">
               <AnimatedNumber
                 value={occupant.bodyTemperature}
-                format={(value) => `${toFixed(value)} K`}
+                format={(value) => `${value.toFixed()} K`}
               />
             </LabeledList.Item>
             <LabeledList.Divider />
@@ -78,7 +77,7 @@ export const CryoContent = (props) => {
                 >
                   <AnimatedNumber
                     value={occupant[damageType.type]}
-                    format={(value) => toFixed(value)}
+                    format={(value) => value.toFixed()}
                   />
                 </ProgressBar>
               </LabeledList.Item>
@@ -139,7 +138,7 @@ const CryoBeaker = (props) => {
           {beakerVolume ? (
             <AnimatedNumber
               value={beakerVolume}
-              format={(v) => `${toFixed(v)} units remaining`}
+              format={(v) => `${v.toFixed()} units remaining`}
             />
           ) : (
             'Beaker is empty'

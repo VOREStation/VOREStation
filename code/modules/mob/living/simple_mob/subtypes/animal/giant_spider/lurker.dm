@@ -102,7 +102,7 @@
 	if(cloaked)
 		if(isliving(A))
 			var/mob/living/L = A
-			L.Weaken(cloaked_weaken_amount)
+			L.add_modifier(/datum/modifier/entangled, 2 SECONDS) //L.Weaken(cloaked_weaken_amount)
 			to_chat(L, span_danger("\The [src] ambushes you!"))
 			playsound(src, 'sound/weapons/spiderlunge.ogg', 75, 1)
 	uncloak()
