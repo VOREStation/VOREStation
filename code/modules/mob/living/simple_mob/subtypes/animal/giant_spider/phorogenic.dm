@@ -51,8 +51,8 @@
 	)
 
 	var/exploded = FALSE
-	var/explosion_dev_range		= 2
-	var/explosion_heavy_range	= 2
+	var/explosion_dev_range		= 3
+	var/explosion_heavy_range	= 3
 	var/explosion_light_range	= 4
 	var/explosion_flash_range	= 6 // This doesn't do anything iirc.
 
