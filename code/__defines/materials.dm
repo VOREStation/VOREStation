@@ -71,6 +71,7 @@
 #define MAT_FOAM			"foam"
 #define MAT_FLOKIUM			"flockium"
 #define MAT_SMOLEBRICKS		"smolebricks"
+#define MAT_WAX				"wax"
 
 // cloth materials
 #define MAT_WOOL			"wool"
