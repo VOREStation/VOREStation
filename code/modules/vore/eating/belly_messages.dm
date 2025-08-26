@@ -435,17 +435,18 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 	else
 		raw_list = list(raw_text)
 
-	for(var/i = 1, i <= raw_list.len, i++)
+	for(var/i = 1, i <= LAZYLEN(raw_list) i++)
 		raw_list[i] = html_encode(raw_list[i])
 		if(!length(raw_list[i]))
 			raw_list.Cut(i, i + 1)
 			i--
-	if(raw_list.len > 10)
+
+	if(LAZYLEN(raw_list) > 10)
 		raw_list.Cut(11)
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
 
 	var/realIndex = 0
-	for(var/i = 1, i <= raw_list.len, i++)
+	for(var/i = 1, i <= LAZYLEN(raw_list), i++)
 		realIndex++
 		raw_list[i] = readd_quotes(raw_list[i])
 		//Also fix % sign for var replacement
@@ -458,7 +459,12 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			raw_list.Cut(i, i + 1)
 			i--
 
-	ASSERT(raw_list.len <= 10) //Sanity
+	var/final_length = LZAYLEN(raw_list)
+	if(!final_length)
+		to_chat(owner, span_warning("At least one message needs to be set for: [type]"))
+		return
+
+	ASSERT(final_length <= 10) //Sanity
 
 	switch(type)
 		if(STRUGGLE_OUTSIDE)
