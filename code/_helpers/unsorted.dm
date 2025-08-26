@@ -604,11 +604,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			cant_pass = 1
 	return cant_pass
 
+/* //If you uncomment and use this I will assimilate you. -C.L.
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.
 /proc/hasvar(var/datum/A, var/varname)
 	if(A.vars.Find(lowertext(varname))) return 1
 	else return 0
+*/
 
 //Returns: all the areas in the world
 /proc/return_areas()
@@ -1065,8 +1067,8 @@ GLOBAL_LIST_INIT(common_tools, list(
 			return 0
 
 //Whether or not the given item counts as sharp in terms of dealing damage
-/proc/is_sharp(obj/O as obj)
-	if(!O)
+/proc/is_sharp(obj/item/O)
+	if(!isitem(O))
 		return FALSE
 	if(O.sharp)
 		return TRUE
@@ -1075,8 +1077,8 @@ GLOBAL_LIST_INIT(common_tools, list(
 	return FALSE
 
 //Whether or not the given item counts as cutting with an edge in terms of removing limbs
-/proc/has_edge(obj/O as obj)
-	if(!O)
+/proc/has_edge(obj/item/O)
+	if(!isitem(O))
 		return FALSE
 	if(O.edge)
 		return TRUE
@@ -1624,7 +1626,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
  * * multiplier - multiplier passed to set_custom_materials
  * * [target_object][atom] - the target object who's custom materials we are trying to modify
  */
-/proc/split_materials_uniformly(list/custom_materials, multiplier, obj/target_object)
+/proc/split_materials_uniformly(list/custom_materials, multiplier, obj/item/target_object)
 	target_object.set_custom_materials(custom_materials)
 
 	// if(!length(target_object.contents)) //most common case where the object is just 1 thing

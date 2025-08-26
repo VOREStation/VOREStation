@@ -2605,13 +2605,9 @@
 /turf/simulated/floor/plating,
 /area/tcommsat/entrance)
 "fq" = (
-/obj/effect/mapinfo/sector{
-	icon = 'icons/obj/stock_parts.dmi';
-	icon_state = "treatment_disk";
-	landing_area = /area/shuttle/escape_pod1/centcom;
+/obj/effect/mapinfo/sector/commsrelay{
 	mapx = 7;
-	mapy = 3;
-	name = "Communications Relay"
+	mapy = 3
 	},
 /turf/space,
 /area)

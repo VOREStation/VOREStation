@@ -1,6 +1,6 @@
 /// Adds the item to contents and to_image (if needed)
 /datum/lootpanel/proc/add_to_index(datum/search_object/index)
-	RegisterSignal(index, COMSIG_PARENT_QDELETING, PROC_REF(on_searchable_deleted))
+	RegisterSignal(index, COMSIG_QDELETING, PROC_REF(on_searchable_deleted))
 	if(isnull(index.icon))
 		to_image += index
 
@@ -50,5 +50,5 @@
 		if(QDELETED(index))
 			continue
 
-		UnregisterSignal(index, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(index, COMSIG_QDELETING)
 		qdel(index)

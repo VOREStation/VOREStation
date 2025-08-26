@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Input,
@@ -6,10 +8,6 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 
 const MatrixMathTesterInput = (props: { value: number; varName: string }) => {
   const { act } = useBackend();
@@ -19,7 +17,7 @@ const MatrixMathTesterInput = (props: { value: number; varName: string }) => {
       maxValue={Infinity}
       value={props.value}
       step={0.005}
-      format={(value) => toFixed(value, 3)}
+      format={(value) => value.toFixed(3)}
       fluid
       onChange={(value) =>
         act('change_var', { var_name: props.varName, var_value: value })
@@ -123,7 +121,7 @@ export const MatrixMathTester = (props) => {
                   maxValue={Infinity}
                   value={scaleX}
                   step={0.05}
-                  format={(value) => toFixed(value, 2)}
+                  format={(value) => value.toFixed(2)}
                   fluid
                   onChange={(value) => setScaleX(value)}
                 />
@@ -134,7 +132,7 @@ export const MatrixMathTester = (props) => {
                   maxValue={Infinity}
                   value={scaleY}
                   step={0.05}
-                  format={(value) => toFixed(value, 2)}
+                  format={(value) => value.toFixed(2)}
                   fluid
                   onChange={(value) => setScaleY(value)}
                 />
@@ -158,7 +156,7 @@ export const MatrixMathTester = (props) => {
                   maxValue={Infinity}
                   value={translateX}
                   step={1}
-                  format={(value) => toFixed(value, 0)}
+                  format={(value) => value.toFixed()}
                   fluid
                   onChange={(value) => setTranslateX(value)}
                 />
@@ -169,7 +167,7 @@ export const MatrixMathTester = (props) => {
                   maxValue={Infinity}
                   value={translateY}
                   step={1}
-                  format={(value) => toFixed(value, 0)}
+                  format={(value) => value.toFixed()}
                   fluid
                   onChange={(value) => setTranslateY(value)}
                 />
@@ -191,7 +189,7 @@ export const MatrixMathTester = (props) => {
                   maxValue={Infinity}
                   value={shearX}
                   step={0.005}
-                  format={(value) => toFixed(value, 3)}
+                  format={(value) => value.toFixed(3)}
                   fluid
                   onChange={(value) => setShearX(value)}
                 />
@@ -202,7 +200,7 @@ export const MatrixMathTester = (props) => {
                   maxValue={Infinity}
                   value={shearY}
                   step={0.005}
-                  format={(value) => toFixed(value, 3)}
+                  format={(value) => value.toFixed(3)}
                   fluid
                   onChange={(value) => setShearY(value)}
                 />
@@ -224,7 +222,7 @@ export const MatrixMathTester = (props) => {
                   step={0.5}
                   maxValue={360}
                   minValue={-360}
-                  format={(value) => toFixed(value, 1)}
+                  format={(value) => value.toFixed(1)}
                   fluid
                   onChange={(value) => setAngle(value)}
                 />
