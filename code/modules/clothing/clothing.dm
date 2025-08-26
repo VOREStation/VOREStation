@@ -1087,7 +1087,7 @@
 	blood_sprite_state = "uniformblood"
 
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
-	var/sensor_mode = 0
+	var/sensor_mode = 3
 	var/sensorpref = 5
 		/*
 		1 = Report living/dead
