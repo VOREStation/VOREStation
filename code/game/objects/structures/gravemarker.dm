@@ -24,6 +24,7 @@
 		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")
 	if(!material)
+		stack_trace("Material of type: [default_type] does not exist.")
 		return INITIALIZE_HINT_QDEL
 	color = material.icon_colour
 	AddElement(/datum/element/climbable)

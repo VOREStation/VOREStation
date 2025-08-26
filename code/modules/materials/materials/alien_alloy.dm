@@ -14,27 +14,27 @@
 	wiki_flag = WIKI_SPOILER
 
 /datum/material/alienalloy/elevatorium
-	name = "elevatorium"
+	name = MAT_ALIEN_ELEVAT
 	display_name = "elevator panelling"
 	table_icon_base = "stone"
 	icon_colour = "#666666"
 
 /datum/material/alienalloy/dungeonium
-	name = "dungeonium"
+	name = MAT_ALIEN_DUNGEON
 	display_name = "ultra-durable"
 	icon_base = "dungeon"
 	table_icon_base = "stone"
 	icon_colour = "#FFFFFF"
 
 /datum/material/alienalloy/bedrock
-	name = "bedrock"
+	name = MAT_ALIEN_BEDROCK
 	display_name = "impassable rock"
 	icon_base = "rock"
 	table_icon_base = "stone"
 	icon_colour = "#FFFFFF"
 
 /datum/material/alienalloy/alium
-	name = "alium"
+	name = MAT_ALIEN_ALIUM
 	display_name = "alien"
 	icon_base = "alien"
 	table_icon_base = "alien"
