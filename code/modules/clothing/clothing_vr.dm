@@ -56,35 +56,6 @@
 		src.visible_message(span_red("\The [src] moves a little!"))
 		to_chat(user, span_red("You throw yourself against the inside of \the [src]!"))
 
-//Mask
-/obj/item/clothing/mask
-	name = "mask"
-	icon = 'icons/inventory/face/item_vr.dmi' // This is intentional because of our custom species.
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items/lefthand_masks.dmi',
-		slot_r_hand_str = 'icons/mob/items/righthand_masks.dmi',
-		)
-	body_parts_covered = HEAD|FACE|EYES
-	slot_flags = SLOT_MASK
-	item_icons = list(
-		slot_wear_mask_str = 'icons/inventory/face/mob_vr.dmi'
-		)
-	sprite_sheets = list(
-		SPECIES_TESHARI		= 'icons/inventory/face/mob_teshari.dmi',
-		SPECIES_VOX 		= 'icons/inventory/face/mob_vox.dmi',
-		SPECIES_TAJARAN 		= 'icons/inventory/face/mob_tajaran.dmi',
-		SPECIES_UNATHI 		= 'icons/inventory/face/mob_unathi.dmi',
-		SPECIES_SERGAL 		= 'icons/inventory/face/mob_vr_sergal.dmi',
-		SPECIES_NEVREAN 	= 'icons/inventory/face/mob_vr_nevrean.dmi',
-		SPECIES_ZORREN_HIGH	= 'icons/inventory/face/mob_vr_fox.dmi',
-		SPECIES_ZORREN_FLAT = 'icons/inventory/face/mob_vr_fox.dmi',
-		SPECIES_AKULA 		= 'icons/inventory/face/mob_vr_akula.dmi',
-		SPECIES_VULPKANIN 	= 'icons/inventory/face/mob_vr_vulpkanin.dmi',
-		SPECIES_XENOCHIMERA	= 'icons/inventory/face/mob_vr_tajaran.dmi',
-		SPECIES_WEREBEAST	= 'icons/inventory/face/mob_vr_werebeast.dmi'
-		)
-//"Spider" 		= 'icons/inventory/mask/mob_spider.dmi' Add this later when they have custom mask sprites and everything.
-
 /obj/item/clothing/under
 	sensor_mode = 3
 	var/sensorpref = 5
