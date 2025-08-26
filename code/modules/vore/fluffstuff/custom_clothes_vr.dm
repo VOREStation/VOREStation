@@ -2545,8 +2545,6 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/glasses/big_round
 	name = "big round blue glasses"
 	desc = "A set of glasses! They are big, round, and very reflective, catching the light and obscuring the eyes!"
-	icon = 'icons/inventory/eyes/item_vr.dmi'
-	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "bigroundglasses"
 	slot_flags = SLOT_EYES | SLOT_EARS
 	glasses_layer_above = TRUE

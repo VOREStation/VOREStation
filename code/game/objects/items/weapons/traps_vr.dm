@@ -1,7 +1,7 @@
 /obj/item/beartrap
 	slot_flags = SLOT_MASK
 	item_icons = list(
-		slot_wear_mask_str = 'icons/inventory/face/mob_vr.dmi'
+		slot_wear_mask_str = 'icons/inventory/face/mob.dmi'
 		)
 
 /obj/item/beartrap/equipped()
