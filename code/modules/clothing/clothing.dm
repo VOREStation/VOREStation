@@ -574,13 +574,24 @@
 	heat_protection = FALSE //No heat protection anywhere
 	cold_protection = FALSE //No heat protection anywhere
 	slot_flags = SLOT_MASK
-	body_parts_covered = FACE|EYES
+	body_parts_covered = HEAD|FACE|EYES
 	blood_sprite_state = "maskblood"
+	item_icons = list(
+		slot_wear_mask_str = 'icons/inventory/face/mob.dmi'
+		)
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/face/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/face/mob_vox.dmi',
-		SPECIES_TAJARAN = 'icons/inventory/face/mob_tajaran.dmi',
-		SPECIES_UNATHI = 'icons/inventory/face/mob_unathi.dmi'
+		SPECIES_TESHARI		= 'icons/inventory/face/mob_teshari.dmi',
+		SPECIES_VOX 		= 'icons/inventory/face/mob_vox.dmi',
+		SPECIES_TAJARAN 	= 'icons/inventory/face/mob_tajaran.dmi',
+		SPECIES_UNATHI 		= 'icons/inventory/face/mob_unathi.dmi',
+		SPECIES_SERGAL 		= 'icons/inventory/face/mob_sergal.dmi',
+		SPECIES_NEVREAN 	= 'icons/inventory/face/mob_nevrean.dmi',
+		SPECIES_ZORREN_HIGH	= 'icons/inventory/face/mob_fox.dmi',
+		SPECIES_ZORREN_FLAT = 'icons/inventory/face/mob_fennec.dmi',
+		SPECIES_AKULA 		= 'icons/inventory/face/mob_akula.dmi',
+		SPECIES_VULPKANIN 	= 'icons/inventory/face/mob_vulpkanin.dmi',
+		SPECIES_XENOCHIMERA	= 'icons/inventory/face/mob_tajaran.dmi',
+		SPECIES_WEREBEAST	= 'icons/inventory/face/mob_werebeast.dmi'
 		)
 
 	var/voicechange = 0
