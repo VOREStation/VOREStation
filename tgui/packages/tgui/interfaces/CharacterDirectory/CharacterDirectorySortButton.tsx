@@ -1,14 +1,14 @@
 import { Button, Icon, Table } from 'tgui-core/components';
 
 export const SortButton = (props: {
-  id: string;
+  ourId: string;
   sortId: string;
   sortOrder: boolean;
   onSortOrder: React.Dispatch<React.SetStateAction<boolean>>;
   onSortId: React.Dispatch<React.SetStateAction<string>>;
   children: React.JSX.Element | string;
 }) => {
-  const { id, sortId, sortOrder, onSortOrder, onSortId, children } = props;
+  const { ourId, sortId, sortOrder, onSortOrder, onSortId, children } = props;
 
   // Hey, same keys mean same data~
 
@@ -16,18 +16,18 @@ export const SortButton = (props: {
     <Table.Cell collapsing>
       <Button
         width="100%"
-        color={sortId !== id && 'transparent'}
+        color={sortId !== ourId && 'transparent'}
         onClick={() => {
-          if (sortId === id) {
+          if (sortId === ourId) {
             onSortOrder(!props.sortOrder);
           } else {
-            onSortId(id);
+            onSortId(ourId);
             onSortOrder(true);
           }
         }}
       >
         {children}
-        {sortId === id && (
+        {sortId === ourId && (
           <Icon name={sortOrder ? 'sort-up' : 'sort-down'} ml="0.25rem;" />
         )}
       </Button>

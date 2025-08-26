@@ -1,4 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Fluidpump pumping speed now scales off of the their manipulator and not their motor, as motors have no upgrades."

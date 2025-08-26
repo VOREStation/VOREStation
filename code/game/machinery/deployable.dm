@@ -61,9 +61,9 @@ Deployable items
 		return
 	else
 		switch(W.damtype)
-			if("fire")
+			if(BURN)
 				health -= W.force * 0.75
-			if("brute")
+			if(BRUTE)
 				health -= W.force * 0.5
 		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 		CheckHealth()

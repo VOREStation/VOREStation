@@ -33,7 +33,7 @@
 
 	default_pixel_x = -16
 	pixel_x = -16
-
+	minbodytemp = 175
 	maxHealth = 200
 	health = 200
 

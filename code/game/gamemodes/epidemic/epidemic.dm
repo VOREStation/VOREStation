@@ -194,5 +194,5 @@
 	else if(finished == 2)
 		feedback_set_details("round_end_result","loss - rev heads killed")
 		to_world(span_boldannounce(span_large("The crew succumbed to the epidemic!")))
-	..()
-	return 1
+
+	return ..()
