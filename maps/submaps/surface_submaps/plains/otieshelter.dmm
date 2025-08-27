@@ -121,12 +121,8 @@
 /obj/item/material/shard{
 	icon_state = "medium"
 	},
-/obj/effect/decal/cleanable/blood/tracks{
-	color = "red";
-	desc = "Your instincts say you shouldn't be following these.";
-	dir = 4;
-	icon = 'icons/effects/blood.dmi';
-	icon_state = "tracks"
+/obj/effect/decal/cleanable/blood/tracks/suspicious{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
@@ -373,12 +369,8 @@
 /area/submap/OtieShelter)
 "BM" = (
 /obj/item/melee/baton/cattleprod,
-/obj/effect/decal/cleanable/blood/tracks{
-	color = "red";
-	desc = "Your instincts say you shouldn't be following these.";
-	dir = 4;
-	icon = 'icons/effects/blood.dmi';
-	icon_state = "tracks"
+/obj/effect/decal/cleanable/blood/tracks/suspicious{
+	dir = 4
 	},
 /obj/effect/decal/cleanable/filth,
 /obj/effect/floor_decal/industrial/warning{

@@ -84,7 +84,7 @@
 /area/shuttle/blue_fo)
 "am" = (
 /obj/structure/bed/alien{
-	icon = 'icons/obj/abductor_vr.dmi'
+	icon_state = "bed_blue"
 	},
 /obj/item/bedsheet/blue,
 /turf/simulated/floor/tiled/techfloor,
@@ -539,9 +539,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/blue_fo)
 "bn" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/blue_fo)
 "bo" = (

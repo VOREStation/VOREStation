@@ -73,20 +73,31 @@
 		var/mob/living/carbon/human/H = M
 
 		if("exclude" in species_restricted)
-			exclusive = 1
+			exclusive = TRUE
 
 		if(H.species)
+			var/our_species = H.species.get_bodytype(H)
 			if(exclusive)
-				if(!(H.species.get_bodytype(H) in species_restricted))
-					wearable = 1
+				if(!(our_species in species_restricted))
+					wearable = TRUE
 			else
-				if(H.species.get_bodytype(H) in species_restricted)
-					wearable = 1
+				if(our_species in species_restricted)
+					wearable = TRUE
+
+				///Prevent us from wearing clothing that is restricted to vox, werebeast, or teshari. This generally means it's custom designed for them and them only.
+				else if((((SPECIES_VOX in species_restricted) && our_species != SPECIES_VOX) || ((SPECIES_WEREBEAST in species_restricted) && our_species != SPECIES_WEREBEAST) || ((SPECIES_TESHARI in species_restricted) && our_species != SPECIES_TESHARI)))
+					wearable = FALSE
+
+				///Prevent us from from wearing clothing if we ARE a teshari or werebeast. This is due to these two having different anatomy that don't fix most clothing.
+				else if((our_species == SPECIES_TESHARI || our_species == SPECIES_WEREBEAST) && !sprite_sheets[our_species]) //teshari and werebeasts must have their own sprites. Vox can get away...somewhat
+					wearable = FALSE
+				else
+					wearable = TRUE
 
 			if(!wearable && !(slot in list(slot_l_store, slot_r_store, slot_s_store)))
 				to_chat(H, span_danger("Your species cannot wear [src]."))
-				return 0
-	return 1
+				return FALSE
+	return TRUE
 
 /obj/item/clothing/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	. = ..()
@@ -140,18 +151,21 @@
 
 	//Set species_restricted list
 	switch(target_species)
-		//VOREStation Edit Start
 		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN)
+			species_restricted = SPECIES_HUMANOID_CAN_WEAR
 		if(SPECIES_UNATHI)
-			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
+			species_restricted = SPECIES_UNATHI_CAN_WEAR
 		if(SPECIES_TAJARAN)
-			species_restricted = list(SPECIES_TAJARAN, SPECIES_XENOCHIMERA)
+			species_restricted = SPECIES_TAJARAN_CAN_WEAR
 		if(SPECIES_VULPKANIN)
-			species_restricted = list(SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+			species_restricted = SPECIES_VULPKANIN_CAN_WEAR
 		if(SPECIES_SERGAL)
-			species_restricted = list(SPECIES_SERGAL, SPECIES_NEVREAN)
-		//VOREStation Edit End
+			species_restricted = SPECIES_SERGAL_CAN_WEAR
+		if("Metamorphic")
+			if(sprite_sheets[SPECIES_TESHARI]) //We have a custom teshari species sprite. Sorry teshari, but otherwise the fallback looks awful on you.
+				species_restricted = SPECIES_ALL_CAN_WEAR
+			else
+				species_restricted = SPECIES_ALL_BUT_TESHARI_CAN_WEAR
 		else
 			species_restricted = list(target_species)
 
@@ -178,33 +192,6 @@
 	update_icon()
 	update_clothing_icon()
 //VOREStation edit end
-
-/obj/item/clothing/head/helmet/refit_for_species(var/target_species)
-	if(!species_restricted)
-		return //this item doesn't use the species_restricted system
-
-	//Set species_restricted list
-	switch(target_species)
-		//VOREStation Edit Start
-		if(SPECIES_HUMAN)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
-		if(SPECIES_SKRELL)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
-		if(SPECIES_UNATHI)
-			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
-		if(SPECIES_VULPKANIN)
-			species_restricted = list(SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
-		if(SPECIES_SERGAL)
-			species_restricted = list(SPECIES_SERGAL, SPECIES_NEVREAN)
-		//VOREStation Edit End
-		else
-			species_restricted = list(target_species)
-
-	//Set icon
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -587,13 +574,24 @@
 	heat_protection = FALSE //No heat protection anywhere
 	cold_protection = FALSE //No heat protection anywhere
 	slot_flags = SLOT_MASK
-	body_parts_covered = FACE|EYES
+	body_parts_covered = HEAD|FACE|EYES
 	blood_sprite_state = "maskblood"
+	item_icons = list(
+		slot_wear_mask_str = 'icons/inventory/face/mob.dmi'
+		)
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/face/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/face/mob_vox.dmi',
-		SPECIES_TAJARAN = 'icons/inventory/face/mob_tajaran.dmi',
-		SPECIES_UNATHI = 'icons/inventory/face/mob_unathi.dmi'
+		SPECIES_TESHARI		= 'icons/inventory/face/mob_teshari.dmi',
+		SPECIES_VOX 		= 'icons/inventory/face/mob_vox.dmi',
+		SPECIES_TAJARAN 	= 'icons/inventory/face/mob_tajaran.dmi',
+		SPECIES_UNATHI 		= 'icons/inventory/face/mob_unathi.dmi',
+		SPECIES_SERGAL 		= 'icons/inventory/face/mob_sergal.dmi',
+		SPECIES_NEVREAN 	= 'icons/inventory/face/mob_nevrean.dmi',
+		SPECIES_ZORREN_HIGH	= 'icons/inventory/face/mob_fox.dmi',
+		SPECIES_ZORREN_FLAT = 'icons/inventory/face/mob_fennec.dmi',
+		SPECIES_AKULA 		= 'icons/inventory/face/mob_akula.dmi',
+		SPECIES_VULPKANIN 	= 'icons/inventory/face/mob_vulpkanin.dmi',
+		SPECIES_XENOCHIMERA	= 'icons/inventory/face/mob_tajaran.dmi',
+		SPECIES_WEREBEAST	= 'icons/inventory/face/mob_werebeast.dmi'
 		)
 
 	var/voicechange = 0
@@ -911,7 +909,7 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi')
+		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_werebeast.dmi')
 	max_heat_protection_temperature = T0C+100
 	allowed = list(POCKET_EMERGENCY)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)
@@ -1037,7 +1035,7 @@
 /obj/item/clothing/suit/proc/taurize(var/mob/living/carbon/human/taur, has_taur_tail = FALSE)
 	if(has_taur_tail)
 		var/datum/sprite_accessory/tail/taur/taurtail = taur.tail_style
-		if(taurtail.suit_sprites && (get_worn_icon_state(slot_wear_suit_str) in cached_icon_states(taurtail.suit_sprites)))
+		if(taurtail.suit_sprites && (icon_exists(taurtail.suit_sprites, get_worn_icon_state(slot_wear_suit_str))))
 			icon_override = taurtail.suit_sprites
 			taurized = TRUE
 	// means that if a taur puts on an already taurized suit without a taur sprite
@@ -1089,7 +1087,8 @@
 	blood_sprite_state = "uniformblood"
 
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
-	var/sensor_mode = 0
+	var/sensor_mode = 3
+	var/sensorpref = 5
 		/*
 		1 = Report living/dead
 		2 = Report detailed damages
@@ -1102,7 +1101,8 @@
 	var/rolled_sleeves_icon_override = TRUE
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/uniform/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/uniform/mob_vox.dmi'
+		SPECIES_VOX = 'icons/inventory/uniform/mob_vox.dmi',
+		SPECIES_WEREBEAST = 'icons/inventory/uniform/mob_werebeast.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
@@ -1151,13 +1151,28 @@
 
 	//autodetect rollability
 	if(rolled_down < 0)
-		if(("[worn_state]_d" in cached_icon_states(icon)) || (worn_state in cached_icon_states(rolled_down_icon)) || ("[worn_state]_d" in cached_icon_states(icon_override)))
+		if((icon_exists(icon, "[worn_state]_d") || icon_exists(rolled_down_icon, worn_state) || icon_exists(icon_override, "[worn_state]_d")))
 			rolled_down = 0
 
 	if(rolled_down == -1)
 		verbs -= /obj/item/clothing/under/verb/rollsuit
 	if(rolled_sleeves == -1)
 		verbs -= /obj/item/clothing/under/verb/rollsleeves
+
+	if(!ishuman(loc))
+		return
+
+	var/mob/living/carbon/human/H = loc
+	sensorpref = isnull(H) ? 1 : (ishuman(H) ? H.sensorpref : 1)
+	switch(sensorpref)
+		if(1) sensor_mode = 0				//Sensors off
+		if(2) sensor_mode = 1				//Sensors on binary
+		if(3) sensor_mode = 2				//Sensors display vitals
+		if(4) sensor_mode = 3				//Sensors display vitals and enables tracking
+		if(5) sensor_mode = pick(0,1,2,3)	//Select a random setting
+		else
+			sensor_mode = pick(0,1,2,3)
+			log_debug("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")
 
 /obj/item/clothing/under/proc/update_rolldown_status()
 	var/mob/living/carbon/human/H
@@ -1171,11 +1186,11 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(LAZYACCESS(item_icons, slot_w_uniform_str))
 		under_icon = item_icons[slot_w_uniform_str]
-	else if (worn_state in cached_icon_states(rolled_down_icon))
+	else if (icon_exists(rolled_down_icon, worn_state))
 		under_icon = rolled_down_icon
 
 	// The _s is because the icon update procs append it.
-	if((under_icon == rolled_down_icon && ("[worn_state]" in cached_icon_states(under_icon))) || ("[worn_state]_d" in cached_icon_states(under_icon)))
+	if((under_icon == rolled_down_icon && (icon_exists(under_icon, worn_state))) || (icon_exists(under_icon, "[worn_state]_d")))
 		if(rolled_down != 1)
 			rolled_down = 0
 	else
@@ -1194,13 +1209,13 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(LAZYACCESS(item_icons, slot_w_uniform_str))
 		under_icon = item_icons[slot_w_uniform_str]
-	else if (worn_state in cached_icon_states(rolled_down_sleeves_icon))
+	else if (icon_exists(rolled_down_sleeves_icon, worn_state))
 		under_icon = rolled_down_sleeves_icon
 	else
 		under_icon = new /icon(INV_W_UNIFORM_DEF_ICON)
 
 	// The _s is because the icon update procs append it.
-	if((under_icon == rolled_down_sleeves_icon && ("[worn_state]" in cached_icon_states(under_icon))) || ("[worn_state]_r" in cached_icon_states(under_icon)))
+	if((under_icon == rolled_down_sleeves_icon && (icon_exists(under_icon, worn_state))) || (icon_exists(under_icon, "[worn_state]_r")))
 		if(rolled_sleeves != 1)
 			rolled_sleeves = 0
 	else
@@ -1284,7 +1299,7 @@
 		body_parts_covered &= ~(UPPER_TORSO|ARMS)
 		heat_protection &= ~(UPPER_TORSO|ARMS)
 		cold_protection &= ~(UPPER_TORSO|ARMS)
-		if(worn_state in cached_icon_states(rolled_down_icon))
+		if(icon_exists(rolled_down_icon, worn_state))
 			icon_override = rolled_down_icon
 			LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 		else
@@ -1321,7 +1336,7 @@
 		body_parts_covered &= ~(ARMS)
 		heat_protection &= ~(ARMS)
 		cold_protection &= ~(ARMS)
-		if(worn_state in cached_icon_states(rolled_down_sleeves_icon))
+		if(icon_exists(rolled_down_sleeves_icon, worn_state))
 			icon_override = rolled_down_sleeves_icon
 			LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 		else
@@ -1369,7 +1384,7 @@
 
 				// only override icon if a corresponding digitigrade replacement icon_state exists
 				// otherwise, keep the old non-digi icon_define (or nothing)
-				if(icon_state && cached_icon_states(update_icon_define_digi):Find(icon_state))
+				if(icon_state && cached_icon_states(update_icon_define_digi):Find(icon_state)) //Unsure what to do to this seeing as it does :Find()
 					update_icon_define = update_icon_define_digi
 
 

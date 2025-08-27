@@ -16,7 +16,7 @@
 			if(!choice||choice=="No")
 				return
 			user.visible_message("[user] starts dispersing the [src]...", runemessage = "disperses the [src]")
-			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE))
+			if(do_after(user, 5 SECONDS))
 				qdel(src)
 		else
 			to_chat(user, span_notice("There is something growing here."))

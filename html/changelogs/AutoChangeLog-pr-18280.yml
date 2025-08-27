@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Crates will no longer make flashlight beams vanish when closed over them"
-  - bugfix: "Crates closed on flashlights and other directional light sources no longer leave the light floating in place where it was closed"

@@ -227,11 +227,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			if(!f) body += " | "
 			else f = 0
 			if(L in player.languages)
-				k = span_green(k)
-				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[k]</a>"
+				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[span_green(k)]</a>"
 			else
-				k = span_red(k)
-				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[k]</a>"
+				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[span_red(k)]</a>"
 
 	body += {"<br>"}
 
