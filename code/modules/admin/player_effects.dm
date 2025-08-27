@@ -319,11 +319,6 @@
 			var/obj/item/original_name = spawned_obj.name
 
 			M.tf_into(spawned_obj, TRUE, original_name)
-			// spawned_obj.inhabit_item(M, original_name, M)
-			// var/mob/living/possessed_voice = spawned_obj.possessed_voice
-			// spawned_obj.trash_eatable = M.devourable
-			// spawned_obj.unacidable = !M.digestable
-			// M.forceMove(possessed_voice)
 
 		if("elder_smite")
 			if(!target.ckey)
