@@ -135,3 +135,23 @@
 	else //Just unbuckled someone
 		M.can_pull_size = initial(M.can_pull_size)
 		qdel(src)
+
+/obj/item/energy_net/shrink
+	name = "compactor energy net"
+	desc = "It's a net made of cyan energy."
+	icon_state = "shrinkenergynet"
+	net_type = /obj/effect/energy_net/shrink
+
+/obj/effect/energy_net/shrink
+	name = "compactor energy net"
+	desc = "It's a net made of cyan energy."
+	icon_state = "shrinkenergynet"
+
+	var/size_increment = 0.01
+
+/obj/effect/energy_net/shrink/process()
+	..()
+	for(var/A in buckled_mobs)
+		if(istype(A, /mob/living))
+			var/mob/living/L = A
+			L.resize((L.size_multiplier - size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
