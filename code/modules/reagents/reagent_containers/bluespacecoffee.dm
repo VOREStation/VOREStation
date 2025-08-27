@@ -6,6 +6,7 @@
 	center_of_mass_x = 15
 	center_of_mass_y = 10
 	volume = 50
+	max_transfer_amount = 50
 
 /obj/item/reagent_containers/food/drinks/bluespace_coffee/Initialize(mapload)
 	. = ..()
