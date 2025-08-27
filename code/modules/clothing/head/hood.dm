@@ -211,8 +211,6 @@
 /obj/item/clothing/head/hood/hoodie
 	name = "hood"
 	desc = "The hood of a hoodie. Cosy!"
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "hood_plain"
 
 /obj/item/clothing/head/hood/raincoat

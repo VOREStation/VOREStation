@@ -290,16 +290,12 @@
 	)
 
 /obj/item/clothing/head/helmet/space/rig/focalpoint
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "techno_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
 	sprite_sheets = null
 
 /obj/item/clothing/suit/space/rig/focalpoint
-	icon = 'icons/inventory/suit/item.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "techno_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
@@ -346,16 +342,12 @@
 	)
 
 /obj/item/clothing/head/helmet/space/rig/hephaestus
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "ihs_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
 	sprite_sheets = null
 
 /obj/item/clothing/suit/space/rig/hephaestus
-	icon = 'icons/inventory/suit/item.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "ihs_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
@@ -402,16 +394,12 @@
 
 /obj/item/clothing/head/helmet/space/rig/zero
 	desc = "A bubble helmet that maximizes the field of view. A state of the art holographic display provides a stream of information."
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "null_rig"
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 	slowdown = 0
 
 /obj/item/clothing/suit/space/rig/zero
-	icon = 'icons/inventory/suit/item.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "null_rig"
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = SPECIES_SPRITE_SHEETS_SUIT_ITEM
@@ -452,8 +440,6 @@
 	)
 
 /obj/item/clothing/head/helmet/space/rig/baymed
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "medical_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
@@ -461,8 +447,6 @@
 	camera_networks = list(NETWORK_MEDICAL)
 
 /obj/item/clothing/suit/space/rig/baymed
-	icon = 'icons/inventory/suit/item.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "medical_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -514,8 +498,6 @@
 	)
 
 /obj/item/clothing/head/helmet/space/rig/bayeng
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "engineering_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
@@ -523,8 +505,6 @@
 	camera_networks = list(NETWORK_ENGINEERING)
 
 /obj/item/clothing/suit/space/rig/bayeng
-	icon = 'icons/inventory/suit/item.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "engineering_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
@@ -575,16 +555,12 @@
 	)
 
 /obj/item/clothing/head/helmet/space/rig/pathfinder
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "pathfinder_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 /obj/item/clothing/suit/space/rig/pathfinder
-	icon = 'icons/inventory/suit/item.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "pathfinder_rig_bay"
 	item_state = null
 	sprite_sheets = ALL_SPRITE_SHEETS_SUIT_MOB
