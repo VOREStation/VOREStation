@@ -122,7 +122,7 @@
 				continue
 			if(Console.newmessagepriority < priority)
 				Console.newmessagepriority = priority
-				Console.icon_state = "req_comp[priority]"
+				Console.update_icon()
 			switch(priority)
 				if(2)
 					if(!Console.silent)
