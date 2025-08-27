@@ -1298,10 +1298,10 @@
 				return
 			return
 
-	var/struggle_outer_message = span_valert(belly_format_string(struggle_messages_outside, R))
 	var/struggle_user_message = span_valert(belly_format_string(struggle_messages_inside, R))
 
 	if(displayed_message_flags & MS_FLAG_STRUGGLE_OUTSIDE)
+		var/struggle_outer_message = span_valert(belly_format_string(struggle_messages_outside, R))
 		if(private_struggle)
 			to_chat(owner, struggle_outer_message)
 		else
@@ -1445,10 +1445,10 @@
 
 	R.setClickCooldown(50)
 
-	var/struggle_outer_message = span_valert(belly_format_string(absorbed_struggle_messages_outside, R, use_absorbed_count = TRUE))
 	var/struggle_user_message = span_valert(belly_format_string(absorbed_struggle_messages_inside, R, use_absorbed_count = TRUE))
 
 	if(displayed_message_flags & MS_FLAG_STRUGGLE_ABSORBED_OUTSIDE)
+		var/struggle_outer_message = span_valert(belly_format_string(absorbed_struggle_messages_outside, R, use_absorbed_count = TRUE))
 		if(private_struggle)
 			to_chat(owner, struggle_outer_message)
 		else
