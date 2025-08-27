@@ -7,7 +7,7 @@
 		return
 	if(istype(A, /mob/living))
 		var/mob/living/M = A
-		H.mob_tf(src)
+		M.mob_tf(src)
 		return
 	if(istype(A, /obj/item))
 		var/obj/item/I = A
