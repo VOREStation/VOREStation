@@ -518,3 +518,40 @@
 2025-08-24:
   Diana:
   - bugfix: Loyalty potions work again. Whoops.
+2025-08-26:
+  Diana & shy.bandit:
+  - rscadd: Adds Rabbot borg sprites!
+  - image: Adds new rabbot borg sprites, made by shy.bandit
+  Guti:
+  - bugfix: Fixed neutered symptoms un-neutering when faltering a disease
+  - bugfix: Fixed Pituitary Disruption blood vomiting taking too long
+  - balance: Rebalanced Hyperactivity symptom
+  - spellcheck: Fixed spelling mistakes in Hyperactivty and Shivering symptoms
+2025-08-27:
+  Diana:
+  - bugfix: Gasmasks now show the proper sprites
+  - rscadd: Clear gasmasks no longer have no sprite
+  Guti:
+  - bugfix: Fixed an exploit that allowed players to teleport to Cryo from anywhere
+  Kashargul:
+  - bugfix: name inputs failing in some cases
+  - bugfix: phoron spider dev range
+  KillianKirilenko:
+  - refactor: cleaned up icon files for eyewear and masks - there shouldn't be any
+      player-facing changes, but please report any invisible or bugged clothes in
+      appropriate channels
+  - bugfix: AR mantles can now access special displays as-intended, they no longer
+      block eating/drinking, and also slightly adjusted the E/W facing sprites for
+      mantles on vulp bases
+  - refactor: cleaned up icon files for undersuits - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels.
+      also cleaned up some text/file formatting.
+  - qol: non-altevians can now wear altevian uniforms, if you want to. there was no
+      reason for these to be restricted.
+  Will:
+  - rscadd: Frames now accept parts stored in boxes or bags and load them all at once
+  - rscadd: RPED can now install parts in a frame, bluespace RPED can do so at range
+  - rscadd: Engineering borgs given an expanded parts pouch
+  - qol: Engineering parts pouch can now pick up all stock parts on a turf, and drop
+      them all at once, can be used to mass install parts in frames like any other
+      bag
