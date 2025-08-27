@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -97,10 +97,9 @@ const AreaMapper = (props: {
 }) => {
   const { entry, limit, action, exactLength, maxEntries } = props;
 
-  const filledArray = [
-    ...entry,
-    ...new Array(maxEntries - entry.length).fill(''),
-  ];
+  const filledArray = useMemo(() => {
+    return [...entry, ...new Array(maxEntries - entry.length).fill('')];
+  }, [entry, maxEntries]);
 
   function performAction(value: string, index: number) {
     const newEntry = [...filledArray];
@@ -115,7 +114,7 @@ const AreaMapper = (props: {
 
   return filledArray.map((singleEntry, index) => (
     <CountedTextElement
-      key={index}
+      key={`${index}-${entry.length}`}
       limit={limit}
       entry={singleEntry}
       action={performAction}
