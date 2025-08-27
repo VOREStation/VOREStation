@@ -1448,11 +1448,12 @@
 	var/struggle_outer_message = span_valert(belly_format_string(absorbed_struggle_messages_outside, R, use_absorbed_count = TRUE))
 	var/struggle_user_message = span_valert(belly_format_string(absorbed_struggle_messages_inside, R, use_absorbed_count = TRUE))
 
-	if(private_struggle)
-		to_chat(owner, struggle_outer_message)
-	else
-		for(var/mob/M in hearers(4, owner))
-			M.show_message(struggle_outer_message, 2) // hearable
+	if(displayed_message_flags & MS_FLAG_STRUGGLE_ABSORBED_OUTSIDE)
+		if(private_struggle)
+			to_chat(owner, struggle_outer_message)
+		else
+			for(var/mob/M in hearers(4, owner))
+				M.show_message(struggle_outer_message, 2) // hearable
 
 	var/sound/struggle_snuggle
 	var/sound/struggle_rustle = sound(get_sfx("rustle"))

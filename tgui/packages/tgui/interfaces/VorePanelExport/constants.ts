@@ -76,3 +76,4 @@ export const SoulcatcherSettingsFlag = {
 };
 
 export const STRUGGLE_OUTSIDE_MESSAGE = 0x1;
+export const STRUGGLE_OUTSIDE_ABSORBED_MESSAGE = 0x2;

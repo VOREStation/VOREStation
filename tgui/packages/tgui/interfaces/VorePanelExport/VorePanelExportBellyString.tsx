@@ -1,4 +1,9 @@
-import { ItemModeSpan, ModeSpan, STRUGGLE_OUTSIDE_MESSAGE } from './constants';
+import {
+  ItemModeSpan,
+  ModeSpan,
+  STRUGGLE_OUTSIDE_ABSORBED_MESSAGE,
+  STRUGGLE_OUTSIDE_MESSAGE,
+} from './constants';
 import type { Belly } from './types';
 import {
   GetAddons,
@@ -270,10 +275,14 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestChanceMessagesPrey${index}" role="tab">Digest Chance Messages (Prey)</a>`;
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbChanceMessagesOwner${index}" role="tab">Absorb Chance Messages (Owner)</a>`;
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbChanceMessagesPrey${index}" role="tab">Absorb Chance Messages (Prey)</a>`;
-  result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesOutside${index}" role="tab">Struggle Messages (Outside)</a>`;
+  result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesOutside${index}" role="tab">Struggle Messages (Outside) (${
+    displayed_message_flags & STRUGGLE_OUTSIDE_MESSAGE
+      ? '<span style="color: green;">On'
+      : '<span style="color: red;">Off'
+  }</span>)</a>`;
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesInside${index}" role="tab">Struggle Messages (Inside)</a>`;
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleOutside${index}" role="tab">Absorbed Struggle Messages (Outside) (${
-    displayed_message_flags & STRUGGLE_OUTSIDE_MESSAGE
+    displayed_message_flags & STRUGGLE_OUTSIDE_ABSORBED_MESSAGE
       ? '<span style="color: green;">On'
       : '<span style="color: red;">Off'
   }</span>)</a>`;

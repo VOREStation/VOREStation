@@ -533,6 +533,9 @@
 		if("b_display_outside_struggle")
 			host.vore_selected.toggle_displayed_message_flags(MS_FLAG_STRUGGLE_OUTSIDE)
 			. = TRUE
+		if("b_display_absorbed_outside_struggle")
+			host.vore_selected.toggle_displayed_message_flags(MS_FLAG_STRUGGLE_ABSORBED_OUTSIDE)
+			. = TRUE
 		if("b_grow_shrink")
 			var/new_grow = text2num(params["val"])
 			if (!isnum(new_grow))

@@ -92,4 +92,5 @@
 #define VS_FLAG_ABSORB_PREY		0x2
 
 //Message display flags
-#define MS_FLAG_STRUGGLE_OUTSIDE 0x1
+#define MS_FLAG_STRUGGLE_OUTSIDE			0x1
+#define MS_FLAG_STRUGGLE_ABSORBED_OUTSiDE	0x2
