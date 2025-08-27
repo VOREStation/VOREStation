@@ -1,4 +1,4 @@
-//where it's allowed to be installed
+//defines for code/modules/cybernetics
 #define ENDOWARE_TYPE_ALL (ENDOWARE_TYPE_PROSTHETIC | ENDOWARE_TYPE_SYNTH | ENDOWARE_TYPE_ORGANIC)
 
 #define ENDOWARE_TYPE_PROSTHETIC (1 << 1) //prosthetics only
@@ -17,7 +17,7 @@
 //not just for traits or whatever either
 #define ENDOWARE_FLAG_NO_WELD_EYE_DMG			(1 << 4) //safety squints, that'll do er
 #define ENDOWARE_FLAG_NO_FLASH					(1 << 5) //god fears the flashbang stare contest winner
-
+#define ENDOWARE_FLAG_UI						(1 << 6) //UI stuff
 
 //how fucked up are we
 #define ENDOWARE_STATE_NOMINAL 0			//cream gravy

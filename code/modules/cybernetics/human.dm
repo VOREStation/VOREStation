@@ -5,14 +5,12 @@
 
 	var/datum/commandline_network/cmdNetwork //direct hardref to the component's network
 
-
-
 /mob/living/carbon/verb/activate_endoware()
 	set category = "Abilities.Endoware"
 	set desc = "Bring up a menu for the active endoware you can and can not activate"
 
 	if(LAZYLEN(installed_endoware) == 0)
-		to_chat(src,span_notice("You think REALLY hard, and do absolutely nothing. You have nothing TO activate."))
+		to_chat(src,span_notice("You think REALLY hard... and do absolutely nothing. You have nothing TO activate."))
 
 	var/list/options = list()
 
@@ -49,4 +47,6 @@
 		var/to_add = source.get_vision_planes()
 		if(to_add)
 			endoware_planes |= to_add
+	if(endoware_flags & ENDOWARE_FLAG_UI)
+		endoware_planes |= VIS_ENDOWARE
 	recalculate_vis()

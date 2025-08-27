@@ -18,3 +18,6 @@
 	if(is_active)
 		return planes_to_add
 	return
+
+//no, I'm not adding thermals. that's a horrible idea.
+//if you do add it,
