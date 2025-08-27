@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Gasmasks now show the proper sprites"
-  - rscadd: "Clear gasmasks no longer have no sprite"
