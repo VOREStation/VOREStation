@@ -260,7 +260,7 @@
 		var/mob/living/new_mob = spawn_mob(M)
 		new_mob.faction = M.faction
 
-		M.tf_into(new_mob) // CHOMPEdit: WIP merging of object and mob tf!
+		M.tf_into(new_mob)
 	target.bloodstr.clear_reagents() //Got to clear all reagents to make sure mobs don't keep spawning.
 	target.ingested.clear_reagents()
 	target.touching.clear_reagents()

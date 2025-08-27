@@ -296,7 +296,7 @@
 			var/mob/living/new_mob = new chosen_beast(get_turf(M))
 			new_mob.faction = M.faction
 
-			M.tf_into(new_mob) // CHOMPEdit: WIP merging of object and mob tf!
+			M.tf_into(new_mob)
 
 		if("item_tf")
 			var/mob/living/M = target
@@ -318,7 +318,7 @@
 			var/obj/item/spawned_obj = new spawning(M.loc)
 			var/obj/item/original_name = spawned_obj.name
 
-			M.tf_into(spawned_obj, TRUE, original_name) // CHOMPEdit: WIP merging of object and mob tf!
+			M.tf_into(spawned_obj, TRUE, original_name)
 			// spawned_obj.inhabit_item(M, original_name, M)
 			// var/mob/living/possessed_voice = spawned_obj.possessed_voice
 			// spawned_obj.trash_eatable = M.devourable

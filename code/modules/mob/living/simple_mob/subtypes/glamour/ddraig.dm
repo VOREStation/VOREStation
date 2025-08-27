@@ -257,7 +257,7 @@
 		var/mob/living/new_mob = spawn_mob(M)
 		new_mob.faction = M.faction
 
-		M.tf_into(new_mob) // CHOMPEdit: WIP merging of object and mob tf!
+		M.tf_into(new_mob)
 
 		addtimer(CALLBACK(new_mob, TYPE_PROC_REF(/mob/living, revert_mob_tf)), 30 SECONDS, TIMER_DELETE_ME)
 
