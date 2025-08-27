@@ -220,6 +220,7 @@ export const VorePanelEditTextArea = (props: {
       <Stack.Item>
         {Array.isArray(entry) ? (
           <AreaMapper
+            key={`${action}-${subAction}`}
             limit={limit}
             entry={entry}
             exactLength={exactLength}
