@@ -96,6 +96,7 @@ const AreaMapper = (props: {
   maxEntries: number;
 }) => {
   const { entry, limit, action, exactLength, maxEntries } = props;
+  const version = useRef(0); // No state needed, we call a backend update
 
   const filledArray = useMemo(() => {
     return [...entry, ...new Array(maxEntries - entry.length).fill('')];
@@ -110,11 +111,14 @@ const AreaMapper = (props: {
     }
     const filtered = newEntry.filter(Boolean);
     action(filtered);
+    if (!filtered.length) {
+      version.current += 1;
+    }
   }
 
   return filledArray.map((singleEntry, index) => (
     <CountedTextElement
-      key={`${index}-${entry.length}`}
+      key={`${index}-${entry.length}-${version.current}`}
       limit={limit}
       entry={singleEntry}
       action={performAction}
