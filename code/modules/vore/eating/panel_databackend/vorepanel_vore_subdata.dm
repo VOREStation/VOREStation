@@ -125,7 +125,7 @@
 				tab_data["max_length"] = BELLIES_MESSAGE_MAX
 				tab_data["active_message"] = selected.absorbed_struggle_messages_outside
 				tab_data["set_action"] = ABSORBED_STRUGGLE_OUSIDE
-				tab_data["tooltip"] = "Displayed to nearby players when your absorb prey resists."
+				tab_data["tooltip"] = "Displayed to nearby players when your absorbed prey resists."
 				return tab_data
 			if(selected_message == INSIDE_MESSAGE)
 				tab_data["max_length"] = BELLIES_MESSAGE_MAX
