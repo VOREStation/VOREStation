@@ -116,6 +116,13 @@
 	if(!(target in view(user)))
 		return ..()
 
+	if(istype(target, /obj/structure/frame))
+		var/obj/structure/frame/F = target
+		if(F.mass_install_parts(user,src))
+			play_rped_sound()
+			user.Beam(F, icon_state = "rped_upgrade", time = 0.5 SECONDS)
+		return
+
 	if(!istype(target, /obj/machinery))
 		return
 

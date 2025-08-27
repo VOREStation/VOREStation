@@ -705,7 +705,8 @@
 
 	if(M.client)
 		if(tgui_alert(M,"Would you like to enter long-term storage?","Cryopod",list("Yes","No")) == "Yes")
-			if(!M) return
+			if(!M || !M.Adjacent(src))
+				return
 			willing = 1
 	else
 		willing = 1

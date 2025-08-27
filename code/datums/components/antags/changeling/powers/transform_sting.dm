@@ -14,7 +14,6 @@
 
 	var/datum/component/antag/changeling/changeling = changeling_power(40, 1, 100, CONSCIOUS)
 	if(!changeling)
-		to_world("Changeling = false)")
 		return FALSE
 
 	var/list/names = list()
@@ -26,19 +25,15 @@
 	var/S
 	if(LAZYLEN(names) > 1)
 		tgui_input_list(src, "Select the target DNA:", "Target DNA", names)
-		to_world("dna > 1")
 	else
-		to_world("dna == 1")
 		S = names[1]
 
 	var/datum/absorbed_dna/chosen_dna = changeling.GetDNA(S)
 	if(!chosen_dna)
-		to_world("CD = false)")
 		return
 
 	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_transformation_sting)
 	if(!T)
-		to_world("T = false)")
 		return FALSE
 	if((HUSK in T.mutations) || (!ishuman(T) && !issmall(T)))
 		to_chat(src, span_warning("Our sting appears ineffective against its DNA."))
