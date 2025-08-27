@@ -6,7 +6,7 @@
 	icon_state = "borghypo"
 	amount_per_transfer_from_this = 5
 	volume = 30
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 
 	var/mode = 1
 	var/charge_cost = 50
@@ -131,7 +131,7 @@
 	charge_cost = 20
 	recharge_time = 3
 	volume = 60
-	possible_transfer_amounts = list(5, 10, 20, 30)
+	max_transfer_amount = 30
 	reagent_ids = list(REAGENT_ID_ALE,
 		REAGENT_ID_BEER,
 		REAGENT_ID_BERRYJUICE,
