@@ -69,9 +69,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	heat_protection = HEAD
 	cold_protection = HEAD
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/face/mob_vr_teshari.dmi'
-		)
+
 /obj/item/clothing/mask/gas/plaguedoctor/gold
 	name = "gold plague doctor mask"
 	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply. This one is gold."

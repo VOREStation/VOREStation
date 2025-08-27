@@ -1,0 +1,5 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - qol: "Made it so that you can Alt click reagent containers to set transfer volume."
+  - refactor: "Changed transfer amounts to be set by number input rather than lists."
