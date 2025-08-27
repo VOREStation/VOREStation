@@ -63,13 +63,13 @@
 			tab_data["max_length"] = BELLIES_EXAMINE_MAX
 			tab_data["active_message"] = selected.examine_messages
 			tab_data["set_action"] = EXAMINES
-			tab_data["tooltip"] = "Displayed to nearby players during examination when the vorgan is full."
+			tab_data["tooltip"] = "Displayed to nearby players during examination when the vorgan is full. (All fields can be empty)"
 			return tab_data
 		if(selected_message == WITH_ABSORBED_PREY)
 			tab_data["max_length"] = BELLIES_EXAMINE_MAX
 			tab_data["active_message"] = selected.examine_messages_absorbed
 			tab_data["set_action"] = EXAMINES_ABSORBED
-			tab_data["tooltip"] = "Displayed to nearby players during examination when the vorgan contains absorbed prey."
+			tab_data["tooltip"] = "Displayed to nearby players during examination when the vorgan contains absorbed prey. (All fields can be empty)"
 			tab_data["button_label"] = "Display Absorbed Examine"
 			tab_data["button_action"] = "b_display_absorbed_examine"
 			tab_data["button_data"] = selected.display_absorbed_examine
@@ -503,67 +503,67 @@
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_DIGEST])
 			tab_data["set_action"] = BELLY_MODE_DIGEST
-			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting digested."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting digested. (All fields can be empty)"
 			return tab_data
 		if(selected_message == HOLD_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_HOLD])
 			tab_data["set_action"] = BELLY_MODE_HOLD
-			tab_data["tooltip"] = "Cyclic idle messages while your prey is being held."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey is being held. (All fields can be empty)"
 			return tab_data
 		if(selected_message == HOLDABSORBED_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_HOLD_ABSORBED])
 			tab_data["set_action"] = BELLY_MODE_HOLD_ABSORB
-			tab_data["tooltip"] = "Cyclic idle messages while your absorbed prey is being held."
+			tab_data["tooltip"] = "Cyclic idle messages while your absorbed prey is being held. (All fields can be empty)"
 			return tab_data
 		if(selected_message == ABSORB_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_ABSORB])
 			tab_data["set_action"] = BELLY_MODE_ABSORB
-			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting absorbed."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting absorbed. (All fields can be empty)"
 			return tab_data
 		if(selected_message == HEAL_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_HEAL])
 			tab_data["set_action"] = BELLY_MODE_HEAL
-			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting healed."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting healed. (All fields can be empty)"
 			return tab_data
 		if(selected_message == DRAIN_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_DRAIN])
 			tab_data["set_action"] = BELLY_MODE_DRAIN
-			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting drained."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting drained. (All fields can be empty)"
 			return tab_data
 		if(selected_message == STEAL_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_SIZE_STEAL])
 			tab_data["set_action"] = BELLY_MODE_STEAL
-			tab_data["tooltip"] = "Cyclic idle messages while your prey's size is stolen."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey's size is stolen. (All fields can be empty)"
 			return tab_data
 		if(selected_message == EGG_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_EGG])
 			tab_data["set_action"] = BELLY_MODE_EGG
-			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting getting encased in an egg."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting getting encased in an egg. (All fields can be empty)"
 			return tab_data
 		if(selected_message == SHRINK_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_SHRINK])
 			tab_data["set_action"] = BELLY_MODE_SHRINK
-			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting shrunk."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting shrunk. (All fields can be empty)"
 			return tab_data
 		if(selected_message == GROW_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_GROW])
 			tab_data["set_action"] = BELLY_MODE_GROW
-			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting grown."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting grown. (All fields can be empty)"
 			return tab_data
 		if(selected_message == UNABSORB_MESSAGE)
 			tab_data["max_length"] = BELLIES_IDLE_MAX
 			tab_data["active_message"] = SANITIZE_LIST(selected.emote_lists[DM_UNABSORB])
 			tab_data["set_action"] = BELLY_MODE_UNABSORB
-			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting unabsorbed."
+			tab_data["tooltip"] = "Cyclic idle messages while your prey is getting unabsorbed. (All fields can be empty)"
 		return tab_data
 
 	if(message_option == VPANEL_LIQUIDS_TAB)

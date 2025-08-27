@@ -459,7 +459,12 @@ GLOBAL_LIST_INIT(vore_words_snake, list("snake","serpent","reptilian","noodle","
 			raw_list.Cut(i, i + 1)
 			i--
 
-	ASSERT(LAZYLEN(raw_list) <= 10) //Sanity
+	var/final_length = LAZYLEN(raw_list)
+	if(!final_length && !(type in OPTIONAL_BELLY_MESSSAGES))
+		to_chat(owner, span_warning("At least one message needs to be set for: [type]"))
+		return
+
+	ASSERT(final_length <= 10) //Sanity
 
 	switch(type)
 		if(STRUGGLE_OUTSIDE)
