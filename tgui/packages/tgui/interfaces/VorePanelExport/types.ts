@@ -98,6 +98,7 @@ export type Belly = {
   examine_messages_absorbed: string[];
   trash_eater_in: string[];
   trash_eater_out: string[];
+  displayed_message_flags: number;
 
   // emote_list: string[];
   emotes_digest: string[];

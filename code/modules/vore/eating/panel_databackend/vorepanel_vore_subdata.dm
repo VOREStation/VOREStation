@@ -110,6 +110,10 @@
 				tab_data["active_message"] = selected.struggle_messages_outside
 				tab_data["set_action"] = STRUGGLE_OUTSIDE
 				tab_data["tooltip"] = "Displayed to nearby players when your prey resists."
+				tab_data["button_label"] = "Display Outside Struggle"
+				tab_data["button_action"] = "b_display_outside_struggle"
+				tab_data["button_data"] = selected.displayed_message_flags & MS_FLAG_STRUGGLE_OUTSIDE
+				tab_data["button_tooltip"] = "the struggle messages to the outside." // those will automatically be preceeded by Enables / Disables!
 				return tab_data
 			if(selected_message == INSIDE_MESSAGE)
 				tab_data["max_length"] = BELLIES_MESSAGE_MAX

@@ -1,4 +1,4 @@
-import { ItemModeSpan, ModeSpan } from './constants';
+import { ItemModeSpan, ModeSpan, STRUGGLE_OUTSIDE_MESSAGE } from './constants';
 import type { Belly } from './types';
 import {
   GetAddons,
@@ -97,6 +97,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     examine_messages_absorbed,
     trash_eater_in,
     trash_eater_out,
+    displayed_message_flags,
     // emote_list,
     emotes_digest,
     emotes_hold,
@@ -478,7 +479,11 @@ export const generateBellyString = (belly: Belly, index: number) => {
   absorbed_struggle_messages_outside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
-  result += '</div>';
+  result += `(${
+    displayed_message_flags & STRUGGLE_OUTSIDE_MESSAGE
+      ? '<span style="color: green;">On'
+      : '<span style="color: red;">Off'
+  }</span>)</a><br>`;
 
   result += `<div class="tab-pane fade" id="absorbedStruggleInside${index}" role="messagesTabpanel">`;
   absorbed_struggle_messages_inside?.forEach((msg) => {

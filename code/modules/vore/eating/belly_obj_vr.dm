@@ -211,6 +211,7 @@
 	var/liquid_fullness3_messages = FALSE
 	var/liquid_fullness4_messages = FALSE
 	var/liquid_fullness5_messages = FALSE
+	var/displayed_message_flags = ALL
 	var/vorespawn_blacklist = FALSE
 	var/vorespawn_whitelist = list()
 	var/vorespawn_absorbed = 0
@@ -404,6 +405,7 @@
 	"fullness3_messages",
 	"fullness4_messages",
 	"fullness5_messages",
+	"displayed_message_flags",
 	"vorespawn_blacklist",
 	"vorespawn_whitelist",
 	"vorespawn_absorbed",
@@ -1299,11 +1301,12 @@
 	var/struggle_outer_message = span_valert(belly_format_string(struggle_messages_outside, R))
 	var/struggle_user_message = span_valert(belly_format_string(struggle_messages_inside, R))
 
-	if(private_struggle)
-		to_chat(owner, struggle_outer_message)
-	else
-		for(var/mob/M in hearers(4, owner))
-			M.show_message(struggle_outer_message, 2) // hearable
+	if(displayed_message_flags & MS_FLAG_STRUGGLE_OUTSIDE)
+		if(private_struggle)
+			to_chat(owner, struggle_outer_message)
+		else
+			for(var/mob/M in hearers(4, owner))
+				M.show_message(struggle_outer_message, 2) // hearable
 
 	var/sound/struggle_snuggle
 	var/sound/struggle_rustle = sound(get_sfx("rustle"))
@@ -1744,6 +1747,7 @@
 	dupe.liquid_fullness3_messages = liquid_fullness3_messages
 	dupe.liquid_fullness4_messages = liquid_fullness4_messages
 	dupe.liquid_fullness5_messages = liquid_fullness5_messages
+	dupe.displayed_message_flags = displayed_message_flags
 	dupe.reagent_name = reagent_name
 	dupe.reagent_chosen = reagent_chosen
 	dupe.reagentid = reagentid
@@ -2208,3 +2212,6 @@
 	if(original)
 		return display_name ? display_name : name
 	return display_name ? lowertext(display_name) : lowertext(name)
+
+/obj/belly/proc/toggle_displayed_message_flags(flags_to_set)
+	displayed_message_flags ^= flags_to_set

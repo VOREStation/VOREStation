@@ -74,3 +74,5 @@ export const SoulcatcherSettingsFlag = {
   '512': 'Catch Drain',
   '1024': 'SR Vision',
 };
+
+export const STRUGGLE_OUTSIDE_MESSAGE = 0x1;

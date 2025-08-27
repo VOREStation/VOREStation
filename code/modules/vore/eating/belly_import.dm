@@ -428,6 +428,10 @@
 			if(new_emotes_unabsorb)
 				new_belly.set_messages(new_emotes_unabsorb,BELLY_MODE_UNABSORB, limit = BELLIES_IDLE_MAX)
 
+		if(isnum(belly_data["displayed_message_flags"]))
+			new_belly.displayed_message_flags = NONE
+			new_belly.toggle_displayed_message_flags(belly_data["displayed_message_flags"])
+
 		// Options
 		if(isnum(belly_data["can_taste"]))
 			var/new_can_taste = belly_data["can_taste"]

@@ -280,6 +280,8 @@
 			for(var/msg in B.emote_lists[DM_UNABSORB])
 				belly_data["emotes_unabsorb"] += msg
 
+			belly_data["displayed_message_flags"] = B.displayed_message_flags
+
 			// Options
 			belly_data["digest_brute"] = B.digest_brute
 			belly_data["digest_burn"] = B.digest_burn
