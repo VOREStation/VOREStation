@@ -1,0 +1,7 @@
+author: "Jordhin Xenshire"
+delete-after: True
+changes:
+  - rscadd: "Volumetric Pump: This fast pump cares only about moving gasses quickly from one side to the other without slowing - or care for accuracy. It has a pressure limit lower than a standard pump, however this can be bipassed with a Multitool. What consequences could there be?"
+  - rscadd: "The ability to build Gas Sensors from the Rapid Pipe Dispenser."
+  - rscadd: "The ability to link Gas Sensors, Meters, Injectors, Unary Vents to an Atmos Air Controller. This enables you to build custom tanks. Functionality is somewhat limited for now. This can be done with a multitool."
+  - rscadd: "Ability to print Tank Control computer circuit board."
