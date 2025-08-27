@@ -2,18 +2,18 @@
 
 /mob/living/proc/tf_into(var/M, var/allow_emotes = FALSE, var/object_name = NULL)
 	if(object_name == NULL)
-		object_name = src.name
+		object_name = name
 	if(!istype(M))
 		return
 	if(istype(M, /mob/living))
 		M.mob_tf(src)
 		return
 	if(istype(M, /obj/item))
-		M.inhabit_item(src, object_name, src.tf_mob_holder, allow_emotes)
+		M.inhabit_item(src, object_name, tf_mob_holder, allow_emotes)
 		var/mob/living/possessed_voice = M.possessed_voice
-		M.trash_eatable = src.devourable
-		M.unacidable = !src.digestable
-		src.forceMove(possessed_voice)
+		M.trash_eatable = devourable
+		M.unacidable = !digestable
+		forceMove(possessed_voice)
 
 /mob/living/proc/mob_tf(var/mob/living/M)
 	if(!istype(M))
