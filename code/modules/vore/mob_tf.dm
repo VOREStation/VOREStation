@@ -1,5 +1,18 @@
 // Procs for living mobs based around mob transformation. Initially made for the mouseray, they are now used in various other places and the main procs are now called from here.
-
+/mob/living/proc/tf_into(var/A, var/allow_emotes = FALSE, var/object_name = NULL)
+	if(object_name == NULL)
+		object_name = src.name
+	if(!istype(M))
+		return
+	if(istype(M, /mob/living))
+		M.mob_tf(src)
+		return
+	if(istype(M, /obj/item))
+		M.inhabit_item(src, object_name, src.tf_mob_holder, allow_emotes)
+		var/mob/living/possessed_voice = M.possessed_voice
+		M.trash_eatable = src.devourable
+		M.unacidable = !src.digestable
+		src.forceMove(possessed_voice)
 
 /mob/living/proc/mob_tf(var/mob/living/M)
 	if(!istype(M))
@@ -61,7 +74,7 @@
 /mob/living
 	var/mob/living/tf_mob_holder = null
 
-/mob/living/proc/revert_mob_tf()
+/mob/living/proc/revert_tf()
 	if(!tf_mob_holder)
 		return
 	var/mob/living/ourmob = tf_mob_holder

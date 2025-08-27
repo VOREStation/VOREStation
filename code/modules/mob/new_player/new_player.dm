@@ -341,11 +341,12 @@
 		character.forceMove(cryst)
 		cryst.update_icon()
 	else if(itemtf)
-		itemtf.inhabit_item(character, itemtf.name, character)
-		var/mob/living/possessed_voice = itemtf.possessed_voice
-		itemtf.trash_eatable = character.devourable
-		itemtf.unacidable = !character.digestable
-		character.forceMove(possessed_voice)
+		character.tf_into(itemtf, TRUE, itemtf.name) // CHOMPEdit: WIP merging of object and mob tf!
+		// itemtf.inhabit_item(character, itemtf.name, character)
+		// var/mob/living/possessed_voice = itemtf.possessed_voice
+		// itemtf.trash_eatable = character.devourable
+		// itemtf.unacidable = !character.digestable
+		// character.forceMove(possessed_voice)
 	else if(prey)
 		character.copy_from_prefs_vr(1,1) //Yes I know we're reloading these, shut up
 		var/obj/belly/gut_to_enter

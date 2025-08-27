@@ -132,7 +132,7 @@
 			return
 		var/mob/living/new_mob = spawn_mob(M)
 
-		new_mob.mob_tf(M)
+		M.tf_into(new_mob) // CHOMPEdit: WIP merging of object and mob tf!
 
 /obj/item/projectile/beam/mouselaser/proc/spawn_mob(var/mob/living/target)
 	if(!ispath(tf_type))
