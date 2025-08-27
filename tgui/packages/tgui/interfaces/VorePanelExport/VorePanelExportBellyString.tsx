@@ -272,7 +272,11 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbChanceMessagesPrey${index}" role="tab">Absorb Chance Messages (Prey)</a>`;
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesOutside${index}" role="tab">Struggle Messages (Outside)</a>`;
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#struggleMessagesInside${index}" role="tab">Struggle Messages (Inside)</a>`;
-  result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleOutside${index}" role="tab">Absorbed Struggle Messages (Outside)</a>`;
+  result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleOutside${index}" role="tab">Absorbed Struggle Messages (Outside) (${
+    displayed_message_flags & STRUGGLE_OUTSIDE_MESSAGE
+      ? '<span style="color: green;">On'
+      : '<span style="color: red;">Off'
+  }</span>)</a>`;
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#absorbedStruggleInside${index}" role="tab">Absorbed Struggle Messages (Inside)</a>`;
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestMessagesOwner${index}" role="tab">Digest Messages (Owner)</a>`;
   result += `<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#digestMessagesPrey${index}" role="tab">Digest Messages (Prey)</a>`;
@@ -479,11 +483,6 @@ export const generateBellyString = (belly: Belly, index: number) => {
   absorbed_struggle_messages_outside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
-  result += `(${
-    displayed_message_flags & STRUGGLE_OUTSIDE_MESSAGE
-      ? '<span style="color: green;">On'
-      : '<span style="color: red;">Off'
-  }</span>)</a><br>`;
 
   result += `<div class="tab-pane fade" id="absorbedStruggleInside${index}" role="messagesTabpanel">`;
   absorbed_struggle_messages_inside?.forEach((msg) => {
