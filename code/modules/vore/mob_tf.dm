@@ -1,4 +1,5 @@
 // Procs for living mobs based around mob transformation. Initially made for the mouseray, they are now used in various other places and the main procs are now called from here.
+
 /mob/living/proc/tf_into(var/A, var/allow_emotes = FALSE, var/object_name = NULL)
 	if(object_name == NULL)
 		object_name = src.name
@@ -74,7 +75,7 @@
 /mob/living
 	var/mob/living/tf_mob_holder = null
 
-/mob/living/proc/revert_tf()
+/mob/living/proc/revert_mob_tf()
 	if(!tf_mob_holder)
 		return
 	var/mob/living/ourmob = tf_mob_holder
