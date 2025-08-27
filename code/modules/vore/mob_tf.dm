@@ -3,8 +3,6 @@
 /mob/living/proc/tf_into(var/A, var/allow_emotes = FALSE, var/object_name)
 	if(!object_name)
 		object_name = name
-	if(!istype(A))
-		return
 	if(istype(A, /mob/living))
 		var/mob/living/M = A
 		M.mob_tf(src)
