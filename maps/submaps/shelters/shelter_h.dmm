@@ -1,24 +1,252 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized{
+	id = "hollypod";
+	dir = 4
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "hollypod";
+	dir = 8
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "hollypod"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "hollypod";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"c" = (
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"d" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod/dorms)
+"e" = (
 /obj/structure/table/gamblingtable,
 /turf/simulated/floor/wood,
 /area/survivalpod)
-"b" = (
+"f" = (
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/obj/effect/floor_decal/spline/plain/corner,
+/obj/machinery/button/windowtint{
+	pixel_x = 3;
+	id = "hollypod";
+	pixel_y = -24
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"g" = (
+/obj/structure/sign/mining/survival,
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"h" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"i" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"k" = (
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"l" = (
+/obj/machinery/disposal/wall,
+/obj/structure/disposalpipe/trunk{
+	dir = 2
+	},
+/obj/machinery/button/windowtint{
+	pixel_x = 29;
+	id = "hollypod_dorm"
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod/dorms)
+"o" = (
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/survivalpod/dorms)
+"p" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"r" = (
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/bluedouble,
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod/dorms)
+"t" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/structure/bed/chair/wood,
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"u" = (
 /obj/machinery/disposal/wall{
 	dir = 1
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
+/obj/effect/floor_decal/spline/plain/corner{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
-"c" = (
+"w" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_x = -22;
+	pixel_y = -24
+	},
+/obj/effect/floor_decal/spline/plain,
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"z" = (
+/obj/structure/table/woodentable,
+/obj/machinery/microwave{
+	pixel_y = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"A" = (
 /obj/structure/sign/mining/survival{
-	dir = 4
+	dir = 1
 	},
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
-"e" = (
+"B" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#DDFFD3"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"E" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"F" = (
+/obj/machinery/sleeper/survival_pod,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"H" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = 13;
+	pixel_y = 4
+	},
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"I" = (
+/obj/structure/table/gamblingtable,
+/obj/structure/closet/walllocker_double/casino/west,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/deck/cards,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice_nerd,
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"J" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"K" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "hollypod_dorm"
+	},
+/obj/structure/table/wooden_reinforced,
+/obj/item/flame/candle{
+	pixel_x = 6
+	},
+/obj/item/flame/lighter/random{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod/dorms)
+"M" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"N" = (
+/obj/structure/sign/mining/survival{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"O" = (
+/obj/machinery/media/jukebox,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#DDFFD3"
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"P" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"S" = (
 /obj/machinery/smartfridge/survival_pod,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/toxin,
@@ -54,9 +282,6 @@
 /obj/item/towel{
 	color = "#800080"
 	},
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/item/storage/box/mixedglasses,
 /obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake,
 /obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake,
@@ -80,64 +305,33 @@
 	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/item/storage/box/survival/space,
+/obj/item/flame/lighter/zippo,
+/obj/item/storage/fancy/candle_box,
+/obj/item/tool/screwdriver,
+/obj/item/tool/wrench,
+/obj/item/soap/cyan_soap,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/cola,
+/obj/item/reagent_containers/food/drinks/bottle/bluecuracao,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
-"f" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 1;
-	id = "hollypod"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"g" = (
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
-/area/survivalpod/dorms)
-"h" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/airlock/voidcraft/survival_pod,
-/obj/effect/floor_decal/industrial/danger/full,
-/turf/simulated/shuttle/floor/voidcraft,
-/area/survivalpod)
-"i" = (
-/obj/structure/bed/chair/wood{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"k" = (
-/obj/structure/table/gamblingtable,
-/obj/structure/closet/walllocker_double/casino/west,
-/obj/item/spacecasinocash/c1000,
-/obj/item/spacecasinocash/c1000,
-/obj/item/spacecasinocash/c1000,
-/obj/item/spacecasinocash/c1000,
-/obj/item/spacecasinocash/c1000,
-/obj/item/deck/cards,
-/obj/item/storage/pill_bottle/dice,
-/obj/item/storage/pill_bottle/dice_nerd,
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"q" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"r" = (
+"X" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
-"s" = (
+"Y" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"Z" = (
 /obj/machinery/light_switch/survival_pod{
 	dir = 8;
 	pixel_x = 21;
@@ -146,8 +340,7 @@
 /obj/machinery/button/remote/airlock/survival_pod/bolts{
 	pixel_x = 22;
 	pixel_y = 22;
-	dir = 4;
-	id = "hollypod"
+	dir = 4
 	},
 /obj/structure/privacyswitch{
 	dir = 4;
@@ -158,217 +351,72 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/survivalpod/dorms)
-"t" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"u" = (
-/obj/machinery/light,
-/obj/structure/bed/chair/wood{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"w" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"x" = (
-/obj/machinery/media/jukebox,
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"y" = (
-/obj/structure/bed/double/padded,
-/obj/item/bedsheet/bluedouble,
-/turf/simulated/floor/carpet/bcarpet,
-/area/survivalpod/dorms)
-"z" = (
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"A" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"B" = (
-/obj/structure/sign/mining/survival{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"C" = (
-/obj/structure/table/woodentable,
-/obj/machinery/microwave{
-	pixel_y = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"D" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/obj/structure/bed/chair/wood,
 /obj/structure/window/reinforced/polarized{
-	dir = 1;
-	id = "hollypod"
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"F" = (
-/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+	id = "hollypod_dorm"
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod/dorms)
-"I" = (
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"J" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/survivalpod/dorms)
-"N" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/obj/structure/sink/kitchen{
-	dir = 4;
-	pixel_x = 13;
-	pixel_y = 4
-	},
-/obj/structure/disposalpipe/junction/yjunction{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"O" = (
-/obj/structure/sign/mining/survival{
-	dir = 8
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"Q" = (
-/obj/item/gps/computer,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"S" = (
-/obj/structure/sign/mining/survival,
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"W" = (
-/obj/structure/table/woodentable,
-/obj/item/flame/lighter/random{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/flame/candle{
-	pixel_x = 6
-	},
-/obj/machinery/disposal/wall,
-/obj/structure/disposalpipe/trunk{
-	dir = 2
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/survivalpod/dorms)
-"X" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"Z" = (
-/obj/structure/sign/mining/survival{
-	dir = 1
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
 
 (1,1,1) = {"
-z
-O
-z
-O
-z
-O
-z
+c
+N
+c
+a
+c
+a
+c
 "}
 (2,1,1) = {"
-Z
-y
-J
-D
+A
+r
+K
+t
+I
 k
-i
-S
+a
 "}
 (3,1,1) = {"
-z
-W
-s
-D
-a
-u
-z
+c
+l
+Z
+t
+e
+f
+c
 "}
 (4,1,1) = {"
-Z
-g
-F
-f
-r
-I
+A
+o
+d
+E
+X
+w
 h
 "}
 (5,1,1) = {"
-z
-e
-w
-X
-t
-b
-z
+c
+F
+J
+M
+i
+u
+c
 "}
 (6,1,1) = {"
-Z
-Q
-q
-N
-C
-x
+A
 S
+B
+H
+z
+O
+g
 "}
 (7,1,1) = {"
-z
 c
-A
-B
-z
+p
+P
+Y
 c
-z
+p
+c
 "}
