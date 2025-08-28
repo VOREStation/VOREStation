@@ -691,7 +691,7 @@
 
 	// Too much poison in the air.
 	if(toxins_pp > safe_toxins_max)
-		var/ratio = (poison/safe_toxins_max) * 10
+		var/ratio = (poison_toxin/safe_toxins_max) * 10
 		if(reagents)
 			reagents.add_reagent(REAGENT_ID_TOXIN, CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 			breath.adjust_gas(poison_type, -poison_toxin/6, update = 0) //update after

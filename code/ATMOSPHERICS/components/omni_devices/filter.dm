@@ -51,7 +51,7 @@
 					input = P
 				if(ATM_OUTPUT)
 					output = P
-				if(ATM_O2 to ATM_N2O)
+				if(ATM_O2 to ATM_LASTGAS)
 					atmos_filters += P
 	if(any_updated)
 		rebuild_filtering_list()
@@ -120,7 +120,7 @@
 			if(ATM_OUTPUT)
 				output = 1
 				atmo_filter = 0
-			if(ATM_O2 to ATM_N2O)
+			if(ATM_O2 to ATM_LASTGAS)
 				f_type = mode_send_switch(P.mode)
 
 		portData[++portData.len] = list("dir" = dir_name(P.dir, capitalize = 1), \
