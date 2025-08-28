@@ -755,3 +755,4 @@
 #undef SENSOR_N2
 #undef SENSOR_CO2
 #undef SENSOR_N2O
+#undef SENSOR_CH4
