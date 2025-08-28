@@ -267,6 +267,7 @@
 /datum/robot_sprite/dogborg/surgical/drake
 	name = "Drake - Surgical"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 
 // Tall sprites
 
@@ -405,6 +406,7 @@
 /datum/robot_sprite/dogborg/crisis/drake
 	name = "Drake - Crisis"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 
 // Tall sprites
 

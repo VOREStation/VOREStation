@@ -27,6 +27,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_recipe/pipe("Aux Pump",				/obj/machinery/atmospherics/binary/pump/aux),
 		new /datum/pipe_recipe/pipe("Pressure Regulator",	/obj/machinery/atmospherics/binary/passive_gate),
 		new /datum/pipe_recipe/pipe("High Power Gas Pump",	/obj/machinery/atmospherics/binary/pump/high_power),
+		new /datum/pipe_recipe/pipe("Volumetric Gas Pump",	/obj/machinery/atmospherics/binary/volume_pump),
 		new /datum/pipe_recipe/pipe("Automatic Shutoff Valve",/obj/machinery/atmospherics/valve/shutoff),
 		new /datum/pipe_recipe/pipe("Scrubber",				/obj/machinery/atmospherics/unary/vent_scrubber),
 		new /datum/pipe_recipe/meter("Meter"),
@@ -35,6 +36,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_recipe/pipe("Gas Mixer 'T'",		/obj/machinery/atmospherics/trinary/mixer/t_mixer),
 		new /datum/pipe_recipe/pipe("Omni Gas Mixer",		/obj/machinery/atmospherics/omni/mixer),
 		new /datum/pipe_recipe/pipe("Omni Gas Filter",		/obj/machinery/atmospherics/omni/atmos_filter),
+		new /datum/pipe_recipe/air_sensor("Gas Sensor"),
 	),
 	"Heat Exchange" = list(
 		new /datum/pipe_recipe/pipe("Pipe",					/obj/machinery/atmospherics/pipe/simple/heat_exchanging),
@@ -146,6 +148,15 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 	pipe_type = /obj/item/pipe_meter
 
 /datum/pipe_recipe/meter/New(label)
+	name = label
+
+//
+// Subtype for gas sensor
+//
+/datum/pipe_recipe/air_sensor
+	pipe_type = /obj/item/pipe_gsensor
+
+/datum/pipe_recipe/air_sensor/New(label)
 	name = label
 
 //
