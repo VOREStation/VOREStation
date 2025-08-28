@@ -608,7 +608,7 @@
 		poison_type = GAS_PHORON
 	poison_toxin = breath.gas[poison_type]
 
-	if(species.breath_type != GAS_CH4 )
+	if(species.breath_type != GAS_CH4)
 		poison_methane = breath.gas[GAS_CH4]
 
 	if(species.exhale_type)
