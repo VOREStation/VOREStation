@@ -576,6 +576,7 @@
 			safe_pressure_min *= 1.25
 
 	var/safe_exhaled_max = 10
+	var/safe_toxins_min = 0.01
 	var/safe_toxins_max = 0.2
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
@@ -584,7 +585,8 @@
 	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 
 	var/inhaling
-	var/poison
+	var/poison_toxin // Outpost 21 addition - Methane
+	var/poison_methane // Outpost 21 addition - Methane
 	var/exhaling
 
 	var/breath_type
@@ -604,7 +606,10 @@
 		poison_type = species.poison_type
 	else
 		poison_type = GAS_PHORON
-	poison = breath.gas[poison_type]
+	poison_toxin = breath.gas[poison_type]
+
+	if(species.breath_type != GAS_CH4 )
+		poison_methane = breath.gas[GAS_CH4]
 
 	if(species.exhale_type)
 		exhale_type = species.exhale_type
@@ -613,7 +618,8 @@
 		exhaling = 0
 
 	var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
-	var/toxins_pp = (poison/breath.total_moles)*breath_pressure
+	var/toxins_pp = (poison_toxin/breath.total_moles)*breath_pressure
+	var/methane_pp = (poison_methane/breath.total_moles)*breath_pressure
 	// To be clear, this isn't how much they're exhaling -- it's the amount of the species exhale_gas that they just
 	var/exhaled_pp = (exhaling/breath.total_moles)*breath_pressure
 
@@ -638,6 +644,8 @@
 				throw_alert("oxy", /obj/screen/alert/not_enough_nitro)
 			if(GAS_CO2)
 				throw_alert("oxy", /obj/screen/alert/not_enough_co2)
+			if(GAS_CH4)
+				throw_alert("oxy", /obj/screen/alert/not_enough_methane)
 			if(GAS_VOLATILE_FUEL)
 				throw_alert("oxy", /obj/screen/alert/not_enough_fuel)
 			if(GAS_N2O)
@@ -686,10 +694,26 @@
 		var/ratio = (poison/safe_toxins_max) * 10
 		if(reagents)
 			reagents.add_reagent(REAGENT_ID_TOXIN, CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
-			breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
+			breath.adjust_gas(poison_type, -poison_toxin/6, update = 0) //update after
 		throw_alert("tox_in_air", /obj/screen/alert/tox_in_air)
 	else
 		clear_alert("tox_in_air")
+
+	if(methane_pp > safe_toxins_min)
+		var/SA_pp = (breath.gas[GAS_CH4] / breath.total_moles) * breath_pressure
+		if(SA_pp > 0.15)
+			if(prob(4))
+				spawn(0) to_chat(src,"<span class='warning'>You smell rotten eggs.</span>")
+	if(methane_pp > safe_toxins_max)
+		var/ratio = (poison_methane/safe_toxins_max) * 10
+		if(reagents)
+			reagents.add_reagent(REAGENT_ID_TOXIN, CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+			breath.adjust_gas(GAS_CH4, -poison_methane/6, update = 0) //update after
+
+		breath.adjust_gas(GAS_CH4, -breath.gas[GAS_CH4]/6, update = 0) //update after
+		throw_alert("methane_in_air", /obj/screen/alert/methane_in_air)
+	else
+		clear_alert("methane_in_air")
 
 	// If there's some other shit in the air lets deal with it here.
 	if(breath.gas[GAS_N2O])

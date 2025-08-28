@@ -22,6 +22,7 @@
 	var/gas_choices = list(GAS_CO2, GAS_N2O) // Annoying
 	if(severity >= EVENT_LEVEL_MODERATE)
 		gas_choices += GAS_PHORON // Dangerous
+		gas_choices += GAS_CH4
 	// if(severity >= EVENT_LEVEL_MAJOR)
 	// 	gas_choices += GAS_VOLATILE_FUEL // Dangerous and no default atmos setup!
 	gas_type = pick(gas_choices)

@@ -25,6 +25,7 @@
 		2: Nitrogen: Nitrogen ONLY
 		3: Carbon Dioxide: Carbon Dioxide ONLY
 		4: Nitrous Oxide (Formerly called Sleeping Agent) (N2O)
+		5: Methane: Methane only
 	*/
 	var/filter_type = -1
 	var/list/filtered_out = list()
@@ -53,6 +54,8 @@
 			filtered_out = list(GAS_CO2)
 		if(4)//removing N2O
 			filtered_out = list(GAS_N2O)
+		if(5)//removing CH4
+			filtered_out = list(GAS_CH4)
 
 	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
@@ -140,6 +143,7 @@
 	data["filter_types"] += list(list("name" = "Nitrogen", "f_type" = 2, "selected" = filter_type == 2))
 	data["filter_types"] += list(list("name" = "Carbon Dioxide", "f_type" = 3, "selected" = filter_type == 3))
 	data["filter_types"] += list(list("name" = "Nitrous Oxide", "f_type" = 4, "selected" = filter_type == 4))
+	data["filter_types"] += list(list("name" = "Methane", "f_type" = 5, "selected" = filter_type == 5))
 
 	return data
 
@@ -176,6 +180,8 @@
 					filtered_out += GAS_CO2
 				if(4)//removing N2O
 					filtered_out += GAS_N2O
+				if(5)//removing CH4
+					filtered_out += GAS_CH4
 
 	add_fingerprint(ui.user)
 	update_icon()

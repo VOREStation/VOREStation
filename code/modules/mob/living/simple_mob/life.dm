@@ -161,6 +161,15 @@
 			else
 				clear_alert("co2")
 
+			if(min_ch4 && Environment.gas[GAS_CH4] < min_ch4)
+				atmos_unsuitable = 2
+				throw_alert("methane_in_air", /obj/screen/alert/not_enough_methane)
+			else if(max_tox && Environment.gas[GAS_CH4] > max_ch4)
+				atmos_unsuitable = 2
+				throw_alert("methane_in_air", /obj/screen/alert/methane_in_air)
+			else
+				clear_alert("methane_in_air")
+
 	//Atmos effect
 	if(bodytemperature < minbodytemp)
 		adjustFireLoss(cold_damage_per_tick)

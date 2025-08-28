@@ -11,6 +11,7 @@
 #define GAS_O2 "oxygen"
 #define GAS_PHORON "phoron"
 #define GAS_VOLATILE_FUEL "volatile_fuel"
+#define GAS_CH4 "methane"
 
 
 // Gas Reagents

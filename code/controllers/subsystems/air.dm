@@ -524,6 +524,10 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		return FALSE
 	if(A.carbon_dioxide != B.carbon_dioxide)
 		return FALSE
+	if(A.nitrous_oxide != B.nitrous_oxide)
+		return FALSE
+	if(A.methane != B.methane)
+		return FALSE
 	if(A.temperature != B.temperature)
 		return FALSE
 	return TRUE
