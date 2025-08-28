@@ -412,7 +412,7 @@
 	loaf_offset = 7
 	vore_tail_sprite_variant = "Deer"
 	belly_variant_when_loaf = TRUE
-	fullness_icons = 1
+	fullness_icons = 3
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
