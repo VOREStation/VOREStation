@@ -7,8 +7,9 @@
 
 	volume = CARTRIDGE_VOLUME_LARGE
 	amount_per_transfer_from_this = 50
-	// Large, but inaccurate. Use a chem dispenser or beaker for accuracy.
-	possible_transfer_amounts = list(50, 100, 250, 500)
+	// Large, but inaccurate. Use a chem dispenser or beaker for small volumes.
+	max_transfer_amount = 500
+	min_transfer_amount = 50
 	unacidable = TRUE
 
 	var/spawn_reagent = null

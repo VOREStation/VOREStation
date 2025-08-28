@@ -15,7 +15,7 @@
 	throw_range = 10
 	amount_per_transfer_from_this = 10
 	unacidable = TRUE //plastic
-	possible_transfer_amounts = list(5,10) //Set to null instead of list, if there is only one.
+	max_transfer_amount = 10 //Set to null instead of list, if there is only one.
 	var/spray_size = 3
 	var/list/spray_sizes = list(1,3)
 	volume = 250
@@ -71,12 +71,14 @@
 			D.set_up(my_target, spray_size, 10)
 	return
 
-/obj/item/reagent_containers/spray/attack_self(var/mob/user)
-	if(!possible_transfer_amounts)
+/*
+/obj/item/reagent_containers/spray/attack_self(var/mob/user) //Now done via alt-click instead
+	if(!max_transfer_amount)
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
 	spray_size = next_in_list(spray_size, spray_sizes)
 	balloon_alert(user, "pressure nozzle adjusted to [amount_per_transfer_from_this] units per spray.")
+*/
 
 /obj/item/reagent_containers/spray/examine(mob/user)
 	. = ..()
@@ -125,7 +127,7 @@
 	item_state = "pepperspray"
 	center_of_mass_x = 16
 	center_of_mass_y = 16
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 40
 	var/safety = TRUE
 
@@ -155,7 +157,7 @@
 	icon_state = "sunflower"
 	item_state = "sunflower"
 	amount_per_transfer_from_this = 1
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 10
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
@@ -175,7 +177,7 @@
 	center_of_mass_y = 16
 	throwforce = 3
 	w_class = ITEMSIZE_NORMAL
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 600
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
 
@@ -221,7 +223,7 @@
 	center_of_mass_x = 16
 	center_of_mass_y = 10
 
-	possible_transfer_amounts = list(5,10,20)
+	max_transfer_amount = 20
 
 	var/heavy_spray = FALSE
 	var/spray_particles = 3

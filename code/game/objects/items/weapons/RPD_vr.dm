@@ -174,7 +174,7 @@
 		make_pipe_whitelist = typecacheof(list(/obj/structure/lattice, /obj/structure/girder, /obj/item/pipe))
 	var/can_make_pipe = (isturf(A) || is_type_in_typecache(A, make_pipe_whitelist))
 
-	var/can_destroy_pipe = istype(A, /obj/item/pipe) || istype(A, /obj/item/pipe_meter) || istype(A, /obj/structure/disposalconstruct)
+	var/can_destroy_pipe = istype(A, /obj/item/pipe) || istype(A, /obj/item/pipe_meter) || istype(A, /obj/structure/disposalconstruct) || istype(A, /obj/item/pipe_gsensor)
 
 	. = TRUE
 	if((mode & DESTROY_MODE) && can_destroy_pipe)
@@ -207,6 +207,13 @@
 						PM.setAttachLayer(queued_piping_layer)
 						if(mode & WRENCH_MODE)
 							do_wrench(PM, user)
+				else if(istype(recipe, /datum/pipe_recipe/air_sensor))
+					to_chat(user, span_notice("You start building an air sensor..."))
+					if(do_after(user, 2, target = A))
+						activate()
+						var/obj/item/pipe_gsensor/GS = new /obj/item/pipe_gsensor(get_turf(A))
+						if(mode & WRENCH_MODE)
+							do_wrench(GS, user)
 				else if(istype(recipe, /datum/pipe_recipe/pipe))
 					var/datum/pipe_recipe/pipe/R = recipe
 					to_chat(user, span_notice("You start building a pipe..."))
