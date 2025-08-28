@@ -519,7 +519,7 @@
 
 		if(isnum(belly_data["bellytemperature"]))
 			var/new_bellytemperature = belly_data["bellytemperature"]
-			new_belly.bellytemperature = CLAMP(new_bellytemperature, 173.15, 473.15)
+			new_belly.bellytemperature = CLAMP(new_bellytemperature, T0C, 473.15)
 
 		if(isnum(belly_data["shrink_grow_size"]))
 			var/new_shrink_grow_size = belly_data["shrink_grow_size"]

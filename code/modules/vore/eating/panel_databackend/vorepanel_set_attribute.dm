@@ -495,8 +495,7 @@
 				return FALSE
 			if(choice == 0)
 				choice = rand(MIN_VOICE_FREQ, MAX_VOICE_FREQ)
-			choice = CLAMP(choice, MIN_VOICE_FREQ, MAX_VOICE_FREQ)
-			host.vore_selected.noise_freq = choice
+			host.vore_selected.noise_freq = CLAMP(choice, MIN_VOICE_FREQ, MAX_VOICE_FREQ)
 			. = TRUE
 		if("b_tastes")
 			host.vore_selected.can_taste = !host.vore_selected.can_taste
@@ -541,46 +540,40 @@
 			var/new_damage = text2num(params["val"])
 			if(!isnum(new_damage))
 				return FALSE
-			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_burn) // sanity check following tgui input
-			host.vore_selected.digest_burn = new_damage
+			host.vore_selected.digest_burn = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_burn) // sanity check following tgui input
 			host.vore_selected.items_preserved.Cut()
 			. = TRUE
 		if("b_brute_dmg")
 			var/new_damage = text2num(params["val"])
 			if(!isnum(new_damage))
 				return FALSE
-			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_brute)
-			host.vore_selected.digest_brute = new_damage
+			host.vore_selected.digest_brute = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_brute)
 			host.vore_selected.items_preserved.Cut()
 			. = TRUE
 		if("b_oxy_dmg")
 			var/new_damage = text2num(params["val"])
 			if(!isnum(new_damage))
 				return FALSE
-			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_oxy)
-			host.vore_selected.digest_oxy = new_damage
+			host.vore_selected.digest_oxy = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_oxy)
 			. = TRUE
 		if("b_tox_dmg")
 			var/new_damage = text2num(params["val"])
 			if(!isnum(new_damage))
 				return FALSE
-			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_tox)
-			host.vore_selected.digest_tox = new_damage
+			host.vore_selected.digest_tox = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_tox)
 			. = TRUE
 		if("b_clone_dmg")
 			var/new_damage = text2num(params["val"])
 			if(!isnum(new_damage))
 				return FALSE
-			new_damage = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_clone)
-			host.vore_selected.digest_clone = new_damage
+			host.vore_selected.digest_clone = CLAMP(new_damage, 0, host.vore_selected.get_unused_digestion_damage() + host.vore_selected.digest_clone)
 			. = TRUE
 		if("b_bellytemperature")
 			var/new_temp = text2num(params["val"])
 			if(!isnum(new_temp))
 				return FALSE
-			new_temp = new_temp + 273.15
-			new_temp = CLAMP(new_temp, 173.15, 473.15)
-			host.vore_selected.bellytemperature = new_temp
+			new_temp = new_temp + T0C
+			host.vore_selected.bellytemperature = CLAMP(new_temp, T0C, 473.15)
 			. = TRUE
 		if("b_temperature_damage")
 			host.vore_selected.temperature_damage = !host.vore_selected.temperature_damage
