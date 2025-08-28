@@ -152,7 +152,7 @@ export const BellyOptionsRight = (props: {
       <LabeledList.Item label="Belly Temperature">
         <VorePanelEditNumber
           tooltip={
-            'Choose a temperature between -100C and 200C for the temperature inside of this belly.'
+            'Choose a temperature between -100*C and 200*C for the temperature inside of this belly.'
           }
           action="set_attribute"
           subAction="b_bellytemperature"
