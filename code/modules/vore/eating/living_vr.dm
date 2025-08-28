@@ -585,6 +585,15 @@
 		var/obj/item/item_to_destroy = src.loc //If so, let's destroy the item they just TF'd out of.
 		//If tf_mob_holder is not located in src, then it's a Mind Binder OOC Escape
 		var/mob/living/ourmob = tf_mob_holder
+		var/mob/living/voice/possessed_voice = src
+		if(possessed_voice.item_tf) // Stupid band-aid fix for OOC escaping object TF
+			src.mind.transfer_to(ourmob)
+			item_to_destroy.possessed_voice -= src
+			qdel(src)
+			ourmob.forceMove(item_to_destroy.loc)
+			qdel(item_to_destroy)
+			log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
+			return
 		if(ourmob.loc != src)
 			if(isnull(ourmob.loc))
 				to_chat(src,span_notice("You have no body."))
