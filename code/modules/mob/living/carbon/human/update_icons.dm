@@ -1007,6 +1007,8 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(tail_layer == TAIL_UPPER_LAYER)
 		tail_layer = tail_layering
 
+	update_vore_tail_sprite()
+
 	var/obj/item/organ/external/chest = organs_by_name[BP_TORSO]
 
 	var/image/tail_image = get_tail_image()
