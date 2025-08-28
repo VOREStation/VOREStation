@@ -110,7 +110,7 @@
 
 	// Increase temp
 	var/previous_temp = current_temp
-	current_temp += 20
+	current_temp += 15
 
 	// Slosh and toss. We use an internal distilling container, react it in there, then pass it back.
 	held_container.reagents.trans_to_obj(src,held_container.reagents.total_volume)
