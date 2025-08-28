@@ -6,22 +6,26 @@
 
 // Gasses
 #define GAS_CO2 "carbon_dioxide"
+#define GASNAME_CO2 "Carbon Dioxide"
 #define GAS_N2 "nitrogen"
+#define GASNAME_N2 "Nitrogen"
 #define GAS_N2O "nitrous_oxide"
+#define GASNAME_N2O "Nitrous Oxide"
 #define GAS_O2 "oxygen"
+#define GASNAME_O2 "Oxygen"
 #define GAS_PHORON "phoron"
+#define GASNAME_PHORON "Phoron"
 #define GAS_VOLATILE_FUEL "volatile_fuel"
+#define GASNAME_VOLATILE_FUEL "Volatile Fuel"
 #define GAS_CH4 "methane"
+#define GASNAME_CH4 "Methane"
 
 
 // Gas Reagents
-#define REAGENT_CARBON_DIOXIDE "Carbon Dioxide"
 #define REAGENT_NITROGEN "Nitrogen"
 #define REAGENT_ID_NITROGEN "nitrogen"
-#define REAGENT_NITROUS_OXIDE "Nitrous Oxide"
 #define REAGENT_OXYGEN "Oxygen"
 #define REAGENT_ID_OXYGEN "oxygen"
-#define REAGENT_VOLATILE_FUEL "Volatile Fuel"
 #define REAGENT_HYDROGEN "Hydrogen"
 #define REAGENT_ID_HYDROGEN "hydrogen"
 #define REAGENT_FLUORINE "Fluorine"

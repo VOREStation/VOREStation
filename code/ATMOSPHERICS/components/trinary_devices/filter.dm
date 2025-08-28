@@ -138,12 +138,12 @@
 
 	data["filter_types"] = list()
 	data["filter_types"] += list(list("name" = "Nothing", "f_type" = -1, "selected" = filter_type == -1))
-	data["filter_types"] += list(list("name" = "Phoron", "f_type" = 0, "selected" = filter_type == 0))
-	data["filter_types"] += list(list("name" = "Oxygen", "f_type" = 1, "selected" = filter_type == 1))
-	data["filter_types"] += list(list("name" = "Nitrogen", "f_type" = 2, "selected" = filter_type == 2))
-	data["filter_types"] += list(list("name" = "Carbon Dioxide", "f_type" = 3, "selected" = filter_type == 3))
-	data["filter_types"] += list(list("name" = "Nitrous Oxide", "f_type" = 4, "selected" = filter_type == 4))
-	data["filter_types"] += list(list("name" = "Methane", "f_type" = 5, "selected" = filter_type == 5))
+	data["filter_types"] += list(list("name" = GASNAME_PHORON, "f_type" = 0, "selected" = filter_type == 0))
+	data["filter_types"] += list(list("name" = GASNAME_O2, "f_type" = 1, "selected" = filter_type == 1))
+	data["filter_types"] += list(list("name" = GASNAME_N2, "f_type" = 2, "selected" = filter_type == 2))
+	data["filter_types"] += list(list("name" = GASNAME_CO2, "f_type" = 3, "selected" = filter_type == 3))
+	data["filter_types"] += list(list("name" = GASNAME_N2O, "f_type" = 4, "selected" = filter_type == 4))
+	data["filter_types"] += list(list("name" = GASNAME_CH4, "f_type" = 5, "selected" = filter_type == 5))
 
 	return data
 

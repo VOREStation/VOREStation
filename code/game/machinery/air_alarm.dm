@@ -638,13 +638,13 @@
 				"scrubbing"	= info["scrubbing"],
 				"panic"		= info["panic"],
 				"filters"   = list(
-					list("name" = "Oxygen",			"command" = "o2_scrub",	"val" = info["filter_o2"]),
-					list("name" = "Nitrogen",		"command" = "n2_scrub",	"val" = info["filter_n2"]),
-					list("name" = "Carbon Dioxide", "command" = "co2_scrub","val" = info["filter_co2"]),
-					list("name" = "Phoron"	, 		"command" = "tox_scrub","val" = info["filter_phoron"]),
-					list("name" = "Methane"	, 		"command" = "ch4_scrub","val" = info["filter_ch4"]),
-					list("name" = "Nitrous Oxide",	"command" = "n2o_scrub","val" = info["filter_n2o"]),
-					list("name" = "Volatile Fuel",	"command" = "fuel_scrub","val" = info["filter_fuel"])
+					list("name" = GASNAME_O2,			"command" = "o2_scrub",	"val" = info["filter_o2"]),
+					list("name" = GASNAME_N2,		"command" = "n2_scrub",	"val" = info["filter_n2"]),
+					list("name" = GASNAME_CO2, "command" = "co2_scrub","val" = info["filter_co2"]),
+					list("name" = GASNAME_PHORON	, 		"command" = "tox_scrub","val" = info["filter_phoron"]),
+					list("name" = GASNAME_CH4	, 		"command" = "ch4_scrub","val" = info["filter_ch4"]),
+					list("name" = GASNAME_N2O,	"command" = "n2o_scrub","val" = info["filter_n2o"]),
+					list("name" = GASNAME_VOLATILE_FUEL,	"command" = "fuel_scrub","val" = info["filter_fuel"])
 				)
 			))
 		data["scrubbers"] = scrubbers
