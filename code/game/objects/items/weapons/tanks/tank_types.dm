@@ -237,7 +237,6 @@
 /obj/item/tank/methane
 	name = "methane tank"
 	desc = "A tank of methane."
-	icon = 'modular_outpost/icons/obj/tank.dmi'
 	icon_state = "methane"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
@@ -269,8 +268,8 @@
  */
 /obj/item/tank/emergency/methane
 	name = "emergency methane tank"
-	desc = "An emergency air tank hastily painted yellow."
-	icon_state = "emergency_tst"
+	desc = "An emergency air tank hastily painted green."
+	icon_state = "emergency_methane"
 	gauge_icon = "indicator_emergency"
 	gauge_cap = 3
 

@@ -161,7 +161,6 @@
 
 /obj/machinery/atmospherics/pipe/tank/methane
 	name = "Pressure Tank (Methane)"
-	icon = 'modular_outpost/icons/atmos/tank.dmi'
 	icon_state = "ch4_map"
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
