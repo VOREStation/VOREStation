@@ -1,0 +1,4 @@
+author: "JParker890"
+delete-after: True
+changes:
+  - rscadd: "Drakeborgs now have belly sprites for their bellyup rest pose"
