@@ -15,7 +15,7 @@
 
 	var/area/initial_loc
 	var/id_tag = null
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 	var/datum/radio_frequency/radio_connection
 
 	var/scrubbing = 1 //0 = siphoning, 1 = scrubbing

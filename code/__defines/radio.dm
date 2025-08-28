@@ -66,6 +66,19 @@ On the map:
 #define PUBLIC_HIGH_FREQ 1489
 #define RADIO_HIGH_FREQ 1600
 
+// Machinery
+#define ZERO_FREQ 0
+#define AIRLOCK_FREQ 1379
+#define AUTODOCK_FREQ 1381
+#define ENGINE_FREQ 1433
+#define DISPLAY_FREQ 1435
+#define ALERT_FREQ 1437
+#define PUMPS_FREQ 1439
+#define BEACON_FREQ 1445
+#define AMAG_ELE_FREQ 1449
+#define TRACK_IMP_FREQ 1451
+#define RSD_FREQ 1457
+
 #define BOT_FREQ 1447
 #define COMM_FREQ 1353
 #define ERT_FREQ 1345
@@ -74,6 +87,8 @@ On the map:
 #define SYND_FREQ 1213
 #define RAID_FREQ 1277
 #define ENT_FREQ 1461 //entertainment frequency. This is not a diona exclusive frequency.
+
+#define LOCKED_COM_FREQ 1481
 
 // department channels
 #define PUB_FREQ 1459

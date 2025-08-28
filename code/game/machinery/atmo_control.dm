@@ -16,7 +16,7 @@
 	var/state = 0
 
 	var/id_tag
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 
 	var/on = 1
 	var/output = 3
@@ -156,7 +156,7 @@
 	icon_screen = "tank"
 	name = "Computer"
 	desc = "Control atmospheric systems, remotely."
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 	var/list/sensors = list()
 	var/list/sensor_information = list()
 	var/datum/radio_frequency/radio_connection
@@ -284,7 +284,7 @@
 
 /obj/machinery/computer/general_air_control/large_tank_control
 	icon = 'icons/obj/computer.dmi'
-	frequency = 1441
+	frequency = PUBLIC_LOW_FREQ
 	name = "Large Tank Computer"
 	desc = "Controls various devices for managing a gas tank."
 	var/input_tag
@@ -454,7 +454,7 @@
 
 /obj/machinery/computer/general_air_control/supermatter_core
 	icon = 'icons/obj/computer.dmi'
-	frequency = 1433
+	frequency = ENGINE_FREQ
 	var/input_tag
 	var/output_tag
 	var/list/input_info

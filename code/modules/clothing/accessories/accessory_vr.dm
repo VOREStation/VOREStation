@@ -120,7 +120,7 @@
 	item_state = "collar_shk"
 	overlay_state = "collar_shk"
 	var/on = FALSE // 0 for off, 1 for on, starts off to encourage people to set non-default frequencies and codes.
-	var/frequency = 1449
+	var/frequency = AMAG_ELE_FREQ
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
 

@@ -413,7 +413,7 @@
 	power_draw_idle = 5
 	power_draw_per_use = 40
 
-	var/frequency = 1457
+	var/frequency = RSD_FREQ
 	var/code = 30
 	var/datum/radio_frequency/radio_connection
 
@@ -426,7 +426,7 @@
 /obj/item/integrated_circuit/input/signaler/Destroy()
 	if(SSradio)
 		SSradio.remove_object(src,frequency)
-	frequency = 0
+	frequency = ZERO_FREQ
 	. = ..()
 
 /obj/item/integrated_circuit/input/signaler/on_data_written()

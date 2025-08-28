@@ -235,7 +235,7 @@
 
 // For convenience in making docking ports: one that is pre-bolted with frequency set!
 /obj/machinery/door/airlock/external/bolted/cycling
-	frequency = 1379
+	frequency = AIRLOCK_FREQ
 
 /obj/machinery/door/airlock/glass_external
 	name = "External Airlock"

@@ -70,9 +70,9 @@
 	light_power = 0.25
 	var/alarm_id = null
 	var/breach_detection = 1 // Whether to use automatic breach detection or not
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 	//var/skipprocess = 0 //Experimenting
-	var/alarm_frequency = 1437
+	var/alarm_frequency = ALERT_FREQ
 	var/remote_control = 0
 	var/rcon_setting = 2
 	var/rcon_time = 0
