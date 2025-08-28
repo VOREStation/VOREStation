@@ -9,7 +9,7 @@
 		return
 	if(istype(A, /obj/item))
 		var/obj/item/I = A
-		I.inhabit_item(src, object_name, tf_mob_holder, allow_emotes)
+		I.inhabit_item(src, object_name, src, allow_emotes)
 		var/mob/living/possessed_voice = I.possessed_voice
 		I.trash_eatable = devourable
 		I.unacidable = !digestable
