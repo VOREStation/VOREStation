@@ -810,13 +810,13 @@
 	complexity = 9
 	inputs = list()
 	outputs = list(
-		"pressure"       = IC_PINTYPE_NUMBER,
-		"temperature" = IC_PINTYPE_NUMBER,
-		GAS_O2         = IC_PINTYPE_NUMBER,
-		GAS_N2          = IC_PINTYPE_NUMBER,
-		"carbon dioxide"           = IC_PINTYPE_NUMBER,
-		GAS_PHORON           = IC_PINTYPE_NUMBER,
-		"other"           = IC_PINTYPE_NUMBER
+		"pressure"		= IC_PINTYPE_NUMBER,
+		"temperature"	= IC_PINTYPE_NUMBER,
+		GAS_O2			= IC_PINTYPE_NUMBER,
+		GAS_N2			= IC_PINTYPE_NUMBER,
+		GAS_CO2			= IC_PINTYPE_NUMBER,
+		GAS_PHORON		= IC_PINTYPE_NUMBER,
+		"other"			= IC_PINTYPE_NUMBER
 	)
 	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
