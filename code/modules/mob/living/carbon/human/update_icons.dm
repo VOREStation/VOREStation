@@ -1428,11 +1428,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	apply_layer(VORE_TAIL_LAYER)
 
 /mob/living/carbon/human/proc/get_vore_tail_image()
-	if(tail_style && istaurtail(tail_style) && tail_style:vore_tail_sprite_variant)
+	if(tail_style && istaurtail(tail_style) && tail_style.vore_tail_sprite_variant)
 		var/vs_fullness = vore_fullness_ex["taur belly"]
-		var/loaf_alt = lying && tail_style:belly_variant_when_loaf
+		var/loaf_alt = lying && tail_style.belly_variant_when_loaf
 		var/fullness_icons = min(tail_style.fullness_icons, vs_fullness)
-		var/icon/vorebelly_s = new/icon(icon = tail_style.bellies_icon_path, icon_state = "Taur[tail_style:vore_tail_sprite_variant]-Belly-[fullness_icons][loaf_alt ? " loaf" : (struggle_anim_taur ? "" : " idle")]")
+		var/icon/vorebelly_s = new/icon(icon = tail_style.bellies_icon_path, icon_state = "Taur[tail_style.vore_tail_sprite_variant]-Belly-[fullness_icons][loaf_alt ? " loaf" : (struggle_anim_taur ? "" : " idle")]")
 		vorebelly_s.Blend(vore_sprite_color["taur belly"], vore_sprite_multiply["taur belly"] ? ICON_MULTIPLY : ICON_ADD)
 		var/image/working = image(vorebelly_s)
 		working.pixel_x = -16
