@@ -1050,6 +1050,12 @@
 	ckeywhitelist = list("ryumi")
 	character_name = list("Nikki Yumeno")
 
+/datum/gear/fluff/holly_capsule
+	path = /obj/item/survivalcapsule/holly
+	display_name = "Recreational Shelter Capsule"
+	ckeywhitelist = list("ryumi")
+	character_name = list("Holly")
+
 //  S CKEYS
 /datum/gear/fluff/brynhild_medal
 	path = /obj/item/clothing/accessory/medal/silver/valor
