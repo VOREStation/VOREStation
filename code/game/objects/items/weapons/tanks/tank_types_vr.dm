@@ -91,3 +91,9 @@
 	icon_state = "oxygen_fr"
 	gauge_icon = "indicator_bigtank"
 	gauge_cap = 3
+
+/obj/item/tank/methane
+	icon = 'icons/obj/tank_vr.dmi'
+	icon_state = "emergency_methane"
+	gauge_icon = "indicator_smalltank"
+	gauge_cap = 3

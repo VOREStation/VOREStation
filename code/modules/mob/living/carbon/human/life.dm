@@ -576,7 +576,7 @@
 			safe_pressure_min *= 1.25
 
 	var/safe_exhaled_max = 10
-	var/safe_toxins_min = 0.01
+	var/safe_toxins_min = 0.1
 	var/safe_toxins_max = 0.2
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
@@ -689,7 +689,12 @@
 				var/word = pick("a little dizzy","short of breath")
 				to_chat(src, span_warning("You feel [word]."))
 
-	// Too much poison in the air.
+	// Too much phoron in the air.
+	if(toxins_pp > safe_toxins_min)
+		var/SA_pp = (breath.gas[GAS_PHORON] / breath.total_moles) * breath_pressure
+		if(SA_pp > 0.05)
+			if(prob(3))
+				to_chat(src,span_warning("Something burns as you breathe."))
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison_toxin/safe_toxins_max) * 10
 		if(reagents)
@@ -699,11 +704,12 @@
 	else
 		clear_alert("tox_in_air")
 
+	// Too much methane in the air
 	if(methane_pp > safe_toxins_min)
 		var/SA_pp = (breath.gas[GAS_CH4] / breath.total_moles) * breath_pressure
-		if(SA_pp > 0.15)
-			if(prob(4))
-				spawn(0) to_chat(src,"<span class='warning'>You smell rotten eggs.</span>")
+		if(SA_pp > 0.05)
+			if(prob(3))
+				to_chat(src,span_warning("You smell rotten eggs."))
 	if(methane_pp > safe_toxins_max)
 		var/ratio = (poison_methane/safe_toxins_max) * 10
 		if(reagents)
