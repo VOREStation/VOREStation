@@ -1,7 +1,7 @@
 /obj/machinery/bunsen_burner
 	name = "bunsen burner"
 	desc = "A small, self-heating device designed for bringing chemical mixtures to a boil."
-	description_info = "Place a beaker into it to begin heating. The bunsen burner is only capable of heating reagents up to 600c."
+	description_info = "Place a beaker into it to begin heating. Reagents will be distilled over time as the mixture heats up. The bunsen burner is only capable of heating reagents up to 600c, and the atmoshere around it will affect what reactions are possible."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "bunsen0"
 	var/current_temp = T0C
@@ -44,7 +44,8 @@
 	held_container.forceMove(src)
 	reagents.maximum_volume = held_container.reagents.maximum_volume // Update internal reagent distilling volume
 	to_chat(user,span_notice("You put \the [held_container] onto \the [src]."))
-	start_boiling()
+	if(held_container.reagents.total_volume > 0)
+		start_boiling()
 
 /obj/machinery/bunsen_burner/attack_hand(mob/user as mob)
 	if(..())
@@ -134,7 +135,7 @@
 		var/image/I = image("icon"=held_container)
 		add_overlay(I)
 	if(heating)
-		var/image/I = image(icon,icon_state = "bunsen1",layer=FLOAT_LAYER)
+		var/image/I = image(icon,icon_state = "bunsen1",layer = layer+0.1)
 		add_overlay(I)
 
 /obj/machinery/bunsen_burner/examine(mob/user, infix, suffix)
