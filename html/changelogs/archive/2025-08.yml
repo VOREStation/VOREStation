@@ -527,3 +527,47 @@
   - bugfix: Fixed Pituitary Disruption blood vomiting taking too long
   - balance: Rebalanced Hyperactivity symptom
   - spellcheck: Fixed spelling mistakes in Hyperactivty and Shivering symptoms
+2025-08-27:
+  Diana:
+  - bugfix: Gasmasks now show the proper sprites
+  - rscadd: Clear gasmasks no longer have no sprite
+  Guti:
+  - bugfix: Fixed an exploit that allowed players to teleport to Cryo from anywhere
+  Kashargul:
+  - bugfix: name inputs failing in some cases
+  - bugfix: phoron spider dev range
+  KillianKirilenko:
+  - refactor: cleaned up icon files for eyewear and masks - there shouldn't be any
+      player-facing changes, but please report any invisible or bugged clothes in
+      appropriate channels
+  - bugfix: AR mantles can now access special displays as-intended, they no longer
+      block eating/drinking, and also slightly adjusted the E/W facing sprites for
+      mantles on vulp bases
+  - refactor: cleaned up icon files for undersuits - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels.
+      also cleaned up some text/file formatting.
+  - qol: non-altevians can now wear altevian uniforms, if you want to. there was no
+      reason for these to be restricted.
+  Will:
+  - rscadd: Frames now accept parts stored in boxes or bags and load them all at once
+  - rscadd: RPED can now install parts in a frame, bluespace RPED can do so at range
+  - rscadd: Engineering borgs given an expanded parts pouch
+  - qol: Engineering parts pouch can now pick up all stock parts on a turf, and drop
+      them all at once, can be used to mass install parts in frames like any other
+      bag
+2025-08-28:
+  Guti:
+  - bugfix: Fixed body scanner consoles lights staying on forever
+  Jordhin Xenshire:
+  - rscadd: 'Volumetric Pump: This fast pump cares only about moving gasses quickly
+      from one side to the other without slowing - or care for accuracy. It has a
+      pressure limit lower than a standard pump, however this can be bipassed with
+      a Multitool. What consequences could there be?'
+  - rscadd: The ability to build Gas Sensors from the Rapid Pipe Dispenser.
+  - rscadd: The ability to link Gas Sensors, Meters, Injectors, Unary Vents to an
+      Atmos Air Controller. This enables you to build custom tanks. Functionality
+      is somewhat limited for now. This can be done with a multitool.
+  - rscadd: Ability to print Tank Control computer circuit board.
+  SatinIsle:
+  - qol: Made it so that you can Alt click reagent containers to set transfer volume.
+  - refactor: Changed transfer amounts to be set by number input rather than lists.

@@ -1,0 +1,4 @@
+author: "Diana"
+delete-after: True
+changes:
+  - image: "Removes a bunch of placeholder/missing vox sprites"

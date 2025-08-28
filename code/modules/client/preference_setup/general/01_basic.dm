@@ -113,7 +113,7 @@
 
 	switch(action)
 		if("rename")
-			var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name", pref.real_name)
+			var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name", pref.real_name, encode = FALSE)
 			if(!isnull(raw_name))
 				var/new_name = sanitize_name(raw_name, pref.species, is_FBP())
 				if(new_name)
@@ -132,7 +132,7 @@
 			return TOPIC_REFRESH
 
 		if("nickname")
-			var/raw_nickname = tgui_input_text(user, "Choose your character's nickname:", "Character Nickname", pref.nickname)
+			var/raw_nickname = tgui_input_text(user, "Choose your character's nickname:", "Character Nickname", pref.nickname, encode = FALSE)
 			if(!isnull(raw_nickname))
 				var/new_nickname = sanitize_name(raw_nickname, pref.species, is_FBP())
 				if(new_nickname)
