@@ -328,10 +328,7 @@
 	id = "distill_reduce_tablesalt"
 	result = REAGENT_ID_SODIUM
 	required_reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1)
-	result_amount = 1
+	result_amount = 0.5
 
 	temp_range = list(T20C + 800, T20C + 1000)
 	temp_shift = -1
-
-	require_xgm_gas = GAS_PHORON
-	rejects_xgm_gas = GAS_O2

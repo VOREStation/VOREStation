@@ -13,6 +13,7 @@
 	use_power = TRUE
 	idle_power_usage = 20
 	clicksound = "button"
+	circuit = /obj/item/circuitboard/chemical_analyzer
 	var/analyzing = FALSE
 	var/list/found_reagents = list()
 
