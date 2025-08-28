@@ -10,9 +10,12 @@
 								"timeout" = addtimer(CALLBACK(src, PROC_REF(clear_oversized_payload)), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 								)
 
-	partial_packets["chunks"][id] = packets
+	var/list/chunks = partial_packets["chunks"]
+	chunks[id] = packets
 
 	if(id != total)
+		if(id > 1)
+			partial_packets["timeout"] = addtimer(CALLBACK(src, PROC_REF(clear_oversized_payload)), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return null
 
 	var/assembled_payload = ""
@@ -38,9 +41,12 @@
 								"timeout" = addtimer(CALLBACK(src, PROC_REF(clear_oversized_payload)), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 								)
 
-	partial_packets["chunks"][id] = packets
+	var/list/chunks = partial_packets["chunks"]
+	chunks[id] = packets
 
 	if(id != total)
+		if(id > 1)
+			partial_packets["timeout"] = addtimer(CALLBACK(src, PROC_REF(clear_oversized_payload)), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return null
 
 	var/assembled_payload = ""
