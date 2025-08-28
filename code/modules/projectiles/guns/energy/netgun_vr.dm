@@ -7,7 +7,6 @@
 	Whether by scientific departments when capturing specimens on alien worlds to study or by security forces to detain unruly crew, NanoTrasen is deeply \
 	appreciative of the \"Varmint Catcher\" Netgun System. WARNING!: Xenonomix and NanoTrasen are not responsible for any injuries caused by the device \
 	in any aspect, thank you for understanding."
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "netgun"
 	item_state = "gun" // Placeholder
 
