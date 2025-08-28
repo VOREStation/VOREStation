@@ -2,7 +2,7 @@
 // Tanks - These are implemented as pipes with large volume
 //
 /obj/machinery/atmospherics/pipe/tank
-	icon = 'icons/atmos/tank_vr.dmi' //VOREStation Edit - New Icons
+	icon = 'icons/atmos/tank.dmi'
 	icon_state = "air_map"
 
 	name = "Pressure Tank"
