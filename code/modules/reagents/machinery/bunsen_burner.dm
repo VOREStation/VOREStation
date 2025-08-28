@@ -1,6 +1,7 @@
 /obj/machinery/bunsen_burner
 	name = "bunsen burner"
-	desc = "A portable, self-heating device designed for bringing chemical mixtures to a boil."
+	desc = "A small, self-heating device designed for bringing chemical mixtures to a boil."
+	description_info = "Place a beaker into it to begin heating. The bunsen burner is only capable of heating reagents up to 600c."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "bunsen0"
 	var/current_temp = T0C
@@ -116,9 +117,10 @@
 
 	// Slosh and toss. We use an internal distilling container, react it in there, then pass it back.
 	held_container.reagents.trans_to_obj(src,held_container.reagents.total_volume)
-	reagents.handle_reactions()
+	if(reagents.handle_reactions())
+		held_container.update_icon()
+		update_icon()
 	reagents.trans_to_obj(held_container,reagents.total_volume)
-
 
 /obj/machinery/bunsen_burner/proc/end_boil()
 	heating = FALSE
@@ -126,8 +128,16 @@
 	update_icon()
 
 /obj/machinery/bunsen_burner/update_icon()
-	underlays.Cut()
-	icon_state = "bunsen[heating]"
+	cut_overlays()
+	icon_state = "bunsen0"
 	if(held_container)
-		var/image/I = image("icon"=held_container, "layer"=FLOAT_LAYER)
-		underlays += I
+		var/image/I = image("icon"=held_container)
+		add_overlay(I)
+	if(heating)
+		var/image/I = image(icon,icon_state = "bunsen1",layer=FLOAT_LAYER)
+		add_overlay(I)
+
+/obj/machinery/bunsen_burner/examine(mob/user, infix, suffix)
+	. = ..()
+	if(heating)
+		. += span_notice("It's current temperature is [current_temp - T0C]c")

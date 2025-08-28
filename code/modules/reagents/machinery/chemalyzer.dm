@@ -17,6 +17,10 @@
 	var/analyzing = FALSE
 	var/list/found_reagents = list()
 
+/obj/machinery/chemical_analyzer/Initialize(mapload)
+	. = ..()
+	default_apply_parts()
+
 /obj/machinery/chemical_analyzer/update_icon()
 	icon_state = "chem_analyzer[analyzing ? "-working":""]"
 
