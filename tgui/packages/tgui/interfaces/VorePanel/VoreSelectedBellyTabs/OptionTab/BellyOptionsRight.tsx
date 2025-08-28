@@ -1,6 +1,7 @@
 import { LabeledList } from 'tgui-core/components';
 
 import { digestModeToColor, selectiveBellyOptions } from '../../constants';
+import { bellyTemperatureToColor } from '../../functions';
 import type { bellyOptionData } from '../../types';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
@@ -156,12 +157,14 @@ export const BellyOptionsRight = (props: {
           action="set_attribute"
           subAction="b_bellytemperature"
           editMode={editMode}
-          value={bellytemperature - 273.15}
+          value={Math.round((bellytemperature - 273.15) * 10) / 10}
           minValue={-100}
-          step={0.001}
+          step={0.01}
           stepPixel={0.1}
-          digits={5}
+          digits={1}
           maxValue={200}
+          unit="°C"
+          color={bellyTemperatureToColor(bellytemperature)}
         />
       </LabeledList.Item>
       <LabeledList.Item label="Temperature Damage">
