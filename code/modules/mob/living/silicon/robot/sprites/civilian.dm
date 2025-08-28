@@ -202,6 +202,7 @@
 /datum/robot_sprite/dogborg/service/drake
 	name = "Drake"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 
 /datum/robot_sprite/dogborg/service/booze
 	name = "Boozehound"
