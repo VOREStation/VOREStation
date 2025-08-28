@@ -11,30 +11,22 @@
 	desc = "If you wanna to keep your brain inside yo' head, you'd best put this on!"
 	icon_state = "unsc_helm"
 	item_state = "unsc_helm"
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/mob_vr.dmi'
 
 /obj/item/clothing/head/helmet/combat/imperial
 	name = "imperial soldier helmet"
 	desc = "Veni, vidi, vici; I came, I saw, I conquered."
 	icon_state = "ge_helm"
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/mob_vr.dmi'
 
 /obj/item/clothing/head/helmet/combat/imperial/centurion
 	name = "imperial centurion helmet"
 	desc = "Vendi, vidi, visa; I came, I saw, I realised this hat was too expensive."
 	icon_state = "ge_helmcent"
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/mob_vr.dmi'
 
 // Armor Versions Here
 /obj/item/clothing/head/helmet/combat/crusader
 	name = "crusader helmet"
 	desc = "ye olde armored helmet"
 	icon_state = "crusader"
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/item_vr.dmi'
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 2
 
@@ -42,8 +34,6 @@
 	name = "bedevere's helmet"
 	desc = "ye olde armored helmet"
 	icon_state = "bedevere_helmet"
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/item_vr.dmi'
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	tint = TINT_HEAVY
 	siemens_coefficient = 2
@@ -90,8 +80,6 @@
 	name = "crusader costume helmet"
 	desc = "ye olde armored helmet"
 	icon_state = "crusader"
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/item_vr.dmi'
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 1
 
@@ -99,8 +87,6 @@
 	name = "bedevere's costume helmet"
 	desc = "ye olde armored helmet"
 	icon_state = "bedevere_helmet"
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/item_vr.dmi'
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	tint = TINT_HEAVY
 	siemens_coefficient = 1
