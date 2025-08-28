@@ -98,9 +98,9 @@
 /decl/chemical_reaction/distilling/condense_methane
 	name = "Condensing Methane"
 	id = "condense_methane"
-	result = REAGENT_ID_SULFUR
+	result = REAGENT_ID_TOXIN
 	required_reagents = list(REAGENT_ID_COOLANT = COOLANT_CONSUMPTION_RATE)
-	inhibitors = list(REAGENT_ID_SULFUR = 0.1) // Used to limit the reaction
+	inhibitors = list(REAGENT_ID_TOXIN = 0.1) // Used to limit the reaction
 	result_amount = CONDENSING_RESULT
 
 	temp_range = list(90.7, 111.65) // kelvin
