@@ -95,6 +95,21 @@
 	rejects_xgm_gas = GAS_O2
 	consumes_xgm_gas = CONDENSING_RATE
 
+/decl/chemical_reaction/distilling/condense_methane
+	name = "Condensing Methane"
+	id = "condense_methane"
+	result = REAGENT_ID_SULFUR
+	required_reagents = list(REAGENT_ID_COOLANT = COOLANT_CONSUMPTION_RATE)
+	inhibitors = list(REAGENT_ID_SULFUR = 0.1) // Used to limit the reaction
+	result_amount = CONDENSING_RESULT
+
+	temp_range = list(90.7, 111.65) // kelvin
+	temp_shift = CONDENSING_HEAT
+
+	require_xgm_gas = GAS_CH4
+	rejects_xgm_gas = GAS_O2
+	consumes_xgm_gas = CONDENSING_RATE
+
 #undef CONDENSING_RATE
 #undef CONDENSING_RESULT
 #undef CONDENSING_HEAT
