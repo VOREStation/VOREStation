@@ -14,26 +14,29 @@
 
 /obj/machinery/bunsen_burner/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)
-	if(default_deconstruction_screwdriver(user, W))
-		return
 	// Anchoring and disassembly
 	if(default_unfasten_wrench(user, W))
 		if(!anchored) // no longer anchored
+			drop_held_container()
 			if(heating)
 				end_boil()
-			if(held_container)
-				held_container.forceMove(get_turf(src))
-				held_container = null
 		return
-	if(W.has_tool_quality(TOOL_CROWBAR) && panel_open && isturf(loc) && do_after(5))
-		// Breaking it down
-		to_chat(user, span_notice("You dissasemble \the [src]"))
-		new /obj/item/stack/material/steel(get_turf(src), 1)
-		qdel(src)
+	if(default_deconstruction_screwdriver(user, W))
+		return
+	if(W.has_tool_quality(TOOL_CROWBAR) && panel_open && isturf(loc))
+		if(do_after(user,5 * W.toolspeed))
+			// Breaking it down
+			drop_held_container()
+			to_chat(user, span_notice("You dissasemble \the [src]"))
+			new /obj/item/stack/material/steel(get_turf(src), 1)
+			qdel(src)
 		return
 	// Handle container
 	if(!istype(W, /obj/item/reagent_containers))
 		to_chat(user,span_notice("You can't put \the [W] onto \the [src]."))
+		return
+	if(!anchored)
+		to_chat(user,span_notice("\The [src] must be secured down with a wrench."))
 		return
 	if(held_container)
 		to_chat(user,span_notice("You must remove \the [held_container] before you can place another container on \the [src]."))
@@ -46,6 +49,8 @@
 	to_chat(user,span_notice("You put \the [held_container] onto \the [src]."))
 	if(held_container.reagents.total_volume > 0)
 		start_boiling()
+	else
+		update_icon()
 
 /obj/machinery/bunsen_burner/attack_hand(mob/user as mob)
 	if(..())
@@ -84,8 +89,19 @@
 	if(GM)
 		current_temp = GM.temperature
 
+/obj/machinery/bunsen_burner/proc/drop_held_container()
+	if(!held_container)
+		return
+	held_container.forceMove(get_turf(src))
+	held_container = null
+
 /obj/machinery/bunsen_burner/process()
 	if(!heating)
+		return
+
+	if(held_container && !anchored)
+		drop_held_container()
+		end_boil()
 		return
 
 	if(!held_container?.reagents?.reagent_list?.len)
@@ -95,6 +111,14 @@
 	// Increase temp
 	var/previous_temp = current_temp
 	current_temp += 20
+
+	// Slosh and toss. We use an internal distilling container, react it in there, then pass it back.
+	held_container.reagents.trans_to_obj(src,held_container.reagents.total_volume)
+	if(reagents.handle_reactions())
+		held_container.update_icon()
+		update_icon()
+	reagents.trans_to_obj(held_container,reagents.total_volume)
+
 	// every 25 degree step, do a message to show we are working
 	if(FLOOR(previous_temp / 40,1) != FLOOR(current_temp / 40,1))
 		// Open flame
@@ -109,19 +133,12 @@
 		else if(current_temp <  T0C + 200)
 			visible_message(span_notice("\The [src] boils."))
 		else if(current_temp <  T0C + 400)
-			visible_message(span_warning("\The [src] bubbles aggressively."))
+			visible_message(span_notice("\The [src] bubbles aggressively."))
 		else if(current_temp <  T0C + 600)
-			visible_message(span_warning("\The [src] violently shakes."))
+			visible_message(span_notice("\The [src] rumbles intensely."))
 		else
+			// finished boiling
 			end_boil()
-			return
-
-	// Slosh and toss. We use an internal distilling container, react it in there, then pass it back.
-	held_container.reagents.trans_to_obj(src,held_container.reagents.total_volume)
-	if(reagents.handle_reactions())
-		held_container.update_icon()
-		update_icon()
-	reagents.trans_to_obj(held_container,reagents.total_volume)
 
 /obj/machinery/bunsen_burner/proc/end_boil()
 	heating = FALSE
