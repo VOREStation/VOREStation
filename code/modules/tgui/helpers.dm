@@ -1,4 +1,4 @@
-/datum/tgui_say/proc/handle_packets(id, total_packets, packets)
+/datum/tgui_say/proc/handle_packets(id, total_packets, packet)
 	id = text2num(id)
 
 	var/total = text2num(total_packets)
@@ -11,7 +11,7 @@
 								)
 
 	var/list/chunks = partial_packets["chunks"]
-	chunks[id] = packets
+	chunks[id] = packet
 
 	if(id != total)
 		if(id > 1)
@@ -29,7 +29,7 @@
 /datum/tgui_say/proc/clear_oversized_payload()
 	partial_packets = null
 
-/datum/tgui/proc/handle_packets(id, total_packets, packets)
+/datum/tgui/proc/handle_packets(id, total_packets, packet)
 	id = text2num(id)
 
 	var/total = text2num(total_packets)
@@ -42,7 +42,7 @@
 								)
 
 	var/list/chunks = partial_packets["chunks"]
-	chunks[id] = packets
+	chunks[id] = packet
 
 	if(id != total)
 		if(id > 1)
