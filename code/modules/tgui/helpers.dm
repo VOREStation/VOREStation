@@ -19,8 +19,8 @@
 		return null
 
 	var/assembled_payload = ""
-	for(var/packet in partial_packets["chunks"])
-		assembled_payload += packet
+	for(var/received_packet in partial_packets["chunks"])
+		assembled_payload += received_packet
 
 	deltimer(partial_packets["timeout"])
 	partial_packets = null
@@ -50,8 +50,8 @@
 		return null
 
 	var/assembled_payload = ""
-	for(var/packet in partial_packets["chunks"])
-		assembled_payload += packet
+	for(var/received_packet in partial_packets["chunks"])
+		assembled_payload += received_packet
 
 	deltimer(partial_packets["timeout"])
 	partial_packets = null
