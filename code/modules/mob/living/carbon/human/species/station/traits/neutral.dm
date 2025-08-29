@@ -56,7 +56,7 @@
 	primitive_expression_messages=list("shivers.")
 
 /datum/trait/neutral/notadapt
-	name = "Temp. UNadapted" //British
+	name = "Temp. Unadapted" //British
 	desc = "Your particular biology causes you to have trouble handling both hot and cold temperatures. You should take precautions when going out!"
 	cost = 0
 	var_changes = list("heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
