@@ -337,9 +337,8 @@
 		t1 += "[printedmessage]<BR>"
 	P.info = t1
 	P.name = "Transcript"
-	canprint = 0
-	sleep(300)
-	canprint = 1
+	canprint = FALSE
+	VARSET_IN(src, canprint, TRUE, 30 SECONDS)
 
 
 /obj/item/taperecorder/attack_self(mob/user)
