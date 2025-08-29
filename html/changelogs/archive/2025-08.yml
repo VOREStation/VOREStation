@@ -571,3 +571,13 @@
   SatinIsle:
   - qol: Made it so that you can Alt click reagent containers to set transfer volume.
   - refactor: Changed transfer amounts to be set by number input rather than lists.
+2025-08-29:
+  Diana:
+  - image: Removes a bunch of placeholder/missing vox sprites
+  - bugfix: Gets rid of override preventing shadekin from wearing rigsuits. (Although
+      it's still a bad idea to wear it as one.)
+  JParker890:
+  - rscadd: Drakeborgs now have belly sprites for their bellyup rest pose
+  RexAnivius:
+  - rscadd: adds larger and resting belly states to the deertaur
+  - bugfix: taur resting belly sprites not being properly applied
