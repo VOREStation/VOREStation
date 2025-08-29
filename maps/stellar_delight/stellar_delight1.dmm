@@ -4081,6 +4081,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
+"hO" = (
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/table/steel,
+/obj/item/storage/bag/circuits/basic,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/starboardaft)
 "hP" = (
 /obj/structure/morgue{
 	dir = 2
@@ -6038,6 +6050,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/vending/assist{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardaft)
 "lU" = (
@@ -37436,7 +37451,7 @@ Dv
 Uv
 Dv
 lT
-Dv
+hO
 il
 OR
 CY
