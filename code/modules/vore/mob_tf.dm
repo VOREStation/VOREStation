@@ -3,11 +3,11 @@
 /mob/living/proc/tf_into(var/A, var/allow_emotes = FALSE, var/object_name)
 	if(!object_name)
 		object_name = name
-	if(istype(A, /mob/living))
+	if(isliving(A))
 		var/mob/living/M = A
 		M.mob_tf(src)
 		return
-	if(istype(A, /obj/item))
+	if(isitem(A))
 		var/obj/item/I = A
 		I.inhabit_item(src, object_name, src, allow_emotes)
 		var/mob/living/possessed_voice = I.possessed_voice
