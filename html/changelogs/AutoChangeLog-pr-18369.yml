@@ -1,0 +1,6 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - qol: "one can now skip the lobby timer on test servers"
+  - qol: "multiple bellies can be imported selectively if tgui input framework is enabled"
+  - bugfix: "tgui input checkboxes now consistently returns null or a list of strings"

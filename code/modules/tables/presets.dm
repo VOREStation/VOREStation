@@ -132,7 +132,7 @@
 	can_plate = FALSE
 
 /obj/structure/table/alien/Initialize(mapload)
-	material = get_material_by_name("alium")
+	material = get_material_by_name(MAT_ALIEN_ALIUM)
 	verbs -= /obj/structure/table/verb/do_flip
 	verbs -= /obj/structure/table/proc/do_put
 	. = ..()

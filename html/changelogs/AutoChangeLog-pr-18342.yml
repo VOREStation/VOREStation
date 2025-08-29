@@ -1,0 +1,6 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "cleans up some more material things"
+  - bugfix: "chat auto scaling"
+  - admin: "readd VV cords"
