@@ -1,0 +1,4 @@
+author: "Tenryumi"
+delete-after: True
+changes:
+  - maptweak: "Fixed an Underdark POI having no gravity on a specific row of tiles."
