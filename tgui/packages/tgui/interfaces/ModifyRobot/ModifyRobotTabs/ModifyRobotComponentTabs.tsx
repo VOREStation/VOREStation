@@ -7,7 +7,6 @@ import {
   Slider,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import { capitalize } from 'tgui-core/string';
 
 import type { Cell, Comp, InstalledCell, Target } from '../types';
@@ -33,7 +32,7 @@ export const CellCommp = (props: {
       )}
       <Slider
         stepPixelSize={5}
-        format={(value) => toFixed(value, 2)}
+        format={(value) => value.toFixed(2)}
         disabled={!cell.charge}
         minValue={0}
         maxValue={100}

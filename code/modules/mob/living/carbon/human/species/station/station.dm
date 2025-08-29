@@ -91,7 +91,7 @@
 	throwforce_absorb_threshold = 10
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
-	min_age = 18
+	min_age = 32
 	max_age = 260
 
 	economic_modifier = 10
@@ -882,7 +882,7 @@
 	name = SPECIES_ZORREN_HIGH
 	name_plural = "Zorren"
 	icobase = 'icons/mob/human_races/r_fox_light_vr.dmi'
-	deform = 'icons/mob/human_races/r_def_fox.dmi'
+	deform = 'icons/mob/human_races/r_fox.dmi'
 	tail = "tail"
 	icobase_tail = 1
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
@@ -894,7 +894,7 @@
 		/mob/living/proc/shred_limb,
 		/mob/living/carbon/human/proc/tie_hair)
 
-	min_age = 18
+	min_age = 20
 	max_age = 80
 
 	blurb = "The fennec-like, blue-blooded Zorren are native to Virgo 4/Menhir and are descendants of a precursor species \
@@ -1009,7 +1009,7 @@
 	icobase = 'icons/mob/human_races/r_skrell_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell_vr.dmi'
 	color_mult = 1
-	min_age = 18
+	min_age = 20
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair, /mob/living/carbon/human/proc/water_stealth, /mob/living/carbon/human/proc/underwater_devour)
 	reagent_tag = null
 	allergens = null
@@ -1461,7 +1461,7 @@
 	name = SPECIES_ALTEVIAN
 	name_plural = "Altevians"
 	icobase = 'icons/mob/human_races/r_altevian.dmi'
-	deform = 'icons/mob/human_races/r_def_altevian.dmi'
+	deform = 'icons/mob/human_races/r_altevian.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_TAVAN)
@@ -1596,7 +1596,7 @@
 	name = SPECIES_WEREBEAST
 	name_plural = "Werebeasts"
 	icobase = 'icons/mob/human_races/r_werebeast.dmi'
-	deform = 'icons/mob/human_races/r_def_werebeast.dmi'
+	deform = 'icons/mob/human_races/r_werebeast.dmi'
 	icon_template = 'icons/mob/human_races/r_werebeast.dmi'
 	tail = "tail"
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)

@@ -249,6 +249,7 @@
 	var/rad_levels = NORMAL_RADIATION_RESISTANCE		//For handle_mutations_and_radiation
 	var/rad_removal_mod = 1
 
+	var/ambulant_blood = FALSE								// Force changeling blood effects
 
 	var/rarity_value = 1									// Relative rarity/collector value for this species.
 	var/economic_modifier = 2								// How much money this species makes
@@ -525,8 +526,20 @@
 			span_notice("[target] moves to avoid being touched by you!"), )
 		return
 
+	var/covered_mouth = FALSE
+	if((target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE) && ishuman(target)) // No need to test this for now if they don't have the trait
+		var/mob/living/carbon/human/M = target
+		if(M.head)
+			if((M.head.body_parts_covered & FACE) || (M.head.flags_inv & HIDEFACE)) // Need to check both because a lot of items set one or the other, rather than both as you'd expect
+				covered_mouth = TRUE
+		if(M.wear_mask)
+			if((M.wear_mask.body_parts_covered & FACE) || (M.wear_mask.flags_inv & HIDEFACE))
+				covered_mouth = TRUE
+	if(target.is_muzzled())
+		covered_mouth = TRUE
+
 	if(H.zone_sel.selecting == BP_HEAD)
-		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
+		if((target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE) && !covered_mouth)
 			H.visible_message( \
 				span_warning("[target] reflexively bites the hand of [H] to prevent head patting!"), \
 				span_warning("[target] reflexively bites your hand!"), )
@@ -543,7 +556,7 @@
 			span_notice("[H] shakes [target]'s hand."), \
 			span_notice("You shake [target]'s hand."), )
 	else if(H.zone_sel.selecting == "mouth")
-		if(target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE)
+		if((target.touch_reaction_flags & SPECIES_TRAIT_PATTING_DEFENCE) && !covered_mouth)
 			H.visible_message( \
 				span_warning("[target] reflexively bites the hand of [H] to prevent nose booping!"), \
 				span_warning("[target] reflexively bites your hand!"), )
@@ -799,6 +812,11 @@
 
 	if(H.species.has_vibration_sense)
 		H.motiontracker_subscribe()
+
+	if(H.species.allergens)
+		H.AddElement(/datum/element/allergy)
+	else
+		H.RemoveElement(/datum/element/allergy)
 
 	return new_copy
 

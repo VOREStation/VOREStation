@@ -22,7 +22,7 @@
 
 /obj/structure/drop_pod/Destroy()
 	. = ..()
-	qdel_null(air)
+	QDEL_NULL(air)
 
 /obj/structure/drop_pod/proc/podfall(auto_open)
 	var/turf/T = get_turf(src)
@@ -105,7 +105,7 @@
 	for(var/atom/movable/AM in src)
 		AM.forceMove(loc)
 		AM.set_dir(SOUTH) // cus
-	qdel_null(air)
+	QDEL_NULL(air)
 	finished = TRUE
 
 /obj/structure/drop_pod/attack_hand(mob/living/user)
@@ -120,7 +120,7 @@
 	if(O.has_tool_quality(TOOL_WRENCH))
 		if(finished)
 			to_chat(user, span_notice("You start breaking down \the [src]."))
-			if(do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE))
+			if(do_after(user, 10 SECONDS, src))
 				new /obj/item/stack/material/plasteel(loc, 10)
 				playsound(user, O.usesound, 50, 1)
 				qdel(src)

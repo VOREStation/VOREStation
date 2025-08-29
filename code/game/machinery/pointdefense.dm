@@ -95,7 +95,6 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 /obj/machinery/pointdefense_control/attackby(var/obj/item/W, var/mob/user)
 	if(W?.has_tool_quality(TOOL_MULTITOOL))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
-		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
 			// Check for duplicate controllers with this ID
 			for(var/obj/machinery/pointdefense_control/PC as anything in GLOB.pointdefense_controllers)
@@ -134,7 +133,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	var/rotation_speed = 4.5 SECONDS  //How quickly we turn to face threats
 	var/datum/weakref/engaging = null // The meteor we're shooting at
 	var/id_tag = null
-	var/fire_sounds = list('sound/weapons/frigate_turret/frigate_turret_fire1.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire2.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire3.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire4.ogg') // CHOMPEdit: Pew
+	var/fire_sounds = list('sound/weapons/frigate_turret/frigate_turret_fire1.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire2.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire3.ogg', 'sound/weapons/frigate_turret/frigate_turret_fire4.ogg')
 
 /obj/machinery/pointdefense/Initialize(mapload)
 	. = ..()
@@ -170,7 +169,6 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 /obj/machinery/pointdefense/attackby(var/obj/item/W, var/mob/user)
 	if(W?.has_tool_quality(TOOL_MULTITOOL))
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
-		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src))
 			to_chat(user, span_notice("You register [src] with the [new_ident] network."))
 			id_tag = new_ident

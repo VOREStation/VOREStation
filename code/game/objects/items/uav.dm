@@ -57,8 +57,8 @@
 	ion_trail.stop()
 
 /obj/item/uav/Destroy()
-	qdel_null(cell)
-	qdel_null(ion_trail)
+	QDEL_NULL(cell)
+	QDEL_NULL(ion_trail)
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -136,7 +136,7 @@
 			cell = I
 
 	else if(istype(I, /obj/item/pen) || istype(I, /obj/item/flashlight/pen))
-		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a nickname for [src]", "Nickname", nickname, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/tmp_label = tgui_input_text(user, "Enter a nickname for [src]", "Nickname", nickname, MAX_NAME_LEN)
 		if(length(tmp_label) > 50 || length(tmp_label) < 3)
 			to_chat(user, span_notice("The nickname must be between 3 and 50 characters."))
 		else

@@ -1,7 +1,8 @@
 /atom/movable
 	layer = OBJ_LAYER
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	glide_size = 8
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
+
 	var/last_move = null //The direction the atom last moved
 	var/anchored = FALSE
 	// var/elevation = 2    - not used anywhere
@@ -47,7 +48,7 @@
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			add_overlay(list(em_block), TRUE)
-			RegisterSignal(em_block, COMSIG_PARENT_QDELETING, PROC_REF(emblocker_gc))
+			RegisterSignal(em_block, COMSIG_QDELETING, PROC_REF(emblocker_gc))
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	if(icon_scale_x != DEFAULT_ICON_SCALE_X || icon_scale_y != DEFAULT_ICON_SCALE_Y || icon_rotation != DEFAULT_ICON_ROTATION)
@@ -66,7 +67,7 @@
 /atom/movable/Destroy()
 	if(em_block)
 		cut_overlay(em_block)
-		UnregisterSignal(em_block, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(em_block, COMSIG_QDELETING)
 		QDEL_NULL(em_block)
 	. = ..()
 
@@ -512,8 +513,8 @@
 			new_y = TRANSITIONEDGE + 1
 			new_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
-		if(ticker && istype(ticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
-			var/datum/game_mode/nuclear/G = ticker.mode
+		if(SSticker && istype(SSticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
+			var/datum/game_mode/nuclear/G = SSticker.mode
 			G.check_nuke_disks()
 
 		var/turf/T = locate(new_x, new_y, new_z)
@@ -657,7 +658,7 @@
 
 /atom/movable/proc/emblocker_gc(var/datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(source, COMSIG_QDELETING)
 	cut_overlay(source)
 	if(em_block == source)
 		em_block = null

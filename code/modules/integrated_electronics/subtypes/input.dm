@@ -103,8 +103,7 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
-	var/new_input = tgui_input_text(user, "Enter some words, please.","Number pad", get_pin_data(IC_OUTPUT, 1),MAX_KEYPAD_INPUT_LEN, encode=FALSE)
-	new_input = sanitize(new_input,MAX_KEYPAD_INPUT_LEN) // Slightly increase the size of the character limit.
+	var/new_input = tgui_input_text(user, "Enter some words, please.", "Text pad", get_pin_data(IC_OUTPUT, 1), MAX_KEYPAD_INPUT_LEN)
 	if(istext(new_input) && CanInteract(user, GLOB.tgui_physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
@@ -425,8 +424,8 @@
 	addtimer(CALLBACK(src, PROC_REF(set_frequency), frequency), 40)
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
+	if(SSradio)
+		SSradio.remove_object(src,frequency)
 	frequency = 0
 	. = ..()
 
@@ -453,13 +452,13 @@
 /obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
 	if(!frequency)
 		return
-	if(!radio_controller)
+	if(!SSradio)
 		sleep(20)
-	if(!radio_controller)
+	if(!SSradio)
 		return
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/integrated_circuit/input/signaler/receive_signal(datum/signal/signal)
 	var/new_code = get_pin_data(IC_INPUT, 2)

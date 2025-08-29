@@ -1,7 +1,9 @@
+#define AGE_MOD_MAX 10 // Define for age_mod sanity check as a define to allow for easy tweaking.
+
 /obj/machinery/portable_atmospherics/hydroponics
 	name = "hydroponics tray"
 	desc = "A tray usually full of fluid for growing plants."
-	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "hydrotray3"
 	density = TRUE
 	anchored = TRUE
@@ -30,6 +32,7 @@
 	var/toxins = 0             // Toxicity in the tray?
 	var/mutation_level = 0     // When it hits 100, the plant mutates.
 	var/tray_light = 1         // Supplied lighting.
+	var/age_mod = 0            // Variable for chems which speed up plant growth. On average, every 3 age mod reduces growing time by 2.5 minutes.
 
 	// Mechanical concerns.
 	var/health = 0             // Plant health.
@@ -132,6 +135,10 @@
 		REAGENT_ID_RADIUM =  8,
 		REAGENT_ID_MUTAGEN = 15
 		)
+
+	var/static/list/age_reagents = list(
+	REAGENT_ID_PITCHERNECTAR =  1
+	)
 
 /obj/machinery/portable_atmospherics/hydroponics/AltClick(var/mob/living/user)
 	if(!istype(user))
@@ -308,6 +315,9 @@
 			else if(toxic_reagents[R.id])
 				toxins += toxic_reagents[R.id] * reagent_total
 
+			if(age_reagents[R.id])
+				age_mod += age_reagents[R.id]  * reagent_total
+
 		//Handle some general level adjustments. These values are independent of plants existing.
 		if(weedkiller_reagents[R.id])
 			weedlevel -= weedkiller_reagents[R.id] * reagent_total
@@ -359,6 +369,7 @@
 		age = 0
 		sampled = 0
 		mutation_mod = 0
+		age_mod = 0
 
 	check_health()
 	return
@@ -377,6 +388,7 @@
 	age = 0
 	yield_mod = 0
 	mutation_mod = 0
+	age_mod = 0
 
 	to_chat(user, span_filter_notice("You remove the dead plant."))
 	lastproduce = 0
@@ -396,6 +408,7 @@
 
 	dead = 0
 	age = 0
+	age_mod = 0
 	health = seed.get_trait(TRAIT_ENDURANCE)
 	lastcycle = world.time
 	harvest = 0
@@ -472,6 +485,7 @@
 	pestlevel =      max(0,min(pestlevel,10))
 	weedlevel =      max(0,min(weedlevel,10))
 	toxins =         max(0,min(toxins,10))
+	age_mod =        max(0,min(age_mod,AGE_MOD_MAX)) // age_mod sanity check
 
 /obj/machinery/portable_atmospherics/hydroponics/proc/mutate_species()
 
@@ -707,3 +721,5 @@
 	closed_system = !closed_system
 	to_chat(user, span_filter_notice("You [closed_system ? "close" : "open"] the tray's lid."))
 	update_icon()
+
+#undef AGE_MOD_MAX

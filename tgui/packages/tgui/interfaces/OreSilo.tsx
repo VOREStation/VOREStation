@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Icon,
@@ -13,10 +15,7 @@ import {
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-import { Materials } from './ExosuitFabricator/Material';
+import { MaterialAccessBar } from './common/MaterialAccessBar';
 import type { Material } from './Fabrication/Types';
 
 type Machine = {
@@ -88,7 +87,16 @@ export const OreSilo = (props: any) => {
           </Stack.Item>
           <Stack.Item>
             <Section fill>
-              <Materials />
+              <MaterialAccessBar
+                SHEET_MATERIAL_AMOUNT={SHEET_MATERIAL_AMOUNT}
+                availableMaterials={data.materials}
+                onEjectRequested={(mat: Material, qty: number) =>
+                  act('remove_mat', {
+                    id: mat.name,
+                    amount: qty,
+                  })
+                }
+              />
             </Section>
           </Stack.Item>
         </Stack>

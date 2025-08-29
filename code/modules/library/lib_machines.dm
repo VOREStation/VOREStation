@@ -74,26 +74,16 @@
 		return
 
 	if(href_list["settitle"])
-		var/newtitle = tgui_input_text(usr, "Enter a title to search for:")
-		if(newtitle)
-			title = sanitize(newtitle)
-		else
-			title = null
-		title = sanitizeSQL(title)
+		var/newtitle = tgui_input_text(usr, "Enter a title to search for:", max_length = MAX_MESSAGE_LEN)
+		title = sanitizeSQL(newtitle)
 	if(href_list["setcategory"])
 		var/newcategory = tgui_input_list(usr, "Choose a category to search for:", "Category", list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
-		if(newcategory)
-			category = sanitize(newcategory)
-		else
+		if(!newcategory)
 			category = "Any"
 		category = sanitizeSQL(category)
 	if(href_list["setauthor"])
-		var/newauthor = tgui_input_text(usr, "Enter an author to search for:")
-		if(newauthor)
-			author = sanitize(newauthor)
-		else
-			author = null
-		author = sanitizeSQL(author)
+		var/newauthor = tgui_input_text(usr, "Enter an author to search for:", max_length = MAX_MESSAGE_LEN)
+		author = sanitizeSQL(newauthor)
 	if(href_list["search"])
 		SQLquery = "SELECT author, title, category, id FROM library WHERE "
 		if(category == "Any")
@@ -405,9 +395,9 @@
 		if(checkoutperiod < 1)
 			checkoutperiod = 1
 	if(href_list["editbook"])
-		buffer_book = sanitizeSafe(tgui_input_text(usr, "Enter the book's title:"))
+		buffer_book = sanitizeSafe(tgui_input_text(usr, "Enter the book's title:", encode = FALSE))
 	if(href_list["editmob"])
-		buffer_mob = sanitize(tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
+		buffer_mob = tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN)
 	if(href_list["checkout"])
 		var/datum/borrowbook/b = new /datum/borrowbook
 		b.bookname = sanitizeSafe(buffer_book)
@@ -422,7 +412,7 @@
 		var/obj/item/book/b = locate(href_list["delbook"])
 		inventory.Remove(b)
 	if(href_list["setauthor"])
-		var/newauthor = sanitize(tgui_input_text(usr, "Enter the author's name: "))
+		var/newauthor = tgui_input_text(usr, "Enter the author's name: ", "", "", MAX_MESSAGE_LEN)
 		if(newauthor)
 			scanner.cache.author = newauthor
 	if(href_list["setcategory"])

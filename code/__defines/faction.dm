@@ -60,6 +60,7 @@
 #define FACTION_GOLEM "golem"
 #define FACTION_GRAFADREKA "grafadreka"
 #define FACTION_GRUBS "grubs"
+#define FACTION_GRYPHON "gryphon"
 #define FACTION_HORSE "horse"
 #define FACTION_INSECTS "insects"
 #define FACTION_JELLYFISH "jellyfish"
@@ -70,6 +71,7 @@
 #define FACTION_MEOWL "meowl"
 #define FACTION_MIMIC "mimic"
 #define FACTION_MOUSE "mouse"
+#define FACTION_MOTHROACH "mothroach"
 #define FACTION_NANOMACHINES "nanomachines"
 #define FACTION_NEUTRAL "neutral"
 #define FACTION_OTIE "otie"
@@ -112,6 +114,7 @@
 #define FACTION_WORM "worm"
 #define FACTION_XENO "xeno"
 #define FACTION_CORGI "corgi"
+#define FACTION_ZORGOIA "zorgoia"
 
 #define FACTION_PLANTS "plants"
 

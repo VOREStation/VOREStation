@@ -1,9 +1,9 @@
 /obj/machinery/bodyscanner
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_open"
 
 /obj/machinery/body_scanconsole
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_terminal_off"
 	density = TRUE
 
@@ -34,6 +34,8 @@
 	if(!occupant)
 		icon_state = "scanner_open"
 		set_light(0)
+		if(console)
+			console.update_icon(0)
 		return
 
 	// base image

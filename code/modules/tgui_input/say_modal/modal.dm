@@ -72,10 +72,11 @@
 
 	window.send_message("props", list(
 		"lightMode" = client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_light),
-		"scale" = client.prefs?.read_preference(/datum/preference/toggle/ui_scale),
+		"scale" = client?.prefs?.read_preference(/datum/preference/toggle/ui_scale),
 		"minimumWidth" = minimum_width,
 		"minimumHeight" = minimum_height,
 		"maxLength" = max_length,
+		"spellcheck" = client?.prefs?.read_preference(/datum/preference/toggle/tgui_use_spellcheck)
 	))
 
 	stop_thinking()

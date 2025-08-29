@@ -302,6 +302,7 @@
 	description = "A isotope of hydrogen. It has one extra neutron, and shares all chemical characteristics with hydrogen."
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
+	coolant_modifier = 1 // It's ALMOST water
 
 /datum/reagent/hydrogen/tritium
 	name = REAGENT_TRITIUM
@@ -309,6 +310,7 @@
 	description = "A radioactive isotope of hydrogen. It has two extra neutrons, and shares all other chemical characteristics with hydrogen."
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
+	coolant_modifier = 1 // It's ALMOST water
 
 /datum/reagent/lithium/lithium6
 	name = REAGENT_LITHIUM6
@@ -326,6 +328,7 @@
 	color = "#808080"
 	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
+	coolant_modifier = 2
 
 /datum/reagent/boron/boron11
 	name = REAGENT_BORON11
@@ -394,6 +397,7 @@
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_NO
 	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 1 // It's water
 
 /datum/reagent/water/holywater/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -417,6 +421,7 @@
 	color = "#404030"
 	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
 	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 1.25
 
 /datum/reagent/diethylamine
 	name = REAGENT_DIETHYLAMINE
@@ -621,6 +626,7 @@
 	color = "#808080"
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
+	coolant_modifier = 0.95
 
 /datum/reagent/nitroglycerin
 	name = REAGENT_NITROGLYCERIN
@@ -644,6 +650,7 @@
 	affects_robots = TRUE
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_INDUSTRY
+	coolant_modifier = 2 // In the name
 
 /datum/reagent/coolant/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.isSynthetic() && ishuman(M))
@@ -707,6 +714,7 @@
 	color = "#DF9FBF"
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_CLONEDRUG
+	coolant_modifier = -2 //Ew
 
 /datum/reagent/mineralfluid
 	name = REAGENT_MINERALIZEDFLUID
@@ -717,6 +725,7 @@
 	color = "#ff205255"
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_MATSCI
+	coolant_modifier = -2.5
 
 // The opposite to healing nanites, exists to make unidentified hypos implied to have nanites not be 100% safe.
 /datum/reagent/defective_nanites
@@ -828,3 +837,12 @@
 	color = "#e8e2b0"
 	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
 	industrial_use = REFINERYEXPORT_REASON_PRECURSOR
+
+/datum/reagent/nutriment/pitcher_nectar //Pitcher plant reagent, doubles plant growth speed.
+	name = REAGENT_ID_PITCHERNECTAR
+	id = REAGENT_ID_PITCHERNECTAR
+	description = "An odd, sticky slurry which promotes rapid plant growth."
+	taste_description = "pineapple"
+	reagent_state = LIQUID
+	nutriment_factor = 60
+	color = "#a839a2"

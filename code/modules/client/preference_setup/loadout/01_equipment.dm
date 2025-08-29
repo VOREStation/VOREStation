@@ -208,16 +208,23 @@
 			return TOPIC_REFRESH
 
 		if("set_ringtone")
-			var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", GLOB.valid_ringtones + "Other", pref.ringtone)
+			var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", GLOB.device_ringtones + "Other", pref.ringtone)
 			if(!choice)
 				return TOPIC_NOACTION
 			if(choice == "Other")
-				var/raw_choice = sanitize(tgui_input_text(user, "Please enter a custom ringtone. If this doesn't match any of the other listed choices, your PDA will use the default (\"beep\") sound.", "Character Preference", null, 20), 20)
+				var/raw_choice = tgui_input_text(user, "Please enter a custom ringtone. If this doesn't match any of the other listed choices, your PDA will use the default (\"beep\") sound.", "Character Preference", null, 20)
 				if(raw_choice)
 					pref.ringtone = raw_choice
 			else
 				pref.ringtone = choice
 			return TOPIC_REFRESH
+
+		if("test_ringtone")
+			var/S = 'sound/machines/twobeep.ogg'
+			if(pref.ringtone in GLOB.device_ringtones)
+				S = GLOB.device_ringtones[pref.ringtone]
+			SEND_SOUND(user.client, S)
+			return TOPIC_NOACTION
 
 		if("toggle_shoes")
 			pref.shoe_hater = !pref.shoe_hater

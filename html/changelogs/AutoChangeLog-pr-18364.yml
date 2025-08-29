@@ -1,0 +1,5 @@
+author: "RexAnivius"
+delete-after: True
+changes:
+  - rscadd: "adds larger and resting belly states to the deertaur"
+  - bugfix: "taur resting belly sprites not being properly applied"

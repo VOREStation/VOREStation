@@ -18,16 +18,14 @@
 /mob/living/simple_mob/examine(mob/user)
 	. = ..()
 	if(stat != DEAD && user && harvest_tool && (get_dist(user, src) <= 3))
-		. += span_notice("\The [src] can be [harvest_verb] with a [initial(harvest_tool.name)] every [round(harvest_cooldown, 0.1)] minutes.")
+		. += span_notice("\The [src] can be [harvest_verb] with a [initial(harvest_tool.name)] every [harvest_cooldown / 600] minutes.")
 		var/time_to_harvest = (harvest_recent + harvest_cooldown) - world.time
 		if(time_to_harvest > 0)
-			. += span_notice("It can be [harvest_verb] in [time_to_harvest / (1 MINUTE)] second(s).")
+			. += span_notice("It can be [harvest_verb] in [(time_to_harvest)] second(s).")
 		else
 			. += span_notice("It can be [harvest_verb] now.")
 
-	. += examine_reagent_bellies()
-
-	. += examine_bellies()
+	. += formatted_vore_examine()
 	. += ""
 
 	if(print_flavor_text()) . += "<br>[print_flavor_text()]"

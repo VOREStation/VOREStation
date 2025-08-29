@@ -1,3 +1,11 @@
+/*ALL MOB-RELATED DEFINES THAT DON'T BELONG IN ANOTHER FILE GO HERE*/
+
+//Misc mob defines
+
+//Ready states at roundstart for mob/dead/new_player
+#define PLAYER_NOT_READY 0
+#define PLAYER_READY_TO_PLAY 1
+
 // /mob/var/stat things.
 #define CONSCIOUS   0
 #define UNCONSCIOUS 1
@@ -332,6 +340,11 @@
 #define SPECIES_HANNER			"Hanner"
 #define SPECIES_SPARKLE			"Sparkle Dog"
 
+// FBG types
+#define FBP_ASSISTED		"assisted"
+#define FBP_MECHANICAL		"mechanical"
+#define FBP_DIGITAL			"digital"
+
 // Monkey and alien monkeys.
 #define SPECIES_MONKEY				"Monkey"
 #define SPECIES_MONKEY_TAJ			"Farwa"
@@ -486,7 +499,9 @@
 
 #define VIS_SOULCATCHER		35
 
-#define VIS_COUNT			35 //Must be highest number from above.
+#define VIS_EVENT_INVIS		36
+
+#define VIS_COUNT			36 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100

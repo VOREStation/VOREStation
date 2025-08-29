@@ -12,6 +12,8 @@
 	RegisterSignal(owner, COMSIG_HANDLE_DISABILITIES, PROC_REF(process_component))
 
 /datum/component/gibbing_disability/proc/process_component()
+	SIGNAL_HANDLER
+
 	if(QDELETED(parent))
 		return
 	if(isbelly(owner.loc))

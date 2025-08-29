@@ -25,10 +25,10 @@
 		author = _author
 
 /obj/effect/decal/writing/Initialize(mapload)
-	var/list/random_icon_states = icon_states(icon)
-	for(var/obj/effect/decal/writing/W in loc)
-		random_icon_states.Remove(W.icon_state)
-	if(random_icon_states.len)
+	var/list/random_icon_states = cached_icon_states(icon)
+	for(var/obj/effect/decal/writing/writing in loc)
+		random_icon_states.Remove(writing.icon_state)
+	if(length(random_icon_states))
 		icon_state = pick(random_icon_states)
 	if(!mapload || !CONFIG_GET(flag/persistence_ignore_mapload))
 		SSpersistence.track_value(src, /datum/persistent/graffiti)
@@ -55,7 +55,7 @@
 			to_chat(user, span_warning("You are banned from leaving persistent information across rounds."))
 			return
 
-		var/_message = sanitize(tgui_input_text(user, "Enter an additional message to engrave.", "Graffiti"), trim = TRUE)
+		var/_message = tgui_input_text(user, "Enter an additional message to engrave.", "Graffiti", "", MAX_MESSAGE_LEN)
 		if(_message && loc && user && !user.incapacitated() && user.Adjacent(loc) && thing.loc == user)
 			user.visible_message(span_warning("\The [user] begins carving something into \the [loc]."))
 			if(do_after(user, max(20, length(_message)), src) && loc)

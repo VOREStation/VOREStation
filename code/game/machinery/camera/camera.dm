@@ -124,8 +124,8 @@
 /obj/machinery/camera/hitby(AM as mob|obj)
 	..()
 	if (istype(AM, /obj))
-		var/obj/O = AM
-		if (O.throwforce >= src.toughness)
+		var/obj/item/O = AM
+		if(O.throwforce >= src.toughness)
 			visible_message(span_boldwarning("[src] was hit by [O]."))
 		take_damage(O.throwforce)
 
@@ -346,7 +346,7 @@
 /atom/proc/auto_turn()
 	//Automatically turns based on nearby walls.
 	var/turf/simulated/wall/T = null
-	for(var/i = 1, i <= 8; i += i)
+	for(var/i = 1, i <= 8, i += i)
 		T = get_ranged_target_turf(src, i, 1)
 		if(istype(T))
 			//If someone knows a better way to do this, let me know. -Giacom

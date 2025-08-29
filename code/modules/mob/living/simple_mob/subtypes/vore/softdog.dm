@@ -175,8 +175,6 @@
 	faction = FACTION_THEATRE
 	gender = PLURAL
 	ai_holder_type = /datum/ai_holder/simple_mob/woof/cass
-
-/mob/living/simple_mob/vore/woof/cass
 	vore_digest_chance = 0
 	vore_escape_chance = 25
 	digestable = 0
@@ -253,7 +251,7 @@
 		return ..()
 	if(M.a_intent == I_HELP)
 		M.visible_message("[M] pets [src].", runemessage = "pets [src]")
-		if(do_after(M, 30 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
+		if(do_after(M, 30 SECONDS, target = src))
 			faction = M.faction
 			revive()
 			sight = initial(sight)
@@ -265,38 +263,37 @@
 			M.visible_message("The petting was interrupted!!!", runemessage = "The petting was interrupted")
 	return
 
+GLOBAL_VAR_INIT(woof_maximum, 0)
+GLOBAL_VAR_INIT(woof_current, 0)
 /mob/living/simple_mob/vore/woof/hostile/aweful
 	maxHealth = 100
 	health = 100
-	var/killswitch = FALSE
-
+	var/static/killswitch = FALSE
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/Initialize(mapload)
 	. = ..()
 	var/thismany = (rand(25,500)) / 100
 	resize(thismany, animate = FALSE, uncapped = TRUE, ignore_prefs = TRUE)
+	if(!GLOB.woof_current) //all our previous brothers have gone to valhallah
+		GLOB.woof_maximum = 0 //Let's start duplicating again
+	GLOB.woof_current++
+
+/mob/living/simple_mob/vore/woof/hostile/aweful/Destroy()
+	GLOB.woof_current--
+	. = ..()
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
 	. = ..()
-	if(killswitch)
+	var/thismany = rand(0,3)
+	if(!thismany || killswitch || GLOB.woof_maximum >= 20)
 		visible_message(span_notice("\The [src] evaporates into nothing..."))
 		qdel(src)
 		return
-	var/thismany = rand(0,3)
 	var/list/possiblewoofs = list(/mob/living/simple_mob/vore/woof/hostile/aweful/melee, /mob/living/simple_mob/vore/woof/hostile/aweful/ranged)
-	if(thismany == 0)
-		visible_message(span_notice("\The [src] evaporates into nothing..."))
-	if(thismany >= 1)
-		var/thiswoof = pick(possiblewoofs)
-		new thiswoof(loc, src)
-		visible_message(span_warning("Another [src] appears!"))
-	if(thismany >= 2)
-		var/thiswoof = pick(possiblewoofs)
-		new thiswoof(loc, src)
-		visible_message(span_warning("Another [src] appears!"))
-	if(thismany >= 3)
-		var/thiswoof = pick(possiblewoofs)
-		new thiswoof(loc, src)
+	for(var/i = 1 to thismany)
+		var/mob/living/simple_mob/vore/woof/hostile/aweful/woof = pick(possiblewoofs)
+		new woof(loc, src)
+		GLOB.woof_maximum++
 		visible_message(span_warning("Another [src] appears!"))
 	qdel(src)
 

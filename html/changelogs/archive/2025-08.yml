@@ -49,3 +49,525 @@
       The original distillation reactions can be done under normal atmosphere.
   - bugfix: add missing fluid pump research
   - code_imp: Extended unit-test for reagents to respect new distillation
+2025-08-04:
+  Kashargul:
+  - qol: moves the vore examine messages into a dropdown, hiding them by default
+  SatinIsle:
+  - bugfix: Fixed Dark Furred Zorren not being able to use sprite accessories.
+  - rscadd: Added a new plane for event use, with the intent of making it so that
+      only specific players can see things on it.
+  - rscadd: Added two new buttons to player effects, one to make something move to  the
+      new invisible plane and another to allow a player to see things on that plane.
+  - rscadd: Added a new mob that takes advantage of this new plane to be only visible
+      to one player at a time.
+  Tost:
+  - bugfix: Bloodsucker hanners now get the right hunger alerts.
+2025-08-05:
+  Diana:
+  - bugfix: you will no longer have to beat the snot out of a limb you want to fix
+      internal bleeding on with bicard or myelamine
+  - bugfix: Changelings will no longer suffer organ rejection upon transformation.
+  - rscadd: Changelings now have a new test to confirm if they are a changeling.
+  SaintLuther:
+  - rscadd: a circuit for honey_extractors in the Autolathe
+  - rscadd: A construction path for the Honey_extractor
+  - rscadd: A texture for when you open the panel.
+  - rscadd: A floral Disk able to be printed with the new way protalathes works.
+  - code_imp: made the honey_extractor anchorable.
+  - bugfix: "ensured the honey_extractor can\u2019t run when the maintenance panel\
+      \ is open."
+  - bugfix: "honey_extractor can now lose power and can\u2019t run when so."
+  - qol: 'honey_extractor will now use power 5*200watts for processing 1 honey_frame.
+
+      (can be easily changed if needed)'
+  - rscadd: appropriorate messages for the new states.
+  - rscadd: appropriorate icons and overlays for the new states.
+  SatinIsle:
+  - rscadd: Added a preset for glamour doors, tables and racks, for mapping purposes.
+  ShadowLarkens:
+  - bugfix: Infinite material glitch with autolathes
+  - bugfix: Everything using the old ExosuitFabricator's Material display, now uses
+      MaterialAccessBar
+  - rscdel: Research node announcements silenced.
+  - bugfix: Guaranteed-correct icons for every material, instead of best-guess.
+  - balance: Cells now spawn empty
+  - rscadd: Sheetsnatchers now dump happily into material storages
+  TheCaramelion:
+  - bugfix: fixed Tissye Hydration not working
+  Will:
+  - bugfix: Phased shadekin and flying mobs no longer interact with water turfs
+  - bugfix: Shadekin no longer calculate turf slowdown while phased
+  - bugfix: Admins removing the wizard antag role from someone now also removes their
+      spells
+  - bugfix: AI holograms will rotate to face toward where you click like most mobs
+      do.
+  - bugfix: Sheets used in bags will no longer leave a lingering icon locked up on
+      the hud
+  - bugfix: Replacing a fluidpumps powercell now actually works
+  - bugfix: Mobs dragged onto a operating table will be released from pulling, as
+      if they were buckled.
+  - rscadd: Cows can be milked with reagent hoses
+  - rscadd: Toilets can be used as reagent hose drains like sinks
+  - bugfix: Frost oil, plasticide and concrete no longer causes runtimes by producing
+      stacks of sheets with illegal quantities
+  - rscadd: If not hidden inside a container, tape recorders will make a click sound
+      when they stop recording
+  - rscadd: Deep drill boreholes can be fracked with fluid pumps
+  - rscadd: More sheet types can be grinded
+  - rscadd: Refinery grinder can accept conveyor fed input
+  - rscadd: grinding rods, logs, and hulls
+  - bugfix: Reagent scanner can get the reagents inside refinery machines even if
+      they are sealed
+  - bugfix: Mobs that glow will hide their light while ventcrawling
+2025-08-06:
+  Jordhin Xenshire:
+  - rscadd: Added Industrial Hardsuit for printing at the Exo-Suit Lathe
+  - rscadd: ' Added EVA and Advanced EVA Hardsuit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added Rescue Hardsuit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added Hazard Suit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added AMI Hardsuit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added Null Hardsuit for printing at the Exo-Suit Lathe'
+  - rscadd: ' Added Thermal, Graviton Visors, Multi-Visor for printing at the Exo-Suit
+      Lathe.'
+  - rscadd: P.A.T. (Point Access Tunneling)  for printing at the Exo-Suit Lathe.
+  - rscadd: ' Added F.P.S. (Faraday Protective Shielding) hardsuit, and Advanced F.P.S.
+      which protects from electrical hazards,  but not EMPs. You will be completely
+      insulated from Teslas, Electrical wiring, lightning strikes, and the wrath of
+      zeus.'
+  - rscadd: Added Advanced Atmospheric Protection Suite. A more energy efficient version
+      of A.P.S.
+  - qol: Tweaked AMI bomb resistance from 80 to 100. Like the EOD Suit, it will not
+      keep you alive. But your body won't be gibbed.
+  - balance: Tier-1 RIG suit research now has increased cost and a discount experiment
+  - bugfix: Protean RIG Suit pressure resistance not correctly copying from assimilated
+      rig.
+  - bugfix: Protean Rig Suit's thermal resistance dropping to 375K instead of the
+      expected 5000K when removing an assimilated rig.
+  Will:
+  - bugfix: TODO - FIX ME, finally fixed. Cosmetic menus properly hides illegal cosmetics.
+  - bugfix: Mapper anchored flashers start active when the round begins
+  - rscadd: Ports an emote interaction
+  - code_imp: Scalpel uses a clamp_chance var instead of typechecking during surgery
+  - rscadd: Fence gates can be lockpicked
+  - bugfix: Borgs can open fence gates
+  - bugfix: smoke effects no longer choke you if you have the no breathing mutation
+  Willburd:
+  - bugfix: Refinery runtime when checking empty conveyors
+  - bugfix: Reagent hoses can only connect to one connector at a time
+  zeskorion:
+  - bugfix: Pain simulation now simulates traumatic shock
+2025-08-07:
+  Diana:
+  - code_imp: Grippers should be less buggy. Please keep reporting any gripper bugs.
+  - admin: R_DEBUG is now required to apply/remove components/elements.
+  - code_imp: component/shadekin now fails when applied to silicons
+  Will:
+  - bugfix: Borgs don't jitter
+2025-08-08:
+  Cameron-The-Raven:
+  - spellcheck: gives the coolant tank cargo package the proper name
+  - bugfix: Sensor pref is now taken into account when deciding what level your suit
+      sensors will be on.
+  Diana:
+  - bugfix: Making the PAT in R&D will no longer make a rescue pharmacy
+  - bugfix: Wolves will no longer crash the server
+  - bugfix: Bloopers will respect their appropriate say/whisper prefs
+  Kashargul:
+  - code_imp: moves FBP strings to defines
+  - bugfix: some species ages which had been set too low according to their lore
+  KillianKirilenko:
+  - qol: you can now order crates of alien wood from cargo
+  SatinIsle:
+  - rscadd: Added a new Gold Star Printer to HoP offices. This printer prints gold
+      stars with a short title of "Gold Star for X" and a custom description for more
+      info. These gold stars can be used as accessories on underclothing. They can
+      also be stuck to ANY object that doesn't have a custom attack interaction.
+  ShadowLarkens:
+  - rscadd: A new passive animal, Mothroaches! They're a cross between a cockroach
+      and a mothperson.
+  - bugfix: runtime in prosfab
+  - sound: Character talk sounds now repeat over the course of longer messages, up
+      to a point.
+  StrangeWeirdKitten:
+  - rscadd: 'New borg model: Myomer'
+  Will:
+  - rscadd: heater and cooler atmo machines now have hose connectors
+  - rscadd: heater and cooler atmo machines can now use coolants to increase their
+      performance.
+  - rscadd: Coolant tanks can now be ordered from Cargo
+  - code_imp: reagents now have a cooling factor for machine efficiency calculations
+  - qol: Heaters can have micro-lasers installed in them, allowing them to heat faster.
+  - rscadd: Changeling blood test
+  - rscadd: Ambulant blood genetrait
+  moonshineTheleocat:
+  - bugfix: Fixed the ability to print the Advanced Atmospheric Protection Suite in
+      robotics.
+2025-08-09:
+  Cameron-The-Raven:
+  - bugfix: Dullataur chat bubble will appear in the proper place
+  - image: Dullataur .dmi 32x64->64x64
+  Kashargul:
+  - bugfix: several bad encodings
+  SatinIsle:
+  - qol: Added a preference for "Multiple Say Sounds", which is enabled by default.
+      If you have it enabled it plays multiple say sounds for long sentences as normal.
+      If disabled it will play only one say sound, if say sounds are enabled. It does
+      mean there's an extra bloop at the beginning now, but it doesn't change the
+      effect much in my testing.
+  Will:
+  - rscadd: Pollen allergy
+  - rscadd: Salt allergy
+  - rscadd: coughing allergic reaction
+  - rscadd: sneezing allergic reaction
+  - rscadd: gibbing allergic  reaction (disabled on virgo)
+  - bugfix: Mushroom allergy reacts to more foods
+  - code_imp: allergic reaction handling code moved to an element
+  - code_imp: added missing SIGNAL_HANDLER macros to other elements
+  - code_imp: split say() into a second nonblocking half, direct_say()
+  - code_imp: telecomms uses timers instead of sleep for transmission delay
+2025-08-10:
+  Diana:
+  - bugfix: Whisper will now be the correct volume
+  ItsSelis:
+  - refactor: Ticker subsystem heavily updated
+  - refactor: Master Controller heavily updated
+  - refactor: Unit testing system reworked
+  - rscadd: Master Controller overview & subsystem UI for maintainers to debug with
+  Kashargul:
+  - bugfix: tail layering pref breaking the entire character
+  - bugfix: several issues with accidental pref saves
+  TankTheBirb:
+  - spellcheck: fain -> gain in the belly tooltips for nutrition
+  Tenryumi:
+  - maptweak: 'Added privacy features to the redgate train: Shutters, windows tints,
+      and privacy switches.'
+  Will:
+  - rscadd: Offices chairs now spin when you spin
+  - rscadd: Petcube boxes with dehydrated backup department pets
+  Willburd:
+  - rscadd: You can now make decaf tea using decaffeinated tea powder and water
+  - bugfix: missing fragmentation grenade iconstate
+2025-08-11:
+  Diana:
+  - bugfix: Eating a prey with Drippy will not longer make you drip them.
+  - bugfix: white chocolate will not annihilate you if you're allergic to chocolate
+  Will:
+  - bugfix: Hippo death sprites fixed
+  - bugfix: Hippos no longer pretend to be squids when eating you
+  - rscadd: Pai death alarm software
+2025-08-12:
+  Cameron-The-Raven:
+  - balance: Remove 100% invisi
+  Diana:
+  - bugfix: Agoraphobia no longer makes you hallucinate and lose your mind while in
+      a tummy
+  - rscadd: Slimes can be eaten if they are obedient to the point that you can command
+      them and you discipline them OR you make them harmless with a docility potion
+  Kashargul:
+  - qol: sorts cyborg modules again
+  KillianKirilenko:
+  - rscadd: Added a range of AR mantles, essentially reskinned AR glasses
+  - bugfix: fixed the description for tracking implants in loadouts
+  - bugfix: fixed being able to "shade" the AR-VZR which just made it disappear instead
+  SatinIsle:
+  - admin: Added admin logging to ghosts for when they make their sprite invisible,
+      so that they can be tracked if needs be.
+  - balance: Tweaked some glamour mobs to make better use of them in dangerous environments,
+      and make them not perma-locked by magnetic weapons. Includes a stronger version
+      of the ddraig, more suited for tough boss encounters.
+  - qol: Added a vore death privacy pref, which prevents "X has died at Y [jump]"
+      from popping up to ghosts when you die in a belly.
+  TankTheBirb:
+  - rscadd: Added circuit debugger and circuit wirer to the integrated circuit printer
+      supply pack
+  - rscadd: removed one of the two circuit printers in the integrated circuit printer
+      supply pack to keep the point cost reasonable
+  Will:
+  - rscadd: Adds the ability to test ringtones in the character editor loadout screen
+  - rscadd: Communicators get more ringtones
+  - rscadd: Adds some downstream ringtones
+  - code_imp: Moves ringtones to a shared global list
+  - bugfix: Typo in communicator loadout
+  - rscadd: Deconstructing ladders
+  - bugfix: Illegal initialize call from ladder assemblies.
+2025-08-13:
+  Aroliacue:
+  - bugfix: Cell-Loaded Revolver's 'Scatterstun' mode now has projectile icons.
+  - spellcheck: Fixed some errors in the Revolver's description.
+  Diana:
+  - qol: Makes placing ti
+  - code_imp: Fixes some backend logic for hitting floors
+2025-08-14:
+  Cameron-The-Raven:
+  - bugfix: Slimes are devourable again
+  - bugfix: Loyalty potions make slimes able to be spont vored.
+  Diana:
+  - qol: You can swap between character slots mid-round once more.
+  - qol: Tail layering is now selectable in Character Setup
+  - bugfix: Fixes pref saving issue where it'd save preferences to the slot you had
+      selected instead of the slot you spawned in as
+  - bugfix: Tail Layering adjustments in-game will no longer cause character data
+      to be lost.
+  - bugfix: Updating someone's records in game has been hotfixed. Now informs the
+      user to swap to their played slot to prevent savefile corruption.
+  - bugfix: Shadekin Control Panel will inform you when your selected savefile does
+      not match your current savefile and inform you to change it.
+  Fracshun:
+  - rscadd: Absorbed prey can now be renamed
+  Kashargul:
+  - rscadd: rig usage for crew kin
+  Tenryumi:
+  - rscadd: Added a new mining points reward - a deluxe cabin shelter capsule! Complete
+      with a kitchen and privacy-enabled dorms and bathrooms for private scenes! Buy
+      today for 10,000 mining points!
+2025-08-15:
+  ItsSelis:
+  - rscadd: Added GBP system
+  - rscadd: Added CODEOWNERS workflow in order to add reviews from codeowners that
+      do not have write permissions on the repository (This is not a feature in GitHub
+      since 2019)
+  Kashargul:
+  - qol: chat examines are now also spoilered
+  - code_imp: more grep checks, tgui dependency up
+  - code_imp: tgui style cleanup
+2025-08-16:
+  Diana:
+  - bugfix: Instant vore events (Tongue vore, wing vore, dizzy vore, chair vore, etc)
+      will now only send their completion message, not an attempt message as well.
+  - refactor: Refactors vore to allow for instant vore types properly.
+  - bugfix: Grippers will no longer delete things when your inventory is full
+  - code_imp: Gripper code is more readable.
+  - bugfix: C-shift clowns will properly delete their component on death.
+  - bugfix: Walls will no longer runtime when spam-clicked with tools.
+  Guti:
+  - bugfix: Fixes hands becoming white after washed when blodied
+  Kash:
+  - code_imp: Chat spritesheet now instantly loads, preventing a double generation
+      on slower CPUs
+  Kashargul:
+  - code_imp: cleans up tgui again
+  - qol: adds spellcheck pref
+  Will:
+  - rscadd: Refinery mixing machine for use with refinery pumps
+  - bugfix: Refinery machines use the sending machine's transfer value and not the
+      receiving machine
+  - refactor: Explosions moved to a subsystem to substantially reduce lag of massive
+      explosions.
+2025-08-17:
+  Cameron-The-Raven:
+  - qol: Cargo can make batteries
+  - rscadd: Hyper device cell can be researched and created
+  - rscadd: Adds the newly added cells to the techweb
+  - rscadd: Makes mail scanner, atmos/medical hologisgns, confetti cannon, and floor
+      painter able to be researched
+  - rscadd: Makes the teleporter able to be accessed via the techweb
+  - image: Adds more battery icons for the newer batteries
+  Diana:
+  - image: Battery icons able to be swapped to battery variants
+  - balance: Hyper device cell now has 2400 charge, up from 600
+  - balance: Void cell and recharging alien device cell adjusted.
+  - balance: Yellow slime extract now  has 20000 charge. Self charges 500 instead
+      of 25 now.
+  Drathek:
+  - bugfix: Fixes a few issues where some unit tests would never qdel what they new'd
+      because they called `continue`
+  - code_imp: Increases usage of `cached_icon_states`
+  - code_imp: Adds css validation to spritesheets unit testing (must comply with https://www.w3.org/TR/CSS2/syndata.html#value-def-identifier
+      )
+  - code_imp: Cleans up various single var usage
+  - refactor: Refactors `sprite_accessories_shall_be_unique` to use initial values
+      instead of newing the datum
+  ItsSelis:
+  - rscdel: removed some of the old (non-functional) irc code
+  - code_imp: removed some unticked DM files
+  KillianKirilenko:
+  - refactor: cleaned up icon files for backpacks, bags, and belts - there shouldn't
+      be any player-facing changes, but please report any invisible or bugged clothes
+      in appropriate channels
+  - refactor: cleaned up icon files for gloves - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels
+  - refactor: cleaned up icon files for boots - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels
+  - refactor: cleaned up icon files for accessories - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels
+  ShadowLarkens:
+  - rscadd: Vending machines now have a pretty grid view mode as their default. You
+      can switch back to rows if necessary.
+  Will:
+  - bugfix: Multiple buckling related fixes
+  - bugfix: Wizard forcewall is now visible
+  - bugfix: Mime forcewall is now invisible
+  - bugfix: Tiny animals with hands can no longer pick themselves up, causing the
+      universe to collapse.
+  - bugfix: Refinery mixer wouldn't show its angle correctly when rotating counter
+      clockwise in the northwest direction.
+  - bugfix: Refinery mixer status light properly shows if it is in a locked state
+  - rscadd: Telekinetic gloves
+2025-08-18:
+  Diana:
+  - image: Adds a bear to stationobjs.dmi
+  - image: Consolidates a lot of _vr files.
+  - image: Deletes a lot of duplicate icon states.
+  - code_imp: Makes egg code better, just swaps to _open instead of changing the icon.
+  - maptweak: Removes hardcoded icon varset from redgate map
+  - bugfix: Weavers can walk through weaver walls
+  Kashargul:
+  - rscadd: adds a bunch of missing states in a 1:1 compare with downstream
+  KillianKirilenko:
+  - refactor: cleaned up icon files for headsets and ear-things - there shouldn't
+      be any player-facing changes, but please report any invisible or bugged clothes
+      in appropriate channels
+2025-08-19:
+  Diana:
+  - qol: Borgs can now pick up reagent hoses
+  - spellcheck: Removed the SSsun mentions from solar panels.
+  - bugfix: we no longer have the curent grid
+  - bugfix: Step mechanics will properly take prefs into account
+  SatinIsle:
+  - rscdel: Disabled the telekinesis node in techwebs for the time being.
+  Will:
+  - bugfix: Crates will no longer make flashlight beams vanish when closed over them
+  - bugfix: Crates closed on flashlights and other directional light sources no longer
+      leave the light floating in place where it was closed
+  Will, Diana:
+  - qol: Clang event will now increase security level to blue for the duration of
+      the CLANG event, getting people's attention even if alt-tabbed.
+  - code_imp: Clang event is now better on the backend
+2025-08-20:
+  Cameron-The-Raven:
+  - bugfix: Fixes doppler sprite missing
+  Diana:
+  - qol: Explorer belt can now hold binoculars
+  - qol: Chembags can be worn on your belt slot
+  - qol: Chembags can hold autoinjectors
+  - qol: Toolbelts can now hold holofans, RCDs, and RPDs
+  - code_imp: Suit icons are now smart and will automatically fallback to the original
+      icon if a species does not possess the icon state.
+  - refactor: Makes all uses of X in cached_icon_states(icon) into the much faster
+      RUST based icon_exists() proc
+  - qol: Makes it so jetpacks function inside voidsuits/suit storage
+  Kashargul:
+  - bugfix: vending machines allowing to purchase non available items
+  SatinIsle:
+  - bugfix: Fixes lleill sparking and losing energy when choosing no option when trying
+      teleport to a ring.
+  TeleTubby2:
+  - spellcheck: cannisters are now cantisters and have been spellcorrected to be the
+      proper word
+  Willburd:
+  - bugfix: Telekinesis range exploits
+  - bugfix: Telekinesis and remote viewing in any form no longer work together
+  - bugfix: Seismic charges and plastique explosive blast distance fixed for new explosion
+      subsystem
+2025-08-21:
+  Cameron-The-Raven:
+  - qol: Suit cyclers can be used to swap to metamorphic mode, automatically becoming
+      the proper worn state
+  - qol: Clothing can be equipped and it will fallback to the default worn state if
+      your species does not have species specific sprites for it.
+  - code_imp: swapped a few hardcoded "thing" with its appropriate define when used
+  - rscadd: Consolidates all the species mob.dmi sprites together
+  Kashargul:
+  - bugfix: shift trivia display
+  - bugfix: game end countdown
+  - maptweak: rids of legacy vars
+  - bugfix: atmos consoles not working
+  SatinIsle:
+  - bugfix: Prevents reflexive biting from biting through headwear.
+  Will:
+  - bugfix: missing icons fixed for church pews, metal benches, corporate sofas, and
+      rounded chairs
+  - bugfix: Fluidpump pumping speed now scales off of the their manipulator and not
+      their motor, as motors have no upgrades.
+  - rscadd: Deep mining scanner will show some or all fluid pump fracking results
+      depending on if advanced type or not
+2025-08-22:
+  Diana:
+  - bugfix: Organ printer now shows left arms
+  - bugfix: Unattaching your left arm will now show a proper sprite
+  - bugfix: 'Skrell stomachs no longer require you to download Counter Strike: Source'
+  - qol: Floorlights can be picked up and placed in backpacks when first created,
+      allowing for easier transport
+  - refactor: Inventory code no longer uses hasvar
+  - code_imp: Moves a LOT of vars up to /obj/item
+  - image: Codersprite for floorlight item!
+  - maptweak: Got rid of all illegal icon = '' edits in the maps
+  - image: Smashed some icon files together
+  - rscadd: When doing an interaction, you now show a small cog above your head to
+      other players!
+  - refactor: Do after code is now revamped.
+  - qol: You can reinforce multiple walls at once (again!)
+  - qol: You can now work on multiple airlocks at once!
+  - bugfix: You can no longer spam-click objects
+  - image: Adds flashing variants of the progress bar when you interrupt them!
+  - bugfix: Loyalty potions now allow slime spawn to be eaten easily
+  - bugfix: Loyalty potion now immediately triggers a slime's mood changing, making
+      them able to be eaten.
+  Kashargul:
+  - bugfix: chat highlight settings can be cleared
+  Tenryumi:
+  - rscadd: Made the luxury cabin capsules more feature-complete with fully privacy-enabled
+      dorms, as well as generally polishing and moving around a few things in them.
+2025-08-23:
+  Diana:
+  - bugfix: Fixes a bug to allow species to wear clothing if vox can also wear it.
+  Kashargul:
+  - code_imp: move to native toFixed in tgui
+  Will:
+  - bugfix: Explosion powernet rebuild lag reduced
+2025-08-24:
+  Diana:
+  - bugfix: Loyalty potions work again. Whoops.
+2025-08-26:
+  Diana & shy.bandit:
+  - rscadd: Adds Rabbot borg sprites!
+  - image: Adds new rabbot borg sprites, made by shy.bandit
+  Guti:
+  - bugfix: Fixed neutered symptoms un-neutering when faltering a disease
+  - bugfix: Fixed Pituitary Disruption blood vomiting taking too long
+  - balance: Rebalanced Hyperactivity symptom
+  - spellcheck: Fixed spelling mistakes in Hyperactivty and Shivering symptoms
+2025-08-27:
+  Diana:
+  - bugfix: Gasmasks now show the proper sprites
+  - rscadd: Clear gasmasks no longer have no sprite
+  Guti:
+  - bugfix: Fixed an exploit that allowed players to teleport to Cryo from anywhere
+  Kashargul:
+  - bugfix: name inputs failing in some cases
+  - bugfix: phoron spider dev range
+  KillianKirilenko:
+  - refactor: cleaned up icon files for eyewear and masks - there shouldn't be any
+      player-facing changes, but please report any invisible or bugged clothes in
+      appropriate channels
+  - bugfix: AR mantles can now access special displays as-intended, they no longer
+      block eating/drinking, and also slightly adjusted the E/W facing sprites for
+      mantles on vulp bases
+  - refactor: cleaned up icon files for undersuits - there shouldn't be any player-facing
+      changes, but please report any invisible or bugged clothes in appropriate channels.
+      also cleaned up some text/file formatting.
+  - qol: non-altevians can now wear altevian uniforms, if you want to. there was no
+      reason for these to be restricted.
+  Will:
+  - rscadd: Frames now accept parts stored in boxes or bags and load them all at once
+  - rscadd: RPED can now install parts in a frame, bluespace RPED can do so at range
+  - rscadd: Engineering borgs given an expanded parts pouch
+  - qol: Engineering parts pouch can now pick up all stock parts on a turf, and drop
+      them all at once, can be used to mass install parts in frames like any other
+      bag
+2025-08-28:
+  Guti:
+  - bugfix: Fixed body scanner consoles lights staying on forever
+  Jordhin Xenshire:
+  - rscadd: 'Volumetric Pump: This fast pump cares only about moving gasses quickly
+      from one side to the other without slowing - or care for accuracy. It has a
+      pressure limit lower than a standard pump, however this can be bipassed with
+      a Multitool. What consequences could there be?'
+  - rscadd: The ability to build Gas Sensors from the Rapid Pipe Dispenser.
+  - rscadd: The ability to link Gas Sensors, Meters, Injectors, Unary Vents to an
+      Atmos Air Controller. This enables you to build custom tanks. Functionality
+      is somewhat limited for now. This can be done with a multitool.
+  - rscadd: Ability to print Tank Control computer circuit board.
+  SatinIsle:
+  - qol: Made it so that you can Alt click reagent containers to set transfer volume.
+  - refactor: Changed transfer amounts to be set by number input rather than lists.

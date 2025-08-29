@@ -12,7 +12,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { useSettings } from '../settings';
 import { selectAudio } from './selectors';
@@ -106,7 +105,7 @@ export const NowPlayingWidget = (props) => {
           value={settings.adminMusicVolume}
           step={0.0025}
           stepPixelSize={1}
-          format={(value) => `${toFixed(value * 100)}%`}
+          format={(value) => `${(value * 100).toFixed()}%`}
           onChange={(e, value) =>
             settings.update({
               adminMusicVolume: value,

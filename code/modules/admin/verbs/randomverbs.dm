@@ -142,7 +142,7 @@ ADMIN_VERB(drop_everything, R_ADMIN, "Drop Everything", ADMIN_VERB_NO_DESCRIPTIO
 	if(!M)
 		return
 
-	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to your target:"))
+	var/msg = tgui_input_text(usr, "Message:", text("Enter the text you wish to appear to your target:"), encode = FALSE)
 	if(msg && !(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 
@@ -641,7 +641,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", ""))
+	var/input = tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN)
 	if(!input)
 		return
 	for(var/mob/living/silicon/ai/M in GLOB.mob_list)
@@ -693,8 +693,8 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(!check_rights_for(src, R_HOLDER))
 		return
 
-	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, prevent_enter = TRUE), extra = 0)
-	var/customname = sanitizeSafe(tgui_input_text(usr, "Pick a title for the report.", "Title"))
+	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
+	var/customname = sanitizeSafe(tgui_input_text(usr, "Pick a title for the report.", "Title", encode = FALSE))
 	if(!input)
 		return
 	if(!customname)
@@ -867,7 +867,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Admin.Events"
 	set name = "Call Shuttle"
 
-	if ((!( ticker ) || !emergency_shuttle.location()))
+	if ((!( SSticker ) || !emergency_shuttle.location()))
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -876,7 +876,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	if(confirm != "Yes") return
 
 	var/choice
-	if(ticker.mode.auto_recall_shuttle)
+	if(SSticker.mode.auto_recall_shuttle)
 		choice = tgui_input_list(usr, "The shuttle will just return if you call it. Call anyway?", "Shuttle Call", list("Confirm", "Cancel"))
 		if(choice == "Confirm")
 			emergency_shuttle.auto_recall = 1	//enable auto-recall
@@ -903,7 +903,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	if(tgui_alert(src, "You sure?", "Confirm", list("Yes", "No")) != "Yes") return
 
-	if(!ticker || !emergency_shuttle.can_recall())
+	if(!SSticker || !emergency_shuttle.can_recall())
 		return
 
 	emergency_shuttle.recall()
@@ -917,7 +917,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 	set category = "Admin.Events"
 	set name = "Toggle Deny Shuttle"
 
-	if (!ticker)
+	if (!SSticker)
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -944,12 +944,12 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	if(!check_rights(R_FUN))	return
 
-	if (ticker && ticker.mode)
+	if (SSticker && SSticker.mode)
 		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
 		return
 
-	if(ticker.random_players)
-		ticker.random_players = 0
+	if(CONFIG_GET(flag/force_random_names))
+		CONFIG_SET(flag/force_random_names, FALSE)
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
 		to_chat(usr, "Disabled.")
 		return
@@ -967,7 +967,7 @@ ADMIN_VERB(respawn_character, (R_ADMIN|R_REJUVINATE), "Spawn Character", "(Re)Sp
 
 	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
 
-	ticker.random_players = 1
+	CONFIG_SET(flag/force_random_names, TRUE)
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 

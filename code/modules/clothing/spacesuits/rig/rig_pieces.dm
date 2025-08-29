@@ -8,13 +8,22 @@
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	light_range = 4
 	sprite_sheets = list(
-		SPECIES_TAJARAN = 'icons/inventory/head/mob_tajaran.dmi',
-		SPECIES_SKRELL = 'icons/inventory/head/mob_skrell.dmi',
-		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi',
-		SPECIES_VOX = 'icons/inventory/head/mob_vox.dmi',
-		SPECIES_TESHARI = 'icons/inventory/head/mob_teshari.dmi'
+		SPECIES_TAJARAN 		= 'icons/inventory/head/mob_tajaran.dmi',
+		SPECIES_SKRELL 			= 'icons/inventory/head/mob_skrell.dmi',
+		SPECIES_UNATHI 			= 'icons/inventory/head/mob_unathi.dmi',
+		SPECIES_XENOHYBRID 		= 'icons/inventory/head/mob_unathi.dmi',
+		SPECIES_AKULA 			= 'icons/inventory/head/mob_vr_akula.dmi',
+		SPECIES_SERGAL			= 'icons/inventory/head/mob_vr_sergal.dmi',
+		SPECIES_NEVREAN			= 'icons/inventory/head/mob_vr_sergal.dmi',
+		SPECIES_VULPKANIN 		= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
+		SPECIES_ZORREN_HIGH 	= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
+		SPECIES_FENNEC 			= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
+		SPECIES_PROMETHEAN		= 'icons/inventory/head/mob_skrell.dmi',
+		SPECIES_VOX 			= 'icons/inventory/head/mob_vox.dmi',
+		SPECIES_TESHARI 		= 'icons/inventory/head/mob_teshari.dmi',
+		SPECIES_ALTEVIAN 		= 'icons/inventory/head/mob_vr_altevian.dmi'
 		)
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_PROMETHEAN, SPECIES_VOX, SPECIES_TESHARI, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_ALRAUNE, SPECIES_FENNEC, SPECIES_XENOHYBRID, SPECIES_ALTEVIAN, SPECIES_SHADEKIN)
 	max_pressure_protection = null
 	min_pressure_protection = null
 
@@ -23,11 +32,10 @@
 	icon_state = "security_rig"
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)
-
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_PROMETHEAN, SPECIES_VOX, SPECIES_TESHARI, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_ALRAUNE, SPECIES_FENNEC, SPECIES_XENOHYBRID, SPECIES_ALTEVIAN, SPECIES_SHADEKIN)
 /obj/item/clothing/shoes/magboots/rig
 	name = "boots"
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_PROMETHEAN, SPECIES_VOX, SPECIES_TESHARI, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_ALRAUNE, SPECIES_FENNEC, SPECIES_XENOHYBRID, SPECIES_ALTEVIAN, SPECIES_SHADEKIN)
 	icon_base = null
 
 /obj/item/clothing/suit/space/rig
@@ -44,13 +52,23 @@
 	resilience = 0.2
 	can_breach = 1
 	sprite_sheets = list(
-		SPECIES_TAJARAN = 'icons/inventory/suit/mob_tajaran.dmi',
-		SPECIES_UNATHI = 'icons/inventory/suit/mob_unathi.dmi',
-		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
-		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi'
+		SPECIES_TAJARAN 		= 'icons/inventory/suit/mob_tajaran.dmi',
+		SPECIES_SKRELL 			= 'icons/inventory/suit/mob_skrell.dmi',
+		SPECIES_UNATHI 			= 'icons/inventory/suit/mob_unathi.dmi',
+		SPECIES_XENOHYBRID 		= 'icons/inventory/suit/mob_unathi.dmi',
+		SPECIES_AKULA 			= 'icons/inventory/suit/mob_akula.dmi',
+		SPECIES_SERGAL			= 'icons/inventory/suit/mob_sergal.dmi',
+		SPECIES_NEVREAN			= 'icons/inventory/suit/mob_sergal.dmi',
+		SPECIES_VULPKANIN		= 'icons/inventory/suit/mob_vulpkanin.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/mob_vulpkanin.dmi',
+		SPECIES_FENNEC			= 'icons/inventory/suit/mob_vulpkanin.dmi',
+		SPECIES_PROMETHEAN		= 'icons/inventory/suit/mob_skrell.dmi',
+		SPECIES_VOX 			= 'icons/inventory/suit/mob_vox.dmi',
+		SPECIES_TESHARI 		= 'icons/inventory/suit/mob_teshari.dmi',
+		SPECIES_ALTEVIAN 		= 'icons/inventory/suit/mob_altevian.dmi'
 		)
 	supporting_limbs = list()
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_PROMETHEAN, SPECIES_VOX, SPECIES_TESHARI, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_ALRAUNE, SPECIES_FENNEC, SPECIES_XENOHYBRID, SPECIES_ALTEVIAN, SPECIES_SHADEKIN)
 	var/obj/item/material/knife/tacknife
 	max_pressure_protection = null
 	min_pressure_protection = null
