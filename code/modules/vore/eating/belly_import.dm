@@ -517,6 +517,10 @@
 			var/new_digest_clone = belly_data["digest_clone"]
 			new_belly.digest_clone = CLAMP(new_digest_clone, 0, new_belly.get_unused_digestion_damage())
 
+		if(isnum(belly_data["bellytemperature"]))
+			var/new_bellytemperature = belly_data["bellytemperature"]
+			new_belly.bellytemperature = CLAMP(new_bellytemperature, T0C, 473.15)
+
 		if(isnum(belly_data["shrink_grow_size"]))
 			var/new_shrink_grow_size = belly_data["shrink_grow_size"]
 			new_belly.shrink_grow_size = CLAMP(new_shrink_grow_size, 0.25, 2)
@@ -568,6 +572,13 @@
 				new_belly.recycling = FALSE
 			if(new_recycling == 1)
 				new_belly.recycling = TRUE
+
+		if(isnum(belly_data["temperature_damage"]))
+			var/new_temp_damage = belly_data["temperature_damage"]
+			if(new_temp_damage == 0)
+				new_belly.temperature_damage = FALSE
+			if(new_temp_damage == 1)
+				new_belly.temperature_damage = TRUE
 
 		if(isnum(belly_data["storing_nutrition"]))
 			var/new_storing_nutrition = belly_data["storing_nutrition"]
