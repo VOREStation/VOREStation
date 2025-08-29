@@ -815,16 +815,15 @@ About the new airlock wires panel:
 // The preceding comment was borrowed from the grille's shock script
 /obj/machinery/door/airlock/shock(mob/user, prb)
 	if(!arePowerSystemsOn())
-		return 0
+		return FALSE
 	if(hasShocked)
-		return 0	//Already shocked someone recently?
+		return FALSE	//Already shocked someone recently?
 	if(..())
 		hasShocked = 1
-		sleep(10)
-		hasShocked = 0
-		return 1
+		VARSET_IN(src, hasShocked, FALSE, 1 SECOND)
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 
 /obj/machinery/door/airlock/update_icon()
