@@ -187,9 +187,7 @@
 	if(enabled)
 		if(!attacked && !emagged)
 			attacked = TRUE
-			spawn()
-				sleep(60)
-				attacked = FALSE
+			VARSET_IN(src, attacked, FALSE, 6 SECONDS)
 
 	take_damage(damage)
 

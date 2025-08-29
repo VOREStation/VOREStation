@@ -115,43 +115,20 @@
 		var/list/suckables = list()
 		if(vac_power >= 1)
 			for(var/obj/effect/decal/cleanable/C in target)
-				suckables |= C
+				suckables += C
 		if(vac_power >= 2)
 			for(var/obj/item/I in target)
-				if(I.anchored || I.w_class > 1)
+				if(I.anchored || I.w_class > (vac_power - 1) && vac_power < 5 || I.w_class > 5)
 					continue
-				else
-					suckables |= I
-		if(vac_power >= 3)
-			for(var/obj/item/I in target)
-				if(I.anchored || I.w_class > 2)
-					continue
-				else
-					suckables |= I
+				suckables += I
 			for(var/mob/living/L in target)
 				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
 					continue
-				if(L.size_multiplier < 0.5)
-					suckables |= L
+				if(L.size_multiplier < 0.5 || vac_power >= 6)
+					suckables += L
+					continue
 				if(istype(L,/mob/living/simple_mob/animal/passive/mouse) || istype(L,/mob/living/simple_mob/animal/passive/lizard) || istype(L,/mob/living/simple_mob/animal/passive/cockroach))
-					suckables |= L
-		if(vac_power >= 4)
-			for(var/obj/item/I in target)
-				if(I.anchored || I.w_class > 3)
-					continue
-				else
-					suckables |= I
-		if(vac_power >= 5)
-			for(var/obj/item/I in target)
-				if(I.anchored)
-					continue
-				else
-					suckables |= I
-		if(vac_power >= 6)
-			for(var/mob/living/L in target)
-				if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
-					continue
-				suckables |= L
+					suckables += L
 		if(LAZYLEN(suckables))
 			if(vac_power == 7)
 				for(var/atom/movable/F in suckables)
@@ -167,8 +144,10 @@
 								auto_setting = 3
 						else
 							auto_setting = 6
+							break
 			else
 				auto_setting = vac_power
+
 			playsound(src, 'sound/machines/kitchen/candymaker/candymaker-mid1.ogg', auto_setting * 20, 1, -1)
 			var/vac_conga = 0
 			for(var/atom/movable/F in suckables)
@@ -187,18 +166,8 @@
 						return
 				if(vac_conga < 100)
 					vac_conga += 3
-				spawn(3 + vac_conga)
-					if(!F.Adjacent(user) || src.loc != user || vac_power < 2) //Cancel if moved/unpowered/dropped
-						break
-					F.SpinAnimation(5,1)
-					spawn(5)
-						if(F.loc == target)
-							if(isitem(F))
-								var/obj/item/I = F
-								if(I.drop_sound)
-									playsound(src, I.drop_sound, auto_setting * 5, 1, -1)
-							playsound(src, 'sound/rakshasa/corrosion3.ogg', auto_setting * 15, 1, -1)
-							F.forceMove(output_dest)
+				addtimer(CALLBACK(src, PROC_REF(prepare_sucking), F, user, auto_setting, target), 0.3 SECONDS + vac_conga)
+
 			if(istype(target, /turf/simulated))
 				var/turf/simulated/T = target
 				if(isbelly(output_dest) && T.dirt > 50)
@@ -207,9 +176,11 @@
 				T.dirt = 0
 				T.wash(CLEAN_WASH)
 		return
+
 	if(!isturf(target.loc))
 		return
-	if(istype(target,/obj/item))
+
+	if(isitem(target))
 		var/obj/item/I = target
 		if(is_type_in_list(I, GLOB.item_vore_blacklist) || I.w_class >= ITEMSIZE_HUGE)
 			return
@@ -221,18 +192,16 @@
 			playsound(src, 'sound/machines/kitchen/candymaker/candymaker-mid1.ogg', auto_setting * 20, 1, -1)
 			user.visible_message(span_filter_notice("[user] vacuums up \the [target.name]."), span_notice("You vacuum up \the [target.name]..."))
 			I.SpinAnimation(5,1)
-			spawn(5)
-				if(!I.Adjacent(user) || src.loc != user || vac_power < 2) //Cancel if moved/unpowered/dropped
-					return
-				if(I.drop_sound)
-					playsound(src, I.drop_sound, vac_power * 5, 1, -1)
-				playsound(src, 'sound/rakshasa/corrosion3.ogg', auto_setting * 15, 1, -1)
-				I.forceMove(output_dest)
-	else if(istype(target,/obj/effect/decal/cleanable))
+			addtimer(CALLBACK(src, PROC_REF(handle_consumption), I, user), 0.5 SECONDS, auto_setting)
+			return
+
+	if(istype(target,/obj/effect/decal/cleanable))
 		playsound(src, 'sound/machines/kitchen/candymaker/candymaker-mid1.ogg', auto_setting * 20, 1, -1)
 		user.visible_message(span_filter_notice("[user] vacuums up \the [target.name]."), span_notice("You vacuum up \the [target.name]..."))
 		qdel(target)
-	else if(isliving(target))
+		return
+
+	if(isliving(target))
 		var/mob/living/L = target
 		var/valid_to_suck = FALSE
 		if(L.anchored || !L.devourable || L == user || L.buckled || !L.can_be_drop_prey)
@@ -248,12 +217,25 @@
 			playsound(src, 'sound/machines/kitchen/candymaker/candymaker-mid1.ogg', auto_setting * 20, 1, -1)
 			user.visible_message(span_filter_notice("[user] vacuums up \the [target.name]."), span_notice("You vacuum up \the [target.name]..."))
 			L.SpinAnimation(5,1)
-			spawn(5)
-				if(!L.Adjacent(user) || src.loc != user || vac_power < 2) //Cancel if moved/unpowered/dropped
-					return
-				playsound(src, 'sound/rakshasa/corrosion3.ogg', auto_setting * 15, 1, -1)
-				L.forceMove(output_dest)
-	return
+			addtimer(CALLBACK(src, PROC_REF(handle_consumption), L, user, auto_setting), 0.5 SECONDS)
+
+/obj/item/vac_attachment/proc/prepare_sucking(atom/movable/target, mob/user, turf/target_turf)
+	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_dest) //Cancel if moved/unpowered/dropped
+		return
+	target.SpinAnimation(5,1)
+	addtimer(CALLBACK(src, PROC_REF(handle_consumption), target, user, target_turf), 0.5 SECONDS)
+
+/obj/item/vac_attachment/proc/handle_consumption(atom/movable/target, mob/user, auto_setting, turf/target_turf)
+	if(target_turf && target.loc != target_turf)
+		return
+	if(!target.Adjacent(user) || src.loc != user || vac_power < 2 || !output_dest) //Cancel if moved/unpowered/dropped
+		return
+	if(isitem(target))
+		var/obj/item/target_item = target
+		if(target_item.drop_sound)
+			playsound(src, target_item.drop_sound, vac_power * 5, 1, -1)
+	playsound(src, 'sound/rakshasa/corrosion3.ogg', auto_setting * 15, 1, -1)
+	target.forceMove(output_dest)
 
 /obj/item/vac_attachment/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1, var/click_parameters)
 	if(istype(A,/obj/structure) && vac_power > 0)
@@ -277,13 +259,18 @@
 	set name = "Toggle Vac-Pack Sprites"
 	set desc = "Toggle Vac-Pack sprite visibility"
 	set category = "Object"
+
 	var/choice = tgui_input_list(usr, "Vac-Pack Visibility Options", "Vac-Pack Visibility Options", list("Show Pack", "Show Tube", "Hidden"))
-	if(choice == "Show Pack")
-		item_state = "sucker"
-	if(choice == "Show Tube")
-		item_state = "sucker_nobag"
-	if(choice == "Hidden")
-		item_state = null
+	if(!choice)
+		return
+
+	switch(choice)
+		if("Show Pack")
+			item_state = "sucker"
+		if("Show Tube")
+			item_state = "sucker_nobag"
+		if("Hidden")
+			item_state = null
 	usr.update_inv_r_hand()
 	usr.update_inv_l_hand()
 
