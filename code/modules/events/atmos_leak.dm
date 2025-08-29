@@ -14,7 +14,46 @@
 		/area/shuttle,
 		/area/crew_quarters,
 		/area/holodeck,
-		/area/engineering/engine_room
+		/area/engineering/engine_room,
+
+		// Groundbase
+		/area/groundbase/level1/centsquare,
+		/area/groundbase/level1/eastspur,
+		/area/groundbase/level1/northspur,
+		/area/groundbase/level1/southeastspur,
+		/area/groundbase/level1/southwestspur,
+		/area/groundbase/level1/westspur,
+		/area/maintenance/groundbase/level1/netunnel,
+		/area/maintenance/groundbase/level1/nwtunnel,
+		/area/maintenance/groundbase/level1/stunnel,
+		/area/maintenance/groundbase/level1/setunnel,
+		/area/maintenance/groundbase/level1/swtunnel,
+		/area/groundbase/level2/ne,
+		/area/groundbase/level2/nw,
+		/area/groundbase/level2/se,
+		/area/groundbase/level2/sw,
+		/area/groundbase/level3/ne,
+		/area/groundbase/level3/nw,
+		/area/groundbase/level3/se,
+		/area/groundbase/level3/sw,
+		/area/groundbase/level2/northspur,
+		/area/groundbase/level2/eastspur,
+		/area/groundbase/level2/westspur,
+		/area/groundbase/level2/southeastspur,
+		/area/groundbase/level2/southwestspur,
+		/area/groundbase/level3/ne/open,
+		/area/groundbase/level3/nw/open,
+		/area/groundbase/level3/se/open,
+		/area/groundbase/level3/sw/open,
+		/area/groundbase/level3/escapepad,
+
+		// Tether
+		/area/tether/surfacebase/tram,
+		/area/tether/surfacebase/surface_one_hall,
+		/area/tether/surfacebase/surface_two_hall,
+		/area/tether/surfacebase/surface_three_hall,
+		/area/teleporter/departing,
+		/area/hallway/station/upper,
 	)
 
 // Decide which area will be targeted!
