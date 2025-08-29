@@ -628,7 +628,12 @@
 					choice = show_radial_menu(protie, protie, options, radius = 90)
 					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
-					var/new_color = tgui_color_picker(protie, "Pick clothes color:","Clothes Color", S.dullahan_overlays[7])
+					var/new_color ="#FFFFFF"
+					if (choice == "dullahanclothesempty" || choice == "dullahanengibreastplate" ||  choice == "dullahanclothes2" || choice =="dullahanclothes")
+						// clothes empty and breastplate have only white as a color
+						new_color = "#FFFFFF"
+					else
+						new_color = tgui_color_picker(protie, "Pick clothes color:","Clothes Color", S.dullahan_overlays[7])
 					if(!new_color)
 						return 0
 					S.dullahan_overlays[7] = choice //clothes overlay is 7
