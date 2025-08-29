@@ -29,6 +29,7 @@ export type Belly = {
   digest_oxy: number;
   digest_tox: number;
   digest_clone: number;
+  bellytemperature: number;
 
   can_taste: BooleanLike;
   is_feedable: BooleanLike;
@@ -52,6 +53,7 @@ export type Belly = {
   storing_nutrition: BooleanLike;
   entrance_logs: BooleanLike;
   item_digest_logs: BooleanLike;
+  temperature_damage: BooleanLike;
 
   // Messages
   struggle_messages_outside: string[];

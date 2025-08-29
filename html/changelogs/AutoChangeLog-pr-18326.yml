@@ -1,0 +1,9 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Belly Temperature: [Set to 20C by default] Prey feel the temperature in your belly, will an icon if it's uncomfortably warm/cold.\nBased on belly temperature and not the body temperature math of the prey, so easier to trigger. Does not paste any messages in chat. Has a range of -100C to +200C."
+  - rscadd: "Temperature Damage: [Set off by default] If on, can deal damage to the prey, ONLY if they have digestion turned on."
+  - rscadd: "Preference for Affected By Temperature: [Set on by default] You will only have the above apply to you at all as prey if this is enabled. You will still only take damage if you have digestion turned on and the pred has damage turned on."
+  - refactor: "calculations in human/life.dm now only apply temperature warnings and damage effects when the characters location is not a belly, this skips these sections of code when the prey is in a belly only."
+  - bugfix: "Fixes a bug where heat and cold discomfort alerts were cleared instantly outside of bellies."
+  - bugfix: "Fixes a SmartVend UI alphabetical ordering to use modern code."

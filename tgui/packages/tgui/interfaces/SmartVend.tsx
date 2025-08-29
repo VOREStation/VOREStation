@@ -24,7 +24,7 @@ type Data = {
 type content = { name: string; index: number; amount: number };
 
 const sortTypes = {
-  Alphabetical: (a: content, b: content) => a.name > b.name,
+  Alphabetical: (a: content, b: content) => a.name.localeCompare(b.name),
   'By amount': (a: content, b: content) => -(a.amount - b.amount),
 };
 
