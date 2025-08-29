@@ -129,7 +129,7 @@ What Borgs are available is sadly handled in the above file in the proc
 	charge_cost = 20
 	recharge_time = 3
 	volume = 120
-	possible_transfer_amounts = list(1 ,5, 10, 20, 30)
+	max_transfer_amount = 60
 
 //Resking proc for boozos
 

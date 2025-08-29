@@ -14,7 +14,5 @@
 	name = "imperial soldier facemask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "ge_visor"
-	icon = 'icons/inventory/face/item_vr.dmi'
-	icon_override = 'icons/inventory/face/mob_vr.dmi'
 	body_parts_covered = FACE|EYES
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE

@@ -107,6 +107,7 @@ export type bellyOptionData = {
   digest_oxy: number;
   digest_tox: number;
   digest_clone: number;
+  bellytemperature: number;
   digest_max: number;
   digest_free: number;
   bulge_size: number;
@@ -137,6 +138,7 @@ export type bellyOptionData = {
   absorbedrename_name_min: number;
   drainmode_options: string[];
   drainmode: string;
+  temperature_damage: BooleanLike;
 };
 
 export type bellySoundData = {
@@ -300,6 +302,7 @@ export type prefData = {
   absorbable: BooleanLike;
   digest_leave_remains: BooleanLike;
   allowmobvore: BooleanLike;
+  allowtemp: BooleanLike;
   permit_healbelly: BooleanLike;
   show_vore_fx: BooleanLike;
   can_be_drop_prey: BooleanLike;
@@ -414,6 +417,7 @@ export type localPrefs = {
   absorbable: preferenceData;
   devour: preferenceData;
   mobvore: preferenceData;
+  temperature: preferenceData;
   feed: preferenceData;
   healbelly: preferenceData;
   dropnom_prey: preferenceData;

@@ -1,8 +1,6 @@
 /obj/item/clothing/under/pants/altevian
 	name = "Altevian Hegemony Civilian Pants"
 	desc = "A comfortable set of clothing for people to handle their day to day work around the fleets with little to no discomfort."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "altevian-pants-civ"
 	worn_state = "altevian-pants-civ"
 	gender = PLURAL
@@ -52,12 +50,9 @@
 
 /obj/item/clothing/under/altevian
 	name = "Altevian Duty Jumpsuit"
-	desc = "A uniform commonly seen worn by altevians. The material on this uniform is made of a durable thread that can handle the stress of most forms of labor."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
+	desc = "A uniform commonly seen worn by altevians. The material of this uniform is made of a durable thread that can handle the stress of most forms of labor."
 	icon_state = "altevian-specialist"
 	worn_state = "altevian-specialist"
-	species_restricted = list(SPECIES_ALTEVIAN)
 
 /obj/item/clothing/under/altevian/sci
 	name = "Altevian Science Duty Jumpsuit"

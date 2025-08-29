@@ -1,14 +1,14 @@
 #define IMPORT_ALL_BELLIES "Import all bellies from VRDB"
-#define IMPORT_ONE_BELLY "Import one belly from VRDB"
+#define IMPORT_ONE_BELLY "Import some bellies from VRDB"
 #define IMPORT_SOULCATCHER "Import Soulcatcher from VRDB"
 
 
 /datum/vore_look/proc/import_belly(mob/host)
 	var/panel_choice = tgui_input_list(host, "Belly Import", "Pick an option", list(IMPORT_ALL_BELLIES, IMPORT_ONE_BELLY, IMPORT_SOULCATCHER))
 	if(!panel_choice) return
-	var/pickOne = FALSE
+	var/pickSome = FALSE
 	if(panel_choice == IMPORT_ONE_BELLY)
-		pickOne = TRUE
+		pickSome = TRUE
 	var/input_file = input(host,"Please choose a valid VRDB file to import from.","Belly Import") as file
 	var/input_data
 	try
@@ -41,16 +41,22 @@
 	var/list/updated = list()
 
 	for(var/list/raw_list in input_data)
-		if(length(valid_names) >= BELLIES_MAX) break
-		if(!islist(raw_list)) continue
-		if(!istext(raw_list["name"])) continue
-		if(length(raw_list["name"]) > BELLIES_NAME_MAX || length(raw_list["name"]) < BELLIES_NAME_MIN) continue
-		if(raw_list["name"] in valid_names) continue
+		if(length(valid_names) >= BELLIES_MAX)
+			break
+		if(!islist(raw_list))
+			continue
+		if(!istext(raw_list["name"]))
+			continue
+		if(length(raw_list["name"]) > BELLIES_NAME_MAX || length(raw_list["name"]) < BELLIES_NAME_MIN)
+			continue
+		if(raw_list["name"] in valid_names)
+			continue
 		for(var/obj/belly/B in host.vore_organs)
 			if(lowertext(B.name) == lowertext(raw_list["name"]))
 				updated += raw_list["name"]
 				break
-		if(!pickOne && length(host.vore_organs)+length(valid_names)-length(updated) >= BELLIES_MAX) continue
+		if(!pickSome && length(host.vore_organs)+length(valid_names)-length(updated) >= BELLIES_MAX)
+			continue
 		valid_names += raw_list["name"]
 		valid_lists += list(raw_list)
 
@@ -58,18 +64,29 @@
 		tgui_alert_async(host, "The supplied VRDB file does not contain any valid bellies.", "Error!")
 		return FALSE
 
-	if(pickOne)
-		var/picked = tgui_input_list(host, "Belly Import", "Which belly?", valid_names)
-		if(!picked) return
+	if(pickSome)
+		var/list/picked = tgui_input_checkboxes(host, "Belly Import", "Which bellies?", valid_names)
+		if(!LAZYLEN(picked))
+			return
+
+		var/list/trimmed_names = list()
+		var/list/trimmed_lists = list()
+		var/list/trimmed_update = list()
 		for(var/B in valid_lists)
-			if(lowertext(picked) == lowertext(B["name"]))
-				valid_names = list(picked)
-				valid_lists = list(B)
-				break
-		if(picked in updated)
-			updated = list(picked)
-		else
-			updated = list()
+			var/belly_to_check = B["name"]
+			if(belly_to_check in picked)
+				if(belly_to_check in updated)
+					trimmed_update += belly_to_check
+				if(length(host.vore_organs)+length(trimmed_names)-length(trimmed_update) >= BELLIES_MAX)
+					break
+				trimmed_names += belly_to_check
+				trimmed_lists += list(B)
+		valid_names = trimmed_names
+		valid_lists = trimmed_lists
+		updated = trimmed_update
+
+	if(length(valid_names) == 0)
+		return FALSE
 
 	var/list/alert_msg = list()
 	if(length(valid_names)-length(updated) > 0)
@@ -517,6 +534,10 @@
 			var/new_digest_clone = belly_data["digest_clone"]
 			new_belly.digest_clone = CLAMP(new_digest_clone, 0, new_belly.get_unused_digestion_damage())
 
+		if(isnum(belly_data["bellytemperature"]))
+			var/new_bellytemperature = belly_data["bellytemperature"]
+			new_belly.bellytemperature = CLAMP(new_bellytemperature, T0C, 473.15)
+
 		if(isnum(belly_data["shrink_grow_size"]))
 			var/new_shrink_grow_size = belly_data["shrink_grow_size"]
 			new_belly.shrink_grow_size = CLAMP(new_shrink_grow_size, 0.25, 2)
@@ -568,6 +589,13 @@
 				new_belly.recycling = FALSE
 			if(new_recycling == 1)
 				new_belly.recycling = TRUE
+
+		if(isnum(belly_data["temperature_damage"]))
+			var/new_temp_damage = belly_data["temperature_damage"]
+			if(new_temp_damage == 0)
+				new_belly.temperature_damage = FALSE
+			if(new_temp_damage == 1)
+				new_belly.temperature_damage = TRUE
 
 		if(isnum(belly_data["storing_nutrition"]))
 			var/new_storing_nutrition = belly_data["storing_nutrition"]

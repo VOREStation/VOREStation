@@ -34,6 +34,8 @@
 	if(!occupant)
 		icon_state = "scanner_open"
 		set_light(0)
+		if(console)
+			console.update_icon(0)
 		return
 
 	// base image
