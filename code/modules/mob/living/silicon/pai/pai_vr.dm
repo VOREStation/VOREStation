@@ -517,6 +517,8 @@
 			if(tgui_alert(src, "Do you want to download [our_soft.name]? It costs [our_soft.ram_cost], and you have [ram] remaining.", "Download [our_soft.name]", list("Yes", "No")) == "Yes")
 				if(!(ram >= our_soft.ram_cost))
 					return
+				if(software[our_soft.id])
+					return
 				ram -= our_soft.ram_cost
 				software[our_soft.id] = our_soft
 				to_chat(src, span_notice("You downloaded [our_soft.name]. ([ram] RAM remaining.)"))
