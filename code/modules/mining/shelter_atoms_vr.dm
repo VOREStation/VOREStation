@@ -329,6 +329,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	for(var/obj/item/O in loc)
 		if(accept_check(O))
 			stock(O)
+			sortTim(item_records, GLOBAL_PROC_REF(cmp_stored_item_name))
 
 /obj/machinery/smartfridge/survival_pod/accept_check(obj/item/O)
 	return isitem(O)
