@@ -221,7 +221,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
   let result = '';
   result += `<div class="accordion-item"><h2 class="accordion-header" id="heading${index}">`;
   result += `<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">`;
-  result += `${name} - (<span style="color: red;">${digest_brute}</span >/<span style="color: orange;">${digest_burn}</span>/<span style="color: blue;">${digest_oxy}</span>/<span style="color: green;">${digest_tox}</span>/<span style="color: purple;">${digest_clone}</span>) - ${ModeSpan[mode]} - ${ItemModeSpan[item_mode]}`;
+  result += `${name} - (<span style="color: red;">${digest_brute}</span >/<span style="color: orange;">${digest_burn}</span>/<span style="color: blue;">${digest_oxy}</span>/<span style="color: green;">${digest_tox}</span>/<span style="color: purple;">${digest_clone}</span><span ${temperature_damage ? 'style="color: red;"' : ''}>${Math.round((bellytemperature - 273.15) * 10) / 10}°C</span>) - ${ModeSpan[mode]} - ${ItemModeSpan[item_mode]}`;
   result += '</button></h2>';
 
   result += `<div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#accordionBellies">`;
