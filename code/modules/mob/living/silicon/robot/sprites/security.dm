@@ -164,6 +164,7 @@
 /datum/robot_sprite/dogborg/security/drake
 	name = "Drake"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 	sprite_flags = ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 
 // Tall sprites

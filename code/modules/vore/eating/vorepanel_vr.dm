@@ -401,6 +401,12 @@
 				host.client.prefs_vr.digestable = host.digestable
 			unsaved_changes = TRUE
 			return TRUE
+		if("toggle_allowtemp")
+			host.allowtemp = !host.allowtemp
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.allowtemp = host.allowtemp
+			unsaved_changes = TRUE
+			return TRUE
 		if("toggle_global_privacy")
 			host.eating_privacy_global = !host.eating_privacy_global
 			if(host.client.prefs_vr)
