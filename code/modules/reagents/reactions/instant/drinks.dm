@@ -1,34 +1,6 @@
 /decl/chemical_reaction/instant/drinks
 	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 
-/decl/chemical_reaction/instant/drinks/coffee
-	name = REAGENT_COFFEE
-	id = REAGENT_ID_COFFEE
-	result = REAGENT_ID_COFFEE
-	required_reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_COFFEEPOWDER = 1)
-	result_amount = 5
-
-/decl/chemical_reaction/instant/drinks/tea
-	name = "Black tea"
-	id = REAGENT_ID_TEA
-	result = REAGENT_ID_TEA
-	required_reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_TEAPOWDER = 1)
-	result_amount = 5
-
-/decl/chemical_reaction/instant/drinks/decaftea
-	name = "Decaf tea"
-	id = REAGENT_ID_TEADECAF
-	result = REAGENT_ID_TEADECAF
-	required_reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_DECAFTEAPOWDER = 1)
-	result_amount = 5
-
-/decl/chemical_reaction/instant/drinks/hot_coco
-	name = "Hot Coco"
-	id = REAGENT_ID_HOTCOCO
-	result = REAGENT_ID_HOTCOCO
-	required_reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_COCO = 1)
-	result_amount = 5
-
 /decl/chemical_reaction/instant/drinks/grapejuice
 	name = REAGENT_GRAPEJUICE
 	id = REAGENT_ID_GRAPEJUICE
@@ -850,76 +822,6 @@
 	result = REAGENT_ID_ARNOLDPALMER
 	required_reagents = list(REAGENT_ID_ICETEA = 1, REAGENT_ID_LEMONADE = 1)
 	result_amount = 2
-
-/decl/chemical_reaction/instant/drinks/minttea
-	name = REAGENT_MINTTEA
-	id = REAGENT_ID_MINTTEA
-	result = REAGENT_ID_MINTTEA
-	required_reagents = list(REAGENT_ID_TEA = 5, REAGENT_ID_MINT = 1)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/minttea_decaf
-	name = REAGENT_MINTTEADECAF
-	id = "decafminttea"
-	result = REAGENT_ID_MINTTEADECAF
-	required_reagents = list(REAGENT_ID_TEADECAF = 5, REAGENT_ID_MINT = 1)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/lemontea
-	name = REAGENT_LEMONTEA
-	id = REAGENT_ID_LEMONTEA
-	result = REAGENT_ID_LEMONTEA
-	required_reagents = list(REAGENT_ID_TEA = 5, REAGENT_ID_LEMONJUICE = 1)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/lemontea_decaf
-	name = REAGENT_LEMONTEADECAF
-	id = "decaflemontea"
-	result = REAGENT_ID_LEMONTEADECAF
-	required_reagents = list(REAGENT_ID_TEADECAF = 5, REAGENT_ID_LEMONJUICE = 1)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/limetea
-	name = REAGENT_LIMETEA
-	id = REAGENT_ID_LIMETEA
-	result = REAGENT_ID_LIMETEA
-	required_reagents = list(REAGENT_ID_TEA = 5, REAGENT_ID_LIMEJUICE = 1)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/limetea_decaf
-	name = REAGENT_LIMETEADECAF
-	id = "decaflimetea"
-	result = REAGENT_ID_LIMETEADECAF
-	required_reagents = list(REAGENT_ID_TEADECAF = 5, REAGENT_ID_LIMEJUICE = 1)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/orangetea
-	name = REAGENT_ORANGETEA
-	id = REAGENT_ID_ORANGETEA
-	result = REAGENT_ID_ORANGETEA
-	required_reagents = list(REAGENT_ID_TEA = 5, REAGENT_ID_ORANGEJUICE = 1)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/orangetea_decaf
-	name = "Decaf Orange Tea"
-	id = "decaforangetea"
-	result = REAGENT_ID_ORANGETEADECAF
-	required_reagents = list(REAGENT_ID_TEADECAF = 5, REAGENT_ID_ORANGEJUICE = 1)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/berrytea
-	name = REAGENT_BERRYTEA
-	id = REAGENT_ID_BERRYTEA
-	result = REAGENT_ID_BERRYTEA
-	required_reagents = list(REAGENT_ID_TEA = 5, REAGENT_ID_BERRYJUICE = 1)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/berrytea_decaf
-	name = REAGENT_BERRYTEADECAF
-	id = "decafberrytea"
-	result = REAGENT_ID_BERRYTEADECAF
-	required_reagents = list(REAGENT_ID_TEADECAF = 5, REAGENT_ID_BERRYJUICE = 1)
-	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/sakebomb
 	name = REAGENT_SAKEBOMB

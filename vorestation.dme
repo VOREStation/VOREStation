@@ -4162,6 +4162,7 @@
 #include "code\modules\reagents\reactions\_reactions.dm"
 #include "code\modules\reagents\reactions\distilling\distilling.dm"
 #include "code\modules\reagents\reactions\distilling\gas_condensing.dm"
+#include "code\modules\reagents\reactions\distilling\hot_drinks.dm"
 #include "code\modules\reagents\reactions\fusion\fusion.dm"
 #include "code\modules\reagents\reactions\instant\drinks.dm"
 #include "code\modules\reagents\reactions\instant\drinks_vr.dm"
