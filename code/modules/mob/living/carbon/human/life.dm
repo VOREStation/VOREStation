@@ -576,7 +576,7 @@
 			safe_pressure_min *= 1.25
 
 	var/safe_exhaled_max = 10
-	var/safe_toxins_min = 0.1
+	var/safe_toxins_min = 0.05
 	var/safe_toxins_max = 0.2
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
@@ -708,14 +708,14 @@
 	if(methane_pp > safe_toxins_min)
 		var/SA_pp = (breath.gas[GAS_CH4] / breath.total_moles) * breath_pressure
 		if(SA_pp > 0.05)
-			if(prob(3))
+			if(prob(5))
 				to_chat(src,span_warning("You smell rotten eggs."))
 	if(methane_pp > safe_toxins_max)
-		var/ratio = (poison_methane/safe_toxins_max) * 10
-		if(reagents)
-			reagents.add_reagent(REAGENT_ID_TOXIN, CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
-			breath.adjust_gas(GAS_CH4, -poison_methane/6, update = 0) //update after
-
+		var/ratio = (poison_methane/safe_toxins_max) * 1200
+		adjustOxyLoss(CLAMP(ratio,0.1,10)) // Causes slow suffocation
+		if(prob(20))
+			spawn(0) emote("gasp")
+		breath.adjust_gas(GAS_CH4, -poison_methane/6, update = 0) //update after
 		breath.adjust_gas(GAS_CH4, -breath.gas[GAS_CH4]/6, update = 0) //update after
 		throw_alert("methane_in_air", /obj/screen/alert/methane_in_air)
 	else
