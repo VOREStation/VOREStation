@@ -26,7 +26,8 @@
 		return null
 
 	if(!user.read_preference(/datum/preference/toggle/tgui_input_mode))
-		return input(user, message, title) as null|anything in items
+		var/our_input = input(user, message, title) as null|anything in items
+		return our_input ? list(our_input) : null
 	var/datum/tgui_checkbox_input/input = new(user, message, title, items, min_checked, max_checked, timeout, ui_state)
 	input.tgui_interact(user)
 	input.wait()
@@ -73,7 +74,7 @@
 /datum/tgui_checkbox_input/Destroy(force)
 	SStgui.close_uis(src)
 	state = null
-	QDEL_NULL(items)
+	items?.Cut()
 
 	return ..()
 
@@ -115,7 +116,7 @@
 
 	return data
 
-/datum/tgui_checkbox_input/tgui_act(action, list/params)
+/datum/tgui_checkbox_input/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
 	if (.)
 		return
