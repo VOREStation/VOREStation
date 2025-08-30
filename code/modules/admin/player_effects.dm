@@ -294,7 +294,6 @@
 				return
 
 			var/mob/living/new_mob = new chosen_beast(get_turf(M))
-			new_mob.faction = M.faction
 
 			M.tf_into(new_mob)
 
