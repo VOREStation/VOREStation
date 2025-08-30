@@ -790,7 +790,7 @@ var/list/ai_verbs_default = list(
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message(span_notice("\The [user] starts to unbolt \the [src] from the plating..."))
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_notice("\The [user] decides not to unbolt \the [src]."))
 				return
 			user.visible_message(span_notice("\The [user] finishes unfastening \the [src]!"))
@@ -799,7 +799,7 @@ var/list/ai_verbs_default = list(
 		else
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message(span_notice("\The [user] starts to bolt \the [src] to the plating..."))
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_notice("\The [user] decides not to bolt \the [src]."))
 				return
 			user.visible_message(span_notice("\The [user] finishes fastening down \the [src]!"))

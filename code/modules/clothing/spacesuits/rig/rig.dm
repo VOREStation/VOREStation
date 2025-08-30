@@ -319,7 +319,7 @@
 
 		if(!instant)
 			M.visible_message(span_notice("[M]'s suit emits a quiet hum as it begins to adjust its seals."),span_notice("With a quiet hum, the suit begins running checks and adjusting components."))
-			if(seal_delay && !do_after(M,seal_delay))
+			if(seal_delay && !do_after(M, seal_delay, target = src))
 				if(M)
 					to_chat(M, span_warning("You must remain still while the suit is adjusting the components."))
 					playsound(src, 'sound/machines/rig/rigerror.ogg', 20, FALSE)
@@ -345,7 +345,7 @@
 
 				if(!failed_to_seal && (M.back == src || M.belt == src) && piece == compare_piece)
 
-					if(seal_delay && !instant && !do_after(M,seal_delay,timed_action_flags = IGNORE_SLOWDOWNS))
+					if(seal_delay && !instant && !do_after(M, seal_delay, target = src, timed_action_flags = IGNORE_SLOWDOWNS))
 						failed_to_seal = 1
 
 					piece.icon_state = "[suit_state][!seal_target ? "_sealed" : ""]"
@@ -681,7 +681,7 @@
 
 	if(seal_delay > 0 && istype(M) && (M.back == src || M.belt == src))
 		M.visible_message(span_notice("[M] starts putting on \the [src]..."), span_notice("You start putting on \the [src]..."))
-		if(!do_after(M,seal_delay))
+		if(!do_after(M, seal_delay, target = src))
 			if(M && (M.back == src || M.belt == src))
 				if(!M.unEquip(src))
 					return

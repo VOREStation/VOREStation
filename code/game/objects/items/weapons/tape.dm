@@ -43,7 +43,7 @@
 					return
 				user.visible_message(span_danger("\The [user] begins taping over \the [H]'s eyes!"))
 
-				if(!do_after(user, 30))
+				if(!do_after(user, 3 SECONDS, target = src))
 					return
 
 				if(!can_place(H, user))
@@ -72,7 +72,7 @@
 					return
 				user.visible_message(span_danger("\The [user] begins taping up \the [H]'s mouth!"))
 
-				if(!do_after(user, 30))
+				if(!do_after(user, 3 SECONDS, target = src))
 					return
 
 				if(!can_place(H, user))

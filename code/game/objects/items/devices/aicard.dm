@@ -114,7 +114,7 @@
 	user.visible_message("\The [user] starts transferring \the [ai] into \the [src]...", "You start transferring \the [ai] into \the [src]...")
 	show_message(span_critical("\The [user] is transferring you into \the [src]!"))
 
-	if(do_after(user, 100))
+	if(do_after(user, 10 SECONDS, target = src))
 		if(carded_ai)
 			to_chat(user, span_danger("Transfer failed:") + " Existing AI found on remote device. Remove existing AI to install a new one.")
 			return 0

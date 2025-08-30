@@ -140,7 +140,7 @@
 		if(integrity < max_integrity)
 			to_chat(user, span_notice("You start to repair damage to \the [src]."))
 			while(integrity < max_integrity && NP)
-				if(do_after(user, 1 SECOND, src))
+				if(do_after(user, 1 SECOND, target = src))
 					NP.use(1)
 					adjust_integrity(NP.mech_repair)
 

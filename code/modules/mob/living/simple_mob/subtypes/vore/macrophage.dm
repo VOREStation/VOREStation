@@ -79,7 +79,7 @@
 	EXTRAPOLATOR_ACT_ADD_DISEASES(., base_disease)
 	// Still no idea why extrapolator == src, but I'll leave this for later if I find out.
 	// if(!dry_run && !EXTRAPOLATOR_ACT_CHECK(., EXTRAPOLATOR_ACT_PRIORITY_SPECIAL) && extrapolator.create_culture(user, base_disease))
-	if(do_after(user, 2 SECONDS))
+	if(do_after(user, 2 SECONDS, target = src))
 		user.visible_message(span_danger("[user] stabs [src] with [extrapolator], sucking it up!"), \
 			span_danger("You stab [src] with [extrapolator]'s probe, destroying it!"))
 		death()

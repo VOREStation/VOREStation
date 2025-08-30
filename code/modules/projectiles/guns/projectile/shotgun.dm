@@ -186,7 +186,7 @@
 			user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD Port
 			burst = burstsetting
 			return
-		if(do_after(user, 30)) // SHIT IS STEALTHY EYYYYY
+		if(do_after(user, 3 SECONDS, target = src)) // SHIT IS STEALTHY EYYYYY
 			if(sawn_off)
 				return
 			if(unique_reskin)

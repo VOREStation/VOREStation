@@ -76,7 +76,7 @@
 	user.visible_message(span_warning("[user] starts climbing onto \the [climbed_thing]!"))
 	LAZYADDASSOCLIST(current_climbers, climbed_thing, user)
 
-	if(do_after(user,(issmall(user) ? delay_time * 0.6 : delay_time)))
+	if(do_after(user,(issmall(user) ? delay_time * 0.6 : delay_time), , target = src))
 		if(can_climb(climbed_thing, user, post_climb_check=1))
 			climb_to(climbed_thing, user)
 			if(get_turf(user) == get_turf(climbed_thing))

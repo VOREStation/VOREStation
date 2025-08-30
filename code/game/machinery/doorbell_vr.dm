@@ -139,7 +139,7 @@
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, span_notice("You start to unwrench \the [src]."))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 15) && !QDELETED(src))
+		if(do_after(user, 15, target = src) && !QDELETED(src))
 			to_chat(user, span_notice("You unwrench \the [src]."))
 			new /obj/item/frame/doorbell(src.loc)
 			qdel(src)

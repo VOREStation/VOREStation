@@ -209,7 +209,7 @@ var/list/ventcrawl_machinery = list(
 			prepping_to_ventcrawl = 1
 			spawn(50)
 				prepping_to_ventcrawl = 0
-			if(!do_after(src, 45, vent_found, 1, 1))
+			if(!do_after(src, 45, target = src))
 				return
 			if(!can_ventcrawl())
 				return

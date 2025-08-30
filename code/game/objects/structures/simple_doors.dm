@@ -171,7 +171,7 @@
 	if(istype(W,/obj/item/pickaxe) && breakable)
 		var/obj/item/pickaxe/digTool = W
 		visible_message(span_danger("[user] starts digging [src]!"))
-		if(do_after(user,digTool.digspeed*hardness) && src)
+		if(do_after(user,digTool.digspeed*hardness, target = src) && src)
 			visible_message(span_danger("[user] finished digging [src]!"))
 			Dismantle()
 	else if(istype(W,/obj/item) && breakable) //not sure, can't not just weapons get passed to this proc?

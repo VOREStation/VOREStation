@@ -116,7 +116,7 @@
 		user.do_attack_animation(M)
 
 		var/turf/T1 = get_turf(M)
-		if (T1 && ((M == user) || do_after(user, 5 SECONDS, M)))
+		if (T1 && ((M == user) || do_after(user, 5 SECONDS, target = M)))
 			if(user && M && (get_turf(M) == T1) && src && src.imps.len)
 				M.visible_message(span_notice("[M] has been backup implanted by [user]."))
 

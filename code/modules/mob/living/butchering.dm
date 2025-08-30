@@ -16,7 +16,7 @@
 /mob/living/proc/harvest(var/mob/user, var/obj/item/I)
 	if(meat_type && meat_amount>0 && (stat == DEAD) && !being_butchered)
 		being_butchered = TRUE
-		while(meat_amount > 0 && do_after(user, 0.5 SECONDS * (mob_size / 10), src))
+		while(meat_amount > 0 && do_after(user, 0.5 SECONDS * (mob_size / 10), target = src))
 			var/obj/item/meat = new meat_type(get_turf(src))
 			if(name_the_meat)
 				meat.name = "[src.name] [meat.name]"
@@ -36,7 +36,7 @@
 	return FALSE
 
 /mob/living/proc/handle_butcher(var/mob/user, var/obj/item/I)
-	if(!user || do_after(user, 2 SECONDS * mob_size / 10, src))
+	if(!user || do_after(user, 2 SECONDS * mob_size / 10, target = src))
 		if(LAZYLEN(butchery_loot))
 			if(LAZYLEN(butchery_loot))
 				for(var/path in butchery_loot)

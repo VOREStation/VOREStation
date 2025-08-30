@@ -147,7 +147,7 @@
 					user.visible_message("[user.name] starts to weld the [src.name] to the floor.", \
 						"You start to weld the [src] to the floor.", \
 						"You hear welding")
-					if (do_after(user,20 * WT.toolspeed))
+					if (do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 						if(!src || !WT.isOn()) return
 						state = 2
 						to_chat(user, "You weld the field generator to the floor.")
@@ -159,7 +159,7 @@
 					user.visible_message("[user.name] starts to cut the [src.name] free from the floor.", \
 						"You start to cut the [src] free from the floor.", \
 						"You hear welding")
-					if (do_after(user,20 * WT.toolspeed))
+					if (do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 						if(!src || !WT.isOn()) return
 						state = 1
 						to_chat(user, "You cut the [src] free from the floor.")

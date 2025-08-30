@@ -44,7 +44,7 @@
 			return
 
 		if (W.has_tool_quality(TOOL_SCREWDRIVER))
-			if (do_after(user, 20 * W.toolspeed))
+			if (do_after(user, 2 SECONDS * W.toolspeed, target = src))
 				src.open =! src.open
 				playsound(src, W.usesound, 50, 1)
 				user.show_message(span_notice("You [src.open ? "open" : "close"] the service panel."))
@@ -52,7 +52,7 @@
 		if (istype(W, /obj/item/multitool) && (src.open == 1)&& (!src.l_hacking))
 			user.show_message(span_notice("Now attempting to reset internal memory, please hold."), 1)
 			src.l_hacking = 1
-			if (do_after(user, 100))
+			if (do_after(user, 10 SECONDS, target = src))
 				if (prob(40))
 					src.l_setshort = 1
 					src.l_set = 0

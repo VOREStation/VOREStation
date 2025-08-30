@@ -99,7 +99,7 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, span_notice("You begin to [anchored ? "un" : ""]fasten \the [src]."))
-		if (do_after(user, 20 * W.toolspeed))
+		if (do_after(user, 2 SECONDS * W.toolspeed, target = src))
 			user.visible_message(
 				span_notice("\The [user] [anchored ? "un" : ""]fastens \the [src]."),
 				span_notice("You have [anchored ? "un" : ""]fastened \the [src]."),

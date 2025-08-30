@@ -13,7 +13,7 @@
 /obj/item/module/power_control/attackby(var/obj/item/I, var/mob/user)
 	if(I.has_tool_quality(TOOL_MULTITOOL))
 		to_chat(user, span_notice("You begin tweaking the power control circuits to support a power cell rack."))
-		if(do_after(user, 50 * I.toolspeed))
+		if(do_after(user, 5 SECONDS * I.toolspeed, target = src))
 			var/obj/item/newcircuit = new/obj/item/circuitboard/batteryrack(get_turf(user))
 			qdel(src)
 			user.put_in_hands(newcircuit)

@@ -23,7 +23,7 @@
 		if(0)
 			if(P.has_tool_quality(TOOL_WRENCH))
 				playsound(src, P.usesound, 50, 1)
-				if(do_after(user, 20 * P.toolspeed))
+				if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 					to_chat(user, span_notice("You wrench the frame into place."))
 					anchored = TRUE
 					state = 1
@@ -33,7 +33,7 @@
 					to_chat(user, "The welder must be on for this task.")
 					return
 				playsound(src, WT.usesound, 50, 1)
-				if(do_after(user, 20 * WT.toolspeed))
+				if(do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 					if(!src || !WT.remove_fuel(0, user)) return
 					to_chat(user, span_notice("You deconstruct the frame."))
 					new /obj/item/stack/material/plasteel( loc, 4)
@@ -41,7 +41,7 @@
 		if(1)
 			if(P.has_tool_quality(TOOL_WRENCH))
 				playsound(src, P.usesound, 50, 1)
-				if(do_after(user, 20 * P.toolspeed))
+				if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 					to_chat(user, span_notice("You unfasten the frame."))
 					anchored = FALSE
 					state = 0
@@ -77,7 +77,7 @@
 					return
 				to_chat(user, span_notice("You start to add cables to the frame."))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-				if (do_after(user, 20) && state == 2)
+				if (do_after(user, 2 SECONDS, target = src) && state == 2)
 					if (C.use(5))
 						state = 3
 						icon_state = "3"
@@ -101,7 +101,7 @@
 					return
 				to_chat(user, span_notice("You start to put in the glass panel."))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-				if (do_after(user, 20) && state == 3)
+				if (do_after(user, 2 SECONDS, target = src) && state == 3)
 					if(RG.use(2))
 						to_chat(user, span_notice("You put in the glass panel."))
 						state = 4
@@ -242,7 +242,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 		if(anchored)
 			user.visible_message(span_bold("\The [user]") + " starts to unbolt \the [src] from the plating...")
 			playsound(src, W.usesound, 50, 1)
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_bold("\The [user]") + " decides not to unbolt \the [src].")
 				return
 			user.visible_message(span_bold("\The [user]") + " finishes unfastening \the [src]!")
@@ -251,7 +251,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 		else
 			user.visible_message(span_bold("\The [user]") + " starts to bolt \the [src] to the plating...")
 			playsound(src, W.usesound, 50, 1)
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_bold("\The [user]") + " decides not to bolt \the [src].")
 				return
 			user.visible_message(span_bold("\The [user]") + " finishes fastening down \the [src]!")

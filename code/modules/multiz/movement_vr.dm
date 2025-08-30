@@ -192,7 +192,7 @@
 	var/oops_time = world.time
 	var/grace_time = 4 SECONDS
 	to_chat(L, span_warning("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
-	if(do_after(L,climb_time))
+	if(do_after(L, climb_time, target = src))
 		if(prob(fall_chance))
 			L.forceMove(above_mob)
 			L.visible_message(message = span_infoplain(span_bold("[L]") + " falls off " + span_bold("\The [src]")), self_message = span_danger("You slipped off " + span_bold("\The [src]")), \
@@ -315,7 +315,7 @@
 	var/oops_time = world.time
 	var/grace_time = 3 SECONDS
 	to_chat(src, span_warning("If you get interrupted after [(grace_time / (1 SECOND))] seconds of climbing, you will fall and hurt yourself, beware!"))
-	if(do_after(src,climb_time))
+	if(do_after(src, climb_time, target = src))
 		if(prob(fall_chance))
 			src.forceMove(front_of_us)
 			src.visible_message(message = span_infoplain(span_bold("[src]") + " falls off " + span_bold("\The [below_wall]")), \

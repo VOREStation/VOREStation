@@ -233,7 +233,7 @@
 	else if(istype(W,/obj/item/reagent_containers/glass))
 		if(LAZYLEN(containers) >= container_limit)
 			to_chat(user, span_warning("\The [src] has too many containers loaded!"))
-		else if(do_after(user, 1 SECOND))
+		else if(do_after(user, 1 SECOND, target = src))
 			user.visible_message("[user] has loaded \the [W] into \the [src].", "You load \the [W] into \the [src].")
 			containers += W
 			user.drop_item()

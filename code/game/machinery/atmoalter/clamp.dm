@@ -118,7 +118,7 @@
 
 	if(open && over_object == usr && Adjacent(usr))
 		to_chat(usr, span_notice("You begin to remove \the [src]..."))
-		if (do_after(usr, 30, src))
+		if (do_after(usr, 3 SECONDS, target = src))
 			to_chat(usr, span_notice("You have removed \the [src]."))
 			var/obj/item/clamp/C = new/obj/item/clamp(src.loc)
 			C.forceMove(usr.loc)
@@ -143,7 +143,7 @@
 	if (istype(A, /obj/machinery/atmospherics/pipe/simple))
 		to_chat(user, span_notice("You begin to attach \the [src] to \the [A]..."))
 		var/C = locate(/obj/machinery/clamp) in get_turf(A)
-		if (do_after(user, 30, src) && !C)
+		if (do_after(user, 3 SECONDS, target = src) && !C)
 			if(!user.unEquip(src))
 				return
 			to_chat(user, span_notice("You have attached \the [src] to \the [A]."))

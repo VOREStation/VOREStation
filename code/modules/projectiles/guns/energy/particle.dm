@@ -144,7 +144,7 @@
 	if(istype(A, /obj/item/tool/screwdriver))
 		if(safetycatch && attached_safety)
 			to_chat(user, span_notice("You begin removing \the [attached_safety] from \the [src]."))
-			if(do_after(user, 25))
+			if(do_after(user, 25, target = src))
 				to_chat(user, span_notice("You remove \the [attached_safety] from \the [src]."))
 				user.put_in_hands(attached_safety)
 				safetycatch = 0

@@ -595,7 +595,7 @@ var/list/wrapped_species_by_ref = list()
 			oocnotes = 1
 		to_chat(character, span_notify("You begin to reform. You will need to remain still."))
 		character.visible_message(span_notify("[character] rapidly contorts and shifts!"), span_danger("You begin to reform."))
-		if(do_after(character, 40))
+		if(do_after(character, 4 SECONDS, target = src))
 			if(character.client.prefs)	//Make sure we didn't d/c
 				character.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, FALSE, FALSE)
 				character.visible_message(span_notify("[character] adopts a new form!"), span_danger("You have reformed."))
@@ -653,7 +653,7 @@ var/list/wrapped_species_by_ref = list()
 
 	to_chat(character, span_notify("You begin to reassemble into [victim]. You will need to remain still."))
 	character.visible_message(span_notify("[character] rapidly contorts and shifts!"), span_danger("You begin to reassemble into [victim]."))
-	if(do_after(character, 40))
+	if(do_after(character, 4 SECONDS, target = victim))
 		checking = FALSE
 		for(var/obj/item/grab/G in character)
 			if(G.affecting == victim && G.state >= GRAB_AGGRESSIVE)
