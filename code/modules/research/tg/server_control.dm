@@ -4,7 +4,7 @@
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"
 	circuit = /obj/item/circuitboard/rdservercontrol
-	req_access = list(access_rd)
+	req_access = list(ACCESS_RD)
 
 	///Connected techweb node the server is connected to.
 	var/datum/techweb/stored_research

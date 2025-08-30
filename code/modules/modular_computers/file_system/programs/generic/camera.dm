@@ -10,22 +10,22 @@
 		if(NETWORK_THUNDER)
 			return 0
 		if(NETWORK_ENGINE,NETWORK_ENGINEERING,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)
-			return access_engine
+			return ACCESS_ENGINE
 		if(NETWORK_CIRCUITS)
-			return access_research
+			return ACCESS_RESEARCH
 		if(NETWORK_MINE)
-			return access_qm
+			return ACCESS_QM
 		if(NETWORK_ERT)
-			return access_cent_specops
+			return ACCESS_CENT_SPECOPS
 		//VOREStation Add Start
 		if(NETWORK_TALON_SHIP)
-			return access_talon
+			return ACCESS_TALON
 		if(NETWORK_TALON_HELMETS)
-			return access_talon
+			return ACCESS_TALON
 		//VOREStation Add End
 
 	if(network in using_map.station_networks)
-		return access_security // Default for all other station networks
+		return ACCESS_SECURITY // Default for all other station networks
 	else
 		return 999	//Inaccessible if not a station network and not mentioned above
 

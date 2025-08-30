@@ -22,7 +22,7 @@
 	icon_state = "frame"
 	layer = ABOVE_WINDOW_LAYER
 	desc = "A remote control for a door."
-	req_access = list(access_brig)
+	req_access = list(ACCESS_BRIG)
 	anchored = TRUE    		// can't pick it up
 	density = FALSE       		// can walk through it.
 	var/id = null     		// id of door it controls.

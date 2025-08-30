@@ -49,7 +49,7 @@
 	throw_range = 2
 	w_class = ITEMSIZE_SMALL
 	var/access = list()
-	access = access_crate_cash
+	access = ACCESS_CRATE_CASH
 	var/worth = 0
 
 /obj/item/spacecasinocash/attackby(obj/item/W as obj, mob/user as mob)

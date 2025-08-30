@@ -37,7 +37,7 @@
 /obj/machinery/computer/shuttle_control/explore/sdboat
 	name = "Starstuff control console"
 	shuttle_tag = "Starstuff"
-	req_one_access = list(access_pilot)
+	req_one_access = list(ACCESS_PILOT)
 
 /obj/effect/overmap/visitable/ship/landable/sd_boat
 	name = "NTV Starstuff"

@@ -29,7 +29,7 @@
 
 /obj/machinery/computer/shuttle_control/web/syndicate
 	name = "mercenary shuttle control console"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 	shuttle_tag = "Mercenary"
 
 /datum/shuttle/autodock/web_shuttle/syndicate

@@ -6,7 +6,7 @@
 	glass = 1
 
 	var/datum/radio_frequency/air_connection
-	var/air_frequency = 1437
+	var/air_frequency = ALERT_FREQ
 	autoclose = 0
 
 /obj/machinery/door/airlock/alarmlock/Destroy()

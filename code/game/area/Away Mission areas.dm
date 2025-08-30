@@ -66,24 +66,24 @@
 	if(!isanimal(M))
 		log_admin("[src] spawned [M.type], which is not a simplemob, FIXIT")
 		return
-	var/datum/ai_holder/AI = M.ai_holder
+	var/datum/ai_holder/our_ai_holder = M.ai_holder
 	if(ghostjoin)
 		M.ghostjoin = TRUE
 		M.ghostjoin_icon()
-	if(!AI)
+	if(!our_ai_holder)
 		return
 	switch(mob_intent)
 		if("default")
 			return
 		if("hostile")
-			AI.hostile = TRUE
-			AI.retaliate = TRUE
+			our_ai_holder.hostile = TRUE
+			our_ai_holder.retaliate = TRUE
 		if("retaliate")
-			AI.hostile = FALSE
-			AI.retaliate = TRUE
+			our_ai_holder.hostile = FALSE
+			our_ai_holder.retaliate = TRUE
 		if("passive")
-			AI.hostile = FALSE
-			AI.retaliate = FALSE
+			our_ai_holder.hostile = FALSE
+			our_ai_holder.retaliate = FALSE
 
 /area/proc/spawn_flora_on_turf()
 	if(!valid_flora.len)

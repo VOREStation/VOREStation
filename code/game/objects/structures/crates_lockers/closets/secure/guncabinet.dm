@@ -2,7 +2,7 @@
 	name = "gun cabinet"
 	icon = 'icons/obj/guncabinet.dmi'
 	icon_state = "base"
-	req_one_access = list(access_armory)
+	req_one_access = list(ACCESS_ARMORY)
 	closet_appearance = null
 
 /obj/structure/closet/secure_closet/guncabinet/Initialize(mapload)
@@ -51,7 +51,7 @@
 
 /obj/structure/closet/secure_closet/guncabinet/excursion
 	name = "expedition weaponry cabinet"
-	req_one_access = list(access_armory)
+	req_one_access = list(ACCESS_ARMORY)
 
 /obj/structure/closet/secure_closet/guncabinet/excursion/Initialize(mapload)
 	. = ..()

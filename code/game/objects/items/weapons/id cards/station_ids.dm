@@ -175,7 +175,7 @@
 
 /obj/item/card/id/synthetic/Initialize(mapload)
 	. = ..()
-	access = get_all_station_access().Copy() + access_synth
+	access = get_all_station_access().Copy() + ACCESS_SYNTH
 
 /obj/item/card/id/lost
 	name = "\improper Unknown ID"
@@ -185,7 +185,7 @@
 
 /obj/item/card/id/lost/Initialize(mapload)
 	. = ..()
-	access += access_lost
+	access += ACCESS_LOST
 
 /obj/item/card/id/platform
 	name = "\improper Support Platform ID"
@@ -194,9 +194,9 @@
 	item_state = "tdgreen"
 	assignment = "Synthetic"
 	access = list(
-		access_synth, access_mining, access_mining_station, access_mining_office, access_research,
-		access_xenoarch, access_xenobiology, access_external_airlocks, access_robotics, access_tox,
-		access_tox_storage, access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot
+		ACCESS_SYNTH, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINING_OFFICE, ACCESS_RESEARCH,
+		ACCESS_XENOARCH, ACCESS_XENOBIOLOGY, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_ROBOTICS, ACCESS_TOX,
+		ACCESS_TOX_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT
 	)
 
 /obj/item/card/id/centcom

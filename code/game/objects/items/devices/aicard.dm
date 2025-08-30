@@ -68,7 +68,7 @@
 
 	switch(action)
 		if("wipe")
-			msg_admin_attack("[key_name_admin(ui.user)] wiped [key_name_admin(AI)] with \the [src].")
+			msg_admin_attack("[key_name_admin(ui.user)] wiped [key_name_admin(AI_DEPT)] with \the [src].")
 			add_attack_logs(ui.user,carded_ai,"Purged from AI Card")
 			INVOKE_ASYNC(src, PROC_REF(wipe_ai))
 		if("radio")
@@ -170,15 +170,15 @@
 		rig.forced_move(direction, user)
 
 /obj/item/aicard/proc/wipe_ai()
-	var/mob/living/silicon/ai/AI = carded_ai
+	var/mob/living/silicon/ai/our_ai = carded_ai
 	flush = TRUE
-	AI.suiciding = TRUE
-	to_chat(AI, "Your power has been disabled!")
-	while(AI && AI.stat != DEAD)
+	our_ai.suiciding = TRUE
+	to_chat(our_ai, "Your power has been disabled!")
+	while(our_ai && our_ai.stat != DEAD)
 		// This is absolutely evil and I love it.
-		if(AI.deployed_shell && prob(AI.oxyloss)) //You feel it creeping? Eventually will reach 100, resulting in the second half of the AI's remaining life being lonely.
-			AI.disconnect_shell("Disconnecting from remote shell due to insufficent power.")
-		AI.adjustOxyLoss(2)
-		AI.updatehealth()
+		if(our_ai.deployed_shell && prob(our_ai.oxyloss)) //You feel it creeping? Eventually will reach 100, resulting in the second half of the AI's remaining life being lonely.
+			our_ai.disconnect_shell("Disconnecting from remote shell due to insufficent power.")
+		our_ai.adjustOxyLoss(2)
+		our_ai.updatehealth()
 		sleep(10)
 	flush = FALSE

@@ -258,7 +258,7 @@
 	icon = 'icons/atmos/digital_tvalve.dmi'
 	pipe_state = "dtvalve"
 
-	var/frequency = 0
+	var/frequency = ZERO_FREQ
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 

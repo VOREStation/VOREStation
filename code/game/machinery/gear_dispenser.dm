@@ -474,7 +474,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 		/datum/gear_disp/ert/medical_rig,
 		/datum/gear_disp/ert/engineer_rig,
 	)
-	req_one_access = list(access_cent_specops)
+	req_one_access = list(ACCESS_CENT_SPECOPS)
 
 
 ////////////////////////////// STATION SUIT DISPENSERS ///////////////////////////
@@ -487,7 +487,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	voidsuit_type = /obj/item/clothing/suit/space/void/security
 	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/security
 	refit = TRUE
-	req_one_access = list(access_brig)
+	req_one_access = list(ACCESS_BRIG)
 
 /datum/gear_disp/voidsuit/station/engineering
 	name = "Engineering (Voidsuit)"
@@ -495,35 +495,35 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/engineering
 	refit = TRUE
 	magboots_type = /obj/item/clothing/shoes/magboots
-	req_one_access = list(access_engine)
+	req_one_access = list(ACCESS_ENGINE)
 
 /datum/gear_disp/voidsuit/station/medical
 	name = "Medical (Voidsuit)"
 	voidsuit_type = /obj/item/clothing/suit/space/void/medical
 	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/medical
 	refit = TRUE
-	req_one_access = list(access_medical)
+	req_one_access = list(ACCESS_MEDICAL)
 
 /datum/gear_disp/voidsuit/station/atmos
 	name = "Atmos Technician (Voidsuit)"
 	voidsuit_type = /obj/item/clothing/suit/space/void/atmos
 	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/atmos
 	refit = TRUE
-	req_one_access = list(access_atmospherics)
+	req_one_access = list(ACCESS_ATMOSPHERICS)
 
 /datum/gear_disp/voidsuit/station/paramedic
 	name = JOB_PARAMEDIC + " (Voidsuit)"
 	voidsuit_type = /obj/item/clothing/suit/space/void/medical/emt
 	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/medical/emt
 	refit = TRUE
-	req_one_access = list(access_medical) // we don't have separate paramedic access
+	req_one_access = list(ACCESS_MEDICAL) // we don't have separate paramedic access
 
 /datum/gear_disp/voidsuit/station/mining
 	name = "Mining (Voidsuit)"
 	voidsuit_type = /obj/item/clothing/suit/space/void/mining
 	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/mining
 	refit = TRUE
-	req_one_access = list(access_mining)
+	req_one_access = list(ACCESS_MINING)
 
 /obj/machinery/gear_dispenser/suit/station
 	name = "Station Suit Dispenser"

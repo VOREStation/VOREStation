@@ -7,7 +7,7 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_storage.dmi',
 			)
 	item_state = "electropack"
-	frequency = 1449
+	frequency = AMAG_ELE_FREQ
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_HUGE
 

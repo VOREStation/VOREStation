@@ -10,7 +10,7 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ert
 
-	req_access = list(access_cent_specops)
+	req_access = list(ACCESS_CENT_SPECOPS)
 	siemens_coefficient= 0.5
 
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 100)

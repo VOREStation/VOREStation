@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	pixel_y = (dir & 3) ? (dir == 1 ? 20 : -20) : 0
 
 /obj/machinery/power/apc/hyper/graveyard
-	req_access = list(access_lost)
+	req_access = list(ACCESS_LOST)
 	alarms_hidden = TRUE
 
 /obj/machinery/power/apc
@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	unacidable = TRUE
 	use_power = USE_POWER_OFF
 	clicksound = "switch"
-	req_access = list(access_engine_equip)
+	req_access = list(ACCESS_ENGINE_EQUIP)
 	blocks_emissive = FALSE
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/area/area

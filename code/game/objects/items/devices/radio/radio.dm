@@ -57,7 +57,7 @@
 	set_frequency(frequency)
 
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, GLOB.radiochannels[ch_name],  RADIO_CHAT)
 
 	wires = new(src)
 	internal_channels = GLOB.default_internal_channels.Copy()
@@ -109,7 +109,7 @@
 	if(SSradio)
 		SSradio.remove_object(src, frequency)
 		for (var/ch_name in channels)
-			SSradio.remove_object(src, radiochannels[ch_name])
+			SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 	return ..()
 
 /obj/item/radio/proc/recalculateChannels()
@@ -171,7 +171,7 @@
 		var/chan_stat = channels[ch_name]
 		var/listening = !!(chan_stat & FREQ_LISTENING) != 0
 
-		dat.Add(list(list("chan" = ch_name, "display_name" = ch_name, "secure_channel" = 1, "sec_channel_listen" = !listening, "freq" = radiochannels[ch_name])))
+		dat.Add(list(list("chan" = ch_name, "display_name" = ch_name, "secure_channel" = 1, "sec_channel_listen" = !listening, "freq" = GLOB.radiochannels[ch_name])))
 
 	return dat
 
@@ -649,7 +649,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 
 			for(var/ch_name in channels)
-				SSradio.remove_object(src, radiochannels[ch_name])
+				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 
@@ -714,17 +714,17 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		name = "broken radio headset"
 		return
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, GLOB.radiochannels[ch_name],  RADIO_CHAT)
 
 /obj/item/radio/proc/config(op)
 	if(SSradio)
 		for (var/ch_name in channels)
-			SSradio.remove_object(src, radiochannels[ch_name])
+			SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 	secure_radio_connections = new
 	channels = op
 	if(SSradio)
 		for (var/ch_name in op)
-			secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+			secure_radio_connections[ch_name] = SSradio.add_object(src, GLOB.radiochannels[ch_name],  RADIO_CHAT)
 	return
 
 /obj/item/radio/off

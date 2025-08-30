@@ -105,11 +105,6 @@
 #define Z_NAME_REDGATE_JUNGLE				"Redgate - Jungle"
 #define Z_NAME_REDGATE_FACILITY				"Redgate - Facility"
 
-//Camera networks
-#define NETWORK_TETHER "Tether"
-#define NETWORK_OUTSIDE "Outside"
-#define NETWORK_HALLS "Halls"
-
 /obj/effect/landmark/map_data/groundbase
 	height = 3
 

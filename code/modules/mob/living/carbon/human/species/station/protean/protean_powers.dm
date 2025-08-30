@@ -542,7 +542,7 @@
 				"dullahanmetal",
 				"dullahanmetal2"
 			)
-			if(mind.assigned_role in command_positions)
+			if(mind.assigned_role in GLOB.command_positions)
 				dullahanmetal_styles.Add("dullahancommand")
 			var/list/dullahaneyes_styles = list(
 				"dullahaneyes"

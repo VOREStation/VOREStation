@@ -52,7 +52,7 @@ var/datum/antagonist/trader/traders
 	var/obj/item/card/id/id = create_id("Trader", player, equip = 0)
 	id.name = "[player.real_name]'s Passport"
 	id.assignment = "Trader"
-	id.access |= access_trader
+	id.access |= ACCESS_TRADER
 	var/obj/item/storage/wallet/W = new(player)
 	W.handle_item_insertion(id)
 	player.equip_to_slot_or_del(W, slot_wear_id)
