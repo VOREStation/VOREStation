@@ -164,7 +164,7 @@ export const BellyOptionsLeft = (props: {
             content={private_struggle ? 'Private' : 'Loud'}
             tooltip={
               (private_struggle ? 'Dis' : 'En') +
-              'ables subtle struggle messages.'
+              'ables private struggle messages.'
             }
           />
         </LabeledList.Item>

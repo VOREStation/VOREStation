@@ -636,7 +636,7 @@
 			return TRUE
 		//vore sprites color
 		if("set_belly_rub")
-			var/rub_target = params["val"]
+			var/rub_target = html_encode(params["val"])
 			if(rub_target == "Current Selected")
 				host.belly_rub_target = null
 			else
