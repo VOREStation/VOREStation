@@ -39,7 +39,7 @@ export const VoreUserPreferencesAesthetic = (props: {
   const sanitizeCorruption = fixCorruptedData(aestethicMessages.active_message);
 
   const getBellies = our_bellies.map((belly) => {
-    return belly.name;
+    return belly.display_name ? belly.display_name : belly.name;
   });
 
   const locationNames = [...getBellies, 'Current Selected'];

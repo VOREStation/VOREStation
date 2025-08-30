@@ -581,3 +581,54 @@
   RexAnivius:
   - rscadd: adds larger and resting belly states to the deertaur
   - bugfix: taur resting belly sprites not being properly applied
+2025-08-30:
+  Cameron-The-Raven:
+  - code_imp: Gets rid of some sleeps
+  Heroman3003:
+  - rscadd: Added Compactor Energy Net Gun
+  Kashargul:
+  - bugfix: removes an exploit that allowed pais to download all software, no matter
+      how much ram they had free
+  - rscadd: vbo_maw27
+  - qol: one can now skip the lobby timer on test servers
+  - qol: multiple bellies can be imported selectively if tgui input framework is enabled
+  - bugfix: tgui input checkboxes now consistently returns null or a list of strings
+  - code_imp: cleans up the cell code...
+  - bugfix: payloads with invalid id counts now timeout
+  - code_imp: cleans up some more material things
+  - bugfix: chat auto scaling
+  - admin: readd VV cords
+  - code_imp: cleans up vacpack code
+  KillianKirilenko:
+  - bugfix: fixed request consoles turning invisible after receiving messages
+  - maptweak: added a light tube to fix a weird dark spot in the back of engineering's
+      EVA equipment room on the Stellar Delight
+  - maptweak: extended the hazard plating under the PA to include the three spaces
+      in front of it, because that's also a hazardous area when it's in operation
+  - maptweak: replaces the mapedited radiation and high voltage warning signs around
+      the tesla core with their correct presets
+  SatinIsle:
+  - rscadd: 'Belly Temperature: [Set to 20C by default] Prey feel the temperature
+      in your belly, will an icon if it''s uncomfortably warm/cold.
+
+      Based on belly temperature and not the body temperature math of the prey, so
+      easier to trigger. Does not paste any messages in chat. Has a range of -100C
+      to +200C.'
+  - rscadd: 'Temperature Damage: [Set off by default] If on, can deal damage to the
+      prey, ONLY if they have digestion turned on.'
+  - rscadd: 'Preference for Affected By Temperature: [Set on by default] You will
+      only have the above apply to you at all as prey if this is enabled. You will
+      still only take damage if you have digestion turned on and the pred has damage
+      turned on.'
+  - refactor: calculations in human/life.dm now only apply temperature warnings and
+      damage effects when the characters location is not a belly, this skips these
+      sections of code when the prey is in a belly only.
+  - bugfix: Fixes a bug where heat and cold discomfort alerts were cleared instantly
+      outside of bellies.
+  - bugfix: Fixes a SmartVend UI alphabetical ordering to use modern code.
+  Tenryumi:
+  - maptweak: (Stellar Delight) Added a circuit kit and Vendomat to the maintenance
+      tunnel behind Science.
+  - maptweak: Fixed an Underdark POI having no gravity on a specific row of tiles.
+  Zizzi:
+  - rscadd: Circuitry cloning.

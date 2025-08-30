@@ -13,6 +13,7 @@
 		var/list/belly_data = list()
 		belly_data += list(
 			"name" = B.name,
+			"display_name" = B.display_name,
 			"ref" = "\ref[B]"
 		)
 		if(full_data)
@@ -97,7 +98,10 @@
 	var/list/selected_list = null
 	if(owner.vore_selected)
 		var/obj/belly/selected = owner.vore_selected
-		selected_list = list("belly_name" = selected.name)
+		selected_list = list(
+							"belly_name" = selected.name,
+							"display_name" = selected.display_name
+							)
 		if(active_vore_tab == CONTROL_TAB)
 			var/list/addons = list()
 			for(var/flag_name in selected.mode_flag_list)
@@ -108,8 +112,8 @@
 				"addons" = addons,
 				"name_length" = BELLIES_NAME_MAX,
 				"name_min" = BELLIES_NAME_MIN,
-				"mode_options" = host.vore_selected.digest_modes,
-				"item_mode_options" = host.vore_selected.item_digest_modes,
+				"mode_options" = selected.digest_modes,
+				"item_mode_options" = selected.item_digest_modes,
 
 			)
 			selected_list["belly_mode_data"] = belly_mode_data
@@ -167,6 +171,8 @@
 				"digest_clone" = selected.digest_clone,
 				"digest_max" = selected.digest_max,
 				"digest_free" = selected.get_unused_digestion_damage(),
+				"bellytemperature" = selected.bellytemperature,
+				"temperature_damage" = selected.temperature_damage,
 				"bulge_size" = selected.bulge_size,
 				"shrink_grow_size" = selected.shrink_grow_size,
 				"contaminates" = selected.contaminates,
