@@ -188,6 +188,10 @@
 	desc = "You breathe nitrogen instead of oxygen (which is poisonous to you). Incidentally, phoron isn't poisonous to breathe to you."
 	var_changes = list("breath_type" = GAS_N2, "poison_type" = GAS_O2, "ideal_air_type" = /datum/gas_mixture/belly_air/nitrogen_breather)
 
+/datum/trait/negative/breathes/methane
+	name = "Methane Breather"
+	desc = "You breathe methane instead of oxygen (which is poisonous to you)."
+	var_changes = list("breath_type" = GAS_CH4, "poison_type" = GAS_O2, "ideal_air_type" = /datum/gas_mixture/belly_air/methane_breather)
 
 /datum/trait/negative/monolingual
 	name = "Monolingual"

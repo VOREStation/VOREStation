@@ -111,6 +111,7 @@ SUBSYSTEM_DEF(plants)
 	if(survive_on_station)
 		if(seed.consume_gasses)
 			seed.consume_gasses[GAS_PHORON] = null
+			seed.consume_gasses[GAS_CH4] = null
 			seed.consume_gasses[GAS_CO2] = null
 		if(seed.chems && !isnull(seed.chems[REAGENT_ID_PACID]))
 			seed.chems[REAGENT_ID_PACID] = null // Eating through the hull will make these plants completely inviable, albeit very dangerous.

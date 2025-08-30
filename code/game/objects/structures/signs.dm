@@ -1018,6 +1018,12 @@
 	desc = "WARNING! O2 flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_o2"
 
+/obj/structure/sign/atmos_ch4
+	icon = 'icons/obj/decals.dmi'
+	name = "CH4 warning sign"
+	desc = "WARNING! CH4 flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_ch4"
+
 /obj/structure/sign/atmos_air
 	icon = 'icons/obj/decals.dmi'
 	name = "Air warning sign"
