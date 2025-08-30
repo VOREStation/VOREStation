@@ -11,11 +11,18 @@ export const VoreSelectedBellyControls = (props: {
   bellyDropdownNames: DropdownEntry[];
   editMode: boolean;
   belly_name: string;
+  display_name: string;
   bellyModeData: bellyModeData;
 }) => {
   const { act } = useBackend();
 
-  const { bellyDropdownNames, belly_name, bellyModeData, editMode } = props;
+  const {
+    bellyDropdownNames,
+    belly_name,
+    display_name,
+    bellyModeData,
+    editMode,
+  } = props;
   const {
     mode,
     item_mode,
@@ -76,6 +83,22 @@ export const VoreSelectedBellyControls = (props: {
           subAction={'b_name'}
           tooltip={
             'Adjust the name of your belly. [' +
+            name_min +
+            '-' +
+            name_length +
+            ' characters].'
+          }
+        />
+      </LabeledList.Item>
+      <LabeledList.Item label="Display Name">
+        <VorePanelEditText
+          editMode={editMode}
+          limit={name_length}
+          entry={display_name}
+          action={'set_attribute'}
+          subAction={'b_display_name'}
+          tooltip={
+            'Adjust the optional display name of your belly. This will be shown in chat if set instead of the original name [' +
             name_min +
             '-' +
             name_length +
