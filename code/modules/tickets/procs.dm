@@ -69,11 +69,11 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 	set name = "Request help"
 	set hidden = 1
 
-	var/mhelp = tgui_alert(usr, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp"))
+	var/mhelp = tgui_alert(src, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp"))
 	if(!mhelp)
 		return
 
-	var/msg = tgui_input_text(usr, "Input your request for help.", "Request for Help ([mhelp])", multiline = TRUE)
+	var/msg = tgui_input_text(src, "Input your request for help.", "Request for Help ([mhelp])", multiline = TRUE)
 	if(!msg)
 		return
 
@@ -130,7 +130,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	var/browse_to
 
-	switch(tgui_input_list(usr, "Display which ticket list?", "List Choice", list("Active Tickets", "Closed Tickets", "Resolved Tickets")))
+	switch(tgui_input_list(src, "Display which ticket list?", "List Choice", list("Active Tickets", "Closed Tickets", "Resolved Tickets")))
 		if("Active Tickets")
 			browse_to = AHELP_ACTIVE
 		if("Closed Tickets")
@@ -206,7 +206,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	if(T)
 		message_mentors(span_mentor_channel("[src] has started replying to [C]'s mentor help."))
-	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE)
+	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE, encode = FALSE)
 	if (!msg)
 		message_mentors(span_mentor_channel("[src] has cancelled their reply to [C]'s mentor help."))
 		return
