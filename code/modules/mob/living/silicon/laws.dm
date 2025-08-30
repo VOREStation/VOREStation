@@ -115,7 +115,7 @@
 	stating_laws[prefix] = 0
 
 /mob/living/silicon/proc/statelaw(var/law)
-	if(src.say(law))
+	if(direct_say(law))
 		sleep(10)
 		return 1
 

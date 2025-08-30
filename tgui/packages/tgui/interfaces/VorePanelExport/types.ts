@@ -12,6 +12,7 @@ export type Belly = {
   // General Information
   name: string;
   desc: string;
+  display_name: string;
   message_mode: BooleanLike;
   absorbed_desc: string;
   vore_verb: string;
@@ -99,6 +100,7 @@ export type Belly = {
   examine_messages_absorbed: string[];
   trash_eater_in: string[];
   trash_eater_out: string[];
+  displayed_message_flags: number;
 
   // emote_list: string[];
   emotes_digest: string[];

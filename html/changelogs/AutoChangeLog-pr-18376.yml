@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - rscadd: "vbo_maw27"
+  - bugfix: "size netgun build path"

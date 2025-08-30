@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - qol: "bellies now have a display name option as their object names are unique"
+  - qol: "alters some message handling with owner struggle messages"
