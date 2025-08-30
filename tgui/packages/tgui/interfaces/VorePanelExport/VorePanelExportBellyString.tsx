@@ -494,6 +494,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
   absorbed_struggle_messages_outside?.forEach((msg) => {
     result += `${msg}<br>`;
   });
+  result += '</div>';
 
   result += `<div class="tab-pane fade" id="absorbedStruggleInside${index}" role="messagesTabpanel">`;
   absorbed_struggle_messages_inside?.forEach((msg) => {
