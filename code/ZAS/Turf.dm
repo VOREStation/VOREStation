@@ -247,12 +247,12 @@
 
 	var/sum = oxygen + carbon_dioxide + nitrogen + phoron + nitrous_oxide + methane
 	if(sum>0)
-		GM.gas[GAS_O2] = (oxygen/sum)*amount
-		GM.gas[GAS_CO2] = (carbon_dioxide/sum)*amount
-		GM.gas[GAS_N2] = (nitrogen/sum)*amount
-		GM.gas[GAS_PHORON] = (phoron/sum)*amount
-		GM.gas[GAS_N2O] = (nitrous_oxide/sum)*amount
-		GM.gas[GAS_CH4] = (methane/sum)*amount
+		GM.gas[GAS_O2] 		= (oxygen / sum) * amount
+		GM.gas[GAS_CO2] 	= (carbon_dioxide / sum) * amount
+		GM.gas[GAS_N2] 		= (nitrogen / sum) * amount
+		GM.gas[GAS_PHORON] 	= (phoron / sum) * amount
+		GM.gas[GAS_N2O] 	= (nitrous_oxide / sum) * amount
+		GM.gas[GAS_CH4] 	= (methane / sum) * amount
 
 	GM.temperature = temperature
 	GM.update_values()

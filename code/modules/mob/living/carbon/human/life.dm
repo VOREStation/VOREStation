@@ -626,7 +626,7 @@
 	// Not enough to breathe
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
-			spawn(0) emote("gasp")
+			emote("gasp")
 		if(is_below_sound_pressure(get_turf(src)))	//No more popped lungs from choking/drowning. You also have ~20 seconds to get internals on before your lungs pop.
 			rupture_lung(TRUE)
 
@@ -714,7 +714,7 @@
 		var/ratio = (poison_methane/safe_toxins_max) * 1200
 		adjustOxyLoss(CLAMP(ratio,0.1,10)) // Causes slow suffocation
 		if(prob(20))
-			spawn(0) emote("gasp")
+			emote("gasp")
 		breath.adjust_gas(GAS_CH4, -poison_methane/6, update = 0) //update after
 		breath.adjust_gas(GAS_CH4, -breath.gas[GAS_CH4]/6, update = 0) //update after
 		throw_alert("methane_in_air", /obj/screen/alert/methane_in_air)
@@ -738,7 +738,7 @@
 		// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 		else if(SA_pp > 0.15)
 			if(prob(20))
-				spawn(0) emote(pick("giggle", "laugh"))
+				emote(pick("giggle", "laugh"))
 		breath.adjust_gas(GAS_N2O, -breath.gas[GAS_N2O]/6, update = 0) //update after
 
 	if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_OXY)
@@ -1336,13 +1336,12 @@
 							badorgan.damage -= 1
 
 				handle_dreams()
-				if (mind)
+				if(mind)
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 					if(client || sleeping > 3)
 						handle_sleeping()
-				if( prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client )
-					spawn(0)
-						emote("snore")
+				if(prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client )
+					emote("snore")
 		//CONSCIOUS
 		else
 			set_stat(CONSCIOUS)

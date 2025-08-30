@@ -1063,7 +1063,7 @@
 
 	if (total_moles)
 		var/methane_level = environment.gas[GAS_CH4]/total_moles
-		set_pin_data(IC_OUTPUT, 1, round(methane_level*100,0.1))
+		set_pin_data(IC_OUTPUT, 1, round(methane_level*100, 0.1))
 	else
 		set_pin_data(IC_OUTPUT, 1, 0)
 	push_data()
