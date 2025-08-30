@@ -40,6 +40,7 @@
 	endoware_flags = 0
 	for(var/obj/item/endoware/source in installed_endoware)
 		endoware_flags |= source.endoware_flags
+	endoware_flags |= ENDOWARE_FLAG_UI //todo
 
 /mob/living/carbon/proc/update_endoware_vision()
 	endoware_planes = list()
