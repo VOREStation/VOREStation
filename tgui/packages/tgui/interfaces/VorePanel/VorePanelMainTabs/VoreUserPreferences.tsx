@@ -21,6 +21,7 @@ export const VoreUserPreferences = (props: {
     absorbable,
     devourable,
     allowmobvore,
+    allowtemp,
     feeding,
     permit_healbelly,
     can_be_drop_prey,
@@ -118,6 +119,19 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Mobs eating you allowed',
         disabled: 'No Mobs eating you',
+      },
+    },
+    temperature: {
+      action: 'toggle_allowtemp',
+      test: allowtemp,
+      tooltip: {
+        main: "This button is for those who don't want to be affected by belly temperature, as temperature can be deadly.",
+        enable: 'Click here to be affected by belly temperature.',
+        disable: 'Click here to not be affected by belly temperature.',
+      },
+      content: {
+        enabled: 'Affected By Temperature',
+        disabled: 'Immune To Temperature',
       },
     },
     feed: {

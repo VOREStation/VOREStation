@@ -24,6 +24,7 @@
 /datum/robot_sprite/dogborg/syndie/drake
 	name = "Drake"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 
 /datum/robot_sprite/dogborg/syndie/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_syndie.dmi'

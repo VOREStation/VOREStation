@@ -1,6 +1,7 @@
 import { LabeledList } from 'tgui-core/components';
 
 import { digestModeToColor, selectiveBellyOptions } from '../../constants';
+import { bellyTemperatureToColor } from '../../functions';
 import type { bellyOptionData } from '../../types';
 import { VorePanelEditDropdown } from '../../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../../VorePanelElements/VorePanelEditNumber';
@@ -20,6 +21,8 @@ export const BellyOptionsRight = (props: {
     digest_clone,
     digest_max,
     digest_free,
+    bellytemperature,
+    temperature_damage,
     shrink_grow_size,
     egg_type,
     egg_types,
@@ -144,6 +147,33 @@ export const BellyOptionsRight = (props: {
           digits={3}
           maxValue={digest_free + digest_clone}
           color="purple"
+        />
+      </LabeledList.Item>
+      <LabeledList.Item label="Belly Temperature">
+        <VorePanelEditNumber
+          tooltip={
+            'Choose a temperature between -100*C and 200*C for the temperature inside of this belly.'
+          }
+          action="set_attribute"
+          subAction="b_bellytemperature"
+          editMode={editMode}
+          value={Math.round((bellytemperature - 273.15) * 10) / 10}
+          minValue={-100}
+          step={0.01}
+          stepPixel={0.1}
+          digits={1}
+          maxValue={200}
+          unit="°C"
+          color={bellyTemperatureToColor(bellytemperature)}
+        />
+      </LabeledList.Item>
+      <LabeledList.Item label="Temperature Damage">
+        <VorePanelEditSwitch
+          action="set_attribute"
+          subAction="b_temperature_damage"
+          editMode={editMode}
+          active={!!temperature_damage}
+          tooltip="If enabled, temperature will deal damage if too hot or cold for prey (assuming they have digestion enabled)."
         />
       </LabeledList.Item>
       <LabeledList.Item label="Drain Finishing Mode">

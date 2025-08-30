@@ -19,6 +19,7 @@
 		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")
 	if(!material)
+		stack_trace("Material of type: [material_name] does not exist.")
 		return INITIALIZE_HINT_QDEL
 	color = material.icon_colour
 
