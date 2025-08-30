@@ -1,4 +1,9 @@
-import { ItemModeSpan, ModeSpan } from './constants';
+import {
+  ItemModeSpan,
+  ModeSpan,
+  STRUGGLE_OUTSIDE_ABSORBED_MESSAGE,
+  STRUGGLE_OUTSIDE_MESSAGE,
+} from './constants';
 import {
   formatListEmotes,
   formatListItems,
@@ -6,6 +11,7 @@ import {
   getYesNo,
 } from './functions';
 import type { Belly, EmoteEntry, SettingItem } from './types';
+
 import {
   GetAddons,
   GetAutotransferFlags,
@@ -18,6 +24,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     // General Information
     name,
     desc,
+    display_name,
     message_mode,
     absorbed_desc,
     vore_verb,
@@ -104,6 +111,7 @@ export const generateBellyString = (belly: Belly, index: number) => {
     examine_messages_absorbed,
     trash_eater_in,
     trash_eater_out,
+    displayed_message_flags,
     // emote_list,
     emotes_digest,
     emotes_hold,
@@ -276,7 +284,12 @@ export const generateBellyString = (belly: Belly, index: number) => {
   result += '<div class="row"><div class="col-4">';
   result += '<div class="list-group" id="messagesList" role="messagesTablist">';
 
-  const tabLinks: { id: string; label: string; active?: boolean }[] = [
+  const tabLinks: {
+    id: string;
+    label: string;
+    active?: boolean;
+    enabled?: boolean;
+  }[] = [
     {
       id: 'escapeAttemptMessagesOwner',
       label: 'Escape Attempt Messages (Owner)',
@@ -351,11 +364,17 @@ export const generateBellyString = (belly: Belly, index: number) => {
       label: 'Absorb Chance Messages (Owner)',
     },
     { id: 'absorbChanceMessagesPrey', label: 'Absorb Chance Messages (Prey)' },
-    { id: 'struggleMessagesOutside', label: 'Struggle Messages (Outside)' },
+    {
+      id: 'struggleMessagesOutside',
+      label: 'Struggle Messages (Outside)',
+      enabled: (displayed_message_flags & STRUGGLE_OUTSIDE_MESSAGE) > 0,
+    },
     { id: 'struggleMessagesInside', label: 'Struggle Messages (Inside)' },
     {
       id: 'absorbedStruggleOutside',
       label: 'Absorbed Struggle Messages (Outside)',
+      enabled:
+        (displayed_message_flags & STRUGGLE_OUTSIDE_ABSORBED_MESSAGE) > 0,
     },
     {
       id: 'absorbedStruggleInside',
@@ -373,8 +392,11 @@ export const generateBellyString = (belly: Belly, index: number) => {
     { id: 'trash_eater_out', label: 'Item Expel Messages' },
   ];
 
-  tabLinks.forEach(({ id, label, active }) => {
-    result += `<a class="list-group-item list-group-item-action${active ? ' active' : ''}" data-bs-toggle="list" href="#${id}${index}" role="tab">${label}</a>`;
+  tabLinks.forEach(({ id, label, enabled }, i) => {
+    const isActive = i === 0 ? ' active' : '';
+    const status = enabled === undefined ? '' : getYesNo(enabled);
+
+    result += `<a class="list-group-item list-group-item-action${isActive}" data-bs-toggle="list" href="#${id}${index}" role="tab">${label}${status}</a>`;
   });
 
   result += '</div></div>';

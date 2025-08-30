@@ -35,6 +35,7 @@
 	if(craftable)
 		material = get_material_by_name("[default_type]")
 		if(!material)
+			stack_trace("Material of type: [default_type] does not exist.")
 			return INITIALIZE_HINT_QDEL
 		if(material) //sanity check
 			recipes = material.get_recipes()
@@ -73,7 +74,7 @@
 	singular_name = "grass floor tile"
 	desc = "A patch of grass like they often use on golf courses."
 	icon_state = "tile_grass"
-	default_type = "grass"
+	default_type = MAT_GRASS
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 5

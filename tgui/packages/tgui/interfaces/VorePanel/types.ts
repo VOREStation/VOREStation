@@ -52,6 +52,7 @@ export type insideData = {
 
 export type bellyData = {
   name: string;
+  display_name: string;
   ref: string;
   selected?: BooleanLike;
   digest_mode?: string;
@@ -218,6 +219,7 @@ export type siliconeBellyControls = {
 
 export type selectedData = {
   belly_name: string;
+  display_name: string;
   belly_mode_data?: bellyModeData;
   belly_description_data?: bellyDescriptionData;
   belly_option_data?: bellyOptionData;
