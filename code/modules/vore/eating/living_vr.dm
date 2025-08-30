@@ -589,7 +589,7 @@
 			if(isnull(ourmob.loc))
 				var/mob/living/voice/possessed_voice = src  // Stupid band-aid fix for OOC escaping object TF
 				if(possessed_voice.item_tf)
-					src.mind.transfer_to(ourmob)
+					mind.transfer_to(ourmob)
 					item_to_destroy.possessed_voice -= src
 					qdel(src)
 					ourmob.forceMove(item_to_destroy.loc)
