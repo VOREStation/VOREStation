@@ -94,108 +94,13 @@
 				var/mob/mob_to_be_changed = micro_holder.held_mob
 				var/mob/living/M = mob_to_be_changed
 				//Start of mob code shamelessly ripped from mouseray
-				new_mob.faction = M.faction
-
-				if(new_mob && isliving(new_mob))
-					for(var/obj/belly/B as anything in new_mob.vore_organs)
-						new_mob.vore_organs -= B
-						qdel(B)
-					new_mob.vore_organs = list()
-					new_mob.name = M.name
-					new_mob.real_name = M.real_name
-					for(var/lang in M.languages)
-						new_mob.languages |= lang
-					M.copy_vore_prefs_to_mob(new_mob)
-					new_mob.vore_selected = M.vore_selected
-					if(ishuman(M))
-						var/mob/living/carbon/human/H = M
-						if(ishuman(new_mob))
-							var/mob/living/carbon/human/N = new_mob
-							N.gender = H.gender
-							N.identifying_gender = H.identifying_gender
-						else
-							new_mob.gender = H.identifying_gender
-					else
-						new_mob.gender = M.gender
-						if(ishuman(new_mob))
-							var/mob/living/carbon/human/N = new_mob
-							N.identifying_gender = M.gender
-
-					for(var/obj/belly/B as anything in M.vore_organs)
-						B.loc = new_mob
-						B.forceMove(new_mob)
-						B.owner = new_mob
-						M.vore_organs -= B
-						new_mob.vore_organs += B
-
-					M.soulgem.transfer_self(new_mob) // Soulcatcher
-
-					new_mob.ckey = M.ckey
-					if(M.ai_holder && new_mob.ai_holder)
-						var/datum/ai_holder/old_AI = M.ai_holder
-						old_AI.set_stance(STANCE_SLEEP)
-						var/datum/ai_holder/new_AI = new_mob.ai_holder
-						new_AI.hostile = old_AI.hostile
-						new_AI.retaliate = old_AI.retaliate
-					M.loc = new_mob
-					M.forceMove(new_mob)
-					new_mob.tf_mob_holder = M
-					///End of mobcode.
-					qdel(source_material)
-				M.forceMove(new_mob)
+				M.tf_into(new_mob)
 
 			//Did they put a person in it?
 			else if(isliving(source_material))
 				var/mob/living/M = source_material
 				//Start of mob code shamelessly ripped from mouseray
-				new_mob.faction = M.faction
-
-				if(new_mob && isliving(new_mob))
-					for(var/obj/belly/B as anything in new_mob.vore_organs)
-						new_mob.vore_organs -= B
-						qdel(B)
-					new_mob.vore_organs = list()
-					new_mob.name = M.name
-					new_mob.real_name = M.real_name
-					for(var/lang in M.languages)
-						new_mob.languages |= lang
-					M.copy_vore_prefs_to_mob(new_mob)
-					new_mob.vore_selected = M.vore_selected
-					if(ishuman(M))
-						var/mob/living/carbon/human/H = M
-						if(ishuman(new_mob))
-							var/mob/living/carbon/human/N = new_mob
-							N.gender = H.gender
-							N.identifying_gender = H.identifying_gender
-						else
-							new_mob.gender = H.identifying_gender
-					else
-						new_mob.gender = M.gender
-						if(ishuman(new_mob))
-							var/mob/living/carbon/human/N = new_mob
-							N.identifying_gender = M.gender
-
-					for(var/obj/belly/B as anything in M.vore_organs)
-						B.loc = new_mob
-						B.forceMove(new_mob)
-						B.owner = new_mob
-						M.vore_organs -= B
-						new_mob.vore_organs += B
-
-					M.soulgem.transfer_self(new_mob) // Soulcatcher
-
-					new_mob.ckey = M.ckey
-					if(M.ai_holder && new_mob.ai_holder)
-						var/datum/ai_holder/old_AI = M.ai_holder
-						old_AI.set_stance(STANCE_SLEEP)
-						var/datum/ai_holder/new_AI = new_mob.ai_holder
-						new_AI.hostile = old_AI.hostile
-						new_AI.retaliate = old_AI.retaliate
-					M.loc = new_mob
-					M.forceMove(new_mob)
-					new_mob.tf_mob_holder = M
-					///End of mobcode.
-
+				M.tf_into(new_mob)
 
 			spawn_progress_time = 0
 			max_spawn_time = rand(30,100)
@@ -446,24 +351,11 @@
 				var/obj/item/holder/micro/micro_holder = source_material //Tells the machine that a micro is the material being used
 				var/mob/mob_to_be_changed = micro_holder.held_mob //Get the mob.
 				var/mob/living/M = mob_to_be_changed
-				M.release_vore_contents(TRUE, TRUE) //Release their stomach contents. Don't spam the chat, either.
-				spawned_obj.inhabit_item(M, original_name, M) //Take the spawned mob and call the TF proc on it.
-				var/mob/living/possessed_voice = spawned_obj.possessed_voice //Get the possessed voice.
-				qdel(source_material) 	//Deletes the micro holder, we don't need it anymore.
-				spawned_obj.trash_eatable = M.devourable //Can this item be eaten? Let's decide based on the person's prefs!
-				spawned_obj.unacidable = !M.digestable //Can this item be digested?
-				M.forceMove(possessed_voice) //Places them in the 'voice' for later recovery! Essentially: The item contains a 'possessed voice' mob, which contains their original mob.
-
+				M.tf_into(spawned_obj, TRUE, original_name)
 
 			else if(isliving(source_material))//Did they shove a person in there normally?
 				var/mob/living/M = source_material //If so, this cuts down the work we have to do!
-				M.release_vore_contents(TRUE, TRUE) //Release their stomach contents. Don't spam the chat, either.
-				spawned_obj.inhabit_item(M, original_name, M)
-				var/mob/living/possessed_voice = spawned_obj.possessed_voice
-				spawned_obj.trash_eatable = M.devourable
-				spawned_obj.unacidable = !M.digestable
-				M.forceMove(possessed_voice)
-
+				M.tf_into(spawned_obj, TRUE, original_name)
 
 			spawn_progress_time = 0
 			max_spawn_time = rand(30,100)
