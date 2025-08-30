@@ -206,7 +206,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	if(T)
 		message_mentors(span_mentor_channel("[src] has started replying to [C]'s mentor help."))
-	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE)
+	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE, encode = FALSE)
 	if (!msg)
 		message_mentors(span_mentor_channel("[src] has cancelled their reply to [C]'s mentor help."))
 		return
