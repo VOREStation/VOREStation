@@ -145,6 +145,12 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	template_id = "shelter_phi"
 	unique_id = "shelter_a"
 
+/obj/item/survivalcapsule/holly
+	name = "vaguely festive surfluid shelter capsule"
+	desc = "A \"homemade\" luxury suite crammed into a capsule. There's a license for use printed on the bottom. For some reason, the license's text is written in festive colors."
+	template_id = "shelter_chi"
+	unique_id = "shelter_h"
+
 //Pod objects
 //Walls
 /turf/simulated/shuttle/wall/voidcraft/survival
