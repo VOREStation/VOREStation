@@ -107,7 +107,7 @@
 #define ONOFF_TOGGLE(flag) "\[[(output & flag) ? "YES" : "NO"]]"
 /obj/machinery/air_sensor/proc/multitool_act(mob/living/user, obj/item/multitool/tool)
 	var/list/options = list(
-		"Pressure: [ONOFF_TOGGLE(SENSOR_PRESSURE)]" 	= SENSOR_PRESSURE,
+		"Pressure: [ONOFF_TOGGLE(SENSOR_PRESSURE)]" 		= SENSOR_PRESSURE,
 		"Temperature: [ONOFF_TOGGLE(SENSOR_TEMPERATURE)]" 	= SENSOR_TEMPERATURE,
 		"[GASNAME_O2]: [ONOFF_TOGGLE(SENSOR_O2)]" 			= SENSOR_O2,
 		"[GASNAME_PHORON]: [ONOFF_TOGGLE(SENSOR_PLASMA)]" 	= SENSOR_PLASMA,

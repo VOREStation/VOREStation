@@ -222,41 +222,7 @@
 	category = "Utilities"
 
 /datum/data/pda/app/atmos_scanner/update_ui(mob/user as mob, list/data)
-	var/list/results = list()
-	var/turf/T = get_turf(user)
-	if(!isnull(T))
-		var/datum/gas_mixture/environment = T.return_air()
-		var/pressure = environment.return_pressure()
-		var/total_moles = environment.total_moles
-		if (total_moles)
-			var/o2_level = environment.gas[GAS_O2]/total_moles
-			var/n2_level = environment.gas[GAS_N2]/total_moles
-			var/co2_level = environment.gas[GAS_CO2]/total_moles
-			var/phoron_level = environment.gas[GAS_PHORON]/total_moles
-			var/methane_level = environment.gas[GAS_CH4]/total_moles
-			var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level+methane_level)
-
-			// entry is what the element is describing
-			// Type identifies which unit or other special characters to use
-			// Val is the information reported
-			// Bad_high/_low are the values outside of which the entry reports as dangerous
-			// Poor_high/_low are the values outside of which the entry reports as unideal
-			// Values were extracted from the template itself
-			results = list(
-						list("entry" = "Pressure", "units" = "kPa", "val" = "[round(pressure, 0.1)]", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80),
-						list("entry" = "Temperature", "units" = "\u00B0C", "val" = "[round(environment.temperature-T0C, 0.1)]", "bad_high" = 35, "poor_high" = 25, "poor_low" = 15, "bad_low" = 5),
-						list("entry" = GASNAME_O2, "units" = "kPa", "val" = "[round(o2_level*100, 0.1)]", "bad_high" = 140, "poor_high" = 135, "poor_low" = 19, "bad_low" = 17),
-						list("entry" = GASNAME_N2, "units" = "kPa", "val" = "[round(n2_level*100, 0.1)]", "bad_high" = 105, "poor_high" = 85, "poor_low" = 50, "bad_low" = 40),
-						list("entry" = GASNAME_CO2, "units" = "kPa", "val" = "[round(co2_level*100, 0.1)]", "bad_high" = 10, "poor_high" = 5, "poor_low" = 0, "bad_low" = 0),
-						list("entry" = GASNAME_PHORON, "units" = "kPa", "val" = "[round(phoron_level*100, 0.01)]", "bad_high" = 0.5, "poor_high" = 0, "poor_low" = 0, "bad_low" = 0),
-						list("entry" = GASNAME_CH4, "units" = "kPa", "val" = "[round(methane_level*100, 0.01)]", "bad_high" = 0.5, "poor_high" = 0, "poor_low" = 0, "bad_low" = 0),
-						list("entry" = "Other", "units" = "kPa", "val" = "[round(unknown_level, 0.01)]", "bad_high" = 1, "poor_high" = 0.5, "poor_low" = 0, "bad_low" = 0)
-						)
-
-	if(isnull(results))
-		results = list(list("entry" = "pressure", "units" = "kPa", "val" = "0", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80))
-
-	data["aircontents"] = results
+	data["aircontents"] = get_gas_mixture_default_scan_data(get_turf(user))
 
 /datum/data/pda/app/news
 	name = "News"

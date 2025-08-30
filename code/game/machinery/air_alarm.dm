@@ -644,7 +644,7 @@
 					list("name" = GASNAME_PHORON, 		"command" = "tox_scrub","val" = info["filter_phoron"]),
 					list("name" = GASNAME_CH4, 			"command" = "ch4_scrub","val" = info["filter_ch4"]),
 					list("name" = GASNAME_N2O,			"command" = "n2o_scrub","val" = info["filter_n2o"]),
-					list("name" = GASNAME_VOLATILE_FUEL, "command" = "fuel_scrub","val" = info["filter_fuel"])
+					list("name" = GASNAME_VOLATILE_FUEL,"command" = "fuel_scrub","val" = info["filter_fuel"])
 				)
 			))
 		data["scrubbers"] = scrubbers
