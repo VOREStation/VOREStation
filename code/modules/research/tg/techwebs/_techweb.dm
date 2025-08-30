@@ -332,7 +332,7 @@
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/human_user = user
 		var/list/access = human_user.wear_id?.GetAccess()
-		if(access_rd in access)
+		if(ACCESS_RD in access)
 			queue_first = TRUE
 
 	if(id in research_queue_nodes)

@@ -41,7 +41,7 @@
 	var/internal_pressure_bound_default = INTERNAL_PRESSURE_BOUND
 	var/pressure_checks_default = PRESSURE_CHECKS
 
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 	var/datum/radio_frequency/radio_connection
 
 	var/radio_filter_out

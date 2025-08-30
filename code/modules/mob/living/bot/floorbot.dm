@@ -8,7 +8,7 @@
 	name = "Floorbot"
 	desc = "A little floor repairing robot, it looks so excited!"
 	icon_state = "floorbot0"
-	req_one_access = list(access_robotics, access_construction)
+	req_one_access = list(ACCESS_ROBOTICS, ACCESS_CONSTRUCTION)
 	wait_if_pulled = 1
 	min_target_dist = 0
 
