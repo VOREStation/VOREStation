@@ -89,7 +89,7 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
-/datum/design_techweb/board/rtg
+/datum/design_techweb/board/vitals_monitor
 	name = "vitals monitor circuit"
 	id = "vitals"
 	// req_tech = list(TECH_DATA = 3, TECH_BIO = 4, TECH_ENGINEERING = 2)
@@ -98,3 +98,23 @@
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/board/smart_centrifuge
+	name = "smart centrifuge circuit"
+	id = "smart_centrifuge"
+	// req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1, TECH_MATERIAL = 2)
+	build_path = /obj/item/circuitboard/smart_centrifuge
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/chem_analyzer
+	name = "chem analyzer PRO circuit"
+	id = "chem_analyzer"
+	// req_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
+	build_path = /obj/item/circuitboard/chemical_analyzer
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_ENGINEERING
