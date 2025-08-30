@@ -1,6 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - maptweak: "added a light tube to fix a weird dark spot in the back of engineering's EVA equipment room on the Stellar Delight"
-  - maptweak: "extended the hazard plating under the PA to include the three spaces in front of it, because that's also a hazardous area when it's in operation"
-  - maptweak: "replaces the mapedited radiation and high voltage warning signs around the tesla core with their correct presets"
