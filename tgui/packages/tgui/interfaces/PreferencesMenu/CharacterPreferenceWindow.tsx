@@ -78,7 +78,13 @@ export const CharacterPreferenceWindow = (props) => {
                     {category}
                   </Button>
                 ))}
-                <Button onClick={() => act('game_prefs')}>Game Options</Button>
+                <Button.Confirm
+                  onClick={() => act('game_prefs')}
+                  tooltip="Switches to Game Options, make sure your character is saved before switching."
+                  confirmContent="Confirm? (Discard Unsaved)"
+                >
+                  Game Options
+                </Button.Confirm>
               </Box>
               <Box position="absolute" top={0} right={0}>
                 <Button
