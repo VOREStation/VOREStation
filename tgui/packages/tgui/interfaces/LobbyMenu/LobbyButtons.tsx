@@ -24,6 +24,8 @@ export const LobbyButtons = (props: {
     show_station_news,
     new_station_news,
     new_changelog,
+    can_start_now,
+    immediate_start,
   } = data;
 
   return (
@@ -129,6 +131,17 @@ export const LobbyButtons = (props: {
         ) : (
           <LobbyButton index={6} onClick={() => act('late_join')} icon="users">
             Join Game
+          </LobbyButton>
+        )}
+        {!!can_start_now && (
+          <LobbyButton
+            index={7}
+            disabled={!!immediate_start}
+            onClick={() => act('start_immediately')}
+            color={immediate_start ? 'green' : 'red'}
+            icon="play"
+          >
+            Start Now
           </LobbyButton>
         )}
       </Stack>

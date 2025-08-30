@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -96,11 +96,11 @@ const AreaMapper = (props: {
   maxEntries: number;
 }) => {
   const { entry, limit, action, exactLength, maxEntries } = props;
+  const version = useRef(0); // No state needed, we call a backend update
 
-  const filledArray = [
-    ...entry,
-    ...new Array(maxEntries - entry.length).fill(''),
-  ];
+  const filledArray = useMemo(() => {
+    return [...entry, ...new Array(maxEntries - entry.length).fill('')];
+  }, [entry, maxEntries]);
 
   function performAction(value: string, index: number) {
     const newEntry = [...filledArray];
@@ -111,11 +111,14 @@ const AreaMapper = (props: {
     }
     const filtered = newEntry.filter(Boolean);
     action(filtered);
+    if (!filtered.length) {
+      version.current += 1;
+    }
   }
 
   return filledArray.map((singleEntry, index) => (
     <CountedTextElement
-      key={index}
+      key={`${index}-${entry.length}-${version.current}`}
       limit={limit}
       entry={singleEntry}
       action={performAction}
@@ -217,6 +220,7 @@ export const VorePanelEditTextArea = (props: {
       <Stack.Item>
         {Array.isArray(entry) ? (
           <AreaMapper
+            key={`${action}-${subAction}`}
             limit={limit}
             entry={entry}
             exactLength={exactLength}

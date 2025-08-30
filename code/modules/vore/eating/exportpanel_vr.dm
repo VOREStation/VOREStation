@@ -39,6 +39,7 @@
 			// General Information
 			belly_data["name"] = B.name
 			belly_data["desc"] = B.desc
+			belly_data["display_name"] = B.display_name
 			belly_data["absorbed_desc"] = B.absorbed_desc
 			belly_data["vore_verb"] = B.vore_verb
 			belly_data["release_verb"] = B.release_verb
@@ -279,12 +280,17 @@
 			for(var/msg in B.emote_lists[DM_UNABSORB])
 				belly_data["emotes_unabsorb"] += msg
 
+			belly_data["displayed_message_flags"] = B.displayed_message_flags
+
 			// Options
 			belly_data["digest_brute"] = B.digest_brute
 			belly_data["digest_burn"] = B.digest_burn
 			belly_data["digest_oxy"] = B.digest_oxy
 			belly_data["digest_tox"] = B.digest_tox
 			belly_data["digest_clone"] = B.digest_clone
+
+			belly_data["bellytemperature"] = B.bellytemperature
+			belly_data["temperature_damage"] = B.temperature_damage
 
 			belly_data["can_taste"] = B.can_taste
 			belly_data["is_feedable"] = B.is_feedable
