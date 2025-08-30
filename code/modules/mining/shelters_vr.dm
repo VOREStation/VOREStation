@@ -120,3 +120,33 @@
 		to no contact, the expense of these shelters have prevented them \
 		from seeing common use."
 	mappath = "maps/submaps/shelters/shelter_a.dmm"
+
+/datum/map_template/shelter/rec
+	name = "Shelter Rec Room"
+	shelter_id = "shelter_recroom"
+	description = "A recreational room in a pocket, offering a gaming table with poker chips, dice, and cards to host group gaming activities, as well as a small arcade for more individual experiences. While offering absolutely nothing that will help someone survive physically aside from a safely isolated atmosphere, the intellectual stimulation provided from the gaming facilities within have been chosen to assist and keep one's mind sharp."
+	mappath = "maps/submaps/shelters/shelter_recroom.dmm"
+
+/datum/map_template/shelter/loss_1
+	name = "Shelter L1"
+	shelter_id = "shelter_loss1"
+	description = "North-west quadrant."
+	mappath = "maps/submaps/shelters/shelter_loss_1.dmm"
+
+/datum/map_template/shelter/loss_2
+	name = "Shelter L2"
+	shelter_id = "shelter_loss2"
+	description = "North-east quadrant."
+	mappath = "maps/submaps/shelters/shelter_loss_2.dmm"
+
+/datum/map_template/shelter/loss_3
+	name = "Shelter L3"
+	shelter_id = "shelter_loss3"
+	description = "South-west quadrant."
+	mappath = "maps/submaps/shelters/shelter_loss_3.dmm"
+
+/datum/map_template/shelter/loss_4
+	name = "Shelter L4"
+	shelter_id = "shelter_loss4"
+	description = "South-east quadrant."
+	mappath = "maps/submaps/shelters/shelter_loss_4.dmm"

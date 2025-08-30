@@ -138,12 +138,38 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	desc = "A cozy cabin; crammed into a survival capsule."
 	template_id = "shelter_cab"
 
+/obj/item/survivalcapsule/recroom
+	name = "pop-out rec room shelter capsule"
+	desc = "A recreactional room stuffed into a survival capsule."
+	template_id = "shelter_recroom"
+
 //Custom Shelter Capsules
 /obj/item/survivalcapsule/tabiranth
 	name = "silver-trimmed surfluid shelter capsule"
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. This one is a particularly rare and expensive model. There's a license for use printed on the bottom."
 	template_id = "shelter_phi"
 	unique_id = "shelter_a"
+
+//Stupid
+/obj/item/survivalcapsule/loss_1
+	name = "clinical surfluid shelter capsule"
+	desc = "A strange-looking shelter capsule. It looks rather crudely thrown together..."
+	template_id = "shelter_loss1"
+
+/obj/item/survivalcapsule/loss_2
+	name = "clinical surfluid shelter capsule"
+	desc = "A strange-looking shelter capsule. It looks rather crudely thrown together..."
+	template_id = "shelter_loss2"
+
+/obj/item/survivalcapsule/loss_3
+	name = "clinical surfluid shelter capsule"
+	desc = "A strange-looking shelter capsule. It looks rather crudely thrown together..."
+	template_id = "shelter_loss3"
+
+/obj/item/survivalcapsule/loss_4
+	name = "clinical surfluid shelter capsule"
+	desc = "A strange-looking shelter capsule. It looks rather crudely thrown together..."
+	template_id = "shelter_loss4"
 
 //Pod objects
 //Walls
