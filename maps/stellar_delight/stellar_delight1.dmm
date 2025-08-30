@@ -4310,6 +4310,12 @@
 /obj/random/snack,
 /turf/simulated/floor,
 /area/maintenance/security_port)
+"ij" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/aft)
 "ik" = (
 /obj/structure/cable/white{
 	icon_state = "0-4"
@@ -21657,12 +21663,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
-"Tu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/stellardelight/deck1/aft)
 "Tv" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -34116,7 +34116,7 @@ RT
 CG
 CG
 yO
-Tu
+ij
 dl
 sR
 pV
@@ -34258,7 +34258,7 @@ pA
 hv
 CG
 ZB
-Tu
+ij
 dl
 ZC
 YQ
@@ -34400,7 +34400,7 @@ ir
 ip
 CG
 cA
-Tu
+ij
 dl
 Nm
 on
@@ -34968,7 +34968,7 @@ MM
 QO
 ta
 Ie
-Tu
+ij
 gQ
 Ps
 Ps
@@ -35110,7 +35110,7 @@ VA
 qD
 qD
 sM
-Tu
+ij
 gQ
 xD
 pw
@@ -35252,7 +35252,7 @@ Df
 zn
 qD
 lt
-Tu
+ij
 gQ
 dO
 sZ
@@ -35394,7 +35394,7 @@ tv
 Ol
 qD
 YN
-Tu
+ij
 gQ
 cQ
 gQ
@@ -35536,7 +35536,7 @@ yu
 EM
 qD
 bR
-Tu
+ij
 gQ
 WP
 Ps
