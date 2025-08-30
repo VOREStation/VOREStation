@@ -494,7 +494,7 @@
 // Global proc in this file so we can check for null turfs too
 // This was copypastaed three times for multiple gas sensors checking for default safe atmos... Lets not.
 /proc/get_gas_mixture_default_scan_data(var/turf/T)
-	if(!isturf(T))
+	if(isturf(T))
 		var/datum/gas_mixture/environment = T.return_air()
 		var/pressure = environment.return_pressure()
 		var/total_moles = environment.total_moles
