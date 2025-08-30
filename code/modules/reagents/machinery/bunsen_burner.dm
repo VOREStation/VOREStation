@@ -10,7 +10,7 @@
 
 /obj/machinery/bunsen_burner/Initialize(mapload)
 	. = ..()
-	create_reagents(1,/datum/reagents/distilling) //  resizes based on the boiling container
+	create_reagents(1, /datum/reagents/distilling) //  resizes based on the boiling container
 
 /obj/machinery/bunsen_burner/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)
@@ -24,7 +24,7 @@
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(W.has_tool_quality(TOOL_CROWBAR) && panel_open && isturf(loc))
-		if(do_after(user,5 * W.toolspeed))
+		if(do_after(user, 5 * W.toolspeed))
 			// Breaking it down
 			drop_held_container()
 			to_chat(user, span_notice("You dissasemble \the [src]"))
@@ -33,35 +33,35 @@
 		return
 	// Handle container
 	if(!istype(W, /obj/item/reagent_containers))
-		to_chat(user,span_notice("You can't put \the [W] onto \the [src]."))
+		to_chat(user, span_notice("You can't put \the [W] onto \the [src]."))
 		return
 	if(!anchored)
-		to_chat(user,span_notice("\The [src] must be secured down with a wrench."))
+		to_chat(user, span_notice("\The [src] must be secured down with a wrench."))
 		return
 	if(held_container)
-		to_chat(user,span_notice("You must remove \the [held_container] before you can place another container on \the [src]."))
+		to_chat(user, span_notice("You must remove \the [held_container] before you can place another container on \the [src]."))
 		return
 	// A new hand touches the beacon
 	user.drop_item(src)
 	held_container = W
 	held_container.forceMove(src)
 	reagents.maximum_volume = held_container.reagents.maximum_volume // Update internal reagent distilling volume
-	to_chat(user,span_notice("You put \the [held_container] onto \the [src]."))
+	to_chat(user, span_notice("You put \the [held_container] onto \the [src]."))
 	if(held_container.reagents.total_volume > 0)
 		start_boiling()
 	else
 		update_icon()
 
-/obj/machinery/bunsen_burner/attack_hand(mob/user as mob)
+/obj/machinery/bunsen_burner/attack_hand(mob/user)
 	if(..())
 		return
 	add_fingerprint(user)
 	if(!held_container)
-		to_chat(user,span_notice("There is nothing on \the [src]."))
+		to_chat(user, span_notice("There is nothing on \the [src]."))
 		return
 
 	// Take it off
-	to_chat(user,span_notice("You remove \the [held_container] from \the [src]."))
+	to_chat(user, span_notice("You remove \the [held_container] from \the [src]."))
 	held_container.forceMove(get_turf(src))
 	held_container.attack_hand(user) // Pick it up
 	held_container = null
@@ -104,7 +104,7 @@
 		end_boil()
 		return
 
-	if(!held_container?.reagents?.reagent_list?.len)
+	if(!LAZYLEN(held_container?.reagents?.reagent_list))
 		end_boil()
 		return
 
@@ -113,18 +113,18 @@
 	current_temp += 15
 
 	// Slosh and toss. We use an internal distilling container, react it in there, then pass it back.
-	held_container.reagents.trans_to_obj(src,held_container.reagents.total_volume)
+	held_container.reagents.trans_to_obj(src, held_container.reagents.total_volume)
 	if(reagents.handle_reactions())
 		held_container.update_icon()
 		update_icon()
-	reagents.trans_to_obj(held_container,reagents.total_volume)
+	reagents.trans_to_obj(held_container, reagents.total_volume)
 
 	// every 25 degree step, do a message to show we are working
-	if(FLOOR(previous_temp / 40,1) != FLOOR(current_temp / 40,1))
+	if(FLOOR(previous_temp / 40, 1) != FLOOR(current_temp / 40, 1))
 		// Open flame
 		var/turf/location = get_turf(src)
 		if(isturf(location))
-			location.hotspot_expose(1000,500,1)
+			location.hotspot_expose(1000, 500, 1)
 		// Messages and temp limit
 		if(current_temp < T0C + 50)
 			visible_message(span_notice("\The [src] sloshes."))
@@ -152,7 +152,7 @@
 		var/image/I = image("icon"=held_container)
 		add_overlay(I)
 	if(heating)
-		var/image/I = image(icon,icon_state = "bunsen1",layer = layer+0.1)
+		var/image/I = image(icon, icon_state = "bunsen1", layer = layer+0.1)
 		add_overlay(I)
 
 /obj/machinery/bunsen_burner/examine(mob/user, infix, suffix)
