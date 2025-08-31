@@ -2,9 +2,9 @@
 	var/datum/managed_browser/feedback_form/feedback_form = null
 
 /client/can_vv_get(var_name)//no snooping but doesn't break shit
-    if(var_name == NAMEOF(src, feedback_form))
-        return FALSE
-    return ..()
+	if(var_name == NAMEOF(src, feedback_form))
+		return FALSE
+	return ..()
 
 GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 
