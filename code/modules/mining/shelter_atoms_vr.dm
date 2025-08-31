@@ -16,6 +16,14 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	name = "\improper Emergency Shelter Bathroom"
 	icon_state = "away2"
 
+//Custom survival pod areas
+
+/area/survivalpod/holly
+	name = "\improper Holly's Emergency Shelter"
+
+/area/survivalpod/dorms/holly
+	name = "\improper Holly's Emergency Shelter Dorm"
+
 //Survival Capsule
 /obj/item/survivalcapsule
 	name = "surfluid shelter capsule"
