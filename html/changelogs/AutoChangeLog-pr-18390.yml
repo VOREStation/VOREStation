@@ -1,0 +1,7 @@
+author: "TeleTubby2"
+delete-after: True
+changes:
+  - rscadd: "legally-distinct-word-game has now been installed on NT staff PDAs by default. (Thanks Satin!)"
+  - config: "added a word dictionary to the strings folder for choosing the nerdle list"
+  - bugfix: "you can no longer VV the vars list on clients"
+  - code_imp: "can_vv_get now requires you to call parent"
