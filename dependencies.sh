@@ -20,7 +20,7 @@ export NODE_VERSION_LTS=22.14.0
 export BUN_VERSION=1.2.21
 
 # SpacemanDMM git tag
-export SPACEMAN_DMM_VERSION=suite-1.10
+export SPACEMAN_DMM_VERSION=suite-1.11
 
 # Python version for mapmerge and other tools
 export PYTHON_VERSION=3.12.3
