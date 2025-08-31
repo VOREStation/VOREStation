@@ -17,6 +17,7 @@
 	var/max_guesses = 6
 
 	var/completed = FALSE
+	var/failure = FALSE
 
 
 /datum/data/pda/app/nerdle/start()
@@ -43,6 +44,7 @@
 
 	if(LAZYLEN(guesses) >= max_guesses)
 		pda.audible_message("[pda] says, \"Sorry! You lose! Try again next shift!\"")
+		failure = TRUE
 		playsound(pda, 'sound/arcade/lose.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
 		report_guesses()
 		return FALSE
@@ -50,8 +52,7 @@
 	return TRUE
 
 /datum/data/pda/app/nerdle/proc/report_guesses()
-	completed = TRUE
-	SSnerdle.report_winner_or_loser(guesses.len)
+	SSnerdle.report_winner_or_loser(LAZYLEN(guesses),failure)
 
 /datum/data/pda/app/nerdle/proc/serialize_guess(var/guess)
 	// We assume that there's 5 letters here, both for the guess and the target word.
