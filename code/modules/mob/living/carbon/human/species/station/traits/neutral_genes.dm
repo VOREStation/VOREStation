@@ -7,8 +7,8 @@
 	cost = 0 // TRAITGENETICS - Originally was -1
 	custom_only = FALSE
 
-	is_genetrait = FALSE
-	hidden = TRUE
+	is_genetrait = TRUE
+	hidden = FALSE
 
 	disability=CENSORED
 	activation_message="You feel less rude..."
@@ -33,8 +33,8 @@
 	cost = 0 // Originally was -2
 	custom_only = FALSE
 
-	is_genetrait = TRUE
-	hidden = FALSE
+	is_genetrait = FALSE
+	hidden = TRUE
 
 	activation_message="You twitch."
 	primitive_expression_messages=list("twitches and chitters.")
