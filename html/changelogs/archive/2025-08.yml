@@ -632,3 +632,30 @@
   - maptweak: Fixed an Underdark POI having no gravity on a specific row of tiles.
   Zizzi:
   - rscadd: Circuitry cloning.
+2025-08-31:
+  Kashargul:
+  - bugfix: program manager not properly reopening the main UI
+  - qol: bellies now have a display name option as their object names are unique
+  - qol: alters some message handling with owner struggle messages
+  - bugfix: stating robot laws failing
+  - refactor: moves jobs, radio and access consts to defines
+  - bugfix: size netgun build path
+  Tenryumi:
+  - maptweak: (Stellar Delight) Fixed a missing scrubber pipe in the Engineering Workshop.
+  - maptweak: (Stellar Delight) Fixed a misshapen air distro pipe in exploration.
+  - maptweak: (Stellar Delight) Fixed exploration disposals' pipes spitting items
+      out into each other.
+  Will:
+  - rscadd: 'Bunsen burner, a table machine for simple distilling reactions in chemistry
+
+      add:chemical analyzer circuitboard'
+  - balance: chemical analyzer and smart centrifuge moved to their own techweb entry
+  - bugfix: chemical analyzer can be properly deconstructed
+  - bugfix: tin added to dexalin reaction as a possible inhibitor, to fix an issue
+      in the chemical refinery
+  - bugfix: reduce sodium distillation reaction no longer produces twice as much sodium
+      as it should, it also does not require a specific atmosphere anymore
+  - bugfix: vitals monitor techweb entry no longer accidentally overwritten by rtg
+      techweb entry
+  - code_imp: handle_reaction() properly returns true or false if the reaction was
+      successful or not
