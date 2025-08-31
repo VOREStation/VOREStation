@@ -10,7 +10,7 @@
 	secured = TRUE
 
 	var/code = 30
-	var/frequency = 1457
+	var/frequency = RSD_FREQ
 	var/delay = 0
 	var/airlock_wire = null
 	var/datum/wires/connected = null
@@ -144,5 +144,5 @@
 /obj/item/assembly/signaler/Destroy()
 	if(SSradio)
 		SSradio.remove_object(src,frequency)
-	frequency = 0
+	frequency = ZERO_FREQ
 	. = ..()

@@ -6,7 +6,7 @@
 	anchored = FALSE
 	density = TRUE
 	unacidable = TRUE
-	req_access = list(access_engine_equip)
+	req_access = list(ACCESS_ENGINE_EQUIP)
 	var/id = null
 
 	use_power = USE_POWER_OFF	//uses powernet power, not APC power
