@@ -7,8 +7,8 @@
 	cost = 0 // TRAITGENETICS - Originally was -1
 	custom_only = FALSE
 
-	is_genetrait = TRUE
-	hidden = FALSE
+	is_genetrait = FALSE
+	hidden = TRUE
 
 	disability=CENSORED
 	activation_message="You feel less rude..."
