@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - refactor: "moves jobs, radio and access consts to defines"

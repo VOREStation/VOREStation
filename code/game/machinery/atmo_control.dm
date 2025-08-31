@@ -1,7 +1,7 @@
 #define SENSOR_PRESSURE		(1<<0)
 #define SENSOR_TEMPERATURE	(1<<1)
 #define SENSOR_O2			(1<<2)
-#define SENSOR_PLASMA		(1<<3)
+#define SENSOR_PHORON		(1<<3)
 #define SENSOR_N2			(1<<4)
 #define SENSOR_CO2			(1<<5)
 #define SENSOR_N2O			(1<<6)
@@ -17,7 +17,7 @@
 	var/state = 0
 
 	var/id_tag
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 
 	var/on = 1
 	var/output = 3
@@ -131,8 +131,8 @@
 				output ^= SENSOR_TEMPERATURE
 			if(SENSOR_O2)
 				output ^= SENSOR_O2
-			if(SENSOR_PLASMA)
-				output ^= SENSOR_PLASMA
+			if(SENSOR_PHORON)
+				output ^= SENSOR_PHORON
 			if(SENSOR_N2)
 				output ^= SENSOR_N2
 			if(SENSOR_CO2)
@@ -163,7 +163,7 @@
 	icon_screen = "tank"
 	name = "Computer"
 	desc = "Control atmospheric systems, remotely."
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 	var/list/sensors = list()
 	var/list/sensor_information = list()
 	var/datum/radio_frequency/radio_connection
@@ -291,7 +291,7 @@
 
 /obj/machinery/computer/general_air_control/large_tank_control
 	icon = 'icons/obj/computer.dmi'
-	frequency = 1441
+	frequency = PUBLIC_LOW_FREQ
 	name = "Large Tank Computer"
 	desc = "Controls various devices for managing a gas tank."
 	var/input_tag
@@ -461,7 +461,7 @@
 
 /obj/machinery/computer/general_air_control/supermatter_core
 	icon = 'icons/obj/computer.dmi'
-	frequency = 1433
+	frequency = ENGINE_FREQ
 	var/input_tag
 	var/output_tag
 	var/list/input_info
@@ -751,7 +751,7 @@
 #undef SENSOR_PRESSURE
 #undef SENSOR_TEMPERATURE
 #undef SENSOR_O2
-#undef SENSOR_PLASMA
+#undef SENSOR_PHORON
 #undef SENSOR_N2
 #undef SENSOR_CO2
 #undef SENSOR_N2O

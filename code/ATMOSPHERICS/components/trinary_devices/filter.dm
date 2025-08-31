@@ -31,7 +31,7 @@
 	var/list/filtered_out = list()
 
 
-	var/frequency = 0
+	var/frequency = ZERO_FREQ
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/trinary/atmos_filter/proc/set_frequency(new_frequency)
