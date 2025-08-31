@@ -246,14 +246,14 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 			to_chat(src, span_mentor_warning("Error: Mentor-PM: You are unable to use mentor PM-s (muted)."))
 			return
 
-		if(!recipient)
-			if(src.holder)
-				to_chat(src, span_mentor_warning("Error:Mentor-PM: Client not found."))
-				to_chat(src, msg)
-			else
-				log_admin("Mentorhelp: [key_name(src)]: [msg]")
-				current_ticket.MessageNoRecipient(msg)
-			return
+	if(!recipient)
+		if(src.holder)
+			to_chat(src, span_mentor_warning("Error:Mentor-PM: Client not found."))
+			to_chat(src, msg)
+		else
+			log_admin("Mentorhelp: [key_name(src)]: [msg]")
+			current_ticket.MessageNoRecipient(msg)
+		return
 
 	//Has mentor powers but the recipient no longer has an open ticket
 	if(src.holder && !recipient.current_ticket)
