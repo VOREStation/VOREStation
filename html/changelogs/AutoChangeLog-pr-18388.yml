@@ -1,0 +1,4 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - bugfix: "Fixed the pod storage UI not correctly displaying quotation marks in listed item names."
