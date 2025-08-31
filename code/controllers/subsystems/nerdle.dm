@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(nerdle)
 	var/total_players = 0
 
 /datum/controller/subsystem/nerdle/Initialize()
-	var/list/l = world.file2list("strings/wordle.txt")
+	var/list/l = world.file2list("strings/nerdle_dict.txt")
 	target_word = pick(l)
 	l = null
 	return SS_INIT_SUCCESS
@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(nerdle)
 	player_attempts[guesses] = player_attempts[guesses]+1
 	total_players ++
 
-/datum/controller/subsystem/nerdle/can_vv_get(var_name) //the sancity of wordle shall not be infringed by man or any of the gods above them.
+/datum/controller/subsystem/nerdle/can_vv_get(var_name) //the sancity of nerdle shall not be infringed by man or any of the gods above them.
 	if(var_name == NAMEOF(src, target_word))
 		return FALSE
 	return ..()

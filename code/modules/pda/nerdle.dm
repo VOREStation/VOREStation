@@ -94,7 +94,7 @@
 	data["guesses_raw"] = guesses
 	data["max"] = max_guesses
 	data["used_guesses"] = LAZYLEN(guesses)
-	data["target_word"] = target_word //if people fuck around with tgui to cheat at wordle then I can't really be assed enough to care. we'll know who you are.
+	data["target_word"] = target_word //if people fuck around with tgui to cheat at nerdle then I can't really be assed enough to care. we'll know who you are.
 
 /datum/data/pda/app/nerdle/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())

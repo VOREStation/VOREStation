@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Input, Section, Stack } from 'tgui-core/components';
 
 type Data = {
-  guesses: number[][]; // Serialized guesses (WORDLE_YES, WORDLE_CLOSE, WORDLE_NO)
+  guesses: number[][]; // Serialized guesses (NERDLE_YES, NERDLE_CLOSE, NERDLE_NO)
   guesses_raw: string[]; // Raw guesses (letters)
   max: number; // Maximum number of guesses
   used_guesses: number; // Number of guesses used
