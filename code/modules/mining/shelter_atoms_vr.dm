@@ -16,6 +16,10 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	name = "\improper Emergency Shelter Bathroom"
 	icon_state = "away2"
 
+/area/survivalpod/redspace
+	name = "\improper Redspace Capsule Shelter"
+	icon_state = "darkred"
+
 //Survival Capsule
 /obj/item/survivalcapsule
 	name = "surfluid shelter capsule"
@@ -32,17 +36,15 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 /obj/item/survivalcapsule/proc/get_template()
 	if(template)
 		return
-	template = SSmapping.shelter_templates[template_id]
+	template = SSmapping.shelter_templates[get_template_id()]
 	if(!template)
 		throw EXCEPTION("Shelter template ([template_id]) not found!")
 		qdel(src)
 
-/obj/item/survivalcapsule/Destroy()
-	template = null // without this, capsules would be one use. per round.
-	. = ..()
+/obj/item/survivalcapsule/proc/get_template_id()
+	return template_id
 
-/obj/item/survivalcapsule/examine(mob/user)
-	. = ..()
+/obj/item/survivalcapsule/proc/get_template_info()
 	if(!template)
 		get_template()
 	if(template)
@@ -50,6 +52,14 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		. += template.description
 	else
 		. += "This capsule has an unknown template stored."
+
+/obj/item/survivalcapsule/Destroy()
+	template = null // without this, capsules would be one use. per round.
+	. = ..()
+
+/obj/item/survivalcapsule/examine(mob/user)
+	. = ..()
+	get_template_info()
 
 /obj/item/survivalcapsule/attack_self(mob/user)
 	//Can't grab when capsule is New() because templates aren't loaded then
@@ -143,6 +153,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	desc = "A recreactional room stuffed into a survival capsule."
 	template_id = "shelter_recroom"
 
+/obj/item/survivalcapsule/sauna
+	name = "pop-out sauna shelter capsule"
+	desc = "A cozy sauna room stuffed into a survival capsule."
+	template_id = "shelter_sauna"
+
 //Custom Shelter Capsules
 /obj/item/survivalcapsule/tabiranth
 	name = "silver-trimmed surfluid shelter capsule"
@@ -170,6 +185,27 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	name = "clinical surfluid shelter capsule"
 	desc = "A strange-looking shelter capsule. It looks rather crudely thrown together..."
 	template_id = "shelter_loss4"
+
+//Redspace Capsule
+//Spawns a randomized shelter from a curated selection of possibilities
+/obj/item/survivalcapsule/randomized
+	name = "redspace shelter capsule"
+	desc = "A strange-looking shelter capsule. Should the surfluid inside it be bubbling like that? There's a license for use printed on the bottom, as well as a warning about the unpredictable nature of redspace."
+	template_id = "placeholder_id_do_not_change"
+	var/possible_shelter_ids = list(
+		"shelter_pizza_kitchen" = 20,
+		"shelter_nerd_dungeon_good" = 20,
+		"shelter_nerd_dungeon_evil" = 10,
+		"shelter_shark_pool" = 5,
+		"shelter_tiny_space" = 5,
+		"shelter_christmas" = 1,
+	)
+
+/obj/item/survivalcapsule/randomized/get_template_id()
+	return pickweight(possible_shelter_ids)
+
+/obj/item/survivalcapsule/randomized/get_template_info()
+	. += "It could have anything in there!"
 
 //Pod objects
 //Walls

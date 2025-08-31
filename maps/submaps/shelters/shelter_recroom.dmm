@@ -10,6 +10,10 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
+"b" = (
+/obj/item/stool/padded,
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
 "c" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/regular{
@@ -35,7 +39,7 @@
 /area/survivalpod)
 "f" = (
 /obj/structure/sign/mining,
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 "g" = (
 /obj/structure/bed/chair/comfy/black{
@@ -144,9 +148,6 @@
 /obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
-"v" = (
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
-/area/survivalpod)
 "w" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
@@ -184,7 +185,7 @@
 /obj/structure/sign/mining/survival{
 	dir = 1
 	},
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 "F" = (
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
@@ -196,6 +197,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/item/stool/padded,
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "I" = (
@@ -214,14 +216,14 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 "L" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 "M" = (
 /obj/structure/bed/chair/comfy/black{
@@ -246,11 +248,7 @@
 /obj/structure/sign/mining/survival{
 	dir = 4
 	},
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
-/area/survivalpod)
-"R" = (
-/obj/structure/sign/mining/survival,
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 "T" = (
 /obj/structure/table/gamblingtable,
@@ -273,13 +271,13 @@
 /obj/structure/sign/mining/survival{
 	dir = 8
 	},
-/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 
 (1,1,1) = {"
 I
 Z
-v
+I
 Z
 u
 q
@@ -299,15 +297,15 @@ c
 P
 "}
 (3,1,1) = {"
-v
+I
 s
 p
 p
 l
 l
-l
+b
 w
-v
+I
 "}
 (4,1,1) = {"
 D
@@ -343,7 +341,7 @@ j
 f
 "}
 (7,1,1) = {"
-v
+I
 F
 Y
 B
@@ -351,10 +349,10 @@ X
 l
 l
 J
-v
+I
 "}
 (8,1,1) = {"
-v
+I
 m
 F
 z
@@ -362,14 +360,14 @@ O
 j
 j
 h
-R
+P
 "}
 (9,1,1) = {"
 I
 Q
-v
+I
 Q
-v
+I
 u
 q
 Q

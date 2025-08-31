@@ -127,6 +127,12 @@
 	description = "A recreational room in a pocket, offering a gaming table with poker chips, dice, and cards to host group gaming activities, as well as a small arcade for more individual experiences. While offering absolutely nothing that will help someone survive physically aside from a safely isolated atmosphere, the intellectual stimulation provided from the gaming facilities within have been chosen to assist and keep one's mind sharp."
 	mappath = "maps/submaps/shelters/shelter_recroom.dmm"
 
+/datum/map_template/shelter/sauna
+	name = "Shelter Sauna"
+	shelter_id = "shelter_sauna"
+	description = "A luxurious sauna in your pocket. Complete with privacy features, a changing and locker room, and of course a decently spacious sauna room with three benches to rest on."
+	mappath = "maps/submaps/shelters/shelter_sauna.dmm"
+
 /datum/map_template/shelter/loss_1
 	name = "Shelter L1"
 	shelter_id = "shelter_loss1"
@@ -150,3 +156,35 @@
 	shelter_id = "shelter_loss4"
 	description = "South-east quadrant."
 	mappath = "maps/submaps/shelters/shelter_loss_4.dmm"
+
+//Redspace capsule shelters - here be weird shit.
+
+/datum/map_template/shelter/nerd_dungeon_evil
+	name = "Shelter Nerd Dungeon Evil"
+	shelter_id = "shelter_nerd_dungeon_evil"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_nerd_dungeon_evil.dmm"
+
+/datum/map_template/shelter/nerd_dungeon_good
+	name = "Shelter Nerd Dungeon Good"
+	shelter_id = "shelter_nerd_dungeon_good"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_nerd_dungeon_good.dmm"
+
+/datum/map_template/shelter/shark_pool
+	name = "Shelter Shark Pool"
+	shelter_id = "shelter_shark_pool"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_shark_pool.dmm"
+
+/datum/map_template/shelter/pizza_kitchen
+	name = "Shelter Pizza Kitchen"
+	shelter_id = "shelter_pizza_kitchen"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_pizza.dmm"
+
+/datum/map_template/shelter/tiny_space
+	name = "Shelter Smole Space"
+	shelter_id = "shelter_tiny_space"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_tiny_space.dmm"
+
+/datum/map_template/shelter/christmas
+	name = "Shelter Christmas"
+	shelter_id = "shelter_christmas"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_christmas.dmm"
