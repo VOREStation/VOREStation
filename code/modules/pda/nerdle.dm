@@ -6,7 +6,7 @@
 	name = "Nerdle"
 	icon = "child-reaching" //yipee!
 	notify_icon = "child-combatant"
-	title = "NTdle V0.8"
+	title = "Nerdle™️ V0.8"
 	template = "pda_nerdle"
 
 	var/target_word
@@ -30,10 +30,12 @@
 	if(LAZYLEN(guess) != 5)
 		return FALSE
 
-	serialize_guess(guess)
-	LAZYADD(guesses,guess)
+	var/actual_guess = lowertext(guess)
 
-	if(guess == target_word)
+	serialize_guess(actual_guess)
+	LAZYADD(guesses,actual_guess)
+
+	if(actual_guess == target_word)
 		pda.audible_message("[pda] says, \"congratulations! You WON! A real NERDLE™️ Champ!\"")
 		playsound(pda, 'sound/arcade/win.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
 		report_guesses()

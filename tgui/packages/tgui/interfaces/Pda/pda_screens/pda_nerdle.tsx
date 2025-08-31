@@ -32,7 +32,9 @@ export const pda_nerdle = (props) => {
         )}
         {gameOver && (
           <Box color="good" bold>
-            {guesses_raw.includes(target_word) ? 'You win!' : 'Nice try!'}
+            {guesses_raw.includes(target_word)
+              ? 'You win!'
+              : `Nice try! Today's word was ${target_word}`}
           </Box>
         )}
       </Section>
