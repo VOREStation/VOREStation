@@ -147,7 +147,7 @@
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod/redspace)
 "C" = (
-/obj/structure/flora/tree/pine/xmas/presents,
+/obj/structure/flora/tree/pine/xmas,
 /obj/effect/overlay/snow/floor/edges{
 	dir = 1
 	},

@@ -193,8 +193,8 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	desc = "A strange-looking shelter capsule. Should the surfluid inside it be bubbling like that? There's a license for use printed on the bottom, as well as a warning about the unpredictable nature of redspace."
 	template_id = "placeholder_id_do_not_change"
 	var/possible_shelter_ids = list(
-		"shelter_pizza_kitchen" = 20,
-		"shelter_nerd_dungeon_good" = 20,
+		"shelter_pizza_kitchen" = 10,
+		"shelter_nerd_dungeon_good" = 10,
 		"shelter_nerd_dungeon_evil" = 10,
 		"shelter_shark_pool" = 5,
 		"shelter_tiny_space" = 5,
