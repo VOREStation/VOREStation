@@ -36,7 +36,7 @@
 		"crack",
 		"rshoulder"
 	)
-	for(var/i = 4 to 6)
+	for(var/i = 0, i < rand(4, 6), i++)
 		motor_tics += pick(possible_tics)
 	RegisterSignal(owner, COMSIG_HANDLE_DISABILITIES, PROC_REF(process_component))
 
