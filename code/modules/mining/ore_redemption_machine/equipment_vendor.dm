@@ -131,6 +131,15 @@
 		EQUIPMENT("Hardsuit - Smoke Bomb Deployer",			/obj/item/rig_module/grenade_launcher/smoke,					2000),
 		EQUIPMENT("Hardsuit - Proto-Kinetic Gauntlets",		/obj/item/rig_module/gauntlets,									2000),
 	)
+	prize_list["Shelter Capsules"] = list(
+		EQUIPMENT("Shelter Capsule - Shelter",					/obj/item/survivalcapsule,									500),
+		EQUIPMENT("Shelter Capsule - Luxury Shelter",			/obj/item/survivalcapsule/luxury,							3100),
+		EQUIPMENT("Shelter Capsule - Redspace",					/obj/item/survivalcapsule/randomized,						5000),
+		EQUIPMENT("Shelter Capsule - Sauna",					/obj/item/survivalcapsule/sauna,							5000),
+		EQUIPMENT("Shelter Capsule - Rec Room and Cards Table",	/obj/item/survivalcapsule/recroom,							7500),
+		EQUIPMENT("Shelter Capsule - Bar",						/obj/item/survivalcapsule/luxurybar,						10000),
+		EQUIPMENT("Shelter Capsule - Deluxe Cabin",				/obj/item/survivalcapsule/luxurycabin,						10000),
+	)
 	prize_list["Miscellaneous"] = list(
 		EQUIPMENT(REAGENT_ABSINTHE,				/obj/item/reagent_containers/food/drinks/bottle/absinthe,					125),
 		EQUIPMENT("Cigar",						/obj/item/clothing/mask/smokable/cigarette/cigar/havana,					150),
@@ -143,15 +152,6 @@
 		EQUIPMENT("Thalers - 1000",				/obj/item/spacecash/c1000,													10000),
 		EQUIPMENT("Umbrella",					/obj/item/melee/umbrella/random,											200),
 		EQUIPMENT(REAGENT_WHISKEY,				/obj/item/reagent_containers/food/drinks/bottle/whiskey,					125),
-	)
-	prize_list["Shelter Capsules"] = list(
-		EQUIPMENT("Shelter Capsule - Shelter",					/obj/item/survivalcapsule,									500),
-		EQUIPMENT("Shelter Capsule - Luxury Shelter",			/obj/item/survivalcapsule/luxury,							3100),
-		EQUIPMENT("Shelter Capsule - Redspace",					/obj/item/survivalcapsule/randomized,						5000),
-		EQUIPMENT("Shelter Capsule - Sauna",					/obj/item/survivalcapsule/sauna,							5000),
-		EQUIPMENT("Shelter Capsule - Rec Room and Cards Table",	/obj/item/survivalcapsule/recroom,							7500),
-		EQUIPMENT("Shelter Capsule - Bar",						/obj/item/survivalcapsule/luxurybar,						10000),
-		EQUIPMENT("Shelter Capsule - Deluxe Cabin",				/obj/item/survivalcapsule/luxurycabin,						10000),
 	)
 	prize_list["Extra"] = list() // Used in child vendors
 
