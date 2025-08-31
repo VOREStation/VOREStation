@@ -42,8 +42,10 @@ agony
 agora
 agree
 ahead
+ahelp
 aider
 aisle
+akula
 alarm
 album
 alert
@@ -117,6 +119,7 @@ aside
 askew
 assay
 asset
+atmos
 atoll
 atone
 attic
@@ -165,6 +168,7 @@ bawdy
 bayou
 beach
 beady
+beans
 beard
 beast
 beech
@@ -182,6 +186,7 @@ belle
 belly
 below
 bench
+bepis
 beret
 berry
 berth
@@ -197,12 +202,13 @@ bilge
 billy
 binge
 bingo
+binky
 biome
 birch
 birth
 bison
+bitch
 bitty
-binky
 black
 blade
 blame
@@ -235,9 +241,11 @@ blunt
 blurb
 blurt
 blush
+bnnuy
 board
 boast
 bobby
+bogen
 boney
 bongo
 bonus
@@ -303,15 +311,16 @@ bulky
 bully
 bunch
 bunny
+buppy
 burly
 burnt
 burst
 bused
 bushy
+bussy
 butch
 butte
 buxom
-buppy
 buyer
 bylaw
 cabal
@@ -439,6 +448,7 @@ comma
 conch
 condo
 conic
+cooch
 copse
 coral
 corer
@@ -502,6 +512,7 @@ crust
 crypt
 cubic
 cumin
+cummy
 curio
 curly
 curry
@@ -558,6 +569,7 @@ diner
 dingo
 dingy
 diode
+diona
 dirge
 dirty
 disco
@@ -800,6 +812,7 @@ forty
 forum
 found
 foyer
+frags
 frail
 frame
 frank
@@ -971,6 +984,7 @@ heart
 heath
 heave
 heavy
+hecko
 hedge
 hefty
 heist
@@ -1060,6 +1074,7 @@ joint
 joist
 joker
 jolly
+jones
 joust
 judge
 juice
@@ -1185,6 +1200,8 @@ madly
 mafia
 magic
 magma
+mahir
+maint
 maize
 major
 maker
@@ -1227,6 +1244,7 @@ merry
 metal
 meter
 metro
+mhelp
 micro
 midge
 midst
@@ -1271,6 +1289,7 @@ mouth
 mover
 movie
 mower
+mpreg
 mucky
 mucus
 muddy
@@ -1385,6 +1404,7 @@ patio
 patsy
 patty
 pause
+pawbs
 payee
 payer
 peace
@@ -1393,8 +1413,8 @@ pearl
 pecan
 pedal
 penal
-penis
 pence
+penis
 penne
 penny
 perch
@@ -1413,8 +1433,8 @@ picky
 piece
 piety
 piggy
-pimpy
 pilot
+pimpy
 pinch
 piney
 pinky
@@ -1454,6 +1474,7 @@ polar
 polka
 polyp
 pooch
+poopy
 poppy
 porch
 poser
@@ -1504,6 +1525,7 @@ purer
 purge
 purse
 pushy
+pussy
 putty
 pygmy
 quack
@@ -2037,6 +2059,7 @@ tepee
 tepid
 terra
 terse
+tesla
 testy
 thank
 theft
@@ -2074,6 +2097,7 @@ tipsy
 titan
 tithe
 title
+titty
 toast
 today
 toddy
@@ -2089,6 +2113,7 @@ torso
 torus
 total
 totem
+toter
 touch
 tough
 towel
@@ -2208,6 +2233,7 @@ vinyl
 viola
 viper
 viral
+virgo
 virus
 visit
 visor
@@ -2221,6 +2247,8 @@ vogue
 voice
 voila
 vomit
+vored
+vorny
 voter
 vouch
 vowel
@@ -2264,6 +2292,7 @@ whisk
 white
 whole
 whoop
+whore
 whose
 widen
 wider
