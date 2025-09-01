@@ -107,6 +107,9 @@ export const ComplexModal = (props) => {
 
   const { modal } = data;
 
+  const lastValue = useRef(modal.value);
+  const [curValue, setCurValue] = useState(modal.value);
+
   if (!modal) {
     return;
   }
@@ -128,9 +131,6 @@ export const ComplexModal = (props) => {
   if (bodyOverrides[id]) {
     modalBody = bodyOverrides[id](modal);
   } else if (type === 'input') {
-    const lastValue = useRef(modal.value);
-    const [curValue, setCurValue] = useState(modal.value);
-
     if (lastValue.current !== modal.value) {
       lastValue.current = modal.value;
       setCurValue(modal.value);
