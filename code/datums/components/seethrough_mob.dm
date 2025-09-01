@@ -4,6 +4,8 @@
 	var/atom/movable/render_source_atom
 	///The fake version of ourselves
 	var/image/trickery_image
+	///Workaround as we still have the old plane master
+	var/image/none
 	///Which alpha do we animate towards?
 	var/target_alpha
 	///How long our faze in/out takes
@@ -33,12 +35,14 @@
 	uid++
 	src.personal_uid = uid
 
-	render_source_atom.appearance_flags |= KEEP_APART
+	render_source_atom.appearance_flags = KEEP_APART
+	render_source_atom.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	render_source_atom.vis_flags = (/*VIS_INHERIT_ID|*/VIS_INHERIT_PLANE|VIS_INHERIT_LAYER)
 
-	render_source_atom.vis_flags |= (VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER)
+	// render_source_atom.render_source = "*transparent_bigmob[personal_uid]"
 
-	render_source_atom.render_source = "*transparent_bigmob[personal_uid]"
-
+	none = image(null, parent)
+	none.override = TRUE
 	var/datum/action/cooldown/toggle_seethrough/action = new(src)
 	action.Grant(parent)
 
@@ -57,13 +61,15 @@
 
 	render_source_atom.name = "seethrough" //So our name is not just "movable" when looking at VVs
 
-	initial_render_target_value = fool.render_target
-	fool.render_target = "*transparent_bigmob[personal_uid]"
+	// initial_render_target_value = fool.render_target
+	// fool.render_target = "*transparent_bigmob[personal_uid]"
 	fool.vis_contents.Add(render_source_atom)
+	render_source_atom.transform = new()
 
-	trickery_image = new(render_source_atom)
+	trickery_image = new(fool, render_source_atom)
+	trickery_image.appearance_flags = KEEP_TOGETHER|LONG_GLIDE|TILE_BOUND
 	trickery_image.loc = render_source_atom
-	trickery_image.override = TRUE
+	// trickery_image.override = TRUE
 
 	trickery_image.pixel_x = 0
 	trickery_image.pixel_y = 0
@@ -73,16 +79,20 @@
 		// SET_PLANE_EXPLICIT(trickery_image, SEETHROUGH_PLANE, fool)
 		render_source_atom.mouse_opacity = 0
 
+	trickery_image.transform = new()
 	fool.client.images += trickery_image
+	fool.client.images += none
 
 	animate(trickery_image, alpha = target_alpha, time = animation_time)
 
+	RegisterSignal(fool, COMSIG_ATOM_DIR_CHANGE, PROC_REF(mirror_dir))
 	RegisterSignal(fool, COMSIG_MOB_LOGOUT, PROC_REF(on_client_disconnect))
 
 ///Remove the screen object and make us appear solid to ourselves again
 /datum/component/seethrough_mob/proc/untrick_mob()
 	var/mob/fool = parent
 	animate(trickery_image, alpha = 255, time = animation_time)
+	RegisterSignal(fool, COMSIG_ATOM_DIR_CHANGE)
 	UnregisterSignal(fool, COMSIG_MOB_LOGOUT)
 
 	//after playing the fade-in animation, remove the image and the trick atom
@@ -94,6 +104,12 @@
 	atom_parent.vis_contents -= render_source_atom
 	atom_parent.render_target = initial_render_target_value
 	remove_from?.images -= removee
+	remove_from?.images -= none
+
+///Mirror dir
+/datum/component/seethrough_mob/proc/mirror_dir(atom/movable/source, dir, new_dir)
+	SIGNAL_HANDLER
+	trickery_image.dir = new_dir
 
 ///Effect is disabled when they log out because client gets deleted
 /datum/component/seethrough_mob/proc/on_client_disconnect()
