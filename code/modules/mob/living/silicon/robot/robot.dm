@@ -331,7 +331,7 @@
 	QDEL_NULL(wires)
 	sprite_datum = null
 	QDEL_NULL(robotact)
-	QDEL_LIST(components)
+	QDEL_LIST_ASSOC_VAL(components)
 	if(bolt)
 		QDEL_NULL(bolt)
 	if(module)
