@@ -42,6 +42,8 @@
 	var/datum/admins/holder = null
 	var/buildmode		= 0
 
+	///Needs to implement InterceptClickOn(user,params,atom) proc
+	var/datum/click_intercept = null
 	///Contains the last message sent by this client - used to protect against copy-paste spamming.
 	var/last_message	= ""
 	///contins a number of how many times a message identical to last_message was sent.
@@ -108,6 +110,13 @@
 	/// Last asset send job id.
 	var/last_asset_job = 0
 	var/last_completed_asset_job = 0
+
+	///used to make a special mouse cursor, this one for mouse up icon
+	var/mouse_up_icon = null
+	///used to make a special mouse cursor, this one for mouse up icon
+	var/mouse_down_icon = null
+	///used to override the mouse cursor so it doesnt get reset
+	var/mouse_override_icon = null
 
 	///Last ping of the client
 	var/lastping = 0

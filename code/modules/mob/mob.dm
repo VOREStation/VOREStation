@@ -1627,3 +1627,12 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	//	if(NAMEOF(src, logging))
 	//		return debug_variable(var_name, logging, 0, src, FALSE)
 	. = ..()
+
+///Update the mouse pointer of the attached client in this mob
+/mob/proc/update_mouse_pointer()
+	if(!client)
+		return
+	if(client.mouse_pointer_icon != initial(client.mouse_pointer_icon))//only send changes to the client if theyre needed
+		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+	if(client.mouse_override_icon)
+		client.mouse_pointer_icon = client.mouse_override_icon
