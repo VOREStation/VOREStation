@@ -33,7 +33,6 @@
 	uid++
 	src.personal_uid = uid
 
-	var/mob/our_parent = parent
 	render_source_atom.appearance_flags |= KEEP_APART
 
 	render_source_atom.vis_flags |= (VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER)
