@@ -41,9 +41,12 @@
 		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6)
 
 /mob/living/silicon/Destroy()
+	common_radio = null // same ref as radio, deleted by child
 	GLOB.silicon_mob_list -= src
 	for(var/datum/alarm_handler/AH in SSalarm.all_handlers)
 		AH.unregister_alarm(src)
+	if(idcard)
+		QDEL_NULL(idcard)
 	return ..()
 
 /mob/living/silicon/proc/init_id()

@@ -322,15 +322,35 @@
 			ghostize()
 			//ERROR("A borg has been destroyed, but its MMI lacked a brainmob, so the mind could not be transferred. Player: [ckey].")
 		mmi = null
-	if(connected_ai)
-		connected_ai.connected_robots -= src
+	disconnect_from_ai(TRUE)
 	if(shell)
 		if(deployed)
 			undeploy()
 		revert_shell() // To get it out of the GLOB list.
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
+	sprite_datum = null
 	QDEL_NULL(robotact)
+	if(module)
+		QDEL_NULL(module)
+	if(radio)
+		QDEL_NULL(radio)
+	if(communicator)
+		QDEL_NULL(communicator)
+	if(cell)
+		QDEL_NULL(cell)
+	if(camera)
+		QDEL_NULL(camera)
+	if(rbPDA)
+		QDEL_NULL(rbPDA)
+	if(inv1)
+		QDEL_NULL(inv1)
+	if(inv2)
+		QDEL_NULL(inv2)
+	if(inv3)
+		QDEL_NULL(inv3)
+	if(robot_modules_background)
+		QDEL_NULL(robot_modules_background)
+
 	return ..()
 
 // CONTINUE CODING HERE
@@ -862,9 +882,8 @@
 	if(notify)
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
-	qdel(module)
+	QDEL_NULL(module)
 	icon_selected = FALSE
-	module = null
 	updatename("Default")
 	has_recoloured = FALSE
 	robotact?.update_static_data_for_all_viewers()
@@ -1252,9 +1271,10 @@
 		if(ROBOT_NOTIFICATION_AI_SHELL) //New Shell
 			to_chat(connected_ai, span_filter_notice("<br><br>" + span_notice("NOTICE - New AI shell detected: <a href='byond://?src=[REF(connected_ai)];track2=[html_encode(name)]'>[name]</a>") + "<br>"))
 
-/mob/living/silicon/robot/proc/disconnect_from_ai()
+/mob/living/silicon/robot/proc/disconnect_from_ai(silent)
 	if(connected_ai)
-		sync() // One last sync attempt
+		if(!silent)
+			sync() // One last sync attempt
 		connected_ai.connected_robots -= src
 		connected_ai = null
 

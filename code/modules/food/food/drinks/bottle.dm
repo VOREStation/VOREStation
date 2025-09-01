@@ -24,8 +24,11 @@
 		pickup_sound = 'sound/items/pickup/bottle.ogg'
 
 /obj/item/reagent_containers/food/drinks/bottle/Destroy()
-	if(rag)
-		rag.forceMove(src.loc)
+	var/turf/possible_loc = get_turf(src)
+	if(possible_loc)
+		rag.forceMove(possible_loc)
+	else
+		qdel(rag)
 	rag = null
 	return ..()
 
