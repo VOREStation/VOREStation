@@ -27,7 +27,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8;
+	dir = 2;
 	icon_state = "pipe-c"
 	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
@@ -67,6 +67,16 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood,
+/area/survivalpod/holly)
+"i" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod/holly)
 "j" = (
 /obj/structure/bed/chair/comfy/blue,
@@ -118,6 +128,11 @@
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod/holly)
 "q" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_x = 22;
+	pixel_y = 22;
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod/holly)
 "s" = (
@@ -337,17 +352,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod/holly)
-"M" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#DDFFD3"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod/holly)
 "O" = (
 /obj/effect/floor_decal/spline/plain/corner{
 	dir = 1
@@ -382,11 +386,10 @@
 /turf/simulated/floor/wood,
 /area/survivalpod/holly)
 "W" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod/holly)
 "X" = (
 /obj/machinery/light_switch/survival_pod{
@@ -462,7 +465,7 @@ m
 a
 R
 T
-l
+i
 h
 A
 H
@@ -471,7 +474,7 @@ a
 (6,1,1) = {"
 I
 u
-M
+l
 q
 D
 o
@@ -484,7 +487,7 @@ K
 G
 W
 c
-a
+G
 e
 a
 "}
