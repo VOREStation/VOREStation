@@ -1,0 +1,4 @@
+author: "Tenryumi"
+delete-after: True
+changes:
+  - bugfix: "Fixed the dosimeter film having a missing icon."

@@ -389,7 +389,7 @@
 
 /mob/living/carbon/human/can_fall()
 	if(..())
-		return species.can_fall(src)
+		return species?.can_fall(src)
 
 // Another check that we probably can just merge into can_fall exept for messing up overrides
 /atom/movable/proc/can_fall_to(turf/landing)

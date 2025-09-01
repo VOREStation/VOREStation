@@ -192,7 +192,7 @@
 			playsound(src, 'sound/machines/kitchen/candymaker/candymaker-mid1.ogg', auto_setting * 20, 1, -1)
 			user.visible_message(span_filter_notice("[user] vacuums up \the [target.name]."), span_notice("You vacuum up \the [target.name]..."))
 			I.SpinAnimation(5,1)
-			addtimer(CALLBACK(src, PROC_REF(handle_consumption), I, user), 0.5 SECONDS, auto_setting)
+			addtimer(CALLBACK(src, PROC_REF(handle_consumption), I, user, auto_setting), 0.5 SECONDS)
 			return
 
 	if(istype(target,/obj/effect/decal/cleanable))

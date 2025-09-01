@@ -1,0 +1,19 @@
+2025-09-01:
+  Kashargul:
+  - code_imp: sdmm 1.11
+  - bugfix: various runtimes
+  Ryumi:
+  - bugfix: Fixed the pod storage UI not correctly displaying quotation marks in listed
+      item names.
+  TeleTubby2:
+  - rscadd: legally-distinct-word-game has now been installed on NT staff PDAs by
+      default. (Thanks Satin!)
+  - config: added a word dictionary to the strings folder for choosing the nerdle
+      list
+  - bugfix: you can no longer VV the vars list on clients
+  - code_imp: can_vv_get now requires you to call parent
+  Will:
+  - bugfix: Dosimeter case icon fixed
+  - bugfix: Fbp backup battery icon fixed
+  Zizzi:
+  - bugfix: Fixed circuitry pins being constrained to numbers no larger than 52..
