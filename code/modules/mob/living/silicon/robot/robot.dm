@@ -310,7 +310,8 @@
 	if(mmi)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
 		if(mind)
 			var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
-			if(T)	mmi.loc = T
+			if(T)
+				mmi.forceMove(T)
 			if(mmi.brainmob)
 				var/obj/item/robot_module/M = locate() in contents
 				if(M)
