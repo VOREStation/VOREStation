@@ -198,6 +198,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		list(
 			"shelter_pizza_kitchen",
 			"shelter_nerd_dungeon_good",
+			"shelter_gallery",
 		) = 65,
 		// "Weird" map table - Less common.
 		// Here, we get a little silly with it. Not dangerous, but weird, kinda like redgates.
