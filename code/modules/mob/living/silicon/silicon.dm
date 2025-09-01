@@ -49,6 +49,8 @@
 		QDEL_NULL(aiCamera)
 	if(idcard)
 		QDEL_NULL(idcard)
+	if(laws)
+		QDEL_NULL(laws)
 	return ..()
 
 /mob/living/silicon/proc/init_id()
