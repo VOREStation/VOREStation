@@ -40,7 +40,7 @@
 			"recommended": true,
 			"a11y": "off",
 			"correctness": {
-				"noUnusedImports": "warn",
+				"noUnusedImports": "error",
 				"noUnusedVariables": "off",
 				"useExhaustiveDependencies": "off",
 				"noUnusedFunctionParameters": "off",
