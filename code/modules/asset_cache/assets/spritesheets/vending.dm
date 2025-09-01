@@ -7,14 +7,14 @@
 		if(!ispath(item, /atom))
 			continue
 
-		var/icon_file = initial(item.icon)
-		var/icon_state = initial(item.icon_state)
+		var/icon_file = item::icon
+		var/icon_state = item::icon_state
 
 		// I really don't like the fact that I have to do this, but what the hell else *can* I do to make all of these
 		// random special items work?
 		if(ispath(item, /obj/item/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/reagent_containers/food/drinks/glass2/fitnessflask))
 			var/obj/item/reagent_containers/food/drinks/glass2/G = item
-			icon_state = initial(G.base_icon)
+			icon_state = G::base_icon
 		if(ispath(item, /obj/item/reagent_containers/hypospray/autoinjector))
 			icon_state += "0"
 		if(ispath(item, /obj/item/melee/shock_maul))
@@ -25,7 +25,7 @@
 		var/icon_states_list = cached_icon_states(icon_file)
 		if(icon_state in icon_states_list)
 			I = uni_icon(icon_file, icon_state, SOUTH)
-			var/c = initial(item.color)
+			var/c = item::color
 			if(!isnull(c) && c != "#FFFFFF")
 				I.blend_color(c, ICON_MULTIPLY)
 		else
