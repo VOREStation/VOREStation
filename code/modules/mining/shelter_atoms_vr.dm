@@ -214,6 +214,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		list(
 			"shelter_dangerous_pool",
 			"shelter_methlab",
+			"shelter_mimic_hell",
 		) = 5,
 	)
 
