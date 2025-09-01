@@ -137,9 +137,6 @@
 /obj/item/stool/padded{
 	dir = 8
 	},
-/obj/structure/sign/painting/library_secure{
-	pixel_y = 30
-	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "u" = (
@@ -235,8 +232,8 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
 	},
-/obj/structure/sign/painting/library_secure{
-	pixel_x = 30
+/obj/structure/sign/painting/public{
+	pixel_x = 32
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
@@ -255,6 +252,10 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
+/obj/machinery/casinosentientprize_handler{
+	pixel_y = 32
+	},
+/obj/item/book/manual/casino,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
 "X" = (
@@ -330,7 +331,7 @@ j
 D
 "}
 (6,1,1) = {"
-E
+I
 T
 a
 i
