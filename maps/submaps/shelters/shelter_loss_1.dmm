@@ -23,12 +23,10 @@
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/voidcraft/survival_pod,
 /obj/effect/floor_decal/industrial/danger/full,
-/obj/machinery/door/airlock/voidcraft/survival_pod,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "L" = (
 /obj/structure/fans/tiny,
-/obj/machinery/door/airlock/voidcraft/survival_pod,
 /obj/effect/floor_decal/industrial/danger/full,
 /obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
 /turf/simulated/shuttle/floor/voidcraft,

@@ -18,9 +18,8 @@
 /area/survivalpod)
 "u" = (
 /obj/structure/fans/tiny,
-/obj/machinery/door/airlock/voidcraft/survival_pod,
-/obj/effect/floor_decal/industrial/danger/full,
 /obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/obj/effect/floor_decal/industrial/danger/full,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "D" = (
@@ -53,7 +52,6 @@
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/voidcraft/survival_pod,
 /obj/effect/floor_decal/industrial/danger/full,
-/obj/machinery/door/airlock/voidcraft/survival_pod,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "Z" = (
