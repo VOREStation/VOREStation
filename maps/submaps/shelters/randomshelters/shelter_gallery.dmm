@@ -10,13 +10,13 @@
 /obj/structure/sign/painting/public{
 	pixel_x = -30
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/survivalpod/redspace)
 "f" = (
 /obj/structure/sign/painting/public{
 	pixel_y = -30
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/survivalpod/redspace)
 "h" = (
 /obj/item/paint_palette,
@@ -25,19 +25,16 @@
 /obj/item/paint_brush,
 /obj/machinery/smartfridge/survival_pod,
 /obj/item/clothing/head/beret,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/survivalpod/redspace)
 "o" = (
 /turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod/redspace)
-"q" = (
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/survivalpod/redspace)
 "t" = (
 /obj/structure/sign/painting/public{
 	pixel_x = 30
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/survivalpod/redspace)
 "A" = (
 /turf/simulated/floor/carpet,
@@ -70,13 +67,13 @@
 /obj/item/canvas/twentythree_twentythree,
 /obj/structure/closet/walllocker_double/misc_civ/west,
 /obj/structure/table/wooden_reinforced,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/survivalpod/redspace)
 "F" = (
 /obj/structure/sign/painting/public{
 	pixel_y = 30
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/survivalpod/redspace)
 "H" = (
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
@@ -85,7 +82,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/survivalpod/redspace)
 "N" = (
 /obj/machinery/light/floortube{
@@ -118,7 +115,7 @@
 /area/survivalpod/redspace)
 "V" = (
 /obj/structure/fans,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/survivalpod/redspace)
 
 (1,1,1) = {"
@@ -154,7 +151,7 @@ F
 H
 N
 H
-q
+H
 T
 "}
 (5,1,1) = {"
