@@ -91,6 +91,8 @@
 /obj/item/clothing/under/swimsuit/fluff/medical,
 /obj/item/clothing/under/swimsuit/fluff/science,
 /obj/item/clothing/under/swimsuit/fluff/science,
+/obj/item/beach_ball,
+/obj/item/inflatable_duck,
 /turf/simulated/floor/tiled/white,
 /area/survivalpod/redspace)
 "D" = (

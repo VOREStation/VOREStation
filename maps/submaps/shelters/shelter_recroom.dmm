@@ -261,7 +261,6 @@
 /obj/machinery/casinosentientprize_handler{
 	pixel_y = 32
 	},
-/obj/item/book/manual/casino,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
 "X" = (
@@ -272,7 +271,7 @@
 /area/survivalpod)
 "Y" = (
 /obj/structure/bed/chair/comfy/rounded/purple,
-/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/survivalpod)
 "Z" = (
 /obj/structure/sign/mining/survival{
