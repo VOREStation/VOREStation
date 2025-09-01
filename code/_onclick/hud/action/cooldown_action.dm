@@ -64,7 +64,7 @@
 		create_sequence_actions()
 
 /datum/action/cooldown/create_button()
-	var/obj/screen/movable/action_button/button = ..()
+	var/atom/movable/screen/movable/action_button/button = ..()
 	button.maptext = ""
 	button.maptext_x = 4
 	button.maptext_y = 2
@@ -72,7 +72,7 @@
 	button.maptext_height = 16
 	return button
 
-/datum/action/cooldown/update_button_status(obj/screen/movable/action_button/button, force = FALSE)
+/datum/action/cooldown/update_button_status(atom/movable/screen/movable/action_button/button, force = FALSE)
 	. = ..()
 	var/time_left = max(next_use_time - world.time, 0)
 	if(!text_cooldown || !owner || time_left == 0 || time_left >= COOLDOWN_NO_DISPLAY_TIME)
@@ -91,22 +91,22 @@
 	// ...we need to show it's active somehow. So, make it greeeen
 	button.color = COLOR_GREEN
 
-/datum/action/cooldown/apply_button_background(obj/screen/movable/action_button/current_button, force)
+/datum/action/cooldown/apply_button_background(atom/movable/screen/movable/action_button/current_button, force)
 	if(active_background_icon_state)
 		background_icon_state = is_action_active(current_button) ? active_background_icon_state : base_background_icon_state
 	return ..()
 
-/datum/action/cooldown/apply_button_icon(obj/screen/movable/action_button/current_button, force)
+/datum/action/cooldown/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
 	if(active_icon_state)
 		button_icon_state = is_action_active(current_button) ? active_icon_state : base_icon_state
 	return ..()
 
-/datum/action/cooldown/apply_button_overlay(obj/screen/movable/action_button/current_button, force)
+/datum/action/cooldown/apply_button_overlay(atom/movable/screen/movable/action_button/current_button, force)
 	if(active_overlay_icon_state)
 		overlay_icon_state = is_action_active(current_button) ? active_overlay_icon_state : base_overlay_icon_state
 	return ..()
 
-/datum/action/cooldown/is_action_active(obj/screen/movable/action_button/current_button)
+/datum/action/cooldown/is_action_active(atom/movable/screen/movable/action_button/current_button)
 	return click_to_activate && current_button.our_hud?.mymob?.click_intercept == src
 
 /datum/action/cooldown/Destroy()

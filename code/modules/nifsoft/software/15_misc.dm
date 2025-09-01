@@ -198,4 +198,4 @@
 	if((. = ..()))
 		if(nif.human.client && world.time - last_ads > rand(10 MINUTES, 15 MINUTES) && prob(1))
 			last_ads = world.time
-			nif.human.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 5)
+			nif.human.client.create_fake_ad_popup_multiple(/atom/movable/screen/popup/default, 5)
