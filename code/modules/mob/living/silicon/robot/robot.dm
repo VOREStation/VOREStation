@@ -307,22 +307,25 @@
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
 /mob/living/silicon/robot/Destroy()
-	if(mmi && mind)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
-		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
-		if(T)	mmi.loc = T
-		if(mmi.brainmob)
-			var/obj/item/robot_module/M = locate() in contents
-			if(M)
-				mmi.brainmob.languages = M.original_languages
-			else
-				mmi.brainmob.languages = languages
-			mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
-			mind.transfer_to(mmi.brainmob)
-		else if(!shell) // Shells don't have brainmbos in their MMIs.
-			to_chat(src, span_danger("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
-			ghostize()
-			//ERROR("A borg has been destroyed, but its MMI lacked a brainmob, so the mind could not be transferred. Player: [ckey].")
-		mmi = null
+	if(mmi)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
+		if(mind)
+			var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
+			if(T)	mmi.loc = T
+			if(mmi.brainmob)
+				var/obj/item/robot_module/M = locate() in contents
+				if(M)
+					mmi.brainmob.languages = M.original_languages
+				else
+					mmi.brainmob.languages = languages
+				mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
+				mind.transfer_to(mmi.brainmob)
+			else if(!shell) // Shells don't have brainmbos in their MMIs.
+				to_chat(src, span_danger("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
+				ghostize()
+				//ERROR("A borg has been destroyed, but its MMI lacked a brainmob, so the mind could not be transferred. Player: [ckey].")
+			mmi = null
+		else
+			QDEL_NULL(mmi)
 	disconnect_from_ai(TRUE)
 	if(shell)
 		if(deployed)
