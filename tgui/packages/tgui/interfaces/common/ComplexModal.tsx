@@ -109,6 +109,7 @@ export const ComplexModal = (props) => {
 
   const lastValue = useRef(modal.value);
   const [curValue, setCurValue] = useState(modal.value);
+
   if (!modal) {
     return;
   }
