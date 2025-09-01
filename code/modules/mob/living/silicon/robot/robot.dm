@@ -357,6 +357,10 @@
 		QDEL_NULL(ion_trail)
 	if(spark_system)
 		QDEL_NULL(spark_system)
+	module_active = null
+	module_state_1 = null
+	module_state_2 = null
+	module_state_3 = null
 
 	return ..()
 
