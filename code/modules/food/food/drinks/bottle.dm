@@ -24,12 +24,13 @@
 		pickup_sound = 'sound/items/pickup/bottle.ogg'
 
 /obj/item/reagent_containers/food/drinks/bottle/Destroy()
-	var/turf/possible_loc = get_turf(src)
-	if(possible_loc)
-		rag.forceMove(possible_loc)
-	else
-		qdel(rag)
-	rag = null
+	if(rag)
+		var/turf/possible_loc = get_turf(src)
+		if(possible_loc)
+			rag.forceMove(possible_loc)
+		else
+			qdel(rag)
+		rag = null
 	return ..()
 
 //when thrown on impact, bottles smash and spill their contents
