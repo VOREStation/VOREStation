@@ -1,0 +1,4 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - bugfix: "Fixed great white carp turning into failsneks on death."
