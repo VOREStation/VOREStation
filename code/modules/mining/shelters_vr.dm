@@ -188,3 +188,13 @@
 	name = "Shelter Christmas"
 	shelter_id = "shelter_christmas"
 	mappath = "maps/submaps/shelters/randomshelters/shelter_christmas.dmm"
+
+/datum/map_template/shelter/methlab
+	name = "Shelter Meth Lab"
+	shelter_id = "shelter_methlab"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_methlab.dmm"
+
+/datum/map_template/shelter/blacksmith
+	name = "Shelter Blacksmith"
+	shelter_id = "shelter_blacksmith"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_blacksmith.dmm"

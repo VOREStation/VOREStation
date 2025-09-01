@@ -193,16 +193,31 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	desc = "A strange-looking shelter capsule. Should the surfluid inside it be bubbling like that? There's a license for use printed on the bottom, as well as a warning about the unpredictable nature of redspace."
 	template_id = "placeholder_id_do_not_change"
 	var/possible_shelter_ids = list(
-		"shelter_pizza_kitchen" = 10,
-		"shelter_nerd_dungeon_good" = 10,
-		"shelter_nerd_dungeon_evil" = 10,
-		"shelter_shark_pool" = 5,
-		"shelter_tiny_space" = 5,
-		"shelter_christmas" = 1,
+		// "Normal" map table - Most common table.
+		// Meant to be actually inhabitable spots with neat things in them.
+		list(
+			"shelter_pizza_kitchen",
+			"shelter_nerd_dungeon_good",
+		) = 65,
+		// "Weird" map table - Less common.
+		// Here, we get a little silly with it. Not dangerous, but weird, kinda like redgates.
+		list(
+			"shelter_nerd_dungeon_evil",
+			"shelter_shark_pool",
+			"shelter_tiny_space",
+			"shelter_christmas",
+			"shelter_blacksmith",
+		) = 30,
+		// "Dangerous" map table - Least common by far, and for good reason.
+		// Places that have dangerous/illegal stuff in them.
+		list(
+			"shelter_methlab",
+		) = 5,
 	)
 
 /obj/item/survivalcapsule/randomized/get_template_id()
-	return pickweight(possible_shelter_ids)
+	// Choose which table of maps we're gonna be choosing from, then pick a map in those
+	return pick(pickweight(possible_shelter_ids))
 
 /obj/item/survivalcapsule/randomized/get_template_info()
 	. += "It could have anything in there!"
