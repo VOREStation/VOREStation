@@ -32,7 +32,7 @@ Thus, the two variables affect pump operation are set in New():
 	var/max_transfer_rate = ATMOS_DEFAULT_VOLUME_PUMP	// Ls
 	var/transfer_rate = 20 // L
 
-	var/frequency = 0
+	var/frequency = ZERO_FREQ
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 

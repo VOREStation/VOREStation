@@ -439,7 +439,7 @@
 	machinetype = 2
 	circuit = /obj/item/circuitboard/telecomms/bus
 	netspeed = 40
-	var/change_frequency = 0
+	var/change_frequency = ZERO_FREQ
 
 /obj/machinery/telecomms/bus/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 

@@ -904,6 +904,7 @@
 	dir = 4
 	},
 /mob/living/simple_mob/animal/passive/opossum/poppy,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/engineering/workshop)
 "bN" = (

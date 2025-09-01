@@ -15,14 +15,14 @@
 	selection_color = "#AD6BAD"
 	req_admin_notify = 1
 	economic_modifier = 15
-	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
-						access_tox_storage, access_teleporter,
-						access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-						access_RC_announce, access_keycard_auth, access_tcomsat, access_xenoarch, access_eva, access_network, access_xenobotany)
-	minimal_access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
-						access_tox_storage, access_teleporter,
-						access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-						access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_eva, access_network, access_xenobotany)
+	access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
+						ACCESS_TOX_STORAGE, ACCESS_TELEPORTER,
+						ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD, ACCESS_TECH_STORAGE,
+						ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_XENOARCH, ACCESS_EVA, ACCESS_NETWORK, ACCESS_XENOBOTANY)
+	minimal_access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
+						ACCESS_TOX_STORAGE, ACCESS_TELEPORTER,
+						ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD, ACCESS_TECH_STORAGE,
+						ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_XENOARCH, ACCESS_EVA, ACCESS_NETWORK, ACCESS_XENOBOTANY)
 
 	minimum_character_age = 25
 	minimal_player_age = 14
@@ -73,8 +73,8 @@
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_xenobotany)
-	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)
+	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_XENOARCH, ACCESS_XENOBOTANY)
+	minimal_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOARCH)
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 	banned_job_species = list(FBP_DIGITAL)
 
@@ -152,8 +152,8 @@
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_hydroponics)
-	minimal_access = list(access_research, access_xenobiology, access_hydroponics, access_tox_storage)
+	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_HYDROPONICS)
+	minimal_access = list(ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_HYDROPONICS, ACCESS_TOX_STORAGE)
 	banned_job_species = list(FBP_DIGITAL)
 
 	minimal_player_age = 14
@@ -193,8 +193,8 @@
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 5
-	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
-	minimal_access = list(access_robotics, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
+	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH) //As a job that handles so many corpses, it makes sense for them to have morgue access.
+	minimal_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	minimal_player_age = 7
 	min_age_by_species = list(SPECIES_PROMETHEAN = 2)
 	banned_job_species = list(FBP_DIGITAL)
@@ -243,8 +243,8 @@
 	supervisors = "the " + JOB_RESEARCH_DIRECTOR
 	selection_color = "#633D63"
 	economic_modifier = 7
-	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobotany, access_hydroponics)
-	minimal_access = list(access_research, access_xenobotany, access_hydroponics, access_tox_storage)
+	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBOTANY, ACCESS_HYDROPONICS)
+	minimal_access = list(ACCESS_RESEARCH, ACCESS_XENOBOTANY, ACCESS_HYDROPONICS, ACCESS_TOX_STORAGE)
 	pto_type = PTO_SCIENCE
 
 	minimal_player_age = 14
