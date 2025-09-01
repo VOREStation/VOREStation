@@ -205,7 +205,6 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		// Here, we get a little silly with it. Not dangerous, but weird, kinda like redgates.
 		list(
 			"shelter_nerd_dungeon_evil",
-			"shelter_shark_pool",
 			"shelter_tiny_space",
 			"shelter_christmas",
 			"shelter_blacksmith",
@@ -213,6 +212,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		// "Dangerous" map table - Least common by far, and for good reason.
 		// Places that have dangerous/illegal stuff in them.
 		list(
+			"shelter_dangerous_pool",
 			"shelter_methlab",
 		) = 5,
 	)

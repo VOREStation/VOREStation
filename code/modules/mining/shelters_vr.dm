@@ -169,10 +169,10 @@
 	shelter_id = "shelter_nerd_dungeon_good"
 	mappath = "maps/submaps/shelters/randomshelters/shelter_nerd_dungeon_good.dmm"
 
-/datum/map_template/shelter/shark_pool
-	name = "Shelter Shark Pool"
-	shelter_id = "shelter_shark_pool"
-	mappath = "maps/submaps/shelters/randomshelters/shelter_shark_pool.dmm"
+/datum/map_template/shelter/dangerous_pool
+	name = "Shelter Dangerous Pool"
+	shelter_id = "shelter_dangerous_pool"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_dangerous_pool.dmm"
 
 /datum/map_template/shelter/pizza_kitchen
 	name = "Shelter Pizza Kitchen"

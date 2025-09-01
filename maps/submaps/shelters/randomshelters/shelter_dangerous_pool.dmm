@@ -3,7 +3,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/water/deep/pool,
+/turf/simulated/floor/water/deep/indoors,
 /area/survivalpod/redspace)
 "e" = (
 /obj/structure/window/reinforced/survival_pod{
@@ -145,6 +145,12 @@
 /obj/structure/sign/mining,
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod/redspace)
+"O" = (
+/mob/living/simple_mob/vore/slug{
+	dir = 1
+	},
+/turf/simulated/floor/water/deep/indoors,
+/area/survivalpod/redspace)
 "P" = (
 /obj/structure/sign/mining/survival,
 /turf/simulated/shuttle/wall/voidcraft/survival,
@@ -156,15 +162,15 @@
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod/redspace)
 "S" = (
-/turf/simulated/floor/water/deep/pool,
+/turf/simulated/floor/water/deep/indoors,
 /area/survivalpod/redspace)
 "U" = (
 /obj/structure/fans,
 /turf/simulated/floor/tiled/white,
 /area/survivalpod/redspace)
 "V" = (
-/mob/living/simple_mob/animal/passive/fish/measelshark,
-/turf/simulated/floor/water/deep/pool,
+/mob/living/simple_mob/vore/jelly,
+/turf/simulated/floor/water/deep/indoors,
 /area/survivalpod/redspace)
 
 (1,1,1) = {"
@@ -189,7 +195,7 @@ P
 H
 S
 S
-S
+O
 S
 n
 K
@@ -197,7 +203,7 @@ K
 (4,1,1) = {"
 D
 S
-V
+S
 S
 S
 x
@@ -206,7 +212,7 @@ f
 (5,1,1) = {"
 L
 S
-S
+V
 S
 S
 n
