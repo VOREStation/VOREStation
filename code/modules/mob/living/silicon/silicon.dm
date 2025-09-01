@@ -45,6 +45,8 @@
 	GLOB.silicon_mob_list -= src
 	for(var/datum/alarm_handler/AH in SSalarm.all_handlers)
 		AH.unregister_alarm(src)
+	if(aiCamera)
+		QDEL_NULL(aiCamera)
 	if(idcard)
 		QDEL_NULL(idcard)
 	return ..()
