@@ -48,8 +48,6 @@
 	AddElement(/datum/element/sellable/material_stack)
 
 /obj/item/stack/Destroy()
-	if(uses_charge)
-		return 1
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
 	if(islist(synths))
