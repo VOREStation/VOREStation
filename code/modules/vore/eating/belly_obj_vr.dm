@@ -487,7 +487,7 @@
 	//If not, we're probably just in a prefs list or something.
 	if(ismob(loc))
 		owner = loc
-		owner.vore_organs |= src
+		owner.vore_organs += src
 		if(isliving(loc))
 			if(mode_flags & DM_FLAG_TURBOMODE)
 				START_PROCESSING(SSobj, src)
