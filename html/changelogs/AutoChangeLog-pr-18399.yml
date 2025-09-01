@@ -1,0 +1,4 @@
+author: "TankTheBirb"
+delete-after: True
+changes:
+  - bugfix: "Fixed water movement not being applied by readding the clamp to human_movement.dm."
