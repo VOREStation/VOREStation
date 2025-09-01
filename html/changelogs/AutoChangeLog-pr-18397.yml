@@ -1,0 +1,4 @@
+author: "TankTheBirb"
+delete-after: True
+changes:
+  - config: "changed default sprite scale offset to odd scaling since that was the default for the longest time."
