@@ -203,3 +203,8 @@
 	name = "Shelter Art Gallery"
 	shelter_id = "shelter_gallery"
 	mappath = "maps/submaps/shelters/randomshelters/shelter_gallery.dmm"
+
+/datum/map_template/shelter/garden
+	name = "Shelter Garden"
+	shelter_id = "shelter_garden"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_garden.dmm"
