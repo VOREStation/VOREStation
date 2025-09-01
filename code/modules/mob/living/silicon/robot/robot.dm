@@ -96,7 +96,7 @@
 	var/lower_mod = 0
 	var/jetpack = 0
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
-	var/datum/effect/effect/system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
 	var/killswitch = 0
 	var/killswitch_time = 60
@@ -111,6 +111,7 @@
 	var/braintype = JOB_CYBORG
 
 	var/obj/item/implant/restrainingbolt/bolt	// The restraining bolt installed into the cyborg.
+	var/datum/tgui_module/robot_ui/robotact
 
 	var/list/robot_verbs_default = list(
 		/mob/living/silicon/robot/proc/sensor_mode,
@@ -330,6 +331,8 @@
 	QDEL_NULL(wires)
 	sprite_datum = null
 	QDEL_NULL(robotact)
+	if(bolt)
+		QDEL_NULL(bolt)
 	if(module)
 		QDEL_NULL(module)
 	if(radio)
@@ -350,6 +353,10 @@
 		QDEL_NULL(inv3)
 	if(robot_modules_background)
 		QDEL_NULL(robot_modules_background)
+	if(ion_trail)
+		QDEL_NULL(ion_trail)
+	if(spark_system)
+		QDEL_NULL(spark_system)
 
 	return ..()
 
