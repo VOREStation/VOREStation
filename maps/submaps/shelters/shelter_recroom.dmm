@@ -137,6 +137,9 @@
 /obj/item/stool/padded{
 	dir = 8
 	},
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "u" = (
@@ -148,6 +151,9 @@
 "w" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "x" = (
@@ -233,7 +239,7 @@
 	dir = 1
 	},
 /obj/structure/sign/painting/public{
-	pixel_x = 32
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
