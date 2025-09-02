@@ -89,15 +89,17 @@ const modalClose = (id: string | null) => {
   });
 };
 
-type complexData = Data &
+type ExtendedModalData<TArgs = Record<string, unknown>> = ModalData<TArgs> &
   Partial<{
-    modal: {
-      value: string;
-      choices: string[];
-      no_text: string;
-      yes_text: string;
-    } | null;
+    value: string;
+    choices: string[];
+    no_text: string;
+    yes_text: string;
   }>;
+
+type ComplexData<TArgs = Record<string, unknown>> = {
+  modal: ExtendedModalData<TArgs> | null;
+};
 
 /**
  * Displays a modal and its actions. Passed data must have a valid modal field
@@ -116,7 +118,7 @@ type complexData = Data &
  * @param {object} props
  */
 export const ComplexModal = (props) => {
-  const { data } = useBackend<complexData>();
+  const { data } = useBackend<ComplexData>();
 
   const { modal } = data;
 
@@ -188,10 +190,9 @@ export const ComplexModal = (props) => {
       </Box>
     );
   } else if (type === 'choice') {
+    const { choices = [] } = modal;
     const realChoices =
-      typeof modal.choices === 'object'
-        ? Object.values(modal.choices)
-        : modal.choices;
+      typeof modal.choices === 'object' ? Object.values(choices) : choices;
     modalBody = (
       <Dropdown
         autoScroll={false}
@@ -203,12 +204,13 @@ export const ComplexModal = (props) => {
       />
     );
   } else if (type === 'bento') {
+    const { choices = [], value = '' } = modal;
     modalBody = (
       <Stack wrap="wrap" my="0.5rem" maxHeight="1%">
-        {modal.choices.map((c, i) => (
+        {choices.map((c, i) => (
           <Stack.Item key={i}>
             <Button
-              selected={i + 1 === parseInt(modal.value, 10)}
+              selected={i + 1 === parseInt(value, 10)}
               onClick={() => modalAnswer(id, (i + 1).toString(), {})}
             >
               <Image src={c} />
@@ -218,12 +220,13 @@ export const ComplexModal = (props) => {
       </Stack>
     );
   } else if (type === 'bentospritesheet') {
+    const { choices = [], value = '' } = modal;
     modalBody = (
       <Stack wrap="wrap" my="0.5rem" maxHeight="1%">
-        {modal.choices.map((c, i) => (
+        {choices.map((c, i) => (
           <Stack.Item key={i}>
             <Button
-              selected={i + 1 === parseInt(modal.value, 10)}
+              selected={i + 1 === parseInt(value, 10)}
               onClick={() => modalAnswer(id, (i + 1).toString(), {})}
             >
               <Box className={c} />
