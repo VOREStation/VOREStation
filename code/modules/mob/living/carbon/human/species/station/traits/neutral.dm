@@ -61,6 +61,7 @@
 	cost = 0
 	var_changes = list("heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
 	can_take = ORGANICS // just in case following hot adapt
+	custom_only = FALSE
 	excludes = list(/datum/trait/neutral/coldadapt, /datum/trait/neutral/hotadapt)
 
 /datum/trait/neutral/highbodytemp
