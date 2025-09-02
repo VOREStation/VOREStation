@@ -130,13 +130,13 @@
 /obj/item/dice/proc/set_dice(mob/user)
 	if(user.stat || !Adjacent(user))
 		return
-	var/to_value = tgui_input_number(user, "What face should \the src be turned to?","Set die face", 1, sides, 1)
+	var/to_value = tgui_input_number(user, "What face should \the [src] be turned to?","Set die face", 1, sides, 1)
 	if(!to_value)
 		return
 
 	result = to_value
 	icon_state = "[name][result]"
-	user.visible_message(span_notice("\The [user] turned the [src] to the face reading [result] manually."))
+	user.visible_message(span_notice("\The [user] turned \the [src] to the face reading [result] manually."))
 
 /obj/item/dice/CtrlClick(mob/user)
 	set_dice(user)
