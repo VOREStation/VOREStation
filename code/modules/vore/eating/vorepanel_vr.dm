@@ -281,7 +281,7 @@
 				importPanel = new(ui.user)
 
 			if(!importPanel)
-				to_chat(ui.user,span_notice("Export panel undefined: [importPanel]"))
+				to_chat(ui.user,span_notice("Import panel undefined: [importPanel]"))
 				return FALSE
 
 			importPanel.open_import_panel(ui.user)
