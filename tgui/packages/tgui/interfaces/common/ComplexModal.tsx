@@ -10,9 +10,15 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-type Data = {
-  // biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
-  modal: { id: string; args: {}; text: string; type: string } | null;
+type ModalData<TArgs = Record<string, unknown>> = {
+  id: string;
+  args: TArgs;
+  text: string;
+  type: string;
+};
+
+type Data<TArgs = Record<string, unknown>> = {
+  modal: ModalData<TArgs> | null;
 };
 const bodyOverrides = {};
 
@@ -40,21 +46,26 @@ export const modalOpen = (id, args = {}) => {
  * @param {function} bodyOverride The override function that returns the
  *    modal contents
  */
+
+type ModalOverrideData<TArgs = Record<string, unknown>> = {
+  id: string;
+  text: string;
+  args: TArgs;
+  type: string;
+};
+
 export const modalRegisterBodyOverride = (
   id: string,
-  bodyOverride: (modal: {
-    id: string;
-    text: string;
-    // biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
-    args: {};
-    type: string;
-  }) => React.JSX.Element,
+  bodyOverride: (modal: ModalOverrideData) => React.JSX.Element,
 ) => {
   bodyOverrides[id] = bodyOverride;
 };
 
-// biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
-const modalAnswer = (id: string, answer: string | undefined, args: {}) => {
+const modalAnswer = (
+  id: string,
+  answer: string | undefined,
+  args: Record<string, unknown>,
+) => {
   const { act, data } = useBackend<Data>();
 
   const { modal } = data;
