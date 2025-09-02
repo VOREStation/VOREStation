@@ -1,4 +1,4 @@
-import { type KeyboardEvent, useRef, useState } from 'react';
+import { type KeyboardEvent, useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -71,7 +71,7 @@ const modalAnswer = (
   const { modal } = data;
 
   if (!modal) {
-    return;
+    return null;
   }
 
   const newArgs = Object.assign(modal.args || {}, args || {});
@@ -117,16 +117,24 @@ type ComplexData<TArgs = Record<string, unknown>> = {
  * Defaults to `message` if not found
  * @param {object} props
  */
-export const ComplexModal = (props) => {
+export const ComplexModal = (props: {
+  maxWidth?: string;
+  maxHeight?: string;
+}) => {
   const { data } = useBackend<ComplexData>();
 
   const { modal } = data;
 
-  const lastValue = useRef(modal?.value);
   const [curValue, setCurValue] = useState(modal?.value);
 
+  useEffect(() => {
+    if (modal?.type === 'input') {
+      setCurValue(modal.value);
+    }
+  }, [modal?.value, modal?.type]);
+
   if (!modal) {
-    return;
+    return null;
   }
 
   const { id, text, type } = modal;
@@ -146,11 +154,6 @@ export const ComplexModal = (props) => {
   if (bodyOverrides[id]) {
     modalBody = bodyOverrides[id](modal);
   } else if (type === 'input') {
-    if (lastValue.current !== modal.value) {
-      lastValue.current = modal.value;
-      setCurValue(modal.value);
-    }
-
     modalOnEnter = (e) => modalAnswer(id, curValue, {});
     modalBody = (
       <Input
