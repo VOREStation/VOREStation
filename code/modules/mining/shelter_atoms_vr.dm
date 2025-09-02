@@ -46,13 +46,15 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	return template_id
 
 /obj/item/survivalcapsule/proc/get_template_info()
+	var/ret = ""
 	if(!template)
 		get_template()
 	if(template)
-		. += "This capsule has the [template.name] stored:"
-		. += template.description
+		ret += "This capsule has the [template.name] stored:"
+		ret += template.description
 	else
-		. += "This capsule has an unknown template stored."
+		ret += "This capsule has an unknown template stored."
+	return ret
 
 // First step: Warn and cancel deployment if necessary conditions aren't met. Otherwise generate smoke and wait a moment.
 /obj/item/survivalcapsule/proc/deploy_step_one(var/status, var/turf/deploy_location, var/turf/above_location, var/mob/user)
@@ -107,7 +109,9 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 /obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
-	get_template_info()
+	var/temp_info = get_template_info()
+	if(length(temp_info))
+		. += temp_info
 
 /obj/item/survivalcapsule/attack_self(mob/user)
 	//Can't grab when capsule is New() because templates aren't loaded then
@@ -234,7 +238,9 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	return pick(pickweight(possible_shelter_ids))
 
 /obj/item/survivalcapsule/randomized/get_template_info()
-	. += "It could have anything in there!"
+	var/ret = "It has a chaotic redspace bubble inside. The label reads:"
+	ret += "This capsule utilizes experimental technology to materialize copies of contents within redspace in realspace. Contents of this capsule are therefore prone to change upon activation, and cannot be guaranteed to remain the same as when previously used. While efforts have been made to ensure likely safety when using these capsules, due to the unpredictable nature of redspace, that safety cannot be fully guaranteed. Use at your own risk!"
+	return ret
 
 //Pod objects
 //Walls
