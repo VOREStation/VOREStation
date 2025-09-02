@@ -208,6 +208,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 			"shelter_gallery",
 			"shelter_garden",
 			"shelter_off_color",
+			"shelter_living_room",
 		) = 65, // 65% chance
 
 		// "Weird" map table - Less common.

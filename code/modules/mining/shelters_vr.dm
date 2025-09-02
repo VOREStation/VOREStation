@@ -218,3 +218,8 @@
 	name = "Shelter Off-Color Bedrooms"
 	shelter_id = "shelter_off_color"
 	mappath = "maps/submaps/shelters/randomshelters/shelter_off_color.dmm"
+
+/datum/map_template/shelter/living_room
+	name = "Shelter Living Room"
+	shelter_id = "shelter_living_room"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_living_room.dmm"
