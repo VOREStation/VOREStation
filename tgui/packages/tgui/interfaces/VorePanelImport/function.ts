@@ -67,7 +67,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function isValidRecord(
   value: unknown,
-): value is Record<string, string | number> {
+): value is Record<string, string | number | null> {
   return (
     typeof value === 'object' &&
     value !== null &&
