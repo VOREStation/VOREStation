@@ -10,8 +10,10 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-// biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
-type Data = { modal: { id: string; args: {}; text: string; type: string } };
+type Data = {
+  // biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
+  modal: { id: string; args: {}; text: string; type: string } | null;
+};
 const bodyOverrides = {};
 
 /**
@@ -52,7 +54,7 @@ export const modalRegisterBodyOverride = (
 };
 
 // biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
-const modalAnswer = (id: string, answer: string, args: {}) => {
+const modalAnswer = (id: string, answer: string | undefined, args: {}) => {
   const { act, data } = useBackend<Data>();
 
   const { modal } = data;
@@ -83,7 +85,7 @@ type complexData = Data &
       choices: string[];
       no_text: string;
       yes_text: string;
-    };
+    } | null;
   }>;
 
 /**
@@ -107,8 +109,8 @@ export const ComplexModal = (props) => {
 
   const { modal } = data;
 
-  const lastValue = useRef(modal.value);
-  const [curValue, setCurValue] = useState(modal.value);
+  const lastValue = useRef(modal?.value);
+  const [curValue, setCurValue] = useState(modal?.value);
 
   if (!modal) {
     return;
