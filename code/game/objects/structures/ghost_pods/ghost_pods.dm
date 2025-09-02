@@ -32,12 +32,15 @@
 /obj/structure/ghost_pod/proc/get_winner()
 	SIGNAL_HANDLER
 	busy = FALSE
-	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
+	if(length(Q.candidates)) //Q should NEVER get deleted but...whatever, sanity.
 		var/mob/observer/dead/D = Q.candidates[1]
+		UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+		QDEL_NULL(Q) //get rid of the query
 		create_occupant(D)
-	else
-		if(delay_to_try_again)
-			addtimer(CALLBACK(src, PROC_REF(trigger)), delay_to_try_again)
+		return
+
+	if(delay_to_try_again)
+		addtimer(CALLBACK(src, PROC_REF(trigger)), delay_to_try_again)
 	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
 	QDEL_NULL(Q) //get rid of the query
 
