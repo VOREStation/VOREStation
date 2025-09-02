@@ -8,14 +8,14 @@ export const CharacterSelector = (props: {
   const { characterNames, selectedCharacters, onSelectedCharacters } = props;
 
   const toggleCharacter = (name: string) => {
-    onSelectedCharacters((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(name)) {
-        newSet.delete(name);
+    onSelectedCharacters((prevSet) => {
+      const nextSet = new Set(prevSet);
+      if (nextSet.has(name)) {
+        nextSet.delete(name);
       } else {
-        newSet.add(name);
+        nextSet.add(name);
       }
-      return newSet;
+      return nextSet;
     });
   };
 

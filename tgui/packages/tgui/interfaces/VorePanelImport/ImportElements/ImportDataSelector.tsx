@@ -24,14 +24,14 @@ export const ImportDataSelector = (props: {
 
   function toggleBelly(name: string | number | null) {
     const stringValue = String(name);
-    onSelectedBellies((prev) => {
-      const updated = new Set(prev);
-      if (updated.has(stringValue)) {
-        updated.delete(stringValue);
+    onSelectedBellies((prevSet) => {
+      const nextSet = new Set(prevSet);
+      if (nextSet.has(stringValue)) {
+        nextSet.delete(stringValue);
       } else {
-        updated.add(stringValue);
+        nextSet.add(stringValue);
       }
-      return updated;
+      return nextSet;
     });
   }
 

@@ -7,6 +7,7 @@ export const FileImport = (props: {
   selectedCharacters: Set<string>;
   selectedCharacter: string;
   onCharacterData: React.Dispatch<React.SetStateAction<DesiredData>>;
+  onSelectedCharacters: React.Dispatch<React.SetStateAction<Set<string>>>;
   onSelectedCharacter: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const {
@@ -14,6 +15,7 @@ export const FileImport = (props: {
     selectedCharacters,
     selectedCharacter,
     onCharacterData,
+    onSelectedCharacters,
     onSelectedCharacter,
   } = props;
   const ourCharacters = Object.keys(characterData);
@@ -23,9 +25,14 @@ export const FileImport = (props: {
   );
 
   function handleDeletion() {
-    delete characterData[selectedCharacter];
-    onCharacterData(characterData);
+    const nextCharacterData = { ...characterData };
+    delete nextCharacterData[selectedCharacter];
+    onCharacterData(nextCharacterData);
     onSelectedCharacter('');
+
+    const nextSelectedCharacters = new Set(selectedCharacters);
+    nextSelectedCharacters.delete(selectedCharacter);
+    onSelectedCharacters(nextSelectedCharacters);
   }
 
   return (
