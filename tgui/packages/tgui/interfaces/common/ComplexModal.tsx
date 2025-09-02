@@ -1,4 +1,4 @@
-import { type KeyboardEvent, useRef, useState } from 'react';
+import { type KeyboardEvent, useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -10,8 +10,16 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-// biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
-type Data = { modal: { id: string; args: {}; text: string; type: string } };
+type ModalData<TArgs = Record<string, unknown>> = {
+  id: string;
+  args: TArgs;
+  text: string;
+  type: string;
+};
+
+type Data<TArgs = Record<string, unknown>> = {
+  modal: ModalData<TArgs> | null;
+};
 const bodyOverrides = {};
 
 /**
@@ -38,27 +46,32 @@ export const modalOpen = (id, args = {}) => {
  * @param {function} bodyOverride The override function that returns the
  *    modal contents
  */
+
+type ModalOverrideData<TArgs = Record<string, unknown>> = {
+  id: string;
+  text: string;
+  args: TArgs;
+  type: string;
+};
+
 export const modalRegisterBodyOverride = (
   id: string,
-  bodyOverride: (modal: {
-    id: string;
-    text: string;
-    // biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
-    args: {};
-    type: string;
-  }) => React.JSX.Element,
+  bodyOverride: (modal: ModalOverrideData) => React.JSX.Element,
 ) => {
   bodyOverrides[id] = bodyOverride;
 };
 
-// biome-ignore lint/complexity/noBannedTypes: In this case, we got any type of Object
-const modalAnswer = (id: string, answer: string, args: {}) => {
+const modalAnswer = (
+  id: string,
+  answer: string | undefined,
+  args: Record<string, unknown>,
+) => {
   const { act, data } = useBackend<Data>();
 
   const { modal } = data;
 
   if (!modal) {
-    return;
+    return null;
   }
 
   const newArgs = Object.assign(modal.args || {}, args || {});
@@ -76,15 +89,17 @@ const modalClose = (id: string | null) => {
   });
 };
 
-type complexData = Data &
+type ExtendedModalData<TArgs = Record<string, unknown>> = ModalData<TArgs> &
   Partial<{
-    modal: {
-      value: string;
-      choices: string[];
-      no_text: string;
-      yes_text: string;
-    };
+    value: string;
+    choices: string[];
+    no_text: string;
+    yes_text: string;
   }>;
+
+type ComplexData<TArgs = Record<string, unknown>> = {
+  modal: ExtendedModalData<TArgs> | null;
+};
 
 /**
  * Displays a modal and its actions. Passed data must have a valid modal field
@@ -102,16 +117,24 @@ type complexData = Data &
  * Defaults to `message` if not found
  * @param {object} props
  */
-export const ComplexModal = (props) => {
-  const { data } = useBackend<complexData>();
+export const ComplexModal = (props: {
+  maxWidth?: string;
+  maxHeight?: string;
+}) => {
+  const { data } = useBackend<ComplexData>();
 
   const { modal } = data;
 
-  const lastValue = useRef(modal.value);
-  const [curValue, setCurValue] = useState(modal.value);
+  const [curValue, setCurValue] = useState(modal?.value);
+
+  useEffect(() => {
+    if (modal?.type === 'input') {
+      setCurValue(modal.value);
+    }
+  }, [modal?.value, modal?.type]);
 
   if (!modal) {
-    return;
+    return null;
   }
 
   const { id, text, type } = modal;
@@ -131,11 +154,6 @@ export const ComplexModal = (props) => {
   if (bodyOverrides[id]) {
     modalBody = bodyOverrides[id](modal);
   } else if (type === 'input') {
-    if (lastValue.current !== modal.value) {
-      lastValue.current = modal.value;
-      setCurValue(modal.value);
-    }
-
     modalOnEnter = (e) => modalAnswer(id, curValue, {});
     modalBody = (
       <Input
@@ -175,10 +193,9 @@ export const ComplexModal = (props) => {
       </Box>
     );
   } else if (type === 'choice') {
+    const { choices = [] } = modal;
     const realChoices =
-      typeof modal.choices === 'object'
-        ? Object.values(modal.choices)
-        : modal.choices;
+      typeof modal.choices === 'object' ? Object.values(choices) : choices;
     modalBody = (
       <Dropdown
         autoScroll={false}
@@ -190,12 +207,13 @@ export const ComplexModal = (props) => {
       />
     );
   } else if (type === 'bento') {
+    const { choices = [], value = '' } = modal;
     modalBody = (
       <Stack wrap="wrap" my="0.5rem" maxHeight="1%">
-        {modal.choices.map((c, i) => (
+        {choices.map((c, i) => (
           <Stack.Item key={i}>
             <Button
-              selected={i + 1 === parseInt(modal.value, 10)}
+              selected={i + 1 === parseInt(value, 10)}
               onClick={() => modalAnswer(id, (i + 1).toString(), {})}
             >
               <Image src={c} />
@@ -205,12 +223,13 @@ export const ComplexModal = (props) => {
       </Stack>
     );
   } else if (type === 'bentospritesheet') {
+    const { choices = [], value = '' } = modal;
     modalBody = (
       <Stack wrap="wrap" my="0.5rem" maxHeight="1%">
-        {modal.choices.map((c, i) => (
+        {choices.map((c, i) => (
           <Stack.Item key={i}>
             <Button
-              selected={i + 1 === parseInt(modal.value, 10)}
+              selected={i + 1 === parseInt(value, 10)}
               onClick={() => modalAnswer(id, (i + 1).toString(), {})}
             >
               <Box className={c} />
