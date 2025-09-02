@@ -32,7 +32,7 @@
 /obj/structure/ghost_pod/proc/get_winner()
 	SIGNAL_HANDLER
 	busy = FALSE
-	if(length(Q.candidates)) //Q should NEVER get deleted but...whatever, sanity.
+	if(length(Q.candidates))
 		var/mob/observer/dead/D = Q.candidates[1]
 		UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
 		QDEL_NULL(Q) //get rid of the query
