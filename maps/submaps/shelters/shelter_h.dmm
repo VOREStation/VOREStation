@@ -60,13 +60,13 @@
 /obj/item/deck/cards,
 /obj/item/storage/pill_bottle/dice,
 /obj/item/storage/pill_bottle/dice_nerd,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "h" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "i" = (
 /obj/structure/disposalpipe/segment{
@@ -80,17 +80,14 @@
 /area/survivalpod/holly)
 "j" = (
 /obj/structure/bed/chair/comfy/blue,
-/obj/machinery/light/small/fairylights{
-	pixel_y = 40
-	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "k" = (
 /obj/structure/bed/chair/comfy/blue{
 	dir = 1
 	},
 /obj/effect/floor_decal/spline/plain/corner,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "l" = (
 /obj/structure/disposalpipe/segment{
@@ -101,9 +98,19 @@
 /area/survivalpod/holly)
 "m" = (
 /obj/structure/fans/tiny,
-/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/machinery/door/airlock/voidcraft/survival_pod{
+	layer = 3.1
+	},
 /obj/effect/floor_decal/industrial/danger/full,
+/obj/item/toy/mistletoe,
 /turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod/holly)
+"n" = (
+/obj/structure/bed/chair/comfy/blue,
+/obj/machinery/light/small/fairylights{
+	pixel_y = 40
+	},
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "o" = (
 /obj/structure/table/woodentable,
@@ -114,7 +121,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "p" = (
 /obj/structure/sign/mining/survival{
@@ -128,15 +135,19 @@
 	pixel_y = 22;
 	dir = 4
 	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
+/turf/simulated/floor/carpet/blue2,
 /area/survivalpod/holly)
+"r" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod/dorms/holly)
 "s" = (
 /obj/machinery/media/jukebox,
 /obj/machinery/light{
 	dir = 4;
 	light_color = "#DDFFD3"
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "u" = (
 /obj/machinery/smartfridge/survival_pod,
@@ -226,6 +237,8 @@
 /obj/item/reagent_containers/food/condiment/small/packet/coffee,
 /obj/item/reagent_containers/food/condiment/small/packet/coffee,
 /obj/item/reagent_containers/food/condiment/small/packet/coffee,
+/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake,
+/obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod/holly)
 "w" = (
@@ -236,9 +249,7 @@
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/survivalpod/dorms/holly)
 "x" = (
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/machinery/light,
 /obj/structure/table/wooden_reinforced,
 /obj/item/flame/candle{
 	pixel_x = 6
@@ -266,7 +277,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "C" = (
 /obj/structure/grille,
@@ -300,7 +311,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "F" = (
 /obj/structure/sign/mining/survival,
@@ -323,7 +334,7 @@
 /obj/effect/floor_decal/spline/plain/corner{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "I" = (
 /obj/structure/sign/mining/survival{
@@ -345,7 +356,7 @@
 /obj/structure/bed/chair/comfy/blue{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "O" = (
 /obj/effect/floor_decal/spline/plain/corner{
@@ -359,7 +370,7 @@
 	id = "hollypod";
 	pixel_y = 28
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "R" = (
 /obj/machinery/sleeper/survival_pod,
@@ -383,7 +394,7 @@
 /area/survivalpod/holly)
 "U" = (
 /obj/structure/table/gamblingtable,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "W" = (
 /obj/structure/fans/tiny,
@@ -418,14 +429,14 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 
 (1,1,1) = {"
 a
 p
 a
-a
+p
 C
 a
 C
@@ -435,7 +446,7 @@ a
 I
 S
 x
-d
+r
 j
 g
 Z
@@ -446,7 +457,7 @@ a
 b
 X
 d
-j
+n
 U
 k
 a
