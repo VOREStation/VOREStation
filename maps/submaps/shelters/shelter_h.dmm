@@ -81,7 +81,7 @@
 "j" = (
 /obj/structure/bed/chair/comfy/blue,
 /obj/machinery/light/small/fairylights{
-	pixel_y = 32
+	pixel_y = 40
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod/holly)
@@ -90,11 +90,6 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/spline/plain/corner,
-/obj/machinery/button/windowtint{
-	pixel_x = 3;
-	id = "hollypod";
-	pixel_y = -24
-	},
 /turf/simulated/floor/wood,
 /area/survivalpod/holly)
 "l" = (
@@ -357,7 +352,12 @@
 	dir = 1
 	},
 /obj/machinery/light/small/fairylights{
-	pixel_y = 32
+	pixel_y = 40
+	},
+/obj/machinery/button/windowtint{
+	pixel_x = 9;
+	id = "hollypod";
+	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod/holly)
