@@ -31,6 +31,11 @@ export const VorePanelImport = () => {
     }
   }, [ourCharacters]);
 
+  function handleTabChange(newTab: string) {
+    setActiveTab(newTab);
+    setSelectedBellies(new Set());
+  }
+
   return (
     <Window width={500} height={700} theme="abstract">
       <Window.Content>
@@ -55,8 +60,8 @@ export const VorePanelImport = () => {
             <Tabs>
               {Object.keys(filteredData).map((entry) => (
                 <Tabs.Tab
-                  selected={!!activeTab}
-                  onClick={() => setActiveTab(entry)}
+                  selected={entry === activeTab}
+                  onClick={() => handleTabChange(entry)}
                   key={entry}
                 >
                   {entry}
