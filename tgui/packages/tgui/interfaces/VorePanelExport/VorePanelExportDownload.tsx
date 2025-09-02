@@ -70,7 +70,7 @@ export const downloadPrefs = (extension: string) => {
     );
   }
 
-  const exporPayload = {
+  const exportPayload = {
     [mob_name]: {
       version: db_version,
       bellies: validBellies,
@@ -79,7 +79,7 @@ export const downloadPrefs = (extension: string) => {
   };
 
   if (extension === '.vrdb') {
-    blob = new Blob([JSON.stringify(exporPayload)], {
+    blob = new Blob([JSON.stringify(exportPayload)], {
       type: 'application/json',
     });
   }
