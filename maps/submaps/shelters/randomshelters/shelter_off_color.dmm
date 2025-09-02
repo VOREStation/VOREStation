@@ -57,10 +57,6 @@
 	pixel_y = -22;
 	pixel_x = 21
 	},
-/obj/machinery/button/remote/airlock/survival_pod/bolts{
-	pixel_y = -22;
-	pixel_x = 21
-	},
 /obj/machinery/light_switch/survival_pod{
 	dir = 4;
 	pixel_x = -22;
