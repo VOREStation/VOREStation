@@ -207,7 +207,9 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 			"shelter_nerd_dungeon_good",
 			"shelter_gallery",
 			"shelter_garden",
-		) = 65,
+			"shelter_off_color",
+		) = 65, // 65% chance
+
 		// "Weird" map table - Less common.
 		// Here, we get a little silly with it. Not dangerous, but weird, kinda like redgates.
 		list(
@@ -215,14 +217,15 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 			"shelter_tiny_space",
 			"shelter_christmas",
 			"shelter_blacksmith",
-		) = 30,
+		) = 30, // 30% chance
+
 		// "Dangerous" map table - Least common by far, and for good reason.
 		// Places that have dangerous/illegal stuff in them.
 		list(
 			"shelter_dangerous_pool",
 			"shelter_methlab",
 			"shelter_mimic_hell",
-		) = 5,
+		) = 5, // 5% chance
 	)
 
 /obj/item/survivalcapsule/randomized/get_template_id()

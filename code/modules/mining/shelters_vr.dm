@@ -213,3 +213,8 @@
 	name = "Shelter Mimic Hell"
 	shelter_id = "shelter_mimic_hell"
 	mappath = "maps/submaps/shelters/randomshelters/shelter_mimic_hell.dmm"
+
+/datum/map_template/shelter/off_color_bedrooms
+	name = "Shelter Off-Color Bedrooms"
+	shelter_id = "shelter_off_color"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_off_color.dmm"
