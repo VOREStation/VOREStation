@@ -43,6 +43,7 @@
 
 	// Validate input.  Must be one (and only one) of the key codes)
 	if(isnull(movekey) || (movekey & ~0xFFF) || (movekey & (movekey - 1)))
+		keys_held[movekey] = world.time
 		if(length(keys_held) >= HELD_KEY_BUFFER_LENGTH && !keys_held[movekey])
 			moveKeyUp(keys_held[1]) //We are going over the number of possible held keys, so let's remove the first one.
 
@@ -98,6 +99,15 @@
 	// Validate input.  Must be one (and only one) of the key codes)
 	if(isnull(movekey) || (movekey & ~0xFFF) || (movekey & (movekey - 1)))
 		// log_debug("Client [ckey] sent an illegal movement key up: [movekeyName] ([movekey])")  // We forward tgui keys nowadays
+		var/key_combo = key_combos_held[movekeyName]
+		if(key_combo)
+			key_combos_held -= movekeyName
+			keyUp(key_combo)
+
+		if(!keys_held[movekeyName])
+			return
+
+		keys_held -= movekeyName
 		return
 
 	// Clear bit indicating we were holding the key
