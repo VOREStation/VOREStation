@@ -31,12 +31,14 @@ export function handleImportData(importString: string | string[]): DesiredData {
 
     const ourBellies = Object.fromEntries(
       Object.entries(parsedData).map(([name, ourData]) => {
-        if (isValidRecord(ourData)) {
+        if (isRecord(ourData)) {
           return [
             name,
             {
-              bellies: ourData.bellies,
-              soulcatcher: ourData.soulcatcher,
+              bellies: Array.isArray(ourData.bellies) ? ourData.bellies : [],
+              soulcatcher: isValidRecord(ourData.soulcatcher)
+                ? ourData.soulcatcher
+                : {},
               version: ourData.version,
             },
           ];
@@ -58,6 +60,9 @@ export function handleImportData(importString: string | string[]): DesiredData {
   }
 
   return {};
+}
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
 function isValidRecord(
