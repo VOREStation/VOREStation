@@ -132,13 +132,13 @@
 		EQUIPMENT("Hardsuit - Proto-Kinetic Gauntlets",		/obj/item/rig_module/gauntlets,									2000),
 	)
 	prize_list["Shelter Capsules"] = list(
-		EQUIPMENT("Shelter Capsule - Shelter",					/obj/item/survivalcapsule,									500),
-		EQUIPMENT("Shelter Capsule - Luxury Shelter",			/obj/item/survivalcapsule/luxury,							3100),
-		EQUIPMENT("Shelter Capsule - Redspace",					/obj/item/survivalcapsule/randomized,						5000),
-		EQUIPMENT("Shelter Capsule - Sauna",					/obj/item/survivalcapsule/sauna,							5000),
-		EQUIPMENT("Shelter Capsule - Rec Room and Cards Table",	/obj/item/survivalcapsule/recroom,							7500),
-		EQUIPMENT("Shelter Capsule - Bar",						/obj/item/survivalcapsule/luxurybar,						10000),
-		EQUIPMENT("Shelter Capsule - Deluxe Cabin",				/obj/item/survivalcapsule/luxurycabin,						10000),
+		EQUIPMENT("Shelter Capsule - Shelter (5x5)",				/obj/item/survivalcapsule,									500),
+		EQUIPMENT("Shelter Capsule - Luxury Shelter (7x7)",			/obj/item/survivalcapsule/luxury,							3100),
+		EQUIPMENT("Shelter Capsule - Redspace (7x7)",				/obj/item/survivalcapsule/randomized,						5000),
+		EQUIPMENT("Shelter Capsule - Sauna (7x7)",					/obj/item/survivalcapsule/sauna,							5000),
+		EQUIPMENT("Shelter Capsule - Rec Room + Cards Table (9x9)",	/obj/item/survivalcapsule/recroom,							7500),
+		EQUIPMENT("Shelter Capsule - Bar (11x11)",					/obj/item/survivalcapsule/luxurybar,						10000),
+		EQUIPMENT("Shelter Capsule - Deluxe Cabin (11x11)",			/obj/item/survivalcapsule/luxurycabin,						10000),
 	)
 	prize_list["Miscellaneous"] = list(
 		EQUIPMENT(REAGENT_ABSINTHE,				/obj/item/reagent_containers/food/drinks/bottle/absinthe,					125),

@@ -56,46 +56,59 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		ret += "This capsule has an unknown template stored."
 	return ret
 
-// First step: Warn and cancel deployment if necessary conditions aren't met. Otherwise generate smoke and wait a moment.
-/obj/item/survivalcapsule/proc/deploy_step_one(var/status, var/turf/deploy_location, var/turf/above_location, var/mob/user)
+/obj/item/survivalcapsule/proc/can_deploy(var/turf/deploy_location, var/turf/above_location)
+	var/status = template.check_deploy(deploy_location, is_ship)
 	switch(status)
 		//Not allowed due to /area technical reasons
 		if(SHELTER_DEPLOY_BAD_AREA)
-			src.loc.visible_message(span_warning("\The [src] will not function in this area."))
+			src.loc.visible_message(span_warning("\The [src]'s safety mechanisms prevent it from activating in this area. You'll need to find an area that would be less disruptive to activate it!"))
 
 		//Anchored objects or no space
 		if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS)
 			var/width = template.width
 			var/height = template.height
-			src.loc.visible_message(span_warning("\The [src] doesn't have room to deploy! You need to clear a [width]x[height] area!"))
+			src.loc.visible_message(span_warning("\The [src] can be activated here, but doesn't have room to deploy! You need to clear a [width]x[height] area!"))
 
 		if(SHELTER_DEPLOY_SHIP_SPACE)
 			src.loc.visible_message(span_warning("\The [src] can only be deployed in space."))
 
 	if(status != SHELTER_DEPLOY_ALLOWED)
+		return FALSE
+
+	return TRUE
+
+// First step: Warn and cancel deployment if necessary conditions aren't met. Otherwise generate smoke and wait a moment.
+/obj/item/survivalcapsule/proc/deploy_step_one(var/mob/user)
+	var/turf/deploy_location = get_turf(src)
+	// We might have moved since the last check, so we check again!
+	if(!can_deploy(deploy_location, GetAbove(deploy_location)))
 		used = FALSE
 		return
-
-	if(unique_id)
-		if(unique_id in GLOB.unique_deployable)
-			loc.visible_message(span_warning("There can only be one [src] deployed at a time."))
-			used = FALSE
-			return
-		GLOB.unique_deployable += unique_id
 
 	var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 	smoke.attach(deploy_location)
 	smoke.set_up(10, 0, deploy_location)
 	smoke.start()
 
-	addtimer(CALLBACK(src, PROC_REF(deploy_step_two), deploy_location, above_location, user), 4 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(deploy_step_two), user), 4 SECONDS, TIMER_DELETE_ME)
 
 // Second step: Load shelter template at location
-/obj/item/survivalcapsule/proc/deploy_step_two(var/turf/deploy_location, var/turf/above_location, var/mob/user)
+/obj/item/survivalcapsule/proc/deploy_step_two(var/mob/user)
+	var/turf/deploy_location = get_turf(src)
+	var/turf/above_location = GetAbove(deploy_location)
+	// We might have moved since the last check, so we check again!
+	if(!can_deploy(deploy_location, above_location))
+		used = FALSE
+		return
+
+	if(unique_id)
+		GLOB.unique_deployable += unique_id
+
 	log_and_message_admins("[admin_log_verb] at [get_area(deploy_location)]!", user)
 
 	playsound(src, 'sound/effects/phasein.ogg', 100, 1)
 
+	// Load shelter template
 	if(above_location)
 		template.add_roof(above_location)
 	template.annihilate_plants(deploy_location)
@@ -117,14 +130,18 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	//Can't grab when capsule is New() because templates aren't loaded then
 	get_template()
 	if(!used)
+		if(unique_id && (unique_id in GLOB.unique_deployable))
+			loc.visible_message(span_warning("There can only be one [src] deployed at a time."))
+			return
+		var/turf/deploy_location = get_turf(src)
+		// Warn the user in advance if the capsule can't work from where they're standing.
+		if(!can_deploy(get_turf(src), GetAbove(deploy_location)))
+			return
 		loc.visible_message(span_warning("\The [src] begins to shake. Stand back!"))
+		user.drop_from_inventory(src)
 		used = TRUE
 
-		var/turf/deploy_location = get_turf(src)
-		var/status = template.check_deploy(deploy_location, is_ship)
-		var/turf/above_location = GetAbove(deploy_location)
-
-		addtimer(CALLBACK(src, PROC_REF(deploy_step_one), status, deploy_location, above_location), 5 SECONDS, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(deploy_step_one), user), 5 SECONDS, TIMER_DELETE_ME)
 
 /obj/item/survivalcapsule/luxury
 	name = "luxury surfluid shelter capsule"
