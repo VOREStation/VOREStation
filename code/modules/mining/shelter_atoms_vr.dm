@@ -252,6 +252,17 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 /obj/structure/window/reinforced/survival_pod/update_icon()
 	icon_state = basestate
 
+//Polarized windows
+/obj/structure/window/reinforced/polarized/survival_pod
+	name = "polarized pod window"
+	icon = 'icons/obj/survival_pod.dmi'
+	icon_state = "pwindow"
+	basestate = "pwindow"
+
+//The windows have diagonal versions, and will never be a full window
+/obj/structure/window/reinforced/polarized/survival_pod/is_fulltile()
+	return FALSE
+
 //Windoor
 /obj/machinery/door/window/survival_pod
 	icon = 'icons/obj/survival_pod.dmi'

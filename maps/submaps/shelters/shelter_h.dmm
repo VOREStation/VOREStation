@@ -11,18 +11,18 @@
 /area/survivalpod/dorms/holly)
 "c" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	id = "hollypod";
-	dir = 4
-	},
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced/polarized/survival_pod{
 	id = "hollypod";
 	dir = 8
 	},
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "hollypod";
+	dir = 4
+	},
+/obj/structure/window/reinforced/polarized/survival_pod{
 	id = "hollypod"
 	},
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced/polarized/survival_pod{
 	id = "hollypod";
 	dir = 1
 	},
@@ -149,6 +149,20 @@
 	},
 /turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
+"t" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/survival_pod,
+/obj/item/flame/candle{
+	pixel_x = 6
+	},
+/obj/item/flame/lighter/random{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/survivalpod/dorms/holly)
 "u" = (
 /obj/machinery/smartfridge/survival_pod,
 /obj/item/emergency_beacon,
@@ -248,18 +262,6 @@
 	},
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/survivalpod/dorms/holly)
-"x" = (
-/obj/machinery/light,
-/obj/structure/table/wooden_reinforced,
-/obj/item/flame/candle{
-	pixel_x = 6
-	},
-/obj/item/flame/lighter/random{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/turf/simulated/floor/carpet/blue2,
-/area/survivalpod/dorms/holly)
 "y" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/survivalpod/dorms/holly)
@@ -281,18 +283,18 @@
 /area/survivalpod/holly)
 "C" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/polarized{
-	id = "hollypod";
-	dir = 4
-	},
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced/polarized/survival_pod{
 	id = "hollypod";
 	dir = 8
 	},
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "hollypod";
+	dir = 4
+	},
+/obj/structure/window/reinforced/polarized/survival_pod{
 	id = "hollypod"
 	},
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced/polarized/survival_pod{
 	id = "hollypod";
 	dir = 1
 	},
@@ -444,8 +446,8 @@ a
 "}
 (2,1,1) = {"
 I
+t
 S
-x
 r
 j
 g
