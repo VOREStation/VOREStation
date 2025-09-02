@@ -83,15 +83,9 @@
 	R.scrubbing = FALSE
 
 /obj/item/robot_module/Destroy()
-	for(var/module in modules)
-		qdel(module)
-	for(var/emg in emag)
-		qdel(emg)
-	for(var/synth in synths)
-		qdel(synth)
-	modules.Cut()
-	synths.Cut()
-	emag.Cut()
+	QDEL_LIST(modules)
+	QDEL_LIST(emag)
+	QDEL_LIST(synths)
 	return ..()
 
 /obj/item/robot_module/emp_act(severity)

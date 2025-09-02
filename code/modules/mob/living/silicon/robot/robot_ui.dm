@@ -1,6 +1,3 @@
-/mob/living/silicon/robot
-	var/datum/tgui_module/robot_ui/robotact
-
 // Major Control UI for all things robots can do.
 /datum/tgui_module/robot_ui
 	name = "Robotact"
