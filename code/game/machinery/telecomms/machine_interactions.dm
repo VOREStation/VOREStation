@@ -226,7 +226,7 @@
 						change_frequency = newfreq
 						set_temp("-% New frequency to change to assigned: \"[newfreq] GHz\" %-", "average")
 				else
-					change_frequency = 0
+					change_frequency = ZERO_FREQ
 					set_temp("-% Frequency changing deactivated %-", "average")
 
 

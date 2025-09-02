@@ -8,6 +8,7 @@
 		"atmosanalyzer",
 		"atmosalerts",
 		"air_management",
+		"tank_management",
 		"shutoff_monitor",
 		// "thermomachine",
 		// "space_heater",

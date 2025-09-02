@@ -150,7 +150,9 @@
 	for(var/i = 1 to get_dist(src, destination))
 		if(stat)
 			return FALSE // We died or got knocked out on the way.
-		if(loc == destination)
+
+		var/last_loc = loc
+		if(last_loc == destination)
 			break // We somehow got there early.
 
 		// Update T.
@@ -176,6 +178,8 @@
 		dig_under_floor(get_turf(src))
 		playsound(src, 'sound/effects/break_stone.ogg', 75, 1)
 		sleep(tunnel_tile_speed)
+		if(last_loc == loc)
+			return FALSE
 
 // For visuals.
 /mob/living/simple_mob/animal/giant_spider/tunneler/proc/submerge()

@@ -103,7 +103,8 @@
 	if(internal_organs)
 		for(var/obj/item/organ/O in internal_organs)
 			internal_organs -= O
-			qdel(O)
+			if(isobj(O))
+				qdel(O)
 
 	if(splinted && splinted.loc == src)
 		splinted.loc = null

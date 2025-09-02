@@ -68,7 +68,6 @@
 		for(var/mob/living/L as anything in buckled_mobs)
 			L.burn_skin(85)
 			to_chat(L, span_danger("You feel a deep shock course through your body!"))
-			sleep(1)
 			L.burn_skin(85)
 			L.Stun(600)
 	visible_message(span_danger("The electric chair went off!"), span_danger("You hear a deep sharp shock!"))

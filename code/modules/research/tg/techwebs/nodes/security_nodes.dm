@@ -57,6 +57,7 @@
 	prereq_ids = list(TECHWEB_NODE_SEC_EQUIP)
 	design_ids = list(
 		"netgun",
+		"sizenetgun",
 		"sickshot",
 		"pummeler",
 		"protector",
