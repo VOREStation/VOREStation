@@ -26,7 +26,7 @@ export const VorePanelImport = () => {
     if (!activeTab && selectedCharacters.size) {
       setActiveTab(Object.keys(filteredData)[0]);
     }
-    if (activeTab && !selectedCharacters.size) {
+    if (activeTab && !selectedCharacters.has(activeTab)) {
       setActiveTab('');
     }
   }, [ourCharacters]);
