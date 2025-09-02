@@ -291,7 +291,6 @@
 /obj/item/deck/cards/triple/Initialize(mapload)
 	. = ..()
 	var/datum/playingcard/P
-	var/i = 1
 	for(var/a = 0, a<3, a++)
 		for(var/suit in list("spades","clubs","diamonds","hearts"))
 
