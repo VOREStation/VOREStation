@@ -102,7 +102,7 @@
 		var/key_combo = key_combos_held[movekeyName]
 		if(key_combo)
 			key_combos_held -= movekeyName
-			keyUp(key_combo)
+			moveKeyUp(key_combo)
 
 		if(!keys_held[movekeyName])
 			return
