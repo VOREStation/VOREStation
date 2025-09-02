@@ -22,6 +22,15 @@
 
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 // Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
+///Max length of a keypress command before it's considered to be a forged packet/bogus command
+#define MAX_KEYPRESS_COMMANDLENGTH 16
+///Maximum keys that can be bound to one button
+#define MAX_COMMANDS_PER_KEY 5
+///Max amount of keypress messages per second over two seconds before client is autokicked
+#define MAX_KEYPRESS_AUTOKICK 50
+///Length of held key buffer
+#define HELD_KEY_BUFFER_LENGTH 15
+
 //Admin Permissions
 /// Used for signifying that all admins can use this regardless of actual permissions
 #define R_NONE NONE
