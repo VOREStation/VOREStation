@@ -221,7 +221,7 @@
 	name = "great white carp"
 	desc = "A very rare breed of carp- and a very aggressive one."
 	icon = 'icons/mob/vore64x64.dmi'
-	icon_dead = "megacarp_dead"
+	icon_dead = "megacarp-dead"
 	icon_living = "megacarp"
 	icon_state = "megacarp"
 	vore_icons = SA_ICON_LIVING

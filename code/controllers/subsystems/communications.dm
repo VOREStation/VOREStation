@@ -181,7 +181,7 @@ SUBSYSTEM_DEF(radio)
 	var/list/data = list()
 	var/encryption
 
-	var/frequency = 0
+	var/frequency = ZERO_FREQ
 
 /datum/signal/proc/copy_from(datum/signal/model)
 	source = model.source
