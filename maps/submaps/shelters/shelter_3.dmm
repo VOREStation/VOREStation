@@ -246,6 +246,11 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 23
+	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/survivalpod)
 "O" = (
@@ -279,7 +284,7 @@ e
 S
 e
 c
-e
+S
 C
 e
 C
