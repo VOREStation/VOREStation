@@ -30,6 +30,7 @@ export const VorePanelImport = () => {
     }
     if (activeTab && !selectedCharacters.has(activeTab)) {
       setActiveTab('');
+      setSelectedBellies(new Set());
     }
   }, [ourCharacters]);
 
