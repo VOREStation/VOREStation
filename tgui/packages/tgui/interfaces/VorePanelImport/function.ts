@@ -1,5 +1,15 @@
 import type { DesiredData, ImportData } from './types';
 
+export function importLengthToColor(importLength: number): string {
+  if (importLength < 200000) {
+    return 'green';
+  }
+  if (importLength < 30000) {
+    return 'yellow';
+  }
+  return 'red';
+}
+
 export function handleImportData(importString: string | string[]): DesiredData {
   const ourInput = Array.isArray(importString) ? importString[0] : importString;
   let parsedData: ImportData | Record<string, string | number>;
