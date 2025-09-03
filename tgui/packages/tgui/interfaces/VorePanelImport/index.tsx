@@ -15,7 +15,6 @@ export const VorePanelImport = () => {
   const [selectedBellies, setSelectedBellies] = useState<Set<string>>(
     new Set(),
   );
-  const ourCharacters = Object.keys(characterData);
   const [activeTab, setActiveTab] = useState('');
   const [currentLength, setCurrentLength] = useState(0);
   const [selectedVersions, setSelectedVersions] = useState<string[]>([]);
@@ -23,6 +22,8 @@ export const VorePanelImport = () => {
   const filteredData = Object.fromEntries(
     Array.from(selectedCharacters).map((name) => [name, characterData[name]]),
   );
+
+  const ourCharacters = Object.keys(characterData);
 
   useEffect(() => {
     if (!activeTab && selectedCharacters.size) {
