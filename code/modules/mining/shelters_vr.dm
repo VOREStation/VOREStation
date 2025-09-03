@@ -223,3 +223,8 @@
 	name = "Shelter Living Room"
 	shelter_id = "shelter_living_room"
 	mappath = "maps/submaps/shelters/randomshelters/shelter_living_room.dmm"
+
+/datum/map_template/shelter/candlelit_dinner
+	name = "Shelter Candlelit Dinner"
+	shelter_id = "shelter_candlelit_dinner"
+	mappath = "maps/submaps/shelters/randomshelters/shelter_candlelit_dinner.dmm"
