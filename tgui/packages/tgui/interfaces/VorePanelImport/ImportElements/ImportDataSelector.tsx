@@ -117,8 +117,8 @@ export const ImportDataSelector = (props: {
           }
         >
           <Stack fill vertical>
-            {!!activeTab &&
-              (filteredData[activeTab]?.soulcatcher ? (
+            {!!filteredData[activeTab] &&
+              (filteredData[activeTab].soulcatcher ? (
                 <Stack.Item>
                   {filteredData[activeTab].soulcatcher.name}
                 </Stack.Item>
