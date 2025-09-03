@@ -16,6 +16,7 @@
 		"weapon_cell",
 		"high_mech_cell",
 		"potato_cell",
+		"smes_magnetic_coil",
 		// "basic_scanning",
 		// "condenser",
 		// "igniter",
@@ -42,6 +43,8 @@
 		"super_cell",
 		"super_mech_cell",
 		"rped",
+		"smes_cap_basic",
+		"smes_trans_basic",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING)
