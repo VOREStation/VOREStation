@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Box, Button, Dropdown, Section, Stack } from 'tgui-core/components';
 import { handleImportData } from '../function';
 import type { DesiredData } from '../types';
@@ -19,6 +20,7 @@ export const FileImport = (props: {
     onSelectedCharacter,
   } = props;
   const ourCharacters = Object.keys(characterData);
+  const [fileInputKey, setFileInputKey] = useState(0);
 
   function handleDeletion() {
     const nextCharacterData = { ...characterData };
@@ -31,19 +33,29 @@ export const FileImport = (props: {
     onSelectedCharacters(nextSelectedCharacters);
   }
 
+  function handleClearAll() {
+    onCharacterData({});
+    onSelectedCharacters(new Set());
+    onSelectedCharacter('');
+  }
+
   return (
     <Section title="File Selection">
       <Stack align="center">
         <Stack.Item>
           <Button.File
+            key={fileInputKey}
             accept=".vrdb"
             tooltip="Import belly data"
             icon="file-alt"
-            onSelectFiles={(files) =>
-              onCharacterData(
-                Object.assign(characterData, handleImportData(files)),
-              )
-            }
+            onSelectFiles={(files) => {
+              const imported = handleImportData(files);
+              onCharacterData({
+                ...characterData,
+                ...imported,
+              });
+              setFileInputKey((index) => index + 1);
+            }}
           >
             Import bellies
           </Button.File>
@@ -57,10 +69,22 @@ export const FileImport = (props: {
         </Stack.Item>
         <Stack.Item>
           <Button
+            tooltip="Remove selected entry"
             disabled={!selectedCharacter}
             color="red"
-            icon="trash"
+            icon="ban"
             onClick={handleDeletion}
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <Button.Confirm
+            confirmContent=""
+            tooltip="Clear all entries"
+            disabled={!ourCharacters.length}
+            color="red"
+            icon="trash"
+            confirmIcon="undo"
+            onClick={handleClearAll}
           />
         </Stack.Item>
         <Stack.Item>

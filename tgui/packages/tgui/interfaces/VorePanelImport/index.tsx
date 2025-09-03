@@ -42,9 +42,13 @@ export const VorePanelImport = () => {
   }, [selectedBellies, filteredData, activeTab]);
 
   useEffect(() => {
-    const allVersions = Object.values(filteredData)
-      .map((dataEntry) => dataEntry.version)
-      .filter((v): v is string => typeof v === 'string');
+    const allVersions = Array.from(
+      new Set(
+        Object.values(filteredData)
+          .map((dataEntry) => dataEntry.version)
+          .filter((v): v is string => typeof v === 'string'),
+      ),
+    );
 
     setSelectedVersions(allVersions);
   }, [filteredData]);

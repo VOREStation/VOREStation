@@ -41,10 +41,39 @@ export const CharacterSelector = (props: {
     });
   };
 
+  const filteredData = Object.fromEntries(
+    Array.from(selectedCharacters).map((name) => [name, characterData[name]]),
+  );
+
+  function handleMerge() {
+    const updatedData = Object.fromEntries(
+      Array.from(selectedCharacters).map((name) => {
+        const original = structuredClone(characterData[name]);
+        original.version = String(CURRENT_VERSION);
+        return [name, original];
+      }),
+    );
+
+    const blob = new Blob([JSON.stringify(updatedData)], {
+      type: 'application/json',
+    });
+
+    Byond.saveBlob(blob, Array.from(selectedCharacters).join('_'), '.vrdb');
+  }
+
   return (
     <Stack fill>
       <Stack.Item grow>
-        <Section fill scrollable title="Characters">
+        <Section
+          fill
+          scrollable
+          title="Characters"
+          buttons={
+            <Button disabled={!selectedCharacters.size} onClick={handleMerge}>
+              Merge/Migrate
+            </Button>
+          }
+        >
           <Stack fill vertical>
             {characterNames.map((character) => (
               <Stack.Item key={character}>
