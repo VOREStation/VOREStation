@@ -1,4 +1,0 @@
-author: "Tost"
-delete-after: True
-changes:
-  - bugfix: "boat cloak, colorable can have its description and name changed on loadout."
