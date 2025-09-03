@@ -19,8 +19,9 @@ export const FileImport = (props: {
     onSelectedCharacters,
     onSelectedCharacter,
   } = props;
-  const ourCharacters = Object.keys(characterData);
   const [fileInputKey, setFileInputKey] = useState(0);
+
+  const ourCharacters = Object.keys(characterData);
 
   function handleDeletion() {
     const nextCharacterData = { ...characterData };

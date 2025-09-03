@@ -29,7 +29,7 @@ export const CharacterSelector = (props: {
     selectedVersions,
   } = props;
 
-  const toggleCharacter = (name: string) => {
+  function toggleCharacter(name: string) {
     onSelectedCharacters((prevSet) => {
       const nextSet = new Set(prevSet);
       if (nextSet.has(name)) {
@@ -39,11 +39,7 @@ export const CharacterSelector = (props: {
       }
       return nextSet;
     });
-  };
-
-  const filteredData = Object.fromEntries(
-    Array.from(selectedCharacters).map((name) => [name, characterData[name]]),
-  );
+  }
 
   function handleMerge() {
     const updatedData = Object.fromEntries(
