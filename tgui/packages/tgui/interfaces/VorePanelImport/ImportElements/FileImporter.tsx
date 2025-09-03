@@ -20,10 +20,6 @@ export const FileImport = (props: {
   } = props;
   const ourCharacters = Object.keys(characterData);
 
-  const filteredData: DesiredData = Object.fromEntries(
-    Array.from(selectedCharacters).map((name) => [name, characterData[name]]),
-  );
-
   function handleDeletion() {
     const nextCharacterData = { ...characterData };
     delete nextCharacterData[selectedCharacter];

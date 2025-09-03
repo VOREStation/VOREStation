@@ -1,14 +1,27 @@
-import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { Fragment } from 'react';
+import {
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  Section,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
+import { CURRENT_VERSION } from '../constants';
 import { importLengthToColor } from '../function';
+import type { DesiredData } from '../types';
 
 export const CharacterSelector = (props: {
+  characterData: DesiredData;
   characterNames: string[];
   selectedCharacters: Set<string>;
   onSelectedCharacters: React.Dispatch<React.SetStateAction<Set<string>>>;
   importLength: number;
-  selectedVersions: string;
+  selectedVersions: string[];
 }) => {
   const {
+    characterData,
     characterNames,
     selectedCharacters,
     onSelectedCharacters,
@@ -35,12 +48,27 @@ export const CharacterSelector = (props: {
           <Stack fill vertical>
             {characterNames.map((character) => (
               <Stack.Item key={character}>
-                <Button.Checkbox
-                  checked={selectedCharacters.has(character)}
-                  onClick={() => toggleCharacter(character)}
-                >
-                  {character}
-                </Button.Checkbox>
+                <Stack>
+                  <Stack.Item>
+                    <Button.Checkbox
+                      checked={selectedCharacters.has(character)}
+                      onClick={() => toggleCharacter(character)}
+                    >
+                      {character}
+                    </Button.Checkbox>
+                  </Stack.Item>
+                  {typeof characterData[character].version === 'string' &&
+                    Number.parseFloat(characterData[character].version) <
+                      CURRENT_VERSION && (
+                      <Stack.Item>
+                        <Tooltip
+                          content={`Version: ${characterData[character].version}`}
+                        >
+                          <Icon color="yellow" name="warning" />
+                        </Tooltip>
+                      </Stack.Item>
+                    )}
+                </Stack>
               </Stack.Item>
             ))}
           </Stack>
@@ -56,7 +84,21 @@ export const CharacterSelector = (props: {
             </LabeledList.Item>
 
             <LabeledList.Item label="Versions">
-              {selectedVersions}
+              {selectedVersions.map((version, index) => (
+                <Fragment key={version}>
+                  <Box
+                    inline
+                    color={
+                      Number.parseFloat(version) < CURRENT_VERSION
+                        ? 'red'
+                        : undefined
+                    }
+                  >
+                    {version}
+                  </Box>
+                  {index < selectedVersions.length - 1 && ', '}
+                </Fragment>
+              ))}
             </LabeledList.Item>
           </LabeledList>
         </Section>
