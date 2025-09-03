@@ -49,7 +49,12 @@ export const CharacterSelector = (props: {
     const updatedData = Object.fromEntries(
       Array.from(selectedCharacters).map((name) => {
         const original = structuredClone(characterData[name]);
-        original.version = String(CURRENT_VERSION);
+        if (
+          typeof original.version === 'string' &&
+          Number.parseFloat(original.version) > 0.1
+        ) {
+          original.version = String(CURRENT_VERSION);
+        }
         return [name, original];
       }),
     );
