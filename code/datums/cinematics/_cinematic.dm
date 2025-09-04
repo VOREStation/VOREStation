@@ -119,7 +119,7 @@
 		return
 
 	watching += watching_client
-	watching_mob.overlay_fullscreen("cinematic", /obj/screen/fullscreen/cinematic_backdrop)
+	watching_mob.overlay_fullscreen("cinematic", /atom/movable/screen/fullscreen/cinematic_backdrop)
 	watching_client.screen += screen
 	RegisterSignal(watching_client, COMSIG_QDELETING, PROC_REF(remove_watcher))
 

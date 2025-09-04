@@ -1,4 +1,4 @@
-var/obj/screen/robot_inventory
+var/atom/movable/screen/robot_inventory
 
 /mob/living/silicon/robot/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
@@ -15,10 +15,10 @@ var/obj/screen/robot_inventory
 	HUD.adding = adding
 	HUD.other = other
 
-	var/obj/screen/using
+	var/atom/movable/screen/using
 
 //Radio
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "radio"
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
@@ -31,7 +31,7 @@ var/obj/screen/robot_inventory
 
 //Module select
 
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "module1"
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
@@ -43,7 +43,7 @@ var/obj/screen/robot_inventory
 	adding += using
 	inv1 = using
 
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "module2"
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
@@ -55,7 +55,7 @@ var/obj/screen/robot_inventory
 	adding += using
 	inv2 = using
 
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "module3"
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
@@ -70,7 +70,7 @@ var/obj/screen/robot_inventory
 //End of module select
 
 //Intent
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "act_intent"
 	using.set_dir(SOUTHWEST)
 	using.icon = HUD.ui_style
@@ -82,7 +82,7 @@ var/obj/screen/robot_inventory
 	HUD.action_intent = using
 
 	//Move intent (walk/run)
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "mov_intent"
 	using.icon = HUD.ui_style
 	using.icon_state = (m_intent == I_RUN ? "running" : "walking")
@@ -93,7 +93,7 @@ var/obj/screen/robot_inventory
 	HUD.move_intent = using
 
 //Health
-	healths = new /obj/screen()
+	healths = new /atom/movable/screen()
 	healths.icon = HUD.ui_style
 	healths.icon_state = "health0"
 	healths.alpha = HUD.ui_alpha
@@ -101,42 +101,42 @@ var/obj/screen/robot_inventory
 	healths.screen_loc = ui_borg_health
 	other += healths
 
-	autowhisper_display = new /obj/screen()
+	autowhisper_display = new /atom/movable/screen()
 	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
 	autowhisper_display.icon_state = "autowhisper"
 	autowhisper_display.name = "autowhisper"
 	autowhisper_display.screen_loc = ui_borg_under_health
 	other |= autowhisper_display
 
-	var/obj/screen/aw = new /obj/screen()
+	var/atom/movable/screen/aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "aw-select"
 	aw.name = "autowhisper mode"
 	aw.screen_loc = ui_borg_under_health
 	other |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "lang"
 	aw.name = "check known languages"
 	aw.screen_loc = ui_borg_under_health
 	other |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "pose"
 	aw.name = "set pose"
 	aw.screen_loc = ui_borg_under_health
 	other |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "up"
 	aw.name = "move upwards"
 	aw.screen_loc = ui_borg_under_health
 	other |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "down"
 	aw.name = "move downwards"
@@ -144,7 +144,7 @@ var/obj/screen/robot_inventory
 	other |= aw
 
 //Installed Module
-	hands = new /obj/screen()
+	hands = new /atom/movable/screen()
 	hands.icon = HUD.ui_style
 	hands.icon_state = "nomod"
 	hands.alpha = HUD.ui_alpha
@@ -153,7 +153,7 @@ var/obj/screen/robot_inventory
 	other += hands
 
 //Module Panel
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "panel"
 	using.icon = HUD.ui_style
 	using.icon_state = "panel"
@@ -163,7 +163,7 @@ var/obj/screen/robot_inventory
 	adding += using
 
 //Store
-	throw_icon = new /obj/screen()
+	throw_icon = new /atom/movable/screen()
 	throw_icon.icon = HUD.ui_style
 	throw_icon.icon_state = "store"
 	throw_icon.alpha = HUD.ui_alpha
@@ -173,7 +173,7 @@ var/obj/screen/robot_inventory
 	other += throw_icon
 
 //Inventory
-	robot_inventory = new /obj/screen()
+	robot_inventory = new /atom/movable/screen()
 	robot_inventory.name = "inventory"
 	robot_inventory.icon = HUD.ui_style
 	robot_inventory.icon_state = "inventory"
@@ -182,7 +182,7 @@ var/obj/screen/robot_inventory
 	robot_inventory.screen_loc = ui_borg_inventory
 	other += robot_inventory
 
-	pullin = new /obj/screen()
+	pullin = new /atom/movable/screen()
 	pullin.icon = HUD.ui_style
 	pullin.icon_state = "pull0"
 	pullin.alpha = HUD.ui_alpha
@@ -191,23 +191,23 @@ var/obj/screen/robot_inventory
 	pullin.screen_loc = ui_borg_pull
 	other += pullin
 
-	zone_sel = new /obj/screen/zone_sel()
+	zone_sel = new /atom/movable/screen/zone_sel()
 	zone_sel.icon = HUD.ui_style
 	zone_sel.alpha = HUD.ui_alpha
 	zone_sel.cut_overlays()
 	zone_sel.update_icon()
 
 	//Handle the gun settings buttons
-	gun_setting_icon = new /obj/screen/gun/mode(null)
+	gun_setting_icon = new /atom/movable/screen/gun/mode(null)
 	gun_setting_icon.icon = HUD.ui_style
 	gun_setting_icon.alpha = HUD.ui_alpha
-	item_use_icon = new /obj/screen/gun/item(null)
+	item_use_icon = new /atom/movable/screen/gun/item(null)
 	item_use_icon.icon = HUD.ui_style
 	item_use_icon.alpha = HUD.ui_alpha
-	gun_move_icon = new /obj/screen/gun/move(null)
+	gun_move_icon = new /atom/movable/screen/gun/move(null)
 	gun_move_icon.icon = HUD.ui_style
 	gun_move_icon.alpha = HUD.ui_alpha
-	radio_use_icon = new /obj/screen/gun/radio(null)
+	radio_use_icon = new /atom/movable/screen/gun/radio(null)
 	radio_use_icon.icon = HUD.ui_style
 	radio_use_icon.alpha = HUD.ui_alpha
 
@@ -217,7 +217,7 @@ var/obj/screen/robot_inventory
 		client.screen += HUD.adding + HUD.other
 		client.screen += client.void
 		if(vtec_active)
-			using = new /obj/screen()
+			using = new /atom/movable/screen()
 			using.name = "control_vtec"
 			using.icon = HUD.ui_style
 			using.screen_loc = ui_vtec_control
@@ -240,7 +240,7 @@ var/obj/screen/robot_inventory
 
 	var/mob/living/silicon/robot/R = mymob
 	if(!control_vtec)
-		var/obj/screen/using = new /obj/screen()
+		var/atom/movable/screen/using = new /atom/movable/screen()
 		using.name = "control_vtec"
 		using.icon = ui_style
 		using.screen_loc = ui_vtec_control

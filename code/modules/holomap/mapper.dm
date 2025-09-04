@@ -26,11 +26,11 @@
 	var/pinging = FALSE
 	var/updating = FALSE
 	var/global/icon/mask_icon
-	var/obj/screen/mapper/extras_holder/extras_holder
+	var/atom/movable/screen/mapper/extras_holder/extras_holder
 	var/hud_frame_hint
 
 	var/datum/mini_hud/mapper/hud_datum
-	var/obj/screen/movable/mapper_holder/hud_item
+	var/atom/movable/screen/movable/mapper_holder/hud_item
 
 	var/obj/item/cell/cell
 	var/cell_type = /obj/item/cell/device
@@ -90,13 +90,13 @@
 
 	extras_holder = new()
 
-	var/obj/screen/mapper/marker/mark = new()
+	var/atom/movable/screen/mapper/marker/mark = new()
 	mark.icon = 'icons/effects/64x64.dmi'
 	mark.icon_state = "mapper_none"
 	mark.layer = 10
 	icon_image_cache["bad"] = mark
 
-	var/obj/screen/mapper/map/tmp = new()
+	var/atom/movable/screen/mapper/map/tmp = new()
 	var/icon/canvas = icon(HOLOMAP_ICON, "blank")
 	canvas.Crop(1,1,world.maxx,world.maxy)
 	canvas.DrawBox("#A7BE97",1,1,world.maxx,world.maxy)
@@ -235,7 +235,7 @@
 	var/T_y = T.y
 	var/T_z = T.z
 
-	var/obj/screen/mapper/map/bgmap
+	var/atom/movable/screen/mapper/map/bgmap
 	var/list/extras = list()
 
 	var/map_cache_key = "[T_z]"
@@ -253,7 +253,7 @@
 		map_app.color = map_color
 
 		if(!SSholomaps.holoMiniMaps[T_z])
-			var/obj/screen/mapper/map/baddo = map_image_cache["bad"]
+			var/atom/movable/screen/mapper/map/baddo = map_image_cache["bad"]
 			map_app.icon = icon(baddo.icon)
 			badmap = TRUE
 		// SSholomaps did map it and we're allowed to see it
@@ -272,7 +272,7 @@
 					markerImage.pixel_y = holomarker.y+holomarker.offset_y
 					map_app.add_overlay(markerImage)
 
-			var/obj/screen/mapper/map/tmp = new()
+			var/atom/movable/screen/mapper/map/tmp = new()
 			tmp.appearance = map_app
 			map_image_cache[map_cache_key] = tmp
 
@@ -328,7 +328,7 @@
 			var/marker_cache_key = "\ref[HC]_[HC.marker_prefix]_[mob_indicator]"
 
 			if(!(marker_cache_key in icon_image_cache))
-				var/obj/screen/mapper/marker/mark = new()
+				var/atom/movable/screen/mapper/marker/mark = new()
 				mark.icon_state = "[HC.marker_prefix][mob_indicator]"
 				icon_image_cache[marker_cache_key] = mark
 				switch(mob_indicator)
@@ -339,7 +339,7 @@
 					else
 						mark.layer = 1
 
-			var/obj/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
+			var/atom/movable/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
 			handle_marker(mark,TU.x,TU.y)
 			extras += mark
 
@@ -355,12 +355,12 @@
 
 		var/marker_cache_key = "\ref[HB]_marker"
 		if(!(marker_cache_key in icon_image_cache))
-			var/obj/screen/mapper/marker/mark = new()
+			var/atom/movable/screen/mapper/marker/mark = new()
 			mark.icon_state = "beacon"
 			mark.layer = 1
 			icon_image_cache[marker_cache_key] = mark
 
-		var/obj/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
+		var/atom/movable/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
 		handle_marker(mark,TB.x,TB.y)
 		extras += mark
 

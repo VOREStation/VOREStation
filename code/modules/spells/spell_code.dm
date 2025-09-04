@@ -52,7 +52,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 	var/hud_state = "" //name of the icon used in generating the spell hud object
 	var/override_base = ""
 
-	var/obj/screen/connected_button
+	var/atom/movable/screen/connected_button
 
 ///////////////////////
 ///SETUP AND PROCESS///

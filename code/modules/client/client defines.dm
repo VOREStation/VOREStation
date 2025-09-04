@@ -42,6 +42,8 @@
 	var/datum/admins/holder = null
 	var/buildmode		= 0
 
+	///Needs to implement InterceptClickOn(user,params,atom) proc
+	var/datum/click_intercept = null
 	///Contains the last message sent by this client - used to protect against copy-paste spamming.
 	var/last_message	= ""
 	///contins a number of how many times a message identical to last_message was sent.
@@ -99,7 +101,7 @@
 
 	preload_rsc = PRELOAD_RSC
 
-	var/global/obj/screen/click_catcher/void
+	var/global/atom/movable/screen/click_catcher/void
 
 	// List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
 	var/list/sent_assets = list()
@@ -108,6 +110,13 @@
 	/// Last asset send job id.
 	var/last_asset_job = 0
 	var/last_completed_asset_job = 0
+
+	///used to make a special mouse cursor, this one for mouse up icon
+	var/mouse_up_icon = null
+	///used to make a special mouse cursor, this one for mouse up icon
+	var/mouse_down_icon = null
+	///used to override the mouse cursor so it doesnt get reset
+	var/mouse_override_icon = null
 
 	///Last ping of the client
 	var/lastping = 0
@@ -149,6 +158,22 @@
 		///////////
 		// INPUT //
 		///////////
+
+	/// A buffer of currently held keys.
+	var/list/keys_held = list()
+	/// A buffer for combinations such of modifiers + keys (ex: CtrlD, AltE, ShiftT). Format: `"key"` -> `"combo"` (ex: `"D"` -> `"CtrlD"`)
+	var/list/key_combos_held = list()
+
+	///Amount of keydowns in the last keysend checking interval
+	var/client_keysend_amount = 0
+	///World tick time where client_keysend_amount will reset
+	var/next_keysend_reset = 0
+	///World tick time where keysend_tripped will reset back to false
+	var/next_keysend_trip_reset = 0
+	///When set to true, user will be autokicked if they trip the keysends in a second limit again
+	var/keysend_tripped = FALSE
+	///custom movement keys for this client
+	// var/list/movement_keys = list()
 
 	/// Bitfield of modifier keys (Shift, Ctrl, Alt) held currently.
 	var/mod_keys_held = 0

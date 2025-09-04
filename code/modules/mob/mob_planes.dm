@@ -14,45 +14,45 @@
 	//Note, if you're adding a new plane master, please update code\modules\tgui\modules\camera.dm.
 
 	// 'Utility' planes
-	plane_masters[VIS_FULLBRIGHT] 	= new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
-	plane_masters[VIS_LIGHTING] 	= new /obj/screen/plane_master/lighting							//Lighting system (but different!)
-	plane_masters[VIS_O_LIGHT]		= new /obj/screen/plane_master/o_light_visual					//Object lighting (using masks)
-	plane_masters[VIS_EMISSIVE] 	= new /obj/screen/plane_master/emissive							//Emissive overlays
-	plane_masters[VIS_OPENSPACE]	= new /obj/screen/plane_master/openspace						//Openspace drop shadows mostly
-	plane_masters[VIS_GHOSTS] 		= new /obj/screen/plane_master/ghosts							//Ghosts!
-	plane_masters[VIS_AI_EYE]		= new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
+	plane_masters[VIS_FULLBRIGHT] 	= new /atom/movable/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
+	plane_masters[VIS_LIGHTING] 	= new /atom/movable/screen/plane_master/lighting							//Lighting system (but different!)
+	plane_masters[VIS_O_LIGHT]		= new /atom/movable/screen/plane_master/o_light_visual					//Object lighting (using masks)
+	plane_masters[VIS_EMISSIVE] 	= new /atom/movable/screen/plane_master/emissive							//Emissive overlays
+	plane_masters[VIS_OPENSPACE]	= new /atom/movable/screen/plane_master/openspace						//Openspace drop shadows mostly
+	plane_masters[VIS_GHOSTS] 		= new /atom/movable/screen/plane_master/ghosts							//Ghosts!
+	plane_masters[VIS_AI_EYE]		= new /atom/movable/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 
-	plane_masters[VIS_CH_STATUS] 	= new /obj/screen/plane_master{plane = PLANE_CH_STATUS}			//Status is the synth/human icon left side of medhuds
-	plane_masters[VIS_CH_HEALTH] 	= new /obj/screen/plane_master{plane = PLANE_CH_HEALTH}			//Health bar
-	plane_masters[VIS_CH_LIFE] 		= new /obj/screen/plane_master{plane = PLANE_CH_LIFE}			//Alive-or-not icon
-	plane_masters[VIS_CH_ID] 		= new /obj/screen/plane_master{plane = PLANE_CH_ID}				//Job ID icon
-	plane_masters[VIS_CH_WANTED] 	= new /obj/screen/plane_master{plane = PLANE_CH_WANTED}			//Wanted status
-	plane_masters[VIS_CH_IMPLOYAL] 	= new /obj/screen/plane_master{plane = PLANE_CH_IMPLOYAL}		//Loyalty implants
-	plane_masters[VIS_CH_IMPTRACK] 	= new /obj/screen/plane_master{plane = PLANE_CH_IMPTRACK}		//Tracking implants
-	plane_masters[VIS_CH_IMPCHEM] 	= new /obj/screen/plane_master{plane = PLANE_CH_IMPCHEM}		//Chemical implants
-	plane_masters[VIS_CH_SPECIAL] 	= new /obj/screen/plane_master{plane = PLANE_CH_SPECIAL}		//"Special" role stuff
-	plane_masters[VIS_CH_STATUS_OOC]= new /obj/screen/plane_master{plane = PLANE_CH_STATUS_OOC}		//OOC status HUD
+	plane_masters[VIS_CH_STATUS] 	= new /atom/movable/screen/plane_master{plane = PLANE_CH_STATUS}			//Status is the synth/human icon left side of medhuds
+	plane_masters[VIS_CH_HEALTH] 	= new /atom/movable/screen/plane_master{plane = PLANE_CH_HEALTH}			//Health bar
+	plane_masters[VIS_CH_LIFE] 		= new /atom/movable/screen/plane_master{plane = PLANE_CH_LIFE}			//Alive-or-not icon
+	plane_masters[VIS_CH_ID] 		= new /atom/movable/screen/plane_master{plane = PLANE_CH_ID}				//Job ID icon
+	plane_masters[VIS_CH_WANTED] 	= new /atom/movable/screen/plane_master{plane = PLANE_CH_WANTED}			//Wanted status
+	plane_masters[VIS_CH_IMPLOYAL] 	= new /atom/movable/screen/plane_master{plane = PLANE_CH_IMPLOYAL}		//Loyalty implants
+	plane_masters[VIS_CH_IMPTRACK] 	= new /atom/movable/screen/plane_master{plane = PLANE_CH_IMPTRACK}		//Tracking implants
+	plane_masters[VIS_CH_IMPCHEM] 	= new /atom/movable/screen/plane_master{plane = PLANE_CH_IMPCHEM}		//Chemical implants
+	plane_masters[VIS_CH_SPECIAL] 	= new /atom/movable/screen/plane_master{plane = PLANE_CH_SPECIAL}		//"Special" role stuff
+	plane_masters[VIS_CH_STATUS_OOC]= new /atom/movable/screen/plane_master{plane = PLANE_CH_STATUS_OOC}		//OOC status HUD
 
-	plane_masters[VIS_STATUS]		= new /obj/screen/plane_master{plane = PLANE_STATUS}			//Status indicators that show over mob heads.
+	plane_masters[VIS_STATUS]		= new /atom/movable/screen/plane_master{plane = PLANE_STATUS}			//Status indicators that show over mob heads.
 
-	plane_masters[VIS_ADMIN1] 		= new /obj/screen/plane_master{plane = PLANE_ADMIN1}			//For admin use
-	plane_masters[VIS_ADMIN2] 		= new /obj/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
-	plane_masters[VIS_ADMIN3] 		= new /obj/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
+	plane_masters[VIS_ADMIN1] 		= new /atom/movable/screen/plane_master{plane = PLANE_ADMIN1}			//For admin use
+	plane_masters[VIS_ADMIN2] 		= new /atom/movable/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
+	plane_masters[VIS_ADMIN3] 		= new /atom/movable/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
 
-	plane_masters[VIS_MESONS]		= new /obj/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
-	plane_masters[VIS_JANHUD]		= new /obj/screen/plane_master{plane = PLANE_JANHUD} 			//Meson-specific things like open ceilings.
+	plane_masters[VIS_MESONS]		= new /atom/movable/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
+	plane_masters[VIS_JANHUD]		= new /atom/movable/screen/plane_master{plane = PLANE_JANHUD} 			//Meson-specific things like open ceilings.
 
-	plane_masters[VIS_BUILDMODE]	= new /obj/screen/plane_master{plane = PLANE_BUILDMODE}			//Things that only show up while in build mode
+	plane_masters[VIS_BUILDMODE]	= new /atom/movable/screen/plane_master{plane = PLANE_BUILDMODE}			//Things that only show up while in build mode
 
 	// Real tangible stuff planes
-	plane_masters[VIS_TURFS]	= new /obj/screen/plane_master/main{plane = TURF_PLANE}
-	plane_masters[VIS_OBJS]		= new /obj/screen/plane_master/main{plane = OBJ_PLANE}
-	plane_masters[VIS_MOBS]		= new /obj/screen/plane_master/main{plane = MOB_PLANE}
-	plane_masters[VIS_CLOAKED]	= new /obj/screen/plane_master/cloaked								//Cloaked atoms!
+	plane_masters[VIS_TURFS]	= new /atom/movable/screen/plane_master/main{plane = TURF_PLANE}
+	plane_masters[VIS_OBJS]		= new /atom/movable/screen/plane_master/main{plane = OBJ_PLANE}
+	plane_masters[VIS_MOBS]		= new /atom/movable/screen/plane_master/main{plane = MOB_PLANE}
+	plane_masters[VIS_CLOAKED]	= new /atom/movable/screen/plane_master/cloaked								//Cloaked atoms!
 
 	..()
 
-	for(var/obj/screen/plane_master/PM as anything in plane_masters)
+	for(var/atom/movable/screen/plane_master/PM as anything in plane_masters)
 		PM.backdrop(my_mob)
 
 /datum/plane_holder/Destroy()
@@ -62,7 +62,7 @@
 
 /datum/plane_holder/proc/set_vis(var/which = null, var/state = FALSE)
 	ASSERT(which)
-	var/obj/screen/plane_master/PM = plane_masters[which]
+	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
 		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 
@@ -82,7 +82,7 @@
 
 /datum/plane_holder/proc/set_desired_alpha(var/which = null, var/new_alpha)
 	ASSERT(which)
-	var/obj/screen/plane_master/PM = plane_masters[which]
+	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
 		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 	PM.set_desired_alpha(new_alpha)
@@ -93,7 +93,7 @@
 
 /datum/plane_holder/proc/set_ao(var/which = null, var/enabled = FALSE)
 	ASSERT(which)
-	var/obj/screen/plane_master/PM = plane_masters[which]
+	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
 		stack_trace("Tried to set_ao [which] in plane_holder on [my_mob]!")
 	PM.set_ambient_occlusion(enabled)
@@ -104,7 +104,7 @@
 
 /datum/plane_holder/proc/alter_values(var/which = null, var/list/values = null)
 	ASSERT(which)
-	var/obj/screen/plane_master/PM = plane_masters[which]
+	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
 		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 	PM.alter_plane_values(arglist(values))
@@ -119,7 +119,7 @@
 ////////////////////
 // The Plane Master
 ////////////////////
-/obj/screen/plane_master
+/atom/movable/screen/plane_master
 	screen_loc = "CENTER"
 	plane = -100 //Dodge just in case someone instantiates one of these accidentally, don't end up on 0 with plane_master
 	appearance_flags = PLANE_MASTER
@@ -130,16 +130,16 @@
 	var/invis_toggle = FALSE
 	var/list/sub_planes
 
-/obj/screen/plane_master/proc/backdrop(mob/mymob)
+/atom/movable/screen/plane_master/proc/backdrop(mob/mymob)
 	return
 
-/obj/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
+/atom/movable/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
 		desired_alpha = new_alpha
 		if(alpha) //If we're already visible, update it now.
 			alpha = new_alpha
 
-/obj/screen/plane_master/proc/set_visibility(var/want = FALSE)
+/atom/movable/screen/plane_master/proc/set_visibility(var/want = FALSE)
 	//Invisibility-managed
 	if(invis_toggle)
 		if(want && invisibility)
@@ -155,17 +155,17 @@
 			alpha = 0
 			mouse_opacity = 0
 
-/obj/screen/plane_master/proc/set_alpha(var/new_alpha = 255)
+/atom/movable/screen/plane_master/proc/set_alpha(var/new_alpha = 255)
 	if(new_alpha != alpha)
 		new_alpha = sanitize_integer(new_alpha, 0, 255, 255)
 		alpha = new_alpha
 
-/obj/screen/plane_master/proc/set_ambient_occlusion(var/enabled = FALSE)
+/atom/movable/screen/plane_master/proc/set_ambient_occlusion(var/enabled = FALSE)
 	filters -= AMBIENT_OCCLUSION
 	if(enabled)
 		filters += AMBIENT_OCCLUSION
 
-/obj/screen/plane_master/proc/alter_plane_values()
+/atom/movable/screen/plane_master/proc/alter_plane_values()
 	return //Stub
 
 ////////////////////
@@ -174,7 +174,7 @@
 
 /////////////////
 //Lighting is weird and has matrix shenanigans. Think of this as turning on/off darkness.
-/obj/screen/plane_master/fullbright
+/atom/movable/screen/plane_master/fullbright
 	plane = PLANE_LIGHTING
 	layer = LAYER_HUD_BASE+1 // This MUST be above the lighting plane_master
 	color = null //To break lighting when visible (this is sorta backwards)
@@ -182,15 +182,15 @@
 	invisibility = INVISIBILITY_ABSTRACT
 	invis_toggle = TRUE
 
-/obj/screen/plane_master/lighting
+/atom/movable/screen/plane_master/lighting
 	plane = PLANE_LIGHTING
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
 
-/obj/screen/plane_master/lighting/backdrop(mob/mymob)
+/atom/movable/screen/plane_master/lighting/backdrop(mob/mymob)
 	/* I'm unconvinced.
-	mymob.overlay_fullscreen("lighting_backdrop_lit", /obj/screen/fullscreen/lighting_backdrop/lit)
-	mymob.overlay_fullscreen("lighting_backdrop_unlit", /obj/screen/fullscreen/lighting_backdrop/unlit)
+	mymob.overlay_fullscreen("lighting_backdrop_lit", /atom/movable/screen/fullscreen/lighting_backdrop/lit)
+	mymob.overlay_fullscreen("lighting_backdrop_unlit", /atom/movable/screen/fullscreen/lighting_backdrop/unlit)
 	*/
 
 /*!
@@ -204,35 +204,35 @@
  * This is then used to alpha mask the lighting plane.
  */
 
-/obj/screen/plane_master/lighting/Initialize(mapload)
+/atom/movable/screen/plane_master/lighting/Initialize(mapload)
 	. = ..()
 	add_filter("emissives", 1, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE))
 	add_filter("object_lighting", 2, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE))
 
-/obj/screen/plane_master/o_light_visual
+/atom/movable/screen/plane_master/o_light_visual
 	plane = PLANE_O_LIGHTING_VISUAL
 	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR // NO_CLIENT_COLOR because it has some naughty interactions with colorblindness that I can't figure out. Byond bug?
 
-/obj/screen/plane_master/emissive
+/atom/movable/screen/plane_master/emissive
 	plane = PLANE_EMISSIVE
 	render_target = EMISSIVE_RENDER_TARGET
 	alpha = 255
 
-/obj/screen/plane_master/emissive/Initialize(mapload)
+/atom/movable/screen/plane_master/emissive/Initialize(mapload)
 	. = ..()
 	add_filter("em_block_masking", 1, color_matrix_filter(GLOB.em_mask_matrix))
 
 /////////////////
 //Openspace gets some magic filters for layers
-/obj/screen/plane_master/openspace
+/atom/movable/screen/plane_master/openspace
 	plane = OPENSPACE_BACKDROP_PLANE
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
 
-/obj/screen/plane_master/openspace/Initialize(mapload)
+/atom/movable/screen/plane_master/openspace/Initialize(mapload)
 	. = ..()
 	//add_filter("multiz_lighting_mask", 1, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE)) // Makes fake planet lights not work right
 	add_filter("first_stage_openspace", 2, drop_shadow_filter(color = "#04080FAA", size = -10))
@@ -241,19 +241,19 @@
 
 /////////////////
 //Ghosts has a special alpha level
-/obj/screen/plane_master/ghosts
+/atom/movable/screen/plane_master/ghosts
 	plane = PLANE_GHOSTS
 	desired_alpha = 127 //When enabled, they're like half-transparent
 
 /////////////////
 //Cloaked atoms are visible to ghosts (or for other reasons?)
-/obj/screen/plane_master/cloaked
+/atom/movable/screen/plane_master/cloaked
 	plane = CLOAKED_PLANE
 	desired_alpha = 80
 	color = "#0000FF"
 
 /////////////////
 //The main game planes start normal and visible
-/obj/screen/plane_master/main
+/atom/movable/screen/plane_master/main
 	alpha = 255
 	mouse_opacity = 1

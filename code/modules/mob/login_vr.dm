@@ -5,5 +5,5 @@
 		for(var/datum/alternate_appearance/AA in viewing_alternate_appearances)
 			AA.display_to(list(src))
 
-	var/obj/screen/plane_master/augmented/aug = plane_holder.plane_masters[VIS_AUGMENTED]
+	var/atom/movable/screen/plane_master/augmented/aug = plane_holder.plane_masters[VIS_AUGMENTED]
 	aug.apply()

@@ -8,7 +8,7 @@
 //Movable Screen Object
 //Not tied to the grid, places it's center where the cursor is
 
-/obj/screen/movable
+/atom/movable/screen/movable
 	mouse_drag_pointer = 'icons/effects/mouse_pointers/screen_drag.dmi'
 	var/snap2grid = FALSE
 	// TODO: Check if these can safely be deleted
@@ -20,11 +20,11 @@
 //Snap Screen Object
 //Tied to the grid, snaps to the nearest turf
 
-/obj/screen/movable/snap
+/atom/movable/screen/movable/snap
 	snap2grid = TRUE
 
 
-/obj/screen/movable/MouseDrop(over_object, src_location, over_location, src_control, over_control, params)
+/atom/movable/screen/movable/MouseDrop(over_object, src_location, over_location, src_control, over_control, params)
 	if(locked) // no! i am locked! begone!
 		return
 	var/position = mouse_params_to_position(params)
@@ -35,7 +35,7 @@
 	moved = screen_loc
 
 /// Takes mouse parmas as input, returns a string representing the appropriate mouse position
-/obj/screen/movable/proc/mouse_params_to_position(params)
+/atom/movable/screen/movable/proc/mouse_params_to_position(params)
 	var/list/modifiers = params2list(params)
 
 	//No screen-loc information? abort.
@@ -54,7 +54,7 @@
 	return offset_to_screen_loc(offset[1], offset[2], our_client?.view)
 
 // Must stay for now, for subtypes
-/obj/screen/movable/proc/encode_screen_X(X)
+/atom/movable/screen/movable/proc/encode_screen_X(X)
 	var/view_dist = world.view
 	if(view_dist)
 		view_dist = view_dist
@@ -65,7 +65,7 @@
 	else
 		. = "CENTER"
 
-/obj/screen/movable/proc/decode_screen_X(X)
+/atom/movable/screen/movable/proc/decode_screen_X(X)
 	var/view_dist = world.view
 	if(view_dist)
 		view_dist = view_dist
@@ -85,7 +85,7 @@
 	else
 		. = text2num(X)
 
-/obj/screen/movable/proc/encode_screen_Y(Y)
+/atom/movable/screen/movable/proc/encode_screen_Y(Y)
 	var/view_dist = world.view
 	if(view_dist)
 		view_dist = view_dist
@@ -96,7 +96,7 @@
 	else
 		. = "CENTER"
 
-/obj/screen/movable/proc/decode_screen_Y(Y)
+/atom/movable/screen/movable/proc/decode_screen_Y(Y)
 	var/view_dist = world.view
 	if(view_dist)
 		view_dist = view_dist
@@ -120,7 +120,7 @@
 	set category = "Debug"
 	set name = "Spawn Movable UI Object"
 
-	var/obj/screen/movable/M = new()
+	var/atom/movable/screen/movable/M = new()
 	M.name = "Movable UI Object"
 	M.icon_state = "block"
 	M.maptext = "Movable"
@@ -139,7 +139,7 @@
 	set category = "Debug"
 	set name = "Spawn Snap UI Object"
 
-	var/obj/screen/movable/snap/S = new()
+	var/atom/movable/screen/movable/snap/S = new()
 	S.name = "Snap UI Object"
 	S.icon_state = "block"
 	S.maptext = "Snap"

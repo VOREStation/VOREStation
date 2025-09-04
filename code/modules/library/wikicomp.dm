@@ -167,7 +167,7 @@
 		if("crash")
 			// intentional TGUI crash, amazingly awful
 			if(issilicon(ui.user) && ui.user.client)
-				ui.user.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, rand(4,10))
+				ui.user.client.create_fake_ad_popup_multiple(/atom/movable/screen/popup/default, rand(4,10))
 			if(!crash)
 				crash = TRUE
 				// crashes till it fixes itself
