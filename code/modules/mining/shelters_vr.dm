@@ -133,6 +133,12 @@
 	description = "(7x7) A luxurious sauna in your pocket. Complete with privacy features, a changing and locker room, and of course a decently spacious sauna room with three benches to rest on."
 	mappath = "maps/submaps/shelters/shelter_sauna.dmm"
 
+/datum/map_template/shelter/cafe
+	name = "Shelter Cafe"
+	shelter_id = "shelter_cafe"
+	description = "(11x11) A fully stocked and equipped cafe in your pocket. While this won't save you if you're dying, it will ensure that you and anyone who happens to be with you will never suffer from caffeine withdrawal!"
+	mappath = "maps/submaps/shelters/shelter_cafe.dmm"
+
 /datum/map_template/shelter/loss_1
 	name = "Shelter L1"
 	shelter_id = "shelter_loss1"

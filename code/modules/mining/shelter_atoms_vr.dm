@@ -158,6 +158,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	desc = "A luxury cabin and kitchen in a capsule. There's a license for use printed on the bottom."
 	template_id = "shelter_cab_deluxe"
 
+/obj/item/survivalcapsule/luxurycafe
+	name = "luxury surfluid cafe capsule"
+	desc = "A luxury cafe in a capsule. There's a license for use printed on the bottom."
+	template_id = "shelter_cafe"
+
 /obj/item/survivalcapsule/military
 	name = "military surfluid shelter capsule"
 	desc = "A prefabricated firebase in a capsule. Contains basic weapons, building materials, and combat suits. There's a license for use printed on the bottom."
@@ -177,13 +182,18 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 /obj/item/survivalcapsule/recroom
 	name = "pop-out rec room shelter capsule"
-	desc = "A recreactional room stuffed into a survival capsule."
+	desc = "A recreational room stuffed into a survival capsule."
 	template_id = "shelter_recroom"
 
 /obj/item/survivalcapsule/sauna
 	name = "pop-out sauna shelter capsule"
 	desc = "A cozy sauna room stuffed into a survival capsule."
 	template_id = "shelter_sauna"
+
+/obj/item/survivalcapsule/cafe
+	name = "pop-out cafe shelter capsule"
+	desc = "A cozy cafe stuffed into a survival capsule."
+	template_id = "shelter_cafe"
 
 //Custom Shelter Capsules
 /obj/item/survivalcapsule/tabiranth
