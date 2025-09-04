@@ -125,6 +125,9 @@
 
 	use_power(5)
 
+	if(active)
+		return
+
 	active = TRUE
 	icon_state = "launcheract"
 
