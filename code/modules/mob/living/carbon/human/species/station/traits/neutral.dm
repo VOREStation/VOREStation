@@ -27,11 +27,11 @@
 
 /datum/trait/neutral/coldadapt
 	name = "Temp. Adapted, Cold"
-	desc = "You are able to withstand much colder temperatures than other species, and can even be comfortable in extremely cold environments. You are also more vulnerable to hot environments, and have a lower body temperature as a consequence of these adaptations."
+	desc = "You are able to withstand much colder temperatures than other species. You are also more vulnerable to hot environments."
 	cost = 0
-	var_changes = list("cold_level_1" = 200,  "cold_level_2" = 150, "cold_level_3" = 90, "breath_cold_level_1" = 180, "breath_cold_level_2" = 100, "breath_cold_level_3" = 60, "cold_discomfort_level" = 210, "heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295, "body_temperature" = 290)
-	can_take = ORGANICS
-	excludes = list(/datum/trait/neutral/hotadapt)
+	var_changes = list("cold_level_1" = 220,  "cold_level_2" = 190, "cold_level_3" = 160, "breath_cold_level_1" = 200, "breath_cold_level_2" = 170, "breath_cold_level_3" = 140, "cold_discomfort_level" = 253, "heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295)
+	can_take = ORGANICS // just in case following hot adapt
+	excludes = list(/datum/trait/neutral/hotadapt, /datum/trait/neutral/notadapt)
 
 	// Traitgenes Replaces /datum/trait/positive/superpower_cold_resist, made into a genetrait
 	is_genetrait = TRUE
@@ -42,11 +42,11 @@
 
 /datum/trait/neutral/hotadapt
 	name = "Temp. Adapted, Heat"
-	desc = "You are able to withstand much hotter temperatures than other species, and can even be comfortable in extremely hot environments. You are also more vulnerable to cold environments, and have a higher body temperature as a consequence of these adaptations."
+	desc = "You are able to withstand much hotter temperatures than other species. You are also more vulnerable to cold environments."
 	cost = 0
-	var_changes = list("heat_level_1" = 420, "heat_level_2" = 460, "heat_level_3" = 1100, "breath_heat_level_1" = 440, "breath_heat_level_2" = 510, "breath_heat_level_3" = 1500, "heat_discomfort_level" = 390, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280, "body_temperature" = 330)
+	var_changes = list("heat_level_1" = 400, "heat_level_2" = 440, "heat_level_3" = 1100, "breath_heat_level_1" = 420, "breath_heat_level_2" = 500, "breath_heat_level_3" = 1200, "heat_discomfort_level" = 360, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
 	can_take = ORGANICS // negates the need for suit coolers entirely for synths, so no
-	excludes = list(/datum/trait/neutral/coldadapt)
+	excludes = list(/datum/trait/neutral/coldadapt, /datum/trait/neutral/notadapt)
 
 	// Traitgenes Made into a genetrait
 	is_genetrait = TRUE
@@ -54,6 +54,29 @@
 
 	activation_message="Your body feels chilly."
 	primitive_expression_messages=list("shivers.")
+
+/datum/trait/neutral/notadapt
+	name = "Temp. Unadapted" //British
+	desc = "Your particular biology causes you to have trouble handling both hot and cold temperatures. You should take precautions when going out!"
+	cost = 0
+	var_changes = list("heat_level_1" = 330, "heat_level_2" = 380, "heat_level_3" = 700, "breath_heat_level_1" = 360, "breath_heat_level_2" = 400, "breath_heat_level_3" = 850, "heat_discomfort_level" = 295, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
+	can_take = ORGANICS // just in case following hot adapt
+	custom_only = FALSE
+	excludes = list(/datum/trait/neutral/coldadapt, /datum/trait/neutral/hotadapt)
+
+/datum/trait/neutral/highbodytemp
+	name = "Body Temp., Hot"
+	desc = "Your body's temperature is hotter than the galactic average. This doesn't change what temperatures you can handle."
+	cost = 0
+	var_changes = list("body_temperature" = 330)
+	excludes = list(/datum/trait/neutral/lowbodytemp)
+
+/datum/trait/neutral/lowbodytemp
+	name = "Body Temp., Cold"
+	desc = "Your body's temperature is colder than the galactic average. This doesn't change what temperatures you can handle."
+	cost = 0
+	var_changes = list("body_temperature" = 290)
+	excludes = list(/datum/trait/neutral/highbodytemp)
 
 /datum/trait/neutral/autohiss_unathi
 	name = "Autohiss (Unathi)"
