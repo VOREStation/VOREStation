@@ -2,19 +2,19 @@ import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = Partial<
   MultiData &
-  ExploData &
-  WebData & {
-    shuttle_status: string;
-    shuttle_state: string;
-    has_docking: BooleanLike;
-    docking_status: string | null;
-    docking_override: BooleanLike;
-    can_launch: BooleanLike;
-    can_cancel: BooleanLike;
-    can_force: BooleanLike;
-    docking_codes: string;
-    subtemplate: string;
-  }
+    ExploData &
+    WebData & {
+      shuttle_status: string;
+      shuttle_state: string;
+      has_docking: BooleanLike;
+      docking_status: string | null;
+      docking_override: BooleanLike;
+      can_launch: BooleanLike;
+      can_cancel: BooleanLike;
+      can_force: BooleanLike;
+      docking_codes: string;
+      subtemplate: string;
+    }
 >;
 
 type MultiData = {
