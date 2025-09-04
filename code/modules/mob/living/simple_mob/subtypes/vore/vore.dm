@@ -43,6 +43,7 @@
 	selective_preference = client.prefs_vr.selective_preference
 	eating_privacy_global = client.prefs_vr.eating_privacy_global
 	allow_mimicry = client.prefs_vr.allow_mimicry
+	allowtemp = client.prefs_vr.allowtemp
 
 	drop_vore = client.prefs_vr.drop_vore
 	stumble_vore = client.prefs_vr.stumble_vore

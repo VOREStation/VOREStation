@@ -3,7 +3,7 @@
 //////////////////////////////////
 /datum/job/ai
 	title = JOB_AI
-	flag = AI
+	flag = AI_DEPT
 	departments = list(DEPARTMENT_SYNTHETIC)
 	sorting_order = 1 // Be above their borgs.
 	department_flag = ENGSEC

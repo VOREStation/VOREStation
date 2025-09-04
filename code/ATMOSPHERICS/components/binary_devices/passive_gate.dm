@@ -23,7 +23,7 @@
 
 	var/flowing = 0	//for icons - becomes zero if the valve closes itself due to regulation mode
 
-	var/frequency = 0
+	var/frequency = ZERO_FREQ
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 

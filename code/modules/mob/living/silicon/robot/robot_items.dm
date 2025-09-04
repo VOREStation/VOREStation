@@ -24,11 +24,11 @@
 	dummy_card_type = /obj/item/card/id/syndicate/dummy_cyborg
 
 /obj/item/card/id/science/roboticist/dummy_cyborg
-	access = list(access_robotics)
+	access = list(ACCESS_ROBOTICS)
 
 /obj/item/card/id/syndicate/dummy_cyborg/Initialize(mapload)
 	. = ..()
-	access |= access_robotics
+	access |= ACCESS_ROBOTICS
 
 //A harvest item for serviceborgs.
 /obj/item/robot_harvester

@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/hydroponics
 	name = "botanist's locker"
-	req_access = list(access_hydroponics)
+	req_access = list(ACCESS_HYDROPONICS)
 	closet_appearance = /decl/closet_appearance/secure_closet/hydroponics
 
 	starts_with = list(
@@ -32,7 +32,7 @@
 
 /obj/structure/closet/secure_closet/hydroponics/sci
 	name = "xenoflorist's locker"
-	req_access = list(access_xenobiology)
+	req_access = list(ACCESS_XENOBIOLOGY)
 	closet_appearance = /decl/closet_appearance/secure_closet/hydroponics/xenoflora
 
 /obj/structure/closet/secure_closet/hydroponics/sci/Initialize(mapload)

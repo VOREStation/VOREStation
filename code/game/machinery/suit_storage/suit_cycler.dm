@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	icon = 'icons/obj/suit_cycler.dmi'
 	icon_state = "suit_cycler"
 
-	req_access = list(access_captain,access_heads)
+	req_access = list(ACCESS_CAPTAIN,ACCESS_HEADS)
 
 	var/active = 0          // PLEASE HOLD.
 	var/safeties = 1        // The cycler won't start with a living thing inside it unless safeties are off.
