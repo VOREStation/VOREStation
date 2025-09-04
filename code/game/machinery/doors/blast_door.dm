@@ -83,16 +83,19 @@
 // Parameters: None
 // Description: Opens the door. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_open()
-	src.operating = 1
+	operating = TRUE
 	playsound(src, open_sound, 100, 1)
 	flick(icon_state_opening, src)
-	src.density = FALSE
+	density = FALSE
 	update_nearby_tiles()
-	src.update_icon()
-	src.set_opacity(0)
-	sleep(15)
-	src.layer = open_layer
-	src.operating = 0
+	update_icon()
+	set_opacity(0)
+	addtimer(CALLBACK(src, PROC_REF(complete_force_open)), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
+
+/obj/machinery/door/blast/proc/complete_force_open()
+	PRIVATE_PROC(TRUE)
+	layer = open_layer
+	operating = FALSE
 
 // Proc: force_close()
 // Parameters: None
@@ -102,19 +105,22 @@
 	var/turf/T = get_turf(src)
 	var/list/yeet_turfs = T.CardinalTurfs(TRUE)
 
-	src.operating = 1
+	operating = TRUE
 	playsound(src, close_sound, 100, 1)
-	src.layer = closed_layer
+	layer = closed_layer
 	flick(icon_state_closing, src)
-	src.density = TRUE
+	density = TRUE
 	update_nearby_tiles()
-	src.update_icon()
-	if(src.istransparent)
-		src.set_opacity(0)
+	update_icon()
+	if(istransparent)
+		set_opacity(0)
 	else
-		src.set_opacity(1)
-	sleep(15)
-	src.operating = 0
+		set_opacity(1)
+	addtimer(CALLBACK(src, PROC_REF(complete_force_close), yeet_turfs), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
+
+/obj/machinery/door/blast/proc/complete_force_close(list/yeet_turfs)
+	PRIVATE_PROC(TRUE)
+	operating = FALSE
 
 	// Blast door crushing.
 	for(var/turf/turf in locs)

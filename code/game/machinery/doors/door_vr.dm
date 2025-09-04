@@ -144,6 +144,5 @@
 
 	for(var/obj/machinery/door/D in range(src,range))
 		if(D.icon_tinted && (D.id_tint == src.id || !D.id_tint))
-			spawn(0)
-				D.toggle()
-				return
+			D.toggle()
+			return

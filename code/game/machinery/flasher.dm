@@ -149,17 +149,19 @@
 
 	use_power(5)
 
-	active = 1
+	if(active)
+		return
+
+	active = TRUE
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
 		if(M.id == id)
-			spawn()
-				M.flash()
+			M.flash()
 
-	sleep(50)
+	addtimer(CALLBACK(src, PROC_REF(finish_trigger)), 5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
+/obj/machinery/button/flasher/proc/finish_trigger()
+	PRIVATE_PROC(TRUE)
 	icon_state = "launcherbtt"
-	active = 0
-
-	return
+	active = FALSE
