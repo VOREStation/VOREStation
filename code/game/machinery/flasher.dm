@@ -156,7 +156,7 @@
 		if(M.id == id)
 			M.flash()
 
-	addtimer(CALLBACK(src, PROC_REF(finish_trigger)), 5 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(finish_trigger)), 5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
 /obj/machinery/button/flasher/proc/finish_trigger()
 	PRIVATE_PROC(TRUE)

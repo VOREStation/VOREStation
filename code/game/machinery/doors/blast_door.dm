@@ -116,7 +116,7 @@
 		set_opacity(0)
 	else
 		set_opacity(1)
-	addtimer(CALLBACK(src, PROC_REF(complete_force_close), yeet_turfs), 1.5 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(complete_force_close), yeet_turfs), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
 /obj/machinery/door/blast/proc/complete_force_close(list/yeet_turfs)
 	PRIVATE_PROC(TRUE)

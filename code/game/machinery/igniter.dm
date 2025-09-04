@@ -139,7 +139,7 @@
 			M.on = !(M.on)
 			M.icon_state = text("igniter[]", M.on)
 
-	addtimer(CALLBACK(src, PROC_REF(finish_trigger)), 5 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(finish_trigger)), 5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
 /obj/machinery/button/ignition/proc/finish_trigger()
 	PRIVATE_PROC(TRUE)
