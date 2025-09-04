@@ -33,3 +33,6 @@
 2025-09-03:
   Kashargul:
   - bugfix: ghost pods in some cases not spawning a charger
+2025-09-04:
+  Kashargul:
+  - bugfix: ar visor being invisible
