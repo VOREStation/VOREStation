@@ -12,10 +12,10 @@
 /area/survivalpod)
 "b" = (
 /obj/item/stool/padded,
-/turf/simulated/floor/carpet/brown,
+/turf/simulated/floor/carpet/blue2,
 /area/survivalpod)
 "c" = (
-/obj/structure/table/reinforced,
+/obj/structure/table/wooden_reinforced,
 /obj/item/storage/firstaid/regular{
 	pixel_y = 9;
 	pixel_x = -4
@@ -42,10 +42,10 @@
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 "g" = (
-/obj/structure/bed/chair/comfy/black{
+/obj/structure/bed/chair/bay/comfy/black{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/brown,
+/turf/simulated/floor/carpet/blue2,
 /area/survivalpod)
 "h" = (
 /obj/structure/fans,
@@ -57,16 +57,20 @@
 	dir = 10
 	},
 /obj/item/material/ashtray/glass{
-	pixel_x = -4;
-	pixel_y = -3
+	pixel_x = 6;
+	pixel_y = 9
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
 "j" = (
 /turf/simulated/floor/wood,
 /area/survivalpod)
+"k" = (
+/obj/machinery/holoplant,
+/turf/simulated/floor/wood,
+/area/survivalpod)
 "l" = (
-/turf/simulated/floor/carpet/brown,
+/turf/simulated/floor/carpet/blue2,
 /area/survivalpod)
 "m" = (
 /obj/structure/table/darkglass,
@@ -103,9 +107,9 @@
 	pixel_x = -7;
 	pixel_y = 7
 	},
-/obj/item/deck/cards{
-	pixel_y = -2;
-	pixel_x = -7
+/obj/item/deck/cards/casino{
+	pixel_x = -6;
+	pixel_y = -1
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
@@ -113,11 +117,17 @@
 /obj/machinery/vending/loadout/loadout_misc,
 /turf/simulated/floor/wood,
 /area/survivalpod)
+"o" = (
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/survivalpod)
 "p" = (
 /obj/item/stool/padded{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/brown,
+/turf/simulated/floor/carpet/blue2,
 /area/survivalpod)
 "q" = (
 /obj/structure/window/reinforced/survival_pod{
@@ -150,9 +160,12 @@
 /area/survivalpod)
 "w" = (
 /obj/machinery/light,
-/obj/structure/table/reinforced,
+/obj/structure/table/wooden_reinforced,
 /obj/structure/sign/painting/public{
 	pixel_y = -30
+	},
+/obj/item/instrument/piano_synth{
+	pixel_x = -23
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
@@ -208,7 +221,7 @@
 /area/survivalpod)
 "J" = (
 /obj/machinery/light,
-/obj/machinery/holoplant,
+/obj/machinery/station_slot_machine,
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "K" = (
@@ -229,13 +242,13 @@
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 "M" = (
-/obj/structure/bed/chair/comfy/black{
+/obj/structure/bed/chair/bay/comfy/black{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "O" = (
-/obj/structure/bed/chair/comfy/black{
+/obj/structure/bed/chair/bay/comfy/black{
 	dir = 1
 	},
 /obj/structure/sign/painting/public{
@@ -258,16 +271,13 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
-/obj/machinery/casinosentientprize_handler{
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
 "X" = (
-/obj/structure/bed/chair/comfy/black{
+/obj/structure/bed/chair/bay/comfy/black{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/brown,
+/turf/simulated/floor/carpet/blue2,
 /area/survivalpod)
 "Y" = (
 /obj/structure/bed/chair/comfy/rounded/purple,
@@ -343,12 +353,12 @@ i
 X
 l
 l
-j
+k
 f
 "}
 (7,1,1) = {"
 I
-F
+o
 Y
 B
 X
