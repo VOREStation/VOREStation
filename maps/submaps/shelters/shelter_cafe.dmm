@@ -1,4 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"ab" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/holoplant,
+/turf/simulated/floor/wood,
+/area/survivalpod)
 "bZ" = (
 /obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
 /obj/effect/floor_decal/industrial/danger/full,
@@ -35,6 +45,9 @@
 /area/survivalpod)
 "gw" = (
 /obj/structure/table/gamblingtable,
+/obj/item/reagent_containers/food/condiment/small/sugar{
+	pixel_y = 12
+	},
 /turf/simulated/floor/wood/alt/parquet,
 /area/survivalpod)
 "hv" = (
@@ -114,13 +127,15 @@
 /obj/item/reagent_containers/food/snacks/donut/blue,
 /obj/item/reagent_containers/food/snacks/donut/blue/jelly,
 /obj/item/reagent_containers/food/snacks/donut/blue/jelly,
+/obj/item/reagent_containers/food/drinks/milk,
+/obj/item/reagent_containers/food/drinks/milk,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "ta" = (
 /obj/structure/bed/chair/sofa/right/beige{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/carpet/brown,
 /area/survivalpod)
 "tB" = (
 /obj/structure/bed/chair/comfy/black{
@@ -179,6 +194,9 @@
 /obj/structure/sink{
 	pixel_y = 22
 	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "xW" = (
@@ -204,8 +222,8 @@
 /area/survivalpod)
 "Dd" = (
 /obj/structure/table/woodentable,
-/obj/effect/floor_decal/spline/plain{
-	dir = 6
+/obj/item/reagent_containers/food/condiment/small/sugar{
+	pixel_y = 22
 	},
 /turf/simulated/floor/carpet/brown,
 /area/survivalpod)
@@ -261,16 +279,9 @@
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
-"Hy" = (
-/obj/structure/bed/chair/wood{
-	dir = 4
-	},
-/obj/effect/floor_decal/spline/plain,
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
 "HE" = (
 /obj/structure/sign/poster,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/carpet/brown,
 /area/survivalpod)
 "II" = (
 /obj/structure/fans,
@@ -304,12 +315,13 @@
 /obj/structure/bed/chair/sofa/left/beige{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/carpet/brown,
 /area/survivalpod)
 "KP" = (
 /obj/structure/table/woodentable,
-/obj/effect/floor_decal/spline/plain{
-	dir = 4
+/obj/item/reagent_containers/food/drinks/glass2/coffeemug/britcup{
+	pixel_x = 5;
+	pixel_y = 3
 	},
 /turf/simulated/floor/carpet/brown,
 /area/survivalpod)
@@ -340,6 +352,9 @@
 	pixel_y = 10
 	},
 /obj/machinery/light/floortube,
+/obj/item/reagent_containers/glass/beaker/measuring_cup{
+	pixel_x = -18
+	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "Oy" = (
@@ -397,7 +412,7 @@
 	dir = 4
 	},
 /obj/machinery/holoplant,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/carpet/brown,
 /area/survivalpod)
 "QU" = (
 /turf/simulated/floor/wood/alt/parquet,
@@ -417,13 +432,10 @@
 "Te" = (
 /obj/machinery/light,
 /obj/structure/table/gamblingtable,
-/turf/simulated/floor/wood/alt/parquet,
-/area/survivalpod)
-"Uu" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 5
+/obj/item/reagent_containers/food/condiment/small/sugar{
+	pixel_y = 12
 	},
-/turf/simulated/floor/carpet/brown,
+/turf/simulated/floor/wood/alt/parquet,
 /area/survivalpod)
 "UG" = (
 /obj/structure/table/reinforced,
@@ -432,11 +444,6 @@
 /area/survivalpod)
 "VR" = (
 /obj/structure/table/reinforced,
-/obj/item/flame/lighter/random{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/flame/lighter/random,
 /obj/item/storage/firstaid/regular,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
@@ -502,12 +509,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
-"ZP" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 10
-	},
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
 "ZZ" = (
 /obj/machinery/door/window/survival_pod{
 	dir = 2
@@ -533,7 +534,7 @@ pc
 II
 uO
 VR
-YK
+ab
 tZ
 Oy
 Ji
@@ -602,8 +603,8 @@ wQ
 EN
 xW
 ds
-ZP
-tZ
+ds
+ds
 NM
 "}
 (8,1,1) = {"
@@ -615,8 +616,8 @@ Fu
 Kg
 qD
 vX
-Hy
-tZ
+vX
+aa
 Lz
 "}
 (9,1,1) = {"
@@ -626,7 +627,7 @@ pM
 hv
 mt
 tZ
-Uu
+qD
 KP
 Dd
 HE
@@ -639,7 +640,7 @@ uO
 po
 PW
 tZ
-tZ
+qD
 ta
 Ku
 Qn
