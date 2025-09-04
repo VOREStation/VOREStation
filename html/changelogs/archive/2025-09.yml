@@ -30,3 +30,9 @@
   - bugfix: Fixed the dosimeter film having a missing icon.
   Tost:
   - bugfix: boat cloak, colorable can have its description and name changed on loadout.
+2025-09-03:
+  Kashargul:
+  - bugfix: ghost pods in some cases not spawning a charger
+2025-09-04:
+  Kashargul:
+  - bugfix: ar visor being invisible
