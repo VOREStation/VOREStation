@@ -423,9 +423,8 @@
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 			return
 		var/mob/living/new_mob = spawn_mob(M)
-		new_mob.faction = M.faction
 
-		new_mob.mob_tf(M)
+		M.tf_into(new_mob)
 
 
 /obj/item/glamour_unstable/proc/spawn_mob(var/mob/living/target)
