@@ -13,7 +13,7 @@
 	icon_state = "pcu"
 	icon_keyboard = "pcu_key"
 	light_color = "#5284e7"
-	req_one_access = list(access_heads)
+	req_one_access = list(ACCESS_HEADS)
 	circuit = /obj/item/circuitboard/skills/pcu
 	density = FALSE
 	var/obj/item/card/id/scan = null
@@ -375,7 +375,7 @@
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(first_names_male), pick(first_names_female))] [pick(last_names)]"
+					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)

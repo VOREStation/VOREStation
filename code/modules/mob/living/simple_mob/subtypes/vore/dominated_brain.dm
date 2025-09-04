@@ -51,8 +51,8 @@
 
 /mob/living/dominated_brain/proc/lets_register_our_signals()
 	if(prey_body)
-		RegisterSignal(prey_body, COMSIG_PARENT_QDELETING, PROC_REF(prey_was_deleted), TRUE)
-	RegisterSignal(pred_body, COMSIG_PARENT_QDELETING, PROC_REF(pred_was_deleted), TRUE)
+		RegisterSignal(prey_body, COMSIG_QDELETING, PROC_REF(prey_was_deleted), TRUE)
+	RegisterSignal(pred_body, COMSIG_QDELETING, PROC_REF(pred_was_deleted), TRUE)
 
 /mob/living/dominated_brain/proc/lets_unregister_our_signals()
 	prey_was_deleted()
@@ -61,13 +61,13 @@
 /mob/living/dominated_brain/proc/prey_was_deleted()
 	SIGNAL_HANDLER
 	if(prey_body)
-		UnregisterSignal(prey_body, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(prey_body, COMSIG_QDELETING)
 		prey_body = null
 
 /mob/living/dominated_brain/proc/pred_was_deleted()
 	SIGNAL_HANDLER
 	if(pred_body)
-		UnregisterSignal(pred_body, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(pred_body, COMSIG_QDELETING)
 		pred_body = null
 
 /mob/living/dominated_brain/Destroy()
@@ -86,7 +86,7 @@
 		to_chat(src, span_danger("You begin to resist \the [prey_name]'s control!!!"))
 		to_chat(pred_body, span_danger("You feel the captive mind of [src] begin to resist your control."))
 
-		if(do_after(src, 10 SECONDS, exclusive = TRUE))
+		if(do_after(src, 10 SECONDS))
 			restore_control()
 		else
 			to_chat(src, span_notice("Your attempt to regain control has been interrupted..."))
@@ -243,7 +243,7 @@
 
 	to_chat(pred, span_warning("You can feel the will of another overwriting your own, control of your body being sapped away from you..."))
 	to_chat(prey, span_warning("You can feel the will of your host diminishing as you exert your will over them!"))
-	if(!do_after(prey, 10 SECONDS, exclusive = TRUE))
+	if(!do_after(prey, 10 SECONDS))
 		to_chat(prey, span_notice("Your attempt to regain control has been interrupted..."))
 		to_chat(pred, span_notice("The dominant sensation fades away..."))
 		return
@@ -338,7 +338,7 @@
 		to_chat(src, span_danger("You begin to resist \the [prey_name]'s control!!!"))
 		to_chat(pred_body, span_danger("You feel the captive mind of [src] begin to resist your control."))
 
-		if(do_after(src, 10 SECONDS, exclusive = TRUE))
+		if(do_after(src, 10 SECONDS))
 			restore_control()
 		else
 			to_chat(src, span_notice("Your attempt to regain control has been interrupted..."))
@@ -394,7 +394,7 @@
 
 	if(istype(G) && M == G.affecting)
 		src.visible_message(span_danger("[src] seems to be doing something to [M], resulting in [M]'s body looking increasingly drowsy with every passing moment!"))
-	if(!do_after(src, 10 SECONDS, exclusive = TRUE))
+	if(!do_after(src, 10 SECONDS))
 		to_chat(M, span_notice("The alien presence fades, and you are left along in your body..."))
 		to_chat(src, span_notice("Your attempt to gather [M]'s mind has been interrupted."))
 		return
@@ -445,7 +445,7 @@
 	if(prey_body && prey_body.loc.loc == pred_body)
 		to_chat(src, span_notice("You exert your will and attempt to return to yout body!!!"))
 		to_chat(pred_body, span_warning("\The [src] resists your hold and attempts to return to their body!"))
-		if(do_after(src, 10 SECONDS, exclusive = TRUE))
+		if(do_after(src, 10 SECONDS))
 			if(prey_body && prey_body.loc.loc == pred_body)
 
 				prey_body.ckey = prey_ckey
@@ -512,7 +512,7 @@
 		return
 	to_chat(pred, span_warning("You diminish your will, reducing it and allowing will of your prey to take over..."))
 	to_chat(prey, span_warning("You can feel the will of your host diminishing as you are given control over them!"))
-	if(!do_after(pred, 10 SECONDS, exclusive = TRUE))
+	if(!do_after(pred, 10 SECONDS))
 		to_chat(pred, span_notice("Your attempt to share control has been interrupted..."))
 		to_chat(prey, span_notice("The dominant sensation fades away..."))
 		return

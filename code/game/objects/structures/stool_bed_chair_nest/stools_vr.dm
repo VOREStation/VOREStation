@@ -1,7 +1,7 @@
 /obj/item/stool/baystool
 	name = "bar stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/furniture_vr.dmi' //VOREStation Edit - new Icons
+	icon = 'icons/obj/furniture.dmi'
 	icon_state = "bar_stool_preview" //set for the map
 	randpixel = 0
 	center_of_mass_x = 0

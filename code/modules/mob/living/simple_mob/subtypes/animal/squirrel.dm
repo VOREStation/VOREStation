@@ -50,7 +50,7 @@
 
 	var/static/list/overlays_cache = list()
 	var/do_seasons = TRUE
-	var/picked_color = FALSE
+	picked_color = FALSE
 
 	allow_mind_transfer = TRUE
 
@@ -75,7 +75,6 @@
 	B.name = "stomach"
 	B.digest_mode = DM_SELECT
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 1
 	B.digest_burn = 1
 	B.escapechance = 35

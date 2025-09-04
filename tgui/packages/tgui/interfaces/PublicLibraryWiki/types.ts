@@ -57,6 +57,7 @@ export type ReagentData = {
   supply_points?: number;
   market_price?: number;
   sintering?: string | null;
+  cooling_mod: number;
   overdose: number;
   flavor: string | null;
   allergen: string[] | null;

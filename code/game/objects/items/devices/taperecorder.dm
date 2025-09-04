@@ -188,7 +188,9 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		to_chat(M, span_notice("Recording stopped."))
-
+	else if(isturf(loc)) // If not hidden away in a bag
+		playsound(src, 'sound/machines/click.ogg', 50, 1)
+		visible_message("\The [src] clicks as it stops recording.","click")
 
 /obj/item/taperecorder/verb/stop()
 	set name = "Stop"
@@ -335,9 +337,8 @@
 		t1 += "[printedmessage]<BR>"
 	P.info = t1
 	P.name = "Transcript"
-	canprint = 0
-	sleep(300)
-	canprint = 1
+	canprint = FALSE
+	VARSET_IN(src, canprint, TRUE, 30 SECONDS)
 
 
 /obj/item/taperecorder/attack_self(mob/user)

@@ -552,6 +552,10 @@
 /turf/simulated/wall/tgmc/darkwall/deco3
 	icon_state = "darkwall_deco3"
 	force_icon = "_deco3"
+/turf/simulated/wall/tgmc/darkwall/fake_door
+	icon = 'icons/obj/doors/angled/elevator/door.dmi'
+	icon_state = "preview"
+	name = "locked elevator"
 
 /turf/simulated/wall/tgmc/whitewall
 	icon_state = "white0"

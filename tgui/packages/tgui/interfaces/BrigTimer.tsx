@@ -63,13 +63,14 @@ export const BrigTimer = (props) => {
         >
           <NumberInput
             animated
+            tickWhileDragging
             fluid
             step={1}
             value={time_left / 10}
             minValue={0}
             maxValue={max_time_left / 10}
             format={(val: number) => formatTime(round(val * 10, 0))}
-            onDrag={(val: number) => act('time', { time: val })}
+            onChange={(val: number) => act('time', { time: val })}
           />
           <Stack mt={1}>
             <Stack.Item grow>

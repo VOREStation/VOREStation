@@ -306,7 +306,7 @@
 
 	if(href_list["add_player_info_legacy"])
 		var/key = href_list["add_player_info_legacy"]
-		var/add = sanitize(tgui_input_text(usr, "Add Player Info (Legacy)", multiline=TRUE))
+		var/add = tgui_input_text(usr, "Add Player Info (Legacy)", max_length = MAX_MESSAGE_LEN, multiline=TRUE)
 		if(!add) return
 
 		notes_add(key,add,usr)

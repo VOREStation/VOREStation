@@ -255,12 +255,13 @@
 		msg += "[T.He] [T.is] wearing [icon2html(wear_id,user.client)]<a href='byond://?src=\ref[src];lookitem_desc_only=\ref[wear_id]'>\a [wear_id]</a>."
 
 	//Jitters
-	if(is_jittery)
-		if(jitteriness >= 300)
+	var/jitter = get_jittery()
+	if(jitter)
+		if(jitter >= 300)
 			msg += span_boldwarning("[T.He] [T.is] convulsing violently!")
-		else if(jitteriness >= 200)
+		else if(jitter >= 200)
 			msg += span_warning("[T.He] [T.is] extremely jittery.")
-		else if(jitteriness >= 100)
+		else if(jitter >= 100)
 			msg += span_warning("[T.He] [T.is] twitching ever so slightly.")
 
 	//splints
@@ -275,8 +276,7 @@
 	var/list/vorestrings = list()
 	vorestrings += examine_weight()
 	vorestrings += examine_nutrition()
-	vorestrings += examine_reagent_bellies() // reagent bellies
-	vorestrings += examine_bellies()
+	vorestrings += formatted_vore_examine()
 	vorestrings += examine_pickup_size()
 	vorestrings += examine_step_size()
 	vorestrings += examine_nif()

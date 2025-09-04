@@ -24,11 +24,11 @@
 	dummy_card_type = /obj/item/card/id/syndicate/dummy_cyborg
 
 /obj/item/card/id/science/roboticist/dummy_cyborg
-	access = list(access_robotics)
+	access = list(ACCESS_ROBOTICS)
 
 /obj/item/card/id/syndicate/dummy_cyborg/Initialize(mapload)
 	. = ..()
-	access |= access_robotics
+	access |= ACCESS_ROBOTICS
 
 //A harvest item for serviceborgs.
 /obj/item/robot_harvester
@@ -178,7 +178,7 @@
 /obj/item/pen/robopen/proc/RenamePaper(mob/user, obj/item/paper/paper)
 	if ( !user || !paper )
 		return
-	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the paper?", "Paper Labelling", null, 32), 32)
+	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the paper?", "Paper Labelling", null, 32, encode = FALSE), 32)
 	if ( !user || !paper )
 		return
 

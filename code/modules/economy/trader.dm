@@ -343,6 +343,7 @@
 		/obj/item/survivalcapsule = 25,
 		/obj/item/survivalcapsule/luxury = 20,
 		/obj/item/survivalcapsule/luxurybar = 15,
+		/obj/item/survivalcapsule/luxurycabin = 15,
 		/obj/item/survivalcapsule/popcabin = 20,
 		/obj/item/perfect_tele/frontier/unknown/one = 1
 		)

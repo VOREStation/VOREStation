@@ -1,19 +1,32 @@
 // Handles map-related tasks, mostly here to ensure it does so after the MC initializes.
 SUBSYSTEM_DEF(mapping)
 	name = "Mapping"
-	init_order = INIT_ORDER_MAPPING
+	//dependencies = list(
+	//	/datum/controller/subsystem/job,
+		///datum/controller/subsystem/processing/station,
+	//	/datum/controller/subsystem/chemistry
+	//	///datum/controller/subsystem/processing/reagents
+	//)
+	dependencies = list(
+		///datum/controller/subsystem/garbage,
+		/datum/controller/subsystem/vis_overlays,
+		/datum/controller/subsystem/chemistry
+	)
 	flags = SS_NO_FIRE
 
 	var/list/map_templates = list()
 	var/obj/effect/landmark/engine_loader/engine_loader
 	var/list/shelter_templates = list()
 
+	// TODO: Implement Later
+	var/datum/map/current_map
+
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 	shelter_templates = SSmapping.shelter_templates
 
 /datum/controller/subsystem/mapping/Initialize()
-	if(subsystem_initialized)
+	if(initialized)
 		return
 	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
 	load_map_templates()
@@ -24,6 +37,7 @@ SUBSYSTEM_DEF(mapping)
 	// TODO - Other stuff related to maps and areas could be moved here too.  Look at /tg
 	// Lateload Code related to Expedition areas.
 	if(using_map) // VOREStation Edit: Re-enable this.
+		current_map = using_map
 		loadLateMaps()
 
 	if(CONFIG_GET(flag/generate_map))  // VOREStation Edit: Re-order this.

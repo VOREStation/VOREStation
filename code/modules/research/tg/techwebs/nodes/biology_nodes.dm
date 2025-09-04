@@ -112,6 +112,7 @@
 	prereq_ids = list(TECHWEB_NODE_HYDROPONICS)
 	design_ids = list(
 		"flora_gun",
+		"disk_botany",
 		// "gene_shears",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)

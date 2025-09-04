@@ -8,13 +8,14 @@ export const FilterIntegerEntry = (props: FilterEntryProps) => {
   const { act } = useBackend();
   return (
     <NumberInput
+      tickWhileDragging
       value={value}
       minValue={-500}
       maxValue={500}
       step={1}
       stepPixelSize={5}
       width="39px"
-      onDrag={(value) =>
+      onChange={(value) =>
         act('modify_filter_value', {
           name: filterName,
           new_data: {

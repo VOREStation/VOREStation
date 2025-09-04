@@ -9,7 +9,6 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { formatTime } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { RankIcon } from './common/RankIcon';
@@ -69,8 +68,8 @@ export const TimeClock = (props) => {
                           : 'bad'
                     }
                   >
-                    {toFixed(department_hours[key], 1)}{' '}
-                    {department_hours[key] === 1 ? 'hour' : 'hours'}
+                    {`${department_hours[key].toFixed(1)} `}
+                    {`${department_hours[key] === 1 ? 'hour' : 'hours'}`}
                   </LabeledList.Item>
                 ))}
             </LabeledList>

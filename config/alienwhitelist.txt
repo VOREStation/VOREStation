@@ -102,6 +102,7 @@ lavenderrs - Teppi
 lazzar - Black-Eyed Shadekin
 lazzar - Hanner
 lewzharri - Hanner
+lewzharri - Glamour Speak
 lianvee - Black-Eyed Shadekin
 lillianfyre - Xenochimera
 liquidfirefly - Protean
@@ -130,6 +131,7 @@ mrsebbi - Xenochimera
 mullins111 - Black-Eyed Shadekin
 murchant - Teppi
 natje - Xenochimera
+neodraconica - Hanner
 nerdass - Protean
 newyorks - Protean
 obengrad - Diona
@@ -174,6 +176,7 @@ rykkastormheart - Xenochimera
 ryumi - Protean
 ryumi - Xenochimera
 ryumi - Black-Eyed Shadekin
+ryumi - Hanner
 satinisle - Black-Eyed Shadekin
 satinisle - Protean
 scoutisafolflol - Xenochimera

@@ -24,6 +24,16 @@
 	base_state = "pflash"
 	density = TRUE
 
+/obj/machinery/flasher/portable/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/flasher/portable/LateInitialize()
+	// Map start flashers enable proximity sensing
+	if(anchored)
+		add_overlay("[base_state]-s")
+		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
+
 /obj/machinery/flasher/power_change()
 	..()
 	if(!(stat & NOPOWER))

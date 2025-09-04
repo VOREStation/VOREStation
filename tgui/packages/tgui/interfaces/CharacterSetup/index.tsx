@@ -13,7 +13,9 @@ export const CharacterSetup = (props) => {
   return (
     <Window width={800} height={800}>
       <Window.Content>
+        {/** biome-ignore lint/security/noDangerouslySetInnerHtml: Char Setup */}
         <div dangerouslySetInnerHTML={{ __html: data.header }} />
+        {/** biome-ignore lint/security/noDangerouslySetInnerHtml: Char Setup */}
         <div dangerouslySetInnerHTML={{ __html: data.content }} />
       </Window.Content>
     </Window>

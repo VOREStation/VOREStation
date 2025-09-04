@@ -197,7 +197,7 @@
 			if(nam)
 				giv_name = nam
 		if("reason")
-			var/reas = sanitize(tgui_input_text(ui.user, "Reason why pass is issued", "Reason", reason))
+			var/reas = tgui_input_text(ui.user, "Reason why pass is issued", "Reason", reason, MAX_MESSAGE_LEN)
 			if(reas)
 				reason = reas
 		if("duration")
@@ -239,7 +239,6 @@
 			for (var/entry in internal_log)
 				dat += "[entry]<br><hr>"
 			//to_chat(ui.user, "Printing the log, standby...")
-			//sleep(50)
 			var/obj/item/paper/P = new/obj/item/paper( loc )
 			P.name = "activity log"
 			P.info = dat

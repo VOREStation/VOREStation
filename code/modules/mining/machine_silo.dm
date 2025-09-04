@@ -60,7 +60,7 @@
 /obj/machinery/ore_silo/proc/log_sheets_ejected(datum/component/material_container/container, obj/item/stack/material/sheets, atom/context)
 	SIGNAL_HANDLER
 
-	silo_log(context, "ejected", -sheets.amount, "[sheets.singular_name]", list(sheets.material))
+	silo_log(context, "ejected", -sheets.amount, "[sheets.singular_name]", list(GET_MATERIAL_REF(sheets.default_type) = sheets.amount * SHEET_MATERIAL_AMOUNT))
 
 /obj/machinery/ore_silo/attackby(obj/item/W, mob/user, attack_modifier, click_parameters)
 	if(default_deconstruction_screwdriver(user, W))
@@ -79,7 +79,7 @@
 
 /obj/machinery/ore_silo/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
+		get_asset_datum(/datum/asset/spritesheet_batched/sheetmaterials)
 	)
 
 /obj/machinery/ore_silo/tgui_interact(mob/user, datum/tgui/ui)

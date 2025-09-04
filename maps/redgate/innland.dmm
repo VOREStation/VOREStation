@@ -13,28 +13,19 @@
 /area/redgate/structure/powered)
 "aj" = (
 /obj/structure/table/woodentable,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "am" = (
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/structure/powered)
 "ap" = (
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "ar" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "at" = (
 /mob/living/simple_mob/vore/alienanimals/teppi,
@@ -46,17 +37,11 @@
 /area/redgate/wilds)
 "aG" = (
 /obj/structure/flora/pottedplant/fern,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "aK" = (
 /obj/structure/flora/pottedplant/minitree,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "aL" = (
 /turf/simulated/floor/reinforced,
@@ -99,10 +84,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "bu" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -120,10 +102,7 @@
 	dir = 8
 	},
 /obj/machinery/light/small,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "bE" = (
 /obj/machinery/light/small{
@@ -284,10 +263,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "dg" = (
 /obj/structure/sink/kitchen{
@@ -317,19 +293,13 @@
 /area/redgate/structure/powered)
 "dm" = (
 /obj/machinery/recharge_station,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "dn" = (
 /obj/structure/sign/poster{
 	dir = 1
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "do" = (
 /obj/structure/mopbucket,
@@ -377,10 +347,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "dB" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -399,20 +366,14 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "dD" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "dE" = (
 /obj/structure/table/marble,
@@ -495,10 +456,7 @@
 "dR" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/grilledcheese,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "dS" = (
 /obj/machinery/door/airlock/glass{
@@ -534,10 +492,7 @@
 "ea" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/roastbeef,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "eb" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
@@ -583,10 +538,7 @@
 /obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "ei" = (
 /obj/structure/table/marble,
@@ -635,10 +587,7 @@
 	dir = 4;
 	pixel_x = -30
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "eo" = (
 /obj/effect/floor_decal/spline/plain{
@@ -723,10 +672,7 @@
 "eE" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/meatballsoup,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "eF" = (
 /turf/simulated/floor/lino,
@@ -748,10 +694,7 @@
 "eN" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/meatsteak,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "eO" = (
 /obj/structure/table/marble,
@@ -783,10 +726,7 @@
 /area/redgate/structure/powered)
 "eR" = (
 /obj/structure/sign/poster,
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "eS" = (
 /obj/structure/table/marble,
@@ -961,10 +901,7 @@
 /obj/structure/sign/poster{
 	dir = 1
 	},
-/turf/unsimulated/floor/steel{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/unsimulated/floor/wood,
 /area/redgate/structure/powered)
 "ub" = (
 /turf/simulated/floor/water,

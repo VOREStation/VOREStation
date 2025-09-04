@@ -292,8 +292,9 @@
 	if(H.should_have_organ(O_BRAIN))
 		if(!brain)
 			return "buzzes, \"Resuscitation failed - Patient lacks a brain. Further attempts futile without replacement.\""
-		if(brain.defib_timer <= 0)
-			return "buzzes, \"Resuscitation failed - Patient's brain has naturally degraded past a recoverable state. Further attempts futile.\""
+		else if(istype(brain, /obj/item/organ/internal/brain)) //Some species have weird 'brains' that aren't technically brains. Those don't have defib timers.
+			if(brain.defib_timer <= 0)
+				return "buzzes, \"Resuscitation failed - Patient's brain has naturally degraded past a recoverable state. Further attempts futile.\""
 
 	H.updatehealth()
 

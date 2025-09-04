@@ -6,18 +6,18 @@
 	glass = 1
 
 	var/datum/radio_frequency/air_connection
-	var/air_frequency = 1437
+	var/air_frequency = ALERT_FREQ
 	autoclose = 0
 
 /obj/machinery/door/airlock/alarmlock/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,air_frequency)
+	if(SSradio)
+		SSradio.remove_object(src,air_frequency)
 	. = ..()
 
 /obj/machinery/door/airlock/alarmlock/Initialize(mapload)
 	. = ..()
-	radio_controller.remove_object(src, air_frequency)
-	air_connection = radio_controller.add_object(src, air_frequency, RADIO_TO_AIRALARM)
+	SSradio.remove_object(src, air_frequency)
+	air_connection = SSradio.add_object(src, air_frequency, RADIO_TO_AIRALARM)
 	open()
 
 

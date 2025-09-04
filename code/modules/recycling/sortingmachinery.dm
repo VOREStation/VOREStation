@@ -42,7 +42,7 @@
 	else if(istype(W, /obj/item/pen))
 		switch(tgui_alert(user, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
-				var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
+				var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 				if(!str || !length(str))
 					to_chat(user, span_warning(" Invalid text."))
 					return
@@ -57,7 +57,7 @@
 				else
 					nameset = 1
 			if("Description")
-				var/str = sanitize(tgui_input_text(user,"Label text?","Set label",""))
+				var/str = tgui_input_text(user,"Label text?","Set label","", MAX_MESSAGE_LEN)
 				if(!str || !length(str))
 					to_chat(user, span_red("Invalid text."))
 					return
@@ -153,7 +153,7 @@
 	else if(istype(W, /obj/item/pen))
 		switch(tgui_alert(user, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
-				var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
+				var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 				if(!str || !length(str))
 					to_chat(user, span_warning(" Invalid text."))
 					return
@@ -169,7 +169,7 @@
 					nameset = 1
 
 			if("Description")
-				var/str = sanitize(tgui_input_text(user,"Label text?","Set label",""))
+				var/str = tgui_input_text(user,"Label text?","Set label","", MAX_MESSAGE_LEN)
 				if(!str || !length(str))
 					to_chat(user, span_red("Invalid text."))
 					return
@@ -407,7 +407,7 @@
 	return
 
 /obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
-	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect) || istype(AM, /obj/mecha))	return
+	if(QDELETED(AM) || istype(AM, /obj/item/projectile) || istype(AM, /obj/effect) || istype(AM, /obj/mecha))	return
 	switch(dir)
 		if(NORTH)
 			if(AM.loc.y != src.loc.y+1) return
@@ -425,6 +425,20 @@
 		var/mob/M = AM
 		M.loc = src
 	src.flush()
+
+/obj/machinery/disposal/deliveryChute/hitby(atom/movable/AM)
+	if(!QDELETED(AM) || (istype(AM, /obj/item) || istype(AM, /mob/living)) && !istype(AM, /obj/item/projectile))
+		switch(dir)
+			if(NORTH)
+				if(AM.loc.y != src.loc.y+1) return ..()
+			if(EAST)
+				if(AM.loc.x != src.loc.x+1) return ..()
+			if(SOUTH)
+				if(AM.loc.y != src.loc.y-1) return ..()
+			if(WEST)
+				if(AM.loc.x != src.loc.x-1) return ..()
+		AM.forceMove(src)
+		src.flush()
 
 /obj/machinery/disposal/deliveryChute/flush()
 	flushing = 1

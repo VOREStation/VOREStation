@@ -1,0 +1,38 @@
+2025-09-01:
+  Kashargul:
+  - code_imp: sdmm 1.11
+  - bugfix: various runtimes
+  Ryumi:
+  - bugfix: Fixed the pod storage UI not correctly displaying quotation marks in listed
+      item names.
+  TeleTubby2:
+  - rscadd: legally-distinct-word-game has now been installed on NT staff PDAs by
+      default. (Thanks Satin!)
+  - config: added a word dictionary to the strings folder for choosing the nerdle
+      list
+  - bugfix: you can no longer VV the vars list on clients
+  - code_imp: can_vv_get now requires you to call parent
+  Will:
+  - bugfix: Dosimeter case icon fixed
+  - bugfix: Fbp backup battery icon fixed
+  Zizzi:
+  - bugfix: Fixed circuitry pins being constrained to numbers no larger than 52..
+2025-09-02:
+  Kashargul:
+  - code_imp: tgui-core 5.2.0
+  Ryumi:
+  - bugfix: Fixed great white carp turning into failsneks on death.
+  TankTheBirb:
+  - bugfix: Fixed water movement not being applied by readding the clamp to human_movement.dm.
+  - config: changed default sprite scale offset to odd scaling since that was the
+      default for the longest time.
+  Tenryumi:
+  - bugfix: Fixed the dosimeter film having a missing icon.
+  Tost:
+  - bugfix: boat cloak, colorable can have its description and name changed on loadout.
+2025-09-03:
+  Kashargul:
+  - bugfix: ghost pods in some cases not spawning a charger
+2025-09-04:
+  Kashargul:
+  - bugfix: ar visor being invisible

@@ -103,8 +103,7 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
-	var/new_input = tgui_input_text(user, "Enter some words, please.","Number pad", get_pin_data(IC_OUTPUT, 1),MAX_KEYPAD_INPUT_LEN, encode=FALSE)
-	new_input = sanitize(new_input,MAX_KEYPAD_INPUT_LEN) // Slightly increase the size of the character limit.
+	var/new_input = tgui_input_text(user, "Enter some words, please.", "Text pad", get_pin_data(IC_OUTPUT, 1), MAX_KEYPAD_INPUT_LEN)
 	if(istext(new_input) && CanInteract(user, GLOB.tgui_physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
@@ -414,7 +413,7 @@
 	power_draw_idle = 5
 	power_draw_per_use = 40
 
-	var/frequency = 1457
+	var/frequency = RSD_FREQ
 	var/code = 30
 	var/datum/radio_frequency/radio_connection
 
@@ -425,9 +424,9 @@
 	addtimer(CALLBACK(src, PROC_REF(set_frequency), frequency), 40)
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
-	frequency = 0
+	if(SSradio)
+		SSradio.remove_object(src,frequency)
+	frequency = ZERO_FREQ
 	. = ..()
 
 /obj/item/integrated_circuit/input/signaler/on_data_written()
@@ -453,13 +452,13 @@
 /obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
 	if(!frequency)
 		return
-	if(!radio_controller)
+	if(!SSradio)
 		sleep(20)
-	if(!radio_controller)
+	if(!SSradio)
 		return
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/integrated_circuit/input/signaler/receive_signal(datum/signal/signal)
 	var/new_code = get_pin_data(IC_INPUT, 2)
@@ -811,13 +810,13 @@
 	complexity = 9
 	inputs = list()
 	outputs = list(
-		"pressure"       = IC_PINTYPE_NUMBER,
-		"temperature" = IC_PINTYPE_NUMBER,
-		GAS_O2         = IC_PINTYPE_NUMBER,
-		GAS_N2          = IC_PINTYPE_NUMBER,
-		"carbon dioxide"           = IC_PINTYPE_NUMBER,
-		GAS_PHORON           = IC_PINTYPE_NUMBER,
-		"other"           = IC_PINTYPE_NUMBER
+		"pressure"		= IC_PINTYPE_NUMBER,
+		"temperature"	= IC_PINTYPE_NUMBER,
+		GAS_O2			= IC_PINTYPE_NUMBER,
+		GAS_N2			= IC_PINTYPE_NUMBER,
+		GAS_CO2			= IC_PINTYPE_NUMBER,
+		GAS_PHORON		= IC_PINTYPE_NUMBER,
+		"other"			= IC_PINTYPE_NUMBER
 	)
 	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH

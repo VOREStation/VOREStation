@@ -78,6 +78,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	vore_default_contamination_flavor = "Wet"
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
+	can_be_drop_prey = FALSE
 
 	var/reproduction_cooldown = 0
 
@@ -163,7 +164,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 
 /obj/item/reagent_containers/food/snacks/jellyfishcore
 	name = "jellyfish core"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "jellyfish_core"
 	desc = "The pulsing core of a space jellyfish! ... It smells delicious."
 	nutriment_amt = 50

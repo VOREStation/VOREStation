@@ -164,7 +164,7 @@
 	if((CLUMSY in usr.mutations) && prob(50))
 		to_chat(usr, span_warning("You cut yourself on the paper."))
 		return
-	var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the paper?", "Paper Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the paper?", "Paper Labelling", null, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 
 	// We check loc one level up, so we can rename in clipboards and such. See also: /obj/item/photo/rename()
 	if((loc == usr || loc.loc && loc.loc == usr) && usr.stat == 0 && n_name)
@@ -421,11 +421,7 @@
 			to_chat(usr, span_info("There isn't enough space left on \the [src] to write anything."))
 			return
 
-		var/raw = tgui_input_text(usr, "Enter what you want to write:", "Write", multiline = TRUE, prevent_enter = TRUE)
-		if(!raw)
-			return
-
-		var/t =  sanitize(raw, MAX_PAPER_MESSAGE_LEN, extra = 0)
+		var/t = tgui_input_text(usr, "Enter what you want to write:", "Write", "", MAX_PAPER_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 		if(!t)
 			return
 

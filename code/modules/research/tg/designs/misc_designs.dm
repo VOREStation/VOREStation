@@ -119,3 +119,28 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/disk/botany
+	name = "flora data disk"
+	desc = "A small disk used for carrying data on plant genetics."
+	id = "disk_botany"
+	// req_tech = list(TECH_DATA = 2, TECH_BIO = 3)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 30, MAT_GLASS = 10, MAT_URANIUM = 5)
+	build_path = /obj/item/disk/botany
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_SCIENCE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/borgos
+	name = "Borg-O's Recipe"
+	desc = "A recipe for the cult classic Borg-O's meal. Warning: Not suitable for organic consumption."
+	id = "borgos1"
+	materials = list(MAT_STEEL = 5000)
+	build_path = /obj/item/trash/rkibble
+	build_type = PROTOLATHE //I...I guess???
+	category = list(
+		RND_CATEGORY_EQUIPMENT
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SCIENCE

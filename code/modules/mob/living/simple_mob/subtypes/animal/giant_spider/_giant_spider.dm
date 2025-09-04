@@ -69,7 +69,7 @@
 	icon_dead = "guard_dead"
 	has_eye_glow = TRUE
 	density = FALSE
-
+	minbodytemp = 175
 	faction = FACTION_SPIDERS
 	maxHealth = 200
 	health = 200

@@ -55,6 +55,8 @@
 	say_list_type = /datum/say_list/lamia
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
+	can_be_drop_prey = FALSE
+
 /mob/living/simple_mob/vore/lamia/update_icon()
 	. = ..()
 
@@ -104,6 +106,9 @@
 	tail.nonhuman_prey_swallow_time = swallowTime
 	tail.vore_verb = "stuff"
 	tail.belly_sprite_to_affect = "tail"
+	tail.belly_fullscreen = "VBOanim_snakebelly1"
+	tail.belly_fullscreen_color = "#823232"
+	tail.belly_fullscreen_color2 = "#232300"
 
 	// Belly Lines by killerdragn (@kilo.ego on discord) from Rogue Star
 	B.emote_lists[DM_HOLD] = list(
@@ -367,3 +372,20 @@ GLOBAL_LIST_INIT(valid_random_lamias, list(
 	speak = list("Sss...","Sss!","Hiss!","HSSSSS")
 	emote_hear = list("hisses","slithers")
 	emote_see = list("shakes her head","coils","stretches","slithers")
+
+/mob/living/simple_mob/vore/lamia/albino/cave
+	name = "albino cave lamia"
+	desc = "Combination snake-human. This one looks ravenous!"
+	melee_damage_lower = 5
+	melee_damage_upper = 5
+	vore_upper_transfer_chance = 75 // Since these lamias are on the hunt, you're getting pushed into the tail tum for fussing.
+	vore_tail_transfer_chance = 10 // And the albino ones are EXTRA greedy!
+	ai_holder_type = /datum/ai_holder/simple_mob/vore/stalker // Good enough for now.
+
+/mob/living/simple_mob/vore/lamia/copper/cave
+	name = "cave lamia"
+	desc = "Combination snake-human. This one looks hungry!"
+	melee_damage_lower = 5
+	melee_damage_upper = 5
+	vore_upper_transfer_chance = 75
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive

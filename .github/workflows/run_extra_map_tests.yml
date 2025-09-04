@@ -1,0 +1,51 @@
+name: Run Extra Map Tests
+
+on:
+  workflow_call:
+    inputs:
+      major:
+        required: false
+        type: string
+      minor:
+        required: false
+        type: string
+
+jobs:
+  run_extra_map_tests:
+    # If `inputs.major` is specified, this will output `Run Tests (major.minor; map; max)`.
+    # For example, `Run Tests (515.1627; runtimestation; 515)`.
+    #
+    # Otherwise, it will output `Run Tests (map; max)`.
+    # For example, `Run Tests (runtimestation; 515)`.
+    name: Run Extra Map Tests (${{ inputs.major && format('{0}.{1}; ', inputs.major, inputs.minor) || '' }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v5
+      - name: Ensure +x on CI directory
+        run: |
+          chmod -R +x ./tools/ci
+      - name: Restore BYOND from Cache
+        uses: ./.github/actions/restore_or_install_byond
+        with:
+          major: ${{ inputs.major }}
+          minor: ${{ inputs.minor }}
+      - name: Install RUST_G Dependencies
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt update || true
+          sudo apt install zlib1g-dev:i386
+          ldd librust_g.so
+          ldd libbapi_dmm_reader.so
+          ldd libverdigris.so
+      - name: Compile POIs
+        run: tools/ci/compile_and_run.sh
+        env:
+          EXTRA_ARGS: "-DMAP_TEST"
+          RUN: "0"
+      - name: Compile away missions
+        run: tools/ci/compile_and_run.sh
+        env:
+          EXTRA_ARGS: "-DAWAY_MISSION_TEST -DUSE_MAP_TETHER" # Only Tether has support for all away missions
+          RUN: "0"

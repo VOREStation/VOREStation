@@ -4,7 +4,7 @@
 /obj/machinery/organ_printer
 	name = "organ printer"
 	desc = "It's a machine that prints organs."
-	icon = 'icons/obj/surgery_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/surgery.dmi'
 	icon_state = "bioprinter"
 
 	anchored = TRUE

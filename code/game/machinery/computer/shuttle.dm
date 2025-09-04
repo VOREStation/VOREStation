@@ -10,7 +10,7 @@
 
 /obj/machinery/computer/shuttle/attackby(var/obj/item/card/W as obj, var/mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))	return
-	if ((!( istype(W, /obj/item/card) ) || !( ticker ) || emergency_shuttle.location() || !( user )))	return
+	if ((!( istype(W, /obj/item/card) ) || !( SSticker ) || emergency_shuttle.location() || !( user )))	return
 	if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if (istype(W, /obj/item/pda))
 			var/obj/item/pda/pda = W
@@ -24,7 +24,7 @@
 			to_chat(user, "The access level of [W:registered_name]\'s card is not high enough. ")
 			return
 
-		if(!(access_heads in W:access)) //doesn't have this access
+		if(!(ACCESS_HEADS in W:access)) //doesn't have this access
 			to_chat(user, "The access level of [W:registered_name]\'s card is not high enough. ")
 			return 0
 

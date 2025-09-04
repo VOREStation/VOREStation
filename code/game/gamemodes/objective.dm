@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/proc/find_target()
 	var/list/possible_targets = list()
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in SSticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
 			possible_targets += possible_target
 	if(possible_targets.len > 0)
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 
 /datum/objective/proc/find_target_by_role(role, role_type=0)//Option sets either to check assigned role or special role. Default to assigned.
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in SSticker.minds)
 		if((possible_target != owner) && ishuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role) )
 			target = possible_target
 			break
@@ -325,7 +325,8 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/survive/check_completion()
 	if(!owner.current || owner.current.stat == DEAD || isbrain(owner.current))
 		return 0		//Brains no longer win survive objectives. --NEO
-	if(issilicon(owner.current) && owner.current != owner.original)
+	var/mob/living/original = owner.original_character?.resolve()
+	if(issilicon(owner.current) && (original && (owner.current != original)))
 		return 0
 	return 1
 
@@ -481,7 +482,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		var/tmp_obj = new custom_target
 		var/custom_name = tmp_obj:name
 		qdel(tmp_obj)
-		custom_name = sanitize(tgui_input_text(usr, "Enter target name:", "Objective target", custom_name))
+		custom_name = tgui_input_text(usr, "Enter target name:", "Objective target", custom_name, MAX_MESSAGE_LEN)
 		if (!custom_name) return
 		target_name = custom_name
 		steal_target = custom_target
@@ -573,13 +574,13 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/absorb/proc/gen_amount_goal(var/lowbound = 4, var/highbound = 6)
 	target_amount = rand (lowbound,highbound)
-	if (ticker)
+	if (SSticker)
 		var/n_p = 1 //autowin
-		if (ticker.current_state == GAME_STATE_SETTING_UP)
+		if (SSticker.current_state == GAME_STATE_SETTING_UP)
 			for(var/mob/new_player/P in GLOB.player_list)
 				if(P.client && P.ready && P.mind!=owner)
 					n_p ++
-		else if (ticker.current_state == GAME_STATE_PLAYING)
+		else if (SSticker.current_state == GAME_STATE_PLAYING)
 			for(var/mob/living/carbon/human/P in GLOB.player_list)
 				var/datum/component/antag/changeling/comp = P.GetComponent(/datum/component/antag/changeling)
 				if(P.client && !(comp) && P.mind!=owner)
@@ -612,7 +613,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	var/list/possible_targets = list()
 	var/list/priority_targets = list()
 
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in SSticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2) && (!possible_target.special_role))
 			possible_targets += possible_target
 			for(var/role in roles)

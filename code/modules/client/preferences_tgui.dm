@@ -152,6 +152,8 @@
 			sanitize_preferences()
 			. = TRUE
 		if("resetslot")
+			if(!isnewplayer(ui.user))
+				to_chat(ui.user, span_userdanger("You can't change your character slot while being in round."))
 			if("Yes" != tgui_alert(ui.user, "This will reset the current slot. Continue?", "Reset current slot?", list("No", "Yes")))
 				return
 			if("Yes" != tgui_alert(ui.user, "Are you completely sure that you want to reset this character slot?", "Reset current slot?", list("No", "Yes")))
@@ -160,6 +162,8 @@
 			sanitize_preferences()
 			. = TRUE
 		if("copy")
+			if(!isnewplayer(ui.user))
+				to_chat(ui.user, span_userdanger("You can't change your character slot while being in round."))
 			if(!IsGuestKey(ui.user.key))
 				open_copy_dialog(ui.user)
 			. = TRUE
@@ -192,7 +196,7 @@
 	PMH.screen_loc = LAZYACCESS(preview_screen_locs, "PMH")
 
 /datum/preferences/tgui_close(mob/user)
-	// save_character()
+	load_character()
 	save_preferences()
 
 /datum/preferences/proc/create_character_profiles()

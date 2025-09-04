@@ -151,6 +151,13 @@
 /obj/machinery/power/rtg/fake_gen/update_icon()
 	return
 
+/obj/machinery/power/rtg/fake_gen/grid
+	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical."
+	icon = 'icons/obj/power.dmi'
+	icon_state = "gridchecker_off"
+	name = "capacitor bank"
+	power_gen = 12000
+
 // Void Core, power source for Abductor ships and bases.
 // Provides a lot of power, but tends to explode when mistreated.
 /obj/machinery/power/rtg/abductor

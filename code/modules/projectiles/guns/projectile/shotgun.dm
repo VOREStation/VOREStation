@@ -138,7 +138,7 @@
 	set category = "Object"
 	set desc = "Rename your gun."
 
-	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name the gun?","Rename Shotgun" ,"",MAX_NAME_LEN))
+	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name the gun?","Rename Shotgun" ,"",MAX_NAME_LEN, encode = FALSE))
 
 	var/mob/M = usr
 	if(src && input && !M.stat && in_range(M,src))

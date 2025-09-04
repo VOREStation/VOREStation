@@ -33,7 +33,7 @@
 /obj/item/grenade/explosive/frag
 	name = "fragmentation grenade"
 	desc = "A military fragmentation grenade, designed to explode in a deadly shower of fragments."
-	icon_state = "frag"
+	icon_state = "frggrenade"
 	loadable = null
 
 	fragment_types = list(/obj/item/projectile/bullet/pellet/fragment)

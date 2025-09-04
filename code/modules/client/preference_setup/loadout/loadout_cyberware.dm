@@ -9,6 +9,7 @@
 
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"
+	description = "A simple tracking implant, designed to constantly report the subject's location. Usually implanted into those considered a security or flight risk, or for the purposes of restraining orders."
 	path = /obj/item/implant/tracking/weak
 	cost = 0
 

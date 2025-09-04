@@ -250,13 +250,13 @@
 			if(1)
 				if(W.has_tool_quality(TOOL_SCREWDRIVER))
 					playsound(src, W.usesound, 50, 1)
-					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user,50,src))
 						to_chat(user, span_notice("You unscrew the maintenace panel on the [src]."))
 						dead +=1
 				return
 			if(2)
 				if(istype(W, /obj/item/protean_reboot))//placeholder
-					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user,50,src))
 						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 						to_chat(user, span_notice("You carefully slot [W] in the [src]."))
 						dead +=1
@@ -264,7 +264,7 @@
 				return
 			if(3)
 				if(istype(W, /obj/item/stack/nanopaste))
-					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user,50,src))
 						playsound(src, 'sound/effects/ointment.ogg', 50, 1)
 						to_chat(user, span_notice("You slather the interior confines of the [src] with the [W]."))
 						dead +=1
@@ -274,7 +274,7 @@
 				if(istype(W, /obj/item/shockpaddles))
 					if(W?:can_use(user))
 						to_chat(user, span_notice("You hook up the [W] to the contact points in the maintenance assembly"))
-						if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+						if(do_after(user,50,src))
 							playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
 							if(do_after(user,10,src))
 								playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
@@ -491,8 +491,8 @@
 	..()
 
 /obj/item/rig/protean/get_description_interaction()
+	var/list/results = list()
 	if(dead)
-		var/list/results = list()
 		switch(dead)
 			if(1)
 				results += "Use a screwdriver to start repairs."
@@ -502,7 +502,7 @@
 				results += "Use some Nanopaste."
 			if(4)
 				results += "Use either a defib or jumper cables to start the reboot sequence."
-		return results
+	return results
 
 //Effectively a round about way of letting a Protean wear other rigs.
 /obj/item/rig/protean/proc/AssimilateRig(mob/user, var/obj/item/rig/R)
@@ -515,9 +515,11 @@
 		to_chat(user, span_warning("The world is not ready for such a technological singularity."))
 		return
 	to_chat(user, span_notice("You assimilate the [R] into the [src]. Mimicking its stats and appearance."))
+
+	rigsuit_max_pressure = R.rigsuit_max_pressure
 	for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 		piece.armor = R.armor.Copy()
-		piece.max_pressure_protection = R.max_pressure_protection
+		piece.max_pressure_protection = R.rigsuit_max_pressure
 		piece.max_heat_protection_temperature = R.max_heat_protection_temperature
 	//I dislike this piece of code, but not every rig has the full set of parts
 	if(R.gloves)
@@ -560,10 +562,11 @@
 	set category = "Object"
 
 	if(assimilated_rig)
+		rigsuit_max_pressure = initial(rigsuit_max_pressure)
 		for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 			piece.armor = armor.Copy()
-			piece.max_pressure_protection = initial(piece.max_pressure_protection)
-			piece.max_heat_protection_temperature = initial(piece.max_heat_protection_temperature)
+			piece.max_pressure_protection = rigsuit_max_pressure
+			piece.max_heat_protection_temperature = max_heat_protection_temperature
 			piece.icon_state = src.icon_state
 			piece.icon = initial(piece.icon)
 			piece.default_worn_icon = initial(piece.default_worn_icon)

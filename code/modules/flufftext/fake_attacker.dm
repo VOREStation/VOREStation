@@ -96,7 +96,7 @@
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	for(var/img in dir_images)
-		qdel_null(dir_images[img])
+		QDEL_NULL(dir_images[img])
 	dir_images.Cut()
 
 

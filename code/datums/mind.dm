@@ -2,7 +2,7 @@
 		The way datum/mind stuff works has been changed a lot.
 		Minds now represent IC characters rather than following a client around constantly.
 	Guidelines for using minds properly:
-	-	Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
+	-	Never mind.transfer_to(ghost). The var/current and var/original_character of a mind must always be of type mob/living!
 		ghost.mind is however used as a reference to the ghost's corpse
 	-	When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
 		the existing mind of the old mob should be transfered to the new mob like so:
@@ -23,7 +23,7 @@
 	var/key
 	var/name				//replaces mob/var/original_name
 	var/mob/living/current
-	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
+	var/datum/weakref/original_character //replaces /mob/living/original
 	var/active = 0
 
 	var/memory
@@ -123,7 +123,7 @@
 	popup.open()
 
 /datum/mind/proc/edit_memory()
-	if(!ticker || !ticker.mode)
+	if(!SSticker || !SSticker.mode)
 		tgui_alert_async(usr, "Not before round-start!", "Alert")
 		return
 
@@ -193,7 +193,7 @@
 		assigned_role = new_role
 
 	else if (href_list["memory_edit"])
-		var/new_memo = sanitize(tgui_input_text(usr, "Write new memory", "Memory", memory, multiline = TRUE, prevent_enter = TRUE))
+		var/new_memo = tgui_input_text(usr, "Write new memory", "Memory", memory, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 		if (isnull(new_memo)) return
 		memory = new_memo
 
@@ -201,11 +201,11 @@
 		var/datum/mind/mind = locate(href_list["amb_edit"])
 		if(!mind)
 			return
-		var/new_ambition = tgui_input_text(usr, "Enter a new ambition", "Memory", mind.ambitions, multiline = TRUE, prevent_enter = TRUE)
+		var/new_ambition = tgui_input_text(usr, "Enter a new ambition", "Memory", mind.ambitions, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 		if(isnull(new_ambition))
 			return
 		if(mind)
-			mind.ambitions = sanitize(new_ambition)
+			mind.ambitions = new_ambition
 			to_chat(mind.current, span_warning("Your ambitions have been changed by higher powers, they are now: [mind.ambitions]"))
 		log_and_message_admins("made [key_name(mind.current)]'s ambitions be '[mind.ambitions]'.")
 
@@ -239,7 +239,7 @@
 				var/objective_type = "[objective_type_capital][objective_type_text]"//Add them together into a text string.
 
 				var/list/possible_targets = list("Free objective")
-				for(var/datum/mind/possible_target in ticker.minds)
+				for(var/datum/mind/possible_target in SSticker.minds)
 					if ((possible_target != src) && ishuman(possible_target.current))
 						possible_targets += possible_target.current
 
@@ -317,7 +317,7 @@
 				new_objective.target_amount = target_number
 
 			if ("custom")
-				var/expl = sanitize(tgui_input_text(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : ""))
+				var/expl = tgui_input_text(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : "", MAX_MESSAGE_LEN)
 				if (!expl) return
 				new_objective = new /datum/objective
 				new_objective.owner = src
@@ -508,9 +508,9 @@
 		mind.key = key
 	else
 		mind = new /datum/mind(key)
-		mind.original = src
-		if(ticker)
-			ticker.minds += mind
+		mind.original_character = WEAKREF(src)
+		if(SSticker)
+			SSticker.minds += mind
 		else
 			to_world_log("## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn")
 	if(!mind.name)	mind.name = real_name

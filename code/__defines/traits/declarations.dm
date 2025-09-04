@@ -15,3 +15,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 /// Prevents the affected object from opening a loot window via alt click. See atom/AltClick()
 #define TRAIT_ALT_CLICK_BLOCKER "no_alt_click"
+
+#define TRAIT_INCAPACITATED "incapacitated"

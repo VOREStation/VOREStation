@@ -45,7 +45,7 @@
 		visible_message(span_danger("[src] is trying to break [I]!"),
 			span_warning("You attempt to break your [I]. (This will take around 5 seconds and you need to stand still)"))
 
-		if(do_after(src, 5 SECONDS, target = src, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
+		if(do_after(src, 5 SECONDS, target = src, timed_action_flags = IGNORE_INCAPACITATED))
 			if(!I || buckled)
 				return
 			visible_message(span_danger("[src] manages to break [I]!"),
@@ -69,7 +69,7 @@
 
 	visible_message(span_danger("[src] attempts to remove [I]!"),
 		span_warning("You attempt to remove [I]. (This will take around [displaytime] seconds and you need to stand still)"))
-	if(do_after(src, breakouttime, target = src, incapacitation_flags = INCAPACITATION_DISABLED & INCAPACITATION_KNOCKDOWN))
+	if(do_after(src, breakouttime, target = src, timed_action_flags = IGNORE_INCAPACITATED))
 		visible_message(span_danger("[src] manages to remove [I]!"),
 			span_notice("You successfully remove [I]."))
 		drop_from_inventory(I)
@@ -87,7 +87,7 @@
 		span_warning("You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)")
 		)
 
-	if(do_after(src, 2 MINUTES, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
+	if(do_after(src, 2 MINUTES, timed_action_flags = IGNORE_INCAPACITATED))
 		if(!buckled)
 			return
 		visible_message(span_danger("[src] manages to unbuckle themself!"),

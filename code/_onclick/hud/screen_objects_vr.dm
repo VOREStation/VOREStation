@@ -35,7 +35,7 @@
 					if(xc.feral + H.nutrition < 150)
 						to_chat(usr, span_warning("Your hunger prevents you from regaining focus."))
 						feral_passing = FALSE
-					if(H.jitteriness >= 100)
+					if(H.get_jittery() >= 100)
 						to_chat(usr, span_warning("Your jitterness prevents you from regaining focus."))
 						feral_passing = FALSE
 					if(feral_passing)

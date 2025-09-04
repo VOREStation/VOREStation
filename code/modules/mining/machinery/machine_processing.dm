@@ -124,7 +124,7 @@
 			. = TRUE
 		if("claim")
 			if(istype(inserted_id))
-				if(access_mining_station in inserted_id.GetAccess())
+				if(ACCESS_MINING_STATION in inserted_id.GetAccess())
 					inserted_id.adjust_mining_points(machine.points)
 					machine.points = 0
 				else
@@ -164,7 +164,7 @@
 	var/active = FALSE
 
 	var/points = 0
-	var/points_mult = 1 //VOREStation Add - multiplier for points generated when ore hits the processors
+	var/points_mult = 1 //- multiplier for points generated when ore hits the processors
 	var/static/list/ore_values = list(
 		ORE_SAND = 1,
 		ORE_HEMATITE = 1,
@@ -185,7 +185,7 @@
 		ORE_LEAD = 40,
 		ORE_MHYDROGEN = 40,
 		ORE_VERDANTIUM = 60,
-		ORE_RUTILE = 40) //VOREStation Add
+		ORE_RUTILE = 40)
 
 /obj/machinery/mineral/processing_unit/Initialize(mapload)
 	. = ..()

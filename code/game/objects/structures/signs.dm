@@ -969,13 +969,13 @@
 	layer = 5
 
 /obj/structure/sign/hostilefauna
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "\improper Caution: Hostile fauna"
 	desc = "This sign warns of hostile life forms in the area."
 	icon_state = "h_fauna"
 
 /obj/structure/sign/graffiti/pisoff
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "\improper PIS OFF"
 	desc = "This sign bears some rather rude looking graffiti instructing you to PIS OFF."
 	icon_state = "pisoff"
@@ -983,103 +983,103 @@
 //Eris signs
 
 /obj/structure/sign/ironhammer
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "Ironhammer Security"
 	desc = "Sign depicts the symbolic of Ironhammer Security, the largest security provider within Trade Union of Hansa."
 	icon_state = "ironhammer"
 
 /obj/structure/sign/atmos_co2
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "CO2 warning sign"
 	desc = "WARNING! CO2 flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_co2"
 
 /obj/structure/sign/atmos_n2o
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "N2O warning sign"
 	desc = "WARNING! N2O flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_n2o"
 
 /obj/structure/sign/atmos_plasma
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "Phoron warning sign"
 	desc = "WARNING! Phoron flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_plasma"
 
 /obj/structure/sign/atmos_n2
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "N2 warning sign"
 	desc = "WARNING! N2 flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_n2"
 
 /obj/structure/sign/atmos_o2
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "O2 warning sign"
 	desc = "WARNING! O2 flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_o2"
 
 /obj/structure/sign/atmos_air
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "Air warning sign"
 	desc = "WARNING! Air flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_air"
 
 /obj/structure/sign/atmos_waste
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "Atmos waste warning sign"
 	desc = "WARNING! Waste flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_waste"
 
 /obj/structure/sign/deck1
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	desc = "A silver sign which reads 'DECK I'."
 	name = "DECK I"
 	icon_state = "deck1"
 
 /obj/structure/sign/deck2
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	desc = "A silver sign which reads 'DECK II'."
 	name = "DECK II"
 	icon_state = "deck2"
 
 /obj/structure/sign/deck3
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	desc = "A silver sign which reads 'DECK III'."
 	name = "DECK III"
 	icon_state = "deck3"
 
 /obj/structure/sign/deck4
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	desc = "A silver sign which reads 'DECK IV'."
 	name = "DECK IV"
 	icon_state = "deck4"
 
 /obj/structure/sign/sec1
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	desc = "A silver sign which reads 'SECTION I'."
 	name = "SECTION I"
 	icon_state = "sec1"
 
 /obj/structure/sign/sec2
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	desc = "A silver sign which reads 'SECTION II'."
 	name = "SECTION II"
 	icon_state = "sec2"
 
 /obj/structure/sign/sec3
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	desc = "A silver sign which reads 'SECTION III'."
 	name = "SECTION III"
 	icon_state = "sec3"
 
 /obj/structure/sign/sec4
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	desc = "A silver sign which reads 'SECTION IV'."
 	name = "SECTION IV"
 	icon_state = "sec4"
 
 /obj/structure/sign/nanotrasen
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "\improper NanoTrasen"
 	desc = "An old metal sign which reads 'NanoTrasen'."
 	icon_state = "NT"
@@ -1087,7 +1087,7 @@
 
 // Eris standards compliant hazards
 /obj/structure/sign/signnew
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 
 /obj/structure/sign/signnew/biohazard
 	name = "BIOLOGICAL HAZARD"
@@ -1167,7 +1167,7 @@
 //Eris departments
 
 /obj/structure/sign/department
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 	name = "department sign"
 	desc = "Sign of some important ship compartment."
 

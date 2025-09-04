@@ -116,11 +116,14 @@ export const AppearanceChangerColors = (props) => {
             <Stack.Item>
               Ears Alpha:{' '}
               <NumberInput
+                tickWhileDragging
                 step={1}
                 minValue={0}
                 value={ears_alpha}
                 maxValue={255}
-                onDrag={(val: number) => act('ears_alpha', { ears_alpha: val })}
+                onChange={(val: number) =>
+                  act('ears_alpha', { ears_alpha: val })
+                }
               />
             </Stack.Item>
             {ear_secondary_colors.map((color, index) => (
@@ -139,11 +142,12 @@ export const AppearanceChangerColors = (props) => {
             <Stack.Item>
               Horns Alpha:{' '}
               <NumberInput
+                tickWhileDragging
                 step={1}
                 minValue={0}
                 value={secondary_ears_alpha}
                 maxValue={255}
-                onDrag={(val: number) =>
+                onChange={(val: number) =>
                   act('secondary_ears_alpha', { secondary_ears_alpha: val })
                 }
               />
@@ -169,11 +173,14 @@ export const AppearanceChangerColors = (props) => {
             <Stack.Item>
               Tail Alpha:{' '}
               <NumberInput
+                tickWhileDragging
                 step={1}
                 minValue={0}
                 value={tail_alpha}
                 maxValue={255}
-                onDrag={(val: number) => act('tail_alpha', { tail_alpha: val })}
+                onChange={(val: number) =>
+                  act('tail_alpha', { tail_alpha: val })
+                }
               />
             </Stack.Item>
             <Stack.Item>
@@ -197,11 +204,14 @@ export const AppearanceChangerColors = (props) => {
             <Stack.Item>
               Wing Alpha:{' '}
               <NumberInput
+                tickWhileDragging
                 step={1}
                 minValue={0}
                 value={wing_alpha}
                 maxValue={255}
-                onDrag={(val: number) => act('wing_alpha', { wing_alpha: val })}
+                onChange={(val: number) =>
+                  act('wing_alpha', { wing_alpha: val })
+                }
               />
             </Stack.Item>
           </>

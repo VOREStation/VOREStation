@@ -44,3 +44,6 @@
 #define TURFSLIP_WET 1
 #define TURFSLIP_LUBE 2
 #define TURFSLIP_ICE 3
+
+///Returns all turfs in a zlevel
+#define Z_TURFS(ZLEVEL) block(1, 1, ZLEVEL, world.maxx, world.maxy, ZLEVEL)

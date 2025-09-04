@@ -43,13 +43,13 @@
 				T.resources[ORE_MHYDROGEN] = 0
 				T.resources[ORE_VERDANTIUM] = 0
 				T.resources[ORE_LEAD]     = 0
-				//T.resources[ORE_COPPER] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
-				//T.resources[ORE_TIN] =      rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
-				//T.resources[ORE_BAUXITE] =  rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
+				T.resources[ORE_COPPER] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
+				T.resources[ORE_TIN] =      rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
+				T.resources[ORE_BAUXITE] =  rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
 				T.resources[ORE_RUTILE] =   rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
-				//T.resources[ORE_VOPAL] = 0
-				//T.resources[ORE_QUARTZ] = 0
-				//T.resources[ORE_PAINITE] = 0
+				T.resources[ORE_VOPAL] = 0
+				T.resources[ORE_QUARTZ] = 0
+				T.resources[ORE_PAINITE] = 0
 			else if(current_cell < deep_val) // Rare metals.
 				T.resources[ORE_GOLD] =     rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources[ORE_SILVER] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
@@ -62,13 +62,13 @@
 				T.resources[ORE_DIAMOND] =  0
 				T.resources[ORE_HEMATITE] = 0
 				T.resources[ORE_MARBLE] =   0
-				//T.resources[ORE_COPPER] =   0
-				//T.resources[ORE_TIN] =      rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
-				//T.resources[ORE_BAUXITE] =  0
+				T.resources[ORE_COPPER] =   0
+				T.resources[ORE_TIN] =      rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
+				T.resources[ORE_BAUXITE] =  0
 				T.resources[ORE_RUTILE] =   rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
-				//T.resources[ORE_VOPAL] = 0
-				//T.resources[ORE_QUARTZ] = 0
-				//T.resources[ORE_PAINITE] = 0
+				T.resources[ORE_VOPAL] = 0
+				T.resources[ORE_QUARTZ] = 0
+				T.resources[ORE_PAINITE] = 0
 			else                             // Deep metals.
 				T.resources[ORE_URANIUM] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources[ORE_DIAMOND] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
@@ -81,13 +81,13 @@
 				T.resources[ORE_HEMATITE] = 0
 				T.resources[ORE_GOLD] =     0
 				T.resources[ORE_SILVER] =   0
-				//T.resources[ORE_COPPER] =   0
-				//T.resources[ORE_TIN] =      0
-				//T.resources[ORE_BAUXITE] =  0
+				T.resources[ORE_COPPER] =   0
+				T.resources[ORE_TIN] =      0
+				T.resources[ORE_BAUXITE] =  0
 				T.resources[ORE_RUTILE] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				//T.resources[ORE_VOPAL] = 0
-				//T.resources[ORE_QUARTZ] = 0
-				//T.resources[ORE_PAINITE] = 0
+				T.resources[ORE_VOPAL] = 0
+				T.resources[ORE_QUARTZ] = 0
+				T.resources[ORE_PAINITE] = 0
 	return
 
 // -- Turfs -- //

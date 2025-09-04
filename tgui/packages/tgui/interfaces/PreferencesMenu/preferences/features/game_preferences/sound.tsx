@@ -61,6 +61,14 @@ export const SAY_SOUNDS: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const BLOOP_SOUNDS: FeatureToggle = {
+  name: 'Multiple Say Sounds',
+  category: 'SOUNDS',
+  description:
+    'Enable hearing a say sound play multiple times for longer messages.',
+  component: CheckboxInput,
+};
+
 export const EMOTE_SOUNDS: FeatureToggle = {
   name: 'Me Sounds',
   category: 'SOUNDS',

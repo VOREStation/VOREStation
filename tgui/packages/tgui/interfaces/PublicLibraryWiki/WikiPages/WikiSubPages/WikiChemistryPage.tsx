@@ -25,6 +25,7 @@ export const WikiChemistryPage = (props: {
     supply_points,
     market_price,
     sintering,
+    cooling_mod,
     overdose,
     flavor,
     allergen,
@@ -87,6 +88,9 @@ export const WikiChemistryPage = (props: {
             />
             <LabeledList.Item label="Sintering">
               {sintering ? sintering : <NotAvilableBox />}
+            </LabeledList.Item>
+            <LabeledList.Item label="Coolant Factor">
+              {cooling_mod}x
             </LabeledList.Item>
             {!!allergen && (
               <WikiSpoileredList

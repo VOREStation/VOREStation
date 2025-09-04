@@ -65,7 +65,7 @@
 
 		handle_pain()
 
-		handle_allergens()
+		SEND_SIGNAL(src,COMSIG_HANDLE_ALLERGENS, chem_effects[CE_ALLERGEN])
 
 		handle_medical_side_effects()
 
@@ -735,66 +735,67 @@
 
 
 	// Hot air hurts :(
-	if((breath.temperature <= species.cold_discomfort_level || breath.temperature >= species.heat_discomfort_level) && !(COLD_RESISTANCE in mutations))
+	if(!isbelly(loc)) //None of this happens anyway whilst inside of a belly, belly temperatures are all handled as body temperature
+		if((breath.temperature <= species.cold_discomfort_level || breath.temperature >= species.heat_discomfort_level) && !(COLD_RESISTANCE in mutations))
 
-		if(breath.temperature <= species.breath_cold_level_1)
-			if(prob(20))
-				to_chat(src, span_danger("You feel your face freezing and icicles forming in your lungs!"))
-		else if(breath.temperature >= species.breath_heat_level_1)
-			if(prob(20))
-				to_chat(src, span_danger("You feel your face burning and a searing heat in your lungs!"))
-
-		if(breath.temperature >= species.heat_discomfort_level)
-
-			if(breath.temperature >= species.breath_heat_level_3)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
-				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
-			else if(breath.temperature >= species.breath_heat_level_2)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
-				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
+			if(breath.temperature <= species.breath_cold_level_1)
+				if(prob(20))
+					to_chat(src, span_danger("You feel your face freezing and icicles forming in your lungs!"))
 			else if(breath.temperature >= species.breath_heat_level_1)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
-				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
-			else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_HOT))
-				throw_alert("temp", /obj/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
+				if(prob(20))
+					to_chat(src, span_danger("You feel your face burning and a searing heat in your lungs!"))
+
+			if(breath.temperature >= species.heat_discomfort_level)
+
+				if(breath.temperature >= species.breath_heat_level_3)
+					apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
+					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
+				else if(breath.temperature >= species.breath_heat_level_2)
+					apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
+					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
+				else if(breath.temperature >= species.breath_heat_level_1)
+					apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
+					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
+				else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_HOT))
+					throw_alert("temp", /obj/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
+				else
+					clear_alert("temp")
+
+			else if(breath.temperature <= species.cold_discomfort_level)
+
+				if(breath.temperature <= species.breath_cold_level_3)
+					apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
+					throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
+				else if(breath.temperature <= species.breath_cold_level_2)
+					apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
+					throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
+				else if(breath.temperature <= species.breath_cold_level_1)
+					apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
+					throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
+				else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_COLD))
+					throw_alert("temp", /obj/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
+				else
+					clear_alert("temp")
+
+			//breathing in hot/cold air also heats/cools you a bit
+			var/temp_adj = breath.temperature - bodytemperature
+			if (temp_adj < 0)
+				temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
 			else
-				clear_alert("temp")
+				temp_adj /= (BODYTEMP_HEAT_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
 
-		else if(breath.temperature <= species.cold_discomfort_level)
+			var/relative_density = breath.total_moles / (MOLES_CELLSTANDARD * BREATH_PERCENTAGE)
+			temp_adj *= relative_density
 
-			if(breath.temperature <= species.breath_cold_level_3)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
-				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
-			else if(breath.temperature <= species.breath_cold_level_2)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
-				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
-			else if(breath.temperature <= species.breath_cold_level_1)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
-				throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
-			else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_COLD))
-				throw_alert("temp", /obj/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
-			else
-				clear_alert("temp")
+			if(temp_adj > BODYTEMP_HEATING_MAX)
+				temp_adj = BODYTEMP_HEATING_MAX
+			if(temp_adj < BODYTEMP_COOLING_MAX)
+				temp_adj = BODYTEMP_COOLING_MAX
 
-		//breathing in hot/cold air also heats/cools you a bit
-		var/temp_adj = breath.temperature - bodytemperature
-		if (temp_adj < 0)
-			temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
+			bodytemperature += temp_adj
+
 		else
-			temp_adj /= (BODYTEMP_HEAT_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
-
-		var/relative_density = breath.total_moles / (MOLES_CELLSTANDARD * BREATH_PERCENTAGE)
-		temp_adj *= relative_density
-
-		if(temp_adj > BODYTEMP_HEATING_MAX)
-			temp_adj = BODYTEMP_HEATING_MAX
-		if(temp_adj < BODYTEMP_COOLING_MAX)
-			temp_adj = BODYTEMP_COOLING_MAX
-
-		bodytemperature += temp_adj
-
-	else
-		clear_alert("temp")
+			clear_alert("temp")
 
 	breath.update_values()
 	return 1
@@ -818,35 +819,6 @@
 		suit_exhale_sound = 'sound/effects/mob_effects/suit_breathe_out.ogg'
 
 	playsound_local(get_turf(src), suit_exhale_sound, 100, pressure_affected = FALSE, volume_channel = VOLUME_CHANNEL_AMBIENCE)
-
-/mob/living/carbon/human/proc/handle_allergens()
-	if(chem_effects[CE_ALLERGEN])
-		//first, multiply the basic species-level value by our allergen effect rating, so consuming multiple seperate allergen typess simultaneously hurts more
-		var/damage_severity = species.allergen_damage_severity * chem_effects[CE_ALLERGEN]
-		var/disable_severity = species.allergen_disable_severity * chem_effects[CE_ALLERGEN]
-		if(species.allergen_reaction & AG_PHYS_DMG)
-			adjustBruteLoss(damage_severity)
-		if(species.allergen_reaction & AG_BURN_DMG)
-			adjustFireLoss(damage_severity)
-		if(species.allergen_reaction & AG_TOX_DMG)
-			adjustToxLoss(damage_severity)
-		if(species.allergen_reaction & AG_OXY_DMG)
-			adjustOxyLoss(damage_severity)
-			if(prob(disable_severity/2))
-				emote(pick("cough","gasp","choke"))
-		if(species.allergen_reaction & AG_EMOTE)
-			if(prob(disable_severity/2))
-				emote(pick("pale","shiver","twitch"))
-		if(species.allergen_reaction & AG_PAIN)
-			adjustHalLoss(disable_severity)
-		if(species.allergen_reaction & AG_WEAKEN)
-			Weaken(disable_severity)
-		if(species.allergen_reaction & AG_BLURRY)
-			eye_blurry = max(eye_blurry, disable_severity)
-		if(species.allergen_reaction & AG_SLEEPY)
-			drowsyness = max(drowsyness, disable_severity)
-		if(species.allergen_reaction & AG_CONFUSE)
-			Confuse(disable_severity/4)
 
 /mob/living/carbon/human/proc/handle_species_components()
 	species.handle_species_components(src)
@@ -885,10 +857,13 @@
 		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/obj/machinery/atmospherics/unary/cryo_cell/cc = loc
 			loc_temp = cc.air_contents.temperature
+		else if(isbelly(loc))
+			var/obj/belly/b = loc
+			loc_temp = b.bellytemperature
 		else
 			loc_temp = environment.temperature
 
-		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
+		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1 && (!isbelly(loc) || !allowtemp))
 			clear_alert("pressure")
 			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
@@ -907,8 +882,46 @@
 		var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
 		bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
 
+	if(isbelly(loc) && allowtemp)
+		var/obj/belly/b = loc
+		if(b.bellytemperature >= species.heat_discomfort_level) //A bit more easily triggered than normal, intentionally
+			var/burn_dam = 0
+			if(b.bellytemperature >= species.heat_level_1)
+				if(b.bellytemperature >= species.heat_level_2)
+					if(b.bellytemperature >= species.heat_level_3)
+						burn_dam = HEAT_DAMAGE_LEVEL_3
+						throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
+					else
+						burn_dam = HEAT_DAMAGE_LEVEL_2
+						throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
+				else
+					burn_dam = HEAT_DAMAGE_LEVEL_1
+					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
+			else
+				throw_alert("temp", /obj/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
+			if(digestable && b.temperature_damage)
+				take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
+		else if(b.bellytemperature <= species.cold_discomfort_level)
+			var/cold_dam = 0
+			if(b.bellytemperature <= species.cold_level_1)
+				if(b.bellytemperature <= species.cold_level_2)
+					if(b.bellytemperature <= species.cold_level_3)
+						cold_dam = COLD_DAMAGE_LEVEL_3
+						throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
+					else
+						cold_dam = COLD_DAMAGE_LEVEL_2
+						throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
+				else
+					cold_dam = COLD_DAMAGE_LEVEL_1
+					throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
+			else
+				throw_alert("temp", /obj/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
+			if(digestable && b.temperature_damage)
+				take_overall_damage(burn=cold_dam, used_weapon = "Low Body Temperature")
+		else clear_alert("temp")
+
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
-	if(bodytemperature >= species.heat_level_1)
+	else if(bodytemperature >= species.heat_discomfort_level)
 		//Body temperature is too hot.
 		if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
 			return 1	// Cancelled by a component
@@ -930,7 +943,7 @@
 
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 
-	else if(bodytemperature <= species.cold_level_1)
+	else if(bodytemperature <= species.cold_discomfort_level)
 		//Body temperature is too cold.
 
 		if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
@@ -1379,12 +1392,8 @@
 
 		//Resting
 		if(resting)
-			dizziness = max(0, dizziness - 15)
-			jitteriness = max(0, jitteriness - 15)
 			adjustHalLoss(-3)
 		else
-			dizziness = max(0, dizziness - 3)
-			jitteriness = max(0, jitteriness - 3)
 			adjustHalLoss(-1)
 
 		if (drowsyness)
@@ -1553,7 +1562,7 @@
 			fat_alert = /obj/screen/alert/fat/synth
 			hungry_alert = /obj/screen/alert/hungry/synth
 			starving_alert = /obj/screen/alert/starving/synth
-		else if(get_species() == SPECIES_CUSTOM)
+		else if(get_species() in list(SPECIES_CUSTOM, SPECIES_HANNER))
 			var/datum/species/custom/C = species
 			if(/datum/trait/neutral/bloodsucker in C.traits)
 				fat_alert = /obj/screen/alert/fat/vampire

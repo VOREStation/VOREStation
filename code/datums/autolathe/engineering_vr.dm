@@ -73,3 +73,7 @@
 /datum/category_item/autolathe/engineering/arf_generator
 	name = "atmospheric field generator electronics"
 	path =/obj/item/circuitboard/arf_generator
+
+/datum/category_item/autolathe/engineering/honey_extractor
+	name = "honey extractor electronics"
+	path =/obj/item/circuitboard/honey_extractor

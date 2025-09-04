@@ -56,7 +56,7 @@
 
 	hologram.visible_message("[hologram] starts engulfing [prey] in hardlight holograms!")
 	to_chat(src, span_vnotice("You begin engulfing [prey] in hardlight holograms.")) //Can't be part of the above, because the above is from the hologram.
-	if(do_after(user = eyeobj,delay = 50,target = prey, needhand = 0) && holo && hologram) //Didn't move and still projecting and effect exists and no other bellied people
+	if(do_after(user = eyeobj,delay = 50,target = prey) && holo && hologram) //Didn't move and still projecting and effect exists and no other bellied people
 		feed_grabbed_to_self(src, prey)
 
 /mob/living/AIShiftClick(var/mob/user) //Shift-click as AI overridden on mobs to examine.
