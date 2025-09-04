@@ -79,11 +79,11 @@
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod/holly)
 "j" = (
-/obj/structure/bed/chair/comfy/blue,
+/obj/structure/bed/chair/sofa/corp/right,
 /turf/simulated/floor/wood/alt/tile,
 /area/survivalpod/holly)
 "k" = (
-/obj/structure/bed/chair/comfy/blue{
+/obj/structure/bed/chair/sofa/corp/left{
 	dir = 1
 	},
 /obj/effect/floor_decal/spline/plain/corner,
@@ -106,7 +106,7 @@
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod/holly)
 "n" = (
-/obj/structure/bed/chair/comfy/blue,
+/obj/structure/bed/chair/sofa/corp/left,
 /obj/machinery/light/small/fairylights{
 	pixel_y = 40
 	},
@@ -427,7 +427,7 @@
 /turf/simulated/floor/carpet/blue2,
 /area/survivalpod/dorms/holly)
 "Z" = (
-/obj/structure/bed/chair/comfy/blue{
+/obj/structure/bed/chair/sofa/corp/right{
 	dir = 1
 	},
 /obj/machinery/light,
