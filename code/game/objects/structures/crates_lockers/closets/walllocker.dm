@@ -214,7 +214,7 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/flashlight,
 		/obj/item/tank/oxygen/red,
 		/obj/item/extinguisher,
