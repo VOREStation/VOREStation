@@ -8,22 +8,23 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { getCurrentTimestamp } from '../../VorePanelExport/VorePanelExportTimestamp';
 import { CURRENT_VERSION } from '../constants';
 import { importLengthToColor } from '../function';
 import type { DesiredData } from '../types';
 
 export const CharacterSelector = (props: {
   characterData: DesiredData;
-  characterNames: string[];
   selectedCharacters: Set<string>;
+  onCharacterData: React.Dispatch<React.SetStateAction<DesiredData>>;
   onSelectedCharacters: React.Dispatch<React.SetStateAction<Set<string>>>;
   importLength: number;
   selectedVersions: string[];
 }) => {
   const {
     characterData,
-    characterNames,
     selectedCharacters,
+    onCharacterData,
     onSelectedCharacters,
     importLength,
     selectedVersions,
@@ -36,6 +37,25 @@ export const CharacterSelector = (props: {
         nextSet.delete(name);
       } else {
         nextSet.add(name);
+      }
+      return nextSet;
+    });
+  }
+
+  function handleRename(target: string, newName: string) {
+    if (target === newName) return;
+    if (characterData[newName]) return;
+    if (!characterData[target]) return;
+
+    const nextCharacterData = { ...characterData };
+    nextCharacterData[newName] = nextCharacterData[target];
+    delete nextCharacterData[target];
+    onCharacterData(nextCharacterData);
+    onSelectedCharacters((prevSet) => {
+      const nextSet = new Set(prevSet);
+      if (nextSet.has(target)) {
+        nextSet.delete(target);
+        nextSet.add(newName);
       }
       return nextSet;
     });
@@ -59,8 +79,13 @@ export const CharacterSelector = (props: {
       type: 'application/json',
     });
 
-    Byond.saveBlob(blob, Array.from(selectedCharacters).join('_'), '.vrdb');
+    Byond.saveBlob(
+      blob,
+      Array.from(selectedCharacters).join('_') + getCurrentTimestamp(),
+      '.vrdb',
+    );
   }
+  const characterNames = Object.keys(characterData);
 
   return (
     <Stack fill>
@@ -98,6 +123,15 @@ export const CharacterSelector = (props: {
                         </Tooltip>
                       </Stack.Item>
                     )}
+                  <Stack.Item grow />
+                  <Stack.Item>
+                    <Button.Input
+                      icon="pen"
+                      tooltip="rename"
+                      disabled={selectedCharacters.has(character)}
+                      onCommit={(value) => handleRename(character, value)}
+                    />
+                  </Stack.Item>
                 </Stack>
               </Stack.Item>
             ))}

@@ -77,8 +77,8 @@ export const VorePanelImport = () => {
           <Stack.Item basis="30%">
             <CharacterSelector
               characterData={characterData}
-              characterNames={ourCharacters}
               selectedCharacters={selectedCharacters}
+              onCharacterData={setCharacterData}
               onSelectedCharacters={setSelectedCharacters}
               importLength={currentLength}
               selectedVersions={selectedVersions}
