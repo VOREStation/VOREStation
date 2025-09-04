@@ -32,27 +32,26 @@
 /obj/structure/ghost_pod/proc/get_winner()
 	SIGNAL_HANDLER
 	busy = FALSE
-	var/deletion_candidate = FALSE
-	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
+	if(length(Q.candidates))
 		var/mob/observer/dead/D = Q.candidates[1]
+		UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+		QDEL_NULL(Q) //get rid of the query
 		create_occupant(D)
-		icon_state = icon_state_opened
-		if(needscharger)
-			new /obj/machinery/recharge_station/ghost_pod_recharger(src.loc)
-			deletion_candidate = TRUE
-	else
-		if(delay_to_try_again)
-			addtimer(CALLBACK(src, PROC_REF(trigger)), delay_to_try_again)
+		return
+
+	if(delay_to_try_again)
+		addtimer(CALLBACK(src, PROC_REF(trigger)), delay_to_try_again)
 	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
 	QDEL_NULL(Q) //get rid of the query
-	if(deletion_candidate)
-		qdel(src)
 
 // Override this to create whatever mob you need. Be sure to call ..() if you don't want it to make infinite mobs.
 /obj/structure/ghost_pod/proc/create_occupant(var/mob/M)
 	used = TRUE
+	icon_state = icon_state_opened
 	GLOB.active_ghost_pods -= src
-	return TRUE
+	if(needscharger)
+		new /obj/machinery/recharge_station/ghost_pod_recharger(src.loc)
+		qdel(src)
 
 
 // This type is triggered manually by a player discovering the pod and deciding to open it.
