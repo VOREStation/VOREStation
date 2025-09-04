@@ -63,7 +63,7 @@
 
 	add_fingerprint(user)
 
-	if(!(do_after(user, 1 SECOND)))
+	if(!(do_after(user, 1 SECOND, target = src)))
 		to_chat(user, span_warning("You must remain still for the device to complete its work."))
 		return 0
 
@@ -112,7 +112,7 @@
 	if(A.forensic_data?.has_fibres())
 		to_chat(user,span_notice("Fibers/Materials detected.[reveal_fibers ? " Analysing..." : " Acquisition of fibers for H.R.F.S. analysis advised."]"))
 		flick("[icon_state]1",src)
-		if(reveal_fibers && do_after(user, 5 SECONDS))
+		if(reveal_fibers && do_after(user, 5 SECONDS, target = src))
 			to_chat(user, span_notice("Apparel samples scanned:"))
 			for(var/sample in A.forensic_data.get_fibres())
 				to_chat(user, " - " + span_notice("[sample]"))
@@ -120,7 +120,7 @@
 	//Blood
 	if (A.forensic_data?.has_blooddna())
 		to_chat(user, span_notice("Blood detected.[reveal_blood ? " Analysing..." : " Acquisition of swab for H.R.F.S. analysis advised."]"))
-		if(reveal_blood && do_after(user, 5 SECONDS))
+		if(reveal_blood && do_after(user, 5 SECONDS, target = src))
 			flick("[icon_state]1",src)
 			var/list/blood_data = A.forensic_data.get_blooddna()
 			for(var/blood in blood_data)
@@ -152,7 +152,7 @@
 /obj/item/detective_scanner/proc/display_data(var/mob/user)
 	if(user && stored && stored.len)
 		for(var/objref in stored)
-			if(!do_after(user, 1 SECOND)) // So people can move and stop the spam, if they refuse to wipe data.
+			if(!do_after(user, 1 SECOND, target = src)) // So people can move and stop the spam, if they refuse to wipe data.
 				break
 
 			var/datum/data/record/forensic/F = stored[objref]

@@ -35,7 +35,7 @@
 		if(!has_extinguisher)
 			to_chat(user, span_notice("You start to unwrench the extinguisher cabinet."))
 			playsound(src, O.usesound, 50, 1)
-			if(do_after(user, 15 * O.toolspeed))
+			if(do_after(user, 15 * O.toolspeed, target = src))
 				to_chat(user, span_notice("You unwrench the extinguisher cabinet."))
 				new /obj/item/frame/extinguisher_cabinet( src.loc )
 				qdel(src)

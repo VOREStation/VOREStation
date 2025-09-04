@@ -672,7 +672,7 @@ emp_act
 		organ_chance = 75
 	user.next_move = world.time + 20
 	user.visible_message(span_danger("\The [user] begins to twist \the [W] around inside [src]'s [chest]!"))
-	if(!do_after(user, 20))
+	if(!do_after(user, 2 SECONDS, target = src))
 		return 0
 	if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
 		return 0

@@ -528,7 +528,7 @@
 
 	T.add_overlay(target_image)
 
-	if(do_after(user, pre_shot_delay))
+	if(do_after(user, pre_shot_delay, target = src))
 		succeeded = TRUE
 
 	T.cut_overlay(target_image)
@@ -676,7 +676,7 @@
 		var/windup = cooldown
 		if(W.reinf_material)
 			windup = cooldown * 2
-		if(do_after(user, windup))
+		if(do_after(user, windup, target = src))
 			W.visible_message(span_danger("\The [user] [attack_message] \the [W], obliterating it!"))
 			W.dismantle_wall(1)
 		else

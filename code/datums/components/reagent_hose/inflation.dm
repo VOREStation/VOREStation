@@ -78,7 +78,7 @@
 	// Display action
 	name = "[human_owner]'s [feedback]"
 	user.visible_message("\The [user] starts to connect the hose to \the [human_owner]'s [feedback]...")
-	if(!do_after(user,7 SECONDS,human_owner))
+	if(!do_after(user, 7 SECONDS, target = human_owner))
 		to_chat(user,span_warning("You couldn't connect the hose!"))
 		return FALSE
 	if(other.get_hose() || get_hose()) // SHouldn't be connected to anything yet!

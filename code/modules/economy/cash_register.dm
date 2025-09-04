@@ -497,7 +497,7 @@
 		user.visible_message(span_warning("\The [user] begins unsecuring \the [src] from the floor."),
 							"You begin unsecuring \the [src] from the floor.")
 	playsound(src, W.usesound, 50, 1)
-	if(!do_after(user, 20 * W.toolspeed))
+	if(!do_after(user, 2 SECONDS * W.toolspeed, target = src))
 		manipulating = 0
 		return
 	if(!anchored)

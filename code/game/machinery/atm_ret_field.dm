@@ -74,7 +74,7 @@
 			return
 		user.visible_message("[user] starts to disassemble \the [src].", "You start to disassemble \the [src].")
 		playsound(src, WT.usesound, 50, 1)
-		if(do_after(user,15 * W.toolspeed))
+		if(do_after(user,15 * W.toolspeed, target = src))
 			if(!src || !user || !WT.remove_fuel(5, user)) return
 			to_chat(user, span_notice("You fully disassemble \the [src]. There were no salvageable parts."))
 			qdel(src)

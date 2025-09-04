@@ -300,12 +300,13 @@ Proc for attack log creation, because really why not
 		drifting = TRUE*/
 
 	var/holding = user.get_active_hand()
-
+/* //Disabling for now. Meant to be used for modifier slowdowns.
 	if(!(timed_action_flags & IGNORE_SLOWDOWNS))
 		var/slowdown = user.calculate_item_encumbrance()
 		if(slowdown)
-			delay *= slowdown
-
+			//Let's not be TOO evil. You can be up to 4x faster, but never more than 3x slower.
+			delay *= CLAMP(slowdown, 0.25, 3)
+*/
 	var/datum/progressbar/progbar
 	var/datum/cogbar/cog
 

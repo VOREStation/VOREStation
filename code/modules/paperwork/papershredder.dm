@@ -171,7 +171,7 @@
 		return
 	user.visible_message(span_warning("\The [user] holds \the [P] up to \the [src]. It looks like [TU.he] [TU.is] trying to burn it!"), \
 		span_warning("You hold \the [P] up to \the [src], burning it slowly."))
-	if(!do_after(user,20))
+	if(!do_after(user, 2 SECONDS, target = src))
 		to_chat(user, span_warning("You must hold \the [P] steady to burn \the [src]."))
 		return
 	user.visible_message(span_danger("\The [user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap."), \

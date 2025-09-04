@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(pitcher_plant_lure_messages, list(
 		var/N = 0
 		for(H in vore_selected.contents) //Only works for carbons, RIP mice. Should pick the first human the code finds.
 			user.visible_message(span_infoplain("[user] uses a loop of wire to try fishing someone out of \the [src]."), span_infoplain("You use a loop of wire to try snagging someone trapped in \the [src]..."))
-			if(do_after(user, rand(3 SECONDS, 7 SECONDS))) //You can just spam click to stack attempts if you feel like abusing it.
+			if(do_after(user, rand(3 SECONDS, 7 SECONDS), target = src)) //You can just spam click to stack attempts if you feel like abusing it.
 				if(prob(15))
 					user.visible_message(span_notice("[user] pulls a sticky [H] free from \the [src]."), span_infoplain("You heft [H] free from \the [src]."))
 					LAZYSET(prey_excludes, H, world.time)

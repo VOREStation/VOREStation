@@ -390,7 +390,7 @@
 		return 1
 	playsound(src, 'sound/items/Welder.ogg', 50, 1)
 	user.visible_message(span_notice("\The [user] begins \the [src] overhaul."),span_notice("You begin an overhaul of \the [src]."))
-	if(!do_after(user, wear SECONDS, src))
+	if(!do_after(user, wear SECONDS, target = src))
 		return 1
 	if(!src || !WT.isOn())
 		return 1

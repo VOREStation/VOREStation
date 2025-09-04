@@ -93,7 +93,7 @@
 					user.visible_message("[user] disassembles the windoor assembly.", "You start to disassemble the windoor assembly.")
 					playsound(src, WT.usesound, 50, 1)
 
-					if(do_after(user, 40 * WT.toolspeed))
+					if(do_after(user, 4 SECONDS * WT.toolspeed, target = src))
 						if(!src || !WT.isOn()) return
 						to_chat(user,span_notice("You disassembled the windoor assembly!"))
 						if(secure)
@@ -110,7 +110,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] secures the windoor assembly to the floor.", "You start to secure the windoor assembly to the floor.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 					if(!src) return
 					to_chat(user,span_notice("You've secured the windoor assembly!"))
 					src.anchored = TRUE
@@ -121,7 +121,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] unsecures the windoor assembly to the floor.", "You start to unsecure the windoor assembly to the floor.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 					if(!src) return
 					to_chat(user,span_notice("You've unsecured the windoor assembly!"))
 					src.anchored = FALSE
@@ -132,7 +132,7 @@
 				user.visible_message("[user] wires the windoor assembly.", "You start to wire the windoor assembly.")
 
 				var/obj/item/stack/cable_coil/CC = W
-				if(do_after(user, 40))
+				if(do_after(user, 4 SECONDS, target = src))
 					if (CC.use(1))
 						to_chat(user,span_notice("You wire the windoor!"))
 						src.state = "02"
@@ -147,7 +147,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 					if(!src) return
 
 					to_chat(user,span_notice("You cut the windoor wires.!"))
@@ -160,7 +160,7 @@
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
-				if(do_after(user, 40))
+				if(do_after(user, 4 SECONDS, target = src))
 					if(!src) return
 
 					user.drop_item()
@@ -176,7 +176,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to uninstall electronics from the airlock assembly.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 					if(!src || !src.electronics) return
 					to_chat(user,span_notice("You've removed the airlock electronics!"))
 					step = 1
@@ -196,7 +196,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] pries the windoor into the frame.", "You start prying the windoor into the frame.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 
 					if(!src) return
 

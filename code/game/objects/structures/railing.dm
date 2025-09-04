@@ -199,7 +199,7 @@
 	// Dismantle
 	if(W.has_tool_quality(TOOL_WRENCH) && !anchored)
 		playsound(src, W.usesound, 50, 1)
-		if(do_after(user, 20, src))
+		if(do_after(user, 2 SECONDS, target = src))
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " dismantles \the [src]."), span_notice("You dismantle \the [src]."))
 			new /obj/item/stack/material/steel(get_turf(user), 2)
 			qdel(src)
@@ -210,7 +210,7 @@
 		var/obj/item/weldingtool/F = W.get_welder()
 		if(F.welding)
 			playsound(src, F.usesound, 50, 1)
-			if(do_after(user, 20, src))
+			if(do_after(user, 2 SECONDS, target = src))
 				user.visible_message(span_infoplain(span_bold("\The [user]") + " repairs some damage to \the [src]."), span_notice("You repair some damage to \the [src]."))
 				health = min(health+(maxhealth/5), maxhealth) // 20% repair per application
 				return
@@ -219,7 +219,7 @@
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		user.visible_message(span_info((anchored ? (span_bold("\The [user]") + " begins unscrewing \the [src].") : (span_bold("\The [user]") + "begins fasten \the [src]."))))
 		playsound(src, W.usesound, 75, 1)
-		if(do_after(user, 10, src))
+		if(do_after(user, 1 SECOND, target = src))
 			to_chat(user, (anchored ? span_notice("You have unfastened \the [src] from the floor.") : span_notice("You have fastened \the [src] to the floor.")))
 			anchored = !anchored
 			update_icon()

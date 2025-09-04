@@ -209,7 +209,7 @@
 		return
 	if(isanimal(user) && O != user)
 		return
-	if (do_after(user, 25 + (5 * user.weakened)) && !(user.stat))
+	if (do_after(user, 25 + (5 * user.weakened), target = O) && !(user.stat))
 		step_towards(O, src)
 		if(ismob(O))
 			animate(O, transform = turn(O.transform, 20), time = 2)
@@ -373,7 +373,7 @@
 
 	vandal.visible_message(span_warning("\The [vandal] begins carving something into \the [src]."))
 
-	if(!do_after(vandal, max(20, length(message)), src))
+	if(!do_after(vandal, max(2 SECONDS, length(message)), target = src))
 		return FALSE
 
 	vandal.visible_message(span_danger("\The [vandal] carves some graffiti into \the [src]."))

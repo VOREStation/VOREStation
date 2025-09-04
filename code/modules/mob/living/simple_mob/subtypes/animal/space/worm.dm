@@ -244,12 +244,12 @@
 /mob/living/simple_mob/animal/space/space_worm/proc/AttemptToEat(var/atom/target)
 	if(istype(target,/turf/simulated/wall))
 		var/turf/simulated/wall/W = target
-		if((!W.reinf_material && do_after(src, 5 SECONDS)) || do_after(src, 10 SECONDS)) // 10 seconds for an R-wall, 5 seconds for a normal one.
+		if((!W.reinf_material && do_after(src, 5 SECONDS, target)) || do_after(src, 10 SECONDS, target)) // 10 seconds for an R-wall, 5 seconds for a normal one.
 			if(target)
 				W.dismantle_wall()
 				return 1
 	else if(istype(target,/atom/movable))
-		if(istype(target,/mob) || do_after(src, 5)) // 5 ticks to eat stuff like tables.
+		if(istype(target,/mob) || do_after(src, 5, target)) // 5 ticks to eat stuff like tables.
 			var/atom/movable/objectOrMob = target
 			if(istype(objectOrMob, /obj/machinery/door))	// Doors and airlocks take time based on their durability and our damageo.
 				var/obj/machinery/door/D = objectOrMob
@@ -261,7 +261,7 @@
 						objectOrMob = null
 						break
 
-					if(do_after(src, 5))
+					if(do_after(src, 5, target))
 						D.visible_message(span_danger("Something crashes against \the [D]!"))
 						D.take_damage(2 * melee_damage_upper)
 					else
@@ -279,7 +279,7 @@
 					EF.visible_message(span_danger("Something begins forcing itself through \the [EF]!"))
 				else
 					EF.visible_message(span_danger("\The [src] begins forcing itself through \the [EF]!"))
-				if(do_after(src, EF.strength * 5))
+				if(do_after(src, EF.strength * 5, target))
 					EF.adjust_strength(rand(-8, -10))
 					EF.visible_message(span_danger("\The [src] crashes through \the [EF]!"))
 				else

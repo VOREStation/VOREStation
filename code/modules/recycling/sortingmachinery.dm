@@ -478,7 +478,7 @@
 			return
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "You start slicing the floorweld off the delivery chute.")
-		if(do_after(user,20 * W.toolspeed))
+		if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 			if(!src || !W.isOn()) return
 			to_chat(user, "You sliced the floorweld off the delivery chute.")
 			var/obj/structure/disposalconstruct/C = new (src.loc)

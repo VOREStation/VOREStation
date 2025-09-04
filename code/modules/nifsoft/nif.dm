@@ -228,7 +228,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Attackby proc, for maintenance
 /obj/item/nif/attackby(obj/item/W, mob/user as mob)
 	if(open == 0 && W.has_tool_quality(TOOL_SCREWDRIVER))
-		if(do_after(user, 4 SECONDS, src) && open == 0)
+		if(do_after(user, 4 SECONDS, target = src) && open == 0)
 			user.visible_message("[user] unscrews and pries open \the [src].",span_notice("You unscrew and pry open \the [src]."))
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			open = 1
@@ -243,18 +243,18 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			open = 3
 			update_icon()
 			return
-		if(do_after(user, 6 SECONDS, src) && open == 1 && C.use(3))
+		if(do_after(user, 6 SECONDS, target = src) && open == 1 && C.use(3))
 			user.visible_message("[user] replaces some wiring in \the [src].",span_notice("You replace any burned out wiring in \the [src]."))
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			open = 2
 			update_icon()
 	else if(open == 2 && istype(W,/obj/item/multitool))
-		if(do_after(user, 8 SECONDS, src) && open == 2)
+		if(do_after(user, 8 SECONDS, target = src) && open == 2)
 			user.visible_message("[user] resets several circuits in \the [src].",span_notice("You find and repair any faulty circuits in \the [src]."))
 			open = 3
 			update_icon()
 	else if(open == 3 && W.has_tool_quality(TOOL_SCREWDRIVER))
-		if(do_after(user, 3 SECONDS, src) && open == 3)
+		if(do_after(user, 3 SECONDS, target = src) && open == 3)
 			user.visible_message("[user] closes up \the [src].",span_notice("You re-seal \the [src] for use once more."))
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			open = FALSE

@@ -103,7 +103,7 @@
 	// Service begins, delay
 	visible_message(span_bold("\The [src]") + " scans [user] thoroughly!")
 	flick("kiosk_active", src)
-	if(!do_after(user, 5 SECONDS, src) || inoperable())
+	if(!do_after(user, 5 SECONDS, target = src) || inoperable())
 		suspend()
 		return
 

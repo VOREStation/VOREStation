@@ -196,7 +196,7 @@
 					user.visible_message("[user.name] starts to weld [src] to the floor.", \
 						"You start to weld [src] to the floor.", \
 						"You hear welding")
-					if (do_after(user,20 * WT.toolspeed))
+					if (do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 						if(!src || !WT.isOn()) return
 						state = 2
 						to_chat(user, "You weld [src] to the floor.")
@@ -209,7 +209,7 @@
 					user.visible_message("[user.name] starts to cut [src] free from the floor.", \
 						"You start to cut [src] free from the floor.", \
 						"You hear welding")
-					if (do_after(user,20 * WT.toolspeed))
+					if (do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 						if(!src || !WT.isOn()) return
 						state = 1
 						to_chat(user, "You cut [src] free from the floor.")
@@ -229,7 +229,7 @@
 			to_chat(user, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 			return
 		to_chat(user, span_notice("You begin repairing \the [src]..."))
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			if(P.use(amt))
 				to_chat(user, span_notice("You have repaired \the [src]."))
 				integrity = initial(integrity)

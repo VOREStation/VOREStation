@@ -440,7 +440,7 @@
 		to_chat(src,span_warning("You can't change forms while inside something."))
 		return
 	to_chat(src, span_notice("You rapidly disassociate your form."))
-	if(force || do_after(src,20))
+	if(force || do_after(src, 2 SECONDS, target = src))
 		handle_grasp() //It's possible to blob out before some key parts of the life loop. This results in things getting dropped at null. TODO: Fix the code so this can be done better.
 		remove_micros(src, src) //Living things don't fare well in roblobs.
 		if(buckled)
@@ -554,7 +554,7 @@
 		to_chat(blob,span_warning("You can't change forms while inside something."))
 		return
 	to_chat(src, span_notice("You rapidly reassemble your form."))
-	if(force || do_after(blob,20))
+	if(force || do_after(blob, 2 SECONDS, target = src))
 		if(buckled)
 			buckled.unbuckle_mob()
 		if(LAZYLEN(buckled_mobs))

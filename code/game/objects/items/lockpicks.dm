@@ -28,7 +28,7 @@
 		else	//finally, we can assume that they do match
 			to_chat(user, span_notice("You start to [pick_verb] the lock on \the [D]..."))
 			playsound(src, D.keysound,100, 1)
-			if(do_after(user, pick_time * D.lock_difficulty))
+			if(do_after(user, pick_time * D.lock_difficulty, target = src))
 				to_chat(user, span_notice("Success!"))
 				D.locked = FALSE
 	if(istype(A, /obj/structure/fence/door))
@@ -45,7 +45,7 @@
 		else	//finally, we can assume that they do match
 			to_chat(user, span_notice("You start to [pick_verb] the lock on \the [D]..."))
 			playsound(src, D.keysound,100, 1)
-			if(do_after(user, pick_time * D.lock_difficulty))
+			if(do_after(user, pick_time * D.lock_difficulty, target = src))
 				to_chat(user, span_notice("Success!"))
 				D.locked = FALSE
 	else if(ishuman(A)) //you can pick your friends, and you can pick your nose, but you can't pick your friend's nose

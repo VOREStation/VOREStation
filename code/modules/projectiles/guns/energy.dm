@@ -134,7 +134,7 @@
 				to_chat(user, span_notice("[src] already has a power cell."))
 			else
 				user.visible_message("[user] is reloading [src].", span_notice("You start to insert [P] into [src]."))
-				if(do_after(user, reload_time * P.w_class))
+				if(do_after(user, reload_time * P.w_class, target = src))
 					user.remove_from_mob(P)
 					power_supply = P
 					P.loc = src

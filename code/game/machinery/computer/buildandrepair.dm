@@ -15,7 +15,7 @@
 		if(0)
 			if(P.has_tool_quality(TOOL_WRENCH))
 				playsound(src, P.usesound, 50, 1)
-				if(do_after(user, 20 * P.toolspeed))
+				if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 					to_chat(user, span_notice("You wrench the frame into place."))
 					src.anchored = TRUE
 					src.state = 1
@@ -25,7 +25,7 @@
 					to_chat(user, "The welding tool must be on to complete this task.")
 					return
 				playsound(src, WT.usesound, 50, 1)
-				if(do_after(user, 20 * WT.toolspeed))
+				if(do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 					if(!src || !WT.isOn()) return
 					to_chat(user, span_notice("You deconstruct the frame."))
 					new /obj/item/stack/material/steel( src.loc, 5 )
@@ -33,7 +33,7 @@
 		if(1)
 			if(P.has_tool_quality(TOOL_WRENCH))
 				playsound(src, P.usesound, 50, 1)
-				if(do_after(user, 20 * P.toolspeed))
+				if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 					to_chat(user, span_notice("You unfasten the frame."))
 					src.anchored = FALSE
 					src.state = 0
@@ -73,7 +73,7 @@
 					return
 				to_chat(user, span_notice("You start to add cables to the frame."))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 20) && state == 2)
+				if(do_after(user, 2 SECONDS, target = src) && state == 2)
 					if (C.use(5))
 						to_chat(user, span_notice("You add cables to the frame."))
 						state = 3
@@ -94,7 +94,7 @@
 					return
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, span_notice("You start to put in the glass panel."))
-				if(do_after(user, 20) && state == 3)
+				if(do_after(user, 2 SECONDS, target = src) && state == 3)
 					if (G.use(2))
 						to_chat(user, span_notice("You put in the glass panel."))
 						src.state = 4

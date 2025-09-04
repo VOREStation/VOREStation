@@ -15,7 +15,7 @@
 		var/obj/item/stack/material/M = I
 		if(M.get_amount() >= 5)
 			to_chat(user, "You begin to refine the [src] with [M]...")
-			if(do_after(user, 70))
+			if(do_after(user, 7 SECONDS, target = src))
 				M.use(5)
 				var/obj/item/SK
 				SK = new /obj/item/material/sharpeningkit(get_turf(user), M.material.name)

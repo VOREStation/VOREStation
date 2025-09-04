@@ -99,7 +99,7 @@
 		if("(Dis)Assemble")
 			if(can_transition_to(state == UAV_PACKED ? UAV_OFF : UAV_PACKED, user))
 				user.visible_message(span_infoplain(span_bold("[user]") + " starts [state == UAV_PACKED ? "unpacking" : "packing"] [src]."), span_info("You start [state == UAV_PACKED ? "unpacking" : "packing"] [src]."))
-				if(do_after(user, 10 SECONDS, src))
+				if(do_after(user, 10 SECONDS, target = src))
 					return toggle_packed(user)
 		// Can toggle power from on and off
 		if("Toggle Power")
@@ -119,7 +119,7 @@
 		toggle_pairing()
 
 	else if(I.has_tool_quality(TOOL_SCREWDRIVER) && cell)
-		if(do_after(user, 3 SECONDS, src))
+		if(do_after(user, 3 SECONDS, target = src))
 			to_chat(user, span_notice("You remove [cell] into [nickname]."))
 			playsound(src, I.usesound, 50, 1)
 			power_down()
@@ -127,7 +127,7 @@
 			cell = null
 
 	else if(istype(I, /obj/item/cell) && !cell)
-		if(do_after(user, 3 SECONDS, src))
+		if(do_after(user, 3 SECONDS, target = src))
 			to_chat(user, span_notice("You insert [I] into [nickname]."))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			power_down()

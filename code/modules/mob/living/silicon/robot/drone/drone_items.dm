@@ -47,7 +47,7 @@
 
 			to_chat(D, span_danger("You begin decompiling [M]."))
 
-			if(!do_after(D,50))
+			if(!do_after(D, 5 SECONDS, target = src))
 				to_chat(D, span_danger("You need to remain still while decompiling such a large object."))
 				return
 

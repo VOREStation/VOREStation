@@ -221,14 +221,14 @@
 	icon_state = "[initial(icon_state)]-animate"	//makes it play the item animation upon using on a valid target
 	update_icon()
 
-	if(A == user && do_after(Hu,1 SECONDS,Ht))
+	if(A == user && do_after(Hu, 1 SECONDS, target = Ht))
 		if(Ht.isSynthetic())
 			new stored_synthetic(Ht.nif,extra)
 			qdel(src)
 		else
 			new stored_organic(Ht.nif,extra)
 			qdel(src)
-	else if(A != user && do_after(Hu,10 SECONDS,Ht))
+	else if(A != user && do_after(Hu, 10 SECONDS, target = Ht))
 		if(Ht.isSynthetic())
 			new stored_synthetic(Ht.nif,extra)
 			qdel(src)

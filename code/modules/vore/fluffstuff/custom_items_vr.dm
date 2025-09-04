@@ -1537,7 +1537,7 @@
 /obj/item/toy/plushie/fluff/seona_mofuorb/attack_self(mob/user as mob)
 	if(stored_item && opened && !searching)
 		searching = TRUE
-		if(do_after(user, 10))
+		if(do_after(user, 1 SECOND, target = src))
 			to_chat(user, "You find [icon2html(stored_item, user.client)] [stored_item] in [src]!")
 			stored_item.forceMove(get_turf(src))
 			stored_item = null

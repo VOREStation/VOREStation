@@ -1285,7 +1285,7 @@
 		to_chat(R, escape_attempt_prey_message)
 		to_chat(owner, escape_attempt_owner_message)
 
-		if(do_after(R, escapetime, owner, timed_action_flags = IGNORE_INCAPACITATED))
+		if(do_after(R, escapetime, owner, target = src, timed_action_flags = IGNORE_INCAPACITATED))
 			if((owner.stat || escapable)) //Can still escape?
 				if(C)
 					release_specific_contents(C)
@@ -1332,7 +1332,7 @@
 		if(prob(escapechance)) //Let's have it check to see if the prey escapes first.
 			to_chat(R, escape_attempt_prey_message)
 			to_chat(owner, escape_attempt_owner_message)
-			if(do_after(R, escapetime))
+			if(do_after(R, escapetime, target = src))
 				if(escapable && C)
 					var/escape_item_owner_message = span_vwarning(belly_format_string(escape_item_messages_owner, R, item = C))
 					var/escape_item_prey_message = span_vwarning(belly_format_string(escape_item_messages_prey, R, item = C))
@@ -1479,7 +1479,7 @@
 
 			to_chat(R, escape_attempt_absorbed_prey_message)
 			to_chat(owner, escape_attempt_absorbed_owner_message)
-			if(do_after(R, escapetime))
+			if(do_after(R, escapetime, target = src))
 				if((escapable || owner.stat) && (R.loc == src) && prob(escapechance_absorbed)) //Does the escape attempt succeed?
 					var/escape_absorbed_owner_message = span_vwarning(belly_format_string(escape_absorbed_messages_owner, R))
 					var/escape_absorbed_prey_message = span_vwarning(belly_format_string(escape_absorbed_messages_prey, R))

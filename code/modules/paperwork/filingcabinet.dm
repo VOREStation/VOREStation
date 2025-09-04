@@ -46,7 +46,7 @@
 	else if(P.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, span_notice("You begin taking the [name] apart."))
 		playsound(src, P.usesound, 50, 1)
-		if(do_after(user, 10 * P.toolspeed))
+		if(do_after(user, 1 SECOND * P.toolspeed, target = src))
 			playsound(src, P.usesound, 50, 1)
 			to_chat(user, span_notice("You take the [name] apart."))
 			new /obj/item/stack/material/steel( src.loc, 4 )

@@ -176,7 +176,7 @@
 					to_chat(user, span_warning("You need one coil of wire to wire \the [src]."))
 					return
 				to_chat(user, span_notice("You start to wire \the [src]."))
-				if(do_after(user, 40))
+				if(do_after(user, 4 SECONDS, target = src))
 					if(C.use(1))
 						build_step++
 						to_chat(user, span_notice("You wire the ED-CLN assembly."))
@@ -198,7 +198,7 @@
 				playsound(src, W.usesound, 100, 1)
 				var/turf/T = get_turf(user)
 				to_chat(user, span_notice("Attatching the mop to the frame..."))
-				if(do_after(user, 40) && get_turf(user) == T)
+				if(do_after(user, 4 SECONDS, target = src) && get_turf(user) == T)
 					build_step++
 					name = "mopped ED-CLN assembly"
 					to_chat(user, span_notice("Mop attached."))

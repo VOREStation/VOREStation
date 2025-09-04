@@ -93,7 +93,7 @@
 		user.put_in_hands(S)
 	else
 		to_chat(user, span_notice("You start compacting the snowball."))
-		if(do_after(user, 2 SECONDS))
+		if(do_after(user, 2 SECONDS, target = src))
 			var/atom/S = new /obj/item/material/snow/snowball/reinforced(user.loc)
 			qdel(src)
 			user.put_in_hands(S)

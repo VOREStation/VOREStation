@@ -470,7 +470,7 @@ GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 		global.wounds_being_tended_by_drakes[friend_ref] = world.time + (8 SECONDS)
 		set_AI_busy(TRUE)
 
-		if(!do_after(src, 8 SECONDS, friend) || QDELETED(friend) || friend.has_modifier_of_type(/datum/modifier/sifsap_salve) || incapacitated() || !spend_sap(10))
+		if(!do_after(src, 8 SECONDS, target = friend) || QDELETED(friend) || friend.has_modifier_of_type(/datum/modifier/sifsap_salve) || incapacitated() || !spend_sap(10))
 			global.wounds_being_tended_by_drakes -= friend_ref
 			set_AI_busy(FALSE)
 			return TRUE

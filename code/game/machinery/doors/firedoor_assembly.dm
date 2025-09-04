@@ -26,7 +26,7 @@
 			to_chat(user, span_warning("You need one length of coil to wire \the [src]."))
 			return
 		user.visible_message("[user] wires \the [src].", "You start to wire \the [src].")
-		if(do_after(user, 40) && !wired && anchored)
+		if(do_after(user, 4 SECONDS, target = src) && !wired && anchored)
 			if (cable.use(1))
 				wired = 1
 				to_chat(user, span_notice("You wire \the [src]."))
@@ -35,7 +35,7 @@
 		playsound(src, C.usesound, 100, 1)
 		user.visible_message("[user] cuts the wires from \the [src].", "You start to cut the wires from \the [src].")
 
-		if(do_after(user, 40))
+		if(do_after(user, 4 SECONDS, target = src))
 			if(!src) return
 			to_chat(user, span_notice("You cut the wires!"))
 			new/obj/item/stack/cable_coil(src.loc, 1)
@@ -67,7 +67,7 @@
 			if(glass)
 				user.visible_message(span_warning("[user] welds the glass panel out of \the [src]."),
 									span_notice("You start to weld the glass panel out of \the [src]."))
-				if(do_after(user, 40 * WT.toolspeed, src) && WT.isOn())
+				if(do_after(user, 4 SECONDS * WT.toolspeed, target = src) && WT.isOn())
 					to_chat(user, span_notice("You welded the glass panel out!"))
 					new /obj/item/stack/material/glass/reinforced(drop_location())
 					glass = FALSE
@@ -75,7 +75,7 @@
 				return
 			if(!anchored)
 				user.visible_message(span_warning("[user] dissassembles \the [src]."), "You start to dissassemble \the [src].")
-				if(do_after(user, 40 * WT.toolspeed, src) && WT.isOn())
+				if(do_after(user, 4 SECONDS * WT.toolspeed, target = src) && WT.isOn())
 					user.visible_message(span_warning("[user] has dissassembled \the [src]."),
 										"You have dissassembled \the [src].")
 					new /obj/item/stack/material/steel(drop_location(), 2)
@@ -89,7 +89,7 @@
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 			user.visible_message(span_info("[user] adds [S.name] to \the [src]."),
 								span_notice("You start to install [S.name] into \the [src]."))
-			if(do_after(user, 40, src) && !glass && S.use(1))
+			if(do_after(user, 4 SECONDS, target = src) && !glass && S.use(1))
 				to_chat(user, span_notice("You installed reinforced glass windows into \the [src]."))
 				glass = TRUE
 				update_icon()

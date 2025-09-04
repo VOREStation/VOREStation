@@ -19,7 +19,7 @@
 	playsound(src, 'sound/misc/bloop.ogg', 50, 1)
 	flick("health2", src)
 
-	if(do_after(user,6 SECONDS,AM))
+	if(do_after(user, 6 SECONDS, target = AM))
 		scan_genes(AM,user)
 
 /obj/item/gene_scanner/proc/scan_genes(atom/movable/AM,mob/user)

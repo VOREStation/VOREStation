@@ -89,7 +89,7 @@
 	user.visible_message(span_notice("[user] opens \the [src] and starts pumping the handle."), \
 						span_notice("You open \the [src] and start pumping the handle."))
 	while(recharging)
-		if(!do_after(user, 10, src))
+		if(!do_after(user, 1 SECOND, target = src))
 			break
 		playsound(src,'sound/items/change_drill.ogg',25,1)
 		user.hud_used.update_ammo_hud(user, src)
