@@ -90,7 +90,7 @@
 	update_nearby_tiles()
 	update_icon()
 	set_opacity(0)
-	addtimer(CALLBACK(src, PROC_REF(complete_force_open)), 1.5 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(complete_force_open)), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
 /obj/machinery/door/blast/proc/complete_force_open()
 	PRIVATE_PROC(TRUE)
