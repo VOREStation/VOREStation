@@ -167,6 +167,8 @@
 	icon_state = "launcherbtt"
 
 /obj/machinery/button/remote/driver/trigger(mob/user)
+	if(active)
+		return
 	active = TRUE
 	update_icon()
 
