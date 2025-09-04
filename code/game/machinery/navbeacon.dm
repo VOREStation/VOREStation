@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(navbeacons) // no I don't like putting this in, but it will do
 	var/location = ""	// location response text
 	var/codes_txt		// DEPRECATED codes as set on map: "tag1;tag2" or "tag1=value;tag2=value"
 	var/list/codes = list()	// assoc. list of transponder codes
-	req_access = list(access_engine)
+	req_access = list(ACCESS_ENGINE)
 
 /obj/machinery/navbeacon/Initialize(mapload)
 	. = ..()

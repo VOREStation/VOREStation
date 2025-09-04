@@ -53,13 +53,13 @@
 	// Special distilling conditions must be met, each object has different vars to meet it though.
 	if(istype(holder.my_atom,/obj/distilling_tester))
 		// Unit test needs some special handholding
-		var/obj/distilling_tester/DD = holder.my_atom
-		if(DD.current_temp < temp_range[1] || DD.current_temp > temp_range[2])
+		var/obj/distilling_tester/distillery_tester = holder.my_atom
+		if(distillery_tester.current_temp < temp_range[1] || distillery_tester.current_temp > temp_range[2])
 			return FALSE
 	else if(istype(holder.my_atom,/obj/machinery/portable_atmospherics/powered/reagent_distillery))
 		// Super special temperature check.
-		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = holder.my_atom
-		if(RD.current_temp < temp_range[1] || RD.current_temp > temp_range[2])
+		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/reagent_distillery = holder.my_atom
+		if(reagent_distillery.current_temp < temp_range[1] || reagent_distillery.current_temp > temp_range[2])
 			return FALSE
 	else if(istype(holder.my_atom, /obj/machinery/reagent_refinery/reactor))
 		// Check gas temp for refinery
@@ -80,8 +80,8 @@
 			return
 		// Special handling for this
 		if(istype(holder.my_atom,/obj/machinery/portable_atmospherics/powered/reagent_distillery))
-			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = holder.my_atom
-			RD.current_temp += temp_shift
+			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/reagent_distillery = holder.my_atom
+			reagent_distillery.current_temp += temp_shift
 			return
 		// Change gas temps
 		if(!GM)

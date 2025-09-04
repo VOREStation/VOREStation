@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/medical1
 	name = "medicine closet"
 	desc = "Filled with medical junk."
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 	closet_appearance = /decl/closet_appearance/secure_closet/medical/alt
 
 	starts_with = list(
@@ -16,7 +16,7 @@
 /obj/structure/closet/secure_closet/medical2
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
-	req_access = list(access_surgery)
+	req_access = list(ACCESS_SURGERY)
 	closet_appearance = /decl/closet_appearance/secure_closet/medical
 
 	starts_with = list(
@@ -26,7 +26,7 @@
 
 /obj/structure/closet/secure_closet/medical3
 	name = "medical doctor's locker"
-	req_access = list(access_medical_equip)
+	req_access = list(ACCESS_MEDICAL_EQUIP)
 	closet_appearance = /decl/closet_appearance/secure_closet/medical/doctor
 
 	starts_with = list(
@@ -94,7 +94,7 @@
 /obj/structure/closet/secure_closet/paramedic
 	name = "paramedic locker"
 	desc = "Supplies for a first responder."
-	req_access = list(access_medical_equip)
+	req_access = list(ACCESS_MEDICAL_EQUIP)
 	closet_appearance = /decl/closet_appearance/secure_closet/medical/paramedic
 
 	starts_with = list(
@@ -126,9 +126,9 @@
 		/obj/item/clothing/accessory/storage/white_vest,
 		/obj/item/taperoll/medical)
 
-/obj/structure/closet/secure_closet/CMO
+/obj/structure/closet/secure_closet/chief_medical_officer
 	name = "chief medical officer's locker"
-	req_access = list(access_cmo)
+	req_access = list(ACCESS_CMO)
 	closet_appearance = /decl/closet_appearance/secure_closet/cmo
 
 	starts_with = list(
@@ -165,7 +165,7 @@
 		/obj/item/storage/belt/medical,
 		/obj/item/personal_shield_generator/belt/medical/loaded)
 
-/obj/structure/closet/secure_closet/CMO/Initialize(mapload)
+/obj/structure/closet/secure_closet/chief_medical_officer/Initialize(mapload)
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack/medic
 	else
@@ -193,7 +193,7 @@
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control closet"
-	req_access = list(access_surgery)
+	req_access = list(ACCESS_SURGERY)
 
 	starts_with = list(
 		/obj/item/assembly/signaler,
@@ -203,7 +203,7 @@
 /obj/structure/closet/secure_closet/chemical
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
-	req_access = list(access_chemistry)
+	req_access = list(ACCESS_CHEMISTRY)
 	closet_appearance = /decl/closet_appearance/secure_closet/medical/chemistry
 
 	starts_with = list(
@@ -220,7 +220,7 @@
 /obj/structure/closet/secure_closet/psych
 	name = "psychiatric cabinet"
 	desc = "Store psychology tools and medicines in here."
-	req_access = list(access_psychiatrist)
+	req_access = list(ACCESS_PSYCHIATRIST)
 	closet_appearance = /decl/closet_appearance/cabinet/secure
 
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
@@ -251,7 +251,7 @@
 	density = FALSE
 	wall_mounted = 1
 	store_mobs = 0
-	req_access = list(access_medical_equip)
+	req_access = list(ACCESS_MEDICAL_EQUIP)
 	closet_appearance = /decl/closet_appearance/wall/medical
 
 /obj/structure/closet/secure_closet/medical_wall/pills
@@ -267,7 +267,7 @@
 /obj/structure/closet/secure_closet/medical_wall/anesthetics
 	name = "anesthetics wall closet"
 	desc = "Used to knock people out."
-	req_access = list(access_surgery)
+	req_access = list(ACCESS_SURGERY)
 
 	starts_with = list(
 		/obj/item/tank/anesthetic = 3,

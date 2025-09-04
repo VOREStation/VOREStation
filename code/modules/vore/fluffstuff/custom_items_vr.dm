@@ -878,7 +878,7 @@
 	icon_state = "centcom"
 	registered_name = "Amy Lessen"
 	assignment = "Xenobiology Director"
-	access = list(access_cent_general,access_cent_thunder,access_cent_medical,access_cent_living,access_cent_storage,access_cent_teleporter,access_research,access_xenobiology,access_maint_tunnels,access_xenoarch,access_robotics,access_tox_storage,access_tox) //Yes, this looks awful. I tried calling both central and resarch access but it didn't work.
+	access = list(ACCESS_CENT_GENERAL,ACCESS_CENT_THUNDER,ACCESS_CENT_MEDICAL,ACCESS_CENT_LIVING,ACCESS_CENT_STORAGE,ACCESS_CENT_TELEPORTER,ACCESS_RESEARCH,ACCESS_XENOBIOLOGY,ACCESS_MAINT_TUNNELS,ACCESS_XENOARCH,ACCESS_ROBOTICS,ACCESS_TOX_STORAGE,ACCESS_TOX) //Yes, this looks awful. I tried calling both central and resarch access but it didn't work.
 	age = 39
 	blood_type = "O-"
 	sex = "Female"
