@@ -585,8 +585,8 @@
 	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 
 	var/inhaling
-	var/poison_toxin // Outpost 21 addition - Methane
-	var/poison_methane // Outpost 21 addition - Methane
+	var/poison_toxin
+	var/poison_methane
 	var/exhaling
 
 	var/breath_type
