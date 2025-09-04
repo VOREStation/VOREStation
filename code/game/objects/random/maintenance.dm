@@ -38,7 +38,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/cell/high,
 				prob(2);/obj/item/cell/super,
 				prob(5);/obj/random/cigarettes,
-				prob(3);/obj/item/clothing/mask/gas,
+				prob(3);/obj/item/clothing/mask/gas/clear,
 				prob(2);/obj/item/clothing/mask/gas/half,
 				prob(4);/obj/item/clothing/mask/breath,
 				prob(2);/obj/item/reagent_containers/glass/rag,
