@@ -1,69 +1,4 @@
-
-/*
-Frequency range: 1200 to 1600
-Radiochat range: 1441 to 1489 (most devices refuse to be tune to other frequency, even during mapmaking)
-Radio:
-1459 - standard radio chat
-1351 - Science
-1353 - Command
-1355 - Medical
-1357 - Engineering
-1359 - Security
-1341 - deathsquad
-1443 - Confession Intercom
-1347 - Cargo techs
-1349 - Service people
-Devices:
-1451 - tracking implant
-1457 - RSD default
-On the map:
-1311 for prison shuttle console (in fact, it is not used)
-1433 for engine components
-1435 for status displays
-1437 for atmospherics/fire alerts
-1439 for air pumps, air scrubbers, atmo control
-1441 for atmospherics - supply tanks
-1443 for atmospherics - distribution loop/mixed air tank
-1445 for bot nav beacons
-1447 for mulebot, secbot and ed209 control
-1449 for airlock controls, electropack, magnets
-1451 for toxin lab access
-1453 for engineering access
-1455 for AI access
-*/
-
-var/const/RADIO_LOW_FREQ	= 1200
-var/const/PUBLIC_LOW_FREQ	= 1441
-var/const/PUBLIC_HIGH_FREQ	= 1489
-var/const/RADIO_HIGH_FREQ	= 1600
-
-var/const/BOT_FREQ	= 1447
-var/const/COMM_FREQ = 1353
-var/const/ERT_FREQ	= 1345
-var/const/AI_FREQ	= 1343
-var/const/DTH_FREQ	= 1341
-var/const/SYND_FREQ = 1213
-var/const/RAID_FREQ	= 1277
-var/const/ENT_FREQ	= 1461 //entertainment frequency. This is not a diona exclusive frequency.
-
-// department channels
-var/const/PUB_FREQ = 1459
-var/const/SEC_FREQ = 1359
-var/const/ENG_FREQ = 1357
-var/const/MED_FREQ = 1355
-var/const/SCI_FREQ = 1351
-var/const/SRV_FREQ = 1349
-var/const/SUP_FREQ = 1347
-var/const/EXP_FREQ = 1361
-
-// internal department channels
-var/const/MED_I_FREQ = 1485
-var/const/SEC_I_FREQ = 1475
-
-var/const/TALON_FREQ = 1363 //VOREStation Add
-var/const/CSN_FREQ = 1365 //VOREStation Add
-
-var/list/radiochannels = list(
+GLOBAL_LIST_INIT(radiochannels, list(
 	CHANNEL_COMMON			= PUB_FREQ,
 	CHANNEL_SCIENCE			= SCI_FREQ,
 	CHANNEL_COMMAND			= COMM_FREQ,
@@ -83,7 +18,7 @@ var/list/radiochannels = list(
 	CHANNEL_SECURITY_1		= SEC_I_FREQ,
 	CHANNEL_TALON			= TALON_FREQ, //VOREStation Add
 	CHANNEL_CASINO			= CSN_FREQ,
-)
+))
 
 // Hey, if anyone ever needs to update tgui/packages/tgui/constants.js with new radio channels
 // I've kept this around just for you.
@@ -92,8 +27,8 @@ var/list/radiochannels = list(
 	set category = "Generate TGUI Radio Constants"
 	var/list/channel_info = list()
 	for(var/i in RADIO_LOW_FREQ to RADIO_HIGH_FREQ)
-		for(var/key in radiochannels)
-			if(i == radiochannels[key])
+		for(var/key in GLOB.radiochannels)
+			if(i == GLOB.radiochannels[key])
 				channel_info.Add(list(list("name" = key, "freq" = i, "color" = frequency_span_class(i))))
 	for(var/list/channel in channel_info)
 		switch(channel["color"])
@@ -164,21 +99,3 @@ var/list/OFFMAP_FREQS = list(TALON_FREQ, CSN_FREQ) //VOREStation Add
 		return "expradio"
 	//VOREStation Add End
 	return "radio"
-
-/* filters */
-//When devices register with the radio controller, they might register under a certain filter.
-//Other devices can then choose to send signals to only those devices that belong to a particular filter.
-//This is done for performance, so we don't send signals to lots of machines unnecessarily.
-
-//This filter is special because devices belonging to default also recieve signals sent to any other filter.
-var/const/RADIO_DEFAULT = "radio_default"
-
-var/const/RADIO_TO_AIRALARM = "radio_airalarm" //air alarms
-var/const/RADIO_FROM_AIRALARM = "radio_airalarm_rcvr" //devices interested in recieving signals from air alarms
-var/const/RADIO_CHAT = "radio_telecoms"
-var/const/RADIO_ATMOSIA = "radio_atmos"
-var/const/RADIO_NAVBEACONS = "radio_navbeacon"
-var/const/RADIO_AIRLOCK = "radio_airlock"
-var/const/RADIO_SECBOT = "radio_secbot"
-var/const/RADIO_MULEBOT = "radio_mulebot"
-var/const/RADIO_MAGNETS = "radio_magnet"

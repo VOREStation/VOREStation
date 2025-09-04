@@ -453,7 +453,7 @@
 			return TRUE
 		if("rename")
 			if(owner)
-				var/raw_name = tgui_input_text(ui.user, "Choose the a name:", "Sleeve Name")
+				var/raw_name = tgui_input_text(ui.user, "Choose the a name:", "Sleeve Name", encode = FALSE)
 				if(!isnull(raw_name) && can_change(owner, APPEARANCE_RACE))
 					var/new_name = sanitize_name(raw_name, owner.species, FALSE) // can't edit synths
 					if(new_name)

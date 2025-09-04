@@ -98,16 +98,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
-/datum/design_techweb/board/smart_centrifuge
-	name = "Smart Centrifuge"
-	id = "smart_centrifuge"
-	// req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1, TECH_MATERIAL = 2)
-	build_path = /obj/item/circuitboard/smart_centrifuge
-	category = list(
-		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
-
 /datum/design_techweb/board/pump_relay
 	name = "Pump Relay"
 	id = "pump_relay"

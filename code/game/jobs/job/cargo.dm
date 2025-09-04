@@ -16,8 +16,8 @@
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#9b633e"
 	economic_modifier = 5
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station, access_RC_announce)
-	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station, access_RC_announce)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_RC_ANNOUNCE)
+	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_RC_ANNOUNCE)
 	banned_job_species = list(FBP_DIGITAL, SPECIES_PROMETHEAN)
 
 	ideal_character_age = 40
@@ -54,8 +54,8 @@
 	pto_type = PTO_CARGO
 	supervisors = "the " + JOB_QUARTERMASTER + " and the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#7a4f33"
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
-	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
 	job_description = "A " + JOB_CARGO_TECHNICIAN + " fills and delivers cargo orders. They are encouraged to return delivered crates to the Cargo Shuttle, \
@@ -101,8 +101,8 @@
 	supervisors = "the " + JOB_QUARTERMASTER + " and the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#7a4f33"
 	economic_modifier = 5
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
-	minimal_access = list(access_mining, access_mining_station, access_mailsorting)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining
 	job_description = "A " + JOB_SHAFT_MINER + " mines and processes minerals to be delivered to departments that need them."

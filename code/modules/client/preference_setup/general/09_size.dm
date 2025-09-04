@@ -10,7 +10,7 @@
 	var/weight_gain = 100	// Weight gain rate.
 	var/weight_loss = 50	// Weight loss rate.
 	var/fuzzy = 0			// Preference toggle for sharp/fuzzy icon. Default sharp.
-	var/offset_override = FALSE
+	var/offset_override = TRUE
 	var/voice_freq = 42500
 	var/voice_sound = "beep-boop"
 	var/custom_speech_bubble = "default"

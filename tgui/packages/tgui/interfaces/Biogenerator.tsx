@@ -28,7 +28,7 @@ type Data = {
 };
 
 const sortTypes = {
-  Alphabetical: (a: sortable, b: sortable) => a.name > b.name,
+  Alphabetical: (a: sortable, b: sortable) => a.name.localeCompare(b.name),
   'By availability': (a: sortable, b: sortable) =>
     -(a.affordable - b.affordable),
   'By price': (a: sortable, b: sortable) => a.price - b.price,
