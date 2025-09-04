@@ -9,7 +9,7 @@
 		/obj/item/clothing/shoes/white,
 		/obj/item/radio/headset/headset_sci,
 		/obj/item/tank/air,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
 		/obj/item/clothing/shoes/boots/winter/science)
 
@@ -48,7 +48,7 @@
 		/obj/item/radio/headset/alt/heads/rd,
 		/obj/item/radio/headset/earbud/heads/rd,
 		/obj/item/tank/air,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/flash,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science/rd,

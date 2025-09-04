@@ -446,7 +446,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/clamp,
 		/obj/item/radio/headset/talon,
 		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/taperoll/atmos,
 		/obj/item/tank/emergency/oxygen/engi,
 		/obj/item/clothing/head/helmet/space/void/refurb/engineering/talon,

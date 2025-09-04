@@ -4651,12 +4651,12 @@
 	dir = 4
 	},
 /obj/structure/table/rack/shelf/steel,
-/obj/item/clothing/mask/gas{
+/obj/item/clothing/mask/gas/clear{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas{
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -15248,9 +15248,9 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/gps/command,
 /obj/item/gps/command,
 /obj/item/gps/command,
@@ -17316,14 +17316,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "aEu" = (
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/random/mre,
 /obj/random/mre,
 /obj/random/mre,
 /obj/random/mre,
 /obj/random/mre,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/mask/gas,
 /obj/structure/closet/walllocker_double{
@@ -23008,7 +23008,7 @@
 	},
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/tank/oxygen,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/extinguisher,
 /obj/item/clothing/head/hardhat/red,
 /obj/item/clothing/glasses/meson,
