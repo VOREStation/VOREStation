@@ -278,6 +278,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 /turf/simulated/shuttle/wall/voidcraft/survival/hard_corner
 	hard_corner = 1
+	icon_state = "void-hc"
 
 //Doors
 /obj/machinery/door/airlock/voidcraft/survival_pod
