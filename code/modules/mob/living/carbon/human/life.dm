@@ -1340,7 +1340,7 @@
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 					if(client || sleeping > 3)
 						handle_sleeping()
-				if(prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client )
+				if(prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client)
 					emote("snore")
 		//CONSCIOUS
 		else
