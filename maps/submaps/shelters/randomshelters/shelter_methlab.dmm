@@ -13,6 +13,10 @@
 /obj/structure/closet/wardrobe/chemistry_white,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/survivalpod/redspace)
+"c" = (
+/mob/living/simple_mob/vore/aggressive/corrupthound,
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/survivalpod/redspace)
 "d" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/voidcraft/survival_pod,
@@ -178,7 +182,7 @@ f
 (4,1,1) = {"
 j
 q
-U
+c
 U
 U
 T
