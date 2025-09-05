@@ -246,6 +246,11 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 23
+	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/survivalpod)
 "O" = (
@@ -262,14 +267,24 @@
 /obj/structure/sign/mining/survival,
 /turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
 /area/survivalpod)
+"R" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"S" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/obj/structure/fans/tiny,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
 
 (1,1,1) = {"
 a
 e
-p
+S
 e
 c
-e
+S
 C
 e
 C
@@ -377,7 +392,7 @@ y
 E
 H
 c
-E
+R
 c
 "}
 (10,1,1) = {"

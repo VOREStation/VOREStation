@@ -29,7 +29,7 @@
 /area/survivalpod)
 "g" = (
 /obj/structure/fans/tiny,
-/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
 /obj/effect/floor_decal/industrial/danger/full,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -472,6 +472,11 @@
 /obj/item/clothing/mask/breath,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
+"V" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/obj/effect/floor_decal/industrial/hatch,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
 "Y" = (
 /obj/structure/sign/mining/survival{
 	dir = 8
@@ -527,7 +532,7 @@ c
 I
 M
 c
-u
+V
 c
 Q
 "}

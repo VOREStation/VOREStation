@@ -75,6 +75,7 @@
 	base_turf = /turf/simulated/floor/plating/virgo2
 	requires_power = TRUE
 	dynamic_lighting = TRUE
+	flags = AREA_BLOCK_INSTANT_BUILDING
 //	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/argitoth.ogg', 'sound/ambience/tension/burning_terror.ogg')
 
 /area/offmap/aerostat/inside
@@ -138,9 +139,12 @@
 /area/offmap/aerostat/inside/northchamb
 	name = "North Chamber"
 	icon_state = "orablacir"
+	flags = 0 // To allow shelter capsules to activate here specifically
+
 /area/offmap/aerostat/inside/southchamb
 	name = "South Chamber"
 	icon_state = "orablacir"
+	flags = 0 // To allow shelter capsules to activate here specifically
 
 /area/offmap/aerostat/inside/drillstorage
 	name = "Drill Storage"
@@ -153,6 +157,8 @@
 /area/offmap/aerostat/inside/lobby
 	name = "Lobby"
 	icon_state = "orablacir"
+	flags = 0 // To allow shelter capsules to activate here specifically
+
 /area/offmap/aerostat/inside/xenobiolab
 	name = "Xenobiology Lab"
 	icon_state = "orablacir"

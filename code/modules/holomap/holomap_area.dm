@@ -7,6 +7,7 @@
 
 /area/rnd
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
+	flags = AREA_BLOCK_INSTANT_BUILDING
 /area/outpost/research
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 /area/server
@@ -23,11 +24,13 @@
 
 /area/security
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
+	flags = AREA_BLOCK_INSTANT_BUILDING
 /area/tether/surfacebase/security
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/medical
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
+	flags = AREA_BLOCK_INSTANT_BUILDING
 /area/tether/surfacebase/medical
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
@@ -47,6 +50,7 @@
 
 /area/hallway
 	holomap_color = HOLOMAP_AREACOLOR_HALLWAYS
+	flags = AREA_BLOCK_INSTANT_BUILDING
 /area/bridge/hallway
 	holomap_color = HOLOMAP_AREACOLOR_HALLWAYS
 

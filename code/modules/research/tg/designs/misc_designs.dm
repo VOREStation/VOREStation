@@ -144,3 +144,87 @@
 		RND_CATEGORY_EQUIPMENT
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design_techweb/shelter_capsule
+	name = "Bluespace Shelter Capsule (5x5)"
+	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
+	id = "shelter_capsule"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 25000, MAT_GLASS = 25000, MAT_TITANIUM = 2500, MAT_DURASTEEL = 1000, MAT_DIAMOND = 200, MAT_URANIUM = 500)
+	build_path = /obj/item/survivalcapsule
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/shelter_capsule_luxury
+	name = "Bluespace Shelter Capsule - Luxury (7x7)"
+	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
+	id = "shelter_capsule_luxury"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 35000, MAT_GLASS = 35000, MAT_TITANIUM = 5000, MAT_DURASTEEL = 2500, MAT_DIAMOND = 500, MAT_URANIUM = 1000)
+	build_path = /obj/item/survivalcapsule/luxury
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/shelter_capsule_sauna
+	name = "Bluespace Shelter Capsule - Sauna (7x7)"
+	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
+	id = "shelter_capsule_sauna"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 40000, MAT_GLASS = 40000, MAT_TITANIUM = 5000, MAT_DURASTEEL = 5000, MAT_DIAMOND = 500, MAT_URANIUM = 1000)
+	build_path = /obj/item/survivalcapsule/sauna
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/shelter_capsule_recroom
+	name = "Bluespace Shelter Capsule - Rec Room + Gaming Table (9x9)"
+	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
+	id = "shelter_capsule_recroom"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 40000, MAT_GLASS = 40000, MAT_TITANIUM = 5000, MAT_DURASTEEL = 2500, MAT_DIAMOND = 500, MAT_URANIUM = 1000)
+	build_path = /obj/item/survivalcapsule/recroom
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/shelter_capsule_luxurybar
+	name = "Bluespace Shelter Capsule - Luxury Bar (11x11)"
+	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
+	id = "shelter_capsule_luxurybar"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 50000, MAT_GLASS = 50000, MAT_TITANIUM = 6000, MAT_DURASTEEL = 3000, MAT_DIAMOND = 750, MAT_URANIUM = 1500) // These are 11x11 rooms in a pocket. They NEED to be expensive!
+	build_path = /obj/item/survivalcapsule/luxurybar
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/shelter_capsule_luxurycabin
+	name = "Bluespace Shelter Capsule - Luxury Cabin (11x11)"
+	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
+	id = "shelter_capsule_luxurycabin"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 50000, MAT_GLASS = 50000, MAT_TITANIUM = 6000, MAT_DURASTEEL = 3000, MAT_DIAMOND = 750, MAT_URANIUM = 1500) // These are 11x11 rooms in a pocket. They NEED to be expensive!
+	build_path = /obj/item/survivalcapsule/luxurycabin
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/shelter_capsule_cafe
+	name = "Bluespace Shelter Capsule - Cafe (11x11)"
+	desc = "A capsule filled with pre-programmed nanites that can generate a small, fully atmosphere-protected shelter in seconds. Do not put in mouth."
+	id = "shelter_capsule_cafe"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 50000, MAT_GLASS = 50000, MAT_TITANIUM = 6000, MAT_DURASTEEL = 3000, MAT_DIAMOND = 750, MAT_URANIUM = 1500) // These are 11x11 rooms in a pocket. They NEED to be expensive!
+	build_path = /obj/item/survivalcapsule/cafe
+	category = list(
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO

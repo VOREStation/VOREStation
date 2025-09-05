@@ -12,7 +12,8 @@
 // the modifier, but if you're in one of these areas, you'll keep the modifier until you leave.
 var/static/list/redspace_areas = list (
 	/area/redspace_abduction,
-	/area/redgate
+	/area/redgate,
+	/area/survivalpod/redspace // Redspace shelters effectively pull a bit of redspace into realspace, so
 )
 
 /datum/modifier/redspace_drain
