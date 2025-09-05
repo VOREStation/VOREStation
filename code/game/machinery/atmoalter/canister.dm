@@ -63,6 +63,12 @@
 	canister_color = "black"
 	can_label = 0
 
+/obj/machinery/portable_atmospherics/canister/methane
+	name = "Canister: \[CH4\]"
+	icon_state = "green"
+	canister_color = "green"
+	can_label = 0
+
 /obj/machinery/portable_atmospherics/canister/air
 	name = "Canister \[Air\]"
 	icon_state = "grey"
@@ -97,6 +103,10 @@
 	icon_state = "redws"
 	canister_color = "redws"
 
+/obj/machinery/portable_atmospherics/canister/empty/methane
+	name = "Canister \[CH4\]"
+	icon_state = "green"
+	canister_color = "green"
 
 
 
@@ -433,6 +443,10 @@ update_flag
 	air_contents.adjust_gas(GAS_CO2, MolesForPressure())
 	update_icon()
 
+/obj/machinery/portable_atmospherics/canister/methane/Initialize(mapload)
+	. = ..()
+	air_contents.adjust_gas(GAS_CH4, MolesForPressure())
+	update_icon()
 
 /obj/machinery/portable_atmospherics/canister/air/Initialize(mapload)
 	. = ..()
