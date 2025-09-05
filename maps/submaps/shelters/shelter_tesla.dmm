@@ -50,10 +50,7 @@
 /area/survivalpod)
 "hG" = (
 /obj/machinery/power/emitter{
-	anchored = 1;
-	dir = 1;
-	icon_state = "emitter1";
-	state = 1
+	dir = 1
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -73,7 +70,6 @@
 	icon_state = "coil1"
 	},
 /obj/structure/cable/yellow{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/light/small{
@@ -126,15 +122,12 @@
 /area/survivalpod)
 "sA" = (
 /obj/structure/cable/yellow{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/structure/cable/yellow{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/structure/cable/yellow{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/structure/cable/yellow,
@@ -167,7 +160,6 @@
 /area/survivalpod)
 "vN" = (
 /obj/structure/cable/yellow{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
@@ -246,7 +238,6 @@
 	icon_state = "coil1"
 	},
 /obj/structure/cable/yellow{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/light/small,
@@ -314,7 +305,6 @@
 /area/survivalpod)
 "Nr" = (
 /obj/structure/cable/yellow{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
@@ -341,7 +331,6 @@
 	icon_state = "coil1"
 	},
 /obj/structure/cable/yellow{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/structure/cable/yellow{
@@ -421,10 +410,7 @@
 /area/survivalpod)
 "YO" = (
 /obj/machinery/power/emitter{
-	anchored = 1;
-	dir = 1;
-	icon_state = "emitter1";
-	state = 1
+	dir = 1
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
