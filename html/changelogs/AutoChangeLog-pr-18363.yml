@@ -1,0 +1,17 @@
+author: "Will"
+delete-after: True
+changes:
+  - rscadd: "Methane atmospheric gas"
+  - rscadd: "Methane tanks, canisters, emergency tanks"
+  - rscadd: "Gasleak events now can pick methane"
+  - rscadd: "xenoflora plants can require and make methane"
+  - rscadd: "circuit programmer gas sensors can detect methane"
+  - rscadd: "methane breather trait"
+  - rscadd: "methane gas distilling reaction that produces sulfur"
+  - rscadd: "methane sign for atmos"
+  - rscadd: "methane tank on-mob sprites for human and teshari"
+  - code_imp: "omni atmo devices use  ATM_LASTGAS instead of a hardcoded gas"
+  - code_imp: "nitrous oxide default turf atmo var added, so it behaves like all other round start gasses"
+  - refactor: "Atmo gasses use GASNAME_ defines instead of raw strings when used in lists"
+  - refactor: "pda, pai, and communicator gas scanners now use a unified global proc get_gas_mixture_default_scan_data() to get their data and format it"
+  - bugfix: "nitrous oxide is now weighed when checking if the gasses in a zone are different"
