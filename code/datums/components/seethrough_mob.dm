@@ -92,7 +92,7 @@
 /datum/component/seethrough_mob/proc/untrick_mob()
 	var/mob/fool = parent
 	animate(trickery_image, alpha = 255, time = animation_time)
-	RegisterSignal(fool, COMSIG_ATOM_DIR_CHANGE)
++ UnregisterSignal(fool, COMSIG_ATOM_DIR_CHANGE)
 	UnregisterSignal(fool, COMSIG_MOB_LOGOUT)
 
 	//after playing the fade-in animation, remove the image and the trick atom
