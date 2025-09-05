@@ -35,7 +35,7 @@
 	..()
 	if(cheater)
 		if(!loaded)
-			var/to_weight = tgui_input_number(user, "What should the [name] be weighted towards?","Set the desired result", 1, 6, 1)
+			var/to_weight = tgui_input_number(user, "What should the [name] be weighted towards?","Set the desired result", 1, sides, 1)
 			if(isnull(to_weight) || (to_weight < 1) || (to_weight > sides) ) //You must input a number higher than 0 and no greater than the number of sides
 				return 0
 			else
@@ -114,6 +114,33 @@
 		user.visible_message(span_notice("[user] has thrown [src]. It lands on [result]. [comment]"), \
 								span_notice("You throw [src]. It lands on a [result]. [comment]"), \
 								span_notice("You hear [src] landing on a [result]. [comment]"))
+
+/obj/item/dice/verb/set_dice_verb()
+	set category = "Object"
+	set name = "Set Face"
+	set desc = "Turn the dice to a specific face."
+	set src in view(1)
+
+	var/mob/living/carbon/user = usr
+	if(!istype(user))
+		return
+
+	set_dice(user)
+
+/obj/item/dice/proc/set_dice(mob/user)
+	if(user.stat || !Adjacent(user))
+		return
+	var/to_value = tgui_input_number(user, "What face should \the [src] be turned to?","Set die face", 1, sides, 1)
+	if(!to_value)
+		return
+
+	result = to_value
+	icon_state = "[name][result]"
+	user.visible_message(span_notice("\The [user] turned \the [src] to the face reading [result] manually."))
+
+/obj/item/dice/CtrlClick(mob/user)
+	set_dice(user)
+
 
 /*
  * Dice packs

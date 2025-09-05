@@ -739,6 +739,9 @@
 		var/obj/item/I = locate(href_list["lookitem_desc_only"])
 		if(!I)
 			return
+		if(istype(I,/obj/item/hand))
+			to_chat(usr,span_warning("You can't see the card faces from here."))
+			return
 		usr.examinate(I, 1)
 
 	if (href_list["lookmob"])
