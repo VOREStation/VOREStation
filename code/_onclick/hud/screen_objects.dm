@@ -409,6 +409,12 @@
 											else
 												contents.Add(0)
 
+										// Grunts rejoice!
+										if (GAS_CH4)
+											if(t.air_contents.gas[GAS_CH4] && !t.air_contents.gas[GAS_O2])
+												contents.Add(t.air_contents.gas[GAS_CH4])
+											else
+												contents.Add(0)
 
 								else
 									//no tank so we set contents to 0
