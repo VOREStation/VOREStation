@@ -163,6 +163,14 @@
 	description = "(5x5) South-east quadrant."
 	mappath = "maps/submaps/shelters/shelter_loss_4.dmm"
 
+// EXTREMELY DANGEROUS ADMIN-ONLY SHELTERS I BEG YOU DO NOT SPAWN THESE EXCEPT FOR A DISASTROUS BIT
+
+/datum/map_template/shelter/tesla
+	name = "Shelter Tesla"
+	description = "(11x11) A whole tesla engine setup, complete with a fully charged SMES cell ready to power the emitters. Using this is probably an exceptionally terrible idea."
+	shelter_id = "shelter_tesla"
+	mappath = "maps/submaps/shelters/shelter_tesla.dmm"
+
 //Redspace capsule shelters - here be weird shit.
 
 /datum/map_template/shelter/nerd_dungeon_evil

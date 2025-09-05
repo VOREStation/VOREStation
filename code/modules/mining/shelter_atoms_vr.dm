@@ -270,6 +270,18 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	ret += "This capsule utilizes experimental technology to materialize copies of contents within redspace in realspace. Contents of this capsule are therefore prone to change upon activation, and cannot be guaranteed to remain the same as when previously used. While efforts have been made to ensure likely safety when using these capsules, due to the unpredictable nature of redspace, that safety cannot be fully guaranteed. Use at your own risk!"
 	return ret
 
+// TERRIBLE AWFUL CAPSULE DO NOT MAKE THIS PLAYER ACCESSIBLE, I made this for a BIT -Ryumi
+/obj/item/survivalcapsule/tesla
+	name = "tesla in a shelter capsule"
+	desc = "This is a terrible, terrible idea."
+	template_id = "shelter_tesla"
+	admin_log_verb = "activated a TESLA capsule"
+
+/obj/item/survivalcapsule/tesla/get_template_info()
+	var/ret = ..()
+	ret += ("\n" + span_boldwarning("Do not."))
+	return ret
+
 //Pod objects
 //Walls
 /turf/simulated/shuttle/wall/voidcraft/survival
