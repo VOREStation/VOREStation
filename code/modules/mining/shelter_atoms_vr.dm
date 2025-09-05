@@ -266,8 +266,8 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	return pick(pickweight(possible_shelter_ids))
 
 /obj/item/survivalcapsule/randomized/get_template_info()
-	var/ret = "It has a chaotic redspace bubble inside. The label reads:"
-	ret += "This capsule utilizes experimental technology to materialize copies of contents within redspace in realspace. Contents of this capsule are therefore prone to change upon activation, and cannot be guaranteed to remain the same as when previously used. While efforts have been made to ensure likely safety when using these capsules, due to the unpredictable nature of redspace, that safety cannot be fully guaranteed. Use at your own risk!"
+	var/ret = "It has a chaotic redspace bubble inside. The label reads:\n"
+	ret += "This capsule utilizes experimental technology to replicate copies of redspace pockets within realspace. " + span_underline("The contents of this capsule are prone to change upon activation") + ", and are highly unlikely to remain the same as when previously used. Efforts have been made to ensure *likely* safety when using these capsules. However, due to the unpredictable nature of redspace, that safety cannot be fully guaranteed. " + span_underline("Use at your own risk!")
 	return ret
 
 // TERRIBLE AWFUL CAPSULE DO NOT MAKE THIS PLAYER ACCESSIBLE, I made this for a BIT -Ryumi
