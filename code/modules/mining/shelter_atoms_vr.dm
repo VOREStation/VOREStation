@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	if(!template)
 		get_template()
 	if(template)
-		ret += "This capsule has the [template.name] stored:"
+		ret += "This capsule has the [template.name] stored:\n"
 		ret += template.description
 	else
 		ret += "This capsule has an unknown template stored."
