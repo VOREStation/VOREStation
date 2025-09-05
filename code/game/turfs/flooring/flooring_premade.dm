@@ -340,11 +340,12 @@
 /turf/simulated/floor/reinforced/n20
 	oxygen = 0
 	nitrogen = 0
+	nitrous_oxide = ATMOSTANK_NITROUSOXIDE
 
-/turf/simulated/floor/reinforced/n20/Initialize(mapload)
-	. = ..()
-	if(!air) make_air()
-	air.adjust_gas(GAS_N2O, ATMOSTANK_NITROUSOXIDE)
+/turf/simulated/floor/reinforced/methane
+	oxygen = 0
+	nitrogen = 0
+	methane = ATMOSTANK_METHANE
 
 /turf/simulated/floor/cult
 	name = "engraved floor"
