@@ -34,13 +34,11 @@ export const CharacterSelector = (props: {
 
   const [searchText, setSearchText] = useState('');
 
-  const filteredData = Object.fromEntries(
-    Array.from(selectedCharacters).map((name) => [name, characterData[name]]),
-  );
-
   const chracterSearch = createSearch(searchText, (name: string) => name);
 
-  const characterNames = Object.keys(characterData).filter(chracterSearch);
+  const characterNames = Object.keys(characterData)
+    .filter(chracterSearch)
+    .sort((a: string, b: string) => a.localeCompare(b));
 
   function toggleCharacter(name: string) {
     onSelectedCharacters((prevSet) => {
