@@ -6979,10 +6979,10 @@
 /area/library)
 "akN" = (
 /obj/structure/closet,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear,
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -29804,7 +29804,7 @@
 "baf" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack/oxygen,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -33808,7 +33808,7 @@
 	dir = 4
 	},
 /obj/random/maintenance/clean,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/topairlock)
@@ -34327,7 +34327,7 @@
 /area/tether/surfacebase/topairlock)
 "biB" = (
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/machinery/light{
