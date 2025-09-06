@@ -7175,6 +7175,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
+"ob" = (
+/obj/machinery/door/airlock/research{
+	name = "Science Outpost Personal Quarters";
+	id_tag = "sci_outpost_dormdoor1"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/breakroom)
 "oc" = (
 /obj/item/radio/intercom{
 	dir = 4;
@@ -7287,7 +7301,8 @@
 /area/rnd/outpost/breakroom)
 "oo" = (
 /obj/machinery/door/airlock/research{
-	name = "Science Outpost Personal Quarters"
+	name = "Science Outpost Personal Quarters";
+	id_tag = "sci_outpost_dormdoor2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -7309,17 +7324,25 @@
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom)
 "oq" = (
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom)
 "or" = (
-/obj/structure/bed,
+/obj/structure/bed/padded,
+/obj/item/bedsheet/purple{
+	pixel_y = 1
+	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom)
 "os" = (
-/obj/structure/window/basic/full,
-/obj/structure/window/basic{
-	dir = 4
+/obj/structure/window/reinforced/polarized/full{
+	id = "sci_outpost_dorms2";
+	name = "Tintable Window"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "sci_outpost_dorms2"
 	},
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
@@ -7343,6 +7366,11 @@
 	},
 /obj/machinery/firealarm{
 	pixel_y = 25
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = -14;
+	id = "sci_outpost_dormdoor1"
 	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom)
@@ -7372,6 +7400,22 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/machinery/button/windowtint{
+	id = "sci_outpost_dorms1";
+	layer = 3.3;
+	name = "Window Tint Control";
+	pixel_x = -6;
+	pixel_y = -23;
+	range = 10
+	},
+/obj/machinery/button/remote/airlock{
+	id = "sci_outpost_dormdoor1";
+	name = "Outpost Quarters Lock";
+	pixel_x = -13;
+	pixel_y = -23;
+	specialfunctions = 4;
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom)
 "oz" = (
@@ -7393,6 +7437,11 @@
 /obj/machinery/firealarm{
 	pixel_y = 25
 	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = -14;
+	id = "sci_outpost_dormdoor2"
+	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom)
 "oB" = (
@@ -7410,6 +7459,19 @@
 /obj/machinery/vending/cigarette{
 	dir = 4
 	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/breakroom)
+"oE" = (
+/obj/structure/window/reinforced/polarized/full{
+	id = "sci_outpost_dorms1";
+	name = "Tintable Window"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "sci_outpost_dorms1"
+	},
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oH" = (
@@ -7489,6 +7551,22 @@
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_y = -24
+	},
+/obj/machinery/button/windowtint{
+	id = "sci_outpost_dorms2";
+	layer = 3.3;
+	name = "Window Tint Control";
+	pixel_x = -6;
+	pixel_y = -23;
+	range = 10
+	},
+/obj/machinery/button/remote/airlock{
+	id = "sci_outpost_dormdoor2";
+	name = "Outpost Quarters Lock";
+	pixel_x = -13;
+	pixel_y = -23;
+	specialfunctions = 4;
+	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom)
@@ -24664,7 +24742,7 @@ hM
 hM
 ks
 ks
-oo
+ob
 ks
 oo
 ks
@@ -25231,8 +25309,8 @@ iV
 jh
 jH
 hM
-os
-os
+oE
+oE
 ks
 os
 os
