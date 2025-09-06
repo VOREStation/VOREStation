@@ -7187,8 +7187,11 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm1)
 "oc" = (
 /obj/item/radio/intercom{
 	dir = 4;
@@ -7311,8 +7314,11 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm2)
 "op" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -7321,20 +7327,39 @@
 	dir = 9
 	},
 /obj/machinery/light,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/button/remote/airlock{
+	id = "sci_outpost_dormdoor1";
+	name = "Outpost Quarters Lock";
+	pixel_x = -13;
+	pixel_y = -23;
+	specialfunctions = 4;
+	dir = 1
+	},
+/obj/machinery/button/windowtint{
+	id = "sci_outpost_dorms1";
+	layer = 3.3;
+	name = "Window Tint Control";
+	pixel_x = -6;
+	pixel_y = -23;
+	range = 10
+	},
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm1)
 "oq" = (
 /obj/structure/bed/double/padded,
 /obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm1)
 "or" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/purple{
 	pixel_y = 1
 	},
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm2)
 "os" = (
 /obj/structure/window/reinforced/polarized/full{
 	id = "sci_outpost_dorms2";
@@ -7347,17 +7372,25 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm2)
 "ot" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm2)
 "ou" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 28
+	},
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm1)
 "ov" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/alarm{
@@ -7373,7 +7406,7 @@
 	id = "sci_outpost_dormdoor1"
 	},
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm1)
 "ow" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -7390,8 +7423,24 @@
 	pixel_x = -22
 	},
 /obj/machinery/light,
+/obj/machinery/button/remote/airlock{
+	id = "sci_outpost_dormdoor2";
+	name = "Outpost Quarters Lock";
+	pixel_x = -13;
+	pixel_y = -23;
+	specialfunctions = 4;
+	dir = 1
+	},
+/obj/machinery/button/windowtint{
+	id = "sci_outpost_dorms2";
+	layer = 3.3;
+	name = "Window Tint Control";
+	pixel_x = -6;
+	pixel_y = -23;
+	range = 10
+	},
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm2)
 "oy" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -7400,24 +7449,15 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/machinery/button/windowtint{
-	id = "sci_outpost_dorms1";
-	layer = 3.3;
-	name = "Window Tint Control";
-	pixel_x = -6;
-	pixel_y = -23;
-	range = 10
+/obj/structure/cable/green{
+	icon_state = "1-8"
 	},
-/obj/machinery/button/remote/airlock{
-	id = "sci_outpost_dormdoor1";
-	name = "Outpost Quarters Lock";
-	pixel_x = -13;
-	pixel_y = -23;
-	specialfunctions = 4;
-	dir = 1
+/obj/structure/privacyswitch{
+	pixel_y = -22;
+	pixel_x = 6
 	},
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm1)
 "oz" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
@@ -7425,8 +7465,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 28
+	},
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm2)
 "oA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -7442,8 +7490,11 @@
 	pixel_x = -14;
 	id = "sci_outpost_dormdoor2"
 	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm2)
 "oB" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/box/donut,
@@ -7472,6 +7523,15 @@
 	},
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/breakroom/quarters/dorm1)
+"oF" = (
+/turf/simulated/wall,
+/area/rnd/outpost/breakroom/quarters/dorm2)
+"oG" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oH" = (
@@ -7515,6 +7575,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oN" = (
@@ -7552,24 +7615,12 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/machinery/button/windowtint{
-	id = "sci_outpost_dorms2";
-	layer = 3.3;
-	name = "Window Tint Control";
-	pixel_x = -6;
-	pixel_y = -23;
-	range = 10
-	},
-/obj/machinery/button/remote/airlock{
-	id = "sci_outpost_dormdoor2";
-	name = "Outpost Quarters Lock";
-	pixel_x = -13;
-	pixel_y = -23;
-	specialfunctions = 4;
-	dir = 1
+/obj/structure/privacyswitch{
+	pixel_y = -22;
+	pixel_x = 6
 	},
 /turf/simulated/floor/wood,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm2)
 "oR" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
@@ -7664,6 +7715,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "pd" = (
@@ -7673,8 +7727,29 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
+"pe" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/breakroom)
+"pf" = (
+/turf/simulated/wall,
+/area/rnd/outpost/breakroom/quarters/dorm1)
+"pg" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/rnd/outpost/breakroom/quarters/dorm1)
 "zg" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/mine/explored;
@@ -24458,9 +24533,9 @@ oK
 oK
 oK
 oK
-oK
+pe
 oW
-on
+oG
 oB
 oU
 ab
@@ -24740,13 +24815,13 @@ hM
 hM
 hM
 hM
-ks
-ks
+pf
+pf
 ob
-ks
+oF
 oo
-ks
-ks
+oF
+oF
 ab
 ab
 ab
@@ -24882,13 +24957,13 @@ jf
 jo
 ji
 mV
-hM
+pf
 ov
 op
-ks
+oF
 oA
 ox
-ks
+oF
 ab
 ab
 ab
@@ -25024,13 +25099,13 @@ iV
 jo
 ji
 jF
-hM
+pf
 ou
 oy
-ks
+oF
 oz
 oQ
-ks
+oF
 ab
 ab
 ab
@@ -25166,13 +25241,13 @@ iV
 jq
 jA
 jG
-hM
-ot
+pf
+pg
 oq
-ks
+oF
 ot
 or
-ks
+oF
 ab
 ab
 ab
@@ -25308,13 +25383,13 @@ iC
 iV
 jh
 jH
-hM
+pf
 oE
 oE
-ks
+oF
 os
 os
-ks
+oF
 ab
 ab
 ab
