@@ -7176,22 +7176,8 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "ob" = (
-/obj/machinery/door/airlock/research{
-	name = "Science Outpost Personal Quarters";
-	id_tag = "sci_outpost_dormdoor1"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom/quarters/dorm1)
+/turf/simulated/wall,
+/area/rnd/outpost/breakroom/quarters/dorm2)
 "oc" = (
 /obj/item/radio/intercom{
 	dir = 4;
@@ -7511,27 +7497,39 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oE" = (
-/obj/structure/window/reinforced/polarized/full{
-	id = "sci_outpost_dorms1";
-	name = "Tintable Window"
-	},
-/obj/structure/window/reinforced/polarized{
-	dir = 4;
-	id = "sci_outpost_dorms1"
-	},
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom/quarters/dorm1)
-"oF" = (
-/turf/simulated/wall,
-/area/rnd/outpost/breakroom/quarters/dorm2)
-"oG" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
+"oF" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/breakroom)
+"oG" = (
+/obj/machinery/door/airlock/research{
+	name = "Science Outpost Personal Quarters";
+	id_tag = "sci_outpost_dormdoor1"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/breakroom/quarters/dorm1)
 "oH" = (
 /obj/structure/table/standard,
 /obj/machinery/light,
@@ -7731,16 +7729,18 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "pe" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/structure/window/reinforced/polarized/full{
+	id = "sci_outpost_dorms1";
+	name = "Tintable Window"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-4"
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "sci_outpost_dorms1"
 	},
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/breakroom/quarters/dorm1)
 "pf" = (
 /turf/simulated/wall,
 /area/rnd/outpost/breakroom/quarters/dorm1)
@@ -24531,9 +24531,9 @@ oK
 oK
 oK
 oK
-pe
+oF
 oW
-oG
+oE
 oB
 oU
 ab
@@ -24815,11 +24815,11 @@ hM
 hM
 pf
 pf
+oG
 ob
-oF
 oo
-oF
-oF
+ob
+ob
 ab
 ab
 ab
@@ -24958,10 +24958,10 @@ mV
 pf
 ov
 op
-oF
+ob
 oA
 ox
-oF
+ob
 ab
 ab
 ab
@@ -25100,10 +25100,10 @@ jF
 pf
 ou
 oy
-oF
+ob
 oz
 oQ
-oF
+ob
 ab
 ab
 ab
@@ -25242,10 +25242,10 @@ jG
 pf
 pg
 oq
-oF
+ob
 ot
 or
-oF
+ob
 ab
 ab
 ab
@@ -25382,12 +25382,12 @@ iV
 jh
 jH
 pf
-oE
-oE
-oF
+pe
+pe
+ob
 os
 os
-oF
+ob
 ab
 ab
 ab
