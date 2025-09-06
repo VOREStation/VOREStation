@@ -19,15 +19,15 @@ export const getCurrentTimestamp = (): string => {
   const year = String(now.getFullYear());
 
   return (
-    ' ' +
+    '_' +
     year +
     '-' +
     month +
     '-' +
     dayofmonth +
-    ' (' +
+    '_(' +
     hours +
-    ' ' +
+    '_' +
     minutes +
     ')'
   );

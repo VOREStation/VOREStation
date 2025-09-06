@@ -18,7 +18,7 @@
 /// Removes characters incompatible with file names.
 #define SANITIZE_FILENAME(text) (GLOB.filename_forbidden_chars.Replace(text, ""))
 
-#define MAX_MESSAGE_CHUNKS 130
+#define MAX_MESSAGE_CHUNKS 1000
 
 #define MAX_TGUI_INPUT (MAX_MESSAGE_CHUNKS * 1024)
 

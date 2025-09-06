@@ -70,13 +70,18 @@ export const downloadPrefs = (extension: string) => {
     );
   }
 
+  const exportPayload = {
+    [mob_name]: {
+      version: db_version,
+      bellies: validBellies,
+      soulcatcher: soulcatcher,
+    },
+  };
+
   if (extension === '.vrdb') {
-    blob = new Blob(
-      [JSON.stringify({ bellies: validBellies, soulcatcher: soulcatcher })],
-      {
-        type: 'application/json',
-      },
-    );
+    blob = new Blob([JSON.stringify(exportPayload)], {
+      type: 'application/json',
+    });
   }
 
   Byond.saveBlob(blob, filename, extension);

@@ -1,41 +1,23 @@
-#define IMPORT_ALL_BELLIES "Import all bellies from VRDB"
-#define IMPORT_ONE_BELLY "Import some bellies from VRDB"
-#define IMPORT_SOULCATCHER "Import Soulcatcher from VRDB"
+/datum/vore_look/import_panel/proc/open_import_panel(mob/user)
+	tgui_interact(user)
 
+/datum/vore_look/import_panel/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "VorePanelImport", "Vore Import Panel")
+		ui.open()
 
-/datum/vore_look/proc/import_belly(mob/host)
-	var/panel_choice = tgui_input_list(host, "Belly Import", "Pick an option", list(IMPORT_ALL_BELLIES, IMPORT_ONE_BELLY, IMPORT_SOULCATCHER))
-	if(!panel_choice) return
-	var/pickSome = FALSE
-	if(panel_choice == IMPORT_ONE_BELLY)
-		pickSome = TRUE
-	var/input_file = input(host,"Please choose a valid VRDB file to import from.","Belly Import") as file
-	var/input_data
-	try
-		input_data = json_decode(file2text(input_file))
-	catch(var/exception/e)
-		tgui_alert_async(host, "The supplied file contains errors: [e]", "Error!")
-		return FALSE
+/datum/vore_look/import_panel/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
 
-	if(panel_choice == IMPORT_SOULCATCHER)
-		if(!islist(input_data["soulcatcher"]))
-			tgui_alert_async(host, "The supplied file was not a valid VRDB >= v0.2 file.", "Error!")
-			return FALSE
+	switch(action)
+		if("import_soulcatcher")
+			import_soulcatcher(host, params["data"])
+		if("import_bellies")
+			import_belly(ui.user, params["data"])
 
-		var/list/soulcatcher_data = input_data["soulcatcher"]
-		var/return_val = import_soulcatcher(host, soulcatcher_data)
-		if(return_val)
-			host.updateVRPanel()
-			unsaved_changes = TRUE
-		return return_val
-
-	if(islist(input_data["bellies"]))
-		input_data = input_data["bellies"]
-
-	if(!islist(input_data))
-		tgui_alert_async(host, "The supplied file was not a valid VRDB file.", "Error!")
-		return FALSE
-
+/datum/vore_look/import_panel/proc/import_belly(mob/host, list/input_data)
 	var/list/valid_names = list()
 	var/list/valid_lists = list()
 	var/list/updated = list()
@@ -55,37 +37,13 @@
 			if(lowertext(B.name) == lowertext(raw_list["name"]))
 				updated += raw_list["name"]
 				break
-		if(!pickSome && length(host.vore_organs)+length(valid_names)-length(updated) >= BELLIES_MAX)
+		if(length(host.vore_organs)+length(valid_names)-length(updated) >= BELLIES_MAX)
 			continue
 		valid_names += raw_list["name"]
 		valid_lists += list(raw_list)
 
 	if(length(valid_names) == 0)
 		tgui_alert_async(host, "The supplied VRDB file does not contain any valid bellies.", "Error!")
-		return FALSE
-
-	if(pickSome)
-		var/list/picked = tgui_input_checkboxes(host, "Belly Import", "Which bellies?", valid_names)
-		if(!LAZYLEN(picked))
-			return
-
-		var/list/trimmed_names = list()
-		var/list/trimmed_lists = list()
-		var/list/trimmed_update = list()
-		for(var/B in valid_lists)
-			var/belly_to_check = B["name"]
-			if(belly_to_check in picked)
-				if(belly_to_check in updated)
-					trimmed_update += belly_to_check
-				if(length(host.vore_organs)+length(trimmed_names)-length(trimmed_update) >= BELLIES_MAX)
-					break
-				trimmed_names += belly_to_check
-				trimmed_lists += list(B)
-		valid_names = trimmed_names
-		valid_lists = trimmed_lists
-		updated = trimmed_update
-
-	if(length(valid_names) == 0)
 		return FALSE
 
 	var/list/alert_msg = list()
@@ -1232,7 +1190,3 @@
 	host.handle_belly_update()
 	host.updateVRPanel()
 	unsaved_changes = TRUE
-
-#undef IMPORT_ALL_BELLIES
-#undef IMPORT_ONE_BELLY
-#undef IMPORT_SOULCATCHER
