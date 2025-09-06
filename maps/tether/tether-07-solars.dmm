@@ -7354,10 +7354,8 @@
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom/quarters/dorm1)
 "or" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet/purple{
-	pixel_y = 1
-	},
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom/quarters/dorm2)
 "os" = (
