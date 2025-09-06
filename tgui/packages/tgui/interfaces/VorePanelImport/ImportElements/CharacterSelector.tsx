@@ -1,13 +1,15 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import {
   Box,
   Button,
   Icon,
+  Input,
   LabeledList,
   Section,
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 import { getCurrentTimestamp } from '../../VorePanelExport/VorePanelExportTimestamp';
 import { CURRENT_VERSION } from '../constants';
 import { importLengthToColor } from '../function';
@@ -29,6 +31,16 @@ export const CharacterSelector = (props: {
     importLength,
     selectedVersions,
   } = props;
+
+  const [searchText, setSearchText] = useState('');
+
+  const filteredData = Object.fromEntries(
+    Array.from(selectedCharacters).map((name) => [name, characterData[name]]),
+  );
+
+  const chracterSearch = createSearch(searchText, (name: string) => name);
+
+  const characterNames = Object.keys(characterData).filter(chracterSearch);
 
   function toggleCharacter(name: string) {
     onSelectedCharacters((prevSet) => {
@@ -85,7 +97,6 @@ export const CharacterSelector = (props: {
       '.vrdb',
     );
   }
-  const characterNames = Object.keys(characterData);
 
   return (
     <Stack fill>
@@ -139,33 +150,46 @@ export const CharacterSelector = (props: {
         </Section>
       </Stack.Item>
       <Stack.Item grow>
-        <Section fill scrollable title="Metadata">
-          <LabeledList>
-            <LabeledList.Item label="Import Length">
-              <Box color={importLengthToColor(importLength)}>
-                {importLength}
-              </Box>
-            </LabeledList.Item>
-
-            <LabeledList.Item label="Versions">
-              {selectedVersions.map((version, index) => (
-                <Fragment key={version}>
-                  <Box
-                    inline
-                    color={
-                      Number.parseFloat(version) < CURRENT_VERSION
-                        ? 'red'
-                        : undefined
-                    }
-                  >
-                    {version}
+        <Stack vertical fill>
+          <Stack.Item>
+            <Section title="Character Search">
+              <Input
+                fluid
+                placeholder="Search..."
+                value={searchText}
+                onChange={setSearchText}
+              />
+            </Section>
+          </Stack.Item>
+          <Stack.Item grow>
+            <Section fill scrollable title="Metadata">
+              <LabeledList>
+                <LabeledList.Item label="Import Length">
+                  <Box color={importLengthToColor(importLength)}>
+                    {importLength}
                   </Box>
-                  {index < selectedVersions.length - 1 && ', '}
-                </Fragment>
-              ))}
-            </LabeledList.Item>
-          </LabeledList>
-        </Section>
+                </LabeledList.Item>
+                <LabeledList.Item label="Versions">
+                  {selectedVersions.map((version, index) => (
+                    <Fragment key={version}>
+                      <Box
+                        inline
+                        color={
+                          Number.parseFloat(version) < CURRENT_VERSION
+                            ? 'red'
+                            : undefined
+                        }
+                      >
+                        {version}
+                      </Box>
+                      {index < selectedVersions.length - 1 && ', '}
+                    </Fragment>
+                  ))}
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+          </Stack.Item>
+        </Stack>
       </Stack.Item>
     </Stack>
   );

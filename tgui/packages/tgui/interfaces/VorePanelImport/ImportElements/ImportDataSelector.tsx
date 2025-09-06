@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 import type { DesiredData } from '../types';
 
 export const ImportDataSelector = (props: {
@@ -18,9 +20,20 @@ export const ImportDataSelector = (props: {
     activeTab,
   } = props;
 
+  const [searchText, setSearchText] = useState('');
+
   const filteredData = Object.fromEntries(
     Array.from(selectedCharacters).map((name) => [name, characterData[name]]),
   );
+
+  const bellySearch = createSearch(
+    searchText,
+    (belly: { name: string }) => belly.name,
+  );
+
+  const belliesToShow = Object.values(
+    filteredData[activeTab]?.bellies ?? [],
+  ).filter(bellySearch);
 
   function toggleBelly(name: string | number | null) {
     const stringValue = String(name);
@@ -59,7 +72,6 @@ export const ImportDataSelector = (props: {
     <Stack fill>
       <Stack.Item grow>
         <Section
-          scrollable
           fill
           title="Bellies"
           buttons={
@@ -84,17 +96,31 @@ export const ImportDataSelector = (props: {
           }
         >
           <Stack fill vertical>
-            {filteredData[activeTab] &&
-              Object.values(filteredData[activeTab].bellies).map((value) => (
-                <Stack.Item key={value.name}>
-                  <Button.Checkbox
-                    checked={selectedBellies.has(String(value.name))}
-                    onClick={() => toggleBelly(value.name)}
-                  >
-                    {value.name}
-                  </Button.Checkbox>
-                </Stack.Item>
-              ))}
+            <Stack.Item>
+              <Input
+                fluid
+                value={searchText}
+                onChange={setSearchText}
+                placeholder="Search bellies..."
+              />
+            </Stack.Item>
+            <Stack.Divider />
+            <Stack.Item grow>
+              <Section fill scrollable>
+                <Stack fill vertical>
+                  {belliesToShow.map((value) => (
+                    <Stack.Item key={value.name}>
+                      <Button.Checkbox
+                        checked={selectedBellies.has(String(value.name))}
+                        onClick={() => toggleBelly(value.name)}
+                      >
+                        {value.name}
+                      </Button.Checkbox>
+                    </Stack.Item>
+                  ))}
+                </Stack>
+              </Section>
+            </Stack.Item>
           </Stack>
         </Section>
       </Stack.Item>
