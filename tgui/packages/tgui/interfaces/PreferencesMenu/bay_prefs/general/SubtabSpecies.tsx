@@ -143,8 +143,8 @@ export const SubtabSpecies = (props: {
                   {viewed_species.name}
                 </Box>
                 <Box>
-                  {/* eslint-disable react/no-danger */}
                   <div
+                    // biome-ignore lint/security/noDangerouslySetInnerHtml: Species
                     dangerouslySetInnerHTML={{ __html: viewed_species.blurb }}
                   />
                 </Box>

@@ -13,9 +13,13 @@
 
 	switch(a_intent)
 		if(I_HELP)
+
 			if(isliving(A))
 				var/mob/living/L = A
 				if(istype(L) && (!has_hands || !L.attempt_to_scoop(src)))
+					if(src.zone_sel.selecting == BP_GROIN)
+						if(src.vore_bellyrub(A))
+							return
 					automatic_custom_emote(VISIBLE_MESSAGE,"[pick(friendly)] \the [A]!", check_stat = TRUE)
 			if(istype(A,/obj/structure/micro_tunnel))	//Allows simplemobs to click on mouse holes, mice should be allowed to go in mouse holes, and other mobs
 				var/obj/structure/micro_tunnel/t = A	//should be allowed to drag the mice out of the mouse holes!

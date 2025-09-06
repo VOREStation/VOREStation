@@ -396,7 +396,7 @@ not carry this around."}, "OOC Warning", list("Take It","Leave It"))
 
 /obj/item/perfect_tele_beacon/stationary
 	name = "stationary translocator beacon"
-	icon = 'icons/obj/radio_vr.dmi'
+	icon = 'icons/obj/radio.dmi'
 	icon_state = "floor_beacon"
 	w_class = ITEMSIZE_HUGE
 	anchored = TRUE

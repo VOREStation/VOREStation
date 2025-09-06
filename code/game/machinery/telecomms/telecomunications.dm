@@ -15,7 +15,7 @@
 
 
 /obj/machinery/telecomms
-	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Add
+	icon = 'icons/obj/stationobjs.dmi'
 	unacidable = TRUE
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
@@ -100,6 +100,11 @@
 
 /obj/machinery/telecomms/proc/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// receive information from linked machinery
+	return
+
+/obj/machinery/telecomms/proc/receive_information_delayed(datum/signal/signal, obj/machinery/telecomms/machine_from)
+	// The second half of receive_information(), called after the slowness delay from its first half.
+	PROTECTED_PROC(TRUE)
 	return
 
 /obj/machinery/telecomms/proc/is_freq_listening(datum/signal/signal)

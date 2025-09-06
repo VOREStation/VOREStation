@@ -1173,9 +1173,7 @@
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/mines)
 "yS" = (
-/obj/structure/closet/crate/mimic/guaranteed{
-	icon = 'icons/obj/closets/chest.dmi'
-	},
+/obj/structure/closet/crate/mimic/guaranteed/chest,
 /turf/simulated/floor/wmarble,
 /area/redgate/fantasy/dungeon)
 "yT" = (

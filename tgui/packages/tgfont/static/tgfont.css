@@ -5,13 +5,14 @@
 
 [class^='tg-'],
 [class*=' tg-'] {
+  /* biome-ignore lint/complexity/noImportantStyles: Needed */
   font-family: 'tgfont' !important;
   font-size: undefined;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+/* biome-ignore-start lint/suspicious/noUselessEscapeInString: Unicode */
 :root {
   --tg-air-tank-slash: '\ea01';
   --tg-air-tank: '\ea02';
@@ -26,6 +27,7 @@
   --tg-sound-plus: '\ea0b';
   --tg-syndicate-logo: '\ea0c';
 }
+/* biome-ignore-end lint/suspicious/noUselessEscapeInString: Unicode  */
 .tg-air-tank-slash::before {
   content: var(--tg-air-tank-slash);
 }

@@ -3,7 +3,6 @@ import { useBackend } from 'tgui/backend';
 import { getGasColor, getGasLabel } from 'tgui/constants';
 import { Window } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { Scrubber, Vent } from './common/AtmosControls';
@@ -110,7 +109,7 @@ const AirAlarmStatus = (props) => {
                   label={getGasLabel(entry.name)}
                   color={status.color}
                 >
-                  {toFixed(entry.value, 2)}
+                  {entry.value.toFixed(2)}
                   {entry.unit}
                 </LabeledList.Item>
               );
@@ -352,7 +351,7 @@ const AirAlarmControlThresholds = (props) => {
                     })
                   }
                 >
-                  {toFixed(setting.selected, 2)}
+                  {setting.selected.toFixed(2)}
                 </Button>
               </td>
             ))}

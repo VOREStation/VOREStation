@@ -7,7 +7,6 @@ import {
   NumberInput,
   Table,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import type { Data } from './types';
 
@@ -28,7 +27,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.rr}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 1,
@@ -45,7 +44,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.gr}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 4,
@@ -62,7 +61,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.br}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 7,
@@ -81,7 +80,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.rg}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 2,
@@ -98,7 +97,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.gg}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 5,
@@ -115,7 +114,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.bg}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 8,
@@ -134,7 +133,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.rb}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 3,
@@ -151,7 +150,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.gb}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 6,
@@ -168,7 +167,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.bb}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 9,
@@ -187,7 +186,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.cr}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 10,
@@ -204,7 +203,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.cg}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 11,
@@ -221,7 +220,7 @@ export const ColorMateMatrix = (props) => {
               maxValue={10}
               step={0.01}
               value={matrixcolors.cb}
-              format={(value: number) => toFixed(value, 2)}
+              format={(value: number) => value.toFixed(2)}
               onChange={(value: number) =>
                 act('set_matrix_color', {
                   color: 12,

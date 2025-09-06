@@ -83,6 +83,13 @@ export const tgui_say_emotes: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const TGUI_ENABLE_SPELLCHECK: FeatureToggle = {
+  name: 'TGUI: Spellcheck',
+  category: 'UI',
+  description: 'Enables spellchecking on TGUI text areas and TGUI Say.',
+  component: CheckboxInput,
+};
+
 export const tgui_say_height: FeatureNumeric = {
   name: 'Say: TGUI Height (Lines)',
   category: 'UI',
@@ -95,4 +102,14 @@ export const tgui_say_width: FeatureNumeric = {
   category: 'UI',
   description: 'The width to show in the tgui say input.',
   component: FeatureSliderInput,
+};
+
+export const windowflashing: FeatureToggle = {
+  name: 'Enable window flashing',
+  category: 'UI',
+  description: `
+    When toggled, some important events will make your game icon flash on your
+    task tray.
+  `,
+  component: CheckboxInput,
 };

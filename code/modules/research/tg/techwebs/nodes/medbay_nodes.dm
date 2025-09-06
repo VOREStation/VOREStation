@@ -84,6 +84,7 @@
 		"organ_ripper",
 		"bone_clamp",
 		"roller_bed",
+		"medical_holosign",
 		// "smoke_machine",
 		// "healthanalyzer_advanced",
 		// "mod_health_analyzer",
@@ -96,7 +97,18 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/points/easy_cytology)
 	announce_channels = list(CHANNEL_MEDICAL)
-
+/* //Temporary disable until we decide on a required experiment
+/datum/techweb_node/medbay_equip_high_tech
+	id = TECHWEB_NODE_MEDBAY_EQUIP_HIGH_TECH
+	display_name = "High Tech Medbay Equipment"
+	description = "State-of-the-art medical gear for keeping the crew in one piece — mostly."
+	prereq_ids = list(TECHWEB_NODE_MEDBAY_EQUIP_ADV)
+	design_ids = list(
+		"phasic_analyzer",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_MEDICAL)
+*/
 /datum/techweb_node/cryostasis
 	id = TECHWEB_NODE_CRYOSTASIS
 	display_name = "Cryostasis"

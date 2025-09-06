@@ -10095,6 +10095,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
+"aqB" = (
+/mob/living/simple_mob/animal/passive/mothroach/bar,
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "aqC" = (
 /obj/item/radio/intercom{
 	dir = 1;
@@ -29588,6 +29592,7 @@
 /obj/item/folder/blue,
 /obj/item/folder/red,
 /obj/item/pen/multi,
+/obj/item/gold_star_printer,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "aZQ" = (
@@ -62207,7 +62212,7 @@ anj
 aKl
 aGx
 bgz
-bgz
+aqB
 ato
 bcp
 atN

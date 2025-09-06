@@ -43,7 +43,7 @@
 	data["server_name"] = displayed_name
 	data["map"] = using_map.full_name
 	data["station_time"] = stationtime2text()
-	data["display_loading"] = SSticker.current_state == GAME_STATE_INIT
+	data["display_loading"] = SSticker.current_state == GAME_STATE_STARTUP
 	data["round_start"] = !SSticker.mode || SSticker.current_state <= GAME_STATE_PREGAME
 	data["round_time"] = roundduration2text()
 	data["ready"] = ready
@@ -52,6 +52,8 @@
 	data["show_station_news"] = GLOB.news_data.station_newspaper
 	data["new_station_news"] = client.prefs.lastlorenews != GLOB.news_data.newsindex
 	data["new_changelog"] = read_preference(/datum/preference/text/lastchangelog) == GLOB.changelog_hash
+	data["can_start_now"] = client.is_localhost() && check_rights_for(client, R_SERVER)
+	data["immediate_start"] = SSticker.start_immediately || (!isnull(SSticker.timeLeft) && SSticker.timeLeft < 0)
 
 	return data
 
@@ -82,7 +84,7 @@
 			ViewManifest()
 			return TRUE
 		if("late_join")
-			if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+			if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 				to_chat(usr, span_red("The round is either not ready, or has already finished..."))
 				return TRUE
 
@@ -97,7 +99,7 @@
 		if("observe")
 			if(QDELETED(src))
 				return FALSE
-			if(!SSticker || SSticker.current_state == GAME_STATE_INIT)
+			if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 				to_chat(src, span_warning("The game is still setting up, please try again later."))
 				return TRUE
 			if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Observe Round?",list("Yes","No")) == "Yes")
@@ -160,8 +162,15 @@
 			client.changes()
 			return TRUE
 		if("keyboard")
-			if(!SSsounds.subsystem_initialized)
+			if(!SSsounds.initialized)
 				return
 
 			playsound_local(ui.user, get_sfx("keyboard"), vol = 20)
 			return TRUE
+		if("start_immediately")
+			if(!ui.user.client.is_localhost() || !check_rights_for(ui.user.client, R_SERVER))
+				return FALSE
+
+			SSticker.start_immediately = TRUE
+			if(SSticker.current_state == GAME_STATE_STARTUP)
+				to_chat(usr, span_admin("The server is still setting up, but the round will be started as soon as possible."))

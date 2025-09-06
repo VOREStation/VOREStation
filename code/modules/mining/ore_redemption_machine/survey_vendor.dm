@@ -82,6 +82,7 @@
 		EQUIPMENT("Laser Pointer",									/obj/item/laser_pointer,													90),
 		EQUIPMENT("Luxury Shelter Capsule",							/obj/item/survivalcapsule/luxury,											310),
 		EQUIPMENT("Bar Shelter Capsule",							/obj/item/survivalcapsule/luxurybar,										1000),
+		EQUIPMENT("Deluxe Cabin Shelter Capsule",					/obj/item/survivalcapsule/luxurycabin,										1000),
 		EQUIPMENT("Plush Toy",										/obj/random/plushie,														30),
 		EQUIPMENT("Soap",											/obj/item/soap/nanotrasen,													20),
 		EQUIPMENT("Thalers - 100",									/obj/item/spacecash/c100,													100),

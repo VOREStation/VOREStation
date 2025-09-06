@@ -5,7 +5,7 @@
 	description_fluff = "The BoomTown cordless speaker is capable of maintaining a high-quality 49kbps audio stream from a stationary jukebox and relaying the sound locally. It's like magic!"
 	description_info = "Hit it on a jukebox to pair, then set it down to play tunes. Does nothing while held, it has to be stationary, visible in the world. Keep in mind music is done by AREA, not within a certain range. You will need more than one to cover a department."
 
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "bspeaker"
 
 	var/obj/machinery/media/jukebox/paired_juke

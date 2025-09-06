@@ -281,6 +281,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //handles merging diagonally matching cables
 //for info : direction^3 is flipping horizontally, direction^12 is flipping vertically
 /obj/structure/cable/proc/mergeDiagonalsNetworks(var/direction)
+	if(SSmachines.powernet_is_defered()) return;
 
 	//search for and merge diagonally matching cables from the first direction component (north/south)
 	var/turf/T  = get_step(src, direction&3)//go north/south
@@ -325,6 +326,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 // merge with the powernets of power objects in the given direction
 /obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
+	if(SSmachines.powernet_is_defered()) return;
 
 	var/fdir = direction ? GLOB.reverse_dir[direction] : 0 //flip the direction, to match with the source position on its turf
 
@@ -353,6 +355,8 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 // merge with the powernets of power objects in the source turf
 /obj/structure/cable/proc/mergeConnectedNetworksOnTurf()
+	if(SSmachines.powernet_is_defered()) return;
+
 	var/list/to_connect = list()
 
 	if(!powernet) //if we somehow have no powernet, make one (should not happen for cables)
@@ -441,6 +445,8 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 //should be called after placing a cable which extends another cable, creating a "smooth" cable that no longer terminates in the centre of a turf.
 //needed as this can, unlike other placements, disconnect cables
 /obj/structure/cable/proc/denode()
+	if(SSmachines.powernet_is_defered()) return;
+
 	var/turf/T1 = loc
 	if(!T1) return
 
@@ -476,8 +482,9 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	loc = null
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
-	var/datum/powernet/newPN = new()// creates a new powernet...
-	propagate_network(P_list[1], newPN)//... and propagates it to the other side of the cable
+	if(!SSmachines.powernet_is_defered()) // Deferring until rebuild
+		var/datum/powernet/newPN = new()// creates a new powernet...
+		propagate_network(P_list[1], newPN)//... and propagates it to the other side of the cable
 
 	// Disconnect machines connected to nodes
 	if(d1 == 0) // if we cut a node (O-X) cable

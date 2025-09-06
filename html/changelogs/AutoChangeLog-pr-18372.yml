@@ -1,0 +1,6 @@
+author: "Tenryumi"
+delete-after: True
+changes:
+  - maptweak: "(Stellar Delight) Fixed a missing scrubber pipe in the Engineering Workshop."
+  - maptweak: "(Stellar Delight) Fixed a misshapen air distro pipe in exploration."
+  - maptweak: "(Stellar Delight) Fixed exploration disposals' pipes spitting items out into each other."

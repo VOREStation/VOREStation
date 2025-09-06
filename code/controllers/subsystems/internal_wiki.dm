@@ -6,7 +6,10 @@
 SUBSYSTEM_DEF(internal_wiki)
 	name = "Wiki"
 	wait = 1
-	init_order = INIT_ORDER_WIKI
+	dependencies = list(
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/supply
+	)
 	flags = SS_NO_FIRE
 
 	VAR_PRIVATE/list/pages = list()
@@ -420,12 +423,10 @@ SUBSYSTEM_DEF(internal_wiki)
 			allergies.Add("Stimulant")
 		if(allergens & ALLERGEN_CHOCOLATE)
 			allergies.Add("Chocolate")
-		/* Downstream features
 		if(allergens & ALLERGEN_POLLEN)
 			allergies.Add("Pollen")
 		if(allergens & ALLERGEN_SALT)
 			allergies.Add("Salt")
-		*/
 		return allergies
 	return null
 
@@ -1157,6 +1158,7 @@ SUBSYSTEM_DEF(internal_wiki)
 		data["addictive"] = TRUE
 	data["industrial_use"] = R.industrial_use
 	data["supply_points"] = R.supply_conversion_value ? R.supply_conversion_value : 0
+	data["cooling_mod"] = R.coolant_modifier
 	var/value = R.supply_conversion_value * REAGENTS_PER_SHEET * SSsupply.points_per_money
 	value = FLOOR(value * 100,1) / 100 // Truncate decimals
 	data["market_price"] = value
@@ -1191,6 +1193,7 @@ SUBSYSTEM_DEF(internal_wiki)
 				var/datum/material/C = get_material_by_name(data["sintering"])
 				if(C)
 					body += "<b>Sintering Results: [C.display_name] [C.sheet_plural_name]</b><br>"
+	body += "<b>Coolant Factor: </b>[data["cooling_mod"]]x<br>"
 	if(data["overdose"] > 0)
 		body += "<b>Overdose: </b>[data["overdose"]]u<br>"
 	body += "<b>Flavor: </b>[data["flavor"]]<br>"

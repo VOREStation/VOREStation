@@ -7,7 +7,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import type { Data } from '../types';
 
@@ -28,7 +27,7 @@ export const DNAModifierMainRadiationEmitter = (props) => {
               </Stack.Item>
               <Stack.Item>
                 <Knob
-                  format={(value) => toFixed(value)}
+                  format={(value) => value.toFixed()}
                   minValue={1}
                   maxValue={10}
                   stepPixelSize={20}
@@ -49,7 +48,7 @@ export const DNAModifierMainRadiationEmitter = (props) => {
               </Stack.Item>
               <Stack.Item>
                 <Knob
-                  format={(value) => toFixed(value)}
+                  format={(value) => value.toFixed()}
                   minValue={1}
                   maxValue={20}
                   stepPixelSize={10}

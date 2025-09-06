@@ -28,7 +28,7 @@
 	minimal_player_age = 14
 	ideal_character_age = 50
 	ideal_age_by_species = list(SPECIES_HUMAN_VATBORN = 20)
-	banned_job_species = list(SPECIES_TESHARI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_ZADDAT, "digital", SPECIES_UNATHI, "mechanical")
+	banned_job_species = list(SPECIES_TESHARI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_ZADDAT, FBP_DIGITAL, SPECIES_UNATHI, FBP_MECHANICAL)
 	disallow_jobhop = TRUE
 	pto_type = PTO_SECURITY
 	dept_time_required = 60

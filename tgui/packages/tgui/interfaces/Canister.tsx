@@ -13,7 +13,6 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { formatSiUnit } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -68,7 +67,7 @@ export const Canister = (props) => {
                 }}
                 format={(value) => {
                   if (value < 10000) {
-                    return `${toFixed(value)} kPa`;
+                    return `${(value).toFixed()} kPa`;
                   }
                   return formatSiUnit(value * 1000, 1, 'Pa');
                 }}
@@ -80,7 +79,7 @@ export const Canister = (props) => {
               <Box position="relative" left="-8px">
                 <Knob
                   tickWhileDragging
-                  format={(value) => toFixed(value, 2)}
+                  format={(value) => value.toFixed(2)}
                   size={1.25}
                   color={!!valveOpen && 'yellow'}
                   value={releasePressure}

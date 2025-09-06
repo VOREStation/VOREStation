@@ -299,7 +299,6 @@
 /obj/machinery/vending/abductor
 	name = "Abduct-U"
 	desc = "A mysterious machine which can fabricate many tools for acquiring test subjects."
-	icon = 'icons/obj/abductor_vr.dmi'
 	icon_state = "dispenser_2way"
 	products = list(/obj/item/card/id/syndicate/station_access = 1,
 					/obj/item/storage/box/syndie_kit/chameleon = 1,

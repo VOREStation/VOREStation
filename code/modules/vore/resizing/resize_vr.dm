@@ -199,6 +199,8 @@
 		var/mob/living/simple_mob/SA = M
 		if(!SA.has_hands)
 			return 0
+		if(mob_size < MOB_SMALL && src == M)
+			return 0
 	if(size_diff >= 0.50 || mob_size < MOB_SMALL || size_diff >= get_effective_size() || ignore_size)
 		if(buckled)
 			to_chat(src,span_notice("You have to unbuckle \the [src] before you pick them up."))

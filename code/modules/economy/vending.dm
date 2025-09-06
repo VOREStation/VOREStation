@@ -544,6 +544,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 		flick("[icon_state]-deny",src)
 		playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return FALSE
+	if(R.amount < 1)
+		return FALSE
 	return TRUE
 
 /obj/machinery/vending/proc/vend(datum/stored_item/vending_product/R, mob/user)

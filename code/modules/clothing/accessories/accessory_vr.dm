@@ -6,16 +6,11 @@
 	name = "plain choker"
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	desc = "A simple, plain choker. Or maybe it's a collar?"
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "choker_cst"
 	item_state = "choker_cst"
 	overlay_state = "choker_cst"
 	var/customized = 0
 	var/icon_previous_override
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/accessory/mob_vr_teshari.dmi'
-		)
 
 //Forces different sprite sheet on equip
 /obj/item/clothing/accessory/choker/Initialize(mapload)
@@ -47,14 +42,9 @@
 
 /obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "collar_blk"
 	var/writtenon = 0
 	var/icon_previous_override
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/accessory/mob_vr_teshari.dmi'
-	)
 
 //Forces different sprite sheet on equip
 /obj/item/clothing/accessory/collar/Initialize(mapload)
@@ -136,17 +126,17 @@
 
 /obj/item/clothing/accessory/collar/shock/Initialize(mapload)
 	. = ..()
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
 
 /obj/item/clothing/accessory/collar/shock/Destroy() //Clean up your toys when you're done.
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	radio_connection = null //Don't delete this, this is a shared object.
 	return ..()
 
 /obj/item/clothing/accessory/collar/shock/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
 	if(!ishuman(user))
@@ -611,8 +601,6 @@
 	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat."
 
 /obj/item/clothing/accessory/medal/silver/unity/tabiranth
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "silverthree"
 	item_state = "silverthree"
 	overlay_state = "silverthree"
@@ -621,8 +609,6 @@
 /obj/item/clothing/accessory/talon
 	name = "Talon pin"
 	desc = "A collectable enamel pin that resembles ITV Talon's ship logo."
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "talon_pin"
 	item_state = "talonpin"
 	overlay_state = "talonpin"
@@ -658,8 +644,6 @@
 /obj/item/clothing/accessory/qipaogold
 	name = "gold trim"
 	desc = "Gold trim belonging to a qipao. Why would you remove this?"
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "qipaogold"
 	item_state = "qipaogold"
 	overlay_state = "qipaogold"
@@ -668,8 +652,6 @@
 /obj/item/clothing/accessory/antediluvian
 	name = "antediluvian bracers"
 	desc = "A pair of metal bracers with gold inlay. They're thin and light."
-	icon = 'icons/inventory/accessory/item_vr.dmi'
-	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "antediluvian"
 	item_state = "antediluvian"
 	overlay_state = "antediluvian"
@@ -1004,8 +986,6 @@
 /obj/item/clothing/accessory/belt
 	name = "Thin Belt"
 	desc = "A thin belt for holding your pants up."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_override = 'icons/inventory/accessory/mob.dmi'
 	icon_state = "belt_thin"
 	item_state = "belt_thin"
 	slot_flags = SLOT_TIE | SLOT_BELT
@@ -1032,8 +1012,6 @@
 /obj/item/clothing/accessory/bunny_tail
 	name = "Bunny Tail"
 	desc = "A little fluffy bunny tail to spice up your outfit."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_override = 'icons/inventory/accessory/mob.dmi'
 	icon_state = "bunny_tail"
 	item_state = "bunny_tail"
 	slot_flags = SLOT_TIE | SLOT_BELT

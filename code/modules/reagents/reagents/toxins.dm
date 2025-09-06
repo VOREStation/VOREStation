@@ -182,6 +182,7 @@
 	skin_danger = 1
 	supply_conversion_value = 5 SHEET_TO_REAGENT_EQUIVILENT // has sheet value
 	industrial_use = REFINERYEXPORT_REASON_PHORON
+	coolant_modifier = 0.85
 
 /datum/reagent/toxin/phoron/touch_mob(var/mob/living/L, var/amount)
 	..()

@@ -3,7 +3,7 @@
 /obj/item/stool
 	name = "stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/furniture_vr.dmi' //VOREStation Edit - new Icons
+	icon = 'icons/obj/furniture.dmi'
 	icon_state = "stool_preview" //set for the map
 	randpixel = 0
 	center_of_mass_x = 0
@@ -23,10 +23,11 @@
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
+	if(!istype(material))
+		stack_trace("Material of type: [new_material] does not exist.")
+		return INITIALIZE_HINT_QDEL
 	if(new_padding_material)
 		padding_material = get_material_by_name(new_padding_material)
-	if(!istype(material))
-		return INITIALIZE_HINT_QDEL
 	force = round(material.get_blunt_damage()*0.4)
 	update_icon()
 

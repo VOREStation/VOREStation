@@ -225,8 +225,7 @@
 			animation.icon = 'icons/mob/mob.dmi'
 			animation.master = user
 			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
+			QDEL_IN(animation, 5)
 
 	if(!flashfail)
 		flick("flash2", src)
@@ -270,8 +269,7 @@
 			animation.icon = 'icons/mob/mob.dmi'
 			animation.master = user
 			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
+			QDEL_IN(animation, 5)
 
 	for(var/mob/living/carbon/C in oviewers(3, null))
 		var/safety = C.eyecheck()

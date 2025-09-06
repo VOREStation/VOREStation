@@ -28,6 +28,9 @@
 	response_disarm = "pushes"
 	response_harm   = "punches"
 
+	has_langs = list(LANGUAGE_MOUSE)
+	universal_understand = 1
+
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 	attack_sharp = FALSE
@@ -81,6 +84,10 @@
 		movement_cooldown = initial(movement_cooldown)
 
 /mob/living/simple_mob/vore/alienanimals/dustjumper/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
+	. = ..()
+	movement_cooldown = 10
+
+/mob/living/simple_mob/vore/alienanimals/dustjumper/begin_instant_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
 	. = ..()
 	movement_cooldown = 10
 

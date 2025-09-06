@@ -13,7 +13,6 @@ import {
   Tabs,
   TextArea,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -185,7 +184,7 @@ const GeneralMobSettings = (props: {
           </LabeledList.Item>
           <LabeledList.Item label={`Size (${props.sizeMultiplier}%)`}>
             <Knob
-              format={(value) => toFixed(value)}
+              format={(value) => value.toFixed()}
               value={props.sizeMultiplier}
               minValue={50}
               maxValue={200}

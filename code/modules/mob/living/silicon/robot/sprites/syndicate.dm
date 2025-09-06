@@ -24,6 +24,7 @@
 /datum/robot_sprite/dogborg/syndie/drake
 	name = "Drake"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 
 /datum/robot_sprite/dogborg/syndie/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_syndie.dmi'
@@ -263,12 +264,11 @@
 
 
 // Ninja models
-
+/* //Unused
 /datum/robot_sprite/dogborg/ninja
 	module_type = "Ninja"
-	sprite_icon = 'icons/mob/robot/ninja.dmi'
 	sprite_hud_icon_state = "malf"
-
+*/
 /datum/robot_sprite/dogborg/tall/ninja
 	module_type = "Ninja"
 	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
@@ -325,3 +325,5 @@
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate", "breastplatehalo","swordhalo","tophalo")
 	rest_sprite_options = list("Default")
+	icon_x = 64
+	pixel_x = -16

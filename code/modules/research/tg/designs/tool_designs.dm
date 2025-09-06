@@ -459,6 +459,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/phasic_analyzer
+	name = "phasic health analyzer"
+	desc = "State of the art handheld health scanner, containing not only a full biosign monitor, on-board radiation, and neurological analysis suites, but also a chemical-analysis suite."
+	id = "phasic_analyzer"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000, MAT_GLASS = 4000, MAT_SILVER = 3500, MAT_GOLD = 2500, MAT_DIAMOND = 2500, MAT_PHORON = 1250)
+	build_path = /obj/item/healthanalyzer/phasic
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/gene_scanner
 	name = "Gene Scanner"
 	id = "gene_scanner"
@@ -862,3 +874,74 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
+/* Decided that we were not keen on this being able to be printed freely as we immediately saw undesirable behaviour
+/datum/design_techweb/telekinetic_gloves
+	name = "Kinesis Assistance Module"
+	id = "tk_gloves"
+	// req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_BLUESPACE = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_VERDANTIUM = 1000, MAT_SILVER = 300, MAT_PLASTEEL = 1000)
+	build_path = /obj/item/clothing/gloves/telekinetic
+	category = list(
+		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_ENGINEERING_ADVANCED
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+*/
+
+/datum/design_techweb/mail_scanner
+	name = "Mail Scanner"
+	id = "mail_scanner"
+	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/mail_scanner
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_MACHINE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO
+
+/datum/design_techweb/atmos_holosign
+	name = "Atmos Holosign"
+	id = "atmos_holosign"
+	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	build_path = /obj/item/holosign_creator/combifan
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_MACHINE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/confetti_cannon
+	name = "Confetti Cannon"
+	desc = "Stuff it with paper and shoot! You'll be a hit at every party."
+	id = "confetti_cannon"
+	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000)
+	build_path = /obj/item/gun/launcher/confetti_cannon
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_TOOLS
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+
+/datum/design_techweb/floor_painter
+	name = "Floor Painter"
+	id = "floor_painter"
+	materials = list(MAT_STEEL = 3000, MAT_GLASS = 500)
+	build_path = /obj/item/floor_painter
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_MACHINE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+
+/datum/design_techweb/medical_holosign
+	name = "Medical Holosign"
+	id = "medical_holosign"
+	materials = list(MAT_STEEL = 1000, MAT_GLASS = 500)
+	build_path = /obj/item/holosign_creator/medical
+	build_type = PROTOLATHE
+	category = list(
+		RND_CATEGORY_MACHINE
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_MEDICAL

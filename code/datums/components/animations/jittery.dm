@@ -84,3 +84,10 @@ below 100 is not jittery
 	if(!JC)
 		return 0
 	return max(JC.jitteriness,0)
+
+// Disabled on borgs
+/mob/living/silicon/make_jittery(var/amount)
+	return
+
+/mob/living/silicon/get_jittery()
+	return 0

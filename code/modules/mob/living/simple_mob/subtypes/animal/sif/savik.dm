@@ -30,9 +30,10 @@
 
 	maxHealth = 125
 	health = 125
-
+	minbodytemp = 175
 	movement_cooldown = -1
-
+	heat_resist = -0.50
+	cold_resist = 0.75
 	melee_damage_lower = 15
 	melee_damage_upper = 35
 	attack_armor_pen = 15

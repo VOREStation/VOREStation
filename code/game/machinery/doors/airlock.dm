@@ -643,6 +643,9 @@
 	normalspeed = FALSE // So it closes faster and hopefully keeps the warm air inside.
 	hackProof = TRUE //No borgs
 
+/obj/machinery/door/airlock/uranium_appearance
+	icon = 'icons/obj/doors/Dooruranium.dmi'
+
 /*
 About the new airlock wires panel:
 *	An airlock wire dialog can be accessed by the normal way or by using wirecutters or a multitool on the door while the wire-panel is open. This would show the following wires, which you can either wirecut/mend or send a multitool pulse through. There are 9 wires.
@@ -812,16 +815,15 @@ About the new airlock wires panel:
 // The preceding comment was borrowed from the grille's shock script
 /obj/machinery/door/airlock/shock(mob/user, prb)
 	if(!arePowerSystemsOn())
-		return 0
+		return FALSE
 	if(hasShocked)
-		return 0	//Already shocked someone recently?
+		return FALSE	//Already shocked someone recently?
 	if(..())
 		hasShocked = 1
-		sleep(10)
-		hasShocked = 0
-		return 1
+		VARSET_IN(src, hasShocked, FALSE, 1 SECOND)
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 
 /obj/machinery/door/airlock/update_icon()

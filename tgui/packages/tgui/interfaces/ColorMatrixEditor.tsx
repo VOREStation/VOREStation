@@ -1,3 +1,5 @@
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -6,10 +8,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 
 type Data = {
   mapRef: string;
@@ -47,7 +45,7 @@ export const ColorMatrixEditor = (props) => {
                                 value={currentColor[row * 4 + col]}
                                 step={0.01}
                                 width="50px"
-                                format={(value) => toFixed(value, 2)}
+                                format={(value) => value.toFixed(2)}
                                 onChange={(value) => {
                                   const retColor = currentColor;
                                   retColor[row * 4 + col] = value;

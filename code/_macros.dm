@@ -31,10 +31,6 @@
 
 #define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
 
-#define qdel_null(x) if(x) { qdel(x) ; x = null }
-
-#define qdel_swap(x,y) if(x) { qdel(x) }; x = y;
-
 #define sequential_id(key) uniqueness_repository.Generate(/datum/uniqueness_generator/id_sequential, key)
 
 #define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
@@ -47,5 +43,6 @@
 
 #define JOINTEXT(X) jointext(X, null)
 
-#define isbelly(A)		istype(A, /obj/belly)
+#define isbelly(A)				istype(A, /obj/belly)
+#define isgripperpocket(A)		istype(A, /obj/item/storage/internal/gripper)
 #define iscapturecrystal(A)		istype(A, /obj/item/capture_crystal)

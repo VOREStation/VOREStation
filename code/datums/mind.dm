@@ -2,7 +2,7 @@
 		The way datum/mind stuff works has been changed a lot.
 		Minds now represent IC characters rather than following a client around constantly.
 	Guidelines for using minds properly:
-	-	Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
+	-	Never mind.transfer_to(ghost). The var/current and var/original_character of a mind must always be of type mob/living!
 		ghost.mind is however used as a reference to the ghost's corpse
 	-	When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
 		the existing mind of the old mob should be transfered to the new mob like so:
@@ -23,7 +23,7 @@
 	var/key
 	var/name				//replaces mob/var/original_name
 	var/mob/living/current
-	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
+	var/datum/weakref/original_character //replaces /mob/living/original
 	var/active = 0
 
 	var/memory
@@ -123,7 +123,7 @@
 	popup.open()
 
 /datum/mind/proc/edit_memory()
-	if(!ticker || !ticker.mode)
+	if(!SSticker || !SSticker.mode)
 		tgui_alert_async(usr, "Not before round-start!", "Alert")
 		return
 
@@ -239,7 +239,7 @@
 				var/objective_type = "[objective_type_capital][objective_type_text]"//Add them together into a text string.
 
 				var/list/possible_targets = list("Free objective")
-				for(var/datum/mind/possible_target in ticker.minds)
+				for(var/datum/mind/possible_target in SSticker.minds)
 					if ((possible_target != src) && ishuman(possible_target.current))
 						possible_targets += possible_target.current
 
@@ -508,9 +508,9 @@
 		mind.key = key
 	else
 		mind = new /datum/mind(key)
-		mind.original = src
-		if(ticker)
-			ticker.minds += mind
+		mind.original_character = WEAKREF(src)
+		if(SSticker)
+			SSticker.minds += mind
 		else
 			to_world_log("## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn")
 	if(!mind.name)	mind.name = real_name

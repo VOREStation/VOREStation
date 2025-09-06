@@ -196,7 +196,7 @@
 /obj/machinery/partslathe/proc/build(var/datum/category_item/partslathe/D)
 	for(var/M in D.resources)
 		materials[M] = max(0, materials[M] - CEILING((D.resources[M] * mat_efficiency), 1))
-	var/obj/new_item = D.build(loc);
+	var/obj/item/new_item = D.build(loc);
 	if(new_item)
 		new_item.loc = loc
 		if(mat_efficiency < 1) // No matter out of nowhere

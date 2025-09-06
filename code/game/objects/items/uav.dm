@@ -57,8 +57,8 @@
 	ion_trail.stop()
 
 /obj/item/uav/Destroy()
-	qdel_null(cell)
-	qdel_null(ion_trail)
+	QDEL_NULL(cell)
+	QDEL_NULL(ion_trail)
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
 	return ..()

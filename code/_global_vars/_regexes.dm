@@ -3,6 +3,9 @@ GLOBAL_DATUM_INIT(is_http_protocol, /regex, regex("^https?://"))
 
 GLOBAL_DATUM_INIT(is_valid_url, /regex, regex("((?:https://)\[-a-zA-Z0-9@:%._+~#=]{1,256}.\[-a-zA-Z0-9@:%._+~#=]{1,256}\\b(?:\[-a-zA-Z0-9@():%_+.,~#?&/=]*\[^.,!?:; ()<>{}\\[]\n\"'´`]))", "gm"))
 
+//finds text strings recognized as links on discord. Mainly used to stop embedding.
+GLOBAL_DATUM_INIT(has_discord_embeddable_links, /regex, regex("(https?://\[^\\s|<\]{2,})"))
+
 //All < and > characters
 GLOBAL_DATUM_INIT(angular_brackets, /regex, regex(@"[<>]", "g"))
 

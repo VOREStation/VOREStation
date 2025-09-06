@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Stack } from 'tgui-core/components';
-
-import { resolveAsset } from '../../assets';
-import { useBackend } from '../../backend';
 import { CommonwealthLogo } from './animated_logos/Commonwealth';
 import { NTLogo } from './animated_logos/NT';
 import type { Data } from './types';

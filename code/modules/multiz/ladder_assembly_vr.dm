@@ -1,7 +1,3 @@
-#define CONSTRUCTION_UNANCHORED 0
-#define CONSTRUCTION_WRENCHED 1
-#define CONSTRUCTION_WELDED 2
-
 /obj/structure/ladder_assembly
 	name = "ladder assembly"
 	icon = 'icons/obj/structures_vr.dmi'
@@ -26,30 +22,30 @@
 		return
 	if(W.has_tool_quality(TOOL_WRENCH))
 		switch(state)
-			if(CONSTRUCTION_UNANCHORED)
-				state = CONSTRUCTION_WRENCHED
+			if(LADDER_CONSTRUCTION_UNANCHORED)
+				state = LADDER_CONSTRUCTION_WRENCHED
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("\The [user] secures \the [src]'s reinforcing bolts.", \
 					"You secure the reinforcing bolts.", \
 					"You hear a ratchet")
 				src.anchored = TRUE
-			if(CONSTRUCTION_WRENCHED)
-				state = CONSTRUCTION_UNANCHORED
+			if(LADDER_CONSTRUCTION_WRENCHED)
+				state = LADDER_CONSTRUCTION_UNANCHORED
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("\The [user] unsecures \the [src]'s reinforcing bolts.", \
 					"You undo the reinforcing bolts.", \
 					"You hear a ratchet")
 				src.anchored = FALSE
-			if(CONSTRUCTION_WELDED)
+			if(LADDER_CONSTRUCTION_WELDED)
 				to_chat(user, span_warning("\The [src] needs to be unwelded."))
 		return
 
 	if(W.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/WT = W.get_welder()
 		switch(state)
-			if(CONSTRUCTION_UNANCHORED)
+			if(LADDER_CONSTRUCTION_UNANCHORED)
 				to_chat(user, span_warning("The refinforcing bolts need to be secured."))
-			if(CONSTRUCTION_WRENCHED)
+			if(LADDER_CONSTRUCTION_WRENCHED)
 				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					user.visible_message("\The [user] starts to weld \the [src] to the floor.", \
@@ -57,12 +53,12 @@
 						"You hear welding")
 					if(do_after(user, 2 SECONDS))
 						if(QDELETED(src) || !WT.isOn()) return
-						state = CONSTRUCTION_WELDED
+						state = LADDER_CONSTRUCTION_WELDED
 						to_chat(user, "You weld \the [src] to the floor.")
 						try_construct(user)
 				else
 					to_chat(user, span_warning("You need more welding fuel to complete this task."))
-			if(CONSTRUCTION_WELDED)
+			if(LADDER_CONSTRUCTION_WELDED)
 				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					user.visible_message("\The [user] starts to cut \the [src] free from the floor.", \
@@ -70,7 +66,7 @@
 						"You hear welding")
 					if(do_after(user, 2 SECONDS))
 						if(QDELETED(src) || !WT.isOn()) return
-						state = CONSTRUCTION_WRENCHED
+						state = LADDER_CONSTRUCTION_WRENCHED
 						to_chat(user, "You cut \the [src] free from the floor.")
 				else
 					to_chat(user, span_warning("You need more welding fuel to complete this task."))
@@ -91,7 +87,7 @@
 		if(!LA) continue
 		if(direction == DOWN && (src.z in using_map.below_blocked_levels)) continue
 		if(direction == UP && (LA.z in using_map.below_blocked_levels)) continue
-		if(LA.state != CONSTRUCTION_WELDED)
+		if(LA.state != LADDER_CONSTRUCTION_WELDED)
 			to_chat(user, span_warning("\The [LA] [direction == UP ? "above" : "below"] must be secured and welded."))
 			return
 		if(direction == UP)
@@ -112,28 +108,24 @@
 		var/obj/structure/ladder/L = new(get_turf(below))
 		L.allowed_directions = UP
 		if(below.created_name) L.name = below.created_name
-		L.Initialize()
+		L.attempt_connection()
 		qdel(below)
 
 	if(me)
 		var/obj/structure/ladder/L = new(get_turf(me))
 		L.allowed_directions = (below ? DOWN : 0) | (above ? UP : 0)
 		if(me.created_name) L.name = me.created_name
-		L.Initialize()
+		L.attempt_connection()
 		qdel(me)
 
 	if(above)
 		var/obj/structure/ladder/L = new(get_turf(above))
 		L.allowed_directions = DOWN
 		if(above.created_name) L.name = above.created_name
-		L.Initialize()
+		L.attempt_connection()
 		qdel(above)
 
 // Make them constructable in hand
 /datum/material/steel/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("ladder assembly", /obj/structure/ladder_assembly, 4, time = 50, one_per_turf = 1, on_floor = 1)
-
-#undef CONSTRUCTION_UNANCHORED
-#undef CONSTRUCTION_WRENCHED
-#undef CONSTRUCTION_WELDED

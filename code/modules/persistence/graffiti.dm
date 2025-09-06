@@ -25,10 +25,10 @@
 		author = _author
 
 /obj/effect/decal/writing/Initialize(mapload)
-	var/list/random_icon_states = icon_states(icon)
-	for(var/obj/effect/decal/writing/W in loc)
-		random_icon_states.Remove(W.icon_state)
-	if(random_icon_states.len)
+	var/list/random_icon_states = cached_icon_states(icon)
+	for(var/obj/effect/decal/writing/writing in loc)
+		random_icon_states.Remove(writing.icon_state)
+	if(length(random_icon_states))
 		icon_state = pick(random_icon_states)
 	if(!mapload || !CONFIG_GET(flag/persistence_ignore_mapload))
 		SSpersistence.track_value(src, /datum/persistent/graffiti)

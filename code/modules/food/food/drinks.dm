@@ -10,7 +10,7 @@
 	icon_state = null
 	flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = list(5,10,15,25,30)
+	max_transfer_amount = 50
 	volume = 50
 	var/trash = null
 	var/cant_open = 0
@@ -228,7 +228,7 @@
 	force = 14
 	throwforce = 10
 	amount_per_transfer_from_this = 20
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 150
 	flags = OPENCONTAINER
 
@@ -442,7 +442,7 @@
 	name = "paper cup"
 	desc = "A paper water cup."
 	icon_state = "water_cup_e"
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 10
 	center_of_mass_x = 16
 	center_of_mass_y = 12

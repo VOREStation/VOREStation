@@ -59,6 +59,8 @@
 	var/maw_cooldown = 30 SECONDS
 	var/open_maw = FALSE	// Are we trying to eat things?
 
+	can_be_drop_prey = FALSE
+
 /mob/living/simple_mob/animal/space/space_worm/head
 	name = "space worm"
 	icon_state = "spacewormhead"

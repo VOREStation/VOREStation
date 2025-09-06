@@ -397,7 +397,7 @@
 /obj/item/clothing/gloves/bluespace/magic
 	name = "bracer of resilience"
 	desc = "A bracer that is said to make one resistent to size changing magic."
-	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "bs_magic"
 
 //harpoon

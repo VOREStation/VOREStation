@@ -63,6 +63,15 @@
 	containertype = /obj/structure/largecrate/animal/catslug
 	containername = "Catslug Crate"
 
+/datum/supply_pack/hydro/catslug
+	name = "Mothroach Crate"
+	desc = "Put the mothroach on your head and find out what true cuteness looks like. \
+		Contains one mothroach."
+	contains = list()
+	cost = 45
+	containertype = /obj/structure/largecrate/animal/mothroach
+	containername = "Mothroach Crate"
+
 /datum/supply_pack/hydro/hydroponics
 	name = "Hydroponics Supply Crate"
 	desc = "A set of standard hydroponics supplies. Requires Hydroponics access."

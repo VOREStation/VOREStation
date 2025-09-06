@@ -104,9 +104,9 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			return
 		var/datum/antagonist/antag = GLOB.all_antag_types[choice]
 		if(antag)
-			if(!islist(ticker.mode.antag_templates))
-				ticker.mode.antag_templates = list()
-			ticker.mode.antag_templates |= antag
+			if(!islist(SSticker.mode.antag_templates))
+				SSticker.mode.antag_templates = list()
+			SSticker.mode.antag_templates |= antag
 			message_admins("Admin [key_name_admin(usr)] added [antag.role_text] template to game mode.")
 
 	// I am very sure there's a better way to do this, but I'm not sure what it might be. ~Z
@@ -219,8 +219,8 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 	feedback_set_details("round_start","[time2text(world.realtime)]")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore, SetRoundStart))
-	if(ticker && ticker.mode)
-		feedback_set_details("game_mode","[ticker.mode]")
+	if(SSticker && SSticker.mode)
+		feedback_set_details("game_mode","[SSticker.mode]")
 	feedback_set_details("server_ip","[world.internet_address]:[world.port]")
 	return 1
 
@@ -282,18 +282,22 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 /datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return
 
-/datum/game_mode/proc/declare_completion()
+/datum/game_mode/proc/declare_antag_goals()
+	for(var/datum/antagonist/antag in antag_templates)
+		sleep(10)
+		antag.check_victory()
+		antag.print_player_summary()
+	addtimer(CALLBACK(src, PROC_REF(finish_completion_declatration)), 1 SECOND)
 
-	var/is_antag_mode = (antag_templates && antag_templates.len)
+/datum/game_mode/proc/declare_completion()
+	var/is_antag_mode = LAZYLEN(antag_templates)
 	check_victory()
 	if(is_antag_mode)
-		sleep(10)
-		for(var/datum/antagonist/antag in antag_templates)
-			sleep(10)
-			antag.check_victory()
-			antag.print_player_summary()
-		sleep(10)
+		is_antag_mode += 2
+		addtimer(CALLBACK(src, PROC_REF(declare_antag_goals)), 1 SECOND)
+	return is_antag_mode SECONDS
 
+/datum/game_mode/proc/finish_completion_declatration()
 	var/clients = 0
 	var/surviving_humans = 0
 	var/surviving_total = 0
@@ -369,7 +373,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	if(escaped_on_pod_5 > 0)
 		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
 
-	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
+	// send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
 	SSwebhooks.send(
 		WEBHOOK_ROUNDEND,
 		list(
@@ -379,8 +383,6 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			"clients" = clients
 		)
 	)
-
-	return 0
 
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
@@ -394,7 +396,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		return candidates
 
 	// If this is being called post-roundstart then it doesn't care about ready status.
-	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+	if(SSticker && SSticker.current_state == GAME_STATE_PLAYING)
 		for(var/mob/player in GLOB.player_list)
 			if(!player.client)
 				continue
@@ -502,21 +504,23 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 
 			continue //Happy connected client
 		for(var/mob/observer/dead/D in GLOB.dead_mob_list)
-			if(D.mind && (D.mind.original == L || D.mind.current == L))
-				if(L.stat == DEAD)
-					if(L.suiciding)	//Suicider
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
-						continue //Disconnected client
+			if(D.mind)
+				var/mob/living/original = D.mind.original_character?.resolve()
+				if((original && original == L) || D.mind.current == L)
+					if(L.stat == DEAD)
+						if(L.suiciding)	//Suicider
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Suicide"))])<br>"
+							continue //Disconnected client
+						else
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
+							continue //Dead mob, ghost abandoned
 					else
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] (Dead)<br>"
-						continue //Dead mob, ghost abandoned
-				else
-					if(D.can_reenter_corpse)
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Adminghosted"))])<br>"
-						continue //Lolwhat
-					else
-						msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Ghosted"))])<br>"
-						continue //Ghosted while alive
+						if(D.can_reenter_corpse)
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Adminghosted"))])<br>"
+							continue //Lolwhat
+						else
+							msg += "[span_bold(L.name)] ([ckey(D.mind.key)]), the [L.job] ([span_red(span_bold("Ghosted"))])<br>"
+							continue //Ghosted while alive
 
 	msg = span_notice(msg)// close the span from right at the top
 
@@ -549,16 +553,16 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 	set name = "Check Round Info"
 	set category = "OOC.Game"
 
-	if(!ticker || !ticker.mode)
+	if(!SSticker|| !SSticker.mode)
 		to_chat(usr, span_warning("Something is terribly wrong; there is no gametype."))
 		return
 
 	if(GLOB.master_mode != "secret")
-		to_chat(usr, span_boldnotice("The roundtype is [capitalize(ticker.mode.name)]"))
-		if(ticker.mode.round_description)
-			to_chat(usr, span_notice(span_italics("[ticker.mode.round_description]")))
-		if(ticker.mode.extended_round_description)
-			to_chat(usr, span_notice("[ticker.mode.extended_round_description]"))
+		to_chat(usr, span_boldnotice("The roundtype is [capitalize(SSticker.mode.name)]"))
+		if(SSticker.mode.round_description)
+			to_chat(usr, span_notice(span_italics("[SSticker.mode.round_description]")))
+		if(SSticker.mode.extended_round_description)
+			to_chat(usr, span_notice("[SSticker.mode.extended_round_description]"))
 	else
 		to_chat(usr, span_notice(span_italics("Shhhh") + ". It's a secret."))
 	return

@@ -4238,12 +4238,10 @@
 /area/medical/virology)
 "lj" = (
 /obj/structure/table/glass,
-/obj/item/radio{
+/obj/item/radio/phone{
 	anchored = 1;
 	canhear_range = 7;
 	frequency = 1487;
-	icon = 'icons/obj/items.dmi';
-	icon_state = "red_phone";
 	name = "Virology Emergency Phone";
 	pixel_y = 9
 	},
@@ -6425,6 +6423,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/gold_star_printer,
 /turf/simulated/floor/carpet,
 /area/groundbase/command/hop)
 "rv" = (
@@ -13882,14 +13881,11 @@
 /obj/machinery/computer/med_data/laptop{
 	dir = 8
 	},
-/obj/item/radio{
+/obj/item/radio/phone{
 	anchored = 1;
 	canhear_range = 7;
 	frequency = 1487;
-	icon = 'icons/obj/items.dmi';
-	icon_state = "red_phone";
 	name = "Virology Emergency Phone";
-	pixel_x = 7;
 	pixel_y = 9
 	},
 /turf/simulated/floor/tiled/white,

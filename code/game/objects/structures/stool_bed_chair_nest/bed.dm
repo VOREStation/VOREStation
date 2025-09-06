@@ -30,6 +30,7 @@
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
 	if(!istype(material))
+		stack_trace("Material of type: [new_material] does not exist.")
 		return INITIALIZE_HINT_QDEL
 	if(new_padding_material)
 		padding_material = get_material_by_name(new_padding_material)
@@ -373,7 +374,7 @@
 	desc = "Whatever species designed this must've enjoyed relaxation as well. Looks vaguely comfy."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_bed)
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "bed"
+	icon_state = "bed_red"
 	flippable = FALSE
 
 /obj/structure/bed/alien/update_icon()

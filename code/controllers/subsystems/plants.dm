@@ -2,7 +2,9 @@
 
 SUBSYSTEM_DEF(plants)
 	name = "Plants"
-	init_order = INIT_ORDER_PLANTS
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 	priority = FIRE_PRIORITY_PLANTS
 	wait = PLANT_TICK_TIME
 

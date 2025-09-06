@@ -59,10 +59,6 @@
 					var/image/intake = image(icon, icon_state = "waste_intakes", dir = direction)
 					add_overlay(intake)
 
-/obj/machinery/reagent_refinery/waste_processor/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
-	// Waste tanks accept from all sides
-	. = ..(origin_machine, RT, source_forward_dir, filter_id)
-
 /obj/machinery/reagent_refinery/waste_processor/examine(mob/user, infix, suffix)
 	. = ..()
 	. += "The meter shows [reagents.total_volume]u / [reagents.maximum_volume]u. It is pumping chemicals at a rate of [amount_per_transfer_from_this]u."

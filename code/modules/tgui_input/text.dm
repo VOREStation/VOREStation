@@ -126,6 +126,7 @@
 	data["placeholder"] = default // Default is a reserved keyword
 	data["swapped_buttons"] = !user.read_preference(/datum/preference/toggle/tgui_swapped_buttons)
 	data["title"] = title
+	data["spellcheck"] = user.read_preference(/datum/preference/toggle/tgui_use_spellcheck)
 	return data
 
 /datum/tgui_input_text/tgui_data(mob/user)

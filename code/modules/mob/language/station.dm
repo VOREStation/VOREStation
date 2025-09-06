@@ -127,8 +127,8 @@
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
 
 /datum/language/skrell/get_random_name(var/gender)
-	var/list/first_names = file2list('config/names/first_name_skrell.txt')
-	var/list/last_names = file2list('config/names/last_name_skrell.txt')
+	var/list/first_names = file2list('strings/names/first_name_skrell.txt')
+	var/list/last_names = file2list('strings/names/last_name_skrell.txt')
 	return "[pick(first_names)] [pick(last_names)]"
 
 /datum/language/human
@@ -152,9 +152,9 @@
 /datum/language/human/get_random_name(var/gender)
 	if (prob(80))
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	else
 		return ..()
 
@@ -174,7 +174,7 @@
 	if(prob(70))
 		return "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	else
-		return pick(ai_names)
+		return pick(GLOB.ai_names)
 
 /datum/language/teshari
 	name = LANGUAGE_SCHECHI

@@ -1,5 +1,5 @@
 /proc/createRandomZlevel()
-	#ifdef UNIT_TEST
+	#ifdef UNIT_TESTS
 	return
 	#endif
 	if(GLOB.awaydestinations.len)	//crude, but it saves another var! //VOREStation Edit - No loading away missions during CI testing

@@ -132,7 +132,7 @@
 	checkwin_counter++
 	if(checkwin_counter >= 20)
 		if(!finished)
-			ticker.mode.check_win()
+			SSticker.mode.check_win()
 		checkwin_counter = 0
 	return 0
 
@@ -165,7 +165,7 @@
 ///Handle crew failure(station explodes)///
 ///////////////////////////////////////////
 /datum/game_mode/epidemic/proc/crew_lose()
-	ticker.mode:explosion_in_progress = 1
+	SSticker.mode:explosion_in_progress = 1
 	for(var/mob/M in world)
 		if(M.client)
 			M << 'sound/machines/Alarm.ogg'
@@ -177,9 +177,9 @@
 	enter_allowed = 0
 	if(ticker)
 		ticker.station_explosion_cinematic(0,null)
-		if(ticker.mode)
-			ticker.mode:station_was_nuked = 1
-			ticker.mode:explosion_in_progress = 0
+		if(SSticker.mode)
+			SSticker.mode:station_was_nuked = 1
+			SSticker.mode:explosion_in_progress = 0
 	finished = 2
 	return
 
@@ -194,5 +194,5 @@
 	else if(finished == 2)
 		feedback_set_details("round_end_result","loss - rev heads killed")
 		to_world(span_boldannounce(span_large("The crew succumbed to the epidemic!")))
-	..()
-	return 1
+
+	return ..()

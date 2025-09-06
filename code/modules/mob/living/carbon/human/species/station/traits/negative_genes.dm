@@ -197,3 +197,15 @@
 
 	sdisability=SPINE
 	activation_message="Your legs shake..."
+
+/datum/trait/negative/ambulant_blood
+	name = "Ambulant Blood"
+	desc = "Your blood reacts to hostile stimulation such as burning when seperated from your body, as if it was its own creature. You WILL be mistaken for a changeling, you may want to document this in your medical records."
+	var_changes = list("ambulant_blood" = TRUE)
+	cost = -1
+
+	is_genetrait = TRUE
+	hidden = FALSE
+	activity_bounds = DNA_HARDER_BOUNDS // Shouldn't be easy for genetics to find this
+
+	activation_message="You feel like there are spiders in your veins..."

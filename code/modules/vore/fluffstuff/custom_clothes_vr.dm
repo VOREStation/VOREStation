@@ -176,10 +176,10 @@
 	name = "long fur coat"
 	desc = "A sophisticated long coat made of fur."
 
-	icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "russofurcoat"
 
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	item_state = "russofurcoat"
 
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -845,9 +845,6 @@
 	name = DEVELOPER_WARNING_NAME
 	desc = "Why did you spawn this one? Dork."
 	sensor_mode = 3
-
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "khi_uniform"
 
 /obj/item/clothing/under/rank/khi/cmd //Command version
@@ -1129,12 +1126,9 @@ Departamental Swimsuits, for general use
 //Just some alt-uniforms themed around Star Trek - Pls don't sue, Mr Roddenberry ;_;
 // PS. <3 Nienhaus
 
-
 /obj/item/clothing/under/rank/trek
 	name = "Section 31 Uniform"
 	desc = "Oooh... right."
-	icon = 'icons/inventory/uniform/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 
 //TOS
 /obj/item/clothing/under/rank/trek/command
@@ -1199,8 +1193,8 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/storage/trek/ds9
 	name = "Padded Overcoat"
 	desc = "The overcoat worn by all officers of the 2380s."
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "trek_ds9_coat"
 	body_parts_covered = CHEST|ARMS
 	permeability_coefficient = 0.50
@@ -2551,8 +2545,6 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/glasses/big_round
 	name = "big round blue glasses"
 	desc = "A set of glasses! They are big, round, and very reflective, catching the light and obscuring the eyes!"
-	icon = 'icons/inventory/eyes/item_vr.dmi'
-	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "bigroundglasses"
 	slot_flags = SLOT_EYES | SLOT_EARS
 	glasses_layer_above = TRUE

@@ -445,7 +445,7 @@
 	var/turf/oldloc = loc
 
 	// Now lets move there!
-	if(!Move(landing))
+	if(!Move(landing, direct = dir)) //infinite fall fix
 		return 1
 
 	// Detect if we made a silent landing.

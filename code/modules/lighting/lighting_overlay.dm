@@ -11,7 +11,7 @@
 	var/turf/affected_turf
 
 /datum/lighting_object/New(turf/source)
-	if(!SSlighting.subsystem_initialized)
+	if(!SSlighting.initialized)
 		stack_trace("lighting_object created before SSlighting up!")
 		return
 	if(!isturf(source))

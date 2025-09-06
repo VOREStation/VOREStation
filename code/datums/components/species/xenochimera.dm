@@ -27,7 +27,7 @@
 	UnregisterSignal(owner, COMSIG_XENOCHIMERA_COMPONENT)
 	UnregisterSignal(owner, COMSIG_HUMAN_DNA_FINALIZED)
 	remove_verb(owner, /mob/living/carbon/human/proc/reconstitute_form)
-	qdel_null(revival_record)
+	QDEL_NULL(revival_record)
 	owner = null
 	. = ..()
 
@@ -35,7 +35,7 @@
 	SIGNAL_HANDLER
 	if(QDELETED(owner))
 		return
-	qdel_null(revival_record)
+	QDEL_NULL(revival_record)
 	revival_record = new(owner)
 
 /datum/component/xenochimera/proc/handle_comp()

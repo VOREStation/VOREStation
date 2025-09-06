@@ -55,11 +55,11 @@
 					var/image/intake = image(icon, icon_state = "pipe_intakes", dir = direction)
 					add_overlay(intake)
 
-/obj/machinery/reagent_refinery/pipe/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/filter_id = "")
+/obj/machinery/reagent_refinery/pipe/handle_transfer(var/atom/origin_machine, var/datum/reagents/RT, var/source_forward_dir, var/transfer_rate, var/filter_id = "")
 	// no back/forth, filters don't use just their forward, they send the side too!
 	if(dir == GLOB.reverse_dir[source_forward_dir])
 		return 0
-	. = ..(origin_machine, RT, source_forward_dir, filter_id)
+	. = ..(origin_machine, RT, source_forward_dir, transfer_rate, filter_id)
 
 /obj/machinery/reagent_refinery/pipe/examine(mob/user, infix, suffix)
 	. = ..()
