@@ -129,19 +129,12 @@
 	},
 /turf/simulated/floor/carpet/blue2,
 /area/survivalpod)
-"q" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 8
+"r" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = -22;
+	pixel_x = 22
 	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 4
-	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
-/obj/structure/window/reinforced/survival_pod,
-/obj/structure/grille,
-/turf/simulated/shuttle/floor/voidcraft/dark,
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "s" = (
 /obj/item/stool/padded{
@@ -152,11 +145,27 @@
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
+"t" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = -23;
+	pixel_x = 24;
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
 "u" = (
 /obj/structure/fans/tiny,
 /obj/effect/floor_decal/industrial/danger/full,
 /obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
 /turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"v" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = -22;
+	pixel_x = -23;
+	dir = 8
+	},
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "w" = (
 /obj/machinery/light,
@@ -171,6 +180,14 @@
 /area/survivalpod)
 "x" = (
 /obj/machinery/computer/arcade/clawmachine,
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"y" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = 24;
+	pixel_x = 23;
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "z" = (
@@ -296,7 +313,7 @@ Z
 I
 Z
 u
-q
+I
 L
 K
 I
@@ -306,7 +323,7 @@ E
 e
 d
 x
-j
+v
 j
 H
 c
@@ -325,24 +342,24 @@ I
 "}
 (4,1,1) = {"
 D
-j
+y
 l
 l
 l
 l
 l
 n
-q
+I
 "}
 (5,1,1) = {"
-q
+I
 M
 g
 g
 l
 l
 l
-j
+r
 D
 "}
 (6,1,1) = {"
@@ -373,7 +390,7 @@ m
 F
 z
 O
-j
+t
 j
 h
 P
@@ -385,7 +402,7 @@ I
 Q
 I
 u
-q
+I
 Q
 I
 "}
