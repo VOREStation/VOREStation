@@ -20,7 +20,6 @@
 	icon_state = "myicon"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "myicon"
 
 */
 
@@ -49,12 +48,10 @@
 
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "wolfgirluni"
-	worn_state = "wolfgirluni_mob"
 	rolled_sleeves = 0
 	rolled_down = 0
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "wolfgirluni_mob"
 	body_parts_covered = CHEST|ARMS|LEGS
 
 //SpoopyLizz: Roiz Lizden
@@ -78,7 +75,6 @@
 	icon_state = "bearpelt"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "ketraibearpelt"
 
 //benemuel:Yuuko Shimmerpond
 /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
@@ -87,9 +83,7 @@
 
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "sh_kimono"
-
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "sh_kimono_mob"
 
 //JoanRisu:Joan Risu
 /obj/item/clothing/under/suit_jacket/female/fluff/asuna
@@ -100,7 +94,6 @@
 	icon_state = "joanasuna"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "joanasuna_mob"
 
 //eekasqueak:Serkii Miishy
 /obj/item/clothing/under/skirt/fluff/serkii
@@ -111,7 +104,6 @@
 	icon_state = "serkiskirt"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "serkiskirt_mob"
 
 //Unknown. Please check records from the forums.
 /obj/item/clothing/under/suit_jacket/female/fluff/miqote
@@ -122,7 +114,6 @@
 	icon_state = "miqote"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "miqote_mob"
 
 //JoanRisu:Joan Risu
 /obj/item/clothing/under/fluff/nightgown
@@ -133,7 +124,6 @@
 	icon_state = "joannightgown"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "joannightgown_mob"
 
 //Vorrarkul:Lucina Dakarim
 /obj/item/clothing/under/dress/fluff/lucinadress
@@ -163,7 +153,6 @@
 	icon_state = "greatcoat"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "greatcoat_mob"
 
 //For general use
 /obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
@@ -253,21 +242,18 @@
 	name = "Modern Federation Uniform Jacket (Blue)"
 	desc = "A modern uniform jacket from the United Federation. Their Starfleet had recently started using these uniforms. Wearing this makes you feel like a scientist or a pilot."
 	icon_state = "fedmodernblue"
-	item_state = "fedmodernblue"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
 
 /obj/item/clothing/suit/storage/fluff/modernfedcoat/modernfedeng
 	name = "Modern Federation Uniform Jacket (Yellow)"
 	desc = "A modern uniform jacket from the United Federation. Their Starfleet had recently started using these uniforms. You feel like you can handle any type of technical engineering problems."
 	icon_state = "fedmoderneng"
-	item_state = "fedmoderneng"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 20)
 
 /obj/item/clothing/suit/storage/fluff/modernfedcoat/modernfedsec
 	name = "Modern Federation Uniform Jacket (Red)"
 	desc = "A modern uniform jacket from the United Federation. Their Starfleet had recently started using these uniforms. This uniform makes you want to protect and serve as an officer."
 	icon_state = "fedmodernsec"
-	item_state = "fedmodernsec"
 	armor = list(melee = 10, bullet = 20, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/head/caphat/formal/fedcover
@@ -278,7 +264,6 @@
 	icon_state = "fedcapofficer"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "fedcapofficer_mob"
 
 	//Variants
 /obj/item/clothing/head/caphat/formal/fedcover/fedcoverblue
@@ -289,7 +274,6 @@
 	icon_state = "fedcapsci"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "fedcapsci_mob"
 
 /obj/item/clothing/head/caphat/formal/fedcover/fedcovereng
 	name = "Federation Officer's Cap (Yellow)"
@@ -299,7 +283,6 @@
 	icon_state = "fedcapeng"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "fedcapeng_mob"
 
 /obj/item/clothing/head/caphat/formal/fedcover/fedcoversec
 	name = "Federation Officer's Cap (Red)"
@@ -309,7 +292,6 @@
 	icon_state = "fedcapsec"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "fedcapsec_mob"
 
 /obj/item/clothing/head/caphat/formal/fedcover/police
 	name = "Police Officer's Cap"
@@ -319,7 +301,6 @@
 	icon_state = "policecover"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "policecover_mob"
 
 /*POLARISTODO - Needs rework in update_icons as it doesn't use item_state
 //For general use
@@ -353,7 +334,6 @@
 	icon_state = "tempesthud"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "tempesthud"
 
 //For general use
 /obj/item/clothing/accessory/fluff/smilepin
@@ -395,7 +375,6 @@
 	icon_state = "harmspace"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "harmspace_mob"
 
 //john.wayne9392:Harmony Prechtl
 /obj/item/clothing/under/rank/captain/fluff/harmuniform
@@ -406,7 +385,6 @@
 	icon_state = "harmcaptain"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "harmcaptain_mob"
 	//Variant
 /obj/item/clothing/under/rank/captain/fluff/harmuniform/centcom
 	name = "\improper CentCom administrator's uniform"
@@ -426,7 +404,6 @@
 	icon_state = "tasaldsuit"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "tasaldsuit_mob"
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 // bwoincognito:Tasald Corlethian
@@ -452,7 +429,6 @@
 	icon_state = "freddyhead"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "freddyhead_mob"
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEMASK|HIDEEARS
@@ -463,19 +439,16 @@
 /obj/item/clothing/head/helmet/fluff/freddy/bonnie
 	desc = "Children's entertainer."
 	icon_state = "bonniehead"
-	item_state = "bonniehead_mob"
 
 	//Foxy Head
 /obj/item/clothing/head/helmet/fluff/freddy/foxy
 	desc = "I guess he doesn't like being watched."
 	icon_state = "foxyhead"
-	item_state = "foxyhead_mob"
 
 	//Chica Head
 /obj/item/clothing/head/helmet/fluff/freddy/chica
 	desc = span_red(span_bold("LET'S EAT!"))
 	icon_state = "chicahead"
-	item_state = "chicahead_mob"
 
 //Anamatronic Suits
 
@@ -490,7 +463,6 @@
 	icon_state = "freddysuit"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "freddysuit_mob"
 
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
@@ -505,20 +477,17 @@
 /obj/item/clothing/suit/fluff/freddy/bonnie
 	desc = "Children's entertainer."
 	icon_state = "bonniesuit"
-	item_state = "bonniesuit_mob"
 
 	//Foxy Suit
 /obj/item/clothing/suit/fluff/freddy/foxy
 	desc = "I guess he doesn't like being watched."
 	icon_state = "foxysuit"
-	item_state = "foxysuit_mob"
 
 
 	//Chica Suit
 /obj/item/clothing/suit/fluff/freddy/chica
 	desc = span_red(span_bold("LET'S EAT!"))
 	icon_state = "chicasuit"
-	item_state = "chicasuit_mob"
 
 //End event costumes
 
@@ -531,7 +500,6 @@
 	icon_state = "scree-helm"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "scree-helm_mob"
 
 	item_state_slots = list(slot_r_hand_str = "engspace_helmet", slot_l_hand_str = "engspace_helmet")
 
@@ -556,7 +524,6 @@
 	icon_state = "scree-spess"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "scree-spess_mob"
 
 	item_state_slots = list(slot_r_hand_str = "eng_voidsuit", slot_l_hand_str = "eng_voidsuit")
 
@@ -576,7 +543,6 @@
 	desc = "A clingy purple dress with red lacework, with a hole at the back for a tail."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "avidadress"
-	item_state = "avidadress"
 	item_icons = list(
 		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi',
 		slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi',
@@ -589,7 +555,6 @@
 	desc = "A pointy purple hat with a wide brim, with a red hatband. It appears to have ear-holes in it."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "avidahat"
-	item_state = "avidahat"
 	item_icons = list(
 		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi',
 		slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi',
@@ -615,7 +580,6 @@
 	icon_state = "alurane-vines"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "alurane-vines_mob"
 	item_state_slots = list(slot_r_hand_str = "alurane-vines_r", slot_l_hand_str = "alurane-vines_l")
 
 /obj/item/clothing/under/fluff/aluranevines/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
@@ -635,7 +599,6 @@
 	icon_state = "rig-hos"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "rig-hos_mob"
 
 	species_restricted = null
 
@@ -648,7 +611,6 @@
 	icon_state = "rig0-hos"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "rig0-hos_mob"
 
 	species_restricted = null
 
@@ -662,7 +624,6 @@
 	icon_state = "hoscap"
 
 	default_worn_icon = 'icons/inventory/head/mob.dmi'
-	item_state = "hoscap"
 
 /obj/item/storage/belt/utility/fluff/vulpine
 	name = "vulpine belt"
@@ -672,7 +633,6 @@
 	icon_state = "vulpine_belt"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "vulpine_belt_mob"
 
 	storage_slots = 9
 
@@ -695,7 +655,6 @@
 	icon_state = "molenar"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "molenar"
 	var/item_open = "molenar_open"
 	var/item_closed = "molenar"
 
@@ -708,7 +667,6 @@
 	icon_state = "pom"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "pom_mob"
 
 	w_class = ITEMSIZE_SMALL
 	light_range = 5
@@ -732,12 +690,10 @@
 		if(0)
 			to_chat(user, "You light up your pom-pom.")
 			icon_state = "pom-on"
-			item_state = "pom-on_mob"
 
 		if(1)
 			to_chat(user, "You dim your pom-pom.")
 			icon_state = "pom"
-			item_state = "pom_mob"
 
 	//update_light(user) -- old code
 	update_flashlight(user)
@@ -763,7 +719,6 @@
 	icon_state = "joanhelm"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "joanhelm_mob"
 
 	light_overlay = "helmet_light"
 
@@ -792,7 +747,6 @@
 	icon_state = "joansuit"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "joansuit_mob"
 
 /obj/item/clothing/suit/space/fluff/joan/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
@@ -810,8 +764,6 @@
 	icon_state = "joanuniform"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "joanuniform_mob"
-	worn_state = "joanuniform_mob"
 	rolled_sleeves = 0
 	starting_accessories = list(/obj/item/clothing/accessory/tie/black)
 
@@ -887,14 +839,12 @@
 	name = "Earth Swimsuit"
 	desc = "The suit of Subject 688,509,403. Made of an enviromentally safe elastic. Dry-clean not required."
 	icon_state = "swim_earth"
-	item_state = "swim_earth"
 
 //jacobdragon:Earthen Breath
 /obj/item/clothing/head/fluff/hairflowerpin
 	name = "Hair Flower Pin"
 	desc = "It's a flower fashioned into a hair pin. It's very nice."
 	icon_state = "hairflower_pink"
-	item_state = "hairflower_pink"
 	body_parts_covered = 0
 
 //bwoincognito:Octavious Ward
@@ -904,7 +854,6 @@
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "octavgentlecoat"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "octavgentlecoat_mob"
 	blood_overlay_type = "coat"
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_DETECTIVE)
 
@@ -917,7 +866,6 @@
 	icon_state = "octavgentlesuit"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "octavgentlesuit_mob" //don't forget to rename the sprite.
 
 //bwoincognito:Octavious Ward
 /obj/item/clothing/head/fedora/fluff/bowler
@@ -928,7 +876,6 @@
 	icon_state = "bowler"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "bowler_mob"
 
 //bwoincognito:Octavious Ward
 /obj/item/clothing/mask/gas/plaguedoctor/fluff/octaviousmask
@@ -988,7 +935,6 @@
 	icon_state = "jemli_hat"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "jemli_hat_mob"
 
 //virgo113:Verin Raharra
 /obj/item/clothing/suit/storage/hazardvest/fluff/verin
@@ -999,7 +945,6 @@
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "verin"
-	item_state = "verin_mob"
 
 //whiskyrose:Vinjj
 /obj/item/clothing/head/welding/fluff/vinjj
@@ -1013,8 +958,7 @@
 		slot_r_hand_str = 'icons/vore/custom_clothes_mob.dmi',
 		)
 	icon_state = "vinjjdana"
-	item_state = "vinjjdana_mob"
-	item_state_slots = list(slot_r_hand_str = "vinjjdana_mob_r", slot_l_hand_str = "vinjjdana_mob_l")
+	item_state_slots = list(slot_r_hand_str = "vinjjdana_r", slot_l_hand_str = "vinjjdana_l")
 	flags_inv = (HIDEEYES)
 	body_parts_covered = HEAD|EYES
 
@@ -1028,14 +972,12 @@
 			body_parts_covered |= (EYES)
 			flags_inv |= (HIDEEYES)
 			icon_state = "vinjjdana"
-			item_state = "vinjjdana_mob"
 			to_chat(usr, "You flip the goggles down to protect your eyes.")
 		else
 			up = !up
 			body_parts_covered &= ~(EYES)
 			flags_inv &= ~(HIDEEYES)
 			icon_state = "vinjjdanaup"
-			item_state = "vinjjdanaup_mob"
 
 			to_chat(usr, "You push the goggles up out of your face.")
 		update_clothing_icon()	//so our mob-overlays
@@ -1077,32 +1019,27 @@ Departamental Swimsuits, for general use
 	name = "Engineering Swimsuit"
 	desc = "It's an orange high visibility swimsuit worn by engineers. It lacks radiation, or any, shielding."
 	icon_state = "swimsuit_engineering"
-	item_state = "swimsuit_engineering_mob"
 
 /obj/item/clothing/under/swimsuit/fluff/science
 	name = "Science Swimsuit"
 	desc = "It's made of a special fiber that provides no protection whatsoever, but its hydrophobic. It has markings that denote the wearer as a scientist."
 	icon_state = "swimsuit_science"
-	item_state = "swimsuit_science_mob"
 
 /obj/item/clothing/under/swimsuit/fluff/security
 	name = "Security Swimsuit"
 	desc = "It's made of a slightly sturdier material than standard swimsuits, to allow for a more robust appearance."
 	icon_state = "swimsuit_security"
-	item_state = "swimsuit_security_mob"
 
 /obj/item/clothing/under/swimsuit/fluff/medical
 	name = "Medical Swimsuit"
 	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. It has a cross on the back denoting that the wearer is trained medical personnel."
 	icon_state = "swimsuit_medical"
-	item_state = "swimsuit_medical_mob"
 
 //Xsdew:Penelope Allen
 /obj/item/clothing/under/swimsuit/fluff/penelope
 	name = "Penelope's Swimsuit"
 	desc = "It's made of a special fiber that provides no protection whatsoever, but its elastic. This one was custom made for Penelope."
 	icon_state = "swimsuit_penelope"
-	item_state = "swimsuit_penelope_mob"
 
 //Just some alt-uniforms themed around Star Trek - Pls don't sue, Mr Roddenberry ;_;
 // PS. <3 Nienhaus
@@ -1211,14 +1148,12 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "batter"
-	item_state = "batter_mob"
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/jessie
 	name = "Handmade Winter Suit"
 	desc = "A durable, but somewhat ragged lower portion of a snow suit fitted for a wolftaur."
 	icon = 'icons/mob/taursuits_wolf.dmi'
 	icon_state = "jessiecoat"
-	item_state = "jessiecoat"
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/jessie/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
@@ -1253,7 +1188,6 @@ Departamental Swimsuits, for general use
 	speed to compensate for custom padding and armor Kateryna made herself."
 	icon = 'icons/mob/taursuits_wolf.dmi'
 	icon_state = "lilithsuit"
-	item_state = "lilithsuit"
 	species_restricted = null
 	armor = list(melee = 40, bullet = 20, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 
@@ -1265,7 +1199,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "lilithhelmet"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "lilithhelmet"
 	light_overlay = "helmet_light"
 	species_restricted = null
 
@@ -1292,7 +1225,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "morunder"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "morunder_mob"
 
 //JackNoir413: Mor Xaina
 /obj/item/clothing/gloves/fluff/morsleeves
@@ -1301,7 +1233,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "morsleeves"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "morsleeves_mob"
 
 //JackNoir413: Mor Xaina
 /obj/item/clothing/shoes/fluff/morthighs
@@ -1310,7 +1241,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "morthighs"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "morthighs_mob"
 
 //Jackets For General Use. Sprited by Joji.
 /obj/item/clothing/suit/storage/fluff/jacket //Not the toggle version since it uses custom toggle code to update the on-mob icon.
@@ -1321,7 +1251,6 @@ Departamental Swimsuits, for general use
 	icon_state = "fjacket"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "fjacket_mob"
 	var/unbuttoned = 0
 
 /obj/item/clothing/suit/storage/fluff/jacket/verb/toggle()
@@ -1356,7 +1285,6 @@ Departamental Swimsuits, for general use
 	icon_state = "acjacket"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "acjacket_mob"
 
 /obj/item/clothing/suit/storage/fluff/jacket/air_force
 	name = "Air Force Jacket"
@@ -1366,7 +1294,6 @@ Departamental Swimsuits, for general use
 	icon_state = "afjacket"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "afjacket_mob"
 
 /obj/item/clothing/suit/storage/fluff/jacket/navy
 	name = "Navy Jacket"
@@ -1376,7 +1303,6 @@ Departamental Swimsuits, for general use
 	icon_state = "navyjacket"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "navyjacket_mob"
 
 /obj/item/clothing/suit/storage/fluff/jacket/special_forces
 	name = "Special Forces Jacket"
@@ -1386,7 +1312,6 @@ Departamental Swimsuits, for general use
 	icon_state = "sfjacket"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "sfjacket_mob"
 
 //General use
 /obj/item/clothing/head/fluff/headbando
@@ -1397,7 +1322,6 @@ Departamental Swimsuits, for general use
 	icon_state = "headbando"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "headbando"
 
 /obj/item/clothing/suit/storage/fluff/gntop
 	name = "GN crop jacket"
@@ -1405,7 +1329,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "gntop"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "gntop"
 
 /obj/item/clothing/under/fluff/gnshorts
 	name = "GN shorts"
@@ -1413,7 +1336,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "gnshorts"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "gnshorts"
 
 /obj/item/clothing/under/fluff/v_nanovest
 	name = "Varmacorp nanovest"
@@ -1421,7 +1343,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "nanovest"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "nanovest_mob"
 
 //General use
 /obj/item/clothing/suit/storage/fluff/loincloth
@@ -1443,7 +1364,6 @@ Departamental Swimsuits, for general use
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "kilanocoat_mob"
 	//hoodtype = ??? //Needs a hoodtype to be created for it.
 	has_hood_sprite = TRUE
 
@@ -1455,7 +1375,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "kilanosuit"
-	item_state = "kilanosuit_mob"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
@@ -1471,7 +1390,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "kilanobelt"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "kilanobelt_mob"
 
 //BeyondMyLife: Ne'tra Ky'ram
 /obj/item/clothing/gloves/fluff/kilano/netra
@@ -1480,7 +1398,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "kilanogloves" //TODO: White sprite.
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "kilanogloves_mob" //TODO: White sprite.
 	species_restricted = null
 
 //BeyondMyLife: Ne'tra Ky'ram
@@ -1504,7 +1421,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "kilanovest"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "kilanovest_mob"
 
 //BeyondMyLife:Kilano Soryu //Moved these for orginization purposes.
 /obj/item/clothing/under/dress/fluff/kilano
@@ -1515,7 +1431,6 @@ Departamental Swimsuits, for general use
 	icon_state = "kilanodress"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "kilanodress_mob"
 
 	species_restricted = null
 	body_parts_covered = CHEST|ARMS
@@ -1529,7 +1444,6 @@ Departamental Swimsuits, for general use
 	icon_state = "kilanogloves"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "kilanogloves_mob"
 	species_restricted = null
 
 //BeyondMyLife: Cassandra Selones
@@ -1585,8 +1499,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "tronsiren"
-	worn_state = "tronsiren_mob"
-	item_state = "tronsiren_mob"
 	rolled_sleeves = 0
 
 /obj/item/clothing/gloves/fluff/siren
@@ -1597,7 +1509,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "tronsiren_gloves"
-	item_state = "tronsiren_gloves_mob"
 
 /obj/item/clothing/shoes/boots/fluff/siren
 	name = "Siren Boots"
@@ -1616,7 +1527,6 @@ Departamental Swimsuits, for general use
 	icon_state = "hasd_helm"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "hasd_helm"
 	species_restricted = null
 
 /obj/item/clothing/head/helmet/space/void/security/hasd/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
@@ -1634,7 +1544,6 @@ Departamental Swimsuits, for general use
 	species_restricted = null
 	icon = 'icons/mob/taursuits_lizard.dmi'
 	icon_state = "hasd_suit"
-	item_state = "hasd_suit"
 	pixel_x = -16
 
 /obj/item/clothing/suit/space/void/security/hasd/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
@@ -1653,7 +1562,6 @@ Departamental Swimsuits, for general use
 	icon_state = "zao_cap"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "zao_cap_mob"
 
 //Nepox:Annie Rose
 /obj/item/clothing/accessory/sweater/fluff/annie
@@ -1688,7 +1596,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "bracer_xander_sthasha"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "bracer_xander_sthasha"
 
 /obj/item/clothing/accessory/bracer/fluff/xander_sthasha/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
@@ -1703,7 +1610,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_items_vr.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "goldenstring"
-	item_state = "goldenstring"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_TIE
 
@@ -1715,14 +1621,13 @@ Departamental Swimsuits, for general use
 	icon_state = "aika_coat"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "aika_coat_mob"
 	flags_inv = HIDEJUMPSUIT | HIDETIE
 
 	item_icons = list(
 		slot_l_hand_str = 'icons/vore/custom_clothes_mob.dmi',
 		slot_r_hand_str = 'icons/vore/custom_clothes_mob.dmi',
 		)
-	item_state_slots = list(slot_r_hand_str = "aika_coat_mob_r", slot_l_hand_str = "aika_coat_mob_l")
+	item_state_slots = list(slot_r_hand_str = "aika_coat_r", slot_l_hand_str = "aika_coat_l")
 
 //Burrito Justice: Jayda Wilson
 /obj/item/clothing/under/solgov/utility/sifguard/medical/fluff
@@ -1732,8 +1637,6 @@ Departamental Swimsuits, for general use
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 
 	icon_state = "blackutility_med"
-	worn_state = "blackutility_med_mob"
-	item_state = "blackutility_med_mob"
 
 	rolled_down = 0
 	rolled_sleeves = 0
@@ -1748,7 +1651,6 @@ Departamental Swimsuits, for general use
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 
 	icon_state = "melanie_skeleton"
-	item_state = "melanie_skeleton_mob"
 
 	body_parts_covered = 0
 
@@ -1788,7 +1690,6 @@ Departamental Swimsuits, for general use
 	body_parts_covered = CHEST
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "latex_clothes"
-	item_state = "latex_clothes_mob"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	color = COLOR_NAVY
 	sprite_sheets = null
@@ -1799,7 +1700,6 @@ Departamental Swimsuits, for general use
 	desc = "A brightly colored cloak, similar in pattern to the CRO's cloak. It's colored White, Pink, and Blue, with Gold buttons."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "pipcloak"
-	item_state = "pipcloak"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_override = 'icons/vore/custom_clothes_mob.dmi'
 
@@ -1848,7 +1748,6 @@ Departamental Swimsuits, for general use
 	icon_state = "zenahelmet"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "zenahelmet_mob"
 
 	species_restricted = null
 
@@ -1860,7 +1759,6 @@ Departamental Swimsuits, for general use
 	icon_state = "zenasuit"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "zenasuit_mob"
 
 	species_restricted = null
 
@@ -1875,7 +1773,6 @@ Departamental Swimsuits, for general use
 	flags_inv = HIDEHOLSTER
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "flintlock_mob"
 
 //BobOfBoblandia: Charles Gettler
 /obj/item/clothing/head/that/fluff/gettler
@@ -1889,7 +1786,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "nikki_outfit"
-	item_state = "nikki_outfit"
 	sensor_mode = 3 // I'm a dumbass and forget these all the time please understand :(
 
 /obj/item/clothing/under/skirt/outfit/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
@@ -1906,7 +1802,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "nikki_boots"
-	item_state = "nikki_boots"
 
 /obj/item/clothing/shoes/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
 	if(..())
@@ -1940,7 +1835,6 @@ Departamental Swimsuits, for general use
 	who makes physical contact with it to whatever beacon the translocator within is locked onto."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "nikki-hat"
-	item_state = "nikki-hat"
 	item_icons = list(
 		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi',
 		slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi',
@@ -2110,7 +2004,6 @@ Departamental Swimsuits, for general use
 	icon_state = "verie_hoodie"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "verie_hoodie"
 
 	hoodtype = /obj/item/clothing/head/hood/winter/fluff/verie
 
@@ -2131,7 +2024,6 @@ Departamental Swimsuits, for general use
 	icon_state = "verie_hood"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "verie_hood"
 
 /obj/item/clothing/under/fluff/verie
 	name = "salaciously stylised suit"
@@ -2143,7 +2035,6 @@ Departamental Swimsuits, for general use
 	icon_state = "veriesuit"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "veriesuit"
 
 	body_parts_covered = CHEST|FEET|ARMS|HANDS
 
@@ -2153,7 +2044,6 @@ Departamental Swimsuits, for general use
 	desc = "A fancy cloak with a RGB LED color strip along the trim, cycling through the colors of the rainbow."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "rgb"
-	item_state = "rgb"
 	overlay_state = "rgb"
 	icon_override = 'icons/vore/custom_clothes_mob.dmi' //This one HAS to be icon_override due to accessory code in acessory.dm
 	var/is_dark = FALSE
@@ -2174,12 +2064,10 @@ Departamental Swimsuits, for general use
 		src.is_dark = !src.is_dark
 		if (src.is_dark)
 			icon_state = "rgbd"
-			item_state = "rgbd"
 			overlay_state = "rgbd"
 			to_chat(user, "The polychromic plates in your cloak activate, turning it black.")
 		else
 			icon_state = "rgb"
-			item_state = "rgb"
 			overlay_state = "rgb"
 			to_chat(user, "The polychromic plates in your cloak activate, turning it white.")
 		has_suit?.update_clothing_icon()
@@ -2200,7 +2088,6 @@ Departamental Swimsuits, for general use
 	desc = "A set of white and blue overalls, paired with a yellow shirt."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "mechaoveralls"
-	item_state = "mechaoveralls"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 
 //Hatterhat: Harold Robinson
@@ -2211,7 +2098,6 @@ Departamental Swimsuits, for general use
 	icon_state = "mechacoat"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "mechacoat_mob"
 	hoodtype = /obj/item/clothing/head/hood/winter/fluff/mechanic
 	has_hood_sprite = TRUE
 
@@ -2223,7 +2109,6 @@ Departamental Swimsuits, for general use
 	icon_state = "mechahood"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "mechahood_mob"
 
 //Pandora029 : Evelyn Tareen
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn
@@ -2233,7 +2118,6 @@ Departamental Swimsuits, for general use
 	icon_state = "evelyncoat"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "evelyncoat_mob"
 	hoodtype = /obj/item/clothing/head/hood/winter/security/fluff/evelyn
 	has_hood_sprite = TRUE
 
@@ -2246,7 +2130,6 @@ Departamental Swimsuits, for general use
 
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "evelynhood_mob"
 
 //Allweek:Fifi the Magnificent
 /obj/item/clothing/head/fluff/fifi_hat
@@ -2257,7 +2140,6 @@ Departamental Swimsuits, for general use
 	icon_state = "fifi_hat"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "fifi_hat"
 
 /obj/item/clothing/under/fluff/fifi_jumpsuit
 	name = "fifi's jumpsuit"
@@ -2267,7 +2149,6 @@ Departamental Swimsuits, for general use
 	icon_state = "fifi_jumpsuit"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "fifi_jumpsuit"
 
 /obj/item/clothing/shoes/fluff/fifi_socks
 	name = "fifi's socks"
@@ -2277,7 +2158,6 @@ Departamental Swimsuits, for general use
 	icon_state = "fifi_socks"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "fifi_socks"
 
 
 
@@ -2296,12 +2176,10 @@ Departamental Swimsuits, for general use
 
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "foxflightsuit"
-	worn_state = "foxflightsuit_mob"
 	rolled_sleeves = 0
 	rolled_down = 0
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "foxflightsuit_mob"
 	body_parts_covered = CHEST|ARMS|LEGS
 
 //Shalax: Cerise Duelliste
@@ -2309,7 +2187,6 @@ Departamental Swimsuits, for general use
 	name = "champion's belt"
 	desc = "Cerise's hard-won belt from her glory days. Her skill might have waned since then, but her renown lives on."
 	icon_state = "champion"
-	item_state = null // i swear to god this works - hatterhat
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 
@@ -2325,7 +2202,6 @@ Departamental Swimsuits, for general use
 	rolled_down = 0
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "greek_dress"
 	body_parts_covered = CHEST|ARMS|LEGS
 
 //JadeManique: Freyr
@@ -2335,7 +2211,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "freyrmask"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "freyrmask_mob"
 	item_icons = list(
 		slot_wear_mask_str = 'icons/vore/custom_clothes_mob.dmi'
 		)
@@ -2376,7 +2251,6 @@ Departamental Swimsuits, for general use
 	icon_state = "zera_labcloak"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "zera_labcloak"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zera/toggle()
 	set name = "Toggle Coat Buttons"
@@ -2409,7 +2283,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "zera_weld"
-	item_state = "zera_weld_onmob"
 	flags_inv = (HIDEEYES)
 	body_parts_covered = HEAD|EYES
 
@@ -2423,14 +2296,12 @@ Departamental Swimsuits, for general use
 			body_parts_covered |= (EYES)
 			flags_inv |= (HIDEEYES)
 			icon_state = "zera_weld"
-			item_state = "zera_weld_onmob"
 			to_chat(usr, "You flip the helmet down to protect your eyes.")
 		else
 			up = !up
 			body_parts_covered &= ~(EYES)
 			flags_inv &= ~(HIDEEYES)
 			icon_state = "zera_weld_up"
-			item_state = "zera_weld_up_onmob"
 
 			to_chat(usr, "You push the helmet up out of your face.")
 		update_clothing_icon()	//so our mob-overlays
@@ -2447,7 +2318,6 @@ Departamental Swimsuits, for general use
 	icon_state = "grand_purple_cloak"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "grand_purple_cloak"
 
 /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zeracloak/toggle()
 	set name = "Toggle Coat Buttons"
@@ -2479,7 +2349,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "grand_purple_cloak_hat"
-	item_state = "grand_purple_cloak_hat_onmob"
 
 //verysoft:Dessa Ton
 /obj/item/clothing/head/fluff/giantbow/dessa
@@ -2535,7 +2404,6 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "valkhorns"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "valkhorns_onmob"
 
 //sixberry: Thistle
 
@@ -2545,5 +2413,4 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "memorycrown"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state = "memorycrown_onmob"
 	slot_flags = SLOT_HEAD

@@ -469,7 +469,6 @@
 	flags = THICKMATERIAL
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "serdyhelm_mob"
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
@@ -653,7 +652,7 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "browncane"
 	item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
-	item_state_slots = list(slot_r_hand_str = "browncanemob_r", slot_l_hand_str = "browncanemob_l")
+	item_state_slots = list(slot_r_hand_str = "browncane_r", slot_l_hand_str = "browncane_l")
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_SMALL
@@ -1261,7 +1260,6 @@
 	icon_state = "blindshades"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "blindshades_mob"
 
 //Storesund97 - Aurora
 /obj/item/clothing/accessory/solgov/department/security/aurora
@@ -1603,7 +1601,6 @@
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "kintacts"
-	item_state = "kintacts_mob"
 
 //Bricker98: Talenya Lapushkina
 /obj/item/remote_scene_tool/tally_necklace  //A reskinned sticker for the collar, using a modified golden collar sprite
