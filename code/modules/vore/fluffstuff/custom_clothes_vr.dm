@@ -2151,12 +2151,12 @@ Departamental Swimsuits, for general use
 	..()
 	var/mob/living/carbon/human/H = loc
 	if(istype(H) && H.wear_suit == src)
-		default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
+		icon_override = 'icons/vore/custom_clothes_mob.dmi'
 	update_clothing_icon()
 
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/dropped(mob/user)
 	..()
-	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
+	icon_override = 'icons/vore/custom_clothes_mob.dmi'
 
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/proc/colorswap(mob/user)
 	if(user.canmove && !user.stat)
@@ -2172,6 +2172,7 @@ Departamental Swimsuits, for general use
 			overlay_state = "rgb"
 			to_chat(user, "The polychromic plates in your cloak activate, turning it white.")
 		has_suit?.update_clothing_icon()
+		user.update_inv_wear_suit()
 
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/verb/color_verb()
 	set name = "Swap color"
