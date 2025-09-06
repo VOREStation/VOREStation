@@ -1799,9 +1799,20 @@ Departamental Swimsuits, for general use
 	desc = "A brightly colored cloak, similar in pattern to the CRO's cloak. It's colored White, Pink, and Blue, with Gold buttons."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "pipcloak"
-	item_state = "pipcloak_mob"
-	icon_override = 'icons/vore/custom_clothes_mob.dmi'  //This one HAS to be icon_override due to accessory code in acessory.dm
+	item_state = "pipcloak"
+	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
+	icon_override = 'icons/vore/custom_clothes_mob.dmi'
 
+/obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip/equipped()
+	..()
+	var/mob/living/carbon/human/H = loc
+	if(istype(H) && H.wear_suit == src)
+		icon_override = 'icons/vore/custom_clothes_mob.dmi'
+	update_clothing_icon()
+
+/obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip/dropped()
+	..()
+	icon_override = 'icons/vore/custom_clothes_mob.dmi'
 
 //CappyCat:Cappy Fuzzlyfeathers
 /obj/item/clothing/accessory/watch/custom
