@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "removes an exploit that allowed pais to download all software, no matter how much ram they had free"

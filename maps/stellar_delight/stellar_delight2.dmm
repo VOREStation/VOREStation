@@ -904,6 +904,7 @@
 	dir = 4
 	},
 /mob/living/simple_mob/animal/passive/opossum/poppy,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/engineering/workshop)
 "bN" = (
@@ -8221,7 +8222,7 @@
 "ry" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/space/void/captain,
 /obj/item/clothing/head/helmet/space/void/captain,
 /obj/structure/window/reinforced,

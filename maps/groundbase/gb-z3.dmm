@@ -823,7 +823,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient3)
 "nC" = (
-/obj/structure/closet/secure_closet/CMO,
+/obj/structure/closet/secure_closet/chief_medical_officer,
 /obj/item/storage/belt/medical,
 /obj/item/flashlight/pen,
 /obj/item/clothing/accessory/stethoscope,

@@ -94,4 +94,4 @@
 	registered_name = "Operative"
 	assignment = "Operative Commander"
 	icon_state = "syndicate-id"
-	access = list(access_syndicate, access_external_airlocks)
+	access = list(ACCESS_SYNDICATE, ACCESS_EXTERNAL_AIRLOCKS)

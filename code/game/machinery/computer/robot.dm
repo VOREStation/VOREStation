@@ -4,7 +4,7 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "robot"
 	light_color = "#a97faa"
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/robotics
 	var/safety = 1
 
