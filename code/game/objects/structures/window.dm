@@ -665,7 +665,6 @@
 	for(var/obj/structure/window/reinforced/polarized/W in range(src,range))
 		if (W.id == src.id || !W.id)
 			W.toggle()
-			return
 
 /obj/machinery/button/windowtint/power_change()
 	..()

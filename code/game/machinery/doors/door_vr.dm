@@ -145,4 +145,3 @@
 	for(var/obj/machinery/door/D in range(src,range))
 		if(D.icon_tinted && (D.id_tint == src.id || !D.id_tint))
 			D.toggle()
-			return
