@@ -24,6 +24,19 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/custom_circuit_printer_upgrade_clone
+	name = "Integrated circuit printer upgrade - circuit cloner"
+	desc = "Allows the integrated circuit printer to clone existing circuit assemblies"
+	id = "ic_printer_upgrade_clone"
+	// req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 2000)
+	build_path = /obj/item/disk/integrated_circuit/upgrade/clone
+	category = list(
+		RND_CATEGORY_CIRCUITRY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/wirer
 	name = "Custom wirer tool"
 	id = "wirer"

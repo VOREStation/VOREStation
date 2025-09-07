@@ -39,6 +39,7 @@
 			// General Information
 			belly_data["name"] = B.name
 			belly_data["desc"] = B.desc
+			belly_data["display_name"] = B.display_name
 			belly_data["absorbed_desc"] = B.absorbed_desc
 			belly_data["vore_verb"] = B.vore_verb
 			belly_data["release_verb"] = B.release_verb
@@ -278,6 +279,8 @@
 			belly_data["emotes_unabsorb"] = list()
 			for(var/msg in B.emote_lists[DM_UNABSORB])
 				belly_data["emotes_unabsorb"] += msg
+
+			belly_data["displayed_message_flags"] = B.displayed_message_flags
 
 			// Options
 			belly_data["digest_brute"] = B.digest_brute

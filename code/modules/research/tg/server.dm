@@ -7,7 +7,7 @@
 	icon_state = "RD-server-on"
 	var/base_icon_state = "RD-server"
 	circuit = /obj/item/circuitboard/machine/rdserver
-	req_access = list(access_rd)
+	req_access = list(ACCESS_RD)
 
 	/// if TRUE, we are currently operational and giving out research points.
 	var/working = TRUE

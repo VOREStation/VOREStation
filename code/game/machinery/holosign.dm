@@ -76,8 +76,7 @@
 
 	for(var/obj/machinery/holosign/M in GLOB.machines)
 		if(M.id == id)
-			spawn(0)
-				M.toggle()
-				return
+			M.toggle()
+			return
 
 	return

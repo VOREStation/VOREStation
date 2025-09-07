@@ -1,0 +1,62 @@
+2025-09-01:
+  Kashargul:
+  - code_imp: sdmm 1.11
+  - bugfix: various runtimes
+  Ryumi:
+  - bugfix: Fixed the pod storage UI not correctly displaying quotation marks in listed
+      item names.
+  TeleTubby2:
+  - rscadd: legally-distinct-word-game has now been installed on NT staff PDAs by
+      default. (Thanks Satin!)
+  - config: added a word dictionary to the strings folder for choosing the nerdle
+      list
+  - bugfix: you can no longer VV the vars list on clients
+  - code_imp: can_vv_get now requires you to call parent
+  Will:
+  - bugfix: Dosimeter case icon fixed
+  - bugfix: Fbp backup battery icon fixed
+  Zizzi:
+  - bugfix: Fixed circuitry pins being constrained to numbers no larger than 52..
+2025-09-02:
+  Kashargul:
+  - code_imp: tgui-core 5.2.0
+  Ryumi:
+  - bugfix: Fixed great white carp turning into failsneks on death.
+  TankTheBirb:
+  - bugfix: Fixed water movement not being applied by readding the clamp to human_movement.dm.
+  - config: changed default sprite scale offset to odd scaling since that was the
+      default for the longest time.
+  Tenryumi:
+  - bugfix: Fixed the dosimeter film having a missing icon.
+  Tost:
+  - bugfix: boat cloak, colorable can have its description and name changed on loadout.
+2025-09-03:
+  Kashargul:
+  - bugfix: ghost pods in some cases not spawning a charger
+2025-09-04:
+  Kashargul:
+  - bugfix: ar visor being invisible
+2025-09-05:
+  Tost:
+  - bugfix: Returns the clear gasmasks to most logical places.
+  Will:
+  - rscadd: Methane atmospheric gas
+  - rscadd: Methane tanks, canisters, emergency tanks
+  - rscadd: Gasleak events now can pick methane
+  - rscadd: xenoflora plants can require and make methane
+  - rscadd: circuit programmer gas sensors can detect methane
+  - rscadd: methane breather trait
+  - rscadd: methane gas distilling reaction that produces sulfur
+  - rscadd: methane sign for atmos
+  - rscadd: methane tank on-mob sprites for human and teshari
+  - code_imp: omni atmo devices use  ATM_LASTGAS instead of a hardcoded gas
+  - code_imp: nitrous oxide default turf atmo var added, so it behaves like all other
+      round start gasses
+  - refactor: Atmo gasses use GASNAME_ defines instead of raw strings when used in
+      lists
+  - refactor: pda, pai, and communicator gas scanners now use a unified global proc
+      get_gas_mixture_default_scan_data() to get their data and format it
+  - bugfix: nitrous oxide is now weighed when checking if the gasses in a zone are
+      different
+  Willburd:
+  - code_imp: Crossing atom signals now implemented

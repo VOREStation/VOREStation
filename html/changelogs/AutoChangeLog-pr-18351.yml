@@ -1,4 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - bugfix: "fixed request consoles turning invisible after receiving messages"

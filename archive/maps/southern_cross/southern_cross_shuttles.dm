@@ -23,7 +23,7 @@
 //Admin
 /obj/machinery/computer/shuttle_control/administration
 	name = "shuttle control console"
-	req_access = list(access_cent_general)
+	req_access = list(ACCESS_CENT_GENERAL)
 	shuttle_tag = "Administration"
 
 /datum/shuttle/autodock/ferry/administration
@@ -51,7 +51,7 @@
 
 /obj/machinery/computer/shuttle_control/centcom
 	name = "shuttle control console"
-	req_access = list(access_cent_general)
+	req_access = list(ACCESS_CENT_GENERAL)
 	shuttle_tag = "Centcom"
 
 /datum/shuttle/autodock/ferry/centcom
@@ -82,7 +82,7 @@
 /*
 /obj/machinery/computer/shuttle_control/multi/skipjack
 	name = "skipjack control console"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 	shuttle_tag = "Skipjack"
 
 
@@ -100,7 +100,7 @@
 /*
 /obj/machinery/computer/shuttle_control/multi/ninja
 	name = "stealth shuttle control console"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 	shuttle_tag = "Ninja"
 
 /datum/shuttle/multi_shuttle/ninja
@@ -367,5 +367,3 @@ ESCAPE_POD(8)
 
 
 // Heist shuttle
-
-
