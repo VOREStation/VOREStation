@@ -332,9 +332,6 @@
 
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "tempesthud"
-	item_icons = list(
-		slot_glasses_str = 'icons/vore/custom_clothes_mob.dmi'
-		)
 
 //For general use
 /obj/item/clothing/accessory/fluff/smilepin
@@ -775,9 +772,6 @@
 	icon_state = "kamina"
 	desc = "ROW ROW, FIGHT THE POWER."
 	flash_prot = 1 //Why not.
-	item_icons = list(
-		slot_glasses_str = 'icons/vore/custom_clothes_mob.dmi'
-		)
 
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi
@@ -900,9 +894,6 @@
 	icon_state = "clockworkgoggle_l"
 	item_state_slots = null
 	body_parts_covered = 0
-	item_icons = list(
-		slot_wear_mask_str = 'icons/vore/custom_clothes_mob.dmi'
-		)
 
 
 /obj/item/clothing/shoes/black/cuffs
@@ -2051,6 +2042,7 @@ Departamental Swimsuits, for general use
 	desc = "A fancy cloak with a RGB LED color strip along the trim, cycling through the colors of the rainbow."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "rgb"
+	item_state = "rgb"
 	overlay_state = "rgb"
 	icon_override = 'icons/vore/custom_clothes_mob.dmi' //This one HAS to be icon_override due to accessory code in acessory.dm
 	var/is_dark = FALSE
@@ -2074,10 +2066,12 @@ Departamental Swimsuits, for general use
 		src.is_dark = !src.is_dark
 		if (src.is_dark)
 			icon_state = "rgbd"
+			item_state = "rgbd"
 			overlay_state = "rgbd"
 			to_chat(user, "The polychromic plates in your cloak activate, turning it black.")
 		else
 			icon_state = "rgb"
+			item_state = "rgb"
 			overlay_state = "rgb"
 			to_chat(user, "The polychromic plates in your cloak activate, turning it white.")
 		has_suit?.update_clothing_icon()
