@@ -68,6 +68,3 @@
 	for(var/obj/machinery/neonsign/M in GLOB.machines)
 		if(M.id == id)
 			M.toggle()
-			return
-
-	return

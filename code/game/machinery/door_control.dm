@@ -139,10 +139,8 @@
 		if(M.id == id)
 			if(M.density)
 				M.open()
-				return
 			else
 				M.close()
-				return
 
 /*
 	Emitter remote control
@@ -155,7 +153,6 @@
 	for(var/obj/machinery/power/emitter/E in GLOB.machines)
 		if(E.id == id)
 			E.activate(user)
-			return
 
 /*
 	Mass driver remote control
@@ -175,7 +172,6 @@
 	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
 			M.open()
-			return
 	addtimer(CALLBACK(src, PROC_REF(trigger_step_one)), 2 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
 /obj/machinery/button/remote/driver/proc/trigger_step_one()
@@ -191,7 +187,6 @@
 	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
 			M.close()
-			return
 
 	active = FALSE
 	update_icon()
