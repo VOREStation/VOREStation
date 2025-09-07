@@ -216,7 +216,7 @@
 			/obj/item/clothing/suit/storage/toggle/labcoat/emt,
 			/obj/item/clothing/under/rank/medical/paramedic,
 			/obj/item/clothing/suit/storage/toggle/fr_jacket,
-			/obj/item/clothing/mask/gas,
+			/obj/item/clothing/mask/gas/clear,
 			/obj/item/clothing/under/rank/medical/paramedic_alt,
 			/obj/item/clothing/accessory/stethoscope,
 			/obj/item/storage/firstaid/adv,
@@ -330,7 +330,7 @@
 			/obj/item/clothing/suit/bio_suit/cmo,
 			/obj/item/clothing/head/bio_hood/cmo,
 			/obj/item/clothing/shoes/white = 4,
-			/obj/item/clothing/mask/gas = 4,
+			/obj/item/clothing/mask/gas/clear = 4,
 			/obj/item/tank/oxygen = 4,
 			/obj/item/storage/box/masks,
 			/obj/item/storage/box/gloves
@@ -412,7 +412,7 @@
 	contains = list(
 			/obj/item/clothing/suit/bio_suit/virology = 3,
 			/obj/item/clothing/head/bio_hood/virology = 3,
-			/obj/item/clothing/mask/gas = 3,
+			/obj/item/clothing/mask/gas/clear = 3,
 			/obj/item/tank/oxygen = 3,
 			/obj/item/storage/box/masks,
 			/obj/item/storage/box/gloves

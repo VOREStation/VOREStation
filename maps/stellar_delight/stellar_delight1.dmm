@@ -2146,12 +2146,12 @@
 /area/stellardelight/deck1/miningshuttle)
 "dV" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/clothing/mask/gas{
+/obj/item/clothing/mask/gas/clear{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas{
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear{
 	pixel_x = -3;
 	pixel_y = -3
 	},
