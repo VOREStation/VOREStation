@@ -332,8 +332,9 @@
 
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "tempesthud"
-
-	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
+	item_icons = list(
+		slot_glasses_str = 'icons/vore/custom_clothes_mob.dmi'
+		)
 
 //For general use
 /obj/item/clothing/accessory/fluff/smilepin
@@ -771,10 +772,12 @@
 /obj/item/clothing/glasses/omnihud/kamina
 	name = "Kamina glasses"
 	icon = 'icons/vore/custom_items_vr.dmi'
-	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_state = "kamina"
 	desc = "ROW ROW, FIGHT THE POWER."
 	flash_prot = 1 //Why not.
+	item_icons = list(
+		slot_glasses_str = 'icons/vore/custom_clothes_mob.dmi'
+		)
 
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi
@@ -883,8 +886,9 @@
 	desc = "A customized gas mask to look like an old plague doctors, with a special looking lens in the left eye that turns on when in use."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "octplaguedoctor"
-	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	item_state_slots = null
+	item_icons = list(
+		slot_wear_mask_str = 'icons/vore/custom_clothes_mob.dmi'
+		)
 	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
 
@@ -894,9 +898,11 @@
 	desc = "Avery expensive looking monocle inlaid with small gems around the gold frame. It has a thin leather cord running down to a clasp for attaching to ones coat. Probably not a good idea to steal this."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "clockworkgoggle_l"
-	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	item_state_slots = null
 	body_parts_covered = 0
+	item_icons = list(
+		slot_wear_mask_str = 'icons/vore/custom_clothes_mob.dmi'
+		)
 
 
 /obj/item/clothing/shoes/black/cuffs
@@ -1570,7 +1576,7 @@ Departamental Swimsuits, for general use
 
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "sweater_annie"
-	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
+	icon_override = 'icons/vore/custom_clothes_mob.dmi'
 
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
 	body_parts_covered = CHEST|ARMS
@@ -1637,6 +1643,7 @@ Departamental Swimsuits, for general use
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 
 	icon_state = "blackutility_med"
+	worn_state = "blackutility_med"
 
 	rolled_down = 0
 	rolled_sleeves = 0
@@ -1700,6 +1707,7 @@ Departamental Swimsuits, for general use
 	desc = "A brightly colored cloak, similar in pattern to the CRO's cloak. It's colored White, Pink, and Blue, with Gold buttons."
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "pipcloak"
+	item_state = "pipcloak"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	icon_override = 'icons/vore/custom_clothes_mob.dmi'
 
@@ -1737,7 +1745,6 @@ Departamental Swimsuits, for general use
 	icon_state = "azuracollar"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	icon_state = "azuracollar"
 
 
 //Xonkon: Zena Aviv
@@ -2047,6 +2054,9 @@ Departamental Swimsuits, for general use
 	overlay_state = "rgb"
 	icon_override = 'icons/vore/custom_clothes_mob.dmi' //This one HAS to be icon_override due to accessory code in acessory.dm
 	var/is_dark = FALSE
+	item_icons = list(
+		slot_wear_suit_str = 'icons/vore/custom_clothes_mob.dmi'
+		)
 
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/equipped()
 	..()
@@ -2210,7 +2220,6 @@ Departamental Swimsuits, for general use
 	desc = "A pristine white mask with antlers. Its silky to the touch, like porcelain!"
 	icon = 'icons/vore/custom_clothes_item.dmi'
 	icon_state = "freyrmask"
-	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	item_icons = list(
 		slot_wear_mask_str = 'icons/vore/custom_clothes_mob.dmi'
 		)
