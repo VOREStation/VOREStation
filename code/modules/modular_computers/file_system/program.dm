@@ -209,6 +209,7 @@
 				if(!computer.active_program)
 					return
 
+				var/mob/user = ui.user
 				computer.idle_threads.Add(computer.active_program)
 				program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
 
@@ -216,8 +217,8 @@
 				computer.update_icon()
 				ui.close()
 
-				if(ui.user && istype(ui.user))
-					computer.tgui_interact(ui.user) // Re-open the UI on this computer. It should show the main screen now.
+				if(istype(user))
+					computer.tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
 
 
 

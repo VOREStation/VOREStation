@@ -42,6 +42,7 @@
 #define TECHWEB_NODE_ELECTRIC_WEAPONS "electric_weapons"
 #define TECHWEB_NODE_ENERGY_MANIPULATION "energy_manipulation"
 #define TECHWEB_NODE_CHEM_REFINERY "chem_refinery"
+#define TECHWEB_NODE_CHEM_ISOLATION "chem_isolation"
 #define TECHWEB_NODE_EXODRONE "exodrone"
 #define TECHWEB_NODE_EXOTIC_AMMO "exotic_ammo"
 #define TECHWEB_NODE_EXP_TOOLS "exp_tools"

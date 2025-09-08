@@ -33,7 +33,7 @@
 	circuit = /obj/item/circuitboard/clonepod
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
-	req_access = list(access_genetics) // For premature unlocking.
+	req_access = list(ACCESS_GENETICS) // For premature unlocking.
 	VAR_PRIVATE/datum/weakref/weakref_occupant = null
 	var/heal_level = 20				// The clone is released once its health reaches this level.
 	var/heal_rate = 1
@@ -233,7 +233,7 @@
 	else if(istype(W,/obj/item/reagent_containers/glass))
 		if(LAZYLEN(containers) >= container_limit)
 			to_chat(user, span_warning("\The [src] has too many containers loaded!"))
-		else if(do_after(user, 1 SECOND))
+		else if(do_after(user, 1 SECOND, target = src))
 			user.visible_message("[user] has loaded \the [W] into \the [src].", "You load \the [W] into \the [src].")
 			containers += W
 			user.drop_item()

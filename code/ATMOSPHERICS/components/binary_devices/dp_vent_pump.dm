@@ -33,7 +33,7 @@
 	var/input_pressure_min = INTERNAL_PRESSURE_BOUND
 	var/output_pressure_max = DEFAULT_PRESSURE_DELTA
 
-	var/frequency = 0
+	var/frequency = ZERO_FREQ
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 

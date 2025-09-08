@@ -87,7 +87,7 @@
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
-	var/list/req_access = list(access_robotics)
+	var/list/req_access = list(ACCESS_ROBOTICS)
 	var/ident = 0
 	//var/list/laws = list()
 	var/viewalerts = 0
@@ -773,7 +773,7 @@
 		if(bolt)
 			to_chat(user,span_filter_notice("You begin removing \the [bolt]."))
 
-			if(do_after(user, 2 SECONDS, src))
+			if(do_after(user, 2 SECONDS, target = src))
 				bolt.forceMove(get_turf(src))
 				bolt = null
 

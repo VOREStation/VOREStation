@@ -1809,7 +1809,7 @@
 /area/maintenance/lower/xenoflora)
 "ads" = (
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -3742,10 +3742,10 @@
 	dir = 4
 	},
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
 /obj/item/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled,
@@ -4174,7 +4174,7 @@
 	dir = 4
 	},
 /obj/random/maintenance/clean,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
 /area/storage/surface_eva)
@@ -8380,7 +8380,7 @@
 	dir = 9
 	},
 /obj/machinery/door/window/southleft,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/structure/sign/nosmoking_2{
@@ -8400,7 +8400,7 @@
 	dir = 5
 	},
 /obj/machinery/door/window/southright,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled/dark,
@@ -9494,7 +9494,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/northleft,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/structure/sign/fire{
@@ -9512,7 +9512,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/northright,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled/dark,
@@ -31248,7 +31248,7 @@
 /area/tether/surfacebase/lowernorthhall)
 "dxY" = (
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled/techfloor,
@@ -31376,7 +31376,7 @@
 /area/tether/surfacebase/security/brig)
 "dPY" = (
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled/techfloor,

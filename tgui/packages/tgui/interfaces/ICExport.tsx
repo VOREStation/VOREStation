@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Section, Stack, TextArea } from 'tgui-core/components';
+import { Button, Section, Stack, TextArea } from 'tgui-core/components';
 
 type Data = {
   export_data: string;
@@ -16,7 +16,7 @@ const downloadCircuitFile = (data: string, filename: string) => {
 };
 
 export const ICExport = (props) => {
-  const { data, act } = useBackend<Data>();
+  const { data } = useBackend<Data>();
   const { export_data, assembly_name } = data;
 
   const handleDownload = () => {
@@ -34,7 +34,7 @@ export const ICExport = (props) => {
             <Stack.Item>
               <TextArea
                 height="40vh"
-                width="100%"
+                fluid
                 value={export_data || 'No data available'}
               />
             </Stack.Item>
@@ -43,17 +43,17 @@ export const ICExport = (props) => {
                 <Stack.Item>
                   <Button
                     icon="download"
-                    content="Download as File"
                     onClick={handleDownload}
                     tooltip="Download circuit data as a JSON file"
-                  />
+                  >
+                    Download as File
+                  </Button>
                 </Stack.Item>
               </Stack>
             </Stack.Item>
             <Stack.Item>
               Note: You can download the circuit as a file or copy to clipboard.
-              Use the circuit printer&apos;s import function to load the
-              circuit.
+              Use the circuit printer's import function to load the circuit.
             </Stack.Item>
           </Stack>
         </Section>

@@ -105,7 +105,7 @@ AI MODULES
 		R.visible_message(span_danger("\The [user] slides a law module into \the [R]."))
 		to_chat(R, span_danger("Local law upload in progress."))
 		to_chat(user, span_notice("Uploading laws from board.  This will take a moment..."))
-		if(do_after(user, 10 SECONDS))
+		if(do_after(user, 10 SECONDS, target = src))
 			transmitInstructions(R, user)
 			to_chat(R, "These are your laws now:")
 			R.show_laws()
