@@ -916,9 +916,7 @@
 /area/redgate/fantasy/alienbasement)
 "tO" = (
 /obj/structure/table/alien,
-/obj/item/paper/alien{
-	info = "<b>Our search for the source has brought us to this planet, and we were quickly able to locate a seepage of the anomaly in the area. We set up this base immediately beside it, so that we can best study it. However, we are growing concerned as the material continues to spread beyond it's initial sprouting point and has begun to encroach directly on our buildings.<br><br>Our plan was to move our base further back from the site and study from a distance, but we have begun to detect lifeforms traversing the void. Yellow eyes have been seen watching from beyond the safety of the cave, disappearing and reappearing seemingly at random. We weren't aware that anything could survive this, they could hold the key to our scenario and we are requesting immediate support to research this further.</b>"
-	},
+/obj/item/paper/alien/source,
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/fantasy/alienbasement)
 "tV" = (

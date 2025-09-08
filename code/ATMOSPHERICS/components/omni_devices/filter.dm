@@ -51,7 +51,7 @@
 					input = P
 				if(ATM_OUTPUT)
 					output = P
-				if(ATM_O2 to ATM_N2O)
+				if(ATM_O2 to ATM_LASTGAS)
 					atmos_filters += P
 	if(any_updated)
 		rebuild_filtering_list()
@@ -120,7 +120,7 @@
 			if(ATM_OUTPUT)
 				output = 1
 				atmo_filter = 0
-			if(ATM_O2 to ATM_N2O)
+			if(ATM_O2 to ATM_LASTGAS)
 				f_type = mode_send_switch(P.mode)
 
 		portData[++portData.len] = list("dir" = dir_name(P.dir, capitalize = 1), \
@@ -140,15 +140,17 @@
 /obj/machinery/atmospherics/omni/atmos_filter/proc/mode_send_switch(var/mode = ATM_NONE)
 	switch(mode)
 		if(ATM_O2)
-			return "Oxygen"
+			return GASNAME_O2
 		if(ATM_N2)
-			return "Nitrogen"
+			return GASNAME_N2
 		if(ATM_CO2)
-			return "Carbon Dioxide"
+			return GASNAME_CO2
 		if(ATM_P)
-			return "Phoron" //*cough* Plasma *cough*
+			return GASNAME_PHORON //*cough* Plasma *cough*
 		if(ATM_N2O)
-			return "Nitrous Oxide"
+			return GASNAME_N2O
+		if(ATM_METHANE)
+			return GASNAME_CH4
 		else
 			return null
 
@@ -182,7 +184,7 @@
 		if("switch_filter")
 			if(!configuring || use_power)
 				return
-			var/new_filter = tgui_input_list(ui.user, "Select filter mode:", "Change filter", list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "Phoron", "Nitrous Oxide"))
+			var/new_filter = tgui_input_list(ui.user, "Select filter mode:", "Change filter", list("None", GASNAME_O2, GASNAME_N2, GASNAME_CO2, GASNAME_PHORON, GASNAME_N2O, GASNAME_CH4))
 			if(!new_filter)
 				return
 			switch_filter(dir_flag(params["dir"]), mode_return_switch(new_filter))
@@ -192,16 +194,18 @@
 
 /obj/machinery/atmospherics/omni/atmos_filter/proc/mode_return_switch(var/mode)
 	switch(mode)
-		if("Oxygen")
+		if(GASNAME_O2)
 			return ATM_O2
-		if("Nitrogen")
+		if(GASNAME_N2)
 			return ATM_N2
-		if("Carbon Dioxide")
+		if(GASNAME_CO2)
 			return ATM_CO2
-		if("Phoron")
+		if(GASNAME_PHORON)
 			return ATM_P
-		if("Nitrous Oxide")
+		if(GASNAME_N2O)
 			return ATM_N2O
+		if(GASNAME_CH4)
+			return ATM_METHANE
 		if("in")
 			return ATM_INPUT
 		if("out")

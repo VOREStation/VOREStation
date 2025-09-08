@@ -2,7 +2,10 @@ export function abilitiy_usable(nutri: number, cost: number): boolean {
   return nutri >= cost;
 }
 
-export function sanitize_color(color?: string | null, mirrorBlack?: boolean) {
+export function sanitize_color(
+  color?: string | null,
+  mirrorBlack?: boolean,
+): string | undefined {
   if (!color) {
     return undefined;
   }
@@ -17,7 +20,7 @@ export function sanitize_color(color?: string | null, mirrorBlack?: boolean) {
   return ctx.fillStyle;
 }
 
-export function calcLineHeight(lim: number, height: number) {
+export function calcLineHeight(lim: number, height: number): string {
   return `${(Math.ceil(lim / 25 / height + 0.5) * height).toFixed()}px`;
 }
 
@@ -27,7 +30,7 @@ export function fixCorruptedData(
     | string[]
     | null
     | Record<string | number, string | number>,
-) {
+): { corrupted?: boolean; data: string | string[] } {
   if (toSanitize === null) {
     return { data: '' };
   }
@@ -49,8 +52,20 @@ export function fixCorruptedData(
   return { corrupted: true, data: clearedData || [] };
 }
 
+export function bellyTemperatureToColor(temp: number): string | undefined {
+  if (temp < 260) {
+    return 'teal';
+  }
+  if (temp > 360) {
+    return 'red';
+  }
+  return undefined;
+}
+
 // Those can't be used currently, due to byond limitations
-export async function copy_to_clipboard(value: string | string[]) {
+export async function copy_to_clipboard(
+  value: string | string[],
+): Promise<void> {
   let data = value;
   if (Array.isArray(data)) {
     data = data.join('\n\n');
@@ -58,7 +73,9 @@ export async function copy_to_clipboard(value: string | string[]) {
   await navigator.clipboard.writeText(data);
 }
 
-export async function paste_from_clipboard(asArray = false) {
+export async function paste_from_clipboard(
+  asArray = false,
+): Promise<string | string[]> {
   const ourText = await navigator.clipboard.readText();
   if (asArray) {
     return ourText.split('\n\n');

@@ -52,6 +52,8 @@
 	data["show_station_news"] = GLOB.news_data.station_newspaper
 	data["new_station_news"] = client.prefs.lastlorenews != GLOB.news_data.newsindex
 	data["new_changelog"] = read_preference(/datum/preference/text/lastchangelog) == GLOB.changelog_hash
+	data["can_start_now"] = client.is_localhost() && check_rights_for(client, R_SERVER)
+	data["immediate_start"] = SSticker.start_immediately || (!isnull(SSticker.timeLeft) && SSticker.timeLeft < 0)
 
 	return data
 
@@ -165,3 +167,10 @@
 
 			playsound_local(ui.user, get_sfx("keyboard"), vol = 20)
 			return TRUE
+		if("start_immediately")
+			if(!ui.user.client.is_localhost() || !check_rights_for(ui.user.client, R_SERVER))
+				return FALSE
+
+			SSticker.start_immediately = TRUE
+			if(SSticker.current_state == GAME_STATE_STARTUP)
+				to_chat(usr, span_admin("The server is still setting up, but the round will be started as soon as possible."))

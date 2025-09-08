@@ -41,7 +41,7 @@
 	var/internal_pressure_bound_default = INTERNAL_PRESSURE_BOUND
 	var/pressure_checks_default = PRESSURE_CHECKS
 
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 	var/datum/radio_frequency/radio_connection
 
 	var/radio_filter_out
@@ -387,7 +387,7 @@
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if (WT.remove_fuel(0,user))
 			to_chat(user, span_notice("Now welding the vent."))
-			if(do_after(user, 20 * WT.toolspeed))
+			if(do_after(user, 20 * WT.toolspeed, target = src))
 				if(!src || !WT.isOn()) return
 				playsound(src, WT.usesound, 50, 1)
 				if(!welded)
@@ -440,7 +440,7 @@
 		return 1
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
-	if (do_after(user, 40 * W.toolspeed))
+	if (do_after(user, 40 * W.toolspeed, target = src))
 		user.visible_message( \
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \

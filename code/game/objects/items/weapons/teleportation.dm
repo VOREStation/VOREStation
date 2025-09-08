@@ -13,7 +13,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"
 	var/temp = null
-	var/frequency = 1451
+	var/frequency = TRACK_IMP_FREQ
 	var/broadcasting = null
 	var/listening = 1.0
 	w_class = ITEMSIZE_SMALL

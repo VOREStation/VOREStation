@@ -75,6 +75,11 @@
 #define NETWORK_TALON_HELMETS "TalonHelmets" //VOREStation Add
 #define NETWORK_TALON_SHIP "TalonShip" //VOREStation Add
 
+//Camera networks
+#define NETWORK_TETHER "Tether"
+#define NETWORK_OUTSIDE "Outside"
+#define NETWORK_HALLS "Halls"
+
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
 var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS)
 

@@ -1,10 +1,11 @@
 #define SENSOR_PRESSURE		(1<<0)
 #define SENSOR_TEMPERATURE	(1<<1)
 #define SENSOR_O2			(1<<2)
-#define SENSOR_PLASMA		(1<<3)
+#define SENSOR_PHORON		(1<<3)
 #define SENSOR_N2			(1<<4)
 #define SENSOR_CO2			(1<<5)
 #define SENSOR_N2O			(1<<6)
+#define SENSOR_CH4			(1<<7)
 
 /obj/machinery/air_sensor
 	icon = 'icons/obj/stationobjs.dmi'
@@ -16,7 +17,7 @@
 	var/state = 0
 
 	var/id_tag
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 
 	var/on = 1
 	var/output = 3
@@ -59,11 +60,14 @@
 					signal.data[GAS_N2] = round(100*air_sample.gas[GAS_N2]/total_moles,0.1)
 				if(output&32)
 					signal.data[GAS_CO2] = round(100*air_sample.gas[GAS_CO2]/total_moles,0.1)
+				if(output&64)
+					signal.data[GAS_CH4] = round(100*air_sample.gas[GAS_CH4]/total_moles,0.1)
 			else
 				signal.data[GAS_O2] = 0
 				signal.data[GAS_PHORON] = 0
 				signal.data[GAS_N2] = 0
 				signal.data[GAS_CO2] = 0
+				signal.data[GAS_CH4] = 0
 		signal.data["sigtype"]="status"
 		radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
@@ -103,13 +107,14 @@
 #define ONOFF_TOGGLE(flag) "\[[(output & flag) ? "YES" : "NO"]]"
 /obj/machinery/air_sensor/proc/multitool_act(mob/living/user, obj/item/multitool/tool)
 	var/list/options = list(
-		"Pressure: [ONOFF_TOGGLE(SENSOR_PRESSURE)]" = SENSOR_PRESSURE,
-		"Temperature: [ONOFF_TOGGLE(SENSOR_TEMPERATURE)]" = SENSOR_TEMPERATURE,
-		"Oxygen: [ONOFF_TOGGLE(SENSOR_O2)]" = SENSOR_O2,
-		"Toxins: [ONOFF_TOGGLE(SENSOR_PLASMA)]" = SENSOR_PLASMA,
-		"Nitrogen: [ONOFF_TOGGLE(SENSOR_N2)]" = SENSOR_N2,
-		"Carbon Dioxide: [ONOFF_TOGGLE(SENSOR_CO2)]" = SENSOR_CO2,
-		"Nitrous Oxide: [ONOFF_TOGGLE(SENSOR_N2O)]" = SENSOR_N2O,
+		"Pressure: [ONOFF_TOGGLE(SENSOR_PRESSURE)]" 		= SENSOR_PRESSURE,
+		"Temperature: [ONOFF_TOGGLE(SENSOR_TEMPERATURE)]" 	= SENSOR_TEMPERATURE,
+		"[GASNAME_O2]: [ONOFF_TOGGLE(SENSOR_O2)]" 			= SENSOR_O2,
+		"[GASNAME_PHORON]: [ONOFF_TOGGLE(SENSOR_PHORON)]" 	= SENSOR_PHORON,
+		"[GASNAME_N2]: [ONOFF_TOGGLE(SENSOR_N2)]" 			= SENSOR_N2,
+		"[GASNAME_CO2]: [ONOFF_TOGGLE(SENSOR_CO2)]" 		= SENSOR_CO2,
+		"[GASNAME_N2O]: [ONOFF_TOGGLE(SENSOR_N2O)]" 		= SENSOR_N2O,
+		"[GASNAME_CH4]: [ONOFF_TOGGLE(SENSOR_CH4)]" 		= SENSOR_CH4,
 		"-SAVE TO BUFFER-" = "multitool"
 	)
 
@@ -126,14 +131,16 @@
 				output ^= SENSOR_TEMPERATURE
 			if(SENSOR_O2)
 				output ^= SENSOR_O2
-			if(SENSOR_PLASMA)
-				output ^= SENSOR_PLASMA
+			if(SENSOR_PHORON)
+				output ^= SENSOR_PHORON
 			if(SENSOR_N2)
 				output ^= SENSOR_N2
 			if(SENSOR_CO2)
 				output ^= SENSOR_CO2
 			if(SENSOR_N2O)
 				output ^= SENSOR_N2O
+			if(SENSOR_CH4)
+				output ^= SENSOR_CH4
 			if("frequency")
 				var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be?", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
 				if(new_frequency)
@@ -156,7 +163,7 @@
 	icon_screen = "tank"
 	name = "Computer"
 	desc = "Control atmospheric systems, remotely."
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 	var/list/sensors = list()
 	var/list/sensor_information = list()
 	var/datum/radio_frequency/radio_connection
@@ -284,7 +291,7 @@
 
 /obj/machinery/computer/general_air_control/large_tank_control
 	icon = 'icons/obj/computer.dmi'
-	frequency = 1441
+	frequency = PUBLIC_LOW_FREQ
 	name = "Large Tank Computer"
 	desc = "Controls various devices for managing a gas tank."
 	var/input_tag
@@ -454,7 +461,7 @@
 
 /obj/machinery/computer/general_air_control/supermatter_core
 	icon = 'icons/obj/computer.dmi'
-	frequency = 1433
+	frequency = ENGINE_FREQ
 	var/input_tag
 	var/output_tag
 	var/list/input_info
@@ -744,7 +751,8 @@
 #undef SENSOR_PRESSURE
 #undef SENSOR_TEMPERATURE
 #undef SENSOR_O2
-#undef SENSOR_PLASMA
+#undef SENSOR_PHORON
 #undef SENSOR_N2
 #undef SENSOR_CO2
 #undef SENSOR_N2O
+#undef SENSOR_CH4
