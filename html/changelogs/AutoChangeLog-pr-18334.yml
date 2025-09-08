@@ -1,7 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Gets rid of the encumberance factor entirely"
-  - bugfix: "do_after can not be spammed on one thing, resulting in loss of materials and such"
-  - code_imp: "Converted some base numbers to proper SECONDS define"
-  - refactor: "Refactors do_after to only allow one use per thing."
