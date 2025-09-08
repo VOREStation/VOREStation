@@ -26,7 +26,7 @@
 	if (chassis)
 		chassis.visible_message(span_notice("[user] starts to climb into [chassis]."))
 
-	if(do_after(user, 40))
+	if(do_after(user, 4 SECONDS, target = src))
 		if(!src.occupant)
 			user.forceMove(src)
 			occupant = user

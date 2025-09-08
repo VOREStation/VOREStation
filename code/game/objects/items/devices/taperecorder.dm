@@ -337,9 +337,8 @@
 		t1 += "[printedmessage]<BR>"
 	P.info = t1
 	P.name = "Transcript"
-	canprint = 0
-	sleep(300)
-	canprint = 1
+	canprint = FALSE
+	VARSET_IN(src, canprint, TRUE, 30 SECONDS)
 
 
 /obj/item/taperecorder/attack_self(mob/user)
@@ -418,7 +417,7 @@
 	if(ruined && I.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, span_notice("You start winding the tape back in..."))
 		playsound(src, I.usesound, 50, 1)
-		if(do_after(user, 120 * I.toolspeed, target = src))
+		if(do_after(user, 12 SECONDS * I.toolspeed, target = src))
 			to_chat(user, span_notice("You wound the tape back in."))
 			fix()
 		return

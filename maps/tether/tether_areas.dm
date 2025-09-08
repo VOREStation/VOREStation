@@ -1577,13 +1577,3 @@
 	name = "\improper docked with Tether"
 	icon_state = "shuttle"
 	dynamic_lighting = 0
-
-// Exclude some more areas from the atmos leak event so people don't get trapped when spawning.
-/datum/event/atmos_leak/setup()
-	excluded |= /area/tether/surfacebase/tram
-	excluded |= /area/tether/surfacebase/surface_one_hall
-	excluded |= /area/tether/surfacebase/surface_two_hall
-	excluded |= /area/tether/surfacebase/surface_three_hall
-	excluded |= /area/teleporter/departing
-	excluded |= /area/hallway/station/upper
-	..()

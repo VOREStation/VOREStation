@@ -31,11 +31,11 @@
 	if(!L.has_AI())
 		return FALSE
 
-	var/datum/ai_holder/AI = L.ai_holder
-	AI.hostile = FALSE // The Technomancer chooses the target, not the AI.
-	AI.retaliate = TRUE
-	AI.wander = FALSE
-	AI.forget_everything()
+	var/datum/ai_holder/our_ai_holder = L.ai_holder
+	our_ai_holder.hostile = FALSE // The Technomancer chooses the target, not the our_ai_holder.
+	our_ai_holder.retaliate = TRUE
+	our_ai_holder.wander = FALSE
+	our_ai_holder.forget_everything()
 
 	if(isanimal(L))
 		var/mob/living/simple_mob/SM = L
@@ -49,11 +49,11 @@
 		return FALSE
 
 	if(L.has_AI())
-		var/datum/ai_holder/AI = L.ai_holder
-		AI.hostile = initial(AI.hostile)
-		AI.retaliate = initial(AI.retaliate)
-		AI.wander = initial(AI.wander)
-		AI.forget_everything()
+		var/datum/ai_holder/our_ai_holder = L.ai_holder
+		our_ai_holder.hostile = initial(our_ai_holder.hostile)
+		our_ai_holder.retaliate = initial(our_ai_holder.retaliate)
+		our_ai_holder.wander = initial(our_ai_holder.wander)
+		our_ai_holder.forget_everything()
 
 	if(isanimal(L))
 		var/mob/living/simple_mob/SM = L

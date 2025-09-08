@@ -989,7 +989,7 @@
 "cz" = (
 /obj/structure/table/rack,
 /obj/machinery/door/window/eastleft,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/structure/window/basic{
@@ -1218,7 +1218,7 @@
 "cW" = (
 /obj/structure/table/rack,
 /obj/machinery/door/window/eastright,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/structure/window/basic,

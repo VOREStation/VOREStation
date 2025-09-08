@@ -44,7 +44,7 @@
 	idle_power_usage = 50		//when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 300	//when active, this turret takes up constant 300 Equipment power
 	power_channel = EQUIP	//drains power from the EQUIPMENT channel
-	req_one_access = list(access_security, access_heads)
+	req_one_access = list(ACCESS_SECURITY, ACCESS_HEADS)
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	var/raised = FALSE			//if the turret cover is "open" and the turret is raised
@@ -97,7 +97,7 @@
 	var/can_salvage = TRUE	// If false, salvaging doesn't give you anything.
 
 /obj/machinery/porta_turret/crescent
-	req_one_access = list(access_cent_specops)
+	req_one_access = list(ACCESS_CENT_SPECOPS)
 	enabled = FALSE
 	ailock = TRUE
 	check_synth = FALSE
@@ -121,7 +121,7 @@
 	installation = /obj/item/gun/energy/laser
 
 /obj/machinery/porta_turret/stationary/syndie // Generic turrets for POIs that need to not shoot their buddies.
-	req_one_access = list(access_syndicate)
+	req_one_access = list(ACCESS_SYNDICATE)
 	enabled = TRUE
 	check_all = TRUE
 	faction = FACTION_SYNDICATE // Make sure this equals the faction that the mobs in the POI have or they will fight each other.
@@ -129,7 +129,7 @@
 /obj/machinery/porta_turret/ai_defense
 	name = "defense turret"
 	desc = "This variant appears to be much more durable."
-	req_one_access = list(access_synth) // Just in case.
+	req_one_access = list(ACCESS_SYNTH) // Just in case.
 	installation = /obj/item/gun/energy/xray // For the armor pen.
 	health = 250 // Since lasers do 40 each.
 	maxhealth = 250
@@ -151,7 +151,7 @@
 	desc = "A very tough looking turret made by alien hands."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_turret)
 	icon_state = "turret_cover_alien"
-	req_one_access = list(access_alien)
+	req_one_access = list(ACCESS_ALIEN)
 	installation = /obj/item/gun/energy/alien
 	enabled = TRUE
 	lethal = TRUE
@@ -171,7 +171,7 @@
 /obj/machinery/porta_turret/industrial
 	name = "industrial turret"
 	desc = "This variant appears to be much more rugged."
-	req_one_access = list(access_heads)
+	req_one_access = list(ACCESS_HEADS)
 	icon_state = "turret_cover_industrial"
 	installation = /obj/item/gun/energy/phasegun
 	health = 200
@@ -187,9 +187,7 @@
 	if(enabled)
 		if(!attacked && !emagged)
 			attacked = TRUE
-			spawn()
-				sleep(60)
-				attacked = FALSE
+			VARSET_IN(src, attacked, FALSE, 6 SECONDS)
 
 	take_damage(damage)
 
@@ -199,7 +197,7 @@
 /obj/machinery/porta_turret/industrial/teleport_defense
 	name = "defense turret"
 	desc = "This variant appears to be much more durable, with a rugged outer coating."
-	req_one_access = list(access_heads)
+	req_one_access = list(ACCESS_HEADS)
 	installation = /obj/item/gun/energy/gun/burst
 	health = 250
 	maxhealth = 250
@@ -487,7 +485,7 @@
 			//If the turret is destroyed, you can remove it with a crowbar to
 			//try and salvage its components
 			to_chat(user, span_notice("You begin prying the metal coverings off."))
-			if(do_after(user, 20))
+			if(do_after(user, 2 SECONDS, target = src))
 				if(can_salvage && prob(70))
 					to_chat(user, span_notice("You remove the turret and salvage some components."))
 					if(installation)
@@ -519,7 +517,7 @@
 			)
 
 		wrenching = TRUE
-		if(do_after(user, 50 * I.toolspeed))
+		if(do_after(user, 5 SECONDS * I.toolspeed, target = src))
 			//This code handles moving the turret around. After all, it's a portable turret!
 			if(!anchored)
 				playsound(src, I.usesound, 100, 1)
@@ -978,7 +976,7 @@
 					return
 
 				playsound(src, I.usesound, 50, 1)
-				if(do_after(user, 20 * I.toolspeed))
+				if(do_after(user, 2 SECONDS * I.toolspeed, target = src))
 					if(!src || !WT.remove_fuel(5, user)) return
 					build_step = 1
 					to_chat(user, "You remove the turret's interior metal armor.")
@@ -1054,7 +1052,7 @@
 					to_chat(user, span_notice("You need more fuel to complete this task."))
 
 				playsound(src, WT.usesound, 50, 1)
-				if(do_after(user, 30 * WT.toolspeed))
+				if(do_after(user, 3 SECONDS * WT.toolspeed, target = src))
 					if(!src || !WT.remove_fuel(5, user))
 						return
 					build_step = 8

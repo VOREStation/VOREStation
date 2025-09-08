@@ -107,10 +107,10 @@ export const PlayerNotes = (props) => {
                       key={i}
                       selected={activePage}
                       onClick={() => {
-                        setActivePage(i),
-                          act('set_page', {
-                            index: i,
-                          });
+                        setActivePage(i);
+                        act('set_page', {
+                          index: i,
+                        });
                       }}
                     >
                       {i}

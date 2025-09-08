@@ -5,7 +5,8 @@
 	icon_state = null
 	w_class = ITEMSIZE_SMALL
 	var/amount_per_transfer_from_this = 5
-	var/possible_transfer_amounts = list(5,10,15,25,30)
+	var/max_transfer_amount = 30
+	var/min_transfer_amount = 5
 	var/volume = 30
 	var/list/starts_with
 
@@ -13,13 +14,13 @@
 	set name = "Set transfer amount"
 	set category = "Object"
 	set src in range(0)
-	var/N = tgui_input_list(usr, "Amount per transfer from this:","[src]", possible_transfer_amounts)
+	var/N = tgui_input_number(usr, "Amount per transfer from this: ([min_transfer_amount]-[max_transfer_amount])","[src]",amount_per_transfer_from_this,max_transfer_amount,min_transfer_amount)
 	if(N)
 		amount_per_transfer_from_this = N
 
 /obj/item/reagent_containers/Initialize(mapload)
 	. = ..()
-	if(!possible_transfer_amounts)
+	if(!max_transfer_amount)
 		src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
 
@@ -171,3 +172,13 @@
 		if(B)
 			balloon_alert(user, "\The [W] burns the blood in \the [src].")
 			B.changling_blood_test(reagents)
+
+/obj/item/reagent_containers/AltClick(mob/user)
+	. = ..()
+	if(!Adjacent(user))
+		return
+	if(!max_transfer_amount)
+		return
+	var/N = tgui_input_number(user, "Amount per transfer from this: ([min_transfer_amount]-[max_transfer_amount])","[src]",amount_per_transfer_from_this,max_transfer_amount,min_transfer_amount)
+	if(N)
+		amount_per_transfer_from_this = N

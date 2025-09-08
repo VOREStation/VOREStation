@@ -394,8 +394,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 					X << 'sound/effects/tones/newplayerping.ogg'
 				window_flash(X)
 		//VOREStation Edit end.
-	fully_created = TRUE
 	attempt_auto_fit_viewport()
+	fully_created = TRUE
 
 	// Now that we're fully initialized, use our prefs
 	if(prefs?.read_preference(/datum/preference/toggle/browser_dev_tools))

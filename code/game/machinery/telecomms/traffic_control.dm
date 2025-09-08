@@ -16,7 +16,7 @@
 	var/list/viewingcode = list()
 	var/obj/machinery/telecomms/server/SelectedServer
 	circuit = /obj/item/circuitboard/comm_traffic
-	req_access = list(access_tcomsat)
+	req_access = list(ACCESS_TCOMSAT)
 
 	var/network = "NULL"		// the network to probe
 	var/temp = ""				// temporary feedback messages

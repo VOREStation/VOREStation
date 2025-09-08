@@ -90,7 +90,7 @@ SUBSYSTEM_DEF(job)
 	return type_occupations[jobtype]
 
 // Determines if a job title is inside of a specific department.
-// Useful to replace the old `if(job_title in command_positions)` code.
+// Useful to replace the old `if(job_title in GLOB.command_positions)` code.
 /datum/controller/subsystem/job/proc/is_job_in_department(rank, target_department_name)
 	var/datum/department/D = LAZYACCESS(department_datums, target_department_name)
 	if(istype(D))

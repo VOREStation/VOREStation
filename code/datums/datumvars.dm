@@ -2,6 +2,7 @@
 	return TRUE
 
 /datum/proc/can_vv_get(var_name)
+	SHOULD_CALL_PARENT(TRUE)
 	if(var_name == NAMEOF(src, vars))
 		return FALSE
 	return TRUE

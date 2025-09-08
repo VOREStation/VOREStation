@@ -129,7 +129,7 @@
 
 	//addtimer(VARSET_CALLBACK(src, in_use , FALSE), 5 SECONDS, TIMER_DELETE_ME) //Leaving this for reference of how to do the timer here if do_after wasn't present.
 
-	if(!do_after(user,50))
+	if(!do_after(user, 5 SECONDS, target = src))
 		in_use = FALSE
 		return
 
@@ -247,7 +247,7 @@
 	disabling = TRUE
 /* //VOREStation Note: TRAITGENETICS - tourettes Disabled on VS
 /obj/item/dnainjector/set_trait/tourettes // tour
-	trait_path = /datum/trait/negative/disability_tourettes
+	trait_path = /datum/trait/neutral/disability_tourettes
 /obj/item/dnainjector/set_trait/tourettes/disable
 	disabling = TRUE
 */ //VOREStation Note: TRAITGENETICS - tourettes Disabled on VS

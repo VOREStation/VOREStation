@@ -250,13 +250,13 @@
 			if(1)
 				if(W.has_tool_quality(TOOL_SCREWDRIVER))
 					playsound(src, W.usesound, 50, 1)
-					if(do_after(user,50,src))
+					if(do_after(user, 5 SECONDS, target = src))
 						to_chat(user, span_notice("You unscrew the maintenace panel on the [src]."))
 						dead +=1
 				return
 			if(2)
 				if(istype(W, /obj/item/protean_reboot))//placeholder
-					if(do_after(user,50,src))
+					if(do_after(user, 5 SECONDS, target = src))
 						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 						to_chat(user, span_notice("You carefully slot [W] in the [src]."))
 						dead +=1
@@ -264,7 +264,7 @@
 				return
 			if(3)
 				if(istype(W, /obj/item/stack/nanopaste))
-					if(do_after(user,50,src))
+					if(do_after(user, 5 SECONDS, target = src))
 						playsound(src, 'sound/effects/ointment.ogg', 50, 1)
 						to_chat(user, span_notice("You slather the interior confines of the [src] with the [W]."))
 						dead +=1
@@ -274,9 +274,9 @@
 				if(istype(W, /obj/item/shockpaddles))
 					if(W?:can_use(user))
 						to_chat(user, span_notice("You hook up the [W] to the contact points in the maintenance assembly"))
-						if(do_after(user,50,src))
+						if(do_after(user, 5 SECONDS, target = src))
 							playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
-							if(do_after(user,10,src))
+							if(do_after(user, 1 SECOND, target = src))
 								playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
 								playsound(src, 'sound/machines/defib_success.ogg', 50, 0)
 								new /obj/effect/gibspawner/robot(src.loc)
@@ -311,7 +311,7 @@
 
 		var/obj/item/rig_module/mod = W
 		to_chat(user, "You begin installing \the [mod] into \the [src].")
-		if(!do_after(user,40))
+		if(!do_after(user, 4 SECONDS, target = src))
 			return
 		if(!user || !W)
 			return

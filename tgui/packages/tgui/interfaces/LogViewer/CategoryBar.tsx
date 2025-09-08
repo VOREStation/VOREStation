@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Input, Section, Stack } from 'tgui-core/components';
+import { Input, Section, Tabs, Tooltip } from 'tgui-core/components';
 import { CATEGORY_ALL } from './constants';
 import type { CategoryBarProps } from './types';
 
@@ -12,7 +12,6 @@ export const CategoryBar = (props: CategoryBarProps) => {
   return (
     <Section
       title="Categories"
-      scrollableHorizontal
       buttons={
         <Input
           placeholder="Search"
@@ -21,36 +20,33 @@ export const CategoryBar = (props: CategoryBarProps) => {
         />
       }
     >
-      <Stack>
-        <Stack.Item>
-          <Button selected={active === ''} onClick={() => setActive('')}>
-            None
-          </Button>
-        </Stack.Item>
-        <Stack.Item>
-          <Button
-            tooltip="This can be slow!"
+      <Tabs scrollable>
+        <Tabs.Tab selected={active === ''} onClick={() => setActive('')}>
+          None
+        </Tabs.Tab>
+        <Tooltip content="This can be slow!">
+          <Tabs.Tab
+            icon="warning"
             selected={active === CATEGORY_ALL}
             onClick={() => setActive(CATEGORY_ALL)}
           >
             All
-          </Button>
-        </Stack.Item>
+          </Tabs.Tab>
+        </Tooltip>
         {sorted
           .filter((cat) =>
             cat.toLowerCase().includes(categorySearch.toLowerCase()),
           )
           .map((category) => (
-            <Stack.Item key={category}>
-              <Button
-                selected={category === active}
-                onClick={() => setActive(category)}
-              >
-                {category}
-              </Button>
-            </Stack.Item>
+            <Tabs.Tab
+              key={category}
+              selected={category === active}
+              onClick={() => setActive(category)}
+            >
+              {category}
+            </Tabs.Tab>
           ))}
-      </Stack>
+      </Tabs>
     </Section>
   );
 };

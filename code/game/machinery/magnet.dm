@@ -194,7 +194,7 @@
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 45
-	var/frequency = 1449
+	var/frequency = AMAG_ELE_FREQ
 	var/code = 0
 	var/list/magnets = list()
 	var/title = "Magnetic Control Console"

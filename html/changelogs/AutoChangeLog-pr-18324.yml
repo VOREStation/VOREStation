@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Fixes a bug to allow species to wear clothing if vox can also wear it."

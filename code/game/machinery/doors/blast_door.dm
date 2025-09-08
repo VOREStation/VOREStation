@@ -83,16 +83,19 @@
 // Parameters: None
 // Description: Opens the door. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_open()
-	src.operating = 1
+	operating = TRUE
 	playsound(src, open_sound, 100, 1)
 	flick(icon_state_opening, src)
-	src.density = FALSE
+	density = FALSE
 	update_nearby_tiles()
-	src.update_icon()
-	src.set_opacity(0)
-	sleep(15)
-	src.layer = open_layer
-	src.operating = 0
+	update_icon()
+	set_opacity(0)
+	addtimer(CALLBACK(src, PROC_REF(complete_force_open)), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
+
+/obj/machinery/door/blast/proc/complete_force_open()
+	PRIVATE_PROC(TRUE)
+	layer = open_layer
+	operating = FALSE
 
 // Proc: force_close()
 // Parameters: None
@@ -102,19 +105,22 @@
 	var/turf/T = get_turf(src)
 	var/list/yeet_turfs = T.CardinalTurfs(TRUE)
 
-	src.operating = 1
+	operating = TRUE
 	playsound(src, close_sound, 100, 1)
-	src.layer = closed_layer
+	layer = closed_layer
 	flick(icon_state_closing, src)
-	src.density = TRUE
+	density = TRUE
 	update_nearby_tiles()
-	src.update_icon()
-	if(src.istransparent)
-		src.set_opacity(0)
+	update_icon()
+	if(istransparent)
+		set_opacity(0)
 	else
-		src.set_opacity(1)
-	sleep(15)
-	src.operating = 0
+		set_opacity(1)
+	addtimer(CALLBACK(src, PROC_REF(complete_force_close), yeet_turfs), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
+
+/obj/machinery/door/blast/proc/complete_force_close(list/yeet_turfs)
+	PRIVATE_PROC(TRUE)
+	operating = FALSE
 
 	// Blast door crushing.
 	for(var/turf/turf in locs)
@@ -193,7 +199,7 @@
 			to_chat(user, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 			return
 		to_chat(user, span_notice("You begin repairing [src]..."))
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			if(P.use(amt))
 				to_chat(user, span_notice("You have repaired \The [src]"))
 				src.repair()
@@ -222,13 +228,13 @@
 		if(istype(X.species, /datum/species/xenos))
 			if(src.density)
 				visible_message(span_alium("\The [user] begins forcing \the [src] open!"))
-				if(do_after(user, 15 SECONDS,src))
+				if(do_after(user, 15 SECONDS, target = src))
 					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 					visible_message(span_danger("\The [user] forces \the [src] open!"))
 					force_open(1)
 			else
 				visible_message(span_alium("\The [user] begins forcing \the [src] closed!"))
-				if(do_after(user, 5 SECONDS,src))
+				if(do_after(user, 5 SECONDS, target = src))
 					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 					visible_message(span_danger("\The [user] forces \the [src] closed!"))
 					force_close(1)
@@ -246,12 +252,12 @@
 			user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
 			if(src.density)
 				visible_message(span_danger("\The [user] starts forcing \the [src] open!"))
-				if(do_after(user, 5 SECONDS, src))
+				if(do_after(user, 5 SECONDS, target = src))
 					visible_message(span_danger("\The [user] forces \the [src] open!"))
 					force_open(1)
 			else
 				visible_message(span_danger("\The [user] starts forcing \the [src] closed!"))
-				if(do_after(user, 2 SECONDS, src))
+				if(do_after(user, 2 SECONDS, target = src))
 					visible_message(span_danger("\The [user] forces \the [src] closed!"))
 					force_close(1)
 			user.set_AI_busy(FALSE)

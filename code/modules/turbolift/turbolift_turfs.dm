@@ -1,2 +1,2 @@
 /turf/simulated/wall/elevator/Initialize(mapload)
-	. = ..(mapload, "elevatorium")
+	. = ..(mapload, MAT_ALIEN_ELEVAT)

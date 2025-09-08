@@ -197,7 +197,7 @@
 	if(S && S.get_amount() < S.max_amount)
 		S.add(1)
 	else
-		new stacktype(T)
+		new stacktype(T, 1)
 
 /obj/item/debris_pack
 	name = "debris"
