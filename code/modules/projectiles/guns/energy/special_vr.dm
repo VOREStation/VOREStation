@@ -55,7 +55,7 @@
 	update_icon()
 	user.visible_message(span_notice("[user] starts charging the [src]!"), \
 						span_notice("You start charging the [src]!"))
-	if(do_after(user, 8, src))
+	if(do_after(user, 8, target = src))
 		spinning_up = FALSE
 		..()
 	else

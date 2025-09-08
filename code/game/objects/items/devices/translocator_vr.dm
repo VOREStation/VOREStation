@@ -262,7 +262,7 @@ This device records all warnings given and teleport events for admin review in c
 				if(L.a_intent != I_HELP || L.has_AI())
 					to_chat(user, span_notice("[L] is resisting your attempt to teleport them with \the [src]."))
 					to_chat(L, span_danger(" [user] is trying to teleport you with \the [src]!"))
-					if(!do_after(user, 30, L))
+					if(!do_after(user, 3 SECONDS, target = L))
 						return
 
 	//Bzzt.
@@ -412,7 +412,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 		var/obj/belly/bellychoice = tgui_input_list(user, "Which belly?","Select A Belly", L.vore_organs)
 		if(bellychoice)
 			user.visible_message(span_warning("[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice.name]!"),span_notice("You begin putting \the [src] into your [bellychoice.name]!"))
-			if(do_after(user,5 SECONDS,src))
+			if(do_after(user, 5 SECONDS, target = src))
 				user.unEquip(src)
 				forceMove(bellychoice)
 				user.visible_message(span_warning("[user] eats a telebeacon!"),"You eat the the beacon!")
@@ -478,7 +478,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 	user.visible_message(span_notice("[user] opens \the [src] and starts pumping the handle."), \
 						span_notice("You open \the [src] and start pumping the handle."))
 	while(recharging)
-		if(!do_after(user, 10, src))
+		if(!do_after(user, 1 SECOND, target = src))
 			break
 		playsound(src,'sound/items/change_drill.ogg',25,1)
 		if(power_source.give(phase_power) < phase_power)

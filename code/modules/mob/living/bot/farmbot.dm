@@ -192,7 +192,7 @@
 				visible_message(span_notice("[src] starts [T.dead? "removing the plant from" : "harvesting"] \the [A]."))
 
 				busy = 1
-				if(do_after(src, 30, A))
+				if(do_after(src, 3 SECONDS, target = A))
 					visible_message(span_notice("[src] [T.dead? "removes the plant from" : "harvests"] \the [A]."))
 					T.attack_hand(src)
 			if(FARMBOT_WATER)
@@ -201,7 +201,7 @@
 				visible_message(span_notice("[src] starts watering \the [A]."))
 
 				busy = 1
-				if(do_after(src, 30, A))
+				if(do_after(src, 3 SECONDS, target = A))
 					playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 					visible_message(span_notice("[src] waters \the [A]."))
 					tank.reagents.trans_to(T, 100 - T.waterlevel)
@@ -211,7 +211,7 @@
 				visible_message(span_notice("[src] starts uprooting the weeds in \the [A]."))
 
 				busy = 1
-				if(do_after(src, 30))
+				if(do_after(src, 3 SECONDS, target = A))
 					visible_message(span_notice("[src] uproots the weeds in \the [A]."))
 					T.weedlevel = 0
 			if(FARMBOT_NUTRIMENT)
@@ -220,7 +220,7 @@
 				visible_message(span_notice("[src] starts fertilizing \the [A]."))
 
 				busy = 1
-				if(do_after(src, 30, A))
+				if(do_after(src, 3 SECONDS, target = A))
 
 					visible_message(span_notice("[src] fertilizes \the [A]."))
 					T.reagents.add_reagent(REAGENT_ID_AMMONIA, 10)
@@ -237,7 +237,7 @@
 		visible_message(span_notice("[src] starts refilling its tank from \the [A]."))
 
 		busy = 1
-		while(do_after(src, 10) && tank.reagents.total_volume < tank.reagents.maximum_volume)
+		while(do_after(src, 1 SECOND, target = A) && tank.reagents.total_volume < tank.reagents.maximum_volume)
 			tank.reagents.add_reagent("water", 100) //VOREStation Edit
 			if(prob(5))
 				playsound(src, 'sound/effects/slosh.ogg', 25, 1)

@@ -129,7 +129,7 @@
 
 	//addtimer(VARSET_CALLBACK(src, in_use , FALSE), 5 SECONDS, TIMER_DELETE_ME) //Leaving this for reference of how to do the timer here if do_after wasn't present.
 
-	if(!do_after(user,50))
+	if(!do_after(user, 5 SECONDS, target = src))
 		in_use = FALSE
 		return
 

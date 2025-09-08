@@ -162,7 +162,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 		visible_message(span_notice("[user] starts putting [G.affecting.name] into the suit cycler."), 3)
 
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return
 			var/mob/M = G.affecting
 			if(M.client)
