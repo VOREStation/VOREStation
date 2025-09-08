@@ -95,6 +95,82 @@
 	data["autohiss"] = pref.autohiss
 	data["emote_sound_mode"] = pref.read_preference(/datum/preference/choiced/living/emote_sound_mode)
 
+	// Get species stats so they can be displayed
+	var/datum/species/species = null
+	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(pref.client_ckey)
+	if(mannequin)
+		species = mannequin.species
+	else if(pref.species)
+		species = GLOB.all_species[pref.species]
+	else
+		species = GLOB.all_species[SPECIES_HUMAN]
+
+	var/list/species_stats = list(
+		"total_health" = species.total_health,
+		"slowdown" = null,
+		"brute_mod" = species.brute_mod,
+		"burn_mod" = species.burn_mod,
+		"oxy_mod" = species.oxy_mod,
+		"toxins_mod" = species.toxins_mod,
+		"radiation_mod" = species.radiation_mod,
+		"flash_mod" = species.flash_mod,
+		"pain_mod" = species.pain_mod,
+		"stun_mod" = species.stun_mod,
+		"weaken_mod" = species.weaken_mod,
+		"lightweight" = species.lightweight > 0,
+		"dispersed_eyes" = species.dispersed_eyes > 0,
+		"trashcan" = species.trashcan > 0,
+		"eat_minerals" = species.eat_minerals > 0,
+		"darksight" = null,
+		"chem_strength_tox" = species.chem_strength_tox,
+		"cold_level_1" = max(0,species.cold_level_1)-T0C,
+		"heat_level_1" = max(0,species.heat_level_1)-T0C,
+		"chem_strength_heal" = species.chem_strength_heal,
+		"siemens_coefficient" = species.siemens_coefficient,
+		"has_vibration_sense" = species.has_vibration_sense > 0,
+		"item_slowdown_mod" = species.item_slowdown_mod,
+		"body_temperature" = max(0,species.body_temperature)-T0C,
+		"hazard_low_pressure" = max(0,species.hazard_low_pressure),
+		"breath_type" = GLOB.gas_data.name[species.breath_type] ? GLOB.gas_data.name[species.breath_type] : "NA",
+		"hazard_high_pressure" = species.hazard_high_pressure == INFINITY ? "INF" : max(0,species.hazard_high_pressure),
+		"soft_landing" = species.soft_landing,
+		"bloodsucker" = species.bloodsucker,
+		"can_space_freemove" = species.can_space_freemove,
+		"can_zero_g_move" = species.can_zero_g_move,
+		"water_breather" = species.water_breather,
+		"can_climb" = species.can_climb,
+		"has_flight" = (/mob/living/proc/flying_toggle in species.inherent_verbs),
+	)
+
+	// Set some special case species flags
+	switch(species.darksight)
+		if(0 to 2)
+			species_stats["darksight"] = "None"
+		if(4 to 5)
+			species_stats["darksight"] = "Basic"
+		if(5 to 9)
+			species_stats["darksight"] = "Great"
+		if(9 to INFINITY)
+			species_stats["darksight"] = "Advanced"
+
+	switch(species.slowdown)
+		if(-INFINITY to -0.8)
+			species_stats["slowdown"] = "Extremely Fast"
+		if(-0.8 to -0.2)
+			species_stats["slowdown"] = "Very Fast"
+		if(-0.2 to -0.01)
+			species_stats["slowdown"] = "Fast"
+		if(-0.01 to 0.2)
+			species_stats["slowdown"] = "Average"
+		if(0.1 to 0.4)
+			species_stats["slowdown"] = "Slow"
+		if(0.4 to 0.8)
+			species_stats["slowdown"] = "Very Slow"
+		if(0.8 to INFINITY)
+			species_stats["slowdown"] = "Extremely Slow"
+
+	data["species_stats"] = species_stats
+
 	return data
 
 /datum/category_item/player_setup_item/general/basic/tgui_static_data(mob/user)

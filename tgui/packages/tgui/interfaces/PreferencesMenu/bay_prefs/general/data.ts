@@ -49,6 +49,7 @@ export type BasicData = {
   emote_sound_mode: string;
 
   persistence_settings: PersistanceEnum;
+  species_stats: SpeciesStats; // Outpost 21 edit - Species stats
 };
 
 export enum BodypartFlags {
@@ -435,3 +436,40 @@ export type GeneralDataConstant = {
   wing_styles: Record<string, WingStyle>;
   all_traits: Record<string, Trait>;
 };
+
+export type SpeciesStats = {
+  total_health: number,
+  slowdown: string,
+  brute_mod: number,
+  burn_mod: number,
+  oxy_mod: number,
+  toxins_mod: number,
+  radiation_mod: number,
+  flash_mod: number,
+  pain_mod: number,
+  stun_mod: number,
+  weaken_mod: number,
+  lightweight: BooleanLike,
+  has_vibration_sense: BooleanLike,
+  dispersed_eyes: BooleanLike,
+  trashcan: BooleanLike,
+  eat_minerals: BooleanLike,
+  darksight: string,
+  breath_type: string,
+  cold_level_1: number,
+  heat_level_1: number,
+  chem_strength_heal: number,
+  chem_strength_tox: number,
+  body_temperature: number,
+  item_slowdown_mod: number,
+  hazard_low_pressure: number,
+  hazard_high_pressure: number | string,
+  siemens_coefficient: number,
+  soft_landing: BooleanLike,
+  bloodsucker: BooleanLike,
+  can_zero_g_move: BooleanLike,
+  can_space_freemove: BooleanLike,
+  water_breather: BooleanLike,
+  has_flight: BooleanLike,
+  can_climb: BooleanLike
+}

@@ -115,6 +115,7 @@ export const SubtabInfo = (props: {
     custom_species,
     selects_bodytype,
     custom_base,
+    species_stats, // Outpost 21 edit - Species stats
   } = data;
 
   return (
@@ -275,6 +276,130 @@ export const SubtabInfo = (props: {
             <Button ml={1} onClick={() => act('pref_runechat_color')}>
               Change
             </Button>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item>
+        <Stack>
+          <Stack.Item>
+            <Box bold>Physiology</Box>
+            <LabeledList>
+              <LabeledList.Item label="Max Health">
+                {species_stats.total_health}
+              </LabeledList.Item>
+              <LabeledList.Item label="Breathes Gas">
+                {species_stats.breath_type}
+              </LabeledList.Item>
+              <LabeledList.Item label="Body Temperature">
+                {species_stats.body_temperature} °C
+              </LabeledList.Item>
+              <LabeledList.Item label="Hypothermia Threshold">
+                {species_stats.cold_level_1} °C
+              </LabeledList.Item>
+              <LabeledList.Item label="Heatstroke Threshold">
+                {species_stats.heat_level_1} °C
+              </LabeledList.Item>
+              <LabeledList.Item label="Min' Pressure Limit">
+                {species_stats.hazard_low_pressure} Kpa
+              </LabeledList.Item>
+              <LabeledList.Item label="Max' Pressure Limit">
+                {species_stats.hazard_high_pressure} Kpa
+              </LabeledList.Item>
+            </LabeledList>
+          </Stack.Item>
+          <Stack.Item>
+            <Divider vertical />
+          </Stack.Item>
+          <Stack.Item>
+            <Box bold>Abilities</Box>
+            <LabeledList>
+              <LabeledList.Item label="Movement Speed">
+                {species_stats.slowdown}
+              </LabeledList.Item>
+              <LabeledList.Item label="Darksight">
+                {species_stats.darksight}
+              </LabeledList.Item>
+              <LabeledList.Item label="Soft Landing">
+                {species_stats.soft_landing ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Lightweight">
+                {species_stats.lightweight ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Cliff Climber">
+                {species_stats.can_climb ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Water Breathing">
+                {species_stats.water_breather ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Vibration Sensing">
+                {species_stats.has_vibration_sense ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Winged Flight">
+                {species_stats.has_flight ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="ZeroG Maneuvering">
+                {species_stats.can_zero_g_move ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Space Flight">
+                {species_stats.can_space_freemove ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Dispersed Eyes">
+                {species_stats.dispersed_eyes ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Trash Eating">
+                {species_stats.trashcan ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Metal Eating">
+                {species_stats.eat_minerals ? 'Yes' : 'No'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Hemovore">
+                {species_stats.bloodsucker ? 'Yes' : 'No'}
+              </LabeledList.Item>
+            </LabeledList>
+          </Stack.Item>
+          <Stack.Item>
+            <Divider vertical />
+          </Stack.Item>
+          <Stack.Item>
+            <Box bold>Modifiers</Box>
+            <LabeledList>
+              <LabeledList.Item label="Brute">
+                {species_stats.brute_mod}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Burn">
+                {species_stats.burn_mod}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Toxin">
+                {species_stats.toxins_mod}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Suffocation">
+                {species_stats.oxy_mod}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Radiation">
+                {species_stats.radiation_mod}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Electrical">
+                {species_stats.siemens_coefficient}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Flash">
+                {species_stats.flash_mod}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Pain">
+                {species_stats.pain_mod}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Stun">
+                {species_stats.stun_mod}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Medication">
+                {species_stats.chem_strength_heal}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Poison">
+                {species_stats.chem_strength_tox}x
+              </LabeledList.Item>
+              <LabeledList.Item label="Item Slowdown">
+                {species_stats.item_slowdown_mod}x
+              </LabeledList.Item>
+            </LabeledList>
           </Stack.Item>
         </Stack>
       </Stack.Item>
