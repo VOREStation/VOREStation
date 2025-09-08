@@ -55,6 +55,8 @@ export const Pda = (props) => {
 
   const { app, owner, useRetro } = data;
 
+  const [settingsMode, setSettingsMode] = useState<BooleanLike>(false);
+
   if (!owner) {
     return (
       <Window>
@@ -68,8 +70,6 @@ export const Pda = (props) => {
   }
 
   const App = getPdaApp(app.template);
-
-  const [settingsMode, setSettingsMode] = useState<BooleanLike>(false);
 
   return (
     <Window width={580} height={670} theme={useRetro ? 'pda_retro' : undefined}>

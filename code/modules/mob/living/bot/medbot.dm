@@ -17,8 +17,8 @@
 	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon_state = "medibot0"
-	req_one_access = list(access_robotics, access_medical)
-	botcard_access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
+	req_one_access = list(ACCESS_ROBOTICS, ACCESS_MEDICAL)
+	botcard_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS)
 
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
 
@@ -206,12 +206,12 @@
 			say(message)
 			playsound(src, messagevoice[message], 70, FALSE)
 
-		if(do_after(H, 3 SECONDS, target=src))
+		if(do_after(H, 3 SECONDS, target = src))
 			tip_over(H)
 
 	else if(istype(H) && H.a_intent == I_HELP && is_tipped)
 		H.visible_message(span_notice("[H] begins righting [src]."), span_notice("You begin righting [src]..."))
-		if(do_after(H, 3 SECONDS, target=src))
+		if(do_after(H, 3 SECONDS, target = src))
 			set_right(H)
 	else
 		tgui_interact(H)

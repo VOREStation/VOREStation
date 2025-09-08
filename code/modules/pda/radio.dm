@@ -97,7 +97,7 @@
  *	Radio Cartridge, essentially a signaler.
  */
 /obj/item/radio/integrated/signal
-	frequency = 1457
+	frequency = RSD_FREQ
 	var/code = 30.0
 
 /obj/item/radio/integrated/signal/Destroy()

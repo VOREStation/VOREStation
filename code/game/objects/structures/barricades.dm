@@ -37,7 +37,7 @@
 				to_chat(user, span_warning("You need one sheet of [material.display_name] to repair \the [src]."))
 				return
 			visible_message(span_notice("[user] begins to repair \the [src]."))
-			if(do_after(user,20) && health < maxhealth)
+			if(do_after(user, 2 SECONDS, target = src) && health < maxhealth)
 				if(D.use(1))
 					health = maxhealth
 					visible_message(span_notice("[user] repairs \the [src]."))

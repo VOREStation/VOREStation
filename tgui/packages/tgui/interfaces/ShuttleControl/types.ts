@@ -61,6 +61,7 @@ export type sensor = {
   oxygen: string;
   carbon_dioxide: string;
   phoron: string;
+  methane: string;
   other: string;
   temp: string;
   reading: BooleanLike;

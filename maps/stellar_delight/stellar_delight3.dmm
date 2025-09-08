@@ -13687,7 +13687,7 @@
 	name = "Station Intercom (General)";
 	pixel_y = 24
 	},
-/obj/structure/closet/secure_closet/CMO,
+/obj/structure/closet/secure_closet/chief_medical_officer,
 /obj/item/clothing/accessory/stethoscope,
 /obj/item/flashlight/pen,
 /obj/item/storage/belt/medical,
@@ -14145,7 +14145,7 @@
 	name = "Station Intercom (General)";
 	pixel_y = 24
 	},
-/obj/structure/closet/secure_closet/RD,
+/obj/structure/closet/secure_closet/research_director,
 /obj/item/aicard,
 /obj/item/clothing/glasses/omnihud/rnd,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
