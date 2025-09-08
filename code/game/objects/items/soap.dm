@@ -40,7 +40,7 @@
 	if(ishuman(target) && user.zone_sel.selecting == O_MOUTH)
 		if(target == user)
 			to_chat(user, span_warning("You raise the soap to your mouth and prepare to take a bite..."))
-			if(do_after(user, 5)) //Mercy against accidental chomps
+			if(do_after(user, 5, target = target)) //Mercy against accidental chomps
 				user.visible_message(span_notice("[user] takes a bite out of [src]!"), span_notice("You gnaw on [src]! This can't be good for you..."))
 				var/mob/living/carbon/C = user
 				playsound(get_turf(C), 'sound/items/eatfood.ogg', 25, 0)

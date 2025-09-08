@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNC
 		being_fished = TRUE
 		R.cast = TRUE
 		var/fishing_time = rand(min_fishing_time SECONDS,max_fishing_time SECONDS) * R.toolspeed
-		if(do_after(user,fishing_time,user))
+		if(do_after(user, fishing_time, target = user))
 			playsound(src, 'sound/effects/slosh.ogg', 5, 1, 5)
 			to_chat(user,span_notice("You feel a tug and begin pulling!"))
 			if(world.time >= last_fished + fishing_cooldown)

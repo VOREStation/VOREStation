@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	if(I.has_tool_quality(TOOL_WRENCH))
 		user.visible_message(span_warning("[user] disassembles [src]."),
 			span_notice("You start to disassemble [src]..."), "You hear clanking and banging noises.")
-		if(do_after(user,4 SECONDS,src))
+		if(do_after(user, 4 SECONDS, target = src))
 			new /obj/item/gps(loc)
 			qdel(src)
 			return TRUE
@@ -357,7 +357,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	if(I.has_tool_quality(TOOL_WRENCH))
 		user.visible_message(span_warning("[user] disassembles [src]."),
 			span_notice("You start to disassemble [src]..."), "You hear clanking and banging noises.")
-		if(do_after(user,4 SECONDS,src))
+		if(do_after(user, 4 SECONDS, target = src))
 			deconstruct()
 			return TRUE
 
