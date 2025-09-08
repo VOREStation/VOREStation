@@ -57,10 +57,10 @@
 	icon_state = pick(possible_icon_states)
 
 /obj/effect/weaversilk/wall/CanPass(atom/movable/mover, turf/target)
-	var/datum/component/weaver/comp = mover.GetComponent(/datum/component/weaver)
+	var/datum/component/weaver/comp = mover.GetComponent(/datum/component/weaver) //only spooders can move on by
 	if(comp)
-		return
-	..()
+		return TRUE
+	return FALSE
 
 /obj/structure/bed/double/weaversilk_nest
 	name = "weaversilk nest"

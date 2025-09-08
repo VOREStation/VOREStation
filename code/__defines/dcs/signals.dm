@@ -229,8 +229,9 @@
 #define COMSIG_MOVABLE_MOVED "movable_moved"
 ///from base of atom/movable/Cross(): (/atom/movable)
 #define COMSIG_MOVABLE_CROSS "movable_cross"
-///when we cross over something (calling Crossed() on that atom)
-#define COMSIG_CROSSED_MOVABLE "crossed_movable"
+	#define COMPONENT_BLOCK_CROSS (1<<0)
+///from base of atom/movable/Move(): (/atom/movable)
+#define COMSIG_MOVABLE_CROSS_OVER "movable_cross_am"
 ///from base of atom/movable/Bump(): (/atom)
 #define COMSIG_MOVABLE_BUMP "movable_bump"
 ///from base of atom/movable/throw_impact(): (/atom/hit_atom, /datum/thrownthing/throwingdatum)

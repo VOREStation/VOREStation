@@ -55,16 +55,16 @@
 	name = "marine body armor"
 	desc = "When I joined the Corps, we didn't have any fancy-schmanzy armor. We had sticks! Two sticks, and a rock for the whole platoon-and we had to <i>share</i> the rock!"
 	icon_state = "unsc_armor"
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	body_parts_covered = CHEST // ToDo: Break up the armor into smaller bits.
 
 /obj/item/clothing/suit/armor/combat/imperial
 	name = "imperial soldier armor"
 	desc = "Made out of an especially light metal, it lets you conquer in style."
 	icon_state = "ge_armor"
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	body_parts_covered = CHEST
 
 /obj/item/clothing/suit/armor/combat/imperial/centurion
@@ -73,12 +73,12 @@
 	icon_state = "ge_armorcent"
 
 /obj/item/clothing/suit/storage/vest/wardencoat/alt2
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 
 /obj/item/clothing/suit/storage/vest/hoscoat/jensen/alt
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 
 // Armor Versions Here
 /obj/item/clothing/suit/armor/combat/crusader
@@ -138,8 +138,8 @@
 
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 0, "rad" = 0)
 
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "crusader_suit"
 
 /obj/item/clothing/head/helmet/crusader

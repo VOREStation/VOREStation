@@ -145,7 +145,7 @@
 /obj/item/space_spider_egg
 	name = "ruptured giant spider egg"
 	desc = "An attempt by space-adapted giant spiders to reproduce! Unfortunately, their young cannot yet survive hard vacuum. Yet."
-	icon = 'icons/obj/egg_new_vr.dmi'	//VOREStation Edit
+	icon = 'icons/obj/egg.dmi'
 	icon_state = "egg_slimeglob"
 	origin_tech = list(TECH_BIO = 10)
 

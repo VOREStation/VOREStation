@@ -87,7 +87,7 @@
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
-	var/list/req_access = list(access_robotics)
+	var/list/req_access = list(ACCESS_ROBOTICS)
 	var/ident = 0
 	//var/list/laws = list()
 	var/viewalerts = 0
@@ -773,7 +773,7 @@
 		if(bolt)
 			to_chat(user,span_filter_notice("You begin removing \the [bolt]."))
 
-			if(do_after(user, 2 SECONDS, src))
+			if(do_after(user, 2 SECONDS, target = src))
 				bolt.forceMove(get_turf(src))
 				bolt = null
 
@@ -847,7 +847,7 @@
 	if(bolt)
 		if(!bolt.malfunction)
 			visible_message(span_danger("[src] is trying to break their [bolt]!"), span_warning("You attempt to break your [bolt]. (This will take around 90 seconds and you need to stand still)"))
-			if(do_after(src, 1.5 MINUTES, src, incapacitation_flags = INCAPACITATION_DISABLED))
+			if(do_after(src, 1.5 MINUTES, src, timed_action_flags = IGNORE_INCAPACITATED))
 				visible_message(span_danger("[src] manages to break \the [bolt]!"), span_warning("You successfully break your [bolt]."))
 				bolt.malfunction = MALFUNCTION_PERMANENT
 

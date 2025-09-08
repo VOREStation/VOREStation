@@ -18,12 +18,7 @@
 /turf/simulated/shuttle/floor,
 /area/shuttle/overmap_examples/outpost)
 "ag" = (
-/obj/effect/mapinfo/sector{
-	icon = 'icons/obj/mining.dmi';
-	icon_state = "ore2";
-	landing_area = /area/shuttle/escape_pod2/centcom;
-	name = "Abandoned Outpost"
-	},
+/obj/effect/mapinfo/sector/abandoned,
 /turf/space,
 /area)
 "ah" = (
@@ -788,7 +783,7 @@
 "co" = (
 /obj/machinery/door/airlock/glass{
 	name = "Glass Airlock";
-	req_access_txt = "0"
+	req_access = null
 	},
 /turf/simulated/floor/airless{
 	dir = 5;
@@ -859,7 +854,7 @@
 "cy" = (
 /obj/machinery/door/airlock/external{
 	name = "External Airlock";
-	req_access_txt = "0"
+	req_access = null
 	},
 /turf/simulated/floor/airless{
 	dir = 5;

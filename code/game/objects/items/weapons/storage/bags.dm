@@ -252,7 +252,7 @@
 // -----------------------------
 /obj/item/storage/bag/plants
 	name = "plant bag"
-	icon = 'icons/obj/hydroponics_machines_vr.dmi'
+	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "plantbag"
 	desc = "A sturdy bag used to transport fresh produce with ease."
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
@@ -448,8 +448,7 @@
 	max_storage_space = 200
 	w_class = ITEMSIZE_LARGE
 	slowdown = 1 //you probably shouldn't be running with chemicals
-	can_hold = list(/obj/item/reagent_containers/pill,/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle)
-	slot_flags = null
+	can_hold = list(/obj/item/reagent_containers/pill,/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/hypospray/autoinjector)
 
 // -----------------------------
 //           Xeno Bag

@@ -351,8 +351,8 @@
 					X << 'sound/effects/tones/newplayerping.ogg'
 				window_flash(X)
 		//VOREStation Edit end.
-	fully_created = TRUE
 	attempt_auto_fit_viewport()
+	fully_created = TRUE
 
 	// Now that we're fully initialized, use our prefs
 	if(prefs?.read_preference(/datum/preference/toggle/browser_dev_tools))
@@ -371,7 +371,7 @@
 
 		// Yes this is the same as what's found in qdel(). Yes it does need to be here
 		// Get off my back
-		SEND_SIGNAL(src, COMSIG_PARENT_QDELETING, TRUE)
+		SEND_SIGNAL(src, COMSIG_QDELETING, TRUE)
 		Destroy() //Clean up signals and timers.
 	return ..()
 

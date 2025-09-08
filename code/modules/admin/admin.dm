@@ -227,11 +227,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_HOLDER, "Show Player Panel", m
 			if(!f) body += " | "
 			else f = 0
 			if(L in player.languages)
-				k = span_green(k)
-				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[k]</a>"
+				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[span_green(k)]</a>"
 			else
-				k = span_red(k)
-				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[k]</a>"
+				body += "<a href='byond://?_src_=holder;[HrefToken()];toglang=\ref[player];lang=[html_encode(k)]'>[span_red(k)]</a>"
 
 	body += {"<br>"}
 
@@ -713,7 +711,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Send an intercom message, like an arrivals announcement."
 	if(!check_rights(0))	return
 
-	var/channel = tgui_input_list(usr, "Channel for message:","Channel", radiochannels)
+	var/channel = tgui_input_list(usr, "Channel for message:","Channel", GLOB.radiochannels)
 
 	if(channel) //They picked a channel
 		var/sender = tgui_input_text(usr, "Name of sender (max 75):", "Announcement", "Announcement Computer")
@@ -742,7 +740,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set waitfor = FALSE //Why bother? We have some sleeps. You can leave tho!
 	if(!check_rights(0))	return
 
-	var/channel = tgui_input_list(usr, "Channel for message:","Channel", radiochannels)
+	var/channel = tgui_input_list(usr, "Channel for message:","Channel", GLOB.radiochannels)
 
 	if(!channel) //They picked a channel
 		return

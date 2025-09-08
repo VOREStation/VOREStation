@@ -1,4 +1,4 @@
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import type { NodeCache, TechWebData } from './types';
 
 type Cost = {

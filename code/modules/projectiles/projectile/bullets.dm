@@ -95,6 +95,21 @@
 	armor_penetration = 15
 	hud_state = "pistol_light_ap"
 
+/obj/item/projectile/bullet/pistol/medium/ap/suppressor // adminspawn only
+	name = "suppressor bullet" // this guy is Important and also Hates You
+	fire_sound = 'sound/weapons/doompistol.ogg' // converted from .wavs extracted from doom 2
+	damage = 10 // high rof kinda fucked up lets be real
+	agony = 10 // brute easily heals, agony not so much
+	armor_penetration = 30 // reduces shield blockchance
+	accuracy = -20 // he do miss actually
+	speed = 0.4 // if the pathfinder gets a funny burst rifle, they deserve a rival
+	// that's 2x projectile speed btw
+	hud_state = "monkey"
+
+/obj/item/projectile/bullet/pistol/medium/ap/suppressor/turbo // spicy boys
+	speed = 0.2 // this is 4x projectile speed
+	hud_state = "monkey"
+
 /obj/item/projectile/bullet/pistol/medium/hp
 	damage = 30
 	armor_penetration = -50

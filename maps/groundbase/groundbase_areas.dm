@@ -542,39 +542,6 @@
 /area/groundbase/mining/explored
 	icon_state = "blublacir"
 
-// Exclude some more areas from the atmos leak event since its outside.
-/datum/event/atmos_leak/setup()
-	excluded |= /area/groundbase/level1/centsquare
-	excluded |= /area/groundbase/level1/eastspur
-	excluded |= /area/groundbase/level1/northspur
-	excluded |= /area/groundbase/level1/southeastspur
-	excluded |= /area/groundbase/level1/southwestspur
-	excluded |= /area/groundbase/level1/westspur
-	excluded |= /area/maintenance/groundbase/level1/netunnel
-	excluded |= /area/maintenance/groundbase/level1/nwtunnel
-	excluded |= /area/maintenance/groundbase/level1/stunnel
-	excluded |= /area/maintenance/groundbase/level1/setunnel
-	excluded |= /area/maintenance/groundbase/level1/swtunnel
-	excluded |= /area/groundbase/level2/ne
-	excluded |= /area/groundbase/level2/nw
-	excluded |= /area/groundbase/level2/se
-	excluded |= /area/groundbase/level2/sw
-	excluded |= /area/groundbase/level3/ne
-	excluded |= /area/groundbase/level3/nw
-	excluded |= /area/groundbase/level3/se
-	excluded |= /area/groundbase/level3/sw
-	excluded |= /area/groundbase/level2/northspur
-	excluded |= /area/groundbase/level2/eastspur
-	excluded |= /area/groundbase/level2/westspur
-	excluded |= /area/groundbase/level2/southeastspur
-	excluded |= /area/groundbase/level2/southwestspur
-	excluded |= /area/groundbase/level3/ne/open
-	excluded |= /area/groundbase/level3/nw/open
-	excluded |= /area/groundbase/level3/se/open
-	excluded |= /area/groundbase/level3/sw/open
-	excluded |= /area/groundbase/level3/escapepad
-	..()
-
 /area/gb_mine/
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
 	base_turf = /turf/simulated/mineral/floor

@@ -152,7 +152,7 @@
 		if(robot.has_dead_sprite)
 			check_state(robot,"-wreck")
 		if(robot.has_dead_sprite_overlay) // Only one per dmi
-			TEST_ASSERT("wreck-overlay" in cached_icon_states(robot.sprite_icon), "[robot.type]: Robots - Robot sprite \"[robot.name]\", missing icon_state wreck-overlay, in dmi \"[robot.sprite_icon]\".")
+			TEST_ASSERT(icon_exists(robot.sprite_icon, "wreck-overlay"), "[robot.type]: Robots - Robot sprite \"[robot.name]\", missing icon_state wreck-overlay, in dmi \"[robot.sprite_icon]\".")
 		// offset
 		var/icon/I = new(robot.sprite_icon)
 		TEST_ASSERT_EQUAL(robot.icon_x, I.Width(), "[robot.type]: Robots - Robot sprite \"[robot.name]\", icon_x \"[robot.icon_x]\" did not match dmi configured width \"[I.Width()]\"")
@@ -167,4 +167,4 @@
 
 /datum/unit_test/all_robot_sprites_must_be_valid/proc/check_state(datum/robot_sprite/robot, append)
 	var/check_state = "[robot.sprite_icon_state][append]"
-	TEST_ASSERT(check_state in cached_icon_states(robot.sprite_icon), "[robot.type]: Robots - Robot sprite \"[robot.name]\", enabled but missing icon_state \"[check_state]\", in dmi \"[robot.sprite_icon]\".")
+	TEST_ASSERT(icon_exists(robot.sprite_icon, check_state), "[robot.type]: Robots - Robot sprite \"[robot.name]\", enabled but missing icon_state \"[check_state]\", in dmi \"[robot.sprite_icon]\".")

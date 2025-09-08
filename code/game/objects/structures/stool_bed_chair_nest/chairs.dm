@@ -1,7 +1,7 @@
 /obj/structure/bed/chair	//YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
-	icon = 'icons/obj/furniture_vr.dmi' //VOREStation Edit - Using Eris furniture
+	icon = 'icons/obj/furniture.dmi'
 	icon_state = "chair_preview"
 	color = "#666666"
 	base_icon = "chair"
@@ -288,7 +288,6 @@
 /obj/structure/bed/chair/sofa
 	name = "sofa"
 	desc = "It's a sofa. You sit on it. Possibly with someone else."
-	icon = 'icons/obj/sofas.dmi'
 	base_icon = "sofamiddle"
 	icon_state = "sofamiddle"
 	applies_material_colour = 1

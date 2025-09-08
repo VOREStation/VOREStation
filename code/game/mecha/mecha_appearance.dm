@@ -40,7 +40,7 @@
 
 				var/icon/Cutter
 
-				if("[initial_icon]_cutter" in cached_icon_states(icon))
+				if(icon_exists(icon, "[initial_icon]_cutter"))
 					Cutter = new(src.icon, "[initial_icon]_cutter")
 
 				if(Cutter)

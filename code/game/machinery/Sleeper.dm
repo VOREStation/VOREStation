@@ -1,11 +1,11 @@
 /obj/machinery/sleep_console
 	name = "sleeper console"
 	desc = "A control panel to operate a linked sleeper with."
-	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icon.
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/sleeper
 	anchored = TRUE //About time someone fixed this.
-	density = TRUE //VOREStation Edit - Big console
+	density = TRUE
 	unacidable = TRUE
 	dir = 8
 	use_power = USE_POWER_IDLE
@@ -86,7 +86,7 @@
 /obj/machinery/sleeper
 	name = "sleeper"
 	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner."
-	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icons
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 	density = TRUE
 	anchored = TRUE
@@ -406,7 +406,7 @@
 				return
 			if(UNCONSCIOUS)
 				to_chat(usr, span_notice("You struggle through the haze to hit the eject button. This will take a couple of minutes..."))
-				if(do_after(usr, 2 MINUTES, src))
+				if(do_after(usr, 2 MINUTES, target = src))
 					go_out()
 			if(CONSCIOUS)
 				go_out()
@@ -472,7 +472,7 @@
 	else
 		visible_message("\The [user] starts putting [M] into \the [src].")
 
-	if(do_after(user, 20))
+	if(do_after(user, 2 SECONDS, target = src))
 		if(M.buckled)
 			return
 		if(occupant)

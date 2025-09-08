@@ -1,7 +1,7 @@
 /obj/machinery/injector_maker
 	name = "Ready-to-Use Medicine 3000"
 	desc = "Fills plastic autoinjectors with chemicals! Molds new injectors if needed!  \n Add a beaker or a bottle filled with chemicals and an autoinjector of appropriate size or sheets of plastic to use!"
-	icon = 'icons/obj/chemical_vr.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "injector"
 	use_power = USE_POWER_IDLE
 	anchored = TRUE

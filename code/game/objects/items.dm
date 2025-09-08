@@ -1,6 +1,6 @@
 /obj/item
 	name = "item"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/weapons.dmi' //'icons/obj/items.dmi' //It was accidentally set to weapons.dmi 11 months ago...leaving it as is until further analysis
 	w_class = ITEMSIZE_NORMAL
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
@@ -13,7 +13,7 @@
 	var/health = null
 	var/burn_point = null
 	var/burning = null
-	var/hitsound = null
+	var/hitsound = "swing_hit"
 	var/usesound = null // Like hitsound, but for when used properly and not to kill someone.
 	var/storage_cost = null
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
@@ -25,8 +25,15 @@
 	var/list/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/force = 0
+	var/damtype = BRUTE
+	var/throwforce = 0
+	var/sharp = FALSE		// whether this object cuts
+	var/edge = FALSE		// whether this object is more likely to dismember
+	var/armor_penetration = 0
+	var/catchable = TRUE
 	var/can_cleave = FALSE // If true, a 'cleaving' attack will occur.
-
+	var/pry = 0			//Used in attackby() to open doors
+	var/list/matter
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
@@ -115,6 +122,32 @@
 	var/digestable = TRUE
 	var/item_tf_spawn_allowed = FALSE
 	var/list/ckeys_allowed_itemspawn = null
+	var/datum/weakref/exploit_for //if this obj is an exploit for somebody, this points to them
+	var/preserve_item = 0 //whether this object is preserved when its owner goes into cryo-storage, gateway, etc
+	var/persist_storable = TRUE		//If this is true, this item can be stored in the item bank.
+									//This is automatically set to false when an item is removed from storage
+
+	var/list/possessed_voice //Allows for items to be possessed/inhabited by voices.
+	var/list/warned_of_possession //Checks to see who has been informed this item is possessed.
+	var/cleaving = FALSE // Used to avoid infinite cleaving.
+	var/list/tool_qualities
+	var/destroy_on_drop = FALSE	// Used by augments to determine if the item should destroy itself when dropped, or return to its master.
+	var/obj/item/organ/my_augment = null	// Used to reference the object's host organ.
+	var/datum/identification/identity = null
+	var/identity_type = /datum/identification
+	var/init_hide_identity = FALSE // Set to true to automatically obscure the object on initialization.
+
+	//Vorestuff
+	var/trash_eatable = TRUE
+	var/digest_stage = null
+	var/d_mult_old = 1 //digest stage descriptions
+	var/d_mult = 1 //digest stage descriptions
+	var/d_stage_overlay //digest stage effects
+	var/gurgled = FALSE
+	var/oldname
+	var/cleanname
+	var/cleandesc
+	var/gurgled_color
 
 /obj/item/Initialize(mapload)
 	. = ..()
@@ -178,7 +211,7 @@
 		CRASH("item add_item_action got a type or instance of something that wasn't an action.")
 
 	LAZYADD(actions, action)
-	RegisterSignal(action, COMSIG_PARENT_QDELETING, PROC_REF(on_action_deleted))
+	RegisterSignal(action, COMSIG_QDELETING, PROC_REF(on_action_deleted))
 	if(ismob(loc))
 		// We're being held or are equipped by someone while adding an action?
 		// Then they should also probably be granted the action, given it's in a correct slot
@@ -192,7 +225,7 @@
 	if(!action)
 		return
 
-	UnregisterSignal(action, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(action, COMSIG_QDELETING)
 	LAZYREMOVE(actions, action)
 	qdel(action)
 
@@ -946,13 +979,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	//2: species-specific sprite sheets (skipped for inhands)
 	if(LAZYLEN(sprite_sheets) && !inhands)
 		var/sheet = sprite_sheets[body_type]
-		if(sheet)
+		if(sheet && icon_exists(sheet, icon_state)) //Checks to make sure our custom sheet actually HAS the icon_state
 			return sheet
 
 	//3: slot-specific sprite sheets
 	if(LAZYLEN(item_icons))
 		var/sheet = item_icons[slot_name]
 		if(sheet)
+			/* //Alerts that we are equipping an item that has no item_state for the slot-specific icon sheet. Commented out because it's not really too important.
+			if(!icon_exists(sheet, icon_state))
+				log_debug("Item [src] is equippable on the [slot_name] but has no sprite for it!")
+			*/
 			return sheet
 
 	//4: item's default icon

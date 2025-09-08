@@ -37,7 +37,7 @@
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
 		return null
-	return format_text ? format_text(A.name) : A.name
+	return format_text ? strip_improper(A.name) : A.name
 
 /** Checks if any living humans are in a given area. */
 /proc/area_is_occupied(var/area/myarea)

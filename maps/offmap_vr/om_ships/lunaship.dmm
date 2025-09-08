@@ -2117,9 +2117,7 @@
 /turf/space,
 /area/space)
 "Dm" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 8
 	},

@@ -33,7 +33,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	var/max_pressure_setting = 15000	//kPa
 
-	var/frequency = 0
+	var/frequency = ZERO_FREQ
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
@@ -248,9 +248,31 @@ Thus, the two variables affect pump operation are set in New():
 		return 1
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
-	if (do_after(user, 40 * W.toolspeed))
+	if (do_after(user, 40 * W.toolspeed, target = src))
 		user.visible_message( \
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear ratchet.")
 		deconstruct()
+
+/obj/machinery/atmospherics/binary/pump/high_power
+	icon = 'icons/atmos/volume_pump.dmi'
+	icon_state = "map_off"
+	construction_type = /obj/item/pipe/directional
+	pipe_state = "volumepump"
+	level = 1
+
+	name = "high power gas pump"
+	desc = "A pump that moves gas from one place to another. Has double the power rating of the standard gas pump."
+
+	power_rating = 15000	//15000 W ~ 20 HP
+
+/obj/machinery/atmospherics/binary/pump/high_power/on
+	use_power = USE_POWER_IDLE
+	icon_state = "map_on"
+
+/obj/machinery/atmospherics/binary/pump/high_power/update_icon()
+	if(!powered())
+		icon_state = "off"
+	else
+		icon_state = "[use_power ? "on" : "off"]"

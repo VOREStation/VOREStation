@@ -84,11 +84,6 @@
  */
 
 // Attaches to the end of dropped items' code.
-
-/obj/item
-	var/destroy_on_drop = FALSE	// Used by augments to determine if the item should destroy itself when dropped, or return to its master.
-	var/obj/item/organ/my_augment = null	// Used to reference the object's host organ.
-
 /obj/item/dropped(mob/user)
 	. = ..(user)
 	if(src)

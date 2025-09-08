@@ -11,7 +11,7 @@
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
 	icon_state = "engi_cycler"
-	req_access = list(access_construction)
+	req_access = list(ACCESS_CONSTRUCTION)
 	limit_departments = list(
 		/datum/suit_cycler_choice/department/eng
 	)
@@ -20,7 +20,7 @@
 	name = "Mining suit cycler"
 	model_text = "Mining"
 	icon_state = "industrial_cycler"
-	req_access = list(access_mining)
+	req_access = list(ACCESS_MINING)
 	limit_departments = list(
 		/datum/suit_cycler_choice/department/crg
 	)
@@ -29,7 +29,7 @@
 	name = "Security suit cycler"
 	model_text = "Security"
 	icon_state = "sec_cycler"
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	limit_departments = list(
 		/datum/suit_cycler_choice/department/sec
 	)
@@ -38,7 +38,7 @@
 	name = "Medical suit cycler"
 	model_text = "Medical"
 	icon_state = "med_cycler"
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 	limit_departments = list(
 		/datum/suit_cycler_choice/department/med
 	)
@@ -47,7 +47,7 @@
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
 	icon_state = "red_cycler"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 	limit_departments = list(
 		/datum/suit_cycler_choice/department/emag
 	)

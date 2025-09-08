@@ -7,7 +7,7 @@
 /obj/machinery/atmospherics/unary/heater
 	name = "gas heating system"
 	desc = "Heats gas when connected to a pipe network. Can be filled by hose with coolant to increase efficiency."
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "heater_0"
 	density = TRUE
 	anchored = TRUE

@@ -229,7 +229,7 @@
 			if(WT.remove_fuel(1 ,user))
 				to_chat(user, span_notice("You begin repairing [src]..."))
 				playsound(src, WT.usesound, 50, 1)
-				if(do_after(user, 40 * WT.toolspeed, target = src))
+				if(do_after(user, 4 SECONDS * WT.toolspeed, target = src))
 					health = maxhealth
 			//		playsound(src, 'sound/items/Welder.ogg', 50, 1)
 					update_icon()
@@ -307,7 +307,7 @@
 				span_infoplain(span_bold("\The [user]") + " begins to wire \the [src] for electrochromic tinting."), \
 				span_notice("You begin to wire \the [src] for electrochromic tinting."), \
 				"You hear sparks.")
-			if(do_after(user, 20 * C.toolspeed, src) && state == 0)
+			if(do_after(user, 2 SECONDS * C.toolspeed, src) && state == 0)
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				var/obj/structure/window/reinforced/polarized/P = new(loc, dir)
 				if(is_fulltile())
@@ -644,7 +644,7 @@
 
 /obj/machinery/button/windowtint
 	name = "window tint control"
-	icon = 'icons/obj/stationobjs_vr.dmi' // VOREStation Edit - New icons
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "light0"
 	desc = "A remote control switch for polarized windows."
 	var/range = 7
@@ -664,9 +664,7 @@
 
 	for(var/obj/structure/window/reinforced/polarized/W in range(src,range))
 		if (W.id == src.id || !W.id)
-			spawn(0)
-				W.toggle()
-				return
+			W.toggle()
 
 /obj/machinery/button/windowtint/power_change()
 	..()

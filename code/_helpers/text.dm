@@ -400,7 +400,7 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
  * Strip out the special beyond characters for \proper and \improper
  * from text that will be sent to the browser.
  */
-/proc/strip_improper(var/text)
+/proc/strip_improper(text)
 	return replacetext(replacetext(text, "\proper", ""), "\improper", "")
 
 /proc/pencode2html(t)

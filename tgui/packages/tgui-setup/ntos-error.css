@@ -33,6 +33,7 @@ blink {
 }
 
 .FatalError--visible {
+  /* biome-ignore lint/complexity/noImportantStyles: Needed */
   display: block !important;
 }
 

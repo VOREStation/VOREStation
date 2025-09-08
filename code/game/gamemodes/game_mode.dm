@@ -282,18 +282,22 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 /datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return
 
-/datum/game_mode/proc/declare_completion()
+/datum/game_mode/proc/declare_antag_goals()
+	for(var/datum/antagonist/antag in antag_templates)
+		sleep(10)
+		antag.check_victory()
+		antag.print_player_summary()
+	addtimer(CALLBACK(src, PROC_REF(finish_completion_declatration)), 1 SECOND)
 
-	var/is_antag_mode = (antag_templates && antag_templates.len)
+/datum/game_mode/proc/declare_completion()
+	var/is_antag_mode = LAZYLEN(antag_templates)
 	check_victory()
 	if(is_antag_mode)
-		sleep(10)
-		for(var/datum/antagonist/antag in antag_templates)
-			sleep(10)
-			antag.check_victory()
-			antag.print_player_summary()
-		sleep(10)
+		is_antag_mode += 2
+		addtimer(CALLBACK(src, PROC_REF(declare_antag_goals)), 1 SECOND)
+	return is_antag_mode SECONDS
 
+/datum/game_mode/proc/finish_completion_declatration()
 	var/clients = 0
 	var/surviving_humans = 0
 	var/surviving_total = 0
@@ -379,8 +383,6 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			"clients" = clients
 		)
 	)
-
-	return 0
 
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0

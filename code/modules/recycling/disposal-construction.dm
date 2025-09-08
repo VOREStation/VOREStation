@@ -10,7 +10,6 @@
 	anchored = FALSE
 	density = FALSE
 	pressure_resistance = 5*ONE_ATMOSPHERE
-	matter = list(MAT_STEEL = 1850)
 	level = 2
 	var/sortType = ""
 	var/ptype = 0
@@ -308,7 +307,7 @@
 			if(W.remove_fuel(0,user))
 				playsound(src, W.usesound, 100, 1)
 				to_chat(user, "Welding the [nicetype] in place.")
-				if(do_after(user, 20 * W.toolspeed))
+				if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 					if(!src || !W.isOn()) return
 					to_chat(user, "The [nicetype] has been welded in place!")
 					update() // TODO: Make this neat
