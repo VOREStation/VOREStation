@@ -49,7 +49,7 @@ export type BasicData = {
   emote_sound_mode: string;
 
   persistence_settings: PersistanceEnum;
-  species_stats: SpeciesStats; // Outpost 21 edit - Species stats
+  species_stats: SpeciesStats;
 };
 
 export enum BodypartFlags {

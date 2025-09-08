@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   ColorBox,
-  Divider,
   Floating,
   LabeledList,
   Stack,
@@ -115,7 +114,7 @@ export const SubtabInfo = (props: {
     custom_species,
     selects_bodytype,
     custom_base,
-    species_stats, // Outpost 21 edit - Species stats
+    species_stats,
   } = data;
 
   return (
@@ -252,9 +251,7 @@ export const SubtabInfo = (props: {
               </Box>
             ) : null}
           </Stack.Item>
-          <Stack.Item>
-            <Divider vertical />
-          </Stack.Item>
+          <Stack.Divider />
           <Stack.Item>
             <Box bold>Language Keys</Box>
             {language_keys.map((key) => `${key} `)}
@@ -265,9 +262,7 @@ export const SubtabInfo = (props: {
               {preferred_language}
             </Button>
           </Stack.Item>
-          <Stack.Item>
-            <Divider vertical />
-          </Stack.Item>
+          <Stack.Divider />
           <Stack.Item textAlign="center">
             <Box bold>Runechat Color</Box>
             <Tooltip content={runechat_color}>
@@ -307,9 +302,7 @@ export const SubtabInfo = (props: {
               </LabeledList.Item>
             </LabeledList>
           </Stack.Item>
-          <Stack.Item>
-            <Divider vertical />
-          </Stack.Item>
+          <Stack.Divider />
           <Stack.Item>
             <Box bold>Abilities</Box>
             <LabeledList>
@@ -357,9 +350,7 @@ export const SubtabInfo = (props: {
               </LabeledList.Item>
             </LabeledList>
           </Stack.Item>
-          <Stack.Item>
-            <Divider vertical />
-          </Stack.Item>
+          <Stack.Divider />
           <Stack.Item>
             <Box bold>Modifiers</Box>
             <LabeledList>
