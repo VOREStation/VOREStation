@@ -85,7 +85,7 @@ export const VorePanelImport = () => {
             />
           </Stack.Item>
           <Stack.Item>
-            <Tabs>
+            <Tabs scrollable>
               {Object.keys(filteredData).map((entry) => (
                 <Tabs.Tab
                   selected={entry === activeTab}
