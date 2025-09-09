@@ -40,7 +40,7 @@
 	finish_flush(packet)
 	return TRUE
 
-/datum/component/disposal_system_connection/proc/finish_flush(var/obj/structure/disposalholder/packet)
+/datum/component/disposal_system_connection/proc/finish_flush(obj/structure/disposalholder/packet)
 	PROTECTED_PROC(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	// if no trunk connected, expel immediately

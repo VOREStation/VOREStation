@@ -14,7 +14,7 @@
 	dir = 0
 
 	// initialize a holder from the contents of a disposal unit
-/obj/structure/disposalholder/proc/init(var/list/flush_list, var/datum/gas_mixture/flush_gas)
+/obj/structure/disposalholder/proc/init(list/flush_list, datum/gas_mixture/flush_gas)
 	gas = flush_gas// transfer gas resv. into holder object -- let's be explicit about the data this proc consumes, please.
 
 	//Check for any living mobs trigger hasmob.
@@ -86,7 +86,7 @@
 	return get_step(loc,dir)
 
 // find a matching pipe on a turf
-/obj/structure/disposalholder/proc/findpipe(var/turf/T)
+/obj/structure/disposalholder/proc/findpipe(turf/T)
 	if(!T)
 		return null
 	var/fdir = turn(dir, 180)	// flip the movement direction
@@ -98,7 +98,7 @@
 
 // merge two holder objects
 // used when a a holder meets a stuck holder
-/obj/structure/disposalholder/proc/merge(var/obj/structure/disposalholder/other)
+/obj/structure/disposalholder/proc/merge(obj/structure/disposalholder/other)
 	for(var/atom/movable/AM in other)
 		AM.forceMove(src)		// move everything in other holder to this one
 		if(ismob(AM))
@@ -107,10 +107,10 @@
 				M.client.eye = src
 	qdel(other)
 
-/obj/structure/disposalholder/proc/settag(var/new_tag)
+/obj/structure/disposalholder/proc/settag(new_tag)
 	destinationTag = new_tag
 
-/obj/structure/disposalholder/proc/setpartialtag(var/new_tag)
+/obj/structure/disposalholder/proc/setpartialtag(new_tag)
 	if(partialTag == new_tag)
 		destinationTag = new_tag
 		partialTag = ""
@@ -119,23 +119,23 @@
 
 
 // called when player tries to move while in a pipe
-/obj/structure/disposalholder/relaymove(mob/user as mob)
+/obj/structure/disposalholder/relaymove(mob/living/user)
 	if(!isliving(user))
 		return
-	var/mob/living/U = user
 
-	if (U.stat || U.last_special <= world.time)
+	if(user.stat || user.last_special <= world.time)
 		return
-	U.last_special = world.time+100
+	user.last_special = world.time+100
 
-	if(!QDELETED(src))
-		for(var/mob/M in hearers(get_turf(src)))
-			to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>")
+	if(QDELETED(src))
+		return
 
+	for(var/mob/M in hearers(get_turf(src)))
+		to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>")
 	playsound(src, 'sound/effects/clang.ogg', 50, 0, 0)
 
 	// called to vent all gas in holder to a location
-/obj/structure/disposalholder/proc/vent_gas(var/atom/location)
+/obj/structure/disposalholder/proc/vent_gas(atom/location)
 	location.assume_air(gas)  // vent all gas to turf
 	return
 

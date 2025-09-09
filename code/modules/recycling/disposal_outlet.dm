@@ -13,7 +13,7 @@
 	. = ..()
 	AddComponent(/datum/component/disposal_system_connection/disposaloutlet) // Special subtype for directional tossing and it's animation/buzzer
 
-/obj/structure/disposaloutlet/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/disposaloutlet/attackby(obj/item/I, mob/user)
 	if(!I || !user)
 		return
 	src.add_fingerprint(user)

@@ -11,7 +11,7 @@
 	update()
 
 // Override attackby so we disallow trunkremoval when somethings ontop
-/obj/structure/disposalpipe/trunk/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/disposalpipe/trunk/attackby(obj/item/I, mob/user)
 	//Disposal constructors
 	var/turf/T = get_turf(src)
 	var/obj/structure/disposalconstruct/C = locate() in T
@@ -38,7 +38,7 @@
 // would transfer to next pipe segment, but we are in a trunk
 // if not entering from disposal bin,
 // transfer to linked object (outlet or bin)
-/obj/structure/disposalpipe/trunk/transfer(var/obj/structure/disposalholder/H)
+/obj/structure/disposalpipe/trunk/transfer(obj/structure/disposalholder/H)
 	if(H.dir == DOWN)		// we just entered from a disposer
 		return ..()		// so do base transfer proc
 
@@ -55,7 +55,7 @@
 	return null
 
 // nextdir
-/obj/structure/disposalpipe/trunk/nextdir(var/fromdir)
+/obj/structure/disposalpipe/trunk/nextdir(fromdir)
 	if(fromdir == DOWN)
 		return dir
 	else
