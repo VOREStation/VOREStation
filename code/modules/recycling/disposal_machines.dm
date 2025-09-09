@@ -8,6 +8,10 @@
 #define SEND_PRESSURE (0.05 + ONE_ATMOSPHERE) //kPa - assume the inside of a dispoal pipe is 1 atm, so that needs to be added.
 #define PRESSURE_TANK_VOLUME 150	//L
 #define PUMP_MAX_FLOW_RATE 11.25	//L/s - 4 m/s using a 15 cm by 15 cm inlet //NOTE: I reduced the send pressure from 801 to 101.05 which is about 1/8 there was originally, and this was 90 before that. 90/8 is about 11.25, so that's the new value. -Reo
+#define DISPOSALMODE_EJECTONLY -1
+#define DISPOSALMODE_OFF 0
+#define DISPOSALMODE_CHARGING 1
+#define DISPOSALMODE_CHARGED 2
 
 /obj/machinery/disposal
 	name = "disposal unit"
@@ -17,12 +21,11 @@
 	anchored = TRUE
 	density = TRUE
 	var/datum/gas_mixture/air_contents	// internal reservoir
-	var/mode = 1	// item mode 0=off 1=charging 2=charged
+	var/mode = DISPOSALMODE_CHARGING
 	var/flush = FALSE	// true if flush handle is pulled
 	var/flushing = FALSE	// true if flushing in progress
 	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
 	var/flush_count = 0 //this var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
-	var/last_sound = 0
 	active_power_usage = 2200	//the pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
 
@@ -33,7 +36,7 @@
 
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
 	if(!trunk)
-		mode = 0
+		mode = DISPOSALMODE_OFF
 		flush = FALSE
 
 	air_contents = new(PRESSURE_TANK_VOLUME)
@@ -50,22 +53,22 @@
 		return
 
 	add_fingerprint(user)
-	if(mode<=0) // It's off
+	if(mode <= DISPOSALMODE_OFF) // It's off
 		if(I.has_tool_quality(TOOL_SCREWDRIVER))
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
-			if(mode==0) // It's off but still not unscrewed
-				mode=-1 // Set it to doubleoff l0l
+			if(mode == DISPOSALMODE_OFF) // It's off but still not unscrewed
+				mode = DISPOSALMODE_EJECTONLY // Set it to doubleoff l0l
 				playsound(src, I.usesound, 50, 1)
 				to_chat(user, "You remove the screws around the power connection.")
 				return
-			else if(mode==-1)
-				mode=0
+			else if(mode == DISPOSALMODE_EJECTONLY)
+				mode = DISPOSALMODE_OFF
 				playsound(src, I.usesound, 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(I.has_tool_quality(TOOL_WELDER) && mode==-1)
+		else if(I.has_tool_quality(TOOL_WELDER) && mode == DISPOSALMODE_EJECTONLY)
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
@@ -264,7 +267,7 @@
 		to_chat(ui.user, span_warning("You cannot reach the controls from inside."))
 		return TRUE
 
-	if(mode==-1 && action != "eject") // If the mode is -1, only allow ejection
+	if(mode == DISPOSALMODE_EJECTONLY && action != "eject") // If the mode is -1, only allow ejection
 		to_chat(ui.user, span_warning("The disposal units power is disabled."))
 		return
 
@@ -278,17 +281,17 @@
 
 	if(isturf(loc))
 		if(action == "pumpOn")
-			mode = 1
+			mode = DISPOSALMODE_CHARGING
 			update()
 		if(action == "pumpOff")
-			mode = 0
+			mode = DISPOSALMODE_OFF
 			update()
 
 		if(action == "engageHandle")
-			flush = 1
+			flush = TRUE
 			update()
 		if(action == "disengageHandle")
-			flush = 0
+			flush = FALSE
 			update()
 
 		if(action == "eject")
@@ -317,7 +320,7 @@
 	cut_overlays()
 	if(stat & BROKEN)
 		icon_state = "disposal-broken"
-		mode = 0
+		mode = DISPOSALMODE_OFF
 		flush = 0
 		return
 
@@ -326,7 +329,7 @@
 		add_overlay("[initial(icon_state)]-handle")
 
 	// only handle is shown if no power
-	if(stat & NOPOWER || mode == -1)
+	if(stat & NOPOWER || mode == DISPOSALMODE_EJECTONLY)
 		return
 
 	// 	check for items in disposal - occupied light
@@ -334,9 +337,9 @@
 		add_overlay("[initial(icon_state)]-full")
 
 	// charging and ready light
-	if(mode == 1)
+	if(mode == DISPOSALMODE_CHARGING)
 		add_overlay("[initial(icon_state)]-charge")
-	else if(mode == 2)
+	else if(mode == DISPOSALMODE_CHARGED)
 		add_overlay("[initial(icon_state)]-ready")
 
 // timed process
@@ -349,21 +352,19 @@
 	flush_count++
 	if( flush_count >= flush_every_ticks )
 		if( contents.len )
-			if(mode == 2)
+			if(mode == DISPOSALMODE_CHARGED)
 				spawn(0)
 					feedback_inc("disposal_auto_flush",1)
 					flush()
 		flush_count = 0
 
-	updateDialog()
-
 	if(flush && air_contents.return_pressure() >= SEND_PRESSURE )	// flush can happen even without power
 		flush()
 
-	if(mode != 1) //if off or ready, no need to charge
+	if(mode != DISPOSALMODE_CHARGING) //if off or ready, no need to charge
 		update_use_power(USE_POWER_IDLE)
 	else if(air_contents.return_pressure() >= SEND_PRESSURE)
-		mode = 2 //if full enough, switch to ready mode
+		mode = DISPOSALMODE_CHARGED //if full enough, switch to ready mode
 		update()
 	else
 		pressurize() //otherwise charge
@@ -386,16 +387,21 @@
 
 // perform a flush
 /obj/machinery/disposal/proc/flush()
+	if(flushing)
+		return
 
 	flushing = TRUE
 	flick("[icon_state]-flush", src)
+	// wait for animation to finish
+	addtimer(CALLBACK(src, PROC_REF(flush_animation)), 1 SECOND, TIMER_DELETE_ME)
 
-	sleep(10)
-	if(last_sound < world.time + 1)
-		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
-		last_sound = world.time
+/obj/machinery/disposal/proc/flush_animation()
+	PROTECTED_PROC(TRUE)
+	// wait for animation to finish
+	playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
+	addtimer(CALLBACK(src, PROC_REF(flush_resolve)), 0.5 SECOND, TIMER_DELETE_ME)
 
-	sleep(5) // wait for animation to finish
+/obj/machinery/disposal/proc/flush_resolve()
 	SEND_SIGNAL(src,COMSIG_DISPOSAL_FLUSH,air_contents)
 	air_contents = new(PRESSURE_TANK_VOLUME)	// new empty gas resv.
 	GLOB.disposals_flush_shift_roundstat++
@@ -403,11 +409,10 @@
 
 	// now reset disposal state
 	flush = FALSE
-	if(mode == 2)	// if was ready,
-		mode = 1	// switch to charging
+	if(mode == DISPOSALMODE_CHARGED)	// if was ready,
+		mode = DISPOSALMODE_CHARGING	// switch to charging
 	update()
 	return
-
 
 // called when area power changes
 /obj/machinery/disposal/power_change()
@@ -483,6 +488,10 @@
 			i.wash(CLEAN_WASH)
 	. = ..()
 
+#undef DISPOSALMODE_EJECTONLY
+#undef DISPOSALMODE_OFF
+#undef DISPOSALMODE_CHARGING
+#undef DISPOSALMODE_CHARGED
 #undef SEND_PRESSURE
 #undef PRESSURE_TANK_VOLUME
 #undef PUMP_MAX_FLOW_RATE
