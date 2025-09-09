@@ -391,12 +391,8 @@
 	desc = "A chute for big and small packages alike!"
 	density = TRUE
 	icon_state = "intake"
-
-	var/c_mode = 0
-
-/obj/machinery/disposal/deliveryChute/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/disposal_system_connection)
+	stat_tracking = FALSE
+	var/c_mode = FALSE
 
 /obj/machinery/disposal/deliveryChute/interact()
 	return
@@ -416,13 +412,9 @@
 		if(WEST)
 			if(AM.loc.x != src.loc.x-1) return
 
-	if(istype(AM, /obj))
-		var/obj/O = AM
-		O.loc = src
-	else if(istype(AM, /mob))
-		var/mob/M = AM
-		M.loc = src
-	src.flush()
+	if(isobj(AM) || ismob(AM))
+		AM.forceMove(src)
+	flush()
 
 /obj/machinery/disposal/deliveryChute/hitby(atom/movable/AM)
 	if(!QDELETED(AM) || (istype(AM, /obj/item) || istype(AM, /mob/living)) && !istype(AM, /obj/item/projectile))
@@ -436,25 +428,7 @@
 			if(WEST)
 				if(AM.loc.x != src.loc.x-1) return ..()
 		AM.forceMove(src)
-		src.flush()
-
-/obj/machinery/disposal/deliveryChute/flush()
-	flushing = 1
-	flick("intake-closing", src)
-	sleep(10)
-	playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
-	sleep(5) // wait for animation to finish
-
-	SEND_SIGNAL(src,COMSIG_DISPOSAL_FLUSH,air_contents)
-	air_contents = new() // new empty gas resv. Disposal packet takes ownership of the original one!
-
-	flushing = 0
-	// now reset disposal state
-	flush = 0
-	if(mode == 2)	// if was ready,
-		mode = 1	// switch to charging
-	update()
-	return
+		flush()
 
 /obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
 	if(!I || !user)
@@ -465,7 +439,7 @@
 		playsound(src, I.usesound, 50, 1)
 		to_chat(user, "You [c_mode ? "remove" : "attach"] the screws around the power connection.")
 		return
-	if(I.has_tool_quality(TOOL_WELDER) && c_mode==1)
+	if(I.has_tool_quality(TOOL_WELDER) && c_mode == TRUE)
 		var/obj/item/weldingtool/W = I.get_welder()
 		if(!W.remove_fuel(0,user))
 			to_chat(user, "You need more welding fuel to complete this task.")

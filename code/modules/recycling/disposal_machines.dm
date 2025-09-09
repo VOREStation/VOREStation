@@ -28,6 +28,7 @@
 	var/flush_count = 0 //this var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
 	active_power_usage = 2200	//the pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
+	var/stat_tracking = TRUE
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
@@ -404,7 +405,8 @@
 /obj/machinery/disposal/proc/flush_resolve()
 	SEND_SIGNAL(src,COMSIG_DISPOSAL_FLUSH,air_contents)
 	air_contents = new(PRESSURE_TANK_VOLUME)	// new empty gas resv. Disposal packet takes ownership of the original one!
-	GLOB.disposals_flush_shift_roundstat++
+	if(stat_tracking)
+		GLOB.disposals_flush_shift_roundstat++
 	flushing = FALSE
 
 	// now reset disposal state
@@ -471,21 +473,23 @@
 /obj/machinery/disposal/wall/cleaner
 	name = "resleeving equipment deposit"
 	desc = "Automatically cleans and transports items to the local resleeving facilities."
-	icon = 'icons/obj/pipes/disposal_vr.dmi'
 	icon_state = "bluewall"
 
 /obj/machinery/disposal/wall/cleaner/flush()
-	flick("[icon_state]-flush", src)
-	for(var/obj/item/storage/i in src)
-		if(istype(i, /obj/item/storage))
-			var/list/storage_items = i.return_inv()
+	if(flushing)
+		return
 
+	// Clean items before sending them
+	for(var/obj/item/flushed_item in src)
+		if(istype(flushed_item, /obj/item/storage))
+			var/obj/item/storage/storage_flushed = flushed_item
+			var/list/storage_items = storage_flushed.return_inv()
 			for(var/obj/item/item in storage_items)
 				item.wash(CLEAN_WASH)
+			continue
+		if(istype(flushed_item, /obj/item))
+			flushed_item.wash(CLEAN_WASH)
 
-	for(var/obj/item/i in src)
-		if(istype(i, /obj/item))
-			i.wash(CLEAN_WASH)
 	. = ..()
 
 #undef DISPOSALMODE_EJECTONLY
