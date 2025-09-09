@@ -463,7 +463,7 @@ export type SpeciesStats = {
   body_temperature: number,
   item_slowdown_mod: number,
   hazard_low_pressure: number,
-  hazard_high_pressure: number | string,
+  hazard_high_pressure: number,
   siemens_coefficient: number,
   soft_landing: BooleanLike,
   bloodsucker: BooleanLike,

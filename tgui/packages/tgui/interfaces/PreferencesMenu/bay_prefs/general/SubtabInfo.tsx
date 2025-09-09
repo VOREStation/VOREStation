@@ -286,19 +286,34 @@ export const SubtabInfo = (props: {
                 {species_stats.breath_type}
               </LabeledList.Item>
               <LabeledList.Item label="Body Temperature">
-                {species_stats.body_temperature} °C
+                {(
+                  Math.round(species_stats.body_temperature * 100) / 100
+                ).toFixed(2)}{' '}
+                °C
               </LabeledList.Item>
               <LabeledList.Item label="Hypothermia Threshold">
-                {species_stats.cold_level_1} °C
+                {(Math.round(species_stats.cold_level_1 * 100) / 100).toFixed(
+                  2,
+                )}{' '}
+                °C
               </LabeledList.Item>
               <LabeledList.Item label="Heatstroke Threshold">
-                {species_stats.heat_level_1} °C
+                {(Math.round(species_stats.heat_level_1 * 100) / 100).toFixed(
+                  2,
+                )}{' '}
+                °C
               </LabeledList.Item>
               <LabeledList.Item label="Min' Pressure Limit">
-                {species_stats.hazard_low_pressure} Kpa
+                {(
+                  Math.round(species_stats.hazard_low_pressure * 100) / 100
+                ).toFixed(2)}{' '}
+                Kpa
               </LabeledList.Item>
               <LabeledList.Item label="Max' Pressure Limit">
-                {species_stats.hazard_high_pressure} Kpa
+                {(
+                  Math.round(species_stats.hazard_high_pressure * 100) / 100
+                ).toFixed(2)}{' '}
+                Kpa
               </LabeledList.Item>
             </LabeledList>
           </Stack.Item>
