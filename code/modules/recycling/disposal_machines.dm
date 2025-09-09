@@ -18,8 +18,8 @@
 	density = TRUE
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = 1	// item mode 0=off 1=charging 2=charged
-	var/flush = 0	// true if flush handle is pulled
-	var/flushing = 0	// true if flushing in progress
+	var/flush = FALSE	// true if flush handle is pulled
+	var/flushing = FALSE	// true if flushing in progress
 	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
 	var/flush_count = 0 //this var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
 	var/last_sound = 0
@@ -34,7 +34,7 @@
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
 	if(!trunk)
 		mode = 0
-		flush = 0
+		flush = FALSE
 
 	air_contents = new(PRESSURE_TANK_VOLUME)
 	update()
@@ -49,7 +49,7 @@
 	if(stat & BROKEN || !I || !user)
 		return
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(mode<=0) // It's off
 		if(I.has_tool_quality(TOOL_SCREWDRIVER))
 			if(contents.len > 0)
@@ -77,8 +77,8 @@
 				if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 					if(!src || !W.isOn()) return
 					to_chat(user, "You sliced the floorweld off the disposal unit.")
-					var/obj/structure/disposalconstruct/C = new (src.loc)
-					src.transfer_fingerprints_to(C)
+					var/obj/structure/disposalconstruct/C = new (get_turf(src))
+					transfer_fingerprints_to(C)
 					C.ptype = 6 // 6 = disposal unit
 					C.anchored = TRUE
 					C.density = TRUE
@@ -161,7 +161,7 @@
 	if(isanimal(user) && target != user)
 		return
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	var/target_loc = target.loc
 	var/msg
 	for (var/mob/V in viewers(user))
@@ -202,10 +202,10 @@
 
 // attempt to move while inside
 /obj/machinery/disposal/relaymove(mob/user as mob)
-	if(user.stat || src.flushing)
+	if(user.stat || flushing)
 		return
 	if(user.loc == src)
-		src.go_out(user)
+		go_out(user)
 	return
 
 // leave the disposal
@@ -213,7 +213,7 @@
 	if (user.client)
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
-	user.forceMove(src.loc)
+	user.forceMove(get_turf(src))
 	update()
 	return
 
@@ -308,7 +308,7 @@
 
 /obj/machinery/disposal/proc/eject()
 	for(var/atom/movable/AM in src)
-		AM.forceMove(src.loc)
+		AM.forceMove(get_turf(src))
 		AM.pipe_eject(0)
 	update()
 
@@ -355,7 +355,7 @@
 					flush()
 		flush_count = 0
 
-	src.updateDialog()
+	updateDialog()
 
 	if(flush && air_contents.return_pressure() >= SEND_PRESSURE )	// flush can happen even without power
 		flush()
@@ -366,7 +366,7 @@
 		mode = 2 //if full enough, switch to ready mode
 		update()
 	else
-		src.pressurize() //otherwise charge
+		pressurize() //otherwise charge
 
 /obj/machinery/disposal/proc/pressurize()
 	if(stat & NOPOWER)			// won't charge if no power
@@ -387,7 +387,7 @@
 // perform a flush
 /obj/machinery/disposal/proc/flush()
 
-	flushing = 1
+	flushing = TRUE
 	flick("[icon_state]-flush", src)
 
 	sleep(10)
@@ -399,10 +399,10 @@
 	SEND_SIGNAL(src,COMSIG_DISPOSAL_FLUSH,air_contents)
 	air_contents = new(PRESSURE_TANK_VOLUME)	// new empty gas resv.
 	GLOB.disposals_flush_shift_roundstat++
-	flushing = 0
+	flushing = FALSE
 
 	// now reset disposal state
-	flush = 0
+	flush = FALSE
 	if(mode == 2)	// if was ready,
 		mode = 1	// switch to charging
 	update()
@@ -414,26 +414,6 @@
 	..()	// do default setting/reset of stat NOPOWER bit
 	update()	// update icon
 	return
-
-
-// called when holder is expelled from a disposal
-// should usually only occur if the pipe network is modified
-/obj/machinery/disposal/proc/expel(var/obj/structure/disposalholder/H)
-
-	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
-	if(!H) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
-		return
-	for(var/atom/movable/AM in H)
-		if(!AM)
-			continue
-		AM.forceMove(src.loc)
-		AM.pipe_eject(0)
-		if(istype(AM,/mob/living/silicon/robot/drone)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
-			continue
-		AM.throw_at( get_offset_target_turf(src.loc, rand(5)-rand(5), rand(5)-rand(5)), 5, 1)
-
-	H.vent_gas(loc)
-	qdel(H)
 
 /obj/machinery/disposal/hitby(atom/movable/AM)
 	. = ..()
