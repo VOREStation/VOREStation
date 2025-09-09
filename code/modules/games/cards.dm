@@ -6,6 +6,7 @@
 /obj/item/deck
 	w_class = ITEMSIZE_SMALL
 	icon = 'icons/obj/playing_cards.dmi'
+	description_info = "Alt click to shuffle, Ctrl click to deal, Ctrl+Shift click to deal multiple."
 	var/list/cards = list()
 	var/cooldown = 0 // to prevent spam shuffle
 
@@ -165,6 +166,12 @@
 
 	deal_at(usr, M, dcard)
 
+/obj/item/deck/CtrlClick(mob/user)
+	deal_card()
+
+/obj/item/deck/CtrlShiftClick(mob/user)
+	deal_card_multi()
+
 /obj/item/deck/proc/deal_at(mob/user, mob/target, dcard) // Take in the no. of card to be dealt
 	var/obj/item/hand/H = new(get_step(user, user.dir))
 	var/i
@@ -236,6 +243,10 @@
 	else
 		return
 
+/obj/item/deck/AltClick(mob/user)
+	if(user.stat || !Adjacent(user))
+		return
+	shuffle(user)
 
 /obj/item/deck/MouseDrop(mob/user) // Code from Paper bin, so you can still pick up the deck
 	if((user == usr && (!( user.restrained() ) && (!( user.stat ) && (user.contents.Find(src) || in_range(src, user))))))
@@ -273,6 +284,42 @@
 				user.put_in_hands(src)
 	return
 
+/obj/item/deck/cards/triple
+	name = "big deck of cards"
+	desc = "A simple deck of playing cards with triple the number of cards."
+
+/obj/item/deck/cards/triple/Initialize(mapload)
+	. = ..()
+	var/datum/playingcard/P
+	for(var/a = 0, a<3, a++)
+		for(var/suit in list("spades","clubs","diamonds","hearts"))
+
+			var/colour
+			if(suit == "spades" || suit == "clubs")
+				colour = "black_"
+			else
+				colour = "red_"
+
+			for(var/number in list("ace","two","three","four","five","six","seven","eight","nine","ten"))
+				P = new()
+				P.name = "[number] of [suit]"
+				P.card_icon = "[colour]num"
+				P.back_icon = "card_back"
+				cards += P
+
+			for(var/number in list("jack","queen","king"))
+				P = new()
+				P.name = "[number] of [suit]"
+				P.card_icon = "[colour]col"
+				P.back_icon = "card_back"
+				cards += P
+
+		for(var/i = 0, i<2, i++)
+			P = new()
+			P.name = "joker"
+			P.card_icon = "joker"
+			cards += P
+
 /obj/item/pack/
 	name = "Card Pack"
 	desc = "For those with disposible income."
@@ -302,6 +349,7 @@
 /obj/item/hand
 	name = "hand of cards"
 	desc = "Some playing cards."
+	description_info = "Alt click to remove a card, Ctrl click to discard cards."
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "empty"
 	drop_sound = 'sound/items/drop/paper.ogg'
@@ -465,3 +513,11 @@
 /obj/item/hand/pickup(mob/user)
 	..()
 	src.update_icon()
+
+/obj/item/hand/CtrlClick(mob/user)
+	if(user.stat || !Adjacent(user))
+		return
+	discard()
+
+/obj/item/hand/AltClick(mob/user)
+	Removecard()

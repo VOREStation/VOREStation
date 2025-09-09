@@ -1,0 +1,164 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/stonelogs,
+/area/survivalpod/redspace)
+"b" = (
+/obj/machinery/light/small/torch{
+	dir = 8
+	},
+/turf/simulated/floor/concrete,
+/area/survivalpod/redspace)
+"d" = (
+/obj/structure/table/marble,
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/concrete,
+/area/survivalpod/redspace)
+"n" = (
+/obj/structure/table/rack/shelf/wood,
+/obj/item/material/sword/longsword{
+	pixel_y = 5;
+	pixel_x = -2
+	},
+/obj/item/clothing/accessory/holster/machete/rapier/swords,
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+"o" = (
+/obj/machinery/light/small/torch,
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+"q" = (
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/browndouble,
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod/redspace)
+"s" = (
+/obj/machinery/light/small/torch{
+	dir = 1;
+	light_type = /obj/item/light/bulb/red
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod/redspace)
+"t" = (
+/obj/machinery/light/small/torch,
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod/redspace)
+"x" = (
+/obj/structure/closet/cabinet,
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod/redspace)
+"D" = (
+/obj/structure/prop/fantasy/anvil,
+/turf/simulated/floor/concrete,
+/area/survivalpod/redspace)
+"E" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+"H" = (
+/obj/structure/table/woodentable,
+/obj/item/book/custom_library/fiction/blacksmithandkinglybloke{
+	pixel_y = 6;
+	pixel_x = 3
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod/redspace)
+"K" = (
+/obj/structure/bed/bath,
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod/redspace)
+"L" = (
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod/redspace)
+"M" = (
+/turf/simulated/floor/concrete,
+/area/survivalpod/redspace)
+"O" = (
+/obj/structure/prop/fantasy/kiln,
+/turf/simulated/floor/concrete,
+/area/survivalpod/redspace)
+"U" = (
+/obj/structure/simple_door/wood,
+/obj/structure/fans/tiny,
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+"V" = (
+/obj/structure/closet/crate/wooden,
+/obj/random/material/refined,
+/obj/fiftyspawner/iron,
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod/redspace)
+"W" = (
+/obj/structure/prop/fantasy/grindstone,
+/turf/simulated/floor/concrete,
+/area/survivalpod/redspace)
+"X" = (
+/obj/structure/window/basic/full,
+/turf/simulated/floor/concrete,
+/area/survivalpod/redspace)
+"Y" = (
+/turf/simulated/floor/wood/alt,
+/area/survivalpod/redspace)
+
+(1,1,1) = {"
+a
+a
+a
+d
+d
+a
+a
+"}
+(2,1,1) = {"
+X
+b
+M
+M
+Y
+Y
+U
+"}
+(3,1,1) = {"
+X
+D
+O
+W
+n
+o
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+a
+E
+a
+"}
+(5,1,1) = {"
+a
+s
+L
+L
+L
+t
+a
+"}
+(6,1,1) = {"
+a
+q
+H
+V
+K
+x
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
