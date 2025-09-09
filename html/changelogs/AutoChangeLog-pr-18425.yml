@@ -1,0 +1,4 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - image: "fixed brightness of the sash accessory to make it easier to colour"
