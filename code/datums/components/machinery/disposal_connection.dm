@@ -1,7 +1,6 @@
 ///Disposal connection component, allows an atom to recieve and send disposal packages if attached to a disposal trunk.
 /datum/component/disposal_system_connection
 	VAR_PROTECTED/obj/disposal_owner = null
-	VAR_PROTECTED/expel_on_recieve = TRUE
 
 /datum/component/disposal_system_connection/Initialize()
 	disposal_owner = parent
@@ -18,12 +17,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/component/disposal_system_connection/proc/on_flush(datum/source,datum/gas_mixture/flush_gas)
 	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!can_accept())
 		return FALSE
+	// Important note, the flush_gas will be passed to the disposal packet when it's made. Caller should make a fresh gasmix datum after flushing this one!
 	return handle_flush(flush_gas)
 
 /datum/component/disposal_system_connection/proc/on_recieve(datum/source,obj/structure/disposalholder/packet)
 	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(!can_accept())
 		return FALSE
 	return handle_expel(packet)
@@ -34,18 +36,7 @@
 	PROTECTED_PROC(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	var/obj/structure/disposalholder/packet = new()	// virtual holder object which actually travels through the pipes.
-	var/list/flush_list = get_flushed_item_list()
-
-	//Hacky test to get drones to mail themselves through disposals.
-	var/wrapcheck = FALSE
-	if(locate(/mob/living/silicon/robot/drone) in flush_list)
-		wrapcheck = TRUE
-	if(locate(/obj/item/smallDelivery) in flush_list)
-		wrapcheck = TRUE
-	packet.tomail = wrapcheck
-
-	// Send it!
-	packet.init(flush_list, flush_gas)
+	packet.init(get_flushed_item_list(), flush_gas)
 	finish_flush(packet)
 	return TRUE
 
@@ -99,7 +90,7 @@
 	PROTECTED_PROC(TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 	// This proc has some checks just incase we have a subtype that wants to handle expelled items or if it vents gasses itself.
-	// This way it can just pass nulls to this parent proc if it does it's own handling for those things.
+	// This way it can just pass nulls to this parent proc if it does it's own handling for those things. Like a machine that eats all stuff dumped into it instead of ejecting.
 
 	// Drop all those items
 	if(expelled_items.len)

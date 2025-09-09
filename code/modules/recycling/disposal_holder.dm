@@ -6,15 +6,12 @@
 /obj/structure/disposalholder
 	invisibility = INVISIBILITY_ABSTRACT
 	var/datum/gas_mixture/gas = null	// gas used to flush, will appear at exit point
-	var/active = 0	// true if the holder is moving, otherwise inactive
-	dir = 0
+	var/active = FALSE	// true if the holder is moving, otherwise inactive
 	var/count = 2048	//*** can travel 2048 steps before going inactive (in case of loops)
 	var/destinationTag = "" // changes if contains a delivery container
-	var/tomail = 0 //changes if contains wrapped package
-	var/hasmob = 0 //If it contains a mob
-
+	var/hasmob = FALSE //If it contains a mob
 	var/partialTag = "" //set by a partial tagger the first time round, then put in destinationTag if it goes through again.
-
+	dir = 0
 
 	// initialize a holder from the contents of a disposal unit
 /obj/structure/disposalholder/proc/init(var/list/flush_list, var/datum/gas_mixture/flush_gas)
@@ -24,7 +21,7 @@
 	//hasmob effects whether the package goes to cargo or its tagged destination.
 	for(var/mob/living/M in flush_list)
 		if(M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
-			hasmob = 1
+			hasmob = TRUE
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
@@ -32,29 +29,30 @@
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
 	//...but it should require a second person to open the package. (i.e. person inside a wrapped locker)
 	for(var/obj/O in flush_list)
-		if(O.contents)
-			for(var/mob/living/M in O.contents)
-				if(M && M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
-					hasmob = 1
+		if(!O.contents)
+			continue
+		for(var/mob/living/M in O.contents)
+			if(M && M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
+				hasmob = TRUE
 
 	// now everything inside the disposal gets put into the holder
 	// note AM since can contain mobs or objs
 	for(var/atom/movable/AM in flush_list)
 		AM.forceMove(src)
+		// Mail will use it's sorting tag if dropped into disposals
 		if(istype(AM, /obj/structure/bigDelivery) && !hasmob)
 			var/obj/structure/bigDelivery/T = AM
 			src.destinationTag = T.sortTag
 		if(istype(AM, /obj/item/smallDelivery) && !hasmob)
 			var/obj/item/smallDelivery/T = AM
 			src.destinationTag = T.sortTag
-		//Drones can mail themselves through maint.
-		if(istype(AM, /mob/living/silicon/robot/drone))
-			var/mob/living/silicon/robot/drone/drone = AM
-			src.destinationTag = drone.mail_destination
-
 		if(istype(AM, /obj/item/mail) && !hasmob)
 			var/obj/item/mail/T = AM
 			src.destinationTag = T.sortTag
+		// Drones can mail themselves through maint.
+		if(istype(AM, /mob/living/silicon/robot/drone))
+			var/mob/living/silicon/robot/drone/drone = AM
+			src.destinationTag = drone.mail_destination
 
 // movement process, persists while holder is moving through pipes
 /obj/structure/disposalholder/proc/move()
@@ -89,10 +87,8 @@
 
 // find a matching pipe on a turf
 /obj/structure/disposalholder/proc/findpipe(var/turf/T)
-
 	if(!T)
 		return null
-
 	var/fdir = turn(dir, 180)	// flip the movement direction
 	for(var/obj/structure/disposalpipe/P in T)
 		if(fdir & P.dpdir)		// find pipe direction mask that matches flipped dir
@@ -109,9 +105,7 @@
 			var/mob/M = AM
 			if(M.client)	// if a client mob, update eye to follow this holder
 				M.client.eye = src
-
 	qdel(other)
-
 
 /obj/structure/disposalholder/proc/settag(var/new_tag)
 	destinationTag = new_tag
@@ -126,19 +120,16 @@
 
 // called when player tries to move while in a pipe
 /obj/structure/disposalholder/relaymove(mob/user as mob)
-
 	if(!isliving(user))
 		return
-
 	var/mob/living/U = user
 
 	if (U.stat || U.last_special <= world.time)
 		return
-
 	U.last_special = world.time+100
 
-	if (src.loc)
-		for (var/mob/M in hearers(src.loc.loc))
+	if(!QDELETED(src))
+		for(var/mob/M in hearers(get_turf(src)))
 			to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>")
 
 	playsound(src, 'sound/effects/clang.ogg', 50, 0, 0)
@@ -154,9 +145,9 @@
 		var/turf/qdelloc = get_turf(src)
 		if(qdelloc)
 			for(var/atom/movable/AM in contents)
-				AM.loc = qdelloc
+				AM.forceMove(qdelloc)
 		else
 			log_and_message_admins("A disposal holder was deleted with contents in nullspace") //ideally, this should never happen
 
-	active = 0
+	active = FALSE
 	return ..()

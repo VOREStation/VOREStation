@@ -403,7 +403,7 @@
 
 /obj/machinery/disposal/proc/flush_resolve()
 	SEND_SIGNAL(src,COMSIG_DISPOSAL_FLUSH,air_contents)
-	air_contents = new(PRESSURE_TANK_VOLUME)	// new empty gas resv.
+	air_contents = new(PRESSURE_TANK_VOLUME)	// new empty gas resv. Disposal packet takes ownership of the original one!
 	GLOB.disposals_flush_shift_roundstat++
 	flushing = FALSE
 
