@@ -1,0 +1,509 @@
+// Disposal bin
+// Holds items for disposal into pipe system
+// Draws air from turf, gradually charges internal reservoir
+// Once full (~1 atm), uses air resv to flush items into the pipes
+// Automatically recharges air (unless off), will flush when ready if pre-set
+// Can hold items and human size things, no other draggables
+// Toilets are a type of disposal bin for small objects only and work on magic. By magic, I mean torque rotation
+#define SEND_PRESSURE (0.05 + ONE_ATMOSPHERE) //kPa - assume the inside of a dispoal pipe is 1 atm, so that needs to be added.
+#define PRESSURE_TANK_VOLUME 150	//L
+#define PUMP_MAX_FLOW_RATE 11.25	//L/s - 4 m/s using a 15 cm by 15 cm inlet //NOTE: I reduced the send pressure from 801 to 101.05 which is about 1/8 there was originally, and this was 90 before that. 90/8 is about 11.25, so that's the new value. -Reo
+
+/obj/machinery/disposal
+	name = "disposal unit"
+	desc = "A pneumatic waste disposal unit."
+	icon = 'icons/obj/pipes/disposal.dmi'
+	icon_state = "disposal"
+	anchored = TRUE
+	density = TRUE
+	var/datum/gas_mixture/air_contents	// internal reservoir
+	var/mode = 1	// item mode 0=off 1=charging 2=charged
+	var/flush = 0	// true if flush handle is pulled
+	var/flushing = 0	// true if flushing in progress
+	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
+	var/flush_count = 0 //this var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
+	var/last_sound = 0
+	active_power_usage = 2200	//the pneumatic pump power. 3 HP ~ 2200W
+	idle_power_usage = 100
+
+// create a new disposal
+// find the attached trunk (if present) and init gas resvr.
+/obj/machinery/disposal/Initialize(mapload)
+	. = ..()
+
+	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
+	if(!trunk)
+		mode = 0
+		flush = 0
+
+	air_contents = new(PRESSURE_TANK_VOLUME)
+	update()
+
+	AddComponent(/datum/component/disposal_system_connection)
+
+/obj/machinery/disposal/Destroy()
+	eject()
+	return ..()
+
+// attack by item places it in to disposal
+/obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
+	if(stat & BROKEN || !I || !user)
+		return
+
+	src.add_fingerprint(user)
+	if(mode<=0) // It's off
+		if(I.has_tool_quality(TOOL_SCREWDRIVER))
+			if(contents.len > 0)
+				to_chat(user, "Eject the items first!")
+				return
+			if(mode==0) // It's off but still not unscrewed
+				mode=-1 // Set it to doubleoff l0l
+				playsound(src, I.usesound, 50, 1)
+				to_chat(user, "You remove the screws around the power connection.")
+				return
+			else if(mode==-1)
+				mode=0
+				playsound(src, I.usesound, 50, 1)
+				to_chat(user, "You attach the screws around the power connection.")
+				return
+		else if(I.has_tool_quality(TOOL_WELDER) && mode==-1)
+			if(contents.len > 0)
+				to_chat(user, "Eject the items first!")
+				return
+			var/obj/item/weldingtool/W = I.get_welder()
+			if(W.remove_fuel(0,user))
+				playsound(src, W.usesound, 100, 1)
+				to_chat(user, "You start slicing the floorweld off the disposal unit.")
+
+				if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
+					if(!src || !W.isOn()) return
+					to_chat(user, "You sliced the floorweld off the disposal unit.")
+					var/obj/structure/disposalconstruct/C = new (src.loc)
+					src.transfer_fingerprints_to(C)
+					C.ptype = 6 // 6 = disposal unit
+					C.anchored = TRUE
+					C.density = TRUE
+					C.update()
+					qdel(src)
+				return
+			else
+				to_chat(user, "You need more welding fuel to complete this task.")
+				return
+
+	if(istype(I, /obj/item/melee/energy/blade))
+		to_chat(user, "You can't place that item inside the disposal unit.")
+		return
+
+	if(istype(I, /obj/item/storage/bag/trash))
+		var/obj/item/storage/bag/trash/T = I
+		to_chat(user, span_blue("You empty the bag."))
+		for(var/obj/item/O in T.contents)
+			T.remove_from_storage(O,src)
+		T.update_icon()
+		update()
+		return
+
+	if(istype(I, /obj/item/material/ashtray))
+		var/obj/item/material/ashtray/A = I
+		if(A.contents.len > 0)
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " empties \the [A] into [src]."))
+			for(var/obj/item/O in A.contents)
+				O.forceMove(src)
+			A.update_icon()
+			update()
+			return
+
+	var/obj/item/grab/G = I
+	if(istype(G))	// handle grabbed mob
+		if(ismob(G.affecting))
+			var/mob/GM = G.affecting
+			for (var/mob/V in viewers(user))
+				V.show_message("[user] starts putting [GM.name] into the disposal.", 3)
+			if(do_after(user, 2 SECONDS, target = src))
+				if (GM.client)
+					GM.client.perspective = EYE_PERSPECTIVE
+					GM.client.eye = src
+				GM.forceMove(src)
+				for (var/mob/C in viewers(src))
+					C.show_message(span_red("[GM.name] has been placed in the [src] by [user]."), 3)
+				qdel(G)
+
+				add_attack_logs(user,GM,"Disposals dunked")
+		return
+
+	if(isrobot(user))
+		return
+	if(!I || I.anchored || !I.canremove)
+		return
+
+	user.drop_item()
+	if(I)
+		if(istype(I, /obj/item/holder))
+			var/obj/item/holder/holder = I
+			var/mob/victim = holder.held_mob
+			if(ishuman(victim) || victim.client)
+				log_and_message_admins("placed [victim]  inside \the [src]", user)
+			victim.forceMove(src)
+
+		I.forceMove(src)
+
+	user.visible_message("[user] places \the [I] into the [src].",  "You place \the [I] into the [src].","Ca-Clunk")
+	update()
+
+// mouse drop another mob or self
+//
+/obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
+	if(user.stat || !user.canmove || !istype(target))
+		return
+	if(target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1)
+		return
+
+	//animals cannot put mobs other than themselves into disposal
+	if(isanimal(user) && target != user)
+		return
+
+	src.add_fingerprint(user)
+	var/target_loc = target.loc
+	var/msg
+	for (var/mob/V in viewers(user))
+		if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+			V.show_message("[user] starts climbing into the disposal.", 3)
+		if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+			if(target.anchored) return
+			V.show_message("[user] starts stuffing [target.name] into the disposal.", 3)
+	if(!do_after(user, 2 SECONDS, target))
+		return
+	if(target_loc != target.loc)
+		return
+	if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)	// if drop self, then climbed in
+											// must be awake, not stunned or whatever
+		msg = "[user.name] climbs into the [src]."
+		to_chat(user, "You climb into the [src].")
+		log_and_message_admins("climbed into disposals!", user)
+	else if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+		msg = "[user.name] stuffs [target.name] into the [src]!"
+		to_chat(user, "You stuff [target.name] into the [src]!")
+
+		add_attack_logs(user,target,"Disposals dunked")
+	else
+		return
+	if (target.client)
+		target.client.perspective = EYE_PERSPECTIVE
+		target.client.eye = src
+
+	target.forceMove(src)
+
+	for (var/mob/C in viewers(src))
+		if(C == user)
+			continue
+		C.show_message(msg, 3)
+
+	update()
+	return
+
+// attempt to move while inside
+/obj/machinery/disposal/relaymove(mob/user as mob)
+	if(user.stat || src.flushing)
+		return
+	if(user.loc == src)
+		src.go_out(user)
+	return
+
+// leave the disposal
+/obj/machinery/disposal/proc/go_out(mob/user)
+	if (user.client)
+		user.client.eye = user.client.mob
+		user.client.perspective = MOB_PERSPECTIVE
+	user.forceMove(src.loc)
+	update()
+	return
+
+// ai as human but can't flush
+/obj/machinery/disposal/attack_ai(mob/user as mob)
+	add_hiddenprint(user)
+	tgui_interact(user)
+
+// human interact with machine
+/obj/machinery/disposal/attack_hand(mob/user as mob)
+	if(stat & BROKEN)
+		return
+
+	if(user && user.loc == src)
+		to_chat(user, span_red("You cannot reach the controls from inside."))
+		return
+
+	// Clumsy folks can only flush it.
+	if(user.IsAdvancedToolUser(1))
+		tgui_interact(user)
+	else
+		flush = !flush
+		update()
+	return
+
+// user interaction
+/obj/machinery/disposal/tgui_interact(mob/user, datum/tgui/ui = null)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DisposalBin")
+		ui.open()
+
+/obj/machinery/disposal/tgui_data(mob/user)
+	var/list/data = list()
+
+	data["isAI"] = isAI(user)
+	data["flushing"] = flush
+	data["mode"] = mode
+	data["pressure"] = round(clamp(100* air_contents.return_pressure() / (SEND_PRESSURE), 0, 100),1)
+
+	return data
+
+/obj/machinery/disposal/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return
+
+	if(ui.user.loc == src)
+		to_chat(ui.user, span_warning("You cannot reach the controls from inside."))
+		return TRUE
+
+	if(mode==-1 && action != "eject") // If the mode is -1, only allow ejection
+		to_chat(ui.user, span_warning("The disposal units power is disabled."))
+		return
+
+	if(stat & BROKEN)
+		return
+
+	add_fingerprint(ui.user)
+
+	if(flushing)
+		return
+
+	if(isturf(loc))
+		if(action == "pumpOn")
+			mode = 1
+			update()
+		if(action == "pumpOff")
+			mode = 0
+			update()
+
+		if(action == "engageHandle")
+			flush = 1
+			update()
+		if(action == "disengageHandle")
+			flush = 0
+			update()
+
+		if(action == "eject")
+			eject()
+
+	return TRUE
+
+// eject the contents of the disposal unit
+
+/obj/machinery/disposal/verb/force_eject()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Force Eject"
+	if(flushing)
+		return
+	eject()
+
+/obj/machinery/disposal/proc/eject()
+	for(var/atom/movable/AM in src)
+		AM.forceMove(src.loc)
+		AM.pipe_eject(0)
+	update()
+
+// update the icon & overlays to reflect mode & status
+/obj/machinery/disposal/proc/update()
+	cut_overlays()
+	if(stat & BROKEN)
+		icon_state = "disposal-broken"
+		mode = 0
+		flush = 0
+		return
+
+	// flush handle
+	if(flush)
+		add_overlay("[initial(icon_state)]-handle")
+
+	// only handle is shown if no power
+	if(stat & NOPOWER || mode == -1)
+		return
+
+	// 	check for items in disposal - occupied light
+	if(contents.len > 0)
+		add_overlay("[initial(icon_state)]-full")
+
+	// charging and ready light
+	if(mode == 1)
+		add_overlay("[initial(icon_state)]-charge")
+	else if(mode == 2)
+		add_overlay("[initial(icon_state)]-ready")
+
+// timed process
+// charge the gas reservoir and perform flush if ready
+/obj/machinery/disposal/process()
+	if(!air_contents || (stat & BROKEN))			// nothing can happen if broken
+		update_use_power(USE_POWER_OFF)
+		return
+
+	flush_count++
+	if( flush_count >= flush_every_ticks )
+		if( contents.len )
+			if(mode == 2)
+				spawn(0)
+					feedback_inc("disposal_auto_flush",1)
+					flush()
+		flush_count = 0
+
+	src.updateDialog()
+
+	if(flush && air_contents.return_pressure() >= SEND_PRESSURE )	// flush can happen even without power
+		flush()
+
+	if(mode != 1) //if off or ready, no need to charge
+		update_use_power(USE_POWER_IDLE)
+	else if(air_contents.return_pressure() >= SEND_PRESSURE)
+		mode = 2 //if full enough, switch to ready mode
+		update()
+	else
+		src.pressurize() //otherwise charge
+
+/obj/machinery/disposal/proc/pressurize()
+	if(stat & NOPOWER)			// won't charge if no power
+		update_use_power(USE_POWER_OFF)
+		return
+
+	var/atom/L = loc						// recharging from loc turf
+	var/datum/gas_mixture/env = L.return_air()
+
+	var/power_draw = -1
+	if(env && env.temperature > 0)
+		var/transfer_moles = (PUMP_MAX_FLOW_RATE/env.volume)*env.total_moles	//group_multiplier is divided out here
+		power_draw = pump_gas(src, env, air_contents, transfer_moles, active_power_usage)
+
+	if (power_draw > 0)
+		use_power(power_draw)
+
+// perform a flush
+/obj/machinery/disposal/proc/flush()
+
+	flushing = 1
+	flick("[icon_state]-flush", src)
+
+	sleep(10)
+	if(last_sound < world.time + 1)
+		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
+		last_sound = world.time
+
+	sleep(5) // wait for animation to finish
+	SEND_SIGNAL(src,COMSIG_DISPOSAL_FLUSH,air_contents)
+	air_contents = new(PRESSURE_TANK_VOLUME)	// new empty gas resv.
+	GLOB.disposals_flush_shift_roundstat++
+	flushing = 0
+
+	// now reset disposal state
+	flush = 0
+	if(mode == 2)	// if was ready,
+		mode = 1	// switch to charging
+	update()
+	return
+
+
+// called when area power changes
+/obj/machinery/disposal/power_change()
+	..()	// do default setting/reset of stat NOPOWER bit
+	update()	// update icon
+	return
+
+
+// called when holder is expelled from a disposal
+// should usually only occur if the pipe network is modified
+/obj/machinery/disposal/proc/expel(var/obj/structure/disposalholder/H)
+
+	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
+	if(!H) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
+		return
+	for(var/atom/movable/AM in H)
+		if(!AM)
+			continue
+		AM.forceMove(src.loc)
+		AM.pipe_eject(0)
+		if(istype(AM,/mob/living/silicon/robot/drone)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
+			continue
+		AM.throw_at( get_offset_target_turf(src.loc, rand(5)-rand(5), rand(5)-rand(5)), 5, 1)
+
+	H.vent_gas(loc)
+	qdel(H)
+
+/obj/machinery/disposal/hitby(atom/movable/AM)
+	. = ..()
+	if(istype(AM, /obj/item) && !istype(AM, /obj/item/projectile))
+		if(prob(75))
+			AM.forceMove(src)
+			visible_message("\The [AM] lands in \the [src].")
+		else
+			visible_message("\The [AM] bounces off of \the [src]'s rim!")
+
+	if(istype(AM,/mob/living))
+		if(prob(75))
+			var/mob/living/to_be_dunked = AM
+			if(ishuman(AM) ||to_be_dunked.client)
+				log_and_message_admins("[AM] was thrown into \the [src]", null)
+			AM.forceMove(src)
+			visible_message("\The [AM] lands in \the [src].")
+
+/obj/machinery/disposal/wall
+	name = "inset disposal unit"
+	icon_state = "wall"
+
+	density = FALSE
+
+/obj/machinery/disposal/wall/Initialize(mapload)
+	. = ..()
+
+	spawn(1 SECOND)	// Fixfix for weird interaction with buildmode or other late-spawning.
+		update()
+
+/obj/machinery/disposal/wall/update()
+	..()
+
+	switch(dir)
+		if(1)
+			pixel_x = 0
+			pixel_y = -32
+		if(2)
+			pixel_x = 0
+			pixel_y = 32
+		if(4)
+			pixel_x = -32
+			pixel_y = 0
+		if(8)
+			pixel_x = 32
+			pixel_y = 0
+
+
+// Cleaner subtype
+/obj/machinery/disposal/wall/cleaner
+	name = "resleeving equipment deposit"
+	desc = "Automatically cleans and transports items to the local resleeving facilities."
+	icon = 'icons/obj/pipes/disposal_vr.dmi'
+	icon_state = "bluewall"
+
+/obj/machinery/disposal/wall/cleaner/flush()
+	flick("[icon_state]-flush", src)
+	for(var/obj/item/storage/i in src)
+		if(istype(i, /obj/item/storage))
+			var/list/storage_items = i.return_inv()
+
+			for(var/obj/item/item in storage_items)
+				item.wash(CLEAN_WASH)
+
+	for(var/obj/item/i in src)
+		if(istype(i, /obj/item))
+			i.wash(CLEAN_WASH)
+	. = ..()
+
+#undef SEND_PRESSURE
+#undef PRESSURE_TANK_VOLUME
+#undef PUMP_MAX_FLOW_RATE

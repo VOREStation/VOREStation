@@ -396,9 +396,7 @@
 
 /obj/machinery/disposal/deliveryChute/Initialize(mapload)
 	. = ..()
-	trunk = locate() in src.loc
-	if(trunk)
-		trunk.linked = src	// link the pipe trunk to self
+	AddComponent(/datum/component/disposal_system_connection)
 
 /obj/machinery/disposal/deliveryChute/interact()
 	return
@@ -443,17 +441,13 @@
 /obj/machinery/disposal/deliveryChute/flush()
 	flushing = 1
 	flick("intake-closing", src)
-	var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
-												// travels through the pipes.
-	air_contents = new()		// new empty gas resv.
-
 	sleep(10)
 	playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
 	sleep(5) // wait for animation to finish
 
-	H.init(src)	// copy the contents of disposer to holder
+	SEND_SIGNAL(src,COMSIG_DISPOSAL_FLUSH)
+	air_contents = new() // new empty gas resv.
 
-	H.start(src) // start the holder processing movement
 	flushing = 0
 	// now reset disposal state
 	flush = 0
@@ -488,8 +482,3 @@
 			C.density = TRUE
 			qdel(src)
 		return
-
-/obj/machinery/disposal/deliveryChute/Destroy()
-	if(trunk)
-		trunk.linked = null
-	. = ..()
