@@ -445,12 +445,6 @@
 
 	density = FALSE
 
-/obj/machinery/disposal/wall/Initialize(mapload)
-	. = ..()
-
-	spawn(1 SECOND)	// Fixfix for weird interaction with buildmode or other late-spawning.
-		update()
-
 /obj/machinery/disposal/wall/update()
 	..()
 

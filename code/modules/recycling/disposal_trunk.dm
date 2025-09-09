@@ -42,7 +42,7 @@
 	if(H.dir == DOWN)		// we just entered from a disposer
 		return ..()		// so do base transfer proc
 
-	// Find a disposal handler component
+	// Find a disposal handler component. First come first serve.
 	var/transfered = FALSE
 	var/turf/T = get_turf(src)
 	for(var/obj/O in T)

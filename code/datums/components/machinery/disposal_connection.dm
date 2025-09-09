@@ -6,10 +6,12 @@
 	disposal_owner = parent
 	RegisterSignal(disposal_owner, COMSIG_DISPOSAL_FLUSH, PROC_REF(on_flush))
 	RegisterSignal(disposal_owner, COMSIG_DISPOSAL_RECEIVING, PROC_REF(on_recieve))
+	RegisterSignal(disposal_owner, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/disposal_system_connection/Destroy()
 	UnregisterSignal(disposal_owner, COMSIG_DISPOSAL_FLUSH)
 	UnregisterSignal(disposal_owner, COMSIG_DISPOSAL_RECEIVING)
+	UnregisterSignal(disposal_owner, COMSIG_PARENT_EXAMINE)
 	disposal_owner = null
 	. = ..()
 
@@ -29,6 +31,13 @@
 	if(!can_accept())
 		return FALSE
 	return handle_expel(packet)
+
+/datum/component/disposal_system_connection/proc/on_examine(datum/source, mob/user, list/examine_texts)
+	SIGNAL_HANDLER
+	var/has_connection = FALSE
+	if(can_accept() && (locate(/obj/structure/disposalpipe/trunk) in get_turf(disposal_owner)))
+		has_connection = TRUE
+	examine_texts += span_notice("It [has_connection ? "is connected" : "can be connected"] to a disposal pipe network.")
 
 // Flush handling, can be override by subtypes but excepts parent proc to handle core logic
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
