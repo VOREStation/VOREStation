@@ -115,6 +115,7 @@ export const SubtabInfo = (props: {
     selects_bodytype,
     custom_base,
     species_stats,
+    basehuman_stats,
   } = data;
 
   return (

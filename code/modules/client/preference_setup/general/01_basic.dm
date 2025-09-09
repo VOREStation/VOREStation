@@ -178,6 +178,45 @@
 
 	data["allow_metadata"] = CONFIG_GET(flag/allow_metadata)
 
+	var/list/human_stats = list(
+		"total_health" = /datum/species/human::total_health,
+		"slowdown" = null,
+		"brute_mod" = /datum/species/human::brute_mod,
+		"burn_mod" = /datum/species/human::burn_mod,
+		"oxy_mod" = /datum/species/human::oxy_mod,
+		"toxins_mod" = /datum/species/human::toxins_mod,
+		"radiation_mod" = /datum/species/human::radiation_mod,
+		"flash_mod" = /datum/species/human::flash_mod,
+		"pain_mod" = /datum/species/human::pain_mod,
+		"stun_mod" = /datum/species/human::stun_mod,
+		"weaken_mod" = /datum/species/human::weaken_mod,
+		"lightweight" = FALSE,
+		"dispersed_eyes" = FALSE,
+		"trashcan" = FALSE,
+		"eat_minerals" = FALSE,
+		"darksight" = null,
+		"chem_strength_tox" = /datum/species/human::chem_strength_tox,
+		"cold_level_1" = /datum/species/human::cold_level_1-T0C,
+		"heat_level_1" = /datum/species/human::heat_level_1-T0C,
+		"chem_strength_heal" = /datum/species/human::chem_strength_heal,
+		"siemens_coefficient" = /datum/species/human::siemens_coefficient,
+		"has_vibration_sense" = FALSE,
+		"item_slowdown_mod" = /datum/species/human::item_slowdown_mod,
+		"body_temperature" = /datum/species/human::body_temperature-T0C,
+		"hazard_low_pressure" = /datum/species/human::hazard_low_pressure,
+		"breath_type" = null,
+		"hazard_high_pressure" = /datum/species/human::hazard_high_pressure,
+		"soft_landing" = FALSE,
+		"bloodsucker" = FALSE,
+		"can_space_freemove" = FALSE,
+		"can_zero_g_move" = FALSE,
+		"water_breather" = FALSE,
+		"can_climb" = FALSE,
+		"has_flight" = FALSE,
+	)
+
+	data["basehuman_stats"] = human_stats
+
 	return data
 
 /datum/category_item/player_setup_item/general/basic/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)

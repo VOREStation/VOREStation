@@ -49,6 +49,7 @@ export type BasicData = {
   emote_sound_mode: string;
 
   persistence_settings: PersistanceEnum;
+  basehuman_stats: SpeciesStats;
   species_stats: SpeciesStats;
 };
 
