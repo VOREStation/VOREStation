@@ -29,7 +29,7 @@
 	if(H)
 		// holder was present
 		H.active = FALSE
-		var/turf/T = src.loc
+		var/turf/T = get_turf(src)
 		if(T.density)
 			// deleting pipe is inside a dense turf (wall)
 			// this is unlikely, but just dump out everything into the turf in case
@@ -113,7 +113,6 @@
 		qdel(H)
 		return
 
-
 	if(!T.is_plating() && istype(T,/turf/simulated/floor)) //intact floor, pop the tile
 		var/turf/simulated/floor/F = T
 		F.break_tile()
@@ -171,7 +170,7 @@
 	if(H)
 		// holder was present
 		H.active = FALSE
-		var/turf/T = src.loc
+		var/turf/T = get_turf(src)
 		if(T.density)
 			// broken pipe is inside a dense turf (wall)
 			// this is unlikely, but just dump out everything into the turf in case
@@ -288,7 +287,7 @@
 	if(H)
 		// holder was present
 		H.active = FALSE
-		var/turf/T = src.loc
+		var/turf/T = get_turf(src)
 		if(T.density)
 			// deleting pipe is inside a dense turf (wall)
 			// this is unlikely, but just dump out everything into the turf in case
@@ -728,12 +727,13 @@
 		return ..()		// so do base transfer proc
 
 	// Find a disposal handler component
+	var/transfered = FALSE
 	var/turf/T = get_turf(src)
-	var/datum/component/disposal_system_connection/DC
 	for(var/obj/O in T)
-		if(SEND_SIGNAL(DC,COMSIG_DISPOSAL_RECEIVING,H))
+		if(SEND_SIGNAL(O,COMSIG_DISPOSAL_RECEIVING,H))
+			transfered = TRUE
 			break
-	if(!QDELETED(H)) // Check if anything handled it, will be deleted if so.
+	if(!transfered) // Check if anything handled it, will be deleted if so.
 		expel(H, T, 0) // expel at turf if nothing handled it
 
 	return null

@@ -66,11 +66,11 @@
 
 	// Transfer to next segment
 	var/obj/structure/disposalpipe/last = loc
-	if(!last)
-		return
 	var/obj/structure/disposalpipe/curr = last.transfer(src)
+	if(!active)
+		return // Handled by a machine connected to a trunk during transfer()
 	if(!curr)
-		last.expel(src, loc, dir)
+		last.expel(src, get_turf(loc), dir)
 		return
 
 	// Onto the next segment

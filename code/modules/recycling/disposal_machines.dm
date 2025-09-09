@@ -38,7 +38,6 @@
 
 	air_contents = new(PRESSURE_TANK_VOLUME)
 	update()
-
 	AddComponent(/datum/component/disposal_system_connection)
 
 /obj/machinery/disposal/Destroy()

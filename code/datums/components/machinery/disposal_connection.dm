@@ -20,15 +20,13 @@
 	SIGNAL_HANDLER
 	if(!can_accept())
 		return FALSE
-	handle_flush(flush_gas)
-	return TRUE
+	return handle_flush(flush_gas)
 
 /datum/component/disposal_system_connection/proc/on_recieve(datum/source,obj/structure/disposalholder/packet)
 	SIGNAL_HANDLER
 	if(!can_accept())
 		return FALSE
-	handle_expel(packet)
-	return TRUE
+	return handle_expel(packet)
 
 // Flush handling, can be override by subtypes but excepts parent proc to handle core logic
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,6 +47,7 @@
 	// Send it!
 	packet.init(flush_list, flush_gas)
 	finish_flush(packet)
+	return TRUE
 
 /datum/component/disposal_system_connection/proc/finish_flush(var/obj/structure/disposalholder/packet)
 	PROTECTED_PROC(TRUE)
@@ -75,9 +74,11 @@
 		return FALSE
 
 	// We need to store the data in the packet to handle it with delays, then delete the packet so nothing else can handle it
+	packet.active = FALSE // So it stops trying to move
 	var/list/expelled_items = list()
 	for(var/atom/movable/AM in packet)
 		expelled_items += AM
+		AM.forceMove(disposal_owner)
 	var/datum/gas_mixture/gas = new()
 	gas.copy_from(packet.gas)
 	qdel(packet)
@@ -139,8 +140,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Subtypes for handling how things are animated, if items are spat out, or deciding what items inside an object are flushed
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/component/disposal_system_connection/disposaloutlet/handle_expel(datum/source,obj/structure/disposalholder/packet)
-	. = ..()
+/datum/component/disposal_system_connection/disposaloutlet/handle_expel(datum/source,obj/structure/disposalholder/packet, delay_time)
+	. = ..(packet,2 SECONDS)
 	if(.)
 		flick("outlet-open", disposal_owner)
 		playsound(disposal_owner, 'sound/machines/warning-buzzer.ogg', 50, 0, 0)

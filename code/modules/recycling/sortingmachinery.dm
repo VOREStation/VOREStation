@@ -445,7 +445,7 @@
 	playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
 	sleep(5) // wait for animation to finish
 
-	SEND_SIGNAL(src,COMSIG_DISPOSAL_FLUSH)
+	SEND_SIGNAL(src,COMSIG_DISPOSAL_FLUSH,air_contents)
 	air_contents = new() // new empty gas resv.
 
 	flushing = 0
