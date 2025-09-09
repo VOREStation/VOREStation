@@ -73,6 +73,7 @@ export const downloadPrefs = (extension: string) => {
   const exportPayload = {
     [mob_name]: {
       version: db_version,
+      repo: db_repo,
       bellies: validBellies,
       soulcatcher: soulcatcher,
     },

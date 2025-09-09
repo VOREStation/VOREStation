@@ -6,5 +6,6 @@ export type DesiredData = Record<
     bellies: Record<string, string | number | null>[];
     soulcatcher?: Record<string, string | number | null>;
     version?: string;
+    repo?: string;
   }
 >;
