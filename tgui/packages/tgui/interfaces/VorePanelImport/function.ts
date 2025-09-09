@@ -1,3 +1,4 @@
+import { UNKNOWN_ORIGIN } from './constants';
 import type { DesiredData, ImportData } from './types';
 
 export function importLengthToColor(importLength: number): string {
@@ -21,6 +22,7 @@ export function handleImportData(importString: string | string[]): DesiredData {
           bellies: Array.isArray(parsedData) ? parsedData : [],
           soulcatcher: undefined,
           version: '0.1',
+          repo: UNKNOWN_ORIGIN,
         },
       };
       return ourBellies;
@@ -34,6 +36,7 @@ export function handleImportData(importString: string | string[]): DesiredData {
             ? parsedData.soulcatcher
             : {},
           version: '0.2',
+          repo: UNKNOWN_ORIGIN,
         },
       };
       return ourBellies;
@@ -50,6 +53,7 @@ export function handleImportData(importString: string | string[]): DesiredData {
                 ? ourData.soulcatcher
                 : {},
               version: ourData.version,
+              repo: ourData.repo,
             },
           ];
         } else {
@@ -59,6 +63,7 @@ export function handleImportData(importString: string | string[]): DesiredData {
               bellies: {},
               soulcatcher: {},
               version: '0.3',
+              repo: UNKNOWN_ORIGIN,
             },
           ];
         }

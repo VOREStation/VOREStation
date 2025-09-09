@@ -18,6 +18,7 @@ export const VorePanelImport = () => {
   const [activeTab, setActiveTab] = useState('');
   const [currentLength, setCurrentLength] = useState(0);
   const [selectedVersions, setSelectedVersions] = useState<string[]>([]);
+  const [selectedOrigins, setSelectedOrigins] = useState<string[]>([]);
 
   const filteredData = Object.fromEntries(
     Array.from(selectedCharacters).map((name) => [name, characterData[name]]),
@@ -52,7 +53,15 @@ export const VorePanelImport = () => {
       ),
     );
 
+    const allOrigins = Array.from(
+      new Set(
+        Object.values(filteredData)
+          .map((dataEntry) => dataEntry.repo)
+          .filter((v): v is string => typeof v === 'string'),
+      ),
+    );
     setSelectedVersions(allVersions);
+    setSelectedOrigins(allOrigins);
   }, [filteredData]);
 
   function handleTabChange(newTab: string) {
@@ -82,6 +91,7 @@ export const VorePanelImport = () => {
               onSelectedCharacters={setSelectedCharacters}
               importLength={currentLength}
               selectedVersions={selectedVersions}
+              selectedOrigins={selectedOrigins}
             />
           </Stack.Item>
           <Stack.Item>
