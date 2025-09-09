@@ -1,7 +1,0 @@
-author: "Tost"
-delete-after: True
-changes:
-  - rscadd: "Two new traits, Body Temp., Hot and Body Temp., Cold"
-  - rscadd: "A new temperature adaptation trait, unadapted, suffer from both hot and cold temperatures."
-  - rscdel: "Removed body temperature modifiers from the temperature adaptation traits."
-  - balance: "Made temperature adapt traits less extreme. Still pretty strong though, but you can no longer stand naked during a blizzard on V3b"
