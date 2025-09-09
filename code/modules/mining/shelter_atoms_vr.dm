@@ -20,6 +20,15 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	name = "\improper Redspace Capsule Shelter"
 	icon_state = "darkred"
 
+
+//Custom survival pod areas
+
+/area/survivalpod/holly
+	name = "\improper Holly's Emergency Shelter"
+
+/area/survivalpod/dorms/holly
+	name = "\improper Holly's Emergency Shelter Dorm"
+
 //Survival Capsule
 /obj/item/survivalcapsule
 	name = "surfluid shelter capsule"
@@ -202,6 +211,12 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	template_id = "shelter_phi"
 	unique_id = "shelter_a"
 
+/obj/item/survivalcapsule/holly
+	name = "vaguely festive surfluid shelter capsule"
+	desc = "A \"homemade\" luxury suite crammed into a capsule. There's a license for use printed on the bottom. For some reason, the license's text is written in festive colors."
+	template_id = "shelter_chi"
+	unique_id = "shelter_h"
+
 //Stupid
 /obj/item/survivalcapsule/loss_1
 	name = "clinical surfluid shelter capsule"
@@ -375,6 +390,17 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 /obj/structure/window/reinforced/survival_pod/update_icon()
 	icon_state = basestate
+
+//Polarized windows
+/obj/structure/window/reinforced/polarized/survival_pod
+	name = "polarized pod window"
+	icon = 'icons/obj/survival_pod.dmi'
+	icon_state = "pwindow"
+	basestate = "pwindow"
+
+//The windows have diagonal versions, and will never be a full window
+/obj/structure/window/reinforced/polarized/survival_pod/is_fulltile()
+	return FALSE
 
 //Windoor
 /obj/machinery/door/window/survival_pod

@@ -121,6 +121,15 @@
 		from seeing common use."
 	mappath = "maps/submaps/shelters/shelter_a.dmm"
 
+/datum/map_template/shelter/chi
+	name = "Shelter Chi"
+	shelter_id = "shelter_chi"
+	description = "A custom, from-the-ground-up variant of the shelter \
+	capsule. Many of the survival utilities have been stripped away in favor \
+	of recreational facilities and a more comfortable living quarters. The \
+	definition of \"form over function,\" in capsule form!"
+	mappath = "maps/submaps/shelters/shelter_h.dmm"
+
 /datum/map_template/shelter/rec
 	name = "Shelter Rec Room"
 	shelter_id = "shelter_recroom"
