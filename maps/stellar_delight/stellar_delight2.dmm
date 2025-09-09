@@ -8222,7 +8222,7 @@
 "ry" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/space/void/captain,
 /obj/item/clothing/head/helmet/space/void/captain,
 /obj/structure/window/reinforced,

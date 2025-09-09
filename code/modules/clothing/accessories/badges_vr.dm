@@ -81,6 +81,7 @@
 	name = "dosimeter film"
 	desc = "These films can be inserted into dosimeters. It turns from white to black, depending on how much radiation it endured."
 	w_class = ITEMSIZE_SMALL
+	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "dosimeter_film0"
 	var/state = 0 //0 - White, 1 - Darker, 2 - Black (same as iconstates)
 

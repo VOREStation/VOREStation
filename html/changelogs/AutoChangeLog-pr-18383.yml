@@ -1,4 +1,0 @@
-author: "Zizzi"
-delete-after: True
-changes:
-  - bugfix: "Fixed circuitry pins being constrained to numbers no larger than 52.."

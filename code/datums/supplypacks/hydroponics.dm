@@ -156,7 +156,7 @@
 	contains = list(
 			/obj/item/material/knife/machete/hatchet = 2,
 			/obj/item/reagent_containers/spray/plantbgone = 4,
-			/obj/item/clothing/mask/gas = 2,
+			/obj/item/clothing/mask/gas/clear = 2,
 			/obj/item/grenade/chem_grenade/antiweed = 2,
 			/obj/item/material/twohanded/fireaxe/scythe
 			)
