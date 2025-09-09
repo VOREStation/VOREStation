@@ -356,7 +356,7 @@ var/list/_simple_mob_default_emotes = list(
 		var/movement_test = tgui_alert(src, "Cancel Pose On Movement?", "Options", list("No", "Cancel Pose on Movement"))
 		if(!movement_test)
 			return
-		var/icon_test = tgui_alert(src,"Disable Posing Icon?","Options",list("No","Disable Pose Icon"))
+		var/icon_test = tgui_alert(src, "Disable Posing Icon?", "Options", list("No", "Disable Pose Icon"))
 		if(!icon_test)
 			return
 		var/quiet_test = tgui_alert(src, "Allow Pose To Be Announced In Chat?", "Options", list("Yes", "Quiet Pose"))
