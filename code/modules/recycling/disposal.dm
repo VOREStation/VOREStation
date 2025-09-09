@@ -114,8 +114,7 @@
 
 	if(!T.is_plating() && istype(T,/turf/simulated/floor)) //intact floor, pop the tile
 		var/turf/simulated/floor/F = T
-		F.break_tile()
-		new /obj/item/stack/tile(H)	// add to holder so it will be thrown with other stuff
+		F.make_plating(TRUE)
 
 	var/turf/target
 	if(direction)		// direction is specified
@@ -127,11 +126,12 @@
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 		if(H)
 			for(var/atom/movable/AM in H)
+				if(QDELETED(AM))
+					continue
 				AM.forceMove(T)
 				AM.pipe_eject(direction)
-				spawn(1)
-					if(AM)
-						AM.throw_at(target, 100, 1)
+				AM.throw_at(target, 100, 1)
+
 			H.vent_gas(T)
 			qdel(H)
 
@@ -140,13 +140,12 @@
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 		if(H)
 			for(var/atom/movable/AM in H)
+				if(QDELETED(AM))
+					continue
 				target = get_offset_target_turf(T, rand(5)-rand(5), rand(5)-rand(5))
-
 				AM.forceMove(T)
 				AM.pipe_eject(0)
-				spawn(1)
-					if(AM)
-						AM.throw_at(target, 5, 1)
+				AM.throw_at(target, 5, 1)
 
 			H.vent_gas(T)	// all gas vent to turf
 			qdel(H)
