@@ -242,6 +242,7 @@ export const SubtabInfo = (props: {
           </Stack.Item>
         </Stack>
       </Stack.Item>
+      <Stack.Divider />
       <Stack.Item>
         <SpeciesBaseStats
           speciesStats={species_stats}
