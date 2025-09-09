@@ -11,7 +11,7 @@ import {
 } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 import { getCurrentTimestamp } from '../../VorePanelExport/VorePanelExportTimestamp';
-import { CURRENT_VERSION } from '../constants';
+import { CURRENT_VERSION, UNKNOWN_ORIGIN } from '../constants';
 import { importLengthToColor } from '../function';
 import type { DesiredData } from '../types';
 
@@ -22,6 +22,7 @@ export const CharacterSelector = (props: {
   onSelectedCharacters: React.Dispatch<React.SetStateAction<Set<string>>>;
   importLength: number;
   selectedVersions: string[];
+  selectedOrigins: string[];
 }) => {
   const {
     characterData,
@@ -30,6 +31,7 @@ export const CharacterSelector = (props: {
     onSelectedCharacters,
     importLength,
     selectedVersions,
+    selectedOrigins,
   } = props;
 
   const [searchText, setSearchText] = useState('');
@@ -104,7 +106,11 @@ export const CharacterSelector = (props: {
           scrollable
           title="Characters"
           buttons={
-            <Button disabled={!selectedCharacters.size} onClick={handleMerge}>
+            <Button
+              disabled={!selectedCharacters.size}
+              onClick={handleMerge}
+              tooltip="Migrate saves or merge multiple characters."
+            >
               Merge/Migrate
             </Button>
           }
@@ -179,6 +185,19 @@ export const CharacterSelector = (props: {
                         }
                       >
                         {version}
+                      </Box>
+                      {index < selectedVersions.length - 1 && ', '}
+                    </Fragment>
+                  ))}
+                </LabeledList.Item>
+                <LabeledList.Item label="Origins">
+                  {selectedOrigins.map((origin, index) => (
+                    <Fragment key={origin}>
+                      <Box
+                        inline
+                        color={origin === UNKNOWN_ORIGIN ? 'red' : undefined}
+                      >
+                        {origin}
                       </Box>
                       {index < selectedVersions.length - 1 && ', '}
                     </Fragment>
