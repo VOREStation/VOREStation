@@ -201,3 +201,34 @@
 	name = "spotted pink egg"
 	desc = "It is a cute pink egg with white spots."
 	icon_state = "egg_pinkspots"
+
+// various discarded clothing sprites
+/obj/item/storage/vore_egg/clothing_pile_red
+	name = "pile of clothes"
+	desc = "It is a pile of someone's laundry."
+	icon_state = "egg_pile_red"
+
+/obj/item/storage/vore_egg/clothing_pile_blue
+	name = "pile of clothes"
+	desc = "It is a pile of someone's laundry."
+	icon_state = "egg_pile_blue"
+
+/obj/item/storage/vore_egg/clothing_pile_purple
+	name = "pile of clothes"
+	desc = "It is a pile of someone's laundry."
+	icon_state = "egg_pile_purple"
+
+/obj/item/storage/vore_egg/clothing_pile_green
+	name = "pile of clothes"
+	desc = "It is a pile of someone's laundry."
+	icon_state = "egg_pile_green"
+
+/obj/item/storage/vore_egg/clothing_pile_white
+	name = "pile of clothes"
+	desc = "It is a pile of someone's laundry."
+	icon_state = "egg_pile_black"
+
+/obj/item/storage/vore_egg/clothing_pile_black
+	name = "pile of clothes"
+	desc = "It is a pile of someone's laundry."
+	icon_state = "egg_pile_black"
