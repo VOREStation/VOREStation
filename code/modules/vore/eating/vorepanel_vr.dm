@@ -276,7 +276,15 @@
 			unsaved_changes = TRUE
 			return TRUE
 		if("importpanel")
-			import_belly(host)
+			var/datum/vore_look/import_panel/importPanel
+			if(!importPanel)
+				importPanel = new(ui.user)
+
+			if(!importPanel)
+				to_chat(ui.user,span_notice("Import panel undefined: [importPanel]"))
+				return FALSE
+
+			importPanel.open_import_panel(ui.user)
 			return TRUE
 		if("bellypick")
 			host.vore_selected = locate(params["bellypick"])
