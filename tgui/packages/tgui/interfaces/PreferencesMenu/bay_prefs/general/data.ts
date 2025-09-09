@@ -49,7 +49,6 @@ export type BasicData = {
   emote_sound_mode: string;
 
   persistence_settings: PersistanceEnum;
-  basehuman_stats: SpeciesStats;
   species_stats: SpeciesStats;
 };
 
@@ -303,6 +302,7 @@ export type GeneralData = BasicData &
 
 export type GeneralDataStatic = {
   allow_metadata: BooleanLike;
+  basehuman_stats: SpeciesStats;
   can_play: Record<string, { restricted: number; can_select: BooleanLike }>;
   available_hair_styles: string[];
   available_facial_styles: string[];
@@ -439,38 +439,38 @@ export type GeneralDataConstant = {
 };
 
 export type SpeciesStats = {
-  total_health: number,
-  slowdown: string,
-  brute_mod: number,
-  burn_mod: number,
-  oxy_mod: number,
-  toxins_mod: number,
-  radiation_mod: number,
-  flash_mod: number,
-  pain_mod: number,
-  stun_mod: number,
-  weaken_mod: number,
-  lightweight: BooleanLike,
-  has_vibration_sense: BooleanLike,
-  dispersed_eyes: BooleanLike,
-  trashcan: BooleanLike,
-  eat_minerals: BooleanLike,
-  darksight: string,
-  breath_type: string,
-  cold_level_1: number,
-  heat_level_1: number,
-  chem_strength_heal: number,
-  chem_strength_tox: number,
-  body_temperature: number,
-  item_slowdown_mod: number,
-  hazard_low_pressure: number,
-  hazard_high_pressure: number,
-  siemens_coefficient: number,
-  soft_landing: BooleanLike,
-  bloodsucker: BooleanLike,
-  can_zero_g_move: BooleanLike,
-  can_space_freemove: BooleanLike,
-  water_breather: BooleanLike,
-  has_flight: BooleanLike,
-  can_climb: BooleanLike
-}
+  total_health: number;
+  slowdown: number;
+  brute_mod: number;
+  burn_mod: number;
+  oxy_mod: number;
+  toxins_mod: number;
+  radiation_mod: number;
+  flash_mod: number;
+  pain_mod: number;
+  stun_mod: number;
+  weaken_mod: number;
+  lightweight: BooleanLike;
+  has_vibration_sense: BooleanLike;
+  dispersed_eyes: BooleanLike;
+  trashcan: BooleanLike;
+  eat_minerals: BooleanLike;
+  darksight: number;
+  breath_type: string | null;
+  cold_level_1: number;
+  heat_level_1: number;
+  chem_strength_heal: number;
+  chem_strength_tox: number;
+  body_temperature: number;
+  item_slowdown_mod: number;
+  hazard_low_pressure: number;
+  hazard_high_pressure: number;
+  siemens_coefficient: number;
+  soft_landing: BooleanLike;
+  bloodsucker: BooleanLike;
+  can_zero_g_move: BooleanLike;
+  can_space_freemove: BooleanLike;
+  water_breather: BooleanLike;
+  has_flight: BooleanLike;
+  can_climb: BooleanLike;
+};

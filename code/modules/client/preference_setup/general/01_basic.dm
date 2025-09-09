@@ -107,7 +107,7 @@
 
 	var/list/species_stats = list(
 		"total_health" = species.total_health,
-		"slowdown" = null,
+		"slowdown" = species.slowdown,
 		"brute_mod" = species.brute_mod,
 		"burn_mod" = species.burn_mod,
 		"oxy_mod" = species.oxy_mod,
@@ -117,21 +117,21 @@
 		"pain_mod" = species.pain_mod,
 		"stun_mod" = species.stun_mod,
 		"weaken_mod" = species.weaken_mod,
-		"lightweight" = species.lightweight > 0,
-		"dispersed_eyes" = species.dispersed_eyes > 0,
-		"trashcan" = species.trashcan > 0,
-		"eat_minerals" = species.eat_minerals > 0,
-		"darksight" = null,
+		"lightweight" = species.lightweight,
+		"dispersed_eyes" = species.dispersed_eyes,
+		"trashcan" = species.trashcan,
+		"eat_minerals" = species.eat_minerals,
+		"darksight" = species.darksight,
 		"chem_strength_tox" = species.chem_strength_tox,
-		"cold_level_1" = species.cold_level_1-T0C,
-		"heat_level_1" = species.heat_level_1-T0C,
+		"cold_level_1" = species.cold_level_1,
+		"heat_level_1" = species.heat_level_1,
 		"chem_strength_heal" = species.chem_strength_heal,
 		"siemens_coefficient" = species.siemens_coefficient,
-		"has_vibration_sense" = species.has_vibration_sense > 0,
+		"has_vibration_sense" = species.has_vibration_sense,
 		"item_slowdown_mod" = species.item_slowdown_mod,
-		"body_temperature" = species.body_temperature-T0C,
+		"body_temperature" = species.body_temperature,
 		"hazard_low_pressure" = species.hazard_low_pressure,
-		"breath_type" = GLOB.gas_data.name[species.breath_type] ? GLOB.gas_data.name[species.breath_type] : "NA",
+		"breath_type" = GLOB.gas_data.name[species.breath_type],
 		"hazard_high_pressure" = species.hazard_high_pressure,
 		"soft_landing" = species.soft_landing,
 		"bloodsucker" = species.bloodsucker,
@@ -141,33 +141,6 @@
 		"can_climb" = species.can_climb,
 		"has_flight" = (/mob/living/proc/flying_toggle in species.inherent_verbs),
 	)
-
-	// Set some special case species flags
-	switch(species.darksight)
-		if(0 to 2)
-			species_stats["darksight"] = "None"
-		if(4 to 5)
-			species_stats["darksight"] = "Basic"
-		if(5 to 9)
-			species_stats["darksight"] = "Great"
-		if(9 to INFINITY)
-			species_stats["darksight"] = "Advanced"
-
-	switch(species.slowdown)
-		if(-INFINITY to -0.8)
-			species_stats["slowdown"] = "Extremely Fast"
-		if(-0.8 to -0.2)
-			species_stats["slowdown"] = "Very Fast"
-		if(-0.2 to -0.01)
-			species_stats["slowdown"] = "Fast"
-		if(-0.01 to 0.2)
-			species_stats["slowdown"] = "Average"
-		if(0.1 to 0.4)
-			species_stats["slowdown"] = "Slow"
-		if(0.4 to 0.8)
-			species_stats["slowdown"] = "Very Slow"
-		if(0.8 to INFINITY)
-			species_stats["slowdown"] = "Extremely Slow"
 
 	data["species_stats"] = species_stats
 
@@ -180,7 +153,7 @@
 
 	var/list/human_stats = list(
 		"total_health" = /datum/species/human::total_health,
-		"slowdown" = null,
+		"slowdown" = /datum/species/human::slowdown,
 		"brute_mod" = /datum/species/human::brute_mod,
 		"burn_mod" = /datum/species/human::burn_mod,
 		"oxy_mod" = /datum/species/human::oxy_mod,
@@ -194,17 +167,17 @@
 		"dispersed_eyes" = FALSE,
 		"trashcan" = FALSE,
 		"eat_minerals" = FALSE,
-		"darksight" = null,
+		"darksight" = /datum/species/human::darksight,
 		"chem_strength_tox" = /datum/species/human::chem_strength_tox,
-		"cold_level_1" = /datum/species/human::cold_level_1-T0C,
-		"heat_level_1" = /datum/species/human::heat_level_1-T0C,
+		"cold_level_1" = /datum/species/human::cold_level_1,
+		"heat_level_1" = /datum/species/human::heat_level_1,
 		"chem_strength_heal" = /datum/species/human::chem_strength_heal,
 		"siemens_coefficient" = /datum/species/human::siemens_coefficient,
 		"has_vibration_sense" = FALSE,
 		"item_slowdown_mod" = /datum/species/human::item_slowdown_mod,
-		"body_temperature" = /datum/species/human::body_temperature-T0C,
+		"body_temperature" = /datum/species/human::body_temperature,
 		"hazard_low_pressure" = /datum/species/human::hazard_low_pressure,
-		"breath_type" = null,
+		"breath_type" = GLOB.gas_data.name[/datum/species/human::breath_type],
 		"hazard_high_pressure" = /datum/species/human::hazard_high_pressure,
 		"soft_landing" = FALSE,
 		"bloodsucker" = FALSE,
