@@ -79,6 +79,11 @@
 	for(var/atom/movable/AM in packet)
 		expelled_items += AM
 		AM.forceMove(disposal_owner)
+		// Handle client eye we get a black screen between trunk and eject if we have delay on ejection!
+		if(ismob(AM))
+			var/mob/M = AM
+			if(M.client)
+				M.client.eye = disposal_owner
 	var/datum/gas_mixture/gas = new()
 	gas.copy_from(packet.gas)
 	qdel(packet)
@@ -140,8 +145,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Subtypes for handling how things are animated, if items are spat out, or deciding what items inside an object are flushed
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/datum/component/disposal_system_connection/disposaloutlet/handle_expel(datum/source,obj/structure/disposalholder/packet, delay_time)
-	. = ..(packet,2 SECONDS)
+/datum/component/disposal_system_connection/disposaloutlet/handle_expel(obj/structure/disposalholder/packet, delay_time)
+	. = ..(packet,3 SECONDS)
 	if(.)
 		flick("outlet-open", disposal_owner)
 		playsound(disposal_owner, 'sound/machines/warning-buzzer.ogg', 50, 0, 0)
