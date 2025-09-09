@@ -1,0 +1,6 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a posing indicator with a colour determined by runechat colour when a pose is active."
+  - qol: "Added an option to have a pose vanish immediately upon movement."
+  - qol: "Changed posing to now post the posing message in chat when initiated."
