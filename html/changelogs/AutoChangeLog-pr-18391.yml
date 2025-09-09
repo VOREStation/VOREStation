@@ -1,0 +1,9 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - rscadd: "Added a bunch of new shelter capsules"
+  - rscadd: "Added a \"Redspace\" shelter capsule - basically a gacha shelter capsule that has many random possibilities for weird and wacky contents within them, ranging anywhere from a nice pizza kitchen to a \"shark\" pool."
+  - rscadd: "Made shelter capsules able to be researched and printed by Science"
+  - code_imp: "Added a new area flag that prevents shelter capsules from activating within them to spare event hosts/designers potential future headaches"
+  - balance: "Added capsule activation blocking flags to most station areas, with an intentional exception made for: Maintenance, construction/vacant lots, the Science firing range, and some of the larger and less necessary rooms in the Aerostat."
+  - qol: "Using a shelter capsule will immediately inform you if it can be deployed from where you're standing. If it can be, you'll automatically drop it onto the floor. Also improved the wording of capsule errors so you can actually better understand why you can or can't deploy them."
