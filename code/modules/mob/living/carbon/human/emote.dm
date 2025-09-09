@@ -342,23 +342,49 @@ var/list/_simple_mob_default_emotes = list(
 	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 
 	var/new_pose
+	var/quiet_pose = FALSE
+	var/include_icon = TRUE
+	var/list/pose_options = list()
+
 	new_pose = strip_html_simple(tgui_input_text(src, "This is [src]. [T.he]...", "Pose", null))
 	if(!new_pose)
 		pose = null
 		remove_pose_indicator()
 		return
 
-	var/cancel_move = tgui_alert(src,"Would you like this pose to clear on movement?","Pose Movement",list("Yes","No","Cancel"))
-	if(!cancel_move || cancel_move == "Cancel")
-		return
-	if(cancel_move == "Yes")
-		pose_move = TRUE
+	if(!read_preference(/datum/preference/toggle/tgui_input_mode))
+		var/movement_test = tgui_alert(src,"Cancel Pose On Movement?","Options",list("No","Cancel Pose on Movement"))
+		if(!movement_test)
+			return
+		var/icon_test = tgui_alert(src,"Disable Posing Icon?","Options",list("No","Disable Pose Icon"))
+		if(!icon_test)
+			return
+		var/quiet_test = tgui_alert(src,"Allow Pose To Be Announced In Chat?","Options",list("Yes","Quiet Pose"))
+		if(!quiet_test)
+			return
+		pose_options |= movement_test
+		pose_options |= icon_test
+		pose_options |= quiet_test
 	else
-		pose_move = FALSE
+		pose_options = tgui_input_checkboxes(src,"Which options would you like to enable for your poses?","Pose Options",list("Cancel Pose on Movement","Disable Pose Icon","Quiet Pose"),0)
 
-	add_pose_indicator()
+	pose_move = FALSE
+	for(var/o in pose_options)
+		if(o == "Cancel Pose on Movement")
+			pose_move = TRUE
+		if(o == "Disable Pose Icon")
+			include_icon = FALSE
+		if(o == "Quiet Pose")
+			quiet_pose = TRUE
+
+	if(include_icon)
+		add_pose_indicator()
+	else
+		remove_pose_indicator()
+
 	pose = new_pose
-	visible_message("[src] [pose]")
+	if(!quiet_pose)
+		visible_message("[src] [pose]")
 
 /mob/living/carbon/human/proc/add_pose_indicator()
 	if(pose_indicator)
