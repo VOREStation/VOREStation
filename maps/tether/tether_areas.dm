@@ -1,6 +1,7 @@
 //Debug areas
 /area/tether/surfacebase
 	name = "Tether Debug Surface"
+	flags = AREA_BLOCK_INSTANT_BUILDING
 
 /area/tether/transit
 	name = "Tether Debug Transit"
@@ -143,6 +144,7 @@
 /area/tether/surfacebase/outside
 	name = "Outside - Surface"
 	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
+	flags = 0 // To allow shelter capsules to activate here specifically
 /area/tether/surfacebase/outside/outside1
 	icon_state = "outside1"
 /area/tether/surfacebase/outside/outside2
@@ -161,10 +163,12 @@
 /area/tether/surfacebase/temple
 	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
 	icon_state = "red"
+	flags = 0 // To allow shelter capsules to activate here specifically
 
 /area/tether/surfacebase/crash
 	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
 	icon_state = "yellow"
+	flags = 0 // To allow shelter capsules to activate here specifically
 
 /area/tether/surfacebase/tram
 	name = "\improper Tram Station"
@@ -797,6 +801,7 @@
 /area/rnd/research/testingrange
 	name = "\improper Weapons Testing Range"
 	icon_state = "firingrange"
+	flags = 0 // To allow shelter capsules to activate here specifically
 
 /area/rnd/research/researchdivision
 	name = "\improper Research Division"
@@ -1440,16 +1445,16 @@
 
 // Override telescience shielding on some areas
 /area/security/armoury
-	flags = BLUE_SHIELDED
+	flags = BLUE_SHIELDED | AREA_BLOCK_INSTANT_BUILDING
 
 /area/security/tactical
-	flags = BLUE_SHIELDED
+	flags = BLUE_SHIELDED | AREA_BLOCK_INSTANT_BUILDING
 
 /area/security/nuke_storage
-	flags = BLUE_SHIELDED
+	flags = BLUE_SHIELDED | AREA_BLOCK_INSTANT_BUILDING
 
 /area/supply
-	flags = BLUE_SHIELDED
+	flags = BLUE_SHIELDED | AREA_BLOCK_INSTANT_BUILDING
 
 // Add rad shielding to maintenance and construction sites
 /area/vacant
@@ -1459,7 +1464,7 @@
 	flags = RAD_SHIELDED
 
 /area/rnd/research_storage	//Located entirely in maint under public access, so why not that too
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | AREA_BLOCK_INSTANT_BUILDING
 
 // New shuttles
 /area/shuttle/administration/transit
