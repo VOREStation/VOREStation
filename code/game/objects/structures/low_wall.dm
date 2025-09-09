@@ -397,7 +397,7 @@
 	icon_state = "preview_glass"
 	basestate = "window"
 	alpha = 180
-	flags = 0
+	flags = NONE
 	fulltile = TRUE
 	maxhealth = 24
 	glasstype = /obj/item/stack/material/glass
