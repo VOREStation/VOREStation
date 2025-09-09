@@ -201,7 +201,7 @@
 	var/area/A = T.loc
 	if((istype(A) && !(A.get_gravity())) || (istype(T,/turf/space)))
 		return
-	if(istype(O, /obj/screen))
+	if(istype(O, /atom/movable/screen))
 		return
 	if(user.restrained() || user.stat || user.stunned || user.paralysis || (!user.lying && !isrobot(user)) || LAZYLEN(user.grabbed_by))
 		return
