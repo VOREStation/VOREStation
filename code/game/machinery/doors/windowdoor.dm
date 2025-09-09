@@ -200,7 +200,7 @@
 				if(WT.remove_fuel(1 ,user))
 					to_chat(user, span_notice("You begin repairing [src]..."))
 					playsound(src, WT.usesound, 50, 1)
-					if(do_after(user, 40 * WT.toolspeed, target = src))
+					if(do_after(user, 4 SECONDS * WT.toolspeed, target = src))
 						health = maxhealth
 						update_icon()
 						to_chat(user, span_notice("You repair [src]."))
@@ -223,7 +223,7 @@
 		if (!density && I.has_tool_quality(TOOL_CROWBAR))
 			playsound(src, I.usesound, 50, 1)
 			user.visible_message("[user] begins prying the windoor out of the frame.", "You start to pry the windoor out of the frame.")
-			if (do_after(user,40 * I.toolspeed))
+			if (do_after(user, 4 SECONDS * I.toolspeed, target = src))
 				to_chat(user,span_notice("You pried the windoor out of the frame!"))
 
 				var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)

@@ -74,7 +74,9 @@
 	for(var/tool in cyborg_integrated_tools)
 		var/obj/item/real_tool = cyborg_integrated_tools[tool]
 		integrated_tools_by_name[real_tool.name] = real_tool
-		integrated_tool_images[real_tool.name] = image(icon = real_tool.icon, icon_state = real_tool.icon_state)
+		var/image/tool_image = image(icon = real_tool.icon, icon_state = real_tool.icon_state)
+		tool_image.color = real_tool.color
+		integrated_tool_images[real_tool.name] = tool_image
 
 /obj/item/robotic_multibelt/Destroy()
 	selected_item = null
@@ -111,6 +113,7 @@
 		return
 	icon = chosen_item.icon
 	icon_state = chosen_item.icon_state
+	color = chosen_item.color
 	selected_item = chosen_item
 
 /obj/item/robotic_multibelt/dropped(mob/user)
@@ -213,6 +216,12 @@
 
 	var/selected_type = tgui_input_list(user, "Pick new colour.", "Cable Colour", GLOB.possible_cable_coil_colours)
 	set_cable_color(selected_type, user)
+	if(istype(loc, /obj/item/robotic_multibelt))
+		var/obj/item/robotic_multibelt/our_belt = loc
+		var/image/cable_image = our_belt.integrated_tool_images[name]
+		cable_image.color = color
+		if(our_belt.icon == icon)
+			our_belt.color = color
 
 /*
  * Surgical Tools

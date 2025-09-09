@@ -180,7 +180,7 @@
 			H.drop_from_inventory(src, get_turf(H))
 			return
 
-		else if(do_after(user,3 SECONDS))	//short delay, so you can abort/cancel if you misclick
+		else if(do_after(user, 3 SECONDS, target = src))	//short delay, so you can abort/cancel if you misclick
 			H.visible_message(span_notice("[H] crushes \the [src], stabilizing its anomalous properties and rendering it into a pile of assorted minerals."))
 			var/i = rand(min_ore,max_ore)
 			while(i>1)
@@ -211,7 +211,7 @@
 
 	if(istype(P, /obj/item/cataloguer))
 		to_chat(user, span_notice("You start to scan \the [src] with \the [P]..."))
-		if(do_after(user, 2 SECONDS))
+		if(do_after(user, 2 SECONDS, target = src))
 			to_chat(user, span_notice("\The [src] seems to have [origin_tech[1]] properties?"))
 
 /obj/item/research_sample/common

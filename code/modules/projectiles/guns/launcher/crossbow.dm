@@ -111,7 +111,7 @@
 	tension = 1
 
 	while(bolt && tension && loc == current_user)
-		if(!do_after(user, 25)) //crossbow strings don't just magically pull back on their own.
+		if(!do_after(user, 25, target = src)) //crossbow strings don't just magically pull back on their own.
 			user.visible_message("[user] stops drawing and relaxes the string of [src].",span_warning("You stop drawing back and relax the string of [src]."))
 			tension = 0
 			update_icon()

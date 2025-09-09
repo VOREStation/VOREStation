@@ -610,6 +610,7 @@
 #include "code\datums\components\crafting\recipes\primitive.dm"
 #include "code\datums\components\crafting\recipes\survival.dm"
 #include "code\datums\components\crafting\recipes\weapons.dm"
+#include "code\datums\components\disabilities\coprolalia.dm"
 #include "code\datums\components\disabilities\coughing.dm"
 #include "code\datums\components\disabilities\epilepsy.dm"
 #include "code\datums\components\disabilities\gibbing.dm"
