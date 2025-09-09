@@ -91,7 +91,7 @@
 /obj/structure/outcrop/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/pickaxe))
 		to_chat(user, span_notice("[user] begins to hack away at \the [src]."))
-		if(do_after(user,40))
+		if(do_after(user, 4 SECONDS, target = src))
 			to_chat(user, span_notice("You have finished digging!"))
 			for(var/i=0;i<(rand(mindrop,upperdrop));i++)
 				new outcropdrop(get_turf(src))

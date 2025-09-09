@@ -71,6 +71,16 @@
 		EQUIPMENT("Fine Excavation Kit - Measuring Tape",			/obj/item/measuring_tape,													10),
 
 	)
+	prize_list["Shelter Capsules"] = list(
+		EQUIPMENT("Shelter Capsule - Shelter (5x5)",				/obj/item/survivalcapsule,									50),
+		EQUIPMENT("Shelter Capsule - Luxury Shelter (7x7)",			/obj/item/survivalcapsule/luxury,							310),
+		EQUIPMENT("Shelter Capsule - Redspace (7x7)",				/obj/item/survivalcapsule/randomized,						500),
+		EQUIPMENT("Shelter Capsule - Sauna (7x7)",					/obj/item/survivalcapsule/sauna,							500),
+		EQUIPMENT("Shelter Capsule - Rec Room + Cards Table (9x9)",	/obj/item/survivalcapsule/recroom,							750),
+		EQUIPMENT("Shelter Capsule - Bar (11x11)",					/obj/item/survivalcapsule/luxurybar,						1000),
+		EQUIPMENT("Shelter Capsule - Deluxe Cabin (11x11)",			/obj/item/survivalcapsule/luxurycabin,						1000),
+		EQUIPMENT("Shelter Capsule - Cafe (11x11)",					/obj/item/survivalcapsule/cafe,								1000),
+	)
 	prize_list["Miscellaneous"] = list(
 		EQUIPMENT(REAGENT_ABSINTHE,									/obj/item/reagent_containers/food/drinks/bottle/absinthe,					10),
 		EQUIPMENT(REAGENT_WHISKEY,									/obj/item/reagent_containers/food/drinks/bottle/whiskey,					10),
@@ -80,9 +90,6 @@
 		EQUIPMENT("Industrial Equipment - Phoron Bore",				/obj/item/gun/magnetic/matfed/phoronbore/loaded,							300),
 		EQUIPMENT("Industrial Equipment - Inducer",					/obj/item/inducer,															750),
 		EQUIPMENT("Laser Pointer",									/obj/item/laser_pointer,													90),
-		EQUIPMENT("Luxury Shelter Capsule",							/obj/item/survivalcapsule/luxury,											310),
-		EQUIPMENT("Bar Shelter Capsule",							/obj/item/survivalcapsule/luxurybar,										1000),
-		EQUIPMENT("Deluxe Cabin Shelter Capsule",					/obj/item/survivalcapsule/luxurycabin,										1000),
 		EQUIPMENT("Plush Toy",										/obj/random/plushie,														30),
 		EQUIPMENT("Soap",											/obj/item/soap/nanotrasen,													20),
 		EQUIPMENT("Thalers - 100",									/obj/item/spacecash/c100,													100),
