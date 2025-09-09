@@ -349,6 +349,7 @@
 		to_chat(user, span_warning("Invalid circuit format!"))
 		return
 
+	if(assembly_data["t"])
 		var/restored_path = src.restore_assembly_prefix(assembly_data["t"])
 		var/assembly_path = text2path(restored_path)
 		if(assembly_path && ispath(assembly_path, /obj/item/electronic_assembly/clothing))
