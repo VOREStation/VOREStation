@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - qol: "changes belly import to a modern UI"
+  - code_imp: "tgui-core 5.3.1"
