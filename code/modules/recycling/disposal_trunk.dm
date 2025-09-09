@@ -26,19 +26,14 @@
 
 		if(W.remove_fuel(0,user))
 			playsound(src, W.usesound, 100, 1)
-			// check if anything changed over 2 seconds
-			var/turf/uloc = user.loc
-			var/atom/wloc = W.loc
 			to_chat(user, "Slicing the disposal pipe.")
-			sleep(30)
-			if(!W.isOn()) return
-			if(user.loc == uloc && wloc == W.loc)
+			if(do_after(user, 3 SECONDS * W.toolspeed, target = src))
+				if(!src || !W.isOn()) return
 				welded()
 			else
 				to_chat(user, "You must stay still while welding the pipe.")
 		else
 			to_chat(user, "You need more welding fuel to cut the pipe.")
-			return
 
 // would transfer to next pipe segment, but we are in a trunk
 // if not entering from disposal bin,
