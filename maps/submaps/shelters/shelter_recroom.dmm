@@ -75,27 +75,27 @@
 "m" = (
 /obj/structure/table/darkglass,
 /obj/structure/closet/walllocker_double/casino/north,
-/obj/item/spacecasinocash/c1000{
+/obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 12;
 	pixel_x = 12
 	},
-/obj/item/spacecasinocash/c1000{
+/obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 12;
 	pixel_x = 6
 	},
-/obj/item/spacecasinocash/c1000{
+/obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 7;
 	pixel_x = 12
 	},
-/obj/item/spacecasinocash/c1000{
+/obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 7;
 	pixel_x = 6
 	},
-/obj/item/spacecasinocash/c1000{
+/obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 3;
 	pixel_x = 12
 	},
-/obj/item/spacecasinocash/c1000{
+/obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 3;
 	pixel_x = 6
 	},
