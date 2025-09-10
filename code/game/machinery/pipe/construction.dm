@@ -100,10 +100,6 @@ Buildable meters
 	name = "[initial(fakeA.name)] fitting"
 	icon_state = initial(fakeA.pipe_state)
 
-/obj/item/pipe/proc/do_a_flip()
-	set_dir(turn(dir, -180))
-	fixdir()
-
 /obj/item/pipe/verb/flip()
 	set category = "Object"
 	set name = "Flip Pipe"
@@ -113,6 +109,10 @@ Buildable meters
 		return
 
 	do_a_flip()
+
+/obj/item/pipe/proc/do_a_flip()
+	set_dir(turn(dir, -180))
+	fixdir()
 
 /obj/item/pipe/trinary/flippable/do_a_flip()
 	// set_dir(turn(dir, flipped ? 45 : -45))
