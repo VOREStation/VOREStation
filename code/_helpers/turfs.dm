@@ -85,9 +85,7 @@
 	return turf_map
 
 /proc/translate_turfs(var/list/translation, var/area/base_area = null, var/turf/base_turf)
-	for(var/turf/source in translation)
-
-		var/turf/target = translation[source]
+	for(var/source, target in translation)
 
 		if(target)
 			if(base_area) ChangeArea(target, get_area(source))

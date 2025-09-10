@@ -303,9 +303,9 @@
 	// TODO - Old code used to throw stuff out of the way instead of squashing. Should we?
 
 	// Move, gib, or delete everything in our way!
-	for(var/turf/src_turf in turf_translation)
-		var/turf/dst_turf = turf_translation[src_turf]
-		if(src_turf.is_solid_structure()) // in case someone put a hole in the shuttle and you were lucky enough to be under it
+	for(var/src_turf, dst_turf in turf_translation)
+		var/turf/source_turf = src_turf
+		if(source_turf.is_solid_structure()) // in case someone put a hole in the shuttle and you were lucky enough to be under it
 			for(var/atom/movable/AM in dst_turf)
 				//if(AM.movable_flags & MOVABLE_FLAG_DEL_SHUTTLE)
 				//	qdel(AM)
