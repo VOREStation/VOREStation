@@ -52,7 +52,8 @@
 	icon_state = "powder"
 	item_state = "powder"
 	amount_per_transfer_from_this = 2
-	possible_transfer_amounts = 2
+	max_transfer_amount = 2
+	min_transfer_amount = 1
 	w_class = ITEMSIZE_TINY
 	volume = 50
 

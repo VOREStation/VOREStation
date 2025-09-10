@@ -608,10 +608,8 @@
 		spawn(5) //gia said so
 			icon_state = "nuketoy"
 			playsound(src, 'sound/machines/alarm.ogg', 10, 0, 0)
-			sleep(135)
-			icon_state = "nuketoycool"
-			sleep(cooldown - world.time)
-			icon_state = "nuketoyidle"
+			VARSET_IN(src, icon_state, "nuketoycool", 135)
+			VARSET_IN(src, icon_state, "nuketoyidle", (135 + (cooldown - world.time)))
 	else
 		var/timeleft = (cooldown - world.time)
 		to_chat(user, span_warning("Nothing happens, and") + " '[round(timeleft/10)]' " + span_warning("appears on a small display."))
@@ -647,7 +645,7 @@
 /obj/item/toy/minigibber/attackby(obj/O, mob/user, params)
 	if(istype(O,/obj/item/toy/figure) || istype(O,/obj/item/toy/character) && O.loc == user)
 		to_chat(user, span_notice("You start feeding \the [O] [icon2html(O, user.client)] into \the [src]'s mini-input."))
-		if(do_after(user, 10, target = src))
+		if(do_after(user, 1 SECOND, target = src))
 			if(O.loc != user)
 				to_chat(user, span_warning("\The [O] is too far away to feed into \the [src]!"))
 			else
@@ -787,8 +785,7 @@
 	s.set_up(5, 1, src)
 	s.start()
 	icon_state = "shoot"
-	sleep(5)
-	icon_state = "[initial(icon_state)]"
+	VARSET_IN(src, icon_state, "[initial(icon_state)]", 5)
 
 /*
  * Toy chainsaw

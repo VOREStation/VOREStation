@@ -98,7 +98,7 @@
 				if(!drawtype || get_dist(target, user) > 1 || !(user.z == target.z))
 					return
 				to_chat(user, "You start drawing an arrow on the [target.name].")
-		if(instant || do_after(user, 50))
+		if(instant || do_after(user, 5 SECONDS, target = src))
 			var/list/mouse_control = params2list(click_parameters)
 			var/p_x = 0
 			var/p_y = 0

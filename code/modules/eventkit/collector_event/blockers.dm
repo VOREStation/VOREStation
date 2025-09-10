@@ -116,7 +116,7 @@
 		if(active_repair_steps.len >= 1)
 			if(O.has_tool_quality(active_repair_steps[active_repair_steps.len]))
 				if(!pre_repair_handling(O,active_repair_steps[active_repair_steps.len],user)) return
-				if(do_after(user, 2 SECONDS))
+				if(do_after(user, 2 SECONDS, target = src))
 					post_repair_handling(O,active_repair_steps[active_repair_steps.len],user)
 					to_chat(usr,span_notice(fix_descs[active_repair_steps[active_repair_steps.len]]))
 					active_repair_steps.len = active_repair_steps.len - 1

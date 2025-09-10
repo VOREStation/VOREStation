@@ -59,7 +59,7 @@
 			TKG.use_grip_power(src,TRUE)
 		if(client.eye != src) // Extremely bad exploits if allowed to TK while remote viewing
 			to_chat(src, TK_DENIED_MESSAGE)
-		else if(get_dist(src, A) > tk_maxrange)
+		else if(get_dist(src, A) > TK_MAXRANGE)
 			to_chat(src, TK_OUTRANGED_MESSAGE)
 		else
 			A.attack_tk(src)

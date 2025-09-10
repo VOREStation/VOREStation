@@ -1052,6 +1052,7 @@ Talon winter coat
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/boat
 
 /datum/gear/suit/roles/boatcloak/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/roles/capboatcloak
