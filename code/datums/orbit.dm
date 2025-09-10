@@ -113,6 +113,7 @@
 		for(var/datum/orbit/O as anything in orbiters)
 			if (O.orbiter)
 				O.orbiter.stop_orbit()
+	orbiters = null
 
 /atom/movable/Destroy(force = FALSE)
 	. = ..()
