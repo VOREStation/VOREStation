@@ -14,7 +14,7 @@
 
 /datum/ticket_chat/tgui_close(mob/user)
 	. = ..()
-	if(user.client.current_ticket)
+	if(user.client?.current_ticket)
 		user.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 
 /datum/ticket_chat/tgui_state(mob/user)
