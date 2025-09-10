@@ -131,6 +131,11 @@
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
+	if(pose && pose_move) //clear pose on movement if choosing to
+		pose = null
+		pose_move = FALSE
+		remove_pose_indicator()
+
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
 // Also its nice to have these things seperated.

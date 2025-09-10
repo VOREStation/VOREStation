@@ -299,6 +299,9 @@
 		var/restored_path = src.restore_assembly_prefix(assembly_data["t"])
 		var/original_path = text2path(restored_path)
 		if(original_path && ispath(original_path, /obj/item/electronic_assembly))
+			// Reject clothing assemblies
+			if(ispath(original_path, /obj/item/electronic_assembly/clothing))
+				return null
 			assembly = new original_path()
 
 	// Default to medium assembly

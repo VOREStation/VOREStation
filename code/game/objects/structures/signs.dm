@@ -1018,6 +1018,12 @@
 	desc = "WARNING! O2 flow tube. Ensure the flow is disengaged before working."
 	icon_state = "atmos_o2"
 
+/obj/structure/sign/atmos_ch4
+	icon = 'icons/obj/decals.dmi'
+	name = "CH4 warning sign"
+	desc = "WARNING! CH4 flow tube. Ensure the flow is disengaged before working."
+	icon_state = "atmos_ch4"
+
 /obj/structure/sign/atmos_air
 	icon = 'icons/obj/decals.dmi'
 	name = "Air warning sign"
@@ -1646,7 +1652,7 @@
 	..()
 	if(istype(W, /obj/item/flame/lighter) || istype(W, /obj/item/weldingtool))
 		visible_message(span_warning("\The [user] starts to burn \the [src] down!"))
-		if(!do_after(user, 2 SECONDS))
+		if(!do_after(user, 2 SECONDS, target = src))
 			return FALSE
 		visible_message(span_warning("\The [user] burns \the [src] down!"))
 		playsound(src.loc, 'sound/items/cigs_lighters/cig_light.ogg', 100, 1)

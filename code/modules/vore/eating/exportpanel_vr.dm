@@ -27,7 +27,7 @@
 	var/list/data = list()
 	var/mob/living/host = user
 
-	data["db_version"] = "0.2"
+	data["db_version"] = "0.3"
 	data["db_repo"] = "vorestation"
 	data["mob_name"] = host.real_name
 
