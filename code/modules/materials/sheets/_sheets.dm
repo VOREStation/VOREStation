@@ -48,6 +48,10 @@
 	matter = material.get_matter()
 	update_strings()
 
+/obj/item/stack/material/Destroy()
+	material = null
+	. = ..()
+
 /obj/item/stack/material/get_material()
 	return material
 

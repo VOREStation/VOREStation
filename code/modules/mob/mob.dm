@@ -27,7 +27,7 @@
 	if(ability_master)
 		QDEL_NULL(ability_master)
 
-	if(vore_organs)
+	if(LAZYLEN(vore_organs))
 		QDEL_NULL_LIST(vore_organs)
 	if(vorePanel)
 		QDEL_NULL(vorePanel)

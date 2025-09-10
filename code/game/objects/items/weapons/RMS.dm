@@ -69,7 +69,7 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 	spark_system.attach(src)
 	add_overlay("rms_charge[charge_stage]")
 
-/obj/item/pipe_dispenser/Destroy()
+/obj/item/rms/Destroy()
 	QDEL_NULL(spark_system)
 	return ..()
 
