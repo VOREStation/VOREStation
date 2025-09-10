@@ -36,7 +36,11 @@
 		padding_material = get_material_by_name(new_padding_material)
 	update_icon()
 	if(flippable) // If we can't change directions, don't bother.
-		AddElement(/datum/element/rotatable)
+		// Ugly check for chairs, beds can only be flipped north and south...
+		if(istype(src,/obj/structure/bed/chair))
+			AddElement(/datum/element/rotatable)
+		else
+			AddElement(/datum/element/rotatable/onlyflip)
 	return INITIALIZE_HINT_NORMAL
 
 /obj/structure/bed/get_material()
@@ -172,8 +176,11 @@
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src), 1)
 
-/obj/structure/bed/can_ghosts_use_rotate_verbs()
+/obj/structure/bed/ghosts_can_use_rotate_verbs()
 	return CONFIG_GET(flag/ghost_interaction)
+
+/obj/structure/bed/can_use_rotate_verbs_while_anchored()
+	return TRUE
 
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"

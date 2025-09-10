@@ -1,23 +1,31 @@
+/datum/element/rotatable
+	VAR_PRIVATE/only_flip = FALSE
+
+/datum/element/rotatable/onlyflip
+	only_flip = TRUE
+
 /datum/element/rotatable/Attach(datum/target)
 	. = ..()
 	if(!isatom(target))
 		return ELEMENT_INCOMPATIBLE
 	var/atom/set_atom = target
-	set_atom.verbs |= /atom/movable/proc/rotate_clockwise
-	set_atom.verbs |= /atom/movable/proc/rotate_counterclockwise
+	if(!only_flip)
+		set_atom.verbs |= /atom/movable/proc/rotate_clockwise
+		set_atom.verbs |= /atom/movable/proc/rotate_counterclockwise
 	set_atom.verbs |= /atom/movable/proc/turn_around
 
 /datum/element/rotatable/Detach(datum/source)
 	var/atom/set_atom = source
-	set_atom.verbs -= /atom/movable/proc/rotate_clockwise
-	set_atom.verbs -= /atom/movable/proc/rotate_counterclockwise
+	if(!only_flip)
+		set_atom.verbs -= /atom/movable/proc/rotate_clockwise
+		set_atom.verbs -= /atom/movable/proc/rotate_counterclockwise
 	set_atom.verbs -= /atom/movable/proc/turn_around
 	return ..()
 
 // Core rotation proc, override me to add conditions to object rotations or update_icons/state after!
 /atom/movable/proc/handle_rotation_verbs(angle)
 	if(isobserver(usr))
-		if(!can_ghosts_use_rotate_verbs())
+		if(!ghosts_can_use_rotate_verbs())
 			return FALSE
 	else
 		if(usr.incapacitated())
@@ -26,7 +34,7 @@
 			to_chat(usr, span_notice("You are too tiny to do that!"))
 			return FALSE
 
-	if(anchored)
+	if(anchored && !can_use_rotate_verbs_while_anchored())
 		to_chat(usr, span_notice("It is fastened to the floor!"))
 		return FALSE
 
@@ -34,8 +42,11 @@
 	to_chat(usr, span_notice("You rotate \the [src] to face [dir2text(dir)]!"))
 	return TRUE
 
-// Override for spookystuff
-/atom/movable/proc/can_ghosts_use_rotate_verbs()
+// Overrides for customization
+/atom/movable/proc/ghosts_can_use_rotate_verbs()
+	return FALSE
+
+/atom/movable/proc/can_use_rotate_verbs_while_anchored()
 	return FALSE
 
 // Helper VERBS

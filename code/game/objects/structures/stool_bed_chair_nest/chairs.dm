@@ -66,7 +66,7 @@
 		for(var/mob/living/L as anything in buckled_mobs)
 			L.set_dir(dir)
 
-/obj/structure/bed/chair/can_ghosts_use_rotate_verbs()
+/obj/structure/bed/chair/ghosts_can_use_rotate_verbs()
 	return CONFIG_GET(flag/ghost_interaction)
 
 /obj/structure/bed/chair/shuttle

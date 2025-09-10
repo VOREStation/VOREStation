@@ -21,7 +21,7 @@ LINEN BINS
 
 /obj/item/bedsheet/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/rotatable)
+	AddElement(/datum/element/rotatable/onlyflip)
 
 /obj/item/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
@@ -42,6 +42,9 @@ LINEN BINS
 			qdel(src)
 		return
 	..()
+
+/obj/item/bedsheet/ghosts_can_use_rotate_verbs()
+	return CONFIG_GET(flag/ghost_interaction)
 
 /obj/item/bedsheet/blue
 	icon_state = "sheetblue"

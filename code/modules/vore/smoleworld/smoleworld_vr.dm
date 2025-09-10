@@ -128,7 +128,7 @@
 			new /obj/item/stack/material/smolebricks(F)
 		qdel(src)
 
-/obj/structure/smoletrack/can_ghosts_use_rotate_verbs()
+/obj/structure/smoletrack/ghosts_can_use_rotate_verbs()
 	return CONFIG_GET(flag/ghost_interaction)
 
 //color roads

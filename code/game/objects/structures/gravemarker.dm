@@ -110,5 +110,5 @@
 	qdel(src)
 	return
 
-/obj/structure/gravemarker/can_ghosts_use_rotate_verbs()
+/obj/structure/gravemarker/ghosts_can_use_rotate_verbs()
 	return CONFIG_GET(flag/ghost_interaction)
