@@ -26,10 +26,7 @@
 
 /obj/machinery/atmospherics/binary/circulator/Initialize(mapload)
 	. = ..()
-
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
 	air1.volume = 400
-
 	AddElement(/datum/element/rotatable)
 
 /obj/machinery/atmospherics/binary/circulator/proc/return_transfer_air()
@@ -131,7 +128,6 @@
 	else
 		..()
 
-/obj/machinery/atmospherics/binary/circulator/set_dir(newdir)
+/obj/machinery/atmospherics/binary/circulator/examine(mob/user, infix, suffix)
 	. = ..()
-	if(.)
-		desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+	. += span_infoplain("Its outlet port is to the [dir2text(dir)].")
