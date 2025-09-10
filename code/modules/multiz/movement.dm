@@ -59,7 +59,7 @@
 			var/pull_up_time = max((3 SECONDS + (src.movement_delay() * 10) * swim_modifier), 1)
 			to_chat(src, span_notice("You start diving underwater..."))
 			src.audible_message(span_notice("[src] begins to dive under the water."), runemessage = "splish splosh")
-			if(do_after(src, pull_up_time))
+			if(do_after(src, pull_up_time, target = src))
 				to_chat(src, span_notice("You reach the sea floor."))
 			else
 				to_chat(src, span_warning("You stopped swimming downwards."))
@@ -84,7 +84,7 @@
 				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * climb_modifier), 1)
 				to_chat(src, span_notice("You grab \the [lattice] and start pulling yourself upward..."))
 				src.audible_message(span_notice("[src] begins climbing up \the [lattice]."), runemessage = "clank clang")
-				if(do_after(src, pull_up_time))
+				if(do_after(src, pull_up_time, target = src))
 					to_chat(src, span_notice("You pull yourself up."))
 				else
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
@@ -94,7 +94,7 @@
 				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * swim_modifier), 1)
 				to_chat(src, span_notice("You start swimming upwards..."))
 				src.audible_message(span_notice("[src] begins to swim towards the surface."), runemessage = "splish splosh")
-				if(do_after(src, pull_up_time))
+				if(do_after(src, pull_up_time, target = src))
 					to_chat(src, span_notice("You reach the surface."))
 				else
 					to_chat(src, span_warning("You stopped swimming upwards."))
@@ -109,7 +109,7 @@
 					to_chat(src, span_notice("There's something in the way up above in that direction, try another."))
 					return 0
 				src.audible_message(span_notice("[src] begins climbing up \the [lattice]."), runemessage = "clank clang")
-				if(do_after(src, pull_up_time))
+				if(do_after(src, pull_up_time, target = src))
 					to_chat(src, span_notice("You pull yourself up."))
 				else
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
@@ -130,7 +130,7 @@
 					var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
 					to_chat(src, span_notice("You begin to fly upwards..."))
 					H.audible_message(span_notice("[H] begins to flap \his wings, preparing to move upwards!"), runemessage = "flap flap")
-					if(do_after(H, fly_time) && H.flying)
+					if(do_after(H, fly_time, target = src) && H.flying)
 						to_chat(src, span_notice("You fly upwards."))
 					else
 						to_chat(src, span_warning("You stopped flying upwards."))

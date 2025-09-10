@@ -83,7 +83,6 @@
 		EQUIPMENT("Injector (L) - Trauma",	/obj/item/reagent_containers/hypospray/autoinjector/biginjector/brute,			500),
 		EQUIPMENT("Nanopaste Tube",			/obj/item/stack/nanopaste,														1000),
 		EQUIPMENT("Point Transfer Card",	/obj/item/card/mining_point_card,												500),
-		EQUIPMENT("Shelter Capsule",		/obj/item/survivalcapsule,														500),
 		EQUIPMENT("Burn Medipen",			/obj/item/reagent_containers/hypospray/autoinjector/burn,						250),
 		EQUIPMENT("Detox Medipen",			/obj/item/reagent_containers/hypospray/autoinjector/detox,						250),
 		EQUIPMENT("Oxy Medipen",			/obj/item/reagent_containers/hypospray/autoinjector/oxy,						250),
@@ -132,15 +131,22 @@
 		EQUIPMENT("Hardsuit - Smoke Bomb Deployer",			/obj/item/rig_module/grenade_launcher/smoke,					2000),
 		EQUIPMENT("Hardsuit - Proto-Kinetic Gauntlets",		/obj/item/rig_module/gauntlets,									2000),
 	)
+	prize_list["Shelter Capsules"] = list(
+		EQUIPMENT("Shelter Capsule - Shelter (5x5)",				/obj/item/survivalcapsule,									500),
+		EQUIPMENT("Shelter Capsule - Luxury Shelter (7x7)",			/obj/item/survivalcapsule/luxury,							3100),
+		EQUIPMENT("Shelter Capsule - Redspace (7x7)",				/obj/item/survivalcapsule/randomized,						5000),
+		EQUIPMENT("Shelter Capsule - Sauna (7x7)",					/obj/item/survivalcapsule/sauna,							5000),
+		EQUIPMENT("Shelter Capsule - Rec Room + Cards Table (9x9)",	/obj/item/survivalcapsule/recroom,							7500),
+		EQUIPMENT("Shelter Capsule - Bar (11x11)",					/obj/item/survivalcapsule/luxurybar,						10000),
+		EQUIPMENT("Shelter Capsule - Deluxe Cabin (11x11)",			/obj/item/survivalcapsule/luxurycabin,						10000),
+		EQUIPMENT("Shelter Capsule - Cafe (11x11)",					/obj/item/survivalcapsule/cafe,								10000),
+	)
 	prize_list["Miscellaneous"] = list(
 		EQUIPMENT(REAGENT_ABSINTHE,				/obj/item/reagent_containers/food/drinks/bottle/absinthe,					125),
 		EQUIPMENT("Cigar",						/obj/item/clothing/mask/smokable/cigarette/cigar/havana,					150),
 		EQUIPMENT("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,			500),
 		EQUIPMENT("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,			1000),
 		EQUIPMENT("Laser Pointer",				/obj/item/laser_pointer,													900),
-		EQUIPMENT("Luxury Shelter Capsule",		/obj/item/survivalcapsule/luxury,											3100),
-		EQUIPMENT("Bar Shelter Capsule",		/obj/item/survivalcapsule/luxurybar,										10000),
-		EQUIPMENT("Deluxe Cabin Shelter Capsule",/obj/item/survivalcapsule/luxurycabin,										10000),
 		EQUIPMENT("Plush Toy",					/obj/random/plushie,														300),
 		EQUIPMENT("Soap",						/obj/item/soap/nanotrasen,													200),
 		EQUIPMENT("Thalers - 100",				/obj/item/spacecash/c100,													1000),
