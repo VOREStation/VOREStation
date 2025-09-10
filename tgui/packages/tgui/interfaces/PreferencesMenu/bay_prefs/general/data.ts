@@ -300,7 +300,7 @@ export type GeneralData = BasicData &
   SizeData &
   MiscData;
 
-export type GeneralDataStatic = {
+export type GeneralDataStatic = Partial<{
   allow_metadata: BooleanLike;
   basehuman_stats: SpeciesStats;
   can_play: Record<string, { restricted: number; can_select: BooleanLike }>;
@@ -309,7 +309,7 @@ export type GeneralDataStatic = {
   available_ear_styles: string[];
   available_tail_styles: string[];
   available_wing_styles: string[];
-};
+}>;
 
 export type StandardStyle = { name: string; icon: string; icon_state: string };
 
