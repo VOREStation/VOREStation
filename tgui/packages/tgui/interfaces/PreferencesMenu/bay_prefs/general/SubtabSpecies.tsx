@@ -236,9 +236,10 @@ export const SubtabSpecies = (props: {
                           ? 'good'
                           : 'bad'
                       }
-                      onClick={() =>
-                        act('set_species', { species: viewed_species.name })
-                      }
+                      onClick={() => {
+                        act('set_species', { species: viewed_species.name });
+                        setViewingSpecies('');
+                      }}
                     >
                       Select
                     </Button>
