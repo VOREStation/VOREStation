@@ -128,10 +128,8 @@
 			new /obj/item/stack/material/smolebricks(F)
 		qdel(src)
 
-/obj/structure/smoletrack/handle_rotation_verbs(angle)
-	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
-		return FALSE
-	. = ..()
+/obj/structure/smoletrack/can_ghosts_use_rotate_verbs()
+	return CONFIG_GET(flag/ghost_interaction)
 
 //color roads
 /obj/structure/smoletrack/verb/colorpieces()

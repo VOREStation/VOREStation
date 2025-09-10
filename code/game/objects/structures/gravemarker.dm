@@ -110,7 +110,5 @@
 	qdel(src)
 	return
 
-/obj/structure/gravemarker/handle_rotation_verbs(angle)
-	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
-		return FALSE
-	. = ..()
+/obj/structure/gravemarker/can_ghosts_use_rotate_verbs()
+	return CONFIG_GET(flag/ghost_interaction)

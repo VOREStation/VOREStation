@@ -172,10 +172,8 @@
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src), 1)
 
-/obj/structure/bed/handle_rotation_verbs()
-	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
-		return FALSE
-	. = ..()
+/obj/structure/bed/can_ghosts_use_rotate_verbs()
+	return CONFIG_GET(flag/ghost_interaction)
 
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"
