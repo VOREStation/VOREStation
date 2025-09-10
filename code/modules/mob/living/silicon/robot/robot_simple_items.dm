@@ -490,6 +490,10 @@
 
 	. = ..()
 
+/obj/item/robotic_multibelt/materials/Destroy()
+	QDEL_LIST(cyborg_integrated_tools)
+	. = ..()
+
 ///Allows the material fabricator to pick up materials if they hit an appropriate stack.
 /obj/item/robotic_multibelt/materials/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(istype(target, /obj/item/stack)) //We are targeting a stack.

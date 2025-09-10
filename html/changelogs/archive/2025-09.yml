@@ -117,3 +117,14 @@
       but you can no longer stand naked during a blizzard on V3b
   lbnesquik:
   - rscadd: Added gas masks to the loadout options
+2025-09-10:
+  SatinIsle:
+  - rscadd: Added a posing indicator with a colour determined by runechat colour when
+      a pose is active.
+  - qol: Added an option to have a pose vanish immediately upon movement.
+  - qol: Changed posing to now post the posing message in chat when initiated.
+  Will:
+  - rscadd: Character stats, abilities, and modifiers are now shown on the character
+      creator's species info tab.
+  Zizzi:
+  - bugfix: fixed circuit cloning printing invisible clothes
