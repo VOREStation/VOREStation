@@ -357,13 +357,14 @@
 	if (start_dir)
 		set_dir(start_dir)
 
-	AddElement(/datum/element/rotatable)
-
 	//player-constructed windows
 	if (constructed)
 		anchored = FALSE
 		state = 0
-		update_verbs()
+
+	// If we started anchored we'll need to disable rotation
+	AddElement(/datum/element/rotatable)
+	update_verbs()
 
 	health = maxhealth
 
