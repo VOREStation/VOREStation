@@ -15,6 +15,10 @@
 /obj/item/camera/siliconcam/drone_camera //currently doesn't offer the verbs, thus cannot be used
 	name = "Drone photo camera"
 
+/obj/item/camera/siliconcam/Destroy()
+	QDEL_LIST(aipictures)
+	. = ..()
+
 /obj/item/camera/siliconcam/proc/injectaialbum(obj/item/photo/p, var/sufix = "") //stores image information to a list similar to that of the datacore
 	p.loc = src
 	photos_taken++
@@ -69,6 +73,7 @@
 		return
 
 	aipictures -= selection
+	qdel(selection)
 	to_chat(user, span_unconscious("Local image deleted"))
 
 /obj/item/camera/siliconcam/ai_camera/can_capture_turf(turf/T, mob/user)

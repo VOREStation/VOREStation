@@ -46,7 +46,7 @@
 	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, O.usesound, 75, 1)
 		to_chat(user, span_notice("You begin dismantling \the [src]."))
-		if(do_after(user,25 * O.toolspeed))
+		if(do_after(user, 25 * O.toolspeed, target = src))
 			to_chat(user, span_notice("You dismantle \the [src]."))
 			new /obj/item/stack/material/wood(get_turf(src), 3)
 			for(var/obj/item/book/b in contents)
@@ -286,7 +286,7 @@ Book Cart End
 	else if(istype(W, /obj/item/material/knife) || W.has_tool_quality(TOOL_WIRECUTTER))
 		if(carved)	return
 		to_chat(user, span_notice("You begin to carve out [title]."))
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))
 			playsound(src, 'sound/bureaucracy/papercrumple.ogg', 50, 1)
 			new /obj/item/shreddedp(get_turf(src))

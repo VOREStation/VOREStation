@@ -37,14 +37,14 @@
 			return
 		else
 			user.visible_message(span_bold("\The [user]") + " extends \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!", span_notice("You extend \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!"))
-			if(do_after(user, 15))
+			if(do_after(user, 15, target = src))
 				to_chat(user, span_notice("\The [src] has been excavated to a depth of [2 * src.excavation_level]cm."))
 			return
 
 	if(istype(I, /obj/item/measuring_tape))
 		var/obj/item/measuring_tape/P = I
 		user.visible_message(span_bold("\The [user]") + " extends \the [P] towards \the [src].", span_notice("You extend \the [P] towards \the [src]."))
-		if(do_after(user, 15))
+		if(do_after(user, 15, target = src))
 			to_chat(user, span_notice("\The [src] has been excavated to a depth of [2 * src.excavation_level]cm."))
 		return
 
@@ -57,7 +57,7 @@
 
 		to_chat(user, span_warning("You start [P.drill_verb] [src]."))
 
-		if(!do_after(user, P.digspeed))
+		if(!do_after(user, P.digspeed, target = src))
 			return
 
 		to_chat(user, span_notice("You finish [P.drill_verb] [src]."))

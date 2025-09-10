@@ -23,7 +23,7 @@
 	if(user.get_active_hand() == src || user.get_inactive_hand() == src)
 		return TRUE // Skip delay
 
-	if(insert_delay && !do_after(user, insert_delay, src))
+	if(insert_delay && !do_after(user, insert_delay, target = src))
 		return FALSE // Moved while there is a delay
 
 	return TRUE //Now we're allowed to put the item in the pouch
@@ -33,7 +33,7 @@
 	if(user.get_active_hand() == src || user.get_inactive_hand() == src)
 		return TRUE // Skip delay
 
-	if(remove_delay && !do_after(user, remove_delay, src))
+	if(remove_delay && !do_after(user, remove_delay, target = src))
 		return FALSE // Moved while there is a delay
 
 	if(W in src)

@@ -225,7 +225,7 @@
 			else
 				user.visible_message(span_warning("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
 										span_notice("You begin to wipe off [H]'s lipstick."))
-				if(do_after(user, 10) && do_after(H, 10, 5, 0))	//user needs to keep their active hand, H does not.
+				if(do_after(user, 1 SECOND, target = H) && do_after(H, 1 SECONDS, target = user))	//user needs to keep their active hand, H does not.
 					user.visible_message(span_notice("[user] wipes [H]'s lipstick off with \the [src]."), \
 											span_notice("You wipe off [H]'s lipstick."))
 					H.lip_style = null
@@ -698,3 +698,17 @@
 /obj/item/paper/manifest/Initialize(mapload, text, title)
 	. = ..()
 	AddElement(/datum/element/sellable/manifest)
+
+/obj/item/paper/crumpled/sampatti
+	info = "Sampatti Relay Sif-833 <BR> Decryption Key for 12-04-2488: <BR> 849B0022FBA920C244 <BR> Eyes Only.  <BR> The insider who knows all the secrets can bring down Lanka.";
+	name = "Dusty Note"
+
+/obj/item/paper/alchemy
+	info = span_bold("Apprentice, I have written out these instructions so that you may operate the alembic in your own time without me needing to watch over your every step.<br><br>The alembic is simple to operate, simply activate the spontaneous heating stone beneath it to begin boiling the contents. However, the contents that you choose are critical in creating a potion of any merit, and mixing the wrong materials may create something completely useless, wasting our resources!<br><br>You must mix two materials, and only ever two. One primary ingredient, this can be one of many materials with valuable alchemical properties. The other is a potion base, this will be essential to properly break down and transmute the ingredient into a potent potion. Once you have added the two, boil as above, and collect the distilate in a bottle. As for choosing your base, here is a short guide, but be aware that the properties of an ingredient are not always immediately apparent and some experimentation may be required:<br><br>Alkahest is a potent solvent and particularly useful for dissolving metals.<br><br>Aqua Regia is a heavily corrosive mixture of acids that readily dissolve most organic materials.<br><br>Ichor is a rich ferrous fluid that binds well to minerals, it can often break down gemstones.")
+	name = "alchemy instructions"
+
+/obj/item/paper/alien/message
+	info = span_bold("Thus far the mission has been a success, we've managed to integrate ourselves into the local community without arousing suspicion.<br><br>We had initially overestimated the technological level of the locals, and their initial encounters with our equipment did cause a concern. However, we were able to latch onto their superstitious beliefs in magic to explain away the abilities that we possess. To enhance this perception, we've taken to hiding our technology in more mundane looking materials, and the townsfolk appear to be content with this.")
+
+/obj/item/paper/alien/source
+	info = span_bold("Our search for the source has brought us to this planet, and we were quickly able to locate a seepage of the anomaly in the area. We set up this base immediately beside it, so that we can best study it. However, we are growing concerned as the material continues to spread beyond it's initial sprouting point and has begun to encroach directly on our buildings.<br><br>Our plan was to move our base further back from the site and study from a distance, but we have begun to detect lifeforms traversing the void. Yellow eyes have been seen watching from beyond the safety of the cave, disappearing and reappearing seemingly at random. We weren't aware that anything could survive this, they could hold the key to our scenario and we are requesting immediate support to research this further.")
