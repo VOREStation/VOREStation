@@ -39,9 +39,6 @@ LINEN BINS
 		return
 	..()
 
-/obj/item/bedsheet/turn_around()
-	. = ..(TRUE)
-
 /obj/item/bedsheet/blue
 	icon_state = "sheetblue"
 
