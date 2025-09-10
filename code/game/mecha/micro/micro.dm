@@ -80,7 +80,7 @@
 			src.visible_message("[src] pushes [target] out of the way.")
 
 		melee_can_hit = 0
-		if(do_after(melee_cooldown))
+		if(do_after_action(melee_cooldown))
 			melee_can_hit = 1
 		return
 
@@ -95,7 +95,7 @@
 					else
 						playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 					melee_can_hit = 0
-					if(do_after(melee_cooldown))
+					if(do_after_action(melee_cooldown))
 						melee_can_hit = 1
 					break
 	return

@@ -82,7 +82,7 @@
 				healthcheck()
 				return
 			if(locate(/obj/item/organ/internal/xenos/resinspinner/replicant) in M.internal_organs)
-				if(!do_after(M, 3 SECONDS))
+				if(!do_after(M, 3 SECONDS, target = src))
 					return
 				visible_message (span_warning("[usr] strokes the [name] and it melts away!"), 1)
 				health = 0

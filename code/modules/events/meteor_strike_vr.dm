@@ -100,7 +100,7 @@
 		var/obj/item/pickaxe/P = I
 		M.visible_message(span_warning("[M] starts [P.drill_verb] \the [src]."), span_warning("You start [P.drill_verb] \the [src]."))
 
-		if(!do_after(M, P.digspeed*3))
+		if(!do_after(M, P.digspeed*3, target = src))
 			return
 
 		M.visible_message(span_warning("[M] breaks apart \the [src]."), span_warning("You break apart \the [src]."))
