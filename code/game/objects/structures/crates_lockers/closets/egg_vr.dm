@@ -106,131 +106,131 @@
 	icon_opened = "egg_xenomorph_open"
 
 // various discarded clothing sprites, thanks Arpi
-/obj/item/storage/vore_egg/clothing_pile_red
+/obj/structure/closet/secure_closet/egg/clothing_pile_red
 	name = "red pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_red"
 	icon_closed = "egg_pile_red"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_pile_blue
+/obj/structure/closet/secure_closet/egg/clothing_pile_blue
 	name = "blue pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_blue"
 	icon_closed = "egg_pile_blue"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_pile_purple
+/obj/structure/closet/secure_closet/egg/clothing_pile_purple
 	name = "purple pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_purple"
 	icon_closed = "egg_pile_purple"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_pile_green
+/obj/structure/closet/secure_closet/egg/clothing_pile_green
 	name = "green pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_green"
 	icon_closed = "egg_pile_green"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_pile_white
+/obj/structure/closet/secure_closet/egg/clothing_pile_white
 	name = "white pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_white"
 	icon_closed = "egg_pile_white"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_pile_black
+/obj/structure/closet/secure_closet/egg/clothing_pile_black
 	name = "black pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_black"
 	icon_closed = "egg_pile_black"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bra_red
+/obj/structure/closet/secure_closet/egg/clothing_bra_red
 	name = "red discarded bra"
 	desc = "A supportive piece of underwear for the chest laying about."
 	icon_state = "egg_bra_red"
 	icon_closed = "egg_bra_red"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bra_blue
+/obj/structure/closet/secure_closet/egg/clothing_bra_blue
 	name = "blue discarded bra"
 	desc = "A supportive piece of underwear for the chest laying about."
 	icon_state = "egg_bra_blue"
 	icon_closed = "egg_bra_blue"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bra_purple
+/obj/structure/closet/secure_closet/egg/clothing_bra_purple
 	name = "purple discarded bra"
 	desc = "A supportive piece of underwear for the chest laying about."
 	icon_state = "egg_bra_purple"
 	icon_closed = "egg_bra_purple"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bra_green
+/obj/structure/closet/secure_closet/egg/clothing_bra_green
 	name = "green discarded bra"
 	desc = "A supportive piece of underwear for the chest laying about."
 	icon_state = "egg_bra_green"
 	icon_closed = "egg_bra_green"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bra_white
+/obj/structure/closet/secure_closet/egg/clothing_bra_white
 	name = "white discarded bra"
 	desc = "A supportive piece of underwear for the chest laying about."
 	icon_state = "egg_bra_white"
 	icon_closed = "egg_bra_white"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bra_black
+/obj/structure/closet/secure_closet/egg/clothing_bra_black
 	name = "black discarded bra"
 	desc = "A supportive piece of underwear for the chest laying about."
 	icon_state = "egg_bra_black"
 	icon_closed = "egg_bra_black"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bottom_red
+/obj/structure/closet/secure_closet/egg/clothing_bottom_red
 	name = "red discarded bottom"
 	desc = "A cloth undergarment for the hips laying about."
 	icon_state = "egg_bottom_red"
 	icon_closed = "egg_bottom_red"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bottom_blue
+/obj/structure/closet/secure_closet/egg/clothing_bottom_blue
 	name = "blue discarded bottom"
 	desc = "A cloth undergarment for the hips laying about."
 	icon_state = "egg_bottom_blue"
 	icon_closed = "egg_bottom_blue"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bottom_purple
+/obj/structure/closet/secure_closet/egg/clothing_bottom_purple
 	name = "purple discarded bottom"
 	desc = "A cloth undergarment for the hips laying about."
 	icon_state = "egg_bottom_purple"
 	icon_closed = "egg_bottom_purple"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bottom_green
+/obj/structure/closet/secure_closet/egg/clothing_bottom_green
 	name = "green discarded bottom"
 	desc = "A cloth undergarment for the hips laying about."
 	icon_state = "egg_bottom_green"
 	icon_closed = "egg_bottom_green"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bottom_white
+/obj/structure/closet/secure_closet/egg/clothing_bottom_white
 	name = "white discarded bottom"
 	desc = "A cloth undergarment for the hips laying about."
 	icon_state = "egg_bottom_white"
 	icon_closed = "egg_bottom_white"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
-/obj/item/storage/vore_egg/clothing_bottom_black
+/obj/structure/closet/secure_closet/egg/clothing_bottom_black
 	name = "black discarded bottom"
 	desc = "A cloth undergarment for the hips laying about."
 	icon_state = "egg_bottom_black"
 	icon_closed = "egg_bottom_black"
-	icon_open = "egg_clothes_open"
+	icon_opened = "egg_clothes_open"
 
 //In case anyone stumbles upon this, MAJOR thanks to Vorrakul and Nightwing. Without them, this wouldn't be a reality.
 //Also, huge thanks for Ace for helping me through with this and getting me to work at my full potential instead of tapping out early, along with coding advice.
