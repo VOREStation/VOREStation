@@ -128,19 +128,7 @@
 			new /obj/item/stack/material/smolebricks(F)
 		qdel(src)
 
-// Rotation verb overrides
-/obj/structure/smoletrack/rotate_clockwise()
-	set src in oview(1)
-	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
-		return FALSE
-	. = ..()
-/obj/structure/smoletrack/rotate_counterclockwise()
-	set src in oview(1)
-	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
-		return FALSE
-	. = ..()
-/obj/structure/smoletrack/turn_around()
-	set src in oview(1)
+/obj/structure/smoletrack/handle_rotation_verbs(angle)
 	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
 		return FALSE
 	. = ..()

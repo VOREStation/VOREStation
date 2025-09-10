@@ -271,27 +271,7 @@
 			name = "near finished "
 	name += "[secure ? "secure " : ""]windoor assembly[created_name ? " ([created_name])" : ""]"
 
-// Rotation verb overrides
-/obj/structure/windoor_assembly/rotate_clockwise()
-	set src in oview(1)
-	if(state != "01")
-		update_nearby_tiles(need_rebuild=1) //Compel updates before
-	. = ..()
-	if(.)
-		if(state != "01")
-			update_nearby_tiles(need_rebuild=1)
-		update_icon()
-/obj/structure/windoor_assembly/rotate_counterclockwise()
-	set src in oview(1)
-	if(state != "01")
-		update_nearby_tiles(need_rebuild=1) //Compel updates before
-	. = ..()
-	if(.)
-		if(state != "01")
-			update_nearby_tiles(need_rebuild=1)
-		update_icon()
-/obj/structure/windoor_assembly/turn_around()
-	set src in oview(1)
+/obj/structure/windoor_assembly/handle_rotation_verbs(angle)
 	if(state != "01")
 		update_nearby_tiles(need_rebuild=1) //Compel updates before
 	. = ..()

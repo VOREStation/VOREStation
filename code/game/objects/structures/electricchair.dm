@@ -37,25 +37,11 @@
 	to_chat(usr, span_notice("You switch [on ? "on" : "off"] [src]."))
 	return
 
-// Rotation verb overrides
-/obj/structure/bed/chair/e_chair/rotate_clockwise()
-	set src in oview(1)
+/obj/structure/bed/chair/e_chair/set_dir()
 	. = ..()
 	if(.)
 		cut_overlays()
 		add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))	//there's probably a better way of handling this, but eh. -Pete
-/obj/structure/bed/chair/e_chair/rotate_counterclockwise()
-	set src in oview(1)
-	. = ..()
-	if(.)
-		cut_overlays()
-		add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))
-/obj/structure/bed/chair/e_chair/turn_around()
-	set src in oview(1)
-	. = ..()
-	if(.)
-		cut_overlays()
-		add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))
 
 /obj/structure/bed/chair/e_chair/proc/shock()
 	if(!on)

@@ -110,19 +110,7 @@
 	qdel(src)
 	return
 
-// Rotation verb overrides
-/obj/structure/gravemarker/rotate_clockwise()
-	set src in oview(1)
-	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
-		return FALSE
-	. = ..()
-/obj/structure/gravemarker/rotate_counterclockwise()
-	set src in oview(1)
-	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
-		return FALSE
-	. = ..()
-/obj/structure/gravemarker/turn_around()
-	set src in oview(1)
+/obj/structure/gravemarker/handle_rotation_verbs(angle)
 	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
 		return FALSE
 	. = ..()

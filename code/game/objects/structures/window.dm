@@ -342,9 +342,7 @@
 	take_damage(damage)
 	return
 
-// Rotation verb overrides
-/obj/structure/window/rotate_counterclockwise()
-	set src in oview(1)
+/obj/structure/window/handle_rotation_verbs(angle)
 	if(is_fulltile())
 		return FALSE
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
@@ -352,31 +350,14 @@
 	if(.)
 		updateSilicate()
 		update_nearby_tiles(need_rebuild=1)
-/obj/structure/window/rotate_clockwise()
-	set src in oview(1)
-	if(is_fulltile())
-		return FALSE
-	update_nearby_tiles(need_rebuild=1) //Compel updates before
-	. = ..()
-	if(.)
-		updateSilicate()
-		update_nearby_tiles(need_rebuild=1)
-/obj/structure/window/turn_around()
-	set src in oview(1)
-	if(is_fulltile())
-		return FALSE
-	update_nearby_tiles(need_rebuild=1) //Compel updates before
-	. = ..()
-	if(.)
-		updateSilicate()
-		update_nearby_tiles(need_rebuild=1)
-
 
 /obj/structure/window/Initialize(mapload, start_dir=null, constructed=0)
 	. = ..()
 
 	if (start_dir)
 		set_dir(start_dir)
+
+	AddElement(/datum/element/rotatable)
 
 	//player-constructed windows
 	if (constructed)
@@ -395,7 +376,6 @@
 		T.update_connections()
 		T.update_icon()
 
-	AddElement(/datum/element/rotatable)
 
 /obj/structure/window/Destroy()
 	density = FALSE

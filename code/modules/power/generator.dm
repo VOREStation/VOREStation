@@ -31,8 +31,8 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	soundloop = new(list(src), FALSE)
 	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
 	GLOB.all_turbines += src
-	..() //Not returned, because...
 	AddElement(/datum/element/rotatable)
+	..() //Not returned, because...
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/power/generator/LateInitialize()

@@ -635,22 +635,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 	else
 		to_chat(user,span_warning("You do not have the required access to view the vending logs for this machine."))
 
-// Rotation verb overrides
-/obj/machinery/vending/rotate_clockwise()
-	set src in oview(1)
-	if (can_rotate == 0)
-		to_chat(usr, span_warning("\The [src] cannot be rotated."))
-		return FALSE
-	. = ..()
-/obj/machinery/vending/rotate_counterclockwise()
-	set src in oview(1)
-	if (can_rotate == 0)
-		to_chat(usr, span_warning("\The [src] cannot be rotated."))
-		return FALSE
-	. = ..()
-/obj/machinery/vending/turn_around()
-	set src in oview(1)
-	if (can_rotate == 0)
+/obj/machinery/vending/handle_rotation_verbs(angle)
+	if(can_rotate == FALSE)
 		to_chat(usr, span_warning("\The [src] cannot be rotated."))
 		return FALSE
 	. = ..()

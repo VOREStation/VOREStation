@@ -67,19 +67,7 @@
 		for(var/mob/living/L as anything in buckled_mobs)
 			L.set_dir(dir)
 
-// Rotation verb overrides
-/obj/structure/bed/chair/rotate_clockwise()
-	set src in oview(1)
-	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
-		return FALSE
-	. = ..()
-/obj/structure/bed/chair/rotate_counterclockwise()
-	set src in oview(1)
-	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
-		return FALSE
-	. = ..()
-/obj/structure/bed/chair/turn_around()
-	set src in oview(1)
+/obj/structure/bed/chair/handle_rotation_verbs(angle)
 	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
 		return FALSE
 	. = ..()

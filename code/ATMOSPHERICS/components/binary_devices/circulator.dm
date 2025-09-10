@@ -131,19 +131,7 @@
 	else
 		..()
 
-// Rotation verb overrides
-/obj/machinery/atmospherics/binary/circulator/rotate_clockwise()
-	set src in oview(1)
-	. = ..()
-	if(.)
-		desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
-/obj/machinery/atmospherics/binary/circulator/rotate_counterclockwise()
-	set src in oview(1)
-	. = ..()
-	if(.)
-		desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
-/obj/machinery/atmospherics/binary/circulator/turn_around()
-	set src in oview(1)
+/obj/machinery/atmospherics/binary/circulator/set_dir(newdir)
 	. = ..()
 	if(.)
 		desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."

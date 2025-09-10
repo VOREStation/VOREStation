@@ -100,16 +100,6 @@ Buildable meters
 	name = "[initial(fakeA.name)] fitting"
 	icon_state = initial(fakeA.pipe_state)
 
-/obj/item/pipe/verb/flip()
-	set category = "Object"
-	set name = "Flip Pipe"
-	set src in view(1)
-
-	if ( usr.stat || usr.restrained() || !usr.canmove )
-		return
-
-	do_a_flip()
-
 /obj/item/pipe/proc/do_a_flip()
 	set_dir(turn(dir, -180))
 	fixdir()
@@ -122,19 +112,7 @@ Buildable meters
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 	icon_state = "[initial(fakeA.pipe_state)][mirrored ? "m" : ""]"
 
-// Rotation verb overrides
-/obj/item/pipe/rotate_clockwise()
-	set src in oview(1)
-	. = ..()
-	if(.)
-		fixdir()
-/obj/item/pipe/rotate_counterclockwise()
-	set src in oview(1)
-	. = ..()
-	if(.)
-		fixdir()
-/obj/item/pipe/turn_around()
-	set src in oview(1)
+/obj/item/pipe/handle_rotation_verbs(angle)
 	. = ..()
 	if(.)
 		fixdir()

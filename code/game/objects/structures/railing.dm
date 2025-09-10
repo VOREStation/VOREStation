@@ -133,29 +133,12 @@
 					if (WEST)
 						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_y = 32))
 
-// Rotation verb overrides
-/obj/structure/railing/rotate_clockwise()
-	set src in oview(1)
+/obj/structure/railing/handle_rotation_verbs(angle)
 	if(!can_touch(usr))
 		return FALSE
 	. = ..()
 	if(.)
 		update_icon()
-/obj/structure/railing/rotate_counterclockwise()
-	set src in oview(1)
-	if(!can_touch(usr))
-		return FALSE
-	. = ..()
-	if(.)
-		update_icon()
-/obj/structure/railing/turn_around()
-	set src in oview(1)
-	if(!can_touch(usr))
-		return FALSE
-	. = ..()
-	if(.)
-		update_icon()
-
 
 /obj/structure/railing/verb/flip() // This will help push railing to remote places, such as open space turfs
 	set name = "Flip Railing"
