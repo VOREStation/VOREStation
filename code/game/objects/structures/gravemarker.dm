@@ -28,6 +28,7 @@
 		return INITIALIZE_HINT_QDEL
 	color = material.icon_colour
 	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
 
 /obj/structure/gravemarker/examine(mob/user)
 	. = ..()
@@ -109,40 +110,19 @@
 	qdel(src)
 	return
 
-
-/obj/structure/gravemarker/verb/rotate_clockwise()
-	set name = "Rotate Grave Marker Clockwise"
-	set category = "Object"
+// Rotation verb overrides
+/obj/structure/gravemarker/rotate_clockwise()
 	set src in oview(1)
-
-	if(anchored)
-		return
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	return
-
-//VOREstation edit: counter-clockwise rotation
-/obj/structure/gravemarker/verb/rotate_counterclockwise()
-	set name = "Rotate Grave Marker Counter-Clockwise"
-	set category = "Object"
+	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
+		return FALSE
+	. = ..()
+/obj/structure/gravemarker/rotate_counterclockwise()
 	set src in oview(1)
-
-	if(anchored)
-		return
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	return
+	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
+		return FALSE
+	. = ..()
+/obj/structure/gravemarker/turn_around()
+	set src in oview(1)
+	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
+		return FALSE
+	. = ..()

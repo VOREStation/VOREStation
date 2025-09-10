@@ -113,6 +113,10 @@
 	color = "#ffffff"
 	density = FALSE
 
+/obj/structure/smoletrack/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/rotatable)
+
 /obj/structure/smoletrack/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
 		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
@@ -124,22 +128,22 @@
 			new /obj/item/stack/material/smolebricks(F)
 		qdel(src)
 
-//rotates piece
-/obj/structure/smoletrack/verb/rotate_clockwise()
-	set name = "Rotate Road Clockwise"
-	set category = "Object"
+// Rotation verb overrides
+/obj/structure/smoletrack/rotate_clockwise()
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-	src.set_dir(turn(src.dir, 270))
-
-/obj/structure/smoletrack/verb/rotate_counterclockwise()
-	set name = "Rotate Road Counter-Clockwise"
-	set category = "Object"
+	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
+		return FALSE
+	. = ..()
+/obj/structure/smoletrack/rotate_counterclockwise()
 	set src in oview(1)
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-	src.set_dir(turn(src.dir, 90))
+	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
+		return FALSE
+	. = ..()
+/obj/structure/smoletrack/turn_around()
+	set src in oview(1)
+	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
+		return FALSE
+	. = ..()
 
 //color roads
 /obj/structure/smoletrack/verb/colorpieces()

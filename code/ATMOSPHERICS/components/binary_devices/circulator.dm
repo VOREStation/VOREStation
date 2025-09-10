@@ -30,6 +30,8 @@
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
 	air1.volume = 400
 
+	AddElement(/datum/element/rotatable)
+
 /obj/machinery/atmospherics/binary/circulator/proc/return_transfer_air()
 	var/datum/gas_mixture/removed
 	if(anchored && !(stat&BROKEN) && network1)
@@ -129,25 +131,19 @@
 	else
 		..()
 
-/obj/machinery/atmospherics/binary/circulator/verb/rotate_clockwise()
-	set name = "Rotate Circulator Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
-
-
-/obj/machinery/atmospherics/binary/circulator/verb/rotate_counterclockwise()
-	set name = "Rotate Circulator Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+// Rotation verb overrides
+/obj/machinery/atmospherics/binary/circulator/rotate_clockwise()
+	set src in oview(1)
+	. = ..()
+	if(.)
+		desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+/obj/machinery/atmospherics/binary/circulator/rotate_counterclockwise()
+	set src in oview(1)
+	. = ..()
+	if(.)
+		desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+/obj/machinery/atmospherics/binary/circulator/turn_around()
+	set src in oview(1)
+	. = ..()
+	if(.)
+		desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."

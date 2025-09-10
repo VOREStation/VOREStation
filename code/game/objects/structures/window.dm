@@ -342,49 +342,35 @@
 	take_damage(damage)
 	return
 
-
-/obj/structure/window/verb/rotate_counterclockwise()
-	set name = "Rotate Window Counterclockwise"
-	set category = "Object"
+// Rotation verb overrides
+/obj/structure/window/rotate_counterclockwise()
 	set src in oview(1)
-
-	if(usr.incapacitated())
-		return 0
-
 	if(is_fulltile())
-		return 0
-
-	if(anchored)
-		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return 0
-
+		return FALSE
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
-	src.set_dir(turn(src.dir, 90))
-	updateSilicate()
-	update_nearby_tiles(need_rebuild=1)
-	return
-
-
-/obj/structure/window/verb/rotate_clockwise()
-	set name = "Rotate Window Clockwise"
-	set category = "Object"
+	. = ..()
+	if(.)
+		updateSilicate()
+		update_nearby_tiles(need_rebuild=1)
+/obj/structure/window/rotate_clockwise()
 	set src in oview(1)
-
-	if(usr.incapacitated())
-		return 0
-
 	if(is_fulltile())
-		return 0
-
-	if(anchored)
-		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return 0
-
+		return FALSE
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
-	src.set_dir(turn(src.dir, 270))
-	updateSilicate()
-	update_nearby_tiles(need_rebuild=1)
-	return
+	. = ..()
+	if(.)
+		updateSilicate()
+		update_nearby_tiles(need_rebuild=1)
+/obj/structure/window/turn_around()
+	set src in oview(1)
+	if(is_fulltile())
+		return FALSE
+	update_nearby_tiles(need_rebuild=1) //Compel updates before
+	. = ..()
+	if(.)
+		updateSilicate()
+		update_nearby_tiles(need_rebuild=1)
+
 
 /obj/structure/window/Initialize(mapload, start_dir=null, constructed=0)
 	. = ..()
@@ -408,6 +394,8 @@
 	for(var/obj/structure/table/T in view(src, 1))
 		T.update_connections()
 		T.update_icon()
+
+	AddElement(/datum/element/rotatable)
 
 /obj/structure/window/Destroy()
 	density = FALSE
@@ -450,11 +438,13 @@
 //Updates the availabiliy of the rotation verbs
 /obj/structure/window/proc/update_verbs()
 	if(anchored || is_fulltile())
-		verbs -= /obj/structure/window/verb/rotate_counterclockwise
-		verbs -= /obj/structure/window/verb/rotate_clockwise
+		verbs -= /atom/movable/proc/rotate_counterclockwise
+		verbs -= /atom/movable/proc/rotate_clockwise
+		verbs -= /atom/movable/proc/turn_around
 	else if(!is_fulltile())
-		verbs += /obj/structure/window/verb/rotate_counterclockwise
-		verbs += /obj/structure/window/verb/rotate_clockwise
+		verbs |= /atom/movable/proc/rotate_counterclockwise
+		verbs |= /atom/movable/proc/rotate_clockwise
+		verbs |= /atom/movable/proc/turn_around
 
 //merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
 /obj/structure/window/update_icon()

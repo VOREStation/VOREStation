@@ -27,6 +27,7 @@
 	if (constructed) // player-constructed railings
 		anchored = FALSE
 	AddElement(/datum/element/climbable/unanchored_can_break, 3.4 SECONDS, TRUE) // It's a RAILING!
+	AddElement(/datum/element/rotatable)
 	if(src.anchored)
 		update_icon(0)
 
@@ -132,43 +133,29 @@
 					if (WEST)
 						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_y = 32))
 
-/obj/structure/railing/verb/rotate_counterclockwise()
-	set name = "Rotate Railing Counter-Clockwise"
-	set category = "Object"
+// Rotation verb overrides
+/obj/structure/railing/rotate_clockwise()
 	set src in oview(1)
-
-	if(usr.incapacitated())
-		return 0
-
-	if (!can_touch(usr) || ismouse(usr))
-		return
-
-	if(anchored)
-		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return 0
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
-	return
-
-/obj/structure/railing/verb/rotate_clockwise()
-	set name = "Rotate Railing Clockwise"
-	set category = "Object"
+	if(!can_touch(usr))
+		return FALSE
+	. = ..()
+	if(.)
+		update_icon()
+/obj/structure/railing/rotate_counterclockwise()
 	set src in oview(1)
+	if(!can_touch(usr))
+		return FALSE
+	. = ..()
+	if(.)
+		update_icon()
+/obj/structure/railing/turn_around()
+	set src in oview(1)
+	if(!can_touch(usr))
+		return FALSE
+	. = ..()
+	if(.)
+		update_icon()
 
-	if(usr.incapacitated())
-		return 0
-
-	if (!can_touch(usr) || ismouse(usr))
-		return
-
-	if(anchored)
-		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return 0
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-	return
 
 /obj/structure/railing/verb/flip() // This will help push railing to remote places, such as open space turfs
 	set name = "Flip Railing"

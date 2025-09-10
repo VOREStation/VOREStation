@@ -170,29 +170,13 @@
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src), 1)
 
-/obj/structure/bed/verb/turn_around()
-	set name = "Turn Around"
-	set category = "Object"
-	set src in oview(1)
-
+/obj/structure/bed/turn_around()
 	if(!flippable)
 		to_chat(usr,span_notice("\The [src] can't face the other direction."))
-		return
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-	if(dir == 2)
-		src.set_dir(1)
-	else if(dir == 1)
-		src.set_dir(2)
-	else if(dir == 4)
-		src.set_dir(8)
-	else if(dir == 8)
-		src.set_dir(4)
+		return FALSE
+	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
+		return FALSE
+	. = ..()
 
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"

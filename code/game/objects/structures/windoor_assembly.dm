@@ -45,6 +45,7 @@
 	update_state()
 
 	update_nearby_tiles(need_rebuild=1)
+	AddElement(/datum/element/rotatable)
 
 /obj/structure/windoor_assembly/Destroy()
 	density = FALSE
@@ -270,46 +271,34 @@
 			name = "near finished "
 	name += "[secure ? "secure " : ""]windoor assembly[created_name ? " ([created_name])" : ""]"
 
-//Rotates the windoor assembly clockwise
-/obj/structure/windoor_assembly/verb/rotate_clockwise()
-	set name = "Rotate Windoor Assembly Clockwise"
-	set category = "Object"
+// Rotation verb overrides
+/obj/structure/windoor_assembly/rotate_clockwise()
 	set src in oview(1)
-
-	if (src.anchored)
-		to_chat(usr,"It is fastened to the floor; therefore, you can't rotate it!")
-		return 0
-	if(src.state != "01")
+	if(state != "01")
 		update_nearby_tiles(need_rebuild=1) //Compel updates before
-
-	src.set_dir(turn(src.dir, 270))
-
-	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1)
-
-	update_icon()
-	return
-
-//VOREstation edit: counter-clockwise rotation
-/obj/structure/windoor_assembly/verb/rotate_counterclockwise()
-	set name = "Rotate Windoor Assembly Counter-Clockwise"
-	set category = "Object"
+	. = ..()
+	if(.)
+		if(state != "01")
+			update_nearby_tiles(need_rebuild=1)
+		update_icon()
+/obj/structure/windoor_assembly/rotate_counterclockwise()
 	set src in oview(1)
-
-	if (src.anchored)
-		to_chat(usr,"It is fastened to the floor; therefore, you can't rotate it!")
-		return 0
-	if(src.state != "01")
+	if(state != "01")
 		update_nearby_tiles(need_rebuild=1) //Compel updates before
-
-	src.set_dir(turn(src.dir, 90))
-
-	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1)
-
-	update_icon()
-	return
-//VOREstation edit end
+	. = ..()
+	if(.)
+		if(state != "01")
+			update_nearby_tiles(need_rebuild=1)
+		update_icon()
+/obj/structure/windoor_assembly/turn_around()
+	set src in oview(1)
+	if(state != "01")
+		update_nearby_tiles(need_rebuild=1) //Compel updates before
+	. = ..()
+	if(.)
+		if(state != "01")
+			update_nearby_tiles(need_rebuild=1)
+		update_icon()
 
 //Flips the windoor assembly, determines whather the door opens to the left or the right
 /obj/structure/windoor_assembly/verb/flip()
