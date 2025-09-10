@@ -1,5 +1,5 @@
 /datum/element/rotatable
-	VAR_PRIVATE/only_flip = FALSE
+	VAR_PROTECTED/only_flip = FALSE
 
 /datum/element/rotatable/onlyflip
 	only_flip = TRUE
