@@ -202,33 +202,93 @@
 	desc = "It is a cute pink egg with white spots."
 	icon_state = "egg_pinkspots"
 
-// various discarded clothing sprites
+// various discarded clothing sprites, thanks Arpi!
 /obj/item/storage/vore_egg/clothing_pile_red
-	name = "pile of clothes"
+	name = "red pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_red"
 
 /obj/item/storage/vore_egg/clothing_pile_blue
-	name = "pile of clothes"
+	name = "blue pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_blue"
 
 /obj/item/storage/vore_egg/clothing_pile_purple
-	name = "pile of clothes"
+	name = "purple pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_purple"
 
 /obj/item/storage/vore_egg/clothing_pile_green
-	name = "pile of clothes"
+	name = "green pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_green"
 
 /obj/item/storage/vore_egg/clothing_pile_white
-	name = "pile of clothes"
+	name = "white pile of clothes"
+	desc = "It is a pile of someone's laundry."
+	icon_state = "egg_pile_white"
+
+/obj/item/storage/vore_egg/clothing_pile_black
+	name = "black pile of clothes"
 	desc = "It is a pile of someone's laundry."
 	icon_state = "egg_pile_black"
 
-/obj/item/storage/vore_egg/clothing_pile_black
-	name = "pile of clothes"
-	desc = "It is a pile of someone's laundry."
-	icon_state = "egg_pile_black"
+/obj/item/storage/vore_egg/clothing_bra_red
+	name = "red discarded bra"
+	desc = "A supportive piece of underwear for the chest laying about."
+	icon_state = "egg_bra_red"
+
+/obj/item/storage/vore_egg/clothing_bra_blue
+	name = "blue discarded bra"
+	desc = "A supportive piece of underwear for the chest laying about."
+	icon_state = "egg_bra_blue"
+
+/obj/item/storage/vore_egg/clothing_bra_purple
+	name = "purple discarded bra"
+	desc = "A supportive piece of underwear for the chest laying about."
+	icon_state = "egg_bra_purple"
+
+/obj/item/storage/vore_egg/clothing_bra_green
+	name = "green discarded bra"
+	desc = "A supportive piece of underwear for the chest laying about."
+	icon_state = "egg_bra_green"
+
+/obj/item/storage/vore_egg/clothing_bra_white
+	name = "white discarded bra"
+	desc = "A supportive piece of underwear for the chest laying about."
+	icon_state = "egg_bra_white"
+
+/obj/item/storage/vore_egg/clothing_bra_black
+	name = "black discarded bra"
+	desc = "A supportive piece of underwear for the chest laying about."
+	icon_state = "egg_bra_black"
+
+/obj/item/storage/vore_egg/clothing_bottom_red
+	name = "red discarded bottom"
+	desc = "A cloth undergarment for the hips laying about."
+	icon_state = "egg_bottom_red"
+
+/obj/item/storage/vore_egg/clothing_bottom_blue
+	name = "blue discarded bottom"
+	desc = "A cloth undergarment for the hips laying about."
+	icon_state = "egg_bottom_blue"
+
+/obj/item/storage/vore_egg/clothing_bottom_purple
+	name = "purple discarded bottom"
+	desc = "A cloth undergarment for the hips laying about."
+	icon_state = "egg_bottom_purple"
+
+/obj/item/storage/vore_egg/clothing_bottom_green
+	name = "green discarded bottom"
+	desc = "A cloth undergarment for the hips laying about."
+	icon_state = "egg_bottom_green"
+
+/obj/item/storage/vore_egg/clothing_bottom_white
+	name = "white discarded bottom"
+	desc = "A cloth undergarment for the hips laying about."
+	icon_state = "egg_bottom_white"
+
+/obj/item/storage/vore_egg/clothing_bottom_black
+	name = "black discarded bottom"
+	desc = "A cloth undergarment for the hips laying about."
+	icon_state = "egg_bottom_black"
