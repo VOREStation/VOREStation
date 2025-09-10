@@ -104,6 +104,16 @@ Buildable meters
 	set_dir(turn(dir, -180))
 	fixdir()
 
+/obj/item/pipe/verb/flip()
+	set category = "Object"
+	set name = "Flip Pipe"
+	set src in view(1)
+
+	if ( usr.stat || usr.restrained() || !usr.canmove )
+		return
+
+	do_a_flip()
+
 /obj/item/pipe/trinary/flippable/do_a_flip()
 	// set_dir(turn(dir, flipped ? 45 : -45))
 	// TG has a magic icon set with the flipped versions in the diagonals.
