@@ -19,6 +19,10 @@ LINEN BINS
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
+/obj/item/bedsheet/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/rotatable)
+
 /obj/item/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
 	if(layer == initial(layer))

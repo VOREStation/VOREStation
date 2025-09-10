@@ -35,6 +35,8 @@
 	if(new_padding_material)
 		padding_material = get_material_by_name(new_padding_material)
 	update_icon()
+	if(!flippable) // If we can't change directions, don't bother.
+		AddElement(/datum/element/rotatable)
 	return INITIALIZE_HINT_NORMAL
 
 /obj/structure/bed/get_material()
@@ -170,9 +172,9 @@
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src), 1)
 
-/obj/structure/bed/turn_around()
+/obj/structure/bed/handle_rotation_verbs()
 	if(!flippable)
-		to_chat(usr,span_notice("\The [src] can't face the other direction."))
+		to_chat(usr,span_notice("\The [src] can't face another direction."))
 		return FALSE
 	if(isobserver(usr) && !CONFIG_GET(flag/ghost_interaction))
 		return FALSE

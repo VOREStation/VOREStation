@@ -12,7 +12,6 @@
 /obj/structure/bed/chair/Initialize(mapload, var/new_material, var/new_padding_material)
 	. = ..()
 	update_layer()
-	AddElement(/datum/element/rotatable)
 
 /obj/structure/bed/chair/attackby(obj/item/W as obj, mob/user as mob)
 	..()
