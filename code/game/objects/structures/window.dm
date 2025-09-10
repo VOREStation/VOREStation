@@ -376,7 +376,6 @@
 		T.update_connections()
 		T.update_icon()
 
-
 /obj/structure/window/Destroy()
 	density = FALSE
 	update_nearby_tiles()
