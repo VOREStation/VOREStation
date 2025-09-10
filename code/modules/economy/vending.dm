@@ -98,7 +98,8 @@
 	build_inventory()
 	power_change()
 
-	AddElement(/datum/element/rotatable)
+	if(can_rotate) // If we can't change directions, don't bother.
+		AddElement(/datum/element/rotatable)
 
 GLOBAL_LIST_EMPTY(vending_products)
 /**
@@ -634,12 +635,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 			popup.open()
 	else
 		to_chat(user,span_warning("You do not have the required access to view the vending logs for this machine."))
-
-/obj/machinery/vending/handle_rotation_verbs(angle)
-	if(can_rotate == FALSE)
-		to_chat(usr, span_warning("\The [src] cannot be rotated."))
-		return FALSE
-	. = ..()
 
 /obj/machinery/vending/verb/check_logs()
 	set name = "Check Vending Logs"
