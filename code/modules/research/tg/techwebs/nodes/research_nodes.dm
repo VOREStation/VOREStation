@@ -58,6 +58,7 @@
 		"shelter_capsule_sauna",
 		"shelter_capsule_luxurybar",
 		"shelter_capsule_luxurycabin",
+		"shelter_capsule_cafe",
 		// "ore_silo",
 		// "plumbing_receiver",
 		// "adv_watering_can",
