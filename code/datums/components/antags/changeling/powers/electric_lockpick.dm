@@ -31,7 +31,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "electric_hand"
 	show_examine = FALSE
-	item_flags = DROPDEL
+	item_flags = DROPDEL | NOSTRIP
 
 /obj/item/finger_lockpick/Initialize(mapload)
 	. = ..()

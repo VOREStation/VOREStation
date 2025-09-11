@@ -91,7 +91,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "electric_hand"
 	show_examine = FALSE
-	item_flags = DROPDEL
+	item_flags = DROPDEL | NOSTRIP
 
 	var/shock_cost = 10
 	var/agony_amount = 60

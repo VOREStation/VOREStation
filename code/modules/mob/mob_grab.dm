@@ -18,7 +18,7 @@
 	name = "grab"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "reinforce"
-	item_flags = DROPDEL
+	item_flags = DROPDEL | NOSTRIP
 	var/obj/screen/grab/hud = null
 	var/mob/living/affecting = null
 	var/mob/living/carbon/human/assailant = null

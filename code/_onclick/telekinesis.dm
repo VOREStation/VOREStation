@@ -66,7 +66,7 @@
 	var/last_throw = 0
 	var/atom/movable/focus = null
 	var/mob/living/host = null
-	item_flags = DROPDEL
+	item_flags = DROPDEL | NOSTRIP
 
 /obj/item/tk_grab/dropped(mob/user)
 	..()

@@ -3,7 +3,7 @@
 	desc = "Deployable mop."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mop"
-	item_flags = DROPDEL
+	item_flags = DROPDEL | NOSTRIP
 	force = 3
 	anchored = TRUE    // Never spawned outside of inventory, should be fine.
 	throwforce = 1  //Throwing or dropping the item deletes it.

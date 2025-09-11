@@ -7,7 +7,7 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_spells.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_spells.dmi',
 		)
-	item_flags = DROPDEL
+	item_flags = DROPDEL | NOSTRIP
 	throwforce = 0
 	force = 0
 	show_examine = FALSE
