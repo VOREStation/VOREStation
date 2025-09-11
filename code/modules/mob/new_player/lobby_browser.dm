@@ -146,7 +146,7 @@
 			handle_server_news()
 			return TRUE
 		if("give_feedback")
-			if(!SSsqlite.can_submit_feedback(GLOB.persistent_clients_by_ckey[ckey]))
+			if(!SSsqlite.can_submit_feedback(persistent_client.client))
 				return
 
 			if(client.feedback_form)
