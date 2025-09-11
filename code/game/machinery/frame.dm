@@ -216,6 +216,57 @@ GLOBAL_LIST(construction_frame_floor)
 	circuit = /obj/machinery/atmospheric_field_generator
 	frame_size = 3
 
+// Refinery machines
+/datum/frame/frame_types/industrial_reagent_grinder
+	name = "Industrial Chemical Grinder"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_pump
+	name = "Industrial Chemical Pump"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_filter
+	name = "Industrial Chemical Filter"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_vat
+	name = "Industrial Chemical Vat"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_mixer
+	name = "Industrial Chemical Mixer"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_pipe
+	name = "Industrial Chemical Pipe"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_waste_processor
+	name = "Industrial Chemical Waste Processor"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_hub
+	name = "Industrial Chemical Hub"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_reactor
+	name = "Industrial Chemical Reactor"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
+/datum/frame/frame_types/industrial_reagent_furnace
+	name = "Industrial Chemical Sintering Furnace"
+	icon_override = 'icons/obj/stock_parts_refinery.dmi'
+	frame_class = FRAME_CLASS_MACHINE
+
 //////////////////////////////
 // Frame Object (Structure)
 //////////////////////////////
@@ -303,7 +354,7 @@ GLOBAL_LIST(construction_frame_floor)
 		if(state == FRAME_PLACED && !anchored)
 			to_chat(user, span_notice("You start to wrench the frame into place."))
 			playsound(src, P.usesound, 50, 1)
-			if(do_after(user, 20 * P.toolspeed))
+			if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 				anchored = TRUE
 				if(!need_circuit && circuit)
 					state = FRAME_FASTENED
@@ -315,7 +366,7 @@ GLOBAL_LIST(construction_frame_floor)
 
 		else if(state == FRAME_PLACED && anchored)
 			playsound(src, P.usesound, 50, 1)
-			if(do_after(user, 20 * P.toolspeed))
+			if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 				to_chat(user, span_notice("You unfasten the frame."))
 				anchored = FALSE
 
@@ -324,7 +375,7 @@ GLOBAL_LIST(construction_frame_floor)
 			var/obj/item/weldingtool/WT = P.get_welder()
 			if(WT.remove_fuel(0, user))
 				playsound(src, P.usesound, 50, 1)
-				if(do_after(user, 20 * P.toolspeed))
+				if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 					if(src && WT.isOn())
 						to_chat(user, span_notice("You deconstruct the frame."))
 						new /obj/item/stack/material/steel(src.loc, frame_type.frame_size)
@@ -500,7 +551,7 @@ GLOBAL_LIST(construction_frame_floor)
 				return
 			to_chat(user, span_notice("You start to add cables to the frame."))
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-			if(do_after(user, 20) && state == FRAME_FASTENED)
+			if(do_after(user, 2 SECONDS, target = src) && state == FRAME_FASTENED)
 				if(C.use(5))
 					to_chat(user, span_notice("You add cables to the frame."))
 					state = FRAME_WIRED
@@ -560,7 +611,7 @@ GLOBAL_LIST(construction_frame_floor)
 					return
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, span_notice("You start to put in the glass panel."))
-				if(do_after(user, 20) && state == FRAME_WIRED)
+				if(do_after(user, 2 SECONDS, target = src) && state == FRAME_WIRED)
 					if(G.use(2))
 						to_chat(user, span_notice("You put in the glass panel."))
 						state = FRAME_PANELED
@@ -572,7 +623,7 @@ GLOBAL_LIST(construction_frame_floor)
 					return
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, span_notice("You start to put in the glass panel."))
-				if(do_after(user, 20) && state == FRAME_WIRED)
+				if(do_after(user, 2 SECONDS, target = src) && state == FRAME_WIRED)
 					if(G.use(2))
 						to_chat(user, span_notice("You put in the glass panel."))
 						state = FRAME_PANELED
@@ -580,33 +631,63 @@ GLOBAL_LIST(construction_frame_floor)
 	else if(istype(P, /obj/item))
 		if(state == FRAME_WIRED)
 			if(frame_type.frame_class == FRAME_CLASS_MACHINE)
-				for(var/I in req_components)
-					if(istype(P, I) && (req_components[I] > 0))
-						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-						if(istype(P, /obj/item/stack))
-							var/obj/item/stack/ST = P
-							if(ST.get_amount() > 1)
-								var/camt = min(ST.get_amount(), req_components[I]) // amount of stack to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/NS = new ST.stacktype(src, camt)
-								NS.update_icon()
-								ST.use(camt)
-								components += NS
-								req_components[I] -= camt
-								update_desc()
-								break
-
-						user.drop_item()
-						P.forceMove(src)
-						components += P
-						req_components[I]--
-						update_desc()
-						break
-				to_chat(user, desc)
-				if(P && P.loc != src && !istype(P, /obj/item/stack/material))
-					to_chat(user, span_warning("You cannot add that component to the machine!"))
-					return
+				if(istype(P, /obj/item/storage))
+					mass_install_parts(user,P)
+				else
+					install_part(user,P)
 
 	update_icon()
+
+/obj/structure/frame/proc/install_part(var/mob/user, var/obj/item/P, var/defer_feedback = FALSE)
+	var/installed_part = FALSE
+	for(var/I in req_components)
+		if(!istype(P, I) || (req_components[I] == 0))
+			continue
+
+		installed_part = TRUE
+		if(istype(P, /obj/item/stack))
+			var/obj/item/stack/ST = P
+			if(ST.get_amount() > 1)
+				var/camt = min(ST.get_amount(), req_components[I]) // amount of stack to take, idealy amount required, but limited by amount provided
+				var/obj/item/stack/NS = new ST.stacktype(src, camt)
+				NS.update_icon()
+				ST.use(camt)
+				components += NS
+				req_components[I] -= camt
+				break
+
+		if(istype(P.loc,/obj/item/storage))
+			var/obj/item/storage/holder = P.loc
+			holder.remove_from_storage(P, src)
+		else
+			user.drop_item()
+			P.forceMove(src)
+		components += P
+		req_components[I]--
+		break
+
+	if(defer_feedback)
+		return installed_part
+
+	if(installed_part)
+		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
+		update_desc()
+		to_chat(user, desc)
+		return TRUE
+
+	to_chat(user, span_warning("You cannot add that component to the machine!"))
+	return FALSE
+
+/obj/structure/frame/proc/mass_install_parts(var/mob/user, var/obj/item/storage/S)
+	var/installed_part = FALSE
+	for(var/obj/item/P in S.contents)
+		installed_part |= install_part(user, P, TRUE)
+	if(!installed_part)
+		return FALSE
+	playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
+	update_desc()
+	to_chat(user, desc)
+	return TRUE
 
 /obj/structure/frame/verb/rotate_counterclockwise()
 	set name = "Rotate Frame Counter-Clockwise"

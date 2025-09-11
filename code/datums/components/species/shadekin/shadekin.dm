@@ -46,6 +46,8 @@
 	var/in_dark_respite = FALSE
 	var/manual_respite = FALSE
 	var/respite_activating = FALSE
+	///If we return to The Dark upon death or not.
+	var/no_retreat = FALSE
 
 	//Dark Tunneling Vars (Unused on Virgo)
 	///If we have already made a dark tunnel
@@ -90,20 +92,16 @@
 
 /datum/component/shadekin/Initialize()
 	//normal component bs
-	if(!isliving(parent))
+	if(!isliving(parent) || issilicon(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
-	add_shadekin_abilities(owner)
 	if(ishuman(owner))
 		RegisterSignal(owner, COMSIG_SHADEKIN_COMPONENT, PROC_REF(handle_comp)) //Happens every species tick.
 	else
 		RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(handle_comp)) //Happens every life tick (mobs)
 
 	//generates powers and then adds them
-	for(var/power in shadekin_abilities)
-		var/datum/power/shadekin/SKP = new power(src)
-		shadekin_ability_datums.Add(SKP)
-	add_shadekin_abilities()
+	build_and_add_abilities()
 
 	handle_comp() //First hit is free!
 
@@ -112,23 +110,22 @@
 	set_eye_energy() //Sets the energy values based on our eye color.
 
 	//Misc stuff we need to do
-	if(extended_kin)
-		add_verb(owner, /mob/living/proc/nutrition_conversion_toggle)
-	add_verb(owner, /mob/living/proc/flicker_adjustment)
+	add_verb(owner, /mob/living/proc/shadekin_control_panel)
 
 /datum/component/shadekin/Destroy(force)
 	if(ishuman(owner))
 		UnregisterSignal(owner, COMSIG_SHADEKIN_COMPONENT)
 	else
 		UnregisterSignal(owner, COMSIG_LIVING_LIFE)
-	if(extended_kin)
-		remove_verb(owner, /mob/living/proc/nutrition_conversion_toggle)
-	remove_verb(owner, /mob/living/proc/flicker_adjustment)
+	remove_verb(owner, /mob/living/proc/shadekin_control_panel)
 	for(var/datum/power in shadekin_ability_datums)
 		qdel(power)
 	for(var/obj/effect/abstract/dark_maw/dm as anything in active_dark_maws) //if the component gets destroyed so does your precious maws
 		if(!QDELETED(dm))
 			qdel(dm)
+	if(owner.shadekin_display)
+		owner.shadekin_display.invisibility = INVISIBILITY_ABSTRACT //hide it
+	replace_shadekin_master()
 	active_dark_maws.Cut()
 	shadekin_abilities.Cut()
 	shadekin_ability_datums.Cut()
@@ -153,6 +150,13 @@
 	//Shifted kin don't gain/lose energy (and save time if we're at the cap)
 	var/darkness = 1
 	var/dark_gains = 0
+
+	var/suit = owner.get_equipped_item(slot_wear_suit)
+	if(istype(suit, /obj/item/clothing/suit/space))
+		if(dark_energy)
+			to_chat(owner, span_warning("You feel your energy waning and your powers being blocked from the heavy equipment you're wearing!"))
+		dark_energy = 0
+		return
 
 	var/turf/T = get_turf(owner)
 	if(!T)
@@ -196,6 +200,12 @@
 		stun_time -= min(flicker_break_chance / 5, 1)
 	return stun_time
 
+///Sees if the savefile we have selected in CHARACTER SETUP is the same as our ACTIVE CHARACTER savefile.
+/datum/component/shadekin/proc/correct_savefile_selected()
+	if(owner.client.prefs.default_slot == owner.mind.loaded_from_slot)
+		return TRUE
+	return FALSE
+
 /datum/component/shadekin/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -209,10 +219,17 @@
 		"flicker_color" = flicker_color,
 		"flicker_break_chance" = flicker_break_chance,
 		"flicker_distance" = flicker_distance,
+		"no_retreat" = no_retreat,
+		"nutrition_energy_conversion" = nutrition_energy_conversion,
+		"extended_kin" = extended_kin,
+		"savefile_selected" = correct_savefile_selected()
 	)
 
 	return data
 
+/datum/component/shadekin/tgui_close(mob/user)
+	SScharacter_setup.queue_preferences_save(user?.client?.prefs)
+	. = ..()
 
 /datum/component/shadekin/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
@@ -225,14 +242,14 @@
 			if(!isnum(new_time))
 				return FALSE
 			flicker_time = new_time
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_time, new_time)
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_time, new_time, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 			return TRUE
 		if("adjust_color")
 			var/set_new_color = tgui_color_picker(ui.user, "Select a color you wish the lights to flicker as (Default is #E0EFF0)", "Color Selector", flicker_color)
 			if(!set_new_color)
 				return FALSE
 			flicker_color = set_new_color
-			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color)
+			ui.user.write_preference_directly(/datum/preference/color/living/flicker_color, set_new_color, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 			return TRUE
 		if("adjust_break")
 			var/new_break_chance = text2num(params["val"])
@@ -240,7 +257,7 @@
 			if(!isnum(new_break_chance))
 				return FALSE
 			flicker_break_chance = new_break_chance
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_break_chance)
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_break_chance, new_break_chance, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 			return TRUE
 		if("adjust_distance")
 			var/new_distance = text2num(params["val"])
@@ -248,29 +265,20 @@
 			if(!isnum(new_distance))
 				return FALSE
 			flicker_distance = new_distance
-			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_distance, new_distance)
+			ui.user.write_preference_directly(/datum/preference/numeric/living/flicker_distance, new_distance, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 			return TRUE
+		if("toggle_retreat")
+			var/new_retreat = !no_retreat
+			no_retreat = !no_retreat
+			ui.user.write_preference_directly(/datum/preference/toggle/living/dark_retreat_toggle, new_retreat, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
+		if("toggle_nutrition")
+			var/new_retreat = !nutrition_energy_conversion
+			nutrition_energy_conversion = !nutrition_energy_conversion
+			ui.user.write_preference_directly(/datum/preference/toggle/living/shadekin_nutrition_conversion, new_retreat, WRITE_PREF_MANUAL, save_to_played_slot = TRUE)
 
-/mob/living/proc/nutrition_conversion_toggle()
-	set name = "Toggle Energy <-> Nutrition conversions"
-	set desc = "Toggle dark energy and nutrition being converted into each other when full"
-	set category = "Abilities.Shadekin"
-
-	var/datum/component/shadekin/SK = get_shadekin_component()
-	if(!SK)
-		to_chat(src, span_warning("Only a shadekin can use that!"))
-		return FALSE
-
-	if(SK.nutrition_energy_conversion)
-		to_chat(src, span_notice("Nutrition and dark energy conversions disabled."))
-		SK.nutrition_energy_conversion = 0
-	else
-		to_chat(src, span_notice("Nutrition and dark energy conversions enabled."))
-		SK.nutrition_energy_conversion = 1
-
-/mob/living/proc/flicker_adjustment()
-	set name = "Adjust Light Flicker"
-	set desc = "Allows you to adjust the settings of the light flicker when you phase in!"
+/mob/living/proc/shadekin_control_panel()
+	set name = "Shadekin Control Panel"
+	set desc = "Allows you to adjust the settings of various shadekin settings!"
 	set category = "Abilities.Shadekin"
 
 	var/datum/component/shadekin/SK = get_shadekin_component()

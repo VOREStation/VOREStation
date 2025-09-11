@@ -29,7 +29,7 @@ var/datum/antagonist/technomancer/technomancers
 /datum/antagonist/technomancer/update_antag_mob(var/datum/mind/technomancer)
 	..()
 	technomancer.store_memory(span_bold("Remember:") + " Do not forget to purchase the functions and equipment you need.")
-	technomancer.current.real_name = "[pick(wizard_first)] [pick(wizard_second)]"
+	technomancer.current.real_name = "[pick(GLOB.wizard_first)] [pick(GLOB.wizard_second)]"
 	technomancer.current.name = technomancer.current.real_name
 
 /datum/antagonist/technomancer/equip(var/mob/living/carbon/human/technomancer_mob)
@@ -93,8 +93,9 @@ var/datum/antagonist/technomancer/technomancers
 	var/text = print_player_lite(player)
 
 	var/obj/item/technomancer_core/core
-	if(player.original)
-		core = locate() in player.original
+	var/mob/living/original = player.original_character?.resolve()
+	if(original)
+		core = locate() in original
 		if(core)
 			text += "<br>Bought [english_list(core.spells)], and used \a [core]."
 		else

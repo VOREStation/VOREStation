@@ -71,7 +71,7 @@
 	cut_overlays()
 	if(front_id)
 		var/tiny_state = "id-generic"
-		if("id-[front_id.icon_state]" in cached_icon_states(icon))
+		if(icon_exists(icon, "id-[front_id.icon_state]"))
 			tiny_state = "id-"+front_id.icon_state
 		var/image/tiny_image = new/image(icon, icon_state = tiny_state)
 		tiny_image.appearance_flags = RESET_COLOR

@@ -16,7 +16,7 @@ GLOBAL_VAR_INIT(prison_shuttle_timeleft, 0)
 	icon_keyboard = "security_key"
 	icon_screen = "syndishuttle"
 	light_color = "#00ffff"
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	circuit = /obj/item/circuitboard/prison_shuttle
 	var/temp = null
 	var/hacked = 0
@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(prison_shuttle_timeleft, 0)
 
 
 /obj/machinery/computer/prison_shuttle/proc/post_signal(var/command)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1311)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1311)
 	if(!frequency) return
 	var/datum/signal/status_signal = new
 	status_signal.source = src

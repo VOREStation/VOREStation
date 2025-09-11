@@ -35,7 +35,8 @@
 
 /mob/living/carbon/alien/handle_regular_status_updates()
 
-	if(status_flags & GODMODE)	return 0
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL) //I don't want to go in and do HUD stuff imediately, so... no.
+		return 0	// Cancelled by a component
 
 	if(stat == DEAD)
 		blinded = 1

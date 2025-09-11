@@ -1,20 +1,28 @@
+/*ALL MOB-RELATED DEFINES THAT DON'T BELONG IN ANOTHER FILE GO HERE*/
+
+//Misc mob defines
+
+//Ready states at roundstart for mob/dead/new_player
+#define PLAYER_NOT_READY 0
+#define PLAYER_READY_TO_PLAY 1
+
 // /mob/var/stat things.
 #define CONSCIOUS   0
 #define UNCONSCIOUS 1
 #define DEAD        2
 
 // Bitflags defining which status effects could be or are inflicted on a mob.
-#define CANSTUN     0x1
-#define CANWEAKEN   0x2
-#define CANPARALYSE 0x4
-#define CANPUSH     0x8
-#define LEAPING     0x10
-#define HIDING      0x20
-#define PASSEMOTES  0x40    // Mob has a cortical borer or holders inside of it that need to see emotes.
-#define GODMODE     0x1000
-#define FAKEDEATH   0x2000  // Replaces stuff like changeling.changeling_fakedeath.
-#define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
-#define DOING_TASK	0x8000  // Performing a do_after or do_mob that's exclusive
+#define CANSTUN		0x1
+#define CANWEAKEN	0x2
+#define CANPARALYSE	0x4
+#define CANPUSH		0x8
+#define LEAPING		0x10
+#define HIDING		0x20
+#define PASSEMOTES	0x40	// Mob has a cortical borer or holders inside of it that need to see emotes.
+#define FAKEDEATH	0x1000	// Replaces stuff like changeling.changeling_fakedeath.
+#define DISFIGURED	0x2000	// Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
+#define DOING_TASK	0x4000	// Performing a do_after or do_mob that's exclusive
+#define GODMODE		0x8000	// If we have godmode enabled or not.
 
 // Grab levels.
 #define GRAB_PASSIVE    1
@@ -326,10 +334,16 @@
 #define SPECIES_VULPKANIN		"Vulpkanin"
 #define SPECIES_XENOCHIMERA		"Xenochimera"
 #define SPECIES_ZORREN_HIGH		"Zorren"
+#define SPECIES_ZORREN_DARK		"Dark Furred Zorren"
 #define SPECIES_CUSTOM			"Custom Species"
 #define SPECIES_LLEILL			"Lleill"
 #define SPECIES_HANNER			"Hanner"
 #define SPECIES_SPARKLE			"Sparkle Dog"
+
+// FBG types
+#define FBP_ASSISTED		"assisted"
+#define FBP_MECHANICAL		"mechanical"
+#define FBP_DIGITAL			"digital"
 
 // Monkey and alien monkeys.
 #define SPECIES_MONKEY				"Monkey"
@@ -385,6 +399,7 @@
 #define SELECTS_BODYTYPE_FALSE			0
 #define SELECTS_BODYTYPE_CUSTOM			1
 #define SELECTS_BODYTYPE_SHAPESHIFTER	2
+#define SELECTS_BODYTYPE_ZORREN			3
 
 #define MARKING_NONDIGI_ONLY 		(1 << 0)
 #define MARKING_DIGITIGRADE_ONLY 	(1 << 1)
@@ -484,7 +499,9 @@
 
 #define VIS_SOULCATCHER		35
 
-#define VIS_COUNT			35 //Must be highest number from above.
+#define VIS_EVENT_INVIS		36
+
+#define VIS_COUNT			36 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100

@@ -11,6 +11,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   stun_time: number;
@@ -18,6 +19,10 @@ type Data = {
   flicker_color: string | null;
   flicker_break_chance: number;
   flicker_distance: number;
+  no_retreat: BooleanLike;
+  extended_kin: BooleanLike;
+  savefile_selected: BooleanLike;
+  nutrition_energy_conversion: number;
 };
 
 export const ShadekinConfig = (props) => {
@@ -29,13 +34,22 @@ export const ShadekinConfig = (props) => {
     flicker_color,
     flicker_break_chance,
     flicker_distance,
+    no_retreat,
+    savefile_selected,
+    extended_kin,
+    nutrition_energy_conversion,
   } = data;
 
   const isSubtle =
     flicker_time < 5 || flicker_break_chance < 5 || flicker_distance < 5;
 
+  const windowHeight =
+    (isSubtle ? 220 : 190) +
+    (extended_kin ? 95 : 0) +
+    (savefile_selected ? 0 : 90);
+
   return (
-    <Window width={300} height={isSubtle ? 220 : 190} theme="abductor">
+    <Window width={300} height={windowHeight} theme="abductor">
       <Window.Content>
         <Stack fill vertical g={0}>
           {isSubtle && (
@@ -43,8 +57,17 @@ export const ShadekinConfig = (props) => {
               <NoticeBox>Subtle Phasing, causes {stun_time} s stun.</NoticeBox>
             </Stack.Item>
           )}
+          {!savefile_selected && (
+            <Stack.Item>
+              <NoticeBox>
+                WARNING: Your current selected savefile (in Character Setup) is
+                not the same as your currently loaded savefile. Please select it
+                to prevent savefile corruption.
+              </NoticeBox>
+            </Stack.Item>
+          )}
           <Stack.Item>
-            <Section fill title="Shadekin Settings">
+            <Section fill title="Light Settings">
               <LabeledList>
                 <LabeledList.Item label="Flicker Count">
                   <Stack>
@@ -125,6 +148,26 @@ export const ShadekinConfig = (props) => {
               </LabeledList>
             </Section>
           </Stack.Item>
+          {!!extended_kin && (
+            <Stack.Item>
+              <Section fill title="Misc Settings">
+                <LabeledList.Item label="Retreat on Death">
+                  <Button.Checkbox
+                    tooltip="Toggle if you wish to return to the Dark Retreat upon death!"
+                    checked={!no_retreat}
+                    onClick={() => act('toggle_retreat')}
+                  />
+                </LabeledList.Item>
+                <LabeledList.Item label="Nutrition Conversion">
+                  <Button.Checkbox
+                    tooltip="Toggle to have dark energy and nutrition being converted into each other when full!"
+                    checked={nutrition_energy_conversion}
+                    onClick={() => act('toggle_nutrition')}
+                  />
+                </LabeledList.Item>
+              </Section>
+            </Stack.Item>
+          )}
         </Stack>
       </Window.Content>
     </Window>

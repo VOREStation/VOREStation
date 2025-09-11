@@ -1,8 +1,6 @@
 import { globalEvents, type KeyEvent } from 'tgui-core/events';
 import * as keycodes from 'tgui-core/keycodes';
 
-import { logger } from './logging';
-
 // BYOND macros, in `key: command` format.
 const byondMacros: Record<string, string> = {};
 
@@ -212,8 +210,6 @@ export function setupHotKeys(config?: KeyPassthroughConfig) {
         const byondKeyName = unEscape(macro.name);
         byondMacros[byondKeyName] = unEscape(macro.command);
       }
-
-      logger.log(byondMacros);
     });
   });
 

@@ -12,11 +12,7 @@
 					"DM_EXE": "${config:dreammaker.byondPath}"
 				}
 			},
-			"problemMatcher": [
-				"$dreammaker",
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
 			"group": {
 				"kind": "build",
 				"isDefault": true
@@ -37,11 +33,7 @@
 					"DM_EXE": "${config:dreammaker.byondPath}"
 				}
 			},
-			"problemMatcher": [
-				"$dreammaker",
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
 			"group": {
 				"kind": "build"
 			},
@@ -61,11 +53,7 @@
 					"DM_EXE": "${config:dreammaker.byondPath}"
 				}
 			},
-			"problemMatcher": [
-				"$dreammaker",
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
 			"group": {
 				"kind": "build"
 			},
@@ -85,11 +73,7 @@
 					"DM_EXE": "${config:dreammaker.byondPath}"
 				}
 			},
-			"problemMatcher": [
-				"$dreammaker",
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
 			"group": {
 				"kind": "build"
 			},
@@ -109,11 +93,7 @@
 					"DM_EXE": "${config:dreammaker.byondPath}"
 				}
 			},
-			"problemMatcher": [
-				"$dreammaker",
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
 			"group": {
 				"kind": "build"
 			},
@@ -133,11 +113,7 @@
 					"DM_EXE": "${config:dreammaker.byondPath}"
 				}
 			},
-			"problemMatcher": [
-				"$dreammaker",
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
 			"group": {
 				"kind": "build"
 			},
@@ -147,9 +123,7 @@
 		{
 			"type": "dreammaker",
 			"dme": "vorestation.dme",
-			"problemMatcher": [
-				"$dreammaker"
-			],
+			"problemMatcher": ["$dreammaker"],
 			"group": "build",
 			"label": "dm: build - vorestation.dme"
 		},
@@ -164,10 +138,7 @@
 			"windows": {
 				"command": ".\\bin\\tgui-build.cmd"
 			},
-			"problemMatcher": [
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$tsc", "$eslint-stylish"],
 			"group": "build",
 			"label": "tgui: build"
 		},
@@ -177,10 +148,7 @@
 			"windows": {
 				"command": ".\\bin\\tgui-dev.cmd"
 			},
-			"problemMatcher": [
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$tsc", "$eslint-stylish"],
 			"group": "build",
 			"label": "tgui: dev server"
 		},
@@ -190,10 +158,7 @@
 			"windows": {
 				"command": ".\\bin\\tgui-bench.cmd"
 			},
-			"problemMatcher": [
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$tsc", "$eslint-stylish"],
 			"group": "build",
 			"label": "tgui: bench"
 		},
@@ -203,10 +168,7 @@
 			"windows": {
 				"command": ".\\bin\\tgui-sonar.cmd"
 			},
-			"problemMatcher": [
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$tsc", "$eslint-stylish"],
 			"group": "build",
 			"label": "tgui: sonar"
 		},
@@ -216,10 +178,7 @@
 			"windows": {
 				"command": ".\\bin\\tgfont.cmd"
 			},
-			"problemMatcher": [
-				"$tsc",
-				"$eslint-stylish"
-			],
+			"problemMatcher": ["$tsc", "$eslint-stylish"],
 			"group": "build",
 			"label": "tgui: rebuild tgfont"
 		}

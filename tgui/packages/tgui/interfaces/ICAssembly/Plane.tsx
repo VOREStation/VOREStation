@@ -17,7 +17,7 @@ import {
   PortTypesToColor,
 } from './types';
 
-export type PlaneProps = {};
+export type PlaneProps = Record<never, never>;
 
 type PlaneState = {
   locations: Record<string, { x: number; y: number }>;
@@ -72,8 +72,8 @@ export class Plane extends Component<PlaneProps, PlaneState> {
     const position = this.getPosition(dom);
 
     if (
-      isNaN(position.x) ||
-      isNaN(position.y) ||
+      Number.isNaN(position.x) ||
+      Number.isNaN(position.y) ||
       (lastPosition &&
         lastPosition.x === position.x &&
         lastPosition.y === position.y)
@@ -289,10 +289,30 @@ const Circuit = (
     onPortRightClick,
   } = props;
 
-  const [pos, setPos] = useSharedState(`component-pos-${circuit.ref}`, {
-    x: 0,
-    y: 0,
-  });
+  const { act, data } = useBackend<Data>();
+
+  // Find stored position for this circuit
+  const storedPosition = data.component_positions?.find(
+    (pos) => pos.ref === circuit.ref,
+  );
+  const initialPosition = storedPosition
+    ? { x: storedPosition.x, y: storedPosition.y }
+    : { x: 0, y: 0 };
+
+  const [pos, setPos] = useSharedState(
+    `component-pos-${circuit.ref}`,
+    initialPosition,
+  );
+
+  const handleComponentMoved = (val) => {
+    setPos(val);
+    // Also notify the backend to track position for export/import
+    act('update_component_position', {
+      ref: circuit.ref,
+      x: val.x,
+      y: val.y,
+    });
+  };
 
   return (
     <CircuitComponent
@@ -300,7 +320,7 @@ const Circuit = (
       gridMode
       x={pos.x}
       y={pos.y}
-      onComponentMoved={(val) => setPos(val)}
+      onComponentMoved={handleComponentMoved}
       onPortUpdated={onPortUpdated}
       onPortLoaded={onPortLoaded}
       onPortMouseDown={onPortMouseDown}

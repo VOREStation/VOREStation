@@ -61,7 +61,7 @@ var/list/name_to_material
  * Arguments:
  * - breakdown_flags: A set of flags determining how exactly the materials are broken down. (unused)
  */
-/obj/proc/get_material_composition(breakdown_flags=NONE)
+/obj/item/proc/get_material_composition(breakdown_flags=NONE)
 	. = list()
 	for(var/mat in matter)
 		var/datum/material/M = GET_MATERIAL_REF(mat)
@@ -77,6 +77,22 @@ var/list/name_to_material
 				.[M] += matter[mat]
 			else
 				.[M] = matter[mat]
+
+/obj/item/proc/set_custom_materials(list/materials, multiplier = 1)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(!LAZYLEN(materials))
+		matter = null
+		return
+
+	materials = materials.Copy()
+
+	if(multiplier != 1)
+		for(var/x in materials)
+			materials[x] *= multiplier
+
+	matter = materials
+
 
 // Builds the datum list above.
 /proc/populate_material_list(force_remake=0)

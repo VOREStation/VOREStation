@@ -30,6 +30,7 @@
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
 	if(!istype(material))
+		stack_trace("Material of type: [new_material] does not exist.")
 		return INITIALIZE_HINT_QDEL
 	if(new_padding_material)
 		padding_material = get_material_by_name(new_padding_material)
@@ -142,7 +143,7 @@
 			to_chat(user, span_notice("\The [src] already has someone buckled to it."))
 			return
 		user.visible_message(span_notice("[user] attempts to buckle [affecting] into \the [src]!"))
-		if(do_after(user, 20, G.affecting))
+		if(do_after(user, 2 SECONDS, G.affecting, target = src))
 			affecting.loc = loc
 			spawn(0)
 				if(buckle_mob(affecting))
@@ -373,7 +374,7 @@
 	desc = "Whatever species designed this must've enjoyed relaxation as well. Looks vaguely comfy."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_bed)
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "bed"
+	icon_state = "bed_red"
 	flippable = FALSE
 
 /obj/structure/bed/alien/update_icon()
@@ -404,7 +405,7 @@
 		else
 			user.visible_message("[user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
 
-		if(do_after(user, 20 * W.toolspeed))
+		if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 			if(!src) return
 			to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 			anchored = !anchored

@@ -83,6 +83,7 @@
 /obj/item/reagent_containers/food/snacks/hugemushroomslice/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
+	reagents.add_reagent(REAGENT_ID_FUNGI, 1)
 
 /obj/item/reagent_containers/food/snacks/tomatomeat
 	name = "tomato slice"

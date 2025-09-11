@@ -114,3 +114,9 @@
 	light_range = 3
 	light_power = 1
 	light_color = "#ffffff"
+
+/obj/effect/projectile/muzzle/coildefense
+	icon_state = "muzzle_coildef"
+	light_range = 3
+	light_power = 1
+	light_color = "#FFFFFF"

@@ -31,6 +31,7 @@
 				prob(6);/mob/living/simple_mob/animal/goat,
 				prob(10);/mob/living/simple_mob/animal/passive/penguin,
 				prob(10);/mob/living/simple_mob/animal/passive/mouse,
+				prob(10);/mob/living/simple_mob/animal/passive/mothroach,
 				prob(10);/mob/living/simple_mob/animal/passive/yithian,
 				prob(10);/mob/living/simple_mob/animal/passive/tindalos,
 				prob(10);/mob/living/simple_mob/animal/passive/pillbug,

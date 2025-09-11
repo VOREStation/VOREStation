@@ -44,16 +44,14 @@ const icons = {
 
 type Data = { dates: string[] };
 
-export class Changelog extends Component<
-  {},
-  {
-    data:
-      | string
-      | { date: string; authors: { name: string; changes: string[] } };
-    selectedDate: string;
-    selectedIndex: number;
-  }
-> {
+type ChangelogProps = Record<never, never>;
+
+interface ChangelogState {
+  data: string | { date: string; authors: { name: string; changes: string[] } };
+  selectedDate: string;
+  selectedIndex: number;
+}
+export class Changelog extends Component<ChangelogProps, ChangelogState> {
   dateChoices: string[];
 
   constructor(props) {
@@ -112,9 +110,9 @@ export class Changelog extends Component<
     } = useBackend<Data>();
 
     if (dates) {
-      dates.forEach((date) =>
-        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true)),
-      );
+      dates.forEach((date) => {
+        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true));
+      });
       this.setSelectedDate(this.dateChoices[0]);
       this.getData(dates[0]);
     }

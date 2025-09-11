@@ -7,7 +7,7 @@
 	icon_dead = "stalker-dead"
 	icon_living = "stalker"
 	icon_state = "stalker"
-	icon_rest = "stalker-rest"
+	icon_rest = "stalker_rest"
 	faction = FACTION_STALKER
 	old_x = -16
 	old_y = 0
@@ -43,11 +43,7 @@
 	vore_pounce_maxhealth = 1000
 	vore_bump_emote = "pounces on"
 
-/mob/living/simple_mob/vore/stalker/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/stalker/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

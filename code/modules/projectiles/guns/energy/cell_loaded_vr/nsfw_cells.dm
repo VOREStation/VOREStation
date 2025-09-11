@@ -35,7 +35,7 @@
 	projectile_type = /obj/item/projectile/bullet/pellet/e_shot_stun
 
 /obj/item/projectile/bullet/pellet/e_shot_stun
-	icon_state = "spell"
+	icon_state = "spark"
 	damage = 2
 	agony = 20
 	pellets = 6			//number of pellets

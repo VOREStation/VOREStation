@@ -21,6 +21,8 @@
 	reagent_state = LIQUID
 	color = "#ffffff"
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/glamour_transparent/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!target.cloaked)
@@ -58,6 +60,8 @@
 	color = "#ffffff"
 	scannable = 1
 	wiki_flag = WIKI_SPOILER
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/glamour_scaling/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!(/mob/living/proc/set_size in target.verbs))
@@ -90,6 +94,8 @@
 	reagent_state = LIQUID
 	color = "#ffffff"
 	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MATSCI
 
 /datum/reagent/glamour_twinkling/affect_blood(var/mob/living/carbon/human/target, var/removed)
 	if(target.species.darksight < 10)
@@ -113,8 +119,7 @@
 	var/image/coolanimation = image('icons/obj/glamour.dmi', null, "animation")
 	coolanimation.plane = PLANE_LIGHTING_ABOVE
 	thing.overlays += coolanimation
-	sleep(14)
-	thing.overlays -= coolanimation
+	addtimer(CALLBACK(src, PROC_REF(animate_action_finished),thing,coolanimation), 1.4 SECOND, TIMER_DELETE_ME)
 
 //Face of Glamour (creates a clone of a target)
 
@@ -250,7 +255,7 @@
 
 	if(m_action == "Yes")
 		to_chat(M, span_warning("You begin to break the lines of the glamour ring."))
-		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(M, 10 SECONDS, target = src))
 			to_chat(M, span_warning("You leave the glamour ring alone."))
 			return
 		to_chat(M, span_warning("You have destroyed \the [src]."))
@@ -265,7 +270,7 @@
 		if(LL.ring_cooldown + 10 MINUTES > world.time)
 			to_chat(M, span_warning("You must wait a while before drawing energy from the glamour again."))
 			return
-		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(M, 10 SECONDS, target = src))
 			to_chat(M, span_warning("You stop drawing energy."))
 			return
 		LL.lleill_energy = min((LL.lleill_energy + 75),LL.lleill_energy_max)
@@ -301,6 +306,7 @@
 	var/tf_possible_types = list(
 		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
 		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
+		"mothroach" = /mob/living/simple_mob/animal/passive/mothroach,
 		"giant rat" = /mob/living/simple_mob/vore/aggressive/rat,
 		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
 		"woof" = /mob/living/simple_mob/vore/woof,
@@ -417,9 +423,8 @@
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 			return
 		var/mob/living/new_mob = spawn_mob(M)
-		new_mob.faction = M.faction
 
-		new_mob.mob_tf(M)
+		M.tf_into(new_mob)
 
 
 /obj/item/glamour_unstable/proc/spawn_mob(var/mob/living/target)

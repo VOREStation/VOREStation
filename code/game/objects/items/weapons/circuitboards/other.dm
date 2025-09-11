@@ -17,3 +17,9 @@
 	req_components = list(
 							/obj/item/stock_parts/matter_bin = 2,
 							/obj/item/stock_parts/manipulator = 2)
+
+/obj/item/circuitboard/machine/ore_silo
+	name = T_BOARD("Ore Silo")
+	build_path = /obj/machinery/ore_silo
+	board_type = new /datum/frame/frame_types/machine
+	req_components = list()

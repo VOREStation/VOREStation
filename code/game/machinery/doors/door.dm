@@ -99,12 +99,12 @@
 	START_MACHINE_PROCESSING(src)
 
 /obj/machinery/door/proc/can_open()
-	if(!density || operating || !ticker)
+	if(!density || operating || !SSticker)
 		return 0
 	return 1
 
 /obj/machinery/door/proc/can_close()
-	if(density || operating || !ticker)
+	if(density || operating || !SSticker)
 		return 0
 	return 1
 
@@ -237,7 +237,7 @@
 				to_chat(user, span_notice("You start to fix dents and repair \the [src]."))
 				playsound(src, welder.usesound, 50, 1)
 				var/repairtime = maxhealth - health //Since we're not using materials anymore... We'll just calculate how much damage there is to repair.
-				if(do_after(user, repairtime * welder.toolspeed) && welder && welder.isOn())
+				if(do_after(user, repairtime * welder.toolspeed, target = src) && welder && welder.isOn())
 					to_chat(user, span_notice("You finish repairing the damage to \the [src]."))
 					health = maxhealth
 					update_icon()

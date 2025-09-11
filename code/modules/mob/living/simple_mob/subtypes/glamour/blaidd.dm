@@ -54,11 +54,7 @@
 	verbs |= /mob/living/simple_mob/vore/blaidd/proc/blaidd_invis
 	movement_cooldown = -1
 
-/mob/living/simple_mob/vore/blaidd/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/blaidd/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

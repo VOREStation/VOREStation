@@ -4,7 +4,7 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "robot"
 	light_color = "#a97faa"
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/robotics
 	var/safety = 1
 
@@ -92,7 +92,8 @@
 			return TRUE
 	if(!isAI(user))
 		return FALSE
-	return (user.mind.special_role && user.mind.original == user)
+	var/mob/living/original = user.mind.original_character?.resolve()
+	return (user.mind.special_role && (original && original == user))
 
 /**
  * Check if the user is allowed to hack a specific borg

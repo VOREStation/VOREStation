@@ -32,6 +32,9 @@
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
+/obj/item/stack/material/log/reagents_per_sheet()
+	return REAGENTS_PER_LOG
+
 /obj/item/stack/material/log/sif
 	name = MAT_SIFLOG
 	default_type = MAT_SIFLOG
@@ -50,7 +53,7 @@
 	if(W.sharp && W.edge)
 		var/time = (3 SECONDS / max(W.force / 10, 1)) * W.toolspeed
 		user.setClickCooldown(time)
-		if(do_after(user, time, src) && use(1))
+		if(do_after(user, time, target = src) && use(1))
 			to_chat(user, span_notice("You cut up a log into planks."))
 			playsound(src, 'sound/effects/woodcutting.ogg', 50, 1)
 			var/obj/item/stack/material/wood/existing_wood = null
@@ -76,6 +79,9 @@
 	no_variants = FALSE
 	pass_color = TRUE
 	apply_colour = TRUE
+
+/obj/item/stack/material/stick/reagents_per_sheet()
+	return REAGENTS_PER_ROD
 
 /obj/item/stack/material/stick/fivestack
 	amount = 5

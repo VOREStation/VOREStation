@@ -1,0 +1,157 @@
+2025-09-01:
+  Kashargul:
+  - code_imp: sdmm 1.11
+  - bugfix: various runtimes
+  Ryumi:
+  - bugfix: Fixed the pod storage UI not correctly displaying quotation marks in listed
+      item names.
+  TeleTubby2:
+  - rscadd: legally-distinct-word-game has now been installed on NT staff PDAs by
+      default. (Thanks Satin!)
+  - config: added a word dictionary to the strings folder for choosing the nerdle
+      list
+  - bugfix: you can no longer VV the vars list on clients
+  - code_imp: can_vv_get now requires you to call parent
+  Will:
+  - bugfix: Dosimeter case icon fixed
+  - bugfix: Fbp backup battery icon fixed
+  Zizzi:
+  - bugfix: Fixed circuitry pins being constrained to numbers no larger than 52..
+2025-09-02:
+  Kashargul:
+  - code_imp: tgui-core 5.2.0
+  Ryumi:
+  - bugfix: Fixed great white carp turning into failsneks on death.
+  TankTheBirb:
+  - bugfix: Fixed water movement not being applied by readding the clamp to human_movement.dm.
+  - config: changed default sprite scale offset to odd scaling since that was the
+      default for the longest time.
+  Tenryumi:
+  - bugfix: Fixed the dosimeter film having a missing icon.
+  Tost:
+  - bugfix: boat cloak, colorable can have its description and name changed on loadout.
+2025-09-03:
+  Kashargul:
+  - bugfix: ghost pods in some cases not spawning a charger
+2025-09-04:
+  Kashargul:
+  - bugfix: ar visor being invisible
+2025-09-05:
+  Tost:
+  - bugfix: Returns the clear gasmasks to most logical places.
+  Will:
+  - rscadd: Methane atmospheric gas
+  - rscadd: Methane tanks, canisters, emergency tanks
+  - rscadd: Gasleak events now can pick methane
+  - rscadd: xenoflora plants can require and make methane
+  - rscadd: circuit programmer gas sensors can detect methane
+  - rscadd: methane breather trait
+  - rscadd: methane gas distilling reaction that produces sulfur
+  - rscadd: methane sign for atmos
+  - rscadd: methane tank on-mob sprites for human and teshari
+  - code_imp: omni atmo devices use  ATM_LASTGAS instead of a hardcoded gas
+  - code_imp: nitrous oxide default turf atmo var added, so it behaves like all other
+      round start gasses
+  - refactor: Atmo gasses use GASNAME_ defines instead of raw strings when used in
+      lists
+  - refactor: pda, pai, and communicator gas scanners now use a unified global proc
+      get_gas_mixture_default_scan_data() to get their data and format it
+  - bugfix: nitrous oxide is now weighed when checking if the gasses in a zone are
+      different
+  Willburd:
+  - code_imp: Crossing atom signals now implemented
+2025-09-08:
+  Diana:
+  - bugfix: Gets rid of the encumberance factor entirely
+  - bugfix: do_after can not be spammed on one thing, resulting in loss of materials
+      and such
+  - code_imp: Converted some base numbers to proper SECONDS define
+  - refactor: Refactors do_after to only allow one use per thing.
+  Kashargul:
+  - bugfix: robot material cable colors
+  lbnesquik:
+  - balance: Made the dud implants free in the loadout
+2025-09-09:
+  Diana:
+  - bugfix: Weaver can be used again, no longer errors when trying to create things.
+  Kashargul:
+  - qol: changes belly import to a modern UI
+  - code_imp: tgui-core 5.3.1
+  KillianKirilenko:
+  - image: fixed brightness of the sash accessory to make it easier to colour
+  Ryumi:
+  - rscadd: Added a bunch of new shelter capsules
+  - rscadd: Added a "Redspace" shelter capsule - basically a gacha shelter capsule
+      that has many random possibilities for weird and wacky contents within them,
+      ranging anywhere from a nice pizza kitchen to a "shark" pool.
+  - rscadd: Made shelter capsules able to be researched and printed by Science
+  - code_imp: Added a new area flag that prevents shelter capsules from activating
+      within them to spare event hosts/designers potential future headaches
+  - balance: 'Added capsule activation blocking flags to most station areas, with
+      an intentional exception made for: Maintenance, construction/vacant lots, the
+      Science firing range, and some of the larger and less necessary rooms in the
+      Aerostat.'
+  - qol: Using a shelter capsule will immediately inform you if it can be deployed
+      from where you're standing. If it can be, you'll automatically drop it onto
+      the floor. Also improved the wording of capsule errors so you can actually better
+      understand why you can or can't deploy them.
+  SatinIsle:
+  - rscadd: Added replica casino chips that can be ordered in a new gambling games
+      crate from cargo. These can't be used in any casino vendors.
+  - rscadd: Added a triple size deck of cards.
+  - rscadd: Added the ability to set dice to a specific face with a verb or ctrl-click.
+  - qol: 'Added quick use abilities to decks of cards: Alt click to shuffle, Ctrl
+      click to deal, Ctrl+Shift click to deal multiple.'
+  - qol: 'Added quick use abilities to hands of cards: "Alt click to remove a card,
+      Ctrl click to discard cards."'
+  - bugfix: Fixed people being able to see your hand of cards whilst it was in your
+      hand by examining you.
+  - bugfix: Weighting dice values now span from 1 to whatever the maximum number of
+      sides is, instead of always being max of 6.
+  Tost:
+  - rscadd: Two new traits, Body Temp., Hot and Body Temp., Cold
+  - rscadd: A new temperature adaptation trait, unadapted, suffer from both hot and
+      cold temperatures.
+  - rscdel: Removed body temperature modifiers from the temperature adaptation traits.
+  - balance: Made temperature adapt traits less extreme. Still pretty strong though,
+      but you can no longer stand naked during a blizzard on V3b
+  lbnesquik:
+  - rscadd: Added gas masks to the loadout options
+2025-09-10:
+  SatinIsle:
+  - rscadd: Added a posing indicator with a colour determined by runechat colour when
+      a pose is active.
+  - qol: Added an option to have a pose vanish immediately upon movement.
+  - qol: Changed posing to now post the posing message in chat when initiated.
+  Will:
+  - rscadd: Character stats, abilities, and modifiers are now shown on the character
+      creator's species info tab.
+  Zizzi:
+  - bugfix: fixed circuit cloning printing invisible clothes
+2025-09-11:
+  Aroliacue:
+  - image: Modified the security backpack to be more security-looking by using the
+      TG style 'radiopack', similar to the Teshari version.
+  Diana:
+  - image: Makes the neo gorka suits have digi sprites
+  - image: Makes the alt mailman have digi sprites
+  Kashargul:
+  - bugfix: character editor crash
+  - bugfix: fixes multiple del issues with stacks
+  - bugfix: character editor, selection species now closes the selection
+  KillianKirilenko:
+  - rscadd: Added two tiers of high-tech smes coils acquirable through research nodes
+  - qol: moved holosign projectors and a couple other tools out of machine boards
+      and into tools where they belong
+  - refactor: cleaned up icon files for hats and headwear - there shouldn't be any
+      player-facing changes, but please report any invisible or bugged clothes in
+      appropriate channels
+  - rscadd: Added a fully sleeveless ("no sleeves") variant of the alt undersuits
+  - image: Added digi states for void alt undersuits
+  Lilly-Lira:
+  - bugfix: fix taur suits from layering below taur tails
+  Ryumi:
+  - qol: Mining uses balloon alerts instead of spamming your chat with every little
+      mining attempt.
+  - bugfix: Fighters will now correctly say whether or not you'll raise or lower their
+      landing gear.

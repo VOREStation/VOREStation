@@ -3,4 +3,4 @@
 	filedesc = "Alarm Monitoring (Security)"
 	extended_desc = "This program provides visual interface for the security alarm system."
 	tguimodule_path = /datum/tgui_module/alarm_monitor/security/ntos
-	required_access = access_security
+	required_access = ACCESS_SECURITY

@@ -157,19 +157,20 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	return L
 
 //Reassociate still open ticket if one exists
-/datum/tickets/proc/ClientLogin(client/C)
+/datum/tickets/proc/ClientLogin(client/C, only_alert = FALSE)
 	C.current_ticket = CKey2ActiveTicket(C.ckey)
 	if(C.current_ticket)
-		C.current_ticket.AddInteraction("Client reconnected.")
+		if(!only_alert)
+			C.current_ticket.AddInteraction("Client reconnected.")
 		C.current_ticket.initiator = C
-		C.current_ticket.initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
+		C.current_ticket.initiator.mob?.throw_alert("open ticket", /obj/screen/alert/open_ticket)
 
 //Dissasociate ticket
 /datum/tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
 		var/datum/ticket/T = C.current_ticket
 		T.AddInteraction("Client disconnected.")
-		T.initiator.mob.clear_alert("open ticket")
+		T.initiator?.mob?.clear_alert("open ticket")
 		T.initiator = null
 		T = null
 
@@ -314,7 +315,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
 			to_chat(C, span_notice("No active admins are online, your adminhelp was sent to the admin discord."))
-	send2adminchat()
+	send2adminchatwebhook()
 
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
@@ -413,7 +414,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	switch(level)
 		if(0)
 			for (var/client/C in GLOB.admins)
-				var/chat_msg = span_mentor_channel(span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(" (Mentor): [LinkedReplyName(ref_src)] [FullMonty(ref_src, check_rights_for(C, (R_ADMIN|R_SERVER|R_MOD)))]:") + msg))
+				var/chat_msg = span_mentor_channel(span_admin_pm_notice(span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]") + span_bold(" (Mentor): [LinkedReplyName(ref_src)] [FullMonty(ref_src, check_rights_for(C, (R_ADMIN|R_SERVER|R_MOD)))]: ") + msg))
 				if (C.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
 					C << 'sound/effects/mentorhelp.mp3'
 				to_chat(C, chat_msg)
@@ -779,6 +780,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
 	. = activemins.len
+	/*
 	if(. <= 0)
 		var/final = ""
 		var/list/afkmins = adm["afk"]
@@ -789,7 +791,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 			final = "[msg] - No admins online"
 		else
 			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
-		send2irc(source,final)
+		send2irc(source,final)*/
 
 /proc/ircadminwho()
 	var/list/message = list("Admins: ")

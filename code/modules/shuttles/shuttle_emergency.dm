@@ -1,12 +1,12 @@
 // Formerly /datum/shuttle/ferry/emergency
 /datum/shuttle/autodock/ferry/emergency
 	category = /datum/shuttle/autodock/ferry/emergency
-	var/frequency = 1380 // Why this frequency? BECAUSE! Thats what someone decided once.
+	var/frequency = AUTODOCK_FREQ // Why this frequency? BECAUSE! Thats what someone decided once.
 	var/datum/radio_frequency/radio_connection
 
 /datum/shuttle/autodock/ferry/emergency/New()
 	..()
-	radio_connection = radio_controller.add_object(src, frequency, null)
+	radio_connection = SSradio.add_object(src, frequency, null)
 	if(emergency_shuttle.shuttle)
 		CRASH("An emergency shuttle has already been defined.")
 	emergency_shuttle.shuttle = src
@@ -163,7 +163,7 @@
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return 0
 
-	if (!(access_heads in access))
+	if (!(ACCESS_HEADS in access))
 		src.visible_message("\The [src] buzzes, rejecting [ident].")
 		playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return 0

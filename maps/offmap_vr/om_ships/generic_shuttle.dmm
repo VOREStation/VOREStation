@@ -584,7 +584,7 @@
 	},
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "generic_shuttle_docker";
 	name = "interior access button";
 	pixel_x = 28;
@@ -603,12 +603,12 @@
 "bp" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_vent"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "generic_shuttle_docker";
 	pixel_y = 28
 	},
@@ -620,7 +620,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_vent"
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -640,7 +640,7 @@
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "generic_shuttle_docker";
 	name = "exterior access button";
 	pixel_x = 5;

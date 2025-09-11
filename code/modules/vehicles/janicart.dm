@@ -107,7 +107,7 @@
 	..()
 	cut_overlays()
 	if(!open)
-		var/image/O = image(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "pussywagon_overlay", dir = src.dir)
+		var/image/O = image(icon = 'icons/obj/vehicles.dmi', icon_state = "pussywagon_overlay", dir = src.dir)
 		O.layer = FLY_LAYER
 		O.plane = MOB_PLANE
 		add_overlay(O)

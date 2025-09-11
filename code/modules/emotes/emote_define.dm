@@ -5,7 +5,7 @@
 // - Impaired messages do not do any substitutions.
 
 /proc/get_emote_by_key(var/key)
-	if(!GLOB.emotes_by_key)
+	if(!LAZYLEN(GLOB.emotes_by_key))
 		decls_repository.get_decls_of_type(/decl/emote) // GLOB.emotes_by_key will be updated in emote Initialize()
 	return GLOB.emotes_by_key[key]
 

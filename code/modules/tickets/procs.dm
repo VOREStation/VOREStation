@@ -19,7 +19,7 @@
 	//remove out adminhelp verb temporarily to prevent spamming of admins.
 	remove_verb(src,/client/verb/mentorhelp)
 	spawn(600)
-		add_verb(src,/client/verb/mentorhelp	) // 1 minute cool-down for mentorhelps
+		add_verb(src,/client/verb/mentorhelp) // 1 minute cool-down for mentorhelps
 
 	feedback_add_details("admin_verb","Mentorhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_ticket)
@@ -69,11 +69,11 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 	set name = "Request help"
 	set hidden = 1
 
-	var/mhelp = tgui_alert(usr, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp"))
+	var/mhelp = tgui_alert(src, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp"))
 	if(!mhelp)
 		return
 
-	var/msg = tgui_input_text(usr, "Input your request for help.", "Request for Help ([mhelp])", multiline = TRUE)
+	var/msg = tgui_input_text(src, "Input your request for help.", "Request for Help ([mhelp])", multiline = TRUE)
 	if(!msg)
 		return
 
@@ -130,7 +130,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	var/browse_to
 
-	switch(tgui_input_list(usr, "Display which ticket list?", "List Choice", list("Active Tickets", "Closed Tickets", "Resolved Tickets")))
+	switch(tgui_input_list(src, "Display which ticket list?", "List Choice", list("Active Tickets", "Closed Tickets", "Resolved Tickets")))
 		if("Active Tickets")
 			browse_to = AHELP_ACTIVE
 		if("Closed Tickets")
@@ -144,7 +144,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 //// VOREstation Additions Below
 
-/datum/ticket/proc/send2adminchat()
+/datum/ticket/proc/send2adminchatwebhook()
 	if(!CONFIG_GET(string/chat_webhook_url))
 		return
 
@@ -168,21 +168,21 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(usr, span_danger("Error: You cannot request spice (muted from adminhelps)."))
+		to_chat(src, span_danger("Error: You cannot request spice (muted from adminhelps)."))
 		return
 
-	if(tgui_alert(usr, "Are you sure you want to request the admins spice things up for you? You accept the consequences if you do.","Spicy!",list("Yes","No")) == "Yes")
-		message_admins("[ADMIN_FULLMONTY(usr)] has requested the round be spiced up a little.")
-		to_chat(usr, span_notice("You have requested some more spice in your round."))
+	if(tgui_alert(src, "Are you sure you want to request the admins spice things up for you? You accept the consequences if you do.","Spicy!",list("Yes","No")) == "Yes")
+		message_admins("[ADMIN_FULLMONTY(src)] has requested the round be spiced up a little.")
+		to_chat(src, span_notice("You have requested some more spice in your round."))
 	else
-		to_chat(usr, span_notice("Spice request cancelled."))
+		to_chat(src, span_notice("Spice request cancelled."))
 		return
 
 	//if they requested spice, then remove spice verb temporarily to prevent spamming
-	remove_verb(usr,/client/verb/adminspice)
+	remove_verb(src,/client/verb/adminspice)
 	spawn(10 MINUTES)
-		if(usr)		// In case we left in the 10 minute cooldown
-			add_verb(usr,/client/verb/adminspice	) // 10 minute cool-down for spice request
+		if(src)		// In case we left in the 10 minute cooldown
+			add_verb(src,/client/verb/adminspice) // 10 minute cool-down for spice request
 
 //
 // MENTOR PROCS
@@ -206,7 +206,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	if(T)
 		message_mentors(span_mentor_channel("[src] has started replying to [C]'s mentor help."))
-	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE)
+	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE, encode = FALSE)
 	if (!msg)
 		message_mentors(span_mentor_channel("[src] has cancelled their reply to [C]'s mentor help."))
 		return
@@ -237,7 +237,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = tgui_input_text(src,"Message:", "Mentor-PM to [whom]", multiline = TRUE)
+		msg = tgui_input_text(src,"Message:", "Mentor-PM to [whom]", multiline = TRUE, encode = FALSE)
 
 		if(!msg)
 			return
@@ -246,14 +246,14 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 			to_chat(src, span_mentor_warning("Error: Mentor-PM: You are unable to use mentor PM-s (muted)."))
 			return
 
-		if(!recipient)
-			if(src.holder)
-				to_chat(src, span_mentor_warning("Error:Mentor-PM: Client not found."))
-				to_chat(src, msg)
-			else
-				log_admin("Mentorhelp: [key_name(src)]: [msg]")
-				current_ticket.MessageNoRecipient(msg)
-			return
+	if(!recipient)
+		if(src.holder)
+			to_chat(src, span_mentor_warning("Error:Mentor-PM: Client not found."))
+			to_chat(src, msg)
+		else
+			log_admin("Mentorhelp: [key_name(src)]: [msg]")
+			current_ticket.MessageNoRecipient(msg)
+		return
 
 	//Has mentor powers but the recipient no longer has an open ticket
 	if(src.holder && !recipient.current_ticket)

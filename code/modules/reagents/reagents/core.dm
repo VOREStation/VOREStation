@@ -1,5 +1,5 @@
 /datum/reagent/blood
-	data = new/list("donor" = null, "viruses" = null, "species" = SPECIES_HUMAN, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, REAGENT_ID_ANTIBODIES = list())
+	data = new/list("donor" = null, "viruses" = null, "species" = SPECIES_HUMAN, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, REAGENT_ID_ANTIBODIES = list(), "changeling" = FALSE)
 	name = REAGENT_BLOOD
 	id = REAGENT_ID_BLOOD
 	description = "Blood."
@@ -14,6 +14,11 @@
 
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_COMMON
+	industrial_use = REFINERYEXPORT_REASON_BIOHAZARD
+	coolant_modifier = 0.25
+
 
 /datum/reagent/blood/initialize_data(var/newdata)
 	..()
@@ -108,6 +113,9 @@
 	if(!data || !newdata)
 		return
 
+	if(newdata["species"] != "synthetic" && (data["changeling"] || newdata["changeling"]))
+		data["changeling"] = TRUE // Spread to other samples as an antag tactic
+
 	if(data["viruses"] || newdata["viruses"])
 		var/list/mix1 = data["viruses"]
 		var/list/mix2 = newdata["viruses"]
@@ -165,11 +173,22 @@
 
 			if(!H.isSynthetic() && data["species"] == "synthetic")	// Remember not to inject oil into your veins, it's bad for you.
 				H.reagents.add_reagent(REAGENT_ID_TOXIN, removed * 1.5)
-
 			return
 
 	M.inject_blood(src, volume * volume_mod)
 	remove_self(volume)
+
+/datum/reagent/blood/proc/changling_blood_test(var/datum/reagents/holder)
+	if(data["changeling"])
+		var/location = get_turf(holder.my_atom)
+		holder.my_atom.visible_message(span_danger("The blood in \the [holder.my_atom] screams and leaps out!"))
+		if(istype(holder.my_atom,/obj/item/reagent_containers/glass))
+			holder.splash(location, holder.total_volume)
+		holder.clear_reagents() // lets be sure it's all gone if it was in something weird instead
+		playsound(holder.my_atom, 'sound/effects/splat.ogg', 50, 1)
+		playsound(holder.my_atom, 'sound/voice/hiss6.ogg', 50, 1)
+		return TRUE
+	return FALSE
 
 /datum/reagent/blood/proc/get_diseases()
 	. = list()
@@ -184,6 +203,7 @@
 	id = REAGENT_ID_SYNTHBLOOD
 	color = "#999966"
 	volume_mod = 2
+	coolant_modifier = 0.25
 
 /datum/reagent/blood/synthblood/initialize_data(var/newdata)
 	..()
@@ -198,6 +218,7 @@
 	id = REAGENT_ID_SYNTHBLOOD_DILUTE
 	color = "#cacaaf"
 	volume_mod = 1.2
+	coolant_modifier = 0.5
 
 // pure concentrated antibodies
 /datum/reagent/antibodies
@@ -209,6 +230,9 @@
 	reagent_state = LIQUID
 	color = "#0050F0"
 	mrate_static = TRUE
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_MEDSCI
 
 /datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(src.data)
@@ -228,6 +252,10 @@
 
 	glass_name = REAGENT_ID_WATER
 	glass_desc = "The father of all refreshments."
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_NO
+	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 1 // Water!
 
 /datum/reagent/water/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
@@ -323,6 +351,10 @@
 
 	glass_name = "welder fuel"
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
+
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_RAW
+	coolant_modifier = 0.15
 
 /datum/reagent/fuel/touch_turf(var/turf/T, var/amount)
 	..()

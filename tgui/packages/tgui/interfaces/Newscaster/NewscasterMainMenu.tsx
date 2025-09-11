@@ -11,7 +11,9 @@ import {
 } from './constants';
 import type { Data } from './types';
 
-export const NewscasterMainMenu = (props: { setScreen: Function }) => {
+export const NewscasterMainMenu = (props: {
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { data } = useBackend<Data>();
 
   const { securityCaster, wanted_issue } = data;

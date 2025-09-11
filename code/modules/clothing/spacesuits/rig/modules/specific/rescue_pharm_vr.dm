@@ -1,6 +1,8 @@
 /obj/item/rig_module/rescue_pharm
 	name = "micro-pharmacy"
 	desc = "A small chemical dispenser with integrated micro cartridges."
+	icon = 'icons/obj/rig_modules.dmi'
+	icon_state = "generic"
 	usable = 0
 	selectable = 1
 	disruptive = 1

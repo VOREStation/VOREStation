@@ -1,4 +1,3 @@
-/* eslint react/no-danger: "off" */
 import { type RefObject, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -128,6 +127,7 @@ export const Ticket = (props) => {
                   <Stack>
                     <Stack.Item>#{id}:</Stack.Item>
                     <Stack.Item>
+                      {/** biome-ignore lint/security/noDangerouslySetInnerHtml: Ticket data */}
                       <div dangerouslySetInnerHTML={{ __html: name }} />
                     </Stack.Item>
                   </Stack>
@@ -160,6 +160,7 @@ export const Ticket = (props) => {
                   </LabeledList.Item>
                 )}
                 <LabeledList.Item label="Actions">
+                  {/** biome-ignore lint/security/noDangerouslySetInnerHtml: Ticket data */}
                   <div dangerouslySetInnerHTML={{ __html: actions }} />
                 </LabeledList.Item>
               </LabeledList>
@@ -175,6 +176,7 @@ export const Ticket = (props) => {
                     .map((L, i) => (
                       <div
                         key={i}
+                        // biome-ignore lint/security/noDangerouslySetInnerHtml: Ticket data
                         dangerouslySetInnerHTML={{ __html: log[L] }}
                       />
                     ))}

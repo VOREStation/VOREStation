@@ -16,8 +16,6 @@ export const IconSection = (props: {
     <Section
       title="Sprite"
       fill
-      scrollable
-      width="40%"
       buttons={
         <Button disabled={!sprite} onClick={() => act('confirm')}>
           Confirm

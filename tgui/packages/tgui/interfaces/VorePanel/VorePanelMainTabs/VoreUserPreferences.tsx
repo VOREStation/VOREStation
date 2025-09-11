@@ -21,6 +21,7 @@ export const VoreUserPreferences = (props: {
     absorbable,
     devourable,
     allowmobvore,
+    allowtemp,
     feeding,
     permit_healbelly,
     can_be_drop_prey,
@@ -44,6 +45,7 @@ export const VoreUserPreferences = (props: {
     allow_spontaneous_tf,
     allow_mind_transfer,
     eating_privacy_global,
+    vore_death_privacy,
     allow_mimicry,
     strip_mechanics_active,
     autotransferable,
@@ -117,6 +119,19 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Mobs eating you allowed',
         disabled: 'No Mobs eating you',
+      },
+    },
+    temperature: {
+      action: 'toggle_allowtemp',
+      test: allowtemp,
+      tooltip: {
+        main: "This button is for those who don't want to be affected by belly temperature, as temperature can be deadly.",
+        enable: 'Click here to be affected by belly temperature.',
+        disable: 'Click here to not be affected by belly temperature.',
+      },
+      content: {
+        enabled: 'Affected By Temperature',
+        disabled: 'Immune To Temperature',
       },
     },
     feed: {
@@ -491,6 +506,19 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Global Vore Privacy: Subtle',
         disabled: 'Global Vore Privacy: Loud',
+      },
+    },
+    vore_death_privacy: {
+      action: 'toggle_death_privacy',
+      test: vore_death_privacy,
+      tooltip: {
+        main: 'Sets whether your vore deaths are announced to ghosts',
+        enable: ' Click here to prevent announcing vore deaths',
+        disable: ' Click here to allow announcing vore deaths',
+      },
+      content: {
+        enabled: 'Vore Death Privacy: Unannonced',
+        disabled: 'Vore Death Privacy: Announced',
       },
     },
     allow_mimicry: {

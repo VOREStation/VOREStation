@@ -92,7 +92,7 @@
 		if(!ircreplyamount)	//to prevent people from spamming irc
 			return
 		if(!msg)
-			msg = tgui_input_text(src,"Message:", "Private message to Administrator", multiline = TRUE)
+			msg = tgui_input_text(src, "Message:", "Private message to Administrator", multiline = TRUE, encode = FALSE)
 
 		if(!msg)
 			return
@@ -113,7 +113,7 @@
 
 		//get message text, limit it's length.and clean/escape html
 		if(!msg)
-			msg = tgui_input_text(src,"Message:", "Private message to [key_name(recipient, 0, 0)]", multiline = TRUE)
+			msg = tgui_input_text(src, "Message:", "Private message to [key_name(recipient, 0, 0)]", multiline = TRUE, encode = FALSE)
 
 			if(!msg)
 				return
@@ -146,7 +146,6 @@
 		to_chat(src, span_admin_pm_notice("PM to-" + span_bold("Admins") + ": [rawmsg]"))
 		admin_ticket_log(src, span_admin_pm_warning("Reply PM from-" + span_bold("[key_name(src, TRUE, TRUE)]") + " to " + span_italics("IRC") + ": [keywordparsedmsg]"))
 		ircreplyamount--
-		send2irc("Reply: [ckey]",rawmsg)
 	else
 		if(recipient.holder)
 			if(holder)	//both are admins

@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   # Virgo DM server
@@ -8,24 +8,24 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports: 
+    ports:
       - "2303:2303"
     depends_on:
       - db
     volumes:
       - ./config/:/vorestation/config
       - gamedata:/vorestation/data
-  # MariaDB/MySQL database: game 
+  # MariaDB/MySQL database: game
   # (if you don't really need this, feel free to remove this section.)
   db:
     image: mariadb
     restart: unless-stopped
     env_file:
       - ./config/docker/mysql.env
-    volumes: 
-        - ./SQL/tgstation_schema.sql:/docker-entrypoint-initdb.d/tgstation_schema.sql:ro
-        - ./SQL/feedback_schema.sql:/docker-entrypoint-initdb.d/feedback_schema.sql:ro
-        - database:/var/lib/mysql
+    volumes:
+      - ./SQL/tgstation_schema.sql:/docker-entrypoint-initdb.d/tgstation_schema.sql:ro
+      - ./SQL/feedback_schema.sql:/docker-entrypoint-initdb.d/feedback_schema.sql:ro
+      - database:/var/lib/mysql
   # Adminer, for managing the DB, commented out by default but uncomment if you need it I guess.
   #adminer:
   #  image: wodby/adminer

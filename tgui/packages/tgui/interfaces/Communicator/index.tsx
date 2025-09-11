@@ -32,10 +32,6 @@ export const Communicator = () => {
   const [videoSetting, setVideoSetting] = useState(0);
   const [clipboardMode, setClipboardMode] = useState(false);
 
-  function handleClipboardMode(value: boolean) {
-    setClipboardMode(value);
-  }
-
   tab[tabs[0]] = <CommunicatorHomeTab />;
   tab[tabs[1]] = <CommunicatorPhoneTab />;
   tab[tabs[2]] = <CommunicatorContactTab />;
@@ -43,7 +39,7 @@ export const Communicator = () => {
   tab[tabs[4]] = (
     <CommunicatorMessageSubTab
       clipboardMode={clipboardMode}
-      onClipboardMode={handleClipboardMode}
+      onClipboardMode={setClipboardMode}
     />
   );
   tab[tabs[5]] = <CommunicatorNewsTab />;

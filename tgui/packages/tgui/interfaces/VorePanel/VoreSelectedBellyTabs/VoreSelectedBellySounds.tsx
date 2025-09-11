@@ -1,6 +1,5 @@
+import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
-
-import { useBackend } from '../../../backend';
 import type { bellySoundData, DropdownEntry } from '../types';
 import { VorePanelEditDropdown } from '../VorePanelElements/VorePanelEditDropdown';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';

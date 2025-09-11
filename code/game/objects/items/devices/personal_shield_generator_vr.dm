@@ -16,7 +16,7 @@
 /obj/item/personal_shield_generator
 	name = "personal shield generator"
 	desc = "A personal shield generator."
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "shieldpack_basic"
 	item_state = "defibunit" //Placeholder
 	slot_flags = SLOT_BACK

@@ -50,6 +50,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			if(isSynthetic())
 				B.data["species"] = "synthetic"
 
+			B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood
 			B.color = B.data["blood_colour"]
 			B.name = B.data["blood_name"]
 
@@ -288,6 +289,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		B.data["resistances"] |= GetResistances()
 	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
+	B.data["changeling"] = (!isnull(mind) && is_changeling(mind)) || species?.ambulant_blood
 
 	// Putting this here due to return shenanigans.
 	if(ishuman(src))

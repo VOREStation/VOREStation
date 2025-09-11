@@ -262,7 +262,7 @@ class PaintCanvas extends Component<PaintCanvasProps> {
 
     this.lastHovered = coord;
 
-    const time = new Date().getTime();
+    const time = Date.now();
 
     if (this.lastSuccessfulPaint + 50 > time) {
       return;

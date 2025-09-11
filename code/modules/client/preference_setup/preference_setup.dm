@@ -243,11 +243,11 @@
 		return 0 // Not a robot.
 	if(O_BRAIN in pref.organ_data)
 		switch(pref.organ_data[O_BRAIN])
-			if("assisted")
+			if(FBP_ASSISTED)
 				return PREF_FBP_CYBORG
-			if("mechanical")
+			if(FBP_MECHANICAL)
 				return PREF_FBP_POSI
-			if("digital")
+			if(FBP_DIGITAL)
 				return PREF_FBP_SOFTWARE
 	return 0 //Something went wrong!
 

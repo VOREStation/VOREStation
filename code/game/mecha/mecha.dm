@@ -44,6 +44,7 @@
 	var/lights = 0
 	var/lights_power = 6
 	var/force = 0
+	var/damage_type = BRUTE
 
 	var/mech_faction = null
 	var/firstactivation = 0 			//It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.
@@ -66,7 +67,7 @@
 	var/internal_damage = 0 			//Contains bitflags
 
 	var/list/operation_req_access = list()								//Required access level for mecha operation
-	var/list/internals_req_access = list(access_engine,access_robotics)	//Required access level to open cell compartment
+	var/list/internals_req_access = list(ACCESS_ENGINE,ACCESS_ROBOTICS)	//Required access level to open cell compartment
 
 	var/wreckage
 
@@ -478,7 +479,7 @@
 	radio.icon_state = icon_state
 	radio.subspace_transmission = 1
 
-/obj/mecha/proc/do_after(delay as num)
+/obj/mecha/proc/do_after_action(delay as num) //This is literally just a sleep disguised as a proc. Fucking bullshit.
 	sleep(delay)
 	if(src)
 		return 1
@@ -870,7 +871,7 @@
 				float_direction = direction
 				start_process(MECHA_PROC_MOVEMENT)
 				src.log_message(span_warning("Movement control lost. Inertial movement started."))
-		if(do_after(get_step_delay()))
+		if(do_after_action(get_step_delay()))
 			can_move = 1
 		return 1
 	return 0
@@ -997,7 +998,7 @@
 ////////  Health related procs  ////////
 ////////////////////////////////////////
 
-/obj/mecha/take_damage(amount, type="brute")
+/obj/mecha/take_damage(amount, type=BRUTE)
 	update_damage_alerts()
 	if(amount)
 		var/damage = absorbDamage(amount,type)
@@ -1146,10 +1147,9 @@
 		if(isliving(A))
 			var/mob/living/M = A
 			M.take_organ_damage(10)
-	else if(istype(A, /obj))
-		var/obj/O = A
+	else if(istype(A, /obj/item))
+		var/obj/item/O = A
 		if(O.throwforce)
-
 			var/pass_damage = O.throwforce
 			var/pass_damage_reduc_mod
 			if(pass_damage <= temp_damage_minimum)//Too little to go through.
@@ -1582,7 +1582,7 @@
 				else if(C.integrity < C.max_integrity)
 					to_chat(user, span_notice("You start to repair damage to \the [C]."))
 					while(C.integrity < C.max_integrity && NP)
-						if(do_after(user, 1 SECOND, src))
+						if(do_after(user, 1 SECOND, target = src))
 							NP.use(1)
 							C.adjust_integrity(NP.mech_repair)
 
@@ -2550,7 +2550,7 @@
 		return
 	if (href_list["change_name"])
 		if(usr != src.occupant)	return
-		var/newname = sanitizeSafe(tgui_input_text(occupant,"Choose new exosuit name","Rename exosuit",initial(name), MAX_NAME_LEN), MAX_NAME_LEN)
+		var/newname = sanitizeSafe(tgui_input_text(occupant,"Choose new exosuit name","Rename exosuit",initial(name), MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(newname)
 			name = newname
 		else
@@ -2613,7 +2613,7 @@
 		var/mob/occupant = P.occupant
 
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " begins opening the hatch on \the [P]..."), span_notice("You begin opening the hatch on \the [P]..."))
-		if (!do_after(user, 40))
+		if (!do_after(user, 4 SECONDS, target = src))
 			return
 
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " opens the hatch on \the [P] and removes [occupant]!"), span_notice("You open the hatch on \the [P] and remove [occupant]!"))
@@ -2653,7 +2653,7 @@
 		src.occupant_message("Recalibrating coordination system.")
 		src.log_message("Recalibration of coordination system started.")
 		var/T = src.loc
-		if(do_after(100))
+		if(do_after_action(100))
 			if(T == src.loc)
 				src.clearInternalDamage(MECHA_INT_CONTROL_LOST)
 				src.occupant_message(span_blue("Recalibration successful."))

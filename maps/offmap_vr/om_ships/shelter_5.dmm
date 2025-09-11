@@ -76,10 +76,10 @@
 /area/shuttle/deployable/escapepod)
 "h" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escapepod_shuttle_docker";
 	pixel_y = 28
 	},
@@ -88,7 +88,7 @@
 	dir = 8
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	pixel_y = 22
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -131,7 +131,7 @@
 /obj/machinery/door/airlock/external,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "escapepod_shuttle_docker";
 	pixel_x = -5;
 	pixel_y = 26
@@ -157,7 +157,7 @@
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "escapepod_shuttle_docker";
 	name = "exterior access button";
 	pixel_x = 5;

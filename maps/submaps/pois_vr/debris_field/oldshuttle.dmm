@@ -188,7 +188,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_docker_pump_out_internal"
 	},
 /turf/simulated/shuttle/floor/black/airless,
@@ -206,7 +206,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_vent"
 	},
 /turf/simulated/shuttle/floor/black/airless,
@@ -231,7 +231,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_docker_pump_out_internal"
 	},
 /turf/simulated/shuttle/floor/black/airless,
@@ -243,7 +243,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_vent"
 	},
 /turf/simulated/shuttle/floor/black/airless,
@@ -274,7 +274,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_docker_pump_out_internal"
 	},
 /turf/simulated/shuttle/floor/black/airless,
@@ -293,7 +293,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_vent"
 	},
 /turf/simulated/shuttle/floor/black/airless,
@@ -350,7 +350,7 @@
 "bb" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_docker_pump_out_external";
 	power_rating = 20000
 	},

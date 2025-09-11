@@ -5,7 +5,6 @@
 	icon_state = "magazine"
 
 	var/headline
-	var/static/list/tabloid_states = icon_states('icons/obj/magazine.dmi')
 	var/static/list/tabloid_publishers = list(
 		"\improper Solar Enquirer",
 		"\improper Stellar Examiner",
@@ -76,7 +75,7 @@
 	pixel_x = 5-rand(10)
 	pixel_x = 5-rand(10)
 
-	icon_state = pick(tabloid_states)
+	icon_state = pick(cached_icon_states('icons/obj/magazine.dmi'))
 	headline =   pick(tabloid_headlines)
 	name =       pick(tabloid_publishers)
 

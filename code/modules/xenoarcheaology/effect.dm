@@ -24,8 +24,8 @@
 	var/can_start_activated = TRUE
 
 /datum/artifact_effect/Destroy()
-	master = null //Master still exists even if our effect gets destroyed. No need to qdel_null.
-	qdel_null(active_effect)
+	master = null //Master still exists even if our effect gets destroyed. No need to QDEL_NULL.
+	QDEL_NULL(active_effect)
 	. = ..()
 
 /datum/artifact_effect/proc/get_master_holder()	// Return the effectmaster's holder, if it is set to an effectmaster. Otherwise, master is the target object.
@@ -215,6 +215,7 @@
 	if(A.flag_check(AREA_FORBID_EVENTS))
 		return 0
 	var/protected = 0
+	var/susceptibility = 1
 
 	//anomaly suits give best protection, but excavation suits are almost as good
 	if(istype(H.back,/obj/item/rig/hazmat))
@@ -239,4 +240,5 @@
 	if(istype(H.glasses,/obj/item/clothing/glasses/science))
 		protected += 0.1
 
-	return 1 - protected
+	susceptibility = CLAMP01(susceptibility - protected) //Clamp the susceptibility to be between 0 and 1. No negative numbers allowed.
+	return susceptibility

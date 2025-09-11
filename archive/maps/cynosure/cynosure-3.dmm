@@ -1079,7 +1079,7 @@
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/RD,
+/obj/structure/closet/secure_closet/research_director,
 /obj/random_multi/single_item/hand_tele,
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -4200,7 +4200,7 @@
 /obj/effect/floor_decal/spline/plain,
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "large_escape_pod_2_berth_hatch";
 	locked = 1;
@@ -21743,7 +21743,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/security/armoury)
 "oNM" = (
-/obj/structure/closet/secure_closet/CMO,
+/obj/structure/closet/secure_closet/chief_medical_officer,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/blue/border,
 /obj/machinery/light,
@@ -22705,7 +22705,7 @@
 /area/surface/station/quartermaster/office)
 "pwt" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "large_escape_pod_2";
 	pixel_x = 26;
 	pixel_y = -26;
@@ -26981,7 +26981,7 @@
 /area/surface/station/hallway/primary/secondfloor/east)
 "szd" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "large_escape_pod_2_hatch";
 	locked = 1;
@@ -30249,21 +30249,6 @@
 	},
 /turf/simulated/shuttle/wall/dark/no_join,
 /area/shuttle/large_escape_pod2/station)
-"uDG" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/blast/regular/open{
-	dir = 4;
-	id = "captainlockdown";
-	layer = 3.3;
-	name = "Site Manager Lockdown"
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/crew_quarters/captain)
 "uDX" = (
 /obj/machinery/light{
 	dir = 1
@@ -32731,7 +32716,7 @@
 	dir = 1
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "large_escape_pod_2_berth";
 	pixel_y = 24;
 	tag_door = "large_escape_pod_2_berth_hatch"

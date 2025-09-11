@@ -42,7 +42,7 @@ type modalData = {
   args: {
     id: string;
   };
-  modal_type: string;
+  type: string;
 };
 
 export type buffData = {

@@ -2788,7 +2788,7 @@
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "tcommsairlock";
 	pixel_x = -32;
 	req_one_access = list(61)
@@ -3162,7 +3162,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "tcommsairlock";
 	pixel_y = 24;
 	req_one_access = list(61)
@@ -3994,7 +3994,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
+	frequency = 1381;
 	master_tag = "tcommsairlock";
 	pixel_x = 32;
 	req_one_access = list(61)
@@ -7839,17 +7839,9 @@
 /area/groundbase/level1/westspur)
 "rj" = (
 /obj/structure/table/rack/steel,
-/obj/item/circuitboard/rdserver{
+/obj/item/circuitboard/machine/rdserver{
 	pixel_x = -3;
 	pixel_y = 3
-	},
-/obj/item/circuitboard/protolathe{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/circuitboard/destructive_analyzer{
-	pixel_x = -1;
-	pixel_y = 1
 	},
 /obj/item/circuitboard/rdconsole,
 /obj/item/circuitboard/autolathe{

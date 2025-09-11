@@ -23,6 +23,11 @@
 
 //Should we be dead?
 /mob/living/simple_mob/updatehealth()
+	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
+		health = getMaxHealth()
+		set_stat(CONSCIOUS)
+		return
+	get_injury_level()
 	health = getMaxHealth() - getFireLoss() - getBruteLoss() - getToxLoss() - getOxyLoss() - getCloneLoss()
 
 	//Alive, becoming dead
@@ -56,7 +61,7 @@
 			healths.icon_state = "health7"
 
 	//Updates the nutrition while we're here
-	var/food_per = (nutrition / 500) * 100 //VOREStation Edit: Bandaid hardcode number to avoid misleading percentage based hunger alerts with our 6k cap.
+	var/food_per = (nutrition / max_nutrition) * 100
 	switch(food_per)
 		if(90 to INFINITY)
 			clear_alert("nutrition")
@@ -156,6 +161,15 @@
 			else
 				clear_alert("co2")
 
+			if(min_ch4 && Environment.gas[GAS_CH4] < min_ch4)
+				atmos_unsuitable = 2
+				throw_alert("methane_in_air", /obj/screen/alert/not_enough_methane)
+			else if(max_tox && Environment.gas[GAS_CH4] > max_ch4)
+				atmos_unsuitable = 2
+				throw_alert("methane_in_air", /obj/screen/alert/methane_in_air)
+			else
+				clear_alert("methane_in_air")
+
 	//Atmos effect
 	if(bodytemperature < minbodytemp)
 		adjustFireLoss(cold_damage_per_tick)
@@ -182,6 +196,9 @@
 	if(purge)
 		purge -= 1
 
+/mob/living/simple_mob/
+	var/update_icon_timer
+
 /mob/living/simple_mob/death(gibbed, deathmessage = "dies!")
 	density = FALSE //We don't block even if we did before
 
@@ -193,7 +210,14 @@
 			if(prob(loot_list[path]))
 				new path(get_turf(src))
 
-	spawn(3) //We'll update our icon in a sec
-		update_icon()
+	update_icon_timer = addtimer(CALLBACK(src, PROC_REF(callback_update_icon)), 3, TIMER_STOPPABLE)
 
 	return ..(gibbed,deathmessage)
+
+/mob/living/simple_mob/proc/callback_update_icon()
+	update_icon()
+
+/mob/living/simple_mob/Destroy()
+	deltimer(update_icon_timer)
+	update_icon_timer = null
+	. = ..()

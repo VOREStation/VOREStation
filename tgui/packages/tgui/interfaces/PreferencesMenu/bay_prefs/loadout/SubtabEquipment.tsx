@@ -22,6 +22,7 @@ export const SubtabEquipment = (props: {
     ringtone,
     shoes,
     jacket,
+    underwear,
   } = data;
 
   const { backbaglist, headsetlist, pdachoicelist } = serverData;
@@ -30,7 +31,7 @@ export const SubtabEquipment = (props: {
     <Stack fill vertical>
       <Stack.Item>
         <LabeledList>
-          {data.underwear.map((underwear, i) => (
+          {underwear?.map((underwear, i) => (
             <LabeledList.Item
               key={underwear.category}
               label={underwear.category}
@@ -43,7 +44,7 @@ export const SubtabEquipment = (props: {
               >
                 {underwear.name}
               </Button>
-              {underwear.tweaks.map((tweak) => (
+              {underwear.tweaks?.map((tweak) => (
                 <Button
                   fluid
                   key={tweak.ref}
@@ -54,13 +55,13 @@ export const SubtabEquipment = (props: {
                     })
                   }
                 >
-                  {/* eslint-disable-next-line react/no-danger */}
+                  {/** biome-ignore lint/security/noDangerouslySetInnerHtml: Gear */}
                   <div dangerouslySetInnerHTML={{ __html: tweak.contents }} />
                 </Button>
               ))}
             </LabeledList.Item>
           ))}
-          <LabeledList.Item label="Communicator Visibile">
+          <LabeledList.Item label="Communicator Visible">
             <Button onClick={() => act('toggle_comm_visibility')}>
               {communicator_visibility ? 'Yes' : 'No'}
             </Button>
@@ -69,6 +70,7 @@ export const SubtabEquipment = (props: {
             <Button onClick={() => act('set_ringtone')}>
               {ringtone || 'None'}
             </Button>
+            <Button icon="volume-high" onClick={() => act('test_ringtone')} />
           </LabeledList.Item>
           <LabeledList.Item label="Spawn With Shoes">
             <Button onClick={() => act('toggle_shoes')}>
@@ -83,7 +85,7 @@ export const SubtabEquipment = (props: {
         </LabeledList>
         <Box>
           <Box bold>Headset Type</Box>
-          {headsetlist.map((item, i) => (
+          {headsetlist?.map((item, i) => (
             <Button
               key={item}
               onClick={() => act('change_headset', { headset: i })}
@@ -95,7 +97,7 @@ export const SubtabEquipment = (props: {
         </Box>
         <Box>
           <Box bold>Backpack Type</Box>
-          {backbaglist.map((item, i) => (
+          {backbaglist?.map((item, i) => (
             <Button
               key={item}
               onClick={() => act('change_backpack', { backbag: i })}
@@ -107,7 +109,7 @@ export const SubtabEquipment = (props: {
         </Box>
         <Box>
           <Box bold>PDA Type</Box>
-          {pdachoicelist.map((item, i) => (
+          {pdachoicelist?.map((item, i) => (
             <Button
               key={item}
               onClick={() => act('change_pda', { pda: i })}

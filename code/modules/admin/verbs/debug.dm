@@ -97,7 +97,7 @@
 	set category = "Fun.Event Kit"
 	set name = "Make Robot"
 
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -112,7 +112,7 @@
 	set category = "Fun.Event Kit"
 	set name = "Make Simple Animal"
 
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 
@@ -152,7 +152,7 @@
 	if(tgui_alert(pai, "Do you want to load your pAI data?", "Load", list("Yes", "No")) == "Yes")
 		pai.savefile_load(pai)
 	else
-		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI"))
+		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE))
 		card.setPersonality(pai)
 	for(var/datum/paiCandidate/candidate in paiController.pai_candidates)
 		if(candidate.key == choice.key)
@@ -164,7 +164,7 @@
 	set category = "Fun.Event Kit"
 	set name = "Make Alien"
 
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -277,7 +277,7 @@
 	set category = "Admin.Events"
 	set name = "Grant Full Access"
 
-	if (!ticker)
+	if (!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if (ishuman(M))
@@ -610,7 +610,7 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if(istype(M, /mob/living/carbon))

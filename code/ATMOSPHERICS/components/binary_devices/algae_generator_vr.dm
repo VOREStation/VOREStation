@@ -234,9 +234,7 @@
 	var/recursive = amount == -1 ? 1 : 0
 	var/datum/material/matdata = get_material_by_name(material_name)
 	var/stack_type = matdata.stack_type
-	var/obj/item/stack/material/S = new stack_type(loc)
-	if(amount <= 0)
-		amount = S.max_amount
+	var/obj/item/stack/material/S = new stack_type(loc, -1)
 	var/ejected = min(round(stored_material[material_name] / S.perunit), amount)
 	if(!S.set_amount(min(ejected, amount)))
 		return

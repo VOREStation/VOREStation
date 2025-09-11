@@ -64,7 +64,7 @@
 				if(!(AM.singuloCanEat()))
 					continue
 
-				if (101 == AM.invisibility)
+				if (INVISIBILITY_ABSTRACT == AM.invisibility)
 					continue
 
 				spawn (0)

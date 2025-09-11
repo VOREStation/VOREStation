@@ -11,11 +11,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-const round = (
-  number: number,
-  digits = 0,
-  base = Math.pow(10, digits),
-): number => {
+const round = (number: number, digits = 0, base = 10 ** digits): number => {
   return Math.round(base * number) / base;
 };
 export interface RgbColor {
@@ -185,25 +181,23 @@ export const rgbaStringToHsva = (rgbaString: string): HsvaColor => {
 export const rgbStringToHsva = rgbaStringToHsva;
 const format = (number: number) => {
   const hex = number.toString(16);
-  return hex.length < 2 ? '0' + hex : hex;
+  return hex.length < 2 ? `0${hex}` : hex;
 };
 export const rgbaToHex = ({ r, g, b, a }: RgbaColor): string => {
   const alphaHex = a < 1 ? format(round(a * 255)) : '';
-  return (
-    '#' + format(round(r)) + format(round(g)) + format(round(b)) + alphaHex
-  );
+  return `#${format(round(r))}${format(round(g))}${format(round(b))}${alphaHex}`;
 };
 export const rgbaToHsva = ({ r, g, b, a }: RgbaColor): HsvaColor => {
   const max = Math.max(r, g, b);
   const delta = max - Math.min(r, g, b);
   // prettier-ignore
   const hh = delta
-      ? max === r
-        ? (g - b) / delta
-        : max === g
-          ? 2 + (b - r) / delta
-          : 4 + (r - g) / delta
-      : 0;
+    ? max === r
+      ? (g - b) / delta
+      : max === g
+        ? 2 + (b - r) / delta
+        : 4 + (r - g) / delta
+    : 0;
   return {
     h: 60 * (hh < 0 ? hh + 6 : hh),
     s: max ? (delta / max) * 100 : 0,
@@ -238,7 +232,7 @@ export const validHex = (value: string, alpha?: boolean): boolean => {
 export const luminance = (rgb: RgbColor): number => {
   const [r, g, b] = [rgb.r, rgb.g, rgb.b].map((v) => {
     v /= 255;
-    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
   });
   return r * 0.2126 + g * 0.7152 + b * 0.0722;
 };

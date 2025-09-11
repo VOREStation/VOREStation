@@ -52,6 +52,7 @@ export type insideData = {
 
 export type bellyData = {
   name: string;
+  display_name: string;
   ref: string;
   selected?: BooleanLike;
   digest_mode?: string;
@@ -107,6 +108,7 @@ export type bellyOptionData = {
   digest_oxy: number;
   digest_tox: number;
   digest_clone: number;
+  bellytemperature: number;
   digest_max: number;
   digest_free: number;
   bulge_size: number;
@@ -126,12 +128,18 @@ export type bellyOptionData = {
   selective_preference: string;
   save_digest_mode: BooleanLike;
   eating_privacy_local: string;
+  vore_death_privacy: string;
   vorespawn_blacklist: BooleanLike;
   vorespawn_whitelist: string[];
   vorespawn_absorbed: number;
   private_struggle: BooleanLike;
+  absorbedrename_enabled: BooleanLike;
+  absorbedrename_name: string;
+  absorbedrename_name_max: number;
+  absorbedrename_name_min: number;
   drainmode_options: string[];
   drainmode: string;
+  temperature_damage: BooleanLike;
 };
 
 export type bellySoundData = {
@@ -211,6 +219,7 @@ export type siliconeBellyControls = {
 
 export type selectedData = {
   belly_name: string;
+  display_name: string;
   belly_mode_data?: bellyModeData;
   belly_description_data?: bellyDescriptionData;
   belly_option_data?: bellyOptionData;
@@ -295,6 +304,7 @@ export type prefData = {
   absorbable: BooleanLike;
   digest_leave_remains: BooleanLike;
   allowmobvore: BooleanLike;
+  allowtemp: BooleanLike;
   permit_healbelly: BooleanLike;
   show_vore_fx: BooleanLike;
   can_be_drop_prey: BooleanLike;
@@ -328,6 +338,7 @@ export type prefData = {
   food_vore: BooleanLike;
   digest_pain: BooleanLike;
   eating_privacy_global: BooleanLike;
+  vore_death_privacy: BooleanLike;
   allow_mimicry: BooleanLike;
   soulcatcher_allow_capture: BooleanLike;
   soulcatcher_allow_transfer: BooleanLike;
@@ -408,6 +419,7 @@ export type localPrefs = {
   absorbable: preferenceData;
   devour: preferenceData;
   mobvore: preferenceData;
+  temperature: preferenceData;
   feed: preferenceData;
   healbelly: preferenceData;
   dropnom_prey: preferenceData;
@@ -432,6 +444,7 @@ export type localPrefs = {
   mind_transfer: preferenceData;
   strippref: preferenceData;
   eating_privacy_global: preferenceData;
+  vore_death_privacy: preferenceData;
   allow_mimicry: preferenceData;
   autotransferable: preferenceData;
   liquid_receive: preferenceData;

@@ -16,7 +16,7 @@
 			if(!choice||choice=="No")
 				return
 			user.visible_message("[user] starts dispersing the [src]...", runemessage = "disperses the [src]")
-			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE))
+			if(do_after(user, 5 SECONDS, target = src))
 				qdel(src)
 		else
 			to_chat(user, span_notice("There is something growing here."))
@@ -35,7 +35,7 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/shovel) && user.a_intent == I_HURT)
 		user.visible_message(span_notice("\The [user] begins filling in \the [src]."))
-		if(do_after(user, 3 SECONDS) && !QDELETED(src))
+		if(do_after(user, 3 SECONDS, target = src) && !QDELETED(src))
 			user.visible_message(span_notice("\The [user] fills in \the [src]."))
 			qdel(src)
 		return

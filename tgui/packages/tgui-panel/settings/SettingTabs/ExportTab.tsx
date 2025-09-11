@@ -11,7 +11,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import {
   clearChat,
@@ -94,14 +93,15 @@ export const ExportTab = (props) => {
           <LabeledList>
             <LabeledList.Item label="Amount of rounds to log (1 to 8)">
               <NumberInput
+                tickWhileDragging
                 width="5em"
                 step={1}
                 stepPixelSize={10}
                 minValue={1}
                 maxValue={8}
                 value={logRetainRounds}
-                format={(value) => toFixed(value)}
-                onDrag={(value) =>
+                format={(value) => value.toFixed()}
+                onChange={(value) =>
                   dispatch(
                     updateSettings({
                       logRetainRounds: value,
@@ -118,14 +118,15 @@ export const ExportTab = (props) => {
             </LabeledList.Item>
             <LabeledList.Item label="Hardlimit for the log archive (0 = inf. to 50000)">
               <NumberInput
+                tickWhileDragging
                 width="5em"
                 step={500}
                 stepPixelSize={10}
                 minValue={0}
                 maxValue={50000}
                 value={logLimit}
-                format={(value) => toFixed(value)}
-                onDrag={(value) =>
+                format={(value) => value.toFixed()}
+                onChange={(value) =>
                   dispatch(
                     updateSettings({
                       logLimit: value,
@@ -204,14 +205,15 @@ export const ExportTab = (props) => {
               <>
                 <Stack.Item>
                   <NumberInput
+                    tickWhileDragging
                     width="5em"
                     step={1}
                     stepPixelSize={10}
                     minValue={0}
                     maxValue={exportEnd === 0 ? 0 : exportEnd - 1}
                     value={exportStart}
-                    format={(value) => toFixed(value)}
-                    onDrag={(value) =>
+                    format={(value) => value.toFixed()}
+                    onChange={(value) =>
                       dispatch(
                         updateSettings({
                           exportStart: value,
@@ -222,14 +224,15 @@ export const ExportTab = (props) => {
                 </Stack.Item>
                 <Stack.Item>
                   <NumberInput
+                    tickWhileDragging
                     width="5em"
                     step={1}
                     stepPixelSize={10}
                     minValue={exportStart === 0 ? 0 : exportStart + 1}
                     maxValue={storedRounds}
                     value={exportEnd}
-                    format={(value) => toFixed(value)}
-                    onDrag={(value) =>
+                    format={(value) => value.toFixed()}
+                    onChange={(value) =>
                       dispatch(
                         updateSettings({
                           exportEnd: value,
@@ -256,14 +259,15 @@ export const ExportTab = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Amount of lines to export (0 = inf.)">
           <NumberInput
+            tickWhileDragging
             width="5em"
             step={100}
             stepPixelSize={10}
             minValue={0}
             maxValue={50000}
             value={logLineCount}
-            format={(value) => toFixed(value)}
-            onDrag={(value) =>
+            format={(value) => value.toFixed()}
+            onChange={(value) =>
               dispatch(
                 updateSettings({
                   logLineCount: value,

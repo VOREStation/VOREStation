@@ -310,7 +310,7 @@
 /mob/living/simple_mob/slime/promethean/get_description_info()
 	return
 
-/mob/living/simple_mob/slime/promethean/init_vore()
+/mob/living/simple_mob/slime/promethean/init_vore(force)
 	return
 
 /mob/living/simple_mob/slime/promethean/get_available_emotes()

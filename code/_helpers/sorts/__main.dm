@@ -29,7 +29,7 @@
 	sorter.cmp = cmp; \
 	sorter.associative = associative;
 
-	//This is a global instance to allow much of this code to be reused. The interfaces are kept separately
+//This is a global instance to allow much of this code to be reused. The interfaces are kept separately
 GLOBAL_DATUM_INIT(sortInstance, /datum/sort_instance, new())
 /datum/sort_instance
 	//The array being sorted.

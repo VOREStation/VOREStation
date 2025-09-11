@@ -27,6 +27,55 @@
 	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_UNATHI, SPECIES_VASILISSAN, SPECIES_XENOCHIMERA, SPECIES_VOX) //i assume if a dev made your base slowdown different then you shouldn't have this.
 	excludes = list(/datum/trait/positive/speed_fast) // olympic sprinters don't naruto run
 
+/datum/trait/positive/punchdamage
+	name = "Strong Attacks"
+	desc = "Your unarmed attacks deal more damage. (+5 per attack)"
+	cost = 1
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 5)
+	excludes = list(/datum/trait/positive/punchdamageplus)
+	banned_species = list(SPECIES_TESHARI)
+
+/datum/trait/positive/punchdamageplus
+	name = "Crushing Attacks"
+	desc = "Your unarmed attacks deal high damage. (+10 per attack)"
+	cost = 2
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 10)
+	excludes = list(/datum/trait/positive/punchdamage)
+	banned_species = list(SPECIES_TESHARI, SPECIES_VOX)
+
+/datum/trait/positive/shredding_attacks //Variant of plus
+	name = "Shredding Attacks"
+	desc = "Your unarmed attacks can break windows, APCs, deal massive damage to synthetics, and you can break out of restraints 24 times faster."
+	cost = 6
+	custom_only = FALSE
+	hidden = TRUE
+	var_changes = list("shredding" = TRUE)
+	banned_species = list(SPECIES_TESHARI, SPECIES_VOX)
+
+/datum/trait/positive/strength //combine effects of hardy + strong punches, for if someone wants a generally "strong" character. Exists for the purposes of the trait limit
+	name = "High Strength"
+	desc = "Your unarmed attacks deal more damage (+5), and you can carry heavy equipment with 50% less slowdown."
+	cost = 2
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 5, "item_slowdown_mod" = 0.5)
+	excludes = list(/datum/trait/positive/punchdamage, /datum/trait/positive/hardy, /datum/trait/positive/hardy_plus)
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_PROTEAN)
+
+/datum/trait/positive/strengthplus //see above comment
+	name = "Inhuman Strength"
+	desc = "You are unreasonably strong. Your unarmed attacks do high damage (+10), you experience much less slowdown from heavy equipment (75% less)."
+	cost = 4
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 10, "item_slowdown_mod" = 0.25)
+	excludes = list(/datum/trait/positive/punchdamage, /datum/trait/positive/hardy, /datum/trait/positive/punchdamageplus, /datum/trait/positive/hardy_plus)
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_VOX)
+
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."

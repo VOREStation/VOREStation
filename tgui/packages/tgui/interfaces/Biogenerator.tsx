@@ -28,7 +28,7 @@ type Data = {
 };
 
 const sortTypes = {
-  Alphabetical: (a: sortable, b: sortable) => a.name > b.name,
+  Alphabetical: (a: sortable, b: sortable) => a.name.localeCompare(b.name),
   'By availability': (a: sortable, b: sortable) =>
     -(a.affordable - b.affordable),
   'By price': (a: sortable, b: sortable) => a.price - b.price,
@@ -42,18 +42,6 @@ export const Biogenerator = (props) => {
   const [searchText, setSearchText] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<string>('Alphabetical');
   const [descending, setDescending] = useState<boolean>(false);
-
-  function handleSearchText(value: string) {
-    setSearchText(value);
-  }
-
-  function handleSortOrder(value: string) {
-    setSortOrder(value);
-  }
-
-  function handleDescending(value: boolean) {
-    setDescending(value);
-  }
 
   return (
     <Window width={400} height={450}>
@@ -82,9 +70,9 @@ export const Biogenerator = (props) => {
               searchText={searchText}
               sortOrder={sortOrder}
               descending={descending}
-              onSearchText={handleSearchText}
-              onSortOrder={handleSortOrder}
-              onDescending={handleDescending}
+              onSearchText={setSearchText}
+              onSortOrder={setSortOrder}
+              onDescending={setDescending}
             />
             <BiogeneratorItems
               searchText={searchText}
@@ -123,7 +111,7 @@ const BiogeneratorItems = (props: {
       })
       .sort(sortTypes[props.sortOrder]);
     if (items_in_cat.length === 0) {
-      return;
+      return undefined;
     }
     if (props.descending) {
       items_in_cat = items_in_cat.reverse();
@@ -157,9 +145,9 @@ const BiogeneratorSearch = (props: {
   searchText: string;
   sortOrder: string;
   descending: boolean;
-  onSearchText: Function;
-  onSortOrder: Function;
-  onDescending: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
+  onSortOrder: React.Dispatch<React.SetStateAction<string>>;
+  onDescending: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <Box mb="0.5rem">

@@ -17,7 +17,7 @@
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/virology,
 		/obj/item/clothing/head/bio_hood/virology,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/tank/oxygen)
 
 
@@ -35,7 +35,7 @@
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/janitor = 2,
 		/obj/item/clothing/head/bio_hood/janitor = 2,
-		/obj/item/clothing/mask/gas = 2,
+		/obj/item/clothing/mask/gas/clear = 2,
 		/obj/item/tank/emergency/oxygen/engi = 2)
 
 
@@ -60,4 +60,4 @@
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/general = 3,
 		/obj/item/clothing/head/bio_hood/general = 3,
-		/obj/item/clothing/mask/gas = 3)
+		/obj/item/clothing/mask/gas/clear = 3)

@@ -10,7 +10,7 @@
 /datum/absorbed_dna/New(var/newName, var/newDNA, var/newSpecies, var/newLanguages, var/newIdentifying_Gender, var/list/newFlavour, var/list/newGenMods)
 	..()
 	name = newName
-	qdel_swap(dna, newDNA)
+	QDEL_SWAP(dna, newDNA)
 	speciesName = newSpecies
 	languages = newLanguages
 	identifying_gender = newIdentifying_Gender

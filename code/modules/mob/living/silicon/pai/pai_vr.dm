@@ -17,6 +17,7 @@
 	var/soft_as = FALSE	//atmosphere sensor
 	var/soft_si = FALSE	//signaler
 	var/soft_ar = FALSE	//ar hud
+	var/soft_da = FALSE //death alarm
 
 	vore_capacity = 1
 	vore_capacity_ex = list("stomach" = 1)
@@ -37,13 +38,13 @@
 	if(stat == DEAD)
 		healths.icon_state = "health7"
 
-/mob/living/silicon/pai/proc/full_restore()
+/mob/living/silicon/pai/proc/full_restore() //This is using do_after all kinds of weird...
 	adjustBruteLoss(- bruteloss)
 	adjustFireLoss(- fireloss)
-	do_after(src, 1 SECONDS)
+	do_after(src, 1 SECONDS, target = src)
 	card.setEmotion(16)
 	stat = CONSCIOUS
-	do_after(src, 5 SECONDS)
+	do_after(src, 5 SECONDS, target = src)
 	var/mob/observer/dead/ghost = src.get_ghost()
 	if(ghost)
 		ghost.notify_revive("Someone is trying to revive you. Re-enter your body if you want to be revived!", 'sound/effects/pai-restore.ogg', source = card)
@@ -82,12 +83,12 @@
 
 	// Unfortunately not all these states exist, ugh.
 	else if(vore_fullness && !resting)
-		if("[chassis]_full[fullness_extension]" in cached_icon_states(icon))
+		if(icon_exists(icon, "[chassis]_full[fullness_extension]"))
 			icon_state = "[chassis]_full[fullness_extension]"
 		else
 			icon_state = "[chassis]"
 	else if(vore_fullness && resting)
-		if("[chassis]_rest_full[fullness_extension]" in cached_icon_states(icon))
+		if(icon_exists(icon, "[chassis]_rest_full[fullness_extension]"))
 			icon_state = "[chassis]_rest_full[fullness_extension]"
 		else
 			icon_state = "[chassis]_rest"
@@ -448,7 +449,7 @@
 	if(loc != card)
 		to_chat(src, span_warning("Your message won't be visible while unfolded!"))
 	if (!message)
-		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message")
+		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message", encode = FALSE)
 	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return
@@ -514,6 +515,10 @@
 				to_chat(src, span_warning("Insufficient RAM for download. (Cost [our_soft.ram_cost] : [ram] Remaining)"))
 				return
 			if(tgui_alert(src, "Do you want to download [our_soft.name]? It costs [our_soft.ram_cost], and you have [ram] remaining.", "Download [our_soft.name]", list("Yes", "No")) == "Yes")
+				if(!(ram >= our_soft.ram_cost))
+					return
+				if(software[our_soft.id])
+					return
 				ram -= our_soft.ram_cost
 				software[our_soft.id] = our_soft
 				to_chat(src, span_notice("You downloaded [our_soft.name]. ([ram] RAM remaining.)"))
@@ -536,6 +541,8 @@
 			soft_ut = TRUE
 		if(istype(soft,/datum/pai_software/signaller))
 			soft_si = TRUE
+		if(istype(soft,/datum/pai_software/deathalarm))
+			soft_da = TRUE
 	for(var/obj/screen/pai/button in hud_used.other)
 		if(button.name == "medical records")
 			if(soft_mr)
@@ -572,6 +579,11 @@
 				button.icon_state = "[button.base_state]"
 			else
 				button.icon_state = "[button.base_state]_o"
+		if(button.name == "death alarm")
+			if(soft_da && paiDA)
+				button.icon_state = "[button.base_state]"
+			else
+				button.icon_state = "[button.base_state]_o"
 
 //Procs for using the various UI buttons for your softwares
 /mob/living/silicon/pai/proc/directives()
@@ -601,6 +613,9 @@
 /mob/living/silicon/pai/proc/ar_hud()
 	touch_window("AR HUD")
 
+/mob/living/silicon/pai/proc/death_alarm()
+	touch_window("Death Alarm")
+
 /mob/living/silicon/pai/proc/get_character_icon()
 	if(!client || !client.prefs) return FALSE
 	var/mob/living/carbon/human/dummy/dummy = new ()
@@ -611,7 +626,7 @@
 
 	var/icon/new_holo = getCompoundIcon(dummy)
 
-	dummy.tail_alt = TRUE
+	dummy.tail_layering = TRUE
 	dummy.set_dir(NORTH)
 	var/icon/new_holo_north = getCompoundIcon(dummy)
 

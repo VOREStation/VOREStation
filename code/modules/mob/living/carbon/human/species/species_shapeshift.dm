@@ -86,6 +86,8 @@ var/list/wrapped_species_by_ref = list()
 	var/list/valid_gradstyles = GLOB.hair_gradients
 	for(var/hairstyle in GLOB.hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
+		if(S.name == DEVELOPER_WARNING_NAME)
+			continue
 		if(gender == MALE && S.gender == FEMALE)
 			continue
 		if(gender == FEMALE && S.gender == MALE)
@@ -95,6 +97,8 @@ var/list/wrapped_species_by_ref = list()
 		valid_hairstyles += hairstyle
 	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
+		if(S.name == DEVELOPER_WARNING_NAME)
+			continue
 		if(gender == MALE && S.gender == FEMALE)
 			continue
 		if(gender == FEMALE && S.gender == MALE)
@@ -591,9 +595,9 @@ var/list/wrapped_species_by_ref = list()
 			oocnotes = 1
 		to_chat(character, span_notify("You begin to reform. You will need to remain still."))
 		character.visible_message(span_notify("[character] rapidly contorts and shifts!"), span_danger("You begin to reform."))
-		if(do_after(character, 40,exclusive = TASK_ALL_EXCLUSIVE))
+		if(do_after(character, 4 SECONDS, target = src))
 			if(character.client.prefs)	//Make sure we didn't d/c
-				character.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, FALSE)
+				character.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, FALSE, FALSE)
 				character.visible_message(span_notify("[character] adopts a new form!"), span_danger("You have reformed."))
 
 /mob/living/carbon/human/proc/shapeshifter_copy_body()
@@ -649,7 +653,7 @@ var/list/wrapped_species_by_ref = list()
 
 	to_chat(character, span_notify("You begin to reassemble into [victim]. You will need to remain still."))
 	character.visible_message(span_notify("[character] rapidly contorts and shifts!"), span_danger("You begin to reassemble into [victim]."))
-	if(do_after(character, 40,exclusive = TASK_ALL_EXCLUSIVE))
+	if(do_after(character, 4 SECONDS, target = victim))
 		checking = FALSE
 		for(var/obj/item/grab/G in character)
 			if(G.affecting == victim && G.state >= GRAB_AGGRESSIVE)
@@ -658,5 +662,5 @@ var/list/wrapped_species_by_ref = list()
 			to_chat(character, span_warning("You lost your grip on [victim]!"))
 			return
 		if(character.client)	//Make sure we didn't d/c
-			transform_into_other_human(victim, FALSE, flavour, FALSE)
+			transform_into_other_human(victim, FALSE, flavour, FALSE, FALSE)
 			character.visible_message(span_notify("[character] adopts the form of [victim]!"), span_danger("You have reassembled into [victim]."))

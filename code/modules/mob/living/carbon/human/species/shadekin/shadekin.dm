@@ -106,13 +106,13 @@
 /datum/species/shadekin/handle_death(var/mob/living/carbon/human/H)
 	var/special_handling = FALSE //varswitch for downstream
 	H.clear_dark_maws() //clear dark maws on death or similar
-	if(!special_handling)
+	var/datum/component/shadekin/SK = H.get_shadekin_component()
+	if(!special_handling || (SK && SK.no_retreat))
 		spawn(1)
 			for(var/obj/item/W in H)
 				H.drop_from_inventory(W)
 			qdel(H)
 	else
-		var/datum/component/shadekin/SK = H.get_shadekin_component()
 		if(!SK)
 			return
 		if(SK.respite_activating)

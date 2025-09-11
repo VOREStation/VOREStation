@@ -120,7 +120,7 @@
 			return
 		to_chat(user, span_notice("You start dismantling \the [src]..."))
 		playsound(src, I.usesound, 50, 1)
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			user.visible_message(span_notice("[user] dismantles \the [src]."), span_notice("You dismantle \the [src]."))
 			new /obj/item/beehive_assembly(loc)
 			qdel(src)
@@ -135,7 +135,7 @@
 			to_chat(user, span_notice("The bees won't let you take the honeycombs out like this, smoke them first."))
 			return
 		user.visible_message(span_notice("[user] starts taking the honeycombs out of \the [src]."), span_notice("You start taking the honeycombs out of \the [src]..."))
-		while(honeycombs >= 100 && length(frames) && do_after(user, 30))
+		while(honeycombs >= 100 && length(frames) && do_after(user, 3 SECONDS, target = src))
 			var/obj/item/honey_frame/H = pop(frames)
 			H.honey = 20
 			honeycombs -= 100
@@ -169,15 +169,61 @@
 	desc = "A machine used to turn honeycombs on the frame into honey and wax."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "centrifuge"
-
+	circuit = /obj/item/circuitboard/honey_extractor
+	anchored = TRUE
 	density = TRUE
+	idle_power_usage = 15
+	active_power_usage = 200
+	use_power = USE_POWER_IDLE
 
 	var/processing = 0
 	var/honey = 0
 
+/obj/machinery/honey_extractor/Initialize(mapload)
+	. = ..()
+	default_apply_parts()
+	RefreshParts()
+	update_icon()
+
+/obj/machinery/honey_extractor/power_change()
+	. = ..()
+	var/delay = rand(0,15)
+	if(delay)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), delay)
+		return
+	update_icon()
+
+/obj/machinery/honey_extractor/update_icon()
+	cut_overlays()
+
+	icon_state = initial(icon_state)
+
+	if(panel_open)
+		add_overlay("[icon_state]_panel")
+	if(stat & NOPOWER)
+		icon_state = "[icon_state]_off"
+		return
+	if(processing)
+		icon_state = "[icon_state]_moving"
+
 /obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
 	if(processing)
 		to_chat(user, span_notice("\The [src] is currently spinning, wait until it's finished."))
+		return
+	if(I.has_tool_quality(TOOL_WRENCH))
+		anchored = !anchored
+		playsound(src, I.usesound, 50, 1)
+		user.visible_message(span_notice("[user] [anchored ? "wrenches" : "unwrenches"] \the [src]."), span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+		return
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
+	if(stat & NOPOWER)
+		to_chat(user, span_notice("\The [src] is powerless and can't grant your wishes"))
+		return
+	if(panel_open)
+		to_chat(user, span_notice("\The [src]'s maintenance panel is open, It would not be safe to turn it on."))
 		return
 	else if(istype(I, /obj/item/honey_frame))
 		var/obj/item/honey_frame/H = I
@@ -186,14 +232,15 @@
 			return
 		user.visible_message(span_notice("[user] loads \the [H]'s comb into \the [src] and turns it on."), span_notice("You load \the [H] into \the [src] and turn it on."))
 		processing = H.honey
-		icon_state = "[initial(icon_state)]_moving"
+		update_icon()
+		use_power_oneoff(active_power_usage * 5) //uses 5 second of active power at once, because I could not figure out how active powerdraw works and if or how the work is timed.
 		H.honey = 0
-		H.update_icon()
+		H.update_icon() //updates the honeyframe
 		spawn(50)
 			new /obj/item/stack/material/wax(loc)
 			honey += processing
 			processing = 0
-			icon_state = "[initial(icon_state)]"
+			update_icon()
 	else if(istype(I, /obj/item/reagent_containers/glass))
 		if(!honey)
 			to_chat(user, span_notice("There is no honey in \the [src]."))
@@ -245,7 +292,7 @@
 
 /obj/item/beehive_assembly/attack_self(var/mob/user)
 	to_chat(user, span_notice("You start assembling \the [src]..."))
-	if(do_after(user, 30))
+	if(do_after(user, 3 SECONDS, target = src))
 		user.visible_message(span_notice("[user] constructs a beehive."), span_notice("You construct a beehive."))
 		new /obj/machinery/beehive(get_turf(user))
 		user.drop_from_inventory(src)
@@ -258,7 +305,7 @@
 	desc = "Soft substance produced by bees. Used to make candles."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "wax"
-	default_type = "wax"
+	default_type = MAT_WAX
 	pass_color = TRUE
 	strict_color_stacking = TRUE
 
@@ -267,7 +314,7 @@
 	recipes = wax_recipes
 
 /datum/material/wax
-	name = "wax"
+	name = MAT_WAX
 	stack_type = /obj/item/stack/material/wax
 	icon_colour = "#fff343"
 	melting_point = T0C+300

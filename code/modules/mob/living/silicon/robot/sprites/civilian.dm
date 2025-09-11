@@ -202,6 +202,7 @@
 /datum/robot_sprite/dogborg/service/drake
 	name = "Drake"
 	sprite_icon_state = "drake"
+	has_vore_belly_resting_sprites = TRUE
 
 /datum/robot_sprite/dogborg/service/booze
 	name = "Boozehound"
@@ -340,8 +341,8 @@
 	has_rest_lights_sprites = TRUE
 	has_rest_eyes_sprites = TRUE
 	sprite_decals = list("breastplate")
-	icon_x = 32
-	pixel_x = 0
+	icon_x = 64
+	pixel_x = -16
 
 /datum/robot_sprite/dogborg/tall/service/dullahanv3
 	name = "Dullahan v3"

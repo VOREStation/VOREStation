@@ -24,7 +24,6 @@
 	changeling.chem_charges -= 10
 
 	if(changeling.recursive_enhancement)
-		to_chat(src, span_notice("We will heal much faster."))
 		C.add_modifier(/datum/modifier/fleshmend/recursive, 50 SECONDS)
 	else
 		C.add_modifier(/datum/modifier/fleshmend, 50 SECONDS)
@@ -35,11 +34,13 @@
 /datum/modifier/fleshmend
 	name = "Fleshmend"
 	desc = "We are regenerating"
+	on_created_text = "We have begun to regenerate our body."
+	on_expired_text = "Our regeneration has ceased."
 
 // For changelings who bought the Recursive Enhancement evolution.
 /datum/modifier/fleshmend/recursive
 	name = "Advanced Fleshmend"
-	desc = "We are regenerating more rapidly."
+	desc = "We have begun regenerating our body, and more rapidly than normal."
 
 //These were previously 2 or 4 per second, now it's 4 or 8 per 2 seconds
 /datum/modifier/fleshmend/tick()

@@ -887,26 +887,32 @@
 /area/redgate/train/dorm1
 	name = "Train Dorm 1"
 	icon_state = "purple"
+	flags = RAD_SHIELDED| BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SOUNDPROOF | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
 
 /area/redgate/train/dorm2
 	name = "Train Dorm 2"
 	icon_state = "yellow"
+	flags = RAD_SHIELDED| BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SOUNDPROOF | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
 
 /area/redgate/train/dorm3
 	name = "Train Dorm 3"
 	icon_state = "purple"
+	flags = RAD_SHIELDED| BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SOUNDPROOF | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
 
 /area/redgate/train/dorm4
 	name = "Train Dorm 4"
 	icon_state = "purple"
+	flags = RAD_SHIELDED| BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SOUNDPROOF | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
 
 /area/redgate/train/dorm5
 	name = "Train Dorm 5"
 	icon_state = "yellow"
+	flags = RAD_SHIELDED| BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SOUNDPROOF | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
 
 /area/redgate/train/dorm6
 	name = "Train Dorm 6"
 	icon_state = "purple"
+	flags = RAD_SHIELDED| BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SOUNDPROOF | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
 
 /area/redgate/train/seclobby
 	name = "Train Security Lobby"
@@ -1537,7 +1543,7 @@
 	//set the verb based on matching (or mismatching) outfits, and teleport the flag back to base if it was touched by the owning team
 	if(grabbing_team == laser_team)
 		user.visible_message(span_warning("[user] is returning \the [src]!"))
-		if(do_after(user,flag_return_delay))	//channel return, rather than instant
+		if(do_after(user, flag_return_delay, target = src))	//channel return, rather than instant
 			user.drop_from_inventory(src)
 			src.loc = src.start_pos
 			GLOB.global_announcer.autosay("[capitalize(laser_team)] flag returned by [user]!","Laserdome Announcer","Entertainment")

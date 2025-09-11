@@ -1,5 +1,4 @@
 /obj/machinery/reagentgrinder
-
 	name = "All-In-One Grinder"
 	desc = "Grinds stuff into itty bitty bits."
 	icon = 'icons/obj/kitchen.dmi'
@@ -112,12 +111,12 @@
 
 	if(istype(O,/obj/item/gripper))
 		var/obj/item/gripper/B = O	//B, for Borg.
-		if(!B.wrapped)
+		var/obj/item/wrapped = B.get_current_pocket()
+		if(!wrapped)
 			to_chat(user, "\The [B] is not holding anything.")
 			return 0
 		else
-			var/B_held = B.wrapped
-			to_chat(user, "You use \the [B] to load \the [src] with \the [B_held].")
+			to_chat(user, "You use \the [B] to load \the [src] with \the [wrapped].")
 
 		return 0
 
@@ -199,51 +198,7 @@
 		inuse = 0
 
 	// Process.
-	for (var/obj/item/O in holdingitems)
-
-		var/remaining_volume = beaker.reagents.maximum_volume - beaker.reagents.total_volume
-		if(remaining_volume <= 0)
-			break
-
-		if(GLOB.sheet_reagents[O.type])
-			var/obj/item/stack/stack = O
-			if(istype(stack))
-				var/list/sheet_components = GLOB.sheet_reagents[stack.type]
-				var/amount_to_take = max(0,min(stack.get_amount(),round(remaining_volume/REAGENTS_PER_SHEET)))
-				if(amount_to_take)
-					stack.use(amount_to_take)
-					if(QDELETED(stack))
-						holdingitems -= stack
-					if(islist(sheet_components))
-						amount_to_take = (amount_to_take/(sheet_components.len))
-						for(var/i in sheet_components)
-							beaker.reagents.add_reagent(i, (amount_to_take*REAGENTS_PER_SHEET))
-					else
-						beaker.reagents.add_reagent(sheet_components, (amount_to_take*REAGENTS_PER_SHEET))
-					continue
-
-		if(GLOB.ore_reagents[O.type])
-			var/obj/item/ore/R = O
-			if(istype(R))
-				var/list/ore_components = GLOB.ore_reagents[R.type]
-				if(remaining_volume >= REAGENTS_PER_ORE)
-					holdingitems -= R
-					qdel(R)
-					if(islist(ore_components))
-						var/amount_to_take = (REAGENTS_PER_ORE/(ore_components.len))
-						for(var/i in ore_components)
-							beaker.reagents.add_reagent(i, amount_to_take)
-					else
-						beaker.reagents.add_reagent(ore_components, REAGENTS_PER_ORE)
-					continue
-
-		if(O.reagents)
-			O.reagents.trans_to_obj(beaker, min(O.reagents.total_volume, remaining_volume))
-			if(O.reagents.total_volume == 0)
-				holdingitems -= O
-				qdel(O)
-			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
-				break
+	grind_items_to_reagents(holdingitems,beaker.reagents)
 
 /obj/machinery/reagentgrinder/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
 	if(!user)

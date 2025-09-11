@@ -6,6 +6,7 @@
 	plane_masters[VIS_CH_VANTAG] 		= new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
 	plane_masters[VIS_CH_STOMACH] 		= new /obj/screen/plane_master{plane = PLANE_CH_STOMACH}			//Stomach
 	plane_masters[VIS_SOULCATCHER] 		= new /obj/screen/plane_master{plane = PLANE_SOULCATCHER}			// Soulcatcher
+	plane_masters[VIS_EVENT_INVIS] 		= new /obj/screen/plane_master{plane = PLANE_INVIS_EVENT}			//Things only specific players can see at any time.
 
 	plane_masters[VIS_AUGMENTED]		= new /obj/screen/plane_master/augmented(null, my_mob)				//Augmented reality
 	..()

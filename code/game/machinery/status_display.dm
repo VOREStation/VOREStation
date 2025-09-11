@@ -34,7 +34,7 @@
 	var/index2
 	var/picture = null
 
-	var/frequency = 1435		// radio frequency
+	var/frequency = DISPLAY_FREQ		// radio frequency
 
 	var/friendc = 0      // track if Friend Computer mode
 	var/ignore_friendc = 0
@@ -53,8 +53,8 @@
 	var/seclevel = "green"
 
 /obj/machinery/status_display/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
+	if(SSradio)
+		SSradio.remove_object(src,frequency)
 	return ..()
 
 /obj/machinery/status_display/attackby(I as obj, user as mob)
@@ -67,8 +67,8 @@
 // register for radio system
 /obj/machinery/status_display/Initialize(mapload)
 	. = ..()
-	if(radio_controller)
-		radio_controller.add_object(src, frequency)
+	if(SSradio)
+		SSradio.add_object(src, frequency)
 
 // timed process
 /obj/machinery/status_display/process()

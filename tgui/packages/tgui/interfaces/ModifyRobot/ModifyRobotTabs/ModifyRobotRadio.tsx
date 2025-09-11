@@ -67,7 +67,7 @@ export const ModifyRobotRadio = (props: { target: Target }) => {
 const RadioSection = (props: {
   title: string;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   channels: string[];
   action: string;
   buttonColor: string;

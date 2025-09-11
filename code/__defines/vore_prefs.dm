@@ -5,6 +5,7 @@
 	target.absorbable = source.absorbable;												\
 	target.allowmobvore = source.allowmobvore;											\
 	target.permit_healbelly = source.permit_healbelly;									\
+	target.allowtemp = source.allowtemp;												\
 																						\
 	target.vore_taste = source.vore_taste;												\
 	target.vore_smell = source.vore_smell;												\
@@ -15,6 +16,7 @@
 	target.digest_pain = source.digest_pain;											\
 	target.noisy_full = source.noisy_full;												\
 	target.eating_privacy_global = source.eating_privacy_global;						\
+	target.vore_death_privacy = source.vore_death_privacy;								\
 																						\
 	target.can_be_drop_prey = source.can_be_drop_prey;									\
 	target.can_be_drop_pred = source.can_be_drop_pred;									\

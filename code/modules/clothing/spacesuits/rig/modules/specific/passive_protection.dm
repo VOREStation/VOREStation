@@ -7,9 +7,9 @@
 	from incoming ionizing radiation and converts it into a significantly less harmful form. This comes at the cost of concerningly high power consumption, \
 	and thus should only be used in short bursts."
 	icon_state = "radsoak"
-	toggleable = 1
-	disruptable = 1
-	disruptive = 0
+	toggleable = TRUE
+	disruptable = TRUE
+	disruptive = FALSE
 
 	use_power_cost = 25
 	active_power_cost = 25
@@ -26,7 +26,7 @@
 /obj/item/rig_module/rad_shield/activate()
 
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 	var/obj/item/clothing/shoes/boots = holder.boots
@@ -49,7 +49,7 @@
 /obj/item/rig_module/rad_shield/deactivate()
 
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 	var/obj/item/clothing/shoes/boots = holder.boots
@@ -86,9 +86,9 @@
 	and thus should only be used in short bursts."
 	icon_state = "atmosoak"
 
-	toggleable = 1
-	disruptable = 1
-	disruptive = 0
+	toggleable = TRUE
+	disruptable = TRUE
+	disruptive = FALSE
 
 	use_power_cost = 25
 	active_power_cost = 25
@@ -106,7 +106,7 @@
 /obj/item/rig_module/atmos_shield/activate()
 
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 	var/obj/item/clothing/shoes/boots = holder.boots
@@ -137,7 +137,7 @@
 /obj/item/rig_module/atmos_shield/deactivate()
 
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 	var/obj/item/clothing/shoes/boots = holder.boots
@@ -164,3 +164,90 @@
 
 	stored_max_pressure = 0
 	stored_max_temp = 0
+
+/obj/item/rig_module/atmos_shield/advanced
+	name = "advanced atmospheric protection enhancement suite"
+	desc = "The acronym of this device - A.P.E. -  unlike its loosely related cousin, the R.A.D., is remarkably unintuitive. It has a changelog inscribed \
+	on the underside of the casing."
+	use_power_cost = 5
+	active_power_cost = 5
+
+/obj/item/rig_module/faraday_shield
+	name = "Faraday Protection Shield"
+	desc = "The acronym of this device - F.P.S. - does not represent the application of the device."
+	description_info  = "Instead of wrapping the user with a grounded mesh of wires and limiting mobility, this device instead creates an \
+	lattice within the electromagnetic field around the user. This field, while smelling pleasantly of ozone, will act as a means of grounding \
+	the suit's operator. This in turn will protect them from electrical attacks from Teslas and other electrical assaults provided the body is \
+	fully covered by the suit. This comes at the cost of concerningly high power consumption, and thus should only be used in short bursts."
+	icon_state = "elecsoak"
+	toggleable = TRUE
+	disruptable = TRUE
+	disruptive = FALSE
+
+	use_power_cost = 25
+	active_power_cost = 25
+	passive_power_cost = 0
+	module_cooldown = 30
+
+	activate_string = "Enable Supplemental Faraday Shielding"
+	deactivate_string = "Disable Supplemental Faraday Shielding"
+
+	interface_name = "faraday shielding system"
+	interface_desc = "Provides passive protection against electrical assaults, at the cost of power."
+	var/stored_siemens_coefficient = 0
+	var/stored_gloves_siemens_coefficient = 0
+
+/obj/item/rig_module/faraday_shield/activate()
+	if(!..())
+		return FALSE
+
+	var/mob/living/carbon/human/H = holder.wearer
+	var/obj/item/clothing/shoes/boots = holder.boots
+	var/obj/item/clothing/suit/space/rig/chest = holder.chest
+	var/obj/item/clothing/head/helmet/space/rig/helmet = holder.helmet
+	var/obj/item/clothing/gloves/gauntlets/rig/gloves = holder.gloves
+
+	to_chat(H, span_boldnotice("You activate your suit's powered faraday shielding."))
+	stored_siemens_coefficient = holder.siemens_coefficient
+	stored_gloves_siemens_coefficient = gloves.siemens_coefficient
+	if(boots)
+		boots.siemens_coefficient = 0
+	if(chest)
+		chest.siemens_coefficient = 0
+	if(helmet)
+		helmet.siemens_coefficient = 0
+	if(gloves)
+		gloves.siemens_coefficient = 0
+	holder.siemens_coefficient = 0
+
+/obj/item/rig_module/faraday_shield/deactivate()
+
+	if(!..())
+		return 0
+
+	var/mob/living/carbon/human/H = holder.wearer
+	var/obj/item/clothing/shoes/boots = holder.boots
+	var/obj/item/clothing/suit/space/rig/chest = holder.chest
+	var/obj/item/clothing/head/helmet/space/rig/helmet = holder.helmet
+	var/obj/item/clothing/gloves/gauntlets/rig/gloves = holder.gloves
+
+	to_chat(H, span_boldnotice("You deactivate your suit's powered faraday shielding."))
+
+	if(boots)
+		boots.siemens_coefficient = stored_siemens_coefficient
+	if(chest)
+		chest.siemens_coefficient = stored_siemens_coefficient
+	if(helmet)
+		helmet.siemens_coefficient = stored_siemens_coefficient
+	if(gloves)
+		gloves.siemens_coefficient = stored_gloves_siemens_coefficient
+	holder.siemens_coefficient = siemens_coefficient
+
+	stored_siemens_coefficient = 0
+
+/obj/item/rig_module/faraday_shield/advanced
+	name = "advanced faraday protection shield suite"
+	desc = "The acronym of this device - F.P.S. - does not represent the application of the device. It has a changelog inscribed \
+	on the underside of the casing."
+	use_power_cost = 5
+	active_power_cost = 5

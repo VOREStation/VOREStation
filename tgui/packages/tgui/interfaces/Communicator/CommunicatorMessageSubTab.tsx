@@ -6,7 +6,7 @@ import type { Data } from './types';
 
 export const CommunicatorMessageSubTab = (props: {
   clipboardMode: boolean;
-  onClipboardMode: Function;
+  onClipboardMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { act, data } = useBackend<Data>();
 

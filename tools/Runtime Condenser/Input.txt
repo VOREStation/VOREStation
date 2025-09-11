@@ -753,9 +753,9 @@ runtime error: Cannot create objects of type null.
 proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
   source file: rdconsole.dm,381
   usr: Matthew Hoff (/mob/living/carbon/human)
-  src: Core R&D Console (/obj/machinery/computer/rdconsole/core)
+  src: Core R&D Console (/obj/machinery/computer/rdconsole_tg)
   call stack:
-Core R&D Console (/obj/machinery/computer/rdconsole/core): Topic("src=\[0x20065fa];build=large_G...", /list (/list))
+Core R&D Console (/obj/machinery/computer/rdconsole_tg): Topic("src=\[0x20065fa];build=large_G...", /list (/list))
 runtime error: Cannot read null.slot_flags
 proc name: db click (/mob/living/carbon/human/db_click)
   source file: inventory.dm,1142
@@ -790,16 +790,16 @@ runtime error: Cannot create objects of type null.
 proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
   source file: rdconsole.dm,381
   usr: Sprigg Spooly (/mob/living/carbon/human)
-  src: Core R&D Console (/obj/machinery/computer/rdconsole/core)
+  src: Core R&D Console (/obj/machinery/computer/rdconsole_tg)
   call stack:
-Core R&D Console (/obj/machinery/computer/rdconsole/core): Topic("src=\[0x200ca33];build=large_G...", /list (/list))
+Core R&D Console (/obj/machinery/computer/rdconsole_tg): Topic("src=\[0x200ca33];build=large_G...", /list (/list))
 runtime error: Cannot create objects of type null.
 proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
   source file: rdconsole.dm,381
   usr: Sprigg Spooly (/mob/living/carbon/human)
-  src: Core R&D Console (/obj/machinery/computer/rdconsole/core)
+  src: Core R&D Console (/obj/machinery/computer/rdconsole_tg)
   call stack:
-Core R&D Console (/obj/machinery/computer/rdconsole/core): Topic("src=\[0x200ca94];build=large_G...", /list (/list))
+Core R&D Console (/obj/machinery/computer/rdconsole_tg): Topic("src=\[0x200ca94];build=large_G...", /list (/list))
 runtime error: Cannot read null.slot_flags
 proc name: db click (/mob/living/carbon/human/db_click)
   source file: inventory.dm,1093
@@ -2583,16 +2583,16 @@ runtime error: Cannot create objects of type null.
 proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
   source file: rdconsole.dm,381
   usr: Cletus Powers (/mob/living/carbon/human)
-  src: Core R&D Console (/obj/machinery/computer/rdconsole/core)
+  src: Core R&D Console (/obj/machinery/computer/rdconsole_tg)
   call stack:
-Core R&D Console (/obj/machinery/computer/rdconsole/core): Topic("src=\[0x2006613];build=large_G...", /list (/list))
+Core R&D Console (/obj/machinery/computer/rdconsole_tg): Topic("src=\[0x2006613];build=large_G...", /list (/list))
 runtime error: Cannot create objects of type null.
 proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
   source file: rdconsole.dm,381
   usr: Cletus Powers (/mob/living/carbon/human)
-  src: Core R&D Console (/obj/machinery/computer/rdconsole/core)
+  src: Core R&D Console (/obj/machinery/computer/rdconsole_tg)
   call stack:
-Core R&D Console (/obj/machinery/computer/rdconsole/core): Topic("src=\[0x2003615];build=large_G...", /list (/list))
+Core R&D Console (/obj/machinery/computer/rdconsole_tg): Topic("src=\[0x2003615];build=large_G...", /list (/list))
 runtime error: Cannot read null.slot_flags
 proc name: db click (/mob/living/carbon/human/db_click)
   source file: inventory.dm,1048

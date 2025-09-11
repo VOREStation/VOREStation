@@ -95,7 +95,7 @@
 
 	current_user = user
 	user.visible_message(span_infoplain(span_bold("[user]") + " begins to draw back the string of [src]."),span_notice("You begin to draw back the string of [src]."))
-	if(do_after(user, 25, src, exclusive = TASK_ALL_EXCLUSIVE))
+	if(do_after(user, 25, target = src))
 		drawn = TRUE
 		user.visible_message(span_infoplain(span_bold("[user]") + "draws the string on [src] back fully!"), span_infoplain("You draw the string on [src] back fully!"))
 	update_icon()
@@ -124,7 +124,7 @@
 	desc = "An energy bow, capable of producing arrows from an internal power supply."
 
 /obj/item/gun/launcher/crossbow/bow/hardlight/unload(mob/user)
-	qdel_null(bolt)
+	QDEL_NULL(bolt)
 	update_icon()
 
 /obj/item/gun/launcher/crossbow/bow/hardlight/attack_self(mob/living/user)

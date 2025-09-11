@@ -19,8 +19,13 @@
 
 	var/mob/living/carbon/human/H = src
 
-	if(!istype(H) || !H.species.primitive_form)
-		to_chat(src, span_warning("We cannot perform this ability in this form!"))
+	if(!istype(H))
+		to_chat(src, span_warning("We must be a humanoid to use thia bility!!"))
+		return
+
+	else if(!H.species.primitive_form)
+		to_chat(src, span_warning("The species we are currently in the form of does not have a primitive form!"))
+		to_chat(src, span_info("NOTE: Species such as Unathi, Tajaran, Akula, and Human have primitive forms. Things such as custom species do not.")) //Let's add a warning...Ideally, we change primitive form to be based off body style, but we still run into the problem of some speices not having them.
 		return
 
 	changeling.chem_charges--
@@ -60,7 +65,7 @@
 	changeling.chem_charges--
 	C.remove_changeling_powers()
 	C.visible_message(span_warning("[C] transforms!"))
-	qdel_swap(C.dna, chosen_dna.Clone())
+	QDEL_SWAP(C.dna, chosen_dna.Clone())
 
 	var/list/implants = list()
 	for (var/obj/item/implant/I in C) //Still preserving implants
@@ -87,7 +92,7 @@
 		O.gender = FEMALE
 	else
 		O.gender = MALE
-	qdel_swap(O.dna, C.dna.Clone())
+	QDEL_SWAP(O.dna, C.dna.Clone())
 	QDEL_NULL(C.dna)
 	O.real_name = chosen_dna.real_name
 

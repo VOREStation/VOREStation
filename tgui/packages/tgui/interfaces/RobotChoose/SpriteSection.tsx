@@ -28,8 +28,6 @@ export const SpriteSection = (props: {
     <Section
       title={title}
       fill
-      scrollable
-      width="30%"
       buttons={
         <Stack g={0.2}>
           <Stack.Item>
@@ -59,28 +57,33 @@ export const SpriteSection = (props: {
         </Stack>
       }
     >
-      <Stack.Item mb={'10px'}>
-        <Input
-          fluid
-          value={searchText}
-          placeholder="Search for sprites..."
-          onChange={(value: string) => setSearchText(value)}
-        />
-      </Stack.Item>
-      <Stack.Item>
-        <Stack vertical>
-          {!!filtered &&
-            filtered.map((filter) => (
-              <SelectorElement
-                key={filter.sprite}
-                option={filter.sprite}
-                action="pick_icon"
-                selected={selected}
-                belly={filter.belly}
-              />
-            ))}
-        </Stack>
-      </Stack.Item>
+      <Stack vertical fill>
+        <Stack.Item>
+          <Input
+            fluid
+            value={searchText}
+            placeholder="Search for sprites..."
+            onChange={(value: string) => setSearchText(value)}
+          />
+        </Stack.Item>
+        <Stack.Divider />
+        <Stack.Item grow>
+          <Section fill scrollable>
+            <Stack vertical fill>
+              {!!filtered &&
+                filtered.map((filter) => (
+                  <SelectorElement
+                    key={filter.sprite}
+                    option={filter.sprite}
+                    action="pick_icon"
+                    selected={selected}
+                    belly={filter.belly}
+                  />
+                ))}
+            </Stack>
+          </Section>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

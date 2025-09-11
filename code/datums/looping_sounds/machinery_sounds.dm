@@ -115,3 +115,14 @@
 	mid_length = 6
 	end_sound = 'sound/machines/vehicle/engine_end.ogg'
 	volume = 20
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/looping_sound/lathe_print
+	mid_sounds = list('sound/machines/lathe/lathe_print.ogg')
+	mid_length = 2 SECONDS
+	volume = 50
+	vary = TRUE
+	// ignore_walls = FALSE
+	// falloff_distance = 1
+	// mid_length_vary = 1 SECONDS

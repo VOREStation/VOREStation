@@ -1,6 +1,6 @@
+import type { ReactNode } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
-
 import { SMESItem } from './RCONSMESItem';
 import type { Data } from './types';
 
@@ -9,7 +9,7 @@ export const RCONSmesList = (props) => {
 
   const { smes_info, pages, current_page } = data;
 
-  const runCallback = (cb: Function) => {
+  const runCallback = (cb: () => ReactNode) => {
     return cb();
   };
 

@@ -43,7 +43,7 @@
 	attacktext = list("mauled","slashed","clawed")
 	friendly = list("boops", "pawbs", "mars softly at", "sniffs on")
 
-	vore_active = TRUE
+	vore_active = FALSE
 	vore_pounce_chance = 10
 	vore_icons = SA_ICON_LIVING
 	swallowTime = 2 SECONDS
@@ -134,12 +134,7 @@
 	QDEL_LIST_NULL(shadekin_abilities)
 	. = ..()
 
-/mob/living/simple_mob/shadekin/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
-
+/mob/living/simple_mob/shadekin/load_default_bellies()
 	var/obj/belly/B = new /obj/belly(src)
 	vore_selected = B
 	B.immutable = 1
@@ -191,7 +186,6 @@
 		"The stinging and aching gives way to numbness as you're slowly smothered out. Your body is steadily reduced to nutrients and energy for the creature to continue on its way.",
 		"The chaos of being digested fades as you're snuffed out by a harsh clench! You're steadily broken down into a thick paste, processed and absorbed by the predator!"
 		)
-	. = ..()
 
 /mob/living/simple_mob/shadekin/Life()
 	. = ..()

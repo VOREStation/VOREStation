@@ -96,8 +96,6 @@
 
 	text = tgui_input_text(src, "What would you like to say?", "Speak to creature", null, MAX_MESSAGE_LEN)
 
-	text = sanitize(text, MAX_MESSAGE_LEN)
-
 	if(!text) return
 
 	var/mob/M = targets[target]
@@ -121,7 +119,7 @@
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities.General"
 
-	var/msg = sanitize(tgui_input_text(src, "Message:", "Psychic Whisper"))
+	var/msg = tgui_input_text(src, "Message:", "Psychic Whisper", "", MAX_MESSAGE_LEN)
 	if(msg)
 		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
 		to_chat(M, span_filter_say("[span_green("You hear a strange, alien voice in your head... <i>[msg]</i>")]"))
@@ -292,7 +290,7 @@
 		src.visible_message(span_filter_notice(span_bold("[src]") + "'s flesh begins to mend..."))
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
-	if(do_after(src,delay_length))
+	if(do_after(src, delay_length, target = src))
 		adjust_nutrition(-200)
 
 		for(var/obj/item/organ/I in internal_organs)

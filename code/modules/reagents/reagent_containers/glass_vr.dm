@@ -85,6 +85,5 @@
 /obj/item/reagent_containers/glass/beaker/measuring_cup
 	name = "measuring cup"
 	desc = "A measuring cup."
-	icon = 'icons/obj/chemical_vr.dmi'
 	icon_state = "measure_cup"
 	item_state = "measure_cup"

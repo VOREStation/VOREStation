@@ -1,6 +1,5 @@
 import { useBackend } from 'tgui/backend';
 import { LabeledList, ProgressBar, Section } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { damageRange, damages } from './constants';
 import type { Data } from './types';
@@ -20,7 +19,7 @@ export const SleeperDamage = (props) => {
               value={occupant[d[1]] / 100}
               ranges={damageRange}
             >
-              {toFixed(occupant[d[1]])}
+              {occupant[d[1]].toFixed()}
             </ProgressBar>
           </LabeledList.Item>
         ))}
