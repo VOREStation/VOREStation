@@ -26,6 +26,9 @@ LOG_EVENTCHAT
 ## log OOC channel
 LOG_OOC
 
+## log LOOC channel
+LOG_LOOC
+
 ## log prayers
 LOG_PRAYER
 
