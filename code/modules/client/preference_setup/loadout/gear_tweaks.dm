@@ -59,20 +59,23 @@ GLOBAL_DATUM_INIT(gear_tweak_free_matrix_recolor, /datum/gear_tweak/matrix_recol
 /datum/gear_tweak/matrix_recolor/get_default()
 	return null
 
-/datum/gear_tweak/matrix_recolor/get_metadata(user, metadata)
-	var/list/returned = color_matrix_picker(user, "Pick a color matrix for this item", "Matrix Recolor", "Ok", "Erase", "Cancel", TRUE, 10 MINUTES, islist(metadata) && metadata)
-	var/list/L = returned["matrix"]
-	if(returned["button"] == 3)
+/datum/gear_tweak/matrix_recolor/get_metadata(user, metadata, datum/gear/gear)
+	if(!istype(gear))
+		CRASH("Matrix metadata called by [user] without gear!")
+	var/list/returned = tgui_input_colormatrix(user, "Pick a color matrix for this item", "Matrix Recolor", gear.path, metadata, TRUE)
+	if(!returned)
 		return metadata
-	if((returned["button"] == 2) || !islist(L) || !ISINRANGE(L.len, 9, 20))
-		return list()
 	var/identity = TRUE
 	var/static/list/ones = list(1, 5, 9)
-	for(var/i in 1 to L.len)
-		if(L[i] != ((i in ones)? 1 : 0))
+	var/static/list/offsets = list(10, 11, 12)
+	for(var/i in 1 to length(returned))
+		if(returned[i] != ((i in ones) ? 1 : 0))
 			identity = FALSE
 			break
-	return identity? list() : L
+		if(returned[i] != ((i in offsets) ? 0 : 1))
+			identity = FALSE
+			break
+	return identity ? list() : returned
 
 /datum/gear_tweak/matrix_recolor/tweak_item(obj/item/I, metadata)
 	. = ..()

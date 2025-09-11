@@ -245,7 +245,11 @@ var/list/gear_datums = list()
 			var/datum/gear_tweak/tweak = locate(params["tweak"])
 			if(!tweak || !gear || !(tweak in gear.gear_tweaks))
 				return TOPIC_HANDLED
-			var/metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
+			var/metadata
+			if(istype(tweak, /datum/gear_tweak/matrix_recolor))
+				metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak), gear)
+			else
+				metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
 			if(!metadata)
 				return TOPIC_HANDLED
 			set_tweak_metadata(gear, tweak, metadata)
