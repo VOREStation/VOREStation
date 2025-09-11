@@ -16,6 +16,7 @@
 		"weapon_cell",
 		"high_mech_cell",
 		"potato_cell",
+		"smes_magnetic_coil",
 		// "basic_scanning",
 		// "condenser",
 		// "igniter",
@@ -42,6 +43,8 @@
 		"super_cell",
 		"super_mech_cell",
 		"rped",
+		"smes_cap_basic",
+		"smes_trans_basic",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(CHANNEL_ENGINEERING)
@@ -61,6 +64,8 @@
 		"super_device",
 		"hyper_device",
 		"arped",
+		"smes_cap_ultra",
+		"smes_trans_ultra",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier2_any)
@@ -128,6 +133,8 @@
 		"omni_micro_laser",
 		"giga_device",
 		"giga_cell",
+		"smes_cap_hyper",
+		"smes_trans_hyper",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier4_any = TECHWEB_TIER_5_POINTS)

@@ -818,6 +818,16 @@
 	name = "\improper Research Outpost Breakroom"
 	icon_state = "research"
 
+/area/rnd/outpost/breakroom/quarters
+	name = "\improper Research Outpost Personal Quarters"
+	flags = RAD_SHIELDED | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO
+
+/area/rnd/outpost/breakroom/quarters/dorm1
+	name = "\improper Research Outpost Personal Quarters 1"
+
+/area/rnd/outpost/breakroom/quarters/dorm2
+	name = "\improper Research Outpost Personal Quarters 2"
+
 /area/rnd/outpost/airlock
 	name = "\improper Research Outpost Airlock"
 	icon_state = "green"
