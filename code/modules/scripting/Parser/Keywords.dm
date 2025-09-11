@@ -157,7 +157,7 @@ var/const/Represents a special statement in the code triggered by a keyword.
 		parser.errors+=new/scriptError/BadToken(parser.curToken)
 		return KW_FAIL
 
-#undef KW_FAIL 0 //Fatal error; stop parsing entire script.
-#undef KW_PASS 1 //OK
-#undef KW_ERR  2 //Non-fatal error, keyword couldn't be handled properly. Ignore keyword but continue on.
-#undef KW_WARN 3 //Warning
+#undef KW_FAIL
+#undef KW_PASS
+#undef KW_ERR
+#undef KW_WARN
