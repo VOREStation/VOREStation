@@ -1,6 +1,6 @@
 /datum/component/turfslip
 	var/mob/living/owner
-	var/slip_dist = TURFSLIP_LUBE * 0
+	var/slip_dist = TURFSLIP_WET
 	var/dirtslip = FALSE
 
 /datum/component/turfslip/Initialize()
@@ -27,7 +27,7 @@
 	switch(start.wet)
 		if(TURFSLIP_LUBE)
 			floor_type = "slippery"
-			slip_dist = 4
+			slip_dist = 99 //Skill issue.
 			slip_stun = 10
 			dirtslip = FALSE
 		if(TURFSLIP_ICE)
