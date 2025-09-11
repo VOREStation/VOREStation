@@ -216,13 +216,13 @@ export const SubtabSpecies = (props: {
                       <Box>Has a variety of eye colors.</Box>
                     ) : null}
                   </Stack.Item>
-                  {can_play[viewed_species.name].restricted === 2 ? (
+                  {can_play?.[viewed_species.name]?.restricted === 2 ? (
                     <Stack.Item>
                       You cannot play as this species. If you wish to be
                       whitelisted, you can make an application post on the
                       forums or discord.
                     </Stack.Item>
-                  ) : can_play[viewed_species.name].restricted === 1 ? (
+                  ) : can_play?.[viewed_species.name]?.restricted === 1 ? (
                     <Stack.Item>
                       You cannot play as this race. This species is not
                       available for play as a station race.
@@ -230,15 +230,16 @@ export const SubtabSpecies = (props: {
                   ) : null}
                   <Stack.Item>
                     <Button
-                      disabled={!can_play[viewed_species.name].can_select}
+                      disabled={!can_play?.[viewed_species.name]?.can_select}
                       color={
-                        can_play[viewed_species.name].can_select
+                        can_play?.[viewed_species.name]?.can_select
                           ? 'good'
                           : 'bad'
                       }
-                      onClick={() =>
-                        act('set_species', { species: viewed_species.name })
-                      }
+                      onClick={() => {
+                        act('set_species', { species: viewed_species.name });
+                        setViewingSpecies('');
+                      }}
                     >
                       Select
                     </Button>

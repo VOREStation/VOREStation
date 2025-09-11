@@ -578,3 +578,81 @@
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+//SMES Coils
+/datum/design_techweb/smes_basic_coil
+	name = "Superconductive Magnetic Coil"
+	build_type = PROTOLATHE
+	id = "smes_magnetic_coil"
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_COPPER = 2000)
+	build_path = /obj/item/smes_coil
+	category = list(
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/smes_capacity_coil
+	name = "Superconductive Capacity Coil"
+	build_type = PROTOLATHE
+	id = "smes_cap_basic"
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_SILVER = 2000)
+	build_path = /obj/item/smes_coil/super_capacity
+	category = list(
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_2
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/smes_capacity_coil_ultra
+	name = "Ultraconductive Capacity Coil"
+	build_type = PROTOLATHE
+	id = "smes_cap_ultra"
+	materials = list(MAT_STEEL = 10000, MAT_GLASS = 6000, MAT_GOLD = 5000, MAT_SILVER = 5000, MAT_DURASTEEL = 3000,  MAT_METALHYDROGEN = 2000, MAT_VERDANTIUM = 2000)
+	build_path = /obj/item/smes_coil/super_capacity/ultra
+	category = list(
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_3
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/smes_capacity_coil_hyper
+	name = "Hyperconductive Capacity Coil"
+	build_type = PROTOLATHE
+	id = "smes_cap_hyper"
+	materials = list(MAT_STEEL = 15000, MAT_GLASS = 9000, MAT_GOLD = 7500, MAT_SILVER = 7500, MAT_DURASTEEL = 4500,  MAT_METALHYDROGEN = 3000, MAT_VERDANTIUM = 3000, MAT_MORPHIUM = 2000)
+	build_path = /obj/item/smes_coil/super_capacity/hyper
+	category = list(
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/smes_transmission_coil
+	name = "Superconductive Transmission Coil"
+	build_type = PROTOLATHE
+	id = "smes_trans_basic"
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_SILVER = 4000)
+	build_path = /obj/item/smes_coil/super_io
+	category = list(
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_2
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/smes_transmission_coil_ultra
+	name = "Ultraconductive Transmission Coil"
+	build_type = PROTOLATHE
+	id = "smes_trans_ultra"
+	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000, MAT_GOLD = 6000, MAT_SILVER = 6000, MAT_DURASTEEL = 2000,  MAT_METALHYDROGEN = 2000, MAT_VERDANTIUM = 2000)
+	build_path = /obj/item/smes_coil/super_io/ultra
+	category = list(
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_3
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/smes_transmission_coil_hyper
+	name = "Hyperconductive Transmission Coil"
+	build_type = PROTOLATHE
+	id = "smes_trans_hyper"
+	materials = list(MAT_STEEL = 9000, MAT_GLASS = 6000, MAT_GOLD = 9000, MAT_SILVER = 9000, MAT_DURASTEEL = 3000,  MAT_METALHYDROGEN = 3000, MAT_VERDANTIUM = 3000, MAT_MORPHIUM = 2000)
+	build_path = /obj/item/smes_coil/super_io/hyper
+	category = list(
+		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
