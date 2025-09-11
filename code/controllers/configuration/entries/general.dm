@@ -19,6 +19,9 @@
 /// log messages sent in OOC
 /datum/config_entry/flag/log_ooc
 
+/// log messages sent in LOOC
+/datum/config_entry/flag/log_looc
+
 /// log login/logout
 /datum/config_entry/flag/log_access
 
