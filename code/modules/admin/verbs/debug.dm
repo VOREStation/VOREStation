@@ -393,33 +393,33 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 	var/list/areas_without_intercom = areas_all - areas_with_intercom
 	var/list/areas_without_camera = areas_all - areas_with_camera
 
-	to_world(span_bold("AREAS WITHOUT AN APC:"))
+	to_chat(world, span_bold("AREAS WITHOUT AN APC:"))
 	for(var/areatype in areas_without_APC)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT AN AIR ALARM:"))
+	to_chat(world, span_bold("AREAS WITHOUT AN AIR ALARM:"))
 	for(var/areatype in areas_without_air_alarm)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT A REQUEST CONSOLE:"))
+	to_chat(world, span_bold("AREAS WITHOUT A REQUEST CONSOLE:"))
 	for(var/areatype in areas_without_RC)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT ANY LIGHTS:"))
+	to_chat(world, span_bold("AREAS WITHOUT ANY LIGHTS:"))
 	for(var/areatype in areas_without_light)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT A LIGHT SWITCH:"))
+	to_chat(world, span_bold("AREAS WITHOUT A LIGHT SWITCH:"))
 	for(var/areatype in areas_without_LS)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT ANY INTERCOMS:"))
+	to_chat(world, span_bold("AREAS WITHOUT ANY INTERCOMS:"))
 	for(var/areatype in areas_without_intercom)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT ANY CAMERAS:"))
+	to_chat(world, span_bold("AREAS WITHOUT ANY CAMERAS:"))
 	for(var/areatype in areas_without_camera)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
 /datum/admins/proc/cmd_admin_dress(input in getmobs())
 	set category = "Fun.Event Kit"
@@ -624,15 +624,17 @@ ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct 
 	else
 		tgui_alert_async(usr, "Invalid mob")
 
-/datum/admins/proc/view_runtimes()
-	set category = "Debug.Investigate"
-	set name = "View Runtimes"
-	set desc = "Open the Runtime Viewer"
+ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.", ADMIN_CATEGORY_DEBUG)
+	GLOB.error_cache.show_to(user)
 
-	if(!check_rights(R_DEBUG))
-		return
-
-	error_cache.showTo(usr)
+	// The runtime viewer has the potential to crash the server if there's a LOT of runtimes
+	// this has happened before, multiple times, so we'll just leave an alert on it
+	if(GLOB.total_runtimes >= 50000) // arbitrary number, I don't know when exactly it happens
+		var/warning = "There are a lot of runtimes, clicking any button (especially \"linear\") can have the potential to lag or crash the server"
+		if(GLOB.total_runtimes >= 100000)
+			warning = "There are a TON of runtimes, clicking any button (especially \"linear\") WILL LIKELY crash the server"
+		// Not using TGUI alert, because it's view runtimes, stuff is probably broken
+		tgui_alert(user, "[warning]. Proceed with caution. If you really need to see the runtimes, download the runtime log and view it in a text editor.", "HEED THIS WARNING CAREFULLY MORTAL")
 
 /datum/admins/proc/change_weather()
 	set category = "Debug.Events"

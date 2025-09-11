@@ -1,0 +1,4 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - bugfix: "LOOC messages are now properly logging in the right category instead of falling back to the default one."

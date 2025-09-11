@@ -64,13 +64,13 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	ASSERT(voidsuit_type)
 	. = ..()
 	if(voidsuit_type && !ispath(voidsuit_type, /obj/item/clothing/suit/space/void))
-		error("[src] can't spawn type [voidsuit_type] as a voidsuit")
+		log_world("## ERROR [src] can't spawn type [voidsuit_type] as a voidsuit")
 		return
 	if(voidhelmet_type && !ispath(voidhelmet_type, /obj/item/clothing/head/helmet/space/void))
-		error("[src] can't spawn type [voidsuit_type] as a voidhelmet")
+		log_world("## ERROR [src] can't spawn type [voidsuit_type] as a voidhelmet")
 		return
 	if(magboots_type && !ispath(magboots_type, /obj/item/clothing/shoes/magboots))
-		error("[src] can't spawn type [magboots_type] as magboots")
+		log_world("## ERROR [src] can't spawn type [magboots_type] as magboots")
 		return
 
 	var/obj/item/clothing/suit/space/void/voidsuit
@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	if(voidhelmet_type)
 		// The coder may not have realized this type spawns its own helmet
 		if(voidsuit.hood)
-			error("[src] created a voidsuit [voidsuit] and wants to add a helmet but it already has one")
+			log_world("## ERROR [src] created a voidsuit [voidsuit] and wants to add a helmet but it already has one")
 		else
 			voidhelmet = new voidhelmet_type()
 			voidsuit.attach_helmet(voidhelmet)
@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	if(magboots_type)
 		// The coder may not have realized thist ype spawns its own boots
 		if(voidsuit.boots)
-			error("[src] created a voidsuit [voidsuit] and wants to add a helmet but it already has one")
+			log_world("## ERROR [src] created a voidsuit [voidsuit] and wants to add a helmet but it already has one")
 		else
 			magboots = new magboots_type(voidsuit)
 			voidsuit.boots = magboots
@@ -105,13 +105,13 @@ GLOBAL_LIST_EMPTY(dispenser_presets)
 	if(life_support)
 		if(user.isSynthetic())
 			if(voidsuit.cooler)
-				error("[src] created a voidsuit [voidsuit] and wants to add a suit cooler but it already has one")
+				log_world("## ERROR [src] created a voidsuit [voidsuit] and wants to add a suit cooler but it already has one")
 			else
 				var/obj/item/life_support = new /obj/item/suit_cooling_unit(voidsuit)
 				voidsuit.cooler = life_support
 		else if(user.species?.breath_type)
 			if(voidsuit.tank)
-				error("[src] created a voidsuit [voidsuit] and wants to add a tank but it already has one")
+				log_world("## ERROR [src] created a voidsuit [voidsuit] and wants to add a tank but it already has one")
 			else
 				//Create a tank (if such a thing exists for this species)
 				var/tanktext = "/obj/item/tank/" + "[user.species?.breath_type]"

@@ -5,7 +5,7 @@ ADMIN_VERB(fix_atmos, (R_ADMIN|R_DEBUG|R_EVENT), "Fix Atmospherics Grief", "View
 	feedback_add_details("admin_verb","FA")
 
 	log_and_message_admins("Full atmosphere reset initiated by [user].")
-	to_world(span_danger("Initiating restart of atmosphere. The server may lag a bit."))
+	to_chat(world, span_danger("Initiating restart of atmosphere. The server may lag a bit."))
 	sleep(10)
 	var/current_time = world.timeofday
 
@@ -43,4 +43,4 @@ ADMIN_VERB(fix_atmos, (R_ADMIN|R_DEBUG|R_EVENT), "Fix Atmospherics Grief", "View
 	SSair.RebootZAS()
 
 	to_chat(user, "\[5/5\] - ZAS Rebooted")
-	to_world(span_danger("Atmosphere restart completed in " + span_bold("[(world.timeofday - current_time)/10]") + " seconds."))
+	to_chat(world, span_danger("Atmosphere restart completed in " + span_bold("[(world.timeofday - current_time)/10]") + " seconds."))

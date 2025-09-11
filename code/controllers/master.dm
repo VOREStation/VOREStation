@@ -506,11 +506,11 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 	// Gave invalid return value.
 	if(result && !(result in valid_results))
-		warning("[subsystem.name] subsystem initialized, returning invalid result [result]. This is a bug.")
+		WARNING("[subsystem.name] subsystem initialized, returning invalid result [result]. This is a bug.")
 
 	// just returned ..() or didn't implement Initialize() at all
 	if(result == SS_INIT_NONE)
-		warning("[subsystem.name] subsystem does not implement Initialize() or it returns ..(). If the former is true, the SS_NO_INIT flag should be set for this subsystem.")
+		WARNING("[subsystem.name] subsystem does not implement Initialize() or it returns ..(). If the former is true, the SS_NO_INIT flag should be set for this subsystem.")
 
 	if(result != SS_INIT_FAILURE)
 		// Some form of success, implicit failure, or the SS in unused.

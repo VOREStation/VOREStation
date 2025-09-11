@@ -188,7 +188,7 @@
 	if(!M)
 		D.forceMove(get_step(src, dir))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
-		warning("Dust in [src] had material_name [D.material_name], which can't be made into stacks")
+		WARNING("Dust in [src] had material_name [D.material_name], which can't be made into stacks")
 		return
 
 	var/stacktype = M.stack_type
