@@ -88,7 +88,8 @@
 /area/survivalpod/redspace)
 "I" = (
 /obj/machinery/smartfridge/survival_pod{
-	pixel_y = 28
+	pixel_y = 28;
+	density = 0
 	},
 /obj/item/towel/random{
 	color = "#5fadba"

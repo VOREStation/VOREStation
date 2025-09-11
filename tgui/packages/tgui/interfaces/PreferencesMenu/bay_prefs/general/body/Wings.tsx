@@ -99,13 +99,14 @@ export const WingsDimmer = (props: {
 }) => {
   const { act } = useBackend();
   const { setShow, data, serverData, staticData } = props;
+  const { available_wing_styles = [] } = staticData;
   const color = data.wing_color1;
   const color2 = data.wing_color2;
   const color3 = data.wing_color3;
   const alpha = data.wing_alpha;
 
   const [search, setSearch] = useState('');
-  const styles = staticData.available_wing_styles.filter((x) =>
+  const styles = available_wing_styles.filter((x) =>
     search ? x.toLowerCase().includes(search.toLowerCase()) : true,
   );
   styles.sort();

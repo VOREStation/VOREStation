@@ -244,10 +244,12 @@ export const SubtabInfo = (props: {
       </Stack.Item>
       <Stack.Divider />
       <Stack.Item>
-        <SpeciesBaseStats
-          speciesStats={species_stats}
-          baseStats={staticData.basehuman_stats}
-        />
+        {!!staticData.basehuman_stats && (
+          <SpeciesBaseStats
+            speciesStats={species_stats}
+            baseStats={staticData.basehuman_stats}
+          />
+        )}
       </Stack.Item>
     </Stack>
   );

@@ -166,7 +166,7 @@
 	src.type_path = type_path
 	src.name = initial(type_path.name)
 	if(!name)
-		log_debug("supply_demand event: Order for thing [type_path] has no name.")
+		log_game("supply_demand event: Order for thing [type_path] has no name.")
 
 /datum/supply_demand_order/thing/match_item(var/atom/I)
 	if(istype(I, type_path))
@@ -207,7 +207,7 @@
 		qty_need = CEILING((qty_need - amount_to_take), 1)
 		return 1
 	else
-		log_debug("supply_demand event: not taking reagent '[reagent_id]': [amount_to_take]")
+		log_game("supply_demand event: not taking reagent '[reagent_id]': [amount_to_take]")
 	return
 
 //
@@ -233,14 +233,14 @@
 	if(!canmix || canmix.total_moles <= 0)
 		return
 	if(canmix.return_pressure() < mixture.return_pressure())
-		log_debug("supply_demand event: canister fails to match [canmix.return_pressure()] kPa < [mixture.return_pressure()] kPa")
+		log_game("supply_demand event: canister fails to match [canmix.return_pressure()] kPa < [mixture.return_pressure()] kPa")
 		return
 	// Make sure ratios are equal
 	for(var/gas in mixture.gas)
 		var/targetPercent = round((mixture.gas[gas] / mixture.total_moles) * 100)
 		var/canPercent = round((canmix.gas[gas] / canmix.total_moles) * 100)
 		if(abs(targetPercent-canPercent) > 1)
-			log_debug("supply_demand event: canister fails to match because '[gas]': [canPercent] != [targetPercent]")
+			log_game("supply_demand event: canister fails to match because '[gas]': [canPercent] != [targetPercent]")
 			return // Fail!
 	// Huh, it actually matches!
 	qty_need -= 1

@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(game_master)
 
 	var/next_event = 0								// Minimum amount of time of nothingness until the GM can pick something again.
 
-	var/debug_messages = FALSE // If true, debug information is written to `log_debug()`.
+	var/debug_messages = FALSE // If true, debug information is written to `log_world()`.
 
 /datum/controller/subsystem/game_master/Initialize()
 	var/list/subtypes = subtypesof(/datum/event2/meta)
@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(game_master)
 
 //	if(hours < 1 && mins <= 20) // Don't do anything for the first twenty minutes of the round.
 //		if(!quiet)
-//			log_debug("Game Master unable to start event: It is too early.")
+//			log_game_master("Game Master unable to start event: It is too early.")
 //		return FALSE
 	if(hours >= 2 && mins >= 40) // Don't do anything in the last twenty minutes of the round, as well.
 		if(!quiet)
@@ -131,7 +131,7 @@ SUBSYSTEM_DEF(game_master)
 
 /datum/controller/subsystem/game_master/proc/log_game_master(message)
 	if(debug_messages)
-		log_debug("GAME MASTER: [message]")
+		log_world("GAME MASTER: [message]")
 
 
 // This object makes the actual decisions.

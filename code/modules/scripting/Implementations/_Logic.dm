@@ -281,11 +281,11 @@ Just found out there was already a string explode function, did some benchmarkin
 			//CharCopy (dest + targetIndex, src + sourceIndex, count);
 			//CharCopy (dest + curPos, source + lastReadPos, precopy);
 			buf+=copytext(haystack,lastReadPos,precopy)
-			log_misc("buf+=copytext([haystack],[lastReadPos],[precopy])")
-			log_misc("[buf]")
+			log_world("## MISC buf+=copytext([haystack],[lastReadPos],[precopy])")
+			log_world("## MISC [buf]")
 			lastReadPos = dat[i] + lena
 			//CharCopy (dest + curPos, replace, newValue.length);
 			buf+=b
-			log_misc("[buf]")
+			log_world("## MISC [buf]")
 		buf+=copytext(haystack,lastReadPos, 0)
 		return buf

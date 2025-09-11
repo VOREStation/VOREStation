@@ -139,7 +139,7 @@
 	..()
 	if (href_list["toggle_landing_gear"])
 		landing_gear_raised = !landing_gear_raised
-		send_byjax(src.occupant,"exosuit.browser","landing_gear_command","[landing_gear_raised?"Raise":"Lower"] landing gear")
+		send_byjax(src.occupant,"exosuit.browser","landing_gear_command","[landing_gear_raised?"Lower":"Raise"] landing gear")
 		src.occupant_message(span_notice("Landing gear [landing_gear_raised? "raised" : "lowered"]."))
 		return
 
@@ -147,7 +147,7 @@
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
-						<a href='byond://?src=\ref[src];toggle_landing_gear=1'><span id="landing_gear_command">[landing_gear_raised?"Raise":"Lower"] landing gear</span></a><br>
+						<a href='byond://?src=\ref[src];toggle_landing_gear=1'><span id="landing_gear_command">[landing_gear_raised?"Lower":"Raise"] landing gear</span></a><br>
 						</div>
 						</div>
 						"}
