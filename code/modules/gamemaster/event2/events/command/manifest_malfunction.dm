@@ -57,5 +57,5 @@
 				R = safepick(GLOB.data_core.medical)
 
 		if(R)
-			log_debug("Manifest malfunction event is now deleting [R.fields["name"]]'s [record_class_to_delete] record.")
+			log_game("Manifest malfunction event is now deleting [R.fields["name"]]'s [record_class_to_delete] record.")
 			qdel(R)

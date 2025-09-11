@@ -861,7 +861,7 @@
 	icon_state = "toxmix"
 	ambience = AMBIENCE_ATMOS
 
-/area/rnd/outpost/testing
+/area/rnd/outpost/test
 	name = "\improper Research Outpost Testing"
 	icon_state = "toxtest"
 	ambience = AMBIENCE_ATMOS
@@ -875,7 +875,7 @@
 /area/rnd/outpost/anomaly_lab/analysis
 	name = "\improper Anomaly Lab Analysis Chamber"
 	icon_state = "research"
-/area/rnd/outpost/anomaly_lab/testing
+/area/rnd/outpost/anomaly_lab/test
 	name = "\improper Anomaly Lab Testing Chamber"
 	icon_state = "research"
 /area/rnd/outpost/anomaly_lab/airlock

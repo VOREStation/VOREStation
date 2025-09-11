@@ -4,7 +4,7 @@
 	GLOB.player_list -= src
 	disconnect_time = world.realtime	//VOREStation Addition: logging when we disappear.
 	update_client_z(null)
-	log_access_out(src)
+	log_access("Mob Logout: [key_name(src)]")
 	unset_machine()
 
 	var/datum/admins/is_admin = GLOB.admin_datums[src.ckey]
