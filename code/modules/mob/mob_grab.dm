@@ -340,12 +340,6 @@
 				if(I_DISARM)
 					pin_down(affecting, assailant)
 
-/obj/item/grab/dropped(mob/user)
-	..()
-	loc = null
-	if(!QDELETED(src))
-		qdel(src)
-
 /obj/item/grab/proc/reset_kill_state()
 	if(state == GRAB_KILL)
 		var/datum/gender/T = GLOB.gender_datums[assailant.get_visible_gender()]
