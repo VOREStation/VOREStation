@@ -155,6 +155,8 @@
 		borg.mmi = null
 	QDEL_NULL(radio)
 	QDEL_NULL(brainmob)
+	if(brainobj)
+		QDEL_NULL(brainobj)
 	return ..()
 
 /obj/item/mmi/radio_enabled

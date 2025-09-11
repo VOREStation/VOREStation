@@ -205,3 +205,145 @@
 		comment = "Joker"
 	user.visible_message(span_notice("[user] has thrown \the [src]. It lands on [comment]! "), \
 							span_notice("You throw \the [src]. It lands on [comment]! "))
+
+
+//Fake casino chips that can be ordered at any time
+
+/obj/item/spacecasinocash_fake
+	name = "broken replica casino chip"
+	desc = "It's worth nothing in a casino."
+	gender = PLURAL
+	icon = 'icons/obj/casino.dmi'
+	icon_state = "spacecasinocash1"
+	opacity = 0
+	density = 0
+	anchored = 0.0
+	force = 1.0
+	throwforce = 1.0
+	throw_speed = 1
+	throw_range = 2
+	w_class = ITEMSIZE_SMALL
+	var/access = list()
+	access = ACCESS_CRATE_CASH
+	var/worth = 0
+
+/obj/item/spacecasinocash_fake/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/spacecasinocash_fake))
+
+		var/obj/item/spacecasinocash_fake/SC = W
+
+		SC.adjust_worth(src.worth)
+		if(ishuman(user))
+			var/mob/living/carbon/human/h_user = user
+
+			h_user.drop_from_inventory(src)
+			h_user.drop_from_inventory(SC)
+			h_user.put_in_hands(SC)
+		to_chat(user, span_notice("You combine the casino chips to a stack of [SC.worth] replica casino credits."))
+		qdel(src)
+
+/obj/item/spacecasinocash_fake/update_icon()
+	overlays.Cut()
+	name = "[worth] replica casino chip\s"
+	if(worth in list(1000,500,200,100,50,20,10,1))
+		icon_state = "spacecasinocash[worth]"
+		desc = "It's a stack of replica casino chips with a combined value of [worth] imaginary points."
+		return
+	var/sum = src.worth
+	var/num = 0
+	for(var/i in list(1000,500,200,100,50,20,10,1))
+		while(sum >= i && num < 50)
+			sum -= i
+			num++
+			var/image/banknote = image('icons/obj/casino.dmi', "spacecasinocash[i]")
+			var/matrix/M = matrix()
+			M.Translate(rand(-6, 6), rand(-4, 8))
+			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
+			banknote.transform = M
+			src.overlays += banknote
+	if(num == 0) // Less than one credit, let's just make it look like 1 for ease
+		var/image/banknote = image('icons/obj/casino.dmi', "spacecasinocash1")
+		var/matrix/M = matrix()
+		M.Translate(rand(-6, 6), rand(-4, 8))
+		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
+		banknote.transform = M
+		src.overlays += banknote
+	src.desc = "They are worth [worth] replica casino credits."
+
+/obj/item/spacecasinocash_fake/proc/adjust_worth(var/adjust_worth = 0, var/update = 1)
+	worth += adjust_worth
+	if(worth > 0)
+		if(update)
+			update_icon()
+		return worth
+	else
+		qdel(src)
+		return 0
+
+/obj/item/spacecasinocash_fake/proc/set_worth(var/new_worth = 0, var/update = 1)
+	worth = max(0, new_worth)
+	if(update)
+		update_icon()
+	return worth
+
+/obj/item/spacecasinocash_fake/attack_self(mob/user)
+	var/amount = tgui_input_number(user, "How much credits worth of chips do you want to take? (0 to [src.worth])", "Take chips", 20, src.worth)
+	if(!src || QDELETED(src))
+		return
+	amount = round(CLAMP(amount, 0, src.worth))
+
+	if(!amount)
+		return
+
+	adjust_worth(-amount)
+	var/obj/item/spacecasinocash_fake/SC = new (user.loc)
+	SC.set_worth(amount)
+	user.put_in_hands(SC)
+
+/obj/item/spacecasinocash_fake/c1
+	name = "1 replica casino chip"
+	icon_state = "spacecasinocash1"
+	desc = "It's worth 1 credit."
+	worth = 1
+
+/obj/item/spacecasinocash_fake/c10
+	name = "10 replica casino chip"
+	icon_state = "spacecasinocash10"
+	desc = "It's worth 10 credits."
+	worth = 10
+
+/obj/item/spacecasinocash_fake/c20
+	name = "20 replica casino chip"
+	icon_state = "spacecasinocash20"
+	desc = "It's worth 20 credits."
+	worth = 20
+
+/obj/item/spacecasinocash_fake/c50
+	name = "50 replica casino chip"
+	icon_state = "spacecasinocash50"
+	desc = "It's worth 50 credits."
+	worth = 50
+
+/obj/item/spacecasinocash_fake/c100
+	name = "100 replica casino chip"
+	icon_state = "spacecasinocash100"
+	desc = "It's worth 100 credits."
+	worth = 100
+
+/obj/item/spacecasinocash_fake/c200
+	name = "200 replica casino chip"
+	icon_state = "spacecasinocash200"
+	desc = "It's worth 200 credits."
+	worth = 200
+
+/obj/item/spacecasinocash_fake/c500
+	name = "500 replica casino chip"
+	icon_state = "spacecasinocash500"
+	desc = "It's worth 500 credits."
+	worth = 500
+
+/obj/item/spacecasinocash_fake/c1000
+	name = "1000 replica casino chip"
+	icon_state = "spacecasinocash1000"
+	desc = "It's worth 1000 credits."
+	worth = 1000

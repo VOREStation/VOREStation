@@ -75,6 +75,12 @@
 	item_state = "altbodysuit_sleeveless"
 	body_parts_covered = CHEST
 
+/obj/item/clothing/under/undersuit/alt/no_sleeves
+	name = "alternate undersuit, no sleeves"
+	desc = "A skin-tight synthetic bodysuit designed for comfort and mobility underneath hardsuits and voidsuits. This one cuts off at the shoulder, allowing total freedom to the wearer's arms."
+	item_state = "altbodysuit_nosleeves"
+	body_parts_covered = CHEST
+
 /obj/item/clothing/under/undersuit/alt/fem
 	name = "alternate undersuit, feminine"
 	desc = "A skin-tight synthetic bodysuit designed for comfort and mobility underneath hardsuits and voidsuits. This basic version is a sleek onyx grey comes with the standard induction ports."
@@ -84,3 +90,8 @@
 	name = "alternate undersuit, feminine sleeveless"
 	desc = "A skin-tight synthetic bodysuit designed for comfort and mobility underneath hardsuits and voidsuits. This one is designed to stop at the mid-bicep, allowing total freedom to the wearer's forearms."
 	item_state = "altbodysuitfem_sleeveless"
+
+/obj/item/clothing/under/undersuit/alt/no_sleeves/fem
+	name = "alternate undersuit, feminine no sleeves"
+	desc = "A skin-tight synthetic bodysuit designed for comfort and mobility underneath hardsuits and voidsuits. This one cuts off at the shoulder, allowing total freedom to the wearer's arms."
+	item_state = "altbodysuitfem_nosleeves"
