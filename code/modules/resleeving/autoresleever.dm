@@ -15,7 +15,7 @@
 
 /obj/machinery/transhuman/autoresleever/update_icon()
 	. = ..()
-	if(stat)
+	if(stat & (BROKEN | MAINT | EMPED))
 		icon_state = "autoresleever-o"
 	else
 		icon_state = "autoresleever"
@@ -58,7 +58,7 @@
 		return
 
 /obj/machinery/transhuman/autoresleever/proc/autoresleeve(var/mob/observer/dead/ghost)
-	if(stat)
+	if(stat & (BROKEN | MAINT | EMPED)) // Let it still work when power is just off, it has it's own backup reserve or something.
 		to_chat(ghost, span_warning("This machine is not functioning..."))
 		return
 	if(!isobserver(ghost))
