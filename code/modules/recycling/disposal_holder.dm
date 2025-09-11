@@ -20,7 +20,7 @@
 	//Check for any living mobs trigger hasmob.
 	//hasmob effects whether the package goes to cargo or its tagged destination.
 	for(var/mob/living/M in flush_list)
-		if(M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
+		if(M.stat != DEAD && !istype(M,/mob/living/silicon/robot/drone))
 			hasmob = TRUE
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE
