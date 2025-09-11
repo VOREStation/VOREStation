@@ -224,10 +224,10 @@
 		R.add_reagent(M.mineral.reagent, rand(0,volume / 8))
 	// Pump deep reagents from deepdrill boreholes
 	for(var/metal in GLOB.deepore_fracking_reagents)
-		if(!M.resources[metal])
+		if(!LAZYACCESS(M.resources,metal))
 			continue
 		var/list/ore_list = GLOB.deepore_fracking_reagents[metal]
-		if(!ore_list || !ore_list.len)
+		if(!LAZYLEN(ore_list))
 			continue
 		var/reagent_id = pick(ore_list)
 		if(reagent_id && prob(60))
