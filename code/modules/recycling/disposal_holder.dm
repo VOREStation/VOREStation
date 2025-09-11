@@ -32,7 +32,7 @@
 		if(!O.contents)
 			continue
 		for(var/mob/living/M in O.contents)
-			if(M && M.stat != 2 && !istype(M,/mob/living/silicon/robot/drone))
+			if(M && M.stat != DEAD && !istype(M,/mob/living/silicon/robot/drone))
 				hasmob = TRUE
 
 	// now everything inside the disposal gets put into the holder
