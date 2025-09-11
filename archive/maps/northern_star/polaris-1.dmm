@@ -67092,12 +67092,7 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/elevator)
 "cuH" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	invisibility = 60;
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/shuttle/floor/white,
 /area/crew_quarters/sleep/elevator)
 "cuI" = (
@@ -67958,12 +67953,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/sleep/elevator)
 "cwq" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	invisibility = 60;
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /obj/machinery/light,
 /turf/simulated/shuttle/floor/white,
 /area/crew_quarters/sleep/elevator)
