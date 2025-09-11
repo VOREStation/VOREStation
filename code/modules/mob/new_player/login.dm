@@ -11,9 +11,6 @@
 		mind.active = 1
 		mind.current = src
 
-	if(client)
-		persistent_ckey = client.ckey
-
 	loc = null
 	sight |= SEE_TURFS
 

@@ -85,7 +85,7 @@
 	var/obj/item/clothing/accessory/acc = A
 	if(can_attach_accessory(acc))
 		if(user)
-			user.drop_item()
+			user.remove_from_mob(acc)
 		attach_accessory(user, acc)
 		return TRUE
 	else

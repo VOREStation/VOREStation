@@ -114,7 +114,7 @@
 					target_floor = null
 				return PROCESS_KILL
 			else if(!next_process)
-				log_debug("Turbolift [src] do_move() returned 1 but next_process = null; busy_state=[busy_state]")
+				log_runtime("Turbolift [src] do_move() returned 1 but next_process = null; busy_state=[busy_state]")
 				return PROCESS_KILL
 		if(LIFT_WAITING_A)
 			var/area/turbolift/origin = locate(current_floor.area_ref)
@@ -128,7 +128,7 @@
 				busy_state = null
 				return PROCESS_KILL
 		else
-			log_debug("Turbolift [src] process() called with unknown busy_state='[busy_state]'")
+			log_runtime("Turbolift [src] process() called with unknown busy_state='[busy_state]'")
 			return PROCESS_KILL
 
 // Called by process when in LIFT_MOVING

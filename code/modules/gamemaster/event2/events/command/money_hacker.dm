@@ -24,7 +24,7 @@
 		targeted_account = pick(GLOB.all_money_accounts)
 
 	if(!targeted_account)
-		log_debug("Money hacker event could not find an account to hack. Aborting.")
+		log_game("Money hacker event could not find an account to hack. Aborting.")
 		abort()
 		return
 
@@ -47,11 +47,11 @@
 	if(targeted_account && !targeted_account.suspended) // Hacker wins.
 		message = "The hack attempt has succeeded."
 		hack_account(targeted_account)
-		log_debug("Money hacker event managed to hack the targeted account.")
+		log_game("Money hacker event managed to hack the targeted account.")
 
 	else // Crew wins.
 		message = "The attack has ceased, the affected accounts can now be brought online."
-		log_debug("Money hacker event failed to hack the targeted account due to intervention by the crew.")
+		log_game("Money hacker event failed to hack the targeted account due to intervention by the crew.")
 
 	var/my_department = "[location_name()] Firewall Subroutines"
 
