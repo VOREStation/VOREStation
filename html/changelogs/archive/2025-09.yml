@@ -128,3 +128,30 @@
       creator's species info tab.
   Zizzi:
   - bugfix: fixed circuit cloning printing invisible clothes
+2025-09-11:
+  Aroliacue:
+  - image: Modified the security backpack to be more security-looking by using the
+      TG style 'radiopack', similar to the Teshari version.
+  Diana:
+  - image: Makes the neo gorka suits have digi sprites
+  - image: Makes the alt mailman have digi sprites
+  Kashargul:
+  - bugfix: character editor crash
+  - bugfix: fixes multiple del issues with stacks
+  - bugfix: character editor, selection species now closes the selection
+  KillianKirilenko:
+  - rscadd: Added two tiers of high-tech smes coils acquirable through research nodes
+  - qol: moved holosign projectors and a couple other tools out of machine boards
+      and into tools where they belong
+  - refactor: cleaned up icon files for hats and headwear - there shouldn't be any
+      player-facing changes, but please report any invisible or bugged clothes in
+      appropriate channels
+  - rscadd: Added a fully sleeveless ("no sleeves") variant of the alt undersuits
+  - image: Added digi states for void alt undersuits
+  Lilly-Lira:
+  - bugfix: fix taur suits from layering below taur tails
+  Ryumi:
+  - qol: Mining uses balloon alerts instead of spamming your chat with every little
+      mining attempt.
+  - bugfix: Fighters will now correctly say whether or not you'll raise or lower their
+      landing gear.

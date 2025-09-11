@@ -1,4 +1,0 @@
-author: "Ryumi"
-delete-after: True
-changes:
-  - qol: "Mining uses balloon alerts instead of spamming your chat with every little mining attempt."

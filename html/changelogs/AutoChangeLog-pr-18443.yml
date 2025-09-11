@@ -1,4 +1,0 @@
-author: "Ryumi"
-delete-after: True
-changes:
-  - bugfix: "Fighters will now correctly say whether or not you'll raise or lower their landing gear."
