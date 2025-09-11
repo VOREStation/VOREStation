@@ -1,11 +1,11 @@
 /mob/living/silicon/pai
-	var/obj/screen/pai/pai_fold_display = null
+	var/atom/movable/screen/pai/pai_fold_display = null
 
-/obj/screen/pai
+/atom/movable/screen/pai
 	icon = 'icons/mob/pai_hud.dmi'
 	var/base_state
 
-/obj/screen/pai/Click_vr(location, control, params)
+/atom/movable/screen/pai/Click_vr(location, control, params)
 	if(!usr)	return 1
 	if(!ispAI(usr))		return 1
 	var/mob/living/silicon/pai/p = usr
@@ -72,7 +72,7 @@
 		if("death alarm")
 			p.death_alarm()
 
-/obj/screen/pai/pai_fold_display
+/atom/movable/screen/pai/pai_fold_display
 	name = "fold/unfold"
 	icon = 'icons/mob/pai_hud.dmi'
 
@@ -97,11 +97,11 @@
 	HUD.hotkeybuttons = hotkeybuttons
 	HUD.hud_elements = hud_elements
 
-	var/obj/screen/pai/using
+	var/atom/movable/screen/pai/using
 
 	//Small intent quarters
 
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = I_HELP
 	using.icon = ui_style
 	using.icon_state = "intent_help-s"
@@ -111,7 +111,7 @@
 	HUD.adding += using
 	HUD.help_intent = using
 
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = I_DISARM
 	using.icon = ui_style
 	using.icon_state = "intent_disarm-n"
@@ -121,7 +121,7 @@
 	HUD.adding += using
 	HUD.disarm_intent = using
 
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = I_GRAB
 	using.icon = ui_style
 	using.icon_state = "intent_grab-n"
@@ -131,7 +131,7 @@
 	HUD.adding += using
 	HUD.grab_intent = using
 
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = I_HURT
 	using.icon = ui_style
 	using.icon_state = "intent_harm-n"
@@ -142,7 +142,7 @@
 	HUD.hurt_intent = using
 
 	//Move intent (walk/run)
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "mov_intent"
 	using.icon = ui_style
 	using.icon_state = (m_intent == I_RUN ? "running" : "walking")
@@ -153,7 +153,7 @@
 	HUD.move_intent = using
 
 	//Resist button
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "resist"
 	using.icon = ui_style
 	using.icon_state = "act_resist"
@@ -163,7 +163,7 @@
 	HUD.hotkeybuttons += using
 
 	//Pull button
-	pullin = new /obj/screen()
+	pullin = new /atom/movable/screen()
 	pullin.icon = ui_style
 	pullin.icon_state = "pull0"
 	pullin.name = "pull"
@@ -172,16 +172,16 @@
 	HUD.hud_elements |= pullin
 
 	//Health status
-	healths = new /obj/screen()
+	healths = new /atom/movable/screen()
 	healths.icon = ui_style
 	healths.icon_state = "health0"
 	healths.name = "health"
 	healths.screen_loc = ui_health
 	HUD.hud_elements |= healths
 
-	pain = new /obj/screen( null )
+	pain = new /atom/movable/screen( null )
 
-	zone_sel = new /obj/screen/zone_sel( null )
+	zone_sel = new /atom/movable/screen/zone_sel( null )
 	zone_sel.icon = ui_style
 	zone_sel.color = ui_color
 	zone_sel.alpha = ui_alpha
@@ -189,13 +189,13 @@
 	zone_sel.update_icon()
 	HUD.hud_elements |= zone_sel
 
-	pai_fold_display = new /obj/screen/pai/pai_fold_display()
+	pai_fold_display = new /atom/movable/screen/pai/pai_fold_display()
 	pai_fold_display.screen_loc = ui_health
 	pai_fold_display.icon_state = "folded"
 	HUD.hud_elements |= pai_fold_display
 
 	//Choose chassis button
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "choose chassis"
 	using.icon_state = "choose_chassis"
 	using.screen_loc = ui_movi
@@ -204,7 +204,7 @@
 	hud_elements |= using
 
 	//Software interface button
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "software interface"
 	using.icon_state = "software_interface"
 	using.screen_loc = ui_acti
@@ -213,7 +213,7 @@
 	hud_elements |= using
 
 	//Radio configuration button
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "radio configuration"
 	using.icon_state = "radio_configuration"
 	using.screen_loc = ui_acti
@@ -222,7 +222,7 @@
 	hud_elements |= using
 
 	//PDA button
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "pda"
 	using.icon_state = "pda"
 	using.screen_loc = ui_pai_comms
@@ -231,7 +231,7 @@
 	hud_elements |= using
 
 	//Communicator button
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "communicator"
 	using.icon_state = "communicator"
 	using.screen_loc = ui_pai_comms
@@ -240,7 +240,7 @@
 	hud_elements |= using
 
 	//Language button
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "known languages"
 	using.icon_state = "language"
 	using.screen_loc = ui_acti
@@ -248,7 +248,7 @@
 	using.alpha = ui_alpha
 	hud_elements |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "software toggle"
 	using.icon_state = "software"
 	using.screen_loc = ui_inventory
@@ -256,7 +256,7 @@
 	using.alpha = ui_alpha
 	hud_elements |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "directives"
 	using.icon_state = "directives"
 	using.screen_loc = "WEST:6,SOUTH:18"
@@ -264,7 +264,7 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "crew manifest"
 	using.icon_state = "manifest"
 	using.screen_loc = "WEST:6,SOUTH+1:2"
@@ -272,7 +272,7 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "medical records"
 	using.base_state = "med_records"
 	using.screen_loc = "WEST:6,SOUTH+1:18"
@@ -280,7 +280,7 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "security records"
 	using.base_state = "sec_records"
 	using.screen_loc = "WEST:6,SOUTH+2:2"
@@ -288,7 +288,7 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "atmosphere sensor"
 	using.base_state = "atmos_sensor"
 	using.screen_loc = "WEST:6,SOUTH+2:18"
@@ -296,7 +296,7 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "remote signaler"
 	using.base_state = "signaller"
 	using.screen_loc = "WEST:6,SOUTH+3:2"
@@ -304,7 +304,7 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "universal translator"
 	using.base_state = "translator"
 	using.screen_loc = "WEST:6,SOUTH+3:18"
@@ -312,7 +312,7 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "door jack"
 	using.base_state = "door_jack"
 	using.screen_loc = "WEST:6,SOUTH+4:2"
@@ -320,7 +320,7 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "ar hud"
 	using.base_state = "ar_hud"
 	using.screen_loc = "WEST:6,SOUTH+4:18"
@@ -328,7 +328,7 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	using = new /obj/screen/pai()
+	using = new /atom/movable/screen/pai()
 	using.name = "death alarm"
 	using.base_state = "death_alarm"
 	using.screen_loc = "WEST:6,SOUTH+5:2"
@@ -336,42 +336,42 @@
 	using.alpha = ui_alpha
 	other |= using
 
-	autowhisper_display = new /obj/screen()
+	autowhisper_display = new /atom/movable/screen()
 	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
 	autowhisper_display.icon_state = "autowhisper"
 	autowhisper_display.name = "autowhisper"
 	autowhisper_display.screen_loc = "EAST-1:28,CENTER-2:13"
 	hud_elements |= autowhisper_display
 
-	var/obj/screen/aw = new /obj/screen()
+	var/atom/movable/screen/aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "aw-select"
 	aw.name = "autowhisper mode"
 	aw.screen_loc = "EAST-1:28,CENTER-2:13"
 	hud_elements |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "lang"
 	aw.name = "check known languages"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "pose"
 	aw.name = "set pose"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "up"
 	aw.name = "move upwards"
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "down"
 	aw.name = "move downwards"

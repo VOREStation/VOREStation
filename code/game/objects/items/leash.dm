@@ -1,18 +1,18 @@
-/obj/screen/alert/leash_dom
+/atom/movable/screen/alert/leash_dom
 	name = "Leash Holder"
 	desc = "You're holding a leash, with someone on the end."
 	icon_state = "leash_master"
 
-/obj/screen/alert/leash_dom/Click()
+/atom/movable/screen/alert/leash_dom/Click()
 	var/obj/item/leash/owner = master
 	owner.unleash()
 
-/obj/screen/alert/leash_pet
+/atom/movable/screen/alert/leash_pet
 	name = "Leashed"
 	desc = "You're on the hook now!"
 	icon_state = "leash_pet"
 
-/obj/screen/alert/leash_dom/Click()
+/atom/movable/screen/alert/leash_dom/Click()
 	var/obj/item/leash/owner = master
 	owner.struggle_leash()
 
@@ -85,12 +85,12 @@
 
 	leash_pet = C //Save pet reference for later
 	leash_pet.add_modifier(/datum/modifier/leash)
-	leash_pet.throw_alert("leashed", /obj/screen/alert/leash_pet, new_master = src) //Is the leasher
+	leash_pet.throw_alert("leashed", /atom/movable/screen/alert/leash_pet, new_master = src) //Is the leasher
 	RegisterSignal(leash_pet, COMSIG_MOVABLE_MOVED, PROC_REF(on_pet_move))
 	to_chat(leash_pet, span_userdanger("You have been leashed!"))
 	to_chat(leash_pet, span_danger("(You can use OOC escape to detach the leash)"))
 	leash_master = user //Save dom reference for later
-	leash_master.throw_alert("leash", /obj/screen/alert/leash_dom, new_master = src)//Has now been leashed
+	leash_master.throw_alert("leash", /atom/movable/screen/alert/leash_dom, new_master = src)//Has now been leashed
 	RegisterSignal(leash_master, COMSIG_MOVABLE_MOVED, PROC_REF(on_master_move))
 
 	START_PROCESSING(SSobj, src)

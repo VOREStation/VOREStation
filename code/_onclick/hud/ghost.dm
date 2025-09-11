@@ -1,103 +1,103 @@
-/obj/screen/ghost
+/atom/movable/screen/ghost
 	icon = 'icons/mob/screen_ghost.dmi'
 
-/obj/screen/ghost/MouseEntered(location,control,params)
+/atom/movable/screen/ghost/MouseEntered(location,control,params)
 	flick(icon_state + "_anim", src)
 	openToolTip(usr, src, params, title = name, content = desc)
 
-/obj/screen/ghost/MouseExited()
+/atom/movable/screen/ghost/MouseExited()
 	closeToolTip(usr)
 
-/obj/screen/ghost/Click()
+/atom/movable/screen/ghost/Click()
 	closeToolTip(usr)
 
-/obj/screen/ghost/returntomenu
+/atom/movable/screen/ghost/returntomenu
 	name = "Return to menu"
 	desc = "Return to the title screen menu."
 	icon_state = "returntomenu"
 
-/obj/screen/ghost/returntomenu/Click()
+/atom/movable/screen/ghost/returntomenu/Click()
 	..()
 	var/mob/observer/dead/G = usr
 	G.abandon_mob()
 
-/obj/screen/ghost/jumptomob
+/atom/movable/screen/ghost/jumptomob
 	name = "Jump to mob"
 	desc = "Pick a mob from a list to jump to."
 	icon_state = "jumptomob"
 
-/obj/screen/ghost/jumptomob/Click()
+/atom/movable/screen/ghost/jumptomob/Click()
 	..()
 	var/mob/observer/dead/G = usr
 	G.jumptomob()
 
-/obj/screen/ghost/orbit
+/atom/movable/screen/ghost/orbit
 	name = "Orbit"
 	desc = "Pick a mob to follow and orbit."
 	icon_state = "orbit"
 
-/obj/screen/ghost/orbit/Click()
+/atom/movable/screen/ghost/orbit/Click()
 	..()
 	var/mob/observer/dead/G = usr
 	G.follow()
 
-/obj/screen/ghost/reenter_corpse
+/atom/movable/screen/ghost/reenter_corpse
 	name = "Reenter corpse"
 	desc = "Only applicable if you HAVE a corpse..."
 	icon_state = "reenter_corpse"
 
-/obj/screen/ghost/reenter_corpse/Click()
+/atom/movable/screen/ghost/reenter_corpse/Click()
 	..()
 	var/mob/observer/dead/G = usr
 	G.reenter_corpse()
 
-/obj/screen/ghost/teleport
+/atom/movable/screen/ghost/teleport
 	name = "Teleport"
 	desc = "Pick an area to teleport to."
 	icon_state = "teleport"
 
-/obj/screen/ghost/teleport/Click()
+/atom/movable/screen/ghost/teleport/Click()
 	..()
 	var/mob/observer/dead/G = usr
 	G.dead_tele()
 
-/obj/screen/ghost/pai
+/atom/movable/screen/ghost/pai
 	name = "pAI Alert"
 	desc = "Ping all the unoccupied pAI devices in the world."
 	icon_state = "pai"
 
-/obj/screen/ghost/pai/Click()
+/atom/movable/screen/ghost/pai/Click()
 	..()
 	var/mob/observer/dead/G = usr
 	G.paialert()
 
-/obj/screen/ghost/up
+/atom/movable/screen/ghost/up
 	name = "Move Upwards"
 	desc = "Move up a z-level."
 	icon_state = "up"
 
-/obj/screen/ghost/up/Click()
+/atom/movable/screen/ghost/up/Click()
 	..()
 	var/mob/observer/dead/G = usr
 	G.zMove(UP)
 
-/obj/screen/ghost/down
+/atom/movable/screen/ghost/down
 	name = "Move Downwards"
 	desc = "Move down a z-level."
 	icon_state = "down"
 
-/obj/screen/ghost/down/Click()
+/atom/movable/screen/ghost/down/Click()
 	..()
 	var/mob/observer/dead/G = usr
 	G.zMove(DOWN)
 
-/obj/screen/ghost/vr
+/atom/movable/screen/ghost/vr
 	name = "Enter VR"
 	desc = "Enter virtual reality."
 	icon = 'icons/mob/screen_ghost.dmi'
 	icon_state = "entervr"
 
-/obj/screen/ghost/vr/Click()
+/atom/movable/screen/ghost/vr/Click()
 	..()
 	var/mob/observer/dead/G = usr
 	var/datum/data/record/record_found
@@ -131,54 +131,54 @@
 	var/list/adding = list()
 	HUD.adding = adding
 
-	var/obj/screen/using
-	using = new /obj/screen/ghost/returntomenu()
+	var/atom/movable/screen/using
+	using = new /atom/movable/screen/ghost/returntomenu()
 	using.screen_loc = ui_ghost_returntomenu
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/jumptomob()
+	using = new /atom/movable/screen/ghost/jumptomob()
 	using.screen_loc = ui_ghost_jumptomob
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/orbit()
+	using = new /atom/movable/screen/ghost/orbit()
 	using.screen_loc = ui_ghost_orbit
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/reenter_corpse()
+	using = new /atom/movable/screen/ghost/reenter_corpse()
 	using.screen_loc = ui_ghost_reenter_corpse
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/teleport()
+	using = new /atom/movable/screen/ghost/teleport()
 	using.screen_loc = ui_ghost_teleport
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/pai()
+	using = new /atom/movable/screen/ghost/pai()
 	using.screen_loc = ui_ghost_pai
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/up()
+	using = new /atom/movable/screen/ghost/up()
 	using.screen_loc = ui_ghost_updown
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/down()
+	using = new /atom/movable/screen/ghost/down()
 	using.screen_loc = ui_ghost_updown
 	using.hud = src
 	adding += using
 
-	using = new /obj/screen/ghost/vr()
+	using = new /atom/movable/screen/ghost/vr()
 	using.screen_loc = ui_ghost_vr
 	using.hud = src
 	adding += using
 
 	/*
-	using = new /obj/screen/language_menu
+	using = new /atom/movable/screen/language_menu
 	using.icon = ui_style
 	using.hud = src
 	adding += using

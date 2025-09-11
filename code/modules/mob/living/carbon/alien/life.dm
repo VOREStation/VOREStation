@@ -126,12 +126,12 @@
 
 	if ( stat != 2)
 		if ((blinded))
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 		else
 			clear_fullscreen("blind")
-			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
-			set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
-			set_fullscreen(druggy, "high", /obj/screen/fullscreen/high)
+			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /atom/movable/screen/fullscreen/impaired, 1)
+			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
+			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 		if(machine)
 			if(machine.check_eye(src) < 0)
 				reset_view(null)
@@ -148,7 +148,7 @@
 
 	if(environment.temperature > (T0C+66))
 		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
-		throw_alert("alien_fire", /obj/screen/alert/alien_fire)
+		throw_alert("alien_fire", /atom/movable/screen/alert/alien_fire)
 		if(prob(20))
 			to_chat(src, span_red("You feel a searing heat!"))
 	else
