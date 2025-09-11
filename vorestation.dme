@@ -30,6 +30,7 @@
 #include "code\__defines\_bitfields.dm"
 #include "code\__defines\_click.dm"
 #include "code\__defines\_compile_options.dm"
+#include "code\__defines\_drunks.dm"
 #include "code\__defines\_fruits.dm"
 #include "code\__defines\_helpers.dm"
 #include "code\__defines\_init.dm"
