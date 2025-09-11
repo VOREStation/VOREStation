@@ -1321,7 +1321,8 @@
 /area/stellardelight/deck3/aft)
 "eo" = (
 /obj/machinery/power/apc/angled{
-	dir = 4
+	dir = 4;
+	cell_type = /obj/item/cell/super
 	},
 /obj/structure/cable/blue{
 	icon_state = "0-2"
