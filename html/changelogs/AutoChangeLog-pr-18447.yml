@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - image: "Makes the neo gorka suits have digi sprites"
+  - image: "Makes the alt mailman have digi sprites"
