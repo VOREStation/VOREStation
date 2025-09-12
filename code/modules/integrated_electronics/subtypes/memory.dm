@@ -86,6 +86,10 @@
 	var/datum/integrated_io/O = outputs[1]
 	O.push_data()
 
+/obj/item/integrated_circuit/memory/constant/emp_act(severity)
+	// Prevents default EMP behavior for single-slot constants memory.
+	return
+
 /obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
 	var/datum/integrated_io/O = outputs[1]
 	var/type_to_use = tgui_input_list(user, "Please choose a type to use.","[src] type setting", list("string","number","ref", "null"))

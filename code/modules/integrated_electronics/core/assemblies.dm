@@ -475,10 +475,18 @@
 // Bump functionality, for pathfinding circuits. (Droid circuit assembly types)
 /obj/item/electronic_assembly/Bump(atom/AM)
 	..()
-	if(istype(AM, /obj/machinery/door) && can_move())
-		var/obj/machinery/door/D = AM
-		if(D.check_access(src))
-			D.open()
+	if(can_move())
+		// Check if it's an airlock or windoor. (Prevents opening blast doors and shutters)
+		if(istype(AM, /obj/machinery/door/airlock) || istype(AM, /obj/machinery/door/window))
+			var/obj/machinery/door/D = AM
+			// Only open doors that we have access to
+			if(D.check_access(src))
+				D.open()
+
+/obj/item/electronic_assembly/check_access(obj/item/I)
+	if(access_card)
+		return access_card.check_access(I)
+	return ..()  // Fall back to default behavior if no access_card
 
 // Returns TRUE if I is something that could/should have a valid interaction. Used to tell circuitclothes to hit the circuit with something instead of the clothes
 /obj/item/electronic_assembly/proc/is_valid_tool(var/obj/item/I)

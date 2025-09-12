@@ -2,7 +2,7 @@
 	name = "logic gate"
 	desc = "This tiny chip will decide for you!"
 	extended_desc = "Logic circuits will treat a null, 0, and a \"\" string value as FALSE and anything else as TRUE."
-	complexity = 3
+	complexity = 1
 	outputs = list("result")
 	activators = list("compare" = IC_PINTYPE_PULSE_IN)
 	category_text = "Logic"
@@ -12,6 +12,7 @@
 	push_data()
 
 /obj/item/integrated_circuit/logic/binary
+	complexity = 1
 	inputs = list("A","B")
 	activators = list("compare" = IC_PINTYPE_PULSE_IN, "on true result" = IC_PINTYPE_PULSE_OUT, "on false result" = IC_PINTYPE_PULSE_OUT)
 
@@ -32,6 +33,7 @@
 	return FALSE
 
 /obj/item/integrated_circuit/logic/unary
+	complexity = 1
 	inputs = list("A")
 	activators = list("compare" = IC_PINTYPE_PULSE_IN, "on compare" = IC_PINTYPE_PULSE_OUT)
 
@@ -50,6 +52,7 @@
 	name = "equal gate"
 	desc = "This gate compares two values, and outputs the number one if both are the same."
 	icon_state = "equal"
+	complexity = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/equals/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
@@ -60,6 +63,7 @@
 /obj/item/integrated_circuit/logic/binary/jklatch
 	name = "JK latch"
 	desc = "This gate is a synchronysed JK latch."
+	complexity = 1
 	icon_state = "jklatch"
 	inputs = list("J","K")
 	outputs = list("Q","!Q")
@@ -93,6 +97,7 @@
 	name = "RS latch"
 	desc = "This gate is synchronysed a RS latch. If both R and S are true, the state will not change."
 	icon_state = "sr_nor"
+	complexity = 2
 	inputs = list("S","R")
 	outputs = list("Q","!Q")
 	activators = list("pulse in C" = IC_PINTYPE_PULSE_IN, "pulse out Q" = IC_PINTYPE_PULSE_OUT, "pulse out !Q" = IC_PINTYPE_PULSE_OUT)
@@ -123,6 +128,7 @@
 	name = "gated D latch"
 	desc = "This gate is a synchronysed gated D latch."
 	icon_state = "gated_d"
+	complexity = 2
 	inputs = list("D","E")
 	outputs = list("Q","!Q")
 	activators = list("pulse in C" = IC_PINTYPE_PULSE_IN, "pulse out Q" = IC_PINTYPE_PULSE_OUT, "pulse out !Q" = IC_PINTYPE_PULSE_OUT)
@@ -153,6 +159,7 @@
 	name = "not equal gate"
 	desc = "This gate compares two values, and outputs the number one if both are different."
 	icon_state = "not_equal"
+	complexity = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/not_equals/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
@@ -164,6 +171,7 @@
 	name = "and gate"
 	desc = "This gate will output 'one' if both inputs evaluate to true."
 	icon_state = "and"
+	complexity = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/and/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
@@ -173,6 +181,7 @@
 	name = "or gate"
 	desc = "This gate will output 'one' if one of the inputs evaluate to true."
 	icon_state = "or"
+	complexity = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/or/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
@@ -182,6 +191,7 @@
 	name = "less than gate"
 	desc = "This will output 'one' if the first input is less than the second input."
 	icon_state = "less_than"
+	complexity = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/less_than/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
@@ -191,6 +201,7 @@
 	name = "less than or equal gate"
 	desc = "This will output 'one' if the first input is less than, or equal to the second input."
 	icon_state = "less_than_or_equal"
+	complexity = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/less_than_or_equal/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
@@ -200,6 +211,7 @@
 	name = "greater than gate"
 	desc = "This will output 'one' if the first input is greater than the second input."
 	icon_state = "greater_than"
+	complexity = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/greater_than/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
@@ -209,6 +221,7 @@
 	name = "greater_than or equal gate"
 	desc = "This will output 'one' if the first input is greater than, or equal to the second input."
 	icon_state = "greater_than_or_equal"
+	complexity = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/binary/greater_than_or_equal/do_compare(var/datum/integrated_io/A, var/datum/integrated_io/B)
@@ -218,6 +231,7 @@
 	name = "not gate"
 	desc = "This gate inverts what's fed into it."
 	icon_state = "not"
+	complexity = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	activators = list("invert" = IC_PINTYPE_PULSE_IN, "on inverted" = IC_PINTYPE_PULSE_OUT)
 
@@ -225,28 +239,48 @@
 	return !A.data
 
 /obj/item/integrated_circuit/logic/toggler // Allows parts of circuits to be toggled on/off.
-	name = "circuit toggler"
-	desc = "Outputs its input data if enabled, otherwise does nothing. Used for enable/disabling parts of your circuit boards"
+	name = "Circuit Gate"
+	desc = "A circuit gate, only sending out data, and pulses when it is enabled."
 	icon_state = "toggle_button"
+	complexity = 2
 	inputs = list(
 		"input" = IC_PINTYPE_ANY,
 		"enabled" = IC_PINTYPE_BOOLEAN,
-		"toggle enable" = IC_PINTYPE_PULSE_IN,
 	)
 	inputs_default = list("2" = TRUE)
 	outputs = list("output" = IC_PINTYPE_ANY)
 	activators = list(
 		"pulse in" = IC_PINTYPE_PULSE_IN,
 		"pulse out" = IC_PINTYPE_PULSE_OUT
-		)
+	)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/logic/toggler/do_work()
 	pull_data()
 	var/enabled_input = get_pin_data(IC_INPUT, 2)
-	if(!enabled_input)
-		return
-	else
+
+	if(enabled_input)
 		set_pin_data(IC_OUTPUT, 1, get_pin_data(IC_INPUT, 1))
 		push_data()
-		activate_pin(2)
+		activate_pin(2)  // Only activate downstream circuits if enabled
+	else
+		set_pin_data(IC_OUTPUT, 1, null)
+
+/obj/item/integrated_circuit/logic/toggle_output
+	name = "boolean toggle"
+	desc = "A simple toggle circuit that starts TRUE and switches between TRUE and FALSE each time it's pulsed."
+	icon_state = "toggle_button"
+	complexity = 2
+	inputs = list()
+	outputs = list("state" = IC_PINTYPE_BOOLEAN)
+	outputs_default = list("1" = TRUE)
+	activators = list("toggle" = IC_PINTYPE_PULSE_IN, "on toggle" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/logic/toggle_output/do_work()
+	// Toggle the output boolean
+	var/current_state = get_pin_data(IC_OUTPUT, 1)
+	var/new_state = !current_state
+	set_pin_data(IC_OUTPUT, 1, new_state)
+	push_data()
+	activate_pin(2) // Pulse out after toggling)
