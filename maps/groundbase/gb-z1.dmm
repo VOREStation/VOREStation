@@ -8740,6 +8740,11 @@
 /area/groundbase/level1/centsquare)
 "to" = (
 /obj/machinery/washing_machine,
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 29;
+	pixel_x = -11;
+	id = "AutoResleeving"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/autoresleeving)
 "tp" = (

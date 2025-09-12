@@ -492,7 +492,10 @@ GLOBAL_LIST_EMPTY(apcs)
 			opened = 0
 			update_icon()
 	else if(W.has_tool_quality(TOOL_CROWBAR) && !(stat & BROKEN) )
-		if(coverlocked && !(stat & MAINT))
+		var/remaining_power = 0
+		if(cell)
+			remaining_power = cell.percent()
+		if(coverlocked && !(stat & MAINT) && remaining_power > 15) // Cab be popped open by anyone at low power to change battery
 			to_chat(user, span_warning("The cover is locked and cannot be opened."))
 			return
 		else
