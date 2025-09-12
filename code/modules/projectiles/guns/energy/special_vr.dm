@@ -10,7 +10,6 @@
 	force = 5
 	icon_state = "medbeam"
 	item_state = "medbeam"
-	icon = 'icons/obj/gun_vr.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi',
@@ -29,7 +28,6 @@
 /obj/item/gun/energy/bfgtaser
 	name = "9000-series Ball Lightning Taser"
 	desc = "The brainchild of Hephaestus Industries Civil Pacification Division, the BLT-9000 was intended for riot control but despite enthusiastic interest from law-enforcement agencies across the Commonwealth and beyond, its indiscriminate nature led to it being banned from civilian use in virtually all jurisdictions. As a result, most pieces are found in the hands of collectors."
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "BFG"
 	fire_sound = 'sound/effects/phasein.ogg'
 	item_state = "mhdhowitzer"

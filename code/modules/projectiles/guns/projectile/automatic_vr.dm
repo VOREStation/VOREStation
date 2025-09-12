@@ -1,9 +1,6 @@
 /obj/item/gun/projectile/automatic/wt550/lethal
 	magazine_type = /obj/item/ammo_magazine/m9mmt
 
-/obj/item/gun/projectile/automatic/tommygun
-	icon = 'icons/obj/gun_vr.dmi'
-
 ////////////////////////////////////////////////////////////
 //////////////////// Projectile Weapons ////////////////////
 ////////////////////////////////////////////////////////////
@@ -11,9 +8,8 @@
 /obj/item/gun/projectile/automatic/battlerifle
 	name = "\improper USDF service rifle"
 	desc = "You had your chance to be afraid before you joined my beloved Corps! But, to guide you back to the true path, I have brought this motivational device! Uses 9.5x40mm rounds."
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "battlerifle"
-	icon_override = 'icons/obj/gun_vr.dmi'
+	icon_override = 'icons/obj/gun.dmi'
 	item_state = "battlerifle_i"
 	item_icons = null
 	w_class = ITEMSIZE_LARGE
@@ -32,7 +28,6 @@
 /obj/item/gun/projectile/automatic/stg
 	name = "\improper Sturmgewehr"
 	desc = "An STG-560 built by RauMauser. Experience the terror of the Siegfried line, redone for the 24th century! The Kaiser would be proud. Uses unique 7.92x33mm Kurz rounds."
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "stg60"
 	item_state = "arifle"
 	w_class = ITEMSIZE_LARGE
@@ -54,7 +49,6 @@
 /obj/item/gun/projectile/automatic/sol
 	name = "\improper \"Sol\" SMG"
 	desc = "The FS 9x19mm \"Sol\" is a compact and reliable submachine gun. Uses 9mm rounds."
-	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "SMG-IS"
 	item_state = "wt550"
 	w_class = ITEMSIZE_LARGE

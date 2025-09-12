@@ -1,7 +1,7 @@
 /obj/item/xenobio
 	name = "xenobio gun"
 	desc = "You shouldn't see this!"
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "harpoon-2"
 	var/loadable_item = null
 	var/loaded_item = null
