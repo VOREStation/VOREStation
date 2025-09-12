@@ -105,6 +105,11 @@
 	if (r_hand && istype(r_hand, /obj/item/cane))
 		stance_damage -= 2
 
+	// Jetpacks in zeroG count for holding you up
+	var/obj/item/tank/jetpack/thrust = get_jetpack()
+	if (lastarea?.get_gravity() == FALSE && thrust?.stabilization_on)
+		stance_damage -= 4
+
 	// standing is poor
 	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
 		if(!(lying || resting) && !isbelly(loc))
