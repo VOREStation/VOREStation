@@ -52,8 +52,12 @@ export function retrace(stack: string): string | undefined {
         return frame;
       }
       // Find the correct source map
+      const frameFile = path.basename(frame.file);
       const sourceMap = sourceMaps.find((sourceMap) => {
-        return frame.file!.includes(sourceMap.file);
+        const mapTargetFile = path
+          .basename(sourceMap.file)
+          .replace(/\.map$/, '');
+        return frameFile.startsWith(mapTargetFile);
       });
       if (!sourceMap) {
         return frame;
