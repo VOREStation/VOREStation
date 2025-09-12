@@ -21,26 +21,35 @@
 		)
 	item_state = "blue"
 	var/rigged = 0 //So that they can be rigged by varedits to go one way or the other. positive values mean holder always wins, negative values mean target always wins.
-	var/list/prizes = list(SHRINKING_CRACKER,GROWING_CRACKER,GROWING_CRACKER,INVISIBLE_CRACKER,FALLING_CRACKER,TELEPORTING_CRACKER,WEALTHY_CRACKER)
-	var/list/jokes = list(
-						"When is a boat just like snow? When it's adrift.",
-						"What happens to naughty elves? Santa gives them the sack.",
-						"What do you call an old snowman? Water.",
-						"Why has Santa been banned from sooty chimneys? Carbon footprints.",
-						"What goes down but doesn't come up? A yo.",
-						"What's green and fuzzy, has four legs and would kill you if it fell from a tree? A pool table.",
-						"Why did the blind man fall into the well? Because he couldn't see that well.",
-						"What did the pirate get on his report card? Seven Cs",
-						"What do you call a fish with no eyes? Fsh",
-						"How do you make an egg roll? You push it.",
-						"What do you call a deer with no eyes? NO EYED DEER!",
-						"What's red, and smells like blue paint? Red paint.",
-						"Where do cows go to dance? A meat ball.",
-						"What do you call a person who steals all your toenail clippings? A cliptoemaniac.",
-						"What's brown and sticky? A stick.",
-						"What's the best way to kill a circus? Go for the juggler.",
-						"What do you call a cow with no legs? Ground Beef.",
-						"Why'd the scarecrow win the Nobel prize? He was outstanding in his field.")
+	var/prize //What prize we have loaded
+	var/joke //What joke we have loaded
+
+/obj/item/cracker/Initialize(mapload)
+	var/style = pick("blue","green","yellow","red","heart","hazard")
+	icon_state = style
+	item_state = style
+	if(!prize)
+		prize = pick(SHRINKING_CRACKER,GROWING_CRACKER,GROWING_CRACKER,INVISIBLE_CRACKER,FALLING_CRACKER,TELEPORTING_CRACKER,WEALTHY_CRACKER)
+	if(!joke)
+		joke = pick("When is a boat just like snow? When it's adrift.",
+					"What happens to naughty elves? Santa gives them the sack.",
+					"What do you call an old snowman? Water.",
+					"Why has Santa been banned from sooty chimneys? Carbon footprints.",
+					"What goes down but doesn't come up? A yo.",
+					"What's green and fuzzy, has four legs and would kill you if it fell from a tree? A pool table.",
+					"Why did the blind man fall into the well? Because he couldn't see that well.",
+					"What did the pirate get on his report card? Seven Cs",
+					"What do you call a fish with no eyes? Fsh",
+					"How do you make an egg roll? You push it.",
+					"What do you call a deer with no eyes? NO EYED DEER!",
+					"What's red, and smells like blue paint? Red paint.",
+					"Where do cows go to dance? A meat ball.",
+					"What do you call a person who steals all your toenail clippings? A cliptoemaniac.",
+					"What's brown and sticky? A stick.",
+					"What's the best way to kill a circus? Go for the juggler.",
+					"What do you call a cow with no legs? Ground Beef.",
+					"Why'd the scarecrow win the Nobel prize? He was outstanding in his field.")
+	. = ..()
 
 /obj/item/cracker/attack(atom/A, mob/living/user, adjacent, params)
 	var/mob/living/carbon/human/target = A
@@ -64,8 +73,6 @@
 		to_chat(user, span_notice("\The [src] is no longer in-hand!"))
 		to_chat(target, span_notice("\The [src] is no longer in-hand!"))
 		return
-	var/prize = pick(prizes)
-	var/joke = pick(jokes)
 	var/mob/living/carbon/human/winner
 	var/mob/living/carbon/human/loser
 	if(!rigged)
@@ -137,40 +144,33 @@
 	J.info = joke
 	qdel(src)
 
-/obj/item/cracker/Initialize(mapload)
-	var/list/styles = list("blue","green","yellow","red","heart","hazard")
-	var/style = pick(styles)
-	icon_state = style
-	item_state = style
-	. = ..()
-
 /obj/item/cracker/shrinking
 	name = "shrinking bluespace cracker"
-	prizes = list(SHRINKING_CRACKER)
+	prize = SHRINKING_CRACKER
 
 /obj/item/cracker/growing
 	name = "growing bluespace cracker"
-	prizes = list(GROWING_CRACKER)
+	prize = GROWING_CRACKER
 
 /obj/item/cracker/invisibility
 	name = "cloaking bluespace cracker"
-	prizes = list(INVISIBLE_CRACKER)
+	prize = INVISIBLE_CRACKER
 
 /obj/item/cracker/drugged
 	name = "psychedelic bluespace cracker"
-	prizes = list(GROWING_CRACKER)
+	prize = GROWING_CRACKER
 
 /obj/item/cracker/knockover
 	name = "forceful bluespace cracker"
-	prizes = list(FALLING_CRACKER)
+	prize = FALLING_CRACKER
 
 /obj/item/cracker/vore
 	name = "teleporting bluespace cracker"
-	prizes = list(TELEPORTING_CRACKER)
+	prize = TELEPORTING_CRACKER
 
 /obj/item/cracker/money
 	name = "fortuitous bluespace cracker"
-	prizes = list(WEALTHY_CRACKER)
+	prize = WEALTHY_CRACKER
 
 /obj/item/clothing/head/paper_crown
 	name = "paper crown"
