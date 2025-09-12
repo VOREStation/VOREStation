@@ -286,7 +286,7 @@
 /datum/trait/negative/low_blood_sugar/handle_environment_special(var/mob/living/carbon/human/H)
 	if(H.nutrition > 200 || isbelly(H.loc))
 		return
-	if((H.nutrition < 200) && prob(5))
+	if((H.nutrition < 200) && prob(3))
 		if(H.nutrition > 100)
 			to_chat(H,span_warning("You start to feel noticeably weak as your stomach rumbles, begging for more food. Maybe you should eat something to keep your blood sugar up"))
 		else if(H.nutrition > 50)
@@ -295,12 +295,42 @@
 			to_chat(H,span_danger("You're feeling very weak and lightheaded, and your stomach continously rumbles at you. You really need to eat something!"))
 		else
 			to_chat(H,span_critical("You're feeling extremely weak and lightheaded. You feel as though you might pass out any moment and your stomach is screaming for food by now! You should really find something to eat!"))
-	if((H.nutrition < 100) && prob(10))
+
+	// Hallucinations when hungry. (Rare until VERY hungry)
+	if((H.nutrition < 100) && prob(3))
+		H.hallucination = max(20, H.hallucination + 5)
+		if(prob(30))
+			to_chat(H, span_warning(pick("You see something move in your peripheral vision...", "You hear a faint whisper with no source.", "Something doesn't feel quite right...")))
+	else if((H.nutrition < 75) && prob(8))
+		H.hallucination = max(30, H.hallucination + 8)
+		if(prob(50))
+			to_chat(H, span_warning(pick("You're sure you saw something that wasn't there...", "The world seems to shimmer for a moment...", "You hear footsteps that aren't really there...")))
+	else if((H.nutrition < 50) && prob(15))
+		H.hallucination = max(40, H.hallucination + 12)
+		if(prob(60))
+			to_chat(H, span_warning(pick("The shadows are moving!", "Something is definitely watching you...", "You can hear voices whispering about you...")))
+
+	// Confusion from low blood sugar
+	if((H.nutrition < 75) && prob(5))
 		H.Confuse(10)
-	if((H.nutrition < 50) && prob(25))
-		H.hallucination = max(30,H.hallucination+8)
-	if((H.nutrition < 25) && prob(5))
-		H.drowsyness = max(100,H.drowsyness+30)
+
+	// Brief fainting, or weakness spells when very hungry
+	// Chance of occurence is low, but becomes very present when below 25 nutrition.
+	if((H.nutrition < 100) && prob(2))
+		H.Weaken(rand(2,4))
+		H.visible_message(span_danger("sways unsteadily and stumbles!"), span_danger("You feel dizzy and your vision blurs as you stumble from low blood sugar!"))
+
+	if((H.nutrition < 75) && prob(3))
+		H.Weaken(rand(3,6))
+		if(prob(30))
+			H.visible_message(span_danger("staggers and nearly collapses!"), span_userdanger("Your knees buckle as a wave of weakness washes over you!"))
+
+	if((H.nutrition < 25) && prob(4))
+		H.Weaken(rand(5,10))
+		if(prob(40) && !H.stat)
+			H.visible_message(span_danger("faints from hunger!"), span_userdanger("Everything goes black as you faint from severe hypoglycemia!"))
+			H.AdjustSleeping(rand(5,15))
+		H.drowsyness = max(100, H.drowsyness + 30)
 
 
 /datum/trait/negative/blindness
