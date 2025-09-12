@@ -1,4 +1,0 @@
-author: "Tost"
-delete-after: True
-changes:
-  - bugfix: "Returns the clear gasmasks to most logical places."

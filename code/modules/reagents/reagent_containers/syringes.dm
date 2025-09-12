@@ -237,7 +237,7 @@
 
 			//The warmup
 			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-			if(!do_after(user,warmup_time,target))
+			if(!do_after(user, warmup_time, target))
 				return
 
 			var/trans = 0
@@ -246,7 +246,7 @@
 				while(reagents.total_volume)
 					trans += reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
 					update_icon()
-					if(!reagents.total_volume || !do_after(user,cycle_time,target))
+					if(!reagents.total_volume || !do_after(user, cycle_time, target))
 						break
 			else
 				trans += reagents.trans_to_obj(target, amount_per_transfer_from_this)

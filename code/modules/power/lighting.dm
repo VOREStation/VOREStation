@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 		if (src.stage == 1)
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "You begin deconstructing [src].")
-			if (!do_after(user, 30 * W.toolspeed))
+			if (!do_after(user, 3 SECONDS * W.toolspeed, target = src))
 				return
 			new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
 			user.visible_message("[user.name] deconstructs [src].", \
@@ -1051,6 +1051,12 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 	brightness_range = 4
 	color = "#da0205"
 	brightness_color = "#da0205"
+	init_brightness_range = 4
+
+/obj/item/light/bulb/blue
+	brightness_range = 4
+	color = "#028bda"
+	brightness_color = "#028bda"
 	init_brightness_range = 4
 
 /obj/item/light/bulb/fire

@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	if(!powernet)
 		connect_to_network()
 	if(!should_be_mapped)
-		warning("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
+		WARNING("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
 
 /obj/machinery/power/smes/buildable/Initialize(mapload)
 	. = ..()
@@ -272,7 +272,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	if(check_terminal_exists(tempLoc, user, tempDir))
 		return 1
 	to_chat(user, span_filter_notice(span_notice("You start adding cable to the [src].")))
-	if(do_after(user, 50))
+	if(do_after(user, 5 SECONDS, target = src))
 		if(check_terminal_exists(tempLoc, user, tempDir))
 			return 1
 		var/obj/machinery/power/terminal/term = new/obj/machinery/power/terminal(tempLoc)
@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(smeses)
 		if(!damage)
 			to_chat(user, span_filter_notice("\The [src] is already fully repaired."))
 			return FALSE
-		if(WT.remove_fuel(0,user) && do_after(user, damage, src))
+		if(WT.remove_fuel(0,user) && do_after(user, damage, target = src))
 			to_chat(user, span_filter_notice("You repair all structural damage to \the [src]"))
 			damage = 0
 		return FALSE
@@ -368,7 +368,7 @@ GLOBAL_LIST_EMPTY(smeses)
 			else
 				to_chat(user, span_filter_notice(span_notice("You begin to cut the cables...")))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 50 * W.toolspeed))
+				if(do_after(user, 5 SECONDS * W.toolspeed, target = src))
 					if (prob(50) && electrocute_mob(user, term.powernet, term))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)

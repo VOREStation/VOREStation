@@ -739,6 +739,9 @@
 		var/obj/item/I = locate(href_list["lookitem_desc_only"])
 		if(!I)
 			return
+		if(istype(I,/obj/item/hand))
+			to_chat(usr,span_warning("You can't see the card faces from here."))
+			return
 		usr.examinate(I, 1)
 
 	if (href_list["lookmob"])
@@ -980,7 +983,7 @@
 	else
 		target.show_message(span_filter_say("[span_blue("You hear a voice that seems to echo around the room: [say]")]"))
 	src.show_message(span_filter_say("[span_blue("You project your mind into [target.real_name]: [say]")]"))
-	log_say("(TPATH to [key_name(target)]) [say]",src)
+	log_talk("(TPATH to [key_name(target)]) [say]", LOG_SAY)
 	for(var/mob/observer/dead/G in GLOB.mob_list)
 		G.show_message(span_filter_say(span_italics("Telepathic message from " + span_bold("[src]") + " to " + span_bold("[target]") + ": [say]")))
 
@@ -1546,7 +1549,7 @@
 	else
 		to_chat(U, span_warning("You begin to relocate [S]'s [current_limb.joint]..."))
 
-	if(!do_after(U, 30))
+	if(!do_after(U, 3 SECONDS, target = src))
 		return
 	if(!current_limb || !S || !U)
 		return

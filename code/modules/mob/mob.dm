@@ -1,4 +1,9 @@
 /mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
+	if(client)
+		stack_trace("Mob with client has been deleted.")
+
+	persistent_client?.set_mob(null)
+
 	SSmobs.currentrun -= src
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
@@ -27,7 +32,7 @@
 	if(ability_master)
 		QDEL_NULL(ability_master)
 
-	if(vore_organs)
+	if(LAZYLEN(vore_organs))
 		QDEL_NULL_LIST(vore_organs)
 	if(vorePanel)
 		QDEL_NULL(vorePanel)
@@ -79,6 +84,7 @@
 	set_focus(src) // VOREStation Add - Key Handling
 	update_transform() // Some mobs may start bigger or smaller than normal.
 	. = ..()
+	log_mob_tag("TAG: [tag] CREATED: [key_name(src)] \[[type]\]")
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
 /mob/show_message(msg, type, alt, alt_type)
@@ -939,7 +945,7 @@
 	else
 		to_chat(U, span_warning("You attempt to get a good grip on [selection] in [S]'s body."))
 
-	if(!do_after(U, 30))
+	if(!do_after(U, 3 SECONDS, target = src))
 		return
 	if(!selection || !S || !U)
 		return

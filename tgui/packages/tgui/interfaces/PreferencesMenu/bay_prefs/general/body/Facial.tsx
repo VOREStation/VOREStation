@@ -72,6 +72,7 @@ export const FacialDimmer = (props: {
 }) => {
   const { act } = useBackend();
   const { setShow, data, serverData, staticData } = props;
+  const { available_facial_styles = [] } = staticData;
   // if the data is missing our UI is fucked anyways
   const our_species = serverData.species.find(
     (x) => x.name === data.species,
@@ -79,7 +80,7 @@ export const FacialDimmer = (props: {
   const hairColor = data.facial_color;
 
   const [search, setSearch] = useState('');
-  const hair_styles = staticData.available_facial_styles.filter((x) =>
+  const hair_styles = available_facial_styles.filter((x) =>
     search ? x.toLowerCase().includes(search.toLowerCase()) : true,
   );
   hair_styles.sort();

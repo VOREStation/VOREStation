@@ -48,8 +48,6 @@
 	AddElement(/datum/element/sellable/material_stack)
 
 /obj/item/stack/Destroy()
-	if(uses_charge)
-		return 1
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
 	if(islist(synths))
@@ -186,7 +184,7 @@
 	if (recipe.time)
 		to_chat(user, span_notice("Building [recipe.title] ..."))
 		is_building = TRUE
-		if (!do_after(user, recipe.time))
+		if (!do_after(user, recipe.time, target = src))
 			is_building = FALSE
 			return
 
