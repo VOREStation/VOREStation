@@ -19,6 +19,10 @@ LINEN BINS
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
+/obj/item/bedsheet/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/rotatable/onlyflip)
+
 /obj/item/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
 	if(layer == initial(layer))
@@ -39,22 +43,8 @@ LINEN BINS
 		return
 	..()
 
-/obj/item/bedsheet/verb/turn_around()
-	set name = "Turn Around"
-	set category = "Object"
-	set src in oview(1)
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-
-	if(dir >= 2)
-		src.set_dir(1)
-	else
-		src.set_dir(2)
+/obj/item/bedsheet/ghosts_can_use_rotate_verbs()
+	return CONFIG_GET(flag/ghost_interaction)
 
 /obj/item/bedsheet/blue
 	icon_state = "sheetblue"

@@ -45,6 +45,8 @@
 	else
 		update() // do_a_flip() calls update anyway, so, lazy way of catching unupdated pipe!
 
+	AddElement(/datum/element/rotatable)
+
 // update iconstate and dpdir due to dir and type
 /obj/structure/disposalconstruct/proc/update()
 	var/flip = turn(dir, 180)
@@ -117,40 +119,6 @@
 /obj/structure/disposalconstruct/hide(intact)
 	invisibility = (intact && level==1) ? INVISIBILITY_ABSTRACT: INVISIBILITY_NONE	// hide if floor is intact
 	update()
-
-
-// flip and rotate verbs
-/obj/structure/disposalconstruct/verb/rotate_clockwise()
-	set category = "Object"
-	set name = "Rotate Pipe Clockwise"
-	set src in view(1)
-
-	if(usr.stat)
-		return
-
-	if(anchored)
-		to_chat(usr, "You must unfasten the pipe before rotating it.")
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update()
-
-//VOREstation edit: counter-clockwise rotation
-/obj/structure/disposalconstruct/verb/rotate_counterclockwise()
-	set category = "Object"
-	set name = "Rotate Pipe Counter-Clockwise"
-	set src in view(1)
-
-	if(usr.stat)
-		return
-
-	if(anchored)
-		to_chat(usr, "You must unfasten the pipe before rotating it.")
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update()
-//VOREstation edit end
 
 /obj/structure/disposalconstruct/verb/flip()
 	set category = "Object"

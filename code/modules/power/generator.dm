@@ -31,6 +31,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	soundloop = new(list(src), FALSE)
 	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
 	GLOB.all_turbines += src
+	AddElement(/datum/element/rotatable)
 	..() //Not returned, because...
 	return INITIALIZE_HINT_LATELOAD
 
@@ -240,26 +241,6 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	..()
 	update_icon()
 
-
-/obj/machinery/power/generator/verb/rotate_clockwise()
-	set category = "Object"
-	set name = "Rotate Generator Clockwise"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained()  || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-
-/obj/machinery/power/generator/verb/rotate_counterclockwise()
-	set category = "Object"
-	set name = "Rotate Generator Counterclockwise"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained()  || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
 
 /obj/machinery/power/generator/power_spike(var/announce_prob = 30)
 	if(!(effective_gen >= max_power / 2 && powernet)) // Don't make a spike if we're not making a whole lot of power.

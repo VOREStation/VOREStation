@@ -98,6 +98,9 @@
 	build_inventory()
 	power_change()
 
+	if(can_rotate) // If we can't change directions, don't bother.
+		AddElement(/datum/element/rotatable)
+
 GLOBAL_LIST_EMPTY(vending_products)
 /**
  *  Build produdct_records from the products lists
@@ -632,39 +635,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 			popup.open()
 	else
 		to_chat(user,span_warning("You do not have the required access to view the vending logs for this machine."))
-
-
-/obj/machinery/vending/verb/rotate_clockwise()
-	set name = "Rotate Vending Machine Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.can_rotate == 0)
-		to_chat(usr, span_warning("\The [src] cannot be rotated."))
-		return 0
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, span_filter_notice("It is bolted down!"))
-		return 0
-	src.set_dir(turn(src.dir, 270))
-	return 1
-
-//VOREstation edit: counter-clockwise rotation
-/obj/machinery/vending/verb/rotate_counterclockwise()
-	set name = "Rotate Vending Machine Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.can_rotate == 0)
-		to_chat(usr, span_warning("\The [src] cannot be rotated."))
-		return 0
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, span_filter_notice("It is bolted down!"))
-		return 0
-	src.set_dir(turn(src.dir, 90))
-	return 1
-//VOREstation edit end
 
 /obj/machinery/vending/verb/check_logs()
 	set name = "Check Vending Logs"
