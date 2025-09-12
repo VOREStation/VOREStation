@@ -1340,7 +1340,6 @@
 
 /datum/sprite_accessory/hair/muffet
 	name = "Muffet"
-	icon = 'icons/mob/human_face_alt.dmi'
 	icon_state = "muffet"
 	flags = HAIR_TIEABLE
 
