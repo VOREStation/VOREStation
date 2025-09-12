@@ -227,6 +227,22 @@
 	emote_message_3p = "SHRIEKS!"
 	emote_sound = 'sound/voice/shriek1.ogg'
 
+/decl/emote/audible/caw
+	key = "caw"
+	emote_message_3p = "caws."
+	emote_sound = 'sound/voice/emotes/caw1.ogg'
+
+/decl/emote/audible/caw2
+	key = "caw2"
+	emote_message_3p = "caws."
+	emote_sound = 'sound/voice/emotes/caw2.ogg'
+
+
+/decl/emote/audible/caw_m
+	key = "caw_m"
+	emote_message_3p = "caws multiple times."
+	emote_sound = 'sound/voice/emotes/caw_multiple.ogg'
+
 /decl/emote/audible/purr
 	key = "purr"
 	emote_message_3p = "purrs."
