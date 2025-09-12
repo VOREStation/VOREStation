@@ -12,3 +12,11 @@
 	outputting(TRUE)
 	input_level = input_level_max
 	output_level = output_level_max
+
+// Poi prop
+/obj/machinery/power/smes/buildable/alien_royal
+	name = "Alien Royal Capacitor"
+	icon_state = "unit"
+	icon = 'icons/obj/alien_smes.dmi'
+	input_level = 950000
+	output_level = 950000
