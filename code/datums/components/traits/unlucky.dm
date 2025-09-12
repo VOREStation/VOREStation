@@ -234,7 +234,7 @@
 
 	if(prob(30)) // AAAA
 		our_guy.emote("scream")
-		to_chat(our_guy, span_warning("What a horrible night... To have a curse!"))
+		to_chat(our_guy, span_cult("What a horrible night... To have a curse!"))
 
 	if(prob(30 * luck_mod) && our_guy.get_bodypart_name(BP_HEAD)) /// Bonk!
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
@@ -302,7 +302,7 @@
 ///Major variant of the trait.
 /datum/component/omen/trait/major
 	evil = TRUE
-	damage_mod = 0.5 //50% of normal damage
+	damage_mod = 0.75 //75% of normal damage
 
 ///Variant trait for downstreams that have safe disposals.
 /datum/component/omen/trait/safe_disposals
