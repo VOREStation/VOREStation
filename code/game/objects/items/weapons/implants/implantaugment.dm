@@ -197,8 +197,12 @@
  * Others
  */
 
-/obj/item/implant/organ/pelvic
-	name = "nanite fabrication implant"
-
+/obj/item/implant/organ/pelvic/sprint
+	name = "locomotive optimization implant"
 	organ_to_implant = /obj/item/organ/internal/augment/bioaugment/sprint_enhance
+	organ_display_name = "pelvic augment"
+
+/obj/item/implant/organ/pelvic/scanner
+	name = "medican scanner implant"
+	organ_to_implant = /obj/item/organ/internal/augment/bioaugment/health_scan
 	organ_display_name = "pelvic augment"

@@ -129,6 +129,9 @@
 /obj/item/storage/box/syndie_kit/imp_aug/sprinter
 	case_type = /obj/item/implantcase/sprinter
 
+/obj/item/storage/box/syndie_kit/imp_aug/med_scanner
+	case_type = /obj/item/implantcase/med_scanner
+
 /obj/item/storage/box/syndie_kit/imp_aug/armblade
 	case_type = /obj/item/implantcase/armblade
 

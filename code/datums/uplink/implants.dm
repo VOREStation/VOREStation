@@ -69,7 +69,12 @@
 	item_cost = 40
 	path = /obj/item/storage/box/syndie_kit/imp_aug/sprinter
 
-/datum/uplink_item/item/implants/imp_sprinter
+/datum/uplink_item/item/implants/imp_scanner
+	name = "Integrated Scanner Implant"
+	item_cost = 15
+	path = /obj/item/storage/box/syndie_kit/imp_aug/med_scanner
+
+/datum/uplink_item/item/implants/imp_surge
 	name = "Integrated Surge Implant"
 	item_cost = 40
 	path = /obj/item/storage/box/syndie_kit/imp_aug/surge

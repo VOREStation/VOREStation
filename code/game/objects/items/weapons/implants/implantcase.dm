@@ -257,7 +257,16 @@
 
 /obj/item/implantcase/sprinter/Initialize(mapload)
 	. = ..()
-	imp = new /obj/item/implant/organ/pelvic(src)
+	imp = new /obj/item/implant/organ/pelvic/sprint(src)
+
+/obj/item/implantcase/med_scanner
+	name = "glass case - 'Scanner'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/implantcase/med_scanner/Initialize(mapload)
+	. = ..()
+	imp = new /obj/item/implant/organ/pelvic/scanner(src)
 
 /obj/item/implantcase/armblade
 	name = "glass case - 'Armblade'"
