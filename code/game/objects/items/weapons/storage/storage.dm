@@ -606,9 +606,6 @@
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)
 
-/obj/item/storage/dropped(mob/user)
-	return ..()
-
 /obj/item/storage/attack_hand(mob/user as mob)
 	if(ishuman(user) && !pocketable)
 		var/mob/living/carbon/human/H = user

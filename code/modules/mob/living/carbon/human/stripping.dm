@@ -87,7 +87,7 @@
 	if(stripping)
 		if(!istype(target_slot))  // They aren't holding anything valid and there's nothing to remove, why are we even here?
 			return
-		if(!target_slot.canremove)
+		if(!target_slot.canremove || (target_slot.item_flags & NOSTRIP))
 			to_chat(user, span_warning("You cannot remove \the [src]'s [target_slot.name]."))
 			return
 		visible_message(span_danger("\The [user] is trying to remove \the [src]'s [target_slot.name]!"))

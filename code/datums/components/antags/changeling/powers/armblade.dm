@@ -61,12 +61,11 @@
 	icon_state = "arm_blade"
 	w_class = ITEMSIZE_HUGE
 	force = 5
-	anchored = TRUE
 	throwforce = 0 //Just to be on the safe side
 	throw_range = 0
 	throw_speed = 0
 	embed_chance = 0 //No embedding.
-	destroy_on_drop = TRUE
+	item_flags = DROPDEL | NOSTRIP
 	var/mob/living/creator //This is just like ninja swords, needed to make sure dumb shit that removes the sword doesn't make it stay around.
 	var/weapType = "weapon"
 	var/weapLocation = "arm"

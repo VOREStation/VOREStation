@@ -301,6 +301,7 @@ var/last_chew = 0
 	use_time = 0
 	breakouttime = 30
 	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
+	item_flags = DROPDEL
 
 /obj/item/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
@@ -309,7 +310,6 @@ var/last_chew = 0
 /obj/item/handcuffs/legcuffs/bola/dropped(mob/user)
 	..()
 	visible_message(span_infoplain(span_bold("\The [src]") + " falls apart!"))
-	qdel(src)
 
 /obj/item/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src, cuff_sound, 30, 1, -2)
