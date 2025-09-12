@@ -5,7 +5,7 @@
 	var/dead_icon // Icon to use when the organ has died.
 
 	var/supply_conversion_value = 0
-	var/healing_factor = 0.1 // How much this organ will heal passively
+	var/healing_factor = 0.007 // How much this organ will heal passively
 
 /obj/item/organ/internal/Initialize(mapload, internal)
 	. = ..()
@@ -19,7 +19,7 @@
 // Heals the internal organ passively as long as it's under the bruised threshold
 // Not a lot of MATH just yet, but nutrition or other factors could be taken into account
 /obj/item/organ/internal/proc/passive_heal()
-	if(!is_damaged() && (is_bruised() || is_broken()))
+	if(!is_bruised())
 		return
 
 	damage = max(damage - healing_factor, 0)
