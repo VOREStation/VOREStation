@@ -1,6 +1,3 @@
-
-
-
 /datum/reagent
 	var/name = REAGENT_DEVELOPER_WARNING
 	var/id = REAGENT_ID_DEVELOPER_WARNING

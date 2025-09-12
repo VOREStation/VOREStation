@@ -26,16 +26,6 @@
 	OOP_UNARY			- Unary Operators
 	OOP_GROUP			- Parentheses
 */
-var/const/OOP_OR      = 				  1   	// ||
-var/const/OOP_AND     = OOP_OR			+ 1   	// &&
-var/const/OOP_BIT     = OOP_AND			+ 1   	// &, |
-var/const/OOP_EQUAL   = OOP_BIT			+ 1   	// ==, !=
-var/const/OOP_COMPARE = OOP_EQUAL		+ 1   	// >, <, >=, <=
-var/const/OOP_ADD     = OOP_COMPARE		+ 1 	// +, -
-var/const/OOP_MULTIPLY= OOP_ADD			+ 1   	// *, /, %
-var/const/OOP_POW     = OOP_MULTIPLY	+ 1		// ^
-var/const/OOP_UNARY   = OOP_POW			+ 1   	// !
-var/const/OOP_GROUP   = OOP_UNARY		+ 1   	// ()
 
 /*
 	Class: node
