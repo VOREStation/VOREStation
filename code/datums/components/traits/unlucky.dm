@@ -5,7 +5,7 @@
  * When you attach an omen component to someone, they start running the risk of all sorts of bad environmental injuries, like nearby vending machines randomly falling on you (TBI),
  * or hitting your head really hard when you slip and fall, or you get shocked by the tram rails at an unfortunate moment.
  *
- * Omens are removed once the victim is either maimed by one of the possible injuries, or if they receive a blessing (read: bashing with a bible) from the chaplain.
+ * Omens are removed once the victim is either maimed by one of the possible injuries, or if they receive a blessing (read: bashing with a bible) from the chaplain. (TBI)
  */
 /datum/component/omen
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
@@ -176,6 +176,7 @@
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread //this shit is copy pasted all over the code...this needs to just be made into a proc at this point jesus christ
 					s.set_up(4, FALSE, evil_light)
 					s.start()
+					//We don't clear the omen as nothing really happened.
 					return
 
 				to_chat(living_guy, span_warning("[evil_light] glows ominously...")) // ominously
@@ -192,11 +193,7 @@
 				if(evil_mirror.shattered)
 					to_chat(living_guy, span_notice("You feel lucky, somehow."))
 					return
-				var/mirror_rand
-				if(evil)
-					mirror_rand = rand(1, 5) // going crazy, or did you actually see something?
-				else
-					mirror_rand = rand(1, 3)
+				var/mirror_rand = rand(1,5)
 				switch(mirror_rand)
 					if(1)
 						to_chat(living_guy, span_warning("The mirror explodes into a million pieces! Wait, does that mean you're even more unlucky?"))
@@ -254,9 +251,10 @@
 
 /datum/component/omen/proc/check_roll(mob/living/unlucky_soul, var/obj/item/dice/the_dice, silent, result)
 	SIGNAL_HANDLER
-	if(prob(10 * luck_mod))
-		unlucky_soul.visible_message(span_danger("[unlucky_soul] rolls [the_dice] with it landing on the edge of [result] before tilting over!"), span_userdanger("You feel dreadfully unlucky as you roll the dice!"))
-		consume_omen()
+	if(prob(20 * luck_mod))
+		//unlucky_soul.visible_message(span_danger("[unlucky_soul] rolls [the_dice] with it landing on the edge of [result] before tilting over!"), span_userdanger("You feel dreadfully unlucky as you roll the dice!"))
+		//I had thought about making this have a notice that it happened.
+		//However, gaslighting the user by providing no visible notice is MUCH funnier.
 		return 1 // We override the roll to a 1.
 
 /datum/component/omen/proc/check_stairs(mob/living/unlucky_soul)
@@ -287,6 +285,7 @@
 			to_chat(unlucky_soul, span_userdanger("You feel as though your heart stopped"))
 			human_guy.Stun(5)
 			consume_omen()
+			return
 
 /**
  * The trait omen. Permanent.
@@ -298,14 +297,20 @@
 	luck_mod = 0.3 // 30% chance of bad things happening
 	damage_mod = 0.25 // 25% of normal damage
 	evil = FALSE
+	safe_disposals = FALSE
 
 ///Major variant of the trait.
 /datum/component/omen/trait/major
 	evil = TRUE
+	damage_mod = 0.5 //50% of normal damage
 
 ///Variant trait for downstreams that have safe disposals.
 /datum/component/omen/trait/safe_disposals
 	safe_disposals = TRUE
+
+/datum/component/omen/trait/safe_disposals/major
+	evil = TRUE
+	damage_mod = 0.5 //50% of normal damage
 
 /**
  * The bible omen.
