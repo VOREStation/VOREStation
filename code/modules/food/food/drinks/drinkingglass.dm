@@ -5,6 +5,8 @@
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
 	amount_per_transfer_from_this = 5
+	max_transfer_amount = 30
+	min_transfer_amount = 1
 	volume = 30
 	unacidable = TRUE //glass
 	center_of_mass_x = 16

@@ -11,6 +11,7 @@
 	icon_state = "null"
 	item_state = "null"
 	amount_per_transfer_from_this = 10
+	min_transfer_amount = 1
 	max_transfer_amount = 60
 	volume = 60
 	w_class = ITEMSIZE_SMALL

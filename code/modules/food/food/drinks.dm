@@ -113,7 +113,7 @@
 					food_inserted_micros -= F
 
 	if(!reagents.total_volume && changed)
-		M.visible_message(span_notice("[M] finishes drinking \the [src]."),span_notice("You finish drinking \the [src]."))
+		M.visible_message(span_notice("[M] finishes drinking from \the [src]."),span_notice("You finish drinking from \the [src]."))
 		if(trash)
 			user.drop_from_inventory(src)	//so icons update :[
 			if(ispath(trash,/obj/item))
@@ -184,12 +184,16 @@
 /obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
 	if(amount_per_transfer_from_this == volume)	//I wanted to use a switch, but switch statements can't use vars and the maximum volume of containers varies
 		to_chat(user, span_notice("You knock back the entire [src] in one go!"))
+	else if(amount_per_transfer_from_this == 1)
+		to_chat(user, span_notice("You take a dainty little sip from \the [src]."))
 	else if(amount_per_transfer_from_this <= 4)	//below the standard 5
 		to_chat(user, span_notice("You take a modest sip from \the [src]."))
 	else if(amount_per_transfer_from_this <= 10)	//the standard five to a bit more
 		to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 	else if(amount_per_transfer_from_this <= 30)
 		to_chat(user, span_notice("You take a long drag from \the [src]."))
+	else if(amount_per_transfer_from_this <= 60)
+		to_chat(user, span_notice("You chug from \the [src]!"))
 	else	//default message as a fallback
 		to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 
