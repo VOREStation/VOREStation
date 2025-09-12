@@ -1,8 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - qol: "Added emergency door releases to autoresleever rooms."
-  - qol: "Changed autoresleevers to still work without power."
-  - qol: "Added short range radios (off by default) to emergency supply boxes."
-  - qol: "Changed APCs to allow the cover to be opened by anyone beneath 15% charge."
-  - balance: "Given APCs in SD comms rooms bigger cells."
