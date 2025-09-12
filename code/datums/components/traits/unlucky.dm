@@ -201,6 +201,8 @@
 						if(prob(50 * effective_luck)) // sometimes
 							luck_mod += 0.25
 							damage_mod += 0.25
+						for(var/obj/item/organ/external/limb in living_guy.organs)
+							living_guy.apply_damage(6 * damage_mod, BRUTE, limb.organ_tag, used_weapon = "glass shrapnel")
 					if(2 to 3)
 						to_chat(living_guy, span_large(span_cult("Oh god, you can't see your reflection!!")))
 						living_guy.emote("scream")
