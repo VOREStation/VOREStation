@@ -38,13 +38,13 @@
 	if(stat == DEAD)
 		healths.icon_state = "health7"
 
-/mob/living/silicon/pai/proc/full_restore()
+/mob/living/silicon/pai/proc/full_restore() //This is using do_after all kinds of weird...
 	adjustBruteLoss(- bruteloss)
 	adjustFireLoss(- fireloss)
-	do_after(src, 1 SECONDS)
+	do_after(src, 1 SECONDS, target = src)
 	card.setEmotion(16)
 	stat = CONSCIOUS
-	do_after(src, 5 SECONDS)
+	do_after(src, 5 SECONDS, target = src)
 	var/mob/observer/dead/ghost = src.get_ghost()
 	if(ghost)
 		ghost.notify_revive("Someone is trying to revive you. Re-enter your body if you want to be revived!", 'sound/effects/pai-restore.ogg', source = card)
@@ -458,7 +458,7 @@
 		return
 	card.screen_msg = message
 	var/logmsg = "(CARD SCREEN)[message]"
-	log_say(logmsg,src)
+	log_talk(logmsg, LOG_SAY)
 	to_chat(src, span_filter_say(span_cult("You print a message to your screen, \"[message]\"")))
 	if(isliving(card.loc))
 		var/mob/living/L = card.loc

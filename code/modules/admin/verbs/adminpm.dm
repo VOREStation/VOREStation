@@ -92,7 +92,7 @@
 		if(!ircreplyamount)	//to prevent people from spamming irc
 			return
 		if(!msg)
-			msg = tgui_input_text(src,"Message:", "Private message to Administrator", multiline = TRUE)
+			msg = tgui_input_text(src, "Message:", "Private message to Administrator", multiline = TRUE, encode = FALSE)
 
 		if(!msg)
 			return
@@ -113,7 +113,7 @@
 
 		//get message text, limit it's length.and clean/escape html
 		if(!msg)
-			msg = tgui_input_text(src,"Message:", "Private message to [key_name(recipient, 0, 0)]", multiline = TRUE)
+			msg = tgui_input_text(src, "Message:", "Private message to [key_name(recipient, 0, 0)]", multiline = TRUE, encode = FALSE)
 
 			if(!msg)
 				return

@@ -2125,11 +2125,7 @@
 	},
 /area/tdome/tdomeadmin)
 "eu" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /obj/effect/wingrille_spawn/reinforced/crescent,
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -10207,11 +10203,7 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/living)
 "uV" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/unsimulated/floor/steel,
 /area/centcom/living)
 "uW" = (

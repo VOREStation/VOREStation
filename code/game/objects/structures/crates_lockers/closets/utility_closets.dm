@@ -54,7 +54,7 @@
 /obj/structure/closet/emcloset/legacy
 	starts_with = list(
 		/obj/item/tank/oxygen,
-		/obj/item/clothing/mask/gas)
+		/obj/item/clothing/mask/gas/clear)
 
 /*
  * Fire Closet
@@ -66,7 +66,7 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/tank/oxygen/red,
 		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
@@ -74,7 +74,7 @@
 /obj/structure/closet/firecloset/full
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/flashlight,
 		/obj/item/tank/oxygen/red,
 		/obj/item/extinguisher,
@@ -83,7 +83,7 @@
 /obj/structure/closet/firecloset/full/double
 	starts_with = list(
 		/obj/item/clothing/suit/fire = 2,
-		/obj/item/clothing/mask/gas = 2,
+		/obj/item/clothing/mask/gas/clear = 2,
 		/obj/item/flashlight = 2,
 		/obj/item/tank/oxygen/red = 2,
 		/obj/item/extinguisher = 2,
@@ -207,7 +207,7 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
-		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/mask/gas/clear,
 		/obj/item/flashlight,
 		/obj/item/tank/oxygen/red,
 		/obj/item/extinguisher,
