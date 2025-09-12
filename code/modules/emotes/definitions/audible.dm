@@ -243,6 +243,12 @@
 	emote_message_3p = "caws multiple times."
 	emote_sound = 'sound/voice/emotes/caw_multiple.ogg' // Copyright CC0 1.0 Universal, by Ambientsoundapp on freesound.org.
 
+/decl/emote/audible/gwah
+	key = "gwah"
+	emote_message_3p = "gwah."
+	emote_sound = 'sound/voice/emotes/gwah.ogg' // Copyright CC0 1.0 Universal, by Ambientsoundapp on freesound.org.
+
+
 /decl/emote/audible/purr
 	key = "purr"
 	emote_message_3p = "purrs."
