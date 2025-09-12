@@ -188,41 +188,45 @@
 				consume_omen()
 				return
 
-			for(var/obj/structure/mirror/evil_mirror in the_turf)
-				to_chat(living_guy, span_warning("You pass by the mirror and glance at it..."))
-				if(evil_mirror.shattered)
-					to_chat(living_guy, span_notice("You feel lucky, somehow."))
-					return
-				var/mirror_rand = rand(1,5)
-				switch(mirror_rand)
-					if(1)
-						to_chat(living_guy, span_warning("The mirror explodes into a million pieces! Wait, does that mean you're even more unlucky?"))
-						evil_mirror.shatter()
-						if(prob(50 * effective_luck)) // sometimes
-							luck_mod += 0.25
-							damage_mod += 0.25
-						for(var/obj/item/organ/external/limb in living_guy.organs)
-							living_guy.apply_damage(6 * damage_mod, BRUTE, limb.organ_tag, used_weapon = "glass shrapnel")
-					if(2 to 3)
-						to_chat(living_guy, span_large(span_cult("Oh god, you can't see your reflection!!")))
-						living_guy.emote("scream")
-
-					if(4 to 5)
-						to_chat(living_guy, span_userdanger("You see your reflection, but it is grinning malevolently and staring directly at you!"))
-						living_guy.emote("scream")
-
-				living_guy.make_jittery(250)
-				if(evil && prob(7 * effective_luck))
-					to_chat(living_guy, span_warning("You are completely shocked by this turn of events!"))
-					if(ishuman(living_guy))
-						var/mob/living/carbon/human/human_guy = living_guy
-						if(human_guy.should_have_organ(O_HEART))
-							for(var/obj/item/organ/internal/heart/heart in human_guy.internal_organs)
-								heart.bruise() //Closest thing we have to a heart attack.
-							to_chat(living_guy, span_userdanger("You clutch at your heart!"))
-
-				consume_omen()
+		for(var/obj/structure/mirror/evil_mirror in the_turf)
+			to_chat(living_guy, span_warning("You pass by the mirror and glance at it..."))
+			if(evil_mirror.shattered)
+				to_chat(living_guy, span_notice("You feel lucky, somehow."))
 				return
+			var/mirror_rand
+			if(evil)
+				mirror_rand = rand(1,5)
+			else
+				mirror_rand = rand(1,3)
+			switch(mirror_rand)
+				if(1)
+					to_chat(living_guy, span_warning("The mirror explodes into a million pieces! Wait, does that mean you're even more unlucky?"))
+					evil_mirror.shatter()
+					if(prob(50 * effective_luck)) // sometimes
+						luck_mod += 0.25
+						damage_mod += 0.25
+					for(var/obj/item/organ/external/limb in living_guy.organs)
+						living_guy.apply_damage(6 * damage_mod, BRUTE, limb.organ_tag, used_weapon = "glass shrapnel")
+				if(2 to 3)
+					to_chat(living_guy, span_large(span_cult("Oh god, you can't see your reflection!!")))
+					living_guy.emote("scream")
+
+				if(4 to 5)
+					to_chat(living_guy, span_userdanger("You see your reflection, but it is grinning malevolently and staring directly at you!"))
+					living_guy.emote("scream")
+
+			living_guy.make_jittery(250)
+			if(evil && prob(7 * effective_luck))
+				to_chat(living_guy, span_warning("You are completely shocked by this turn of events!"))
+				if(ishuman(living_guy))
+					var/mob/living/carbon/human/human_guy = living_guy
+					if(human_guy.should_have_organ(O_HEART))
+						for(var/obj/item/organ/internal/heart/heart in human_guy.internal_organs)
+							heart.bruise() //Closest thing we have to a heart attack.
+						to_chat(living_guy, span_userdanger("You clutch at your heart!"))
+
+			consume_omen()
+			return
 
 /datum/component/omen/proc/slam_airlock(obj/machinery/door/airlock/darth_airlock)
 	SIGNAL_HANDLER
