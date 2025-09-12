@@ -29,10 +29,14 @@
 /obj/structure/barricade/bullet_act(obj/item/projectile/P, def_zone)
 	. = ..()
 	var/barricade_damage = P.get_structure_damage()
+	if(!barricade_damage)
+		return
 	if(barricade_damage > 30)
-		health -= barricade_damage * 0.25
+		var/base_multiplier = P.damage_type == BURN ? 0.5 : 0.25
+		health -= barricade_damage * base_multiplier
 	else
-		health -= barricade_damage * 0.1
+		var/base_multiplier = P.damage_type == BURN ? 0.25 : 0.1
+		health -= barricade_damage * base_multiplier
 	CheckHealth()
 
 /obj/structure/barricade/attackby(obj/item/W as obj, mob/user as mob)
