@@ -231,7 +231,7 @@
 		if(other_instrument.playing)
 			continue
 		var/atom/other_player = other_instrument.find_sync_player()
-		if(isnull(other_player) || !(other_player in view(parent)))
+		if(isnull(other_player) || !(other_player in view(get_turf(parent))))
 			continue
 		// copies the main song info to target songs
 		other_instrument.lines = lines.Copy()
