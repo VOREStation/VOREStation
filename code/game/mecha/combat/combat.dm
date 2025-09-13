@@ -6,7 +6,7 @@
 	internal_damage_threshold = 50
 	maint_access = 0
 	//add_req_access = 0
-	//operation_req_access = list(access_hos)
+	//operation_req_access = list(ACCESS_HOS)
 	var/am = "d3c2fbcadca903a41161ccc9df9cf948"
 
 	max_hull_equip = 2
@@ -46,17 +46,8 @@
 			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
 			if(damage_type == BRUTE)
 				step_away(M,src,15)
-			/*
-			if(M.stat>1)
-				M.gib()
-				melee_can_hit = 0
-				if(do_after(melee_cooldown))
-					melee_can_hit = 1
-				return
-			*/
 			if(ishuman(T))
 				var/mob/living/carbon/human/H = T
-	//			if (M.health <= 0) return
 
 				var/obj/item/organ/external/temp = H.get_organ(pick(BP_TORSO, BP_TORSO, BP_TORSO, BP_HEAD))
 				if(temp)
@@ -104,7 +95,7 @@
 			src.visible_message("[src] pushes [T] out of the way.")
 
 		melee_can_hit = 0
-		if(do_after(melee_cooldown))
+		if(do_after_action(melee_cooldown))
 			melee_can_hit = 1
 		return
 
@@ -124,7 +115,7 @@
 
 				melee_can_hit = 0
 
-				if(do_after(melee_cooldown))
+				if(do_after_action(melee_cooldown))
 					melee_can_hit = 1
 	return
 

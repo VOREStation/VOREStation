@@ -46,8 +46,7 @@ interface ColorPickerData {
   presets: string;
 }
 
-// biome-ignore lint/complexity/noBannedTypes:Ingored here
-type ColorPickerModalProps = {};
+type ColorPickerModalProps = Record<never, never>;
 
 export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const { act, data } = useBackend<ColorPickerData>();

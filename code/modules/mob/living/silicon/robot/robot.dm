@@ -87,7 +87,7 @@
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
-	var/list/req_access = list(access_robotics)
+	var/list/req_access = list(ACCESS_ROBOTICS)
 	var/ident = 0
 	//var/list/laws = list()
 	var/viewalerts = 0
@@ -96,7 +96,7 @@
 	var/lower_mod = 0
 	var/jetpack = 0
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
-	var/datum/effect/effect/system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
 	var/killswitch = 0
 	var/killswitch_time = 60
@@ -111,6 +111,7 @@
 	var/braintype = JOB_CYBORG
 
 	var/obj/item/implant/restrainingbolt/bolt	// The restraining bolt installed into the cyborg.
+	var/datum/tgui_module/robot_ui/robotact
 
 	var/list/robot_verbs_default = list(
 		/mob/living/silicon/robot/proc/sensor_mode,
@@ -306,31 +307,66 @@
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
 /mob/living/silicon/robot/Destroy()
-	if(mmi && mind)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
-		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
-		if(T)	mmi.loc = T
-		if(mmi.brainmob)
-			var/obj/item/robot_module/M = locate() in contents
-			if(M)
-				mmi.brainmob.languages = M.original_languages
-			else
-				mmi.brainmob.languages = languages
-			mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
-			mind.transfer_to(mmi.brainmob)
-		else if(!shell) // Shells don't have brainmbos in their MMIs.
-			to_chat(src, span_danger("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
-			ghostize()
-			//ERROR("A borg has been destroyed, but its MMI lacked a brainmob, so the mind could not be transferred. Player: [ckey].")
-		mmi = null
-	if(connected_ai)
-		connected_ai.connected_robots -= src
+	if(mmi)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
+		if(mind)
+			var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
+			if(T)
+				mmi.forceMove(T)
+			if(mmi.brainmob)
+				var/obj/item/robot_module/M = locate() in contents
+				if(M)
+					mmi.brainmob.languages = M.original_languages
+				else
+					mmi.brainmob.languages = languages
+				mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
+				mind.transfer_to(mmi.brainmob)
+			else if(!shell) // Shells don't have brainmbos in their MMIs.
+				to_chat(src, span_danger("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
+				ghostize()
+				//ERROR("A borg has been destroyed, but its MMI lacked a brainmob, so the mind could not be transferred. Player: [ckey].")
+			mmi = null
+		else
+			QDEL_NULL(mmi)
+	disconnect_from_ai(TRUE)
 	if(shell)
 		if(deployed)
 			undeploy()
 		revert_shell() // To get it out of the GLOB list.
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
+	sprite_datum = null
 	QDEL_NULL(robotact)
+	QDEL_LIST_ASSOC_VAL(components)
+	if(bolt)
+		QDEL_NULL(bolt)
+	if(module)
+		QDEL_NULL(module)
+	if(radio)
+		QDEL_NULL(radio)
+	if(communicator)
+		QDEL_NULL(communicator)
+	if(cell)
+		QDEL_NULL(cell)
+	if(camera)
+		QDEL_NULL(camera)
+	if(rbPDA)
+		QDEL_NULL(rbPDA)
+	if(inv1)
+		QDEL_NULL(inv1)
+	if(inv2)
+		QDEL_NULL(inv2)
+	if(inv3)
+		QDEL_NULL(inv3)
+	if(robot_modules_background)
+		QDEL_NULL(robot_modules_background)
+	if(ion_trail)
+		QDEL_NULL(ion_trail)
+	if(spark_system)
+		QDEL_NULL(spark_system)
+	module_active = null
+	module_state_1 = null
+	module_state_2 = null
+	module_state_3 = null
+
 	return ..()
 
 // CONTINUE CODING HERE
@@ -773,7 +809,7 @@
 		if(bolt)
 			to_chat(user,span_filter_notice("You begin removing \the [bolt]."))
 
-			if(do_after(user, 2 SECONDS, src))
+			if(do_after(user, 2 SECONDS, target = src))
 				bolt.forceMove(get_turf(src))
 				bolt = null
 
@@ -862,9 +898,8 @@
 	if(notify)
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
-	qdel(module)
+	QDEL_NULL(module)
 	icon_selected = FALSE
-	module = null
 	updatename("Default")
 	has_recoloured = FALSE
 	robotact?.update_static_data_for_all_viewers()
@@ -1252,9 +1287,10 @@
 		if(ROBOT_NOTIFICATION_AI_SHELL) //New Shell
 			to_chat(connected_ai, span_filter_notice("<br><br>" + span_notice("NOTICE - New AI shell detected: <a href='byond://?src=[REF(connected_ai)];track2=[html_encode(name)]'>[name]</a>") + "<br>"))
 
-/mob/living/silicon/robot/proc/disconnect_from_ai()
+/mob/living/silicon/robot/proc/disconnect_from_ai(silent)
 	if(connected_ai)
-		sync() // One last sync attempt
+		if(!silent)
+			sync() // One last sync attempt
 		connected_ai.connected_robots -= src
 		connected_ai = null
 

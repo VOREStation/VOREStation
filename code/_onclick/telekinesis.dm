@@ -1,11 +1,4 @@
 /*
-	Telekinesis
-
-	This needs more thinking out, but I might as well.
-*/
-var/const/tk_maxrange = 15
-
-/*
 	Telekinetic attack:
 
 	By default, emulate the user's unarmed attack
@@ -45,7 +38,7 @@ var/const/tk_maxrange = 15
 		O.host = user
 		O.focus_object(src)
 	else
-		warning("Strange attack_tk(): TK([user.has_telegrip()]) empty hand([!user.get_active_hand()])")
+		WARNING("Strange attack_tk(): TK([user.has_telegrip()]) empty hand([!user.get_active_hand()])")
 	return
 
 
@@ -114,7 +107,7 @@ var/const/tk_maxrange = 15
 	var/d = get_dist(user, target)
 	if(focus)
 		d = max(d, get_dist(user, focus)) // whichever is further
-	if(d > tk_maxrange)
+	if(d > TK_MAXRANGE)
 		to_chat(user, TK_OUTRANGED_MESSAGE)
 		return
 

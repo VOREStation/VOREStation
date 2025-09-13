@@ -57,7 +57,7 @@
 	set_frequency(frequency)
 
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, GLOB.radiochannels[ch_name],  RADIO_CHAT)
 
 	wires = new(src)
 	internal_channels = GLOB.default_internal_channels.Copy()
@@ -82,7 +82,7 @@
 					AIO.link_radio(src)
 					break
 		if(!bs_tx_weakref)
-			testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
+			log_mapping("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
 
 	if(bs_rx_preload_id)
 		var/found = 0
@@ -100,7 +100,7 @@
 					found = 1
 					break
 		if(!found)
-			testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
+			log_mapping("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
 
 /obj/item/radio/Destroy()
 	qdel(wires)
@@ -109,7 +109,7 @@
 	if(SSradio)
 		SSradio.remove_object(src, frequency)
 		for (var/ch_name in channels)
-			SSradio.remove_object(src, radiochannels[ch_name])
+			SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 	return ..()
 
 /obj/item/radio/proc/recalculateChannels()
@@ -171,7 +171,7 @@
 		var/chan_stat = channels[ch_name]
 		var/listening = !!(chan_stat & FREQ_LISTENING) != 0
 
-		dat.Add(list(list("chan" = ch_name, "display_name" = ch_name, "secure_channel" = 1, "sec_channel_listen" = !listening, "freq" = radiochannels[ch_name])))
+		dat.Add(list(list("chan" = ch_name, "display_name" = ch_name, "secure_channel" = 1, "sec_channel_listen" = !listening, "freq" = GLOB.radiochannels[ch_name])))
 
 	return dat
 
@@ -610,6 +610,9 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		channels[ch_name] = 0
 	..()
 
+/obj/item/radio/start_off
+	listening = FALSE
+
 ///////////////////////////////
 //////////Borg Radios//////////
 ///////////////////////////////
@@ -649,7 +652,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 
 			for(var/ch_name in channels)
-				SSradio.remove_object(src, radiochannels[ch_name])
+				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 
@@ -714,17 +717,17 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		name = "broken radio headset"
 		return
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, GLOB.radiochannels[ch_name],  RADIO_CHAT)
 
 /obj/item/radio/proc/config(op)
 	if(SSradio)
 		for (var/ch_name in channels)
-			SSradio.remove_object(src, radiochannels[ch_name])
+			SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 	secure_radio_connections = new
 	channels = op
 	if(SSradio)
 		for (var/ch_name in op)
-			secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+			secure_radio_connections[ch_name] = SSradio.add_object(src, GLOB.radiochannels[ch_name],  RADIO_CHAT)
 	return
 
 /obj/item/radio/off
@@ -818,3 +821,35 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	bs_rx_preload_id = "Broadcaster A" //Recveive from a transmitter
 
 #undef CANBROADCAST_INNERBOX
+
+/obj/item/radio/phone
+	subspace_transmission = TRUE
+	canhear_range = 0
+	adhoc_fallback = TRUE
+
+/obj/item/radio/emergency
+	name = "Medbay Emergency Radio Link"
+	icon_state = "med_walkietalkie"
+	frequency = MED_I_FREQ
+	subspace_transmission = TRUE
+	adhoc_fallback = TRUE
+
+/obj/item/radio/emergency/Initialize(mapload)
+	. = ..()
+	internal_channels = GLOB.default_medbay_channels.Copy()
+
+/obj/item/bluespaceradio/tether_prelinked
+	name = "bluespace radio (tether)"
+	handset = /obj/item/radio/bluespacehandset/linked/tether_prelinked
+
+/obj/item/radio/bluespacehandset/linked/tether_prelinked
+	bs_tx_preload_id = "tether_rx" //Transmit to a receiver
+	bs_rx_preload_id = "tether_tx" //Recveive from a transmitter
+
+/obj/item/bluespaceradio/talon_prelinked
+	name = "bluespace radio (talon)"
+	handset = /obj/item/radio/bluespacehandset/linked/talon_prelinked
+
+/obj/item/radio/bluespacehandset/linked/talon_prelinked
+	bs_tx_preload_id = "talon_aio" //Transmit to a receiver
+	bs_rx_preload_id = "talon_aio" //Recveive from a transmitter

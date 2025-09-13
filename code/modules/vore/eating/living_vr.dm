@@ -111,7 +111,7 @@
 					qdel(G)
 					return TRUE
 				else
-					log_debug("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it failed.")
+					log_vore("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it failed.")
 
 			///// If user clicked on their grabbed target
 			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
@@ -126,7 +126,7 @@
 					qdel(G)
 					return TRUE
 				else
-					log_debug("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting ? G.affecting.type : "null"]) but it failed.")
+					log_vore("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting ? G.affecting.type : "null"]) but it failed.")
 
 			///// If user clicked on anyone else but their grabbed target
 			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
@@ -148,7 +148,7 @@
 					qdel(G)
 					return TRUE
 				else
-					log_debug("[attacker] attempted to feed [G.affecting] to [src] ([type]) but it failed.")
+					log_vore("[attacker] attempted to feed [G.affecting] to [src] ([type]) but it failed.")
 
 	//Handle case: /obj/item/holder
 	else if(istype(I, /obj/item/holder))
@@ -163,7 +163,7 @@
 				if(attacker.eat_held_mob(attacker, M, src))
 					return TRUE //return TRUE to exit upper procs
 		else
-			log_debug("[attacker] attempted to feed [H.contents] to [src] ([type]) but it failed.")
+			log_vore("[attacker] attempted to feed [H.contents] to [src] ([type]) but it failed.")
 
 	//Handle case: /obj/item/radio/beacon
 	else if(istype(I,/obj/item/radio/beacon))
@@ -174,7 +174,7 @@
 				return TRUE
 			visible_message(span_warning("[user] is trying to stuff a beacon into [src]'s [B.get_belly_name()]!"),
 				span_warning("[user] is trying to stuff a beacon into you!"))
-			if(do_after(user,30,src))
+			if(do_after(user, 3 SECONDS, target = src))
 				user.drop_item()
 				I.forceMove(B)
 				return TRUE
@@ -360,7 +360,7 @@
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
-		error("Player picked [choice] slot to load, but that wasn't one we sent.")
+		log_world("## ERROR Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
 	load_character(slotnum)
@@ -587,6 +587,15 @@
 		var/mob/living/ourmob = tf_mob_holder
 		if(ourmob.loc != src)
 			if(isnull(ourmob.loc))
+				var/mob/living/voice/possessed_voice = src  // Stupid band-aid fix for OOC escaping object TF
+				if(possessed_voice.item_tf)
+					mind.transfer_to(ourmob)
+					item_to_destroy.possessed_voice -= src
+					qdel(src)
+					ourmob.forceMove(item_to_destroy.loc)
+					qdel(item_to_destroy)
+					log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
+					return
 				to_chat(src,span_notice("You have no body."))
 				src.tf_mob_holder = null
 				return
@@ -752,6 +761,16 @@
 	. = ..()
 	gas = list(
 		GAS_CO2 = 100)
+
+/datum/gas_mixture/belly_air/methane_breather
+	volume = 2500
+	temperature = 293.150
+	total_moles = 104
+
+/datum/gas_mixture/belly_air/methane_breather/New()
+	. = ..()
+	gas = list(
+		GAS_CH4 = 100)
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
 	if(user.is_incorporeal())
@@ -928,7 +947,7 @@
 		playsound(src, 'sound/items/eatfood.ogg', rand(10,50), 1)
 		var/T = (istype(M) ? M.hardness/40 : 1) SECONDS //1.5 seconds to eat a sheet of metal. 2.5 for durasteel and diamond & 1 by default (applies to some ores like raw carbon, slag, etc.
 		to_chat(src, span_notice("You start crunching on [I] with your powerful jaws, attempting to tear it apart..."))
-		if(do_after(feeder, T, timed_action_flags = IGNORE_USER_LOC_CHANGE)) //Eat on the move, but not multiple things at once.
+		if(do_after(feeder, T, target = src, timed_action_flags = IGNORE_USER_LOC_CHANGE)) //Eat on the move, but not multiple things at once.
 			if(feeder != src)
 				to_chat(feeder, span_notice("You feed [I] to [src]."))
 				log_admin("VORE: [feeder] fed [src] [I].")

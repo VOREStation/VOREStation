@@ -1,0 +1,183 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/easel,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"b" = (
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"f" = (
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"h" = (
+/obj/item/paint_palette,
+/obj/item/paint_palette,
+/obj/item/paint_brush,
+/obj/item/paint_brush,
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/clothing/head/beret,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"o" = (
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/redspace)
+"t" = (
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"A" = (
+/turf/simulated/floor/carpet,
+/area/survivalpod/redspace)
+"B" = (
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/twentythree_twentythree,
+/obj/structure/closet/walllocker_double/misc_civ/west,
+/obj/structure/table/wooden_reinforced,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"F" = (
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"H" = (
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"I" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"N" = (
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 2;
+	pixel_y = 10
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+"O" = (
+/obj/structure/bed/chair/sofa/right/beige{
+	dir = 4
+	},
+/turf/simulated/floor/carpet,
+/area/survivalpod/redspace)
+"Q" = (
+/obj/structure/bed/chair/sofa/left/beige{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/carpet,
+/area/survivalpod/redspace)
+"T" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod/redspace)
+"V" = (
+/obj/structure/fans,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/survivalpod/redspace)
+
+(1,1,1) = {"
+o
+o
+o
+o
+o
+o
+o
+"}
+(2,1,1) = {"
+o
+B
+Q
+O
+b
+V
+o
+"}
+(3,1,1) = {"
+o
+F
+A
+A
+H
+f
+o
+"}
+(4,1,1) = {"
+o
+F
+H
+N
+H
+H
+T
+"}
+(5,1,1) = {"
+o
+F
+a
+a
+H
+f
+o
+"}
+(6,1,1) = {"
+o
+t
+t
+t
+I
+h
+o
+"}
+(7,1,1) = {"
+o
+o
+o
+o
+o
+o
+o
+"}

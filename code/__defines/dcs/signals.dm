@@ -229,8 +229,9 @@
 #define COMSIG_MOVABLE_MOVED "movable_moved"
 ///from base of atom/movable/Cross(): (/atom/movable)
 #define COMSIG_MOVABLE_CROSS "movable_cross"
-///when we cross over something (calling Crossed() on that atom)
-#define COMSIG_CROSSED_MOVABLE "crossed_movable"
+	#define COMPONENT_BLOCK_CROSS (1<<0)
+///from base of atom/movable/Move(): (/atom/movable)
+#define COMSIG_MOVABLE_CROSS_OVER "movable_cross_am"
 ///from base of atom/movable/Bump(): (/atom)
 #define COMSIG_MOVABLE_BUMP "movable_bump"
 ///from base of atom/movable/throw_impact(): (/atom/hit_atom, /datum/thrownthing/throwingdatum)
@@ -267,6 +268,10 @@
 // (msg, type, alt, alt_type). all over the place, as show_message doesnt have an arg for origin and I'm not refactoring that today.
 #define COMSIG_MOB_RECIEVE_MESSAGE "mob_get_msg"
 
+///called when a disposal connected object flushes its contents into the disposal pipe network
+#define COMSIG_DISPOSAL_FLUSH "disposal_system_flushing"
+///called when a disposal connected object gets a packet from the disposal pipe network
+#define COMSIG_DISPOSAL_RECEIVING "disposal_system_receiving"
 ///called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"
 

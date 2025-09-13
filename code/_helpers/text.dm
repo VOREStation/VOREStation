@@ -669,3 +669,15 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 		temp = findtextEx(haystack, ascii2text(text2ascii(needles,i)), start, end)	//Note: ascii2text(text2ascii) is faster than copytext()
 		if(temp)	end = temp
 	return end
+
+/// Converts a semver string into a list of numbers
+/proc/semver_to_list(semver_string)
+	var/static/regex/semver_regex = regex(@"(\d+)\.(\d+)\.(\d+)", "")
+	if(!semver_regex.Find(semver_string))
+		return null
+
+	return list(
+		text2num(semver_regex.group[1]),
+		text2num(semver_regex.group[2]),
+		text2num(semver_regex.group[3]),
+	)

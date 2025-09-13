@@ -29,8 +29,8 @@
 	pto_type = PTO_TALON
 	timeoff_factor = 1
 	dept_time_required = 60
-	access = list(access_talon)
-	minimal_access = list(access_talon)
+	access = list(ACCESS_TALON)
+	minimal_access = list(ACCESS_TALON)
 	alt_titles = list(JOB_ALT_TALON_COMMANDER = /datum/alt_title/talon_commander)
 
 /datum/alt_title/talon_commander
@@ -55,8 +55,8 @@
 	playtime_only = TRUE
 	pto_type = PTO_TALON
 	timeoff_factor = 1
-	access = list(access_talon)
-	minimal_access = list(access_talon)
+	access = list(ACCESS_TALON)
+	minimal_access = list(ACCESS_TALON)
 	alt_titles = list(JOB_ALT_TALON_MEDIC = /datum/alt_title/talon_medic)
 
 /datum/alt_title/talon_medic
@@ -82,8 +82,8 @@
 	playtime_only = TRUE
 	pto_type = PTO_TALON
 	timeoff_factor = 1
-	access = list(access_talon)
-	minimal_access = list(access_talon)
+	access = list(ACCESS_TALON)
+	minimal_access = list(ACCESS_TALON)
 	alt_titles = list(JOB_ALT_TALON_TECHNICIAN = /datum/alt_title/talon_tech)
 
 /datum/alt_title/talon_tech
@@ -109,8 +109,8 @@
 	playtime_only = TRUE
 	pto_type = PTO_TALON
 	timeoff_factor = 1
-	access = list(access_talon)
-	minimal_access = list(access_talon)
+	access = list(ACCESS_TALON)
+	minimal_access = list(ACCESS_TALON)
 	alt_titles = list(JOB_ALT_TALON_HELMSMAN = /datum/alt_title/talon_helmsman)
 
 /datum/alt_title/talon_helmsman
@@ -136,8 +136,8 @@
 	playtime_only = TRUE
 	pto_type = PTO_TALON
 	timeoff_factor = 1
-	access = list(access_talon)
-	minimal_access = list(access_talon)
+	access = list(ACCESS_TALON)
+	minimal_access = list(ACCESS_TALON)
 	alt_titles = list(JOB_ALT_TALON_SECURITY = /datum/alt_title/talon_security)
 
 /datum/alt_title/talon_security
@@ -162,8 +162,8 @@
 	playtime_only = TRUE
 	pto_type = PTO_TALON
 	timeoff_factor = 1
-	access = list(access_talon)
-	minimal_access = list(access_talon)
+	access = list(ACCESS_TALON)
+	minimal_access = list(ACCESS_TALON)
 	alt_titles = list(JOB_ALT_TALON_EXCAVATOR = /datum/alt_title/talon_excavator)
 
 /datum/alt_title/talon_excavator

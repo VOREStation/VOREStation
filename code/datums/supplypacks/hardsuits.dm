@@ -16,9 +16,9 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "eva hardsuit crate"
-	access = list(access_mining,
-				  access_eva,
-				  access_pilot)
+	access = list(ACCESS_MINING,
+				  ACCESS_EVA,
+				  ACCESS_PILOT)
 	one_access = TRUE
 
 /datum/supply_pack/hardsuits/mining_rig
@@ -30,8 +30,8 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "industrial hardsuit crate"
-	access = list(access_mining,
-				  access_eva)
+	access = list(ACCESS_MINING,
+				  ACCESS_EVA)
 	one_access = TRUE
 
 /datum/supply_pack/hardsuits/medical_rig
@@ -43,7 +43,7 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "medical hardsuit crate"
-	access = access_medical
+	access = ACCESS_MEDICAL
 
 /datum/supply_pack/hardsuits/security_rig
 	name = "hazard hardsuit (empty)"
@@ -54,7 +54,7 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "hazard hardsuit crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/hardsuits/science_rig
 	name = "ami hardsuit (empty)"
@@ -65,7 +65,7 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "ami hardsuit crate"
-	access = access_rd
+	access = ACCESS_RD
 
 /datum/supply_pack/hardsuits/ce_rig
 	name = "advanced hardsuit (empty)"
@@ -76,7 +76,7 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "advanced hardsuit crate"
-	access = access_ce
+	access = ACCESS_CE
 
 /datum/supply_pack/hardsuits/com_medical_rig
 	name = "commonwealth medical hardsuit (loaded)"
@@ -87,7 +87,7 @@
 	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Commonwealth medical hardsuit crate"
-	access = access_medical
+	access = ACCESS_MEDICAL
 
 /datum/supply_pack/hardsuits/com_engineering_rig
 	name = "commonwealth engineering hardsuit (loaded)"
@@ -98,7 +98,7 @@
 	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Commonwealth engineering hardsuit crate"
-	access = access_engine
+	access = ACCESS_ENGINE
 
 /datum/supply_pack/hardsuits/breacher_rig
 	name = "unathi breacher hardsuit (empty)"
@@ -109,7 +109,7 @@
 	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "unathi breacher hardsuit crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 /datum/supply_pack/hardsuits/zero_rig
 	name = "null hardsuit (jets)"

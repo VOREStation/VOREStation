@@ -12,7 +12,7 @@
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_open"
-	req_one_access = list(access_eva)	//access_atmospherics, access_engine_equip)
+	req_one_access = list(ACCESS_EVA)	//ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
 	opacity = 0
 	density = FALSE
 	layer = DOOR_OPEN_LAYER - 0.01
@@ -54,7 +54,7 @@
 	//Delete ourselves if we find extra mapped in firedoors
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
-			log_debug("Duplicate firedoors at [x],[y],[z]")
+			log_mapping("Duplicate firedoors at [x],[y],[z]")
 			return INITIALIZE_HINT_QDEL
 
 	var/area/A = get_area(src)
@@ -198,14 +198,14 @@
 		if(istype(X.species, /datum/species/xenos))
 			if(src.blocked)
 				visible_message(span_alium("\The [user] begins digging into \the [src] internals!"))
-				if(do_after(user,5 SECONDS,src))
+				if(do_after(user, 5 SECONDS, target = src))
 					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 					src.blocked = 0
 					update_icon()
 					open(1)
 			else if(src.density)
 				visible_message(span_alium("\The [user] begins forcing \the [src] open!"))
-				if(do_after(user, 2 SECONDS,src))
+				if(do_after(user, 2 SECONDS, target = src))
 					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 					visible_message(span_danger("\The [user] forces \the [src] open!"))
 					open(1)
@@ -224,7 +224,7 @@
 			if(src.density)
 				visible_message(span_danger("\The [user] starts forcing \the [src] open!"))
 				user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
-				if(do_after(user, time_to_force, src))
+				if(do_after(user, time_to_force, target = src))
 					visible_message(span_danger("\The [user] forces \the [src] open!"))
 					src.blocked = 0
 					open(1)
@@ -233,7 +233,7 @@
 				time_to_force = (time_to_force / 2)
 				visible_message(span_danger("\The [user] starts forcing \the [src] closed!"))
 				user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
-				if(do_after(user, time_to_force, src))
+				if(do_after(user, time_to_force, target = src))
 					visible_message(span_danger("\The [user] forces \the [src] closed!"))
 					close(1)
 				user.set_AI_busy(FALSE)
@@ -280,7 +280,7 @@
 		else
 			user.visible_message(span_danger("[user] is removing the electronics from \the [src]."),
 									"You start to remove the electronics from [src].")
-			if(do_after(user,30))
+			if(do_after(user, 3 SECONDS, target = src))
 				if(blocked && density && hatch_open)
 					playsound(src, C.usesound, 50, 1)
 					user.visible_message(span_danger("[user] has removed the electronics from \the [src]."),
@@ -329,7 +329,7 @@
 		prying = 1
 		update_icon()
 		playsound(src, C.usesound, 100, 1)
-		if(do_after(user,30 * C.toolspeed))
+		if(do_after(user,3 SECONDS * C.toolspeed, target = src))
 			if(C.has_tool_quality(TOOL_CROWBAR))
 				if(stat & (BROKEN|NOPOWER) || !density)
 					user.visible_message(span_danger("\The [user] forces \the [src] [density ? "open" : "closed"] with \a [C]!"),\

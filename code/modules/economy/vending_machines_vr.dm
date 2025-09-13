@@ -221,13 +221,13 @@
 	icon_state = "blood"
 	vend_delay = 7
 	idle_power_usage = 211
-	req_access = list(access_medical)
+	req_access = list(ACCESS_MEDICAL)
 	products = list(/obj/item/reagent_containers/blood/prelabeled/APlus = 3,/obj/item/reagent_containers/blood/prelabeled/AMinus = 3,
 					/obj/item/reagent_containers/blood/prelabeled/BPlus = 3,/obj/item/reagent_containers/blood/prelabeled/BMinus = 3,
 					/obj/item/reagent_containers/blood/prelabeled/OPlus = 2,/obj/item/reagent_containers/blood/prelabeled/OMinus = 5,
 					/obj/item/reagent_containers/blood/empty = 5)
 	contraband = list(/obj/item/reagent_containers/glass/bottle/stoxin = 2)
-	req_log_access = access_cmo
+	req_log_access = ACCESS_CMO
 	has_logs = 1
 
 //Airlock antitox vendor
@@ -238,7 +238,7 @@
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/reagent_containers/pill/airlock = 20)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 2)
-	req_log_access = access_cmo
+	req_log_access = ACCESS_CMO
 	has_logs = 1
 
 /obj/machinery/seed_storage/brig
@@ -1180,9 +1180,11 @@
 					/obj/item/deck/cah/black = 5,
 					/obj/item/deck/tarot = 5,
 					/obj/item/deck/cards = 5,
+					/obj/item/deck/cards/triple =5,
 					/obj/item/pack/spaceball = 10,
 					/obj/item/storage/pill_bottle/dice = 5,
 					/obj/item/storage/pill_bottle/dice_nerd = 5,
+					/obj/item/spacecasinocash_fake/c1000 = 50,
 					/obj/item/melee/umbrella/random = 10,
 					/obj/item/picnic_blankets_carried = 10,
 					/obj/item/deck/schnapsen = 5,
@@ -1194,9 +1196,11 @@
 					/obj/item/deck/cah/black = 100,
 					/obj/item/deck/tarot = 100,
 					/obj/item/deck/cards = 100,
+					/obj/item/deck/cards/triple = 150,
 					/obj/item/pack/spaceball = 100,
 					/obj/item/storage/pill_bottle/dice = 100,
 					/obj/item/storage/pill_bottle/dice_nerd = 100,
+					/obj/item/spacecasinocash_fake/c1000 = 100,
 					/obj/item/melee/umbrella/random = 100,
 					/obj/item/picnic_blankets_carried = 100,
 					/obj/item/deck/schnapsen = 100,

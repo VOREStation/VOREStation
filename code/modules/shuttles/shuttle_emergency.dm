@@ -1,7 +1,7 @@
 // Formerly /datum/shuttle/ferry/emergency
 /datum/shuttle/autodock/ferry/emergency
 	category = /datum/shuttle/autodock/ferry/emergency
-	var/frequency = 1381 // Why this frequency? BECAUSE! Thats what someone decided once.
+	var/frequency = AUTODOCK_FREQ // Why this frequency? BECAUSE! Thats what someone decided once.
 	var/datum/radio_frequency/radio_connection
 
 /datum/shuttle/autodock/ferry/emergency/New()
@@ -73,7 +73,7 @@
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if (emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			to_world(span_boldnotice("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
+			to_chat(world, span_boldnotice("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
 
 	if(usr)
 		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and activated the launch sequence.")
@@ -87,7 +87,7 @@
 	if (istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if (emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			to_world(span_boldnotice("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
+			to_chat(world, span_boldnotice("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
 
 	if(usr)
 		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and forced immediate launch.")
@@ -163,7 +163,7 @@
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return 0
 
-	if (!(access_heads in access))
+	if (!(ACCESS_HEADS in access))
 		src.visible_message("\The [src] buzzes, rejecting [ident].")
 		playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return 0

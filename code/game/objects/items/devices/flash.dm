@@ -47,7 +47,7 @@
 			return
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " starts trying to repair \the [src]'s bulb."))
 		repairing = TRUE
-		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed) && can_repair)
+		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed, target = src) && can_repair)
 			if(prob(30))
 				user.visible_message(span_notice("\The [user] successfully repairs \the [src]!"))
 				broken = FALSE

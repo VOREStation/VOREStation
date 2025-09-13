@@ -59,7 +59,7 @@
 	build_the_emote(m_type, message, input, range, runemessage)
 
 /mob/proc/log_the_emote(m_type, message, input, range, runemessage)
-	log_emote(message,src) //Log before we add junk
+	log_message(message, LOG_EMOTE) //Log before we add junk
 	build_the_emote(m_type, message, input, range, runemessage)
 
 /mob/proc/build_the_emote(m_type, message, input, range, runemessage)
