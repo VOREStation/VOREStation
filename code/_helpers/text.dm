@@ -681,3 +681,7 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 		text2num(semver_regex.group[2]),
 		text2num(semver_regex.group[3]),
 	)
+
+///Properly format a string of text by using replacetext()
+/proc/format_text(text)
+	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
