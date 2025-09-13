@@ -140,7 +140,7 @@ ADMIN_VERB(list_signalers, R_ADMIN, "List Signalers", "View all signalers.", ADM
 	user.holder.list_signalers()
 	//BLACKBOX_LOG_ADMIN_VERB("List Signalers")
 
-ADMIN_VERB(list_law_changes, R_ADMIN, "List Law Changes", "View all AI law changes.", ADMIN_CATEGORY_DEBUG_INGESTIVATE)
+ADMIN_VERB(list_law_changes, R_ADMIN, "List Law Changes", "View all AI law changes.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	user.holder.list_law_changes()
 	//BLACKBOX_LOG_ADMIN_VERB("List Law Changes")
 

@@ -86,7 +86,7 @@ _ADMIN_VERB(verb_path_name, verb_permissions, verb_name, verb_desc, verb_categor
 
 // Special categories that are separated
 #define ADMIN_CATEGORY_DEBUG "Debug"
-#define ADMIN_CATEGORY_DEBUG_INGESTIVATE "Debug.Investigate"
+#define ADMIN_CATEGORY_DEBUG_INVESTIGATE "Debug.Investigate"
 #define ADMIN_CATEGORY_DEBUG_DANGEROUS "Debug.Dangerous"
 #define ADMIN_CATEGORY_DEBUG_GAME "Debug.Game"
 #define ADMIN_CATEGORY_SERVER "Server"
