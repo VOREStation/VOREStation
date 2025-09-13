@@ -239,6 +239,10 @@ export class Plane extends Component<PlaneProps, PlaneState> {
           PortTypesToColor[decodeHtmlEntities(selectedPort.type)] || 'blue',
         from: portLocation,
         to: mouseCoords,
+        packetDurationMs: undefined,
+        packetFrequencyMs: undefined,
+        packetSize: 0,
+        packetColor: undefined,
       });
     }
 

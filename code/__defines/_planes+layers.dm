@@ -179,6 +179,7 @@ What is the naming convention for planes or layers?
 
 #define PLANE_AUGMENTED			40 //Augmented-reality plane
 #define PLANE_SOULCATCHER		41 //Soulcatcher
+#define PLANE_ENDOWARE 			42
 
 //Fullscreen overlays under inventory
 #define PLANE_FULLSCREEN		90 //Blindness, mesons, druggy, etc

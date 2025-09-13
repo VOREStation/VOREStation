@@ -1,0 +1,78 @@
+.commandline_log_bg {
+  width: 98%;
+  height: 95%;
+  margin: 1%;
+  background-color: color-mix(
+    in srgb,
+    var(--color-base) 10%,
+    rgba(0, 0, 0, 0) 90%
+  );
+  color: var(--text);
+  font-family: var(--font-family-mono);
+}
+
+#commandline_logcontainer .commandline_logentry,
+.commandline_logentry {
+  box-sizing: border-box;
+  background-color: var(--color-primary);
+}
+
+.commandline_logentry-border {
+  margin-bottom: 20px;
+}
+
+.commandline_logentry-header {
+  display: flex;
+  position: relative;
+  padding-left: 5px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--color-primary);
+  background: var(--color-base);
+  color: var(--color-text);
+  font-family: 'Orbitron';
+  text-shadow: 0 0 2px #000;
+}
+
+.commandline_logentry-timestamp {
+  display: inline-flex;
+  align-self: center;
+  position: relative;
+  margin-right: 8px;
+  background: var(--color-secondary);
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-size: 14px;
+  line-height: 1;
+  width: auto;
+  min-height: 0;
+  max-height: max-content;
+}
+
+.commandline_logentry-command {
+  color: var(--color-text);
+  font-family: monospace;
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin-right: 5px;
+  max-width: 80%;
+}
+
+.commandline_logentry-warning {
+  position: absolute;
+  color: #f33; //universally red
+  font-weight: bold;
+  margin-left: 88%;
+  font-size: 13px;
+  text-shadow: 0 0 2px #000;
+}
+
+.commandline_logentry-content {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-family: var(--font-family-mono);
+  font-size: 14px;
+  color: var(--color-text);
+  word-break: break-word;
+  white-space: pre-wrap;
+  display: block;
+}

@@ -91,6 +91,7 @@
 
 	var/list/combined = combine_message(message_pieces, verb, speaker)
 	var/message = combined["formatted"]
+
 	if(message == "")
 		return FALSE
 
@@ -138,6 +139,7 @@
 		ai_holder.on_hear_say(speaker, multilingual_to_message(message_pieces))
 
 /mob/proc/on_hear_say(var/message, var/mob/speaker = null)
+	SEND_SIGNAL(src,COMSIG_MOB_RECIEVE_MESSAGE,speaker,message,AUDIBLE_MESSAGE)
 	if(client)
 		message = span_game(span_say(message))
 		if(speaker && !speaker.client)
@@ -151,6 +153,7 @@
 		to_chat(src, span_game(span_say(message)))
 
 /mob/living/silicon/on_hear_say(var/message, var/mob/speaker = null)
+	SEND_SIGNAL(src,COMSIG_MOB_RECIEVE_MESSAGE,speaker,message,AUDIBLE_MESSAGE)
 	if(client)
 		message = span_game(span_say(message))
 		if(speaker && !speaker.client)
@@ -267,7 +270,7 @@
 		message = span_game(span_say(span_bold("[speaker]") + " [verb][adverb]."))
 	else
 		message = span_game(span_say(span_bold("[speaker]") + " [verb]."))
-
+	SEND_SIGNAL(src,COMSIG_MOB_RECIEVE_MESSAGE,speaker,message,speech_type)
 	show_message(message, type = speech_type) // Type 1 is visual message
 
 /mob/proc/hear_sleep(var/message)

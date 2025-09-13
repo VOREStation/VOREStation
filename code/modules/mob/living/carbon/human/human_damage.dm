@@ -597,6 +597,7 @@ This function restores all organs.
 	if(GLOB.Debug2)
 		log_world("## DEBUG: [src] was hit for [damage].")
 
+	SEND_SIGNAL(src,COMSIG_MOB_APPLY_DAMGE,damage,damagetype,def_zone)
 	switch(damagetype)
 		if(BRUTE)
 			damageoverlaytemp = 20

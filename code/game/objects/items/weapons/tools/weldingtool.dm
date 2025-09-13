@@ -319,6 +319,7 @@
 		if(user.isSynthetic()) //Fixes robots going blind when doing the equivalent of a bruise pack.
 			return
 		if(H.nif && H.nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION)) return //VOREStation Add - NIF
+		if(ENDOWARE_FLAG_NO_WELD_EYE_DMG & H.endoware_flags) return //why is this not on mobs yet.
 		switch(safety)
 			if(1)
 				to_chat(user, span_warning("Your eyes sting a little."))
