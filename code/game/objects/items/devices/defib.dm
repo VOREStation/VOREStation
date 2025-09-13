@@ -433,6 +433,10 @@
 		return
 
 	H.apply_damage(burn_damage_amt, BURN, BP_TORSO)
+	if(HAS_TRAIT(H, TRAIT_UNLUCKY) && prob(5))
+		make_announcement("buzzes, \"Unknown error occurred. Please try again.\"", "warning")
+		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
+		return
 
 	//set oxyloss so that the patient is just barely in crit, if possible
 	var/barely_in_crit = H.get_crit_point() - 1
