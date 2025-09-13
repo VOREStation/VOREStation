@@ -196,11 +196,11 @@ TODO:
 
 /obj/item/endoware/proc/build_organ_signals(var/obj/item/organ/target)
 	RegisterSignal(target,COMSIG_ORGAN_INSERTED,PROC_REF(human_installed_organ))
-	RegisterSignal(target,COMSIG_PARENT_QDELETING,PROC_REF(organ_destroyed))
+	RegisterSignal(target,COMSIG_QDELETING,PROC_REF(organ_destroyed))
 
 /obj/item/endoware/proc/dissolve_organ_signals(var/obj/item/organ/target)
 	UnregisterSignal(target,COMSIG_ORGAN_INSERTED)
-	UnregisterSignal(target,COMSIG_PARENT_QDELETING)
+	UnregisterSignal(target,COMSIG_QDELETING)
 
 /obj/item/endoware/proc/organ_destroyed(var/datum/source,var/force)
 	if(force)

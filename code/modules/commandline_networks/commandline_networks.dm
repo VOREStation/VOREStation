@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(commandline_networks)
 	name = "Commandline Networks"
 	wait = 1 SECOND
-	init_order = INIT_ORDER_DEFAULT
+	//init_order = INIT_ORDER_DEFAULT
 	runlevels = RUNLEVELS_DEFAULT
 
 	var/list/networks = list()
