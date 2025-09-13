@@ -13,7 +13,7 @@
 	var/on_expired_text = null			// Text to show to holder when it expires.
 	var/hidden = FALSE					// If true, it will not show up on the HUD in the Future(tm)
 	var/stacks = MODIFIER_STACK_FORBID	// If true, attempts to add a second instance of this type will refresh expire_at instead.
-	var/flags = 0						// Flags for the modifier, see mobs.dm defines for more details.
+	var/flags = NONE						// Flags for the modifier, see mobs.dm defines for more details.
 
 	var/light_color = null				// If set, the mob possessing the modifier will glow in this color.  Not implemented yet.
 	var/light_range = null				// How far the light for the above var goes. Not implemented yet.

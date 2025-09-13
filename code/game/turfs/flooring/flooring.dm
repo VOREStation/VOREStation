@@ -138,7 +138,7 @@ var/list/flooring_types
 /decl/flooring/grass/sif // Subtype for Sif's grass.
 	name = "growth"
 	desc = "A natural moss that has adapted to the sheer cold climate."
-	flags = 0
+	flags = NONE
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass_sif"
 	build_type = null
@@ -147,7 +147,7 @@ var/list/flooring_types
 /decl/flooring/grass/sif/forest
 	name = "thick growth"
 	desc = "A natural moss that has adapted to the sheer cold climate."
-	flags = 0
+	flags = NONE
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass_sif_dark"
 	has_base_range = 1
@@ -225,7 +225,7 @@ var/list/flooring_types
 	name = "snowy plating"
 	desc = "Steel plating coated with a light layer of snow."
 	icon_base = "snowyplating"
-	flags = null
+	flags = NONE
 
 /decl/flooring/snow/ice
 	name = "ice"

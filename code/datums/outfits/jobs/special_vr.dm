@@ -41,7 +41,7 @@
 	backpack_contents = list(/obj/item/stamp/clown = 1, /obj/item/bikehorn = 1)
 	id_type = /obj/item/card/id/civilian/clown
 	pda_type = /obj/item/pda/clown
-	flags = 0
+	flags = NONE
 
 /decl/hierarchy/outfit/job/mime
 	name = OUTFIT_JOB_NAME(JOB_MIME)

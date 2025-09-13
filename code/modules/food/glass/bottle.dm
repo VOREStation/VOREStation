@@ -9,7 +9,7 @@
 	item_state = "atoxinbottle"
 	amount_per_transfer_from_this = 10
 	max_transfer_amount = 60
-	flags = 0
+	flags = NONE
 	volume = 60
 	drop_sound = 'sound/items/drop/bottle.ogg'
 	pickup_sound = 'sound/items/pickup/bottle.ogg'

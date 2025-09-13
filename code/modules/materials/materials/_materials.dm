@@ -192,7 +192,7 @@ var/list/name_to_material
 	var/name	                          // Unique name for use in indexing the list.
 	var/display_name                      // Prettier name for display.
 	var/use_name
-	var/flags = 0                         // Various status modifiers.
+	var/flags = NONE                         // Various status modifiers.
 	var/sheet_singular_name = "sheet"
 	var/sheet_plural_name = "sheets"
 	var/sheet_collective_name = "stack"

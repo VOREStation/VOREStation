@@ -611,7 +611,7 @@ SUBSYSTEM_DEF(timer)
  * * flags flags for this timer, see: code\__DEFINES\subsystems.dm
  * * timer_subsystem the subsystem to insert this timer into
  */
-/proc/_addtimer(datum/callback/callback, wait = 0, flags = 0, datum/controller/subsystem/timer/timer_subsystem, file, line)
+/proc/_addtimer(datum/callback/callback, wait = 0, flags = NONE, datum/controller/subsystem/timer/timer_subsystem, file, line)
 	ASSERT(istype(callback), "addtimer called [callback ? "with an invalid callback ([callback])" : "without a callback"]")
 	ASSERT(isnum(wait), "addtimer called with a non-numeric wait ([wait])")
 

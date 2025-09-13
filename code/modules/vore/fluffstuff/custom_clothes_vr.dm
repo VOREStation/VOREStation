@@ -1944,7 +1944,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/fluff/nikki //see /obj/item/rig/nikki
 	name = "cape"
 	desc = "Snazzy!"
-	flags = null
+	flags = NONE
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0) // It's not armor, it's a dorky frickin cape
 	body_parts_covered = null // Cape ain't gonna cover a THING
 	cold_protection = CHEST|ARMS // It will keep you toasty tho, it's more than big enough to help with that! Just wrap the thing around you when on the surface, idk
