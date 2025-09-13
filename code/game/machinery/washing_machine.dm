@@ -43,13 +43,13 @@
 	set src in oview(1)
 	start()
 
-/obj/machinery/washing_machine/proc/start()
+/obj/machinery/washing_machine/proc/start(force)
 
-	if(!isliving(usr)) //ew ew ew usr, but it's the only way to check.
+	if(!isliving(usr) && !force) //ew ew ew usr, but it's the only way to check.
 		return
 
 	if(state != 4)
-		to_chat(usr, "The washing machine cannot run in this state.")
+		visible_message("The washing machine buzzes - it can not run in this state!")
 		return
 
 	if(locate(/mob,washing))
@@ -57,7 +57,7 @@
 	else
 		state = 5
 	update_icon()
-	to_chat(usr, "The washing machine starts a cycle.")
+	visible_message("The washing machine starts a cycle.")
 	playsound(src, 'sound/items/washingmachine.ogg', 50, 1, 1)
 
 	addtimer(CALLBACK(src, PROC_REF(finish_wash)), 2 SECONDS)
@@ -88,7 +88,7 @@
 	set src in usr.loc
 
 	if((state in list(1,3,6)) && do_after(usr, 2 SECONDS, target = src))
-		usr.loc = src.loc
+		usr.forceMove(get_turf(src))
 
 /obj/machinery/washing_machine/update_icon()
 	cut_overlays()
@@ -112,6 +112,7 @@
 			if(!crayon)
 				user.drop_item()
 				crayon = W
+				crayon.forceMove(src)
 				crayon.loc = src
 			else
 				..()
@@ -135,7 +136,7 @@
 		if(washing.len < 5)
 			if(state in list(1, 3))
 				user.drop_item()
-				W.loc = src
+				W.forceMove(src)
 				washing += W
 				state = 3
 			else
@@ -147,20 +148,22 @@
 	update_icon()
 
 /obj/machinery/washing_machine/attack_hand(mob/user as mob)
+	if(user.loc == src)
+		return //No interacting with it from the inside!
 	switch(state)
 		if(1)
 			state = 2
 		if(2)
 			state = 1
 			for(var/atom/movable/O in washing)
-				O.loc = src.loc
+				O.forceMove(get_turf(src))
 			washing.Cut()
 		if(3)
 			state = 4
 		if(4)
 			state = 3
 			for(var/atom/movable/O in washing)
-				O.loc = src.loc
+				O.forceMove(get_turf(src))
 			crayon = null
 			washing.Cut()
 			state = 1
@@ -175,7 +178,7 @@
 					var/mob/M = locate(/mob,washing)
 					M.gib()
 			for(var/atom/movable/O in washing)
-				O.loc = src.loc
+				O.forceMove(get_turf(src))
 			crayon = null
 			state = 1
 			washing.Cut()
