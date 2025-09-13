@@ -622,6 +622,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/goopy_feet
+	name = "goopy feet"
+	desc = ""
+	icon_state = "goopy_feet"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
 	name = DEVELOPER_WARNING_NAME
