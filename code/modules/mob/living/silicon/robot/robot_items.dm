@@ -192,7 +192,7 @@
 //TODO: Add prewritten forms to dispense when you work out a good way to store the strings.
 /obj/item/form_printer
 	name = "paperwork printer"
-	//name = "paper dispenser"
+	desc = "A revolution for all the bureaucrats on the go!"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "doc_printer_mod_pre"
 	item_icons = list(
