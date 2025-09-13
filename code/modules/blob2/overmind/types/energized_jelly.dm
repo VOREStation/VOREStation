@@ -22,7 +22,7 @@
 
 /datum/blob_type/energized_jelly/on_attack(obj/structure/blob/B, mob/living/victim, def_zone)
 	victim.electrocute_act(10, src, 1, def_zone)
-	victim.stun_effect_act(0, 40, BP_TORSO, src)
+	victim.stun_effect_act(0, 40, BP_TORSO, src, electric = TRUE)
 
 /datum/blob_type/energized_jelly/on_chunk_tick(obj/item/blobcore_chunk/B)
 	for(var/mob/living/L in oview(world.view, get_turf(B)))

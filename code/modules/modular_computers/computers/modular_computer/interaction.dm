@@ -116,8 +116,19 @@
 // On-click handling. Turns on the computer if it's off and opens the GUI.
 /obj/item/modular_computer/attack_self(var/mob/user)
 	if(enabled && screen_on)
+		if(isliving(user) && HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(5))
+			var/mob/living/unlucky_soul = user
+			to_chat(user, span_danger("You interact with \the [src] and are met with a sudden shock!"))
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(5, 1, src)
+			s.start()
+			unlucky_soul.electrocute_act(5, src, 1)
+			return
 		tgui_interact(user)
 	else if(!enabled && screen_on)
+		if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(25))
+			to_chat(user, "You try to turn on \the [src] but it doesn't respond.")
+			return
 		turn_on(user)
 
 /obj/item/modular_computer/attackby(var/obj/item/W, var/mob/user)
