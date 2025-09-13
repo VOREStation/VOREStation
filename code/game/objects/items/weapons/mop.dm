@@ -31,7 +31,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 
 		user.visible_message(span_warning("[user] begins to clean \the [get_turf(A)]."))
 
-		if(do_after(user, 4 SECONDS, target = src))
+		if(do_after(user, 4 SECONDS, target = src, max_interaftion_count = 9))
 			var/turf/T = get_turf(A)
 			if(T)
 				T.wash(CLEAN_SCRUB)
@@ -73,7 +73,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 
 		user.visible_message(span_warning("[user] begins to clean \the [get_turf(A)]."))
 
-		if(do_after(user, 2 SECONDS, target = src))
+		if(do_after(user, 2 SECONDS, target = src, max_interaftion_count = 9))
 			var/turf/T = get_turf(A)
 			if(T)
 				T.wash(CLEAN_SCRUB)
