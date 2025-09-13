@@ -1919,3 +1919,10 @@
 	desc = ""
 	icon_state = "tigresstail"
 	ckeys_allowed = list("hoodoo")
+
+/datum/sprite_accessory/tail/xenotail_fullcolour_vwag
+	name = "xenomorph tail (fully colourable, vwag)"
+	desc = ""
+	icon_state = "xenotail_fullcolour_vwag"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
