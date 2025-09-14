@@ -299,6 +299,3 @@ Buildable meters
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, span_notice("You fasten the meter to the pipe."))
 	qdel(src)
-
-/obj/item/pipe_gsensor/dropped(mob/user)
-	. = ..()

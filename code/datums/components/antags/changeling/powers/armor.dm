@@ -38,7 +38,7 @@
 	desc = "A huge, bulky mass of pressure and temperature-resistant organic tissue, evolved to facilitate space travel."
 	flags = NONE	//Not THICKMATERIAL because it's organic tissue, so if somebody tries to inject something into it,
 				//it still ends up in your blood. (also balance but muh fluff)
-	destroy_on_drop = TRUE
+	item_flags = THICKMATERIAL | DROPDEL | NOSTRIP
 	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //No armor at all.
 	canremove = FALSE
@@ -58,7 +58,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
 	canremove = FALSE
-	destroy_on_drop = TRUE
+	item_flags = THICKMATERIAL | AIRTIGHT | ALLOW_SURVIVALFOOD | DROPDEL | NOSTRIP
 
 /obj/item/clothing/shoes/magboots/changeling
 	desc = "A suction cupped mass of flesh, shaped like a foot."
@@ -66,7 +66,7 @@
 	icon_state = "lingspacesuit"
 	actions_types = list(/datum/action/item_action/toggle_grippers)
 	canremove = FALSE
-	destroy_on_drop = TRUE
+	item_flags = DROPDEL | NOSTRIP
 
 /obj/item/clothing/shoes/magboots/changeling/set_slowdown()
 	slowdown = shoes? max(SHOES_SLOWDOWN, shoes.slowdown): SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.
