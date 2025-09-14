@@ -13,6 +13,7 @@
 	// Update neighbours and self for state
 	update_neighbours()
 	update_icon()
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/reagent_refinery/Destroy()
 	reagent_flush()
@@ -130,28 +131,6 @@
 /// Handle transfers that require a minimum amount of reagents to happen
 /obj/machinery/reagent_refinery/proc/minimum_reagents_for_transfer(var/obj/machinery/reagent_refinery/target)
 	return 0
-
-/obj/machinery/reagent_refinery/verb/rotate_clockwise()
-	set name = "Rotate Machine Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-
-/obj/machinery/reagent_refinery/verb/rotate_counterclockwise()
-	set name = "Rotate Machine Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
 
 /obj/machinery/reagent_refinery/proc/tutorial(var/flags,var/list/examine_list)
 	// Specialty
