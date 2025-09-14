@@ -84,9 +84,9 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 		A.fall()
 
 // Called when thrown object lands on this turf.
-/turf/simulated/open/hitby(var/atom/movable/AM, var/speed)
+/turf/simulated/open/hitby(var/atom/movable/source, var/speed)
 	. = ..()
-	AM.fall()
+	source.fall()
 
 /turf/simulated/open/examine(mob/user, distance, infix, suffix)
 	. = ..()

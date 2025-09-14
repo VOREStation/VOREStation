@@ -96,13 +96,13 @@
 	take_damage(damage)
 	return
 
-/turf/simulated/wall/hitby(AM, var/speed=THROWFORCE_SPEED_DIVISOR)
+/turf/simulated/wall/hitby(atom/movable/source, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()
-	var/tforce
-	if(ismob(AM))
+	if(ismob(source))
 		return
-	if(isobj(AM))
-		var/obj/object = AM
+	var/tforce = 0
+	if(isobj(source))
+		var/obj/object = source
 		if(isitem(object))
 			var/obj/item/our_item = object
 			tforce = our_item.throwforce * (speed/THROWFORCE_SPEED_DIVISOR)

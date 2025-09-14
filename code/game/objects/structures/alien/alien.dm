@@ -33,14 +33,14 @@
 	healthcheck()
 	return
 
-/obj/structure/alien/hitby(AM)
+/obj/structure/alien/hitby(atom/movable/source)
 	..()
-	visible_message(span_danger("\The [src] was hit by \the [AM]."))
+	visible_message(span_danger("\The [src] was hit by \the [source]."))
 	var/tforce
-	if(ismob(AM))
+	if(ismob(source))
 		tforce = 15
-	else if(isobj(AM))
-		var/obj/object = AM
+	else if(isobj(source))
+		var/obj/object = source
 		if(isitem(object))
 			var/obj/item/our_item = object
 			tforce = our_item.throwforce

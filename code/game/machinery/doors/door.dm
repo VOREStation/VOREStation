@@ -197,15 +197,14 @@
 
 
 
-/obj/machinery/door/hitby(AM, var/speed=5)
-
+/obj/machinery/door/hitby(atom/movable/source, var/speed=5)
 	..()
-	visible_message(span_danger("[src.name] was hit by [AM]."))
+	visible_message(span_danger("[src.name] was hit by [source]."))
 	var/tforce = 0
-	if(ismob(AM))
+	if(ismob(source))
 		tforce = 15 * (speed/THROWFORCE_SPEED_DIVISOR)
-	else if(isobj(AM))
-		var/obj/object = AM
+	else if(isobj(source))
+		var/obj/object = source
 		if(isitem(object))
 			var/obj/item/our_item = object
 			tforce = our_item.throwforce * (speed/THROWFORCE_SPEED_DIVISOR)
@@ -213,7 +212,6 @@
 			tforce = object.w_class * (speed/THROWFORCE_SPEED_DIVISOR)
 	playsound(src, hitsound, 100, 1)
 	take_damage(tforce)
-	return
 
 /obj/machinery/door/attack_ai(mob/user as mob)
 	return src.attack_hand(user)

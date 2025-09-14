@@ -41,15 +41,15 @@
 
 	do_fall(AM)
 
-/turf/unsimulated/floor/sky/hitby(var/atom/movable/AM, var/speed)
+/turf/unsimulated/floor/sky/hitby(var/atom/movable/source, var/speed)
 	. = ..()
 
 	if(!does_skyfall)
 		return //We don't do that
 
-	do_fall(AM)
+	do_fall(source)
 
-/turf/unsimulated/floor/sky/proc/do_fall(atom/movable/AM)
+/turf/unsimulated/floor/sky/proc/do_fall(atom/movable/source)
 	//Bye
 	var/attempts = 100
 	var/turf/simulated/T
@@ -65,8 +65,8 @@
 	if(!T)
 		return
 
-	AM.forceMove(T)
-	if(isliving(AM))
-		var/mob/living/L = AM
-		message_admins("\The [AM] fell out of the sky.")
+	source.forceMove(T)
+	if(isliving(source))
+		var/mob/living/L = source
+		message_admins("\The [source] fell out of the sky.")
 		L.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
