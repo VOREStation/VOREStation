@@ -284,9 +284,9 @@
 	return
 
 
-/atom/proc/hitby(atom/movable/AM as mob|obj)
+/atom/proc/hitby(atom/movable/source)
 	if (density)
-		AM.throwing = 0
+		source.throwing = 0
 	return
 
 //returns 1 if made bloody, returns 0 otherwise

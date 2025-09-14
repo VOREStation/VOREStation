@@ -156,21 +156,21 @@
 		return !anchored // If it's anchored, it'll block air.
 	return TRUE // Don't stop airflow from the other sides.
 
-/obj/structure/window/hitby(AM as mob|obj)
+/obj/structure/window/hitby(atom/movable/source)
 	..()
-	visible_message(span_danger("[src] was hit by [AM]."))
+	visible_message(span_danger("[src] was hit by [source]."))
 	var/tforce = 0
-	if(ismob(AM))
+	if(ismob(source))
 		tforce = 40
-	else if(isobj(AM))
-		var/obj/item/I = AM
+	else if(isobj(source))
+		var/obj/item/I = source
 		tforce = I.throwforce
 	if(reinf) tforce *= 0.25
 	if(health - tforce <= 7 && !reinf)
 		anchored = FALSE
 		update_verbs()
 		update_nearby_icons()
-		step(src, get_dir(AM, src))
+		step(src, get_dir(source, src))
 	take_damage(tforce)
 
 /obj/structure/window/attack_tk(mob/user as mob)

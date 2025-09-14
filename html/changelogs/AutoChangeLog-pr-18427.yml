@@ -1,0 +1,7 @@
+author: "Zizzi"
+delete-after: True
+changes:
+  - rscadd: "added circuits for boolean handling"
+  - bugfix: "fixed pathfinding circuit seeing targets out of sight range."
+  - balance: "improved pathfinding circuit"
+  - balance: "changed many circuit complexities"
