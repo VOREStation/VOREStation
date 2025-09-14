@@ -166,6 +166,80 @@
 
 	deal_at(usr, M, dcard)
 
+/obj/item/deck/verb/search_cards()
+
+	set category = "Object"
+	set name = "Search for Cards"
+	set desc = "Search for and draw a specific card (or cards) in the deck. This will be an obvious action to all observers."
+	set src in view(1)
+
+	var/mob/living/carbon/user = usr
+
+	if(user.stat || !Adjacent(user)) return
+
+	if(user.hands_are_full()) // Safety check lest the card disappear into oblivion
+		to_chat(user,span_notice("Your hands are full!"))
+		return
+
+	if(!istype(user,/mob/living/carbon))
+		return
+
+	if(!cards.len)
+		to_chat(usr,span_notice("There are no cards in the deck."))
+		return
+
+	var/obj/item/hand/H = user.get_type_in_hands(/obj/item/hand)
+	if(H && !(H.parentdeck == src))
+		to_chat(user,span_warning("You can't mix cards from different decks!"))
+		return
+
+
+	user.visible_message(span_notice("[user] looks into \the [src] and searches within it...")) // Emote before doing anything so you can't cheat!
+
+	// We store the card names as a dictionary with the card name as the key and the number of duplicates of that card
+	// 		because otherwise the checkbox UI checks all duplicate names
+	var/list/card_names = list()
+	for(var/datum/playingcard/P in cards)
+		var/name = P.name
+		// If we haven't yet found any cards with this name...
+		if(!card_names[name])
+			// ... Add them to a new list, where we'll store any duplicates!
+			card_names[name] = list()
+		card_names[name] += name
+
+
+	var/list/cards_to_choose = list()
+	for(var/key in card_names)
+		var/list/L = card_names[key]
+		for(var/i = 0, i < L.len, i++)
+			cards_to_choose += "[key] ([i+1])"
+
+	var/list/cards_to_draw = tgui_input_checkboxes(user, "Which cards do you want to retrieve?", "Choose your cards", cards_to_choose, 1)
+
+	if(!cards_to_draw || !cards_to_draw.len)
+		user.visible_message(span_notice("[user] searches for specific cards in \the [src], but draws none."))
+		return
+
+	if(!H)
+		H = new(get_turf(src))
+		user.put_in_hands(H)
+
+	if(!H || !user) return // Sanity check
+
+	// Search through our cards for every card the user chose, and remove them from the deck if the name matches!
+	for(var/to_draw in cards_to_draw)
+		for(var/i = cards.len, i > 0, i--)
+			// Ignore the duplicate number at the end, we just want the card name itself!
+			var/TDN = copytext(to_draw, 1, length(to_draw) - 3)
+			if(TDN == cards[i].name)
+				H.cards += cards[i]
+				cards -= cards[i]
+				H.parentdeck = src
+				break
+	H.update_icon()
+
+	user.visible_message(span_notice("[user] searches for specific cards in \the [src], and draws [cards_to_draw.len]."))
+
 /obj/item/deck/CtrlClick(mob/user)
 	deal_card()
 
