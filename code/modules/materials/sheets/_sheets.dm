@@ -75,8 +75,9 @@
 
 /obj/item/stack/material/use(var/used)
 	. = ..()
+	if(QDELETED(src))
+		return
 	update_strings()
-	return
 
 /obj/item/stack/material/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
 	var/obj/item/stack/material/M = S

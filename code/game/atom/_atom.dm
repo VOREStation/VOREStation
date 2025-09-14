@@ -7,7 +7,7 @@
 /atom
 	layer = TURF_LAYER //This was here when I got here. Why though?
 	var/level = 2
-	var/flags = 0
+	var/flags = NONE
 	var/was_bloodied
 	var/blood_color
 	var/pass_flags = 0
@@ -284,9 +284,9 @@
 	return
 
 
-/atom/proc/hitby(atom/movable/AM as mob|obj)
+/atom/proc/hitby(atom/movable/source)
 	if (density)
-		AM.throwing = 0
+		source.throwing = 0
 	return
 
 //returns 1 if made bloody, returns 0 otherwise

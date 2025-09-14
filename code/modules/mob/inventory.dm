@@ -115,14 +115,22 @@ var/list/slot_equipment_priority = list( \
 //Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
 /mob/proc/put_in_l_hand(var/obj/item/W)
 	if(!istype(W))
-		return 0
-	return 1
+		return FALSE
+	if(QDELETED(W))
+		if(!(W.item_flags & DROPDEL))
+			log_runtime("[src] tried to pick up a qdeleted object [W]")
+		return FALSE
+	return TRUE
 
 //Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns 1 on success.
 /mob/proc/put_in_r_hand(var/obj/item/W)
 	if(!istype(W))
-		return 0
-	return 1
+		return FALSE
+	if(QDELETED(W))
+		if(!(W.item_flags & DROPDEL))
+			log_runtime("[src] tried to pick up a qdeleted object [W]")
+		return FALSE
+	return TRUE
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/proc/put_in_active_hand(var/obj/item/W)

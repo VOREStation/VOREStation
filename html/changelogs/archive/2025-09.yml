@@ -205,3 +205,6 @@
       and drops the correct floor tile stack, instead of an invisible null flooring
       stack
   - bugfix: Fracking in a location without deep resources no longer causes a runtime
+2025-09-14:
+  Kashargul:
+  - bugfix: the rest of the attack logging
