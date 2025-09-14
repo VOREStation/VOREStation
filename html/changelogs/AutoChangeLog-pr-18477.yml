@@ -1,0 +1,5 @@
+author: "Aroliacue"
+delete-after: True
+changes:
+  - rscadd: "Added a new type of Xenomorph Tail, now with vwag!"
+  - image: "added xenotail_fullcolour_vwag to tails.dmi"
