@@ -115,7 +115,7 @@
 
 /obj/item/organ/internal/augment/bioaugment/health_scan/Initialize(mapload)
 	. = ..()
-	med_analyzer = new /obj/item/healthanalyzer
+	med_analyzer = new /obj/item/healthanalyzer/advanced
 
 /obj/item/organ/internal/augment/bioaugment/health_scan/augment_action()
 	if(!owner)
