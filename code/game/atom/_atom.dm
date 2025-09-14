@@ -7,7 +7,7 @@
 /atom
 	layer = TURF_LAYER //This was here when I got here. Why though?
 	var/level = 2
-	var/flags = 0
+	var/flags = NONE
 	var/was_bloodied
 	var/blood_color
 	var/pass_flags = 0
