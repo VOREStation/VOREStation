@@ -1,3 +1,5 @@
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -11,9 +13,6 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 
 type Data = {
   id: string;
@@ -126,7 +125,7 @@ const InstrumentSettings = (props) => {
         >
           <Tooltip
             content="All nearby instruments with the same ID will
-               start playing the same song when any one starts playing."
+                start playing the same song when any one starts playing."
           >
             ID:
           </Tooltip>
@@ -231,8 +230,7 @@ const InstrumentSettings = (props) => {
               <span style={{ color: '#5EFB6E' }}> Ready</span>
             ) : (
               <span style={{ color: '#FF0000' }}>
-                {' '}
-                Instrument Definition Error!
+                {` Instrument Definition Error!`}
               </span>
             )}
           </Box>
@@ -288,13 +286,13 @@ const EditingSettings = (props) => {
         <Button onClick={() => act('import_song')}>Import a Song</Button>
       </Box>
       <Box>
-        Tempo:{' '}
+        {`Tempo: `}
         <Button
           onClick={() => act('tempo', { tempo_change: 'increase_speed' })}
         >
           -
-        </Button>{' '}
-        {bpm} BPM{' '}
+        </Button>
+        {` ${bpm} BPM `}
         <Button
           onClick={() => act('tempo', { tempo_change: 'decrease_speed' })}
         >
