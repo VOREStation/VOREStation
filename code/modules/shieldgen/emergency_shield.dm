@@ -91,16 +91,21 @@
 				qdel(src)
 
 
-/obj/machinery/shield/hitby(AM as mob|obj)
+/obj/machinery/shield/hitby(atom/movable/source)
 	//Let everyone know we've been hit!
-	visible_message(span_danger("\The [src] was hit by [AM]."))
+	visible_message(span_danger("\The [src] was hit by [source]."))
 
 	//Super realistic, resource-intensive, real-time damage calculations.
 	var/tforce = 0
-	if(ismob(AM))
+	if(ismob(source))
 		tforce = 40
-	else
-		tforce = AM:throwforce
+	if(isobj(source))
+		var/obj/object = source
+		if(isitem(object))
+			var/obj/item/our_item = object
+			tforce = our_item.throwforce
+		else
+			tforce = object.w_class
 
 	src.health -= tforce
 
