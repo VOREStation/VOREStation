@@ -185,12 +185,12 @@
 		return
 
 	if(!cards.len)
-		to_chat(usr,span_notice("There are no cards in the deck."))
+		to_chat(user, span_notice("There are no cards in the deck."))
 		return
 
 	var/obj/item/hand/H = user.get_type_in_hands(/obj/item/hand)
 	if(H && !(H.parentdeck == src))
-		to_chat(user,span_warning("You can't mix cards from different decks!"))
+		to_chat(user, span_warning("You can't mix cards from different decks!"))
 		return
 
 
@@ -209,14 +209,14 @@
 
 
 	var/list/cards_to_choose = list()
-	for(var/key in card_names)
-		var/list/L = card_names[key]
-		for(var/i = 0, i < L.len, i++)
+	for(var/key, value in card_names)
+		var/list/L = value
+		for(var/i = 0, i < length(L), i++)
 			cards_to_choose += "[key] ([i+1])"
 
 	var/list/cards_to_draw = tgui_input_checkboxes(user, "Which cards do you want to retrieve?", "Choose your cards", cards_to_choose, 1)
 
-	if(!cards_to_draw || !cards_to_draw.len)
+	if(!LAZYLEN(cards_to_draw))
 		user.visible_message(span_notice("[user] searches for specific cards in \the [src], but draws none."))
 		return
 
@@ -224,11 +224,12 @@
 		H = new(get_turf(src))
 		user.put_in_hands(H)
 
-	if(!H || !user) return // Sanity check
+	if(!H || !user)
+		return // Sanity check
 
 	// Search through our cards for every card the user chose, and remove them from the deck if the name matches!
 	for(var/to_draw in cards_to_draw)
-		for(var/i = cards.len, i > 0, i--)
+		for(var/i = length(cards), i > 0, i--)
 			// Ignore the duplicate number at the end, we just want the card name itself!
 			var/TDN = copytext(to_draw, 1, length(to_draw) - 3)
 			var/datum/playingcard/P = cards[i]
