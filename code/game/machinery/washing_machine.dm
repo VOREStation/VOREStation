@@ -121,7 +121,7 @@
 		add_overlay("panel")
 
 /obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
-	if(state == 2 && washing.len < 1)
+	if(state == EMPTY_CLOSED && washing.len < 1)
 		if(default_deconstruction_screwdriver(user, W))
 			return
 		if(default_deconstruction_crowbar(user, W))
@@ -132,7 +132,7 @@
 		panel = !panel
 		to_chat(user, span_notice("You [panel ? "open" : "close"] the [src]'s maintenance panel"))*/
 	if(istype(W,/obj/item/pen/crayon) || istype(W,/obj/item/stamp))
-		if(state in list(	1, 3, 6))
+		if(state in list (EMPTY_OPEN, FULL_OPEN, BLOODY_OPEN))
 			if(!crayon)
 				user.drop_item()
 				crayon = W
@@ -168,7 +168,7 @@
 				user.drop_item()
 				W.forceMove(src)
 				washing += W
-				state = 3
+				state = FULL_OPEN
 			else
 				to_chat(user, span_notice("You can't put the item in right now."))
 		else
