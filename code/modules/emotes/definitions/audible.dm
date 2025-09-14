@@ -229,8 +229,11 @@
 
 /decl/emote/audible/caw
 	key = "caw"
-	emote_message_3p = "caws."
-	emote_sound = 'sound/voice/emotes/caw1.ogg'
+	emote_message_1p = "You caw!"
+	emote_message_3p = "caws!"
+	emote_message_1p_target = "You caw at TARGET."
+	emote_message_3p_target = "caws at TARGET."
+	emote_sound = 'sound/voice/emotes/caw1.ogg' // Copyright Sampling+ 1.0 Vixuxx (freesound.org) for the source audio.
 
 /decl/emote/audible/caw2
 	key = "caw2"
