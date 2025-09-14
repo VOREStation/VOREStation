@@ -8,13 +8,6 @@
  *			angle2dir
  */
 
-//Splits the text of a file at seperator and returns them in a list.
-//returns an empty list if the file doesn't exist
-/world/proc/file2list(filename, seperator="\n", trim = TRUE)
-	if (trim)
-		return splittext(trim(file2text(filename)),seperator)
-	return splittext(file2text(filename),seperator)
-
 //returns a string the last bit of a type, without the preceeding '/'
 /proc/type2top(the_type)
 	//handle the builtins manually
@@ -36,54 +29,18 @@
 		else //regex everything else (works for /proc too)
 			return lowertext(replacetext("[the_type]", "[type2parent(the_type)]/", ""))
 
-// Returns an integer given a hexadecimal number string as input.
-/proc/hex2num(hex)
-	if (!istext(hex))
-		return
-
-	var/num   = 0
-	var/power = 1
-	var/i     = length(hex)
-
-	while (i)
-		var/char = text2ascii(hex, i)
-		switch(char)
-			if(48)       pass()                     // 0 -- do nothing
-			if(49 to 57) num += (char - 48) * power // 1-9
-			if(97,  65)  num += power * 10          // A
-			if(98,  66)  num += power * 11          // B
-			if(99,  67)  num += power * 12          // C
-			if(100, 68)  num += power * 13          // D
-			if(101, 69)  num += power * 14          // E
-			if(102, 70)  num += power * 15          // F
-			else
-				return
-		power *= 16
-		i--
-	return num
-
-// Returns the hex value of a number given a value assumed to be a base-ten value
-/proc/num2hex(num, padlength)
-	. = ""
-	while(num > 0)
-		var/hexdigit = GLOB.hexNums[(num & 0xF) + 1]
-		. = "[hexdigit][.]"
-		num >>= 4 //go to the next half-byte
-
-	//pad with zeroes
-	var/left = padlength - length(.)
-	while (left-- > 0)
-		. = "0[.]"
-
 /proc/text2numlist(text, delimiter="\n")
 	var/list/num_list = list()
 	for(var/x in splittext(text, delimiter))
 		num_list += text2num(x)
 	return num_list
 
-// Splits the text of a file at seperator and returns them in a list.
-/proc/file2list(filename, seperator="\n")
-	return splittext(return_file_text(filename),seperator)
+//Splits the text of a file at seperator and returns them in a list.
+//returns an empty list if the file doesn't exist
+/world/proc/file2list(filename, seperator="\n", trim = TRUE)
+	if (trim)
+		return splittext(trim(file2text(filename)),seperator)
+	return splittext(file2text(filename),seperator)
 
 // Turns a direction into text
 /proc/num2dir(direction)
@@ -93,7 +50,7 @@
 		if (4.0) return EAST
 		if (8.0) return WEST
 		else
-			to_world_log("UNKNOWN DIRECTION: [direction]")
+			log_world("UNKNOWN DIRECTION: [direction]")
 
 // Turns a direction into text
 /proc/dir2text(direction)
@@ -597,12 +554,13 @@
 		if(fexists(filename))
 			. = file2text(filename)
 			if(!. && error_on_invalid_return)
-				error("File empty ([filename])")
+				log_world("## ERROR File empty ([filename])")
 		else if(error_on_invalid_return)
-			error("File not found ([filename])")
+			log_world("## ERROR File not found ([filename])")
 	catch(var/exception/E)
 		if(error_on_invalid_return)
-			error("Exception when loading file as string: [E]")
+			log_world("## ERROR Exception when loading file as string: [E]")
+			log_runtime(E)
 
 
 /// Return html to load a url.

@@ -453,14 +453,14 @@
 	//List to JSON
 	var/json_to_file = json_encode(settings_list)
 	if(!json_to_file)
-		log_debug("Saving: [path] failed jsonencode")
+		log_runtime("Saving: [path] failed jsonencode")
 		return FALSE
 
 	//Write it out
 	rustg_file_write(json_to_file, path)
 
 	if(!fexists(path))
-		log_debug("Saving: [path] failed file write")
+		log_runtime("Saving: [path] failed file write")
 		return FALSE
 
 	return TRUE
