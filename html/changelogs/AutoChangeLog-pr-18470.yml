@@ -1,0 +1,4 @@
+author: "Guti"
+delete-after: True
+changes:
+  - qol: "Internal organs will heal themselves now, at a slow rate."
