@@ -114,6 +114,9 @@
 			visible_message("[user] climbs out of the [src]!")
 			attack_hand(force = TRUE)
 
+/obj/machinery/washing_machine/container_resist(mob/living/escapee)
+	user_climb_out(escapee)
+
 /obj/machinery/washing_machine/update_icon()
 	cut_overlays()
 	icon_state = "wm_[state]"
@@ -151,6 +154,7 @@
 					if(state == EMPTY_OPEN) //Checking to make sure nobody closed it before we shoved em in it.
 						user.visible_message("[user] stuffs [G.affecting] into the [src] and shuts the door!", "You stuff [G.affecting] into the [src] and shut the door!")
 						G.affecting.forceMove(src)
+						washing += G.affecting
 						qdel(G)
 						state = FULL_CLOSED
 					else
