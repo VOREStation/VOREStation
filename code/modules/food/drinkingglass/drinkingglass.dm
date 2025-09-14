@@ -1,8 +1,3 @@
-/var/const/DRINK_FIZZ = "fizz"
-/var/const/DRINK_ICE = "ice"
-/var/const/DRINK_ICON_DEFAULT = ""
-/var/const/DRINK_ICON_NOISY = "_noise"
-
 /obj/item/reagent_containers/food/drinks/glass2
 	name = "glass" // Name when empty
 	var/base_name = "glass" // Name to put in front of drinks, i.e. "[base_name] of [contents]"

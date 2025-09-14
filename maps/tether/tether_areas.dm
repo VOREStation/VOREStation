@@ -65,12 +65,12 @@
 /area/vacant/vacant_restaurant_upper
 	name = "\improper Vacant Restaurant"
 	icon_state = "vacant_site"
-	flags = null
+	flags = NONE
 
 /area/vacant/vacant_restaurant_lower
 	name = "\improper Vacant Restaurant"
 	icon_state = "vacant_site"
-	flags = null
+	flags = NONE
 
 /area/engineering/engineering_airlock
 	name = "\improper Engineering Airlock"
@@ -144,7 +144,7 @@
 /area/tether/surfacebase/outside
 	name = "Outside - Surface"
 	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 /area/tether/surfacebase/outside/outside1
 	icon_state = "outside1"
 /area/tether/surfacebase/outside/outside2
@@ -163,12 +163,12 @@
 /area/tether/surfacebase/temple
 	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
 	icon_state = "red"
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 
 /area/tether/surfacebase/crash
 	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
 	icon_state = "yellow"
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 
 /area/tether/surfacebase/tram
 	name = "\improper Tram Station"
@@ -242,7 +242,7 @@
 	icon_state = "dk_yellow"
 /area/vacant/vacant_site/east
 	name = "\improper East Base Vacant Site"
-	flags = null
+	flags = NONE
 /area/vacant/vacant_library
 	name = "\improper Atrium Construction Site"
 /area/vacant/vacant_bar
@@ -801,7 +801,7 @@
 /area/rnd/research/testingrange
 	name = "\improper Weapons Testing Range"
 	icon_state = "firingrange"
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 
 /area/rnd/research/researchdivision
 	name = "\improper Research Division"
@@ -817,6 +817,16 @@
 /area/rnd/outpost/breakroom
 	name = "\improper Research Outpost Breakroom"
 	icon_state = "research"
+
+/area/rnd/outpost/breakroom/quarters
+	name = "\improper Research Outpost Personal Quarters"
+	flags = RAD_SHIELDED | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO
+
+/area/rnd/outpost/breakroom/quarters/dorm1
+	name = "\improper Research Outpost Personal Quarters 1"
+
+/area/rnd/outpost/breakroom/quarters/dorm2
+	name = "\improper Research Outpost Personal Quarters 2"
 
 /area/rnd/outpost/airlock
 	name = "\improper Research Outpost Airlock"
@@ -851,7 +861,7 @@
 	icon_state = "toxmix"
 	ambience = AMBIENCE_ATMOS
 
-/area/rnd/outpost/testing
+/area/rnd/outpost/test
 	name = "\improper Research Outpost Testing"
 	icon_state = "toxtest"
 	ambience = AMBIENCE_ATMOS
@@ -865,7 +875,7 @@
 /area/rnd/outpost/anomaly_lab/analysis
 	name = "\improper Anomaly Lab Analysis Chamber"
 	icon_state = "research"
-/area/rnd/outpost/anomaly_lab/testing
+/area/rnd/outpost/anomaly_lab/test
 	name = "\improper Anomaly Lab Testing Chamber"
 	icon_state = "research"
 /area/rnd/outpost/anomaly_lab/airlock
@@ -949,7 +959,7 @@
 	flags = RAD_SHIELDED
 /area/tether/surfacebase/vacant_site
 	name = "\improper Vacant Site"
-	flags = null
+	flags = NONE
 /area/crew_quarters/freezer
 	name = "\improper Kitchen Freezer"
 /area/crew_quarters/panic_shelter

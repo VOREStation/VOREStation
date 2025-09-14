@@ -46,6 +46,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define ALLOW_SURVIVALFOOD		(1<<5)	// Allows special survival food items to be eaten through it
 #define INFINITE_AIR			(1<<6)	// Provides an infinite air supply.
 #define NOSTRIP					(1<<7)  // Items that should never get stripped
+#define DROPDEL 				(1<<8)  // Items that delete upon being dropped
 
 // Flags for pass_flags. - Used in /atom/var/pass_flags
 #define PASSTABLE				(1<<0)

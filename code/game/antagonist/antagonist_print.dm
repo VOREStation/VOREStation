@@ -38,7 +38,7 @@
 			num++
 
 	// Display the results.
-	to_world(text)
+	to_chat(world, text)
 
 /datum/antagonist/proc/print_objective(var/datum/objective/O, var/num, var/append_success)
 	var/text = "<br>" + span_bold("Objective [num]:") + " [O.explanation_text] "

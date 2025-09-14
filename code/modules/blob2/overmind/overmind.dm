@@ -162,5 +162,5 @@ var/list/overminds = list()
 				if(dst <= world.view)
 					O.hear_talk(src, message_pieces, "conveys")
 
-	log_say(message, src)
+	log_talk(message, LOG_SAY)
 	return 1

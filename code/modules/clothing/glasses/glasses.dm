@@ -582,7 +582,7 @@ BLIND     // can't see anything
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle_monocle)
-	flags = null //doesn't protect eyes because it's a monocle, duh
+	flags = NONE //doesn't protect eyes because it's a monocle, duh
 
 	body_parts_covered = 0
 

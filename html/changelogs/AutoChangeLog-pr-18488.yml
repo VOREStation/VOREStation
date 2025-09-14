@@ -1,0 +1,4 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - qol: "Added A verb to all card decks that allows you to search for and retrieve any number of specific cards from it. Now dealers who hate jokers can much more quickly and easily remove them from their decks. Note that this is a very visible action, so don't try to be sneaky with this!"

@@ -128,3 +128,83 @@
       creator's species info tab.
   Zizzi:
   - bugfix: fixed circuit cloning printing invisible clothes
+2025-09-11:
+  Aroliacue:
+  - image: Modified the security backpack to be more security-looking by using the
+      TG style 'radiopack', similar to the Teshari version.
+  Diana:
+  - image: Makes the neo gorka suits have digi sprites
+  - image: Makes the alt mailman have digi sprites
+  Kashargul:
+  - bugfix: character editor crash
+  - bugfix: fixes multiple del issues with stacks
+  - bugfix: character editor, selection species now closes the selection
+  KillianKirilenko:
+  - rscadd: Added two tiers of high-tech smes coils acquirable through research nodes
+  - qol: moved holosign projectors and a couple other tools out of machine boards
+      and into tools where they belong
+  - refactor: cleaned up icon files for hats and headwear - there shouldn't be any
+      player-facing changes, but please report any invisible or bugged clothes in
+      appropriate channels
+  - rscadd: Added a fully sleeveless ("no sleeves") variant of the alt undersuits
+  - image: Added digi states for void alt undersuits
+  Lilly-Lira:
+  - bugfix: fix taur suits from layering below taur tails
+  Ryumi:
+  - qol: Mining uses balloon alerts instead of spamming your chat with every little
+      mining attempt.
+  - bugfix: Fighters will now correctly say whether or not you'll raise or lower their
+      landing gear.
+2025-09-12:
+  Diana:
+  - image: Archives some of the old gorka icons
+  - image: Upports two helm sprites for the pursuit teshari rig
+  - bugfix: Removes him (the blocker)
+  ItsSelis:
+  - bugfix: LOOC messages are now properly logging in the right category instead of
+      falling back to the default one.
+  - admin: admins now have an in-game log explorer (sorted by log category and searchable)
+  - refactor: replaced persistent_ckey variable to persistent_client datum for more
+      advanced usage
+  - refactor: logs are now being saved in json
+  - refactor: to_world([...]) has been converted to to_chat(world, [...]) to avoid
+      confusion between multiple procs that all do the same thing in the end
+  - refactor: num2hex and hex2num are now defines
+  - rscdel: removed unused/deprecated procs
+  - rscadd: implemented sendmaps profiler (exporting to csv)
+  - config: added new config to also save the logs in the (old) human readable format
+      (txt)
+  - config: added config variables to configure error handling
+  Kashargul:
+  - bugfix: using accessories no longer drops items on spawn
+  - bugfix: whitescreen after game join
+  - bugfix: attack logging runtiming
+  KillianKirilenko:
+  - image: archives the non-digi gorka and inventory sprites as well for thoroughness
+  Ryumi:
+  - maptweak: Fixed the corner couch in the hotsprings redgate. Also made the beds
+      appropriately cozier.
+  - maptweak: Gave the Tether science outpost's all of the amenities of a proper dorm
+      room.
+  SatinIsle:
+  - qol: Added emergency door releases to autoresleever rooms.
+  - qol: Changed autoresleevers to still work without power.
+  - qol: Added short range radios (off by default) to emergency supply boxes.
+  - qol: Changed APCs to allow the cover to be opened by anyone beneath 15% charge.
+  - balance: Given APCs in SD comms rooms bigger cells.
+  Will:
+  - rscadd: disposal_system_connection component
+  - code_imp: COMSIG_DISPOSAL_FLUSH  signal
+  - code_imp: COMSIG_DISPOSAL_RECEIVING  signal
+  - code_imp: disposal code cleaned up, moved to their own files
+  - refactor: Sleep() removed from disposal packet movement, now uses timers
+  - refactor: disposal code no longer uses sleeps for actions, and properly uses do_after
+  - refactor: disposal code uses get_turf() instead of src.loc for moving things to
+      its turf
+  - bugfix: Being ejected from disposals while under floor paneling now properly breaks
+      and drops the correct floor tile stack, instead of an invisible null flooring
+      stack
+  - bugfix: Fracking in a location without deep resources no longer causes a runtime
+2025-09-14:
+  Kashargul:
+  - bugfix: the rest of the attack logging

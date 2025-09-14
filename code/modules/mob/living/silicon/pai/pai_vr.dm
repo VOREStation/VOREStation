@@ -458,7 +458,7 @@
 		return
 	card.screen_msg = message
 	var/logmsg = "(CARD SCREEN)[message]"
-	log_say(logmsg,src)
+	log_talk(logmsg, LOG_SAY)
 	to_chat(src, span_filter_say(span_cult("You print a message to your screen, \"[message]\"")))
 	if(isliving(card.loc))
 		var/mob/living/L = card.loc

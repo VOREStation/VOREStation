@@ -381,7 +381,7 @@
 			if(text)
 				exonet.send_message(their_address, "text", text)
 				im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
-				log_pda("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", ui.user)
+				ui.user.log_talk("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", LOG_PDA)
 				var/obj/item/communicator/comm = exonet.get_atom_from_address(their_address)
 				to_chat(ui.user, span_notice("[icon2html(src, ui.user.client)] Sent message to [istype(comm, /obj/item/communicator) ? comm.owner : comm.name], <b>\"[text]\"</b> (<a href='byond://?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)"))
 				for(var/mob/M in GLOB.player_list)

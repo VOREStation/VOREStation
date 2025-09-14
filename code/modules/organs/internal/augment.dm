@@ -75,23 +75,9 @@
 		item_to_equip = integrated_object_type
 
 	if(ispath(item_to_equip))
-		owner.equip_augment_item(target_slot, item_to_equip, silent_deploy, FALSE)
+		owner.equip_augment_item(target_slot, item_to_equip, silent_deploy)
 	else if(item_to_equip)
-		owner.equip_augment_item(target_slot, item_to_equip, silent_deploy, FALSE, src)
-
-/*
- * The delicate handling of augment-controlled items.
- */
-
-// Attaches to the end of dropped items' code.
-/obj/item/dropped(mob/user)
-	. = ..(user)
-	if(src)
-		if(destroy_on_drop && !QDELETED(src))
-			qdel(src)
-			return
-		if(my_augment)
-			forceMove(my_augment)
+		owner.equip_augment_item(target_slot, item_to_equip, silent_deploy, src)
 
 /*
  * Human-specific mob procs.
@@ -134,11 +120,10 @@
  * Used to equip an organ's augment items when possible.
  * slot is the target equip slot, if it's not a generic either-hand deployable,
  * equipping is either the target object, or a path for the target object,
- * destroy_on_drop is the default value for the object to be deleted if it is removed from their person, if equipping is a path, however, this will be set to TRUE,
  * cling_to_organ is a reference to the organ object itself, so they can easily return to their organ when removed by any means.
  */
 
-/mob/living/carbon/human/proc/equip_augment_item(var/slot, var/obj/item/equipping = null, var/make_sound = TRUE, var/destroy_on_drop = FALSE, var/obj/item/organ/cling_to_organ = null)
+/mob/living/carbon/human/proc/equip_augment_item(var/slot, var/obj/item/equipping = null, var/make_sound = TRUE, var/obj/item/organ/cling_to_organ = null)
 	if(!ishuman(src))
 		return 0
 
@@ -157,8 +142,7 @@
 		to_chat(M,span_warning("Your hand is full.  Drop something first."))
 		return 0
 
-	var/del_if_failure = destroy_on_drop
-
+	var/del_if_failure = FALSE
 	if(ispath(equipping))
 		del_if_failure = TRUE
 		equipping = new equipping(src)
@@ -169,7 +153,7 @@
 	else
 		if(slot_is_accessible(slot, equipping, src))
 			equip_to_slot(equipping, slot, 1, 1)
-		else if(destroy_on_drop || del_if_failure)
+		else if(del_if_failure)
 			qdel(equipping)
 			return 0
 

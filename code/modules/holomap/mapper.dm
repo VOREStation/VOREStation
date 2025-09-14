@@ -213,7 +213,7 @@
 			return
 
 	if(!hud_item || !hud_datum)
-		log_error("Mapping device tried to update with missing hud_item or hud_datum")
+		log_runtime("Mapping device tried to update with missing hud_item or hud_datum")
 		stop_updates()
 		last_run()
 		return

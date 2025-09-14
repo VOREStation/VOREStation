@@ -1,5 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - rscadd: "Added two tiers of high-tech smes coils acquirable through research nodes"
-  - qol: "moved holosign projectors and a couple other tools out of machine boards and into tools where they belong"

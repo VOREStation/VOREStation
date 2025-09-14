@@ -16,7 +16,7 @@ var/global/last_tick_duration = 0
 /datum/controller/game_controller/New()
 	//There can be only one master_controller. Out with the old and in with the new.
 	if(master_controller != src)
-		log_debug("Rebuilding Master Controller")
+		log_world("Rebuilding Master Controller")
 		if(istype(master_controller))
 			qdel(master_controller)
 		master_controller = src

@@ -354,7 +354,7 @@ var/list/preferences_datums = list()
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
-		error("Player picked [choice] slot to load, but that wasn't one we sent.")
+		log_world("## ERROR Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
 	load_preferences(TRUE)
@@ -395,7 +395,7 @@ var/list/preferences_datums = list()
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
-		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
+		log_world("## ERROR Player picked [choice] slot to copy to, but that wasn't one we sent.")
 		return
 
 	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [choice]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")

@@ -452,7 +452,7 @@
 			//I personally think adding walls to an area is a big deal, so this is commented out.
 
 			//BEGIN ESOTERIC BULLSHIT
-			//log_debug("Origin: [origin.c_airblock(checkT)] SourceT: [sourceT.c_airblock(checkT)] 0=NB 1=AB 2=ZB, 3=B")
+			//to_chat(world, "Origin: [origin.c_airblock(checkT)] SourceT: [sourceT.c_airblock(checkT)] 0=NB 1=AB 2=ZB, 3=B")
 			/*
 			if(origin.c_airblock(checkT)) //If everything breaks and it doesn't want to work, turn on the above debug and check this line. C.L. 0 = not blocked.
 				continue
