@@ -197,7 +197,7 @@
 	user.visible_message(span_notice("[user] looks into \the [src] and searches within it...")) // Emote before doing anything so you can't cheat!
 
 	// We store the card names as a dictionary with the card name as the key and the number of duplicates of that card
-	// 		because otherwise the checkbox UI checks all duplicate names
+	// 		because otherwise the TGUI checkbox checks all duplicate names if you tick just one
 	var/list/card_names = list()
 	for(var/datum/playingcard/P in cards)
 		var/name = P.name
@@ -231,9 +231,10 @@
 		for(var/i = cards.len, i > 0, i--)
 			// Ignore the duplicate number at the end, we just want the card name itself!
 			var/TDN = copytext(to_draw, 1, length(to_draw) - 3)
-			if(TDN == cards[i].name)
-				H.cards += cards[i]
-				cards -= cards[i]
+			var/datum/playingcard/P = cards[i]
+			if(TDN == P.name)
+				H.cards += P
+				cards -= P
 				H.parentdeck = src
 				break
 	H.update_icon()
