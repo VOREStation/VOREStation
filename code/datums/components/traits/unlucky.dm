@@ -147,13 +147,17 @@
 				consume_omen()
 				return
 
-		for(var/obj/machinery/vending/darth_vendor in the_turf)
-			if(darth_vendor.stat & (BROKEN|NOPOWER))
-				continue
-			to_chat(living_guy, span_warning("The delivery chute of [darth_vendor] raises up..."))
-			darth_vendor.throw_item(living_guy)
-			consume_omen()
-			return
+		for(var/obj/machinery/washing_machine/evil_washer in the_turf)
+			if(evil_washer.state == 1) //Empty and open door
+				our_guy.visible_message(span_danger("[our_guy] slips near the [evil_washer] and falls in, the door shutting!"), span_userdanger("You slip on a wet spot near the [evil_washer] and fall in, the door shutting! You're stuck!"))
+				our_guy.forceMove(evil_washer)
+				evil_washer.washing += our_guy
+				evil_washer.state = 4
+				if(evil && prob(100 * effective_luck)) //It's EVIL for a reason. With normal luck, this is about a 30% chance.
+					evil_washer.visible_message(span_danger("[evil_washer] begins its spin cycle!"))
+					evil_washer.start(TRUE, damage_mod)
+				consume_omen()
+				return
 
 		if(evil || safe_disposals) //On servers without safe disposals, this is a death sentence. With servers with safe disposals, it's just funny.
 			for(var/obj/machinery/disposal/evil_disposal in the_turf)
@@ -169,7 +173,7 @@
 				consume_omen()
 				return
 
-		if(evil)
+		if(evil && prob(33)) //This has an additional 2 in 3 chance to not happen as there's a LOT of lights on stations. This should be rarer.
 			for(var/obj/machinery/light/evil_light in the_turf)
 				if((evil_light.status == LIGHT_BURNED || evil_light.status == LIGHT_BROKEN) || (living_guy.get_shock_protection() == 1)) // we can't do anything :(
 					to_chat(living_guy, span_warning("[evil_light] sparks weakly for a second."))
@@ -183,19 +187,18 @@
 				evil_light.visible_message(span_boldwarning("[evil_light] suddenly flares brightly and sparks!"))
 				evil_light.broken(skip_sound_and_sparks = FALSE)
 				evil_light.Beam(living_guy, icon_state = "lightning[rand(1,12)]", time = 0.5 SECONDS)
-				living_guy.electrocute_act(35 * (damage_mod * 0.5), evil_light, stun = 3)
+				living_guy.electrocute_act(35 * (damage_mod * 0.5), evil_light, stun = TRUE) //Stun is binary and scales on damage..Lame.
 				living_guy.emote("scream")
 				consume_omen()
 				return
-			for(var/obj/machinery/washing_machine/evil_washer in the_turf)
-				if(evil_washer.state == 1) //Empty and open door
-					our_guy.visible_message(span_danger("[our_guy] slips near the [evil_washer] and falls in, the door shutting!"), span_userdanger("You slip on a wet spot near the [evil_washer] and fall in, the door shutting! You're stuck!"))
-					our_guy.forceMove(evil_washer)
-					evil_washer.washing += our_guy
-					evil_washer.state = 4
-					if(prob(effective_luck)) //It's EVIL for a reason.
-						evil_washer.visible_message(span_danger("[evil_washer] begins its spin cycle!"))
-						evil_washer.start(TRUE)
+
+		for(var/obj/machinery/vending/darth_vendor in the_turf)
+			if(darth_vendor.stat & (BROKEN|NOPOWER))
+				continue
+			to_chat(living_guy, span_warning("The delivery chute of [darth_vendor] raises up..."))
+			darth_vendor.throw_item(living_guy)
+			consume_omen()
+			return
 
 		for(var/obj/structure/mirror/evil_mirror in the_turf)
 			to_chat(living_guy, span_warning("You pass by the mirror and glance at it..."))

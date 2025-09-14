@@ -3,7 +3,7 @@
 #define FULL_OPEN 3
 #define FULL_CLOSED 4
 #define RUNNING 5
-#define BLOODY_OPEN 6
+#define BLOODY_OPEN 6 //Not actually used...
 #define BLOODY_CLOSED 7
 #define BLOODY_RUNNING 8
 
@@ -43,11 +43,12 @@
 	set src in oview(1)
 	start()
 
-/obj/machinery/washing_machine/proc/start(force)
+/obj/machinery/washing_machine/proc/start(force, damage_modifier)
 
 	if(!isliving(usr) && !force) //ew ew ew usr, but it's the only way to check.
 		return
-
+	if(!damage_modifier)
+		damage_modifier = 0.5
 	if(state != FULL_CLOSED)
 		visible_message("The washing machine buzzes - it can not run in this state!")
 		return
@@ -60,9 +61,9 @@
 	visible_message("The washing machine starts a cycle.")
 	playsound(src, 'sound/items/washingmachine.ogg', 50, 1, 1)
 
-	addtimer(CALLBACK(src, PROC_REF(finish_wash)), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_wash), damage_modifier), 2 SECONDS)
 
-/obj/machinery/washing_machine/proc/finish_wash()
+/obj/machinery/washing_machine/proc/finish_wash(damage_modifier)
 	for(var/atom/A in washing)
 		A.wash(CLEAN_ALL)
 
@@ -79,8 +80,8 @@
 		has_mobs = TRUE
 		if(ishuman(mobs))
 			var/mob/living/carbon/human/our_human = mobs
-			for(var/obj/item/organ/external/limb in our_human.organs) //In total, you should have 11 limbs (generally, unless you have an amputation). The full omen variant we want to leave you at 1 hp, the trait version less. As of writing, the trait version is 25% of the damage, so you take 24.75 across all limbs.
-				our_human.apply_damage(9, BRUTE, used_weapon = "spin cycle") //Let's randomly do damage across the body. One limb might get hurt more than the others
+			for(var/i=0,i<10,i++)
+				our_human.apply_damage(9*damage_modifier, BRUTE, used_weapon = "spin cycle") //Let's randomly do damage across the body. One limb might get hurt more than the others
 			continue
 		mobs.stat = DEAD //Kill them so they can't interact anymore.
 
