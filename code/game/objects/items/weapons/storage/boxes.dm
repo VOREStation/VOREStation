@@ -78,7 +78,8 @@
 	starts_with = list(
 		/obj/item/tool/prybar/red,
 		/obj/item/clothing/glasses/goggles,
-		/obj/item/clothing/mask/breath
+		/obj/item/clothing/mask/breath,
+		/obj/item/radio/start_off
 	)
 
 /obj/item/storage/box/survival/synth
@@ -87,7 +88,8 @@
 	icon_state = "survival_synth"
 	starts_with = list(
 		/obj/item/tool/prybar/red,
-		/obj/item/clothing/glasses/goggles
+		/obj/item/clothing/glasses/goggles,
+		/obj/item/radio/start_off
 	)
 
 /obj/item/storage/box/survival/comp

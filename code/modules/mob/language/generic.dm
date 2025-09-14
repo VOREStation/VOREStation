@@ -144,7 +144,7 @@
 // But in practice, it's just a way for a language to override all other languages and bypass hear_say
 // which is exactly what sign language does.
 /datum/language/sign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
-	log_say("(SIGN) [message]", speaker)
+	speaker.log_talk("(SIGN) [message]", LOG_SAY)
 	var/verb_to_use = pick(signlang_verb)
 	speaker.say_signlang(message, verb_to_use, verb_to_use, src)
 

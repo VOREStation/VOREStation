@@ -102,13 +102,14 @@ export const TailDimmer = (props: {
 }) => {
   const { act } = useBackend();
   const { setShow, data, serverData, staticData } = props;
+  const { available_tail_styles = [] } = staticData;
   const color = data.tail_color1;
   const color2 = data.tail_color2;
   const color3 = data.tail_color3;
   const alpha = data.tail_alpha;
 
   const [search, setSearch] = useState('');
-  const styles = staticData.available_tail_styles.filter((x) =>
+  const styles = available_tail_styles.filter((x) =>
     search ? x.toLowerCase().includes(search.toLowerCase()) : true,
   );
   styles.sort();

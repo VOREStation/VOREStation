@@ -15,7 +15,6 @@ SUBSYSTEM_DEF(chemistry)
 	var/list/chemical_reagents = list()
 
 /datum/controller/subsystem/chemistry/Recover()
-	log_debug("[name] subsystem Recover().")
 	chemical_reactions = SSchemistry.chemical_reactions
 	chemical_reagents = SSchemistry.chemical_reagents
 

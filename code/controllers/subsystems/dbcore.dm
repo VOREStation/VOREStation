@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(dbcore)
 		var/datum/db_query/query = popleft(processing_queries)
 		if(world.time - query.last_activity_time > (5 MINUTES))
 			stack_trace("Found undeleted query, check the sql.log for the undeleted query and add a delete call to the query datum.")
-			log_debug("Undeleted query: \"[query.sql]\" LA: [query.last_activity] LAT: [query.last_activity_time]")
+			log_sql("Undeleted query: \"[query.sql]\" LA: [query.last_activity] LAT: [query.last_activity_time]")
 			qdel(query)
 		if(MC_TICK_CHECK)
 			return
@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(dbcore)
 
 /datum/controller/subsystem/dbcore/Shutdown()
 	shutting_down = TRUE
-	log_debug("Clearing DB queries standby:[length(queries_standby)] active: [length(queries_active)] all: [length(all_queries)]")
+	log_sql("Clearing DB queries standby:[length(queries_standby)] active: [length(queries_active)] all: [length(all_queries)]")
 	//This is as close as we can get to the true round end before Disconnect() without changing where it's called, defeating the reason this is a subsystem
 	if(SSdbcore.Connect())
 		//Execute all waiting queries
@@ -162,7 +162,7 @@ SUBSYSTEM_DEF(dbcore)
 		query_round_shutdown.Execute(FALSE)
 		qdel(query_round_shutdown)
 
-	log_debug("Done clearing DB queries standby:[length(queries_standby)] active: [length(queries_active)] all: [length(all_queries)]")
+	log_sql("Done clearing DB queries standby:[length(queries_standby)] active: [length(queries_active)] all: [length(all_queries)]")
 	if(IsConnected())
 		Disconnect()
 	//stop_db_daemon()
@@ -237,7 +237,7 @@ SUBSYSTEM_DEF(dbcore)
 	else
 		connection = null
 		last_error = result["data"]
-		log_debug("Connect() failed | [last_error]")
+		log_sql("Connect() failed | [last_error]")
 		++failed_connections
 
 /datum/controller/subsystem/dbcore/proc/CheckSchemaVersion()
@@ -245,9 +245,9 @@ SUBSYSTEM_DEF(dbcore)
 		if(Connect())
 			log_world("Database connection established.")
 		else
-			log_debug("Your server failed to establish a connection with the database.")
+			log_sql("Your server failed to establish a connection with the database.")
 	else
-		log_debug("Database is not enabled in configuration.")
+		log_sql("Database is not enabled in configuration.")
 
 /datum/controller/subsystem/dbcore/proc/InitializeRound()
 	if(!Connect())
@@ -539,12 +539,12 @@ Ignore_errors instructes mysql to continue inserting rows if some of them have e
 	. = (status != DB_QUERY_BROKEN)
 	var/timed_out = !. && findtext(last_error, "Operation timed out")
 	if(!. && log_error)
-		log_debug("[last_error] | Query used: [sql] | Arguments: [json_encode(arguments)]")
+		log_sql("[last_error] | Query used: [sql] | Arguments: [json_encode(arguments)]")
 	if(!async && timed_out)
-		log_debug("Query execution started at [start_time]")
-		log_debug("Query execution ended at [REALTIMEOFDAY]")
-		log_debug("Slow query timeout detected.")
-		log_debug("Query used: [sql]")
+		log_sql("Query execution started at [start_time]")
+		log_sql("Query execution ended at [REALTIMEOFDAY]")
+		log_sql("Slow query timeout detected.")
+		log_sql("Query used: [sql]")
 		slow_query_check()
 
 /// Sleeps until execution of the query has finished.

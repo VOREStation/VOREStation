@@ -32,7 +32,7 @@
 	icon_state = "blank"
 	var/turf/T = loc
 	if(!isturf(T) || T.density || T.opacity)
-		warning("[src] on invalid turf [T] at [x],[y],[z]")
+		WARNING("[src] on invalid turf [T] at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
 
 	if(!materialtype)
@@ -575,7 +575,7 @@
 /obj/effect/low_wall_spawner/Initialize(mapload)
 	. = ..()
 	if(locate(/obj/effect/low_wall_spawner) in oview(0, src))
-		warning("Duplicate low wall spawners in [x],[y],[z]!")
+		WARNING("Duplicate low wall spawners in [x],[y],[z]!")
 		return INITIALIZE_HINT_QDEL
 
 	if(low_wall_type)

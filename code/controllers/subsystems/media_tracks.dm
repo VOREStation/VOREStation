@@ -20,33 +20,33 @@ SUBSYSTEM_DEF(media_tracks)
 		report_progress("Loading jukebox track: [filename]")
 
 		if(!fexists(filename))
-			error("File not found: [filename]")
+			log_world("## ERROR File not found: [filename]")
 			continue
 
 		var/list/jsonData = json_decode(file2text(filename))
 
 		if(!istype(jsonData))
-			error("Failed to read tracks from [filename], json_decode failed.")
+			log_world("## ERROR Failed to read tracks from [filename], json_decode failed.")
 			continue
 
 		for(var/entry in jsonData)
 
 			// Critical problems that will prevent the track from working
 			if(!istext(entry["url"]))
-				error("Jukebox entry in [filename]: bad or missing 'url'. Tracks must have a URL.")
+				log_world("## ERROR Jukebox entry in [filename]: bad or missing 'url'. Tracks must have a URL.")
 				continue
 			if(!istext(entry["title"]))
-				error("Jukebox entry in [filename]: bad or missing 'title'. Tracks must have a title.")
+				log_world("## ERROR Jukebox entry in [filename]: bad or missing 'title'. Tracks must have a title.")
 				continue
 			if(!isnum(entry["duration"]))
-				error("Jukebox entry in [filename]: bad or missing 'duration'. Tracks must have a duration (in deciseconds).")
+				log_world("## ERROR Jukebox entry in [filename]: bad or missing 'duration'. Tracks must have a duration (in deciseconds).")
 				continue
 
 			// Noncritical problems, we can keep going anyway, but warn so it can be fixed
 			if(!istext(entry["artist"]))
-				warning("Jukebox entry in [filename], [entry["title"]]: bad or missing 'artist'. Please consider crediting the artist.")
+				WARNING("Jukebox entry in [filename], [entry["title"]]: bad or missing 'artist'. Please consider crediting the artist.")
 			if(!istext(entry["genre"]))
-				warning("Jukebox entry in [filename], [entry["title"]]: bad or missing 'genre'. Please consider adding a genre.")
+				WARNING("Jukebox entry in [filename], [entry["title"]]: bad or missing 'genre'. Please consider adding a genre.")
 
 			var/datum/track/T = new(entry["url"], entry["title"], entry["duration"], entry["artist"], entry["genre"])
 

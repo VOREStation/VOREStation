@@ -517,7 +517,7 @@ var/list/mining_overlay_cache = list()
 				if(newDepth > F.excavation_required) // Digging too deep can break the item. At least you won't summon a Balrog (probably)
 					fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
 					wreckfinds(P.destroy_artefacts)
-			to_chat(user, span_notice("You start [P.drill_verb][fail_message]."))
+			user.balloon_alert(user, "you start [P.drill_verb][fail_message].")
 
 			if(do_after(user, P.digspeed, target = src))
 
@@ -528,7 +528,7 @@ var/list/mining_overlay_cache = list()
 					else if(newDepth > F.excavation_required)
 						excavate_find(prob(10), F) //A 1 in 10 chance to get it out perfectly seems fine if you're not being careful.
 
-				to_chat(user, span_notice("You finish [P.drill_verb] \the [src]."))
+				user.balloon_alert(user, "you finish [P.drill_verb] \the [src].")
 
 				if(newDepth >= 200) // This means the rock is mined out fully
 					if(P.destroy_artefacts)
