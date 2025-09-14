@@ -91,7 +91,7 @@
 				qdel(src)
 
 
-/obj/machinery/shield/hitby(AM as mob|obj)
+/obj/machinery/shield/hitby(AM)
 	//Let everyone know we've been hit!
 	visible_message(span_danger("\The [src] was hit by [AM]."))
 
@@ -99,8 +99,13 @@
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
-	else
-		tforce = AM:throwforce
+	if(isobj(AM))
+		var/obj/object = AM
+		if(isitem(object))
+			var/obj/item/our_item = object
+			tforce = our_item.throwforce
+		else
+			tforce = object.w_class
 
 	src.health -= tforce
 

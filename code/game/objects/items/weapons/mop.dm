@@ -33,7 +33,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 
 		user.visible_message(span_warning("[user] begins to clean \the [get_turf(A)]."))
 
-		if(do_after(user, mop_time, target = src, max_interaction_count = 9))
+		if(do_after(user, mop_time, target = src, max_interact_count = 9))
 			var/turf/T = get_turf(A)
 			if(T)
 				T.wash(CLEAN_SCRUB)

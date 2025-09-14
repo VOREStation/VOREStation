@@ -197,15 +197,20 @@
 
 
 
-/obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
+/obj/machinery/door/hitby(AM, var/speed=5)
 
 	..()
 	visible_message(span_danger("[src.name] was hit by [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
-		tforce = 15 * (speed/5)
-	else
-		tforce = AM:throwforce * (speed/5)
+		tforce = 15 * (speed/THROWFORCE_SPEED_DIVISOR)
+	else if(isobj(AM))
+		var/obj/object = AM
+		if(isitem(object))
+			var/obj/item/our_item = object
+			tforce = our_item.throwforce * (speed/THROWFORCE_SPEED_DIVISOR)
+		else
+			tforce = object.w_class * (speed/THROWFORCE_SPEED_DIVISOR)
 	playsound(src, hitsound, 100, 1)
 	take_damage(tforce)
 	return
