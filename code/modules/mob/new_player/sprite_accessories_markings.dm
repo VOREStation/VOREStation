@@ -2364,6 +2364,12 @@ includes scars and tattoos
 	body_parts = list(BP_L_FOOT,BP_R_FOOT)
 	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT)
 
+/datum/sprite_accessory/marking/goopy_feet
+	name = "goopy feet"
+	icon_state = "goopy_feet"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT,BP_R_FOOT)
+
 /datum/sprite_accessory/marking/vr_unathi_blocky_head
 	name = "Unathi alt head (Blocky)"
 	icon_state = "unathi_blocky_head"

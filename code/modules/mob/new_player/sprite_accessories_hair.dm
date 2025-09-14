@@ -1338,6 +1338,11 @@
 	icon_state = "hair_zone"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/muffet
+	name = "Muffet"
+	icon_state = "muffet"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/una_hood
 	name = "Cobra Hood (small)"
 	icon = 'icons/mob/human_face_alt.dmi'
