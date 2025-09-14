@@ -194,7 +194,7 @@
 		return
 
 
-	user.visible_message(span_notice("[user] looks into \the [src] and searches within it...")) // Emote before doing anything so you can't cheat!
+	user.visible_message(span_notice("\The [user] looks into \the [src] and searches within it...")) // Emote before doing anything so you can't cheat!
 
 	// We store the card names as a dictionary with the card name as the key and the number of duplicates of that card
 	// 		because otherwise the TGUI checkbox checks all duplicate names if you tick just one
@@ -217,7 +217,7 @@
 	var/list/cards_to_draw = tgui_input_checkboxes(user, "Which cards do you want to retrieve?", "Choose your cards", cards_to_choose, 1)
 
 	if(!LAZYLEN(cards_to_draw))
-		user.visible_message(span_notice("[user] searches for specific cards in \the [src], but draws none."))
+		user.visible_message(span_notice("\The [user] searches for specific cards in \the [src], but draws none."))
 		return
 
 	if(!H)
@@ -240,7 +240,7 @@
 				break
 	H.update_icon()
 
-	user.visible_message(span_notice("[user] searches for specific cards in \the [src], and draws [cards_to_draw.len]."))
+	user.visible_message(span_notice("\The [user] searches for specific cards in \the [src], and draws [cards_to_draw.len]."))
 
 /obj/item/deck/CtrlClick(mob/user)
 	deal_card()
