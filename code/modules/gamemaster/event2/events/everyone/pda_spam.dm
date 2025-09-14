@@ -10,7 +10,7 @@
 /datum/event2/event/pda_spam
 	length_lower_bound = 30 MINUTES
 	length_upper_bound = 1 HOUR
-	var/spam_debug = FALSE // If true, notices of the event sending spam go to `log_debug()`.
+	var/spam_debug = FALSE // If true, notices of the event sending spam go to `log_game()`.
 	var/last_spam_time = null // world.time of most recent spam.
 	var/next_spam_attempt_time = 0 // world.time of next attempt to try to spam.
 	var/give_up_after = 5 MINUTES
@@ -60,7 +60,7 @@
 	if(!.)
 		// Give up if nobody was reachable for five minutes.
 		if(last_spam_time + give_up_after < world.time)
-			log_debug("PDA Spam event giving up after not being able to spam for awhile.")
+			log_game("PDA Spam event giving up after not being able to spam for awhile.")
 			return TRUE
 
 /datum/event2/event/pda_spam/proc/can_spam()
@@ -134,7 +134,7 @@
 	var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 	PM.notify(span_bold("Message from [sender] (Unknown / spam?), ") + "\"[message]\" (Unable to Reply)", 0)
 	if(spam_debug)
-		log_debug("PDA Spam event sent spam to \the [P].")
+		log_game("PDA Spam event sent spam to \the [P].")
 
 
 /datum/event2/event/pda_spam/proc/pick_message_server()

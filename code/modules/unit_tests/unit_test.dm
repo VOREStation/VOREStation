@@ -138,15 +138,13 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	if (fexists(filename))
 		var/data_filename = "data/screenshots/[path_prefix]_[name].png"
 		fcopy(icon, data_filename)
-		//log_test("\t[path_prefix]_[name] was found, putting in data/screenshots")
-		log_unit_test("\t[path_prefix]_[name] was found, putting in data/screenshots")
+		log_test("\t[path_prefix]_[name] was found, putting in data/screenshots")
 	else
 #ifdef CIBUILDING
 		// We are runing in real CI, so just pretend it worked and move on
 		fcopy(icon, "data/screenshots_new/[path_prefix]_[name].png")
 
-		//log_test("\t[path_prefix]_[name] was put in data/screenshots_new")
-		log_unit_test("\t[path_prefix]_[name] was put in data/screenshots_new")
+		log_test("\t[path_prefix]_[name] was put in data/screenshots_new")
 #else
 		// We are probably running in a local build
 		fcopy(icon, filename)
@@ -230,8 +228,7 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 
 		if(length(log_entry))
 			message = log_entry.Join("\n")
-			//log_test(message)
-			log_unit_test(message)
+			log_test(message)
 
 		test_output_desc += " [duration / 10]s"
 		if (test.succeeded)

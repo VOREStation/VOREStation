@@ -70,8 +70,7 @@ DEBUG
 			log_admin("jobban_keylist was empty")
 	else
 		if(!establish_db_connection())
-			error("Database connection failed. Reverting to the legacy ban system.")
-			log_misc("Database connection failed. Reverting to the legacy ban system.")
+			log_sql("Database connection failed. Reverting to the legacy ban system.")
 			CONFIG_SET(flag/ban_legacy_system, TRUE)
 			jobban_loadbanfile()
 			return

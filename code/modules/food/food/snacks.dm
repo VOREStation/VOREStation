@@ -1995,7 +1995,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
-	flags = 0
+	flags = NONE
 	wrapped = 1
 
 /obj/item/reagent_containers/food/snacks/monkeycube/farwacube
@@ -2029,7 +2029,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/pet/wrapped
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
-	flags = 0
+	flags = NONE
 	wrapped = 1
 
 /obj/item/reagent_containers/food/snacks/monkeycube/pet/Expand()

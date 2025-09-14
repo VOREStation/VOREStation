@@ -38,7 +38,7 @@
 		O.host = user
 		O.focus_object(src)
 	else
-		warning("Strange attack_tk(): TK([user.has_telegrip()]) empty hand([!user.get_active_hand()])")
+		WARNING("Strange attack_tk(): TK([user.has_telegrip()]) empty hand([!user.get_active_hand()])")
 	return
 
 

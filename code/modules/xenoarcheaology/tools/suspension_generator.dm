@@ -14,6 +14,7 @@
 /obj/machinery/suspension_gen/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/high(src)
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
@@ -190,26 +191,6 @@
 /obj/machinery/suspension_gen/Destroy()
 	deactivate()
 	. = ..()
-
-/obj/machinery/suspension_gen/verb/rotate_counterclockwise()
-	set src in view(1)
-	set name = "Rotate suspension gen Counterclockwise"
-	set category = "Object"
-
-	if(anchored)
-		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
-		return
-	set_dir(turn(dir, 90))
-
-/obj/machinery/suspension_gen/verb/rotate_clockwise()
-	set src in view(1)
-	set name = "Rotate suspension gen Clockwise"
-	set category = "Object"
-
-	if(anchored)
-		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
-		return
-	set_dir(turn(dir, 270))
 
 /obj/machinery/suspension_gen/update_icon()
 	cut_overlays()

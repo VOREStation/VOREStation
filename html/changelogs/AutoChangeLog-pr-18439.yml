@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "cleans up all 0 and null flags to use NONE"
