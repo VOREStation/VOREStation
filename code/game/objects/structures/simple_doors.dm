@@ -4,6 +4,7 @@
 	density = TRUE
 	anchored = TRUE
 	can_atmos_pass = ATMOS_PASS_DENSITY
+	breakable = 1
 
 	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
