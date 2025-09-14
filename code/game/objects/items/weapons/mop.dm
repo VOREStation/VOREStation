@@ -15,8 +15,6 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	w_class = ITEMSIZE_NORMAL
 	flags = NOCONDUCT
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
-	var/mopping = 0
-	var/mopcount = 0
 	///How long it takes to mop a tile.
 	var/mop_time = 4 SECONDS
 
