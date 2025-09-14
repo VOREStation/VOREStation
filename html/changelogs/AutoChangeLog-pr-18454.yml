@@ -1,0 +1,12 @@
+author: "Will"
+delete-after: True
+changes:
+  - code_imp: "COMSIG_ITEM_DROPPED signal implemented"
+  - code_imp: "dropcode uses DROPDEL item_flag instead of a var"
+  - refactor: "unified item drop code somewhat"
+  - bugfix: "combat grabs can no longer be pickedup by swapping hands, resulting in a broken grab object you can drop"
+  - bugfix: "various objects that would be dropped and then vanish a frame later now vanish instantly on drop"
+  - bugfix: "player grabs can no longer be removed using the stripping menu"
+  - bugfix: "changeling items can no longer be removed with the stripping menu"
+  - bugfix: "protean rigs can no longer be removed with the stripping menu"
+  - bugfix: "TK grabs can no longer be removed with the stripping menu"

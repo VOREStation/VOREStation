@@ -7172,6 +7172,12 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 32;
+	pixel_x = -27;
+	id = "resleeveexit";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/stellardelight/deck1/resleeving)
 "oi" = (

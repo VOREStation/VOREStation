@@ -20,7 +20,7 @@
 /datum/event2/event/wildlife_encounter/set_up()
 	for(var/mob/living/L in GLOB.player_list)
 		//if(!(L.z in get_location_z_levels()))
-		//	log_debug("Not on the right z-level")
+		//	log_mapping("Not on the right z-level")
 		//	continue // Not on the right z-level.
 		if(L.stat)
 			continue // Don't want dead people.
@@ -34,7 +34,7 @@
 
 /datum/event2/event/wildlife_encounter/start()
 	if(!victim)
-		log_debug("Failed to find a target for random encounter. Aborting.")
+		log_game("Failed to find a target for random encounter. Aborting.")
 		abort()
 		return
 
@@ -60,19 +60,19 @@
 		for(var/i = 1 to potential_victims.len)
 			if (get_dist(spawning_turf, potential_victims[i]) < world.view)
 				spawning_turf = null
-				log_debug("Failed to locate position out of sight of [potential_victims[i]].")
+				log_game("Failed to locate position out of sight of [potential_victims[i]].")
 		attempts++
 
 	potential_victims = null
 
-	log_debug("Sending [number_of_packs] [build_path]\s after \the [victim].")
+	log_game("Sending [number_of_packs] [build_path]\s after \the [victim].")
 	for(var/i = 1 to number_of_packs)
 
 		if(spawning_turf)
 			var/mob/living/simple_mob/M = new build_path(spawning_turf)
 			M.ai_holder?.give_destination(get_turf(victim))
 		else
-			log_debug("Failed to locate turf to spawn encounter.")
+			log_game("Failed to locate turf to spawn encounter.")
 
 /datum/event2/event/wildlife_encounter/proc/item_to_spawn()
 	return pick(prob(22);/mob/living/simple_mob/animal/sif/savik,

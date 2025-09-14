@@ -244,23 +244,25 @@
 
 
 
-/obj/machinery/maint_recycler/hitby(atom/movable/AM)
+/obj/machinery/maint_recycler/hitby(atom/movable/source)
 	. = ..()
-	if(istype(AM, /obj/item) && !istype(AM, /obj/item/projectile)) //no mob throwing.
-		if(prob(75))
-			if(get_item_whitelist(AM) == RECYCLER_ALLOWED)
-				if(inserted_item == null)
-					visible_message("\The [AM] lands in \the [src].",runemessage = "swish")
-					AM.forceMove(src)
-					inserted_item = AM
-					update_icon()
-					playsound(src, 'code/modules/maint_recycler/sfx/voice/a wonderful throw.ogg', 75)
-					set_screen_state("screen_happy",10)
-					return
-			else
-				deny_act(AM,null)
+	if(!isitem(source) || istype(source, /obj/item/projectile)) //no mob throwing.
+		return
 
-		visible_message("\The [AM] bounces off of the rim of \the [src]'s processing compartment!")
+	if(prob(75))
+		if(get_item_whitelist(source) == RECYCLER_ALLOWED)
+			if(inserted_item == null)
+				visible_message("\The [source] lands in \the [src].",runemessage = "swish")
+				source.forceMove(src)
+				inserted_item = source
+				update_icon()
+				playsound(src, 'code/modules/maint_recycler/sfx/voice/a wonderful throw.ogg', 75)
+				set_screen_state("screen_happy",10)
+				return
+		else
+			deny_act(source, null)
+
+	visible_message("\The [source] bounces off of the rim of \the [src]'s processing compartment!")
 
 /obj/machinery/maint_recycler/proc/deny_act(var/obj/item/O,var/mob/user)
 	set_screen_state("screen_deny",10)

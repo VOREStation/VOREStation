@@ -15,7 +15,7 @@ var/datum/antagonist/loyalists/loyalists
 	victory_feedback_tag = "win - rev heads killed"
 	loss_feedback_tag = "loss - heads killed"
 	antaghud_indicator = "hudloyalist"
-	flags = 0
+	flags = NONE
 
 	hard_cap = 2
 	hard_cap_round = 4

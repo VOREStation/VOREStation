@@ -33,14 +33,19 @@
 	healthcheck()
 	return
 
-/obj/structure/alien/hitby(AM as mob|obj)
+/obj/structure/alien/hitby(atom/movable/source)
 	..()
-	visible_message(span_danger("\The [src] was hit by \the [AM]."))
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 10
-	else
-		tforce = AM:throwforce
+	visible_message(span_danger("\The [src] was hit by \the [source]."))
+	var/tforce
+	if(ismob(source))
+		tforce = 15
+	else if(isobj(source))
+		var/obj/object = source
+		if(isitem(object))
+			var/obj/item/our_item = object
+			tforce = our_item.throwforce
+		else
+			tforce = object.w_class
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 	health = max(0, health - tforce)
 	healthcheck()
