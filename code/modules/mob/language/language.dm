@@ -15,7 +15,7 @@
 	var/signlang_verb_understood = list("signs")  // snowflake bs, used only for echo
 	var/colour = "body"               // CSS style to use for strings in this language.
 	var/key = "x"                     // Character used to speak in language eg. :o for Unathi.
-	var/flags = 0                     // Various language flags.
+	var/flags = NONE                     // Various language flags.
 	var/native                        // If set, non-native speakers will have trouble speaking.
 	var/list/syllables                // Used when scrambling text for a non-speaker.
 	var/list/space_chance = 55        // Likelihood of getting a space in the random scramble string
@@ -128,7 +128,7 @@
 	return (copytext(message, length(message)) == "!") ? 2 : 1
 
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
-	log_say("(HIVE) [message]", speaker)
+	speaker.log_talk("(HIVE) [message]", LOG_SAY)
 
 	add_verb(speaker, /mob/proc/adjust_hive_range)
 
@@ -226,7 +226,7 @@
 /mob/proc/can_speak(datum/language/speaking)
 //Prevents someone from speaking a null language.
 	if(!speaking)
-		log_debug("[src] attempted to speak a null language.")
+		log_runtime("[src] attempted to speak a null language.")
 		return 0
 
 	if(speaking == GLOB.all_languages["Noise"])

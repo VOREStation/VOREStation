@@ -424,12 +424,12 @@ var/list/channel_to_radio_key = list()
 			blooploop(message, extrarange = -6, volume = 25, sound_preference = /datum/preference/toggle/whisper_sounds)
 			// playsound(T, pick(voice_sounds_list), 25, TRUE, extrarange = -6, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/whisper_sounds)
 
-		log_whisper(message, src)
+		log_talk(message, LOG_WHISPER)
 	else
 		if(do_sound && message)
 			blooploop(message, volume = 75)
 			// playsound(T, pick(voice_sounds_list), 75, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/preference/toggle/say_sounds)
-		log_say(message, src)
+		log_talk(message, LOG_SAY)
 	return 1
 
 /*************************************************************************/

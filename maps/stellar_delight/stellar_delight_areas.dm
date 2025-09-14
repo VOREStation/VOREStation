@@ -293,13 +293,13 @@
 
 /area/stellardelight/deck1/exterior
 	name = "Deck One Exterior"
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 /area/stellardelight/deck2/exterior
 	name = "Deck Two Exterior"
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 /area/stellardelight/deck3/exterior
 	name = "Deck Three Exterior"
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 
 /area/stellardelight/deck1/entrepreneur
 	name = "\improper Shared Office"

@@ -37,7 +37,7 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 // Apply changes when entering state
 /datum/universal_state/supermatter_cascade/OnEnter()
 	set background = 1
-	to_world(span_sinister(span_cascade("You are blinded by a brilliant flash of energy.")))
+	to_chat(world, span_sinister(span_cascade("You are blinded by a brilliant flash of energy.")))
 
 	world << sound('sound/effects/cascade.ogg')
 

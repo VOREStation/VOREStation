@@ -7,7 +7,7 @@
 
 	var/list/potentialRandomZlevels = list()
 	admin_notice(span_red(span_bold(" Searching for away missions...")), R_DEBUG)
-	var/list/Lines = file2list("maps/RandomZLevels/fileList.txt")
+	var/list/Lines = world.file2list("maps/RandomZLevels/fileList.txt")
 	if(!Lines.len)	return
 	for (var/t in Lines)
 		if (!t)
@@ -41,12 +41,12 @@
 		admin_notice(span_red(span_bold("Loading away mission...")), R_DEBUG)
 
 		var/map = pick(potentialRandomZlevels)
-		to_world_log("Away mission picked: [map]") //VOREStation Add for debugging
+		log_mapping("Away mission picked: [map]") //VOREStation Add for debugging
 		var/file = file(map)
 		if(isfile(file))
 			var/datum/map_template/template = new(file, "away mission")
 			template.load_new_z()
-			to_world_log("away mission loaded: [map]")
+			log_mapping("away mission loaded: [map]")
 		/* VOREStation Removal - We do this in the special landmark init instead.
 		for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 			if (L.name != "awaystart")

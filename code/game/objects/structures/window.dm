@@ -156,21 +156,21 @@
 		return !anchored // If it's anchored, it'll block air.
 	return TRUE // Don't stop airflow from the other sides.
 
-/obj/structure/window/hitby(AM as mob|obj)
+/obj/structure/window/hitby(atom/movable/source)
 	..()
-	visible_message(span_danger("[src] was hit by [AM]."))
+	visible_message(span_danger("[src] was hit by [source]."))
 	var/tforce = 0
-	if(ismob(AM))
+	if(ismob(source))
 		tforce = 40
-	else if(isobj(AM))
-		var/obj/item/I = AM
+	else if(isobj(source))
+		var/obj/item/I = source
 		tforce = I.throwforce
 	if(reinf) tforce *= 0.25
 	if(health - tforce <= 7 && !reinf)
 		anchored = FALSE
 		update_verbs()
 		update_nearby_icons()
-		step(src, get_dir(AM, src))
+		step(src, get_dir(source, src))
 	take_damage(tforce)
 
 /obj/structure/window/attack_tk(mob/user as mob)
@@ -442,7 +442,7 @@
 		icon_state = "[basestate]"
 		return
 	else
-		flags = 0 // Removes ON_BORDER and OPPOSITE_OPACITY
+		flags = NONE // Removes ON_BORDER and OPPOSITE_OPACITY
 	var/list/dirs = list()
 	if(anchored)
 		for(var/obj/structure/window/W in orange(src,1))
@@ -488,7 +488,7 @@
 	icon_state = "window-full"
 	maxhealth = 24
 	fulltile = TRUE
-	flags = 0
+	flags = NONE
 
 /obj/structure/window/phoronbasic
 	name = "phoron window"
@@ -506,7 +506,7 @@
 	icon_state = "phoronwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
-	flags = 0
+	flags = NONE
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
@@ -525,7 +525,7 @@
 	icon_state = "phoronrwindow-full"
 	maxhealth = 160
 	fulltile = TRUE
-	flags = 0
+	flags = NONE
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -543,7 +543,7 @@
 	icon_state = "rwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
-	flags = 0
+	flags = NONE
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -581,7 +581,7 @@
 	icon_state = "rwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
-	flags = 0
+	flags = NONE
 
 /obj/structure/window/reinforced/polarized/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/multitool) && !anchored) // Only allow programming if unanchored!

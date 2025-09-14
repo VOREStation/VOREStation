@@ -2158,6 +2158,11 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/communicator,
+/obj/item/radio{
+	pixel_x = 4;
+	pixel_y = -4;
+	listening = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "ew" = (
@@ -6079,6 +6084,11 @@
 /obj/item/clothing/shoes/black,
 /obj/machinery/light,
 /obj/item/communicator,
+/obj/item/radio{
+	pixel_x = 4;
+	pixel_y = -4;
+	listening = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "mH" = (
@@ -9206,7 +9216,8 @@
 	},
 /obj/item/radio{
 	pixel_x = 4;
-	pixel_y = -4
+	pixel_y = -4;
+	listening = 0
 	},
 /obj/item/radio{
 	pixel_x = 7;

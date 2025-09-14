@@ -30,7 +30,7 @@
 	input = encode_html_emphasis(input)
 
 	if(input)
-		log_ghostemote(input, src)
+		log_message("(GHOST EMOTE) [input]", LOG_EMOTE)
 		if(!invisibility) //If the ghost is made visible by admins or cult. And to see if the ghost has toggled its own visibility, as well. -Mech
 			visible_message(span_deadsay(span_bold("[src]") + " [input]"))
 		else

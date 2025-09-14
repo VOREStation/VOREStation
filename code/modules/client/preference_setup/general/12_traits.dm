@@ -131,16 +131,16 @@
 	//Neutral traits
 	for(var/datum/trait/path as anything in pref.neu_traits)
 		if(!(path in GLOB.neutral_traits))
-			to_world_log("removing [path] for not being in neutral_traits")
+			log_world("removing [path] for not being in neutral_traits")
 			pref.neu_traits -= path
 			continue
 		if(!(pref.species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_neutral))
-			to_world_log("removing [path] for not being a custom species")
+			log_world("removing [path] for not being a custom species")
 			pref.neu_traits -= path
 			continue
 		var/take_flags = initial(path.can_take)
 		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
-			to_world_log("removing [path] for being a dirty synth")
+			log_world("removing [path] for being a dirty synth")
 			pref.neu_traits -= path
 	//Negative traits
 	for(var/datum/trait/path as anything in pref.neg_traits)
