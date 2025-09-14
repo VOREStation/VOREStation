@@ -52,8 +52,8 @@
 	if(burn_stuff(AM))
 		START_PROCESSING(SSturfs, src)
 
-/turf/simulated/floor/lava/hitby(atom/movable/AM)
-	if(burn_stuff(AM))
+/turf/simulated/floor/lava/hitby(atom/movable/source)
+	if(burn_stuff(source))
 		START_PROCESSING(SSturfs, src)
 
 /turf/simulated/floor/lava/process()
