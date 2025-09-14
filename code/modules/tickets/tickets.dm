@@ -246,7 +246,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	initiator_ckey = C.ckey
 	initiator_key_name = key_name(initiator, FALSE, TRUE)
 	if(initiator.current_mentorhelp)	//This is a bug
-		log_debug("Ticket erroneously left open by code")
+		log_admin("Ticket erroneously left open by code")
 		initiator.current_mentorhelp.AddInteraction("Ticket erroneously left open by code")
 		initiator.current_mentorhelp.Resolve()
 	initiator.current_mentorhelp = src
@@ -287,7 +287,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	initiator_ckey = initiator.ckey
 	initiator_key_name = key_name(initiator, FALSE, TRUE)
 	if(initiator.current_ticket)	//This is a bug
-		log_debug("Multiple ahelp current_tickets")
+		log_admin("Ticket erroneously left open by code, closing...")
 		initiator.current_ticket.AddInteraction("Ticket erroneously left open by code")
 		initiator.current_ticket.Close(usr)
 	initiator.current_ticket = src

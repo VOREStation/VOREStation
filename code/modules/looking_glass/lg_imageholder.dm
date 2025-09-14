@@ -15,14 +15,14 @@
 
 /obj/effect/landmark/looking_glass/proc/gain_viewer(var/client/C)
 	if(C in viewers)
-		testing("Looking Glass [x],[y],[z] tried to add a duplicate viewer.")
+		log_mapping("Looking Glass [x],[y],[z] tried to add a duplicate viewer.")
 	viewers |= C
 	if(holding)
 		show_to(C)
 
 /obj/effect/landmark/looking_glass/proc/lose_viewer(var/client/C)
 	if(!(C in viewers))
-		testing("Looking Glass [x],[y],[z] tried to remove a viewer it didn't have")
+		log_mapping("Looking Glass [x],[y],[z] tried to remove a viewer it didn't have")
 	viewers -= C
 	if(holding)
 		unshow_to(C)

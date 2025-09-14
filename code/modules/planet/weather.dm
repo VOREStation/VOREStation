@@ -29,14 +29,14 @@
 
 /datum/weather_holder/proc/apply_to_turf(turf/T)
 	if(visuals in T.vis_contents)
-		warning("Was asked to add weather to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
+		WARNING("Was asked to add weather to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
 		return
 	T.vis_contents += visuals
 	T.vis_contents += special_visuals
 
 /datum/weather_holder/proc/remove_from_turf(turf/T)
 	if(!(visuals in T.vis_contents))
-		warning("Was asked to remove weather from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
+		WARNING("Was asked to remove weather from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
 		return
 	T.vis_contents -= visuals
 	T.vis_contents -= special_visuals
@@ -63,7 +63,7 @@
 	update_wind()
 	if(old_light_modifier && current_weather.light_modifier != old_light_modifier) // Updating the sun should be done sparingly.
 		our_planet.update_sun()
-	log_debug("[our_planet.name]'s weather is now [new_weather], with a temperature of [temperature]&deg;K ([temperature - T0C]&deg;C | [temperature * 1.8 - 459.67]&deg;F).")
+	log_game("[our_planet.name]'s weather is now [new_weather], with a temperature of [temperature]&deg;K ([temperature - T0C]&deg;C | [temperature * 1.8 - 459.67]&deg;F).")
 
 /datum/weather_holder/process()
 	if(imminent_weather && world.time >= imminent_weather_shift)
@@ -125,7 +125,7 @@
 			var/datum/weather/W = allowed_weather_types[position] // Get the actual datum and not a string.
 			var/new_weather = get_next_weather(W) // Get a suitable weather pattern to shift to from this one.
 			forecast += new_weather
-	log_debug("[our_planet.name]'s weather forecast is now '[english_list(forecast, and_text = " then ", final_comma_text = ", ")]'.")
+	log_game("[our_planet.name]'s weather forecast is now '[english_list(forecast, and_text = " then ", final_comma_text = ", ")]'.")
 
 // Wipes the forecast and regenerates it. Used for when the weather is forcefully changed, such as with admin verbs.
 /datum/weather_holder/proc/rebuild_forecast()

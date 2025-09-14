@@ -18,7 +18,7 @@ GLOBAL_DATUM_INIT(overmap_event_handler, /decl/overmap_event_handler, new)
 			break
 		var/overmap_event_type = pick(subtypesof(/datum/overmap_event))
 		var/datum/overmap_event/datum_spawn = new overmap_event_type
-		log_debug("Generating cloud of [datum_spawn.count] [datum_spawn] overmap event hazards")
+		log_game("Generating cloud of [datum_spawn.count] [datum_spawn] overmap event hazards")
 
 		var/list/event_turfs = acquire_event_turfs(datum_spawn.count, datum_spawn.radius, candidate_turfs, datum_spawn.continuous)
 		candidate_turfs -= event_turfs
