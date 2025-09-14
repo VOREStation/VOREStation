@@ -74,8 +74,17 @@
 		HH.use(HH.get_amount())
 
 		washing += WL
+	var/has_mobs = FALSE
+	for(var/mob/living/mobs in washing)
+		has_mobs = TRUE
+		if(ishuman(mobs))
+			var/mob/living/carbon/human/our_human = mobs
+			for(var/obj/item/organ/external/limb in our_human.organs) //In total, you should have 11 limbs (generally, unless you have an amputation). The full omen variant we want to leave you at 1 hp, the trait version less. As of writing, the trait version is 25% of the damage, so you take 24.75 across all limbs.
+				our_human.apply_damage(9, BRUTE, used_weapon = "spin cycle") //Let's randomly do damage across the body. One limb might get hurt more than the others
+			continue
+		mobs.stat = DEAD //Kill them so they can't interact anymore.
 
-	if(locate(/mob,washing))
+	if(has_mobs)
 		state = 7
 		gibs_ready = 1
 	else
@@ -121,10 +130,11 @@
 	else if(istype(W,/obj/item/grab))
 		if((state == 1) && hacked)
 			var/obj/item/grab/G = W
-			if(ishuman(G.assailant) && iscorgi(G.affecting))
-				G.affecting.loc = src
-				qdel(G)
-				state = 3
+			if(ishuman(G.assailant) && (iscorgi(G.affecting) || ishuman(G.affecting)))
+				if(do_after(user, 5 SECONDS, target = src))
+					G.affecting.forceMove(src)
+					qdel(G)
+					state = 3
 		else
 			..()
 
@@ -174,9 +184,10 @@
 		if(7)
 			if(gibs_ready)
 				gibs_ready = 0
-				if(locate(/mob,washing))
-					var/mob/M = locate(/mob,washing)
-					M.gib()
+				for(var/mob/living/mobs in washing)
+					if(ishuman(mobs)) //Humans have special handling.
+						continue
+					mobs.gib()
 			for(var/atom/movable/O in washing)
 				O.forceMove(get_turf(src))
 			crayon = null
