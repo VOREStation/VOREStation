@@ -555,7 +555,6 @@
 	var/sentientprizes_ckeys_list = list() //Same trick as lottery, to keep life simple
 	var/obj/item/clothing/accessory/collar/casinosentientprize/selected_collar = null
 
-
 /obj/machinery/casinosentientprize_handler/attack_hand(mob/living/user)
 	if(user.incapacitated())
 		return
