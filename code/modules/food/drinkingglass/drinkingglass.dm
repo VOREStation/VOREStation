@@ -18,6 +18,7 @@
 
 	amount_per_transfer_from_this = 5
 	max_transfer_amount = 30
+	min_transfer_amount = 1
 	flags = OPENCONTAINER
 
 	matter = list(MAT_GLASS = 60)
