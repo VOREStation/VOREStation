@@ -46,9 +46,11 @@
 	if(!user.put_in_hands(hand_held))
 		to_chat(user, span_warning("You need a free hand to hold the \the [hand_held]!"))
 		return
-	host_item.visible_message("\The [user] removes \the [hand_held] from \the [host_item].")
 	host_item.update_icon()
 	hand_held.update_icon()
+	var/turf/T = get_turf(host_item)
+	if(T)
+		T.visible_message("\The [user] removes \the [hand_held] from \the [host_item].")
 	return COMPONENT_NO_INTERACT
 
 // Signal registry for handheld item
@@ -98,9 +100,11 @@
 		handheld_mob.drop_from_inventory(hand_held, host_item)
 	else
 		hand_held.forceMove(host_item)
-	host_item.visible_message("\The [hand_held] retracts back into \the [host_item].")
 	host_item.update_icon()
 	hand_held.update_icon()
+	var/turf/T = get_turf(host_item)
+	if(T)
+		T.visible_message("\The [hand_held] retracts back into \the [host_item].")
 
 // Some objects need to communicate the state of the handheld item back to the host
 /datum/component/tethered_item/proc/get_handheld()
