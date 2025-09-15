@@ -1,0 +1,4 @@
+author: "kot"
+delete-after: True
+changes:
+  - bugfix: "fixed the loincloth not being present in the loadout options"

@@ -1,5 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - spellcheck: "removed a duplicate instance of \"Odyssey\" from the universal ship name list"
-  - code_imp: "added some new ship names to the general list and some specific factions"
