@@ -41,16 +41,16 @@
 	//Detach the handset into the user's hands
 	if(!slot_check())
 		if(ismob(host_item.loc))
-			to_chat(user, span_warning("You need to equip \the [host_item] before taking out \the [hand_held]."))
+			to_chat(host_item.loc, span_warning("You need to equip \the [host_item] before taking out \the [hand_held]."))
 		return
 	if(!user.put_in_hands(hand_held))
 		to_chat(user, span_warning("You need a free hand to hold the \the [hand_held]!"))
 		return
 	host_item.update_icon()
 	hand_held.update_icon()
-	var/turf/T = get_turf(host_item)
-	if(T)
-		T.visible_message("\The [user] removes \the [hand_held] from \the [host_item].")
+	var/mob/M = host_item.loc
+	if(istype(M))
+		M.visible_message("\The [user] removes \the [hand_held] from \the [host_item].")
 	return COMPONENT_NO_INTERACT
 
 // Signal registry for handheld item
@@ -73,6 +73,8 @@
 	// We normally want to remake our handheld item if it gets destroyed, but not if our host is deleting
 	if(!QDELETED(host_item))
 		make_handheld()
+		host_item.update_icon()
+		hand_held.update_icon()
 
 // Absolutely illegal to be anywhere else except in the slot you were allowed to remove it from
 /datum/component/tethered_item/proc/on_moved(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
@@ -102,9 +104,9 @@
 		hand_held.forceMove(host_item)
 	host_item.update_icon()
 	hand_held.update_icon()
-	var/turf/T = get_turf(host_item)
-	if(T)
-		T.visible_message("\The [hand_held] retracts back into \the [host_item].")
+	var/mob/M = host_item.loc
+	if(istype(M) && hand_held.loc == host_item)
+		M.visible_message("\The [hand_held] retracts back into \the [host_item].")
 
 // Some objects need to communicate the state of the handheld item back to the host
 /datum/component/tethered_item/proc/get_handheld()
