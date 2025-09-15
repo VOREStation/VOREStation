@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(ticker)
 			//lobby stats for statpanels
 			if(isnull(timeLeft))
 				timeLeft = max(0,start_at - world.time)
-				to_chat(world, span_notice("Round starting in [round(timeLeft / 10)] Seonds!"))
+				to_chat(world, span_notice("Round starting in [round(timeLeft / 10)] Seconds!"))
 			totalPlayers = LAZYLEN(GLOB.new_player_list)
 			totalPlayersReady = 0
 			total_admins_ready = 0
@@ -124,7 +124,10 @@ SUBSYSTEM_DEF(ticker)
 			//countdown
 			if(timeLeft < 0)
 				return
-			timeLeft -= wait
+
+			// Do not count down the time, if the game start is delayed
+			if (GLOB.round_progressing)
+				timeLeft -= wait
 
 			//if(timeLeft <= 300 && !tipped)
 			//	send_tip_of_the_round(world, selected_tip)
@@ -511,3 +514,17 @@ SUBSYSTEM_DEF(ticker)
 	deltimer(reboot_timer)
 	reboot_timer = null
 	return TRUE
+
+/**
+ * Helper proc that delays the roundend for us.
+ * This proc will trigger a reboot if the delay is 'toggled off'.
+ * Use with care.
+ */
+/datum/controller/subsystem/ticker/proc/toggle_delay()
+	delay_end = !delay_end
+
+	if(reboot_timer)
+		deltimer(reboot_timer)
+		reboot_timer = null
+	else
+		Reboot("World reboot after administrative delay.")
