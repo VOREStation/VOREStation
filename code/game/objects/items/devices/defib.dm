@@ -47,20 +47,20 @@
 
 	var/obj/item/shockpaddles/linked/paddles = get_paddles()
 	if(paddles && paddles.loc == src)
-		add_overlay("[/obj/item/defib_kit::icon_state]-paddles")
+		add_overlay("[initial(icon_state)]-paddles")
 	if(bcell && paddles)
 		if(bcell.check_charge(paddles.chargecost))
 			if(paddles.combat)
-				add_overlay("[/obj/item/defib_kit::icon_state]-combat")
+				add_overlay("[initial(icon_state)]-combat")
 			else if(!paddles.safety)
-				add_overlay("[/obj/item/defib_kit::icon_state]-emagged")
+				add_overlay("[initial(icon_state)]-emagged")
 			else
-				add_overlay("[/obj/item/defib_kit::icon_state]-powered")
+				add_overlay("[initial(icon_state)]-powered")
 
 		var/ratio = CEILING(bcell.percent()/25, 1) * 25
-		add_overlay("[/obj/item/defib_kit::icon_state]-charge[ratio]")
+		add_overlay("[initial(icon_state)]-charge[ratio]")
 	else
-		add_overlay("[/obj/item/defib_kit::icon_state]-nocell")
+		add_overlay("[initial(icon_state)]-nocell")
 
 /obj/item/defib_kit/attack_hand(mob/living/user)
 	// See important note in tethered_item.dm
