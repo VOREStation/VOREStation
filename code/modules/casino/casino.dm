@@ -554,73 +554,7 @@
 	var/collar_list = list()
 	var/sentientprizes_ckeys_list = list() //Same trick as lottery, to keep life simple
 	var/obj/item/clothing/accessory/collar/casinosentientprize/selected_collar = null
-	var/casinosentientprize_itemtf_options = list(
-		// Accessories
-		"Accessory - Necklace (metal)"				= /obj/item/clothing/accessory/tronket,
-		"Accessory - Ring"							= /obj/item/clothing/accessory/ring,
-		"Accessory - Sweater"						= /obj/item/clothing/accessory/sweater,
-		"Accessory - Sweater (keyhole)"				= /obj/item/clothing/accessory/sweater/keyhole,
-		// Tops
-		"Top - Bunny suit"							= /obj/item/clothing/under/bunnysuit,
-		"Top - Bunny suit (maid)"					= /obj/item/clothing/under/bunnysuit_maid,
-		"Top - Bunny suit (maid, top-only)"			= /obj/item/clothing/under/reverse_bunnytop_maid,
-		"Top - Bunny suit (reverse)"				= /obj/item/clothing/under/reverse_bunnysuit,
-		"Top - Bunny suit (reverse, maid)"			= /obj/item/clothing/under/reverse_bunnysuit_maid,
-		"Top - Bunny suit (reverse, top-only)"		= /obj/item/clothing/under/reverse_bunnytop,
-		"Top - Maid outfit (costume)"				= /obj/item/clothing/under/dress/maid,
-		"Top - Maid outfit (latex)"					= /obj/item/clothing/under/fluff/latexmaid,
-		"Top - Maid outfit (uniform)"				= /obj/item/clothing/under/dress/maid/janitor,
-		"Top - Swimsuit (black)"					= /obj/item/clothing/under/swimsuit/black,
-		"Top - Swimsuit (blue)"						= /obj/item/clothing/under/swimsuit/blue,
-		"Top - Swimsuit (cow print)"				= /obj/item/clothing/under/swimsuit/cowbikini,
-		"Top - Swimsuit (earthen)"					= /obj/item/clothing/under/swimsuit/earth,
-		"Top - Swimsuit (green)"					= /obj/item/clothing/under/swimsuit/green,
-		"Top - Swimsuit (high class)"				= /obj/item/clothing/under/swimsuit/highclass,
-		"Top - Swimsuit (purple)"					= /obj/item/clothing/under/swimsuit/purple,
-		"Top - Swimsuit (red)"						= /obj/item/clothing/under/swimsuit/red,
-		"Top - Swimsuit (revealing, pink)"			= /obj/item/clothing/under/swimsuit/stripper,
-		"Top - Swimsuit (risque)"					= /obj/item/clothing/under/swimsuit/risque,
-		"Top - Swimsuit (streamlined)"				= /obj/item/clothing/under/swimsuit/streamlined,
-		"Top - Swimsuit (striped)"					= /obj/item/clothing/under/swimsuit/striped,
-		"Top - Swimsuit (white)"					= /obj/item/clothing/under/swimsuit/white,
-		// Footwear
-		"Footwear - High heels"						= /obj/item/clothing/shoes/heels,
-		"Footwear - Jackboots"						= /obj/item/clothing/shoes/boots/jackboots,
-		"Footwear - Jackboots (toe-less)"			= /obj/item/clothing/shoes/boots/jackboots/toeless,
-		"Footwear - Shoes (black)"					= /obj/item/clothing/shoes/black,
-		// Items
-		"Item - Bar stool"							= /obj/item/stool/padded,
-		"Item - Plushie (carp)"						= /obj/item/toy/plushie/carp,
-		"Item - Plushie (cat, black)"				= /obj/item/toy/plushie/black_cat,
-		"Item - Plushie (cat, calico)"				= /obj/item/toy/plushie/kitten,
-		"Item - Plushie (cat, grey)"				= /obj/item/toy/plushie/grey_cat,
-		"Item - Plushie (cat, orange)"				= /obj/item/toy/plushie/orange_cat,
-		"Item - Plushie (cat, tabby)"				= /obj/item/toy/plushie/tabby_cat,
-		"Item - Plushie (cat, tuxedo)"				= /obj/item/toy/plushie/tuxedo_cat,
-		"Item - Plushie (cat, white)"				= /obj/item/toy/plushie/white_cat,
-		"Item - Plushie (corgi)"					= /obj/item/toy/plushie/corgi,
-		"Item - Plushie (corgi, girly)"				= /obj/item/toy/plushie/girly_corgi,
-		"Item - Plushie (deer)"						= /obj/item/toy/plushie/deer,
-		"Item - Plushie (fox, black)"				= /obj/item/toy/plushie/black_fox,
-		"Item - Plushie (fox, blue)"				= /obj/item/toy/plushie/blue_fox,
-		"Item - Plushie (fox, coffee)"				= /obj/item/toy/plushie/coffee_fox,
-		"Item - Plushie (fox, crimson)"				= /obj/item/toy/plushie/crimson_fox,
-		"Item - Plushie (fox, marble)"				= /obj/item/toy/plushie/marble_fox,
-		"Item - Plushie (fox, orange)"				= /obj/item/toy/plushie/orange_fox,
-		"Item - Plushie (fox, pink)"				= /obj/item/toy/plushie/pink_fox,
-		"Item - Plushie (fox, purple)"				= /obj/item/toy/plushie/purple_fox,
-		"Item - Plushie (fox, red)"					= /obj/item/toy/plushie/red_fox,
-		"Item - Plushie (fumo)"						= /obj/item/toy/plushie/fumo,
-		"Item - Plushie (lizard)"					= /obj/item/toy/plushie/lizard,
-		"Item - Plushie (lizard, kobold)"			= /obj/item/toy/plushie/lizardplushie/kobold,
-		"Item - Plushie (moth)"						= /obj/item/toy/plushie/moth,
-		"Item - Plushie (mouse)"					= /obj/item/toy/plushie/mouse,
-		"Item - Plushie (shark)"					= /obj/item/toy/plushie/shark,
-		"Item - Plushie (slime)"					= /obj/item/toy/plushie/slimeplushie,
-		"Item - Plushie (snake)"					= /obj/item/toy/plushie/snakeplushie,
-		"Item - Plushie (spider)"					= /obj/item/toy/plushie/spider,
-		"Item - Plushie (vox)"						= /obj/item/toy/plushie/vox,
-	)
+
 
 /obj/machinery/casinosentientprize_handler/attack_hand(mob/living/user)
 	if(user.incapacitated())
@@ -790,7 +724,7 @@
 						setprice(user)
 
 /obj/machinery/casinosentientprize_handler/proc/do_item_tf(mob/living/sentient_prize, var/target_item_name)
-	var/item_type = casinosentientprize_itemtf_options[target_item_name]
+	var/item_type = GLOB.item_tf_options[target_item_name]
 	var/obj/item/newitem = new item_type(null) // Starts off in nullspace while we customize!
 	var/item_color = newitem.color
 
@@ -850,7 +784,7 @@
 			var/confirm_item_tf_claim = tgui_alert(user, "This prize has opted in to being transformed into an item! Would you like to claim your prize as an item?", "Confirm Prize Item Transformation", list("Yes", "No"))
 			if(confirm_item_tf_claim == "Yes")
 				// Show the claimer a list of options to turn their prize into.
-				var/item_choice = tgui_input_list(user, "Choose the item to claim your prize as. (Cancelling will default you to claiming your prize without transformation!)", "Choose Sentient Prize Item", casinosentientprize_itemtf_options)
+				var/item_choice = tgui_input_list(user, "Choose the item to claim your prize as. (Cancelling will default you to claiming your prize without transformation!)", "Choose Sentient Prize Item", GLOB.item_tf_options)
 				if(LAZYLEN(item_choice))
 					var/mob/living/sentient_prize = selected_collar.wearer.resolve()
 					if(sentient_prize)
