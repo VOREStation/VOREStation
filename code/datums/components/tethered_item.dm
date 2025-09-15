@@ -41,16 +41,14 @@
 	//Detach the handset into the user's hands
 	if(!slot_check())
 		if(ismob(host_item.loc))
-			to_chat(host_item.loc, span_warning("You need to equip \the [host_item] before taking out \the [hand_held]."))
+			to_chat(user, span_warning("You need to equip \the [host_item] before taking out \the [hand_held]."))
 		return
 	if(!user.put_in_hands(hand_held))
 		to_chat(user, span_warning("You need a free hand to hold the \the [hand_held]!"))
 		return
 	host_item.update_icon()
 	hand_held.update_icon()
-	var/mob/M = host_item.loc
-	if(istype(M))
-		M.visible_message("\The [user] removes \the [hand_held] from \the [host_item].")
+	to_chat(user,span_notice("You remove \the [hand_held] from \the [host_item]."))
 	return COMPONENT_NO_INTERACT
 
 // Signal registry for handheld item
@@ -99,14 +97,12 @@
 	// Retracts back to host
 	var/mob/handheld_mob = hand_held.loc
 	if(istype(handheld_mob))
+		to_chat(handheld_mob,span_notice("\The [hand_held] retracts back into \the [host_item]."))
 		handheld_mob.drop_from_inventory(hand_held, host_item)
 	else
 		hand_held.forceMove(host_item)
 	host_item.update_icon()
 	hand_held.update_icon()
-	var/mob/M = host_item.loc
-	if(istype(M) && hand_held.loc == host_item)
-		M.visible_message("\The [hand_held] retracts back into \the [host_item].")
 
 // Some objects need to communicate the state of the handheld item back to the host
 /datum/component/tethered_item/proc/get_handheld()
