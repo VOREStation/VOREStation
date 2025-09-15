@@ -1,5 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - rscadd: "instruments can now be synced together to play the same song at the same time"
-  - qol: "updated instrument code"

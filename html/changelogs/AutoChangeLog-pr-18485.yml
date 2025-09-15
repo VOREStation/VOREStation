@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Mops can clean multiple tiles at once more"
-  - code_imp: "Gets rid of some typecasted throwforce"
-  - bugfix: "Immovable rod destroys walls again in an even better way"
