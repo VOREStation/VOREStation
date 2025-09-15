@@ -15,6 +15,12 @@
 	desc = "a small metal ring, floating above it's wearer."
 	icon_state = "halo"
 
+/obj/item/clothing/head/halo/demonic
+	name = "holographic demonic halo"
+	desc = "A hologram displaying a demonic halo."
+	default_worn_icon = 'icons/inventory/head/mob_64_32.dmi'
+	icon_state = "demon_halo"
+
 /obj/item/clothing/head/headband/maid/modern
 	name = "modern maid headband"
 	desc = "Just like from my Japanese cartoons!"
