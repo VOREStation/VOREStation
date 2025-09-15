@@ -197,18 +197,21 @@
 
 
 
-/obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
-
+/obj/machinery/door/hitby(atom/movable/source, var/speed=5)
 	..()
-	visible_message(span_danger("[src.name] was hit by [AM]."))
+	visible_message(span_danger("[src.name] was hit by [source]."))
 	var/tforce = 0
-	if(ismob(AM))
-		tforce = 15 * (speed/5)
-	else
-		tforce = AM:throwforce * (speed/5)
+	if(ismob(source))
+		tforce = 15 * (speed/THROWFORCE_SPEED_DIVISOR)
+	else if(isobj(source))
+		var/obj/object = source
+		if(isitem(object))
+			var/obj/item/our_item = object
+			tforce = our_item.throwforce * (speed/THROWFORCE_SPEED_DIVISOR)
+		else
+			tforce = object.w_class * (speed/THROWFORCE_SPEED_DIVISOR)
 	playsound(src, hitsound, 100, 1)
 	take_damage(tforce)
-	return
 
 /obj/machinery/door/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -237,7 +240,7 @@
 				to_chat(user, span_notice("You start to fix dents and repair \the [src]."))
 				playsound(src, welder.usesound, 50, 1)
 				var/repairtime = maxhealth - health //Since we're not using materials anymore... We'll just calculate how much damage there is to repair.
-				if(do_after(user, repairtime * welder.toolspeed) && welder && welder.isOn())
+				if(do_after(user, repairtime * welder.toolspeed, target = src) && welder && welder.isOn())
 					to_chat(user, span_notice("You finish repairing the damage to \the [src]."))
 					health = maxhealth
 					update_icon()

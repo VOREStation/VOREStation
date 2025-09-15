@@ -110,7 +110,7 @@
 /obj/item/denecrotizer //Away map reward. FOR TRAINED NECROMANCERS ONLY. >:C
 	name = "experimental denecrotizer"
 	desc = "It looks simple on the outside but this device radiates some unknown dread. It does not appear to be of any ordinary make, and just how it works is unclear, but this device seems to interact with dead flesh."
-	icon = 'icons/obj/device_vr.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "denecrotizer"
 	w_class = ITEMSIZE_COST_NORMAL
 	var/charges = 5 //your army of minions can only be this big
@@ -155,7 +155,7 @@
 			return FALSE
 		if(!target.mind)
 			user.visible_message("[user] gently presses [src] to [target]...", runemessage = "presses [src] to [target]")
-			if(do_after(user, revive_time, exclusive = TASK_USER_EXCLUSIVE, target = target))
+			if(do_after(user, revive_time, target = target))
 				target.faction = user.faction
 				target.revivedby = user.name
 				target.ghostjoin = 1
@@ -176,7 +176,7 @@
 
 /obj/item/denecrotizer/proc/ghostjoin_rez(mob/living/simple_mob/target, mob/living/user)
 	user.visible_message("[user] gently presses [src] to [target]...", runemessage = "presses [src] to [target]")
-	if(do_after(user, revive_time, exclusive = TASK_ALL_EXCLUSIVE, target = target))
+	if(do_after(user, revive_time, target = target))
 		target.faction = user.faction
 		target.revivedby = user.name
 		target.ai_holder.returns_home = FALSE
@@ -200,7 +200,7 @@
 
 /obj/item/denecrotizer/proc/basic_rez(mob/living/simple_mob/target, mob/living/user) //so medical can have a way to bring back people's pets or whatever, does not change any settings about the mob or offer it to ghosts.
 	user.visible_message("[user] presses [src] to [target]...", runemessage = "presses [src] to [target]")
-	if(do_after(user, revive_time, exclusive = TASK_ALL_EXCLUSIVE, target = target))
+	if(do_after(user, revive_time, target = target))
 		target.revive()
 		target.sight = initial(target.sight)
 		target.see_in_dark = initial(target.see_in_dark)

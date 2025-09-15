@@ -14,7 +14,7 @@
 
 	volume = CARTRIDGE_VOLUME_LARGE
 	amount_per_transfer_from_this = CARTRIDGE_VOLUME_LARGE
-	possible_transfer_amounts = list(CARTRIDGE_VOLUME_LARGE)
+	max_transfer_amount = null //Can be null as there was only one value set previously anyway
 	unacidable = TRUE
 
 	VAR_PROTECTED/loaded_reagent = null

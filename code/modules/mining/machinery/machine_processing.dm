@@ -23,7 +23,7 @@
 	if (machine)
 		machine.console = src
 	else
-		log_debug("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
+		log_mapping("Ore processing machine console at [src.x], [src.y], [src.z] could not find its machine!")
 		qdel(src)
 
 /obj/machinery/mineral/processing_unit_console/Destroy()
@@ -124,7 +124,7 @@
 			. = TRUE
 		if("claim")
 			if(istype(inserted_id))
-				if(access_mining_station in inserted_id.GetAccess())
+				if(ACCESS_MINING_STATION in inserted_id.GetAccess())
 					inserted_id.adjust_mining_points(machine.points)
 					machine.points = 0
 				else

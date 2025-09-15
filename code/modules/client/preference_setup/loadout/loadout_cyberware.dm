@@ -17,7 +17,7 @@
 	display_name = "implant, generic, primary"
 	description = "An implant with no obvious purpose."
 	path = /obj/item/implant
-	cost = 1
+	cost = 0
 
 /datum/gear/utility/implant/generic/second
 	display_name = "implant, generic, secondary"

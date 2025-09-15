@@ -164,6 +164,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	vore_pounce_chance = 35
 	vore_pounce_falloff = 0
 	vore_standing_too = TRUE
+	can_be_drop_prey = FALSE
 
 /mob/living/simple_mob/vore/alienanimals/teppi/load_default_bellies()
 	. = ..()
@@ -171,7 +172,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	B.name = "stomach"
 	B.desc = "The heat of the roiling flesh around you bakes into you immediately as you're cast into the gloom of a Teppi's primary gastric chamber. The undulations are practically smothering, clinging to you and grinding you all over as the Teppi continues about its day. The walls are heavy against you, so it's really difficult to move at all, while the heart of this creature pulses rhythmically somewhere nearby, and you can feel the throb of its pulse in the doughy squish pressing up against you. Your figure sinks a ways into the flesh as it presses in, wrapping limbs up between countless slick folds and kneading waves. It's not long before you're positively soaked in a thin layer of slime as you're rocked and squeezed and jostled in the stomach of your captor."
 	B.mode_flags = 40
-	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 0.05
 	B.digest_burn = 0.05
 	B.digestchance = 5
@@ -301,7 +301,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	p.contamination_flavor = "Wet"
 	p.contamination_color = "grey"
 	p.item_digest_mode = IM_HOLD
-	p.belly_fullscreen = "yet_another_tumby"
 	p.fancy_vore = 1
 	p.vore_verb = "nyomp"
 	friend_zone = p
@@ -562,7 +561,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			return ..()
 		if(resting)
 			user.visible_message(span_attack("\The [user] approaches \the [src]'s neck with \the [O]."),span_attack("You approach \the [src]'s neck with \the [O]."))
-			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
+			if(do_after(user, 5 SECONDS, target = src))
 				if(resting)
 					death()
 					return
@@ -621,7 +620,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 				if(prob(25))
 					M.visible_message(span_notice("\The [src] rumbles happily at \the [M]"),span_notice("\The [src] rumbles happily at you!"))
 					playsound(src, 'sound/voice/teppi/rumble.ogg', 75, 1)
-				vore_selected.digest_mode = DM_DRAIN //People outside can help calm the tumby if you squirm too much
+				if(vore_selected)
+					vore_selected.digest_mode = DM_DRAIN //People outside can help calm the tumby if you squirm too much
 			else if(prob(25))
 				M.visible_message(span_notice("\The [src] rumbles happily at \the [M]"),span_notice("\The [src] rumbles happily at you!"))
 				playsound(src, 'sound/voice/teppi/cute_rumble.ogg', 75, 1)
@@ -747,7 +747,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		sheartime *= 2
 	else
 		return FALSE
-	if(do_after(user, sheartime, exclusive = TASK_USER_EXCLUSIVE, target = src))
+	if(do_after(user, sheartime, target = src))
 		user.visible_message(span_notice("\The [user] shears \the [src] with \the [tool]."),span_notice("You shear \the [src] with \the [tool]."))
 		amount_grown = rand(0,250)
 		var/obj/item/stack/material/fur/F = new(get_turf(user), rand(10,15))

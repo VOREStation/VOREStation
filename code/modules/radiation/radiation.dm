@@ -59,9 +59,6 @@
 	cached_rad_resistance = 60 //Three times that of a steel wall. Rock is less dense than steel, but this is assuming that a normal wall isn't just solid steel all the way through like rock turfs are.
 	return
 
-/obj
-	var/rad_resistance = 0  // Allow overriding rad resistance
-
 // If people expand the system, this may be useful. Here as a placeholder until then
 /atom/proc/rad_act(var/severity)
 	return 1

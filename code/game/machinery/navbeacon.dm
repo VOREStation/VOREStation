@@ -16,13 +16,13 @@ GLOBAL_LIST_EMPTY(navbeacons) // no I don't like putting this in, but it will do
 	var/location = ""	// location response text
 	var/codes_txt		// DEPRECATED codes as set on map: "tag1;tag2" or "tag1=value;tag2=value"
 	var/list/codes = list()	// assoc. list of transponder codes
-	req_access = list(access_engine)
+	req_access = list(ACCESS_ENGINE)
 
 /obj/machinery/navbeacon/Initialize(mapload)
 	. = ..()
 	set_codes_from_txt(codes_txt)
 	if(freq)
-		warning("[src] at [x],[y],[z] has deprecated var freq=[freq].  Replace it with proper type.")
+		WARNING("[src] at [x],[y],[z] has deprecated var freq=[freq].  Replace it with proper type.")
 
 	var/turf/T = loc
 	hide(!T.is_plating())
@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(navbeacons) // no I don't like putting this in, but it will do
 /obj/machinery/navbeacon/proc/set_codes_from_txt()
 	if(!codes_txt)
 		return
-	warning("[src] at [x],[y],[z] in [get_area(src)] is using the deprecated 'codes_txt' mapping method.  Replace it with proper type.")
+	WARNING("[src] at [x],[y],[z] in [get_area(src)] is using the deprecated 'codes_txt' mapping method.  Replace it with proper type.")
 
 	codes = list()
 	var/list/entries = splittext(codes_txt, ";")	// entries are separated by semicolons

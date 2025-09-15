@@ -33,7 +33,7 @@
 		to_chat(src, span_warning("There is too much light here for your trap to last!"))
 		return FALSE
 
-	if(do_after(src, 10))
+	if(do_after(src, 1 SECOND, target = src))
 		if(SK.in_phase)
 			new /obj/effect/abstract/dark_maw(loc, src, TRUE)
 		else
@@ -72,7 +72,7 @@
 		owner = user
 		if(owner.vore_selected)
 			target = owner.vore_selected
-		RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(drop_everything_and_delete))
+		RegisterSignal(owner, COMSIG_QDELETING, PROC_REF(drop_everything_and_delete))
 		has_signal = TRUE
 		SK = owner.get_shadekin_component()
 
@@ -112,7 +112,7 @@
 	STOP_PROCESSING(SSobj, src)
 	if(owner)
 		if(has_signal)
-			UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+			UnregisterSignal(owner, COMSIG_QDELETING)
 		var/datum/component/shadekin/SK = owner.get_shadekin_component()
 		if(SK)
 			SK.active_dark_maws -= src

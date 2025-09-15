@@ -11,7 +11,7 @@ var/list/all_maps = list()
 		else
 			M = new type
 		if(!M.path)
-			log_debug("Map '[M]' does not have a defined path, not adding to map list!")
+			log_mapping("Map '[M]' does not have a defined path, not adding to map list!")
 		else
 			all_maps[M.path] = M
 	return 1
@@ -267,18 +267,18 @@ var/list/all_maps = list()
 /datum/map/proc/default_internal_channels()
 	return list(
 		num2text(PUB_FREQ)	= list(),
-		num2text(AI_FREQ)	= list(access_synth),
+		num2text(AI_FREQ)	= list(ACCESS_SYNTH),
 		num2text(ENT_FREQ)	= list(),
-		num2text(ERT_FREQ)	= list(access_cent_specops),
-		num2text(COMM_FREQ)	= list(access_heads),
-		num2text(ENG_FREQ)	= list(access_engine_equip, access_atmospherics),
-		num2text(MED_FREQ)	= list(access_medical_equip),
-		num2text(MED_I_FREQ)= list(access_medical_equip),
-		num2text(SEC_FREQ)	= list(access_security),
-		num2text(SEC_I_FREQ)= list(access_security),
-		num2text(SCI_FREQ)	= list(access_tox,access_robotics,access_xenobiology),
-		num2text(SUP_FREQ)	= list(access_cargo),
-		num2text(SRV_FREQ)	= list(access_janitor, access_hydroponics),
+		num2text(ERT_FREQ)	= list(ACCESS_CENT_SPECOPS),
+		num2text(COMM_FREQ)	= list(ACCESS_HEADS),
+		num2text(ENG_FREQ)	= list(ACCESS_ENGINE_EQUIP, ACCESS_ATMOSPHERICS),
+		num2text(MED_FREQ)	= list(ACCESS_MEDICAL_EQUIP),
+		num2text(MED_I_FREQ)= list(ACCESS_MEDICAL_EQUIP),
+		num2text(SEC_FREQ)	= list(ACCESS_SECURITY),
+		num2text(SEC_I_FREQ)= list(ACCESS_SECURITY),
+		num2text(SCI_FREQ)	= list(ACCESS_TOX,ACCESS_ROBOTICS,ACCESS_XENOBIOLOGY),
+		num2text(SUP_FREQ)	= list(ACCESS_CARGO),
+		num2text(SRV_FREQ)	= list(ACCESS_JANITOR, ACCESS_HYDROPONICS),
 	)
 
 /datum/map/proc/get_skybox_datum(z)
@@ -295,7 +295,7 @@ var/list/all_maps = list()
 /datum/map_z_level
 	var/z = 0				// Actual z-index of the zlevel. This had better be right!
 	var/name				// Friendly name of the zlevel
-	var/flags = 0			// Bitflag of which *_levels lists this z should be put into.
+	var/flags = NONE			// Bitflag of which *_levels lists this z should be put into.
 	var/turf/base_turf		// Type path of the base turf for this z
 	var/transit_chance = 0	// Percentile chance this z will be chosen for map-edge space transit.
 

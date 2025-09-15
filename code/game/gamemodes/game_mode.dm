@@ -117,11 +117,11 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 				return
 
 /datum/game_mode/proc/announce() //to be called when round starts
-	to_world(span_world("The current game mode is [capitalize(name)]!"))
+	to_chat(world, span_world("The current game mode is [capitalize(name)]!"))
 	if(round_description)
-		to_world(span_filter_system("[round_description]"))
+		to_chat(world, span_filter_system("[round_description]"))
 	if(round_autoantag)
-		to_world(span_filter_system("Antagonists will be added to the round automagically as needed."))
+		to_chat(world, span_filter_system("Antagonists will be added to the round automagically as needed."))
 	if(antag_templates && antag_templates.len)
 		var/antag_summary = span_bold("Possible antagonist types:") + " "
 		var/i = 1
@@ -135,7 +135,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			i++
 		antag_summary += "."
 		if(antag_templates.len > 1 && GLOB.master_mode != "secret")
-			to_world(span_filter_system("[antag_summary]"))
+			to_chat(world, span_filter_system("[antag_summary]"))
 		else
 			message_admins("[antag_summary]")
 
@@ -282,18 +282,22 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 /datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return
 
-/datum/game_mode/proc/declare_completion()
+/datum/game_mode/proc/declare_antag_goals()
+	for(var/datum/antagonist/antag in antag_templates)
+		sleep(10)
+		antag.check_victory()
+		antag.print_player_summary()
+	addtimer(CALLBACK(src, PROC_REF(finish_completion_declatration)), 1 SECOND)
 
-	var/is_antag_mode = (antag_templates && antag_templates.len)
+/datum/game_mode/proc/declare_completion()
+	var/is_antag_mode = LAZYLEN(antag_templates)
 	check_victory()
 	if(is_antag_mode)
-		sleep(10)
-		for(var/datum/antagonist/antag in antag_templates)
-			sleep(10)
-			antag.check_victory()
-			antag.print_player_summary()
-		sleep(10)
+		is_antag_mode += 2
+		addtimer(CALLBACK(src, PROC_REF(declare_antag_goals)), 1 SECOND)
+	return is_antag_mode SECONDS
 
+/datum/game_mode/proc/finish_completion_declatration()
 	var/clients = 0
 	var/surviving_humans = 0
 	var/surviving_total = 0
@@ -344,7 +348,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		text += ".<br>"
 	else
 		text += "There were " + span_bold("no survivors") + " (" + span_bold("[ghosts] ghosts") + ")."
-	to_world(span_filter_system(text))
+	to_chat(world, span_filter_system(text))
 
 	if(clients > 0)
 		feedback_set("round_end_clients",clients)
@@ -380,8 +384,6 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		)
 	)
 
-	return 0
-
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
 
@@ -403,7 +405,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 			if(isobserver(player) && !ghosts_only)
 				continue
 			if(!role || (player.client.prefs.be_special & role))
-				log_debug("[player.key] had [antag_id] enabled, so we are drafting them.")
+				log_game("[player.key] had [antag_id] enabled, so we are drafting them.")
 				candidates |= player.mind
 	else
 		// Assemble a list of active players without jobbans.
@@ -414,7 +416,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		// Get a list of all the people who want to be the antagonist for this round
 		for(var/mob/new_player/player in players)
 			if(!role || (player.client.prefs.be_special & role))
-				log_debug("[player.key] had [antag_id] enabled, so we are drafting them.")
+				log_game("[player.key] had [antag_id] enabled, so we are drafting them.")
 				candidates += player.mind
 				players -= player
 
@@ -424,7 +426,7 @@ GLOBAL_LIST_EMPTY(additional_antag_types)
 		if(candidates.len < required_enemies)
 			for(var/mob/new_player/player in players)
 				if(player.ckey in round_voters)
-					log_debug("[player.key] voted for this round, so we are drafting them.")
+					log_game("[player.key] voted for this round, so we are drafting them.")
 					candidates += player.mind
 					players -= player
 					break

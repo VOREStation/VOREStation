@@ -54,7 +54,7 @@
 	TEST_ASSERT(C.name != "", "[C.type]: Clothing - Empty name.")
 
 	// Icons
-	if(!("[C.icon_state]" in cached_icon_states(C.icon)))
+	if(!icon_exists(C.icon, C.icon_state))
 		if(C.icon == initial(C.icon) && C.icon_state == initial(C.icon_state))
 			TEST_NOTICE("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon].")
 		else
@@ -165,7 +165,7 @@
 				return
 
 			// All that matters
-			if(!("[set_state]" in cached_icon_states(set_icon)))
+			if(!icon_exists(set_icon, set_state))
 				TEST_NOTICE("[item_path]: Clothing - Testing \"[species]\" state \"[set_state]\" for slot \"[slot_name]\", but it was not in dmi \"[set_icon]\"")
 				signal_failed = TRUE
 				return

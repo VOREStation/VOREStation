@@ -9,7 +9,7 @@
 
 /datum/supply_pack/randomised/recreation
 	group = "Recreation"
-	access = access_security
+	access = ACCESS_SECURITY
 
 /datum/supply_pack/recreation/foam_weapons
 	name = "Foam Weapon Crate"
@@ -344,4 +344,21 @@
 		/obj/item/bedsheet/pillow/yellow = 6
 	)
 	cost = 10
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_pack/recreation/gambling
+	name = "Gambling Game Crate"
+	desc = "A bunch of supplies for gambling games, includes 5000 replica casino chips, a triple size deck of cards and dice bags."
+	contains = list(
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/spacecasinocash_fake/c1000,
+		/obj/item/deck/cards/triple,
+		/obj/item/storage/pill_bottle/dice,
+		/obj/item/storage/pill_bottle/dice_nerd,
+		/obj/item/storage/dicecup
+	)
+	cost = 30
 	containertype = /obj/structure/closet/crate

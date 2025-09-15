@@ -141,7 +141,7 @@
 	data["message_current_id"] = current_viewing_message_id
 	data["message_current"] = current_viewing_message
 
-	// data["lastCallLoc"]     = SSshuttle.emergencyLastCallLoc ? format_text(SSshuttle.emergencyLastCallLoc.name) : null
+	// data["lastCallLoc"]     = SSshuttle.emergencyLastCallLoc ? strip_improper(SSshuttle.emergencyLastCallLoc.name) : null
 	data["msg_cooldown"] = message_cooldown ? (round((message_cooldown - world.time) / 10)) : 0
 	data["cc_cooldown"] = centcomm_message_cooldown ? (round((centcomm_message_cooldown - world.time) / 10)) : 0
 
@@ -215,9 +215,9 @@
 			setMenuState(ui.user, COMM_SCREEN_MAIN)
 			return
 		// Login function.
-		if(check_access(ui.user, access_heads))
+		if(check_access(ui.user, ACCESS_HEADS))
 			authenticated = COMM_AUTHENTICATION_MIN
-		if(check_access(ui.user, access_captain))
+		if(check_access(ui.user, ACCESS_CAPTAIN))
 			authenticated = COMM_AUTHENTICATION_MAX
 			var/obj/item/card/id = ui.user.GetIdCard()
 			if(istype(id))

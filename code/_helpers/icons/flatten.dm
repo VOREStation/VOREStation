@@ -72,7 +72,7 @@
 	var/state = A.icon_state
 	var/none = !icon
 	if(!none)
-		var/list/states = icon_states(icon)
+		var/list/states = cached_icon_states(icon)
 		if(!(state in states))
 			if(!("" in states))
 				none = TRUE

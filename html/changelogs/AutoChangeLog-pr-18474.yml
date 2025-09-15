@@ -1,0 +1,5 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "simple mobs can now breach through girders and barricades"
+  - bugfix: "barricades now take a small amount of range damage instead of blocking them all"

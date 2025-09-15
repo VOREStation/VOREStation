@@ -30,7 +30,7 @@
 	if(!inv_overlay)
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 		if(icon_override)
-			if("[tmp_icon_state]_tie" in cached_icon_states(icon_override))
+			if(icon_exists(icon_override, "[tmp_icon_state]_tie"))
 				tmp_icon_state = "[tmp_icon_state]_tie"
 			inv_overlay = image(icon = icon_override, icon_state = tmp_icon_state, dir = SOUTH)
 		else
@@ -61,7 +61,7 @@
 			tmp_icon_state = on_rolled["rolled"]
 
 	if(icon_override)
-		if("[tmp_icon_state]_mob" in cached_icon_states(icon_override))
+		if(icon_exists(icon_override, "[tmp_icon_state]_mob"))
 			tmp_icon_state = "[tmp_icon_state]_mob"
 		mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
 	else if(H && LAZYACCESS(sprite_sheets, H.species.get_bodytype(H))) //Teshari can finally into webbing, too!

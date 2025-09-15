@@ -12,10 +12,10 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 /obj/screen/radial/proc/set_parent(new_value)
 	if(parent)
-		UnregisterSignal(parent, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(parent, COMSIG_QDELETING)
 	parent = new_value
 	if(parent)
-		RegisterSignal(parent, COMSIG_PARENT_QDELETING, PROC_REF(handle_parent_del))
+		RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(handle_parent_del))
 
 /obj/screen/radial/proc/handle_parent_del()
 	SIGNAL_HANDLER

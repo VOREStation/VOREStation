@@ -23,7 +23,7 @@
 
 	if(!vorePanel)
 		if(!isnewplayer(src))
-			log_debug("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
+			log_vore("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
 		vorePanel = new(src)
 
 	vorePanel.tgui_interact(src)
@@ -276,7 +276,15 @@
 			unsaved_changes = TRUE
 			return TRUE
 		if("importpanel")
-			import_belly(host)
+			var/datum/vore_look/import_panel/importPanel
+			if(!importPanel)
+				importPanel = new(ui.user)
+
+			if(!importPanel)
+				to_chat(ui.user,span_notice("Import panel undefined: [importPanel]"))
+				return FALSE
+
+			importPanel.open_import_panel(ui.user)
 			return TRUE
 		if("bellypick")
 			host.vore_selected = locate(params["bellypick"])
@@ -399,6 +407,12 @@
 			host.digestable = !host.digestable
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.digestable = host.digestable
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_allowtemp")
+			host.allowtemp = !host.allowtemp
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.allowtemp = host.allowtemp
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_global_privacy")
@@ -630,7 +644,7 @@
 			return TRUE
 		//vore sprites color
 		if("set_belly_rub")
-			var/rub_target = params["val"]
+			var/rub_target = html_encode(params["val"])
 			if(rub_target == "Current Selected")
 				host.belly_rub_target = null
 			else

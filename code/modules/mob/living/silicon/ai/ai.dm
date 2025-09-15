@@ -240,7 +240,6 @@ var/list/ai_verbs_default = list(
 	QDEL_NULL(aiCommunicator)
 	QDEL_NULL(aiMulti)
 	QDEL_NULL(aiRadio)
-	QDEL_NULL(aiCamera)
 	hack = null
 
 	destroy_eyeobj()
@@ -790,7 +789,7 @@ var/list/ai_verbs_default = list(
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message(span_notice("\The [user] starts to unbolt \the [src] from the plating..."))
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_notice("\The [user] decides not to unbolt \the [src]."))
 				return
 			user.visible_message(span_notice("\The [user] finishes unfastening \the [src]!"))
@@ -799,7 +798,7 @@ var/list/ai_verbs_default = list(
 		else
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message(span_notice("\The [user] starts to bolt \the [src] to the plating..."))
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_notice("\The [user] decides not to bolt \the [src]."))
 				return
 			user.visible_message(span_notice("\The [user] finishes fastening down \the [src]!"))
@@ -842,7 +841,7 @@ var/list/ai_verbs_default = list(
 	to_chat(src, span_filter_notice("Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."))
 
 
-/mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)
+/mob/living/silicon/ai/proc/check_unable(var/flags = NONE, var/feedback = 1)
 	if(stat == DEAD)
 		if(feedback)
 			to_chat(src, span_warning("You are dead!"))

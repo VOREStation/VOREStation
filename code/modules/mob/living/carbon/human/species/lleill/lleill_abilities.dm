@@ -145,7 +145,7 @@
 		return
 	else
 		visible_message(span_infoplain(span_bold("\The [src]") + " begins to change the form of \the [I]."))
-		if(!do_after(src, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, target = I))
 			visible_message(span_infoplain(span_bold("\The [src]") + " leaves \the [I] in its original form."))
 			return 0
 		visible_message(span_infoplain(span_bold("\The [src]") + " transmutes \the [I] into \the [transmute_product.name]."))
@@ -185,7 +185,7 @@
 		if(species.lleill_energy < energy_cost_spawn)
 			to_chat(src, span_warning("You do not have enough energy to do that!"))
 			return
-		if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, target = src))
 			src.visible_message(span_infoplain(span_bold("\The [src]") + " begins to form white rings on the ground."))
 			return 0
 		to_chat(src, span_warning("You place a new glamour ring at your feet."))
@@ -203,6 +203,9 @@
 			return
 		else
 			var/obj/structure/glamour_ring/R = tgui_input_list(src, "Where do you wish to teleport?", "Teleport", src.teleporters)
+
+			if(!R)
+				return
 
 			var/datum/effect/effect/system/spark_spread/spk
 			spk = new(src)
@@ -231,7 +234,7 @@
 					for(var/mob/living/M in target_list)
 						if(M.devourable && M.can_be_drop_prey)
 							M.forceMove(vore_selected)
-							to_chat(M,span_vwarning("In a bright flash of white light, you suddenly find yourself trapped in \the [src]'s [vore_selected.name]!"))
+							to_chat(M,span_vwarning("In a bright flash of white light, you suddenly find yourself trapped in \the [src]'s [vore_selected.get_belly_name()]!"))
 	species.update_lleill_hud(src)
 
 /datum/power/lleill/contact
@@ -312,7 +315,7 @@
 			src.visible_message(span_infoplain(span_bold("\The [src]") + " boops [chosen_target] on the nose."))
 		if(contact_type == "Custom")
 			src.visible_message(span_infoplain("[custom_text]"))
-		if(!do_after(src, 10 SECONDS, chosen_target, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, target = chosen_target))
 			src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] break contact before energy has been transferred."))
 			return
 		src.visible_message(span_infoplain(span_bold("\The [src]") + " and \the [chosen_target] complete their contact."))
@@ -363,7 +366,7 @@
 		return
 	else
 		visible_message(span_infoplain(span_bold("\The [src]") + " begins to change the form of \the [I]."))
-		if(!do_after(src, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, target = I))
 			visible_message(span_infoplain(span_bold("\The [src]") + " leaves \the [I] in its original form."))
 			return 0
 		visible_message(span_infoplain(span_bold("\The [src]") + " transmutes \the [I] into \the [transmute_product.name]."))
@@ -438,23 +441,19 @@
 		return
 
 	var/mob/living/M = src
-	log_debug("polymorph start")
 	if(!istype(M))
-		log_debug("polymorph istype")
 		return
 
 	if(M.stat)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph stat")
 		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
 	if(M.health <= 10)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph injured")
 		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
 	visible_message(span_infoplain(span_bold("\The [src]") + " begins significantly shifting their form."))
-	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(src, 10 SECONDS, target = src))
 		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 
@@ -464,15 +463,12 @@
 	spawn(10)
 		src.overlays -= coolanimation
 
-		log_debug("polymorph not dead")
 		var/mob/living/new_mob = spawn_beast_mob(beast_options[chosen_beast])
 		new_mob.faction = M.faction
 
 		if(new_mob && isliving(new_mob))
 			species.lleill_energy -= energy_cost
-			log_debug("polymorph new_mob")
 			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				log_debug("polymorph new_mob belly")
 				new_mob.vore_organs -= B
 				qdel(B)
 			new_mob.vore_organs = list()
@@ -486,18 +482,14 @@
 			M.copy_vore_prefs_to_mob(new_mob)
 			new_mob.vore_selected = M.vore_selected
 			if(ishuman(M))
-				log_debug("polymorph ishuman part2")
 				var/mob/living/carbon/human/H = M
 				if(ishuman(new_mob))
-					log_debug("polymorph ishuman(newmob)")
 					var/mob/living/carbon/human/N = new_mob
 					N.gender = H.gender
 					N.identifying_gender = H.identifying_gender
 				else
-					log_debug("polymorph gender else")
 					new_mob.gender = H.gender
 			else
-				log_debug("polymorph gender else 2")
 				new_mob.gender = M.gender
 				if(ishuman(new_mob))
 					var/mob/living/carbon/human/N = new_mob
@@ -525,13 +517,9 @@
 
 
 /mob/living/carbon/human/proc/spawn_beast_mob(var/chosen_beast)
-	log_debug("polymorph proc spawn mob")
 	var/tf_type = chosen_beast
-	log_debug("polymorph [tf_type]")
 	if(!ispath(tf_type))
-		log_debug("polymorph tf_type fail")
 		return
-	log_debug("polymorph tf_type pass")
 	var/new_mob = new tf_type(src.loc)
 	return new_mob
 
@@ -545,7 +533,7 @@
 		return
 
 	visible_message(span_infoplain(span_bold("\The [src]") + " begins significantly shifting their form."))
-	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(src, 10 SECONDS, target = src))
 		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 	visible_message(span_infoplain(span_bold("\The [src]") + " has reverted to their original form."))
@@ -647,23 +635,19 @@
 		return
 
 	var/mob/living/M = src
-	log_debug("polymorph start")
 	if(!istype(M))
-		log_debug("polymorph istype")
 		return
 
 	if(M.stat)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph stat")
 		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
 	if(M.health <= 10)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph injured")
 		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
 	visible_message(span_infoplain(span_bold("\The [src]") + " begins significantly shifting their form."))
-	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(src, 10 SECONDS, target = src))
 		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 
@@ -673,15 +657,12 @@
 	spawn(10)
 		src.overlays -= coolanimation
 
-		log_debug("polymorph not dead")
 		var/mob/living/simple_mob/new_mob = spawn_beast_mob(beast_options[chosen_beast])
 		new_mob.faction = M.faction
 
 		if(new_mob && isliving(new_mob))
 			species.lleill_energy -= energy_cost
-			log_debug("polymorph new_mob")
 			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				log_debug("polymorph new_mob belly")
 				new_mob.vore_organs -= B
 				qdel(B)
 			new_mob.vore_organs = list()
@@ -698,18 +679,14 @@
 			M.copy_vore_prefs_to_mob(new_mob)
 			new_mob.vore_selected = M.vore_selected
 			if(ishuman(M))
-				log_debug("polymorph ishuman part2")
 				var/mob/living/carbon/human/H = M
 				if(ishuman(new_mob))
-					log_debug("polymorph ishuman(newmob)")
 					var/mob/living/carbon/human/N = new_mob
 					N.gender = H.gender
 					N.identifying_gender = H.identifying_gender
 				else
-					log_debug("polymorph gender else")
 					new_mob.gender = H.gender
 			else
-				log_debug("polymorph gender else 2")
 				new_mob.gender = M.gender
 				if(ishuman(new_mob))
 					var/mob/living/carbon/human/N = new_mob

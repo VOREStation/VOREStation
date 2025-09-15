@@ -7,7 +7,7 @@
 /atom
 	layer = TURF_LAYER //This was here when I got here. Why though?
 	var/level = 2
-	var/flags = 0
+	var/flags = NONE
 	var/was_bloodied
 	var/blood_color
 	var/pass_flags = 0
@@ -67,6 +67,17 @@
 		QDEL_NULL(light)
 	if(forensic_data)
 		QDEL_NULL(forensic_data)
+	// Checking length(overlays) before cutting has significant speed benefits
+	if (length(overlays))
+		overlays.Cut()
+	if (length(our_overlays))
+		our_overlays.Cut()
+	if (length(priority_overlays))
+		priority_overlays.Cut()
+	if (length(managed_vis_overlays))
+		managed_vis_overlays.Cut()
+	if (length(original_atom))
+		original_atom.Cut()
 	return ..()
 
 /atom/proc/reveal_blood()
@@ -287,9 +298,9 @@
 	return
 
 
-/atom/proc/hitby(atom/movable/AM as mob|obj)
+/atom/proc/hitby(atom/movable/source)
 	if (density)
-		AM.throwing = 0
+		source.throwing = 0
 	return
 
 //returns 1 if made bloody, returns 0 otherwise
@@ -576,19 +587,6 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 		"x" = icon_width > world.icon_size && pixel_x != 0 ? (icon_width - world.icon_size) * 0.5 : 0,
 		"y" = icon_height > world.icon_size /*&& pixel_y != 0*/ ? (icon_height - world.icon_size) * 0.5 : 0, // we don't have pixel_y in use
 	)
-
-/// Returns a list containing the width and height of an icon file
-/proc/get_icon_dimensions(icon_path)
-	// Icons can be a real file(), a rsc backed file(), a dynamic rsc (dyn.rsc) reference (known as a cache reference in byond docs), or an /icon which is pointing to one of those.
-	// Runtime generated dynamic icons are an unbounded concept cache identity wise, the same icon can exist millions of ways and holding them in a list as a key can lead to unbounded memory usage if called often by consumers.
-	// Check distinctly that this is something that has this unspecified concept, and thus that we should not cache.
-	if (!isfile(icon_path) || !length("[icon_path]"))
-		var/icon/my_icon = icon(icon_path)
-		return list("width" = my_icon.Width(), "height" = my_icon.Height())
-	if (isnull(GLOB.icon_dimensions[icon_path]))
-		var/icon/my_icon = icon(icon_path)
-		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
-	return GLOB.icon_dimensions[icon_path]
 
 /// Returns the src and all recursive contents as a list.
 /atom/proc/get_all_contents(ignore_flag_1)

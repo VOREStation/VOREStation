@@ -35,14 +35,13 @@
 			survivors++
 
 	if(survivors)
-		to_world(span_world("The following survived the meteor storm") + ":[text]")
+		to_chat(world, span_world("The following survived the meteor storm") + ":[text]")
 	else
-		to_world(span_boldannounce("Nobody survived the meteor storm!"))
+		to_chat(world, span_boldannounce("Nobody survived the meteor storm!"))
 
 	feedback_set_details("round_end_result","end - evacuation")
 	feedback_set("round_end_result",survivors)
 
-	..()
-	return 1
+	return ..()
 
 #undef METEOR_DELAY

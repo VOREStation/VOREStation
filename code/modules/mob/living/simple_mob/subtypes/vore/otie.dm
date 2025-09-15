@@ -281,11 +281,15 @@
 	switch(M.a_intent)
 		if(I_HELP)
 			if(health > 0)
+				if(M.zone_sel.selecting == BP_GROIN)
+					if(M.vore_bellyrub(src))
+						return
 				M.visible_message(span_notice("[M] [response_help] \the [src]."))
 				if(has_AI())
 					var/datum/ai_holder/AI = ai_holder
 					AI.set_stance(STANCE_IDLE)
 					if(prob(tame_chance))
+						AI.violent_breakthrough = FALSE
 						AI.hostile = FALSE
 						friend = M
 						AI.set_follow(friend)

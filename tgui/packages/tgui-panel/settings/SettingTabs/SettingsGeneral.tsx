@@ -11,7 +11,6 @@ import {
   Slider,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import { capitalize } from 'tgui-core/string';
 
 import { rebuildChat } from '../../chat/actions';
@@ -128,7 +127,7 @@ export const SettingsGeneral = (props) => {
                 maxValue={32}
                 value={fontSize}
                 unit="px"
-                format={(value) => toFixed(value)}
+                format={(value) => value.toFixed()}
                 onChange={(e, value) =>
                   dispatch(updateSettings({ fontSize: value }))
                 }
@@ -144,7 +143,7 @@ export const SettingsGeneral = (props) => {
             minValue={0.8}
             maxValue={5}
             value={lineHeight}
-            format={(value) => toFixed(value, 2)}
+            format={(value) => value.toFixed(2)}
             onChange={(e, value) =>
               dispatch(
                 updateSettings({

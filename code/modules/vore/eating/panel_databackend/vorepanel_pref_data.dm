@@ -7,6 +7,7 @@
 		"absorbable" = owner.absorbable,
 		"digest_leave_remains" = owner.digest_leave_remains,
 		"allowmobvore" = owner.allowmobvore,
+		"allowtemp" = owner.allowtemp,
 		"permit_healbelly" = owner.permit_healbelly,
 		"show_vore_fx" = owner.show_vore_fx,
 		"can_be_drop_prey" = owner.can_be_drop_prey,

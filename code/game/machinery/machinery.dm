@@ -146,7 +146,7 @@ Class Procs:
 			if(A.loc == src) // If the components are inside the machine, delete them.
 				qdel(A)
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
-				warning("[A] was still in [src]'s component_parts when it was Destroy()'d")
+				WARNING("[A] was still in [src]'s component_parts when it was Destroy()'d")
 		component_parts.Cut()
 		component_parts = null
 	if(contents) // The same for contents.
@@ -401,7 +401,7 @@ Class Procs:
 		return 0
 	to_chat(user, span_notice("You start disconnecting the monitor."))
 	playsound(src, S.usesound, 50, 1)
-	if(do_after(user, 20 * S.toolspeed))
+	if(do_after(user, 2 SECONDS * S.toolspeed, target = src))
 		if(stat & BROKEN)
 			to_chat(user, span_notice("The broken glass falls out."))
 			new /obj/item/material/shard(src.loc)

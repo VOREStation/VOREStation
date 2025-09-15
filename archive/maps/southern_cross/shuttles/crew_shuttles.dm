@@ -3,7 +3,7 @@
 /obj/machinery/computer/shuttle_control/web/shuttle1
 	name = "shuttle control console"
 	shuttle_tag = "Shuttle 1"
-	req_access = list(access_pilot)
+	req_access = list(ACCESS_PILOT)
 
 /datum/shuttle/autodock/web_shuttle/shuttle1
 	name = "Shuttle 1"
@@ -47,7 +47,7 @@
 /obj/machinery/computer/shuttle_control/web/shuttle2
 	name = "shuttle control console"
 	shuttle_tag = "Shuttle 2"
-	req_access = list(access_pilot)
+	req_access = list(ACCESS_PILOT)
 
 /datum/shuttle/autodock/web_shuttle/shuttle2
 	name = "Shuttle 2"

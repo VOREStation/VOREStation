@@ -955,7 +955,7 @@
 	},
 /area/redgate/hotsprings/outdoors)
 "wL" = (
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
 /obj/item/bedsheet/hopdouble,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/redgate/hotsprings/house/dorm1)
@@ -1088,7 +1088,7 @@
 	},
 /area/redgate/hotsprings/outdoors)
 "zB" = (
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
 /obj/item/bedsheet/hopdouble,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/redgate/hotsprings/house/dorm2)
@@ -1151,7 +1151,7 @@
 /area/redgate/hotsprings/house/lovercave)
 "AM" = (
 /obj/structure/bed/chair/sofa/corner/purp{
-	dir = 1
+	dir = 4
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/hotsprings/house)

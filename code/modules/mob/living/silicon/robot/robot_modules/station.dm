@@ -83,15 +83,9 @@
 	R.scrubbing = FALSE
 
 /obj/item/robot_module/Destroy()
-	for(var/module in modules)
-		qdel(module)
-	for(var/emg in emag)
-		qdel(emg)
-	for(var/synth in synths)
-		qdel(synth)
-	modules.Cut()
-	synths.Cut()
-	emag.Cut()
+	QDEL_LIST(modules)
+	QDEL_LIST(emag)
+	QDEL_LIST(synths)
 	return ..()
 
 /obj/item/robot_module/emp_act(severity)
@@ -369,6 +363,7 @@
 	src.modules += new /obj/item/rcd/electric/mounted/borg(src)
 	src.modules += new /obj/item/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/dogborg/stasis_clamp(src)
+	src.modules += new /obj/item/storage/pouch/eng_parts/borg(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)

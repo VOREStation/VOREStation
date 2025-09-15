@@ -8,7 +8,6 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -111,7 +110,7 @@ export const PortableGenerator = (props) => {
                 maxValue={temperature_max + 30}
                 color={temperature_overheat ? 'bad' : 'good'}
               >
-                {toFixed(temperature_current)}&deg;C
+                {temperature_current.toFixed()}&deg;C
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>

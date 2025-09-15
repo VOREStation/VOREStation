@@ -305,7 +305,7 @@
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			to_chat(user, span_notice("You begin removing \the [attached_lock] from \the [src]."))
 			playsound(src, A.usesound, 50, 1)
-			if(do_after(user, 25 * A.toolspeed))
+			if(do_after(user, 25 * A.toolspeed, target = src))
 				to_chat(user, span_notice("You remove \the [attached_lock] from \the [src]."))
 				user.put_in_hands(attached_lock)
 				dna_lock = 0
@@ -531,13 +531,7 @@
 			if(ticker < burst)
 				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
 
-	var/target_for_log
-	if(ismob(target))
-		target_for_log = target
-	else
-		target_for_log = "[target.name]"
-
-	add_attack_logs("Unmanned",target_for_log,"Fired [src.name]")
+	add_attack_logs("Unmanned",target,"Fired [src.name]")
 
 
 //obtains the next projectile to fire
@@ -581,13 +575,7 @@
 			"You hear a [fire_sound_text]!"
 			)
 
-	var/target_for_log
-	if(ismob(target))
-		target_for_log = target
-	else
-		target_for_log = "[target.name]"
-
-	add_attack_logs(user, target_for_log, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
+	add_attack_logs(user, target, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
 
 //called after successfully firing
 /obj/item/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
@@ -731,7 +719,7 @@
 
 	mouthshoot = 1
 	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
-	if(!do_after(user, 40))
+	if(!do_after(user, 4 SECONDS, target = src))
 		M.visible_message(span_blue("[user] decided life was worth living"))
 		mouthshoot = 0
 		return

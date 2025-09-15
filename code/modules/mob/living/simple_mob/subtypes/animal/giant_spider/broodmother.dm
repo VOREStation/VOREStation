@@ -167,7 +167,7 @@
 /obj/item/royal_spider_egg
 	name = "royal spider egg"
 	desc = "This one is yet to be imprinted!"
-	icon = 'icons/obj/egg_new_vr.dmi'	//VOREStation Edit
+	icon = 'icons/obj/egg.dmi'
 	icon_state = "egg_slimeglob"
 
 	origin_tech = list(TECH_BIO = 10)

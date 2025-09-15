@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Icon,
@@ -13,9 +15,6 @@ import {
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
-
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
 import { MaterialAccessBar } from './common/MaterialAccessBar';
 import type { Material } from './Fabrication/Types';
 

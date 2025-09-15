@@ -328,7 +328,7 @@
 		break
 
 	if(!T)
-		warning("Hull corner at [x],[y] not placed adjacent to a hull it can find.")
+		WARNING("Hull corner at [x],[y] not placed adjacent to a hull it can find.")
 
 /obj/structure/hull_corner/long_vert
 	icon = 'icons/turf/wall_masks32x64.dmi'
@@ -552,6 +552,10 @@
 /turf/simulated/wall/tgmc/darkwall/deco3
 	icon_state = "darkwall_deco3"
 	force_icon = "_deco3"
+/turf/simulated/wall/tgmc/darkwall/fake_door
+	icon = 'icons/obj/doors/angled/elevator/door.dmi'
+	icon_state = "preview"
+	name = "locked elevator"
 
 /turf/simulated/wall/tgmc/whitewall
 	icon_state = "white0"

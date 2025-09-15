@@ -3883,9 +3883,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/workshop)
 "yu" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/repair_bay)
 "yx" = (
@@ -4924,9 +4922,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/suite_port_wc)
 "ER" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/workshop)
 "EU" = (
@@ -7737,9 +7733,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/workshop)
 "ZW" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /obj/mecha/combat/fighter/gunpod/loaded,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/repair_bay)

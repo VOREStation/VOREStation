@@ -39,6 +39,7 @@ export const BodyScannerMainAbnormalities = (props: { occupant: occupant }) => {
             </Box>
           );
         }
+        return undefined;
       })}
     </Section>
   );

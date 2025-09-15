@@ -15,7 +15,7 @@
 
 
 /datum/event2/event/gas_leak
-	var/potential_gas_choices = list(GAS_CO2, GAS_N2O, GAS_PHORON, GAS_VOLATILE_FUEL)
+	var/potential_gas_choices = list(GAS_CO2, GAS_N2O, GAS_PHORON, GAS_VOLATILE_FUEL, GAS_CH4)
 	var/chosen_gas = null
 	var/turf/chosen_turf = null
 
@@ -24,7 +24,7 @@
 
 	var/list/turfs = find_random_turfs()
 	if(!turfs.len)
-		log_debug("Gas Leak event failed to find any available turfs to leak into. Aborting.")
+		log_game("Gas Leak event failed to find any available turfs to leak into. Aborting.")
 		abort()
 		return
 	chosen_turf = pick(turfs)

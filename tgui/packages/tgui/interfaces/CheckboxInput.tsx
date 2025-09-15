@@ -12,7 +12,6 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { createSearch, decodeHtmlEntities } from 'tgui-core/string';
-
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
@@ -39,7 +38,7 @@ export const CheckboxInput = (props) => {
 
   const [selections, setSelections] = useState<string[]>([]);
 
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState('');
   const search = createSearch(searchQuery, (item: string) => item);
   const toDisplay = items.filter(search);
 
@@ -55,7 +54,7 @@ export const CheckboxInput = (props) => {
     <Window title={title} width={425} height={300}>
       {!!timeout && <Loader value={timeout} />}
       <Window.Content>
-        <Stack fill vertical>
+        <Stack fill vertical g={0}>
           <Stack.Item>
             <NoticeBox info textAlign="center">
               {decodeHtmlEntities(message)}{' '}
@@ -63,7 +62,7 @@ export const CheckboxInput = (props) => {
               {max_checked < 50 && ` (Max: ${max_checked})`}
             </NoticeBox>
           </Stack.Item>
-          <Stack.Item grow mt={0}>
+          <Stack.Item grow>
             <Section fill scrollable>
               <Table>
                 {toDisplay.map((item, index) => (
@@ -86,21 +85,17 @@ export const CheckboxInput = (props) => {
               </Table>
             </Section>
           </Stack.Item>
-          <Stack m={1} mb={0}>
+          <Stack m={1}>
             <Stack.Item>
               <Tooltip content="Search" position="bottom">
                 <Icon name="search" mt={0.5} />
               </Tooltip>
             </Stack.Item>
             <Stack.Item grow>
-              <Input
-                fluid
-                value={searchQuery}
-                onChange={(value: string) => setSearchQuery(value)}
-              />
+              <Input fluid value={searchQuery} onChange={setSearchQuery} />
             </Stack.Item>
           </Stack>
-          <Stack.Item mt={0.7}>
+          <Stack.Item>
             <Section>
               <InputButtons input={selections} />
             </Section>
