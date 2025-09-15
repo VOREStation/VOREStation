@@ -135,6 +135,7 @@
 	var/datum/identification/identity = null
 	var/identity_type = /datum/identification
 	var/init_hide_identity = FALSE // Set to true to automatically obscure the object on initialization.
+	var/obj/item/tethered_host_item = null // If linked to a host by a tethered_item component
 
 	//Vorestuff
 	var/trash_eatable = TRUE
