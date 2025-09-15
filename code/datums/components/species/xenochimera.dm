@@ -269,11 +269,11 @@
 		return
 	owner.LoadComponent(/datum/component/hallucinations/xenochimera)
 
-/obj/screen/xenochimera
+/atom/movable/screen/xenochimera
 	icon = 'icons/mob/chimerahud.dmi'
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/screen/xenochimera/danger_level
+/atom/movable/screen/xenochimera/danger_level
 	name = "danger level"
 	icon_state = "danger00"		//first number is bool of whether or not we're in danger, second is whether or not we're feral
 	alpha = 200
@@ -331,7 +331,7 @@
 
 		//Scary spawnerization.
 		set_revival_delay(time)
-		owner.throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
+		owner.throw_alert("regen", /atom/movable/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_ready)), time SECONDS, TIMER_DELETE_ME)
 
 	//Clicked regen while NOT dead
@@ -340,7 +340,7 @@
 
 		//Waiting for regen after being alive
 		set_revival_delay(time)
-		owner.throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
+		owner.throw_alert("regen", /atom/movable/screen/alert/xenochimera/reconstitution)
 		addtimer(CALLBACK(src, PROC_REF(chimera_regenerate_nutrition)), time SECONDS, TIMER_DELETE_ME)
 	owner.lying = TRUE
 	// open_appearance_editor()
@@ -357,7 +357,7 @@
 	revive_ready = REVIVING_DONE
 	owner << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
 	owner.clear_alert("regen")
-	owner.throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+	owner.throw_alert("hatch", /atom/movable/screen/alert/xenochimera/readytohatch)
 
 /datum/component/xenochimera/proc/chimera_regenerate_ready()
 	if(!owner)
@@ -367,7 +367,7 @@
 		to_chat(owner, span_notice("Your body has recovered from its ordeal, ready to regenerate itself again."))
 		revive_ready = REVIVING_READY //reset their cooldown
 		owner.clear_alert("regen")
-		owner.throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		owner.throw_alert("hatch", /atom/movable/screen/alert/xenochimera/readytohatch)
 
 	// Was dead, still dead.
 	else
@@ -376,7 +376,7 @@
 		revive_ready = REVIVING_DONE
 		owner << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
 		owner.clear_alert("regen")
-		owner.throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		owner.throw_alert("hatch", /atom/movable/screen/alert/xenochimera/readytohatch)
 
 /mob/living/carbon/human/proc/hatch()
 	set name = "Hatch"

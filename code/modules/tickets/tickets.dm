@@ -163,7 +163,7 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 		if(!only_alert)
 			C.current_ticket.AddInteraction("Client reconnected.")
 		C.current_ticket.initiator = C
-		C.current_ticket.initiator.mob?.throw_alert("open ticket", /obj/screen/alert/open_ticket)
+		C.current_ticket.initiator.mob?.throw_alert("open ticket", /atom/movable/screen/alert/open_ticket)
 
 //Dissasociate ticket
 /datum/tickets/proc/ClientLogout(client/C)
@@ -342,7 +342,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	//TC.T = src
 	//TC.tgui_interact(C.mob)
 
-	C.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
+	C.mob.throw_alert("open ticket", /atom/movable/screen/alert/open_ticket)
 
 /datum/ticket/Destroy()
 	RemoveActive()
@@ -474,7 +474,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	message_admins(msg)
 	log_admin(msg)
 	feedback_inc("ticket_reopen")
-	initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
+	initiator.mob.throw_alert("open ticket", /atom/movable/screen/alert/open_ticket)
 	//TicketPanel()	//can only be done from here, so refresh it
 
 	SSwebhooks.send(

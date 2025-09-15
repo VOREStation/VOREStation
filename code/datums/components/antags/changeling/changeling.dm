@@ -177,7 +177,7 @@ var/list/datum/power/changeling/powerinstances = list()
 				add_verb(src, P.verbpath)
 			if(P.make_hud_button)
 				if(!src.ability_master)
-					src.ability_master = new /obj/screen/movable/ability_master(src)
+					src.ability_master = new /atom/movable/screen/movable/ability_master(src)
 				src.ability_master.add_ling_ability(
 					object_given = src,
 					verb_given = P.verbpath,
@@ -215,7 +215,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	for(var/datum/power/changeling/P in comp.purchased_powers)
 		if(P.isVerb)
 			remove_verb(src, P.verbpath)
-			var/obj/screen/ability/verb_based/changeling/C = ability_master.get_ability_by_proc_ref(P.verbpath)
+			var/atom/movable/screen/ability/verb_based/changeling/C = ability_master.get_ability_by_proc_ref(P.verbpath)
 			if(C)
 				ability_master.remove_ability(C)
 
@@ -407,7 +407,7 @@ var/list/datum/power/changeling/powerinstances = list()
 	if(Thepower.make_hud_button && Thepower.isVerb)
 		if(owner.ability_master)
 			QDEL_NULL(owner.ability_master)
-			owner.ability_master = new /obj/screen/movable/ability_master(owner)
+			owner.ability_master = new /atom/movable/screen/movable/ability_master(owner)
 		owner.ability_master.add_ling_ability(
 			object_given = owner,
 			verb_given = Thepower.verbpath,

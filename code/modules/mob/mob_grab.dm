@@ -19,7 +19,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "reinforce"
 	item_flags = DROPDEL | NOSTRIP
-	var/obj/screen/grab/hud = null
+	var/atom/movable/screen/grab/hud = null
 	var/mob/living/affecting = null
 	var/mob/living/carbon/human/assailant = null
 	var/state = GRAB_PASSIVE
@@ -47,7 +47,7 @@
 	affecting.reveal(span_warning("You are revealed as [assailant] grabs you."))
 	assailant.reveal(span_warning("You reveal yourself as you grab [affecting]."))
 
-	hud = new /obj/screen/grab(src)
+	hud = new /atom/movable/screen/grab(src)
 	hud.icon_state = "reinforce"
 	icon_state = "grabbed"
 	hud.name = "reinforce grab"
@@ -230,7 +230,7 @@
 		if(EAST)
 			animate(affecting, pixel_x =-shift, pixel_y = initial(affecting.pixel_y), 5, 1, LINEAR_EASING)
 
-/obj/item/grab/proc/s_click(obj/screen/S)
+/obj/item/grab/proc/s_click(atom/movable/screen/S)
 	if(QDELETED(src))
 		return
 	if(!affecting)

@@ -75,7 +75,7 @@
 	voice_mobs.Add(new_voice)
 	GLOB.listening_objects |= src
 
-	var/obj/screen/blackness = new() 	//Makes a black screen, so the candidate can't see what's going on before actually 'connecting' to the communicator.
+	var/atom/movable/screen/blackness = new() 	//Makes a black screen, so the candidate can't see what's going on before actually 'connecting' to the communicator.
 	blackness.screen_loc = ui_entire_screen
 	blackness.icon = 'icons/effects/effects.dmi'
 	blackness.icon_state = "1"

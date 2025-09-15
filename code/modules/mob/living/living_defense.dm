@@ -370,7 +370,7 @@
 	O.loc = src
 	src.embedded += O
 	add_verb(src, /mob/proc/yank_out_object)
-	throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
+	throw_alert("embeddedobject", /atom/movable/screen/alert/embeddedobject)
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)
@@ -420,7 +420,7 @@
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
 		new/obj/effect/dummy/lighting_obj/moblight/fire(src)
-		throw_alert("fire", /obj/screen/alert/fire)
+		throw_alert("fire", /atom/movable/screen/alert/fire)
 		update_fire()
 
 /mob/living/proc/ExtinguishMob()

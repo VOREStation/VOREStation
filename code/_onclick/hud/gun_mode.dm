@@ -1,20 +1,20 @@
-/obj/screen/gun
+/atom/movable/screen/gun
 	name = "gun"
 	icon = 'icons/mob/screen1.dmi'
 	master = null
 	dir = 2
 
-/obj/screen/gun/Click(location, control, params)
+/atom/movable/screen/gun/Click(location, control, params)
 	if(!usr)
 		return
 	return 1
 
-/obj/screen/gun/move
+/atom/movable/screen/gun/move
 	name = "Allow Movement"
 	icon_state = "no_walk0"
 	screen_loc = ui_gun2
 
-/obj/screen/gun/move/Click(location, control, params)
+/atom/movable/screen/gun/move/Click(location, control, params)
 	if(..())
 		var/mob/living/user = usr
 		if(istype(user))
@@ -23,12 +23,12 @@
 		return 1
 	return 0
 
-/obj/screen/gun/item
+/atom/movable/screen/gun/item
 	name = "Allow Item Use"
 	icon_state = "no_item0"
 	screen_loc = ui_gun1
 
-/obj/screen/gun/item/Click(location, control, params)
+/atom/movable/screen/gun/item/Click(location, control, params)
 	if(..())
 		var/mob/living/user = usr
 		if(istype(user))
@@ -37,12 +37,12 @@
 		return 1
 	return 0
 
-/obj/screen/gun/mode
+/atom/movable/screen/gun/mode
 	name = "Toggle Gun Mode"
 	icon_state = "gun0"
 	screen_loc = ui_gun_select
 
-/obj/screen/gun/mode/Click(location, control, params)
+/atom/movable/screen/gun/mode/Click(location, control, params)
 	if(..())
 		var/mob/living/user = usr
 		if(istype(user))
@@ -51,12 +51,12 @@
 		return 1
 	return 0
 
-/obj/screen/gun/radio
+/atom/movable/screen/gun/radio
 	name = "Allow Radio Use"
 	icon_state = "no_radio0"
 	screen_loc = ui_gun4
 
-/obj/screen/gun/radio/Click(location, control, params)
+/atom/movable/screen/gun/radio/Click(location, control, params)
 	if(..())
 		var/mob/living/user = usr
 		if(istype(user))
