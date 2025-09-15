@@ -54,9 +54,9 @@
 	*/
 	if(!src.network || src.network.len < 1)
 		if(loc)
-			error("[src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
+			log_world("## ERROR [src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
 		else
-			error("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
+			log_world("## ERROR [src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
 	// VOREStation Edit Start - Make mapping with cameras easier
@@ -121,13 +121,14 @@
 		return
 	destroy()
 
-/obj/machinery/camera/hitby(AM as mob|obj)
+/obj/machinery/camera/hitby(atom/movable/source)
 	..()
-	if (istype(AM, /obj))
-		var/obj/item/O = AM
-		if(O.throwforce >= src.toughness)
-			visible_message(span_boldwarning("[src] was hit by [O]."))
-		take_damage(O.throwforce)
+	if (!isobj(source))
+		return
+	var/obj/item/O = source
+	if(O.throwforce >= src.toughness)
+		visible_message(span_boldwarning("[src] was hit by [O]."))
+	take_damage(O.throwforce)
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
 	src.view_range = num

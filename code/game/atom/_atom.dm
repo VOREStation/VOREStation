@@ -7,7 +7,7 @@
 /atom
 	layer = TURF_LAYER //This was here when I got here. Why though?
 	var/level = 2
-	var/flags = 0
+	var/flags = NONE
 	var/was_bloodied
 	var/blood_color
 	var/pass_flags = 0
@@ -67,6 +67,17 @@
 		QDEL_NULL(light)
 	if(forensic_data)
 		QDEL_NULL(forensic_data)
+	// Checking length(overlays) before cutting has significant speed benefits
+	if (length(overlays))
+		overlays.Cut()
+	if (length(our_overlays))
+		our_overlays.Cut()
+	if (length(priority_overlays))
+		priority_overlays.Cut()
+	if (length(managed_vis_overlays))
+		managed_vis_overlays.Cut()
+	if (length(original_atom))
+		original_atom.Cut()
 	return ..()
 
 /atom/proc/reveal_blood()
@@ -273,9 +284,9 @@
 	return
 
 
-/atom/proc/hitby(atom/movable/AM as mob|obj)
+/atom/proc/hitby(atom/movable/source)
 	if (density)
-		AM.throwing = 0
+		source.throwing = 0
 	return
 
 //returns 1 if made bloody, returns 0 otherwise

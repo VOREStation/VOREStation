@@ -9,7 +9,7 @@
 	var/list/octaves = list(3, 3, 3, 3, 3, 3, 3)
 	var/list/accents = list("n", "n", "n", "n", "n", "n", "n")
 	for(var/line in lines)
-		var/list/chords = splittext(lowertext(line), ",")
+		var/list/chords = splittext(LOWER_TEXT(line), ",")
 		for(var/chord in chords)
 			var/list/compiled_chord = list()
 			var/tempodiv = 1
@@ -46,7 +46,7 @@
  * * acc is either "b", "n", or "#"
  * * oct is 1-8 (or 9 for C)
  */
-/datum/song/proc/playkey_legacy(note, acc as text, oct, mob/user)
+/datum/song/proc/playkey_legacy(note, acc as text, oct, atom/player)
 	// handle accidental -> B<>C of E<>F
 	if(acc == "b" && (note == 3 || note == 6)) // C or F
 		if(note == 3)
@@ -70,7 +70,7 @@
 		return
 
 	// now generate name
-	var/soundfile = "sound/instruments/[cached_legacy_dir]/[ascii2text(note+64)][acc][oct].[cached_legacy_ext]"
+	var/soundfile = "sound/runtime/instruments/[cached_legacy_dir]/[ascii2text(note+64)][acc][oct].[cached_legacy_ext]"
 	soundfile = file(soundfile)
 	// make sure the note exists
 	if(!fexists(soundfile))
@@ -80,14 +80,13 @@
 	if((world.time - MUSICIAN_HEARCHECK_MINDELAY) > last_hearcheck)
 		do_hearcheck()
 	var/sound/music_played = sound(soundfile)
-	for(var/mob/M as anything in hearing_mobs)
-		/* Would be nice
-		if(user && HAS_TRAIT(user, TRAIT_MUSICIAN) && isliving(M))
-			var/mob/living/L = M
-			L.apply_status_effect(STATUS_EFFECT_GOOD_MUSIC)
-		*/
-		if(!M)
-			hearing_mobs -= M
+	for(var/i in hearing_mobs)
+		var/mob/M = i
+		//if(player && HAS_TRAIT(player, TRAIT_MUSICIAN) && isliving(M))
+		//	var/mob/living/L = M
+		//	L.apply_status_effect(/datum/status_effect/good_music)
+		var/pref_volume = M?.client?.prefs.read_preference(/datum/preference/numeric/volume/sound_instruments)
+		if(!pref_volume)
 			continue
-		M.playsound_local(source, null, volume * using_instrument.volume_multiplier, S = music_played, preference = /datum/preference/toggle/instrument_toggle, volume_channel = VOLUME_CHANNEL_INSTRUMENTS)
+		M.playsound_local(source, null, volume * using_instrument.volume_multiplier * (pref_volume/100), S = music_played)
 		// Could do environment and echo later but not for now

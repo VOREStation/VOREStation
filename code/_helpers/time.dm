@@ -50,11 +50,10 @@ var/next_station_date_change = 1 DAY
 		station_date = num2text((text2num(time2text(REALTIMEOFDAY, "YYYY"))+300)) + "-" + time2text(REALTIMEOFDAY, "MM-DD") //VOREStation Edit
 	return station_date
 
-//ISO 8601
-/proc/time_stamp()
-	var/date_portion = time2text(world.timeofday, "YYYY-MM-DD")
-	var/time_portion = time2text(world.timeofday, "hh:mm:ss")
-	return "[date_portion]T[time_portion]"
+/// Returns UTC timestamp with the specifified format and optionally deciseconds
+/proc/time_stamp(format = "hh:mm:ss", show_ds)
+	var/time_string = time2text(world.timeofday, format, TIMEZONE_UTC)
+	return show_ds ? "[time_string]:[world.timeofday % 10]" : time_string
 
 /proc/get_timezone_offset()
 	var/midnight_gmt_here = text2num(time2text(0,"hh")) * 36000

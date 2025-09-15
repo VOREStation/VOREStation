@@ -216,7 +216,7 @@
 	var/has_fine_manipulation = 1							// Can use small items.
 	var/siemens_coefficient = 1								// The lower, the thicker the skin and better the insulation.
 	var/darksight = 2										// Native darksight distance.
-	var/flags = 0											// Various specific features.
+	var/flags = NONE											// Various specific features.
 	var/appearance_flags = 0								// Appearance/display related features.
 	var/spawn_flags = 0										// Flags that specify who can spawn as this species
 
@@ -490,7 +490,7 @@
 		var/organ_type = has_organ[organ_tag]
 		var/obj/item/organ/O = new organ_type(H,1)
 		if(organ_tag != O.organ_tag)
-			warning("[O.type] has a default organ tag \"[O.organ_tag]\" that differs from the species' organ tag \"[organ_tag]\". Updating organ_tag to match.")
+			WARNING("[O.type] has a default organ tag \"[O.organ_tag]\" that differs from the species' organ tag \"[organ_tag]\". Updating organ_tag to match.")
 			O.organ_tag = organ_tag
 		H.internal_organs_by_name[organ_tag] = O
 

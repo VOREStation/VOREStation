@@ -1,0 +1,5 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - qol: "you can now sippy as low as 1u at a time from most glasses"
+  - spellcheck: "added a 'from' to the drinking text because the name and icon update *before* the message goes through"

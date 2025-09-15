@@ -71,11 +71,11 @@
 		if(my_shield.active)
 			set_ready_state(FALSE)
 			step_delay = 4
-			log_message("Activated.")
+			src.mecha_log_message("Activated.")
 		else
 			set_ready_state(TRUE)
 			step_delay = 1
-			log_message("Deactivated.")
+			src.mecha_log_message("Deactivated.")
 
 /obj/item/mecha_parts/mecha_equipment/combat_shield/Topic(href, href_list)
 	..()

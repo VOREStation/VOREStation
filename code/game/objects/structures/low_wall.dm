@@ -32,7 +32,7 @@
 	icon_state = "blank"
 	var/turf/T = loc
 	if(!isturf(T) || T.density || T.opacity)
-		warning("[src] on invalid turf [T] at [x],[y],[z]")
+		WARNING("[src] on invalid turf [T] at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
 
 	if(!materialtype)
@@ -257,14 +257,14 @@
 	take_damage(damage)
 	return
 
-/obj/structure/low_wall/hitby(AM as mob|obj, var/speed)
+/obj/structure/low_wall/hitby(atom/movable/source, var/speed)
 	..()
 	var/tforce = 0
-	if(ismob(AM)) // All mobs have a multiplier and a size according to mob_defines.dm
-		var/mob/I = AM
+	if(ismob(source)) // All mobs have a multiplier and a size according to mob_defines.dm
+		var/mob/I = source
 		tforce = I.mob_size * (speed/THROWFORCE_SPEED_DIVISOR)
-	else if(isitem(AM))
-		var/obj/item/O = AM
+	else if(isitem(source))
+		var/obj/item/O = source
 		tforce = O.throwforce * (speed/THROWFORCE_SPEED_DIVISOR)
 	if (tforce < 15)
 		return
@@ -397,7 +397,7 @@
 	icon_state = "preview_glass"
 	basestate = "window"
 	alpha = 180
-	flags = 0
+	flags = NONE
 	fulltile = TRUE
 	maxhealth = 24
 	glasstype = /obj/item/stack/material/glass
@@ -575,7 +575,7 @@
 /obj/effect/low_wall_spawner/Initialize(mapload)
 	. = ..()
 	if(locate(/obj/effect/low_wall_spawner) in oview(0, src))
-		warning("Duplicate low wall spawners in [x],[y],[z]!")
+		WARNING("Duplicate low wall spawners in [x],[y],[z]!")
 		return INITIALIZE_HINT_QDEL
 
 	if(low_wall_type)

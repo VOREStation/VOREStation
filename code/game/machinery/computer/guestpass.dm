@@ -216,7 +216,7 @@
 					accesses.Add(A)
 				else
 					to_chat(ui.user, span_warning("Invalid selection, please consult technical support if there are any issues."))
-					log_debug("[key_name_admin(ui.user)] tried selecting an invalid guest pass terminal option.")
+					log_admin("[key_name_admin(ui.user)] tried selecting an invalid guest pass terminal option.")
 		if("id")
 			if(giver)
 				if(ishuman(ui.user))
