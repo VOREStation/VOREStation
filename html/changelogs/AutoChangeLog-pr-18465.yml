@@ -1,0 +1,5 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscadd: "Added an implantable health scanner"
+  - bugfix: "fixed incorrect names"
