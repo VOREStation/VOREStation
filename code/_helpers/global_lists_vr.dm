@@ -199,6 +199,7 @@ GLOBAL_LIST_INIT(item_tf_options, list(
 	"Footwear - Shoes (black)"					= /obj/item/clothing/shoes/black,
 	"Footwear - Workboots"						= /obj/item/clothing/shoes/boots/workboots,
 	"Footwear - Workboots (toe-less)"			= /obj/item/clothing/shoes/boots/workboots/toeless,
+	// Hand slot items
 	"Gloves - Evening"							= /obj/item/clothing/gloves/evening,
 	"Gloves - Black"							= /obj/item/clothing/gloves/black,
 	// Suit slot items
@@ -245,7 +246,8 @@ GLOBAL_LIST_INIT(item_tf_options, list(
 	"Item - Plushie (snake)"					= /obj/item/toy/plushie/snakeplushie,
 	"Item - Plushie (spider)"					= /obj/item/toy/plushie/spider,
 	"Item - Plushie (vox)"						= /obj/item/toy/plushie/vox,
-	"Item - Towel"								= /obj/item/towel))
+	"Item - Towel"								= /obj/item/towel
+	))
 
 GLOBAL_LIST_INIT(tf_vore_egg_types, list(
 	"Unathi" 		= /obj/item/storage/vore_egg/unathi,
