@@ -1019,7 +1019,7 @@
 	else if(isbelly(loc))
 		var/obj/belly/belly = loc
 		if(message)
-			to_chat(src, span_userdanger("You throw up inside [belly.owner]'s [belly]!"))
+			to_chat(src, span_bolddanger("You throw up inside [belly.owner]'s [belly]!"))
 		distance = 0
 	else
 		if(message)
