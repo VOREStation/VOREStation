@@ -1,7 +1,9 @@
 import {
   CheckboxInput,
+  type Feature,
   FeatureNumberInput,
   type FeatureNumeric,
+  FeatureSliderInput,
   type FeatureToggle,
 } from '../base';
 
@@ -24,6 +26,13 @@ export const SOUND_AMBIENCE: FeatureToggle = {
   category: 'SOUNDS',
   description: 'Enable hearing ambient sounds and music.',
   component: CheckboxInput,
+};
+
+export const sound_instruments: Feature<number> = {
+  name: 'Instruments volume',
+  category: 'SOUND',
+  description: 'Volume of instruments.',
+  component: FeatureSliderInput,
 };
 
 export const SOUND_JUKEBOX: FeatureToggle = {

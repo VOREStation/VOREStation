@@ -261,11 +261,11 @@
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
+/mob/living/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
 	if(is_incorporeal())
 		return
-	if(istype(AM,/obj/item))
-		var/obj/item/O = AM
+	if(isitem(source))
+		var/obj/item/O = source
 		if(stat != DEAD && trash_catching && vore_selected)
 			if(adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
 				visible_message(span_vwarning("[O] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
@@ -330,8 +330,8 @@
 
 	//VORESTATION EDIT START - Allows for thrown vore!
 	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
-	if(isliving(AM))
-		var/mob/living/thrown_mob = AM
+	if(isliving(source))
+		var/mob/living/thrown_mob = source
 
 		if(!allowmobvore && isanimal(thrown_mob) && !thrown_mob.ckey) //Does the person being hit not allow mob vore and the perrson being thrown a simple_mob?
 			return

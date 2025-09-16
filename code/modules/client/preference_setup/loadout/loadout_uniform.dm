@@ -216,6 +216,14 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/uniform/loincloth
+	display_name = "loincloth"
+	path = /obj/item/clothing/under/skirt/loincloth
+
+/datum/gear/uniform/loincloth/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/uniform/reddress
 	display_name = "red dress with belt"
 	path = /obj/item/clothing/under/dress/darkred

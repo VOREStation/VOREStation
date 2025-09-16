@@ -69,6 +69,7 @@
 	name = "Immovable Rod"
 	desc = "What the fuck is that?"
 	icon = 'icons/obj/objects.dmi'
+	w_class = 100 //Affects how much damage it does to stuff
 	icon_state = "immrod"
 	density = TRUE
 	anchored = TRUE

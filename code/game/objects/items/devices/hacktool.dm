@@ -119,7 +119,7 @@
 
 		if(hack_result && in_hack_mode)
 			to_chat(user, span_notice("Your hacking attempt was succesful!"))
-			user.playsound_local(get_turf(src), 'sound/instruments/piano/An6.ogg', 50)
+			user.playsound_local(get_turf(src), 'sound/runtime/instruments/piano/An6.ogg', 50)
 		else
 			to_chat(user, span_warning("Your hacking attempt failed!"))
 			return 0

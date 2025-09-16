@@ -15,8 +15,8 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	w_class = ITEMSIZE_NORMAL
 	flags = NOCONDUCT
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
-	var/mopping = 0
-	var/mopcount = 0
+	///How long it takes to mop a tile.
+	var/mop_time = 4 SECONDS
 
 /obj/item/mop/Initialize(mapload)
 	. = ..()
@@ -31,7 +31,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 
 		user.visible_message(span_warning("[user] begins to clean \the [get_turf(A)]."))
 
-		if(do_after(user, 4 SECONDS, target = src))
+		if(do_after(user, mop_time, target = src, max_interact_count = 9))
 			var/turf/T = get_turf(A)
 			if(T)
 				T.wash(CLEAN_SCRUB)
@@ -59,23 +59,4 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	w_class = ITEMSIZE_NORMAL
 	flags = NOCONDUCT
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
-
-/obj/item/mop/advanced/Initialize(mapload)
-	. = ..()
-	create_reagents(30)
-
-/obj/item/mop/advanced/afterattack(atom/A, mob/user, proximity)
-	if(!proximity) return
-	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
-		if(reagents.total_volume < 1)
-			to_chat(user, span_notice("Your mop is dry!"))
-			return
-
-		user.visible_message(span_warning("[user] begins to clean \the [get_turf(A)]."))
-
-		if(do_after(user, 2 SECONDS, target = src))
-			var/turf/T = get_turf(A)
-			if(T)
-				T.wash(CLEAN_SCRUB)
-				reagents.trans_to_turf(T, 1, 10)
-			to_chat(user, span_notice("You have finished mopping!"))
+	mop_time = 2 SECONDS
