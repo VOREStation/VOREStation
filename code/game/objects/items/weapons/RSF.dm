@@ -56,7 +56,7 @@ RSF
 
 /obj/item/rsf/CtrlClick(mob/living/user)
 	if(!Adjacent(user) || !istype(user))
-		balloon_alert(user,"You are too far away.")
+		balloon_alert(user,"you are too far away.")
 		return
 	var/glass_choice = tgui_input_list(user, "Please choose which type of glass you would like to produce.", "Glass Choice", container_types)
 
