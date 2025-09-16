@@ -681,5 +681,5 @@
 		span_notice("\The [user] rolls a virtual [sides]-sided die. The result is [result]."),
 		span_notice("You roll a virtual [sides]-sided die. The result is [result]."),
 		span_notice("You hear synthesized audio of clattering plastic with a soft ping."))
-	user.balloon_alert_visible("Rolled: [result]", blind_message = "*clatter, ping!*")
+	user.balloon_alert_visible("rolled: [result]", blind_message = "*clatter, ping!*")
 	playsound(user, 'sound/effects/diceroll_robotic.ogg', 75, 0)
