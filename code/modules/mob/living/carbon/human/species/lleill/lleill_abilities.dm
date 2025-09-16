@@ -428,7 +428,12 @@
 									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
 									"Goat" = /mob/living/simple_mob/animal/goat,
 									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
-									"Goose" = /mob/living/simple_mob/animal/space/goose
+									"Goose" = /mob/living/simple_mob/animal/space/goose,
+									"Hyena" = /mob/living/simple_mob/animal/hyena,
+									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
+									"Reindeer" = /mob/living/simple_mob/vore/reindeer,
+									"Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
+									"Slug" = /mob/living/simple_mob/vore/slug
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
@@ -622,7 +627,12 @@
 									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
 									"Goat" = /mob/living/simple_mob/animal/goat,
 									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
-									"Goose" = /mob/living/simple_mob/animal/space/goose
+									"Goose" = /mob/living/simple_mob/animal/space/goose,
+									"Hyena" = /mob/living/simple_mob/animal/hyena,
+									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
+									"Reindeer" = /mob/living/simple_mob/vore/reindeer,
+									"Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
+									"Slug" = /mob/living/simple_mob/vore/slug
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
