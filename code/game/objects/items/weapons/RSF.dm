@@ -130,4 +130,4 @@ RSF
 			R.cell.use(used_energy)
 	else
 		stored_matter--
-		balloon_alert(user,"the fabricator now holds [stored_matter]/30 fabrication-units.")
+		to_chat(user,span_notice("the fabricator now holds [stored_matter]/30 fabrication-units."))
