@@ -101,6 +101,7 @@
 #include "language_tests.dm"
 #include "loadout_tests.dm"
 #include "map_tests.dm"
+#include "mapping.dm"
 #include "material_tests.dm"
 // #include "nuke_cinematic.dm" // TODO: This is probably fixed later on
 #include "poster_tests.dm"

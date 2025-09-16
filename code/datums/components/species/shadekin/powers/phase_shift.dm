@@ -76,7 +76,7 @@
 		ability_cost = ability_cost + ( 15 * watcher )
 	/*
 	if(!(SK.in_phase))
-		log_debug("[src] attempted to shift with [watcher] visible Carbons with a  cost of [ability_cost] in a darkness level of [darkness]")
+		to_chat(world, "[src] attempted to shift with [watcher] visible Carbons with a  cost of [ability_cost] in a darkness level of [darkness]")
 	*/
 
 	if(SK.doing_phase)

@@ -28,33 +28,12 @@
 
 	var/integrity = 80
 
-/obj/machinery/power/emitter/verb/rotate_clockwise()
-	set name = "Rotate Emitter Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened to the floor!")
-		return 0
-	src.set_dir(turn(src.dir, 270))
-	return 1
-
-/obj/machinery/power/emitter/verb/rotate_counterclockwise()
-	set name = "Rotate Emitter Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened to the floor!")
-		return 0
-	src.set_dir(turn(src.dir, 90))
-	return 1
-
 /obj/machinery/power/emitter/Initialize(mapload)
 	. = ..()
 	if(state == 2 && anchored)
 		connect_to_network()
 	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/power/emitter/Destroy()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)

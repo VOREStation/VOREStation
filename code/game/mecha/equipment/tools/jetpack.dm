@@ -35,14 +35,14 @@
 	chassis.proc_res["dyndomove"] = src
 	ion_trail.start()
 	occupant_message("Activated")
-	log_message("Activated")
+	src.mecha_log_message("Activated")
 
 /obj/item/mecha_parts/mecha_equipment/tool/jetpack/proc/turn_off()
 	set_ready_state(TRUE)
 	chassis.proc_res["dyndomove"] = null
 	ion_trail.stop()
 	occupant_message("Deactivated")
-	log_message("Deactivated")
+	src.mecha_log_message("Deactivated")
 
 /obj/item/mecha_parts/mecha_equipment/tool/jetpack/proc/dyndomove(direction)
 	if(!action_checks())
@@ -80,7 +80,7 @@
 				if(!chassis.check_for_support())
 					chassis.float_direction = direction
 					chassis.start_process(MECHA_PROC_MOVEMENT)
-					chassis.log_message(span_warning("Movement control lost. Inertial movement started."))
+					chassis.mecha_log_message(span_warning("Movement control lost. Inertial movement started."))
 			if(chassis.do_after_action(get_step_delay()))
 				chassis.can_move = 1
 			return 1
