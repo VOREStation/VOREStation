@@ -986,6 +986,7 @@ About the new airlock wires panel:
 	if (operating && !forced) return FALSE
 
 	locked = TRUE
+	SEND_SIGNAL(src, COMSIG_AIRLOCK_SET_BOLT, locked)
 	playsound(src, bolt_down_sound, 30, 0, 3, volume_channel = VOLUME_CHANNEL_DOORS)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
@@ -1000,6 +1001,7 @@ About the new airlock wires panel:
 		if(operating || !arePowerSystemsOn() || wires.is_cut(WIRE_DOOR_BOLTS)) return
 
 	locked = FALSE
+	SEND_SIGNAL(src, COMSIG_AIRLOCK_SET_BOLT, locked)
 	playsound(src, bolt_up_sound, 30, 0, 3, volume_channel = VOLUME_CHANNEL_DOORS)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)

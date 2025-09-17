@@ -180,6 +180,8 @@
 		return
 	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
 		return
+	if(SEND_SIGNAL(user, COMSIG_MOB_BUMPED_DOOR_OPEN, src) & DOOR_STOP_BUMP)
+		return
 	add_fingerprint(user)
 	if(density)
 		if(allowed(user))
@@ -466,6 +468,8 @@
 		return
 	operating = 1
 
+	SEND_SIGNAL(src, COMSIG_DOOR_OPEN, forced)
+
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(0)
@@ -520,6 +524,8 @@
 	if(!can_close(forced))
 		return
 	operating = 1
+
+	SEND_SIGNAL(src, COMSIG_DOOR_CLOSE, forced)
 
 	close_door_at = 0
 	do_animate("closing")
