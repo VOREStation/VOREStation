@@ -650,13 +650,13 @@
 			var/datum/component/xenochimera/xc = H.get_xenochimera_component()
 			if(xc)
 				if(xc.feral > 50)
-					to_chat(usr, span_warning("You are currently <b>completely feral."))
+					to_chat(usr, span_warning("You are currently <b>completely feral.</b>"))
 				else if(xc.feral > 10)
-					to_chat(usr, span_warning("You are currently <b>crazed and confused."))
+					to_chat(usr, span_warning("You are currently <b>crazed and confused.</b>"))
 				else if(xc.feral > 0)
-					to_chat(usr, span_warning("You are currently <b>acting on instinct."))
+					to_chat(usr, span_warning("You are currently <b>acting on instinct.</b>"))
 				else
-					to_chat(usr, span_notice("You are currently <b>calm and collected."))
+					to_chat(usr, span_notice("You are currently <b>calm and collected.</b>"))
 				if(xc.feral > 0)
 					var/feral_passing = TRUE
 					if(H.traumatic_shock > min(60, H.nutrition/10))
