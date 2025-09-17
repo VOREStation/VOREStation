@@ -477,7 +477,7 @@ About the new airlock wires panel:
 	. = ..()
 
 /obj/machinery/door/airlock/attack_hand(mob/user)
-	if(!istype(user, /mob/living/silicon))
+	if(!issilicon(user))
 		if(isElectrified())
 			if(shock(user, 100))
 				return
@@ -656,8 +656,7 @@ About the new airlock wires panel:
 	return p_open && (operating < 0 || (!operating && welded && !arePowerSystemsOn() && density && (!locked || (stat & BROKEN))))
 
 /obj/machinery/door/airlock/attackby(obj/item/C, mob/user)
-	//to_world("airlock attackby src [src] obj [C] mob [user]")
-	if(!istype(user, /mob/living/silicon))
+	if(!issilicon(user))
 		if(isElectrified() && shock(user, 75))
 			return
 
@@ -678,18 +677,17 @@ About the new airlock wires panel:
 		return
 
 	if(C.has_tool_quality(TOOL_SCREWDRIVER))
-		if (p_open)
+		if(!p_open)
 			p_open = TRUE
 			playsound(src, C.usesound, 50, 1)
 			update_icon()
 			return attack_hand(user)
-
-		if (stat & BROKEN)
+		if(stat & BROKEN)
 			to_chat(user, span_warning("The panel is broken and cannot be closed."))
-		else
-			p_open = FALSE
-			playsound(src, C.usesound, 50, 1)
-			update_icon()
+			return
+		p_open = FALSE
+		playsound(src, C.usesound, 50, 1)
+		update_icon()
 		return
 
 	if(C.has_tool_quality(TOOL_WIRECUTTER))

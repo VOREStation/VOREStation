@@ -18,7 +18,7 @@
 	var/autoclose = 0
 	var/glass = 0
 	var/normalspeed = 1
-	var/heat_proof = 0 // For glass airlocks/opacity firedoors
+	var/heat_proof = FALSE // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
 	var/maxhealth = 300
 	var/health
@@ -301,7 +301,7 @@
 				playsound(src, welder.usesound, 50, 1)
 				if(do_after(user, 1 SECOND * welder.toolspeed, target = src) && welder && welder.isOn())
 					to_chat(user, span_notice("You finish reinforcing \the [src]."))
-					heat_proof = 1
+					heat_proof = TRUE
 					update_icon()
 					reinforcing = 0
 			return
@@ -322,19 +322,22 @@
 					update_icon()
 			return
 
+	// Handle signals
+	if(..())
+		return
+
 	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
 	if(density && istype(I, /obj/item) && user.a_intent == I_HURT && !istype(I, /obj/item/card))
-		if(!..()) // Handle signals
-			var/obj/item/W = I
-			user.setClickCooldown(user.get_attack_speed(W))
-			if(W.damtype == BRUTE || W.damtype == BURN)
-				user.do_attack_animation(src)
-				if(W.force < min_force)
-					user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
-				else
-					user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
-					playsound(src, hitsound, 100, 1)
-					take_damage(W.force)
+		var/obj/item/W = I
+		user.setClickCooldown(user.get_attack_speed(W))
+		if(W.damtype == BRUTE || W.damtype == BURN)
+			user.do_attack_animation(src)
+			if(W.force < min_force)
+				user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
+			else
+				user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
+				playsound(src, hitsound, 100, 1)
+				take_damage(W.force)
 		return
 
 	return try_to_activate_door(user)
