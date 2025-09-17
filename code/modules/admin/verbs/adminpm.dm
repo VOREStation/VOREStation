@@ -92,7 +92,7 @@
 		if(!ircreplyamount)	//to prevent people from spamming irc
 			return
 		if(!msg)
-			msg = tgui_input_text(src, "Message:", "Private message to Administrator", multiline = TRUE, encode = FALSE)
+			msg = tgui_input_text(src, "Message:", "Private message to Administrator", multiline = TRUE)
 
 		if(!msg)
 			return
