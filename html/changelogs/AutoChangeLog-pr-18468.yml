@@ -1,5 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - bugfix: "Fixes vomiting in a belly making decals out of the pred"
-  - code_imp: "is_mouth_covered proc makes sure masks cover the face now"
