@@ -1,0 +1,7 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - rscadd: "Added melon liqueur and blue curaco to service borg drink synthesis list."
+  - rscadd: "Service borgs can now synthesize fake casino chips, card decks, and gaming dice packs."
+  - balance: "Service borg grippers can now hold casino chips, card decks, and card hands. Now station-bound entities can gamble and even be dealers!"
+  - qol: "Service borgs now use an input list for their rapid fabricator, as well as cleaning up a lot of needless RSF log spam by replacing them with balloon alerts."

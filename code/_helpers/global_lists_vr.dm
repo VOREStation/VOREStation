@@ -1163,7 +1163,10 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/seeds, \
 	/obj/item/grown, \
 	/obj/item/trash, \
-	/obj/item/reagent_containers/cooking_container
+	/obj/item/reagent_containers/cooking_container, \
+	/obj/item/spacecasinocash_fake, \
+	/obj/item/deck/cards, \
+	/obj/item/hand
 
 #define GRAVEYARD_GRIPPER \
 	/obj/item/seeds, \
