@@ -232,9 +232,10 @@
 	return attack_hand(user)
 
 /obj/machinery/door/attack_hand(mob/user)
-	if(..()) // Blocked by signal handler
-		return TRUE
-	return attempt_to_operate(user)
+	. = ..()
+	if(.)
+		return
+	return try_to_activate_door(user)
 
 /obj/machinery/door/attack_tk(mob/user)
 	if(requiresID() && !allowed(null))
@@ -321,31 +322,25 @@
 
 	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
 	if(density && istype(I, /obj/item) && user.a_intent == I_HURT && !istype(I, /obj/item/card))
-		var/obj/item/W = I
-		user.setClickCooldown(user.get_attack_speed(W))
-		if(W.damtype == BRUTE || W.damtype == BURN)
-			user.do_attack_animation(src)
-			if(W.force < min_force)
-				user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
-			else
-				user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
-				playsound(src, hitsound, 100, 1)
-				take_damage(W.force)
+		if(!..()) // Handle signals
+			var/obj/item/W = I
+			user.setClickCooldown(user.get_attack_speed(W))
+			if(W.damtype == BRUTE || W.damtype == BURN)
+				user.do_attack_animation(src)
+				if(W.force < min_force)
+					user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
+				else
+					user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
+					playsound(src, hitsound, 100, 1)
+					take_damage(W.force)
 		return
 
-	// Check if anything handled by signals block us
-	if(..())
-		return
+	return try_to_activate_door(user)
 
-	// Try opening the door if non of our items worked
-	attempt_to_operate(user)
-
-/obj/machinery/door/proc/attempt_to_operate(mob/user)
-	if(operating > 0 || isrobot(user))
+/obj/machinery/door/proc/try_to_activate_door(mob/user)
+	add_fingerprint(user)
+	if(operating || isrobot(user))
 		return FALSE //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
-	if(operating)
-		return FALSE
-
 	if(allowed(user) && operable())
 		if(density)
 			open()
