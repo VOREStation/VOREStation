@@ -1,0 +1,4 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - rscadd: "Added autowiki functionality to automatically create wiki templates from code"
