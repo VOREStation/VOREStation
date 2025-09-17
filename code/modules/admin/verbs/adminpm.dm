@@ -127,7 +127,6 @@
 				current_ticket.MessageNoRecipient(msg)
 			return
 
-
 	var/rawmsg = msg
 
 	var/keywordparsedmsg = keywords_lookup(msg)
