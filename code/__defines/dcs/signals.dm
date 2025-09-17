@@ -496,7 +496,7 @@
 #define COMSIG_DOOR_CLOSE "door_close"
 ///from /obj/machinery/door/airlock/set_bolt():
 #define COMSIG_AIRLOCK_SET_BOLT "airlock_set_bolt"
-///from /obj/machinery/door/bumpopen(), to the carbon who bumped: (door)
+///from /obj/machinery/door/bumpopen(), to the mob who bumped: (door)
 #define COMSIG_MOB_BUMPED_DOOR_OPEN "mob_bumped_door_open"
 	/// Return to stop the door opening on bump.
 	#define DOOR_STOP_BUMP (1<<0)
