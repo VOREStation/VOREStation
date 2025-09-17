@@ -280,7 +280,7 @@
 	if(AM.is_incorporeal())
 		return
 
-	spread_fire(AM)
+	spreadFire(AM)
 
 	..() // call parent because we moved behavior to parent
 
