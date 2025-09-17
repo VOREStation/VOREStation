@@ -192,8 +192,6 @@
 	if(agony)		apply_effect(agony, AGONY, blocked)
 	if(flammable)	adjust_fire_stacks(flammable)
 	if(ignite)
-		if(ignite >= 3)
-			add_modifier(/datum/modifier/fire/stack_managed/intense, 60 SECONDS)
-		else
-			add_modifier(/datum/modifier/fire/stack_managed, 45 * ignite SECONDS)
+		adjust_fire_stacks(ignite)
+		ignite_mob()
 	return 1

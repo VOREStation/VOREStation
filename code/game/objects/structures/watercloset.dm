@@ -253,8 +253,8 @@
 
 	if(isliving(O))
 		var/mob/living/L = O
-		L.ExtinguishMob()
-		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
+		L.extinguish_mob()
+		L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
 
 	if(iscarbon(O))
 		//flush away reagents on the skin
