@@ -127,7 +127,7 @@ var/last_chew = 0
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
 	if (istype(H.wear_suit, /obj/item/clothing/suit/shibari))
 		var/obj/item/clothing/suit/shibari/s = wear_suit
-		if(s.rope_mode == "Arms" | "Arms and Legs")
+		if(s.rope_mode == "Arms" || s.rope_mode == "Arms and Legs")
 			return
 
 	var/obj/item/organ/external/O = H.organs_by_name[(H.hand ? BP_L_HAND : BP_R_HAND)]
