@@ -1,0 +1,4 @@
+author: "Will"
+delete-after: True
+changes:
+  - qol: "Medical body scanner now shows if a subject is experiencing withdrawal symptoms."
