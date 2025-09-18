@@ -124,6 +124,7 @@
 
 /obj/item/toy/plushie/customizable/dragon
 	name = "custom dragon plushie"
+	desc = "A customizable, modular plushie in the shape of a dragon. How cute!"
 	pokephrase = "Gawr!"
 	possible_overlays = list(
 		"durg_underbelly" = "Underbelly",
