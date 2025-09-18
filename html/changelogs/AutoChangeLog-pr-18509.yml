@@ -1,6 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - balance: "Low Blood Volume from 3 to 2 and the extreme version from 5 to 3."
-  - balance: "Reduced biocompatibility 2->1, 4->2, 8->4."
-  - balance: "Ambulant Blood 1 to 0, this has no effect at all here where changelings are never a risk."
