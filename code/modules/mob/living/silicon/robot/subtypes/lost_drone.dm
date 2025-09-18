@@ -41,7 +41,7 @@
 /mob/living/silicon/robot/lost/randomlaws
 
 /mob/living/silicon/robot/lost/randomlaws/apply_new_laws()
-	var/old_name = laws.name
+	var/old_name = laws?.name
 	laws = give_random_lawset()
 	if(old_name == laws.name)
 		apply_new_laws()
@@ -53,7 +53,7 @@
 /mob/living/silicon/robot/lost/randomlaws/vore
 
 /mob/living/silicon/robot/lost/randomlaws/vore/apply_new_laws()
-	var/old_name = laws.name
+	var/old_name = laws?.name
 	laws = give_random_lawset_vore(100)
 	if(old_name == laws.name)
 		apply_new_laws()
@@ -61,7 +61,7 @@
 /mob/living/silicon/robot/lost/randomlaws/mixed
 
 /mob/living/silicon/robot/lost/randomlaws/mixed/apply_new_laws()
-	var/old_name = laws.name
+	var/old_name = laws?.name
 	laws = give_random_lawset_vore(60)
 	if(old_name == laws.name)
 		apply_new_laws()

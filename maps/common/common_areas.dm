@@ -139,12 +139,12 @@
 /area/offmap/aerostat/inside/northchamb
 	name = "North Chamber"
 	icon_state = "orablacir"
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 
 /area/offmap/aerostat/inside/southchamb
 	name = "South Chamber"
 	icon_state = "orablacir"
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 
 /area/offmap/aerostat/inside/drillstorage
 	name = "Drill Storage"
@@ -157,7 +157,7 @@
 /area/offmap/aerostat/inside/lobby
 	name = "Lobby"
 	icon_state = "orablacir"
-	flags = 0 // To allow shelter capsules to activate here specifically
+	flags = NONE // To allow shelter capsules to activate here specifically
 
 /area/offmap/aerostat/inside/xenobiolab
 	name = "Xenobiology Lab"

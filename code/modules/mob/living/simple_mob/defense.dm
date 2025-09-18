@@ -176,17 +176,6 @@
 	. = 1 - .
 	. = min(., 1.0)
 
-
-// Fire stuff. Not really exciting at the moment.
-/mob/living/simple_mob/handle_fire()
-	return
-/mob/living/simple_mob/update_fire()
-	return
-/mob/living/simple_mob/IgniteMob()
-	return
-/mob/living/simple_mob/ExtinguishMob()
-	return
-
 /mob/living/simple_mob/get_heat_protection()
 	. = heat_resist
 	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
