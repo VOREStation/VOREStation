@@ -111,7 +111,7 @@
 		if("clear")
 			. = TRUE
 			added_overlays.Cut()
-			base_color = '#FFFFFF'
+			base_color = "#FFFFFF"
 
 		if("rename")
 			. = TRUE
