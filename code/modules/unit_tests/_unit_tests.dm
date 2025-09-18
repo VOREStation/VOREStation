@@ -88,6 +88,7 @@
 
 // BEGIN_INCLUDE
 #include "asset_smart_cache.dm"
+#include "autowiki.dm"
 //#include "clothing_tests.dm" // FIXME
 #include "component_tests.dm"
 #include "cosmetic_tests.dm"
