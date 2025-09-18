@@ -397,8 +397,8 @@
 		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
-	var/list/beast_options = list("Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
-									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
+	var/list/beast_options = list("Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
+									"Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
 									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
 									"Cat" = /mob/living/simple_mob/animal/passive/cat/black/beastmode,
 									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
@@ -431,12 +431,12 @@
 									"Robin" = /mob/living/simple_mob/animal/passive/bird/european_robin/beastmode,
 									"Seagull" = /mob/living/simple_mob/vore/seagull,
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
-									"Slug" = /mob/living/simple_mob/vore/slug
+									"Slug" = /mob/living/simple_mob/vore/slug,
 									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Wolf" = /mob/living/simple_mob/vore/wolf,
+									"Wolf" = /mob/living/simple_mob/vore/wolf
 									)
 
-	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", sort_names(beast_options))
+	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
 
 	if(!chosen_beast)
 		return
@@ -596,8 +596,8 @@
 		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
-	var/list/beast_options = list("Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
-									"Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
+	var/list/beast_options = list("Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
+									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
 									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
 									"Cat" = /mob/living/simple_mob/animal/passive/cat/black/beastmode,
 									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
@@ -631,11 +631,11 @@
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
 									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
 									"Hyena" = /mob/living/simple_mob/animal/hyena,
-									"Slug" = /mob/living/simple_mob/vore/slug
-									"Wolf" = /mob/living/simple_mob/vore/wolf,
+									"Slug" = /mob/living/simple_mob/vore/slug,
+									"Wolf" = /mob/living/simple_mob/vore/wolf
 									)
 
-	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", sort_names(beast_options))
+	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
 
 	if(!chosen_beast)
 		return
