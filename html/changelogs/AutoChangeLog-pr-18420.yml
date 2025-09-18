@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - image: "Splits the _mob and icon files for fluff items into two files"
+  - bugfix: "Fixes a few broken fluff sprites"
