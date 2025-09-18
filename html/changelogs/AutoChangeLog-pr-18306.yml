@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - image: "Updates Captains Laser, Energygun, Nagant, Makarov, Secgun, and stunrevolver sprites"
+  - code_imp: "Removes unused lines of code where icon = gun.dmi was redefined"
