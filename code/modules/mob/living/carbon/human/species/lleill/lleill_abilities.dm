@@ -617,6 +617,7 @@
 									"Goose" = /mob/living/simple_mob/animal/space/goose,
 									"Horse" = /mob/living/simple_mob/vore/horse,
 									"Horse (Big)" = /mob/living/simple_mob/vore/horse/big,
+									"Hyena" = /mob/living/simple_mob/animal/hyena,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
 									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
 									"Otie" = /mob/living/simple_mob/vore/otie,
@@ -630,7 +631,6 @@
 									"Seagull" = /mob/living/simple_mob/vore/seagull,
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
 									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Hyena" = /mob/living/simple_mob/animal/hyena,
 									"Slug" = /mob/living/simple_mob/vore/slug,
 									"Wolf" = /mob/living/simple_mob/vore/wolf
 									)
