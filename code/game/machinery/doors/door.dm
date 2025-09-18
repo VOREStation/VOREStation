@@ -106,10 +106,14 @@
 /obj/machinery/door/proc/can_open()
 	if(!density || operating || !SSticker)
 		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_DOOR_CAN_OPEN) & DOOR_DENY_OPEN)
+		return FALSE
 	return TRUE
 
 /obj/machinery/door/proc/can_close()
 	if(density || operating || !SSticker)
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_DOOR_CAN_CLOSE) & DOOR_DENY_CLOSE)
 		return FALSE
 	return TRUE
 

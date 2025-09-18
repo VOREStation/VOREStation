@@ -490,6 +490,14 @@
 
 // /obj/machinery/door signals
 
+//from /obj/machinery/door/can_open():
+#define COMSIG_DOOR_CAN_OPEN "attempt_door_open"
+	/// Return to stop the door opening
+	#define DOOR_DENY_OPEN (1<<0)
+//from /obj/machinery/door/can_close():
+#define COMSIG_DOOR_CAN_CLOSE "attempt_door_close"
+	/// Return to stop the door closing
+	#define DOOR_DENY_CLOSE (1<<0)
 //from /obj/machinery/door/open(): (forced)
 #define COMSIG_DOOR_OPEN "door_open"
 //from /obj/machinery/door/close(): (forced)
