@@ -630,8 +630,8 @@
 									"Robin" = /mob/living/simple_mob/animal/passive/bird/european_robin/beastmode,
 									"Seagull" = /mob/living/simple_mob/vore/seagull,
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
-									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
 									"Slug" = /mob/living/simple_mob/vore/slug,
+									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
 									"Wolf" = /mob/living/simple_mob/vore/wolf
 									)
 
