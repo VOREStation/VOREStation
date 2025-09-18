@@ -102,7 +102,7 @@
 
 	if(istype(M, /mob/living/))
 		var/mob/living/mob = M
-		if(!(L.hovering || L.flying || L.is_incorporeal() || L.mob_size <= MOB_TINY))
+		if(!(mob.hovering || mob.flying || mob.is_incorporeal() || mob.mob_size <= MOB_TINY))
 			explode(M)
 
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
