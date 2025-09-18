@@ -310,3 +310,27 @@
       Lion, Reindeer, Armadillo and Slug.'
   lbnesquik:
   - bugfix: fixed simple doors not being breakable
+2025-09-18:
+  Diana:
+  - image: Updates Captains Laser, Energygun, Nagant, Makarov, Secgun, and stunrevolver
+      sprites
+  - code_imp: Removes unused lines of code where icon = gun.dmi was redefined
+  ItsSelis:
+  - rscadd: Added autowiki functionality to automatically create wiki templates from
+      code
+  Kashargul:
+  - admin: fix runtime viewer not working
+  - bugfix: a bunch of logging runtimes
+  - bugfix: lost drone law updates sometimes failing
+  SatinIsle:
+  - rscadd: Added an extra bartender slot on request.
+  - balance: Low Blood Volume from 3 to 2 and the extreme version from 5 to 3.
+  - balance: Reduced biocompatibility 2->1, 4->2, 8->4.
+  - balance: Ambulant Blood 1 to 0, this has no effect at all here where changelings
+      are never a risk.
+  ShadowLarkens:
+  - refactor: Got rid of /datum/modifier/fire and converted fully to /datum/status_effect.
+  - rscadd: When you're on fire, you have some nice smoky firey particles come off
+      you.
+  - rscadd: You can now get wet, which inhibits fire and gives you pretty drippy particles.
+  - rscadd: You can now spread fire if you're on fire and you bump into another mob.
