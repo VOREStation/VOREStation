@@ -52,7 +52,7 @@ export const abnormalities: (string | ((occupant: occupant) => string))[][] = [
   [
     'hasWithdrawl',
     'bad',
-    (occupant) => 'Chemical dependancy has begun withdrawal! Inaprovaline can reduce symptoms.',
+    (occupant) => 'Experiencing withdrawal! Inaprovaline can reduce symptoms.',
   ],
 ];
 
