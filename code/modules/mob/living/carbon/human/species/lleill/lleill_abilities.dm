@@ -397,8 +397,8 @@
 		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
-	var/list/beast_options = list("Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
-									"Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
+	var/list/beast_options = list("Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
+									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
 									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
 									"Cat" = /mob/living/simple_mob/animal/passive/cat/black/beastmode,
 									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
