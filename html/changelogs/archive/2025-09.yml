@@ -271,3 +271,66 @@
   - qol: Added a description to the paperwork dispenser.
   - rscadd: Added an implantable health scanner
   - bugfix: fixed incorrect names
+2025-09-16:
+  Diana:
+  - bugfix: Rezadone properly takes chem strength into account
+  Guti:
+  - bugfix: Fixes vomiting in a belly making decals out of the pred
+  - code_imp: is_mouth_covered proc makes sure masks cover the face now
+  Kashargul:
+  - bugfix: simple mobs can now breach through girders and barricades
+  - bugfix: barricades now take a small amount of range damage instead of blocking
+      them all
+  KillianKirilenko:
+  - qol: you can now sippy as low as 1u at a time from most glasses
+  - spellcheck: added a 'from' to the drinking text because the name and icon update
+      *before* the message goes through
+  Will:
+  - rscadd: third eye marking
+  - rscadd: third eye (high) marking
+  - rscadd: teshari third eye marking
+  - rscadd: teshari third eye (high) marking
+  - rscadd: anime eyes bulging marking
+  - rscadd: anteater muzzle marking
+  - rscadd: qaavos head marking
+  - rscadd: qaavos eyes marking
+  kot:
+  - bugfix: fixed the loincloth not being present in the loadout options
+2025-09-17:
+  Ryumi:
+  - rscadd: Added melon liqueur and blue curaco to service borg drink synthesis list.
+  - rscadd: Service borgs can now synthesize fake casino chips, card decks, and gaming
+      dice packs.
+  - balance: Service borg grippers can now hold casino chips, card decks, and card
+      hands. Now station-bound entities can gamble and even be dealers!
+  - qol: Service borgs now use an input list for their rapid fabricator, as well as
+      cleaning up a lot of needless RSF log spam by replacing them with balloon alerts.
+  SatinIsle:
+  - rscadd: 'Added the following forms to beast form for hanner and lleill: Hyena,
+      Lion, Reindeer, Armadillo and Slug.'
+  lbnesquik:
+  - bugfix: fixed simple doors not being breakable
+2025-09-18:
+  Diana:
+  - image: Updates Captains Laser, Energygun, Nagant, Makarov, Secgun, and stunrevolver
+      sprites
+  - code_imp: Removes unused lines of code where icon = gun.dmi was redefined
+  ItsSelis:
+  - rscadd: Added autowiki functionality to automatically create wiki templates from
+      code
+  Kashargul:
+  - admin: fix runtime viewer not working
+  - bugfix: a bunch of logging runtimes
+  - bugfix: lost drone law updates sometimes failing
+  SatinIsle:
+  - rscadd: Added an extra bartender slot on request.
+  - balance: Low Blood Volume from 3 to 2 and the extreme version from 5 to 3.
+  - balance: Reduced biocompatibility 2->1, 4->2, 8->4.
+  - balance: Ambulant Blood 1 to 0, this has no effect at all here where changelings
+      are never a risk.
+  ShadowLarkens:
+  - refactor: Got rid of /datum/modifier/fire and converted fully to /datum/status_effect.
+  - rscadd: When you're on fire, you have some nice smoky firey particles come off
+      you.
+  - rscadd: You can now get wet, which inhibits fire and gives you pretty drippy particles.
+  - rscadd: You can now spread fire if you're on fire and you bump into another mob.
