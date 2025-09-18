@@ -101,10 +101,11 @@
 
 // Walking on maglev tracks will shock you! Horray!
 /turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
+	if(!isliving(AM) || prob(50))
+		return
 	if(locate(/obj/structure/catwalk) in src) // safe to walk over as a bridge!
 		return
-	if(isliving(AM) && prob(50))
-		track_zap(AM)
+	track_zap(AM)
 
 /turf/simulated/floor/maglev/attack_hand(var/mob/user)
 	if(prob(75))
