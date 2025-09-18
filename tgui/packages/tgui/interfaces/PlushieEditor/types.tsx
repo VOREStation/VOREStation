@@ -1,4 +1,5 @@
 export type Data = {
+  name: string;
   base_color: string;
   icon: string;
   preview: string;

@@ -245,7 +245,7 @@ type PreviewPanelProps = {
 };
 export const PreviewPanel: React.FC<PreviewPanelProps> = ({ onClear }) => {
   const { act, data } = useBackend<Data>();
-  const { base_color, preview } = data;
+  const { base_color, preview, name } = data;
   const changeBaseColor = useCallback(() => act('change_base_color'), [act]);
   const changeName = useCallback(() => act('rename'), [act]);
 
@@ -281,8 +281,9 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({ onClear }) => {
       <Divider />
 
       <LabeledList>
-        <LabeledList.Item label="Base color">
+        <LabeledList.Item label="Name">
           <Stack align="center" justify="space-between">
+            <Stack.Item>{name}</Stack.Item>
             <Button icon="pencil" onClick={changeName}>
               Rename
             </Button>
@@ -292,7 +293,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({ onClear }) => {
           <Stack align="center" justify="space-between">
             <ColorBox color={base_color} mr={2} />
             <Button icon="brush" onClick={changeBaseColor}>
-              Edit Base Color
+              Recolor
             </Button>
           </Stack>
         </LabeledList.Item>

@@ -37,6 +37,7 @@
 /obj/item/toy/plushie/customizable/tgui_data(mob/user)
 	. = list()
 	.["base_color"] = base_color
+	.["name"] = name
 	.["icon"] = icon
 	.["preview"] = icon2base64(get_flat_icon(src))
 	.["possible_overlays"] = list()
