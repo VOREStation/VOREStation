@@ -23,6 +23,13 @@
 	var/camo_net = FALSE
 	var/stun_length = 0.25 SECONDS
 
+/obj/item/beartrap/start_active
+	deployed = TRUE
+
+/obj/item/beartrap/Initialize(mapload)
+	. = ..()
+	update_icon()
+
 /obj/item/beartrap/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
 
