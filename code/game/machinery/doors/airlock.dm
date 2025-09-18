@@ -704,7 +704,7 @@ About the new airlock wires panel:
 		cable.plugin(src, user)
 		return
 
-	if(!reinforcing && C.has_tool_quality(TOOL_CROWBAR))
+	if(!reinforcing && C.has_tool_quality(TOOL_CROWBAR) && user.a_intent != I_HARM) // So harm intent can smash airlocks
 		if(can_remove_electronics())
 			playsound(src, C.usesound, 75, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
