@@ -88,6 +88,14 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/head/halo/alt
+	display_name = "halo, alt"
+	path = /obj/item/clothing/head/halo/alt
+
+/datum/gear/head/halo/demonic
+	display_name = "holographic demonic halo"
+	path = /obj/item/clothing/head/halo/demonic
+
 /datum/gear/head/cap/sol
 	display_name = "cap, sol"
 	path = /obj/item/clothing/head/soft/solgov
@@ -507,10 +515,6 @@
 /datum/gear/head/wedding/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
-
-/datum/gear/head/halo/alt
-	display_name = "halo, alt"
-	path = /obj/item/clothing/head/halo/alt
 
 /datum/gear/head/buckethat
 	display_name = "hat, bucket"
