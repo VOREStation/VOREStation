@@ -131,6 +131,7 @@
 		"durg_spines" = "Spines",
 		"classic_w_1" = "Wings, Western, L",
 		"classic_w_2" = "Wings, Western, R",
+		"classic_w_misc" = "Wings, Western, Underside",
 		"fairy_w_1" = "Wings, Fairy, L",
 		"fairy_w_2" = "Wings, Fairy, R",
 		"angular_w_1" = "Wings, Angular, L",
