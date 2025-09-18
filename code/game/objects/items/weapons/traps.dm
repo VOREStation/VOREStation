@@ -28,7 +28,8 @@
 
 /obj/item/beartrap/Initialize(mapload)
 	. = ..()
-	update_icon()
+	if(mapload && deployed)
+		update_icon()
 
 /obj/item/beartrap/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
