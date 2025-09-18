@@ -400,15 +400,16 @@
 	var/list/beast_options = list("Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
 									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
 									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
-									"Bull Terrier" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
 									"Cat" = /mob/living/simple_mob/animal/passive/cat/black/beastmode,
 									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
-									"Corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
 									"Cow" = /mob/living/simple_mob/animal/passive/cow,
 									"Dire Wolf" = /mob/living/simple_mob/vore/wolf/direwolf,
+									"Dog (Bull Terrier)" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
+									"Dog (Corgi)" = /mob/living/simple_mob/animal/passive/dog/corgi,
+									"Dog (Tamaskan)" = /mob/living/simple_mob/animal/passive/dog/tamaskan,
 									"Duck" = /mob/living/simple_mob/animal/sif/duck,
-									"Fennec" = /mob/living/simple_mob/vore/fennec,
 									"Fox" = /mob/living/simple_mob/animal/passive/fox/beastmode,
+									"Fox (Fennec)" = /mob/living/simple_mob/vore/fennec,
 									"Giant Bat" = /mob/living/simple_mob/vore/bat,
 									"Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 									"Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
@@ -432,7 +433,6 @@
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
 									"Slug" = /mob/living/simple_mob/vore/slug
 									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Tamaskan Dog" = /mob/living/simple_mob/animal/passive/dog/tamaskan,
 									"Wolf" = /mob/living/simple_mob/vore/wolf,
 									)
 
@@ -596,18 +596,19 @@
 		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
-	var/list/beast_options = list("Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
-									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
+	var/list/beast_options = list("Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
+									"Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
 									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
-									"Bull Terrier" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
 									"Cat" = /mob/living/simple_mob/animal/passive/cat/black/beastmode,
 									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
-									"Corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
 									"Cow" = /mob/living/simple_mob/animal/passive/cow,
 									"Dire Wolf" = /mob/living/simple_mob/vore/wolf/direwolf,
+									"Dog (Corgi)" = /mob/living/simple_mob/animal/passive/dog/corgi,
+									"Dog (Bull Terrier)" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
+									"Dog (Tamaskan)" = /mob/living/simple_mob/animal/passive/dog/tamaskan,
 									"Duck" = /mob/living/simple_mob/animal/sif/duck,
-									"Fennec" = /mob/living/simple_mob/vore/fennec,
 									"Fox" = /mob/living/simple_mob/animal/passive/fox/beastmode,
+									"Fox (Fennec)" = /mob/living/simple_mob/vore/fennec,
 									"Giant Bat" = /mob/living/simple_mob/vore/bat,
 									"Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 									"Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
@@ -616,12 +617,11 @@
 									"Goose" = /mob/living/simple_mob/animal/space/goose,
 									"Horse" = /mob/living/simple_mob/vore/horse,
 									"Horse (Big)" = /mob/living/simple_mob/vore/horse/big,
-									"Hyena" = /mob/living/simple_mob/animal/hyena,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
 									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
 									"Otie" = /mob/living/simple_mob/vore/otie,
-									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
 									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
+									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
 									"Rabbit" = /mob/living/simple_mob/vore/rabbit,
 									"Raptor" = /mob/living/simple_mob/vore/raptor,
 									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
@@ -629,9 +629,9 @@
 									"Robin" = /mob/living/simple_mob/animal/passive/bird/european_robin/beastmode,
 									"Seagull" = /mob/living/simple_mob/vore/seagull,
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
-									"Slug" = /mob/living/simple_mob/vore/slug
 									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Tamaskan Dog" = /mob/living/simple_mob/animal/passive/dog/tamaskan,
+									"Hyena" = /mob/living/simple_mob/animal/hyena,
+									"Slug" = /mob/living/simple_mob/vore/slug
 									"Wolf" = /mob/living/simple_mob/vore/wolf,
 									)
 
