@@ -284,6 +284,13 @@
 	has_custom_open_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
+/datum/robot_sprite/dogborg/tall/service/newmeka_notray
+	name = "MEKA v2 (no tray)"
+	sprite_icon_state = "newmeka-notray"
+	has_eye_light_sprites = TRUE
+	has_custom_open_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
+
 /datum/robot_sprite/dogborg/tall/service/mmeka
 	name = "NIKO"
 	sprite_icon_state = "mmeka"
