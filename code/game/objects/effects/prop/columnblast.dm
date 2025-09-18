@@ -42,7 +42,7 @@
 		Target.hotspot_expose(1000, 50, 1)
 
 		for(var/mob/living/L in Target)
-			L.fire_stacks += 2
-			L.add_modifier(/datum/modifier/fire/stack_managed/intense, 30 SECONDS)
+			L.adjust_fire_stacks(2)
+			L.ignite_mob()
 
 	return TRUE
