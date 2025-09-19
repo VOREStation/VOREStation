@@ -200,6 +200,7 @@
 
 	// Check beaker to see if we reached our goal!
 	if(fake_beaker.reagents.has_reagent(CR.result))
+		TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS(first try)")
 		return FALSE // INSTANT SUCCESS!
 
 	if(inhib.len)
@@ -222,9 +223,11 @@
 		// Test one by one
 		for(var/each in test_react.inhibitors)
 			if(!perform_reaction(CR, list("[each]" = test_react.inhibitors["[each]"])))
+				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS(using a inhibitor)")
 				return FALSE // SUCCESS using an inhibitor!
 		// Test all at once
 		if(!perform_reaction(CR, test_react.inhibitors))
+			TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS(using all inhibitors)")
 			return FALSE // SUCCESS using all inhibitors!
 
 	// No inhibiting reagent worked...
