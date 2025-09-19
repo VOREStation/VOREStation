@@ -13,6 +13,8 @@
 
 /area/awaymission/lucky7
 	icon_state = "away1"
+	ambience = AMBIENCE_CASINO
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_BLOCK_INSTANT_BUILDING
 
 /area/awaymission/lucky7/casinofloor
 	name = "\improper Gateway - Casino Floor"
@@ -29,6 +31,7 @@
 /area/awaymission/lucky7/privategameroom
 	name = "\improper Gateway - Private Game Room One"
 	icon_state = "arcade2"
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_SOUNDPROOF | AREA_FORBID_EVENTS | AREA_BLOCK_INSTANT_BUILDING
 
 /area/awaymission/lucky7/privategameroom/two
 	name = "\improper Gateway - Private Game Room Two"
@@ -39,6 +42,7 @@
 /area/awaymission/lucky7/privateroom
 	name = "\improper Gateway - Private Room One"
 	icon_state = "crew_quarters"
+	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_BLOCK_INSTANT_BUILDING
 
 /area/awaymission/lucky7/privateroom/two
 	name = "\improper Gateway - Private Room Two"
