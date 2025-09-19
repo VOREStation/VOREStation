@@ -814,7 +814,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 //* Bluespace Radio *//
 /obj/item/bluespaceradio/southerncross_prelinked
 	name = "bluespace radio (southerncross)"
-	handset = /obj/item/radio/bluespacehandset/linked/southerncross_prelinked
+	handset_path = /obj/item/radio/bluespacehandset/linked/southerncross_prelinked
 
 /obj/item/radio/bluespacehandset/linked/southerncross_prelinked
 	bs_tx_preload_id = "Receiver A" //Transmit to a receiver
@@ -840,7 +840,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 /obj/item/bluespaceradio/tether_prelinked
 	name = "bluespace radio (tether)"
-	handset = /obj/item/radio/bluespacehandset/linked/tether_prelinked
+	handset_path = /obj/item/radio/bluespacehandset/linked/tether_prelinked
 
 /obj/item/radio/bluespacehandset/linked/tether_prelinked
 	bs_tx_preload_id = "tether_rx" //Transmit to a receiver
@@ -848,7 +848,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 /obj/item/bluespaceradio/talon_prelinked
 	name = "bluespace radio (talon)"
-	handset = /obj/item/radio/bluespacehandset/linked/talon_prelinked
+	handset_path = /obj/item/radio/bluespacehandset/linked/talon_prelinked
 
 /obj/item/radio/bluespacehandset/linked/talon_prelinked
 	bs_tx_preload_id = "talon_aio" //Transmit to a receiver

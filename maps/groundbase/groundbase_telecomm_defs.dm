@@ -45,7 +45,7 @@
 
 /obj/item/bluespaceradio/groundbase_prelinked
 	name = "bluespace radio (Rascal's Pass)"
-	handset = /obj/item/radio/bluespacehandset/linked/groundbase_prelinked
+	handset_path = /obj/item/radio/bluespacehandset/linked/groundbase_prelinked
 
 /obj/item/radio/bluespacehandset/linked/groundbase_prelinked
 	bs_tx_preload_id = "groundbase_rx" //Transmit to a receiver
