@@ -224,7 +224,7 @@
 
 	// No inhibiting reagent worked...
 	for(var/decl/chemical_reaction/test_react in result_reactions)
-		TEST_NOTICE(src, "[CR.type]: Reagents - Used [test_react] but failed.")
+		TEST_NOTICE(src, "[CR.type]: Reagents - Used inhibitors for [test_react] but still failed.")
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())
