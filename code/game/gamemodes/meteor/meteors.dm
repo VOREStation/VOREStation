@@ -156,13 +156,21 @@ GLOBAL_VAR_INIT(meteor_wave_delay, 625) //minimum wait between waves in tenths o
 	SpinAnimation()
 
 /obj/effect/meteor/Bump(atom/A)
-	if(attempt_vr(src,"Bump_vr",list(A))) return //VOREStation Edit - allows meteors to be deflected by baseball bats
-	if(A)
-		if(A.handle_meteor_impact(src)) // Used for special behaviour when getting hit specifically by a meteor, like a shield.
-			ram_turf(get_turf(A))
-			get_hit()
-		else
-			die(FALSE)
+	if(!A)
+		return
+	if(istype(A, /mob/living/carbon))
+		var/mob/living/carbon/batter = A
+		var/obj/item/I = batter.get_active_hand()
+		if(!batter.stat && istype(I, /obj/item/material/twohanded/baseballbat))
+			batter.do_attack_animation(src)
+			batter.visible_message("[batter] deflects [src] with [I]]! Home run!", "You deflect [src] with [I]! Home run!")
+			walk_away(src, batter, 100, 1)
+			return
+	if(A.handle_meteor_impact(src)) // Used for special behaviour when getting hit specifically by a meteor, like a shield.
+		ram_turf(get_turf(A))
+		get_hit()
+		return
+	die(FALSE)
 
 /obj/effect/meteor/CanPass(atom/movable/mover, turf/target)
 	return istype(mover, /obj/effect/meteor) ? TRUE : ..()

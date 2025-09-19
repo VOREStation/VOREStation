@@ -10,7 +10,7 @@
 	return
 
 /datum/teleport/instant/science/noeffect/setEffects(datum/effect/effect/system/aeffectin,datum/effect/effect/system/aeffectout)
-	return 1
+	return TRUE
 
 /datum/teleport/proc/try_televore()
 	//Destination is in a belly

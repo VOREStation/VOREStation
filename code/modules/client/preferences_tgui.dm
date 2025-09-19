@@ -148,7 +148,7 @@
 		if("reload")
 			load_preferences(TRUE)
 			load_character()
-			attempt_vr(client.prefs_vr,"load_vore","") //VOREStation Edit
+			client.prefs_vr.load_vore()
 			sanitize_preferences()
 			. = TRUE
 		if("resetslot")

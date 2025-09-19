@@ -22,6 +22,7 @@
 	//These are frequenly used with windows, so make sure zones can pass.
 	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.
 	block_air_zones = 0
+	heat_proof = 1
 
 	var/blocked = 0
 	var/prying = 0
