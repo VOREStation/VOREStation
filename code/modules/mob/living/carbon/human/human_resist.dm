@@ -1,5 +1,5 @@
 /mob/living/carbon/human/resist_restraints()
-	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
+	if(wear_suit && (istype(wear_suit, /obj/item/clothing/suit/straight_jacket) || istype(wear_suit, /obj/item/clothing/suit/shibari)))
 		return escape_straight_jacket()
 	return ..()
 
@@ -14,10 +14,16 @@
 		break_straight_jacket()
 		return
 
+	var/breakouttime
 	var/mob/living/carbon/human/H = src
-	var/obj/item/clothing/suit/straight_jacket/SJ = H.wear_suit
+	if(istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
+		var/obj/item/clothing/suit/straight_jacket/S = H.wear_suit
+		breakouttime = S.resist_time
+	if(istype(wear_suit, /obj/item/clothing/suit/shibari))
+		var/obj/item/clothing/suit/shibari/S = H.wear_suit
+		breakouttime = S.resist_time
 
-	var/breakouttime = SJ.resist_time	// Configurable per-jacket!
+	var/obj/item/clothing/suit/SJ = wear_suit
 
 	var/attack_type = RESIST_ATTACK_DEFAULT
 

@@ -182,7 +182,8 @@
 			/obj/item/handcuffs/legcuffs/fuzzy,
 			/obj/item/melee/fluff/holochain/mass,
 			/obj/item/material/twohanded/riding_crop,
-			/obj/item/clothing/under/fluff/latexmaid
+			/obj/item/clothing/under/fluff/latexmaid,
+			/obj/item/clothing/suit/shibari/pink
 			)
 	containertype = /obj/structure/closet/crate
 	containername = "Restraints crate"

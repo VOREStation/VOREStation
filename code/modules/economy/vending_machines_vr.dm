@@ -1515,7 +1515,8 @@
 					/obj/item/clothing/under/reverse_bunnytop_maid = 3,
 					/obj/item/clothing/head/rabbitears = 3,
 					/obj/item/clothing/accessory/bunny_tail = 3,
-					/obj/item/clothing/suit/shrine_maiden = 3)
+					/obj/item/clothing/suit/shrine_maiden = 3,
+					/obj/item/clothing/suit/shibari = 5)
 	prices = list(/obj/item/clothing/suit/storage/hooded/costume/carp = 200,
 					/obj/item/clothing/suit/storage/hooded/costume/carp = 200,
 					/obj/item/clothing/suit/chickensuit = 200,
@@ -1600,7 +1601,8 @@
 					/obj/item/clothing/under/reverse_bunnytop_maid = 50,
 					/obj/item/clothing/head/rabbitears = 25,
 					/obj/item/clothing/accessory/bunny_tail = 25,
-					/obj/item/clothing/suit/shrine_maiden = 200)
+					/obj/item/clothing/suit/shrine_maiden = 200,
+					/obj/item/clothing/suit/shibari = 50)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
 					/obj/item/clothing/suit/barding/agatha = 2,
 					/obj/item/clothing/suit/barding/alt_agatha = 2,
