@@ -334,3 +334,45 @@
       you.
   - rscadd: You can now get wet, which inhibits fire and gives you pretty drippy particles.
   - rscadd: You can now spread fire if you're on fire and you bump into another mob.
+2025-09-19:
+  Diana:
+  - image: Splits the _mob and icon files for fluff items into two files
+  - bugfix: Fixes a few broken fluff sprites
+  Guti:
+  - bugfix: fixed bluespace and chief engineer's belt not being able to hold onto
+      atmos combi-fans
+  KillianKirilenko:
+  - rscadd: Added a general command uniform selector for all department heads.
+  MeepleMuncher:
+  - rscadd: Dragon plushies!
+  Ryumi:
+  - code_imp: Alphabetically sorted the hanner and lleil beast form lists.
+  - rscadd: ALL cyborgs now start with a random number generator that lets them roll
+      virtual dice.
+  - balance: Misc. borg grippers can now hold card hands and fake casino chips.
+  - balance: Service borg grippers can now hold real casino chips.
+  Will:
+  - bugfix: Cortical borers cannot prod things adjacent to their host, while inside
+      of their host.
+  - qol: Medical body scanner now shows if a subject is experiencing withdrawal symptoms.
+  - bugfix: Medical kiosk can no longer do mind and body record scans in VR
+  - bugfix: Slugs can no longer apply slime to a turf already covered in their slime
+  - bugfix: Santabag is now actually a bag
+  - code_imp: Adds atom disposal flushed signal, sent from items when they are flushed
+      into the disposal network
+  - qol: Items can now be placed on casino tables with click precision, like normal
+      tables.
+  - bugfix: Flying and hovering properly checked when avoiding landmines
+  - bugfix: Phased shadekin no longer set off landmines
+  - bugfix: Vehicles set off landmines
+  - balance: Tiny mobs like mice no longer set off landmines
+  - refactor: transit tubes use forceMove() instead of directly setting loc
+  - bugfix: Tracking implant fizzling no longer broken
+  - code_imp: Allows mappers to place deployed mechanical traps properly
+  - bugfix: Restored missing spellbook icon
+  - rscadd: Catwalks mapped over maglev tracks will act as a bridge
+  - bugfix: Phased shadekin can no longer touch maglev tracks and get shocked
+  Willburd:
+  - code_imp: Disposal sorter prefabs use defines instead of numbers
+  lbnesquik:
+  - rscadd: Added the coroner role as an alternative title to medical doctors
