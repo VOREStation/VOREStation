@@ -84,7 +84,7 @@
 	if(!istype(M) || material.name != M.material.name)
 		return 0
 	var/transfer = ..(S,tamount,1)
-	if(!QDELTED(src))
+	if(!QDELETED(src))
 		update_strings()
 	if(M)
 		M.update_strings()
