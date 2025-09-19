@@ -140,6 +140,8 @@
 			QDEL_SWAP(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
 			fake_beaker.reagents.maximum_volume = 5000
 
+		TEST_NOTICE(src, "[CR.type]: Reagents - TESTING REACTION [CR.name].")
+
 		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
 		RegisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 
