@@ -12,7 +12,7 @@
 
 /obj/distilling_tester/Initialize(mapload)
 	create_reagents(5000,/datum/reagents/distilling)
-	instant_catcher = new /datum/reagents(reagents.maximum_volume, src)
+	instant_catcher = new /datum/reagents(5000, src)
 	. = ..()
 
 /obj/distilling_tester/return_air()
@@ -24,9 +24,9 @@
 	for(var/datum/reagent/reg as anything in reagents.reagent_list)
 		test_list[reg.id] = reg.volume
 	// Run reactions
-	reagents.trans_to_holder(instant_catcher,reagents.total_volume)
+	reagents.trans_to_holder(instant_catcher,reagents.maximum_volume)
 	instant_catcher.handle_reactions()
-	instant_catcher.trans_to_holder(reagents,instant_catcher.total_volume)
+	instant_catcher.trans_to_holder(reagents,reagents.maximum_volume)
 	// Return if we failed, should NOT have any changes
 	if(!test_list.len || !reagents.reagent_list.len) // Shouldn't be 0
 		return TRUE
@@ -35,6 +35,9 @@
 	for(var/datum/reagent/regcur as anything in reagents.reagent_list) // Be sure of contents
 		if(test_list[regcur.id] != regcur.volume)
 			return TRUE
+		test_list -= regcur.id
+	if(test_list.len) // Something in the list existed before, but doesn't now...
+		return TRUE
 	return FALSE
 
 /obj/distilling_tester/proc/test_distilling(var/decl/chemical_reaction/distilling/D, var/temp_prog)
