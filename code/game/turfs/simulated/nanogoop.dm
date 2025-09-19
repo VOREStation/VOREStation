@@ -25,9 +25,8 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 	var/digest_robot = FALSE
 	var/active = FALSE
 	var/usesmes = TRUE
-	var/mob/living/nutrienttarget
-	var/obj/machinery/power/smes/smes //when the nanites digest something, it becomes power in an SMES
-	var/area/area
+	var/datum/weakref/moblink
+	var/datum/weakref/linkedsmes //when the nanites digest something, it becomes power in an SMES
 	var/id = null
 
 
@@ -39,9 +38,11 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 		if(!get_area(M))
 			continue
 		if(get_area(M) == get_area(src))
-			smes = M
+			linkedsmes = WEAKREF(M)
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/attack_hand(mob/user)
+	var/mob/living/nutrienttarget = moblink?.resolve()
+	var/obj/machinery/power/smes/smes = linkedsmes?.resolve()
 	if(check_target() && (user != nutrienttarget))//prioritize this here, so mobs can turn the turf off
 		return ..()
 	if(ishuman(user))
@@ -86,6 +87,8 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 	return ..()
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/attack_ai(mob/user)
+	var/mob/living/nutrienttarget = moblink?.resolve()
+	var/obj/machinery/power/smes/smes = linkedsmes?.resolve()
 	if(isrobot(user) && !isshell(user))
 		if(smes || isAI(nutrienttarget))
 			return ..()
@@ -129,6 +132,7 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/can_digest(atom/movable/AM) //copypasting the entire proc because we use an SMES instead of a linked mob
 	. = FALSE
+	var/mob/living/nutrienttarget = moblink?.resolve()
 	if(!active)
 		return FALSE
 	if(!check_target())
@@ -181,6 +185,8 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 		else return TRUE
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/proc/check_target()//check if the target is in the area, or if this is a
+	var/mob/living/nutrienttarget = moblink?.resolve()
+	var/obj/machinery/power/smes/smes = linkedsmes?.resolve()
 	if(nutrienttarget)
 		if(nutrienttarget.client && !nutrienttarget.stat)
 			if(smes && isAI(nutrienttarget))
@@ -259,6 +265,8 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 	give_nutrients(nutrients)
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/proc/give_nutrients(var/amt)
+	var/mob/living/nutrienttarget = moblink?.resolve()
+	var/obj/machinery/power/smes/smes = linkedsmes?.resolve()
 	if(smes)
 		smes.charge += (amt * 20)
 		return
@@ -282,10 +290,11 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 		return ..()
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/proc/toggle_all(var/on = TRUE, var/digest = FALSE, var/robot = FALSE, var/synth = FALSE)
+	var/mob/living/nutrienttarget = moblink?.resolve()
 	for(var/turf/simulated/floor/water/digestive_enzymes/nanites/M in GLOB.nanite_turfs)
 		if(M.id == id)
 			if(on)
-				M.nutrienttarget = nutrienttarget
+				M.moblink = WEAKREF(nutrienttarget)
 			M.select_state(on, digest, robot, synth)
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/proc/select_state(var/on = TRUE, var/digest = FALSE, var/robot = FALSE, var/synth = FALSE)
@@ -336,3 +345,8 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 	for(var/atom/AM in src)
 		Entered(AM)
 	update_icon()
+
+/turf/simulated/floor/water/digestive_enzymes/nanites/Destroy()
+	moblink = null
+	linkedsmes = null
+	return ..()
