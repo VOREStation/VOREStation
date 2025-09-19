@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(robot_glass_options, list(
 	anchored = FALSE
 	matter = list(DEFAULT_WALL_MATERIAL = 25000)
 	var/stored_matter = 30
-	var/mode = "Container"
+	var/mode = "container"
 	var/glasstype_name = "metamorphic glass"
 
 	w_class = ITEMSIZE_NORMAL
@@ -58,11 +58,8 @@ GLOBAL_LIST_INIT(robot_glass_options, list(
 	if(!Adjacent(user) || !istype(user))
 		balloon_alert(user,"you are too far away.")
 		return
-	var/options = list()
-	for(var/key, value in GLOB.robot_glass_options)
-		options[key] = value
 
-	var/glass_choice = show_radial_menu(user, user, options, radius = 70)
+	var/glass_choice = show_radial_menu(user, user, GLOB.robot_glass_options, radius = 70)
 
 	if(glass_choice)
 		balloon_alert(user, "container chosen: [glass_choice]")
