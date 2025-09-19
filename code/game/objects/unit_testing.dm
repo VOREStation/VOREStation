@@ -8,15 +8,32 @@
 	icon_state = "cartridge"
 	var/datum/gas_mixture/GM = new()
 	var/current_temp = 0
+	var/datum/reagents/instant_catcher
+	var/test_state
 
 /obj/distilling_tester/Initialize(mapload)
 	create_reagents(5000,/datum/reagents/distilling)
+	instant_catcher = new /datum/reagents(reagents.maximum_volume, src)
+	#ifdef UNIT_TESTS
+	RegisterSignal(instant_catcher, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+	#endif
 	. = ..()
 
 /obj/distilling_tester/return_air()
 	return GM
 
+/obj/distilling_tester/proc/check_instants(info_text)
+	// If we don't do this, then instant reactions that might be blocking our distilling reaction, or happen after it, won't show in the unit test
+	test_state = info_text
+	reagents.trans_to_holder(instant_catcher,reagents.total_volume)
+	instant_catcher.handle_reactions()
+	instant_catcher.trans_to_holder(reagents,instant_catcher.total_volume)
+
 /obj/distilling_tester/proc/test_distilling(var/decl/chemical_reaction/distilling/D, var/temp_prog)
+	// Check if we can even get to the distilling
+	check_instants("before")
+
+	// Do the actual test
 	QDEL_SWAP(GM,new())
 	if(D.require_xgm_gas)
 		GM.gas[D.require_xgm_gas] = 100
@@ -33,6 +50,19 @@
 	current_temp = LERP( D.temp_range[1], D.temp_range[2], temp_prog)
 	reagents.handle_reactions()
 
+	// And now we make sure it can be extracted too
+	check_instants("after")
+
+#ifdef UNIT_TESTS
+/obj/distilling_tester/proc/get_signal_data(atom/source, list/data = list())
+	var/decl/chemical_reaction/reaction = data[1]
+	to_chat(world,"DISTIL FAIL: Reagents reacted [test_state] distilling, reaction blocked by the instant reaction: \"[reaction.name]\". Making distilling results inaccessible.")
+#endif
+
 /obj/distilling_tester/Destroy(force, ...)
 	QDEL_NULL(GM)
+	#ifdef UNIT_TESTS
+	UnregisterSignal(instant_catcher, COMSIG_UNITTEST_DATA)
+	#endif
+	QDEL_NULL(instant_catcher)
 	. = ..()
