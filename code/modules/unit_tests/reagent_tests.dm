@@ -130,18 +130,18 @@
 			var/obj/item/slime_extract/E = new SR.required()
 			QDEL_SWAP(fake_beaker, E)
 			fake_beaker.reagents.maximum_volume = 5000
-			to_chat(world,"TEST SLIME REACTION [CR.name]")
+			TEST_NOTICE("TEST SLIME REACTION [CR.name]")
 		else if(istype(CR, /decl/chemical_reaction/distilling))
 			// distilling
 			var/obj/distilling_tester/D = new()
 			QDEL_SWAP(fake_beaker, D)
 			fake_beaker.reagents.maximum_volume = 5000
-			to_chat(world,"TEST DISTILLING REACTION [CR.name]")
+			TEST_NOTICE("TEST DISTILLING REACTION [CR.name]")
 		else
 			// regular beaker
 			QDEL_SWAP(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
 			fake_beaker.reagents.maximum_volume = 5000
-			to_chat(world,"TEST INSTANT REACTION [CR.name]")
+			TEST_NOTICE("TEST INSTANT REACTION [CR.name]")
 
 		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
 		RegisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
