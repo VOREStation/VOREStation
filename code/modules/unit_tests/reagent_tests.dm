@@ -2,6 +2,8 @@
 /// MIGHT REQUIRE BIGGER REWORK
 
 #define RESULT_REACTION_FAILED 1
+#define RESULT_REACTION_FAILED_DISTILLBEFORE 2
+#define RESULT_REACTION_FAILED_DISTILLAFTER 3
 #define RESULT_REACTION_SUCCESS 0
 #define RESULT_REACTION_SUCCESS_INHIB -1
 #define RESULT_REACTION_SUCCESS_ALLINHIB -2
@@ -158,8 +160,14 @@
 				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS USING INHIBITOR. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 			if(RESULT_REACTION_SUCCESS_ALLINHIB)
 				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS WITH ALL INHIBITORS. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-			else
+			else if(RESULT_REACTION_FAILED)
 				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction did not produce \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+				failed = TRUE
+			else if(RESULT_REACTION_FAILED_DISTILLBEFORE)
+				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction blocked before distilling \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+				failed = TRUE
+			else if(RESULT_REACTION_FAILED_DISTILLAFTER)
+				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction result consumed after distilling \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 				failed = TRUE
 
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
@@ -200,7 +208,11 @@
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
 		var/obj/distilling_tester/DD = fake_beaker
+		if(DD.check_instants()) // No reactions before
+			return RESULT_REACTION_FAILED_DISTILLBEFORE
 		DD.test_distilling(CR,temp_test)
+		if(DD.check_instants()) // No reactions or after
+			return RESULT_REACTION_FAILED_DISTILLAFTER
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return RESULT_REACTION_SUCCESS // Distilling success
 
@@ -240,6 +252,7 @@
 	return RESULT_REACTION_FAILED
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())
+	SIGNAL_HANDLER
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
 
 /// Test that makes sure that chemical grinding has valid results

@@ -9,22 +9,26 @@
 	var/datum/gas_mixture/GM = new()
 	var/current_temp = 0
 	var/datum/reagents/instant_catcher
+	var/had_instant_reaction = FALSE
 
 /obj/distilling_tester/Initialize(mapload)
 	create_reagents(5000,/datum/reagents/distilling)
-	instant_catcher = new /datum/reagents(5000, src)
+	instant_catcher = new /datum/reagents(10000, src)
+	#ifdef UNIT_TESTS
+	RegisterSignal(instant_catcher, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+	#endif
 	. = ..()
 
 /obj/distilling_tester/return_air()
 	return GM
 
 /obj/distilling_tester/proc/check_instants()
+	had_instant_reaction = FALSE
 	reagents.trans_to_holder(instant_catcher,reagents.maximum_volume)
-	instant_catcher.handle_reactions()
-	instant_catcher.trans_to_holder(reagents,reagents.maximum_volume)
+	instant_catcher.trans_to_holder(reagents,instant_catcher.maximum_volume)
+	return had_instant_reaction
 
 /obj/distilling_tester/proc/test_distilling(var/decl/chemical_reaction/distilling/D, var/temp_prog)
-	check_instants()
 	// Do the actual test
 	QDEL_SWAP(GM,new())
 	if(D.require_xgm_gas)
@@ -41,9 +45,15 @@
 	// If it passes unit test, it might still be awful to make though, gotta find the right gas mix!
 	current_temp = LERP( D.temp_range[1], D.temp_range[2], temp_prog)
 	reagents.handle_reactions()
-	check_instants()
+
+/obj/distilling_tester/proc/get_signal_data()
+	SIGNAL_HANDLER
+	had_instant_reaction = TRUE
 
 /obj/distilling_tester/Destroy(force, ...)
 	QDEL_NULL(GM)
+	#ifdef UNIT_TESTS
+	UnregisterSignal(instant_catcher, COMSIG_UNITTEST_DATA)
+	#endif
 	QDEL_NULL(instant_catcher)
 	. = ..()
