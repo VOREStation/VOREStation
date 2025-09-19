@@ -187,10 +187,12 @@
 		temp_test += 0.1
 		var/obj/distilling_tester/DD = fake_beaker
 		if(DD.check_instants())
-			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted before distilling, reaction blocked making [CR.name] inaccessible.")
+			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted before distilling, reaction blocked before it could happen!")
+			return TRUE
 		DD.test_distilling(CR,temp_test)
 		if(DD.check_instants())
-			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted after distilling, reaction blocked making [CR.name] inaccessible.")
+			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted after distilling, results consumed by another reaction!")
+			return TRUE
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return FALSE // Distilling success
 
