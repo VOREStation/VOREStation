@@ -876,7 +876,14 @@
 					/obj/item/toy/plushie/shark = 1,
 					/obj/item/toy/mistletoe = 1,
 					/obj/item/toy/plushie/tinytin = 1,
-					/obj/item/toy/plushie/tinytin_sec = 1)
+					/obj/item/toy/plushie/tinytin_sec = 1,
+					/obj/item/toy/plushie/dragon = 1,
+					/obj/item/toy/plushie/dragon/green = 1,
+					/obj/item/toy/plushie/dragon/purple = 1,
+					/obj/item/toy/plushie/dragon/red_east = 1,
+					/obj/item/toy/plushie/dragon/green_east = 1,
+					/obj/item/toy/plushie/dragon/white_east = 1,
+					/obj/item/toy/plushie/dragon/gold_east = 1)
 	premium = list(/obj/item/reagent_containers/food/drinks/bottle/champagne = 1,
 					/obj/item/storage/trinketbox = 2)
 	prices = list(/obj/item/storage/fancy/heartbox = 15,
@@ -919,7 +926,14 @@
 					/obj/item/toy/plushie/shark = 50,
 					/obj/item/toy/mistletoe = 50,
 					/obj/item/toy/plushie/tinytin = 35,
-					/obj/item/toy/plushie/tinytin_sec = 50)
+					/obj/item/toy/plushie/tinytin_sec = 50,
+					/obj/item/toy/plushie/dragon = 50,
+					/obj/item/toy/plushie/dragon/green = 50,
+					/obj/item/toy/plushie/dragon/purple = 50,
+					/obj/item/toy/plushie/dragon/red_east = 50,
+					/obj/item/toy/plushie/dragon/green_east = 50,
+					/obj/item/toy/plushie/dragon/white_east = 50,
+					/obj/item/toy/plushie/dragon/gold_east = 500)
 
 
 /obj/machinery/vending/fishing

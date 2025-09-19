@@ -858,6 +858,8 @@
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
 ///Called right after the atom changes the value of light_flags to a different one, from base of [/atom/proc/set_light_flags]: (old_flags)
 #define COMSIG_ATOM_UPDATE_LIGHT_FLAGS "atom_update_light_flags"
+///Called right after the atom is flushed into a disposal holder and sent through the disposal network: (/obj/structure/disposalholder)
+#define COMSIG_ATOM_DISPOSAL_FLUSHED "atom_disposal_flushed"
 
 // /datum/element/light_eater
 ///from base of [/datum/element/light_eater/proc/table_buffet]: (list/light_queue, datum/light_eater)

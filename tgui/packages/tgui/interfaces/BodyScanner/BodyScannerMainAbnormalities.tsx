@@ -13,7 +13,8 @@ export const BodyScannerMainAbnormalities = (props: { occupant: occupant }) => {
     occupant.nearsighted ||
     occupant.brokenspine ||
     occupant.hasVirus ||
-    occupant.husked;
+    occupant.husked ||
+    occupant.hasWithdrawl;
 
   hasAbnormalities =
     hasAbnormalities ||
