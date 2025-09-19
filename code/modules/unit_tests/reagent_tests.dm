@@ -147,6 +147,7 @@
 		// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
 		if(!!perform_reaction(CR))
 			TEST_NOTICE(src, "[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+			failed = TRUE
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
 	QDEL_NULL(fake_beaker)
 	#endif
