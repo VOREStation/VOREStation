@@ -1,6 +1,11 @@
 /// converted unit test, maybe should be fully refactored
 /// MIGHT REQUIRE BIGGER REWORK
 
+#define RESULT_REACTION_FAILED 1
+#define RESULT_REACTION_SUCCESS 0
+#define RESULT_REACTION_SUCCESS_INHIB -1
+#define RESULT_REACTION_SUCCESS_ALLINHIB -2
+
 /// Test that makes sure that reagent ids and names are unique
 /datum/unit_test/reagent_shall_have_unique_name_and_id
 
@@ -145,9 +150,18 @@
 
 		// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
 		// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
-		if(!!perform_reaction(CR))
-			TEST_NOTICE(src, "[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-			failed = TRUE
+		var/result_state = perform_reaction(CR)
+		switch(result_state)
+			if(RESULT_REACTION_SUCCESS)
+				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+			if(RESULT_REACTION_SUCCESS_INHIB)
+				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS USING INHIBITOR. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+			if(RESULT_REACTION_SUCCESS_ALLINHIB)
+				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS WITH ALL INHIBITORS. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+			else
+				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction did not produce \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+				failed = TRUE
+
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
 	QDEL_NULL(fake_beaker)
 	#endif
@@ -188,31 +202,29 @@
 		var/obj/distilling_tester/DD = fake_beaker
 		if(DD.check_instants())
 			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted before distilling, reaction blocked before it could happen!")
-			return TRUE
+			return RESULT_REACTION_FAILED
 		DD.test_distilling(CR,temp_test)
 		if(DD.check_instants())
 			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted after distilling, results consumed by another reaction!")
-			return TRUE
+			return RESULT_REACTION_FAILED
 		if(fake_beaker.reagents.has_reagent(CR.result))
-			return FALSE // Distilling success
+			return RESULT_REACTION_SUCCESS // Distilling success
 
 	while(temp_test > 1)
 
 	// Check beaker to see if we reached our goal!
 	if(fake_beaker.reagents.has_reagent(CR.result))
-		TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS(first try)")
-		return FALSE // INSTANT SUCCESS!
+		return RESULT_REACTION_SUCCESS // INSTANT SUCCESS!
 
 	if(inhib.len)
 		// We've checked with inhibitors, so we're already in inhibitor checking phase.
 		// So we've absolutely failed this time. There is no way to make this...
-		return TRUE
+		return RESULT_REACTION_FAILED
 
 	if(!result_reactions.len)
 		// Nothing to check for inhibitors...
 		for(var/decl/chemical_reaction/test_react in result_reactions)
-			TEST_NOTICE(src, "[CR.type]: Reagents - Used [test_react] but failed.")
-		return TRUE
+		return RESULT_REACTION_FAILED
 
 	// Otherwise we check the resulting reagents and use their inhibitor this time!
 	for(var/decl/chemical_reaction/test_react in result_reactions)
@@ -223,17 +235,15 @@
 		// Test one by one
 		for(var/each in test_react.inhibitors)
 			if(!perform_reaction(CR, list("[each]" = test_react.inhibitors["[each]"])))
-				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS(using a inhibitor)")
-				return FALSE // SUCCESS using an inhibitor!
+				return RESULT_REACTION_SUCCESS_INHIB // SUCCESS using an inhibitor!
 		// Test all at once
 		if(!perform_reaction(CR, test_react.inhibitors))
-			TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS(using all inhibitors)")
-			return FALSE // SUCCESS using all inhibitors!
+			return RESULT_REACTION_SUCCESS_ALLINHIB // SUCCESS using all inhibitors!
 
 	// No inhibiting reagent worked...
 	for(var/decl/chemical_reaction/test_react in result_reactions)
 		TEST_NOTICE(src, "[CR.type]: Reagents - Used inhibitors for [test_react] but still failed.")
-	return TRUE
+	return RESULT_REACTION_FAILED
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
@@ -259,3 +269,8 @@
 
 		for(var/reg_id in results)
 			TEST_ASSERT(SSchemistry.chemical_reagents[reg_id], "[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
+
+#undef RESULT_REACTION_FAILED
+#undef RESULT_REACTION_SUCCESS
+#undef RESULT_REACTION_SUCCESS_INHIB
+#undef RESULT_REACTION_SUCCESS_ALLINHIB
