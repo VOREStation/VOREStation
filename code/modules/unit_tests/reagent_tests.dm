@@ -140,8 +140,6 @@
 			QDEL_SWAP(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
 			fake_beaker.reagents.maximum_volume = 5000
 
-		TEST_NOTICE(src, "[CR.type]: Reagents - TESTING REACTION [CR.name].")
-
 		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
 		RegisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 
@@ -188,8 +186,11 @@
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
 		var/obj/distilling_tester/DD = fake_beaker
+		if(DD.check_instants())
+			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted before distilling, reaction blocked making [CR.name] inaccessible.")
 		DD.test_distilling(CR,temp_test)
-
+		if(DD.check_instants())
+			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted after distilling, reaction blocked making [CR.name] inaccessible.")
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return FALSE // Distilling success
 
