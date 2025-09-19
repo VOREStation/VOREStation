@@ -1,6 +1,0 @@
-author: "Ryumi"
-delete-after: True
-changes:
-  - rscadd: "ALL cyborgs now start with a random number generator that lets them roll virtual dice."
-  - balance: "Misc. borg grippers can now hold card hands and fake casino chips."
-  - balance: "Service borg grippers can now hold real casino chips."

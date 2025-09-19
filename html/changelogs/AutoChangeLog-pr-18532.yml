@@ -1,7 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Flying and hovering properly checked when avoiding landmines"
-  - bugfix: "Phased shadekin no longer set off landmines"
-  - bugfix: "Vehicles set off landmines"
-  - balance: "Tiny mobs like mice no longer set off landmines"
