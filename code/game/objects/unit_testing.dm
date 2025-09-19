@@ -21,18 +21,17 @@
 /obj/distilling_tester/proc/check_instants()
 	// If we don't do this, then instant reactions that might be blocking our distilling reaction, or happen after it, won't show in the unit test
 	var/list/test_list = list()
-	for(var/id in reagents.reagent_list)
-		var/datum/reagent/reg = reagents.reagent_list[id]
+	for(var/datum/reagent/reg in reagents.reagent_list)
 		test_list[reg.id] = reg.volume
 	// Run reactions
 	reagents.trans_to_holder(instant_catcher,reagents.total_volume)
 	instant_catcher.handle_reactions()
 	instant_catcher.trans_to_holder(reagents,instant_catcher.total_volume)
 	// Return if we failed, should NOT have any changes
-	for(var/id in test_list)
-		var/datum/reagent/regtest = test_list[id]
-		var/datum/reagent/regcur = reagents.reagent_list[id]
-		if(!regcur || regtest.volume != regcur.volume)
+	if(reagents.reagent_list.len != test_list.len) // We should match
+		return TRUE
+	for(var/datum/reagent/regcur in reagents.reagent_list) // Be sure of contents
+		if(test_list[regcur.id] != regcur.volume)
 			return TRUE
 	return FALSE
 
