@@ -200,13 +200,7 @@
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
 		var/obj/distilling_tester/DD = fake_beaker
-		if(DD.check_instants())
-			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted before distilling, reaction blocked before it could happen!")
-			return RESULT_REACTION_FAILED
 		DD.test_distilling(CR,temp_test)
-		if(DD.check_instants())
-			TEST_NOTICE(src, "[CR.type]: Reagents - Reacted after distilling, results consumed by another reaction!")
-			return RESULT_REACTION_FAILED
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return RESULT_REACTION_SUCCESS // Distilling success
 

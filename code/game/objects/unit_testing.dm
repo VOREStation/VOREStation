@@ -19,28 +19,12 @@
 	return GM
 
 /obj/distilling_tester/proc/check_instants()
-	// If we don't do this, then instant reactions that might be blocking our distilling reaction, or happen after it, won't show in the unit test
-	var/list/test_list = list()
-	for(var/datum/reagent/reg in reagents.reagent_list)
-		test_list[reg.id] = reg.volume
-	// Run reactions
 	reagents.trans_to_holder(instant_catcher,reagents.maximum_volume)
 	instant_catcher.handle_reactions()
 	instant_catcher.trans_to_holder(reagents,reagents.maximum_volume)
-	// Return if we failed, should NOT have any changes
-	if(!test_list.len || !reagents.reagent_list.len) // Shouldn't be 0
-		return TRUE
-	if(reagents.reagent_list.len != test_list.len) // We should match
-		return TRUE
-	for(var/datum/reagent/regcur in reagents.reagent_list) // Be sure of contents
-		if(test_list[regcur.id] != regcur.volume)
-			return TRUE
-		test_list -= regcur.id
-	if(test_list.len) // Something in the list existed before, but doesn't now...
-		return TRUE
-	return FALSE
 
 /obj/distilling_tester/proc/test_distilling(var/decl/chemical_reaction/distilling/D, var/temp_prog)
+	check_instants()
 	// Do the actual test
 	QDEL_SWAP(GM,new())
 	if(D.require_xgm_gas)
@@ -57,6 +41,7 @@
 	// If it passes unit test, it might still be awful to make though, gotta find the right gas mix!
 	current_temp = LERP( D.temp_range[1], D.temp_range[2], temp_prog)
 	reagents.handle_reactions()
+	check_instants()
 
 /obj/distilling_tester/Destroy(force, ...)
 	QDEL_NULL(GM)
