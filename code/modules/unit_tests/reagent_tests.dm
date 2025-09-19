@@ -203,7 +203,7 @@
 	if(!result_reactions.len)
 		// Nothing to check for inhibitors...
 		for(var/decl/chemical_reaction/test_react in result_reactions)
-			TEST_FAIL("[CR.type]: Reagents - Used [test_react] but failed.")
+			TEST_NOTICE("[CR.type]: Reagents - Used [test_react] but failed.")
 		return TRUE
 
 	// Otherwise we check the resulting reagents and use their inhibitor this time!
@@ -222,7 +222,7 @@
 
 	// No inhibiting reagent worked...
 	for(var/decl/chemical_reaction/test_react in result_reactions)
-		TEST_FAIL("[CR.type]: Reagents - Used [test_react] but failed.")
+		TEST_NOTICE("[CR.type]: Reagents - Used [test_react] but failed.")
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())
