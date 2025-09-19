@@ -28,6 +28,8 @@
 	instant_catcher.handle_reactions()
 	instant_catcher.trans_to_holder(reagents,instant_catcher.total_volume)
 	// Return if we failed, should NOT have any changes
+	if(!test_list.len || !reagents.reagent_list.len) // Shouldn't be 0
+		return TRUE
 	if(reagents.reagent_list.len != test_list.len) // We should match
 		return TRUE
 	for(var/datum/reagent/regcur as anything in reagents.reagent_list) // Be sure of contents
