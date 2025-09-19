@@ -47,3 +47,32 @@
 	desc = "A deck of playing cards from the golden goose casino, comes without a joker card!"
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "casino_deck"
+
+/obj/item/deck/cards/casino/triple
+	name = "big deck of casino cards"
+	desc = "A triply-sized deck of playing cards from the golden goose casino, comes without a joker card!"
+
+/obj/item/deck/cards/casino/triple/Initialize(mapload)
+	. = ..()
+	for(var/a = 0, a<3, a++)
+		for(var/suit in list("spades","clubs","diamonds","hearts"))
+
+			var/colour
+			if(suit == "spades" || suit == "clubs")
+				colour = "black_"
+			else
+				colour = "red_"
+
+			for(var/number in list("ace","two","three","four","five","six","seven","eight","nine","ten"))
+				P = new()
+				P.name = "[number] of [suit]"
+				P.card_icon = "casino_[colour]num"
+				P.back_icon = "casino_card_back"
+				cards += P
+
+			for(var/number in list("jack","queen","king"))
+				P = new()
+				P.name = "[number] of [suit]"
+				P.card_icon = "casino_[colour]col"
+				P.back_icon = "casino_card_back"
+				cards += P
