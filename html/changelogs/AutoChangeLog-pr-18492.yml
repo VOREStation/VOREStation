@@ -1,0 +1,4 @@
+author: "lbnesquik"
+delete-after: True
+changes:
+  - rscadd: "Added the coroner role as an alternative title to medical doctors"
