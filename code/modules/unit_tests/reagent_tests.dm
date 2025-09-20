@@ -194,12 +194,12 @@
 		if(inhib.len) // taken from argument and not reaction! Put in FIRST!
 			for(var/RR in inhib)
 				fake_beaker.reagents.add_reagent(RR, inhib[RR] * scale)
-		if(CR.catalysts) // Required for reaction
-			for(var/RR in CR.catalysts)
-				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
 		if(CR.required_reagents)
 			for(var/RR in CR.required_reagents)
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
+		if(CR.catalysts) // Required for reaction
+			for(var/RR in CR.catalysts)
+				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
 
 		if(!istype(CR, /decl/chemical_reaction/distilling))
 			break // Skip the next section if we're not distilling
