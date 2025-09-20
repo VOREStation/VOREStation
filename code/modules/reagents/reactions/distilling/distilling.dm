@@ -101,14 +101,6 @@
 	temp_range = list(T20C + 80, T20C + 130)
 	temp_shift = -2
 
-
-/decl/chemical_reaction/instant/biomass2
-	name = "Distilling Biomass TEST"
-	id = "distill_biomass2"
-	result = REAGENT_ID_TOXIN
-	required_reagents = list(REAGENT_ID_BLOOD = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_PHORON = 0.5)
-	result_amount = 1 // 40 units per sheet, requires actually using the machine, and having blood to spare.
-
 // Medicinal
 /decl/chemical_reaction/distilling/inaprovalaze
 	name = "Distilling Inaprovalaze"
