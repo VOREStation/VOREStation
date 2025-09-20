@@ -382,6 +382,7 @@
 	name = REAGENT_IRISHCREAM
 	id = REAGENT_ID_IRISHCREAM
 	result = REAGENT_ID_IRISHCREAM
+	inhibitors = list(REAGENT_ID_WATERMELONJUICE = 1) // Blocks aloe
 	required_reagents = list(REAGENT_ID_WHISKEY = 2, REAGENT_ID_CREAM = 1)
 	result_amount = 3
 
@@ -799,6 +800,7 @@
 	name = REAGENT_MILKSHAKE
 	id = REAGENT_ID_MILKSHAKE
 	result = REAGENT_ID_MILKSHAKE
+	inhibitors = list(REAGENT_ID_PEANUTBUTTER = 1) // Blocks peanutbutter milkshake
 	required_reagents = list(REAGENT_ID_CREAM = 1, REAGENT_ID_ICE = 2, REAGENT_ID_MILK = 2)
 	result_amount = 5
 
