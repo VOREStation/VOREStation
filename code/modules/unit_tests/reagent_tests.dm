@@ -184,10 +184,10 @@
 
 		if(inhib.len) // taken from argument and not reaction! Put in FIRST!
 			for(var/RR in inhib)
-				fake_beaker.reagents.add_reagent(RR, inhib[RR] * scale)
+				fake_beaker.reagents.add_reagent(RR, inhib[RR]) // Does not need to scale
 		if(CR.catalysts) // Required for reaction
 			for(var/RR in CR.catalysts)
-				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
+				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR]) // Does not need to scale
 		if(CR.required_reagents)
 			for(var/RR in CR.required_reagents)
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
