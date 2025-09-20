@@ -236,8 +236,6 @@
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
 
 /// Test that makes sure that chemical grinding has valid results
-/datum/unit_test/chemical_grinding_must_produce_valid_results
-
 /datum/unit_test/chemical_grinding_must_produce_valid_results/Run()
 	for(var/grind in GLOB.sheet_reagents + GLOB.ore_reagents)
 		var/list/results = GLOB.sheet_reagents[grind]
