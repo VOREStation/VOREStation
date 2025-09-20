@@ -48,6 +48,12 @@
 /area/awaymission/lucky7/privategameroom/six
 	name = "\improper Gateway - Private Game Room Six"
 
+/area/awaymission/lucky7/privategameroom/seven
+	name = "\improper Gateway - Private Game Room Seven"
+
+/area/awaymission/lucky7/privategameroom/eight
+	name = "\improper Gateway - Private Game Room Eight"
+
 /area/awaymission/lucky7/privateroom
 	name = "\improper Gateway - Private Room One"
 	icon_state = "crew_quarters"
@@ -71,6 +77,14 @@
 
 /area/awaymission/lucky7/privateroom/six
 	name = "\improper Gateway - Private Room Six"
+	icon_state = "crew_quarters"
+
+/area/awaymission/lucky7/privateroom/seven
+	name = "\improper Gateway - Private Room Seven"
+	icon_state = "crew_quarters"
+
+/area/awaymission/lucky7/privateroom/eight
+	name = "\improper Gateway - Private Room Eight"
 	icon_state = "crew_quarters"
 
 /area/awaymission/lucky7/privateroom/vip
