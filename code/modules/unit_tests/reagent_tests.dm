@@ -112,11 +112,10 @@
 /datum/unit_test/chemical_reactions_shall_not_conflict/Run()
 	var/failed = FALSE
 
-	#ifdef UNIT_TESTS
 	// need to test for instant reactions blocking distillation!
 	instant_beaker = new /obj/item/reagent_containers/glass/beaker()
 	instant_beaker.reagents.maximum_volume = 5000
-	RegisterSignal(instant_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+	RegisterSignal(instant_beaker.reagents, COMSIG_REAGENTS_HOLDER_REACTED, PROC_REF(get_signal_data))
 
 	//actual test
 	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
@@ -150,20 +149,19 @@
 			fake_beaker.reagents.maximum_volume = 5000
 
 		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
-		RegisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+		RegisterSignal(fake_beaker.reagents, COMSIG_REAGENTS_HOLDER_REACTED, PROC_REF(get_signal_data))
 
 		// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
 		// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
 		if(perform_reaction(CR) == RESULT_REACTION_FAILED)
 			TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction did not produce \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 			failed = TRUE
-		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
+		UnregisterSignal(fake_beaker.reagents, COMSIG_REAGENTS_HOLDER_REACTED)
 
 	// Cleanup
-	UnregisterSignal(instant_beaker.reagents, COMSIG_UNITTEST_DATA)
+	UnregisterSignal(instant_beaker.reagents, COMSIG_REAGENTS_HOLDER_REACTED)
 	QDEL_NULL(fake_beaker)
 	QDEL_NULL(instant_beaker)
-	#endif
 
 	if(failed)
 		TEST_FAIL("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
@@ -243,7 +241,7 @@
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())
 	SIGNAL_HANDLER
-	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
+	result_reactions += data // Append the reactions that happened, then use that to check their inhibitors
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/check_instants()
 	instant_beaker.reagents.clear_reagents()
