@@ -17,7 +17,6 @@
 	return GM
 
 /obj/distilling_tester/proc/test_distilling(var/decl/chemical_reaction/distilling/D, var/temp_prog)
-	// Do the actual test
 	QDEL_SWAP(GM,new())
 	if(D.require_xgm_gas)
 		GM.gas[D.require_xgm_gas] = 100
