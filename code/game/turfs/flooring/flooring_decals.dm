@@ -1266,3 +1266,65 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/arrows
 	name = "floor arrows"
 	icon_state = "arrows"
+
+//cetus plaques
+
+/obj/effect/floor_decal/cetus/cetus1
+	name = "cetus1"
+	icon_state = "cetus1"
+
+/obj/effect/floor_decal/cetus/cetus2
+	name = "cetus2"
+	icon_state = "cetus2"
+
+/obj/effect/floor_decal/cetus/cetus3
+	name = "cetus3"
+	icon_state = "cetus3"
+
+/obj/effect/floor_decal/cetus/cetus4
+	name = "cetus4"
+	icon_state = "cetus4"
+
+/obj/effect/floor_decal/cetus/cetus5
+	name = "cetus5"
+	icon_state = "cetus5"
+
+/obj/effect/floor_decal/cetus/cetus6
+	name = "cetus6"
+	icon_state = "cetus6"
+
+/obj/effect/floor_decal/cetus/cetus7
+	name = "cetus7"
+	icon_state = "cetus7"
+
+/obj/effect/floor_decal/cetus/cetus8
+	name = "cetus8"
+	icon_state = "cetus8"
+
+/obj/effect/floor_decal/cetus/cetus9
+	name = "cetus9"
+	icon_state = "cetus9"
+
+/obj/effect/floor_decal/cetus/andromeda1
+	name = "andromeda1"
+	icon_state = "andromeda1"
+
+/obj/effect/floor_decal/cetus/andromeda2
+	name = "andromeda2"
+	icon_state = "andromeda2"
+
+/obj/effect/floor_decal/cetus/andromeda3
+	name = "andromeda3"
+	icon_state = "andromeda3"
+
+/obj/effect/floor_decal/cetus/andromeda4
+	name = "andromeda4"
+	icon_state = "andromeda4"
+
+/obj/effect/floor_decal/cetus/andromeda5
+	name = "andromeda5"
+	icon_state = "andromeda5"
+
+/obj/effect/floor_decal/cetus/andromeda6
+	name = "andromeda6"
+	icon_state = "andromeda6"

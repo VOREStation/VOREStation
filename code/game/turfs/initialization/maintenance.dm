@@ -1,6 +1,8 @@
 /datum/turf_initializer/maintenance/InitializeTurf(var/turf/simulated/T)
 	if(T.density)
 		return
+	if(!T.can_dirty)
+		return
 	// Quick and dirty check to avoid placing things inside windows
 	if(locate(/obj/structure/grille, T))
 		return
@@ -58,3 +60,21 @@
 			if(dir == EAST)
 				new /obj/effect/decal/cleanable/cobweb2(T)
 			return
+
+/datum/turf_initializer/maintenance/shallow/InitializeTurf(var/turf/simulated/dirty)
+	if(dirty.density)
+		return
+	if(!dirty.can_dirty)
+		return
+	// Quick and dirty check to avoid placing things inside windows
+	if(locate(/obj/structure/grille, dirty))
+		return
+
+	var/cardinal_turfs = dirty.CardinalTurfs()
+
+	dirty.dirt = rand(10, 50) + rand(10, 50)
+	// If a neighbor is dirty, then we get dirtier.
+	var/how_dirty = dirty_neighbors(cardinal_turfs)
+	for(var/i = 0; i < how_dirty; i++)
+		dirty.dirt += rand(0,10)
+	dirty.update_dirt()

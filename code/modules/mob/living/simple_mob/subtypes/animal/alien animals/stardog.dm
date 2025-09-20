@@ -1432,6 +1432,7 @@
 	water_icon = 'icons/turf/stomach_vr.dmi'
 	water_state = "enzyme_shallow"
 	under_state = "flesh_floor"
+	watercolor = "green"
 
 	reagent_type = REAGENT_ID_SACID //why not
 	outdoors = FALSE
