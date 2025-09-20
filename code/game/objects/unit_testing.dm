@@ -9,11 +9,9 @@
 	var/datum/gas_mixture/GM = new()
 	var/current_temp = 0
 	var/had_instant_reaction = FALSE
-	var/datum/reagents/instant_reactor = null // For distilling
 
 /obj/distilling_tester/Initialize(mapload)
 	create_reagents(5000,/datum/reagents/distilling)
-	instant_reactor = new /datum/reagents(reagents.maximum_volume, src)
 	. = ..()
 
 /obj/distilling_tester/return_air()
@@ -35,16 +33,8 @@
 	// Try this 10 times, We need to know if something is blocking at multiple temps.
 	// If it passes unit test, it might still be awful to make though, gotta find the right gas mix!
 	current_temp = LERP( D.temp_range[1], D.temp_range[2], temp_prog)
-	check_instants()
 	reagents.handle_reactions()
-	check_instants()
 
 /obj/distilling_tester/Destroy(force, ...)
 	QDEL_NULL(GM)
-	QDEL_NULL(instant_reactor)
 	. = ..()
-
-/obj/distilling_tester/proc/check_instants()
-	instant_reactor.clear_reagents()
-	reagents.trans_to_holder(instant_reactor, reagents.total_volume)
-	instant_reactor.trans_to_holder(reagents, instant_reactor.total_volume)

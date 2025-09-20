@@ -106,6 +106,7 @@
 /// Test that makes sure that chemical reactions do not conflict
 /datum/unit_test/chemical_reactions_shall_not_conflict
 	var/obj/fake_beaker = null
+	var/obj/instant_beaker = null // For distilling only
 	var/list/result_reactions = list()
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/Run()
@@ -137,6 +138,11 @@
 			// distilling
 			var/obj/distilling_tester/D = new()
 			QDEL_SWAP(fake_beaker, D)
+			// need to test for instant reactions!
+			var/obj/item/reagent_containers/glass/beaker/B = new()
+			QDEL_SWAP(instant_beaker, D)
+			instant_beaker.reagents.maximum_volume = 5000
+			RegisterSignal(instant_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 		else
 			// regular beaker
 			QDEL_SWAP(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
@@ -152,7 +158,10 @@
 			failed = TRUE
 
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
+		if(instant_beaker)
+			UnregisterSignal(instant_beaker.reagents, COMSIG_UNITTEST_DATA)
 	QDEL_NULL(fake_beaker)
+	QDEL_NULL(instant_beaker)
 	#endif
 
 	if(failed)
@@ -190,7 +199,9 @@
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
 		var/obj/distilling_tester/DD = fake_beaker
+		check_instants()
 		DD.test_distilling(CR,temp_test)
+		check_instants()
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return RESULT_REACTION_SUCCESS // Distilling success
 
@@ -226,12 +237,17 @@
 
 	// No inhibiting reagent worked...
 	for(var/decl/chemical_reaction/test_react in result_reactions)
-		TEST_NOTICE(src, "[CR.type]: Reagents - Used inhibitor: [test_react]")
+		TEST_NOTICE(src, "[CR.type]: Reagents - Used inhibitor for: [test_react]")
 	return RESULT_REACTION_FAILED
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())
 	SIGNAL_HANDLER
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
+
+/datum/unit_test/chemical_reactions_shall_not_conflict/proc/check_instants()
+	instant_beaker.reagents.clear_reagents()
+	fake_beaker.reagents.trans_to_holder(instant_beaker.reagents, fake_beaker.reagents.total_volume)
+	instant_beaker.reagents.trans_to_holder(fake_beaker.reagents, instant_beaker.reagents.total_volume)
 
 /// Test that makes sure that chemical grinding has valid results
 /datum/unit_test/chemical_grinding_must_produce_valid_results/Run()
