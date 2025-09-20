@@ -137,7 +137,6 @@
 			// distilling
 			var/obj/distilling_tester/D = new()
 			QDEL_SWAP(fake_beaker, D)
-			fake_beaker.reagents.maximum_volume = 5000
 		else
 			// regular beaker
 			QDEL_SWAP(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
@@ -184,6 +183,7 @@
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
 
 		if(!istype(CR, /decl/chemical_reaction/distilling))
+			fake_beaker.reagents.handle_reactions()
 			break // Skip the next section if we're not distilling
 
 		// Check distillation at 10 points along its temperature range!
@@ -226,7 +226,7 @@
 
 	// No inhibiting reagent worked...
 	for(var/decl/chemical_reaction/test_react in result_reactions)
-		TEST_NOTICE(src, "[CR.type]: Reagents - Used inhibitors for [test_react] but still failed.")
+		TEST_NOTICE(src, "[CR.type]: Reagents - Used inhibitor: [test_react]")
 	return RESULT_REACTION_FAILED
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())

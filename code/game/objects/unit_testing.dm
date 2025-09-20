@@ -13,7 +13,7 @@
 
 /obj/distilling_tester/Initialize(mapload)
 	create_reagents(5000,/datum/reagents/distilling)
-	instant_reactor = new /datum/reagents(5000, src)
+	instant_reactor = new /datum/reagents(reagents.maximum_volume, src)
 	. = ..()
 
 /obj/distilling_tester/return_air()
