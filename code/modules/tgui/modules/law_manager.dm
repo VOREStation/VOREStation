@@ -127,13 +127,11 @@
 			return TRUE
 
 		if("notify_laws")
-			to_chat(owner, span_danger("Law Notice"))
-			owner.laws.show_laws(owner)
+			to_chat(owner, span_danger("Law Notice\n") + owner.laws.get_formatted_laws())
 			if(isAI(owner))
 				var/mob/living/silicon/ai/AI = owner
 				for(var/mob/living/silicon/robot/R in AI.connected_robots)
-					to_chat(R, span_danger("Law Notice"))
-					R.laws.show_laws(R)
+					to_chat(R, span_danger("Law Notice\n") + R.laws.get_formatted_laws())
 			if(ui.user != owner)
 				to_chat(ui.user, span_notice("Laws displayed."))
 			return TRUE
