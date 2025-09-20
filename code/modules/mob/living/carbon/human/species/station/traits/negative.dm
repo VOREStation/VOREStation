@@ -828,3 +828,22 @@
 	addiction = REAGENT_ID_ASUSTENANCE
 	custom_only = FALSE
 	hidden = TRUE //Disabled on Virgo
+
+/datum/trait/negative/unlucky
+	name = "Unlucky"
+	desc = "You are naturally unlucky and ill-events often befall you."
+	cost = -2
+	is_genetrait = FALSE
+	hidden = FALSE
+	added_component_path = /datum/component/omen/trait
+
+/datum/trait/negative/unlucky/major
+	name = "Unlucky, Major"
+	desc = "Your luck is extremely awful and potentially fatal."
+	cost = -6
+	tutorial = "You should avoid disposal bins."
+	is_genetrait = TRUE
+	hidden = FALSE
+	added_component_path = /datum/component/omen/trait/major
+	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
+	primitive_expression_messages=list("unluckily stubs their toe!")

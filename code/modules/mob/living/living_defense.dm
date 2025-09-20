@@ -126,7 +126,7 @@
 
 	//Stun Beams
 	if(P.taser_effect)
-		stun_effect_act(0, P.agony, def_zone, P)
+		stun_effect_act(0, P.agony, def_zone, P, electric = TRUE)
 		if(!P.nodamage)
 			apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, sharp=proj_sharp, edge=proj_edge, used_weapon=P, projectile=TRUE)
 		qdel(P)
@@ -146,8 +146,9 @@
 //	return absorb
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	flash_pain()
+	SEND_SIGNAL(src, COMSIG_STUN_EFFECT_ACT, stun_amount, agony_amount, def_zone, used_weapon, electric)
 
 	if (stun_amount)
 		Stun(stun_amount)
