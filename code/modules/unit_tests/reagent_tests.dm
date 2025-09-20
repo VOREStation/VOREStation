@@ -159,19 +159,19 @@
 		// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
 		var/result_state = perform_reaction(CR)
 		switch(result_state)
-			if(RESULT_REACTION_SUCCESS)
-				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+			//if(RESULT_REACTION_SUCCESS)
+			//	TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 			if(RESULT_REACTION_SUCCESS_INHIB)
 				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS USING INHIBITOR. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 			if(RESULT_REACTION_SUCCESS_ALLINHIB)
 				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS WITH ALL INHIBITORS. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-			else if(RESULT_REACTION_FAILED)
+			if(RESULT_REACTION_FAILED)
 				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction did not produce \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 				failed = TRUE
-			else if(RESULT_REACTION_FAILED_DISTILLBEFORE)
+			if(RESULT_REACTION_FAILED_DISTILLBEFORE)
 				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction blocked before distilling \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 				failed = TRUE
-			else if(RESULT_REACTION_FAILED_DISTILLAFTER)
+			if(RESULT_REACTION_FAILED_DISTILLAFTER)
 				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction result consumed after distilling \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 				failed = TRUE
 
