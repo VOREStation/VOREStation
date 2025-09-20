@@ -8,9 +8,9 @@ if %errorlevel%==0 (
     set "powershellCmd=pwsh"
 )
 
-call "%powershellCmd%" -NoLogo -ExecutionPolicy Bypass -File "%~dp0javascript_.ps1" Download-Bun
+call %powershellCmd% -NoLogo -ExecutionPolicy Bypass -File "%~dp0javascript_.ps1" Download-Bun
 for /f "usebackq delims=" %%s in (`
-    "%powershellCmd%" -NoLogo -ExecutionPolicy Bypass -File "%~dp0javascript_.ps1" Get-Path
+    call %powershellCmd% -NoLogo -ExecutionPolicy Bypass -File "%~dp0javascript_.ps1" Get-Path
 `) do (
     set "PATH=%%s;!PATH!"
 )
