@@ -1279,6 +1279,30 @@
 "eH" = (
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/privateroom/six)
+"eI" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood/alt,
+/area/awaymission/lucky7/privateroom)
+"eJ" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood/alt/parquet,
+/area/awaymission/lucky7/privateroom/two)
+"eK" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood/alt/tile,
+/area/awaymission/lucky7/privateroom/three)
+"eL" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/awaymission/lucky7/privateroom/four)
+"eM" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood/alt/panel,
+/area/awaymission/lucky7/privateroom/five)
+"eN" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood/sif,
+/area/awaymission/lucky7/privateroom/six)
 "eQ" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -7958,7 +7982,7 @@ dI
 hw
 db
 db
-cW
+eI
 kn
 WD
 HP
@@ -9946,7 +9970,7 @@ dJ
 hE
 dc
 dc
-cX
+eJ
 ZM
 cT
 kA
@@ -10940,7 +10964,7 @@ eE
 em
 bL
 bL
-cY
+eK
 aa
 dN
 bE
@@ -12928,7 +12952,7 @@ eF
 eo
 ri
 ri
-Qu
+eL
 ai
 dW
 bJ
@@ -13922,7 +13946,7 @@ eG
 en
 dd
 dd
-cZ
+eM
 aS
 dZ
 bO
@@ -15910,7 +15934,7 @@ eH
 ep
 de
 de
-da
+eN
 aX
 ek
 bU
