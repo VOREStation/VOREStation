@@ -1194,9 +1194,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/image/I = image(icon = 'icons/mob/submerged.dmi', icon_state = "human_swimming_[depth]", layer = BODY_LAYER+MOB_WATER_LAYER) //TODO: Improve
 	I.color = A.color
 	if(istype(A, /turf/simulated/floor/water))
-		var/turf/simulated/floor/water/W = A
-		if(W.watercolor)
-			I.color = W.watercolor
+		var/turf/simulated/floor/water/underwater = A
+		if(underwater.watercolor)
+			I.color = underwater.watercolor
 	overlays_standing[MOB_WATER_LAYER] = I
 
 	apply_layer(MOB_WATER_LAYER)

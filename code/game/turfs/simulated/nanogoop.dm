@@ -32,13 +32,13 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/Initialize(mapload)
 	. = ..()
-	for(var/obj/machinery/power/smes/M in GLOB.smeses)
-		if(!M)
+	for(var/obj/machinery/power/smes/tolink in GLOB.smeses)
+		if(!tolink)
 			continue
-		if(!get_area(M))
+		if(!get_area(tolink))
 			continue
-		if(get_area(M) == get_area(src))
-			linkedsmes = WEAKREF(M)
+		if(get_area(tolink) == get_area(src))
+			linkedsmes = WEAKREF(tolink)
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/attack_hand(mob/user)
 	var/mob/living/nutrienttarget = moblink?.resolve()
@@ -48,16 +48,16 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 	if(ishuman(user))
 		if(smes || isAI(nutrienttarget))
 			return ..()
-		var/mob/living/carbon/human/H = user
-		if(H.nif)//Proteans have NIFS
+		var/mob/living/carbon/human/checker = user
+		if(checker.nif)//Proteans have NIFS
 			var/choice1 = tgui_input_list(user, "Do you wish interface with \the [src]", "Desired state", list("On", "Off"))
 			switch(choice1)
 				if("On")
 					var/choice2 = tgui_input_list(user, "Which entities do you wish for \the [src] to recycle?", "Desired targets", list("None", "All", "Organics and Cyborgs", "Organics and Synthetics", "Only Organics"))
-					if(H.isSynthetic())
-						to_chat(H, span_warning("With you in control, \the [src] will not attempt to recycle your body, no matter the setting you pick"))
+					if(checker.isSynthetic())
+						to_chat(checker, span_warning("With you in control, \the [src] will not attempt to recycle your body, no matter the setting you pick"))
 					else
-						to_chat(H, span_warning("You realize there is no way for the simplistic [src] to ignore your form, if you set it to recycle."))
+						to_chat(checker, span_warning("You realize there is no way for the simplistic [src] to ignore your form, if you set it to recycle."))
 					user.visible_message(span_warning("\The [user] inspects \the [src]"), span_warning("You begin to interface with \the [src]."))
 					if(do_after(user, 30, src))
 						nutrienttarget = user
@@ -83,7 +83,6 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 						user.visible_message(span_warning("\The [user] inspects \the [src]"), span_warning("You begin to interface with \the [src]."))
 						if(do_after(user, 30, src))
 							toggle_all(FALSE)
-							nutrienttarget = null
 	return ..()
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/attack_ai(mob/user)
@@ -126,9 +125,6 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 		if("Off")
 			if(active)
 				toggle_all(FALSE)
-				nutrienttarget = null
-				if(isAI(user) && (locate(user) in range(1, src)))
-					nutrienttarget = user
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/can_digest(atom/movable/AM) //copypasting the entire proc because we use an SMES instead of a linked mob
 	. = FALSE
@@ -142,47 +138,44 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 	if(AM.loc != src)
 		return FALSE
 	if(isitem(AM))
-		var/obj/item/I = AM
-		if(I.unacidable || I.throwing || I.is_incorporeal() || !I)
+		var/obj/item/targetitem = AM
+		if(targetitem.unacidable || targetitem.throwing || targetitem.is_incorporeal() || !targetitem)
 			return FALSE
 		var/food = FALSE
-		if(istype(I,/obj/item/reagent_containers/food))
+		if(istype(targetitem,/obj/item/reagent_containers/food))
 			food = TRUE
 		if(prob(95))	//Give people a chance to pick them up
 			return TRUE
-		I.visible_message(span_warning("\The [I] sizzles..."))
-		var/yum = I.digest_act()	//Glorp
-		if(istype(I , /obj/item/card))
+		targetitem.visible_message(span_warning("\The [targetitem] sizzles..."))
+		var/yum = targetitem.digest_act()	//Glorp
+		if(istype(targetitem , /obj/item/card))
 			yum = 0		//No, IDs do not have infinite nutrition, thank you
-		if(istype(I, /obj/item/cell))
-			var/obj/item/cell/C = I
-			yum = (C.charge/20)
 		if(yum)
 			if(food)
 				yum += 50
 			give_nutrients(yum)
 		return TRUE
 	if(isliving(AM))
-		var/mob/living/L = AM
-		if(L.unacidable || !L.digestable || L.buckled || L.hovering || L.throwing || L.is_incorporeal())
+		var/mob/living/targetmob = AM
+		if(targetmob.unacidable || !targetmob.digestable || targetmob.buckled || targetmob.hovering || targetmob.throwing || targetmob.is_incorporeal())
 			return FALSE
-		if(isrobot(L))
+		if(isrobot(targetmob))
 			if(!digest_robot)
 				return FALSE
-			if(L == nutrienttarget)
+			if(targetmob == nutrienttarget)
 				return FALSE
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			if(H.isSynthetic())
+		if(ishuman(targetmob))
+			var/mob/living/carbon/human/targethuman = targetmob
+			if(targethuman.isSynthetic())
 				if(!digest_synth)
 					return FALSE
-				if(L == nutrienttarget)
+				if(targetmob == nutrienttarget)
 					return FALSE
-			if(!H.pl_suit_protected())
+			if(!targethuman.pl_suit_protected())
 				return TRUE
-			if(H.resting && !H.pl_head_protected())
+			if(targethuman.resting && !targethuman.pl_head_protected())
 				return TRUE
-		else return TRUE
+		return TRUE
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/proc/check_target()//check if the target is in the area, or if this is a
 	var/mob/living/nutrienttarget = moblink?.resolve()
@@ -194,7 +187,6 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 			if(get_area(nutrienttarget))
 				if(get_area(nutrienttarget) == get_area(src))
 					return nutrienttarget
-	nutrienttarget = null
 	toggle_all(FALSE)
 	return FALSE
 
@@ -212,54 +204,54 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 	var/thing = pick(stuff)	//We only think about one thing at a time, otherwise things get wacky
 	. = TRUE
 	if(iscarbon(thing))
-		var/mob/living/carbon/H = thing
-		if(!H)
+		var/mob/living/carbon/targetcarbon = thing
+		if(!targetcarbon)
 			return
-		if(H.stat == DEAD)
-			H.unacidable = TRUE	//Don't touch this one again, we're gonna delete it in a second
-			H.release_vore_contents()
-			for(var/obj/item/W in H)
-				if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
-					var/obj/item/organ/internal/mmi_holder/MMI = W
+		if(targetcarbon.stat == DEAD)
+			targetcarbon.unacidable = TRUE	//Don't touch this one again, we're gonna delete it in a second
+			targetcarbon.release_vore_contents()
+			for(var/obj/item/targetitem in targetcarbon)
+				if(istype(targetitem, /obj/item/organ/internal/mmi_holder/posibrain))
+					var/obj/item/organ/internal/mmi_holder/MMI = targetitem
 					MMI.removed()
-				if(istype(W, /obj/item/organ))
-					W.unacidable = TRUE
+				if(istype(targetitem, /obj/item/organ))
+					targetitem.unacidable = TRUE
 					continue
-				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
+				if(istype(targetitem, /obj/item/implant/backup) || istype(targetitem, /obj/item/nif))
 					continue
-				H.drop_from_inventory(W)
-			var/how_much = H.mob_size + H.nutrition
-			if(!H.ckey)
+				targetcarbon.drop_from_inventory(targetitem)
+			var/how_much = targetcarbon.mob_size + targetcarbon.nutrition
+			if(!targetcarbon.ckey)
 				how_much = how_much / 10	//Braindead mobs are worth less
 			nutrients += how_much
-			H.mind?.vore_death = TRUE
+			targetcarbon.mind?.vore_death = TRUE
 			GLOB.prey_digested_roundstat++
-			qdel(H)	//glorp
+			qdel(targetcarbon)	//glorp
 			return
-		H.adjustFireLoss(damage)
-		var/how_much = (damage * H.size_multiplier) * H.get_digestion_nutrition_modifier()
-		if(!H.ckey)
+		targetcarbon.adjustFireLoss(damage)
+		var/how_much = (damage * targetcarbon.size_multiplier) * targetcarbon.get_digestion_nutrition_modifier()
+		if(!targetcarbon.ckey)
 			how_much = how_much / 10	//Braindead mobs are worth less
 		nutrients += how_much
-		if(H.bloodstr.get_reagent_amount(REAGENT_ID_NUMBENZYME) < 2) //best play it safe with digestion pain
-			H.bloodstr.add_reagent(REAGENT_ID_NUMBENZYME,4)
+		if(targetcarbon.bloodstr.get_reagent_amount(REAGENT_ID_NUMBENZYME) < 2) //best play it safe with digestion pain
+			targetcarbon.bloodstr.add_reagent(REAGENT_ID_NUMBENZYME,4)
 		nutrients += how_much
 	else if (isliving(thing))
-		var/mob/living/L = thing
-		if(!L)
+		var/mob/living/targetmob = thing
+		if(!targetmob)
 			return
-		if(L.stat == DEAD)
-			L.unacidable = TRUE	//Don't touch this one again, we're gonna delete it in a second
-			L.release_vore_contents()
-			var/how_much = L.mob_size + L.nutrition
-			if(!L.ckey)
+		if(targetmob.stat == DEAD)
+			targetmob.unacidable = TRUE	//Don't touch this one again, we're gonna delete it in a second
+			targetmob.release_vore_contents()
+			var/how_much = targetmob.mob_size + targetmob.nutrition
+			if(!targetmob.ckey)
 				how_much = how_much / 10	//Braindead mobs are worth less
 			nutrients += how_much
-			qdel(L) //gloop
+			qdel(targetmob) //gloop
 			return
-		L.adjustFireLoss(damage)
-		var/how_much = (damage * L.size_multiplier) * L.get_digestion_nutrition_modifier()
-		if(!L.ckey)
+		targetmob.adjustFireLoss(damage)
+		var/how_much = (damage * targetmob.size_multiplier) * targetmob.get_digestion_nutrition_modifier()
+		if(!targetmob.ckey)
 			how_much = how_much / 10	//Braindead mobs are worth less
 		nutrients += how_much
 	give_nutrients(nutrients)
@@ -272,30 +264,30 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 		return
 	if(nutrienttarget)
 		if(ishuman(nutrienttarget))
-			var/mob/living/carbon/human/H = nutrienttarget
-			if(H.isSynthetic())
-				H.nutrition = H.nutrition+(10 * amt * (1-min(H.species.synthetic_food_coeff, 0.9)))
+			var/mob/living/carbon/human/targetcarbon = nutrienttarget
+			if(targetcarbon.isSynthetic())
+				targetcarbon.nutrition = targetcarbon.nutrition+(10 * amt * (1-min(targetcarbon.species.synthetic_food_coeff, 0.9)))
 				return
-		if(isrobot(nutrienttarget))
-			var/mob/living/silicon/robot/R = nutrienttarget
-			if(R.cell)
-				R.cell.give(amt * 20)
-				return
+	if(isrobot(nutrienttarget))
+		var/mob/living/silicon/robot/targetrobot = nutrienttarget
+		if(targetrobot.cell)
+			targetrobot.cell.give(amt * 20)
+			return
 
 
-/turf/simulated/floor/water/digestive_enzymes/nanites/return_air_for_internal_lifeform(var/mob/living/L)
-	if(!can_digest(L))
+/turf/simulated/floor/water/digestive_enzymes/nanites/return_air_for_internal_lifeform(var/mob/living/targetmob)
+	if(!can_digest(targetmob))
 		return return_air() //Nanites should always be nonlethal until the AI turns on digestion
-	else
-		return ..()
+	return ..()
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/proc/toggle_all(var/on = TRUE, var/digest = FALSE, var/robot = FALSE, var/synth = FALSE)
 	var/mob/living/nutrienttarget = moblink?.resolve()
-	for(var/turf/simulated/floor/water/digestive_enzymes/nanites/M in GLOB.nanite_turfs)
-		if(M.id == id)
+	for(var/turf/simulated/floor/water/digestive_enzymes/nanites/nanites in GLOB.nanite_turfs)
+		if(nanites.id == id)
+			nanites.moblink = null
 			if(on)
-				M.moblink = WEAKREF(nutrienttarget)
-			M.select_state(on, digest, robot, synth)
+				nanites.moblink = WEAKREF(nutrienttarget)
+			nanites.select_state(on, digest, robot, synth)
 
 /turf/simulated/floor/water/digestive_enzymes/nanites/proc/select_state(var/on = TRUE, var/digest = FALSE, var/robot = FALSE, var/synth = FALSE)
 	if(!on)
@@ -319,29 +311,30 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 		for(var/obj/structure/dummystairs/hazardledge/stairs in src)
 			stairs.icon_state = "stair_hazard"
 			stairs.update_icon()
-	else
-		name = "nanite goop."
-		desc = "A deep pool of pulsating, possibly deadly nanite goop."
-		depth = 2
-		movement_cost = 16 //twice as difficult as deep water to navigate
-		footstep = FOOTSTEP_WATER
-		barefootstep = FOOTSTEP_WATER
-		clawfootstep = FOOTSTEP_WATER
-		water_state = "goo_active"
-		digesting = digest
-		digest_synth = synth
-		digest_robot = robot
-		active = TRUE
-		for(var/obj/structure/railing/overhang/hazard/nanite/R in src)
-			R.icon_modifier = "active_"
-			R.icon_state = "active_railing0"
-		for(var/obj/structure/railing/overhang/hazard/nanite/R in range(src, 1))
-			R.update_icon()
-		for(var/obj/structure/dummystairs/hazardledge/stairs in src)
-			depth = 1
-			movement_cost = 8
-			stairs.icon_state = "stair_hazard_nanite"
-			stairs.update_icon()
+		update_icon()
+		return
+	name = "nanite goop."
+	desc = "A deep pool of pulsating, possibly deadly nanite goop."
+	depth = 2
+	movement_cost = 16 //twice as difficult as deep water to navigate
+	footstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	clawfootstep = FOOTSTEP_WATER
+	water_state = "goo_active"
+	digesting = digest
+	digest_synth = synth
+	digest_robot = robot
+	active = TRUE
+	for(var/obj/structure/railing/overhang/hazard/nanite/R in src)
+		R.icon_modifier = "active_"
+		R.icon_state = "active_railing0"
+	for(var/obj/structure/railing/overhang/hazard/nanite/R in range(src, 1))
+		R.update_icon()
+	for(var/obj/structure/dummystairs/hazardledge/stairs in src)
+		depth = 1
+		movement_cost = 8
+		stairs.icon_state = "stair_hazard_nanite"
+		stairs.update_icon()
 	for(var/atom/AM in src)
 		Entered(AM)
 	update_icon()
