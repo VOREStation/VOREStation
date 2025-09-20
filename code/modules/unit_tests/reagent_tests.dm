@@ -190,9 +190,7 @@
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
 		var/obj/distilling_tester/DD = fake_beaker
-		check_instants()
 		DD.test_distilling(CR,temp_test)
-		check_instants()
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return RESULT_REACTION_SUCCESS // Distilling success
 
