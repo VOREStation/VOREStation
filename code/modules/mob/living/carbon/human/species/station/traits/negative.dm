@@ -853,7 +853,7 @@
 
 /datum/trait/negative/boneless/major
 	name = "Boneless, Major"
-	desc = "You have no bones! Though your limbs are also much, much easier to gib in exchange. (Seriously this can result in one shot deaths and similar)"
+	desc = "You have no bones! Your limbs are also much, much easier to gib in exchange. (Seriously this can result in one shot deaths and similar)"
 	cost = -6 //For reference, getting hit in the head with a welder 3 times kills you. Head has 37.5 HP. Reaching that cap = instant death
 	limb_health = 0.5
 
