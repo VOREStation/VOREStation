@@ -8,7 +8,6 @@
 	icon_state = "cartridge"
 	var/datum/gas_mixture/GM = new()
 	var/current_temp = 0
-	var/had_instant_reaction = FALSE
 
 /obj/distilling_tester/Initialize(mapload)
 	create_reagents(5000,/datum/reagents/distilling)
