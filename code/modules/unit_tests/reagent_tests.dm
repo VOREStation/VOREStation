@@ -2,11 +2,7 @@
 /// MIGHT REQUIRE BIGGER REWORK
 
 #define RESULT_REACTION_FAILED 1
-#define RESULT_REACTION_FAILED_DISTILLBEFORE 2
-#define RESULT_REACTION_FAILED_DISTILLAFTER 3
 #define RESULT_REACTION_SUCCESS 0
-#define RESULT_REACTION_SUCCESS_INHIB -1
-#define RESULT_REACTION_SUCCESS_ALLINHIB -2
 
 /// Test that makes sure that reagent ids and names are unique
 /datum/unit_test/reagent_shall_have_unique_name_and_id
@@ -157,23 +153,9 @@
 
 		// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
 		// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
-		var/result_state = perform_reaction(CR)
-		switch(result_state)
-			//if(RESULT_REACTION_SUCCESS)
-			//	TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-			if(RESULT_REACTION_SUCCESS_INHIB)
-				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS USING INHIBITOR. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-			if(RESULT_REACTION_SUCCESS_ALLINHIB)
-				TEST_NOTICE(src, "[CR.type]: Reagents - SUCCESS WITH ALL INHIBITORS. CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-			if(RESULT_REACTION_FAILED)
-				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction did not produce \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-				failed = TRUE
-			if(RESULT_REACTION_FAILED_DISTILLBEFORE)
-				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction blocked before distilling \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-				failed = TRUE
-			if(RESULT_REACTION_FAILED_DISTILLAFTER)
-				TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction result consumed after distilling \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-				failed = TRUE
+		if(perform_reaction(CR) == RESULT_REACTION_FAILED)
+			TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction did not produce \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+			failed = TRUE
 
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
 	QDEL_NULL(fake_beaker)
@@ -214,11 +196,9 @@
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
 		var/obj/distilling_tester/DD = fake_beaker
-		if(check_instants()) // No reactions before
-			return RESULT_REACTION_FAILED_DISTILLBEFORE
+		check_instants()
 		DD.test_distilling(CR,temp_test)
-		if(check_instants()) // No reactions or after
-			return RESULT_REACTION_FAILED_DISTILLAFTER
+		check_instants()
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return RESULT_REACTION_SUCCESS // Distilling success
 
@@ -263,11 +243,9 @@
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/check_instants()
 	instant_secondary_beaker.reagents.clear_reagents()
-	fake_beaker.reagents.trans_to(instant_secondary_beaker, fake_beaker.reagents.total_volume, 1, TRUE, TRUE) // Copy to
-	var/success = instant_secondary_beaker.reagents.handle_reactions()
-	fake_beaker.reagents.clear_reagents()
-	instant_secondary_beaker.reagents.trans_to(fake_beaker, instant_secondary_beaker.reagents.total_volume, 1, FALSE, TRUE) // Send back
-	return success
+	fake_beaker.reagents.trans_to(instant_secondary_beaker, fake_beaker.reagents.total_volume)
+	instant_secondary_beaker.reagents.handle_reactions()
+	instant_secondary_beaker.reagents.trans_to(fake_beaker, instant_secondary_beaker.reagents.total_volume)
 
 /// Test that makes sure that chemical grinding has valid results
 /datum/unit_test/chemical_grinding_must_produce_valid_results
@@ -292,8 +270,4 @@
 			TEST_ASSERT(SSchemistry.chemical_reagents[reg_id], "[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
 
 #undef RESULT_REACTION_FAILED
-#undef RESULT_REACTION_FAILED_DISTILLBEFORE
-#undef RESULT_REACTION_FAILED_DISTILLAFTER
 #undef RESULT_REACTION_SUCCESS
-#undef RESULT_REACTION_SUCCESS_INHIB
-#undef RESULT_REACTION_SUCCESS_ALLINHIB
