@@ -160,7 +160,7 @@
 		TEST_FAIL("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhib = list())
-	var/scale = 1
+	var/scale = 10
 	if(CR.result_amount < 1)
 		scale = 1 / CR.result_amount // Create at least 1 unit
 
