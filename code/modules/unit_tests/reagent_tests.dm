@@ -221,10 +221,10 @@
 		// Test one by one
 		for(var/each in test_react.inhibitors)
 			if(!perform_reaction(CR, list("[each]" = test_react.inhibitors["[each]"])))
-				return RESULT_REACTION_SUCCESS_INHIB // SUCCESS using an inhibitor!
+				return RESULT_REACTION_SUCCESS // SUCCESS using an inhibitor!
 		// Test all at once
 		if(!perform_reaction(CR, test_react.inhibitors))
-			return RESULT_REACTION_SUCCESS_ALLINHIB // SUCCESS using all inhibitors!
+			return RESULT_REACTION_SUCCESS // SUCCESS using all inhibitors!
 
 	// No inhibiting reagent worked...
 	for(var/decl/chemical_reaction/test_react in result_reactions)
