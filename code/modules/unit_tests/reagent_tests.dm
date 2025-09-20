@@ -114,7 +114,7 @@
 
 	#ifdef UNIT_TESTS
 	// need to test for instant reactions blocking distillation!
-	instant_beaker = new /obj/item/reagent_containers/glass/beaker/B()
+	instant_beaker = new /obj/item/reagent_containers/glass/beaker()
 	instant_beaker.reagents.maximum_volume = 5000
 	RegisterSignal(instant_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 
