@@ -106,7 +106,6 @@
 /// Test that makes sure that chemical reactions do not conflict
 /datum/unit_test/chemical_reactions_shall_not_conflict
 	var/obj/fake_beaker = null
-	var/obj/instant_secondary_beaker = null // For distilling
 	var/list/result_reactions = list()
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/Run()
@@ -139,10 +138,6 @@
 			var/obj/distilling_tester/D = new()
 			QDEL_SWAP(fake_beaker, D)
 			fake_beaker.reagents.maximum_volume = 5000
-
-			var/obj/item/reagent_containers/glass/beaker/secondary = new()
-			QDEL_SWAP(instant_secondary_beaker, secondary)
-			instant_secondary_beaker.reagents.maximum_volume = 5000
 		else
 			// regular beaker
 			QDEL_SWAP(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
@@ -159,7 +154,6 @@
 
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
 	QDEL_NULL(fake_beaker)
-	QDEL_NULL(instant_secondary_beaker)
 	#endif
 
 	if(failed)
@@ -240,12 +234,6 @@
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())
 	SIGNAL_HANDLER
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
-
-/datum/unit_test/chemical_reactions_shall_not_conflict/proc/check_instants()
-	instant_secondary_beaker.reagents.clear_reagents()
-	fake_beaker.reagents.trans_to(instant_secondary_beaker, fake_beaker.reagents.total_volume)
-	instant_secondary_beaker.reagents.handle_reactions()
-	instant_secondary_beaker.reagents.trans_to(fake_beaker, instant_secondary_beaker.reagents.total_volume)
 
 /// Test that makes sure that chemical grinding has valid results
 /datum/unit_test/chemical_grinding_must_produce_valid_results
