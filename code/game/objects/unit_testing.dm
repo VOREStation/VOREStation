@@ -13,7 +13,7 @@
 
 /obj/distilling_tester/Initialize(mapload)
 	create_reagents(5000,/datum/reagents/distilling)
-	instant_catcher = new /datum/reagents(10000, src)
+	instant_catcher = new /datum/reagents(5000, src)
 	#ifdef UNIT_TESTS
 	RegisterSignal(instant_catcher, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 	#endif
@@ -24,8 +24,9 @@
 
 /obj/distilling_tester/proc/check_instants()
 	had_instant_reaction = FALSE
-	reagents.trans_to_holder(instant_catcher,reagents.maximum_volume)
-	instant_catcher.trans_to_holder(reagents,instant_catcher.maximum_volume)
+	instant_catcher.clear_reagents()
+	reagents.trans_to_holder(instant_catcher,reagents.maximum_volume,1,TRUE) // Copy them
+	instant_catcher.handle_reactions()
 	return had_instant_reaction
 
 /obj/distilling_tester/proc/test_distilling(var/decl/chemical_reaction/distilling/D, var/temp_prog)
