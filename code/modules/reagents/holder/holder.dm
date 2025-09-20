@@ -101,8 +101,8 @@
 	while(reaction_occurred)
 	for(var/decl/chemical_reaction/C as anything in effect_reactions)
 		C.post_reaction(src)
-	SEND_SIGNAL(src, COMSIG_REAGENTS_HOLDER_REACTED, effect_reactions)
 	update_total()
+	SEND_SIGNAL(src, COMSIG_REAGENTS_HOLDER_REACTED, effect_reactions)
 	return effect_reactions.len
 
 /* Holder-to-chemical */
