@@ -62,6 +62,7 @@
 	name = "corn " + REAGENT_COOKINGOIL
 	id = "cookingoilcorn"
 	result = REAGENT_ID_COOKINGOIL
+	inhibitors = list(REAGENT_ID_FLOUR = 1) // Blocks spacebeer
 	required_reagents = list(REAGENT_ID_CORNOIL = 10)
 	catalysts = list(REAGENT_ID_ENZYME = 5)
 	result_amount = 10

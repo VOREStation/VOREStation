@@ -62,7 +62,7 @@
 		failed = TRUE
 
 	// Disabled, as currently not working in a presentable way, spams the CI hard, do not enable unless fixed
-	#ifdef UNIT_TEST
+	#ifdef UNIT_TESTS
 	// Time for the most brutal part. Dressing up some mobs with set species, and checking they have art
 	// An entire signal just for unittests had to be made for this!
 	var/list/body_types = list(SPECIES_HUMAN,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries

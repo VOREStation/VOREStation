@@ -692,6 +692,11 @@
 ///called when you wash your face at a sink: (num/strength)
 #define COMSIG_COMPONENT_CLEAN_FACE_ACT "clean_face_act"
 
+//Reagent holder
+
+///from base of /datum/reagents/proc/handle_reactions(): (list/decl/chemical_reaction)
+#define COMSIG_REAGENTS_HOLDER_REACTED "reagents_holder_reacted"
+
 //Food
 
 ///from base of obj/item/reagent_containers/food/snacks/attack(): (mob/living/eater, mob/feeder)

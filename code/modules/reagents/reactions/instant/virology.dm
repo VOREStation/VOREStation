@@ -111,7 +111,7 @@
 /decl/chemical_reaction/instant/mix_virus/mix_virus_3
 	name = "Mix Virus 3"
 	id = "mixvirus3"
-	required_reagents = list(REAGENT_ID_PHORON = 1)
+	required_reagents = list(REAGENT_ID_VIRUSFOOD = 1, REAGENT_ID_PHORON = 1)
 	level_min = 4
 	level_max = 6
 
