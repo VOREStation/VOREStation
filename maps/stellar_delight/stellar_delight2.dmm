@@ -1321,9 +1321,7 @@
 	pixel_y = -30
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "cJ" = (
 /obj/structure/bed/chair/comfy/blue,
@@ -2779,9 +2777,7 @@
 /obj/item/paint_brush,
 /obj/effect/landmark/vines,
 /obj/structure/closet/walllocker_double/misc_civ/north,
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "fI" = (
 /obj/effect/floor_decal/milspec/color/white/corner{
@@ -4359,8 +4355,7 @@
 "ji" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
+/turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
 "jj" = (
 /obj/structure/easel,
@@ -4377,9 +4372,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "jk" = (
 /obj/structure/cable/blue{
@@ -4521,8 +4514,7 @@
 	pixel_x = -32;
 	pixel_y = -41
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
+/turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
 "jz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4632,8 +4624,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
+/turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
 "jK" = (
 /obj/structure/table/glass,
@@ -5294,13 +5285,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos/monitoring)
-"lb" = (
-/obj/effect/floor_decal/steeldecal/steel_decals5{
-	dir = 8
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
-/area/stellardelight/deck2/fore)
 "lc" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -5373,8 +5357,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
+/turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
 "lk" = (
 /obj/structure/table/rack{
@@ -5436,10 +5419,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)
-"lp" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
-/area/stellardelight/deck2/fore)
 "lq" = (
 /obj/structure/cable/orange{
 	icon_state = "1-2"
@@ -6207,9 +6186,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "mR" = (
 /obj/structure/cable/orange{
@@ -6284,9 +6261,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "mY" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -6358,19 +6333,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/stellardelight/deck2/triage)
-"nk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
-/area/stellardelight/deck2/fore)
 "nm" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -7459,9 +7421,7 @@
 	name = "lightsout"
 	},
 /obj/machinery/hologram/holopad,
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "pQ" = (
 /obj/structure/bed/chair/bay/shuttle{
@@ -7742,9 +7702,7 @@
 	pixel_y = 28
 	},
 /obj/effect/landmark/vermin,
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "qt" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -9017,9 +8975,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "to" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
@@ -9536,9 +9492,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "uz" = (
 /obj/structure/sign/deck2{
@@ -10356,9 +10310,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "wz" = (
 /obj/structure/cable/white{
@@ -10442,9 +10394,7 @@
 /obj/structure/sign/painting/public{
 	pixel_y = -30
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "wK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -10624,8 +10574,7 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
+/turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
 "xh" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -12166,22 +12115,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
-"AJ" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals5{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
-/area/stellardelight/deck2/fore)
 "AK" = (
 /obj/machinery/power/sensor{
 	name = "Powernet Sensor - Master Grid";
@@ -12385,8 +12318,7 @@
 /obj/effect/floor_decal/milspec/color/blue/half{
 	dir = 8
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
+/turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
 "Bd" = (
 /obj/structure/cable/orange{
@@ -12440,9 +12372,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "Bj" = (
 /obj/machinery/smartfridge/produce/persistent_lossy,
@@ -12559,13 +12489,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/port)
-"Bz" = (
-/obj/effect/floor_decal/steeldecal/steel_decals5{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
-/area/stellardelight/deck2/fore)
 "BA" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -12832,9 +12755,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "Ch" = (
 /obj/machinery/atmospherics/pipe/tank/oxygen{
@@ -16722,9 +16643,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "KG" = (
 /obj/structure/cable/green{
@@ -17356,9 +17275,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "Mb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -17987,9 +17904,7 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/central)
 "Ns" = (
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "Nt" = (
 /obj/structure/table/rack{
@@ -18165,9 +18080,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "NK" = (
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide{
@@ -18362,9 +18275,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "Ol" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -19536,16 +19447,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck2/exterior)
-"QJ" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
-/area/stellardelight/deck2/fore)
 "QK" = (
 /obj/machinery/atmospherics/omni/mixer{
 	name = "Air Mixer";
@@ -20092,9 +19993,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "RY" = (
 /obj/structure/cable/orange{
@@ -20751,9 +20650,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "TC" = (
 /obj/structure/disposalpipe/segment{
@@ -21315,9 +21212,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "UO" = (
 /obj/machinery/conveyor{
@@ -21395,17 +21290,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/storage/tech)
-"UW" = (
-/obj/effect/floor_decal/steeldecal/steel_decals5{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	dir = 4;
-	pixel_x = 24
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
-/area/stellardelight/deck2/fore)
 "UX" = (
 /obj/structure/table/gamblingtable,
 /turf/simulated/floor/carpet,
@@ -22540,9 +22424,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "XE" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -23024,9 +22906,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "YG" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -23336,8 +23216,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/water,
+/turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
 "Zo" = (
 /obj/machinery/light{
@@ -23397,9 +23276,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/water/digestive_enzymes/nanites{
-	id = "artism"
-	},
+/turf/simulated/floor/tiled,
 /area/storage/art)
 "Zv" = (
 /obj/structure/closet/walllocker_double/medical/north,
@@ -34802,10 +34679,10 @@ Kn
 US
 ND
 ND
-lb
-lb
-lp
-nk
+ND
+ND
+sO
+IK
 jy
 Bc
 yr
@@ -34944,7 +34821,7 @@ xT
 WH
 xT
 xT
-QJ
+xT
 xg
 jJ
 lj
@@ -35087,11 +34964,11 @@ Ye
 Zr
 Zr
 Zm
-AJ
-Bz
-Bz
-UW
-Bz
+OV
+Zr
+Zr
+sj
+Zr
 yr
 Mm
 lv
@@ -35515,7 +35392,7 @@ Ns
 Ns
 Zu
 wJ
-Ns
+mT
 cI
 JY
 GQ
@@ -35657,7 +35534,7 @@ Ns
 Ns
 pP
 wJ
-Ns
+mT
 cI
 JY
 Tg
@@ -35799,7 +35676,7 @@ Ns
 Ns
 Zu
 wJ
-Ns
+mT
 cI
 JY
 at
@@ -35941,7 +35818,7 @@ UN
 UN
 wy
 wJ
-Ns
+mT
 cI
 JY
 Ne
