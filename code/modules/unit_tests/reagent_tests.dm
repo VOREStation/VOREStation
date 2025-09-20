@@ -278,6 +278,8 @@
 			TEST_ASSERT(SSchemistry.chemical_reagents[reg_id], "[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
 
 #undef RESULT_REACTION_FAILED
+#undef RESULT_REACTION_FAILED_DISTILLBEFORE
+#undef RESULT_REACTION_FAILED_DISTILLAFTER
 #undef RESULT_REACTION_SUCCESS
 #undef RESULT_REACTION_SUCCESS_INHIB
 #undef RESULT_REACTION_SUCCESS_ALLINHIB
