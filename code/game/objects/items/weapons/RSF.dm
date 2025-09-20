@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(robot_glass_options, list(
 		balloon_alert(user,"you are too far away.")
 		return
 
-	var/glass_choice = show_radial_menu(user, user, GLOB.robot_glass_options, radius = 70)
+	var/glass_choice = show_radial_menu(user, user, GLOB.robot_glass_options, radius = 40)
 
 	if(glass_choice)
 		balloon_alert(user, "container chosen: [glass_choice]")
@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(robot_glass_options, list(
 		"dice pack (gaming)" = image(icon = 'icons/obj/dice.dmi', icon_state = "magicdicebag"),
 		"paper" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "paper"),
 		"pen" = image(icon = 'icons/obj/bureaucracy.dmi', icon_state = "pen"))
-	var/choice = show_radial_menu(user, user, options, radius = 70)
+	var/choice = show_radial_menu(user, user, options, radius = 40)
 	if(choice)
 		mode = choice
 		playsound(src, 'sound/effects/pop.ogg', 50, 0)
