@@ -113,6 +113,12 @@
 	var/failed = FALSE
 
 	#ifdef UNIT_TESTS
+	// need to test for instant reactions blocking distillation!
+	instant_beaker = new /obj/item/reagent_containers/glass/beaker/B()
+	instant_beaker.reagents.maximum_volume = 5000
+	RegisterSignal(instant_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+
+	//actual test
 	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
 	for(var/rtype in all_reactions)
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
@@ -138,11 +144,6 @@
 			// distilling
 			var/obj/distilling_tester/D = new()
 			QDEL_SWAP(fake_beaker, D)
-			// need to test for instant reactions!
-			var/obj/item/reagent_containers/glass/beaker/B = new()
-			QDEL_SWAP(instant_beaker, D)
-			instant_beaker.reagents.maximum_volume = 5000
-			RegisterSignal(instant_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 		else
 			// regular beaker
 			QDEL_SWAP(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
@@ -156,10 +157,10 @@
 		if(perform_reaction(CR) == RESULT_REACTION_FAILED)
 			TEST_NOTICE(src, "[CR.type]: Reagents - !!!!chemical reaction did not produce \"[CR.result]\"!!!! CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 			failed = TRUE
-
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
-		if(instant_beaker)
-			UnregisterSignal(instant_beaker.reagents, COMSIG_UNITTEST_DATA)
+
+	// Cleanup
+	UnregisterSignal(instant_beaker.reagents, COMSIG_UNITTEST_DATA)
 	QDEL_NULL(fake_beaker)
 	QDEL_NULL(instant_beaker)
 	#endif
