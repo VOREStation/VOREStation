@@ -266,7 +266,7 @@
 	fake_beaker.reagents.trans_to(instant_secondary_beaker,fake_beaker.reagents.total_volume,1,TRUE) // Copy to
 	var/success = instant_secondary_beaker.reagents.handle_reactions()
 	fake_beaker.reagents.clear_reagents()
-	instant_secondary_beaker.trans_to(fake_beaker,instant_secondary_beaker.reagents.total_volume) // Send back
+	instant_secondary_beaker.reagents.trans_to(fake_beaker,instant_secondary_beaker.reagents.total_volume) // Send back
 	return success
 
 /// Test that makes sure that chemical grinding has valid results
