@@ -105,7 +105,7 @@
 		SEND_SIGNAL(src, COMSIG_UNITTEST_DATA, list(C))
 		#endif
 	update_total()
-	return TRUE
+	return effect_reactions.len
 
 /* Holder-to-chemical */
 
