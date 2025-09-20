@@ -259,14 +259,14 @@
 /turf/simulated/floor/tiled,
 /area/space)
 "aV" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7)
 "aW" = (
 /obj/machinery/computer/arcade/clawmachine,
 /turf/simulated/floor/carpet/retro,
 /area/awaymission/lucky7/casinofloor)
 "aX" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/space)
 "aY" = (
 /turf/simulated/floor/carpet/bcarpet,
@@ -512,7 +512,7 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/awaymission/lucky7/hall1)
 "bK" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7/hall1)
 "bL" = (
 /turf/simulated/floor/wood,
@@ -680,7 +680,7 @@
 /turf/simulated/floor,
 /area/awaymission/lucky7)
 "hw" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7/privateroom)
 "hx" = (
 /obj/item/book/manual/casino{
@@ -690,7 +690,7 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/lucky7/gateway)
 "hE" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7/privateroom/two)
 "hJ" = (
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
@@ -732,7 +732,7 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/awaymission/lucky7/bar)
 "kn" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7/privategameroom)
 "kA" = (
 /obj/structure/table/gamblingtable,
@@ -927,7 +927,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/privateroom)
 "sM" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7/privateroom/three)
 "te" = (
 /turf/simulated/floor/tiled/eris/dark,
@@ -1063,7 +1063,7 @@
 /turf/space,
 /area/awaymission/lucky7)
 "Al" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7/privategameroom/four)
 "Aw" = (
 /obj/structure/bed/chair/sofa/right/blue,
@@ -1166,7 +1166,7 @@
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/awaymission/lucky7/privategameroom/two)
 "GB" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7/privategameroom/three)
 "GC" = (
 /obj/machinery/vending/foodfish{
@@ -1334,7 +1334,7 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/awaymission/lucky7/privategameroom/two)
 "Or" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7/privateroom/four)
 "Ot" = (
 /obj/structure/table/glass,
@@ -1539,7 +1539,7 @@
 /turf/simulated/wall/bay/r_wall/steel,
 /area/awaymission/lucky7/bar)
 "ZM" = (
-/turf/simulated/wall/bay/r_wall/brown,
+/turf/simulated/wall/r_wall,
 /area/awaymission/lucky7/privategameroom/two)
 "ZW" = (
 /obj/structure/bed/chair/office/light{
