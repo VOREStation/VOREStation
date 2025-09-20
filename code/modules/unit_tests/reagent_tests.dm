@@ -110,6 +110,7 @@
 /// Test that makes sure that chemical reactions do not conflict
 /datum/unit_test/chemical_reactions_shall_not_conflict
 	var/obj/fake_beaker = null
+	var/obj/instant_secondary_beaker = null // For distilling
 	var/list/result_reactions = list()
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/Run()
@@ -142,6 +143,10 @@
 			var/obj/distilling_tester/D = new()
 			QDEL_SWAP(fake_beaker, D)
 			fake_beaker.reagents.maximum_volume = 5000
+
+			var/obj/item/reagent_containers/glass/beaker/secondary = new()
+			QDEL_SWAP(instant_secondary_beaker, secondary)
+			instant_secondary_beaker.reagents.maximum_volume = 5000
 		else
 			// regular beaker
 			QDEL_SWAP(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
@@ -172,6 +177,7 @@
 
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
 	QDEL_NULL(fake_beaker)
+	QDEL_NULL(instant_secondary_beaker)
 	#endif
 
 	if(failed)
@@ -194,12 +200,12 @@
 		if(inhib.len) // taken from argument and not reaction! Put in FIRST!
 			for(var/RR in inhib)
 				fake_beaker.reagents.add_reagent(RR, inhib[RR] * scale)
-		if(CR.required_reagents)
-			for(var/RR in CR.required_reagents)
-				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
 		if(CR.catalysts) // Required for reaction
 			for(var/RR in CR.catalysts)
 				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
+		if(CR.required_reagents)
+			for(var/RR in CR.required_reagents)
+				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
 
 		if(!istype(CR, /decl/chemical_reaction/distilling))
 			break // Skip the next section if we're not distilling
@@ -208,10 +214,10 @@
 		// This is so multiple reactions with the same requirements, but different temps, can be tested.
 		temp_test += 0.1
 		var/obj/distilling_tester/DD = fake_beaker
-		if(DD.check_instants()) // No reactions before
+		if(check_instants()) // No reactions before
 			return RESULT_REACTION_FAILED_DISTILLBEFORE
 		DD.test_distilling(CR,temp_test)
-		if(DD.check_instants()) // No reactions or after
+		if(check_instants()) // No reactions or after
 			return RESULT_REACTION_FAILED_DISTILLAFTER
 		if(fake_beaker.reagents.has_reagent(CR.result))
 			return RESULT_REACTION_SUCCESS // Distilling success
@@ -254,6 +260,14 @@
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/get_signal_data(atom/source, list/data = list())
 	SIGNAL_HANDLER
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
+
+/datum/unit_test/chemical_reactions_shall_not_conflict/proc/check_instants()
+	instant_secondary_beaker.reagents.clear_reagents()
+	fake_beaker.reagents.trans_to(instant_secondary_beaker,fake_beaker.reagents.total_volume,1,TRUE) // Copy to
+	var/success = instant_secondary_beaker.reagents.handle_reactions()
+	fake_beaker.reagents.clear_reagents()
+	instant_secondary_beaker.trans_to(fake_beaker,instant_secondary_beaker.reagents.total_volume) // Send back
+	return success
 
 /// Test that makes sure that chemical grinding has valid results
 /datum/unit_test/chemical_grinding_must_produce_valid_results

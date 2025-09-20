@@ -8,21 +8,14 @@
 	icon_state = "cartridge"
 	var/datum/gas_mixture/GM = new()
 	var/current_temp = 0
-	var/datum/reagents/instant_catcher
 	var/had_instant_reaction = FALSE
 
 /obj/distilling_tester/Initialize(mapload)
 	create_reagents(5000,/datum/reagents/distilling)
-	instant_catcher = new /datum/reagents(5000, src)
 	. = ..()
 
 /obj/distilling_tester/return_air()
 	return GM
-
-/obj/distilling_tester/proc/check_instants()
-	instant_catcher.clear_reagents()
-	reagents.trans_to_holder(instant_catcher,reagents.maximum_volume,1,TRUE) // Copy
-	return instant_catcher.handle_reactions()
 
 /obj/distilling_tester/proc/test_distilling(var/decl/chemical_reaction/distilling/D, var/temp_prog)
 	// Do the actual test
@@ -44,5 +37,4 @@
 
 /obj/distilling_tester/Destroy(force, ...)
 	QDEL_NULL(GM)
-	QDEL_NULL(instant_catcher)
 	. = ..()
