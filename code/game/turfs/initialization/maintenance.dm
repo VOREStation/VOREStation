@@ -72,7 +72,7 @@
 
 	var/cardinal_turfs = dirty.CardinalTurfs()
 
-	dirty.dirt = rand(10, 50) + rand(0, 50)
+	dirty.dirt = rand(10, 50) + rand(10, 50)
 	// If a neighbor is dirty, then we get dirtier.
 	var/how_dirty = dirty_neighbors(cardinal_turfs)
 	for(var/i = 0; i < how_dirty; i++)

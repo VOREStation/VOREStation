@@ -573,7 +573,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "bt" = (
 /obj/machinery/space_heater,
@@ -632,14 +634,18 @@
 /area/maintenance/stellardelight/deck3/forestarrooma)
 "bK" = (
 /obj/machinery/camera/network/command,
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "bL" = (
 /obj/machinery/media/jukebox/hacked,
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "bM" = (
 /obj/effect/floor_decal/emblem/nt1,
@@ -1249,7 +1255,9 @@
 /obj/structure/cable/blue{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "eh" = (
 /obj/structure/cable/green{
@@ -1349,7 +1357,12 @@
 /area/stellardelight/deck3/portdock)
 "eu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/bluegrid,
+/obj/structure/dummystairs/hazardledge{
+	dir = 4
+	},
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "ev" = (
 /obj/machinery/door/firedoor/glass,
@@ -1977,7 +1990,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "gO" = (
 /obj/structure/lattice,
@@ -2009,7 +2024,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "gR" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -2025,7 +2042,9 @@
 /obj/structure/cable/cyan{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "gU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
@@ -2435,7 +2454,6 @@
 /obj/machinery/door/airlock/angled_bay/hatch{
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = null;
 	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
 	},
@@ -2478,7 +2496,9 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "iL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2511,7 +2531,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "iS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2918,7 +2940,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "kF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3288,7 +3312,9 @@
 /area/ai)
 "lQ" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "lT" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -3497,7 +3523,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "mC" = (
 /obj/machinery/telecomms/server/presets/supply,
@@ -3621,7 +3649,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/light,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "ne" = (
 /obj/machinery/light/small{
@@ -3694,7 +3724,9 @@
 /obj/machinery/camera/network/command{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "nr" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -3779,7 +3811,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -3864,7 +3895,9 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "nN" = (
 /obj/machinery/cryopod/robot,
@@ -3991,7 +4024,6 @@
 	},
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -4009,8 +4041,7 @@
 "ou" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	dir = 8;
@@ -4018,16 +4049,11 @@
 	id_tag = "sd_escape_center_right";
 	master_tag = "escape_dock";
 	pixel_x = 24;
-	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	req_one_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	pixel_x = -25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -4564,7 +4590,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -4654,7 +4679,6 @@
 	dir = 4;
 	door_color = "#323d80";
 	id_tag = "AICore";
-	id_tint = null;
 	locked = 1;
 	name = "AI Core";
 	req_one_access = list(16);
@@ -4694,7 +4718,19 @@
 /obj/structure/cable/cyan{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/bluegrid,
+/obj/structure/railing/overhang/hazard/nanite{
+	dir = 8
+	},
+/obj/structure/railing/overhang/hazard/nanite,
+/obj/structure/railing/overhang/hazard/nanite{
+	dir = 4
+	},
+/obj/structure/railing/overhang/hazard/nanite{
+	dir = 1
+	},
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aicore"
+	},
 /area/ai)
 "qC" = (
 /obj/structure/table/glass,
@@ -4917,7 +4953,6 @@
 	master_tag = "portmaint_airlock";
 	name = "interior access button";
 	pixel_x = 32;
-	req_access = null;
 	req_one_access = list(13)
 	},
 /obj/machinery/door/airlock/angled_bay/external/glass{
@@ -4937,23 +4972,17 @@
 "rr" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	frequency = 1381;
 	id_tag = "sd_escape_starboard";
 	master_tag = "escape_dock";
 	pixel_y = 30;
-	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	req_one_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = -25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -4986,7 +5015,6 @@
 	dir = 4;
 	door_color = "#323d80";
 	id_tag = "AICore";
-	id_tint = null;
 	locked = 1;
 	name = "AI Core";
 	req_one_access = list(16);
@@ -5014,7 +5042,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "rS" = (
 /obj/structure/lattice,
@@ -5044,7 +5074,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "sa" = (
 /obj/effect/map_helper/airlock/door/int_door,
@@ -5149,14 +5181,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "ss" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -5207,7 +5240,6 @@
 	dir = 4;
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = null;
 	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
 	},
@@ -5411,7 +5443,9 @@
 /obj/machinery/camera/network/command{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "tu" = (
 /obj/machinery/light/small{
@@ -5527,7 +5561,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -5658,7 +5691,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "ut" = (
 /obj/structure/cable/blue{
@@ -5737,7 +5772,9 @@
 /obj/structure/cable/blue{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "uJ" = (
 /obj/structure/closet/firecloset,
@@ -5978,7 +6015,8 @@
 	base_turf = /turf/simulated/floor/reinforced/airless;
 	docking_controller = "sd_starboard_landing";
 	landmark_tag = "starboard_shuttlepad";
-	name = "Starboard Shuttlepad"
+	name = "Starboard Shuttlepad";
+	use_docking_codes = 0
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/stellardelight/deck3/exterior)
@@ -6142,8 +6180,7 @@
 "wm" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1381;
@@ -6154,7 +6191,6 @@
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled,
@@ -6226,7 +6262,9 @@
 /obj/machinery/alarm/angled{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "wK" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -6386,7 +6424,12 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/bluegrid,
+/obj/structure/dummystairs/hazardledge{
+	dir = 8
+	},
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "xi" = (
 /obj/structure/cable/green{
@@ -6442,7 +6485,6 @@
 	master_tag = "starmaint_airlock";
 	name = "exterior access button";
 	pixel_y = 32;
-	req_access = null;
 	req_one_access = list(13)
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -6857,7 +6899,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -7021,7 +7062,6 @@
 	dir = 8;
 	id_tag = "portmaint_airlock";
 	pixel_x = 24;
-	req_access = null;
 	req_one_access = list(13);
 	tag_airpump = "portmaint_airpump";
 	tag_chamber_sensor = "portmaint_sensor";
@@ -7393,7 +7433,6 @@
 /obj/machinery/airlock_sensor{
 	dir = 8;
 	frequency = 1381;
-	id_tag = null;
 	pixel_x = 25;
 	pixel_y = 2
 	},
@@ -7591,8 +7630,7 @@
 /area/ai_upload)
 "Bl" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	id_tag = null
+	dir = 8
 	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	frequency = 1381;
@@ -7691,7 +7729,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -7816,8 +7853,7 @@
 "BR" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	dir = 4;
@@ -7825,16 +7861,11 @@
 	id_tag = "sd_escape_center_left";
 	master_tag = "escape_dock";
 	pixel_x = -24;
-	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	req_one_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
 	dir = 8;
 	frequency = 1381;
-	id_tag = null;
 	pixel_x = 25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -7940,7 +7971,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "Co" = (
 /obj/machinery/button/remote/airlock{
@@ -8048,23 +8081,17 @@
 "CD" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	frequency = 1381;
 	id_tag = "sd_escape_port";
 	master_tag = "escape_dock";
 	pixel_y = 30;
-	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	req_one_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = -25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -8561,8 +8588,6 @@
 /area/crew_quarters/heads/cmo)
 "EL" = (
 /obj/machinery/door/airlock/angled_bay/hatch{
-	frequency = null;
-	id_tag = null;
 	locked = 1;
 	name = "Telecoms Server Access";
 	req_access = list(61);
@@ -8899,7 +8924,10 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/bluegrid,
+/obj/structure/dummystairs/hazardledge,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "Gc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -9068,7 +9096,9 @@
 /area/maintenance/stellardelight/deck3/forestarrooma)
 "GP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "GQ" = (
 /turf/simulated/wall/bay/red,
@@ -9370,7 +9400,6 @@
 /obj/machinery/door/airlock/angled_bay/standard/color{
 	door_color = "#9c9c9c";
 	fill_color = "#5c5c5c";
-	id_tag = null;
 	name = "Reading Rooms";
 	stripe_color = "#89bd66"
 	},
@@ -9397,7 +9426,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "HT" = (
 /obj/structure/cable/blue{
@@ -9640,7 +9671,9 @@
 /area/maintenance/stellardelight/deck3/portfore)
 "IQ" = (
 /obj/machinery/porta_turret/ai_defense,
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "IR" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -9670,7 +9703,9 @@
 /obj/structure/sign/warning/secure_area{
 	pixel_y = 32
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "IV" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -9717,7 +9752,6 @@
 	master_tag = "starmaint_airlock";
 	name = "interior access button";
 	pixel_x = 32;
-	req_access = null;
 	req_one_access = list(13)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -9749,7 +9783,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "Jh" = (
 /turf/space,
@@ -9876,7 +9912,6 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -10206,7 +10241,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "KI" = (
 /turf/simulated/floor/wood,
@@ -10285,7 +10322,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "Lb" = (
 /obj/structure/cable{
@@ -10622,14 +10661,12 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1381;
-	id_tag = null
+	frequency = 1381
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/airlock_sensor{
 	frequency = 1381;
-	id_tag = null;
 	pixel_y = -25
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
@@ -10853,7 +10890,9 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "MW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -11124,7 +11163,9 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "NQ" = (
 /obj/machinery/door/firedoor/glass,
@@ -11134,7 +11175,6 @@
 	master_tag = "portmaint_airlock";
 	name = "exterior access button";
 	pixel_y = 32;
-	req_access = null;
 	req_one_access = list(13)
 	},
 /obj/machinery/door/airlock/angled_bay/external/glass{
@@ -11202,7 +11242,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -11395,8 +11434,6 @@
 "OC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/angled_bay/hatch{
-	frequency = null;
-	id_tag = null;
 	locked = 1;
 	name = "Telecoms Server Access";
 	req_access = list(61);
@@ -11900,7 +11937,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/bluegrid,
+/obj/structure/dummystairs/hazardledge{
+	dir = 1
+	},
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "Qu" = (
 /obj/structure/sink/kitchen{
@@ -11965,7 +12007,9 @@
 /obj/structure/cable/blue{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "QI" = (
 /obj/item/radio/intercom{
@@ -11978,7 +12022,6 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -12042,7 +12085,6 @@
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	door_color = "#323d80";
 	name = "Command Offices";
-	req_access = null;
 	req_one_access = list(19,38);
 	stripe_color = "#f7d35c"
 	},
@@ -12078,7 +12120,9 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "Rd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
@@ -12299,7 +12343,6 @@
 	dir = 4;
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = null;
 	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
 	},
@@ -12727,7 +12770,6 @@
 	dir = 4;
 	door_color = "#9fccc7";
 	fill_color = "#333333";
-	id_tag = null;
 	name = "Internal Affairs";
 	req_access = list(38);
 	stripe_color = "#ffffff"
@@ -12788,7 +12830,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "TJ" = (
 /obj/structure/sign/department/telecoms{
@@ -12804,10 +12848,26 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/bluegrid,
+/obj/structure/railing/overhang/hazard/nanite,
+/obj/structure/railing/overhang/hazard/nanite{
+	dir = 8
+	},
+/obj/structure/railing/overhang/hazard/nanite{
+	dir = 4
+	},
+/obj/structure/railing/overhang/hazard/nanite,
+/obj/structure/railing/overhang/hazard/nanite{
+	dir = 1
+	},
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "TL" = (
-/turf/simulated/floor/bluegrid,
+/obj/machinery/holoplant,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "TM" = (
 /obj/machinery/turretid/lethal{
@@ -13218,7 +13278,6 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -13258,7 +13317,9 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "Vs" = (
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "Vt" = (
 /obj/item/radio/intercom/locked/ai_private{
@@ -13341,7 +13402,9 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "VK" = (
 /obj/structure/cable/green{
@@ -13942,7 +14005,6 @@
 	},
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	frequency = 1381;
-	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -14061,7 +14123,6 @@
 	dir = 4;
 	id_tag = "starmaint_airlock";
 	pixel_x = -24;
-	req_access = null;
 	req_one_access = list(13);
 	tag_airpump = "starmaint_airpump";
 	tag_chamber_sensor = "starmaint_sensor";
@@ -14379,7 +14440,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "ZB" = (
 /obj/machinery/alarm/angled{
@@ -14462,7 +14525,9 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/water/digestive_enzymes/nanites{
+	id = "aiouter"
+	},
 /area/ai)
 "ZQ" = (
 /obj/machinery/door/firedoor/glass,
@@ -23951,7 +24016,7 @@ nx
 jY
 Tx
 sc
-wS
+TL
 gQ
 iK
 KH
@@ -23963,7 +24028,7 @@ QG
 np
 nM
 uI
-wS
+TL
 sc
 XK
 XK
@@ -24238,7 +24303,7 @@ sc
 Vs
 Vs
 Vs
-TL
+Vs
 Ol
 Ol
 qv
@@ -24380,7 +24445,7 @@ sc
 bL
 Vs
 IQ
-TL
+Vs
 Ol
 oR
 qA
@@ -24522,7 +24587,7 @@ sc
 Vs
 Vs
 Vs
-TL
+Vs
 Ol
 Ol
 rB
@@ -24661,7 +24726,7 @@ zz
 RT
 RX
 sc
-TL
+Vs
 Vs
 rZ
 IQ
@@ -24803,7 +24868,7 @@ nx
 XF
 Tx
 sc
-wS
+TL
 us
 VG
 NP
@@ -24814,8 +24879,8 @@ wG
 Vs
 tq
 ZN
+Vs
 TL
-wS
 sc
 th
 th

@@ -60,22 +60,22 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 						to_chat(checker, span_warning("You realize there is no way for the simplistic [src] to ignore your form, if you set it to recycle."))
 					user.visible_message(span_warning("\The [user] inspects \the [src]"), span_warning("You begin to interface with \the [src]."))
 					if(do_after(user, 30, src))
-						nutrienttarget = user
+						moblink = WEAKREF(user)
 						switch(choice2)
 							if("None")
-								nutrienttarget = user
+								moblink = WEAKREF(user)
 								toggle_all(TRUE)
 							if("All")
-								nutrienttarget = user
+								moblink = WEAKREF(user)
 								toggle_all(TRUE, TRUE, TRUE, TRUE)
 							if("Organics and Cyborgs")
-								nutrienttarget = user
+								moblink = WEAKREF(user)
 								toggle_all(TRUE, TRUE, TRUE)
 							if("Organics and Synthetics")
-								nutrienttarget = user
+								moblink = WEAKREF(user)
 								toggle_all(TRUE, TRUE, FALSE, TRUE)
 							if("Only Organics")
-								nutrienttarget = user
+								moblink = WEAKREF(user)
 								toggle_all(TRUE, TRUE)
 
 				if("Off")
@@ -107,19 +107,19 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 			to_chat(user, span_warning("With you in control, \the [src] will not attempt to recycle your body, no matter the setting you pick"))
 			switch(choice2)
 				if("None")
-					nutrienttarget = user
+					moblink = WEAKREF(user)
 					toggle_all(TRUE)
 				if("All")
-					nutrienttarget = user
+					moblink = WEAKREF(user)
 					toggle_all(TRUE, TRUE, TRUE, TRUE)
 				if("Organics and Cyborgs")
-					nutrienttarget = user
+					moblink = WEAKREF(user)
 					toggle_all(TRUE, TRUE, TRUE)
 				if("Organics and Synthetics")
-					nutrienttarget = user
+					moblink = WEAKREF(user)
 					toggle_all(TRUE, TRUE, FALSE, TRUE)
 				if("Only Organics")
-					nutrienttarget = user
+					moblink = WEAKREF(user)
 					toggle_all(TRUE, TRUE)
 
 		if("Off")
