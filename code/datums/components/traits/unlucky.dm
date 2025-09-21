@@ -212,6 +212,12 @@
 				mirror_rand = rand(1,3)
 			switch(mirror_rand)
 				if(1)
+					to_chat(living_guy, span_userdanger("You see your reflection, but it is grinning malevolently and staring directly at you!"))
+					living_guy.emote("scream")
+				if(2 to 3)
+					to_chat(living_guy, span_large(span_cult("Oh god, you can't see your reflection!!")))
+					living_guy.emote("scream")
+				if(4 to 5)
 					to_chat(living_guy, span_warning("The mirror explodes into a million pieces! Wait, does that mean you're even more unlucky?"))
 					evil_mirror.shatter()
 					if(prob(50 * effective_luck)) // sometimes
@@ -219,13 +225,6 @@
 						damage_mod += 0.25
 					for(var/obj/item/organ/external/limb in living_guy.organs)
 						living_guy.apply_damage(6 * damage_mod, BRUTE, limb.organ_tag, used_weapon = "glass shrapnel")
-				if(2 to 3)
-					to_chat(living_guy, span_large(span_cult("Oh god, you can't see your reflection!!")))
-					living_guy.emote("scream")
-
-				if(4 to 5)
-					to_chat(living_guy, span_userdanger("You see your reflection, but it is grinning malevolently and staring directly at you!"))
-					living_guy.emote("scream")
 
 			living_guy.make_jittery(250)
 			if(evil && prob(7 * effective_luck))
