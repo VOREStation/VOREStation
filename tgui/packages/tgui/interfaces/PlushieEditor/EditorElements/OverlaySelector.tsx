@@ -35,7 +35,7 @@ export const OverlaySelector: React.FC<OverlayModalProps> = ({
   return (
     <Floating
       placement="bottom-end"
-      contentClasses="PlushEditor_Floating"
+      contentClasses="PlushEditor__Floating"
       content={
         <Section title="Overlays" scrollable>
           <Stack vertical fill>
