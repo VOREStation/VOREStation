@@ -56,7 +56,7 @@
 			L.apply_damage(2, BRUTE, pick(BP_L_HAND, BP_R_HAND), used_weapon = "sharp object")
 			var/datum/disease/advance/random/random_disease = new random_disease
 			random_disease.spread_flags |= DISEASE_SPREAD_NON_CONTAGIOUS
-			L.ContractDisease(random_disease)
+			L.ForceContractDisease(random_disease)
 
 	else if(prob(chance_uncommon) && uncommon_loot.len) // You might still get something good.
 		loot = produce_uncommon_item(source)
