@@ -13,10 +13,7 @@ export const PlushieEditor: React.FC = () => {
       <Window.Content scrollable>
         <Stack fill>
           <Stack.Item grow>
-            <PreviewPanel
-              selectedOverlay={selectedOverlay}
-              setSelectedOverlay={setSelectedOverlay}
-            />
+            <PreviewPanel setSelectedOverlay={setSelectedOverlay} />
           </Stack.Item>
           <Stack.Item grow>
             <SidebarPanel

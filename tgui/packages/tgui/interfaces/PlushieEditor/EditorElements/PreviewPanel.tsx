@@ -14,11 +14,9 @@ import {
 import type { Data } from '../types';
 
 type PreviewPanelProps = {
-  selectedOverlay: string | null;
   setSelectedOverlay: Dispatch<SetStateAction<string | null>>;
 };
 export const PreviewPanel: React.FC<PreviewPanelProps> = ({
-  selectedOverlay,
   setSelectedOverlay,
 }) => {
   const { act, data } = useBackend<Data>();
