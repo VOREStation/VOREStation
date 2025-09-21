@@ -239,15 +239,15 @@
 
 			consume_omen()
 			return
-
-		for(var/obj/item/reagent_containers/glass/beaker/evil_beaker in the_turf)
-			if(!evil_beaker.is_open_container()) //A closed beaker is a safe beaker!
-				continue
-			living_guy.visible_message(span_danger("The [evil_beaker] tilts, spilling its contents on [living_guy]!"), span_userdanger("A [evil_beaker] spills all over you!"))
-			evil_beaker.balloon_alert_visible("[evil_beaker]'s contents splashes onto [living_guy]!")
-			evil_beaker.reagents.splash(living_guy, evil_beaker.reagents.total_volume)
-			consume_omen()
-			return
+		if(evil)
+			for(var/obj/item/reagent_containers/glass/beaker/evil_beaker in the_turf)
+				if(!evil_beaker.is_open_container() && (evil_beaker.reagents.total_volume > 0)) //A closed beaker is a safe beaker!
+					continue
+				living_guy.visible_message(span_danger("[evil_beaker] tilts, spilling its contents on [living_guy]!"), span_userdanger("[evil_beaker] spills all over you!"))
+				evil_beaker.balloon_alert_visible("[evil_beaker]'s contents splashes onto [living_guy]!")
+				evil_beaker.reagents.splash(living_guy, evil_beaker.reagents.total_volume)
+				consume_omen()
+				return
 
 		for(var/obj/structure/table/evil_table in the_turf)
 			if(!evil_table.material) //We only want tables, not just table frames.
