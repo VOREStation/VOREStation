@@ -376,3 +376,22 @@
   - code_imp: Disposal sorter prefabs use defines instead of numbers
   lbnesquik:
   - rscadd: Added the coroner role as an alternative title to medical doctors
+2025-09-21:
+  Diana:
+  - bugfix: Borg shocker shows the appropriate on-off state
+  Guti:
+  - admin: Added admin logs to bear traps
+  Kashargul:
+  - qol: moves most law outputs to blocks
+  Will:
+  - bugfix: Changeling chameleon cloths no longer reveal lings by having suit sensors
+  - code_imp: clothing code uses suit_sensor defines instead of magic numbers
+  - code_imp: Reaction unittest strictness includes distillation reactions being blocked
+      by instant reactions
+  - code_imp: Implements COMSIG_REAGENTS_HOLDER_REACTED
+  - refactor: reagent holder handle_reactions() uses number of reactions that happened,
+      and not just completion of the proc for return value
+  - bugfix: peanut butter milkshake reaction no longer blocked by milkshake
+  - bugfix: aloe reaction no longer blocked by irish cream
+  - bugfix: instant beer reaction no longer blocked by corn cooking oil
+  - bugfix: biomass distilling reaction no longer blocked by virology mix 3
