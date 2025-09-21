@@ -1,4 +1,3 @@
-// todo, cleanup
 import type React from 'react';
 import { memo } from 'react';
 import { ImageButton, Stack } from 'tgui-core/components';
