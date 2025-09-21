@@ -33,11 +33,11 @@ export const PlushieOverlayModal: React.FC<OverlayModalProps> = ({
   const filteredPossible = possible_overlays.filter(searcher);
 
   return (
-    <Section title="Overlays" scrollable>
-      <Floating
-        placement="bottom-end"
-        contentClasses="VorePanel__fLoating"
-        content={
+    <Floating
+      placement="bottom-end"
+      contentClasses="VorePanel__fLoating"
+      content={
+        <Section title="Overlays" scrollable>
           <Stack vertical fill>
             <Stack.Item>
               <Input
@@ -63,10 +63,10 @@ export const PlushieOverlayModal: React.FC<OverlayModalProps> = ({
               ))}
             </Box>
           </Stack>
-        }
-      >
-        <Box className="VorePanel__floatingButton">+/-</Box>
-      </Floating>
-    </Section>
+        </Section>
+      }
+    >
+      <Box className="VorePanel__floatingButton">+/-</Box>
+    </Floating>
   );
 };
