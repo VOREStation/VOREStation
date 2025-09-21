@@ -4,22 +4,18 @@ export type Data = {
   icon: string;
   preview: string;
   possible_overlays: { name: string; icon_state: string }[];
-  overlays: {
-    icon_state: string;
-    name: string;
-    color: string;
-    alpha: number;
-  }[];
+  overlays: Overlay[];
 };
 
-export type Overlay = Data['overlays'][number];
+export type Overlay = {
+  icon_state: string;
+  color?: string;
+  alpha?: number;
+};
 
 export type PlushieConfig = {
+  name: string;
   base_color: string;
-  overlays: Array<{
-    icon_state: string;
-    name?: string;
-    color?: string;
-    alpha?: number;
-  }>;
+  icon: string;
+  overlays: Overlay[];
 };

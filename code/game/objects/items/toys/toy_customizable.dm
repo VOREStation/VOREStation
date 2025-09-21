@@ -6,19 +6,20 @@
 	pokephrase = "Squeaky!"
 
 	var/base_color = "#FFFFFF"
-	var/list/possible_overlays = list()
-	var/list/added_overlays = list()
+	var/list/possible_overlays
+	var/list/added_overlays
 
 /obj/item/toy/plushie/customizable/update_icon()
 	cut_overlays()
 	var/mutable_appearance/B = mutable_appearance(icon, icon_state)
 	B.color = base_color
 	add_overlay(B)
-	for(var/K,V in added_overlays)
-		var/mutable_appearance/i = mutable_appearance(icon, K)
-		i.color = V["color"]
-		i.alpha = V["alpha"]
-		add_overlay(i)
+	if(added_overlays)
+		for(var/key, value in added_overlays)
+			var/mutable_appearance/our_image = mutable_appearance(icon, key)
+			our_image.color = value["color"]
+			our_image.alpha = value["alpha"]
+			add_overlay(our_image)
 
 /obj/item/toy/plushie/customizable/Initialize(mapload)
 	. = ..()
@@ -32,93 +33,136 @@
 	if(!ui)
 		ui = new(user, src, "PlushieEditor")
 		ui.open()
-	update_icon()
 
 /obj/item/toy/plushie/customizable/tgui_data(mob/user)
-	. = list()
-	.["base_color"] = base_color
-	.["name"] = name
-	.["icon"] = icon
-	.["preview"] = icon2base64(get_flat_icon(src))
-	.["possible_overlays"] = list()
-	for(var/state,name in possible_overlays)
-		.["possible_overlays"] += list(list(
-			"name" = name,
-			"icon_state" = state
-		))
-	.["overlays"] = list()
-	for(var/state,overlay in added_overlays)
-		.["overlays"] += list(list(
-			"icon_state" = state,
-			"color" = overlay["color"],
-			"alpha" = overlay["alpha"]
-		))
+
+	var/list/possible_overlay_data = list()
+	if(possible_overlays)
+		for(var/state,name in possible_overlays)
+			UNTYPED_LIST_ADD(possible_overlay_data, list(
+				"name" = name,
+				"icon_state" = state
+			))
+
+	var/list/our_overlays = list()
+	if(added_overlays)
+		for(var/state,overlay in added_overlays)
+			UNTYPED_LIST_ADD(our_overlays, list(
+				"icon_state" = state,
+				"color" = overlay["color"],
+				"alpha" = overlay["alpha"]
+			))
+
+	var/list/data = list(
+		"base_color" = base_color,
+		"name" = name,
+		"icon" = icon,
+		"preview" = icon2base64(get_flat_icon(src)),
+		"possible_overlays" = possible_overlay_data,
+		"overlays" = our_overlays
+	)
+	return data
 
 /obj/item/toy/plushie/customizable/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	add_fingerprint(ui.user)
 
+	if(!added_overlays)
+		added_overlays = list()
+
 	switch(action)
 		if("add_overlay")
+			if(!possible_overlays)
+				return FALSE
+			var/new_overlay = params["new_overlay"]
+			if(!new_overlay in possible_overlays)
+				return FALSE
 			. = TRUE
-			added_overlays[params["new_overlay"]] = list( color = "#FFFFFF", alpha = 255 )
+			added_overlays[new_overlay] = list(color = "#FFFFFF", alpha = 255)
+			update_icon()
 
 		if("remove_overlay")
 			. = TRUE
 			var/rem = params["removed_overlay"]
 			added_overlays.Remove(rem)
+			update_icon()
 
 		if("change_overlay_color")
+			if(!possible_overlays)
+				return FALSE
+			var/selected_icon_state = params["icon_state"]
+			if(!selected_icon_state in possible_overlays)
+				return FALSE
 			. = TRUE
-			var/target = added_overlays[params["icon_state"]]
-			var/new_color = tgui_color_picker(ui.user, "Choose a color:", possible_overlays[params["icon_state"]], base_color)
+			var/target = added_overlays[selected_icon_state]
+			var/new_color = tgui_color_picker(ui.user, "Choose a color:", possible_overlays[selected_icon_state], base_color)
+			if(!new_color || !ui?.user.stat || !Adjacent(ui.user))
+				return FALSE
 			target["color"] = new_color
+			update_icon()
 
 		if("move_overlay_up")
-			. = TRUE
 			var/target = params["icon_state"]
 			var/idx = added_overlays.Find(target)
+			if(!idx)
+				return FALSE
+			. = TRUE
 			if (idx < added_overlays.len)
 				added_overlays.Swap(idx, idx + 1)
+			update_icon()
 
 		if("move_overlay_down")
-			. = TRUE
 			var/target = params["icon_state"]
 			var/idx = added_overlays.Find(target)
+			if(!idx)
+				return FALSE
+			. = TRUE
 			if (idx > 1)
 				added_overlays.Swap(idx, idx - 1)
+			update_icon()
 
 		if("change_base_color")
 			. = TRUE
 			var/new_color = tgui_color_picker(ui.user, "Choose a color:", "Plushie base color", base_color)
+			if(!new_color || !ui?.user.stat || !Adjacent(ui.user))
+				return FALSE
 			base_color = new_color
+			update_icon()
 
 		if("set_overlay_alpha")
 			. = TRUE
 			var/target = added_overlays[params["icon_state"]]
+			if(!target)
+				return FALSE
 			var/new_alpha = params["alpha"]
 			target["alpha"] = new_alpha
+			update_icon()
 
 		if("import_config")
 			. = TRUE
 			added_overlays.Cut()
-			var/config = params["config"]
-			base_color = config["base_color"]
-			for(var/overlay in config["overlays"])
+			base_color = params["base_color"]
+			if(!possible_overlays)
+				return
+			for(var/overlay in params["overlays"])
 				if(possible_overlays.Find(overlay["icon_state"]))
 					added_overlays[overlay["icon_state"]] = list( color = overlay["color"], alpha = overlay["alpha"] )
+			update_icon()
 
 		if("clear")
 			. = TRUE
 			added_overlays.Cut()
 			base_color = "#FFFFFF"
+			update_icon()
 
 		if("rename")
 			. = TRUE
-			rename_plushie()
-
-	update_icon()
+			var/our_input = sanitize_name(params["name"])
+			if(!our_input)
+				return FALSE
+			name = our_input
+			adjusted_name = our_input
 
 /obj/item/toy/plushie/customizable/AltClick(mob/user)
 	tgui_interact(user)
