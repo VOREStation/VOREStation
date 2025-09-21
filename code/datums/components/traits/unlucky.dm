@@ -94,7 +94,7 @@
 		living_guy.visible_message(span_danger("[living_guy] suddenly bursts into flames!"), span_danger("You suddenly burst into flames!"))
 		living_guy.emote("scream")
 		living_guy.adjust_fire_stacks(20)
-		living_guy.IgniteMob()
+		living_guy.ignite_mob()
 		consume_omen()
 		return
 
