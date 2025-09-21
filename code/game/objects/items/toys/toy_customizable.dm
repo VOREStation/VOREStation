@@ -49,6 +49,7 @@
 		for(var/state,overlay in added_overlays)
 			UNTYPED_LIST_ADD(our_overlays, list(
 				"icon_state" = state,
+				"name" = possible_overlays[state],
 				"color" = overlay["color"],
 				"alpha" = overlay["alpha"]
 			))
@@ -76,7 +77,7 @@
 			if(!possible_overlays)
 				return FALSE
 			var/new_overlay = params["new_overlay"]
-			if(!new_overlay in possible_overlays)
+			if(!(new_overlay in possible_overlays))
 				return FALSE
 			. = TRUE
 			added_overlays[new_overlay] = list(color = "#FFFFFF", alpha = 255)
@@ -92,7 +93,7 @@
 			if(!possible_overlays)
 				return FALSE
 			var/selected_icon_state = params["icon_state"]
-			if(!selected_icon_state in possible_overlays)
+			if(!(selected_icon_state in possible_overlays))
 				return FALSE
 			. = TRUE
 			var/target = added_overlays[selected_icon_state]
@@ -103,7 +104,7 @@
 			update_icon()
 
 		if("move_overlay_up")
-			var/target = params["icon_state"]
+			var/target = params["icon"]
 			var/idx = added_overlays.Find(target)
 			if(!idx)
 				return FALSE
@@ -113,7 +114,7 @@
 			update_icon()
 
 		if("move_overlay_down")
-			var/target = params["icon_state"]
+			var/target = params["icon"]
 			var/idx = added_overlays.Find(target)
 			if(!idx)
 				return FALSE

@@ -9,6 +9,7 @@ export type Data = {
 
 export type Overlay = {
   icon_state: string;
+  name?: string;
   color?: string;
   alpha?: number;
 };

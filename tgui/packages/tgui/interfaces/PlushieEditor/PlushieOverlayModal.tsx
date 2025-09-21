@@ -1,18 +1,19 @@
-import React, { useMemo, useState } from 'react';
+// todo, cleanup
+
+import type React from 'react';
+import { useMemo, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
+  Box,
   Button,
+  ImageButton,
+  Input,
   Modal,
   Section,
   Stack,
-  Input,
-  Box,
-  ImageButton,
 } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
-
-import { Data } from './types';
-import { useOverlayMap } from './function';
+import type { Data } from './types';
 
 type OverlayModalProps = {
   onClose: () => void;
@@ -65,7 +66,7 @@ export const PlushieOverlayModal: React.FC<OverlayModalProps> = ({
                 dmIconState={icon_state}
                 onClick={() => toggleOverlay(icon_state)}
                 backgroundColor={
-                  !!overlayMap[icon_state] ? '#21af39ff' : '#d63939ff'
+                  overlayMap[icon_state] ? '#21af39ff' : '#d63939ff'
                 }
                 fluid
                 align="start"
