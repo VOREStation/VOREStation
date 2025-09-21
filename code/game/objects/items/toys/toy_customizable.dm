@@ -143,11 +143,15 @@
 
 		if("import_config")
 			. = TRUE
+			var/our_data = params["config"]
+			var/imported_color = sanitize_hexcolor(our_data["base_color"])
+			if(imported_color)
+				base_color = imported_color
+			set_new_name(our_data["name"])
 			added_overlays.Cut()
-			base_color = params["base_color"]
 			if(!possible_overlays)
 				return
-			for(var/overlay in params["overlays"])
+			for(var/overlay in our_data["overlays"])
 				if(possible_overlays.Find(overlay["icon_state"]))
 					added_overlays[overlay["icon_state"]] = list( color = overlay["color"], alpha = overlay["alpha"] )
 			update_icon()
@@ -159,12 +163,15 @@
 			update_icon()
 
 		if("rename")
-			. = TRUE
-			var/our_input = sanitize_name(params["name"])
-			if(!our_input)
-				return FALSE
-			name = our_input
-			adjusted_name = our_input
+			return set_new_name(params["name"])
+
+/obj/item/toy/plushie/customizable/proc/set_new_name(new_name)
+	var/sane_name = sanitize_name(new_name)
+	if(!sane_name)
+		return FALSE
+	name = sane_name
+	adjusted_name = sane_name
+	return TRUE
 
 /obj/item/toy/plushie/customizable/AltClick(mob/user)
 	tgui_interact(user)

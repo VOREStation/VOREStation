@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useBackend } from 'tgui/backend';
 import type { Overlay, PlushieConfig } from './types';
 
 export function downloadJson(filename: string, data: PlushieConfig) {
@@ -11,15 +12,14 @@ export function downloadJson(filename: string, data: PlushieConfig) {
 export function handleImportData(
   importString: string | string[],
 ): PlushieConfig | null {
+  const { act } = useBackend();
   const ourInput = Array.isArray(importString) ? importString[0] : importString;
-  let parsedData: PlushieConfig = JSON.parse(ourInput);
   try {
-    parsedData = JSON.parse(ourInput);
-    return parsedData;
+    const parsedData: PlushieConfig = JSON.parse(ourInput);
+    act('import_config', { config: parsedData });
   } catch (err) {
     console.error('Failed to parse JSON:', err);
   }
-
   return null;
 }
 
