@@ -51,6 +51,12 @@
 	if(HAS_TRAIT(L, TRAIT_UNLUCKY) && unlucky_loot.len) // If you're unlucky, you will always find bad stuff.
 		loot = produce_unlucky_item(source)
 		span = "cult" // Purple and bold.
+		if(prob(1))
+			to_chat(L, span_danger("You cut your hand on something in the trash!"))
+			L.apply_damage(2, BRUTE, pick(BP_L_HAND, BP_R_HAND), used_weapon = "sharp object")
+			var/datum/disease/advance/random/random_disease = new random_disease
+			random_disease.spread_flags |= DISEASE_SPREAD_NON_CONTAGIOUS
+			L.ContractDisease(random_disease)
 
 	else if(prob(chance_uncommon) && uncommon_loot.len) // You might still get something good.
 		loot = produce_uncommon_item(source)
