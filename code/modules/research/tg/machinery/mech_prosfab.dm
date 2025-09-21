@@ -90,7 +90,7 @@
 			to_chat(user, span_warning("This disk seems to be corrupted!"))
 		else
 			to_chat(user, span_notice("Installing blueprint files for [D.company]..."))
-			if(do_after(user,50,src))
+			if(do_after(user, 5 SECONDS, target = src))
 				var/datum/robolimb/R = GLOB.all_robolimbs[D.company]
 				R.unavailable_to_build = 0
 				to_chat(user, span_notice("Installed [D.company] blueprints!"))
@@ -103,7 +103,7 @@
 			to_chat(user, span_warning("This disk seems to be corrupted!"))
 		else
 			to_chat(user, span_notice("Uploading modification files for [D.species]..."))
-			if(do_after(user,50,src))
+			if(do_after(user, 5 SECONDS, target = src))
 				species_types |= D.species
 				to_chat(user, span_notice("Uploaded [D.species] files!"))
 				qdel(I)

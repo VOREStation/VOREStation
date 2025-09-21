@@ -1,4 +1,4 @@
-/obj/screen/proc/Click_vr(location, control, params)
+/atom/movable/screen/proc/Click_vr(location, control, params)
 	if(!usr)	return 1
 	switch(name)
 		if("shadekin status")

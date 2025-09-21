@@ -51,7 +51,7 @@
 			user.visible_message("\The [user] starts to deconstruct \the [src].", \
 				"You start to deconstruct \the [src].", \
 				"You hear welding")
-			if(do_after(user, 2 SECONDS))
+			if(do_after(user, 2 SECONDS, target = src))
 				if(QDELETED(src) || !WT.isOn()) return
 				var/obj/structure/ladder_assembly/A
 				to_chat(user, "You deconstruct \the [src].")
@@ -143,7 +143,7 @@
 		var/mob/living/carbon/human/MS = M
 		climb_modifier = MS.species.climb_mult
 
-	if(do_after(M, (climb_time * climb_modifier), src))
+	if(do_after(M, (climb_time * climb_modifier), target = src))
 		var/turf/T = get_turf(target_ladder)
 		for(var/atom/A in T)
 			if(!A.CanPass(M, M.loc, 1.5, 0))

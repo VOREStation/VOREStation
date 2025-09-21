@@ -15,7 +15,7 @@ var/global/datum/controller/occupations/job_master
 	//var/list/all_jobs = typesof(/datum/job)
 	var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
 	if(!all_jobs.len)
-		to_world(span_boldannounce("Error setting up jobs, no job datums found!"))
+		to_chat(world, span_boldannounce("Error setting up jobs, no job datums found!"))
 		return 0
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
@@ -593,7 +593,7 @@ var/global/datum/controller/occupations/job_master
 	if(!CONFIG_GET(flag/load_jobs_from_txt))
 		return 0
 
-	var/list/jobEntries = file2list(jobsfile)
+	var/list/jobEntries = world.file2list(jobsfile)
 
 	for(var/job in jobEntries)
 		if(!job)

@@ -407,6 +407,7 @@
 	active_armourpen = 25
 	projectile_parry_chance = 40
 	colorable = TRUE
+	item_flags = DROPDEL | NOSTRIP
 
 	hitcost = 75
 
@@ -422,6 +423,7 @@
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon_state = "blade"
 	item_state = "blade"
+	item_flags = DROPDEL | NOSTRIP
 	force = 40 //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100
 	sharp = TRUE
@@ -453,10 +455,6 @@
 
 /obj/item/melee/energy/blade/attack_self(mob/user as mob)
 	user.drop_from_inventory(src)
-	QDEL_IN(src, 1)
-
-/obj/item/melee/energy/blade/dropped(mob/user)
-	..()
 	QDEL_IN(src, 1)
 
 /obj/item/melee/energy/blade/process()

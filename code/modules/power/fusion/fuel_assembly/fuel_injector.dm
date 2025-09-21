@@ -22,6 +22,7 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 	. = ..()
 	GLOB.fuel_injectors += src
 	default_apply_parts()
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/fusion_fuel_injector/Destroy()
 	if(cur_assembly)
@@ -132,23 +133,3 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 		flick("injector-emitting",src)
 	else
 		StopInjecting()
-
-/obj/machinery/fusion_fuel_injector/verb/rotate_clockwise()
-	set category = "Object"
-	set name = "Rotate Generator Clockwise"
-	set src in view(1)
-
-	if (usr.incapacitated() || usr.restrained()  || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-
-/obj/machinery/fusion_fuel_injector/verb/rotate_counterclockwise()
-	set category = "Object"
-	set name = "Rotate Generator Counterclockwise"
-	set src in view(1)
-
-	if (usr.incapacitated() || usr.restrained()  || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))

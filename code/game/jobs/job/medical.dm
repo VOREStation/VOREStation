@@ -76,7 +76,7 @@
 						patients they encounter."
 	alt_titles = list(JOB_ALT_PHYSICIAN = /datum/alt_title/physician, JOB_ALT_MEDICAL_PRACTITIONER = /datum/alt_title/medical_practitioner, JOB_ALT_SURGEON = /datum/alt_title/surgeon,
 							JOB_ALT_EMERGENCY_PHYSICIAN = /datum/alt_title/emergency_physician, JOB_ALT_NURSE = /datum/alt_title/nurse, JOB_ALT_ORDERLY = /datum/alt_title/orderly,
-						JOB_ALT_VIROLOGIST = /datum/alt_title/virologist, JOB_ALT_MEDICAL_CONTRACTOR = /datum/alt_title/medical_contractor)
+						JOB_ALT_VIROLOGIST = /datum/alt_title/virologist, JOB_ALT_MEDICAL_CONTRACTOR = /datum/alt_title/medical_contractor, JOB_ALT_CORONER = /datum/alt_title/coroner)
 
 	min_age_by_species = list(SPECIES_PROMETHEAN = 3)
 
@@ -125,6 +125,11 @@
 /datum/alt_title/medical_contractor
 	title = JOB_ALT_MEDICAL_CONTRACTOR
 	title_blurb = "A " + JOB_ALT_MEDICAL_CONTRACTOR + " can be anything from a full-blown doctor to the likes of a nurse or orderly, but isn't directly employed by NT proper."
+
+/datum/alt_title/coroner
+	title = JOB_ALT_CORONER
+	title_blurb = "A " + JOB_ALT_CORONER + " generally works around the dead, focusing on determining the causes of their untimely demises alongside their general handling. They still are fully medical professionals."
+
 
 //////////////////////////////////
 //			Chemist

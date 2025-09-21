@@ -25,7 +25,7 @@ BLIND     // can't see anything
 	var/off_state = "degoggles"
 	var/active = 1
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
-	var/obj/screen/overlay = null
+	var/atom/movable/screen/overlay = null
 	var/list/away_planes //Holder for disabled planes
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
@@ -582,7 +582,7 @@ BLIND     // can't see anything
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle_monocle)
-	flags = null //doesn't protect eyes because it's a monocle, duh
+	flags = NONE //doesn't protect eyes because it's a monocle, duh
 
 	body_parts_covered = 0
 

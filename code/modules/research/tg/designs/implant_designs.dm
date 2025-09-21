@@ -125,6 +125,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
+/datum/design_techweb/organ/internal/augment/bioaugment/health_scan
+	name = "Medical Scaner Implant"
+	desc = "A small implant that fits into a subject's pelvix. It deploys allows the user to analyze their vitals on demand."
+	id = "health_scan_implant"
+	build_type = PROTOLATHE
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_SILVER = 1000)
+	build_path = /obj/item/organ/internal/augment/bioaugment/health_scan
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_COMBAT
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design_techweb/organ/internal/augment/armmounted/dartbow
 	name = "Crossbow Implant"
 	desc = "A large implant that fits into a subject's arm. It creates a dartbow when activated."

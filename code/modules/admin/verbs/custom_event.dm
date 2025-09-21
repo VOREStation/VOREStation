@@ -19,10 +19,10 @@
 
 	GLOB.custom_event_msg = input
 
-	to_world(span_filter_system("<h1>[span_alert("Custom Event")]</h1>"))
-	to_world(span_filter_system("<h2>[span_alert("A custom event is starting. OOC Info:")]</h2>"))
-	to_world(span_filter_system(span_alert("[GLOB.custom_event_msg]")))
-	to_world(span_filter_system("<br>"))
+	to_chat(world, span_filter_system("<h1>[span_alert("Custom Event")]</h1>"))
+	to_chat(world, span_filter_system("<h2>[span_alert("A custom event is starting. OOC Info:")]</h2>"))
+	to_chat(world, span_filter_system(span_alert("[GLOB.custom_event_msg]")))
+	to_chat(world, span_filter_system("<br>"))
 
 	SSwebhooks.send(
 		WEBHOOK_CUSTOM_EVENT,

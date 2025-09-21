@@ -27,6 +27,7 @@
 	if (constructed) // player-constructed railings
 		anchored = FALSE
 	AddElement(/datum/element/climbable/unanchored_can_break, 3.4 SECONDS, TRUE) // It's a RAILING!
+	AddElement(/datum/element/rotatable)
 	if(src.anchored)
 		update_icon(0)
 
@@ -132,43 +133,12 @@
 					if (WEST)
 						add_overlay(image(icon, src, "[icon_modifier]mcorneroverlay", pixel_y = 32))
 
-/obj/structure/railing/verb/rotate_counterclockwise()
-	set name = "Rotate Railing Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.incapacitated())
-		return 0
-
-	if (!can_touch(usr) || ismouse(usr))
-		return
-
-	if(anchored)
-		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return 0
-
-	src.set_dir(turn(src.dir, 90))
-	update_icon()
-	return
-
-/obj/structure/railing/verb/rotate_clockwise()
-	set name = "Rotate Railing Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.incapacitated())
-		return 0
-
-	if (!can_touch(usr) || ismouse(usr))
-		return
-
-	if(anchored)
-		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return 0
-
-	src.set_dir(turn(src.dir, 270))
-	update_icon()
-	return
+/obj/structure/railing/handle_rotation_verbs(angle)
+	if(!can_touch(usr))
+		return FALSE
+	. = ..()
+	if(.)
+		update_icon()
 
 /obj/structure/railing/verb/flip() // This will help push railing to remote places, such as open space turfs
 	set name = "Flip Railing"
@@ -199,7 +169,7 @@
 	// Dismantle
 	if(W.has_tool_quality(TOOL_WRENCH) && !anchored)
 		playsound(src, W.usesound, 50, 1)
-		if(do_after(user, 20, src))
+		if(do_after(user, 2 SECONDS, target = src))
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " dismantles \the [src]."), span_notice("You dismantle \the [src]."))
 			new /obj/item/stack/material/steel(get_turf(user), 2)
 			qdel(src)
@@ -210,7 +180,7 @@
 		var/obj/item/weldingtool/F = W.get_welder()
 		if(F.welding)
 			playsound(src, F.usesound, 50, 1)
-			if(do_after(user, 20, src))
+			if(do_after(user, 2 SECONDS, target = src))
 				user.visible_message(span_infoplain(span_bold("\The [user]") + " repairs some damage to \the [src]."), span_notice("You repair some damage to \the [src]."))
 				health = min(health+(maxhealth/5), maxhealth) // 20% repair per application
 				return
@@ -219,7 +189,7 @@
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		user.visible_message(span_info((anchored ? (span_bold("\The [user]") + " begins unscrewing \the [src].") : (span_bold("\The [user]") + "begins fasten \the [src]."))))
 		playsound(src, W.usesound, 75, 1)
-		if(do_after(user, 10, src))
+		if(do_after(user, 1 SECOND, target = src))
 			to_chat(user, (anchored ? span_notice("You have unfastened \the [src] from the floor.") : span_notice("You have fastened \the [src] to the floor.")))
 			anchored = !anchored
 			update_icon()

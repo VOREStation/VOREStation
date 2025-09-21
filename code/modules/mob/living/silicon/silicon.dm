@@ -28,6 +28,7 @@
 	var/sensor_type = 0 //VOREStation add - silicon omni "is sensor on or nah"
 
 	var/hudmode = null
+	fire_stack_decay_rate = -0.55
 
 /mob/living/silicon/Initialize(mapload, is_decoy = FALSE)
 	. = ..()
@@ -41,9 +42,16 @@
 		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6)
 
 /mob/living/silicon/Destroy()
+	common_radio = null // same ref as radio, deleted by child
 	GLOB.silicon_mob_list -= src
 	for(var/datum/alarm_handler/AH in SSalarm.all_handlers)
 		AH.unregister_alarm(src)
+	if(aiCamera)
+		QDEL_NULL(aiCamera)
+	if(idcard)
+		QDEL_NULL(idcard)
+	if(laws)
+		QDEL_NULL(laws)
 	return ..()
 
 /mob/living/silicon/proc/init_id()
@@ -391,7 +399,7 @@
 	if(cameraFollow)
 		cameraFollow = null
 
-/mob/living/silicon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/silicon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(affect_silicon)
 		return ..()
 

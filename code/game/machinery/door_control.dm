@@ -51,8 +51,7 @@
 	icon_state = "doorctrl1"
 	desiredstate = !desiredstate
 	trigger(user)
-	spawn(15)
-		update_icon()
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), 1.5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
 /obj/machinery/button/remote/proc/trigger()
 	return
@@ -97,13 +96,11 @@
 		if(D.id_tag == id)
 			if(specialfunctions & OPEN)
 				if(D.density)
-					spawn(0)
-						D.open()
-						return
+					D.open()
+					return
 				else
-					spawn(0)
-						D.close()
-						return
+					D.close()
+					return
 			if(desiredstate == 1)
 				if(specialfunctions & IDSCAN)
 					D.set_idscan(0)
@@ -141,13 +138,9 @@
 	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
 			if(M.density)
-				spawn(0)
-					M.open()
-					return
+				M.open()
 			else
-				spawn(0)
-					M.close()
-					return
+				M.close()
 
 /*
 	Emitter remote control
@@ -159,9 +152,7 @@
 /obj/machinery/button/remote/emitter/trigger(mob/user as mob)
 	for(var/obj/machinery/power/emitter/E in GLOB.machines)
 		if(E.id == id)
-			spawn(0)
-				E.activate(user)
-				return
+			E.activate(user)
 
 /*
 	Mass driver remote control
@@ -172,34 +163,34 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
 
-/obj/machinery/button/remote/driver/trigger(mob/user as mob)
-	active = 1
+/obj/machinery/button/remote/driver/trigger(mob/user)
+	if(active)
+		return
+	active = TRUE
 	update_icon()
 
 	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
-			spawn(0)
-				M.open()
-				return
+			M.open()
+	addtimer(CALLBACK(src, PROC_REF(trigger_step_one)), 2 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
-	sleep(20)
-
+/obj/machinery/button/remote/driver/proc/trigger_step_one()
+	PRIVATE_PROC(TRUE)
 	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == id)
 			M.drive()
+	addtimer(CALLBACK(src, PROC_REF(trigger_step_two)), 5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
-	sleep(50)
+/obj/machinery/button/remote/driver/proc/trigger_step_two()
+	PRIVATE_PROC(TRUE)
 
 	for(var/obj/machinery/door/blast/M in GLOB.machines)
 		if(M.id == id)
-			spawn(0)
-				M.close()
-				return
+			M.close()
 
-	icon_state = "launcherbtt"
+	active = FALSE
 	update_icon()
 
-	return
 
 /obj/machinery/button/remote/driver/update_icon()
 	if(!active || (stat & NOPOWER))
@@ -218,9 +209,8 @@
 /obj/machinery/button/remote/shields/trigger(var/mob/user)
 	for(var/obj/machinery/shield_gen/SG in GLOB.machines)
 		if(SG.id == id)
-			spawn(0)
-				if(SG?.anchored)
-					SG.toggle()
+			if(SG?.anchored)
+				SG.toggle()
 
 /obj/machinery/button/remote/airlock/release
 	icon = 'icons/obj/door_release.dmi'

@@ -2146,12 +2146,12 @@
 /area/stellardelight/deck1/miningshuttle)
 "dV" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/clothing/mask/gas{
+/obj/item/clothing/mask/gas/clear{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas{
+/obj/item/clothing/mask/gas/clear,
+/obj/item/clothing/mask/gas/clear{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -7172,6 +7172,12 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 32;
+	pixel_x = -27;
+	id = "resleeveexit";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/stellardelight/deck1/resleeving)
 "oi" = (

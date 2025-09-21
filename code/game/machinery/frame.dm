@@ -348,13 +348,14 @@ GLOBAL_LIST(construction_frame_floor)
 	update_icon()
 
 	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
 
 /obj/structure/frame/attackby(obj/item/P as obj, mob/user as mob)
 	if(P.has_tool_quality(TOOL_WRENCH))
 		if(state == FRAME_PLACED && !anchored)
 			to_chat(user, span_notice("You start to wrench the frame into place."))
 			playsound(src, P.usesound, 50, 1)
-			if(do_after(user, 20 * P.toolspeed))
+			if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 				anchored = TRUE
 				if(!need_circuit && circuit)
 					state = FRAME_FASTENED
@@ -366,7 +367,7 @@ GLOBAL_LIST(construction_frame_floor)
 
 		else if(state == FRAME_PLACED && anchored)
 			playsound(src, P.usesound, 50, 1)
-			if(do_after(user, 20 * P.toolspeed))
+			if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 				to_chat(user, span_notice("You unfasten the frame."))
 				anchored = FALSE
 
@@ -375,7 +376,7 @@ GLOBAL_LIST(construction_frame_floor)
 			var/obj/item/weldingtool/WT = P.get_welder()
 			if(WT.remove_fuel(0, user))
 				playsound(src, P.usesound, 50, 1)
-				if(do_after(user, 20 * P.toolspeed))
+				if(do_after(user, 2 SECONDS * P.toolspeed, target = src))
 					if(src && WT.isOn())
 						to_chat(user, span_notice("You deconstruct the frame."))
 						new /obj/item/stack/material/steel(src.loc, frame_type.frame_size)
@@ -551,7 +552,7 @@ GLOBAL_LIST(construction_frame_floor)
 				return
 			to_chat(user, span_notice("You start to add cables to the frame."))
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-			if(do_after(user, 20) && state == FRAME_FASTENED)
+			if(do_after(user, 2 SECONDS, target = src) && state == FRAME_FASTENED)
 				if(C.use(5))
 					to_chat(user, span_notice("You add cables to the frame."))
 					state = FRAME_WIRED
@@ -611,7 +612,7 @@ GLOBAL_LIST(construction_frame_floor)
 					return
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, span_notice("You start to put in the glass panel."))
-				if(do_after(user, 20) && state == FRAME_WIRED)
+				if(do_after(user, 2 SECONDS, target = src) && state == FRAME_WIRED)
 					if(G.use(2))
 						to_chat(user, span_notice("You put in the glass panel."))
 						state = FRAME_PANELED
@@ -623,7 +624,7 @@ GLOBAL_LIST(construction_frame_floor)
 					return
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, span_notice("You start to put in the glass panel."))
-				if(do_after(user, 20) && state == FRAME_WIRED)
+				if(do_after(user, 2 SECONDS, target = src) && state == FRAME_WIRED)
 					if(G.use(2))
 						to_chat(user, span_notice("You put in the glass panel."))
 						state = FRAME_PANELED
@@ -688,40 +689,3 @@ GLOBAL_LIST(construction_frame_floor)
 	update_desc()
 	to_chat(user, desc)
 	return TRUE
-
-/obj/structure/frame/verb/rotate_counterclockwise()
-	set name = "Rotate Frame Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.incapacitated())
-		return FALSE
-
-	if(anchored)
-		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return FALSE
-
-	src.set_dir(turn(src.dir, 90))
-
-	to_chat(usr, span_notice("You rotate the [src] to face [dir2text(dir)]!"))
-
-	return
-
-
-/obj/structure/frame/verb/rotate_clockwise()
-	set name = "Rotate Frame Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.incapacitated())
-		return FALSE
-
-	if(anchored)
-		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return FALSE
-
-	src.set_dir(turn(src.dir, 270))
-
-	to_chat(usr, span_notice("You rotate the [src] to face [dir2text(dir)]!"))
-
-	return

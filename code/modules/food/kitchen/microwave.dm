@@ -1,3 +1,5 @@
+#define MICROWAVE_FLAGS (OPENCONTAINER | NOREACT)
+
 /obj/machinery/microwave
 	name = "Microwave"
 	desc = "Studies are inconclusive on whether pressing your face against the glass is harmful."
@@ -12,7 +14,7 @@
 	active_power_usage = 2000
 	clicksound = "button"
 	clickvol = "30"
-	flags = OPENCONTAINER | NOREACT
+	flags = MICROWAVE_FLAGS
 	circuit = /obj/item/circuitboard/microwave
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
@@ -77,7 +79,7 @@
 				span_notice("You start to fix part of the microwave.") \
 			)
 			playsound(src, O.usesound, 50, 1)
-			if (do_after(user,20 * O.toolspeed))
+			if (do_after(user, 2 SECONDS * O.toolspeed, target = src))
 				user.visible_message( \
 					span_infoplain(span_bold("\The [user]") + " fixes part of the microwave."), \
 					span_notice("You have fixed part of the microwave.") \
@@ -88,7 +90,7 @@
 				span_infoplain(span_bold("\The [user]") + " starts to fix part of the microwave."), \
 				span_notice("You start to fix part of the microwave.") \
 			)
-			if (do_after(user,20 * O.toolspeed))
+			if (do_after(user, 2 SECONDS * O.toolspeed, target = src))
 				user.visible_message( \
 					span_infoplain(span_bold("\The [user]") + " fixes the microwave."), \
 					span_notice("You have fixed the microwave.") \
@@ -96,7 +98,7 @@
 				src.icon_state = "mw"
 				src.broken = 0 // Fix it!
 				src.dirty = 0 // just to be sure
-				src.flags = OPENCONTAINER | NOREACT
+				src.flags |= MICROWAVE_FLAGS
 		else
 			to_chat(user, span_warning("It's broken!"))
 			return 1
@@ -107,7 +109,7 @@
 				span_infoplain(span_bold("\The [user]") + " starts to clean the microwave."), \
 				span_notice("You start to clean the microwave.") \
 			)
-			if (do_after(user,20))
+			if (do_after(user, 2 SECONDS, target = src))
 				user.visible_message( \
 					span_notice("\The [user] has cleaned the microwave."), \
 					span_notice("You have cleaned the microwave.") \
@@ -115,7 +117,7 @@
 				src.dirty = 0 // It's clean!
 				src.broken = 0 // just to be sure
 				src.icon_state = "mw"
-				src.flags = OPENCONTAINER | NOREACT
+				src.flags |= MICROWAVE_FLAGS
 				SStgui.update_uis(src)
 		else //Otherwise bad luck!!
 			to_chat(user, span_warning("It's dirty!"))
@@ -199,7 +201,7 @@
 				span_notice("\The [user] begins [src.anchored ? "unsecuring" : "securing"] the microwave."), \
 				span_notice("You attempt to [src.anchored ? "unsecure" : "secure"] the microwave.")
 				)
-			if (do_after(user,20/O.toolspeed))
+			if (do_after(user, (2 SECONDS)/O.toolspeed, target = src))
 				user.visible_message( \
 				span_notice("\The [user] [src.anchored ? "unsecures" : "secures"] the microwave."), \
 				span_notice("You [src.anchored ? "unsecure" : "secure"] the microwave.")
@@ -512,7 +514,7 @@
 /obj/machinery/microwave/proc/muck_finish()
 	src.visible_message(span_warning("The microwave gets covered in muck!"))
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
-	src.flags = null //So you can't add condiments
+	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
 	src.icon_state = "mwbloody0" // Make it look dirty too
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
@@ -526,7 +528,7 @@
 	src.icon_state = "mwb" // Make it look all busted up and shit
 	src.visible_message(span_warning("The microwave breaks!")) //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
-	src.flags = null //So you can't add condiments
+	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
@@ -560,7 +562,7 @@
 	span_notice("You try to open [src] and remove its contents.")
 	)
 
-	if(!do_after(usr, 1 SECONDS, target = src))
+	if(!do_after(usr, 1 SECOND, target = src))
 		return
 
 	if(operating)
@@ -633,3 +635,5 @@
 		if(istype(M, circuit)) // Yes, we remove circuit twice. Yes, it's necessary. Yes, it's stupid.
 			workingList -= M
 	return workingList
+
+#undef MICROWAVE_FLAGS

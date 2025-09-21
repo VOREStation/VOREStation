@@ -138,7 +138,7 @@
 
 		H.visible_message(span_danger("\The [H] is trying to perform CPR on \the [src]!"))
 
-		if(!do_after(H, 30))
+		if(!do_after(H, 3 SECONDS, target = src))
 			return FALSE
 
 		H.visible_message(span_danger("\The [H] performs CPR on \the [src]!"))
@@ -461,7 +461,7 @@
 		return FALSE
 
 	user.visible_message(span_warning("[user] begins to dislocate [src]'s [organ.joint]!"))
-	if(do_after(user, 100))
+	if(do_after(user, 10 SECONDS, target = src))
 		organ.dislocate(1)
 		src.visible_message(span_danger("[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!"))
 		return TRUE
@@ -480,15 +480,13 @@
 		if(lgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [lgrab.affecting]!"))
 			success = TRUE
-		spawn(1)
-			qdel(lgrab)
+		drop_from_inventory(lgrab)
 	if(istype(r_hand, /obj/item/grab))
 		var/obj/item/grab/rgrab = r_hand
 		if(rgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [rgrab.affecting]!"))
 			success = TRUE
-		spawn(1)
-			qdel(rgrab)
+		drop_from_inventory(rgrab)
 	return success
 
 /*

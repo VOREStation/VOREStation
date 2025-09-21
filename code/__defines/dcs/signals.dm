@@ -229,8 +229,9 @@
 #define COMSIG_MOVABLE_MOVED "movable_moved"
 ///from base of atom/movable/Cross(): (/atom/movable)
 #define COMSIG_MOVABLE_CROSS "movable_cross"
-///when we cross over something (calling Crossed() on that atom)
-#define COMSIG_CROSSED_MOVABLE "crossed_movable"
+	#define COMPONENT_BLOCK_CROSS (1<<0)
+///from base of atom/movable/Move(): (/atom/movable)
+#define COMSIG_MOVABLE_CROSS_OVER "movable_cross_am"
 ///from base of atom/movable/Bump(): (/atom)
 #define COMSIG_MOVABLE_BUMP "movable_bump"
 ///from base of atom/movable/throw_impact(): (/atom/hit_atom, /datum/thrownthing/throwingdatum)
@@ -264,6 +265,10 @@
 ///from /datum/controller/subsystem/motion_tracker/notice() (/datum/weakref/source_atom,/turf/echo_turf_location)
 #define COMSIG_MOVABLE_MOTIONTRACKER "move_motiontracker"
 
+///called when a disposal connected object flushes its contents into the disposal pipe network
+#define COMSIG_DISPOSAL_FLUSH "disposal_system_flushing"
+///called when a disposal connected object gets a packet from the disposal pipe network
+#define COMSIG_DISPOSAL_RECEIVING "disposal_system_receiving"
 ///called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"
 
@@ -338,7 +343,7 @@
 
 ///from base of mob/living/resist() (/mob/living)
 #define COMSIG_LIVING_RESIST "living_resist"
-///from base of mob/living/IgniteMob() (/mob/living)
+///from base of mob/living/ignite_mob() (/mob/living)
 #define COMSIG_LIVING_IGNITED "living_ignite"
 ///from base of mob/living/ExtinguishMob() (/mob/living)
 #define COMSIG_LIVING_EXTINGUISHED "living_extinguished"
@@ -687,6 +692,11 @@
 ///called when you wash your face at a sink: (num/strength)
 #define COMSIG_COMPONENT_CLEAN_FACE_ACT "clean_face_act"
 
+//Reagent holder
+
+///from base of /datum/reagents/proc/handle_reactions(): (list/decl/chemical_reaction)
+#define COMSIG_REAGENTS_HOLDER_REACTED "reagents_holder_reacted"
+
 //Food
 
 ///from base of obj/item/reagent_containers/food/snacks/attack(): (mob/living/eater, mob/feeder)
@@ -853,6 +863,8 @@
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
 ///Called right after the atom changes the value of light_flags to a different one, from base of [/atom/proc/set_light_flags]: (old_flags)
 #define COMSIG_ATOM_UPDATE_LIGHT_FLAGS "atom_update_light_flags"
+///Called right after the atom is flushed into a disposal holder and sent through the disposal network: (/obj/structure/disposalholder)
+#define COMSIG_ATOM_DISPOSAL_FLUSHED "atom_disposal_flushed"
 
 // /datum/element/light_eater
 ///from base of [/datum/element/light_eater/proc/table_buffet]: (list/light_queue, datum/light_eater)
