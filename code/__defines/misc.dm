@@ -533,6 +533,8 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define COLORMATE_HSV 2
 #define COLORMATE_MATRIX 3
 
+#define DEFAULT_COLORMATRIX list(1, 0, 0, 0, 1, 0, 0, 0, 1,	0, 0, 0)
+
 #define DEPARTMENT_OFFDUTY			"Off-Duty"
 
 #define ANNOUNCER_NAME "Facility PA"
