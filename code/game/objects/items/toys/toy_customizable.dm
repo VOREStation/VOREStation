@@ -102,8 +102,9 @@
 				return FALSE
 			. = TRUE
 			var/target = added_overlays[selected_icon_state]
-			var/new_color = tgui_color_picker(ui.user, "Choose a color:", possible_overlays[selected_icon_state], base_color)
-			if(!new_color || ui?.user.stat || !Adjacent(ui.user))
+			var/mob/our_user = ui.user
+			var/new_color = tgui_color_picker(our_user, "Choose a color:", possible_overlays[selected_icon_state], base_color)
+			if(!new_color || our_user.stat || !Adjacent(our_user))
 				return FALSE
 			target["color"] = new_color
 			update_icon()
@@ -130,8 +131,9 @@
 
 		if("change_base_color")
 			. = TRUE
-			var/new_color = tgui_color_picker(ui.user, "Choose a color:", "Plushie base color", base_color)
-			if(!new_color || ui?.user.stat || !Adjacent(ui.user))
+			var/mob/our_user = ui.user
+			var/new_color = tgui_color_picker(our_user, "Choose a color:", "Plushie base color", base_color)
+			if(!new_color || our_user.stat || !Adjacent(our_user))
 				return FALSE
 			base_color = new_color
 			update_icon()
