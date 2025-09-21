@@ -85,9 +85,13 @@
 			update_icon()
 
 		if("remove_overlay")
+			if(!added_overlays)
+				return FALSE
+			var/removed_overlay = params["removed_overlay"]
+			if(!(removed_overlay in added_overlays))
+				return FALSE
 			. = TRUE
-			var/rem = params["removed_overlay"]
-			added_overlays.Remove(rem)
+			added_overlays.Remove(removed_overlay)
 			update_icon()
 
 		if("change_overlay_color")
@@ -133,10 +137,10 @@
 			update_icon()
 
 		if("set_overlay_alpha")
-			. = TRUE
 			var/target = added_overlays[params["icon_state"]]
 			if(!target)
 				return FALSE
+			. = TRUE
 			var/new_alpha = params["alpha"]
 			target["alpha"] = new_alpha
 			update_icon()
