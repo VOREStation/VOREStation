@@ -181,7 +181,7 @@
 					s.set_up(4, FALSE, evil_light)
 					s.start()
 					//We don't clear the omen as nothing really happened.
-					return
+					break
 
 				to_chat(living_guy, span_warning("[evil_light] glows ominously...")) // ominously
 				evil_light.visible_message(span_boldwarning("[evil_light] suddenly flares brightly and sparks!"))
