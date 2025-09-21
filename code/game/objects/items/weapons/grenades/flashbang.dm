@@ -159,3 +159,10 @@
 	walk_away(src,temploc,stepdist)
 
 	addtimer(CALLBACK(src, PROC_REF(detonate)), rand(15, 60), TIMER_DELETE_ME)
+
+/obj/item/grenade/flashbang/clusterbang/primed
+	desc = "This clusterbang seems to have already been activated. Uhoh."
+
+/obj/item/grenade/flashbang/clusterbang/primed/Initialize(mapload)
+	. = ..()
+	activate()
