@@ -24,39 +24,22 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
   const { act, data } = useBackend<Data>();
   const { base_color, preview, name } = data;
 
-  const [warned, setWarned] = useState<boolean>(false);
-
   return (
     <Section
       fill
       title="Preview"
       buttons={
-        !warned ? (
-          <Button
-            icon="trash"
-            color="red"
-            tooltip="Reset the edits"
-            onClick={() => {
-              setWarned(true);
-              setTimeout(() => setWarned(false), 5000);
-            }}
-          >
-            Clear
-          </Button>
-        ) : (
-          <Button
-            icon="trash"
-            color="red"
-            tooltip="Reset the edits"
-            onClick={() => {
-              setSelectedOverlay(null);
-              setWarned(false);
-              act('clear');
-            }}
-          >
-            Confirm?
-          </Button>
-        )
+        <Button.Confirm
+          icon="trash"
+          color="red"
+          tooltip="Reset the edits"
+          onClick={() => {
+            setSelectedOverlay(null);
+            act('clear');
+          }}
+        >
+          Clear
+        </Button.Confirm>
       }
     >
       <Stack vertical fill>
