@@ -835,6 +835,7 @@
 	cost = -2
 	is_genetrait = FALSE
 	hidden = FALSE
+	custom_only = FALSE
 	added_component_path = /datum/component/omen/trait
 
 /datum/trait/negative/unlucky/major
