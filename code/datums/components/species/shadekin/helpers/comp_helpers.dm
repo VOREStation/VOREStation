@@ -146,10 +146,10 @@
 ///Gets rid of any old ability master if we have one and replaces it with a shadekin ability master.
 /datum/component/shadekin/proc/create_shadekin_abilities()
 	if(!owner.ability_master)
-		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
-	else if(!istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
+		owner.ability_master = new /atom/movable/screen/movable/ability_master/shadekin(owner)
+	else if(!istype(owner.ability_master, /atom/movable/screen/movable/ability_master/shadekin))
 		QDEL_NULL(owner.ability_master)
-		owner.ability_master = new /obj/screen/movable/ability_master/shadekin(owner)
+		owner.ability_master = new /atom/movable/screen/movable/ability_master/shadekin(owner)
 
 //Clears up our verbs. Used when rebuilding our verbs list..
 /datum/component/shadekin/proc/clear_shadekin_abilities()
@@ -165,10 +165,10 @@
 //Clears our abilities master and gives us a new, non-shadekin one. Used for destroy.
 /datum/component/shadekin/proc/replace_shadekin_master()
 	if(!owner.ability_master)
-		owner.ability_master = new /obj/screen/movable/ability_master(owner)
-	else if(istype(owner.ability_master, /obj/screen/movable/ability_master/shadekin))
+		owner.ability_master = new /atom/movable/screen/movable/ability_master(owner)
+	else if(istype(owner.ability_master, /atom/movable/screen/movable/ability_master/shadekin))
 		QDEL_NULL(owner.ability_master)
-		owner.ability_master = new /obj/screen/movable/ability_master(owner)
+		owner.ability_master = new /atom/movable/screen/movable/ability_master(owner)
 	clear_shadekin_abilities()
 
 //wait, it's all light?

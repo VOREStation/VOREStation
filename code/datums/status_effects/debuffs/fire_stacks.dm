@@ -128,7 +128,7 @@
 	if(was_on_fire && !owner.on_fire)
 		owner.clear_alert(ALERT_FIRE)
 	else if(!was_on_fire && owner.on_fire)
-		owner.throw_alert(ALERT_FIRE, /obj/screen/alert/fire)
+		owner.throw_alert(ALERT_FIRE, /atom/movable/screen/alert/fire)
 	// owner.update_appearance(UPDATE_OVERLAYS)
 	owner.update_fire()
 	update_particles()

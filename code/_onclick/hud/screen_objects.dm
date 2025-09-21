@@ -6,24 +6,23 @@
 	They are used with the client/screen list and the screen_loc var.
 	For more information, see the byond documentation on the screen_loc and screen vars.
 */
-/obj/screen
+/atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen1.dmi'
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|NO_CLIENT_COLOR
 	layer = LAYER_HUD_BASE
 	plane = PLANE_PLAYER_HUD
-	unacidable = TRUE
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 
-/obj/screen/Destroy()
+/atom/movable/screen/Destroy()
 	master = null
 	return ..()
 
-/obj/screen/proc/component_click(obj/screen/component_button/component, params)
+/atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
 
-/obj/screen/text
+/atom/movable/screen/text
 	icon = null
 	icon_state = null
 	mouse_opacity = 0
@@ -32,20 +31,20 @@
 	maptext_width = 480
 
 
-/obj/screen/inventory
+/atom/movable/screen/inventory
 	var/slot_id	//The indentifier for the slot. It has nothing to do with ID cards.
 	var/list/object_overlays = list() // Required for inventory/screen overlays.
 
-/obj/screen/inventory/MouseEntered()
+/atom/movable/screen/inventory/MouseEntered()
 	..()
 	add_overlays()
 
-/obj/screen/inventory/MouseExited()
+/atom/movable/screen/inventory/MouseExited()
 	..()
 	cut_overlay(object_overlays)
 	object_overlays.Cut()
 
-/obj/screen/inventory/proc/add_overlays()
+/atom/movable/screen/inventory/proc/add_overlays()
 	if(hud && hud.mymob && slot_id)
 		var/mob/user = hud.mymob
 		var/obj/item/holding = user.get_active_hand()
@@ -64,10 +63,10 @@
 		object_overlays += item_overlay
 		add_overlay(object_overlays)
 
-/obj/screen/close
+/atom/movable/screen/close
 	name = "close"
 
-/obj/screen/close/Click()
+/atom/movable/screen/close/Click()
 	if(master)
 		if(istype(master, /obj/item/storage))
 			var/obj/item/storage/S = master
@@ -75,14 +74,14 @@
 	return 1
 
 
-/obj/screen/item_action
+/atom/movable/screen/item_action
 	var/obj/item/owner
 
-/obj/screen/item_action/Destroy()
+/atom/movable/screen/item_action/Destroy()
 	. = ..()
 	owner = null
 
-/obj/screen/item_action/Click()
+/atom/movable/screen/item_action/Click()
 	if(!usr || !owner)
 		return 1
 	if(!usr.checkClickCooldown())
@@ -97,25 +96,25 @@
 	owner.ui_action_click()
 	return 1
 
-/obj/screen/grab
+/atom/movable/screen/grab
 	name = "grab"
 
-/obj/screen/grab/Click()
+/atom/movable/screen/grab/Click()
 	var/obj/item/grab/G = master
 	G.s_click(src)
 	return 1
 
-/obj/screen/grab/attack_hand()
+/atom/movable/screen/grab/attack_hand()
 	return
 
-/obj/screen/grab/attackby()
+/atom/movable/screen/grab/attackby()
 	return
 
 
-/obj/screen/storage
+/atom/movable/screen/storage
 	name = "storage"
 
-/obj/screen/storage/Click()
+/atom/movable/screen/storage/Click()
 	if(!usr.checkClickCooldown())
 		return 1
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
@@ -128,7 +127,7 @@
 			usr.ClickOn(master)
 	return 1
 
-/obj/screen/zone_sel
+/atom/movable/screen/zone_sel
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
@@ -137,7 +136,7 @@
 	var/hovering_choice
 	var/mutable_appearance/selecting_appearance
 
-/obj/screen/zone_sel/Click(location, control,params)
+/atom/movable/screen/zone_sel/Click(location, control,params)
 	if(isobserver(usr))
 		return
 
@@ -150,10 +149,10 @@
 
 	return set_selected_zone(choice, usr)
 
-/obj/screen/zone_sel/MouseEntered(location, control, params)
+/atom/movable/screen/zone_sel/MouseEntered(location, control, params)
 	MouseMove(location, control, params)
 
-/obj/screen/zone_sel/MouseMove(location, control, params)
+/atom/movable/screen/zone_sel/MouseMove(location, control, params)
 	if(isobserver(usr))
 		return
 
@@ -185,12 +184,12 @@
 	layer = LAYER_HUD_ABOVE
 	plane = PLANE_PLAYER_HUD_ABOVE
 
-/obj/screen/zone_sel/MouseExited(location, control, params)
+/atom/movable/screen/zone_sel/MouseExited(location, control, params)
 	if(!isobserver(usr) && hovering_choice)
 		vis_contents -= hover_overlays_cache[hovering_choice]
 		hovering_choice = null
 
-/obj/screen/zone_sel/proc/get_zone_at(icon_x, icon_y)
+/atom/movable/screen/zone_sel/proc/get_zone_at(icon_x, icon_y)
 	switch(icon_y)
 		if(1 to 3) //Feet
 			switch(icon_x)
@@ -234,19 +233,19 @@
 							return O_EYES
 				return BP_HEAD
 
-/obj/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
+/atom/movable/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
 	if(isobserver(user))
 		return
 	if(choice != selecting)
 		selecting = choice
 		update_icon()
 
-/obj/screen/zone_sel/update_icon()
+/atom/movable/screen/zone_sel/update_icon()
 	cut_overlays()
 	selecting_appearance = mutable_appearance('icons/mob/zone_sel.dmi', "[selecting]")
 	add_overlay(selecting_appearance)
 
-/obj/screen/Click(location, control, params)
+/atom/movable/screen/Click(location, control, params)
 	..() // why the FUCK was this not called before
 	if(!usr)	return 1
 	switch(name)
@@ -502,7 +501,7 @@
 			usr.down()
 
 		if("use held item on self")
-			var/obj/screen/useself/s = src
+			var/atom/movable/screen/useself/s = src
 			if(ishuman(usr))
 				var/mob/living/carbon/human/u = usr
 				var/obj/item/i = u.get_active_hand()
@@ -632,7 +631,7 @@
 			return attempt_vr(src,"Click_vr",list(location,control,params))
 	return 1
 
-/obj/screen/inventory/Click()
+/atom/movable/screen/inventory/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(!usr.checkClickCooldown())
@@ -661,10 +660,10 @@
 	return 1
 
 // Hand slots are special to handle the handcuffs overlay
-/obj/screen/inventory/hand
+/atom/movable/screen/inventory/hand
 	var/image/handcuff_overlay
 
-/obj/screen/inventory/hand/update_icon()
+/atom/movable/screen/inventory/hand/update_icon()
 	..()
 	if(!hud)
 		return
@@ -678,38 +677,38 @@
 			add_overlay(handcuff_overlay)
 
 // PIP stuff
-/obj/screen/component_button
-	var/obj/screen/parent
+/atom/movable/screen/component_button
+	var/atom/movable/screen/parent
 
-/obj/screen/component_button/Initialize(mapload, obj/screen/new_parent)
+/atom/movable/screen/component_button/Initialize(mapload, atom/movable/screen/new_parent)
 	. = ..()
 	parent = new_parent
 
-/obj/screen/component_button/Click(params)
+/atom/movable/screen/component_button/Click(params)
 	if(parent)
 		parent.component_click(src, params)
 
 // Character setup stuff
-/obj/screen/setup_preview
+/atom/movable/screen/setup_preview
 
 	var/datum/preferences/pref
 
-/obj/screen/setup_preview/Destroy()
+/atom/movable/screen/setup_preview/Destroy()
 	pref = null
 	return ..()
 
 // Background 'floor'
-/obj/screen/setup_preview/pm_helper
+/atom/movable/screen/setup_preview/pm_helper
 	icon = null
 	icon_state = null
 	appearance_flags = PLANE_MASTER
 	plane = PLANE_EMISSIVE
 	alpha = 0
 
-/obj/screen/setup_preview/bg
+/atom/movable/screen/setup_preview/bg
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
-/obj/screen/setup_preview/bg/Click(params)
+/atom/movable/screen/setup_preview/bg/Click(params)
 	pref?.bgstate = next_in_list(pref.bgstate, pref.bgstate_options)
 	pref?.update_preview_icon()
 /**
@@ -722,7 +721,7 @@
  *
  * The markers use that technique, though, so at least there's that.
  */
-/obj/screen/movable/mapper_holder
+/atom/movable/screen/movable/mapper_holder
 	name = "gps unit"
 	icon = null
 	icon_state = ""
@@ -734,18 +733,18 @@
 
 	var/running = FALSE
 
-	var/obj/screen/mapper/mask_full/mask_full
-	var/obj/screen/mapper/mask_ping/mask_ping
-	var/obj/screen/mapper/bg/bg
+	var/atom/movable/screen/mapper/mask_full/mask_full
+	var/atom/movable/screen/mapper/mask_ping/mask_ping
+	var/atom/movable/screen/mapper/bg/bg
 
-	var/obj/screen/mapper/frame/frame
-	var/obj/screen/mapper/powbutton/powbutton
-	var/obj/screen/mapper/mapbutton/mapbutton
+	var/atom/movable/screen/mapper/frame/frame
+	var/atom/movable/screen/mapper/powbutton/powbutton
+	var/atom/movable/screen/mapper/mapbutton/mapbutton
 
 	var/obj/item/mapping_unit/owner
-	var/obj/screen/mapper/extras_holder/extras_holder
+	var/atom/movable/screen/mapper/extras_holder/extras_holder
 
-/obj/screen/movable/mapper_holder/Initialize(mapload, newowner)
+/atom/movable/screen/movable/mapper_holder/Initialize(mapload, newowner)
 	. = ..()
 	owner = newowner
 
@@ -770,7 +769,7 @@
 	vis_contents.Add(frame)
 
 
-/obj/screen/movable/mapper_holder/Destroy()
+/atom/movable/screen/movable/mapper_holder/Destroy()
 	QDEL_NULL(mask_full)
 	QDEL_NULL(mask_ping)
 	QDEL_NULL(bg)
@@ -783,7 +782,7 @@
 	owner = null
 	return ..()
 
-/obj/screen/movable/mapper_holder/proc/update(var/obj/screen/mapper/map, var/obj/screen/mapper/extras_holder/extras, ping = FALSE)
+/atom/movable/screen/movable/mapper_holder/proc/update(var/atom/movable/screen/mapper/map, var/atom/movable/screen/mapper/extras_holder/extras, ping = FALSE)
 	if(!running)
 		running = TRUE
 		if(ping)
@@ -801,20 +800,20 @@
 		vis_contents -= extras_holder
 		extras_holder = null
 
-/obj/screen/movable/mapper_holder/proc/powerClick()
+/atom/movable/screen/movable/mapper_holder/proc/powerClick()
 	if(running)
 		off()
 	else
 		on()
 
-/obj/screen/movable/mapper_holder/proc/mapClick()
+/atom/movable/screen/movable/mapper_holder/proc/mapClick()
 	if(owner)
 		if(running)
 			off()
 		owner.pinging = !owner.pinging
 		on()
 
-/obj/screen/movable/mapper_holder/proc/off(var/inform = TRUE)
+/atom/movable/screen/movable/mapper_holder/proc/off(var/inform = TRUE)
 	frame.cut_overlay("powlight")
 	bg.vis_contents.Cut()
 	vis_contents.Remove(mask_ping, mask_full, extras_holder)
@@ -823,27 +822,27 @@
 	if(inform)
 		owner.stop_updates()
 
-/obj/screen/movable/mapper_holder/proc/on(var/inform = TRUE)
+/atom/movable/screen/movable/mapper_holder/proc/on(var/inform = TRUE)
 	frame.add_overlay("powlight")
 	if(inform)
 		owner.start_updates()
 
 // Prototype
-/obj/screen/mapper
+/atom/movable/screen/mapper
 	plane = PLANE_HOLOMAP
 	mouse_opacity = 0
-	var/obj/screen/movable/mapper_holder/parent
+	var/atom/movable/screen/movable/mapper_holder/parent
 
-/obj/screen/mapper/Initialize(mapload)
+/atom/movable/screen/mapper/Initialize(mapload)
 	. = ..()
 	parent = loc
 
-/obj/screen/mapper/Destroy()
+/atom/movable/screen/mapper/Destroy()
 	parent = null
 	return ..()
 
 // Holds the actual map image
-/obj/screen/mapper/map
+/atom/movable/screen/mapper/map
 	var/offset_x = 32
 	var/offset_y = 32
 
@@ -851,15 +850,15 @@
 // but alpha filters can't be animated, which means I can't use them for the 'sonar ping' mode.
 // If filters start supporting animated icons in the future (for the alpha mask filter),
 // you should definitely replace these with that technique instead.
-/obj/screen/mapper/mask_full
+/atom/movable/screen/mapper/mask_full
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "mapper_mask"
 
-/obj/screen/mapper/mask_ping
+/atom/movable/screen/mapper/mask_ping
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "mapper_ping"
 
-/obj/screen/mapper/bg
+/atom/movable/screen/mapper/bg
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "mapper_bg"
 
@@ -867,7 +866,7 @@
 	appearance_flags = KEEP_TOGETHER
 
 // Frame/deco components
-/obj/screen/mapper/frame
+/atom/movable/screen/mapper/frame
 	icon = 'icons/effects/gpshud.dmi'
 	icon_state = "frame"
 	plane = PLANE_HOLOMAP_FRAME
@@ -876,13 +875,13 @@
 	mouse_opacity = 1
 	vis_flags = VIS_INHERIT_ID
 
-/obj/screen/mapper/powbutton
+/atom/movable/screen/mapper/powbutton
 	icon = 'icons/effects/gpshud.dmi'
 	icon_state = "powbutton"
 	plane = PLANE_HOLOMAP_FRAME
 	mouse_opacity = 1
 
-/obj/screen/mapper/powbutton/Click()
+/atom/movable/screen/mapper/powbutton/Click()
 	if(!usr.checkClickCooldown())
 		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
@@ -894,13 +893,13 @@
 	usr << get_sfx("button")
 	return TRUE
 
-/obj/screen/mapper/mapbutton
+/atom/movable/screen/mapper/mapbutton
 	icon = 'icons/effects/gpshud.dmi'
 	icon_state = "mapbutton"
 	plane = PLANE_HOLOMAP_FRAME
 	mouse_opacity = 1
 
-/obj/screen/mapper/mapbutton/Click()
+/atom/movable/screen/mapper/mapbutton/Click()
 	if(!usr.checkClickCooldown())
 		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
@@ -913,7 +912,7 @@
 	return TRUE
 
 // Markers are 16x16, people have apparently settled on centering them on the 8,8 pixel
-/obj/screen/mapper/marker
+/atom/movable/screen/mapper/marker
 	icon = 'icons/holomap_markers.dmi'
 	plane = PLANE_HOLOMAP_ICONS
 
@@ -921,14 +920,14 @@
 	var/offset_y = -8
 
 // Holds markers in its vis_contents. It uses an alpha filter to crop them to the HUD screen size
-/obj/screen/mapper/extras_holder
+/atom/movable/screen/mapper/extras_holder
 	icon = null
 	icon_state = null
 	plane = PLANE_HOLOMAP_ICONS
 	appearance_flags = KEEP_TOGETHER
 
 // Begin TGMC Ammo HUD Port
-/obj/screen/ammo
+/atom/movable/screen/ammo
 	name = "ammo"
 	icon = 'icons/mob/screen_ammo.dmi'
 	icon_state = "ammo"
@@ -936,23 +935,23 @@
 	var/warned = FALSE
 	var/static/list/ammo_screen_loc_list = list(ui_ammo_hud1, ui_ammo_hud2, ui_ammo_hud3 ,ui_ammo_hud4)
 
-/obj/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/gun/G)
+/atom/movable/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/gun/G)
 
 	if(!user?.client)
 		return
 
 	if(!G)
-		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
+		CRASH("/atom/movable/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
 
 	if(!G.has_ammo_counter())
 		return
 
 	user.client.screen += src
 
-/obj/screen/ammo/proc/remove_hud(var/mob/living/user)
+/atom/movable/screen/ammo/proc/remove_hud(var/mob/living/user)
 	user?.client?.screen -= src
 
-/obj/screen/ammo/proc/update_hud(var/mob/living/user, var/obj/item/gun/G)
+/atom/movable/screen/ammo/proc/update_hud(var/mob/living/user, var/obj/item/gun/G)
 	if(!user?.client?.screen.Find(src))
 		return
 
@@ -975,7 +974,7 @@
 			overlays += empty
 		else
 			warned = TRUE
-			var/obj/screen/ammo/F = new /obj/screen/ammo(src)
+			var/atom/movable/screen/ammo/F = new /atom/movable/screen/ammo(src)
 			F.icon_state = "frame"
 			user.client.screen += F
 			flick("[hud_state_empty]_flash", F)
