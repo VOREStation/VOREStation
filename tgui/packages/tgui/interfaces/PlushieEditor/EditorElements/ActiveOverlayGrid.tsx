@@ -1,7 +1,7 @@
 // todo, cleanup
 import type React from 'react';
 import { memo } from 'react';
-import { Box, ImageButton } from 'tgui-core/components';
+import { ImageButton, Stack } from 'tgui-core/components';
 import type { Overlay } from '../types';
 
 type ActiveOverlaysGridProps = {
@@ -13,21 +13,19 @@ type ActiveOverlaysGridProps = {
 
 export const ActiveOverlaysGrid = memo<ActiveOverlaysGridProps>(
   ({ icon, overlays, selectedOverlay, onSelect }) => (
-    <Box>
+    <Stack wrap="wrap" justify="center">
       {overlays.map((ov) => (
-        <ImageButton
-          key={ov.icon_state}
-          dmIcon={icon}
-          dmIconState={ov.icon_state}
-          onClick={() => onSelect(ov.icon_state)}
-          backgroundColor={
-            selectedOverlay === ov.icon_state ? '#21af39ff' : null
-          }
-          align="start"
-        >
-          {ov.name}
-        </ImageButton>
+        <Stack.Item key={ov.icon_state}>
+          <ImageButton
+            dmIcon={icon}
+            dmIconState={ov.icon_state}
+            onClick={() => onSelect(ov.icon_state)}
+            color={selectedOverlay === ov.icon_state ? 'green' : undefined}
+          >
+            {ov.name}
+          </ImageButton>
+        </Stack.Item>
       ))}
-    </Box>
+    </Stack>
   ),
 );
