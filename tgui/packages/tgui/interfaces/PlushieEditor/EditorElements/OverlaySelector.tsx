@@ -17,7 +17,7 @@ type OverlayModalProps = {
   toggleOverlay: (icon_state: string) => void;
 };
 
-export const PlushieOverlayModal: React.FC<OverlayModalProps> = ({
+export const OverlaySelector: React.FC<OverlayModalProps> = ({
   toggleOverlay,
 }) => {
   const { data } = useBackend<Data>();
@@ -35,7 +35,7 @@ export const PlushieOverlayModal: React.FC<OverlayModalProps> = ({
   return (
     <Floating
       placement="bottom-end"
-      contentClasses="VorePanel__fLoating"
+      contentClasses="PlushEditor_fLoating"
       content={
         <Section title="Overlays" scrollable>
           <Stack vertical fill>
@@ -54,7 +54,7 @@ export const PlushieOverlayModal: React.FC<OverlayModalProps> = ({
                   dmIcon={icon}
                   dmIconState={icon_state}
                   onClick={() => toggleOverlay(icon_state)}
-                  backgroundColor={overlayMap[icon_state] ? 'green' : 'red'}
+                  color={overlayMap[icon_state] ? 'green' : 'red'}
                   fluid
                   align="start"
                 >

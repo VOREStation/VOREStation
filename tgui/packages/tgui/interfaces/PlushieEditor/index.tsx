@@ -38,7 +38,7 @@ export const PlushieEditor: React.FC = () => {
               Warning! Clicking confirm will delete all your progress! Make sure
               to save the dragons that you don't wish to lose!!
             </NoticeBox>
-            <Stack>
+            <Stack align="center" direction="row" fill justify="space-around">
               <Stack.Item>
                 <Button onClick={clear} icon="trash" color="red">
                   Confirm

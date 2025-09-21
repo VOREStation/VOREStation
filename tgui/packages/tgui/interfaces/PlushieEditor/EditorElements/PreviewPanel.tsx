@@ -59,7 +59,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({ onClear }) => {
               <Input
                 fluid
                 value={name}
-                onChange={(value) => act('name', { wadwdw: value })}
+                onChange={(value) => act('rename', { name: value })}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Base color">
