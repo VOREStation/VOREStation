@@ -4,18 +4,14 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, Dialog, NoticeBox, Stack } from 'tgui-core/components';
 import { PreviewPanel } from './EditorElements/PreviewPanel';
-import { useOverlayMap } from './function';
-import { SidebarPanel } from './PlushiePanels';
+import { SidebarPanel } from './EditorElements/SidePanel';
 import type { Data } from './types';
 
 export const PlushieEditor: React.FC = () => {
-  const { act, data } = useBackend<Data>();
+  const { act } = useBackend<Data>();
 
-  const { overlays } = data;
   const [selectedOverlay, setSelectedOverlay] = useState<string | null>(null);
   const [warningDialogOpen, setWarningDialogOpen] = useState(false);
-
-  const overlayMap = useOverlayMap(overlays);
 
   const clear = () => {
     setSelectedOverlay(null);
