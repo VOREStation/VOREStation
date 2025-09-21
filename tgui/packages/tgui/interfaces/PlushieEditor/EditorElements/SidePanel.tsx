@@ -77,6 +77,7 @@ export const SidebarPanel: React.FC<SidebarPanelProps> = ({
         <Stack.Item grow>
           <Section
             title={`Overlays (${overlays.length} active)`}
+            fill
             scrollable
             buttons={<OverlaySelector toggleOverlay={toggleOverlay} />}
           >
