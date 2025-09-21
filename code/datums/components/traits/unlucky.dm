@@ -273,11 +273,11 @@
 			if(human_guy.should_have_organ(O_BRAIN))
 				for(var/obj/item/organ/internal/brain/brain in human_guy.internal_organs)
 					brain.take_damage(30 * damage_mod) //60 damage kills.
-			if(human_guy.glasses && human_guy.canUnEquip(glasses))
+			if(human_guy.glasses && human_guy.canUnEquip(human_guy.glasses))
 				var/turf/T = get_turf(human_guy)
 				if(T)
-					var/obj/item/our_glasses = glasses
-					human_guy.unEquip(glasses, target = T)
+					var/obj/item/our_glasses = human_guy.glasses
+					human_guy.unEquip(human_guy.glasses, target = T)
 					to_chat(human_guy, span_warning("Your glasses fly off as you hit the ground!"))
 					our_glasses.throw_at_random(FALSE, 3, 2)
 		consume_omen()
