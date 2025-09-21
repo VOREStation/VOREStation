@@ -165,7 +165,7 @@
 		if(prob(effectchance * diode.rating))
 			C.emp_act(4 - diode.rating)
 			outmsg = span_notice("You shine the [src] into the lens of [C].")
-			add_attack_logs(user,C.name,"Tried disabling using [src]")
+			add_attack_logs(user,C,"Tried disabling using [src]")
 		else
 			outmsg = span_info("You missed the lens of [C] with [src].")
 

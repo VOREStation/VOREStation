@@ -514,7 +514,7 @@
 	desc = "A device that appears to arc electricity into a target to incapacitate or otherwise hurt them, similar to a stun baton.  It looks inefficent."
 	description_info = "Hitting a lesser lifeform with this while it is on will compel them to attack you above other nearby targets.  Otherwise \
 	it works like a regular stun baton, just less effectively."
-	icon_state = "shocker_active"
+	icon_state = "shocker"
 	force = 10
 	agonyforce = 25 // Less efficent than a regular baton.
 	attack_verb = list("poked")

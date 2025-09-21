@@ -44,8 +44,8 @@
 				user.visible_message(span_notice("[user] takes a bite out of [src]!"), span_notice("You gnaw on [src]! This can't be good for you..."))
 				var/mob/living/carbon/C = user
 				playsound(get_turf(C), 'sound/items/eatfood.ogg', 25, 0)
-				C.ingested.add_reagent(/datum/reagent/toxin, 0.5) //normally formaldehyde, and 2 units of it. Toxin is being subsituted and is 4 times as toxic, hence a quarter of the normal amount.
-				C.ingested.add_reagent(/datum/reagent/chloralhydrate, 3)
+				C.ingested.add_reagent(REAGENT_ID_TOXIN, 0.5) //normally formaldehyde, and 2 units of it. Toxin is being subsituted and is 4 times as toxic, hence a quarter of the normal amount.
+				C.ingested.add_reagent(REAGENT_ID_CHLORALHYDRATE, 3)
 				reagents.trans_to_holder(C.ingested, 1)
 				bites++
 				if(bites >= 5)

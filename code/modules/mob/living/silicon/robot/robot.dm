@@ -1327,8 +1327,7 @@
 				log_game("[key_name(user)] assigned as operator on cyborg [key_name(src)]. Syndicate Operator change.")
 				var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 				set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
-				to_chat(src, span_infoplain(span_bold("Obey these laws:")))
-				laws.show_laws(src)
+				to_chat(src, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
 				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands."))
 			else
 				to_chat(user, span_filter_notice("[src] already has an operator assigned."))
@@ -1380,8 +1379,7 @@
 				to_chat(src, span_danger("> N"))
 				sleep(20)
 				to_chat(src, span_danger("ERRORERRORERROR"))
-				to_chat(src, span_infoplain(span_bold("Obey these laws:")))
-				laws.show_laws(src)
+				to_chat(src, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
 				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands."))
 				update_icon()
 				hud_used.update_robot_modules_display()

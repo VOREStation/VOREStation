@@ -771,7 +771,7 @@ About the new airlock wires panel:
 	else if(duration)	//electrify door for the given duration seconds
 		if(usr)
 			shockedby += text("\[[time_stamp()]\] - [usr](ckey:[usr.ckey])")
-			add_attack_logs(usr,name,"Electrified a door")
+			add_attack_logs(usr,src,"Electrified a door")
 		else
 			shockedby += text("\[[time_stamp()]\] - EMP)")
 		message = "The door is now electrified [duration == -1 ? "permanently" : "for [duration] second\s"]."
