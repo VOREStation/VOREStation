@@ -1,0 +1,10 @@
+author: "Will"
+delete-after: True
+changes:
+  - code_imp: "Reaction unittest strictness includes distillation reactions being blocked by instant reactions"
+  - code_imp: "Implements COMSIG_REAGENTS_HOLDER_REACTED"
+  - refactor: "reagent holder handle_reactions() uses number of reactions that happened, and not just completion of the proc for return value"
+  - bugfix: "peanut butter milkshake reaction no longer blocked by milkshake"
+  - bugfix: "aloe reaction no longer blocked by irish cream"
+  - bugfix: "instant beer reaction no longer blocked by corn cooking oil"
+  - bugfix: "biomass distilling reaction no longer blocked by virology mix 3"
