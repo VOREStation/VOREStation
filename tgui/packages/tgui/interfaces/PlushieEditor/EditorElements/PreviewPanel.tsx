@@ -1,4 +1,5 @@
 import type React from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -11,7 +12,6 @@ import {
   Stack,
 } from 'tgui-core/components';
 import type { Data } from '../types';
-import { Dispatch, SetStateAction, useState } from 'react';
 
 type PreviewPanelProps = {
   selectedOverlay: string | null;
