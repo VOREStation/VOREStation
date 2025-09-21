@@ -63,7 +63,7 @@
 	add_language(LANGUAGE_SWARMBOT, 1)
 
 	for(var/spell in spell_setup)
-		src.add_spell(new spell, "nano_spell_ready", /obj/screen/movable/spell_master/swarm)
+		src.add_spell(new spell, "nano_spell_ready", /atom/movable/screen/movable/spell_master/swarm)
 
 /mob/living/silicon/robot/drone/swarm/init()
 	..()

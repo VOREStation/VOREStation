@@ -34,6 +34,7 @@
 	var/autotransferable = TRUE // Toggle for autotransfer mechanics.
 	var/recursive_listeners
 	var/listening_recursive = NON_LISTENING_ATOM
+	var/unacidable = TRUE
 
 /atom/movable/Initialize(mapload)
 	. = ..()

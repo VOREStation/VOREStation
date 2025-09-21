@@ -39,7 +39,7 @@ export const VorePanelEditCheckboxes = (props: {
           <Stack.Item>
             <Floating
               placement="bottom-end"
-              contentClasses="VorePanel__fLoating"
+              contentClasses="VorePanel__Floating"
               content={
                 <Stack vertical fill>
                   {options.map((value) => (
