@@ -1,0 +1,5 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - rscadd: "Added a new scene item, shibari bindings!"
+  - image: "Added icons for human and digi shibari bindings."

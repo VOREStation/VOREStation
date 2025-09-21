@@ -652,10 +652,9 @@ emp_act
 	return CLAMP(1-converted_protection, 0, 1)
 
 /mob/living/carbon/human/water_act(amount)
-	adjust_fire_stacks(-amount * 5)
+	adjust_wet_stacks(amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
-	remove_modifiers_of_type(/datum/modifier/fire)
 
 	species.handle_water_damage(src, amount)
 
@@ -691,7 +690,7 @@ emp_act
 	if(!check_has_mouth())
 		return TRUE
 
-	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
+	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) && wear_mask.body_parts_covered & FACE|| (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
 		return TRUE
 
 	return FALSE

@@ -34,7 +34,7 @@
 
 		if(SMITE_SPONTANEOUSCOMBUSTION)
 			target.adjust_fire_stacks(10)
-			target.IgniteMob()
+			target.ignite_mob()
 			target.visible_message(span_danger("[target] bursts into flames!"))
 
 		if(SMITE_LIGHTNINGBOLT)

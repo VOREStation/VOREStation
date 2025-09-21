@@ -85,7 +85,7 @@
 			return
 		user.balloon_alert_visible("[user] puts something in \the [target]", "[target] dissolves in \the [src]", 2)
 
-		add_attack_logs(user,null,"Spiked [target.name] with a pill containing [reagentlist()]")
+		add_attack_logs(user,target,"Spiked [target.name] with a pill containing [reagentlist()]")
 
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))

@@ -1,6 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - refactor: "Medical sleepers use forceMove instead of loc"
-  - bugfix: "locked screen after being put in a sleeper"
-  - bugfix: "hearing radios around a sleeper once you leave it"

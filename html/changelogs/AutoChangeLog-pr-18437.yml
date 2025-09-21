@@ -1,4 +1,0 @@
-author: "Tenryumi"
-delete-after: True
-changes:
-  - bugfix: "Fixed holo-collars not rendering correctly on mobs when worn in the suit slot."

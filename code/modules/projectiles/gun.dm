@@ -531,7 +531,7 @@
 			if(ticker < burst)
 				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
 
-	add_attack_logs("Unmanned",target,"Fired [src.name]")
+	add_attack_logs(src,target,"Fired [src.name] (Unmanned)")
 
 
 //obtains the next projectile to fire

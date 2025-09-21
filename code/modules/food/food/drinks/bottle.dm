@@ -83,7 +83,7 @@
 	if(rag && rag.on_fire && isliving(against))
 		rag.forceMove(loc)
 		var/mob/living/L = against
-		L.IgniteMob()
+		L.ignite_mob()
 
 	playsound(src, "shatter", 70, 1)
 	src.transfer_fingerprints_to(B)
