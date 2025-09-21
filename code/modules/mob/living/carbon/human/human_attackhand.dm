@@ -480,15 +480,13 @@
 		if(lgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [lgrab.affecting]!"))
 			success = TRUE
-		spawn(1)
-			qdel(lgrab)
+		drop_from_inventory(lgrab)
 	if(istype(r_hand, /obj/item/grab))
 		var/obj/item/grab/rgrab = r_hand
 		if(rgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [rgrab.affecting]!"))
 			success = TRUE
-		spawn(1)
-			qdel(rgrab)
+		drop_from_inventory(rgrab)
 	return success
 
 /*
