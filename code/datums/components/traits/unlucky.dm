@@ -239,6 +239,16 @@
 
 			consume_omen()
 			return
+
+		for(var/obj/item/reagent_containers/glass/beaker/evil_beaker in the_turf)
+			if(!evil_beaker.is_open_container()) //A closed beaker is a safe beaker!
+				continue
+			living_guy.visible_message(span_danger("The [evil_beaker] tilts, spilling its contents on [living_guy]!"), span_userdanger("A [evil_beaker] spills all over you!"))
+			evil_beaker.balloon_alert_visible("[evil_beaker]'s contents splashes onto [living_guy]!")
+			evil_beaker.reagents.splash(living_guy, evil_beaker.reagents.total_volume)
+			consume_omen()
+			return
+
 		for(var/obj/structure/table/evil_table in the_turf)
 			if(!evil_table.material) //We only want tables, not just table frames.
 				continue
@@ -246,6 +256,17 @@
 			living_guy.apply_damage(2 * damage_mod, BRUTE, pick(BP_L_FOOT, BP_R_FOOT), used_weapon = "blunt force trauma")
 			living_guy.adjustHalLoss(25) //It REALLY hurts.
 			living_guy.Weaken(3)
+			consume_omen()
+			return
+	//Ran out of turf options. Let's do more generic options.
+
+	if(prob(luck_mod * 5))
+		// In complete darkness
+		if(our_guy_pos.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
+			living_guy.Blind(5) //10 seconds of 'OH GOD WHAT'S HAPPENING'
+			living_guy.silent = 5
+			living_guy.Paralyse(5)
+			to_chat(living_guy, span_userdanger("You feel the ground buckle underneath you, falling down, your vision going dark as you feel paralyzed in place!"))
 			consume_omen()
 			return
 
