@@ -32,6 +32,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PlushieEditor")
+		ui.set_autoupdate(FALSE) //This might be a bit intensive, better to not update it every few ticks
 		ui.open()
 
 /obj/item/toy/plushie/customizable/tgui_data(mob/user)
