@@ -446,6 +446,7 @@
 	name = REAGENT_LYE
 	id = REAGENT_ID_LYE
 	result = REAGENT_ID_LYE
+	inhibitors = list(REAGENT_ID_CARBON = 1) // Or it blocks aphrodisiac
 	required_reagents = list(REAGENT_ID_SODIUM = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
 
