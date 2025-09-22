@@ -66,9 +66,10 @@
 	RegisterSignal(parent, COMSIG_STUN_EFFECT_ACT, PROC_REF(check_taser))
 	RegisterSignal(parent, COMSIG_MOB_ROLLED_DICE, PROC_REF(check_roll))
 	RegisterSignal(parent, COMSIG_HUMAN_ON_CATCH_THROW, PROC_REF(check_throw))
+	RegisterSignal(parent, COMSIG_PICKED_UP_ITEM, PROC_REF(check_pickup))
 
 /datum/component/omen/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE, COMSIG_HUMAN_ON_CATCH_THROW))
+	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE, COMSIG_HUMAN_ON_CATCH_THROW, COMSIG_PICKED_UP_ITEM))
 
 /datum/component/omen/proc/consume_omen()
 	incidents_left--
@@ -186,7 +187,7 @@
 
 				to_chat(living_guy, span_warning("[evil_light] glows ominously...")) // ominously
 				evil_light.visible_message(span_boldwarning("[evil_light] suddenly flares brightly and sparks!"))
-				evil_light.broken(skip_sound_and_sparks = FALSE)
+				//evil_light.broken(skip_sound_and_sparks = FALSE) //Let's not break it actually.
 				evil_light.Beam(living_guy, icon_state = "lightning[rand(1,12)]", time = 0.5 SECONDS)
 				living_guy.electrocute_act(35 * (damage_mod * 0.5), evil_light, stun = TRUE) //Stun is binary and scales on damage..Lame.
 				living_guy.emote("scream")
@@ -329,6 +330,107 @@
 			unlucky_soul.visible_message(span_attack("[unlucky_soul] tries to catch [source] and fumbles it, getting thrown back!"))
 			unlucky_soul.Weaken(5)
 			return TRUE
+
+/*
+ * Dynamic injury system for when you pick up objects!
+ * Some objects might cut, burn, or otherwise injure you if you pick them up!
+ * Genenerally more of an annoyance than anything.
+ * Variables that can be changed:
+ * injury_type, damage_to_inflict, damage_type, injury_verb, is_sharp, is_edge.
+*/
+/datum/component/omen/proc/check_pickup(mob/living/unlucky_soul, obj/item/item)
+	SIGNAL_HANDLER
+	if(prob(3 * luck_mod) && ishuman(unlucky_soul)) // ~3% chance
+		var/mob/living/carbon/human/unlucky_human = unlucky_soul
+
+		///What the injury will show up as on an autopsy.
+		var/injury_type = "injury"
+
+		///How much damage we'll inflect.
+		var/damage_to_inflict = 0
+
+		///What type of damage we'll inflict
+		var/damage_type = BRUTE
+
+		///If the item we get injured on has is sharp.
+		var/is_sharp = FALSE
+
+		///If the item we get injured on has an edge.
+		var/has_edge = FALSE
+
+		///What verb we use to describe the injury.
+		var/injury_verb = "cuts"
+
+		///What hand we are currently using, so we injure the correct one.
+		var/current_hand = BP_R_HAND
+		if(unlucky_human.hand)
+			current_hand = BP_L_HAND
+
+		if(istype(item, /obj/item/paper))
+			injury_verb = "cuts"
+			injury_type = "paper cut"
+			damage_to_inflict = 2
+
+		else if(istype(item, /obj/item/material/knife))
+			var/obj/item/material/knife = item
+
+			injury_verb = "cuts"
+			injury_type = "knife"
+			is_sharp = knife.sharp
+			has_edge = knife.edge
+			damage_to_inflict = knife.force
+
+		else if(istype(item, /obj/item/material/shard))
+			var/obj/item/material/shard/shard = item
+
+			injury_verb = "cuts"
+			injury_type = "shard"
+			is_sharp = shard.sharp
+			has_edge = shard.edge
+			damage_to_inflict = shard.force
+
+		else if(istype(item, /obj/item/flame/lighter))
+			var/obj/item/flame/lighter/lighter = item
+			if(!lighter.lit)
+				return
+
+			injury_verb = "burns"
+			injury_type = "lighter"
+			damage_type = BURN
+			damage_to_inflict = 5
+
+		else if(istype(item, /obj/item/tool/transforming/jawsoflife))
+			var/obj/item/tool/transforming/jawsoflife/jaws = item
+
+			injury_verb = "clamps"
+			injury_type = "industrial tool"
+			is_sharp = jaws.sharp
+			has_edge = jaws.edge
+			damage_to_inflict = jaws.force
+
+		else if(istype(item, /obj/item/tool/screwdriver))
+			var/obj/item/tool/screwdriver/screwdriver = item
+
+			injury_verb = "stabs"
+			injury_type = "industrial tool"
+			is_sharp = screwdriver.sharp
+			has_edge = screwdriver.edge
+			damage_to_inflict = screwdriver.force
+
+		else if(istype(item, /obj/item/tool/wirecutters))
+			var/obj/item/tool/wirecutters/wirecutters = item
+
+			injury_verb = "nips"
+			injury_type = "industrial tool"
+			is_sharp = wirecutters.sharp
+			has_edge = wirecutters.edge
+			damage_to_inflict = wirecutters.force
+
+		if(!damage_to_inflict)
+			return
+
+		unlucky_human.visible_message(span_danger("[unlucky_human] acciedentally [injury_verb] their hand on [item]!"))
+		unlucky_human.apply_damage(damage_to_inflict * damage_mod, damage_type, current_hand, sharp = is_sharp, edge = has_edge, used_weapon = injury_type)
 
 /datum/component/omen/proc/check_stairs(mob/living/unlucky_soul)
 	SIGNAL_HANDLER
