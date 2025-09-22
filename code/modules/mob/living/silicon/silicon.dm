@@ -28,6 +28,7 @@
 	var/sensor_type = 0 //VOREStation add - silicon omni "is sensor on or nah"
 
 	var/hudmode = null
+	fire_stack_decay_rate = -0.55
 
 /mob/living/silicon/Initialize(mapload, is_decoy = FALSE)
 	. = ..()
@@ -398,7 +399,7 @@
 	if(cameraFollow)
 		cameraFollow = null
 
-/mob/living/silicon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/silicon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(affect_silicon)
 		return ..()
 

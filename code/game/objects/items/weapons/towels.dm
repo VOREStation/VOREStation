@@ -25,9 +25,7 @@
 	user.visible_message(span_notice("[user] uses [src] to towel themselves off."))
 	playsound(src, 'sound/weapons/towelwipe.ogg', 25, 1)
 	if(user.fire_stacks > 0)
-		user.fire_stacks = (max(0, user.fire_stacks - 1.5))
-	else if(user.fire_stacks < 0)
-		user.fire_stacks = (min(0, user.fire_stacks + 1.5))
+		user.adjust_fire_stacks(-1.5)
 
 /obj/item/towel/random/Initialize(mapload)
 	. = ..()

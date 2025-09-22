@@ -634,3 +634,52 @@
 
 	to_chat(user, span_filter_notice("You fail to pick up \the [A] with \the [src]."))
 	return
+
+// Simple that lets a cyborg roll a collection of die.
+/obj/item/robo_dice
+	name = "random number generator"
+	desc = "A robot device that allows a synthetic entity to, finally, make random numbers. The future is here."
+	icon = 'icons/obj/integrated_electronics/electronic_setups.dmi'
+	icon_state = "setup_device_box"
+
+/obj/item/robo_dice/attack_self(mob/user)
+	. = ..()
+	var/DI = 'icons/obj/dice.dmi'
+	var/dice_options = list(
+		"roll a custom die"	= image(icon = 'icons/obj/integrated_electronics/electronic_setups.dmi', icon_state = "setup_device_box"),
+		"roll d4"			= image(icon = DI, icon_state = "d44"),
+		"roll d6"			= image(icon = DI, icon_state = "d66"),
+		"roll d8"			= image(icon = DI, icon_state = "d88"),
+		"roll d10"			= image(icon = DI, icon_state = "d1010"),
+		"roll d12"			= image(icon = DI, icon_state = "d1212"),
+		"roll d20"			= image(icon = DI, icon_state = "d2020"),
+		"roll d100"			= image(icon = DI, icon_state = "d10010"),
+	)
+	var/choice = show_radial_menu(user, user, dice_options, radius = 70)
+	var/sides = 0
+	switch(choice)
+		if("roll d4")
+			sides = 4
+		if("roll d6")
+			sides = 6
+		if("roll d8")
+			sides = 8
+		if("roll d10")
+			sides = 10
+		if("roll d12")
+			sides = 12
+		if("roll d20")
+			sides = 20
+		if("roll d100")
+			sides = 100
+		if("roll a custom die")
+			sides = tgui_input_number(user, "Enter how many faces you want your virtual dice to have, (no more than 1000 sides):", "Custom Dice Roll", 6, 1000, 0)
+	if(sides <= 0)
+		return
+	var/result = rand(1, sides)
+	user.visible_message(
+		span_notice("\The [user] rolls a virtual [sides]-sided die. The result is [result]."),
+		span_notice("You roll a virtual [sides]-sided die. The result is [result]."),
+		span_notice("You hear synthesized audio of clattering plastic with a soft ping."))
+	user.balloon_alert_visible("rolled: [result]", blind_message = "*clatter, ping!*")
+	playsound(user, 'sound/effects/diceroll_robotic.ogg', 75, 0)
