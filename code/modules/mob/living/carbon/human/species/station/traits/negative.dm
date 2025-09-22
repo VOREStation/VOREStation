@@ -841,7 +841,7 @@
 /datum/trait/negative/unlucky/major
 	name = "Unlucky, Major"
 	desc = "Your luck is extremely awful and potentially fatal."
-	cost = -6
+	cost = -5
 	tutorial = "You should avoid disposal bins."
 	is_genetrait = TRUE
 	hidden = FALSE
