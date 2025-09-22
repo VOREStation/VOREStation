@@ -661,6 +661,13 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		/datum/nifsoft/malware
 	)
 
+
+/obj/item/nif/glitch/bad
+	name = "odd NIF"
+	desc = "A NIF of a very dubious origin."
+	durability = 100
+	bioadap = FALSE
+
 ////////////////////////////////
 // Special Promethean """surgery"""
 /obj/item/nif/attack(mob/living/M, mob/living/user, var/target_zone)
