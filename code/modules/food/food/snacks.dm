@@ -7726,3 +7726,17 @@
 /obj/item/reagent_containers/food/snacks/packaged/vendburrito/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/churro
+	name = "churro"
+	desc = "Dough, deep fried in olive oil. No toppings on it!"
+	icon_state = "churro"
+	trash = /obj/item/weapon/paper/crumpled
+	filling_color = "#F5B951"
+	bitesize = 2
+	nutriment_desc = list("deep fried dough" = 2)
+	nutriment_amt = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/churro/Initialize()
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_COOKINGOIL, 1)
