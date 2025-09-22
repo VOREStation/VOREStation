@@ -1,0 +1,11 @@
+author: "zeskorion"
+delete-after: True
+changes:
+  - rscadd: "Added several new mapping features for your local mapper"
+  - rscadd: "digestive nanite turfs. currently mapperbus only"
+  - rscadd: "faster swimming aquatic trait"
+  - qol: "catwalks now prevent turfs from slowing people"
+  - qol: "water turfs now break falls"
+  - qol: "Maint blood and vomit is old and dried."
+  - balance: " water turfs now break falls"
+  - bugfix: "emergency lights stay red during nightshift"
