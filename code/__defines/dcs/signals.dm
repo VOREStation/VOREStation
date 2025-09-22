@@ -245,6 +245,8 @@
 	#define COMPONENT_MOVABLE_IMPACT_NEVERMIND (1<<1)					//return true if you destroyed whatever it was you're impacting and there won't be anything for hitby() to run on
 ///from base of mob/living/hitby(): (mob/living/target, hit_zone)
 #define COMSIG_MOVABLE_IMPACT_ZONE "item_impact_zone"
+///from the base of mob/living/carbon/human/hitby(): (atom/movable/source, speed)
+#define COMSIG_HUMAN_ON_CATCH_THROW "human_on_catch_throw"
 ///from base of atom/movable/buckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_BUCKLE "buckle"
 ///from base of atom/movable/unbuckle_mob(): (mob, force)

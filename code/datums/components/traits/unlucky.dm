@@ -65,9 +65,10 @@
 	RegisterSignal(parent, COMSIG_MOVED_DOWN_STAIRS, PROC_REF(check_stairs))
 	RegisterSignal(parent, COMSIG_STUN_EFFECT_ACT, PROC_REF(check_taser))
 	RegisterSignal(parent, COMSIG_MOB_ROLLED_DICE, PROC_REF(check_roll))
+	RegisterSignal(parent, COMSIG_HUMAN_ON_CATCH_THROW, PROC_REF(check_throw))
 
 /datum/component/omen/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE))
+	UnregisterSignal(parent, list(COMSIG_ON_CARBON_SLIP, COMSIG_MOVABLE_MOVED, COMSIG_STUN_EFFECT_ACT, COMSIG_MOVED_DOWN_STAIRS, COMSIG_MOB_ROLLED_DICE, COMSIG_HUMAN_ON_CATCH_THROW))
 
 /datum/component/omen/proc/consume_omen()
 	incidents_left--
@@ -311,6 +312,23 @@
 		//I had thought about making this have a notice that it happened.
 		//However, gaslighting the user by providing no visible notice is MUCH funnier.
 		return 1 // We override the roll to a 1.
+
+///Returns TRUE and stops us from catching
+/datum/component/omen/proc/check_throw(mob/living/unlucky_soul, source, speed)
+	SIGNAL_HANDLER
+	if(prob(30 * luck_mod)) //~9% chance
+		if(istype(source, /obj/item/grenade))
+			var/obj/item/grenade/bad_grenade = source
+			if(bad_grenade.active)
+				unlucky_soul.put_in_active_hand(bad_grenade)
+				unlucky_soul.visible_message(span_warning("[src] catches [source] as it goes off in their hand!"), span_userdanger("You catch [source] and it goes off in your hand!"))
+				unlucky_soul.throw_mode_off()
+				bad_grenade.detonate()
+				return TRUE
+		else
+			unlucky_soul.visible_message(span_attack("[unlucky_soul] tries to catch [source] and fumbles it, getting thrown back!"))
+			unlucky_soul.Weaken(5)
+			return TRUE
 
 /datum/component/omen/proc/check_stairs(mob/living/unlucky_soul)
 	SIGNAL_HANDLER

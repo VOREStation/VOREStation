@@ -433,15 +433,12 @@ emp_act
 				return
 		if(in_throw_mode && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
 			if(canmove && !restrained() && !src.is_incorporeal())
-				if(isturf(O.loc))
-					if(can_catch(O))
-						if(HAS_TRAIT(src, TRAIT_UNLUCKY) && prob(10)) //We COULD catch it, but we were unlucky and it was an unusually strong throw!
-							speed = THROWNOBJ_KNOCKBACK_SPEED
-						else
-							put_in_active_hand(O)
-							visible_message(span_warning("[src] catches [O]!"))
-							throw_mode_off()
-							return
+				if(isturf(O.loc) && can_catch(O))
+					if(!SEND_SIGNAL(src, COMSIG_HUMAN_ON_CATCH_THROW, source, speed))
+						put_in_active_hand(O)
+						visible_message(span_warning("[src] catches [O]!"))
+						throw_mode_off()
+						return
 
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
