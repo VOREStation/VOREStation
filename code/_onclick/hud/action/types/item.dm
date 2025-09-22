@@ -21,8 +21,8 @@
 /datum/action/item_action/toggle_tesla_armor
 	name = "Toggle Tesla Armor"
 
-/datum/action/item_action/remove_replace_paddles
-	name = "Remove/Replace Paddles"
+/datum/action/item_action/swap_tethered_item
+	name = "Use Tethered Item"
 
 /datum/action/item_action/toggle_flashlight
 	name = "Toggle Flashlight"
@@ -32,9 +32,6 @@
 
 /datum/action/item_action/toggle_heatsink
 	name = "Toggle Heatsink"
-
-/datum/action/item_action/remove_replace_handset
-	name = "Remove/Replace Handset"
 
 /datum/action/item_action/command
 	name = "Command"

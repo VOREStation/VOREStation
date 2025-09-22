@@ -11,7 +11,7 @@
 	return laws.zeroth_law != null
 
 /mob/living/silicon/proc/set_zeroth_law(var/law, var/law_borg, notify = TRUE)
-	throw_alert("newlaw", /obj/screen/alert/newlaw)
+	throw_alert("newlaw", /atom/movable/screen/alert/newlaw)
 	laws_sanity_check()
 	laws.set_zeroth_law(law, law_borg)
 	if(notify)
@@ -77,7 +77,7 @@
 		log_and_message_admins("cleared the supplied laws of [src]")
 
 /mob/living/silicon/proc/notify_of_law_change(message)
-	throw_alert("newlaw", /obj/screen/alert/newlaw)
+	throw_alert("newlaw", /atom/movable/screen/alert/newlaw)
 	if((last_law_notification + 1 SECOND) > world.time)
 		return
 	last_law_notification = world.time

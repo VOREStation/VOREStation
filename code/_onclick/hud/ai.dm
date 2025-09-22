@@ -1,20 +1,20 @@
-/obj/screen/ai/multicam/Click()
+/atom/movable/screen/ai/multicam/Click()
 	if(..())
 		return
 	var/mob/living/silicon/ai/ai_user = usr
 	ai_user.toggle_multicam()
 
-/obj/screen/ai/add_multicam/Click()
+/atom/movable/screen/ai/add_multicam/Click()
 	if(..())
 		return
 	var/mob/living/silicon/ai/ai_user = usr
 	ai_user.drop_new_multicam()
 
-/obj/screen/ai/up/Click()
+/atom/movable/screen/ai/up/Click()
 	var/mob/living/silicon/ai/ai_user = usr
 	ai_user.zMove(UP)
 
-/obj/screen/ai/down/Click()
+/atom/movable/screen/ai/down/Click()
 	var/mob/living/silicon/ai/ai_user = usr
 	ai_user.zMove(DOWN)
 
@@ -26,10 +26,10 @@
 	HUD.adding = list()
 	HUD.other = list()
 
-	var/obj/screen/using
+	var/atom/movable/screen/using
 
 //AI core
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "AI Core"
 	using.icon = HUD.ui_style
 	using.icon_state = "ai_core"
@@ -38,7 +38,7 @@
 	HUD.adding += using
 
 //Camera list
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "Show Camera List"
 	using.icon = HUD.ui_style
 	using.icon_state = "camera"
@@ -47,7 +47,7 @@
 	HUD.adding += using
 
 //Track
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "Track With Camera"
 	using.icon = HUD.ui_style
 	using.icon_state = "track"
@@ -56,7 +56,7 @@
 	HUD.adding += using
 
 //Camera light
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "Toggle Camera Light"
 	using.icon = HUD.ui_style
 	using.icon_state = "camera_light"
@@ -65,7 +65,7 @@
 	HUD.adding += using
 
 //Crew Monitoring
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "Crew Monitoring"
 	using.icon = HUD.ui_style
 	using.icon_state = "crew_monitor"
@@ -74,7 +74,7 @@
 	HUD.adding += using
 
 //Crew Manifest
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "Show Crew Manifest"
 	using.icon = HUD.ui_style
 	using.icon_state = "manifest"
@@ -83,7 +83,7 @@
 	HUD.adding += using
 
 //Alerts
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "Show Alerts"
 	using.icon = HUD.ui_style
 	using.icon_state = "alerts"
@@ -92,7 +92,7 @@
 	HUD.adding += using
 
 //Announcement
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "Announcement"
 	using.icon = HUD.ui_style
 	using.icon_state = "announcement"
@@ -101,7 +101,7 @@
 	HUD.adding += using
 
 //Shuttle
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "Call Emergency Shuttle"
 	using.icon = HUD.ui_style
 	using.icon_state = "call_shuttle"
@@ -110,7 +110,7 @@
 	HUD.adding += using
 
 //Laws
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "State Laws"
 	using.icon = HUD.ui_style
 	using.icon_state = "state_laws"
@@ -119,7 +119,7 @@
 	HUD.adding += using
 
 //PDA message
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "PDA - Send Message"
 	using.icon = HUD.ui_style
 	using.icon_state = "pda_send"
@@ -128,7 +128,7 @@
 	HUD.adding += using
 
 //PDA log
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "PDA - Show Message Log"
 	using.icon = HUD.ui_style
 	using.icon_state = "pda_receive"
@@ -137,7 +137,7 @@
 	HUD.adding += using
 
 //Take image
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "Take Image"
 	using.icon = HUD.ui_style
 	using.icon_state = "take_picture"
@@ -146,7 +146,7 @@
 	HUD.adding += using
 
 //View images
-	using = new /obj/screen()
+	using = new /atom/movable/screen()
 	using.name = "View Images"
 	using.icon = HUD.ui_style
 	using.icon_state = "view_images"
@@ -155,7 +155,7 @@
 	HUD.adding += using
 
 //Multicamera mode
-	using = new /obj/screen/ai/multicam() // special
+	using = new /atom/movable/screen/ai/multicam() // special
 	using.name = "Multicamera Mode"
 	using.icon = HUD.ui_style
 	using.icon_state = "multicam"
@@ -164,7 +164,7 @@
 	HUD.adding += using
 
 //Add multicamera camera
-	using = new /obj/screen/ai/add_multicam() // special
+	using = new /atom/movable/screen/ai/add_multicam() // special
 	using.name = "New Camera"
 	using.icon = HUD.ui_style
 	using.icon_state = "new_cam"
@@ -173,7 +173,7 @@
 	HUD.adding += using
 
 //Up and Down
-	using = new /obj/screen/ai/up() // special
+	using = new /atom/movable/screen/ai/up() // special
 	using.name = "Move Upwards"
 	using.icon = HUD.ui_style
 	using.icon_state = "up"
@@ -181,7 +181,7 @@
 	using.layer = SCREEN_LAYER
 	HUD.adding += using
 
-	using = new /obj/screen/ai/down() // special
+	using = new /atom/movable/screen/ai/down() // special
 	using.name = "Move Downwards"
 	using.icon = HUD.ui_style
 	using.icon_state = "down"
