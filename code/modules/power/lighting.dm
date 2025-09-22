@@ -304,6 +304,7 @@ GLOBAL_LIST_EMPTY(light_type_cache)
 
 /obj/machinery/light/small/emergency
 	light_type = /obj/item/light/bulb/red
+	nightshift_allowed = FALSE
 
 /obj/machinery/light/small/emergency/flicker
 	auto_flicker = TRUE
