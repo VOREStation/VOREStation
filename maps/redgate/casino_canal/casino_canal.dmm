@@ -1,4 +1,46 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	name = "glass airlock"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/space)
+"ab" = (
+/obj/machinery/light/floortube{
+	dir = 8
+	},
+/obj/structure/casino_table/roulette_chart,
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"ac" = (
+/obj/structure/casino_table/roulette_table,
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"ad" = (
+/obj/structure/casino_table/craps,
+/obj/machinery/light/floortube{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"ae" = (
+/obj/structure/casino_table/craps{
+	dir = 1
+	},
+/obj/item/dice,
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"af" = (
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/space)
+"ag" = (
+/obj/machinery/media/jukebox,
+/turf/simulated/floor/tiled/eris/steel/bar_light,
+/area/space)
+"ah" = (
+/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/space)
 "aS" = (
 /obj/structure/table/hardwoodtable,
 /obj/item/reagent_containers/food/condiment/small/saltshaker{
@@ -53,7 +95,7 @@
 /area/space)
 "et" = (
 /obj/structure/redgate/away,
-/turf/simulated/floor/tiled/milspec/sterile,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/space)
 "eN" = (
 /obj/machinery/light/small/neon/booze1{
@@ -118,12 +160,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/space)
-"ki" = (
-/obj/machinery/atm{
-	pixel_y = 26
-	},
-/turf/simulated/floor/tiled/eris/bcircuit,
-/area/space)
 "kq" = (
 /obj/machinery/vending/event/gadget,
 /turf/simulated/floor/tiled/eris/dark,
@@ -186,7 +222,7 @@
 	pixel_y = -10
 	},
 /obj/structure/table/hardwoodtable,
-/turf/simulated/floor/tiled/eris/steel/brown_platform,
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/space)
 "px" = (
 /turf/simulated/wall/solidrock,
@@ -207,7 +243,7 @@
 	dir = 4;
 	pixel_x = 2
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/space)
 "pX" = (
 /obj/structure/bed/chair/sofa/corp/right{
@@ -259,6 +295,7 @@
 /obj/structure/casino_table/blackjack_m{
 	dir = 1
 	},
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/blue2,
 /area/space)
 "uu" = (
@@ -274,7 +311,7 @@
 	dir = 1;
 	pixel_y = -10
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/space)
 "vt" = (
 /obj/machinery/door/airlock/angled_bay/hatch{
@@ -358,7 +395,7 @@
 	dir = 8;
 	pixel_x = -6
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/space)
 "Gq" = (
 /obj/machinery/door/airlock/angled_bay/hatch/security,
@@ -409,7 +446,7 @@
 	dir = 1;
 	pixel_y = 6
 	},
-/turf/simulated/floor/tiled/milspec/sterile,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/space)
 "Lg" = (
 /obj/machinery/vending/event/loadout_misc,
@@ -428,10 +465,6 @@
 	},
 /obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/blue2,
-/area/space)
-"MP" = (
-/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel,
-/turf/simulated/floor/carpet/brown,
 /area/space)
 "Nu" = (
 /obj/machinery/door/airlock/angled_bay/standard/glass{
@@ -520,6 +553,7 @@
 /area/space)
 "Uw" = (
 /obj/structure/casino_table/blackjack_m,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/blue2,
 /area/space)
 "UD" = (
@@ -25652,7 +25686,7 @@ rW
 rW
 rW
 rW
-rW
+ag
 PF
 PF
 PF
@@ -25939,12 +25973,12 @@ rW
 ej
 PE
 zv
-zv
+af
 pV
-zv
-zv
+af
+af
 pV
-zv
+af
 zv
 PF
 cn
@@ -26081,12 +26115,12 @@ rW
 ej
 VF
 zv
-zv
-zv
-zv
-zv
-zv
-zv
+af
+af
+af
+af
+af
+af
 zv
 PF
 PF
@@ -26223,12 +26257,12 @@ rW
 ej
 PE
 zv
-zv
-zv
-zv
-zv
-zv
-zv
+af
+af
+af
+af
+af
+af
 zv
 BQ
 BQ
@@ -26366,10 +26400,10 @@ ej
 PE
 zv
 ve
-zv
-zv
+af
+af
 et
-zv
+af
 Ld
 zv
 BQ
@@ -26507,12 +26541,12 @@ rW
 ej
 PE
 zv
-zv
-zv
-zv
-zv
-zv
-zv
+af
+af
+af
+af
+af
+af
 zv
 BQ
 BQ
@@ -26649,12 +26683,12 @@ rW
 ej
 VF
 zv
-zv
-zv
-zv
-zv
-zv
-zv
+af
+af
+af
+af
+af
+af
 zv
 PF
 PF
@@ -26791,12 +26825,12 @@ rW
 ej
 PE
 zv
-zv
+af
 Gg
-zv
-zv
+af
+af
 Gg
-zv
+af
 zv
 PF
 PU
@@ -28773,23 +28807,23 @@ PE
 PE
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
 PE
-Nu
-Nu
-Nu
+Ac
+ah
 PE
 PF
 PF
 PF
+Nu
+Nu
+Nu
 PF
 PF
-PF
+PE
+PE
+PE
+PE
+PE
 PF
 PF
 nG
@@ -29073,9 +29107,9 @@ sP
 sP
 II
 zV
+ab
 zV
-zV
-PF
+PE
 nG
 nG
 nG
@@ -29215,9 +29249,9 @@ Og
 Og
 zV
 zV
+ac
 zV
-zV
-PF
+PE
 nG
 nG
 nG
@@ -29359,7 +29393,7 @@ zV
 zV
 zV
 zV
-PF
+PE
 nG
 nG
 nG
@@ -29488,20 +29522,20 @@ nG
 nG
 nG
 nG
-PF
-ki
+XA
 zV
 zV
 zV
 zV
 zV
+ad
+zV
+ad
 zV
 zV
+ab
 zV
-zV
-zV
-zV
-PF
+PE
 nG
 nG
 nG
@@ -29626,8 +29660,8 @@ ce
 PF
 PF
 PF
-zV
-MP
+PF
+PF
 PF
 PF
 PF
@@ -29636,14 +29670,14 @@ zV
 zV
 zV
 zV
+ae
+zV
+ae
 zV
 zV
+ac
 zV
-zV
-zV
-zV
-zV
-PF
+PE
 nG
 nG
 nG
@@ -30069,7 +30103,7 @@ zV
 zV
 zV
 zV
-PF
+aa
 nG
 nG
 nG
@@ -30211,7 +30245,7 @@ zV
 zV
 zV
 zV
-PF
+aa
 nG
 nG
 nG
@@ -30353,7 +30387,7 @@ zV
 zV
 zV
 zV
-PF
+aa
 nG
 nG
 nG
@@ -30779,7 +30813,7 @@ Ed
 XW
 XW
 zV
-PF
+PE
 nG
 nG
 nG
@@ -30921,7 +30955,7 @@ SL
 rq
 XW
 zV
-PF
+PE
 nG
 nG
 nG
@@ -31063,7 +31097,7 @@ rq
 mO
 HM
 zV
-PF
+PE
 nG
 nG
 nG
@@ -31205,7 +31239,7 @@ rq
 Uw
 HM
 zV
-PF
+PE
 nG
 nG
 nG
@@ -31347,7 +31381,7 @@ rq
 sI
 HM
 zV
-PF
+PE
 nG
 nG
 nG
