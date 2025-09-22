@@ -154,9 +154,8 @@
 				our_guy.forceMove(evil_washer)
 				evil_washer.washing += our_guy
 				evil_washer.state = 4
-				if(evil && prob(100 * effective_luck)) //It's EVIL for a reason. With normal luck, this is about a 30% chance.
-					evil_washer.visible_message(span_danger("[evil_washer] begins its spin cycle!"))
-					evil_washer.start(TRUE, damage_mod)
+				evil_washer.visible_message(span_danger("[evil_washer] begins its spin cycle!"))
+				evil_washer.start(TRUE, damage_mod)
 				consume_omen()
 				return
 
