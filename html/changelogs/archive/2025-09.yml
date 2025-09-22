@@ -395,3 +395,17 @@
   - bugfix: aloe reaction no longer blocked by irish cream
   - bugfix: instant beer reaction no longer blocked by corn cooking oil
   - bugfix: biomass distilling reaction no longer blocked by virology mix 3
+2025-09-22:
+  Kashargul:
+  - code_imp: moves color_matrix to a tgui_input
+  - code_imp: moves obj/screen to atom/movable/screen
+  MeepleMuncher:
+  - rscadd: Customizable dragon plushies!
+  Ryumi:
+  - qol: Cyborg Rapid-Service-Fabricators now use radial menus for all of its selection
+      menus. Pretty pictures...
+  SatinIsle:
+  - rscadd: Added a new scene item, shibari bindings!
+  - image: Added icons for human and digi shibari bindings.
+  Will:
+  - bugfix: Disarming push attacks causing combat grabs to drop as items.
