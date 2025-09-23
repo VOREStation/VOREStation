@@ -516,6 +516,5 @@
 
 ///Dice omen but on par with the trait in damage and doesn't do the more evil things.
 /datum/component/omen/dice/minor
-	luck_mod = 1 // 30% chance of bad things happening
 	damage_mod = 0.25 // 25% of normal damage
 	evil = FALSE
