@@ -9,12 +9,23 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/carpet/brown,
 /area/space)
-"ad" = (
-/obj/structure/casino_table/craps{
-	dir = 1
+"ac" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
 	},
-/obj/item/storage/pill_bottle/dice,
-/turf/simulated/floor/carpet/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/white,
+/area/space)
+"ae" = (
+/obj/machinery/door/window/westleft{
+	pixel_x = -4
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 10
+	},
+/turf/simulated/floor/wood,
 /area/space)
 "af" = (
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
@@ -370,17 +381,6 @@
 "aP" = (
 /turf/simulated/floor/carpet/purcarpet,
 /area/space)
-"aQ" = (
-/obj/machinery/light/floortube{
-	dir = 8
-	},
-/obj/structure/casino_table/roulette_chart,
-/turf/simulated/floor/carpet/purcarpet,
-/area/space)
-"aR" = (
-/obj/structure/casino_table/roulette_long,
-/turf/simulated/floor/carpet/purcarpet,
-/area/space)
 "aS" = (
 /obj/structure/table/hardwoodtable,
 /obj/item/reagent_containers/food/condiment/small/saltshaker{
@@ -392,14 +392,6 @@
 	pixel_y = -6
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
-/area/space)
-"aT" = (
-/obj/structure/casino_table/roulette_table/long,
-/obj/machinery/light/floortube{
-	dir = 4;
-	pixel_x = 2
-	},
-/turf/simulated/floor/carpet/purcarpet,
 /area/space)
 "aU" = (
 /obj/structure/prop/transmitter,
@@ -633,14 +625,6 @@
 	},
 /obj/item/storage/dicecup,
 /turf/simulated/floor/carpet/purcarpet,
-/area/space)
-"bs" = (
-/obj/structure/casino_table/craps,
-/obj/machinery/light/floortube{
-	dir = 8
-	},
-/obj/item/storage/dicecup,
-/turf/simulated/floor/carpet/purple,
 /area/space)
 "bt" = (
 /obj/structure/casino_table/craps{
@@ -1012,6 +996,10 @@
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/space)
+"cn" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/turf/simulated/floor/wood,
+/area/space)
 "co" = (
 /obj/structure/table/standard,
 /obj/item/book/manual/chef_recipes{
@@ -1152,19 +1140,999 @@
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/space)
+"cB" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_y = 7
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 6
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"cC" = (
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/obj/item/soap/space_soap,
+/turf/simulated/floor/tiled/white,
+/area/space)
+"cD" = (
+/obj/structure/window/reinforced{
+	dir = 8;
+	pixel_x = -4
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 9
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"cE" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"cF" = (
+/obj/structure/table/rack,
+/obj/item/towel/random{
+	pixel_y = 8
+	},
+/obj/item/towel/random{
+	pixel_y = 2
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"cG" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 9
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"cH" = (
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/obj/structure/mirror{
+	pixel_y = 38
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 5
+	},
+/turf/simulated/floor/wood,
+/area/space)
+"cI" = (
+/obj/machinery/door/airlock/angled_bay/standard/color{
+	door_color = "#9c9c9c";
+	fill_color = "#5c5c5c";
+	stripe_color = "#89bd66"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/space)
+"cJ" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/wood/alt/panel,
+/area/space)
+"cK" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/space)
+"cL" = (
+/turf/simulated/floor/carpet/turcarpet,
+/area/space)
+"cM" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/flame/candle{
+	pixel_y = 5;
+	pixel_x = 6
+	},
+/obj/item/storage/box/matches{
+	pixel_x = -4
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/space)
+"cN" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/space)
+"cO" = (
+/turf/simulated/floor/carpet/bcarpet,
+/area/space)
+"cP" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/flame/candle{
+	pixel_y = 5;
+	pixel_x = 6
+	},
+/obj/item/storage/box/matches{
+	pixel_x = -4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/space)
+"cQ" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"cR" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/flame/candle{
+	pixel_y = 5;
+	pixel_x = 6
+	},
+/obj/item/storage/box/matches{
+	pixel_x = -4
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"cS" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"cT" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"cU" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/flame/candle{
+	pixel_y = 5;
+	pixel_x = 6
+	},
+/obj/item/storage/box/matches{
+	pixel_x = -4
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"cV" = (
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"cW" = (
+/obj/structure/flora/underwater/seaweed3,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"cX" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 1
+	},
+/turf/simulated/floor/water/underwater/wood,
+/area/space)
+"cY" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/water/underwater/wood,
+/area/space)
+"cZ" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 4
+	},
+/turf/simulated/floor/water/underwater/wood,
+/area/space)
+"da" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/wood/alt/panel,
+/area/space)
+"db" = (
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/hosdouble,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet/turcarpet,
+/area/space)
+"dc" = (
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/cedouble,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet/bcarpet,
+/area/space)
+"dd" = (
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/hopdouble,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"de" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"df" = (
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/rddouble,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"dg" = (
+/obj/structure/flora/underwater/seaweed1,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"dh" = (
+/obj/structure/flora/underwater/grass3,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"di" = (
+/mob/living/simple_mob/animal/passive/fish/koi,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"dj" = (
+/obj/structure/dummystairs{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/space)
+"dk" = (
+/turf/simulated/floor/wood/sif,
+/area/space)
+"dl" = (
+/obj/structure/dummystairs{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/space)
+"dm" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/storage/fancy/candle_box,
+/turf/simulated/floor/wood/alt/panel,
+/area/space)
+"dn" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 9
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/space)
+"do" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/space)
+"dp" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 9
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/space)
+"dq" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/space)
 "dr" = (
 /turf/simulated/floor/water/underwater/woodbroken,
 /area/space)
+"ds" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 9
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"dt" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"du" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/storage/fancy/candle_box,
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"dv" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 9
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"dw" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"dx" = (
+/obj/structure/flora/underwater/grass4,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"dy" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/water/underwater/wood,
+/area/space)
+"dz" = (
+/obj/structure/bed/chair/sofa/corp/right{
+	dir = 4
+	},
+/turf/simulated/floor/wood/sif,
+/area/space)
+"dA" = (
+/obj/structure/bed/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/simulated/floor/wood/sif,
+/area/space)
+"dB" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/water/underwater/wood,
+/area/space)
+"dC" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor/wood/alt/panel,
+/area/space)
+"dD" = (
+/turf/simulated/floor/wood/alt/panel,
+/area/space)
+"dE" = (
+/obj/machinery/button/remote/airlock{
+	pixel_y = 28;
+	pixel_x = -2
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_x = -9;
+	pixel_y = 28
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28;
+	pixel_x = 6
+	},
+/obj/structure/privacyswitch{
+	pixel_y = 28;
+	pixel_x = 11
+	},
+/turf/simulated/floor/wood/alt/panel,
+/area/space)
+"dF" = (
+/obj/structure/bed/chair/sofa/corp/right,
+/turf/simulated/floor/wood/alt/panel,
+/area/space)
+"dG" = (
+/obj/structure/bed/chair/sofa/corp/left,
+/turf/simulated/floor/wood/alt/panel,
+/area/space)
+"dH" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"dI" = (
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"dJ" = (
+/obj/machinery/button/remote/airlock{
+	pixel_y = 28;
+	pixel_x = -2
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_x = -9;
+	pixel_y = 28
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28;
+	pixel_x = 6
+	},
+/obj/structure/privacyswitch{
+	pixel_y = 28;
+	pixel_x = 11
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"dK" = (
+/obj/structure/bed/chair/sofa/corp/right,
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"dL" = (
+/obj/structure/bed/chair/sofa/corp/left,
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"dM" = (
+/obj/structure/bed/chair/sofa/corp/corner{
+	dir = 1
+	},
+/turf/simulated/floor/wood/sif,
+/area/space)
+"dN" = (
+/obj/structure/bed/chair/sofa/corp,
+/turf/simulated/floor/wood/sif,
+/area/space)
+"dO" = (
+/obj/structure/bed/chair/sofa/corp/corner,
+/turf/simulated/floor/wood/sif,
+/area/space)
+"dP" = (
+/mob/living/simple_mob/animal/passive/fish/perch,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"dQ" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner,
+/turf/simulated/floor/water/underwater/wood,
+/area/space)
+"dR" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/structure/railing/grey,
+/turf/simulated/floor/water/underwater/wood,
+/area/space)
+"dS" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 8
+	},
+/turf/simulated/floor/water/underwater/wood,
+/area/space)
+"dT" = (
+/obj/machinery/door/airlock/angled_bay/standard/color{
+	door_color = "#9c9c9c";
+	fill_color = "#5c5c5c";
+	stripe_color = "#89bd66";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/space)
+"dU" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals3/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals3/purple{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"dV" = (
+/obj/effect/floor_decal/borderfloor/purple,
+/obj/effect/floor_decal/corner/blue/border,
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/blue/bordercorner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloor/corner2/purple,
+/obj/effect/floor_decal/corner/blue/bordercorner2,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"dW" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals3/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals3/purple{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"dX" = (
+/obj/effect/floor_decal/borderfloor/purple,
+/obj/effect/floor_decal/corner/blue/border,
+/obj/effect/floor_decal/borderfloor/corner2/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/blue/bordercorner2,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"dY" = (
+/obj/effect/floor_decal/borderfloor/purple,
+/obj/effect/floor_decal/corner/white/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"dZ" = (
+/obj/effect/floor_decal/borderfloor/purple,
+/obj/effect/floor_decal/corner/blue/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ea" = (
+/obj/effect/floor_decal/borderfloor/purple,
+/obj/effect/floor_decal/corner/blue/border,
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/blue/bordercorner2{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eb" = (
+/obj/effect/floor_decal/borderfloor/purple,
+/obj/effect/floor_decal/corner/white/border,
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ec" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ed" = (
+/obj/structure/flora/underwater/grass1,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"ee" = (
+/obj/structure/flora/underwater/plant4,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"ef" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/blue/bordercorner2{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eg" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eh" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ei" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/blue/bordercorner2{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
 "ej" = (
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
+/area/space)
+"ek" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"el" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"em" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/blue/bordercorner2{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"en" = (
+/obj/effect/floor_decal/borderfloor/corner/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/white/bordercorner{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
 /area/space)
 "eo" = (
 /obj/structure/lattice,
 /turf/simulated/open,
 /area/space)
+"ep" = (
+/obj/structure/flora/underwater,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"eq" = (
+/obj/machinery/door/airlock/angled_bay/double/glass,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/space)
+"er" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"es" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
 "et" = (
 /obj/structure/redgate/away,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/space)
+"eu" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner2{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ev" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ew" = (
+/obj/effect/floor_decal/borderfloor/corner/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ex" = (
+/obj/structure/flora/underwater/plant3,
+/turf/simulated/floor/water/underwater/sand,
+/area/space)
+"ey" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6/purple{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ez" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6/purple,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eA" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eB" = (
+/obj/structure/table/bench/standard,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eC" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eD" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eE" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/obj/structure/table/standard,
+/obj/item/storage/laundry_basket,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eF" = (
+/obj/effect/floor_decal/borderfloor/corner/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eG" = (
+/obj/effect/floor_decal/borderfloor/corner/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eH" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/obj/structure/table/bench/standard,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eI" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eJ" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eK" = (
+/obj/machinery/washing_machine,
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eL" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eM" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
 /area/space)
 "eN" = (
 /obj/machinery/light/small/neon/booze1{
@@ -1172,9 +2140,522 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/space)
+"eO" = (
+/obj/machinery/vending/coffee{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eP" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eQ" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eR" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
 "eS" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/space)
+"eT" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eU" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eV" = (
+/obj/machinery/vending/cigarette{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eW" = (
+/obj/effect/floor_decal/borderfloor/corner/purple,
+/obj/effect/floor_decal/corner/beige/bordercorner,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eX" = (
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/obj/machinery/vending/loadout/gadget,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eY" = (
+/obj/machinery/vending/loadout,
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"eZ" = (
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/obj/machinery/vending/loadout/loadout_misc,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fa" = (
+/obj/machinery/vending/loadout/clothing,
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fb" = (
+/obj/machinery/vending/loadout/overwear,
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fc" = (
+/obj/machinery/vending/loadout/accessory,
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fd" = (
+/obj/machinery/gear_painter,
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fe" = (
+/obj/effect/floor_decal/borderfloor/corner/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ff" = (
+/turf/simulated/wall/tgmc/darkwall/deco2{
+	can_open = 1
+	},
+/area/space)
+"fg" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fh" = (
+/obj/effect/floor_decal/borderfloor/purple,
+/obj/effect/floor_decal/corner/red/border,
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fi" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fj" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fk" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fl" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightorange/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightorange/bordercorner2{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fm" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightorange/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fn" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner2{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fo" = (
+/obj/machinery/door/airlock/angled_tgmc/wide/generic_steel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/space)
+"fp" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightorange/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightorange/bordercorner2{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"fq" = (
+/obj/structure/table/fancyblack,
+/obj/machinery/door/window/southright{
+	layer = 3.2
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"fr" = (
+/obj/structure/closet{
+	name = "chips"
+	},
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/roulette_ball/gold,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/space)
+"fs" = (
+/mob/living/simple_mob/vore/lamia/bra,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"ft" = (
+/obj/structure/closet{
+	name = "prize closet"
+	},
+/obj/item/clothing/accessory/collar/casinosentientprize,
+/obj/item/clothing/accessory/collar/casinosentientprize,
+/obj/item/clothing/accessory/collar/casinosentientprize,
+/obj/item/clothing/accessory/collar/casinosentientprize_fake,
+/obj/item/clothing/accessory/collar/casinosentientprize_fake,
+/obj/item/clothing/accessory/collar/casinosentientprize_fake,
+/obj/item/clothing/under/fienddress,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/space)
+"fu" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 10
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"fv" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"fw" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 6
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"fx" = (
+/obj/machinery/door/airlock/angled_bay/standard/color/common{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/space)
+"fy" = (
+/obj/effect/floor_decal/spline/fancy/wood/cee{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"fz" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"fA" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"fB" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner,
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"fC" = (
+/obj/effect/floor_decal/spline/fancy/wood/cee{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"fD" = (
+/obj/machinery/vending/event/costume{
+	dir = 4;
+	pixel_x = 7
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/space)
+"fE" = (
+/obj/structure/table/standard,
+/obj/item/storage/wallet/casino{
+	pixel_y = 8;
+	pixel_x = -14
+	},
+/obj/item/storage/wallet/casino{
+	pixel_y = 8;
+	pixel_x = 3
+	},
+/obj/item/storage/wallet/casino{
+	pixel_y = 3;
+	pixel_x = -18
+	},
+/obj/item/storage/wallet/casino{
+	pixel_y = 3;
+	pixel_x = -1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/space)
+"fF" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/space)
+"fG" = (
+/obj/effect/floor_decal/spline/fancy/wood/cee{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"fH" = (
+/obj/machinery/door/airlock/angled_bay/standard/color/common,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/space)
+"fI" = (
+/turf/simulated/floor/wood,
+/area/space)
+"fJ" = (
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
+/turf/simulated/floor/wood,
+/area/space)
+"fK" = (
+/mob/living/simple_mob/vore/jelly,
+/turf/simulated/floor/water/underwater,
 /area/space)
 "gK" = (
 /obj/machinery/door/airlock/angled_bay/hatch{
@@ -1188,10 +2669,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
-/area/space)
-"hK" = (
-/obj/machinery/vending/event/costume,
-/turf/simulated/floor/tiled/purple,
 /area/space)
 "ie" = (
 /obj/structure/stairs/spawner/north,
@@ -1409,13 +2886,6 @@
 	},
 /turf/simulated/floor/tiled/milspec/raised,
 /area/space)
-"zQ" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/space)
 "zV" = (
 /turf/simulated/floor/carpet/brown,
 /area/space)
@@ -1433,8 +2903,9 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/space)
 "CN" = (
-/obj/machinery/door/airlock/angled_bay/standard/color/engineering{
-	dir = 4
+/obj/machinery/door/airlock/angled_tgmc/secure{
+	dir = 8;
+	name = "Communications"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/space)
@@ -1523,8 +2994,11 @@
 /area/space)
 "JY" = (
 /obj/structure/table/standard,
-/obj/item/storage/box/roulette_balls_fancy,
-/turf/simulated/floor/tiled/purple,
+/obj/item/storage/box/roulette_balls_fancy{
+	pixel_y = 11;
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/space)
 "Ka" = (
 /obj/structure/bed/chair/sofa/corp/left{
@@ -1580,10 +3054,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/carpet/blue2,
-/area/space)
-"NV" = (
-/obj/structure/railing,
-/turf/simulated/floor/plating,
 /area/space)
 "NZ" = (
 /obj/machinery/light/small/neon/booze2{
@@ -1686,15 +3156,9 @@
 	},
 /turf/simulated/floor/carpet/blue2,
 /area/space)
-"Xn" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/space)
 "XA" = (
 /obj/structure/table/fancyblack,
+/obj/structure/window/basic,
 /turf/simulated/floor/carpet/brown,
 /area/space)
 "XW" = (
@@ -1709,13 +3173,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/monotile/purple,
-/area/space)
-"ZE" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing,
-/turf/simulated/floor/plating,
 /area/space)
 "ZQ" = (
 /obj/structure/bed/chair/backed_grey{
@@ -3780,14 +5237,14 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+PF
+PF
+PF
+PF
+PF
+PF
+PF
 px
 px
 px
@@ -3921,16 +5378,16 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+PF
+ep
+cV
+cV
+cV
+di
+cV
+PF
+PF
 px
 px
 px
@@ -4063,16 +5520,16 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+cV
+dP
+ed
+cV
+cV
+cV
+dg
+cV
+PF
 px
 px
 px
@@ -4205,16 +5662,16 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+cV
+cV
+cV
+cV
+cV
+dx
+cV
+cV
+PF
 px
 px
 px
@@ -4347,16 +5804,16 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+cV
+cV
+cV
+dP
+cV
+cV
+cV
+cV
+PF
 px
 px
 px
@@ -4489,16 +5946,16 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+ex
+cV
+di
+cV
+cV
+cV
+dh
+cV
+PF
 px
 px
 px
@@ -4631,16 +6088,16 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+cV
+cV
+ee
+cV
+cV
+cV
+di
+cW
+PF
 px
 px
 px
@@ -4773,16 +6230,16 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+cV
+PF
+PE
+PE
+PE
+PE
+PF
+cV
+PF
 px
 px
 px
@@ -4915,18 +6372,18 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+PF
+PF
+kH
+kH
+kH
+kH
+PF
+PF
+PF
+PF
+PF
 px
 px
 px
@@ -5057,18 +6514,18 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+PF
+PF
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+PF
+PF
 px
 px
 px
@@ -5199,18 +6656,18 @@ px
 px
 px
 px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
-px
+PF
+PF
+PF
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+PF
 px
 px
 px
@@ -5343,15 +6800,15 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+dQ
+dy
+dy
+cX
+kH
+kH
+kH
 PF
 PF
 PF
@@ -5485,15 +6942,15 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+dR
+dM
+dz
+dj
+cX
+kH
+kH
 PF
 PF
 PF
@@ -5627,18 +7084,18 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+dR
+dN
+dk
+dk
+cY
+kH
+kH
+kH
+kH
+kH
 PF
 PF
 PF
@@ -5769,18 +7226,18 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+dR
+dN
+dk
+dk
+cY
+kH
+kH
+kH
+kH
+kH
 PF
 PF
 PF
@@ -5911,18 +7368,18 @@ dr
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+dR
+dO
+dA
+dl
+cZ
+kH
+kH
+kH
+kH
+kH
 PF
 PF
 PF
@@ -6053,18 +7510,18 @@ kH
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+dS
+dB
+dB
+cZ
+kH
+kH
+kH
+kH
+kH
+kH
 PF
 PF
 PF
@@ -6195,18 +7652,18 @@ kH
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
 PF
 PF
 PF
@@ -6337,18 +7794,18 @@ kH
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
 PF
 PF
 PF
@@ -6481,16 +7938,16 @@ PF
 PF
 PF
 PF
+dT
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+kH
+kH
+kH
+kH
+kH
+kH
 PF
 PF
 PF
@@ -6622,17 +8079,17 @@ PF
 PF
 PF
 PF
+ef
+dU
 PF
 PF
 PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
+kH
+kH
+kH
 PF
 PF
 PF
@@ -6764,13 +8221,13 @@ PF
 PF
 PF
 PF
+eg
+dV
 PF
-PF
-PF
-PF
-PF
-PF
-PF
+dC
+dm
+da
+cJ
 PF
 PF
 PF
@@ -6906,17 +8363,17 @@ PF
 PF
 PF
 PF
+eh
+dW
+cI
+dD
+dn
+cK
+cK
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+cC
+ac
 PF
 PF
 PF
@@ -7038,27 +8495,27 @@ PF
 PF
 PF
 PF
-kP
+PF
 Fs
 Fs
 Fs
 Fs
 kP
 kP
+Fs
 kP
-kP
 PF
+eg
+dX
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+dE
+do
+cL
+cL
+cI
+kw
+cD
+ae
 PF
 PF
 PF
@@ -7180,7 +8637,7 @@ PF
 PF
 PF
 PF
-kP
+PF
 Fs
 Fs
 Fs
@@ -7189,18 +8646,18 @@ Fs
 Fs
 Fs
 Fs
-Fs
-pL
+gK
+eh
+dY
 PF
+dF
+do
+cL
+cL
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+cG
+cE
+cn
 PF
 PF
 PF
@@ -7323,26 +8780,26 @@ PF
 PF
 PF
 PF
-Wl
-PF
 PF
 Fs
 kP
-kP
-kP
-kP
 PF
 PF
 PF
 PF
 PF
 PF
+eg
+dZ
 PF
+dG
+do
+db
+cM
 PF
-PF
-PF
-PF
-PF
+cH
+cF
+cB
 PF
 PF
 PF
@@ -7465,17 +8922,17 @@ PF
 kH
 kP
 dr
-kH
-kH
 PF
 Fs
-kP
 PF
 PF
+eK
+eK
+eE
+bZ
 PF
-PF
-PF
-PF
+ei
+dY
 PF
 PF
 PF
@@ -7607,22 +9064,22 @@ kH
 kH
 kH
 kP
-kP
-kH
 PF
 Fs
 PF
+eX
+eR
+eL
+eF
+ey
+eq
+aH
+ea
 PF
-nG
-nG
-nG
-nG
-nG
-PF
-PF
-PF
-PF
-PF
+dC
+dm
+da
+cJ
 PF
 PF
 PF
@@ -7749,26 +9206,26 @@ kH
 dr
 dr
 kH
-kH
-kH
 PF
 Fs
 PF
+eY
+eT
 nG
 nG
-nG
-nG
-nG
-nG
-nG
+ez
+Ac
+aI
+dW
+cI
+dD
+dp
+cN
+cN
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
+cC
+ac
 PF
 PF
 PF
@@ -7890,27 +9347,27 @@ kH
 kH
 kP
 kH
-kH
-kH
-kH
+PF
 PF
 Fs
 PF
+eZ
+eT
 nG
 nG
-nG
-nG
-nG
-nG
-nG
+eA
+PE
+ek
+dX
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+dE
+dq
+cO
+cO
+cI
+kw
+cD
+ae
 PF
 PF
 PF
@@ -8032,27 +9489,27 @@ dr
 kP
 kP
 kP
-kH
-kH
-kH
-PF
+ff
+kP
 Fs
 PF
+fa
+eT
 nG
 nG
-nG
-nG
-nG
-nG
-nG
+eA
+PE
+eh
+dY
 PF
+dF
+dq
+cO
+cO
 PF
-PF
-PF
-PF
-PF
-PF
-PF
+cG
+cE
+cn
 PF
 PF
 PF
@@ -8174,27 +9631,27 @@ kH
 kH
 kP
 kP
-kH
-dr
-kH
+PF
 PF
 Fs
 PF
+fb
+eT
 nG
 nG
-nG
-nG
-nG
-nG
-nG
+eA
+PE
+el
+dZ
 PF
+dG
+dq
+dc
+cP
 PF
-PF
-PF
-PF
-PF
-PF
-PF
+cH
+cF
+cB
 PF
 PF
 PF
@@ -8317,18 +9774,18 @@ kH
 kP
 kP
 kH
-kH
-kH
 PF
 Fs
 PF
+fc
+eT
 nG
 nG
-nG
-nG
-nG
-nG
-nG
+ey
+eq
+aH
+dY
+PF
 PF
 PF
 PF
@@ -8459,22 +9916,22 @@ kH
 kH
 kH
 kH
-kH
-kH
 PF
 Fs
 PF
+fd
+eU
+eM
+eG
+ez
+Ac
+aI
+ea
 PF
-nG
-nG
-nG
-nG
-nG
-PF
-PF
-PF
-PF
-PF
+dC
+dm
+da
+cJ
 PF
 PF
 PF
@@ -8601,26 +10058,26 @@ kH
 kH
 PF
 PF
-Wl
-PF
 PF
 Fs
-kP
 PF
 PF
+eV
+eO
+eH
+eB
+PF
+em
+dW
+cI
+dD
+ds
+cQ
+cQ
 PF
 PF
-nG
-nG
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+cC
+ac
 PF
 PF
 PF
@@ -8746,23 +10203,23 @@ Fs
 Fs
 Fs
 Fs
-Fs
-Fs
-kP
-kP
+PF
 kP
 PF
-nG
-nG
 PF
 PF
 PF
+eg
+dX
 PF
-PF
-PF
-PF
-PF
-PF
+dE
+dt
+zV
+zV
+cI
+kw
+cD
+ae
 PF
 PF
 PF
@@ -8894,17 +10351,17 @@ Fs
 Fs
 Fs
 gK
-nG
-nG
+eh
+dY
 PF
+dF
+dt
+zV
+zV
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+cG
+cE
+cn
 PF
 PF
 PF
@@ -9036,17 +10493,17 @@ Fs
 Fs
 Fs
 PF
-nG
-nG
+eg
+dZ
 PF
+dG
+dt
+dd
+cR
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+cH
+cF
+cB
 PF
 PF
 PF
@@ -9178,8 +10635,8 @@ Fs
 kP
 kP
 PF
-nG
-nG
+eh
+dY
 PF
 PF
 PF
@@ -9320,13 +10777,13 @@ Fs
 kP
 pL
 PF
-nG
-nG
+eg
+ea
 PF
-PF
-PF
-PF
-PF
+dH
+du
+de
+cS
 PF
 PF
 PF
@@ -9462,17 +10919,17 @@ Wl
 PF
 PF
 PF
-nG
-nG
+eh
+dW
+cI
+dI
+dv
+cT
+cT
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+cC
+ac
 PF
 PF
 PF
@@ -9600,21 +11057,21 @@ PF
 kP
 kP
 PF
-nG
-nG
-nG
-nG
-nG
-nG
+eP
+er
+eC
+er
+en
+dX
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+dJ
+dw
+rq
+rq
+cI
+kw
+cD
+ae
 PF
 PF
 PF
@@ -9742,21 +11199,21 @@ PF
 kP
 kP
 PF
+eh
 nG
 nG
 nG
 nG
-nG
-nG
+dY
 PF
+dK
+dw
+rq
+rq
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+cG
+cE
+cn
 PF
 PF
 PF
@@ -9884,21 +11341,21 @@ PF
 kP
 kP
 PF
+eg
+eI
 nG
 nG
 nG
-nG
-nG
-nG
+dZ
 PF
+dL
+dw
+df
+cU
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+cH
+cF
+cB
 PF
 PF
 PF
@@ -10026,12 +11483,12 @@ PF
 PF
 PF
 PF
-PF
-PF
+eQ
+eJ
+eD
+es
 nG
-nG
-nG
-nG
+eb
 PF
 PF
 PF
@@ -10167,23 +11624,23 @@ Fs
 kP
 PF
 kP
-kP
-kP
+PF
+PF
 PF
 ie
 BQ
 BQ
 nG
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+nG
+nG
+nG
+nG
+nG
+nG
+nG
+nG
+nG
+nG
 PF
 PF
 PF
@@ -10316,16 +11773,16 @@ aj
 BQ
 BQ
 nG
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+nG
+nG
+nG
+nG
+nG
+nG
+nG
+nG
+nG
+nG
 PF
 PF
 PF
@@ -10455,7 +11912,7 @@ kP
 kP
 PF
 PF
-nG
+eu
 nG
 nG
 PF
@@ -10597,7 +12054,7 @@ kP
 kP
 kP
 PF
-nG
+ev
 nG
 nG
 PF
@@ -10739,9 +12196,9 @@ kP
 kP
 kP
 PF
+ev
 nG
-nG
-nG
+dZ
 PF
 PF
 PF
@@ -10881,9 +12338,9 @@ kP
 kP
 kP
 PF
+ev
 nG
-nG
-nG
+dZ
 PF
 PF
 PF
@@ -11023,9 +12480,9 @@ kP
 kP
 kP
 PF
+ev
 nG
-nG
-nG
+dZ
 PF
 PF
 PF
@@ -11165,9 +12622,9 @@ PF
 PF
 PF
 PF
+ev
 nG
-nG
-nG
+dZ
 PF
 PF
 PF
@@ -11297,19 +12754,19 @@ PF
 PF
 PF
 PF
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ax
+ew
 nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
+dZ
 PF
 PF
 PF
@@ -11451,7 +12908,7 @@ nG
 nG
 nG
 nG
-nG
+dZ
 PF
 PF
 PF
@@ -11581,19 +13038,19 @@ PF
 PF
 PF
 PF
+az
+az
+az
+az
+fe
 nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
+eW
+az
+az
+az
+az
+az
+ec
 PF
 PF
 PF
@@ -11727,9 +13184,9 @@ PF
 PF
 PF
 PF
+av
 nG
-nG
-nG
+aq
 PF
 PF
 PF
@@ -11869,9 +13326,9 @@ PF
 PF
 PF
 PF
+av
 nG
-nG
-nG
+aq
 PF
 PF
 PF
@@ -12011,9 +13468,9 @@ PF
 PF
 PF
 PF
+av
 nG
-nG
-nG
+aq
 PF
 PF
 PF
@@ -12153,9 +13610,9 @@ PF
 PF
 PF
 PF
+av
 nG
-nG
-nG
+aq
 PF
 PF
 PF
@@ -12295,9 +13752,9 @@ PF
 PF
 PF
 PF
+av
 nG
-nG
-nG
+aq
 PF
 PF
 PF
@@ -12437,9 +13894,9 @@ PF
 PF
 PF
 PF
+av
 nG
-nG
-nG
+aq
 PF
 PF
 PF
@@ -24917,7 +26374,7 @@ ce
 ce
 ce
 ce
-ce
+fK
 ce
 ce
 ce
@@ -26593,7 +28050,7 @@ ce
 ce
 ce
 ce
-ce
+fK
 ce
 ce
 ce
@@ -26653,7 +28110,7 @@ PF
 PF
 PF
 kP
-kP
+PF
 kP
 kP
 KZ
@@ -26793,7 +28250,7 @@ kP
 kP
 kP
 kP
-PF
+kP
 kP
 PF
 kP
@@ -27071,7 +28528,7 @@ pV
 af
 zv
 PF
-eo
+kP
 PF
 kP
 kP
@@ -27224,7 +28681,7 @@ PF
 PF
 PF
 PF
-PF
+Wl
 KZ
 qp
 ar
@@ -27365,18 +28822,18 @@ ax
 ax
 ax
 ax
-ax
-ax
-ax
-at
+fn
 as
-ap
+fj
+fk
+as
+fj
+fi
+fi
+fi
+fi
+fg
 PF
-ce
-ce
-ce
-ce
-ce
 ce
 ce
 ce
@@ -27512,13 +28969,13 @@ nG
 nG
 nG
 nG
-aq
+nG
+nG
+nG
+nG
+nG
+fh
 PF
-ce
-ce
-ce
-ce
-ce
 ce
 ce
 ce
@@ -27639,14 +29096,19 @@ af
 af
 bm
 aa
-aB
-aE
+fp
+fl
 aC
-aB
-az
-az
-az
-aE
+fp
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fm
+fl
 aC
 aB
 az
@@ -27656,11 +29118,6 @@ nG
 nG
 aq
 PF
-ce
-ce
-ce
-ce
-ce
 ce
 ce
 ce
@@ -27787,6 +29244,11 @@ CN
 PF
 PF
 PF
+PF
+PF
+PF
+PF
+PF
 PE
 PE
 aD
@@ -27798,11 +29260,6 @@ au
 nG
 aq
 PF
-ce
-ce
-ce
-ce
-ce
 ce
 ce
 ce
@@ -27934,17 +29391,17 @@ kP
 kP
 kP
 kP
+kP
+kP
+kP
+kP
+kP
 PF
 PF
 av
 nG
 aq
 PF
-ce
-ce
-ce
-ce
-ce
 ce
 ce
 ce
@@ -28077,16 +29534,16 @@ kP
 kP
 kP
 kP
+kP
+kP
+kP
+kP
+kP
 PF
 av
 nG
 aq
 PF
-ce
-ce
-ce
-ce
-ce
 ce
 ce
 ce
@@ -28219,16 +29676,16 @@ kP
 kP
 kP
 kP
+kP
+kP
+kP
+kP
+kP
 PF
 av
 nG
 aq
 PF
-ce
-ce
-ce
-ce
-ce
 ce
 ce
 ce
@@ -28361,16 +29818,16 @@ kP
 kP
 kP
 kP
+kP
+kP
+kP
+kP
+kP
 PF
 av
 nG
 aq
 PF
-ce
-ce
-ce
-ce
-ce
 ce
 ce
 ce
@@ -28503,15 +29960,15 @@ kP
 kP
 kP
 kP
+kP
+kP
+kP
+kP
+kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -28645,15 +30102,15 @@ kP
 kP
 kP
 kP
+kP
+kP
+kP
+kP
+kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -28780,22 +30237,22 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -28921,7 +30378,12 @@ aK
 kP
 kP
 kP
-aK
+PF
+kP
+kP
+kP
+kP
+kP
 kP
 kP
 kP
@@ -28933,11 +30395,6 @@ PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -29063,23 +30520,23 @@ Fs
 Fs
 Fs
 Fs
-Fs
-Fs
-Fs
-Fs
-Fs
-Fs
-Fs
+PF
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -29204,24 +30661,24 @@ Fs
 ka
 Fy
 Fy
-ZE
-Fs
-Fs
-Fs
-ka
 Fy
-Xn
-Fs
+PF
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -29352,18 +30809,18 @@ PF
 PF
 PF
 PF
-NV
-Fs
-kP
+PF
+PF
+PF
+PF
+PF
+PF
+PF
+PF
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -29494,18 +30951,18 @@ ax
 ax
 ap
 PF
-zQ
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -29636,18 +31093,18 @@ nG
 nG
 aq
 PF
-Fs
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -29755,9 +31212,9 @@ cd
 ay
 az
 az
+az
 aE
-bH
-bA
+aC
 aB
 az
 az
@@ -29778,18 +31235,18 @@ au
 nG
 aq
 PF
-Fs
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -29890,18 +31347,18 @@ ce
 ce
 ce
 ce
-ce
-ce
-PF
-PE
-PE
 PF
 PF
-PE
-Ac
-ah
-PE
-PE
+PF
+PF
+PF
+PF
+PF
+PF
+PF
+fx
+PF
+PF
 PF
 PE
 PF
@@ -29920,18 +31377,18 @@ av
 nG
 aq
 PF
-Fs
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -30032,18 +31489,18 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
+PF
+fI
+fI
+fI
+fI
 PF
 JY
 nG
 nG
-nG
-nG
-nG
+fy
+ft
+fr
 PF
 kq
 zV
@@ -30062,18 +31519,18 @@ av
 nG
 aq
 PF
-Fs
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -30174,17 +31631,17 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
 PF
-bZ
-nG
-nG
-nG
-nG
+fI
+fJ
+fI
+fI
+PF
+fE
+dv
+cT
+fz
+fu
 nG
 PF
 Lg
@@ -30204,18 +31661,18 @@ av
 nG
 aq
 PF
-Fs
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -30305,12 +31762,7 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
-ce
+fK
 ce
 ce
 ce
@@ -30322,11 +31774,16 @@ ce
 ce
 ce
 PF
-bZ
-nG
-nG
-nG
-nG
+fI
+fI
+fI
+fI
+PF
+fF
+dw
+rq
+rq
+fv
 nG
 XA
 zV
@@ -30346,18 +31803,18 @@ av
 nG
 aq
 PF
-Fs
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -30458,48 +31915,48 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
 PF
-bZ
-nG
-nG
-nG
-nG
-nG
-XA
+fI
+fI
+fI
+fI
+fH
+fG
+fA
+fB
+fA
+fw
+fs
+fq
 zV
 zV
 zV
 zV
 aP
+kw
+kw
+kw
+kw
+kw
+kw
 br
-kw
-kw
-kw
-kw
-kw
-aP
 PE
 av
 nG
 aq
 PF
-Fs
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -30600,15 +32057,15 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
-ce
 PF
-hK
-nG
-nG
+PF
+fI
+fI
+fI
+PF
+fF
+fD
+fC
 nG
 nG
 nG
@@ -30618,30 +32075,30 @@ zV
 zV
 zV
 aP
-ad
+bb
 kw
 kw
 bb
 kw
 kw
-aQ
+bt
 PE
 av
 nG
 aq
 PF
-ZE
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -30743,15 +32200,15 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
 PF
 PF
 PF
-Ac
-ah
+PF
+PF
+PF
+PF
+fx
+PF
 PF
 PF
 PF
@@ -30760,30 +32217,30 @@ zV
 zV
 zV
 aP
-kw
+bd
 kw
 kw
 bd
 kw
 kw
-aR
+aP
 PE
 av
 nG
 aq
 PF
-NV
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -30902,30 +32359,30 @@ zV
 zV
 zV
 aP
-bs
+be
 kw
 kw
 be
 kw
 kw
-aT
+br
 PF
 av
 nG
 aq
 PF
-NV
-Fs
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 kP
 PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -31044,17 +32501,22 @@ zV
 zV
 zV
 aP
+aP
+aP
+aP
+aP
+aP
+aP
 bt
-aP
-aP
-aP
-aP
-aP
-aP
 PF
 aG
 nG
 aq
+PF
+PF
+PF
+PF
+PF
 PF
 PF
 vt
@@ -31063,11 +32525,6 @@ PF
 av
 nG
 aq
-PF
-PF
-PF
-PF
-PF
 PF
 PF
 PF
@@ -31198,18 +32655,18 @@ aH
 nG
 aF
 ax
+ax
+ax
+ax
+ax
+ax
 at
 as
 aA
 ax
 aw
 nG
-nG
-nG
-nG
-nG
-PF
-PF
+aq
 PF
 PF
 PF
@@ -31350,8 +32807,8 @@ nG
 nG
 nG
 nG
-PF
-PF
+nG
+aq
 PF
 PF
 PF
@@ -31480,20 +32937,20 @@ zV
 aa
 aI
 nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-PF
-PF
+eW
+az
+az
+az
+aE
+bH
+bA
+aB
+az
+az
+az
+az
+az
+ec
 PF
 PF
 PF
@@ -31622,13 +33079,13 @@ zV
 PF
 aJ
 nG
-nG
+aq
 PF
 PF
 PF
 PF
 Ac
-Ac
+ah
 PF
 PF
 PF
@@ -31764,7 +33221,7 @@ zV
 PF
 av
 nG
-nG
+aq
 PF
 kw
 kw
@@ -31906,7 +33363,7 @@ zV
 PE
 av
 nG
-nG
+bx
 PF
 kw
 kw
@@ -32049,7 +33506,7 @@ PE
 av
 nG
 nG
-Ac
+fo
 kw
 kw
 kw
@@ -33134,7 +34591,7 @@ ce
 ce
 ce
 ce
-ce
+fK
 ce
 ce
 ce
