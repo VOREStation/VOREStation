@@ -334,3 +334,93 @@
       you.
   - rscadd: You can now get wet, which inhibits fire and gives you pretty drippy particles.
   - rscadd: You can now spread fire if you're on fire and you bump into another mob.
+2025-09-19:
+  Diana:
+  - image: Splits the _mob and icon files for fluff items into two files
+  - bugfix: Fixes a few broken fluff sprites
+  Guti:
+  - bugfix: fixed bluespace and chief engineer's belt not being able to hold onto
+      atmos combi-fans
+  KillianKirilenko:
+  - rscadd: Added a general command uniform selector for all department heads.
+  MeepleMuncher:
+  - rscadd: Dragon plushies!
+  Ryumi:
+  - code_imp: Alphabetically sorted the hanner and lleil beast form lists.
+  - rscadd: ALL cyborgs now start with a random number generator that lets them roll
+      virtual dice.
+  - balance: Misc. borg grippers can now hold card hands and fake casino chips.
+  - balance: Service borg grippers can now hold real casino chips.
+  Will:
+  - bugfix: Cortical borers cannot prod things adjacent to their host, while inside
+      of their host.
+  - qol: Medical body scanner now shows if a subject is experiencing withdrawal symptoms.
+  - bugfix: Medical kiosk can no longer do mind and body record scans in VR
+  - bugfix: Slugs can no longer apply slime to a turf already covered in their slime
+  - bugfix: Santabag is now actually a bag
+  - code_imp: Adds atom disposal flushed signal, sent from items when they are flushed
+      into the disposal network
+  - qol: Items can now be placed on casino tables with click precision, like normal
+      tables.
+  - bugfix: Flying and hovering properly checked when avoiding landmines
+  - bugfix: Phased shadekin no longer set off landmines
+  - bugfix: Vehicles set off landmines
+  - balance: Tiny mobs like mice no longer set off landmines
+  - refactor: transit tubes use forceMove() instead of directly setting loc
+  - bugfix: Tracking implant fizzling no longer broken
+  - code_imp: Allows mappers to place deployed mechanical traps properly
+  - bugfix: Restored missing spellbook icon
+  - rscadd: Catwalks mapped over maglev tracks will act as a bridge
+  - bugfix: Phased shadekin can no longer touch maglev tracks and get shocked
+  Willburd:
+  - code_imp: Disposal sorter prefabs use defines instead of numbers
+  lbnesquik:
+  - rscadd: Added the coroner role as an alternative title to medical doctors
+2025-09-21:
+  Diana:
+  - bugfix: Borg shocker shows the appropriate on-off state
+  Guti:
+  - admin: Added admin logs to bear traps
+  Kashargul:
+  - qol: moves most law outputs to blocks
+  Will:
+  - bugfix: Changeling chameleon cloths no longer reveal lings by having suit sensors
+  - code_imp: clothing code uses suit_sensor defines instead of magic numbers
+  - code_imp: Reaction unittest strictness includes distillation reactions being blocked
+      by instant reactions
+  - code_imp: Implements COMSIG_REAGENTS_HOLDER_REACTED
+  - refactor: reagent holder handle_reactions() uses number of reactions that happened,
+      and not just completion of the proc for return value
+  - bugfix: peanut butter milkshake reaction no longer blocked by milkshake
+  - bugfix: aloe reaction no longer blocked by irish cream
+  - bugfix: instant beer reaction no longer blocked by corn cooking oil
+  - bugfix: biomass distilling reaction no longer blocked by virology mix 3
+2025-09-22:
+  Kashargul:
+  - code_imp: moves color_matrix to a tgui_input
+  - code_imp: moves obj/screen to atom/movable/screen
+  MeepleMuncher:
+  - rscadd: Customizable dragon plushies!
+  Ryumi:
+  - qol: Cyborg Rapid-Service-Fabricators now use radial menus for all of its selection
+      menus. Pretty pictures...
+  SatinIsle:
+  - rscadd: Added a new scene item, shibari bindings!
+  - image: Added icons for human and digi shibari bindings.
+  Will:
+  - bugfix: Disarming push attacks causing combat grabs to drop as items.
+2025-09-23:
+  Tenryumi:
+  - image: Halved the size of playing chips' icons.
+  Will:
+  - code_imp: Adds tethered item component for items that have a handheld subitem
+      that can be removed from it while it is worn
+  zeskorion:
+  - rscadd: Added several new mapping features for your local mapper
+  - rscadd: digestive nanite turfs. currently mapperbus only
+  - rscadd: faster swimming aquatic trait
+  - qol: catwalks now prevent turfs from slowing people
+  - qol: water turfs now break falls
+  - qol: Maint blood and vomit is old and dried.
+  - balance: ' water turfs now break falls'
+  - bugfix: emergency lights stay red during nightshift

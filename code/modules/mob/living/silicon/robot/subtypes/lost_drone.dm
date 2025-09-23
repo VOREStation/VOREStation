@@ -71,8 +71,7 @@
 		var/confirm = tgui_alert(src, "Do you want to keep your laws or reroll? (For specific laws, feel free to ahelp and we'll see what we can do)", "Confirm laws", list("Keep", "Reroll ([law_retries])"))
 		if(findtext(confirm, regex("Reroll \\(\[0-9\]*\\)", "")))
 			apply_new_laws()
-			to_chat(src, span_infoplain(span_bold("Obey these laws:")))
-			laws.show_laws(src)
+			to_chat(src, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
 			law_retries --
 		else
 			law_retries = 0

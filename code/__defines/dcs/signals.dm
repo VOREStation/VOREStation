@@ -713,6 +713,11 @@
 ///called when you wash your face at a sink: (num/strength)
 #define COMSIG_COMPONENT_CLEAN_FACE_ACT "clean_face_act"
 
+//Reagent holder
+
+///from base of /datum/reagents/proc/handle_reactions(): (list/decl/chemical_reaction)
+#define COMSIG_REAGENTS_HOLDER_REACTED "reagents_holder_reacted"
+
 //Food
 
 ///from base of obj/item/reagent_containers/food/snacks/attack(): (mob/living/eater, mob/feeder)
@@ -879,6 +884,8 @@
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
 ///Called right after the atom changes the value of light_flags to a different one, from base of [/atom/proc/set_light_flags]: (old_flags)
 #define COMSIG_ATOM_UPDATE_LIGHT_FLAGS "atom_update_light_flags"
+///Called right after the atom is flushed into a disposal holder and sent through the disposal network: (/obj/structure/disposalholder)
+#define COMSIG_ATOM_DISPOSAL_FLUSHED "atom_disposal_flushed"
 
 // /datum/element/light_eater
 ///from base of [/datum/element/light_eater/proc/table_buffet]: (list/light_queue, datum/light_eater)

@@ -23,6 +23,14 @@
 	var/camo_net = FALSE
 	var/stun_length = 0.25 SECONDS
 
+/obj/item/beartrap/start_active
+	deployed = TRUE
+
+/obj/item/beartrap/Initialize(mapload)
+	. = ..()
+	if(mapload && deployed)
+		update_icon()
+
 /obj/item/beartrap/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
 
@@ -47,6 +55,7 @@
 			user.drop_from_inventory(src)
 			update_icon()
 			anchored = TRUE
+			log_and_message_admins("has set up a [name] at \the [get_area(loc)]", user)
 
 /obj/item/beartrap/attack_hand(mob/user as mob)
 	if(has_buckled_mobs() && can_use(user))
@@ -137,6 +146,7 @@
 				anchored = FALSE
 			deployed = 0
 			update_icon()
+			log_and_message_admins("has sprung a [name] at \the [get_area(loc)], last touched by [forensic_data?.get_lastprint()]", L)
 	..()
 
 /obj/item/beartrap/update_icon()

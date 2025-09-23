@@ -51,6 +51,8 @@
 	var/access = list()
 	access = ACCESS_CRATE_CASH
 	var/worth = 0
+	icon_scale_x = 0.5
+	icon_scale_y = 0.5
 
 /obj/item/spacecasinocash/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/spacecasinocash))
@@ -215,6 +217,8 @@
 	gender = PLURAL
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "spacecasinocash1"
+	icon_scale_x = 0.5
+	icon_scale_y = 0.5
 	opacity = 0
 	density = 0
 	anchored = 0.0
