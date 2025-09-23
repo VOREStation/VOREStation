@@ -203,11 +203,11 @@ About the new airlock wires panel:
 	return wires.is_cut(WIRE_BACKUP_POWER1) || wires.is_cut(WIRE_BACKUP_POWER2)
 
 /obj/machinery/door/airlock/proc/loseMainPower()
-	main_power_lost_until = mainPowerCablesCut() ? -1 : world.time + SecondsToTicks(60)
+	main_power_lost_until = mainPowerCablesCut() ? -1 : world.time + (1 MINUTE)
 
 	// If backup power is permanently disabled then activate in 10 seconds if possible, otherwise it's already enabled or a timer is already running
 	if(backup_power_lost_until == -1 && !backupPowerCablesCut())
-		backup_power_lost_until = world.time + SecondsToTicks(10)
+		backup_power_lost_until = world.time + (10 SECONDS)
 
 	if(main_power_lost_until > 0 || backup_power_lost_until > 0)
 		START_MACHINE_PROCESSING(src)
@@ -219,7 +219,7 @@ About the new airlock wires panel:
 	update_icon()
 
 /obj/machinery/door/airlock/proc/loseBackupPower()
-	backup_power_lost_until = backupPowerCablesCut() ? -1 : world.time + SecondsToTicks(60)
+	backup_power_lost_until = backupPowerCablesCut() ? -1 : world.time + (1 MINUTE)
 
 	if(backup_power_lost_until > 0)
 		START_MACHINE_PROCESSING(src)
@@ -264,7 +264,7 @@ About the new airlock wires panel:
 		else
 			shockedby += text("\[[time_stamp()]\] - EMP)")
 		message = "The door is now electrified [duration == -1 ? "permanently" : "for [duration] second\s"]."
-		electrified_until = duration == -1 ? -1 : world.time + SecondsToTicks(duration)
+		electrified_until = duration == -1 ? -1 : world.time + (duration SECONDS)
 
 	if(electrified_until > 0)
 		START_MACHINE_PROCESSING(src)
@@ -1082,7 +1082,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/emp_act(var/severity)
 	if(prob(40/severity))
-		var/duration = world.time + SecondsToTicks(30 / severity)
+		var/duration = world.time + ((30 / severity) SECONDS)
 		if(duration > electrified_until)
 			electrify(duration)
 	..()
