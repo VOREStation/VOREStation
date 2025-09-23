@@ -241,6 +241,7 @@
 #ifdef AWAY_MISSION_TEST
 #include "../redgate/falls/falls.dmm"
 #include "../redgate/abandonedisland.dmm"
+#include "../redgate/casono_canal/casino_canal.dmm"
 #include "../redgate/cybercity.dmm"
 #include "../redgate/darkadventure.dmm"
 #include "../redgate/eggnogtown.dmm"
@@ -288,6 +289,11 @@
 	name = Z_NAME_REDGATE_INNLAND
 	desc = "Caves and grass and a tavern, woah!"
 	mappath = "maps/redgate/innland.dmm"
+
+/datum/map_template/common_lateload/redgate/casino_canal
+	name = Z_NAME_REDGATE_ABANDONED_ISLAND
+	desc = "It seems like it used to be people here!"
+	mappath = "maps/redgate/casino_canal/casino_canal.dmm"
 
 /datum/map_template/common_lateload/redgate/abandonedisland
 	name = Z_NAME_REDGATE_ABANDONED_ISLAND

@@ -84,6 +84,7 @@
 #define Z_NAME_OM_GRASS_CAVE				"Grass Cave"
 
 // Redgates (Aliased to Z_NAME_ALIAS_REDGATE)
+#define Z_NAME_REDGATE_CASINO_CANAL			"Redgate - Casino Canal"
 #define Z_NAME_REDGATE_TEPPI_RANCH			"Redgate - Teppi Ranch"
 #define Z_NAME_REDGATE_INNLAND				"Redgate - Innland"
 #define Z_NAME_REDGATE_ABANDONED_ISLAND		"Redgate - Abandoned Island" // Commented out currently
