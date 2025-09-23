@@ -30,8 +30,9 @@
 	..()
 
 /mob/living/stumble_into(mob/living/M)
-	var/mob/living/carbon/human/S = src
-	if(S.buckled || M.buckled)
+	if(buckled || M.buckled)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STUMBLED_INTO, M) & CANCEL_STUMBLED_INTO)
 		return
 	playsound(src, "punch", 25, 1, -1)
 	M.Weaken(4)
@@ -48,14 +49,16 @@
 		begin_instant_nom(M,src,M,M.vore_selected)
 		return
 
-	if(istype(S) && S.species.lightweight == 1)
-		visible_message(span_vwarning("[M] carelessly bowls [src] over!"))
-		M.forceMove(get_turf(src))
-		M.apply_damage(0.5, BRUTE)
-		Weaken(4)
-		stop_flying()
-		apply_damage(0.5, BRUTE)
-		return
+	if(ishuman(src))
+		var/mob/living/carbon/human/S = src
+		if(S.species.lightweight == 1)
+			visible_message(span_vwarning("[M] carelessly bowls [src] over!"))
+			M.forceMove(get_turf(src))
+			M.apply_damage(0.5, BRUTE)
+			Weaken(4)
+			stop_flying()
+			apply_damage(0.5, BRUTE)
+			return
 
 	if(round(weight) > 474)
 		var/throwtarget = get_edge_target_turf(M, reverse_direction(M.dir))

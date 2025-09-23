@@ -940,6 +940,13 @@
 // Hose Connector Component
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"
 
+
+// Stumble / bumping into stuff
+///from /mob/living/stumble_into(mob/living/M)
+#define COMSIG_LIVING_STUMBLED_INTO "living_stumbled_into"
+	///Installation successful
+	#define CANCEL_STUMBLED_INTO	(1<<0)
+
 //Unittest data update
 #ifdef UNIT_TESTS
 #define COMSIG_UNITTEST_DATA "unittest_send_data"
