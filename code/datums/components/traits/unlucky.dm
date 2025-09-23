@@ -506,3 +506,16 @@
 	. = ..()
 	var/mob/living/living_parent = parent
 	living_parent.remove_filter("omen")
+
+/**
+ * The dice omen.
+ * Single use omen from rolling a nat 1 on a cursed d20.
+ */
+/datum/component/omen/dice
+	incidents_left = 1
+
+///Dice omen but on par with the trait in damage and doesn't do the more evil things.
+/datum/component/omen/dice/minor
+	luck_mod = 1 // 30% chance of bad things happening
+	damage_mod = 0.25 // 25% of normal damage
+	evil = FALSE

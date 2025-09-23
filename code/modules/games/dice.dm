@@ -91,10 +91,10 @@
 	sides = 10
 	result = 10
 
-/obj/item/dice/attack_self(mob/user as mob)
+/obj/item/dice/attack_self(mob/user)
 	rollDice(user, 0)
 
-/obj/item/dice/proc/rollDice(mob/user as mob, var/silent = 0)
+/obj/item/dice/proc/rollDice(mob/user, silent = FALSE)
 	result = rand(1, sides)
 	if(loaded)
 		if(cheater)
@@ -195,18 +195,18 @@
 		/obj/item/dice,
 		)
 
-/obj/item/storage/dicecup/attack_self(mob/user as mob)
+/obj/item/storage/dicecup/attack_self(mob/user)
 	user.visible_message(span_notice("[user] shakes [src]."), \
 							span_notice("You shake [src]."), \
 							span_notice("You hear dice rolling."))
 	rollCup(user)
 
-/obj/item/storage/dicecup/proc/rollCup(mob/user as mob)
+/obj/item/storage/dicecup/proc/rollCup(mob/user)
 	for(var/obj/item/dice/I in src.contents)
 		var/obj/item/dice/D = I
 		D.rollDice(user, 1)
 
-/obj/item/storage/dicecup/proc/revealDice(var/mob/viewer)
+/obj/item/storage/dicecup/proc/revealDice(mob/viewer)
 	for(var/obj/item/dice/I in src.contents)
 		var/obj/item/dice/D = I
 		to_chat(viewer, "The [D.name] shows a [D.result].")
@@ -233,3 +233,23 @@
 	. = ..()
 	for(var/i = 1 to 5)
 		new /obj/item/dice(src)
+
+/obj/item/dice/d20/cursed
+	name = "d20"
+	desc = "A dice with twenty sides."
+	icon_state = "d2020"
+	sides = 20
+	result = 20
+
+	///If the dice will apply the major version of unlucky or not.
+	var/evil = TRUE
+
+
+/obj/item/dice/d20/cursed/rollDice(mob/user, silent = FALSE)
+	..()
+	if(result == 1)
+		to_chat(user, span_cult("You feel extraordinarily unlucky..."))
+		if(evil)
+			user.AddComponent(/datum/component/omen/dice)
+		else
+			user.AddComponent(/datum/component/omen/dice/minor)
