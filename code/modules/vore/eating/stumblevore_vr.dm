@@ -32,22 +32,14 @@
 /mob/living/stumble_into(mob/living/M)
 	if(buckled || M.buckled)
 		return
+
+	//Stumblevore occurs here. Look at the 'stumblevore' element for more information.
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STUMBLED_INTO, M) & CANCEL_STUMBLED_INTO)
 		return
+
 	playsound(src, "punch", 25, 1, -1)
 	M.Weaken(4)
 	M.stop_flying()
-	if(CanStumbleVore(M)) //This is if the person stumbling into us is able to eat us!
-		visible_message(span_vwarning("[M] flops carelessly into [src]!"))
-		M.forceMove(get_turf(src))
-		begin_instant_nom(src,M,src,src.vore_selected)
-		return
-
-	if(M.CanStumbleVore(src)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
-		visible_message(span_vwarning("[M] flops carelessly into [src]!"))
-		M.forceMove(get_turf(src))
-		begin_instant_nom(M,src,M,M.vore_selected)
-		return
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/S = src

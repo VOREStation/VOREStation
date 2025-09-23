@@ -1,40 +1,31 @@
 /datum/element/stumblevore
-	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY|ELEMENT_BESPOKE
-	argument_hash_start_idx = 2
-
 
 /datum/element/stumblevore/Attach(datum/target)
 	. = ..()
 	if(!isliving(target))
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(clean))
+	RegisterSignal(target, COMSIG_LIVING_STUMBLED_INTO, PROC_REF(handle_stumble))
 
-/datum/element/cleaning/Detach(datum/target)
+/datum/element/stumblevore/Detach(datum/target)
 	. = ..()
-	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(target, COMSIG_LIVING_STUMBLED_INTO)
 
-/datum/element/cleaning/proc/clean(datum/source)
+///Source is the one being bumped into (Owner of this component)
+///Target is the one bumping into us.
+/datum/element/stumblevore/proc/handle_stumble(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	var/atom/movable/AM = source
-	var/turf/tile = AM.loc
-	if(!isturf(tile))
-		return
+	//We are able to eat the person stumbling into us.
+	if(source.CanStumbleVore(target)) //This is if the person stumbling into us is able to eat us!
+		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
+		source.begin_instant_nom(source, prey = target, pred = source, belly = source.vore_selected)
+		target.stop_flying()
+		return CANCEL_STUMBLED_INTO
 
-	tile.wash(CLEAN_WASH)
-
-	for(var/atom/cleaned as anything in tile)
-		if(isitem(cleaned))
-			var/obj/item/cleaned_item = cleaned
-			if(cleaned_item.w_class <= ITEMSIZE_SMALL)
-				cleaned_item.wash(CLEAN_SCRUB)
-			continue
-		if(istype(cleaned, /obj/effect/decal/cleanable))
-			var/obj/effect/decal/cleanable/cleaned_decal = cleaned
-			cleaned_decal.wash(CLEAN_SCRUB)
-		if(!ishuman(cleaned))
-			continue
-		var/mob/living/carbon/human/cleaned_human = cleaned
-		if(cleaned_human.lying)
-			cleaned_human.wash(CLEAN_SCRUB)
-			to_chat(cleaned_human, span_danger("[AM] washes your face!"))
+	//The person stumbling into us is able to eat us.
+	if(target.CanStumbleVore(source)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
+		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
+		target.forceMove(get_turf(source))
+		source.begin_instant_nom(target, prey = source, pred = target, belly = target.vore_selected)
+		source.stop_flying()
+		return CANCEL_STUMBLED_INTO
