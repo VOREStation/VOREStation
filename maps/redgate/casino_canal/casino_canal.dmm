@@ -18,6 +18,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/space)
+"ad" = (
+/obj/structure/table/rack,
+/obj/item/towel/random{
+	pixel_y = 8
+	},
+/obj/item/towel/random{
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/white,
+/area/space)
 "ae" = (
 /obj/machinery/door/window/westleft{
 	pixel_x = -4
@@ -381,6 +391,24 @@
 "aP" = (
 /turf/simulated/floor/carpet/purcarpet,
 /area/space)
+"aQ" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/space)
+"aR" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = 28;
+	pixel_y = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/space)
 "aS" = (
 /obj/structure/table/hardwoodtable,
 /obj/item/reagent_containers/food/condiment/small/saltshaker{
@@ -392,6 +420,16 @@
 	pixel_y = -6
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/space)
+"aT" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
+	},
+/obj/machinery/door/window/northleft,
+/turf/simulated/floor/tiled/white,
 /area/space)
 "aU" = (
 /obj/structure/prop/transmitter,
@@ -626,6 +664,9 @@
 /obj/item/storage/dicecup,
 /turf/simulated/floor/carpet/purcarpet,
 /area/space)
+"bs" = (
+/turf/simulated/floor/tiled/white,
+/area/space)
 "bt" = (
 /obj/structure/casino_table/craps{
 	dir = 1
@@ -652,7 +693,16 @@
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "bv" = (
-/obj/effect/floor_decal/steeldecal/steel_decals5/purple,
+/obj/effect/floor_decal/borderfloor/purple,
+/obj/effect/floor_decal/corner/white/border,
+/obj/effect/floor_decal/borderfloor/corner2/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2,
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "bw" = (
@@ -716,19 +766,10 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/space)
 "bC" = (
-/obj/effect/floor_decal/borderfloor/purple{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/beige/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner2/purple{
+/obj/structure/railing{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/beige/bordercorner2{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/purple,
+/turf/simulated/floor/water/underwater/wood,
 /area/space)
 "bD" = (
 /obj/effect/floor_decal/borderfloor/purple{
@@ -1487,23 +1528,14 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/space)
 "dE" = (
-/obj/machinery/button/remote/airlock{
-	pixel_y = 28;
-	pixel_x = -2
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 1
 	},
-/obj/machinery/button/remote/airlock/release{
-	pixel_x = -9;
-	pixel_y = 28
+/obj/machinery/holoposter{
+	dir = 4;
+	pixel_x = -30
 	},
-/obj/machinery/light_switch{
-	pixel_y = 28;
-	pixel_x = 6
-	},
-/obj/structure/privacyswitch{
-	pixel_y = 28;
-	pixel_x = 11
-	},
-/turf/simulated/floor/wood/alt/panel,
+/turf/simulated/floor/wood/alt/parquet,
 /area/space)
 "dF" = (
 /obj/structure/bed/chair/sofa/corp/right,
@@ -1523,23 +1555,19 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/space)
 "dJ" = (
-/obj/machinery/button/remote/airlock{
-	pixel_y = 28;
-	pixel_x = -2
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 10
 	},
-/obj/machinery/button/remote/airlock/release{
-	pixel_x = -9;
-	pixel_y = 28
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 10
 	},
-/obj/machinery/light_switch{
-	pixel_y = 28;
-	pixel_x = 6
+/obj/effect/floor_decal/borderfloor/corner2/purple{
+	dir = 9
 	},
-/obj/structure/privacyswitch{
-	pixel_y = 28;
-	pixel_x = 11
+/obj/effect/floor_decal/corner/beige/bordercorner2{
+	dir = 9
 	},
-/turf/simulated/floor/wood/alt/parquet,
+/turf/simulated/floor/tiled/purple,
 /area/space)
 "dK" = (
 /obj/structure/bed/chair/sofa/corp/right,
@@ -1610,22 +1638,24 @@
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "dV" = (
-/obj/effect/floor_decal/borderfloor/purple,
-/obj/effect/floor_decal/corner/blue/border,
-/obj/effect/floor_decal/borderfloor/corner2/purple{
-	dir = 9
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 8
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2/purple{
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7/purple{
-	dir = 1
+	dir = 5
 	},
-/obj/effect/floor_decal/corner/blue/bordercorner2{
-	dir = 9
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 6
 	},
-/obj/effect/floor_decal/borderfloor/corner2/purple,
-/obj/effect/floor_decal/corner/blue/bordercorner2,
+/obj/effect/floor_decal/corner/beige/bordercorner2{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "dW" = (
@@ -1696,23 +1726,6 @@
 	},
 /turf/simulated/floor/tiled/purple,
 /area/space)
-"eb" = (
-/obj/effect/floor_decal/borderfloor/purple,
-/obj/effect/floor_decal/corner/white/border,
-/obj/effect/floor_decal/borderfloor/corner2/purple{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/purple,
-/area/space)
 "ec" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 6
@@ -1731,19 +1744,11 @@
 /turf/simulated/floor/water/underwater/sand,
 /area/space)
 "ef" = (
-/obj/effect/floor_decal/borderfloor/purple{
-	dir = 9
+/obj/structure/lattice,
+/obj/structure/railing{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/blue/border{
-	dir = 9
-	},
-/obj/effect/floor_decal/borderfloor/corner2/purple{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/blue/bordercorner2{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/purple,
+/turf/simulated/open,
 /area/space)
 "eg" = (
 /obj/effect/floor_decal/borderfloor/purple{
@@ -1854,7 +1859,7 @@
 /obj/effect/floor_decal/borderfloor/corner/purple{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/white/bordercorner{
+/obj/effect/floor_decal/corner/blue/bordercorner{
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7/purple{
@@ -1889,27 +1894,6 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7/purple{
 	dir = 6
-	},
-/turf/simulated/floor/tiled/purple,
-/area/space)
-"es" = (
-/obj/effect/floor_decal/borderfloor/purple{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor/corner2/purple{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	dir = 5
 	},
 /turf/simulated/floor/tiled/purple,
 /area/space)
@@ -2004,17 +1988,12 @@
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "eD" = (
-/obj/effect/floor_decal/borderfloor/purple{
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/effect/floor_decal/corner/white/diagonal{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
-	dir = 10
+/obj/machinery/vending/cola/soft{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
 /area/space)
@@ -2141,32 +2120,31 @@
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/space)
 "eO" = (
-/obj/machinery/vending/coffee{
-	dir = 8
-	},
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
 	},
 /obj/effect/floor_decal/corner/purple{
 	dir = 5
 	},
+/obj/machinery/vending/loadout/uniform,
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "eP" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 9
 	},
-/obj/effect/floor_decal/corner/white/border{
+/obj/effect/floor_decal/corner/blue/border{
 	dir = 9
 	},
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "eQ" = (
-/obj/effect/floor_decal/borderfloor/purple{
-	dir = 5
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/effect/floor_decal/corner/white/diagonal{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/blue/border{
-	dir = 5
+/obj/machinery/vending/cigarette{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
 /area/space)
@@ -2206,15 +2184,13 @@
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "eV" = (
-/obj/machinery/vending/cigarette{
-	dir = 8
-	},
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
 	},
 /obj/effect/floor_decal/corner/purple{
 	dir = 5
 	},
+/obj/machinery/vending/loadout/loadout_misc,
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "eW" = (
@@ -2235,17 +2211,7 @@
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
 	},
-/obj/machinery/vending/loadout/gadget,
-/turf/simulated/floor/tiled/purple,
-/area/space)
-"eY" = (
-/obj/machinery/vending/loadout,
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/purple{
-	dir = 10
-	},
+/obj/machinery/vending/loadout/costume,
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "eZ" = (
@@ -2255,7 +2221,7 @@
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
 	},
-/obj/machinery/vending/loadout/loadout_misc,
+/obj/machinery/vending/loadout,
 /turf/simulated/floor/tiled/purple,
 /area/space)
 "fa" = (
@@ -2657,12 +2623,407 @@
 /mob/living/simple_mob/vore/jelly,
 /turf/simulated/floor/water/underwater,
 /area/space)
+"fL" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"fM" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 8
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"fN" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"fO" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 1
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"fP" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"fQ" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 4
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"fR" = (
+/turf/simulated/floor/water/deep/indoors,
+/area/space)
+"fS" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 4
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"fT" = (
+/obj/structure/bed/chair/sofa/corp/right,
+/turf/simulated/floor/carpet/blue,
+/area/space)
+"fU" = (
+/obj/structure/bed/chair/sofa/corp,
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/turf/simulated/floor/carpet/blue,
+/area/space)
+"fV" = (
+/obj/structure/bed/chair/sofa/corp/left,
+/turf/simulated/floor/carpet/blue,
+/area/space)
+"fW" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"fX" = (
+/obj/machinery/vending/loadout/costume,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/space)
+"fY" = (
+/obj/machinery/vending/loadout/loadout_misc,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/space)
+"fZ" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/turf/simulated/floor/wood/sif,
+/area/space)
+"ga" = (
+/obj/machinery/door/window/westleft,
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"gb" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"gc" = (
+/obj/structure/table/woodentable,
+/obj/structure/closet/walllocker_double/casino/south,
+/obj/item/storage/pill_bottle/dice{
+	pixel_y = 12;
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/dice_nerd{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/obj/item/deck/cards/triple{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"gd" = (
+/turf/simulated/floor/water/indoors,
+/area/space)
+"ge" = (
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"gf" = (
+/obj/structure/table/gamblingtable,
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"gg" = (
+/obj/structure/bed/chair/bay/comfy/brown{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"gh" = (
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"gi" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/wood/sif,
+/area/space)
+"gj" = (
+/obj/structure/table/gamblingtable,
+/obj/item/deck/cards/casino,
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"gk" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/obj/machinery/holoposter{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood/sif,
+/area/space)
+"gl" = (
+/obj/structure/bed/chair/bay/comfy/black,
+/turf/simulated/floor/carpet/blue2,
+/area/space)
+"gm" = (
+/obj/machinery/button/remote/airlock{
+	pixel_y = 28;
+	pixel_x = -2
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28;
+	pixel_x = 6
+	},
+/obj/structure/privacyswitch{
+	pixel_y = 28;
+	pixel_x = 11
+	},
+/turf/simulated/floor/wood/alt/panel,
+/area/space)
+"gn" = (
+/obj/machinery/button/remote/airlock{
+	pixel_y = 28;
+	pixel_x = -2
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28;
+	pixel_x = 6
+	},
+/obj/structure/privacyswitch{
+	pixel_y = 28;
+	pixel_x = 11
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/space)
+"go" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner,
+/turf/simulated/floor/wood/sif,
+/area/space)
+"gp" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/turf/simulated/floor/wood/sif,
+/area/space)
+"gq" = (
+/obj/machinery/button/remote/airlock{
+	pixel_y = 28;
+	pixel_x = -2
+	},
+/obj/machinery/light_switch{
+	pixel_y = 28;
+	pixel_x = 6
+	},
+/obj/structure/privacyswitch{
+	pixel_y = 28;
+	pixel_x = 11
+	},
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/machinery/button/windowtint/multitint{
+	pixel_x = -9;
+	pixel_y = 28
+	},
+/turf/simulated/floor/wood/sif,
+/area/space)
+"gr" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/turf/simulated/floor/wood/sif,
+/area/space)
+"gs" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/structure/flora/pottedplant/orientaltree{
+	pixel_y = 15;
+	pixel_x = 9
+	},
+/turf/simulated/floor/wood/sif,
+/area/space)
+"gt" = (
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 8
+	},
+/obj/machinery/media/jukebox,
+/turf/simulated/floor/wood/sif,
+/area/space)
+"gu" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full,
+/obj/structure/window/reinforced/polarized,
+/obj/structure/window/reinforced/polarized{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/space)
+"gv" = (
+/obj/machinery/vending/loadout/costume,
+/turf/simulated/floor/tiled/techfloor,
+/area/space)
+"gw" = (
+/obj/machinery/vending/loadout/loadout_misc,
+/turf/simulated/floor/tiled/techfloor,
+/area/space)
+"gx" = (
+/obj/effect/floor_decal/borderfloor/purple,
+/obj/effect/floor_decal/corner/beige/border,
+/obj/effect/floor_decal/borderfloor/corner2/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/beige/bordercorner2,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"gy" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full,
+/obj/structure/window/reinforced/polarized{
+	dir = 8
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/space)
+"gz" = (
+/obj/machinery/door/window/westleft,
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"gA" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"gB" = (
+/obj/structure/table/woodentable,
+/obj/structure/closet/walllocker_double/casino/south,
+/obj/item/storage/pill_bottle/dice{
+	pixel_y = 12;
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/dice_nerd{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/obj/item/deck/cards/triple{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"gC" = (
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"gD" = (
+/obj/structure/table/gamblingtable,
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"gE" = (
+/obj/structure/bed/chair/bay/comfy/brown{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"gF" = (
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"gG" = (
+/obj/effect/floor_decal/borderfloor/corner/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/white/bordercorner{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"gH" = (
+/obj/structure/table/gamblingtable,
+/obj/item/deck/cards/casino,
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"gI" = (
+/obj/structure/bed/chair/bay/comfy/black,
+/turf/simulated/floor/carpet/brown,
+/area/space)
+"gJ" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
 "gK" = (
 /obj/machinery/door/airlock/angled_bay/hatch{
 	name = "maintenance access";
 	stripe_color = "#454545"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
+/area/space)
+"gL" = (
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/effect/floor_decal/corner/white/diagonal{
+	dir = 4
+	},
+/obj/machinery/vending/coffee{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"gM" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"gN" = (
+/obj/machinery/vending/loadout/gadget,
+/obj/effect/floor_decal/corner/purple{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
+"gO" = (
+/obj/machinery/holosign/bar{
+	id = "maintbar";
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/milspec/raised,
 /area/space)
 "hC" = (
 /obj/structure/bed/chair/sofa/corp/right{
@@ -6514,8 +6875,8 @@ px
 px
 px
 px
-PF
-PF
+px
+px
 PF
 kH
 kH
@@ -6656,7 +7017,7 @@ px
 px
 px
 px
-PF
+px
 PF
 PF
 kH
@@ -7080,8 +7441,8 @@ PF
 PF
 PF
 PF
-PF
-PF
+kH
+kH
 PF
 PF
 kH
@@ -7221,10 +7582,10 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
+kH
+kH
+kH
+kH
 PF
 kH
 kH
@@ -7363,10 +7724,10 @@ kH
 dr
 kH
 kH
-kP
-dr
-PF
-PF
+kH
+kH
+kH
+kH
 PF
 kH
 kH
@@ -7507,8 +7868,8 @@ kH
 kH
 dr
 kH
-PF
-PF
+kH
+kH
 PF
 kH
 kH
@@ -7649,8 +8010,8 @@ kH
 kH
 kH
 kH
-PF
-PF
+kH
+kH
 PF
 kH
 kH
@@ -7791,21 +8152,21 @@ kH
 kH
 dr
 kH
+kH
+kH
+PF
+kH
+kH
+kH
+kH
+kH
+kH
+kH
 PF
 PF
 PF
-kH
-kH
-kH
-kH
-kH
-kH
-kH
-kH
-kH
-kH
-kH
-kH
+PF
+PF
 PF
 PF
 PF
@@ -7925,14 +8286,14 @@ PF
 kH
 kH
 kH
-kH
+bC
 kH
 kH
 dr
 kH
 kH
-kH
-kH
+PF
+Wl
 PF
 PF
 PF
@@ -7940,14 +8301,14 @@ PF
 PF
 dT
 PF
-kH
-kH
-kH
-kH
-kH
-kH
-kH
-kH
+PF
+PF
+dT
+PF
+fR
+fR
+fR
+PF
 PF
 PF
 PF
@@ -8066,30 +8427,30 @@ PF
 PF
 kH
 kH
-kH
+PF
 ak
 dr
 kH
 kH
 kH
 kH
-kH
-kH
 PF
-PF
-PF
-PF
-ef
+Fs
+Fs
+gK
+nG
+nG
+nG
 dU
 PF
+bs
+bs
+bs
 PF
+fR
+fR
+fR
 PF
-PF
-PF
-PF
-kH
-kH
-kH
 PF
 PF
 PF
@@ -8215,22 +8576,22 @@ PF
 kH
 kH
 kH
-kH
-kH
 PF
+Fs
+kP
 PF
+ie
+BQ
+BQ
+bv
 PF
-PF
-eg
-dV
-PF
-dC
-dm
-da
-cJ
-PF
-PF
-PF
+bs
+bs
+bs
+gd
+fR
+fR
+fR
 PF
 PF
 PF
@@ -8355,25 +8716,25 @@ PF
 PF
 PF
 PF
+Wl
 PF
 PF
+Fs
+kP
 PF
+aj
+BQ
+BQ
+dZ
 PF
+bs
+bs
+bs
+gd
+fR
+fR
+fR
 PF
-PF
-PF
-PF
-eh
-dW
-cI
-dD
-dn
-cK
-cK
-PF
-PF
-cC
-ac
 PF
 PF
 PF
@@ -8500,22 +8861,22 @@ Fs
 Fs
 Fs
 Fs
-kP
-kP
 Fs
 kP
 PF
-eg
-dX
 PF
-dE
-do
-cL
-cL
-cI
-kw
-cD
-ae
+PF
+em
+dY
+PF
+PF
+PF
+PF
+PF
+PF
+PF
+PF
+PF
 PF
 PF
 PF
@@ -8647,17 +9008,17 @@ Fs
 Fs
 Fs
 gK
-eh
-dY
+eg
+ea
 PF
-dF
-do
-cL
-cL
+dC
+dm
+da
+cJ
 PF
-cG
-cE
-cn
+PF
+PF
+PF
 PF
 PF
 PF
@@ -8789,17 +9150,17 @@ PF
 PF
 PF
 PF
-eg
-dZ
+eh
+dW
+cI
+dD
+dn
+cK
+cK
 PF
-dG
-do
-db
-cM
 PF
-cH
-cF
-cB
+cC
+ac
 PF
 PF
 PF
@@ -8930,18 +9291,18 @@ eK
 eK
 eE
 bZ
+PE
+el
+dX
 PF
-ei
-dY
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+gm
+do
+cL
+cL
+cI
+kw
+cD
+ae
 PF
 PF
 PF
@@ -9074,16 +9435,16 @@ eF
 ey
 eq
 aH
-ea
+dY
 PF
-dC
-dm
-da
-cJ
+dF
+do
+cL
+cL
 PF
-PF
-PF
-PF
+cG
+cE
+cn
 PF
 PF
 PF
@@ -9209,23 +9570,23 @@ kH
 PF
 Fs
 PF
-eY
+fa
 eT
 nG
 nG
 ez
 Ac
 aI
-dW
-cI
-dD
-dp
-cN
-cN
+dZ
 PF
+dG
+do
+db
+cM
 PF
-cC
-ac
+cH
+cF
+cB
 PF
 PF
 PF
@@ -9357,17 +9718,17 @@ nG
 nG
 eA
 PE
-ek
-dX
+em
+dY
 PF
-dE
-dq
-cO
-cO
-cI
-kw
-cD
-ae
+PF
+PF
+PF
+PF
+PF
+PF
+PF
+PF
 PF
 PF
 PF
@@ -9493,23 +9854,23 @@ ff
 kP
 Fs
 PF
-fa
+fb
 eT
 nG
 nG
 eA
 PE
-eh
-dY
+eg
+ea
 PF
-dF
-dq
-cO
-cO
+dC
+dm
+da
+cJ
 PF
-cG
-cE
-cn
+PF
+PF
+PF
 PF
 PF
 PF
@@ -9635,23 +9996,23 @@ PF
 PF
 Fs
 PF
-fb
+fc
 eT
 nG
 nG
 eA
 PE
-el
-dZ
+ei
+dW
+cI
+dD
+dp
+cN
+cN
 PF
-dG
-dq
-dc
-cP
 PF
-cH
-cF
-cB
+cC
+ac
 PF
 PF
 PF
@@ -9777,23 +10138,23 @@ kH
 PF
 Fs
 PF
-fc
+gN
 eT
 nG
 nG
 ey
 eq
 aH
-dY
+dX
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+gm
+dq
+cO
+cO
+cI
+kw
+cD
+ae
 PF
 PF
 PF
@@ -9926,16 +10287,16 @@ eG
 ez
 Ac
 aI
-ea
+dY
 PF
-dC
-dm
-da
-cJ
+dF
+dq
+cO
+cO
 PF
-PF
-PF
-PF
+cG
+cE
+cn
 PF
 PF
 PF
@@ -10066,18 +10427,18 @@ eV
 eO
 eH
 eB
+PE
+ek
+dZ
 PF
-em
-dW
-cI
-dD
-ds
-cQ
-cQ
+dG
+dq
+dc
+cP
 PF
-PF
-cC
-ac
+cH
+cF
+cB
 PF
 PF
 PF
@@ -10204,22 +10565,22 @@ Fs
 Fs
 Fs
 PF
-kP
 PF
 PF
 PF
 PF
-eg
-dX
 PF
-dE
-dt
-zV
-zV
-cI
-kw
-cD
-ae
+eh
+dY
+PF
+PF
+PF
+PF
+PF
+PF
+PF
+PF
+PF
 PF
 PF
 PF
@@ -10351,17 +10712,17 @@ Fs
 Fs
 Fs
 gK
-eh
-dY
+eg
+ea
 PF
-dF
-dt
-zV
-zV
+dC
+dm
+da
+cJ
 PF
-cG
-cE
-cn
+PF
+PF
+PF
 PF
 PF
 PF
@@ -10493,21 +10854,21 @@ Fs
 Fs
 Fs
 PF
-eg
-dZ
-PF
-dG
-dt
-dd
-cR
-PF
-cH
-cF
-cB
+eh
+dW
+cI
+dD
+ds
+cQ
+cQ
 PF
 PF
+cC
+ac
 PF
 PF
+PF
+kP
 PF
 PF
 PF
@@ -10635,21 +10996,21 @@ Fs
 kP
 kP
 PF
-eh
-dY
+eg
+dX
 PF
+gm
+dt
+zV
+zV
+cI
+kw
+cD
+ae
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+pL
+kP
+kP
 PF
 PF
 PF
@@ -10777,21 +11138,21 @@ Fs
 kP
 pL
 PF
-eg
-ea
+eh
+dY
 PF
-dH
-du
-de
-cS
+dF
+dt
+zV
+zV
 PF
-PF
-PF
-PF
-PF
-PF
+cG
+cE
+cn
 PF
 PF
+PF
+kP
 PF
 PF
 PF
@@ -10919,17 +11280,17 @@ Wl
 PF
 PF
 PF
-eh
-dW
-cI
-dI
-dv
-cT
-cT
+eg
+dZ
 PF
+dG
+dt
+dd
+cR
 PF
-cC
-ac
+cH
+cF
+cB
 PF
 PF
 PF
@@ -11058,20 +11419,20 @@ kP
 kP
 PF
 eP
-er
 eC
 er
+eC
 en
-dX
+dY
 PF
-dJ
-dw
-rq
-rq
-cI
-kw
-cD
-ae
+PF
+PF
+PF
+PF
+PF
+PF
+PF
+PF
 PF
 PF
 PF
@@ -11199,21 +11560,21 @@ PF
 kP
 kP
 PF
-eh
+eg
+eI
 nG
 nG
 nG
-nG
-dY
+ea
 PF
-dK
-dw
-rq
-rq
+dH
+du
+de
+cS
 PF
-cG
-cE
-cn
+PF
+PF
+PF
 PF
 PF
 PF
@@ -11341,21 +11702,21 @@ PF
 kP
 kP
 PF
-eg
-eI
+gM
+eJ
+gJ
+gG
 nG
-nG
-nG
-dZ
+dW
+cI
+dI
+dv
+cT
+cT
 PF
-dL
-dw
-df
-cU
 PF
-cH
-cF
-cB
+cC
+ac
 PF
 PF
 PF
@@ -11484,20 +11845,20 @@ PF
 PF
 PF
 eQ
-eJ
+gL
 eD
-es
+ei
 nG
-eb
+dX
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+gn
+dw
+rq
+rq
+cI
+kw
+cD
+ae
 PF
 PF
 PF
@@ -11630,17 +11991,17 @@ PF
 ie
 BQ
 BQ
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
+dY
+PF
+dK
+dw
+rq
+rq
+PF
+cG
+cE
+cn
+PF
 PF
 PF
 PF
@@ -11772,17 +12133,17 @@ PF
 aj
 BQ
 BQ
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
-nG
+ea
+PF
+dL
+dw
+df
+cU
+PF
+cH
+cF
+cB
+PF
 PF
 PF
 PF
@@ -11925,9 +12286,9 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
+cC
+aT
+ad
 PF
 PF
 PF
@@ -12056,20 +12417,20 @@ kP
 PF
 ev
 nG
-nG
+gx
+gu
+go
+gk
+fZ
+fZ
+fZ
+cI
+fP
+dI
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+bs
+aQ
 PF
 PF
 PF
@@ -12198,20 +12559,20 @@ kP
 PF
 ev
 nG
-dZ
+aq
+gu
+gp
+rq
+ge
+ge
+rq
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fS
+fO
+fL
+cI
+bs
+aR
 PF
 PF
 PF
@@ -12340,17 +12701,17 @@ kP
 PF
 ev
 nG
-dZ
+aq
+cI
+gp
+rq
+gf
+gf
+ga
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fT
+fP
+fM
 PF
 PF
 PF
@@ -12482,17 +12843,17 @@ kP
 PF
 ev
 nG
-dZ
+aq
+gu
+gp
+gl
+gf
+rq
+rq
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fU
+fP
+dI
 PF
 PF
 PF
@@ -12624,17 +12985,17 @@ PF
 PF
 ev
 nG
-dZ
+aq
+gu
+gp
+gl
+gj
+gg
+gb
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fV
+fP
+fN
 PF
 PF
 PF
@@ -12766,17 +13127,17 @@ ax
 ax
 ew
 nG
-dZ
+aq
 PF
+gq
+gl
+gf
+rq
+gc
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fW
+fQ
+fN
 PF
 PF
 PF
@@ -12908,17 +13269,17 @@ nG
 nG
 nG
 nG
-dZ
+aq
+PF
+gr
+rq
+gf
+gf
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fO
+dI
+cS
 PF
 PF
 PF
@@ -13042,25 +13403,25 @@ az
 az
 az
 az
+az
+az
+az
+az
 fe
 nG
-eW
-az
-az
-az
-az
-az
-ec
+nG
+nG
+aq
 PF
+gs
+rq
+gh
+gh
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fX
+fP
+dI
+cS
 PF
 PF
 PF
@@ -13184,24 +13545,24 @@ PF
 PF
 PF
 PF
-av
+PF
+PF
+PF
+PF
+ev
+nG
+nG
 nG
 aq
 PF
+gt
+gi
+gi
+gi
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fY
+fP
+fN
 PF
 PF
 PF
@@ -13325,16 +13686,16 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
 PF
-av
-nG
-aq
-PF
-PF
-PF
-PF
-PF
-PF
+ay
+az
+az
+az
+ec
 PF
 PF
 PF
@@ -13466,24 +13827,24 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
 PF
+gy
+gy
+dT
+gy
+gy
 PF
-av
-nG
-aq
+dE
+dI
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+cC
+aT
+ad
 PF
 PF
 PF
@@ -13608,24 +13969,24 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
+PF
+go
+fZ
+fZ
+fZ
+fZ
+cI
+fP
+dI
 PF
 PF
-av
-nG
-aq
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+bs
+aQ
 PF
 PF
 PF
@@ -13750,24 +14111,24 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
 PF
+gq
+zV
+gC
+gC
+zV
 PF
-av
-nG
-aq
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fS
+fO
+fL
+cI
+bs
+aR
 PF
 PF
 PF
@@ -13892,21 +14253,21 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
 PF
+gp
+zV
+gD
+gD
+gz
 PF
-av
-nG
-aq
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fT
+fP
+fM
 PF
 PF
 PF
@@ -14034,21 +14395,21 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
 PF
+gp
+gI
+gD
+zV
+zV
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fU
+fP
+dI
 PF
 PF
 PF
@@ -14176,21 +14537,21 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
 PF
+gp
+gI
+gH
+gE
+gA
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fV
+fP
+fN
 PF
 PF
 PF
@@ -14318,21 +14679,21 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
 PF
+gp
+gI
+gD
+zV
+gB
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fW
+fQ
+fN
 PF
 PF
 PF
@@ -14460,21 +14821,21 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
+PF
+gr
+zV
+gD
+gD
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+fO
+dI
+cS
 PF
 PF
 PF
@@ -14602,21 +14963,21 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
 PF
+gs
+zV
+gF
+gF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+gv
+fP
+dI
+cS
 PF
 PF
 PF
@@ -14744,20 +15105,20 @@ PF
 PF
 PF
 PF
+px
+px
+px
+px
+px
 PF
+gt
+gi
+gi
+gi
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+gw
+fP
+fN
 PF
 PF
 PF
@@ -14886,11 +15247,11 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
+px
+px
+px
+px
+px
 PF
 PF
 PF
@@ -15026,26 +15387,26 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
 PF
 PF
 PF
@@ -15168,26 +15529,26 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
 PF
 PF
 PF
@@ -15310,26 +15671,26 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
 PF
 PF
 PF
@@ -15452,26 +15813,26 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
 PF
 PF
 PF
@@ -15594,25 +15955,6 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
 px
 px
 px
@@ -15621,6 +15963,25 @@ px
 px
 px
 px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+PF
+PF
+PF
+PF
+PF
+PF
+PF
 px
 px
 px
@@ -15736,25 +16097,6 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
 px
 px
 px
@@ -15763,6 +16105,25 @@ px
 px
 px
 px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+PF
+PF
+PF
+PF
+PF
+PF
+PF
 px
 px
 px
@@ -15878,25 +16239,6 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
 px
 px
 px
@@ -15905,6 +16247,25 @@ px
 px
 px
 px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+PF
+PF
+PF
+PF
+PF
+PF
+PF
 px
 px
 px
@@ -16020,25 +16381,25 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
 px
 px
 px
@@ -16162,25 +16523,25 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
 px
 px
 px
@@ -16304,25 +16665,25 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
 px
 px
 px
@@ -16446,25 +16807,25 @@ PF
 PF
 PF
 PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
-PF
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
+px
 px
 px
 px
@@ -27394,8 +27755,8 @@ PF
 kP
 kP
 PF
-ce
-ce
+PF
+PF
 ce
 ce
 ce
@@ -27535,9 +27896,9 @@ bp
 PF
 kP
 kP
+kP
+kP
 PF
-PF
-ce
 ce
 ce
 ce
@@ -27678,7 +28039,7 @@ PF
 kP
 kP
 kP
-PF
+kP
 PF
 PF
 PE
@@ -27806,8 +28167,8 @@ PE
 eo
 bW
 bW
-bW
-eo
+ef
+ef
 eo
 eo
 PF
@@ -27954,14 +28315,14 @@ sP
 eo
 sP
 PF
-bC
-nG
-bu
+cc
+dU
+dV
+dJ
 PF
-kP
-kP
-kP
-kP
+PF
+PF
+PF
 kP
 kP
 kP
@@ -28098,11 +28459,11 @@ sP
 PF
 bD
 nG
-bv
-gK
-kP
-kP
-kP
+nG
+nG
+sP
+sP
+sP
 PF
 PF
 PF
@@ -28240,11 +28601,11 @@ PF
 PF
 bE
 nG
-bu
-PF
-PF
-kP
-kP
+nG
+nG
+sP
+sP
+sP
 PF
 kP
 kP
@@ -28386,7 +28747,7 @@ bm
 bm
 PF
 PF
-kP
+PF
 PF
 kP
 kP
@@ -28529,7 +28890,7 @@ af
 zv
 PF
 kP
-PF
+kP
 kP
 kP
 kP
@@ -28945,7 +29306,7 @@ ZQ
 rW
 ej
 PE
-bm
+gO
 ve
 af
 af
@@ -29360,7 +29721,7 @@ co
 ci
 cj
 PF
-Bu
+PE
 Bu
 Bu
 cb
@@ -29953,11 +30314,11 @@ aM
 aM
 aM
 PF
-kP
-kP
-kP
-kP
-kP
+PF
+PF
+PF
+PF
+PF
 kP
 kP
 kP
@@ -30099,9 +30460,9 @@ kP
 kP
 kP
 kP
-kP
-kP
-kP
+PF
+PF
+PF
 kP
 kP
 kP
@@ -30243,7 +30604,7 @@ kP
 kP
 kP
 kP
-kP
+PF
 kP
 kP
 kP
@@ -30378,16 +30739,16 @@ aK
 kP
 kP
 kP
+kP
+kP
+kP
+kP
+kP
+kP
+kP
 PF
-kP
-kP
-kP
-kP
-kP
-kP
-kP
-kP
-kP
+PF
+PF
 kP
 kP
 kP
@@ -30520,16 +30881,16 @@ Fs
 Fs
 Fs
 Fs
+Fs
+Fs
+Fs
+Fs
+Fs
+Fs
+Fs
+Fs
+eo
 PF
-kP
-kP
-kP
-kP
-kP
-kP
-kP
-kP
-kP
 kP
 kP
 kP
@@ -30662,16 +31023,16 @@ ka
 Fy
 Fy
 Fy
+kP
+kP
+kP
+kP
+kP
+kP
+Fs
 PF
-kP
-kP
-kP
-kP
-kP
-kP
-kP
-kP
-kP
+PF
+PF
 kP
 kP
 kP
@@ -30810,7 +31171,7 @@ PF
 PF
 PF
 PF
-PF
+Fs
 PF
 PF
 PF
@@ -30940,11 +31301,11 @@ bG
 nG
 bz
 aA
-ax
-ax
-ax
-ax
-ax
+at
+pN
+pN
+pN
+aA
 ax
 ax
 ax
@@ -30952,7 +31313,7 @@ ax
 ap
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -31083,9 +31444,9 @@ nG
 nG
 nG
 nG
-nG
-nG
-nG
+pN
+pN
+pN
 nG
 nG
 nG
@@ -31094,7 +31455,7 @@ nG
 aq
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -31224,11 +31585,11 @@ bH
 nG
 bA
 aB
-az
-az
-az
-az
-az
+aE
+pN
+pN
+pN
+aB
 az
 az
 au
@@ -31236,7 +31597,7 @@ nG
 aq
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -31378,7 +31739,7 @@ nG
 aq
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -31520,7 +31881,7 @@ nG
 aq
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -31662,7 +32023,7 @@ nG
 aq
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -31804,7 +32165,7 @@ nG
 aq
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -31946,7 +32307,7 @@ nG
 aq
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -32088,7 +32449,7 @@ nG
 aq
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -32230,7 +32591,7 @@ nG
 aq
 PF
 kP
-kP
+Fs
 kP
 kP
 kP
@@ -32636,18 +32997,18 @@ bY
 zV
 zV
 zV
-pN
-pN
-pN
-pN
-pN
-pN
+zV
+zV
+zV
 pN
 pN
 pN
 zV
 zV
 zV
+pN
+pN
+pN
 zV
 zV
 aa
@@ -32660,9 +33021,9 @@ ax
 ax
 ax
 ax
-at
-as
-aA
+ax
+ax
+ax
 ax
 aw
 nG
@@ -32778,18 +33139,18 @@ bY
 zV
 zV
 zV
-pN
-pN
-pN
-pN
-pN
-pN
+zV
+zV
+zV
 pN
 pN
 pN
 zV
 zV
 zV
+pN
+pN
+pN
 zV
 zV
 aa
@@ -32920,18 +33281,18 @@ zV
 zV
 zV
 zV
-pN
-pN
-pN
-pN
-pN
-pN
+zV
+zV
+zV
 pN
 pN
 pN
 zV
 zV
 zV
+pN
+pN
+pN
 zV
 zV
 aa
@@ -33065,9 +33426,9 @@ zV
 zV
 zV
 zV
-pN
-pN
-pN
+zV
+zV
+zV
 zV
 zV
 zV
@@ -33207,9 +33568,9 @@ zV
 zV
 zV
 zV
-pN
-pN
-pN
+zV
+zV
+zV
 zV
 zV
 zV
@@ -33349,9 +33710,9 @@ zV
 zV
 zV
 zV
-pN
-pN
-pN
+zV
+zV
+zV
 XW
 XW
 Ed
