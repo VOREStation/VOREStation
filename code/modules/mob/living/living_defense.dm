@@ -263,7 +263,7 @@
 /mob/living/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
 	if(is_incorporeal())
 		return
-	if(SEND_SIGNAL(src, COMSIG_HIT_BY_THROWN_ENTITY, source, speed) & COMSIG_CANCEL_HITBY)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, speed) & COMSIG_CANCEL_HITBY)
 		return
 	if(isitem(source))
 		var/obj/item/O = source

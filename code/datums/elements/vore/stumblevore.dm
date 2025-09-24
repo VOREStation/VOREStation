@@ -6,11 +6,11 @@
 		return ELEMENT_INCOMPATIBLE
 	RegisterSignal(target, COMSIG_LIVING_STUMBLED_INTO, PROC_REF(handle_stumble))
 	RegisterSignal(target, COMSIG_LIVING_FALLING_DOWN, PROC_REF(handle_fall))
-	RegisterSignal(target, COMSIG_HIT_BY_THROWN_ENTITY, PROC_REF(handle_hitby))
+	RegisterSignal(target, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, PROC_REF(handle_hitby))
 
 /datum/element/spontaneous_vore/Detach(datum/target)
 	. = ..()
-	UnregisterSignal(target, list(COMSIG_LIVING_STUMBLED_INTO, COMSIG_LIVING_FALLING_DOWN, COMSIG_HIT_BY_THROWN_ENTITY))
+	UnregisterSignal(target, list(COMSIG_LIVING_STUMBLED_INTO, COMSIG_LIVING_FALLING_DOWN, COMSIG_LIVING_HIT_BY_THROWN_ENTITY))
 
 ///Source is the one being bumped into (Owner of this component)
 ///Target is the one bumping into us.
