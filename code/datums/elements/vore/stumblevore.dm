@@ -162,7 +162,6 @@
 		return FALSE
 	return TRUE
 
-
 /proc/can_slip_vore(mob/living/pred, mob/living/prey)
 	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
