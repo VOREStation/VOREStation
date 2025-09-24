@@ -167,7 +167,7 @@
 /proc/can_slip_vore(mob/living/pred, mob/living/prey)
 	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
-	if(!prey.is_slipping || !pred.is_slipping)	//Obviously they have to be slipping to get slip vored
+	if(!prey.is_slipping && !pred.is_slipping)	//Obviously they have to be slipping to get slip vored
 		return FALSE
 	if(world.time <= prey.slip_protect)
 		return FALSE
