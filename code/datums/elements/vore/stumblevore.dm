@@ -27,7 +27,7 @@
 	//Our blobform is trying to eat us
 	if(istype(source, /mob/living/simple_mob/protean_blob))
 		var/mob/living/simple_mob/protean_blob/PB = source
-		if(PB.human_form == target)
+		if(PB.humanform == target)
 			return
 
 	//We are able to eat the person stumbling into us.
