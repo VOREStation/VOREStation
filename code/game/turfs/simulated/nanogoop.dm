@@ -226,6 +226,7 @@ GLOBAL_LIST_BOILERPLATE(nanite_turfs, /turf/simulated/floor/water/digestive_enzy
 			nutrients += how_much
 			targetcarbon.mind?.vore_death = TRUE
 			GLOB.prey_digested_roundstat++
+			targetcarbon.ghostize() //prevent runtimes
 			qdel(targetcarbon)	//glorp
 			return
 		targetcarbon.adjustFireLoss(damage)
