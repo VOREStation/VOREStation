@@ -173,6 +173,7 @@
 		return FALSE
 	return TRUE
 
+///This is a general 'do we have the mechanical ability to do any type of spontaneous vore' without specialties.
 /proc/can_spontaneous_vore(mob/living/pred, /mob/living/prey)
 	if(!istype(pred) || !istype(prey))
 		return FALSE
