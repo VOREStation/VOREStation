@@ -44,7 +44,7 @@
 	//pred = drop_mob
 	//prey = source
 	//result: source is eaten by drop_mob
-	if(source.devourable && drop_mob.vore_selected && drop_mob.can_be_drop_pred && source.can_be_drop_prey && drop_mob.drop_vore && source.drop_vore)
+	if(drop_mob.CanDropVore(source))
 		drop_mob.feed_grabbed_to_self_falling_nom(drop_mob, prey = source)
 		drop_mob.visible_message(span_vdanger("\The [drop_mob] falls right onto \the [source]!"))
 		return COMSIG_CANCEL_FALL
@@ -52,7 +52,7 @@
 	//pred = source
 	//prey = drop_mob
 	//result: drop_mob is eaten by source
-	if(drop_mob.devourable && source.vore_selected && source.can_be_drop_pred && drop_mob.can_be_drop_prey && drop_mob.drop_vore && source.drop_vore)
+	if(source.CanDropVore(drop_mob))
 		source.feed_grabbed_to_self_falling_nom(source, prey = drop_mob)
 		source.Weaken(4)
 		source.visible_message(span_vdanger("\The [drop_mob] falls right into \the [source]!"))
