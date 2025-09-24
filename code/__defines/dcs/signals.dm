@@ -941,11 +941,15 @@
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"
 
 
-// Stumble / bumping into stuff
+// Spontaneous vore stuff.
 ///from /mob/living/stumble_into(mob/living/M)
 #define COMSIG_LIVING_STUMBLED_INTO "living_stumbled_into"
-	///Installation successful
+		///Something has special handling. Don't continue.
 	#define CANCEL_STUMBLED_INTO	(1<<0)
+///from /mob/living/handle_fall(var/turf/landing) args: landing, drop_mob)
+#define COMSIG_LIVING_FALLING_DOWN "living_falling_down"
+		//Special handling. Cancel the fall chain.
+	#define COMSIG_CANCEL_FALL	(1<<0)
 
 //Unittest data update
 #ifdef UNIT_TESTS
