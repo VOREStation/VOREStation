@@ -142,55 +142,45 @@
 
 ///Helper Procs
 /proc/CanStumbleVore(mob/living/prey, mob/living/pred)
-	if(pred.is_incorporeal() || prey.is_incorporeal())
-		return FALSE
-	if(!is_vore_predator(pred))
-		return FALSE
-	if(!prey.devourable)
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
 	if(!prey.stumble_vore || !pred.stumble_vore)
 		return FALSE
 	return TRUE
 
 /proc/CanDropVore(mob/living/prey, mob/living/pred)
-	if(!istype(pred) || !istype(prey))
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
-	if(!pred.can_be_drop_pred)
-		return FALSE
-	if(pred.is_incorporeal() || prey.is_incorporeal())
-		return FALSE
-	if(!is_vore_predator(pred))
-		return FALSE
-	if(!prey.devourable)
-		return FALSE
-	if(!prey.can_be_drop_prey)
+	if(!pred.drop_vore || !prey.drop_vore)
 		return FALSE
 	return TRUE
 
 /proc/CanThrowVore(mob/living/prey, mob/living/pred)
-	if(!istype(pred) || !istype(prey))
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
 	if(!pred.throw_vore || !prey.throw_vore)
-		return FALSE
-	if(pred.is_incorporeal() || prey.is_incorporeal())
-		return FALSE
-	if(!is_vore_predator(pred))
-		return FALSE
-	if(!prey.devourable)
 		return FALSE
 	return TRUE
 
 
 /proc/can_slip_vore(mob/living/pred, mob/living/prey)
-	if(!istype(pred) || !istype(prey))
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
 	if(!prey.is_slipping)	//Obviously they have to be slipping to get slip vored
 		return FALSE
-	if(prey.is_incorporeal() || pred.is_incorporeal())
-		return FALSE
-	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
-		return FALSE
 	if(world.time <= prey.slip_protect)
+		return FALSE
+	if(!pred.slip_vore || !prey.slip_vore)
+		return FALSE
+	return TRUE
+
+/proc/can_spontaneous_vore(mob/living/pred, /mob/living/prey)
+	if(!istype(pred) || !istype(prey))
+		return FALSE
+	//Unfortunately, can_be_drop_prey is 'spontanous prey' var and can_be_drop_pred is 'spontaneous pred' var...horribly named imo.
+	if(!prey.can_be_drop_prey || !pred.can_be_drop_pred)
+		return FALSE
+	if(prey.is_incorporeal() || pred.is_incorporeal())
 		return FALSE
 	if(!prey.devourable)
 		return FALSE
@@ -198,6 +188,6 @@
 		return FALSE
 	if(!pred.vore_selected)	//Gotta have one selected as well.
 		return FALSE
-	if(!pred.slip_vore || !prey.slip_vore)
+	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
 		return FALSE
 	return TRUE
