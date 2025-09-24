@@ -12,7 +12,7 @@
 /datum/component/turfslip/proc/start_slip(var/turf/simulated/start, var/is_dirt)
 	var/slip_stun = 6
 	var/floor_type = "wet"
-	var/already_slipping = (slip_dist > 0)
+	var/already_slipping = (slip_dist > 1)
 
 	// Handle dirt slipping
 	dirtslip = is_dirt
