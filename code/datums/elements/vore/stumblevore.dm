@@ -40,19 +40,11 @@
 
 	if(drop_mob.is_incorporeal())
 		return
-	var/safe_fall = FALSE
-	if(drop_mob.softfall || (isanimal(drop_mob) && drop_mob.mob_size <= MOB_SMALL))
-		safe_fall = TRUE
-
-	if(ishuman(drop_mob))
-		var/mob/living/carbon/human/H = drop_mob
-		if(H.species.soft_landing)
-			safe_fall = TRUE
 
 	//pred = drop_mob
 	//prey = source
 	//result: source is eaten by drop_mob
-	if(drop_mob.vore_selected && drop_mob.can_be_drop_pred && source.can_be_drop_prey && drop_mob.drop_vore && source.drop_vore)
+	if(source.devourable && drop_mob.vore_selected && drop_mob.can_be_drop_pred && source.can_be_drop_prey && drop_mob.drop_vore && source.drop_vore)
 		drop_mob.feed_grabbed_to_self_falling_nom(drop_mob, prey = source)
 		drop_mob.visible_message(span_vdanger("\The [drop_mob] falls right onto \the [source]!"))
 		return COMSIG_CANCEL_FALL
@@ -60,7 +52,7 @@
 	//pred = source
 	//prey = drop_mob
 	//result: drop_mob is eaten by source
-	if(source.vore_selected && source.can_be_drop_pred && drop_mob.can_be_drop_prey && drop_mob.drop_vore && source.drop_vore)
+	if(drop_mob.devourable && source.vore_selected && source.can_be_drop_pred && drop_mob.can_be_drop_prey && drop_mob.drop_vore && source.drop_vore)
 		source.feed_grabbed_to_self_falling_nom(source, prey = drop_mob)
 		source.Weaken(4)
 		source.visible_message(span_vdanger("\The [drop_mob] falls right into \the [source]!"))
