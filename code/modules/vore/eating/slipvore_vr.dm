@@ -2,7 +2,6 @@
 
 /mob/living
 	var/is_slipping = FALSE
-	var/slip_vore_in_progress = FALSE
 	var/slip_protect = 1
 
 /mob/living/proc/can_slip_vore(var/mob/living/target)
@@ -43,18 +42,25 @@
 		return FALSE
 	return TRUE
 
+/*
+ * SRC = The thing being crossed (Ex: If someone walks on top of someone resting, the resting person is SRC)
+ * AM = The person crossing us (Ex: In above example, the person walking on top of us)
+*/
 /mob/living/Crossed(var/atom/movable/AM)
 	..()
+	if(src == AM)
+		return
 	var/mob/living/target = AM
-	if(istype(target) && !target.is_incorporeal() && !src.is_incorporeal())	//The slip vore begins
-		if(can_slip_vore(target) && !src.slip_vore_in_progress && !target.slip_vore_in_progress)	//If we can vore them go for it
-			begin_instant_nom(src,target,src,src.vore_selected)
-			target.slip_vore_in_progress = FALSE
+	if(isliving(AM) && !target.is_incorporeal() && !src.is_incorporeal())
+
+		//Person being slipped into eats the person slipping
+		if(can_slip_vore(target))	//If we can vore them go for it
+			begin_instant_nom(src, prey = target, pred = src, belly = src.vore_selected)
 			target.is_slipping = FALSE
 			return
-		else if(can_be_slip_vored_by(target) && !src.slip_vore_in_progress && !target.slip_vore_in_progress) //Otherwise, if they can vore us, make it happen.
-			begin_instant_nom(target,src,target,target.vore_selected)
-			slip_vore_in_progress = FALSE
+		//The person slipping eats the person being slipped into
+		else if(can_be_slip_vored_by(target))
+			begin_instant_nom(target, prey = src, pred = target, belly = target.vore_selected)
 			is_slipping = FALSE
 			return
 
