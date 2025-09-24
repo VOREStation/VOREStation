@@ -137,7 +137,7 @@
 
 	//The person slipping eats the person being slipped into
 	else if(can_slip_vore(pred = crossed, prey = source))
-		crossed.is_slipping = FALSE
+		//crossed.is_slipping = FALSE //This is MUCH funnier if we don't get rid of is_slipping until after we get back up.
 		source.begin_instant_nom(crossed, prey = source, pred = crossed, belly = crossed.vore_selected) //Must be
 		return //We DON'T block it here. Pred can slip onto the prey's tile, no problem.
 
