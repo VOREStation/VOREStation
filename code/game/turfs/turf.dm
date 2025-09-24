@@ -35,7 +35,6 @@
 	var/can_build_into_floor = FALSE // Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.
 	var/list/dangerous_objects // List of 'dangerous' objs that the turf holds that can cause something bad to happen when stepped on, used for AI mobs.
 	var/tmp/changing_turf
-	var/shieldable = TRUE //can set this to FALSE to prevent this turf from having shields over it
 
 	var/blocks_nonghost_incorporeal = FALSE
 	var/footstep
