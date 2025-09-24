@@ -9,7 +9,6 @@
 		return FALSE
 	return TRUE
 
-//Checks everything CanStumbleVore does, along with drop checks.
 /mob/living/proc/CanDropVore(mob/living/target)
 	if(!can_be_drop_pred)
 		return FALSE
@@ -20,6 +19,20 @@
 	if(!target.devourable)
 		return FALSE
 	if(!target.can_be_drop_prey)
+		return FALSE
+	return TRUE
+
+//Checks everything CanStumbleVore does, along with drop checks.
+/mob/living/proc/CanThrowVore(mob/living/target)
+	if(!throw_vore)
+		return FALSE
+	if(!target.throw_vore)
+		return FALSE
+	if(is_incorporeal() || target.is_incorporeal())
+		return FALSE
+	if(!is_vore_predator(src))
+		return FALSE
+	if(!target.devourable)
 		return FALSE
 	return TRUE
 
