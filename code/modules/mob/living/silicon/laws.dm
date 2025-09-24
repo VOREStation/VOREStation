@@ -137,7 +137,7 @@
 	var/list/players = list()
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
+		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > 10 MINUTES)
 			continue
 		players += player.real_name
 

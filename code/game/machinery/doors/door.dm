@@ -18,7 +18,7 @@
 	var/autoclose = 0
 	var/glass = 0
 	var/normalspeed = 1
-	var/heat_proof = 0 // For glass airlocks/opacity firedoors
+	var/heat_proof = FALSE // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
 	var/maxhealth = 300
 	var/health
@@ -38,6 +38,11 @@
 
 	// turf animation
 	var/atom/movable/overlay/c_animation = null
+
+	var/reinforcing = 0
+	var/tintable = 0
+	var/icon_tinted
+	var/id_tint
 
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
 	if(isanimal(user))
@@ -100,18 +105,23 @@
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating || !SSticker)
-		return 0
-	return 1
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_DOOR_CAN_OPEN) & DOOR_DENY_OPEN)
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/proc/can_close()
 	if(density || operating || !SSticker)
-		return 0
-	return 1
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_DOOR_CAN_CLOSE) & DOOR_DENY_CLOSE)
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/Bumped(atom/AM)
 	. = ..()
 	if(p_open || operating)
 		return
+
 	if(ismob(AM))
 		var/mob/M = AM
 		if(world.time - M.last_bumped <= 10)
@@ -123,15 +133,18 @@
 			return																		//VOREStation Edit: unable to open doors
 		else
 			bumpopen(M)
+		return
+
 	if(istype(AM, /obj/item/uav))
 		if(check_access(null))
 			open()
 		else
 			do_animate("deny")
+		return
 
 	if(isbot(AM))
 		var/mob/living/bot/bot = AM
-		if(src.check_access(bot.botcard))
+		if(check_access(bot.botcard))
 			if(density)
 				open()
 		return
@@ -139,18 +152,20 @@
 	if(istype(AM, /obj/mecha))
 		var/obj/mecha/mecha = AM
 		if(density)
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
+			if(mecha.occupant && (allowed(mecha.occupant) || check_access_list(mecha.operation_req_access)))
 				open()
 			else
 				do_animate("deny")
 		return
+
 	if(istype(AM, /obj/structure/bed/chair/wheelchair))
 		var/obj/structure/bed/chair/wheelchair/wheel = AM
 		if(density)
-			if(wheel.pulling && (src.allowed(wheel.pulling)))
+			if(wheel.pulling && (allowed(wheel.pulling)))
 				open()
 			else
 				do_animate("deny")
+		return
 
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
@@ -162,15 +177,21 @@
 		return !block_air_zones // Block merging unless block_air_zones = 0
 	return !density // Block airflow unless density = FALSE
 
-/obj/machinery/door/proc/bumpopen(mob/user as mob)
-	if(!user)	return
-	if(operating)	return
+/obj/machinery/door/proc/bumpopen(mob/user)
+	if(!user)
+		return
+	if(operating)
+		return
 	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
 		return
-	src.add_fingerprint(user)
+	if(SEND_SIGNAL(user, COMSIG_MOB_BUMPED_DOOR_OPEN, src) & DOOR_STOP_BUMP)
+		return
+	add_fingerprint(user)
 	if(density)
-		if(allowed(user))	open()
-		else				do_animate("deny")
+		if(allowed(user))
+			open()
+		else
+			do_animate("deny")
 	return
 
 /obj/machinery/door/bullet_act(var/obj/item/projectile/Proj)
@@ -182,13 +203,13 @@
 	if (damage > 90)
 		destroy_hits--
 		if (destroy_hits <= 0)
-			visible_message(span_danger("\The [src.name] disintegrates!"))
+			visible_message(span_danger("\The [name] disintegrates!"))
 			switch (Proj.damage_type)
 				if(BRUTE)
-					new /obj/item/stack/material/steel(src.loc, 2)
-					new /obj/item/stack/rods(src.loc, 3)
+					new /obj/item/stack/material/steel(loc, 2)
+					new /obj/item/stack/rods(loc, 3)
 				if(BURN)
-					new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
+					new /obj/effect/decal/cleanable/ash(loc) // Turn it to ashes!
 			qdel(src)
 
 	if(damage)
@@ -199,7 +220,7 @@
 
 /obj/machinery/door/hitby(atom/movable/source, var/speed=5)
 	..()
-	visible_message(span_danger("[src.name] was hit by [source]."))
+	visible_message(span_danger("[name] was hit by [source]."))
 	var/tforce = 0
 	if(ismob(source))
 		tforce = 15 * (speed/THROWFORCE_SPEED_DIVISOR)
@@ -213,24 +234,83 @@
 	playsound(src, hitsound, 100, 1)
 	take_damage(tforce)
 
-/obj/machinery/door/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/door/attack_ai(mob/user)
+	return attack_hand(user)
 
-/obj/machinery/door/attack_hand(mob/user as mob)
-	return src.attackby(user, user)
+/obj/machinery/door/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	return try_to_activate_door(user)
 
-/obj/machinery/door/attack_tk(mob/user as mob)
+/obj/machinery/door/attack_tk(mob/user)
 	if(requiresID() && !allowed(null))
 		return
 	..()
 
-/obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
-	src.add_fingerprint(user)
+/obj/machinery/door/attackby(obj/item/I, mob/user)
+	add_fingerprint(user)
 
-	if(istype(I))
-		if(attackby_vr(I, user))	//VOREStation begin: Fireproofing
-			return					//VOREStation begin: Fireproofing
-		if(health < maxhealth && I.has_tool_quality(TOOL_WELDER))
+	if(istype(I, /obj/item/stack/material) && I.get_material_name() == MAT_PLASTEEL)
+		if(heat_proof)
+			to_chat(user, span_warning("\The [src] is already reinforced."))
+			return
+		if((stat & BROKEN) || (health < maxhealth))
+			to_chat(user, span_notice("It looks like \the [src] broken. Repair it before reinforcing it."))
+			return
+		if(!density)
+			to_chat(user, span_warning("\The [src] must be closed before you can reinforce it."))
+			return
+
+		var/amount_needed = 2
+
+		var/obj/item/stack/stack = I
+		var/amount_given = amount_needed - reinforcing
+		var/mats_given = stack.get_amount()
+		var/singular_name = stack.singular_name
+		if(reinforcing && amount_given <= 0)
+			to_chat(user, span_warning("You must weld or remove \the plasteel from \the [src] before you can add anything else."))
+		else
+			if(mats_given >= amount_given)
+				if(stack.use(amount_given))
+					reinforcing += amount_given
+			else
+				if(stack.use(mats_given))
+					reinforcing += mats_given
+					amount_given = mats_given
+		if(amount_given)
+			to_chat(user, span_notice("You fit [amount_given] [singular_name]\s on \the [src]."))
+		return
+
+	if(reinforcing && I.has_tool_quality(TOOL_CROWBAR))
+		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(get_turf(src), reinforcing)
+		reinforcing = 0
+		to_chat(user, span_notice("You remove \the [reinforcing_sheet]."))
+		playsound(src, I.usesound, 100, 1)
+		return
+
+	if(I.has_tool_quality(TOOL_WELDER))
+		if(reinforcing)
+			if(!density)
+				to_chat(user, span_warning("\The [src] must be closed before you can reinforce it."))
+				return
+
+			if(reinforcing < 2)
+				to_chat(user, span_warning("You will need more plasteel to reinforce \the [src]."))
+				return
+
+			var/obj/item/weldingtool/welder = I.get_welder()
+			if(welder.remove_fuel(0,user))
+				to_chat(user, span_notice("You start welding the plasteel into place."))
+				playsound(src, welder.usesound, 50, 1)
+				if(do_after(user, 1 SECOND * welder.toolspeed, target = src) && welder && welder.isOn())
+					to_chat(user, span_notice("You finish reinforcing \the [src]."))
+					heat_proof = TRUE
+					update_icon()
+					reinforcing = 0
+			return
+
+		if(health < maxhealth)
 			if(!density)
 				to_chat(user, span_warning("\The [src] must be closed before you can repair it."))
 				return
@@ -245,42 +325,47 @@
 					health = maxhealth
 					update_icon()
 			return
-		//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
-		if(src.density && istype(I, /obj/item) && user.a_intent == I_HURT && !istype(I, /obj/item/card))
-			var/obj/item/W = I
-			user.setClickCooldown(user.get_attack_speed(W))
-			if(W.damtype == BRUTE || W.damtype == BURN)
-				user.do_attack_animation(src)
-				if(W.force < min_force)
-					user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
-				else
-					user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
-					playsound(src, hitsound, 100, 1)
-					take_damage(W.force)
-			return
 
-	if(src.operating > 0 || isrobot(user))
-		return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
-
-	if(src.operating)
+	// Handle signals
+	if(..())
 		return
 
-	if(src.allowed(user) && operable())
-		if(src.density)
+	//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
+	if(density && istype(I, /obj/item) && user.a_intent == I_HURT && !istype(I, /obj/item/card))
+		var/obj/item/W = I
+		user.setClickCooldown(user.get_attack_speed(W))
+		if(W.damtype == BRUTE || W.damtype == BURN)
+			user.do_attack_animation(src)
+			if(W.force < min_force)
+				user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
+			else
+				user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
+				playsound(src, hitsound, 100, 1)
+				take_damage(W.force)
+		return
+
+	return try_to_activate_door(user)
+
+/obj/machinery/door/proc/try_to_activate_door(mob/user)
+	add_fingerprint(user)
+	if(operating || isrobot(user))
+		return FALSE //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
+	if(allowed(user) && operable())
+		if(density)
 			open()
 		else
 			close()
-		return
-
-	if(src.density)
+		return TRUE
+	if(density)
 		do_animate("deny")
-	return
+
+	return FALSE
 
 /obj/machinery/door/emag_act(var/remaining_charges)
 	if(density && operable())
 		do_animate("spark")
 		addtimer(CALLBACK(src, PROC_REF(trigger_emag)), 0.6 SECONDS)
-		return 1
+		return TRUE
 
 /obj/machinery/door/proc/trigger_emag()
 	PRIVATE_PROC(TRUE)
@@ -289,15 +374,15 @@
 	operating = -1
 
 /obj/machinery/door/take_damage(var/damage)
-	var/initialhealth = src.health
-	src.health = max(0, src.health - damage)
-	if(src.health <= 0 && initialhealth > 0)
-		src.set_broken()
-	else if(src.health < src.maxhealth / 4 && initialhealth >= src.maxhealth / 4)
+	var/initialhealth = health
+	health = max(0, health - damage)
+	if(health <= 0 && initialhealth > 0)
+		set_broken()
+	else if(health < maxhealth / 4 && initialhealth >= maxhealth / 4)
 		visible_message("\The [src] looks like it's about to break!" )
-	else if(src.health < src.maxhealth / 2 && initialhealth >= src.maxhealth / 2)
+	else if(health < maxhealth / 2 && initialhealth >= maxhealth / 2)
 		visible_message("\The [src] looks seriously damaged!" )
-	else if(src.health < src.maxhealth * 3/4 && initialhealth >= src.maxhealth * 3/4)
+	else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
 		visible_message("\The [src] shows signs of damage!" )
 	update_icon()
 	return
@@ -305,13 +390,13 @@
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
-	if(src.health <= 0)
+	if(health <= 0)
 		. += "It is broken!"
-	else if(src.health < src.maxhealth / 4)
+	else if(health < maxhealth / 4)
 		. += "It looks like it's about to break!"
-	else if(src.health < src.maxhealth / 2)
+	else if(health < maxhealth / 2)
 		. += "It looks seriously damaged!"
-	else if(src.health < src.maxhealth * 3/4)
+	else if(health < maxhealth * 3/4)
 		. += "It shows signs of damage!"
 
 
@@ -319,7 +404,7 @@
 	stat |= BROKEN
 	for (var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
-			O.show_message("[src.name] breaks!" )
+			O.show_message("[name] breaks!" )
 	update_icon()
 	return
 
@@ -390,6 +475,8 @@
 		return
 	operating = 1
 
+	SEND_SIGNAL(src, COMSIG_DOOR_OPEN, forced)
+
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(0)
@@ -398,14 +485,14 @@
 /obj/machinery/door/proc/open_internalsetdensity(var/forced = 0)
 	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
 	SHOULD_NOT_OVERRIDE(TRUE)
-	src.density = FALSE
+	density = FALSE
 	update_nearby_tiles()
 	addtimer(CALLBACK(src, PROC_REF(open_internalfinish),forced), anim_length_before_finalize)
 
 /obj/machinery/door/proc/open_internalfinish(var/forced = 0)
 	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
 	SHOULD_NOT_OVERRIDE(TRUE)
-	src.layer = open_layer
+	layer = open_layer
 	explosion_resistance = 0
 	update_icon()
 	set_opacity(0)
@@ -419,8 +506,8 @@
 
 	if(autoclose)
 		autoclose_in(next_close_wait())
+	return TRUE
 
-	return 1
 /obj/machinery/door/proc/next_close_wait()
 	var/lowest_temp = T20C
 	var/highest_temp = T0C
@@ -445,6 +532,8 @@
 		return
 	operating = 1
 
+	SEND_SIGNAL(src, COMSIG_DOOR_CLOSE, forced)
+
 	close_door_at = 0
 	do_animate("closing")
 	addtimer(CALLBACK(src, PROC_REF(close_internalsetdensity),forced), anim_length_before_density)
@@ -452,9 +541,9 @@
 /obj/machinery/door/proc/close_internalsetdensity(var/forced = 0)
 	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
 	SHOULD_NOT_OVERRIDE(TRUE)
-	src.density = TRUE
+	density = TRUE
 	explosion_resistance = initial(explosion_resistance)
-	src.layer = closed_layer
+	layer = closed_layer
 	update_nearby_tiles()
 	addtimer(CALLBACK(src, PROC_REF(close_internalfinish),forced), anim_length_before_finalize)
 
@@ -476,29 +565,29 @@
 		addtimer(CALLBACK(las, TYPE_PROC_REF(/obj/effect/step_trigger/claymore_laser,Trigger), src), 1)
 	*/
 
-	return 1
+	return TRUE
 
 /obj/machinery/door/proc/requiresID()
-	return 1
+	return TRUE
 
 /obj/machinery/door/allowed(mob/M)
 	if(!requiresID())
 		return ..(null) //don't care who they are or what they have, act as if they're NOTHING
-	return ..(M)
+	. = ..()
 
 /obj/machinery/door/update_nearby_tiles(need_rebuild)
 	if(!SSair)
-		return 0
+		return FALSE
 
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
 		SSair.mark_for_update(turf)
 
-	return 1
+	return TRUE
 
 /obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
 	if(istype(source))
-		if(src.density && (src.opacity || src.heat_proof))
+		if(density && (opacity || heat_proof))
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
