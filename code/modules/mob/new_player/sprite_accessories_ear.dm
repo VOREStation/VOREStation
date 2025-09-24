@@ -1175,6 +1175,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/swepthorns
+	name = "Horns, swept back"
+	desc = ""
+	icon_state = "swept_horns"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 //Dino frills
 /datum/sprite_accessory/ears/dino_frills
 	name = "triceratops frills"
