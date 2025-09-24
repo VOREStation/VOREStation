@@ -38,9 +38,6 @@
 	if(!drop_mob || drop_mob == source)
 		return
 
-	if(drop_mob.is_incorporeal())
-		return
-
 	//pred = drop_mob
 	//prey = source
 	//result: source is eaten by drop_mob
