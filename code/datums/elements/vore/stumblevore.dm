@@ -7,25 +7,38 @@
 	RegisterSignal(target, COMSIG_LIVING_STUMBLED_INTO, PROC_REF(handle_stumble))
 	RegisterSignal(target, COMSIG_LIVING_FALLING_DOWN, PROC_REF(handle_fall))
 	RegisterSignal(target, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, PROC_REF(handle_hitby))
+	RegisterSignal(target, COMSIG_MOVABLE_CROSS, PROC_REF(handle_crossed))
 
 /datum/element/spontaneous_vore/Detach(datum/target)
 	. = ..()
-	UnregisterSignal(target, list(COMSIG_LIVING_STUMBLED_INTO, COMSIG_LIVING_FALLING_DOWN, COMSIG_LIVING_HIT_BY_THROWN_ENTITY))
+	UnregisterSignal(target, list(COMSIG_LIVING_STUMBLED_INTO, COMSIG_LIVING_FALLING_DOWN, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, COMSIG_MOVABLE_CROSS))
 
 ///Source is the one being bumped into (Owner of this component)
 ///Target is the one bumping into us.
 /datum/element/spontaneous_vore/proc/handle_stumble(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
+	//snowflake protean code to prevent protean blobform from eating their human form and humanform from eating their protean blob...gross.
+	//We are trying to eat our blobform
+	if(istype(target, /mob/living/simple_mob/protean_blob))
+		var/mob/living/simple_mob/protean_blob/PB = target
+		if(PB.humanform == source)
+			return
+	//Our blobform is trying to eat us
+	if(istype(source, /mob/living/simple_mob/protean_blob))
+		var/mob/living/simple_mob/protean_blob/PB = source
+		if(PB.human_form == target)
+			return
+
 	//We are able to eat the person stumbling into us.
-	if(source.CanStumbleVore(target)) //This is if the person stumbling into us is able to eat us!
+	if(CanStumbleVore(prey = target, pred = source)) //This is if the person stumbling into us is able to eat us!
 		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
 		source.begin_instant_nom(source, prey = target, pred = source, belly = source.vore_selected)
 		target.stop_flying()
 		return CANCEL_STUMBLED_INTO
 
 	//The person stumbling into us is able to eat us.
-	if(target.CanStumbleVore(source)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
+	if(CanStumbleVore(prey = source, pred = target)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
 		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
 		target.forceMove(get_turf(source))
 		source.begin_instant_nom(target, prey = source, pred = target, belly = target.vore_selected)
@@ -36,13 +49,15 @@
 //Landing is the tile we're falling onto
 //drop_mob is whatever mob is found in the turf we're dropping onto.
 /datum/element/spontaneous_vore/proc/handle_fall(mob/living/source, turf/landing, mob/living/drop_mob)
+	SIGNAL_HANDLER
+
 	if(!drop_mob || drop_mob == source)
 		return
 
 	//pred = drop_mob
 	//prey = source
 	//result: source is eaten by drop_mob
-	if(drop_mob.CanDropVore(source))
+	if(CanDropVore(prey = source, pred = drop_mob))
 		drop_mob.feed_grabbed_to_self_falling_nom(drop_mob, prey = source)
 		drop_mob.visible_message(span_vdanger("\The [drop_mob] falls right onto \the [source]!"))
 		return COMSIG_CANCEL_FALL
@@ -50,13 +65,14 @@
 	//pred = source
 	//prey = drop_mob
 	//result: drop_mob is eaten by source
-	if(source.CanDropVore(drop_mob))
+	if(CanDropVore(prey = drop_mob, pred = source))
 		source.feed_grabbed_to_self_falling_nom(source, prey = drop_mob)
 		source.Weaken(4)
 		source.visible_message(span_vdanger("\The [drop_mob] falls right into \the [source]!"))
 		return COMSIG_CANCEL_FALL
 
 /datum/element/spontaneous_vore/proc/handle_hitby(mob/living/source, atom/movable/hitby, speed)
+	SIGNAL_HANDLER
 
 	//Handle object throw vore
 	if(isitem(hitby))
@@ -82,7 +98,7 @@
 
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
-		if(source.CanThrowVore(thrown_mob))
+		if(CanThrowVore(prey = thrown_mob, pred = source))
 			if(!source.vore_selected)
 				return
 			source.vore_selected.nom_mob(thrown_mob) //Eat them!!!
@@ -95,7 +111,7 @@
 
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
 		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
-		else if(thrown_mob.CanThrowVore(source))//Pred thrown into prey.
+		else if(CanThrowVore(prey = source, pred = thrown_mob))//Pred thrown into prey.
 			if(!thrown_mob.vore_selected)
 				return
 			source.visible_message(span_vwarning("[source] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
@@ -104,3 +120,84 @@
 				source.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
 			add_attack_logs(thrown_mob.LAssailant,source,"Was Devoured by [thrown_mob.name] via throw vore.")
 			return
+
+/datum/element/spontaneous_vore/proc/handle_crossed(mob/living/source, mob/living/crossed)
+	SIGNAL_HANDLER
+
+	if(source == crossed || !istype(crossed))
+		return
+
+	//Person being slipped into eats the person slipping
+	if(can_slip_vore(pred = crossed, prey = source))	//If we can vore them go for it
+		crossed.begin_instant_nom(crossed, prey = source, pred = crossed, belly = crossed.vore_selected)
+		source.is_slipping = FALSE
+		return COMPONENT_BLOCK_CROSS
+
+	//The person slipping eats the person being slipped into
+	else if(can_slip_vore(pred = source, prey = crossed))
+		source.begin_instant_nom(source, prey = crossed, pred = source, belly = source.vore_selected)
+		crossed.is_slipping = FALSE
+		return COMPONENT_BLOCK_CROSS
+
+
+///Helper Procs
+/proc/CanStumbleVore(mob/living/prey, mob/living/pred)
+	if(pred.is_incorporeal() || prey.is_incorporeal())
+		return FALSE
+	if(!is_vore_predator(pred))
+		return FALSE
+	if(!prey.devourable)
+		return FALSE
+	if(!prey.stumble_vore || !pred.stumble_vore)
+		return FALSE
+	return TRUE
+
+/proc/CanDropVore(mob/living/prey, mob/living/pred)
+	if(!istype(pred) || !istype(prey))
+		return FALSE
+	if(!pred.can_be_drop_pred)
+		return FALSE
+	if(pred.is_incorporeal() || prey.is_incorporeal())
+		return FALSE
+	if(!is_vore_predator(pred))
+		return FALSE
+	if(!prey.devourable)
+		return FALSE
+	if(!prey.can_be_drop_prey)
+		return FALSE
+	return TRUE
+
+/proc/CanThrowVore(mob/living/prey, mob/living/pred)
+	if(!istype(pred) || !istype(prey))
+		return FALSE
+	if(!pred.throw_vore || !prey.throw_vore)
+		return FALSE
+	if(pred.is_incorporeal() || prey.is_incorporeal())
+		return FALSE
+	if(!is_vore_predator(pred))
+		return FALSE
+	if(!prey.devourable)
+		return FALSE
+	return TRUE
+
+
+/proc/can_slip_vore(mob/living/pred, mob/living/prey)
+	if(!istype(pred) || !istype(prey))
+		return FALSE
+	if(!prey.is_slipping)	//Obviously they have to be slipping to get slip vored
+		return FALSE
+	if(prey.is_incorporeal() || pred.is_incorporeal())
+		return FALSE
+	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
+		return FALSE
+	if(world.time <= prey.slip_protect)
+		return FALSE
+	if(!prey.devourable)
+		return FALSE
+	if(!is_vore_predator(pred))	//Check their bellies and stuff
+		return FALSE
+	if(!pred.vore_selected)	//Gotta have one selected as well.
+		return FALSE
+	if(!pred.slip_vore || !prey.slip_vore)
+		return FALSE
+	return TRUE

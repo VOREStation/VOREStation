@@ -657,19 +657,6 @@
 			return 1
 	return 0
 
-//Don't eat yourself, idiot
-/mob/living/simple_mob/protean_blob/CanStumbleVore(mob/living/target)
-	if(target == humanform)
-		return FALSE
-	return ..()
-
-/mob/living/carbon/human/CanStumbleVore(mob/living/target)
-	if(istype(target, /mob/living/simple_mob/protean_blob))
-		var/mob/living/simple_mob/protean_blob/PB = target
-		if(PB.humanform == src)
-			return FALSE
-	return ..()
-
 /mob/living/simple_mob/protean_blob/handle_mutations_and_radiation()
 	if(!humanform)
 		to_chat(src, span_giant(span_boldwarning("You are currently a blob without a humanform and should be deleted shortly Please report what you were doing when this error occurred to the admins.")))
