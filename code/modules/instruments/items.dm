@@ -9,7 +9,7 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_instruments.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_instruments.dmi',
 	)
-
+	abstract_type = /obj/item/instrument
 	/// Our song datum.
 	var/datum/song/handheld/song
 	/// Our allowed list of instrument ids. This is nulled on initialize.
@@ -20,27 +20,30 @@
 /obj/item/instrument/Initialize(mapload)
 	. = ..()
 	song = new(src, allowed_instrument_ids, instrument_range)
-	allowed_instrument_ids = null //We don't need this clogging memory after it's used.
+	allowed_instrument_ids = null //We don't need this clogging memory after its used.
 
 /obj/item/instrument/Destroy()
 	QDEL_NULL(song)
 	return ..()
 
-/obj/item/instrument/proc/should_stop_playing(mob/user)
-	return user.incapacitated() || !((loc == user) || (isturf(loc) && Adjacent(user))) // sorry, no more TK playing.
+/obj/item/instrument/proc/can_play(atom/music_player)
+	if(!ismob(music_player))
+		return FALSE
+	var/mob/user = music_player
+	if(user.incapacitated())
+		return FALSE
+	if(!Adjacent(user))
+		return FALSE
+	return TRUE
 
-/obj/item/instrument/attack_self(mob/user)
-	if(!user.IsAdvancedToolUser())
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
-		return TRUE
-	interact(user)
-
-/obj/item/instrument/interact(mob/living/user)
-	if(!isliving(user) || user.incapacitated())
+/obj/item/instrument/attack_self(mob/M)
+	if(!M.IsAdvancedToolUser())
 		return
 
-	user.set_machine(src)
-	song.interact(user)
+	tgui_interact(M)
+
+/obj/item/instrument/tgui_interact(mob/user, datum/tgui/ui)
+	return song.tgui_interact(user)
 
 /obj/item/instrument/violin
 	name = "space violin"
@@ -59,67 +62,6 @@
 	desc = "A percussion instrument consisting of a series of wooden bars graduated in length."
 	icon_state = "xylophone"
 	allowed_instrument_ids = "xylophone"
-
-/obj/item/instrument/piano_synth
-	name = "synthesizer"
-	desc = "An advanced electronic synthesizer that can be used as various instruments."
-	icon_state = "synth"
-	allowed_instrument_ids = "piano"
-
-/obj/item/instrument/piano_synth/Initialize(mapload)
-	. = ..()
-	song.allowed_instrument_ids = SSinstruments.synthesizer_instrument_ids
-
-/obj/item/instrument/piano_synth/headphones
-	name = "headphones"
-	desc = "Unce unce unce unce. Boop!"
-	icon_state = "headphones"
-	slot_flags = SLOT_EARS | SLOT_HEAD
-	force = 0
-	w_class = ITEMSIZE_SMALL
-	instrument_range = 1
-
-/obj/item/instrument/piano_synth/headphones/Initialize(mapload)
-	. = ..()
-	RegisterSignal(src, COMSIG_SONG_START, PROC_REF(start_playing))
-	RegisterSignal(src, COMSIG_SONG_END, PROC_REF(stop_playing))
-
-/**
- * Called by a component signal when our song starts playing.
- */
-/obj/item/instrument/piano_synth/headphones/proc/start_playing()
-	SIGNAL_HANDLER
-
-	icon_state = "[initial(icon_state)]_on"
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.l_ear == src || H.r_ear == src)
-			H.update_inv_ears()
-		else if(H.head == src)
-			H.update_inv_head()
-
-/**
- * Called by a component signal when our song stops playing.
- */
-/obj/item/instrument/piano_synth/headphones/proc/stop_playing()
-	SIGNAL_HANDLER
-
-	icon_state = "[initial(icon_state)]"
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.l_ear == src || H.r_ear == src)
-			H.update_inv_ears()
-		else if(H.head == src)
-			H.update_inv_head()
-
-
-/obj/item/instrument/piano_synth/headphones/spacepods
-	name = "\improper Nanotrasen space pods"
-	desc = "Flex your money, AND ignore what everyone else says, all at once!"
-	icon_state = "spacepods"
-	slot_flags = SLOT_EARS
-	//strip_delay = 100 //air pods don't fall out
-	instrument_range = 0 //you're paying for quality here
 
 /obj/item/instrument/banjo
 	name = "banjo"
@@ -177,7 +119,7 @@
 	AddComponent(/datum/component/spooky)
 */
 /obj/item/instrument/trumpet/spectral/attack(mob/living/carbon/C, mob/user)
-	playsound (src, 'sound/instruments/trombone/En4.mid', 100,1,-1)
+	playsound (src, 'sound/runtime/instruments/trombone/En4.mid', 100,1,-1)
 	..()
 
 /obj/item/instrument/saxophone
@@ -200,7 +142,7 @@
 */
 
 /obj/item/instrument/saxophone/spectral/attack(mob/living/carbon/C, mob/user)
-	playsound (src, 'sound/instruments/saxophone/En4.mid', 100,1,-1)
+	playsound (src, 'sound/runtime/instruments/saxophone/En4.mid', 100,1,-1)
 	..()
 
 /obj/item/instrument/trombone
@@ -223,7 +165,7 @@
 */
 
 /obj/item/instrument/trombone/spectral/attack(mob/living/carbon/C, mob/user)
-	playsound (src, 'sound/instruments/trombone/Cn4.mid', 100,1,-1)
+	playsound (src, 'sound/runtime/instruments/trombone/Cn4.mid', 100,1,-1)
 	..()
 
 /obj/item/instrument/recorder

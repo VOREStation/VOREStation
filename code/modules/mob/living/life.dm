@@ -59,9 +59,6 @@
 	if(environment)
 		handle_environment(environment)
 
-	//Check if we're on fire
-	handle_fire()
-
 	if(client)	// Handle re-running ambience to mobs if they've remained in an area, AND have an active client assigned to them, and do not have repeating ambience disabled.
 		handle_ambience()
 
@@ -151,7 +148,7 @@
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)
-		throw_alert("stunned", /obj/screen/alert/stunned)
+		throw_alert("stunned", /atom/movable/screen/alert/stunned)
 	else
 		clear_alert("stunned")
 	return stunned
@@ -159,7 +156,7 @@
 /mob/living/proc/handle_weakened()
 	if(weakened)
 		AdjustWeakened(-1)
-		throw_alert("weakened", /obj/screen/alert/weakened)
+		throw_alert("weakened", /atom/movable/screen/alert/weakened)
 	else
 		clear_alert("weakened")
 	return weakened
@@ -177,7 +174,7 @@
 /mob/living/proc/handle_drugged()
 	if(druggy)
 		druggy = max(druggy-1, 0)
-		throw_alert("high", /obj/screen/alert/high)
+		throw_alert("high", /atom/movable/screen/alert/high)
 	else
 		clear_alert("high")
 	return druggy
@@ -190,7 +187,7 @@
 /mob/living/proc/handle_paralysed()
 	if(paralysis)
 		AdjustParalysis(-1)
-		throw_alert("paralyzed", /obj/screen/alert/paralyzed)
+		throw_alert("paralyzed", /atom/movable/screen/alert/paralyzed)
 	else
 		clear_alert("paralyzed")
 	return paralysis
@@ -198,7 +195,7 @@
 /mob/living/proc/handle_confused()
 	if(confused)
 		AdjustConfused(-1)
-		throw_alert("confused", /obj/screen/alert/confused)
+		throw_alert("confused", /atom/movable/screen/alert/confused)
 	else
 		clear_alert("confused")
 	return confused
@@ -208,10 +205,10 @@
 	//Eyes
 	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
 		SetBlinded(1)
-		throw_alert("blind", /obj/screen/alert/blind)
+		throw_alert("blind", /atom/movable/screen/alert/blind)
 	else if(eye_blind)			//blindness, heals slowly over time
 		AdjustBlinded(-1)
-		throw_alert("blind", /obj/screen/alert/blind)
+		throw_alert("blind", /atom/movable/screen/alert/blind)
 	else
 		clear_alert("blind")
 
@@ -308,7 +305,7 @@
 		Sleeping(2)
 	if(sleeping)
 		AdjustSleeping(-1)
-		throw_alert("asleep", /obj/screen/alert/asleep)
+		throw_alert("asleep", /atom/movable/screen/alert/asleep)
 	else
 		clear_alert("asleep")
 	return sleeping

@@ -1,4 +1,5 @@
 import { Box, LabeledList, Stack } from 'tgui-core/components';
+import { T0C } from 'tgui/constants';
 import { YesNoBox } from '../../../../PublicLibraryWiki/WikiCommon/WikiQuickElements';
 import type { SpeciesStats } from '../data';
 import {
@@ -8,7 +9,6 @@ import {
   formatStat,
   slowdownToString,
 } from '../functions';
-import { T0C } from 'tgui/constants';
 
 export const SpeciesBaseStats = (props: {
   speciesStats: SpeciesStats;

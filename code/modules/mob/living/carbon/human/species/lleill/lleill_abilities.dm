@@ -397,38 +397,43 @@
 		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
-	var/list/beast_options = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
-									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
-									"Fennec" = /mob/living/simple_mob/vore/fennec,
+	var/list/beast_options = list("Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
+									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
+									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
+									"Cat" = /mob/living/simple_mob/animal/passive/cat/black/beastmode,
+									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
+									"Cow" = /mob/living/simple_mob/animal/passive/cow,
+									"Dire Wolf" = /mob/living/simple_mob/vore/wolf/direwolf,
+									"Dog (Bull Terrier)" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
+									"Dog (Corgi)" = /mob/living/simple_mob/animal/passive/dog/corgi,
+									"Dog (Tamaskan)" = /mob/living/simple_mob/animal/passive/dog/tamaskan,
+									"Duck" = /mob/living/simple_mob/animal/sif/duck,
+									"Fox" = /mob/living/simple_mob/animal/passive/fox/beastmode,
+									"Fox (Fennec)" = /mob/living/simple_mob/vore/fennec,
+									"Giant Bat" = /mob/living/simple_mob/vore/bat,
 									"Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 									"Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
-									"Wolf" = /mob/living/simple_mob/vore/wolf,
-									"Dire Wolf" = /mob/living/simple_mob/vore/wolf/direwolf,
-									"Fox" = /mob/living/simple_mob/animal/passive/fox/beastmode,
-									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
 									"Giant Snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
-									"Otie" = /mob/living/simple_mob/vore/otie,
-									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Raptor" = /mob/living/simple_mob/vore/raptor,
-									"Giant Bat" = /mob/living/simple_mob/vore/bat,
+									"Goat" = /mob/living/simple_mob/animal/goat,
+									"Goose" = /mob/living/simple_mob/animal/space/goose,
 									"Horse" = /mob/living/simple_mob/vore/horse,
 									"Horse (Big)" = /mob/living/simple_mob/vore/horse/big,
+									"Hyena" = /mob/living/simple_mob/animal/hyena,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
-									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
+									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
+									"Otie" = /mob/living/simple_mob/vore/otie,
+									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
+									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
+									"Rabbit" = /mob/living/simple_mob/vore/rabbit,
+									"Raptor" = /mob/living/simple_mob/vore/raptor,
+									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
+									"Reindeer" = /mob/living/simple_mob/vore/reindeer,
+									"Robin" = /mob/living/simple_mob/animal/passive/bird/european_robin/beastmode,
 									"Seagull" = /mob/living/simple_mob/vore/seagull,
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
-									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
-									"Robin" = /mob/living/simple_mob/animal/passive/bird/european_robin/beastmode,
-									"Cat" = /mob/living/simple_mob/animal/passive/cat/black/beastmode,
-									"Tamaskan Dog" = /mob/living/simple_mob/animal/passive/dog/tamaskan,
-									"Corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
-									"Bull Terrier" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
-									"Duck" = /mob/living/simple_mob/animal/sif/duck,
-									"Cow" = /mob/living/simple_mob/animal/passive/cow,
-									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
-									"Goat" = /mob/living/simple_mob/animal/goat,
-									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
-									"Goose" = /mob/living/simple_mob/animal/space/goose
+									"Slug" = /mob/living/simple_mob/vore/slug,
+									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
+									"Wolf" = /mob/living/simple_mob/vore/wolf
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
@@ -441,18 +446,14 @@
 		return
 
 	var/mob/living/M = src
-	log_debug("polymorph start")
 	if(!istype(M))
-		log_debug("polymorph istype")
 		return
 
 	if(M.stat)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph stat")
 		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
 	if(M.health <= 10)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph injured")
 		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
@@ -467,15 +468,12 @@
 	spawn(10)
 		src.overlays -= coolanimation
 
-		log_debug("polymorph not dead")
 		var/mob/living/new_mob = spawn_beast_mob(beast_options[chosen_beast])
 		new_mob.faction = M.faction
 
 		if(new_mob && isliving(new_mob))
 			species.lleill_energy -= energy_cost
-			log_debug("polymorph new_mob")
 			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				log_debug("polymorph new_mob belly")
 				new_mob.vore_organs -= B
 				qdel(B)
 			new_mob.vore_organs = list()
@@ -489,18 +487,14 @@
 			M.copy_vore_prefs_to_mob(new_mob)
 			new_mob.vore_selected = M.vore_selected
 			if(ishuman(M))
-				log_debug("polymorph ishuman part2")
 				var/mob/living/carbon/human/H = M
 				if(ishuman(new_mob))
-					log_debug("polymorph ishuman(newmob)")
 					var/mob/living/carbon/human/N = new_mob
 					N.gender = H.gender
 					N.identifying_gender = H.identifying_gender
 				else
-					log_debug("polymorph gender else")
 					new_mob.gender = H.gender
 			else
-				log_debug("polymorph gender else 2")
 				new_mob.gender = M.gender
 				if(ishuman(new_mob))
 					var/mob/living/carbon/human/N = new_mob
@@ -528,13 +522,9 @@
 
 
 /mob/living/carbon/human/proc/spawn_beast_mob(var/chosen_beast)
-	log_debug("polymorph proc spawn mob")
 	var/tf_type = chosen_beast
-	log_debug("polymorph [tf_type]")
 	if(!ispath(tf_type))
-		log_debug("polymorph tf_type fail")
 		return
-	log_debug("polymorph tf_type pass")
 	var/new_mob = new tf_type(src.loc)
 	return new_mob
 
@@ -606,38 +596,43 @@
 		to_chat(src, span_warning("You do not have enough energy to do that! You currently have [species.lleill_energy] energy."))
 		return
 
-	var/list/beast_options = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
-									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
-									"Fennec" = /mob/living/simple_mob/vore/fennec,
+	var/list/beast_options = list("Armadillo" = /mob/living/simple_mob/animal/passive/armadillo,
+									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
+									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
+									"Cat" = /mob/living/simple_mob/animal/passive/cat/black/beastmode,
+									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
+									"Cow" = /mob/living/simple_mob/animal/passive/cow,
+									"Dire Wolf" = /mob/living/simple_mob/vore/wolf/direwolf,
+									"Dog (Corgi)" = /mob/living/simple_mob/animal/passive/dog/corgi,
+									"Dog (Bull Terrier)" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
+									"Dog (Tamaskan)" = /mob/living/simple_mob/animal/passive/dog/tamaskan,
+									"Duck" = /mob/living/simple_mob/animal/sif/duck,
+									"Fox" = /mob/living/simple_mob/animal/passive/fox/beastmode,
+									"Fox (Fennec)" = /mob/living/simple_mob/vore/fennec,
+									"Giant Bat" = /mob/living/simple_mob/vore/bat,
 									"Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 									"Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
-									"Wolf" = /mob/living/simple_mob/vore/wolf,
-									"Dire Wolf" = /mob/living/simple_mob/vore/wolf/direwolf,
-									"Fox" = /mob/living/simple_mob/animal/passive/fox/beastmode,
-									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
 									"Giant Snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
-									"Otie" = /mob/living/simple_mob/vore/otie,
-									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
-									"Raptor" = /mob/living/simple_mob/vore/raptor,
-									"Giant Bat" = /mob/living/simple_mob/vore/bat,
+									"Goat" = /mob/living/simple_mob/animal/goat,
+									"Goose" = /mob/living/simple_mob/animal/space/goose,
 									"Horse" = /mob/living/simple_mob/vore/horse,
 									"Horse (Big)" = /mob/living/simple_mob/vore/horse/big,
+									"Hyena" = /mob/living/simple_mob/animal/hyena,
 									"Kelpie" = /mob/living/simple_mob/vore/horse/kelpie,
-									"Bear" = /mob/living/simple_mob/animal/space/bear/brown/beastmode,
+									"Lion" = /mob/living/simple_mob/vore/retaliate/lion,
+									"Otie" = /mob/living/simple_mob/vore/otie,
+									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
+									"Panther" = /mob/living/simple_mob/vore/aggressive/panther,
+									"Rabbit" = /mob/living/simple_mob/vore/rabbit,
+									"Raptor" = /mob/living/simple_mob/vore/raptor,
+									"Red Panda" = /mob/living/simple_mob/vore/redpanda,
+									"Reindeer" = /mob/living/simple_mob/vore/reindeer,
+									"Robin" = /mob/living/simple_mob/animal/passive/bird/european_robin/beastmode,
 									"Seagull" = /mob/living/simple_mob/vore/seagull,
 									"Sheep" = /mob/living/simple_mob/vore/sheep,
-									"Azure Tit" = /mob/living/simple_mob/animal/passive/bird/azure_tit/beastmode,
-									"Robin" = /mob/living/simple_mob/animal/passive/bird/european_robin/beastmode,
-									"Cat" = /mob/living/simple_mob/animal/passive/cat/black/beastmode,
-									"Tamaskan Dog" = /mob/living/simple_mob/animal/passive/dog/tamaskan,
-									"Corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
-									"Bull Terrier" = /mob/living/simple_mob/animal/passive/dog/bullterrier,
-									"Duck" = /mob/living/simple_mob/animal/sif/duck,
-									"Cow" = /mob/living/simple_mob/animal/passive/cow,
-									"Chicken" = /mob/living/simple_mob/animal/passive/chicken,
-									"Goat" = /mob/living/simple_mob/animal/goat,
-									"Penguin" = /mob/living/simple_mob/animal/passive/penguin,
-									"Goose" = /mob/living/simple_mob/animal/space/goose
+									"Slug" = /mob/living/simple_mob/vore/slug,
+									"Squirrel" = /mob/living/simple_mob/vore/squirrel,
+									"Wolf" = /mob/living/simple_mob/vore/wolf
 									)
 
 	var/chosen_beast = tgui_input_list(src, "Which form would you like to take?", "Choose Beast Form", beast_options)
@@ -650,18 +645,14 @@
 		return
 
 	var/mob/living/M = src
-	log_debug("polymorph start")
 	if(!istype(M))
-		log_debug("polymorph istype")
 		return
 
 	if(M.stat)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph stat")
 		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
 	if(M.health <= 10)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph injured")
 		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
@@ -676,15 +667,12 @@
 	spawn(10)
 		src.overlays -= coolanimation
 
-		log_debug("polymorph not dead")
 		var/mob/living/simple_mob/new_mob = spawn_beast_mob(beast_options[chosen_beast])
 		new_mob.faction = M.faction
 
 		if(new_mob && isliving(new_mob))
 			species.lleill_energy -= energy_cost
-			log_debug("polymorph new_mob")
 			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				log_debug("polymorph new_mob belly")
 				new_mob.vore_organs -= B
 				qdel(B)
 			new_mob.vore_organs = list()
@@ -701,18 +689,14 @@
 			M.copy_vore_prefs_to_mob(new_mob)
 			new_mob.vore_selected = M.vore_selected
 			if(ishuman(M))
-				log_debug("polymorph ishuman part2")
 				var/mob/living/carbon/human/H = M
 				if(ishuman(new_mob))
-					log_debug("polymorph ishuman(newmob)")
 					var/mob/living/carbon/human/N = new_mob
 					N.gender = H.gender
 					N.identifying_gender = H.identifying_gender
 				else
-					log_debug("polymorph gender else")
 					new_mob.gender = H.gender
 			else
-				log_debug("polymorph gender else 2")
 				new_mob.gender = M.gender
 				if(ishuman(new_mob))
 					var/mob/living/carbon/human/N = new_mob

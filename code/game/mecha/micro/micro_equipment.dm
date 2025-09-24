@@ -131,13 +131,13 @@
 				if(W.reinf_material)
 					occupant_message(span_warning("[target] is too durable to drill through."))
 				else
-					log_message("Drilled through [target]")
+					src.mecha_log_message("Drilled through [target]")
 					target.ex_act(2)
 			else if(ismineralturf(target))
 				for(var/turf/simulated/mineral/M in range(chassis,1))
 					if(get_dir(chassis,M)&chassis.dir)
 						M.GetDrilled()
-				log_message("Drilled through [target]")
+				src.mecha_log_message("Drilled through [target]")
 				var/obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop/ore_box = (locate(/obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop) in chassis.equipment)
 				if(ore_box)
 					for(var/obj/item/ore/ore in range(chassis,1))
@@ -148,7 +148,7 @@
 							else
 								ore.forceMove(ore_box)
 			else if(target.loc == C)
-				log_message("Drilled through [target]")
+				src.mecha_log_message("Drilled through [target]")
 				target.ex_act(2)
 	return 1
 

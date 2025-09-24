@@ -18,8 +18,8 @@
 	name = "grab"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "reinforce"
-	flags = 0
-	var/obj/screen/grab/hud = null
+	item_flags = DROPDEL | NOSTRIP
+	var/atom/movable/screen/grab/hud = null
 	var/mob/living/affecting = null
 	var/mob/living/carbon/human/assailant = null
 	var/state = GRAB_PASSIVE
@@ -33,7 +33,6 @@
 	abstract = 1
 	item_state = "nothing"
 	w_class = ITEMSIZE_HUGE
-	destroy_on_drop = TRUE	//VOREStation Edit
 
 
 /obj/item/grab/Initialize(mapload, mob/victim)
@@ -48,7 +47,7 @@
 	affecting.reveal(span_warning("You are revealed as [assailant] grabs you."))
 	assailant.reveal(span_warning("You reveal yourself as you grab [affecting]."))
 
-	hud = new /obj/screen/grab(src)
+	hud = new /atom/movable/screen/grab(src)
 	hud.icon_state = "reinforce"
 	icon_state = "grabbed"
 	hud.name = "reinforce grab"
@@ -231,7 +230,7 @@
 		if(EAST)
 			animate(affecting, pixel_x =-shift, pixel_y = initial(affecting.pixel_y), 5, 1, LINEAR_EASING)
 
-/obj/item/grab/proc/s_click(obj/screen/S)
+/obj/item/grab/proc/s_click(atom/movable/screen/S)
 	if(QDELETED(src))
 		return
 	if(!affecting)
@@ -340,12 +339,6 @@
 
 				if(I_DISARM)
 					pin_down(affecting, assailant)
-
-/obj/item/grab/dropped(mob/user)
-	..()
-	loc = null
-	if(!QDELETED(src))
-		qdel(src)
 
 /obj/item/grab/proc/reset_kill_state()
 	if(state == GRAB_KILL)

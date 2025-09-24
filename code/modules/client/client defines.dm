@@ -86,6 +86,9 @@
 	///Used for limiting the rate of clicks sends by the client to avoid abuse
 	var/list/clicklimiter
 
+	///these persist between logins/logouts during the same round.
+	var/datum/persistent_client/persistent_client
+
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
@@ -99,7 +102,7 @@
 
 	preload_rsc = PRELOAD_RSC
 
-	var/global/obj/screen/click_catcher/void
+	var/global/atom/movable/screen/click_catcher/void
 
 	// List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
 	var/list/sent_assets = list()

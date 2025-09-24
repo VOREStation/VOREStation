@@ -362,7 +362,7 @@
 	src.icon_state = "cookingpotb" // Make it look all busted up and shit
 	src.visible_message(span_warning("The cooking pot breaks!")) //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
-	src.flags = null //So you can't add condiments
+	src.flags = NONE //So you can't add condiments
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
@@ -385,7 +385,7 @@
 /obj/machinery/microwave/cookingpot/muck_finish()
 	src.visible_message(span_warning("The cooking pot gets covered in muck!"))
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
-	src.flags = null //So you can't add condiments
+	src.flags = NONE //So you can't add condiments
 	src.icon_state = "cookingpotbloody0" // Make it look dirty too
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
@@ -406,7 +406,7 @@
 	name = "teleportation wand"
 	desc = "An odd wand that weighs more than it looks like it should. It has a wire protruding from it and a glass-like tip, suggesting there may be more tech behind this than magic."
 
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "harpoonwand-2"
 
 /obj/item/bluespace_harpoon/wand/update_icon()
@@ -534,7 +534,7 @@ This device records all warnings given and teleport events for admin review in c
 /obj/item/slow_sizegun/magic
 	name = "wand of growth and shrinking"
 	desc = "A wand said to be able to shrink or grow it's targets, it's encrusted with glowing gems and a... trigger?"
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "sizegun-magic-0"
 	base_icon_state = "sizegun-magic"
 

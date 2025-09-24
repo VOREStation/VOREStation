@@ -725,12 +725,11 @@
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
-	ExtinguishMob()
-	fire_stacks = 0
 	if(ai_holder) // AI gets told to sleep when killed. Since they're not dead anymore, wake it up.
 		ai_holder.go_wake()
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DNA_FINALIZED)
+	SEND_SIGNAL(src, COMSIG_LIVING_AHEAL)
 
 /mob/living/proc/rejuvenate()
 	if(reagents)
@@ -855,8 +854,6 @@
 		else
 			resist_restraints()
 
-	if(attempt_vr(src,"vore_process_resist",args)) return TRUE
-
 /mob/living/proc/resist_buckle()
 	if(buckled)
 		if(istype(buckled, /obj/vehicle))
@@ -888,7 +885,7 @@
 	update_canmove()
 
 //called when the mob receives a bright flash
-/mob/living/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(override_blindness_check || !(disabilities & BLIND))
 		overlay_fullscreen("flash", type)
 		spawn(25)
@@ -1015,6 +1012,11 @@
 				puke_bucket.reagents.add_reagent(REAGENT_BLOOD, rand(3, 6))
 			else
 				puke_bucket.reagents.add_reagent(REAGENT_ID_TOXIN, rand(3, 6))
+		distance = 0
+	else if(isbelly(loc))
+		var/obj/belly/belly = loc
+		if(message)
+			to_chat(src, span_bolddanger("You throw up inside [belly.owner]'s [belly]!"))
 		distance = 0
 	else
 		if(message)
@@ -1173,10 +1175,6 @@
 		return FALSE
 	return TRUE
 
-// Gets the correct icon_state for being on fire. See OnFire.dmi for the icons.
-/mob/living/proc/get_fire_icon_state()
-	return "generic"
-
 // Called by job_controller.
 /mob/living/proc/equip_post_job()
 	return
@@ -1288,7 +1286,7 @@
 		swap_hand()
 
 /mob/living/throw_item(atom/target)
-	if(incapacitated() || !target || istype(target, /obj/screen) || is_incorporeal())
+	if(incapacitated() || !target || istype(target, /atom/movable/screen) || is_incorporeal())
 		return FALSE
 
 	var/atom/movable/item = src.get_active_hand()
@@ -1434,7 +1432,7 @@
 	if(has_gravity)
 		clear_alert("weightless")
 	else
-		throw_alert("weightless", /obj/screen/alert/weightless)
+		throw_alert("weightless", /atom/movable/screen/alert/weightless)
 
 // Tries to turn off things that let you see through walls, like mesons.
 // Each mob does vision a bit differently so this is just for inheritence and also so overrided procs can make the vision apply instantly if they call `..()`.
@@ -1445,7 +1443,7 @@
  * Small helper component to manage the character setup HUD icon
  */
 /datum/component/character_setup
-	var/obj/screen/character_setup/screen_icon
+	var/atom/movable/screen/character_setup/screen_icon
 
 /datum/component/character_setup/Initialize()
 	if(!ismob(parent))
@@ -1493,7 +1491,7 @@
 /**
  * Screen object for vore panel
  */
-/obj/screen/character_setup
+/atom/movable/screen/character_setup
 	name = "character setup"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "character"

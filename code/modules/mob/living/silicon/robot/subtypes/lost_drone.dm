@@ -41,7 +41,7 @@
 /mob/living/silicon/robot/lost/randomlaws
 
 /mob/living/silicon/robot/lost/randomlaws/apply_new_laws()
-	var/old_name = laws.name
+	var/old_name = laws?.name
 	laws = give_random_lawset()
 	if(old_name == laws.name)
 		apply_new_laws()
@@ -53,7 +53,7 @@
 /mob/living/silicon/robot/lost/randomlaws/vore
 
 /mob/living/silicon/robot/lost/randomlaws/vore/apply_new_laws()
-	var/old_name = laws.name
+	var/old_name = laws?.name
 	laws = give_random_lawset_vore(100)
 	if(old_name == laws.name)
 		apply_new_laws()
@@ -61,7 +61,7 @@
 /mob/living/silicon/robot/lost/randomlaws/mixed
 
 /mob/living/silicon/robot/lost/randomlaws/mixed/apply_new_laws()
-	var/old_name = laws.name
+	var/old_name = laws?.name
 	laws = give_random_lawset_vore(60)
 	if(old_name == laws.name)
 		apply_new_laws()
@@ -71,8 +71,7 @@
 		var/confirm = tgui_alert(src, "Do you want to keep your laws or reroll? (For specific laws, feel free to ahelp and we'll see what we can do)", "Confirm laws", list("Keep", "Reroll ([law_retries])"))
 		if(findtext(confirm, regex("Reroll \\(\[0-9\]*\\)", "")))
 			apply_new_laws()
-			to_chat(src, span_infoplain(span_bold("Obey these laws:")))
-			laws.show_laws(src)
+			to_chat(src, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
 			law_retries --
 		else
 			law_retries = 0

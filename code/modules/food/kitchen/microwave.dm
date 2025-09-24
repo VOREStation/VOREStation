@@ -1,3 +1,5 @@
+#define MICROWAVE_FLAGS (OPENCONTAINER | NOREACT)
+
 /obj/machinery/microwave
 	name = "Microwave"
 	desc = "Studies are inconclusive on whether pressing your face against the glass is harmful."
@@ -12,7 +14,7 @@
 	active_power_usage = 2000
 	clicksound = "button"
 	clickvol = "30"
-	flags = OPENCONTAINER | NOREACT
+	flags = MICROWAVE_FLAGS
 	circuit = /obj/item/circuitboard/microwave
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
@@ -96,7 +98,7 @@
 				src.icon_state = "mw"
 				src.broken = 0 // Fix it!
 				src.dirty = 0 // just to be sure
-				src.flags = OPENCONTAINER | NOREACT
+				src.flags |= MICROWAVE_FLAGS
 		else
 			to_chat(user, span_warning("It's broken!"))
 			return 1
@@ -115,7 +117,7 @@
 				src.dirty = 0 // It's clean!
 				src.broken = 0 // just to be sure
 				src.icon_state = "mw"
-				src.flags = OPENCONTAINER | NOREACT
+				src.flags |= MICROWAVE_FLAGS
 				SStgui.update_uis(src)
 		else //Otherwise bad luck!!
 			to_chat(user, span_warning("It's dirty!"))
@@ -512,7 +514,7 @@
 /obj/machinery/microwave/proc/muck_finish()
 	src.visible_message(span_warning("The microwave gets covered in muck!"))
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
-	src.flags = null //So you can't add condiments
+	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
 	src.icon_state = "mwbloody0" // Make it look dirty too
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
@@ -526,7 +528,7 @@
 	src.icon_state = "mwb" // Make it look all busted up and shit
 	src.visible_message(span_warning("The microwave breaks!")) //Let them know they're stupid
 	src.broken = 2 // Make it broken so it can't be used util fixed
-	src.flags = null //So you can't add condiments
+	src.flags &= ~MICROWAVE_FLAGS //So you can't add condiments
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
@@ -633,3 +635,5 @@
 		if(istype(M, circuit)) // Yes, we remove circuit twice. Yes, it's necessary. Yes, it's stupid.
 			workingList -= M
 	return workingList
+
+#undef MICROWAVE_FLAGS

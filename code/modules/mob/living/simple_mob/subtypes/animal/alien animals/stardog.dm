@@ -491,7 +491,7 @@
 
 	var/mob/living/simple_mob/vore/overmap/stardog/m = s.parent
 
-	log_subtle(message,L)
+	L.log_message("(SUBTLE) [message]", LOG_EMOTE)
 	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
 	message = span_bold("(From the back of \the [m]) ") + message
 	message = encode_html_emphasis(message)
@@ -707,7 +707,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_flora.len)
-		to_world_log("[src] does not have a set valid flora list!")
+		log_mapping("[src] does not have a set valid flora list!")
 		return TRUE
 
 	var/obj/F
@@ -723,7 +723,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_mobs.len)
-		to_world_log("[src] does not have a set valid mobs list!")
+		log_mapping("[src] does not have a set valid mobs list!")
 		return TRUE
 
 	var/mob/M
@@ -750,7 +750,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_mobs.len)
-		to_world_log("[src] does not have a set valid mobs list!")
+		log_mapping("[src] does not have a set valid mobs list!")
 		return
 
 	if(!prob(mob_chance))
@@ -769,7 +769,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_flora.len)
-		to_world_log("[src] does not have a set valid flora list!")
+		log_mapping("[src] does not have a set valid flora list!")
 		return
 
 	var/obj/F
@@ -787,7 +787,7 @@
 	if(treasure_chance <= 0)
 		return
 	if(!valid_treasure.len)
-		to_world_log("[src] does not have a set valid treasure list!")
+		log_mapping("[src] does not have a set valid treasure list!")
 		return
 
 	var/obj/F
@@ -1156,7 +1156,7 @@
 		to_chat(L, span_warning("You can't do that here."))
 		return
 
-	log_subtle(message,L)
+	L.log_message("(SUBTLE) [message]", LOG_EMOTE)
 	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
 	message = span_bold("(From within \the [s]) ") + message
 	message = encode_html_emphasis(message)
@@ -1432,6 +1432,7 @@
 	water_icon = 'icons/turf/stomach_vr.dmi'
 	water_state = "enzyme_shallow"
 	under_state = "flesh_floor"
+	watercolor = "green"
 
 	reagent_type = REAGENT_ID_SACID //why not
 	outdoors = FALSE
@@ -1439,13 +1440,13 @@
 	var/mobstuff = TRUE		//if false, we don't care about dogs, and that's terrible
 	var/we_process = FALSE	//don't start another process while you're processing, idiot
 
-/turf/simulated/floor/water/digestive_enzymes/Entered(atom/movable/AM)
-	if(digest_stuff(AM) && !we_process)
+/turf/simulated/floor/water/digestive_enzymes/Entered(atom/movable/source)
+	if(digest_stuff(source) && !we_process)
 		START_PROCESSING(SSturfs, src)
 		we_process = TRUE
 
-/turf/simulated/floor/water/digestive_enzymes/hitby(atom/movable/AM)
-	if(digest_stuff(AM) && !we_process)
+/turf/simulated/floor/water/digestive_enzymes/hitby(atom/movable/source)
+	if(digest_stuff(source) && !we_process)
 		START_PROCESSING(SSturfs, src)
 		we_process = TRUE
 
@@ -1454,12 +1455,12 @@
 		we_process = FALSE
 		return PROCESS_KILL
 
-/turf/simulated/floor/water/digestive_enzymes/proc/can_digest(atom/movable/AM as mob|obj)
+/turf/simulated/floor/water/digestive_enzymes/proc/can_digest(atom/movable/digest_target)
 	. = FALSE
-	if(AM.loc != src)
+	if(digest_target.loc != src)
 		return FALSE
-	if(isitem(AM))
-		var/obj/item/I = AM
+	if(isitem(digest_target))
+		var/obj/item/I = digest_target
 		if(I.unacidable || I.throwing || I.is_incorporeal())
 			return FALSE
 		var/food = FALSE
@@ -1476,8 +1477,8 @@
 				yum += 50
 			linked_mob.adjust_nutrition(yum)
 		return TRUE
-	if(isliving(AM))
-		var/mob/living/L = AM
+	if(isliving(digest_target))
+		var/mob/living/L = digest_target
 		if(L.unacidable || !L.digestable || L.buckled || L.hovering || L.throwing || L.is_incorporeal())
 			return FALSE
 		if(ishuman(L))
@@ -1488,7 +1489,7 @@
 				return TRUE
 		else return TRUE
 
-/turf/simulated/floor/water/digestive_enzymes/proc/digest_stuff(atom/movable/AM)	//I'm so sorry
+/turf/simulated/floor/water/digestive_enzymes/proc/digest_stuff(atom/movable/digest_target)	//I'm so sorry
 	. = FALSE
 
 	var/damage = 1
@@ -1574,7 +1575,7 @@
 	if(!we_process)
 		START_PROCESSING(SSturfs, src)
 
-/turf/simulated/floor/flesh/mover/hitby(atom/movable/AM)
+/turf/simulated/floor/flesh/mover/hitby(atom/movable/source)
 	if(!we_process)
 		START_PROCESSING(SSturfs, src)
 

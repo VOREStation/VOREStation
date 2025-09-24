@@ -159,21 +159,21 @@
 	flags = WHITELISTED
 
 /datum/language/echosong/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
-	log_say("(INAUDIBLE) [message]", speaker)
+	speaker.log_talk("(INAUDIBLE) [message]", LOG_SAY)
 	speaker.say_signlang(format_message(message), pick(signlang_verb), pick(signlang_verb_understood), src, 2)
 
 /datum/language/unathi
-	flags = 0
+	flags = NONE
 /datum/language/tajaran
-	flags = 0
+	flags = NONE
 /datum/language/skrell
-	flags = 0
+	flags = NONE
 /datum/language/teshari
-	flags = 0
+	flags = NONE
 /datum/language/zaddat
-	flags = 0
+	flags = NONE
 /datum/language/human
-	flags = 0
+	flags = NONE
 /datum/language/gutter
 	machine_understands = FALSE
 	desc = "A dialect of Tradeband not uncommon amongst traders in the Free Trade Union. The language is often difficult to translate due to changing frequently and being highly colloquial."

@@ -117,7 +117,7 @@
 				if(docking_codes)
 					var/code = signal.data["code"]
 					if(code != docking_codes)
-						log_debug("Controller [id_tag] got request_dock but code:[code] != docking_codes:[docking_codes]")
+						// to_chat(world, "Controller [id_tag] got request_dock but code:[code] != docking_codes:[docking_codes]")
 						return
 
 				control_mode = MODE_SERVER
