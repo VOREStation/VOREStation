@@ -121,6 +121,8 @@
 			add_attack_logs(thrown_mob.LAssailant,source,"Was Devoured by [thrown_mob.name] via throw vore.")
 			return
 
+//source = person standing up
+//crossed = person sliding
 /datum/element/spontaneous_vore/proc/handle_crossed(mob/living/source, mob/living/crossed)
 	SIGNAL_HANDLER
 
@@ -128,14 +130,14 @@
 		return
 
 	//Person being slipped into eats the person slipping
-	if(can_slip_vore(pred = crossed, prey = source))	//If we can vore them go for it
-		crossed.begin_instant_nom(crossed, prey = source, pred = crossed, belly = crossed.vore_selected)
-		source.is_slipping = FALSE
+	if(can_slip_vore(pred = source, prey = crossed))	//If we can vore them go for it
+		source.begin_instant_nom(source, prey = crossed, pred = source, belly = source.vore_selected)
+		crossed.is_slipping = FALSE
 		return COMPONENT_BLOCK_CROSS
 
 	//The person slipping eats the person being slipped into
-	else if(can_slip_vore(pred = source, prey = crossed))
-		source.begin_instant_nom(source, prey = crossed, pred = source, belly = source.vore_selected)
+	else if(can_slip_vore(pred = crossed, prey = source))
+		crossed.begin_instant_nom(crossed, prey = source, pred = crossed, belly = crossed.vore_selected)
 		crossed.is_slipping = FALSE
 		return COMPONENT_BLOCK_CROSS
 
@@ -165,7 +167,7 @@
 /proc/can_slip_vore(mob/living/pred, mob/living/prey)
 	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
-	if(!prey.is_slipping)	//Obviously they have to be slipping to get slip vored
+	if(!prey.is_slipping || !pred.is_slipping)	//Obviously they have to be slipping to get slip vored
 		return FALSE
 	if(world.time <= prey.slip_protect)
 		return FALSE
@@ -174,7 +176,7 @@
 	return TRUE
 
 ///This is a general 'do we have the mechanical ability to do any type of spontaneous vore' without specialties.
-/proc/can_spontaneous_vore(mob/living/pred, /mob/living/prey)
+/proc/can_spontaneous_vore(mob/living/pred, mob/living/prey)
 	if(!istype(pred) || !istype(prey))
 		return FALSE
 	//Unfortunately, can_be_drop_prey is 'spontanous prey' var and can_be_drop_pred is 'spontaneous pred' var...horribly named imo.
