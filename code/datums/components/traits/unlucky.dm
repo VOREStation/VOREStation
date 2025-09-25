@@ -43,7 +43,6 @@
 
 /**
  * This is a omen eat omen world! The stronger omen survives.
- * For reference, InheritComponent is called on the OLD omen, aka the original one inheriting this.
  */
 /datum/component/omen/InheritComponent(
 	datum/component/omen/new_comp,
@@ -56,20 +55,15 @@
 	vorish,
 )
 	// If we have more incidents left the new one gets deleted.
-	if(src.incidents_left < incidents_left)
-		src.incidents_left = incidents_left
+	if(src.incidents_left > incidents_left)
+		return
+	src.incidents_left = incidents_left
 
 	// The new omen is weaker than our current omen? Let's split the difference.
-	// If the new omen is STRONGER than our current omen, we take its values outright.
 	if(src.luck_mod > luck_mod)
 		src.luck_mod += luck_mod * 0.5
-	else if(src.luck_mod < luck_mod)
-		src.luck_mod = luck_mod
-
 	if(src.damage_mod > damage_mod)
 		src.damage_mod += damage_mod * 0.5
-	else if(src.damage_mod < damage_mod)
-		src.damage_mod = damage_mod
 
 	// If the new omen has special modifiers, we take them on forever!
 	if(evil)
@@ -78,6 +72,7 @@
 		src.safe_disposals = TRUE
 	if(vorish)
 		src.vorish = TRUE
+	//This means weaker, longing lasting omens will take priority, but have some of the strength of the original.
 
 /datum/component/omen/Destroy(force)
 	var/mob/living/person = parent
