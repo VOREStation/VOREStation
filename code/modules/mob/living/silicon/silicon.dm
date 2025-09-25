@@ -318,7 +318,7 @@
 
 /mob/living/silicon/proc/receive_alarm(var/datum/alarm_handler/alarm_handler, var/datum/alarm/alarm, was_raised)
 	if(!next_alarm_notice)
-		next_alarm_notice = world.time + SecondsToTicks(10)
+		next_alarm_notice = world.time + (10 SECONDS)
 	if(alarm.hidden)
 		return
 	if(alarm.origin && !(get_z(alarm.origin) in using_map.get_map_levels(get_z(src), TRUE, om_range = DEFAULT_OVERMAP_RANGE)))

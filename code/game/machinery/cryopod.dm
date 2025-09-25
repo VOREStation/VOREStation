@@ -383,7 +383,7 @@
 		despawn_occupant(M)
 
 	// VOREStation
-	hook_vr("despawn", list(to_despawn, src))
+	persist_despawned_mob(to_despawn, src)
 	if(isliving(to_despawn))
 		var/mob/living/L = to_despawn
 		for(var/obj/belly/B as anything in L.vore_organs)
