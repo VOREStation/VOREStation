@@ -437,3 +437,10 @@
   - code_imp: Implements COMSIG_DOOR_CLOSE
   - code_imp: Implements COMSIG_AIRLOCK_SET_BOLT
   - code_imp: Implements COMSIG_MOB_BUMPED_DOOR_OPEN
+2025-09-25:
+  Diana:
+  - bugfix: Alraune and Gamma Replicant can be neuter or plural
+  Guti:
+  - rscadd: Added churros and churros recipe
+  Will:
+  - code_imp: Moves turf slip code to a component
