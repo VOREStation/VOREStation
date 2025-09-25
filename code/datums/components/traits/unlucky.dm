@@ -456,7 +456,7 @@
 					continue //Robotic hearts are immune to this.
 				heart.take_damage(10 * stun_amount * damage_mod)
 				heart.take_damage(0.25 * agony_amount * damage_mod)
-			src << sound('sound/effects/singlebeat.ogg',0,0,0,50)
+			playsound(src, 'sound/effects/singlebeat.ogg', 50, FALSE)
 			to_chat(unlucky_soul, span_userdanger("You feel as though your heart stopped"))
 			human_guy.Stun(5)
 			consume_omen()
