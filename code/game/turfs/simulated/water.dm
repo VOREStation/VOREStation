@@ -21,6 +21,8 @@
 
 	var/reagent_type = REAGENT_ID_WATER
 
+	var/watercolor = null
+
 /turf/simulated/floor/water/Initialize(mapload)
 	. = ..()
 	update_icon()

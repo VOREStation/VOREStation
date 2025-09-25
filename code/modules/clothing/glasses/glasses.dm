@@ -25,7 +25,7 @@ BLIND     // can't see anything
 	var/off_state = "degoggles"
 	var/active = 1
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
-	var/obj/screen/overlay = null
+	var/atom/movable/screen/overlay = null
 	var/list/away_planes //Holder for disabled planes
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
