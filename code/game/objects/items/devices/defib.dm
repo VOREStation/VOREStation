@@ -391,7 +391,7 @@
 	H.apply_damage(burn_damage_amt, BURN, BP_TORSO)
 	if(HAS_TRAIT(H, TRAIT_UNLUCKY) && prob(5))
 		make_announcement("buzzes, \"Unknown error occurred. Please try again.\"", "warning")
-		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
+		playsound(src, 'sound/machines/defib_failed.ogg', 50, FALSE)
 		return
 
 	//set oxyloss so that the patient is just barely in crit, if possible
