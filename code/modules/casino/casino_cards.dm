@@ -54,6 +54,7 @@
 
 /obj/item/deck/cards/casino/triple/Initialize(mapload)
 	. = ..()
+	var/datum/playingcard/casino/P
 	for(var/a = 0, a<3, a++)
 		for(var/suit in list("spades","clubs","diamonds","hearts"))
 
