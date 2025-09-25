@@ -65,7 +65,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(can_operate(src, user) && I.do_surgery(src,user))
 		return TRUE
 
-	if(attempt_vr(src,"vore_attackby",args)) return //VOREStation Add - The vore, of course.
+	if(vore_attackby(I, user)) // The vore, of course.
+		return
 
 	return I.attack(src, user, user.zone_sel.selecting, attack_modifier)
 
