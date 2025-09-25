@@ -51,8 +51,6 @@
 	var/access = list()
 	access = ACCESS_CRATE_CASH
 	var/worth = 0
-	icon_scale_x = 0.5
-	icon_scale_y = 0.5
 
 /obj/item/spacecasinocash/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/spacecasinocash))
@@ -85,14 +83,14 @@
 			var/image/banknote = image('icons/obj/casino.dmi', "spacecasinocash[i]")
 			var/matrix/M = matrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
-			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
+			M.Turn(pick(-45, 0, 0, 0, 0, 0, 0, 0, 45))
 			banknote.transform = M
 			src.overlays += banknote
 	if(num == 0) // Less than one credit, let's just make it look like 1 for ease
 		var/image/banknote = image('icons/obj/casino.dmi', "spacecasinocash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
-		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
+		M.Turn(pick(-45, 0, 0, 0, 0, 0, 0, 0, 45))
 		banknote.transform = M
 		src.overlays += banknote
 	src.desc = "They are worth [worth] casino credits."
@@ -217,8 +215,6 @@
 	gender = PLURAL
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "spacecasinocash1"
-	icon_scale_x = 0.5
-	icon_scale_y = 0.5
 	opacity = 0
 	density = 0
 	anchored = 0.0
@@ -262,14 +258,14 @@
 			var/image/banknote = image('icons/obj/casino.dmi', "spacecasinocash[i]")
 			var/matrix/M = matrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
-			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
+			//M.Turn(pick(-45, 0, 0, 0, 0, 0, 0, 0, 45))
 			banknote.transform = M
 			src.overlays += banknote
 	if(num == 0) // Less than one credit, let's just make it look like 1 for ease
 		var/image/banknote = image('icons/obj/casino.dmi', "spacecasinocash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
-		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
+		//M.Turn(pick(-45, 0, 0, 0, 0, 0, 0, 0, 45))
 		banknote.transform = M
 		src.overlays += banknote
 	src.desc = "They are worth [worth] replica casino credits."
