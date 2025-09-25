@@ -55,9 +55,7 @@
 				if(rid == REAGENT_ID_NUTRIMENT)
 					data[seed.seed_name] = max(1,rtotal)
 				var/exclude_reagent = FALSE
-				if(rid == REAGENT_ID_GLAMOUR_INVIS)
-					exclude_reagent = TRUE
-				if(!exclude_reagent)
+				if(rid != REAGENT_ID_GLAMOUR_INVIS)
 					reagents.add_reagent(rid,max(1,rtotal),data)
 		update_desc()
 		if(reagents.total_volume > 0)
