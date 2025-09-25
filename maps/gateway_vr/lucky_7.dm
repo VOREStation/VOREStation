@@ -15,6 +15,9 @@
 	icon_state = "away1"
 	ambience = AMBIENCE_CASINO
 	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_BLOCK_INSTANT_BUILDING
+	dynamic_lighting = TRUE
+	requires_power = FALSE
+	has_gravity = TRUE
 
 /area/awaymission/lucky7/casinofloor
 	name = "\improper Gateway - Casino Floor"
