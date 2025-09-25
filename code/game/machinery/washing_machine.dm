@@ -80,8 +80,9 @@
 		has_mobs = TRUE
 		if(ishuman(mobs))
 			var/mob/living/carbon/human/our_human = mobs
+			var/max_health_coefficient = (our_human.maxHealth * 0.09) //9 for 100% hp human, 4.5 for 50% hp human (teshari), etc.
 			for(var/i=0,i<10,i++)
-				our_human.apply_damage(9*damage_modifier, BRUTE, used_weapon = "spin cycle") //Let's randomly do damage across the body. One limb might get hurt more than the others
+				our_human.apply_damage(max_health_coefficient*damage_modifier, BRUTE, used_weapon = "spin cycle") //Let's randomly do damage across the body. One limb might get hurt more than the others. At 100% damge mod, does 90% of max hp in damage.
 			continue
 		mobs.stat = DEAD //Kill them so they can't interact anymore.
 

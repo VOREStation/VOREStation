@@ -225,8 +225,9 @@
 					if(prob(50 * effective_luck)) // sometimes
 						luck_mod += 0.25
 						damage_mod += 0.25
+					var/max_health_coefficient = (living_guy.maxHealth * 0.06)
 					for(var/obj/item/organ/external/limb in living_guy.organs)
-						living_guy.apply_damage(6 * damage_mod, BRUTE, limb.organ_tag, used_weapon = "glass shrapnel")
+						living_guy.apply_damage(max_health_coefficient * damage_mod, BRUTE, limb.organ_tag, used_weapon = "glass shrapnel")
 
 			living_guy.make_jittery(250)
 			if(evil && prob(7 * effective_luck))
@@ -289,7 +290,8 @@
 	if(prob(30 * luck_mod) && our_guy.get_bodypart_name(BP_HEAD)) /// Bonk!
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		our_guy.visible_message(span_danger("[our_guy] hits their head really badly falling down!"), span_userdanger("You hit your head really badly falling down!"))
-		our_guy.apply_damage(50 * damage_mod, BRUTE, BP_HEAD, used_weapon = "slipping")
+		var/max_health_coefficient = (living_guy.maxHealth * 0.5)
+		our_guy.apply_damage(max_health_coefficient * damage_mod, BRUTE, BP_HEAD, used_weapon = "slipping")
 		if(ishuman(our_guy))
 			var/mob/living/carbon/human/human_guy = our_guy
 			if(human_guy.should_have_organ(O_BRAIN))
@@ -437,8 +439,9 @@
 	if(prob(3 * luck_mod)) /// Bonk!
 		playsound(unlucky_soul, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		unlucky_soul.visible_message(span_danger("One of the stairs give way as [unlucky_soul] steps onto it, tumbling them down to the bottom!"), span_userdanger("A stair gives way and you trip to the bottom!"))
+		var/max_health_coefficient = (living_guy.maxHealth * 0.09)
 		for(var/obj/item/organ/external/limb in unlucky_soul.organs) //In total, you should have 11 limbs (generally, unless you have an amputation). The full omen variant we want to leave you at 1 hp, the trait version less. As of writing, the trait version is 25% of the damage, so you take 24.75 across all limbs.
-			unlucky_soul.apply_damage(9 * damage_mod, BRUTE, limb.organ_tag, used_weapon = "slipping")
+			unlucky_soul.apply_damage(max_health_coefficient * damage_mod, BRUTE, limb.organ_tag, used_weapon = "slipping")
 		unlucky_soul.Weaken(5)
 		consume_omen()
 
