@@ -22,7 +22,7 @@
 	/// If we have vore interactions or not
 	var/vorish = TRUE
 
-/datum/component/omen/Initialize(obj/vessel, incidents_left, luck_mod, damage_mod)
+/datum/component/omen/Initialize(incidents_left, luck_mod, damage_mod, evil, safe_disposals, vorish)
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -32,25 +32,52 @@
 		src.luck_mod = luck_mod
 	if(!isnull(damage_mod))
 		src.damage_mod = damage_mod
+	if(!isnull(evil))
+		src.evil = evil
+	if(!isnull(safe_disposals))
+		src.safe_disposals = safe_disposals
+	if(!isnull(vorish))
+		src.vorish = vorish
 
 	ADD_TRAIT(parent, TRAIT_UNLUCKY, src)
 
 /**
  * This is a omen eat omen world! The stronger omen survives.
+ * For reference, InheritComponent is called on the OLD omen, aka the original one inheriting this.
  */
-/datum/component/omen/InheritComponent(obj/vessel, incidents_left, luck_mod, damage_mod)
+/datum/component/omen/InheritComponent(
+	datum/component/omen/new_comp,
+	i_am_original,
+	incidents_left,
+	luck_mod,
+	damage_mod,
+	evil,
+	safe_disposals,
+	vorish,
+)
 	// If we have more incidents left the new one gets deleted.
-	if(src.incidents_left > incidents_left)
-		return // make slimes get nurtiton from plasmer
-	// Otherwise we set our incidents remaining to the higher, newer value.
-	src.incidents_left = incidents_left
+	if(src.incidents_left < incidents_left)
+		src.incidents_left = incidents_left
+
 	// The new omen is weaker than our current omen? Let's split the difference.
+	// If the new omen is STRONGER than our current omen, we take its values outright.
 	if(src.luck_mod > luck_mod)
 		src.luck_mod += luck_mod * 0.5
+	else if(src.luck_mod < luck_mod)
+		src.luck_mod = luck_mod
+
 	if(src.damage_mod > damage_mod)
 		src.damage_mod += damage_mod * 0.5
-	// This means that if you had a strong temporary omen and it was replaced by a weaker but permanent omen, the latter is made worse.
-	// Feature!
+	else if(src.damage_mod < damage_mod)
+		src.damage_mod = damage_mod
+
+	// If the new omen has special modifiers, we take them on forever!
+	if(evil)
+		src.evil = TRUE
+	if(safe_disposals)
+		src.safe_disposals = TRUE
+	if(vorish)
+		src.vorish = TRUE
 
 /datum/component/omen/Destroy(force)
 	var/mob/living/person = parent
@@ -475,6 +502,7 @@
  */
 /datum/component/omen/trait
 	incidents_left = INFINITY
+	dupe_type = /datum/component/omen/trait
 	luck_mod = 0.3 // 30% chance of bad things happening
 	damage_mod = 0.25 // 25% of normal damage
 	evil = FALSE
@@ -519,8 +547,3 @@
  */
 /datum/component/omen/dice
 	incidents_left = 1
-
-///Dice omen but on par with the trait in damage and doesn't do the more evil things.
-/datum/component/omen/dice/minor
-	damage_mod = 0.25 // 25% of normal damage
-	evil = FALSE
