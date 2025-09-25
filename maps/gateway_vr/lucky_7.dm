@@ -91,6 +91,26 @@
 	name = "\improper Gateway - VIP Room"
 	icon_state = "crew_quarters"
 
+/area/awaymission/lucky7/dorms
+	name = "\improper Gateway - Dorms"
+	icon_state = "crew_quarters"
+	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_BLOCK_INSTANT_BUILDING
+
+/area/awaymission/lucky7/dorms/one
+	name = "\improper Gateway - Dorm 1"
+
+/area/awaymission/lucky7/dorms/two
+	name = "\improper Gateway - Dorm 2"
+
+/area/awaymission/lucky7/dorms/three
+	name = "\improper Gateway - Dorm 3"
+
+/area/awaymission/lucky7/dorms/four
+	name = "\improper Gateway - Dorm 4"
+
+/area/awaymission/lucky7/dorms/five
+	name = "\improper Gateway - Dorm 5"
+
 /area/awaymission/lucky7/security
 	name = "\improper Gateway - Security"
 	icon_state = "security"
