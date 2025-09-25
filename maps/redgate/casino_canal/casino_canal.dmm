@@ -1726,6 +1726,22 @@
 	},
 /turf/simulated/floor/tiled/purple,
 /area/space)
+"eb" = (
+/obj/effect/floor_decal/borderfloor/purple{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7/purple,
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 1
+	},
+/obj/machinery/item_bank{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/purple,
+/area/space)
 "ec" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 6
@@ -1896,6 +1912,18 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/purple,
+/area/space)
+"es" = (
+/obj/structure/table/standard,
+/obj/item/storage/wallet/casino{
+	pixel_y = 8;
+	pixel_x = 1
+	},
+/obj/item/storage/wallet/casino{
+	pixel_y = 3;
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/space)
 "et" = (
 /obj/structure/redgate/away,
@@ -2457,45 +2485,6 @@
 /turf/simulated/floor/carpet/brown,
 /area/space)
 "fr" = (
-/obj/structure/closet{
-	name = "chips"
-	},
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c1,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c10,
-/obj/item/spacecasinocash/c100,
-/obj/item/spacecasinocash/c100,
-/obj/item/spacecasinocash/c100,
-/obj/item/spacecasinocash/c100,
-/obj/item/spacecasinocash/c100,
-/obj/item/roulette_ball/gold,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/space)
 "fs" = (
@@ -2600,6 +2589,95 @@
 /area/space)
 "fF" = (
 /obj/structure/table/standard,
+/obj/structure/closet/walllocker_double/casino/north,
+/obj/item/spacecasinocash/c1{
+	pixel_y = 13;
+	pixel_x = 8
+	},
+/obj/item/spacecasinocash/c1{
+	pixel_y = 11;
+	pixel_x = 8
+	},
+/obj/item/spacecasinocash/c1{
+	pixel_y = 9;
+	pixel_x = 8
+	},
+/obj/item/spacecasinocash/c1{
+	pixel_y = 7;
+	pixel_x = 8
+	},
+/obj/item/spacecasinocash/c1{
+	pixel_y = 5;
+	pixel_x = 8
+	},
+/obj/item/spacecasinocash/c1{
+	pixel_y = 3;
+	pixel_x = 8
+	},
+/obj/item/spacecasinocash/c1{
+	pixel_y = 1;
+	pixel_x = 8
+	},
+/obj/item/spacecasinocash/c1{
+	pixel_y = -1;
+	pixel_x = 8
+	},
+/obj/item/spacecasinocash/c10{
+	pixel_y = 13
+	},
+/obj/item/spacecasinocash/c10{
+	pixel_y = 11
+	},
+/obj/item/spacecasinocash/c10{
+	pixel_y = 9
+	},
+/obj/item/spacecasinocash/c10{
+	pixel_y = 7
+	},
+/obj/item/spacecasinocash/c10{
+	pixel_y = 5
+	},
+/obj/item/spacecasinocash/c10{
+	pixel_y = 3
+	},
+/obj/item/spacecasinocash/c10{
+	pixel_y = 1
+	},
+/obj/item/spacecasinocash/c10{
+	pixel_y = -1
+	},
+/obj/item/spacecasinocash/c100{
+	pixel_x = -9;
+	pixel_y = 13
+	},
+/obj/item/spacecasinocash/c100{
+	pixel_x = -9;
+	pixel_y = 11
+	},
+/obj/item/spacecasinocash/c100{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/item/spacecasinocash/c100{
+	pixel_x = -9;
+	pixel_y = 7
+	},
+/obj/item/spacecasinocash/c100{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/item/spacecasinocash/c100{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/spacecasinocash/c100{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/obj/item/spacecasinocash/c100{
+	pixel_x = -9;
+	pixel_y = -1
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/space)
 "fG" = (
@@ -30303,7 +30381,7 @@ Fs
 Fs
 Fs
 PF
-av
+eb
 nG
 aq
 YP
@@ -31856,7 +31934,7 @@ fI
 fI
 fI
 PF
-JY
+es
 nG
 nG
 fy
@@ -32424,7 +32502,7 @@ fI
 fI
 fI
 PF
-fF
+JY
 fD
 fC
 nG
