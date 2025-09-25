@@ -292,7 +292,7 @@
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		var/datum/gender/gender = GLOB.gender_datums[our_guy.get_visible_gender()]
 		our_guy.visible_message(span_danger("[our_guy] hits [gender.his] head really badly falling down!"), span_userdanger("You hit your head really badly falling down!"))
-		var/max_health_coefficient = (living_guy.maxHealth * 0.5)
+		var/max_health_coefficient = (our_guy.maxHealth * 0.5)
 		our_guy.apply_damage(max_health_coefficient * damage_mod, BRUTE, BP_HEAD, used_weapon = "slipping")
 		if(ishuman(our_guy))
 			var/mob/living/carbon/human/human_guy = our_guy
@@ -433,7 +433,7 @@
 		if(!damage_to_inflict)
 			return
 
-			var/datum/gender/gender = GLOB.gender_datums[unlucky_human.get_visible_gender()]
+		var/datum/gender/gender = GLOB.gender_datums[unlucky_human.get_visible_gender()]
 		unlucky_human.visible_message(span_danger("[unlucky_human] accidentally [injury_verb] [gender.his] hand on [item]!"))
 		unlucky_human.apply_damage(damage_to_inflict * damage_mod, damage_type, current_hand, sharp = is_sharp, edge = has_edge, used_weapon = injury_type)
 
@@ -442,7 +442,7 @@
 	if(prob(3 * luck_mod)) /// Bonk!
 		playsound(unlucky_soul, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		unlucky_soul.visible_message(span_danger("One of the stairs give way as [unlucky_soul] steps onto it, tumbling them down to the bottom!"), span_userdanger("A stair gives way and you trip to the bottom!"))
-		var/max_health_coefficient = (living_guy.maxHealth * 0.09)
+		var/max_health_coefficient = (unlucky_soul.maxHealth * 0.09)
 		for(var/obj/item/organ/external/limb in unlucky_soul.organs) //In total, you should have 11 limbs (generally, unless you have an amputation). The full omen variant we want to leave you at 1 hp, the trait version less. As of writing, the trait version is 25% of the damage, so you take 24.75 across all limbs.
 			unlucky_soul.apply_damage(max_health_coefficient * damage_mod, BRUTE, limb.organ_tag, used_weapon = "slipping")
 		unlucky_soul.Weaken(5)
