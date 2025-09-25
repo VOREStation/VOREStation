@@ -2952,6 +2952,7 @@
 #include "code\modules\library\hardcode_library\non-fiction\PortedBooks.dm"
 #include "code\modules\library\hardcode_library\reference\PortedBooks.dm"
 #include "code\modules\library\hardcode_library\reference\Schnayy.dm"
+#include "code\modules\library\hardcode_library\reference\virgo_pamphlet.dm"
 #include "code\modules\library\hardcode_library\religious\PortedBooks.dm"
 #include "code\modules\lighting\emissive_blocker.dm"
 #include "code\modules\lighting\lighting_area.dm"
