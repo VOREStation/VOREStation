@@ -325,9 +325,6 @@
 				if(moving)
 					spawn() MagnetMove()
 
-
-	updateUsrDialog(usr)
-
 /obj/machinery/magnetic_controller/proc/MagnetMove()
 	if(looping) return
 
