@@ -325,6 +325,8 @@
 		return "<br>" + span_warning("Unable to perform full scan. Please see a medical professional.")
 	if(!user.mind)
 		return "<br>" + span_warning("Unable to perform full scan. Please see a medical professional.")
+	if(istype(get_area(src), /area/vr))
+		return "<br>" + span_danger("Incompatible database configuration error: A Transcore Mind and Body Resource Management server could not be detected.")
 
 	var/nif = user.nif
 	if(nif)

@@ -1,7 +1,0 @@
-author: "ShadowLarkens"
-delete-after: True
-changes:
-  - refactor: "Got rid of /datum/modifier/fire and converted fully to /datum/status_effect."
-  - rscadd: "When you're on fire, you have some nice smoky firey particles come off you."
-  - rscadd: "You can now get wet, which inhibits fire and gives you pretty drippy particles."
-  - rscadd: "You can now spread fire if you're on fire and you bump into another mob."
