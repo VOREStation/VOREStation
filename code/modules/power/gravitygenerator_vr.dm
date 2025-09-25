@@ -330,7 +330,6 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	update_list()
 	update_gravity(new_state)
 	update_icon()
-	src.updateUsrDialog()
 
 	if(alert)
 		shake_everyone()

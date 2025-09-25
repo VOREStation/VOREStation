@@ -75,7 +75,7 @@
 	//VOREStation Add End
 
 	post_buckle_mob(M)
-	M.throw_alert("buckled", /obj/screen/alert/restrained/buckled, new_master = src)
+	M.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled, new_master = src)
 	return TRUE
 
 /atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE)

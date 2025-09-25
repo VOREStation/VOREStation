@@ -543,7 +543,7 @@
 	var/list/players = list()
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
+		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > 10 MINUTES)
 			continue
 		players += player.real_name
 
@@ -1185,3 +1185,54 @@
 	H.put_in_inactive_hand(I)
 	next_use = (world.time + 30 SECONDS)
 	H.visible_message(span_notice("\The [H] pulls an acorn from \the [src]!"))
+
+/obj/item/toy/plushie/dragon
+	name = "dragon plushie"
+	desc = "A soft plushie in the shape of a dragon. How ferocious!"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "reddragon"
+	var/cooldown = FALSE
+
+/obj/item/toy/plushie/dragon/Initialize(mapload)
+	. = ..()
+	if (pokephrase != "Rawr~!")
+		pokephrase = pick("ROAR!", "RAWR!", "GAWR!", "GRR!", "GROAR!", "GRAH!", "Weh!", "Merp!")
+
+/obj/item/toy/plushie/dragon/attack_self(mob/user)
+	if(!cooldown)
+		switch(pokephrase)
+			if("Weh!")
+				playsound(user, 'sound/voice/weh.ogg', 20, 0)
+			if("Merp!")
+				playsound(user, 'sound/voice/merp.ogg', 20, 0)
+			else
+				playsound(user, 'sound/voice/roarbark.ogg', 20, 0)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 SECONDS, TIMER_DELETE_ME)
+	return ..()
+
+/obj/item/toy/plushie/dragon/green
+	name = "green dragon plushie"
+	icon_state = "greendragon"
+
+/obj/item/toy/plushie/dragon/purple
+	name = "purple dragon plushie"
+	icon_state = "purpledragon"
+
+/obj/item/toy/plushie/dragon/white_east
+	name = "white eastern dragon plushie"
+	icon_state = "whiteeasterndragon"
+
+/obj/item/toy/plushie/dragon/red_east
+	name = "red eastern dragon plushie"
+	icon_state = "redeasterndragon"
+
+/obj/item/toy/plushie/dragon/green_east
+	name = "green eastern dragon plushie"
+	icon_state = "greeneasterndragon"
+
+/obj/item/toy/plushie/dragon/gold_east
+	name = "golden eastern dragon plushie"
+	desc = "A soft plushie of a shiny golden dragon. Made of Real* gold!"
+	icon_state = "goldeasterndragon"
+	pokephrase = "Rawr~!"

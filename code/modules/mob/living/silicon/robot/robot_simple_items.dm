@@ -997,10 +997,10 @@
 
 	can_hold = list(CIRCUIT_GRIPPER)
 
-/obj/item/gripper/service //Used to handle food, drinks, and seeds.
+/obj/item/gripper/service //Used to handle food, drinks, seeds, and cards.
 	name = "service gripper"
 	icon_state = "gripper-sheet"
-	desc = "A simple grasping tool used to perform tasks in the service sector, such as handling food, drinks, and seeds."
+	desc = "A simple grasping tool used to perform tasks in the service sector, such as handling food, drinks, and seeds. It can also hold cards and fake casino chips for hosting card games."
 
 	can_hold = list(SERVICE_GRIPPER)
 
