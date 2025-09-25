@@ -641,12 +641,6 @@
 		temps[direction] = rstats
 	return temps
 
-/proc/MinutesToTicks(var/minutes)
-	return SecondsToTicks(60 * minutes)
-
-/proc/SecondsToTicks(var/seconds)
-	return seconds * 10
-
 ///Flash the window of a player
 /proc/window_flash(client/flashed_client, ignorepref = FALSE)
 	if(ismob(flashed_client))

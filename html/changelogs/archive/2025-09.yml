@@ -424,3 +424,23 @@
   - qol: Maint blood and vomit is old and dried.
   - balance: ' water turfs now break falls'
   - bugfix: emergency lights stay red during nightshift
+2025-09-24:
+  Willburd:
+  - refactor: Huge door code cleanup
+  - refactor: attempt_vr() removal
+  - refactor: hook_vr() removal
+  - refactor: few remaining MinutesToTicks and SecondsToTicks updated to use defines
+      instead
+  - code_imp: Implements COMSIG_DOOR_CAN_OPEN
+  - code_imp: Implements COMSIG_DOOR_CAN_CLOSE
+  - code_imp: Implements COMSIG_DOOR_OPEN
+  - code_imp: Implements COMSIG_DOOR_CLOSE
+  - code_imp: Implements COMSIG_AIRLOCK_SET_BOLT
+  - code_imp: Implements COMSIG_MOB_BUMPED_DOOR_OPEN
+2025-09-25:
+  Diana:
+  - bugfix: Alraune and Gamma Replicant can be neuter or plural
+  Guti:
+  - rscadd: Added churros and churros recipe
+  Will:
+  - code_imp: Moves turf slip code to a component
