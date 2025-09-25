@@ -124,7 +124,6 @@
 
 /obj/machinery/computer/area_atmos/area/scanscrubbers_user(mob/user) //Used when the user is in the UI and scans for scrubbers.
 	scanscrubbers()
-	updateUsrDialog(user)
 
 /obj/machinery/computer/area_atmos/area/validscrubber(var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
 	if(!istype(scrubber))
