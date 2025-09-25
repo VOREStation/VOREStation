@@ -253,7 +253,8 @@
 		for(var/obj/structure/table/evil_table in the_turf)
 			if(!evil_table.material) //We only want tables, not just table frames.
 				continue
-			living_guy.visible_message(span_danger("[living_guy] stubs their toe on [evil_table]!"), span_userdanger("You stub your toe on [evil_table]!"))
+			var/datum/gender/gender = GLOB.gender_datums[living_guy.get_visible_gender()]
+			living_guy.visible_message(span_danger("[living_guy] stubs [gender.his] toe on [evil_table]!"), span_userdanger("You stub your toe on [evil_table]!"))
 			living_guy.apply_damage(2 * damage_mod, BRUTE, pick(BP_L_FOOT, BP_R_FOOT), used_weapon = "blunt force trauma")
 			living_guy.adjustHalLoss(25) //It REALLY hurts.
 			living_guy.Weaken(3)
