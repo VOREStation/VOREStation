@@ -837,6 +837,8 @@
 	hidden = FALSE
 	custom_only = FALSE
 	added_component_path = /datum/component/omen/trait
+	excludes = list(/datum/trait/negative/unlucky/major)
+
 
 /datum/trait/negative/unlucky/major
 	name = "Unlucky, Major"
@@ -846,5 +848,6 @@
 	is_genetrait = TRUE
 	hidden = FALSE
 	added_component_path = /datum/component/omen/trait/major
+	excludes = list(/datum/trait/negative/unlucky)
 	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
 	primitive_expression_messages=list("unluckily stubs their toe!")
