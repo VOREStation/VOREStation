@@ -431,7 +431,8 @@
 		if(!damage_to_inflict)
 			return
 
-		unlucky_human.visible_message(span_danger("[unlucky_human] acciedentally [injury_verb] their hand on [item]!"))
+			var/datum/gender/gender = GLOB.gender_datums[unlucky_human.get_visible_gender()]
+		unlucky_human.visible_message(span_danger("[unlucky_human] accidentally [injury_verb] [gender.his] hand on [item]!"))
 		unlucky_human.apply_damage(damage_to_inflict * damage_mod, damage_type, current_hand, sharp = is_sharp, edge = has_edge, used_weapon = injury_type)
 
 /datum/component/omen/proc/check_stairs(mob/living/unlucky_soul)
