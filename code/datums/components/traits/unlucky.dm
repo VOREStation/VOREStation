@@ -289,7 +289,8 @@
 
 	if(prob(30 * luck_mod) && our_guy.get_bodypart_name(BP_HEAD)) /// Bonk!
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
-		our_guy.visible_message(span_danger("[our_guy] hits their head really badly falling down!"), span_userdanger("You hit your head really badly falling down!"))
+			var/datum/gender/gender = GLOB.gender_datums[our_guy.get_visible_gender()]
+		our_guy.visible_message(span_danger("[our_guy] hits [gender.his] head really badly falling down!"), span_userdanger("You hit your head really badly falling down!"))
 		our_guy.apply_damage(50 * damage_mod, BRUTE, BP_HEAD, used_weapon = "slipping")
 		if(ishuman(our_guy))
 			var/mob/living/carbon/human/human_guy = our_guy
