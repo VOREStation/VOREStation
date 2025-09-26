@@ -8,7 +8,7 @@
 	var/list/directions
 	///Range that we want it to look out for.
 	var/range
-	///What type of mobs trigger the icon change. Override mob_check to add more types.
+	///What type of mobs trigger the icon change.
 	var/list/triggering_mobs = list(/mob/living)
 
 /datum/component/reactive_icon_update/Initialize(icon_prefix, list/directions, range, triggering_mobs)
@@ -33,6 +33,7 @@
 
 /datum/component/reactive_icon_update/proc/update_proximity_icon(atom/current_loc, atom/movable/AM, atom/old_loc)
 	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
 	var/obj/item/our_item = parent
 	if(!ismob(AM) || !mob_check(AM))
 		return
@@ -133,6 +134,7 @@
 	AddComponent(/datum/component/reactive_icon_update, directions = list(NORTH, EAST, SOUTH, WEST, SOUTHWEST, SOUTHEAST, NORTHEAST, NORTHWEST), range = 3)
 
 /datum/component/reactive_icon_update/proc/mob_check(mob/triggering_mob)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	if(is_type_in_list(triggering_mob, triggering_mobs))
 		return TRUE
 	return FALSE
