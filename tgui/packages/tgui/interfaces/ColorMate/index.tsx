@@ -69,6 +69,10 @@ export const ColorMate = (props) => {
 
     if (!usedMode) return;
 
+    if(!mode && !index) {
+      setActiveId({ id: null, type: null });
+    }
+
     setColorPairs((prev) => {
       const newPairs = [...prev];
       newPairs[usedIndex] = {

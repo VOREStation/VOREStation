@@ -17,7 +17,7 @@ export const ColorMateMatrixSolver = (props: {
   onColorPairs: React.Dispatch<React.SetStateAction<ColorPair[]>>;
   onPick: ColorUpdate;
 }) => {
-  const { act, data } = useBackend<Data>();
+  const { act } = useBackend<Data>();
   const { activeID, onActiveId, colorPairs, onColorPairs, onPick } = props;
 
   function handleColorUpdate(
@@ -31,7 +31,7 @@ export const ColorMateMatrixSolver = (props: {
     onPick(newColor, type, index);
   }
 
-  function toggleCheckbox(index: number, type: 'input' | 'output') {
+  function toggleDripper(index: number, type: 'input' | 'output') {
     if (activeID.id === index && activeID.type === type) {
       onActiveId({ id: null, type: null });
     } else {
@@ -106,11 +106,11 @@ export const ColorMateMatrixSolver = (props: {
                 />
               </Stack.Item>
               <Stack.Item>
-                <Button.Checkbox
+                <Button
                   selected={activeID.id === index && activeID.type === 'input'}
-                  checked={activeID.id === index && activeID.type === 'input'}
-                  onClick={() => toggleCheckbox(index, 'input')}
+                  onClick={() => toggleDripper(index, 'input')}
                   tooltip="Pick color from image"
+                  icon="eye-dropper"
                 />
               </Stack.Item>
               <Stack.Item>
@@ -136,11 +136,11 @@ export const ColorMateMatrixSolver = (props: {
                 />
               </Stack.Item>
               <Stack.Item>
-                <Button.Checkbox
+                <Button
                   selected={activeID.id === index && activeID.type === 'output'}
-                  checked={activeID.id === index && activeID.type === 'output'}
-                  onClick={() => toggleCheckbox(index, 'output')}
+                  onClick={() => toggleDripper(index, 'output')}
                   tooltip="Pick color from image"
+                  icon="eye-dropper"
                 />
               </Stack.Item>
               <Stack.Item>
