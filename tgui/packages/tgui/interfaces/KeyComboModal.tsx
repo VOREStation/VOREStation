@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Autofocus, Box, Button, Section, Stack } from 'tgui-core/components';
+import { Window } from 'tgui/layouts';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
 import { isEscape, KEY } from 'tgui-core/keys';
 import type { BooleanLike } from 'tgui-core/react';
-import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
@@ -74,7 +74,13 @@ export function KeyComboModal(props) {
   const { init_value, large_buttons, message = '', title, timeout } = data;
   const [input, setInput] = useState(init_value);
   const [binding, setBinding] = useState(true);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const focusRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (binding && focusRef.current) {
+      focusRef.current.focus();
+    }
+  }, [binding]);
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     if (!binding) {
@@ -94,6 +100,7 @@ export function KeyComboModal(props) {
       setBinding(false);
       return;
     }
+
     if (isEscape(event.key)) {
       setValue(init_value);
       setBinding(false);
@@ -118,8 +125,8 @@ export function KeyComboModal(props) {
     <Window title={title} width={240} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
       <Window.Content onKeyDown={handleKeyDown}>
-        <Section fill ref={contentRef}>
-          <Autofocus />
+        <Section fill>
+          <div ref={focusRef} tabIndex={-1} />
           <Stack fill vertical>
             <Stack.Item grow>
               <Box color="label">{message}</Box>
@@ -132,14 +139,6 @@ export function KeyComboModal(props) {
                 onClick={() => {
                   setValue(init_value);
                   setBinding(true);
-                  requestAnimationFrame(() => {
-                    contentRef.current?.focus();
-                    (
-                      contentRef.current?.querySelector(
-                        'div[tabindex="-1"]',
-                      ) as HTMLElement | null
-                    )?.focus();
-                  });
                 }}
               >
                 {binding ? 'Awaiting input...' : `${input}`}
