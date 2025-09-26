@@ -78,14 +78,14 @@ export const WeaverConfig = (props) => {
             <Stack.Item>
               <Section fill title="Create Objects">
                 <LabeledList>
-                  <LabeledList.Item label="Items">
+                  <LabeledList.Item label="Bindings">
                     <Stack align="center">
                       <Stack.Item>
                         <Button
-                          onClick={() => act('weave_item')}
-                          tooltip="Weave an item!"
+                          onClick={() => act('weave_binding')}
+                          tooltip="Requires 50 silk!"
                         >
-                          Weave Item
+                          Weave Bindings (50)
                         </Button>
                       </Stack.Item>
                     </Stack>
