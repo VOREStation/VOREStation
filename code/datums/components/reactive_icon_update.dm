@@ -8,14 +8,18 @@
 	var/list/directions
 	///Range that we want it to look out for.
 	var/range
+	///What type of mobs trigger the icon change. Override mob_check to add more types.
+	var/list/triggering_mobs = list(/mob/living)
 
-/datum/component/reactive_icon_update/Initialize(icon_prefix, list/directions, range)
-	if(!isitem(parent) || !isnum(range) || (!directions || !LAZYLEN(directions)))
+/datum/component/reactive_icon_update/Initialize(icon_prefix, list/directions, range, triggering_mobs)
+	if(!isitem(parent) || !isnum(range) || (!directions || !LAZYLEN(directions)) || (triggering_mobs && !LAZYLEN(triggering_mobs)))
 		return COMPONENT_INCOMPATIBLE
 
 	src.icon_prefix = icon_prefix
 	src.directions = directions
 	src.range = range
+	if(triggering_mobs)
+		src.triggering_mobs = triggering_mobs
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(update_proximity_icon),
@@ -25,11 +29,12 @@
 /datum/component/reactive_icon_update/UnregisterFromParent()
 
 	directions.Cut()
+	triggering_mobs.Cut()
 
 /datum/component/reactive_icon_update/proc/update_proximity_icon(atom/current_loc, atom/movable/AM, atom/old_loc)
 	SIGNAL_HANDLER
 	var/obj/item/our_item = parent
-	if(!ismob(AM)) //Yes, ghosts can also trigger this!
+	if(!ismob(AM) || !mob_check(AM))
 		return
 	var/mob/M = AM
 	if(M == our_item.loc) //Ignore the mob wearing us
@@ -118,7 +123,7 @@
 	//The icon_state will be changed to cloak_direction_north
 	our_item.icon_state = initial(our_item.icon_state) + icon_prefix + "_" + directional_name
 
-/* //Example item for testing directions.
+//Example item for testing directions.
 /obj/item/tool/screwdriver/test_driver
 	icon = 'icons/obj/directional_test.dmi'
 
@@ -126,4 +131,8 @@
 	..()
 	icon_state = "screwdriver"
 	AddComponent(/datum/component/reactive_icon_update, directions = list(NORTH, EAST, SOUTH, WEST, SOUTHWEST, SOUTHEAST, NORTHEAST, NORTHWEST), range = 3)
-*/
+
+/datum/component/reactive_icon_update/proc/mob_check(mob/triggering_mob)
+	if(is_type_in_list(triggering_mob, triggering_mobs))
+		return TRUE
+	return FALSE
