@@ -1,0 +1,4 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - image: "Casino chips use a new set of sprites that better represent their item sizes."

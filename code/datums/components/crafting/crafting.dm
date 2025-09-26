@@ -6,7 +6,7 @@
 	SIGNAL_HANDLER
 
 	var/datum/hud/H = user.hud_used
-	var/obj/screen/craft/C = new()
+	var/atom/movable/screen/craft/C = new()
 	C.icon = H.ui_style
 	C.color = H.ui_color
 	C.alpha = H.ui_alpha
@@ -527,7 +527,7 @@
 	learned_recipes |= R
 
 // Screen objects
-/obj/screen/craft
+/atom/movable/screen/craft
 	name = "crafting menu"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "craft"

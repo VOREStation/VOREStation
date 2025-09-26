@@ -854,8 +854,6 @@
 		else
 			resist_restraints()
 
-	if(attempt_vr(src,"vore_process_resist",args)) return TRUE
-
 /mob/living/proc/resist_buckle()
 	if(buckled)
 		if(istype(buckled, /obj/vehicle))
@@ -887,7 +885,7 @@
 	update_canmove()
 
 //called when the mob receives a bright flash
-/mob/living/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(override_blindness_check || !(disabilities & BLIND))
 		overlay_fullscreen("flash", type)
 		spawn(25)
@@ -1288,7 +1286,7 @@
 		swap_hand()
 
 /mob/living/throw_item(atom/target)
-	if(incapacitated() || !target || istype(target, /obj/screen) || is_incorporeal())
+	if(incapacitated() || !target || istype(target, /atom/movable/screen) || is_incorporeal())
 		return FALSE
 
 	var/atom/movable/item = src.get_active_hand()
@@ -1434,7 +1432,7 @@
 	if(has_gravity)
 		clear_alert("weightless")
 	else
-		throw_alert("weightless", /obj/screen/alert/weightless)
+		throw_alert("weightless", /atom/movable/screen/alert/weightless)
 
 // Tries to turn off things that let you see through walls, like mesons.
 // Each mob does vision a bit differently so this is just for inheritence and also so overrided procs can make the vision apply instantly if they call `..()`.
@@ -1445,7 +1443,7 @@
  * Small helper component to manage the character setup HUD icon
  */
 /datum/component/character_setup
-	var/obj/screen/character_setup/screen_icon
+	var/atom/movable/screen/character_setup/screen_icon
 
 /datum/component/character_setup/Initialize()
 	if(!ismob(parent))
@@ -1481,6 +1479,8 @@
 		screen_icon.icon = HUD.ui_style
 		screen_icon.color = HUD.ui_color
 		screen_icon.alpha = HUD.ui_alpha
+	if(isAI(user))
+		screen_icon.screen_loc = ui_ai_pda_send
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 
@@ -1493,7 +1493,7 @@
 /**
  * Screen object for vore panel
  */
-/obj/screen/character_setup
+/atom/movable/screen/character_setup
 	name = "character setup"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "character"

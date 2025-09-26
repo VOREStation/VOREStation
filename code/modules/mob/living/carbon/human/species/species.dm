@@ -704,13 +704,31 @@
 		H.adjustToxLoss(amount)
 
 /datum/species/proc/handle_falling(mob/living/carbon/human/H, atom/hit_atom, damage_min, damage_max, silent, planetary)
-	if(soft_landing)
-		if(planetary || !istype(H))
-			return FALSE
+	var/turf/landing = get_turf(hit_atom)
+	if(!istype(landing))
+		return FALSE
+	if(planetary || !istype(H))
+		return FALSE
+	//commented out, as this turf doesn't exist upstream
+	/*if(istype(landing, /turf/simulated/floor/boxing))
+		if(!silent)
+			to_chat(H, span_notice("\The [landing] cushions your fall."))
+			landing.visible_message(span_infoplain(span_bold("\The [H]") + " 's fall is cushioned by \The [landing]."))
+			playsound(H, "rustle", 25, 1)
+		if(!soft_landing)
+			H.Weaken(10)
+		return TRUE*/
+	//end edit
+	if(istype(landing, /turf/simulated/floor/water))
+		var/turf/simulated/floor/water/W = landing
+		if(W.depth)
+			if(!silent)
+				to_chat(H, span_notice("You splash down into \the [landing]."))
+				landing.visible_message(span_infoplain(span_bold("\The [H]") + " splashes down into \The [landing]."))
+				playsound(H, "'sound/effects/slosh.ogg'", 25, 5)
+			return TRUE
 
-		var/turf/landing = get_turf(hit_atom)
-		if(!istype(landing))
-			return FALSE
+	if(soft_landing)
 
 		if(!silent)
 			to_chat(H, span_notice("You manage to lower impact of the fall and land safely."))

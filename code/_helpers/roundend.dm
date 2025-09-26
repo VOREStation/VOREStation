@@ -57,13 +57,15 @@
 			continue
 
 		if (!robo.connected_ai)
+			var/list/robot_stat_display = list()
 			if (robo.stat != 2)
-				to_chat(world, span_filter_system(span_bold("[robo.name] survived as an AI-less stationbound synthetic! Its laws were:"))) // VOREStation edit
+				robot_stat_display += span_filter_system(span_bold("[robo.name] survived as an AI-less stationbound synthetic! Its laws were:"))
 			else
-				to_chat(world, span_filter_system(span_bold("[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:"))) // VOREStation edit
+				robot_stat_display += span_filter_system(span_bold("[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:"))
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
-				robo.laws.show_laws(world)
+				robot_stat_display += robo.laws.get_formatted_laws()
+			to_chat(world, robot_stat_display.Join("\n"))
 
 	if(dronecount)
 		to_chat(world, span_filter_system(span_bold("There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.")))

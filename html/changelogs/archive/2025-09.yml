@@ -376,3 +376,71 @@
   - code_imp: Disposal sorter prefabs use defines instead of numbers
   lbnesquik:
   - rscadd: Added the coroner role as an alternative title to medical doctors
+2025-09-21:
+  Diana:
+  - bugfix: Borg shocker shows the appropriate on-off state
+  Guti:
+  - admin: Added admin logs to bear traps
+  Kashargul:
+  - qol: moves most law outputs to blocks
+  Will:
+  - bugfix: Changeling chameleon cloths no longer reveal lings by having suit sensors
+  - code_imp: clothing code uses suit_sensor defines instead of magic numbers
+  - code_imp: Reaction unittest strictness includes distillation reactions being blocked
+      by instant reactions
+  - code_imp: Implements COMSIG_REAGENTS_HOLDER_REACTED
+  - refactor: reagent holder handle_reactions() uses number of reactions that happened,
+      and not just completion of the proc for return value
+  - bugfix: peanut butter milkshake reaction no longer blocked by milkshake
+  - bugfix: aloe reaction no longer blocked by irish cream
+  - bugfix: instant beer reaction no longer blocked by corn cooking oil
+  - bugfix: biomass distilling reaction no longer blocked by virology mix 3
+2025-09-22:
+  Kashargul:
+  - code_imp: moves color_matrix to a tgui_input
+  - code_imp: moves obj/screen to atom/movable/screen
+  MeepleMuncher:
+  - rscadd: Customizable dragon plushies!
+  Ryumi:
+  - qol: Cyborg Rapid-Service-Fabricators now use radial menus for all of its selection
+      menus. Pretty pictures...
+  SatinIsle:
+  - rscadd: Added a new scene item, shibari bindings!
+  - image: Added icons for human and digi shibari bindings.
+  Will:
+  - bugfix: Disarming push attacks causing combat grabs to drop as items.
+2025-09-23:
+  Tenryumi:
+  - image: Halved the size of playing chips' icons.
+  Will:
+  - code_imp: Adds tethered item component for items that have a handheld subitem
+      that can be removed from it while it is worn
+  zeskorion:
+  - rscadd: Added several new mapping features for your local mapper
+  - rscadd: digestive nanite turfs. currently mapperbus only
+  - rscadd: faster swimming aquatic trait
+  - qol: catwalks now prevent turfs from slowing people
+  - qol: water turfs now break falls
+  - qol: Maint blood and vomit is old and dried.
+  - balance: ' water turfs now break falls'
+  - bugfix: emergency lights stay red during nightshift
+2025-09-24:
+  Willburd:
+  - refactor: Huge door code cleanup
+  - refactor: attempt_vr() removal
+  - refactor: hook_vr() removal
+  - refactor: few remaining MinutesToTicks and SecondsToTicks updated to use defines
+      instead
+  - code_imp: Implements COMSIG_DOOR_CAN_OPEN
+  - code_imp: Implements COMSIG_DOOR_CAN_CLOSE
+  - code_imp: Implements COMSIG_DOOR_OPEN
+  - code_imp: Implements COMSIG_DOOR_CLOSE
+  - code_imp: Implements COMSIG_AIRLOCK_SET_BOLT
+  - code_imp: Implements COMSIG_MOB_BUMPED_DOOR_OPEN
+2025-09-25:
+  Diana:
+  - bugfix: Alraune and Gamma Replicant can be neuter or plural
+  Guti:
+  - rscadd: Added churros and churros recipe
+  Will:
+  - code_imp: Moves turf slip code to a component

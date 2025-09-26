@@ -374,7 +374,7 @@
 		occupantData["nearsighted"] = (H.disabilities & NEARSIGHTED)
 		occupantData["brokenspine"] = (H.disabilities & SPINE)
 		occupantData["husked"] = (HUSK in H.mutations)
-		occupantData = attempt_vr(src, "get_occupant_data_vr", list(occupantData, H))
+		occupantData = get_vored_occupant_data(occupantData, H)
 	data["occupant"] = occupantData
 
 	return data
