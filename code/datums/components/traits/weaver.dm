@@ -43,8 +43,8 @@
 	var/finalized = "No"
 
 	while(finalized == "No" && owner.client)
-		choice = tgui_input_list(owner,"What would you like to weave?", "Weave Choice", GLOB.weavable_items)
-		desired_result  = GLOB.weavable_items[choice]
+		choice = tgui_input_list(owner,"What would you like to weave?", "Weave Choice", GLOB.all_weavable)
+		desired_result  = GLOB.all_weavable[choice]
 		if(!desired_result || !istype(desired_result))
 			return
 
@@ -113,7 +113,7 @@
 			to_chat(owner, span_info("You are [silk_production ? "now" : "no longer"] producing silk."))
 		if("check_silk_amount")
 			to_chat(owner, span_info("Your silk reserves are at [silk_reserve]/[silk_max_reserve]."))
-		if("weave_item")
+		if("weave_item") //The global list of items.
 			weave_item()
 		if("weave_floor")
 			weave_check(25, /obj/effect/weaversilk/floor)
