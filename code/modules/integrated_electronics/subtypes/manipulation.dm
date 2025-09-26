@@ -8,7 +8,7 @@
 	The first and second inputs need to be numbers.  They are coordinates for the gun to fire at, relative to the machine itself.  \
 	The 'fire' activator will cause the mechanism to attempt to fire the weapon at the coordinates, if possible.  Note that the \
 	normal limitations to firearms, such as ammunition requirements and firing delays, still hold true if fired by the mechanism."
-	complexity = 20
+	complexity = 30 // Increased due to clear balance necessity.
 	w_class = ITEMSIZE_NORMAL
 	size = 3
 	inputs = list(

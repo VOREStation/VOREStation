@@ -3,7 +3,7 @@
 	name = "bluespace harpoon"
 	desc = "For climbing on bluespace mountains!"
 
-	icon = 'icons/obj/gun_vr.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "harpoon-2"
 
 	w_class = ITEMSIZE_NORMAL

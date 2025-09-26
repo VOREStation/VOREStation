@@ -158,7 +158,8 @@
 		/obj/item/stack/nanopaste,
 		/obj/item/geiger,
 		/obj/item/areaeditor/blueprints,	//It's a bunch of paper that could prolly be rolled up & slipped into the belt, not to mention CE only, see the RCD's thing above
-		/obj/item/wire_reader	//As above
+		/obj/item/wire_reader,	//As above
+		/obj/item/holosign_creator/combifan
 		)
 
 /obj/item/storage/belt/utility/chief/full
@@ -216,7 +217,8 @@
 		/obj/item/stack/material/steel,
 		/obj/item/stack/material/glass,
 		/obj/item/lightreplacer,
-		/obj/item/pickaxe/plasmacutter
+		/obj/item/pickaxe/plasmacutter,
+		/obj/item/holosign_creator/combifan
 	)
 
 

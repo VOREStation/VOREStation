@@ -2794,3 +2794,48 @@ includes scars and tattoos
 	icon_state = "motheyes"
 	color_blend_mode = ICON_ADD
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/thirdeye
+	name = "Third Eye (low)"
+	icon_state = "thirdeye"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/teshi_thirdeye
+	name = "Third Eye (low) (Teshari)"
+	icon_state = "teshi_thirdeye"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/thirdeye_high
+	name = "Third Eye (high)"
+	icon_state = "thirdeye_h"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/teshi_thirdeye_high
+	name = "Third Eye (high) (Teshari)"
+	icon_state = "teshi_thirdeye_h"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/animeeyeshuge
+	name = "Anime Eyes Bulging" // UWUiiieeee~~~~
+	icon_state = "animeeyeshuge"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/anteater_muzzle
+	name = "Anteater Muzzle"
+	icon_state = "anteater_muzzle"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/qaavos_muzzle
+	name = "Qaavos Head"
+	icon_state = "qaavos_face"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/qaavos_eyes
+	name = "Qaavos Eyes"
+	icon_state = "qaavos_eyes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)

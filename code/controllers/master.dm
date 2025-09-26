@@ -145,7 +145,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 		ss.Shutdown()
 	log_world("Shutdown complete")
 
-ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "View the current states of the Subsystem Controllers.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "View the current states of the Subsystem Controllers.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	Master.tgui_interact(user.mob)
 
 /datum/controller/master/tgui_status(mob/user, datum/tgui_state/state)

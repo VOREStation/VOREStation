@@ -27,19 +27,19 @@
 	var/storage_slots = null //The number of storage slots in this container.  If null, it uses the volume-based storage instead.
 
 	/// Boxes screen object for fixed-size storage (belts, etc)
-	var/obj/screen/storage/boxes = null
+	var/atom/movable/screen/storage/boxes = null
 	/// List of 'click catchers' for boxes for fixed-size storage
 	var/list/box_catchers = null
 
 	/// For dynamic storage, the leftmost pixel column for the whole storage display. Most of the interesting effects are hung on this in vis_contents.
-	var/obj/screen/storage/storage_start = null
+	var/atom/movable/screen/storage/storage_start = null
 	/// For dynamic storage, the majority of the width of the whole storage display. Decorative, but sized to the width appropriate to represent how much storage there is.
-	var/obj/screen/storage/storage_continue = null
+	var/atom/movable/screen/storage/storage_continue = null
 	/// For dynamic storage, the rightmost pixel column for the whole storage display. Decorative.
-	var/obj/screen/storage/storage_end = null
+	var/atom/movable/screen/storage/storage_end = null
 
 	/// The "X" button at the far right of the storage
-	var/obj/screen/close/closer = null
+	var/atom/movable/screen/close/closer = null
 
 	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
 	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
@@ -66,31 +66,31 @@
 		verbs -= /obj/item/storage/verb/toggle_gathering_mode
 
 	if(storage_slots)
-		src.boxes = new /obj/screen/storage(  )
+		src.boxes = new /atom/movable/screen/storage(  )
 		src.boxes.name = "storage"
 		src.boxes.master = src
 		src.boxes.icon_state = "block"
 		src.boxes.screen_loc = "7,7 to 10,8"
 	else
-		src.storage_start = new /obj/screen/storage(  )
+		src.storage_start = new /atom/movable/screen/storage(  )
 		src.storage_start.name = "storage"
 		src.storage_start.master = src
 		src.storage_start.icon_state = "storage_start"
 		src.storage_start.screen_loc = "7,7 to 10,8"
 
-		src.storage_continue = new /obj/screen/storage(  )
+		src.storage_continue = new /atom/movable/screen/storage(  )
 		src.storage_continue.name = "storage"
 		src.storage_continue.master = src
 		src.storage_continue.icon_state = "storage_continue"
 		src.storage_continue.screen_loc = "7,7 to 10,8"
 
-		src.storage_end = new /obj/screen/storage(  )
+		src.storage_end = new /atom/movable/screen/storage(  )
 		src.storage_end.name = "storage"
 		src.storage_end.master = src
 		src.storage_end.icon_state = "storage_end"
 		src.storage_end.screen_loc = "7,7 to 10,8"
 
-	src.closer = new /obj/screen/close(  )
+	src.closer = new /atom/movable/screen/close(  )
 	src.closer.master = src
 	src.closer.icon_state = "storage_close"
 	src.closer.hud_layerise()
@@ -135,7 +135,7 @@
 			src.open(usr)
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
@@ -146,7 +146,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)
@@ -605,9 +605,6 @@
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)
-
-/obj/item/storage/dropped(mob/user)
-	return ..()
 
 /obj/item/storage/attack_hand(mob/user as mob)
 	if(ishuman(user) && !pocketable)

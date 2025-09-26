@@ -97,9 +97,12 @@
 	if(istype(M, /obj/mecha))
 		explode(M)
 
+	if(istype(M, /obj/vehicle))
+		explode(M)
+
 	if(istype(M, /mob/living/))
 		var/mob/living/mob = M
-		if(!mob.hovering || !mob.flying)
+		if(!(mob.hovering || mob.flying || mob.is_incorporeal() || mob.mob_size <= MOB_TINY))
 			explode(M)
 
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
@@ -431,6 +434,6 @@
 
 // This tells AI mobs to not be dumb and step on mines willingly.
 /obj/item/mine/is_safe_to_step(mob/living/L)
-	if(!L.hovering || !L.flying)
+	if(!(L.hovering || L.flying || L.is_incorporeal() || L.mob_size <= MOB_TINY))
 		return FALSE
 	return ..()

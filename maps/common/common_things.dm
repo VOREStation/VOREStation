@@ -101,15 +101,19 @@
 
 // Walking on maglev tracks will shock you! Horray!
 /turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
-	if(isliving(AM) && !(AM.is_incorporeal()) && prob(50))
-		track_zap(AM)
+	if(!isliving(AM) || prob(50))
+		return
+	if(locate(/obj/structure/catwalk) in src) // safe to walk over as a bridge!
+		return
+	track_zap(AM)
 
 /turf/simulated/floor/maglev/attack_hand(var/mob/user)
 	if(prob(75))
 		track_zap(user)
 
 /turf/simulated/floor/maglev/proc/track_zap(var/mob/living/user)
-	if (!istype(user)) return
+	if(!istype(user) || user.is_incorporeal())
+		return
 	if (electrocute_mob(user, shock_area, src))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)

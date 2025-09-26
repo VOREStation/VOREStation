@@ -30,10 +30,10 @@
 
 	// Stuff needed to render the map
 	var/map_name
-	var/obj/screen/map_view/cam_screen
+	var/atom/movable/screen/map_view/cam_screen
 	/// All the plane masters that need to be applied.
 	var/list/cam_plane_masters
-	var/obj/screen/background/cam_background
+	var/atom/movable/screen/background/cam_background
 
 /obj/effect/overmap/Initialize(mapload)
 	. = ..()
@@ -50,7 +50,7 @@
 
 		cam_plane_masters = get_tgui_plane_masters()
 
-		for(var/obj/screen/instance as anything in cam_plane_masters)
+		for(var/atom/movable/screen/instance as anything in cam_plane_masters)
 			instance.assigned_map = map_name
 			instance.del_on_map_removal = FALSE
 			instance.screen_loc = "[map_name]:CENTER"

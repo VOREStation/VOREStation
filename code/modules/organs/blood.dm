@@ -5,12 +5,11 @@
 //Blood levels. These are percentages based on the species blood_volume var.
 //Retained for archival/reference purposes - KK
 /*
-var/const/BLOOD_VOLUME_SAFE =    85
-var/const/BLOOD_VOLUME_OKAY =    75
-var/const/BLOOD_VOLUME_BAD =     60
-var/const/BLOOD_VOLUME_SURVIVE = 40
+BLOOD_VOLUME_SAFE =    85
+BLOOD_VOLUME_OKAY =    75
+BLOOD_VOLUME_BAD =     60
+BLOOD_VOLUME_SURVIVE = 40
 */
-var/const/CE_STABLE_THRESHOLD = 0.5
 
 /mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
 /mob/living/carbon/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
@@ -109,9 +108,6 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		if(CE_STABLE in chem_effects)
 			dmg_coef = 0.5
 			threshold_coef = 0.75
-//	These are Bay bits, do some sort of calculation.
-//			dmg_coef = min(1, 10/chem_effects[CE_STABLE]) //TODO: add effect for increased damage
-//			threshold_coef = min(dmg_coef / CE_STABLE_THRESHOLD, 1)
 
 		if(blood_volume_raw >= species.blood_volume*species.blood_level_safe)
 			if(pale)
