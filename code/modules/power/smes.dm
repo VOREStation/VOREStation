@@ -101,7 +101,6 @@ GLOBAL_LIST_EMPTY(smeses)
 		if(isnull(C))
 			break
 		component_parts.Remove(C)
-		C.forceMove(src.loc)
 		qdel(C)
 		cur_coils--
 	// Rebuild from mapper's coils
