@@ -37,57 +37,6 @@
 		silk_reserve = min(silk_reserve + silk_generation_amount, silk_max_reserve)
 		owner.adjust_nutrition(-(nutrtion_per_silk*silk_generation_amount))
 
-/datum/component/weaver/proc/weave_structure()
-	var/choice
-	var/datum/weaver_recipe/structure/desired_result
-	var/finalized = "No"
-
-	while(finalized == "No" && owner.client)
-		choice = tgui_input_list(owner,"What would you like to weave?", "Weave Choice", GLOB.weavable_structures)
-		desired_result  = GLOB.weavable_structures[choice]
-		if(!desired_result || !istype(desired_result))
-			return
-
-		if(choice)
-			finalized = tgui_alert(owner, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
-
-	if(!desired_result || !istype(desired_result))
-		return
-
-	if(desired_result.cost > silk_reserve)
-		to_chat(owner, span_warning("You don't have enough silk to weave that!"))
-		return
-
-	if(owner.stat)
-		to_chat(owner, span_warning("You can't do that in your current state!"))
-		return
-
-	if(locate(desired_result.result_type) in owner.loc)
-		to_chat(owner, span_warning("You can't create another weaversilk [desired_result.title] here!"))
-		return
-
-	if(!isturf(owner.loc))
-		to_chat(owner, span_warning("You can't weave here!"))
-		return
-
-	if(do_after(owner, desired_result.time, target = owner))
-		if(desired_result.cost > silk_reserve)
-			to_chat(owner, span_warning("You don't have enough silk to weave that!"))
-			return
-
-		if(locate(desired_result.result_type) in owner.loc)
-			to_chat(owner, span_warning("You can't create another weaversilk [desired_result.title] here!"))
-			return
-
-		if(!isturf(owner.loc))
-			to_chat(owner, span_warning("You can't weave here!"))
-			return
-
-		silk_reserve = max(silk_reserve - desired_result.cost, 0)
-
-		var/atom/O = new desired_result.result_type(owner.loc)
-		O.color = silk_color
-
 /datum/component/weaver/proc/weave_item()
 	var/choice
 	var/datum/weaver_recipe/item/desired_result
@@ -102,34 +51,7 @@
 		if(choice)
 			finalized = tgui_alert(owner, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
 
-	if(!desired_result || !istype(desired_result))
-		return
-
-	if(desired_result.cost > silk_reserve)
-		to_chat(owner, span_warning("You don't have enough silk to weave that!"))
-		return
-
-	if(owner.stat)
-		to_chat(owner, span_warning("You can't do that in your current state!"))
-		return
-
-	if(!isturf(owner.loc))
-		to_chat(owner, span_warning("You can't weave here!"))
-		return
-
-	if(do_after(owner, desired_result.time, target = owner))
-		if(desired_result.cost > silk_reserve)
-			to_chat(owner, span_warning("You don't have enough silk to weave that!"))
-			return
-
-		if(!isturf(owner.loc))
-			to_chat(owner, span_warning("You can't weave here!"))
-			return
-
-		silk_reserve = max(silk_reserve - desired_result.cost, 0)
-
-		var/atom/O = new desired_result.result_type(owner.loc)
-		O.color = silk_color
+	weave_check(desired_result.cost, desired_result.result_type)
 
 //TGUI Weaver Panel
 /datum/component/weaver/tgui_interact(mob/user, datum/tgui/ui)
@@ -193,5 +115,48 @@
 			to_chat(owner, span_info("Your silk reserves are at [silk_reserve]/[silk_max_reserve]."))
 		if("weave_item")
 			weave_item()
-		if("weave_structure")
-			weave_structure()
+		if("weave_floor")
+			weave_check(25, /obj/effect/weaversilk/floor)
+		if("weave_wall")
+			weave_check(100, /obj/effect/weaversilk/wall)
+		if("weave_nest")
+			weave_check(100, /obj/structure/bed/double/weaversilk_nest)
+		if("weave_trap")
+			weave_check(250, /obj/effect/weaversilk/trap)
+/*
+ * Checks to see if we can create the object
+*/
+/datum/component/weaver/proc/weave_check(cost, weaved_object)
+	if(cost > silk_reserve)
+		to_chat(owner, span_warning("You don't have enough silk to weave that!"))
+		return
+
+	if(owner.stat)
+		to_chat(owner, span_warning("You can't do that in your current state!"))
+		return
+
+	if(!isturf(owner.loc))
+		to_chat(owner, span_warning("You can't weave here!"))
+		return
+
+	if(locate(weaved_object) in owner.loc)
+		to_chat(owner, span_warning("You can't create another one in the same tile here!"))
+		return
+
+	if(do_after(owner, ((cost/25) SECONDS), target = owner))
+		if(cost > silk_reserve)
+			to_chat(owner, span_warning("You don't have enough silk to weave that!"))
+			return
+
+		if(!isturf(owner.loc))
+			to_chat(owner, span_warning("You can't weave here!"))
+			return
+
+		if(locate(weaved_object) in owner.loc)
+			to_chat(owner, span_warning("You can't create another one in the same tile!"))
+			return
+
+		silk_reserve = max(silk_reserve - cost, 0)
+		var/atom/object = new weaved_object(owner.loc)
+		object.color = silk_color
+		return

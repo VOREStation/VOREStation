@@ -31,80 +31,122 @@ export const WeaverConfig = (props) => {
   const windowHeight =
     (savefile_selected ? 0 : 90);
 
-  return (
-    <Window width={305} height={260+windowHeight} theme="spookyconsole">
-      <Window.Content>
-        <Stack vertical g={0}>
-          <Stack.Item>
-            <NoticeBox>Silk Reserves currently at {silk_reserve} out of {silk_max_reserve}</NoticeBox>
-          </Stack.Item>
-          {!savefile_selected && (
+    return (
+      <Window width={305} height={345+windowHeight} theme="spookyconsole">
+        <Window.Content>
+          <Stack vertical fill>
             <Stack.Item>
-              <NoticeBox>
-                WARNING: Your current selected savefile (in Character Setup) is
-                not the same as your currently loaded savefile. Please select it
-                to prevent savefile corruption.
-              </NoticeBox>
+              <NoticeBox>Silk Reserves currently at {silk_reserve} out of {silk_max_reserve}</NoticeBox>
             </Stack.Item>
-          )}
-          <Stack.Item>
-            <Section fill title="Generation Settings">
-              <LabeledList>
-                <LabeledList.Item label="Silk Color">
-                  <Stack align="center">
-                    <Stack.Item>
-                      <Button
-                        onClick={() => act('new_silk_color')}
-                        tooltip="Select a color you wish for your silk to be."
-                      >
-                        Set Color
-                      </Button>
-                    </Stack.Item>
-                    <Stack.Item>
-                      <ColorBox color={silk_color || '#FFFFFF'} />
-                    </Stack.Item>
-                  </Stack>
-                </LabeledList.Item>
-                <LabeledList.Item label="Production">
-                  <Button.Checkbox
-                    tooltip="Toggle your silk production."
-                    checked={silk_production}
-                    onClick={() => act('toggle_silk_production')}
-                  />
-                </LabeledList.Item>
-              </LabeledList>
-            </Section>
-            <Section fill title="Create Objects">
-              <LabeledList>
-                <LabeledList.Item label="Items">
-                  <Stack align="center">
-                    <Stack.Item>
-                      <Button
-                        onClick={() => act('weave_item')}
-                        tooltip="Weave an item!"
-                      >
-                        Weave Item
-                      </Button>
-                    </Stack.Item>
-                  </Stack>
-                </LabeledList.Item>
-                <LabeledList.Item label="Structures">
-                  <Stack align="center">
-                    <Stack.Item>
-                      <Button
-                        onClick={() => act('weave_structure')}
-                        tooltip="Weave a structure!"
-                      >
-                        Weave Structure
-                      </Button>
-                    </Stack.Item>
-                  </Stack>
-                </LabeledList.Item>
-              </LabeledList>
-            </Section>
-          </Stack.Item>
-        </Stack>
-      </Window.Content>
-    </Window>
-  );
-};
+            {!savefile_selected && (
+              <Stack.Item>
+                <NoticeBox>
+                  WARNING: Your current selected savefile (in Character Setup) is
+                  not the same as your currently loaded savefile. Please select it
+                  to prevent savefile corruption.
+                </NoticeBox>
+              </Stack.Item>
+            )}
+            <Stack.Item>
+              <Section fill title="Generation Settings">
+                <LabeledList>
+                  <LabeledList.Item label="Silk Color">
+                    <Stack align="center">
+                      <Stack.Item>
+                        <Button
+                          onClick={() => act('new_silk_color')}
+                          tooltip="Select a color you wish for your silk to be."
+                        >
+                          Set Color
+                        </Button>
+                      </Stack.Item>
+                      <Stack.Item>
+                        <ColorBox color={silk_color || '#FFFFFF'} />
+                      </Stack.Item>
+                    </Stack>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Production">
+                    <Button.Checkbox
+                      tooltip="Toggle your silk production."
+                      checked={silk_production}
+                      onClick={() => act('toggle_silk_production')}
+                    />
+                  </LabeledList.Item>
+                </LabeledList>
+              </Section>
+            </Stack.Item>
+            <Stack.Item>
+              <Section fill title="Create Objects">
+                <LabeledList>
+                  <LabeledList.Item label="Items">
+                    <Stack align="center">
+                      <Stack.Item>
+                        <Button
+                          onClick={() => act('weave_item')}
+                          tooltip="Weave an item!"
+                        >
+                          Weave Item
+                        </Button>
+                      </Stack.Item>
+                    </Stack>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Floor">
+                    <Stack align="center">
+                      <Stack.Item>
+                        <Button
+                          onClick={() => act('weave_floor')}
+                          disabled={silk_reserve < 25}
+                          tooltip="Requires 25 silk."
+                        >
+                          Weave Floor
+                        </Button>
+                      </Stack.Item>
+                    </Stack>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Wall">
+                    <Stack align="center">
+                      <Stack.Item>
+                        <Button
+                          onClick={() => act('weave_wall')}
+                          disabled={silk_reserve < 100}
+                          tooltip="Requires 100 silk."
+                        >
+                          Weave Wall
+                        </Button>
+                      </Stack.Item>
+                    </Stack>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Nest">
+                    <Stack align="center">
+                      <Stack.Item>
+                        <Button
+                          onClick={() => act('weave_nest')}
+                          disabled={silk_reserve < 100}
+                          tooltip="Requires 100 silk."
+                        >
+                          Weave Nest
+                        </Button>
+                      </Stack.Item>
+                    </Stack>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Trap">
+                    <Stack align="center">
+                      <Stack.Item>
+                        <Button
+                          onClick={() => act('weave_trap')}
+                          disabled={silk_reserve < 250}
+                          tooltip="Requires 250 silk."
+                        >
+                          Weave Trap
+                        </Button>
+                      </Stack.Item>
+                    </Stack>
+                  </LabeledList.Item>
+                </LabeledList>
+              </Section>
+            </Stack.Item>
+          </Stack>
+        </Window.Content>
+      </Window>
+    );
+  };
