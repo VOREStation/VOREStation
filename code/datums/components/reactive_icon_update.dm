@@ -1,4 +1,5 @@
-///Component that updates the icon_state of an item when something approaches it while it's being worn.
+///Component that updates the icon_state of an item when something approaches.
+///NOTE: This uses the initial icon of the object, meaning it will not work properly with items that change their icon_state for other reasons.
 /datum/component/reactive_icon_update
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	///What we want to append to our icon_state when our conditions are filled
@@ -9,7 +10,7 @@
 	var/range
 
 /datum/component/reactive_icon_update/Initialize(icon_prefix, list/directions, range)
-	if(!isitem(parent) || !isnum(range) || !icon_prefix || (!directions || !LAZYLEN(directions)))
+	if(!isitem(parent) || !isnum(range) || (!directions || !LAZYLEN(directions)))
 		return COMPONENT_INCOMPATIBLE
 
 	src.icon_prefix = icon_prefix
@@ -21,7 +22,11 @@
 	)
 	AddComponent(/datum/component/connect_range, parent, connections, range)
 
-/datum/component/reactive_icon_update/proc/update_proximity_icon(atom/movable/AM, atom/old_loc)
+/datum/component/reactive_icon_update/UnregisterFromParent()
+
+	directions.Cut()
+
+/datum/component/reactive_icon_update/proc/update_proximity_icon(atom/current_loc, atom/movable/AM, atom/old_loc)
 	SIGNAL_HANDLER
 	var/obj/item/our_item = parent
 	if(!ismob(AM)) //Yes, ghosts can also trigger this!
@@ -36,17 +41,28 @@
 	var/actual_direction
 
 	///First, we get the X and Y coordinates
-	if(M.x > our_item.x)
+	var/x
+	var/y
+	if(our_item.x && our_item.y)
+		x = our_item.x
+		y = our_item.y
+	if(our_item.x == 0 || our_item.y == 0) //We're inside of something! Clothing is a great example of this.
+		if(our_item.loc)
+			x = our_item.loc.x
+			y = our_item.loc.y
+			if(x == 0 || y == 0) //We're two layers deep, just give up.
+				return
+	if(M.x > x)
 		mob_direction_x = EAST
-	else if(M.x < our_item.x)
+	else if(M.x < x)
 		mob_direction_x = WEST
 	else
 		mob_direction_x = null //Same X as us
 
-	if(M.y > our_item.y)
-		mob_direction_y = SOUTH
-	else if(M.y < our_item.y)
+	if(M.y > y)
 		mob_direction_y = NORTH
+	else if(M.y < y)
+		mob_direction_y = SOUTH
 	else
 		mob_direction_y = null //Same Y as us
 
@@ -64,7 +80,6 @@
 	else if(mob_direction_y) //Only vertical
 		actual_direction = mob_direction_y
 	else //Exactly ontop of us, so we don't care about direction.
-		actual_direction = null
 		return
 
 	///We then make sure the actual_direction is in our directions list.
@@ -80,7 +95,35 @@
 			actual_direction = NORTH
 		else
 			return
+	var/directional_name
+	switch(actual_direction)
+		if(NORTH)
+			directional_name = "north"
+		if(EAST)
+			directional_name = "east"
+		if(SOUTH)
+			directional_name = "south"
+		if(WEST)
+			directional_name = "west"
+		if(NORTHEAST)
+			directional_name = "northeast"
+		if(SOUTHEAST)
+			directional_name = "southeast"
+		if(SOUTHWEST)
+			directional_name = "southwest"
+		if(NORTHWEST)
+			directional_name = "northwest"
 	//We then update our icon state. For example:
 	//We have an item that has the icon_state of "cloak" and the prefix of "_direction" and we're facing NORTH
 	//The icon_state will be changed to cloak_direction_north
-	our_item.icon_state = initial(icon_state) + icon_prefix + "_" + actual_direction
+	our_item.icon_state = initial(our_item.icon_state) + icon_prefix + "_" + directional_name
+
+/* //Example item for testing directions.
+/obj/item/tool/screwdriver/test_driver
+	icon = 'icons/obj/directional_test.dmi'
+
+/obj/item/tool/screwdriver/test_driver/Initialize()
+	..()
+	icon_state = "screwdriver"
+	AddComponent(/datum/component/reactive_icon_update, directions = list(NORTH, EAST, SOUTH, WEST, SOUTHWEST, SOUTHEAST, NORTHEAST, NORTHWEST), range = 3)
+*/
