@@ -133,7 +133,6 @@ export function KeyComboModal(props) {
                   setValue(init_value);
                   setBinding(true);
                   requestAnimationFrame(() => {
-                    contentRef.current?.focus();
                     (
                       contentRef.current?.querySelector(
                         'div[tabindex="-1"]',
