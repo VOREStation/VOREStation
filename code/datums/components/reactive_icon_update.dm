@@ -91,13 +91,13 @@
 	///We then make sure the actual_direction is in our directions list.
 	if(actual_direction && !(actual_direction in directions)) //Not a valid direction. Convert to N/E/S/W
 		//East and west take priority because those are generally the most visually striking.
-		if(WEST in directions && (actual_direction == (NORTHWEST || SOUTHWEST)))
+		if((WEST in directions) && (actual_direction == (NORTHWEST || SOUTHWEST)))
 			actual_direction = WEST
-		else if(EAST in directions && (actual_direction == (NORTHEAST || SOUTHEAST)))
+		else if((EAST in directions) && (actual_direction == (NORTHEAST || SOUTHEAST)))
 			actual_direction = EAST
-		else if(SOUTH in directions && (actual_direction == (SOUTHWEST || SOUTHEAST)))
+		else if((SOUTH in directions) && (actual_direction == (SOUTHWEST || SOUTHEAST)))
 			actual_direction = SOUTH
-		else if(NORTH in directions && (actual_direction == (NORTHWEST || NORTHEAST)))
+		else if((NORTH in directions) && (actual_direction == (NORTHWEST || NORTHEAST)))
 			actual_direction = NORTH
 		else
 			return
