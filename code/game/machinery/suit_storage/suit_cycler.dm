@@ -174,15 +174,12 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			add_fingerprint(user)
 			qdel(G)
 
-			updateUsrDialog(user)
-
 			return
 	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
 
 		panel_open = !panel_open
 		playsound(src, I.usesound, 50, 1)
 		to_chat(user, "You [panel_open ?  "open" : "close"] the maintenance panel.")
-		updateUsrDialog(user)
 		return
 
 	else if(istype(I,/obj/item/clothing/head/helmet/space/void) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
@@ -220,7 +217,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		helmet = I
 
 		update_icon()
-		updateUsrDialog(user)
 		return
 
 	else if(istype(I,/obj/item/clothing/suit/space/void))
@@ -260,7 +256,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		suit = I
 
 		update_icon()
-		updateUsrDialog(user)
 		return
 
 	..()
@@ -276,7 +271,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	emagged = 1
 	safeties = 0
 	req_access = list()
-	updateUsrDialog(user)
 	return 1
 
 /obj/machinery/suit_cycler/attack_hand(mob/user as mob)
@@ -479,7 +473,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	icon_state = initial(icon_state)
 	active = 0
 	playsound(src, 'sound/machines/boobeebeep.ogg', 50)
-	updateUsrDialog(user)
 
 /obj/machinery/suit_cycler/proc/repair_suit()
 	if(!suit || !suit.damage || !suit.can_breach)
@@ -517,7 +510,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	occupant = null
 
 	add_fingerprint(user)
-	updateUsrDialog(user)
 	update_icon()
 
 	return

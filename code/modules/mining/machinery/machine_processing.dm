@@ -341,8 +341,6 @@
 		else
 			continue
 
-	console.updateUsrDialog()
-
 #undef PROCESS_NONE
 #undef PROCESS_SMELT
 #undef PROCESS_COMPRESS

@@ -437,3 +437,28 @@
   - code_imp: Implements COMSIG_DOOR_CLOSE
   - code_imp: Implements COMSIG_AIRLOCK_SET_BOLT
   - code_imp: Implements COMSIG_MOB_BUMPED_DOOR_OPEN
+2025-09-25:
+  Diana:
+  - bugfix: Alraune and Gamma Replicant can be neuter or plural
+  Guti:
+  - rscadd: Added churros and churros recipe
+  Will:
+  - code_imp: Moves turf slip code to a component
+2025-09-26:
+  Kashargul:
+  - bugfix: AI can now access the forever hidden vorepanel button
+  - bugfix: balloon alerts not centered for wide sprites
+  Ryumi:
+  - image: Casino chips use a new set of sprites that better represent their item
+      sizes.
+  - code_imp: Greatly cleaned up the initialization code of playing card decks.
+  - bugfix: Fixed triple card decks generating at quadruple size instead of triple,
+      as well as casino card decks spawning with jokers.
+  SatinIsle:
+  - rscadd: Added a new Welcome to Virgo pamphlet that covers most vital lore IC.
+  - qol: Made it so that new players under 10 days old start with this lore document
+      in their hand. It is sized as tiny, making it easy to tuck away.
+  Will:
+  - code_imp: Tiny cleanup in gravgen UI code
+  zeskorion:
+  - bugfix: few runtimes and new vars
