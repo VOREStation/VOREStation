@@ -1,5 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - rscadd: "Added a new Welcome to Virgo pamphlet that covers most vital lore IC."
-  - qol: "Made it so that new players under 10 days old start with this lore document in their hand. It is sized as tiny, making it easy to tuck away."
