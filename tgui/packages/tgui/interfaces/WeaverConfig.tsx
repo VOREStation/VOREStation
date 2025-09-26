@@ -98,7 +98,7 @@ export const WeaverConfig = (props) => {
                           disabled={silk_reserve < 25}
                           tooltip="Requires 25 silk."
                         >
-                          Weave Floor
+                          Weave Floor (25)
                         </Button>
                       </Stack.Item>
                     </Stack>
@@ -111,7 +111,7 @@ export const WeaverConfig = (props) => {
                           disabled={silk_reserve < 100}
                           tooltip="Requires 100 silk."
                         >
-                          Weave Wall
+                          Weave Wall  (100)
                         </Button>
                       </Stack.Item>
                     </Stack>
@@ -124,7 +124,7 @@ export const WeaverConfig = (props) => {
                           disabled={silk_reserve < 100}
                           tooltip="Requires 100 silk."
                         >
-                          Weave Nest
+                          Weave Nest (100)
                         </Button>
                       </Stack.Item>
                     </Stack>
@@ -137,7 +137,7 @@ export const WeaverConfig = (props) => {
                           disabled={silk_reserve < 250}
                           tooltip="Requires 250 silk."
                         >
-                          Weave Trap
+                          Weave Trap (250)
                         </Button>
                       </Stack.Item>
                     </Stack>
