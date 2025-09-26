@@ -4,7 +4,7 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	///What we want to append to our icon_state when our conditions are filled
 	var/icon_prefix
-	///List of which directions we want to be valid. Can be NORTH/SOUTH/EAST/WEST.
+	///List of which directions we want to be valid. Can be NORTH/SOUTH/EAST/WEST along with NORTHEAST/SOUTHEAST/SOUTHWEST/NORTHWEST
 	var/list/directions
 	///Range that we want it to look out for.
 	var/range
