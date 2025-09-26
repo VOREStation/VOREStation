@@ -17,22 +17,10 @@
 		return COMPONENT_INCOMPATIBLE
 
 	owner = parent
-	add_verb(owner, /mob/living/proc/check_silk_amount)
-	add_verb(owner, /mob/living/proc/toggle_silk_production)
-	add_verb(owner, /mob/living/proc/weave_structure)
-	add_verb(owner, /mob/living/proc/weave_item)
-	add_verb(owner, /mob/living/proc/set_silk_color)
+	add_verb(owner, /mob/living/proc/weaver_control_panel)
 
 	//Processing
 	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process_component))
-
-	//When procs are used
-	RegisterSignal(owner, COMSIG_CHECK_SILK_AMOUNT, PROC_REF(check_silk_amount))
-	RegisterSignal(owner, COMSIG_WEAVE_STRUCTURE, PROC_REF(weave_structure))
-	RegisterSignal(owner, COMSIG_TOGGLE_SILK_PRODUCTION, PROC_REF(toggle_silk_production))
-	RegisterSignal(owner, COMSIG_WEAVE_ITEM, PROC_REF(weave_item))
-	RegisterSignal(owner, COMSIG_SET_SILK_COLOR, PROC_REF(set_silk_color))
-
 /datum/component/weaver/proc/process_component()
 	if (QDELETED(parent))
 		return
@@ -40,16 +28,7 @@
 
 /datum/component/weaver/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_LIVING_LIFE) //IF we registered a signal, we need to unregister it.
-	UnregisterSignal(owner, COMSIG_CHECK_SILK_AMOUNT)
-	UnregisterSignal(owner, COMSIG_WEAVE_STRUCTURE)
-	UnregisterSignal(owner, COMSIG_TOGGLE_SILK_PRODUCTION)
-	UnregisterSignal(owner, COMSIG_WEAVE_ITEM)
-	UnregisterSignal(owner, COMSIG_SET_SILK_COLOR)
-	remove_verb(owner, /mob/living/proc/check_silk_amount)
-	remove_verb(owner, /mob/living/proc/toggle_silk_production)
-	remove_verb(owner, /mob/living/proc/weave_structure)
-	remove_verb(owner, /mob/living/proc/weave_item)
-	remove_verb(owner, /mob/living/proc/set_silk_color)
+	remove_verb(owner, /mob/living/proc/weaver_control_panel)
 	owner = null
 	. = ..()
 
@@ -58,31 +37,7 @@
 		silk_reserve = min(silk_reserve + silk_generation_amount, silk_max_reserve)
 		owner.adjust_nutrition(-(nutrtion_per_silk*silk_generation_amount))
 
-
-/mob/living/proc/check_silk_amount()
-	set name = "Check Silk Amount"
-	set category = "Abilities.Weaver"
-	SEND_SIGNAL(src, COMSIG_CHECK_SILK_AMOUNT)
-
-/datum/component/weaver/proc/check_silk_amount()
-	to_chat(owner, "Your silk reserves are at [silk_reserve]/[silk_max_reserve].")
-
-/mob/living/proc/toggle_silk_production()
-	set name = "Toggle Silk Production"
-	set category = "Abilities.Weaver"
-	SEND_SIGNAL(src, COMSIG_TOGGLE_SILK_PRODUCTION)
-
-/datum/component/weaver/proc/toggle_silk_production()
-	silk_production = !(silk_production)
-	to_chat(owner, "You are [silk_production ? "now" : "no longer"] producing silk.")
-
-/mob/living/proc/weave_structure()
-	set name = "Weave Structure"
-	set category = "Abilities.Weaver"
-	SEND_SIGNAL(src, COMSIG_WEAVE_STRUCTURE)
-
 /datum/component/weaver/proc/weave_structure()
-
 	var/choice
 	var/datum/weaver_recipe/structure/desired_result
 	var/finalized = "No"
@@ -133,12 +88,6 @@
 		var/atom/O = new desired_result.result_type(owner.loc)
 		O.color = silk_color
 
-
-/mob/living/proc/weave_item()
-	set name = "Weave Item"
-	set category = "Abilities.Weaver"
-	SEND_SIGNAL(src, COMSIG_WEAVE_ITEM)
-
 /datum/component/weaver/proc/weave_item()
 	var/choice
 	var/datum/weaver_recipe/item/desired_result
@@ -182,12 +131,67 @@
 		var/atom/O = new desired_result.result_type(owner.loc)
 		O.color = silk_color
 
-/mob/living/proc/set_silk_color()
-	set name = "Set Silk Color"
-	set category = "Abilities.Weaver"
-	SEND_SIGNAL(src, COMSIG_SET_SILK_COLOR)
+//TGUI Weaver Panel
+/datum/component/weaver/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "WeaverConfig", "Weaver Config")
+		ui.open()
 
-/datum/component/weaver/proc/set_silk_color()
-	var/new_silk_color = tgui_color_picker(owner, "Pick a color for your woven products:","Silk Color", silk_color)
-	if(new_silk_color)
-		silk_color = new_silk_color
+
+/mob/living/proc/weaver_control_panel()
+	set name = "Weaver Control Panel"
+	set desc = "Allows you to adjust the settings of various weaver settings!"
+	set category = "Abilities.Weaver"
+
+	var/datum/component/weaver/weave = get_weaver_component()
+	if(!weave)
+		to_chat(src, span_warning("Only a weaver can use that!"))
+		return FALSE
+
+	weave.tgui_interact(src)
+
+/mob/living/proc/get_weaver_component()
+	var/datum/component/weaver/weave = GetComponent(/datum/component/weaver)
+	if(weave)
+		return weave
+
+/datum/component/weaver/tgui_data(mob/user)
+	var/data = list(
+		"silk_reserve" = silk_reserve,
+		"silk_max_reserve" = silk_max_reserve,
+		"silk_color" = silk_color,
+		"silk_production" = silk_production,
+		"savefile_selected" = correct_savefile_selected()
+	)
+
+	return data
+
+/datum/component/weaver/tgui_close(mob/user)
+	SScharacter_setup.queue_preferences_save(user?.client?.prefs)
+	. = ..()
+
+/datum/component/weaver/proc/correct_savefile_selected()
+	if(owner.client.prefs.default_slot == owner.mind.loaded_from_slot)
+		return TRUE
+	return FALSE
+
+/datum/component/weaver/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("new_silk_color")
+			var/set_new_color = tgui_color_picker(ui.user, "Select a color you wish your silk to be!", "Color Selector", silk_color)
+			if(!set_new_color)
+				return FALSE
+			silk_color = set_new_color
+		if("toggle_silk_production")
+			silk_production = !(silk_production)
+			to_chat(owner, span_info("You are [silk_production ? "now" : "no longer"] producing silk."))
+		if("check_silk_amount")
+			to_chat(owner, span_info("Your silk reserves are at [silk_reserve]/[silk_max_reserve]."))
+		if("weave_item")
+			weave_item()
+		if("weave_structure")
+			weave_structure()
