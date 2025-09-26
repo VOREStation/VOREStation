@@ -870,7 +870,7 @@
 		return
 	if(!istype(macro))
 		to_chat(micro, span_notice("You start to climb out of [src]!"))
-		if(do_after(micro, 50, src))
+		if(do_after(micro, 5 SECONDS, target = src))
 			to_chat(micro, span_notice("You climb out of [src]!"))
 			micro.forceMove(loc)
 		return
@@ -885,7 +885,7 @@
 
 	to_chat(micro, span_notice("[escape_message_micro]"))
 	to_chat(macro, span_danger("[escape_message_macro]"))
-	if(!do_after(micro, escape_time, macro))
+	if(!do_after(micro, escape_time, target = macro))
 		to_chat(micro, span_danger("You're pinned underfoot!"))
 		to_chat(macro, span_danger("You pin the escapee underfoot!"))
 		return
@@ -1053,7 +1053,7 @@
 	var/image/standing = ..()
 	if(taurized) //Special snowflake var on suits
 		standing.pixel_x = -16
-		standing.layer = BODY_LAYER + 17 // 17 is above tail layer, so will not be covered by taurbody. TAIL_UPPER_LAYER +1
+		standing.layer = BODY_LAYER + TAIL_UPPER_LAYER + 1
 	return standing
 
 /obj/item/clothing/suit/apply_accessories(var/image/standing)
@@ -1165,14 +1165,14 @@
 	var/mob/living/carbon/human/H = loc
 	sensorpref = isnull(H) ? 1 : (ishuman(H) ? H.sensorpref : 1)
 	switch(sensorpref)
-		if(1) sensor_mode = 0				//Sensors off
-		if(2) sensor_mode = 1				//Sensors on binary
-		if(3) sensor_mode = 2				//Sensors display vitals
-		if(4) sensor_mode = 3				//Sensors display vitals and enables tracking
-		if(5) sensor_mode = pick(0,1,2,3)	//Select a random setting
+		if(1) sensor_mode = SUIT_SENSOR_OFF			//Sensors off
+		if(2) sensor_mode = SUIT_SENSOR_BINARY		//Sensors on binary
+		if(3) sensor_mode = SUIT_SENSOR_VITAL		//Sensors display vitals
+		if(4) sensor_mode = SUIT_SENSOR_TRACKING	//Sensors display vitals and enables tracking
+		if(5) sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)	//Select a random setting
 		else
-			sensor_mode = pick(0,1,2,3)
-			log_debug("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")
+			sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)
+			log_runtime("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")
 
 /obj/item/clothing/under/proc/update_rolldown_status()
 	var/mob/living/carbon/human/H
@@ -1261,13 +1261,13 @@
 
 	if (src.loc == user)
 		switch(sensor_mode)
-			if(0)
+			if(SUIT_SENSOR_OFF)
 				user.visible_message("[user] adjusts their sensors.", "You disable your suit's remote sensing equipment.")
-			if(1)
+			if(SUIT_SENSOR_BINARY)
 				user.visible_message("[user] adjusts their sensors.", "Your suit will now report whether you are live or dead.")
-			if(2)
+			if(SUIT_SENSOR_VITAL)
 				user.visible_message("[user] adjusts their sensors.", "Your suit will now report your vital lifesigns.")
-			if(3)
+			if(SUIT_SENSOR_TRACKING)
 				user.visible_message("[user] adjusts their sensors.", "Your suit will now report your vital lifesigns as well as your coordinate position.")
 
 	else if (istype(src.loc, /mob))

@@ -11,7 +11,7 @@ var/list/all_maps = list()
 		else
 			M = new type
 		if(!M.path)
-			log_debug("Map '[M]' does not have a defined path, not adding to map list!")
+			log_mapping("Map '[M]' does not have a defined path, not adding to map list!")
 		else
 			all_maps[M.path] = M
 	return 1
@@ -295,7 +295,7 @@ var/list/all_maps = list()
 /datum/map_z_level
 	var/z = 0				// Actual z-index of the zlevel. This had better be right!
 	var/name				// Friendly name of the zlevel
-	var/flags = 0			// Bitflag of which *_levels lists this z should be put into.
+	var/flags = NONE			// Bitflag of which *_levels lists this z should be put into.
 	var/turf/base_turf		// Type path of the base turf for this z
 	var/transit_chance = 0	// Percentile chance this z will be chosen for map-edge space transit.
 

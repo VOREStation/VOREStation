@@ -97,9 +97,12 @@
 	if(istype(M, /obj/mecha))
 		explode(M)
 
+	if(istype(M, /obj/vehicle))
+		explode(M)
+
 	if(istype(M, /mob/living/))
 		var/mob/living/mob = M
-		if(!mob.hovering || !mob.flying)
+		if(!(mob.hovering || mob.flying || mob.is_incorporeal() || mob.mob_size <= MOB_TINY))
 			explode(M)
 
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
@@ -332,7 +335,7 @@
 	add_fingerprint(user)
 	msg_admin_attack("[key_name_admin(user)] primed \a [src]")
 	user.visible_message("[user] starts priming \the [src.name].", "You start priming \the [src.name]. Hold still!")
-	if(do_after(user, 10 SECONDS))
+	if(do_after(user, 10 SECONDS, target = src))
 		playsound(src, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 		prime(user)
 	else
@@ -343,7 +346,7 @@
 /obj/item/mine/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && trap)
 		to_chat(user, span_notice("You begin removing \the [trap]."))
-		if(do_after(user, 10 SECONDS))
+		if(do_after(user, 10 SECONDS, target = src))
 			to_chat(user, span_notice("You finish disconnecting the mine's trigger."))
 			trap.forceMove(get_turf(src))
 			trap = null
@@ -431,6 +434,6 @@
 
 // This tells AI mobs to not be dumb and step on mines willingly.
 /obj/item/mine/is_safe_to_step(mob/living/L)
-	if(!L.hovering || !L.flying)
+	if(!(L.hovering || L.flying || L.is_incorporeal() || L.mob_size <= MOB_TINY))
 		return FALSE
 	return ..()

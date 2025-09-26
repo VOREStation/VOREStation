@@ -184,7 +184,7 @@
 			visible_message(span_critical("\The [src]'s tank ruptures!"))
 			ruptured = 1
 			adjust_fire_stacks(2)
-			IgniteMob()
+			ignite_mob()
 	return ..()
 
 //Ammo Mouse

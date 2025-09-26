@@ -265,7 +265,7 @@ var/list/preferences_datums = list()
 	else if(href_list["reload"])
 		load_preferences(TRUE)
 		load_character()
-		attempt_vr(client.prefs_vr,"load_vore","")
+		client.prefs_vr.load_vore()
 		sanitize_preferences()
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
@@ -354,12 +354,12 @@ var/list/preferences_datums = list()
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
-		error("Player picked [choice] slot to load, but that wasn't one we sent.")
+		log_world("## ERROR Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
 	load_preferences(TRUE)
 	load_character(slotnum)
-	attempt_vr(user.client?.prefs_vr,"load_vore","")
+	user.client?.prefs_vr.load_vore()
 	sanitize_preferences()
 	save_preferences()
 	ShowChoices(user)
@@ -395,7 +395,7 @@ var/list/preferences_datums = list()
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
-		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
+		log_world("## ERROR Player picked [choice] slot to copy to, but that wasn't one we sent.")
 		return
 
 	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [choice]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
@@ -404,7 +404,7 @@ var/list/preferences_datums = list()
 		save_preferences()
 		load_preferences(TRUE)
 		load_character()
-		attempt_vr(user.client?.prefs_vr,"load_vore","")
+		user.client?.prefs_vr.load_vore()
 		ShowChoices(user)
 
 /datum/preferences/proc/vanity_copy_to(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/copy_ooc_notes = FALSE, var/convert_to_prosthetics = FALSE, var/apply_bloodtype = TRUE)

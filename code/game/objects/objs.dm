@@ -2,6 +2,7 @@
 	layer = OBJ_LAYER
 	plane = OBJ_PLANE
 	vis_flags = VIS_INHERIT_PLANE //when this be added to vis_contents of something it inherit something.plane, important for visualisation of obj in openspace.
+	unacidable = FALSE //universal "unacidabliness" var, here so you can use it in any obj.
 	//Used to store information about the contents of the object.
 	var/w_class // Size of the object.
 	animate_movement = 2

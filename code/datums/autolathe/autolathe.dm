@@ -5,7 +5,7 @@
 		I = new path()
 
 	if(!isitem(I))	// Something has gone horribly wrong, or right.
-		log_debug("[name] created an Autolathe design without an assigned path or illegal item. Item = [I]")
+		log_runtime("[name] created an Autolathe design without an assigned path or illegal item. Item = [I]")
 		return
 
 	if(I.matter && !resources)

@@ -111,7 +111,6 @@
 	if(over_object == src)
 		our_hud.hide_landings()
 		return
-
 	if(istype(over_object, /atom/movable/screen/action_landing))
 		var/atom/movable/screen/action_landing/reserve = over_object
 		reserve.hit_by(src)
@@ -119,12 +118,12 @@
 		our_hud.hide_landings()
 		return
 
+	our_hud.hide_landings()
 	if(istype(over_object, /atom/movable/screen/button_palette) || istype(over_object, /atom/movable/screen/palette_scroll))
 		our_hud.position_action(src, SCRN_OBJ_IN_PALETTE)
 		save_position()
 		our_hud.hide_landings()
 		return
-
 	if(istype(over_object, /atom/movable/screen/movable/action_button))
 		var/atom/movable/screen/movable/action_button/button = over_object
 		our_hud.position_action_relative(src, button)
@@ -266,6 +265,8 @@
 
 	action.HideFrom(src)
 
+// Button Palette
+// A new way to interact with actions
 /atom/movable/screen/button_palette
 	desc = "<b>Drag</b> buttons to move them<br><b>Shift-click</b> any button to reset it<br><b>Alt-click any button</b> to begin binding it to a key<br><b>Alt-click this</b> to reset all buttons"
 	icon = 'icons/hud/64x16_actions.dmi'
@@ -294,6 +295,7 @@
 	refresh_owner()
 	disable_landing() // If our hud already has elements, don't force hide us
 
+// /atom/movable/screen/button_palette/update_name(updates)
 /atom/movable/screen/button_palette/proc/update_name(updates)
 	// . = ..()
 	if(expanded)

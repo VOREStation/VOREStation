@@ -15,7 +15,7 @@ var/global/datum/controller/occupations/job_master
 	//var/list/all_jobs = typesof(/datum/job)
 	var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
 	if(!all_jobs.len)
-		to_world(span_boldannounce("Error setting up jobs, no job datums found!"))
+		to_chat(world, span_boldannounce("Error setting up jobs, no job datums found!"))
 		return 0
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
@@ -471,6 +471,10 @@ var/global/datum/controller/occupations/job_master
 					custom_equip_slots.Add(G.slot)
 				else
 					spawn_in_storage += thing
+
+		//Give new players a welcome guide!
+		if(isnum(H.client.player_age) && H.client.player_age < 10)
+			H.equip_to_slot_or_del(new /obj/item/book/manual/virgo_pamphlet(H), slot_r_hand)
 	else
 		to_chat(H, span_filter_notice("Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."))
 
@@ -593,7 +597,7 @@ var/global/datum/controller/occupations/job_master
 	if(!CONFIG_GET(flag/load_jobs_from_txt))
 		return 0
 
-	var/list/jobEntries = file2list(jobsfile)
+	var/list/jobEntries = world.file2list(jobsfile)
 
 	for(var/job in jobEntries)
 		if(!job)

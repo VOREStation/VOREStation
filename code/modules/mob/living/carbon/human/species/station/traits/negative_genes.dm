@@ -53,8 +53,8 @@
 	activation_message="You feel lightheaded."
 	primitive_expression_messages=list("trips.")
 
-/datum/trait/negative/disability_tourettes
-	name = "Tourettes Syndrome"
+/datum/trait/negative/disability_coprolalia
+	name = "Coprolalia"
 	desc = "You have periodic motor seizures, and cannot stop yourself from yelling profanity."
 	cost = -2
 	custom_only = FALSE
@@ -64,7 +64,7 @@
 
 	activation_message="You twitch."
 	primitive_expression_messages=list("twitches and chitters.")
-	added_component_path = /datum/component/tourettes_disability
+	added_component_path = /datum/component/coprolalia_disability
 
 /* Replaced by /datum/trait/negative/blindness
 /datum/trait/negative/disability_blind
@@ -202,7 +202,7 @@
 	name = "Ambulant Blood"
 	desc = "Your blood reacts to hostile stimulation such as burning when seperated from your body, as if it was its own creature. You WILL be mistaken for a changeling, you may want to document this in your medical records."
 	var_changes = list("ambulant_blood" = TRUE)
-	cost = -1
+	cost = 0
 
 	is_genetrait = TRUE
 	hidden = FALSE

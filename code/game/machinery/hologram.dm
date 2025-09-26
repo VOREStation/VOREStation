@@ -27,7 +27,7 @@ Possible to do for anyone motivated enough:
 #define RANGE_BASED 4
 #define AREA_BASED 6
 
-var/const/HOLOPAD_MODE = RANGE_BASED
+#define IS_RANGE_BASED
 
 /obj/machinery/hologram/holopad
 	name = "\improper AI holopad"
@@ -175,15 +175,16 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		if(get_dist(H, user.eyeobj) > world.view)
 			clear_holo(user)
 		//VOREStation Add End
-		if((HOLOPAD_MODE == RANGE_BASED && (get_dist(H, src) > holo_range)))
+		#ifdef IS_RANGE_BASED
+		if((get_dist(H, src) > holo_range))
 			clear_holo(user)
+		#else
+		var/area/holopad_area = get_area(src)
+		var/area/hologram_area = get_area(H)
 
-		if(HOLOPAD_MODE == AREA_BASED)
-			var/area/holopad_area = get_area(src)
-			var/area/hologram_area = get_area(H)
-
-			if(!(hologram_area in holopad_area))
-				clear_holo(user)
+		if(!(hologram_area in holopad_area))
+			clear_holo(user)
+		#endif
 
 	return 1
 
@@ -251,3 +252,4 @@ Holographic project of everything else.
 #undef AREA_BASED
 #undef HOLOPAD_PASSIVE_POWER_USAGE
 #undef HOLOGRAM_POWER_USAGE
+#undef IS_RANGE_BASED

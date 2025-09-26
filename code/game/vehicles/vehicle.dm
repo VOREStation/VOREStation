@@ -63,7 +63,7 @@
 	spark_system.attach(src)
 	add_cell()
 	removeVerb(/atom/movable/verb/pull)
-	log_message("[src.name]'s functions initialised. Work protocols active - Entering IDLE mode.")
+	src.mecha_log_message("[src.name]'s functions initialised. Work protocols active - Entering IDLE mode.")
 
 
 //################ Helpers ###########################################################
@@ -98,7 +98,7 @@
 //################ Logs and messages ############################################
 
 
-/obj/vehicle/proc/log_message(message as text,red=null)
+/obj/vehicle/proc/mecha_log_message(message as text,red=null)
 	log.len++
 	log[log.len] = list("time"=world.timeofday,"message"="[red?span_red("[message]"):[message]]")
 	return log.len

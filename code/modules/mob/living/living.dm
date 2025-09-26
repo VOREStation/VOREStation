@@ -725,12 +725,11 @@
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
-	ExtinguishMob()
-	fire_stacks = 0
 	if(ai_holder) // AI gets told to sleep when killed. Since they're not dead anymore, wake it up.
 		ai_holder.go_wake()
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DNA_FINALIZED)
+	SEND_SIGNAL(src, COMSIG_LIVING_AHEAL)
 
 /mob/living/proc/rejuvenate()
 	if(reagents)
@@ -854,8 +853,6 @@
 			resist_fire() //stop, drop, and roll
 		else
 			resist_restraints()
-
-	if(attempt_vr(src,"vore_process_resist",args)) return TRUE
 
 /mob/living/proc/resist_buckle()
 	if(buckled)
@@ -1016,6 +1013,11 @@
 			else
 				puke_bucket.reagents.add_reagent(REAGENT_ID_TOXIN, rand(3, 6))
 		distance = 0
+	else if(isbelly(loc))
+		var/obj/belly/belly = loc
+		if(message)
+			to_chat(src, span_bolddanger("You throw up inside [belly.owner]'s [belly]!"))
+		distance = 0
 	else
 		if(message)
 			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
@@ -1172,10 +1174,6 @@
 	if(isSynthetic())
 		return FALSE
 	return TRUE
-
-// Gets the correct icon_state for being on fire. See OnFire.dmi for the icons.
-/mob/living/proc/get_fire_icon_state()
-	return "generic"
 
 // Called by job_controller.
 /mob/living/proc/equip_post_job()
@@ -1481,6 +1479,8 @@
 		screen_icon.icon = HUD.ui_style
 		screen_icon.color = HUD.ui_color
 		screen_icon.alpha = HUD.ui_alpha
+	if(isAI(user))
+		screen_icon.screen_loc = ui_ai_pda_send
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 

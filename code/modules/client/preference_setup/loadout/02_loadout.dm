@@ -19,13 +19,13 @@ var/list/gear_datums = list()
 		var/use_category = initial(G.sort_category)
 
 		if(!use_name)
-			error("Loadout - Missing display name: [G]")
+			log_world("## ERROR Loadout - Missing display name: [G]")
 			continue
 		if(isnull(initial(G.cost)))
-			error("Loadout - Missing cost: [G]")
+			log_world("## ERROR Loadout - Missing cost: [G]")
 			continue
 		if(!initial(G.path))
-			error("Loadout - Missing path definition: [G]")
+			log_world("## ERROR Loadout - Missing path definition: [G]")
 			continue
 
 		if(!loadout_categories[use_category])
@@ -245,7 +245,11 @@ var/list/gear_datums = list()
 			var/datum/gear_tweak/tweak = locate(params["tweak"])
 			if(!tweak || !gear || !(tweak in gear.gear_tweaks))
 				return TOPIC_HANDLED
-			var/metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
+			var/metadata
+			if(istype(tweak, /datum/gear_tweak/matrix_recolor))
+				metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak), gear)
+			else
+				metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
 			if(!metadata)
 				return TOPIC_HANDLED
 			set_tweak_metadata(gear, tweak, metadata)

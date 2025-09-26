@@ -34,7 +34,7 @@
 	to_chat(target, span_vwarning("You feel yourself being pulled up by something... Or someone?!"))
 	var/starting_loc = target.loc
 
-	if(do_after(src, 50))
+	if(do_after(src, 5 SECONDS, target = target))
 		if(target.loc != starting_loc)
 			to_chat(target, span_vwarning("You have interrupted whatever that was..."))
 			to_chat(src, span_vnotice("They got away."))

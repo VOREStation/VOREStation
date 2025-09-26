@@ -97,6 +97,46 @@
 	. = ..()
 	default_apply_parts()
 	connect_to_network()
+	if(mapload)
+		return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/power/rtg/LateInitialize()
+	apply_mapped_upgrades()
+
+/obj/machinery/power/rtg/apply_mapped_upgrades()
+	// Detect new parts placed by mappers
+	var/list/parts_found = list()
+	for(var/i = 1, i <= loc.contents.len, i++)
+		var/obj/item/W = loc.contents[i]
+		if(istype(W, /obj/item/stock_parts/capacitor))
+			parts_found.Add(W)
+		if(istype(W, /obj/item/stock_parts/micro_laser))
+			parts_found.Add(W)
+
+	// Wipe old parts for new ones!
+	if(parts_found.len == 0)
+		return
+	if(locate(/obj/item/stock_parts/capacitor) in parts_found)
+		while(TRUE)
+			var/obj/item/stock_parts/capacitor/C = locate(/obj/item/stock_parts/capacitor) in component_parts
+			if(isnull(C))
+				break
+			component_parts.Remove(C)
+			qdel(C)
+	if(locate(/obj/item/stock_parts/micro_laser) in parts_found)
+		while(TRUE)
+			var/obj/item/stock_parts/micro_laser/M = locate(/obj/item/stock_parts/micro_laser) in component_parts
+			if(isnull(M))
+				break
+			component_parts.Remove(M)
+			qdel(M)
+
+	// Rebuild from mapper's parts
+	for(var/i = 1, i <= parts_found.len, i++)
+		var/obj/item/W = parts_found[i]
+		component_parts.Add(W)
+		W.forceMove(src)
+	RefreshParts()
 
 /obj/machinery/power/rtg/process()
 	..()

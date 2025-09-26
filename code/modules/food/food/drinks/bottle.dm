@@ -25,8 +25,12 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/Destroy()
 	if(rag)
-		rag.forceMove(src.loc)
-	rag = null
+		var/turf/possible_loc = get_turf(src)
+		if(possible_loc)
+			rag.forceMove(possible_loc)
+		else
+			qdel(rag)
+		rag = null
 	return ..()
 
 //when thrown on impact, bottles smash and spill their contents
@@ -79,7 +83,7 @@
 	if(rag && rag.on_fire && isliving(against))
 		rag.forceMove(loc)
 		var/mob/living/L = against
-		L.IgniteMob()
+		L.ignite_mob()
 
 	playsound(src, "shatter", 70, 1)
 	src.transfer_fingerprints_to(B)
@@ -694,7 +698,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/small
 	volume = 50
 	smash_duration = 1
-	flags = 0 //starts closed
+	flags = NONE //starts closed
 	rag_underlay = "rag_small"
 
 /obj/item/reagent_containers/food/drinks/bottle/small/beer

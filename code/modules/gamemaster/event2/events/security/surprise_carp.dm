@@ -29,12 +29,12 @@
 
 /datum/event2/event/surprise_carp/start()
 	if(!victim)
-		log_debug("Failed to find a target for surprise carp attack. Aborting.")
+		log_game("Failed to find a target for surprise carp attack. Aborting.")
 		abort()
 		return
 
 	var/number_of_carp = rand(1, 2)
-	log_debug("Sending [number_of_carp] carp\s after \the [victim].")
+	log_game("Sending [number_of_carp] carp\s after \the [victim].")
 	// Getting off screen tiles is kind of tricky due to potential edge cases that could arise.
 	// The method we're gonna do is make a big square around the victim, then
 	// subtract a smaller square in the middle for the default vision range.
@@ -54,7 +54,7 @@
 			// Ask carp to swim onto the victim's screen. The AI will then switch to hostile and try to eat them.
 			C.ai_holder?.give_destination(get_turf(victim))
 		else
-			log_debug("Surprise carp attack failed to find any space turfs offscreen to the victim.")
+			log_game("Surprise carp attack failed to find any space turfs offscreen to the victim.")
 
 // Gets suitable spots for carp to spawn, without risk of going off the edge of the map.
 // If there is demand for this proc, then it can easily be made independant and moved into one of the helper files.

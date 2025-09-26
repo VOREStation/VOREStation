@@ -163,7 +163,7 @@
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
-	if(do_after(src, reload_time))
+	if(do_after(src, reload_time, target = src))
 		if(reload_sound)
 			playsound(src, reload_sound, 70, 1)
 		reload_count = 0

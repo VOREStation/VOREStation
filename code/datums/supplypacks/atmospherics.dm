@@ -94,7 +94,7 @@
 	name = "Internals crate"
 	desc = "A set of 3 gas masks and air tanks."
 	contains = list(
-			/obj/item/clothing/mask/gas = 3,
+			/obj/item/clothing/mask/gas/clear = 3,
 			/obj/item/tank/air = 3
 			)
 	cost = 10
@@ -111,7 +111,7 @@
 			/obj/item/tank/emergency/oxygen/engi = 4,
 			/obj/item/clothing/suit/space/emergency = 4,
 			/obj/item/clothing/head/helmet/space/emergency = 4,
-			/obj/item/clothing/mask/gas = 4
+			/obj/item/clothing/mask/gas/clear = 4
 			)
 	cost = 35
 	containertype = /obj/structure/closet/crate/aether

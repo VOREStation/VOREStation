@@ -11,6 +11,8 @@
 	var/carbon_dioxide = 0
 	var/nitrogen = 0
 	var/phoron = 0
+	var/nitrous_oxide = 0
+	var/methane = 0
 
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
@@ -209,7 +211,7 @@
 		return
 	if(isanimal(user) && O != user)
 		return
-	if (do_after(user, 25 + (5 * user.weakened)) && !(user.stat))
+	if (do_after(user, 25 + (5 * user.weakened), target = O) && !(user.stat))
 		step_towards(O, src)
 		if(ismob(O))
 			animate(O, transform = turn(O.transform, 20), time = 2)
@@ -333,14 +335,16 @@
 	return
 
 // Called when turf is hit by a thrown object
-/turf/hitby(atom/movable/AM as mob|obj, var/speed)
-	if(density)
-		if(!get_gravity(AM)) //Checked a different codebase for reference. Turns out it's only supposed to happen in no-gravity
-			spawn(2)
-				step(AM, turn(AM.last_move, 180)) //This makes it float away after hitting a wall in 0G
-		if(isliving(AM))
-			var/mob/living/M = AM
-			M.turf_collision(src, speed)
+/turf/hitby(atom/movable/source, var/speed)
+	if(!density)
+		return
+
+	if(!get_gravity(source)) //Checked a different codebase for reference. Turns out it's only supposed to happen in no-gravity
+		spawn(2)
+			step(source, turn(source.last_move, 180)) //This makes it float away after hitting a wall in 0G
+	if(isliving(source))
+		var/mob/living/M = source
+		M.turf_collision(src, speed)
 
 /turf/AllowDrop()
 	return TRUE
@@ -373,7 +377,7 @@
 
 	vandal.visible_message(span_warning("\The [vandal] begins carving something into \the [src]."))
 
-	if(!do_after(vandal, max(20, length(message)), src))
+	if(!do_after(vandal, max(2 SECONDS, length(message)), target = src))
 		return FALSE
 
 	vandal.visible_message(span_danger("\The [vandal] carves some graffiti into \the [src]."))

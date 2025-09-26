@@ -576,6 +576,7 @@
 			safe_pressure_min *= 1.25
 
 	var/safe_exhaled_max = 10
+	var/safe_toxins_min = 0.05
 	var/safe_toxins_max = 0.2
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
@@ -584,7 +585,8 @@
 	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 
 	var/inhaling
-	var/poison
+	var/poison_toxin
+	var/poison_methane
 	var/exhaling
 
 	var/breath_type
@@ -604,7 +606,10 @@
 		poison_type = species.poison_type
 	else
 		poison_type = GAS_PHORON
-	poison = breath.gas[poison_type]
+	poison_toxin = breath.gas[poison_type]
+
+	if(species.breath_type != GAS_CH4)
+		poison_methane = breath.gas[GAS_CH4]
 
 	if(species.exhale_type)
 		exhale_type = species.exhale_type
@@ -613,14 +618,15 @@
 		exhaling = 0
 
 	var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
-	var/toxins_pp = (poison/breath.total_moles)*breath_pressure
+	var/toxins_pp = (poison_toxin/breath.total_moles)*breath_pressure
+	var/methane_pp = (poison_methane/breath.total_moles)*breath_pressure
 	// To be clear, this isn't how much they're exhaling -- it's the amount of the species exhale_gas that they just
 	var/exhaled_pp = (exhaling/breath.total_moles)*breath_pressure
 
 	// Not enough to breathe
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
-			spawn(0) emote("gasp")
+			emote("gasp")
 		if(is_below_sound_pressure(get_turf(src)))	//No more popped lungs from choking/drowning. You also have ~20 seconds to get internals on before your lungs pop.
 			rupture_lung(TRUE)
 
@@ -638,6 +644,8 @@
 				throw_alert("oxy", /atom/movable/screen/alert/not_enough_nitro)
 			if(GAS_CO2)
 				throw_alert("oxy", /atom/movable/screen/alert/not_enough_co2)
+			if(GAS_CH4)
+				throw_alert("oxy", /atom/movable/screen/alert/not_enough_methane)
 			if(GAS_VOLATILE_FUEL)
 				throw_alert("oxy", /atom/movable/screen/alert/not_enough_fuel)
 			if(GAS_N2O)
@@ -681,15 +689,37 @@
 				var/word = pick("a little dizzy","short of breath")
 				to_chat(src, span_warning("You feel [word]."))
 
-	// Too much poison in the air.
+	// Too much phoron in the air.
+	if(toxins_pp > safe_toxins_min)
+		var/SA_pp = (breath.gas[GAS_PHORON] / breath.total_moles) * breath_pressure
+		if(SA_pp > 0.05)
+			if(prob(3))
+				to_chat(src,span_warning("Something burns as you breathe."))
 	if(toxins_pp > safe_toxins_max)
-		var/ratio = (poison/safe_toxins_max) * 10
+		var/ratio = (poison_toxin/safe_toxins_max) * 10
 		if(reagents)
 			reagents.add_reagent(REAGENT_ID_TOXIN, CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
-			breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
+			breath.adjust_gas(poison_type, -poison_toxin/6, update = 0) //update after
 		throw_alert("tox_in_air", /atom/movable/screen/alert/tox_in_air)
 	else
 		clear_alert("tox_in_air")
+
+	// Too much methane in the air
+	if(methane_pp > safe_toxins_min)
+		var/SA_pp = (breath.gas[GAS_CH4] / breath.total_moles) * breath_pressure
+		if(SA_pp > 0.05)
+			if(prob(5))
+				to_chat(src,span_warning("You smell rotten eggs."))
+	if(methane_pp > safe_toxins_max)
+		var/ratio = (poison_methane/safe_toxins_max) * 1200
+		adjustOxyLoss(CLAMP(ratio,0.1,10)) // Causes slow suffocation
+		if(prob(20))
+			emote("gasp")
+		breath.adjust_gas(GAS_CH4, -poison_methane/6, update = 0) //update after
+		breath.adjust_gas(GAS_CH4, -breath.gas[GAS_CH4]/6, update = 0) //update after
+		throw_alert("methane_in_air", /atom/movable/screen/alert/methane_in_air)
+	else
+		clear_alert("methane_in_air")
 
 	// If there's some other shit in the air lets deal with it here.
 	if(breath.gas[GAS_N2O])
@@ -708,7 +738,7 @@
 		// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 		else if(SA_pp > 0.15)
 			if(prob(20))
-				spawn(0) emote(pick("giggle", "laugh"))
+				emote(pick("giggle", "laugh"))
 		breath.adjust_gas(GAS_N2O, -breath.gas[GAS_N2O]/6, update = 0) //update after
 
 	if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_OXY)
@@ -1036,18 +1066,15 @@
 			adjust_nutrition(-2)
 		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
 		//to_world("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
-//				log_debug("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 		bodytemperature += recovery_amt
 	else if(species.cold_level_1 <= bodytemperature && bodytemperature <= species.heat_level_1)
 		var/recovery_amt = body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR
 		//to_world("Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
-//				log_debug("Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 		bodytemperature += recovery_amt
 	else if(bodytemperature > species.heat_level_1) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
 		//We totally need a sweat system cause it totally makes sense...~
 		var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
 		//to_world("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
-//				log_debug("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 		bodytemperature += recovery_amt
 
 	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
@@ -1306,13 +1333,12 @@
 							badorgan.damage -= 1
 
 				handle_dreams()
-				if (mind)
+				if(mind)
 					//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 					if(client || sleeping > 3)
 						handle_sleeping()
-				if( prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client )
-					spawn(0)
-						emote("snore")
+				if(prob(2) && health && !get_hallucination_component()?.get_fakecrit() && client)
+					emote("snore")
 		//CONSCIOUS
 		else
 			set_stat(CONSCIOUS)
@@ -2197,26 +2223,13 @@
 
 	hud_updateflag = 0
 
-/mob/living/carbon/human/handle_fire()
-	if(..())
-		return
-
-	var/thermal_protection = get_heat_protection(fire_stacks * 1500) // Arbitrary but below firesuit max temp when below 20 stacks.
-
-	if(thermal_protection == 1) // Immune.
-		return
-	else
-		var/fire_temp_add = (BODYTEMP_HEATING_MAX + (fire_stacks * 15)) * (1-thermal_protection)
-		//This is to prevent humans from heating up indefinitely. A human being on fire (fat burns at 250C) can't magically
-		//   increase your body temperature beyond 250C, but it's possible something else (atmos) has heated us up beyond it,
-		//   so don't worry about the firestacks at that point. Really, we should be cooling the room down, because it has
-		//   to expend energy to heat our body up! But let's not worry about that.
-
-		// This whole section above is ABSOLUTELY STUPID and makes no sense and this would prevent too-high-heat from even being able to hurt someone. No. We will heat up for as long as needed.
-		//if((bodytemperature + fire_temp_add) > HUMAN_COMBUSTION_TEMP)
-		//	return
-
-		bodytemperature += fire_temp_add
+/mob/living/carbon/human/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)
+	SEND_SIGNAL(src, COMSIG_HUMAN_BURNING)
+	// burn_clothing(seconds_per_tick, fire_handler.stacks)
+	var/no_protection = FALSE
+	if(HAS_TRAIT(src, TRAIT_IGNORE_FIRE_PROTECTION))
+		no_protection = TRUE
+	fire_handler.harm_human(seconds_per_tick, no_protection)
 
 /mob/living/carbon/human/rejuvenate()
 	restore_blood()

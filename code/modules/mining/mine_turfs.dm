@@ -394,7 +394,7 @@ var/list/mining_overlay_cache = list()
 			to_chat(user, span_notice("You start digging."))
 			playsound(user, 'sound/effects/rustle1.ogg', 50, 1)
 
-			if(!do_after(user,digspeed)) return
+			if(!do_after(user, digspeed, target = src)) return
 
 			to_chat(user, span_notice("You dug a hole."))
 			GetDrilled()
@@ -439,7 +439,7 @@ var/list/mining_overlay_cache = list()
 		if (istype(W, /obj/item/measuring_tape))
 			var/obj/item/measuring_tape/P = W
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " extends \a [P] towards \the [src]."),span_notice("You extend \the [P] towards \the [src]."))
-			if(do_after(user, 15))
+			if(do_after(user, 15, target = src))
 				to_chat(user, span_notice("\The [src] has been excavated to a depth of [excavation_level]cm."))
 			return
 
@@ -449,7 +449,7 @@ var/list/mining_overlay_cache = list()
 				C.depth_scanner.scan_atom(user, src)
 			else
 				user.visible_message(span_infoplain(span_bold("\The [user]") + " extends \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!"), span_notice("You extend \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!"))
-				if(do_after(user, 15))
+				if(do_after(user, 15, target = src))
 					to_chat(user, span_notice("\The [src] has been excavated to a depth of [excavation_level]cm."))
 			return
 
@@ -517,9 +517,9 @@ var/list/mining_overlay_cache = list()
 				if(newDepth > F.excavation_required) // Digging too deep can break the item. At least you won't summon a Balrog (probably)
 					fail_message = ". <b>[pick("There is a crunching noise","[W] collides with some different rock","Part of the rock face crumbles away","Something breaks under [W]")]</b>"
 					wreckfinds(P.destroy_artefacts)
-			to_chat(user, span_notice("You start [P.drill_verb][fail_message]."))
+			user.balloon_alert(user, "you start [P.drill_verb][fail_message].")
 
-			if(do_after(user,P.digspeed))
+			if(do_after(user, P.digspeed, target = src))
 
 				if(finds && finds.len)
 					var/datum/find/F = finds[1]
@@ -528,7 +528,7 @@ var/list/mining_overlay_cache = list()
 					else if(newDepth > F.excavation_required)
 						excavate_find(prob(10), F) //A 1 in 10 chance to get it out perfectly seems fine if you're not being careful.
 
-				to_chat(user, span_notice("You finish [P.drill_verb] \the [src]."))
+				user.balloon_alert(user, "you finish [P.drill_verb] \the [src].")
 
 				if(newDepth >= 200) // This means the rock is mined out fully
 					if(P.destroy_artefacts)

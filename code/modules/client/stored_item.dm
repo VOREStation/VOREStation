@@ -96,7 +96,7 @@
 			busy_bank = FALSE
 			icon_state = "item_bank"
 			return
-		else if(!do_after(user, 10 SECONDS, src) || inoperable())
+		else if(!do_after(user, 10 SECONDS, target = src) || inoperable())
 			busy_bank = FALSE
 			icon_state = "item_bank"
 			return
@@ -139,13 +139,13 @@
 			busy_bank = FALSE
 			return
 		for(var/obj/item/check in O.contents)
-			if(!check.persist_storable)
+			if(!check.persist_storable || check.tethered_host_item)
 				to_chat(user, span_warning("\The [src] buzzes. \The [O] contains [check], which cannot be stored. Please remove this item before attempting to store \the [O]. As a reminder, any contents of \the [O] will be lost if you store it with contents."))
 				busy_bank = FALSE
 				return
 		user.visible_message(span_notice("\The [user] begins storing \the [O] in \the [src]."),span_notice("You begin storing \the [O] in \the [src]."))
 		icon_state = "item_bank_o"
-		if(!do_after(user, 10 SECONDS, src) || inoperable())
+		if(!do_after(user, 10 SECONDS, target = src) || inoperable())
 			busy_bank = FALSE
 			icon_state = "item_bank"
 			return
