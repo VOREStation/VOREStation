@@ -135,7 +135,7 @@ export const ColorMate = (props) => {
                       </Table.Cell>
                     </Table>
                   </Stack.Item>
-                  <Stack.Item mt="20px">
+                  <Stack.Item>
                     <Tabs fluid>
                       {!matrix_only && (
                         <>
