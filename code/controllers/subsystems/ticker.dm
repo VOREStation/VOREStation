@@ -515,6 +515,9 @@ SUBSYSTEM_DEF(ticker)
 	to_chat(world, span_boldannounce("An admin has delayed the round end."))
 	deltimer(reboot_timer)
 	reboot_timer = null
+	if(countdown_timer)
+		deltimer(countdown_timer)
+		countdown_timer = null
 	return TRUE
 
 /**
