@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(ticker)
 			//lobby stats for statpanels
 			if(isnull(timeLeft))
 				timeLeft = max(0,start_at - world.time)
-				to_chat(world, span_notice("Round starting in [round(timeLeft / 10)] Seonds!"))
+				to_chat(world, span_notice("Round starting in [round(timeLeft / 10)] Seconds!"))
 			totalPlayers = LAZYLEN(GLOB.new_player_list)
 			totalPlayersReady = 0
 			total_admins_ready = 0
