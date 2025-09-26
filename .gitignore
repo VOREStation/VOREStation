@@ -34,6 +34,15 @@ cfg/
 !/.vscode/settings.json
 !/.vscode/tasks.json
 
+#Ignore IDE files we don't need in the repo.
+/.vs/**/*
+/v17/**/*
+/v18/**/*
+/v19/**/*
+/v20/**/*
+/v21/**/*
+/v22/**/*
+
 temp.dmi
 
 node_modules/
