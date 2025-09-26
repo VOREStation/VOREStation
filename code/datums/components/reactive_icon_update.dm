@@ -12,7 +12,7 @@
 	var/list/triggering_mobs = list(/mob/living)
 
 /datum/component/reactive_icon_update/Initialize(icon_prefix, list/directions, range, triggering_mobs)
-	if(!isitem(parent) || !isnum(range) || (!directions || !LAZYLEN(directions)) || (triggering_mobs && !LAZYLEN(triggering_mobs)))
+	if(!isobj(parent) || !isnum(range) || (!directions || !LAZYLEN(directions)) || (triggering_mobs && !LAZYLEN(triggering_mobs)))
 		return COMPONENT_INCOMPATIBLE
 
 	src.icon_prefix = icon_prefix
@@ -34,7 +34,7 @@
 /datum/component/reactive_icon_update/proc/update_proximity_icon(atom/current_loc, atom/movable/AM, atom/old_loc)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
-	var/obj/item/our_item = parent
+	var/obj/our_item = parent
 	if(!ismob(AM) || !mob_check(AM))
 		return
 	var/mob/M = AM
