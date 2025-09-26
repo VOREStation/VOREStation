@@ -67,6 +67,8 @@ SUBSYSTEM_DEF(ticker)
 
 	/// ID of round reboot timer, if it exists
 	var/reboot_timer = null
+	/// ID of round countdown timer, if it exists
+	var/countdown_timer = null
 
 	/// ### LEGACY VARS ###
 	/// Default time to wait before rebooting in desiseconds.
@@ -460,7 +462,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) SECONDS
 		if(delay >= 60 SECONDS)
-			addtimer(CALLBACK(src, PROC_REF(announce_countodwn), delay), 60 SECONDS)
+			countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countodwn), delay), 60 SECONDS)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
@@ -485,10 +487,10 @@ SUBSYSTEM_DEF(ticker)
 	remaining_time -= 60 SECONDS
 	if(remaining_time >= 60 SECONDS)
 		to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(remaining_time)]."))
-		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), remaining_time), 60 SECONDS)
+		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countodwn), remaining_time), 60 SECONDS)
 		return
 	if(remaining_time > 0)
-		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), 0), remaining_time)
+		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countodwn), 0), remaining_time)
 		return
 	to_chat(world, span_boldannounce("Rebooting World."))
 
@@ -523,6 +525,9 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/toggle_delay()
 	delay_end = !delay_end
 
+	if(countdown_timer)
+		deltimer(countdown_timer)
+		countdown_timer = null
 	if(reboot_timer)
 		deltimer(reboot_timer)
 		reboot_timer = null
