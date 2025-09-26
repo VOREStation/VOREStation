@@ -1,0 +1,6 @@
+author: "Will"
+delete-after: True
+changes:
+  - refactor: "Improves smes mapped part upgrading"
+  - refactor: "Adds more smes subtypes so manually mapping smes vars is no longer needed"
+  - server: "Mapped smes should be updated to use prefabs, and a coil place on the smes to meet the original charge capacity."
