@@ -1337,6 +1337,12 @@
 	ckeywhitelist = list("theskringdinger")
 	character_name = list("Monty Kopic")
 
+/datum/gear/fluff/flute_tief
+	path = /obj/item/instrument/recorder/fluff_tief
+	display_name = "flute"
+	ckeywhitelist = list("tief")
+	character_name = list("Belphi")
+
 /datum/gear/fluff/shadow_laptop
 	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens
 	display_name = "Shadow's Laptop"
