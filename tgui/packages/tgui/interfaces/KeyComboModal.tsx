@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Autofocus, Box, Button, Section, Stack } from 'tgui-core/components';
 import { isEscape, KEY } from 'tgui-core/keys';
@@ -74,6 +74,7 @@ export function KeyComboModal(props) {
   const { init_value, large_buttons, message = '', title, timeout } = data;
   const [input, setInput] = useState(init_value);
   const [binding, setBinding] = useState(true);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     if (!binding) {
@@ -92,7 +93,8 @@ export function KeyComboModal(props) {
       setValue(formatKeyboardEvent(event));
       setBinding(false);
       return;
-    } else if (isEscape(event.key)) {
+    }
+    if (isEscape(event.key)) {
       setValue(init_value);
       setBinding(false);
       return;
@@ -116,7 +118,7 @@ export function KeyComboModal(props) {
     <Window title={title} width={240} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
       <Window.Content onKeyDown={handleKeyDown}>
-        <Section fill>
+        <Section fill ref={contentRef}>
           <Autofocus />
           <Stack fill vertical>
             <Stack.Item grow>
@@ -130,6 +132,14 @@ export function KeyComboModal(props) {
                 onClick={() => {
                   setValue(init_value);
                   setBinding(true);
+                  requestAnimationFrame(() => {
+                    contentRef.current?.focus();
+                    (
+                      contentRef.current?.querySelector(
+                        'div[tabindex="-1"]',
+                      ) as HTMLElement | null
+                    )?.focus();
+                  });
                 }}
               >
                 {binding ? 'Awaiting input...' : `${input}`}
