@@ -378,3 +378,106 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		if("dust")
 			real_target.dust()
 	return "Smite [smite_name] sent!"
+
+/datum/tgs_chat_command/whitelist
+	name = "whitelist"
+	help_text = "allows the management of player whitelists. Usage: [usage]"
+	admin_only = TRUE
+
+	var/list/valid_actions = list('add', 'remove', 'list')
+	var/list/valid_kinds = list('job', 'species')
+	var/usage = "whitelist \[[valid_actions]\] \[[valid_kinds]\] <ckey> (role)"
+
+/datum/tgs_chat_command/whitelist/Run(datum/tgs_chat_user/sender, params)
+	var/list/message_as_list = splittext(params, " ")
+
+	// Check if the command is valid
+	if(!CONFIG_GET(flag/sql_enabled))
+		return "```A database is required to be set up for this feature.```"
+
+	if(!LAZYLEN(message_as_list))
+		return "```Invalid command usage: [usage]```"
+
+	var/action = message_as_list[1]
+	if(!(action in valid_actions))
+		return "```First param must be a valid action.```"
+	message_as_list.Cut(1, 2)
+	if(!LAZYLEN(message_as_list))
+		return "```Invalid command usage: [usage]```"
+
+	var/kind = message_as_list[1]
+	if(!(kind in valid_kinds))
+		return "```Second param must be a valid whitelist kind.```"
+	message_as_list.Cut(1, 2)
+	if(!LAZYLEN(message_as_list))
+		return "```Invalid command usage: [usage]```"
+
+	var/ckey = message_as_list[1]
+	if(!istext(role))
+		return "```Third param must be a valid ckey.```"
+
+	// Role is not required for listing the roles of a ckey
+	if(action != 'list')
+		message_as_list.Cut(1, 2)
+		if(!LAZYLEN(message_as_list))
+			return "```Invalid command usage: [usage]```"
+
+		var/role = message_as_list[1]
+		if(!istext(role))
+			return "```Fourth param must be a valid whitelist role.```"
+
+	// Resolve the action
+	switch(action)
+		if("add")
+			var/datum/db_query/command_add = SSdbcore.NewQuery(
+				"INSERT INTO [format_table_name("whitelist")] (ckey, kind, entry) VALUES (:ckey, :kind, :entry)",
+				list("ckey" = ckey, "kind" = kind, "entry" = entry)
+			)
+			if(!command_add.Execute())
+				log_sql("Error while trying to add [ckey] to the [role] [kind] whitelist.")
+				return "Error while trying to add [ckey] to the [role] [kind] whitelist. Please review SQL logs."
+
+		if("remove")
+			var/datum/db_query/command_remove = SSdbcore.NewQuery(
+				"DELETE FROM [format_table_name("whitelist")] WHERE ckey = :ckey AND kind = :kind AND entry = :entry",
+				list("ckey" = ckey, "kind" = kind, "entry" = entry)
+			)
+			if(!command_remove.Execute())
+				log_sql("Error while trying to remove [ckey] from the [role] [kind] whitelist.")
+				return "Error while trying to remove [ckey] from the [role] [kind] whitelist. Please review SQL logs."
+
+		// Listing all whitelists for a specific ckey
+		if("list")
+			var/list/result = list()
+
+			result += "**Whitelists for [ckey]**"
+
+			var/datum/db_query/query_list = SSdbcore.NewQuery(
+				"SELECT kind, entry FROM [format_table_name("whitelist")] WHERE ckey = :ckey",
+				list("ckey" = ckey)
+			)
+			if(!query_list.Execute())
+				log_sql("Error while trying to query whitelists for [ckey].")
+				return "Error while trying to query whitelists for [ckey]. Please review SQL logs."
+			else
+				while(query_list.NextRow())
+					var/kind = query_list.item[1]
+					var/entry = query_list.item[2]
+
+					result += "- [kind] - [entry]"
+			qdel(query_list)
+
+			return result
+
+	// Notify the player of the change
+	var/key_to_find = "[ckey(params)]"
+	if(length(key_to_find))
+		var/client/user
+		for(var/client/C in GLOB.clients)
+			if(C.ckey == key_to_find)
+				user = C
+				break
+		to_chat(user, span_info("You have been [action]ed to the [kind] whitelist of [role] by an administrator."))
+
+	// Notify the admins on discord that it was successful
+	return "\[Whitelist Edit\] [ckey] has been [action]ed to [kind] whitelist: [role]"

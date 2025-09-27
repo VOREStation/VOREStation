@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 /datum/whitelist_editor
 
 /datum/whitelist_editor/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN)
 
 /datum/whitelist_editor/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -171,7 +171,7 @@ GLOBAL_LIST_EMPTY(alien_whitelist)
 	else
 		var/text = file2text("[global.config.directory]/jobwhitelist.txt")
 		if (!text)
-			log_misc("Failed to load [global.config.directory]/jobwhitelist.txt")
+			log_world("Failed to load [global.config.directory]/jobwhitelist.txt")
 		else
 			var/lines = splittext(text, "\n") // Now we've got a bunch of "ckey = something" strings in a list
 			for(var/line in lines)
