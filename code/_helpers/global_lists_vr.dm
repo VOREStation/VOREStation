@@ -594,10 +594,18 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 			continue //A prototype or something
 		GLOB.weavable_items[instance.title] = instance
 
+	paths = subtypesof(/datum/weaver_recipe)
+	for(var/path in paths)
+		var/datum/weaver_recipe/instance = new path()
+		if(!instance.title)
+			continue //A prototype or something
+		GLOB.all_weavable[instance.title] = instance
+
 	return 1 // Hooks must return 1
 
 GLOBAL_LIST_EMPTY(weavable_structures)
 GLOBAL_LIST_EMPTY(weavable_items)
+GLOBAL_LIST_EMPTY(all_weavable)
 
 
 GLOBAL_LIST_INIT(xenobio_metal_materials_normal, list(
