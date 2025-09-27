@@ -38,14 +38,14 @@
 /datum/element/remote_view/mremote_mutation
 
 /datum/element/remote_view/mremote_mutation/Attach(datum/target)
-	RegisterSignal(target, COMSIG_LIVING_LIFE, PROC_REF(on_life))
+	RegisterSignal(target, COMSIG_MOB_DNA_MUTATION, PROC_REF(on_mutation))
 	. = ..()
 
 /datum/element/remote_view/mremote_mutation/Detach(datum/target)
-	UnregisterSignal(target, COMSIG_LIVING_LIFE)
+	UnregisterSignal(target, COMSIG_MOB_DNA_MUTATION)
 	. = ..()
 
-/datum/element/remote_view/mremote_mutation/on_life(datum/source)
+/datum/element/remote_view/mremote_mutation/on_mutation(datum/source)
 	SIGNAL_HANDLER
 	var/mob/mob_source = source
 	var/mob/remote_view_target = mob_source.client.eye

@@ -670,6 +670,8 @@
 #define COMSIG_JOB_RECEIVED "job_received"
 ///When the mob's dna and species have been fully applied
 #define COMSIG_HUMAN_DNA_FINALIZED "human_dna_finished"
+///from /proc/domutcheck(): ()
+#define COMSIG_MOB_DNA_MUTATION "mob_dna_mutation"
 
 // Organ specific signals
 
