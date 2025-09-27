@@ -891,7 +891,6 @@
 
 	if(stat!=CONSCIOUS)
 		reset_perspective(null)
-		remoteview_target = null
 		return
 
 	if(!(mMorph in mutations))
@@ -966,7 +965,6 @@
 
 	if(stat!=CONSCIOUS)
 		reset_perspective(null)
-		remoteview_target = null
 		return
 
 	if(!(mRemotetalk in src.mutations))

@@ -25,7 +25,7 @@
 	SIGNAL_HANDLER
 	Detach(source)
 
-/datum/element/remote_view/mremote_mutation/on_death(datum/source)
+/datum/element/remote_view/proc/on_death(datum/source)
 	SIGNAL_HANDLER
 	end_view()
 	Detach(source)
@@ -37,18 +37,19 @@
 // Special varient that cares about mRemote mutation in humans!
 /datum/element/remote_view/mremote_mutation
 
-/datum/element/remote_view/Attach(datum/target)
+/datum/element/remote_view/mremote_mutation/Attach(datum/target)
 	RegisterSignal(target, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	. = ..()
 
-/datum/element/remote_view/Detach(datum/target)
+/datum/element/remote_view/mremote_mutation/Detach(datum/target)
 	UnregisterSignal(target, COMSIG_LIVING_LIFE)
 	. = ..()
 
 /datum/element/remote_view/mremote_mutation/on_life(datum/source)
 	SIGNAL_HANDLER
 	var/mob/mob_source = source
-	if(mRemote in mob_source.mutations)
+	var/mob/remote_view_target = mob_source.client.eye
+	if(mob_source.stat == CONSCIOUS && (mRemote in mob_source.mutations) && remote_view_target && remote_view_target.stat == CONSCIOUS)
 		return
 	end_view()
 	Detach(source)
