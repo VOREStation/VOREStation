@@ -417,7 +417,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	// Role is not required for listing the roles of a ckey
 	var/role
-	if(action != 'list')
+	if(action != "list")
 		message_as_list.Cut(1, 2)
 		if(!LAZYLEN(message_as_list))
 			return "```Invalid command usage: [VALID_USAGE]```"
@@ -461,11 +461,14 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				return "Error while trying to query whitelists for [ckey]. Please review SQL logs."
 			else
 				while(query_list.NextRow())
-					var/kind = query_list.item[1]
-					var/entry = query_list.item[2]
+					var/kind_query_result = query_list.item[1]
+					var/entry_query_result = query_list.item[2]
 
-					result += "- [kind] - [entry]"
+					result += "- [kind_query_result] - [entry_query_result]"
 			qdel(query_list)
+
+			if(len(result) == 1)
+				result += "No whitelist entries found for [ckey]"
 
 			return result
 
