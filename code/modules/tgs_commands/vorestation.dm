@@ -379,14 +379,13 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			real_target.dust()
 	return "Smite [smite_name] sent!"
 
+#define VALID_ACTIONS list("add", "remove", "list")
+#define VALID_KINDS list("job", "species")
+#define VALID_USAGE "whitelist \[[VALID_ACTIONS]\] \[[VALID_KINDS]\] <ckey> (role)"
 /datum/tgs_chat_command/whitelist
 	name = "whitelist"
-	help_text = "allows the management of player whitelists. Usage: [usage]"
+	help_text = "allows the management of player whitelists. Usage: whitelist \[add, remove, list\] \[job, species\] <ckey> (role)"
 	admin_only = TRUE
-
-	var/list/valid_actions = list('add', 'remove', 'list')
-	var/list/valid_kinds = list('job', 'species')
-	var/usage = "whitelist \[[valid_actions]\] \[[valid_kinds]\] <ckey> (role)"
 
 /datum/tgs_chat_command/whitelist/Run(datum/tgs_chat_user/sender, params)
 	var/list/message_as_list = splittext(params, " ")
@@ -396,33 +395,34 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		return "```A database is required to be set up for this feature.```"
 
 	if(!LAZYLEN(message_as_list))
-		return "```Invalid command usage: [usage]```"
+		return "```Invalid command usage: [VALID_USAGE]```"
 
 	var/action = message_as_list[1]
-	if(!(action in valid_actions))
+	if(!(action in VALID_ACTIONS))
 		return "```First param must be a valid action.```"
 	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
-		return "```Invalid command usage: [usage]```"
+		return "```Invalid command usage: [VALID_USAGE]```"
 
 	var/kind = message_as_list[1]
-	if(!(kind in valid_kinds))
+	if(!(kind in VALID_KINDS))
 		return "```Second param must be a valid whitelist kind.```"
 	message_as_list.Cut(1, 2)
 	if(!LAZYLEN(message_as_list))
-		return "```Invalid command usage: [usage]```"
+		return "```Invalid command usage: [VALID_USAGE]```"
 
 	var/ckey = message_as_list[1]
-	if(!istext(role))
+	if(!istext(ckey))
 		return "```Third param must be a valid ckey.```"
 
 	// Role is not required for listing the roles of a ckey
+	var/role
 	if(action != 'list')
 		message_as_list.Cut(1, 2)
 		if(!LAZYLEN(message_as_list))
-			return "```Invalid command usage: [usage]```"
+			return "```Invalid command usage: [VALID_USAGE]```"
 
-		var/role = message_as_list[1]
+		role = message_as_list[1]
 		if(!istext(role))
 			return "```Fourth param must be a valid whitelist role.```"
 
@@ -431,7 +431,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		if("add")
 			var/datum/db_query/command_add = SSdbcore.NewQuery(
 				"INSERT INTO [format_table_name("whitelist")] (ckey, kind, entry) VALUES (:ckey, :kind, :entry)",
-				list("ckey" = ckey, "kind" = kind, "entry" = entry)
+				list("ckey" = ckey, "kind" = kind, "entry" = role)
 			)
 			if(!command_add.Execute())
 				log_sql("Error while trying to add [ckey] to the [role] [kind] whitelist.")
@@ -440,7 +440,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		if("remove")
 			var/datum/db_query/command_remove = SSdbcore.NewQuery(
 				"DELETE FROM [format_table_name("whitelist")] WHERE ckey = :ckey AND kind = :kind AND entry = :entry",
-				list("ckey" = ckey, "kind" = kind, "entry" = entry)
+				list("ckey" = ckey, "kind" = kind, "entry" = role)
 			)
 			if(!command_remove.Execute())
 				log_sql("Error while trying to remove [ckey] from the [role] [kind] whitelist.")
@@ -481,3 +481,6 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	// Notify the admins on discord that it was successful
 	return "\[Whitelist Edit\] [ckey] has been [action]ed to [kind] whitelist: [role]"
+#undef VALID_USAGE
+#undef VALID_KINDS
+#undef VALID_ACTIONS
