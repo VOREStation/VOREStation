@@ -241,7 +241,7 @@
 	. = ..()
 	if(.)
 		return
-	return try_to_activate_door(user)
+	try_to_activate_door(user)
 
 /obj/machinery/door/attack_tk(mob/user)
 	if(requiresID() && !allowed(null))
@@ -249,8 +249,6 @@
 	..()
 
 /obj/machinery/door/attackby(obj/item/I, mob/user)
-	if(istype(I,/obj/item/forensics))
-		return // Forensics item handling needs to block interaction, and block making fingerprints too
 	add_fingerprint(user)
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == MAT_PLASTEEL)
@@ -346,7 +344,7 @@
 				take_damage(W.force)
 		return
 
-	return try_to_activate_door(user)
+	try_to_activate_door(user)
 
 /obj/machinery/door/proc/try_to_activate_door(mob/user)
 	add_fingerprint(user)

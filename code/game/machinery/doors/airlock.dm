@@ -663,8 +663,6 @@ About the new airlock wires panel:
 	if(istype(C, /obj/item/taperoll))
 		return
 
-	if(istype(C,/obj/item/forensics))
-		return // Forensics item handling needs to block interaction, and block making fingerprints too
 	add_fingerprint(user)
 
 	if(!reinforcing && C.has_tool_quality(TOOL_WELDER) && !(operating > 0) && density && (health >= maxhealth || user.a_intent != I_HELP))
