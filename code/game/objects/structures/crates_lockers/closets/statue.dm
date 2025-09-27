@@ -65,9 +65,7 @@
 		M.loc = src.loc
 		M.sdisabilities &= ~MUTE
 		M.take_overall_damage((M.health - health - 100),0) //any new damage the statue incurred is transfered to the mob
-		if(M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
+		M.reset_perspective(null)
 
 /obj/structure/closet/statue/open()
 	return

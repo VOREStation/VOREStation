@@ -321,10 +321,8 @@
 			to_chat(OCCUPANT, span_notice("The machine kicks you out!"))
 		if(user.loc != src.loc)
 			to_chat(OCCUPANT, span_notice("You leave the not-so-cozy confines of the SSU."))
-
-		OCCUPANT.client.eye = OCCUPANT.client.mob
-		OCCUPANT.client.perspective = MOB_PERSPECTIVE
 	OCCUPANT.loc = src.loc
+	OCCUPANT.reset_perspective(null)
 	OCCUPANT = null
 	if(!isopen)
 		isopen = 1

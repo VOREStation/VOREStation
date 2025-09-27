@@ -489,11 +489,9 @@
 	if(!occupant || occupant.loc != src)
 		occupant = null // JUST IN CASE
 		return
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.Stasis(0)
 	occupant.forceMove(get_turf(src))
+	occupant.reset_perspective(null)
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == beaker || A == circuit)

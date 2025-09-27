@@ -207,10 +207,8 @@
 
 // leave the disposal
 /obj/machinery/disposal/proc/go_out(mob/user)
-	if (user.client)
-		user.client.eye = user.client.mob
-		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(get_turf(src))
+	user.reset_perspective(null)
 	update()
 	return
 

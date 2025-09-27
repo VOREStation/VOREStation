@@ -271,9 +271,6 @@
 	var/mob/living/carbon/WC = get_occupant()
 	if((!WC || locked))
 		return
-	if(WC.client)
-		WC.client.eye = WC.client.mob
-		WC.client.perspective = MOB_PERSPECTIVE
 	if(istype(WC,/mob/living/carbon/brain))
 		for(var/obj/O in src)
 			if(istype(O,/obj/item/organ/internal/brain))
@@ -282,6 +279,7 @@
 				break
 	else
 		WC.forceMove(loc)
+	WC.reset_perspective(null)
 	set_occupant(null)
 	icon_state = "scanner_0"
 	SStgui.update_uis(src)

@@ -526,8 +526,7 @@ var/list/ai_verbs_default = list(
 	if(.)
 		if(!A && isturf(loc) && eyeobj)
 			end_multicam()
-			client.eye = eyeobj
-			client.perspective = MOB_PERSPECTIVE
+			reset_perspective(eyeobj)
 	if(istype(A,/obj/machinery/camera))
 		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
 		else				A.set_light(0)

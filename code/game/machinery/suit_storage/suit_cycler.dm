@@ -500,11 +500,8 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	if(!occupant)
 		return
 
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
-
 	occupant.loc = get_turf(occupant)
+	occupant.reset_perspective(null)
 	occupant = null
 
 	add_fingerprint(user)

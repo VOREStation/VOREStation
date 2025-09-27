@@ -513,10 +513,8 @@
 	var/mob/living/carbon/human/occupant = get_occupant()
 	if(!occupant)
 		return
-	if (occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.forceMove(get_turf(src))
+	occupant.reset_perspective(null)
 	set_occupant(null)
 	icon_state = "implantchair"
 	return

@@ -261,11 +261,6 @@
 /obj/machinery/atmospherics/unary/cryo_cell/proc/go_out()
 	if(!(occupant))
 		return
-	//for(var/obj/O in src)
-	//	O.loc = src.loc
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	vis_contents -= occupant
 	occupant.pixel_x = occupant.default_pixel_x
 	occupant.pixel_y = occupant.default_pixel_y
@@ -273,6 +268,7 @@
 	if(occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
 		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 	unbuckle_mob(occupant, force = TRUE)
+	occupant.reset_perspective(null)
 	occupant = null
 	current_heat_capacity = initial(current_heat_capacity)
 	update_use_power(USE_POWER_IDLE)

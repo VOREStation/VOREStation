@@ -128,9 +128,7 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
-		if(M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
+		M.reset_perspective(null)
 
 /obj/structure/closet/proc/open()
 	if(opened)
