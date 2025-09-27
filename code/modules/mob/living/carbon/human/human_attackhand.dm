@@ -211,8 +211,6 @@
 			else
 				visible_message(span_danger("[M] has pushed [src]!"))
 			break_all_grabs(M)
-			for(var/obj/item/I in holding)
-				drop_from_inventory(I)
 		else
 			visible_message(span_warning("[M] attempted to push [src]!"))
 		return

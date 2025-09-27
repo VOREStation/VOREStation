@@ -240,6 +240,8 @@ var/list/slot_equipment_priority = list( \
 		else
 			I.dropInto(drop_location())
 		I.dropped(src)
+	//SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, O, target)
+	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, O, target)
 	return TRUE
 
 //Returns the item equipped to the specified slot, if any.
