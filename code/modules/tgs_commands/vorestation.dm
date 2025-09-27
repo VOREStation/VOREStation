@@ -447,6 +447,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				log_sql("Error while trying to add [ckey] to the [role] [kind] whitelist.")
 				message.text = "Error while trying to add [ckey] to the [role] [kind] whitelist. Please review SQL logs."
 				return message
+			qdel(command_add)
 
 		if("remove")
 			var/datum/db_query/command_remove = SSdbcore.NewQuery(
@@ -457,12 +458,14 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				log_sql("Error while trying to remove [ckey] from the [role] [kind] whitelist.")
 				message.text = "Error while trying to remove [ckey] from the [role] [kind] whitelist. Please review SQL logs."
 				return message
+			qdel(command_remove)
 
 		// Listing all whitelists for a specific ckey
 		if("list")
 			var/datum/tgs_chat_embed/structure/embed = new()
 			var/found = FALSE
 
+			message.text = ""
 			message.embed = embed
 			embed.title = "Whitelists for [ckey]"
 
@@ -490,7 +493,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			return message
 
 	// Notify the player of the change
-	var/key_to_find = "[ckey(params)]"
+	var/key_to_find = "[ckey(ckey)]"
 	if(length(key_to_find))
 		var/client/user
 		for(var/client/C in GLOB.clients)
