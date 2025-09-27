@@ -16,6 +16,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Prevents the affected object from opening a loot window via alt click. See atom/AltClick()
 #define TRAIT_ALT_CLICK_BLOCKER "no_alt_click"
 
+/// Unlucky trait. Given by the 'unlucky' trait in character select. Checked by various things to cause unlucky interactions.
+#define TRAIT_UNLUCKY "trait_unlucky"
+
 #define TRAIT_INCAPACITATED "incapacitated"
 
 #define TRAIT_NOFIRE "nonflammable"

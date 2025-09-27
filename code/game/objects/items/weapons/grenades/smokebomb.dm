@@ -37,3 +37,10 @@
 		var/new_smoke_color = tgui_color_picker(user, "Choose a color for the smoke:", "Smoke Color", smoke_color)
 		if(new_smoke_color)
 			smoke_color = new_smoke_color
+
+/obj/item/grenade/smokebomb/primed
+	desc = "A smoke bomb. This one appears to be already activated!"
+
+/obj/item/grenade/smokebomb/primed/Initialize(mapload)
+	. = ..()
+	activate()

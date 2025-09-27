@@ -442,7 +442,7 @@ var/list/mob/living/forced_ambiance_list = list()
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return
 
-	if(istype(mob,/mob/living/carbon/human/))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		if(H.buckled)
 			return // Being buckled to something solid keeps you in place.
@@ -460,6 +460,11 @@ var/list/mob/living/forced_ambiance_list = list()
 			H.AdjustStunned(3)
 			H.AdjustWeakened(3)
 		to_chat(mob, span_notice("The sudden appearance of gravity makes you fall to the floor!"))
+		if(HAS_TRAIT(H, TRAIT_UNLUCKY) && prob(50) && H.get_bodypart_name(BP_HEAD))
+			var/datum/gender/gender = GLOB.gender_datums[H.get_visible_gender()]
+			H.visible_message(span_warning("[H] falls to the ground from the sudden appearance of gravity, smashing [gender.his] head against the ground!"),span_warning("You smash your head into the ground as gravity appears!"))
+			H.apply_damage(14, BRUTE, BP_HEAD, used_weapon = "blunt force")
+			playsound(H, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		playsound(mob, "bodyfall", 50, 1)
 
 /area/proc/prison_break(break_lights = TRUE, open_doors = TRUE, open_blast_doors = TRUE)

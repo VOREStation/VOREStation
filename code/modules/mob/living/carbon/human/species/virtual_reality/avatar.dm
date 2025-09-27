@@ -117,7 +117,7 @@
 	// Getting hurt in VR doesn't damage the physical body, but you still got hurt.
 	if(ishuman(vr_holder) && total_damage)
 		var/mob/living/carbon/human/V = vr_holder
-		V.stun_effect_act(0, total_damage*2/3, null)												// 200 damage leaves the user in paincrit for several seconds, agony reaches 0 after around 2m.
+		V.stun_effect_act(0, total_damage*2/3, null, electric = FALSE)												// 200 damage leaves the user in paincrit for several seconds, agony reaches 0 after around 2m.
 		to_chat(vr_holder, span_warning("Pain from your time in VR lingers."))		// 250 damage leaves the user unconscious for several seconds in addition to paincrit
 
 	// Maintain a link with the mob, but don't use teleop

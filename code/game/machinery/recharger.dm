@@ -79,7 +79,11 @@
 			else
 				to_chat(user, span_warning("\The [ourcard] doesn't have a personality!"))
 				return
-
+		if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10))
+			user.visible_message("[user] inserts [charging] into [src] backwards!", "You insert [charging] into [src] backwards!")
+			user.drop_item()
+			G.loc = get_turf(src)
+			return
 		user.drop_item()
 		G.loc = src
 		charging = G

@@ -590,6 +590,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 	addtimer(CALLBACK(src, PROC_REF(delayed_vend), R, user), vend_delay)
 
 /obj/machinery/vending/proc/delayed_vend(datum/stored_item/vending_product/R, mob/user)
+	if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10))
+		visible_message(span_infoplain(span_bold("\The [src]") + " clunks and fails to dispense any item."))
+		playsound(src, "sound/[vending_sound]", 100, TRUE, 1)
+		vend_ready = 1
+		currently_vending = null
+		SStgui.update_uis(src)
+		return
 	R.get_product(get_turf(src))
 	if(has_logs)
 		do_logging(R, user, 1)
@@ -715,9 +722,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
-/obj/machinery/vending/proc/throw_item()
+/obj/machinery/vending/proc/throw_item(forced_target)
 	var/obj/item/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
+	if(forced_target && isliving(forced_target))
+		target = forced_target
 	if(!target)
 		return 0
 
