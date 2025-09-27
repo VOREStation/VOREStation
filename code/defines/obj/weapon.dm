@@ -238,7 +238,7 @@
 			break
 	if (user.stat == 2) return
 
-	user.client.eye = target
+	user.reset_perspective(target)
 
 /*
 /obj/item/cigarpacket

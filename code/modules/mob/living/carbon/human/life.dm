@@ -1754,7 +1754,7 @@
 		if(machine)
 			var/viewflags = machine.check_eye(src)
 			if(viewflags < 0)
-				reset_perspective(null, 0)
+				reset_perspective(null)
 			else if(viewflags && !looking_elsewhere)
 				sight |= viewflags
 			else
@@ -1762,14 +1762,6 @@
 		else if(eyeobj)
 			if(eyeobj.owner != src)
 				reset_perspective(null)
-		else
-			var/isRemoteObserve = 0
-			if((mRemote in mutations) && remoteview_target)
-				if(remoteview_target.stat==CONSCIOUS)
-					isRemoteObserve = 1
-			if(!isRemoteObserve && client && !client.adminobs)
-				remoteview_target = null
-				reset_perspective(null, 0)
 	return 1
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)

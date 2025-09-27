@@ -996,15 +996,13 @@
 	set category = "Abilities.Superpower"
 
 	if(stat!=CONSCIOUS)
-		remoteview_target = null
 		reset_perspective(null)
 		return
 
 	if(!(mRemote in src.mutations))
-		remoteview_target = null
 		reset_perspective(null)
 		remove_verb(src, /mob/living/carbon/human/proc/remoteobserve)
-	if(client.eye != client.mob)
+	if(is_remote_viewing())
 		reset_perspective(null)
 		return
 
@@ -1023,12 +1021,10 @@
 
 	var/mob/target = input ("Who do you want to project your mind to?") as mob in creatures
 
-	if (target)
-		remoteview_target = target
-		start_remoteviewing(target)
-	else
-		remoteview_target = null
-		reset_perspective(null)
+	reset_perspective(null)
+	if(target)
+		start_remoteviewing(target, TRUE)
+		return
 
 /mob/living/carbon/human/get_visible_gender(mob/user, force)
 	switch(force)

@@ -460,7 +460,7 @@
 	paicard = card
 	user.unEquip(card)
 	card.forceMove(src)
-	AI.client.eye = src
+	AI.reset_perspective(src)
 	to_chat(AI, span_notice("Your location is [card.loc].")) // DEBUG. TODO: Make unfolding the chassis trigger an eject.
 	name = AI.name
 	to_chat(AI, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
@@ -469,7 +469,7 @@
 	if(paicard)
 		var/mob/living/silicon/pai/AI = paicard.pai
 		paicard.forceMove(src.loc)
-		AI.client.eye = AI
+		AI.reset_perspective(AI)
 		paicard = null
 		name = initial(src.name)
 		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))

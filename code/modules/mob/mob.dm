@@ -538,10 +538,10 @@
 	var/mob/mob_eye = targets[eye_name]
 
 	if(client && mob_eye)
-		client.eye = mob_eye
+		reset_perspective(mob_eye)
 		if (is_admin)
 			client.adminobs = 1
-			if(mob_eye == client.mob || client.eye == client.mob)
+			if(mob_eye == client.mob || !is_remote_viewing())
 				client.adminobs = 0
 
 /mob/verb/cancel_camera()
