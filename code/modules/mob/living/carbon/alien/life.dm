@@ -134,10 +134,10 @@
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 		if(machine)
 			if(machine.check_eye(src) < 0)
-				reset_view(null)
+				reset_perspective(null)
 		else
 			if(client && !client.adminobs)
-				reset_view(null)
+				reset_perspective(null)
 
 	return 1
 

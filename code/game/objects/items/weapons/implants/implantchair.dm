@@ -107,9 +107,7 @@
 	if(src.occupant)
 		to_chat(usr, span_warning("\The [src] is already occupied!"))
 		return
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
+	M.reset_perspective(src)
 	M.stop_pulling()
 	M.loc = src
 	src.occupant = M

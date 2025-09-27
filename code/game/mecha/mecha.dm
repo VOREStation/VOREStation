@@ -1672,11 +1672,7 @@
 			return 0
 		user.drop_from_inventory(mmi_as_oc)
 		var/mob/brainmob = mmi_as_oc.brainmob
-		brainmob.reset_view(src)
-	/*
-		brainmob.client.eye = src
-		brainmob.client.perspective = EYE_PERSPECTIVE
-	*/
+		brainmob.reset_perspective(src)
 		occupant = brainmob
 		brainmob.loc = src //should allow relaymove
 		brainmob.canmove = 1
@@ -1981,11 +1977,7 @@
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H)
 	if(H && H.client && (H in range(1)))
-		H.reset_view(src)
-		/*
-		H.client.perspective = EYE_PERSPECTIVE
-		H.client.eye = src
-		*/
+		H.reset_perspective(src)
 		H.stop_pulling()
 		H.forceMove(src)
 		src.occupant = H
@@ -2099,7 +2091,7 @@
 		return
 	if(mob_container.forceMove(src.loc))//ejecting mob container
 		src.mecha_log_message("[mob_container] moved out.")
-		occupant.reset_view()
+		occupant.reset_perspective(null)
 		occupant << browse(null, "window=exosuit")
 		if(occupant.client && cloaked_selfimage)
 			occupant.client.images -= cloaked_selfimage

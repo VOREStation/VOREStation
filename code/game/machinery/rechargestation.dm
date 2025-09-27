@@ -266,7 +266,7 @@
 			return
 
 		add_fingerprint(R)
-		R.reset_view(src)
+		R.reset_perspective(src)
 		R.forceMove(src)
 		occupant = R
 		update_icon()
@@ -280,7 +280,7 @@
 			return
 
 		add_fingerprint(P)
-		P.reset_view(src)
+		P.reset_perspective(src)
 		P.forceMove(src)
 		occupant = P
 		update_icon()
@@ -291,7 +291,7 @@
 		var/mob/living/carbon/human/H = L
 		if(H.isSynthetic() || H.wearing_rig)
 			add_fingerprint(H)
-			H.reset_view(src)
+			H.reset_perspective(src)
 			H.forceMove(src)
 			occupant = H
 			update_icon()
@@ -304,7 +304,7 @@
 		return
 
 	occupant.forceMove(src.loc)
-	occupant.reset_view()
+	occupant.reset_perspective(null)
 	occupant = null
 	update_icon()
 

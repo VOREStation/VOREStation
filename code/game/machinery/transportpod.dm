@@ -58,7 +58,7 @@
 		return
 
 	add_fingerprint(O)
-	O.reset_view(src)
+	O.reset_perspective(src)
 	O.forceMove(src)
 	occupant = O
 	update_icon()
@@ -74,7 +74,7 @@
 		return
 
 	occupant.forceMove(src.loc)
-	occupant.reset_view()
+	occupant.reset_perspective(null)
 	occupant = null
 	update_icon()
 

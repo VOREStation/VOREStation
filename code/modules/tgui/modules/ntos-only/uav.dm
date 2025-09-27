@@ -204,13 +204,13 @@
 
 	if(user.machine != tgui_host())
 		user.set_machine(tgui_host())
-	user.reset_view(current_uav)
+	user.reset_perspective(current_uav)
 	current_uav.add_master(user)
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/uav/proc/unlook(mob/user)
 	user.unset_machine()
-	user.reset_view()
+	user.reset_perspective(null)
 	if(current_uav)
 		current_uav.remove_master(user)
 	LAZYREMOVE(viewers, WEAKREF(user))

@@ -78,9 +78,7 @@
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
 		visible_message(span_notice("\The [C] has been laid on \the [src] by [user]."))
-	if(C.client)
-		C.client.perspective = EYE_PERSPECTIVE
-		C.client.eye = src
+	C.reset_perspective(src)
 	if(C.pulledby)
 		C.pulledby.stop_pulling()
 	C.resting = 1

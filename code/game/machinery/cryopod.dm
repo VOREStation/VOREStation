@@ -630,8 +630,7 @@
 			return
 
 		usr.stop_pulling()
-		usr.client.perspective = EYE_PERSPECTIVE
-		usr.client.eye = src
+		usr.reset_perspective(src)
 		usr.forceMove(src)
 		set_occupant(usr)
 		if(ishuman(usr) && applies_stasis)
@@ -722,10 +721,7 @@
 				to_chat(user, span_warning("\The [src] is already occupied."))
 				return
 			M.forceMove(src)
-
-			if(M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
+			M.reset_perspective(src)
 		else return
 
 		icon_state = occupied_icon_state

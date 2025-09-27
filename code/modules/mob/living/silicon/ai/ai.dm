@@ -515,7 +515,7 @@ var/list/ai_verbs_default = list(
 	if(.)
 		end_multicam()
 
-/mob/living/silicon/ai/reset_view(atom/A)
+/mob/living/silicon/ai/reset_perspective(atom/A)
 	if(camera)
 		camera.set_light(0)
 	if(istype(A,/obj/machinery/camera))

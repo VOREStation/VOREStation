@@ -30,7 +30,7 @@ var/list/holder_mob_icon_cache = list()
 	ASSERT(ismob(held))
 	. = ..()
 	held.forceMove(src)
-	held.reset_view(src)
+	held.reset_perspective(src)
 	START_PROCESSING(SSobj, src)
 
 /mob/living/get_status_tab_items()
@@ -71,7 +71,7 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/holder/Entered(mob/held, atom/OldLoc)
 	if(held_mob)
 		held.forceMove(get_turf(src))
-		held.reset_view(null)
+		held.reset_perspective(null)
 		return
 	ASSERT(ismob(held))
 	. = ..()
@@ -111,7 +111,7 @@ var/list/holder_mob_icon_cache = list()
 		held_mob.transform = original_transform
 		held_mob.update_transform()
 		held_mob.vis_flags = original_vis_flags
-		held_mob.reset_view(null)
+		held_mob.reset_perspective(null)
 		held_mob.forceMove(get_turf(src))
 		held_mob = null
 	invisibility = INVISIBILITY_ABSTRACT
@@ -146,12 +146,12 @@ var/list/holder_mob_icon_cache = list()
 			holster.clear_holster()
 		to_chat(held, span_warning("You extricate yourself from [holster]."))
 		forceMove(get_turf(src))
-		held.reset_view(null)
+		held.reset_perspective(null)
 	else if(isitem(loc))
 		var/obj/item/I = loc
 		to_chat(held, span_warning("You struggle free of [loc]."))
 		forceMove(get_turf(src))
-		held.reset_view(null)
+		held.reset_perspective(null)
 		if(istype(I))
 			I.on_holder_escape(src)
 

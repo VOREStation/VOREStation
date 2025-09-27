@@ -479,9 +479,7 @@
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
+		M.reset_perspective(src)
 		M.forceMove(src)
 		update_use_power(USE_POWER_ACTIVE)
 		occupant = M

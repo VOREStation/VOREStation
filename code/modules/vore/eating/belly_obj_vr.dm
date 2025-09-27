@@ -902,7 +902,7 @@
 	M.forceMove(drop_location())
 	if(ismob(M))
 		var/mob/ourmob = M
-		ourmob.reset_view(null)
+		ourmob.reset_perspective(null)
 	items_preserved -= M
 
 	//Special treatment for absorbed prey
@@ -964,7 +964,7 @@
 	//Should fix your view not following you out of mobs sometimes!
 	if(ismob(M))
 		var/mob/ourmob = M
-		ourmob.reset_view(null)
+		ourmob.reset_perspective(null)
 
 	if(!owner.ckey && escape_stun)
 		owner.Weaken(escape_stun)
@@ -983,7 +983,7 @@
 	prey.forceMove(src)
 	if(ismob(prey))
 		var/mob/ourmob = prey
-		ourmob.reset_view(owner)
+		ourmob.reset_perspective(owner)
 	owner.updateVRPanel()
 
 	for(var/mob/living/M in contents)
@@ -1177,7 +1177,7 @@
 
 	if(ismob(M))
 		var/mob/ourmob = M
-		ourmob.reset_view(owner)
+		ourmob.reset_perspective(owner)
 
 	//Seek out absorbed prey of the prey, absorb them too.
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
@@ -1524,7 +1524,7 @@
 	content.forceMove(target)
 	if(ismob(content) && !isobserver(content))
 		var/mob/ourmob = content
-		ourmob.reset_view(owner)
+		ourmob.reset_perspective(owner)
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))

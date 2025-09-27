@@ -76,7 +76,7 @@
 /datum/tgui_module/ship/proc/look(var/mob/user)
 	if(linked)
 		user.set_machine(src)
-		user.reset_view(linked)
+		user.reset_perspective(linked)
 	user.set_viewsize(world.view + extra_view)
 	user.AddComponent(/datum/component/recursive_move)
 	if(!map_view_used)
@@ -86,7 +86,7 @@
 
 /datum/tgui_module/ship/proc/unlook(var/mob/user)
 	SIGNAL_HANDLER
-	user.reset_view()
+	user.reset_perspective(null)
 	user.set_viewsize() // reset to default
 	if(map_view_used)
 		UnregisterSignal(user, COMSIG_OBSERVER_MOVED)

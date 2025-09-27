@@ -22,9 +22,7 @@
 	for(var/mob/living/M in flush_list)
 		if(M.stat != DEAD && !istype(M,/mob/living/silicon/robot/drone))
 			hasmob = TRUE
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
+		M.reset_perspective(src)
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
 	//...but it should require a second person to open the package. (i.e. person inside a wrapped locker)

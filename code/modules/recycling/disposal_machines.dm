@@ -120,9 +120,7 @@
 			for (var/mob/V in viewers(user))
 				V.show_message("[user] starts putting [GM.name] into the disposal.", 3)
 			if(do_after(user, 2 SECONDS, target = src))
-				if (GM.client)
-					GM.client.perspective = EYE_PERSPECTIVE
-					GM.client.eye = src
+				GM.reset_perspective(src)
 				GM.forceMove(src)
 				for (var/mob/C in viewers(src))
 					C.show_message(span_red("[GM.name] has been placed in the [src] by [user]."), 3)
@@ -187,11 +185,9 @@
 		add_attack_logs(user,target,"Disposals dunked")
 	else
 		return
-	if (target.client)
-		target.client.perspective = EYE_PERSPECTIVE
-		target.client.eye = src
 
 	target.forceMove(src)
+	target.reset_perspective(src)
 
 	for (var/mob/C in viewers(src))
 		if(C == user)

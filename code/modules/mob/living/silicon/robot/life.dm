@@ -294,10 +294,10 @@
 
 	if (machine)
 		if (machine.check_eye(src) < 0)
-			reset_view(null)
+			reset_perspective(null)
 	else
 		if(client && !client.adminobs)
-			reset_view(null)
+			reset_perspective(null)
 
 	if(emagged)
 		throw_alert("hacked", /atom/movable/screen/alert/hacked)

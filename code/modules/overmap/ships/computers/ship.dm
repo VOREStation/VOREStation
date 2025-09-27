@@ -72,7 +72,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		return
 
 	apply_visual(user)
-	user.reset_view(linked)
+	user.reset_perspective(linked)
 	if(linked.real_appearance)
 		user.client?.images += linked.real_appearance
 	user.set_machine(src)
@@ -90,7 +90,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	SIGNAL_HANDLER
 	if(!linked && !forced) //If we have no linked computer, return early. Forcing is for when we do a one-time action that we want to clear the UI.
 		return
-	user.reset_view()
+	user.reset_perspective(null)
 	if(linked && linked.real_appearance && user.client)
 		user.client.images -= linked.real_appearance
 	if(isliving(user))

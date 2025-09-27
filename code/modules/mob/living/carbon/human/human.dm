@@ -890,7 +890,7 @@
 	set category = "Superpower"
 
 	if(stat!=CONSCIOUS)
-		reset_view(0)
+		reset_perspective(null)
 		remoteview_target = null
 		return
 
@@ -965,7 +965,7 @@
 	set category = "Abilities.Superpower"
 
 	if(stat!=CONSCIOUS)
-		reset_view(0)
+		reset_perspective(null)
 		remoteview_target = null
 		return
 
@@ -997,15 +997,15 @@
 
 	if(stat!=CONSCIOUS)
 		remoteview_target = null
-		reset_view(0)
+		reset_perspective(null)
 		return
 
 	if(!(mRemote in src.mutations))
 		remoteview_target = null
-		reset_view(0)
+		reset_perspective(null)
 		remove_verb(src, /mob/living/carbon/human/proc/remoteobserve)
 	if(client.eye != client.mob)
-		reset_view(0)
+		reset_perspective(null)
 		return
 
 	var/list/mob/creatures = list()
@@ -1025,10 +1025,10 @@
 
 	if (target)
 		remoteview_target = target
-		reset_view(target)
+		reset_perspective(target)
 	else
 		remoteview_target = null
-		reset_view(0)
+		reset_perspective(null)
 
 /mob/living/carbon/human/get_visible_gender(mob/user, force)
 	switch(force)
@@ -1572,7 +1572,7 @@
 		return remove_from_mob(W, src.loc)
 	return ..()
 
-/mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
+/mob/living/carbon/human/reset_perspective(atom/A, update_hud = 1)
 	..()
 	if(update_hud)
 		handle_regular_hud_updates()

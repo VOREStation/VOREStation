@@ -19,9 +19,7 @@
 		if(L.buckled)
 			L.buckled = 0
 			L.anchored = FALSE
-		if(L.client)
-			L.client.perspective = EYE_PERSPECTIVE
-			L.client.eye = src
+		L.reset_perspective(src)
 		L.loc = src
 		L.sdisabilities |= MUTE
 		health = L.health + 100 //stoning damaged mobs will result in easier to shatter statues

@@ -209,9 +209,9 @@
 
 		if (machine)
 			if (!( machine.check_eye(src) ))
-				reset_view(null)
+				reset_perspective(null)
 		else
 			if(client && !client.adminobs)
-				reset_view(null)
+				reset_perspective(null)
 
 	return 1

@@ -295,9 +295,7 @@
 	if(!node)
 		to_chat(usr, span_warning("The cell is not correctly connected to its pipe network!"))
 		return
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
+	M.reset_perspective(src)
 	M.stop_pulling()
 	M.loc = src
 	M.extinguish_mob()

@@ -165,9 +165,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return
 			var/mob/M = G.affecting
-			if(M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
+			M.reset_perspective(src)
 			M.loc = src
 			occupant = M
 
