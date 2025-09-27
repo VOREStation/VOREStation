@@ -30,7 +30,7 @@
 	admin_only = FALSE
 
 /datum/tgs_chat_command/parsetest/Run(datum/tgs_chat_user/sender, params)
-	return "```You passed:[params]```"
+	return new /datum/tgs_message_content("```You passed:[params]```")
 
 /datum/tgs_chat_command/staffwho
 	name = "staffwho"
@@ -500,10 +500,10 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			if(C.ckey == key_to_find)
 				user = C
 				break
-		to_chat(user, span_info("You have been [action]ed to the [kind] whitelist of [role] by an administrator."))
+		to_chat(user, span_info("You have been [action][action == "remove" ? "d" : "ed"] to the [kind] whitelist of [role] by an administrator."))
 
 	// Notify the admins on discord that it was successful
-	message.text = "\[Whitelist Edit\] [ckey] has been [action]ed to [kind] whitelist: [role]"
+	message.text = "\[Whitelist Edit\] [ckey] has been [action][action == "remove" ? "d" : "ed"] to [kind] whitelist: [role]"
 	log_admin(message.text)
 	message_admins(message.text)
 
