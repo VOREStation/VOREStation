@@ -241,7 +241,7 @@
 	. = ..()
 	if(.)
 		return
-	return try_to_activate_door(user)
+	try_to_activate_door(user)
 
 /obj/machinery/door/attack_tk(mob/user)
 	if(requiresID() && !allowed(null))
@@ -344,7 +344,7 @@
 				take_damage(W.force)
 		return
 
-	return try_to_activate_door(user)
+	try_to_activate_door(user)
 
 /obj/machinery/door/proc/try_to_activate_door(mob/user)
 	add_fingerprint(user)
