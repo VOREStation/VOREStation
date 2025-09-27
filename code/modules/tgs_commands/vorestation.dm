@@ -460,7 +460,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 		// Listing all whitelists for a specific ckey
 		if("list")
-			var/datum/tgs_chat_embed/structure/embed
+			var/datum/tgs_chat_embed/structure/embed = new()
 			var/found = FALSE
 
 			message.embed = embed
@@ -501,6 +501,9 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	// Notify the admins on discord that it was successful
 	message.text = "\[Whitelist Edit\] [ckey] has been [action]ed to [kind] whitelist: [role]"
+	log_admin(message.text)
+	message_admins(message.text)
+
 	return message
 #undef VALID_USAGE
 #undef VALID_KINDS
