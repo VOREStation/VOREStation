@@ -82,9 +82,9 @@
 		C.pulledby.stop_pulling()
 	C.resting = 1
 	C.loc = src.loc
+	C.start_remoteviewing(src)
 	for(var/obj/O in src)
 		O.loc = src.loc
-	C.start_remoteviewing(src)
 	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C

@@ -291,8 +291,8 @@
 		var/mob/living/carbon/human/H = L
 		if(H.isSynthetic() || H.wearing_rig)
 			add_fingerprint(H)
-			H.reset_perspective(src)
 			H.forceMove(src)
+			H.start_remoteviewing(src)
 			occupant = H
 			update_icon()
 			return 1
