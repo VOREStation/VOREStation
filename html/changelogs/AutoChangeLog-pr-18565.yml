@@ -1,5 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - bugfix: "Fixed invisibility potions being able to spawn in fruit."
-  - code_imp: "Cleaned up some missing reagent defines for glamour potions."
