@@ -443,12 +443,11 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				"INSERT INTO [format_table_name("whitelist")] (ckey, kind, entry) VALUES (:ckey, :kind, :entry)",
 				list("ckey" = ckey, "kind" = kind, "entry" = role)
 			)
-			spawn(0)
-				if(!command_add.Execute())
-					log_sql("Error while trying to add [ckey] to the [role] [kind] whitelist.")
-					message.text = "Error while trying to add [ckey] to the [role] [kind] whitelist. Please review SQL logs."
-					return message
-				qdel(command_add)
+			if(!command_add.Execute())
+				log_sql("Error while trying to add [ckey] to the [role] [kind] whitelist.")
+				message.text = "Error while trying to add [ckey] to the [role] [kind] whitelist. Please review SQL logs."
+				return message
+			qdel(command_add)
 
 		if("remove")
 			var/datum/db_query/command_remove = SSdbcore.NewQuery(
