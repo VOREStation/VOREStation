@@ -1018,7 +1018,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if(!check_rights(R_SERVER|R_EVENT))	return
 	if (SSticker.current_state >= GAME_STATE_PLAYING)
-		SSticker.delay_end = !SSticker.delay_end
+		// Tell the ticker to delay/resume
+		SSticker.toggle_delay()
+
 		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins(span_blue("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"]."), 1)
 		return
