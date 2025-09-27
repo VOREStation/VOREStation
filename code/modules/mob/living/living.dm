@@ -18,6 +18,8 @@
 
 	selected_image = image(icon = GLOB.buildmode_hud, loc = src, icon_state = "ai_sel")
 
+	AddElement(/datum/element/spontaneous_vore)
+
 /mob/living/proc/get_visible_name()
 	var/datum/component/shadekin/SK = get_shadekin_component()
 	if(SK && SK.in_phase)
