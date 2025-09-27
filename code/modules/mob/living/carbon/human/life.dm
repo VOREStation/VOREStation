@@ -1761,7 +1761,6 @@
 				machine.apply_visual(src)
 		else if(eyeobj)
 			if(eyeobj.owner != src)
-
 				reset_perspective(null)
 		else
 			var/isRemoteObserve = 0
