@@ -58,8 +58,8 @@
 		return
 
 	add_fingerprint(O)
-	O.reset_perspective(src)
 	O.forceMove(src)
+	O.start_remoteviewing(src)
 	occupant = O
 	update_icon()
 	if(tgui_alert(O, "Are you sure you're ready to launch?", "Transport Pod", list("Yes", "No")) == "Yes")

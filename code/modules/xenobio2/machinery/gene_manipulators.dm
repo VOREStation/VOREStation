@@ -375,8 +375,8 @@
 	src.add_fingerprint(user)
 	if(do_after(user, 3 SECONDS, target = src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(span_danger("[user] stuffs [victim] into the [src]!"))
-		victim.reset_perspective(src)
 		victim.forceMove(src)
+		victim.start_remoteviewing(src)
 		occupant = victim
 
 /obj/machinery/xenobio/editor/proc/eject_contents()

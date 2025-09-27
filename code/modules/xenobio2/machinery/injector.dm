@@ -54,8 +54,8 @@
 	src.add_fingerprint(user)
 	if(do_after(user, 3 SECONDS, target = src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(span_danger("[user] stuffs [victim] into the injector!"))
-		victim.reset_perspective(src)
 		victim.forceMove(src)
+		victim.start_remoteviewing(src)
 		src.occupant = victim
 
 /obj/machinery/xenobio2/manualinjector/proc/eject_contents()

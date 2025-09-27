@@ -19,8 +19,8 @@
 		if(L.buckled)
 			L.buckled = 0
 			L.anchored = FALSE
-		L.reset_perspective(src)
 		L.loc = src
+		L.start_remoteviewing(src)
 		L.sdisabilities |= MUTE
 		health = L.health + 100 //stoning damaged mobs will result in easier to shatter statues
 		intialTox = L.getToxLoss()

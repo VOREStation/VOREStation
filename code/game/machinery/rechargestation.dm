@@ -266,8 +266,8 @@
 			return
 
 		add_fingerprint(R)
-		R.reset_perspective(src)
 		R.forceMove(src)
+		R.start_remoteviewing(src)
 		occupant = R
 		update_icon()
 		return 1
@@ -280,8 +280,8 @@
 			return
 
 		add_fingerprint(P)
-		P.reset_perspective(src)
 		P.forceMove(src)
+		P.start_remoteviewing(src)
 		occupant = P
 		update_icon()
 		return 1

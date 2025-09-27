@@ -199,8 +199,8 @@
 			continue
 		if(stored_units + added_units + M.mob_size > storage_capacity)
 			break
-		M.reset_perspective(src)
 		M.forceMove(src)
+		M.start_remoteviewing(src)
 		added_units += M.mob_size
 	return added_units
 

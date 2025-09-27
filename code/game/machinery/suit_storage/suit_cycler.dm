@@ -165,8 +165,8 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return
 			var/mob/M = G.affecting
-			M.reset_perspective(src)
 			M.loc = src
+			M.start_remoteviewing(src)
 			occupant = M
 
 			add_fingerprint(user)

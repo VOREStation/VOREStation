@@ -291,9 +291,9 @@
 	if(!node)
 		to_chat(usr, span_warning("The cell is not correctly connected to its pipe network!"))
 		return
-	M.reset_perspective(src)
 	M.stop_pulling()
 	M.loc = src
+	M.start_remoteviewing(src)
 	M.extinguish_mob()
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))

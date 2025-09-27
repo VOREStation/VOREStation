@@ -47,8 +47,8 @@
 			occupant_message(span_boldwarning("The sleeper is already occupied!"))
 			return
 		target.forceMove(src)
+		target.start_remoteviewing(src)
 		occupant = target
-		target.reset_perspective(src)
 		occupant.Stasis(3)
 		set_ready_state(FALSE)
 		START_PROCESSING(SSprocessing, src)

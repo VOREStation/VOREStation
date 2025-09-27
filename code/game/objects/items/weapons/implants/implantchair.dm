@@ -105,7 +105,7 @@
 	if(src.occupant)
 		to_chat(usr, span_warning("\The [src] is already occupied!"))
 		return
-	M.reset_perspective(src)
+	M.start_remoteviewing(src)
 	M.stop_pulling()
 	M.loc = src
 	src.occupant = M

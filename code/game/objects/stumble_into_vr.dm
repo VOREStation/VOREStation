@@ -24,10 +24,10 @@
 	playsound(src, 'sound/effects/clang.ogg', 25, 1, -1)
 	visible_message(span_warning("[M] [pick("tripped", "stumbled")] into \the [src]!"))
 	log_and_message_admins("stumbled into \the [src]", M)
-	M.reset_perspective(src)
 	M.apply_damage(5, BRUTE)
 	M.Weaken(2)
 	M.forceMove(src)
+	M.start_remoteviewing(src)
 	M.stop_flying()
 	update()
 
@@ -124,8 +124,8 @@
 		return ..()
 	playsound(src, 'sound/effects/clang.ogg', 25, 1, -1)
 	visible_message(span_warning("[M] [pick("tripped", "stumbled")] into \the [src]!"))
-	M.reset_perspective(src)
 	M.forceMove(src)
+	M.start_remoteviewing(src)
 	OCCUPANT = M
 	isopen = 0
 	update_icon()

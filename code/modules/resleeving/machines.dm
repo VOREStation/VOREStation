@@ -528,7 +528,7 @@
 		return
 	M.stop_pulling()
 	M.loc = src
-	M.reset_perspective(src)
+	M.start_remoteviewing(src)
 	set_occupant(M)
 	src.add_fingerprint(usr)
 	icon_state = "implantchair_on"

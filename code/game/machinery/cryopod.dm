@@ -630,8 +630,8 @@
 			return
 
 		usr.stop_pulling()
-		usr.reset_perspective(src)
 		usr.forceMove(src)
+		usr.start_remoteviewing(src)
 		set_occupant(usr)
 		if(ishuman(usr) && applies_stasis)
 			var/mob/living/carbon/human/H = occupant
@@ -719,7 +719,7 @@
 				to_chat(user, span_warning("\The [src] is already occupied."))
 				return
 			M.forceMove(src)
-			M.reset_perspective(src)
+			M.start_remoteviewing(src)
 		else return
 
 		icon_state = occupied_icon_state

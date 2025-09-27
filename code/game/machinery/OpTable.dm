@@ -78,13 +78,13 @@
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
 		visible_message(span_notice("\The [C] has been laid on \the [src] by [user]."))
-	C.reset_perspective(src)
 	if(C.pulledby)
 		C.pulledby.stop_pulling()
 	C.resting = 1
 	C.loc = src.loc
 	for(var/obj/O in src)
 		O.loc = src.loc
+	C.start_remoteviewing(src)
 	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C

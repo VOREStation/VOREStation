@@ -172,8 +172,8 @@
 		to_chat(usr, span_warning("There is already something inside."))
 		return
 	usr.stop_pulling()
-	usr.reset_perspective(src)
 	usr.forceMove(src)
+	usr.start_remoteviewing(src)
 	set_occupant(usr)
 	icon_state = "scanner_1"
 	add_fingerprint(usr)
@@ -249,8 +249,8 @@
 	. = ..()
 
 /obj/machinery/dna_scannernew/proc/put_in(var/mob/M)
-	M.reset_perspective(src)
 	M.forceMove(src)
+	M.start_remoteviewing(src)
 	set_occupant(M)
 	icon_state = "scanner_1"
 

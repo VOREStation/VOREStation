@@ -362,8 +362,8 @@
 	visible_message(span_info("[usr] starts squeezing into the suit storage unit!"), 3)
 	if(do_after(usr, 1 SECOND, target = src))
 		usr.stop_pulling()
-		usr.reset_perspective(src)
 		usr.loc = src
+		usr.start_remoteviewing(src)
 		OCCUPANT = usr
 		isopen = 0 //Close the thing after the guy gets inside
 		update_icon()
@@ -400,8 +400,8 @@
 		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return //derpcheck
 			var/mob/M = G.affecting
-			M.reset_perspective(src)
 			M.loc = src
+			M.start_remoteviewing(src)
 			OCCUPANT = M
 			isopen = 0 //close ittt
 

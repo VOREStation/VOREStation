@@ -1025,7 +1025,7 @@
 
 	if (target)
 		remoteview_target = target
-		reset_perspective(target)
+		start_remoteviewing(target)
 	else
 		remoteview_target = null
 		reset_perspective(null)

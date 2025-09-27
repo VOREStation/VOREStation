@@ -1672,9 +1672,9 @@
 			return 0
 		user.drop_from_inventory(mmi_as_oc)
 		var/mob/brainmob = mmi_as_oc.brainmob
-		brainmob.reset_perspective(src)
 		occupant = brainmob
 		brainmob.loc = src //should allow relaymove
+		brainmob.start_remoteviewing(src)
 		brainmob.canmove = 1
 		mmi_as_oc.loc = src
 		mmi_as_oc.mecha = src
@@ -1977,9 +1977,9 @@
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H)
 	if(H && H.client && (H in range(1)))
-		H.reset_perspective(src)
 		H.stop_pulling()
 		H.forceMove(src)
+		H.start_remoteviewing(src)
 		src.occupant = H
 		src.add_fingerprint(H)
 		src.forceMove(src.loc)

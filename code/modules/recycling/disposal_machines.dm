@@ -120,8 +120,8 @@
 			for (var/mob/V in viewers(user))
 				V.show_message("[user] starts putting [GM.name] into the disposal.", 3)
 			if(do_after(user, 2 SECONDS, target = src))
-				GM.reset_perspective(src)
 				GM.forceMove(src)
+				GM.start_remoteviewing(src)
 				for (var/mob/C in viewers(src))
 					C.show_message(span_red("[GM.name] has been placed in the [src] by [user]."), 3)
 				qdel(G)
@@ -187,7 +187,7 @@
 		return
 
 	target.forceMove(src)
-	target.reset_perspective(src)
+	target.start_remoteviewing(src)
 
 	for (var/mob/C in viewers(src))
 		if(C == user)

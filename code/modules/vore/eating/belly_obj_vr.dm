@@ -983,7 +983,7 @@
 	prey.forceMove(src)
 	if(ismob(prey))
 		var/mob/ourmob = prey
-		ourmob.reset_perspective(owner)
+		ourmob.start_remoteviewing(owner)
 	owner.updateVRPanel()
 
 	for(var/mob/living/M in contents)
@@ -1177,7 +1177,7 @@
 
 	if(ismob(M))
 		var/mob/ourmob = M
-		ourmob.reset_perspective(owner)
+		ourmob.start_remoteviewing(owner)
 
 	//Seek out absorbed prey of the prey, absorb them too.
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
@@ -1524,7 +1524,7 @@
 	content.forceMove(target)
 	if(ismob(content) && !isobserver(content))
 		var/mob/ourmob = content
-		ourmob.reset_perspective(owner)
+		ourmob.start_remoteviewing(owner)
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))

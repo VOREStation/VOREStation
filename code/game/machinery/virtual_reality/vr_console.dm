@@ -186,8 +186,8 @@
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
-		M.reset_perspective(src)
 		M.loc = src
+		M.start_remoteviewing(src)
 		occupant = M
 
 		update_icon()

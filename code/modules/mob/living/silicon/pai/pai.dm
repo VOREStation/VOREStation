@@ -185,7 +185,7 @@
 
 	src.set_machine(src)
 	src.current = C
-	src.reset_perspective(C)
+	src.start_remoteviewing(C)
 	return 1
 
 /mob/living/silicon/pai/verb/reset_record_view()
