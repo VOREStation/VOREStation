@@ -381,7 +381,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 #define VALID_ACTIONS list("add", "remove", "list")
 #define VALID_KINDS list("job", "species")
-#define VALID_USAGE "whitelist \[[VALID_ACTIONS]\] \[[VALID_KINDS]\] <ckey> (role)"
+#define VALID_USAGE "whitelist \[[list2text(VALID_ACTIONS, ", ")]\] \[[list2text(VALID_KINDS, ", ")]\] <ckey> (role)"
 /datum/tgs_chat_command/whitelist
 	name = "whitelist"
 	help_text = "allows the management of player whitelists. Usage: whitelist \[add, remove, list\] \[job, species\] <ckey> (role)"
@@ -448,9 +448,9 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 		// Listing all whitelists for a specific ckey
 		if("list")
-			var/list/result = list()
+			var/result
 
-			result += "**Whitelists for [ckey]**"
+			result += "**Whitelists for [ckey]**\n"
 
 			var/datum/db_query/query_list = SSdbcore.NewQuery(
 				"SELECT kind, entry FROM [format_table_name("whitelist")] WHERE ckey = :ckey",
@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 					var/kind_query_result = query_list.item[1]
 					var/entry_query_result = query_list.item[2]
 
-					result += "- [kind_query_result] - [entry_query_result]"
+					result += "- [kind_query_result] - [entry_query_result]\n"
 			qdel(query_list)
 
 			if(result.len == 1)
