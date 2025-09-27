@@ -249,6 +249,8 @@
 	..()
 
 /obj/machinery/door/attackby(obj/item/I, mob/user)
+	if(istype(I,/obj/item/forensics))
+		return // Forensics item handling needs to block interaction, and block making fingerprints too
 	add_fingerprint(user)
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == MAT_PLASTEEL)
