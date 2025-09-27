@@ -206,7 +206,6 @@
 			if(ishuman(C))
 				var/mob/living/carbon/human/person = C
 				person.forceMove(get_turf(src))
-				person.reset_perspective(null)
 			else
 				var/obj/T = C
 				T.loc = hound.loc
@@ -416,7 +415,6 @@
 				if(ishuman(C))
 					var/mob/living/carbon/human/person = C
 					person.forceMove(get_turf(src))
-					person.reset_perspective(null)
 				else
 					var/obj/T = C
 					T.loc = hound.loc

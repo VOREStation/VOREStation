@@ -31,7 +31,7 @@
 // Helper proc
 // ONLY give this component from this proc please...
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// Begin remotely viewing something, remote view will end when mob moves, or something else changes the mob's perspective
+/// Begin remotely viewing something, remote view will end when mob moves, or something else changes the mob's perspective. Call AFTER you forceMove() the mob into the location!
 /mob/proc/start_remoteviewing(atom/target)
 	ASSERT(src != target, "[src] attempt to remote view itself.")
 	// Just incase someone makes an ugly tgui_input that doesn't check before attempting to set view...

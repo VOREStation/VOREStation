@@ -19,7 +19,7 @@
 		if(L.buckled)
 			L.buckled = 0
 			L.anchored = FALSE
-		L.loc = src
+		L.forceMove(src)
 		L.start_remoteviewing(src)
 		L.sdisabilities |= MUTE
 		health = L.health + 100 //stoning damaged mobs will result in easier to shatter statues
@@ -62,7 +62,7 @@
 		O.loc = src.loc
 
 	for(var/mob/living/M in src)
-		M.loc = src.loc
+		M.forceMove(loc) // Might be in a belly
 		M.sdisabilities &= ~MUTE
 		M.take_overall_damage((M.health - health - 100),0) //any new damage the statue incurred is transfered to the mob
 		M.reset_perspective(null)

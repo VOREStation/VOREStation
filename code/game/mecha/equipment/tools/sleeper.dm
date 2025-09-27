@@ -63,7 +63,6 @@
 	occupant.forceMove(get_turf(src))
 	occupant_message(span_infoplain("[occupant] ejected. Life support functions disabled."))
 	src.mecha_log_message("[occupant] ejected. Life support functions disabled.")
-	occupant.reset_perspective(null)
 	occupant.Stasis(0)
 	occupant = null
 	STOP_PROCESSING(SSprocessing, src)

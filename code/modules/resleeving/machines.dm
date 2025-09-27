@@ -514,7 +514,6 @@
 	if(!occupant)
 		return
 	occupant.forceMove(get_turf(src))
-	occupant.reset_perspective(null)
 	set_occupant(null)
 	icon_state = "implantchair"
 	return
@@ -527,7 +526,7 @@
 		to_chat(usr, span_warning("\The [src] is already occupied!"))
 		return
 	M.stop_pulling()
-	M.loc = src
+	M.forceMove(src)
 	M.start_remoteviewing(src)
 	set_occupant(M)
 	src.add_fingerprint(usr)

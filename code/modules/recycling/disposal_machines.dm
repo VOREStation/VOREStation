@@ -208,7 +208,6 @@
 // leave the disposal
 /obj/machinery/disposal/proc/go_out(mob/user)
 	user.forceMove(get_turf(src))
-	user.reset_perspective(null)
 	update()
 	return
 

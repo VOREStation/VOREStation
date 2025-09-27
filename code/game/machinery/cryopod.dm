@@ -671,7 +671,6 @@
 	if(ishuman(occupant) && applies_stasis)
 		var/mob/living/carbon/human/H = occupant
 		H.Stasis(0)
-	occupant.reset_perspective(null)
 	set_occupant(null)
 
 	icon_state = base_icon_state

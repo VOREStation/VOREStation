@@ -88,8 +88,7 @@
 		return
 	if(M == occupant) // so that the guy inside can't eject himself -Agouri
 		return
-	src.occupant.loc = src.loc
-	src.occupant.reset_perspective(null)
+	src.occupant.forceMove(get_turf(src))
 	if(injecting)
 		implant(src.occupant)
 		injecting = 0
@@ -105,9 +104,9 @@
 	if(src.occupant)
 		to_chat(usr, span_warning("\The [src] is already occupied!"))
 		return
-	M.start_remoteviewing(src)
 	M.stop_pulling()
-	M.loc = src
+	M.forceMove(src)
+	M.start_remoteviewing(src)
 	src.occupant = M
 	src.add_fingerprint(usr)
 	icon_state = "implantchair_on"

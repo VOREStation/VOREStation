@@ -279,7 +279,6 @@
 				break
 	else
 		WC.forceMove(loc)
-	WC.reset_perspective(null)
 	set_occupant(null)
 	icon_state = "scanner_0"
 	SStgui.update_uis(src)

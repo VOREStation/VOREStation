@@ -491,7 +491,6 @@
 		return
 	occupant.Stasis(0)
 	occupant.forceMove(get_turf(src))
-	occupant.reset_perspective(null)
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == beaker || A == circuit)

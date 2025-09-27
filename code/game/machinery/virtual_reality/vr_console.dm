@@ -186,7 +186,7 @@
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
-		M.loc = src
+		M.forceMove(src)
 		M.start_remoteviewing(src)
 		occupant = M
 
@@ -220,14 +220,13 @@
 		occupant.vr_link.exit_vr(FALSE)
 
 	occupant.forceMove(get_turf(src))
-	occupant.reset_perspective(null)
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == circuit)
 			continue
 		if(A in component_parts)
 			continue
-		A.loc = src.loc
+		A.forceMove(get_turf(src))
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
 

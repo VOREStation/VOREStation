@@ -302,9 +302,7 @@
 /obj/machinery/recharge_station/proc/go_out()
 	if(!occupant)
 		return
-
 	occupant.forceMove(src.loc)
-	occupant.reset_perspective(null)
 	occupant = null
 	update_icon()
 

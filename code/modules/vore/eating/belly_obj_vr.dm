@@ -900,9 +900,6 @@
 		slip.slip_protect = world.time + 25 // This is to prevent slipping back into your pred if they stand on soap or something.
 	//Place them into our drop_location
 	M.forceMove(drop_location())
-	if(ismob(M))
-		var/mob/ourmob = M
-		ourmob.reset_perspective(null)
 	items_preserved -= M
 
 	//Special treatment for absorbed prey

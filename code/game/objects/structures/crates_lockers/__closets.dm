@@ -128,7 +128,6 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
-		M.reset_perspective(null)
 
 /obj/structure/closet/proc/open()
 	if(opened)
