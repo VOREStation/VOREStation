@@ -467,7 +467,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 					result += "- [kind_query_result] - [entry_query_result]"
 			qdel(query_list)
 
-			if(len(result) == 1)
+			if(result.len == 1)
 				result += "No whitelist entries found for [ckey]"
 
 			return result
