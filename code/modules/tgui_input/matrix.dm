@@ -14,7 +14,7 @@
  * * default - The default (or current) value, shown as a placeholder. Users can press refresh with this.
  * * timeout - The timeout of the matrix input, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_colormatrix(mob/user, message, title = "Matrix Recolor", atom/movable/target, list/default = DEFAULT_COLORMATRIX, matrix_only = FALSE, timeout = 10 MINUTES, ui_state = GLOB.tgui_always_state)
+/proc/tgui_input_colormatrix(mob/user, message, title = "Matrix Recolor", atom/movable/target, list/default = DEFAULT_COLORMATRIX, matrix_only = FALSE, timeout = 30 MINUTES, ui_state = GLOB.tgui_always_state)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -182,6 +182,8 @@
 		return
 	switch(action)
 		if("switch_modes")
+			if(matrix_only && active_mode < 3)
+				return FALSE
 			active_mode = text2num(params["mode"])
 			return TRUE
 		if("choose_color")
@@ -239,7 +241,7 @@
 	switch(active_mode)
 		if(COLORMATE_TINT)
 			color_to_use = activecolor
-		if(COLORMATE_MATRIX)
+		if(COLORMATE_MATRIX, COLORMATE_MATRIX_AUTO)
 			color_to_use = rgb_construct_color_matrix(
 				text2num(color_matrix_last[1]),
 				text2num(color_matrix_last[2]),
@@ -276,7 +278,7 @@
 	if(target) //sanity
 		var/list/cm
 		switch(active_mode)
-			if(COLORMATE_MATRIX)
+			if(COLORMATE_MATRIX, COLORMATE_MATRIX_AUTO)
 				cm = rgb_construct_color_matrix(
 					text2num(color_matrix_last[1]),
 					text2num(color_matrix_last[2]),

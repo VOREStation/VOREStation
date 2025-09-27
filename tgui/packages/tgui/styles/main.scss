@@ -57,6 +57,7 @@
 @include meta.load-css('./interfaces/VorePanel.scss');
 @include meta.load-css('./interfaces/Wires.scss');
 @include meta.load-css('./interfaces/PlushEditor.scss');
+@include meta.load-css('./interfaces/ColorMatrixEditor.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');
