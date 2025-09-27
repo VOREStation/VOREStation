@@ -2,8 +2,8 @@
 	name = "ED-CLN Cleaning Robot"
 	desc = "A large cleaning robot. It looks rather efficient."
 	icon_state = "edCLN0"
-	req_one_access = list(access_robotics, access_janitor)
-	botcard_access = list(access_janitor)
+	req_one_access = list(ACCESS_ROBOTICS, ACCESS_JANITOR)
+	botcard_access = list(ACCESS_JANITOR)
 
 	locked = 0 // Start unlocked so roboticist can set them to patrol.
 	wait_if_pulled = 0 // One big boi.
@@ -121,7 +121,7 @@
 	..()
 
 	if(istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && src.loc != user)
@@ -176,7 +176,7 @@
 					to_chat(user, span_warning("You need one coil of wire to wire \the [src]."))
 					return
 				to_chat(user, span_notice("You start to wire \the [src]."))
-				if(do_after(user, 40))
+				if(do_after(user, 4 SECONDS, target = src))
 					if(C.use(1))
 						build_step++
 						to_chat(user, span_notice("You wire the ED-CLN assembly."))
@@ -198,7 +198,7 @@
 				playsound(src, W.usesound, 100, 1)
 				var/turf/T = get_turf(user)
 				to_chat(user, span_notice("Attatching the mop to the frame..."))
-				if(do_after(user, 40) && get_turf(user) == T)
+				if(do_after(user, 4 SECONDS, target = src) && get_turf(user) == T)
 					build_step++
 					name = "mopped ED-CLN assembly"
 					to_chat(user, span_notice("Mop attached."))

@@ -1,7 +1,6 @@
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Image, ProgressBar } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import type { Data } from './types';
 
@@ -9,7 +8,7 @@ export const ResleevingConsolePodGrowers = (props) => {
   const { act, data } = useBackend<Data>();
   const { pods, spods, selected_pod } = data;
 
-  if (pods && pods.length) {
+  if (pods?.length) {
     return pods.map((pod, i) => {
       let podAction;
       if (pod.status === 'cloning') {
@@ -25,7 +24,7 @@ export const ResleevingConsolePodGrowers = (props) => {
             }}
             mt="0.5rem"
           >
-            <Box textAlign="center">{toFixed(pod.progress) + '%'}</Box>
+            <Box textAlign="center">{`${pod.progress.toFixed()}%`}</Box>
           </ProgressBar>
         );
       } else if (pod.status === 'mess') {
@@ -39,7 +38,7 @@ export const ResleevingConsolePodGrowers = (props) => {
           <Button
             selected={selected_pod === pod.pod}
             icon={selected_pod === pod.pod && 'check'}
-            mt={spods && spods.length ? '2rem' : '0.5rem'}
+            mt={spods?.length ? '2rem' : '0.5rem'}
             onClick={() =>
               act('selectpod', {
                 ref: pod.pod,
@@ -54,7 +53,7 @@ export const ResleevingConsolePodGrowers = (props) => {
       return (
         <Box key={i} width="64px" textAlign="center" inline mr="0.5rem">
           <Image
-            src={resolveAsset('pod_' + pod.status + '.gif')}
+            src={resolveAsset(`pod_${pod.status}.gif`)}
             style={{
               width: '100%',
             }}

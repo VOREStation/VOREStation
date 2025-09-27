@@ -10,7 +10,7 @@
 
 	if(!check_rights(R_FUN)) return
 
-	var/player_list_local = player_list //Copying player list so we don't touch a global var all the time
+	var/player_list_local = GLOB.player_list //Copying player list so we don't touch a global var all the time
 	var/list/area_list = list() //An associative list, where key is area name, value is a list of mob references
 	var/inactives = 0
 	var/players = 0

@@ -6,7 +6,6 @@ import {
   Table,
   Tooltip,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { damageRange } from './constants';
 import { germStatus, reduceOrganStatus } from './functions';
@@ -53,18 +52,18 @@ export const BodyScannerMainOrgansExternal = (props: {
                   {!!o.bruteLoss && (
                     <Tooltip content="Brute damage" position="top">
                       <Icon name="band-aid" />
-                      {toFixed(o.bruteLoss)}&nbsp;
+                      {o.bruteLoss.toFixed()}&nbsp;
                     </Tooltip>
                   )}
                   {!!o.fireLoss && (
                     <Tooltip content="Burn damage" position="top">
                       <Icon name="fire" />
-                      {toFixed(o.fireLoss)}
+                      {o.fireLoss.toFixed()}
                       <Tooltip position="top" content="Burn damage" />
                     </Tooltip>
                   )}
                 </Box>
-                <Box inline>{toFixed(o.totalLoss)}</Box>
+                <Box inline>{o.totalLoss.toFixed()}</Box>
               </ProgressBar>
             </Table.Cell>
             <Table.Cell textAlign="right" width="33%">
@@ -88,6 +87,7 @@ export const BodyScannerMainOrgansExternal = (props: {
                 {reduceOrganStatus(
                   o.implants.map((s) => (s.known ? s.name : 'Unknown object')),
                 )}
+                {reduceOrganStatus(o.medical_issues_E)}
               </Box>
             </Table.Cell>
           </Table.Row>

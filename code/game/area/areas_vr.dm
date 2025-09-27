@@ -26,7 +26,7 @@
 	if(!ceiling_type)
 		return
 	for(var/turf/T in contents)
-		if(T.outdoors >= 0)
+		if(T.is_outdoors() >= 0)
 			continue
 		if(HasAbove(T.z))
 			var/turf/TA = GetAbove(T)

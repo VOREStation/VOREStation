@@ -18,5 +18,10 @@ export type Data = {
   buildsat: number;
   buildval: number;
   temp: string | null;
-  item: { name: string; sprite: string; preview: string } | null;
+  item_name: string | null;
+  item_sprite: string | null;
+  item_preview: string | null;
+  message?: string;
+  title?: string;
+  matrix_only?: number;
 };

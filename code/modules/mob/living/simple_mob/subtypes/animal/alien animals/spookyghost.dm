@@ -87,6 +87,8 @@
 	reload_count = 0
 	reload_time = 7 SECONDS
 
+	can_be_drop_prey = FALSE
+
 
 /datum/ai_holder/simple_mob/ranged/kiting/space_ghost
 	hostile = TRUE

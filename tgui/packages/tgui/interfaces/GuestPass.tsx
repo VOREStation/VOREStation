@@ -1,4 +1,3 @@
-/* eslint react/no-danger: "off" */
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
@@ -9,7 +8,7 @@ type Data = {
   area: area[];
   giver: string | null;
   giveName: string;
-  reason: String;
+  reason: string;
   duration: number;
   mode: BooleanLike;
   log: string[];
@@ -45,16 +44,16 @@ export const GuestPass = (props) => {
               Print
             </Button>
             <Section title="Logs">
-              {/* These are internally generated only. */}
               {(log.length &&
                 log.map((l) => (
+                  // biome-ignore lint/security/noDangerouslySetInnerHtml: These are internally generated only.
                   <div key={l} dangerouslySetInnerHTML={{ __html: l }} />
                 ))) || <Box>No logs.</Box>}
             </Section>
           </Section>
         )) || (
           <Section
-            title={'Guest pass terminal #' + uid}
+            title={`Guest pass terminal #${uid}`}
             buttons={
               <Button icon="scroll" onClick={() => act('mode', { mode: 1 })}>
                 Activity Log

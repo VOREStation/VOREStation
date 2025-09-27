@@ -4,7 +4,9 @@ import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 import { NEWSCASTER_SCREEN_MAIN } from './constants';
 import type { Data } from './types';
 
-export const NewscasterPrint = (props: { setScreen: Function }) => {
+export const NewscasterPrint = (props: {
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { act, data } = useBackend<Data>();
 
   const { total_num, active_num, message_num, paper_remaining } = data;

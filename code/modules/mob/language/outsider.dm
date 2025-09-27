@@ -8,9 +8,9 @@
 	flags = RESTRICTED | HIVEMIND
 
 /datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
-
-	if(speaker.mind && speaker.mind.changeling)
-		..(speaker,message,speaker.mind.changeling.changelingID)
+	var/datum/component/antag/changeling/comp = speaker.GetComponent(/datum/component/antag/changeling)
+	if(speaker.mind && comp)
+		..(speaker,message,comp.changelingID)
 	else
 		..(speaker,message)
 

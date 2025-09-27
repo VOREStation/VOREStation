@@ -57,7 +57,7 @@
 		//Copypasta
 		valid_turfs:
 			for(var/turf/simulated/T in A.contents)
-				if(T.density || istype(T, /turf/simulated/mineral)) //Don't blink to vacuum or a wall
+				if(T.density || ismineralturf(T)) //Don't blink to vacuum or a wall
 					continue
 				for(var/atom/movable/stuff in T.contents)
 					if(stuff.density)

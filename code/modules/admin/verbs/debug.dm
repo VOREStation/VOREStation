@@ -93,11 +93,11 @@
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_robotize(var/mob/M in mob_list)
+/client/proc/cmd_admin_robotize(var/mob/M in GLOB.mob_list)
 	set category = "Fun.Event Kit"
 	set name = "Make Robot"
 
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -108,11 +108,11 @@
 	else
 		tgui_alert_async(usr, "Invalid mob")
 
-/client/proc/cmd_admin_animalize(var/mob/M in mob_list)
+/client/proc/cmd_admin_animalize(var/mob/M in GLOB.mob_list)
 	set category = "Fun.Event Kit"
 	set name = "Make Simple Animal"
 
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 
@@ -138,7 +138,7 @@
 	var/turf/T = get_turf(mob)
 
 	var/list/available = list()
-	for(var/mob/C in mob_list)
+	for(var/mob/C in GLOB.mob_list)
 		if(C.key && isobserver(C))
 			available.Add(C)
 	var/mob/choice = tgui_input_list(usr, "Choose a player to play the pAI", "Spawn pAI", available)
@@ -152,7 +152,7 @@
 	if(tgui_alert(pai, "Do you want to load your pAI data?", "Load", list("Yes", "No")) == "Yes")
 		pai.savefile_load(pai)
 	else
-		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI"))
+		pai.name = sanitizeSafe(tgui_input_text(pai, "Enter your pAI name:", "pAI Name", "Personal AI", encode = FALSE))
 		card.setPersonality(pai)
 	for(var/datum/paiCandidate/candidate in paiController.pai_candidates)
 		if(candidate.key == choice.key)
@@ -160,11 +160,11 @@
 	log_admin("made a pAI with key=[pai.key] at ([T.x],[T.y],[T.z])")
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_alienize(var/mob/M in mob_list)
+/client/proc/cmd_admin_alienize(var/mob/M in GLOB.mob_list)
 	set category = "Fun.Event Kit"
 	set name = "Make Alien"
 
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -273,11 +273,11 @@
 	else
 		. = lines.Join("\n")
 
-/client/proc/cmd_admin_grantfullaccess(var/mob/M in mob_list)
+/client/proc/cmd_admin_grantfullaccess(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Events"
 	set name = "Grant Full Access"
 
-	if (!ticker)
+	if (!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if (ishuman(M))
@@ -304,22 +304,21 @@
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins(span_blue("[key_name_admin(usr)] has granted [M.key] full access."), 1)
 
-/client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
-	set category = "Admin.Game"
-	set name = "Assume direct control"
-	set desc = "Direct intervention"
-
-	if(!check_rights(R_DEBUG|R_ADMIN|R_EVENT))	return
+ADMIN_VERB(cmd_assume_direct_control, (R_DEBUG|R_ADMIN|R_EVENT), "Assume Direct Control", "Assume direct control of a mob.", "Admin.Game", mob/M)
 	if(M.ckey)
-		if(tgui_alert(usr, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.","Confirmation",list("Yes","No")) != "Yes")
+		if(tgui_alert(user, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.","Confirmation",list("Yes","No")) != "Yes")
 			return
-		else
-			var/mob/observer/dead/ghost = new/mob/observer/dead(M,1)
-			ghost.ckey = M.ckey
-	message_admins(span_blue("[key_name_admin(usr)] assumed direct control of [M]."), 1)
-	log_admin("[key_name(usr)] assumed direct control of [M].")
-	var/mob/adminmob = src.mob
-	M.ckey = src.ckey
+	if(!M || QDELETED(M))
+		to_chat(user, span_warning("The target mob no longer exists."))
+		return
+
+	var/mob/observer/dead/ghost = new/mob/observer/dead(M,1)
+	ghost.ckey = M.ckey
+
+	message_admins(span_blue("[key_name_admin(user)] assumed direct control of [M]."), 1)
+	log_admin("[key_name(user)] assumed direct control of [M].")
+	var/mob/adminmob = user.mob
+	M.ckey = user.ckey
 	if( isobserver(adminmob) )
 		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -394,33 +393,33 @@
 	var/list/areas_without_intercom = areas_all - areas_with_intercom
 	var/list/areas_without_camera = areas_all - areas_with_camera
 
-	to_world(span_bold("AREAS WITHOUT AN APC:"))
+	to_chat(world, span_bold("AREAS WITHOUT AN APC:"))
 	for(var/areatype in areas_without_APC)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT AN AIR ALARM:"))
+	to_chat(world, span_bold("AREAS WITHOUT AN AIR ALARM:"))
 	for(var/areatype in areas_without_air_alarm)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT A REQUEST CONSOLE:"))
+	to_chat(world, span_bold("AREAS WITHOUT A REQUEST CONSOLE:"))
 	for(var/areatype in areas_without_RC)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT ANY LIGHTS:"))
+	to_chat(world, span_bold("AREAS WITHOUT ANY LIGHTS:"))
 	for(var/areatype in areas_without_light)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT A LIGHT SWITCH:"))
+	to_chat(world, span_bold("AREAS WITHOUT A LIGHT SWITCH:"))
 	for(var/areatype in areas_without_LS)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT ANY INTERCOMS:"))
+	to_chat(world, span_bold("AREAS WITHOUT ANY INTERCOMS:"))
 	for(var/areatype in areas_without_intercom)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
-	to_world(span_bold("AREAS WITHOUT ANY CAMERAS:"))
+	to_chat(world, span_bold("AREAS WITHOUT ANY CAMERAS:"))
 	for(var/areatype in areas_without_camera)
-		to_world("* [areatype]")
+		to_chat(world, "* [areatype]")
 
 /datum/admins/proc/cmd_admin_dress(input in getmobs())
 	set category = "Fun.Event Kit"
@@ -588,15 +587,15 @@
 
 	switch(tgui_input_list(usr, "Which list?", "List Choice", list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients")))
 		if("Players")
-			to_chat(usr, span_filter_debuglogs(jointext(player_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.player_list,",")))
 		if("Admins")
 			to_chat(usr, span_filter_debuglogs(jointext(GLOB.admins,",")))
 		if("Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.mob_list,",")))
 		if("Living Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(living_mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.living_mob_list,",")))
 		if("Dead Mobs")
-			to_chat(usr, span_filter_debuglogs(jointext(dead_mob_list,",")))
+			to_chat(usr, span_filter_debuglogs(jointext(GLOB.dead_mob_list,",")))
 		if("Clients")
 			to_chat(usr, span_filter_debuglogs(jointext(GLOB.clients,",")))
 
@@ -611,7 +610,7 @@
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
-	if(!ticker)
+	if(!SSticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
 	if(istype(M, /mob/living/carbon))
@@ -625,15 +624,17 @@
 	else
 		tgui_alert_async(usr, "Invalid mob")
 
-/datum/admins/proc/view_runtimes()
-	set category = "Debug.Investigate"
-	set name = "View Runtimes"
-	set desc = "Open the Runtime Viewer"
+ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
+	GLOB.error_cache.show_to(user)
 
-	if(!check_rights(R_DEBUG))
-		return
-
-	error_cache.showTo(usr)
+	// The runtime viewer has the potential to crash the server if there's a LOT of runtimes
+	// this has happened before, multiple times, so we'll just leave an alert on it
+	if(GLOB.total_runtimes >= 50000) // arbitrary number, I don't know when exactly it happens
+		var/warning = "There are a lot of runtimes, clicking any button (especially \"linear\") can have the potential to lag or crash the server"
+		if(GLOB.total_runtimes >= 100000)
+			warning = "There are a TON of runtimes, clicking any button (especially \"linear\") WILL LIKELY crash the server"
+		// Not using TGUI alert, because it's view runtimes, stuff is probably broken
+		tgui_alert(user, "[warning]. Proceed with caution. If you really need to see the runtimes, download the runtime log and view it in a text editor.", "HEED THIS WARNING CAREFULLY MORTAL")
 
 /datum/admins/proc/change_weather()
 	set category = "Debug.Events"
@@ -740,7 +741,7 @@
 
 ADMIN_VERB(quick_nif, R_ADMIN, "Quick NIF", "Spawns a NIF into someone in quick-implant mode.", "Fun.Add Nif")
 	var/input_NIF
-	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", player_list)
+	var/mob/living/carbon/human/H = tgui_input_list(user, "Pick a mob with a player","Quick NIF", GLOB.player_list)
 
 	if(!H)
 		return

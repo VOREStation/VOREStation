@@ -27,7 +27,7 @@ export const ExonetNode = (props) => {
               selected={on}
               onClick={() => act('toggle_power')}
             >
-              {'Power ' + (on ? 'On' : 'Off')}
+              {`Power ${on ? 'On' : 'Off'}`}
             </Button>
           }
         >

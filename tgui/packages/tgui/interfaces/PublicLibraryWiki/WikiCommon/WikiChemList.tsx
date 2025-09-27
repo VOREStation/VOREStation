@@ -34,34 +34,32 @@ export const ChemicalReactionList = (props: {
 
   return (
     <>
-      <>
-        <LabeledList.Divider />
-        <LabeledList.Item label={'Instant Reactions'}>
-          <Collapsible
-            key={ourKey}
-            color="transparent"
-            title={'Reveal Potential Instant Reactions'}
-          >
-            {instant_reactions ? (
-              Array.isArray(instant_reactions) ? (
-                instant_reactions.map((reactionTypes, index) =>
-                  getReactionComponents(reactionTypes, 'Breakdown', index + 1),
-                )
-              ) : (
-                Object.keys(instant_reactions).map((reaction) =>
-                  getReactionComponents(
-                    instant_reactions[reaction],
-                    'Breakdown',
-                    1,
-                  ),
-                )
+      <LabeledList.Divider />
+      <LabeledList.Item label={'Instant Reactions'}>
+        <Collapsible
+          key={ourKey}
+          color="transparent"
+          title={'Reveal Potential Instant Reactions'}
+        >
+          {instant_reactions ? (
+            Array.isArray(instant_reactions) ? (
+              instant_reactions.map((reactionTypes, index) =>
+                getReactionComponents(reactionTypes, 'Breakdown', index + 1),
               )
             ) : (
-              <BaseChem />
-            )}
-          </Collapsible>
-        </LabeledList.Item>
-      </>
+              Object.keys(instant_reactions).map((reaction) =>
+                getReactionComponents(
+                  instant_reactions[reaction],
+                  'Breakdown',
+                  1,
+                ),
+              )
+            )
+          ) : (
+            <BaseChem />
+          )}
+        </Collapsible>
+      </LabeledList.Item>
       {!!distilled_reactions && (
         <>
           <LabeledList.Divider />
@@ -97,7 +95,7 @@ export const ChemicalReactionList = (props: {
                 key={entry}
                 ourKey={ourKey}
                 entries={grinding[entry]}
-                title={capitalize(entry) + ' Grinding'}
+                title={`${capitalize(entry)} Grinding`}
               />
             ),
         )}
@@ -133,7 +131,7 @@ function getReactionComponents(
     : 'Component';
 
   return (
-    <Section title={'Potential Chemical ' + sectionTitle + ' ' + index}>
+    <Section title={`Potential Chemical ${sectionTitle} ${index}`}>
       <LabeledList>
         {(typeof reactionTypes.temp_min === 'number' ||
           typeof reactionTypes.temp_max === 'number') && (
@@ -173,25 +171,23 @@ function getReactionComponents(
         )}
         {(!!reactionTypes.require_xgm_gas ||
           !!reactionTypes.rejects_xgm_gas) && <LabeledList.Divider />}
-        {!!reactionTypes.required && !!reactionTypes.required.length && (
-          <>
-            {reactionTypes.required.map((required) => (
-              <Fragment key={required}>
-                {!!reactionTypes.is_slime && (
-                  <>
-                    <LabeledList.Item label="- Slime Type">
-                      {capitalize(reactionTypes.is_slime)}
-                    </LabeledList.Item>
-                    <LabeledList.Divider />
-                  </>
-                )}
-                <LabeledList.Item label={' - ' + componentName}>
-                  {required}
-                </LabeledList.Item>
-              </Fragment>
-            ))}
-          </>
-        )}
+        {!!reactionTypes.required &&
+          !!reactionTypes.required.length &&
+          reactionTypes.required.map((required) => (
+            <Fragment key={required}>
+              {!!reactionTypes.is_slime && (
+                <>
+                  <LabeledList.Item label="- Slime Type">
+                    {capitalize(reactionTypes.is_slime)}
+                  </LabeledList.Item>
+                  <LabeledList.Divider />
+                </>
+              )}
+              <LabeledList.Item label={` - ${componentName}`}>
+                {required}
+              </LabeledList.Item>
+            </Fragment>
+          ))}
         {!!reactionTypes.inhibitor && !!reactionTypes.inhibitor.length && (
           <>
             <LabeledList.Divider />

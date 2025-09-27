@@ -30,7 +30,7 @@ export const ChemDispenserSettings = (props) => {
                     })
                   }
                 >
-                  {a + 'u'}
+                  {`${a}u`}
                 </Button>
               </Stack.Item>
             ))}

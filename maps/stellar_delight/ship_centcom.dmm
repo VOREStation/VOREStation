@@ -11,12 +11,12 @@
 "ac" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "ccboat";
 	pixel_y = 29
 	},
@@ -526,14 +526,14 @@
 "bB" = (
 /obj/machinery/airlock_sensor{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null;
 	pixel_x = 24
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
@@ -544,7 +544,7 @@
 /area/shuttle/ccboat)
 "bC" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -554,7 +554,7 @@
 /area/shuttle/ccboat)
 "bD" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -1217,7 +1217,7 @@
 "dG" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "cc_landing_pad";
 	name = "docking port controller";
 	pixel_x = 24;
@@ -2107,11 +2107,7 @@
 /area/centcom/security/residential)
 "gF" = (
 /obj/effect/floor_decal/industrial/warning/corner,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "gN" = (
 /obj/effect/floor_decal/emblem/stellardelight{
@@ -2531,7 +2527,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "ip" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "iq" = (
@@ -2728,15 +2724,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
-"iW" = (
-/obj/machinery/r_n_d/destructive_analyzer,
-/turf/simulated/floor/tiled/white,
-/area/centcom/control)
 "iX" = (
 /turf/simulated/floor/tiled/dark,
 /area/centcom/living)
 "iZ" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/production/protolathe,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ja" = (
@@ -2843,7 +2835,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "jp" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -2853,7 +2845,7 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ju" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
@@ -3370,7 +3362,7 @@
 "lx" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "supply_shuttle_hatch";
 	locked = 1;
 	name = "Shuttle Hatch"
@@ -3801,7 +3793,7 @@
 "na" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "centcom_port_dock";
 	name = "docking port controller";
 	pixel_x = 24;
@@ -3959,10 +3951,6 @@
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled,
 /area/shuttle/centcom/ccbay)
-"nL" = (
-/obj/machinery/computer/rdconsole/robotics,
-/turf/simulated/floor/tiled/white,
-/area/centcom/control)
 "nM" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
@@ -4010,7 +3998,7 @@
 	dir = 1
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "centcom_dock";
 	name = "docking port controller";
 	pixel_y = 25;
@@ -4233,7 +4221,7 @@
 /turf/unsimulated/floor/techfloor_grid,
 /area/tdome/tdome1)
 "oM" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
@@ -4315,11 +4303,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "pl" = (
 /obj/effect/floor_decal/emblem/stellardelight{
@@ -4692,11 +4676,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "rM" = (
 /obj/structure/bed/chair/shuttle,
@@ -4710,7 +4690,7 @@
 /area/shuttle/escape)
 "rU" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_shuttle";
 	pixel_y = 25;
 	req_one_access = list(13);
@@ -4882,7 +4862,7 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "sP" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "sR" = (
@@ -5206,7 +5186,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_shuttle_hatch_offsite";
 	locked = 1;
@@ -5370,11 +5350,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "vR" = (
 /obj/structure/flora/pottedplant{
@@ -5515,11 +5491,7 @@
 /area/tdome/tdome1)
 "wj" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "wk" = (
 /obj/structure/table/rack,
@@ -5942,11 +5914,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "yI" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -6116,11 +6084,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "zy" = (
 /obj/effect/floor_decal/derelict/d11,
@@ -6137,11 +6101,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "zG" = (
 /obj/structure/bed/chair/wood/wings,
@@ -6450,7 +6410,7 @@
 "Bz" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "centcom_starboard_dock";
 	name = "docking port controller";
 	pixel_x = 24;
@@ -6467,7 +6427,7 @@
 "BJ" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "supply_shuttle_hatch";
 	locked = 1;
 	name = "Shuttle Hatch"
@@ -6527,7 +6487,7 @@
 /area/shuttle/ccboat)
 "Cg" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_external,
@@ -6951,7 +6911,7 @@
 "DJ" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
@@ -8284,7 +8244,7 @@
 "HB" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = null;
 	locked = 1;
 	name = "Docking Port Airlock"
@@ -9620,10 +9580,6 @@
 /obj/structure/closet/secure_closet/medical3,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
-"KN" = (
-/obj/machinery/r_n_d/server/centcom,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "KO" = (
 /obj/machinery/light,
 /obj/structure/bed/chair/shuttle{
@@ -10487,11 +10443,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/command)
 "MS" = (
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "reinforced";
-	name = "reinforced floor"
-	},
+/turf/unsimulated/floor/reinforced,
 /area/centcom)
 "MT" = (
 /obj/structure/table/glass,
@@ -11225,7 +11177,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_shuttle_hatch";
 	locked = 1;
 	name = "Docking Port Airlock"
@@ -11669,11 +11621,7 @@
 /turf/simulated/floor,
 /area/shuttle/escape)
 "PS" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/floor/tiled,
 /area/centcom/living)
 "PT" = (
@@ -11702,18 +11650,8 @@
 	},
 /area/centcom/living)
 "PY" = (
-/obj/machinery/cryopod/robot/door/dorms{
-	base_icon_state = "door_closed";
-	desc = "A small elevator";
-	dir = 2;
-	icon = 'icons/obj/doors/Door2x1glass.dmi';
-	icon_state = "door_closed";
-	name = "elevator";
-	on_enter_occupant_message = "The elevator doors close slowly. You can now head off for the residential, commercial, and other floors.";
-	on_store_message = "has departed for one of the various colony floors";
-	on_store_name = "Colony Oversight";
-	on_store_visible_message_2 = "to the colony districts.";
-	time_till_despawn = 5
+/obj/machinery/cryopod/robot/door/dorms/tether_glass{
+	dir = 2
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/living)
@@ -13307,7 +13245,7 @@
 	fancy_shuttle_tag = "tram"
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_shuttle_hatch_station";
 	locked = 1;
@@ -14945,7 +14883,7 @@
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_shuttle_hatch";
 	locked = 1;
 	name = "Docking Port Airlock"
@@ -14955,7 +14893,7 @@
 "Yf" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	door_color = "#822a1e";
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "supply_shuttle_hatch";
 	locked = 1;
 	name = "Shuttle Hatch"
@@ -15219,7 +15157,7 @@
 /area/centcom/medical)
 "YN" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "supply_shuttle";
 	pixel_y = 24;
 	req_one_access = list(13,31);
@@ -29318,7 +29256,7 @@ em
 aj
 JQ
 tk
-KN
+tK
 aj
 em
 em
@@ -32845,7 +32783,7 @@ ZQ
 uL
 nd
 iJ
-iW
+JS
 jp
 cU
 kK
@@ -33837,7 +33775,7 @@ aX
 aX
 aX
 uL
-nL
+JS
 iK
 em
 em

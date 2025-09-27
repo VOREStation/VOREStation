@@ -16,6 +16,7 @@ import {
   removeHighlightSetting,
   updateHighlightSetting,
   updateSettings,
+  updateToggle,
 } from '../settings/actions';
 import { blacklisted_tags } from '../settings/constants';
 import { selectSettings } from '../settings/selectors';
@@ -222,6 +223,7 @@ const loadChatFromDBStorage = async (
 export const chatMiddleware = (store) => {
   let initialized = false;
   let loaded = false;
+  let needsUpdate = true;
   const sequences: number[] = [];
   const sequences_requested: number[] = [];
   chatRenderer.events.on('batchProcessed', (countByType) => {
@@ -261,7 +263,10 @@ export const chatMiddleware = (store) => {
     if (!initialized && settings.initialized) {
       initialized = true;
       setInterval(() => {
-        saveChatToStorage(store);
+        if (!game.databaseBackendEnabled || needsUpdate) {
+          saveChatToStorage(store);
+          needsUpdate = false;
+        }
       }, settings.saveInterval * 1000);
       // loadChatFromStorage(store);
     }
@@ -279,23 +284,22 @@ export const chatMiddleware = (store) => {
       }
 
       const sequence_count = sequences.length;
-      seq_check: if (sequence_count > 0) {
+      if (sequence_count > 0) {
         if (sequences_requested.includes(sequence)) {
           sequences_requested.splice(sequences_requested.indexOf(sequence), 1);
           // if we are receiving a message we requested, we can stop reliability checks
-          break seq_check;
-        }
-
-        // cannot do reliability if we don't have any messages
-        const expected_sequence = sequences[sequence_count - 1] + 1;
-        if (sequence !== expected_sequence) {
-          for (
-            let requesting = expected_sequence;
-            requesting < sequence;
-            requesting++
-          ) {
-            sequences_requested.push(requesting);
-            Byond.sendMessage('chat/resend', requesting);
+        } else {
+          // cannot do reliability if we don't have any messages
+          const expected_sequence = sequences[sequence_count - 1] + 1;
+          if (sequence !== expected_sequence) {
+            for (
+              let requesting = expected_sequence;
+              requesting < sequence;
+              requesting++
+            ) {
+              sequences_requested.push(requesting);
+              Byond.sendMessage('chat/resend', requesting);
+            }
           }
         }
       }
@@ -339,6 +343,7 @@ export const chatMiddleware = (store) => {
 
     if (
       type === updateSettings.type ||
+      type === updateToggle.type ||
       type === loadSettings.type ||
       type === addHighlightSetting.type ||
       type === removeHighlightSetting.type ||
@@ -351,6 +356,7 @@ export const chatMiddleware = (store) => {
         nextSettings.highlightSettings,
         nextSettings.highlightSettingById,
       );
+      needsUpdate = true;
 
       return;
     }

@@ -120,7 +120,7 @@
 	icon_state = "plasmacutter"
 	item_state = "plasmacutter"
 	w_class = ITEMSIZE_NORMAL //it is smaller than the pickaxe
-	damtype = "fire"
+	damtype = BURN
 	digspeed = 18 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/light thermite on fire
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
 	matter = list(MAT_STEEL = 3000, MAT_PLASTEEL = 1500, MAT_DIAMONDS = 500, MAT_PHORON = 500)
@@ -256,7 +256,7 @@
 	var/obj/item/stack/flag/F = locate() in get_turf(src)
 
 	var/turf/T = get_turf(src)
-	if(!T || !istype(T,/turf/simulated/mineral))
+	if(!T || !ismineralturf(T))
 		to_chat(user, "The flag won't stand up in this terrain.")
 		return
 

@@ -231,7 +231,7 @@
 	icon_state = "bay_chair_preview"
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "battlebarge_docker";
 	pixel_x = -26;
 	pixel_y = -7;
@@ -428,7 +428,7 @@
 /area/shuttle/screebarge/mid)
 "bg" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "battlebarge_foredoor";
 	locked = 1

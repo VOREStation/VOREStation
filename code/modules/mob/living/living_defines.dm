@@ -42,8 +42,12 @@
 	var/tod = null // Time of death
 	var/update_slimes = 1
 	var/silent = null 		// Can't talk. Value goes down every life proc.
-	var/on_fire = 0 //The "Are we on fire?" var
+
+	/// Helper vars for quick access to firestacks, these should be updated every time firestacks are adjusted
+	var/on_fire = 0
 	var/fire_stacks
+	/// Rate at which fire stacks should decay from this mob
+	var/fire_stack_decay_rate = -0.05
 
 	var/failed_last_breath = 0 //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
 	var/lastpuke = 0
@@ -75,7 +79,7 @@
 	var/allow_self_surgery = FALSE	// Used to determine if the mob can perform surgery on itself.
 
 
-	var/tail_alt = 0
+	var/tail_layering = 0
 	var/flying = 0				// Allows flight
 	var/inventory_panel_type = /datum/inventory_panel
 	var/datum/inventory_panel/inventory_panel
@@ -115,3 +119,6 @@
 	var/ooc_notes_favs = null
 	var/ooc_notes_maybes = null
 	var/ooc_notes_style = FALSE
+
+	///a list of all status effects the mob has
+	var/list/status_effects

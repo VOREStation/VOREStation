@@ -27,6 +27,55 @@
 	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_UNATHI, SPECIES_VASILISSAN, SPECIES_XENOCHIMERA, SPECIES_VOX) //i assume if a dev made your base slowdown different then you shouldn't have this.
 	excludes = list(/datum/trait/positive/speed_fast) // olympic sprinters don't naruto run
 
+/datum/trait/positive/punchdamage
+	name = "Strong Attacks"
+	desc = "Your unarmed attacks deal more damage. (+5 per attack)"
+	cost = 1
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 5)
+	excludes = list(/datum/trait/positive/punchdamageplus)
+	banned_species = list(SPECIES_TESHARI)
+
+/datum/trait/positive/punchdamageplus
+	name = "Crushing Attacks"
+	desc = "Your unarmed attacks deal high damage. (+10 per attack)"
+	cost = 2
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 10)
+	excludes = list(/datum/trait/positive/punchdamage)
+	banned_species = list(SPECIES_TESHARI, SPECIES_VOX)
+
+/datum/trait/positive/shredding_attacks //Variant of plus
+	name = "Shredding Attacks"
+	desc = "Your unarmed attacks can break windows, APCs, deal massive damage to synthetics, and you can break out of restraints 24 times faster."
+	cost = 6
+	custom_only = FALSE
+	hidden = TRUE
+	var_changes = list("shredding" = TRUE)
+	banned_species = list(SPECIES_TESHARI, SPECIES_VOX)
+
+/datum/trait/positive/strength //combine effects of hardy + strong punches, for if someone wants a generally "strong" character. Exists for the purposes of the trait limit
+	name = "High Strength"
+	desc = "Your unarmed attacks deal more damage (+5), and you can carry heavy equipment with 50% less slowdown."
+	cost = 2
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 5, "item_slowdown_mod" = 0.5)
+	excludes = list(/datum/trait/positive/punchdamage, /datum/trait/positive/hardy, /datum/trait/positive/hardy_plus)
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_PROTEAN)
+
+/datum/trait/positive/strengthplus //see above comment
+	name = "Inhuman Strength"
+	desc = "You are unreasonably strong. Your unarmed attacks do high damage (+10), you experience much less slowdown from heavy equipment (75% less)."
+	cost = 4
+	custom_only = FALSE
+	hidden = TRUE //Disabled on Virgo.
+	var_changes = list("unarmed_bonus" = 10, "item_slowdown_mod" = 0.25)
+	excludes = list(/datum/trait/positive/punchdamage, /datum/trait/positive/hardy, /datum/trait/positive/punchdamageplus, /datum/trait/positive/hardy_plus)
+	banned_species = list(SPECIES_ALRAUNE, SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_PROMETHEAN, SPECIES_PROTEAN, SPECIES_VOX)
+
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."
@@ -85,13 +134,13 @@
 
 /datum/trait/positive/melee_attack
 	name = "Special Attack: Sharp Melee" // Trait Organization for easier browsing. TODO: Proper categorization of 'health/ability/resist/etc'
-	desc = "Provides sharp melee attacks that do slightly more damage."
+	desc = "Provides sharp melee attacks which can inflict bleeding."
 	cost = 1
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp))
 
 /datum/trait/positive/melee_attack_fangs
 	name = "Special Attack: Sharp Melee & Numbing Fangs" // Trait Organization for easier browsing. TODO: Proper categorization of 'health/ability/resist/etc'
-	desc = "Provides sharp melee attacks that do slightly more damage, along with fangs that makes the person bit unable to feel their body or pain."
+	desc = "Provides sharp melee attacks which can inflict bleeding, along with fangs that makes the person bit unable to feel their body or pain."
 	cost = 2
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp, /datum/unarmed_attack/bite/sharp/numbing))
 
@@ -202,8 +251,9 @@
 	if(S.get_bodytype() == SPECIES_VASILISSAN)
 		W.silk_reserve = 500
 		W.silk_max_reserve = 1000
-	W.silk_production = trait_prefs["silk_production"]
-	W.silk_color = lowertext(trait_prefs["silk_color"])
+	if(trait_prefs)
+		W.silk_production = trait_prefs["silk_production"]
+		W.silk_color = lowertext(trait_prefs["silk_color"])
 
 /datum/trait/positive/aquatic
 	name = "Aquatic"
@@ -213,11 +263,22 @@
 	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
 	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
 	custom_only = FALSE
+	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic/plus)
 
 /datum/trait/positive/aquatic/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/water_stealth)
 	add_verb(H, /mob/living/carbon/human/proc/underwater_devour)
+
+/datum/trait/positive/aquatic/plus
+	name = "Aquatic 2"
+	desc = "You can breathe under water and can traverse water more efficiently than most aquatic humanoids. Additionally, you can eat others in the water."
+	cost = 2
+	custom_only = FALSE
+	var_changes = list("water_breather" = 1, "water_movement" = -4, "swim_mult" = 0.5) //Negate shallow water. Half the speed in deep water.
+	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic)
 
 /datum/trait/positive/cocoon_tf
 	name = "Cocoon Spinner"
@@ -336,7 +397,7 @@
 
 /datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	if (trait_prefs?["pass_table"] || !trait_prefs)
+	if(trait_prefs?["pass_table"] || !trait_prefs)
 		H.pass_flags |= PASSTABLE
 	add_verb(H,/mob/living/proc/toggle_pass_table)
 

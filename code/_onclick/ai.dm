@@ -35,7 +35,7 @@
 	if(multicam_on)
 		var/turf/T = get_turf(A)
 		if(T)
-			for(var/obj/screen/movable/pic_in_pic/ai/P in T.vis_locs)
+			for(var/atom/movable/screen/movable/pic_in_pic/ai/P in T.vis_locs)
 				if(P.ai == src)
 					P.Click(params)
 					break
@@ -62,6 +62,10 @@
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return
+
+	if(holo && istype(holo.masters[src],/obj/effect/overlay/aiholo))
+		var/curdur = get_dir(get_turf(holo.masters[src]), get_turf(A))
+		holo.masters[src].set_dir(curdur)
 
 	if(aiCamera.in_camera_mode)
 		aiCamera.camera_mode_off()

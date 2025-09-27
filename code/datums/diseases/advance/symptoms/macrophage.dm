@@ -24,8 +24,8 @@ BONUS
 	transmission = 2
 	level = 9
 	severity = 2
-	symptom_delay_min = 40
-	symptom_delay_max = 60
+	symptom_delay_min = 40 SECONDS
+	symptom_delay_max = 60 SECONDS
 
 	var/gigagerms = FALSE
 	var/netspeed = 0
@@ -78,14 +78,15 @@ BONUS
 
 	if(gigagerms)
 		phage = new /mob/living/simple_mob/vore/aggressive/macrophage/giant(get_turf((M.loc)))
-		phage.melee_damage_lower = rand(10, 15)
-		phage.melee_damage_upper = rand(15, 20)
+		phage.melee_damage_lower = rand(5, 10)
+		phage.melee_damage_upper = rand(10, 15)
 		M.apply_damage(rand(10, 20))
-		playsound(M, 'sound/effects/splat.ogg', 50, 1)
 		M.emote("scream")
 	else
 		phage = new(get_turf((M.loc)))
-		M.apply_damage(rand(1, 7))
+		M.apply_damage(rand(1, 5))
+
+	playsound(M, 'sound/effects/splat.ogg', 50, 1)
 
 	phage.health += A.resistance
 	phage.maxHealth += A.resistance

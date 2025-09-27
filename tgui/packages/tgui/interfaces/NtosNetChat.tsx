@@ -75,7 +75,7 @@ export const NtosNetChat = (props) => {
                 <Button.Input
                   fluid
                   mt={1}
-                  buttonText={username + '...'}
+                  buttonText={`${username}...`}
                   value={username}
                   onCommit={(value) =>
                     act('PRG_changename', {
@@ -90,7 +90,7 @@ export const NtosNetChat = (props) => {
                     color={adminmode ? 'bad' : 'good'}
                     onClick={() => act('PRG_toggleadmin')}
                   >
-                    {'ADMIN MODE: ' + (adminmode ? 'ON' : 'OFF')}
+                    {`ADMIN MODE: ${adminmode ? 'ON' : 'OFF'}`}
                   </Button>
                 )}
               </Table.Cell>

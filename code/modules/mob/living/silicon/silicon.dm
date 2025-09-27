@@ -28,10 +28,11 @@
 	var/sensor_type = 0 //VOREStation add - silicon omni "is sensor on or nah"
 
 	var/hudmode = null
+	fire_stack_decay_rate = -0.55
 
 /mob/living/silicon/Initialize(mapload, is_decoy = FALSE)
 	. = ..()
-	silicon_mob_list += src
+	GLOB.silicon_mob_list += src
 	if(!is_decoy)
 		add_language(LANGUAGE_GALCOM)
 		apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
@@ -41,9 +42,16 @@
 		AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6)
 
 /mob/living/silicon/Destroy()
-	silicon_mob_list -= src
+	common_radio = null // same ref as radio, deleted by child
+	GLOB.silicon_mob_list -= src
 	for(var/datum/alarm_handler/AH in SSalarm.all_handlers)
 		AH.unregister_alarm(src)
+	if(aiCamera)
+		QDEL_NULL(aiCamera)
+	if(idcard)
+		QDEL_NULL(idcard)
+	if(laws)
+		QDEL_NULL(laws)
 	return ..()
 
 /mob/living/silicon/proc/init_id()
@@ -63,6 +71,8 @@
 	return
 
 /mob/living/silicon/emp_act(severity)
+	if(SEND_SIGNAL(src, COMSIG_SILICON_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
+		return
 	switch(severity)
 		if(1)
 			src.take_organ_damage(0,20,emp=1)
@@ -308,7 +318,7 @@
 
 /mob/living/silicon/proc/receive_alarm(var/datum/alarm_handler/alarm_handler, var/datum/alarm/alarm, was_raised)
 	if(!next_alarm_notice)
-		next_alarm_notice = world.time + SecondsToTicks(10)
+		next_alarm_notice = world.time + (10 SECONDS)
 	if(alarm.hidden)
 		return
 	if(alarm.origin && !(get_z(alarm.origin) in using_map.get_map_levels(get_z(src), TRUE, om_range = DEFAULT_OVERMAP_RANGE)))
@@ -389,7 +399,7 @@
 	if(cameraFollow)
 		cameraFollow = null
 
-/mob/living/silicon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/silicon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(affect_silicon)
 		return ..()
 

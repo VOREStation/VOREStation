@@ -48,9 +48,6 @@
 
 	slowdown = round(amount / 10, 0.1)
 
-var/global/list/datum/stack_recipe/sandbag_recipes = list( \
-	new/datum/stack_recipe("barricade", /obj/structure/barricade/sandbag, 3, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE))
-
 /obj/item/stack/sandbags/produce_recipe(datum/stack_recipe/recipe, var/quantity, mob/user)
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
@@ -72,14 +69,14 @@ var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 
 	if (recipe.time)
 		to_chat(user, span_notice("Building [recipe.title] ..."))
-		if (!do_after(user, recipe.time))
+		if (!do_after(user, recipe.time, target = src))
 			return
 
 	if (use(required))
 		var/atom/O = new recipe.result_type(user.loc, bag_material)
 
-		if(istype(O, /obj))
-			var/obj/Ob = O
+		if(istype(O, /obj/item))
+			var/obj/item/Ob = O
 
 			if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
 				Ob.matter.Cut()
@@ -142,7 +139,7 @@ var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 	color = M.icon_colour
 
 /obj/item/stack/emptysandbag/attack_self(var/mob/user)
-	while(do_after(user, 1 SECOND) && can_use(1) && istype(get_turf(src), /turf/simulated/floor/outdoors))
+	while(do_after(user, 1 SECOND, target = src) && can_use(1) && istype(get_turf(src), /turf/simulated/floor/outdoors))
 		use(1)
 		var/obj/item/stack/sandbags/SB = new (get_turf(src), 1, bag_material)
 		SB.color = color

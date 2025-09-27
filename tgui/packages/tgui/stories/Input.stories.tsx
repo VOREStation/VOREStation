@@ -46,30 +46,33 @@ function Story() {
             onChange={(value) => setNumber(value)}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="NumberInput (onDrag)">
+        <LabeledList.Item label="NumberInput (onChange, tickWhileDragging)">
           <NumberInput
             animated
+            tickWhileDragging
             width="40px"
             step={1}
             stepPixelSize={5}
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(value) => setNumber(value)}
+            onChange={(value) => setNumber(value)}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Slider (onDrag)">
+        <LabeledList.Item label="Slider (onChange, tickWhileDragging)">
           <Slider
+            tickWhileDragging
             step={1}
             stepPixelSize={5}
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(e, value) => setNumber(value)}
+            onChange={(e, value) => setNumber(value)}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Knob (onDrag)">
+        <LabeledList.Item label="Knob (onChange, tickWhileDragging)">
           <Knob
+            tickWhileDragging
             inline
             size={1}
             step={1}
@@ -77,9 +80,10 @@ function Story() {
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(e, value) => setNumber(value)}
+            onChange={(e, value) => setNumber(value)}
           />
           <Knob
+            tickWhileDragging
             ml={1}
             inline
             bipolar
@@ -89,19 +93,20 @@ function Story() {
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(e, value) => setNumber(value)}
+            onChange={(e, value) => setNumber(value)}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Rotating Icon">
           <Box inline position="relative">
             <DraggableControl
+              tickWhileDragging
               value={number}
               minValue={-100}
               maxValue={100}
               dragMatrix={[0, -1]}
               step={1}
               stepPixelSize={5}
-              onDrag={(e, value) => setNumber(value)}
+              onChange={(e, value) => setNumber(value)}
             >
               {(control) => (
                 <Box onMouseDown={control.handleDragStart}>

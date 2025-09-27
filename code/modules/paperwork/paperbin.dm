@@ -65,7 +65,7 @@
 		else
 			if(response == "Regular")
 				P = new /obj/item/paper
-				if(Holiday == "April Fool's Day")
+				if(GLOB.Holiday == "April Fool's Day")
 					if(prob(30))
 						P.info = span_red(span_bold("<font face=\"[P.crayonfont]\">HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</font>"))
 						P.rigged = 1

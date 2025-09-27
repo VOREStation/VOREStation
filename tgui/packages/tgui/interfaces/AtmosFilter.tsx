@@ -41,18 +41,19 @@ export const AtmosFilter = (props) => {
               <Box inline mr={1}>
                 <AnimatedNumber
                   value={last_flow_rate}
-                  format={(val) => val + ' L/s'}
+                  format={(val) => `${val} L/s`}
                 />
               </Box>
               <NumberInput
                 animated
+                tickWhileDragging
                 step={1}
                 value={rate}
                 width="63px"
                 unit="L/s"
                 minValue={0}
                 maxValue={200}
-                onDrag={(value: number) =>
+                onChange={(value: number) =>
                   act('rate', {
                     rate: value,
                   })

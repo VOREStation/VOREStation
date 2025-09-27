@@ -4,7 +4,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "suspension"
 	density = 1
-	req_access = list(access_research)
+	req_access = list(ACCESS_RESEARCH)
 	var/obj/item/cell/cell
 	var/obj/item/card/id/auth_card
 	var/locked = 1
@@ -14,6 +14,7 @@
 /obj/machinery/suspension_gen/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/high(src)
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
@@ -167,7 +168,7 @@
 		add_overlay("shield2")
 		visible_message(span_blue("[icon2html(suspension_field,viewers(src))] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
-		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
+		if(ismineralturf(T) || istype(T,/turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"
 		else
 			suspension_field.icon_state = "shield2"
@@ -190,26 +191,6 @@
 /obj/machinery/suspension_gen/Destroy()
 	deactivate()
 	. = ..()
-
-/obj/machinery/suspension_gen/verb/rotate_counterclockwise()
-	set src in view(1)
-	set name = "Rotate suspension gen Counterclockwise"
-	set category = "Object"
-
-	if(anchored)
-		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
-		return
-	set_dir(turn(dir, 90))
-
-/obj/machinery/suspension_gen/verb/rotate_clockwise()
-	set src in view(1)
-	set name = "Rotate suspension gen Clockwise"
-	set category = "Object"
-
-	if(anchored)
-		to_chat(usr, span_red("You cannot rotate [src], it has been firmly fixed to the floor."))
-		return
-	set_dir(turn(dir, 270))
 
 /obj/machinery/suspension_gen/update_icon()
 	cut_overlays()

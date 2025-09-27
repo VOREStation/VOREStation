@@ -10,21 +10,21 @@ export const ResleevingConsoleStatus = (props) => {
     <Section title="Status">
       <LabeledList>
         <LabeledList.Item label="Pods">
-          {pods && pods.length ? (
+          {pods?.length ? (
             <Box color="good">{pods.length} connected</Box>
           ) : (
             <Box color="bad">None connected!</Box>
           )}
         </LabeledList.Item>
         <LabeledList.Item label="SynthFabs">
-          {spods && spods.length ? (
+          {spods?.length ? (
             <Box color="good">{spods.length} connected</Box>
           ) : (
             <Box color="bad">None connected!</Box>
           )}
         </LabeledList.Item>
         <LabeledList.Item label="Sleevers">
-          {sleevers && sleevers.length ? (
+          {sleevers?.length ? (
             <Box color="good">{sleevers.length} Connected</Box>
           ) : (
             <Box color="bad">None connected!</Box>

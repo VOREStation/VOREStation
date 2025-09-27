@@ -138,7 +138,7 @@
 
 		H.visible_message(span_danger("\The [H] is trying to perform CPR on \the [src]!"))
 
-		if(!do_after(H, 30))
+		if(!do_after(H, 3 SECONDS, target = src))
 			return FALSE
 
 		H.visible_message(span_danger("\The [H] performs CPR on \the [src]!"))
@@ -417,6 +417,14 @@
 	return
 
 /mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/armor_type = "melee", var/armor_pen = 0, var/a_sharp = 0, var/a_edge = 0)
+	if(istype(user,/mob/living))
+		var/mob/living/L = user
+		if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
+			if((src != L))
+				L.apply_damage(3, BRUTE)
+				L.visible_message( \
+					span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
+					span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
 
 	if(!damage)
 		return
@@ -453,7 +461,7 @@
 		return FALSE
 
 	user.visible_message(span_warning("[user] begins to dislocate [src]'s [organ.joint]!"))
-	if(do_after(user, 100))
+	if(do_after(user, 10 SECONDS, target = src))
 		organ.dislocate(1)
 		src.visible_message(span_danger("[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!"))
 		return TRUE
@@ -472,15 +480,13 @@
 		if(lgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [lgrab.affecting]!"))
 			success = TRUE
-		spawn(1)
-			qdel(lgrab)
+		drop_from_inventory(lgrab)
 	if(istype(r_hand, /obj/item/grab))
 		var/obj/item/grab/rgrab = r_hand
 		if(rgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [rgrab.affecting]!"))
 			success = TRUE
-		spawn(1)
-			qdel(rgrab)
+		drop_from_inventory(rgrab)
 	return success
 
 /*
@@ -603,10 +609,10 @@
 		visible_message(span_warning("\The [src]'s body convulses a bit."))
 
 		// REVIVE TIME, basically stolen from defib.dm
-		dead_mob_list.Remove(src)
-		if((src in living_mob_list) || (src in dead_mob_list))
+		GLOB.dead_mob_list.Remove(src)
+		if((src in GLOB.living_mob_list) || (src in GLOB.dead_mob_list))
 			WARNING("Mob [src] was cpr revived by [reviver], but already in the living or dead list still!")
-		living_mob_list += src
+		GLOB.living_mob_list += src
 
 		timeofdeath = 0
 		set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.

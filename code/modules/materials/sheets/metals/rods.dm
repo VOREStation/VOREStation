@@ -38,10 +38,6 @@
 	else
 		icon_state = "rods"
 
-var/global/list/datum/stack_recipe/rods_recipes = list( \
-	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = 1, on_floor = 0),
-	new/datum/stack_recipe("catwalk", /obj/structure/catwalk, 2, time = 80, one_per_turf = 1, on_floor = 1))
-
 /obj/item/stack/rods/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/WT = W.get_welder()
@@ -74,6 +70,9 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 
 	..()
 
+/obj/item/stack/rods/reagents_per_sheet()
+	return REAGENTS_PER_ROD
+
 /*
 /obj/item/stack/rods/attack_self(mob/user)
 	src.add_fingerprint(user)
@@ -97,7 +96,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 			return
 		to_chat(user, span_notice("Assembling grille..."))
 		in_use = 1
-		if (!do_after(user, 10))
+		if (!do_after(user, 1 SECOND, target = src))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( user.loc )

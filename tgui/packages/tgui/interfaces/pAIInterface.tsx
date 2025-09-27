@@ -30,7 +30,7 @@ export const pAIInterface = (props) => {
             </Button>
           ))}
         </Section>
-        <Section title={'Software (Available RAM: ' + available_ram + ')'}>
+        <Section title={`Software (Available RAM: ${available_ram})`}>
           <LabeledList>
             <LabeledList.Item label="Installed">
               {bought.map((app) => (
@@ -51,7 +51,7 @@ export const pAIInterface = (props) => {
                   disabled={app.ram > available_ram}
                   onClick={() => act('purchase', { purchase: app.id })}
                 >
-                  {app.name + ' (' + app.ram + ')'}
+                  {`${app.name} (${app.ram})`}
                 </Button>
               ))}
             </LabeledList.Item>

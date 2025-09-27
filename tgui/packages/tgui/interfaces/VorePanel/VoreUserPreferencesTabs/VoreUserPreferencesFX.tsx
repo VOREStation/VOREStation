@@ -1,7 +1,7 @@
 import { LabeledList, Section } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { type localPrefs } from '../types';
+import type { localPrefs } from '../types';
 import { VorePanelEditNumber } from '../VorePanelElements/VorePanelEditNumber';
 import { VoreUserPreferenceItem } from '../VorePanelElements/VoreUserPreferenceItem';
 

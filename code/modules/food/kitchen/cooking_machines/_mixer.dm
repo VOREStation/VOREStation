@@ -46,7 +46,7 @@ fundamental differences
 		to_chat(usr, span_notice("You can't operate [src]."))
 		return
 
-	if(output_options.len)
+	if(LAZYLEN(output_options))
 		var/choice = tgui_input_list(usr, "What specific food do you wish to make with \the [src]?", "Food Output Choice", output_options)
 		if(!choice)
 			return

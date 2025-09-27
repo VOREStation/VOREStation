@@ -1,0 +1,47 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"B" = (
+/turf/simulated/floor/weird_things/dark,
+/area/template_noop)
+"O" = (
+/obj/structure/dark_portal/minion,
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+B
+B
+a
+a
+"}
+(2,1,1) = {"
+B
+a
+B
+B
+B
+"}
+(3,1,1) = {"
+B
+B
+O
+B
+a
+"}
+(4,1,1) = {"
+B
+B
+B
+B
+a
+"}
+(5,1,1) = {"
+B
+a
+B
+B
+a
+"}

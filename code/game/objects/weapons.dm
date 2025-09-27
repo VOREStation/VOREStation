@@ -1,9 +1,3 @@
-/obj/item
-	name = "weapon"
-	icon = 'icons/obj/weapons.dmi'
-	hitsound = "swing_hit"
-	var/cleaving = FALSE // Used to avoid infinite cleaving.
-
 /obj/item/Bump(mob/M as mob)
 	spawn(0)
 		..()

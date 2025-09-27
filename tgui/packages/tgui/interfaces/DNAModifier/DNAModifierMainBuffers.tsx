@@ -19,7 +19,7 @@ export const DNAModifierMainBuffers = (props) => {
     <Stack.Item key={i}>
       <DNAModifierMainBuffersElement
         id={i + 1}
-        name={'Buffer ' + (i + 1)}
+        name={`Buffer ${i + 1}`}
         buffer={buffer}
       />
     </Stack.Item>
@@ -48,7 +48,7 @@ const DNAModifierMainBuffersElement = (props: {
   const { act, data } = useBackend<Data>();
   const { id, name, buffer } = props;
   const { isInjectorReady, hasOccupant, occupant } = data;
-  const realName: string = name + (buffer.data ? ' - ' + buffer.label : '');
+  const realName: string = name + (buffer.data ? ` - ${buffer.label}` : '');
   return (
     <Section
       fill

@@ -17,7 +17,7 @@
 		message = sanitize(message)
 		if (!message)
 			return
-		log_say(message,src)
+		log_talk(message, LOG_SAY)
 		if (stat == 2)
 			return say_dead(message)
 
@@ -25,7 +25,7 @@
 		to_chat(src, "You whisper silently, \"[message]\"")
 		to_chat(B.host, "The captive mind of [src] whispers, \"[message]\"")
 
-		for (var/mob/M in player_list)
+		for (var/mob/M in GLOB.player_list)
 			if (isnewplayer(M))
 				continue
 			else if(M.stat == DEAD && M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))

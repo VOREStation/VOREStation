@@ -83,7 +83,7 @@ const NewsTargetFeed = (props: { target_feed: feed }) => {
             - {decodeHtmlEntities(message.body)}
             {!!message.img && (
               <Box>
-                <Image src={'data:image/png;base64,' + message.img} />
+                <Image src={`data:image/png;base64,${message.img}`} />
                 {decodeHtmlEntities(message.caption) || null}
               </Box>
             )}

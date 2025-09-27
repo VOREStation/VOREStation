@@ -263,7 +263,6 @@
 	if(OCCUPANT && !islocked)
 		islocked = 1 //Let's lock it for good measure
 	update_icon()
-	updateUsrDialog(user)
 
 	var/i //our counter
 	for(i=0,i<4,i++)
@@ -302,7 +301,6 @@
 				eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
 			isUV = 0 //Cycle ends
 	update_icon()
-	updateUsrDialog(user)
 	return
 
 /obj/machinery/suit_storage_unit/proc/cycletimeleft()
@@ -343,7 +341,6 @@
 		return
 	eject_occupant(usr)
 	add_fingerprint(usr)
-	updateUsrDialog(usr)
 	update_icon()
 	return
 
@@ -365,7 +362,7 @@
 		to_chat(usr, span_warning("It's too cluttered inside for you to fit in!"))
 		return
 	visible_message(span_info("[usr] starts squeezing into the suit storage unit!"), 3)
-	if(do_after(usr, 10))
+	if(do_after(usr, 1 SECOND, target = src))
 		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
@@ -375,7 +372,6 @@
 		update_icon()
 
 		add_fingerprint(usr)
-		updateUsrDialog(usr)
 		return
 	else
 		OCCUPANT = null //Testing this as a backup sanity test
@@ -389,7 +385,6 @@
 		panelopen = !panelopen
 		playsound(src, I.usesound, 100, 1)
 		to_chat(user, span_notice("You [panelopen ? "open up" : "close"] the unit's maintenance panel."))
-		updateUsrDialog(user)
 		return
 	if(istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
@@ -405,7 +400,7 @@
 			to_chat(user, span_warning("The unit's storage area is too cluttered."))
 			return
 		visible_message(span_notice("[user] starts putting [G.affecting.name] into the Suit Storage Unit."), 3)
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return //derpcheck
 			var/mob/M = G.affecting
 			if(M.client)
@@ -417,7 +412,6 @@
 
 			add_fingerprint(user)
 			qdel(G)
-			updateUsrDialog(user)
 			update_icon()
 			return
 		return
@@ -433,7 +427,6 @@
 		S.loc = src
 		SUIT = S
 		update_icon()
-		updateUsrDialog(user)
 		return
 	if(istype(I,/obj/item/clothing/head/helmet))
 		if(!isopen)
@@ -447,7 +440,6 @@
 		H.loc = src
 		HELMET = H
 		update_icon()
-		updateUsrDialog(user)
 		return
 	if(istype(I,/obj/item/clothing/mask))
 		if(!isopen)
@@ -461,10 +453,8 @@
 		M.loc = src
 		MASK = M
 		update_icon()
-		updateUsrDialog(user)
 		return
 	update_icon()
-	updateUsrDialog(user)
 	return
 
 

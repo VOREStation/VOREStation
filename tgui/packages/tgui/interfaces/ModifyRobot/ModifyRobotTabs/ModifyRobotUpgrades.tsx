@@ -54,7 +54,7 @@ export const ModifyRobotUpgrades = (props: { target: Target }) => {
               <Stack.Item grow />
               <Stack.Item>
                 <Box
-                  className={classes([target.sprite_size, target.sprite + 'W'])}
+                  className={classes([target.sprite_size, `${target.sprite}W`])}
                 />
               </Stack.Item>
               <Stack.Item grow />
@@ -118,7 +118,7 @@ export const ModifyRobotUpgrades = (props: { target: Target }) => {
 const UpgradeSection = (props: {
   title: string;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   upgrades: Upgrade[];
   action: string;
 }) => {

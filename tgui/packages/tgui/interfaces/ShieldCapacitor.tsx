@@ -63,18 +63,19 @@ export const ShieldCapacitor = (props) => {
               />
               <AnimatedNumber
                 value={100 * round(stored_charge / max_charge, 1)}
-                format={(value) => ' (' + toFixed(value, 1) + '%)'}
+                format={(value) => ` (${toFixed(value, 1)}%)`}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Charge Rate">
               <NumberInput
+                tickWhileDragging
                 value={charge_rate}
                 step={100}
                 stepPixelSize={0.2}
                 minValue={10000}
                 maxValue={max_charge_rate}
                 format={(val: number) => formatPower(val)}
-                onDrag={(val: number) => act('charge_rate', { rate: val })}
+                onChange={(val: number) => act('charge_rate', { rate: val })}
               />
             </LabeledList.Item>
           </LabeledList>

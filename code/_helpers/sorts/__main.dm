@@ -8,7 +8,28 @@
 	//When we get into galloping mode, we stay there until both runs win less often than MIN_GALLOP consecutive times.
 #define MIN_GALLOP 7
 
-	//This is a global instance to allow much of this code to be reused. The interfaces are kept separately
+/// Helper for the sorting procs. Prevents some code duplication. Creates /datum/sort_instance/sorter
+#define CREATE_SORT_INSTANCE(to_sort, cmp, associative, fromIndex, toIndex) \
+	if(length(to_sort) < 2) { \
+		return to_sort; \
+	} \
+	fromIndex = fromIndex % length(to_sort); \
+	toIndex = toIndex % (length(to_sort) + 1); \
+	if (fromIndex <= 0) { \
+		fromIndex += length(to_sort); \
+	} \
+	if (toIndex <= 0) { \
+		toIndex += length(to_sort) + 1; \
+	} \
+	var/datum/sort_instance/sorter = GLOB.sortInstance; \
+	if (isnull(sorter)) { \
+		sorter = new; \
+	} \
+	sorter.L = to_sort; \
+	sorter.cmp = cmp; \
+	sorter.associative = associative;
+
+//This is a global instance to allow much of this code to be reused. The interfaces are kept separately
 GLOBAL_DATUM_INIT(sortInstance, /datum/sort_instance, new())
 /datum/sort_instance
 	//The array being sorted.
@@ -83,20 +104,20 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sort_instance, new())
 
 	return L
 
-/*
-Sorts the specified portion of the specified array using a binary
-insertion sort.  This is the best method for sorting small numbers
-of elements.  It requires O(n log n) compares, but O(n^2) data
-movement (worst case).
+	/*
+	Sorts the specified portion of the specified array using a binary
+	insertion sort.  This is the best method for sorting small numbers
+	of elements.  It requires O(n log n) compares, but O(n^2) data
+	movement (worst case).
 
-If the initial part of the specified range is already sorted,
-this method can take advantage of it: the method assumes that the
-elements in range [lo,start) are already sorted
+	If the initial part of the specified range is already sorted,
+	this method can take advantage of it: the method assumes that the
+	elements in range [lo,start) are already sorted
 
-lo		the index of the first element in the range to be sorted
-hi		the index after the last element in the range to be sorted
-start	the index of the first element in the range that is	not already known to be sorted
-*/
+	lo the index of the first element in the range to be sorted
+	hi the index after the last element in the range to be sorted
+	start the index of the first element in the range that is not already known to be sorted
+	*/
 /datum/sort_instance/proc/binarySort(lo, hi, start)
 	//ASSERT(lo <= start && start <= hi)
 	if(start <= lo)

@@ -37,5 +37,5 @@ export type modalData = {
     unidentity: string;
     strucenzymes: string;
   };
-  modal_type: string;
+  type: string;
 };

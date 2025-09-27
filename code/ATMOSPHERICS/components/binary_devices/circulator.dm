@@ -26,9 +26,8 @@
 
 /obj/machinery/atmospherics/binary/circulator/Initialize(mapload)
 	. = ..()
-
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
 	air1.volume = 400
+	AddElement(/datum/element/rotatable)
 
 /obj/machinery/atmospherics/binary/circulator/proc/return_transfer_air()
 	var/datum/gas_mixture/removed
@@ -129,25 +128,6 @@
 	else
 		..()
 
-/obj/machinery/atmospherics/binary/circulator/verb/rotate_clockwise()
-	set name = "Rotate Circulator Clockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
-
-
-/obj/machinery/atmospherics/binary/circulator/verb/rotate_counterclockwise()
-	set name = "Rotate Circulator Counterclockwise"
-	set category = "Object"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+/obj/machinery/atmospherics/binary/circulator/examine(mob/user, infix, suffix)
+	. = ..()
+	. += span_infoplain("Its outlet port is to the [dir2text(dir)].")

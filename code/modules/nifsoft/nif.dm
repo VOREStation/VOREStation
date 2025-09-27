@@ -61,12 +61,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/global/click_sound = 'sound/items/nif_click.ogg'
 	var/global/bad_sound = 'sound/items/nif_tone_bad.ogg'
 	var/global/good_sound = 'sound/items/nif_tone_good.ogg'
-	var/global/list/look_messages = list(
-			"flicks their eyes around",
-			"looks at something unseen",
-			"reads some invisible text",
-			"seems to be daydreaming",
-			"focuses elsewhere for a moment")
+
 
 	var/list/save_data
 
@@ -182,7 +177,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	if(H)
 		remove_verb(H, /mob/living/carbon/human/proc/set_nif_examine)
 		H.nif = null
-	qdel_null(menu)
+	QDEL_NULL(menu)
 	unregister_human()
 	human = null
 	install_done = null
@@ -233,7 +228,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Attackby proc, for maintenance
 /obj/item/nif/attackby(obj/item/W, mob/user as mob)
 	if(open == 0 && W.has_tool_quality(TOOL_SCREWDRIVER))
-		if(do_after(user, 4 SECONDS, src) && open == 0)
+		if(do_after(user, 4 SECONDS, target = src) && open == 0)
 			user.visible_message("[user] unscrews and pries open \the [src].",span_notice("You unscrew and pry open \the [src]."))
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			open = 1
@@ -248,18 +243,18 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			open = 3
 			update_icon()
 			return
-		if(do_after(user, 6 SECONDS, src) && open == 1 && C.use(3))
+		if(do_after(user, 6 SECONDS, target = src) && open == 1 && C.use(3))
 			user.visible_message("[user] replaces some wiring in \the [src].",span_notice("You replace any burned out wiring in \the [src]."))
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			open = 2
 			update_icon()
 	else if(open == 2 && istype(W,/obj/item/multitool))
-		if(do_after(user, 8 SECONDS, src) && open == 2)
+		if(do_after(user, 8 SECONDS, target = src) && open == 2)
 			user.visible_message("[user] resets several circuits in \the [src].",span_notice("You find and repair any faulty circuits in \the [src]."))
 			open = 3
 			update_icon()
 	else if(open == 3 && W.has_tool_quality(TOOL_SCREWDRIVER))
-		if(do_after(user, 3 SECONDS, src) && open == 3)
+		if(do_after(user, 3 SECONDS, target = src) && open == 3)
 			user.visible_message("[user] closes up \the [src].",span_notice("You re-seal \the [src] for use once more."))
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			open = FALSE
@@ -398,7 +393,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	last_notification = message // TGUI Hook
 
 	to_chat(human,span_filter_nif(span_bold("\[[icon2html(src.big_icon, human.client)]NIF\]") + " displays, " + (alert ? span_danger(message) : span_notice(message))))
-	if(prob(1)) human.visible_message(span_notice("\The [human] [pick(look_messages)]."))
+	if(prob(1)) human.visible_message(span_notice("\The [human] [pick(GLOB.nif_look_messages)]."))
 	if(alert)
 		human << bad_sound
 	else
@@ -498,7 +493,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	if(stat != NIF_WORKING) return FALSE
 
 	if(human)
-		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(look_messages)]."))
+		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(GLOB.nif_look_messages)]."))
 		var/applies_to = soft.applies_to
 		var/synth = human.isSynthetic()
 		if(synth && !(applies_to & NIF_SYNTHETIC))
@@ -525,7 +520,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Deactivate a nifsoft
 /obj/item/nif/proc/deactivate(var/datum/nifsoft/soft)
 	if(human)
-		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(look_messages)]."))
+		if(prob(5)) human.visible_message(span_notice("\The [human] [pick(GLOB.nif_look_messages)]."))
 		human << click_sound
 
 	if(soft.tick_flags == NIF_ACTIVETICK)
@@ -666,6 +661,13 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		/datum/nifsoft/malware
 	)
 
+
+/obj/item/nif/glitch/bad
+	name = "odd NIF"
+	desc = "A NIF of a very dubious origin."
+	durability = 100
+	bioadap = FALSE
+
 ////////////////////////////////
 // Special Promethean """surgery"""
 /obj/item/nif/attack(mob/living/M, mob/living/user, var/target_zone)
@@ -705,7 +707,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		to_chat(src,span_warning("You don't have a NIF, not sure why this was here."))
 		return
 
-	var/new_flavor = sanitize(tgui_input_text(src,"Describe how your NIF alters your appearance, like glowy eyes or metal plate on your head, etc. Be sensible. Clear this for no examine text. 128ch max.","Describe NIF", nif.examine_msg, 128), max_length = 128)
+	var/new_flavor = tgui_input_text(src,"Describe how your NIF alters your appearance, like glowy eyes or metal plate on your head, etc. Be sensible. Clear this for no examine text. 128ch max.","Describe NIF", nif.examine_msg, 128)
 	//They clicked cancel or meanwhile lost their NIF
 	if(!nif || isnull(new_flavor))
 		return //No changes

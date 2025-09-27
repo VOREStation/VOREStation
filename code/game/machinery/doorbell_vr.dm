@@ -129,7 +129,7 @@
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	else if(panel_open && istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for \the [src].", src.name, initial(src.name), MAX_NAME_LEN), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for \the [src].", src.name, initial(src.name), MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 		if(t && in_range(src, user))
 			name = t
 	else if(panel_open && istype(W, /obj/item/multitool))
@@ -139,7 +139,7 @@
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, span_notice("You start to unwrench \the [src]."))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user, 15) && !QDELETED(src))
+		if(do_after(user, 15, target = src) && !QDELETED(src))
 			to_chat(user, span_notice("You unwrench \the [src]."))
 			new /obj/item/frame/doorbell(src.loc)
 			qdel(src)

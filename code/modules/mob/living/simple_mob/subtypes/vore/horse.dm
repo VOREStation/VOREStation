@@ -35,6 +35,7 @@
 	say_list_type = /datum/say_list/horse
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
+	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
 
 /mob/living/simple_mob/vore/horse/big
@@ -79,11 +80,7 @@
 /mob/living/simple_mob/vore/horse/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
-/mob/living/simple_mob/vore/horse/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/horse/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -140,11 +137,7 @@
 	vore_pounce_maxhealth = 200
 	vore_bump_emote	= "chomps down on"
 
-/mob/living/simple_mob/vore/horse/kelpie/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/horse/kelpie/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

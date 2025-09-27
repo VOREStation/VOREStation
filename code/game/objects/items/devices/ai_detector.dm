@@ -12,6 +12,13 @@
 	var/range_warning = 14		// Will turn yellow if the AI's eye is near the holder.
 	var/detect_state = PROXIMITY_NONE
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_ILLEGAL = 2)
+	description_antag = "Functions as a normal multitool with one added benefit.<br>\
+	This will change colors and make sounds (that only you can hear) during various events.<br>\
+	BLUE: You are outside of camera range.<br>\
+	GREEN: You are inside of camera range.<br>\
+	RED: You are currently being watched by the AI.<br>\
+	FLASHING RED AND ORANGE: You are currently being TRACKED by the AI.<br>\
+	FLASHING ORANGE AND BLUE: The AI has attempted to track you but has failed to do so due to being outside camera range."
 
 /obj/item/multitool/ai_detector/Initialize(mapload)
 	. = ..()
@@ -37,7 +44,7 @@
 	var/mob/living/carrier = isliving(loc) ? loc : null
 
 	// First, let's check if any AIs are actively tracking them.
-	for(var/mob/living/silicon/ai/AI in silicon_mob_list)
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mob_list)
 		if(carrier && AI.cameraFollow == carrier)
 			if(!carrier.tracking_status()) // Successful tracking returns a 0, so we need to invert it.
 				return PROXIMITY_TRACKING

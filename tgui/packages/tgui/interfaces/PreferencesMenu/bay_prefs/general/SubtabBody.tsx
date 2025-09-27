@@ -43,6 +43,7 @@ export const SubtabBody = (props: {
     s_tone,
     b_type,
     digitigrade,
+    tail_layering,
     synth_color,
     synth_color_toggle,
     synth_markings,
@@ -128,6 +129,11 @@ export const SubtabBody = (props: {
                       selected={digitigrade}
                     >
                       {digitigrade ? 'Yes' : 'No'}
+                    </Button>
+                  </LabeledList.Item>
+                  <LabeledList.Item label="Tail Layering">
+                    <Button inline onClick={() => act('set_tail_layering')}>
+                      {tail_layering}
                     </Button>
                   </LabeledList.Item>
                   <LabeledList.Item label="Blood Type">

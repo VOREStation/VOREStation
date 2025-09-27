@@ -101,10 +101,10 @@
 		return 1	//end the search!
 	return 0
 
-/obj/item/assembly/mousetrap/hitby(var/atom/movable/A)
+/obj/item/assembly/mousetrap/hitby(var/atom/movable/source)
 	if(!armed)
 		return ..()
-	visible_message(span_warning("[src] is triggered by [A]."))
+	visible_message(span_warning("[src] is triggered by [source]."))
 	triggered(null)
 
 /obj/item/assembly/mousetrap/armed

@@ -8,22 +8,14 @@ import type { mobEntry } from './types';
 
 export const CharacterDirectoryList = (props: {
   directory: mobEntry[];
-  onOverlay: Function;
+  onOverlay: React.Dispatch<React.SetStateAction<mobEntry | null>>;
 }) => {
   const { act } = useBackend();
 
   const { onOverlay, directory } = props;
 
   const [sortId, setSortId] = useState<string>('name');
-  const [sortOrder, setSortOrder] = useState<string>('name');
-
-  function handleSortId(value: string) {
-    setSortId(value);
-  }
-
-  function handleSortOrder(value: string) {
-    setSortOrder(value);
-  }
+  const [sortOrder, setSortOrder] = useState<boolean>(true);
 
   return (
     <Section
@@ -38,65 +30,65 @@ export const CharacterDirectoryList = (props: {
         <Table.Row bold>
           <Table.Cell collapsing>Photo</Table.Cell>
           <SortButton
-            id="name"
+            ourId="name"
             sortId={sortId}
             sortOrder={sortOrder}
-            onSortId={handleSortId}
-            onSortOrder={handleSortOrder}
+            onSortId={setSortId}
+            onSortOrder={setSortOrder}
           >
             Name
           </SortButton>
           <SortButton
-            id="species"
+            ourId="species"
             sortId={sortId}
             sortOrder={sortOrder}
-            onSortId={handleSortId}
-            onSortOrder={handleSortOrder}
+            onSortId={setSortId}
+            onSortOrder={setSortOrder}
           >
             Species
           </SortButton>
           <SortButton
-            id="tag"
+            ourId="tag"
             sortId={sortId}
             sortOrder={sortOrder}
-            onSortId={handleSortId}
-            onSortOrder={handleSortOrder}
+            onSortId={setSortId}
+            onSortOrder={setSortOrder}
           >
             Vore Tag
           </SortButton>
           <SortButton
-            id="gendertag"
+            ourId="gendertag"
             sortId={sortId}
             sortOrder={sortOrder}
-            onSortId={handleSortId}
-            onSortOrder={handleSortOrder}
+            onSortId={setSortId}
+            onSortOrder={setSortOrder}
           >
             Gender
           </SortButton>
           <SortButton
-            id="sexualitytag"
+            ourId="sexualitytag"
             sortId={sortId}
             sortOrder={sortOrder}
-            onSortId={handleSortId}
-            onSortOrder={handleSortOrder}
+            onSortId={setSortId}
+            onSortOrder={setSortOrder}
           >
             Sexuality
           </SortButton>
           <SortButton
-            id="erptag"
+            ourId="erptag"
             sortId={sortId}
             sortOrder={sortOrder}
-            onSortId={handleSortId}
-            onSortOrder={handleSortOrder}
+            onSortId={setSortId}
+            onSortOrder={setSortOrder}
           >
             ERP Tag
           </SortButton>
           <SortButton
-            id="eventtag"
+            ourId="eventtag"
             sortId={sortId}
             sortOrder={sortOrder}
-            onSortId={handleSortId}
-            onSortOrder={handleSortOrder}
+            onSortId={setSortId}
+            onSortOrder={setSortOrder}
           >
             Event Pref
           </SortButton>

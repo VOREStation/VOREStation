@@ -234,7 +234,7 @@
 	var/obj/item/radio/hradio = S.server_radio
 
 	if(!hradio)
-		error("[src] has no radio.")
+		log_world("## ERROR [src] has no radio.")
 		return
 
 	if((!message || message == "") && message != 0)
@@ -265,7 +265,7 @@
 		freq = text2num(freq)
 	newsign.frequency = freq
 
-	var/datum/radio_frequency/connection = radio_controller.return_frequency(freq)
+	var/datum/radio_frequency/connection = SSradio.return_frequency(freq)
 	newsign.data["connection"] = connection
 
 

@@ -8,7 +8,11 @@ SUBSYSTEM_DEF(shuttles)
 	name = "Shuttles"
 	wait = 2 SECONDS
 	priority = FIRE_PRIORITY_SHUTTLES
-	init_order = INIT_ORDER_SHUTTLES
+	dependencies = list(
+		/datum/controller/subsystem/machines,
+		/datum/controller/subsystem/atoms,
+		/datum/controller/subsystem/radio
+	)
 	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 
@@ -54,7 +58,7 @@ SUBSYSTEM_DEF(shuttles)
 		var/datum/shuttle/S = working_shuttles[working_shuttles.len]
 		working_shuttles.len--
 		if(!istype(S) || QDELETED(S))
-			error("Bad entry in SSshuttles.process_shuttles - [log_info_line(S)] ")
+			log_world("## ERROR Bad entry in SSshuttles.process_shuttles - [log_info_line(S)] ")
 			process_shuttles -= S
 			continue
 		// NOTE - In old system, /datum/shuttle/ferry was processed only if (F.process_state || F.always_process)
@@ -143,7 +147,7 @@ SUBSYSTEM_DEF(shuttles)
 	if(initial(shuttle.category) != shuttle_type) // Skip if its an "abstract class" datum
 		shuttle = new shuttle()
 		shuttle_areas |= shuttle.shuttle_area
-		log_debug("Initialized shuttle [shuttle] ([shuttle.type])")
+		log_world("Initialized shuttle [shuttle] ([shuttle.type])")
 		return shuttle
 		// Historical note:  No need to call shuttle.init_docking_controllers(), controllers register themselves
 		// and shuttles fetch refs in New().  Shuttles also dock() themselves in new if they want.
@@ -157,7 +161,7 @@ SUBSYSTEM_DEF(shuttles)
 				S.motherdock = S.current_location.landmark_tag
 				mothership.shuttle_area |= S.shuttle_area
 			else
-				error("Shuttle [S] was unable to find mothership [mothership]!")
+				log_world("## ERROR Shuttle [S] was unable to find mothership [mothership]!")
 
 // Let shuttles scan their owned areas for objects they want to configure (Called after mothership hookup)
 /datum/controller/subsystem/shuttles/proc/hook_up_shuttle_objects(shuttles_list)

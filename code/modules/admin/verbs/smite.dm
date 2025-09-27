@@ -1,4 +1,4 @@
-/client/proc/smite(var/mob/living/carbon/human/target in player_list)
+/client/proc/smite(var/mob/living/carbon/human/target in GLOB.player_list)
 	set name = "Smite"
 	set desc = "Abuse a player with various 'special treatments' from a list."
 	set category = "Fun.Do Not"
@@ -34,7 +34,7 @@
 
 		if(SMITE_SPONTANEOUSCOMBUSTION)
 			target.adjust_fire_stacks(10)
-			target.IgniteMob()
+			target.ignite_mob()
 			target.visible_message(span_danger("[target] bursts into flames!"))
 
 		if(SMITE_LIGHTNINGBOLT)
@@ -62,8 +62,7 @@
 			var/mob/living/simple_mob/shadekin/red/shadekin = new(Ts)
 			//Abuse of shadekin
 			shadekin.real_name = shadekin.name
-			shadekin.voremob_loaded = TRUE
-			shadekin.init_vore()
+			shadekin.init_vore(TRUE)
 			shadekin.ability_flags |= 0x1
 			shadekin.phase_shift()
 			shadekin.ai_holder.give_target(target)
@@ -116,8 +115,7 @@
 			target.transforming = TRUE //Cheap hack to stop them from moving
 			var/mob/living/simple_mob/shadekin/shadekin = new kin_type(Tt)
 			shadekin.real_name = shadekin.name
-			shadekin.voremob_loaded = TRUE
-			shadekin.init_vore()
+			shadekin.init_vore(TRUE)
 			shadekin.can_be_drop_pred = TRUE
 			shadekin.dir = SOUTH
 			shadekin.ability_flags |= 0x1
@@ -157,7 +155,7 @@
 
 		if(SMITE_AD_SPAM)
 			if(target.client)
-				target.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
+				target.client.create_fake_ad_popup_multiple(/atom/movable/screen/popup/default, 15)
 
 		if(SMITE_PEPPERNADE)
 			var/obj/item/grenade/chem_grenade/teargas/grenade = new /obj/item/grenade/chem_grenade/teargas
@@ -181,8 +179,11 @@
 	if(!istype(target))
 		return
 
+	var/real_user = user ? user : usr
+	var/user_name = real_user ? key_name(real_user) : "Remotely (Discord)"
+
 	to_chat(target,"You've been hit by bluespace artillery!")
-	log_and_message_admins("has been hit by Bluespace Artillery fired by [key_name(user ? user : usr)]", target)
+	log_and_message_admins("has been hit by Bluespace Artillery fired by [user_name]", target)
 
 	target.setMoveCooldown(2 SECONDS)
 
@@ -285,7 +286,7 @@ var/redspace_abduction_z
 
 	target.forceMove(locate(target.x,target.y,redspace_abduction_z))
 	to_chat(target,span_danger("The tug relaxes, but everything around you looks... slightly off."))
-	to_chat(user,span_notice("The mob has been moved. ([admin_jump_link(target,usr.client.holder)])"))
+	to_chat(user, span_notice("The mob has been moved. ([admin_jump_link(target, check_rights_for(usr.client, R_HOLDER))])"))
 
 	target.transforming = FALSE
 
@@ -318,7 +319,7 @@ var/redspace_abduction_z
 	var/tip = pick(bad_tips)
 	to_chat(target, "<span class='notice' style='font: small-caps bold large monospace!important'>Tip of the day:</span><br><span class='notice'>[tip]</span>")
 
-	var/obj/screen/loader = new(target)
+	var/atom/movable/screen/loader = new(target)
 	loader.name = "Autosaving..."
 	loader.desc = "A disc icon that represents your game autosaving. Please wait."
 	loader.icon = 'icons/obj/discs_vr.dmi'

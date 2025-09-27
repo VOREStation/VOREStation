@@ -1,8 +1,6 @@
 #define MESSAGE_SERVER_SPAM_REJECT 1
 #define MESSAGE_SERVER_DEFAULT_SPAM_LIMIT 10
 
-var/global/list/obj/machinery/message_server/message_servers = list()
-
 /datum/data_pda_msg
 	var/recipient = "Unspecified" //name of the person
 	var/sender = "Unspecified" //name of the sender
@@ -124,7 +122,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 				continue
 			if(Console.newmessagepriority < priority)
 				Console.newmessagepriority = priority
-				Console.icon_state = "req_comp[priority]"
+				Console.update_icon()
 			switch(priority)
 				if(2)
 					if(!Console.silent)

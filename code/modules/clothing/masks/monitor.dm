@@ -11,7 +11,7 @@
 	icon_state = "monitor"
 
 	var/monitor_state_index = "blank"
-	var/global/list/monitor_states = list()
+
 
 /obj/item/clothing/mask/monitor/set_dir()
 	dir = SOUTH
@@ -25,8 +25,8 @@
 		var/datum/robolimb/robohead = all_robolimbs[E.model]
 		canremove = FALSE
 		if(robohead.monitor_styles)
-			monitor_states = params2list(robohead.monitor_styles)
-			icon_state = monitor_states[monitor_state_index]
+			GLOB.monitor_states = params2list(robohead.monitor_styles)
+			icon_state = GLOB.monitor_states[monitor_state_index]
 			to_chat(H, span_notice("\The [src] connects to your display output."))
 
 /obj/item/clothing/mask/monitor/dropped(mob/user)
@@ -56,14 +56,14 @@
 	if(H.wear_mask != src)
 		to_chat(H, span_warning("You have not installed \the [src] yet."))
 		return
-	var/choice = tgui_input_list(H, "Select a screen icon:", "Head Monitor Choice", monitor_states)
+	var/choice = tgui_input_list(H, "Select a screen icon:", "Head Monitor Choice", GLOB.monitor_states)
 	if(choice)
 		monitor_state_index = choice
 		update_icon()
 
 /obj/item/clothing/mask/monitor/update_icon()
-	if(!(monitor_state_index in monitor_states))
+	if(!(monitor_state_index in GLOB.monitor_states))
 		monitor_state_index = initial(monitor_state_index)
-	icon_state = monitor_states[monitor_state_index]
+	icon_state = GLOB.monitor_states[monitor_state_index]
 	var/mob/living/carbon/human/H = loc
 	if(istype(H)) H.update_inv_wear_mask()

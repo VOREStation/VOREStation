@@ -96,7 +96,7 @@ export const CameraConsole = (props) => {
       <div className="CameraConsole__right">
         <div className="CameraConsole__toolbar">
           <b>Camera: </b>
-          {(activeCamera && activeCamera.name) || '—'}
+          {activeCamera?.name || '—'}
         </div>
         <div className="CameraConsole__toolbarRight">
           SEL:

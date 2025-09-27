@@ -34,7 +34,7 @@ export const SupplyConsoleMenuOrderList = (props) => {
       )}
       {displayedOrders.map((order, i) => (
         <Section
-          title={'Order ' + (i + 1)}
+          title={`Order ${i + 1}`}
           key={i}
           buttons={
             mode === 'All' && order_auth ? (

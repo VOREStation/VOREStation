@@ -32,7 +32,7 @@
 		return
 	if(istype(W,/obj/item/card/id))
 		var/obj/item/card/id/ID = W
-		if(access_keycard_auth in ID.GetAccess())
+		if(ACCESS_KEYCARD_AUTH in ID.GetAccess())
 			if(active == 1)
 				//This is not the device that made the initial request. It is the device confirming the request.
 				if(event_source)
@@ -45,7 +45,7 @@
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "You begin removing the faceplate from the [src]")
 		playsound(src, W.usesound, 50, 1)
-		if(do_after(user, 10 * W.toolspeed))
+		if(do_after(user, 1 SECOND * W.toolspeed, target = src))
 			to_chat(user, "You remove the faceplate from the [src]")
 			var/obj/structure/frame/A = new /obj/structure/frame(loc)
 			var/obj/item/circuitboard/M = new circuit(A)
@@ -183,21 +183,21 @@
 
 /obj/machinery/keycard_auth/proc/is_ert_blocked()
 	if(CONFIG_GET(flag/ert_admin_call_only)) return 1
-	return ticker.mode && ticker.mode.ert_disabled
+	return SSticker.mode && SSticker.mode.ert_disabled
 
 var/global/maint_all_access = 0
 
 /proc/make_maint_all_access()
 	maint_all_access = 1
-	to_world(span_alert(span_red(span_huge("Attention!"))))
-	to_world(span_alert(span_red("The maintenance access requirement has been revoked on all airlocks.")))
+	to_chat(world, span_alert(span_red(span_huge("Attention!"))))
+	to_chat(world, span_alert(span_red("The maintenance access requirement has been revoked on all airlocks.")))
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
-	to_world(span_alert(span_red(span_huge("Attention!"))))
-	to_world(span_alert(span_red("The maintenance access requirement has been readded on all maintenance airlocks.")))
+	to_chat(world, span_alert(span_red(span_huge("Attention!"))))
+	to_chat(world, span_alert(span_red("The maintenance access requirement has been readded on all maintenance airlocks.")))
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(maint_all_access && src.check_access_list(list(access_maint_tunnels)))
+	if(maint_all_access && src.check_access_list(list(ACCESS_MAINT_TUNNELS)))
 		return 1
 	return ..(M)

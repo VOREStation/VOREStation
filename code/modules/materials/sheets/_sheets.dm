@@ -31,6 +31,7 @@
 		default_type = MAT_STEEL
 	material = get_material_by_name("[default_type]")
 	if(!material)
+		stack_trace("Material of type: [default_type] does not exist.")
 		return INITIALIZE_HINT_QDEL
 
 	recipes = material.get_recipes()
@@ -46,6 +47,10 @@
 
 	matter = material.get_matter()
 	update_strings()
+
+/obj/item/stack/material/Destroy()
+	material = null
+	. = ..()
 
 /obj/item/stack/material/get_material()
 	return material
@@ -70,16 +75,19 @@
 
 /obj/item/stack/material/use(var/used)
 	. = ..()
+	if(QDELETED(src))
+		return
 	update_strings()
-	return
 
 /obj/item/stack/material/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
 	var/obj/item/stack/material/M = S
 	if(!istype(M) || material.name != M.material.name)
 		return 0
 	var/transfer = ..(S,tamount,1)
-	if(src) update_strings()
-	if(M) M.update_strings()
+	if(!QDELETED(src))
+		update_strings()
+	if(M)
+		M.update_strings()
 	return transfer
 
 /obj/item/stack/material/attack_self(var/mob/user)

@@ -29,6 +29,7 @@
 
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
+	var/is_building = FALSE
 
 /obj/item/stack/Initialize(mapload, var/starting_amount)
 	. = ..()
@@ -44,15 +45,19 @@
 				starting_amount = 1
 		set_amount(starting_amount, TRUE)
 	update_icon()
+	AddElement(/datum/element/sellable/material_stack)
 
 /obj/item/stack/Destroy()
-	if(uses_charge)
-		return 1
 	if (src && usr && usr.machine == src)
 		usr << browse(null, "window=stack")
 	if(islist(synths))
 		synths.Cut()
 	return ..()
+
+/obj/item/stack/get_material_composition(breakdown_flags)
+	. = ..()
+	for(var/M in .)
+		.[M] *= amount
 
 /obj/item/stack/update_icon()
 	if(no_variants)
@@ -158,6 +163,9 @@
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 
+	if(is_building)
+		return
+
 	if (!can_use(required))
 		if (produced>1)
 			to_chat(user, span_warning("You haven't got enough [src] to build \the [produced] [recipe.title]\s!"))
@@ -175,16 +183,19 @@
 
 	if (recipe.time)
 		to_chat(user, span_notice("Building [recipe.title] ..."))
-		if (!do_after(user, recipe.time))
+		is_building = TRUE
+		if (!do_after(user, recipe.time, target = src))
+			is_building = FALSE
 			return
 
+	is_building = FALSE
 	if (use(required))
 		var/atom/O
 		if(recipe.use_material)
 			O = new recipe.result_type(user.loc, recipe.use_material)
 
-			if(istype(O, /obj))
-				var/obj/Ob = O
+			if(istype(O, /obj/item))
+				var/obj/item/Ob = O
 
 				if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
 					Ob.matter.Cut()
@@ -200,8 +211,8 @@
 			O = new recipe.result_type(user.loc)
 
 			if(recipe.matter_material)
-				if(istype(O, /obj))
-					var/obj/Ob = O
+				if(istype(O, /obj/item))
+					var/obj/item/Ob = O
 
 					if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
 						Ob.matter.Cut()
@@ -215,16 +226,13 @@
 
 		O.set_dir(user.dir)
 		O.add_fingerprint(user)
-		//VOREStation Addition Start - Let's not store things that get crafted with materials like this, they won't spawn correctly when retrieved.
-		if (isobj(O))
-			var/obj/P = O
-			P.persist_storable = FALSE
-		//VOREStation Addition End
 		if (istype(O, /obj/item/stack))
 			var/obj/item/stack/S = O
 			S.amount = produced
 			S.add_to_stacks(user)
-
+		if (isitem(O))
+			var/obj/item/P = O
+			P.persist_storable = FALSE
 		if (istype(O, /obj/item/storage)) //BubbleWrap - so newly formed boxes are empty
 			for (var/obj/item/I in O)
 				qdel(I)
@@ -256,6 +264,10 @@
 	if(!uses_charge)
 		amount -= used
 		if (amount <= 0)
+			// Tell container that we used up a stack
+			if(istype( loc, /obj/item/storage))
+				var/obj/item/storage/holder = loc
+				holder.remove_from_storage( src, null)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
 		update_icon()
 		return 1
@@ -418,7 +430,11 @@
 	return
 
 /obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/stack))
+	if(istype(W, /obj/item/gripper))
+		var/obj/item/gripper/G = W
+		G.consolidate_stacks(src)
+
+	else if(istype(W, /obj/item/stack))
 		var/obj/item/stack/S = W
 		src.transfer_to(S)
 
@@ -442,6 +458,9 @@
 	. = ..()
 	if(pulledby && isturf(loc))
 		combine_in_loc()
+
+/obj/item/stack/proc/reagents_per_sheet()
+	return REAGENTS_PER_SHEET // units total of reagents when grinded
 
 /*
  * Recipe datum

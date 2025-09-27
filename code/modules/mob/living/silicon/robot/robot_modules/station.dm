@@ -1,25 +1,3 @@
-var/global/list/robot_modules = list(
-	"Standard"		= /obj/item/robot_module/robot/standard,
-	"Service" 		= /obj/item/robot_module/robot/clerical/butler,
-	"Clerical" 		= /obj/item/robot_module/robot/clerical/general,
-	"Clown"			= /obj/item/robot_module/robot/clerical/honkborg,
-	"Command"		= /obj/item/robot_module/robot/chound,
-	"Research" 		= /obj/item/robot_module/robot/research,
-	"Miner" 		= /obj/item/robot_module/robot/miner,
-	"Crisis" 		= /obj/item/robot_module/robot/medical/crisis,
-	"Surgeon" 		= /obj/item/robot_module/robot/medical/surgeon,
-	"Security" 		= /obj/item/robot_module/robot/security/general,
-	"Combat" 		= /obj/item/robot_module/robot/security/combat,
-	"Exploration"	= /obj/item/robot_module/robot/exploration,
-	"Engineering"	= /obj/item/robot_module/robot/engineering,
-	"Janitor" 		= /obj/item/robot_module/robot/janitor,
-	"Gravekeeper"	= /obj/item/robot_module/robot/gravekeeper,
-	"Lost"			= /obj/item/robot_module/robot/lost,
-	"Protector" 	= /obj/item/robot_module/robot/syndicate/protector,
-	"Mechanist" 	= /obj/item/robot_module/robot/syndicate/mechanist,
-	"Combat Medic"	= /obj/item/robot_module/robot/syndicate/combat_medic
-	)
-
 /obj/item/robot_module
 	name = "robot module"
 	icon = 'icons/obj/module.dmi'
@@ -105,15 +83,9 @@ var/global/list/robot_modules = list(
 	R.scrubbing = FALSE
 
 /obj/item/robot_module/Destroy()
-	for(var/module in modules)
-		qdel(module)
-	for(var/emg in emag)
-		qdel(emg)
-	for(var/synth in synths)
-		qdel(synth)
-	modules.Cut()
-	synths.Cut()
-	emag.Cut()
+	QDEL_LIST(modules)
+	QDEL_LIST(emag)
+	QDEL_LIST(synths)
 	return ..()
 
 /obj/item/robot_module/emp_act(severity)
@@ -211,6 +183,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/melee/robotic/jaws/small(src)
 	src.modules += new /obj/item/gripper/scene(src)
+	src.modules += new /obj/item/robo_dice(src)
 
 /obj/item/robot_module/robot/standard
 	name = "standard robot module"
@@ -391,6 +364,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/rcd/electric/mounted/borg(src)
 	src.modules += new /obj/item/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/dogborg/stasis_clamp(src)
+	src.modules += new /obj/item/storage/pouch/eng_parts/borg(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
@@ -685,7 +659,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/robot_module/robot/research/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
-	src.modules += new /obj/item/portable_destructive_analyzer(src)
+	src.modules += new /obj/item/experi_scanner(src)
 	src.modules += new /obj/item/robotanalyzer(src)
 	src.modules += new /obj/item/card/robot(src)
 	src.modules += new /obj/item/gripper/research(src)

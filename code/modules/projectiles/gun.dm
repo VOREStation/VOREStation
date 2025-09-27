@@ -72,7 +72,7 @@
 
 	var/wielded_item_state
 	var/one_handed_penalty = 0 // Penalty applied if someone fires a two-handed gun with one hand.
-	var/obj/screen/auto_target/auto_target
+	var/atom/movable/screen/auto_target/auto_target
 	var/shooting = 0
 	var/next_fire_time = 0
 
@@ -174,46 +174,46 @@
 /obj/item/gun/proc/special_check(var/mob/user)
 
 	if(!isliving(user))
-		return 0
+		return FALSE
 	if(!user.IsAdvancedToolUser())
-		return 0
+		return FALSE
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
 		if(!S.IsHumanoidToolUser(src))
-			return 0
+			return FALSE
 
 	var/mob/living/M = user
 	if(istype(M))
 		if(M.has_modifier_of_type(/datum/modifier/underwater_stealth))
-			to_chat(user,span_warning("You cannot use guns whilst hiding underwater!"))
-			return 0
+			to_chat(user, span_warning("You cannot use guns whilst hiding underwater!"))
+			return FALSE
+		else if(M.has_modifier_of_type(/datum/modifier/phased_out))
+			to_chat(user, span_warning("You cannot use guns whilst incorporeal!"))
+			return FALSE
 		else if(M.has_modifier_of_type(/datum/modifier/rednet))
-			to_chat(user,span_warning("Your gun refuses to fire!"))
-			return 0
+			to_chat(user, span_warning("Your gun refuses to fire!"))
+			return FALSE
 		else if(M.has_modifier_of_type(/datum/modifier/trait/thickdigits))
-			to_chat(user,span_warning("Your hands can't pull the trigger!!"))
-			return 0
+			to_chat(user, span_warning("Your hands can't pull the trigger!!"))
+			return FALSE
 		else if(M.has_modifier_of_type(/datum/modifier/shield_projection/melee_focus))
-			to_chat(user,span_warning("The shield projection around you prevents you from using anything but melee!!"))
-			return 0
+			to_chat(user, span_warning("The shield projection around you prevents you from using anything but melee!!"))
+			return FALSE
 	if(dna_lock && attached_lock.stored_dna)
 		if(!authorized_user(user))
 			if(attached_lock.safety_level == 0)
 				to_chat(M, span_danger("\The [src] buzzes in dissapointment and displays an invalid DNA symbol."))
-				return 0
+				return FALSE
 			if(!attached_lock.exploding)
 				if(attached_lock.safety_level == 1)
 					to_chat(M, span_danger("\The [src] hisses in dissapointment."))
 					visible_message(span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")), span_game(span_say(span_name("\The [src]") + " announces, \"Self-destruct occurring in ten seconds.\"")))
 					attached_lock.exploding = 1
-					spawn(100)
-						explosion(src, 0, 0, 3, 4)
-						sleep(1)
-						qdel(src)
-					return 0
+					addtimer(CALLBACK(src, PROC_REF(lock_explosion)), 10 SECONDS, TIMER_DELETE_ME)
+					return FALSE
 	if(HULK in M.mutations)
 		to_chat(M, span_danger("Your fingers are much too large for the trigger guard!"))
-		return 0
+		return FALSE
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
@@ -227,8 +227,12 @@
 				M.drop_item()
 		else
 			handle_click_empty(user)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
+
+/obj/item/gun/proc/lock_explosion()
+	explosion(src, 0, 0, 3, 4)
+	QDEL_IN(src, 1)
 
 /obj/item/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -262,7 +266,7 @@
 			auto_target.delay_del = 1//And reset the del so its like they got a new one and doesnt instantly vanish
 			to_chat(user, span_notice("You ready \the [src]!  Click and drag the target around to shoot."))
 		else//Otherwise just make a new one
-			auto_target = new/obj/screen/auto_target(get_turf(A), src)
+			auto_target = new/atom/movable/screen/auto_target(get_turf(A), src)
 			visible_message(span_danger("\The [user] readies the [src]!"))
 			playsound(src, 'sound/weapons/targeton.ogg', 50, 1)
 			to_chat(user, span_notice("You ready \the [src]!  Click and drag the target around to shoot."))
@@ -301,7 +305,7 @@
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			to_chat(user, span_notice("You begin removing \the [attached_lock] from \the [src]."))
 			playsound(src, A.usesound, 50, 1)
-			if(do_after(user, 25 * A.toolspeed))
+			if(do_after(user, 25 * A.toolspeed, target = src))
 				to_chat(user, span_notice("You remove \the [attached_lock] from \the [src]."))
 				user.put_in_hands(attached_lock)
 				dna_lock = 0
@@ -330,7 +334,7 @@
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 
 		//makes sure that the thing is equipped, so that we can't drag it into our hand from miles away.
@@ -341,7 +345,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)
@@ -527,13 +531,7 @@
 			if(ticker < burst)
 				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
 
-	var/target_for_log
-	if(ismob(target))
-		target_for_log = target
-	else
-		target_for_log = "[target.name]"
-
-	add_attack_logs("Unmanned",target_for_log,"Fired [src.name]")
+	add_attack_logs(src,target,"Fired [src.name] (Unmanned)")
 
 
 //obtains the next projectile to fire
@@ -577,13 +575,7 @@
 			"You hear a [fire_sound_text]!"
 			)
 
-	var/target_for_log
-	if(ismob(target))
-		target_for_log = target
-	else
-		target_for_log = "[target.name]"
-
-	add_attack_logs(user, target_for_log, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
+	add_attack_logs(user, target, "Fired gun '[src.name]' ([reflex ? "REFLEX" : "MANUAL"])")
 
 //called after successfully firing
 /obj/item/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
@@ -727,7 +719,7 @@
 
 	mouthshoot = 1
 	M.visible_message(span_red("[user] sticks their gun in their mouth, ready to pull the trigger..."))
-	if(!do_after(user, 40))
+	if(!do_after(user, 4 SECONDS, target = src))
 		M.visible_message(span_blue("[user] decided life was worth living"))
 		mouthshoot = 0
 		return

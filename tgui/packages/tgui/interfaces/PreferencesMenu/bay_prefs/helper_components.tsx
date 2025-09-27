@@ -1,4 +1,4 @@
-import React, {
+import {
   type PropsWithChildren,
   type ReactNode,
   useCallback,
@@ -74,9 +74,7 @@ export const drawColorizedIconToOffscreenCanvas = async (
 
   let image;
   try {
-    image = await getImage(
-      icon + '?state=' + icon_state + '&dir=' + (dir || '2'),
-    );
+    image = await getImage(`${icon}?state=${icon_state}&dir=${dir || '2'}`);
   } catch (e) {
     return null;
   }

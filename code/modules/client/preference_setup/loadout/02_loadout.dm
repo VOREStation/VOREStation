@@ -19,13 +19,13 @@ var/list/gear_datums = list()
 		var/use_category = initial(G.sort_category)
 
 		if(!use_name)
-			error("Loadout - Missing display name: [G]")
+			log_world("## ERROR Loadout - Missing display name: [G]")
 			continue
 		if(isnull(initial(G.cost)))
-			error("Loadout - Missing cost: [G]")
+			log_world("## ERROR Loadout - Missing cost: [G]")
 			continue
 		if(!initial(G.path))
-			error("Loadout - Missing path definition: [G]")
+			log_world("## ERROR Loadout - Missing path definition: [G]")
 			continue
 
 		if(!loadout_categories[use_category])
@@ -53,7 +53,7 @@ var/list/gear_datums = list()
 		for(var/j in entries)
 			entries["[j]"] = path2text_list(entries["[j]"])
 		pref.gear_list["[i]"] = entries
-	pref.gear_slot = save_data["gear_slot"]
+	pref.gear_slot = save_data["gear_slot"] || 1
 
 /datum/category_item/player_setup_item/loadout/loadout/save_character(list/save_data)
 	var/list/all_gear = list()
@@ -69,8 +69,8 @@ var/list/gear_datums = list()
 	save_data["gear_slot"] = pref.gear_slot
 
 /datum/category_item/player_setup_item/loadout/loadout/proc/is_valid_gear(datum/gear/G, max_cost)
-	if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
-		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
+	if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client)
+		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && (G.whitelisted != pref.species && G.whitelisted != pref.custom_base))
 			return FALSE
 		if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(pref.client, GLOB.all_species[G.whitelisted]))
 			return FALSE
@@ -86,13 +86,15 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout/loadout/sanitize_character()
 	var/mob/preference_mob = preference_mob()
-	if(LAZYLEN(pref.gear_list) < 0)
-		return
 
 	if(pref.gear_slot > LAZYLEN(pref.gear_list))
 		pref.gear_slot = 1
 
 	var/list/active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
+	if(!active_gear_list)
+		pref.gear_list["[pref.gear_slot]"] = list()
+		active_gear_list = LAZYACCESS(pref.gear_list, "[pref.gear_slot]")
+
 	var/total_cost = 0
 	for(var/gear_name in active_gear_list)
 		if(!gear_datums[gear_name])
@@ -213,7 +215,7 @@ var/list/gear_datums = list()
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("clear_loadout")
-			active_gear_list.Cut()
+			active_gear_list?.Cut()
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("copy_loadout")
@@ -235,7 +237,7 @@ var/list/gear_datums = list()
 				if(TG.display_name in active_gear_list)
 					active_gear_list -= TG.display_name
 				else if(get_total() + TG.cost <= MAX_GEAR_COST)
-					active_gear_list[TG.display_name] = list()
+					LAZYSET(active_gear_list, TG.display_name, list())
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 		if("gear_tweak")
@@ -243,7 +245,11 @@ var/list/gear_datums = list()
 			var/datum/gear_tweak/tweak = locate(params["tweak"])
 			if(!tweak || !gear || !(tweak in gear.gear_tweaks))
 				return TOPIC_HANDLED
-			var/metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
+			var/metadata
+			if(istype(tweak, /datum/gear_tweak/matrix_recolor))
+				metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak), gear)
+			else
+				metadata = tweak.get_metadata(user, get_tweak_metadata(gear, tweak))
 			if(!metadata)
 				return TOPIC_HANDLED
 			set_tweak_metadata(gear, tweak, metadata)

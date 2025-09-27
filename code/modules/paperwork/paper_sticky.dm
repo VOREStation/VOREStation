@@ -34,7 +34,7 @@
 		if(writing_space <= 0)
 			to_chat(user, span_warning("There is no room left on \the [src]."))
 			return
-		var/text = sanitizeSafe(tgui_input_text(user, "What would you like to write?", null, null, writing_space), writing_space)
+		var/text = sanitizeSafe(tgui_input_text(user, "What would you like to write?", null, null, writing_space, encode = FALSE), writing_space)
 		if(!text || thing.loc != user || (!Adjacent(user) && loc != user) || user.incapacitated())
 			return
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " jots a note down on \the [src]."))

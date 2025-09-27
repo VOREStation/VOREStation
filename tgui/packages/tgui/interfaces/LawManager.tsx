@@ -219,7 +219,7 @@ export const LawManagerLaws = (props: {
       {has_ion_laws ? (
         <LawsTable
           laws={ion_laws}
-          title={ion_law_nr + ' Laws:'}
+          title={`${ion_law_nr} Laws:`}
           isAdmin={isAdmin}
           isMalf={isMalf}
           mt={-2}
@@ -465,7 +465,7 @@ export const LawManagerLawSets = (props: {
   law_sets: law_pack[];
   ion_law_nr: string;
   searchLawName: string;
-  onSearchLawName: Function;
+  onSearchLawName: React.Dispatch<React.SetStateAction<string>>;
   isAdmin: BooleanLike;
   isMalf: BooleanLike;
 }) => {
@@ -527,7 +527,7 @@ export const LawManagerLawSets = (props: {
                 <LawsTable
                   noButtons
                   laws={laws.laws.ion_laws}
-                  title={ion_law_nr + ' Laws:'}
+                  title={`${ion_law_nr} Laws:`}
                   isAdmin={isAdmin}
                   isMalf={isMalf}
                 />

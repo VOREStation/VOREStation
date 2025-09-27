@@ -439,7 +439,7 @@
 	..()
 
 /obj/item/storage/fancy/cigar/choiba
-	name = "/improper Choiba cigar case"
+	name = "\improper Choiba cigar case"
 	desc = "A fancy case for holding your cigars when you are not smoking them."
 	description_fluff = "The exquisite wooden case bears the markings of the \
 	Choiba cigar company based out of Cuba. The perfectly humidized case keeps \
@@ -505,7 +505,7 @@
 	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
 	max_storage_space = ITEMSIZE_COST_SMALL * 6 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6
-	req_access = list(access_virology)
+	req_access = list(ACCESS_VIROLOGY)
 
 /obj/item/storage/lockbox/vials/Initialize(mapload)
 	. = ..()

@@ -92,6 +92,7 @@ export const RustCoreMonitorContent = (props) => {
             <Table.Cell>{core.field_temperature}</Table.Cell>
             <Table.Cell>
               <Knob
+                tickWhileDragging
                 size={1.25}
                 color={!!core.has_field && 'yellow'}
                 value={core.target_field_strength}
@@ -99,7 +100,7 @@ export const RustCoreMonitorContent = (props) => {
                 minValue={1}
                 maxValue={1000}
                 stepPixelSize={1}
-                onDrag={(e, value) =>
+                onChange={(e, value) =>
                   act('set_fieldstr', {
                     core: core.ref,
                     fieldstr: value,

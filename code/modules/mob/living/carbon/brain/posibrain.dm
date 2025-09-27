@@ -8,7 +8,7 @@
 
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 	locked = 0
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
@@ -23,7 +23,7 @@
 		addtimer(CALLBACK(src, PROC_REF(reset_search)), 60 SECONDS, TIMER_DELETE_ME)
 
 /obj/item/mmi/digital/posibrain/proc/request_player()
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
 		if(jobban_isbanned(O, JOB_AI) && jobban_isbanned(O, JOB_CYBORG))

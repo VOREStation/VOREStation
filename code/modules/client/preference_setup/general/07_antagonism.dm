@@ -86,17 +86,17 @@
 			return TOPIC_REFRESH
 
 		if("exploitable_record")
-			var/exploitmsg = sanitize(tgui_input_text(user,"Set exploitable information about you here.","Exploitable Information", html_decode(pref.exploit_record), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH, extra = 0)
+			var/exploitmsg = tgui_input_text(user,"Set exploitable information about you here.","Exploitable Information", html_decode(pref.exploit_record), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE)
 			if(!isnull(exploitmsg) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 				pref.exploit_record = exploitmsg
 				return TOPIC_REFRESH
 
 		if("antagfaction")
-			var/choice = tgui_input_list(user, "Please choose an antagonistic faction to work for.", "Character Preference", antag_faction_choices + list("None","Other"), pref.antag_faction)
+			var/choice = tgui_input_list(user, "Please choose an antagonistic faction to work for.", "Character Preference", GLOB.antag_faction_choices + list("None","Other"), pref.antag_faction)
 			if(!choice || !CanUseTopic(user))
 				return TOPIC_NOACTION
 			if(choice == "Other")
-				var/raw_choice = sanitize(tgui_input_text(user, "Please enter a faction.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
+				var/raw_choice = tgui_input_text(user, "Please enter a faction.", "Character Preference", null, MAX_NAME_LEN)
 				if(raw_choice)
 					pref.antag_faction = raw_choice
 			else
@@ -104,7 +104,7 @@
 			return TOPIC_REFRESH
 
 		if("antagvis")
-			var/choice = tgui_input_list(user, "Please choose an antagonistic visibility level.", "Character Preference", antag_visiblity_choices, pref.antag_vis)
+			var/choice = tgui_input_list(user, "Please choose an antagonistic visibility level.", "Character Preference", GLOB.antag_visiblity_choices, pref.antag_vis)
 			if(!choice || !CanUseTopic(user))
 				return TOPIC_NOACTION
 			else

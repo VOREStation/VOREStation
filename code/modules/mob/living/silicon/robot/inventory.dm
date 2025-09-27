@@ -157,6 +157,9 @@
 	for(var/obj/item/robotic_multibelt/materials/material_belt in contents)
 		if(material_belt.selected_item == O)
 			return TRUE
+	for(var/obj/item/gripper/gripper in contents)
+		if(gripper.current_pocket == O)
+			return TRUE
 	return FALSE
 
 /mob/living/silicon/robot/proc/get_active_modules()

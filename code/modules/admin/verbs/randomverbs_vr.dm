@@ -73,8 +73,8 @@
 			new_mob.vore_selected = new_mob.vore_organs[1]
 			if(isanimal(new_mob))
 				var/mob/living/simple_mob/Sm = new_mob
-				Sm.vore_active = TRUE
-				Sm.voremob_loaded = TRUE
+				if(!Sm.voremob_loaded || !Sm.vore_active)
+					Sm.init_vore(TRUE)
 
 	log_admin("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].")
 	message_admins("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].", 1)
@@ -100,7 +100,7 @@ ADMIN_VERB(cmd_admin_z_narrate, (R_ADMIN|R_MOD|R_EVENT), "Z Narrate", "Narrates 
 	var/pos_z = get_z(user.mob)
 	if (!pos_z)
 		return
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.z == pos_z)
 			to_chat(M, msg)
 	log_admin("ZNarrate: [key_name(user)] : [msg]")

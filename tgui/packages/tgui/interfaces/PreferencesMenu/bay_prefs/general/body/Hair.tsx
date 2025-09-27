@@ -32,7 +32,7 @@ export const HairImageButton = (
     async (ctx: OffscreenCanvasRenderingContext2D) => {
       ctx.globalCompositeOperation = 'destination-over';
       const image = await getImage(
-        Byond.iconRefMap['icons/mob/human.dmi'] + '?state=body_f_s&dir=2',
+        `${Byond.iconRefMap['icons/mob/human.dmi']}?state=body_f_s&dir=2`,
       );
 
       ctx.drawImage(image, 0, 0, 32, 10, 0, 0, 64, 20);
@@ -51,7 +51,7 @@ export const HairImageButton = (
   return (
     <ColorizedImageButton
       iconRef={data.icon}
-      iconState={data.icon_state + '_s'}
+      iconState={`${data.icon_state}_s`}
       color={hairColor}
       onClick={onClick}
       tooltip={props.tooltip}
@@ -71,6 +71,7 @@ export const HairDimmer = (props: {
 }) => {
   const { act } = useBackend();
   const { setShow, data, serverData, staticData } = props;
+  const { available_hair_styles = [] } = staticData;
   // if the data is missing our UI is fucked anyways
   const our_species = serverData.species.find(
     (x) => x.name === data.species,
@@ -78,7 +79,7 @@ export const HairDimmer = (props: {
   const hairColor = data.hair_color;
 
   const [search, setSearch] = useState('');
-  const hair_styles = staticData.available_hair_styles.filter((x) =>
+  const hair_styles = available_hair_styles.filter((x) =>
     search ? x.toLowerCase().includes(search.toLowerCase()) : true,
   );
   hair_styles.sort();

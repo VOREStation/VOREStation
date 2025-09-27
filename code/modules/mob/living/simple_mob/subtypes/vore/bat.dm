@@ -42,11 +42,7 @@
 	emote_hear = list("chirps","pings","clicks")
 	emote_see = list("flaps","grooms itself")
 
-/mob/living/simple_mob/vore/bat/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/bat/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

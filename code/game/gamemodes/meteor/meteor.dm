@@ -10,10 +10,6 @@
 	deny_respawn = 0
 	var/next_wave = METEOR_DELAY
 
-/datum/game_mode/meteor/post_setup()
-	defer_powernet_rebuild = 2//Might help with the lag
-	..()
-
 /datum/game_mode/meteor/process()
 	if(world.time >= next_wave)
 		next_wave = world.time + GLOB.meteor_wave_delay
@@ -22,7 +18,7 @@
 /datum/game_mode/meteor/declare_completion()
 	var/text
 	var/survivors = 0
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.stat != DEAD)
 			var/turf/location = get_turf(player.loc)
 			if(!location)	continue
@@ -39,14 +35,13 @@
 			survivors++
 
 	if(survivors)
-		to_world(span_world("The following survived the meteor storm") + ":[text]")
+		to_chat(world, span_world("The following survived the meteor storm") + ":[text]")
 	else
-		to_world(span_boldannounce("Nobody survived the meteor storm!"))
+		to_chat(world, span_boldannounce("Nobody survived the meteor storm!"))
 
 	feedback_set_details("round_end_result","end - evacuation")
 	feedback_set("round_end_result",survivors)
 
-	..()
-	return 1
+	return ..()
 
 #undef METEOR_DELAY

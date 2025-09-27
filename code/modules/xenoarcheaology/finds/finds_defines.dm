@@ -1,36 +1,6 @@
 /// This is the big file of various xenoarch spawns (what each digsite spawns), digsite spawn rates, and
 
 /// <summary>
-/// This is a list of what the depth_scanner can show, depending on what get_responsive_reagent returns below.
-/// </summary>
-var/global/list/responsive_carriers = list(
-	REAGENT_ID_CARBON,
-	REAGENT_ID_POTASSIUM,
-	REAGENT_ID_HYDROGEN,
-	REAGENT_ID_NITROGEN,
-	REAGENT_BLOOD,
-	REAGENT_ID_MERCURY,
-	REAGENT_ID_IRON,
-	REAGENT_ID_PHORON)
-
-/// <summary>
-/// This is a list of what the depth_scanner shows the user. In order with the above list.
-/// </summary>
-/// <example>
-/// If the get_responsive_reagent returns 'REAGENT_ID_CARBON' it will show up to the user as "Trace organic cells"
-/// If the get_responsive_reagent returns "REAGENT_ID_CHLORINE" it will show up to the user as "Metamorphic/igneous rock composite"
-/// </example>
-var/global/list/finds_as_strings = list(
-	"Trace organic cells", 							//Carbon
-	"Long exposure particles", 						//Potassium
-	"Trace water particles", 						//Hydrogen
-	"Crystalline structures", 						//Nitrogen
-	"Abnormal energy signatures",					//Occult
-	"Metallic derivative", 							//Mercury
-	"Metallic composite", 							//Iron
-	"Anomalous material") 							//Phoron
-
-/// <summary>
 /// This is called when using the depth_scanner on an artifact tile. It tells you what artifact group type is contained inside.
 /// Previously, we only used MERCURY, IRON, NITROGEN, POTASSIUM, CARBON, PHORON. Now, we expanded!
 /// </summary>

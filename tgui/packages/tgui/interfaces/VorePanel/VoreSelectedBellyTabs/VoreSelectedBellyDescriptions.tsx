@@ -142,9 +142,7 @@ export const VoreSelectedBellyDescriptions = (props: {
                     editMode={editMode}
                     active={!!emote_active}
                     content={emote_active ? 'Active' : 'Inactive'}
-                    tooltip={
-                      (emote_active ? 'Dis' : 'En') + 'ables idle emotes.'
-                    }
+                    tooltip={`${emote_active ? 'Dis' : 'En'}ables idle emotes.`}
                   />
                 </LabeledList.Item>
                 <LabeledList.Item label="Idle Emote Delay">

@@ -10,7 +10,7 @@
 /datum/event2/event/pda_spam
 	length_lower_bound = 30 MINUTES
 	length_upper_bound = 1 HOUR
-	var/spam_debug = FALSE // If true, notices of the event sending spam go to `log_debug()`.
+	var/spam_debug = FALSE // If true, notices of the event sending spam go to `log_game()`.
 	var/last_spam_time = null // world.time of most recent spam.
 	var/next_spam_attempt_time = 0 // world.time of next attempt to try to spam.
 	var/give_up_after = 5 MINUTES
@@ -34,7 +34,7 @@
 	var/obj/item/pda/P = null
 	var/list/viables = list()
 
-	for(var/obj/item/pda/check_pda in sortAtom(PDAs))
+	for(var/obj/item/pda/check_pda in sort_names(PDAs))
 		if (!check_pda.owner || check_pda == src || check_pda.hidden)
 			continue
 
@@ -60,7 +60,7 @@
 	if(!.)
 		// Give up if nobody was reachable for five minutes.
 		if(last_spam_time + give_up_after < world.time)
-			log_debug("PDA Spam event giving up after not being able to spam for awhile.")
+			log_game("PDA Spam event giving up after not being able to spam for awhile.")
 			return TRUE
 
 /datum/event2/event/pda_spam/proc/can_spam()
@@ -88,7 +88,7 @@
 		if(2)
 			sender = pick(300;"QuickDatingSystem",200;"Find your russian bride",50;"Tajaran beauties are waiting",50;"Find your secret skrell crush",50;"Beautiful unathi brides")
 			message = pick("Your profile caught my attention and I wanted to write and say hello (QuickDating).",\
-			"If you will write to me on my email [pick(first_names_female)]@[pick(last_names)].[pick("ru","ck","tj","ur","nt")] I shall necessarily send you a photo (QuickDating).",\
+			"If you will write to me on my email [pick(GLOB.first_names_female)]@[pick(GLOB.last_names)].[pick("ru","ck","tj","ur","nt")] I shall necessarily send you a photo (QuickDating).",\
 			"I want that we write each other and I hope, that you will like my profile and you will answer me (QuickDating).",\
 			"You have (1) new message!",\
 			"You have (2) new profile views!")
@@ -134,7 +134,7 @@
 	var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 	PM.notify(span_bold("Message from [sender] (Unknown / spam?), ") + "\"[message]\" (Unable to Reply)", 0)
 	if(spam_debug)
-		log_debug("PDA Spam event sent spam to \the [P].")
+		log_game("PDA Spam event sent spam to \the [P].")
 
 
 /datum/event2/event/pda_spam/proc/pick_message_server()

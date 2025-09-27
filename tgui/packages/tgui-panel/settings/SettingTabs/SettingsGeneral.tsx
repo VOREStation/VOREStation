@@ -11,7 +11,6 @@ import {
   Slider,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 import { capitalize } from 'tgui-core/string';
 
 import { rebuildChat } from '../../chat/actions';
@@ -128,7 +127,7 @@ export const SettingsGeneral = (props) => {
                 maxValue={32}
                 value={fontSize}
                 unit="px"
-                format={(value) => toFixed(value)}
+                format={(value) => value.toFixed()}
                 onChange={(e, value) =>
                   dispatch(updateSettings({ fontSize: value }))
                 }
@@ -138,13 +137,14 @@ export const SettingsGeneral = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Line height">
           <Slider
+            tickWhileDragging
             width="100%"
             step={0.01}
             minValue={0.8}
             maxValue={5}
             value={lineHeight}
-            format={(value) => toFixed(value, 2)}
-            onDrag={(e, value) =>
+            format={(value) => value.toFixed(2)}
+            onChange={(e, value) =>
               dispatch(
                 updateSettings({
                   lineHeight: value,

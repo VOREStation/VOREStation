@@ -83,11 +83,13 @@
 #define DO_AUTOPILOT 5
 
 #define MAX_MESSAGE_LEN       4096
+#define MAX_HUGE_MESSAGE_LEN  8192
 #define MAX_PAPER_MESSAGE_LEN 6144
 #define MAX_BOOK_MESSAGE_LEN  24576
 #define MAX_RECORD_LENGTH	  24576
 #define MAX_LNAME_LEN         64
 #define MAX_NAME_LEN          52
+#define MAX_KEYPAD_INPUT_LEN  256
 #define MAX_FEEDBACK_LENGTH      4096
 #define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
@@ -116,6 +118,7 @@
 #define AREA_BLOCK_SUIT_SENSORS		0x800	// If suit sensors are blocked in the area.
 #define AREA_BLOCK_TRACKING			0x1000	// If camera tracking is blocked in the area.
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
+#define AREA_BLOCK_INSTANT_BUILDING	0x4000	// If an area blocks the usage of instant building creation items/mechanics such as shelter capsules
 // The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
 #define PHASE_SHIELDED				0x100000 // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.
@@ -530,6 +533,8 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define COLORMATE_HSV 2
 #define COLORMATE_MATRIX 3
 
+#define DEFAULT_COLORMATRIX list(1, 0, 0, 0, 1, 0, 0, 0, 1,	0, 0, 0)
+
 #define DEPARTMENT_OFFDUTY			"Off-Duty"
 
 #define ANNOUNCER_NAME "Facility PA"
@@ -596,3 +601,9 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 
 #define WEIGHT_MIN 70
 #define WEIGHT_MAX 500
+
+#define LADDER_CONSTRUCTION_UNANCHORED 0
+#define LADDER_CONSTRUCTION_WRENCHED 1
+#define LADDER_CONSTRUCTION_WELDED 2
+
+#define FINGERPRINT_COMPLETE 6

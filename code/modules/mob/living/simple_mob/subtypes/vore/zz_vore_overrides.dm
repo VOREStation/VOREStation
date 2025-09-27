@@ -215,17 +215,17 @@
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
 
+/mob/living/simple_mob/hostile/carp/pike
+	vore_active = 1
+	// NO VORE SPRITES
+
 /mob/living/simple_mob/animal/space/carp/holographic
 	vore_icons = 0 // NO VORE SPRITES
 	vore_digest_chance = 0
 	vore_absorb_chance = 0
 
 // Override stuff for holodeck carp to make them not digest when set to safe!
-/mob/living/simple_mob/animal/space/carp/holographic/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/animal/space/carp/holographic/load_default_bellies()
 	. = ..()
 	var/safe = (faction == FACTION_NEUTRAL)
 	for(var/obj/belly/B as anything in vore_organs)

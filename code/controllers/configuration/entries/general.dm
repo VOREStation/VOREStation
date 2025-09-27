@@ -1,14 +1,35 @@
 /// server name (the name of the game window)
 /datum/config_entry/string/servername
 
+/// Countdown between lobby and the round starting.
+/datum/config_entry/number/lobby_countdown
+	default = 120
+	integer = FALSE
+	min_val = 0
+
+/// Post round murder death kill countdown.
+/datum/config_entry/number/round_end_countdown
+	default = 25
+	integer = FALSE
+	min_val = 0
+
 /// generate numeric suffix based on server port
 /datum/config_entry/flag/server_suffix
 
 /// log messages sent in OOC
 /datum/config_entry/flag/log_ooc
 
+/// log messages sent in LOOC
+/datum/config_entry/flag/log_looc
+
 /// log login/logout
 /datum/config_entry/flag/log_access
+
+/// Config entry which special logging of failed logins under suspicious circumstances.
+/datum/config_entry/flag/log_suspicious_login
+
+/// log prayers
+/datum/config_entry/flag/log_prayer
 
 /// log client say
 /datum/config_entry/flag/log_say
@@ -17,12 +38,11 @@
 /datum/config_entry/flag/log_admin
 	protection = CONFIG_ENTRY_LOCKED
 
-/// log debug output
-/datum/config_entry/flag/log_debug
-	default = TRUE
-
 /// log game events
 /datum/config_entry/flag/log_game
+
+/// log assets
+/datum/config_entry/flag/log_asset
 
 /// log voting
 /datum/config_entry/flag/log_vote
@@ -39,8 +59,8 @@
 /// log admin chat messages
 /datum/config_entry/flag/log_adminchat
 
-/// log warnings admins get about bomb construction and such
-/datum/config_entry/flag/log_adminwarn
+/// log EVENT chat messages
+/datum/config_entry/flag/log_eventchat
 
 /// log pda messages
 /datum/config_entry/flag/log_pda
@@ -60,8 +80,15 @@
 /// logs graffiti
 /datum/config_entry/flag/log_graffiti
 
+/// log all world.Topic() calls
+/datum/config_entry/flag/log_world_topic
+
 /// logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
 /datum/config_entry/flag/log_timers_on_bucket_reset
+
+/// Log human readable versions of json log entries
+/datum/config_entry/flag/log_as_human_readable
+	default = TRUE
 
 // FIXME: Unused
 ///datum/config_entry/string/nudge_script_path // where the nudge.py script is located
@@ -164,7 +191,7 @@
 /datum/config_entry/flag/allow_holidays/ValidateAndSet()
 	. = ..()
 	if(.)
-		Holiday = config_entry_value
+		GLOB.Holiday = config_entry_value
 
 /datum/config_entry/number/minute_topic_limit
 	config_entry_value = 250
@@ -181,6 +208,22 @@
 /datum/config_entry/number/second_click_limit
 	config_entry_value = 15
 	min_val = 0
+
+/datum/config_entry/number/error_cooldown // The "cooldown" time for each occurrence of a unique error
+	default = 600
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/error_limit // How many occurrences before the next will silence them
+	default = 50
+
+/datum/config_entry/number/error_silence_time // How long a unique error will be silenced for
+	default = 6000
+	integer = FALSE
+
+/datum/config_entry/number/error_msg_delay // How long to wait between messaging admins about occurrences of a unique error
+	default = 50
+	integer = FALSE
 
 /datum/config_entry/number/fps
 	default = 20
@@ -221,9 +264,6 @@
 	default = TICK_LIMIT_MC_INIT_DEFAULT
 
 // var/static/Tickcomp = 0 // FIXME: Unused
-
-/// use socket_talk to communicate with other processes
-/datum/config_entry/flag/socket_talk
 
 // var/static/list/resource_urls = null // FIXME: Unused
 
@@ -462,9 +502,6 @@
 // FIXME: Unused
 ///datum/config_entry/number/simultaneous_pm_warning_timeout
 //	default = 100
-
-/// Defines whether the server uses recursive or circular explosions.
-/datum/config_entry/flag/use_recursive_explosions
 
 /// Multiplier for how much weaker explosions are on neighboring z levels.
 /datum/config_entry/number/multi_z_explosion_scalar
@@ -744,10 +781,106 @@
 /datum/config_entry/flag/discord_ahelps_disabled
 	default = FALSE
 
+/// So, nodebot is a supplement to the TGS discord bot pretty much. For things likes faxes and the manifest it's very helpful because it's able to render html into an image and post it.
+/datum/config_entry/flag/nodebot_enabled
+	default = FALSE
+
+/// We need to print the manifest to this location so nodebot can render it to chat.
+/// NOTE: TO BE REPLACED BY BETTER CODE FOR FETCHING MANIFEST
+/datum/config_entry/string/nodebot_location
+
+/datum/config_entry/string/fax_channel_tag
+
+/datum/config_entry/string/role_request_channel_tag
+
+/// These are for the role request TGS discord bot. Role IDs to ping.
+/datum/config_entry/string/role_request_id_command
+
+/datum/config_entry/string/role_request_id_security
+
+/datum/config_entry/string/role_request_id_engineering
+
+/datum/config_entry/string/role_request_id_medical
+
+/datum/config_entry/string/role_request_id_research
+
+/datum/config_entry/string/role_request_id_supply
+
+/datum/config_entry/string/role_request_id_service
+
+/datum/config_entry/string/role_request_id_expedition
+
+/datum/config_entry/string/role_request_id_silicon
+
+/// Only turn this on if you're not using the nodebot.
+/datum/config_entry/flag/discord_faxes_autoprint
+	default = FALSE
+
+/// Turn this off if you don't want the TGS bot sending you messages whenever a fax is sent to central.
+/datum/config_entry/flag/discord_faxes_disabled
+	default = FALSE
+
 /// Turn this on if you want all admin-PMs to go to be sent to discord, and not only the first message of a ticket.
 /datum/config_entry/flag/discord_ahelps_all
 	default = FALSE
 
+/datum/config_entry/number/mc_tick_rate/base_mc_tick_rate
+	integer = FALSE
+	default = 1
+
+/datum/config_entry/number/mc_tick_rate/high_pop_mc_tick_rate
+	integer = FALSE
+	default = 1.1
+
+/datum/config_entry/number/mc_tick_rate/high_pop_mc_mode_amount
+	default = 65
+
+/datum/config_entry/number/mc_tick_rate/disable_high_pop_mc_mode_amount
+	default = 60
+
+/datum/config_entry/number/mc_tick_rate
+	abstract_type = /datum/config_entry/number/mc_tick_rate
+
+/datum/config_entry/number/mc_tick_rate/ValidateAndSet(str_val)
+	. = ..()
+	if (.)
+		Master.UpdateTickRate()
+
+/datum/config_entry/flag/resume_after_initializations
+
+/datum/config_entry/flag/resume_after_initializations/ValidateAndSet(str_val)
+	. = ..()
+	if(. && MC_RUNNING())
+		world.sleep_offline = !config_entry_value
+
 /datum/config_entry/number/rounds_until_hard_restart
 	default = -1
 	min_val = 0
+
+/datum/config_entry/flag/auto_profile
+
+/datum/config_entry/number/profiler_interval
+	default = 300 SECONDS
+
+/datum/config_entry/number/drift_dump_threshold
+	default = 4 SECONDS
+
+/datum/config_entry/number/drift_profile_delay
+	default = 15 SECONDS
+
+/datum/config_entry/flag/forbid_all_profiling
+
+/datum/config_entry/flag/forbid_admin_profiling
+
+/datum/config_entry/flag/toast_notification_on_init
+
+/// If admins with +DEBUG can initialize byond-tracy midround.
+/datum/config_entry/flag/allow_tracy_start
+	protection = CONFIG_ENTRY_LOCKED
+
+/// If admins with +DEBUG can queue byond-tracy to run the next round.
+/datum/config_entry/flag/allow_tracy_queue
+	protection = CONFIG_ENTRY_LOCKED
+
+/// log vore interactions
+/datum/config_entry/flag/log_vore

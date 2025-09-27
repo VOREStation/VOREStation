@@ -43,7 +43,7 @@
 
 
 	if(!note)
-		error("Hardware without description: [C]")
+		log_world("## ERROR Hardware without description: [C]")
 		return
 
 	var/confirmation = tgui_alert(user, "[note] - Is this what you want?", "Hardware selection", list("Yes", "No"))
@@ -182,7 +182,7 @@
 		return
 
 	var/list/L = list()
-	for(var/mob/living/silicon/robot/RB in mob_list)
+	for(var/mob/living/silicon/robot/RB in GLOB.mob_list)
 		if(istype(RB, /mob/living/silicon/robot/drone))
 			continue
 		if(RB.connected_ai == A)
@@ -200,7 +200,7 @@
 		return
 
 	var/list/L = list()
-	for(var/mob/living/silicon/ai/AT in mob_list)
+	for(var/mob/living/silicon/ai/AT in GLOB.mob_list)
 		if(L == A)
 			continue
 		L.Add(AT)

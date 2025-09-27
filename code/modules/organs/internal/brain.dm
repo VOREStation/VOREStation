@@ -105,7 +105,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		brainmob.real_name = H.real_name
 
 		if(istype(H))
-			qdel_swap(brainmob.dna, H.dna.Clone())
+			QDEL_SWAP(brainmob.dna, H.dna.Clone())
 			brainmob.timeofhostdeath = H.timeofdeath
 			brainmob.ooc_notes = H.ooc_notes
 			brainmob.ooc_notes_likes = H.ooc_notes_likes
@@ -186,7 +186,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	can_assist = FALSE
 
 /obj/item/organ/internal/brain/slime
-	icon = 'icons/obj/surgery_vr.dmi'
+	icon = 'icons/obj/surgery.dmi'
 	name = "slime core"
 	desc = "A complex, organic knot of jelly and crystalline particles."
 	icon_state = "core"
@@ -220,7 +220,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	// This requires a promie/protean component for transformation and regeneration.
 	// This shouldn't use a brain mob for caching dna. That's what BRs are for.
 	var/datum/dna2/record/R = new /datum/dna2/record()
-	qdel_swap(R.dna, brainmob.dna.Clone())
+	QDEL_SWAP(R.dna, brainmob.dna.Clone())
 	R.ckey = brainmob.ckey
 	R.id = copytext(md5(brainmob.real_name), 2, 6)
 	R.name = R.dna.real_name
@@ -243,7 +243,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		if(ckey(clonemind.key) != R.ckey)
 			return 0
 	else
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(G.ckey == R.ckey)
 				if(G.can_reenter_corpse)
 					break
@@ -260,7 +260,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		H.dna = new /datum/dna()
 		H.dna.real_name = H.real_name
 	else
-		qdel_swap(H.dna, R.dna.Clone())
+		QDEL_SWAP(H.dna, R.dna.Clone())
 
 	H.UpdateAppearance()
 	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed

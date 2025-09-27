@@ -235,7 +235,7 @@
 		hidden_uplink.trigger(user)
 
 /obj/item/radio/headset/uplink
-	traitor_frequency = 1445
+	traitor_frequency = BEACON_FREQ
 
 /obj/item/radio/headset/uplink/Initialize(mapload)
 	. = ..()

@@ -206,3 +206,10 @@
 	)
 	result = /obj/item/storage/box/wings //This is kinda like the donut box.
 //VOREStation Add End
+
+/datum/recipe/churro
+	appliance = FRYER
+	items = list(
+		/obj/item/reagent_containers/food/snacks/doughslice
+		)
+	result = /obj/item/reagent_containers/food/snacks/churro

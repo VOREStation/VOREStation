@@ -11,8 +11,13 @@ GLOBAL_LIST_EMPTY(everyone_traits_neutral)	// Neutral traits available to all sp
 GLOBAL_LIST_EMPTY(everyone_traits_negative)	// Neutral traits available to all species, indexed by path
 GLOBAL_LIST_EMPTY(traits_costs)		// Just path = cost list, saves time in char setup
 GLOBAL_LIST_EMPTY(all_traits)			// All of 'em at once (same instances)
-GLOBAL_LIST_EMPTY(active_ghost_pods)
 
+GLOBAL_LIST_EMPTY(active_ghost_pods) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_gatewaystation) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_plainspath) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_fueldepot) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_tyrvillage) //NYI - Used downstream
+GLOBAL_LIST_EMPTY(latejoin_thedark) //NYI - Used downstream
 //Global vars for making the overmap_renamer subsystem.
 //Collects all instances by reference of visitable overmap objects of /obj/effect/overmap/visitable like the debris field.
 GLOBAL_LIST_EMPTY(visitable_overmap_object_instances)
@@ -1081,7 +1086,8 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/circuitboard, \
 	/obj/item/smes_coil, \
 	/obj/item/fuel_assembly, \
-	/obj/item/stack/tile/floor
+	/obj/item/stack/tile/floor, \
+	/obj/item/stack/hose
 
 #define OMNI_GRIPPER \
 	/obj/item
@@ -1157,7 +1163,11 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/seeds, \
 	/obj/item/grown, \
 	/obj/item/trash, \
-	/obj/item/reagent_containers/cooking_container
+	/obj/item/reagent_containers/cooking_container, \
+	/obj/item/spacecasinocash, \
+	/obj/item/spacecasinocash_fake, \
+	/obj/item/deck/cards, \
+	/obj/item/hand
 
 #define GRAVEYARD_GRIPPER \
 	/obj/item/seeds, \
@@ -1174,7 +1184,9 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/petrifier, \
 	/obj/item/dice, \
 	/obj/item/casino_platinum_chip, \
-	/obj/item/spacecasinocash
+	/obj/item/spacecasinocash, \
+	/obj/item/spacecasinocash_fake, \
+	/obj/item/hand
 
 #define ORGAN_GRIPPER \
 	/obj/item/organ, \

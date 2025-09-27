@@ -39,7 +39,7 @@ GLOBAL_LIST(ghost_traps)
 /datum/ghosttrap/proc/request_player(var/mob/target, var/request_string)
 	if(!target)
 		return
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
 		if(islist(ban_checks))
@@ -93,7 +93,7 @@ GLOBAL_LIST(ghost_traps)
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
 /datum/ghosttrap/proc/set_new_name(var/mob/target)
-	var/newname = sanitizeSafe(tgui_input_text(target,"Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
+	var/newname = sanitizeSafe(tgui_input_text(target,"Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if (newname != "")
 		target.real_name = newname
 		target.name = target.real_name

@@ -4,16 +4,17 @@ let lastCall;
 
 const reactRoot = document.getElementById("react-root");
 if (reactRoot) {
-	reactRoot.innerHTML = "<h1>You shouldn't see this window, update your skin.</h1>";
+  reactRoot.innerHTML =
+    "<h1>You shouldn't see this window, update your skin.</h1>";
 }
 
 Byond.subscribeTo("estop", function () {
   if (webSocket) {
     webSocket.close();
   } else {
-		Byond.sendMessage("disconnected");
-	}
-})
+    Byond.sendMessage("disconnected");
+  }
+});
 
 Byond.subscribeTo("connect", function (data) {
   if (webSocket) {
@@ -30,9 +31,9 @@ Byond.subscribeTo("connect", function (data) {
   webSocket.onerror = (ev) => {
     Byond.sendMessage("error", ev);
   };
-	webSocket.onclose = (ev) => {
-		Byond.sendMessage("disconnected");
-	}
+  webSocket.onclose = (ev) => {
+    Byond.sendMessage("disconnected");
+  };
   webSocket.onmessage = (ev) => {
     Byond.sendMessage("incomingMessage", { data: ev.data, lastCall });
   };
@@ -63,17 +64,17 @@ Byond.subscribeTo("shock", function (data) {
 
   lastCall = "operate";
   webSocket.sendJson({
-    "cmd": "operate",
-    "value": {
-      "intensity": data.intensity, // 1 - 100 - int
-      "duration": data.duration, // 0.1 - 15 - float
-      "shocker_option": "all", // all, random
-      "action": "shock", // shock, vibrate, beep, end
-      "shocker_ids": data.shocker_ids, // [] - List of shocker ids
-      "device_ids": [], // [] - list of pishock client ids, if one of these is provided it will activate all shockers associated with it
-      "warning": data.warning, // true, false - will send a vibrate with the same intensity and duration
-      "held": false, // true, false - for continuous commands
+    cmd: "operate",
+    value: {
+      intensity: data.intensity, // 1 - 100 - int
+      duration: data.duration, // 0.1 - 15 - float
+      shocker_option: "all", // all, random
+      action: "shock", // shock, vibrate, beep, end
+      shocker_ids: data.shocker_ids, // [] - List of shocker ids
+      device_ids: [], // [] - list of pishock client ids, if one of these is provided it will activate all shockers associated with it
+      warning: data.warning, // true, false - will send a vibrate with the same intensity and duration
+      held: false, // true, false - for continuous commands
     },
-    "auth_key": authKey,
+    auth_key: authKey,
   });
 });

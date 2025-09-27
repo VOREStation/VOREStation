@@ -1,9 +1,12 @@
 /mob/living/silicon/robot/updatehealth()
-	if(status_flags & GODMODE)
+	if(SEND_SIGNAL(src, COMSIG_UPDATE_HEALTH) & COMSIG_UPDATE_HEALTH_GOD_MODE)
 		health = getMaxHealth()
 		set_stat(CONSCIOUS)
 		return
 	health = getMaxHealth() - (getBruteLoss() + getFireLoss())
+	if(health <= -getMaxHealth()) //die only once
+		death()
+		return
 	return
 
 /mob/living/silicon/robot/getMaxHealth()
@@ -115,7 +118,8 @@
 		parts -= picked
 
 /mob/living/silicon/robot/take_overall_damage(var/brute = 0, var/burn = 0, var/sharp = FALSE, var/used_weapon = null)
-	if(status_flags & GODMODE)	return	//godmode
+	if(SEND_SIGNAL(src, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL) //Normally we'd let this proc continue on, but it's much less time consumptive to just do a godmode check here.
+		return 0	// Cancelled by a component
 	var/list/datum/robot_component/parts = get_damageable_components()
 
 	//Combat shielding absorbs a percentage of damage directly into the cell.
@@ -153,5 +157,7 @@
 		parts -= picked
 
 /mob/living/silicon/robot/emp_act(severity)
+	if(SEND_SIGNAL(src, COMSIG_ROBOT_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
+		return // Cancelled by a component
 	uneq_all()
 	..() //Damage is handled at /silicon/ level.

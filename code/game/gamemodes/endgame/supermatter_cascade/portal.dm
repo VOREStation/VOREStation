@@ -22,7 +22,7 @@
 	overlays = 0
 
 /obj/singularity/narsie/large/exit/process()
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			M.see_rift(src)
 	eat()
@@ -38,13 +38,13 @@
 		var/mob/living/L = A
 		if(L.buckled && istype(L.buckled,/obj/structure/bed/))
 			var/turf/O = L.buckled
-			do_teleport(O, pick(endgame_safespawns), local = FALSE) //VOREStation Edit
+			do_teleport(O, pick(GLOB.endgame_safespawns), local = FALSE) //VOREStation Edit
 			L.loc = O.loc
 		else
-			do_teleport(L, pick(endgame_safespawns), local = FALSE) //dead-on precision //VOREStation Edit
+			do_teleport(L, pick(GLOB.endgame_safespawns), local = FALSE) //dead-on precision //VOREStation Edit
 
 	else if (istype(A, /obj/mecha/))
-		do_teleport(A, pick(endgame_safespawns), local = FALSE) //dead-on precision //VOREStation Edit
+		do_teleport(A, pick(GLOB.endgame_safespawns), local = FALSE) //dead-on precision //VOREStation Edit
 
 	else if (isturf(A))
 		var/turf/T = A
@@ -64,7 +64,7 @@
 				if(!(AM.singuloCanEat()))
 					continue
 
-				if (101 == AM.invisibility)
+				if (INVISIBILITY_ABSTRACT == AM.invisibility)
 					continue
 
 				spawn (0)

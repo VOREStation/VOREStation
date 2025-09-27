@@ -37,14 +37,14 @@
 /obj/item/key/rover
 	name = "The Rover key"
 	desc = "The Rover key used to start it."
-	icon = 'icons/obj/vehicles_vr.dmi'
+	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "securikey"
 	w_class = ITEMSIZE_TINY
 
 /obj/vehicle/train/rover/trolley
 	name = "Train trolley"
 	desc = "A trolley designed to transport security equipment to a scene."
-	icon = 'icons/obj/vehicles_vr.dmi'
+	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "secitemcarrierbot"
 	anchored = FALSE
 	passenger_allowed = 0
@@ -69,13 +69,13 @@
 		turn_off()
 		update_stats()
 		if(load && is_train_head())
-			to_chat(load, "The drive motor briefly whines, then drones to a stop.")
+			to_chat(load, span_notice("The drive motor briefly whines, then drones to a stop."))
 
 	if(is_train_head() && !on)
 		return 0
 
 	//space check ~no flying space trains sorry
-	if(on && istype(destination, /turf/space))
+	if(on && isopenturf(destination))
 		return 0
 
 	return ..()

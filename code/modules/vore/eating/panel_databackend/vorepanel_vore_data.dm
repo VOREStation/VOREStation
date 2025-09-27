@@ -13,6 +13,7 @@
 		var/list/belly_data = list()
 		belly_data += list(
 			"name" = B.name,
+			"display_name" = B.display_name,
 			"ref" = "\ref[B]"
 		)
 		if(full_data)
@@ -97,7 +98,10 @@
 	var/list/selected_list = null
 	if(owner.vore_selected)
 		var/obj/belly/selected = owner.vore_selected
-		selected_list = list("belly_name" = selected.name)
+		selected_list = list(
+							"belly_name" = selected.name,
+							"display_name" = selected.display_name
+							)
 		if(active_vore_tab == CONTROL_TAB)
 			var/list/addons = list()
 			for(var/flag_name in selected.mode_flag_list)
@@ -108,8 +112,8 @@
 				"addons" = addons,
 				"name_length" = BELLIES_NAME_MAX,
 				"name_min" = BELLIES_NAME_MIN,
-				"mode_options" = host.vore_selected.digest_modes,
-				"item_mode_options" = host.vore_selected.item_digest_modes,
+				"mode_options" = selected.digest_modes,
+				"item_mode_options" = selected.item_digest_modes,
 
 			)
 			selected_list["belly_mode_data"] = belly_mode_data
@@ -156,11 +160,6 @@
 			selected_list["belly_description_data"] = belly_description_data
 
 		if(active_vore_tab == OPTIONS_TAB)
-			var/list/silicon_control = list(
-				"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
-				"belly_sprite_option_shown" = LAZYLEN(owner.vore_icon_bellies) >= 1 ? TRUE : FALSE,
-				"belly_sprite_to_affect" = selected.belly_sprite_to_affect
-			)
 			var/list/belly_option_data = list(
 				"can_taste" = selected.can_taste,
 				"is_feedable" = selected.is_feedable,
@@ -172,6 +171,8 @@
 				"digest_clone" = selected.digest_clone,
 				"digest_max" = selected.digest_max,
 				"digest_free" = selected.get_unused_digestion_damage(),
+				"bellytemperature" = selected.bellytemperature,
+				"temperature_damage" = selected.temperature_damage,
 				"bulge_size" = selected.bulge_size,
 				"shrink_grow_size" = selected.shrink_grow_size,
 				"contaminates" = selected.contaminates,
@@ -189,9 +190,12 @@
 				"vorespawn_whitelist" = selected.vorespawn_whitelist,
 				"vorespawn_absorbed" = (global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_YES) + global_flag_check(selected.vorespawn_absorbed, VS_FLAG_ABSORB_PREY)),
 				"private_struggle" = selected.private_struggle,
+				"absorbedrename_enabled" = selected.absorbedrename_enabled,
+				"absorbedrename_name" = selected.absorbedrename_name,
+				"absorbedrename_name_max" = BELLIES_NAME_MAX,
+				"absorbedrename_name_min" = BELLIES_NAME_MIN,
 				"drainmode" = selected.drainmode,
 				"drainmode_options" = selected.drainmodes,
-				"mob_belly_controls" = silicon_control
 			)
 			if(selected.contaminates)
 				belly_option_data += list(
@@ -220,11 +224,16 @@
 			selected_list["belly_sound_data"] = belly_sound_data
 
 		if(active_vore_tab == VISUALS_TAB)
+			var/list/silicon_control = list(
+				"silicon_belly_overlay_preference"	= selected.silicon_belly_overlay_preference,
+				"belly_sprite_option_shown" = LAZYLEN(owner.vore_icon_bellies) >= 1 ? TRUE : FALSE,
+				"belly_sprite_to_affect" = selected.belly_sprite_to_affect
+			)
 			var/list/belly_fullscreens
 			if(selected.colorization_enabled)
-				belly_fullscreens = icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
+				belly_fullscreens = cached_icon_states('icons/mob/screen_full_vore_list.dmi') //Makes any icons inside of here selectable.
 			else
-				belly_fullscreens = icon_states('icons/mob/screen_full_vore.dmi') //Non colorable
+				belly_fullscreens = cached_icon_states('icons/mob/screen_full_vore.dmi') //Non colorable
 
 			var/list/vs_flags = list()
 			for(var/flag_name in selected.vore_sprite_flag_list)
@@ -265,7 +274,8 @@
 			"undergarment_color" = selected.undergarment_color,
 			"tail_option_shown" = ishuman(owner),
 			"tail_to_change_to" = selected.tail_to_change_to,
-			"tail_sprite_options" = global.tail_styles_list
+			"tail_sprite_options" = GLOB.tail_styles_list,
+			"mob_belly_controls" = silicon_control
 			)
 			selected_list["belly_visual_data"] = belly_visual_data
 

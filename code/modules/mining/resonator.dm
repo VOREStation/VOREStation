@@ -74,7 +74,7 @@
 	new /obj/effect/temp_visual/resonance_crush(T)
 
 	// Mineral turfs get drilled!
-	if(istype(T, /turf/simulated/mineral))
+	if(ismineralturf(T))
 		var/turf/simulated/mineral/M = T
 		M.GetDrilled()
 		qdel(src)

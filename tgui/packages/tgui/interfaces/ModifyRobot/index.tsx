@@ -153,7 +153,7 @@ export const ModifyRobot = (props) => {
             {target ? (
               <NoticeBox info>
                 {target.name}
-                {!!target.ckey && ' played by ' + target.ckey}.
+                {!!target.ckey && ` played by ${target.ckey}`}.
               </NoticeBox>
             ) : (
               <NoticeBox danger>No target selected. Please pick one.</NoticeBox>

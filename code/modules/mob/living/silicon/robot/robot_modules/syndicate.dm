@@ -25,6 +25,7 @@
 	..()
 	src.modules += new /obj/item/pinpointer/shuttle/merc(src)
 	src.modules += new /obj/item/melee/robotic/blade/syndicate(src)
+	src.modules += new /obj/item/multitool/ai_detector/cyborg(src)
 
 	var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
 	synths += cloth
@@ -166,3 +167,22 @@
 		S.desc = initial(S.desc)
 		S.update_icon()
 	..()
+
+/obj/item/robot_module/robot/syndicate/ninja
+	name = "ninja robot module"
+	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
+
+/obj/item/robot_module/robot/syndicate/ninja/create_equipment(var/mob/living/silicon/robot/robot)
+	..()
+	src.modules += new /obj/item/dogborg/sleeper/K9/syndie(src)
+	src.modules += new /obj/item/dogborg/pounce(src)
+	src.modules += new /obj/item/gripper/syndicate(src)
+	src.modules += new /obj/item/robotic_multibelt/syndicate(src)
+	src.modules += new /obj/item/robotic_multibelt/syndicate(src)
+	src.modules += new /obj/item/melee/robotic/blade/ninja(src)
+	src.modules += new /obj/item/borg/cloak(src)
+	//Removes the default sblade
+	var/obj/item/melee/robotic/blade/syndicate/sblade = locate() in src.modules
+	if(sblade)
+		src.modules -= sblade
+		qdel(sblade)

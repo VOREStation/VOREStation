@@ -11,12 +11,6 @@
 /hook/roundstart
 
 /**
- * Roundend hook.
- * Called in gameticker.dm when a round ends.
- */
-/hook/roundend
-
-/**
  * Death hook.
  * Called in death.dm when someone dies.
  * Parameters: var/mob/living/carbon/human, var/gibbed
@@ -43,13 +37,6 @@
  * Parameters: var/mob/living/silicon/robot
  */
 /hook/borgify
-
-/**
- * Podman hook.
- * Called in podmen.dm when someone is brought back as a Diona.
- * Parameters: var/mob/living/carbon/alien/diona
- */
-/hook/harvest_podman
 
 /**
  * Payroll revoked hook.

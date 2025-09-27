@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import {
   Box,
   Button,

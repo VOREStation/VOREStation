@@ -33,7 +33,7 @@
 /datum/admins/proc/list_dna()
 	var/data = "<b>Showing DNA from blood.</b><hr>"
 	data += "<table cellspacing=5 border=1><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
-	for(var/entry in mob_list)
+	for(var/entry in GLOB.mob_list)
 		var/mob/living/carbon/human/subject = entry
 		if(subject.ckey)
 			data += "<tr><td>[subject]</td><td>[subject.dna?.unique_enzymes]</td><td>[subject.dna ? subject.dna.b_type : DEFAULT_BLOOD_TYPE]</td></tr>"
@@ -46,7 +46,7 @@
 /datum/admins/proc/list_fingerprints() //kid named fingerprints
 	var/data = "<b>Showing Fingerprints.</b><hr>"
 	data += "<table cellspacing=5 border=1><tr><th>Name</th><th>Fingerprints</th></tr>"
-	for(var/entry in mob_list)
+	for(var/entry in GLOB.mob_list)
 		var/mob/living/carbon/human/subject = entry
 		if(subject.ckey)
 			data += "<tr><td>[subject]</td><td>[md5(subject.dna?.uni_identity)]</td></tr>"
@@ -71,7 +71,7 @@
 
 /datum/admins/proc/output_ai_laws()
 	var/ai_number = 0
-	for(var/mob/living/silicon/S in mob_list)
+	for(var/mob/living/silicon/S in GLOB.mob_list)
 		ai_number++
 		if(isAI(S))
 			to_chat(usr, span_bold("AI [key_name(S, usr)]'s laws:"))

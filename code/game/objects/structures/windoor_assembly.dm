@@ -45,6 +45,7 @@
 	update_state()
 
 	update_nearby_tiles(need_rebuild=1)
+	AddElement(/datum/element/rotatable)
 
 /obj/structure/windoor_assembly/Destroy()
 	density = FALSE
@@ -70,7 +71,7 @@
 		return TRUE
 
 /obj/structure/windoor_assembly/proc/rename_door(mob/living/user)
-	var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the windoor.", src.name, src.created_name, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the windoor.", src.name, src.created_name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if(!in_range(src, user) && src.loc != user)	return
 	created_name = t
 	update_state()
@@ -93,7 +94,7 @@
 					user.visible_message("[user] disassembles the windoor assembly.", "You start to disassemble the windoor assembly.")
 					playsound(src, WT.usesound, 50, 1)
 
-					if(do_after(user, 40 * WT.toolspeed))
+					if(do_after(user, 4 SECONDS * WT.toolspeed, target = src))
 						if(!src || !WT.isOn()) return
 						to_chat(user,span_notice("You disassembled the windoor assembly!"))
 						if(secure)
@@ -110,7 +111,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] secures the windoor assembly to the floor.", "You start to secure the windoor assembly to the floor.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 					if(!src) return
 					to_chat(user,span_notice("You've secured the windoor assembly!"))
 					src.anchored = TRUE
@@ -121,7 +122,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] unsecures the windoor assembly to the floor.", "You start to unsecure the windoor assembly to the floor.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 					if(!src) return
 					to_chat(user,span_notice("You've unsecured the windoor assembly!"))
 					src.anchored = FALSE
@@ -132,7 +133,7 @@
 				user.visible_message("[user] wires the windoor assembly.", "You start to wire the windoor assembly.")
 
 				var/obj/item/stack/cable_coil/CC = W
-				if(do_after(user, 40))
+				if(do_after(user, 4 SECONDS, target = src))
 					if (CC.use(1))
 						to_chat(user,span_notice("You wire the windoor!"))
 						src.state = "02"
@@ -147,7 +148,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 					if(!src) return
 
 					to_chat(user,span_notice("You cut the windoor wires.!"))
@@ -160,7 +161,7 @@
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
-				if(do_after(user, 40))
+				if(do_after(user, 4 SECONDS, target = src))
 					if(!src) return
 
 					user.drop_item()
@@ -176,7 +177,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to uninstall electronics from the airlock assembly.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 					if(!src || !src.electronics) return
 					to_chat(user,span_notice("You've removed the airlock electronics!"))
 					step = 1
@@ -196,7 +197,7 @@
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] pries the windoor into the frame.", "You start prying the windoor into the frame.")
 
-				if(do_after(user, 40 * W.toolspeed))
+				if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 
 					if(!src) return
 
@@ -270,46 +271,14 @@
 			name = "near finished "
 	name += "[secure ? "secure " : ""]windoor assembly[created_name ? " ([created_name])" : ""]"
 
-//Rotates the windoor assembly clockwise
-/obj/structure/windoor_assembly/verb/rotate_clockwise()
-	set name = "Rotate Windoor Assembly Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored)
-		to_chat(usr,"It is fastened to the floor; therefore, you can't rotate it!")
-		return 0
-	if(src.state != "01")
+/obj/structure/windoor_assembly/handle_rotation_verbs(angle)
+	if(state != "01")
 		update_nearby_tiles(need_rebuild=1) //Compel updates before
-
-	src.set_dir(turn(src.dir, 270))
-
-	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1)
-
-	update_icon()
-	return
-
-//VOREstation edit: counter-clockwise rotation
-/obj/structure/windoor_assembly/verb/rotate_counterclockwise()
-	set name = "Rotate Windoor Assembly Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored)
-		to_chat(usr,"It is fastened to the floor; therefore, you can't rotate it!")
-		return 0
-	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1) //Compel updates before
-
-	src.set_dir(turn(src.dir, 90))
-
-	if(src.state != "01")
-		update_nearby_tiles(need_rebuild=1)
-
-	update_icon()
-	return
-//VOREstation edit end
+	. = ..()
+	if(.)
+		if(state != "01")
+			update_nearby_tiles(need_rebuild=1)
+		update_icon()
 
 //Flips the windoor assembly, determines whather the door opens to the left or the right
 /obj/structure/windoor_assembly/verb/flip()

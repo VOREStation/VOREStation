@@ -15,6 +15,10 @@
 	var/obj/item/cell/device/battery = null // Internal cell which most circuits need to work.
 	var/net_power = 0 // Set every tick, to display how much power is being drawn in total.
 	var/detail_color = COLOR_ASSEMBLY_BLACK
+	var/locked = FALSE // If true, the assembly cannot be opened with a crowbar
+	var/obj/item/card/id/locked_by = null // The ID that locked this assembly
+	var/obj/item/card/id/access_card = null // ID card for door access
+	var/list/component_positions = list() // Stores circuit positions as list of lists: list("ref" = ref, "x" = x, "y" = y)
 
 
 /obj/item/electronic_assembly/Initialize(mapload)
@@ -83,10 +87,17 @@
 	data["battery_max"] = round(battery?.maxcharge, 0.1)
 	data["net_power"] = net_power / CELLRATE
 
+	// Include export data - the UI component will handle displaying it if needed
+	data["export_data"] = serialize_electronic_assembly()
+	data["assembly_name"] = name
+
 	var/list/circuits = list()
 	for(var/obj/item/integrated_circuit/circuit in contents)
 		UNTYPED_LIST_ADD(circuits, circuit.tgui_data(user, ui, state))
 	data["circuits"] = circuits
+
+	// Include component positions for UI restoration
+	data["component_positions"] = component_positions
 
 	return data
 
@@ -95,6 +106,14 @@
 		return TRUE
 
 	switch(action)
+		if("export_circuit")
+			if(!LAZYLEN(contents))
+				to_chat(ui.user, span_warning("There's nothing in the [src] to export!"))
+				return TRUE
+			var/datum/tgui/window = new(ui.user, src, "ICExport", "Circuit Export")
+			window.open()
+			return TRUE
+
 		// Actual assembly actions
 		if("rename")
 			rename(ui.user)
@@ -168,6 +187,30 @@
 			C.remove(ui.user)
 			return TRUE
 
+		if("update_component_position")
+			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
+			if(!istype(C))
+				return FALSE
+
+			var/new_x = params["x"]
+			var/new_y = params["y"]
+			if(!isnum(new_x) || !isnum(new_y))
+				return FALSE
+
+			// Find existing position entry or create new one
+			var/found = FALSE
+			for(var/list/pos_data in component_positions)
+				if(pos_data["ref"] == REF(C))
+					pos_data["x"] = new_x
+					pos_data["y"] = new_y
+					found = TRUE
+					break
+
+			if(!found)
+				UNTYPED_LIST_ADD(component_positions, list("ref" = REF(C), "x" = new_x, "y" = new_y))
+
+			return TRUE
+
 	return FALSE
 // End TGUI
 
@@ -180,7 +223,7 @@
 	if(!check_interactivity(M))
 		return
 
-	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name this?", "Rename", src.name, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name this?", "Rename", src.name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if(src && input)
 		to_chat(M, span_notice("The machine now has a label reading '[input]'."))
 		name = input
@@ -191,6 +234,9 @@
 /obj/item/electronic_assembly/update_icon()
 	if(opened)
 		icon_state = initial(icon_state) + "-open"
+	// else if(locked)
+		// For when I finish the locked assembly sprites.
+		// icon_state = initial(icon_state) // + "-locked" would be added once sprites are made
 	else
 		icon_state = initial(icon_state)
 	cut_overlays()
@@ -200,24 +246,14 @@
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
 
-
-/obj/item/electronic_assembly/GetAccess()
-	. = list()
-	for(var/obj/item/integrated_circuit/part in contents)
-		. |= part.GetAccess()
-
-/obj/item/electronic_assembly/GetIdCard()
-	. = list()
-	for(var/obj/item/integrated_circuit/part in contents)
-		var/id_card = part.GetIdCard()
-		if(id_card)
-			return id_card
-
 /obj/item/electronic_assembly/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		for(var/obj/item/integrated_circuit/IC in contents)
-			. += IC.external_examine(user)
+			// Make sure there's actually examine text to prevent empty lines being printed for EVERY component!
+			var/examine_text = IC.external_examine(user)
+			if (length(examine_text))
+				. += examine_text
 		if(opened)
 			tgui_interact(user)
 
@@ -264,15 +300,18 @@
 	IC.assembly = src
 
 /obj/item/electronic_assembly/afterattack(atom/target, mob/user, proximity)
+	var/scanned = FALSE
 	if(proximity)
-		var/scanned = FALSE
+		// Existing sensor support
 		for(var/obj/item/integrated_circuit/input/sensor/S in contents)
-//			S.set_pin_data(IC_OUTPUT, 1, WEAKREF(target))
-//			S.check_then_do_work()
 			if(S.scan(target))
 				scanned = TRUE
 		if(scanned)
 			visible_message(span_infoplain(span_bold("\The [user]") + " waves \the [src] around [target]."))
+
+	// Support for reference grabber + future ranged circuitry.
+	for(var/obj/item/integrated_circuit/input/reference_grabber/G in contents)
+		G.afterattack(target, user, proximity, null)
 
 /obj/item/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(can_anchor && I.has_tool_quality(TOOL_WRENCH))
@@ -295,11 +334,45 @@
 			return TRUE
 
 	else if(I.has_tool_quality(TOOL_CROWBAR))
+		if(locked)
+			to_chat(user, span_warning("\The [src] is locked! You cannot open it with a crowbar."))
+			return FALSE
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		opened = !opened
 		to_chat(user, span_notice("You [opened ? "opened" : "closed"] \the [src]."))
 		update_icon()
 		return TRUE
+
+	else if((istype(I, /obj/item/card/id) || istype(I, /obj/item/pda)) && !opened)
+		var/obj/item/card/id/id_card = null
+
+		if(istype(I, /obj/item/card/id))
+			id_card = I
+		else
+			var/obj/item/pda/pda = I
+			id_card = pda.id
+
+		if(!id_card)
+			to_chat(user, span_warning("You need an ID card to lock this assembly!"))
+			return FALSE
+
+		if(locked)
+			// Trying to unlock
+			if(locked_by && id_card.registered_name == locked_by.registered_name)
+				locked = FALSE
+				locked_by = null
+				to_chat(user, span_notice("You unlock \the [src]."))
+				update_icon()
+			else
+				to_chat(user, span_warning("Access denied. This assembly was locked by [locked_by ? locked_by.registered_name : "someone else"]."))
+			return TRUE
+		else
+			// Trying to lock
+			locked = TRUE
+			locked_by = id_card
+			to_chat(user, span_notice("You lock \the [src]. Now only your ID card can unlock it."))
+			update_icon()
+			return TRUE
 
 	else if(istype(I, /obj/item/integrated_electronics/wirer) || istype(I, /obj/item/integrated_electronics/debugger) || I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(opened)
@@ -398,6 +471,22 @@
 /obj/item/electronic_assembly/proc/on_unanchored()
 	for(var/obj/item/integrated_circuit/IC in contents)
 		IC.on_unanchored()
+
+// Bump functionality, for pathfinding circuits. (Droid circuit assembly types)
+/obj/item/electronic_assembly/Bump(atom/AM)
+	..()
+	if(can_move())
+		// Check if it's an airlock or windoor. (Prevents opening blast doors and shutters)
+		if(istype(AM, /obj/machinery/door/airlock) || istype(AM, /obj/machinery/door/window))
+			var/obj/machinery/door/D = AM
+			// Only open doors that we have access to
+			if(D.check_access(src))
+				D.open()
+
+/obj/item/electronic_assembly/check_access(obj/item/I)
+	if(access_card)
+		return access_card.check_access(I)
+	return ..()  // Fall back to default behavior if no access_card
 
 // Returns TRUE if I is something that could/should have a valid interaction. Used to tell circuitclothes to hit the circuit with something instead of the clothes
 /obj/item/electronic_assembly/proc/is_valid_tool(var/obj/item/I)

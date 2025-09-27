@@ -28,13 +28,11 @@ export const VotePanel = (props, context) => {
                 mb={1}
                 fluid
                 lineHeight={3}
-                content={
-                  choice +
-                  (show_counts ? ' (' + (counts[choice] || 0) + ')' : '')
-                }
                 onClick={() => act('vote', { target: choice })}
                 selected={choice === user_vote}
-              />
+              >
+                {choice + (show_counts ? ` (${counts[choice] || 0})` : '')}
+              </Button>
             </Box>
           ))}
         </Section>

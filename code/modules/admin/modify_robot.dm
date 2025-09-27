@@ -1,4 +1,4 @@
-/client/proc/modify_robot(var/mob/living/silicon/robot/target in silicon_mob_list)
+/client/proc/modify_robot(var/mob/living/silicon/robot/target in GLOB.silicon_mob_list)
 	set name = "Modify Robot"
 	set desc = "Allows to add or remove modules to/from robots."
 	set category = "Admin.Silicon"
@@ -30,6 +30,7 @@
 	law_list = dd_sortedObjectList(law_list)
 
 /datum/eventkit/modify_robot/tgui_close()
+	target = null
 	if(source)
 		qdel(source)
 
@@ -45,14 +46,15 @@
 	. = ..()
 
 /datum/eventkit/modify_robot/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
-	)
+	var/list/our_assets = list()
+	for(var/entry in GLOB.robot_sprite_sheets)
+		our_assets += GLOB.robot_sprite_sheets[entry]
+	return our_assets
 
 /datum/eventkit/modify_robot/tgui_data(mob/user)
 	. = list()
 	// Target section for general data
-	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
+	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = GLOB.robot_sprite_sheets[target.modtype]
 
 	if(target)
 		.["target"] = list()
@@ -63,7 +65,7 @@
 		.["target"]["crisis_override"] = target.crisis_override
 		.["target"]["active_restrictions"] = target.restrict_modules_to
 		var/list/possible_restrictions = list()
-		for(var/entry in robot_modules)
+		for(var/entry in GLOB.robot_modules)
 			if(!target.restrict_modules_to.Find(entry))
 				possible_restrictions += entry
 		.["target"]["possible_restrictions"] = possible_restrictions
@@ -74,7 +76,7 @@
 			.["target"]["sprite_size"] = spritesheet.icon_size_id(.["target"]["sprite"] + "S")
 			.["target"]["modules"] = get_target_items(user)
 			var/list/module_options = list()
-			for(var/module in robot_modules)
+			for(var/module in GLOB.robot_modules)
 				module_options += module
 			.["model_options"] = module_options
 			// Data for the upgrade options
@@ -91,7 +93,7 @@
 			for(var/channel in target.radio.channels)
 				radio_channels += channel
 			var/list/availalbe_channels = list()
-			for(var/channel in (radiochannels - target.radio.channels))
+			for(var/channel in (GLOB.radiochannels - target.radio.channels))
 				availalbe_channels += channel
 			.["target"]["radio_channels"] = radio_channels
 			.["target"]["availalbe_channels"] = availalbe_channels
@@ -122,7 +124,7 @@
 			if(source)
 				.["source"] += get_module_source(user, spritesheet)
 	var/list/all_robots = list()
-	for(var/mob/living/silicon/robot/R in silicon_mob_list)
+	for(var/mob/living/silicon/robot/R in GLOB.silicon_mob_list)
 		if(!R.loc)
 			continue
 		all_robots += list(list("displayText" = "[R]", "value" = "\ref[R]"))
@@ -160,7 +162,7 @@
 
 
 /datum/eventkit/modify_robot/tgui_state(mob/user)
-	return GLOB.tgui_admin_state
+	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
 /datum/eventkit/modify_robot/tgui_act(action, params, datum/tgui/ui)
 	. = ..()
@@ -190,7 +192,7 @@
 		if("select_source")
 			if(source)
 				qdel(source)
-			var/module_type = robot_modules[params["new_source"]]
+			var/module_type = GLOB.robot_modules[params["new_source"]]
 			if(ispath(module_type, /obj/item/robot_module/robot/syndicate))
 				source = new /mob/living/silicon/robot/syndicate(null)
 			else
@@ -282,7 +284,7 @@
 				return FALSE
 			var/mod_type = source.modtype
 			qdel(source.module)
-			var/module_type = robot_modules[target.modtype]
+			var/module_type = GLOB.robot_modules[target.modtype]
 			source.modtype = target.modtype
 			new module_type(source)
 			source.sprite_datum = target.sprite_datum
@@ -293,7 +295,7 @@
 			target.hud_used?.update_robot_modules_display(TRUE)
 			qdel(target.module)
 			target.modtype = mod_type
-			module_type = robot_modules[mod_type]
+			module_type = GLOB.robot_modules[mod_type]
 			target.transform_with_anim()
 			new module_type(target)
 			target.hands.icon_state = target.get_hud_module_icon()
@@ -318,7 +320,7 @@
 			var/obj/item/borg/upgrade/U = new new_upgrade(null)
 			if(new_upgrade == /obj/item/borg/upgrade/utility/rename)
 				var/obj/item/borg/upgrade/utility/rename/UN = U
-				var/new_name = sanitizeSafe(tgui_input_text(ui.user, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN), MAX_NAME_LEN)
+				var/new_name = sanitizeSafe(tgui_input_text(ui.user, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 				if(new_name)
 					UN.heldname = new_name
 				U = UN
@@ -388,7 +390,7 @@
 				target.radio.syndie = 1
 			target.module.channels += list("[selected_radio_channel]" = 1)
 			target.radio.channels[selected_radio_channel] = target.module.channels[selected_radio_channel]
-			target.radio.secure_radio_connections[selected_radio_channel] = radio_controller.add_object(target.radio, radiochannels[selected_radio_channel],  RADIO_CHAT)
+			target.radio.secure_radio_connections[selected_radio_channel] = SSradio.add_object(target.radio, GLOB.radiochannels[selected_radio_channel],  RADIO_CHAT)
 			return TRUE
 		if("rem_channel")
 			var/selected_radio_channel = params["channel"]
@@ -402,7 +404,7 @@
 			target.radio.channels = list()
 			for(var/n_chan in target.module.channels)
 				target.radio.channels[n_chan] = target.module.channels[n_chan]
-			radio_controller.remove_object(target.radio, radiochannels[selected_radio_channel])
+			SSradio.remove_object(target.radio, GLOB.radiochannels[selected_radio_channel])
 			target.radio.secure_radio_connections -= selected_radio_channel
 			return TRUE
 		if("add_component")
@@ -480,11 +482,11 @@
 			return TRUE
 		if("add_station")
 			target.idcard.access |= get_all_station_access()
-			target.idcard.access |= access_synth
+			target.idcard.access |= ACCESS_SYNTH
 			return TRUE
 		if("rem_station")
 			target.idcard.access -= get_all_station_access()
-			target.idcard.access -= access_synth
+			target.idcard.access -= ACCESS_SYNTH
 			return TRUE
 		if("law_channel")
 			if(params["law_channel"] in target.law_channels())
@@ -549,7 +551,7 @@
 		if("edit_law")
 			var/datum/ai_law/AL = locate(params["edit_law"]) in target.laws.all_laws()
 			if(AL)
-				var/new_law = sanitize(tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
+				var/new_law = tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law, MAX_MESSAGE_LEN)
 				if(new_law && new_law != AL.law)
 					AL.law = new_law
 					target.lawsync()
@@ -575,24 +577,28 @@
 				target.lawsync()
 			return TRUE
 		if("notify_laws")
-			to_chat(target, span_danger("Law Notice"))
-			target.laws.show_laws(target)
+			to_chat(target, span_danger("Law Notice\n") + target.laws.get_formatted_laws())
 			if(isAI(target))
-				var/mob/living/silicon/ai/AI = target
-				for(var/mob/living/silicon/robot/R in AI.connected_robots)
-					to_chat(R, span_danger("Law Notice"))
-					R.laws.show_laws(R)
+				var/mob/living/silicon/ai/our_ai = target
+				for(var/mob/living/silicon/robot/R in our_ai.connected_robots)
+					to_chat(R, span_danger("Law Notice\n") + R.laws.get_formatted_laws())
 			if(ui.user != target)
 				to_chat(ui.user, span_notice("Laws displayed."))
 			return TRUE
 		if("select_ai")
-			selected_ai = locate(params["new_ai"])
+			selected_ai = params["new_ai"]
 			return TRUE
 		if("swap_sync")
-			var/new_ai = selected_ai ? selected_ai : select_active_ai_with_fewest_borgs()
-			if(new_ai)
+			var/mob/living/silicon/ai/our_ai
+			for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
+				if(ai.name == selected_ai)
+					our_ai = ai
+					break
+			if(!our_ai)
+				our_ai = select_active_ai_with_fewest_borgs()
+			if(our_ai)
 				target.lawupdate = 1
-				target.connect_to_ai(new_ai)
+				target.connect_to_ai(our_ai)
 			return TRUE
 		if("disconnect_ai")
 			if(target.is_slaved())
@@ -605,7 +611,7 @@
 				target.clear_supplied_laws()
 				target.clear_inherent_laws()
 				target.laws = new global.using_map.default_law_type
-				target.laws.show_laws(target)
+				to_chat(target, span_danger("Laws updated!\n") + target.laws.get_formatted_laws())
 				target.hud_used?.update_robot_modules_display()
 			else
 				target.emagged = 1
@@ -617,7 +623,7 @@
 				if(target.bolt)
 					if(!target.bolt.malfunction)
 						target.bolt.malfunction = MALFUNCTION_PERMANENT
-				target.laws.show_laws(target)
+				to_chat(target, span_danger("Laws updated!\n") + target.laws.get_formatted_laws())
 				target.hud_used?.update_robot_modules_display()
 			return TRUE
 
@@ -649,7 +655,7 @@
 	var/list/all_upgrades = list()
 	var/list/whitelisted_upgrades = list()
 	var/list/blacklisted_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/restricted/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/restricted))
 		if(!upgrade.name)
 			continue
 		if(!(initial(upgrade.build_path) in target.module.supported_upgrades))
@@ -659,14 +665,14 @@
 	all_upgrades["whitelisted_upgrades"] = whitelisted_upgrades
 	all_upgrades["blacklisted_upgrades"] = blacklisted_upgrades
 	var/list/utility_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/utility/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/utility/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/utility))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
 			utility_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]"))
 	all_upgrades["utility_upgrades"] = utility_upgrades
 	var/list/basic_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/basic/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/basic/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/basic))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
@@ -675,7 +681,7 @@
 			basic_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
 	all_upgrades["basic_upgrades"] = basic_upgrades
 	var/list/advanced_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/advanced/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/advanced/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/advanced))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))
@@ -684,7 +690,7 @@
 			advanced_upgrades += list(list("name" = initial(upgrade.name), "path" = "[initial(upgrade.build_path)]", "installed" = 1))
 	all_upgrades["advanced_upgrades"] = advanced_upgrades
 	var/list/restricted_upgrades = list()
-	for(var/datum/design/item/prosfab/robot_upgrade/restricted/upgrade)
+	for(var/datum/design_techweb/prosfab/robot_upgrade/restricted/upgrade as anything in subtypesof(/datum/design_techweb/prosfab/robot_upgrade/restricted))
 		if(!upgrade.name)
 			continue
 		if(!(target.has_upgrade(initial(upgrade.build_path))))

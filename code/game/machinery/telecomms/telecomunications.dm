@@ -13,10 +13,9 @@
 	Look at radio.dm for the prequel to this code.
 */
 
-var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms
-	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Add
+	icon = 'icons/obj/stationobjs.dmi'
 	unacidable = TRUE
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
@@ -101,6 +100,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms/proc/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// receive information from linked machinery
+	return
+
+/obj/machinery/telecomms/proc/receive_information_delayed(datum/signal/signal, obj/machinery/telecomms/machine_from)
+	// The second half of receive_information(), called after the slowness delay from its first half.
+	PROTECTED_PROC(TRUE)
 	return
 
 /obj/machinery/telecomms/proc/is_freq_listening(datum/signal/signal)
@@ -435,7 +439,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	machinetype = 2
 	circuit = /obj/item/circuitboard/telecomms/bus
 	netspeed = 40
-	var/change_frequency = 0
+	var/change_frequency = ZERO_FREQ
 
 /obj/machinery/telecomms/bus/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 
@@ -672,7 +676,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 //Generic telecomm connectivity test proc
 /proc/can_telecomm(var/atom/A, var/atom/B, var/ad_hoc = FALSE)
 	if(!A || !B)
-		log_debug("can_telecomm(): Undefined endpoints!")
+		log_mapping("can_telecomm(): Undefined endpoints!")
 		return FALSE
 
 	//Can't in this case, obviously!

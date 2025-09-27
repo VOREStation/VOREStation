@@ -21,7 +21,7 @@ export const NtosUAV = (props) => {
         <Section title="Selected UAV">
           <LabeledList>
             <LabeledList.Item label="UAV">
-              {(current_uav && current_uav.status) || '[Not Connected]'}
+              {current_uav?.status || '[Not Connected]'}
             </LabeledList.Item>
             <LabeledList.Item label="Signal">
               {(current_uav && signal_strength) || '[Not Connected]'}

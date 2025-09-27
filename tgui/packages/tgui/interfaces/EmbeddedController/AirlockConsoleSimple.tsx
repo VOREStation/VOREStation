@@ -30,7 +30,7 @@ export const AirlockConsoleSimple = (props) => {
       maxValue: 202,
       value: chamber_pressure,
       label: 'Chamber Pressure',
-      textValue: chamber_pressure + ' kPa',
+      textValue: `${chamber_pressure} kPa`,
       color: (value: number) => {
         return value < 80 || value > 120
           ? 'bad'

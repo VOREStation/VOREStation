@@ -86,16 +86,14 @@
 	var/flipped = FALSE
 	var/flip_cooldown = 0
 
+	can_be_drop_prey = FALSE
+
 /datum/say_list/startreader
 	emote_see = list("bobs", "digs around","gnashes at something","yawns","snaps at something")
 	emote_hear = list("thrumms","clicks","rattles","groans","burbles")
 
 
-/mob/living/simple_mob/vore/alienanimals/startreader/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/alienanimals/startreader/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "gastric sac"

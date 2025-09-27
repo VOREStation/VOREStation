@@ -1,7 +1,7 @@
 /obj/machinery/injector_maker
 	name = "Ready-to-Use Medicine 3000"
 	desc = "Fills plastic autoinjectors with chemicals! Molds new injectors if needed!  \n Add a beaker or a bottle filled with chemicals and an autoinjector of appropriate size or sheets of plastic to use!"
-	icon = 'icons/obj/chemical_vr.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "injector"
 	use_power = USE_POWER_IDLE
 	anchored = TRUE
@@ -68,7 +68,6 @@
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			src.updateUsrDialog(user)
 			return 0
 
 
@@ -191,7 +190,7 @@
 						if(src.count_small_injector < injector_amount)
 							to_chat(user, span_warning("Not enough autoinjectors! You only have [src.count_small_injector]"))
 							return
-				var/name = sanitize(tgui_input_text(user, "Name Injector", "Naming", null, 32, 0, 0, 0, 0),MAX_MESSAGE_LEN,0,0,0)
+				var/name = tgui_input_text(user, "Name Injector", "Naming", null, 32)
 				make_injector("small injector", injector_amount, name, material, user)
 				update_icon()
 
@@ -222,7 +221,7 @@
 						if(src.count_large_injector < injector_amount)
 							to_chat(user, span_warning("Not enough autoinjectors! You only have [src.count_large_injector]"))
 							return
-				var/name = sanitize(tgui_input_text(user, "Name Injector", "Naming", null, 32, 0, 0, 0, 0),MAX_MESSAGE_LEN,0,0,0)
+				var/name = tgui_input_text(user, "Name Injector", "Naming", null, 32)
 				make_injector("large injector", injector_amount, name, material,user)
 				update_icon()
 

@@ -16,7 +16,7 @@ export const MindRecordModal = (props: { data: ActiveMindRecordData }) => {
     <Section
       backgroundColor="#252525"
       m={2}
-      title={'Mind Record (' + realname + ')'}
+      title={`Mind Record (${realname})`}
       buttons={
         <Button icon="times" color="red" onClick={() => act('clear_m_rec')} />
       }

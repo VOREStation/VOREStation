@@ -765,7 +765,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "aZr" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled/milspec,
 /area/redgate/city/ripper)
 "aZU" = (
@@ -3583,11 +3583,7 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/redgate/city/house9)
 "eOR" = (
-/turf/simulated/wall/tgmc/darkwall{
-	icon = 'icons/obj/doors/angled/elevator/door.dmi';
-	icon_state = "preview";
-	name = "locked elevator"
-	},
+/turf/simulated/wall/tgmc/darkwall/fake_door,
 /area/redgate/city/corporation)
 "ePv" = (
 /obj/structure/fitness/boxing_ropes/turnbuckle{
@@ -3671,11 +3667,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/redgate/city/church)
 "eVq" = (
-/turf/simulated/wall/tgmc/darkwall{
-	icon = 'icons/obj/doors/angled/elevator/door.dmi';
-	icon_state = "preview";
-	name = "locked elevator"
-	},
+/turf/simulated/wall/tgmc/darkwall/fake_door,
 /area/redgate/city/parkinglot)
 "eVu" = (
 /turf/simulated/wall/tgmc/darkwall,

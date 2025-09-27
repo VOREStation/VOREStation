@@ -62,7 +62,7 @@
 				var/confirm = tgui_alert(user, "The PDA you're holding contains a vulnerable ID card. Will you risk it?", "Confirmation", list("Definitely", "Cancel"))
 				if(confirm != "Definitely")
 					return FALSE
-			if(!do_after(user, 100, src))
+			if(!do_after(user, 10 SECONDS, target = src))
 				return FALSE
 			user.visible_message(span_warning("[user] successfully makes [src] disappear!"))
 	return TRUE
@@ -85,7 +85,7 @@
 			return FALSE
 		else
 			user.visible_message(span_warning("[user] is threatening to make [src] disappear!"))
-			if(!do_after(user, 100, src))
+			if(!do_after(user, 10 SECONDS, target = src))
 				return FALSE
 			user.visible_message(span_warning("[user] successfully makes [src] disappear!"))
 	return TRUE
@@ -181,7 +181,7 @@
 	to_chat(user, span_notice("You can taste the sweet flavor of digital friendship. Or maybe it is something else."))
 
 /obj/item/reagent_containers/food/after_trash_eaten(var/mob/living/user)
-	if(!reagents.total_volume)
+	if(!reagents?.total_volume)
 		to_chat(user, span_notice("You can taste the flavor of garbage and leftovers. Delicious?"))
 	else
 		to_chat(user, span_notice("You can taste the flavor of gluttonous waste of food."))

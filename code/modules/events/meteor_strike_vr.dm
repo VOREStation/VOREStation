@@ -55,7 +55,7 @@
 			impacted = P
 			break
 	if(impacted)
-		for(var/mob/living/L in mob_list)
+		for(var/mob/living/L in GLOB.mob_list)
 			if(!istype(L))
 				continue
 			var/turf/mob_turf = get_turf(L)
@@ -100,7 +100,7 @@
 		var/obj/item/pickaxe/P = I
 		M.visible_message(span_warning("[M] starts [P.drill_verb] \the [src]."), span_warning("You start [P.drill_verb] \the [src]."))
 
-		if(!do_after(M, P.digspeed*3))
+		if(!do_after(M, P.digspeed*3, target = src))
 			return
 
 		M.visible_message(span_warning("[M] breaks apart \the [src]."), span_warning("You break apart \the [src]."))

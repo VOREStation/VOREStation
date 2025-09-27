@@ -96,7 +96,7 @@
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	for(var/img in dir_images)
-		qdel_null(dir_images[img])
+		QDEL_NULL(dir_images[img])
 	dir_images.Cut()
 
 
@@ -112,7 +112,7 @@
 	if(!clone)
 		// Get a randomized clone from the living mob's list, must be standing
 		var/list/possible_clones = new/list()
-		for(var/mob/living/carbon/human/H in living_mob_list)
+		for(var/mob/living/carbon/human/H in GLOB.living_mob_list)
 			if(H.stat || H.lying)
 				continue
 			possible_clones += H

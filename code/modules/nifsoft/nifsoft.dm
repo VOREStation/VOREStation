@@ -221,14 +221,14 @@
 	icon_state = "[initial(icon_state)]-animate"	//makes it play the item animation upon using on a valid target
 	update_icon()
 
-	if(A == user && do_after(Hu,1 SECONDS,Ht))
+	if(A == user && do_after(Hu, 1 SECONDS, target = Ht))
 		if(Ht.isSynthetic())
 			new stored_synthetic(Ht.nif,extra)
 			qdel(src)
 		else
 			new stored_organic(Ht.nif,extra)
 			qdel(src)
-	else if(A != user && do_after(Hu,10 SECONDS,Ht))
+	else if(A != user && do_after(Hu, 10 SECONDS, target = Ht))
 		if(Ht.isSynthetic())
 			new stored_synthetic(Ht.nif,extra)
 			qdel(src)
@@ -267,8 +267,7 @@
 	..(A,user,flag,params)
 
 /obj/item/disk/nifsoft/compliance/attack_self(mob/user)
-	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, multiline = TRUE, prevent_enter = TRUE)
-	newlaws = sanitize(newlaws,2048)
+	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, 2048, TRUE, prevent_enter = TRUE)
 	if(newlaws)
 		to_chat(user,span_filter_notice("You set the laws to: <br>" + span_notice("[newlaws]")))
 		laws = newlaws

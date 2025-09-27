@@ -331,3 +331,18 @@
 /decl/emote/visible/tilt
 	key = "tilt"
 	emote_message_3p = "tilts USER_THEIR head."
+
+/decl/emote/visible/goodrip
+	key = "goodrip"
+	emote_message_3p = "drips goo."
+
+/decl/emote/visible/goodrip/do_extra(var/mob/user)
+	..()
+	new /obj/effect/decal/cleanable/blood/oil(user)
+	var/goo_sounds = list (
+			'sound/mob/spooky/decay1.ogg',
+			'sound/mob/spooky/decay2.ogg',
+			'sound/mob/spooky/decay3.ogg'
+			)
+	var/sound = pick(goo_sounds)
+	playsound(user.loc, sound, 100, 1)

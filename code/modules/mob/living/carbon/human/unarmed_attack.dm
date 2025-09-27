@@ -1,5 +1,3 @@
-var/global/list/sparring_attack_cache = list()
-
 //Species unarmed attacks
 /datum/unarmed_attack
 	var/attack_name = "fist"
@@ -21,9 +19,9 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/proc/get_sparring_variant()
 	if(sparring_variant_type)
-		if(!sparring_attack_cache[sparring_variant_type])
-			sparring_attack_cache[sparring_variant_type] = new sparring_variant_type()
-		return sparring_attack_cache[sparring_variant_type]
+		if(!GLOB.sparring_attack_cache[sparring_variant_type])
+			GLOB.sparring_attack_cache[sparring_variant_type] = new sparring_variant_type()
+		return GLOB.sparring_attack_cache[sparring_variant_type]
 
 /datum/unarmed_attack/proc/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
 	if(user.restrained())
@@ -40,8 +38,8 @@ var/global/list/sparring_attack_cache = list()
 
 	return FALSE
 
-/datum/unarmed_attack/proc/get_unarmed_damage()
-	return damage
+/datum/unarmed_attack/proc/get_unarmed_damage(var/mob/living/carbon/human/user)
+	return damage + user.species.unarmed_bonus
 
 /datum/unarmed_attack/proc/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
 
@@ -215,8 +213,8 @@ var/global/list/sparring_attack_cache = list()
 /datum/unarmed_attack/kick/get_unarmed_damage(var/mob/living/carbon/human/user)
 	var/obj/item/clothing/shoes = user.shoes
 	if(!istype(shoes))
-		return damage
-	return damage + (shoes ? shoes.force : 0)
+		return user.species.unarmed_bonus + damage
+	return user.species.unarmed_bonus + damage + (shoes ? shoes.force : 0)
 
 /datum/unarmed_attack/kick/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
@@ -262,7 +260,7 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/stomp/get_unarmed_damage(var/mob/living/carbon/human/user)
 	var/obj/item/clothing/shoes = user.shoes
-	return damage + (shoes ? shoes.force : 0)
+	return user.species.unarmed_bonus + damage + (shoes ? shoes.force : 0)
 
 /datum/unarmed_attack/stomp/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)

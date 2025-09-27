@@ -28,7 +28,9 @@
 	var/mob_offset_x = 0
 	var/mob_offset_y = 0
 
-	// Taur Loafing
+	// Taur Loafing - IMPORTANT, READ BELOW.
+	///IF SET TO TRUE, THE icon_state, extra_overlay, and extra_overlay2 MUST BE IN WHATEVER YOU SET icon_loaf to!
+	///ADDITIONALLY, IF YOU ADD A SPECIAL VWAG, YOU NEED TO INCLUDE ani_state, extra_overlay_w, and extra_overlay2_w INTO icon_loaf TOO!
 	var/can_loaf = FALSE
 	var/loaf_offset = 0
 	var/list/lower_layer_dirs = list(SOUTH, WEST, EAST)
@@ -1917,3 +1919,10 @@
 	desc = ""
 	icon_state = "tigresstail"
 	ckeys_allowed = list("hoodoo")
+
+/datum/sprite_accessory/tail/xenotail_fullcolour_vwag
+	name = "xenomorph tail (fully colourable, vwag)"
+	desc = ""
+	icon_state = "xenotail_fullcolour_vwag"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY

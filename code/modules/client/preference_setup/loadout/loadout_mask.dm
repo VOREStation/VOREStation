@@ -33,6 +33,16 @@
 	display_name = "cloth face mask"
 	path = /obj/item/clothing/mask/surgical/cloth
 
+/datum/gear/mask/gas
+	display_name = "gas mask"
+	path = /obj/item/clothing/mask/gas
+	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
+
+/datum/gear/mask/gas/clear
+	display_name = "transparent gas mask"
+	path = /obj/item/clothing/mask/gas/clear
+	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
+
 /datum/gear/mask/plaguedoctor
 	display_name = "plague doctor's mask"
 	path = /obj/item/clothing/mask/gas/plaguedoctor

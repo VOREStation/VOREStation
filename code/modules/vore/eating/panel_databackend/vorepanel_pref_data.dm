@@ -7,6 +7,7 @@
 		"absorbable" = owner.absorbable,
 		"digest_leave_remains" = owner.digest_leave_remains,
 		"allowmobvore" = owner.allowmobvore,
+		"allowtemp" = owner.allowtemp,
 		"permit_healbelly" = owner.permit_healbelly,
 		"show_vore_fx" = owner.show_vore_fx,
 		"can_be_drop_prey" = owner.can_be_drop_prey,
@@ -42,6 +43,7 @@
 		"consume_liquid_belly" = owner.consume_liquid_belly,
 		"digest_pain" = owner.digest_pain,
 		"eating_privacy_global" = owner.eating_privacy_global,
+		"vore_death_privacy" = owner.vore_death_privacy,
 		"allow_mimicry" = owner.allow_mimicry,
 		//Soulcatcher
 		"soulcatcher_allow_capture" = owner.soulcatcher_pref_flags & SOULCATCHER_ALLOW_CAPTURE,

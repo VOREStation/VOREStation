@@ -19,13 +19,13 @@ export const viewCrateContents = (modal: modalData) => {
           disabled={cost > supply_points}
           onClick={() => act('request_crate', { ref: ref })}
         >
-          {'Buy - ' + cost + ' points'}
+          {`Buy - ${cost} points`}
         </Button>
       }
     >
       {desc}
       <Section
-        title={'Contains' + (random ? ' any ' + random + ' of:' : '')}
+        title={`Contains${random ? ` any ${random} of:` : ''}`}
         scrollable
         height="200px"
       >

@@ -11,7 +11,7 @@
 /obj/machinery/computer/cryopod
 	name = "cryogenic oversight console"
 	desc = "An interface between crew and the cryogenic storage oversight systems."
-	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cellconsole"
 	circuit = /obj/item/circuitboard/cryopodcontrol
 	density = FALSE
@@ -27,7 +27,7 @@
 	var/storage_name = "Cryogenic Oversight Control"
 	var/allow_items = 1
 
-	req_one_access = list(access_heads) //VOREStation Add
+	req_one_access = list(ACCESS_HEADS) //VOREStation Add
 
 /obj/machinery/computer/cryopod/update_icon()
 	..()
@@ -181,7 +181,7 @@
 
 	name = "cryogenic feed"
 	desc = "A bewildering tangle of machinery and pipes."
-	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryo_rear"
 	anchored = TRUE
 	dir = WEST
@@ -191,8 +191,8 @@
 /obj/machinery/cryopod
 	name = "cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation."
-	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
-	icon_state = "cryopod_0" //VOREStation Edit - New Icon
+	icon = 'icons/obj/Cryogenic2.dmi'
+	icon_state = "cryopod_0"
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
@@ -251,7 +251,7 @@
 /obj/machinery/cryopod/robot/door/dorms
 	name = "Residential District Elevator"
 	desc = "A small elevator that goes down to the deeper section of the colony."
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "lift_closed"
 	base_icon_state = "lift_open"
 	occupied_icon_state = "lift_closed"
@@ -264,7 +264,7 @@
 /obj/machinery/cryopod/robot/door/travel
 	name = "Passenger Elevator"
 	desc = "A small elevator that goes down to the passenger section of the vessel."
-	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "lift_closed"
 	base_icon_state = "lift_open"
 	occupied_icon_state = "lift_closed"
@@ -383,7 +383,7 @@
 		despawn_occupant(M)
 
 	// VOREStation
-	hook_vr("despawn", list(to_despawn, src))
+	persist_despawned_mob(to_despawn, src)
 	if(isliving(to_despawn))
 		var/mob/living/L = to_despawn
 		for(var/obj/belly/B as anything in L.vore_organs)
@@ -489,8 +489,8 @@
 			to_despawn.mind.special_role = null
 
 		//else
-			//if(ticker.mode.name == "AutoTraitor")
-				//var/datum/game_mode/traitor/autotraitor/current_mode = ticker.mode
+			//if(SSticker.mode.name == "AutoTraitor")
+				//var/datum/game_mode/traitor/autotraitor/current_mode = SSticker.mode
 				//current_mode.possible_traitors.Remove(to_despawn)
 
 		// Delete them from datacore.
@@ -620,7 +620,7 @@
 
 	visible_message("[usr] [on_enter_visible_message] [src].", 3)
 
-	if(do_after(usr, 20))
+	if(do_after(usr, 2 SECONDS, target = src))
 
 		if(!usr || !usr.client)
 			return
@@ -705,7 +705,8 @@
 
 	if(M.client)
 		if(tgui_alert(M,"Would you like to enter long-term storage?","Cryopod",list("Yes","No")) == "Yes")
-			if(!M) return
+			if(!M || !M.Adjacent(src))
+				return
 			willing = 1
 	else
 		willing = 1
@@ -716,7 +717,7 @@
 		else
 			visible_message("\The [user] starts putting [M] into \the [src].", 3)
 
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			if(occupant)
 				to_chat(user, span_warning("\The [src] is already occupied."))
 				return

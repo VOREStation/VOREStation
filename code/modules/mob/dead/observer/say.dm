@@ -4,7 +4,7 @@
 	if(!message)
 		return
 
-	log_ghostsay(message, src)
+	log_talk("(GHOST SAY) [message]", LOG_SAY)
 
 	if (client)
 		if(message)
@@ -20,7 +20,7 @@
 	if(!message)
 		return
 
-	log_ghostemote(message, src)
+	log_message("(GHOST EMOTE) [message]", LOG_EMOTE)
 
 	if(client)
 		if(message)

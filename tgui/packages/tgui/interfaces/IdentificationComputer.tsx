@@ -186,12 +186,10 @@ export const IdentificationComputerAccessModification = (props: {
                   icon="exclamation-triangle"
                   confirmIcon="fire"
                   fluid
-                  confirmContent={
-                    'You are dismissing ' + target_owner + ', confirm?'
-                  }
+                  confirmContent={`You are dismissing ${target_owner}, confirm?`}
                   onClick={() => act('terminate')}
                 >
-                  {'Dismiss ' + target_owner}
+                  {`Dismiss ${target_owner}`}
                 </Button.Confirm>
               </LabeledList.Item>
             </LabeledList>
@@ -283,29 +281,28 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
 
   return (
     <Stack wrap="wrap">
-      {regions &&
-        regions.map((region) => (
-          <Stack.Item mb={1} basis="content" grow key={region.name}>
-            <Section title={region.name} height="100%">
-              {region.accesses.map((access) => (
-                <Box key={access.ref}>
-                  <Button
-                    fluid
-                    selected={access.allowed}
-                    onClick={() =>
-                      act(actName, {
-                        access_target: access.ref,
-                        allowed: access.allowed,
-                      })
-                    }
-                  >
-                    {decodeHtmlEntities(access.desc)}
-                  </Button>
-                </Box>
-              ))}
-            </Section>
-          </Stack.Item>
-        ))}
+      {regions?.map((region) => (
+        <Stack.Item mb={1} basis="content" grow key={region.name}>
+          <Section title={region.name} height="100%">
+            {region.accesses.map((access) => (
+              <Box key={access.ref}>
+                <Button
+                  fluid
+                  selected={access.allowed}
+                  onClick={() =>
+                    act(actName, {
+                      access_target: access.ref,
+                      allowed: access.allowed,
+                    })
+                  }
+                >
+                  {decodeHtmlEntities(access.desc)}
+                </Button>
+              </Box>
+            ))}
+          </Section>
+        </Stack.Item>
+      ))}
     </Stack>
   );
 };

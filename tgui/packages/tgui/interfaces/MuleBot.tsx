@@ -93,7 +93,7 @@ const MuleBotClosed = (props) => {
             selected={auto_return}
             onClick={() => act('autoret')}
           >
-            {'Auto Return Home: ' + (auto_return ? 'Enabled' : 'Disabled')}
+            {`Auto Return Home: ${auto_return ? 'Enabled' : 'Disabled'}`}
           </Button>
           <Button
             fluid
@@ -101,7 +101,7 @@ const MuleBotClosed = (props) => {
             selected={!crates_only}
             onClick={() => act('cargotypes')}
           >
-            {'Non-standard Cargo: ' + (crates_only ? 'Disabled' : 'Enabled')}
+            {`Non-standard Cargo: ${crates_only ? 'Disabled' : 'Enabled'}`}
           </Button>
         </>
       )}
@@ -121,7 +121,7 @@ const MuleBotOpen = (props) => {
         color={safety ? 'green' : 'red'}
         onClick={() => act('safety')}
       >
-        {'Safety: ' + (safety ? 'Engaged' : 'Disengaged (DANGER)')}
+        {`Safety: ${safety ? 'Engaged' : 'Disengaged (DANGER)'}`}
       </Button>
     </Section>
   );

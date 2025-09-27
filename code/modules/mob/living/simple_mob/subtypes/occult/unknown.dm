@@ -128,7 +128,7 @@
 			var/mob/target = pick(potential_targets)
 			potential_targets -= target
 			if(target.client)
-				target.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 5)
+				target.client.create_fake_ad_popup_multiple(/atom/movable/screen/popup/default, 5)
 
 /mob/living/simple_mob/glitch_boss/proc/bombardment(atom/A)
 	var/list/potential_targets = ai_holder.list_targets()

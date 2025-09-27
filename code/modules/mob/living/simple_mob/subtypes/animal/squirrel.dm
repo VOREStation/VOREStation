@@ -50,7 +50,7 @@
 
 	var/static/list/overlays_cache = list()
 	var/do_seasons = TRUE
-	var/picked_color = FALSE
+	picked_color = FALSE
 
 	allow_mind_transfer = TRUE
 
@@ -69,17 +69,12 @@
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
 
-/mob/living/simple_mob/vore/squirrel/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/vore/squirrel/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.digest_mode = DM_SELECT
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 1
 	B.digest_burn = 1
 	B.escapechance = 35

@@ -3,10 +3,10 @@ import { useBackend } from 'tgui/backend';
 import { Button, Input, Section } from 'tgui-core/components';
 
 import { ColorPicker, ColorType } from '../../helper_components';
-import {
-  type GeneralData,
-  type GeneralDataConstant,
-  type GeneralDataStatic,
+import type {
+  GeneralData,
+  GeneralDataConstant,
+  GeneralDataStatic,
 } from '../data';
 import { BodyPopup } from '../SubtabBody';
 import { EarsImageButton } from './Ears';
@@ -20,6 +20,7 @@ export const EarsSecondaryDimmer = (props: {
 }) => {
   const { act } = useBackend();
   const { setShow, data, serverData, staticData } = props;
+  const { available_ear_styles = [] } = staticData;
 
   const colors = data.ear_secondary_colors;
 
@@ -30,7 +31,7 @@ export const EarsSecondaryDimmer = (props: {
 
   const [search, setSearch] = useState('');
 
-  const styles = staticData.available_ear_styles.filter((x) =>
+  const styles = available_ear_styles.filter((x) =>
     search ? x.toLowerCase().includes(search.toLowerCase()) : true,
   );
   styles.sort();

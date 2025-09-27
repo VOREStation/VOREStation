@@ -57,7 +57,7 @@ export const AtmoControlTankCore = (props) => {
         info={input_info}
         maxSliderValue={max_flowrate}
         sliderControl={input_flow_setting}
-        sliderFill={input_info && input_info.volume_rate}
+        sliderFill={input_info?.volume_rate}
         unit="L/s"
         name={core ? 'Coolant Input' : 'Input'}
         limitName="Flow Rate Limit"
@@ -67,7 +67,7 @@ export const AtmoControlTankCore = (props) => {
         info={output_info}
         maxSliderValue={max_pressure}
         sliderControl={pressure_setting}
-        sliderFill={output_info && output_info.output_pressure}
+        sliderFill={output_info?.output_pressure}
         unit="kPa"
         name={core ? 'Core Outpump' : 'Output'}
         limitName={core ? 'Min Core Pressure' : 'Max Output Pressure'}

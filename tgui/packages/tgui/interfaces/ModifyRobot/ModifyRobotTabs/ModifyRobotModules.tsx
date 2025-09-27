@@ -127,7 +127,7 @@ const SelectionField = (props: {
   previewImage: string | undefined;
   previewImageSize: string | undefined;
   searchText: string;
-  onSearchText: Function;
+  onSearchText: React.Dispatch<React.SetStateAction<string>>;
   action: string;
   buttonIcon: string;
   buttonColor: string;
@@ -151,7 +151,7 @@ const SelectionField = (props: {
       <Stack>
         <Stack.Item grow />
         <Stack.Item>
-          <Box className={classes([previewImageSize, previewImage + 'S'])} />
+          <Box className={classes([previewImageSize, `${previewImage}S`])} />
         </Stack.Item>
         <Stack.Item grow />
       </Stack>

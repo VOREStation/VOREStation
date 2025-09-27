@@ -21,7 +21,7 @@ export const PointDefenseControl = (props) => {
   return (
     <Window width={400} height={600}>
       <Window.Content scrollable>
-        <Section title={'Fire Assist Mainframe: ' + (id || '[no tag]')}>
+        <Section title={`Fire Assist Mainframe: ${id || '[no tag]'}`}>
           {(turrets.length &&
             turrets.map((pd) => (
               <Section

@@ -56,62 +56,66 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 			return
 		GLOB.recentmessages.Add(signal_message)
 
+		// simulate the network lag if necessary
 		if(signal.data["slow"] > 0)
-			sleep(signal.data["slow"]) // simulate the network lag if necessary
+			addtimer(CALLBACK(src, PROC_REF(receive_information_delayed), signal), signal.data["slow"], TIMER_DELETE_ME)
+			return
+		receive_information_delayed(signal)
 
-		signal.data["level"] |= using_map.get_map_levels(listening_level, TRUE, overmap_range)
+/obj/machinery/telecomms/broadcaster/receive_information_delayed(datum/signal/signal)
+	signal.data["level"] |= using_map.get_map_levels(listening_level, TRUE, overmap_range)
 
-		var/list/forced_radios
-		for(var/datum/weakref/wr in linked_radios_weakrefs)
-			var/obj/item/radio/R = wr.resolve()
-			if(istype(R))
-				LAZYDISTINCTADD(forced_radios, R)
+	var/list/forced_radios
+	for(var/datum/weakref/wr in linked_radios_weakrefs)
+		var/obj/item/radio/R = wr.resolve()
+		if(istype(R))
+			LAZYDISTINCTADD(forced_radios, R)
 
-	   /** #### - Normal Broadcast - #### **/
-		if(signal.data["type"] == SIGNAL_NORMAL)
-			/* ###### Broadcast a message using signal.data ###### */
-			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], DATA_NORMAL,
-							  signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"], forced_radios)
+	/** #### - Normal Broadcast - #### **/
+	if(signal.data["type"] == SIGNAL_NORMAL)
+		/* ###### Broadcast a message using signal.data ###### */
+		Broadcast_Message(signal.data["connection"], signal.data["mob"],
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"], DATA_NORMAL,
+							signal.data["compression"], signal.data["level"], signal.frequency,
+							signal.data["verb"], forced_radios)
 
-	   /** #### - Simple Broadcast - #### **/
+	/** #### - Simple Broadcast - #### **/
 
-		if(signal.data["type"] == SIGNAL_SIMPLE)
+	if(signal.data["type"] == SIGNAL_SIMPLE)
 
-			/* ###### Broadcast a message using signal.data ###### */
-			Broadcast_SimpleMessage(signal.data["name"], signal.frequency,
-								  signal.data["message"], DATA_NORMAL, null,
-								  signal.data["compression"], listening_level, forced_radios)
+		/* ###### Broadcast a message using signal.data ###### */
+		Broadcast_SimpleMessage(signal.data["name"], signal.frequency,
+								signal.data["message"], DATA_NORMAL, null,
+								signal.data["compression"], listening_level, forced_radios)
 
 
-	   /** #### - Artificial Broadcast - #### **/
-	   			// (Imitates a mob)
+	/** #### - Artificial Broadcast - #### **/
+			// (Imitates a mob)
 
-		if(signal.data["type"] == SIGNAL_FAKE)
+	if(signal.data["type"] == SIGNAL_FAKE)
 
-			/* ###### Broadcast a message using signal.data ###### */
-				// Parameter "data" as DATA_FAKE: AI can't track this person/mob
+		/* ###### Broadcast a message using signal.data ###### */
+			// Parameter "data" as DATA_FAKE: AI can't track this person/mob
 
-			Broadcast_Message(signal.data["connection"], signal.data["mob"],
-							  signal.data["vmask"], signal.data["vmessage"],
-							  signal.data["radio"], signal.data["message"],
-							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], DATA_FAKE,
-							  signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"], forced_radios)
+		Broadcast_Message(signal.data["connection"], signal.data["mob"],
+							signal.data["vmask"], signal.data["vmessage"],
+							signal.data["radio"], signal.data["message"],
+							signal.data["name"], signal.data["job"],
+							signal.data["realname"], signal.data["vname"], DATA_FAKE,
+							signal.data["compression"], signal.data["level"], signal.frequency,
+							signal.data["verb"], forced_radios)
 
-		if(!GLOB.message_delay)
-			GLOB.message_delay = 1
-			spawn(10)
-				GLOB.message_delay = 0
-				GLOB.recentmessages = list()
+	if(!GLOB.message_delay)
+		GLOB.message_delay = 1
+		spawn(10)
+			GLOB.message_delay = 0
+			GLOB.recentmessages = list()
 
-		/* --- Do a snazzy animation! --- */
-		flick("broadcaster_send", src)
+	/* --- Do a snazzy animation! --- */
+	flick("broadcaster_send", src)
 
 /obj/machinery/telecomms/broadcaster/Destroy()
 	// In case message_delay is left on 1, otherwise it won't reset the list and people can't say the same thing twice anymore.
@@ -375,7 +379,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 	else if(data == DATA_ANTAG)
 		for(var/antag_freq in ANTAG_FREQS)
-			var/datum/radio_frequency/antag_connection = radio_controller.return_frequency(antag_freq)
+			var/datum/radio_frequency/antag_connection = SSradio.return_frequency(antag_freq)
 			for (var/obj/item/radio/R in antag_connection.devices["[RADIO_CHAT]"])
 				if(R.receive_range(antag_freq, level) > -1)
 					radios |= R
@@ -406,7 +410,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 	  /* --- Loop through the receivers and categorize them --- */
 		// Allows admins to disable radio
-		if(R?.client?.holder)
+		if(check_rights_for(R?.client, R_HOLDER))
 			if(!R.client?.prefs?.read_preference(/datum/preference/toggle/holder/hear_radio))
 				continue
 
@@ -560,7 +564,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 		var/mob/living/carbon/human/H = new
 		M = H
 
-	var/datum/radio_frequency/connection = radio_controller.return_frequency(frequency)
+	var/datum/radio_frequency/connection = SSradio.return_frequency(frequency)
 
 	var/display_freq = connection.frequency
 
@@ -594,7 +598,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 	else if(data == DATA_ANTAG)
 		for(var/freq in ANTAG_FREQS)
-			var/datum/radio_frequency/antag_connection = radio_controller.return_frequency(freq)
+			var/datum/radio_frequency/antag_connection = SSradio.return_frequency(freq)
 			for (var/obj/item/radio/R in antag_connection.devices["[RADIO_CHAT]"])
 				var/turf/position = get_turf(R)
 				if(position && position.z == level)
@@ -623,7 +627,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 
 	  /* --- Loop through the receivers and categorize them --- */
 		// Allow admins to disable radios completely
-		if(R?.client?.holder)
+		if(check_rights_for(R?.client, R_HOLDER))
 			if(!R.client?.prefs?.read_preference(/datum/preference/toggle/holder/hear_radio))
 				continue
 

@@ -20,7 +20,7 @@
 	var/adjective = "hardens"
 	var/list/tail_lower_dirs = list(SOUTH, EAST, WEST)
 	var/image/tail_image
-	var/tail_alt = TAIL_UPPER_LAYER
+	var/tail_layering = TAIL_UPPER_LAYER
 
 	var/can_revert = TRUE
 	var/was_rayed = FALSE
@@ -62,7 +62,7 @@
 		tail_lower_dirs.Cut()
 	else if(H.tail_style)
 		tail_lower_dirs = H.tail_style.lower_layer_dirs.Copy()
-	tail_alt = H.tail_alt ? TAIL_UPPER_LAYER_HIGH : TAIL_UPPER_LAYER
+	tail_layering = H.tail_layering ? TAIL_UPPER_LAYER_HIGH : TAIL_UPPER_LAYER
 
 	max_integrity = H.getMaxHealth() + 100
 	obj_integrity = H.health + 100
@@ -282,20 +282,20 @@
 	. = ..()
 	if(. && tail_image)
 		cut_overlay(tail_image)
-		tail_image.layer = BODY_LAYER + ((dir in tail_lower_dirs) ? TAIL_LOWER_LAYER : tail_alt)
+		tail_image.layer = BODY_LAYER + ((dir in tail_lower_dirs) ? TAIL_LOWER_LAYER : tail_layering)
 		add_overlay(tail_image)
 
-/obj/structure/gargoyle/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
+/obj/structure/gargoyle/hitby(atom/movable/source ,var/speed = THROWFORCE_SPEED_DIVISOR)
 	var/mob/living/carbon/human/gargoyle = WR_gargoyle.resolve()
 	if(!gargoyle)
 		return
-	if(istype(AM,/obj/item) && gargoyle.vore_selected && gargoyle.trash_catching)
-		var/obj/item/I = AM
+	if(isitem(source) && gargoyle.vore_selected && gargoyle.trash_catching)
+		var/obj/item/I = source
 		if(gargoyle.adminbus_trash || is_type_in_list(I, GLOB.edible_trash) && I.trash_eatable && !is_type_in_list(I, GLOB.item_vore_blacklist))
-			gargoyle.hitby(AM, speed)
+			gargoyle.hitby(source, speed)
 			return
-	else if(isliving(AM))
-		var/mob/living/L = AM
+	else if(isliving(source))
+		var/mob/living/L = source
 		if(gargoyle.throw_vore && L.throw_vore && gargoyle.can_be_drop_pred && L.can_be_drop_prey)
 			var/drop_prey_temp = FALSE
 			if(gargoyle.can_be_drop_prey)

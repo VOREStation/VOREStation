@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(current_pending_diseases)
 	GLOB.current_pending_diseases += chosen_disease
 
 	var/list/candidates = list()
-	for(var/mob/living/carbon/human/G in human_mob_list)
+	for(var/mob/living/carbon/human/G in GLOB.human_mob_list)
 		if(G.mind && G.stat != DEAD && G.is_client_active(5) && !player_is_antag(G.mind))
 			var/area/A = get_area(G)
 			if(!A)

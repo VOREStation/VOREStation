@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
   Box,
@@ -8,10 +9,8 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { formatMoney, formatSiUnit } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 import { classes } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
-
 import { MATERIAL_KEYS } from './constants';
 import type { Data, material } from './types';
 
@@ -23,7 +22,7 @@ const EjectMaterial = (props: { material: material }) => {
   const { name, removable, sheets } = material;
 
   const [removeMaterials, setRemoveMaterials] = useSharedState(
-    'remove_mats_' + name,
+    `remove_mats_${name}`,
     1,
   );
 
@@ -35,12 +34,13 @@ const EjectMaterial = (props: { material: material }) => {
     <>
       <NumberInput
         width="30px"
+        tickWhileDragging
         animated
         value={removeMaterials}
         minValue={1}
         maxValue={sheets || 1}
         step={1}
-        onDrag={(val) => {
+        onChange={(val) => {
           const newVal = val;
           if (Number.isInteger(newVal)) {
             setRemoveMaterials(newVal);
@@ -111,13 +111,13 @@ export const MaterialAmount = (props: {
   formatsi?: boolean;
   formatmoney?: boolean;
   color?: string;
-  style?: {};
+  style?: CSSProperties;
 }) => {
   const { name, amount, formatsi, formatmoney, color, style } = props;
 
   let amountDisplay: string = '0';
   if (amount < 1 && amount > 0) {
-    amountDisplay = toFixed(amount, 2);
+    amountDisplay = amount.toFixed(2);
   } else if (formatsi) {
     amountDisplay = formatSiUnit(amount, 0);
   } else if (formatmoney) {

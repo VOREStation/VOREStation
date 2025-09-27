@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
-import type { bellyVisualData } from '../types';
+import type { bellyVisualData, hostMob } from '../types';
 import { VorePanelEditColor } from '../VorePanelElements/VorePanelEditColor';
 import { VorePanelEditSwitch } from '../VorePanelElements/VorePanelEditSwitch';
 import { BellyFullscreenSelection } from './VisualTab/BellyFullscreenSelection';
@@ -10,10 +10,11 @@ import { VoreSpriteAffects } from './VisualTab/VoreSpriteAffect';
 export const VoreSelectedBellyVisuals = (props: {
   editMode: boolean;
   bellyVisualData: bellyVisualData;
+  hostMobtype: hostMob;
 }) => {
   const { act } = useBackend();
 
-  const { editMode, bellyVisualData } = props;
+  const { editMode, bellyVisualData, hostMobtype } = props;
   const {
     belly_fullscreen,
     colorization_enabled,
@@ -46,6 +47,7 @@ export const VoreSelectedBellyVisuals = (props: {
             <VoreSpriteAffects
               editMode={editMode}
               bellyVisualData={bellyVisualData}
+              hostMobtype={hostMobtype}
             />
           )}
         </Section>

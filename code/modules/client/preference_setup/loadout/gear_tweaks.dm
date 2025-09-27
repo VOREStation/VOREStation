@@ -59,20 +59,23 @@ GLOBAL_DATUM_INIT(gear_tweak_free_matrix_recolor, /datum/gear_tweak/matrix_recol
 /datum/gear_tweak/matrix_recolor/get_default()
 	return null
 
-/datum/gear_tweak/matrix_recolor/get_metadata(user, metadata)
-	var/list/returned = color_matrix_picker(user, "Pick a color matrix for this item", "Matrix Recolor", "Ok", "Erase", "Cancel", TRUE, 10 MINUTES, islist(metadata) && metadata)
-	var/list/L = returned["matrix"]
-	if(returned["button"] == 3)
+/datum/gear_tweak/matrix_recolor/get_metadata(user, metadata, datum/gear/gear)
+	if(!istype(gear))
+		CRASH("Matrix metadata called by [user] without gear!")
+	var/list/returned = tgui_input_colormatrix(user, "Pick a color matrix for this item", "Matrix Recolor", gear.path, metadata, TRUE)
+	if(!returned)
 		return metadata
-	if((returned["button"] == 2) || !islist(L) || !ISINRANGE(L.len, 9, 20))
-		return list()
 	var/identity = TRUE
 	var/static/list/ones = list(1, 5, 9)
-	for(var/i in 1 to L.len)
-		if(L[i] != ((i in ones)? 1 : 0))
+	var/static/list/offsets = list(10, 11, 12)
+	for(var/i in 1 to length(returned))
+		if(returned[i] != ((i in ones) ? 1 : 0))
 			identity = FALSE
 			break
-	return identity? list() : L
+		if(returned[i] != ((i in offsets) ? 0 : 1))
+			identity = FALSE
+			break
+	return identity ? list() : returned
 
 /datum/gear_tweak/matrix_recolor/tweak_item(obj/item/I, metadata)
 	. = ..()
@@ -218,7 +221,7 @@ var/datum/gear_tweak/custom_name/gear_tweak_free_name = new()
 		return
 	if(valid_custom_names)
 		return tgui_input_list(user, "Choose an item name.", "Character Preference", valid_custom_names, metadata)
-	var/san_input = sanitize(tgui_input_text(user, "Choose the item's name. Leave it blank to use the default name.", "Item Name", metadata, MAX_LNAME_LEN), MAX_LNAME_LEN, extra = 0)
+	var/san_input = tgui_input_text(user, "Choose the item's name. Leave it blank to use the default name.", "Item Name", metadata, MAX_LNAME_LEN)
 	return san_input ? san_input : get_default()
 
 /datum/gear_tweak/custom_name/tweak_item(var/obj/item/I, var/metadata)
@@ -250,7 +253,7 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 		return
 	if(valid_custom_desc)
 		return tgui_input_list(user, "Choose an item description.", "Character Preference",valid_custom_desc, metadata)
-	var/san_input = sanitize(tgui_input_text(user, "Choose the item's description. Leave it blank to use the default description.", "Item Description", metadata, multiline = TRUE, prevent_enter = TRUE), extra = 0)
+	var/san_input = tgui_input_text(user, "Choose the item's description. Leave it blank to use the default description.", "Item Description", metadata, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 	return san_input ? san_input : get_default()
 
 /datum/gear_tweak/custom_desc/tweak_item(var/obj/item/I, var/metadata)
@@ -606,7 +609,7 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 	return ""
 
 /datum/gear_tweak/collar_tag/get_metadata(var/user, var/metadata)
-	return sanitize( tgui_input_text(user, "Choose the tag text", "Character Preference", metadata, MAX_NAME_LEN), MAX_NAME_LEN )
+	return tgui_input_text(user, "Choose the tag text", "Character Preference", metadata, MAX_NAME_LEN)
 
 /datum/gear_tweak/collar_tag/tweak_item(var/obj/item/clothing/accessory/collar/C, var/metadata)
 	if(metadata == "")

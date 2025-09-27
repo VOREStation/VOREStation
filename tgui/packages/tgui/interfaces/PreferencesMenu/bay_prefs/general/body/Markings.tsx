@@ -11,7 +11,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
 import {
@@ -19,11 +19,11 @@ import {
   ColorizedImageButton,
   getImage,
 } from '../../helper_components';
-import {
-  type GeneralData,
-  type GeneralDataConstant,
-  type GeneralDataStatic,
-  type MarkingStyle,
+import type {
+  GeneralData,
+  GeneralDataConstant,
+  GeneralDataStatic,
+  MarkingStyle,
 } from '../data';
 import { BodyPopup } from '../SubtabBody';
 
@@ -185,7 +185,7 @@ export const ExtraWindow = (props: {
     >
       <Section
         fill
-        title={name + ' Options'}
+        title={`${name} Options`}
         buttons={
           <Button icon="times" color="bad" onClick={() => setShow('')}>
             Close

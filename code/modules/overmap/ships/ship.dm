@@ -79,7 +79,7 @@
 
 	var/life = 0
 
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L in GLOB.living_mob_list)
 		if(L.z in map_z) //Things inside things we'll consider shielded, otherwise we'd want to use get_z(L)
 			life++
 
@@ -138,7 +138,7 @@
 			return
 		//VOREStation Add Start
 		last_sound = world.time
-		for(var/mob/potential_mob as anything in player_list)
+		for(var/mob/potential_mob as anything in GLOB.player_list)
 			if(potential_mob.z in map_z)
 				SEND_SOUND(potential_mob, 'sound/ambience/shutdown.ogg')
 		//VOREStation Add End
@@ -153,7 +153,7 @@
 			return
 		//VOREStation Add Start
 		last_sound = world.time
-		for(var/mob/potential_mob as anything in player_list)
+		for(var/mob/potential_mob as anything in GLOB.player_list)
 			if(potential_mob.z in map_z)
 				SEND_SOUND(potential_mob, 'sound/ambience/startup.ogg')
 		//VOREStation Add End

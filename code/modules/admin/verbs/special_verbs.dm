@@ -17,7 +17,7 @@
 
 	A.associate(src)
 
-	if(!holder)
+	if(!check_rights_for(src, R_HOLDER))
 		return //This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
 
 	to_chat(src, span_interface("You are now an admin."), confidential = TRUE)

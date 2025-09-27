@@ -39,7 +39,7 @@ export const AutoTransferOptions = (props: {
   });
 
   return (
-    <Section title={capitalize(title) + ' Auto-Transfer'}>
+    <Section title={`${capitalize(title)} Auto-Transfer`}>
       <Stack vertical fill>
         <Stack.Item>
           <Stack>
@@ -47,7 +47,7 @@ export const AutoTransferOptions = (props: {
               <LabeledList.Item label="Auto-Transfer Chance">
                 <VorePanelEditNumber
                   action="set_attribute"
-                  subAction={'b_autotransferchance_' + title}
+                  subAction={`b_autotransferchance_${title}`}
                   editMode={editMode}
                   value={autotransferchance}
                   unit="%"
@@ -65,16 +65,14 @@ export const AutoTransferOptions = (props: {
               <LabeledList.Item label="Auto-Transfer Location">
                 <VorePanelEditDropdown
                   action="set_attribute"
-                  subAction={'b_autotransferlocation_' + title}
+                  subAction={`b_autotransferlocation_${title}`}
                   editMode={editMode}
                   options={locationNames}
                   color={!editMode && !autotransferlocation ? 'red' : undefined}
                   entry={
                     autotransferlocation ? autotransferlocation : 'Disabled'
                   }
-                  tooltip={
-                    'Target location of the ' + title + ' auto-transfer.'
-                  }
+                  tooltip={`Target location of the ${title} auto-transfer.`}
                 />
               </LabeledList.Item>
             </Stack.Item>
@@ -87,8 +85,8 @@ export const AutoTransferOptions = (props: {
                 editMode={editMode}
                 options={transferCheckboxes}
                 action="set_attribute"
-                subAction={'b_autotransferextralocation_' + title}
-                tooltip={'Set additional ' + title + ' transfer locations.'}
+                subAction={`b_autotransferextralocation_${title}`}
+                tooltip={`Set additional ${title} transfer locations.`}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Auto-Transfer Whitelist (Mobs)">
@@ -96,7 +94,7 @@ export const AutoTransferOptions = (props: {
                 editMode={editMode}
                 options={autotransfer_whitelist}
                 action="set_attribute"
-                subAction={'b_autotransfer_whitelist_' + title}
+                subAction={`b_autotransfer_whitelist_${title}`}
                 tooltip={
                   'Whitelist mob types for your ' +
                   title +
@@ -109,7 +107,7 @@ export const AutoTransferOptions = (props: {
                 editMode={editMode}
                 options={autotransfer_whitelist_items}
                 action="set_attribute"
-                subAction={'b_autotransfer_whitelist_items_' + title}
+                subAction={`b_autotransfer_whitelist_items_${title}`}
                 tooltip={
                   'Whitelist item types for your ' +
                   title +
@@ -122,7 +120,7 @@ export const AutoTransferOptions = (props: {
                 editMode={editMode}
                 options={autotransfer_blacklist}
                 action="set_attribute"
-                subAction={'b_autotransfer_blacklist_' + title}
+                subAction={`b_autotransfer_blacklist_${title}`}
                 tooltip={
                   'Blacklist mob types for your ' +
                   title +
@@ -135,7 +133,7 @@ export const AutoTransferOptions = (props: {
                 editMode={editMode}
                 options={autotransfer_blacklist_items}
                 action="set_attribute"
-                subAction={'b_autotransfer_blacklist_items_' + title}
+                subAction={`b_autotransfer_blacklist_items_${title}`}
                 tooltip={
                   'Blacklist item types for your ' +
                   title +

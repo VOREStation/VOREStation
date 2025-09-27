@@ -1,62 +1,3 @@
-/mob/observer/dead/verb/nifjoin()
-	set category = "Ghost.Join"
-	set name = "Join Into Soulcatcher"
-	set desc = "Select a player with a working NIF + Soulcatcher NIFSoft to join into it."
-
-	var/picked = tgui_input_list(src, "Pick a friend with NIF and Soulcatcher to join into. Harrass strangers, get banned. Not everyone has a NIF w/ Soulcatcher.","Select a player", player_list)
-
-	//Didn't pick anyone or picked a null
-	if(!picked)
-		return
-
-	//Good choice testing and some instance-grabbing
-	if(!ishuman(picked))
-		to_chat(src,span_warning("[picked] isn't in a humanoid mob at the moment."))
-		return
-
-	var/mob/living/carbon/human/H = picked
-
-	if(H.stat || !H.client)
-		to_chat(src,span_warning("[H] isn't awake/alive at the moment."))
-		return
-
-	if(!H.nif)
-		to_chat(src,span_warning("[H] doesn't have a NIF installed."))
-		return
-
-	var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
-	if(!SC)
-		to_chat(src,span_warning("[H] doesn't have the Soulcatcher NIFSoft installed, or their NIF is unpowered."))
-		return
-
-	//Fine fine, we can ask.
-	var/obj/item/nif/nif = H.nif
-	to_chat(src,span_notice("Request sent to [H]."))
-
-	var/req_time = world.time
-	nif.notify("Transient mindstate detected, analyzing...")
-	sleep(15) //So if they are typing they get interrupted by sound and message, and don't type over the box
-	var/response = tgui_alert(H,"[src] ([src.key]) wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny","Allow"), timeout = 1 MINUTE)
-
-	if(!response || response == "Deny")
-		to_chat(src,span_warning("[H] denied your request."))
-		return
-
-	if((world.time - req_time) > 1 MINUTE)
-		to_chat(H,span_warning("The request had already expired. (1 minute waiting max)"))
-		return
-
-	//Final check since we waited for input a couple times.
-	if(H && src && src.key && !H.stat && nif && SC)
-		if(!mind) //No mind yet, aka haven't played in this round.
-			mind = new(key)
-
-		mind.name = name
-		mind.current = src
-		mind.active = TRUE
-
-		SC.catch_mob(src) //This will result in us being deleted so...
-
 /mob/observer/dead/verb/backup_ping()
 	set category = "Ghost.Join"
 	set name = "Notify Transcore"
@@ -106,30 +47,17 @@
 */
 /mob/observer/dead/verb/findghostpod() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost.Join"
-	set name = "Find Ghost Pod"
-	set desc = "Find an active ghost pod"
-	set popup_menu = FALSE
+	set name = "Ghost Spawn"
+	set desc = "Open Ghost Spawn Menu"
 
 	if(!isobserver(src)) //Make sure they're an observer!
 		return
 
-	var/input = tgui_input_list(src, "Select a ghost pod:", "Ghost Jump", observe_list_format(GLOB.active_ghost_pods))
-	if(!input)
-		to_chat(src, span_filter_notice("No active ghost pods detected."))
+	if(selecting_ghostrole)
 		return
 
-	var/target = observe_list_format(GLOB.active_ghost_pods)[input]
-	if (!target)//Make sure we actually have a target
-		return
-	else
-		var/obj/O = target //Destination mob
-		var/turf/T = get_turf(O) //Turf of the destination mob
-
-		if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
-			forceMove(T)
-			stop_following()
-		else
-			to_chat(src, span_filter_notice("This ghost pod is not located in the game world."))
+	var/datum/tgui_module/ghost_spawn_menu/ui = new(src)
+	ui.tgui_interact(src)
 
 /mob/observer/dead/verb/findautoresleever()
 	set category = "Ghost.Join"

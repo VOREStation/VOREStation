@@ -22,7 +22,7 @@ mob
 			if(GLOB.master_mode == "sandbox")
 				sandbox = new/datum/hSB
 				sandbox.owner = src.ckey
-				if(src.client.holder)
+				if(check_rights_for(src.client, R_HOLDER))
 					sandbox.admin = 1
 				add_verb(src, /mob/proc/sandbox_panel)
 		sandbox_panel()

@@ -1050,6 +1050,12 @@
 	ckeywhitelist = list("ryumi")
 	character_name = list("Nikki Yumeno")
 
+/datum/gear/fluff/holly_capsule
+	path = /obj/item/survivalcapsule/holly
+	display_name = "Recreational Shelter Capsule"
+	ckeywhitelist = list("ryumi")
+	character_name = list("Holly")
+
 //  S CKEYS
 /datum/gear/fluff/brynhild_medal
 	path = /obj/item/clothing/accessory/medal/silver/valor
@@ -1330,6 +1336,12 @@
 	slot = slot_wear_mask
 	ckeywhitelist = list("theskringdinger")
 	character_name = list("Monty Kopic")
+
+/datum/gear/fluff/flute_tief
+	path = /obj/item/instrument/recorder/fluff_tief
+	display_name = "flute"
+	ckeywhitelist = list("tief")
+	character_name = list("Belphi")
 
 /datum/gear/fluff/shadow_laptop
 	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens

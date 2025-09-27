@@ -33,7 +33,7 @@
 		log_and_message_admins("CANARY: [src] tried to check is_empty, but map_z is `[map_z || "null"]`")
 		return TRUE
 	testing("Checking if sector at [map_z[1]] has no players.")
-	for(var/mob/M in global.player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M != observer && (M.z in map_z))
 			testing("There are people on it.")
 			return FALSE
@@ -155,6 +155,6 @@
 			if(D.pulling)
 				D.pulling.forceMove(dest)
 	else
-		to_world("CANARY: Could not move [A] to [nx], [ny], [nz]: [dest ? "[dest]" : "null"]")
+		to_chat(world, "CANARY: Could not move [A] to [nx], [ny], [nz]: [dest ? "[dest]" : "null"]")
 
 	M.cleanup()

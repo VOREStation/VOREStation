@@ -130,12 +130,12 @@
 			R.update_power()
 
 		//Teleport time!
-		for(var/mob in player_list) //This is extreme, but it's very hard to find people hiding in things, and this is pretty cheap.
+		for(var/mob in GLOB.player_list) //This is extreme, but it's very hard to find people hiding in things, and this is pretty cheap.
 			try
 				if(isliving(mob) && get_area(mob) == src)
 					abduct(mob)
 			catch
-				log_debug("Problem doing [mob] for Alienship arrival teleport!")
+				log_runtime("Problem doing [mob] for Alienship arrival teleport!")
 
 		did_entry = TRUE
 

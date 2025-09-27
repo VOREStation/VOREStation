@@ -9,8 +9,8 @@
 // Interior doors: (obj/machinery/door/airlock), id_tag = "[base]_inner"
 // Exterior access button: (obj/machinery/access_button/airlock_exterior),  master_tag = "[base]"
 // Interior access button: (obj/machinery/access_button/airlock_interior),  master_tag = "[base]"
-// Srubbers: (obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary), frequency = "1379", scrub_id = "[base]_scrubber"
-// Pumps: (obj/machinery/atmospherics/unary/vent_pump/high_volume), frequency = 1379 id_tag = "[base]_pump"
+// Srubbers: (obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary), frequency = AIRLOCK_FREQ, scrub_id = "[base]_scrubber"
+// Pumps: (obj/machinery/atmospherics/unary/vent_pump/high_volume), frequency = AIRLOCK_FREQ id_tag = "[base]_pump"
 //
 
 /obj/machinery/airlock_sensor/phoron
@@ -47,7 +47,7 @@
 
 // Radio remote control
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
-	var/frequency = 0
+	var/frequency = ZERO_FREQ
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize(mapload)
@@ -56,10 +56,10 @@
 		set_frequency(frequency)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
+	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, radio_filter = RADIO_ATMOSIA)
+		radio_connection = SSradio.add_object(src, frequency, radio_filter = RADIO_ATMOSIA)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != scrub_id) || (signal.data["sigtype"] != "command"))

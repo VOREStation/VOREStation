@@ -63,6 +63,12 @@
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
 
+/datum/preference/toggle/bloop_sounds
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "BLOOP_SOUNDS"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
 /datum/preference/toggle/emote_sounds
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "EMOTE_SOUNDS"
@@ -249,3 +255,17 @@
 
 /datum/preference/numeric/living/jukebox_volume/apply_to_client_updated(client/client, value)
 	client?.media?.update_volume(value)
+
+/datum/preference/numeric/volume
+	abstract_type = /datum/preference/numeric/volume
+	minimum = 0
+	maximum = 100
+
+/datum/preference/numeric/volume/create_default_value()
+	return maximum
+
+/// Controls hearing instruments
+/datum/preference/numeric/volume/sound_instruments
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "sound_instruments"
+	savefile_identifier = PREFERENCE_PLAYER

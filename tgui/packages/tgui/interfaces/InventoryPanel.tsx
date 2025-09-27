@@ -18,8 +18,7 @@ export const InventoryPanel = (props) => {
       <Window.Content scrollable>
         <Section>
           <LabeledList>
-            {slots &&
-              slots.length &&
+            {slots?.length &&
               slots.map((slot) => (
                 <LabeledList.Item key={slot.name} label={slot.name}>
                   <Button

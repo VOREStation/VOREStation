@@ -38,6 +38,7 @@ export type occupant = {
   objectPrey: number;
   weight: number;
   husked: BooleanLike;
+  hasWithdrawl: BooleanLike;
 };
 
 type reagent = { name: string; amount: number; overdose: BooleanLike };
@@ -54,6 +55,7 @@ export type internalOrgan = {
   dead: BooleanLike;
   inflamed: BooleanLike;
   missing: BooleanLike;
+  medical_issues_I?: string[];
 };
 
 export type externalOrgan = {
@@ -78,4 +80,5 @@ export type externalOrgan = {
   };
   lungRuptured: BooleanLike;
   internalBleeding: BooleanLike;
+  medical_issues_E: string[];
 };

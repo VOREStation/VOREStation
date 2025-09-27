@@ -8,7 +8,9 @@ import {
 } from './constants';
 import type { Data } from './types';
 
-export const NewscasterViewList = (props: { setScreen: Function }) => {
+export const NewscasterViewList = (props: {
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { act, data } = useBackend<Data>();
 
   const { channels } = data;

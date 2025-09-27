@@ -189,7 +189,7 @@
 
 // These are here partly in order to be overwritten by the centcom card computer code
 /datum/file/program/card_comp/proc/authenticate()
-	if(access_change_ids in reader.GetAccess())
+	if(ACCESS_CHANGE_IDS in reader.GetAccess())
 		return 1
 	if(isAI(usr))
 		return 1
@@ -305,7 +305,7 @@
 		if(auth)
 			var/t1 = href_list["assign"]
 			if(t1 == "Custom")
-				var/temp_t = sanitize(tgui_input_text(usr, "Enter a custom job assignment.","Assignment"))
+				var/temp_t = tgui_input_text(usr, "Enter a custom job assignment.","Assignment", "", MAX_MESSAGE_LEN)
 				if(temp_t)
 					t1 = temp_t
 			set_default_access(t1)
@@ -342,6 +342,6 @@
 	return accesses
 
 /datum/file/program/card_comp/centcom/authenticate()
-	if(access_cent_captain in reader.GetAccess())
+	if(ACCESS_CENT_CAPTAIN in reader.GetAccess())
 		return 1
 	return 0

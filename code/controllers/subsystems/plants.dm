@@ -2,7 +2,9 @@
 
 SUBSYSTEM_DEF(plants)
 	name = "Plants"
-	init_order = INIT_ORDER_PLANTS
+	dependencies = list(
+		/datum/controller/subsystem/mapping
+	)
 	priority = FIRE_PRIORITY_PLANTS
 	wait = PLANT_TICK_TIME
 
@@ -109,6 +111,7 @@ SUBSYSTEM_DEF(plants)
 	if(survive_on_station)
 		if(seed.consume_gasses)
 			seed.consume_gasses[GAS_PHORON] = null
+			seed.consume_gasses[GAS_CH4] = null
 			seed.consume_gasses[GAS_CO2] = null
 		if(seed.chems && !isnull(seed.chems[REAGENT_ID_PACID]))
 			seed.chems[REAGENT_ID_PACID] = null // Eating through the hull will make these plants completely inviable, albeit very dangerous.
@@ -152,7 +155,7 @@ SUBSYSTEM_DEF(plants)
 	set name = "Show Plant Genes"
 	set desc = "Prints the round's plant gene masks."
 
-	if(!holder)	return
+	if(!check_rights_for(src, R_HOLDER))	return
 
 	if(!SSplants || !SSplants.gene_tag_masks)
 		to_chat(usr, "Gene masks not set.")

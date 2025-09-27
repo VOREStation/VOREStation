@@ -59,7 +59,6 @@ const ConstructorPage = (props: {
   designs: ConstructorDesign[];
   linked_data: LinkedConstructor;
 }) => {
-  const { act, data } = useBackend<Data>();
   const { type, designs, linked_data } = props;
   const our_name = constructorEnumToName[type];
 
@@ -328,7 +327,7 @@ const MatStorageTab = (props: {
     <LabeledList>
       {Object.entries(linked_data.materials).map(([mat, amount]) => {
         if (amount === 0 && !NEVER_HIDE_MATERIALS.includes(mat)) {
-          return;
+          return undefined;
         }
         return (
           <LabeledList.Item
@@ -338,12 +337,13 @@ const MatStorageTab = (props: {
               <Stack>
                 <Stack.Item>
                   <NumberInput
+                    tickWhileDragging
                     value={matEjectStates[mat] || 0}
                     minValue={0}
                     maxValue={Math.floor(amount / data.sheet_material_amount)}
                     step={1}
                     width="100px"
-                    onDrag={(val) => {
+                    onChange={(val) => {
                       setMatEjectStates({
                         ...matEjectStates,
                         [mat]: val,

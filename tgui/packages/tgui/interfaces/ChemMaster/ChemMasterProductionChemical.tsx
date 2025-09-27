@@ -39,7 +39,7 @@ export const ChemMasterProductionChemical = (props: {
             }}
           >
             <Box
-              className={classes(['chem_master32x32', 'pill' + pillsprite])}
+              className={classes(['chem_master32x32', `pill${pillsprite}`])}
               style={{
                 bottom: '10px',
                 right: '10px',
@@ -101,7 +101,7 @@ export const ChemMasterProductionChemical = (props: {
             <Box
               className={classes([
                 'chem_master32x32',
-                'bottle-' + bottlesprite,
+                `bottle-${bottlesprite}`,
               ])}
               style={{
                 bottom: '10px',

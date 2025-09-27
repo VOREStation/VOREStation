@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Box, Icon } from 'tgui-core/components';
 
 export const getImage = async (url: string): Promise<HTMLImageElement> => {

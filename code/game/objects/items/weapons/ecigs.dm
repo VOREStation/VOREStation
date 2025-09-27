@@ -153,7 +153,7 @@
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 10)
 	volume = 20
 	flags = OPENCONTAINER
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 
 /obj/item/reagent_containers/ecig_cartridge/examine(mob/user as mob)//to see how much left
 	. = ..()

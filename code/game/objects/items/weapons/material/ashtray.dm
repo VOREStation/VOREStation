@@ -1,4 +1,4 @@
-var/global/list/ashtray_cache = list()
+GLOBAL_LIST_EMPTY(ashtray_cache)
 
 /obj/item/material/ashtray
 	name = "ashtray"
@@ -24,21 +24,21 @@ var/global/list/ashtray_cache = list()
 	color = null
 	cut_overlays()
 	var/cache_key = "base-[material.name]"
-	if(!ashtray_cache[cache_key])
+	if(!GLOB.ashtray_cache[cache_key])
 		var/image/I = image('icons/obj/objects.dmi',"ashtray")
 		I.color = material.icon_colour
-		ashtray_cache[cache_key] = I
-	add_overlay(ashtray_cache[cache_key])
+		GLOB.ashtray_cache[cache_key] = I
+	add_overlay(GLOB.ashtray_cache[cache_key])
 
 	if (contents.len == max_butts)
-		if(!ashtray_cache["full"])
-			ashtray_cache["full"] = image('icons/obj/objects.dmi',"ashtray_full")
-		add_overlay(ashtray_cache["full"])
+		if(!GLOB.ashtray_cache["full"])
+			GLOB.ashtray_cache["full"] = image('icons/obj/objects.dmi',"ashtray_full")
+		add_overlay(GLOB.ashtray_cache["full"])
 		desc = "It's stuffed full."
 	else if (contents.len > max_butts/2)
-		if(!ashtray_cache["half"])
-			ashtray_cache["half"] = image('icons/obj/objects.dmi',"ashtray_half")
-		add_overlay(ashtray_cache["half"])
+		if(!GLOB.ashtray_cache["half"])
+			GLOB.ashtray_cache["half"] = image('icons/obj/objects.dmi',"ashtray_half")
+		add_overlay(GLOB.ashtray_cache["half"])
 		desc = "It's half-filled."
 	else
 		desc = "An ashtray made of [material.display_name]."

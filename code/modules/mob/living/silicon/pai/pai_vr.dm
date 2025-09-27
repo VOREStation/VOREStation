@@ -9,55 +9,6 @@
 	var/icon/holo_icon_north
 	var/holo_icon_dimension_X = 32
 	var/holo_icon_dimension_Y = 32
-	var/global/list/wide_chassis = list(
-		"rat",
-		"panther",
-		"teppi",
-		"pai-diredog",
-		"pai-horse_lune",
-		"pai-horse_soleil",
-		"pai-pdragon",
-		"pai-protodog"
-		)
-	var/global/list/flying_chassis = list(
-		"pai-parrot",
-		"pai-bat",
-		"pai-butterfly",
-		"pai-hawk",
-		"cyberelf"
-		)
-
-	//Sure I could spend all day making wacky overlays for all of the different forms
-	//but quite simply most of these sprites aren't made for that, and I'd rather just make new ones
-	//the birds especially! Just naw. If someone else wants to mess with 12x4 frames of animation where
-	//most of the pixels are different kinds of green and tastefully translate that to whitescale
-	//they can have fun with that! I not doing it!
-	var/global/list/allows_eye_color = list(
-		"pai-repairbot",
-		"pai-typezero",
-		"pai-bat",
-		"pai-butterfly",
-		"pai-mouse",
-		"pai-monkey",
-		"pai-raccoon",
-		"pai-cat",
-		"rat",
-		"panther",
-		"pai-bear",
-		"pai-fen",
-		"cyberelf",
-		"teppi",
-		"catslug",
-		"car",
-		"typeone",
-		"13",
-		"pai-raptor",
-		"pai-diredog",
-		"pai-horse_lune",
-		"pai-horse_soleil",
-		"pai-pdragon",
-		"pai-protodog"
-		)
 	//These vars keep track of whether you have the related software, used for easily updating the UI
 	var/soft_ut = FALSE	//universal translator
 	var/soft_mr = FALSE	//medical records
@@ -66,6 +17,7 @@
 	var/soft_as = FALSE	//atmosphere sensor
 	var/soft_si = FALSE	//signaler
 	var/soft_ar = FALSE	//ar hud
+	var/soft_da = FALSE //death alarm
 
 	vore_capacity = 1
 	vore_capacity_ex = list("stomach" = 1)
@@ -86,13 +38,13 @@
 	if(stat == DEAD)
 		healths.icon_state = "health7"
 
-/mob/living/silicon/pai/proc/full_restore()
+/mob/living/silicon/pai/proc/full_restore() //This is using do_after all kinds of weird...
 	adjustBruteLoss(- bruteloss)
 	adjustFireLoss(- fireloss)
-	do_after(src, 1 SECONDS)
+	do_after(src, 1 SECONDS, target = src)
 	card.setEmotion(16)
 	stat = CONSCIOUS
-	do_after(src, 5 SECONDS)
+	do_after(src, 5 SECONDS, target = src)
 	var/mob/observer/dead/ghost = src.get_ghost()
 	if(ghost)
 		ghost.notify_revive("Someone is trying to revive you. Re-enter your body if you want to be revived!", 'sound/effects/pai-restore.ogg', source = card)
@@ -131,16 +83,16 @@
 
 	// Unfortunately not all these states exist, ugh.
 	else if(vore_fullness && !resting)
-		if("[chassis]_full[fullness_extension]" in cached_icon_states(icon))
+		if(icon_exists(icon, "[chassis]_full[fullness_extension]"))
 			icon_state = "[chassis]_full[fullness_extension]"
 		else
 			icon_state = "[chassis]"
 	else if(vore_fullness && resting)
-		if("[chassis]_rest_full[fullness_extension]" in cached_icon_states(icon))
+		if(icon_exists(icon, "[chassis]_rest_full[fullness_extension]"))
 			icon_state = "[chassis]_rest_full[fullness_extension]"
 		else
 			icon_state = "[chassis]_rest"
-	if(chassis in wide_chassis)
+	if(chassis in GLOB.wide_chassis)
 		pixel_x = -16
 		default_pixel_x = -16
 	else
@@ -167,7 +119,7 @@
 		icon_state = "[chassis]_full[fullness_extension]"
 	else if(vore_fullness && resting)
 		icon_state = "[chassis]_rest_full[fullness_extension]"
-	if(chassis in wide_chassis)
+	if(chassis in GLOB.wide_chassis)
 		pixel_x = -16
 		default_pixel_x = -16
 	else
@@ -181,11 +133,11 @@
 	set name = "Choose Chassis"
 	var/choice
 
-	choice = tgui_input_list(src, "What would you like to use for your mobile chassis icon?", "Chassis Choice", possible_chassis)
+	choice = tgui_input_list(src, "What would you like to use for your mobile chassis icon?", "Chassis Choice", GLOB.possible_chassis)
 	if(!choice) return
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
-	chassis = possible_chassis[choice]
+	chassis = GLOB.possible_chassis[choice]
 
 	vore_capacity = 1
 	vore_capacity_ex = list("stomach" = 1)
@@ -196,7 +148,7 @@
 				return
 		icon_state = null
 		icon = holo_icon
-	else if(chassis in wide_chassis)
+	else if(chassis in GLOB.wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
 		vis_height = 64
 	else
@@ -204,7 +156,7 @@
 		vis_height = 32
 	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
 
-	if(chassis in flying_chassis)
+	if(chassis in GLOB.flying_chassis)
 		hovering = TRUE
 	else
 		hovering = FALSE
@@ -217,7 +169,7 @@
 	set category = "Abilities.pAI Commands"
 	set name = "Toggle Eye Glow"
 
-	if(chassis in allows_eye_color)
+	if(chassis in GLOB.allows_eye_color)
 		if(eye_glow && !hide_glow)
 			eye_glow = FALSE
 		else
@@ -232,7 +184,7 @@
 /mob/living/silicon/pai/verb/pick_eye_color()
 	set category = "Abilities.pAI Commands"
 	set name = "Pick Eye Color"
-	if(!(chassis in allows_eye_color))
+	if(!(chassis in GLOB.allows_eye_color))
 		to_chat(src, span_warning("Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen."))
 
 	var/new_eye_color = tgui_color_picker(src, "Choose your character's eye color:", "Eye Color")
@@ -245,12 +197,12 @@
 /mob/living/silicon/pai/Destroy()
 	release_vore_contents()
 	if(ckey)
-		paikeys -= ckey
+		GLOB.paikeys -= ckey
 	return ..()
 
 /mob/living/silicon/pai/clear_client()
 	if(ckey)
-		paikeys -= ckey
+		GLOB.paikeys -= ckey
 	return ..()
 
 /mob/living/silicon/pai/proc/add_eyes()
@@ -270,7 +222,7 @@
 			eye_layer = image('icons/mob/pai_vr64x32.dmi', "type13-eyes")
 		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
 			eye_layer = image('icons/mob/pai_vr64x64.dmi', "type13-eyes")
-	else if(chassis in allows_eye_color)
+	else if(chassis in GLOB.allows_eye_color)
 		eye_layer = image(icon, "[icon_state]-eyes")
 	else return
 	eye_layer.appearance_flags = appearance_flags
@@ -497,7 +449,7 @@
 	if(loc != card)
 		to_chat(src, span_warning("Your message won't be visible while unfolded!"))
 	if (!message)
-		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message")
+		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message", encode = FALSE)
 	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return
@@ -506,7 +458,7 @@
 		return
 	card.screen_msg = message
 	var/logmsg = "(CARD SCREEN)[message]"
-	log_say(logmsg,src)
+	log_talk(logmsg, LOG_SAY)
 	to_chat(src, span_filter_say(span_cult("You print a message to your screen, \"[message]\"")))
 	if(isliving(card.loc))
 		var/mob/living/L = card.loc
@@ -533,11 +485,11 @@
 		else return
 	else return
 	to_chat(src, span_notice("Your message was relayed."))
-	for (var/mob/G in player_list)
+	for (var/mob/G in GLOB.player_list)
 		if (isnewplayer(G))
 			continue
 		else if(isobserver(G) && G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
-			if((client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || G.client.holder) && \
+			if((client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || check_rights_for(G.client, R_HOLDER)) && \
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
 				to_chat(G, span_filter_say(span_cult("[src.name]'s screen prints, \"[message]\"")))
 
@@ -556,13 +508,17 @@
 				S.tgui_interact(src)
 				refresh_software_status()
 			return
-	for(var/thing in pai_software_by_key)
-		var/datum/pai_software/our_soft = pai_software_by_key[thing]
+	for(var/thing in GLOB.pai_software_by_key)
+		var/datum/pai_software/our_soft = GLOB.pai_software_by_key[thing]
 		if(our_soft.name == soft_name)
 			if(!(ram >= our_soft.ram_cost))
 				to_chat(src, span_warning("Insufficient RAM for download. (Cost [our_soft.ram_cost] : [ram] Remaining)"))
 				return
 			if(tgui_alert(src, "Do you want to download [our_soft.name]? It costs [our_soft.ram_cost], and you have [ram] remaining.", "Download [our_soft.name]", list("Yes", "No")) == "Yes")
+				if(!(ram >= our_soft.ram_cost))
+					return
+				if(software[our_soft.id])
+					return
 				ram -= our_soft.ram_cost
 				software[our_soft.id] = our_soft
 				to_chat(src, span_notice("You downloaded [our_soft.name]. ([ram] RAM remaining.)"))
@@ -585,7 +541,9 @@
 			soft_ut = TRUE
 		if(istype(soft,/datum/pai_software/signaller))
 			soft_si = TRUE
-	for(var/obj/screen/pai/button in hud_used.other)
+		if(istype(soft,/datum/pai_software/deathalarm))
+			soft_da = TRUE
+	for(var/atom/movable/screen/pai/button in hud_used.other)
 		if(button.name == "medical records")
 			if(soft_mr)
 				button.icon_state = "[button.base_state]"
@@ -621,6 +579,11 @@
 				button.icon_state = "[button.base_state]"
 			else
 				button.icon_state = "[button.base_state]_o"
+		if(button.name == "death alarm")
+			if(soft_da && paiDA)
+				button.icon_state = "[button.base_state]"
+			else
+				button.icon_state = "[button.base_state]_o"
 
 //Procs for using the various UI buttons for your softwares
 /mob/living/silicon/pai/proc/directives()
@@ -650,6 +613,9 @@
 /mob/living/silicon/pai/proc/ar_hud()
 	touch_window("AR HUD")
 
+/mob/living/silicon/pai/proc/death_alarm()
+	touch_window("Death Alarm")
+
 /mob/living/silicon/pai/proc/get_character_icon()
 	if(!client || !client.prefs) return FALSE
 	var/mob/living/carbon/human/dummy/dummy = new ()
@@ -660,7 +626,7 @@
 
 	var/icon/new_holo = getCompoundIcon(dummy)
 
-	dummy.tail_alt = TRUE
+	dummy.tail_layering = TRUE
 	dummy.set_dir(NORTH)
 	var/icon/new_holo_north = getCompoundIcon(dummy)
 

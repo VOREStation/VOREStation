@@ -103,7 +103,7 @@
 	// Service begins, delay
 	visible_message(span_bold("\The [src]") + " scans [user] thoroughly!")
 	flick("kiosk_active", src)
-	if(!do_after(user, 5 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
+	if(!do_after(user, 5 SECONDS, target = src) || inoperable())
 		suspend()
 		return
 
@@ -194,7 +194,7 @@
 			minor_problems += "<br>" + span_warning("Ethanol intoxication detected - suggest close observation to alleviate risk of injury.")
 		if(user.getHalLoss())
 			minor_problems += "<br>" + span_warning("Mild concussion detected - advising bed rest until feeling better.")
-		if(user.jitteriness || user.dizziness)
+		if(user.get_jittery() || user.get_dizzy())
 			minor_problems += "<br>" + span_warning("Neurological symptoms detected - advising bed rest until feeling better.") //Resting fixes dizziness and jitteryness!
 		else
 			minor_problems += "<br>" + span_notice("No anatomical issues detected.")
@@ -325,6 +325,8 @@
 		return "<br>" + span_warning("Unable to perform full scan. Please see a medical professional.")
 	if(!user.mind)
 		return "<br>" + span_warning("Unable to perform full scan. Please see a medical professional.")
+	if(istype(get_area(src), /area/vr))
+		return "<br>" + span_danger("Incompatible database configuration error: A Transcore Mind and Body Resource Management server could not be detected.")
 
 	var/nif = user.nif
 	if(nif)

@@ -138,4 +138,24 @@
 	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 
+/// T
+
+//thesharkenning's custom borg sprite
+/datum/robot_sprite/dogborg/custom_myomer
+	name = CUSTOM_BORGSPRITE("HERO")
+	sprite_icon_state = "base"
+	has_eye_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = FALSE
+	has_dead_sprite = FALSE
+	has_dead_sprite_overlay = FALSE
+	has_glow_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/myomer_dogborg/custom/ProjectMyomerCustom.dmi'
+	rest_sprite_options = list("Default", "Sit")
+	belly_capacity_list = list("sleeper" = 3, "throat" = 2)
+	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
+	sprite_flags = ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_LASER_SPRITE | ROBOT_HAS_SHIELD_SPRITE
+	is_whitelisted = TRUE
+	whitelist_ckey = "thesharkenning"
+
 #undef CUSTOM_BORGSPRITE

@@ -16,9 +16,9 @@ SUBSYSTEM_DEF(processing)
 	var/datum/current_thing
 
 /datum/controller/subsystem/processing/Recover()
-	log_debug("[name] subsystem Recover().")
+	log_runtime("[name] subsystem Recover().")
 	if(SSprocessing.current_thing)
-		log_debug("current_thing was: (\ref[SSprocessing.current_thing])[SSprocessing.current_thing]([SSprocessing.current_thing.type]) - currentrun: [SSprocessing.currentrun.len] vs total: [SSprocessing.processing.len]")
+		log_runtime("current_thing was: (\ref[SSprocessing.current_thing])[SSprocessing.current_thing]([SSprocessing.current_thing.type]) - currentrun: [SSprocessing.currentrun.len] vs total: [SSprocessing.processing.len]")
 	var/list/old_processing = SSprocessing.processing.Copy()
 	for(var/datum/D in old_processing)
 		if(CHECK_BITFIELD(D.datum_flags, DF_ISPROCESSING))
@@ -66,7 +66,6 @@ SUBSYSTEM_DEF(processing)
 	msg += "- Process subsystems are processed tail-first -\n"
 	if(!currentrun || !processing)
 		msg += "ERROR: A critical list [currentrun ? "processing" : "currentrun"] is gone!"
-		log_game(msg)
 		log_world(msg)
 		return
 	msg += "Lists: current_run: [currentrun.len], processing: [processing.len]\n"
@@ -93,16 +92,7 @@ SUBSYSTEM_DEF(processing)
 		for(var/i in start to end)
 			msg += "[describeThis(processing[i])][i == position ? " << TAIL" : ""]\n"
 		msg += "---\n"
-	log_game(msg)
 	log_world(msg)
-
-/datum/controller/subsystem/processing/fail()
-	..()
-	log_recent()
-
-/datum/controller/subsystem/processing/critfail()
-	..()
-	log_recent()
 
 /datum/proc/DebugSubsystemProcess(var/wait, var/times_fired, var/datum/controller/subsystem/processing/subsystem)
 	subsystem.debug_last_thing = src

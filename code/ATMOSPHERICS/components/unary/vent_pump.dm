@@ -41,7 +41,7 @@
 	var/internal_pressure_bound_default = INTERNAL_PRESSURE_BOUND
 	var/pressure_checks_default = PRESSURE_CHECKS
 
-	var/frequency = 1439
+	var/frequency = PUMPS_FREQ
 	var/datum/radio_frequency/radio_connection
 
 	var/radio_filter_out
@@ -298,13 +298,13 @@
 /obj/machinery/atmospherics/unary/vent_pump/atmos_init()
 	..()
 
-	//some vents work his own special way
-	radio_filter_in = frequency==1439?(RADIO_FROM_AIRALARM):null
-	radio_filter_out = frequency==1439?(RADIO_TO_AIRALARM):null
 	if(frequency)
 		set_frequency(frequency)
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/set_frequency(new_frequency)
+	//some vents work his own special way
+	radio_filter_in = new_frequency==1439?(RADIO_FROM_AIRALARM):null
+	radio_filter_out = new_frequency==1439?(RADIO_TO_AIRALARM):null
 	radio_connection = register_radio(src, frequency, new_frequency, radio_filter_in)
 	frequency = new_frequency
 	broadcast_status()
@@ -387,7 +387,7 @@
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if (WT.remove_fuel(0,user))
 			to_chat(user, span_notice("Now welding the vent."))
-			if(do_after(user, 20 * WT.toolspeed))
+			if(do_after(user, 20 * WT.toolspeed, target = src))
 				if(!src || !WT.isOn()) return
 				playsound(src, WT.usesound, 50, 1)
 				if(!welded)
@@ -404,18 +404,7 @@
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return 1
 	if(W.has_tool_quality(TOOL_MULTITOOL))
-		var/choice = tgui_alert(user, "[src] has an ID of \"[id_tag]\" and a frequency of [frequency]. What would you like to change?", "[src] ID", list("ID Tag", "Frequency", "Nothing"))
-		switch(choice)
-			if("ID Tag")
-				var/new_id = tgui_input_text(user, "[src] has an ID of \"[id_tag]\". What would you like it to be?", "[src] ID", id_tag, 30, FALSE, TRUE)
-				if(new_id)
-					id_tag = new_id
-
-			if("Frequency")
-				var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be?", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
-				if(new_frequency)
-					new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
-					set_frequency(new_frequency)
+		multitool_act(W, user)
 		return TRUE
 	else
 		..()
@@ -451,12 +440,37 @@
 		return 1
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
-	if (do_after(user, 40 * W.toolspeed))
+	if (do_after(user, 40 * W.toolspeed, target = src))
 		user.visible_message( \
 			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
 		deconstruct()
+
+/obj/machinery/atmospherics/unary/vent_pump/proc/multitool_act(obj/item/W, mob/user)
+	var/list/options = list(
+		"ID Tag", "Frequency", "Direction", "-SAVE TO BUFFER-")
+	var/choice = tgui_input_list(user, "[src] has an ID of \"[id_tag]\" and a frequency of [frequency]. What would you like to change?", "[src] Config", options)
+	switch(choice)
+		if("ID Tag")
+			var/new_id = tgui_input_text(user, "[src] has an ID of \"[id_tag]\". What would you like it to be?", "[src] ID", id_tag, 30)
+			if(new_id)
+				id_tag = new_id
+
+		if("Frequency")
+			var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be? Note, 1439 will only hail Air Alarms for this device.", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
+			if(new_frequency)
+				new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+				set_frequency(new_frequency)
+
+		if("-SAVE TO BUFFER-")
+			var/obj/item/multitool/tool = W
+			tool.connectable = src
+
+		if("Direction")
+			pump_direction = !pump_direction
+			to_chat(user, span_notice("[src] is now [pump_direction ? "pumping in" : "siphoning out"]."))
+			update_icon()
 
 #undef DEFAULT_PRESSURE_DELTA
 

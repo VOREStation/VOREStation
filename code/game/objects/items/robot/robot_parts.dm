@@ -175,7 +175,7 @@
 				if(!M.brainmob.key)
 					var/ghost_can_reenter = 0
 					if(M.brainmob.mind)
-						for(var/mob/observer/dead/G in player_list)
+						for(var/mob/observer/dead/G in GLOB.player_list)
 							if(G.can_reenter_corpse && G.mind == M.brainmob.mind)
 								ghost_can_reenter = 1 //May come in use again at another point.
 								to_chat(user, span_notice("\The [W] is completely unresponsive; though it may be able to auto-resuscitate.")) //Jamming a ghosted brain into a borg is likely detrimental, and may result in some problems.
@@ -228,7 +228,7 @@
 			to_chat(user, span_warning("The MMI must go in after everything else!"))
 
 	if (istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", src.name, src.created_name), MAX_NAME_LEN)
+		var/t = tgui_input_text(user, "Enter new robot name", src.name, src.created_name, MAX_NAME_LEN)
 		if (!t)
 			return
 		if (!in_range(src, user) && src.loc != user)

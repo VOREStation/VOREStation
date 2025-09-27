@@ -13,8 +13,8 @@
 	var/atom/target = null
 	var/open_panel = 0
 	var/image_overlay = null
-	var/blast_dev = -1
-	var/blast_heavy = -1
+	var/blast_dev = 3
+	var/blast_heavy = 1
 	var/blast_light = 2
 	var/blast_flash = 3
 
@@ -53,7 +53,7 @@
 	to_chat(user, "Planting explosives...")
 	user.do_attack_animation(target)
 
-	if(do_after(user, 50) && in_range(user, target))
+	if(do_after(user, 5 SECONDS, target = target) && in_range(user, target))
 		user.drop_item()
 		src.target = target
 		loc = null
@@ -106,7 +106,7 @@
 	if(open_panel)
 		if(istype(I, /obj/item/stock_parts/micro_laser))
 			var/obj/item/stock_parts/SP = I
-			var/new_blast_power = max(1, round(SP.rating / 2) + 1)
+			var/new_blast_power = max(1, round(SP.rating * 2) + 1)
 			if(new_blast_power > blast_heavy)
 				to_chat(user, span_notice("You install \the [I] into \the [src]."))
 				user.drop_from_inventory(I)

@@ -1,1 +1,3 @@
 #define OBSERVER_EVENT_DESTROY "OnDestroy"
+
+#define MOUSE_VENT_NETWORK_LENGTH 20

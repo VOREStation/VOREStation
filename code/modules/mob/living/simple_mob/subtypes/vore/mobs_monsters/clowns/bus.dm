@@ -4,4 +4,4 @@
 
 /mob/living/simple_mob/clowns/big/c_shift/Initialize(mapload)
 	. = ..()
-	add_verb(src, /mob/living/simple_mob/clowns/big/c_shift/proc/phase_shift)
+	comp = LoadComponent(comp)

@@ -39,13 +39,13 @@ export const VorePanelEditCheckboxes = (props: {
           <Stack.Item>
             <Floating
               placement="bottom-end"
-              contentClasses="VorePanel__fLoating"
+              contentClasses="VorePanel__Floating"
               content={
                 <Stack vertical fill>
                   {options.map((value) => (
                     <Stack.Item key={value.label}>
                       <Button.Checkbox
-                        tooltip={tooltipList && tooltipList[value.label]}
+                        tooltip={tooltipList?.[value.label]}
                         checked={value.selection}
                         onClick={() =>
                           act(action, {

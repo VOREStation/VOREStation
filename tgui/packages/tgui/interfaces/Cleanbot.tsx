@@ -41,7 +41,7 @@ export const Cleanbot = (props) => {
     <Window width={400} height={400}>
       <Window.Content scrollable>
         <Section
-          title={'Automatic Station Cleaner ' + version}
+          title={`Automatic Station Cleaner ${version}`}
           buttons={
             <Button icon="power-off" selected={on} onClick={() => act('start')}>
               {on ? 'On' : 'Off'}

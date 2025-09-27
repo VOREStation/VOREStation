@@ -29,7 +29,7 @@ var/datum/antagonist/technomancer/technomancers
 /datum/antagonist/technomancer/update_antag_mob(var/datum/mind/technomancer)
 	..()
 	technomancer.store_memory(span_bold("Remember:") + " Do not forget to purchase the functions and equipment you need.")
-	technomancer.current.real_name = "[pick(wizard_first)] [pick(wizard_second)]"
+	technomancer.current.real_name = "[pick(GLOB.wizard_first)] [pick(GLOB.wizard_second)]"
 	technomancer.current.name = technomancer.current.real_name
 
 /datum/antagonist/technomancer/equip(var/mob/living/carbon/human/technomancer_mob)
@@ -78,7 +78,7 @@ var/datum/antagonist/technomancer/technomancers
 		break
 	if(!survivor)
 		feedback_set_details("round_end_result","loss - technomancer killed")
-		to_world(span_boldannounce(span_large("The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed!")))
+		to_chat(world, span_boldannounce(span_large("The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed!")))
 
 /datum/antagonist/technomancer/print_player_summary()
 	..()
@@ -87,14 +87,15 @@ var/datum/antagonist/technomancer/technomancers
 			continue // Only want abandoned cores.
 		if(!core.spells.len)
 			continue // Cores containing spells only.
-		to_world(span_filter_system("Abandoned [core] had [english_list(core.spells)].<br>"))
+		to_chat(world, span_filter_system("Abandoned [core] had [english_list(core.spells)].<br>"))
 
 /datum/antagonist/technomancer/print_player_full(var/datum/mind/player)
 	var/text = print_player_lite(player)
 
 	var/obj/item/technomancer_core/core
-	if(player.original)
-		core = locate() in player.original
+	var/mob/living/original = player.original_character?.resolve()
+	if(original)
+		core = locate() in original
 		if(core)
 			text += "<br>Bought [english_list(core.spells)], and used \a [core]."
 		else

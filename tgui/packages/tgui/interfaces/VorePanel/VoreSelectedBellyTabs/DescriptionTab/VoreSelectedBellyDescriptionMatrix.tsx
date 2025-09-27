@@ -6,7 +6,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import { type BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { messageTabLabel } from '../../constants';
 import type { bellyDescriptionData } from '../../types';
@@ -60,9 +60,7 @@ export const VoreSelectedBellyDescriptionMatrix = (props: {
           )}
           <Stack.Item>
             <Button
-              tooltip={
-                (showAll ? 'Hides' : 'Shows') + ' all possible belly messages.'
-              }
+              tooltip={`${showAll ? 'Hides' : 'Shows'} all possible belly messages.`}
               onClick={() =>
                 act('set_attribute', {
                   attribute: 'b_message_mode',

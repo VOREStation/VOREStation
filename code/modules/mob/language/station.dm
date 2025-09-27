@@ -96,7 +96,7 @@
 	flags = WHITELISTED | SIGNLANG | NO_STUTTER //nonverbal define was not needed here, and i need to use it ~Layne
 
 /datum/language/tajsign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
-	log_say("(SIGN) [message]", speaker)
+	speaker.log_talk("(SIGN) [message]", LOG_SAY)
 	var/verb_to_use = pick(signlang_verb)
 	speaker.say_signlang(message, verb_to_use, verb_to_use, src)
 
@@ -127,8 +127,8 @@
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
 
 /datum/language/skrell/get_random_name(var/gender)
-	var/list/first_names = file2list('config/names/first_name_skrell.txt')
-	var/list/last_names = file2list('config/names/last_name_skrell.txt')
+	var/list/first_names = world.file2list('strings/names/first_name_skrell.txt')
+	var/list/last_names = world.file2list('strings/names/last_name_skrell.txt')
 	return "[pick(first_names)] [pick(last_names)]"
 
 /datum/language/human
@@ -152,9 +152,9 @@
 /datum/language/human/get_random_name(var/gender)
 	if (prob(80))
 		if(gender==FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	else
 		return ..()
 
@@ -174,7 +174,7 @@
 	if(prob(70))
 		return "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	else
-		return pick(ai_names)
+		return pick(GLOB.ai_names)
 
 /datum/language/teshari
 	name = LANGUAGE_SCHECHI

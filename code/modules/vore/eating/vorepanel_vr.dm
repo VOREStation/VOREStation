@@ -15,15 +15,15 @@
 	set name = "Vore Panel"
 	set category = "IC.Vore"
 
-	if(SSticker.current_state == GAME_STATE_INIT)
+	if(SSticker.current_state == GAME_STATE_STARTUP)
 		return
 
 	if(!isliving(src))
-		init_vore()
+		init_vore(TRUE)
 
 	if(!vorePanel)
 		if(!isnewplayer(src))
-			log_debug("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
+			log_vore("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
 		vorePanel = new(src)
 
 	vorePanel.tgui_interact(src)
@@ -276,7 +276,15 @@
 			unsaved_changes = TRUE
 			return TRUE
 		if("importpanel")
-			import_belly(host)
+			var/datum/vore_look/import_panel/importPanel
+			if(!importPanel)
+				importPanel = new(ui.user)
+
+			if(!importPanel)
+				to_chat(ui.user,span_notice("Import panel undefined: [importPanel]"))
+				return FALSE
+
+			importPanel.open_import_panel(ui.user)
 			return TRUE
 		if("bellypick")
 			host.vore_selected = locate(params["bellypick"])
@@ -401,10 +409,22 @@
 				host.client.prefs_vr.digestable = host.digestable
 			unsaved_changes = TRUE
 			return TRUE
+		if("toggle_allowtemp")
+			host.allowtemp = !host.allowtemp
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.allowtemp = host.allowtemp
+			unsaved_changes = TRUE
+			return TRUE
 		if("toggle_global_privacy")
 			host.eating_privacy_global = !host.eating_privacy_global
 			if(host.client.prefs_vr)
 				host.eating_privacy_global = host.eating_privacy_global
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_death_privacy")
+			host.vore_death_privacy = !host.vore_death_privacy
+			if(host.client.prefs_vr)
+				host.vore_death_privacy = host.vore_death_privacy
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_mimicry")
@@ -624,7 +644,7 @@
 			return TRUE
 		//vore sprites color
 		if("set_belly_rub")
-			var/rub_target = params["val"]
+			var/rub_target = html_encode(params["val"])
 			if(rub_target == "Current Selected")
 				host.belly_rub_target = null
 			else
@@ -1118,10 +1138,10 @@
 										should_proceed_with_revive = FALSE
 										break
 						if(should_proceed_with_revive)
-							dead_mob_list.Remove(H)
-							if((H in living_mob_list) || (H in dead_mob_list))
+							GLOB.dead_mob_list.Remove(H)
+							if((H in GLOB.living_mob_list) || (H in GLOB.dead_mob_list))
 								WARNING("Mob [H] was reformed but already in the living or dead list still!")
-							living_mob_list += H
+							GLOB.living_mob_list += H
 
 							H.timeofdeath = 0
 							H.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.
@@ -1208,10 +1228,10 @@
 										should_proceed_with_revive = FALSE
 										break
 						if(should_proceed_with_revive)
-							dead_mob_list.Remove(H)
-							if((H in living_mob_list) || (H in dead_mob_list))
+							GLOB.dead_mob_list.Remove(H)
+							if((H in GLOB.living_mob_list) || (H in GLOB.dead_mob_list))
 								WARNING("Mob [H] was defibbed but already in the living or dead list still!")
-							living_mob_list += H
+							GLOB.living_mob_list += H
 
 							H.timeofdeath = 0
 							H.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.

@@ -16,6 +16,7 @@
 	seal_delay = 0
 	var/mob/living/myprotean
 	initial_modules = list(/obj/item/rig_module/protean/syphon, /obj/item/rig_module/protean/armor, /obj/item/rig_module/protean/healing)
+	item_flags = NOSTRIP
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/protean //These are important for sprite pointers
 	boot_type = /obj/item/clothing/shoes/magboots/rig/protean
@@ -249,13 +250,13 @@
 			if(1)
 				if(W.has_tool_quality(TOOL_SCREWDRIVER))
 					playsound(src, W.usesound, 50, 1)
-					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user, 5 SECONDS, target = src))
 						to_chat(user, span_notice("You unscrew the maintenace panel on the [src]."))
 						dead +=1
 				return
 			if(2)
 				if(istype(W, /obj/item/protean_reboot))//placeholder
-					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user, 5 SECONDS, target = src))
 						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 						to_chat(user, span_notice("You carefully slot [W] in the [src]."))
 						dead +=1
@@ -263,7 +264,7 @@
 				return
 			if(3)
 				if(istype(W, /obj/item/stack/nanopaste))
-					if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+					if(do_after(user, 5 SECONDS, target = src))
 						playsound(src, 'sound/effects/ointment.ogg', 50, 1)
 						to_chat(user, span_notice("You slather the interior confines of the [src] with the [W]."))
 						dead +=1
@@ -273,9 +274,9 @@
 				if(istype(W, /obj/item/shockpaddles))
 					if(W?:can_use(user))
 						to_chat(user, span_notice("You hook up the [W] to the contact points in the maintenance assembly"))
-						if(do_after(user,50,src,exclusive = TASK_ALL_EXCLUSIVE))
+						if(do_after(user, 5 SECONDS, target = src))
 							playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
-							if(do_after(user,10,src))
+							if(do_after(user, 1 SECOND, target = src))
 								playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
 								playsound(src, 'sound/machines/defib_success.ogg', 50, 0)
 								new /obj/effect/gibspawner/robot(src.loc)
@@ -310,7 +311,7 @@
 
 		var/obj/item/rig_module/mod = W
 		to_chat(user, "You begin installing \the [mod] into \the [src].")
-		if(!do_after(user,40))
+		if(!do_after(user, 4 SECONDS, target = src))
 			return
 		if(!user || !W)
 			return
@@ -393,9 +394,16 @@
 				var/obj/item/organ/external/new_eo = new limb_path(H)
 				new_eo.robotize(H.synthetic ? H.synthetic.company : null)
 				new_eo.sync_colour_to_human(H)
+		// Regenerate missing internal organs too
+		for(var/organ_tag in H.species.has_organ)
+			var/obj/item/organ/O = H.internal_organs_by_name[organ_tag]
+			if(!O)
+				var/organ_type = H.species.has_organ[organ_tag]
+				O = new organ_type(H,1)
+				H.internal_organs_by_name[organ_tag] = O
 		if(!partial)
-			dead_mob_list.Remove(H)
-			living_mob_list += H
+			GLOB.dead_mob_list.Remove(H)
+			GLOB.living_mob_list += H
 			H.tod = null
 			H.timeofdeath = 0
 			H.set_stat(CONSCIOUS)
@@ -483,8 +491,8 @@
 	..()
 
 /obj/item/rig/protean/get_description_interaction()
+	var/list/results = list()
 	if(dead)
-		var/list/results = list()
 		switch(dead)
 			if(1)
 				results += "Use a screwdriver to start repairs."
@@ -494,7 +502,7 @@
 				results += "Use some Nanopaste."
 			if(4)
 				results += "Use either a defib or jumper cables to start the reboot sequence."
-		return results
+	return results
 
 //Effectively a round about way of letting a Protean wear other rigs.
 /obj/item/rig/protean/proc/AssimilateRig(mob/user, var/obj/item/rig/R)
@@ -507,9 +515,11 @@
 		to_chat(user, span_warning("The world is not ready for such a technological singularity."))
 		return
 	to_chat(user, span_notice("You assimilate the [R] into the [src]. Mimicking its stats and appearance."))
+
+	rigsuit_max_pressure = R.rigsuit_max_pressure
 	for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 		piece.armor = R.armor.Copy()
-		piece.max_pressure_protection = R.max_pressure_protection
+		piece.max_pressure_protection = R.rigsuit_max_pressure
 		piece.max_heat_protection_temperature = R.max_heat_protection_temperature
 	//I dislike this piece of code, but not every rig has the full set of parts
 	if(R.gloves)
@@ -552,10 +562,11 @@
 	set category = "Object"
 
 	if(assimilated_rig)
+		rigsuit_max_pressure = initial(rigsuit_max_pressure)
 		for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 			piece.armor = armor.Copy()
-			piece.max_pressure_protection = initial(piece.max_pressure_protection)
-			piece.max_heat_protection_temperature = initial(piece.max_heat_protection_temperature)
+			piece.max_pressure_protection = rigsuit_max_pressure
+			piece.max_heat_protection_temperature = max_heat_protection_temperature
 			piece.icon_state = src.icon_state
 			piece.icon = initial(piece.icon)
 			piece.default_worn_icon = initial(piece.default_worn_icon)
@@ -598,7 +609,7 @@
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech. why?
 			return
 
-		if (!( istype(over_object, /obj/screen) ))
+		if (!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 
 		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
@@ -607,7 +618,7 @@
 		if (( usr.restrained() ) || ( usr.stat ))
 			return
 
-		if ((src.loc == usr) && !(istype(over_object, /obj/screen)) && !usr.unEquip(src))
+		if ((src.loc == usr) && !(istype(over_object, /atom/movable/screen)) && !usr.unEquip(src))
 			return
 
 		switch(over_object.name)

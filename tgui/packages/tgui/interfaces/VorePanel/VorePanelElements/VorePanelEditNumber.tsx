@@ -85,7 +85,7 @@ export const VorePanelEditNumber = (props: {
   ) : (
     <Box textColor={color}>
       {value}
-      {!!unit && ' ' + unit}
+      {!!unit && ` ${unit}`}
     </Box>
   );
 };

@@ -47,10 +47,10 @@
 	return
 
 /// Verb wrapper around do_jumptomob()
-/client/proc/jumptomob(mob as null|anything in mob_list)
+/client/proc/jumptomob(mob as null|anything in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Jump to Mob"
-	set popup_menu = FALSE //VOREStation Edit - Declutter.
+	set popup_menu = FALSE
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
@@ -64,7 +64,7 @@
 		return
 
 	if(!M)
-		M = tgui_input_list(usr, "Pick a mob:", "Jump to Mob", mob_list)
+		M = tgui_input_list(usr, "Pick a mob:", "Jump to Mob", GLOB.mob_list)
 	if(!M)
 		return
 
@@ -110,7 +110,7 @@
 
 	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			keys += M.client
 		var/selection = tgui_input_list(usr, "Select a key:", "Jump to Key", sortKey(keys))
 		if(!selection)
@@ -124,17 +124,17 @@
 	else
 		tgui_alert_async(usr, "Admin jumping disabled")
 
-/client/proc/Getmob(mob/living/M as null|anything in mob_list)	//VOREStation Edit
+/client/proc/Getmob(mob/living/M as null|anything in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
-	set popup_menu = TRUE	//VOREStation Edit
+	set popup_menu = TRUE
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 	if(CONFIG_GET(flag/allow_admin_jump))
-		if(!M)	//VOREStation Edit
-			M = tgui_input_list(usr, "Pick a mob:", "Get Mob", mob_list)	//VOREStation Edit
+		if(!M)
+			M = tgui_input_list(usr, "Pick a mob:", "Get Mob", GLOB.mob_list)
 		if(!M)
 			return
 		log_admin("[key_name(usr)] jumped [key_name(M)] to them")
@@ -157,7 +157,7 @@
 
 	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			keys += M.client
 		var/selection = tgui_input_list(usr, "Pick a key:", "Get Key", sortKey(keys))
 		if(!selection)
@@ -187,7 +187,7 @@
 		var/area/A = tgui_input_list(usr, "Pick an area:", "Send Mob", return_sorted_areas())
 		if(!A)
 			return
-		var/mob/M = tgui_input_list(usr, "Pick a mob:", "Send Mob", mob_list)
+		var/mob/M = tgui_input_list(usr, "Pick a mob:", "Send Mob", GLOB.mob_list)
 		if(!M)
 			return
 		M.on_mob_jump()

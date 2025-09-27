@@ -24,6 +24,16 @@
 	base_state = "pflash"
 	density = TRUE
 
+/obj/machinery/flasher/portable/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/flasher/portable/LateInitialize()
+	// Map start flashers enable proximity sensing
+	if(anchored)
+		add_overlay("[base_state]-s")
+		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
+
 /obj/machinery/flasher/power_change()
 	..()
 	if(!(stat & NOPOWER))
@@ -103,7 +113,7 @@
 
 	var/atom/movable/AM = WF.resolve()
 	if(isnull(AM))
-		log_debug("DEBUG: HasProximity called without reference on [src].")
+		log_runtime("DEBUG: HasProximity called without reference on [src].")
 		return
 	if(disable || !anchored || (last_flash && world.time < last_flash + 150))
 		return
@@ -139,17 +149,19 @@
 
 	use_power(5)
 
-	active = 1
+	if(active)
+		return
+
+	active = TRUE
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
 		if(M.id == id)
-			spawn()
-				M.flash()
+			M.flash()
 
-	sleep(50)
+	addtimer(CALLBACK(src, PROC_REF(finish_trigger)), 5 SECONDS, TIMER_DELETE_ME|TIMER_UNIQUE)
 
+/obj/machinery/button/flasher/proc/finish_trigger()
+	PRIVATE_PROC(TRUE)
 	icon_state = "launcherbtt"
-	active = 0
-
-	return
+	active = FALSE

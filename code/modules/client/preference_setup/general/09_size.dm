@@ -10,7 +10,7 @@
 	var/weight_gain = 100	// Weight gain rate.
 	var/weight_loss = 50	// Weight loss rate.
 	var/fuzzy = 0			// Preference toggle for sharp/fuzzy icon. Default sharp.
-	var/offset_override = FALSE
+	var/offset_override = TRUE
 	var/voice_freq = 42500
 	var/voice_sound = "beep-boop"
 	var/custom_speech_bubble = "default"
@@ -191,7 +191,7 @@
 			return TOPIC_REFRESH
 
 		if("customize_footsteps")
-			var/list/footstep_choice = selectable_footstep
+			var/list/footstep_choice = GLOB.selectable_footstep
 			var/choice = tgui_input_list(user, "What footstep sounds would your character make?", "Custom Foostep Sounds", footstep_choice)
 			if(choice)
 				pref.custom_footstep = footstep_choice[choice]

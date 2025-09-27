@@ -1,11 +1,11 @@
 {
-  "name": "playsound_finder",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Tigercat2000",
-  "license": "AGPL 3.0"
+	"name": "playsound_finder",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Tigercat2000",
+	"license": "AGPL 3.0"
 }

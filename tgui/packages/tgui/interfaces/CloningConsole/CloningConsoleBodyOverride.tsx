@@ -13,7 +13,7 @@ export const viewRecordModalBodyOverride = (modal: modalData) => {
     modal.args;
   const damages = health.split(' - ');
   return (
-    <Section m="-1rem" pb="1rem" title={'Records of ' + realname}>
+    <Section m="-1rem" pb="1rem" title={`Records of ${realname}`}>
       <LabeledList>
         <LabeledList.Item label="Name">{realname}</LabeledList.Item>
         <LabeledList.Item label="Damage">

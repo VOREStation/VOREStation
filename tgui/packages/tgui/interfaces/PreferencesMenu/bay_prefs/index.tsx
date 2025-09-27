@@ -1,23 +1,23 @@
 import { Section } from 'tgui-core/components';
 
 import { ServerPreferencesFetcher } from '../ServerPreferencesFetcher';
-import {
-  type GeneralData,
-  type GeneralDataConstant,
-  type GeneralDataStatic,
+import type {
+  GeneralData,
+  GeneralDataConstant,
+  GeneralDataStatic,
 } from './general/data';
 import { General } from './general/index';
 import { Loadout } from './loadout';
-import {
-  type LoadoutData,
-  type LoadoutDataConstant,
-  type LoadoutDataStatic,
+import type {
+  LoadoutData,
+  LoadoutDataConstant,
+  LoadoutDataStatic,
 } from './loadout/data';
 import { Occupation } from './occupation';
-import {
-  type OccupationData,
-  type OccupationDataConstant,
-  type OccupationDataStatic,
+import type {
+  OccupationData,
+  OccupationDataConstant,
+  OccupationDataStatic,
 } from './occupation/data';
 
 enum Tabs {

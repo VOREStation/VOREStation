@@ -31,7 +31,7 @@
 	if(ext_blind)
 		eye_blind = 5
 		client.screen.Remove(GLOB.global_hud.whitense)
-		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+		overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else
 		eye_blind = 0
 		clear_fullscreen("blind")
@@ -105,7 +105,7 @@
 		return
 
 	if(!message)
-		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher", multiline=TRUE)
+		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", multiline=TRUE, encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		gem.use_speech(sane_message, src)
@@ -136,7 +136,7 @@
 		return
 
 	if(!message)
-		message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher", multiline=TRUE)
+		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", multiline=TRUE, encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		gem.use_emote(sane_message, src)
@@ -197,20 +197,18 @@
 	set desc = "Speak to your Soulcatcher (circumventing SR speaking)."
 	set category = "Soulcatcher"
 
-	var/message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher", multiline=TRUE)
+	var/message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", "", MAX_MESSAGE_LEN, TRUE)
 	if(message)
-		var/sane_message = sanitize(message)
-		gem.use_speech(sane_message, src)
+		gem.use_speech(message, src)
 
 /mob/living/carbon/brain/caught_soul/vore/nme_brain()
 	set name = "NMe"
 	set desc = "Emote to your Soulcatcher (circumventing SR speaking)."
 	set category = "Soulcatcher"
 
-	var/message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher", multiline=TRUE)
+	var/message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", "", MAX_MESSAGE_LEN, TRUE)
 	if(message)
-		var/sane_message = sanitize(message)
-		gem.use_emote(sane_message, src)
+		gem.use_emote(message, src)
 
 // Allows the captured owner to transfer themselves to valid nearby objects
 /mob/living/carbon/brain/caught_soul/vore/proc/transfer_self()

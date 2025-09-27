@@ -178,9 +178,9 @@
 			"index" = current.record_index,
 		)
 		data["current"]["material"] = "Unknown"
-		var/index = responsive_carriers.Find(current.material)
-		if(index > 0 && index <= LAZYLEN(finds_as_strings))
-			data["current"]["material"] = finds_as_strings[index]
+		var/index = GLOB.responsive_carriers.Find(current.material)
+		if(index > 0 && index <= LAZYLEN(GLOB.finds_as_strings))
+			data["current"]["material"] = GLOB.finds_as_strings[index]
 
 	var/list/plocs = list()
 	data["positive_locations"] = plocs

@@ -1,10 +1,10 @@
 import { type ReactNode, useState } from 'react';
 import { Box, Icon, Section, Tabs } from 'tgui-core/components';
 
-import {
-  type GeneralData,
-  type GeneralDataConstant,
-  type GeneralDataStatic,
+import type {
+  GeneralData,
+  GeneralDataConstant,
+  GeneralDataStatic,
 } from './data';
 import { SubtabBody } from './SubtabBody';
 import { SubtabInfo } from './SubtabInfo';

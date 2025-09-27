@@ -37,11 +37,11 @@
 	to_chat(usr, span_notice("You switch [on ? "on" : "off"] [src]."))
 	return
 
-/obj/structure/bed/chair/e_chair/rotate_clockwise()
-	..()
-	cut_overlays()
-	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))	//there's probably a better way of handling this, but eh. -Pete
-	return
+/obj/structure/bed/chair/e_chair/set_dir()
+	. = ..()
+	if(.)
+		cut_overlays()
+		add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))	//there's probably a better way of handling this, but eh. -Pete
 
 /obj/structure/bed/chair/e_chair/proc/shock()
 	if(!on)
@@ -68,7 +68,6 @@
 		for(var/mob/living/L as anything in buckled_mobs)
 			L.burn_skin(85)
 			to_chat(L, span_danger("You feel a deep shock course through your body!"))
-			sleep(1)
 			L.burn_skin(85)
 			L.Stun(600)
 	visible_message(span_danger("The electric chair went off!"), span_danger("You hear a deep sharp shock!"))

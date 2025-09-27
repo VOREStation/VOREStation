@@ -136,12 +136,12 @@
 
 	else if(istype(O, /obj/item/gripper)) // Grippers. ~Mechoid.
 		var/obj/item/gripper/B = O	//B, for Borg.
-		if(!B.wrapped)
+		var/obj/item/wrapped = B.get_current_pocket()
+		if(!wrapped)
 			to_chat(user, span_filter_notice("\The [B] is not holding anything."))
 			return
 		else
-			var/B_held = B.wrapped
-			to_chat(user, span_filter_notice("You use \the [B] to put \the [B_held] into \the [src]."))
+			to_chat(user, span_filter_notice("You use \the [B] to put \the [wrapped] into \the [src]."))
 		return
 
 	else
@@ -205,7 +205,7 @@
 		var/datum/stored_item/I = item_records[i]
 		var/count = I.get_amount()
 		if(count > 0)
-			items.Add(list(list("name" = html_encode(capitalize(I.item_name)), "index" = i, "amount" = count)))
+			items.Add(list(list("name" = capitalize(I.item_name), "index" = i, "amount" = count)))
 
 	.["contents"] = items
 	.["name"] = name

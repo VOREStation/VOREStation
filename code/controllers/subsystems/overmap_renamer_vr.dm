@@ -4,8 +4,12 @@ Readme at code\modules\awaymissions\overmap_renamer\readme.md
 
 SUBSYSTEM_DEF(overmap_renamer)
 	name = "Overmap Renamer"
-	init_order = INIT_ORDER_MAPRENAME //Loaded very late in initializations. Must come before mapping and objs. Uses both as inputs.
-	runlevels = RUNLEVEL_INIT
+	//Loaded very late in initializations. Must come before mapping and objs. Uses both as inputs.
+	init_stage = INITSTAGE_LAST
+	dependencies = list(
+		/datum/controller/subsystem/atoms
+	)
+	runlevels = RUNLEVEL_SETUP
 	flags = SS_NO_FIRE
 
 
@@ -24,8 +28,8 @@ if we end up with multiple renamable lateload overmap objects.*/
 			V.modify_descriptors()
 			if(V.visitable_renamed) //could just if(D.modify_descriptors()), but having a var recording renaming is useful for debugging and stuff!
 				if(V.known)
-					to_world_log("##Overmap Renamer: Renamed Debris Field as: [V.name]")
+					log_mapping("##Overmap Renamer: Renamed Debris Field as: [V.name]")
 					admin_notice(span_danger("Debris Field name chosen as [V.name]"), R_DEBUG)
 				else
-					to_world_log("##Overmap Renamer: Renamed Debris Field as: [V.real_name]")
+					log_mapping("##Overmap Renamer: Renamed Debris Field as: [V.real_name]")
 					admin_notice(span_danger("Debris Field name chosen as [V.real_name]"), R_DEBUG)

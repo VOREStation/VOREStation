@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 /obj/effect/map_effect/beam_point/proc/build_beam(var/atom/beam_target)
 	if(!beam_target)
-		log_debug("[src] ([src.type] \[[x],[y],[z]\]) failed to build its beam due to not having a target.")
+		log_mapping("[src] ([src.type] \[[x],[y],[z]\]) failed to build its beam due to not having a target.")
 		return FALSE
 
 	var/datum/beam/new_beam = Beam(beam_target, beam_icon_state, beam_icon, beam_time, beam_max_distance, beam_type, beam_sleep_time)
@@ -102,11 +102,11 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 
 /obj/effect/map_effect/beam_point/proc/destroy_beam(var/datum/beam/B)
 	if(!B)
-		log_debug("[src] ([src.type] \[[x],[y],[z]\]) was asked to destroy a beam that does not exist.")
+		log_mapping("[src] ([src.type] \[[x],[y],[z]\]) was asked to destroy a beam that does not exist.")
 		return FALSE
 
 	if(!(B in my_beams))
-		log_debug("[src] ([src.type] \[[x],[y],[z]\]) was asked to destroy a beam it did not own.")
+		log_mapping("[src] ([src.type] \[[x],[y],[z]\]) was asked to destroy a beam it did not own.")
 		return FALSE
 
 	my_beams -= B

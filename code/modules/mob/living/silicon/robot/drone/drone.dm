@@ -33,7 +33,7 @@ var/list/mob_hat_cache = list()
 	braintype = "Drone"
 	lawupdate = 0
 	density = TRUE
-	req_access = list(access_engine, access_robotics)
+	req_access = list(ACCESS_ENGINE, ACCESS_ROBOTICS)
 	integrated_light_power = 3
 	local_transmit = 1
 
@@ -243,7 +243,7 @@ var/list/mob_hat_cache = list()
 
 			user.visible_message(span_danger("\The [user] swipes [TU.his] ID card through \the [src], attempting to reboot it."), span_danger(">You swipe your ID card through \the [src], attempting to reboot it."))
 			var/drones = 0
-			for(var/mob/living/silicon/robot/drone/D in player_list)
+			for(var/mob/living/silicon/robot/drone/D in GLOB.player_list)
 				drones++
 			if(drones < CONFIG_GET(number/max_maint_drones))
 				request_player()
@@ -280,8 +280,7 @@ var/list/mob_hat_cache = list()
 	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
 
-	to_chat(src, span_infoplain(span_bold("Obey these laws:")))
-	laws.show_laws(src)
+	to_chat(src, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
 	to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and \his commands."))
 	return 1
 
@@ -329,7 +328,7 @@ var/list/mob_hat_cache = list()
 //Reboot procs.
 
 /mob/living/silicon/robot/drone/proc/request_player()
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(jobban_isbanned(O, JOB_CYBORG))
 			continue
 		if(O.client)

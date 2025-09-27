@@ -1141,7 +1141,7 @@
 	},
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_south_intsensor";
 	master_tag = null;
 	pixel_x = 31;
@@ -1427,7 +1427,7 @@
 	},
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 8;
-	frequency = 1438;
+	frequency = 1433;
 	id = "cooling_in";
 	name = "Coolant Injector";
 	power_rating = 30000;
@@ -4536,7 +4536,7 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	cycle_to_external_air = 1;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_docker";
 	pixel_y = 24
 	},
@@ -5276,7 +5276,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "large_escape_pod_1_berth";
 	pixel_x = 24;
 	tag_door = "large_escape_pod_1_berth_hatch"
@@ -5354,7 +5354,7 @@
 "cJq" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "pad4";
 	pixel_x = -22
 	},
@@ -6425,7 +6425,7 @@
 	dir = 8
 	},
 /obj/machinery/air_sensor{
-	frequency = 1438;
+	frequency = 1433;
 	id_tag = "engine_sensor";
 	output = 63
 	},
@@ -6804,7 +6804,7 @@
 "dof" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "large_escape_pod_1_berth_hatch";
 	locked = 1;
@@ -8178,7 +8178,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_south_starboard_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -9776,7 +9776,7 @@
 "eJq" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_south_starboard_extsensor";
 	master_tag = "escape_dock";
 	pixel_x = -1;
@@ -10951,7 +10951,7 @@
 "fiI" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_north_starboard_extsensor";
 	master_tag = "escape_dock";
 	pixel_x = -1;
@@ -11743,7 +11743,7 @@
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "cargo_bay";
 	layer = 3.4;
 	pixel_x = -22
@@ -12105,7 +12105,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "arrivals_dock_south_inner";
 	locked = 1;
@@ -17277,7 +17277,7 @@
 /area/surface/station/engineering/atmos)
 "itc" = (
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "large_escape_pod_1_hatch";
 	locked = 1;
@@ -18432,7 +18432,7 @@
 "jaW" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_dock_north_starboard_outer";
 	locked = 1;
@@ -18847,7 +18847,7 @@
 "jlu" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "pad3";
 	pixel_x = 22
 	},
@@ -19281,18 +19281,18 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_south_starboard_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_ssouth_airlock";
 	master_tag = "escape_dock";
 	pixel_y = 24;
 	req_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_south_starboard_sensor";
 	pixel_x = -11;
 	pixel_y = 25
@@ -20379,7 +20379,7 @@
 "jUC" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_south_intsensor";
 	master_tag = null;
 	pixel_x = 1;
@@ -20895,7 +20895,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_north_intsensor";
 	pixel_x = 31;
 	pixel_y = 24
@@ -22162,7 +22162,7 @@
 "kIq" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_docker_pump_out_external"
 	},
 /obj/structure/grille,
@@ -23728,7 +23728,7 @@
 /area/surface/station/park)
 "lxR" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "large_escape_pod_1";
 	pixel_x = -26;
 	pixel_y = -26;
@@ -23780,7 +23780,7 @@
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "arrivals_dock_north_inner";
 	locked = 1;
@@ -23795,7 +23795,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_dock_south_starboard_inner";
 	locked = 1;
@@ -26205,7 +26205,7 @@
 "mAD" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "arrivals_dock_north_outer";
 	locked = 1;
@@ -30435,7 +30435,7 @@
 	dir = 10
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_dock_north_starboard_inner";
 	locked = 1;
@@ -31412,7 +31412,7 @@
 	},
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_north_starboard_intsensor";
 	master_tag = "msouth_airlock";
 	pixel_x = -31;
@@ -32244,7 +32244,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_north_starboard_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -32604,7 +32604,7 @@
 "pqM" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_north_intsensor";
 	pixel_x = 1;
 	pixel_y = 38
@@ -34599,7 +34599,7 @@
 "qof" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "arrivals_dock_south_outer";
 	locked = 1;
@@ -35233,7 +35233,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_north_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -35358,7 +35358,7 @@
 	},
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_south_starboard_intsensor";
 	master_tag = "msouth_airlock";
 	pixel_x = -31;
@@ -36145,7 +36145,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_south_pump"
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -37324,7 +37324,7 @@
 	dir = 6
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "arrivals_dock_north_inner";
 	locked = 1;
@@ -37855,7 +37855,7 @@
 "rMs" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_dock_south_starboard_outer";
 	locked = 1;
@@ -38823,18 +38823,18 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_south_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_south_airlock";
 	master_tag = "arrivals_dock";
 	pixel_y = 24;
 	req_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_south_sensor";
 	pixel_x = -11;
 	pixel_y = 25
@@ -39911,7 +39911,7 @@
 	dir = 9
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_dock_south_starboard_inner";
 	locked = 1;
@@ -40166,7 +40166,7 @@
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "escape_dock_north_starboard_inner";
 	locked = 1;
@@ -40728,7 +40728,7 @@
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/airlock_sensor/airlock_exterior/shuttle{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "expshuttle_exterior_sensor";
 	master_tag = "expshuttle_docker";
 	pixel_x = -1;
@@ -41793,18 +41793,18 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_north_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_north_airlock";
 	master_tag = "arrivals_dock";
 	pixel_y = 24;
 	req_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "arrivals_dock_north_sensor";
 	pixel_x = -11;
 	pixel_y = 25
@@ -42379,18 +42379,18 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_north_starboard_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_snorth_airlock";
 	master_tag = "escape_dock";
 	pixel_y = 24;
 	req_access = list(13)
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
+	frequency = 1381;
 	id_tag = "escape_dock_north_starboard_sensor";
 	pixel_x = -11;
 	pixel_y = 25
@@ -46369,7 +46369,7 @@
 	dir = 8;
 	external_pressure_bound = 100;
 	external_pressure_bound_default = 0;
-	frequency = 1438;
+	frequency = 1433;
 	icon_state = "map_vent_in";
 	id_tag = "cooling_out";
 	initialize_directions = 1;
@@ -46560,7 +46560,7 @@
 	dir = 5
 	},
 /obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
+	frequency = 1381;
 	icon_state = "door_locked";
 	id_tag = "arrivals_dock_south_inner";
 	locked = 1;

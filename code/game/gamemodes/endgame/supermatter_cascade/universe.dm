@@ -37,11 +37,11 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 // Apply changes when entering state
 /datum/universal_state/supermatter_cascade/OnEnter()
 	set background = 1
-	to_world(span_sinister(span_cascade("You are blinded by a brilliant flash of energy.")))
+	to_chat(world, span_sinister(span_cascade("You are blinded by a brilliant flash of energy.")))
 
 	world << sound('sound/effects/cascade.ogg')
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		M.flash_eyes()
 
 	if(emergency_shuttle.can_recall())
@@ -58,7 +58,7 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 
 	PlayerSet()
 
-	new /obj/singularity/narsie/large/exit(pick(endgame_exits))
+	new /obj/singularity/narsie/large/exit(pick(GLOB.endgame_exits))
 	spawn(rand(30,60) SECONDS)
 		var/txt = {"
 					There's been a galaxy-wide electromagnetic pulse.  All of our systems are heavily damaged and many personnel are dead or dying. We are seeing increasing indications of the universe itself beginning to unravel.
@@ -78,7 +78,19 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 				C.req_one_access = list()
 
 		spawn(5 MINUTES)
-			ticker.station_explosion_cinematic(0,null) // TODO: Custom cinematic
+			play_cinematic(/datum/cinematic/nuke/self_destruct) // TODO: Custom cinematic
+
+			// FIXME: Probably a better way
+			for(var/mob/living/M in GLOB.living_mob_list)
+				switch(M.z)
+					if(0)	//inside a crate or something
+						var/turf/T = get_turf(M)
+						if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
+							M.health = 0
+							M.set_stat(DEAD)
+					if(1)	//on a z-level 1 turf.
+						M.health = 0
+						M.set_stat(DEAD)
 			GLOB.universe_has_ended = 1
 		return
 
@@ -117,7 +129,7 @@ GLOBAL_VAR_INIT(universe_has_ended, 0)
 			APC.queue_icon_update()
 
 /datum/universal_state/supermatter_cascade/proc/PlayerSet()
-	for(var/datum/mind/M in player_list)
+	for(var/datum/mind/M in GLOB.player_list)
 		if(!isliving(M.current))
 			continue
 		if(M.current.stat!=2)

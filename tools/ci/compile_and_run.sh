@@ -24,10 +24,10 @@ if [ $exitVal -gt 0 ]; then
   exit 1
 fi
 
-# If we're running, run
+# This variable is set in the CI scripts depending if we need to run the codebase or not.
+# Extra map tests for example have it set to false
 if [ $RUN -eq 1 ];
 then
-  DreamDaemon $BASENAME.dmb -close -trusted -invisible -verbose -core 2>&1 | tee log.txt;
-  grep "All Unit Tests Passed" log.txt || exit 1
-  grep "Caught 0 Runtimes" log.txt || exit 1
+  DreamDaemon vorestation.dmb -close -invisible -trusted -verbose -params "log-directory=ci"
+  cat data/logs/ci/clean_run.lk
 fi

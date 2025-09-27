@@ -1,5 +1,3 @@
-var/global/list/total_extraction_beacons = list()
-
 /obj/item/extraction_pack
 	name = "fulton extraction pack"
 	desc = "A balloon that can be used to extract equipment or personnel to a Fulton Recovery Beacon. Anything not bolted down can be moved. Link the pack to a beacon by using the pack in hand."
@@ -18,7 +16,7 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	var/list/possible_beacons = list()
-	for(var/obj/structure/extraction_point/EP as anything in global.total_extraction_beacons)
+	for(var/obj/structure/extraction_point/EP as anything in GLOB.total_extraction_beacons)
 		if(EP.beacon_network in beacon_networks)
 			possible_beacons += EP
 
@@ -58,7 +56,7 @@ var/global/list/total_extraction_beacons = list()
 		if(A.anchored)
 			return
 		to_chat(user, span_notice("You start attaching the pack to [A]..."))
-		if(do_after(user,50,target=A))
+		if(do_after(user, 5 SECONDS, target = A))
 			to_chat(user, span_notice("You attach the pack to [A] and activate it."))
 			/* No components, sorry. No convienence for you!
 			if(loc == user && istype(user.back, /obj/item/storage/backpack))
@@ -146,7 +144,7 @@ var/global/list/total_extraction_beacons = list()
 /obj/item/fulton_core/attack_self(mob/user)
 	var/turf/T = get_turf(user)
 	var/outdoors = T.is_outdoors()
-	if(do_after(user,15,target = user) && !QDELETED(src) && outdoors)
+	if(do_after(user, 15, target = user) && !QDELETED(src) && outdoors)
 		new /obj/structure/extraction_point(get_turf(user))
 		qdel(src)
 
@@ -162,10 +160,10 @@ var/global/list/total_extraction_beacons = list()
 /obj/structure/extraction_point/Initialize(mapload)
 	. = ..()
 	name += " ([rand(100,999)]) ([get_area_name(src, TRUE)])"
-	global.total_extraction_beacons += src
+	GLOB.total_extraction_beacons += src
 
 /obj/structure/extraction_point/Destroy()
-	global.total_extraction_beacons -= src
+	GLOB.total_extraction_beacons -= src
 	. = ..()
 
 /obj/effect/extraction_holder

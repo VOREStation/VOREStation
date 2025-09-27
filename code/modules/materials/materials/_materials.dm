@@ -61,7 +61,7 @@ var/list/name_to_material
  * Arguments:
  * - breakdown_flags: A set of flags determining how exactly the materials are broken down. (unused)
  */
-/obj/proc/get_material_composition(breakdown_flags=NONE)
+/obj/item/proc/get_material_composition(breakdown_flags=NONE)
 	. = list()
 	for(var/mat in matter)
 		var/datum/material/M = GET_MATERIAL_REF(mat)
@@ -77,6 +77,22 @@ var/list/name_to_material
 				.[M] += matter[mat]
 			else
 				.[M] = matter[mat]
+
+/obj/item/proc/set_custom_materials(list/materials, multiplier = 1)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	if(!LAZYLEN(materials))
+		matter = null
+		return
+
+	materials = materials.Copy()
+
+	if(multiplier != 1)
+		for(var/x in materials)
+			materials[x] *= multiplier
+
+	matter = materials
+
 
 // Builds the datum list above.
 /proc/populate_material_list(force_remake=0)
@@ -127,7 +143,7 @@ var/list/name_to_material
 	if(istext(key))	// text ID
 		. = name_to_material[key]
 		if(!.)
-			warning("Attempted to fetch material ref with invalid text id '[key]'")
+			WARNING("Attempted to fetch material ref with invalid text id '[key]'")
 		return
 
 	if(!ispath(key, /datum/material))
@@ -136,7 +152,7 @@ var/list/name_to_material
 	key = GetIdFromArguments(arguments)
 	. = name_to_material[key]
 	if(!.)
-		warning("Attempted to fetch nonexistent material with key [key]")
+		WARNING("Attempted to fetch nonexistent material with key [key]")
 
 /** I'm not going to lie, this was swiped from [SSdcs][/datum/controller/subsystem/processing/dcs].
  * Credit does to ninjanomnom
@@ -176,7 +192,7 @@ var/list/name_to_material
 	var/name	                          // Unique name for use in indexing the list.
 	var/display_name                      // Prettier name for display.
 	var/use_name
-	var/flags = 0                         // Various status modifiers.
+	var/flags = NONE                         // Various status modifiers.
 	var/sheet_singular_name = "sheet"
 	var/sheet_plural_name = "sheets"
 	var/sheet_collective_name = "stack"

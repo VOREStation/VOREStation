@@ -8,12 +8,12 @@
 #define LIGHTING_POWER_FACTOR 2		//2W per luminosity * range
 #define LIGHT_EMERGENCY_POWER_USE 0.2 //How much power emergency lights will consume per tick
 
-var/global/list/light_type_cache = list()
+GLOBAL_LIST_EMPTY(light_type_cache)
 /proc/get_light_type_instance(var/light_type)
-	. = light_type_cache[light_type]
+	. = GLOB.light_type_cache[light_type]
 	if(!.)
 		. = new light_type
-		light_type_cache[light_type] = .
+		GLOB.light_type_cache[light_type] = .
 
 /obj/machinery/light_construct
 	name = "light fixture frame"
@@ -103,7 +103,7 @@ var/global/list/light_type_cache = list()
 		if (src.stage == 1)
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "You begin deconstructing [src].")
-			if (!do_after(user, 30 * W.toolspeed))
+			if (!do_after(user, 3 SECONDS * W.toolspeed, target = src))
 				return
 			new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
 			user.visible_message("[user.name] deconstructs [src].", \
@@ -200,7 +200,7 @@ var/global/list/light_type_cache = list()
 // the standard tube light fixture
 /obj/machinery/light
 	name = "light fixture"
-	icon = 'icons/obj/lighting_vr.dmi'
+	icon = 'icons/obj/lighting.dmi'
 	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube1"
 	desc = "A lighting fixture."
@@ -304,6 +304,7 @@ var/global/list/light_type_cache = list()
 
 /obj/machinery/light/small/emergency
 	light_type = /obj/item/light/bulb/red
+	nightshift_allowed = FALSE
 
 /obj/machinery/light/small/emergency/flicker
 	auto_flicker = TRUE
@@ -402,6 +403,7 @@ var/global/list/light_type_cache = list()
 	else
 		base_state = "flamp"
 		..()
+
 /obj/machinery/light/proc/set_alert_atmos()
 	if(!shows_alerts)
 		return
@@ -719,27 +721,35 @@ var/global/list/light_type_cache = list()
 	set_light(brightness_range * bulb_emergency_brightness_mul, max(bulb_emergency_pow_min, bulb_emergency_pow_mul * (cell.charge / cell.maxcharge)), bulb_emergency_colour)
 	return TRUE
 
-/obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
+/obj/machinery/light/proc/flicker(var/amount = rand(10, 20), var/flicker_color)
 	if(flickering) return
 	if(on && status == LIGHT_OK)
 		flickering = 1
-		do_flicker(amount)
+		do_flicker(amount, flicker_color, brightness_color, brightness_color_ns)
 
-/obj/machinery/light/proc/do_flicker(remaining_flicks)
+/obj/machinery/light/proc/do_flicker(remaining_flicks, flicker_color, original_color, original_color_ns)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(status != LIGHT_OK)
 		flickering = 0
 		return
 	on = !on
+	if(flicker_color && brightness_color != flicker_color)
+		brightness_color = flicker_color
+		brightness_color_ns = flicker_color
+		update(0) //Yes. This is done here and then immediately followed up with another update(0). Why does it need that? I have no clue. But a single update(0) does not work.
 	update(0)
 	if(!on) // Only play when the light turns off.
 		playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
 	if(remaining_flicks > 0)
 		remaining_flicks--
-		addtimer(CALLBACK(src, PROC_REF(do_flicker), remaining_flicks), rand(5, 15), TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(do_flicker), remaining_flicks, flicker_color, original_color, original_color_ns), rand(5, 15), TIMER_DELETE_ME)
 		return
+	//All this happens after our final flicker.
 	on = (status == LIGHT_OK)
+	brightness_color = original_color
+	brightness_color_ns = original_color_ns
+	update(0)
 	update(0)
 	flickering = 0
 
@@ -1042,6 +1052,12 @@ var/global/list/light_type_cache = list()
 	brightness_range = 4
 	color = "#da0205"
 	brightness_color = "#da0205"
+	init_brightness_range = 4
+
+/obj/item/light/bulb/blue
+	brightness_range = 4
+	color = "#028bda"
+	brightness_color = "#028bda"
 	init_brightness_range = 4
 
 /obj/item/light/bulb/fire

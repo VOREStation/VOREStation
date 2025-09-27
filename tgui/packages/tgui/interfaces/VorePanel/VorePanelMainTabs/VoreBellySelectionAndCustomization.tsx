@@ -181,7 +181,6 @@ export const VoreBellySelectionAndCustomization = (props: {
               />
             }
             fill
-            scrollable
           >
             <VoreSelectedBelly
               bellyDropdownNames={bellyDropdownNames}

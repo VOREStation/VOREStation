@@ -33,7 +33,7 @@
 
 	default_pixel_x = -16
 	pixel_x = -16
-
+	minbodytemp = 175
 	maxHealth = 200
 	health = 200
 
@@ -88,11 +88,7 @@
 	var/instinct	// The points used by Kururaks to decide Who Is The Boss
 	var/obey_pack_rule = TRUE	// Decides if the Kururak will automatically assign itself to follow the one with the highest instinct.
 
-/mob/living/simple_mob/animal/sif/kururak/init_vore()
-	if(!voremob_loaded)
-		return
-	if(LAZYLEN(vore_organs))
-		return
+/mob/living/simple_mob/animal/sif/kururak/load_default_bellies()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
@@ -308,7 +304,7 @@
 		M.take_damage(damage_to_apply)
 		if(prob(3))
 			visible_message(span_critical("\The [src] begins digging its claws into \the [M]'s hatch!"))
-			if(do_after(src, 1 SECOND))
+			if(do_after(src, 1 SECOND, target = M))
 				visible_message(span_critical("\The [src] rips \the [M]'s access hatch open, dragging [M.occupant] out!"))
 				M.go_out()
 

@@ -47,7 +47,7 @@
 
 /datum/event2/event/electrical_fault/event_tick()
 	if(!valid_apcs.len)
-		log_debug("ELECTRICAL EVENT: No valid APCs found for electrical fault event. Aborting.")
+		log_game("ELECTRICAL EVENT: No valid APCs found for electrical fault event. Aborting.")
 		abort()
 		return
 
@@ -60,7 +60,7 @@
 
 /datum/event2/event/electrical_fault/end()
 	command_announcement.Announce("The irregular electrical conditions inside \the [location_name()] power grid has ceased.", "[location_name()] Power Grid Monitoring")
-	log_debug("Electrical Fault event caused [apcs_disabled] APC\s to shut off, \
+	log_game("Electrical Fault event caused [apcs_disabled] APC\s to shut off, \
 	[apcs_overloaded] APC\s to overload lighting, and [apcs_emagged] APC\s to be emagged.")
 
 /datum/event2/event/electrical_fault/proc/affect_apc(obj/machinery/power/apc/A)
@@ -77,7 +77,7 @@
 	// This will actually protect it from further damage.
 	if(prob(25))
 		A.energy_fail(rand(60, 120))
-//		log_debug("ELECTRICAL EVENT: Disabled \the [A]'s power for a temporary amount of time.")
+//		log_game("ELECTRICAL EVENT: Disabled \the [A]'s power for a temporary amount of time.")
 		playsound(A, 'sound/machines/defib_success.ogg', 50, 1)
 		apcs_disabled++
 		return
@@ -85,7 +85,7 @@
 	// Decent chance to overload lighting circuit.
 	if(prob(30))
 		A.overload_lighting()
-//		log_debug("ELECTRICAL EVENT: Overloaded \the [A]'s lighting.")
+//		log_game("ELECTRICAL EVENT: Overloaded \the [A]'s lighting.")
 		playsound(A, 'sound/effects/lightningshock.ogg', 50, 1)
 		apcs_overloaded++
 
@@ -93,6 +93,6 @@
 	if(prob(5))
 		A.emagged = TRUE
 		A.update_icon()
-//		log_debug("ELECTRICAL EVENT: Emagged \the [A].")
+//		log_game("ELECTRICAL EVENT: Emagged \the [A].")
 		playsound(A, 'sound/machines/chime.ogg', 50, 1)
 		apcs_emagged++

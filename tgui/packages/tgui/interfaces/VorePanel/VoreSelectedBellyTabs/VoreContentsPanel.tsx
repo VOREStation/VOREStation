@@ -40,6 +40,7 @@ export const VoreContentsPanel = (props: {
         if (entry.value === value) {
           return entry.displayText;
         }
+        return undefined;
       })
       .filter((value) => value !== undefined);
     if (Array.isArray(bellyName) && bellyName.length) {
@@ -116,7 +117,7 @@ export const VoreContentsPanel = (props: {
                 }
               >
                 <Image
-                  src={'data:image/jpeg;base64, ' + thing.icon}
+                  src={`data:image/jpeg;base64,${thing.icon}`}
                   width="64px"
                   height="64px"
                   style={{

@@ -36,7 +36,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander)
 "bk" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "salamander_pd"
 	},
 /turf/simulated/floor/plating,
@@ -1226,7 +1226,7 @@
 /turf/template_noop,
 /area/shuttle/salamander)
 "tA" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "salamander_pd"
 	},
 /turf/simulated/floor/plating,
@@ -1454,7 +1454,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander)
 "FV" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "salamander_pd"
 	},
 /turf/simulated/floor/plating,

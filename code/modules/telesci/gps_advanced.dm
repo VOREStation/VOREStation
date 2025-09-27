@@ -43,7 +43,7 @@
 			if(G.emped == 1)
 				t += "<BR>[tracked_gpstag]: ERROR"
 			else
-				t += "<BR>[tracked_gpstag]: [format_text(gps_area.name)] ([pos.x], [pos.y], [pos.z])"
+				t += "<BR>[tracked_gpstag]: [strip_improper(gps_area.name)] ([pos.x], [pos.y], [pos.z])"
 
 	var/datum/browser/popup = new(user, "GPS", name, 600, 450)
 	popup.set_content(t)
@@ -52,8 +52,8 @@
 /obj/item/gps/advanced/Topic(href, href_list)
 	..()
 	if(href_list["advtag"] )
-		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag)
-		a = uppertext(copytext(sanitize(a), 1, 5))
+		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag, 4)
+		a = uppertext(copytext(a, 1, 5))
 		if(src.loc == usr)
 			gps_tag = a
 			name = "global positioning system ([gps_tag])"

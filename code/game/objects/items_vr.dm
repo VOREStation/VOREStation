@@ -1,8 +1,3 @@
-/obj/item
-	var/list/possessed_voice //Allows for items to be possessed/inhabited by voices.
-	var/list/warned_of_possession //Checks to see who has been informed this item is possessed.
-
-
 /obj/item/proc/inhabit_item(var/mob/candidate, var/candidate_name, var/mob/living/candidate_original_form, var/is_item_tf = FALSE)
 	//This makes it so that any object in the game can have something put in it like the cursed sword!
 	//This means the proc can also be manually called by admin commands.
@@ -22,7 +17,7 @@
 		new_voice.name = "[name]" 					//No name given? Give them the name of the object they're inhabiting.
 	new_voice.real_name = "[new_voice.real_name]" 	//We still know their real name though!
 	possessed_voice.Add(new_voice)
-	listening_objects |= src
+	GLOB.listening_objects |= src
 	remove_verb(new_voice, /mob/living/voice/verb/change_name) //No changing your name! Bad!
 	remove_verb(new_voice, /mob/living/voice/verb/hang_up) //Also you can't hang up. You are the item!
 	src.item_tf_spawnpoint_used()

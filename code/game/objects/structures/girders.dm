@@ -152,20 +152,20 @@
 		if(anchored && !reinf_material)
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, span_notice("Now disassembling the girder..."))
-			if(do_after(user,(35 + round(max_health/50)) * W.toolspeed))
+			if(do_after(user,(35 + round(max_health/50)) * W.toolspeed, target = src))
 				if(!src) return
 				to_chat(user, span_notice("You dissasembled the girder!"))
 				dismantle()
 		else if(!anchored)
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, span_notice("Now securing the girder..."))
-			if(do_after(user, 40 * W.toolspeed, src))
+			if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				to_chat(user, span_notice("You secured the girder!"))
 				reset_girder()
 
 	else if(istype(W, /obj/item/pickaxe/plasmacutter))
 		to_chat(user, span_notice("Now slicing apart the girder..."))
-		if(do_after(user,30 * W.toolspeed))
+		if(do_after(user, 3 SECONDS * W.toolspeed, target = src))
 			if(!src) return
 			to_chat(user, span_notice("You slice apart the girder!"))
 			dismantle()
@@ -178,7 +178,7 @@
 		if(state == 2)
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, span_notice("Now unsecuring support struts..."))
-			if(do_after(user,40 * W.toolspeed))
+			if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				if(!src) return
 				to_chat(user, span_notice("You unsecured the support struts!"))
 				state = 1
@@ -190,7 +190,7 @@
 	else if(W.has_tool_quality(TOOL_WIRECUTTER) && state == 1)
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, span_notice("Now removing support struts..."))
-		if(do_after(user,40 * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 			if(!src) return
 			to_chat(user, span_notice("You removed the support struts!"))
 			reinf_material.place_dismantled_product(get_turf(src))
@@ -200,7 +200,7 @@
 	else if(W.has_tool_quality(TOOL_CROWBAR) && state == 0 && anchored)
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, span_notice("Now dislodging the girder..."))
-		if(do_after(user, 40 * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 			if(!src) return
 			to_chat(user, span_notice("You dislodged the girder!"))
 			displace()
@@ -231,6 +231,9 @@
 
 /obj/structure/girder/proc/construct_wall(obj/item/stack/material/S, mob/user)
 	var/amount_to_use = reinf_material ? 1 : 2
+	var/time_to_reinforce = 4 SECONDS
+	if(isrobot(user)) //Robots get a speed boost.
+		time_to_reinforce = 1.5 SECONDS
 	if(S.get_amount() < amount_to_use)
 		to_chat(user, span_notice("There isn't enough material here to construct a wall."))
 		return FALSE
@@ -248,7 +251,7 @@
 
 	to_chat(user, span_notice("You begin adding the plating..."))
 
-	if(!do_after(user,40) || !S.use(amount_to_use))
+	if(!do_after(user, time_to_reinforce, target = src) || !S.use(amount_to_use))
 		return TRUE //once we've gotten this far don't call parent attackby()
 
 	if(anchored)
@@ -282,7 +285,7 @@
 		return 0
 
 	to_chat(user, span_notice("Now reinforcing..."))
-	if (!do_after(user,40) || !S.use(1))
+	if (!do_after(user, 4 SECONDS, target = src) || !S.use(1))
 		return 1 //don't call parent attackby() past this point
 	to_chat(user, span_notice("You added reinforcement!"))
 
@@ -348,13 +351,13 @@
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, span_notice("Now disassembling the girder..."))
-		if(do_after(user,40 * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.toolspeed, target = src))
 			to_chat(user, span_notice("You dissasembled the girder!"))
 			dismantle()
 
 	else if(istype(W, /obj/item/pickaxe/plasmacutter))
 		to_chat(user, span_notice("Now slicing apart the girder..."))
-		if(do_after(user,30 * W.toolspeed))
+		if(do_after(user, 3 SECONDS * W.toolspeed, target = src))
 			to_chat(user, span_notice("You slice apart the girder!"))
 		dismantle()
 

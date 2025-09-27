@@ -11,7 +11,7 @@
 	return laws.zeroth_law != null
 
 /mob/living/silicon/proc/set_zeroth_law(var/law, var/law_borg, notify = TRUE)
-	throw_alert("newlaw", /obj/screen/alert/newlaw)
+	throw_alert("newlaw", /atom/movable/screen/alert/newlaw)
 	laws_sanity_check()
 	laws.set_zeroth_law(law, law_borg)
 	if(notify)
@@ -77,7 +77,7 @@
 		log_and_message_admins("cleared the supplied laws of [src]")
 
 /mob/living/silicon/proc/notify_of_law_change(message)
-	throw_alert("newlaw", /obj/screen/alert/newlaw)
+	throw_alert("newlaw", /atom/movable/screen/alert/newlaw)
 	if((last_law_notification + 1 SECOND) > world.time)
 		return
 	last_law_notification = world.time
@@ -115,7 +115,7 @@
 	stating_laws[prefix] = 0
 
 /mob/living/silicon/proc/statelaw(var/law)
-	if(src.say(law))
+	if(direct_say(law))
 		sleep(10)
 		return 1
 
@@ -136,8 +136,8 @@
 /mob/living/silicon/proc/generate_ion_law(var/exclude_crew_names = FALSE)
 	var/list/players = list()
 
-	for(var/mob/living/carbon/human/player in player_list)
-		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
+		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > 10 MINUTES)
 			continue
 		players += player.real_name
 

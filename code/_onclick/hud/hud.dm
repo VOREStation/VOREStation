@@ -19,28 +19,28 @@ GLOBAL_LIST_INIT(global_huds, list(
 		GLOB.global_hud.holomap
 ))
 
-/datum/hud/var/obj/screen/grab_intent
-/datum/hud/var/obj/screen/hurt_intent
-/datum/hud/var/obj/screen/disarm_intent
-/datum/hud/var/obj/screen/help_intent
+/datum/hud/var/atom/movable/screen/grab_intent
+/datum/hud/var/atom/movable/screen/hurt_intent
+/datum/hud/var/atom/movable/screen/disarm_intent
+/datum/hud/var/atom/movable/screen/help_intent
 
 /datum/global_hud
-	var/obj/screen/druggy
-	var/obj/screen/blurry
-	var/obj/screen/whitense
+	var/atom/movable/screen/druggy
+	var/atom/movable/screen/blurry
+	var/atom/movable/screen/whitense
 	var/list/vimpaired
 	var/list/darkMask
-	var/obj/screen/centermarker
-	var/obj/screen/darksight
-	var/obj/screen/nvg
-	var/obj/screen/thermal
-	var/obj/screen/meson
-	var/obj/screen/science
-	var/obj/screen/material
-	var/obj/screen/holomap
+	var/atom/movable/screen/centermarker
+	var/atom/movable/screen/darksight
+	var/atom/movable/screen/nvg
+	var/atom/movable/screen/thermal
+	var/atom/movable/screen/meson
+	var/atom/movable/screen/science
+	var/atom/movable/screen/material
+	var/atom/movable/screen/holomap
 
 /datum/global_hud/proc/setup_overlay(var/icon_state)
-	var/obj/screen/screen = new /obj/screen()
+	var/atom/movable/screen/screen = new /atom/movable/screen()
 	screen.alpha = 30 // Adjut this if you want goggle overlays to be thinner or thicker. //VOREStation Edit
 	screen.screen_loc = "SOUTHWEST to NORTHEAST" // Will tile up to the whole screen, scaling beyond 15x15 if needed.
 	screen.icon = 'icons/obj/hud_tiled_vr.dmi'	//VOREStation Edit
@@ -51,39 +51,39 @@ GLOBAL_LIST_INIT(global_huds, list(
 
 	return screen
 
-/obj/screen/global_screen
+/atom/movable/screen/global_screen
 	screen_loc = ui_entire_screen
 	plane = PLANE_FULLSCREEN
 	mouse_opacity = 0
 
 /datum/global_hud/New()
 	//420erryday psychedellic colours screen overlay for when you are high
-	druggy = new /obj/screen/global_screen()
+	druggy = new /atom/movable/screen/global_screen()
 	druggy.icon_state = "druggy"
 
 	//that white blurry effect you get when you eyes are damaged
-	blurry = new /obj/screen/global_screen()
+	blurry = new /atom/movable/screen/global_screen()
 	blurry.icon_state = "blurry"
 
 	//static overlay effect for cameras and the like
-	whitense = new /obj/screen/global_screen()
+	whitense = new /atom/movable/screen/global_screen()
 	whitense.icon = 'icons/effects/static.dmi'
 	whitense.icon_state = "1 light"
 
 	//darksight 'hanger' for attached icons
-	darksight = new /obj/screen()
+	darksight = new /atom/movable/screen()
 	darksight.icon = null
 	darksight.screen_loc = "1,1"
 	darksight.plane = PLANE_LIGHTING
 
 	//Marks the center of the screen, for things like ventcrawl
-	centermarker = new /obj/screen()
+	centermarker = new /atom/movable/screen()
 	centermarker.icon = 'icons/mob/screen1.dmi'
 	centermarker.icon_state = "centermarker"
 	centermarker.screen_loc = "CENTER,CENTER"
 
 	//Marks the center of the screen, for things like ventcrawl
-	centermarker = new /obj/screen()
+	centermarker = new /atom/movable/screen()
 	centermarker.icon = 'icons/mob/screen1.dmi'
 	centermarker.icon_state = "centermarker"
 	centermarker.screen_loc = "CENTER,CENTER"
@@ -94,16 +94,16 @@ GLOBAL_LIST_INIT(global_huds, list(
 	science = setup_overlay("science_hud")
 	material = setup_overlay("material_hud")
 
-	holomap = new /obj/screen()
+	holomap = new /atom/movable/screen()
 	holomap.name = "holomap"
 	holomap.icon = null
 	holomap.screen_loc = ui_holomap
 	holomap.mouse_opacity = 0
 
-	var/obj/screen/O
+	var/atom/movable/screen/O
 	var/i
 	//that nasty looking dither you  get when you're short-sighted
-	vimpaired = newlist(/obj/screen,/obj/screen,/obj/screen,/obj/screen)
+	vimpaired = newlist(/atom/movable/screen,/atom/movable/screen,/atom/movable/screen,/atom/movable/screen)
 	O = vimpaired[1]
 	O.screen_loc = "1,1 to 5,15"
 	O.plane = PLANE_FULLSCREEN
@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	O.plane = PLANE_FULLSCREEN
 
 	//welding mask overlay black/dither
-	darkMask = newlist(/obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen)
+	darkMask = newlist(/atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen)
 	O = darkMask[1]
 	O.screen_loc = "WEST+2,SOUTH+2 to WEST+4,NORTH-2"
 	O = darkMask[2]
@@ -167,16 +167,16 @@ GLOBAL_LIST_INIT(global_huds, list(
 	var/show_intent_icons = 0
 	var/hotkey_ui_hidden = 0	//This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
 
-	var/obj/screen/lingchemdisplay
-	var/obj/screen/wiz_instability_display
-	var/obj/screen/wiz_energy_display
-	var/obj/screen/blobpwrdisplay
-	var/obj/screen/blobhealthdisplay
-	var/obj/screen/r_hand_hud_object
-	var/obj/screen/l_hand_hud_object
-	var/obj/screen/action_intent
-	var/obj/screen/move_intent
-	var/obj/screen/control_vtec
+	var/atom/movable/screen/lingchemdisplay
+	var/atom/movable/screen/wiz_instability_display
+	var/atom/movable/screen/wiz_energy_display
+	var/atom/movable/screen/blobpwrdisplay
+	var/atom/movable/screen/blobhealthdisplay
+	var/atom/movable/screen/r_hand_hud_object
+	var/atom/movable/screen/l_hand_hud_object
+	var/atom/movable/screen/action_intent
+	var/atom/movable/screen/move_intent
+	var/atom/movable/screen/control_vtec
 
 	var/list/adding
 	/// Misc hud elements that are hidden when the hud is minimized
@@ -184,11 +184,11 @@ GLOBAL_LIST_INIT(global_huds, list(
 	/// Same, but always shown even when the hud is minimized
 	var/list/other_important
 	var/list/miniobjs
-	var/list/obj/screen/hotkeybuttons
+	var/list/atom/movable/screen/hotkeybuttons
 
-	var/obj/screen/button_palette/toggle_palette
-	var/obj/screen/palette_scroll/down/palette_down
-	var/obj/screen/palette_scroll/up/palette_up
+	var/atom/movable/screen/button_palette/toggle_palette
+	var/atom/movable/screen/palette_scroll/down/palette_down
+	var/atom/movable/screen/palette_scroll/up/palette_up
 
 	var/datum/action_group/palette/palette_actions
 	var/datum/action_group/listed/listed_actions
@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	var/ui_alpha
 
 	// TGMC Ammo HUD Port
-	var/list/obj/screen/ammo_hud_list = list()
+	var/list/atom/movable/screen/ammo_hud_list = list()
 
 	var/list/minihuds = list()
 
@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	else
 		ic = hud_used.ui_style
 
-	for(var/obj/screen/I in icons)
+	for(var/atom/movable/screen/I in icons)
 		if(I.name in list(I_HELP, I_HURT, I_DISARM, I_GRAB))
 			continue
 		if(!(I.name in list("check known languages", "autowhisper", "autowhisper mode", "move downwards", "move upwards", "set pose")))
@@ -547,6 +547,31 @@ GLOBAL_LIST_INIT(global_huds, list(
 /mob/new_player/add_click_catcher()
 	return
 
+/mob/living/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
+	..()
+
+	var/list/hud_elements = list()
+	shadekin_display = new /atom/movable/screen/shadekin()
+	shadekin_display.screen_loc = ui_shadekin_display
+	shadekin_display.icon_state = "shadekin"
+	hud_elements |= shadekin_display
+
+	xenochimera_danger_display = new /atom/movable/screen/xenochimera/danger_level()
+	xenochimera_danger_display.screen_loc = ui_xenochimera_danger_display
+	xenochimera_danger_display.icon_state = "danger00"
+	hud_elements |= xenochimera_danger_display
+
+	lleill_display = new /atom/movable/screen/lleill()
+	lleill_display.screen_loc = ui_lleill_display
+	lleill_display.icon_state = "lleill"
+	hud_elements |= lleill_display
+
+	if(client)
+		client.screen = list()
+
+		client.screen += hud_elements
+		client.screen += client.void
+
 /* TGMC Ammo HUD Port
  * These procs call to screen_objects.dm's respective procs.
  * All these do is manage the amount of huds on screen and set the HUD.
@@ -555,7 +580,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 /datum/hud/proc/add_ammo_hud(mob/living/user, obj/item/gun/G)
 	if(length(ammo_hud_list) >= MAX_AMMO_HUD_POSSIBLE)
 		return
-	var/obj/screen/ammo/ammo_hud = new
+	var/atom/movable/screen/ammo/ammo_hud = new
 	ammo_hud_list[G] = ammo_hud
 	ammo_hud.screen_loc = ammo_hud.ammo_screen_loc_list[length(ammo_hud_list)]
 	ammo_hud.add_hud(user, G)
@@ -563,7 +588,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 
 ///Remove the ammo hud related to the gun G from the user
 /datum/hud/proc/remove_ammo_hud(mob/living/user, obj/item/gun/G)
-	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
+	var/atom/movable/screen/ammo/ammo_hud = ammo_hud_list[G]
 	if(isnull(ammo_hud))
 		return
 	ammo_hud.remove_hud(user, G)
@@ -577,7 +602,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 
 ///Update the ammo hud related to the gun G
 /datum/hud/proc/update_ammo_hud(mob/living/user, obj/item/gun/G)
-	var/obj/screen/ammo/ammo_hud = ammo_hud_list[G]
+	var/atom/movable/screen/ammo/ammo_hud = ammo_hud_list[G]
 	ammo_hud?.update_hud(user, G)
 
 #undef MAX_AMMO_HUD_POSSIBLE

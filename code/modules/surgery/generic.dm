@@ -108,13 +108,10 @@
 	affected.open = 1
 
 	affected.createwound(CUT, 1)
-	var/clamp_chance = 0 //I hate this. Make all laser scalpels a /laser subtype and give them a clamp_chance var???
-	if(istype(tool,/obj/item/surgical/scalpel/laser1))
-		clamp_chance = 75
-	if(istype(tool,/obj/item/surgical/scalpel/laser2))
-		clamp_chance = 85
-	if(istype(tool,/obj/item/surgical/scalpel/laser3))
-		clamp_chance = 95
+	var/clamp_chance = 0
+	if(istype(tool,/obj/item/surgical/scalpel))
+		var/obj/item/surgical/scalpel/T = tool
+		clamp_chance = T.clamp_chance
 	if(clamp_chance)
 		affected.organ_clamp()
 		user.visible_message(span_notice("[user] has made a bloodless incision on [target]'s [affected.name] with \the [tool]."), \

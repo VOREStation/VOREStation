@@ -39,7 +39,7 @@ export const VoreUserPreferencesAesthetic = (props: {
   const sanitizeCorruption = fixCorruptedData(aestethicMessages.active_message);
 
   const getBellies = our_bellies.map((belly) => {
-    return belly.name;
+    return belly.display_name ? belly.display_name : belly.name;
   });
 
   const locationNames = [...getBellies, 'Current Selected'];
@@ -119,7 +119,7 @@ export const VoreUserPreferencesAesthetic = (props: {
                     entry={
                       belly_rub_target
                         ? belly_rub_target
-                        : 'Current Selected (' + capitalizedName + ')'
+                        : `Current Selected (${capitalizedName})`
                     }
                   />
                 </LabeledList.Item>
@@ -133,7 +133,7 @@ export const VoreUserPreferencesAesthetic = (props: {
             {!!sanitizeCorruption.corrupted && (
               <Stack.Item>
                 <NoticeBox danger>
-                  Your {'>' + aestethicMessages.aest_subtab + '<'} messages are
+                  Your {`>${aestethicMessages.aest_subtab}<`} messages are
                   corrupted, please edit and save them!
                 </NoticeBox>
               </Stack.Item>

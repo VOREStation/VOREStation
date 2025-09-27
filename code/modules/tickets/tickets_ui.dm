@@ -57,6 +57,7 @@
 				"state" = get_ticket_state(T.state),
 				"level" = T.level,
 				"handler" = T.handler,
+				"ishandled" = !!T.handler_ref?.resolve(),
 				"opened_at" = (world.time - T.opened_at),
 				"closed_at" = (world.time - T.closed_at),
 				"opened_at_date" = gameTimestamp(wtime = T.opened_at),
@@ -71,6 +72,7 @@
 				"state" = get_ticket_state(T.state),
 				"level" = T.level,
 				"handler" = T.handler,
+				"ishandled" = !!T.handler_ref?.resolve(),
 				"opened_at" = (world.time - T.opened_at),
 				"closed_at" = (world.time - T.closed_at),
 				"opened_at_date" = gameTimestamp(wtime = T.opened_at),
@@ -85,6 +87,7 @@
 				"state" = get_ticket_state(T.state),
 				"level" = T.level,
 				"handler" = T.handler,
+				"ishandled" = !!T.handler_ref?.resolve(),
 				"opened_at" = (world.time - T.opened_at),
 				"closed_at" = (world.time - T.closed_at),
 				"opened_at_date" = gameTimestamp(wtime = T.opened_at),
@@ -145,7 +148,7 @@
 						to_chat(ui.user, span_warning("Ticket not found, creating new one..."))
 				else
 					player.current_ticket.AddInteraction("[key_name_admin(ui.user)] opened a new ticket.")
-					player.current_ticket.Close()
+					player.current_ticket.Close(ui.user)
 
 			// Create a new ticket and handle it. You created it afterall!
 			var/datum/ticket/T = new /datum/ticket(ticket_text, player, TRUE, level)
@@ -153,7 +156,7 @@
 				T.level = 1
 			else
 				T.level = 0
-			T.HandleIssue()
+			T.HandleIssue(ui.user)
 			switch(T.level)
 				if (0)
 					ui.user.client.cmd_mentor_pm(player, ticket_text, T)
@@ -168,7 +171,7 @@
 			ui.user.client.selected_ticket.Retitle()
 			. = TRUE
 		if("reopen_ticket")
-			ui.user.client.selected_ticket.Reopen()
+			ui.user.client.selected_ticket.Reopen(ui.user)
 			. = TRUE
 		if("undock_ticket")
 			ui.user.client.selected_ticket.tgui_interact(ui.user)
@@ -249,7 +252,7 @@
 			Retitle()
 			. = TRUE
 		if("reopen")
-			Reopen()
+			Reopen(ui.user)
 			. = TRUE
 		if("legacy")
 			TicketPanelLegacy(ui.user)

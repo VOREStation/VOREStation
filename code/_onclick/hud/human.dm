@@ -21,14 +21,14 @@
 	HUD.slot_info = slot_info
 
 	var/list/hud_elements = list()
-	var/obj/screen/using
-	var/obj/screen/inventory/inv_box
+	var/atom/movable/screen/using
+	var/atom/movable/screen/inventory/inv_box
 
 	// Draw the various inventory equipment slots.
 	var/has_hidden_gear
 	for(var/gear_slot in hud_data.gear)
 
-		inv_box = new /obj/screen/inventory()
+		inv_box = new /atom/movable/screen/inventory()
 		inv_box.icon = HUD.ui_style
 		inv_box.color = HUD.ui_color
 		inv_box.alpha = HUD.ui_alpha
@@ -51,7 +51,7 @@
 			adding += inv_box
 
 	if(has_hidden_gear)
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = "toggle"
 		using.icon = HUD.ui_style
 		using.icon_state = "other"
@@ -64,7 +64,7 @@
 	// Draw the attack intent dialogue.
 	if(hud_data.has_a_intent)
 
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = "act_intent"
 		using.icon = HUD.ui_style
 		using.icon_state = "intent_"+a_intent
@@ -82,7 +82,7 @@
 		ico = new(HUD.ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = I_HELP
 		using.icon = ico
 		using.screen_loc = ui_acti
@@ -94,7 +94,7 @@
 		ico = new(HUD.ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = I_DISARM
 		using.icon = ico
 		using.screen_loc = ui_acti
@@ -106,7 +106,7 @@
 		ico = new(HUD.ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = I_GRAB
 		using.icon = ico
 		using.screen_loc = ui_acti
@@ -118,7 +118,7 @@
 		ico = new(HUD.ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = I_HURT
 		using.icon = ico
 		using.screen_loc = ui_acti
@@ -129,7 +129,7 @@
 		//end intent small hud objects
 
 	if(hud_data.has_m_intent)
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = "mov_intent"
 		using.icon = HUD.ui_style
 		using.icon_state = (m_intent == I_RUN ? "running" : "walking")
@@ -140,7 +140,7 @@
 		HUD.move_intent = using
 
 	if(hud_data.has_drop)
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = "drop"
 		using.icon = HUD.ui_style
 		using.icon_state = "act_drop"
@@ -151,7 +151,7 @@
 
 	if(hud_data.has_hands)
 
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = "equip"
 		using.icon = HUD.ui_style
 		using.icon_state = "act_equip"
@@ -160,14 +160,14 @@
 		using.alpha = HUD.ui_alpha
 		adding += using
 
-		using = new /obj/screen/useself()
+		using = new /atom/movable/screen/useself()
 		using.icon = HUD.ui_style
 		using.screen_loc = ui_swaphand2
 		using.color = HUD.ui_color
 		using.alpha = HUD.ui_alpha
 		adding |= using
 
-		inv_box = new /obj/screen/inventory/hand()
+		inv_box = new /atom/movable/screen/inventory/hand()
 		inv_box.hud = HUD
 		inv_box.name = "r_hand"
 		inv_box.icon = HUD.ui_style
@@ -182,7 +182,7 @@
 		adding += inv_box
 		slot_info["[slot_r_hand]"] = inv_box.screen_loc
 
-		inv_box = new /obj/screen/inventory/hand()
+		inv_box = new /atom/movable/screen/inventory/hand()
 		inv_box.hud = HUD
 		inv_box.name = "l_hand"
 		inv_box.icon = HUD.ui_style
@@ -197,7 +197,7 @@
 		adding += inv_box
 		slot_info["[slot_l_hand]"] = inv_box.screen_loc
 
-		using = new /obj/screen/inventory()
+		using = new /atom/movable/screen/inventory()
 		using.name = "hand"
 		using.icon = HUD.ui_style
 		using.icon_state = "hand1"
@@ -207,7 +207,7 @@
 		using.hud = HUD
 		adding += using
 
-		using = new /obj/screen/inventory()
+		using = new /atom/movable/screen/inventory()
 		using.name = "hand"
 		using.icon = HUD.ui_style
 		using.icon_state = "hand2"
@@ -218,7 +218,7 @@
 		adding += using
 
 	if(hud_data.has_resist)
-		using = new /obj/screen()
+		using = new /atom/movable/screen()
 		using.name = "resist"
 		using.icon = HUD.ui_style
 		using.icon_state = "act_resist"
@@ -228,7 +228,7 @@
 		hotkeybuttons += using
 
 	if(hud_data.has_throw)
-		throw_icon = new /obj/screen()
+		throw_icon = new /atom/movable/screen()
 		throw_icon.icon = HUD.ui_style
 		throw_icon.icon_state = "act_throw_off"
 		throw_icon.name = "throw"
@@ -238,7 +238,7 @@
 		hotkeybuttons += throw_icon
 		hud_elements |= throw_icon
 
-		pullin = new /obj/screen()
+		pullin = new /atom/movable/screen()
 		pullin.icon = HUD.ui_style
 		pullin.icon_state = "pull0"
 		pullin.name = "pull"
@@ -247,7 +247,7 @@
 		hud_elements |= pullin
 
 	if(hud_data.has_internals)
-		internals = new /obj/screen()
+		internals = new /atom/movable/screen()
 		internals.icon = HUD.ui_style
 		internals.icon_state = "internal0"
 		if(istype(internal, /obj/item/tank)) //Internals on already? Iight, prove it
@@ -257,14 +257,14 @@
 		hud_elements |= internals
 
 	if(hud_data.has_warnings)
-		healths = new /obj/screen()
+		healths = new /atom/movable/screen()
 		healths.icon = HUD.ui_style
 		healths.icon_state = "health0"
 		healths.name = "health"
 		healths.screen_loc = ui_health
 		hud_elements |= healths
 
-	autowhisper_display = new /obj/screen()
+	autowhisper_display = new /atom/movable/screen()
 	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
 	autowhisper_display.icon_state = "autowhisper"
 	autowhisper_display.name = "autowhisper"
@@ -272,7 +272,7 @@
 	hud_elements |= autowhisper_display
 	adding |= autowhisper_display
 
-	var/obj/screen/aw = new /obj/screen()
+	var/atom/movable/screen/aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "aw-select"
 	aw.name = "autowhisper mode"
@@ -280,7 +280,7 @@
 	hud_elements |= aw
 	adding |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "lang"
 	aw.name = "check known languages"
@@ -288,7 +288,7 @@
 	hud_elements |= aw
 	adding |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "pose"
 	aw.name = "set pose"
@@ -296,7 +296,7 @@
 	hud_elements |= aw
 	adding |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "up"
 	aw.name = "move upwards"
@@ -304,7 +304,7 @@
 	hud_elements |= aw
 	adding |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "down"
 	aw.name = "move downwards"
@@ -312,7 +312,7 @@
 	hud_elements |= aw
 	adding |= aw
 
-	aw = new /obj/screen()
+	aw = new /atom/movable/screen()
 	aw.icon = HUD.ui_style
 	aw.icon_state = "use"
 	aw.name = "use held item on self"
@@ -321,42 +321,30 @@
 	using.alpha = HUD.ui_alpha
 	adding |= using
 
-	//VOREStation Addition begin
-	shadekin_display = new /obj/screen/shadekin()
-	shadekin_display.screen_loc = ui_shadekin_display
-	shadekin_display.icon_state = "shadekin"
+	//Component hud elements. Made in /mob/living/create_mob_hud
 	hud_elements |= shadekin_display
-
-	xenochimera_danger_display = new /obj/screen/xenochimera/danger_level()
-	xenochimera_danger_display.screen_loc = ui_xenochimera_danger_display
-	xenochimera_danger_display.icon_state = "danger00"
 	hud_elements |= xenochimera_danger_display
-
-	lleill_display = new /obj/screen/lleill()
-	lleill_display.screen_loc = ui_lleill_display
-	lleill_display.icon_state = "lleill"
 	hud_elements |= lleill_display
-	//VOREStation Addition end
 
-	ling_chem_display = new /obj/screen/ling/chems()
+	ling_chem_display = new /atom/movable/screen/ling/chems()
 	ling_chem_display.screen_loc = ui_ling_chemical_display
 	ling_chem_display.icon_state = "ling_chems"
 	hud_elements |= ling_chem_display
 
-	wiz_instability_display = new /obj/screen/wizard/instability()
+	wiz_instability_display = new /atom/movable/screen/wizard/instability()
 	wiz_instability_display.screen_loc = ui_wiz_instability_display
 	wiz_instability_display.icon_state = "wiz_instability_none"
 	hud_elements |= wiz_instability_display
 
-	wiz_energy_display = new/obj/screen/wizard/energy()
+	wiz_energy_display = new/atom/movable/screen/wizard/energy()
 	wiz_energy_display.screen_loc = ui_wiz_energy_display
 	wiz_energy_display.icon_state = "wiz_energy"
 	hud_elements |= wiz_energy_display
 
 
-	pain = new /obj/screen( null )
+	pain = new /atom/movable/screen( null )
 
-	zone_sel = new /obj/screen/zone_sel( null )
+	zone_sel = new /atom/movable/screen/zone_sel( null )
 	zone_sel.icon = HUD.ui_style
 	zone_sel.color = HUD.ui_color
 	zone_sel.alpha = HUD.ui_alpha
@@ -365,23 +353,23 @@
 	hud_elements |= zone_sel
 
 	//Handle the gun settings buttons
-	gun_setting_icon = new /obj/screen/gun/mode(null)
+	gun_setting_icon = new /atom/movable/screen/gun/mode(null)
 	gun_setting_icon.icon = HUD.ui_style
 	gun_setting_icon.color = HUD.ui_color
 	gun_setting_icon.alpha = HUD.ui_alpha
 	hud_elements |= gun_setting_icon
 
-	item_use_icon = new /obj/screen/gun/item(null)
+	item_use_icon = new /atom/movable/screen/gun/item(null)
 	item_use_icon.icon = HUD.ui_style
 	item_use_icon.color = HUD.ui_color
 	item_use_icon.alpha = HUD.ui_alpha
 
-	gun_move_icon = new /obj/screen/gun/move(null)
+	gun_move_icon = new /atom/movable/screen/gun/move(null)
 	gun_move_icon.icon = HUD.ui_style
 	gun_move_icon.color = HUD.ui_color
 	gun_move_icon.alpha = HUD.ui_alpha
 
-	radio_use_icon = new /obj/screen/gun/radio(null)
+	radio_use_icon = new /atom/movable/screen/gun/radio(null)
 	radio_use_icon.icon = HUD.ui_style
 	radio_use_icon.color = HUD.ui_color
 	radio_use_icon.alpha = HUD.ui_alpha
@@ -415,31 +403,31 @@
 	all_underwear.Cut()
 	regenerate_icons()
 
-/obj/screen/ling
+/atom/movable/screen/ling
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/screen/ling/chems
+/atom/movable/screen/ling/chems
 	name = "chemical storage"
 	icon_state = "power_display"
 
-/obj/screen/wizard
+/atom/movable/screen/wizard
 	invisibility = INVISIBILITY_ABSTRACT
 
-/obj/screen/wizard/instability
+/atom/movable/screen/wizard/instability
 	name = "instability"
 	icon_state = "instability-1"
 	invisibility = INVISIBILITY_NONE
 
-/obj/screen/wizard/energy
+/atom/movable/screen/wizard/energy
 	name = "energy"
 	icon_state = "wiz_energy"
 
-/obj/screen/useself
+/atom/movable/screen/useself
 	name = "use held item on self"
 	icon_state = "use"
 	var/next = 0
 
-/obj/screen/useself/proc/can_use(var/mob/living/carbon/human/h, var/obj/item/i)	//Basically trying to use the item this way skips the cooldown
+/atom/movable/screen/useself/proc/can_use(var/mob/living/carbon/human/h, var/obj/item/i)	//Basically trying to use the item this way skips the cooldown
 	if(world.time >= next)														//And trying to check the cooldown doesn't work because when you click the UI it sets a cooldown
 		next = h.get_attack_speed(i)											//So instead we'll just put a cooldown on the use button and apply the item's cooldown to the player
 		h.setClickCooldown(next)												//Otherwise you can click the button and yourself faster than the normal cooldown. SO WE SET BOTH!!!!

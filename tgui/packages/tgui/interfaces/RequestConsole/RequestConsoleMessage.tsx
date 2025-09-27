@@ -37,7 +37,7 @@ export const RequestConsoleMessageAuth = (props) => {
   return (
     <Section title="Message Authentication">
       <LabeledList>
-        <LabeledList.Item label={'Message for ' + recipient}>
+        <LabeledList.Item label={`Message for ${recipient}`}>
           {message}
         </LabeledList.Item>
         <LabeledList.Item label="Priority">

@@ -21,6 +21,8 @@
 
 	var/reagent_type = REAGENT_ID_WATER
 
+	var/watercolor = null
+
 /turf/simulated/floor/water/Initialize(mapload)
 	. = ..()
 	update_icon()
@@ -97,6 +99,8 @@
 /turf/simulated/floor/water/Entered(atom/movable/AM, atom/oldloc)
 	if(isliving(AM))
 		var/mob/living/L = AM
+		if(L.hovering || L.flying || L.is_incorporeal())
+			return
 		L.update_water()
 		if(L.check_submerged() <= 0)
 			return
@@ -108,6 +112,8 @@
 /turf/simulated/floor/water/Exited(atom/movable/AM, atom/newloc)
 	if(isliving(AM))
 		var/mob/living/L = AM
+		if(L.hovering || L.flying || L.is_incorporeal())
+			return
 		L.update_water()
 		if(L.check_submerged() <= 0)
 			return
@@ -155,7 +161,7 @@
 /mob/living/proc/check_submerged()
 	if(buckled)
 		return 0
-	if(hovering || flying)
+	if(hovering || flying || is_incorporeal())
 		if(flying)
 			adjust_nutrition(-0.5)
 		return 0
@@ -171,10 +177,10 @@
 	return
 
 /mob/living/water_act(amount)
-	adjust_fire_stacks(-amount * 5)
+	// adjust_fire_stacks(-amount * 5)
+	adjust_wet_stacks(amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
-	remove_modifiers_of_type(/datum/modifier/fire)
 	inflict_water_damage(20 * amount) // Only things vulnerable to water will actually be harmed (slimes/prommies).
 
 var/list/shoreline_icon_cache = list()

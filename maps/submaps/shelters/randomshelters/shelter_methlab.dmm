@@ -1,0 +1,217 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"b" = (
+/obj/item/radio/headset/headset_med,
+/obj/item/storage/box/syringes,
+/obj/item/storage/fancy/vials,
+/obj/item/storage/fancy/vials,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/obj/structure/closet/wardrobe/chemistry_white,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"c" = (
+/mob/living/simple_mob/vore/aggressive/corrupthound,
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/survivalpod/redspace)
+"d" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod/redspace)
+"f" = (
+/obj/structure/sign/department/chem,
+/turf/simulated/shuttle/wall/voidcraft/red,
+/area/survivalpod/redspace)
+"g" = (
+/obj/machinery/alembic{
+	pixel_y = 10;
+	pixel_x = 3
+	},
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"h" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/glasses/sunglasses,
+/obj/item/clothing/head/bowler,
+/obj/item/clothing/glasses/regular,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"j" = (
+/turf/simulated/shuttle/wall/voidcraft/red,
+/area/survivalpod/redspace)
+"k" = (
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"m" = (
+/obj/structure/table/reinforced,
+/obj/item/packageWrap,
+/obj/item/mass_spectrometer/adv{
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
+	name = "Chemistry Cleaner";
+	pixel_y = 5;
+	pixel_x = -6
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"p" = (
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"q" = (
+/obj/structure/table/reinforced,
+/obj/machinery/injector_maker{
+	pixel_y = 21
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_y = 9;
+	pixel_x = 6
+	},
+/obj/item/clothing/gloves/sterile/nitrile,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"s" = (
+/obj/machinery/chem_master,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"B" = (
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"G" = (
+/obj/structure/table/reinforced,
+/obj/machinery/chemical_dispenser/full,
+/obj/machinery/light/floortube,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"H" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/red,
+/area/survivalpod/redspace)
+"L" = (
+/obj/structure/fans,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"O" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/red,
+/area/survivalpod/redspace)
+"T" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/survivalpod/redspace)
+"U" = (
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/survivalpod/redspace)
+"V" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"W" = (
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	pixel_y = 10;
+	pixel_x = 3
+	},
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/survivalpod/redspace)
+"X" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/survivalpod/redspace)
+
+(1,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+"}
+(2,1,1) = {"
+j
+L
+V
+p
+g
+m
+j
+"}
+(3,1,1) = {"
+j
+h
+U
+U
+U
+a
+f
+"}
+(4,1,1) = {"
+j
+q
+c
+U
+U
+T
+d
+"}
+(5,1,1) = {"
+j
+G
+X
+U
+U
+k
+H
+"}
+(6,1,1) = {"
+j
+s
+B
+W
+p
+b
+O
+"}
+(7,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+"}

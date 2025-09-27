@@ -33,7 +33,7 @@
 
 // Quickly adds the boilerplate code to add an image and padding for the image.
 /proc/desc_panel_image(var/icon_state)
-	return "[icon2html(description_icons[icon_state], usr)]&emsp;"
+	return "[icon2html(GLOB.description_icons[icon_state], usr)]&emsp;"
 
 /mob/living/get_description_fluff()
 	if(flavor_text) //Get flavor text for the green text.
@@ -96,30 +96,49 @@
 	//do pref check here
 	var/desc_info_temp = A.get_description_info()
 	if(desc_info_temp)
-		. += span_details("ℹ️ | Information",desc_info_temp)
+		. += span_details("ℹ️ | Information", desc_info_temp)
 	var/fluff_info_temp = A.get_description_fluff()
 	if(fluff_info_temp && fluff_info_temp != "")
 		var/title = "🪐 | Flavor Information"
+		var/examine_text = splittext(fluff_info_temp, "||")
+		var/index = 0
+		var/rendered_text = ""
+		for(var/part in examine_text)
+			if(index % 2)
+				rendered_text += span_spoiler("[part]")
+			else
+				rendered_text += "[part]"
+			index++
 		if(isliving(A)) //ehhh
 			var/mob/living/B = A
 			if(B.flavor_text)
 				title = "🔍 | Flavor Text"
 
-		. += span_details(title,fluff_info_temp)
-	var/is_antagish = ((mind && mind.special_role) || isobserver(src)) //ghosts don't have minds
+		. += span_details(title, rendered_text)
+	var/is_antagish = antag_check()
 	var/antag_info_temp = A.get_description_antag()
 	if(is_antagish && antag_info_temp)
-		. += span_details("🏴‍☠️ | Antag Information",antag_info_temp)
+		. += span_details("🏴‍☠️ | Antag Information", antag_info_temp)
 	var/list/interaction_info = A.get_description_interaction()
-	if(interaction_info.len > 0)
+	if(LAZYLEN(interaction_info))
 		var/temp = ""
 		for(var/a in interaction_info)
 			temp += a + "\n"
 		. += span_details("🛠️ | Interaction Information",temp)
 
+/mob/proc/antag_check()
+	if(mind && (mind.special_role || mind.antag_holder.is_antag())) //We're a /mob and have a mind and antag status.
+		return TRUE
+	if(isobserver(src)) //We're an observer. We always are able to see stuff antags see.
+		return TRUE
+	var/datum/component/antag/comp = GetComponent(/datum/component/antag)
+	if(comp)
+		return TRUE
+	return FALSE
+
 /mob/proc/update_examine_panel(var/atom/A)
 	if(client)
-		var/is_antag = ((mind && mind.special_role) || isobserver(src)) //ghosts don't have minds
+		var/is_antag = antag_check()
 		client.update_description_holders(A, is_antag)
 		SSstatpanels.set_examine_tab(client)
 

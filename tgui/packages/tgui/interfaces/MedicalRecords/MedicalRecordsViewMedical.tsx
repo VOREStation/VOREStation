@@ -47,8 +47,7 @@ export const MedicalRecordsViewMedical = (props) => {
         {medical.comments && medical.comments.length === 0 ? (
           <Box color="label">No comments found.</Box>
         ) : (
-          medical.comments &&
-          medical.comments.map((comment, i) => (
+          medical.comments?.map((comment, i) => (
             <Box key={i}>
               <Box color="label" inline>
                 {comment.header}

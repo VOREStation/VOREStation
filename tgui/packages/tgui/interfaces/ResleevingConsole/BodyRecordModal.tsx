@@ -19,7 +19,7 @@ export const BodyRecordModal = (props: { data: ActiveBodyRecordData }) => {
     <Section
       backgroundColor="#252525"
       m={2}
-      title={'Body Record (' + realname + ')'}
+      title={`Body Record (${realname})`}
       buttons={
         <Button icon="times" color="red" onClick={() => act('clear_b_rec')} />
       }

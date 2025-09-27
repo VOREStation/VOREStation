@@ -4,6 +4,7 @@
 	density = TRUE
 	anchored = TRUE
 	can_atmos_pass = ATMOS_PASS_DENSITY
+	breakable = TRUE
 
 	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
@@ -171,7 +172,7 @@
 	if(istype(W,/obj/item/pickaxe) && breakable)
 		var/obj/item/pickaxe/digTool = W
 		visible_message(span_danger("[user] starts digging [src]!"))
-		if(do_after(user,digTool.digspeed*hardness) && src)
+		if(do_after(user,digTool.digspeed*hardness, target = src) && src)
 			visible_message(span_danger("[user] finished digging [src]!"))
 			Dismantle()
 	else if(istype(W,/obj/item) && breakable) //not sure, can't not just weapons get passed to this proc?
@@ -277,6 +278,9 @@
 
 /obj/structure/simple_door/cult/Initialize(mapload,var/material_name)
 	. = ..(mapload, material_name || MAT_CULT)
+
+/obj/structure/simple_door/glamour/Initialize(mapload,var/material_name)
+	. = ..(mapload, material_name || MAT_GLAMOUR)
 
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))

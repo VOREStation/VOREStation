@@ -134,7 +134,7 @@
 
 	if(istype(I, /obj/item/multitool))
 		if(panel_open)
-			var/input = sanitize(tgui_input_text(user, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
+			var/input = tgui_input_text(user, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id, MAX_MESSAGE_LEN)
 			if(!input)
 				to_chat(user, "No input found. Please hang up and try your call again.")
 				return
@@ -306,7 +306,7 @@
 			to_chat(user, "The welding tool must be on to complete this task.")
 			return
 		playsound(src, WT.usesound, 50, 1)
-		if(do_after(user, 20 * WT.toolspeed))
+		if(do_after(user, 2 SECONDS * WT.toolspeed, target = src))
 			if(!src || !WT.isOn()) return
 			to_chat(user, span_notice("You deconstruct the frame."))
 			new /obj/item/stack/material/steel( src.loc, 2 )
@@ -314,7 +314,7 @@
 			return
 
 	if(I.has_tool_quality(TOOL_MULTITOOL))
-		var/input = sanitize(tgui_input_text(user, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
+		var/input = tgui_input_text(user, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id, MAX_MESSAGE_LEN)
 		if(!input)
 			to_chat(user, "No input found. Please hang up and try your call again.")
 			return
@@ -337,7 +337,6 @@
 			playsound(src, I.usesound, 50, 1)
 			return
 
-	//Ports making conveyors fast from CHOMPstation
 	if(I.has_tool_quality(TOOL_WIRECUTTER))
 		toggle_speed()
 		to_chat(user, "You adjust the speed of the conveyor switch")

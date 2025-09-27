@@ -91,16 +91,21 @@
 				qdel(src)
 
 
-/obj/machinery/shield/hitby(AM as mob|obj)
+/obj/machinery/shield/hitby(atom/movable/source)
 	//Let everyone know we've been hit!
-	visible_message(span_danger("\The [src] was hit by [AM]."))
+	visible_message(span_danger("\The [src] was hit by [source]."))
 
 	//Super realistic, resource-intensive, real-time damage calculations.
 	var/tforce = 0
-	if(ismob(AM))
+	if(ismob(source))
 		tforce = 40
-	else
-		tforce = AM:throwforce
+	if(isobj(source))
+		var/obj/object = source
+		if(isitem(object))
+			var/obj/item/our_item = object
+			tforce = our_item.throwforce
+		else
+			tforce = object.w_class
 
 	src.health -= tforce
 
@@ -124,7 +129,7 @@
 	opacity = 0
 	anchored = FALSE
 	pressure_resistance = 2*ONE_ATMOSPHERE
-	req_access = list(access_engine)
+	req_access = list(ACCESS_ENGINE)
 	var/const/max_health = 100
 	var/health = max_health
 	var/active = 0
@@ -136,10 +141,6 @@
 	var/check_delay = 60	//periodically recheck if we need to rebuild a shield
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
-	var/global/list/blockedturfs =  list(
-		/turf/space,
-		/turf/simulated/floor/outdoors,
-	)
 
 /obj/machinery/shieldgen/Initialize(mapload)
 	. = ..()
@@ -175,7 +176,7 @@
 
 /obj/machinery/shieldgen/proc/create_shields()
 	for(var/turf/target_tile in range(2, src))
-		if (is_type_in_list(target_tile,blockedturfs) && !(locate(/obj/machinery/shield) in target_tile))
+		if (is_type_in_list(target_tile,GLOB.shieldgen_blockedturfs) && !(locate(/obj/machinery/shield) in target_tile))
 			if (malfunction && prob(33) || !malfunction)
 				var/obj/machinery/shield/S = new/obj/machinery/shield(target_tile)
 				deployed_shields += S
@@ -297,7 +298,7 @@
 		var/obj/item/stack/cable_coil/coil = W
 		to_chat(user, span_notice("You begin to replace the wires."))
 		//if(do_after(user, min(60, round( ((getMaxHealth()/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
-		if(do_after(user, 30))
+		if(do_after(user, 3 SECONDS, target = src))
 			if (coil.use(1))
 				health = max_health
 				malfunction = 0

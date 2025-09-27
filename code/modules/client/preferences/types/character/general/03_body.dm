@@ -211,3 +211,19 @@
 
 /datum/preference/numeric/human/ears_alpha/create_default_value()
 	return 255 //no randomization here.
+
+///Tail style.
+/datum/preference/choiced/human/tail_layering
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "tail_layering"
+	can_randomize = FALSE
+
+/datum/preference/choiced/human/tail_layering/init_possible_values()
+	return assoc_to_keys(GLOB.tail_layer_options)
+
+/datum/preference/choiced/human/tail_layering/create_default_value()
+	return GLOB.tail_layer_options[2]
+
+/datum/preference/choiced/human/tail_layering/apply_to_human(mob/living/carbon/human/target, value)
+	target.tail_layering = GLOB.tail_layer_options[value]

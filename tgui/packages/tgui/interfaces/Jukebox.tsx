@@ -155,7 +155,7 @@ export const Jukebox = (props) => {
                   average: [25, 75],
                   bad: [0, 25],
                 }}
-                format={(val) => toFixed(val, 1) + '%'}
+                format={(val) => `${toFixed(val, 1)}%`}
                 onChange={(e, val) =>
                   act('volume', { val: round(val / 100, 2) })
                 }
