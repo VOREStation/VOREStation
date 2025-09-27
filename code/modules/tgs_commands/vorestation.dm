@@ -449,6 +449,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		// Listing all whitelists for a specific ckey
 		if("list")
 			var/result
+			var/found = FALSE
 
 			result += "**Whitelists for [ckey]**\n"
 
@@ -465,9 +466,10 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 					var/entry_query_result = query_list.item[2]
 
 					result += "- [kind_query_result] - [entry_query_result]\n"
+					found = TRUE
 			qdel(query_list)
 
-			if(result.len == 1)
+			if(!found)
 				result += "No whitelist entries found for [ckey]"
 
 			return result
