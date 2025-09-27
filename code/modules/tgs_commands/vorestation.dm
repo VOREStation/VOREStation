@@ -389,10 +389,12 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 /datum/tgs_chat_command/whitelist/Run(datum/tgs_chat_user/sender, params)
 	var/list/message_as_list = splittext(params, " ")
+	var/datum/tgs_message_content/message
 
 	// Check if the command is valid
 	if(!CONFIG_GET(flag/sql_enabled))
-		return "```A database is required to be set up for this feature.```"
+		message.text = "```A database is required to be set up for this feature.```"
+		return message
 
 	if(!LAZYLEN(message_as_list))
 		return "```Invalid command usage: [VALID_USAGE]```"
@@ -448,10 +450,11 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 		// Listing all whitelists for a specific ckey
 		if("list")
-			var/result
+			var/datum/tgs_chat_embed/structure/embed
 			var/found = FALSE
 
-			result += "**Whitelists for [ckey]**\n"
+			message.embed = embed
+			embed.title = "Whitelists for [ckey]"
 
 			var/datum/db_query/query_list = SSdbcore.NewQuery(
 				"SELECT kind, entry FROM [format_table_name("whitelist")] WHERE ckey = :ckey",
@@ -465,14 +468,14 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 					var/kind_query_result = query_list.item[1]
 					var/entry_query_result = query_list.item[2]
 
-					result += "- [kind_query_result] - [entry_query_result]\n"
+					embed.description += "- [kind_query_result] - [entry_query_result]\n"
 					found = TRUE
 			qdel(query_list)
 
 			if(!found)
-				result += "No whitelist entries found for [ckey]"
+				embed.description += "No whitelist entries found for [ckey]"
 
-			return result
+			return message
 
 	// Notify the player of the change
 	var/key_to_find = "[ckey(params)]"
@@ -485,7 +488,8 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 		to_chat(user, span_info("You have been [action]ed to the [kind] whitelist of [role] by an administrator."))
 
 	// Notify the admins on discord that it was successful
-	return "\[Whitelist Edit\] [ckey] has been [action]ed to [kind] whitelist: [role]"
+	message.text = "\[Whitelist Edit\] [ckey] has been [action]ed to [kind] whitelist: [role]"
+	return message
 #undef VALID_USAGE
 #undef VALID_KINDS
 #undef VALID_ACTIONS
