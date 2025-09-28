@@ -17,6 +17,7 @@
 	// Focus on remote view
 	remote_view_target = focused_on
 	RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(on_qdel))
+	RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
@@ -27,6 +28,7 @@
 	host_mob = null
 	// Cleanup remote view
 	UnregisterSignal(remote_view_target, COMSIG_QDELETING)
+	UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 	remote_view_target = null
 
 /datum/component/remote_view/proc/on_moved(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
@@ -51,6 +53,18 @@
 
 /datum/component/remote_view/proc/end_view()
 	host_mob.reset_perspective(null)
+
+
+/datum/component/remote_view/proc/on_remotetarget_reset_perspective(datum/source)
+	SIGNAL_HANDLER
+	// This is an ugly one, but if we want to follow the other object properly we need to copy its state!
+	if(!remote_view_target.client || !host_mob.client)
+		end_view()
+		qdel(src)
+		return
+	// Copy the view, do not use reset_perspective, because it will call our signal and end our view!
+	host_mob.client.eye = remote_view_target.client.eye
+	host_mob.client.perspective = remote_view_target.client.perspective
 
 // Special varient that cares about mRemote mutation in humans!
 /datum/component/remote_view/mremote_mutation
