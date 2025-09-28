@@ -111,7 +111,7 @@ var/list/holder_mob_icon_cache = list()
 		held_mob.update_transform()
 		held_mob.vis_flags = original_vis_flags
 		held_mob.forceMove(get_turf(src))
-		held_mob.reset_perspective()
+		held_mob.reset_perspective(null)
 		held_mob = null
 	invisibility = INVISIBILITY_ABSTRACT
 

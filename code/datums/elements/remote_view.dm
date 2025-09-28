@@ -9,12 +9,14 @@
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
 	RegisterSignal(target, COMSIG_MOB_DEATH, PROC_REF(on_death))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(on_qdel))
 
 /datum/element/remote_view/Detach(datum/target)
 	. = ..()
 	UnregisterSignal(target, COMSIG_MOB_RESET_PERSPECTIVE)
 	UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(target, COMSIG_MOB_DEATH)
+	UnregisterSignal(target, COMSIG_QDELETING)
 
 /datum/element/remote_view/proc/on_moved(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
@@ -26,6 +28,11 @@
 	Detach(source)
 
 /datum/element/remote_view/proc/on_death(datum/source)
+	SIGNAL_HANDLER
+	end_view(source)
+	Detach(source)
+
+/datum/element/remote_view/proc/on_qdel(datum/source)
 	SIGNAL_HANDLER
 	end_view(source)
 	Detach(source)
