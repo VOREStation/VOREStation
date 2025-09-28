@@ -2755,6 +2755,12 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
 
+/datum/sprite_accessory/marking/digi/bonyplates
+	name = "Digitigrade Bony Plates(Only works with digitigrade legs)"
+	icon_state = "bonyplatesdigitigrade"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
+
 //Big Leggies!
 /datum/sprite_accessory/marking/bigleggy
 	name = "Big Leggies - Legs"
@@ -2845,3 +2851,48 @@ includes scars and tattoos
 	icon_state = "gator_snout"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longsnout
+	name = "Long, Sharp Snout"
+	icon_state = "longsharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longersnout
+	name = "Longer, Sharp Snout"
+	icon_state = "longersharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longsnoutlower
+	name = "Long, Sharp Snout(lower)"
+	icon_state = "lowerlongsharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longersnoutlower
+	name = "Longer, Sharp Snout(lower)"
+	icon_state = "lowerlongersharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/boneplates
+	name = "Bony Leg Plates"
+	icon_state = "bonyplatesplantigrade"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG)
+
+/datum/sprite_accessory/marking/boneplatesarms
+	name = "Bony Arm Plates"
+	icon_state = "bonyplateswrist"
+	icon = 'icons/mob/human_races/markings.dmi'
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+
+
+/datum/sprite_accessory/marking/underarmpixel
+	name = "Under Arms Pixels"
+	icon_state = "underarmpixel"
+	icon = 'icons/mob/human_races/markings.dmi'
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_R_ARM)

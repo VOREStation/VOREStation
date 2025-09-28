@@ -1,0 +1,5 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - admin: "added 3 new tgs commands to manage whitelists"
+  - refactor: "The alienwhitelists and jobwhitelists are now loaded from the database, if the database is enabled"
