@@ -78,7 +78,6 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	user.set_machine(src)
 	if(isliving(user))
 		var/mob/living/L = user
-		L.looking_elsewhere = 1
 		L.handle_vision()
 	user.set_viewsize(world.view + extra_view)
 	user.AddComponent(/datum/component/recursive_move)
@@ -95,7 +94,6 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		user.client.images -= linked.real_appearance
 	if(isliving(user))
 		var/mob/living/L = user
-		L.looking_elsewhere = 0
 		L.handle_vision()
 	user.set_viewsize() // reset to default
 	UnregisterSignal(user, COMSIG_OBSERVER_MOVED)

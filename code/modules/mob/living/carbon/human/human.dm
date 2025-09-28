@@ -1021,7 +1021,7 @@
 
 	reset_perspective(null)
 	if(target)
-		start_remoteviewing(target, TRUE)
+		start_remoteviewing(target, /datum/component/remote_view/mremote_mutation)
 		return
 
 /mob/living/carbon/human/get_visible_gender(mob/user, force)

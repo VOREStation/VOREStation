@@ -1,5 +1,5 @@
 /// Use this if you need to remote view something WITHOUT being inside of it.
-/// Do not attach element manually, use mob/start_remoteviewing()
+/// Do not attach component manually, use mob/start_remoteviewing()
 /datum/component/remote_view
 	var/mob/host_mob
 	var/atom/remote_view_target
@@ -51,20 +51,80 @@
 	end_view()
 	qdel(src)
 
-/datum/component/remote_view/proc/end_view()
-	host_mob.reset_perspective(null)
-
-
 /datum/component/remote_view/proc/on_remotetarget_reset_perspective(datum/source)
 	SIGNAL_HANDLER
+	// Non-mobs can't do this anyway
+	if(!ismob(remote_view_target))
+		return
+	var/mob/remote_view_mob = remote_view_target
 	// This is an ugly one, but if we want to follow the other object properly we need to copy its state!
-	if(!remote_view_target.client || !host_mob.client)
+	if(!remote_view_mob.client || !host_mob.client)
 		end_view()
 		qdel(src)
 		return
 	// Copy the view, do not use reset_perspective, because it will call our signal and end our view!
-	host_mob.client.eye = remote_view_target.client.eye
-	host_mob.client.perspective = remote_view_target.client.perspective
+	host_mob.client.eye = remote_view_mob.client.eye
+	host_mob.client.perspective = remote_view_mob.client.perspective
+
+/datum/component/remote_view/proc/end_view()
+	host_mob.reset_perspective(null)
+
+
+
+// Item handled zooms
+/datum/component/remote_view/item_zoom
+	var/obj/item/host_item
+
+/datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset)
+	host_item = our_item
+	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(on_moved))
+	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(on_qdel))
+	. = ..()
+	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+	if(host_mob.hud_used.hud_shown)
+		host_mob.toggle_zoom_hud()
+	host_mob.set_viewsize(viewsize)
+	// Unfortunately too many things read this to control item state for me to remove this.
+	// Oh well! better than GetComponent() everywhere. Lets just manage item/zoom in this component though...
+	our_item.zoom = TRUE
+	// Offset view
+	var/tilesize = 32
+	var/viewoffset = tilesize * tileoffset
+	switch(host_mob.dir)
+		if (NORTH)
+			host_mob.client.pixel_x = 0
+			host_mob.client.pixel_y = viewoffset
+		if (SOUTH)
+			host_mob.client.pixel_x = 0
+			host_mob.client.pixel_y = -viewoffset
+		if (EAST)
+			host_mob.client.pixel_x = viewoffset
+			host_mob.client.pixel_y = 0
+		if (WEST)
+			host_mob.client.pixel_x = -viewoffset
+			host_mob.client.pixel_y = 0
+	// Feedback
+	host_mob.visible_message(span_filter_notice("[host_mob] peers through the [host_item.zoomdevicename ? "[host_item.zoomdevicename] of the [host_item.name]" : "[host_item.name]"]."))
+	host_mob.handle_vision()
+
+/datum/component/remote_view/item_zoom/Destroy(force)
+	// Feedback
+	host_mob.visible_message(span_filter_notice("[host_item.zoomdevicename ? "[host_mob] looks up from the [host_item.name]" : "[host_mob] lowers the [host_item.name]"]."))
+	// Reset to default
+	host_mob.set_viewsize()
+	if(!host_mob.hud_used.hud_shown)
+		host_mob.toggle_zoom_hud()
+	host_item.zoom = FALSE
+	// return view offset
+	host_mob.client.pixel_x = 0
+	host_mob.client.pixel_y = 0
+	host_mob.handle_vision()
+	// decouple
+	UnregisterSignal(host_item, COMSIG_QDELETING)
+	UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
+	host_item = null
+	. = ..()
+
 
 // Special varient that cares about mRemote mutation in humans!
 /datum/component/remote_view/mremote_mutation
@@ -73,6 +133,7 @@
 	if(!ismob(focused_on)) // What are you doing? This gene only works on mob targets, if you adminbus this I will personally eat your face.
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
+	// Remote view mutation stops viewing when mobs die or if we lose the mutation/gene
 	RegisterSignal(host_mob, COMSIG_MOB_DNA_MUTATION, PROC_REF(on_mutation))
 	RegisterSignal(remote_view_target, COMSIG_MOB_DEATH, PROC_REF(on_death))
 
@@ -95,13 +156,9 @@
 // ONLY attach this element from this proc please...
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Begin remotely viewing something, remote view will end when mob moves, or something else changes the mob's perspective. Call AFTER you forceMove() the mob into the location!
-/mob/proc/start_remoteviewing(atom/target, using_mutation = FALSE)
-	ASSERT(src != target, "[src] attempt to remote view itself.")
+/mob/proc/start_remoteviewing(atom/target, viewtype_path = /datum/component/remote_view)
+	ASSERT(src != target, "[src] attempted to remote view itself.")
 	// Just incase someone makes an ugly tgui_input that doesn't check before attempting to set view...
 	if(!target || QDELETED(target))
 		return
-	// Set the view, THEN add the component, or it'll clear itself on it's own perspective change signal.
-	if(using_mutation) // Mutation can be cleared at any time, need tocheck for that if we're using that power!
-		AddComponent(/datum/component/remote_view/mremote_mutation, target)
-		return
-	AddComponent(/datum/component/remote_view, target)
+	AddComponent(viewtype_path, target)

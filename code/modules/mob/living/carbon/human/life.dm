@@ -1672,13 +1672,6 @@
 	if(stat == DEAD)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 		see_in_dark = 8
-		if(client)
-			if(client.view != world.view) // If mob dies while zoomed in with device, unzoom them.
-				for(var/obj/item/item in contents)
-					if(item.zoom)
-						item.zoom()
-						break
-
 	else //We aren't dead
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 
@@ -1720,12 +1713,12 @@
 
 		var/glasses_processed = 0
 		var/obj/item/rig/rig = get_rig()
-		if(istype(rig) && rig.visor && !looking_elsewhere)
+		if(istype(rig) && rig.visor && !is_remote_viewing())
 			if(!rig.helmet || (head && rig.helmet == head))
 				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
 					glasses_processed = process_glasses(rig.visor.vision.glasses)
 
-		if(glasses && !glasses_processed && !looking_elsewhere)
+		if(glasses && !glasses_processed && !is_remote_viewing())
 			glasses_processed = process_glasses(glasses)
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
@@ -1755,7 +1748,7 @@
 			var/viewflags = machine.check_eye(src)
 			if(viewflags < 0)
 				reset_perspective(null)
-			else if(viewflags && !looking_elsewhere)
+			else if(viewflags && !is_remote_viewing())
 				sight |= viewflags
 			else
 				machine.apply_visual(src)

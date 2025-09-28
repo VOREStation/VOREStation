@@ -421,8 +421,6 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	if(zoom)
-		zoom() //binoculars, scope, etc
 	appearance_flags &= ~NO_CLIENT_COLOR
 	// Remove any item actions we temporary gave out.
 	for(var/datum/action/action_item_has as anything in actions)
@@ -825,79 +823,32 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	SIGNAL_HANDLER
 	if(isliving(usr)) //Always prefer usr if set
 		M = usr
-
 	if(!isliving(M))
 		return 0
 
-
 	var/devicename
-
 	if(zoomdevicename)
 		devicename = zoomdevicename
 	else
 		devicename = src.name
 
-	var/cannotzoom
-
+	var/can_zoom = TRUE
 	if((M.stat && !zoom) || !(ishuman(M)))
 		to_chat(M, span_filter_notice("You are unable to focus through the [devicename]."))
-		cannotzoom = 1
+		can_zoom = FALSE
 	else if(!zoom && (GLOB.global_hud.darkMask[1] in M.client.screen))
 		to_chat(M, span_filter_notice("Your visor gets in the way of looking through the [devicename]."))
-		cannotzoom = 1
+		can_zoom = FALSE
 	else if(!zoom && M.get_active_hand() != src)
 		to_chat(M, span_filter_notice("You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better."))
-		cannotzoom = 1
+		can_zoom = FALSE
 
-	//We checked above if they are a human and returned already if they weren't.
-	var/mob/living/carbon/human/H = M
-
-	if(!zoom && !cannotzoom)
-		if(H.hud_used.hud_shown)
-			H.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		H.set_viewsize(viewsize)
-		zoom = 1
-		H.AddComponent(/datum/component/recursive_move)
-		RegisterSignal(H, COMSIG_OBSERVER_MOVED, PROC_REF(zoom), override = TRUE)
-
-		var/tilesize = 32
-		var/viewoffset = tilesize * tileoffset
-
-		switch(H.dir)
-			if (NORTH)
-				H.client.pixel_x = 0
-				H.client.pixel_y = viewoffset
-			if (SOUTH)
-				H.client.pixel_x = 0
-				H.client.pixel_y = -viewoffset
-			if (EAST)
-				H.client.pixel_x = viewoffset
-				H.client.pixel_y = 0
-			if (WEST)
-				H.client.pixel_x = -viewoffset
-				H.client.pixel_y = 0
-
-		H.visible_message(span_filter_notice("[M] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"]."))
-		if(!ignore_visor_zoom_restriction)
-			H.looking_elsewhere = TRUE
-		H.handle_vision()
-
+	if(!zoom && can_zoom)
+		// can't use start_remoteviewing() here, as we need way more arguments passed through.
+		// We're also looking at ourselves and using the component for safeties
+		M.AddComponent(/datum/component/remote_view/item_zoom, M, src, viewsize, tileoffset)
 	else
-		H.set_viewsize() // Reset to default
-		if(!H.hud_used.hud_shown)
-			H.toggle_zoom_hud()
-		zoom = 0
-		UnregisterSignal(H, COMSIG_OBSERVER_MOVED)
-
-		H.client.pixel_x = 0
-		H.client.pixel_y = 0
-		H.looking_elsewhere = FALSE
-		H.handle_vision()
-
-		if(!cannotzoom)
-			M.visible_message(span_filter_notice("[zoomdevicename ? "[M] looks up from the [src.name]" : "[M] lowers the [src.name]"]."))
-
-	return
+		qdel(M.GetComponent(/datum/component/remote_view/item_zoom))
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill
