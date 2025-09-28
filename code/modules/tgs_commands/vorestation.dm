@@ -449,6 +449,22 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				return message
 			qdel(command_add)
 
+			var/list/our_whitelists
+			if(kind == "job")
+				our_whitelists = GLOB.job_whitelist[ckey]
+				if(!our_whitelists) // Guess this is their first/only whitelist entry
+					our_whitelists = list()
+					GLOB.job_whitelist[ckey] = our_whitelists
+
+			if(kind == "species")
+				our_whitelists = GLOB.alien_whitelist[ckey]
+				if(!our_whitelists) // Guess this is their first/only whitelist entry
+					our_whitelists = list()
+					GLOB.alien_whitelist[ckey] = our_whitelists
+
+			if(our_whitelists)
+				our_whitelists |= entry
+
 		if("remove")
 			var/datum/db_query/command_remove = SSdbcore.NewQuery(
 				"DELETE FROM [format_table_name("whitelist")] WHERE ckey = :ckey AND kind = :kind AND entry = :entry",
@@ -459,6 +475,22 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 				message.text = "Error while trying to remove [ckey] from the [role] [kind] whitelist. Please review SQL logs."
 				return message
 			qdel(command_remove)
+
+			var/list/our_whitelists
+			if(kind == "job")
+				our_whitelists = GLOB.job_whitelist[ckey]
+				if(!our_whitelists) // Guess this is their first/only whitelist entry
+					our_whitelists = list()
+					GLOB.job_whitelist[ckey] = our_whitelists
+
+			if(kind == "species")
+				our_whitelists = GLOB.alien_whitelist[ckey]
+				if(!our_whitelists) // Guess this is their first/only whitelist entry
+					our_whitelists = list()
+					GLOB.alien_whitelist[ckey] = our_whitelists
+
+			if(our_whitelists && (role in our_whitelists))
+				our_whitelists -= entry
 
 		// Listing all whitelists for a specific ckey
 		if("list")
