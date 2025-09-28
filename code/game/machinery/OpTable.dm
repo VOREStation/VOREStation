@@ -82,7 +82,7 @@
 		C.pulledby.stop_pulling()
 	C.resting = 1
 	C.loc = src.loc
-	C.start_remoteviewing(src)
+	C.AddComponent(/datum/component/remote_view, src)
 	for(var/obj/O in src)
 		O.loc = src.loc
 	add_fingerprint(user)

@@ -59,7 +59,7 @@
 
 	add_fingerprint(O)
 	O.forceMove(src)
-	O.start_remoteviewing(src)
+	O.AddComponent(/datum/component/remote_view, src)
 	occupant = O
 	update_icon()
 	if(tgui_alert(O, "Are you sure you're ready to launch?", "Transport Pod", list("Yes", "No")) == "Yes")

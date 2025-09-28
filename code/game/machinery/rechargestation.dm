@@ -267,7 +267,7 @@
 
 		add_fingerprint(R)
 		R.forceMove(src)
-		R.start_remoteviewing(src)
+		R.AddComponent(/datum/component/remote_view, src)
 		occupant = R
 		update_icon()
 		return 1
@@ -281,7 +281,7 @@
 
 		add_fingerprint(P)
 		P.forceMove(src)
-		P.start_remoteviewing(src)
+		P.AddComponent(/datum/component/remote_view, src)
 		occupant = P
 		update_icon()
 		return 1
@@ -292,7 +292,7 @@
 		if(H.isSynthetic() || H.wearing_rig)
 			add_fingerprint(H)
 			H.forceMove(src)
-			H.start_remoteviewing(src)
+			H.AddComponent(/datum/component/remote_view, src)
 			occupant = H
 			update_icon()
 			return 1

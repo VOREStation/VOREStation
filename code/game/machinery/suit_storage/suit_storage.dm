@@ -363,7 +363,7 @@
 	if(do_after(usr, 1 SECOND, target = src))
 		usr.stop_pulling()
 		usr.loc = src
-		usr.start_remoteviewing(src)
+		usr.AddComponent(/datum/component/remote_view, src)
 		OCCUPANT = usr
 		isopen = 0 //Close the thing after the guy gets inside
 		update_icon()
@@ -401,7 +401,7 @@
 			if(!G || !G.affecting) return //derpcheck
 			var/mob/M = G.affecting
 			M.loc = src
-			M.start_remoteviewing(src)
+			M.AddComponent(/datum/component/remote_view, src)
 			OCCUPANT = M
 			isopen = 0 //close ittt
 

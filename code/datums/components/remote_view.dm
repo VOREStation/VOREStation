@@ -1,5 +1,4 @@
-/// Use this if you need to remote view something WITHOUT being inside of it.
-/// Do not attach component manually, use mob/start_remoteviewing()
+/// Use this if you need to remote view something. Remote view will end if you move or the remote view target is deleted. Cleared automatically if another remote view begins.
 /datum/component/remote_view
 	var/mob/host_mob
 	var/atom/remote_view_target
@@ -10,14 +9,14 @@
 		return COMPONENT_INCOMPATIBLE
 	host_mob = parent
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
-	RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
+	RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
-	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(on_death))
-	RegisterSignal(host_mob, COMSIG_QDELETING, PROC_REF(on_qdel))
+	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
+	RegisterSignal(host_mob, COMSIG_QDELETING, PROC_REF(handle_endview))
 	// Focus on remote view
 	remote_view_target = focused_on
-	RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(on_qdel))
-	RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
+	RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
+	RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
@@ -31,7 +30,7 @@
 	UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 	remote_view_target = null
 
-/datum/component/remote_view/proc/on_moved(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
+/datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
 	end_view()
 	qdel(src)
@@ -39,16 +38,6 @@
 /datum/component/remote_view/proc/on_reset_perspective(datum/source)
 	SIGNAL_HANDLER
 	// The object already changed it's view, lets not interupt it like the others
-	qdel(src)
-
-/datum/component/remote_view/proc/on_death(datum/source)
-	SIGNAL_HANDLER
-	end_view()
-	qdel(src)
-
-/datum/component/remote_view/proc/on_qdel(datum/source)
-	SIGNAL_HANDLER
-	end_view()
 	qdel(src)
 
 /datum/component/remote_view/proc/on_remotetarget_reset_perspective(datum/source)
@@ -71,14 +60,15 @@
 
 
 
-// Item handled zooms
+/// Remote view subtype where if the item used with it is moved or dropped the view ends too
 /datum/component/remote_view/item_zoom
 	var/obj/item/host_item
 
 /datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset)
 	host_item = our_item
-	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(on_moved))
-	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(on_qdel))
+	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
+	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
+	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
 	. = ..()
 	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 	if(host_mob.hud_used.hud_shown)
@@ -122,11 +112,12 @@
 	// decouple
 	UnregisterSignal(host_item, COMSIG_QDELETING)
 	UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(host_item, COMSIG_ITEM_DROPPED)
 	host_item = null
 	. = ..()
 
 
-// Special varient that cares about mRemote mutation in humans!
+/// Remote view subtype that stops if the remote view target is dead, or you lose access to the mremote mutation
 /datum/component/remote_view/mremote_mutation
 
 /datum/component/remote_view/mremote_mutation/Initialize(atom/focused_on)
@@ -135,7 +126,7 @@
 	. = ..()
 	// Remote view mutation stops viewing when mobs die or if we lose the mutation/gene
 	RegisterSignal(host_mob, COMSIG_MOB_DNA_MUTATION, PROC_REF(on_mutation))
-	RegisterSignal(remote_view_target, COMSIG_MOB_DEATH, PROC_REF(on_death))
+	RegisterSignal(remote_view_target, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
 
 /datum/component/remote_view/mremote_mutation/Destroy(force)
 	UnregisterSignal(host_mob, COMSIG_MOB_DNA_MUTATION)
@@ -149,16 +140,3 @@
 		return
 	end_view()
 	qdel(src)
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Helper proc
-// ONLY attach this element from this proc please...
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// Begin remotely viewing something, remote view will end when mob moves, or something else changes the mob's perspective. Call AFTER you forceMove() the mob into the location!
-/mob/proc/start_remoteviewing(atom/target, viewtype_path = /datum/component/remote_view)
-	ASSERT(src != target, "[src] attempted to remote view itself.")
-	// Just incase someone makes an ugly tgui_input that doesn't check before attempting to set view...
-	if(!target || QDELETED(target))
-		return
-	AddComponent(viewtype_path, target)

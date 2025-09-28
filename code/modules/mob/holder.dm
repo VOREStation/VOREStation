@@ -30,7 +30,7 @@ var/list/holder_mob_icon_cache = list()
 	ASSERT(ismob(held))
 	. = ..()
 	held.forceMove(src)
-	held.start_remoteviewing(src)
+	held.AddComponent(/datum/component/remote_view, src)
 	START_PROCESSING(SSobj, src)
 
 /mob/living/get_status_tab_items()

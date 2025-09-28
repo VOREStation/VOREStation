@@ -173,7 +173,7 @@
 		return
 	usr.stop_pulling()
 	usr.forceMove(src)
-	usr.start_remoteviewing(src)
+	usr.AddComponent(/datum/component/remote_view, src)
 	set_occupant(usr)
 	icon_state = "scanner_1"
 	add_fingerprint(usr)
@@ -250,7 +250,7 @@
 
 /obj/machinery/dna_scannernew/proc/put_in(var/mob/M)
 	M.forceMove(src)
-	M.start_remoteviewing(src)
+	M.AddComponent(/datum/component/remote_view, src)
 	set_occupant(M)
 	icon_state = "scanner_1"
 

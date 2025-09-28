@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			if(!G || !G.affecting) return
 			var/mob/M = G.affecting
 			M.loc = src
-			M.start_remoteviewing(src)
+			M.AddComponent(/datum/component/remote_view, src)
 			occupant = M
 
 			add_fingerprint(user)

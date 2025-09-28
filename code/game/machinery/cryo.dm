@@ -292,7 +292,7 @@
 		return
 	M.stop_pulling()
 	M.loc = src
-	M.start_remoteviewing(src)
+	M.AddComponent(/datum/component/remote_view, src)
 	M.extinguish_mob()
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))

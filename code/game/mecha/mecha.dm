@@ -1674,7 +1674,7 @@
 		var/mob/brainmob = mmi_as_oc.brainmob
 		occupant = brainmob
 		brainmob.loc = src //should allow relaymove
-		brainmob.start_remoteviewing(src)
+		brainmob.AddComponent(/datum/component/remote_view, src)
 		brainmob.canmove = 1
 		mmi_as_oc.loc = src
 		mmi_as_oc.mecha = src
@@ -1979,7 +1979,7 @@
 	if(H && H.client && (H in range(1)))
 		H.stop_pulling()
 		H.forceMove(src)
-		H.start_remoteviewing(src)
+		H.AddComponent(/datum/component/remote_view, src)
 		src.occupant = H
 		src.add_fingerprint(H)
 		src.forceMove(src.loc)

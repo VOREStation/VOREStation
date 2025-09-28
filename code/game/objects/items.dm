@@ -430,6 +430,7 @@
 		qdel(src)
 
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
+	SEND_SIGNAL(user, COMSIG_MOB_DROPPED_ITEM, src)
 
 	if(my_augment && !QDELETED(src))
 		forceMove(my_augment)
@@ -837,8 +838,6 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		can_zoom = FALSE
 
 	if(!zoom && can_zoom)
-		// can't use start_remoteviewing() here, as we need way more arguments passed through.
-		// We're also looking at ourselves and using the component for safeties
 		M.AddComponent(/datum/component/remote_view/item_zoom, M, src, viewsize, tileoffset)
 	else
 		qdel(M.GetComponent(/datum/component/remote_view/item_zoom))

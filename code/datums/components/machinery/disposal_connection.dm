@@ -82,7 +82,7 @@
 		// Handle client eye we get a black screen between trunk and eject if we have delay on ejection!
 		if(ismob(AM))
 			var/mob/M = AM
-			M.start_remoteviewing(disposal_owner)
+			M.AddComponent(/datum/component/remote_view, disposal_owner)
 	var/datum/gas_mixture/gas = new()
 	gas.copy_from(packet.gas)
 	qdel(packet)

@@ -47,7 +47,7 @@
 			occupant_message(span_boldwarning("The sleeper is already occupied!"))
 			return
 		target.forceMove(src)
-		target.start_remoteviewing(src)
+		target.AddComponent(/datum/component/remote_view, src)
 		occupant = target
 		occupant.Stasis(3)
 		set_ready_state(FALSE)

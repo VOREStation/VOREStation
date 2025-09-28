@@ -106,7 +106,7 @@
 		return
 	M.stop_pulling()
 	M.forceMove(src)
-	M.start_remoteviewing(src)
+	M.AddComponent(/datum/component/remote_view, src)
 	src.occupant = M
 	src.add_fingerprint(usr)
 	icon_state = "implantchair_on"

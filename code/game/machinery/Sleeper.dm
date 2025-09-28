@@ -480,7 +480,7 @@
 			return
 		M.stop_pulling()
 		M.forceMove(src)
-		M.start_remoteviewing(src)
+		M.AddComponent(/datum/component/remote_view, src)
 		update_use_power(USE_POWER_ACTIVE)
 		occupant = M
 		update_icon()
