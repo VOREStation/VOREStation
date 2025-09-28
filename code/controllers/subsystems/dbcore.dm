@@ -526,11 +526,10 @@ Ignore_errors instructes mysql to continue inserting rows if some of them have e
 	Close()
 	status = DB_QUERY_STARTED
 	if(async)
-		/*if(!MC_RUNNING(SSdbcore.init_stage))
+		if(!MC_RUNNING(SSdbcore.init_stage))
 			SSdbcore.run_query_sync(src)
 		else
-			SSdbcore.queue_query(src)*/
-		SSdbcore.run_query_sync(src)
+			SSdbcore.queue_query(src)
 		sync()
 	else
 		var/job_result_str = rustg_sql_query_blocking(connection, sql, json_encode(arguments))
