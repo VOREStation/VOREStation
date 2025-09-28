@@ -217,7 +217,7 @@
 				sleep(90)
 			else
 				user.set_machine(selected_camera)
-				user.start_remoteviewing(selected_camera)
+				user.reset_perspective(selected_camera)
 			sleep(10)
 		user.unset_machine()
 		user.reset_perspective(null)
