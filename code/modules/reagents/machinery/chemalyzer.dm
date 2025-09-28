@@ -94,6 +94,13 @@
 		subdata["cooling_mod"] = R.coolant_modifier
 		if(R.id in get_addictive_reagents(ADDICT_ALL))
 			subdata["addictive"] = TRUE
+		subdata["industrial_use"] = R.industrial_use
+		subdata["supply_points"] = R.supply_conversion_value ? R.supply_conversion_value : 0
+		var/value = R.supply_conversion_value * REAGENTS_PER_SHEET * SSsupply.points_per_money
+		value = FLOOR(value * 100,1) / 100 // Truncate decimals
+		subdata["market_price"] = value
+		subdata["sintering"] = SSinternal_wiki.assemble_sintering(GLOB.reagent_sheets[R.id])
+		subdata["overdose"] = R.overdose
 		subdata["flavor"] = R.taste_description
 		subdata["allergen"] = SSinternal_wiki.assemble_allergens(R.allergen_type)
 		subdata["beakerAmount"] = found_reagents[ID]
