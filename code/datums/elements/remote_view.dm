@@ -18,7 +18,7 @@
 
 /datum/element/remote_view/proc/on_moved(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
-	end_view()
+	end_view(source)
 	Detach(source)
 
 /datum/element/remote_view/proc/on_reset_perspective(datum/source)
@@ -27,12 +27,11 @@
 
 /datum/element/remote_view/proc/on_death(datum/source)
 	SIGNAL_HANDLER
-	end_view()
+	end_view(source)
 	Detach(source)
 
 /datum/element/remote_view/proc/end_view(mob/host)
 	host.reset_perspective(null)
-
 
 // Special varient that cares about mRemote mutation in humans!
 /datum/element/remote_view/mremote_mutation
@@ -45,19 +44,19 @@
 	UnregisterSignal(target, COMSIG_MOB_DNA_MUTATION)
 	. = ..()
 
-/datum/element/remote_view/mremote_mutation/on_mutation(datum/source)
+/datum/element/remote_view/mremote_mutation/proc/on_mutation(datum/source)
 	SIGNAL_HANDLER
 	var/mob/mob_source = source
 	var/mob/remote_view_target = mob_source.client.eye
 	if(mob_source.stat == CONSCIOUS && (mRemote in mob_source.mutations) && remote_view_target && remote_view_target.stat == CONSCIOUS)
 		return
-	end_view()
+	end_view(source)
 	Detach(source)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Helper proc
-// ONLY give this component from this proc please...
+// ONLY attach this element from this proc please...
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// Begin remotely viewing something, remote view will end when mob moves, or something else changes the mob's perspective. Call AFTER you forceMove() the mob into the location!
 /mob/proc/start_remoteviewing(atom/target, using_mutation = FALSE)
@@ -71,8 +70,3 @@
 		AddElement(/datum/element/remote_view/mremote_mutation)
 		return
 	AddElement(/datum/element/remote_view)
-
-/mob/proc/is_remote_viewing()
-	if(!client)
-		return FALSE
-	return (client.eye != client.mob)

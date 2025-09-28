@@ -387,6 +387,7 @@
 	var/turf/T = get_turf(src)
 	if(istype(T) && !silent) T.visible_message(span_filter_notice(span_bold("[src]") + " neatly folds inwards, compacting down to a rectangular card."))
 
+	stop_pulling()
 	reset_perspective(src)
 
 	//stop resting
