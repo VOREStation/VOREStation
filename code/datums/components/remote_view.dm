@@ -10,7 +10,7 @@
 		return COMPONENT_INCOMPATIBLE
 	host_mob = parent
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
-	RegisterSignal(host_mob, COMSIG_ATOM_ENTERING, PROC_REF(on_entering)) // Cannot use Moved as entering the same turf as the object you were in doesn't count?
+	RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(on_death))
 	RegisterSignal(host_mob, COMSIG_QDELETING, PROC_REF(on_qdel))
@@ -20,7 +20,7 @@
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
-	UnregisterSignal(host_mob, COMSIG_ATOM_ENTERING)
+	UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE)
 	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_QDELETING)
@@ -29,7 +29,7 @@
 	UnregisterSignal(remote_view_target, COMSIG_QDELETING)
 	remote_view_target = null
 
-/datum/component/remote_view/proc/on_entering(atom/movable/source, atom/new_loc, atom/old_loc)
+/datum/component/remote_view/proc/on_moved(atom/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 	end_view()
 	qdel(src)

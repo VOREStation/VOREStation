@@ -87,6 +87,7 @@ var/list/holder_mob_icon_cache = list()
 		held_mob.transform = original_transform
 		held_mob.update_transform() //VOREStation edit
 		held_mob.vis_flags = original_vis_flags
+		held_mob.reset_perspective(null)
 		held_mob = null
 	..()
 
