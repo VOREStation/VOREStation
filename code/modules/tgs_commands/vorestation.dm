@@ -452,18 +452,18 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			var/list/our_whitelists
 			if(kind == "job")
 				our_whitelists = GLOB.job_whitelist[ckey]
-				if(!our_whitelists) // Guess this is their first/only whitelist entry
+				if(!our_whitelists)
 					our_whitelists = list()
 					GLOB.job_whitelist[ckey] = our_whitelists
 
 			if(kind == "species")
 				our_whitelists = GLOB.alien_whitelist[ckey]
-				if(!our_whitelists) // Guess this is their first/only whitelist entry
+				if(!our_whitelists)
 					our_whitelists = list()
 					GLOB.alien_whitelist[ckey] = our_whitelists
 
 			if(our_whitelists)
-				our_whitelists |= entry
+				our_whitelists |= role
 
 		if("remove")
 			var/datum/db_query/command_remove = SSdbcore.NewQuery(
@@ -479,18 +479,18 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			var/list/our_whitelists
 			if(kind == "job")
 				our_whitelists = GLOB.job_whitelist[ckey]
-				if(!our_whitelists) // Guess this is their first/only whitelist entry
+				if(!our_whitelists)
 					our_whitelists = list()
 					GLOB.job_whitelist[ckey] = our_whitelists
 
 			if(kind == "species")
 				our_whitelists = GLOB.alien_whitelist[ckey]
-				if(!our_whitelists) // Guess this is their first/only whitelist entry
+				if(!our_whitelists)
 					our_whitelists = list()
 					GLOB.alien_whitelist[ckey] = our_whitelists
 
 			if(our_whitelists && (role in our_whitelists))
-				our_whitelists -= entry
+				our_whitelists -= role
 
 		// Listing all whitelists for a specific ckey
 		if("list")
