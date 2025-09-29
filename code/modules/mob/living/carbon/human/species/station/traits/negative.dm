@@ -138,6 +138,7 @@
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
 	cost = -2 //I feel like this should be higher, but let's see where it goes
+	excludes = list(/datum/trait/negative/boneless)
 
 /datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -850,6 +851,7 @@
 	hidden = FALSE
 	///How much our limbs max_damage is multiplied by.
 	var/limb_health = 1
+	excludes = list(/datum/trait/negative/hollow)
 
 /datum/trait/negative/boneless/major
 	name = "Boneless, Major"
