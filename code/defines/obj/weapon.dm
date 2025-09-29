@@ -238,7 +238,7 @@
 			break
 	if (user.stat == 2) return
 
-	user.AddComponent(/datum/component/remote_view,target)
+	user.AddComponent(/datum/component/remote_view/item_zoom, target, src, null, 0)
 
 /*
 /obj/item/cigarpacket
