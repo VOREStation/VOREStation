@@ -187,9 +187,6 @@
 	cameras += SB.camera
 
 /obj/item/bug_monitor/proc/view_cameras(mob/user)
-	if(user.is_remote_viewing())
-		user.reset_perspective(null) // Toggle out of the remote view
-		return
 	if(in_use)
 		return
 

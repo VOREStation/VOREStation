@@ -54,6 +54,8 @@
 	// Only continue to observe if their view location is the same as their turf. otherwise they are doing their own ACTUALLY-REMOTE viewing
 	// we just won't update it if you're trying to look at the remote view target of another mob as they remote view someone else!
 	if(get_turf(remote_view_mob) != get_turf(remote_view_mob.client.eye))
+		host_mob.client.eye = remote_view_mob
+		host_mob.client.perspective = MOB_PERSPECTIVE
 		return
 	// Copy the view, do not use reset_perspective, because it will call our signal and end our view!
 	host_mob.client.eye = remote_view_mob.client.eye
