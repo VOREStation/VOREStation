@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return
 			var/mob/M = G.affecting
-			M.loc = src
+			M.forceMove(src)
 			M.AddComponent(/datum/component/remote_view, src)
 			occupant = M
 
@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		helmet = I
 
 		update_icon()
@@ -250,7 +250,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		suit = I
 
 		update_icon()
@@ -500,8 +500,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	if(!occupant)
 		return
 
-	occupant.loc = get_turf(occupant)
-	occupant.reset_perspective(null)
+	occupant.forceMove(get_turf(src))
 	occupant = null
 
 	add_fingerprint(user)

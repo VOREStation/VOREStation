@@ -321,8 +321,7 @@
 			to_chat(OCCUPANT, span_notice("The machine kicks you out!"))
 		if(user.loc != src.loc)
 			to_chat(OCCUPANT, span_notice("You leave the not-so-cozy confines of the SSU."))
-	OCCUPANT.loc = src.loc
-	OCCUPANT.reset_perspective(null)
+	OCCUPANT.forceMove(get_turf(src))
 	OCCUPANT = null
 	if(!isopen)
 		isopen = 1
@@ -362,7 +361,7 @@
 	visible_message(span_info("[usr] starts squeezing into the suit storage unit!"), 3)
 	if(do_after(usr, 1 SECOND, target = src))
 		usr.stop_pulling()
-		usr.loc = src
+		usr.forceMove(src)
 		usr.AddComponent(/datum/component/remote_view, src)
 		OCCUPANT = usr
 		isopen = 0 //Close the thing after the guy gets inside

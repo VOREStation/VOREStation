@@ -958,10 +958,6 @@
 			soundfile = GLOB.fancy_release_sounds[release_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
-	//Should fix your view not following you out of mobs sometimes!
-	if(ismob(M))
-		var/mob/ourmob = M
-		ourmob.reset_perspective(null)
 
 	if(!owner.ckey && escape_stun)
 		owner.Weaken(escape_stun)

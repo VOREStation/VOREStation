@@ -320,7 +320,6 @@
 		return
 
 	occupant.forceMove(get_turf(src))
-	occupant.reset_perspective(null)
 	eject_wait = 0 //If it's still set somehow.
 	if(ishuman(occupant)) //Need to be safe.
 		var/mob/living/carbon/human/patient = occupant

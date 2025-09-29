@@ -1979,10 +1979,10 @@
 	if(H && H.client && (H in range(1)))
 		H.stop_pulling()
 		H.forceMove(src)
-		H.AddComponent(/datum/component/remote_view, src)
 		src.occupant = H
 		src.add_fingerprint(H)
 		src.forceMove(src.loc)
+		src.occupant.AddComponent(/datum/component/remote_view, src.loc)
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
 		update_icon()
@@ -2091,7 +2091,6 @@
 		return
 	if(mob_container.forceMove(src.loc))//ejecting mob container
 		src.mecha_log_message("[mob_container] moved out.")
-		occupant.reset_perspective(null)
 		occupant << browse(null, "window=exosuit")
 		if(occupant.client && cloaked_selfimage)
 			occupant.client.images -= cloaked_selfimage

@@ -56,6 +56,7 @@
 			return
 		M.forceMove(src)
 		occupant = M
+		occupant.AddComponent(/datum/component/remote_view, src)
 		update_icon()
 		playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 		add_fingerprint(user)
@@ -101,6 +102,7 @@
 
 	O.forceMove(src)
 	occupant = O
+	occupant.AddComponent(/datum/component/remote_view, src)
 	update_icon()
 	playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 	add_fingerprint(user)
@@ -124,8 +126,7 @@
 /obj/machinery/bodyscanner/proc/go_out()
 	if ((!(occupant) || src.locked))
 		return
-	occupant.forceMove(src.loc) // was occupant.loc = src.loc, but that doesn't trigger exit(), and thus recursive radio listeners forwarded messages to the occupant as if they were still inside it for the rest of the round! OP21 #5f88307 Port
-	occupant.reset_perspective(null)
+	occupant.forceMove(get_turf(src))
 	occupant = null
 	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 	SStgui.update_uis(src)
@@ -135,7 +136,7 @@
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
-				A.forceMove(src.loc)
+				A.forceMove(get_turf(src))
 				ex_act(severity)
 				//Foreach goto(35)
 			//SN src = null
@@ -144,7 +145,7 @@
 		if(2.0)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(src.loc)
+					A.forceMove(get_turf(src))
 					ex_act(severity)
 					//Foreach goto(108)
 				//SN src = null
@@ -153,7 +154,7 @@
 		if(3.0)
 			if (prob(25))
 				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(src.loc)
+					A.forceMove(get_turf(src))
 					ex_act(severity)
 					//Foreach goto(181)
 				//SN src = null

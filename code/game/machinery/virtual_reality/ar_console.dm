@@ -66,7 +66,6 @@
 	if(!occupant) //This whole thing needs cleaned up later, but this works for now.
 		return
 	occupant.forceMove(get_turf(src))
-	occupant.reset_perspective(null)
 	occupant.vr_link = null //The machine remembers the avatar. 1 avatar per machine. So the vr_link isn't needed anymore.
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something

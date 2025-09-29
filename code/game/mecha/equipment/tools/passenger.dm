@@ -30,6 +30,7 @@
 		if(!src.occupant)
 			user.forceMove(src)
 			occupant = user
+			occupant.AddComponent(/datum/component/remote_view, src.loc)
 			src.mecha_log_message("[user] boarded.")
 			occupant_message("[user] boarded.")
 		else if(src.occupant != user)
@@ -69,7 +70,6 @@
 	if(!occupant)
 		return
 	occupant.forceMove(get_turf(src))
-	occupant.reset_perspective(null)
 	occupant = null
 	return
 
