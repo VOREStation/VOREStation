@@ -91,7 +91,7 @@
 			if(ui.user && !isAI(ui.user))
 				if(!viewing_overmap(ui.user) && linked)
 					if(!viewers) viewers = list() // List must exist for pass by reference to work
-					ui.user.AddComponent(/datum/component/remote_view/viewer_managed,linked,src,viewers)
+					ui.user.AddComponent(/datum/component/remote_view/viewer_managed, focused_on = linked, coordinator = src, viewer_list = viewers)
 				else
 					ui.user.reset_perspective(null)
 			. = TRUE

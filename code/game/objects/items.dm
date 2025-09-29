@@ -838,7 +838,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		can_zoom = FALSE
 
 	if(!zoom && can_zoom)
-		M.AddComponent(/datum/component/remote_view/item_zoom, M, src, viewsize, tileoffset)
+		M.AddComponent(/datum/component/remote_view/item_zoom, focused_on = M, our_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
 	else
 		qdel(M.GetComponent(/datum/component/remote_view/item_zoom))
 

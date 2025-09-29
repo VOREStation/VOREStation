@@ -139,7 +139,7 @@
 	if(action == "viewing")
 		if(!viewing_overmap(ui.user))
 			if(!viewers) viewers = list() // List must exist for pass by reference to work
-			ui.user.AddComponent(/datum/component/remote_view/viewer_managed,ui.user,src,viewers)
+			ui.user.AddComponent(/datum/component/remote_view/viewer_managed, focused_on = linked, coordinator = src, viewer_list = viewers)
 		else
 			ui.user.reset_perspective(null)
 		return TRUE
@@ -403,7 +403,7 @@
 		if("manual")
 			if(!viewing_overmap(ui.user))
 				if(!viewers) viewers = list()
-				ui.user.AddComponent(/datum/component/remote_view/viewer_managed,ui.user,src,viewers)
+				ui.user.AddComponent(/datum/component/remote_view/viewer_managed, focused_on = linked, coordinator = src, viewer_list = viewers)
 			else
 				ui.user.reset_perspective(null)
 			. = TRUE

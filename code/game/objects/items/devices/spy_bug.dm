@@ -212,7 +212,7 @@
 		unpair(selected_camera)
 		selected_camera = null
 		return
-	user.AddComponent(/datum/component/remote_view/item_zoom, selected_camera, src, null, 0)
+	user.AddComponent(/datum/component/remote_view/item_zoom, focused_on = selected_camera, our_item = src, viewsize = null, tileoffset = 0, show_visible_messages = TRUE)
 
 /obj/item/bug_monitor/proc/can_use_cam(mob/user)
 	if(!cameras.len)

@@ -67,8 +67,9 @@
 /// Remote view subtype where if the item used with it is moved or dropped the view ends too
 /datum/component/remote_view/item_zoom
 	var/obj/item/host_item
+	var/show_message
 
-/datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset)
+/datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
 	host_item = our_item
 	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
@@ -98,12 +99,15 @@
 			host_mob.client.pixel_x = -viewoffset
 			host_mob.client.pixel_y = 0
 	// Feedback
-	host_mob.visible_message(span_filter_notice("[host_mob] peers through the [host_item.zoomdevicename ? "[host_item.zoomdevicename] of the [host_item.name]" : "[host_item.name]"]."))
+	show_message = show_visible_messages
+	if(show_message)
+		host_mob.visible_message(span_filter_notice("[host_mob] peers through the [host_item.zoomdevicename ? "[host_item.zoomdevicename] of the [host_item.name]" : "[host_item.name]"]."))
 	host_mob.handle_vision()
 
 /datum/component/remote_view/item_zoom/Destroy(force)
 	// Feedback
-	host_mob.visible_message(span_filter_notice("[host_item.zoomdevicename ? "[host_mob] looks up from the [host_item.name]" : "[host_mob] lowers the [host_item.name]"]."))
+	if(show_message)
+		host_mob.visible_message(span_filter_notice("[host_item.zoomdevicename ? "[host_mob] looks up from the [host_item.name]" : "[host_mob] lowers the [host_item.name]"]."))
 	// Reset to default
 	host_mob.set_viewsize()
 	if(!host_mob.hud_used.hud_shown)

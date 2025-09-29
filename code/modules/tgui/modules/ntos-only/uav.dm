@@ -75,7 +75,7 @@
 			else
 				if(!viewing_uav(ui.user))
 					if(!viewers) viewers = list() // List must exist for pass by reference to work
-					ui.user.AddComponent(/datum/component/remote_view/viewer_managed,current_uav,src,viewers)
+					ui.user.AddComponent(/datum/component/remote_view/viewer_managed, focused_on = current_uav, coordinator = src, viewer_list = viewers)
 				else
 					ui.user.reset_perspective(null)
 			return TRUE
