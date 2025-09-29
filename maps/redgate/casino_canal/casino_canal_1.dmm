@@ -20,14 +20,17 @@
 	pixel_y = 27
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
+"ab" = (
+/turf/simulated/wall/tgmc/plain_redstripe_r,
+/area/redgate/underwater_casino/indoors)
 "ad" = (
 /obj/structure/railing{
 	dir = 1
 	},
 /obj/random/maintenance,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ai" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
@@ -35,7 +38,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "aj" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 9
@@ -47,16 +50,16 @@
 	pixel_y = 4
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ar" = (
 /obj/structure/bed/chair/sofa/corp,
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "as" = (
 /obj/machinery/door/window/brigdoor/eastright,
 /obj/effect/floor_decal/milspec/color/orange,
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "at" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -72,26 +75,26 @@
 	pixel_y = 25
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "au" = (
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "aA" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "aE" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "aG" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/storage/fancy/candle_box,
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "bl" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/blue/border,
@@ -104,16 +107,16 @@
 	},
 /obj/effect/floor_decal/corner/blue/bordercorner2,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "bq" = (
 /obj/structure/table/borosilicate,
 /obj/random/drinksoft,
 /turf/simulated/floor/tiled/eris/steel/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "bs" = (
 /obj/structure/flora/underwater/plant4,
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "by" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/effect/floor_decal/corner/white/diagonal{
@@ -123,7 +126,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "bz" = (
 /obj/machinery/washing_machine,
 /obj/effect/floor_decal/corner/purple{
@@ -136,13 +139,13 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "bA" = (
 /obj/item/stool/baystool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/turcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "bD" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 8
@@ -157,11 +160,11 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "bE" = (
 /obj/machinery/computer/arcade/battle,
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "bH" = (
 /obj/structure/table/rack/gun_rack/steel,
 /obj/item/gun/energy/gun{
@@ -171,34 +174,34 @@
 	pixel_y = -5
 	},
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "bS" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ca" = (
 /obj/structure/stairs/spawner/north,
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cc" = (
 /obj/machinery/vending/security,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ce" = (
 /obj/machinery/light/floortube{
 	dir = 1;
 	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ch" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cm" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 9
@@ -208,23 +211,23 @@
 	},
 /obj/machinery/door/window/northleft,
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cx" = (
 /obj/machinery/light/small/neon/generic_yellow{
 	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cA" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cB" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cC" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -243,7 +246,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cF" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
@@ -251,7 +254,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cL" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/blue/border,
@@ -269,10 +272,10 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cS" = (
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "cX" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -293,13 +296,13 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "de" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "dg" = (
 /obj/structure/bed/chair/sofa/corp/left{
 	dir = 8
@@ -311,7 +314,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "di" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -323,7 +326,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "dk" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/effect/floor_decal/corner/white/diagonal{
@@ -333,7 +336,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "dE" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 10
@@ -341,17 +344,17 @@
 /obj/structure/bed/padded,
 /obj/item/bedsheet/orange,
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "dF" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "dT" = (
 /obj/structure/bed/chair/bay/comfy/black,
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ea" = (
 /obj/machinery/button/remote/airlock{
 	pixel_y = 28;
@@ -366,7 +369,7 @@
 	pixel_x = 11
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "eg" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/flame/candle{
@@ -380,13 +383,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "eh" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
 /turf/simulated/floor/tiled/eris/white/cargo,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ei" = (
 /obj/machinery/vending/loadout/gadget,
 /obj/effect/floor_decal/corner/purple{
@@ -396,12 +399,12 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "eo" = (
 /obj/structure/table/gamblingtable,
 /obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "et" = (
 /obj/structure/railing,
 /obj/structure/disposaloutlet{
@@ -409,12 +412,12 @@
 	},
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ez" = (
 /obj/random/trash_pile,
 /obj/structure/railing,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "eI" = (
 /obj/structure/table/rack/steel,
 /obj/item/gun/energy/sickshot{
@@ -422,7 +425,7 @@
 	},
 /obj/item/gun/energy/sickshot,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "eS" = (
 /obj/machinery/button/remote/airlock{
 	pixel_y = 28;
@@ -437,7 +440,7 @@
 	pixel_x = 11
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "fc" = (
 /obj/structure/table/steel,
 /obj/item/disk/nifsoft/compliance{
@@ -449,28 +452,28 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "fx" = (
 /turf/simulated/wall/tgmc/window/redstripe_r,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "fH" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/machinery/door/airlock/angled_bay/vault{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/milspec,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "fR" = (
 /obj/machinery/appliance/mixer/candy,
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "fW" = (
 /obj/structure/bed/chair/bay/comfy/brown{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "fY" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/condiment/carton/flour,
@@ -498,7 +501,7 @@
 	starts_with = list(/obj/item/reagent_containers/glass/beaker/measuring_cup = 7)
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ge" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
@@ -507,7 +510,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gg" = (
 /obj/structure/window/reinforced{
 	dir = 8;
@@ -517,18 +520,18 @@
 	dir = 9
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gh" = (
 /obj/structure/flora/pottedplant/subterranean,
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gj" = (
 /obj/structure/bed/chair/sofa/purp,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "go" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/white/border,
@@ -541,21 +544,21 @@
 	},
 /obj/effect/floor_decal/corner/white/bordercorner2,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gv" = (
 /obj/structure/closet/bombcloset/double,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gy" = (
 /obj/machinery/door/window/westleft,
 /obj/machinery/light,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gA" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/ladder/up,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gE" = (
 /obj/structure/closet/athletic_mixed,
 /obj/random/unidentified_medicine/drug_den,
@@ -563,10 +566,10 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gN" = (
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gU" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 8
@@ -581,19 +584,19 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gX" = (
 /obj/structure/toilet{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "gZ" = (
 /turf/simulated/wall/tgmc/darkwall/deco2{
 	can_open = 1;
 	desc = "A huge chunk of metal used to separate rooms. A faint gust can be felt coming from this one..."
 	},
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hb" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
@@ -601,31 +604,31 @@
 /obj/structure/table/wooden_reinforced,
 /obj/item/storage/fancy/candle_box,
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hd" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "he" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hh" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hk" = (
 /obj/machinery/light/floortube{
 	dir = 4;
 	pixel_x = 6
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ho" = (
 /obj/structure/table/rack/steel,
 /obj/item/clothing/gloves/arm_guard/bulletproof,
@@ -637,7 +640,7 @@
 /obj/item/clothing/suit/armor/bulletproof/alt,
 /obj/item/clothing/head/helmet/bulletproof,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hr" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
@@ -647,11 +650,11 @@
 	},
 /obj/machinery/vending/loadout/loadout_misc,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hu" = (
 /obj/random/junk,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hy" = (
 /obj/structure/table/rack/gun_rack/steel,
 /obj/item/gun/energy/netgun{
@@ -661,7 +664,7 @@
 	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hC" = (
 /turf/simulated/wall/solidrock,
 /area/redgate/underwater_casino)
@@ -670,7 +673,7 @@
 /obj/random/junk,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hF" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 4
@@ -685,29 +688,29 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hL" = (
 /obj/structure/closet/l3closet/security,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hM" = (
 /obj/structure/bed/chair/sofa/corp,
 /obj/machinery/holoposter{
 	pixel_y = 30
 	},
 /turf/simulated/floor/carpet/blue,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hV" = (
 /turf/simulated/floor/water/indoors{
 	name = "bath water";
 	desc = "The clean waters bubble gently."
 	},
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hX" = (
 /obj/structure/table/standard,
 /obj/random/nukies_can_legal,
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "hZ" = (
 /obj/structure/table/rack,
 /obj/item/towel/random{
@@ -724,17 +727,17 @@
 	pixel_y = 2
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ig" = (
 /obj/machinery/transhuman/resleever,
 /turf/simulated/floor/tiled/eris/white/cargo,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "im" = (
 /obj/machinery/door/airlock/angled_bay/standard/color/medical{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "iA" = (
 /obj/machinery/vending/loadout/accessory,
 /obj/effect/floor_decal/corner/purple{
@@ -744,22 +747,22 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "iB" = (
 /obj/structure/catwalk,
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "iE" = (
 /obj/machinery/chem_master/condimaster,
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "iM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "iN" = (
 /turf/simulated/wall/tgmc/plain_redstripe_r,
 /area/redgate/underwater_casino)
@@ -772,7 +775,7 @@
 	pixel_y = 2
 	},
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "jc" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full,
@@ -783,21 +786,21 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "jg" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "jp" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "jG" = (
 /obj/machinery/door/airlock/angled_bay/hatch{
 	name = "maintenance access";
@@ -805,7 +808,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "jM" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 4
@@ -820,48 +823,48 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "jP" = (
 /obj/structure/table/gamblingtable,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "kk" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 6
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "km" = (
 /obj/machinery/light/floortube,
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "kp" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ks" = (
 /obj/structure/bed/double/padded,
 /obj/item/bedsheet/hosdouble,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ku" = (
 /obj/structure/railing{
 	dir = 4
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "kw" = (
 /obj/structure/stairs/spawner/north,
 /turf/simulated/floor/water/underwater/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "kH" = (
 /obj/machinery/transhuman/synthprinter,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "kI" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
@@ -870,21 +873,21 @@
 	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "kL" = (
 /obj/machinery/smartfridge/drinks,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lf" = (
 /obj/structure/bed/chair/sofa/corp/left,
 /turf/simulated/floor/carpet/blue,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ln" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lt" = (
 /obj/structure/stairs/spawner/north,
 /obj/structure/window/reinforced{
@@ -892,34 +895,34 @@
 	pixel_x = -4
 	},
 /turf/simulated/floor/tiled/monotile/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lu" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lw" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ly" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lz" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
 	pixel_x = -20
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lE" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lG" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 4
@@ -940,7 +943,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lO" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -955,42 +958,42 @@
 /obj/structure/table/bench/standard,
 /obj/structure/sign/painting/public/east,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lQ" = (
 /obj/structure/railing{
 	dir = 1
 	},
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lW" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/disposalpipe/up{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "lZ" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "mb" = (
 /obj/structure/bed/chair/sofa/corp/corner,
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "mo" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "mp" = (
 /obj/machinery/vending/loadout/costume,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "mq" = (
 /obj/structure/table/standard,
 /obj/random/tech_supply,
@@ -998,28 +1001,28 @@
 /obj/random/tech_supply,
 /obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/water/underwater/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "mr" = (
 /obj/structure/table/borosilicate,
 /turf/simulated/floor/tiled/eris/steel/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "mG" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "nh" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 4
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "nv" = (
 /obj/machinery/clonepod/transhuman,
 /obj/machinery/computer/transhuman/resleeving,
 /turf/simulated/floor/tiled/eris/white/cargo,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "nB" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5/purple{
 	dir = 8
@@ -1037,22 +1040,22 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "nL" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "nN" = (
 /obj/structure/table/borosilicate,
 /obj/random/coin,
 /turf/simulated/floor/tiled/eris/steel/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "nO" = (
 /obj/structure/bed/chair/sofa/corp/left,
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "nS" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -1066,11 +1069,11 @@
 	},
 /obj/machinery/computer/timeclock/premade/north,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "nY" = (
 /mob/living/simple_mob/animal/passive/fish/koi,
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "oc" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 8
@@ -1086,62 +1089,62 @@
 	},
 /obj/structure/sign/painting/public/west,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "oo" = (
 /obj/structure/dummystairs{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "or" = (
 /obj/structure/table/rack/steel,
 /obj/item/gun/projectile/shotgun/doublebarrel/flare,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "os" = (
 /obj/structure/flora/pottedplant/subterranean,
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ox" = (
 /obj/machinery/light/small/neon/generic_pink{
 	dir = 8;
 	pixel_x = 25
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "oF" = (
 /obj/structure/bed/chair/sofa/corp/left{
 	dir = 8
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "oP" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 8
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "pf" = (
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "pi" = (
 /obj/machinery/vending/nukie,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "pl" = (
 /obj/structure/flora/pottedplant/large,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "pn" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "px" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
@@ -1154,7 +1157,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "pz" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/flame/candle{
@@ -1168,21 +1171,21 @@
 	dir = 4
 	},
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "pM" = (
 /obj/structure/railing,
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "pN" = (
 /obj/structure/flora/pottedplant/aquatic,
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "pR" = (
 /obj/machinery/door/window/brigdoor/westleft,
 /obj/effect/floor_decal/milspec/color/orange,
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qc" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
@@ -1191,23 +1194,23 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qf" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qp" = (
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qq" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/effect/floor_decal/borderfloorblack/corner{
 	dir = 8
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qr" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/blue/border,
@@ -1221,26 +1224,26 @@
 /obj/effect/floor_decal/corner/blue/bordercorner2,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qt" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled/techmaint,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qv" = (
 /turf/simulated/wall/tgmc/darkwall,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qx" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qD" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 1
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "qF" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
@@ -1249,45 +1252,45 @@
 	dir = 8
 	},
 /turf/simulated/floor/carpet/turcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "re" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rn" = (
 /obj/machinery/light/floortube{
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ru" = (
 /obj/structure/bed/chair/bay{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rw" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rz" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6/purple{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rG" = (
 /obj/machinery/transhuman/synthprinter,
 /turf/simulated/floor/tiled/eris/white/cargo,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rH" = (
 /obj/machinery/light,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rI" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -1304,34 +1307,34 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rJ" = (
 /obj/machinery/light,
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rO" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rY" = (
 /obj/structure/bed/chair/sofa/left/purp{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "rZ" = (
 /obj/structure/flora/underwater/grass3,
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sj" = (
 /obj/machinery/light/floortube{
 	pixel_y = -6
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sm" = (
 /obj/effect/floor_decal/borderfloor/corner/purple{
 	dir = 4
@@ -1344,7 +1347,7 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7/purple,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sn" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/food/drinks/bottle/champagne,
@@ -1352,13 +1355,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sq" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 10
 	},
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sw" = (
 /obj/effect/floor_decal/borderfloor/corner/purple{
 	dir = 1
@@ -1373,11 +1376,11 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sE" = (
 /obj/structure/fitness/boxing_ropes,
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sK" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/flame/candle{
@@ -1388,7 +1391,7 @@
 	pixel_x = -4
 	},
 /turf/simulated/floor/carpet/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sL" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5/purple,
 /obj/effect/floor_decal/steeldecal/steel_decals7/purple{
@@ -1404,7 +1407,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sM" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -1426,16 +1429,16 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sN" = (
 /turf/simulated/floor/carpet/turcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sQ" = (
 /obj/machinery/door/window/northleft{
 	pixel_y = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sT" = (
 /obj/machinery/button/remote/airlock{
 	pixel_y = -23;
@@ -1456,7 +1459,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sW" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/orange,
@@ -1464,14 +1467,14 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "sX" = (
 /obj/structure/closet/cabinet,
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "tc" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 8
@@ -1486,7 +1489,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "td" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/blue/border,
@@ -1497,20 +1500,20 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "tl" = (
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "tt" = (
 /obj/machinery/transhuman/resleever,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ty" = (
 /obj/structure/bed/double/padded,
 /obj/item/bedsheet/cedouble,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "tA" = (
 /obj/structure/table/rack/steel,
 /obj/item/clothing/gloves/arm_guard/riot,
@@ -1524,7 +1527,7 @@
 /obj/item/clothing/head/helmet/riot,
 /obj/item/shield/riot,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "tE" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 9
@@ -1533,30 +1536,30 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "tL" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6/purple{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "tN" = (
 /obj/structure/undies_wardrobe,
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "tQ" = (
 /obj/structure/bed/chair/sofa/corner/purp{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "tZ" = (
 /obj/structure/closet/cabinet,
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ua" = (
 /obj/structure/table/woodentable,
 /obj/structure/closet/walllocker_double/casino/south,
@@ -1573,13 +1576,13 @@
 	pixel_x = 6
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ul" = (
 /obj/structure/bed/chair/sofa/corp/right{
 	dir = 4
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "um" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 5
@@ -1592,13 +1595,13 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "un" = (
 /obj/structure/dummystairs{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "up" = (
 /obj/structure/table/woodentable,
 /obj/structure/closet/walllocker_double/casino/south,
@@ -1615,15 +1618,15 @@
 	pixel_x = 6
 	},
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ut" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ux" = (
 /obj/structure/flora/underwater/seaweed1,
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "uy" = (
 /obj/structure/sink{
 	dir = 4;
@@ -1635,7 +1638,7 @@
 	pixel_y = 9
 	},
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "uR" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1
@@ -1646,7 +1649,7 @@
 	name = "dim light"
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "uT" = (
 /obj/machinery/door/airlock/angled_bay/standard/color{
 	door_color = "#9c9c9c";
@@ -1655,11 +1658,11 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "uX" = (
 /obj/machinery/vending/loadout/loadout_misc,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vg" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/white/border,
@@ -1670,7 +1673,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vh" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 9
@@ -1679,10 +1682,10 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vl" = (
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vq" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/blue/border,
@@ -1699,13 +1702,13 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vA" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vC" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -1713,20 +1716,20 @@
 	},
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vD" = (
 /obj/structure/bed/chair/sofa/corp/right,
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vF" = (
 /turf/simulated/wall/tgmc/window/darkwall/reinf,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vJ" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vN" = (
 /obj/structure/table/fancyblack,
 /obj/item/flame/candle{
@@ -1734,19 +1737,19 @@
 	pixel_x = -7
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "vX" = (
 /obj/structure/bed/chair/sofa/corp/corner{
 	dir = 1
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "wf" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "wg" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/beige/border,
@@ -1757,28 +1760,28 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "wh" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "wq" = (
 /obj/effect/floor_decal/borderfloorblack/full,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "wA" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "wF" = (
 /obj/machinery/appliance/cooker/oven,
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "wS" = (
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 4;
@@ -1793,14 +1796,14 @@
 	pixel_y = 38
 	},
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "wT" = (
 /obj/machinery/light/floortube{
 	dir = 1;
 	pixel_y = 6
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "wU" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/beige/border,
@@ -1813,24 +1816,24 @@
 	},
 /obj/effect/floor_decal/corner/beige/bordercorner2,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xa" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 4
 	},
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xf" = (
 /turf/simulated/floor/water/underwater/woodbroken,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xH" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1
@@ -1841,7 +1844,7 @@
 	name = "dim light"
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xJ" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/cell/device/weapon{
@@ -1861,20 +1864,20 @@
 	pixel_x = 4
 	},
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xP" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6/purple{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xT" = (
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xX" = (
 /obj/machinery/clonepod/transhuman,
 /turf/simulated/floor/tiled/eris/white/cargo,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xY" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 9
@@ -1888,7 +1891,7 @@
 	name = "dim light"
 	},
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "xZ" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 5
@@ -1897,7 +1900,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yf" = (
 /obj/effect/fake_sun/underwater,
 /turf/simulated/wall/solidrock,
@@ -1910,31 +1913,31 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yn" = (
 /obj/structure/table/gamblingtable,
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yp" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
 /turf/simulated/floor/carpet/turcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yr" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 6
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yv" = (
 /obj/machinery/vending/fitness,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yy" = (
 /obj/machinery/vending/loadout/uniform,
 /turf/simulated/floor/tiled/techmaint,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yA" = (
 /obj/structure/railing{
 	dir = 4
@@ -1944,19 +1947,19 @@
 /obj/random/tech_supply,
 /obj/random/tech_supply,
 /turf/simulated/floor/water/underwater/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yB" = (
 /obj/machinery/computer/arcade/orion_trail{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yL" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 6
 	},
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yN" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/glass/bottle/biomass{
@@ -1985,18 +1988,18 @@
 	icon_state = "bottle-1"
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yO" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "yV" = (
 /obj/structure/table/standard,
 /obj/random/coin,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "zb" = (
 /obj/structure/railing{
 	dir = 8
@@ -2004,19 +2007,19 @@
 /obj/random/contraband,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ze" = (
 /obj/structure/sign/poster{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "zf" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/turcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "zn" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 5
@@ -2026,49 +2029,49 @@
 	},
 /obj/machinery/vending/loadout,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "zo" = (
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "zx" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/turcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "zy" = (
 /obj/structure/table/darkglass,
 /turf/simulated/floor/tiled/eris/steel/bar_light,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "zA" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 9
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "zB" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 9
 	},
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "zX" = (
 /obj/random/maintenance,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ae" = (
 /obj/machinery/vending/loadout/loadout_misc,
 /turf/simulated/floor/tiled/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "As" = (
 /obj/structure/fitness/boxing_ropes/turnbuckle{
 	dir = 4
 	},
 /obj/structure/fitness/boxing_ropes/bottom,
 /turf/simulated/fitness,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "At" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 5
@@ -2077,30 +2080,30 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ay" = (
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "AF" = (
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/milspec/color/red,
 /obj/random/maintenance/security,
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "AQ" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "AX" = (
 /obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "AY" = (
 /obj/machinery/vending/loadout/costume,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "AZ" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -2109,26 +2112,26 @@
 	},
 /obj/random/maintenance/morestuff,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Bd" = (
 /obj/machinery/holoposter{
 	pixel_y = 30
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Bl" = (
 /obj/structure/bed/chair/bay/comfy/black,
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Bm" = (
 /obj/structure/bed/double/padded,
 /obj/item/bedsheet/rddouble,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Bu" = (
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Bw" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -2141,11 +2144,11 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "By" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Bz" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 9
@@ -2169,57 +2172,57 @@
 	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "BM" = (
 /obj/structure/table/gamblingtable,
 /obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "BX" = (
 /obj/structure/bed/chair/sofa/purp{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ch" = (
 /turf/simulated/wall/tgmc/whitewall,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Cl" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/storage/fancy/candle_box,
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Cq" = (
 /obj/machinery/light,
 /turf/simulated/floor/water/indoors{
 	name = "bath water";
 	desc = "The clean waters bubble gently."
 	},
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Cy" = (
 /obj/machinery/light/floortube{
 	dir = 8;
 	pixel_x = -6
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "CA" = (
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	name = "glass airlock"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "CM" = (
 /obj/machinery/door/window/westleft,
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "CO" = (
 /obj/structure/bed/chair/sofa/purp,
 /obj/machinery/light/small/neon/looktoucheat{
 	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "CQ" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 4
@@ -2234,7 +2237,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "CX" = (
 /obj/structure/toilet{
 	dir = 8;
@@ -2244,7 +2247,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "CY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/glass/hidden/steel{
@@ -2259,7 +2262,7 @@
 	pixel_y = 4
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Da" = (
 /obj/effect/floor_decal/borderfloor/corner/purple{
 	dir = 1
@@ -2274,16 +2277,16 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Dc" = (
 /obj/structure/closet/boxinggloves,
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Dm" = (
 /obj/structure/ladder/up,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ds" = (
 /obj/machinery/door/window/westleft{
 	pixel_x = -4
@@ -2292,7 +2295,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Dw" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /obj/structure/flora/pottedplant/orientaltree{
@@ -2300,31 +2303,31 @@
 	pixel_x = 9
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "DB" = (
 /obj/structure/bed/chair/backed_grey{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "DE" = (
 /obj/machinery/appliance/cooker/grill,
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "DG" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "DH" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chemical_dispenser/bar_soft/full{
 	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "DN" = (
 /obj/machinery/vending/loadout/clothing,
 /obj/effect/floor_decal/corner/purple{
@@ -2334,7 +2337,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "DT" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 1
@@ -2343,7 +2346,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "DV" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 4
@@ -2358,20 +2361,20 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ef" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ei" = (
 /obj/structure/railing,
 /obj/structure/railing{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ej" = (
 /obj/structure/bed/chair/sofa/corp{
 	dir = 8
@@ -2380,7 +2383,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Em" = (
 /obj/machinery/door/airlock/angled_bay/standard/color{
 	door_color = "#9c9c9c";
@@ -2388,11 +2391,11 @@
 	stripe_color = "#89bd66"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "En" = (
 /obj/structure/bed/chair/bay/comfy/black,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Er" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
@@ -2401,7 +2404,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Et" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 8
@@ -2422,51 +2425,51 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ez" = (
 /obj/effect/floor_decal/milspec/color/red/half,
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "EB" = (
 /obj/effect/floor_decal/milspec/color/orange/half,
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "EI" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /obj/machinery/holoposter{
 	pixel_y = 30
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ER" = (
 /obj/machinery/clonepod/transhuman,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "EX" = (
 /obj/structure/bed/chair/bay{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "EZ" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Fq" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},
 /turf/simulated/wall/tgmc/darkwall,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Fx" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner,
 /obj/machinery/holoposter{
 	pixel_y = 30
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "FB" = (
 /obj/effect/floor_decal/borderfloor/corner/purple{
 	dir = 4
@@ -2479,29 +2482,29 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7/purple,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "FP" = (
 /obj/structure/table/standard,
 /obj/random/mech_toy,
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "FS" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 8
 	},
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ga" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner,
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Gh" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Gj" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/food/drinks/metaglass{
@@ -2512,11 +2515,11 @@
 	pixel_x = -3
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Go" = (
 /obj/structure/flora/underwater/plant3,
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Gz" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -2529,14 +2532,14 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "GB" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "GC" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /obj/structure/flora/pottedplant/orientaltree{
@@ -2544,18 +2547,18 @@
 	pixel_x = 9
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "GD" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ha" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Hk" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/blue/border,
@@ -2567,10 +2570,10 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Hm" = (
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ho" = (
 /obj/structure/sink/kitchen{
 	dir = 4;
@@ -2578,27 +2581,27 @@
 	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Hy" = (
 /obj/structure/bed/chair/sofa/corp/left,
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "HJ" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "HQ" = (
 /obj/structure/railing{
 	dir = 1
 	},
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "HV" = (
 /obj/structure/table/steel,
 /obj/random/contraband/nofail,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "HW" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5/purple{
 	dir = 4
@@ -2614,7 +2617,7 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals3/purple,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "If" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 6
@@ -2623,11 +2626,11 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ii" = (
 /obj/structure/stairs/spawner/north,
 /turf/simulated/floor/tiled/monotile/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Il" = (
 /obj/machinery/button/remote/airlock{
 	pixel_y = 28;
@@ -2647,7 +2650,7 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "In" = (
 /obj/structure/table/rack/gun_rack/steel,
 /obj/item/gun/energy/ionrifle/pistol{
@@ -2657,7 +2660,7 @@
 	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Iy" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -2674,13 +2677,13 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "IC" = (
 /obj/machinery/vending/boozeomat{
 	req_access = null
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "IE" = (
 /obj/structure/table/glass,
 /obj/item/storage/firstaid/regular{
@@ -2692,20 +2695,20 @@
 	pixel_y = 2
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "IJ" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "IZ" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
 /obj/structure/flora/pottedplant/largebush,
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Jc" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/effect/floor_decal/corner/white/diagonal{
@@ -2715,7 +2718,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Je" = (
 /obj/structure/table/rack/steel,
 /obj/item/handcuffs,
@@ -2727,17 +2730,17 @@
 	pixel_y = 11
 	},
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Jo" = (
 /obj/structure/fitness/boxing_ropes{
 	dir = 4
 	},
 /turf/simulated/fitness,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "JE" = (
 /obj/machinery/transhuman/autoresleever,
 /turf/simulated/floor/tiled/techmaint,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "JI" = (
 /obj/structure/railing{
 	dir = 8
@@ -2748,7 +2751,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "JK" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/beige/border,
@@ -2760,13 +2763,13 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "JN" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "JO" = (
 /obj/machinery/button/remote/airlock{
 	pixel_y = 28;
@@ -2781,15 +2784,15 @@
 	pixel_x = 11
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Kc" = (
 /obj/machinery/vending/loadout/costume,
 /turf/simulated/floor/tiled/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Kd" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6/purple,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Kf" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 4
@@ -2810,18 +2813,18 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ks" = (
 /obj/machinery/media/jukebox/hacked,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "KE" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 10
 	},
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "KH" = (
 /obj/structure/table/rack/steel,
 /obj/item/clothing/gloves/arm_guard/laserproof,
@@ -2833,14 +2836,14 @@
 /obj/item/clothing/suit/armor/laserproof,
 /obj/item/clothing/head/helmet/laserproof,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "KO" = (
 /obj/machinery/light/floortube{
 	dir = 8;
 	pixel_x = -6
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "KT" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
@@ -2849,43 +2852,43 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "KZ" = (
 /obj/machinery/light/small/neon/generic_red{
 	pixel_y = 25
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Lc" = (
 /obj/structure/bed/chair/sofa/purp{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Lm" = (
 /obj/structure/flora/pottedplant/minitree{
 	pixel_y = 14
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Lp" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Lt" = (
 /obj/structure/flora/underwater/grass1,
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Lv" = (
 /obj/machinery/door/window/westleft,
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Lz" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 10
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "LE" = (
 /obj/structure/table/glass,
 /obj/random/soap{
@@ -2899,7 +2902,7 @@
 	pixel_x = -8
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "LG" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/flame/candle{
@@ -2913,15 +2916,15 @@
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "LN" = (
 /obj/machinery/vending/altevian,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "LO" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "LR" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
@@ -2930,7 +2933,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "LV" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -2949,13 +2952,13 @@
 	sort_tag = "Resleeving"
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Mc" = (
 /obj/structure/bed/double/padded,
 /obj/item/bedsheet/hosdouble,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/turcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Mi" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
@@ -2964,31 +2967,31 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Mr" = (
 /obj/machinery/appliance/cooker/fryer,
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Mt" = (
 /obj/machinery/vending/loadout/loadout_misc,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Mz" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/disposalpipe/up{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "MA" = (
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "MC" = (
 /mob/living/simple_mob/animal/passive/fish/perch,
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "MF" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -3003,7 +3006,7 @@
 /obj/structure/table/standard,
 /obj/item/storage/laundry_basket,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "MI" = (
 /obj/structure/table/reinforced,
 /obj/item/material/kitchen/rollingpin{
@@ -3028,10 +3031,10 @@
 	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ML" = (
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "MP" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -3041,49 +3044,49 @@
 	},
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "MQ" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "MZ" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/effect/floor_decal/borderfloorblack/corner,
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Na" = (
 /obj/structure/railing{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Nq" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Nu" = (
 /obj/structure/bed/chair/sofa/corp/right,
 /turf/simulated/floor/carpet/blue,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Nv" = (
 /obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/carpet/turcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Nz" = (
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "NB" = (
 /obj/structure/flora/underwater,
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "NH" = (
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "NK" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/gun/energy/laser{
@@ -3098,7 +3101,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "NV" = (
 /obj/machinery/washing_machine,
 /obj/effect/floor_decal/corner/purple{
@@ -3108,7 +3111,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ok" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 8
@@ -3129,14 +3132,14 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Oo" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Oq" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -3149,13 +3152,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Oz" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "OD" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/flame/candle{
@@ -3169,12 +3172,12 @@
 	dir = 4
 	},
 /turf/simulated/floor/carpet/turcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "OJ" = (
 /obj/effect/floor_decal/rust,
 /obj/random/contraband,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "OL" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 8
@@ -3192,40 +3195,40 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "OR" = (
 /obj/structure/table/borosilicate,
 /obj/random/contraband/nofail,
 /turf/simulated/floor/tiled/eris/steel/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Pb" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ph" = (
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Pl" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Pr" = (
 /obj/structure/bed/double/padded,
 /obj/item/bedsheet/hopdouble,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Pu" = (
 /obj/machinery/microwave{
 	pixel_y = 6
 	},
 /obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Pw" = (
 /obj/structure/railing/grey{
 	dir = 1
@@ -3234,11 +3237,11 @@
 	name = "bath water";
 	desc = "The clean waters bubble gently."
 	},
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Px" = (
 /obj/structure/bed/chair/sofa/corner/purp,
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Pz" = (
 /obj/effect/floor_decal/borderfloor/purple,
 /obj/effect/floor_decal/corner/blue/border,
@@ -3250,52 +3253,52 @@
 	},
 /obj/structure/sign/painting/public/south,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "PT" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /obj/machinery/holoposter{
 	pixel_y = 30
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Qf" = (
 /obj/structure/fitness/boxing_ropes/bottom,
 /obj/structure/fitness/boxing_ropes/turnbuckle{
 	dir = 8
 	},
 /turf/simulated/fitness,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Qp" = (
 /obj/structure/bed/chair/bay/comfy/brown{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_light,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Qq" = (
 /turf/simulated/floor/carpet/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Qy" = (
 /obj/structure/bed/chair/comfy/blue{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "QG" = (
 /obj/machinery/door/airlock/angled_bay/hatch{
 	name = "maintenance access";
 	stripe_color = "#454545"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "QU" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /obj/structure/railing/grey,
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "QX" = (
 /obj/structure/bed/chair/sofa/corp/right,
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Rc" = (
 /obj/structure/table/glass,
 /obj/item/reagent_containers/glass/bottle/biomass{
@@ -3324,20 +3327,20 @@
 	icon_state = "bottle-1"
 	},
 /turf/simulated/floor/tiled/eris/white/cargo,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Rd" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Re" = (
 /obj/structure/bed/chair/bay/comfy/brown{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Rh" = (
 /obj/structure/table/woodentable,
 /obj/structure/closet/walllocker_double/casino/south,
@@ -3354,7 +3357,7 @@
 	pixel_x = 6
 	},
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Rl" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full,
@@ -3363,11 +3366,11 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Rn" = (
 /obj/structure/table/gamblingtable,
 /turf/simulated/floor/carpet/brown,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Rz" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower{
@@ -3375,30 +3378,30 @@
 	},
 /obj/item/soap/space_soap,
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "RA" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "RC" = (
 /obj/machinery/computer/arcade/clawmachine,
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "RF" = (
 /turf/simulated/fitness,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "RM" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "RR" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "RX" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
@@ -3407,20 +3410,20 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood/sif,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "RZ" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Sd" = (
 /obj/structure/fitness/boxing_ropes,
 /obj/machinery/light/floortube{
 	pixel_y = -6
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Sg" = (
 /obj/structure/fitness/boxing_ropes,
 /obj/structure/fitness/boxing_ropes/turnbuckle{
@@ -3430,29 +3433,29 @@
 	pixel_y = -6
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Sm" = (
 /obj/machinery/light/floortube{
 	dir = 1;
 	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Sn" = (
 /obj/structure/bed/chair/comfy/blue,
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Sv" = (
 /obj/machinery/holoposter{
 	dir = 4;
 	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "SG" = (
 /obj/machinery/rnd/production/protolathe/department/security,
 /turf/simulated/floor/tiled/milspec/raised,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "SM" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/light{
@@ -3467,32 +3470,32 @@
 /obj/fruitspawner/apple,
 /obj/fruitspawner/apple,
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "SP" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 1
 	},
 /obj/effect/floor_decal/spline/fancy/wood/corner,
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Te" = (
 /obj/structure/table/gamblingtable,
 /obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Tg" = (
 /obj/structure/fitness/boxing_ropes{
 	dir = 8
 	},
 /turf/simulated/fitness,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Tl" = (
 /obj/structure/dancepole{
 	pixel_y = 6
 	},
 /obj/effect/floor_decal/spline/fancy/wood/three_quarters,
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "To" = (
 /obj/structure/bed/chair/bay{
 	dir = 4
@@ -3501,46 +3504,46 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ts" = (
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "TA" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "TD" = (
 /turf/simulated/wall/tgmc/window/white/reinf,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "TK" = (
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "TL" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "TU" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "TW" = (
 /obj/structure/table/steel,
 /obj/random/mainttoyloot,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "TY" = (
 /obj/structure/railing{
 	dir = 1
 	},
 /obj/random/maintenance/morestuff,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ua" = (
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ue" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -3559,7 +3562,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Uk" = (
 /obj/structure/bed/chair/sofa/corp/right{
 	dir = 8
@@ -3568,7 +3571,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Ul" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1
@@ -3577,7 +3580,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Un" = (
 /obj/machinery/shower{
 	pixel_y = 13
@@ -3590,7 +3593,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Uy" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 4
@@ -3599,17 +3602,17 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "UC" = (
 /turf/simulated/floor/water/underwater/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "UF" = (
 /obj/structure/fitness/boxing_ropes/bottom,
 /turf/simulated/fitness,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "UO" = (
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Vg" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
@@ -3618,7 +3621,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Vj" = (
 /obj/structure/fitness/boxing_ropes,
 /obj/structure/fitness/boxing_ropes/turnbuckle{
@@ -3628,14 +3631,14 @@
 	pixel_y = -6
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Vk" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
 	pixel_y = 9
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Vl" = (
 /obj/structure/table/rack,
 /obj/item/towel/random{
@@ -3648,29 +3651,29 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Vr" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Vt" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Vx" = (
 /obj/machinery/chemical_dispenser/bar_alc/full{
 	pixel_y = 5
 	},
 /obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "VB" = (
 /obj/structure/catwalk,
 /obj/random/junk,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "VO" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -3692,13 +3695,13 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "VY" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Wh" = (
 /obj/machinery/gear_painter,
 /obj/effect/floor_decal/corner/purple{
@@ -3711,7 +3714,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Wi" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/railing{
@@ -3719,23 +3722,23 @@
 	},
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Wl" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt/tile,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Wn" = (
 /obj/structure/flora/underwater/seaweed3,
 /turf/simulated/floor/water/underwater/sand,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Wq" = (
 /obj/structure/bed/chair/sofa/right/purp{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Wu" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
@@ -3744,13 +3747,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Wv" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "WZ" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 8
@@ -3765,18 +3768,18 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Xf" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/effect/floor_decal/borderfloorblack,
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Xk" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Xm" = (
 /obj/machinery/button/remote/airlock{
 	pixel_y = 28;
@@ -3796,40 +3799,40 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Xq" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "XA" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 5
 	},
 /obj/structure/closet/secure_closet/brig,
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "XC" = (
 /obj/machinery/light/floortube{
 	dir = 4;
 	pixel_x = 6
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "XE" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "XF" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "XH" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -3850,7 +3853,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "XN" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -3865,7 +3868,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "XV" = (
 /obj/machinery/vending/loadout/overwear,
 /obj/effect/floor_decal/corner/purple{
@@ -3878,11 +3881,11 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "XY" = (
 /obj/structure/closet/cabinet,
 /turf/simulated/floor/wood/alt/panel,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Yf" = (
 /obj/structure/table/standard,
 /obj/item/toy/plushie/red_fox{
@@ -3892,17 +3895,17 @@
 	pixel_y = 8
 	},
 /turf/simulated/floor/carpet/retro,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Yi" = (
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Yp" = (
 /obj/machinery/appliance/mixer/cereal,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Yq" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
@@ -3912,7 +3915,7 @@
 	pixel_x = -30
 	},
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Yt" = (
 /obj/structure/catwalk,
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
@@ -3921,18 +3924,18 @@
 	icon_state = "pipe-j2"
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Yv" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "YE" = (
 /obj/structure/table/bench/standard,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "YN" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 9
@@ -3941,28 +3944,28 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Zb" = (
 /obj/effect/floor_decal/milspec/color/black,
 /obj/effect/floor_decal/borderfloorblack/corner{
 	dir = 1
 	},
 /turf/simulated/floor/bmarble,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Zc" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Zj" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/parquet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Zm" = (
 /obj/machinery/door/airlock/angled_bay/double/glass,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Zn" = (
 /obj/structure/toilet/prison{
 	dir = 8
@@ -3971,20 +3974,20 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/dark,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Zq" = (
 /turf/simulated/floor/tiled/monotile/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "Zt" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 8
 	},
 /obj/machinery/light,
 /turf/simulated/floor/carpet/bcarpet,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ZE" = (
 /turf/simulated/floor/tiled/eris/steel/techfloor,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ZL" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower{
@@ -3992,7 +3995,7 @@
 	},
 /obj/item/soap/diamond_soap,
 /turf/simulated/floor/tiled/white,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ZN" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/beige/border,
@@ -4010,11 +4013,11 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/purple,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 "ZV" = (
 /obj/machinery/door/blast/angled,
 /turf/simulated/floor/tiled/milspec,
-/area/redgate/underwater_casino)
+/area/redgate/underwater_casino/indoors)
 
 (1,1,1) = {"
 hC
@@ -9933,15 +9936,15 @@ hC
 hC
 hC
 hC
-iN
-iN
-iN
-iN
-iN
-iN
-iN
-iN
-iN
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 hC
 hC
 hC
@@ -10075,15 +10078,15 @@ hC
 hC
 hC
 hC
-iN
+ab
 YN
 qf
 dE
-iN
+ab
 YN
 qf
 dE
-iN
+ab
 hC
 hC
 hC
@@ -10208,24 +10211,24 @@ Ul
 qv
 qv
 hC
-iN
-iN
-iN
-iN
-iN
-iN
+ab
+ab
+ab
+ab
+ab
+ab
 hC
 hC
 hC
-iN
+ab
 re
 Ts
 EB
-iN
+ab
 re
 Ts
 EB
-iN
+ab
 hC
 hC
 hC
@@ -10350,24 +10353,24 @@ mG
 qv
 qv
 iN
-iN
+ab
 ho
 tA
 KH
 gv
-iN
-iN
-iN
-iN
-iN
+ab
+ab
+ab
+ab
+ab
 XA
 EZ
 yL
-iN
+ab
 XA
 EZ
 yL
-iN
+ab
 hC
 hC
 hC
@@ -10497,19 +10500,19 @@ MZ
 hd
 hd
 hd
-iN
+ab
 zB
 FS
 KE
-iN
+ab
 fx
 fx
 as
-iN
+ab
 fx
 fx
 as
-iN
+ab
 hC
 hC
 hC
@@ -10651,7 +10654,7 @@ oP
 oP
 oP
 oP
-iN
+ab
 hC
 hC
 hC
@@ -10781,7 +10784,7 @@ Xf
 wq
 zA
 lw
-iN
+ab
 qD
 qp
 qp
@@ -10793,7 +10796,7 @@ nh
 nh
 nh
 nh
-iN
+ab
 hC
 hC
 hC
@@ -10917,25 +10920,25 @@ qv
 qv
 qv
 qv
-iN
+ab
 wS
 Xf
 wq
 GB
 hL
-iN
+ab
 qD
 qp
 Ez
-iN
+ab
 fx
 fx
 pR
-iN
+ab
 fx
 fx
 pR
-iN
+ab
 hC
 hC
 hC
@@ -11059,25 +11062,25 @@ qv
 qv
 qv
 qv
-iN
+ab
 fx
 fx
 fH
 fx
-iN
-iN
+ab
+ab
 qD
 qp
 Ez
-iN
+ab
 rO
 qf
 sq
-iN
+ab
 rO
 qf
 sq
-iN
+ab
 hC
 hC
 hC
@@ -11201,25 +11204,25 @@ qv
 qv
 qv
 qv
-iN
+ab
 In
 Xf
 wq
 GB
-iN
-iN
+ab
+ab
 qD
 qp
 Ez
-iN
+ab
 re
 Ts
 EB
-iN
+ab
 re
 Ts
 EB
-iN
+ab
 hC
 hC
 hC
@@ -11343,25 +11346,25 @@ qv
 qv
 qv
 qv
-iN
+ab
 bH
 Xf
 wq
 GB
-iN
+ab
 ca
 qp
 qp
 Ez
-iN
+ab
 Zn
 EZ
 sW
-iN
+ab
 Zn
 EZ
 sW
-iN
+ab
 hC
 hC
 hC
@@ -11485,25 +11488,25 @@ qv
 qv
 qv
 qv
-iN
+ab
 hy
 Xf
 wq
 GB
-iN
+ab
 ca
 qp
 nh
 kk
-iN
-iN
-iN
-iN
-iN
-iN
-iN
-iN
-iN
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 hC
 hC
 hC
@@ -11627,17 +11630,17 @@ qv
 qv
 qv
 qv
-iN
+ab
 SG
 qq
 lw
 Zb
-iN
-iN
+ab
+ab
 AF
 AF
-iN
-iN
+ab
+ab
 hC
 hC
 hC
@@ -11769,16 +11772,16 @@ qv
 qv
 qv
 qv
-iN
-iN
+ab
+ab
 or
 Je
 eI
-iN
-iN
-iN
-iN
-iN
+ab
+ab
+ab
+ab
+ab
 hC
 hC
 hC
@@ -11912,10 +11915,10 @@ qv
 qv
 qv
 qv
-iN
-iN
-iN
-iN
+ab
+ab
+ab
+ab
 qv
 qv
 qv

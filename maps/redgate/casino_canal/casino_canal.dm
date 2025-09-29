@@ -54,3 +54,18 @@
 	dynamic_lighting = TRUE
 	flags = RAD_SHIELDED
 	base_turf = /turf/simulated/floor/water/underwater
+
+/area/redgate/underwater_casino/indoors
+	name = UNDERWATER_CASINO_NAME + " - Indoors"
+	requires_power = FALSE
+	dynamic_lighting = TRUE
+	flags = RAD_SHIELDED
+	ambience = AMBIENCE_CASINO
+	base_turf = /turf/simulated/open
+
+/area/redgate/underwater_casino/outdoors
+	name = UNDERWATER_CASINO_NAME + " - Outdoors"
+	requires_power = FALSE
+	dynamic_lighting = TRUE
+	flags = RAD_SHIELDED
+	sound_env = SOUND_ENVIRONMENT_UNDERWATER
