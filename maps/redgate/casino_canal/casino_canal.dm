@@ -48,8 +48,8 @@
 
 // ****** AREAS ******
 
-/area/redgate/casinocanal
-	name = "Casino Canal"
+/area/redgate/underwater_casino
+	name = UNDERWATER_CASINO_NAME
 	requires_power = FALSE
 	dynamic_lighting = TRUE
 	flags = RAD_SHIELDED

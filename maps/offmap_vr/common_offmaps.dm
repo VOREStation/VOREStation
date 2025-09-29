@@ -398,6 +398,19 @@
 	desc = "A facility full of unusual experiments."
 	mappath = "maps/redgate/facility.dmm"
 
+/datum/map_template/common_lateload/redgate/casino_canal
+	name = Z_NAME_REDGATE_CASINO_CANAL
+	desc = "An underwater casino at the bottom of the sea."
+	mappath = "maps/redgate/casino_canal/casino_canal_2.dmm"
+
+/datum/map_template/common_lateload/redgate/casino_canal_lower
+	name = Z_NAME_REDGATE_CASINO_CANAL_LOWER
+	desc = "The lower floor of an underwater casino at the bottom of the sea."
+	mappath = "maps/redgate/casino_canal/casino_canal_1.dmm"
+
+/obj/effect/landmark/map_data/underwater_casino
+	height = 2
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #ifdef AWAY_MISSION_TEST
