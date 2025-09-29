@@ -24,9 +24,9 @@
 	var/on_remove_on_mob_delete = FALSE
 	/// The typepath to the alert thrown by the status effect when created.
 	/// Status effect "name"s and "description"s are shown to the owner here.
-	var/alert_type = /obj/screen/alert/status_effect
+	var/alert_type = /atom/movable/screen/alert/status_effect
 	/// The alert itself, created in [proc/on_creation] (if alert_type is specified).
-	VAR_FINAL/obj/screen/alert/status_effect/linked_alert
+	VAR_FINAL/atom/movable/screen/alert/status_effect/linked_alert
 	/// If TRUE, and we have an alert, we will show a duration on the alert
 	var/show_duration = FALSE
 	/// Used to define if the status effect should be using SSfastprocess or SSprocessing
@@ -64,7 +64,7 @@
 		tick_interval = world.time + tick_interval
 
 	if(alert_type)
-		var/obj/screen/alert/status_effect/new_alert = owner.throw_alert(id, alert_type)
+		var/atom/movable/screen/alert/status_effect/new_alert = owner.throw_alert(id, alert_type)
 		new_alert.attached_effect = src //so the alert can reference us, if it needs to
 		linked_alert = new_alert //so we can reference the alert, if we need to
 		update_shown_duration()
@@ -242,13 +242,13 @@
 		update_shown_duration()
 
 /// Alert base type for status effect alerts
-/obj/screen/alert/status_effect
+/atom/movable/screen/alert/status_effect
 	name = "Curse of Mundanity"
 	desc = "You don't feel any different..."
 	// maptext_y = 2
 	/// The status effect we're linked to
 	var/datum/status_effect/attached_effect
 
-/obj/screen/alert/status_effect/Destroy()
+/atom/movable/screen/alert/status_effect/Destroy()
 	attached_effect = null //Don't keep a ref now
 	return ..()

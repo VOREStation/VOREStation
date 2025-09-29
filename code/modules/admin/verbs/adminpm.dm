@@ -109,8 +109,8 @@
 		//clean the message if it's not sent by a high-rank admin
 		if(!check_rights(R_SERVER|R_DEBUG, FALSE)||irc)//no sending html to the poor bots
 			msg = trim(sanitize(copytext(msg,1,MAX_MESSAGE_LEN)))
-			if(!msg)
-				return
+		if(!msg)
+			return
 
 		if (src.handle_spam_prevention(MUTE_ADMINHELP))
 			return

@@ -607,8 +607,8 @@
 		mech_click = world.time
 
 		if(!istype(object, /atom)) return
-		if(istype(object, /obj/screen))
-			var/obj/screen/using = object
+		if(istype(object, /atom/movable/screen))
+			var/atom/movable/screen/using = object
 			if(using.screen_loc == ui_acti || using.screen_loc == ui_iarrowleft || using.screen_loc == ui_iarrowright)//ignore all HUD objects save 'intent' and its arrows
 				return ..()
 			else
@@ -2887,24 +2887,24 @@
 			if(0.75 to INFINITY)
 				occupant.clear_alert("charge")
 			if(0.5 to 0.75)
-				occupant.throw_alert("charge", /obj/screen/alert/lowcell, 1)
+				occupant.throw_alert("charge", /atom/movable/screen/alert/lowcell, 1)
 			if(0.25 to 0.5)
-				occupant.throw_alert("charge", /obj/screen/alert/lowcell, 2)
+				occupant.throw_alert("charge", /atom/movable/screen/alert/lowcell, 2)
 			if(0.01 to 0.25)
-				occupant.throw_alert("charge", /obj/screen/alert/lowcell, 3)
+				occupant.throw_alert("charge", /atom/movable/screen/alert/lowcell, 3)
 			else
-				occupant.throw_alert("charge", /obj/screen/alert/emptycell)
+				occupant.throw_alert("charge", /atom/movable/screen/alert/emptycell)
 
 /obj/mecha/proc/update_damage_alerts()
 	if(occupant)
 		var/integrity = health/initial(health)*100
 		switch(integrity)
 			if(30 to 45)
-				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 1)
+				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 1)
 			if(15 to 35)
-				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 2)
+				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 2)
 			if(-INFINITY to 15)
-				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 3)
+				occupant.throw_alert("mech damage", /atom/movable/screen/alert/low_mech_integrity, 3)
 			else
 				occupant.clear_alert("mech damage")
 

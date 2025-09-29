@@ -1,0 +1,4 @@
+author: "zeskorion"
+delete-after: True
+changes:
+  - rscadd: "adds new markings, hairstyles, horns and sprites (dragon mane, swept horns, stub horns, long/longer sharp snout, bony plates)"
