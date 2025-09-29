@@ -87,7 +87,6 @@ var/list/holder_mob_icon_cache = list()
 		held_mob.transform = original_transform
 		held_mob.update_transform() //VOREStation edit
 		held_mob.vis_flags = original_vis_flags
-		held_mob.reset_perspective(null)
 		held_mob = null
 	..()
 
@@ -95,6 +94,8 @@ var/list/holder_mob_icon_cache = list()
 	STOP_PROCESSING(SSobj, src)
 	if(held_mob)
 		dump_mob()
+		held_mob.reset_perspective(null)
+		held_mob = null
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src, get_turf(src))
