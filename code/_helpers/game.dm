@@ -464,7 +464,7 @@
 	return candidates
 
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
-	if(!isobj(O))	O = new /obj/screen/text()
+	if(!isobj(O))	O = new /atom/movable/screen/text()
 	O.maptext = maptext
 	O.maptext_height = maptext_height
 	O.maptext_width = maptext_width
@@ -640,12 +640,6 @@
 					rstats[i] = environment.vars[stats[i]]
 		temps[direction] = rstats
 	return temps
-
-/proc/MinutesToTicks(var/minutes)
-	return SecondsToTicks(60 * minutes)
-
-/proc/SecondsToTicks(var/seconds)
-	return seconds * 10
 
 ///Flash the window of a player
 /proc/window_flash(client/flashed_client, ignorepref = FALSE)

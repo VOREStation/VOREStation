@@ -13,6 +13,11 @@
 
 /area/awaymission/lucky7
 	icon_state = "away1"
+	ambience = AMBIENCE_CASINO
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_BLOCK_INSTANT_BUILDING
+	dynamic_lighting = TRUE
+	requires_power = FALSE
+	has_gravity = TRUE
 
 /area/awaymission/lucky7/casinofloor
 	name = "\improper Gateway - Casino Floor"
@@ -29,6 +34,7 @@
 /area/awaymission/lucky7/privategameroom
 	name = "\improper Gateway - Private Game Room One"
 	icon_state = "arcade2"
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_SOUNDPROOF | AREA_FORBID_EVENTS | AREA_BLOCK_INSTANT_BUILDING
 
 /area/awaymission/lucky7/privategameroom/two
 	name = "\improper Gateway - Private Game Room Two"
@@ -36,9 +42,25 @@
 /area/awaymission/lucky7/privategameroom/three
 	name = "\improper Gateway - Private Game Room Three"
 
+/area/awaymission/lucky7/privategameroom/four
+	name = "\improper Gateway - Private Game Room Four"
+
+/area/awaymission/lucky7/privategameroom/five
+	name = "\improper Gateway - Private Game Room Five"
+
+/area/awaymission/lucky7/privategameroom/six
+	name = "\improper Gateway - Private Game Room Six"
+
+/area/awaymission/lucky7/privategameroom/seven
+	name = "\improper Gateway - Private Game Room Seven"
+
+/area/awaymission/lucky7/privategameroom/eight
+	name = "\improper Gateway - Private Game Room Eight"
+
 /area/awaymission/lucky7/privateroom
 	name = "\improper Gateway - Private Room One"
 	icon_state = "crew_quarters"
+	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_BLOCK_INSTANT_BUILDING
 
 /area/awaymission/lucky7/privateroom/two
 	name = "\improper Gateway - Private Room Two"
@@ -56,9 +78,41 @@
 	name = "\improper Gateway - Private Room Five"
 	icon_state = "crew_quarters"
 
+/area/awaymission/lucky7/privateroom/six
+	name = "\improper Gateway - Private Room Six"
+	icon_state = "crew_quarters"
+
+/area/awaymission/lucky7/privateroom/seven
+	name = "\improper Gateway - Private Room Seven"
+	icon_state = "crew_quarters"
+
+/area/awaymission/lucky7/privateroom/eight
+	name = "\improper Gateway - Private Room Eight"
+	icon_state = "crew_quarters"
+
 /area/awaymission/lucky7/privateroom/vip
 	name = "\improper Gateway - VIP Room"
 	icon_state = "crew_quarters"
+
+/area/awaymission/lucky7/dorms
+	name = "\improper Gateway - Dorms"
+	icon_state = "crew_quarters"
+	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING | AREA_BLOCK_INSTANT_BUILDING
+
+/area/awaymission/lucky7/dorms/one
+	name = "\improper Gateway - Dorm 1"
+
+/area/awaymission/lucky7/dorms/two
+	name = "\improper Gateway - Dorm 2"
+
+/area/awaymission/lucky7/dorms/three
+	name = "\improper Gateway - Dorm 3"
+
+/area/awaymission/lucky7/dorms/four
+	name = "\improper Gateway - Dorm 4"
+
+/area/awaymission/lucky7/dorms/five
+	name = "\improper Gateway - Dorm 5"
 
 /area/awaymission/lucky7/security
 	name = "\improper Gateway - Security"

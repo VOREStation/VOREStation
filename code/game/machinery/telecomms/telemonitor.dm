@@ -121,7 +121,6 @@
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, span_notice("You you disable the security protocols"))
-		src.updateUsrDialog(user)
 		return 1
 
 /obj/machinery/computer/telecomms/monitor/proc/set_temp(var/text, var/color = "average")

@@ -56,7 +56,7 @@
 	var/original_ckey
 	var/chosen_color
 	var/static/list/blacklist_typecache = typecacheof(list(
-	/obj/screen,
+	/atom/movable/screen,
 	/obj/singularity,
 	/mob/living/simple_mob/vore/morph,
 	/obj/effect))

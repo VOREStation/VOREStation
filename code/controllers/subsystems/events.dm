@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(events)
 		if(E.isRunning)
 			message += "and is still running."
 		else
-			if(E.endedAt - E.startedAt > MinutesToTicks(5)) // Only mention end time if the entire duration was more than 5 minutes
+			if(E.endedAt - E.startedAt > 5 MINUTES) // Only mention end time if the entire duration was more than 5 minutes
 				message += "and ended at [worldtime2stationtime(E.endedAt)]."
 			else
 				message += "and ran to completion."
