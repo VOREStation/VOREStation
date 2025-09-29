@@ -372,3 +372,11 @@
 		return
 	harddel_deets_dumped = TRUE
 	return "Image icon: [icon] - icon_state: [icon_state] [loc ? "loc: [loc] ([loc.x],[loc.y],[loc.z])" : ""]"
+
+/// Called from /datum/component/remote_view/viewer_managed during Initilize().
+/datum/proc/look(mob/user)
+	return
+
+/// Called from /datum/component/remote_view/viewer_managed during Destroy()
+/datum/proc/unlook(mob/user)
+	return

@@ -144,3 +144,28 @@
 		return
 	end_view()
 	qdel(src)
+
+
+
+/// Remote view subtype that handles look() and unlook() procs while managing a list of viewers. Expects a viewer list stored by the object itself, passed in with AddComponent(). Ensure the list exists before passing it to the component or pass by reference will fail.
+/datum/component/remote_view/viewer_managed
+	var/datum/view_coordinator // The object containing the viewer_list, with look() and unlook() logic
+	var/list/viewers // list from the view_coordinator, lists in byond are pass by reference, so this is the SAME list as on the coordinator! If you pass a null this will explode.
+
+/datum/component/remote_view/viewer_managed/Initialize(atom/focused_on, datum/coordinator, list/viewer_list)
+	. = ..()
+	if(!islist(viewer_list)) // BAD BAD BAD NO
+		CRASH("Passed a viewer_list that was not a list, or was null, to /datum/component/remote_view/viewer_managed component. Ensure the viewer_list exists before passing it into AddComponent.")
+	viewers = viewer_list
+	view_coordinator = coordinator
+	view_coordinator.look(host_mob)
+	LAZYDISTINCTADD(viewers, WEAKREF(host_mob))
+	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEWER_LIST_CLEAR_ALL, PROC_REF(handle_endview))
+
+/datum/component/remote_view/viewer_managed/Destroy(force)
+	UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEWER_LIST_CLEAR_ALL)
+	view_coordinator.unlook(host_mob, FALSE)
+	LAZYREMOVE(viewers, WEAKREF(host_mob))
+	view_coordinator = null
+	viewers = null
+	. = ..()
