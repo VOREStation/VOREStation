@@ -238,7 +238,7 @@
 			break
 	if (user.stat == 2) return
 
-	user.reset_perspective(target)
+	user.AddComponent(/datum/component/remote_view,target)
 
 /*
 /obj/item/cigarpacket
