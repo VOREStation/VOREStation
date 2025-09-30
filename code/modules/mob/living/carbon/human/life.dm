@@ -1752,9 +1752,8 @@
 				sight |= viewflags
 			else
 				machine.apply_visual(src)
-		else if(eyeobj)
-			if(eyeobj.owner != src)
-				reset_perspective(null)
+		else if(eyeobj && eyeobj.owner != src)
+			reset_perspective(null)
 	return 1
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)

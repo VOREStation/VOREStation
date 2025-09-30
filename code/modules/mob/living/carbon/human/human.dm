@@ -963,8 +963,7 @@
 	set name = "Project mind"
 	set category = "Abilities.Superpower"
 
-	if(stat!=CONSCIOUS)
-		reset_perspective(null)
+	if(stat != CONSCIOUS)
 		return
 
 	if(!(mRemotetalk in src.mutations))
@@ -993,13 +992,9 @@
 	set name = "Remote View"
 	set category = "Abilities.Superpower"
 
-	if(stat!=CONSCIOUS)
-		reset_perspective(null)
+	if(stat != CONSCIOUS)
 		return
 
-	if(!(mRemote in src.mutations))
-		reset_perspective(null)
-		remove_verb(src, /mob/living/carbon/human/proc/remoteobserve)
 	if(is_remote_viewing())
 		reset_perspective(null)
 		return
@@ -1018,8 +1013,6 @@
 		creatures += h
 
 	var/mob/target = input ("Who do you want to project your mind to?") as mob in creatures
-
-	reset_perspective(null)
 	if(target)
 		AddComponent(/datum/component/remote_view/mremote_mutation, target)
 		return

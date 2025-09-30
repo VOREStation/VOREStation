@@ -302,7 +302,7 @@
 /obj/machinery/recharge_station/proc/go_out()
 	if(!occupant)
 		return
-	occupant.forceMove(src.loc)
+	occupant.forceMove(get_turf(src))
 	occupant = null
 	update_icon()
 
