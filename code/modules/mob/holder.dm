@@ -68,6 +68,7 @@ var/list/holder_mob_icon_cache = list()
 			. += ""
 			. += "Location: [location]"
 
+/// Loads the mob into the holder and sets several vis_flags
 /obj/item/holder/Entered(mob/held, atom/OldLoc)
 	if(held_mob)
 		held.forceMove(get_turf(src))
@@ -82,39 +83,52 @@ var/list/holder_mob_icon_cache = list()
 	original_transform = held.transform
 	held.transform = null
 
+/// Handles restoring the vis flags and scale of the mob, also makes the holder invisible now that it's empty.
 /obj/item/holder/Exited(atom/movable/thing, atom/OldLoc)
 	if(thing == held_mob)
 		held_mob.transform = original_transform
-		held_mob.update_transform() //VOREStation edit
+		held_mob.update_transform()
 		held_mob.vis_flags = original_vis_flags
 		held_mob = null
+		invisibility = INVISIBILITY_ABSTRACT
 	..()
 
+/// Dumps the mob if we still hold one, and if we are held by a mob clears us from its inventory.
 /obj/item/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(held_mob)
 		dump_mob()
-		held_mob.reset_perspective(null)
-		held_mob = null
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src, get_turf(src))
-	return ..()
+	. = ..()
 
+/// If the mob somehow leaves the holder, clean us up.
 /obj/item/holder/process()
-	if(held_mob?.loc != src || isturf(loc))
+	if(held_mob?.loc != src || isturf(loc) || isbelly(loc))
 		qdel(src)
 
+/// Releases the mob from inside the holder. Calls forceMove() which calls Exited(). Then does cleanup for the client's eye location.
 /obj/item/holder/proc/dump_mob()
 	if(!held_mob)
 		return
 	if (held_mob.loc == src || isnull(held_mob.loc))
-		held_mob.transform = original_transform
-		held_mob.update_transform()
-		held_mob.vis_flags = original_vis_flags
-		held_mob.forceMove(get_turf(src))
-		held_mob = null
-	invisibility = INVISIBILITY_ABSTRACT
+		var/turf/release_turf = get_turf(src)
+		var/mob/unstick_mob = held_mob
+		/*
+		* Reset the view to the turf to avoid a black screen when we do a manual client eye view change after the forceMove(). This is REQUIRED...
+		* Byond has a bug where if you try to do this sensibly it locks onto the mob that held you until you move. Instead we focus the turf.
+		* Yes, the client eye vars are focused to your client mob, yes the perspective is correct, yes the component is qdeled, but it's focused on the wrong mob.
+		* I genuinely hate this, but after about a day of debugging it to find a solution, this horridass option was the only one that worked.
+		* The remote view component at the end is purely for releasing your view of the turf when you move. Or you'll be stuck focused on it.
+		* If you figure out a better one that doesn't break throwing and putting holders into disposals, please fix this. - Willbird
+		*/
+		unstick_mob.reset_perspective(release_turf)
+		unstick_mob.forceMove(release_turf)
+		if(unstick_mob.client)
+			unstick_mob.AddComponent(/datum/component/remote_view, release_turf)
+			unstick_mob.client.eye = release_turf
+			unstick_mob.client.perspective = EYE_PERSPECTIVE
 
 /obj/item/holder/throw_at(atom/target, range, speed, thrower)
 	if(held_mob)
