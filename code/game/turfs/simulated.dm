@@ -118,9 +118,9 @@
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(istype(S))
 					S.handle_movement(src,(H.m_intent == I_RUN ? 1 : 0), H) // handle_movement now needs to know who is moving, for inshoe steppies
-					if(S.track_blood && S.forensic_data?.has_blooddna())
-						bloodDNA = S.forensic_data.get_blooddna()
-						bloodcolor=S.blood_color
+					if(S.track_blood)
+						bloodDNA = S.forensic_data?.get_blooddna()
+						bloodcolor = S.blood_color
 						S.track_blood--
 			else
 				if(H.track_blood && H.feet_blood_DNA)

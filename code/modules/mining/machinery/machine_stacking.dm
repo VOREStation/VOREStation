@@ -129,7 +129,4 @@
 			var/stacktype = stack_paths[sheet]
 			new stacktype (get_turf(output), stack_amt)
 			stack_storage[sheet] -= stack_amt
-
-	if(console)
-		console.updateUsrDialog()
 	return
