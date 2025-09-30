@@ -299,7 +299,6 @@
 	name = "purple floor tile"
 	singular_name = "purple floor tile"
 	color = COLOR_PURPLE_GRAY
-	icon_state = "tile_white"
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/dark

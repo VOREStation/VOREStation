@@ -221,7 +221,7 @@
 	initial_flooring = /decl/flooring/tiling/new_tile/monotile
 
 /turf/simulated/floor/tiled/monotile/purple
-	color = COLOR_PURPLE_GRAY
+	icon_state = "monotile-purple"
 	initial_flooring = /decl/flooring/tiling/new_tile/monotile/purple
 
 /turf/simulated/floor/tiled/steel_grid
@@ -417,8 +417,8 @@
 
 /turf/simulated/floor/tiled/purple
 	name = "purple floor"
-	color = COLOR_PURPLE_GRAY
-	initial_flooring = /decl/flooring/tiling/yellow
+	icon_state = "purple"
+	initial_flooring = /decl/flooring/tiling/purple
 
 /turf/simulated/floor/tiled/freezer
 	name = "tiles"
