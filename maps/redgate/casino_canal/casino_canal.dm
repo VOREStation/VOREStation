@@ -219,9 +219,20 @@
 	icon_state = "dorm3"
 
 /area/redgate/underwater_casino/indoors/lower/dorms/vip
-	name = UNDERWATER_CASINO_NAME + " - VIP Dormitory"
+	name = UNDERWATER_CASINO_NAME + " - VIP Suite"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "Sleep"
+
+/area/redgate/underwater_casino/indoors/lower/dorms/vip/kitchen
+	name = UNDERWATER_CASINO_NAME + " - VIP Suite Kitchen"
+	icon_state = "kitchen"
+
+/area/redgate/underwater_casino/indoors/lower/dorms/vip/bath
+	name = UNDERWATER_CASINO_NAME + " - VIP Suite Bathroom"
+	icon_state = "toilet"
+
+/area/redgate/underwater_casino/indoors/lower/dorms/vip/bedroom
+	name = UNDERWATER_CASINO_NAME + " - VIP Suite Bedroom"
 
 /area/redgate/underwater_casino/indoors/lower/dorms/secret
 	name = UNDERWATER_CASINO_NAME + " - The Back Dorm"
