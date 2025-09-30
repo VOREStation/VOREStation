@@ -2436,6 +2436,14 @@
 	},
 /turf/simulated/floor/carpet/retro,
 /area/redgate/underwater_casino/indoors/lower/arcade)
+"fX" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/machinery/light{
+	dir = 1;
+	stat = 0
+	},
+/turf/simulated/floor/wood/sif,
+/area/redgate/underwater_casino/indoors/lower/dorms/privategameroom2)
 "fY" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/condiment/carton/flour,
@@ -3747,6 +3755,9 @@
 /area/redgate/underwater_casino/indoors/lower/dorms/vip/bath)
 "uX" = (
 /obj/machinery/vending/loadout/loadout_misc,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
 /area/redgate/underwater_casino/indoors/lower/dorms/secret)
 "vg" = (
@@ -4608,6 +4619,10 @@
 /obj/machinery/holoposter{
 	pixel_y = 30
 	},
+/obj/machinery/light{
+	dir = 1;
+	stat = 0
+	},
 /turf/simulated/floor/wood/sif,
 /area/redgate/underwater_casino/indoors/lower/dorms/privategameroom2)
 "FB" = (
@@ -4811,10 +4826,6 @@
 	pixel_x = -9;
 	id = "c_privateroom2_win"
 	},
-/obj/machinery/light{
-	dir = 1;
-	stat = 0
-	},
 /turf/simulated/floor/wood/sif,
 /area/redgate/underwater_casino/indoors/lower/dorms/privategameroom2)
 "In" = (
@@ -4847,6 +4858,9 @@
 "IC" = (
 /obj/machinery/vending/boozeomat{
 	req_access = null
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
 /area/redgate/underwater_casino/indoors/lower/dorms/secret)
@@ -5430,10 +5444,6 @@
 /obj/machinery/holoposter{
 	pixel_y = 30
 	},
-/obj/machinery/light{
-	dir = 1;
-	stat = 0
-	},
 /turf/simulated/floor/wood/sif,
 /area/redgate/underwater_casino/indoors/lower/dorms/privategameroom2)
 "Qf" = (
@@ -6016,9 +6026,6 @@
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/lower/dorms/privategameroom1)
 "Xq" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/disposal/wall/cleaner,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -19368,7 +19375,7 @@ qv
 qv
 aN
 aN
-LO
+fX
 Bl
 Rn
 cE

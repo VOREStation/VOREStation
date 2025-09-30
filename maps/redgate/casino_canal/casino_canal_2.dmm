@@ -245,13 +245,6 @@
 "aB" = (
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/redgate/underwater_casino/indoors/upper/lounge)
-"aC" = (
-/obj/structure/table/wooden_reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/carpet/purple,
-/area/redgate/underwater_casino/indoors/upper/hall)
 "aD" = (
 /obj/machinery/light{
 	dir = 4
@@ -1494,9 +1487,6 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2807,6 +2797,12 @@
 	},
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"hi" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purple,
+/area/redgate/underwater_casino/indoors/upper/hall)
 "hm" = (
 /obj/structure/bed/chair/bay/comfy/brown{
 	dir = 4
@@ -4017,10 +4013,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/underwater_casino/indoors/upper/shop)
-"yu" = (
-/obj/machinery/door/airlock/angled_bay/hatch,
-/turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino/indoors/upper/maintenance)
 "yF" = (
 /obj/structure/bed/chair/bay/comfy/brown{
 	dir = 4
@@ -4756,7 +4748,8 @@
 	dir = 4
 	},
 /obj/machinery/holoposter{
-	pixel_y = 30
+	dir = 4;
+	pixel_x = -30
 	},
 /turf/simulated/floor/carpet/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
@@ -5125,7 +5118,10 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/underwater_casino/indoors)
 "OM" = (
-/obj/machinery/door/airlock/angled_bay/hatch/engineering,
+/obj/machinery/door/airlock/angled_bay/hatch{
+	name = "maintenance access";
+	stripe_color = "#454545"
+	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors/upper/vacant)
@@ -13447,7 +13443,7 @@ rP
 Vh
 rP
 sd
-yu
+yG
 bI
 pm
 pm
@@ -15738,8 +15734,8 @@ aw
 kp
 kp
 aw
-dB
-dt
+wy
+dr
 SK
 NC
 cc
@@ -16022,9 +16018,9 @@ aw
 og
 dI
 dD
-BW
-du
-BW
+dB
+dt
+SK
 ai
 tT
 tT
@@ -16306,9 +16302,9 @@ aw
 aw
 aw
 aw
-wy
-dr
-SK
+BW
+du
+BW
 ai
 tT
 tT
@@ -16447,7 +16443,7 @@ Te
 aH
 Ju
 ng
-rb
+hi
 wy
 dr
 SK
@@ -16587,7 +16583,7 @@ QV
 QV
 IV
 aH
-aC
+Xr
 Xr
 rb
 wy
