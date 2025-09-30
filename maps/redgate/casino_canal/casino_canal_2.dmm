@@ -112,7 +112,11 @@
 /obj/structure/bed/chair/sofa/corp/right{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/purcarpet,
+/obj/machinery/holoposter{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/carpet/purple,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "ap" = (
 /obj/structure/flora/pottedplant/tropical,
@@ -175,17 +179,7 @@
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
 "as" = (
-/obj/machinery/light{
-	dir = 8;
-	light_color = "#575656";
-	name = "dim light"
-	},
-/turf/simulated/floor/carpet/blue2,
-/area/redgate/underwater_casino/indoors/upper/lounge)
-"at" = (
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/structure/table/standard,
 /turf/simulated/floor/carpet/blue2,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "au" = (
@@ -245,6 +239,9 @@
 	},
 /turf/simulated/floor/carpet/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"aB" = (
+/turf/simulated/floor/tiled/eris/steel/techfloor,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "aC" = (
 /obj/structure/table/wooden_reinforced,
 /obj/machinery/light{
@@ -296,12 +293,6 @@
 "aH" = (
 /turf/simulated/wall/tgmc/window/darkwall/reinf,
 /area/redgate/underwater_casino/indoors/upper/shop)
-"aI" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/eris/steel/violetcorener,
-/area/redgate/underwater_casino/indoors/upper/lounge)
 "aJ" = (
 /obj/machinery/light{
 	dir = 4
@@ -429,6 +420,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "bd" = (
@@ -459,8 +453,7 @@
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
 "bg" = (
-/obj/machinery/door/airlock/angled_bay/double/glass,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/monotile/purple,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "bh" = (
 /obj/structure/table/rack/shelf,
@@ -622,7 +615,7 @@
 /area/redgate/underwater_casino/indoors/upper/casino)
 "bt" = (
 /obj/machinery/door/airlock/angled_bay/standard/glass{
-	name = "glass airlock"
+	name = "Game Floor"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors/upper/casino)
@@ -765,6 +758,12 @@
 "bK" = (
 /turf/simulated/open,
 /area/redgate/underwater_casino/indoors/upper/casino)
+"bL" = (
+/obj/structure/bed/chair/sofa/bench/left{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "bM" = (
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	name = "glass airlock"
@@ -1673,7 +1672,9 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors/upper/vacant)
 "dX" = (
-/obj/machinery/door/airlock/angled_bay/double/glass,
+/obj/machinery/door/airlock/angled_bay/double/glass{
+	name = "Shop"
+	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors/upper/shop)
@@ -1832,17 +1833,19 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/underwater_casino/indoors/upper/bathroom)
 "eq" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/disposalpipe/tagger{
+	dir = 4;
+	name = "package tagger - Resleeving";
+	sort_tag = "Resleeving"
 	},
 /turf/simulated/floor/tiled/white,
 /area/redgate/underwater_casino/indoors/upper/bathroom)
 "er" = (
-/obj/machinery/disposal/wall{
-	dir = 1
-	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
+	},
+/obj/machinery/disposal/wall/cleaner{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/redgate/underwater_casino/indoors/upper/bathroom)
@@ -1913,7 +1916,7 @@
 /area/redgate/underwater_casino/indoors/upper/maintenance)
 "eA" = (
 /obj/structure/bed/chair/sofa/corp/left,
-/turf/simulated/floor/carpet/purcarpet,
+/turf/simulated/floor/carpet/purple,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "eB" = (
 /obj/machinery/vending/event/costume{
@@ -2225,6 +2228,12 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/underwater_casino/indoors/upper/casino/slots)
+"fq" = (
+/obj/structure/bed/chair/sofa/bench{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "fr" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -2247,8 +2256,50 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7/purple,
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"fs" = (
+/obj/structure/bed/chair/sofa/corp/right{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"ft" = (
+/obj/structure/bed/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fu" = (
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#575656";
+	name = "dim light"
+	},
+/obj/structure/bed/chair/sofa/corp/left{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fv" = (
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/carpet/blue2,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fw" = (
+/obj/structure/bed/chair/sofa/corp/right{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "fx" = (
 /turf/simulated/floor/tiled/eris/steel/violetcorener,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fy" = (
+/obj/structure/bed/chair/sofa/bench/right{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile/purple,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "fz" = (
 /obj/effect/floor_decal/borderfloor/purple{
@@ -2271,21 +2322,95 @@
 	},
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"fA" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#575656";
+	name = "dim light"
+	},
+/turf/simulated/floor/tiled/monotile/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fB" = (
+/obj/machinery/light,
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/eris/steel/techfloor,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fC" = (
+/obj/structure/bed/chair/comfy/blue{
+	dir = 4
+	},
+/obj/structure/sign/poster,
+/turf/simulated/floor/carpet/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "fD" = (
 /obj/structure/casino_table/blackjack_r{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/blue2,
 /area/redgate/underwater_casino/indoors/upper/casino)
+"fE" = (
+/obj/structure/table/standard,
+/obj/random/action_figure,
+/turf/simulated/floor/carpet/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fF" = (
+/obj/structure/bed/chair/comfy/blue{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fG" = (
+/obj/structure/dummystairs,
+/obj/structure/window/reinforced{
+	dir = 8;
+	pixel_x = -4
+	},
+/turf/simulated/floor/tiled/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fH" = (
+/obj/structure/sign/poster{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/steel/violetcorener,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fI" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/bed/chair/sofa/bench/left{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/steel/techfloor,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fJ" = (
+/obj/structure/bed/chair/sofa/bench/right{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/steel/techfloor,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "fK" = (
 /turf/simulated/floor/tiled/eris/dark/bluecorner,
 /area/redgate/underwater_casino/indoors/upper/casino)
+"fL" = (
+/obj/structure/bed/chair/comfy/blue{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
+"fM" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/carpet/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "fN" = (
 /obj/item/stool/baystool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/orangecorner,
 /area/redgate/underwater_casino/indoors/upper/bar)
+"fO" = (
+/obj/structure/bed/chair/comfy/blue,
+/turf/simulated/floor/carpet/purple,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "fP" = (
 /obj/machinery/appliance/cooker/fryer,
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -2293,6 +2418,12 @@
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/underwater_casino/indoors/upper/kitchen)
+"fQ" = (
+/obj/machinery/door/airlock/angled_bay/double/glass{
+	name = "Lounge"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "fS" = (
 /turf/simulated/floor/glass/reinforced,
 /area/redgate/underwater_casino/indoors)
@@ -2448,7 +2579,8 @@
 /area/redgate/underwater_casino/indoors/upper/hall)
 "iF" = (
 /obj/machinery/door/airlock/angled_bay/double/glass{
-	dir = 8
+	dir = 8;
+	name = "Lounge"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2468,7 +2600,8 @@
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
 "iP" = (
-/turf/simulated/floor/carpet/blue2,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "iV" = (
 /obj/machinery/appliance/cooker/oven,
@@ -2522,7 +2655,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/redgate/underwater_casino/indoors/upper/bar)
 "jU" = (
-/obj/machinery/door/airlock/angled_bay/double/glass,
+/obj/machinery/door/airlock/angled_bay/double/glass{
+	name = "Shop"
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors/upper/shop)
 "jW" = (
@@ -2772,7 +2907,9 @@
 /turf/simulated/open,
 /area/redgate/underwater_casino/indoors)
 "nb" = (
-/obj/machinery/door/airlock/angled_bay/hatch/security,
+/obj/machinery/door/airlock/angled_bay/hatch/security{
+	req_access = null
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors)
 "ne" = (
@@ -3630,7 +3767,7 @@
 /area/redgate/underwater_casino/indoors/upper/comms)
 "zo" = (
 /obj/structure/bed/chair/sofa/corp,
-/turf/simulated/floor/carpet/purcarpet,
+/turf/simulated/floor/carpet/purple,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "zs" = (
 /obj/structure/table/reinforced,
@@ -4551,7 +4688,7 @@
 	light_color = "#575656";
 	name = "dim light"
 	},
-/turf/simulated/floor/carpet/purcarpet,
+/turf/simulated/floor/carpet/purple,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "Ms" = (
 /obj/machinery/door/window/southright,
@@ -5155,7 +5292,7 @@
 /obj/structure/bed/chair/sofa/corp/corner{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/purcarpet,
+/turf/simulated/floor/carpet/purple,
 /area/redgate/underwater_casino/indoors/upper/lounge)
 "VW" = (
 /obj/machinery/vending/sol{
@@ -5335,7 +5472,7 @@
 "YW" = (
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	door_color = "#9c9c9c";
-	name = "Bar";
+	name = "Kitchen";
 	stripe_color = "#89bd66"
 	},
 /obj/machinery/door/firedoor/glass/hidden/steel{
@@ -17727,13 +17864,13 @@ fx
 dZ
 dQ
 fx
-fx
+fB
+al
 am
-tT
-tT
-tT
-tT
-tT
+am
+am
+am
+al
 tT
 tT
 tT
@@ -17869,13 +18006,13 @@ fx
 fx
 fx
 fx
-fx
+fC
 al
+fu
+fs
+aB
+aB
 am
-am
-am
-am
-al
 tT
 tT
 tT
@@ -18011,12 +18148,12 @@ fx
 fx
 fx
 fx
-fx
-am
-iP
+fE
+al
+fv
 as
-iP
-iP
+aB
+aB
 am
 tT
 tT
@@ -18145,7 +18282,7 @@ bs
 wy
 DF
 oT
-bg
+fQ
 fx
 fx
 fx
@@ -18153,12 +18290,12 @@ fx
 fx
 fx
 fx
+fF
 al
-al
-iP
-iP
-iP
-iP
+fw
+ft
+aB
+aB
 am
 tT
 tT
@@ -18295,11 +18432,11 @@ fx
 fx
 fx
 fx
-pz
+fG
 bg
-iP
-iP
-iP
+aB
+aB
+aB
 iP
 am
 tT
@@ -18435,14 +18572,14 @@ fx
 fx
 fx
 fx
-fx
+fH
 fx
 pz
-aS
-iP
-iP
-iP
-iP
+fA
+aB
+aB
+aB
+aB
 am
 tT
 tT
@@ -18572,19 +18709,19 @@ wy
 DF
 SK
 am
-fx
-fx
-fx
-fx
-fx
-aI
+fO
+fM
+fL
+fJ
+fI
 al
 am
+am
 al
-iP
-iP
-iP
-iP
+fy
+fq
+fq
+bL
 am
 tT
 tT
@@ -18720,14 +18857,14 @@ am
 am
 al
 al
-al
 tT
+tT
+al
 am
-iP
-at
-iP
-iP
 am
+am
+am
+al
 tT
 tT
 tT
@@ -18864,12 +19001,12 @@ tT
 tT
 tT
 tT
-al
-am
-am
-am
-am
-al
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT

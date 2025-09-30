@@ -1371,7 +1371,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
-/obj/structure/disposalpipe/junction,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/underwater_casino/indoors/lower/dorms/secret)
 "du" = (
@@ -3782,12 +3782,6 @@
 "vA" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
-	},
-/obj/machinery/disposal/wall{
-	dir = 1
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
 	},
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/underwater_casino/indoors/lower/dorms/secret)
