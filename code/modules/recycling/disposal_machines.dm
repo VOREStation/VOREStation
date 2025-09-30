@@ -142,6 +142,7 @@
 			if(ishuman(victim) || victim.client)
 				log_and_message_admins("placed [victim]  inside \the [src]", user)
 			victim.forceMove(src)
+			victim.AddComponent(/datum/component/remote_view, src)
 
 		I.forceMove(src)
 

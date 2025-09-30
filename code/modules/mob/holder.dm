@@ -115,6 +115,7 @@ var/list/holder_mob_icon_cache = list()
 	if (held_mob.loc == src || isnull(held_mob.loc))
 		var/turf/release_turf = get_turf(src)
 		var/mob/unstick_mob = held_mob
+		unstick_mob.forceMove(release_turf)
 		/*
 		* Reset the view to the turf to avoid a black screen when we do a manual client eye view change after the forceMove(). This is REQUIRED...
 		* Byond has a bug where if you try to do this sensibly it locks onto the mob that held you until you move. Instead we focus the turf.
@@ -123,7 +124,6 @@ var/list/holder_mob_icon_cache = list()
 		* The remote view component at the end is purely for releasing your view of the turf when you move. Or you'll be stuck focused on it.
 		* If you figure out a better one that doesn't break throwing and putting holders into disposals, please fix this. - Willbird
 		*/
-		unstick_mob.forceMove(release_turf)
 		if(unstick_mob.client)
 			unstick_mob.AddComponent(/datum/component/remote_view, release_turf)
 			unstick_mob.client.eye = release_turf
