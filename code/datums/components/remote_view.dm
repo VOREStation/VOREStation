@@ -19,7 +19,7 @@
 		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
-	RegisterSignal(host_mob, COMSIG_QDELETING, PROC_REF(handle_endview))
+	RegisterSignal(host_mob, COMSIG_QDELETING, PROC_REF(handle_endview), override = TRUE)
 	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview), override = TRUE)
 	// Focus on remote view
 	remote_view_target = focused_on
@@ -96,7 +96,7 @@
 
 /datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
 	host_item = our_item
-	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
+	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview), override = TRUE)
 	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview), override = TRUE)
