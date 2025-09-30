@@ -19,13 +19,14 @@
 		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
-	RegisterSignal(host_mob, COMSIG_QDELETING, PROC_REF(handle_endview), override = TRUE)
-	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview), override = TRUE)
+	RegisterSignal(host_mob, COMSIG_QDELETING, PROC_REF(handle_endview))
+	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 	// Focus on remote view
 	remote_view_target = focused_on
-	RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
-	RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
-	RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview), override = TRUE)
+	if(host_mob != remote_view_target) // Some items just offset our view, so we set ourselves as the view target, don't double dip if so!
+		RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
+		RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
+		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
@@ -37,11 +38,12 @@
 	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_QDELETING)
 	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
-	host_mob = null
 	// Cleanup remote view
-	UnregisterSignal(remote_view_target, COMSIG_QDELETING)
-	UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
-	UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
+	if(host_mob != remote_view_target)
+		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
+		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
+		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
+	host_mob = null
 	remote_view_target = null
 
 /datum/component/remote_view/proc/handle_endview(datum/source)
@@ -96,10 +98,10 @@
 
 /datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
 	host_item = our_item
-	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview), override = TRUE)
+	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
-	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview), override = TRUE)
+	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 	. = ..()
 	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 	if(host_mob.hud_used.hud_shown)
@@ -165,11 +167,13 @@
 	. = ..()
 	// Remote view mutation stops viewing when mobs die or if we lose the mutation/gene
 	RegisterSignal(host_mob, COMSIG_MOB_DNA_MUTATION, PROC_REF(on_mutation))
-	RegisterSignal(remote_view_target, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
+	if(host_mob != remote_view_target)
+		RegisterSignal(remote_view_target, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
 
 /datum/component/remote_view/mremote_mutation/Destroy(force)
 	UnregisterSignal(host_mob, COMSIG_MOB_DNA_MUTATION)
-	UnregisterSignal(remote_view_target, COMSIG_MOB_DEATH)
+	if(host_mob != remote_view_target)
+		UnregisterSignal(remote_view_target, COMSIG_MOB_DEATH)
 	. = ..()
 
 /datum/component/remote_view/mremote_mutation/proc/on_mutation(datum/source)
@@ -199,7 +203,7 @@
 	view_coordinator = coordinator
 	view_coordinator.look(host_mob)
 	LAZYDISTINCTADD(viewers, WEAKREF(host_mob))
-	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview), override = TRUE)
+	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 
 /datum/component/remote_view/viewer_managed/Destroy(force)
 	UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
