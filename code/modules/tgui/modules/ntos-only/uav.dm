@@ -84,7 +84,7 @@
 			if(!current_uav)
 				return FALSE
 			else if(current_uav.toggle_power())
-				SEND_SIGNAL(src,COMSIG_REMOTE_VIEWER_LIST_CLEAR_ALL)
+				SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 				return TRUE
 
 /datum/tgui_module/uav/proc/set_current(var/obj/item/uav/U)
@@ -94,7 +94,7 @@
 	signal_strength = 0
 	current_uav = U
 	RegisterSignal(U, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(current_uav_changed_z))
-	SEND_SIGNAL(src,COMSIG_REMOTE_VIEWER_LIST_CLEAR_ALL)
+	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 
 /datum/tgui_module/uav/proc/clear_current()
 	if(!current_uav)
@@ -103,7 +103,7 @@
 	UnregisterSignal(current_uav, COMSIG_MOVABLE_Z_CHANGED)
 	signal_strength = 0
 	current_uav = null
-	SEND_SIGNAL(src,COMSIG_REMOTE_VIEWER_LIST_CLEAR_ALL)
+	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 
 /datum/tgui_module/uav/proc/current_uav_changed_z(old_z, new_z)
 	SIGNAL_HANDLER

@@ -1,7 +1,11 @@
 /// Use this if you need to remote view something. Remote view will end if you move or the remote view target is deleted. Cleared automatically if another remote view begins.
 /datum/component/remote_view
-	var/mob/host_mob
-	var/atom/remote_view_target
+	VAR_PROTECTED/mob/host_mob
+	VAR_PROTECTED/atom/remote_view_target
+	VAR_PROTECTED/forbid_movement = TRUE
+
+/datum/component/remote_view/allow_moving
+	forbid_movement = FALSE
 
 /datum/component/remote_view/Initialize(atom/focused_on)
 	. = ..()
@@ -9,39 +13,48 @@
 		return COMPONENT_INCOMPATIBLE
 	host_mob = parent
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
-	RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
+	if(forbid_movement)
+		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_QDELETING, PROC_REF(handle_endview))
+	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 	// Focus on remote view
 	remote_view_target = focused_on
 	RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
 	RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
+	RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
-	UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
+	if(forbid_movement)
+		UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE)
 	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_QDELETING)
+	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
 	host_mob = null
 	// Cleanup remote view
 	UnregisterSignal(remote_view_target, COMSIG_QDELETING)
 	UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
+	UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
 	remote_view_target = null
 
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
+	PRIVATE_PROC(TRUE)
 	end_view()
 	qdel(src)
 
 /datum/component/remote_view/proc/on_reset_perspective(datum/source)
 	SIGNAL_HANDLER
+	PRIVATE_PROC(TRUE)
 	// The object already changed it's view, lets not interupt it like the others
 	qdel(src)
 
 /datum/component/remote_view/proc/on_remotetarget_reset_perspective(datum/source)
 	SIGNAL_HANDLER
+	PRIVATE_PROC(TRUE)
 	// Non-mobs can't do this anyway
 	if(!ismob(remote_view_target))
 		return
@@ -62,20 +75,27 @@
 	host_mob.client.perspective = remote_view_mob.client.perspective
 
 /datum/component/remote_view/proc/end_view()
+	PROTECTED_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	host_mob.reset_perspective(null)
 
 
 
 /// Remote view subtype where if the item used with it is moved or dropped the view ends too
 /datum/component/remote_view/item_zoom
-	var/obj/item/host_item
-	var/show_message
+	VAR_PRIVATE/obj/item/host_item
+	VAR_PRIVATE/show_message
+
+/datum/component/remote_view/item_zoom/allow_moving
+	forbid_movement = FALSE
+
 
 /datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
 	host_item = our_item
 	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
+	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 	. = ..()
 	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 	if(host_mob.hud_used.hud_shown)
@@ -123,12 +143,17 @@
 	UnregisterSignal(host_item, COMSIG_QDELETING)
 	UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(host_item, COMSIG_ITEM_DROPPED)
+	UnregisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR)
 	host_item = null
 	. = ..()
 
 
+
 /// Remote view subtype that stops if the remote view target is dead, or you lose access to the mremote mutation
 /datum/component/remote_view/mremote_mutation
+
+/datum/component/remote_view/mremote_mutation/allow_moving
+	forbid_movement = FALSE
 
 /datum/component/remote_view/mremote_mutation/Initialize(atom/focused_on)
 	if(!ismob(focused_on)) // What are you doing? This gene only works on mob targets, if you adminbus this I will personally eat your face.
@@ -145,6 +170,7 @@
 
 /datum/component/remote_view/mremote_mutation/proc/on_mutation(datum/source)
 	SIGNAL_HANDLER
+	PRIVATE_PROC(TRUE)
 	var/mob/remote_mob = remote_view_target
 	if(host_mob.stat == CONSCIOUS && (mRemote in host_mob.mutations) && remote_mob && remote_mob.stat == CONSCIOUS)
 		return
@@ -155,8 +181,11 @@
 
 /// Remote view subtype that handles look() and unlook() procs while managing a list of viewers. Expects a viewer list stored by the object itself, passed in with AddComponent(). Ensure the list exists before passing it to the component or pass by reference will fail.
 /datum/component/remote_view/viewer_managed
-	var/datum/view_coordinator // The object containing the viewer_list, with look() and unlook() logic
-	var/list/viewers // list from the view_coordinator, lists in byond are pass by reference, so this is the SAME list as on the coordinator! If you pass a null this will explode.
+	VAR_PRIVATE/datum/view_coordinator // The object containing the viewer_list, with look() and unlook() logic
+	VAR_PRIVATE/list/viewers // list from the view_coordinator, lists in byond are pass by reference, so this is the SAME list as on the coordinator! If you pass a null this will explode.
+
+/datum/component/remote_view/viewer_managed/allow_moving
+	forbid_movement = FALSE
 
 /datum/component/remote_view/viewer_managed/Initialize(atom/focused_on, datum/coordinator, list/viewer_list)
 	. = ..()
@@ -166,10 +195,10 @@
 	view_coordinator = coordinator
 	view_coordinator.look(host_mob)
 	LAZYDISTINCTADD(viewers, WEAKREF(host_mob))
-	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEWER_LIST_CLEAR_ALL, PROC_REF(handle_endview))
+	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
 
 /datum/component/remote_view/viewer_managed/Destroy(force)
-	UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEWER_LIST_CLEAR_ALL)
+	UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
 	view_coordinator.unlook(host_mob, FALSE)
 	LAZYREMOVE(viewers, WEAKREF(host_mob))
 	view_coordinator = null

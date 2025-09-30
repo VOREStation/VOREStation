@@ -830,8 +830,9 @@
 ///from base of datum/component/two_handed/proc/unwield(mob/living/carbon/user): (/mob/user)
 #define COMSIG_TWOHANDED_UNWIELD "twohanded_unwield"
 
-// /datum/component/remote_view/viewer_managed signals
-#define COMSIG_REMOTE_VIEWER_LIST_CLEAR_ALL "remote_view_list_clear_all_viewers"
+// /datum/component/remote_view signals
+/// Signal that can be sent from the mob remote viewing, the viewed mob, or object being used to view to forcibly end all related remote viewing components
+#define COMSIG_REMOTE_VIEW_CLEAR "remote_view_clear_viewers"
 
 // /datum/action signals
 
