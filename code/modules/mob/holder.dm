@@ -123,7 +123,6 @@ var/list/holder_mob_icon_cache = list()
 		* The remote view component at the end is purely for releasing your view of the turf when you move. Or you'll be stuck focused on it.
 		* If you figure out a better one that doesn't break throwing and putting holders into disposals, please fix this. - Willbird
 		*/
-		unstick_mob.reset_perspective(release_turf)
 		unstick_mob.forceMove(release_turf)
 		if(unstick_mob.client)
 			unstick_mob.AddComponent(/datum/component/remote_view, release_turf)
