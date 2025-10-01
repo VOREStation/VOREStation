@@ -819,6 +819,8 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		M = usr
 	if(!isliving(M))
 		return 0
+	if(isbelly(M.loc) || istype(M.loc,/obj/item/dogborg/sleeper))
+		return 0
 
 	var/devicename
 	if(zoomdevicename)
