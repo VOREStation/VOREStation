@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Weaver trait now has a TGUI panel"
+  - qol: "Weaver now has the ability to spin a cocoon"
+  - code_imp: "Cleans up some signals pertaining to Weaver."
