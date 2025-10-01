@@ -1,3 +1,4 @@
+
 /turf/simulated/floor/water/underwater
 	name = "sea floor"
 	desc = "It's the bottom of the sea, there's water all over the place!"
@@ -93,3 +94,36 @@
 	icon_state = "wood-broken0" // So it shows up in the map editor as water.
 	water_icon = 'icons/turf/flooring/wood_vr.dmi'
 	water_state = "wood-broken0"
+
+/turf/simulated/floor/water/underwater/rocks
+	icon_state = "rock"
+
+// Indoors variants that do not use outdoor lighting, and must re-add water overlay icons since they won't be relying on the weather system to do it!
+
+/turf/simulated/floor/water/underwater/indoors
+	outdoors = OUTDOORS_NO
+	water_icon = 'icons/effects/weather.dmi'
+	water_state = "underwater"
+
+/turf/simulated/floor/water/underwater/indoors/cult
+	icon = 'icons/turf/flooring/cult.dmi'
+	icon_state = "cult"
+
+/turf/simulated/floor/water/underwater/indoors/ruins
+	icon = 'maps/redgate/falls/icons/turfs/marble.dmi'
+	icon_state = "1"
+
+/turf/simulated/floor/water/underwater/indoors/sand
+	icon = 'icons/misc/beach.dmi'
+	icon_state = "sand"
+
+/turf/simulated/floor/water/underwater/indoors/wood
+	icon = 'icons/turf/flooring/wood_vr.dmi'
+	icon_state = "wood"
+
+/turf/simulated/floor/water/underwater/indoors/woodbroken
+	icon = 'icons/turf/flooring/wood_vr.dmi'
+	icon_state = "wood-broken0"
+
+/turf/simulated/floor/water/underwater/indoors/rocks
+	icon_state = "rock"

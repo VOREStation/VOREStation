@@ -299,13 +299,13 @@
 	icon_state = "red"
 
 /area/redgate/underwater_casino/indoors/upper/secret/piratebasetunnel
-	name = UNDERWATER_CASINO_NAME + " - Pirate Base Secret Tunnel (Top Floor)"
+	name = UNDERWATER_CASINO_NAME + " - Secret Tunnel (Top Floor)"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "red"
 	sound_env = TUNNEL_ENCLOSED
 
 /area/redgate/underwater_casino/indoors/lower/secret/piratebasetunnel
-	name = UNDERWATER_CASINO_NAME + " - Pirate Base Secret Tunnel (Bottom Floor)"
+	name = UNDERWATER_CASINO_NAME + " - Secret Tunnel (Bottom Floor)"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "red"
 	sound_env = TUNNEL_ENCLOSED

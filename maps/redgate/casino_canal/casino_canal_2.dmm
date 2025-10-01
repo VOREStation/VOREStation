@@ -2144,7 +2144,7 @@
 /area/redgate/underwater_casino/indoors/upper/casino)
 "fd" = (
 /obj/structure/table/reinforced,
-/obj/random/toolbox,
+/obj/random/shibari,
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
 "fe" = (
@@ -2502,6 +2502,16 @@
 "gf" = (
 /turf/simulated/floor/grass,
 /area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"gg" = (
+/obj/random/chips,
+/turf/simulated/floor/water/underwater,
+/area/redgate/underwater_casino/outdoors)
+"gh" = (
+/turf/simulated/floor/water/underwater/indoors,
+/area/redgate/underwater_casino/outdoors)
+"gi" = (
+/turf/simulated/floor/water/underwater/indoors/rocks,
+/area/redgate/underwater_casino/outdoors)
 "gj" = (
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/redgate/underwater_casino/indoors/upper/secret/biodome)
@@ -2533,6 +2543,15 @@
 /obj/structure/flora/underwater/plant4,
 /turf/simulated/floor/water/underwater,
 /area/redgate/underwater_casino/outdoors)
+"gp" = (
+/turf/simulated/floor/water/underwater/rocks,
+/area/redgate/underwater_casino/outdoors)
+"gq" = (
+/obj/random/chips/good{
+	pixel_x = -1
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gr" = (
 /obj/structure/fence/corner,
 /turf/simulated/floor/grass,
@@ -2657,6 +2676,10 @@
 "gK" = (
 /turf/simulated/wall/tgmc/durawall,
 /area/redgate/underwater_casino/indoors/upper/secret/militantbase)
+"gL" = (
+/obj/structure/flora/underwater/grass4,
+/turf/simulated/floor/water/underwater/indoors,
+/area/redgate/underwater_casino/outdoors)
 "gM" = (
 /turf/simulated/floor/tiled/eris/derelict3,
 /area/redgate/underwater_casino/indoors/upper/secret/militantbase)
@@ -2706,7 +2729,7 @@
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gX" = (
 /obj/structure/atmospheric_retention_field/underdoors,
-/turf/simulated/floor/water/underwater,
+/turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gY" = (
 /obj/structure/sign/flag/pirate/left{
@@ -2742,7 +2765,7 @@
 /turf/simulated/floor/tiled/eris/derelict3,
 /area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "he" = (
-/obj/item/capture_crystal/random,
+/obj/item/aliencoin/gold,
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
@@ -2806,22 +2829,6 @@
 	icon = 'icons/turf/areas.dmi';
 	icon_state = "green"
 	})
-"ho" = (
-/turf/unsimulated/wall/planetary/virgo3c,
-/area/redgate/underwater_casino/indoors/upper/secret/piratebasetunnel)
-"hp" = (
-/turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/indoors/upper/secret/piratebasetunnel)
-"hq" = (
-/obj/structure/ladder,
-/turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/indoors/upper/secret/piratebasetunnel)
-"hr" = (
-/turf/simulated/wall/tgmc/darkwall{
-	can_open = 1;
-	desc = "A huge chunk of metal used to separate rooms. There appears to be thin gaps along the borders."
-	},
-/area/redgate/underwater_casino/indoors/upper/hall)
 "hs" = (
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	name = "glass airlock";
@@ -2875,6 +2882,10 @@
 /obj/structure/atmospheric_retention_field/underdoors,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors/upper/secret/militantbase)
+"hz" = (
+/obj/structure/flora/underwater/plant5,
+/turf/simulated/floor/water/underwater/indoors,
+/area/redgate/underwater_casino/outdoors)
 "hA" = (
 /obj/machinery/vending/boozeomat,
 /obj/machinery/light/small/neon/generic_green{
@@ -2883,17 +2894,366 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/redgate/underwater_casino/indoors/upper/bar)
+"hB" = (
+/obj/structure/flora/underwater/grass2,
+/turf/simulated/floor/water/underwater/indoors,
+/area/redgate/underwater_casino/outdoors)
+"hC" = (
+/turf/simulated/floor/outdoors/newdirt_nograss/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"hD" = (
+/obj/random/chips,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"hE" = (
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"hF" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 8
+	},
+/obj/structure/window/reinforced/survival_pod{
+	dir = 1
+	},
+/obj/structure/window/reinforced/survival_pod,
+/obj/structure/grille,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"hG" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 1
+	},
+/obj/structure/window/reinforced/survival_pod,
+/obj/structure/grille,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"hH" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
+/obj/structure/window/reinforced/survival_pod{
+	dir = 1
+	},
+/obj/structure/window/reinforced/survival_pod,
+/obj/structure/grille,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"hI" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/structure/fans/tiny,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
 "hJ" = (
 /obj/structure/table/woodentable,
 /obj/structure/closet/walllocker_double/casino/north,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/underwater_casino/indoors/upper/casino/back)
+"hK" = (
+/obj/structure/sign/mining,
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"hL" = (
+/obj/structure/sign/mining/survival,
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"hM" = (
+/obj/structure/sign/mining/survival{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"hN" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod)
+"hO" = (
+/obj/machinery/light,
+/obj/structure/table/gamblingtable,
+/obj/item/reagent_containers/food/condiment/small/sugar{
+	pixel_y = 12
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod)
+"hP" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod)
+"hQ" = (
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/survivalpod)
+"hR" = (
+/obj/machinery/holoposter{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"hS" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"hT" = (
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"hU" = (
+/obj/structure/sign/poster,
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"hV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/holoplant,
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
 "hW" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6/purple{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"hX" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"hY" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 8
+	},
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
+/obj/structure/window/reinforced/survival_pod{
+	dir = 1
+	},
+/obj/structure/window/reinforced/survival_pod,
+/obj/structure/grille,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"hZ" = (
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod)
+"ia" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"ib" = (
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"ic" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"id" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/condiment/small/sugar{
+	pixel_y = 22
+	},
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"ie" = (
+/obj/structure/bed/chair/sofa/left/beige{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"if" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod)
+"ig" = (
+/obj/structure/table/gamblingtable,
+/obj/item/reagent_containers/food/condiment/small/sugar{
+	pixel_y = 12
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod)
+"ih" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/obj/structure/sign/poster{
+	dir = 4
+	},
+/turf/simulated/floor/wood/alt/parquet,
+/area/survivalpod)
+"ii" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"ij" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/glass2/coffeemug/britcup{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"ik" = (
+/obj/structure/bed/chair/sofa/right/beige{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"il" = (
+/obj/machinery/disposal/wall{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"im" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 9
+	},
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"in" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/brown,
+/area/survivalpod)
+"io" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
+/obj/structure/fans/tiny,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"ip" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"iq" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"ir" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/holoplant,
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"is" = (
+/obj/item/stool/padded{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"it" = (
+/obj/item/stool/padded{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"iu" = (
+/obj/item/stool/padded{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"iv" = (
+/obj/item/stool/padded{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"iw" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/regular,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"ix" = (
+/obj/machinery/door/window/survival_pod{
+	dir = 2
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iy" = (
+/obj/structure/table/reinforced,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iz" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/floortube,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iA" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/donut{
+	pixel_y = 5
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iB" = (
+/obj/structure/table/reinforced,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iC" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/floortube,
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iD" = (
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
 "iF" = (
 /obj/machinery/door/airlock/angled_bay/double/glass{
 	dir = 8;
@@ -2904,6 +3264,99 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors/upper/lounge)
+"iG" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iH" = (
+/obj/machinery/disposal/wall,
+/obj/structure/disposalpipe/trunk,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iI" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iJ" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/reagent_containers/food/snacks/donut/choc,
+/obj/item/reagent_containers/food/snacks/donut/choc,
+/obj/item/reagent_containers/food/snacks/donut/choc/jelly,
+/obj/item/reagent_containers/food/snacks/donut/choc/jelly,
+/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles,
+/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles,
+/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/jelly,
+/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/jelly,
+/obj/item/reagent_containers/food/snacks/donut/homer,
+/obj/item/reagent_containers/food/snacks/donut/homer,
+/obj/item/reagent_containers/food/snacks/donut/homer,
+/obj/item/reagent_containers/food/snacks/donut/homer,
+/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
+/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
+/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
+/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
+/obj/item/reagent_containers/food/snacks/donut/plain,
+/obj/item/reagent_containers/food/snacks/donut/plain,
+/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
+/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
+/obj/item/reagent_containers/food/snacks/donut/purple,
+/obj/item/reagent_containers/food/snacks/donut/purple,
+/obj/item/reagent_containers/food/snacks/donut/purple/jelly,
+/obj/item/reagent_containers/food/snacks/donut/purple/jelly,
+/obj/item/reagent_containers/food/snacks/donut/yellow,
+/obj/item/reagent_containers/food/snacks/donut/yellow,
+/obj/item/reagent_containers/food/snacks/donut/yellow/jelly,
+/obj/item/reagent_containers/food/snacks/donut/yellow/jelly,
+/obj/item/reagent_containers/food/snacks/donut/pink,
+/obj/item/reagent_containers/food/snacks/donut/pink,
+/obj/item/reagent_containers/food/snacks/donut/pink/jelly,
+/obj/item/reagent_containers/food/snacks/donut/pink/jelly,
+/obj/item/reagent_containers/food/snacks/donut/blue,
+/obj/item/reagent_containers/food/snacks/donut/blue,
+/obj/item/reagent_containers/food/snacks/donut/blue/jelly,
+/obj/item/reagent_containers/food/snacks/donut/blue/jelly,
+/obj/item/reagent_containers/food/drinks/milk,
+/obj/item/reagent_containers/food/drinks/milk,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iK" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/reagent_containers/food/drinks/cup{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/cup{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/cup{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/cup{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/cup{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/cup{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/drinks/cup{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/cup{
+	pixel_x = -4;
+	pixel_y = 12
+	},
+/obj/machinery/light/floortube,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
 "iL" = (
 /obj/structure/railing{
 	dir = 8
@@ -2911,6 +3364,28 @@
 /obj/structure/railing,
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
+"iM" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/chemical_dispenser/bar_syrup/full{
+	pixel_y = 10
+	},
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/obj/machinery/light/floortube,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iN" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/chemical_dispenser/bar_coffee/full{
+	pixel_y = 10
+	},
+/obj/machinery/light/floortube,
+/obj/item/reagent_containers/glass/beaker/measuring_cup{
+	pixel_x = -18
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
 "iO" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment,
@@ -2920,6 +3395,59 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/redgate/underwater_casino/indoors/upper/lounge)
+"iQ" = (
+/obj/structure/table/hardwoodtable,
+/obj/item/hand_labeler,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/glass/rag,
+/obj/structure/closet/walllocker_double/kitchen/north,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup_tall,
+/obj/item/storage/box/glasses/coffeecup_grande,
+/obj/item/storage/box/glasses/coffeecup_venti,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/item/reagent_containers/food/drinks/glass2/pitcher,
+/obj/machinery/light/floortube,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/sink{
+	pixel_y = 22
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iS" = (
+/obj/machinery/holoplant,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"iT" = (
+/obj/structure/sign/mining/survival{
+	dir = 1
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"iU" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
 "iV" = (
 /obj/machinery/appliance/cooker/oven,
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -2927,6 +3455,19 @@
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/underwater_casino/indoors/upper/kitchen)
+"iW" = (
+/obj/structure/sign/mining/survival{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"iX" = (
+/turf/simulated/floor/outdoors/newdirt_nograss/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "iY" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5/purple,
 /obj/effect/floor_decal/steeldecal/steel_decals7/purple{
@@ -2943,10 +3484,105 @@
 	},
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"iZ" = (
+/obj/machinery/light,
+/turf/simulated/floor/wood,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"ja" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"jb" = (
+/obj/machinery/light/small/torch{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/newdirt_nograss/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"jc" = (
+/obj/machinery/light/small/torch{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"jd" = (
+/obj/random/humanoidremains,
+/turf/simulated/floor/water/underwater/indoors/rocks,
+/area/redgate/underwater_casino/outdoors)
+"je" = (
+/obj/machinery/light{
+	dir = 1;
+	stat = 0
+	},
+/turf/simulated/floor/wood,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"jf" = (
+/obj/structure/table/woodentable,
+/obj/random/chips/better{
+	pixel_y = 6;
+	pixel_x = -14
+	},
+/turf/simulated/floor/wood,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"jg" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"jh" = (
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
+"ji" = (
+/obj/random/outcrop,
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
+"jj" = (
+/obj/random/humanoidremains,
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
+"jk" = (
+/obj/random/empty_or_lootable_crate,
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
+"jl" = (
+/obj/item/spacecasinocash/c10{
+	pixel_y = -6;
+	pixel_x = -9
+	},
+/obj/item/spacecasinocash/c1{
+	pixel_y = 1;
+	pixel_x = -12
+	},
+/obj/random/chips/better{
+	pixel_x = 8
+	},
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
 "jm" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/monotile/purple,
 /area/redgate/underwater_casino/indoors/upper/janitorcloset)
+"jn" = (
+/obj/random/chips/good{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
+"jo" = (
+/obj/random/humanoidremains,
+/turf/simulated/floor/water/underwater/indoors,
+/area/redgate/underwater_casino/outdoors)
+"jp" = (
+/mob/living/simple_mob/animal/space/carp/large/huge/vorny,
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
+"jq" = (
+/obj/random/chips/better{
+	pixel_x = -9
+	},
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
 "jr" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5/purple{
 	dir = 4
@@ -2966,6 +3602,24 @@
 "js" = (
 /turf/simulated/wall/tgmc/window/redstripe_r,
 /area/redgate/underwater_casino/indoors)
+"jt" = (
+/obj/random/chips{
+	pixel_y = 13
+	},
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
+"ju" = (
+/obj/random/multiple/ore_pile,
+/turf/simulated/floor/water/underwater/indoors/rocks,
+/area/redgate/underwater_casino/outdoors)
+"jv" = (
+/obj/item/spacecasinocash/c10{
+	pixel_y = 4;
+	pixel_x = -5
+	},
+/obj/random/chips,
+/turf/simulated/floor/water/underwater/indoors/sand,
+/area/redgate/underwater_casino/outdoors)
 "jQ" = (
 /obj/structure/bed/chair/sofa/corp/corner,
 /obj/structure/sign/painting/public/east,
@@ -3457,7 +4111,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors)
 "py" = (
-/obj/effect/fake_sun/underwater,
+/obj/effect/fake_sun/underwater/lighter,
 /obj/effect/landmark/map_data/underwater_casino,
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/redgate/underwater_casino)
@@ -3845,13 +4499,12 @@
 	pixel_y = 8;
 	pixel_x = -9
 	},
-/obj/item/spacecasinocash/c1{
-	pixel_y = 1;
-	pixel_x = -12
+/obj/random/chips/better{
+	pixel_y = 9;
+	pixel_x = 5
 	},
-/obj/item/spacecasinocash/c1{
-	pixel_y = 6;
-	pixel_x = -3
+/obj/random/chips/better{
+	pixel_x = -6
 	},
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/upper/barback)
@@ -4653,6 +5306,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/mob/living/simple_mob/vore/succubus,
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
 "HW" = (
@@ -4798,15 +5452,13 @@
 /area/redgate/underwater_casino/indoors/upper/casino)
 "JS" = (
 /obj/structure/table/reinforced,
-/obj/item/spacecasinocash/c10{
-	pixel_y = 4;
-	pixel_x = 3
+/obj/random/chips{
+	pixel_y = 5;
+	pixel_x = 4
 	},
-/obj/item/spacecasinocash/c10{
-	pixel_y = -4;
-	pixel_x = -1
-	},
-/obj/item/spacecasinocash/c1{
+/obj/random/chips,
+/obj/random/chips{
+	pixel_y = 3;
 	pixel_x = -5
 	},
 /obj/machinery/light/small,
@@ -5376,7 +6028,7 @@
 	vore_pounce_chance = 50;
 	name = "Bridget";
 	gender = "female";
-	desc = "She's a dusty big-eared sandfox! While adorable, she also has a tendency to give most onlookers the stink-eye."
+	desc = "A dusty big-eared sandfox! While adorable, she also has a tendency to give most onlookers the stink-eye."
 	},
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/underwater_casino/indoors)
@@ -5846,10 +6498,7 @@
 /area/redgate/underwater_casino/indoors/upper/casino/back)
 "Zj" = (
 /obj/structure/table/reinforced,
-/obj/item/spacecasinocash/c100{
-	pixel_y = -3;
-	pixel_x = 3
-	},
+/obj/random/chips,
 /obj/item/spacecasinocash/c10{
 	pixel_y = 4;
 	pixel_x = -5
@@ -8361,7 +9010,7 @@ Dm
 Dm
 gD
 gD
-gD
+hC
 gD
 Dm
 tT
@@ -8500,9 +9149,9 @@ tT
 tT
 Dm
 Dm
+hD
 gD
-gD
-gD
+hC
 gD
 gD
 Dm
@@ -8643,13 +9292,13 @@ tT
 Dm
 gD
 gD
+hC
+hC
 gD
 gD
 gD
-gD
-gD
-gD
-gD
+hC
+hC
 gD
 gD
 Dm
@@ -8783,9 +9432,9 @@ tT
 tT
 tT
 Dm
+hC
 gD
-gD
-gD
+hC
 gD
 gD
 gD
@@ -8927,15 +9576,15 @@ tT
 Dm
 gD
 gD
+hC
 gD
 gD
 gD
+hC
 gD
 gD
 gD
-gD
-gD
-gD
+hC
 gD
 gD
 gD
@@ -9079,7 +9728,7 @@ gD
 gD
 gD
 gD
-gD
+hD
 gD
 Dm
 tT
@@ -9222,7 +9871,7 @@ gG
 gD
 gD
 gD
-gD
+hC
 Dm
 tT
 Dm
@@ -9351,8 +10000,8 @@ tT
 tT
 Dm
 Dm
+hC
 gD
-gD
 gG
 gG
 gG
@@ -9361,7 +10010,7 @@ gG
 gG
 gG
 gG
-gD
+hC
 gD
 gD
 gD
@@ -9493,8 +10142,8 @@ tT
 Dm
 Dm
 gD
+hC
 gD
-gD
 gG
 gG
 gG
@@ -9505,7 +10154,7 @@ gG
 gG
 gG
 gD
-gD
+hC
 gD
 gC
 tT
@@ -10364,8 +11013,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
+tT
+tT
 Dm
 Dm
 Dm
@@ -10505,10 +11154,10 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -10647,11 +11296,11 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -12569,11 +13218,11 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+jv
+jh
+jk
+jh
+jl
 Dm
 Dm
 Dm
@@ -12710,13 +13359,13 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+ji
+jh
+jh
+jj
+jh
+jh
+jh
 Dm
 Dm
 Dm
@@ -12852,13 +13501,13 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+jh
+jh
+jh
+jp
+jh
+jn
+ji
 Dm
 Dm
 Dm
@@ -12993,14 +13642,14 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+gi
+jh
+jh
+jh
+jh
+jh
+jh
+jj
 Dm
 Dm
 Dm
@@ -13135,14 +13784,14 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+gi
+jh
+jh
+jh
+jh
+jh
+jh
+jk
 Dm
 Dm
 Dm
@@ -13277,12 +13926,12 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+gi
+jh
+gi
+jh
+jq
+jh
 Dm
 Dm
 Dm
@@ -13419,11 +14068,11 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+gi
+gi
+gi
+gi
+jt
 Dm
 Dm
 Dm
@@ -13562,11 +14211,11 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+gi
+gi
+gi
+gi
+gi
 Dm
 Dm
 Dm
@@ -13708,8 +14357,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
+gi
+gi
 Dm
 Dm
 Dm
@@ -13851,7 +14500,7 @@ Dm
 Dm
 Dm
 Dm
-Dm
+gi
 Dm
 Dm
 Dm
@@ -13993,7 +14642,7 @@ Dm
 Dm
 Dm
 Dm
-Dm
+gi
 Dm
 Dm
 Dm
@@ -14103,9 +14752,9 @@ tT
 tT
 Dm
 Dm
-tT
-tT
-tT
+gi
+gi
+gi
 Dm
 Dm
 Dm
@@ -14135,7 +14784,7 @@ Dm
 Dm
 Dm
 Dm
-Dm
+gi
 Dm
 Dm
 Dm
@@ -14244,11 +14893,11 @@ tT
 tT
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
+gi
 Dm
 Dm
 Dm
@@ -14276,8 +14925,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
+jo
+gh
 Dm
 Dm
 Dm
@@ -14384,14 +15033,14 @@ tT
 tT
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
+gi
+gi
+gi
+gi
 Dm
 Dm
 tT
@@ -14412,13 +15061,13 @@ Dm
 Dm
 Dm
 tT
+gh
+jo
+Dm
+Dm
+Dm
+gh
 tT
-tT
-Dm
-Dm
-Dm
-Dm
-Dm
 Dm
 Dm
 Dm
@@ -14523,17 +15172,17 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+gh
+gh
+gh
+gh
+gi
+gi
+gi
+gp
+gp
+gi
+gi
 Dm
 Dm
 Dm
@@ -14555,12 +15204,12 @@ tT
 tT
 tT
 tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
+gh
+jd
+gi
+gi
+gi
+gh
 Dm
 Dm
 Dm
@@ -14665,17 +15314,17 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+gh
+gh
+gi
+gi
+gi
+gi
+gp
+gp
+gp
+gp
+gi
 Dm
 Dm
 Dm
@@ -14694,7 +15343,7 @@ Dm
 Dm
 tT
 tT
-tT
+hc
 tT
 Dm
 Dm
@@ -14810,14 +15459,14 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
+gp
+gp
+gi
+gi
 Dm
 Dm
 Dm
@@ -14955,10 +15604,10 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
 Dm
 Dm
 Dm
@@ -16365,7 +17014,7 @@ tT
 fR
 tT
 tT
-tT
+gg
 fR
 fR
 fR
@@ -16515,7 +17164,7 @@ tT
 tT
 tT
 fR
-tT
+gg
 tT
 tT
 tT
@@ -17051,7 +17700,7 @@ dC
 dx
 ar
 ai
-ho
+Dm
 tT
 tT
 tT
@@ -17079,7 +17728,7 @@ fV
 fZ
 fR
 fR
-tT
+gg
 fR
 fR
 fV
@@ -17193,9 +17842,9 @@ oS
 oS
 Lf
 ai
-ho
-ho
-tT
+Dm
+Dm
+Dm
 tT
 fZ
 tT
@@ -17257,14 +17906,14 @@ tT
 tT
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
+gi
+gi
+gi
+gi
 Dm
 Dm
 Dm
@@ -17335,10 +17984,10 @@ ai
 ai
 ai
 ai
-ho
-ho
-ho
-tT
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -17399,15 +18048,15 @@ tT
 tT
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
 Dm
 Dm
 Dm
-tT
-tT
+gi
+gi
 Dm
 Dm
 Dm
@@ -17473,15 +18122,15 @@ kC
 dr
 SK
 ai
-ho
-ho
-ho
-ho
-ho
-ho
-ho
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -17540,8 +18189,8 @@ tT
 tT
 Dm
 Dm
-tT
-tT
+ju
+gi
 Dm
 Dm
 Dm
@@ -17549,7 +18198,7 @@ Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
@@ -17615,15 +18264,15 @@ sn
 dr
 ar
 ai
-ho
-hp
-hp
-hp
-ho
-ho
-ho
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -17685,13 +18334,13 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
+gi
+gi
+gi
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
@@ -17756,16 +18405,16 @@ do
 dC
 dx
 SK
-hr
-hp
-hp
-hp
-hq
-hp
-ho
-ho
-tT
-tT
+ai
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -17821,19 +18470,19 @@ tT
 tT
 tT
 tT
-tT
+gi
 Dm
 Dm
 Dm
-tT
-tT
-tT
+gi
+gi
+gi
 Dm
 Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
@@ -17899,15 +18548,15 @@ nJ
 oS
 Lf
 ai
-ho
-hp
-hp
-hp
-hp
-ho
-ho
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -17963,20 +18612,20 @@ tT
 tT
 tT
 Dm
-tT
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
+gi
 Dm
 Dm
 Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
+gi
+gi
+gi
 Dm
 Dm
 tT
@@ -18041,14 +18690,14 @@ al
 am
 am
 al
-ho
-ho
-ho
-ho
-ho
-ho
-ho
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -18108,18 +18757,18 @@ Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
 Dm
-tT
-tT
+gi
+gi
 Dm
 tT
 tT
@@ -18188,8 +18837,8 @@ al
 al
 al
 al
-ho
-tT
+Dm
+Dm
 tT
 tT
 tT
@@ -18250,18 +18899,18 @@ Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 tT
 tT
@@ -18392,18 +19041,18 @@ Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 tT
 tT
@@ -18534,18 +19183,18 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-hc
+gi
+gi
+gi
+gi
+gi
+gi
+gi
+jd
 Dm
 Dm
-tT
-tT
+gi
+gi
 Dm
 Dm
 tT
@@ -18676,7 +19325,7 @@ Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
@@ -18686,7 +19335,7 @@ Dm
 Dm
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
@@ -18814,21 +19463,21 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+ju
+gi
+gi
+gi
+gi
+gi
+gi
 Dm
 Dm
 Dm
 Dm
-tT
-tT
+Dm
+Dm
+gi
+gi
 Dm
 Dm
 Dm
@@ -18956,16 +19605,16 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
+gi
+gi
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
-tT
-tT
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -19098,26 +19747,26 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
+gi
+gi
 Dm
 Dm
-tT
+gi
 Dm
 Dm
 Dm
 Dm
-tT
-tT
 Dm
+Dm
+Dm
+jb
 gR
 gR
 gR
-gR
 Dm
 Dm
 Dm
-tT
+Dm
 tT
 tT
 tT
@@ -19241,26 +19890,26 @@ Dm
 Dm
 Dm
 Dm
-tT
+gi
+Dm
+gi
+gi
+gi
 Dm
 Dm
-tT
-tT
 Dm
 Dm
 Dm
-Dm
-tT
 Dm
 gY
 gR
-gR
-gR
+iX
+iX
 gR
 gR
 Dm
-tT
-tT
+Dm
+Dm
 tT
 tT
 tT
@@ -19383,26 +20032,26 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
+gi
+gi
+gi
 Dm
 Dm
-tT
+Dm
 Dm
 gZ
+iX
 gR
 gR
 gR
-gR
-gR
+iX
 Dm
-tT
-tT
+Dm
+Dm
 tT
 tT
 tT
@@ -19533,18 +20182,18 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
 Dm
-gR
-gR
-gR
+Dm
+Dm
+jc
+iX
+iX
 gR
 gR
 gR
 Dm
-tT
-tT
+Dm
+Dm
 tT
 tT
 tT
@@ -19675,19 +20324,19 @@ Dm
 Dm
 Dm
 Dm
-tT
 Dm
 Dm
 Dm
+Dm
+iX
 gR
-gR
-gR
+iX
 gR
 Dm
 Dm
-tT
-tT
-tT
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -19815,21 +20464,21 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
 gR
 gR
-gR
-gR
+iX
+iX
 Dm
 Dm
-tT
-tT
-tT
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -19929,10 +20578,10 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
 tT
 tT
 Dm
@@ -19953,11 +20602,11 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -19969,9 +20618,9 @@ gU
 gS
 gS
 Dm
-tT
-tT
-tT
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -20070,7 +20719,7 @@ tT
 tT
 fW
 tT
-tT
+gi
 tT
 Dm
 Dm
@@ -20111,9 +20760,9 @@ gT
 gT
 gS
 Dm
-tT
-tT
-tT
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -20211,8 +20860,8 @@ tT
 fR
 tT
 tT
-tT
-tT
+gi
+gi
 Dm
 Dm
 Dm
@@ -20253,9 +20902,9 @@ gT
 gT
 gS
 Dm
-tT
-tT
-tT
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -20386,17 +21035,17 @@ Dm
 Dm
 Dm
 gS
+je
 gT
 gT
 gT
 gT
 gT
-gT
-gT
+iZ
 gS
 Dm
-tT
-tT
+Dm
+Dm
 tT
 tT
 tT
@@ -20538,7 +21187,7 @@ gT
 gS
 Dm
 Dm
-tT
+Dm
 tT
 tT
 tT
@@ -20639,10 +21288,10 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
+gi
+gi
+gi
+gi
 fZ
 Dm
 Dm
@@ -20770,7 +21419,7 @@ tT
 Dm
 Dm
 Dm
-tT
+gg
 fW
 Dm
 tT
@@ -20783,10 +21432,10 @@ Dm
 Dm
 tT
 ge
-tT
+gi
 Dm
 tT
-tT
+gh
 Dm
 Dm
 Dm
@@ -20812,7 +21461,7 @@ Dm
 Dm
 Dm
 gS
-he
+jf
 gT
 gT
 gT
@@ -20954,7 +21603,7 @@ Dm
 Dm
 Dm
 gS
-he
+jg
 gT
 gT
 gT
@@ -21072,7 +21721,7 @@ Dm
 Dm
 Dm
 tT
-tT
+gg
 Dm
 Dm
 at
@@ -21099,7 +21748,7 @@ gS
 gS
 gT
 gT
-gT
+ja
 gT
 hx
 hx
@@ -21372,12 +22021,12 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -21512,20 +22161,20 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -21653,23 +22302,23 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -21794,31 +22443,31 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
 Dm
 Dm
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -21936,31 +22585,31 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -22077,32 +22726,32 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -22219,33 +22868,33 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -22360,34 +23009,34 @@ at
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 tT
 tT
@@ -22482,7 +23131,7 @@ gf
 gf
 hk
 gj
-gj
+gq
 hk
 gf
 ga
@@ -22502,33 +23151,33 @@ at
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 tT
@@ -22644,32 +23293,32 @@ at
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -22785,33 +23434,33 @@ at
 at
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -22927,32 +23576,32 @@ at
 at
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -23069,32 +23718,32 @@ at
 at
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -23211,32 +23860,32 @@ at
 at
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-gv
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -23353,32 +24002,32 @@ at
 at
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -23495,33 +24144,6 @@ at
 at
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
@@ -23533,6 +24155,33 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
 tT
 tT
 tT
@@ -23637,6 +24286,78 @@ at
 at
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -23669,80 +24390,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
-Dm
-fR
-tT
+hB
+gh
 Dm
 Dm
 Dm
@@ -23780,6 +24429,77 @@ at
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -23811,79 +24531,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
-Dm
-tT
-tT
+gh
+gh
 Dm
 Dm
 Dm
@@ -23922,32 +24571,6 @@ at
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
@@ -23964,6 +24587,32 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+hE
+hM
+hE
+hM
+hE
+io
+hE
+hM
+hY
+hM
+hE
 tT
 tT
 tT
@@ -23990,7 +24639,7 @@ tT
 tT
 tT
 tT
-tT
+hg
 tT
 tT
 tT
@@ -24024,9 +24673,9 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
+gh
+gh
+gh
 Dm
 Dm
 Dm
@@ -24064,6 +24713,75 @@ at
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+iT
+iI
+iD
+iw
+ir
+ib
+hF
+if
+hZ
+hN
+hF
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -24097,79 +24815,10 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-tT
-tT
-fV
-tT
+gh
+gh
+gL
+gh
 Dm
 Dm
 Dm
@@ -24206,6 +24855,74 @@ at
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+hE
+iJ
+iD
+ix
+ib
+ib
+hG
+ig
+hZ
+hO
+hG
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -24241,76 +24958,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-tT
-tT
+gh
+gh
 Dm
 Dm
 Dm
@@ -24348,6 +24997,71 @@ at
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+iT
+iK
+iD
+iy
+is
+ib
+hH
+ih
+hZ
+hP
+hH
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -24386,73 +25100,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-fR
-tT
+hB
+gh
 Dm
 Dm
 Dm
@@ -24491,6 +25140,69 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+hE
+iM
+iD
+iz
+is
+ib
+hQ
+hQ
+ia
+hQ
+hE
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -24517,69 +25229,6 @@ tT
 tT
 tT
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
 tT
 Dm
 Dm
@@ -24594,7 +25243,7 @@ Dm
 Dm
 Dm
 Dm
-gx
+hz
 Dm
 Dm
 Dm
@@ -24633,31 +25282,6 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
@@ -24679,6 +25303,31 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+iT
+iN
+iD
+iA
+is
+ib
+il
+ii
+ib
+hR
+hI
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -24776,31 +25425,6 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
@@ -24821,6 +25445,31 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+iU
+iQ
+iE
+iy
+is
+ip
+im
+hS
+hS
+hS
+hE
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -24919,30 +25568,6 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
@@ -24962,6 +25587,30 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+iW
+iR
+iG
+iB
+it
+iq
+in
+ic
+ic
+hT
+hK
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -25063,29 +25712,6 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
@@ -25102,6 +25728,29 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+hE
+hQ
+iH
+iC
+iu
+ib
+in
+ij
+id
+hU
+hE
+tT
+tT
 tT
 tT
 tT
@@ -25207,27 +25856,6 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
@@ -25240,8 +25868,29 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+iT
+iS
+iD
+iy
+iv
+ib
+in
+ik
+ie
+hV
+hL
 tT
 tT
 tT
@@ -25354,36 +26003,36 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+hE
+hX
+io
+hX
+hE
+io
+hY
+hX
+hY
+hX
+hE
 tT
 tT
 tT
@@ -25505,26 +26154,26 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
