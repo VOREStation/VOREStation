@@ -116,7 +116,7 @@
 		if("toggle_silk_production")
 			silk_production = !(silk_production)
 			to_chat(owner, span_info("You are [silk_production ? "now" : "no longer"] producing silk."))
-			return TRUE
+			return FALSE
 		if("check_silk_amount")
 			to_chat(owner, span_info("Your silk reserves are at [silk_reserve]/[silk_max_reserve]."))
 			return TRUE
