@@ -41,7 +41,7 @@ export const ColorMatrixColorBox = (props: {
     <Floating
       onOpenChange={setIsOpen}
       placement="bottom-end"
-      contentClasses="MatrxiEditor__Floating"
+      contentClasses="MatrixEditor__Floating"
       content={
         <ColorSelector
           color={currentColor}
