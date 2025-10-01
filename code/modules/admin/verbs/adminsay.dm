@@ -6,7 +6,7 @@ ADMIN_VERB(cmd_admin_say, R_ADMIN, "ASay", "Send a message to other admins", "Ad
 	user.mob.log_talk(message, LOG_ASAY)
 
 	for(var/client/C in GLOB.admins)
-		if(check_rights_for(C, R_ADMIN)
+		if(check_rights_for(C, R_ADMIN))
 			to_chat(C, span_admin_channel(create_text_tag("admin", "ADMIN:", C) + " " + span_name("[key_name(user, 1)]") + "([admin_jump_link(user.mob, C.holder)]): " + span_name("[msg]") ))
 
 	feedback_add_details("admin_verb","M") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
