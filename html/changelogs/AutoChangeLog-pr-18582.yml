@@ -1,0 +1,4 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - qol: "Added an option to the Reflexive Biting and Personal Bubble traits that lets you choose to start with them enabled or disabled."
