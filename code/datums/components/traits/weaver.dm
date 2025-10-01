@@ -119,7 +119,7 @@
 			return FALSE
 		if("check_silk_amount")
 			to_chat(owner, span_info("Your silk reserves are at [silk_reserve]/[silk_max_reserve]."))
-			return TRUE
+			return FALSE
 		/* //Unused.
 		if("weave_item") //The global list of items.
 			weave_item()
