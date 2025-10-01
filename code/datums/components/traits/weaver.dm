@@ -137,7 +137,6 @@
 		if("weave_nest")
 			weave_check(100, /obj/structure/bed/double/weaversilk_nest)
 			return TRUE
-
 		if("weave_trap")
 			weave_check(250, /obj/effect/weaversilk/trap)
 			return TRUE
