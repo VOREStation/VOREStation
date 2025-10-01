@@ -1560,10 +1560,12 @@
 	desc = "You will reflexively bite hands that attempt to pat your head or boop your nose, this can be toggled off."
 	cost = 0
 	custom_only = FALSE
+	has_preferences = list("biting_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Enabled on spawn", TRAIT_NO_VAREDIT_TARGET, FALSE))
 
-/datum/trait/neutral/patting_defence/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/neutral/patting_defence/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
-	H.touch_reaction_flags |= SPECIES_TRAIT_PATTING_DEFENCE
+	if(trait_prefs && trait_prefs["biting_toggle"])
+		H.touch_reaction_flags |= SPECIES_TRAIT_PATTING_DEFENCE
 	add_verb(H, /mob/living/proc/toggle_patting_defence)
 
 /datum/trait/neutral/personal_space
