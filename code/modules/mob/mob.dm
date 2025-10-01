@@ -276,6 +276,10 @@
 		else
 			return TRUE //no setting eye to stupid things like areas or whatever
 	else
+		//Special cases that need to restore remote view components
+		if(isbelly(loc) || istype(loc,/obj/item/dogborg/sleeper))
+			AddComponent(/datum/component/remote_view, loc)
+			return TRUE // We handle our own perspective update
 		//Reset to common defaults: mob if on turf, otherwise current loc
 		if(isturf(loc))
 			client.set_eye(client.mob)
@@ -286,6 +290,25 @@
 	/// Signal sent after the eye has been successfully updated, with the client existing.
 	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
 	return TRUE
+
+/*
+* Avoid using this when possible. If you are dropped, and the view remains focused on the mob that held you, and all your client eye vars
+* point to your own mob. You have run into the bug this is designed to dance around.
+*
+* Reset the view to the turf to avoid a black screen when we do a manual client eye view change after the forceMove().
+* Byond has a bug where if you try to do this sensibly it locks onto the mob that held you until you move. Instead we focus the turf.
+* Yes, the client eye vars are focused to your client mob, yes the perspective is correct, yes the component is qdeled, but it's focused on the wrong mob.
+* I genuinely hate this, but after about a day of debugging it to find a solution, this horridass option was the only one that worked.
+* The remote view component at the end is purely for releasing your view of the turf when you move. Or you'll be stuck focused on it.
+* If you figure out a better one that doesn't break throwing and putting holders into disposals, please fix this. - Willbird
+*/
+/mob/proc/force_clear_perspective()
+	if(!client)
+		return
+	var/turf/release_turf = get_turf(src)
+	AddComponent(/datum/component/remote_view, release_turf)
+	client.eye = release_turf
+	client.perspective = EYE_PERSPECTIVE
 
 /mob/proc/ret_grab(list/L, flag)
 	return
