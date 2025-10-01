@@ -98,20 +98,64 @@
 /turf/simulated/floor/water/underwater/rocks
 	icon_state = "rock"
 
+/turf/simulated/floor/water/underwater/open
+	icon = 'icons/effects/weather.dmi'
+	icon_state = "underwater" // Just looks underwater in the map editor, will be invisible once ingame
+	name = "deeper waters"
+	desc = "The watery depths seem to go even deeper here."
+
+/turf/simulated/floor/water/underwater/open/update_icon()
+	. = ..()
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "invisible"
+
+/turf/simulated/floor/water/underwater/open/LateInitialize()
+	. = ..()
+	AddElement(/datum/element/turf_z_transparency, FALSE)
+
+/turf/simulated/floor/water/underwater/open/CanZPass(atom/A, direction, recursive)
+	return TRUE
+
+/turf/simulated/floor/water/underwater/open/handle_water_icons()
+	// We'll rely on the turfs below for water visuals!
+	SHOULD_CALL_PARENT(FALSE)
+	var/atom/movable/weather_visuals/visuals = new(null)
+	visuals.icon = 'icons/effects/weather.dmi'
+	visuals.icon_state = "underwater"
+	vis_contents += visuals
+
 // Indoors variants that do not use outdoor lighting, and must re-add water overlay icons since they won't be relying on the weather system to do it!
 
 /turf/simulated/floor/water/underwater/indoors
 	outdoors = OUTDOORS_NO
 	var/overlay_icon = 'icons/effects/weather.dmi'
 	var/overlay_state = "underwater"
+	var/atom/movable/weather_visuals/visuals
 
-/turf/simulated/floor/water/underwater/indoors/update_icon()
-	. = ..()
-	//add_overlay(image(icon = overlay_icon, icon_state = overlay_state, layer = ABOVE_MOB_LAYER))
+/turf/simulated/floor/water/underwater/indoors/handle_water_icons()
+	SHOULD_CALL_PARENT(FALSE)
 	var/atom/movable/weather_visuals/visuals = new(null)
 	visuals.icon = overlay_icon
 	visuals.icon_state = overlay_state
 	vis_contents += visuals
+
+/turf/simulated/floor/water/underwater/indoors/open
+	icon = 'icons/effects/weather.dmi'
+	icon_state = "underwater" // Just looks underwater in the map editor, will be invisible once ingame
+
+/turf/simulated/floor/water/underwater/indoors/open/LateInitialize()
+	. = ..()
+	AddElement(/datum/element/turf_z_transparency, FALSE)
+
+/turf/simulated/floor/water/underwater/indoors/open/update_icon()
+	. = ..()
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "invisible"
+	name = "deeper waters"
+	desc = "The watery depths seem to go even deeper here."
+
+/turf/simulated/floor/water/underwater/indoors/open/CanZPass(atom/A, direction, recursive)
+	return TRUE
 
 /turf/simulated/floor/water/underwater/indoors/cult
 	icon = 'icons/turf/flooring/cult.dmi'
