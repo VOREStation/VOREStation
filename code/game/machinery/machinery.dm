@@ -357,6 +357,11 @@ Class Procs:
 				R.play_rped_sound()
 	return 1
 
+// This is it's own proc so it can be more easily found when looking for machines that can upgrade themselves from mapped parts
+// Should be called from LateInitialize()
+/obj/machinery/proc/apply_mapped_upgrades()
+	return
+
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
 /obj/machinery/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)
 	if(!W.has_tool_quality(TOOL_WRENCH))

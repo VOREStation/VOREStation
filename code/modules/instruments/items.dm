@@ -252,3 +252,11 @@
 	w_class = ITEMSIZE_SMALL
 	force = 0
 	hitsound = 'sound/voice/moth/scream_moth.ogg'
+
+//////////////Fluff items
+
+/obj/item/instrument/recorder/fluff_tief
+	name = "flute"
+	desc = "A blue wooden flute."
+	icon_state = "flute_tief"
+	allowed_instrument_ids = "recorder"
