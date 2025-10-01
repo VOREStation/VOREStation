@@ -102,8 +102,16 @@
 
 /turf/simulated/floor/water/underwater/indoors
 	outdoors = OUTDOORS_NO
-	water_icon = 'icons/effects/weather.dmi'
-	water_state = "underwater"
+	var/overlay_icon = 'icons/effects/weather.dmi'
+	var/overlay_state = "underwater"
+
+/turf/simulated/floor/water/underwater/indoors/update_icon()
+	. = ..()
+	//add_overlay(image(icon = overlay_icon, icon_state = overlay_state, layer = ABOVE_MOB_LAYER))
+	var/atom/movable/weather_visuals/visuals = new(null)
+	visuals.icon = overlay_icon
+	visuals.icon_state = overlay_state
+	vis_contents += visuals
 
 /turf/simulated/floor/water/underwater/indoors/cult
 	icon = 'icons/turf/flooring/cult.dmi'
