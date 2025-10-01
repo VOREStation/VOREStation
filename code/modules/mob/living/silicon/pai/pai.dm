@@ -177,7 +177,7 @@
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		src.unset_machine()
-		src.reset_perspective(null)
+		src.reset_perspective(src)
 		return 0
 	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
 
@@ -204,7 +204,7 @@
 /mob/living/silicon/pai/cancel_camera()
 	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
-	src.reset_perspective(null)
+	src.reset_perspective(src)
 	src.unset_machine()
 	src.cameraFollow = null
 
@@ -388,7 +388,6 @@
 	if(istype(T) && !silent) T.visible_message(span_filter_notice(span_bold("[src]") + " neatly folds inwards, compacting down to a rectangular card."))
 
 	stop_pulling()
-	reset_perspective(src)
 
 	//stop resting
 	resting = 0
@@ -419,6 +418,8 @@
 		card.loc = get_turf(card)
 		src.forceMove(card)
 		card.forceMove(card.loc)
+	reset_perspective(src)
+
 	canmove = 1
 	resting = 0
 	icon_state = "[chassis]"

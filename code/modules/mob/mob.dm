@@ -306,7 +306,11 @@
 	if(!client)
 		return
 	var/turf/release_turf = get_turf(src)
-	AddComponent(/datum/component/remote_view, release_turf)
+	if(ispAI(src) && istype(loc,/obj/item/paicard))
+		// PAI needs snowflake handling
+		AddComponent(/datum/component/remote_view/item_zoom, focused_on = release_turf, our_item = loc, viewsize = null, tileoffset = 0, show_visible_messages = FALSE)
+	else
+		AddComponent(/datum/component/remote_view, focused_on = release_turf)
 	client.eye = release_turf
 	client.perspective = EYE_PERSPECTIVE
 

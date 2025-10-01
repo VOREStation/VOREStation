@@ -37,6 +37,11 @@
 	QDEL_NULL(radio)
 	return ..()
 
+/obj/item/paicard/dropped(mob/user)
+	. = ..()
+	if(pai)
+		pai.force_clear_perspective()
+
 // VOREStation Edit - Allow everyone to become a pAI
 /obj/item/paicard/attack_ghost(mob/user as mob)
 	if(pai != null) //Have a person in them already?
