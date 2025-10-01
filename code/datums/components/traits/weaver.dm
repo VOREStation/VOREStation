@@ -112,25 +112,35 @@
 			if(!set_new_color)
 				return FALSE
 			silk_color = set_new_color
+			return TRUE
 		if("toggle_silk_production")
 			silk_production = !(silk_production)
 			to_chat(owner, span_info("You are [silk_production ? "now" : "no longer"] producing silk."))
+			return TRUE
 		if("check_silk_amount")
 			to_chat(owner, span_info("Your silk reserves are at [silk_reserve]/[silk_max_reserve]."))
+			return TRUE
 		/* //Unused.
 		if("weave_item") //The global list of items.
 			weave_item()
+			return TRUE
 		*/
 		if("weave_binding")
 			weave_check(50, /obj/item/clothing/suit/weaversilk_bindings)
+			return TRUE
 		if("weave_floor")
 			weave_check(25, /obj/effect/weaversilk/floor)
+			return TRUE
 		if("weave_wall")
 			weave_check(100, /obj/effect/weaversilk/wall)
+			return TRUE
 		if("weave_nest")
 			weave_check(100, /obj/structure/bed/double/weaversilk_nest)
+			return TRUE
+
 		if("weave_trap")
 			weave_check(250, /obj/effect/weaversilk/trap)
+			return TRUE
 /*
  * Checks to see if we can create the object
 */
