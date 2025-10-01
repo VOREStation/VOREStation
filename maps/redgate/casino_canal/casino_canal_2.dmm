@@ -245,6 +245,10 @@
 "aB" = (
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/redgate/underwater_casino/indoors/upper/lounge)
+"aC" = (
+/mob/living/simple_mob/vore/alienanimals/teppi,
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "aD" = (
 /obj/machinery/light{
 	dir = 4
@@ -2475,10 +2479,10 @@
 /area/redgate/underwater_casino/outdoors)
 "ga" = (
 /turf/simulated/wall/tgmc/whitewall,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gb" = (
 /turf/simulated/wall/tgmc/window/white,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gc" = (
 /obj/structure/casino_table/craps,
 /obj/machinery/light/floortube{
@@ -2496,22 +2500,11 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/underwater_casino/outdoors)
 "gf" = (
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
-/area/redgate/underwater_casino/indoors/upper)
-"gg" = (
-/mob/living/simple_mob/vore/alienanimals/teppi/baby,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
-/area/redgate/underwater_casino/indoors/upper)
-"gh" = (
-/turf/simulated/floor/outdoors/grass/seasonal/dark/notrees_nomobs_nosnow,
-/area/redgate/underwater_casino/indoors/upper)
-"gi" = (
-/mob/living/simple_mob/vore/alienanimals/teppi,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
-/area/redgate/underwater_casino/indoors/upper)
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gj" = (
 /turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gk" = (
 /obj/structure/flora/rocks1,
 /turf/simulated/floor/water/underwater,
@@ -2529,7 +2522,7 @@
 	},
 /obj/structure/atmospheric_retention_field/underdoors,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gn" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6/purple{
 	dir = 6
@@ -2540,30 +2533,20 @@
 /obj/structure/flora/underwater/plant4,
 /turf/simulated/floor/water/underwater,
 /area/redgate/underwater_casino/outdoors)
-"gp" = (
-/obj/structure/fence{
-	dir = 8
-	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
-/area/redgate/underwater_casino/indoors/upper)
-"gq" = (
-/obj/structure/fence/door/opened,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
-/area/redgate/underwater_casino/indoors/upper)
 "gr" = (
 /obj/structure/fence/corner,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
-/area/redgate/underwater_casino/indoors/upper)
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gs" = (
 /mob/living/simple_mob/vore/alienanimals/teppi{
 	ghostjoin = 1
 	},
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
-/area/redgate/underwater_casino/indoors/upper)
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gt" = (
 /obj/structure/fence,
-/turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_nosnow,
-/area/redgate/underwater_casino/indoors/upper)
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gu" = (
 /obj/structure/flora/underwater/plant3,
 /turf/simulated/floor/water/underwater,
@@ -2628,27 +2611,25 @@
 	},
 /obj/structure/atmospheric_retention_field/underdoors,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "gD" = (
 /turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "gE" = (
-/obj/machinery/floodlight{
-	dir = 1;
-	on = 1
+/obj/machinery/floodlight/starts_on{
+	dir = 1
 	},
 /turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "gF" = (
-/obj/machinery/floodlight{
-	dir = 8;
-	on = 1
+/obj/machinery/floodlight/starts_on{
+	dir = 8
 	},
 /turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "gG" = (
 /turf/simulated/open,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "gH" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -2665,52 +2646,48 @@
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
 "gI" = (
-/obj/machinery/floodlight{
-	dir = 4;
-	on = 1
+/obj/machinery/floodlight/starts_on{
+	dir = 4
 	},
 /turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "gJ" = (
 /turf/simulated/wall/tgmc/darkwall/deco3,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
 "gK" = (
 /turf/simulated/wall/tgmc/durawall,
-/area/redgate/underwater_casino/indoors/upper)
-"gL" = (
-/turf/simulated/wall/tgmc/durawall,
-/area/redgate/underwater_casino/outdoors)
+/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "gM" = (
 /turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "gN" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "gO" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "gP" = (
 /turf/simulated/floor/tiled/eris/derelict1,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "gQ" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "gR" = (
 /turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/outdoors)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gS" = (
 /turf/simulated/wall/tgmc/chigusa,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gT" = (
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gU" = (
 /obj/machinery/door/airlock/angled_bay/double/color{
 	dir = 8;
@@ -2718,7 +2695,7 @@
 	stripe_color = "#3c0d06"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gV" = (
 /obj/random/junk,
 /obj/structure/railing,
@@ -2726,23 +2703,23 @@
 /area/redgate/underwater_casino/indoors/upper/maintenance)
 "gW" = (
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gX" = (
 /obj/structure/atmospheric_retention_field/underdoors,
 /turf/simulated/floor/water/underwater,
-/area/redgate/underwater_casino/outdoors)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gY" = (
 /obj/structure/sign/flag/pirate/left{
 	pixel_y = 30
 	},
 /turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/outdoors)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gZ" = (
 /obj/structure/sign/flag/pirate/right{
 	pixel_y = 30
 	},
 /turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/outdoors)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "ha" = (
 /obj/machinery/newscaster{
 	pixel_x = -24
@@ -2763,15 +2740,15 @@
 	stat = 0
 	},
 /turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "he" = (
 /obj/item/capture_crystal/random,
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "hf" = (
 /turf/simulated/wall/tgmc/chigusa/deco2,
-/area/redgate/underwater_casino/indoors/upper)
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "hg" = (
 /mob/living/simple_mob/animal/passive/fish/measelshark,
 /turf/simulated/floor/water/underwater,
@@ -2803,12 +2780,56 @@
 	},
 /turf/simulated/floor/carpet/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"hj" = (
+/mob/living/simple_mob/vore/alienanimals/teppi/baby,
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"hk" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"hl" = (
+/obj/structure/fence/door/opened,
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "hm" = (
 /obj/structure/bed/chair/bay/comfy/brown{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/blue,
 /area/redgate/underwater_casino/indoors/upper/casino)
+"hn" = (
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/redgate/underwater_casino/indoors/upper{
+	icon = 'icons/turf/areas.dmi';
+	icon_state = "green"
+	})
+"ho" = (
+/turf/unsimulated/wall/planetary/virgo3c,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebasetunnel)
+"hp" = (
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebasetunnel)
+"hq" = (
+/obj/structure/ladder,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebasetunnel)
+"hr" = (
+/turf/simulated/wall/tgmc/darkwall{
+	can_open = 1;
+	desc = "A huge chunk of metal used to separate rooms. There appears to be thin gaps along the borders."
+	},
+/area/redgate/underwater_casino/indoors/upper/hall)
+"hs" = (
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	name = "glass airlock";
+	dir = 4
+	},
+/obj/structure/atmospheric_retention_field/underdoors,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "ht" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -2840,6 +2861,20 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
+"hw" = (
+/turf/simulated/floor/tiled/eris/derelict1,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"hx" = (
+/turf/simulated/open,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"hy" = (
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	name = "glass airlock";
+	dir = 4
+	},
+/obj/structure/atmospheric_retention_field/underdoors,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "hA" = (
 /obj/machinery/vending/boozeomat,
 /obj/machinery/light/small/neon/generic_green{
@@ -7575,12 +7610,12 @@ gK
 gK
 gK
 gK
-gm
+hy
 gK
 gK
 gK
 gK
-gL
+gK
 Dm
 Dm
 Dm
@@ -8471,7 +8506,7 @@ gD
 gD
 gD
 Dm
-gm
+hs
 Dm
 Dm
 Dm
@@ -8575,7 +8610,7 @@ gM
 gQ
 gM
 gK
-gL
+gK
 Dm
 Dm
 Dm
@@ -10159,10 +10194,10 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -14644,7 +14679,7 @@ tT
 Dm
 Dm
 Dm
-tT
+Dm
 Dm
 Dm
 Dm
@@ -14786,7 +14821,7 @@ tT
 Dm
 Dm
 Dm
-tT
+Dm
 Dm
 Dm
 Dm
@@ -14928,7 +14963,7 @@ Dm
 Dm
 Dm
 Dm
-tT
+Dm
 Dm
 Dm
 Dm
@@ -17016,7 +17051,7 @@ dC
 dx
 ar
 ai
-tT
+ho
 tT
 tT
 tT
@@ -17158,8 +17193,8 @@ oS
 oS
 Lf
 ai
-tT
-tT
+ho
+ho
 tT
 tT
 fZ
@@ -17300,9 +17335,9 @@ ai
 ai
 ai
 ai
-fR
-tT
-tT
+ho
+ho
+ho
 tT
 tT
 tT
@@ -17437,14 +17472,14 @@ aF
 kC
 dr
 SK
-ak
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+ai
+ho
+ho
+ho
+ho
+ho
+ho
+ho
 tT
 tT
 tT
@@ -17579,14 +17614,14 @@ sz
 sn
 dr
 ar
-ak
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+ai
+ho
+hp
+hp
+hp
+ho
+ho
+ho
 tT
 tT
 tT
@@ -17616,7 +17651,7 @@ fV
 fR
 fV
 tT
-tT
+fZ
 tT
 tT
 tT
@@ -17721,14 +17756,14 @@ do
 dC
 dx
 SK
-ak
-tT
-tT
-tT
-fZ
-tT
-tT
-tT
+hr
+hp
+hp
+hp
+hq
+hp
+ho
+ho
 tT
 tT
 tT
@@ -17758,13 +17793,13 @@ fR
 fV
 tT
 tT
+fZ
+fV
 tT
 tT
-tT
-tT
-tT
-tT
-tT
+fV
+fZ
+fV
 Dm
 Dm
 Dm
@@ -17863,14 +17898,14 @@ dY
 nJ
 oS
 Lf
-ak
-tT
-fR
-tT
-tT
-tT
-tT
-tT
+ai
+ho
+hp
+hp
+hp
+hp
+ho
+ho
 tT
 tT
 tT
@@ -17901,12 +17936,12 @@ tT
 tT
 tT
 tT
+fR
+fR
 tT
 tT
-tT
-tT
-tT
-tT
+fR
+fZ
 Dm
 Dm
 Dm
@@ -18006,6 +18041,22 @@ al
 am
 am
 al
+ho
+ho
+ho
+ho
+ho
+ho
+ho
+tT
+tT
+tT
+tT
+fR
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -18018,22 +18069,6 @@ tT
 tT
 tT
 fR
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-fR
 fR
 tT
 tT
@@ -18044,11 +18079,11 @@ tT
 tT
 tT
 tT
+fZ
+fZ
+gu
 tT
-tT
-tT
-tT
-tT
+fZ
 Dm
 Dm
 Dm
@@ -18148,12 +18183,12 @@ dQ
 fx
 fB
 al
-am
-am
-am
-am
 al
-tT
+al
+al
+al
+al
+ho
 tT
 tT
 tT
@@ -18186,10 +18221,10 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
+fV
+fR
+fV
+fV
 Dm
 Dm
 Dm
@@ -18328,10 +18363,10 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
+fR
+fR
+fW
+fZ
 Dm
 Dm
 Dm
@@ -18469,15 +18504,15 @@ tT
 tT
 tT
 tT
+fV
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+fW
+aI
+fZ
+go
+fV
+fR
 tT
 Dm
 Dm
@@ -18613,14 +18648,14 @@ tT
 tT
 tT
 tT
-tT
+fZ
 Dm
 Dm
 Dm
 Dm
 Dm
-tT
-tT
+fW
+fZ
 tT
 Dm
 Dm
@@ -18763,7 +18798,7 @@ Dm
 Dm
 Dm
 Dm
-tT
+fV
 tT
 Dm
 Dm
@@ -19042,7 +19077,7 @@ Dm
 Dm
 Dm
 Dm
-Dm
+tT
 Dm
 Dm
 Dm
@@ -19134,21 +19169,21 @@ DF
 SK
 al
 al
-am
-am
-am
 al
-al
-tT
-tT
-al
-am
 am
 am
 am
 al
 tT
 tT
+al
+am
+am
+am
+am
+al
+tT
+tT
 tT
 tT
 tT
@@ -19183,9 +19218,9 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
+tT
+fV
+tT
 Dm
 Dm
 Dm
@@ -19274,9 +19309,9 @@ sz
 sn
 DF
 SK
-ak
-tT
-tT
+ai
+Dm
+Dm
 tT
 tT
 tT
@@ -19324,10 +19359,10 @@ tT
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -19416,9 +19451,9 @@ DF
 DF
 DF
 ar
-ak
-tT
-tT
+ai
+Dm
+Dm
 tT
 tT
 tT
@@ -19465,8 +19500,8 @@ tT
 Dm
 Dm
 Dm
-Dm
-Dm
+tT
+tT
 Dm
 Dm
 Dm
@@ -19559,7 +19594,7 @@ jr
 nJ
 Lf
 ai
-tT
+Dm
 tT
 tT
 tT
@@ -19607,7 +19642,7 @@ Dm
 Dm
 Dm
 Dm
-Dm
+tT
 Dm
 Dm
 Dm
@@ -19701,7 +19736,7 @@ bo
 be
 be
 bd
-tT
+Dm
 tT
 tT
 tT
@@ -19749,7 +19784,7 @@ Dm
 Dm
 Dm
 Dm
-Dm
+tT
 Dm
 Dm
 tT
@@ -19842,8 +19877,8 @@ bn
 bn
 bn
 bh
-be
-tT
+bd
+Dm
 tT
 tT
 tT
@@ -20594,13 +20629,11 @@ tT
 Dm
 Dm
 Dm
+tT
+tT
+tT
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
 tT
 tT
 tT
@@ -20609,6 +20642,8 @@ tT
 tT
 tT
 tT
+tT
+fZ
 Dm
 Dm
 Dm
@@ -20735,14 +20770,14 @@ tT
 Dm
 Dm
 Dm
+tT
+fW
 Dm
+tT
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -20782,8 +20817,8 @@ gT
 gT
 gT
 gT
-gP
-gP
+hw
+hw
 gS
 Dm
 Dm
@@ -20880,10 +20915,10 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
+tT
+gd
+tT
+tT
 Dm
 Dm
 Dm
@@ -20924,8 +20959,8 @@ gT
 gT
 gT
 gT
-gG
-gG
+hx
+hx
 gS
 Dm
 Dm
@@ -21019,10 +21054,10 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -21066,8 +21101,8 @@ gT
 gT
 gT
 gT
-gG
-gG
+hx
+hx
 gS
 Dm
 Dm
@@ -21160,10 +21195,10 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -21300,9 +21335,9 @@ tT
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
+tT
+fV
+tT
 Dm
 Dm
 Dm
@@ -22445,10 +22480,10 @@ ga
 ga
 gf
 gf
-gp
+hk
 gj
 gj
-gf
+hk
 gf
 ga
 ga
@@ -22585,12 +22620,12 @@ tT
 tT
 gb
 gf
-gh
 gf
-gp
+gf
+hk
 gj
 gj
-gf
+hk
 gf
 gf
 gb
@@ -22729,11 +22764,11 @@ gb
 gf
 gf
 gs
-gp
+hk
 gj
 gj
-gh
-gh
+hk
+hj
 gf
 gb
 tT
@@ -22871,11 +22906,11 @@ ga
 gf
 gf
 gf
-gq
+hl
 gj
 gj
+hl
 gf
-gh
 gf
 ga
 ga
@@ -23011,14 +23046,14 @@ tT
 gb
 gf
 gf
-gh
-gh
-gp
-gj
-gj
-gi
 gf
-gg
+gf
+hk
+gj
+gj
+hk
+gf
+gf
 gf
 gb
 tT
@@ -23152,15 +23187,15 @@ tT
 tT
 gb
 gf
-gi
-gh
+aC
 gf
-gp
+gf
+hk
 gj
 gj
+hk
 gf
-gf
-gf
+aC
 gf
 gb
 tT
@@ -23295,12 +23330,12 @@ tT
 gb
 gf
 gf
-gg
+hj
 gf
-gp
+hk
+hn
 gj
-gj
-gf
+hk
 gf
 gf
 gf
@@ -23442,8 +23477,8 @@ gt
 gr
 gj
 gj
-gg
-gh
+hk
+gf
 gf
 ga
 ga
@@ -23584,9 +23619,9 @@ gj
 gj
 gj
 gj
-gh
-gh
+hk
 gf
+hj
 gb
 tT
 tT
@@ -23706,8 +23741,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
+fR
+tT
 Dm
 Dm
 Dm
@@ -23726,8 +23761,8 @@ gj
 gj
 gj
 gj
-gh
-gh
+hk
+gf
 gf
 gb
 tT
@@ -23847,8 +23882,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
+tT
+tT
 Dm
 Dm
 Dm
@@ -23868,7 +23903,7 @@ gj
 gj
 gj
 gj
-gf
+hk
 gf
 ga
 ga
@@ -23989,9 +24024,9 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -24131,10 +24166,10 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+fV
+tT
 Dm
 Dm
 Dm
@@ -24274,8 +24309,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
+tT
+tT
 Dm
 Dm
 Dm
@@ -24416,8 +24451,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
+fR
+tT
 Dm
 Dm
 Dm
@@ -24559,7 +24594,7 @@ Dm
 Dm
 Dm
 Dm
-Dm
+gx
 Dm
 Dm
 Dm
@@ -24688,7 +24723,7 @@ tT
 tT
 Dm
 tT
-tT
+gu
 Dm
 Dm
 Dm
@@ -24839,13 +24874,13 @@ Dm
 Dm
 tT
 tT
+fV
 tT
 tT
 tT
 tT
 tT
-tT
-tT
+fW
 tT
 tT
 Dm
@@ -24973,7 +25008,7 @@ Dm
 Dm
 Dm
 tT
-tT
+fW
 tT
 Dm
 Dm
@@ -25121,22 +25156,22 @@ Dm
 Dm
 tT
 tT
-tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+fR
 tT
 tT
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
 tT
+tT
+Dm
+Dm
+Dm
+fV
 tT
 Dm
 Dm
@@ -25260,11 +25295,11 @@ Dm
 Dm
 tT
 tT
+fZ
 tT
 tT
 tT
 tT
-tT
 Dm
 Dm
 Dm
@@ -25274,7 +25309,7 @@ Dm
 Dm
 Dm
 Dm
-tT
+fZ
 tT
 tT
 tT

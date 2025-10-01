@@ -79,17 +79,19 @@
 
 /area/redgate/underwater_casino/indoors/upper/maintenance
 	name = UNDERWATER_CASINO_NAME + " - Maintenance (Top Floor)"
-	sound_env = TUNNEL_ENCLOSED
 	icon_state = "deckmaint2"
+	sound_env = TUNNEL_ENCLOSED
 
 /area/redgate/underwater_casino/indoors/upper/bar
 	name = UNDERWATER_CASINO_NAME + " - Bar"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "bar"
+	sound_env = LARGE_ENCLOSED
 
 /area/redgate/underwater_casino/indoors/upper/lounge
 	name = UNDERWATER_CASINO_NAME + " - Lounge"
 	icon_state = "grewhicir"
+	sound_env = SMALL_SOFTFLOOR
 
 /area/redgate/underwater_casino/indoors/upper/kitchen
 	name = UNDERWATER_CASINO_NAME + " - Kitchen"
@@ -266,6 +268,53 @@
 /area/redgate/underwater_casino/indoors/lower/security/armory
 	name = UNDERWATER_CASINO_NAME + " - Armory"
 	icon_state = "armory"
+
+// Misc. areas (caves, secret buildings etc)
+/area/redgate/underwater_casino/indoors/upper/secret
+	name = UNDERWATER_CASINO_NAME + " - ??? (Top Floor)"
+
+/area/redgate/underwater_casino/indoors/lower/secret
+	name = UNDERWATER_CASINO_NAME + " - ??? (Bottom Floor)"
+
+/area/redgate/underwater_casino/indoors/upper/secret/militantbase
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "red"
+
+/area/redgate/underwater_casino/indoors/upper/secret/cave
+	name = UNDERWATER_CASINO_NAME + " - Cave (Top Floor)"
+	sound_env = SOUND_ENVIRONMENT_CAVE
+
+/area/redgate/underwater_casino/indoors/lower/secret/cave
+	name = UNDERWATER_CASINO_NAME + " - Cave (Bottom Floor)"
+	sound_env = SOUND_ENVIRONMENT_CAVE
+
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase
+	name = UNDERWATER_CASINO_NAME + " - Pirate Base (Top Floor)"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "red"
+
+/area/redgate/underwater_casino/indoors/lower/secret/piratebase
+	name = UNDERWATER_CASINO_NAME + " - Pirate Base (Bottom Floor)"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "red"
+
+/area/redgate/underwater_casino/indoors/upper/secret/piratebasetunnel
+	name = UNDERWATER_CASINO_NAME + " - Pirate Base Secret Tunnel (Top Floor)"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "red"
+	sound_env = TUNNEL_ENCLOSED
+
+/area/redgate/underwater_casino/indoors/lower/secret/piratebasetunnel
+	name = UNDERWATER_CASINO_NAME + " - Pirate Base Secret Tunnel (Bottom Floor)"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "red"
+	sound_env = TUNNEL_ENCLOSED
+
+/area/redgate/underwater_casino/indoors/upper/secret/biodome
+	name = UNDERWATER_CASINO_NAME + " - Biodome"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "green"
+	sound_env = SMALL_ENCLOSED
 
 // Outdoors areas
 
