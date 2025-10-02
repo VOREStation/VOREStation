@@ -90,7 +90,7 @@
 /datum/component/remote_view/proc/end_view()
 	PROTECTED_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	host_mob.reset_perspective(host_mob)
+	host_mob.reset_perspective()
 
 
 
