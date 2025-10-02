@@ -3008,10 +3008,7 @@
 /turf/simulated/floor/tiled/monotile/purple,
 /area/redgate/underwater_casino/indoors/upper/janitorcloset)
 "jn" = (
-/obj/random/chips/good{
-	pixel_x = 4;
-	pixel_y = 5
-	},
+/obj/item/gun/energy/mouseray/metamorphosis/advanced/random,
 /turf/simulated/floor/water/underwater/indoors,
 /area/redgate/underwater_casino/outdoors)
 "jo" = (
