@@ -1,5 +1,4 @@
 #define UNDERWATER_CASINO_NAME "Casino Canal"
-#define UNDERWATER_CASINO_OUTDOORS_NAME UNDERWATER_CASINO_NAME + " Exterior"
 
 // ******************************
 // *****      OBJECTS      ******
@@ -58,13 +57,13 @@
 
 /area/redgate/underwater_casino
 	name = UNDERWATER_CASINO_NAME
-	requires_power = FALSE
 	dynamic_lighting = TRUE
 	flags = RAD_SHIELDED
 	base_turf = /turf/simulated/floor/water/underwater
 
 /area/redgate/underwater_casino/indoors
-	name = UNDERWATER_CASINO_NAME
+	name = UNDERWATER_CASINO_NAME + " Interior"
+	requires_power = FALSE
 
 // Upper floors
 
@@ -276,9 +275,10 @@
 /area/redgate/underwater_casino/indoors/lower/secret
 	name = UNDERWATER_CASINO_NAME + " - ??? (Bottom Floor)"
 
-/area/redgate/underwater_casino/indoors/upper/secret/militantbase
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase
+	name = UNDERWATER_CASINO_NAME + " - Secret Research Base"
 	icon = 'icons/turf/areas.dmi'
-	icon_state = "red"
+	icon_state = "purple"
 
 /area/redgate/underwater_casino/indoors/upper/secret/cave
 	name = UNDERWATER_CASINO_NAME + " - Cave (Top Floor)"
@@ -319,6 +319,6 @@
 // Outdoors areas
 
 /area/redgate/underwater_casino/outdoors
-	name = UNDERWATER_CASINO_OUTDOORS_NAME
+	name = UNDERWATER_CASINO_NAME + " Exterior"
 	icon_state = "blublacir"
 	sound_env = SOUND_ENVIRONMENT_UNDERWATER

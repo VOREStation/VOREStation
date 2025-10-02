@@ -100,7 +100,7 @@
 
 /turf/simulated/floor/water/underwater/open
 	icon = 'icons/effects/weather.dmi'
-	icon_state = "underwater" // Just looks underwater in the map editor, will be invisible once ingame
+	icon_state = "underwater-indoors" // Just looks underwater in the map editor, will be invisible once ingame
 	name = "deeper waters"
 	desc = "The watery depths seem to go even deeper here."
 
@@ -129,7 +129,7 @@
 /turf/simulated/floor/water/underwater/indoors
 	outdoors = OUTDOORS_NO
 	var/overlay_icon = 'icons/effects/weather.dmi'
-	var/overlay_state = "underwater"
+	var/overlay_state = "underwater-indoors"
 	var/atom/movable/weather_visuals/visuals
 
 /turf/simulated/floor/water/underwater/indoors/handle_water_icons()
@@ -141,7 +141,7 @@
 
 /turf/simulated/floor/water/underwater/indoors/open
 	icon = 'icons/effects/weather.dmi'
-	icon_state = "underwater" // Just looks underwater in the map editor, will be invisible once ingame
+	icon_state = "underwater-indoors" // Just looks underwater in the map editor, will be invisible once ingame
 	name = "deeper waters"
 	desc = "The watery depths seem to go even deeper here."
 
@@ -179,3 +179,6 @@
 
 /turf/simulated/floor/water/underwater/indoors/rocks
 	icon_state = "rock"
+
+/turf/simulated/floor/water/underwater/indoors/rocks/vis_hide
+	flags = TURF_ACID_IMMUNE | VIS_HIDE

@@ -1512,8 +1512,7 @@
 	dir = 1
 	},
 /obj/structure/railing{
-	dir = 8;
-	icon_state = "railing0"
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
@@ -2543,9 +2542,13 @@
 /obj/structure/flora/underwater/plant4,
 /turf/simulated/floor/water/underwater,
 /area/redgate/underwater_casino/outdoors)
+"gp" = (
+/obj/random/chips/better,
+/turf/simulated/floor/water/underwater,
+/area/redgate/underwater_casino/outdoors)
 "gq" = (
-/obj/random/chips/good{
-	pixel_x = -1
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/redgate/underwater_casino/indoors/upper/secret/biodome)
@@ -2565,10 +2568,6 @@
 /area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gu" = (
 /obj/structure/flora/underwater/plant3,
-/turf/simulated/floor/water/underwater,
-/area/redgate/underwater_casino/outdoors)
-"gv" = (
-/mob/living/simple_mob/animal/space/carp/large/huge/vorny,
 /turf/simulated/floor/water/underwater,
 /area/redgate/underwater_casino/outdoors)
 "gw" = (
@@ -2621,28 +2620,13 @@
 	},
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
-"gC" = (
-/obj/machinery/door/airlock/angled_bay/standard/glass{
-	name = "glass airlock"
-	},
-/obj/structure/atmospheric_retention_field/underdoors,
-/turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "gD" = (
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/underwater_casino/indoors/upper/secret/cave)
-"gE" = (
-/obj/machinery/floodlight/starts_on{
-	dir = 1
-	},
-/turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/indoors/upper/secret/cave)
-"gF" = (
-/obj/machinery/floodlight/starts_on{
-	dir = 8
-	},
-/turf/simulated/floor/outdoors/rocks/caves,
-/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"gG" = (
+/obj/machinery/light,
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "gH" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -2659,8 +2643,8 @@
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
 "gI" = (
-/obj/machinery/floodlight/starts_on{
-	dir = 4
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/underwater_casino/indoors/upper/secret/cave)
@@ -2668,34 +2652,33 @@
 /turf/simulated/wall/tgmc/darkwall/deco3,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
 "gK" = (
-/turf/simulated/wall/tgmc/durawall,
-/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "gL" = (
 /obj/structure/flora/underwater/grass4,
 /turf/simulated/floor/water/underwater/indoors,
 /area/redgate/underwater_casino/outdoors)
 "gM" = (
-/turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
-"gN" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
-"gO" = (
-/obj/machinery/light{
-	dir = 8
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug{
+	name = "Mina";
+	desc = "Looks like catslugs can into space - and the depths of the ocean, as well! This one wears a little space suit that, presumably, works just as well on the depths of the sea as the vacuum of space. A little tag saying \"Mina\" can be seen on the front of their suit."
 	},
-/turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "gP" = (
-/turf/simulated/floor/tiled/eris/derelict1,
-/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
-"gQ" = (
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/door/airlock/angled_bay/standard/color/research{
+	req_access = null
 	},
-/turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
+/turf/simulated/floor/tiled/steel_ridged,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"gQ" = (
+/obj/structure/flora/underwater/grass1,
+/obj/structure/flora/underwater/plant4,
+/turf/simulated/floor/water/underwater,
+/area/redgate/underwater_casino/outdoors)
 "gR" = (
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
@@ -2751,13 +2734,6 @@
 /obj/random/humanoidremains,
 /turf/simulated/floor/water/underwater,
 /area/redgate/underwater_casino/outdoors)
-"hd" = (
-/obj/machinery/light{
-	dir = 1;
-	stat = 0
-	},
-/turf/simulated/floor/tiled/eris/derelict3,
-/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
 "he" = (
 /obj/item/aliencoin/gold,
 /obj/structure/table/woodentable,
@@ -2808,7 +2784,7 @@
 /turf/simulated/floor/grass,
 /area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "hl" = (
-/obj/structure/fence/door/opened,
+/obj/structure/fence/door,
 /turf/simulated/floor/grass,
 /area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "hm" = (
@@ -2817,20 +2793,8 @@
 	},
 /turf/simulated/floor/carpet/blue,
 /area/redgate/underwater_casino/indoors/upper/casino)
-"hn" = (
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/redgate/underwater_casino/indoors/upper{
-	icon = 'icons/turf/areas.dmi';
-	icon_state = "green"
-	})
 "ho" = (
 /turf/simulated/floor/water/underwater/indoors/open,
-/area/redgate/underwater_casino/outdoors)
-"hp" = (
-/obj/machinery/floodlight/starts_on{
-	dir = 4
-	},
-/turf/simulated/floor/water/underwater/indoors/rocks,
 /area/redgate/underwater_casino/outdoors)
 "hq" = (
 /turf/simulated/floor/water/underwater/sand,
@@ -2885,13 +2849,13 @@
 /turf/simulated/open,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "hy" = (
-/obj/machinery/door/airlock/angled_bay/standard/glass{
-	name = "glass airlock";
+/obj/machinery/door/airlock/angled_bay/standard/color/research{
+	req_access = null;
 	dir = 4
 	},
 /obj/structure/atmospheric_retention_field/underdoors,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/redgate/underwater_casino/indoors/upper/secret/militantbase)
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "hz" = (
 /obj/structure/flora/underwater/plant5,
 /turf/simulated/floor/water/underwater/indoors,
@@ -2915,355 +2879,17 @@
 /obj/random/chips,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/underwater_casino/indoors/upper/secret/cave)
-"hE" = (
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"hF" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 8
-	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
-/obj/structure/window/reinforced/survival_pod,
-/obj/structure/grille,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"hG" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
-/obj/structure/window/reinforced/survival_pod,
-/obj/structure/grille,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"hH" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 4
-	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
-/obj/structure/window/reinforced/survival_pod,
-/obj/structure/grille,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"hI" = (
-/obj/machinery/door/airlock/voidcraft/survival_pod,
-/obj/structure/fans/tiny,
-/obj/effect/floor_decal/industrial/danger/full,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
 "hJ" = (
 /obj/structure/table/woodentable,
 /obj/structure/closet/walllocker_double/casino/north,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/underwater_casino/indoors/upper/casino/back)
-"hK" = (
-/obj/structure/sign/mining,
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"hL" = (
-/obj/structure/sign/mining/survival,
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"hM" = (
-/obj/structure/sign/mining/survival{
-	dir = 8
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"hN" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/wood/alt/parquet,
-/area/survivalpod)
-"hO" = (
-/obj/machinery/light,
-/obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/condiment/small/sugar{
-	pixel_y = 12
-	},
-/turf/simulated/floor/wood/alt/parquet,
-/area/survivalpod)
-"hP" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/turf/simulated/floor/wood/alt/parquet,
-/area/survivalpod)
-"hQ" = (
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
-/area/survivalpod)
-"hR" = (
-/obj/machinery/holoposter{
-	dir = 4;
-	pixel_x = -30
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"hS" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"hT" = (
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"hU" = (
-/obj/structure/sign/poster,
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"hV" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/holoplant,
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
 "hW" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6/purple{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
-"hX" = (
-/obj/structure/sign/mining/survival{
-	dir = 4
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"hY" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 8
-	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 4
-	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
-/obj/structure/window/reinforced/survival_pod,
-/obj/structure/grille,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"hZ" = (
-/turf/simulated/floor/wood/alt/parquet,
-/area/survivalpod)
-"ia" = (
-/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
-/obj/effect/floor_decal/industrial/danger/full,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"ib" = (
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"ic" = (
-/obj/structure/bed/chair/wood{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"id" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/condiment/small/sugar{
-	pixel_y = 22
-	},
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"ie" = (
-/obj/structure/bed/chair/sofa/left/beige{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"if" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4
-	},
-/turf/simulated/floor/wood/alt/parquet,
-/area/survivalpod)
-"ig" = (
-/obj/structure/table/gamblingtable,
-/obj/item/reagent_containers/food/condiment/small/sugar{
-	pixel_y = 12
-	},
-/turf/simulated/floor/wood/alt/parquet,
-/area/survivalpod)
-"ih" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/obj/structure/sign/poster{
-	dir = 4
-	},
-/turf/simulated/floor/wood/alt/parquet,
-/area/survivalpod)
-"ii" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"ij" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/glass2/coffeemug/britcup{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"ik" = (
-/obj/structure/bed/chair/sofa/right/beige{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"il" = (
-/obj/machinery/disposal/wall{
-	dir = 4
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"im" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/effect/floor_decal/spline/plain{
-	dir = 9
-	},
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"in" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"io" = (
-/obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
-/obj/structure/fans/tiny,
-/obj/effect/floor_decal/industrial/danger/full,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"ip" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"iq" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"ir" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/holoplant,
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"is" = (
-/obj/item/stool/padded{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"it" = (
-/obj/item/stool/padded{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"iu" = (
-/obj/item/stool/padded{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"iv" = (
-/obj/item/stool/padded{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/survivalpod)
-"iw" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/regular,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"ix" = (
-/obj/machinery/door/window/survival_pod{
-	dir = 2
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iy" = (
-/obj/structure/table/reinforced,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iz" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light/floortube,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iA" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/donut{
-	pixel_y = 5
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iB" = (
-/obj/structure/table/reinforced,
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iC" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light/floortube,
-/obj/structure/disposalpipe/junction/yjunction{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iD" = (
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iE" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
 "iF" = (
 /obj/machinery/door/airlock/angled_bay/double/glass{
 	dir = 8;
@@ -3274,99 +2900,6 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors/upper/lounge)
-"iG" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iH" = (
-/obj/machinery/disposal/wall,
-/obj/structure/disposalpipe/trunk,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iI" = (
-/obj/structure/fans,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iJ" = (
-/obj/machinery/smartfridge/survival_pod,
-/obj/item/reagent_containers/food/snacks/donut/choc,
-/obj/item/reagent_containers/food/snacks/donut/choc,
-/obj/item/reagent_containers/food/snacks/donut/choc/jelly,
-/obj/item/reagent_containers/food/snacks/donut/choc/jelly,
-/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles,
-/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles,
-/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/jelly,
-/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/jelly,
-/obj/item/reagent_containers/food/snacks/donut/homer,
-/obj/item/reagent_containers/food/snacks/donut/homer,
-/obj/item/reagent_containers/food/snacks/donut/homer,
-/obj/item/reagent_containers/food/snacks/donut/homer,
-/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
-/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
-/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
-/obj/item/reagent_containers/food/snacks/donut/homer/jelly,
-/obj/item/reagent_containers/food/snacks/donut/plain,
-/obj/item/reagent_containers/food/snacks/donut/plain,
-/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
-/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
-/obj/item/reagent_containers/food/snacks/donut/purple,
-/obj/item/reagent_containers/food/snacks/donut/purple,
-/obj/item/reagent_containers/food/snacks/donut/purple/jelly,
-/obj/item/reagent_containers/food/snacks/donut/purple/jelly,
-/obj/item/reagent_containers/food/snacks/donut/yellow,
-/obj/item/reagent_containers/food/snacks/donut/yellow,
-/obj/item/reagent_containers/food/snacks/donut/yellow/jelly,
-/obj/item/reagent_containers/food/snacks/donut/yellow/jelly,
-/obj/item/reagent_containers/food/snacks/donut/pink,
-/obj/item/reagent_containers/food/snacks/donut/pink,
-/obj/item/reagent_containers/food/snacks/donut/pink/jelly,
-/obj/item/reagent_containers/food/snacks/donut/pink/jelly,
-/obj/item/reagent_containers/food/snacks/donut/blue,
-/obj/item/reagent_containers/food/snacks/donut/blue,
-/obj/item/reagent_containers/food/snacks/donut/blue/jelly,
-/obj/item/reagent_containers/food/snacks/donut/blue/jelly,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/drinks/milk,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iK" = (
-/obj/structure/table/hardwoodtable,
-/obj/item/reagent_containers/food/drinks/cup{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/cup{
-	pixel_x = -4;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/cup{
-	pixel_x = 8;
-	pixel_y = -4
-	},
-/obj/item/reagent_containers/food/drinks/cup{
-	pixel_x = -4;
-	pixel_y = -4
-	},
-/obj/item/reagent_containers/food/drinks/cup{
-	pixel_x = 8
-	},
-/obj/item/reagent_containers/food/drinks/cup{
-	pixel_x = -4
-	},
-/obj/item/reagent_containers/food/drinks/cup{
-	pixel_x = 8;
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/drinks/cup{
-	pixel_x = -4;
-	pixel_y = 12
-	},
-/obj/machinery/light/floortube,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
 "iL" = (
 /obj/structure/railing{
 	dir = 8
@@ -3374,28 +2907,6 @@
 /obj/structure/railing,
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
-"iM" = (
-/obj/structure/table/hardwoodtable,
-/obj/machinery/chemical_dispenser/bar_syrup/full{
-	pixel_y = 10
-	},
-/obj/structure/sign/poster{
-	dir = 1
-	},
-/obj/machinery/light/floortube,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iN" = (
-/obj/structure/table/hardwoodtable,
-/obj/machinery/chemical_dispenser/bar_coffee/full{
-	pixel_y = 10
-	},
-/obj/machinery/light/floortube,
-/obj/item/reagent_containers/glass/beaker/measuring_cup{
-	pixel_x = -18
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
 "iO" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment,
@@ -3405,59 +2916,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/redgate/underwater_casino/indoors/upper/lounge)
-"iQ" = (
-/obj/structure/table/hardwoodtable,
-/obj/item/hand_labeler,
-/obj/item/reagent_containers/food/condiment/small/sugar,
-/obj/item/reagent_containers/glass/rag,
-/obj/structure/closet/walllocker_double/kitchen/north,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/reagent_containers/food/drinks/glass2/square,
-/obj/item/storage/box/glasses/coffeecup,
-/obj/item/storage/box/glasses/coffeecup,
-/obj/item/storage/box/glasses/coffeecup,
-/obj/item/storage/box/glasses/coffeecup_tall,
-/obj/item/storage/box/glasses/coffeecup_grande,
-/obj/item/storage/box/glasses/coffeecup_venti,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/obj/item/reagent_containers/food/drinks/glass2/pitcher,
-/obj/machinery/light/floortube,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iR" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/structure/sink{
-	pixel_y = 22
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 5
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iS" = (
-/obj/machinery/holoplant,
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
-"iT" = (
-/obj/structure/sign/mining/survival{
-	dir = 1
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"iU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
 "iV" = (
 /obj/machinery/appliance/cooker/oven,
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -3465,16 +2923,6 @@
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/underwater_casino/indoors/upper/kitchen)
-"iW" = (
-/obj/structure/sign/mining/survival{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
 "iX" = (
 /turf/simulated/floor/outdoors/newdirt_nograss/caves,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
@@ -3498,12 +2946,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
-"ja" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "jb" = (
 /obj/machinery/light/small/torch{
 	dir = 1
@@ -3520,13 +2962,6 @@
 /obj/random/humanoidremains,
 /turf/simulated/floor/water/underwater/indoors/rocks,
 /area/redgate/underwater_casino/outdoors)
-"je" = (
-/obj/machinery/light{
-	dir = 1;
-	stat = 0
-	},
-/turf/simulated/floor/wood,
-/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "jf" = (
 /obj/structure/table/woodentable,
 /obj/random/chips/better{
@@ -3662,17 +3097,116 @@
 /obj/random/outcrop,
 /turf/simulated/floor/water/underwater/indoors/rocks,
 /area/redgate/underwater_casino/outdoors)
+"jE" = (
+/obj/structure/flora/underwater/seaweed1,
+/turf/simulated/floor/water/underwater/sand,
+/area/redgate/underwater_casino/outdoors)
+"jF" = (
+/obj/structure/flora/underwater/seaweed2,
+/turf/simulated/floor/water/underwater/sand,
+/area/redgate/underwater_casino/outdoors)
+"jG" = (
+/obj/machinery/light/floortube{
+	pixel_y = -6
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"jH" = (
+/obj/machinery/light/floortube{
+	dir = 1;
+	pixel_y = 6
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"jI" = (
+/obj/structure/table/sifwoodentable,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/random/maintenance/research{
+	pixel_y = 13;
+	pixel_x = 5
+	},
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"jJ" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"jK" = (
+/obj/structure/table/sifwoodentable,
+/obj/random/maintenance/research{
+	pixel_y = 12
+	},
+/obj/random/maintenance/research,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"jL" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"jM" = (
+/obj/structure/table/sifwoodentable,
+/obj/random/maintenance/foodstuff,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"jN" = (
+/obj/item/modular_computer/console,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"jO" = (
+/obj/random/chips/good{
+	pixel_x = -1
+	},
+/obj/random/crate{
+	dir = 4
+	},
+/obj/random/desatti_snacks,
+/obj/random/maintenance,
+/obj/random/maintenance,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
+"jP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/biodome)
 "jQ" = (
 /obj/structure/bed/chair/sofa/corp/corner,
 /obj/structure/sign/painting/public/east,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/redgate/underwater_casino/indoors/upper/bar)
+"jR" = (
+/obj/random/chips,
+/turf/simulated/floor/water/underwater/indoors,
+/area/redgate/underwater_casino/outdoors)
+"jS" = (
+/obj/random/forgotten_tram,
+/turf/simulated/floor/water/underwater,
+/area/redgate/underwater_casino/outdoors)
+"jT" = (
+/obj/structure/sign/poster{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/steel/techfloor,
+/area/redgate/underwater_casino/indoors/upper/lounge)
 "jU" = (
 /obj/machinery/door/airlock/angled_bay/double/glass{
 	name = "Shop"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/redgate/underwater_casino/indoors/upper/shop)
+"jV" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/newdirt_nograss/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "jW" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -3692,6 +3226,25 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7/purple,
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"jX" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"jY" = (
+/obj/structure/flora/rocks2,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"jZ" = (
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"ka" = (
+/mob/living/simple_mob/vore/alienanimals/catslug{
+	color = "#F996BE";
+	name = "Rami";
+	desc = "She looks a bit fidgety."
+	},
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
 "kb" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 4
@@ -3701,6 +3254,72 @@
 "kc" = (
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/redgate/underwater_casino/indoors/upper/bar)
+"kd" = (
+/obj/random/plushie,
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"ke" = (
+/obj/structure/flora/rocks1,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"kf" = (
+/obj/structure/bed/chair/bay/chair/padded/red/bignest{
+	name = "Rami's Bed"
+	},
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"kg" = (
+/obj/random/chips{
+	pixel_x = -5
+	},
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"kh" = (
+/obj/random/plushielarge,
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"ki" = (
+/obj/random/chips{
+	pixel_x = -9
+	},
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"kj" = (
+/obj/random/chips{
+	pixel_y = 5
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/grass,
+/area/redgate/underwater_casino/indoors/upper/secret/cave)
+"kk" = (
+/obj/structure/flora/underwater,
+/turf/simulated/floor/water/underwater,
+/area/redgate/underwater_casino/outdoors)
+"kl" = (
+/turf/simulated/wall/tgmc/darkwall,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"km" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/recharger{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kn" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"ko" = (
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "kp" = (
 /obj/structure/janitorialcart,
 /obj/item/clothing/suit/caution,
@@ -3715,11 +3334,75 @@
 /obj/item/soap/nanotrasen,
 /turf/simulated/floor/tiled/monotile/purple,
 /area/redgate/underwater_casino/indoors/upper/janitorcloset)
+"kq" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/mainttoyloot{
+	pixel_y = 5;
+	pixel_x = -10
+	},
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kr" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/mega_nukies{
+	pixel_y = 5
+	},
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"ks" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/miniature{
+	pixel_y = 7;
+	pixel_x = -9
+	},
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kt" = (
+/obj/structure/closet,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"ku" = (
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kv" = (
+/obj/structure/table/bench/glass,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kw" = (
+/obj/machinery/suit_cycler,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "kx" = (
 /obj/structure/table/gamblingtable,
 /obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/redgate/underwater_casino/indoors/upper/casino)
+"ky" = (
+/obj/structure/table/bench/glass,
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kz" = (
+/obj/structure/table/rack/steel,
+/obj/random/rigsuit,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kA" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kB" = (
+/obj/item/modular_computer/telescreen{
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "kC" = (
 /obj/effect/floor_decal/borderfloor/purple{
 	dir = 1
@@ -3737,6 +3420,62 @@
 	},
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"kD" = (
+/obj/structure/closet/emergsuit_wall{
+	dir = 8;
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kE" = (
+/obj/item/modular_computer/console{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kF" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 10
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kG" = (
+/obj/effect/floor_decal/techfloor,
+/obj/effect/floor_decal/techfloor/hole,
+/turf/simulated/floor/tiled/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kH" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kI" = (
+/obj/structure/table/borosilicate,
+/obj/item/integrated_electronics/debugger{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/obj/item/integrated_electronics/wirer{
+	pixel_x = 5;
+	pixel_y = 12
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kJ" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/janusmodule,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kK" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "kL" = (
 /obj/machinery/vending/snack{
 	dir = 8;
@@ -3744,6 +3483,28 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/underwater_casino/indoors/upper/shop)
+"kM" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kN" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kO" = (
+/obj/structure/table/borosilicate,
+/obj/item/integrated_circuit_printer/upgraded{
+	pixel_y = 10
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kP" = (
+/turf/simulated/floor/wood/broken,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "kQ" = (
 /obj/structure/railing{
 	dir = 8
@@ -3753,12 +3514,71 @@
 	},
 /turf/simulated/floor/plating,
 /area/redgate/underwater_casino/indoors/upper/maintenance)
+"kR" = (
+/obj/structure/flora/pottedplant/unusual,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kS" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kU" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 5
+	},
+/obj/effect/floor_decal/techfloor/hole/right{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kV" = (
+/obj/structure/table/borosilicate,
+/obj/structure/closet/walllocker_double/science/north{
+	name = "material sheets"
+	},
+/obj/fiftyspawner/steel,
+/turf/simulated/floor/tiled/eris/dark/techfloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"kW" = (
+/obj/structure/window/reinforced{
+	pixel_y = -4
+	},
+/turf/simulated/floor/wood,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"kX" = (
+/obj/structure/window/reinforced{
+	pixel_y = -4
+	},
+/turf/simulated/floor/wood/broken,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"kY" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "kZ" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 20
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/redgate/underwater_casino/indoors/upper/bar)
+"la" = (
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"lb" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "lc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -3766,6 +3586,25 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/underwater_casino/indoors/upper/kitchen)
+"ld" = (
+/turf/simulated/wall/tgmc/window/darkwall/reinf,
+/area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"le" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"lf" = (
+/obj/structure/flora/underwater/grass2,
+/obj/structure/flora/underwater/plant3,
+/turf/simulated/floor/water/underwater,
+/area/redgate/underwater_casino/outdoors)
+"lg" = (
+/obj/structure/flora/underwater/grass3,
+/obj/structure/flora/underwater/plant4,
+/turf/simulated/floor/water/underwater,
+/area/redgate/underwater_casino/outdoors)
 "lt" = (
 /obj/structure/bed/chair/bay/comfy/green{
 	dir = 8
@@ -4246,8 +4085,7 @@
 /area/redgate/underwater_casino/indoors/upper/maintenance)
 "qM" = (
 /obj/structure/railing{
-	dir = 4;
-	icon_state = "railing0"
+	dir = 4
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
@@ -4398,8 +4236,7 @@
 /area/redgate/underwater_casino/indoors/upper/casino)
 "tg" = (
 /obj/structure/railing{
-	dir = 4;
-	icon_state = "railing0"
+	dir = 4
 	},
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
@@ -4807,8 +4644,7 @@
 /area/redgate/underwater_casino/indoors/upper/casino)
 "zI" = (
 /obj/structure/railing{
-	dir = 4;
-	icon_state = "railing0"
+	dir = 4
 	},
 /obj/structure/railing,
 /obj/random/maintenance,
@@ -5028,8 +4864,7 @@
 /area/redgate/underwater_casino/indoors)
 "Dt" = (
 /obj/structure/railing{
-	dir = 4;
-	icon_state = "railing0"
+	dir = 4
 	},
 /obj/random/maintenance/misc,
 /obj/machinery/light/small{
@@ -5704,8 +5539,7 @@
 /area/redgate/underwater_casino/indoors)
 "Mt" = (
 /obj/structure/railing{
-	dir = 4;
-	icon_state = "railing0"
+	dir = 4
 	},
 /obj/random/trash_pile,
 /obj/random/maintenance,
@@ -6743,10 +6577,10 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+fW
+tT
 Dm
 Dm
 Dm
@@ -6883,10 +6717,10 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
 tT
+fY
 tT
+jS
 tT
 tT
 tT
@@ -7024,8 +6858,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
+tT
+tT
 tT
 tT
 Dm
@@ -7167,11 +7001,11 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+fU
 tT
 tT
 tT
@@ -7180,12 +7014,12 @@ Dm
 Dm
 Dm
 Dm
-Dm
 tT
 tT
+kk
 tT
 tT
-tT
+fR
 tT
 Dm
 Dm
@@ -7316,7 +7150,7 @@ tT
 tT
 tT
 tT
-tT
+fZ
 tT
 Dm
 Dm
@@ -7447,16 +7281,16 @@ Dm
 Dm
 Dm
 tT
+fV
 tT
 tT
 tT
 tT
 tT
 tT
+fR
 tT
-tT
-tT
-tT
+fT
 tT
 tT
 tT
@@ -7484,7 +7318,7 @@ tT
 tT
 hq
 hq
-hq
+jw
 hq
 hq
 hq
@@ -7586,6 +7420,7 @@ Dm
 Dm
 tT
 tT
+jS
 tT
 tT
 tT
@@ -7599,8 +7434,7 @@ tT
 tT
 tT
 tT
-tT
-tT
+gg
 tT
 tT
 tT
@@ -7621,9 +7455,9 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
+hq
+hq
+hq
 hq
 hq
 hq
@@ -7725,6 +7559,15 @@ Dm
 Dm
 Dm
 Dm
+fV
+tT
+tT
+tT
+tT
+ge
+tT
+tT
+fW
 tT
 tT
 tT
@@ -7734,16 +7577,7 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+fY
 tT
 tT
 tT
@@ -7758,7 +7592,7 @@ Dm
 Dm
 Dm
 Dm
-tT
+fU
 tT
 tT
 tT
@@ -7870,6 +7704,7 @@ Dm
 Dm
 Dm
 Dm
+fU
 tT
 tT
 tT
@@ -7877,13 +7712,12 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
+fV
 tT
 tT
 tT
@@ -7909,12 +7743,12 @@ hq
 hq
 hq
 hq
+hq
 tT
 tT
 tT
 tT
-tT
-tT
+fV
 tT
 tT
 tT
@@ -8014,13 +7848,13 @@ Dm
 Dm
 Dm
 Dm
+fR
 tT
 tT
 tT
 tT
-tT
-tT
-tT
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -8051,7 +7885,7 @@ hr
 hq
 hq
 hq
-tT
+hq
 tT
 tT
 Dm
@@ -8162,6 +7996,10 @@ Dm
 tT
 Dm
 Dm
+kl
+kl
+kl
+kl
 Dm
 Dm
 Dm
@@ -8169,11 +8007,7 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-tT
+fR
 tT
 tT
 Dm
@@ -8194,7 +8028,7 @@ hq
 hq
 hq
 hq
-tT
+hq
 tT
 Dm
 Dm
@@ -8293,23 +8127,23 @@ Dm
 Dm
 Dm
 Dm
+tT
+fR
+tT
+tT
 Dm
 Dm
-Dm
-Dm
-gK
-gK
-gK
-gK
+kl
+kl
 hy
-gK
-gK
-gK
-gK
-gK
-Dm
-Dm
-Dm
+kl
+kl
+kl
+kz
+kw
+kl
+kl
+kl
 Dm
 Dm
 Dm
@@ -8336,7 +8170,7 @@ hq
 hq
 hq
 hq
-tT
+hq
 tT
 tT
 Dm
@@ -8435,30 +8269,30 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
+fW
+tT
+lg
+fW
+tT
+tT
+ld
+kY
+ku
 gK
+kD
+kl
+ku
+ku
 gK
-gM
-gO
-gM
-gM
-gM
-gM
-gO
-gM
-gK
-gK
+km
+kl
 Dm
 Dm
 Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-tT
+go
 tT
 tT
 Dm
@@ -8468,7 +8302,7 @@ Dm
 Dm
 tT
 tT
-tT
+fZ
 tT
 tT
 hq
@@ -8478,7 +8312,7 @@ hq
 hq
 hq
 hq
-tT
+hq
 tT
 tT
 Dm
@@ -8577,23 +8411,23 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-gK
-gM
-gM
+fR
+fZ
+fR
+fW
+fZ
+fZ
+ld
+la
+ku
+ku
+ku
 gP
-gP
-gM
-gM
-gP
-gP
-gM
-gM
-gK
-Dm
-Dm
+ku
+ku
+ku
+kn
+kl
 Dm
 Dm
 Dm
@@ -8719,23 +8553,23 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-gK
-gM
-gM
-gP
-gP
-gM
-gM
-gP
-gP
-gM
-gM
-gK
-Dm
-Dm
+tT
+fR
+fV
+fV
+tT
+tT
+ld
+lb
+ku
+ku
+ku
+kl
+ku
+ku
+ku
+ko
+kl
 Dm
 Dm
 Dm
@@ -8861,24 +8695,23 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-gK
-hd
-gM
-gM
-gM
-gM
-gM
-gM
-gM
-gM
-gN
-gK
-Dm
-Dm
-Dm
+fW
+tT
+fR
+fZ
+fW
+fT
+kl
+kl
+kl
+kl
+kl
+kl
+kA
+ku
+ku
+kq
+kl
 Dm
 Dm
 Dm
@@ -8886,6 +8719,7 @@ Dm
 tT
 tT
 tT
+fW
 tT
 tT
 Dm
@@ -9003,28 +8837,28 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-gK
+tT
+fW
+fW
+fR
+fR
+fY
+fZ
+kl
+kR
+kJ
+kE
+kl
+kB
 gM
-gM
-gP
-gP
-gM
-gM
-gP
-gP
-gM
-gM
-gK
+ku
+kr
+kl
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
 tT
 tT
 tT
@@ -9145,27 +8979,27 @@ Dm
 Dm
 Dm
 Dm
+tT
+fV
+fR
+gd
+fR
+fR
+fV
+ld
+kS
+kK
+kF
+kl
+ku
+ku
+ku
+ks
+kl
 Dm
 Dm
-Dm
-gK
-gM
-gM
-gP
-gP
-gM
-gM
-gP
-gP
-gM
-gM
-gK
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
 tT
 tT
 tT
@@ -9288,27 +9122,27 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-gK
-gK
-gM
+tT
+fV
+fR
+fR
+fR
 gQ
-gM
-gM
-gM
-gM
-gQ
-gM
-gK
-gK
-Dm
-Dm
-Dm
-Dm
+ld
+kT
+kM
+kG
+gP
+ku
+ku
+ku
+kt
+kl
 Dm
 Dm
 tT
+tT
+ge
 tT
 tT
 Dm
@@ -9333,22 +9167,22 @@ tT
 tT
 Dm
 gD
-gD
+ke
 hC
 hC
 gD
 gD
 gD
 hC
-hC
-gD
-gD
+jV
 Dm
 Dm
 Dm
 Dm
 Dm
-tT
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -9430,23 +9264,22 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-gK
-gK
-gK
-gK
-gK
-gK
-gK
-gK
-gK
-gK
-Dm
-Dm
-Dm
-Dm
+fR
+fV
+fZ
+fR
+fV
+fZ
+ld
+kU
+kN
+kH
+kl
+ky
+ky
+kv
+kl
+kl
 Dm
 Dm
 tT
@@ -9454,6 +9287,7 @@ tT
 tT
 tT
 tT
+jS
 Dm
 Dm
 Dm
@@ -9479,27 +9313,15 @@ gD
 hC
 gD
 gD
+jY
 gD
 gD
 gD
-gD
-gD
-gD
-gD
-gE
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -9508,6 +9330,18 @@ tT
 tT
 tT
 tT
+tT
+fR
+tT
+tT
+Dm
+Dm
+Dm
+tT
+tT
+tT
+tT
+fU
 Dm
 Dm
 Dm
@@ -9572,25 +9406,25 @@ Dm
 Dm
 Dm
 Dm
+fR
+fZ
+fR
+fR
+fR
+tT
+kl
+kV
+kO
+kI
+kl
+kl
+kl
+kl
+kl
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+tT
 tT
 tT
 tT
@@ -9616,64 +9450,14 @@ tT
 tT
 tT
 Dm
-gD
-gD
-hC
-gD
-gD
-gD
-hC
+jZ
+jZ
+jZ
 gD
 gD
 gD
 hC
 gD
-gD
-gD
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
 Dm
 Dm
 Dm
@@ -9688,8 +9472,58 @@ tT
 tT
 tT
 tT
+fW
+tT
+fY
+tT
+Dm
+Dm
 tT
 tT
+tT
+tT
+tT
+tT
+tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+tT
+tT
+tT
+tT
+tT
+hq
 tT
 tT
 tT
@@ -9714,18 +9548,17 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+tT
+fR
+fR
+fW
+lf
+fW
+kl
+kl
+kl
+kl
+kl
 Dm
 Dm
 Dm
@@ -9734,6 +9567,7 @@ Dm
 Dm
 Dm
 tT
+fZ
 tT
 tT
 Dm
@@ -9758,31 +9592,31 @@ tT
 tT
 tT
 Dm
+kh
+kd
+jZ
+jZ
 gD
 gD
 gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-hD
 gD
 Dm
-tT
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 tT
 tT
 tT
+fV
+tT
+fR
 tT
 tT
-tT
-tT
-tT
+fV
+fZ
 tT
 Dm
 tT
@@ -9792,8 +9626,8 @@ tT
 tT
 tT
 tT
+fZ
 tT
-tT
 Dm
 Dm
 Dm
@@ -9823,15 +9657,15 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
 tT
 tT
 tT
 tT
 tT
 tT
+tT
+tT
+hq
 tT
 tT
 tT
@@ -9856,12 +9690,12 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+fV
+fR
+fR
+fV
+fR
+tT
 Dm
 Dm
 Dm
@@ -9884,7 +9718,7 @@ Dm
 tT
 tT
 tT
-hq
+jF
 hq
 hq
 hq
@@ -9900,45 +9734,43 @@ fZ
 tT
 tT
 Dm
+ki
+kf
+ka
+jZ
 gD
 gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-hC
+jX
+Dm
+Dm
+Dm
+Dm
+Dm
 Dm
 tT
-Dm
+tT
+fW
+fZ
 tT
 tT
 tT
 fV
 tT
 tT
-tT
-tT
-tT
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+fV
 tT
 tT
 Dm
-Dm
+tT
+tT
+jS
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -9958,6 +9790,8 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -9969,11 +9803,11 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -9998,11 +9832,11 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+tT
+tT
+fW
+fZ
+tT
 Dm
 Dm
 Dm
@@ -10042,29 +9876,29 @@ tT
 tT
 Dm
 Dm
+kj
+kg
+kd
+jZ
 hC
 gD
 gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-hC
-gD
-gD
-gD
+Dm
+Dm
+Dm
+Dm
 Dm
 tT
-Dm
+fZ
+tT
+tT
+fR
+fV
 tT
 tT
 tT
-tT
-tT
-tT
+fR
+fV
 tT
 fZ
 tT
@@ -10072,7 +9906,7 @@ Dm
 Dm
 tT
 tT
-tT
+fY
 tT
 tT
 tT
@@ -10110,12 +9944,12 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -10140,11 +9974,11 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+tT
+fV
+fR
+tT
+tT
 Dm
 Dm
 Dm
@@ -10183,34 +10017,34 @@ tT
 tT
 Dm
 Dm
-gD
-hC
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-hC
-gD
-gC
-tT
 Dm
+Dm
+kd
+jZ
+gD
+gD
+gD
+gD
+Dm
+Dm
+Dm
+Dm
+fV
+tT
+fW
+fW
 tT
 tT
 tT
 tT
+fZ
+tT
+fW
+tT
+aI
 tT
 tT
-tT
-tT
-tT
-tT
+fR
 Dm
 Dm
 tT
@@ -10245,19 +10079,19 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
+hq
+hq
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+jy
+hq
+hq
+hq
 tT
 tT
 tT
@@ -10324,49 +10158,6 @@ tT
 tT
 tT
 Dm
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-gD
-Dm
-Dm
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
@@ -10376,6 +10167,27 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+fW
+fR
+tT
+Dm
+Dm
+Dm
+tT
+tT
+tT
+fT
+tT
+tT
+fZ
+tT
+fZ
+tT
+tT
 Dm
 Dm
 tT
@@ -10389,6 +10201,17 @@ tT
 tT
 tT
 tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -10396,10 +10219,21 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+jz
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -10447,7 +10281,7 @@ tT
 tT
 tT
 tT
-tT
+fW
 tT
 tT
 tT
@@ -10468,8 +10302,6 @@ Dm
 Dm
 Dm
 Dm
-gD
-gF
 Dm
 Dm
 Dm
@@ -10479,8 +10311,10 @@ Dm
 Dm
 Dm
 Dm
-gF
 Dm
+tT
+fR
+fR
 Dm
 Dm
 Dm
@@ -10489,6 +10323,21 @@ Dm
 fR
 tT
 tT
+fV
+tT
+fW
+fZ
+fV
+tT
+tT
+tT
+Dm
+Dm
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -10499,21 +10348,6 @@ tT
 tT
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
 Dm
 Dm
 Dm
@@ -10526,22 +10360,22 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hr
+hq
+hq
+hq
+jw
+hq
 tT
 tT
 tT
@@ -10584,7 +10418,7 @@ Dm
 Dm
 Dm
 tT
-tT
+fU
 tT
 tT
 tT
@@ -10619,6 +10453,11 @@ Dm
 Dm
 Dm
 Dm
+tT
+tT
+tT
+Dm
+Dm
 Dm
 Dm
 Dm
@@ -10627,18 +10466,13 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
-Dm
-Dm
-Dm
 tT
+fY
 tT
+aI
+fV
 tT
-tT
-tT
-tT
-tT
+fT
 Dm
 Dm
 tT
@@ -10667,22 +10501,22 @@ tT
 tT
 tT
 tT
+hq
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -10761,8 +10595,8 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
+fW
+tT
 Dm
 Dm
 Dm
@@ -10776,10 +10610,10 @@ Dm
 Dm
 Dm
 tT
+fR
+fR
 tT
-tT
-tT
-tT
+fW
 tT
 Dm
 Dm
@@ -10809,24 +10643,24 @@ tT
 tT
 tT
 tT
+hq
+hq
+jA
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+fW
 tT
 tT
 Dm
@@ -10903,6 +10737,8 @@ Dm
 Dm
 Dm
 Dm
+tT
+fV
 Dm
 Dm
 Dm
@@ -10917,8 +10753,6 @@ Dm
 Dm
 Dm
 Dm
-Dm
-Dm
 tT
 tT
 tT
@@ -10950,22 +10784,22 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+jy
+hq
+hq
+hq
+hq
+hq
+hq
+jw
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -11013,29 +10847,18 @@ Dm
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-tT
-Dm
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
+gx
 tT
 tT
 tT
 tT
 Dm
 Dm
+tT
 Dm
+Dm
+tT
+tT
 tT
 tT
 tT
@@ -11047,6 +10870,17 @@ tT
 Dm
 Dm
 Dm
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 Dm
 Dm
 Dm
@@ -11055,18 +10889,18 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
 Dm
 Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 tT
 tT
-tT
-tT
-tT
+fZ
+fZ
+aI
 tT
 Dm
 tT
@@ -11091,23 +10925,23 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
+hq
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -11185,17 +11019,7 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
-Dm
-Dm
+fV
 tT
 tT
 tT
@@ -11205,6 +11029,18 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+fR
+tT
 fR
 tT
 tT
@@ -11231,26 +11067,24 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
+hq
+hq
+jF
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-fU
-tT
-tT
-tT
-tT
-tT
+fR
 tT
 tT
 tT
@@ -11338,15 +11172,21 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+tT
+fR
+fW
+tT
+fV
 tT
 tT
 tT
@@ -11368,29 +11208,23 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
+hq
+hq
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+jE
+hq
+hq
 tT
 tT
 tT
@@ -11431,29 +11265,7 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-Dm
-Dm
-tT
-tT
-tT
-tT
-Dm
-Dm
-Dm
-Dm
-tT
-tT
-Dm
-tT
-tT
-tT
-tT
-tT
-tT
+fW
 tT
 tT
 tT
@@ -11463,24 +11275,16 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
 Dm
 Dm
 Dm
+Dm
+tT
+tT
+Dm
+tT
+tT
+tT
 tT
 tT
 tT
@@ -11494,6 +11298,36 @@ tT
 tT
 tT
 tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+tT
+fY
+tT
+fZ
 tT
 tT
 tT
@@ -11516,23 +11350,23 @@ fR
 tT
 tT
 tT
+hq
+fW
+hq
+hq
 tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-gv
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -11624,6 +11458,14 @@ tT
 tT
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
 tT
 tT
 tT
@@ -11641,6 +11483,7 @@ tT
 tT
 tT
 tT
+jS
 tT
 tT
 tT
@@ -11649,32 +11492,23 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
 tT
 tT
+fV
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hr
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -11768,6 +11602,16 @@ tT
 Dm
 Dm
 Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+fV
+fV
 tT
 tT
 tT
@@ -11791,31 +11635,21 @@ tT
 tT
 tT
 tT
+hq
+hq
 tT
 tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -11853,7 +11687,7 @@ Dm
 Dm
 Dm
 tT
-tT
+fV
 tT
 tT
 tT
@@ -11913,6 +11747,13 @@ tT
 Dm
 tT
 tT
+Dm
+Dm
+tT
+tT
+tT
+fV
+fV
 tT
 tT
 tT
@@ -11935,29 +11776,22 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
 tT
 tT
 tT
 tT
 tT
 tT
+hq
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+jz
 tT
 tT
 tT
@@ -12084,22 +11918,22 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
 tT
 tT
 tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+jF
+hq
+hq
 tT
 tT
 tT
@@ -12138,7 +11972,7 @@ Dm
 tT
 tT
 tT
-tT
+fU
 tT
 tT
 tT
@@ -12226,22 +12060,22 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
+hq
 tT
 tT
 tT
 tT
+hq
+hq
 tT
+hq
+hq
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
 tT
 tT
 tT
@@ -12369,19 +12203,19 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
+hq
+jE
+hq
+hq
+jA
 tT
+hq
+hq
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
 tT
 tT
 tT
@@ -12428,7 +12262,7 @@ tT
 tT
 tT
 tT
-tT
+fR
 tT
 tT
 tT
@@ -12511,19 +12345,19 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
 tT
 tT
 tT
@@ -12654,16 +12488,16 @@ tT
 tT
 tT
 tT
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
 tT
 tT
 tT
@@ -12798,13 +12632,13 @@ tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
-tT
-tT
-tT
+hq
+hq
+hq
+hq
+hq
+hq
+hq
 tT
 tT
 tT
@@ -12847,7 +12681,7 @@ Dm
 Dm
 Dm
 tT
-tT
+fW
 tT
 tT
 tT
@@ -13089,7 +12923,7 @@ tT
 tT
 tT
 tT
-tT
+fW
 tT
 tT
 tT
@@ -14371,7 +14205,7 @@ tT
 tT
 tT
 tT
-tT
+go
 tT
 tT
 tT
@@ -14794,9 +14628,9 @@ tT
 tT
 Dm
 Dm
-gi
-gi
-gi
+jh
+jh
+jh
 Dm
 Dm
 Dm
@@ -14935,15 +14769,15 @@ tT
 tT
 Dm
 Dm
-gi
 jh
-gi
-gi
+jh
+jh
+jh
 jh
 Dm
 Dm
 Dm
-tT
+gp
 tT
 Dm
 Dm
@@ -15075,7 +14909,7 @@ tT
 tT
 Dm
 Dm
-hp
+Dm
 jh
 jh
 ho
@@ -15086,7 +14920,7 @@ jh
 Dm
 Dm
 tT
-tT
+gd
 Dm
 Dm
 Dm
@@ -15366,7 +15200,7 @@ ho
 ho
 ho
 ho
-gi
+jh
 Dm
 Dm
 Dm
@@ -15503,12 +15337,12 @@ Dm
 Dm
 gi
 gi
-gi
+jh
 ho
 ho
 ho
 ho
-gi
+jh
 Dm
 Dm
 Dm
@@ -15646,10 +15480,10 @@ Dm
 Dm
 Dm
 Dm
-gi
 jh
-gi
-gi
+jh
+jh
+jh
 Dm
 Dm
 Dm
@@ -15827,7 +15661,7 @@ Dm
 Dm
 Dm
 tT
-tT
+fW
 tT
 tT
 tT
@@ -16222,7 +16056,7 @@ Dm
 Dm
 tT
 tT
-tT
+fV
 tT
 tT
 tT
@@ -16503,7 +16337,7 @@ tT
 tT
 tT
 tT
-tT
+fW
 tT
 tT
 tT
@@ -16641,7 +16475,7 @@ fR
 tT
 tT
 tT
-tT
+gx
 tT
 tT
 tT
@@ -16666,7 +16500,7 @@ hq
 hq
 hq
 hq
-tT
+fR
 tT
 tT
 tT
@@ -16928,7 +16762,7 @@ tT
 tT
 tT
 tT
-tT
+fT
 tT
 tT
 tT
@@ -16955,7 +16789,7 @@ hq
 hq
 hq
 hq
-hq
+jz
 tT
 tT
 tT
@@ -17210,11 +17044,11 @@ gg
 tT
 tT
 tT
+fV
 tT
 tT
 tT
-tT
-tT
+fR
 tT
 tT
 Dm
@@ -17247,7 +17081,7 @@ tT
 tT
 tT
 tT
-tT
+fZ
 tT
 tT
 tT
@@ -17637,7 +17471,7 @@ tT
 tT
 tT
 tT
-tT
+fY
 tT
 tT
 tT
@@ -17951,8 +17785,8 @@ Dm
 gi
 gi
 gi
-gi
-gi
+jh
+jh
 gi
 gi
 gi
@@ -18366,17 +18200,17 @@ Dm
 Dm
 tT
 tT
+fW
 tT
 tT
 tT
-tT
 Dm
 Dm
 Dm
 Dm
 Dm
 Dm
-gi
+jh
 gi
 gi
 Dm
@@ -18667,7 +18501,7 @@ Dm
 Dm
 gi
 gi
-gi
+jh
 Dm
 Dm
 tT
@@ -18805,7 +18639,7 @@ Dm
 Dm
 Dm
 gi
-gi
+jh
 gi
 gi
 Dm
@@ -18941,7 +18775,7 @@ Dm
 Dm
 Dm
 Dm
-gi
+jh
 Dm
 Dm
 Dm
@@ -19018,7 +18852,7 @@ fC
 al
 fu
 fs
-aB
+jT
 aB
 am
 tT
@@ -19229,10 +19063,10 @@ gi
 gi
 gi
 gi
-gi
-gi
-gi
+jh
+jh
 jd
+Dm
 Dm
 Dm
 gi
@@ -19505,7 +19339,7 @@ Dm
 Dm
 Dm
 Dm
-ju
+jh
 gi
 gi
 gi
@@ -19647,7 +19481,7 @@ Dm
 Dm
 Dm
 Dm
-gi
+jh
 gi
 Dm
 Dm
@@ -20078,7 +19912,7 @@ gi
 gi
 gi
 gi
-gi
+jh
 gi
 gi
 Dm
@@ -20652,8 +20486,8 @@ Dm
 Dm
 Dm
 Dm
-gS
-gS
+Dm
+Dm
 gS
 gW
 gU
@@ -20794,9 +20628,9 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 gS
-gT
-gT
 gT
 gT
 gT
@@ -20934,13 +20768,13 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 gS
 gS
 gS
 gT
-gT
-gT
-gT
+kP
 gT
 gS
 Dm
@@ -21076,10 +20910,10 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 gS
-je
-gT
-gT
+le
 gT
 gT
 gT
@@ -21218,10 +21052,10 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 hf
-gT
-gT
-gT
+kP
 gT
 gT
 gT
@@ -21360,10 +21194,10 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 gS
 he
-gT
-gT
 gT
 gT
 gT
@@ -21502,10 +21336,10 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 gS
 jf
-gT
-gT
 gT
 gT
 hw
@@ -21591,7 +21425,7 @@ tT
 tT
 tT
 tT
-tT
+fR
 tT
 tT
 tT
@@ -21644,12 +21478,12 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 gS
 jg
 gT
-gT
-gT
-gT
+kW
 hx
 hx
 gS
@@ -21786,12 +21620,12 @@ Dm
 Dm
 Dm
 Dm
+Dm
+Dm
 gS
 gS
 gT
-gT
-ja
-gT
+kX
 hx
 hx
 gS
@@ -21862,7 +21696,7 @@ tT
 tT
 tT
 tT
-tT
+fW
 tT
 tT
 tT
@@ -21929,8 +21763,8 @@ Dm
 Dm
 Dm
 Dm
-gS
-gS
+Dm
+Dm
 gS
 gS
 gS
@@ -22522,7 +22356,7 @@ tT
 tT
 tT
 tT
-tT
+fR
 tT
 tT
 tT
@@ -22658,7 +22492,7 @@ tT
 tT
 tT
 tT
-tT
+fV
 tT
 tT
 tT
@@ -22717,7 +22551,7 @@ tT
 tT
 tT
 tT
-tT
+fR
 tT
 tT
 tT
@@ -23086,7 +22920,7 @@ tT
 tT
 tT
 tT
-tT
+fW
 tT
 tT
 tT
@@ -23237,14 +23071,14 @@ tT
 tT
 tT
 tT
+fZ
 tT
 tT
 tT
 tT
 tT
 tT
-tT
-tT
+fW
 tT
 tT
 tT
@@ -23572,7 +23406,7 @@ tT
 tT
 tT
 tT
-tT
+fW
 tT
 tT
 tT
@@ -23598,8 +23432,8 @@ gf
 gf
 gf
 hl
-gj
-gj
+jH
+jG
 hl
 gf
 gf
@@ -23877,7 +23711,7 @@ tT
 tT
 tT
 gb
-gf
+jP
 aC
 gf
 gf
@@ -23887,7 +23721,7 @@ gj
 hk
 gf
 aC
-gf
+gG
 gb
 tT
 tT
@@ -24024,7 +23858,7 @@ gf
 hj
 gf
 hk
-hn
+gj
 gj
 hk
 gf
@@ -24134,7 +23968,7 @@ tT
 tT
 tT
 tT
-tT
+aI
 tT
 tT
 tT
@@ -24166,8 +24000,8 @@ gt
 gt
 gt
 gr
-gj
-gj
+jH
+jG
 hk
 gf
 gf
@@ -24229,7 +24063,7 @@ tT
 tT
 tT
 tT
-tT
+fR
 tT
 tT
 tT
@@ -24304,8 +24138,8 @@ tT
 tT
 tT
 gb
-gj
-gj
+jN
+jL
 gj
 gj
 gj
@@ -24446,9 +24280,9 @@ fV
 tT
 tT
 gb
+jO
 gj
-gj
-gj
+jJ
 gj
 gj
 gj
@@ -24589,9 +24423,9 @@ tT
 tT
 ga
 ga
-gj
-gj
-gj
+jM
+jK
+jI
 gj
 gj
 hk
@@ -24644,17 +24478,17 @@ Dm
 Dm
 Dm
 Dm
-hE
-hM
-hE
-hM
-hE
-io
-hE
-hM
-hY
-hM
-hE
+Dm
+Dm
+Dm
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -24786,17 +24620,17 @@ Dm
 Dm
 Dm
 Dm
-iT
-iI
-iD
-iw
-ir
-ib
-hF
-if
-hZ
-hN
-hF
+Dm
+Dm
+tT
+tT
+fW
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -24857,7 +24691,7 @@ Dm
 Dm
 Dm
 Dm
-gh
+jR
 gh
 gL
 gh
@@ -24928,17 +24762,17 @@ Dm
 Dm
 Dm
 Dm
-hE
-iJ
-iD
-ix
-ib
-ib
-hG
-ig
-hZ
-hO
-hG
+Dm
+Dm
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -25070,17 +24904,7 @@ Dm
 Dm
 Dm
 Dm
-iT
-iK
-iD
-iy
-is
-ib
-hH
-ih
-hZ
-hP
-hH
+Dm
 tT
 tT
 tT
@@ -25091,12 +24915,22 @@ tT
 tT
 tT
 tT
+fV
 tT
 tT
 tT
 tT
 tT
 tT
+tT
+tT
+tT
+fZ
+tT
+tT
+tT
+tT
+fR
 tT
 tT
 tT
@@ -25212,17 +25046,17 @@ Dm
 Dm
 Dm
 Dm
-hE
-iM
-iD
-iz
-is
-ib
-hQ
-hQ
-ia
-hQ
-hE
+Dm
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -25354,17 +25188,17 @@ Dm
 Dm
 Dm
 Dm
-iT
-iN
-iD
-iA
-is
-ib
-il
-ii
-ib
-hR
-hI
+Dm
+Dm
+Dm
+tT
+tT
+tT
+tT
+tT
+tT
+tT
+tT
 tT
 tT
 tT
@@ -25496,17 +25330,17 @@ Dm
 Dm
 Dm
 Dm
-iU
-iQ
-iE
-iy
-is
-ip
-im
-hS
-hS
-hS
-hE
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+tT
 tT
 tT
 tT
@@ -25638,17 +25472,17 @@ Dm
 Dm
 Dm
 Dm
-iW
-iR
-iG
-iB
-it
-iq
-in
-ic
-ic
-hT
-hK
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+tT
+tT
 tT
 tT
 tT
@@ -25780,26 +25614,26 @@ Dm
 Dm
 Dm
 Dm
-hE
-hQ
-iH
-iC
-iu
-ib
-in
-ij
-id
-hU
-hE
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+tT
+tT
+tT
+fR
 tT
 tT
 tT
 tT
 tT
-tT
-tT
-tT
-tT
+fW
 tT
 tT
 tT
@@ -25922,17 +25756,17 @@ Dm
 Dm
 Dm
 Dm
-iT
-iS
-iD
-iy
-iv
-ib
-in
-ik
-ie
-hV
-hL
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
+tT
 tT
 tT
 tT
@@ -26064,17 +25898,17 @@ Dm
 Dm
 Dm
 Dm
-hE
-hX
-io
-hX
-hE
-io
-hY
-hX
-hY
-hX
-hE
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+tT
 tT
 tT
 tT
@@ -26216,9 +26050,9 @@ Dm
 Dm
 Dm
 Dm
-tT
-tT
-tT
+Dm
+Dm
+Dm
 tT
 tT
 tT
