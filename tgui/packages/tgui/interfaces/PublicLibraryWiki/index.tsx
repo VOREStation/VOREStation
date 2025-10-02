@@ -74,7 +74,7 @@ export const PublicLibraryWiki = (props) => {
     } else {
       setLoadTime(Math.floor(Math.random() * 2000) + 2000);
     }
-  }, [crash, loadTime]);
+  }, [crash]);
 
   useEffect(() => {
     let shownAds: string[] = [];
