@@ -148,7 +148,7 @@ export const Spinner = (props: {
     if (!factor) return;
     const id = setInterval(updateRotation, SPEED_MULTIPLIER * factor);
     return () => clearInterval(id);
-  }, [factor, updateRotation]);
+  }, [factor]);
 
   return (
     <Box
