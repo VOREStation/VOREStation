@@ -536,7 +536,6 @@
 		if(allowed(user))
 			locked = !locked
 			to_chat(user, span_notice("Controls are now [locked ? "locked" : "unlocked"]."))
-			updateUsrDialog(user)
 		else
 			to_chat(user, span_notice("Access denied."))
 

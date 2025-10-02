@@ -1,5 +1,0 @@
-author: "Ryumi"
-delete-after: True
-changes:
-  - code_imp: "Greatly cleaned up the initialization code of playing card decks."
-  - bugfix: "Fixed triple card decks generating at quadruple size instead of triple, as well as casino card decks spawning with jokers."

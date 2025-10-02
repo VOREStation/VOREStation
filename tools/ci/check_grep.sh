@@ -140,7 +140,7 @@ part "improperly pathed static lists"
 if $grep -i 'var/list/static/.*' $code_files; then
 	echo
 	echo -e "${RED}ERROR: Found incorrect static list definition 'var/list/static/', it should be 'var/static/list/' instead.${NC}"
-	st=1
+	FAILED=1
 fi;
 
 part "changelog"
@@ -169,22 +169,23 @@ if ls -1 tgui/**/*.jsx 2>/dev/null; then
 fi;
 
 part "balloon_alert sanity"
-if $grep 'balloon_alert\(".*"\)' $code_files; then
+if $grep 'balloon_alert\(".*"' $code_files; then
 	echo
 	echo -e "${RED}ERROR: Found a balloon alert with improper arguments.${NC}"
 	FAILED=1
 fi;
 
-if $grep 'balloon_alert(.*span_)' $code_files; then
+part "balloon_alert span check"
+if $grep 'balloon_alert\(.*[Ss][Pp][Aa][Nn]' $code_files; then
 	echo
 	echo -e "${RED}ERROR: Balloon alerts should never contain spans.${NC}"
 	FAILED=1
 fi;
 
 part "balloon_alert idiomatic usage"
-if $grep 'balloon_alert\(.*?, ?"[A-Z]' $code_files; then
+if $grep 'balloon_alert\(.*?,\s*"[\sA-Z]' $code_files; then
 	echo
-	echo -e "${RED}ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
+	echo -e "${RED}ERROR: Balloon alerts should not start with capital letters or whitespace. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
 	FAILED=1
 fi;
 
@@ -227,6 +228,13 @@ fi;
 
 if [ "$pcre2_support" -eq 1 ]; then
 	section "regexes requiring PCRE2"
+
+    part "deoptimization of range/view with as anything"
+	if $grep -PU 'var\/(?!atom).* as anything in o?(range|view)\(' $code_files; then
+		echo
+		echo -e "${RED}ERROR: range(), orange(), view(), and oview() perform significantly worse with as anything.${NC}"
+		FAILED=1
+	fi;
 
 	part "empty variable values"
 	if $grep -PU '{\n\t},' $map_files; then

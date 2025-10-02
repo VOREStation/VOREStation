@@ -530,6 +530,10 @@
 #define COMSIG_ITEM_EQUIPPED "item_equip"
 ///from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_DROPPED "item_drop"
+/// A mob has just equipped an item. Called on [/mob] from base of [/obj/item/equipped()]: (/obj/item/equipped_item, slot)
+#define COMSIG_MOB_EQUIPPED_ITEM "mob_equipped_item"
+/// A mob has just unequipped an item.
+#define COMSIG_MOB_UNEQUIPPED_ITEM "mob_unequipped_item"
 ///from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_ITEM_PICKUP "item_pickup"
 ///from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
@@ -932,18 +936,6 @@
 #define COMSIG_BELLY_UPDATE_PREY_LOOP "update_prey_loop"
 /// COMSIG used to get messages where they need to go
 #define COMSIG_VISIBLE_MESSAGE "visible_message"
-
-// Weaver Component
-///from /mob/living/proc/check_silk_amount()
-#define COMSIG_CHECK_SILK_AMOUNT "check_silk_amount"
-///from /mob/living/proc/weave_structure()
-#define COMSIG_WEAVE_STRUCTURE "weave_structure"
-///from /mob/living/proc/toggle_silk_production()
-#define COMSIG_TOGGLE_SILK_PRODUCTION "toggle_silk_production"
-///from /mob/living/proc/weave_item()
-#define COMSIG_WEAVE_ITEM "weave_item"
-///from /mob/living/proc/set_silk_color()
-#define COMSIG_SET_SILK_COLOR "set_silk_color"
 
 // Gargoyle Component
 ///from /mob/living/carbon/human/proc/gargoyle_transformation()
