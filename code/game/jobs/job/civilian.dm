@@ -480,7 +480,7 @@
 	title_blurb = "A " + JOB_ALT_EDUCATOR + " provides an education of some sort to the crew. Perhaps somebody coming in to teach a health and safety course, or teach about cultures?"
 	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/educator
 
-/datum/alt_title/educator
+/datum/alt_title/instructor
 	title = JOB_ALT_INSTRUCTOR
 	title_blurb = "A " + JOB_ALT_INSTRUCTOR + " provides instructions on how to perform certain tasks, providing training for crew members in new skills."
 	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/educator
