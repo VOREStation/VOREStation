@@ -12,9 +12,8 @@
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	host_mob = parent
-	if(istype(focused_on,/obj/belly)) // vorebellies focus on their owner
-		var/obj/belly/vorny = focused_on
-		focused_on = vorny.owner
+	if(isbelly(focused_on) || istype(focused_on,/obj/item/dogborg/sleeper)) // sleepers focus on their owner, which is always the loc they are in. If this changes in the future, update this.
+		focused_on = focused_on.loc
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
 	if(forbid_movement)
 		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
