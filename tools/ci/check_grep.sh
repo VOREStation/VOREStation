@@ -228,6 +228,13 @@ fi;
 if [ "$pcre2_support" -eq 1 ]; then
 	section "regexes requiring PCRE2"
 
+    part "deoptimization of range/view with as anything"
+	if $grep -PU 'var\/(?!atom).* as anything in o?(range|view)\(' $code_files; then
+		echo
+		echo -e "${RED}ERROR: range(), orange(), view(), and oview() perform significantly worse with as anything.${NC}"
+		st=1
+	fi;
+
 	part "empty variable values"
 	if $grep -PU '{\n\t},' $map_files; then
 		echo
