@@ -93,7 +93,7 @@
 					if(!viewers) viewers = list() // List must exist for pass by reference to work
 					start_coordinated_remoteview(ui.user, linked, viewers)
 				else
-					ui.user.reset_perspective()
+					ui.user.reset_perspective(ui.user)
 			. = TRUE
 
 		if("link")

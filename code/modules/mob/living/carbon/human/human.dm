@@ -995,7 +995,7 @@
 		return
 
 	if(is_remote_viewing())
-		reset_perspective()
+		reset_perspective(src)
 		return
 
 	var/list/mob/creatures = list()

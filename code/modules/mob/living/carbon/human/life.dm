@@ -1747,13 +1747,13 @@
 		if(machine)
 			var/viewflags = machine.check_eye(src)
 			if(viewflags < 0)
-				reset_perspective()
+				reset_perspective(src)
 			else if(viewflags && !is_remote_viewing())
 				sight |= viewflags
 			else
 				machine.apply_visual(src)
 		else if(eyeobj && eyeobj.owner != src)
-			reset_perspective()
+			reset_perspective(src)
 	return 1
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)

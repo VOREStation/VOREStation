@@ -153,8 +153,8 @@ Class Procs:
 		for(var/atom/A in contents)
 			if(ishuman(A))
 				var/mob/living/carbon/human/H = A
-				H.loc = src.loc
-				H.reset_perspective()
+				H.forceMove(loc)
+				H.reset_perspective(H)
 			else
 				qdel(A)
 	return ..()

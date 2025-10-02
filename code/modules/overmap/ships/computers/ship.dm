@@ -35,7 +35,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 /obj/machinery/computer/ship/proc/display_reconnect_dialog(var/mob/user, var/flavor)
 	var/datum/browser/popup = new (user, "[src]", "[src]")
 	if(viewing_overmap(user))
-		user.reset_perspective()
+		user.reset_perspective(user)
 	popup.set_content("<center>" + span_bold(span_red("Error")) + "<br>Unable to connect to [flavor].<br><a href='byond://?src=\ref[src];sync=1'>Reconnect</a></center>")
 	popup.open()
 
@@ -60,7 +60,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 			sync_linked(ui.user)
 			return TRUE
 		if("close")
-			ui.user.reset_perspective()
+			ui.user.reset_perspective(ui.user)
 			return TRUE
 	return FALSE
 
@@ -91,11 +91,11 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 
 /obj/machinery/computer/ship/tgui_close(mob/user)
 	. = ..()
-	user.reset_perspective()
+	user.reset_perspective(user)
 
 /obj/machinery/computer/ship/check_eye(var/mob/user)
 	if(!get_dist(user, src) > 1 || user.blinded || !linked)
-		user.reset_perspective()
+		user.reset_perspective(user)
 		return -1
 	else
 		return 0

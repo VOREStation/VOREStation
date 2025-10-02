@@ -257,7 +257,7 @@
 		holder.pai = null
 
 	src.forceMove(get_turf(card))
-	reset_perspective()
+	reset_perspective(src)
 
 	card.forceMove(src)
 	card.screen_loc = null

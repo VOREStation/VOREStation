@@ -293,7 +293,7 @@
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 
 	if (machine && machine.check_eye(src) < 0)
-		reset_perspective()
+		reset_perspective(src)
 
 	if(emagged)
 		throw_alert("hacked", /atom/movable/screen/alert/hacked)
