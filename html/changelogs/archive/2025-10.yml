@@ -1,0 +1,16 @@
+2025-10-02:
+  Cameron-The-Raven:
+  - bugfix: Pain from internal bleeding will no longer inform you that the pain is
+      coming from your character name.
+  Diana:
+  - bugfix: Fixes grabs hard deleting when pushed over.
+  - qol: Weaver trait now has a TGUI panel
+  - qol: Weaver now has the ability to spin a cocoon
+  - code_imp: Cleans up some signals pertaining to Weaver.
+  Kashargul:
+  - bugfix: mentors seeing some mod / admin messages
+  Ryumi:
+  - qol: Added an option to the Reflexive Biting and Personal Bubble traits that lets
+      you choose to start with them enabled or disabled.
+  Will:
+  - bugfix: Charge blade no longer deletes itself on drop
