@@ -188,7 +188,7 @@
 	if(!HELMET)
 		return //Do I even need this sanity check? Nyoro~n
 	else
-		HELMET.loc = src.loc
+		HELMET.forceMove(get_turf(src))
 		HELMET = null
 		return
 
@@ -197,7 +197,7 @@
 	if(!SUIT)
 		return
 	else
-		SUIT.loc = src.loc
+		SUIT.forceMove(get_turf(src))
 		SUIT = null
 		return
 
@@ -206,7 +206,7 @@
 	if(!MASK)
 		return
 	else
-		MASK.loc = src.loc
+		MASK.forceMove(get_turf(src))
 		MASK = null
 		return
 
@@ -214,13 +214,13 @@
 /obj/machinery/suit_storage_unit/proc/dump_everything()
 	islocked = 0 //locks go free
 	if(SUIT)
-		SUIT.loc = src.loc
+		SUIT.forceMove(get_turf(src))
 		SUIT = null
 	if(HELMET)
-		HELMET.loc = src.loc
+		HELMET.forceMove(get_turf(src))
 		HELMET = null
 	if(MASK)
-		MASK.loc = src.loc
+		MASK.forceMove(get_turf(src))
 		MASK = null
 	if(OCCUPANT)
 		eject_occupant(OCCUPANT)
@@ -399,7 +399,7 @@
 		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return //derpcheck
 			var/mob/M = G.affecting
-			M.loc = src
+			M.forceMove(src)
 			M.AddComponent(/datum/component/remote_view, src)
 			OCCUPANT = M
 			isopen = 0 //close ittt
@@ -418,7 +418,7 @@
 			return
 		to_chat(user, span_info("You load the [S.name] into the storage compartment."))
 		user.drop_item()
-		S.loc = src
+		S.forceMove(src)
 		SUIT = S
 		update_icon()
 		return
@@ -431,7 +431,7 @@
 			return
 		to_chat(user, span_info("You load the [H.name] into the storage compartment."))
 		user.drop_item()
-		H.loc = src
+		H.forceMove(src)
 		HELMET = H
 		update_icon()
 		return
@@ -444,7 +444,7 @@
 			return
 		to_chat(user, span_info("You load the [M.name] into the storage compartment."))
 		user.drop_item()
-		M.loc = src
+		M.forceMove(src)
 		MASK = M
 		update_icon()
 		return
