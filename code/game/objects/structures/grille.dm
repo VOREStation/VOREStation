@@ -136,7 +136,7 @@
 				to_chat(user, span_notice("There is already a window facing this way there."))
 				return
 		to_chat(user, span_notice("You start placing the window."))
-		if(do_after(user,20))
+		if(do_after(user, 2 SECONDS, target = src))
 			for(var/obj/structure/window/WINDOW in loc)
 				if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
 					to_chat(user, span_notice("There is already a window facing this way there."))
@@ -155,9 +155,9 @@
 		user.do_attack_animation(src)
 		playsound(src, 'sound/effects/grillehit.ogg', 80, 1)
 		switch(W.damtype)
-			if("fire")
+			if(BURN)
 				health -= W.force
-			if("brute")
+			if(BRUTE)
 				health -= W.force * 0.1
 	healthcheck()
 	..()

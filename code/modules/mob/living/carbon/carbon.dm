@@ -53,7 +53,17 @@
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
+	if(touch_reaction_flags & SPECIES_TRAIT_THORNS)
+		if(src != M)
+			if(istype(M,/mob/living))
+				var/mob/living/L = M
+				L.apply_damage(3, BRUTE)
+				L.visible_message( \
+					span_warning("[L] is hurt by sharp body parts when touching [src]!"), \
+					span_warning("[src] is covered in sharp bits and it hurt when you touched them!"), )
+
 	if(!istype(M, /mob/living/carbon)) return
+
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
@@ -233,7 +243,7 @@
 					src.adjust_fire_stacks(-0.5)
 					if (prob(10) && (M.fire_stacks <= 0))
 						M.adjust_fire_stacks(1)
-					M.IgniteMob()
+					M.ignite_mob()
 					if (M.on_fire)
 						M.visible_message(span_danger("The fire spreads from [src] to [M]!"),
 						span_danger("The fire spreads to you as well!"))
@@ -242,8 +252,7 @@
 						if (src.fire_stacks <= 0)
 							M.visible_message(span_warning("[M] successfully pats out [src]'s flames."),
 							span_warning("You successfully pat out [src]'s flames."))
-							src.ExtinguishMob()
-							src.fire_stacks = 0
+							src.extinguish_mob()
 		else
 			if (ishuman(src) && src:w_uniform)
 				var/mob/living/carbon/human/H = src
@@ -273,7 +282,7 @@
 						src.adjust_fire_stacks(1)
 						M.adjust_fire_stacks(-1)
 					if(M.on_fire)
-						src.IgniteMob()
+						src.ignite_mob()
 					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
 					update_canmove()
 				else if(istype(hugger))
@@ -285,7 +294,7 @@
 					src.adjust_fire_stacks(1)
 					M.adjust_fire_stacks(-1)
 				if(M.on_fire)
-					src.IgniteMob()
+					src.ignite_mob()
 			AdjustParalysis(-3)
 			AdjustStunned(-3)
 			AdjustWeakened(-3)
@@ -295,7 +304,7 @@
 /mob/living/carbon/proc/eyecheck()
 	return 0
 
-/mob/living/carbon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(eyecheck() < intensity || override_blindness_check)
 		return ..()
 
@@ -418,7 +427,7 @@
 	return !(species.flags & NO_PAIN)
 
 /mob/living/carbon/needs_to_breathe()
-	if(does_not_breathe)
+	if(does_not_breathe || (mNobreath in mutations))
 		return FALSE
 	return ..()
 
@@ -427,7 +436,7 @@
 		drop_l_hand()
 		drop_r_hand()
 		stop_pulling()
-		throw_alert("handcuffed", /obj/screen/alert/restrained/handcuffed, new_master = handcuffed)
+		throw_alert("handcuffed", /atom/movable/screen/alert/restrained/handcuffed, new_master = handcuffed)
 	else
 		clear_alert("handcuffed")
 	update_mob_action_buttons() //some of our action buttons might be unusable when we're handcuffed.

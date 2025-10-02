@@ -1,6 +1,6 @@
 /obj/item/grenade/spawnergrenade/manhacks/station/locked
 	desc = "It is set to detonate in 5 seconds. It will deploy three weaponized survey drones. This one has a safety interlock that prevents release if used while in proximity to the facility."
-	req_access = list(access_armory) //for toggling safety
+	req_access = list(ACCESS_ARMORY) //for toggling safety
 	var/locked = 1
 
 /obj/item/grenade/spawnergrenade/manhacks/station/locked/detonate()

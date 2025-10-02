@@ -67,7 +67,7 @@
 	parent_organ = BP_R_HAND
 	target_slot = slot_r_hand
 
-	integrated_object_type = /obj/item/portable_scanner
+	integrated_object_type = null
 
 /obj/item/organ/internal/augment/armmounted/hand/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))

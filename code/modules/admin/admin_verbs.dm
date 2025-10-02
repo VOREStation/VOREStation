@@ -140,11 +140,11 @@ ADMIN_VERB(list_signalers, R_ADMIN, "List Signalers", "View all signalers.", ADM
 	user.holder.list_signalers()
 	//BLACKBOX_LOG_ADMIN_VERB("List Signalers")
 
-ADMIN_VERB(list_law_changes, R_ADMIN, "List Law Changes", "View all AI law changes.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(list_law_changes, R_ADMIN, "List Law Changes", "View all AI law changes.", ADMIN_CATEGORY_DEBUG_INVESTIGATE)
 	user.holder.list_law_changes()
 	//BLACKBOX_LOG_ADMIN_VERB("List Law Changes")
 
-ADMIN_VERB(show_manifest, R_ADMIN, "Show Manifest", "View the shift's Manifest.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(show_manifest, R_ADMIN, "Show Manifest", "View the shift's Manifest.", ADMIN_CATEGORY_DEBUG_GAME)
 	user.holder.show_manifest()
 	//BLACKBOX_LOG_ADMIN_VERB("Show Manifest")
 
@@ -190,6 +190,10 @@ ADMIN_VERB(unban_panel, R_BAN, "Unbanning Panel", "Unban players here.", ADMIN_C
 ADMIN_VERB(game_panel, R_ADMIN|R_SERVER|R_FUN, "Game Panel", "Look at the state of the game.", ADMIN_CATEGORY_GAME)
 	user.holder.Game()
 	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/// Returns this client's stealthed ckey
+/client/proc/getStealthKey()
+	return GLOB.stealthminID[ckey]
 
 /client/proc/findStealthKey(txt)
 	if(txt)
@@ -276,7 +280,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	set desc = "Cause an explosion of varying strength at your location."
 
 	var/turf/epicenter = mob.loc
-	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb", "Cancel")
+	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap Bomb", "SM Blast", "Custom Bomb", "Cancel")
 	var/choice = tgui_input_list(usr, "What size explosion would you like to produce?", "Explosion Choice", choices)
 	switch(choice)
 		if(null)
@@ -289,6 +293,10 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 			explosion(epicenter, 2, 3, 4, 4)
 		if("Big Bomb")
 			explosion(epicenter, 3, 5, 7, 5)
+		if("Maxcap Bomb") // Being able to test what players can legally make themselves sounds good, no?~
+			explosion(epicenter, BOMBCAP_DVSTN_RADIUS, BOMBCAP_HEAVY_RADIUS, BOMBCAP_LIGHT_RADIUS, BOMBCAP_FLASH_RADIUS)
+		if("SM Blast")
+			explosion(epicenter, 8, 16, 24, 32)
 		if("Custom Bomb")
 			var/devastation_range = tgui_input_number(usr, "Devastation range (in tiles):")
 			var/heavy_impact_range = tgui_input_number(usr, "Heavy impact range (in tiles):")
@@ -327,7 +335,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
 	if(O)
-		var/message = sanitize(tgui_input_text(usr, "What do you want the message to be?", "Make Sound"))
+		var/message = tgui_input_text(usr, "What do you want the message to be?", "Make Sound", "", MAX_MESSAGE_LEN)
 		if(!message)
 			return
 		O.audible_message(message)
@@ -364,7 +372,7 @@ ADMIN_VERB(stealth, R_STEALTH, "Stealth Mode", "Toggle stealth.", "Admin.Game")
 	log_admin("[key_name(usr)] used 'kill air'.")
 	message_admins(span_blue("[key_name_admin(usr)] used 'kill air'."), 1)
 
-ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MISC)
 	user.holder.deactivate()
 	to_chat(user, span_interface("You are now a normal player."))
 	log_admin("[key_name(user)] deadminned themselves.")
@@ -399,7 +407,7 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	var/mob/living/silicon/S = tgui_input_list(usr, "Select silicon.", "Rename Silicon.", GLOB.silicon_mob_list)
 	if(!S) return
 
-	var/new_name = sanitizeSafe(tgui_input_text(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
+	var/new_name = sanitizeSafe(tgui_input_text(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name, encode = FALSE))
 	if(new_name && new_name != S.real_name)
 		log_and_message_admins("has renamed the silicon '[S.real_name]' to '[new_name]'")
 		S.SetName(new_name)

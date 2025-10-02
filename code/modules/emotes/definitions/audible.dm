@@ -227,6 +227,31 @@
 	emote_message_3p = "SHRIEKS!"
 	emote_sound = 'sound/voice/shriek1.ogg'
 
+/decl/emote/audible/caw
+	key = "caw"
+	emote_message_1p = "You caw!"
+	emote_message_3p = "caws!"
+	emote_message_1p_target = "You caw at TARGET."
+	emote_message_3p_target = "caws at TARGET."
+	emote_sound = 'sound/voice/emotes/caw1.ogg' // Copyright Sampling+ 1.0 Vixuxx (freesound.org) for the source audio.
+
+/decl/emote/audible/caw2
+	key = "caw2"
+	emote_message_3p = "caws."
+	emote_sound = 'sound/voice/emotes/caw2.ogg'  // Copyright CC0 1.0 Universal, by Jofae on freesound.org.
+
+
+/decl/emote/audible/caw_m
+	key = "caw_m"
+	emote_message_3p = "caws multiple times."
+	emote_sound = 'sound/voice/emotes/caw_multiple.ogg' // Copyright CC0 1.0 Universal, by Ambientsoundapp on freesound.org.
+
+/decl/emote/audible/gwah
+	key = "gwah"
+	emote_message_3p = "gwah."
+	emote_sound = 'sound/voice/emotes/gwah.ogg' // Copyright CC0 1.0 Universal, by Ambientsoundapp on freesound.org.
+
+
 /decl/emote/audible/purr
 	key = "purr"
 	emote_message_3p = "purrs."

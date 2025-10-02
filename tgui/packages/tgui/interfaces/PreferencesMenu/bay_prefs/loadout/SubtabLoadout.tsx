@@ -110,7 +110,7 @@ export const SubtabLoadout = (props: {
                             }
                           >
                             <div
-                              // biome-ignore lint/security/noDangerouslySetInnerHtml: For now needed
+                              // biome-ignore lint/security/noDangerouslySetInnerHtml: Loadouts
                               dangerouslySetInnerHTML={{
                                 __html: tweak.contents,
                               }}

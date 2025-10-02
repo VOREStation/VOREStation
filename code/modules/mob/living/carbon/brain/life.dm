@@ -77,12 +77,6 @@
 	if(ingested) ingested.metabolize()
 	if(bloodstr) bloodstr.metabolize()
 
-	// decrement dizziness counter, clamped to 0
-	if(resting)
-		dizziness = max(0, dizziness - 5)
-	else
-		dizziness = max(0, dizziness - 1)
-
 	updatehealth()
 
 	return //TODO: DEFERRED
@@ -206,12 +200,12 @@
 
 	if (stat != 2)
 		if ((blinded))
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 		else
 			clear_fullscreen("blind")
-			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
-			set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
-			set_fullscreen(druggy, "high", /obj/screen/fullscreen/high)
+			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /atom/movable/screen/fullscreen/impaired, 1)
+			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
+			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 
 		if (machine)
 			if (!( machine.check_eye(src) ))

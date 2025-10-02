@@ -103,7 +103,8 @@
 	if(internal_organs)
 		for(var/obj/item/organ/O in internal_organs)
 			internal_organs -= O
-			qdel(O)
+			if(isobj(O))
+				qdel(O)
 
 	if(splinted && splinted.loc == src)
 		splinted.loc = null
@@ -1298,7 +1299,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	implants += W
 	owner.embedded_flag = 1
 	add_verb(owner, /mob/proc/yank_out_object)
-	owner.throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
+	owner.throw_alert("embeddedobject", /atom/movable/screen/alert/embeddedobject)
 	W.add_blood(owner)
 	if(ismob(W.loc))
 		var/mob/living/H = W.loc

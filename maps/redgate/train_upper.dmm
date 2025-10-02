@@ -3,6 +3,89 @@
 /obj/structure/ghost_pod/ghost_activated/maint_lurker/redgate,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
+"ab" = (
+/obj/machinery/button/remote/airlock{
+	id = "redtrain_dorm4";
+	name = "Dorm 3 Lock";
+	pixel_y = 24;
+	specialfunctions = 4;
+	pixel_x = -8
+	},
+/obj/machinery/button/windowtint{
+	id = "redtrain_dorm4_window";
+	pixel_y = 24
+	},
+/obj/structure/privacyswitch{
+	pixel_x = 5;
+	pixel_y = 24
+	},
+/turf/simulated/floor/wood,
+/area/redgate/train/dorm4)
+"ac" = (
+/obj/structure/table/fancyblack,
+/obj/item/broken_device/random,
+/turf/simulated/floor/wood,
+/area/redgate/train/dorm5)
+"ad" = (
+/obj/machinery/button/remote/airlock{
+	id = "redtrain_dorm6";
+	name = "Dorm 3 Lock";
+	pixel_y = -24;
+	specialfunctions = 4;
+	pixel_x = -8;
+	dir = 1
+	},
+/obj/machinery/button/windowtint{
+	id = "redtrain_dorm6_window";
+	pixel_y = -24;
+	pixel_x = -1
+	},
+/obj/structure/privacyswitch{
+	dir = 1;
+	pixel_x = 4;
+	pixel_y = -24
+	},
+/turf/simulated/floor/wood,
+/area/redgate/train/dorm6)
+"ae" = (
+/obj/machinery/button/remote/airlock{
+	id = "redtrain_dorm1";
+	name = "Dorm 3 Lock";
+	pixel_y = 24;
+	specialfunctions = 4;
+	pixel_x = -8
+	},
+/obj/machinery/button/windowtint{
+	id = "redtrain_dorm1_window";
+	pixel_y = 24
+	},
+/obj/structure/privacyswitch{
+	pixel_x = 5;
+	pixel_y = 24
+	},
+/turf/simulated/floor/wood,
+/area/redgate/train/dorm1)
+"af" = (
+/obj/machinery/button/remote/airlock{
+	id = "redtrain_dorm3";
+	name = "Dorm 3 Lock";
+	pixel_y = -24;
+	specialfunctions = 4;
+	pixel_x = -8;
+	dir = 1
+	},
+/obj/machinery/button/windowtint{
+	id = "redtrain_dorm3_window";
+	pixel_y = -24;
+	pixel_x = -1
+	},
+/obj/structure/privacyswitch{
+	dir = 1;
+	pixel_x = 4;
+	pixel_y = -24
+	},
+/turf/simulated/floor/wood,
+/area/redgate/train/dorm3)
 "ai" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/redgate/train/gym)
@@ -33,11 +116,16 @@
 /area/redgate/train/dorm1)
 "aR" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm4_window"
 	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/polarized{
+	dir = 1;
+	id = "redtrain_dorm4_window"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "redtrain_dorm4_window"
+	},
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm4)
 "aW" = (
@@ -103,11 +191,16 @@
 /area/redgate/train/freezer)
 "bW" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm3_window"
 	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/polarized{
+	id = "redtrain_dorm3_window"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 1;
+	id = "redtrain_dorm3_window"
+	},
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm3)
 "bZ" = (
@@ -210,12 +303,16 @@
 /area/redgate/train/staff)
 "dV" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm1_window"
 	},
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "redtrain_dorm1_window"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "redtrain_dorm1_window"
 	},
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm1)
@@ -300,14 +397,18 @@
 /area/redgate/train/sleeper1)
 "fn" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm5_window"
 	},
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "redtrain_dorm5_window"
 	},
-/turf/simulated/floor,
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "redtrain_dorm5_window"
+	},
+/turf/simulated/floor/plating,
 /area/redgate/train/dorm5)
 "ft" = (
 /turf/simulated/shuttle/floor/black,
@@ -404,7 +505,8 @@
 /area/redgate/train/chef)
 "gT" = (
 /obj/machinery/door/airlock/silver{
-	name = "Dorm Door"
+	name = "Dorm 6 Door";
+	id_tag = "redtrain_dorm6"
 	},
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm6)
@@ -960,20 +1062,6 @@
 	oxygen = 21.8366
 	},
 /area/redgate/train/security)
-"os" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/redgate/train/dorm1)
 "ow" = (
 /turf/simulated/shuttle/wall/voidcraft,
 /area/redgate/train/dorm3)
@@ -993,12 +1081,16 @@
 /area/redgate/train/command)
 "oy" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm6_window"
 	},
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "redtrain_dorm6_window"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "redtrain_dorm6_window"
 	},
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm6)
@@ -1054,14 +1146,17 @@
 /area/redgate/train/medbay)
 "py" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm3_window"
 	},
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "redtrain_dorm3_window"
 	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "redtrain_dorm3_window"
+	},
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm3)
 "pA" = (
@@ -1242,7 +1337,8 @@
 /area/redgate/train/dorm1)
 "sv" = (
 /obj/machinery/door/airlock/silver{
-	name = "Dorm Door"
+	name = "Dorm 3 Door";
+	id_tag = "redtrain_dorm3"
 	},
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm3)
@@ -1319,17 +1415,6 @@
 /obj/item/storage/firstaid/toxin,
 /turf/simulated/floor/wood,
 /area/redgate/train/sleeper2)
-"tF" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/redgate/train/dorm3)
 "tI" = (
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm4)
@@ -1500,9 +1585,27 @@
 /turf/simulated/floor/tiled/dark,
 /area/redgate/train/staff)
 "wn" = (
-/obj/structure/table/fancyblack,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/button/remote/airlock{
+	id = "redtrain_dorm2";
+	name = "Dorm 2 Lock";
+	specialfunctions = 4;
+	dir = 4;
+	pixel_x = -24;
+	pixel_y = 10
+	},
+/obj/machinery/button/windowtint{
+	id = "redtrain_dorm2_window";
+	pixel_x = -23;
+	pixel_y = 1
+	},
+/obj/structure/bed/chair/comfy/black,
+/obj/structure/privacyswitch{
+	pixel_y = -6;
+	pixel_x = -23;
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm2)
@@ -2083,7 +2186,8 @@
 /area/redgate/train/medbay)
 "EV" = (
 /obj/machinery/door/airlock/silver{
-	name = "Dorm Door"
+	name = "Dorm 2 Door";
+	id_tag = "redtrain_dorsssm2"
 	},
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm2)
@@ -2120,12 +2224,16 @@
 /area/redgate/train/medbay)
 "Fy" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm4_window"
 	},
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "redtrain_dorm4_window"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "redtrain_dorm4_window"
 	},
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm4)
@@ -2321,14 +2429,18 @@
 /area/redgate/train/overboard)
 "IN" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm2_window"
 	},
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "redtrain_dorm2_window"
 	},
-/turf/simulated/floor,
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "redtrain_dorm2_window"
+	},
+/turf/simulated/floor/plating,
 /area/redgate/train/dorm2)
 "IT" = (
 /turf/simulated/floor/wood,
@@ -2537,11 +2649,16 @@
 /area/redgate/train/roof)
 "Mb" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm1_window"
 	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/polarized{
+	dir = 1;
+	id = "redtrain_dorm1_window"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "redtrain_dorm1_window"
+	},
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm1)
 "Mf" = (
@@ -2633,10 +2750,27 @@
 /turf/simulated/shuttle/wall/voidcraft,
 /area/redgate/train/chef)
 "MY" = (
-/obj/structure/table/fancyblack,
-/obj/item/broken_device/random,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/button/remote/airlock{
+	id = "redtrain_dorm5";
+	name = "Dorm 2 Lock";
+	specialfunctions = 4;
+	dir = 4;
+	pixel_x = -24;
+	pixel_y = 10
+	},
+/obj/machinery/button/windowtint{
+	id = "redtrain_dorm5_window";
+	pixel_x = -23;
+	pixel_y = 1
+	},
+/obj/structure/bed/chair/comfy/black,
+/obj/structure/privacyswitch{
+	pixel_y = -6;
+	pixel_x = -23;
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm5)
@@ -2763,12 +2897,6 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/dining)
-"Pr" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
-/area/redgate/train/dorm5)
 "Ps" = (
 /obj/structure/table/rack/gun_rack/steel,
 /obj/item/gun/energy/netgun,
@@ -2794,9 +2922,7 @@
 /turf/simulated/open,
 /area/redgate/train/overboard)
 "PC" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm2)
 "PE" = (
@@ -2907,7 +3033,8 @@
 /area/redgate/train/staff)
 "Rr" = (
 /obj/machinery/door/airlock/silver{
-	name = "Dorm Door"
+	name = "Dorm 4 Door";
+	id_tag = "redtrain_dorm4"
 	},
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm4)
@@ -3169,7 +3296,8 @@
 /area/redgate/train/seclobby)
 "UQ" = (
 /obj/machinery/door/airlock/silver{
-	name = "Dorm Door"
+	name = "Dorm 5 Door";
+	id_tag = "redtrain_dorm5"
 	},
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm5)
@@ -3361,11 +3489,16 @@
 /area/redgate/train/dorm2)
 "XS" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/structure/window/reinforced/polarized/full{
+	id = "redtrain_dorm6_window"
 	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/polarized{
+	dir = 1;
+	id = "redtrain_dorm6_window"
+	},
+/obj/structure/window/reinforced/polarized{
+	id = "redtrain_dorm6_window"
+	},
 /turf/simulated/floor/plating,
 /area/redgate/train/dorm6)
 "XU" = (
@@ -3412,7 +3545,8 @@
 /area/redgate/train/medbay)
 "YG" = (
 /obj/machinery/door/airlock/silver{
-	name = "Dorm Door"
+	name = "Dorm 1 Door";
+	id_tag = "redtrain_dorm1"
 	},
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm1)
@@ -17325,14 +17459,14 @@ aW
 ow
 ow
 ow
-CY
+af
 ow
 Ov
 if
 wn
 hD
 Nv
-Sr
+ae
 Nv
 Nv
 Nv
@@ -17343,14 +17477,14 @@ bD
 Em
 Em
 Em
-rE
+ad
 Em
 AY
 IT
 MY
-LB
+ac
 YC
-tI
+ab
 YC
 YC
 YC
@@ -17490,7 +17624,7 @@ Em
 eL
 IT
 IT
-Pr
+LB
 YC
 tI
 tI
@@ -17891,7 +18025,7 @@ WM
 WM
 WM
 ow
-tF
+py
 py
 ow
 ow
@@ -17901,7 +18035,7 @@ IN
 Qt
 Nv
 Nv
-os
+dV
 dV
 Nv
 WM

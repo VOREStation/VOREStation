@@ -2198,7 +2198,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/maintenance/fore_port)
 "gK" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green,
@@ -2430,7 +2430,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
 "hz" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -2855,7 +2855,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/maintenance/fore_port)
 "iM" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -3512,7 +3512,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "ly" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green,
@@ -4494,7 +4494,7 @@
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/cap_room)
 "pc" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -5675,7 +5675,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "tc" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -6170,7 +6170,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway)
 "uO" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -6448,7 +6448,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/maintenance/aft_port)
 "vL" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -6637,7 +6637,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway)
 "ww" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -6701,7 +6701,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/maintenance/wing_starboard)
 "wG" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -6771,7 +6771,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "wT" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -10888,7 +10888,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -12371,7 +12371,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "PT" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -13212,7 +13212,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway/fore)
 "SS" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -13572,7 +13572,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
 "Ue" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -13989,7 +13989,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/refining)
 "Vy" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -14228,7 +14228,7 @@
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/restrooms)
 "Wl" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -15341,7 +15341,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/maintenance/wing_port)
 "ZK" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{

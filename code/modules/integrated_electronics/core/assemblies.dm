@@ -18,6 +18,7 @@
 	var/locked = FALSE // If true, the assembly cannot be opened with a crowbar
 	var/obj/item/card/id/locked_by = null // The ID that locked this assembly
 	var/obj/item/card/id/access_card = null // ID card for door access
+	var/list/component_positions = list() // Stores circuit positions as list of lists: list("ref" = ref, "x" = x, "y" = y)
 
 
 /obj/item/electronic_assembly/Initialize(mapload)
@@ -86,10 +87,17 @@
 	data["battery_max"] = round(battery?.maxcharge, 0.1)
 	data["net_power"] = net_power / CELLRATE
 
+	// Include export data - the UI component will handle displaying it if needed
+	data["export_data"] = serialize_electronic_assembly()
+	data["assembly_name"] = name
+
 	var/list/circuits = list()
 	for(var/obj/item/integrated_circuit/circuit in contents)
 		UNTYPED_LIST_ADD(circuits, circuit.tgui_data(user, ui, state))
 	data["circuits"] = circuits
+
+	// Include component positions for UI restoration
+	data["component_positions"] = component_positions
 
 	return data
 
@@ -98,6 +106,14 @@
 		return TRUE
 
 	switch(action)
+		if("export_circuit")
+			if(!LAZYLEN(contents))
+				to_chat(ui.user, span_warning("There's nothing in the [src] to export!"))
+				return TRUE
+			var/datum/tgui/window = new(ui.user, src, "ICExport", "Circuit Export")
+			window.open()
+			return TRUE
+
 		// Actual assembly actions
 		if("rename")
 			rename(ui.user)
@@ -171,6 +187,30 @@
 			C.remove(ui.user)
 			return TRUE
 
+		if("update_component_position")
+			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
+			if(!istype(C))
+				return FALSE
+
+			var/new_x = params["x"]
+			var/new_y = params["y"]
+			if(!isnum(new_x) || !isnum(new_y))
+				return FALSE
+
+			// Find existing position entry or create new one
+			var/found = FALSE
+			for(var/list/pos_data in component_positions)
+				if(pos_data["ref"] == REF(C))
+					pos_data["x"] = new_x
+					pos_data["y"] = new_y
+					found = TRUE
+					break
+
+			if(!found)
+				UNTYPED_LIST_ADD(component_positions, list("ref" = REF(C), "x" = new_x, "y" = new_y))
+
+			return TRUE
+
 	return FALSE
 // End TGUI
 
@@ -183,7 +223,7 @@
 	if(!check_interactivity(M))
 		return
 
-	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name this?", "Rename", src.name, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name this?", "Rename", src.name, MAX_NAME_LEN, encode = FALSE), MAX_NAME_LEN)
 	if(src && input)
 		to_chat(M, span_notice("The machine now has a label reading '[input]'."))
 		name = input
@@ -210,7 +250,10 @@
 	. = ..()
 	if(Adjacent(user))
 		for(var/obj/item/integrated_circuit/IC in contents)
-			. += IC.external_examine(user)
+			// Make sure there's actually examine text to prevent empty lines being printed for EVERY component!
+			var/examine_text = IC.external_examine(user)
+			if (length(examine_text))
+				. += examine_text
 		if(opened)
 			tgui_interact(user)
 
@@ -432,10 +475,18 @@
 // Bump functionality, for pathfinding circuits. (Droid circuit assembly types)
 /obj/item/electronic_assembly/Bump(atom/AM)
 	..()
-	if(istype(AM, /obj/machinery/door) && can_move())
-		var/obj/machinery/door/D = AM
-		if(D.check_access(src))
-			D.open()
+	if(can_move())
+		// Check if it's an airlock or windoor. (Prevents opening blast doors and shutters)
+		if(istype(AM, /obj/machinery/door/airlock) || istype(AM, /obj/machinery/door/window))
+			var/obj/machinery/door/D = AM
+			// Only open doors that we have access to
+			if(D.check_access(src))
+				D.open()
+
+/obj/item/electronic_assembly/check_access(obj/item/I)
+	if(access_card)
+		return access_card.check_access(I)
+	return ..()  // Fall back to default behavior if no access_card
 
 // Returns TRUE if I is something that could/should have a valid interaction. Used to tell circuitclothes to hit the circuit with something instead of the clothes
 /obj/item/electronic_assembly/proc/is_valid_tool(var/obj/item/I)

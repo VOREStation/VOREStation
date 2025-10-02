@@ -46,7 +46,7 @@
 				newrecord.id = copytext(md5(dna.real_name), 2, 6) // update this specially
 				continue
 			if("dna")
-				qdel_swap(newrecord.dna, dna.Clone())
+				QDEL_SWAP(newrecord.dna, dna.Clone())
 				continue
 		if(islist(vars[A]))
 			var/list/L = vars[A]

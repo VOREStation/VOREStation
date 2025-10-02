@@ -1802,6 +1802,13 @@
 	name = "Tajaran Finger Curls"
 	icon_state = "hair_fingerwave"
 
+/datum/sprite_accessory/hair/dragonmane
+	name = "Dragon Mane"
+	icon_state = "hair_dragonmane"
+
+/datum/sprite_accessory/hair/dragonmaneshort
+	name = "Short Dragon Mane"
+	icon_state = "hair_dragonmaneshort"
 
 //Teshari things
 /datum/sprite_accessory/hair/teshari
@@ -1919,7 +1926,7 @@
 	icon_state = "hair_slicker"
 
 /datum/sprite_accessory/facial_hair
-	icon = 'icons/mob/human_face_or_vr.dmi'
+	icon = 'icons/mob/human_face_or_alt.dmi'
 	color_blend_mode = ICON_MULTIPLY
 
 

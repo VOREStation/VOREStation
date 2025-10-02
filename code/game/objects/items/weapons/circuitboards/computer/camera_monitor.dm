@@ -5,7 +5,7 @@
 /obj/item/circuitboard/security
 	name = T_BOARD("security camera monitor")
 	build_path = /obj/machinery/computer/security
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	var/list/network
 	var/locked = 1
 	var/emagged = 0
@@ -30,7 +30,7 @@
 /obj/item/circuitboard/security/mining
 	name = T_BOARD("mining camera monitor")
 	build_path = /obj/machinery/computer/security/mining
-	network = list("Mining Outpost")
+	network = list(NETWORK_MINE)
 	req_access = list()
 
 /obj/item/circuitboard/security/telescreen/entertainment
@@ -75,7 +75,7 @@
 			to_chat(user, span_warning("Circuit controls are locked."))
 			return
 		var/existing_networks = jointext(network,",")
-		var/input = sanitize(tgui_input_text(user, "Which networks would you like to connect this camera console circuit to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
+		var/input = tgui_input_text(user, "Which networks would you like to connect this camera console circuit to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks, MAX_MESSAGE_LEN)
 		if(!input)
 			to_chat(user, "No input found please hang up and try your call again.")
 			return

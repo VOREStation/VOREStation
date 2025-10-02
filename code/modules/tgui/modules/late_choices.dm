@@ -121,7 +121,7 @@
 			if(!CONFIG_GET(flag/enter_allowed))
 				to_chat(new_user, span_notice("There is an administrative lock on entering the game!"))
 				return
-			else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
+			else if(SSticker && SSticker.mode && SSticker.mode.explosion_in_progress)
 				to_chat(new_user, span_danger("The station is currently exploding. Joining would go poorly."))
 				return
 

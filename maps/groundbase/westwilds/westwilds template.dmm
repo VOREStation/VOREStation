@@ -474,7 +474,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_hallway)
 "eo" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "axolotl_pd"
 	},
 /turf/simulated/floor/plating,
@@ -2107,7 +2107,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
 "sw" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "axolotl_pd"
 	},
 /turf/simulated/floor/plating,
@@ -2254,7 +2254,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
 "tT" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "axolotl_pd"
 	},
 /turf/simulated/floor/plating,

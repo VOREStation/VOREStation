@@ -1,4 +1,9 @@
 /mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
+	if(client)
+		stack_trace("Mob with client has been deleted.")
+
+	persistent_client?.set_mob(null)
+
 	SSmobs.currentrun -= src
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
@@ -7,7 +12,7 @@
 	unset_machine()
 	clear_fullscreen()
 	if(client)
-		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
+		for(var/atom/movable/screen/movable/spell_master/spell_master in spell_masters)
 			qdel(spell_master)
 		remove_screen_obj_references()
 		client.screen = list()
@@ -27,7 +32,7 @@
 	if(ability_master)
 		QDEL_NULL(ability_master)
 
-	if(vore_organs)
+	if(LAZYLEN(vore_organs))
 		QDEL_NULL_LIST(vore_organs)
 	if(vorePanel)
 		QDEL_NULL(vorePanel)
@@ -44,8 +49,9 @@
 	if(mind)
 		if(mind.current == src)
 			mind.current = null
-		if(mind.original == src)
-			mind.original = null
+		var/mob/living/original = mind.original_character?.resolve()
+		if(original && original == src)
+			mind.original_character = null
 
 	. = ..()
 	update_client_z(null)
@@ -78,6 +84,7 @@
 	set_focus(src) // VOREStation Add - Key Handling
 	update_transform() // Some mobs may start bigger or smaller than normal.
 	. = ..()
+	log_mob_tag("TAG: [tag] CREATED: [key_name(src)] \[[type]\]")
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
 /mob/show_message(msg, type, alt, alt_type)
@@ -311,7 +318,7 @@
 	set src in usr
 	if(usr != src)
 		to_chat(src, "No.")
-	var/msg = sanitize(tgui_input_text(src,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
+	var/msg = tgui_input_text(src,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text), MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 
 	if(msg != null)
 		flavor_text = msg
@@ -340,7 +347,7 @@
 	// Try to figure out what time to use
 
 	// Special cases, can never respawn
-	if(ticker?.mode?.deny_respawn)
+	if(SSticker?.mode?.deny_respawn)
 		time = -1
 	else if(!CONFIG_GET(flag/abandon_allowed))
 		time = -1
@@ -348,7 +355,7 @@
 		time = -1
 
 	// Special case for observing before game start
-	else if(ticker?.current_state <= GAME_STATE_SETTING_UP)
+	else if(SSticker?.current_state <= GAME_STATE_SETTING_UP)
 		time = 1 MINUTE
 
 	// Wasn't given a time, use the config time
@@ -377,7 +384,7 @@
 		to_chat(src, span_boldnotice("You are already in the lobby!"))
 		return
 
-	if(stat != DEAD || !ticker)
+	if(stat != DEAD || !SSticker)
 		to_chat(src, span_boldnotice("You must be dead to use this!"))
 		return
 
@@ -938,7 +945,7 @@
 	else
 		to_chat(U, span_warning("You attempt to get a good grip on [selection] in [S]'s body."))
 
-	if(!do_after(U, 30))
+	if(!do_after(U, 3 SECONDS, target = src))
 		return
 	if(!selection || !S || !U)
 		return
@@ -1165,10 +1172,6 @@
 /mob/proc/is_muzzled()
 	return 0
 
-//Exploitable Info Update
-/obj
-	var/datum/weakref/exploit_for //if this obj is an exploit for somebody, this points to them
-
 /mob/proc/amend_exploitable(var/obj/item/I)
 	if(istype(I))
 		exploit_addons |= I
@@ -1177,7 +1180,7 @@
 		I.exploit_for = WEAKREF(src)
 
 
-/obj/Destroy()
+/obj/item/Destroy()
 	if(exploit_for)
 		var/mob/exploited = exploit_for.resolve()
 		exploited?.exploit_addons -= src
@@ -1186,7 +1189,7 @@
 
 
 /client/proc/check_has_body_select()
-	return mob && mob.hud_used && istype(mob.zone_sel, /obj/screen/zone_sel)
+	return mob && mob.hud_used && istype(mob.zone_sel, /atom/movable/screen/zone_sel)
 
 /client/verb/body_toggle_head()
 	set name = "body-toggle-head"
@@ -1226,7 +1229,7 @@
 /client/proc/toggle_zone_sel(list/zones)
 	if(!check_has_body_select())
 		return
-	var/obj/screen/zone_sel/selector = mob.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.zone_sel
 	selector.set_selected_zone(next_in_list(mob.zone_sel.selecting,zones))
 
 // This handles setting the client's color variable, which makes everything look a specific color.
@@ -1573,7 +1576,7 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 			qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
 		L.ai_holder_type = tgui_input_list(usr, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
 		L.initialize_ai_holder()
-		L.faction = sanitize(tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral"))
+		L.faction = tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral", MAX_MESSAGE_LEN)
 		L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
 		if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 			L.AdjustSleeping(-100)

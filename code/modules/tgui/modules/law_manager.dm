@@ -95,7 +95,7 @@
 			if(is_malf(ui.user))
 				var/datum/ai_law/AL = locate(params["edit_law"]) in owner.laws.all_laws()
 				if(AL)
-					var/new_law = sanitize(tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
+					var/new_law = tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law, MAX_MESSAGE_LEN)
 					if(new_law && new_law != AL.law && is_malf(ui.user) && can_still_topic(ui.user, state))
 						log_and_message_admins("has changed a law of [owner] from '[AL.law]' to '[new_law]'")
 						AL.law = new_law
@@ -127,13 +127,11 @@
 			return TRUE
 
 		if("notify_laws")
-			to_chat(owner, span_danger("Law Notice"))
-			owner.laws.show_laws(owner)
+			to_chat(owner, span_danger("Law Notice\n") + owner.laws.get_formatted_laws())
 			if(isAI(owner))
 				var/mob/living/silicon/ai/AI = owner
 				for(var/mob/living/silicon/robot/R in AI.connected_robots)
-					to_chat(R, span_danger("Law Notice"))
-					R.laws.show_laws(R)
+					to_chat(R, span_danger("Law Notice\n") + R.laws.get_formatted_laws())
 			if(ui.user != owner)
 				to_chat(ui.user, span_notice("Laws displayed."))
 			return TRUE

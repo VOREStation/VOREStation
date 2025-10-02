@@ -252,7 +252,7 @@
 // -----------------------------
 /obj/item/storage/bag/plants
 	name = "plant bag"
-	icon = 'icons/obj/hydroponics_machines_vr.dmi'
+	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "plantbag"
 	desc = "A sturdy bag used to transport fresh produce with ease."
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
@@ -364,16 +364,23 @@
 
 // Modified quick_empty verb drops appropriate sized stacks
 /obj/item/storage/bag/sheetsnatcher/quick_empty()
+	. = list()
 	var/location = get_turf(src)
 	for(var/obj/item/stack/material/S in contents)
 		var/cur_amount = S.get_amount()
 		var/full_stacks = round(cur_amount / S.max_amount) // Floor of current/max is amount of full stacks we make
 		var/remainder = cur_amount % S.max_amount // Current mod max is remainder after full sheets removed
 		for(var/i = 1 to full_stacks)
-			new S.type(location, S.max_amount)
+			. += new S.type(location, S.max_amount)
 		if(remainder)
-			new S.type(location, remainder)
+			. += new S.type(location, remainder)
 		S.set_amount(0)
+		for(var/mob/M in is_seeing)
+			if(!M.client || QDELETED(M))
+				hide_from(M)
+			else
+				M.client.screen -= S
+
 	orient2hud(usr)
 	if(usr.s_active)
 		usr.s_active.show_to(usr)
@@ -441,7 +448,7 @@
 	max_storage_space = 200
 	w_class = ITEMSIZE_LARGE
 	slowdown = 1 //you probably shouldn't be running with chemicals
-	can_hold = list(/obj/item/reagent_containers/pill,/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle)
+	can_hold = list(/obj/item/reagent_containers/pill,/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/hypospray/autoinjector)
 
 // -----------------------------
 //           Xeno Bag
@@ -509,3 +516,27 @@
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/forensics/swab,/obj/item/sample/print,/obj/item/sample/fibers,/obj/item/evidencebag)
+
+// -----------------------------
+//          Santa bag
+// -----------------------------
+/obj/item/storage/bag/santabag
+	name = "\improper Santa's gift bag"
+	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "giftbag0"
+	item_state_slots = list(slot_r_hand_str = "giftbag", slot_l_hand_str = "giftbag")
+
+	w_class = ITEMSIZE_LARGE
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 100 // can store a ton of shit!
+	can_hold = list() // any
+	cant_hold = list(/obj/item/disk/nuclear)
+
+/obj/item/storage/bag/santabag/update_icon()
+	if(contents.len < 10)
+		icon_state = "giftbag0"
+	else if(contents.len < 25)
+		icon_state = "giftbag1"
+	else
+		icon_state = "giftbag2"

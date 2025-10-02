@@ -477,7 +477,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sdfc_pd";
 	name = "\improper twin-linked laser turret"
 	},
@@ -679,7 +679,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/sdf_corvette)
 "QG" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sdfc_pd";
 	name = "\improper twin-linked laser turret"
 	},
@@ -751,7 +751,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "sdfc_pd";
 	name = "\improper twin-linked laser turret"
 	},

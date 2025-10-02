@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/obj/machinery/mecha_part_fabricator{
+/obj/machinery/mecha_part_fabricator_tg{
 	req_access = list()
 	},
 /obj/effect/floor_decal/milspec/color/black/half{
@@ -331,7 +331,7 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/suite_starboard_wc)
 "bU" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -537,7 +537,7 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -565,7 +565,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/kitchen)
 "do" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -660,7 +660,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/bar)
 "dM" = (
-/obj/machinery/mecha_part_fabricator/pros{
+/obj/machinery/mecha_part_fabricator_tg/prosthetics{
 	req_access = list()
 	},
 /obj/effect/floor_decal/milspec/color/black/half{
@@ -1058,7 +1058,7 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/wc_port)
 "gD" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -1880,7 +1880,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_port)
 "ln" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -2629,7 +2629,7 @@
 /turf/space,
 /area/space)
 "qg" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -3696,7 +3696,7 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/medical)
 "xm" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -3883,9 +3883,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/workshop)
 "yu" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/repair_bay)
 "yx" = (
@@ -4924,9 +4922,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/suite_port_wc)
 "ER" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/workshop)
 "EU" = (
@@ -4936,7 +4932,7 @@
 /turf/simulated/wall/rpshull,
 /area/aro3/bar)
 "EW" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan,
@@ -5136,7 +5132,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "Gz" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -5579,7 +5575,7 @@
 /turf/simulated/wall/tgmc/durawall,
 /area/aro3/cockpit)
 "KI" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan,
@@ -5778,7 +5774,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/surfluid)
 "LR" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -6787,7 +6783,7 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 6
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aro3_pd"
 	},
 /obj/structure/cable/cyan{
@@ -7737,9 +7733,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/workshop)
 "ZW" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
+/obj/machinery/mech_recharger/alien,
 /obj/mecha/combat/fighter/gunpod/loaded,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/repair_bay)

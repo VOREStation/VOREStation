@@ -138,7 +138,7 @@
 	set category = "Object"
 	set desc = "Rename your gun."
 
-	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name the gun?","Rename Shotgun" ,"",MAX_NAME_LEN))
+	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name the gun?","Rename Shotgun" ,"",MAX_NAME_LEN, encode = FALSE))
 
 	var/mob/M = usr
 	if(src && input && !M.stat && in_range(M,src))
@@ -186,7 +186,7 @@
 			user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD Port
 			burst = burstsetting
 			return
-		if(do_after(user, 30)) // SHIT IS STEALTHY EYYYYY
+		if(do_after(user, 3 SECONDS, target = src)) // SHIT IS STEALTHY EYYYYY
 			if(sawn_off)
 				return
 			if(unique_reskin)

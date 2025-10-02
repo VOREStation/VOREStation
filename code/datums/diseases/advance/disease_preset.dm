@@ -51,10 +51,10 @@
 		if(SPECIES_UNATHI, SPECIES_TAJARAN) // Mice devourers
 			sickrisk = 0.5
 		if(SPECIES_XENOCHIMERA)
-			var/datum/disease/advance/dormant_roanoake = new /datum/disease/roanoake
-			dormant_roanoake.virus_modifiers |= DORMANT
-			ForceContractDisease(dormant_roanoake, TRUE)
-			return
+			var/datum/disease/roanoke/dormant_roanoke = new
+			dormant_roanoke.virus_modifiers |= DORMANT
+			ForceContractDisease(dormant_roanoke, TRUE)
+			return TRUE
 		if(SPECIES_PROMETHEAN) // Too clean
 			return
 

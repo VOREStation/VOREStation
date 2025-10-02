@@ -31,7 +31,7 @@
 			return TRUE
 
 /datum/data/pda/app/status_display/proc/post_status(var/command, var/data1, var/data2)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
 	if(!frequency)
 		return
 

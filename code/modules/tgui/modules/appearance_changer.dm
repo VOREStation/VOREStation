@@ -32,10 +32,10 @@
 
 	// Stuff needed to render the map
 	var/map_name
-	var/obj/screen/map_view/cam_screen
+	var/atom/movable/screen/map_view/cam_screen
 	var/list/cam_plane_masters
-	var/obj/screen/background/cam_background
-	var/obj/screen/skybox/local_skybox
+	var/atom/movable/screen/background/cam_background
+	var/atom/movable/screen/skybox/local_skybox
 	// Stuff for moving cameras
 	var/turf/last_camera_turf
 
@@ -65,7 +65,7 @@
 
 	cam_plane_masters = get_tgui_plane_masters()
 
-	for(var/obj/screen/instance as anything in cam_plane_masters)
+	for(var/atom/movable/screen/instance as anything in cam_plane_masters)
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "[map_name]:CENTER"
@@ -127,8 +127,8 @@
 			if(can_change(owner, APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(owner.change_species(params["race"]))
 					if(params["race"] == "Custom Species")
-						owner.custom_species = sanitize(tgui_input_text(ui.user, "Input custom species name:",
-							"Custom Species Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
+						owner.custom_species = tgui_input_text(ui.user, "Input custom species name:",
+							"Custom Species Name", null, MAX_NAME_LEN)
 					cut_data()
 					generate_data(ui.user, owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
@@ -453,7 +453,7 @@
 			return TRUE
 		if("rename")
 			if(owner)
-				var/raw_name = tgui_input_text(ui.user, "Choose the a name:", "Sleeve Name")
+				var/raw_name = tgui_input_text(ui.user, "Choose the a name:", "Sleeve Name", encode = FALSE)
 				if(!isnull(raw_name) && can_change(owner, APPEARANCE_RACE))
 					var/new_name = sanitize_name(raw_name, owner.species, FALSE) // can't edit synths
 					if(new_name)
@@ -466,14 +466,14 @@
 						return TRUE
 		if("char_name")
 			if(DC) // Only body designer does this. no hrefing
-				var/new_name = sanitize(tgui_input_text(ui.user, "Input character's name:", "Name", owner.name, MAX_NAME_LEN), MAX_NAME_LEN)
+				var/new_name = tgui_input_text(ui.user, "Input character's name:", "Name", owner.name, MAX_NAME_LEN)
 				if(can_change(owner, APPEARANCE_RACE)) // new name can be empty, it uses base species if so
 					owner.name = new_name
 					owner.real_name = owner.name
 					owner.dna.real_name = owner.name
 					return TRUE
 		if("race_name")
-			var/new_name = sanitize(tgui_input_text(ui.user, "Input custom species name:", "Custom Species Name", owner.custom_species, MAX_NAME_LEN), MAX_NAME_LEN)
+			var/new_name = tgui_input_text(ui.user, "Input custom species name:", "Custom Species Name", owner.custom_species, MAX_NAME_LEN)
 			if(can_change(owner, APPEARANCE_RACE)) // new name can be empty, it uses base species if so
 				owner.custom_species = new_name
 				return TRUE
@@ -636,7 +636,7 @@
 			if(!owner.changeling_locked && (!owner.resleeve_lock && can_change(owner, APPEARANCE_RACE)))
 				// Create it from the mob
 				if(DC.disk.stored)
-					qdel_null(DC.disk.stored)
+					QDEL_NULL(DC.disk.stored)
 				to_chat(ui.user,span_notice("\The [owner]'s bodyrecord was saved to the disk."))
 				owner.update_dna()
 				DC.disk.stored = new /datum/transhuman/body_record(owner, FALSE, FALSE) // Saves a COPY!
@@ -1122,7 +1122,7 @@
 	// checks for monkey to tell if on the menu
 	if(owner)
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-		qdel_null(owner)
+		QDEL_NULL(owner)
 	owner = new(src)
 	owner.set_species(SPECIES_LLEILL)
 	owner.species.produceCopy(owner.species.traits.Copy(),owner,null,FALSE)
@@ -1134,7 +1134,7 @@
 /datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
 	if(owner)
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-		qdel_null(owner)
+		QDEL_NULL(owner)
 	owner = current_project.produce_human_mob(src,FALSE,FALSE,"Designer [rand(999)]")
 	// Update some specifics from the current record
 	owner.dna.blood_reagents = current_project.mydna.dna.blood_reagents

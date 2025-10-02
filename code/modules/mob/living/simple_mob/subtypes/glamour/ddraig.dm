@@ -35,7 +35,17 @@
 	can_buckle = TRUE
 	buckle_movable = TRUE
 	buckle_lying = FALSE
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
 	minbodytemp = 0
+	maxbodytemp = 99999
+	heat_resist = 1
 
 	var/flames
 	var/firebreathtimer
@@ -48,6 +58,8 @@
 
 	var/leap_warmup = 2 SECOND // How long the leap telegraphing is.
 	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
+
+	status_flags = null
 
 /mob/living/simple_mob/vore/ddraig
 
@@ -64,6 +76,13 @@
 	vore_default_mode = DM_DIGEST
 	vore_pounce_maxhealth = 125
 	vore_bump_emote = "tries to devour"
+
+/mob/living/simple_mob/vore/ddraig/faster
+	special_attack_cooldown = 10 SECONDS
+	charge_warmup = 1.5 SECOND
+	tf_warmup = 1 SECOND
+	leap_warmup = 1 SECOND
+	movement_cooldown = -3
 
 /mob/living/simple_mob/vore/ddraig/Login()
 	. = ..()
@@ -236,15 +255,14 @@
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 			return
 		var/mob/living/new_mob = spawn_mob(M)
-		new_mob.faction = M.faction
 
-		new_mob.mob_tf(M)
+		M.tf_into(new_mob)
 
 		addtimer(CALLBACK(new_mob, TYPE_PROC_REF(/mob/living, revert_mob_tf)), 30 SECONDS, TIMER_DELETE_ME)
 
 /obj/item/projectile/beam/mouselaser/ddraig/spawn_mob(var/mob/living/target)
 	var/list/tf_list = list(/mob/living/simple_mob/animal/passive/mouse,
-		/mob/living/simple_mob/animal/passive/mouse/rat,
+		/mob/living/simple_mob/animal/passive/mouse/rat/strong,
 		/mob/living/simple_mob/vore/alienanimals/dustjumper,
 		/mob/living/simple_mob/vore/woof,
 		/mob/living/simple_mob/animal/passive/dog/corgi,
@@ -273,7 +291,7 @@
 	can_flee = TRUE
 	flee_when_dying = FALSE
 
-/datum/ai_holder/simple_mob/vore/find_target(list/possible_targets, has_targets_list)
+/datum/ai_holder/simple_mob/vore/ddraig/find_target(list/possible_targets, has_targets_list)
 	if(!vore_hostile)
 		return ..()
 	if(!isanimal(holder))	//Only simplemobs have the vars we need
@@ -290,7 +308,7 @@
 	for(var/mob/living/possible_target in possible_targets)
 		if(!can_attack(possible_target))
 			continue
-		if(isanimal(target) && !check_attacker(target)) //Do not target simple mobs who didn't attack you (disengage with TF'd mobs)
+		if(isanimal(possible_target) && !check_attacker(possible_target)) //Do not target simple mobs who didn't attack you (disengage with TF'd mobs)
 			continue
 		. |= possible_target
 		if(!isliving(possible_target))
@@ -429,23 +447,19 @@
 
 
 	var/mob/living/M = src
-	log_debug("polymorph start")
 	if(!istype(M))
-		log_debug("polymorph istype")
 		return
 
 	if(M.stat)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph stat")
 		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
 	if(M.health <= 10)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph injured")
 		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
 	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
-	if(!do_after(src, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(src, 10 SECONDS, target = src))
 		visible_message("<b>\The [src]</b> ceases shifting their form.")
 		return 0
 
@@ -455,14 +469,11 @@
 	spawn(10)
 		src.overlays -= coolanimation
 
-		log_debug("polymorph not dead")
 		var/mob/living/new_mob = spawn_polymorph_mob(beast_options[chosen_beast])
 		new_mob.faction = M.faction
 
 		if(new_mob && isliving(new_mob))
-			log_debug("polymorph new_mob")
 			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				log_debug("polymorph new_mob belly")
 				new_mob.vore_organs -= B
 				qdel(B)
 			new_mob.vore_organs = list()
@@ -475,18 +486,14 @@
 			M.copy_vore_prefs_to_mob(new_mob)
 			new_mob.vore_selected = M.vore_selected
 			if(ishuman(M))
-				log_debug("polymorph ishuman part2")
 				var/mob/living/carbon/human/H = M
 				if(ishuman(new_mob))
-					log_debug("polymorph ishuman(newmob)")
 					var/mob/living/carbon/human/N = new_mob
 					N.gender = H.gender
 					N.identifying_gender = H.identifying_gender
 				else
-					log_debug("polymorph gender else")
 					new_mob.gender = H.gender
 			else
-				log_debug("polymorph gender else 2")
 				new_mob.gender = M.gender
 				if(ishuman(new_mob))
 					var/mob/living/carbon/human/N = new_mob
@@ -512,13 +519,9 @@
 			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [chosen_beast]!")
 
 /mob/living/proc/spawn_polymorph_mob(var/chosen_beast)
-	log_debug("polymorph proc spawn mob")
 	var/tf_type = chosen_beast
-	log_debug("polymorph [tf_type]")
 	if(!ispath(tf_type))
-		log_debug("polymorph tf_type fail")
 		return
-	log_debug("polymorph tf_type pass")
 	var/new_mob = new tf_type(get_turf(src))
 	return new_mob
 

@@ -389,7 +389,7 @@ emp_act
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
+/mob/living/carbon/human/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)
 	if(src.is_incorporeal())
 		return
 //	if(buckled && buckled == AM)
@@ -398,8 +398,8 @@ emp_act
 	//VORESTATION EDIT START - Allows for thrown vore!
 	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
 	// I put more comments here for ease of reading.
-	if(isliving(AM))
-		var/mob/living/thrown_mob = AM
+	if(isliving(source))
+		var/mob/living/thrown_mob = source
 		if(isanimal(thrown_mob) && !allowmobvore && !thrown_mob.ckey) //Is the thrown_mob an animal and we don't allow mobvore?
 			return
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
@@ -423,14 +423,13 @@ emp_act
 			return
 	//VORESTATION EDIT END - Allows for thrown vore!
 
-	if(istype(AM,/obj/))
-		var/obj/O = AM
-		if(stat != DEAD && istype(O,/obj/item) && trash_catching && vore_selected) //Ported from chompstation
-			var/obj/item/I = O
-			if(adminbus_trash || is_type_in_list(I, GLOB.edible_trash) && I.trash_eatable && !is_type_in_list(I, GLOB.item_vore_blacklist))
-				visible_message(span_vwarning("[I] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
-				I.throwing = 0
-				I.forceMove(vore_selected)
+	if(isitem(source))
+		var/obj/item/O = source
+		if(stat != DEAD && trash_catching && vore_selected)
+			if(adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
+				visible_message(span_vwarning("[O] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
+				O.throwing = 0
+				O.forceMove(vore_selected)
 				return
 		if(in_throw_mode && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
 			if(canmove && !restrained() && !src.is_incorporeal())
@@ -441,7 +440,6 @@ emp_act
 						throw_mode_off()
 						return
 
-		var/dtype = O.damtype
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
 		if(species && species.throwforce_absorb_threshold >= throw_damage)
@@ -491,34 +489,30 @@ emp_act
 
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 		if(armor < 100)
-			apply_damage(throw_damage, dtype, zone, armor, soaked, is_sharp(O), has_edge(O), O)
+			apply_damage(throw_damage, O.damtype, zone, armor, soaked, is_sharp(O), has_edge(O), O)
 
 
 		//thrown weapon embedded object code.
-		if(dtype == BRUTE && istype(O,/obj/item))
-			var/obj/item/I = O
-			if (!is_robot_module(I))
-				var/sharp = is_sharp(I)
+		if(O.damtype == BRUTE)
+			if (!is_robot_module(O))
+				var/sharp = is_sharp(O)
 				var/damage = throw_damage
-				if (soaked)
+				if(soaked)
 					damage -= soaked
-				if (armor)
+				if(armor)
 					damage /= armor+1
 
 				//blunt objects should really not be embedding in things unless a huge amount of force is involved
-				var/embed_chance = sharp? damage/I.w_class : damage/(I.w_class*3)
-				var/embed_threshold = sharp? 5*I.w_class : 15*I.w_class
+				var/embed_chance = sharp? damage/O.w_class : damage/(O.w_class*3)
+				var/embed_threshold = sharp? 5*O.w_class : 15*O.w_class
 
 				//Sharp objects will always embed if they do enough damage.
 				//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
-				if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
-					affecting.embed(I)
+				if((sharp && prob(damage/(10*O.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
+					affecting.embed(O)
 
 		// Begin BS12 momentum-transfer code.
-		var/mass = 1.5
-		if(istype(O, /obj/item))
-			var/obj/item/I = O
-			mass = I.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
+		var/mass = O.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
@@ -539,7 +533,9 @@ emp_act
 					src.pinned += O
 
 // This does a prob check to catch the thing flying at you, with a minimum of 1%
-/mob/living/carbon/human/proc/can_catch(var/obj/O)
+/mob/living/carbon/human/proc/can_catch(var/obj/item/O)
+	if(!isitem(O))
+		return FALSE
 	if(!get_active_hand())	// If active hand is empty
 		var/obj/item/organ/external/temp = organs_by_name[BP_R_HAND]
 		if (hand)
@@ -656,10 +652,9 @@ emp_act
 	return CLAMP(1-converted_protection, 0, 1)
 
 /mob/living/carbon/human/water_act(amount)
-	adjust_fire_stacks(-amount * 5)
+	adjust_wet_stacks(amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
-	remove_modifiers_of_type(/datum/modifier/fire)
 
 	species.handle_water_damage(src, amount)
 
@@ -676,7 +671,7 @@ emp_act
 		organ_chance = 75
 	user.next_move = world.time + 20
 	user.visible_message(span_danger("\The [user] begins to twist \the [W] around inside [src]'s [chest]!"))
-	if(!do_after(user, 20))
+	if(!do_after(user, 2 SECONDS, target = src))
 		return 0
 	if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
 		return 0
@@ -695,7 +690,7 @@ emp_act
 	if(!check_has_mouth())
 		return TRUE
 
-	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
+	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) && wear_mask.body_parts_covered & FACE|| (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
 		return TRUE
 
 	return FALSE

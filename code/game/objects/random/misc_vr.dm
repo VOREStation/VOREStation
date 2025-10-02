@@ -419,3 +419,20 @@
 				prob(10);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink,
 				prob(10);/obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow
 				)
+
+/obj/random/shibari
+	name = "random shibari"
+	desc = "A random shibari."
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_state = "shibari_None"
+	spawn_nothing_percentage = 0
+
+/obj/random/shibari/item_to_spawn()
+	return pick(prob(5);/obj/item/clothing/suit/shibari,
+				prob(5);/obj/item/clothing/suit/shibari/red,
+				prob(5);/obj/item/clothing/suit/shibari/blue,
+				prob(5);/obj/item/clothing/suit/shibari/green,
+				prob(5);/obj/item/clothing/suit/shibari/yellow,
+				prob(5);/obj/item/clothing/suit/shibari/black,
+				prob(5);/obj/item/clothing/suit/shibari/pink
+				)

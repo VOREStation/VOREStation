@@ -4207,7 +4207,7 @@
 	},
 /area/tdome/tdomeobserve)
 "oE" = (
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/rnd/production/protolathe,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "oF" = (
@@ -4913,7 +4913,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/security)
 "qN" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator_tg,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "qQ" = (
@@ -5745,7 +5745,7 @@
 	},
 /area/centcom/specops)
 "tE" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator_tg/prosthetics,
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "tH" = (
@@ -7377,18 +7377,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security/residential)
 "yV" = (
-/obj/machinery/cryopod/robot/door/dorms{
-	base_icon_state = "door_closed";
-	desc = "A small elevator";
-	dir = 2;
-	icon = 'icons/obj/doors/Door2x1glass.dmi';
-	icon_state = "door_closed";
-	name = "elevator";
-	on_enter_occupant_message = "The elevator doors close slowly. You can now head off for the residential, commercial, and other floors.";
-	on_store_message = "has departed for one of the various colony floors";
-	on_store_name = "Colony Oversight";
-	on_store_visible_message_2 = "to the colony districts.";
-	time_till_despawn = 5
+/obj/machinery/cryopod/robot/door/dorms/tether_glass{
+	dir = 2
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/living)
@@ -8788,10 +8778,6 @@
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
-"Ea" = (
-/obj/machinery/computer/rdconsole/robotics,
-/turf/simulated/floor/tiled/white,
-/area/centcom/control)
 "Eb" = (
 /obj/structure/reagent_dispensers/water_cooler/full,
 /turf/simulated/floor/tiled/freezer,
@@ -9654,10 +9640,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/centcom)
-"GV" = (
-/obj/machinery/r_n_d/destructive_analyzer,
-/turf/simulated/floor/tiled/white,
-/area/centcom/control)
 "GW" = (
 /obj/structure/sign/nosmoking_2,
 /turf/simulated/wall/r_wall,
@@ -10393,7 +10375,7 @@
 /turf/simulated/floor/reinforced,
 /area/centcom/terminal)
 "Jj" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/white,
 /area/centcom/control)
@@ -12007,7 +11989,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/bathroom)
 "On" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
@@ -13037,7 +13019,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "Ri" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole_tg{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -14046,11 +14028,7 @@
 	},
 /area/centcom/terminal)
 "UL" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/floor/tiled,
 /area/centcom/living)
 "UM" = (
@@ -15374,10 +15352,6 @@
 /obj/item/storage/box/syringes,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
-"Zu" = (
-/obj/machinery/r_n_d/server/centcom,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "Zv" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -29244,7 +29218,7 @@ Vt
 jm
 hW
 Kr
-Zu
+Sp
 jm
 Vt
 Vt
@@ -32771,7 +32745,7 @@ bR
 cI
 MP
 HI
-GV
+hZ
 Ri
 lm
 VE
@@ -33763,7 +33737,7 @@ wZ
 wZ
 wZ
 cI
-Ea
+hZ
 kd
 Vt
 Vt

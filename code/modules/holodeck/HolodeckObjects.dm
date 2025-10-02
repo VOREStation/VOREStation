@@ -50,6 +50,19 @@
 	icon_state = "grass0"
 	initial_flooring = /decl/flooring/grass
 
+/turf/simulated/floor/holofloor/grass/jungle
+	icon = 'icons/jungle.dmi'
+	icon_state = "grass2"
+
+/turf/simulated/floor/holofloor/grass/hive
+	icon = 'icons/turf/flooring/misc_vr.dmi'
+	icon_state = "hive"
+	name = "giant honeycomb"
+
+/turf/simulated/floor/holofloor/wood/diona
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "diona"
+
 /turf/simulated/floor/holofloor/snow
 	name = "snow"
 	base_name = "snow"
@@ -128,7 +141,7 @@
 /obj/structure/holostool
 	name = "stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/furniture_vr.dmi'
+	icon = 'icons/obj/furniture.dmi'
 	icon_state = "stool_padded_preview"
 	anchored = TRUE
 	unacidable = TRUE

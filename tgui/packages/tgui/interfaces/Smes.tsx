@@ -10,7 +10,6 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
 
 // Common power multiplier
@@ -69,9 +68,9 @@ export const Smes = (props) => {
               bad: [-Infinity, 0.15],
             }}
           >
-            {toFixed(charge / (1000 * 60), 1) +
+            {(charge / (1000 * 60)).toFixed(1) +
               ' kWh / ' +
-              toFixed(capacity / (1000 * 60)) +
+              (capacity / (1000 * 60)).toFixed() +
               ' kWh (' +
               capacityPercent +
               '%)'}
@@ -121,6 +120,7 @@ export const Smes = (props) => {
                 </Stack.Item>
                 <Stack.Item grow mx={1}>
                   <Slider
+                    tickWhileDragging
                     value={inputLevel / POWER_MUL}
                     fillValue={inputAvailable / POWER_MUL}
                     minValue={0}
@@ -130,7 +130,7 @@ export const Smes = (props) => {
                     format={(value: number) =>
                       formatPower(value * POWER_MUL, 1)
                     }
-                    onDrag={(e, value: number) =>
+                    onChange={(e, value: number) =>
                       act('input', {
                         target: value * POWER_MUL,
                       })
@@ -210,6 +210,7 @@ export const Smes = (props) => {
                 </Stack.Item>
                 <Stack.Item grow mx={1}>
                   <Slider
+                    tickWhileDragging
                     value={outputLevel / POWER_MUL}
                     minValue={0}
                     maxValue={outputLevelMax / POWER_MUL}
@@ -218,7 +219,7 @@ export const Smes = (props) => {
                     format={(value: number) =>
                       formatPower(value * POWER_MUL, 1)
                     }
-                    onDrag={(e, value: number) =>
+                    onChange={(e, value: number) =>
                       act('output', {
                         target: value * POWER_MUL,
                       })

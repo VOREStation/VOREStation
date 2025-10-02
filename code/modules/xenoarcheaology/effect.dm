@@ -24,8 +24,8 @@
 	var/can_start_activated = TRUE
 
 /datum/artifact_effect/Destroy()
-	master = null //Master still exists even if our effect gets destroyed. No need to qdel_null.
-	qdel_null(active_effect)
+	master = null //Master still exists even if our effect gets destroyed. No need to QDEL_NULL.
+	QDEL_NULL(active_effect)
 	. = ..()
 
 /datum/artifact_effect/proc/get_master_holder()	// Return the effectmaster's holder, if it is set to an effectmaster. Otherwise, master is the target object.

@@ -91,7 +91,7 @@ var/list/ai_verbs_default = list(
 	// Multicam Vars
 	var/multicam_allowed = TRUE
 	var/multicam_on = FALSE
-	var/obj/screen/movable/pic_in_pic/ai/master_multicam
+	var/atom/movable/screen/movable/pic_in_pic/ai/master_multicam
 	var/list/multicam_screens = list()
 	var/list/all_eyes = list()
 	var/max_multicams = 6
@@ -113,11 +113,11 @@ var/list/ai_verbs_default = list(
 	announcement.announcement_type = "A.I. Announcement"
 	announcement.newscast = 1
 
-	var/list/possibleNames = ai_names
+	var/list/possibleNames = GLOB.ai_names
 
 	var/pickedName = null
 	while(!pickedName)
-		pickedName = pick(ai_names)
+		pickedName = pick(GLOB.ai_names)
 		for (var/mob/living/silicon/ai/A in GLOB.mob_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
@@ -240,7 +240,6 @@ var/list/ai_verbs_default = list(
 	QDEL_NULL(aiCommunicator)
 	QDEL_NULL(aiMulti)
 	QDEL_NULL(aiRadio)
-	QDEL_NULL(aiCamera)
 	hack = null
 
 	destroy_eyeobj()
@@ -435,7 +434,7 @@ var/list/ai_verbs_default = list(
 	if(emergency_message_cooldown)
 		to_chat(src, span_warning("Arrays recycling. Please stand by."))
 		return
-	var/input = sanitize(tgui_input_text(src, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+	var/input = tgui_input_text(src, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "", MAX_MESSAGE_LEN)
 	if(!input)
 		return
 	CentCom_announce(input, src)
@@ -790,7 +789,7 @@ var/list/ai_verbs_default = list(
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message(span_notice("\The [user] starts to unbolt \the [src] from the plating..."))
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_notice("\The [user] decides not to unbolt \the [src]."))
 				return
 			user.visible_message(span_notice("\The [user] finishes unfastening \the [src]!"))
@@ -799,7 +798,7 @@ var/list/ai_verbs_default = list(
 		else
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message(span_notice("\The [user] starts to bolt \the [src] to the plating..."))
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user, 4 SECONDS * W.toolspeed, target = src))
 				user.visible_message(span_notice("\The [user] decides not to bolt \the [src]."))
 				return
 			user.visible_message(span_notice("\The [user] finishes fastening down \the [src]!"))
@@ -842,7 +841,7 @@ var/list/ai_verbs_default = list(
 	to_chat(src, span_filter_notice("Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."))
 
 
-/mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)
+/mob/living/silicon/ai/proc/check_unable(var/flags = NONE, var/feedback = 1)
 	if(stat == DEAD)
 		if(feedback)
 			to_chat(src, span_warning("You are dead!"))

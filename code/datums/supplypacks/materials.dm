@@ -29,6 +29,13 @@
 	containertype = /obj/structure/closet/crate/grayson
 	containername = "Wooden planks crate"
 
+/datum/supply_pack/materials/alienwood50
+	name = "50 alien wood planks"
+	contains = list(/obj/fiftyspawner/sifwood)
+	cost = 10
+	containertype = /obj/structure/closet/crate/grayson
+	containername = "Alien wood planks crate"
+
 /datum/supply_pack/materials/hardwood50
 	name = "50 hardwood planks"
 	contains = list(/obj/fiftyspawner/hardwood)

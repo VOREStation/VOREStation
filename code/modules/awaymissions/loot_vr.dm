@@ -355,7 +355,7 @@
 	anchored = TRUE
 	layer = 3.5
 	name = "strange symbol"
-	icon = 'icons/obj/decals_vr.dmi'
+	icon = 'icons/obj/decals.dmi'
 
 /obj/structure/symbol/ca
 	desc = "It looks like a skull, or maybe a crown."

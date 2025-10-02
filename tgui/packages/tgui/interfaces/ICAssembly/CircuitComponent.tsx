@@ -187,7 +187,7 @@ export class CircuitComponent extends Component<CircuitProps, CircuitState> {
                     <Box mb={1}>
                       {
                         <div
-                          // biome-ignore lint/security/noDangerouslySetInnerHtml:  All of the descriptions are pulled from the game files
+                          // biome-ignore lint/security/noDangerouslySetInnerHtml: All of the descriptions are pulled from the game files
                           dangerouslySetInnerHTML={{
                             __html: circuit.extended_desc,
                           }}

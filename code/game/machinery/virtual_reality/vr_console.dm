@@ -181,7 +181,7 @@
 	else
 		visible_message("\The [user] starts putting [M] into \the [src].")
 
-	if(do_after(user, 20))
+	if(do_after(user, 2 SECONDS, target = src))
 		if(occupant)
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
@@ -325,7 +325,7 @@
 		avatar.Sleeping(1)
 
 		// Prompt for username after they've enterred the body.
-		var/newname = sanitize(tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/newname = tgui_input_text(avatar, "You are entering virtual reality. Your username is currently [src.name]. Would you like to change it to something else?", "Name change", null, MAX_NAME_LEN)
 		if(newname)
 			avatar.real_name = newname
 			avatar.name = newname

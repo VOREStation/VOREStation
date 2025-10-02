@@ -28,6 +28,9 @@
 		choices = GLOB.custom_species_bases.Copy()
 		if(new_species != SPECIES_CUSTOM)
 			choices = (choices | new_species)
+	else if (spec.selects_bodytype == SELECTS_BODYTYPE_ZORREN)
+		choices = list(SPECIES_ZORREN_HIGH,SPECIES_ZORREN_DARK)
+		choices = choices.Copy()
 	return choices
 
 /datum/category_item/player_setup_item/general/traits/proc/get_pref_choice_from_trait(var/mob/user, var/datum/trait/trait, var/preference)
@@ -128,16 +131,16 @@
 	//Neutral traits
 	for(var/datum/trait/path as anything in pref.neu_traits)
 		if(!(path in GLOB.neutral_traits))
-			to_world_log("removing [path] for not being in neutral_traits")
+			log_world("removing [path] for not being in neutral_traits")
 			pref.neu_traits -= path
 			continue
 		if(!(pref.species == SPECIES_CUSTOM) && !(path in GLOB.everyone_traits_neutral))
-			to_world_log("removing [path] for not being a custom species")
+			log_world("removing [path] for not being a custom species")
 			pref.neu_traits -= path
 			continue
 		var/take_flags = initial(path.can_take)
 		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
-			to_world_log("removing [path] for being a dirty synth")
+			log_world("removing [path] for being a dirty synth")
 			pref.neu_traits -= path
 	//Negative traits
 	for(var/datum/trait/path as anything in pref.neg_traits)
@@ -154,10 +157,10 @@
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		if (!(pref.custom_base in pref.get_custom_bases_for_species()))
-			pref.custom_base = SPECIES_HUMAN
+			pref.custom_base = selected_species.default_custom_base
 		//otherwise, allowed!
 	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
-		pref.custom_base = SPECIES_HUMAN
+		pref.custom_base = selected_species.default_custom_base
 
 
 /datum/category_item/player_setup_item/general/traits/copy_to_mob(var/mob/living/carbon/human/character)

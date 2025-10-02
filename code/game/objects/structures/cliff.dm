@@ -129,7 +129,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 
 	var/subtraction_icon_state = "[icon_state]-subtract"
 	var/cache_string = "[icon_state]_[T.icon]_[T.icon_state]"
-	if(T && (subtraction_icon_state in cached_icon_states(icon)))
+	if(T && icon_exists(icon, subtraction_icon_state))
 		cut_overlays()
 		// If we've made the same icon before, just recycle it.
 		if(cache_string in GLOB.cliff_icon_cache)

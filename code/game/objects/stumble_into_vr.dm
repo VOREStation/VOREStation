@@ -112,10 +112,8 @@
 /obj/machinery/porta_turret/stumble_into(mob/living/M)
 	..()
 	if(!attacked && !emagged)
-		attacked = 1
-		spawn()
-			sleep(60)
-			attacked = 0
+		attacked = TRUE
+		VARSET_IN(src, attacked, FALSE, 6 SECONDS)
 
 /obj/machinery/space_heater/stumble_into(mob/living/M)
 	..()
@@ -136,7 +134,6 @@
 	isopen = 0
 	update_icon()
 	add_fingerprint(M)
-	updateUsrDialog(M)
 	M.stop_flying()
 
 /obj/machinery/vending/stumble_into(mob/living/M)

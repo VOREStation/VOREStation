@@ -210,11 +210,7 @@
 	},
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/unsimulated/floor{
 	icon_state = "plating";
 	name = "plating"
@@ -229,11 +225,7 @@
 	},
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/unsimulated/floor{
 	icon_state = "plating";
 	name = "plating"
@@ -251,11 +243,7 @@
 	},
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/unsimulated/floor{
 	icon_state = "plating";
 	name = "plating"

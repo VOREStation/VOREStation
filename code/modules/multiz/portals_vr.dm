@@ -1,7 +1,7 @@
 /obj/structure/portal_event
 	name = "portal"
 	desc = "It leads to someplace else!"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "type-d-portal"
 	density = TRUE
 	unacidable = TRUE//Can't destroy energy portals.
@@ -147,13 +147,13 @@
 		if(istype(target, /obj/structure/portal_target))
 			var/obj/structure/portal_target/P = target
 			P.target = null
-		qdel_null(target)
+		QDEL_NULL(target)
 	. = ..()
 
 /obj/structure/portal_target
 	name = "portal destination"
 	desc = "you shouldn't see this unless you're a ghost"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "type-b-portal"
 	density = 0
 	alpha = 100
@@ -170,7 +170,7 @@
 /obj/structure/portal_gateway
 	name = "portal"
 	desc = "It leads to someplace else!"
-	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portalgateway"
 	density = TRUE
 	unacidable = TRUE//Can't destroy energy portals.

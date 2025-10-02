@@ -197,6 +197,11 @@
 ///from base of atom/MouseDrop_T: (/atom/from, /mob/user)
 #define COMSIG_MOUSEDROPPED_ONTO "mousedropped_onto"
 
+///from base of atom/MouseDrop_T: do_after(mob/user, delay, atom/target, needhand, progress, incapacitation_flags, ignore_movement, max_distance, exclusive)
+#define COMSIG_DO_AFTER_BEGAN "do_after_began"
+///from base of atom/MouseDrop_T: do_after(mob/user, delay, atom/target, needhand, progress, incapacitation_flags, ignore_movement, max_distance, exclusive)
+#define COMSIG_DO_AFTER_ENDED "do_after_ended"
+
 // /area signals
 
 ///from base of area/Entered(): (atom/movable/M)
@@ -224,8 +229,9 @@
 #define COMSIG_MOVABLE_MOVED "movable_moved"
 ///from base of atom/movable/Cross(): (/atom/movable)
 #define COMSIG_MOVABLE_CROSS "movable_cross"
-///when we cross over something (calling Crossed() on that atom)
-#define COMSIG_CROSSED_MOVABLE "crossed_movable"
+	#define COMPONENT_BLOCK_CROSS (1<<0)
+///from base of atom/movable/Move(): (/atom/movable)
+#define COMSIG_MOVABLE_CROSS_OVER "movable_cross_am"
 ///from base of atom/movable/Bump(): (/atom)
 #define COMSIG_MOVABLE_BUMP "movable_bump"
 ///from base of atom/movable/throw_impact(): (/atom/hit_atom, /datum/thrownthing/throwingdatum)
@@ -259,6 +265,10 @@
 ///from /datum/controller/subsystem/motion_tracker/notice() (/datum/weakref/source_atom,/turf/echo_turf_location)
 #define COMSIG_MOVABLE_MOTIONTRACKER "move_motiontracker"
 
+///called when a disposal connected object flushes its contents into the disposal pipe network
+#define COMSIG_DISPOSAL_FLUSH "disposal_system_flushing"
+///called when a disposal connected object gets a packet from the disposal pipe network
+#define COMSIG_DISPOSAL_RECEIVING "disposal_system_receiving"
 ///called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"
 
@@ -333,7 +343,7 @@
 
 ///from base of mob/living/resist() (/mob/living)
 #define COMSIG_LIVING_RESIST "living_resist"
-///from base of mob/living/IgniteMob() (/mob/living)
+///from base of mob/living/ignite_mob() (/mob/living)
 #define COMSIG_LIVING_IGNITED "living_ignite"
 ///from base of mob/living/ExtinguishMob() (/mob/living)
 #define COMSIG_LIVING_EXTINGUISHED "living_extinguished"
@@ -357,6 +367,8 @@
 #define COMSIG_LIVING_LIFE "living_life"
 ///From /living/handle_disabilities().
 #define COMSIG_HANDLE_DISABILITIES "handle_disabilities"
+///From /living/handle_allergens().
+#define COMSIG_HANDLE_ALLERGENS "handle_allergens"
 ///From /mob/living/proc/updatehealth().
 #define COMSIG_UPDATE_HEALTH "update_health"
 	#define COMSIG_UPDATE_HEALTH_GOD_MODE (1<<0) //If this will set health to 100 and stat to conscious.
@@ -476,6 +488,27 @@
 ///from base power_change() when power is restored
 #define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored"
 
+// /obj/machinery/door signals
+
+//from /obj/machinery/door/can_open():
+#define COMSIG_DOOR_CAN_OPEN "attempt_door_open"
+	/// Return to stop the door opening
+	#define DOOR_DENY_OPEN (1<<0)
+//from /obj/machinery/door/can_close():
+#define COMSIG_DOOR_CAN_CLOSE "attempt_door_close"
+	/// Return to stop the door closing
+	#define DOOR_DENY_CLOSE (1<<0)
+//from /obj/machinery/door/open(): (forced)
+#define COMSIG_DOOR_OPEN "door_open"
+//from /obj/machinery/door/close(): (forced)
+#define COMSIG_DOOR_CLOSE "door_close"
+///from /obj/machinery/door/airlock/set_bolt():
+#define COMSIG_AIRLOCK_SET_BOLT "airlock_set_bolt"
+///from /obj/machinery/door/bumpopen(), to the mob who bumped: (door)
+#define COMSIG_MOB_BUMPED_DOOR_OPEN "mob_bumped_door_open"
+	/// Return to stop the door opening on bump.
+	#define DOOR_STOP_BUMP (1<<0)
+
 // /obj/item signals
 
 ///from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
@@ -530,6 +563,8 @@
 // /obj/item signals for economy
 ///called when an item is sold by the exports subsystem
 #define COMSIG_ITEM_SOLD "item_sold"
+///called when an item's cargo sale value is scanned
+#define COMSIG_ITEM_SCAN_PROFIT "item_scan_profit"
 ///called when a wrapped up structure is opened by hand
 #define COMSIG_STRUCTURE_UNWRAPPED "structure_unwrapped"
 #define COMSIG_ITEM_UNWRAPPED "item_unwrapped"
@@ -677,6 +712,11 @@
 
 ///called when you wash your face at a sink: (num/strength)
 #define COMSIG_COMPONENT_CLEAN_FACE_ACT "clean_face_act"
+
+//Reagent holder
+
+///from base of /datum/reagents/proc/handle_reactions(): (list/decl/chemical_reaction)
+#define COMSIG_REAGENTS_HOLDER_REACTED "reagents_holder_reacted"
 
 //Food
 
@@ -844,6 +884,8 @@
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
 ///Called right after the atom changes the value of light_flags to a different one, from base of [/atom/proc/set_light_flags]: (old_flags)
 #define COMSIG_ATOM_UPDATE_LIGHT_FLAGS "atom_update_light_flags"
+///Called right after the atom is flushed into a disposal holder and sent through the disposal network: (/obj/structure/disposalholder)
+#define COMSIG_ATOM_DISPOSAL_FLUSHED "atom_disposal_flushed"
 
 // /datum/element/light_eater
 ///from base of [/datum/element/light_eater/proc/table_buffet]: (list/light_queue, datum/light_eater)
@@ -920,6 +962,6 @@
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"
 
 //Unittest data update
-#ifdef UNIT_TEST
+#ifdef UNIT_TESTS
 #define COMSIG_UNITTEST_DATA "unittest_send_data"
 #endif

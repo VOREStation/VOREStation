@@ -483,6 +483,20 @@
 	tracer_type = /obj/effect/projectile/tracer/pointdefense
 	impact_type = /obj/effect/projectile/impact/pointdefense
 
+/obj/item/projectile/beam/coildefense
+	name = "defense coil salvo"
+	icon_state = "coil"
+	damage = 15
+	damage_type = ELECTROCUTE //You should be safe inside a voidsuit
+	sharp = FALSE //"Wide" spectrum beam
+	light_color = "#FFFFFF"
+
+	excavation_amount = 200 // Good at shooting rocks
+
+	muzzle_type = /obj/effect/projectile/muzzle/coildefense
+	tracer_type = /obj/effect/projectile/tracer/coildefense
+	impact_type = /obj/effect/projectile/impact/coildefense
+
 //
 // Energy Net
 //
@@ -496,6 +510,8 @@
 	hud_state = "flame_green"
 	hud_state_empty = "flame_empty"
 
+	var/net_type = /obj/item/energy_net
+
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
 	impact_type = /obj/effect/projectile/impact/xray
@@ -505,8 +521,24 @@
 	..()
 
 /obj/item/projectile/beam/energy_net/proc/do_net(var/mob/M)
-	var/obj/item/energy_net/net = new (get_turf(M))
+	var/obj/item/energy_net/net = new net_type(get_turf(M))
 	net.throw_impact(M)
+
+//
+// Shrinking Energy Net
+//
+/obj/item/projectile/beam/energy_net/shrink
+	name = "compactor energy net projection"
+	icon_state = "omnilaser"
+	light_color = "#00CC33"
+	hud_state = "flame_blue"
+	hud_state_empty = "flame_empty"
+
+	net_type = /obj/item/energy_net/shrink
+
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 //
 // Healing Beam

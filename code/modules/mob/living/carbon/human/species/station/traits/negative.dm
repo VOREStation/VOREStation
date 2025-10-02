@@ -188,6 +188,10 @@
 	desc = "You breathe nitrogen instead of oxygen (which is poisonous to you). Incidentally, phoron isn't poisonous to breathe to you."
 	var_changes = list("breath_type" = GAS_N2, "poison_type" = GAS_O2, "ideal_air_type" = /datum/gas_mixture/belly_air/nitrogen_breather)
 
+/datum/trait/negative/breathes/methane
+	name = "Methane Breather"
+	desc = "You breathe methane instead of oxygen (which is poisonous to you)."
+	var_changes = list("breath_type" = GAS_CH4, "poison_type" = GAS_O2, "ideal_air_type" = /datum/gas_mixture/belly_air/methane_breather)
 
 /datum/trait/negative/monolingual
 	name = "Monolingual"
@@ -240,7 +244,7 @@
 /datum/trait/negative/less_blood
 	name = "Low Blood Volume"
 	desc = "You have 33.3% less blood volume compared to most species, making you more prone to blood loss issues."
-	cost = -3
+	cost = -2
 	var_changes = list("blood_volume" = 375)
 	excludes = list(/datum/trait/negative/less_blood_extreme)
 	can_take = ORGANICS
@@ -248,7 +252,7 @@
 /datum/trait/negative/less_blood_extreme
 	name = "Low Blood Volume, Extreme"
 	desc = "You have 60% less blood volume compared to most species, making you much more prone to blood loss issues."
-	cost = -5
+	cost = -3
 	var_changes = list("blood_volume" = 224)
 	excludes = list(/datum/trait/negative/less_blood)
 	can_take = ORGANICS
@@ -336,6 +340,8 @@
 
 /datum/trait/negative/agoraphobia/handle_environment_special(var/mob/living/carbon/human/H)
 	spawn(0)
+		if(isbelly(H.loc)) //I don't need to be told every 2 seconds I'm freaking out when I'm in a belly trying to WRITE!!! We can handle all the stress of it when (IF) we are let out of the gut.
+			return
 		var/list/in_range = list()
 		// If they're dead or unconcious they're a bit beyond this kind of thing.
 		if(H.stat)
@@ -565,15 +571,15 @@
 /datum/trait/negative/lonely/proc/handle_loneliness(var/mob/living/carbon/human/H)
 	var/ms = ""
 	if(H.loneliness_stage == escalation_speed)
-		ms = "[pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")]" // Outpost 21 edit - More variety
+		ms = "[pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")]"
 	if(H.loneliness_stage >= 50)
-		ms = "[pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")]" // Outpost 21 edit - More variety
+		ms = "[pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")]"
 	if(H.loneliness_stage >= 250)
-		ms = "[pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")]" // Outpost 21 edit - More variety
+		ms = "[pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")]"
 		if(H.stuttering < hallucination_cap)
 			H.stuttering += 5
 	if(H.loneliness_stage >= warning_cap)
-		ms = span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]")) // Outpost 21 edit - More variety
+		ms = span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]"))
 	if(world.time < H.next_loneliness_time)
 		return
 	if(ms != "")
@@ -595,21 +601,21 @@
 /datum/trait/negative/reduced_biocompat_minor
 	name = "Reduced Biocompatibility, Minor"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 80% as effective on you!"
-	cost = -2
+	cost = -1
 	var_changes = list("chem_strength_heal" = 0.8)
 	can_take = ORGANICS
 
 /datum/trait/negative/reduced_biocompat
 	name = "Reduced Biocompatibility"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 60% as effective on you!"
-	cost = -4
+	cost = -2
 	var_changes = list("chem_strength_heal" = 0.6)
 	can_take = ORGANICS
 
 /datum/trait/negative/reduced_biocompat_extreme
 	name = "Reduced Biocompatibility, Major"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 30% as effective on you!"
-	cost = -8
+	cost = -4
 	var_changes = list("chem_strength_heal" = 0.3)
 	can_take = ORGANICS
 

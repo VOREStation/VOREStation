@@ -83,15 +83,9 @@
 	R.scrubbing = FALSE
 
 /obj/item/robot_module/Destroy()
-	for(var/module in modules)
-		qdel(module)
-	for(var/emg in emag)
-		qdel(emg)
-	for(var/synth in synths)
-		qdel(synth)
-	modules.Cut()
-	synths.Cut()
-	emag.Cut()
+	QDEL_LIST(modules)
+	QDEL_LIST(emag)
+	QDEL_LIST(synths)
 	return ..()
 
 /obj/item/robot_module/emp_act(severity)
@@ -189,6 +183,7 @@
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/melee/robotic/jaws/small(src)
 	src.modules += new /obj/item/gripper/scene(src)
+	src.modules += new /obj/item/robo_dice(src)
 
 /obj/item/robot_module/robot/standard
 	name = "standard robot module"
@@ -369,6 +364,7 @@
 	src.modules += new /obj/item/rcd/electric/mounted/borg(src)
 	src.modules += new /obj/item/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/dogborg/stasis_clamp(src)
+	src.modules += new /obj/item/storage/pouch/eng_parts/borg(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
@@ -663,7 +659,7 @@
 
 /obj/item/robot_module/robot/research/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
-	src.modules += new /obj/item/portable_destructive_analyzer(src)
+	src.modules += new /obj/item/experi_scanner(src)
 	src.modules += new /obj/item/robotanalyzer(src)
 	src.modules += new /obj/item/card/robot(src)
 	src.modules += new /obj/item/gripper/research(src)

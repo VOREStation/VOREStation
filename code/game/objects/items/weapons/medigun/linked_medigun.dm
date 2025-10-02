@@ -1,20 +1,12 @@
 /obj/item/bork_medigun/linked
 	var/obj/item/medigun_backpack/medigun_base_unit
 
-/obj/item/bork_medigun/linked/Initialize(mapload, var/obj/item/medigun_backpack/backpack)
-	. = ..()
-	medigun_base_unit = backpack
-	if(!medigun_base_unit.is_twohanded())
-		icon_state = "medblaster_cmo"
-		base_icon_state = "medblaster_cmo"
-		wielded_item_state = ""
-		update_icon()
-
 /obj/item/bork_medigun/linked/Destroy()
 	if(medigun_base_unit)
+		var/obj/item/bork_medigun/medigun = medigun_base_unit.get_medigun()
 		//ensure the base unit's icon updates
-		if(medigun_base_unit.medigun == src)
-			medigun_base_unit.medigun = null
+		if(medigun == src)
+			medigun = null
 			medigun_base_unit.replace_icon()
 			if(ismob(loc))
 				var/mob/user = loc
@@ -29,19 +21,6 @@
 			for(var/atom/A as anything in destination) // If we can't scan the turf, see if we can scan anything on it, to help with aiming.
 				if(istype(A,/obj/structure/closet ))
 					break
-			if(ismob(medigun_base_unit.loc))
-				var/mob/user = medigun_base_unit.loc
-				medigun_base_unit.reattach_medigun(user)
-
-/obj/item/bork_medigun/linked/dropped(mob/user)
-	..() //update twohanding
-
-	if(medigun_base_unit.containsgun == 0)
-		//to_chat(user, span_warning("[loc]"))
-		if(medigun_base_unit)
-
-			//to_chat(user, span_warning("Dropped"))
-			medigun_base_unit.reattach_medigun(user) //medigun attached to a base unit should never exist outside of their base unit or the mob equipping the base unit
 
 /obj/item/bork_medigun/linked/proc/check_charge(var/charge_amt)
 	return (medigun_base_unit.bcell && medigun_base_unit.bcell.check_charge(charge_amt))
@@ -169,7 +148,7 @@
 	if(should_stop(H, user, user.get_active_hand()))
 		return
 
-	if(do_after(user, 10, ignore_movement = TRUE, needhand = medigun_base_unit.is_twohanded()))
+	if(do_after(user, 10, timed_action_flags = IGNORE_USER_LOC_CHANGE, hidden = TRUE))
 		var/washealing = ishealing // Did we heal last cycle
 		ishealing = FALSE // The default is 'we didn't heal this cycle'
 		if(!checked_use(5))

@@ -1,4 +1,0 @@
-author: "Willburd"
-delete-after: True
-changes:
-  - bugfix: "Hose connectors that force pump no longer pump if no hose is connected"

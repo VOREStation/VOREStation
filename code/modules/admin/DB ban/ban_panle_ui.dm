@@ -71,7 +71,6 @@
 			var/bancid = params["cid"]
 			var/banjob = params["job"]
 			var/banreason = params["reason"]
-			to_world("we got [bantype]")
 
 			switch(bantype)
 				if(BANTYPE_PERMA)

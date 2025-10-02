@@ -5,6 +5,7 @@
 		ui.open()
 
 /obj/item/medigun_backpack/tgui_data(mob/user)
+	var/obj/item/bork_medigun/medigun = get_medigun()
 	var/mob/living/carbon/human/H = medigun.current_target
 	var/patientname
 	var/patienthealth = 0
@@ -44,7 +45,7 @@
 		"gridstatus" = gridstatus,
 		"tankmax" = tankmax,
 		"power_cell_status" = bcell ? bcell.percent() : null,
-		"phoron_status" = sbin ? phoronvol/chemcap : null,
+		"cell_status" = ccell ? (ccell.percent()/100) : null,
 		"bruteheal_charge" = scapacitor ? brutecharge : null,
 		"burnheal_charge" = scapacitor ? burncharge : null,
 		"toxheal_charge" = scapacitor ? toxcharge : null,
@@ -66,6 +67,8 @@
 	return data
 
 /obj/item/medigun_backpack/proc/get_examine_data()
+	var/obj/item/bork_medigun/medigun = get_medigun()
+
 	return list(
 		"smodule" = smodule ? list("name" = smodule.name, "range" = medigun.beam_range, "rating" = smodule.get_rating()) : null,
 		"smanipulator" = smanipulator ? list("name" = smanipulator.name, "rating" = smaniptier) : null,
@@ -79,9 +82,12 @@
 		return TRUE
 
 	. = TRUE
+
+	var/obj/item/bork_medigun/medigun = get_medigun()
+
 	switch(action)
-		if("gentoggle")
-			ui_action_click()
+		if("celleject")
+			cell_eject()
 			return TRUE
 
 		if("cancel_healing")
@@ -91,7 +97,6 @@
 
 		if("toggle_maintenance")
 			maintenance = !maintenance
-			reattach_medigun(ui.user)
 			return TRUE
 
 		if("rem_smodule")
@@ -146,6 +151,17 @@
 
 /obj/item/medigun_backpack/ShiftClick(mob/user)
 	. = ..()
+	var/obj/item/bork_medigun/medigun = get_medigun()
 	if(!medigun)
 		return
 	tgui_interact(user)
+
+/obj/item/medigun_backpack/proc/cell_eject()
+	if(!ccell)
+		return FALSE
+	charging = FALSE
+	ccell.forceMove(get_turf(loc))
+	to_chat(usr, span_notice("You remove the [ccell] from \the [src]."))
+	ccell = null
+	update_icon()
+	return TRUE

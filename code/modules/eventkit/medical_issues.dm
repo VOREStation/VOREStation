@@ -43,7 +43,7 @@
 		handle_curing()
 
 	if(symptom_text)
-		if(prob(5))
+		if(prob(1))
 			to_chat(owner, span_danger("[symptom_text]"))
 
 	if(symptom_affect)
@@ -83,6 +83,9 @@
 	for(var/datum/reagent/R in owner.reagents.reagent_list)
 		if(R.name == cure_reagent)
 			unhealth = unhealth - reagent_strength
+	for(var/datum/reagent/R in owner.ingested.reagent_list)
+		if(R.name == cure_reagent)
+			unhealth = unhealth - reagent_strength
 
 /datum/medical_issue/proc/handle_symptoms()
 	switch(symptom_affect)
@@ -100,7 +103,8 @@
 		if("permanent sleeping")
 			owner.sleeping = max(owner.sleeping+10,10)
 		if("jittery")
-			owner.make_jittery(100)
+			if(owner.get_jittery() < 100)
+				owner.make_jittery(100)
 		if("paralysed")
 			owner.paralysis = max(owner.paralysis,10)
 		if("cough")

@@ -52,7 +52,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 	var/hud_state = "" //name of the icon used in generating the spell hud object
 	var/override_base = ""
 
-	var/obj/screen/connected_button
+	var/atom/movable/screen/connected_button
 
 ///////////////////////
 ///SETUP AND PROCESS///
@@ -179,7 +179,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 /spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 
 	if(!(src in user.spell_list) && holder == user)
-		error("[user] utilized the spell '[src]' without having it.")
+		log_world("## ERROR [user] utilized the spell '[src]' without having it.")
 		to_chat(user, span_warning("You shouldn't have this spell! Something's wrong."))
 		return 0
 

@@ -92,7 +92,7 @@
 	if(!that_one)
 		return ..()
 	to_chat(that_one, span_danger("\The [user]'s hand reaches toward you!!!"))
-	if(!do_after(user, 3 SECONDS, src))
+	if(!do_after(user, 3 SECONDS, target = src))
 		return ..()
 	if(!istype(that_one.loc,/turf/simulated/floor/outdoors/fur))
 		to_chat(user, span_warning("\The [that_one] got away..."))
@@ -151,6 +151,10 @@
 	to_chat(src, span_warning("You can't do that."))	//The dog can move back and forth between the overmap.
 	return															//If it can do normal vore mechanics, it can carry players to the OM,
 																	//and release them there. I think that's probably a bad idea.
+
+/mob/living/simple_mob/vore/overmap/stardog/begin_instant_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly)
+	to_chat(src, span_warning("You can't do that."))
+	return
 
 /mob/living/simple_mob/vore/overmap/stardog/Initialize(mapload)
 	. = ..()
@@ -262,7 +266,7 @@
 
 	to_chat(src, span_notice("You begin to eat \the [E]..."))
 
-	if(!do_after(src, 20 SECONDS, E, exclusive = TRUE))
+	if(!do_after(src, 20 SECONDS, target = E))
 		return
 	to_chat(src, span_notice("[msg]"))
 	if(nut || aff)
@@ -328,7 +332,7 @@
 			to_chat(src, span_warning("You decide not to transition."))
 			return
 		to_chat(src, span_notice("You begin to transition down to \the [our_dest], stay still..."))
-		if(!do_after(src, 15 SECONDS, exclusive = TRUE))
+		if(!do_after(src, 15 SECONDS, target = src))
 			to_chat(src, span_warning("You were interrupted."))
 			return
 		visible_message(span_warning("\The [src] disappears!!!"))
@@ -339,7 +343,7 @@
 
 	else
 		to_chat(src, span_notice("You begin to transition back to space, stay still..."))
-		if(!do_after(src, 15 SECONDS, exclusive = TRUE))
+		if(!do_after(src, 15 SECONDS, target = src))
 			to_chat(src, span_warning("You were interrupted."))
 			return
 
@@ -377,7 +381,6 @@
 	edge_blending_priority = 4
 	initial_flooring = /decl/flooring/fur
 	can_dig = FALSE
-	turf_layers = list()
 	var/tree_chance = 25
 	var/tree_color = null
 	var/tree_type = /obj/structure/flora/tree/fur
@@ -476,7 +479,7 @@
 		to_chat(L, span_warning("You cannot speak in IC (muted)."))
 		return
 	if (!message)
-		message = tgui_input_text(usr, "Type a message to emote.","Emote Beyond")
+		message = tgui_input_text(usr, "Type a message to emote.","Emote Beyond", encode = FALSE)
 	message = sanitize_or_reflect(message,L)
 	if (!message)
 		return
@@ -488,7 +491,7 @@
 
 	var/mob/living/simple_mob/vore/overmap/stardog/m = s.parent
 
-	log_subtle(message,L)
+	L.log_message("(SUBTLE) [message]", LOG_EMOTE)
 	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
 	message = span_bold("(From the back of \the [m]) ") + message
 	message = encode_html_emphasis(message)
@@ -704,7 +707,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_flora.len)
-		to_world_log("[src] does not have a set valid flora list!")
+		log_mapping("[src] does not have a set valid flora list!")
 		return TRUE
 
 	var/obj/F
@@ -720,7 +723,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_mobs.len)
-		to_world_log("[src] does not have a set valid mobs list!")
+		log_mapping("[src] does not have a set valid mobs list!")
 		return TRUE
 
 	var/mob/M
@@ -747,7 +750,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_mobs.len)
-		to_world_log("[src] does not have a set valid mobs list!")
+		log_mapping("[src] does not have a set valid mobs list!")
 		return
 
 	if(!prob(mob_chance))
@@ -766,7 +769,7 @@
 	if(!spawnstuff)
 		return
 	if(!valid_flora.len)
-		to_world_log("[src] does not have a set valid flora list!")
+		log_mapping("[src] does not have a set valid flora list!")
 		return
 
 	var/obj/F
@@ -784,7 +787,7 @@
 	if(treasure_chance <= 0)
 		return
 	if(!valid_treasure.len)
-		to_world_log("[src] does not have a set valid treasure list!")
+		log_mapping("[src] does not have a set valid treasure list!")
 		return
 
 	var/obj/F
@@ -1056,7 +1059,7 @@
 		to_chat(user, span_warning("You can see \the [controller] inside! Tendrils of nerves seem to have attached themselves to \the [controller]! There's no room for you right now!"))
 		return
 	user.visible_message(span_notice("\The [user] reaches out to touch \the [src]..."),span_notice("You reach out to touch \the [src]..."))
-	if(!do_after(user, 10 SECONDS, src, exclusive = TRUE))
+	if(!do_after(user, 10 SECONDS, target = src))
 		user.visible_message(span_warning("\The [user] pulls back from \the [src]."),span_warning("You pull back from \the [src]."))
 		return
 	if(controller)	//got busy while you were waiting, get rekt
@@ -1142,7 +1145,7 @@
 		to_chat(L, span_warning("You cannot speak in IC (muted)."))
 		return
 	if (!message)
-		message = tgui_input_text(L, "Type a message to emote.","Emote Beyond")
+		message = tgui_input_text(L, "Type a message to emote.","Emote Beyond", encode = FALSE)
 	message = sanitize_or_reflect(message,L)
 	if (!message)
 		return
@@ -1153,7 +1156,7 @@
 		to_chat(L, span_warning("You can't do that here."))
 		return
 
-	log_subtle(message,L)
+	L.log_message("(SUBTLE) [message]", LOG_EMOTE)
 	message = span_emote_subtle(span_bold("[L]") + " " + span_italics("[message]"))
 	message = span_bold("(From within \the [s]) ") + message
 	message = encode_html_emphasis(message)
@@ -1429,6 +1432,7 @@
 	water_icon = 'icons/turf/stomach_vr.dmi'
 	water_state = "enzyme_shallow"
 	under_state = "flesh_floor"
+	watercolor = "green"
 
 	reagent_type = REAGENT_ID_SACID //why not
 	outdoors = FALSE
@@ -1436,13 +1440,13 @@
 	var/mobstuff = TRUE		//if false, we don't care about dogs, and that's terrible
 	var/we_process = FALSE	//don't start another process while you're processing, idiot
 
-/turf/simulated/floor/water/digestive_enzymes/Entered(atom/movable/AM)
-	if(digest_stuff(AM) && !we_process)
+/turf/simulated/floor/water/digestive_enzymes/Entered(atom/movable/source)
+	if(digest_stuff(source) && !we_process)
 		START_PROCESSING(SSturfs, src)
 		we_process = TRUE
 
-/turf/simulated/floor/water/digestive_enzymes/hitby(atom/movable/AM)
-	if(digest_stuff(AM) && !we_process)
+/turf/simulated/floor/water/digestive_enzymes/hitby(atom/movable/source)
+	if(digest_stuff(source) && !we_process)
 		START_PROCESSING(SSturfs, src)
 		we_process = TRUE
 
@@ -1451,12 +1455,12 @@
 		we_process = FALSE
 		return PROCESS_KILL
 
-/turf/simulated/floor/water/digestive_enzymes/proc/can_digest(atom/movable/AM as mob|obj)
+/turf/simulated/floor/water/digestive_enzymes/proc/can_digest(atom/movable/digest_target)
 	. = FALSE
-	if(AM.loc != src)
+	if(digest_target.loc != src)
 		return FALSE
-	if(isitem(AM))
-		var/obj/item/I = AM
+	if(isitem(digest_target))
+		var/obj/item/I = digest_target
 		if(I.unacidable || I.throwing || I.is_incorporeal())
 			return FALSE
 		var/food = FALSE
@@ -1473,8 +1477,8 @@
 				yum += 50
 			linked_mob.adjust_nutrition(yum)
 		return TRUE
-	if(isliving(AM))
-		var/mob/living/L = AM
+	if(isliving(digest_target))
+		var/mob/living/L = digest_target
 		if(L.unacidable || !L.digestable || L.buckled || L.hovering || L.throwing || L.is_incorporeal())
 			return FALSE
 		if(ishuman(L))
@@ -1485,7 +1489,7 @@
 				return TRUE
 		else return TRUE
 
-/turf/simulated/floor/water/digestive_enzymes/proc/digest_stuff(atom/movable/AM)	//I'm so sorry
+/turf/simulated/floor/water/digestive_enzymes/proc/digest_stuff(atom/movable/digest_target)	//I'm so sorry
 	. = FALSE
 
 	var/damage = 1
@@ -1526,16 +1530,14 @@
 				linked_mob.adjust_nutrition(how_much)
 				H.mind?.vore_death = TRUE
 				GLOB.prey_digested_roundstat++
-			spawn(0)
 			qdel(H)	//glorp
 			return
+		H.burn_skin(damage)
 		if(linked_mob)
-			H.burn_skin(damage)
-			if(linked_mob)
-				var/how_much = (damage * H.size_multiplier) * H.get_digestion_nutrition_modifier() * linked_mob.get_digestion_efficiency_modifier()
-				if(!H.ckey)
-					how_much = how_much / 10	//Braindead mobs are worth less
-				linked_mob.adjust_nutrition(how_much)
+			var/how_much = (damage * H.size_multiplier) * H.get_digestion_nutrition_modifier() * linked_mob.get_digestion_efficiency_modifier()
+			if(!H.ckey)
+				how_much = how_much / 10	//Braindead mobs are worth less
+			linked_mob.adjust_nutrition(how_much)
 	else if (isliving(thing))
 		var/mob/living/L = thing
 		if(!L)
@@ -1573,7 +1575,7 @@
 	if(!we_process)
 		START_PROCESSING(SSturfs, src)
 
-/turf/simulated/floor/flesh/mover/hitby(atom/movable/AM)
+/turf/simulated/floor/flesh/mover/hitby(atom/movable/source)
 	if(!we_process)
 		START_PROCESSING(SSturfs, src)
 

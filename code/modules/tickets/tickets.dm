@@ -157,19 +157,20 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	return L
 
 //Reassociate still open ticket if one exists
-/datum/tickets/proc/ClientLogin(client/C)
+/datum/tickets/proc/ClientLogin(client/C, only_alert = FALSE)
 	C.current_ticket = CKey2ActiveTicket(C.ckey)
 	if(C.current_ticket)
-		C.current_ticket.AddInteraction("Client reconnected.")
+		if(!only_alert)
+			C.current_ticket.AddInteraction("Client reconnected.")
 		C.current_ticket.initiator = C
-		C.current_ticket.initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
+		C.current_ticket.initiator.mob?.throw_alert("open ticket", /atom/movable/screen/alert/open_ticket)
 
 //Dissasociate ticket
 /datum/tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
 		var/datum/ticket/T = C.current_ticket
 		T.AddInteraction("Client disconnected.")
-		T.initiator.mob?.clear_alert("open ticket")
+		T.initiator?.mob?.clear_alert("open ticket")
 		T.initiator = null
 		T = null
 
@@ -245,7 +246,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	initiator_ckey = C.ckey
 	initiator_key_name = key_name(initiator, FALSE, TRUE)
 	if(initiator.current_mentorhelp)	//This is a bug
-		log_debug("Ticket erroneously left open by code")
+		log_admin("Ticket erroneously left open by code")
 		initiator.current_mentorhelp.AddInteraction("Ticket erroneously left open by code")
 		initiator.current_mentorhelp.Resolve()
 	initiator.current_mentorhelp = src
@@ -286,7 +287,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	initiator_ckey = initiator.ckey
 	initiator_key_name = key_name(initiator, FALSE, TRUE)
 	if(initiator.current_ticket)	//This is a bug
-		log_debug("Multiple ahelp current_tickets")
+		log_admin("Ticket erroneously left open by code, closing...")
 		initiator.current_ticket.AddInteraction("Ticket erroneously left open by code")
 		initiator.current_ticket.Close(usr)
 	initiator.current_ticket = src
@@ -314,7 +315,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
 			to_chat(C, span_notice("No active admins are online, your adminhelp was sent to the admin discord."))
-	send2adminchat()
+	send2adminchatwebhook()
 
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
@@ -341,7 +342,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	//TC.T = src
 	//TC.tgui_interact(C.mob)
 
-	C.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
+	C.mob.throw_alert("open ticket", /atom/movable/screen/alert/open_ticket)
 
 /datum/ticket/Destroy()
 	RemoveActive()
@@ -473,7 +474,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket_list)
 	message_admins(msg)
 	log_admin(msg)
 	feedback_inc("ticket_reopen")
-	initiator.mob.throw_alert("open ticket", /obj/screen/alert/open_ticket)
+	initiator.mob.throw_alert("open ticket", /atom/movable/screen/alert/open_ticket)
 	//TicketPanel()	//can only be done from here, so refresh it
 
 	SSwebhooks.send(
@@ -779,6 +780,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
 	. = activemins.len
+	/*
 	if(. <= 0)
 		var/final = ""
 		var/list/afkmins = adm["afk"]
@@ -789,7 +791,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick/ticket)
 			final = "[msg] - No admins online"
 		else
 			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
-		send2irc(source,final)
+		send2irc(source,final)*/
 
 /proc/ircadminwho()
 	var/list/message = list("Admins: ")

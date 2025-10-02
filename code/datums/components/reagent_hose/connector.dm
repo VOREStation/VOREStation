@@ -1,6 +1,7 @@
 /datum/component/hose_connector
 	var/name = ""
 	dupe_mode = COMPONENT_DUPE_ALLOWED
+	VAR_PROTECTED/force_name = FALSE // If it gets doesn't do automatic naming
 	VAR_PROTECTED/obj/carrier = null
 	VAR_PROTECTED/flow_direction = HOSE_NEUTRAL
 	VAR_PROTECTED/datum/hose/my_hose = null
@@ -8,12 +9,18 @@
 	// Atom reagent code piggyback
 	var/flags = NOREACT // Prevent reagent explosions runtiming because no turf or by deleting the hose datum
 	var/datum/reagents/reagents = null
+	var/makes_gurgles = TRUE
 
-/datum/component/hose_connector/Initialize()
+/datum/component/hose_connector/Initialize(var/set_unique_name = null)
 	carrier = parent
 	reagents = new /datum/reagents( 60, src)
-	name = "[flow_direction] hose connector"
-
+	// Handle uniquely named connectors
+	if(set_unique_name)
+		name = set_unique_name
+		force_name = TRUE
+	else if(!force_name)
+		name = "[flow_direction] hose connector"
+	// Setup signaling
 	var/list/CL = carrier.GetComponents(type)
 	connector_number = CL.len + 1
 	RegisterSignal(carrier, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
@@ -31,8 +38,8 @@
 	carrier.verbs -= /atom/proc/disconnect_hose
 	carrier = null
 	if(my_hose)
-		qdel_null(my_hose)
-	qdel_null(reagents)
+		QDEL_NULL(my_hose)
+	QDEL_NULL(reagents)
 	. = ..()
 
 /datum/component/hose_connector/proc/get_carrier()
@@ -78,7 +85,7 @@
 	if(!my_hose)
 		return
 	process()
-	if(prob(5))
+	if(makes_gurgles && prob(5))
 		carrier.visible_message(span_infoplain(span_bold("\The [carrier]") + " gurgles as it pumps fluid."))
 
 /datum/component/hose_connector/proc/valid_connection(var/datum/component/hose_connector/C)
@@ -95,7 +102,7 @@
 	if(carrier.Adjacent(user))
 		carrier.visible_message("[user] disconnects \the hose from \the [carrier].")
 		my_hose.disconnect(user)
-		qdel_null(my_hose)
+		QDEL_NULL(my_hose)
 
 /datum/component/hose_connector/proc/connect(var/datum/hose/H = null)
 	my_hose = H
@@ -225,12 +232,9 @@
 /// Endless source, produces a reagent and pumps it out forever. Does not require attached object to have reagents.
 /datum/component/hose_connector/endless_source
 	name = "source connector"
+	force_name = TRUE
 	flow_direction = HOSE_OUTPUT
 	var/reagent_id = null
-
-/datum/component/hose_connector/endless_source/Initialize()
-	. = ..()
-	name = initial(name)
 
 /datum/component/hose_connector/endless_source/connected_reagents()
 	if(!carrier)
@@ -247,11 +251,8 @@
 /// Endless drain, removes reagents from existance
 /datum/component/hose_connector/endless_drain
 	name = "drain connector"
+	force_name = TRUE
 	flow_direction = HOSE_INPUT
-
-/datum/component/hose_connector/endless_drain/Initialize()
-	. = ..()
-	name = initial(name)
 
 /datum/component/hose_connector/endless_drain/connected_reagents()
 	if(!carrier)
@@ -261,3 +262,14 @@
 /datum/component/hose_connector/endless_drain/handle_pump(var/datum/reagents/connected_to)
 	ASSERT(connected_to)
 	connected_to.clear_reagents()
+
+
+/// Moo, needed because it has a seperate reagent container as udder.
+/datum/component/hose_connector/output/cow
+	name = "Udder"
+	force_name = TRUE
+	makes_gurgles = FALSE
+
+/datum/component/hose_connector/output/cow/connected_reagents()
+	var/mob/living/simple_mob/animal/passive/cow/C = carrier
+	return C.udder

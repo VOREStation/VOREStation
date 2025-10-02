@@ -1,6 +1,8 @@
 SUBSYSTEM_DEF(job)
 	name = "Job"
-	init_order = INIT_ORDER_JOB
+	dependencies = list(
+		/datum/controller/subsystem/mapping,
+	)
 	flags = SS_NO_FIRE
 
 	var/list/occupations = list()		//List of all jobs
@@ -88,7 +90,7 @@ SUBSYSTEM_DEF(job)
 	return type_occupations[jobtype]
 
 // Determines if a job title is inside of a specific department.
-// Useful to replace the old `if(job_title in command_positions)` code.
+// Useful to replace the old `if(job_title in GLOB.command_positions)` code.
 /datum/controller/subsystem/job/proc/is_job_in_department(rank, target_department_name)
 	var/datum/department/D = LAZYACCESS(department_datums, target_department_name)
 	if(istype(D))
@@ -140,4 +142,4 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/job_debug_message(message)
 	if(debug_messages)
-		log_debug("JOB DEBUG: [message]")
+		log_world("JOB DEBUG: [message]")

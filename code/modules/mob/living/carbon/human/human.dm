@@ -269,6 +269,10 @@
 		return 1
 	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
 		return 1
+	if (istype(wear_suit, /obj/item/clothing/suit/shibari))
+		var/obj/item/clothing/suit/shibari/s = wear_suit
+		if(s.rope_mode == "Arms" || s.rope_mode == "Arms and Legs")
+			return 1
 	return 0
 
 /mob/living/carbon/human/var/co2overloadtime = null
@@ -280,7 +284,7 @@
 	if(AM.is_incorporeal())
 		return
 
-	spread_fire(AM)
+	spreadFire(AM)
 
 	..() // call parent because we moved behavior to parent
 
@@ -512,7 +516,7 @@
 					for (var/datum/data/record/R in GLOB.data_core.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
-								var/t1 = sanitize(tgui_input_text(usr, "Add Comment:", "Sec. records", null, null, multiline = TRUE, prevent_enter = TRUE))
+								var/t1 = tgui_input_text(usr, "Add Comment:", "Sec. records", null, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
 									return
 								var/counter = 1
@@ -632,7 +636,7 @@
 					for (var/datum/data/record/R in GLOB.data_core.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
-								var/t1 = sanitize(tgui_input_text(usr, "Add Comment:", "Med. records", null, null, multiline = TRUE, prevent_enter = TRUE))
+								var/t1 = tgui_input_text(usr, "Add Comment:", "Med. records", null, MAX_MESSAGE_LEN, TRUE, prevent_enter = TRUE)
 								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")) )
 									return
 								var/counter = 1
@@ -718,7 +722,7 @@
 					for (var/datum/data/record/R in GLOB.data_core.general)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"best"))
-								var/t1 = sanitize(tgui_input_text(usr, "Add Comment:", "Emp. records", null, null, multiline = TRUE, prevent_enter = TRUE))
+								var/t1 = tgui_input_text(usr, "Add Comment:", "Emp. records", null, MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE)
 								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"best")) )
 									return
 								var/counter = 1
@@ -738,6 +742,9 @@
 	if (href_list["lookitem_desc_only"])
 		var/obj/item/I = locate(href_list["lookitem_desc_only"])
 		if(!I)
+			return
+		if(istype(I,/obj/item/hand))
+			to_chat(usr,span_warning("You can't see the card faces from here."))
 			return
 		usr.examinate(I, 1)
 
@@ -784,7 +791,7 @@
 		I.additional_flash_effects(number)
 	return number
 
-/mob/living/carbon/human/flash_eyes(var/intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/human/flash_eyes(var/intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
 		var/obj/item/organ/internal/eyes/I = internal_organs_by_name[O_EYES]
 		I.additional_flash_effects(intensity)
@@ -974,13 +981,13 @@
 	if (isnull(target))
 		return
 
-	var/say = sanitize(tgui_input_text(src, "What do you wish to say?"))
+	var/say = tgui_input_text(src, "What do you wish to say?", "", "", MAX_MESSAGE_LEN)
 	if(mRemotetalk in target.mutations)
 		target.show_message(span_filter_say("[span_blue("You hear [src.real_name]'s voice: [say]")]"))
 	else
 		target.show_message(span_filter_say("[span_blue("You hear a voice that seems to echo around the room: [say]")]"))
 	src.show_message(span_filter_say("[span_blue("You project your mind into [target.real_name]: [say]")]"))
-	log_say("(TPATH to [key_name(target)]) [say]",src)
+	log_talk("(TPATH to [key_name(target)]) [say]", LOG_SAY)
 	for(var/mob/observer/dead/G in GLOB.mob_list)
 		G.show_message(span_filter_say(span_italics("Telepathic message from " + span_bold("[src]") + " to " + span_bold("[target]") + ": [say]")))
 
@@ -1383,7 +1390,7 @@
 
 	var/max_length = bloody_hands * 30 //tweeter style
 
-	var/message = sanitize(tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", ""))
+	var/message = tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", MAX_MESSAGE_LEN)
 
 	if (message)
 		var/used_blood_amount = round(length(message) / 30, 1)
@@ -1546,7 +1553,7 @@
 	else
 		to_chat(U, span_warning("You begin to relocate [S]'s [current_limb.joint]..."))
 
-	if(!do_after(U, 30))
+	if(!do_after(U, 3 SECONDS, target = src))
 		return
 	if(!current_limb || !S || !U)
 		return

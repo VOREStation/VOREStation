@@ -12,32 +12,35 @@ const regexParseNode = (params: {
   regex: RegExp;
   createNode: (text: string) => Node;
   captureAdjust?: (str: string) => string;
-}): { nodes?: HTMLElement; n?: number } => {
+}): { nodes?: Node[]; n?: number } => {
   const { node, regex, createNode, captureAdjust } = params;
-  const text = node.textContent || '';
+  const text = node.textContent;
+
+  if (!text || !regex) {
+    return { nodes: [], n: 0 };
+  }
+
   const textLength = text.length;
-  let nodes;
-  let new_node;
-  let match = regex.exec(text);
+  const nodes: Node[] = [];
+  let fragment: Node | undefined;
+  let new_node: Node;
+  let match: RegExpExecArray | null;
   let lastIndex = 0;
-  let fragment;
   let n = 0;
   let count = 0;
   // eslint-disable-next-line no-cond-assign
-  while (match !== null) {
+  while (true) {
+    match = regex.exec(text);
+    if (!match) break;
     n += 1;
     // Safety check to prevent permanent
     // client crashing
     if (++count > 9999) {
-      return {};
+      return { nodes: [], n: 0 };
     }
     // Lazy init fragment
     if (!fragment) {
       fragment = document.createDocumentFragment();
-    }
-    // Lazy init nodes
-    if (!nodes) {
-      nodes = [];
     }
     const matchText = captureAdjust ? captureAdjust(match[0]) : match[0];
     const matchLength = matchText.length;
@@ -55,7 +58,6 @@ const regexParseNode = (params: {
     new_node = createNode(matchText);
     nodes.push(new_node);
     fragment.appendChild(new_node);
-    match = regex.exec(text);
   }
   if (fragment) {
     // Insert the remaining unmatched chunk
@@ -83,7 +85,7 @@ const regexParseNode = (params: {
 export const replaceInTextNode =
   (
     regex: RegExp,
-    words: string | null,
+    words: string[] | null,
     createNode: (text: string) => Node,
   ): ((node: Node) => number) =>
   (node: Node) => {
@@ -162,7 +164,7 @@ const createHighlightNode = (text: string): HTMLSpanElement => {
 export const highlightNode = (
   node: Node,
   regex: RegExp,
-  words: string,
+  words: string[],
   createNode: (text: string) => Node = createHighlightNode,
 ) => {
   if (!createNode) {

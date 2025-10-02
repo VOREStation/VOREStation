@@ -1,6 +1,6 @@
 export const powerToColor = ['bad', 'good'];
 
-export const powerToText = ['Generator Offline', 'Generator Running'];
+export const powerToText = ['Cell Offline', 'Cell Charging'];
 
 export const gridStatusToColor = ['bad', 'average', 'good'];
 

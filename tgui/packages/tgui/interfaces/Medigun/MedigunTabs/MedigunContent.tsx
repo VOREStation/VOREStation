@@ -27,7 +27,7 @@ export const MedigunContent = (props: { smodule: SModule }) => {
     generator,
     gridstatus,
     power_cell_status,
-    phoron_status,
+    cell_status,
     bruteheal_charge,
     burnheal_charge,
     toxheal_charge,
@@ -82,25 +82,25 @@ export const MedigunContent = (props: { smodule: SModule }) => {
               </LabeledList.Item>
             )}
             <LabeledList.Item
-              label="Phoron Generator"
+              label="Battery Status"
               color={powerToColor[generator]}
               buttons={
                 <Button
-                  content={generator ? 'On' : 'Off'}
+                  content={generator ? 'Eject' : 'Missing'}
                   selected={generator}
                   color={generator ? '' : 'bad'}
-                  onClick={() => act('gentoggle')}
+                  onClick={() => act('celleject')}
                 />
               }
             >
               [ {powerToText[generator] || 'Unavailable'} ]
             </LabeledList.Item>
-            {phoron_status !== null ? (
-              <LabeledList.Item label="Phoron Volume">
-                <ProgressBar color="pink" value={phoron_status} />
+            {cell_status !== null ? (
+              <LabeledList.Item label="Battery Status">
+                <ProgressBar color="green" value={cell_status} />
               </LabeledList.Item>
             ) : (
-              <Box color="red">Missing Bin</Box>
+              <Box color="red">Missing Cell</Box>
             )}
           </LabeledList>
         </Section>

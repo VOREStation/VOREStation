@@ -6,6 +6,9 @@
 /mob/living/silicon/robot/show_laws(var/everyone = 0)
 	laws_sanity_check()
 	var/who
+	var/mob/living/original
+	if(mind)
+		original = mind.original_character?.resolve()
 
 	if (everyone)
 		who = world
@@ -21,18 +24,17 @@
 				photosync()
 				to_chat(src, span_infoplain(span_bold("Laws synced with AI, be sure to note any changes.")))
 				// TODO: Update to new antagonist system.
-				if(mind && mind.special_role == "traitor" && mind.original == src)
+				if(mind && mind.special_role == "traitor" && (original && original == src))
 					to_chat(src, span_infoplain(span_bold("Remember, your AI does NOT share or know about your law 0.")))
 		else
 			to_chat(src, span_infoplain(span_bold("No AI selected to sync laws with, disabling lawsync protocol.")))
 			lawupdate = FALSE
 
-	to_chat(who, span_infoplain(span_bold("Obey these laws:")))
-	laws.show_laws(who)
+	to_chat(who, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
 	if(shell) //AI shell
 		to_chat(who, span_infoplain(span_bold("Remember, you are an AI remotely controlling your shell, other AIs can be ignored.")))
 	// TODO: Update to new antagonist system.
-	else if(mind && (mind.special_role == "traitor" && mind.original == src) && connected_ai)
+	else if(mind && (mind.special_role == "traitor" && (original && original == src)) && connected_ai)
 		to_chat(who, span_infoplain(span_bold("Remember, [connected_ai.name] is technically your master, but your objective comes first.")))
 	else if(connected_ai)
 		to_chat(who, span_infoplain(span_bold("Remember, [connected_ai.name] is your master, other AIs can be ignored.")))

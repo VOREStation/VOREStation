@@ -1,8 +1,0 @@
-author: "Zizzi"
-delete-after: True
-changes:
-  - rscadd: "Added a new circuitry assembly."
-  - rscadd: "Added two new circuits"
-  - rscadd: "Added unique speaker to electronic earpiece."
-  - bugfix: "Fixed reagent circuitry not supporting reagent storage circuits."
-  - bugfix: "Fixed text pad input buffer size"

@@ -1,6 +1,9 @@
 SUBSYSTEM_DEF(events)
-	name = "Events"	// VOREStation Edit - This is still the main events subsystem for us.
+	name = "Events"
 	wait = 2 SECONDS
+	dependencies = list(
+		/datum/controller/subsystem/atoms
+	)
 
 	var/tmp/list/currentrun = null
 
@@ -55,7 +58,7 @@ SUBSYSTEM_DEF(events)
 	active_events -= E
 
 	if(!E.event_meta || !E.severity)	// datum/event is used here and there for random reasons, maintaining "backwards compatibility"
-		log_debug("Event of '[E.type]' with missing meta-data has completed.")
+		log_game("Event of '[E.type]' with missing meta-data has completed.")
 		return
 
 	finished_events += E
@@ -66,7 +69,7 @@ SUBSYSTEM_DEF(events)
 	if(EM.add_to_queue)
 		EC.available_events += EM
 
-	log_debug("Event '[EM.name]' has completed at [stationtime2text()].")
+	log_game("Event '[EM.name]' has completed at [stationtime2text()].")
 
 /datum/controller/subsystem/events/proc/delay_events(var/severity, var/delay)
 	var/datum/event_container/EC = event_containers[severity]
@@ -85,7 +88,7 @@ SUBSYSTEM_DEF(events)
 		if(E.isRunning)
 			message += "and is still running."
 		else
-			if(E.endedAt - E.startedAt > MinutesToTicks(5)) // Only mention end time if the entire duration was more than 5 minutes
+			if(E.endedAt - E.startedAt > 5 MINUTES) // Only mention end time if the entire duration was more than 5 minutes
 				message += "and ended at [worldtime2stationtime(E.endedAt)]."
 			else
 				message += "and ran to completion."

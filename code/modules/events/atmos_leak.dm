@@ -14,7 +14,46 @@
 		/area/shuttle,
 		/area/crew_quarters,
 		/area/holodeck,
-		/area/engineering/engine_room
+		/area/engineering/engine_room,
+
+		// Groundbase
+		/area/groundbase/level1/centsquare,
+		/area/groundbase/level1/eastspur,
+		/area/groundbase/level1/northspur,
+		/area/groundbase/level1/southeastspur,
+		/area/groundbase/level1/southwestspur,
+		/area/groundbase/level1/westspur,
+		/area/maintenance/groundbase/level1/netunnel,
+		/area/maintenance/groundbase/level1/nwtunnel,
+		/area/maintenance/groundbase/level1/stunnel,
+		/area/maintenance/groundbase/level1/setunnel,
+		/area/maintenance/groundbase/level1/swtunnel,
+		/area/groundbase/level2/ne,
+		/area/groundbase/level2/nw,
+		/area/groundbase/level2/se,
+		/area/groundbase/level2/sw,
+		/area/groundbase/level3/ne,
+		/area/groundbase/level3/nw,
+		/area/groundbase/level3/se,
+		/area/groundbase/level3/sw,
+		/area/groundbase/level2/northspur,
+		/area/groundbase/level2/eastspur,
+		/area/groundbase/level2/westspur,
+		/area/groundbase/level2/southeastspur,
+		/area/groundbase/level2/southwestspur,
+		/area/groundbase/level3/ne/open,
+		/area/groundbase/level3/nw/open,
+		/area/groundbase/level3/se/open,
+		/area/groundbase/level3/sw/open,
+		/area/groundbase/level3/escapepad,
+
+		// Tether
+		/area/tether/surfacebase/tram,
+		/area/tether/surfacebase/surface_one_hall,
+		/area/tether/surfacebase/surface_two_hall,
+		/area/tether/surfacebase/surface_three_hall,
+		/area/teleporter/departing,
+		/area/hallway/station/upper,
 	)
 
 // Decide which area will be targeted!
@@ -22,6 +61,7 @@
 	var/gas_choices = list(GAS_CO2, GAS_N2O) // Annoying
 	if(severity >= EVENT_LEVEL_MODERATE)
 		gas_choices += GAS_PHORON // Dangerous
+		gas_choices += GAS_CH4
 	// if(severity >= EVENT_LEVEL_MAJOR)
 	// 	gas_choices += GAS_VOLATILE_FUEL // Dangerous and no default atmos setup!
 	gas_type = pick(gas_choices)
@@ -32,7 +72,7 @@
 	for(var/i in 1 to 10)
 		var/area/A = pick(grand_list_of_areas)
 		if(is_area_occupied(A))
-			log_debug("atmos_leak event: Rejected [A] because it is occupied.")
+			log_game("atmos_leak event: Rejected [A] because it is occupied.")
 			continue
 		// A good area, great! Lets try and pick a turf
 		var/list/turfs = list()
@@ -40,14 +80,14 @@
 			if(turf_clear(F))
 				turfs += F
 		if(turfs.len == 0)
-			log_debug("atmos_leak event: Rejected [A] because it has no clear turfs.")
+			log_game("atmos_leak event: Rejected [A] because it has no clear turfs.")
 			continue
 		target_area = A
 		target_turf = pick(turfs)
 
 	// If we can't find a good target, give up
 	if(!target_area)
-		log_debug("atmos_leak event: Giving up after too many failures to pick target area")
+		log_game("atmos_leak event: Giving up after too many failures to pick target area")
 		kill()
 		return
 

@@ -176,7 +176,12 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/lwarble,
 	/decl/emote/audible/croak_skrell,
 	/decl/emote/audible/roarbark,
-	/decl/emote/audible/dook
+	/decl/emote/audible/dook,
+	/decl/emote/audible/caw,
+	/decl/emote/audible/caw2,
+	/decl/emote/audible/caw_m,
+	/decl/emote/audible/gwah
+
 
 	//VOREStation Add End
 )
@@ -321,7 +326,11 @@ var/list/_simple_mob_default_emotes = list(
 	/decl/emote/audible/vox_shriek,
 	/decl/emote/audible/purr,
 	/decl/emote/audible/purrlong,
-	/decl/emote/audible/dook
+	/decl/emote/audible/dook,
+	/decl/emote/audible/caw,
+	/decl/emote/audible/caw2,
+	/decl/emote/audible/caw_m,
+	/decl/emote/audible/gwah
 
 	)
 	//VOREStation Add End
@@ -341,7 +350,78 @@ var/list/_simple_mob_default_emotes = list(
 
 	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 
-	pose = strip_html_simple(tgui_input_text(src, "This is [src]. [T.he]...", "Pose", null))
+	var/new_pose
+	var/quiet_pose = FALSE
+	var/include_icon = TRUE
+	var/list/pose_options = list()
+
+	new_pose = strip_html_simple(tgui_input_text(src, "This is [src]. [T.he]...", "Pose", null))
+	if(!new_pose)
+		pose = null
+		remove_pose_indicator()
+		return
+
+	if(!read_preference(/datum/preference/toggle/tgui_input_mode))
+		var/movement_test = tgui_alert(src, "Cancel Pose On Movement?", "Options", list("No", "Cancel Pose on Movement"))
+		if(!movement_test)
+			return
+		var/icon_test = tgui_alert(src, "Disable Posing Icon?", "Options", list("No", "Disable Pose Icon"))
+		if(!icon_test)
+			return
+		var/quiet_test = tgui_alert(src, "Allow Pose To Be Announced In Chat?", "Options", list("Yes", "Quiet Pose"))
+		if(!quiet_test)
+			return
+		pose_options |= movement_test
+		pose_options |= icon_test
+		pose_options |= quiet_test
+	else
+		pose_options = tgui_input_checkboxes(src, "Which options would you like to enable for your poses?", "Pose Options", list("Cancel Pose on Movement", "Disable Pose Icon", "Quiet Pose"), 0)
+
+	pose_move = FALSE
+	for(var/o in pose_options)
+		if(o == "Cancel Pose on Movement")
+			pose_move = TRUE
+		if(o == "Disable Pose Icon")
+			include_icon = FALSE
+		if(o == "Quiet Pose")
+			quiet_pose = TRUE
+
+	if(include_icon)
+		add_pose_indicator()
+	else
+		remove_pose_indicator()
+
+	pose = new_pose
+	if(!quiet_pose)
+		visible_message("[src] [pose]")
+
+/mob/living/carbon/human/proc/add_pose_indicator()
+	if(pose_indicator)
+		return  //No duplicating
+
+	var/image/pose_icon = image(icon = 'icons/mob/status_indicators.dmi', icon_state = "posing")
+
+	var/our_sprite_x = icon_expected_width * get_icon_scale_x()
+
+	var/x_offset = our_sprite_x - 11
+	var/y_offset = 2
+
+	pose_icon.plane = PLANE_STATUS
+	pose_icon.layer = HUD_LAYER
+	pose_icon.appearance_flags = PIXEL_SCALE|TILE_BOUND|RESET_ALPHA|RESET_TRANSFORM
+	pose_icon.color = chat_color
+	pose_icon.pixel_y = y_offset
+	pose_icon.pixel_x = x_offset
+
+	pose_indicator = pose_icon
+	add_overlay(pose_indicator)
+
+/mob/living/carbon/human/proc/remove_pose_indicator()
+	if(!pose_indicator)
+		return
+
+	cut_overlay(pose_indicator)
+	pose_indicator = null
 
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"

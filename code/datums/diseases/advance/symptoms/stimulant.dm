@@ -24,8 +24,8 @@ Bonus
 	transmission = -3
 	level = 8
 	severity = 1
-	symptom_delay_min = 1
-	symptom_delay_max = 1
+	symptom_delay_min = 25 SECONDS
+	symptom_delay_max = 35 SECONDS
 
 	var/clearacc = FALSE
 
@@ -65,25 +65,22 @@ Bonus
 	switch(A.stage)
 		if(2 to 3)
 			if(prob(power) && H.stat)
-				H.jitteriness += (2 * power)
+				H.make_jittery(2 * power)
 				H.emote("twitch")
 				to_chat(H, span_notice("[pick("you feel energetic!", "You feel well-rested.", "You feel great!")]"))
 		if(4 to 5)
 			H.drowsyness = max(0, H.drowsyness - 10 * power)
 			H.AdjustSleeping(-10 * power)
 			H.AdjustStunned(-10 * power)
-			if(prob(power) && prob(50))
-				if(H.stat)
-					H.emote("twitch")
-					H.make_jittery(2 * power)
-					H.reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
-				to_chat(H, span_notice("[pick("You feel nevervous...", "You feel anxious.", "You feel like everything is moving in slow motion.")]"))
+			H.emote("twitch")
+			H.reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
+			if(prob(base_message_chance))
+				to_chat(H, span_notice("[pick("You feel nervous...", "You feel anxious.", "You feel like everything is moving in slow motion.")]"))
 			if(H.nutrition > 150 - (30 * power))
 				H.nutrition = max(150 - (30 * power), H.nutrition - (2 * power))
 			if(prob(25))
 				H.make_jittery(2 * power)
 			if(clearacc)
 				if(prob(power) && prob(50))
-					if(H.stat)
-						H.emote("scream")
-					H.hallucination = min(20, H.hallucination + (5 * power))
+					H.emote("scream")
+				H.hallucination = min(20, H.hallucination + (5 * power))

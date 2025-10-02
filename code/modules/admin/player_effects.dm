@@ -73,7 +73,7 @@
 			if(!istype(Tar))
 				return
 			Tar.adjust_fire_stacks(10)
-			Tar.IgniteMob()
+			Tar.ignite_mob()
 			Tar.visible_message(span_danger("[target] bursts into flames!"))
 
 		if("lightning_strike")
@@ -197,7 +197,7 @@
 
 		if("adspam")
 			if(target.client)
-				target.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
+				target.client.create_fake_ad_popup_multiple(/atom/movable/screen/popup/default, 15)
 
 		if("peppernade")
 			var/obj/item/grenade/chem_grenade/teargas/grenade = new /obj/item/grenade/chem_grenade/teargas
@@ -294,9 +294,8 @@
 				return
 
 			var/mob/living/new_mob = new chosen_beast(get_turf(M))
-			new_mob.faction = M.faction
 
-			new_mob.mob_tf(M)
+			M.tf_into(new_mob)
 
 		if("item_tf")
 			var/mob/living/M = target
@@ -317,16 +316,13 @@
 
 			var/obj/item/spawned_obj = new spawning(M.loc)
 			var/obj/item/original_name = spawned_obj.name
-			spawned_obj.inhabit_item(M, original_name, M)
-			var/mob/living/possessed_voice = spawned_obj.possessed_voice
-			spawned_obj.trash_eatable = M.devourable
-			spawned_obj.unacidable = !M.digestable
-			M.forceMove(possessed_voice)
+
+			M.tf_into(spawned_obj, TRUE, original_name)
 
 		if("elder_smite")
 			if(!target.ckey)
 				return
-			target.overlay_fullscreen("scrolls", /obj/screen/fullscreen/scrolls, 1)
+			target.overlay_fullscreen("scrolls", /atom/movable/screen/fullscreen/scrolls, 1)
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, clear_fullscreen), "scrolls"), 20 SECONDS)
 
 		////////MEDICAL//////////////
@@ -604,6 +600,28 @@
 				var/mob/living/silicon/robot/Tar = target
 				add_verb(Tar, /mob/living/silicon/robot/proc/ColorMate)
 
+		if("be_event_invis")
+			var/mob/living/Tar = target
+			if(!istype(Tar)) //Technically does not need this restriction, but prevents ghosts accidentally being placed in mob layer
+				return
+			if(Tar.plane != PLANE_INVIS_EVENT)
+				Tar.plane = PLANE_INVIS_EVENT
+				if(!(VIS_EVENT_INVIS in Tar.vis_enabled))
+					Tar.plane_holder.set_vis(VIS_EVENT_INVIS,TRUE)
+					Tar.vis_enabled += VIS_EVENT_INVIS
+			else
+				Tar.plane = MOB_LAYER
+				if(VIS_EVENT_INVIS in Tar.vis_enabled)
+					Tar.plane_holder.set_vis(VIS_EVENT_INVIS,FALSE)
+					Tar.vis_enabled -= VIS_EVENT_INVIS
+
+		if("see_event_invis")
+			if(!(VIS_EVENT_INVIS in target.vis_enabled))
+				target.plane_holder.set_vis(VIS_EVENT_INVIS,TRUE)
+				target.vis_enabled += VIS_EVENT_INVIS
+			else if(VIS_EVENT_INVIS in target.vis_enabled)
+				target.plane_holder.set_vis(VIS_EVENT_INVIS,FALSE)
+				target.vis_enabled -= VIS_EVENT_INVIS
 
 		////////INVENTORY//////////////
 
@@ -774,7 +792,7 @@
 				qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
 			L.ai_holder_type = tgui_input_list(ui.user, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
 			L.initialize_ai_holder()
-			L.faction = sanitize(tgui_input_text(ui.user, "Please input AI faction", "AI faction", "neutral"))
+			L.faction = tgui_input_text(ui.user, "Please input AI faction", "AI faction", "neutral", MAX_MESSAGE_LEN)
 			L.a_intent = tgui_input_list(ui.user, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
 			if(tgui_alert(ui.user, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 				L.AdjustSleeping(-100)

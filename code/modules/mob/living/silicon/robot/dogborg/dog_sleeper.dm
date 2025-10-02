@@ -27,7 +27,6 @@
 	var/list/deliveryslot_1 = list()
 	var/list/deliveryslot_2 = list()
 	var/list/deliveryslot_3 = list()
-	var/datum/research/techonly/files //Analyzerbelly var.
 	var/synced = FALSE
 	var/startdrain = 500
 	var/max_item_count = 1
@@ -37,17 +36,20 @@
 	var/datum/matter_synth/glass = null
 	var/datum/matter_synth/wood = null
 	var/datum/matter_synth/plastic = null
+	var/datum/matter_synth/water = null
 	var/digest_brute = 2
 	var/digest_burn = 3
 	var/digest_multiplier = 1
 	var/recycles = FALSE
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
 	var/obj/item/healthanalyzer/med_analyzer = null
+	var/ore_storage = FALSE
+	var/max_ore_storage = 500
+	var/current_capacity = 0
 	flags = NOBLUDGEON
 
 /obj/item/dogborg/sleeper/Initialize(mapload)
 	. = ..()
-	files = new /datum/research/techonly(src)
 	med_analyzer = new /obj/item/healthanalyzer
 
 /obj/item/dogborg/sleeper/Destroy()
@@ -88,16 +90,10 @@
 				to_chat(user, span_warning("\The [target] is too large to fit into your [src.name]"))
 				return
 			user.visible_message(span_warning("[hound.name] is ingesting [target.name] into their [src.name]."), span_notice("You start ingesting [target] into your [src.name]..."))
-			if(do_after(user, 30, target) && length(contents) < max_item_count)
+			if(do_after(user, 3 SECONDS, target) && length(contents) < max_item_count)
 				target.forceMove(src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [target.name] slips inside."), span_notice("Your [src.name] groans lightly as [target] slips inside."))
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
-				if(analyzer && istype(target,/obj/item))
-					var/obj/item/tech_item = target
-					var/list/tech_levels = list()
-					for(var/T in tech_item.origin_tech)
-						tech_levels += "\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)]."
-					to_chat(user, span_notice("[jointext(tech_levels, "<br>")]"))
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
 						deliverylists[delivery_tag] |= target
@@ -107,7 +103,7 @@
 		if(istype(target, /mob/living/simple_mob/animal/passive/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
 			var/mob/living/simple_mob/trashmouse = target
 			user.visible_message(span_warning("[hound.name] is ingesting [trashmouse] into their [src.name]."), span_notice("You start ingesting [trashmouse] into your [src.name]..."))
-			if(do_after(user, 30, trashmouse) && length(contents) < max_item_count)
+			if(do_after(user, 3 SECONDS, target = trashmouse) && length(contents) < max_item_count)
 				trashmouse.forceMove(src)
 				trashmouse.reset_view(src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashmouse] slips inside."), span_notice("Your [src.name] groans lightly as [trashmouse] slips inside."))
@@ -127,12 +123,12 @@
 				to_chat(user, span_warning("[trashman] is buckled and can not be put into your [src.name]."))
 				return
 			user.visible_message(span_warning("[hound.name] is ingesting [trashman] into their [src.name]."), span_notice("You start ingesting [trashman] into your [src.name]..."))
-			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
+			if(do_after(user, 3 SECONDS, target = trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
 				START_PROCESSING(SSobj, src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashman] slips inside."), span_notice("Your [src.name] groans lightly as [trashman] slips inside."))
-				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				log_attack("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
@@ -281,6 +277,9 @@
 		dat += span_red(span_bold("Current load:") + " [length(contents)] / [max_item_count] objects.") + "<BR>"
 		dat += span_gray("([contents.Join(", ")])") + "<BR><BR>"
 
+	if(ore_storage)
+		dat += "<font color='red'><B>Current ore capacity:</B> [current_capacity] / [max_ore_storage].</font><BR>"
+
 	if(delivery && length(contents))
 		dat += span_red(span_bold("Current load:") + " [length(contents)] / [max_item_count] objects.") + "<BR>"
 		dat += span_gray("Cargo compartment slot: Cargo 1.") + "<BR>"
@@ -294,9 +293,6 @@
 			dat += span_gray("([deliveryslot_3.Join(", ")])") + "<BR>"
 		dat += span_red("Cargo compartment slot: Fuel.") + "<BR>"
 		dat += span_red("([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])") + "<BR><BR>"
-
-	if(analyzer && !synced)
-		dat += "<A href='byond://?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
@@ -429,25 +425,6 @@
 			deliverylists[delivery_tag].Cut()
 		sleeperUI(usr)
 		return
-	if(href_list["sync"])
-		synced = TRUE
-		var/success = 0
-		for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
-			for(var/datum/tech/T in files.known_tech) //Uploading
-				S.files.AddTech2Known(T)
-			for(var/datum/tech/T in S.files.known_tech) //Downloading
-				files.AddTech2Known(T)
-			success = 1
-			files.RefreshResearch()
-		if(success)
-			to_chat(usr, "You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.")
-			playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-		else
-			to_chat(usr, "Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator.")
-			playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
-		sleeperUI(usr)
-		return
-
 	if(patient && !(patient.stat & DEAD)) //What is bitwise NOT? ... Thought it was tilde.
 		if(href_list["inject"] == REAGENT_ID_INAPROVALINE || patient.health > min_health)
 			inject_chem(usr, href_list["inject"])
@@ -582,6 +559,7 @@
 	if(SSair.current_cycle%3==1 && length(touchable_items))
 
 		//Burn all the mobs or add them to the exclusion list
+		var/volume = 0
 		for(var/mob/living/T in (touchable_items))
 			touchable_items -= T //Exclude mobs from loose item picking.
 			if(SEND_SIGNAL(T, COMSIG_CHECK_FOR_GODMODE) & COMSIG_GODMODE_CANCEL)
@@ -597,6 +575,8 @@
 				var/actual_burn = T.getFireLoss() - old_burn
 				var/damage_gain = actual_brute + actual_burn
 				hound.adjust_nutrition(2.5 * damage_gain) //drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
+				if(water)
+					water.add_charge(damage_gain)
 				if(T.stat == DEAD)
 					if(ishuman(T))
 						log_admin("[key_name(hound)] has digested [key_name(T)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
@@ -630,6 +610,15 @@
 								items_preserved |= brain
 						else
 							T.drop_from_inventory(I, src)
+					if(ishuman(T))
+						var/mob/living/carbon/human/Prey = T
+						volume = (Prey.bloodstr.total_volume + Prey.ingested.total_volume + Prey.touching.total_volume + Prey.weight) * Prey.size_multiplier
+					if(water)
+						water.add_charge(volume)
+					if(T.reagents)
+						volume = T.reagents.total_volume
+						if(water)
+							water.add_charge(volume)
 					if(T.ckey)
 						GLOB.prey_digested_roundstat++
 					if(patient == T)
@@ -645,16 +634,15 @@
 			//Handle the target being anything but a /mob/living
 			var/obj/item/T = target
 			if(istype(T))
+				if(T.reagents)
+					volume = T.reagents.total_volume
 				var/is_trash = istype(T, /obj/item/trash)
 				var/digested = T.digest_act(item_storage = src)
 				if(!digested)
 					items_preserved |= T
 				else
-					if(analyzer && digested)
-						var/obj/item/tech_item = T
-						for(var/tech in tech_item.origin_tech)
-							files.UpdateTech(tech, tech_item.origin_tech[tech])
-							synced = FALSE
+					if(volume && water)
+						water.add_charge(volume)
 					if(recycles && T.matter)
 						for(var/material in T.matter)
 							var/total_material = T.matter[material]

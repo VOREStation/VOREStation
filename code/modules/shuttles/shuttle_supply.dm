@@ -17,7 +17,7 @@
 	var/datum/signal/S = new()
 	S.source = src
 	S.data = list("command" = "supply")
-	var/datum/radio_frequency/F = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/F = SSradio.return_frequency(1435)
 	F.post_signal(src, S)
 
 	//it would be cool to play a sound here

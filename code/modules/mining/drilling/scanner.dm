@@ -14,7 +14,7 @@
 	to_chat(user, span_notice("You begin sweeping \the [src] about, scanning for metal deposits."))
 	playsound(src, 'sound/items/goggles_charge.ogg', 50, 1, -6)
 
-	if(!do_after(user, scan_time))
+	if(!do_after(user, scan_time, target = src))
 		return
 
 	ScanTurf(get_turf(user), user)
@@ -30,6 +30,7 @@
 		"anomalous matter" = 0
 		)
 
+	var/list/reagents_found = list()
 	var/turf/Turf = get_turf(target)
 
 	for(var/turf/simulated/T in range(range, Turf))
@@ -41,17 +42,21 @@
 			var/ore_type
 
 			switch(metal)
-				if(ORE_SAND, ORE_CARBON, ORE_MARBLE, /*ORE_QUARTZ*/)	ore_type = "surface minerals"
-				if(ORE_HEMATITE, /*ORE_TIN, ORE_COPPER, ORE_BAUXITE,*/ ORE_LEAD)	ore_type = "industrial metals"
-				if(ORE_GOLD, ORE_SILVER, ORE_RUTILE)					ore_type = "precious metals"
-				if(ORE_DIAMOND, /*ORE_PAINITE*/)	ore_type = "precious gems"
-				if(ORE_URANIUM)									ore_type = "nuclear fuel"
-				if(ORE_PHORON, ORE_PLATINUM, ORE_MHYDROGEN)				ore_type = "exotic matter"
-				if(ORE_VERDANTIUM, /*ORE_VOPAL*/)				ore_type = "anomalous matter"
+				if(ORE_SAND, ORE_CARBON, ORE_MARBLE, ORE_QUARTZ)				ore_type = "surface minerals"
+				if(ORE_HEMATITE, ORE_TIN, ORE_COPPER, ORE_BAUXITE, ORE_LEAD)	ore_type = "industrial metals"
+				if(ORE_GOLD, ORE_SILVER, ORE_RUTILE)							ore_type = "precious metals"
+				if(ORE_DIAMOND, ORE_PAINITE)									ore_type = "precious gems"
+				if(ORE_URANIUM)													ore_type = "nuclear fuel"
+				if(ORE_PHORON, ORE_PLATINUM, ORE_MHYDROGEN)						ore_type = "exotic matter"
+				if(ORE_VERDANTIUM, ORE_VOPAL)									ore_type = "anomalous matter"
 
-			if(ore_type) metals[ore_type] += T.resources[metal]
+			if(ore_type)
+				metals[ore_type] += T.resources[metal]
+			if(islist(GLOB.deepore_fracking_reagents[metal]))
+				for(var/reg_id in GLOB.deepore_fracking_reagents[metal])
+					reagents_found[reg_id] += 1
 
-	var/message = "[icon2html(src, user.client)] " + span_notice("The scanner beeps and displays a readout.")
+	var/message = "[icon2html(src, user.client)] " + span_infoplain("The scanner beeps and displays a readout:")
 
 	for(var/ore_type in metals)
 		var/result = "no sign"
@@ -66,6 +71,24 @@
 			result = metals[ore_type]
 
 		message += "<br>" + span_notice("- [result] of [ore_type].")
+
+	if(reagents_found.len)
+		message += "<br>" + span_infoplain("Sediment sample contains: ")
+		for(var/reg_id in reagents_found)
+			var/amnt = reagents_found[reg_id]
+			var/minimum = 25
+			if(amnt > minimum || exact)
+				var/datum/reagent/R = SSchemistry.chemical_reagents[reg_id]
+				var/ds = ""
+				if(amnt <= minimum && exact)
+					ds = "miniscule "
+				else if(amnt <= 40)
+					ds = "low "
+				else if(amnt >= 120 && exact)
+					ds = "massive "
+				else if(amnt >= 80)
+					ds = "high "
+				message += "<br>" + span_notice("- [ds][R.name]")
 
 	to_chat(user, message)
 

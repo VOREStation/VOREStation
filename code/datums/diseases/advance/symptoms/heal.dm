@@ -124,7 +124,7 @@
 			if(prob(5) && bruteheal)
 				if(H.stat != DEAD)
 					to_chat(H, span_userdanger("You retch, and a splatter of gore escapes your gullet!"))
-					H.vomit(lost_nutrition = 0, blood = TRUE, stun = FALSE)
+					H.do_vomit(lost_nutrition = 0, blood = TRUE, stun = FALSE)
 					// Spitting tumors go here! IF they get up-ported.
 				if(tetsuo)
 					var/list/missing = H.get_missing_limbs()
@@ -252,23 +252,24 @@
 	if(A.resistance >= 5)
 		absorption_coeff = 0.25
 
-/datum/symptom/heal/water/CanHeal(mob/living/M, datum/disease/advance/A, actual_power)
-	if(!istype(M))
-		return
+/datum/symptom/heal/water/CanHeal(datum/disease/advance/A, actual_power)
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/human/H = A.affected_mob
 
 	if(H.fire_stacks < 0)
 		H.adjust_fire_stacks(min(absorption_coeff, -H.fire_stacks))
 		. += power
-	if(H.reagents.has_reagent(REAGENT_ID_HOLYWATER))
-		H.reagents.remove_reagent(REAGENT_ID_HOLYWATER, 0.5 * absorption_coeff)
+	if(H.ingested.has_reagent(REAGENT_ID_HOLYWATER))
+		H.ingested.remove_reagent(REAGENT_ID_HOLYWATER, 0.5 * absorption_coeff)
 		. += power * 0.75
-	else if(H.reagents.has_reagent(REAGENT_ID_WATER))
-		H.reagents.remove_reagent(REAGENT_ID_WATER, 0.5 * absorption_coeff)
+	else if(H.ingested.has_reagent(REAGENT_ID_WATER))
+		H.ingested.remove_reagent(REAGENT_ID_WATER, 0.5 * absorption_coeff)
 		. += power * 0.5
 
 /datum/symptom/heal/water/Heal(mob/living/carbon/human/H, datum/disease/advance/A, actual_power)
+	if(!istype(H))
+		return
+
 	var/heal_amt = 2 * actual_power
 
 	var/list/zone_list = BP_ALL
@@ -279,9 +280,12 @@
 	if(prob(5))
 		to_chat(H, span_notice("You feel yourself absorbing the water around you to soothe your damaged skin."))
 
-	for(var/obj/item/organ/external/bodypart in zone_list)
-		if(bodypart.burn_dam > 0 && !(bodypart.robotic >= ORGAN_ROBOT))
-			bodypart.heal_damage(0, (heal_amt/zone_list.len))
+	var/obj/item/organ/external/pickedpart
+
+	for(var/bodypart in zone_list)
+		pickedpart = H.get_organ(bodypart)
+		if(pickedpart.burn_dam > 0 && !(pickedpart.robotic >= ORGAN_ROBOT))
+			pickedpart.heal_damage(0, (heal_amt/zone_list.len))
 
 	return TRUE
 

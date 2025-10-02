@@ -50,7 +50,7 @@
 
 /obj/item/bluespaceradio/sd_prelinked
 	name = "bluespace radio (Stellar Delight)"
-	handset = /obj/item/radio/bluespacehandset/linked/sd_prelinked
+	handset_path = /obj/item/radio/bluespacehandset/linked/sd_prelinked
 
 /obj/item/radio/bluespacehandset/linked/sd_prelinked
 	bs_tx_preload_id = "sd_rx" //Transmit to a receiver

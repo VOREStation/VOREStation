@@ -60,7 +60,7 @@
 /datum/event2/event/airlock_failure/start()
 	var/list/areas = find_random_areas()
 	if(!LAZYLEN(areas))
-		log_debug("Airlock Failure event could not find any areas. Aborting.")
+		log_game("Airlock Failure event could not find any areas. Aborting.")
 		abort()
 		return
 
@@ -73,7 +73,7 @@
 				addtimer(CALLBACK(src, PROC_REF(break_door), door), 1) // Emagging proc is actually a blocking proc and that's bad for the ticker.
 				door.visible_message(span_danger("\The [door]'s panel sparks!"))
 				playsound(door, "sparks", 50, 1)
-				log_debug("Airlock Failure event has broken \the [door] airlock in [area].")
+				log_game("Airlock Failure event has broken \the [door] airlock in [area].")
 				affected_areas |= area
 				doors_to_break--
 

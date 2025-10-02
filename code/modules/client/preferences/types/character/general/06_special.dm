@@ -61,7 +61,7 @@
 		our_SK.flicker_distance = value
 
 /datum/preference/toggle/living/dark_retreat_toggle
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "DARK_RETREAT_TOGGLE"
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
@@ -72,7 +72,7 @@
 		our_SK.no_retreat = value
 
 /datum/preference/toggle/living/shadekin_nutrition_conversion
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "SHADEKIN_NUTRITION_CONVERSION"
 	default_value = FALSE
 	savefile_identifier = PREFERENCE_PLAYER

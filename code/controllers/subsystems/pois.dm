@@ -3,14 +3,16 @@ SUBSYSTEM_DEF(points_of_interest)
 	name = "Points of Interest"
 	wait = 1 SECONDS
 	priority = FIRE_PRIORITY_POIS
-	init_order = INIT_ORDER_POIS
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT //POIs can be loaded mid-round.
+	dependencies = list(
+		/datum/controller/subsystem/holomaps
+	)
 	var/list/obj/effect/landmark/poi_loader/poi_queue = list()
 
 /datum/controller/subsystem/points_of_interest/Initialize()
 	while (poi_queue.len)
 		load_next_poi()
-	to_world_log("Initializing POIs")
+	log_mapping("Initializing POIs")
 	admin_notice(span_danger("Initializing POIs"), R_DEBUG)
 	return SS_INIT_SUCCESS
 
@@ -48,7 +50,7 @@ SUBSYSTEM_DEF(points_of_interest)
 		return
 	var/turf/T = get_turf(poi_to_load)
 	if(!isturf(T))
-		to_world_log("[log_info_line(poi_to_load)] not on a turf! Cannot place poi template.")
+		log_mapping("[log_info_line(poi_to_load)] not on a turf! Cannot place poi template.")
 		return
 
 	// Choose a poi

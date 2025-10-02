@@ -14,31 +14,6 @@
 		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
 	)
 
-//Inverts the colour of an HTML string
-/proc/invertHTML(HTMLstring)
-
-	if (!( istext(HTMLstring) ))
-		CRASH("Given non-text argument!")
-	else
-		if (length(HTMLstring) != 7)
-			CRASH("Given non-HTML argument!")
-	var/textr = copytext(HTMLstring, 2, 4)
-	var/textg = copytext(HTMLstring, 4, 6)
-	var/textb = copytext(HTMLstring, 6, 8)
-	var/r = hex2num(textr)
-	var/g = hex2num(textg)
-	var/b = hex2num(textb)
-	textr = num2hex(255 - r)
-	textg = num2hex(255 - g)
-	textb = num2hex(255 - b)
-	if (length(textr) < 2)
-		textr = text("0[]", textr)
-	if (length(textg) < 2)
-		textr = text("0[]", textg)
-	if (length(textb) < 2)
-		textr = text("0[]", textb)
-	return text("#[][][]", textr, textg, textb)
-
 //Returns the middle-most value
 /proc/dd_range(var/low, var/high, var/num)
 	return max(low,min(high,num))
@@ -604,11 +579,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			cant_pass = 1
 	return cant_pass
 
+/* //If you uncomment and use this I will assimilate you. -C.L.
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.
 /proc/hasvar(var/datum/A, var/varname)
 	if(A.vars.Find(lowertext(varname))) return 1
 	else return 0
+*/
 
 //Returns: all the areas in the world
 /proc/return_areas()
@@ -1065,8 +1042,8 @@ GLOBAL_LIST_INIT(common_tools, list(
 			return 0
 
 //Whether or not the given item counts as sharp in terms of dealing damage
-/proc/is_sharp(obj/O as obj)
-	if(!O)
+/proc/is_sharp(obj/item/O)
+	if(!isitem(O))
 		return FALSE
 	if(O.sharp)
 		return TRUE
@@ -1075,8 +1052,8 @@ GLOBAL_LIST_INIT(common_tools, list(
 	return FALSE
 
 //Whether or not the given item counts as cutting with an edge in terms of removing limbs
-/proc/has_edge(obj/O as obj)
-	if(!O)
+/proc/has_edge(obj/item/O)
+	if(!isitem(O))
 		return FALSE
 	if(O.edge)
 		return TRUE
@@ -1167,9 +1144,6 @@ var/list/WALLITEMS = list(
 					return 1
 	return 0
 
-/proc/format_text(text)
-	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
-
 /proc/topic_link(var/datum/D, var/arglist, var/content)
 	if(istype(arglist,/list))
 		arglist = list2params(arglist)
@@ -1181,7 +1155,7 @@ var/list/WALLITEMS = list(
 		colour = pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))
 	else
 		for(var/i=1;i<=3;i++)
-			var/temp_col = "[num2hex(rand(lower,upper))]"
+			var/temp_col = "[num2hex(rand(lower,upper), 2)]"
 			if(length(temp_col )<2)
 				temp_col  = "0[temp_col]"
 			colour += temp_col
@@ -1476,21 +1450,6 @@ var/mob/dview/dview_mob
 /proc/pass(...)
 	return
 
-//gives us the stack trace from CRASH() without ending the current proc.
-/proc/stack_trace(msg)
-	CRASH(msg)
-
-/datum/proc/stack_trace(msg)
-	CRASH(msg)
-
-GLOBAL_REAL_VAR(list/stack_trace_storage)
-/proc/gib_stack_trace()
-	stack_trace_storage = list()
-	stack_trace()
-	stack_trace_storage.Cut(1, min(3,stack_trace_storage.len))
-	. = stack_trace_storage
-	stack_trace_storage = null
-
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
 // #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
@@ -1517,47 +1476,47 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/get_tgui_plane_masters()
 	. = list()
 	// 'Utility' planes
-	. += new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
-	. += new /obj/screen/plane_master/lighting							//Lighting system (but different!)
-	. += new /obj/screen/plane_master/o_light_visual					//Object lighting (using masks)
-	. += new /obj/screen/plane_master/emissive							//Emissive overlays
+	. += new /atom/movable/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
+	. += new /atom/movable/screen/plane_master/lighting							//Lighting system (but different!)
+	. += new /atom/movable/screen/plane_master/o_light_visual					//Object lighting (using masks)
+	. += new /atom/movable/screen/plane_master/emissive							//Emissive overlays
 
-	. += new /obj/screen/plane_master/ghosts							//Ghosts!
-	. += new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
+	. += new /atom/movable/screen/plane_master/ghosts							//Ghosts!
+	. += new /atom/movable/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 
-	. += new /obj/screen/plane_master{plane = PLANE_CH_STATUS}			//Status is the synth/human icon left side of medhuds
-	. += new /obj/screen/plane_master{plane = PLANE_CH_HEALTH}			//Health bar
-	. += new /obj/screen/plane_master{plane = PLANE_CH_LIFE}			//Alive-or-not icon
-	. += new /obj/screen/plane_master{plane = PLANE_CH_ID}				//Job ID icon
-	. += new /obj/screen/plane_master{plane = PLANE_CH_WANTED}			//Wanted status
-	. += new /obj/screen/plane_master{plane = PLANE_CH_IMPLOYAL}		//Loyalty implants
-	. += new /obj/screen/plane_master{plane = PLANE_CH_IMPTRACK}		//Tracking implants
-	. += new /obj/screen/plane_master{plane = PLANE_CH_IMPCHEM}		//Chemical implants
-	. += new /obj/screen/plane_master{plane = PLANE_CH_SPECIAL}		//"Special" role stuff
-	. += new /obj/screen/plane_master{plane = PLANE_CH_STATUS_OOC}		//OOC status HUD
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_STATUS}			//Status is the synth/human icon left side of medhuds
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_HEALTH}			//Health bar
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_LIFE}			//Alive-or-not icon
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_ID}				//Job ID icon
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_WANTED}			//Wanted status
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_IMPLOYAL}		//Loyalty implants
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_IMPTRACK}		//Tracking implants
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_IMPCHEM}		//Chemical implants
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_SPECIAL}		//"Special" role stuff
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_STATUS_OOC}		//OOC status HUD
 
-	. += new /obj/screen/plane_master{plane = PLANE_ADMIN1}			//For admin use
-	. += new /obj/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
-	. += new /obj/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
+	. += new /atom/movable/screen/plane_master{plane = PLANE_ADMIN1}			//For admin use
+	. += new /atom/movable/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
+	. += new /atom/movable/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
 
-	. += new /obj/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
-	. += new /obj/screen/plane_master{plane = PLANE_BUILDMODE}			//Things that only show up while in build mode
-	. += new /obj/screen/plane_master{plane = PLANE_JANHUD}
+	. += new /atom/movable/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
+	. += new /atom/movable/screen/plane_master{plane = PLANE_BUILDMODE}			//Things that only show up while in build mode
+	. += new /atom/movable/screen/plane_master{plane = PLANE_JANHUD}
 
 	// Real tangible stuff planes
-	. += new /obj/screen/plane_master/main{plane = TURF_PLANE}
-	. += new /obj/screen/plane_master/main{plane = OBJ_PLANE}
-	. += new /obj/screen/plane_master/main{plane = MOB_PLANE}
-	. += new /obj/screen/plane_master/cloaked								//Cloaked atoms!
+	. += new /atom/movable/screen/plane_master/main{plane = TURF_PLANE}
+	. += new /atom/movable/screen/plane_master/main{plane = OBJ_PLANE}
+	. += new /atom/movable/screen/plane_master/main{plane = MOB_PLANE}
+	. += new /atom/movable/screen/plane_master/cloaked								//Cloaked atoms!
 
 	//VOREStation Add - Random other plane masters
-	. += new /obj/screen/plane_master{plane = PLANE_CH_STATUS_R}			//Right-side status icon
-	. += new /obj/screen/plane_master{plane = PLANE_CH_HEALTH_VR}			//Health bar but transparent at 100
-	. += new /obj/screen/plane_master{plane = PLANE_CH_BACKUP}				//Backup implant status
-	. += new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
-	. += new /obj/screen/plane_master{plane = PLANE_CH_STOMACH}				//Stomachs
-	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
-	. += new /obj/screen/plane_master{plane = PLANE_SOULCATCHER}			//Soulcatcher
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_STATUS_R}			//Right-side status icon
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_HEALTH_VR}			//Health bar but transparent at 100
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_BACKUP}				//Backup implant status
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_STOMACH}				//Stomachs
+	. += new /atom/movable/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
+	. += new /atom/movable/screen/plane_master{plane = PLANE_SOULCATCHER}			//Soulcatcher
 	//VOREStation Add End
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
@@ -1595,3 +1554,80 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return "CLIENT: [D]"
 	else
 		return "Unknown data type: [D]"
+
+/**
+ * - is_valid_z_level
+ *
+ * Checks if source_loc and checking_loc is both on the station, or on the same z level.
+ * This is because the station's several levels aren't considered the same z, so multi-z stations need this special case.
+ *
+ * Args:
+ * source_loc - turf of the source we're comparing.
+ * checking_loc - turf we are comparing to source_loc.
+ *
+ * returns TRUE if connection is valid, FALSE otherwise.
+ */
+/proc/is_valid_z_level(turf/source_loc, turf/checking_loc)
+	return is_on_same_plane_or_station(source_loc.z, checking_loc.z)
+
+/**
+ * divides a list of materials uniformly among all contents of the target_object recursively
+ * Used to set materials of printed items with their design cost by taking into consideration their already existing materials
+ * e.g. if 12 iron is to be divided uniformly among 2 objects A, B who's current iron contents are 3 & 7
+ * Then first we normalize those values i.e. find their weights to decide who gets an higher share of iron
+ * total_sum = 3 + 7 = 10, A = 3/10 = 0.3, B = 7/10 = 0.7
+ * Then we finally multiply those weights with the user value of 12 we get
+ * A = 0.3 * 12 = 3.6, B = 0.7 * 12 = 8.4 i.e. 3.6 + 8.4 = 12!!
+ * Off course we round the values so we don't have to deal with floating point materials so the actual value
+ * ends being less but that's not an issue
+ * Arguments
+ *
+ * * [custom_materials][list] - the list of materials to set for the object
+ * * multiplier - multiplier passed to set_custom_materials
+ * * [target_object][atom] - the target object who's custom materials we are trying to modify
+ */
+/proc/split_materials_uniformly(list/custom_materials, multiplier, obj/item/target_object)
+	target_object.set_custom_materials(custom_materials)
+
+	// if(!length(target_object.contents)) //most common case where the object is just 1 thing
+	// 	target_object.set_custom_materials(custom_materials, multiplier)
+	// 	return
+
+	// //Step 1: Get recursive contents of all objects, only filter obj cause that what's material container accepts
+	// var/list/reccursive_contents = target_object.get_all_contents_type(/obj/item)
+
+	// //Step 2: find the sum of each material type per object and record their amounts into an 2D list
+	// var/list/material_map_sum = list()
+	// var/list/material_map_amounts = list()
+	// for(var/obj/object as anything in reccursive_contents)
+	// 	var/list/item_materials = object.matter
+	// 	for(var/mat as anything in custom_materials)
+	// 		var/mat_amount = 1 //no materials mean we assign this default amount
+	// 		if(length(item_materials))
+	// 			mat_amount = item_materials[mat] || 1 //if this object doesn't have our material type then assign a default value of 1
+
+	// 		//record the sum of mats for normalizing
+	// 		material_map_sum[mat] += mat_amount
+	// 		//record the material amount for each item into an 2D list
+	// 		var/list/mat_list_per_item = material_map_amounts[mat]
+	// 		if(isnull(mat_list_per_item))
+	// 			material_map_amounts[mat] = list(mat_amount)
+	// 		else
+	// 			mat_list_per_item += mat_amount
+
+	// //Step 3: normalize & scale material_map_amounts with material_map_sum
+	// for(var/mat as anything in material_map_amounts)
+	// 	var/mat_sum = material_map_sum[mat]
+	// 	var/list/mat_per_item = material_map_amounts[mat]
+	// 	for(var/i in 1 to mat_per_item.len)
+	// 		mat_per_item[i] = (mat_per_item[i] / mat_sum) * custom_materials[mat]
+
+	// //Step 4 flatten the 2D list and assign the final values to each atom
+	// var/index = 1
+	// for(var/obj/object as anything in reccursive_contents)
+	// 	var/list/final_material_list = list()
+	// 	for(var/mat as anything in material_map_amounts)
+	// 		var/list/mat_per_item = material_map_amounts[mat]
+	// 		final_material_list[mat] = mat_per_item[index]
+	// 	object.set_custom_materials(final_material_list, multiplier)
+		// index += 1

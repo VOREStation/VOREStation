@@ -65,7 +65,9 @@ Class Procs:
 
 SUBSYSTEM_DEF(air)
 	name = "Air"
-	init_order = INIT_ORDER_AIR
+	dependencies = list(
+		/datum/controller/subsystem/atoms
+	)
 	priority = FIRE_PRIORITY_AIR
 	wait = 2 SECONDS // seconds (We probably can speed this up actually)
 	flags = SS_BACKGROUND // TODO - Should this really be background? It might be important.
@@ -164,7 +166,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			for(var/turf/T in E.connecting_turfs)
 				edge_log += "+--- Connecting Turf [T] ([T.type]) @ [T.x], [T.y], [T.z] ([T.loc])"
 
-		log_debug("Active Edges on ZAS Startup\n" + edge_log.Join("\n"))
+		log_mapping("Active Edges on ZAS Startup\n" + edge_log.Join("\n"))
 		startup_active_edge_log = edge_log.Copy()
 
 	return SS_INIT_SUCCESS
@@ -521,6 +523,10 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	if(A.phoron != B.phoron)
 		return FALSE
 	if(A.carbon_dioxide != B.carbon_dioxide)
+		return FALSE
+	if(A.nitrous_oxide != B.nitrous_oxide)
+		return FALSE
+	if(A.methane != B.methane)
 		return FALSE
 	if(A.temperature != B.temperature)
 		return FALSE

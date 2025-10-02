@@ -14,8 +14,10 @@
 //
 SUBSYSTEM_DEF(xenoarch)
 	name = "Xenoarch"
-	init_order = INIT_ORDER_XENOARCH
 	flags = SS_NO_FIRE
+	dependencies = list(
+		/datum/controller/subsystem/atoms
+	)
 	var/list/artifact_spawning_turfs = list()
 	var/list/digsite_spawning_turfs = list()
 

@@ -107,7 +107,7 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon, CS.client)]NIF\]") + message))
 
-	log_nsay(message,nif.human.real_name,sender)
+	sender.log_talk("NSAY (NIF:[nif.human.real_name]): [message]", LOG_SAY)
 
 /datum/nifsoft/soulcatcher/proc/emote_into(var/message, var/mob/living/sender, var/mob/eyeobj, var/whisper)
 	var/sender_name = eyeobj ? eyeobj.name : sender.name
@@ -135,7 +135,7 @@
 						type = MESSAGE_TYPE_NIF,
 						html = span_nif(span_bold("\[[icon2html(nif.big_icon,CS.client)]NIF\]") + message))
 
-	log_nme(message,nif.human.real_name,sender)
+	sender.log_message("NME (NIF:[nif.human.real_name]): [message]", LOG_EMOTE)
 
 /datum/nifsoft/soulcatcher/proc/show_settings(var/mob/living/carbon/human/H)
 	set waitfor = FALSE
@@ -157,7 +157,6 @@
 				printed after an intro ending with: \"Around you, you see...\" to the prey. If you already \
 				have prey, this will be printed to them after \"Your surroundings change to...\". Limit 2048 char.", \
 				"VR Environment", html_decode(inside_flavor), MAX_MESSAGE_LEN*2, TRUE, prevent_enter = TRUE)
-				new_flavor = sanitize(new_flavor, MAX_MESSAGE_LEN*2)
 				inside_flavor = new_flavor
 				nif.notify("Updating VR environment...")
 				for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
@@ -255,7 +254,7 @@
 	//If they have these values, apply them
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		qdel_swap(brainmob.dna, H.dna.Clone())
+		QDEL_SWAP(brainmob.dna, H.dna.Clone())
 		brainmob.ooc_notes = H.ooc_notes
 		brainmob.ooc_notes_likes = H.ooc_notes_likes
 		brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
@@ -347,7 +346,7 @@
 		if(ext_blind)
 			eye_blind = 5
 			client.screen.Remove(GLOB.global_hud.whitense)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 		else
 			eye_blind = 0
 			clear_fullscreens()
@@ -425,7 +424,7 @@
 ///////////////////
 //A projected AR soul thing
 /mob/observer/eye/ar_soul
-	invisibility = 0
+	invisibility = INVISIBILITY_NONE
 	plane = PLANE_AUGMENTED
 	icon = 'icons/obj/machines/ar_elements.dmi'
 	icon_state = "beacon"
@@ -553,7 +552,7 @@
 		to_chat(src,span_warning("You need a loaded mind to use NSay."))
 		return
 	if(!message)
-		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher")
+		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.say_into(sane_message,src)
@@ -584,7 +583,7 @@
 		return
 
 	if(!message)
-		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher")
+		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.emote_into(sane_message,src)
@@ -639,7 +638,7 @@
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher")
+		message = tgui_input_text(src, "Type a message to say.","Speak into Soulcatcher", encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.say_into(sane_message,src,null)
@@ -650,7 +649,7 @@
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher")
+		message = tgui_input_text(src, "Type an action to perform.","Emote into Soulcatcher", encode = FALSE)
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.emote_into(sane_message,src,null)

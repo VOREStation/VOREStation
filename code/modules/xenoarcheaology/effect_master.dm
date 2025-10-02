@@ -270,8 +270,9 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	var/atom/bumped = args[2]
 	var/warn = FALSE
 	for(var/datum/artifact_effect/my_effect in my_effects)
-		if(istype(bumped,/obj))
-			if(bumped:throwforce >= 10)
+		if(isitem(bumped))
+			var/obj/item/bumped_item = bumped
+			if(bumped_item.throwforce >= 10)
 				if(my_effect.trigger == TRIGGER_FORCE)
 					my_effect.ToggleActivate()
 
@@ -293,8 +294,9 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	var/atom/movable/M = args[2]
 	var/warn = FALSE
 	for(var/datum/artifact_effect/my_effect in my_effects)
-		if(istype(M,/obj))
-			if(M:throwforce >= 10)
+		if(isitem(M))
+			var/obj/item/bumped_item = M
+			if(bumped_item.throwforce >= 10)
 				if(my_effect.trigger == TRIGGER_FORCE)
 					my_effect.ToggleActivate()
 
@@ -403,7 +405,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 	for(var/datum/artifact_effect/my_effect in my_effects)
 		if(is_path_in_list(T,water_reagents))
-			//log_debug("ON REAGENT T in path = [is_path_in_list(T,water_reagents)]!")
 			if(my_effect.trigger == TRIGGER_WATER)
 				my_effect.ToggleActivate()
 		else if(is_path_in_list(T,acid_reagents))

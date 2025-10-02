@@ -88,13 +88,7 @@
 /obj/item/clothing/suit/space/void/hev
 	name = "hazardous environment suit"
 	desc = "Has a strange smell to it, but you feel like it might be an old friend."
-
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "hev_orange"
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/suit/space/void/hev/violet
 	icon_state = "hev_violet"
@@ -103,13 +97,7 @@
 /obj/item/clothing/head/helmet/space/void/hev
 	name = "hazardous environment helmet"
 	desc = "Has a strange smell to it, but you feel like it might be an old friend."
-
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "hev_orange"
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 /obj/item/clothing/head/helmet/space/void/hev/violet
 	icon_state = "hev_violet"
@@ -119,82 +107,46 @@
 /obj/item/clothing/suit/space/void/makeshift
 	name = "makeshift voidsuit"
 	desc = "This is not something you should use if you have other options, but it's better than nothing!"
-
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "makeshift_void"
 
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0)
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/makeshift
 	name = "makeshift voidsuit helmet"
 	desc = "This is not something you should use if you have other options, but it's better than nothing!"
-
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "makeshift_void"
 
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0)
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 // 'Custodian' armor
 /obj/item/clothing/suit/space/void/custodian
 	name = "custodian suit"
 	desc = "Vacuum-capable armor for a Custodian to do their duty."
-
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "custodian"
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 40, "bio" = 0, "rad" = 20)
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/custodian
 	name = "custodian helmet"
 	desc = "Vacuum-capable helmet for a Custodian to do their duty."
-
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "custodian"
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 40, "bio" = 0, "rad" = 20)
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 // 'Moebius' armor
 /obj/item/clothing/suit/space/void/aether
 	name = "\improper Aether voidsuit"
 	desc = "This suit seems rather high-end for a standard voidsuit. The air in it has a hint of 'new car smell', courtesy of Aether Atmospherics."
-
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "moebiussuit"
 
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 20)
 
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
-
 /obj/item/clothing/head/helmet/space/void/aether
 	name = "\improper Aether voidsuit helmet"
 	desc = "Aether Atmospherics thought that giving this helmet selectable colored lighting would improve market penetration. Very comfortable, regardless."
-
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "moebiushelm_White"
 
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 20)
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 /obj/item/clothing/head/helmet/space/void/aether/verb/select_color()
 	set name = "Helmet Color"
@@ -212,32 +164,19 @@
 /obj/item/clothing/suit/space/void/excelsior
 	name = "\improper Excelsior voidsuit"
 	desc = "A space suit from a particular spaceship: Excelsior."
-
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "excelsior"
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/excelsior
 	name = "\improper Excelsior voidsuit helmet"
 	desc = "A space helmet from a particular spaceship: Excelsior."
-
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "excelsior"
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
-
 
 /obj/item/clothing/suit/space/void/altevian_heartbreaker
 	name = "\improper heartbreaker voidsuit"
 	desc = "The altevians' newest iteration of their armored suits. This one is tailored for zero-g environments, and while it can still be worn in an area with gravity, it'll put a strain on even the most athletic of individuals."
 
-	icon = 'icons/inventory/suit/item_vr_altevian.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr_altevian.dmi'
+	icon = 'icons/inventory/suit/item_altevian.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_altevian.dmi'
 	icon_state = "rig-heartbreaker"
 
 	armor = list(melee = 70, bullet = 70, laser = 70, energy = 30, bomb = 80, bio = 100, rad = 40)
@@ -250,8 +189,8 @@
 	name = "\improper heartbreaker helmet"
 	desc = "The altevians' newest iteration of their armored suits. This one is tailored for zero-g environments, and while it can still be worn in an area with gravity, it'll put a strain on even the most athletic of individuals."
 
-	icon = 'icons/inventory/head/item_vr_altevian.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr_altevian.dmi'
+	icon = 'icons/inventory/head/item_altevian.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_altevian.dmi'
 	icon_state = "rig0-heartbreaker"
 
 	armor = list(melee = 70, bullet = 70, laser = 70, energy = 30, bomb = 80, bio = 100, rad = 40)
@@ -262,9 +201,6 @@
 /obj/item/clothing/suit/space/void/salvagecorp_shipbreaker
 	name = "\improper CSC industrial voidsuit"
 	desc = "A heavy-duty Kirillov-Y771 voidsuit intended for use in hazardous shipbreaking, salvage, and industrial operations, manufactured (or more likely refurbished) by the Coyote Salvage Corporation. It's slow and awkward if used outside of microgravity, but it offers good protection for what is technically a civilian-legal voidsuit."
-
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "breaker_suit"
 
 	armor = list("melee" = 50, "bullet" = 15, "laser" = 15, "energy" = 25, "bomb" = 45, "bio" = 100, "rad" = 80)
@@ -272,18 +208,9 @@
 	breach_threshold = 14
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING)
 
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
-
 /obj/item/clothing/head/helmet/space/void/salvagecorp_shipbreaker
 	name = "\improper CSC industrial voidsuit helmet"
 	desc = "A dome/bubble style helmet for use with the Kirillov-Y771 voidsuit. It offers surprisingly good protection and visibility, though wearers are still advised to avoid face-on collisions. Sadly, this one doesn't seem to have the (in)famous 0PTIK3WL cross-spectrum imaging visor installed..."
-
-	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "breaker_helmet"
 
 	armor = list("melee" = 50, "bullet" = 15, "laser" = 15, "energy" = 25, "bomb" = 45, "bio" = 100, "rad" = 80)
-
-	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
-	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM

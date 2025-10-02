@@ -1,7 +1,3 @@
-#define MUSICIAN_HEARCHECK_MINDELAY 4
-#define MUSIC_MAXLINES 1000
-#define MUSIC_MAXLINECHARS 300
-
 /**
  * # Song datum
  *
@@ -11,6 +7,9 @@
 /datum/song
 	/// Name of the song
 	var/name = "Untitled"
+
+	/// ID for syncing songs together
+	var/id = ""
 
 	/// The atom we're attached to/playing from
 	var/atom/parent
@@ -26,11 +25,6 @@
 
 	/// Are we currently playing?
 	var/playing = FALSE
-
-	/// Are we currently editing?
-	var/editing = TRUE
-	/// Is the help screen open?
-	var/help = FALSE
 
 	/// Repeats left
 	var/repeat = 0
@@ -78,8 +72,8 @@
 	var/list/channels_playing = list()
 	/// List of channels that aren't being used, as text. This is to prevent unnecessary freeing and reallocations from SSsounds/SSinstruments.
 	var/list/channels_idle = list()
-	/// Person playing us
-	var/mob/user_playing
+	/// Who or what's playing us
+	var/atom/music_player
 	//////////////////////////////////////////////////////
 
 	/// Last world.time we checked for who can hear us
@@ -111,7 +105,6 @@
 	var/note_shift = 0
 	var/note_shift_min = -100
 	var/note_shift_max = 100
-	var/can_noteshift = TRUE
 	/// The kind of sustain we're using
 	var/sustain_mode = SUSTAIN_LINEAR
 	/// When a note is considered dead if it is below this in volume
@@ -130,10 +123,10 @@
 /datum/song/New(atom/parent, list/instrument_ids, new_range)
 	SSinstruments.on_song_new(src)
 	lines = list()
-	tempo = sanitize_tempo(tempo)
+	tempo = sanitize_tempo(tempo, TRUE)
 	src.parent = parent
 	if(instrument_ids)
-		allowed_instrument_ids = islist(instrument_ids)? instrument_ids : list(instrument_ids)
+		allowed_instrument_ids = islist(instrument_ids) ? instrument_ids : list(instrument_ids)
 	if(length(allowed_instrument_ids))
 		set_instrument(allowed_instrument_ids[1])
 	hearing_mobs = list()
@@ -161,6 +154,8 @@
 	var/list/old = hearing_mobs.Copy()
 	hearing_mobs.len = 0
 	var/turf/source = get_turf(parent)
+	// FIXME
+	// for(var/mob/M in get_hearers_in_view(instrument_range, source))
 	var/list/in_range = get_mobs_and_objs_in_view_fast(source, instrument_range, remote_ghosts = FALSE)
 	for(var/mob/M in in_range["mobs"])
 		hearing_mobs[M] = get_dist(M, source)
@@ -202,64 +197,98 @@
 /**
  * Attempts to start playing our song.
  */
-/datum/song/proc/start_playing(mob/user)
+/datum/song/proc/start_playing(atom/user)
 	if(playing)
 		return
 	if(!using_instrument?.ready())
-		to_chat(user, span_warning("An error has occurred with [src]. Please reset the instrument."))
+		to_chat(user, span_warning("An error has occured with [src]. Please reset the instrument."))
 		return
 	compile_chords()
 	if(!length(compiled_chords))
 		to_chat(user, span_warning("Song is empty."))
 		return
 	playing = TRUE
-	updateDialog(user_playing)
 	//we can not afford to runtime, since we are going to be doing sound channel reservations and if we runtime it means we have a channel allocation leak.
 	//wrap the rest of the stuff to ensure stop_playing() is called.
 	do_hearcheck()
-	SEND_SIGNAL(parent, COMSIG_SONG_START)
+	SEND_SIGNAL(parent, COMSIG_INSTRUMENT_START, src, user)
+	SEND_SIGNAL(user, COMSIG_ATOM_STARTING_INSTRUMENT, src)
 	elapsed_delay = 0
 	delay_by = 0
 	current_chord = 1
-	user_playing = user
+	music_player = user
 	START_PROCESSING(SSinstruments, src)
+	if(id)
+		sync_play()
+
+/**
+ * Attempts to find other instruments with the same ID and syncs them to our song.
+ */
+/datum/song/proc/sync_play()
+	for(var/datum/song/other_instrument as anything in SSinstruments.songs)
+		if(other_instrument == src || other_instrument.id != id)
+			continue
+		if(other_instrument.playing)
+			continue
+		var/atom/other_player = other_instrument.find_sync_player()
+		if(isnull(other_player) || !(other_player in view(get_turf(parent))))
+			continue
+		// copies the main song info to target songs
+		other_instrument.lines = lines.Copy()
+		other_instrument.max_repeats = max_repeats
+		other_instrument.tempo = tempo
+		other_instrument.start_playing(other_player)
+
+/**
+ * Finds a player which would reasonably be able to play this song.
+ */
+/datum/song/proc/find_sync_player()
+	return null
 
 /**
  * Stops playing, terminating all sounds if in synthesized mode. Clears hearing_mobs.
+ *
+ * Arguments:
+ * * finished: boolean, whether the song ended via reaching the end.
  */
-/datum/song/proc/stop_playing()
+/datum/song/proc/stop_playing(finished = FALSE)
 	if(!playing)
 		return
 	playing = FALSE
 	if(!debug_mode)
 		compiled_chords = null
 	STOP_PROCESSING(SSinstruments, src)
-	SEND_SIGNAL(parent, COMSIG_SONG_END)
+	SEND_SIGNAL(parent, COMSIG_INSTRUMENT_END, finished)
 	terminate_all_sounds(TRUE)
 	hearing_mobs.len = 0
-	user_playing = null
+	music_player = null
 
 /**
  * Processes our song.
  */
 /datum/song/proc/process_song(wait)
-	if(!length(compiled_chords) || should_stop_playing(user_playing))
-		stop_playing()
+	if(!length(compiled_chords))
+		stop_playing(TRUE)
+		return
+	if(should_stop_playing(music_player) == STOP_PLAYING)
+		stop_playing(FALSE)
 		return
 	var/list/chord = compiled_chords[current_chord]
-	if(++elapsed_delay >= delay_by)
-		play_chord(chord)
-		elapsed_delay = 0
-		delay_by = tempodiv_to_delay(chord[length(chord)])
-		current_chord++
-		if(current_chord > length(compiled_chords))
-			if(repeat)
-				repeat--
-				current_chord = 1
-				return
-			else
-				stop_playing()
-				return
+	elapsed_delay++
+	if(elapsed_delay < delay_by)
+		return
+	play_chord(chord)
+	elapsed_delay = 0
+	delay_by = tempodiv_to_delay(chord[length(chord)])
+	current_chord++
+	if(current_chord <= length(compiled_chords))
+		return
+	if(!repeat)
+		stop_playing(TRUE)
+		return
+	repeat--
+	current_chord = 1
+	SEND_SIGNAL(parent, COMSIG_INSTRUMENT_REPEAT, TRUE)
 
 /**
  * Converts a tempodiv to ticks to elapse before playing the next chord, taking into account our tempo.
@@ -281,19 +310,34 @@
 /datum/song/proc/play_chord(list/chord)
 	// last value is timing information
 	for(var/i in 1 to (length(chord) - 1))
-		legacy? playkey_legacy(chord[i][1], chord[i][2], chord[i][3], user_playing) : playkey_synth(chord[i], user_playing)
+		legacy ? playkey_legacy(chord[i][1], chord[i][2], chord[i][3], music_player) : playkey_synth(chord[i], music_player)
 
 /**
  * Checks if we should halt playback.
  */
-/datum/song/proc/should_stop_playing(mob/user)
-	return QDELETED(parent) || !using_instrument || !playing
+/datum/song/proc/should_stop_playing(atom/player)
+	if(QDELETED(player) || !using_instrument || !playing)
+		return STOP_PLAYING
+	return SEND_SIGNAL(parent, COMSIG_INSTRUMENT_SHOULD_STOP_PLAYING, player)
+
+/// Sets and sanitizes the repeats variable.
+/datum/song/proc/set_repeats(new_repeats_value)
+	if(playing)
+		return //So that people cant keep adding to repeat. If the do it intentionally, it could result in the server crashing.
+	repeat = round(new_repeats_value)
+	if(repeat < 0)
+		repeat = 0
+	if(repeat > max_repeats)
+		repeat = max_repeats
+
 
 /**
  * Sanitizes tempo to a value that makes sense and fits the current world.tick_lag.
  */
-/datum/song/proc/sanitize_tempo(new_tempo)
+/datum/song/proc/sanitize_tempo(new_tempo, initializing = FALSE)
 	new_tempo = abs(new_tempo)
+	if(!initializing) // not only is it not helpful while initializing but it will runtime really hard since nothing is set up
+		SEND_SIGNAL(parent, COMSIG_INSTRUMENT_TEMPO_CHANGE, src)
 	return clamp(round(new_tempo, world.tick_lag), world.tick_lag, 5 SECONDS)
 
 /**
@@ -307,12 +351,6 @@
  */
 /datum/song/proc/set_bpm(bpm)
 	tempo = sanitize_tempo(600 / bpm)
-
-/**
- * Updates the window for our users. Override down the line.
- */
-/datum/song/proc/updateDialog(mob/user)
-	interact(user)
 
 /datum/song/process(wait)
 	if(!playing)
@@ -337,33 +375,29 @@
  * Setter for setting output volume.
  */
 /datum/song/proc/set_volume(volume)
-	src.volume = clamp(volume, max(0, min_volume), min(100, max_volume))
+	src.volume = clamp(round(volume, 1), max(0, min_volume), min(100, max_volume))
 	update_sustain()
-	updateDialog()
 
 /**
  * Setter for setting how low the volume has to get before a note is considered "dead" and dropped
  */
 /datum/song/proc/set_dropoff_volume(volume)
-	sustain_dropoff_volume = clamp(volume, INSTRUMENT_MIN_SUSTAIN_DROPOFF, 100)
+	sustain_dropoff_volume = clamp(round(volume, 0.01), INSTRUMENT_MIN_SUSTAIN_DROPOFF, 100)
 	update_sustain()
-	updateDialog()
 
 /**
  * Setter for setting exponential falloff factor.
  */
 /datum/song/proc/set_exponential_drop_rate(drop)
-	sustain_exponential_dropoff = clamp(drop, INSTRUMENT_EXP_FALLOFF_MIN, INSTRUMENT_EXP_FALLOFF_MAX)
+	sustain_exponential_dropoff = clamp(round(drop, 0.00001), INSTRUMENT_EXP_FALLOFF_MIN, INSTRUMENT_EXP_FALLOFF_MAX)
 	update_sustain()
-	updateDialog()
 
 /**
  * Setter for setting linear falloff duration.
  */
 /datum/song/proc/set_linear_falloff_duration(duration)
-	sustain_linear_duration = clamp(duration, 0.1, INSTRUMENT_MAX_TOTAL_SUSTAIN)
+	sustain_linear_duration = clamp(round(duration * 10, world.tick_lag), world.tick_lag, INSTRUMENT_MAX_TOTAL_SUSTAIN)
 	update_sustain()
-	updateDialog()
 
 /datum/song/vv_edit_var(var_name, var_value)
 	. = ..()
@@ -381,25 +415,34 @@
 // subtype for handheld instruments, like violin
 /datum/song/handheld
 
-/datum/song/handheld/updateDialog(mob/user)
-	parent.interact(user || usr)
-
-/datum/song/handheld/should_stop_playing(mob/user)
+/datum/song/handheld/should_stop_playing(atom/player)
 	. = ..()
-	if(.)
-		return TRUE
+	if(. == STOP_PLAYING || . == IGNORE_INSTRUMENT_CHECKS)
+		return
 	var/obj/item/instrument/I = parent
-	return I.should_stop_playing(user)
+	return I.can_play(player) ? NONE : STOP_PLAYING
+
+/datum/song/handheld/find_sync_player()
+	var/obj/item/instrument/instrument = parent
+	var/mob/living/player = get(parent, /mob/living)
+	if(instrument.can_play(player))
+		return player
+	return null
 
 // subtype for stationary structures, like pianos
 /datum/song/stationary
 
-/datum/song/stationary/updateDialog(mob/user)
-	parent.interact(user || usr)
-
-/datum/song/stationary/should_stop_playing(mob/user)
+/datum/song/stationary/should_stop_playing(atom/player)
 	. = ..()
-	if(.)
+	if(. == STOP_PLAYING || . == IGNORE_INSTRUMENT_CHECKS)
 		return TRUE
 	var/obj/structure/musician/M = parent
-	return M.should_stop_playing(user)
+	return M.can_play(player) ? NONE : STOP_PLAYING
+
+/datum/song/stationary/find_sync_player()
+	var/obj/structure/musician/piano = parent
+	for(var/mob/living/player in view(parent, 1))
+		if(piano.can_play(player))
+			return player
+
+	return null

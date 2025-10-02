@@ -89,7 +89,14 @@
 			/obj/item/toy/plushie/nukeplushie,
 			/obj/item/toy/plushie/otter,
 			/obj/item/toy/plushie/vox,
-			/obj/item/toy/plushie/shark)
+			/obj/item/toy/plushie/shark,
+			/obj/item/toy/plushie/dragon,
+			/obj/item/toy/plushie/dragon/green,
+			/obj/item/toy/plushie/dragon/purple,
+			/obj/item/toy/plushie/dragon/red_east,
+			/obj/item/toy/plushie/dragon/green_east,
+			/obj/item/toy/plushie/dragon/white_east,
+			/obj/item/toy/plushie/dragon/gold_east)
 			//VOREStation Add End
 	name = "Plushies Crate"
 	desc = "Five random plushies from AlliCo's wide selection!"
@@ -229,8 +236,8 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Belt-miner gear crate"
-	access = list(access_mining,
-				  access_xenoarch)
+	access = list(ACCESS_MINING,
+				  ACCESS_XENOARCH)
 	one_access = TRUE
 
 /datum/supply_pack/misc/jetpack
@@ -242,10 +249,10 @@
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "jetpack crate"
-	access = list(access_mining,
-				  access_xenoarch,
-				  access_eva,
-				  access_pilot)
+	access = list(ACCESS_MINING,
+				  ACCESS_XENOARCH,
+				  ACCESS_EVA,
+				  ACCESS_PILOT)
 	one_access = TRUE
 
 /datum/supply_pack/randomised/misc/explorer_shield
@@ -261,8 +268,8 @@
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "exploration shield crate"
-	access = list(access_eva,
-				  access_pilot)
+	access = list(ACCESS_EVA,
+				  ACCESS_PILOT)
 	one_access = TRUE
 
 /datum/supply_pack/misc/music_players
@@ -295,9 +302,9 @@
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "exploration radio headsets crate"
 	access = list(
-		access_explorer,
-		access_eva,
-		access_pilot
+		ACCESS_EXPLORER,
+		ACCESS_EVA,
+		ACCESS_PILOT
 	)
 	one_access = TRUE
 

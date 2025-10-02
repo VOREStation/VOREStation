@@ -108,8 +108,6 @@
 /obj/item/clothing/head/welding/arar
 	name = "replikant welding helmet"
 	desc = "A protective welding mask designed for repair-technician biosynthetic crew, the visor slits are particularly difficult to see out of."
-	icon = 'icons/inventory/head/item_vr.dmi'
-	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "ararwelding"
 	item_state_slots = list(
 		SLOT_ID_LEFT_HAND = "ararwelding",
@@ -147,12 +145,12 @@
 	onfire = !(onfire)
 	if (onfire)
 		force = 3
-		damtype = "fire"
+		damtype = BURN
 		icon_state = "cake1"
 		START_PROCESSING(SSobj, src)
 	else
 		force = null
-		damtype = "brute"
+		damtype = BRUTE
 		icon_state = "cake0"
 	return
 

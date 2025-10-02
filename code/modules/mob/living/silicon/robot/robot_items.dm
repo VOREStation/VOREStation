@@ -1,132 +1,3 @@
-//A portable analyzer, for research borgs.  This is better then giving them a gripper which can hold anything and letting them use the normal analyzer.
-/obj/item/portable_destructive_analyzer
-	name = "Portable Destructive Analyzer"
-	icon = 'icons/obj/items.dmi'
-	icon_state = "portable_analyzer"
-	desc = "Similar to the stationary version, this rather unwieldy device allows you to break down objects in the name of science."
-
-	var/min_reliability = 90 //Can't upgrade, call it laziness or a drawback
-
-	var/datum/research/techonly/files 	//The device uses the same datum structure as the R&D computer/server.
-										//This analyzer can only store tech levels, however.
-
-	var/obj/item/loaded_item	//What is currently inside the analyzer.
-
-/obj/item/portable_destructive_analyzer/Initialize(mapload)
-	. = ..()
-	files = new /datum/research/techonly(src) //Setup the research data holder.
-
-/obj/item/portable_destructive_analyzer/Destroy()
-	qdel_null(files)
-	. = ..()
-
-/obj/item/portable_destructive_analyzer/attack_self(user as mob)
-	var/response = tgui_alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
-							Syncing to the research server will send the data that is stored inside to research.\n\
-							Ejecting will place the loaded item onto the floor.",
-							"What would you like to do?", list("Analyze", "Sync", "Eject"))
-	if(response == "Analyze")
-		if(loaded_item)
-			var/confirm = tgui_alert(user, "This will destroy the item inside forever. Are you sure?","Confirm Analyze",list("Yes","No"))
-			if(confirm == "Yes" && !QDELETED(loaded_item)) //This is pretty copypasta-y
-				to_chat(user, span_filter_notice("You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down."))
-				flick("portable_analyzer_scan", src)
-				playsound(src, 'sound/items/Welder2.ogg', 50, 1)
-				var/research_levels = list()
-				for(var/T in loaded_item.origin_tech)
-					files.UpdateTech(T, loaded_item.origin_tech[T])
-					research_levels += "\The [loaded_item] had level [loaded_item.origin_tech[T]] in [CallTechName(T)]."
-				if (length(research_levels))
-					to_chat(user, span_filter_notice("[jointext(research_levels,"<br>")]"))
-				loaded_item = null
-				for(var/obj/I in contents)
-					for(var/mob/M in I.contents)
-						M.death()
-					if(istype(I,/obj/item/stack/material))//Only deconstructs one sheet at a time instead of the entire stack
-						var/obj/item/stack/material/S = I
-						if(S.get_amount() > 1)
-							S.use(1)
-							loaded_item = S
-						else
-							qdel(S)
-							desc = initial(desc)
-							icon_state = initial(icon_state)
-					else
-						qdel(I)
-						desc = initial(desc)
-						icon_state = initial(icon_state)
-			else
-				return
-		else
-			to_chat(user, span_filter_notice("The [src] is empty.  Put something inside it first."))
-	if(response == "Sync")
-		var/success = 0
-		for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
-			for(var/datum/tech/T in files.known_tech) //Uploading
-				S.files.AddTech2Known(T)
-			for(var/datum/tech/T in S.files.known_tech) //Downloading
-				files.AddTech2Known(T)
-			success = 1
-			files.RefreshResearch()
-		if(success)
-			to_chat(user, span_filter_notice("You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch."))
-			playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
-		else
-			to_chat(user, span_filter_notice("Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator."))
-			playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
-	if(response == "Eject")
-		if(loaded_item)
-			loaded_item.loc = get_turf(src)
-			desc = initial(desc)
-			icon_state = initial(icon_state)
-			loaded_item = null
-		else
-			to_chat(user, span_filter_notice("The [src] is already empty."))
-
-
-/obj/item/portable_destructive_analyzer/afterattack(var/atom/target, var/mob/living/user, proximity)
-	if(!target)
-		return
-	if(!proximity)
-		return
-	if(!isturf(target.loc)) // Don't load up stuff if it's inside a container or mob!
-		return
-	if(istype(target,/obj/item))
-		if(loaded_item)
-			to_chat(user, span_filter_notice("Your [src] already has something inside.  Analyze or eject it first."))
-			return
-		var/obj/item/I = target
-		I.loc = src
-		loaded_item = I
-		for(var/mob/M in viewers())
-			M.show_message(span_notice("[user] adds the [I] to the [src]."), 1)
-		desc = initial(desc) + "<br>It is holding \the [loaded_item]."
-		flick("portable_analyzer_load", src)
-		icon_state = "portable_analyzer_full"
-
-/obj/item/portable_scanner
-	name = "Portable Resonant Analyzer"
-	icon = 'icons/obj/items.dmi'
-	icon_state = "portable_scanner"
-	desc = "An advanced scanning device used for analyzing objects without completely annihilating them for science. Unfortunately, it has no connection to any database like its angrier cousin."
-
-/obj/item/portable_scanner/afterattack(var/atom/target, var/mob/living/user, proximity)
-	if(!target)
-		return
-	if(!proximity)
-		return
-	if(istype(target,/obj/item))
-		var/obj/item/I = target
-		if(do_after(src, 5 SECONDS * I.w_class))
-			for(var/mob/M in viewers())
-				M.show_message(span_notice("[user] sweeps \the [src] over \the [I]."), 1)
-			flick("[initial(icon_state)]-scan", src)
-			if(I.origin_tech && I.origin_tech.len)
-				for(var/T in I.origin_tech)
-					to_chat(user, span_notice("\The [I] had level [I.origin_tech[T]] in [CallTechName(T)]."))
-			else
-				to_chat(user, span_notice("\The [I] cannot be scanned by \the [src]."))
-
 //This is used to unlock other borg covers.
 /obj/item/card/robot //This is not a child of id cards, as to avoid dumb typechecks on computers.
 	name = "access code transmission device"
@@ -153,11 +24,11 @@
 	dummy_card_type = /obj/item/card/id/syndicate/dummy_cyborg
 
 /obj/item/card/id/science/roboticist/dummy_cyborg
-	access = list(access_robotics)
+	access = list(ACCESS_ROBOTICS)
 
 /obj/item/card/id/syndicate/dummy_cyborg/Initialize(mapload)
 	. = ..()
-	access |= access_robotics
+	access |= ACCESS_ROBOTICS
 
 //A harvest item for serviceborgs.
 /obj/item/robot_harvester
@@ -307,7 +178,7 @@
 /obj/item/pen/robopen/proc/RenamePaper(mob/user, obj/item/paper/paper)
 	if ( !user || !paper )
 		return
-	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the paper?", "Paper Labelling", null, 32), 32)
+	var/n_name = sanitizeSafe(tgui_input_text(user, "What would you like to label the paper?", "Paper Labelling", null, 32, encode = FALSE), 32)
 	if ( !user || !paper )
 		return
 
@@ -321,7 +192,7 @@
 //TODO: Add prewritten forms to dispense when you work out a good way to store the strings.
 /obj/item/form_printer
 	name = "paperwork printer"
-	//name = "paper dispenser"
+	desc = "A revolution for all the bureaucrats on the go!"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "doc_printer_mod_pre"
 	item_icons = list(
@@ -763,3 +634,52 @@
 
 	to_chat(user, span_filter_notice("You fail to pick up \the [A] with \the [src]."))
 	return
+
+// Simple that lets a cyborg roll a collection of die.
+/obj/item/robo_dice
+	name = "random number generator"
+	desc = "A robot device that allows a synthetic entity to, finally, make random numbers. The future is here."
+	icon = 'icons/obj/integrated_electronics/electronic_setups.dmi'
+	icon_state = "setup_device_box"
+
+/obj/item/robo_dice/attack_self(mob/user)
+	. = ..()
+	var/DI = 'icons/obj/dice.dmi'
+	var/dice_options = list(
+		"roll a custom die"	= image(icon = 'icons/obj/integrated_electronics/electronic_setups.dmi', icon_state = "setup_device_box"),
+		"roll d4"			= image(icon = DI, icon_state = "d44"),
+		"roll d6"			= image(icon = DI, icon_state = "d66"),
+		"roll d8"			= image(icon = DI, icon_state = "d88"),
+		"roll d10"			= image(icon = DI, icon_state = "d1010"),
+		"roll d12"			= image(icon = DI, icon_state = "d1212"),
+		"roll d20"			= image(icon = DI, icon_state = "d2020"),
+		"roll d100"			= image(icon = DI, icon_state = "d10010"),
+	)
+	var/choice = show_radial_menu(user, user, dice_options, radius = 70)
+	var/sides = 0
+	switch(choice)
+		if("roll d4")
+			sides = 4
+		if("roll d6")
+			sides = 6
+		if("roll d8")
+			sides = 8
+		if("roll d10")
+			sides = 10
+		if("roll d12")
+			sides = 12
+		if("roll d20")
+			sides = 20
+		if("roll d100")
+			sides = 100
+		if("roll a custom die")
+			sides = tgui_input_number(user, "Enter how many faces you want your virtual dice to have, (no more than 1000 sides):", "Custom Dice Roll", 6, 1000, 0)
+	if(sides <= 0)
+		return
+	var/result = rand(1, sides)
+	user.visible_message(
+		span_notice("\The [user] rolls a virtual [sides]-sided die. The result is [result]."),
+		span_notice("You roll a virtual [sides]-sided die. The result is [result]."),
+		span_notice("You hear synthesized audio of clattering plastic with a soft ping."))
+	user.balloon_alert_visible("rolled: [result]", blind_message = "*clatter, ping!*")
+	playsound(user, 'sound/effects/diceroll_robotic.ogg', 75, 0)

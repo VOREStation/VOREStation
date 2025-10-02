@@ -36,6 +36,11 @@
 	idle_usage = initial(idle_usage)
 	active_usage = initial(active_usage)
 
+/datum/robot_component/Destroy(force)
+	if(wrapped)
+		QDEL_NULL(wrapped)
+	. = ..()
+
 /datum/robot_component/proc/destroy()
 	var/brokenstate = "broken" // Generic icon
 	if (istype(wrapped, /obj/item/robot_parts/robot_component))

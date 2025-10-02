@@ -32,7 +32,6 @@
 			if(DEPARTMENT_MEDICAL)
 				choose_chemistry_items(roll(severity, 2))
 			if(DEPARTMENT_RESEARCH) // Would be nice to differentiate between research diciplines
-				choose_research_items(roll(severity, 2))
 				choose_robotics_items(roll(1, severity))
 			if(DEPARTMENT_CARGO)
 				choose_alloy_items(rand(1, severity))
@@ -76,7 +75,7 @@
 		// Success!
 		SSsupply.points += 100 * severity
 		var/msg = "Great work! With those items you delivered our inventory levels all match up. "
-		msg += "[capitalize(pick(first_names_female))] from accounting will have nothing to complain about. "
+		msg += "[capitalize(pick(GLOB.first_names_female))] from accounting will have nothing to complain about. "
 		msg += "I think you'll find a little something in your supply account."
 		command_announcement.Announce(msg, my_department)
 	else
@@ -167,7 +166,7 @@
 	src.type_path = type_path
 	src.name = initial(type_path.name)
 	if(!name)
-		log_debug("supply_demand event: Order for thing [type_path] has no name.")
+		log_game("supply_demand event: Order for thing [type_path] has no name.")
 
 /datum/supply_demand_order/thing/match_item(var/atom/I)
 	if(istype(I, type_path))
@@ -208,7 +207,7 @@
 		qty_need = CEILING((qty_need - amount_to_take), 1)
 		return 1
 	else
-		log_debug("supply_demand event: not taking reagent '[reagent_id]': [amount_to_take]")
+		log_game("supply_demand event: not taking reagent '[reagent_id]': [amount_to_take]")
 	return
 
 //
@@ -234,14 +233,14 @@
 	if(!canmix || canmix.total_moles <= 0)
 		return
 	if(canmix.return_pressure() < mixture.return_pressure())
-		log_debug("supply_demand event: canister fails to match [canmix.return_pressure()] kPa < [mixture.return_pressure()] kPa")
+		log_game("supply_demand event: canister fails to match [canmix.return_pressure()] kPa < [mixture.return_pressure()] kPa")
 		return
 	// Make sure ratios are equal
 	for(var/gas in mixture.gas)
 		var/targetPercent = round((mixture.gas[gas] / mixture.total_moles) * 100)
 		var/canPercent = round((canmix.gas[gas] / canmix.total_moles) * 100)
 		if(abs(targetPercent-canPercent) > 1)
-			log_debug("supply_demand event: canister fails to match because '[gas]': [canPercent] != [targetPercent]")
+			log_game("supply_demand event: canister fails to match because '[gas]': [canPercent] != [targetPercent]")
 			return // Fail!
 	// Huh, it actually matches!
 	qty_need -= 1
@@ -258,16 +257,6 @@
 		types -= R // Don't pick the same thing twice
 		var/chosen_path = initial(R.result)
 		var/chosen_qty = rand(1, 5)
-		required_items += new /datum/supply_demand_order/thing(chosen_qty, chosen_path)
-	return
-
-/datum/event/supply_demand/proc/choose_research_items(var/differentTypes)
-	var/list/types = subtypesof(/datum/design)
-	for(var/i in 1 to differentTypes)
-		var/datum/design/D = pick(types)
-		types -= D // Don't pick the same thing twice
-		var/chosen_path = initial(D.build_path)
-		var/chosen_qty = rand(1, 3)
 		required_items += new /datum/supply_demand_order/thing(chosen_qty, chosen_path)
 	return
 

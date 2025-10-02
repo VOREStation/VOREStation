@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "register_idle"
 	flags = NOBLUDGEON
-	req_access = list(access_heads)
+	req_access = list(ACCESS_HEADS)
 	anchored = TRUE
 
 	var/locked = 1
@@ -121,7 +121,7 @@
 				else
 					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account not found."))
 			if("custom_order")
-				var/t_purpose = sanitize(tgui_input_text(usr, "Enter purpose", "New purpose"))
+				var/t_purpose = tgui_input_text(usr, "Enter purpose", "New purpose", "", MAX_MESSAGE_LEN)
 				if (!t_purpose || !Adjacent(usr)) return
 				transaction_purpose = t_purpose
 				item_list += t_purpose
@@ -497,7 +497,7 @@
 		user.visible_message(span_warning("\The [user] begins unsecuring \the [src] from the floor."),
 							"You begin unsecuring \the [src] from the floor.")
 	playsound(src, W.usesound, 50, 1)
-	if(!do_after(user, 20 * W.toolspeed))
+	if(!do_after(user, 2 SECONDS * W.toolspeed, target = src))
 		manipulating = 0
 		return
 	if(!anchored)

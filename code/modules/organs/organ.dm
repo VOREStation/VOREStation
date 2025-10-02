@@ -96,7 +96,7 @@ var/list/organ_cache = list()
 			data.setup_from_dna(C.dna)
 			data.setup_from_species(C.species)
 		else
-			log_debug("[src] at [loc] spawned without a proper DNA.")
+			log_runtime("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = C
 		if(istype(H))
 			if(internal)
@@ -166,6 +166,9 @@ var/list/organ_cache = list()
 
 	handle_organ_proc_special()
 
+	for(var/datum/medical_issue/I in medical_issues)
+		I.handle_effects()
+
 	//Process infections
 	if(robotic >= ORGAN_ROBOT || (istype(owner) && (owner.species && (owner.species.flags & (IS_PLANT | NO_INFECT)))))
 		germ_level = 0
@@ -190,9 +193,6 @@ var/list/organ_cache = list()
 		handle_antibiotics()
 		handle_rejection()
 		handle_germ_effects()
-
-	for(var/datum/medical_issue/I in medical_issues)
-		I.handle_effects()
 
 /obj/item/organ/examine(mob/user)
 	. = ..()
@@ -291,9 +291,9 @@ var/list/organ_cache = list()
 		handle_organ_mod_special()
 	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
 		var/status = owner.client.prefs.organ_data[organ_tag]
-		if(status == "assisted")
+		if(status == FBP_ASSISTED)
 			mechassist()
-		else if(status == "mechanical")
+		else if(status == FBP_MECHANICAL)
 			robotize()
 
 /obj/item/organ/proc/is_damaged()

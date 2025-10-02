@@ -9,7 +9,7 @@ var/datum/antagonist/deathsquad/deathsquad
 	antag_sound = 'sound/effects/antag_notice/deathsquid_alert.ogg'
 	landmark_id = "Commando"
 	flags = ANTAG_OVERRIDE_JOB | ANTAG_OVERRIDE_MOB | ANTAG_HAS_NUKE | ANTAG_HAS_LEADER
-	default_access = list(access_cent_general, access_cent_specops, access_cent_living, access_cent_storage)
+	default_access = list(ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE)
 	antaghud_indicator = "huddeathsquad"
 
 	hard_cap = 4
@@ -68,7 +68,7 @@ var/datum/antagonist/deathsquad/deathsquad
 	else
 		syndicate_commando_rank = pick("Lieutenant", "Captain", "Major")
 
-	var/syndicate_commando_name = pick(last_names)
+	var/syndicate_commando_name = pick(GLOB.last_names)
 
 	player.name = "[syndicate_commando_rank] [syndicate_commando_name]"
 	player.current.name = player.name

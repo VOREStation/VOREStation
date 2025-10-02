@@ -17,7 +17,7 @@
 
 	var/universal_translate = 0 // set to 1 if it can translate nonhuman speech
 
-	req_access = list(access_tcomsat)
+	req_access = list(ACCESS_TCOMSAT)
 
 /obj/machinery/computer/telecomms/server/tgui_data(mob/user)
 	var/list/data = list()
@@ -129,7 +129,6 @@
 
 		if("network")
 			var/newnet = tgui_input_text(ui.user, "Which network do you want to view?", "Comm Monitor", network, 15)
-			newnet = sanitize(newnet,15)
 
 			if(newnet && ((ui.user in range(1, src)) || issilicon(ui.user)))
 				if(length(newnet) > 15)
@@ -150,7 +149,6 @@
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, span_notice("You you disable the security protocols"))
-		updateUsrDialog(user)
 		return 1
 
 /obj/machinery/computer/telecomms/server/proc/set_temp(var/text, var/color = "average")

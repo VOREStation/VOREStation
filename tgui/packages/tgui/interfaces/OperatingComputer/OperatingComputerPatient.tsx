@@ -1,5 +1,4 @@
 import { Box, LabeledList, ProgressBar, Section } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { damageRange, damages, stats, tempColors } from './constants';
 import type { occupant } from './types';
@@ -35,7 +34,7 @@ export const OperatingComputerPatient = (props: { occupant: occupant }) => {
                 value={occupant[d[1]] / 100}
                 ranges={damageRange}
               >
-                {toFixed(occupant[d[1]])}
+                {occupant[d[1]].toFixed()}
               </ProgressBar>
             </LabeledList.Item>
           ))}
@@ -46,7 +45,7 @@ export const OperatingComputerPatient = (props: { occupant: occupant }) => {
               value={occupant.bodyTemperature / occupant.maxTemp}
               color={tempColors[occupant.temperatureSuitability + 3]}
             >
-              {toFixed(occupant.btCelsius)}&deg;C, {toFixed(occupant.btFaren)}
+              {occupant.btCelsius.toFixed()}&deg;C, {occupant.btFaren.toFixed()}
               &deg;F
             </ProgressBar>
           </LabeledList.Item>

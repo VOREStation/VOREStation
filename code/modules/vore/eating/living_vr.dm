@@ -111,7 +111,7 @@
 					qdel(G)
 					return TRUE
 				else
-					log_debug("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it failed.")
+					log_vore("[attacker] attempted to feed [G.affecting] to [user] ([user.type]) but it failed.")
 
 			///// If user clicked on their grabbed target
 			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
@@ -126,7 +126,7 @@
 					qdel(G)
 					return TRUE
 				else
-					log_debug("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting ? G.affecting.type : "null"]) but it failed.")
+					log_vore("[attacker] attempted to feed [user] to [G.affecting] ([G.affecting ? G.affecting.type : "null"]) but it failed.")
 
 			///// If user clicked on anyone else but their grabbed target
 			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
@@ -148,7 +148,7 @@
 					qdel(G)
 					return TRUE
 				else
-					log_debug("[attacker] attempted to feed [G.affecting] to [src] ([type]) but it failed.")
+					log_vore("[attacker] attempted to feed [G.affecting] to [src] ([type]) but it failed.")
 
 	//Handle case: /obj/item/holder
 	else if(istype(I, /obj/item/holder))
@@ -163,7 +163,7 @@
 				if(attacker.eat_held_mob(attacker, M, src))
 					return TRUE //return TRUE to exit upper procs
 		else
-			log_debug("[attacker] attempted to feed [H.contents] to [src] ([type]) but it failed.")
+			log_vore("[attacker] attempted to feed [H.contents] to [src] ([type]) but it failed.")
 
 	//Handle case: /obj/item/radio/beacon
 	else if(istype(I,/obj/item/radio/beacon))
@@ -172,9 +172,9 @@
 			var/obj/belly/B = tgui_input_list(user, "Which belly?", "Select A Belly", vore_organs)
 			if(!istype(B))
 				return TRUE
-			visible_message(span_warning("[user] is trying to stuff a beacon into [src]'s [lowertext(B.name)]!"),
+			visible_message(span_warning("[user] is trying to stuff a beacon into [src]'s [B.get_belly_name()]!"),
 				span_warning("[user] is trying to stuff a beacon into you!"))
-			if(do_after(user,30,src))
+			if(do_after(user, 3 SECONDS, target = src))
 				user.drop_item()
 				I.forceMove(B)
 				return TRUE
@@ -183,7 +183,6 @@
 
 	// Body writing
 	else if(istype(I, /obj/item/pen))
-		// Avoids having an override on this proc because attempt_vr won't call the override
 		if(!ishuman(src))
 			return FALSE
 		var/mob/living/carbon/human/us = src
@@ -211,20 +210,6 @@
 		LAZYSET(us.body_writing, affecting.organ_tag, message)
 		return TRUE
 
-	return FALSE
-
-//
-// Our custom resist catches for /mob/living
-//
-/mob/living/proc/vore_process_resist()
-	//Are we resisting from inside a belly?
-	// if(isbelly(loc))
-	// 	var/obj/belly/B = loc
-	// 	B.relay_resist(src)
-	// 	return TRUE //resist() on living does this TRUE thing.
-	// Note: This is no longer required, as the refactors to resisting allow bellies to just define container_resist
-
-	//Other overridden resists go here
 	return FALSE
 
 //
@@ -360,18 +345,18 @@
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
-		error("Player picked [choice] slot to load, but that wasn't one we sent.")
+		log_world("## ERROR Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
 	load_character(slotnum)
-	attempt_vr(user.client?.prefs_vr,"load_vore","")
+	user.client?.prefs_vr.load_vore()
 	sanitize_preferences()
 
 	return remember_default
 
 /datum/preferences/proc/return_to_character_slot(mob/user, var/remembered_default)
 	load_character(remembered_default)
-	attempt_vr(user.client?.prefs_vr,"load_vore","")
+	user.client?.prefs_vr.load_vore()
 	sanitize_preferences()
 
 //
@@ -418,6 +403,24 @@
 			return FALSE
 
 	return ..()
+
+//
+// Formats the belly texts if possible
+//
+
+/mob/living/proc/formatted_vore_examine()
+	var/reagent_examine = examine_reagent_bellies()
+	var/list/examine_belly = examine_bellies()
+	if(!reagent_examine && !LAZYLEN(examine_belly))
+		return ""
+	var/list/vore_examine_data = list()
+	vore_examine_data += reagent_examine
+	vore_examine_data += examine_belly
+	if(!client?.prefs?.read_preference(/datum/preference/toggle/vchat_enable))
+		return vore_examine_data
+
+	return span_details("🤰 | Vore Descriptions", vore_examine_data.Join("\n"))
+
 
 //
 // Clearly super important. Obviously.
@@ -569,6 +572,15 @@
 		var/mob/living/ourmob = tf_mob_holder
 		if(ourmob.loc != src)
 			if(isnull(ourmob.loc))
+				var/mob/living/voice/possessed_voice = src  // Stupid band-aid fix for OOC escaping object TF
+				if(possessed_voice.item_tf)
+					mind.transfer_to(ourmob)
+					item_to_destroy.possessed_voice -= src
+					qdel(src)
+					ourmob.forceMove(item_to_destroy.loc)
+					qdel(item_to_destroy)
+					log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
+					return
 				to_chat(src,span_notice("You have no body."))
 				src.tf_mob_holder = null
 				return
@@ -620,7 +632,7 @@
 		log_and_message_admins("used the OOC escape button to get out of a food item.", src)
 
 	else if(alerts && alerts["leashed"])
-		var/obj/screen/alert/leash_pet/pet_alert = src.alerts["leashed"]
+		var/atom/movable/screen/alert/leash_pet/pet_alert = src.alerts["leashed"]
 		var/obj/item/leash/owner = pet_alert.master
 		owner.clear_leash()
 		log_and_message_admins("used the OOC escape button to get out of a leash.", src)
@@ -659,118 +671,6 @@
 /mob/living/proc/feed_grabbed_to_other(mob/living/user, mob/living/prey, mob/living/pred)
 	var/belly = tgui_input_list(user, "Choose Belly", "Belly Choice", pred.feedable_bellies())
 	return perform_the_nom(user, prey, pred, belly)
-
-//
-// Master vore proc that actually does vore procedures
-//
-/mob/living/proc/perform_the_nom(mob/living/user, mob/living/prey, mob/living/pred, obj/belly/belly, delay_time)
-	//Sanity
-	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
-		log_debug("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
-		return FALSE
-	if(pred == prey)
-		return FALSE
-
-	// The belly selected at the time of noms
-	var/attempt_msg = "ERROR: Vore message couldn't be created. Notify a dev. (at)"
-	var/success_msg = "ERROR: Vore message couldn't be created. Notify a dev. (sc)"
-
-	//Final distance check. Time has passed, menus have come and gone. Can't use do_after adjacent because doesn't behave for held micros
-	var/user_to_pred = get_dist(get_turf(user),get_turf(pred))
-	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
-
-	if(user == pred && isAI(user))
-		var/mob/living/silicon/ai/AI = user
-		if(AI.holo && AI.holo.masters[AI])
-			user_to_prey = get_dist(get_turf(AI.holo.masters[AI]), get_turf(prey))
-
-	if(user_to_pred > 1 || user_to_prey > 1)
-		return FALSE
-
-	if(!prey.devourable)
-		to_chat(user, span_vnotice("They aren't able to be devoured."))
-		log_and_message_admins("attempted to devour [key_name_admin(prey)] against their prefs ([prey ? ADMIN_JMP(prey) : "null"])", src)
-		return FALSE
-	if(prey.absorbed || pred.absorbed)
-		to_chat(user, span_vwarning("They aren't aren't in a state to be devoured."))
-		return FALSE
-
-	//Determining vore attempt privacy
-	var/message_range = world.view
-	if(!pred.is_slipping && !prey.is_slipping) //We only care about privacy preference if it's NOT a spontaneous vore.
-		switch(belly.eating_privacy_local) //if("loud") case not added, as it would not modify message_range
-			if("default")
-				if(pred.eating_privacy_global)
-					message_range = 1
-			if("subtle")
-				message_range = 1
-
-	// Prepare messages
-	if(prey.is_slipping)
-		attempt_msg = span_vwarning("It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!")
-		success_msg = span_vwarning("[prey] suddenly slides into [pred]'s [lowertext(belly.name)]!")
-	else if(pred.is_slipping)
-		attempt_msg = span_vwarning("It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!")
-		success_msg = span_vwarning("[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!")
-	else if(user == pred) //Feeding someone to yourself
-		attempt_msg = span_vwarning("[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
-		success_msg = span_vwarning("[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
-	else //Feeding someone to another person
-		attempt_msg = span_vwarning("[user] is attempting to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
-		success_msg = span_vwarning("[user] manages to make [pred] [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!")
-
-	// Announce that we start the attempt!
-
-	user.visible_message(attempt_msg, range = message_range)
-
-	// Now give the prey time to escape... return if they did
-	var/swallow_time
-	if(delay_time < 0)
-		swallow_time = 0 //No delay!
-	else if(delay_time)
-		swallow_time = delay_time
-	else
-		swallow_time = ishuman(prey) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
-
-	// Their AI should get notified so they can stab us
-	prey.ai_holder?.react_to_attack(user)
-
-	//Timer and progress bar
-	if(!user.client && prey.weakened > 0) // stop crwaling instantly break swallow attempt for mobvore
-		prey.Stun(min(prey.weakened, 2)) // stop crwaling instantly break swallow attempt for mobvore
-	if(!do_after(user, swallow_time, prey, exclusive = TASK_USER_EXCLUSIVE))
-		return FALSE // Prey escaped (or user disabled) before timer expired.
-
-	// If we got this far, nom successful! Announce it!
-	user.visible_message(success_msg, range = message_range)
-
-	// Actually shove prey into the belly.
-	if(istype(prey.loc, /obj/item/holder))
-		var/obj/item/holder/H = prey.loc
-		for(var/mob/living/M in H.contents)
-			belly.nom_mob(M, user)
-			if(M.loc == H) // In case nom_mob failed somehow.
-				M.forceMove(get_turf(src))
-		H.held_mob = null
-		qdel(H)
-	else
-		belly.nom_mob(prey, user)
-
-	user.update_icon()
-
-	var/mob/living/carbon/victim = prey // Check for afk vore
-	if(istype(victim) && !victim.client && !victim.ai_holder && victim.ckey)
-		log_and_message_admins("ate [key_name_admin(prey)] whilst the prey was AFK ([pred ? ADMIN_JMP(pred) : "null"])", pred)
-	var/mob/living/carbon/victim_pred = pred // Check for afk vore
-	if(istype(victim_pred) && !victim_pred.client && !victim_pred.ai_holder && victim_pred.ckey)
-		log_and_message_admins("ate [key_name_admin(prey)] whilst the pred was AFK ([pred ? ADMIN_JMP(pred) : "null"])", pred)
-
-	// Inform Admins
-	if(pred == user)
-		add_attack_logs(pred, prey, "Eaten via [belly.name]")
-	else
-		add_attack_logs(user, pred, "Forced to eat [key_name(prey)]")
-	return TRUE
 
 //
 // Magical pred-air breathing for inside preds
@@ -847,11 +747,21 @@
 	gas = list(
 		GAS_CO2 = 100)
 
+/datum/gas_mixture/belly_air/methane_breather
+	volume = 2500
+	temperature = 293.150
+	total_moles = 104
+
+/datum/gas_mixture/belly_air/methane_breather/New()
+	. = ..()
+	gas = list(
+		GAS_CH4 = 100)
+
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
 	if(user.is_incorporeal())
 		return FALSE
 	var/belly = user.vore_selected
-	return perform_the_nom(user, prey, user, belly, -1)
+	return begin_instant_nom(user, prey, user, belly)
 
 /mob/living/proc/glow_toggle()
 	set name = "Glow (Toggle)"
@@ -878,9 +788,6 @@
 	var/new_color = tgui_color_picker(src,"Select a new color","Body Glow",glow_color)
 	if(new_color)
 		glow_color = new_color
-
-/obj/item
-	var/trash_eatable = TRUE
 
 /mob/living/proc/get_digestion_nutrition_modifier()
 	return 1
@@ -1025,7 +932,7 @@
 		playsound(src, 'sound/items/eatfood.ogg', rand(10,50), 1)
 		var/T = (istype(M) ? M.hardness/40 : 1) SECONDS //1.5 seconds to eat a sheet of metal. 2.5 for durasteel and diamond & 1 by default (applies to some ores like raw carbon, slag, etc.
 		to_chat(src, span_notice("You start crunching on [I] with your powerful jaws, attempting to tear it apart..."))
-		if(do_after(feeder, T, ignore_movement = TRUE, exclusive = TASK_ALL_EXCLUSIVE)) //Eat on the move, but not multiple things at once.
+		if(do_after(feeder, T, target = src, timed_action_flags = IGNORE_USER_LOC_CHANGE)) //Eat on the move, but not multiple things at once.
 			if(feeder != src)
 				to_chat(feeder, span_notice("You feed [I] to [src]."))
 				log_admin("VORE: [feeder] fed [src] [I].")
@@ -1137,6 +1044,7 @@
 		dat += span_bold("Absorption Permission:") + " [absorbable ? span_green("Allowed") : span_red("Disallowed")]<br>"
 		dat += span_bold("Selective Mode Pref:") + " [src.selective_preference]<br>"
 		dat += span_bold("Mob Vore:") + " [allowmobvore ? span_green("Enabled") : span_red("Disabled")]<br>"
+		dat += span_bold("Affected by temperature:") + " [allowtemp ? span_green("Enabled") : span_red("Disabled")]<br>"
 		dat += span_bold("Autotransferable:") + " [autotransferable ? span_green("Enabled") : span_red("Disabled")]<br>"
 		dat += span_bold("Can be stripped:") + " [strip_pref ? span_green("Allowed") : span_red("Disallowed")]<br>"
 		dat += span_bold("Applying reagents:") + " [apply_reagents ? span_green("Allowed") : span_red("Disallowed")]<br>"
@@ -1167,17 +1075,17 @@
 	if(latejoin_prey)
 		dat += span_bold("Late join prey auto accept:") + " [no_latejoin_prey_warning ? span_green("Enabled") : span_red("Disabled")]<br>"
 	dat += span_bold("Global Vore Privacy is:") + " [eating_privacy_global ? span_green("Subtle") : span_red("Loud")]<br>"
-	dat += span_bold("Current active belly:") + " [vore_selected ? vore_selected.name : "None"]<br>"
-	dat += span_bold("Belly rub target:") + " [belly_rub_target ? belly_rub_target : (vore_selected ? vore_selected.name : "None")]<br>"
+	dat += span_bold("Current active belly:") + " [vore_selected ? vore_selected.get_belly_name(TRUE) : "None"]<br>"
+	dat += span_bold("Belly rub target:") + " [belly_rub_target ? belly_rub_target : (vore_selected ? vore_selected.get_belly_name(TRUE) : "None")]<br>"
 	var/datum/browser/popup = new(user, "[name]mvp", "Vore Prefs: [src]", 300, 700, src)
 	popup.set_content(dat)
 	popup.open()
 
 // Full screen belly overlays!
-/obj/screen/fullscreen/belly
+/atom/movable/screen/fullscreen/belly
 	icon = 'icons/mob/vore_fullscreens/screen_full_vore_list.dmi'
 
-/obj/screen/fullscreen/belly/fixed
+/atom/movable/screen/fullscreen/belly/fixed
 	icon = 'icons/mob/screen_full_vore.dmi'
 	icon_state = ""
 
@@ -1333,7 +1241,7 @@
  * Small helper component to manage the vore panel HUD icon
  */
 /datum/component/vore_panel
-	var/obj/screen/vore_panel/screen_icon
+	var/atom/movable/screen/vore_panel/screen_icon
 
 /datum/component/vore_panel/Initialize()
 	if(!isliving(parent))
@@ -1357,9 +1265,9 @@
 	if(screen_icon)
 		owner?.client?.screen -= screen_icon
 		UnregisterSignal(screen_icon, COMSIG_CLICK)
-		qdel_null(screen_icon)
+		QDEL_NULL(screen_icon)
 	remove_verb(owner, /mob/proc/insidePanel)
-	qdel_null(owner.vorePanel)
+	QDEL_NULL(owner.vorePanel)
 
 /datum/component/vore_panel/proc/create_mob_button(mob/user)
 	SIGNAL_HANDLER
@@ -1374,6 +1282,8 @@
 		screen_icon.icon = HUD.ui_style
 		screen_icon.color = HUD.ui_color
 		screen_icon.alpha = HUD.ui_alpha
+	if(isAI(user))
+		screen_icon.screen_loc = ui_ai_pda_send
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 
@@ -1385,7 +1295,7 @@
 /**
  * Screen object for vore panel
  */
-/obj/screen/vore_panel
+/atom/movable/screen/vore_panel
 	name = "vore panel"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "vore"
@@ -1453,7 +1363,11 @@
 
 	var/mob/living/user = src
 
-	var/mob/living/TG = tgui_input_list(user, "Choose who to transfer from", "Transfer From", mobs_in_view(1,user))
+	var/list/transfer_from = mobs_in_view(1,user)
+	for(var/obj/belly/B in vore_organs)
+		for(var/mob/living/L in B.contents)
+			transfer_from |= L
+	var/mob/living/TG = tgui_input_list(user, "Choose who to transfer from", "Transfer From", transfer_from)
 	if(!TG)
 		return FALSE
 	if(TG.give_reagents == FALSE && user != TG) //User isnt forced to allow giving in prefs if they are the one doing it
@@ -1475,7 +1389,11 @@
 		if("Cancel")
 			return FALSE
 		if("Vore belly")
-			var/mob/living/TR = tgui_input_list(user,"Choose who to transfer to","Select Target", mobs_in_view(1,user))
+			var/list/transfer_to = mobs_in_view(1,user)
+			for(var/obj/belly/B in vore_organs)
+				for(var/mob/living/L in B.contents)
+					transfer_to |= L
+			var/mob/living/TR = tgui_input_list(user,"Choose who to transfer to","Select Target", transfer_to)
 			if(!TR)  return FALSE
 
 			if(TR == user) //Proceed, we dont need to have prefs enabled for transfer within user
@@ -1489,9 +1407,9 @@
 					return FALSE
 
 				if(TG == user)
-					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [lowertext(RTB.name)] into their [lowertext(TB.name)]."))
+					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [RTB.get_belly_name()] into their [TB.get_belly_name()]."))
 				else
-					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]'s [lowertext(RTB.name)] into their [lowertext(TB.name)]."))
+					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]'s [RTB.get_belly_name()] into their [TB.get_belly_name()]."))
 					add_attack_logs(user,TR,"Transfered [RTB.reagent_name] from [TG]'s [RTB] to [TR]'s [TB]")	//Bonus for staff so they can see if people have abused transfer and done pref breaks
 				RTB.reagents.vore_trans_to_mob(TR, transfer_amount, CHEM_VORE, 1, 0, TB)
 				if(RTB.count_liquid_for_sprite || TB.count_liquid_for_sprite)
@@ -1508,13 +1426,13 @@
 				if(!Adjacent(TR) || !Adjacent(TG))
 					return //No long distance transfer
 				if(!TB.reagents?.get_free_space())
-					to_chat(user, span_vnotice("[TR]'s [lowertext(TB.name)] is full!"))
+					to_chat(user, span_vnotice("[TR]'s [TB.get_belly_name()] is full!"))
 					return FALSE
 
 				if(TG == user)
-					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [lowertext(RTB.name)] into [TR]'s [lowertext(TB.name)]."))
+					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [RTB.get_belly_name()] into [TR]'s [TB.get_belly_name()]."))
 				else
-					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]s [lowertext(RTB.name)] into [TR]'s [lowertext(TB.name)]."))
+					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]s [RTB.get_belly_name()] into [TR]'s [TB.get_belly_name()]."))
 
 				RTB.reagents.vore_trans_to_mob(TR, transfer_amount, CHEM_VORE, 1, 0, TB)
 				add_attack_logs(user,TR,"Transfered reagents from [TG]'s [RTB] to [TR]'s [TB]")	//Bonus for staff so they can see if people have abused transfer and done pref breaks
@@ -1525,16 +1443,20 @@
 
 
 		if("Stomach")
-			var/mob/living/TR = tgui_input_list(user,"Choose who to transfer to","Select Target", mobs_in_view(1,user))
+			var/list/transfer_to = mobs_in_view(1,user)
+			for(var/obj/belly/B in vore_organs)
+				for(var/mob/living/L in B.contents)
+					transfer_to |= L
+			var/mob/living/TR = tgui_input_list(user,"Choose who to transfer to","Select Target", transfer_to)
 			if(!TR)  return
 			if(!Adjacent(TR) || !Adjacent(TG))
 				return //No long distance transfer
 
 			if(TR == user) //Proceed, we dont need to have prefs enabled for transfer within user
 				if(TG == user)
-					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [lowertext(RTB.name)] into their stomach."))
+					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [RTB.get_belly_name()] into their stomach."))
 				else
-					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]'s [lowertext(RTB.name)] into their stomach."))
+					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]'s [RTB.get_belly_name()] into their stomach."))
 				RTB.reagents.vore_trans_to_mob(TR, transfer_amount, CHEM_INGEST, 1, 0, null)
 				add_attack_logs(user,TR,"Transfered [RTB.reagent_name] from [TG]'s [RTB] to [TR]'s Stomach")
 				if(RTB.count_liquid_for_sprite)
@@ -1546,9 +1468,9 @@
 
 			else
 				if(TG == user)
-					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [lowertext(RTB.name)] into [TR]'s stomach."))
+					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [RTB.get_belly_name()] into [TR]'s stomach."))
 				else
-					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]'s [lowertext(RTB.name)] into [TR]'s stomach."))
+					user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]'s [RTB.get_belly_name()] into [TR]'s stomach."))
 
 				RTB.reagents.vore_trans_to_mob(TR, transfer_amount, CHEM_INGEST, 1, 0, null)
 				add_attack_logs(user,TR,"Transfered [RTB.reagent_name] from [TG]'s [RTB] to [TR]'s Stomach")	//Bonus for staff so they can see if people have abused transfer and done pref breaks
@@ -1575,9 +1497,9 @@
 				return //No long distance transfer
 
 			if(TG == user)
-				user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [lowertext(RTB.name)] into [T]."))
+				user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from their [RTB.get_belly_name()] into [T]."))
 			else
-				user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]'s [lowertext(RTB.name)] into [T]."))
+				user.custom_emote_vr(1, span_vnotice("[RTB.reagent_transfer_verb] [RTB.reagent_name] from [TG]'s [RTB.get_belly_name()] into [T]."))
 
 			RTB.reagents.vore_trans_to_con(T, transfer_amount, 1, 0)
 			add_attack_logs(user, T,"Transfered [RTB.reagent_name] from [TG]'s [RTB] to a [T]")	//Bonus for staff so they can see if people have abused transfer and done pref breaks
@@ -1592,13 +1514,13 @@
 			var/puddle_amount = round(amount_removed/5)
 
 			if(puddle_amount == 0)
-				to_chat(user,span_vnotice("[RTB.reagent_name] dripples from the [lowertext(RTB.name)], not enough to form a puddle."))
+				to_chat(user,span_vnotice("[RTB.reagent_name] dripples from the [RTB.get_belly_name()], not enough to form a puddle."))
 				return
 
 			if(TG == user)
-				user.custom_emote_vr(1, span_vnotice("spills [RTB.reagent_name] from their [lowertext(RTB.name)] onto the floor!"))
+				user.custom_emote_vr(1, span_vnotice("spills [RTB.reagent_name] from their [RTB.get_belly_name()] onto the floor!"))
 			else
-				user.custom_emote_vr(1, span_vnotice("spills [RTB.reagent_name] from [TG]'s [lowertext(RTB.name)] onto the floor!"))
+				user.custom_emote_vr(1, span_vnotice("spills [RTB.reagent_name] from [TG]'s [RTB.get_belly_name()] onto the floor!"))
 
 			if (RTB.custom_reagentcolor)
 				new /obj/effect/decal/cleanable/blood/reagent(TG.loc, RTB.reagent_name, RTB.custom_reagentcolor, RTB.reagentid, puddle_amount, user.ckey, TG.ckey)
@@ -1624,9 +1546,9 @@
 		var/obj/belly/B = T.vore_selected
 		if(istype(B))
 			if(T == src)
-				custom_emote_vr(1, "rubs their [belly_rub_target ? belly_rub_target : lowertext(B.name)].")
+				custom_emote_vr(1, "rubs their [belly_rub_target ? belly_rub_target : B.get_belly_name()].")
 			else
-				custom_emote_vr(1, "gives some rubs over [T]'s [T.belly_rub_target ? T.belly_rub_target : lowertext(B.name)].")
+				custom_emote_vr(1, "gives some rubs over [T]'s [T.belly_rub_target ? T.belly_rub_target : B.get_belly_name()].")
 			B.quick_cycle()
 			return TRUE
 	to_chat(src, span_vwarning("There is no suitable belly for rubs."))

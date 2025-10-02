@@ -15,7 +15,7 @@
 	icon_state = "brain_skrell"
 
 /obj/item/organ/internal/stomach/skrell
-	icon_state = "skrell_stomach"
+	icon_state = "skrell_intestine" //Skrell have no stomach sprite so this is the best we can do
 
 /obj/item/organ/internal/kidneys/skrell
 	icon_state = "skrell_kidney"

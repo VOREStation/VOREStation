@@ -33,6 +33,9 @@
 /obj/item/stack/hose/afterattack(var/atom/target, var/mob/living/user, proximity, params)
 	if(!proximity)
 		return
+	if(in_use)
+		to_chat(user, span_danger("You must choose which connector this hose will connect to before you can attach the hose to something else."))
+		return
 
 	var/datum/component/hose_connector/REMB = remembered?.resolve()
 	var/list/available_sockets = list()
@@ -72,9 +75,11 @@
 				to_chat(user, span_notice("You connect one end of tubing to \the [AC]."))
 
 		else
+			in_use = TRUE // Prevent opening a million uis
 			var/choice = tgui_input_list(user, "Select a target hose connector.", "Socket Selection", available_sockets)
+			in_use = FALSE
 
-			if(choice)
+			if(choice && user.Adjacent(target))
 				var/datum/component/hose_connector/CC = available_sockets[choice]
 				if(REMB)
 					if(REMB.get_carrier() == CC.get_carrier())
@@ -103,6 +108,7 @@
 		return
 
 	else
-		to_chat(user, span_notice("There are no available connectors on \the [target]. You wind \the [src] back up."))
+		if(remembered)
+			to_chat(user, span_notice("There are no available connectors on \the [target]. You wind \the [src] back up."))
 		remembered = null // Unintuitive if it does not reset state
 		..()
