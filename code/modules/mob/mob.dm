@@ -565,7 +565,7 @@
 	var/mob/mob_eye = targets[eye_name]
 
 	if(client && mob_eye)
-		user.AddComponent(/datum/component/remote_view, focused_on = mob_eye)
+		AddComponent(/datum/component/remote_view, focused_on = mob_eye)
 		if(is_admin)
 			client.adminobs = TRUE
 			if(mob_eye == client.mob || !is_remote_viewing())
