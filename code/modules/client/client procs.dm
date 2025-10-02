@@ -880,7 +880,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /mob/proc/is_remote_viewing()
 	if(!client || !client.mob || !client.eye)
 		return FALSE
-	if(get_turf(client.eye) == get_turf(client.mob))
+	if(isturf(client.mob.loc) && get_turf(client.eye) == get_turf(client.mob))
 		return FALSE
 	return (client.eye != client.mob)
 
