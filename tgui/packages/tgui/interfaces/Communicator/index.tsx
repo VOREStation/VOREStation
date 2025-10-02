@@ -32,21 +32,21 @@ export const Communicator = () => {
   const [videoSetting, setVideoSetting] = useState(0);
   const [clipboardMode, setClipboardMode] = useState(false);
 
-  tab[tabs[0]] = <ActivityTab Component={CommunicatorHomeTab} props={{}} />;
-  tab[tabs[1]] = <ActivityTab Component={CommunicatorPhoneTab} props={{}} />;
-  tab[tabs[2]] = <ActivityTab Component={CommunicatorContactTab} props={{}} />;
-  tab[tabs[3]] = <ActivityTab Component={CommunicatorMessageTab} props={{}} />;
+  tab[tabs[0]] = <ActivityTab Component={CommunicatorHomeTab} />;
+  tab[tabs[1]] = <ActivityTab Component={CommunicatorPhoneTab} />;
+  tab[tabs[2]] = <ActivityTab Component={CommunicatorContactTab} />;
+  tab[tabs[3]] = <ActivityTab Component={CommunicatorMessageTab} />;
   tab[tabs[4]] = (
     <ActivityTab
       Component={CommunicatorMessageSubTab}
       props={{ clipboardMode, onClipboardMode: setClipboardMode }}
     />
   );
-  tab[tabs[5]] = <ActivityTab Component={CommunicatorNewsTab} props={{}} />;
-  tab[tabs[6]] = <ActivityTab Component={CommunicatorNoteTab} props={{}} />;
-  tab[tabs[7]] = <ActivityTab Component={CommunicatorWeatherTab} props={{}} />;
-  tab[tabs[8]] = <ActivityTab Component={CrewManifestContent} props={{}} />;
-  tab[tabs[9]] = <ActivityTab Component={CommunicatorSettingsTab} props={{}} />;
+  tab[tabs[5]] = <ActivityTab Component={CommunicatorNewsTab} />;
+  tab[tabs[6]] = <ActivityTab Component={CommunicatorNoteTab} />;
+  tab[tabs[7]] = <ActivityTab Component={CommunicatorWeatherTab} />;
+  tab[tabs[8]] = <ActivityTab Component={CrewManifestContent} />;
+  tab[tabs[9]] = <ActivityTab Component={CommunicatorSettingsTab} />;
 
   return (
     <Window width={475} height={700}>
