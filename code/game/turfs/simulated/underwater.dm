@@ -106,8 +106,8 @@
 
 /turf/simulated/floor/water/underwater/open/update_icon()
 	. = ..()
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "invisible"
+	icon = 'icons/turf/open_space.dmi'
+	icon_state = "black_open_lighter"
 
 /turf/simulated/floor/water/underwater/open/LateInitialize()
 	. = ..()
@@ -142,6 +142,8 @@
 /turf/simulated/floor/water/underwater/indoors/open
 	icon = 'icons/effects/weather.dmi'
 	icon_state = "underwater" // Just looks underwater in the map editor, will be invisible once ingame
+	name = "deeper waters"
+	desc = "The watery depths seem to go even deeper here."
 
 /turf/simulated/floor/water/underwater/indoors/open/LateInitialize()
 	. = ..()
@@ -149,10 +151,8 @@
 
 /turf/simulated/floor/water/underwater/indoors/open/update_icon()
 	. = ..()
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "invisible"
-	name = "deeper waters"
-	desc = "The watery depths seem to go even deeper here."
+	icon = 'icons/turf/open_space.dmi'
+	icon_state = "black_open_lighter"
 
 /turf/simulated/floor/water/underwater/indoors/open/CanZPass(atom/A, direction, recursive)
 	return TRUE
