@@ -365,7 +365,7 @@
 						src.drop_from_inventory(S.OurRig)
 						P.forceMove(S.OurRig)
 						S.OurRig.canremove = 1
-				P.reset_perspective(null)
+				P.reset_perspective()
 			else	//Make one if not
 				to_chat(temporary_form, span_warning("Somehow, your RIG got disconnected from your species. This may have been caused by an admin heal. A new one has been created for you, contact a coder."))
 				new /obj/item/rig/protean(src,src)

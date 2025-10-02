@@ -373,6 +373,11 @@
 	harddel_deets_dumped = TRUE
 	return "Image icon: [icon] - icon_state: [icon_state] [loc ? "loc: [loc] ([loc.x],[loc.y],[loc.z])" : ""]"
 
+/// Begin coordinated remote viewing, this will call look() when the view begins, and unlook() when it ends.
+/datum/proc/start_coordinated_remoteview(mob/user, atom/target, list/viewer_managed_list)
+	ASSERT(islist(viewer_managed_list))
+	user.AddComponent(/datum/component/remote_view/viewer_managed, focused_on = target, coordinator = src, viewer_list = viewer_managed_list)
+
 /// Called from /datum/component/remote_view/viewer_managed during Initilize().
 /datum/proc/look(mob/user)
 	return

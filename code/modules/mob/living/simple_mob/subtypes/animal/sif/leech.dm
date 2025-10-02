@@ -331,7 +331,7 @@
 
 	forceMove(get_turf(host))
 
-	reset_perspective(null)
+	reset_perspective()
 
 	host = null
 

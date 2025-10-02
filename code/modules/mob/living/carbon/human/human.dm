@@ -890,7 +890,7 @@
 	set category = "Superpower"
 
 	if(stat!=CONSCIOUS)
-		reset_perspective(null)
+		reset_perspective()
 		return
 
 	if(!(mMorph in mutations))
@@ -996,7 +996,7 @@
 		return
 
 	if(is_remote_viewing())
-		reset_perspective(null)
+		reset_perspective()
 		return
 
 	var/list/mob/creatures = list()

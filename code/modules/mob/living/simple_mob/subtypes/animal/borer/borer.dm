@@ -171,7 +171,7 @@
 
 	forceMove(get_turf(host))
 
-	reset_perspective(null)
+	reset_perspective()
 	machine = null
 
 	if(ishuman(host))
@@ -180,7 +180,7 @@
 		if(head)
 			head.implants -= src
 
-	host.reset_perspective(null)
+	host.reset_perspective()
 	host.machine = null
 	host = null
 

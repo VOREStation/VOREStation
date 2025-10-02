@@ -394,7 +394,7 @@
 /mob/living/silicon/setEarDamage()
 	return
 
-/mob/living/silicon/reset_perspective(null)
+/mob/living/silicon/reset_perspective()
 	. = ..()
 	if(cameraFollow)
 		cameraFollow = null

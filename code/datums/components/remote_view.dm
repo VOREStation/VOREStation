@@ -14,6 +14,11 @@
 	host_mob = parent
 	if(isbelly(focused_on) || istype(focused_on,/obj/item/dogborg/sleeper)) // sleepers focus on their owner, which is always the loc they are in. If this changes in the future, update this.
 		focused_on = focused_on.loc
+	// Safety check, focus on ourselves if the target is deleted, and flag any movement to end the view.
+	if(QDELETED(focused_on))
+		focused_on = host_mob
+		forbid_movement = TRUE
+	// Begin remoteview
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
 	if(forbid_movement)
 		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
@@ -85,7 +90,7 @@
 /datum/component/remote_view/proc/end_view()
 	PROTECTED_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	host_mob.reset_perspective(null)
+	host_mob.reset_perspective()
 
 
 

@@ -247,7 +247,7 @@
 /**
  * Reset the attached clients perspective (viewpoint)
  *
- * reset_perspective(null) set eye to common default : mob on turf, loc otherwise
+ * reset_perspective() set eye to common default : mob on turf, loc otherwise
  * reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
  */
 /mob/proc/reset_perspective(atom/new_eye)
@@ -565,17 +565,17 @@
 	var/mob/mob_eye = targets[eye_name]
 
 	if(client && mob_eye)
-		reset_perspective(mob_eye)
-		if (is_admin)
-			client.adminobs = 1
+		user.AddComponent(/datum/component/remote_view, focused_on = mob_eye)
+		if(is_admin)
+			client.adminobs = TRUE
 			if(mob_eye == client.mob || !is_remote_viewing())
-				client.adminobs = 0
+				client.adminobs = FALSE
 
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "OOC.Game"
 	unset_machine()
-	reset_perspective(null)
+	reset_perspective()
 
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])

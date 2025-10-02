@@ -32,13 +32,13 @@
 /datum/tgui_module/ship/tgui_status(mob/user)
 	. = ..()
 	if(viewing_overmap(user) && (user.machine != src))
-		user.reset_perspective(null)
+		user.reset_perspective()
 
 /datum/tgui_module/ship/tgui_close(mob/user)
 	. = ..()
 	// Unregister map objects
 	user.client?.clear_map(linked?.map_name)
-	user.reset_perspective(null)
+	user.reset_perspective()
 
 /datum/tgui_module/ship/proc/sync_linked()
 	var/obj/effect/overmap/visitable/ship/sector = get_overmap_sector(get_z(tgui_host()))
@@ -76,7 +76,7 @@
 
 /datum/tgui_module/ship/check_eye(var/mob/user)
 	if(!get_dist(user, tgui_host()) > 1 || user.blinded || !linked)
-		user.reset_perspective(null)
+		user.reset_perspective()
 		return -1
 	else
 		return 0
@@ -139,9 +139,9 @@
 	if(action == "viewing")
 		if(!viewing_overmap(ui.user))
 			if(!viewers) viewers = list() // List must exist for pass by reference to work
-			ui.user.AddComponent(/datum/component/remote_view/viewer_managed, focused_on = linked, coordinator = src, viewer_list = viewers)
+			start_coordinated_remoteview(ui.user, linked, viewers)
 		else
-			ui.user.reset_perspective(null)
+			ui.user.reset_perspective()
 		return TRUE
 
 /datum/tgui_module/ship/nav/ntos
@@ -403,9 +403,9 @@
 		if("manual")
 			if(!viewing_overmap(ui.user))
 				if(!viewers) viewers = list()
-				ui.user.AddComponent(/datum/component/remote_view/viewer_managed, focused_on = linked, coordinator = src, viewer_list = viewers)
+				start_coordinated_remoteview(ui.user, linked, viewers)
 			else
-				ui.user.reset_perspective(null)
+				ui.user.reset_perspective()
 			. = TRUE
 		/* END HELM */
 		/* ENGINES */

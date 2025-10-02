@@ -133,7 +133,7 @@
 			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 		if(machine && machine.check_eye(src) < 0)
-			reset_perspective(null)
+			reset_perspective()
 
 	return 1
 

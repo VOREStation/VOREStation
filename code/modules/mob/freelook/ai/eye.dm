@@ -87,7 +87,7 @@
 	if(!src.eyeobj)
 		return
 	if(client.eye)
-		reset_perspective(src)
+		reset_perspective()
 
 	for(var/datum/chunk/c in eyeobj.visibleChunks)
 		c.remove(eyeobj)
