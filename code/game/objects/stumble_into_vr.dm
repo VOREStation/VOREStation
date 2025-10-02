@@ -27,7 +27,6 @@
 	M.apply_damage(5, BRUTE)
 	M.Weaken(2)
 	M.forceMove(src)
-	M.AddComponent(/datum/component/remote_view, src)
 	M.stop_flying()
 	update()
 
@@ -125,7 +124,6 @@
 	playsound(src, 'sound/effects/clang.ogg', 25, 1, -1)
 	visible_message(span_warning("[M] [pick("tripped", "stumbled")] into \the [src]!"))
 	M.forceMove(src)
-	M.AddComponent(/datum/component/remote_view, src)
 	OCCUPANT = M
 	isopen = 0
 	update_icon()

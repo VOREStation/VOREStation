@@ -13,6 +13,7 @@
 	use_power = USE_POWER_IDLE
 	icon = 'icons/obj/biogenerator.dmi'
 	icon_state = "biogen-work"
+	flags = REMOTEVIEW_ON_ENTER
 	var/mob/living/occupant
 	var/obj/item/reagent_containers/glass/beaker
 	var/obj/machinery/computer/xenobio2/computer
@@ -55,7 +56,6 @@
 	if(do_after(user, 3 SECONDS, target = src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(span_danger("[user] stuffs [victim] into the injector!"))
 		victim.forceMove(src)
-		victim.AddComponent(/datum/component/remote_view, src)
 		src.occupant = victim
 
 /obj/machinery/xenobio2/manualinjector/proc/eject_contents()

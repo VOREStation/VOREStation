@@ -294,6 +294,7 @@
 	density = TRUE
 	opacity = 0
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	var/blur_amount
 	var/confuse_amount
 
@@ -527,7 +528,6 @@
 		return
 	M.stop_pulling()
 	M.forceMove(src)
-	M.AddComponent(/datum/component/remote_view, src)
 	set_occupant(M)
 	src.add_fingerprint(usr)
 	icon_state = "implantchair_on"

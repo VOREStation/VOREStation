@@ -7,6 +7,7 @@
 	anchored = TRUE //About time someone fixed this.
 	density = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	dir = 8
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
@@ -480,7 +481,6 @@
 			return
 		M.stop_pulling()
 		M.forceMove(src)
-		M.AddComponent(/datum/component/remote_view, src)
 		update_use_power(USE_POWER_ACTIVE)
 		occupant = M
 		update_icon()

@@ -267,7 +267,7 @@
 	var/list/belly_surrounding = list()		// A list of living mobs surrounded by this belly, including inside containers, food, on mobs, etc. Exclusing inside other bellies.
 	var/bellytemperature = T20C				// Temperature applied to humans in the belly.
 	var/temperature_damage = FALSE			// Does temperature damage prey?
-	flags = NOREACT							// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
+	flags = NOREACT | REMOTEVIEW_ON_ENTER	// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()
@@ -975,9 +975,6 @@
 		prey.buckled.unbuckle_mob()
 
 	prey.forceMove(src)
-	if(ismob(prey))
-		var/mob/ourmob = prey
-		ourmob.AddComponent(/datum/component/remote_view, owner)
 	owner.updateVRPanel()
 
 	for(var/mob/living/M in contents)
@@ -1168,10 +1165,6 @@
 	//This is probably already the case, but for sub-prey, it won't be.
 	if(M.loc != src)
 		M.forceMove(src)
-
-	if(ismob(M))
-		var/mob/ourmob = M
-		ourmob.AddComponent(/datum/component/remote_view, owner)
 
 	//Seek out absorbed prey of the prey, absorb them too.
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
@@ -1516,9 +1509,6 @@
 		return
 	content.belly_cycles = 0
 	content.forceMove(target)
-	if(ismob(content) && !isobserver(content))
-		var/mob/ourmob = content
-		ourmob.AddComponent(/datum/component/remote_view, owner)
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))

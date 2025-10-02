@@ -3,6 +3,7 @@
 	desc = "A fancy bed with built-in sensory I/O ports and connectors to interface users' minds with their bodies in virtual reality."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/base_state = "body_scanner_"
 
@@ -187,7 +188,6 @@
 			return
 		M.stop_pulling()
 		M.forceMove(src)
-		M.AddComponent(/datum/component/remote_view, src)
 		occupant = M
 
 		update_icon()

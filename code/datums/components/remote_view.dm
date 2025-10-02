@@ -12,6 +12,9 @@
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	host_mob = parent
+	if(istype(focused_on,/obj/belly)) // vorebellies focus on their owner
+		var/obj/belly/vorny = focused_on
+		focused_on = vorny.owner
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
 	if(forbid_movement)
 		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))

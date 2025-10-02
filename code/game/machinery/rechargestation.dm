@@ -6,6 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/recharge_station
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
@@ -267,7 +268,6 @@
 
 		add_fingerprint(R)
 		R.forceMove(src)
-		R.AddComponent(/datum/component/remote_view, src)
 		occupant = R
 		update_icon()
 		return 1
@@ -281,7 +281,6 @@
 
 		add_fingerprint(P)
 		P.forceMove(src)
-		P.AddComponent(/datum/component/remote_view, src)
 		occupant = P
 		update_icon()
 		return 1
@@ -292,7 +291,6 @@
 		if(H.isSynthetic() || H.wearing_rig)
 			add_fingerprint(H)
 			H.forceMove(src)
-			H.AddComponent(/datum/component/remote_view, src)
 			occupant = H
 			update_icon()
 			return 1

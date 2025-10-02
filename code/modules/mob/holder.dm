@@ -9,6 +9,7 @@ var/list/holder_mob_icon_cache = list()
 	center_of_mass_x = 0
 	center_of_mass_y = 0
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
+	flags = REMOTEVIEW_ON_ENTER
 	show_messages = 1
 
 	sprite_sheets = list(
@@ -30,7 +31,6 @@ var/list/holder_mob_icon_cache = list()
 	ASSERT(ismob(held))
 	. = ..()
 	held.forceMove(src)
-	held.AddComponent(/datum/component/remote_view, src)
 	START_PROCESSING(SSobj, src)
 
 /mob/living/get_status_tab_items()

@@ -276,10 +276,10 @@
 		else
 			return TRUE //no setting eye to stupid things like areas or whatever
 	else
-		//Special cases that need to restore remote view components
-		if(isbelly(loc) || istype(loc,/obj/item/dogborg/sleeper))
+		//If we return focus to our own mob, but we are still inside something with an inherent remote view. Restart it.
+		if(loc.flags & REMOTEVIEW_ON_ENTER)
 			AddComponent(/datum/component/remote_view, loc)
-			return TRUE // We handle our own perspective update
+			return TRUE
 		//Reset to common defaults: mob if on turf, otherwise current loc
 		if(isturf(loc))
 			client.set_eye(client.mob)

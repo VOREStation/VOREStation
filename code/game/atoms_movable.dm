@@ -239,7 +239,7 @@
 	last_move = direct // The direction you last moved
 	// set_dir(direct) //Don't think this is necessary
 
-//Called after a successful Move(). By this point, we've already moved
+///Called after a successful Move(). By this point, we've already moved
 /atom/movable/proc/Moved(atom/old_loc, direction, forced = FALSE, movetime)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, direction, forced, movetime)
 	// Handle any buckled mobs on this movable
@@ -250,8 +250,12 @@
 		riding_datum.handle_vehicle_offsets()
 	for (var/datum/light_source/light as anything in light_sources) // Cycle through the light sources on this atom and tell them to update.
 		light.source_atom.update_light()
-
 	return TRUE
+
+/mob/Moved(atom/old_loc, direction, forced = FALSE, movetime)
+	. = ..()
+	if(client && (loc.flags & REMOTEVIEW_ON_ENTER))
+		AddComponent(/datum/component/remote_view, loc)
 
 /atom/movable/set_dir(newdir)
 	. = ..(newdir)

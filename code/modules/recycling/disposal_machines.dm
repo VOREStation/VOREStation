@@ -29,6 +29,7 @@
 	active_power_usage = 2200	//the pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
 	var/stat_tracking = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
@@ -121,7 +122,6 @@
 				V.show_message("[user] starts putting [GM.name] into the disposal.", 3)
 			if(do_after(user, 2 SECONDS, target = src))
 				GM.forceMove(src)
-				GM.AddComponent(/datum/component/remote_view, src)
 				for (var/mob/C in viewers(src))
 					C.show_message(span_red("[GM.name] has been placed in the [src] by [user]."), 3)
 				qdel(G)
@@ -142,7 +142,6 @@
 			if(ishuman(victim) || victim.client)
 				log_and_message_admins("placed [victim]  inside \the [src]", user)
 			victim.forceMove(src)
-			victim.AddComponent(/datum/component/remote_view, src)
 
 		I.forceMove(src)
 
@@ -188,7 +187,6 @@
 		return
 
 	target.forceMove(src)
-	target.AddComponent(/datum/component/remote_view, src)
 
 	for (var/mob/C in viewers(src))
 		if(C == user)

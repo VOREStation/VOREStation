@@ -9,6 +9,7 @@
 	icon_state = "suitstorage000000100" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
 	anchored = TRUE
 	density = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	var/mob/living/carbon/human/OCCUPANT = null
 	var/obj/item/clothing/suit/space/SUIT = null
 	var/suit_type = null
@@ -362,7 +363,6 @@
 	if(do_after(usr, 1 SECOND, target = src))
 		usr.stop_pulling()
 		usr.forceMove(src)
-		usr.AddComponent(/datum/component/remote_view, src)
 		OCCUPANT = usr
 		isopen = 0 //Close the thing after the guy gets inside
 		update_icon()
@@ -400,7 +400,6 @@
 			if(!G || !G.affecting) return //derpcheck
 			var/mob/M = G.affecting
 			M.forceMove(src)
-			M.AddComponent(/datum/component/remote_view, src)
 			OCCUPANT = M
 			isopen = 0 //close ittt
 

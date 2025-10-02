@@ -8,6 +8,7 @@
 	range = MELEE
 	equip_cooldown = 30
 	mech_flags = EXOSUIT_MODULE_MEDICAL
+	flags = REMOTEVIEW_ON_ENTER
 	var/mob/living/carbon/human/occupant = null
 	var/inject_amount = 5
 	required_type = list(/obj/mecha/medical)
@@ -47,7 +48,6 @@
 			occupant_message(span_boldwarning("The sleeper is already occupied!"))
 			return
 		target.forceMove(src)
-		target.AddComponent(/datum/component/remote_view, src)
 		occupant = target
 		occupant.Stasis(3)
 		set_ready_state(FALSE)

@@ -69,6 +69,7 @@
 	active_power_usage = 300
 	interact_offline = 1
 	circuit = /obj/item/circuitboard/clonescanner
+	flags = REMOTEVIEW_ON_ENTER
 	var/locked = 0
 	VAR_PRIVATE/datum/weakref/weakref_occupant = null
 	var/obj/item/reagent_containers/glass/beaker = null
@@ -173,7 +174,6 @@
 		return
 	usr.stop_pulling()
 	usr.forceMove(src)
-	usr.AddComponent(/datum/component/remote_view, src)
 	set_occupant(usr)
 	icon_state = "scanner_1"
 	add_fingerprint(usr)
@@ -250,7 +250,6 @@
 
 /obj/machinery/dna_scannernew/proc/put_in(var/mob/M)
 	M.forceMove(src)
-	M.AddComponent(/datum/component/remote_view, src)
 	set_occupant(M)
 	icon_state = "scanner_1"
 

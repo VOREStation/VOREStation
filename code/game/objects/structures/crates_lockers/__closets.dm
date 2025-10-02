@@ -8,6 +8,7 @@
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/opened = 0
 	var/sealed = 0
@@ -199,7 +200,6 @@
 		if(stored_units + added_units + M.mob_size > storage_capacity)
 			break
 		M.forceMove(src)
-		M.AddComponent(/datum/component/remote_view, src)
 		added_units += M.mob_size
 	return added_units
 

@@ -8,6 +8,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 	icon = 'icons/obj/suit_cycler.dmi'
 	icon_state = "suit_cycler"
+	flags = REMOTEVIEW_ON_ENTER
 
 	req_access = list(ACCESS_CAPTAIN,ACCESS_HEADS)
 
@@ -166,7 +167,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			if(!G || !G.affecting) return
 			var/mob/M = G.affecting
 			M.forceMove(src)
-			M.AddComponent(/datum/component/remote_view, src)
 			occupant = M
 
 			add_fingerprint(user)

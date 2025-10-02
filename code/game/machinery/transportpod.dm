@@ -7,6 +7,7 @@
 	density = TRUE //thicc
 	anchored = TRUE
 	use_power = USE_POWER_OFF
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/in_transit = 0
 	var/mob/occupant = null
@@ -59,7 +60,6 @@
 
 	add_fingerprint(O)
 	O.forceMove(src)
-	O.AddComponent(/datum/component/remote_view, src)
 	occupant = O
 	update_icon()
 	if(tgui_alert(O, "Are you sure you're ready to launch?", "Transport Pod", list("Yes", "No")) == "Yes")

@@ -10,6 +10,7 @@
 	var/door_locked = 1
 	salvageable = 0
 	allow_duplicate = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 
 	equip_type = EQUIP_HULL
 
@@ -30,7 +31,6 @@
 		if(!src.occupant)
 			user.forceMove(src)
 			occupant = user
-			occupant.AddComponent(/datum/component/remote_view, src.loc)
 			src.mecha_log_message("[user] boarded.")
 			occupant_message("[user] boarded.")
 		else if(src.occupant != user)

@@ -11,6 +11,7 @@
 	active_power_usage = 5
 	surgery_odds = 100
 	throwpass = 1
+	flags = REMOTEVIEW_ON_ENTER
 	var/mob/living/carbon/human/victim = null
 	var/strapped = 0.0
 	var/obj/machinery/computer/operating/computer = null
@@ -81,8 +82,7 @@
 	if(C.pulledby)
 		C.pulledby.stop_pulling()
 	C.resting = 1
-	C.loc = src.loc
-	C.AddComponent(/datum/component/remote_view, src)
+	C.forceMove(get_turf(src))
 	for(var/obj/O in src)
 		O.loc = src.loc
 	add_fingerprint(user)

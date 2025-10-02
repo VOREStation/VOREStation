@@ -7,6 +7,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	req_access = list(ACCESS_KITCHEN,ACCESS_MORGUE)
 
 	var/operating = 0 //Is it on?
@@ -145,7 +146,6 @@
 	if(do_after(user, 3 SECONDS, target = src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(span_danger("[user] stuffs [victim] into the gibber!"))
 		victim.forceMove(src)
-		victim.AddComponent(/datum/component/remote_view, src)
 		src.occupant = victim
 		update_icon()
 
