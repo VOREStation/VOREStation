@@ -1,6 +1,6 @@
 import { type ReactNode, useState } from 'react';
-import { ActivityTab } from 'tgui/components/ActivityTab';
 import { Box, Icon, Section, Tabs } from 'tgui-core/components';
+
 import type {
   GeneralData,
   GeneralDataConstant,
@@ -81,24 +81,12 @@ const SUBTAB_TO_COMPONENT: Record<
     serverData: GeneralDataConstant;
   }) => ReactNode
 > = {
-  [SubtabState.Info]: (props) => (
-    <ActivityTab Component={SubtabInfo} props={props} />
-  ),
-  [SubtabState.Species]: (props) => (
-    <ActivityTab Component={SubtabSpecies} props={props} />
-  ),
-  [SubtabState.Body]: (props) => (
-    <ActivityTab Component={SubtabBody} props={props} />
-  ),
-  [SubtabState.CharSettings]: (props) => (
-    <ActivityTab Component={SubtabSettings} props={props} />
-  ),
-  [SubtabState.Notes]: (props) => (
-    <ActivityTab Component={SubtabNotes} props={props} />
-  ),
-  [SubtabState.Traits]: (props) => (
-    <ActivityTab Component={SubtabTraits} props={props} />
-  ),
+  [SubtabState.Info]: (props) => <SubtabInfo {...props} />,
+  [SubtabState.Species]: (props) => <SubtabSpecies {...props} />,
+  [SubtabState.Body]: (props) => <SubtabBody {...props} />,
+  [SubtabState.CharSettings]: (props) => <SubtabSettings {...props} />,
+  [SubtabState.Notes]: (props) => <SubtabNotes {...props} />,
+  [SubtabState.Traits]: (props) => <SubtabTraits {...props} />,
 };
 
 export const GeneralContent = (props: {

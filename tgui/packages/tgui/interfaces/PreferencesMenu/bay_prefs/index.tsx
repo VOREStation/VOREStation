@@ -1,5 +1,5 @@
-import { ActivityTab } from 'tgui/components/ActivityTab';
 import { Section } from 'tgui-core/components';
+
 import { ServerPreferencesFetcher } from '../ServerPreferencesFetcher';
 import type {
   GeneralData,
@@ -48,40 +48,28 @@ export const BayPrefsEntryPoint = (props: {
         switch (type as Tabs) {
           case Tabs.General:
             return (
-              <ActivityTab
-                Component={General}
-                props={{
-                  data: data as GeneralData,
-                  staticData: staticData as GeneralDataStatic,
-                  serverData: relevantData as GeneralDataConstant,
-                }}
+              <General
+                data={data as GeneralData}
+                staticData={staticData as GeneralDataStatic}
+                serverData={relevantData as GeneralDataConstant}
               />
             );
-
           case Tabs.Loadout:
             return (
-              <ActivityTab
-                Component={Loadout}
-                props={{
-                  data: data as LoadoutData,
-                  staticData: staticData as LoadoutDataStatic,
-                  serverData: relevantData as LoadoutDataConstant,
-                }}
+              <Loadout
+                data={data as LoadoutData}
+                staticData={staticData as LoadoutDataStatic}
+                serverData={relevantData as LoadoutDataConstant}
               />
             );
-
           case Tabs.Occupation:
             return (
-              <ActivityTab
-                Component={Occupation}
-                props={{
-                  data: data as OccupationData,
-                  staticData: staticData as OccupationDataStatic,
-                  serverData: relevantData as OccupationDataConstant,
-                }}
+              <Occupation
+                data={data as OccupationData}
+                staticData={staticData as OccupationDataStatic}
+                serverData={relevantData as OccupationDataConstant}
               />
             );
-
           default:
             return null;
         }

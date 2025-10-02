@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { ActivityTab } from 'tgui/components/ActivityTab';
 import { Section, Stack, Tabs } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+
 import { tabToNames } from '../constants';
 import type { DropdownEntry, hostMob, selectedData } from '../types';
 import { VoreContentsPanel } from '../VoreSelectedBellyTabs/VoreContentsPanel';
@@ -55,95 +55,63 @@ export const VoreSelectedBelly = (props: {
 
   const tabs: (React.JSX.Element | undefined)[] = [];
 
-  tabs[0] = (
-    <ActivityTab
-      hasData={!!belly_mode_data}
-      Component={VoreSelectedBellyControls}
-      props={{
-        editMode,
-        bellyDropdownNames,
-        belly_name,
-        display_name,
-        bellyModeData: belly_mode_data!,
-      }}
+  tabs[0] = belly_mode_data && (
+    <VoreSelectedBellyControls
+      editMode={editMode}
+      bellyDropdownNames={bellyDropdownNames}
+      belly_name={belly_name}
+      display_name={display_name}
+      bellyModeData={belly_mode_data}
     />
   );
-
-  tabs[1] = (
-    <ActivityTab
-      hasData={!!belly_description_data}
-      Component={VoreSelectedBellyDescriptions}
-      props={{
-        editMode,
-        bellyDescriptionData: belly_description_data!,
-        vore_words,
-      }}
+  tabs[1] = belly_description_data && (
+    <VoreSelectedBellyDescriptions
+      editMode={editMode}
+      bellyDescriptionData={belly_description_data}
+      vore_words={vore_words}
     />
   );
-  tabs[2] = (
-    <ActivityTab
-      hasData={!!belly_option_data}
-      Component={VoreSelectedBellyOptions}
-      props={{
-        editMode,
-        bellyOptionData: belly_option_data!,
-      }}
+  tabs[2] = belly_option_data && (
+    <VoreSelectedBellyOptions
+      editMode={editMode}
+      bellyOptionData={belly_option_data}
     />
   );
-  tabs[3] = (
-    <ActivityTab
-      hasData={!!belly_sound_data}
-      Component={VoreSelectedBellySounds}
-      props={{
-        editMode,
-        bellySoundData: belly_sound_data!,
-      }}
+  tabs[3] = belly_sound_data && (
+    <VoreSelectedBellySounds
+      editMode={editMode}
+      bellySoundData={belly_sound_data}
     />
   );
-  tabs[4] = (
-    <ActivityTab
-      hasData={!!belly_visual_data}
-      Component={VoreSelectedBellyVisuals}
-      props={{
-        editMode,
-        bellyVisualData: belly_visual_data!,
-        hostMobtype: host_mobtype!,
-      }}
+  tabs[4] = belly_visual_data && (
+    <VoreSelectedBellyVisuals
+      editMode={editMode}
+      bellyVisualData={belly_visual_data}
+      hostMobtype={host_mobtype}
     />
   );
-  tabs[5] = (
-    <ActivityTab
-      hasData={!!belly_interaction_data}
-      Component={VoreSelectedBellyInteractions}
-      props={{
-        editMode,
-        bellyDropdownNames,
-        bellyInteractData: belly_interaction_data!,
-      }}
+  tabs[5] = belly_interaction_data && (
+    <VoreSelectedBellyInteractions
+      editMode={editMode}
+      bellyDropdownNames={bellyDropdownNames}
+      bellyInteractData={belly_interaction_data}
     />
   );
   tabs[6] = (
-    <ActivityTab
-      Component={VoreContentsPanel}
-      props={{
-        outside: true,
-        targetBelly,
-        onTargetBely: setTargetBelly,
-        bellyDropdownNames,
-        contents,
-        show_pictures,
-        icon_overflow,
-      }}
+    <VoreContentsPanel
+      outside
+      targetBelly={targetBelly}
+      onTargetBely={setTargetBelly}
+      bellyDropdownNames={bellyDropdownNames}
+      contents={contents}
+      show_pictures={show_pictures}
+      icon_overflow={icon_overflow}
     />
   );
-  tabs[7] = (
-    <ActivityTab
-      hasData={!!belly_liquid_data}
-      Component={VoreSelectedBellyLiquidOptions}
-      props={{
-        editMode,
-        bellyLiquidData: belly_liquid_data!,
-      }}
+  tabs[7] = belly_liquid_data && (
+    <VoreSelectedBellyLiquidOptions
+      editMode={editMode}
+      bellyLiquidData={belly_liquid_data}
     />
   );
 
