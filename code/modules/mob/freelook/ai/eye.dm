@@ -33,7 +33,7 @@
 			ai.camera_visibility(src)
 
 		if(ai.client && !ai.multicam_on)
-			ai.reset_perspective(src)
+			ai.reset_perspective()
 
 		if(ai.master_multicam)
 			ai.master_multicam.refresh_view()
@@ -87,7 +87,7 @@
 	if(!src.eyeobj)
 		return
 	if(client.eye)
-		reset_perspective(src)
+		reset_perspective()
 
 	for(var/datum/chunk/c in eyeobj.visibleChunks)
 		c.remove(eyeobj)

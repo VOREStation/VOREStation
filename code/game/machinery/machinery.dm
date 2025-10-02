@@ -154,7 +154,7 @@ Class Procs:
 			if(ishuman(A))
 				var/mob/living/carbon/human/H = A
 				H.forceMove(loc)
-				H.reset_perspective(H)
+				H.reset_perspective()
 			else
 				qdel(A)
 	return ..()

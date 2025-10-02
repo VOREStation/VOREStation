@@ -331,8 +331,6 @@
 
 	forceMove(get_turf(host))
 
-	reset_perspective()
-
 	host = null
 
 /mob/living/simple_mob/animal/sif/leech/verb/inject_victim()

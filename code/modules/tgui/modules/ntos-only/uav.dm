@@ -77,7 +77,7 @@
 					if(!viewers) viewers = list() // List must exist for pass by reference to work
 					start_coordinated_remoteview(ui.user, current_uav, viewers)
 				else
-					ui.user.reset_perspective(ui.user)
+					ui.user.reset_perspective()
 			return TRUE
 
 		if("power_uav")
@@ -162,7 +162,7 @@
 	. = ..()
 	if(. > STATUS_DISABLED)
 		return
-	user.reset_perspective(user)
+	user.reset_perspective()
 
 /datum/tgui_module/uav/proc/viewing_uav(mob/user)
 	return (WEAKREF(user) in viewers)
@@ -188,16 +188,16 @@
 
 /datum/tgui_module/uav/tgui_close(mob/user)
 	. = ..()
-	user.reset_perspective(user)
+	user.reset_perspective()
 
 /datum/tgui_module/uav/check_eye(mob/user)
 	if(get_dist(user, tgui_host()) > 1 || user.blinded || !current_uav)
-		user.reset_perspective(user)
+		user.reset_perspective()
 		return -1
 
 	var/viewflag = current_uav.check_eye(user)
 	if(viewflag < 0) //camera doesn't work
-		user.reset_perspective(user)
+		user.reset_perspective()
 		return -1
 
 	return viewflag

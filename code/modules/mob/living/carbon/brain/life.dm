@@ -208,6 +208,6 @@
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 
 		if (machine && machine.check_eye(src) < 0)
-			reset_perspective(src)
+			reset_perspective()
 
 	return 1

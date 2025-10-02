@@ -177,7 +177,7 @@
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		src.unset_machine()
-		src.reset_perspective(src)
+		src.reset_perspective()
 		return 0
 	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
 
@@ -204,7 +204,7 @@
 /mob/living/silicon/pai/cancel_camera()
 	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
-	src.reset_perspective(src)
+	src.reset_perspective()
 	src.unset_machine()
 	src.cameraFollow = null
 
@@ -257,7 +257,7 @@
 		holder.pai = null
 
 	src.forceMove(get_turf(card))
-	reset_perspective(src)
+	reset_perspective() // Ensure focus on self once unfolded
 
 	card.forceMove(src)
 	card.screen_loc = null
@@ -418,7 +418,6 @@
 		card.loc = get_turf(card)
 		src.forceMove(card)
 		card.forceMove(card.loc)
-	reset_perspective(card)
 
 	canmove = 1
 	resting = 0

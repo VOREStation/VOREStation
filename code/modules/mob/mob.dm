@@ -575,7 +575,7 @@
 	set name = "Cancel Camera View"
 	set category = "OOC.Game"
 	unset_machine()
-	reset_perspective(src)
+	reset_perspective()
 
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])

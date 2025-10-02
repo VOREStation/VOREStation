@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	. = ..()
 	// Unregister map objects
 	user.client?.clear_map(linked?.map_name)
-	user.reset_perspective(user)
+	user.reset_perspective()
 
 /obj/machinery/computer/ship/helm/tgui_data(mob/user)
 	var/list/data = ..()
@@ -272,7 +272,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 				if(!viewers) viewers = list() // List must exist for pass by reference to work
 				start_coordinated_remoteview(ui.user, linked, viewers)
 			else
-				ui.user.reset_perspective(ui.user)
+				ui.user.reset_perspective()
 			. = TRUE
 
 	add_fingerprint(ui.user)

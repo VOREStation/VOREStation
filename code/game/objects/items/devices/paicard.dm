@@ -5,6 +5,7 @@
 	item_state = "electronic"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
+	flags = REMOTEVIEW_ON_ENTER
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
 	preserve_item = 1
@@ -465,16 +466,16 @@
 	paicard = card
 	user.unEquip(card)
 	card.forceMove(src)
-	AI.reset_perspective(src)
+	AI.reset_perspective(src) // focus this machine
 	to_chat(AI, span_notice("Your location is [card.loc].")) // DEBUG. TODO: Make unfolding the chassis trigger an eject.
 	name = AI.name
 	to_chat(AI, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
 
 /obj/machinery/proc/ejectpai(mob/user)
 	if(paicard)
+		paicard.forceMove(get_turf(src))
 		var/mob/living/silicon/pai/AI = paicard.pai
-		paicard.forceMove(src.loc)
-		AI.reset_perspective(AI)
+		AI.reset_perspective() // return to the card
 		paicard = null
 		name = initial(src.name)
 		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
