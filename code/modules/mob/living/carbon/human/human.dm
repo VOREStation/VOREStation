@@ -890,7 +890,6 @@
 	set category = "Superpower"
 
 	if(stat!=CONSCIOUS)
-		reset_perspective()
 		return
 
 	if(!(mMorph in mutations))
