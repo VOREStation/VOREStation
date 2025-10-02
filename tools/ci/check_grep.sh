@@ -140,7 +140,7 @@ part "improperly pathed static lists"
 if $grep -i 'var/list/static/.*' $code_files; then
 	echo
 	echo -e "${RED}ERROR: Found incorrect static list definition 'var/list/static/', it should be 'var/static/list/' instead.${NC}"
-	st=1
+	FAILED=1
 fi;
 
 part "changelog"
@@ -233,7 +233,7 @@ if [ "$pcre2_support" -eq 1 ]; then
 	if $grep -PU 'var\/(?!atom).* as anything in o?(range|view)\(' $code_files; then
 		echo
 		echo -e "${RED}ERROR: range(), orange(), view(), and oview() perform significantly worse with as anything.${NC}"
-		st=1
+		FAILED=1
 	fi;
 
 	part "empty variable values"
