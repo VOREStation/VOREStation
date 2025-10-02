@@ -878,7 +878,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	SEND_SIGNAL(src, COMSIG_CLIENT_SET_EYE, old_eye, new_eye)
 
 /mob/proc/is_remote_viewing()
-	if(!client)
+	if(!client || !client.mob || !client.eye)
+		return FALSE
+	if(get_turf(client.eye) == get_turf(client.mob))
 		return FALSE
 	return (client.eye != client.mob)
 

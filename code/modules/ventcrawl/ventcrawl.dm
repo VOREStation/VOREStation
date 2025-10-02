@@ -248,6 +248,6 @@ var/list/ventcrawl_machinery = list(
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
 		client.screen -= GLOB.global_hud.centermarker
-		reset_perspective(null)
+		force_clear_perspective()
 
 	pipes_shown.len = 0
