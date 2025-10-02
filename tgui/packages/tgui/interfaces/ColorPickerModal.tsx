@@ -14,7 +14,13 @@ import {
   rgbaToHsva,
   validHex,
 } from 'common/colorpicker';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useState,
+} from 'react';
 import { useBackend } from 'tgui/backend';
 import { Pointer } from 'tgui/components';
 import { type Interaction, Interactive } from 'tgui/components/Interactive';
@@ -66,12 +72,17 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const [lastSelectedColor, setLastSelectedColor] = useState<string>('');
   const [allowEditing, setAllowEditing] = useState<boolean>(false);
 
-  useEffect(() => {
+  const updateSelectedColor = useEffectEvent(() => {
     setSelectedColor(hexToHsva(default_color));
-  }, [default_color]);
+  });
 
   useEffect(() => {
+    updateSelectedColor();
+  }, [default_color]);
+
+  const syncColorPreset = useEffectEvent(() => {
     const hexCol = hsvaToHex(selectedColor);
+
     if (
       selectedPreset !== undefined &&
       lastSelectedColor !== hexCol &&
@@ -80,6 +91,10 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
       setLastSelectedColor(hexCol);
       act('preset', { color: hexCol, index: selectedPreset + 1 });
     }
+  });
+
+  useEffect(() => {
+    syncColorPreset();
   }, [selectedColor]);
 
   if (!title) {

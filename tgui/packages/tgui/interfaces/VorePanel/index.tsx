@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
+import { ActivityTab } from 'tgui/components/ActivityTab';
 import { Window } from 'tgui/layouts';
 import { Button, Icon, NoticeBox, Stack, Tabs } from 'tgui-core/components';
-
 import type { Data } from './types';
 import { VoreBellySelectionAndCustomization } from './VorePanelMainTabs/VoreBellySelectionAndCustomization';
 import { VoreInsidePanel } from './VorePanelMainTabs/VoreInsidePanel';
@@ -45,46 +45,62 @@ export const VorePanel = () => {
 
   const tabs: (React.JSX.Element | null | undefined)[] = [];
 
-  tabs[0] = our_bellies && selected && host_mobtype && (
-    <VoreBellySelectionAndCustomization
-      activeVoreTab={active_vore_tab}
-      our_bellies={our_bellies}
-      selected={selected}
-      show_pictures={show_pictures}
-      host_mobtype={host_mobtype}
-      icon_overflow={icon_overflow}
-      vore_words={vore_words}
-      toggleEditMode={setEditMode}
-      editMode={editMode}
-      persist_edit_mode={persist_edit_mode}
-      minBellyName={min_belly_name}
-      maxBellyName={max_belly_name}
+  tabs[0] = (
+    <ActivityTab
+      hasData={!!(our_bellies && selected && host_mobtype)}
+      Component={VoreBellySelectionAndCustomization}
+      props={{
+        activeVoreTab: active_vore_tab,
+        our_bellies: our_bellies!,
+        selected: selected!,
+        show_pictures,
+        host_mobtype: host_mobtype!,
+        icon_overflow,
+        vore_words,
+        toggleEditMode: setEditMode,
+        editMode,
+        persist_edit_mode,
+        minBellyName: min_belly_name,
+        maxBellyName: max_belly_name,
+      }}
     />
   );
-  tabs[1] = our_bellies && soulcatcher && abilities && (
-    <VoreSoulcatcher
-      our_bellies={our_bellies}
-      soulcatcher={soulcatcher}
-      abilities={abilities}
-      toggleEditMode={setEditMode}
-      editMode={editMode}
-      persist_edit_mode={persist_edit_mode}
+  tabs[1] = (
+    <ActivityTab
+      hasData={!!(our_bellies && soulcatcher && abilities)}
+      Component={VoreSoulcatcher}
+      props={{
+        our_bellies: our_bellies!,
+        soulcatcher: soulcatcher!,
+        abilities: abilities!,
+        toggleEditMode: setEditMode,
+        editMode,
+        persist_edit_mode,
+      }}
     />
   );
-  tabs[2] = general_pref_data && our_bellies && (
-    <VoreUserGeneral
-      general_pref_data={general_pref_data}
-      our_bellies={our_bellies}
-      editMode={editMode}
-      toggleEditMode={setEditMode}
-      persist_edit_mode={persist_edit_mode}
+  tabs[2] = (
+    <ActivityTab
+      hasData={!!(general_pref_data && our_bellies)}
+      Component={VoreUserGeneral}
+      props={{
+        general_pref_data: general_pref_data!,
+        our_bellies: our_bellies!,
+        editMode,
+        toggleEditMode: setEditMode,
+        persist_edit_mode,
+      }}
     />
   );
-  tabs[3] = prefs && (
-    <VoreUserPreferences
-      prefs={prefs}
-      show_pictures={show_pictures}
-      icon_overflow={icon_overflow}
+  tabs[3] = (
+    <ActivityTab
+      hasData={!!prefs}
+      Component={VoreUserPreferences}
+      props={{
+        prefs: prefs!,
+        show_pictures,
+        icon_overflow,
+      }}
     />
   );
 

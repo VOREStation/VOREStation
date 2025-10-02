@@ -65,7 +65,7 @@ export const TicketChat = (props) => {
         scroll.scrollTop = scroll.scrollHeight;
       }
     }
-  });
+  }, [log]);
 
   return (
     <Window width={900} height={600}>

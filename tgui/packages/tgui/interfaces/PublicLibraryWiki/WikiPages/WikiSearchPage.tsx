@@ -1,12 +1,12 @@
 import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
+import { ActivityTab } from 'tgui/components/ActivityTab';
 import { Button, Divider, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
-
 import type { PageData } from '../types';
 import { WikiSearchList } from '../WikiCommon/WikiSearchList';
-import { WikiBotanyPage } from './WikiSubPages/WikiBotanyPage';
 import { WikiCatalogPage } from './WikiSubPages/WIkiCatalogPage';
+import { WikiBotanyPage } from './WikiSubPages/WikiBotanyPage';
 import { WikiChemistryPage } from './WikiSubPages/WikiChemistryPage';
 import { WikiFoodPage } from './WikiSubPages/WikiFoodPage';
 import { WikiGenePage } from './WikiSubPages/WikiGenePage';
@@ -78,22 +78,76 @@ export const WikiSearchPage = (
   const subToDisplay = subCats?.filter(customSubSearch);
 
   const tabs: Record<string, React.JSX.Element | false> = {};
-  tabs['Food Recipes'] = !!food_data && <WikiFoodPage food={food_data} />;
-  tabs['Drink Recipes'] = !!drink_data && <WikiFoodPage food={drink_data} />;
-  tabs.Chemistry = !!chemistry_data && (
-    <WikiChemistryPage chems={chemistry_data} beakerFill={0.5} />
+  tabs['Food Recipes'] = (
+    <ActivityTab
+      hasData={!!food_data}
+      Component={WikiFoodPage}
+      props={{ food: food_data }}
+    />
   );
-  tabs.Botany = !!botany_data && <WikiBotanyPage seeds={botany_data} />;
-  tabs.Ores = !!ore_data && <WikiOrePage ores={ore_data} />;
-  tabs.Viruses = !!virus_data && <WikiVirusPage virus={virus_data} />;
-  tabs.Genes = !!gene_data && <WikiGenePage gene={gene_data} />;
-  tabs.Materials = !!material_data && (
-    <WikiMaterialPage materials={material_data} />
+  tabs['Drink Recipes'] = (
+    <ActivityTab
+      hasData={!!drink_data}
+      Component={WikiFoodPage}
+      props={{ food: drink_data }}
+    />
   );
-  tabs['Particle Physics'] = !!particle_data && (
-    <WikiParticlePage smasher={particle_data} />
+  tabs.Chemistry = (
+    <ActivityTab
+      hasData={!!chemistry_data}
+      Component={WikiChemistryPage}
+      props={{ chems: chemistry_data, beakerFill: 0.5 }}
+    />
   );
-  tabs.Catalogs = !!catalog_data && <WikiCatalogPage catalog={catalog_data} />;
+  tabs.Botany = (
+    <ActivityTab
+      hasData={!!botany_data}
+      Component={WikiBotanyPage}
+      props={{ seeds: botany_data }}
+    />
+  );
+  tabs.Ores = (
+    <ActivityTab
+      hasData={!!ore_data}
+      Component={WikiOrePage}
+      props={{ ores: ore_data }}
+    />
+  );
+  tabs.Viruses = (
+    <ActivityTab
+      hasData={!!virus_data}
+      Component={WikiVirusPage}
+      props={{ virus: virus_data }}
+    />
+  );
+  tabs.Genes = (
+    <ActivityTab
+      hasData={!!gene_data}
+      Component={WikiGenePage}
+      props={{ gene: gene_data }}
+    />
+  );
+  tabs.Materials = (
+    <ActivityTab
+      hasData={!!material_data}
+      Component={WikiMaterialPage}
+      props={{ materials: material_data }}
+    />
+  );
+  tabs['Particle Physics'] = (
+    <ActivityTab
+      hasData={!!particle_data}
+      Component={WikiParticlePage}
+      props={{ smasher: particle_data }}
+    />
+  );
+  tabs.Catalogs = (
+    <ActivityTab
+      hasData={!!catalog_data}
+      Component={WikiCatalogPage}
+      props={{ catalog: catalog_data }}
+    />
+  );
 
   return (
     <Section fill>

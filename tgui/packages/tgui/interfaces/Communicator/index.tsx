@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
+import { ActivityTab } from 'tgui/components/ActivityTab';
 import { Window } from 'tgui/layouts';
 import { Box } from 'tgui-core/components';
-
 import { CrewManifestContent } from '../CrewManifest';
 import { CommunicatorContactTab } from './CommunicatorContactTab';
 import {
@@ -32,21 +32,21 @@ export const Communicator = () => {
   const [videoSetting, setVideoSetting] = useState(0);
   const [clipboardMode, setClipboardMode] = useState(false);
 
-  tab[tabs[0]] = <CommunicatorHomeTab />;
-  tab[tabs[1]] = <CommunicatorPhoneTab />;
-  tab[tabs[2]] = <CommunicatorContactTab />;
-  tab[tabs[3]] = <CommunicatorMessageTab />;
+  tab[tabs[0]] = <ActivityTab Component={CommunicatorHomeTab} props={{}} />;
+  tab[tabs[1]] = <ActivityTab Component={CommunicatorPhoneTab} props={{}} />;
+  tab[tabs[2]] = <ActivityTab Component={CommunicatorContactTab} props={{}} />;
+  tab[tabs[3]] = <ActivityTab Component={CommunicatorMessageTab} props={{}} />;
   tab[tabs[4]] = (
-    <CommunicatorMessageSubTab
-      clipboardMode={clipboardMode}
-      onClipboardMode={setClipboardMode}
+    <ActivityTab
+      Component={CommunicatorMessageSubTab}
+      props={{ clipboardMode, onClipboardMode: setClipboardMode }}
     />
   );
-  tab[tabs[5]] = <CommunicatorNewsTab />;
-  tab[tabs[6]] = <CommunicatorNoteTab />;
-  tab[tabs[7]] = <CommunicatorWeatherTab />;
-  tab[tabs[8]] = <CrewManifestContent />;
-  tab[tabs[9]] = <CommunicatorSettingsTab />;
+  tab[tabs[5]] = <ActivityTab Component={CommunicatorNewsTab} props={{}} />;
+  tab[tabs[6]] = <ActivityTab Component={CommunicatorNoteTab} props={{}} />;
+  tab[tabs[7]] = <ActivityTab Component={CommunicatorWeatherTab} props={{}} />;
+  tab[tabs[8]] = <ActivityTab Component={CrewManifestContent} props={{}} />;
+  tab[tabs[9]] = <ActivityTab Component={CommunicatorSettingsTab} props={{}} />;
 
   return (
     <Window width={475} height={700}>
