@@ -241,7 +241,7 @@
 #ifdef AWAY_MISSION_TEST
 #include "../redgate/falls/falls.dmm"
 #include "../redgate/abandonedisland.dmm"
-#include "../redgate/casono_canal/casino_canal.dmm"
+#include "../redgate/casino_canal/casino_canal.dmm"
 #include "../redgate/cybercity.dmm"
 #include "../redgate/darkadventure.dmm"
 #include "../redgate/eggnogtown.dmm"
