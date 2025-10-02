@@ -514,7 +514,7 @@
 
 /datum/component/omen/trait/safe_disposals/major
 	evil = TRUE
-	damage_mod = 0.5 //50% of normal damage
+	damage_mod = 0.75 //75% of normal damage
 
 /**
  * The bible omen.
