@@ -937,18 +937,6 @@
 /// COMSIG used to get messages where they need to go
 #define COMSIG_VISIBLE_MESSAGE "visible_message"
 
-// Weaver Component
-///from /mob/living/proc/check_silk_amount()
-#define COMSIG_CHECK_SILK_AMOUNT "check_silk_amount"
-///from /mob/living/proc/weave_structure()
-#define COMSIG_WEAVE_STRUCTURE "weave_structure"
-///from /mob/living/proc/toggle_silk_production()
-#define COMSIG_TOGGLE_SILK_PRODUCTION "toggle_silk_production"
-///from /mob/living/proc/weave_item()
-#define COMSIG_WEAVE_ITEM "weave_item"
-///from /mob/living/proc/set_silk_color()
-#define COMSIG_SET_SILK_COLOR "set_silk_color"
-
 // Gargoyle Component
 ///from /mob/living/carbon/human/proc/gargoyle_transformation()
 #define COMSIG_GARGOYLE_TRANSFORMATION "gargoyle_transformation"
