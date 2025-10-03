@@ -124,6 +124,26 @@
 	//The icon_state will be changed to cloak_direction_north
 	our_item.icon_state = initial(our_item.icon_state) + icon_prefix + "_" + directional_name
 
+///Variant of the reactive_icon_update component that allows for setting what slot is should be in to update it!
+/datum/component/reactive_icon_update/clothing
+
+/datum/component/reactive_icon_update/clothing/update_proximity_icon(atom/current_loc, atom/movable/AM, atom/old_loc)
+	. = ..()
+	//Code to actually update the mob wearing us
+	var/obj/our_object = parent
+	if(ishuman(our_object.loc)) //If we're being worn
+		var/mob/living/carbon/human/wearing_mob = our_object.loc
+
+		//Code to actually update the mob wearing us
+		//Only suit and uniform for now...Feel free to expand if you need.
+		if(wearing_mob.wear_suit == our_object)
+			wearing_mob.update_inv_wear_suit()
+			return
+		else if(wearing_mob.w_uniform == our_object)
+			wearing_mob.update_inv_w_uniform()
+			return
+
+
 //Example item for testing directions.
 /obj/item/tool/screwdriver/test_driver
 	icon = 'icons/obj/directional_test.dmi'
