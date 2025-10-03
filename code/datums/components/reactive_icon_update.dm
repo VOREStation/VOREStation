@@ -33,7 +33,6 @@
 
 /datum/component/reactive_icon_update/proc/update_proximity_icon(atom/current_loc, atom/movable/AM, atom/old_loc)
 	SIGNAL_HANDLER
-	SHOULD_NOT_OVERRIDE(TRUE)
 	var/obj/our_item = parent
 	if(!ismob(AM) || !mob_check(AM))
 		return
