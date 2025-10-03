@@ -14,3 +14,7 @@
       you choose to start with them enabled or disabled.
   Will:
   - bugfix: Charge blade no longer deletes itself on drop
+2025-10-03:
+  Drathek:
+  - code_imp: Tweaked a few grep lints for balloon alerts and a check for de-optimization
+      of o?range/o?view with as anything
