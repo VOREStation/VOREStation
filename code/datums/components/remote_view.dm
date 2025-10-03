@@ -11,10 +11,8 @@
 	. = ..()
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
-	host_mob = parent
-	if(isbelly(focused_on) || istype(focused_on,/obj/item/dogborg/sleeper)) // sleepers focus on their owner, which is always the loc they are in. If this changes in the future, update this.
-		focused_on = focused_on.loc
 	// Safety check, focus on ourselves if the target is deleted, and flag any movement to end the view.
+	host_mob = parent
 	if(QDELETED(focused_on))
 		focused_on = host_mob
 		forbid_movement = TRUE

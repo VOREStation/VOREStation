@@ -247,8 +247,8 @@
 /**
  * Reset the attached clients perspective (viewpoint)
  *
- * reset_perspective() set eye to common default : mob on turf, loc otherwise
- * reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective)
+ * reset_perspective() set eye to common default : mob on turf, loc otherwise. If the client mob is inside an object with REMOTEVIEW_ON_ENTER, it will restart that object's remote view.
+ * reset_perspective(thing) set the eye to the thing (if it's equal to current default reset to mob perspective). This ignores REMOTEVIEW_ON_ENTER, and forces focus to the mob.
  */
 /mob/proc/reset_perspective(atom/new_eye)
 	SHOULD_CALL_PARENT(TRUE)
