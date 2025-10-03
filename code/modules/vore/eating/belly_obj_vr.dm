@@ -267,7 +267,7 @@
 	var/list/belly_surrounding = list()		// A list of living mobs surrounded by this belly, including inside containers, food, on mobs, etc. Exclusing inside other bellies.
 	var/bellytemperature = T20C				// Temperature applied to humans in the belly.
 	var/temperature_damage = FALSE			// Does temperature damage prey?
-	flags = NOREACT | REMOTEVIEW_ON_ENTER	// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
+	flags = NOREACT							// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()
@@ -905,7 +905,6 @@
 	//Special treatment for absorbed prey
 	if(isliving(M))
 		var/mob/living/ML = M
-		ML.reset_perspective()
 		var/mob/living/OW = owner
 		if(ML.client)
 			ML.stop_sound_channel(CHANNEL_PREYLOOP) //Stop the internal loop, it'll restart if the isbelly check on next tick anyway

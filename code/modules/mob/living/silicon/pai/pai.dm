@@ -177,7 +177,7 @@
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		src.unset_machine()
-		src.reset_perspective()
+		src.reset_perspective(src)
 		return 0
 	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
 
@@ -204,7 +204,7 @@
 /mob/living/silicon/pai/cancel_camera()
 	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
-	src.reset_perspective()
+	src.reset_perspective(src)
 	src.unset_machine()
 	src.cameraFollow = null
 
@@ -400,13 +400,11 @@
 			M.drop_from_inventory(H)
 		H.loc = get_turf(src)
 		src.loc = get_turf(H)
-		reset_perspective()
 
 	if(isbelly(loc))	//If in tumby, when fold up, card go into tumby
 		var/obj/belly/B = loc
 		src.forceMove(card)
 		card.forceMove(B)
-		reset_perspective()
 
 	if(istype( src.loc,/obj/structure/disposalholder))
 		var/obj/structure/disposalholder/hold = loc
@@ -414,7 +412,6 @@
 		card.loc = hold
 		src.forceMove(card)
 		card.forceMove(hold)
-		reset_perspective()
 
 	else				//Otherwise go on floor
 		src.loc = card
