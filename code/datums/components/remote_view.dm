@@ -256,7 +256,6 @@
 		host_item = our_item
 		RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 		RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
-		RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
 	host_mob.AddComponent(/datum/component/recursive_move)
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
@@ -266,7 +265,6 @@
 	if(host_item)
 		UnregisterSignal(host_item, COMSIG_QDELETING)
 		UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(host_item, COMSIG_ITEM_DROPPED)
 		host_item = null
 	// Check if we are still valid for turf dropping
 	if(QDELETED(cache_host) || !cache_host.client)

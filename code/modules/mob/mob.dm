@@ -294,6 +294,8 @@
 /mob/proc/restore_remote_views()
 	if(!loc) // Nullspace during respawn
 		return FALSE
+	if(isturf(loc)) // Cannot be remote if it was a turf, also obj and turf flags overlap so stepping into space triggers remoteview endlessly.
+		return FALSE
 	if(ispAI(src) && istype(loc,/obj/machinery)) // Restore pai machine connection.
 		reset_perspective(loc)
 		return TRUE
