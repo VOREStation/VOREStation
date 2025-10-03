@@ -1621,12 +1621,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/smes/buildable/hybrid{
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
-	},
+/obj/machinery/power/smes/buildable/hybrid/engine_default,
 /turf/simulated/floor/plating/eris/under,
 /area/aro2/powerarea)
 "pX" = (
@@ -3606,12 +3601,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro2/boatdeck)
 "MU" = (
-/obj/machinery/power/smes/buildable/hybrid{
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
-	},
+/obj/machinery/power/smes/buildable/hybrid/engine_default,
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},

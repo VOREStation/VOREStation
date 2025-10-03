@@ -677,9 +677,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bD" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Mining Outpost";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Mining Outpost"
 	},
 /obj/structure/cable{
 	icon_state = "0-8"

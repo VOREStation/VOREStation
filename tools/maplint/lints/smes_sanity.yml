@@ -1,0 +1,18 @@
+help: "Smes variables are not to be map edited. Use appropriate subtypes."
+/obj/machinery/power/smes:
+  banned_variables:
+    - capacity
+    - charge
+    - input_attempt
+    - inputting
+    - input_level
+    - input_level_max
+    - input_available
+    - output_attempt
+    - outputting
+    - output_level
+    - output_level_max
+    - output_used
+    - last_output_attempt
+    - last_input_attempt
+    - last_charge

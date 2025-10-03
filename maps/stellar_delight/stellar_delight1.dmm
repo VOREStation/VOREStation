@@ -3092,9 +3092,8 @@
 	color = "#42038a";
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Exploration";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Exploration"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/exploration)
@@ -3683,9 +3682,8 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable/pink,
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Security";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Security"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/security)
@@ -15595,9 +15593,8 @@
 /obj/structure/cable/green{
 	color = "#42038a"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Research";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Research"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/research)
@@ -19166,9 +19163,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Cargo";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Cargo"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/cargo)
@@ -19929,9 +19925,8 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Civilian";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Civilian"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/civilian)
@@ -20032,9 +20027,8 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable/orange,
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Atmospherics";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Atmospherics"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/atmospherics)
@@ -21639,9 +21633,8 @@
 /obj/structure/cable/white{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Medical";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Medical"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/medical)

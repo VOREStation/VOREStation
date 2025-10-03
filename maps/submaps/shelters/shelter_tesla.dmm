@@ -374,17 +374,17 @@
 /turf/simulated/floor,
 /area/survivalpod)
 "Vk" = (
-/obj/machinery/power/smes/buildable{
+/obj/machinery/power/smes/buildable/max_charge_max_input{
 	RCon_tag = "Power - Capsule";
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 500000;
-	name = "JUICE COLLECTION";
-	output_level = 1e+006
+	name = "JUICE COLLECTION"
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
 /turf/simulated/floor,
 /area/survivalpod)
 "VE" = (
