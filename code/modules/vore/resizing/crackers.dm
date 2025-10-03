@@ -25,6 +25,7 @@
 	var/joke //What joke we have loaded
 
 /obj/item/cracker/Initialize(mapload)
+	. = ..()
 	var/style = pick("blue","green","yellow","red","heart","hazard")
 	icon_state = style
 	item_state = style
@@ -49,7 +50,6 @@
 					"What's the best way to kill a circus? Go for the juggler.",
 					"What do you call a cow with no legs? Ground Beef.",
 					"Why'd the scarecrow win the Nobel prize? He was outstanding in his field.")
-	. = ..()
 
 /obj/item/cracker/attack(atom/A, mob/living/user, adjacent, params)
 	var/mob/living/carbon/human/target = A

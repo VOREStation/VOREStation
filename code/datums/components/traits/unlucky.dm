@@ -77,7 +77,7 @@
 /datum/component/omen/Destroy(force)
 	var/mob/living/person = parent
 	REMOVE_TRAIT(person, TRAIT_UNLUCKY, src)
-	to_chat(person, span_green("You feel a horrible omen lifted off your shoulders!"))
+	to_chat(person, span_warning(span_green("You feel a horrible omen lifted off your shoulders!")))
 
 	return ..()
 
@@ -259,7 +259,7 @@
 					if(human_guy.should_have_organ(O_HEART))
 						for(var/obj/item/organ/internal/heart/heart in human_guy.internal_organs)
 							heart.bruise() //Closest thing we have to a heart attack.
-						to_chat(living_guy, span_userdanger("You clutch at your heart!"))
+						to_chat(living_guy, span_boldwarning("You clutch at your heart!"))
 
 			consume_omen()
 			return
@@ -267,7 +267,7 @@
 			for(var/obj/item/reagent_containers/glass/beaker/evil_beaker in the_turf)
 				if(!evil_beaker.is_open_container() && (evil_beaker.reagents.total_volume > 0)) //A closed beaker is a safe beaker!
 					continue
-				living_guy.visible_message(span_danger("[evil_beaker] tilts, spilling its contents on [living_guy]!"), span_userdanger("[evil_beaker] spills all over you!"))
+				living_guy.visible_message(span_danger("[evil_beaker] tilts, spilling its contents on [living_guy]!"), span_bolddanger("[evil_beaker] spills all over you!"))
 				evil_beaker.balloon_alert_visible("[evil_beaker]'s contents splashes onto [living_guy]!")
 				evil_beaker.reagents.splash(living_guy, evil_beaker.reagents.total_volume)
 				consume_omen()
@@ -277,7 +277,7 @@
 			if(!evil_table.material) //We only want tables, not just table frames.
 				continue
 			var/datum/gender/gender = GLOB.gender_datums[living_guy.get_visible_gender()]
-			living_guy.visible_message(span_danger("[living_guy] stubs [gender.his] toe on [evil_table]!"), span_userdanger("You stub your toe on [evil_table]!"))
+			living_guy.visible_message(span_danger("[living_guy] stubs [gender.his] toe on [evil_table]!"), span_bolddanger("You stub your toe on [evil_table]!"))
 			living_guy.apply_damage(2 * damage_mod, BRUTE, pick(BP_L_FOOT, BP_R_FOOT), used_weapon = "blunt force trauma")
 			living_guy.adjustHalLoss(25) //It REALLY hurts.
 			living_guy.Weaken(3)
@@ -291,7 +291,7 @@
 			living_guy.Blind(5) //10 seconds of 'OH GOD WHAT'S HAPPENING'
 			living_guy.silent = 5
 			living_guy.Paralyse(5)
-			to_chat(living_guy, span_userdanger("You feel the ground buckle underneath you, falling down, your vision going dark as you feel paralyzed in place!"))
+			to_chat(living_guy, span_bolddanger("You feel the ground buckle underneath you, falling down, your vision going dark as you feel paralyzed in place!"))
 			consume_omen()
 			return
 
@@ -313,7 +313,7 @@
 	if(prob(30 * luck_mod) && our_guy.get_bodypart_name(BP_HEAD)) /// Bonk!
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
 		var/datum/gender/gender = GLOB.gender_datums[our_guy.get_visible_gender()]
-		our_guy.visible_message(span_danger("[our_guy] hits [gender.his] head really badly falling down!"), span_userdanger("You hit your head really badly falling down!"))
+		our_guy.visible_message(span_danger("[our_guy] hits [gender.his] head really badly falling down!"), span_bolddanger("You hit your head really badly falling down!"))
 		var/max_health_coefficient = (our_guy.maxHealth * 0.5)
 		our_guy.apply_damage(max_health_coefficient * damage_mod, BRUTE, BP_HEAD, used_weapon = "slipping")
 		if(ishuman(our_guy))
@@ -348,7 +348,7 @@
 			var/obj/item/grenade/bad_grenade = source
 			if(bad_grenade.active)
 				unlucky_soul.put_in_active_hand(bad_grenade)
-				unlucky_soul.visible_message(span_warning("[src] catches [source] as it goes off in their hand!"), span_userdanger("You catch [source] and it goes off in your hand!"))
+				unlucky_soul.visible_message(span_warning("[src] catches [source] as it goes off in their hand!"), span_bolddanger("You catch [source] and it goes off in your hand!"))
 				unlucky_soul.throw_mode_off()
 				bad_grenade.detonate()
 				return TRUE
@@ -463,7 +463,7 @@
 	SIGNAL_HANDLER
 	if(prob(3 * luck_mod)) /// Bonk!
 		playsound(unlucky_soul, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
-		unlucky_soul.visible_message(span_danger("One of the stairs give way as [unlucky_soul] steps onto it, tumbling them down to the bottom!"), span_userdanger("A stair gives way and you trip to the bottom!"))
+		unlucky_soul.visible_message(span_danger("One of the stairs give way as [unlucky_soul] steps onto it, tumbling them down to the bottom!"), span_bolddanger("A stair gives way and you trip to the bottom!"))
 		var/max_health_coefficient = (unlucky_soul.maxHealth * 0.09)
 		for(var/obj/item/organ/external/limb in unlucky_soul.organs) //In total, you should have 11 limbs (generally, unless you have an amputation). The full omen variant we want to leave you at 1 hp, the trait version less. As of writing, the trait version is 25% of the damage, so you take 24.75 across all limbs.
 			unlucky_soul.apply_damage(max_health_coefficient * damage_mod, BRUTE, limb.organ_tag, used_weapon = "slipping")
@@ -485,7 +485,7 @@
 				heart.take_damage(10 * stun_amount * damage_mod)
 				heart.take_damage(0.25 * agony_amount * damage_mod)
 			playsound(src, 'sound/effects/singlebeat.ogg', 50, FALSE)
-			to_chat(unlucky_soul, span_userdanger("You feel as though your heart stopped"))
+			to_chat(unlucky_soul, span_bolddanger("You feel as though your heart stopped"))
 			human_guy.Stun(5)
 			consume_omen()
 			return
