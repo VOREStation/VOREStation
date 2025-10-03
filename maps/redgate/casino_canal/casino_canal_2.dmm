@@ -2570,6 +2570,9 @@
 /obj/structure/flora/underwater/plant3,
 /turf/simulated/floor/water/underwater,
 /area/redgate/underwater_casino/outdoors)
+"gv" = (
+/turf/simulated/floor/wood/alt,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gw" = (
 /obj/structure/flora/smallbould,
 /turf/simulated/floor/water/underwater,
@@ -2944,7 +2947,7 @@
 /area/redgate/underwater_casino/indoors/upper/hall)
 "iZ" = (
 /obj/machinery/light,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/alt,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "jb" = (
 /obj/machinery/light/small/torch{
@@ -2998,8 +3001,8 @@
 	pixel_y = 1;
 	pixel_x = -12
 	},
-/obj/random/chips/better{
-	pixel_x = 8
+/obj/random/chips/good{
+	pixel_x = 3
 	},
 /turf/simulated/floor/water/underwater/indoors/rocks,
 /area/redgate/underwater_casino/outdoors)
@@ -3007,10 +3010,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/monotile/purple,
 /area/redgate/underwater_casino/indoors/upper/janitorcloset)
-"jn" = (
-/obj/item/gun/energy/mouseray/metamorphosis/advanced/random,
-/turf/simulated/floor/water/underwater/indoors,
-/area/redgate/underwater_casino/outdoors)
 "jo" = (
 /obj/random/humanoidremains,
 /turf/simulated/floor/water/underwater/indoors,
@@ -3120,9 +3119,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/random/maintenance/research{
-	pixel_y = 13;
-	pixel_x = 5
+/obj/item/gun/energy/mouseray/metamorphosis/advanced/random{
+	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/redgate/underwater_casino/indoors/upper/secret/biodome)
@@ -13379,7 +13377,7 @@ jh
 jh
 jp
 jh
-jn
+gh
 ji
 Dm
 Dm
@@ -20628,9 +20626,9 @@ Dm
 Dm
 Dm
 gS
-gT
-gT
-gT
+gv
+gv
+gv
 gS
 Dm
 Dm
@@ -20770,9 +20768,9 @@ Dm
 gS
 gS
 gS
-gT
-kP
-gT
+gv
+gv
+gv
 gS
 Dm
 Dm
@@ -20912,8 +20910,8 @@ Dm
 gS
 le
 gT
-gT
-gT
+gv
+gv
 iZ
 gS
 Dm
@@ -21054,9 +21052,9 @@ Dm
 hf
 kP
 gT
-gT
-gT
-gT
+gv
+gv
+gv
 gS
 Dm
 Dm
@@ -21196,9 +21194,9 @@ Dm
 gS
 he
 gT
-gT
-gT
-gT
+gv
+gv
+gv
 gS
 Dm
 Dm
