@@ -118,18 +118,9 @@
 	using.layer = SCREEN_LAYER
 	HUD.adding += using
 
-//PDA message
+//PDA Messenger
 	using = new /atom/movable/screen()
-	using.name = "PDA - Send Message"
-	using.icon = HUD.ui_style
-	using.icon_state = "pda_send"
-	using.screen_loc = ui_ai_pda_send
-	using.layer = SCREEN_LAYER
-	HUD.adding += using
-
-//PDA log
-	using = new /atom/movable/screen()
-	using.name = "PDA - Show Message Log"
+	using.name = "PDA - Messenger"
 	using.icon = HUD.ui_style
 	using.icon_state = "pda_receive"
 	using.screen_loc = ui_ai_pda_log

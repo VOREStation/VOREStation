@@ -273,7 +273,6 @@
 	else
 		to_chat(user, "\the [src] cannot hold more [S.name].")
 
-	updateUsrDialog(user)
 	return
 
 /obj/machinery/transhuman/synthprinter/update_icon()
@@ -379,7 +378,6 @@
 		var/mob/M = G.affecting
 		if(put_mob(M))
 			qdel(G)
-			src.updateUsrDialog(user)
 			return //Don't call up else we'll get attack messsages
 	if(istype(W, /obj/item/paicard/sleevecard))
 		var/obj/item/paicard/sleevecard/C = W
@@ -415,10 +413,8 @@
 
 	if(put_mob(O))
 		if(O == user)
-			updateUsrDialog(user)
 			visible_message("[user] climbs into \the [src].")
 		else
-			updateUsrDialog(user)
 			visible_message("[user] puts [O] into \the [src].")
 
 	add_fingerprint(user)

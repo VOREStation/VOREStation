@@ -477,6 +477,12 @@
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		if(!muffled_by_belly(user))
 			playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
+	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
+	SEND_SIGNAL(user, COMSIG_MOB_EQUIPPED_ITEM, src, slot)
+	var/mob/living/M = loc
+	if(!istype(M))
+		return
+	M.update_held_icons()
 
 /// Gives one of our item actions to a mob, when equipped to a certain slot
 /obj/item/proc/give_item_action(datum/action/action, mob/to_who, slot)
