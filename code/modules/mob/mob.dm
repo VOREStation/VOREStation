@@ -292,11 +292,13 @@
 
 /// Reapplies remote views based on object type and flags. Returns true if the view was assigned.
 /mob/proc/restore_remote_views()
+	if(!loc) // Nullspace during respawn
+		return FALSE
 	if(ispAI(src) && istype(loc,/obj/machinery)) // Restore pai machine connection.
 		reset_perspective(loc)
 		return TRUE
 	if(isitem(loc)) // Being a held item requires a much more aggressive remote view, or else we run face first into a byond issue when mobs drop us.
-		AddComponent(/datum/component/remote_view/mob_holding_item, loc)
+		AddComponent(/datum/component/remote_view/mob_holding_item, src, loc)
 		return TRUE
 	if(loc.flags & REMOTEVIEW_ON_ENTER) // Handle atoms that begin a remote view upon entering them.
 		AddComponent(/datum/component/remote_view, loc)

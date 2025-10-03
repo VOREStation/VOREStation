@@ -11,6 +11,7 @@
 
 /datum/component/remote_view/Initialize(atom/focused_on)
 	. = ..()
+	to_chat(world, "[parent] BEGIN REMOTE VIEW [type] -> [focused_on]")
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	// Safety check, focus on ourselves if the target is deleted, and flag any movement to end the view.
@@ -21,7 +22,7 @@
 	// Begin remoteview
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
 	if(forbid_movement)
-		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(on_host_moved))
+		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	else
 		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
@@ -37,6 +38,7 @@
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
+	to_chat(world, "[parent] ENDED REMOTE VIEW [type] -> [remote_view_target]")
 	if(forbid_movement)
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
 	else
@@ -55,19 +57,17 @@
 
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
-	PRIVATE_PROC(TRUE)
-	end_view()
-	qdel(src)
-
-/datum/component/remote_view/proc/on_host_moved(atom/source, atom/oldloc, direction, forced) // Needed for override in mob_holder subtype
-	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	if(!host_mob)
+		return
 	end_view()
 	qdel(src)
 
 /datum/component/remote_view/proc/on_reset_perspective(datum/source)
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
+	if(!host_mob)
+		return
 	// The object already changed it's view, lets not interupt it like the others
 	qdel(src)
 
@@ -75,6 +75,8 @@
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
 	// Non-mobs can't do this anyway
+	if(!host_mob)
+		return
 	if(!ismob(remote_view_target))
 		return
 	var/mob/remote_view_mob = remote_view_target
@@ -112,12 +114,12 @@
 
 
 /datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
+	. = ..()
 	host_item = our_item
 	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
-	. = ..()
 	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 	if(host_mob.hud_used.hud_shown)
 		host_mob.toggle_zoom_hud()
@@ -195,6 +197,8 @@
 /datum/component/remote_view/mremote_mutation/proc/on_mutation(datum/source)
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
+	if(!host_mob)
+		return
 	var/mob/remote_mob = remote_view_target
 	if(host_mob.stat == CONSCIOUS && (mRemote in host_mob.mutations) && remote_mob && remote_mob.stat == CONSCIOUS)
 		return
@@ -243,24 +247,45 @@
  * Though it appears TG also doesn't have mob holders in a way that we do, let alone inanimate item TF, or protean rigs.
  */
 /datum/component/remote_view/mob_holding_item
+	VAR_PRIVATE/obj/item/host_item
+	var/tagged_for_turf_release = FALSE // If true, we will release to the turf the host mob is on when we destroy from movement or qdel
 
-/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on)
+/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on, obj/item/our_item)
 	. = ..()
+	if(our_item && !istype(our_item, /obj/item/holder)) // Holders destroy on drop, and their destroy gets called before their mob is released... Snowflake...
+		host_item = our_item
+		RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
+		RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
+		RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
 	host_mob.AddComponent(/datum/component/recursive_move)
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
 	var/mob/cache_host = host_mob
 	. = ..()
-	// Release and focus on the ground the mob was put on, this is REQUIRED due to a byond issue where being dropped from mobs will focus on that mob until we move again.
+	// decouple
+	if(host_item)
+		UnregisterSignal(host_item, COMSIG_QDELETING)
+		UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(host_item, COMSIG_ITEM_DROPPED)
+		host_item = null
+	// Check if we are still valid for turf dropping
 	if(QDELETED(cache_host) || !cache_host.client)
 		return
-	var/turf/release_turf = cache_host.loc
-	if(!istype(release_turf))
+	if(!tagged_for_turf_release)
 		return
-	cache_host.AddComponent(/datum/component/remote_view, focused_on = release_turf) // So we release our new view as soon as we move again.
-	cache_host.client.eye = release_turf // Yes--
-	cache_host.client.perspective = EYE_PERSPECTIVE // --this is required too.
+	// Release and focus on the ground the mob was put on, this is REQUIRED due to a byond issue where being dropped from mobs will focus on that mob until we move again.
+	var/turf/release_turf = get_turf(cache_host)
+	if(release_turf)
+		cache_host.AddComponent(/datum/component/remote_view, focused_on = release_turf) // So we release our new view as soon as we move again.
+		cache_host.AddComponent(/datum/component/recursive_move)
+		cache_host.client.eye = release_turf // Yes--
+		cache_host.client.perspective = EYE_PERSPECTIVE // --this is required too.
 
-/datum/component/remote_view/mob_holding_item/on_host_moved(atom/source, atom/oldloc, direction, forced)
-	if(isturf(source.loc)) // Only released on turf drop, we get signals from all moves above us due to recursive_move component
-		. = ..()
+/datum/component/remote_view/mob_holding_item/handle_endview(datum/source)
+	if(!host_mob)
+		return
+	if(QDELETED(host_mob) || (host_item && QDELETED(host_item))) // Checks for if host_item is actually set before qdel checking... Or we'd never get to the next check!
+		return ..()
+	if(isturf(host_mob.loc) || (host_item && isturf(host_item.loc))) // Only released on turf drop, we get signals from all moves above us due to recursive_move component
+		tagged_for_turf_release = TRUE
+		return ..()
