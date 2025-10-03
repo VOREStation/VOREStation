@@ -5,10 +5,10 @@ import { Box, NoticeBox, Section, Stack } from 'tgui-core/components';
 
 import {
   WikiAdColors,
-  wikiAds,
-  wikiDonatedMessages,
   WikiDonationMessages,
   WikiTippOfTheDay,
+  wikiAds,
+  wikiDonatedMessages,
 } from './constants';
 import type { Data } from './types';
 import { WikiDonationBanner } from './WikiPages/WIkiDonationbanner';
@@ -67,9 +67,10 @@ export const PublicLibraryWiki = (props) => {
   useEffect(() => {
     if (!crash) {
       setactiveTab(0);
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setactiveTab(1);
       }, loadTime);
+      return () => clearTimeout(timeoutId);
     } else {
       setLoadTime(Math.floor(Math.random() * 2000) + 2000);
     }
@@ -123,9 +124,10 @@ export const PublicLibraryWiki = (props) => {
           Math.floor(Math.random() * wikiDonatedMessages.length)
         ],
       );
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setDislayDonation(false);
       }, 5000);
+      return () => clearTimeout(timeoutId);
     }
   }, [has_donated]);
 

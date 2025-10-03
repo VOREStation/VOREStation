@@ -63,7 +63,7 @@ export const ShockConfigurator = (props) => {
       setAuthKey(await storage.get('shocker-authkey'));
     };
     async_get();
-  });
+  }, []);
 
   return (
     <Window width={400} height={600}>
