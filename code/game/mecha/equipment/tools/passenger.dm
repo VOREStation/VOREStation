@@ -10,7 +10,6 @@
 	var/door_locked = 1
 	salvageable = 0
 	allow_duplicate = TRUE
-	flags = REMOTEVIEW_ON_ENTER
 
 	equip_type = EQUIP_HULL
 

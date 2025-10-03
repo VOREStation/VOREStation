@@ -1,4 +1,6 @@
-/// Use this if you need to remote view something. Remote view will end if you move or the remote view target is deleted. Cleared automatically if another remote view begins.
+/**
+ * Use this if you need to remote view something. Remote view will end if you move or the remote view target is deleted. Cleared automatically if another remote view begins.
+ */
 /datum/component/remote_view
 	VAR_PROTECTED/mob/host_mob
 	VAR_PROTECTED/atom/remote_view_target
@@ -19,7 +21,7 @@
 	// Begin remoteview
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
 	if(forbid_movement)
-		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
+		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(on_host_moved))
 	else
 		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
@@ -54,6 +56,12 @@
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
+	end_view()
+	qdel(src)
+
+/datum/component/remote_view/proc/on_host_moved(atom/source, atom/oldloc, direction, forced) // Needed for override in mob_holder subtype
+	SIGNAL_HANDLER
+	PROTECTED_PROC(TRUE)
 	end_view()
 	qdel(src)
 
@@ -92,7 +100,9 @@
 
 
 
-/// Remote view subtype where if the item used with it is moved or dropped the view ends too
+/**
+ * Remote view subtype where if the item used with it is moved or dropped the view ends too
+ */
 /datum/component/remote_view/item_zoom
 	VAR_PRIVATE/obj/item/host_item
 	VAR_PRIVATE/show_message
@@ -159,8 +169,9 @@
 	. = ..()
 
 
-
-/// Remote view subtype that stops if the remote view target is dead, or you lose access to the mremote mutation
+/**
+ * Remote view subtype that stops if the remote view target is dead, or you lose access to the mremote mutation
+ */
 /datum/component/remote_view/mremote_mutation
 
 /datum/component/remote_view/mremote_mutation/allow_moving
@@ -191,8 +202,9 @@
 	qdel(src)
 
 
-
-/// Remote view subtype that handles look() and unlook() procs while managing a list of viewers. Expects a viewer list stored by the object itself, passed in with AddComponent(). Ensure the list exists before passing it to the component or pass by reference will fail.
+/**
+ * Remote view subtype that handles look() and unlook() procs while managing a list of viewers. Expects a viewer list stored by the object itself, passed in with AddComponent(). Ensure the list exists before passing it to the component or pass by reference will fail.
+ */
 /datum/component/remote_view/viewer_managed
 	VAR_PRIVATE/datum/view_coordinator // The object containing the viewer_list, with look() and unlook() logic
 	VAR_PRIVATE/list/viewers // list from the view_coordinator, lists in byond are pass by reference, so this is the SAME list as on the coordinator! If you pass a null this will explode.
@@ -217,3 +229,38 @@
 	view_coordinator = null
 	viewers = null
 	. = ..()
+
+
+/**
+ * Remote view subtype that attempts to hold the client's eye to it's target as aggressively as possible until ended.
+ * This is due to a byond bug where dropping a mob inside an object will keep the view fixed on the mob that was holding
+ * the object instead. After several days of debugging, this was the best option I could come up with. If you find a
+ * better one, please refactor and use it. It will also need to handle situations where a pai can be nested multiple layers
+ * deep, such as inside their paicard, inside a box, inside a backpack, held by a mob. - Willbird
+ *
+ * Entering any item will set this as your remoteview. This is a fallback to account for just how aggressive the byond bug is.
+ * I had hoped lazy_eye would be some kind of fix, but it breaks smooth scrolling entirely, and TG doesn't use it either.
+ * Though it appears TG also doesn't have mob holders in a way that we do, let alone inanimate item TF, or protean rigs.
+ */
+/datum/component/remote_view/mob_holding_item
+
+/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on)
+	. = ..()
+	host_mob.AddComponent(/datum/component/recursive_move)
+
+/datum/component/remote_view/mob_holding_item/Destroy(force)
+	var/mob/cache_host = host_mob
+	. = ..()
+	// Release and focus on the ground the mob was put on, this is REQUIRED due to a byond issue where being dropped from mobs will focus on that mob until we move again.
+	if(QDELETED(cache_host) || !cache_host.client)
+		return
+	var/turf/release_turf = cache_host.loc
+	if(!istype(release_turf))
+		return
+	cache_host.AddComponent(/datum/component/remote_view, focused_on = release_turf) // So we release our new view as soon as we move again.
+	cache_host.client.eye = release_turf // Yes--
+	cache_host.client.perspective = EYE_PERSPECTIVE // --this is required too.
+
+/datum/component/remote_view/mob_holding_item/on_host_moved(atom/source, atom/oldloc, direction, forced)
+	if(isturf(source.loc)) // Only released on turf drop, we get signals from all moves above us due to recursive_move component
+		. = ..()

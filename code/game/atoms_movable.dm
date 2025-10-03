@@ -252,10 +252,11 @@
 		light.source_atom.update_light()
 	return TRUE
 
-/mob/Moved(atom/old_loc, direction, forced = FALSE, movetime)
+/mob/Moved(atom/old_loc, direction, forced, movetime)
 	. = ..()
-	if(client && (loc.flags & REMOTEVIEW_ON_ENTER))
-		AddComponent(/datum/component/remote_view, loc)
+	//If we return focus to our own mob, but we are still inside something with an inherent remote view. Restart it.
+	if(client)
+		restore_remote_views()
 
 /atom/movable/set_dir(newdir)
 	. = ..(newdir)

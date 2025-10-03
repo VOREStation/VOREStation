@@ -46,7 +46,7 @@
 	var/ore_storage = FALSE
 	var/max_ore_storage = 500
 	var/current_capacity = 0
-	flags = NOBLUDGEON | REMOTEVIEW_ON_ENTER
+	flags = NOBLUDGEON
 
 /obj/item/dogborg/sleeper/Initialize(mapload)
 	. = ..()
