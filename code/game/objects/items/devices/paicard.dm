@@ -5,7 +5,6 @@
 	item_state = "electronic"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
-	flags = REMOTEVIEW_ON_ENTER
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
 	preserve_item = 1
@@ -40,8 +39,7 @@
 
 /obj/item/paicard/dropped(mob/user)
 	. = ..()
-	if(pai)
-		pai.force_clear_perspective()
+	pai?.reset_perspective()
 
 // VOREStation Edit - Allow everyone to become a pAI
 /obj/item/paicard/attack_ghost(mob/user as mob)

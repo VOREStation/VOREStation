@@ -256,15 +256,15 @@
 		var/obj/item/pda/holder = card.loc
 		holder.pai = null
 
-	src.forceMove(get_turf(card))
-	reset_perspective() // Ensure focus on self once unfolded
-
+	src.forceMove(card.loc)
 	card.forceMove(src)
 	card.screen_loc = null
 	canmove = TRUE
 
-	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message(span_filter_notice(span_bold("[src]") + " folds outwards, expanding into a mobile form."))
+	if(isturf(loc))
+		var/turf/T = get_turf(src)
+		if(istype(T)) T.visible_message(span_filter_notice(span_bold("[src]") + " folds outwards, expanding into a mobile form."))
+
 	add_verb(src, /mob/living/silicon/pai/proc/pai_nom)
 	add_verb(src, /mob/living/proc/vertical_nom)
 	update_icon()
@@ -400,11 +400,13 @@
 			M.drop_from_inventory(H)
 		H.loc = get_turf(src)
 		src.loc = get_turf(H)
+		reset_perspective()
 
 	if(isbelly(loc))	//If in tumby, when fold up, card go into tumby
 		var/obj/belly/B = loc
 		src.forceMove(card)
 		card.forceMove(B)
+		reset_perspective()
 
 	if(istype( src.loc,/obj/structure/disposalholder))
 		var/obj/structure/disposalholder/hold = loc
@@ -412,6 +414,7 @@
 		card.loc = hold
 		src.forceMove(card)
 		card.forceMove(hold)
+		reset_perspective()
 
 	else				//Otherwise go on floor
 		src.loc = card

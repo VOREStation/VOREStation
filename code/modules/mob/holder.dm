@@ -9,7 +9,6 @@ var/list/holder_mob_icon_cache = list()
 	center_of_mass_x = 0
 	center_of_mass_y = 0
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
-	flags = REMOTEVIEW_ON_ENTER
 	show_messages = 1
 
 	sprite_sheets = list(
@@ -100,7 +99,7 @@ var/list/holder_mob_icon_cache = list()
 		dump_mob()
 	if(ismob(loc))
 		var/mob/M = loc
-		M.drop_from_inventory(src, get_turf(src))
+		M.drop_from_inventory(src, loc)
 	. = ..()
 
 /// If the mob somehow leaves the holder, clean us up.
@@ -114,8 +113,7 @@ var/list/holder_mob_icon_cache = list()
 		return
 	if (held_mob.loc == src || isnull(held_mob.loc))
 		var/mob/unstick_mob = held_mob
-		unstick_mob.forceMove(get_turf(src))
-		unstick_mob.force_clear_perspective()
+		unstick_mob.forceMove(loc)
 
 /obj/item/holder/throw_at(atom/target, range, speed, thrower)
 	if(held_mob)

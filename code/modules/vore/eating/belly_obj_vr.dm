@@ -905,7 +905,7 @@
 	//Special treatment for absorbed prey
 	if(isliving(M))
 		var/mob/living/ML = M
-		ML.force_clear_perspective()
+		ML.reset_perspective()
 		var/mob/living/OW = owner
 		if(ML.client)
 			ML.stop_sound_channel(CHANNEL_PREYLOOP) //Stop the internal loop, it'll restart if the isbelly check on next tick anyway

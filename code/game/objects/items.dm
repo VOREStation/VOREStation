@@ -823,6 +823,8 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	SIGNAL_HANDLER
 	if(isliving(usr)) //Always prefer usr if set
 		M = usr
+	if(!M.client)
+		return 0
 	if(!isliving(M))
 		return 0
 	if(isbelly(M.loc) || istype(M.loc,/obj/item/dogborg/sleeper))
