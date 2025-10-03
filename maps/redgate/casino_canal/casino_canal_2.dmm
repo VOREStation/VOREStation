@@ -2623,9 +2623,22 @@
 	},
 /turf/simulated/floor/tiled/purple,
 /area/redgate/underwater_casino/indoors/upper/hall)
+"gC" = (
+/obj/random/humanoidremains,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gD" = (
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/underwater_casino/indoors/upper/secret/cave)
+"gE" = (
+/turf/simulated/floor/wood/alt/broken,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"gF" = (
+/mob/living/simple_mob/vore/alienanimals/skeleton/alt{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	},
+/turf/simulated/floor/wood/alt,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gG" = (
 /obj/machinery/light,
 /turf/simulated/floor/grass,
@@ -2671,6 +2684,14 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/redgate/underwater_casino/indoors/upper/secret/researchbase)
+"gN" = (
+/obj/random/humanoidremains,
+/turf/simulated/floor/wood/alt,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
+"gO" = (
+/obj/item/salvage/ruin/pirate,
+/turf/simulated/floor/wood,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "gP" = (
 /obj/machinery/door/airlock/angled_bay/standard/color/research{
 	req_access = null
@@ -2737,9 +2758,18 @@
 /obj/random/humanoidremains,
 /turf/simulated/floor/water/underwater,
 /area/redgate/underwater_casino/outdoors)
+"hd" = (
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "he" = (
-/obj/item/aliencoin/gold,
 /obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint{
+	pixel_y = 6;
+	pixel_x = -5
+	},
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "hf" = (
@@ -2796,6 +2826,10 @@
 	},
 /turf/simulated/floor/carpet/blue,
 /area/redgate/underwater_casino/indoors/upper/casino)
+"hn" = (
+/obj/random/multiple/underdark/ores,
+/turf/simulated/floor/water/underwater/indoors/rocks,
+/area/redgate/underwater_casino/outdoors)
 "ho" = (
 /turf/simulated/floor/water/underwater/indoors/open,
 /area/redgate/underwater_casino/outdoors)
@@ -2969,12 +3003,20 @@
 /obj/structure/table/woodentable,
 /obj/random/chips/better{
 	pixel_y = 6;
-	pixel_x = -14
+	pixel_x = 13
+	},
+/obj/random/chips{
+	pixel_y = 3;
+	pixel_x = -3
 	},
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "jg" = (
 /obj/structure/table/woodentable,
+/obj/random/multiple/underdark/treasure,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "jh" = (
@@ -3048,10 +3090,6 @@
 	pixel_y = 13
 	},
 /turf/simulated/floor/water/underwater/indoors/sand,
-/area/redgate/underwater_casino/outdoors)
-"ju" = (
-/obj/random/multiple/ore_pile,
-/turf/simulated/floor/water/underwater/indoors/rocks,
 /area/redgate/underwater_casino/outdoors)
 "jv" = (
 /obj/item/spacecasinocash/c10{
@@ -3549,13 +3587,7 @@
 /obj/structure/window/reinforced{
 	pixel_y = -4
 	},
-/turf/simulated/floor/wood,
-/area/redgate/underwater_casino/indoors/upper/secret/piratebase)
-"kX" = (
-/obj/structure/window/reinforced{
-	pixel_y = -4
-	},
-/turf/simulated/floor/wood/broken,
+/turf/simulated/floor/wood/alt,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "kY" = (
 /obj/machinery/recharge_station,
@@ -3585,9 +3617,7 @@
 /turf/simulated/wall/tgmc/window/darkwall/reinf,
 /area/redgate/underwater_casino/indoors/upper/secret/researchbase)
 "le" = (
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/structure/reagent_dispensers/beerkeg,
 /turf/simulated/floor/wood,
 /area/redgate/underwater_casino/indoors/upper/secret/piratebase)
 "lf" = (
@@ -18060,7 +18090,7 @@ tT
 tT
 Dm
 Dm
-ju
+hn
 gi
 Dm
 Dm
@@ -19776,7 +19806,7 @@ gY
 gR
 iX
 iX
-gR
+gC
 gR
 Dm
 Dm
@@ -19908,7 +19938,7 @@ gi
 gi
 gi
 jh
-gi
+hn
 gi
 Dm
 Dm
@@ -20770,7 +20800,7 @@ gS
 gS
 gv
 gv
-gv
+gE
 gS
 Dm
 Dm
@@ -20909,9 +20939,9 @@ Dm
 Dm
 gS
 le
-gT
-gv
-gv
+gO
+gE
+gF
 iZ
 gS
 Dm
@@ -21052,7 +21082,7 @@ Dm
 hf
 kP
 gT
-gv
+gN
 gv
 gv
 gS
@@ -21193,9 +21223,9 @@ Dm
 Dm
 gS
 he
-gT
+hd
 gv
-gv
+gE
 gv
 gS
 Dm
@@ -21336,7 +21366,7 @@ Dm
 gS
 jf
 gT
-gT
+gv
 hw
 hw
 gS
@@ -21477,7 +21507,7 @@ Dm
 Dm
 gS
 jg
-gT
+hd
 kW
 hx
 hx
@@ -21619,8 +21649,8 @@ Dm
 Dm
 gS
 gS
-gT
-kX
+gS
+gS
 hx
 hx
 gS
@@ -21760,8 +21790,8 @@ Dm
 Dm
 Dm
 Dm
-gS
-gS
+Dm
+Dm
 gS
 gS
 gS
