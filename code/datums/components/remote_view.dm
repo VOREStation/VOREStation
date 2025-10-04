@@ -255,7 +255,7 @@
 /datum/component/remote_view/mob_holding_item/Destroy(force)
 	// Check if we're still looking at our own object, allow us to release if so!
 	var/turf/release_turf
-	if(host_mob?.client?.eye == host_mob || host_mob?.client?.eye == remote_view_target)
+	if(host_mob.client?.eye == host_mob || host_mob.client?.eye == remote_view_target)
 		if(!QDELETED(remote_view_target) && isturf(remote_view_target.loc))
 			release_turf = get_turf(remote_view_target)
 		if(!QDELETED(host_mob) && isturf(host_mob.loc))
