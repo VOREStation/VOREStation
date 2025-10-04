@@ -114,7 +114,7 @@
 		visible_message("[src] begins to rattle and shake!")
 		if(do_after(user, 60 SECONDS, target = src))
 			visible_message("[user] climbs out of the [src]!")
-			attack_hand(force = TRUE)
+			attack_hand(user, force = TRUE)
 
 /obj/machinery/washing_machine/container_resist(mob/living/escapee)
 	user_climb_out(escapee)
