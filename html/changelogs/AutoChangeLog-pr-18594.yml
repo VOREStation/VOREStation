@@ -1,0 +1,4 @@
+author: "Tenryumi"
+delete-after: True
+changes:
+  - rscadd: "Added operating tables to the crafting menu. You'll need 12 silver, 10 metal rods, and one leather!"
