@@ -296,9 +296,6 @@
 		return FALSE
 	if(isturf(loc)) // Cannot be remote if it was a turf, also obj and turf flags overlap so stepping into space triggers remoteview endlessly.
 		return FALSE
-	if(ispAI(src) && istype(loc,/obj/machinery)) // Restore pai machine connection.
-		reset_perspective(loc)
-		return TRUE
 	if(isitem(loc) || isbelly(loc)) // Requires more careful handling than structures because they are held by mobs
 		AddComponent(/datum/component/remote_view/mob_holding_item, loc)
 		return TRUE
