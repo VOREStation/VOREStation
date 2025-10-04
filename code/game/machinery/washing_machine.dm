@@ -38,7 +38,6 @@
 	for(var/atom/movable/washed_items in contents)
 		washed_items.forceMove(get_turf(src))
 	washing.Cut()
-	contents.Cut()
 	crayon = null
 	. = ..()
 
