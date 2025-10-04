@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(active_autoresleevers)
+
 /obj/machinery/transhuman/autoresleever
 	name = "automatic resleever"
 	desc = "Uses advanced technology to detect when someone needs to be resleeved, and automatically prints and sleeves them into a new body. It even generates its own biomass!"
@@ -12,6 +14,14 @@
 	var/respawn = 30 MINUTES			//The time to wait if you didn't die from vore
 	var/spawn_slots = -1				//How many people can be spawned from this? If -1 it's unlimited
 	var/spawntype						//The kind of mob that will be spawned, if set.
+
+/obj/machinery/transhuman/autoresleever/Initialize(mapload)
+	. = ..()
+	GLOB.active_autoresleevers += src
+
+/obj/machinery/transhuman/autoresleever/Destroy()
+	. = ..()
+	GLOB.active_autoresleevers -= src
 
 /obj/machinery/transhuman/autoresleever/update_icon()
 	. = ..()

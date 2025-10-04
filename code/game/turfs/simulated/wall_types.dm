@@ -648,6 +648,12 @@
 	strict_blending = TRUE
 	diagonal_blending = TRUE
 
+/turf/simulated/wall/tgmc/window/CanPass(atom/movable/mover, turf/target)
+	// This IS a glass window, so things that can pass glass should pass through here!
+	if(istype(mover) && mover.checkpass(PASSGLASS))
+		return TRUE
+	return ..()
+
 /turf/simulated/wall/tgmc/window/rwall
 	icon_state = "rwall_window0"
 	wall_base_state = "rwall_window"

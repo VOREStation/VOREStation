@@ -258,6 +258,9 @@ var/list/turf_edge_cache = list()
 	flooring_override = pickweight(possibledirts)
 	return ..()
 
+/turf/simulated/floor/outdoors/newdirt_nograss/caves
+	outdoors = OUTDOORS_NO
+
 /turf/simulated/floor/outdoors/sidewalk
 	name = "sidewalk"
 	desc = "Concrete shaped into a path!"

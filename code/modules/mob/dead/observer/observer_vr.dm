@@ -68,19 +68,31 @@
 	if(!isobserver(src)) //Make sure they're an observer!
 		return
 
-	var/list/ar = list()
-	for(var/obj/machinery/transhuman/autoresleever/A in world)
+	// Set up an assorted list of auto-resleevers using their area name as the key, (as there should only ever be one per area)
+	var/list/autoresleevers = list()
+	for(var/obj/machinery/transhuman/autoresleever/A in GLOB.active_autoresleevers)
 		if(A.spawntype)
 			continue
 		else
-			ar |= A
+			var/area/resleever_area = get_area(A)
+			autoresleevers[resleever_area.name] = A
 
-	var/obj/machinery/transhuman/autoresleever/thisone = pick(ar)
+	var/obj/machinery/transhuman/autoresleever/chosen_resleever = null
+	if(length(autoresleevers) > 1)
+		// Prompt user to choose which one they wanna go to
+		var/choice = tgui_input_list(src, "There are multiple auto-resleevers available! Choose one.", "Choose Auto-Resleever", autoresleevers)
+		if(!choice)
+			// well okay then :L
+			return
+		chosen_resleever = autoresleevers[choice]
+	else
+		// If there's less than one, just choose whatever one is available (if any)
+		chosen_resleever = autoresleevers[pick(autoresleevers)]
 
-	if(!thisone)
+	if(!chosen_resleever)
 		to_chat(src, span_warning("There appears to be no auto-resleevers available."))
 		return
-	var/L = get_turf(thisone)
+	var/L = get_turf(chosen_resleever)
 	if(!L)
 		to_chat(src, span_warning("There appears to be something wrong with this auto-resleever, try again."))
 		return
