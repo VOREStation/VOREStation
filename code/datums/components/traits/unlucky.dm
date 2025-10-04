@@ -168,13 +168,13 @@
 				if(!living_mob.CanStumbleVore(living_guy) && !living_guy.CanStumbleVore(living_mob)) //Works both ways! Either way, someone's getting eaten!
 					continue
 				living_mob.stumble_into(living_guy) //logic reversed here because the game is DUMB. This means that living_guy is stumbling into the target!
-				living_guy.visible_message(span_danger("[living_guy] loses their balance and slips into [living_mob]!"), span_userdanger("You lose your balance, slipping into [living_mob]!"))
+				living_guy.visible_message(span_danger("[living_guy] loses their balance and slips into [living_mob]!"), span_boldwarning("You lose your balance, slipping into [living_mob]!"))
 				consume_omen()
 				return
 
 		for(var/obj/machinery/washing_machine/evil_washer in the_turf)
 			if(evil_washer.state == 1) //Empty and open door
-				our_guy.visible_message(span_danger("[our_guy] slips near the [evil_washer] and falls in, the door shutting!"), span_userdanger("You slip on a wet spot near the [evil_washer] and fall in, the door shutting! You're stuck!"))
+				our_guy.visible_message(span_danger("[our_guy] slips near the [evil_washer] and falls in, the door shutting!"), span_boldwarning("You slip on a wet spot near the [evil_washer] and fall in, the door shutting! You're stuck!"))
 				our_guy.forceMove(evil_washer)
 				evil_washer.washing += our_guy
 				evil_washer.state = 4
@@ -189,7 +189,7 @@
 					continue
 				if(evil_disposal.loc == living_guy.loc) //Let's not do a continual loop of them falling into it as soon as they climb out, as funny as that is.
 					continue
-				our_guy.visible_message(span_danger("[our_guy] slips on a spill near the [evil_disposal] and falls in!"), span_userdanger("You slip on a spill near the [evil_disposal] and fall in!"))
+				our_guy.visible_message(span_danger("[our_guy] slips on a spill near the [evil_disposal] and falls in!"), span_boldwarning("You slip on a spill near the [evil_disposal] and fall in!"))
 				living_guy.forceMove(evil_disposal)
 				evil_disposal.flush = TRUE
 				evil_disposal.update()
@@ -236,7 +236,7 @@
 				mirror_rand = rand(1,3)
 			switch(mirror_rand)
 				if(1)
-					to_chat(living_guy, span_userdanger("You see your reflection, but it is grinning malevolently and staring directly at you!"))
+					to_chat(living_guy, span_boldwarning("You see your reflection, but it is grinning malevolently and staring directly at you!"))
 					living_guy.emote("scream")
 				if(2 to 3)
 					to_chat(living_guy, span_large(span_cult("Oh god, you can't see your reflection!!")))
@@ -335,7 +335,7 @@
 /datum/component/omen/proc/check_roll(mob/living/unlucky_soul, var/obj/item/dice/the_dice, silent, result)
 	SIGNAL_HANDLER
 	if(prob(20 * luck_mod))
-		//unlucky_soul.visible_message(span_danger("[unlucky_soul] rolls [the_dice] with it landing on the edge of [result] before tilting over!"), span_userdanger("You feel dreadfully unlucky as you roll the dice!"))
+		//unlucky_soul.visible_message(span_danger("[unlucky_soul] rolls [the_dice] with it landing on the edge of [result] before tilting over!"), span_boldwarning("You feel dreadfully unlucky as you roll the dice!"))
 		//I had thought about making this have a notice that it happened.
 		//However, gaslighting the user by providing no visible notice is MUCH funnier.
 		return 1 // We override the roll to a 1.
