@@ -875,6 +875,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 	var/atom/old_eye = eye
 	eye = new_eye
+	if(mob)
+		SEND_SIGNAL(mob, COMSIG_MOB_SET_EYE, old_eye, new_eye)
 	SEND_SIGNAL(src, COMSIG_CLIENT_SET_EYE, old_eye, new_eye)
 
 /mob/proc/is_remote_viewing()
