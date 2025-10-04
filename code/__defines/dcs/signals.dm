@@ -163,6 +163,11 @@
 ///from base of atom/attack_paw(): (mob/user)
 //This signal return value bitflags can be found in __DEFINES/misc.dm
 
+///from base of /obj/structure/stairs/top/use_stairs(var/atom/movable/AM, var/atom/oldloc)
+#define COMSIG_MOVED_DOWN_STAIRS "atom_moved_down_stairs"
+///from base of /obj/structure/stairs/bottom/use_stairs(var/atom/movable/AM, var/atom/oldloc)
+#define COMSIG_MOVED_UP_STAIRS "atom_moved_up_stairs"
+
 ///called for each movable in a turf contents on /turf/zImpact(): (atom/movable/A, levels)
 #define COMSIG_ATOM_INTERCEPT_Z_FALL "movable_intercept_z_impact"
 ///called on a movable (NOT living) when someone starts pulling it (atom/movable/puller, state, force)
@@ -240,6 +245,8 @@
 	#define COMPONENT_MOVABLE_IMPACT_NEVERMIND (1<<1)					//return true if you destroyed whatever it was you're impacting and there won't be anything for hitby() to run on
 ///from base of mob/living/hitby(): (mob/living/target, hit_zone)
 #define COMSIG_MOVABLE_IMPACT_ZONE "item_impact_zone"
+///from the base of mob/living/carbon/human/hitby(): (atom/movable/source, speed)
+#define COMSIG_HUMAN_ON_CATCH_THROW "human_on_catch_throw"
 ///from base of atom/movable/buckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_BUCKLE "buckle"
 ///from base of atom/movable/unbuckle_mob(): (mob, force)
@@ -289,6 +296,9 @@
 ///from base of mob/AltClickOn(): (atom/A)
 #define COMSIG_MOB_ALTCLICKON "mob_altclickon"
 	#define COMSIG_MOB_CANCEL_CLICKON (1<<0)
+
+///from base of /obj/item/dice/proc/rollDice(mob/user as mob, var/silent = 0). Has the arguments of 'src, silent, result'
+#define COMSIG_MOB_ROLLED_DICE "mob_rolled_dice" //can give a return value if we want it to make the dice roll a specific number!
 
 ///from base of obj/allowed(mob/M): (/obj) returns bool, if TRUE the mob has id access to the obj
 #define COMSIG_MOB_ALLOWED "mob_allowed"
@@ -406,6 +416,8 @@
 #define COMSIG_TAKING_APPLY_EFFECT "applying_effect"
 ///Return this in response if you don't want the effect to be applied
 	#define COMSIG_CANCEL_EFFECT (1<<0)
+///from /mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
+#define COMSIG_STUN_EFFECT_ACT "stun_effect_act"
 
 ///Misc signal for checking for godmode. Used by /datum/element/godmode
 #define COMSIG_CHECK_FOR_GODMODE "check_for_godmode"
@@ -450,7 +462,8 @@
 ///called when being electrocuted, from /mob/living/carbon/electrocute_act(shock_damage, source, siemens_coeff, def_zone, stun)
 #define COMSIG_BEING_ELECTROCUTED "being_electrocuted"
 	#define COMPONENT_CARBON_CANCEL_ELECTROCUTE (1<<0) //If this is set, the carbon will be not be electrocuted.
-
+///called when a carbon slipps, from /mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+#define COMSIG_ON_CARBON_SLIP "carbon_slip"
 
 // /mob/living/silicon signals
 ///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity)
@@ -536,6 +549,8 @@
 #define COMSIG_MOB_UNEQUIPPED_ITEM "mob_unequipped_item"
 ///from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_ITEM_PICKUP "item_pickup"
+///from base of obj/item/pickup(): (/obj/item)
+#define COMSIG_PICKED_UP_ITEM "piked_up_item"
 ///from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
 #define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"
 ///return a truthy value to prevent ensouling, checked in /obj/effect/proc_holder/spell/targeted/lichdom/cast(): (mob/user)
