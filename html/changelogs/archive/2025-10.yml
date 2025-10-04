@@ -18,3 +18,8 @@
   Drathek:
   - code_imp: Tweaked a few grep lints for balloon alerts and a check for de-optimization
       of o?range/o?view with as anything
+2025-10-04:
+  Kashargul:
+  - qol: adds some basic color matrix solving
+  - code_imp: react 19.2
+  - bugfix: some door buttons not triggering multiple doors
