@@ -58,6 +58,8 @@ var/list/ventcrawl_machinery = list(
 		remove_ventcrawl()
 		add_ventcrawl(loc)
 		client.screen += GLOB.global_hud.centermarker
+	else
+		restore_remote_views()
 
 /mob/living/simple_mob/slime/xenobio/can_ventcrawl()
 	if(victim)
@@ -248,6 +250,6 @@ var/list/ventcrawl_machinery = list(
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
 		client.screen -= GLOB.global_hud.centermarker
-		client.eye = src
+		reset_perspective(src)
 
 	pipes_shown.len = 0

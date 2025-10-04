@@ -177,7 +177,7 @@
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		src.unset_machine()
-		src.reset_view(null)
+		src.reset_perspective(src)
 		return 0
 	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
 
@@ -185,7 +185,7 @@
 
 	src.set_machine(src)
 	src.current = C
-	src.reset_view(C)
+	src.AddComponent(/datum/component/remote_view, C)
 	return 1
 
 /mob/living/silicon/pai/verb/reset_record_view()
@@ -204,7 +204,7 @@
 /mob/living/silicon/pai/cancel_camera()
 	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
-	src.reset_view(null)
+	src.reset_perspective(src)
 	src.unset_machine()
 	src.cameraFollow = null
 
@@ -256,16 +256,15 @@
 		var/obj/item/pda/holder = card.loc
 		holder.pai = null
 
-	src.client.perspective = EYE_PERSPECTIVE
-	src.client.eye = src
-	src.forceMove(get_turf(card))
-
+	src.forceMove(card.loc)
 	card.forceMove(src)
 	card.screen_loc = null
 	canmove = TRUE
 
-	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message(span_filter_notice(span_bold("[src]") + " folds outwards, expanding into a mobile form."))
+	if(isturf(loc))
+		var/turf/T = get_turf(src)
+		if(istype(T)) T.visible_message(span_filter_notice(span_bold("[src]") + " folds outwards, expanding into a mobile form."))
+
 	add_verb(src, /mob/living/silicon/pai/proc/pai_nom)
 	add_verb(src, /mob/living/proc/vertical_nom)
 	update_icon()
@@ -388,10 +387,7 @@
 	var/turf/T = get_turf(src)
 	if(istype(T) && !silent) T.visible_message(span_filter_notice(span_bold("[src]") + " neatly folds inwards, compacting down to a rectangular card."))
 
-	if(client)
-		src.stop_pulling()
-		src.client.perspective = EYE_PERSPECTIVE
-		src.client.eye = card
+	stop_pulling()
 
 	//stop resting
 	resting = 0
@@ -422,6 +418,7 @@
 		card.loc = get_turf(card)
 		src.forceMove(card)
 		card.forceMove(card.loc)
+
 	canmove = 1
 	resting = 0
 	icon_state = "[chassis]"

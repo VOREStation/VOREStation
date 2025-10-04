@@ -9,6 +9,7 @@
 	icon_state = "suitstorage000000100" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
 	anchored = TRUE
 	density = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	var/mob/living/carbon/human/OCCUPANT = null
 	var/obj/item/clothing/suit/space/SUIT = null
 	var/suit_type = null
@@ -188,7 +189,7 @@
 	if(!HELMET)
 		return //Do I even need this sanity check? Nyoro~n
 	else
-		HELMET.loc = src.loc
+		HELMET.forceMove(get_turf(src))
 		HELMET = null
 		return
 
@@ -197,7 +198,7 @@
 	if(!SUIT)
 		return
 	else
-		SUIT.loc = src.loc
+		SUIT.forceMove(get_turf(src))
 		SUIT = null
 		return
 
@@ -206,7 +207,7 @@
 	if(!MASK)
 		return
 	else
-		MASK.loc = src.loc
+		MASK.forceMove(get_turf(src))
 		MASK = null
 		return
 
@@ -214,13 +215,13 @@
 /obj/machinery/suit_storage_unit/proc/dump_everything()
 	islocked = 0 //locks go free
 	if(SUIT)
-		SUIT.loc = src.loc
+		SUIT.forceMove(get_turf(src))
 		SUIT = null
 	if(HELMET)
-		HELMET.loc = src.loc
+		HELMET.forceMove(get_turf(src))
 		HELMET = null
 	if(MASK)
-		MASK.loc = src.loc
+		MASK.forceMove(get_turf(src))
 		MASK = null
 	if(OCCUPANT)
 		eject_occupant(OCCUPANT)
@@ -321,10 +322,7 @@
 			to_chat(OCCUPANT, span_notice("The machine kicks you out!"))
 		if(user.loc != src.loc)
 			to_chat(OCCUPANT, span_notice("You leave the not-so-cozy confines of the SSU."))
-
-		OCCUPANT.client.eye = OCCUPANT.client.mob
-		OCCUPANT.client.perspective = MOB_PERSPECTIVE
-	OCCUPANT.loc = src.loc
+	OCCUPANT.forceMove(get_turf(src))
 	OCCUPANT = null
 	if(!isopen)
 		isopen = 1
@@ -364,9 +362,7 @@
 	visible_message(span_info("[usr] starts squeezing into the suit storage unit!"), 3)
 	if(do_after(usr, 1 SECOND, target = src))
 		usr.stop_pulling()
-		usr.client.perspective = EYE_PERSPECTIVE
-		usr.client.eye = src
-		usr.loc = src
+		usr.forceMove(src)
 		OCCUPANT = usr
 		isopen = 0 //Close the thing after the guy gets inside
 		update_icon()
@@ -403,10 +399,7 @@
 		if(do_after(user, 2 SECONDS, target = src))
 			if(!G || !G.affecting) return //derpcheck
 			var/mob/M = G.affecting
-			if(M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
+			M.forceMove(src)
 			OCCUPANT = M
 			isopen = 0 //close ittt
 
@@ -424,7 +417,7 @@
 			return
 		to_chat(user, span_info("You load the [S.name] into the storage compartment."))
 		user.drop_item()
-		S.loc = src
+		S.forceMove(src)
 		SUIT = S
 		update_icon()
 		return
@@ -437,7 +430,7 @@
 			return
 		to_chat(user, span_info("You load the [H.name] into the storage compartment."))
 		user.drop_item()
-		H.loc = src
+		H.forceMove(src)
 		HELMET = H
 		update_icon()
 		return
@@ -450,7 +443,7 @@
 			return
 		to_chat(user, span_info("You load the [M.name] into the storage compartment."))
 		user.drop_item()
-		M.loc = src
+		M.forceMove(src)
 		MASK = M
 		update_icon()
 		return

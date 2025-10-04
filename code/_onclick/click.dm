@@ -265,7 +265,7 @@
 	A.ShiftClick(src)
 	return
 /atom/proc/ShiftClick(var/mob/user)
-	if(user.client && user.client.eye == user)
+	if(user.client && !user.is_remote_viewing())
 		user.examinate(src)
 	return
 

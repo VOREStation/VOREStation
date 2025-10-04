@@ -205,13 +205,6 @@
 		if(L.is_incorporeal())//Move though walls
 			Process_Incorpmove(direct)
 			return
-		/* TODO observer unzoom
-		if(view != world.view) // If mob moves while zoomed in with device, unzoom them.
-			for(var/obj/item/item in mob.contents)
-				if(item.zoom)
-					item.zoom()
-					break
-		*/
 
 	if(Process_Grab())
 		return

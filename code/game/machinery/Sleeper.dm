@@ -7,6 +7,7 @@
 	anchored = TRUE //About time someone fixed this.
 	density = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	dir = 8
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
@@ -479,9 +480,6 @@
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
 		M.forceMove(src)
 		update_use_power(USE_POWER_ACTIVE)
 		occupant = M
@@ -491,9 +489,6 @@
 	if(!occupant || occupant.loc != src)
 		occupant = null // JUST IN CASE
 		return
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.Stasis(0)
 	occupant.forceMove(get_turf(src))
 	occupant = null

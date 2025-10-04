@@ -255,6 +255,7 @@
 	icon_state = "cellold0"
 	disk_needs_genes = 1
 	circuit = /obj/item/circuitboard/biobombarder
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/mob/living/simple_mob/xeno/slime/occupant
 
@@ -375,9 +376,6 @@
 	src.add_fingerprint(user)
 	if(do_after(user, 3 SECONDS, target = src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(span_danger("[user] stuffs [victim] into the [src]!"))
-		if(victim.client)
-			victim.client.perspective = EYE_PERSPECTIVE
-			victim.client.eye = src
 		victim.forceMove(src)
 		occupant = victim
 

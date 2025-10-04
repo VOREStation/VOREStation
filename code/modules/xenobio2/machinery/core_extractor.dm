@@ -10,6 +10,7 @@
 	icon_state = "scanner_0old"
 	density = TRUE
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/slimeextractor
 	var/inuse
 	var/mob/living/simple_mob/xeno/slime/occupant = null
@@ -76,9 +77,6 @@
 	src.add_fingerprint(user)
 	if(do_after(user, 3 SECONDS, target = src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(span_danger("[user] stuffs [victim] into the core extractor!"))
-		if(victim.client)
-			victim.client.perspective = EYE_PERSPECTIVE
-			victim.client.eye = src
 		victim.forceMove(src)
 		src.occupant = victim
 		update_light_color()

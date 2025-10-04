@@ -33,7 +33,7 @@
 			ai.camera_visibility(src)
 
 		if(ai.client && !ai.multicam_on)
-			ai.client.eye = src
+			ai.reset_perspective(src)
 
 		if(ai.master_multicam)
 			ai.master_multicam.refresh_view()
@@ -58,8 +58,7 @@
 	eyeobj.owner = null
 	qdel(eyeobj) // No AI, no Eye
 	eyeobj = null
-	if(client)
-		client.eye = new_eye
+	reset_perspective(new_eye)
 
 /mob/living/silicon/ai/proc/create_eyeobj(var/newloc)
 	if(eyeobj)
@@ -70,8 +69,7 @@
 	all_eyes += eyeobj
 	eyeobj.owner = src
 	eyeobj.name = "[src.name] (AI Eye)" // Give it a name
-	if(client)
-		client.eye = eyeobj
+	reset_perspective(eyeobj)
 	SetName(src.name)
 
 /atom/proc/move_camera_by_click()
@@ -88,9 +86,9 @@
 
 	if(!src.eyeobj)
 		return
+	if(client.eye)
+		reset_perspective(src)
 
-	if(client && client.eye)
-		client.eye = src
 	for(var/datum/chunk/c in eyeobj.visibleChunks)
 		c.remove(eyeobj)
 	src.eyeobj.setLoc(src)

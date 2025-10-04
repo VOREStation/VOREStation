@@ -5,7 +5,7 @@
 	icon = 'icons/mob/pai_hud.dmi'
 	var/base_state
 
-/atom/movable/pai/Click(location, control, params)
+/atom/movable/screen/pai/Click(location, control, params)
 	. = ..()
 	if(!ispAI(usr))
 		return

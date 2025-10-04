@@ -495,10 +495,16 @@
 			else if (issilicon(usr))
 				var/mob/living/silicon/u = usr
 				u.pose()
+
 		if("move upwards")
 			usr.up()
+		if("Move Up") // AI version
+			usr.zMove(UP)
+
 		if("move downwards")
 			usr.down()
+		if("Move Down") // AI version
+			usr.zMove(DOWN)
 
 		if("use held item on self")
 			var/atom/movable/screen/useself/s = src
@@ -621,6 +627,16 @@
 			if(isAI(usr))
 				var/mob/living/silicon/ai/ai_user = usr
 				ai_user.view_images()
+
+		if("Multicamera Mode")
+			if(isAI(usr))
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.toggle_multicam()
+
+		if("New Camera")
+			if(isAI(usr))
+				var/mob/living/silicon/ai/ai_user = usr
+				ai_user.drop_new_multicam()
 
 		if("shadekin status")
 			var/turf/T = get_turf(usr)

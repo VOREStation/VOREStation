@@ -292,12 +292,8 @@
 			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 
-	if (machine)
-		if (machine.check_eye(src) < 0)
-			reset_view(null)
-	else
-		if(client && !client.adminobs)
-			reset_view(null)
+	if (machine && machine.check_eye(src) < 0)
+		reset_perspective()
 
 	if(emagged)
 		throw_alert("hacked", /atom/movable/screen/alert/hacked)

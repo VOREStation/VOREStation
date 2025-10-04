@@ -14,6 +14,7 @@
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 	light_color = "#00FF00"
+	flags = REMOTEVIEW_ON_ENTER
 	var/obj/machinery/body_scanconsole/console
 	var/printing_text = null
 
@@ -124,10 +125,7 @@
 /obj/machinery/bodyscanner/proc/go_out()
 	if ((!(occupant) || src.locked))
 		return
-	if (occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.forceMove(src.loc) // was occupant.loc = src.loc, but that doesn't trigger exit(), and thus recursive radio listeners forwarded messages to the occupant as if they were still inside it for the rest of the round! OP21 #5f88307 Port
+	occupant.forceMove(get_turf(src))
 	occupant = null
 	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 	SStgui.update_uis(src)
@@ -137,7 +135,7 @@
 	switch(severity)
 		if(1.0)
 			for(var/atom/movable/A as mob|obj in src)
-				A.forceMove(src.loc)
+				A.forceMove(get_turf(src))
 				ex_act(severity)
 				//Foreach goto(35)
 			//SN src = null
@@ -146,7 +144,7 @@
 		if(2.0)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(src.loc)
+					A.forceMove(get_turf(src))
 					ex_act(severity)
 					//Foreach goto(108)
 				//SN src = null
@@ -155,7 +153,7 @@
 		if(3.0)
 			if (prob(25))
 				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(src.loc)
+					A.forceMove(get_turf(src))
 					ex_act(severity)
 					//Foreach goto(181)
 				//SN src = null

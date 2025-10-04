@@ -7,6 +7,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	req_access = list(ACCESS_KITCHEN,ACCESS_MORGUE)
 
 	var/operating = 0 //Is it on?
@@ -144,10 +145,7 @@
 	src.add_fingerprint(user)
 	if(do_after(user, 3 SECONDS, target = src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(span_danger("[user] stuffs [victim] into the gibber!"))
-		if(victim.client)
-			victim.client.perspective = EYE_PERSPECTIVE
-			victim.client.eye = src
-		victim.loc = src
+		victim.forceMove(src)
 		src.occupant = victim
 		update_icon()
 
@@ -167,10 +165,7 @@
 		return
 	for(var/obj/O in src)
 		O.loc = src.loc
-	if (src.occupant.client)
-		src.occupant.client.eye = src.occupant.client.mob
-		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	src.occupant.forceMove(get_turf(src))
 	src.occupant = null
 	update_icon()
 	return

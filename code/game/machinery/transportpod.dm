@@ -7,6 +7,7 @@
 	density = TRUE //thicc
 	anchored = TRUE
 	use_power = USE_POWER_OFF
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/in_transit = 0
 	var/mob/occupant = null
@@ -58,7 +59,6 @@
 		return
 
 	add_fingerprint(O)
-	O.reset_view(src)
 	O.forceMove(src)
 	occupant = O
 	update_icon()
@@ -72,9 +72,7 @@
 /obj/machinery/transportpod/proc/go_out()
 	if(!occupant)
 		return
-
 	occupant.forceMove(src.loc)
-	occupant.reset_view()
 	occupant = null
 	update_icon()
 

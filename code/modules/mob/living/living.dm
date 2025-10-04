@@ -1268,8 +1268,6 @@
 	// We just swapped hands, so the thing in our inactive hand will notice it's not the focus
 	var/obj/item/I = get_inactive_hand()
 	if(I)
-		if(I.zoom)
-			I.zoom()
 		I.in_inactive_hand(src)	//This'll do specific things, determined by the item
 	return
 

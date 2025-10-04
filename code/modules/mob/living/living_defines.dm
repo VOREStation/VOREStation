@@ -72,8 +72,6 @@
 
 	var/makes_dirt = TRUE	//FALSE if the mob shouldn't be making dirt on the ground when it walks
 
-	var/looking_elsewhere = FALSE //If the mob's view has been relocated to somewhere else, like via a camera or with binocs
-
 	var/image/selected_image = null // Used for buildmode AI control stuff.
 
 	var/allow_self_surgery = FALSE	// Used to determine if the mob can perform surgery on itself.

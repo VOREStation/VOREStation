@@ -8,6 +8,7 @@
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/opened = 0
 	var/sealed = 0
@@ -128,9 +129,6 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
-		if(M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
 
 /obj/structure/closet/proc/open()
 	if(opened)
@@ -201,9 +199,6 @@
 			continue
 		if(stored_units + added_units + M.mob_size > storage_capacity)
 			break
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
 		M.forceMove(src)
 		added_units += M.mob_size
 	return added_units

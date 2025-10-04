@@ -294,6 +294,7 @@
 	density = TRUE
 	opacity = 0
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	var/blur_amount
 	var/confuse_amount
 
@@ -513,9 +514,6 @@
 	var/mob/living/carbon/human/occupant = get_occupant()
 	if(!occupant)
 		return
-	if (occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.forceMove(get_turf(src))
 	set_occupant(null)
 	icon_state = "implantchair"
@@ -528,11 +526,8 @@
 	if(get_occupant())
 		to_chat(usr, span_warning("\The [src] is already occupied!"))
 		return
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
 	M.stop_pulling()
-	M.loc = src
+	M.forceMove(src)
 	set_occupant(M)
 	src.add_fingerprint(usr)
 	icon_state = "implantchair_on"

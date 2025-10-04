@@ -13,6 +13,7 @@
 	use_power = USE_POWER_IDLE
 	icon = 'icons/obj/biogenerator.dmi'
 	icon_state = "biogen-work"
+	flags = REMOTEVIEW_ON_ENTER
 	var/mob/living/occupant
 	var/obj/item/reagent_containers/glass/beaker
 	var/obj/machinery/computer/xenobio2/computer
@@ -54,9 +55,6 @@
 	src.add_fingerprint(user)
 	if(do_after(user, 3 SECONDS, target = src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
 		user.visible_message(span_danger("[user] stuffs [victim] into the injector!"))
-		if(victim.client)
-			victim.client.perspective = EYE_PERSPECTIVE
-			victim.client.eye = src
 		victim.forceMove(src)
 		src.occupant = victim
 
