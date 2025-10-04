@@ -266,7 +266,7 @@
 	. = ..()
 
 	// If our host or our item gets released, then focus the turf until we move again.
-	if(!release_turf)
+	if(QDELETED(cache_host) || !release_turf) // You're doing nothing if this is gone...
 		return
 	cache_host.AddComponent(/datum/component/remote_view, focused_on = release_turf)
 	cache_host.client.eye = release_turf // Yes--
