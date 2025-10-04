@@ -2417,3 +2417,63 @@ Departamental Swimsuits, for general use
 	icon_state = "memorycrown"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	slot_flags = SLOT_HEAD
+
+//For general use
+/obj/item/clothing/suit/storage/hooded/purple_robes
+	name = "Purple Robes"
+	desc = "A basic set of purple robes. This one has a tag that reads 'Now with eye-tracking technology!'"
+
+	icon = 'icons/vore/fluff_clothing/eyerobes/custom_clothes_robe_item.dmi'
+	icon_state = "purple_robes"
+	default_worn_icon = 'icons/vore/fluff_clothing/eyerobes/custom_clothes_robe_mob.dmi'
+	hoodtype = /obj/item/clothing/head/hood/purple_robes
+
+	blood_overlay_type = "coat"
+	has_hood_sprite = FALSE //No need.
+	body_parts_covered = CHEST|ARMS|LEGS
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
+	var/toggled = FALSE
+	var/last_toggled = 0
+
+/obj/item/clothing/suit/storage/hooded/purple_robes/verb/toggle()
+	set name = "Toggle Eyes"
+	set category = "Object"
+	set src in usr
+	toggle_eyes(usr)
+
+/obj/item/clothing/suit/storage/hooded/purple_robes/proc/toggle_eyes(mob/user)
+
+	if(!user.canmove || user.stat || user.restrained())
+		return FALSE
+
+	//Antispam.
+	if((last_toggled + 6 SECONDS) > world.time) //Can only toggle it once every 6 seconds!
+		to_chat(user, span_info("You can only toggle the eyes every six seconds!"))
+		return
+
+
+	switch(toggled)
+		if(FALSE)
+			AddComponent(/datum/component/reactive_icon_update/clothing, \
+			icon_prefix = "_corrupted", \
+			directions = list(NORTH,EAST,SOUTH,WEST,SOUTHWEST,SOUTHEAST,NORTHWEST,NORTHEAST), \
+			range = 3, \
+			triggering_mobs = list(/mob/living))
+			toggled = TRUE
+			to_chat(user, "The coat's eyes open.")
+		if(TRUE)
+			var/datum/component/reactive_icon_update/clothing/reactive_component = GetComponent(/datum/component/reactive_icon_update/clothing)
+			if(reactive_component)
+				qdel(reactive_component)
+			toggled = FALSE
+			icon_state = initial(icon_state)
+			item_state = initial(item_state)
+			to_chat(user, "The coat's eyes close.")
+	last_toggled = world.time
+	user.update_inv_wear_suit()
+
+/obj/item/clothing/head/hood/purple_robes
+	name = "purple hood"
+	icon = 'icons/vore/fluff_clothing/eyerobes/custom_clothes_robe_item.dmi'
+	icon_state = "hood"
+	default_worn_icon = 'icons/vore/fluff_clothing/eyerobes/custom_clothes_robe_mob.dmi'

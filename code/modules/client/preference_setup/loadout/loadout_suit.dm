@@ -1175,3 +1175,8 @@ Talon winter coat
 /datum/gear/suit/pirate_coat
 	display_name = "pirate coat"
 	path = /obj/item/clothing/suit/pirate
+
+/datum/gear/suit/cloak_of_eyes
+	display_name = "cloak of eyes"
+	description = "A basic looking purple robe that has a hood and can be toggled to have eyes form and stare at moving creatures!"
+	path = /obj/item/clothing/suit/storage/hooded/purple_robes
