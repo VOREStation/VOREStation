@@ -343,8 +343,6 @@
 /// From base of /mob/proc/reset_perspective() : ()
 #define COMSIG_MOB_RESET_PERSPECTIVE "mob_reset_perspective"
 /// from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)
-#define COMSIG_MOB_SET_EYE "client_set_eye"
-/// from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)
 #define COMSIG_CLIENT_SET_EYE "client_set_eye"
 
 // /mob/living signals
