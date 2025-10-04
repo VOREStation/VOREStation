@@ -298,7 +298,7 @@
 		return FALSE
 	// Check if we actually need to drop our current remote view component, as this is expensive to do, and leads to more difficult to understand error prone logic
 	var/datum/component/remote_view/remote_comp = GetComponent(/datum/component/remote_view)
-	if(remote_comp?.remote_view_target == loc)
+	if(remote_comp?.looking_at_target_already(loc))
 		return FALSE
 	if(isitem(loc) || isbelly(loc)) // Requires more careful handling than structures because they are held by mobs
 		AddComponent(/datum/component/remote_view/mob_holding_item, loc)

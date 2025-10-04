@@ -292,7 +292,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				B.ownegg.w_class += M.size_multiplier * 4 //Egg size and weight scaled to match occupant.
 				if(M.size_multiplier > scale_clamp)
 					scale_clamp = M.size_multiplier
-				var/obj/item/holder/H = new mob_holder_type(B.ownegg, M)
+				var/obj/item/holder/H = new mob_holder_type(B, M) // in the belly till the next line...
+				H.forceMove(B.ownegg) // Move INTO the egg so we keep our remote view, if we holder/New(egg) into the egg we won't get a remote view as it wasn't a Move()
 				B.ownegg.max_storage_space = H.w_class
 				//B.ownegg.icon_scale_x = 0.25 * B.ownegg.w_class
 				//B.ownegg.icon_scale_y = 0.25 * B.ownegg.w_class
