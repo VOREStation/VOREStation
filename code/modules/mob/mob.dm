@@ -299,8 +299,8 @@
 	if(ispAI(src) && istype(loc,/obj/machinery)) // Restore pai machine connection.
 		reset_perspective(loc)
 		return TRUE
-	if(isitem(loc)) // Being a held item requires a much more aggressive remote view, or else we run face first into a byond issue when mobs drop us.
-		AddComponent(/datum/component/remote_view/mob_holding_item, src, loc)
+	if(isitem(loc) || isbelly(loc)) // Requires more careful handling than structures because they are held by mobs
+		AddComponent(/datum/component/remote_view/mob_holding_item, loc)
 		return TRUE
 	if(loc.flags & REMOTEVIEW_ON_ENTER) // Handle atoms that begin a remote view upon entering them.
 		AddComponent(/datum/component/remote_view, loc)

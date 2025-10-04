@@ -57,7 +57,7 @@
 
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
-	PROTECTED_PROC(TRUE)
+	PRIVATE_PROC(TRUE)
 	if(!host_mob)
 		return
 	end_view()
@@ -67,6 +67,10 @@
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
 	if(!host_mob)
+		return
+	// Check if we're still remote viewing the SAME target!
+	if(host_mob.client.eye == remote_view_target)
+		to_chat(world, "[parent] PERSISTING THE VIEW [type] -> [remote_view_target]")
 		return
 	// The object already changed it's view, lets not interupt it like the others
 	qdel(src)
@@ -97,7 +101,6 @@
 
 /datum/component/remote_view/proc/end_view()
 	PROTECTED_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
 	host_mob.reset_perspective()
 
 
@@ -236,54 +239,37 @@
 
 
 /**
- * Remote view subtype that attempts to hold the client's eye to it's target as aggressively as possible until ended.
- * This is due to a byond bug where dropping a mob inside an object will keep the view fixed on the mob that was holding
- * the object instead. After several days of debugging, this was the best option I could come up with. If you find a
- * better one, please refactor and use it. It will also need to handle situations where a pai can be nested multiple layers
- * deep, such as inside their paicard, inside a box, inside a backpack, held by a mob. - Willbird
- *
- * Entering any item will set this as your remoteview. This is a fallback to account for just how aggressive the byond bug is.
- * I had hoped lazy_eye would be some kind of fix, but it breaks smooth scrolling entirely, and TG doesn't use it either.
- * Though it appears TG also doesn't have mob holders in a way that we do, let alone inanimate item TF, or protean rigs.
+ * Remote view subtype that is handling a byond bug where mobs changing their client eye from inside of
+ * and object will not have their eye change, and instead focus on any mob currently holding the item,
+ * and only be released once we move ourselves to a new turf. This subtype does some loc witchcraft
+ * to put us on a turf, change our view, and put us back without calling signals or move/enter.
+ * Hopefully this will not be needed someday in the future - Willbird
  */
 /datum/component/remote_view/mob_holding_item
-	VAR_PRIVATE/obj/item/host_item
-	var/tagged_for_turf_release = FALSE // If true, we will release to the turf the host mob is on when we destroy from movement or qdel
 
-/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on, obj/item/our_item)
+/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on)
 	. = ..()
-	if(our_item && !istype(our_item, /obj/item/holder)) // Holders destroy on drop, and their destroy gets called before their mob is released... Snowflake...
-		host_item = our_item
-		RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
-		RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
+	// Items can be nested deeply, so we need to update on any parent reorganization or actual move.
 	host_mob.AddComponent(/datum/component/recursive_move)
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
+	// Check if we're still looking at our own object, allow us to release if so!
+	var/turf/release_turf
+	if(host_mob?.client?.eye == host_mob || host_mob?.client?.eye == remote_view_target)
+		if(!QDELETED(remote_view_target) && isturf(remote_view_target.loc))
+			release_turf = get_turf(remote_view_target)
+		if(!QDELETED(host_mob) && isturf(host_mob.loc))
+			release_turf = get_turf(host_mob)
+
+	// Parent will clear a lot of stuff, so cache the mob here
 	var/mob/cache_host = host_mob
 	. = ..()
-	// decouple
-	if(host_item)
-		UnregisterSignal(host_item, COMSIG_QDELETING)
-		UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
-		host_item = null
-	// Check if we are still valid for turf dropping
-	if(QDELETED(cache_host) || !cache_host.client)
-		return
-	if(!tagged_for_turf_release)
-		return
-	// Release and focus on the ground the mob was put on, this is REQUIRED due to a byond issue where being dropped from mobs will focus on that mob until we move again.
-	var/turf/release_turf = get_turf(cache_host)
-	if(release_turf)
-		cache_host.AddComponent(/datum/component/remote_view, focused_on = release_turf) // So we release our new view as soon as we move again.
-		cache_host.AddComponent(/datum/component/recursive_move)
-		cache_host.client.eye = release_turf // Yes--
-		cache_host.client.perspective = EYE_PERSPECTIVE // --this is required too.
 
-/datum/component/remote_view/mob_holding_item/handle_endview(datum/source)
-	if(!host_mob)
+	// If our host or our item gets released, then focus the turf until we move again.
+	if(!release_turf)
 		return
-	if(QDELETED(host_mob) || (host_item && QDELETED(host_item))) // Checks for if host_item is actually set before qdel checking... Or we'd never get to the next check!
-		return ..()
-	if(isturf(host_mob.loc) || (host_item && isturf(host_item.loc))) // Only released on turf drop, we get signals from all moves above us due to recursive_move component
-		tagged_for_turf_release = TRUE
-		return ..()
+	cache_host.AddComponent(/datum/component/remote_view, focused_on = release_turf)
+	cache_host.client.eye = release_turf // Yes--
+	cache_host.client.perspective = EYE_PERSPECTIVE // --this is required too.
+	if(!isturf(cache_host.loc)) // Need our item's moves forwarded to us
+		cache_host.AddComponent(/datum/component/recursive_move)
