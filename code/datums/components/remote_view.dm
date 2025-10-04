@@ -103,6 +103,14 @@
 	PROTECTED_PROC(TRUE)
 	host_mob.reset_perspective()
 
+/datum/component/remote_view/proc/get_host()
+	return host_mob
+
+/datum/component/remote_view/proc/get_target()
+	return remote_view_target
+
+/datum/component/remote_view/proc/looking_at_target_already(atom/target)
+	return (remote_view_target == target)
 
 
 /**
