@@ -24,7 +24,7 @@
 	return ..() // Parent call should make the mob move.
 
 /*one proc, four uses
-swapping: if it's true, the mobs are trying to switch, if false, non-passive is pushing passive
+swapping: if it's TRUE, the mobs are trying to switch, if FALSE, non-passive is pushing passive
 default behaviour is:
 	- non-passive mob passes the passive version
 	- passive mob checks to see if its mob_bump_flag is in the non-passive's mob_bump_flags
