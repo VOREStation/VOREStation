@@ -276,17 +276,27 @@
 	if(!host_mob)
 		return
 	if(isturf(host_mob.loc) || !host_mob.client)
-		decouple_view_to_turf(get_turf(host_mob))
+		var/turf/release_turf = get_turf(host_mob)
+		to_chat(world, "=============================>>>[parent] MOB RELEASED TO TURF [type] -> [remote_view_target.type] AT: [release_turf]")
+		decouple_view_to_turf(release_turf)
 
 /datum/component/remote_view/mob_holding_item/proc/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
 	SIGNAL_HANDLER
 	if(!host_mob)
 		return
-	to_chat(world,"TEST ([source]) ([oldloc]) ([new_loc])")
-	// Check to see if we're no longer in a mob when we drop
-	var/atom/movable/cur_parent = host_mob?.loc // first loc could be null
+
+	// Check to see if we're no longer in a mob when we drop. If either us or our item's loc is a turf then we're already released from a mob!
+	if(isturf(host_mob.loc) || isturf(remote_view_target.loc))
+		var/turf/release_turf = get_turf(host_mob)
+		to_chat(world, "=============================>>>[parent] EARLY DECOUPLE TO TURF [type] -> [remote_view_target.type] AT: [release_turf]")
+		decouple_view_to_turf(release_turf)
+		return
+
+	// Alright clearly we're deeper in than just our item or our mob. See who is in charge of this clowncar
+	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
+	var/cur_parent = new_loc // first loc could be null
 	var/recursion = 0 // safety check - max iterations
-	while(istype(cur_parent) && (recursion < 64))
+	while(!isnull(cur_parent) && (recursion < 64))
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
 			log_runtime("REMOTE_VIEW: Parent is inside itself. ([host_mob]) ([host_mob.type])")
 			break
@@ -297,8 +307,6 @@
 			to_chat(world, "=============================>>>[parent] DECOUPLE VIEW TO TURF [type] -> [remote_view_target.type] AT: [cur_parent]")
 			decouple_view_to_turf(cur_parent)
 			return
-		if(isarea(cur_parent))
-			return // Something is terribly wrong if you've gotten here
 		recursion++
 		cur_parent = cur_parent.loc
 
