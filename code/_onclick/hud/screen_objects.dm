@@ -606,13 +606,7 @@
 				var/mob/living/silicon/ai/ai_user = usr
 				ai_user.ai_checklaws()
 
-		if("PDA - Send Message")
-			if(isAI(usr))
-				var/mob/living/silicon/ai/ai_user = usr
-				ai_user.aiPDA.start_program(ai_user.aiPDA.find_program(/datum/data/pda/app/messenger))
-				ai_user.aiPDA.cmd_pda_open_ui(usr)
-
-		if("PDA - Show Message Log")
+		if("PDA - Messenger")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/ai_user = usr
 				ai_user.aiPDA.start_program(ai_user.aiPDA.find_program(/datum/data/pda/app/messenger))

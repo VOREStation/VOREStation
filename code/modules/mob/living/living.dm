@@ -97,12 +97,13 @@
 			organs -= OR
 			qdel(OR)
 
-	if(LAZYLEN(internal_organs) && !istype(src, /mob/living/simple_mob/animal))
+	if(LAZYLEN(internal_organs))
 		internal_organs_by_name.Cut()
 		while(internal_organs.len)
 			var/obj/item/OR = internal_organs[1]
 			internal_organs -= OR
-			qdel(OR)
+			if(isobj(OR))
+				qdel(OR)
 
 	cultnet.updateVisibility(src, 0)
 
@@ -1481,6 +1482,8 @@
 		screen_icon.icon = HUD.ui_style
 		screen_icon.color = HUD.ui_color
 		screen_icon.alpha = HUD.ui_alpha
+	if(isAI(user))
+		screen_icon.screen_loc = ui_ai_pda_send
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 

@@ -223,7 +223,6 @@
 			user.remove_from_mob(O)
 			O.loc = src
 			beaker = O
-			updateUsrDialog(user)
 	else if(processing)
 		to_chat(user, span_notice("\The [src] is currently processing."))
 	else if(istype(O, /obj/item/storage/bag/plants))
