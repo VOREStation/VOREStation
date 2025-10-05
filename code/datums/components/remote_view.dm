@@ -294,7 +294,7 @@
 
 	// Alright clearly we're deeper in than just our item or our mob. See who is in charge of this clowncar
 	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
-	var/atom/cur_parent = new_loc // first loc could be null
+	var/atom/cur_parent = remote_view_target.loc // first loc could be null
 	var/recursion = 0 // safety check - max iterations
 	while(!isnull(cur_parent) && (recursion < 64))
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
@@ -315,9 +315,10 @@
 
 /datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(var/turf/release_turf)
 	// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
-	var/mob/cache_mob = host_mob // Adding the new component qdels this one, so this var gets wiped... Cache it for use.
+	var/mob/cache_mob = host_mob
+	qdel(src) // qdel before or our view won't release cleanly
 	cache_mob.AddComponent(/datum/component/remote_view,release_turf)
 	cache_mob.client.eye = release_turf // Yes--
 	cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
-	cache_mob.AddComponent(/datum/component/recursive_move) // So we are released from looking at the destination turf if we are still in an item.
-	// We do not need a qdel after this, as the reset_perspective() when adding the above remote view will drop this remote view and kill this component
+	if(!isturf(cache_mob.loc))
+		cache_mob.AddComponent(/datum/component/recursive_move) // So we are released from looking at the destination turf if we are still in an item.
