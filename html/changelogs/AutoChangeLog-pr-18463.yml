@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - rscadd: "Adds two negative traits: Unlucky and Unlucky Major"
-  - rscadd: "Unlucky (-2 trait points) is a trait that has a plethora of effects, ranging from dice being worse to slipping into a washing machine!"
-  - rscadd: "Unlucky Major (-5 trait points) makes the game a movie and you're the main character. The downside: The movie is Final Destination."
-  - code_imp: "Removes bluespace crackers list and replaces it with the effect being decided upon during init"
-  - code_imp: "Swaps some strings in the bluespace cracker to defines"
