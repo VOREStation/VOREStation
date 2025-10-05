@@ -294,7 +294,7 @@
 
 	// Alright clearly we're deeper in than just our item or our mob. See who is in charge of this clowncar
 	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
-	var/cur_parent = new_loc // first loc could be null
+	var/atom/cur_parent = new_loc // first loc could be null
 	var/recursion = 0 // safety check - max iterations
 	while(!isnull(cur_parent) && (recursion < 64))
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
