@@ -439,7 +439,7 @@
 		updateSelfDialog()//For the non-input related code.
 	else if(istype(C, /obj/item/paicard) && !src.pai)
 		user.drop_item()
-		C.loc = src
+		C.forceMove(src)
 		pai = C
 		to_chat(user, span_notice("You slot \the [C] into \the [src]."))
 		SStgui.update_uis(src) // update all UIs attached to src
