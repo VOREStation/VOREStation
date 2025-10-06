@@ -736,6 +736,7 @@
 #include "code\datums\elements\lootable\misc.dm"
 #include "code\datums\elements\lootable\surface.dm"
 #include "code\datums\elements\lootable\trash.dm"
+#include "code\datums\elements\vore\spontaneous_vore.dm"
 #include "code\datums\game_masters\_common.dm"
 #include "code\datums\helper_datums\construction_datum.dm"
 #include "code\datums\helper_datums\events.dm"
