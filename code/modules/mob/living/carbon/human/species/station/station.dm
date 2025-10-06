@@ -962,6 +962,11 @@
 	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds,
 		/mob/living/carbon/human/proc/tie_hair)
 
+	pain_verb_1p = list("yelp", "growl")
+	pain_verb_3p = list("yelps", "growls")
+
+	species_sounds = "Canine"
+
 	wikilink="https://wiki.vore-station.net/Backstory#Vulpkanin"
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/vulpkanin)
