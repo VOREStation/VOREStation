@@ -1477,6 +1477,8 @@
 	min_age = 18
 	max_age = 80
 
+	species_sounds = "Mouse"
+
 	blurb = "The Altevian are a species of tall, rodent humanoids that are akin to rats for their features. \
 	The Altevian, unlike most species, do not have a home planet, nor system, adopting a fully nomadic lifestyle \
 	for their survival across the stars. Instead, they have opted to live in massive super capital-class colony-ships \
