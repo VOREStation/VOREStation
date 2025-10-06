@@ -897,6 +897,8 @@
 	min_age = 20
 	max_age = 80
 
+	species_sounds = "Vulpine"
+
 	blurb = "The fennec-like, blue-blooded Zorren are native to Virgo 4/Menhir and are descendants of a precursor species \
 			that is thought to be responsible for the near-collapse of the biosphere of the planet. \
 			With societies organised around hierarchal caste systems (such as the Royal Zorren) or freedom and strength (such as the Free Tribe Zorren), \
