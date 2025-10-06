@@ -11,7 +11,6 @@
 
 /datum/component/remote_view/Initialize(atom/focused_on)
 	. = ..()
-	to_chat(world, "=============================OOO[parent] BEGIN REMOTE VIEW [type] -> [focused_on.type]")
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	// Safety check, focus on ourselves if the target is deleted, and flag any movement to end the view.
@@ -24,11 +23,14 @@
 	if(forbid_movement)
 		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_hostmob_moved))
 	else
-		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_endview))
+		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_hostmob_moved))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
 	RegisterSignal(host_mob, COMSIG_MOB_LOGOUT, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+	// Recursive move component fires this, we only want it to handle stuff like being inside a paicard when releasing turf lock
+	if(isturf(focused_on))
+		RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
 	// Focus on remote view
 	remote_view_target = focused_on
 	if(host_mob != remote_view_target) // Some items just offset our view, so we set ourselves as the view target, don't double dip if so!
@@ -38,7 +40,6 @@
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
-	to_chat(world, "=============================XXX[parent] ENDED REMOTE VIEW [type] -> [remote_view_target.type]")
 	if(forbid_movement)
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
 	else
@@ -47,6 +48,8 @@
 	UnregisterSignal(host_mob, COMSIG_MOB_LOGOUT)
 	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
+	if(isturf(remote_view_target))
+		UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
 	// Cleanup remote view
 	if(host_mob != remote_view_target)
 		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
@@ -58,6 +61,19 @@
 /datum/component/remote_view/proc/handle_hostmob_moved(atom/source, atom/oldloc, direction, forced, movetime)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	if(!host_mob)
+		return
+	end_view()
+	qdel(src)
+
+/datum/component/remote_view/proc/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
+	SIGNAL_HANDLER
+	PROTECTED_PROC(TRUE)
+	ASSERT(isturf(remote_view_target))
+	// This signal handler is for recursive move decoupling us from /datum/component/remote_view/mob_holding_item's turf focusing when dropped in an item like a paicard
+	// This signal is only hooked when we focus on a turf. Check the subtype for more info, this horrorshow took several days to make consistently behave.
+	if(!host_mob)
+		return
 	end_view()
 	qdel(src)
 
@@ -76,7 +92,6 @@
 		return
 	// Check if we're still remote viewing the SAME target!
 	if(host_mob.client.eye == remote_view_target)
-		to_chat(world, "================================[parent] PERSISTING THE VIEW [type] -> [remote_view_target.type]")
 		return
 	// The object already changed it's view, lets not interupt it like the others
 	qdel(src)
@@ -259,66 +274,63 @@
  * to put us on a turf, change our view, and put us back without calling signals or move/enter.
  * Hopefully this will not be needed someday in the future - Willbird
  */
+#define MAX_RECURSIVE 64
 /datum/component/remote_view/mob_holding_item
 
 /datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on)
+	if(!isobj(focused_on)) // You shouldn't be using this if so.
+		return COMPONENT_INCOMPATIBLE
 	. = ..()
 	// Items can be nested deeply, so we need to update on any parent reorganization or actual move.
 	host_mob.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
+	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved)) // Doesn't need override, basetype only ever registers this signal if we're looking at a turf
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
-	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
+	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
 	. = ..()
 
 /datum/component/remote_view/mob_holding_item/handle_hostmob_moved(atom/source, atom/oldloc)
-	// Hostmob moved to a turf. Decouple!
+	// We handle this in recursive move
 	if(!host_mob)
 		return
-	if(isturf(host_mob.loc) || !host_mob.client)
-		var/turf/release_turf = get_turf(host_mob)
-		to_chat(world, "=============================>>>[parent] MOB RELEASED TO TURF [type] -> [remote_view_target.type] AT: [release_turf]")
-		decouple_view_to_turf(release_turf)
+	if(isturf(host_mob.loc))
+		decouple_view_to_turf( host_mob, host_mob.loc)
+		qdel(src)
 
-/datum/component/remote_view/mob_holding_item/proc/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
-	SIGNAL_HANDLER
+/datum/component/remote_view/mob_holding_item/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
 	if(!host_mob)
 		return
-
-	// Check to see if we're no longer in a mob when we drop. If either us or our item's loc is a turf then we're already released from a mob!
-	if(isturf(host_mob.loc) || isturf(remote_view_target.loc))
-		var/turf/release_turf = get_turf(host_mob)
-		to_chat(world, "=============================>>>[parent] EARLY DECOUPLE TO TURF [type] -> [remote_view_target.type] AT: [release_turf]")
-		decouple_view_to_turf(release_turf)
+	// default moved signal will handle this
+	if(isturf(host_mob.loc))
 		return
-
-	// Alright clearly we're deeper in than just our item or our mob. See who is in charge of this clowncar
+	// This only triggers when we are deeper in than our mob. See who is in charge of this clowncar...
 	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
-	var/atom/cur_parent = remote_view_target.loc // first loc could be null
+	var/atom/cur_parent = remote_view_target?.loc // first loc could be null
 	var/recursion = 0 // safety check - max iterations
-	while(!isnull(cur_parent) && (recursion < 64))
+	while(!isnull(cur_parent) && (recursion < MAX_RECURSIVE))
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
-			log_runtime("REMOTE_VIEW: Parent is inside itself. ([host_mob]) ([host_mob.type])")
+			log_runtime("REMOTE_VIEW: Parent is inside itself. ([host_mob]) ([host_mob.type]) : [MAX_RECURSIVE - recursion]")
 			break
 		if(ismob(cur_parent))
-			to_chat(world, "=============================>>>[parent] IN MOB [cur_parent]")
 			break // Mob is holding us, we were picked up.
 		if(isturf(cur_parent))
-			to_chat(world, "=============================>>>[parent] DECOUPLE VIEW TO TURF [type] -> [remote_view_target.type] AT: [cur_parent]")
-			decouple_view_to_turf(cur_parent)
+			decouple_view_to_turf( host_mob, cur_parent)
+			qdel(src)
 			return
 		recursion++
 		cur_parent = cur_parent.loc
 
-	if(recursion >= 64) // If we escaped due to iteration limit, cancel
+	if(recursion >= MAX_RECURSIVE) // If we escaped due to iteration limit, cancel
 		log_runtime("REMOTE_VIEW: Turf search hit recursion limit. ([host_mob]) ([host_mob.type])")
 
-/datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(var/turf/release_turf)
-	// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
-	var/mob/cache_mob = host_mob
-	qdel(src) // qdel before or our view won't release cleanly
-	cache_mob.AddComponent(/datum/component/remote_view,release_turf)
-	cache_mob.client.eye = release_turf // Yes--
-	cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
-	if(!isturf(cache_mob.loc))
-		cache_mob.AddComponent(/datum/component/recursive_move) // So we are released from looking at the destination turf if we are still in an item.
+/datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf)
+	// Yes this spawn is needed, yes I wish it wasn't.
+	spawn(0)
+		// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
+		cache_mob.AddComponent(/datum/component/remote_view, release_turf)
+		cache_mob.client.eye = release_turf // Yes--
+		cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
+		if(!isturf(cache_mob.loc)) // For stuff like paicards
+			cache_mob.AddComponent(/datum/component/recursive_move)
+
+#undef MAX_RECURSIVE

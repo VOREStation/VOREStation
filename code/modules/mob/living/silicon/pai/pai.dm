@@ -398,26 +398,22 @@
 		var/mob/living/M = H.loc
 		if(istype(M))
 			M.drop_from_inventory(H)
-		H.loc = get_turf(src)
-		src.loc = get_turf(H)
+		card.forceMove(get_turf(H))
+		src.forceMove(card)
 
 	if(isbelly(loc))	//If in tumby, when fold up, card go into tumby
 		var/obj/belly/B = loc
-		src.forceMove(card)
 		card.forceMove(B)
+		src.forceMove(card)
 
 	if(istype( src.loc,/obj/structure/disposalholder))
 		var/obj/structure/disposalholder/hold = loc
-		src.loc = card
-		card.loc = hold
-		src.forceMove(card)
 		card.forceMove(hold)
+		src.forceMove(card)
 
 	else				//Otherwise go on floor
-		src.loc = card
-		card.loc = get_turf(card)
+		card.forceMove(get_turf(card))
 		src.forceMove(card)
-		card.forceMove(card.loc)
 
 	canmove = 1
 	resting = 0
