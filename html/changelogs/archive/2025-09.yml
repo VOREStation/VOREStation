@@ -155,3 +155,338 @@
       mining attempt.
   - bugfix: Fighters will now correctly say whether or not you'll raise or lower their
       landing gear.
+2025-09-12:
+  Diana:
+  - image: Archives some of the old gorka icons
+  - image: Upports two helm sprites for the pursuit teshari rig
+  - bugfix: Removes him (the blocker)
+  ItsSelis:
+  - bugfix: LOOC messages are now properly logging in the right category instead of
+      falling back to the default one.
+  - admin: admins now have an in-game log explorer (sorted by log category and searchable)
+  - refactor: replaced persistent_ckey variable to persistent_client datum for more
+      advanced usage
+  - refactor: logs are now being saved in json
+  - refactor: to_world([...]) has been converted to to_chat(world, [...]) to avoid
+      confusion between multiple procs that all do the same thing in the end
+  - refactor: num2hex and hex2num are now defines
+  - rscdel: removed unused/deprecated procs
+  - rscadd: implemented sendmaps profiler (exporting to csv)
+  - config: added new config to also save the logs in the (old) human readable format
+      (txt)
+  - config: added config variables to configure error handling
+  Kashargul:
+  - bugfix: using accessories no longer drops items on spawn
+  - bugfix: whitescreen after game join
+  - bugfix: attack logging runtiming
+  KillianKirilenko:
+  - image: archives the non-digi gorka and inventory sprites as well for thoroughness
+  Ryumi:
+  - maptweak: Fixed the corner couch in the hotsprings redgate. Also made the beds
+      appropriately cozier.
+  - maptweak: Gave the Tether science outpost's all of the amenities of a proper dorm
+      room.
+  SatinIsle:
+  - qol: Added emergency door releases to autoresleever rooms.
+  - qol: Changed autoresleevers to still work without power.
+  - qol: Added short range radios (off by default) to emergency supply boxes.
+  - qol: Changed APCs to allow the cover to be opened by anyone beneath 15% charge.
+  - balance: Given APCs in SD comms rooms bigger cells.
+  Will:
+  - rscadd: disposal_system_connection component
+  - code_imp: COMSIG_DISPOSAL_FLUSH  signal
+  - code_imp: COMSIG_DISPOSAL_RECEIVING  signal
+  - code_imp: disposal code cleaned up, moved to their own files
+  - refactor: Sleep() removed from disposal packet movement, now uses timers
+  - refactor: disposal code no longer uses sleeps for actions, and properly uses do_after
+  - refactor: disposal code uses get_turf() instead of src.loc for moving things to
+      its turf
+  - bugfix: Being ejected from disposals while under floor paneling now properly breaks
+      and drops the correct floor tile stack, instead of an invisible null flooring
+      stack
+  - bugfix: Fracking in a location without deep resources no longer causes a runtime
+2025-09-14:
+  Kashargul:
+  - bugfix: the rest of the attack logging
+2025-09-15:
+  Aroliacue:
+  - image: Reshades the merc modular armor to more accurately match each piece.
+  - rscadd: Added a new type of Xenomorph Tail, now with vwag!
+  - image: added xenotail_fullcolour_vwag to tails.dmi
+  Diana:
+  - code_imp: Grep compliance
+  - bugfix: Mops can clean multiple tiles at once more
+  - code_imp: Gets rid of some typecasted throwforce
+  - bugfix: Immovable rod destroys walls again in an even better way
+  Guti:
+  - qol: Internal organs will heal themselves now, at a slow rate.
+  ItsSelis:
+  - rscadd: instruments can now be synced together to play the same song at the same
+      time
+  - qol: updated instrument code
+  Kashargul:
+  - bugfix: missing stops in processing in xenoarch destroy
+  - code_imp: cleans up all 0 and null flags to use NONE
+  KillianKirilenko:
+  - spellcheck: removed a duplicate instance of "Odyssey" from the universal ship
+      name list
+  - code_imp: added some new ship names to the general list and some specific factions
+  Ryumi:
+  - qol: Added A verb to all card decks that allows you to search for and retrieve
+      any number of specific cards from it. Now dealers who hate jokers can much more
+      quickly and easily remove them from their decks. Note that this is a very visible
+      action, so don't try to be sneaky with this!
+  Tenryumi:
+  - bugfix: Fixed holo-collars not rendering correctly on mobs when worn in the suit
+      slot.
+  Will:
+  - code_imp: COMSIG_ITEM_DROPPED signal implemented
+  - code_imp: dropcode uses DROPDEL item_flag instead of a var
+  - refactor: unified item drop code somewhat
+  - bugfix: combat grabs can no longer be pickedup by swapping hands, resulting in
+      a broken grab object you can drop
+  - bugfix: various objects that would be dropped and then vanish a frame later now
+      vanish instantly on drop
+  - bugfix: player grabs can no longer be removed using the stripping menu
+  - bugfix: changeling items can no longer be removed with the stripping menu
+  - bugfix: protean rigs can no longer be removed with the stripping menu
+  - bugfix: TK grabs can no longer be removed with the stripping menu
+  - code_imp: rotatable element, gives atoms the rotation verbs in a safe and clean
+      way
+  - refactor: removed all defunct rotation verbs to use the rotatable element instead
+  - refactor: Medical sleepers use forceMove instead of loc
+  - bugfix: locked screen after being put in a sleeper
+  - bugfix: hearing radios around a sleeper once you leave it
+  - rscadd: Active jetpacks worn in zeroG count as using crutchs for leg damage or
+      lumbar impairment
+  - bugfix: Netgun and shrinking netgun science entries swapped around to give the
+      proper item when printed
+  Zizzi:
+  - rscadd: added circuits for boolean handling
+  - bugfix: fixed pathfinding circuit seeing targets out of sight range.
+  - balance: improved pathfinding circuit
+  - balance: changed many circuit complexities
+  lbnesquik:
+  - sound: Added cawing sounds for the birds enjoyers
+  - qol: Added a description to the paperwork dispenser.
+  - rscadd: Added an implantable health scanner
+  - bugfix: fixed incorrect names
+2025-09-16:
+  Diana:
+  - bugfix: Rezadone properly takes chem strength into account
+  Guti:
+  - bugfix: Fixes vomiting in a belly making decals out of the pred
+  - code_imp: is_mouth_covered proc makes sure masks cover the face now
+  Kashargul:
+  - bugfix: simple mobs can now breach through girders and barricades
+  - bugfix: barricades now take a small amount of range damage instead of blocking
+      them all
+  KillianKirilenko:
+  - qol: you can now sippy as low as 1u at a time from most glasses
+  - spellcheck: added a 'from' to the drinking text because the name and icon update
+      *before* the message goes through
+  Will:
+  - rscadd: third eye marking
+  - rscadd: third eye (high) marking
+  - rscadd: teshari third eye marking
+  - rscadd: teshari third eye (high) marking
+  - rscadd: anime eyes bulging marking
+  - rscadd: anteater muzzle marking
+  - rscadd: qaavos head marking
+  - rscadd: qaavos eyes marking
+  kot:
+  - bugfix: fixed the loincloth not being present in the loadout options
+2025-09-17:
+  Ryumi:
+  - rscadd: Added melon liqueur and blue curaco to service borg drink synthesis list.
+  - rscadd: Service borgs can now synthesize fake casino chips, card decks, and gaming
+      dice packs.
+  - balance: Service borg grippers can now hold casino chips, card decks, and card
+      hands. Now station-bound entities can gamble and even be dealers!
+  - qol: Service borgs now use an input list for their rapid fabricator, as well as
+      cleaning up a lot of needless RSF log spam by replacing them with balloon alerts.
+  SatinIsle:
+  - rscadd: 'Added the following forms to beast form for hanner and lleill: Hyena,
+      Lion, Reindeer, Armadillo and Slug.'
+  lbnesquik:
+  - bugfix: fixed simple doors not being breakable
+2025-09-18:
+  Diana:
+  - image: Updates Captains Laser, Energygun, Nagant, Makarov, Secgun, and stunrevolver
+      sprites
+  - code_imp: Removes unused lines of code where icon = gun.dmi was redefined
+  ItsSelis:
+  - rscadd: Added autowiki functionality to automatically create wiki templates from
+      code
+  Kashargul:
+  - admin: fix runtime viewer not working
+  - bugfix: a bunch of logging runtimes
+  - bugfix: lost drone law updates sometimes failing
+  SatinIsle:
+  - rscadd: Added an extra bartender slot on request.
+  - balance: Low Blood Volume from 3 to 2 and the extreme version from 5 to 3.
+  - balance: Reduced biocompatibility 2->1, 4->2, 8->4.
+  - balance: Ambulant Blood 1 to 0, this has no effect at all here where changelings
+      are never a risk.
+  ShadowLarkens:
+  - refactor: Got rid of /datum/modifier/fire and converted fully to /datum/status_effect.
+  - rscadd: When you're on fire, you have some nice smoky firey particles come off
+      you.
+  - rscadd: You can now get wet, which inhibits fire and gives you pretty drippy particles.
+  - rscadd: You can now spread fire if you're on fire and you bump into another mob.
+2025-09-19:
+  Diana:
+  - image: Splits the _mob and icon files for fluff items into two files
+  - bugfix: Fixes a few broken fluff sprites
+  Guti:
+  - bugfix: fixed bluespace and chief engineer's belt not being able to hold onto
+      atmos combi-fans
+  KillianKirilenko:
+  - rscadd: Added a general command uniform selector for all department heads.
+  MeepleMuncher:
+  - rscadd: Dragon plushies!
+  Ryumi:
+  - code_imp: Alphabetically sorted the hanner and lleil beast form lists.
+  - rscadd: ALL cyborgs now start with a random number generator that lets them roll
+      virtual dice.
+  - balance: Misc. borg grippers can now hold card hands and fake casino chips.
+  - balance: Service borg grippers can now hold real casino chips.
+  Will:
+  - bugfix: Cortical borers cannot prod things adjacent to their host, while inside
+      of their host.
+  - qol: Medical body scanner now shows if a subject is experiencing withdrawal symptoms.
+  - bugfix: Medical kiosk can no longer do mind and body record scans in VR
+  - bugfix: Slugs can no longer apply slime to a turf already covered in their slime
+  - bugfix: Santabag is now actually a bag
+  - code_imp: Adds atom disposal flushed signal, sent from items when they are flushed
+      into the disposal network
+  - qol: Items can now be placed on casino tables with click precision, like normal
+      tables.
+  - bugfix: Flying and hovering properly checked when avoiding landmines
+  - bugfix: Phased shadekin no longer set off landmines
+  - bugfix: Vehicles set off landmines
+  - balance: Tiny mobs like mice no longer set off landmines
+  - refactor: transit tubes use forceMove() instead of directly setting loc
+  - bugfix: Tracking implant fizzling no longer broken
+  - code_imp: Allows mappers to place deployed mechanical traps properly
+  - bugfix: Restored missing spellbook icon
+  - rscadd: Catwalks mapped over maglev tracks will act as a bridge
+  - bugfix: Phased shadekin can no longer touch maglev tracks and get shocked
+  Willburd:
+  - code_imp: Disposal sorter prefabs use defines instead of numbers
+  lbnesquik:
+  - rscadd: Added the coroner role as an alternative title to medical doctors
+2025-09-21:
+  Diana:
+  - bugfix: Borg shocker shows the appropriate on-off state
+  Guti:
+  - admin: Added admin logs to bear traps
+  Kashargul:
+  - qol: moves most law outputs to blocks
+  Will:
+  - bugfix: Changeling chameleon cloths no longer reveal lings by having suit sensors
+  - code_imp: clothing code uses suit_sensor defines instead of magic numbers
+  - code_imp: Reaction unittest strictness includes distillation reactions being blocked
+      by instant reactions
+  - code_imp: Implements COMSIG_REAGENTS_HOLDER_REACTED
+  - refactor: reagent holder handle_reactions() uses number of reactions that happened,
+      and not just completion of the proc for return value
+  - bugfix: peanut butter milkshake reaction no longer blocked by milkshake
+  - bugfix: aloe reaction no longer blocked by irish cream
+  - bugfix: instant beer reaction no longer blocked by corn cooking oil
+  - bugfix: biomass distilling reaction no longer blocked by virology mix 3
+2025-09-22:
+  Kashargul:
+  - code_imp: moves color_matrix to a tgui_input
+  - code_imp: moves obj/screen to atom/movable/screen
+  MeepleMuncher:
+  - rscadd: Customizable dragon plushies!
+  Ryumi:
+  - qol: Cyborg Rapid-Service-Fabricators now use radial menus for all of its selection
+      menus. Pretty pictures...
+  SatinIsle:
+  - rscadd: Added a new scene item, shibari bindings!
+  - image: Added icons for human and digi shibari bindings.
+  Will:
+  - bugfix: Disarming push attacks causing combat grabs to drop as items.
+2025-09-23:
+  Tenryumi:
+  - image: Halved the size of playing chips' icons.
+  Will:
+  - code_imp: Adds tethered item component for items that have a handheld subitem
+      that can be removed from it while it is worn
+  zeskorion:
+  - rscadd: Added several new mapping features for your local mapper
+  - rscadd: digestive nanite turfs. currently mapperbus only
+  - rscadd: faster swimming aquatic trait
+  - qol: catwalks now prevent turfs from slowing people
+  - qol: water turfs now break falls
+  - qol: Maint blood and vomit is old and dried.
+  - balance: ' water turfs now break falls'
+  - bugfix: emergency lights stay red during nightshift
+2025-09-24:
+  Willburd:
+  - refactor: Huge door code cleanup
+  - refactor: attempt_vr() removal
+  - refactor: hook_vr() removal
+  - refactor: few remaining MinutesToTicks and SecondsToTicks updated to use defines
+      instead
+  - code_imp: Implements COMSIG_DOOR_CAN_OPEN
+  - code_imp: Implements COMSIG_DOOR_CAN_CLOSE
+  - code_imp: Implements COMSIG_DOOR_OPEN
+  - code_imp: Implements COMSIG_DOOR_CLOSE
+  - code_imp: Implements COMSIG_AIRLOCK_SET_BOLT
+  - code_imp: Implements COMSIG_MOB_BUMPED_DOOR_OPEN
+2025-09-25:
+  Diana:
+  - bugfix: Alraune and Gamma Replicant can be neuter or plural
+  Guti:
+  - rscadd: Added churros and churros recipe
+  Will:
+  - code_imp: Moves turf slip code to a component
+2025-09-26:
+  Kashargul:
+  - bugfix: AI can now access the forever hidden vorepanel button
+  - bugfix: balloon alerts not centered for wide sprites
+  Ryumi:
+  - image: Casino chips use a new set of sprites that better represent their item
+      sizes.
+  - code_imp: Greatly cleaned up the initialization code of playing card decks.
+  - bugfix: Fixed triple card decks generating at quadruple size instead of triple,
+      as well as casino card decks spawning with jokers.
+  SatinIsle:
+  - rscadd: Added a new Welcome to Virgo pamphlet that covers most vital lore IC.
+  - qol: Made it so that new players under 10 days old start with this lore document
+      in their hand. It is sized as tiny, making it easy to tuck away.
+  Will:
+  - code_imp: Tiny cleanup in gravgen UI code
+  zeskorion:
+  - bugfix: few runtimes and new vars
+2025-09-27:
+  Kashargul:
+  - bugfix: bad organ path deletion on alienanimals
+  - code_imp: adds keycombo input for later use
+  - bugfix: runtime in case there was no DB initialized
+  SatinIsle:
+  - bugfix: Fixed invisibility potions being able to spawn in fruit.
+  - code_imp: Cleaned up some missing reagent defines for glamour potions.
+  Shy Bandit:
+  - rscadd: Gator Snout Head
+  Will:
+  - refactor: Improves smes mapped part upgrading
+  - refactor: Adds more smes subtypes so manually mapping smes vars is no longer needed
+  - server: Mapped smes should be updated to use prefabs, and a coil place on the
+      smes to meet the original charge capacity.
+  - bugfix: Wearing shoes no longer prevents map spawned blood from spreading with
+      footsteps
+  - code_imp: Cleans up uses of updateUsrDialog() on objects moved to tgui
+2025-09-29:
+  ItsSelis:
+  - admin: added 3 new tgs commands to manage whitelists
+  - refactor: The alienwhitelists and jobwhitelists are now loaded from the database,
+      if the database is enabled
+  Will:
+  - bugfix: Forensics items work on doors and airlocks again
+  zeskorion:
+  - rscadd: adds new markings, hairstyles, horns and sprites (dragon mane, swept horns,
+      stub horns, long/longer sharp snout, bony plates)

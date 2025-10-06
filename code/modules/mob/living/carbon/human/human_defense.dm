@@ -58,7 +58,7 @@ emp_act
 
 	return (..(P , def_zone))
 
-/mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
+/mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	var/obj/item/organ/external/affected = get_organ(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
 	if(fire_stacks < 0) // Water makes you more conductive.
@@ -87,7 +87,7 @@ emp_act
 						var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 						automatic_custom_emote(VISIBLE_MESSAGE, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!", check_stat = TRUE)
 
-	..(stun_amount, agony_amount, def_zone)
+	..(stun_amount, agony_amount, def_zone, used_weapon, electric)
 
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)
 	var/armorval = 0
@@ -389,7 +389,7 @@ emp_act
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)
+/mob/living/carbon/human/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)
 	if(src.is_incorporeal())
 		return
 //	if(buckled && buckled == AM)
@@ -398,8 +398,8 @@ emp_act
 	//VORESTATION EDIT START - Allows for thrown vore!
 	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
 	// I put more comments here for ease of reading.
-	if(isliving(AM))
-		var/mob/living/thrown_mob = AM
+	if(isliving(source))
+		var/mob/living/thrown_mob = source
 		if(isanimal(thrown_mob) && !allowmobvore && !thrown_mob.ckey) //Is the thrown_mob an animal and we don't allow mobvore?
 			return
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
@@ -423,8 +423,8 @@ emp_act
 			return
 	//VORESTATION EDIT END - Allows for thrown vore!
 
-	if(istype(AM,/obj/item))
-		var/obj/item/O = AM
+	if(isitem(source))
+		var/obj/item/O = source
 		if(stat != DEAD && trash_catching && vore_selected)
 			if(adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
 				visible_message(span_vwarning("[O] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
@@ -433,8 +433,8 @@ emp_act
 				return
 		if(in_throw_mode && speed <= THROWFORCE_SPEED_DIVISOR)	//empty active hand and we're in throw mode
 			if(canmove && !restrained() && !src.is_incorporeal())
-				if(isturf(O.loc))
-					if(can_catch(O))
+				if(isturf(O.loc) && can_catch(O))
+					if(!SEND_SIGNAL(src, COMSIG_HUMAN_ON_CATCH_THROW, source, speed))
 						put_in_active_hand(O)
 						visible_message(span_warning("[src] catches [O]!"))
 						throw_mode_off()
@@ -652,10 +652,9 @@ emp_act
 	return CLAMP(1-converted_protection, 0, 1)
 
 /mob/living/carbon/human/water_act(amount)
-	adjust_fire_stacks(-amount * 5)
+	adjust_wet_stacks(amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
-	remove_modifiers_of_type(/datum/modifier/fire)
 
 	species.handle_water_damage(src, amount)
 
@@ -691,7 +690,7 @@ emp_act
 	if(!check_has_mouth())
 		return TRUE
 
-	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) || (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
+	if((isobj(head) && head.body_parts_covered & FACE) || isobj(wear_mask) && wear_mask.body_parts_covered & FACE|| (isobj(wear_suit) && wear_suit.body_parts_covered & FACE))
 		return TRUE
 
 	return FALSE

@@ -269,6 +269,10 @@
 		return 1
 	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
 		return 1
+	if (istype(wear_suit, /obj/item/clothing/suit/shibari))
+		var/obj/item/clothing/suit/shibari/s = wear_suit
+		if(s.rope_mode == "Arms" || s.rope_mode == "Arms and Legs")
+			return 1
 	return 0
 
 /mob/living/carbon/human/var/co2overloadtime = null
@@ -280,7 +284,7 @@
 	if(AM.is_incorporeal())
 		return
 
-	spread_fire(AM)
+	spreadFire(AM)
 
 	..() // call parent because we moved behavior to parent
 
@@ -787,7 +791,7 @@
 		I.additional_flash_effects(number)
 	return number
 
-/mob/living/carbon/human/flash_eyes(var/intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/human/flash_eyes(var/intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
 		var/obj/item/organ/internal/eyes/I = internal_organs_by_name[O_EYES]
 		I.additional_flash_effects(intensity)
@@ -1502,12 +1506,12 @@
 	if(lying)
 		playsound(src, 'sound/misc/slip.ogg', 25, 1, -1)
 		drop_both_hands()
-		return 0
+		return FALSE
 	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
-		return 0
+		return FALSE
 	if(..(slipped_on,stun_duration))
 		drop_both_hands()
-		return 1
+		return TRUE
 
 /mob/living/carbon/human/proc/relocate()
 	set category = "Object"

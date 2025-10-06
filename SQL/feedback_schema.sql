@@ -295,7 +295,7 @@ LANGUAGE SQL
 NOT DETERMINISTIC
 CONTAINS SQL
 SQL SECURITY INVOKER
-COMMENT 'Inserts a new row into \'chatlogs_rounds\' and deletes the oldest entry, if the ckey already has 10 round id\'s stored.'
+COMMENT 'Inserts a new row into \'chatlogs_rounds\' and deletes the oldest entry, if the ckey already has 10 round ids stored.'
 BEGIN
 
 INSERT IGNORE INTO chatlogs_rounds(round_id, ckey) VALUES (p_round_id, p_ckey);
@@ -306,3 +306,13 @@ END IF;
 
 END
 DELIMITER ;
+
+-- Table structure for table `whitelist`
+CREATE TABLE `whitelist` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`ckey` VARCHAR(45) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`kind` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	`entry` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_uca1400_ai_ci',
+	PRIMARY KEY (`id`) USING BTREE,
+	UNIQUE INDEX `ckey_kind_entry` (`ckey`, `kind`, `entry`) USING BTREE
+) ENGINE=InnoDB COLLATE='utf8mb4_uca1400_ai_ci';

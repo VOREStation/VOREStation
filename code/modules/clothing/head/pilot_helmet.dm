@@ -16,7 +16,7 @@
 	w_class = ITEMSIZE_NORMAL
 
 	var/obj/machinery/computer/shuttle_control/web/shuttle_comp
-	var/obj/screen/pilot_hud
+	var/atom/movable/screen/pilot_hud
 	var/list/images
 	var/list/raw_images
 	var/last_status

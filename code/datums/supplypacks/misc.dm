@@ -89,7 +89,14 @@
 			/obj/item/toy/plushie/nukeplushie,
 			/obj/item/toy/plushie/otter,
 			/obj/item/toy/plushie/vox,
-			/obj/item/toy/plushie/shark)
+			/obj/item/toy/plushie/shark,
+			/obj/item/toy/plushie/dragon,
+			/obj/item/toy/plushie/dragon/green,
+			/obj/item/toy/plushie/dragon/purple,
+			/obj/item/toy/plushie/dragon/red_east,
+			/obj/item/toy/plushie/dragon/green_east,
+			/obj/item/toy/plushie/dragon/white_east,
+			/obj/item/toy/plushie/dragon/gold_east)
 			//VOREStation Add End
 	name = "Plushies Crate"
 	desc = "Five random plushies from AlliCo's wide selection!"

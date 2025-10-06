@@ -278,7 +278,6 @@
 		to_chat(user, span_notice("You add [amount] sheet\s to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
-		updateUsrDialog(user)
 		return
 	else if(!active)
 		if(O.has_tool_quality(TOOL_WRENCH))

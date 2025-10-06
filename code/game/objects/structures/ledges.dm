@@ -16,7 +16,7 @@
 
 /obj/structure/ledge_corner
 	icon_state = "ledge-corner"
-	flags = 0
+	flags = NONE
 	name = "rock ledge"
 	desc = "An easily scaleable rocky ledge."
 	icon = 'icons/obj/ledges.dmi'

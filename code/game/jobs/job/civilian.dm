@@ -10,8 +10,8 @@
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
 	faction = FACTION_STATION
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	pto_type = PTO_CIVILIAN
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"

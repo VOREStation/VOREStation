@@ -211,8 +211,6 @@
 			else
 				visible_message(span_danger("[M] has pushed [src]!"))
 			break_all_grabs(M)
-			for(var/obj/item/I in holding)
-				drop_from_inventory(I)
 		else
 			visible_message(span_warning("[M] attempted to push [src]!"))
 		return
@@ -480,15 +478,13 @@
 		if(lgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [lgrab.affecting]!"))
 			success = TRUE
-		spawn(1)
-			qdel(lgrab)
+		drop_from_inventory(lgrab)
 	if(istype(r_hand, /obj/item/grab))
 		var/obj/item/grab/rgrab = r_hand
 		if(rgrab.affecting)
 			visible_message(span_danger("[user] has broken [src]'s grip on [rgrab.affecting]!"))
 			success = TRUE
-		spawn(1)
-			qdel(rgrab)
+		drop_from_inventory(rgrab)
 	return success
 
 /*
