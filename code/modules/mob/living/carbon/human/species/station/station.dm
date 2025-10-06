@@ -1133,7 +1133,7 @@
 	burn_mod =  1.35
 	mob_size = MOB_MEDIUM
 	pass_flags = PASSTABLE
-	holder_type = /obj/item/holder/human
+	holder_type = /obj/item/holder/micro
 //	short_sighted = 1
 	has_vibration_sense = TRUE
 	blood_volume = 400
