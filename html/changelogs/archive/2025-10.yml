@@ -36,3 +36,8 @@
   Tenryumi:
   - rscadd: Added operating tables to the crafting menu. You'll need 12 silver, 10
       metal rods, and one leather!
+2025-10-06:
+  Diana:
+  - bugfix: Multiple items can be stripped from someone at once, again.
+  Kashargul:
+  - bugfix: last changelog state being inverted
