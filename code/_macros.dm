@@ -30,3 +30,4 @@
 #define isbelly(A)				istype(A, /obj/belly)
 #define isgripperpocket(A)		istype(A, /obj/item/storage/internal/gripper)
 #define iscapturecrystal(A)		istype(A, /obj/item/capture_crystal)
+#define isghosttrap(A)			istype(A, /obj/item/ghost_trap)

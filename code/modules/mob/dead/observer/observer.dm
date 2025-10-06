@@ -566,11 +566,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return ..()
 
 /mob/proc/check_holy(var/turf/T)
-	return 0
+	return FALSE
 
 /mob/observer/dead/check_holy(var/turf/T)
 	if(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT))
-		return 0
+		return FALSE
 
 	return (T && T.holy) && (is_manifest || (mind in cult.current_antagonists))
 

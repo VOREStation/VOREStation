@@ -309,22 +309,36 @@
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "emf"
 	var/emf = 5
-	var/turf/last_used = 0
-	var/emf_change = 0
+	var/turf/last_used
+	///If our scanner will accurately detect ghosts or not.
+	var/advanced = FALSE
+	///How far our we search. 0 = own turf.
+	var/detection_range = 0
 
 /obj/item/entrepreneur/emf/attack_self(var/mob/user)
+	var/turf/user_turf = get_turf(user)
+	if(!user_turf)
+		return
 	if(!last_used)
 		emf = rand(1,100)
-		last_used = get_turf(user)
-	var/current_used = get_turf(user)
-	var/mob/observer/spooky = locate() in current_used
-	if(last_used != current_used)
+		last_used = user_turf
+	///How many ghosts are around us.
+	var/ghosts_present = 0
+	///How much we'll increase/decrease the EMF reading.
+	var/emf_change = 0
+	if(advanced)
+		for(var/mob/observer/ghosts in range(detection_range, user_turf))
+			ghosts_present++
+	if(last_used != get_turf(user))
 		if(emf >= 100)
 			emf = 100
 		if(emf <= 20)
 			emf = 20
-		if(spooky)
-			emf_change = rand(-15,20) //Trend upwards but not by enough to prove ghosts actually exist
+		if(ghosts_present)
+			if(advanced)
+				emf_change = rand(1 * ghosts_present, 5 * ghosts_present)
+			else
+				emf_change = rand(-15,20) //Trend upwards but not by enough to prove ghosts actually exist
 		else
 			emf_change = rand(-20,15) //Trend downwards
 		last_used = get_turf(user)

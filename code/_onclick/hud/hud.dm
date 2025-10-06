@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 		GLOB.global_hud.druggy,
 		GLOB.global_hud.blurry,
 		GLOB.global_hud.whitense,
+		GLOB.global_hud.heavy_whitense,
 		GLOB.global_hud.vimpaired,
 		GLOB.global_hud.darkMask,
 		GLOB.global_hud.centermarker,
@@ -28,6 +29,7 @@ GLOBAL_LIST_INIT(global_huds, list(
 	var/atom/movable/screen/druggy
 	var/atom/movable/screen/blurry
 	var/atom/movable/screen/whitense
+	var/atom/movable/screen/heavy_whitense
 	var/list/vimpaired
 	var/list/darkMask
 	var/atom/movable/screen/centermarker
@@ -69,6 +71,11 @@ GLOBAL_LIST_INIT(global_huds, list(
 	whitense = new /atom/movable/screen/global_screen()
 	whitense.icon = 'icons/effects/static.dmi'
 	whitense.icon_state = "1 light"
+
+	//static overlay effect for cameras and the like
+	heavy_whitense = new /atom/movable/screen/global_screen()
+	heavy_whitense.icon = 'icons/effects/static.dmi'
+	heavy_whitense.icon_state = "1 heavy"
 
 	//darksight 'hanger' for attached icons
 	darksight = new /atom/movable/screen()
