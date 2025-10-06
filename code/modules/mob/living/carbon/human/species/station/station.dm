@@ -1405,6 +1405,8 @@
 	min_age = 18
 	max_age = 80
 
+	species_sounds = "Vulpine"
+
 	//primitive_form = "" //We don't have fennec-monkey sprites.
 	spawn_flags = SPECIES_IS_RESTRICTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
