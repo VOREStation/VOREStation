@@ -2,6 +2,7 @@
 /decl/chemical_reaction/distilling/drinks
 	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 	temp_range = list(T0C + 100, T0C + 500) // These all imply a boiled drink anyway
+	wiki_flag = WIKI_DRINK
 
 /decl/chemical_reaction/distilling/drinks/coffee
 	name = REAGENT_COFFEE
@@ -100,3 +101,12 @@
 	result = REAGENT_ID_BERRYTEADECAF
 	required_reagents = list(REAGENT_ID_TEADECAF = 5, REAGENT_ID_BERRYJUICE = 1)
 	result_amount = 6
+
+// Not drinks, but we may as well
+/decl/chemical_reaction/distilling/drinks/hot_ramen
+	name = REAGENT_HOTRAMEN
+	id = REAGENT_ID_HOTRAMEN
+	result = REAGENT_ID_HOTRAMEN
+	required_reagents = list(REAGENT_ID_WATER = 1, REAGENT_ID_DRYRAMEN = 3)
+	result_amount = 3
+	wiki_flag = WIKI_FOOD
