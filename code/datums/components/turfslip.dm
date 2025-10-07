@@ -59,6 +59,7 @@
 
 /datum/component/turfslip/proc/next_slip()
 	// check tile for next slip
+	owner.is_slipping = TRUE
 	if(!step(owner, owner.dir) || dirtslip) // done sliding, failed to move, dirt also only slips once
 		qdel(src)
 		return
@@ -70,6 +71,7 @@
 /datum/component/turfslip/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	owner.inertia_dir = 0
+	owner.is_slipping = FALSE
 	owner = null
 	slip_dist = 0
 	. = ..()

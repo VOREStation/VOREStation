@@ -438,6 +438,7 @@
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
+	SEND_SIGNAL(user, COMSIG_PICKED_UP_ITEM, src)
 	pixel_x = 0
 	pixel_y = 0
 	return

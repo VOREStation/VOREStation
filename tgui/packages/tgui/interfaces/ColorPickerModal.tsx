@@ -14,7 +14,13 @@ import {
   rgbaToHsva,
   validHex,
 } from 'common/colorpicker';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useState,
+} from 'react';
 import { useBackend } from 'tgui/backend';
 import { Pointer } from 'tgui/components';
 import { type Interaction, Interactive } from 'tgui/components/Interactive';
@@ -43,7 +49,7 @@ interface ColorPickerData {
   timeout: number;
   title: string;
   default_color: string;
-  presets: string;
+  presets?: string;
 }
 
 type ColorPickerModalProps = Record<never, never>;
@@ -55,7 +61,7 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
     message,
     autofocus,
     default_color = '#000000',
-    presets = '',
+    presets,
   } = data;
   let { title } = data;
 
@@ -66,12 +72,17 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   const [lastSelectedColor, setLastSelectedColor] = useState<string>('');
   const [allowEditing, setAllowEditing] = useState<boolean>(false);
 
-  useEffect(() => {
+  const updateSelectedColor = useEffectEvent(() => {
     setSelectedColor(hexToHsva(default_color));
-  }, [default_color]);
+  });
 
   useEffect(() => {
+    updateSelectedColor();
+  }, [default_color]);
+
+  const syncColorPreset = useEffectEvent(() => {
     const hexCol = hsvaToHex(selectedColor);
+
     if (
       selectedPreset !== undefined &&
       lastSelectedColor !== hexCol &&
@@ -80,6 +91,10 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
       setLastSelectedColor(hexCol);
       act('preset', { color: hexCol, index: selectedPreset + 1 });
     }
+  });
+
+  useEffect(() => {
+    syncColorPreset();
   }, [selectedColor]);
 
   if (!title) {
@@ -90,23 +105,26 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
     undefined,
   );
 
-  const ourPresets = presets
-    .replaceAll('#', '')
-    .replace(/(^;)|(;$)/g, '')
-    .split(';');
-  while (ourPresets.length < 20) {
-    ourPresets.push('FFFFFF');
+  let presetList;
+  if (presets) {
+    const ourPresets = presets
+      .replaceAll('#', '')
+      .replace(/(^;)|(;$)/g, '')
+      .split(';');
+    while (ourPresets.length < 20) {
+      ourPresets.push('FFFFFF');
+    }
+    presetList = ourPresets.reduce(
+      (input, entry, index) => {
+        if (index < 10) {
+          return [[...input[0], entry], input[1]];
+        } else {
+          return [input[0], [...input[1], entry]];
+        }
+      },
+      [[], []],
+    );
   }
-  const presetList = ourPresets.reduce(
-    (input, entry, index) => {
-      if (index < 10) {
-        return [[...input[0], entry], input[1]];
-      } else {
-        return [input[0], [...input[1], entry]];
-      }
-    },
-    [[], []],
-  );
   return (
     <Window
       height={message ? 460 : 420}
@@ -153,11 +171,11 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
 interface ColorPresetsProps {
   setColor: (color: HsvaColor) => void;
   setShowPresets: (show: boolean) => void;
-  presetList: string[][];
+  presetList?: string[][];
   selectedPreset: number | undefined;
   onSelectedPreset: React.Dispatch<React.SetStateAction<number | undefined>>;
-  allowEditing: boolean;
-  onAllowEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  allowEditing?: boolean;
+  onAllowEditing?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
@@ -206,7 +224,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
             ))}
           </Stack.Item>
           <Stack.Item mt={0.5}>
-            {presetList.map((row, index) => (
+            {presetList?.map((row, index) => (
               <Stack.Item key={index} grow>
                 <Stack justify="center" g={0}>
                   {row.map((entry, i) => (
@@ -236,14 +254,16 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
             ))}
           </Stack.Item>
         </Stack>
-        <Button
-          color={allowEditing ? 'green' : 'red'}
-          position="absolute"
-          right="4px"
-          bottom="4px"
-          icon="lock"
-          onClick={() => onAllowEditing(!allowEditing)}
-        />
+        {!!onAllowEditing && (
+          <Button
+            color={allowEditing ? 'green' : 'red'}
+            position="absolute"
+            right="4px"
+            bottom="4px"
+            icon="lock"
+            onClick={() => onAllowEditing(!allowEditing)}
+          />
+        )}
       </>
     );
   },
@@ -253,14 +273,14 @@ interface ColorSelectorProps {
   color: HsvaColor;
   setColor: React.Dispatch<React.SetStateAction<HsvaColor>>;
   defaultColor: string;
-  presetList: string[][];
+  presetList?: string[][];
   selectedPreset: number | undefined;
   onSelectedPreset: React.Dispatch<React.SetStateAction<number | undefined>>;
-  allowEditing: boolean;
-  onAllowEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  allowEditing?: boolean;
+  onAllowEditing?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
+export const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
   ({
     color,
     setColor,
