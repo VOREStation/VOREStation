@@ -126,7 +126,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	set src in view(1)
 	deconstruct_contents(usr)
 
-/obj/machinery/rnd/destructive_analyzer/proc/AltClick(mob/user)
+/obj/machinery/rnd/destructive_analyzer/AltClick(mob/user)
 	deconstruct_contents(user)
 
 /obj/machinery/rnd/destructive_analyzer/proc/deconstruct_contents(mob/user)
