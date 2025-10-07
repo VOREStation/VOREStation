@@ -138,7 +138,7 @@
 		if(wearing_mob.wear_suit == our_object)
 			wearing_mob.update_inv_wear_suit()
 			return
-		else if(wearing_mob.w_uniform == our_object)
+		if(wearing_mob.w_uniform == our_object)
 			wearing_mob.update_inv_w_uniform()
 			return
 
