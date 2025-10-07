@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Box, Icon } from 'tgui-core/components';
 
 export const getImage = async (url: string): Promise<HTMLImageElement> => {
@@ -21,39 +21,51 @@ export const CanvasBackedImage = (props: {
 }) => {
   const { dimension } = props;
   const [bitmap, setBitmap] = useState<string>('');
+  const [loadFailed, setLoadFailed] = useState(false);
+  const bitmapRef = useRef<string>('');
 
   useEffect(() => {
-    const offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(
-      dimension,
-      dimension,
-    );
-
+    const offscreenCanvas = new OffscreenCanvas(dimension, dimension);
     const ctx = offscreenCanvas.getContext('2d');
-    if (!ctx) {
-      return;
-    }
+    if (!ctx) return;
+
+    let active = true;
 
     setBitmap('');
+    bitmapRef.current = '';
 
     const drawImage = async () => {
-      // Render
       await props.render(offscreenCanvas, ctx);
+      if (!active) return;
 
-      // Convert to a blob and put in our <img> tag
-      const bitmap = await offscreenCanvas.convertToBlob();
-      setBitmap(URL.createObjectURL(bitmap));
+      const blob = await offscreenCanvas.convertToBlob();
+      const url = URL.createObjectURL(blob);
+
+      setBitmap(url);
+      bitmapRef.current = url;
     };
 
     drawImage();
+    setLoadFailed(false);
 
     return () => {
-      if (bitmap !== '') {
-        URL.revokeObjectURL(bitmap);
+      active = false;
+      if (bitmapRef.current) {
+        URL.revokeObjectURL(bitmapRef.current);
+        bitmapRef.current = '';
       }
     };
   }, [props.render]);
 
-  return <img src={bitmap} width={dimension} height={dimension} />;
+  return (
+    <img
+      src={bitmap}
+      width={dimension}
+      height={dimension}
+      onError={() => setLoadFailed(true)}
+      style={{ visibility: bitmap && !loadFailed ? 'visible' : 'hidden' }}
+    />
+  );
 };
 
 export const ColorizedImage = (props: {

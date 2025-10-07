@@ -57,9 +57,10 @@ export const LoaderNT = (props: { onFinish?: () => void }) => {
   const [showLogo, setShowLogo] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setShowLogo(false);
     }, 3500);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (showLogo) {
@@ -79,9 +80,10 @@ export const LoaderCommonwealth = (props: { onFinish?: () => void }) => {
   const [showLogo, setShowLogo] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setShowLogo(false);
     }, 3500);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (showLogo) {
@@ -105,9 +107,10 @@ export const LoaderProtean = (props: { onFinish?: () => void }) => {
   const [showLogo, setShowLogo] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setShowLogo(false);
     }, 3500);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (showLogo) {

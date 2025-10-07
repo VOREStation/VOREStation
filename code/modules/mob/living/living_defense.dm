@@ -126,7 +126,7 @@
 
 	//Stun Beams
 	if(P.taser_effect)
-		stun_effect_act(0, P.agony, def_zone, P)
+		stun_effect_act(0, P.agony, def_zone, P, electric = TRUE)
 		if(!P.nodamage)
 			apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, sharp=proj_sharp, edge=proj_edge, used_weapon=P, projectile=TRUE)
 		qdel(P)
@@ -146,8 +146,9 @@
 //	return absorb
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	flash_pain()
+	SEND_SIGNAL(src, COMSIG_STUN_EFFECT_ACT, stun_amount, agony_amount, def_zone, used_weapon, electric)
 
 	if (stun_amount)
 		Stun(stun_amount)
@@ -263,14 +264,10 @@
 /mob/living/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
 	if(is_incorporeal())
 		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, speed) & COMSIG_CANCEL_HITBY)
+		return
 	if(isitem(source))
 		var/obj/item/O = source
-		if(stat != DEAD && trash_catching && vore_selected)
-			if(adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
-				visible_message(span_vwarning("[O] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
-				O.throwing = 0
-				O.forceMove(vore_selected)
-				return
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
@@ -326,42 +323,6 @@
 					visible_message(span_warning("[src] is pinned to the wall by [O]!"),span_warning("You are pinned to the wall by [O]!"))
 					src.anchored = TRUE
 					src.pinned += O
-
-	//VORESTATION EDIT START - Allows for thrown vore!
-	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
-	if(isliving(source))
-		var/mob/living/thrown_mob = source
-
-		if(!allowmobvore && isanimal(thrown_mob) && !thrown_mob.ckey) //Does the person being hit not allow mob vore and the perrson being thrown a simple_mob?
-			return
-		if(!thrown_mob.allowmobvore && isanimal(src) && !ckey) //Does the person being thrown not allow mob vore and is the person being hit (us) a simple_mob?
-			return
-
-		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
-		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
-		if((can_be_drop_pred && throw_vore) && (thrown_mob.devourable && thrown_mob.throw_vore && thrown_mob.can_be_drop_prey)) //Prey thrown into pred.
-			if(!vore_selected)
-				return
-			vore_selected.nom_mob(thrown_mob) //Eat them!!!
-			visible_message(span_vwarning("[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!"))
-			if(thrown_mob.loc != vore_selected)
-				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
-			on_throw_vore_special(TRUE, thrown_mob)
-			add_attack_logs(thrown_mob.thrower,src,"Devoured [thrown_mob.name] via throw vore.")
-			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
-
-		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
-		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
-		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore) && thrown_mob.vore_selected) //Pred thrown into prey.
-			if(!thrown_mob.vore_selected)
-				return
-			visible_message(span_vwarning("[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
-			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
-			if(src.loc != thrown_mob.vore_selected)
-				src.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
-			add_attack_logs(thrown_mob.LAssailant,src,"Was Devoured by [thrown_mob.name] via throw vore.")
-			return
-	//VORESTATION EDIT END - Allows for thrown vore!
 
 /mob/living/proc/on_throw_vore_special(var/pred = TRUE, var/mob/living/target)
 	return

@@ -56,7 +56,7 @@ const StateColor = {
 type Data = {
   tickets: Ticket[];
 
-  selected_ticket: Ticket;
+  selected_ticket?: Ticket;
   is_admin: BooleanLike;
 };
 
@@ -126,7 +126,7 @@ export const TicketsPanel = (props) => {
         scroll.scrollTop = scroll.scrollHeight;
       }
     }
-  });
+  }, [selected_ticket?.log]);
 
   const availableLevel = is_admin ? AdminLevel : MentorLevel;
 

@@ -213,7 +213,7 @@
 	switch(active_mode)
 		if(COLORMATE_TINT)
 			color_to_use = activecolor
-		if(COLORMATE_MATRIX)
+		if(COLORMATE_MATRIX, COLORMATE_MATRIX_AUTO)
 			color_to_use = rgb_construct_color_matrix(
 				text2num(color_matrix_last[1]),
 				text2num(color_matrix_last[2]),
@@ -244,7 +244,7 @@
 	if(inserted) //sanity
 		var/list/cm
 		switch(active_mode)
-			if(COLORMATE_MATRIX)
+			if(COLORMATE_MATRIX, COLORMATE_MATRIX_AUTO)
 				cm = rgb_construct_color_matrix(
 					text2num(color_matrix_last[1]),
 					text2num(color_matrix_last[2]),

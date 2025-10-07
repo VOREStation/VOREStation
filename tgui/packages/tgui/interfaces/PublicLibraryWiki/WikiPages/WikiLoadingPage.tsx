@@ -17,10 +17,11 @@ export const WikiLoadingPage = (props: { endTime: number; tipp: string }) => {
 
   useEffect(() => {
     if (ourProgress < endTime - 100) {
-      setTimeout(() => {
-        setOurProgress(ourProgress + 100);
-        setUpdateProgress(!updateProgress);
+      const timer = setTimeout(() => {
+        setOurProgress((prev) => prev + 100);
+        setUpdateProgress((prev) => !prev);
       }, 100);
+      return () => clearTimeout(timer);
     } else {
       setOurProgress(endTime);
     }

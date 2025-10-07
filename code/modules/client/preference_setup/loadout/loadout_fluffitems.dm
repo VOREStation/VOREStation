@@ -1597,6 +1597,20 @@
 	ckeywhitelist = list("yeehawguvnah")
 	character_name = list("Cephyra")
 
+/datum/gear/fluff/names_hat
+	path = /obj/item/clothing/head/fluff/names_pizza
+	display_name = "pizza delivery hat"
+	slot = slot_head
+	ckeywhitelist = list("yepthatsmyname")
+	character_name = list("Mothza Aurella")
+
+/datum/gear/fluff/names_uniform
+	path = /obj/item/clothing/under/names_pizza
+	display_name = "pizza delivery uniform"
+	slot = slot_w_uniform
+	ckeywhitelist = list("yepthatsmyname")
+	character_name = list("Mothza Aurella")
+
 //  Z CKEYS
 /datum/gear/fluff/tachika_medal
 	path = /obj/item/clothing/accessory/medal/conduct
