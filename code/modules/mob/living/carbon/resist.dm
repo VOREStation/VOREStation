@@ -12,7 +12,7 @@
 			span_danger("[src] has successfully extinguished themselves!"),
 			span_notice("You extinguish yourself.")
 			)
-		ExtinguishMob()
+		extinguish_mob()
 	return TRUE
 
 /mob/living/carbon/resist_restraints()
@@ -87,7 +87,7 @@
 		span_warning("You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)")
 		)
 
-	if(do_after(src, 2 MINUTES, timed_action_flags = IGNORE_INCAPACITATED))
+	if(do_after(src, 2 MINUTES, target = src, timed_action_flags = IGNORE_INCAPACITATED))
 		if(!buckled)
 			return
 		visible_message(span_danger("[src] manages to unbuckle themself!"),

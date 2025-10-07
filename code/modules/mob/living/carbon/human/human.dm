@@ -269,6 +269,10 @@
 		return 1
 	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
 		return 1
+	if (istype(wear_suit, /obj/item/clothing/suit/shibari))
+		var/obj/item/clothing/suit/shibari/s = wear_suit
+		if(s.rope_mode == "Arms" || s.rope_mode == "Arms and Legs")
+			return 1
 	return 0
 
 /mob/living/carbon/human/var/co2overloadtime = null
@@ -280,7 +284,7 @@
 	if(AM.is_incorporeal())
 		return
 
-	spread_fire(AM)
+	spreadFire(AM)
 
 	..() // call parent because we moved behavior to parent
 
@@ -739,6 +743,9 @@
 		var/obj/item/I = locate(href_list["lookitem_desc_only"])
 		if(!I)
 			return
+		if(istype(I,/obj/item/hand))
+			to_chat(usr,span_warning("You can't see the card faces from here."))
+			return
 		usr.examinate(I, 1)
 
 	if (href_list["lookmob"])
@@ -784,7 +791,7 @@
 		I.additional_flash_effects(number)
 	return number
 
-/mob/living/carbon/human/flash_eyes(var/intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/human/flash_eyes(var/intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
 		var/obj/item/organ/internal/eyes/I = internal_organs_by_name[O_EYES]
 		I.additional_flash_effects(intensity)
@@ -980,7 +987,7 @@
 	else
 		target.show_message(span_filter_say("[span_blue("You hear a voice that seems to echo around the room: [say]")]"))
 	src.show_message(span_filter_say("[span_blue("You project your mind into [target.real_name]: [say]")]"))
-	log_say("(TPATH to [key_name(target)]) [say]",src)
+	log_talk("(TPATH to [key_name(target)]) [say]", LOG_SAY)
 	for(var/mob/observer/dead/G in GLOB.mob_list)
 		G.show_message(span_filter_say(span_italics("Telepathic message from " + span_bold("[src]") + " to " + span_bold("[target]") + ": [say]")))
 
@@ -1499,12 +1506,12 @@
 	if(lying)
 		playsound(src, 'sound/misc/slip.ogg', 25, 1, -1)
 		drop_both_hands()
-		return 0
+		return FALSE
 	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
-		return 0
+		return FALSE
 	if(..(slipped_on,stun_duration))
 		drop_both_hands()
-		return 1
+		return TRUE
 
 /mob/living/carbon/human/proc/relocate()
 	set category = "Object"
@@ -1546,7 +1553,7 @@
 	else
 		to_chat(U, span_warning("You begin to relocate [S]'s [current_limb.joint]..."))
 
-	if(!do_after(U, 30))
+	if(!do_after(U, 3 SECONDS, target = src))
 		return
 	if(!current_limb || !S || !U)
 		return

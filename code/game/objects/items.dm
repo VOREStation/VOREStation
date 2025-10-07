@@ -131,11 +131,11 @@
 	var/list/warned_of_possession //Checks to see who has been informed this item is possessed.
 	var/cleaving = FALSE // Used to avoid infinite cleaving.
 	var/list/tool_qualities
-	var/destroy_on_drop = FALSE	// Used by augments to determine if the item should destroy itself when dropped, or return to its master.
 	var/obj/item/organ/my_augment = null	// Used to reference the object's host organ.
 	var/datum/identification/identity = null
 	var/identity_type = /datum/identification
 	var/init_hide_identity = FALSE // Set to true to automatically obscure the object on initialization.
+	var/obj/item/tethered_host_item = null // If linked to a host by a tethered_item component
 
 	//Vorestuff
 	var/trash_eatable = TRUE
@@ -428,9 +428,18 @@
 	for(var/datum/action/action_item_has as anything in actions)
 		action_item_has.Remove(user)
 
+	if((item_flags & DROPDEL) && !QDELETED(src))
+		qdel(src)
+
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
+
+	if(my_augment && !QDELETED(src))
+		forceMove(my_augment)
+
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
+	SEND_SIGNAL(user, COMSIG_PICKED_UP_ITEM, src)
 	pixel_x = 0
 	pixel_y = 0
 	return
@@ -468,6 +477,12 @@
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		if(!muffled_by_belly(user))
 			playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
+	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
+	SEND_SIGNAL(user, COMSIG_MOB_EQUIPPED_ITEM, src, slot)
+	var/mob/living/M = loc
+	if(!istype(M))
+		return
+	M.update_held_icons()
 
 /// Gives one of our item actions to a mob, when equipped to a certain slot
 /obj/item/proc/give_item_action(datum/action/action, mob/to_who, slot)

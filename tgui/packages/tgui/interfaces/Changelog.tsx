@@ -44,8 +44,7 @@ const icons = {
 
 type Data = { dates: string[] };
 
-// biome-ignore lint/complexity/noBannedTypes:Ingored here
-type ChangelogProps = {};
+type ChangelogProps = Record<never, never>;
 
 interface ChangelogState {
   data: string | { date: string; authors: { name: string; changes: string[] } };

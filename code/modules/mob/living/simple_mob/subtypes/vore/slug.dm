@@ -96,6 +96,8 @@
 		return
 	if(istype(get_turf(src), /turf/simulated/floor/water)) //Important to stop my_slime from filling with null entries in water.
 		return
+	if(locate(/obj/effect/slug_glue) in get_turf(src)) // Don't stack slime forever
+		return
 	var/obj/effect/slug_glue/G = new /obj/effect/slug_glue/(get_turf(src))
 	G.my_slug = src
 	my_slime += G
@@ -242,7 +244,7 @@
 			escape_time = 0.5 * base_escape_time
 		else
 			escape_time = base_escape_time //Admeme size scale
-	if(do_after(user, escape_time, src, timed_action_flags = IGNORE_INCAPACITATED))
+	if(do_after(user, escape_time, target = src, timed_action_flags = IGNORE_INCAPACITATED))
 		if(!has_buckled_mobs())
 			return
 		to_chat(user, "You tug free of the tacky, rubbery strands!")

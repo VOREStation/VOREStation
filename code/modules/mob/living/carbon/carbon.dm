@@ -243,7 +243,7 @@
 					src.adjust_fire_stacks(-0.5)
 					if (prob(10) && (M.fire_stacks <= 0))
 						M.adjust_fire_stacks(1)
-					M.IgniteMob()
+					M.ignite_mob()
 					if (M.on_fire)
 						M.visible_message(span_danger("The fire spreads from [src] to [M]!"),
 						span_danger("The fire spreads to you as well!"))
@@ -252,8 +252,7 @@
 						if (src.fire_stacks <= 0)
 							M.visible_message(span_warning("[M] successfully pats out [src]'s flames."),
 							span_warning("You successfully pat out [src]'s flames."))
-							src.ExtinguishMob()
-							src.fire_stacks = 0
+							src.extinguish_mob()
 		else
 			if (ishuman(src) && src:w_uniform)
 				var/mob/living/carbon/human/H = src
@@ -283,7 +282,7 @@
 						src.adjust_fire_stacks(1)
 						M.adjust_fire_stacks(-1)
 					if(M.on_fire)
-						src.IgniteMob()
+						src.ignite_mob()
 					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
 					update_canmove()
 				else if(istype(hugger))
@@ -295,7 +294,7 @@
 					src.adjust_fire_stacks(1)
 					M.adjust_fire_stacks(-1)
 				if(M.on_fire)
-					src.IgniteMob()
+					src.ignite_mob()
 			AdjustParalysis(-3)
 			AdjustStunned(-3)
 			AdjustWeakened(-3)
@@ -305,7 +304,7 @@
 /mob/living/carbon/proc/eyecheck()
 	return 0
 
-/mob/living/carbon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(eyecheck() < intensity || override_blindness_check)
 		return ..()
 
@@ -389,13 +388,14 @@
 	return
 
 /mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+	SEND_SIGNAL(src, COMSIG_ON_CARBON_SLIP, slipped_on, stun_duration)
 	if(buckled)
-		return 0
+		return FALSE
 	stop_pulling()
 	to_chat(src, span_warning("You slipped on [slipped_on]!"))
 	playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(FLOOR(stun_duration/2, 1))
-	return 1
+	return TRUE
 
 /mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
 	if(effect in chem_effects)
@@ -437,7 +437,7 @@
 		drop_l_hand()
 		drop_r_hand()
 		stop_pulling()
-		throw_alert("handcuffed", /obj/screen/alert/restrained/handcuffed, new_master = handcuffed)
+		throw_alert("handcuffed", /atom/movable/screen/alert/restrained/handcuffed, new_master = handcuffed)
 	else
 		clear_alert("handcuffed")
 	update_mob_action_buttons() //some of our action buttons might be unusable when we're handcuffed.

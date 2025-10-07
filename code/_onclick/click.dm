@@ -220,7 +220,7 @@
 	if((LASER in mutations) && a_intent == I_HURT)
 		LaserEyes(A) // moved into a proc below
 	else if(has_telegrip())
-		if(get_dist(src, A) > tk_maxrange)
+		if(get_dist(src, A) > TK_MAXRANGE)
 			to_chat(src, TK_OUTRANGED_MESSAGE)
 			return
 		A.attack_tk(src)
@@ -386,7 +386,7 @@
 	if(direction != dir)
 		facedir(direction)
 
-/obj/screen/click_catcher
+/atom/movable/screen/click_catcher
 	name = "" // Empty string names don't show up in context menu clicks
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "click_catcher"
@@ -395,11 +395,11 @@
 	mouse_opacity = 2
 	screen_loc = "SOUTHWEST to NORTHEAST"
 
-/obj/screen/click_catcher/Initialize(mapload, ...)
+/atom/movable/screen/click_catcher/Initialize(mapload, ...)
 	. = ..()
 	verbs.Cut()
 
-/obj/screen/click_catcher/Click(location, control, params)
+/atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
 	if(modifiers["middle"] && istype(usr, /mob/living/carbon))
 		var/mob/living/carbon/C = usr

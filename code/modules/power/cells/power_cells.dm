@@ -217,7 +217,7 @@
 /obj/item/fbp_backup_cell
 	name = "backup battery"
 	desc = "A small one-time-use chemical battery for synthetic crew when they are low on power in emergency situations."
-	icon = 'icons/obj/power_cells.dmi'
+	icon = 'icons/obj/power_cells_old.dmi'
 	icon_state = "backup"
 	w_class = ITEMSIZE_SMALL
 	var/amount = 150

@@ -255,9 +255,8 @@
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 			return
 		var/mob/living/new_mob = spawn_mob(M)
-		new_mob.faction = M.faction
 
-		new_mob.mob_tf(M)
+		M.tf_into(new_mob)
 
 		addtimer(CALLBACK(new_mob, TYPE_PROC_REF(/mob/living, revert_mob_tf)), 30 SECONDS, TIMER_DELETE_ME)
 
@@ -448,23 +447,19 @@
 
 
 	var/mob/living/M = src
-	log_debug("polymorph start")
 	if(!istype(M))
-		log_debug("polymorph istype")
 		return
 
 	if(M.stat)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph stat")
 		to_chat(src, span_warning("You can't do that in your condition."))
 		return
 
 	if(M.health <= 10)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
-		log_debug("polymorph injured")
 		to_chat(src, span_warning("You are too injured to transform into a beast."))
 		return
 
 	visible_message("<b>\The [src]</b> begins significantly shifting their form.")
-	if(!do_after(src, 10 SECONDS, src))
+	if(!do_after(src, 10 SECONDS, target = src))
 		visible_message("<b>\The [src]</b> ceases shifting their form.")
 		return 0
 
@@ -474,14 +469,11 @@
 	spawn(10)
 		src.overlays -= coolanimation
 
-		log_debug("polymorph not dead")
 		var/mob/living/new_mob = spawn_polymorph_mob(beast_options[chosen_beast])
 		new_mob.faction = M.faction
 
 		if(new_mob && isliving(new_mob))
-			log_debug("polymorph new_mob")
 			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				log_debug("polymorph new_mob belly")
 				new_mob.vore_organs -= B
 				qdel(B)
 			new_mob.vore_organs = list()
@@ -494,18 +486,14 @@
 			M.copy_vore_prefs_to_mob(new_mob)
 			new_mob.vore_selected = M.vore_selected
 			if(ishuman(M))
-				log_debug("polymorph ishuman part2")
 				var/mob/living/carbon/human/H = M
 				if(ishuman(new_mob))
-					log_debug("polymorph ishuman(newmob)")
 					var/mob/living/carbon/human/N = new_mob
 					N.gender = H.gender
 					N.identifying_gender = H.identifying_gender
 				else
-					log_debug("polymorph gender else")
 					new_mob.gender = H.gender
 			else
-				log_debug("polymorph gender else 2")
 				new_mob.gender = M.gender
 				if(ishuman(new_mob))
 					var/mob/living/carbon/human/N = new_mob
@@ -531,13 +519,9 @@
 			new_mob.visible_message("<b>\The [src]</b> has transformed into \the [chosen_beast]!")
 
 /mob/living/proc/spawn_polymorph_mob(var/chosen_beast)
-	log_debug("polymorph proc spawn mob")
 	var/tf_type = chosen_beast
-	log_debug("polymorph [tf_type]")
 	if(!ispath(tf_type))
-		log_debug("polymorph tf_type fail")
 		return
-	log_debug("polymorph tf_type pass")
 	var/new_mob = new tf_type(get_turf(src))
 	return new_mob
 

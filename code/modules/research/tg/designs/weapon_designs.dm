@@ -375,7 +375,7 @@
 	id = "sizenetgun"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 6000, MAT_GLASS = 4000)
-	build_path = /obj/item/gun/energy/netgun
+	build_path = /obj/item/gun/energy/netgun/shrink
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_RANGED
 	)

@@ -28,13 +28,13 @@
 		plantname = planttype
 
 	if(!plantname)
-		log_debug("Plantname not provided and and [src] requires it at [x],[y],[z]")
+		log_runtime("Plantname not provided and [src] requires it at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
 
 	seed = SSplants.seeds[plantname]
 
 	if(!seed)
-		log_debug("Plant name '[plantname]' does not exist and [src] requires it at [x],[y],[z]")
+		log_runtime("Plant name '[plantname]' does not exist and [src] requires it at [x],[y],[z]")
 		return INITIALIZE_HINT_QDEL
 
 	name = "[seed.seed_name]"
@@ -54,8 +54,8 @@
 					rtotal += round(potency/reagent_data[2])
 				if(rid == REAGENT_ID_NUTRIMENT)
 					data[seed.seed_name] = max(1,rtotal)
-
-				reagents.add_reagent(rid,max(1,rtotal),data)
+				if(rid != REAGENT_ID_GLAMOUR_INVIS)
+					reagents.add_reagent(rid,max(1,rtotal),data)
 		update_desc()
 		if(reagents.total_volume > 0)
 			bitesize = 1+round(reagents.total_volume / 2, 1)

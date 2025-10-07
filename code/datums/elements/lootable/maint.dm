@@ -1,6 +1,43 @@
 // Has large amounts of possible items, most of which may or may not be useful.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/element/lootable/maint/junk
+	unlucky_loot = list(
+		/obj/item/grenade/flashbang/clusterbang/primed,
+		/obj/item/storage/box/old_syringes,
+		/obj/item/storage/box/donut/empty,
+		/obj/item/grenade/smokebomb/primed,
+		/obj/item/storage/box,
+		/obj/item/storage/box/cups,
+		/obj/item/trash/candle,
+		/obj/item/trash/candy,
+		/obj/item/trash/candy/proteinbar,
+		/obj/item/trash/candy/gums,
+		/obj/item/trash/cheesie,
+		/obj/item/trash/chips,
+		/obj/item/trash/chips/bbq,
+		/obj/item/trash/liquidfood,
+		/obj/item/trash/pistachios,
+		/obj/item/trash/plate,
+		/obj/item/trash/popcorn,
+		/obj/item/trash/raisins,
+		/obj/item/trash/semki,
+		/obj/item/trash/snack_bowl,
+		/obj/item/trash/sosjerky,
+		/obj/item/trash/syndi_cakes,
+		/obj/item/trash/tastybread,
+		/obj/item/trash/coffee,
+		/obj/item/trash/tray,
+		/obj/item/trash/unajerky,
+		/obj/item/trash/waffles,
+		/obj/item/spacecash/c1,
+		/obj/item/card/emag_broken,
+		/obj/effect/decal/remains/lizard,
+		/obj/effect/decal/remains/mouse,
+		/obj/effect/decal/remains/robot,
+		/obj/item/pizzabox/old,
+		/obj/item/paper/crumpled
+	)
+
 	common_loot = list(
 		/obj/item/flashlight/flare,
 		/obj/item/flashlight/glowstick,
@@ -94,6 +131,43 @@
 // Contains mostly useless garbage.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/element/lootable/maint/trash
+	unlucky_loot = list(
+		/obj/item/grenade/flashbang/clusterbang/primed,
+		/obj/item/storage/box/old_syringes,
+		/obj/item/storage/box/donut/empty,
+		/obj/item/grenade/smokebomb/primed,
+		/obj/item/storage/box,
+		/obj/item/storage/box/cups,
+		/obj/item/trash/candle,
+		/obj/item/trash/candy,
+		/obj/item/trash/candy/proteinbar,
+		/obj/item/trash/candy/gums,
+		/obj/item/trash/cheesie,
+		/obj/item/trash/chips,
+		/obj/item/trash/chips/bbq,
+		/obj/item/trash/liquidfood,
+		/obj/item/trash/pistachios,
+		/obj/item/trash/plate,
+		/obj/item/trash/popcorn,
+		/obj/item/trash/raisins,
+		/obj/item/trash/semki,
+		/obj/item/trash/snack_bowl,
+		/obj/item/trash/sosjerky,
+		/obj/item/trash/syndi_cakes,
+		/obj/item/trash/tastybread,
+		/obj/item/trash/coffee,
+		/obj/item/trash/tray,
+		/obj/item/trash/unajerky,
+		/obj/item/trash/waffles,
+		/obj/item/spacecash/c1,
+		/obj/item/card/emag_broken,
+		/obj/effect/decal/remains/lizard,
+		/obj/effect/decal/remains/mouse,
+		/obj/effect/decal/remains/robot,
+		/obj/item/pizzabox/old,
+		/obj/item/paper/crumpled
+	)
+
 	common_loot = list(
 		/obj/item/trash/candle,
 		/obj/item/trash/candy,

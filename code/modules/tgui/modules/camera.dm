@@ -1,17 +1,17 @@
 #define DEFAULT_MAP_SIZE 15
 
-/obj/screen/map_view_tg/camera
-	var/obj/screen/background/cam_background
-	var/obj/screen/background/cam_foreground
-	var/obj/screen/skybox/local_skybox
+/atom/movable/screen/map_view_tg/camera
+	var/atom/movable/screen/background/cam_background
+	var/atom/movable/screen/background/cam_foreground
+	var/atom/movable/screen/skybox/local_skybox
 
-/obj/screen/map_view_tg/camera/Destroy()
+/atom/movable/screen/map_view_tg/camera/Destroy()
 	QDEL_NULL(cam_background)
 	QDEL_NULL(cam_foreground)
 	QDEL_NULL(local_skybox)
 	return ..()
 
-/obj/screen/map_view_tg/camera/generate_view(map_key)
+/atom/movable/screen/map_view_tg/camera/generate_view(map_key)
 	. = ..()
 	cam_background = new()
 	cam_background.del_on_map_removal = FALSE
@@ -37,13 +37,13 @@
 	cam_foreground.add_overlay(scanlines)
 	cam_foreground.add_overlay(noise)
 
-/obj/screen/map_view_tg/camera/display_to_client(client/show_to)
+/atom/movable/screen/map_view_tg/camera/display_to_client(client/show_to)
 	show_to.register_map_obj(cam_background)
 	show_to.register_map_obj(cam_foreground)
 	show_to.register_map_obj(local_skybox)
 	. = ..()
 
-/obj/screen/map_view_tg/camera/proc/show_camera(list/visible_turfs, turf/newturf, size_x, size_y)
+/atom/movable/screen/map_view_tg/camera/proc/show_camera(list/visible_turfs, turf/newturf, size_x, size_y)
 	vis_contents = visible_turfs
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, size_x, size_y)
@@ -55,7 +55,7 @@
 	local_skybox.scale_to_view(size_x)
 	local_skybox.set_position("CENTER", "CENTER", (world.maxx>>1) - newturf.x, (world.maxy>>1) - newturf.y)
 
-/obj/screen/map_view_tg/camera/proc/show_camera_static()
+/atom/movable/screen/map_view_tg/camera/proc/show_camera_static()
 	vis_contents.Cut()
 	cam_background.icon_state = "scanline2"
 	cam_background.fill_rect(1, 1, DEFAULT_MAP_SIZE, DEFAULT_MAP_SIZE)
@@ -76,7 +76,7 @@
 	// Stuff needed to render the map
 	var/map_name
 
-	var/obj/screen/map_view_tg/camera/cam_screen_tg
+	var/atom/movable/screen/map_view_tg/camera/cam_screen_tg
 
 	// Stuff for moving cameras
 	var/turf/last_camera_turf
@@ -244,10 +244,10 @@
 	// Access Based
 	if(access_based)
 		for(var/network in using_map.station_networks)
-			if(can_access_network(user, get_camera_access(network), 1))
+			if(can_ACCESS_NETWORK(user, get_camera_access(network), 1))
 				all_networks.Add(network)
 		for(var/network in using_map.secondary_networks)
-			if(can_access_network(user, get_camera_access(network), 0))
+			if(can_ACCESS_NETWORK(user, get_camera_access(network), 0))
 				all_networks.Add(network)
 	// Network Based
 	else
@@ -269,13 +269,13 @@
 			D["[ckey(C.c_tag)]"] = C
 	return D
 
-/datum/tgui_module/camera/proc/can_access_network(mob/user, network_access, station_network = 0)
+/datum/tgui_module/camera/proc/can_ACCESS_NETWORK(mob/user, network_access, station_network = 0)
 	// No access passed, or 0 which is considered no access requirement. Allow it.
 	if(!network_access)
 		return 1
 
 	if(station_network)
-		return check_access(user, network_access) || check_access(user, access_security) || check_access(user, access_heads)
+		return check_access(user, network_access) || check_access(user, ACCESS_SECURITY) || check_access(user, ACCESS_HEADS)
 	else
 		return check_access(user, network_access)
 

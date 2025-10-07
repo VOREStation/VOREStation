@@ -77,6 +77,8 @@
 	var/max_co2 = 5					// CO2 max
 	var/min_n2 = 0					// N2 min
 	var/max_n2 = 0					// N2 max
+	var/min_ch4 = 0					// CH4 min
+	var/max_ch4 = 5					// CH4 max
 	var/unsuitable_atoms_damage = 2	// This damage is taken when atmos doesn't fit all the requirements above
 
 	//Hostility settings
@@ -422,11 +424,11 @@
 	set category = "Abilities.Settings"
 	set desc = "Allows to recolour once."
 
-	if(!has_recoloured)
-		var/datum/ColorMate/recolour = new /datum/ColorMate(src)
-		recolour.tgui_interact(src)
+	if(has_recoloured)
+		to_chat(src, "You've already recoloured yourself once. You are only allowed to recolour yourself once during a around.")
 		return
-	to_chat(src, "You've already recoloured yourself once. You are only allowed to recolour yourself once during a around.")
+
+	tgui_input_colormatrix(src, "Allows you to recolor yourself", "Animal Recolor", src, ui_state = GLOB.tgui_conscious_state)
 
 //Thermal vision adding
 

@@ -11,11 +11,11 @@
 /obj/item/reagent_containers/glass/bottle/potion/invisibility
 	name = "transparent potion"
 	desc = "A small white potion, the clear liquid inside can barely be seen at all."
-	prefill = list("transparent glamour" = 1)
+	prefill = list(REAGENT_ID_GLAMOUR_INVIS = 1)
 
 /datum/reagent/glamour_transparent
-	name = "Clear Glamour"
-	id = "transparent glamour"
+	name = REAGENT_GLAMOUR_INVIS
+	id = REAGENT_ID_GLAMOUR_INVIS
 	description = "This material is from somewhere else, it can barely be seen by the naked eye."
 	taste_description = "nothingness"
 	reagent_state = LIQUID
@@ -49,11 +49,11 @@
 /obj/item/reagent_containers/glass/bottle/potion/scaling
 	name = "scaling potion"
 	desc = "A small white potion, the clear liquid inside can barely be seen at all."
-	prefill = list("scaling glamour" = 1)
+	prefill = list(REAGENT_ID_GLAMOUR_SCALE = 1)
 
 /datum/reagent/glamour_scaling
-	name = "Scaling Glamour"
-	id = "scaling glamour"
+	name = REAGENT_GLAMOUR_SCALE
+	id = REAGENT_ID_GLAMOUR_SCALE
 	description = "This material is from somewhere else, it appears to change volumes readily at a glance."
 	taste_description = "difficult to discern"
 	reagent_state = LIQUID
@@ -84,11 +84,11 @@
 /obj/item/reagent_containers/glass/bottle/potion/darksight
 	name = "twinling potion"
 	desc = "A small white potion, the thin white liquid inside twinkles brightly."
-	prefill = list("twinkling glamour" = 1)
+	prefill = list(REAGENT_ID_GLAMOUR_TWINKLING = 1)
 
 /datum/reagent/glamour_twinkling
-	name = "Twinkling Glamour"
-	id = "twinkling glamour"
+	name = REAGENT_GLAMOUR_TWINKLING
+	id = REAGENT_ID_GLAMOUR_TWINKLING
 	description = "This material is from somewhere else, it appears to be twinkling."
 	taste_description = "bright"
 	reagent_state = LIQUID
@@ -255,7 +255,7 @@
 
 	if(m_action == "Yes")
 		to_chat(M, span_warning("You begin to break the lines of the glamour ring."))
-		if(!do_after(M, 10 SECONDS, src))
+		if(!do_after(M, 10 SECONDS, target = src))
 			to_chat(M, span_warning("You leave the glamour ring alone."))
 			return
 		to_chat(M, span_warning("You have destroyed \the [src]."))
@@ -270,7 +270,7 @@
 		if(LL.ring_cooldown + 10 MINUTES > world.time)
 			to_chat(M, span_warning("You must wait a while before drawing energy from the glamour again."))
 			return
-		if(!do_after(M, 10 SECONDS, src))
+		if(!do_after(M, 10 SECONDS, target = src))
 			to_chat(M, span_warning("You stop drawing energy."))
 			return
 		LL.lleill_energy = min((LL.lleill_energy + 75),LL.lleill_energy_max)
@@ -423,9 +423,8 @@
 		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
 			return
 		var/mob/living/new_mob = spawn_mob(M)
-		new_mob.faction = M.faction
 
-		new_mob.mob_tf(M)
+		M.tf_into(new_mob)
 
 
 /obj/item/glamour_unstable/proc/spawn_mob(var/mob/living/target)

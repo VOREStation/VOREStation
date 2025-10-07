@@ -93,7 +93,7 @@
 			for(var/channel in target.radio.channels)
 				radio_channels += channel
 			var/list/availalbe_channels = list()
-			for(var/channel in (radiochannels - target.radio.channels))
+			for(var/channel in (GLOB.radiochannels - target.radio.channels))
 				availalbe_channels += channel
 			.["target"]["radio_channels"] = radio_channels
 			.["target"]["availalbe_channels"] = availalbe_channels
@@ -390,7 +390,7 @@
 				target.radio.syndie = 1
 			target.module.channels += list("[selected_radio_channel]" = 1)
 			target.radio.channels[selected_radio_channel] = target.module.channels[selected_radio_channel]
-			target.radio.secure_radio_connections[selected_radio_channel] = SSradio.add_object(target.radio, radiochannels[selected_radio_channel],  RADIO_CHAT)
+			target.radio.secure_radio_connections[selected_radio_channel] = SSradio.add_object(target.radio, GLOB.radiochannels[selected_radio_channel],  RADIO_CHAT)
 			return TRUE
 		if("rem_channel")
 			var/selected_radio_channel = params["channel"]
@@ -404,7 +404,7 @@
 			target.radio.channels = list()
 			for(var/n_chan in target.module.channels)
 				target.radio.channels[n_chan] = target.module.channels[n_chan]
-			SSradio.remove_object(target.radio, radiochannels[selected_radio_channel])
+			SSradio.remove_object(target.radio, GLOB.radiochannels[selected_radio_channel])
 			target.radio.secure_radio_connections -= selected_radio_channel
 			return TRUE
 		if("add_component")
@@ -482,11 +482,11 @@
 			return TRUE
 		if("add_station")
 			target.idcard.access |= get_all_station_access()
-			target.idcard.access |= access_synth
+			target.idcard.access |= ACCESS_SYNTH
 			return TRUE
 		if("rem_station")
 			target.idcard.access -= get_all_station_access()
-			target.idcard.access -= access_synth
+			target.idcard.access -= ACCESS_SYNTH
 			return TRUE
 		if("law_channel")
 			if(params["law_channel"] in target.law_channels())
@@ -577,13 +577,11 @@
 				target.lawsync()
 			return TRUE
 		if("notify_laws")
-			to_chat(target, span_danger("Law Notice"))
-			target.laws.show_laws(target)
+			to_chat(target, span_danger("Law Notice\n") + target.laws.get_formatted_laws())
 			if(isAI(target))
-				var/mob/living/silicon/ai/AI = target
-				for(var/mob/living/silicon/robot/R in AI.connected_robots)
-					to_chat(R, span_danger("Law Notice"))
-					R.laws.show_laws(R)
+				var/mob/living/silicon/ai/our_ai = target
+				for(var/mob/living/silicon/robot/R in our_ai.connected_robots)
+					to_chat(R, span_danger("Law Notice\n") + R.laws.get_formatted_laws())
 			if(ui.user != target)
 				to_chat(ui.user, span_notice("Laws displayed."))
 			return TRUE
@@ -613,7 +611,7 @@
 				target.clear_supplied_laws()
 				target.clear_inherent_laws()
 				target.laws = new global.using_map.default_law_type
-				target.laws.show_laws(target)
+				to_chat(target, span_danger("Laws updated!\n") + target.laws.get_formatted_laws())
 				target.hud_used?.update_robot_modules_display()
 			else
 				target.emagged = 1
@@ -625,7 +623,7 @@
 				if(target.bolt)
 					if(!target.bolt.malfunction)
 						target.bolt.malfunction = MALFUNCTION_PERMANENT
-				target.laws.show_laws(target)
+				to_chat(target, span_danger("Laws updated!\n") + target.laws.get_formatted_laws())
 				target.hud_used?.update_robot_modules_display()
 			return TRUE
 

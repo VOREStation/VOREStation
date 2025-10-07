@@ -904,6 +904,7 @@
 	dir = 4
 	},
 /mob/living/simple_mob/animal/passive/opossum/poppy,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/engineering/workshop)
 "bN" = (
@@ -2157,6 +2158,11 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/communicator,
+/obj/item/radio{
+	pixel_x = 4;
+	pixel_y = -4;
+	listening = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "ew" = (
@@ -6078,6 +6084,11 @@
 /obj/item/clothing/shoes/black,
 /obj/machinery/light,
 /obj/item/communicator,
+/obj/item/radio{
+	pixel_x = 4;
+	pixel_y = -4;
+	listening = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "mH" = (
@@ -8221,7 +8232,7 @@
 "ry" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/space/void/captain,
 /obj/item/clothing/head/helmet/space/void/captain,
 /obj/structure/window/reinforced,
@@ -9205,7 +9216,8 @@
 	},
 /obj/item/radio{
 	pixel_x = 4;
-	pixel_y = -4
+	pixel_y = -4;
+	listening = 0
 	},
 /obj/item/radio{
 	pixel_x = 7;

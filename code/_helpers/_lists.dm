@@ -910,7 +910,7 @@ GLOBAL_LIST_EMPTY(json_cache)
 			GLOB.json_cache[json_to_decode] = json_decode(json_to_decode)
 		. = GLOB.json_cache[json_to_decode]
 	catch(var/exception/e)
-		log_error("Exception during JSON decoding ([json_to_decode]): [e]")
+		log_runtime("Exception during JSON decoding ([json_to_decode]): [e]")
 		return list()
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
@@ -1012,6 +1012,20 @@ GLOBAL_LIST_EMPTY(json_cache)
 	for(var/key in input)
 		UNTYPED_LIST_ADD(keys, key)
 	return keys
+
+///compare two lists, returns TRUE if they are the same
+/proc/compare_list(list/l,list/d)
+	if(!islist(l) || !islist(d))
+		return FALSE
+
+	if(l.len != d.len)
+		return FALSE
+
+	for(var/i in 1 to l.len)
+		if(l[i] != d[i])
+			return FALSE
+
+	return TRUE
 
 //TG sort_list
 ///uses sort_list() but uses the var's name specifically. This should probably be using mergeAtom() instead

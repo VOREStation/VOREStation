@@ -269,7 +269,7 @@
 /* //These were originally supposed to have radios in them. Doesn't work.
 /obj/item/radio/bug
 	listening = 0 //turn it on first
-	frequency = 1359 //sec comms
+	frequency = SEC_FREQ //sec comms
 	broadcasting = 0
 	canhear_range = 1
 	name = "camera bug device"

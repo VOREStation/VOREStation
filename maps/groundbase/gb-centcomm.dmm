@@ -14028,11 +14028,7 @@
 	},
 /area/centcom/terminal)
 "UL" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	layer = 1;
-	name = "Blocker"
-	},
+/obj/effect/blocker,
 /turf/simulated/floor/tiled,
 /area/centcom/living)
 "UM" = (

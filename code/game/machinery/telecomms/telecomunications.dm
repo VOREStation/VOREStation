@@ -439,7 +439,7 @@
 	machinetype = 2
 	circuit = /obj/item/circuitboard/telecomms/bus
 	netspeed = 40
-	var/change_frequency = 0
+	var/change_frequency = ZERO_FREQ
 
 /obj/machinery/telecomms/bus/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 
@@ -676,7 +676,7 @@
 //Generic telecomm connectivity test proc
 /proc/can_telecomm(var/atom/A, var/atom/B, var/ad_hoc = FALSE)
 	if(!A || !B)
-		log_debug("can_telecomm(): Undefined endpoints!")
+		log_mapping("can_telecomm(): Undefined endpoints!")
 		return FALSE
 
 	//Can't in this case, obviously!

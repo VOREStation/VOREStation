@@ -101,3 +101,23 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.add_modifier(/datum/modifier/sprinting, 1 MINUTES)
+
+/obj/item/organ/internal/augment/bioaugment/health_scan
+	name = "health scanner implant"
+	desc = "A small, rounded metallic implant with a passive spectrometer, meant to scan blood passing it by."
+
+	organ_tag = O_AUG_PELVIC
+
+	parent_organ = BP_GROIN
+
+	target_parent_classes = list(ORGAN_FLESH, ORGAN_ROBOT)
+	var/obj/item/healthanalyzer/med_analyzer = null
+
+/obj/item/organ/internal/augment/bioaugment/health_scan/Initialize(mapload)
+	. = ..()
+	med_analyzer = new /obj/item/healthanalyzer/advanced
+
+/obj/item/organ/internal/augment/bioaugment/health_scan/augment_action()
+	if(!owner)
+		return
+	med_analyzer.scan_mob(owner,owner)

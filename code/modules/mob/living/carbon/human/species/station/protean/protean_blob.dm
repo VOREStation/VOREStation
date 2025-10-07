@@ -387,7 +387,7 @@
 					if(target.buckled)
 						target.buckled.unbuckle_mob(target, force = TRUE)
 					target.forceMove(vore_selected)
-					to_chat(target,span_warning("\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
+					to_chat(target,span_warning("\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.get_belly_name()]!"))
 	update_canmove()
 
 /mob/living/simple_mob/protean_blob/update_canmove()
@@ -440,7 +440,7 @@
 		to_chat(src,span_warning("You can't change forms while inside something."))
 		return
 	to_chat(src, span_notice("You rapidly disassociate your form."))
-	if(force || do_after(src,20))
+	if(force || do_after(src, 2 SECONDS, target = src))
 		handle_grasp() //It's possible to blob out before some key parts of the life loop. This results in things getting dropped at null. TODO: Fix the code so this can be done better.
 		remove_micros(src, src) //Living things don't fare well in roblobs.
 		if(buckled)
@@ -554,7 +554,7 @@
 		to_chat(blob,span_warning("You can't change forms while inside something."))
 		return
 	to_chat(src, span_notice("You rapidly reassemble your form."))
-	if(force || do_after(blob,20))
+	if(force || do_after(blob, 2 SECONDS, target = src))
 		if(buckled)
 			buckled.unbuckle_mob()
 		if(LAZYLEN(buckled_mobs))
@@ -656,19 +656,6 @@
 				setClickCooldown(get_attack_speed())
 			return 1
 	return 0
-
-//Don't eat yourself, idiot
-/mob/living/simple_mob/protean_blob/CanStumbleVore(mob/living/target)
-	if(target == humanform)
-		return FALSE
-	return ..()
-
-/mob/living/carbon/human/CanStumbleVore(mob/living/target)
-	if(istype(target, /mob/living/simple_mob/protean_blob))
-		var/mob/living/simple_mob/protean_blob/PB = target
-		if(PB.humanform == src)
-			return FALSE
-	return ..()
 
 /mob/living/simple_mob/protean_blob/handle_mutations_and_radiation()
 	if(!humanform)

@@ -27,7 +27,7 @@
 	var/storage_name = "Cryogenic Oversight Control"
 	var/allow_items = 1
 
-	req_one_access = list(access_heads) //VOREStation Add
+	req_one_access = list(ACCESS_HEADS) //VOREStation Add
 
 /obj/machinery/computer/cryopod/update_icon()
 	..()
@@ -383,7 +383,7 @@
 		despawn_occupant(M)
 
 	// VOREStation
-	hook_vr("despawn", list(to_despawn, src))
+	persist_despawned_mob(to_despawn, src)
 	if(isliving(to_despawn))
 		var/mob/living/L = to_despawn
 		for(var/obj/belly/B as anything in L.vore_organs)
@@ -620,7 +620,7 @@
 
 	visible_message("[usr] [on_enter_visible_message] [src].", 3)
 
-	if(do_after(usr, 20))
+	if(do_after(usr, 2 SECONDS, target = src))
 
 		if(!usr || !usr.client)
 			return
@@ -717,7 +717,7 @@
 		else
 			visible_message("\The [user] starts putting [M] into \the [src].", 3)
 
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			if(occupant)
 				to_chat(user, span_warning("\The [src] is already occupied."))
 				return

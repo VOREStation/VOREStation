@@ -901,7 +901,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			return 0
 		var/msg = tgui_input_text(src, "Message:", "Spectral Whisper", "", MAX_MESSAGE_LEN)
 		if(msg)
-			log_say("(SPECWHISP to [key_name(M)]): [msg]", src)
+			log_talk("(SPECWHISP to [key_name(M)]): [msg]", LOG_WHISPER)
 			to_chat(M, span_warning(" You hear a strange, unidentifiable voice in your head... [span_purple("[msg]")]"))
 			to_chat(src, span_warning(" You said: '[msg]' to [M]."))
 		else
@@ -997,7 +997,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(message)
 		to_chat(src, span_ghostalert(span_huge("[message]")))
 		if(source)
-			throw_alert("\ref[source]_notify_revive", /obj/screen/alert/notify_cloning, new_master = source)
+			throw_alert("\ref[source]_notify_revive", /atom/movable/screen/alert/notify_cloning, new_master = source)
 	to_chat(src, span_ghostalert("<a href='byond://?src=[REF(src)];reenter=1'>(Click to re-enter)</a>"))
 	if(sound)
 		SEND_SOUND(src, sound(sound))

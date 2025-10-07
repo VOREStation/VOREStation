@@ -192,6 +192,13 @@
 			else
 				// Using another species as base, doctors should know this to avoid some meds
 				occupantData["species"] = "[H.custom_species] \[Similar biology to [H.species.name]\]"
+
+		var/has_withdrawl = FALSE
+		for(var/addic in H.get_all_addictions())
+			if(H.get_addiction_to_reagent(addic) > 0 && H.get_addiction_to_reagent(addic) < 80)
+				has_withdrawl = TRUE
+				break
+
 		occupantData["stat"] = H.stat
 		occupantData["health"] = H.health
 		occupantData["maxHealth"] = H.getMaxHealth()
@@ -212,6 +219,8 @@
 		occupantData["bodyTempF"] = (((H.bodytemperature-T0C) * 1.8) + 32)
 
 		occupantData["hasBorer"] = H.has_brain_worms()
+		occupantData["hasWithdrawl"] = has_withdrawl
+
 		occupantData["colourblind"] = null
 		for(var/datum/modifier/M in H.modifiers)
 			if(!isnull(M.wire_colors_replace))
@@ -365,7 +374,7 @@
 		occupantData["nearsighted"] = (H.disabilities & NEARSIGHTED)
 		occupantData["brokenspine"] = (H.disabilities & SPINE)
 		occupantData["husked"] = (HUSK in H.mutations)
-		occupantData = attempt_vr(src, "get_occupant_data_vr", list(occupantData, H))
+		occupantData = get_vored_occupant_data(occupantData, H)
 	data["occupant"] = occupantData
 
 	return data
@@ -397,6 +406,7 @@
 
 	dat = span_blue(span_bold("Occupant Statistics:")) + "<br>" //Blah obvious
 	if(istype(occupant)) //is there REALLY someone in there?
+		var/has_withdrawl = ""
 		if(ishuman(occupant))
 			var/mob/living/carbon/human/H = occupant
 			var/speciestext = H.species.name
@@ -408,6 +418,11 @@
 				else
 					speciestext = "[H.custom_species] \[Similar biology to [H.species.name]\]"
 					dat += span_blue("Sapient Species: [speciestext]") + "<BR>"
+			for(var/addic in H.get_all_addictions())
+				if(H.get_addiction_to_reagent(addic) > 0 && H.get_addiction_to_reagent(addic) < 80)
+					var/datum/reagent/R = SSchemistry.chemical_reagents[addic]
+					has_withdrawl = R.name
+					break
 		var/t1
 		switch(occupant.stat) // obvious, see what their status is
 			if(0)
@@ -601,6 +616,8 @@
 			dat += span_red("Cataracts detected.") + "<BR>"
 		if(occupant.disabilities & NEARSIGHTED)
 			dat += span_red("Retinal misalignment detected.") + "<BR>"
+		if(has_withdrawl != "")
+			dat += span_red("Experiencing withdrawal symptoms!") + "<BR>[has_withdrawl]"
 		if(HUSK in occupant.mutations) // VOREstation edit
 			dat += span_red("Anatomical structure lost, resuscitation not possible!") + "<BR>"
 	else

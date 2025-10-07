@@ -594,10 +594,18 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 			continue //A prototype or something
 		GLOB.weavable_items[instance.title] = instance
 
+	paths = subtypesof(/datum/weaver_recipe)
+	for(var/path in paths)
+		var/datum/weaver_recipe/instance = new path()
+		if(!instance.title)
+			continue //A prototype or something
+		GLOB.all_weavable[instance.title] = instance
+
 	return 1 // Hooks must return 1
 
 GLOBAL_LIST_EMPTY(weavable_structures)
 GLOBAL_LIST_EMPTY(weavable_items)
+GLOBAL_LIST_EMPTY(all_weavable)
 
 
 GLOBAL_LIST_INIT(xenobio_metal_materials_normal, list(
@@ -1163,7 +1171,11 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/seeds, \
 	/obj/item/grown, \
 	/obj/item/trash, \
-	/obj/item/reagent_containers/cooking_container
+	/obj/item/reagent_containers/cooking_container, \
+	/obj/item/spacecasinocash, \
+	/obj/item/spacecasinocash_fake, \
+	/obj/item/deck/cards, \
+	/obj/item/hand
 
 #define GRAVEYARD_GRIPPER \
 	/obj/item/seeds, \
@@ -1180,7 +1192,9 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/petrifier, \
 	/obj/item/dice, \
 	/obj/item/casino_platinum_chip, \
-	/obj/item/spacecasinocash
+	/obj/item/spacecasinocash, \
+	/obj/item/spacecasinocash_fake, \
+	/obj/item/hand
 
 #define ORGAN_GRIPPER \
 	/obj/item/organ, \

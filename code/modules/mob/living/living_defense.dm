@@ -13,7 +13,7 @@
 */
 /mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/armour_pen = 0, var/absorb_text = null, var/soften_text = null)
 	if(GLOB.Debug2)
-		to_world_log("## DEBUG: getarmor() was called.")
+		log_world("## DEBUG: getarmor() was called.")
 
 	if(armour_pen >= 100)
 		return 0 //might as well just skip the processing
@@ -23,7 +23,7 @@
 		var/armor_variance_range = round(armor * 0.25) //Armor's effectiveness has a +25%/-25% variance.
 		var/armor_variance = rand(-armor_variance_range, armor_variance_range) //Get a random number between -25% and +25% of the armor's base value
 		if(GLOB.Debug2)
-			to_world_log("## DEBUG: The range of armor variance is [armor_variance_range].  The variance picked by RNG is [armor_variance].")
+			log_world("## DEBUG: The range of armor variance is [armor_variance_range].  The variance picked by RNG is [armor_variance].")
 
 		armor = min(armor + armor_variance, 100)	//Now we calcuate damage using the new armor percentage.
 		armor = max(armor - armour_pen, 0)			//Armor pen makes armor less effective.
@@ -39,7 +39,7 @@
 			else
 				to_chat(src, span_danger("Your armor softens the blow!"))
 		if(GLOB.Debug2)
-			to_world_log("## DEBUG: Armor when [src] was attacked was [armor].")
+			log_world("## DEBUG: Armor when [src] was attacked was [armor].")
 	return armor
 
 /*
@@ -126,7 +126,7 @@
 
 	//Stun Beams
 	if(P.taser_effect)
-		stun_effect_act(0, P.agony, def_zone, P)
+		stun_effect_act(0, P.agony, def_zone, P, electric = TRUE)
 		if(!P.nodamage)
 			apply_damage(P.damage, P.damage_type, def_zone, absorb, soaked, 0, sharp=proj_sharp, edge=proj_edge, used_weapon=P, projectile=TRUE)
 		qdel(P)
@@ -146,8 +146,9 @@
 //	return absorb
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	flash_pain()
+	SEND_SIGNAL(src, COMSIG_STUN_EFFECT_ACT, stun_amount, agony_amount, def_zone, used_weapon, electric)
 
 	if (stun_amount)
 		Stun(stun_amount)
@@ -260,17 +261,13 @@
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
+/mob/living/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
 	if(is_incorporeal())
 		return
-	if(istype(AM,/obj/item))
-		var/obj/item/O = AM
-		if(stat != DEAD && trash_catching && vore_selected)
-			if(adminbus_trash || is_type_in_list(O, GLOB.edible_trash) && O.trash_eatable && !is_type_in_list(O, GLOB.item_vore_blacklist))
-				visible_message(span_vwarning("[O] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
-				O.throwing = 0
-				O.forceMove(vore_selected)
-				return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_HIT_BY_THROWN_ENTITY, source, speed) & COMSIG_CANCEL_HITBY)
+		return
+	if(isitem(source))
+		var/obj/item/O = source
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
@@ -327,42 +324,6 @@
 					src.anchored = TRUE
 					src.pinned += O
 
-	//VORESTATION EDIT START - Allows for thrown vore!
-	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
-	if(isliving(AM))
-		var/mob/living/thrown_mob = AM
-
-		if(!allowmobvore && isanimal(thrown_mob) && !thrown_mob.ckey) //Does the person being hit not allow mob vore and the perrson being thrown a simple_mob?
-			return
-		if(!thrown_mob.allowmobvore && isanimal(src) && !ckey) //Does the person being thrown not allow mob vore and is the person being hit (us) a simple_mob?
-			return
-
-		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
-		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
-		if((can_be_drop_pred && throw_vore) && (thrown_mob.devourable && thrown_mob.throw_vore && thrown_mob.can_be_drop_prey)) //Prey thrown into pred.
-			if(!vore_selected)
-				return
-			vore_selected.nom_mob(thrown_mob) //Eat them!!!
-			visible_message(span_vwarning("[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!"))
-			if(thrown_mob.loc != vore_selected)
-				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
-			on_throw_vore_special(TRUE, thrown_mob)
-			add_attack_logs(thrown_mob.thrower,src,"Devoured [thrown_mob.name] via throw vore.")
-			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
-
-		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
-		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
-		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore) && thrown_mob.vore_selected) //Pred thrown into prey.
-			if(!thrown_mob.vore_selected)
-				return
-			visible_message(span_vwarning("[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
-			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
-			if(src.loc != thrown_mob.vore_selected)
-				src.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
-			add_attack_logs(thrown_mob.LAssailant,src,"Was Devoured by [thrown_mob.name] via throw vore.")
-			return
-	//VORESTATION EDIT END - Allows for thrown vore!
-
 /mob/living/proc/on_throw_vore_special(var/pred = TRUE, var/mob/living/target)
 	return
 
@@ -370,7 +331,7 @@
 	O.loc = src
 	src.embedded += O
 	add_verb(src, /mob/proc/yank_out_object)
-	throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
+	throw_alert("embeddedobject", /atom/movable/screen/alert/embeddedobject)
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)
@@ -416,83 +377,6 @@
 	spawn(1) updatehealth()
 	return 1
 
-/mob/living/proc/IgniteMob()
-	if(fire_stacks > 0 && !on_fire)
-		on_fire = 1
-		new/obj/effect/dummy/lighting_obj/moblight/fire(src)
-		throw_alert("fire", /obj/screen/alert/fire)
-		update_fire()
-
-/mob/living/proc/ExtinguishMob()
-	if(on_fire)
-		on_fire = 0
-		fire_stacks = 0
-		for(var/obj/effect/dummy/lighting_obj/moblight/fire/F in src)
-			qdel(F)
-		clear_alert("fire")
-		update_fire()
-
-	if(has_modifier_of_type(/datum/modifier/fire))
-		remove_modifiers_of_type(/datum/modifier/fire)
-
-/mob/living/proc/update_fire()
-	return
-
-/mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
-
-/mob/living/proc/handle_fire()
-	if(fire_stacks < 0)
-		fire_stacks = min(0, ++fire_stacks) //If we've doused ourselves in water to avoid fire, dry off slowly
-
-	if(fire_stacks > 0)
-		fire_stacks = max(0, (fire_stacks-0.1))	//Should slowly burn out
-
-	if(!on_fire)
-		return 1
-	else if(fire_stacks <= 0)
-		ExtinguishMob() //Fire's been put out.
-		return 1
-
-	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
-	if(G.gas[GAS_O2] < 1)
-		ExtinguishMob() //If there's no oxygen in the tile we're on, put out the fire
-		return 1
-
-	var/turf/location = get_turf(src)
-	location.hotspot_expose(fire_burn_temperature(), 50, 1)
-
-//altered this to cap at the temperature of the fire causing it, using the same 1:1500 value as /mob/living/carbon/human/handle_fire() in human/life.dm
-/mob/living/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature)
-		if(fire_stacks < exposed_temperature/1500) // Subject to balance
-			adjust_fire_stacks(2)
-	else
-		adjust_fire_stacks(2)
-	IgniteMob()
-
-//Share fire evenly between the two mobs
-//Called in MobCollide() and Crossed()
-/mob/living/proc/spread_fire(mob/living/L)
-	return
-// This is commented out pending discussion on Polaris.  If you're a downsteam and you want people to spread fire by touching each other, feel free to uncomment this.
-/*
-	if(!istype(L))
-		return
-	var/L_old_on_fire = L.on_fire
-
-	if(on_fire) //Only spread fire stacks if we're on fire
-		fire_stacks /= 2
-		L.fire_stacks += fire_stacks
-		if(L.IgniteMob())
-			message_admins("[key_name(src)] bumped into [key_name(L)] and set them on fire.")
-
-	if(L_old_on_fire) //Only ignite us and gain their stacks if they were onfire before we bumped them
-		L.fire_stacks /= 2
-		fire_stacks += L.fire_stacks
-		IgniteMob()
-*/
-
 /mob/living/proc/get_cold_protection()
 	return 0
 
@@ -529,8 +413,7 @@
 // Called when touching a lava tile.
 // Does roughly 70 damage (30 instantly, up to ~40 over time) to unprotected mobs, and 10 to fully protected mobs.
 /mob/living/lava_act()
-	adjust_fire_stacks(1)
-	add_modifier(/datum/modifier/fire/stack_managed/intense, 8 SECONDS) // Around 40 total if left to burn and without fire protection per stack.
+	adjust_fire_stacks(4)
 	inflict_heat_damage(20) // Another 20, however this is instantly applied to unprotected mobs.
 	adjustFireLoss(10) // Lava cannot be 100% resisted with fire protection.
 

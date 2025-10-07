@@ -14,7 +14,7 @@
 
 	result = cached_json_decode(result)
 	if (result["error_code"])
-		log_debug("byhttp error: [result["error"]] ([result["error_code"]])")
+		log_runtime("byhttp error: [result["error"]] ([result["error_code"]])")
 		return result["error_code"]
 
 	return list(
@@ -60,9 +60,9 @@
 			if (200 to 299)
 				continue
 			if (400 to 599)
-				log_debug("Webhooks: HTTP error code while sending to '[target_url]': [httpresponse["status_code"]]. Data: [httpresponse["body"]].")
+				log_runtime("Webhooks: HTTP error code while sending to '[target_url]': [httpresponse["status_code"]]. Data: [httpresponse["body"]].")
 			else
-				log_debug("Webhooks: unknown HTTP code while sending to '[target_url]': [httpresponse["status_code"]]. Data: [httpresponse["body"]].")
+				log_runtime("Webhooks: unknown HTTP code while sending to '[target_url]': [httpresponse["status_code"]]. Data: [httpresponse["body"]].")
 		. = FALSE
 
 /decl/webhook/proc/get_mentions(var/mentioning_url)

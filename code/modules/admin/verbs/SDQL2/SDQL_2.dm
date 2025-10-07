@@ -187,7 +187,7 @@ Example: USING PROCCALL = BLOCKING, SELECT = FORCE_NULLS, PRIORITY = HIGH SELECT
 		state = SDQL2_STATE_ERROR;\
 		CRASH("SDQL2 fatal error");};
 
-ADMIN_VERB(sdql2_query, R_DEBUG, "SDQL2 Query", "Run a SDQL2 query.", ADMIN_CATEGORY_DEBUG, query_text as message)
+ADMIN_VERB(sdql2_query, R_DEBUG, "SDQL2 Query", "Run a SDQL2 query.", ADMIN_CATEGORY_DEBUG_GAME, query_text as message)
 	var/prompt = tgui_alert(user, "Run SDQL2 Query?", "SDQL2", list("Yes", "Cancel"))
 	if (prompt != "Yes")
 		return

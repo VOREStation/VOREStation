@@ -68,7 +68,7 @@
 	S.icon = 'icons/obj/chemical.dmi'
 	S.icon_state = "syringeproj"
 	playsound(src, 'sound/items/syringeproj.ogg', 50, 1)
-	log_message("Launched [S] from [src], targeting [target].")
+	src.mecha_log_message("Launched [S] from [src], targeting [target].")
 	spawn(-1)
 		src = null //if src is deleted, still process the syringe
 		for(var/i=0, i<6, i++)
@@ -125,7 +125,7 @@
 			START_PROCESSING(SSfastprocess, src)
 			occupant_message(message)
 			occupant_message("Reagent processing started.")
-			log_message("Reagent processing started.")
+			src.mecha_log_message("Reagent processing started.")
 		return
 	if(top_filter.get("show_reagents"))
 		chassis.occupant << browse(get_reagents_page(),"window=msyringegun")
@@ -268,7 +268,7 @@
 		return PROCESS_KILL
 	if(!processed_reagents.len || reagents.total_volume >= reagents.maximum_volume || !chassis.has_charge(energy_drain))
 		occupant_message(span_warning("Reagent processing stopped."))
-		log_message("Reagent processing stopped.")
+		src.mecha_log_message("Reagent processing stopped.")
 		return PROCESS_KILL
 	var/amount = synth_speed / processed_reagents.len
 	for(var/reagent in processed_reagents)
@@ -331,7 +331,7 @@
 	shut_down()
 	if(chassis && chassis.occupant)
 		to_chat(chassis.occupant, span_notice("\The [chassis] shudders as something jams!"))
-		log_message("[src.name] has malfunctioned. Maintenance required.")
+		src.mecha_log_message("[src.name] has malfunctioned. Maintenance required.")
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/process()	// Will continually try to find the nearest person above the threshold that is a valid target, and try to heal them.
 	if(chassis && enabled && chassis.has_charge(energy_drain) && (chassis.occupant || enable_special))
@@ -455,10 +455,10 @@
 		enabled = !enabled
 		if(enabled)
 			set_ready_state(FALSE)
-			log_message("Activated.")
+			src.mecha_log_message("Activated.")
 		else
 			set_ready_state(TRUE)
-			log_message("Deactivated.")
+			src.mecha_log_message("Deactivated.")
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/add_equip_overlay(obj/mecha/M as obj)
 	..()

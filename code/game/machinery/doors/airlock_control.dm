@@ -128,9 +128,9 @@
 	if(!surpress_send) send_status()
 
 
-/obj/machinery/door/airlock/close(surpress_send)
+/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
 	. = ..()
-	if(!surpress_send) send_status()
+	if(!forced) send_status()
 
 
 /obj/machinery/door/airlock/Bumped(atom/AM)
@@ -167,7 +167,7 @@
 
 	var/id_tag
 	var/master_tag
-	var/frequency = 1379
+	var/frequency = AIRLOCK_FREQ
 	var/command = "cycle"
 
 	var/datum/radio_frequency/radio_connection
@@ -294,7 +294,7 @@
 	circuit = /obj/item/circuitboard/airlock_cycling
 
 	var/master_tag
-	var/frequency = 1449
+	var/frequency = AMAG_ELE_FREQ
 	var/command = "cycle"
 
 	var/datum/radio_frequency/radio_connection
@@ -378,9 +378,9 @@
 	return ..()
 
 /obj/machinery/access_button/airlock_interior
-	frequency = 1379
+	frequency = AIRLOCK_FREQ
 	command = "cycle_interior"
 
 /obj/machinery/access_button/airlock_exterior
-	frequency = 1379
+	frequency = AIRLOCK_FREQ
 	command = "cycle_exterior"

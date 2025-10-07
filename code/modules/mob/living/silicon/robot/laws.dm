@@ -30,8 +30,7 @@
 			to_chat(src, span_infoplain(span_bold("No AI selected to sync laws with, disabling lawsync protocol.")))
 			lawupdate = FALSE
 
-	to_chat(who, span_infoplain(span_bold("Obey these laws:")))
-	laws.show_laws(who)
+	to_chat(who, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
 	if(shell) //AI shell
 		to_chat(who, span_infoplain(span_bold("Remember, you are an AI remotely controlling your shell, other AIs can be ignored.")))
 	// TODO: Update to new antagonist system.

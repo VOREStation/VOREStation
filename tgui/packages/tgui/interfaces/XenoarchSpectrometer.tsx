@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -139,14 +139,14 @@ export const Spinner = (props: {
   const SPEED_MULTIPLIER = 0.3;
   const STEP_SIZE = 2;
 
+  const updateRotation = useEffectEvent(() => {
+    setRotation((rot) => (rot + STEP_SIZE) % 359);
+  });
+
   useEffect(() => {
     // Only spin if there's ~some~ flow.
-    if (!factor) {
-      return;
-    }
-    const id = setInterval(() => {
-      setRotation((rot) => (rot + STEP_SIZE) % 359);
-    }, SPEED_MULTIPLIER * factor);
+    if (!factor) return;
+    const id = setInterval(updateRotation, SPEED_MULTIPLIER * factor);
     return () => clearInterval(id);
   }, [factor]);
 

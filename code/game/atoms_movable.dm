@@ -34,6 +34,7 @@
 	var/autotransferable = TRUE // Toggle for autotransfer mechanics.
 	var/recursive_listeners
 	var/listening_recursive = NON_LISTENING_ATOM
+	var/unacidable = TRUE
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -265,6 +266,10 @@
 // Make sure you know what you're doing if you call this, this is intended to only be called by byond directly.
 // You probably want CanPass()
 /atom/movable/Cross(atom/movable/AM)
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_CROSS, AM) & COMPONENT_BLOCK_CROSS)
+		return FALSE
+	if(SEND_SIGNAL(AM, COMSIG_MOVABLE_CROSS_OVER, src) & COMPONENT_BLOCK_CROSS)
+		return FALSE
 	return CanPass(AM, loc)
 
 /atom/movable/CanPass(atom/movable/mover, turf/target)
@@ -716,9 +721,6 @@
 		LAZYOR(location.recursive_listeners, arrived.recursive_listeners)
 
 /atom/movable/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
-	return
-
-/atom/movable/proc/Bump_vr(var/atom/A, yes)
 	return
 
 /atom/movable/vv_get_dropdown()

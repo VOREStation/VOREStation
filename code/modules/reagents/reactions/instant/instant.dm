@@ -240,7 +240,7 @@
 	result = REAGENT_ID_DEXALIN
 	required_reagents = list(REAGENT_ID_OXYGEN = 2, REAGENT_ID_PHORON = 0.1)
 	catalysts = list(REAGENT_ID_PHORON = 1)
-	inhibitors = list(REAGENT_ID_WATER = 1) // Messes with cryox
+	inhibitors = list(REAGENT_ID_WATER = 1, REAGENT_ID_TIN = 1) // Messes with cryox, and oxygen distilling
 	result_amount = 1
 
 /decl/chemical_reaction/instant/dermaline
@@ -446,6 +446,7 @@
 	name = REAGENT_LYE
 	id = REAGENT_ID_LYE
 	result = REAGENT_ID_LYE
+	inhibitors = list(REAGENT_ID_CARBON = 1) // Or it blocks aphrodisiac
 	required_reagents = list(REAGENT_ID_SODIUM = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
 

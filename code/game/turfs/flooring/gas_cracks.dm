@@ -119,10 +119,23 @@
 	. = ..()
 	. += "A fresh breeze blows through it."
 
+/turf/simulated/floor/gas_crack/methane
+	gas_type = list(GAS_CH4)
+	methane = 250
+
+/turf/simulated/floor/gas_crack/methane/pump_reagents(var/datum/reagents/R, var/volume)
+	. = ..()
+	R.add_reagent(REAGENT_ID_SULFUR, round(volume / 2, 0.1))
+	R.add_reagent(REAGENT_ID_PHOSPHORUS, round(volume / 2, 0.1))
+
+/turf/simulated/floor/gas_crack/methane/examine(mob/user)
+	. = ..()
+	. += "A terrible smell wafts from beneath it."
+
 
 /turf/simulated/floor/gas_crack/terrible
 	gas_type = list(GAS_CO2,GAS_PHORON,GAS_N2O)
-	carbon_dioxide = 250
+	methane = 250
 	phoron = 250
 
 /turf/simulated/floor/gas_crack/terrible/pump_reagents(var/datum/reagents/R, var/volume)
@@ -157,8 +170,10 @@
 		gas_type.Add(GAS_O2)
 	if(prob(15))
 		gas_type.Add(GAS_N2)
+	if(prob(15))
+		gas_type.Add(GAS_CH4)
 	if(!gas_type.len)
-		gas_type.Add(pick(list(GAS_CO2,GAS_PHORON,GAS_N2O,GAS_O2,GAS_N2)))
+		gas_type.Add(pick(list(GAS_CO2,GAS_PHORON,GAS_N2O,GAS_O2,GAS_N2,GAS_CH4)))
 	// Set fracking reagent
 	add_random_reagent()
 	if(prob(60))

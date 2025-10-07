@@ -269,15 +269,15 @@
 	if(environment)
 		switch(environment.temperature) //310.055 optimal body temp
 			if(400 to INFINITY)
-				throw_alert("temp", /obj/screen/alert/hot/robot, HOT_ALERT_SEVERITY_MODERATE)
+				throw_alert("temp", /atom/movable/screen/alert/hot/robot, HOT_ALERT_SEVERITY_MODERATE)
 			if(360 to 400)
-				throw_alert("temp", /obj/screen/alert/hot/robot, HOT_ALERT_SEVERITY_LOW)
+				throw_alert("temp", /atom/movable/screen/alert/hot/robot, HOT_ALERT_SEVERITY_LOW)
 			if(260 to 360)
 				clear_alert("temp")
 			if(200 to 260)
-				throw_alert("temp", /obj/screen/alert/cold/robot, COLD_ALERT_SEVERITY_LOW)
+				throw_alert("temp", /atom/movable/screen/alert/cold/robot, COLD_ALERT_SEVERITY_LOW)
 			else
-				throw_alert("temp", /obj/screen/alert/cold/robot, COLD_ALERT_SEVERITY_MODERATE)
+				throw_alert("temp", /atom/movable/screen/alert/cold/robot, COLD_ALERT_SEVERITY_MODERATE)
 
 //Oxygen and fire does nothing yet!!
 //	if (oxygen) oxygen.icon_state = "oxy[oxygen_alert ? 1 : 0]"
@@ -285,12 +285,12 @@
 
 	if(stat != 2)
 		if(blinded)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 		else
 			clear_fullscreen("blind")
-			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
-			set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
-			set_fullscreen(druggy, "high", /obj/screen/fullscreen/high)
+			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /atom/movable/screen/fullscreen/impaired, 1)
+			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
+			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 
 	if (machine)
 		if (machine.check_eye(src) < 0)
@@ -300,7 +300,7 @@
 			reset_view(null)
 
 	if(emagged)
-		throw_alert("hacked", /obj/screen/alert/hacked)
+		throw_alert("hacked", /atom/movable/screen/alert/hacked)
 	else
 		clear_alert("hacked")
 
@@ -313,15 +313,15 @@
 			if(0.75 to INFINITY)
 				clear_alert("charge")
 			if(0.5 to 0.75)
-				throw_alert("charge", /obj/screen/alert/lowcell, 1)
+				throw_alert("charge", /atom/movable/screen/alert/lowcell, 1)
 			if(0.25 to 0.5)
-				throw_alert("charge", /obj/screen/alert/lowcell, 2)
+				throw_alert("charge", /atom/movable/screen/alert/lowcell, 2)
 			if(0.01 to 0.25)
-				throw_alert("charge", /obj/screen/alert/lowcell, 3)
+				throw_alert("charge", /atom/movable/screen/alert/lowcell, 3)
 			else
-				throw_alert("charge", /obj/screen/alert/emptycell)
+				throw_alert("charge", /atom/movable/screen/alert/emptycell)
 	else
-		throw_alert("charge", /obj/screen/alert/nocell)
+		throw_alert("charge", /atom/movable/screen/alert/nocell)
 
 
 /mob/living/silicon/robot/proc/update_items()
@@ -364,14 +364,14 @@
 		canmove = FALSE
 	return canmove
 
+/mob/living/silicon/robot/fire_act()
+	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
+		ignite_mob()
+
 /mob/living/silicon/robot/update_fire()
 	cut_overlay(image(icon = 'icons/mob/OnFire.dmi', icon_state = get_fire_icon_state()))
 	if(on_fire)
 		add_overlay(image(icon = 'icons/mob/OnFire.dmi', icon_state = get_fire_icon_state()))
-
-/mob/living/silicon/robot/fire_act()
-	if(!on_fire) //Silicons don't gain stacks from hotspots, but hotspots can ignite them
-		IgniteMob()
 
 /mob/living/silicon/robot/handle_light()
 	if(lights_on)
