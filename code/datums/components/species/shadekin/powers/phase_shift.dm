@@ -102,6 +102,15 @@
 		phase_out(T, SK)
 
 /mob/living/proc/phase_in(var/turf/T, var/datum/component/shadekin/SK)
+	//In case we're not passed args, do it ourself.
+	if(!T)
+		T = get_turf(src)
+		if(!T)
+			return
+	if(!SK)
+		SK = get_shadekin_component()
+		if(!SK)
+			return
 	if(SK.in_phase)
 
 		// pre-change
