@@ -13,6 +13,7 @@
 
 //override the standard attack_ghost proc for custom messages
 /obj/structure/ghost_pod/ghost_activated/unified_hole/attack_ghost(var/mob/observer/dead/user)
+	var/choice
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, span_warning("You cannot use this spawnpoint because you are banned from playing ghost roles."))
 		return
@@ -22,7 +23,11 @@
 		//to_chat(user, span_warning("You must have proper out-of-character notes and flavor text configured for your current character slot to use this spawnpoint."))
 		return
 
-	var/choice = tgui_alert(user, "Which type of maintenance critter do you wish to spawn as?", "Maint Critter Spawner", list("Mob", "Morph", "Lurker", "Cancel"))
+	if(redgate_restricted)
+		choice = tgui_alert(user, "Which type of critter do you wish to spawn as? Note that this is a Redgate Spawner: if you choose the Lurker spawn you will not be able to leave through the redgate until another character grants you permission by clicking on the redgate with you nearby. Are you absolutely sure you wish to continue?", "Redgate Critter Spawner", list("Mob", "Morph", "Lurker", "Cancel"))
+	else
+		choice = tgui_alert(user, "Which type of critter do you wish to spawn as?", "Critter Spawner", list("Mob", "Morph", "Lurker", "Cancel"))
+
 
 	if(choice == "Mob")
 		create_simplemob(user)
@@ -46,7 +51,7 @@
 		new /obj/machinery/recharge_station/ghost_pod_recharger(src.loc)
 
 	while(!finalized && M.client)
-		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", GLOB.maint_mob_pred_options)
+		choice = tgui_input_list(M, "What type of critter do you want to play as?", "Critter Choice", GLOB.maint_mob_pred_options)
 		if(!choice)	//We probably pushed the cancel button on the mob selection. Let's just put the ghost pod back in the list.
 			to_chat(M, span_notice("No mob selected, cancelling."))
 			reset_ghostpod()
@@ -67,14 +72,12 @@
 	// R.has_hands = TRUE // Downstream
 	if(M.mind)
 		M.mind.transfer_to(newPred)
-	to_chat(M, span_notice("You are " + span_bold("[newPred]") + ", somehow having gotten aboard the station in search of food. \
-	You are wary of environment around you, but you do feel rather peckish. Stick around dark, secluded places to avoid danger or, \
-	if you are cute enough, try to make friends with this place's inhabitants."))
+	to_chat(M, span_notice("You are " + span_bold("[newPred]") + ", somehow having gotten aboard the station in search of food, shelter, or safety. The environment around you is a strange and unfamiliar one, but sooner or later you'll have to leave your hiding place in search of food. How you choose to do so is up to you, kust beware that you don't end up falling prey to some other creature."))
 	to_chat(M, span_critical("Please be advised, this role is NOT AN ANTAGONIST."))
-	to_chat(M, span_warning("You may be a spooky space monster, but your role is to facilitate spooky space monster roleplay, not to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. GENERALLY, this role should avoid well populated areas. You’re a weird spooky space monster, so the bar is probably not where you’d want to go if you intend to survive. Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind."))
+	to_chat(M, span_warning("You may be a spooky (or cute!) space critter, but your role is to facilitate roleplay, not to fight the station and slaughter people. You're free to get into any kind of roleplay scene you like if OOC prefs align, but emphasis is on the 'roleplay' here. If you intend to be an actual threat, you MUST seek permission from staff first. GENERALLY, this role should avoid well populated areas, but you might be able to get away with it if you spawn as something relatively innocuous."))
 	newPred.ckey = M.ckey
 	newPred.visible_message(span_warning("[newPred] emerges from somewhere!"))
-	log_and_message_admins("successfully entered \a [src] and became a [newPred].")
+	log_and_message_admins("successfully used a Maintenance Critter spawner to spawn in as a [newPred].")
 	if(tgui_alert(newPred, "Do you want to load the vore bellies from your current slot?", "Load Bellies", list("Yes", "No")) == "Yes")
 		newPred.copy_from_prefs_vr()
 		if(LAZYLEN(newPred.vore_organs))
@@ -94,11 +97,11 @@
 	You can undisguise yourself by shift + clicking yourself, but disguise being switched, or turned on and off has a short cooldown. You can also ventcrawl, \
 	by using alt + click on the vent or scrubber."))
 	to_chat(M, span_critical("Please be advised, this role is NOT AN ANTAGONIST."))
-	to_chat(M, span_warning("You may be a spooky space monster, but your role is to facilitate spooky space monster roleplay, not to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. GENERALLY, this role should avoid well populated areas. You’re a weird spooky space monster, so the bar is probably not where you’d want to go if you intend to survive. Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind."))
+	to_chat(M, span_warning("You may be a weird goopy creature, but your role is to facilitate weird goopy creature roleplay, not to fight the station and slaughter people. You're free to get into any kind of roleplay scene you like if OOC prefs align, but emphasis is on the 'roleplay' here. If you intend to be an actual threat, you MUST seek permission from staff first. GENERALLY, this role should avoid well populated areas, but you might be able to get away with it if you play your cards right."))
 
 	newMorph.ckey = M.ckey
 	newMorph.visible_message(span_warning("A morph appears to crawl out of somewhere."))
-	log_and_message_admins("successfully entered \a [src] and became a Morph.")
+	log_and_message_admins("successfully used a Maintenance Critter spawner to spawn in as a Morph.")
 	if(tgui_alert(newMorph, "Do you want to load the vore bellies from your current slot?", "Load Bellies", list("Yes", "No")) == "Yes")
 		newMorph.copy_from_prefs_vr()
 		if(LAZYLEN(newMorph.vore_organs))
@@ -115,7 +118,7 @@
 		to_chat(M, span_warning("Something went wrong and spawning failed. Please check your character slot doesn't have any obvious errors, then either try again or send an adminhelp!"))
 		reset_ghostpod()
 		return
-	log_and_message_admins("successfully used a Maintenance Lurker spawnpoint and became their loaded character.")
+	log_and_message_admins("successfully used a Maintenance Critter spawner to spawn in as their loaded character.")
 
 	M.client.prefs.copy_to(new_character)
 	new_character.dna.ResetUIFrom(new_character)
@@ -140,9 +143,9 @@
 	new_character.update_transform()
 	if(redgate_restricted)
 		new_character.redgate_restricted = TRUE
-		to_chat(new_character, span_notice("You are an inhabitant of this redgate location, you have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to basic doors along with any of your chosen loadout items that are not role restricted, and can make use of anything you can find in the redgate map."))
+		to_chat(new_character, span_notice("You are an inhabitant of this redgate location, you have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to basic doors, and should possess all of your chosen loadout items that are not role restricted, and can make use of anything you can find in the redgate map."))
 	else
-		to_chat(new_character, span_notice("You are a " + span_bold(JOB_MAINT_LURKER) + ", a loose end... you have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to maintenance areas along with any of your chosen loadout items that are not role restricted, and can make use of anything you can find in maintenance."))
+		to_chat(new_character, span_notice("You are a " + span_bold(JOB_MAINT_LURKER) + ", a loose end, stowaway, drifter, or somesuch. You have no special advantages compared to the rest of the crew, so be cautious! You have spawned with an ID that will allow you free access to maintenance areas, and should possess all of your chosen loadout items that are not role restricted. You also have a PDA which you can use for messaging purposes, and are free to make use of anything you can find in maintenance."))
 	to_chat(new_character, span_critical("Please be advised, this role is " + span_bold("NOT AN ANTAGONIST.")))
 	to_chat(new_character, span_notice("Whoever or whatever your chosen character slot is, your role is to facilitate roleplay focused around that character; this role is not free license to attack and murder people without provocation or explicit out-of-character consent. You should probably be cautious around high-traffic and highly sensitive areas (e.g. Telecomms) as Security personnel would be well within their rights to treat you as a trespasser. That said, good luck!"))
 
@@ -152,3 +155,8 @@
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Initialize(mapload)
 	. = ..()
 	GLOB.active_ghost_pods += src
+
+/obj/structure/ghost_pod/ghost_activated/unified_hole/redgate
+	name = "Redspace inhabitant hole"
+	desc = "A starting location for critters who exist inside of the redgate!"
+	redgate_restricted = TRUE

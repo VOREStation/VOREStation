@@ -75,9 +75,7 @@
 		//Evil grubs that drain station power slightly
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Grub Infestation",			/datum/event/grub_infestation,			0,		list(DEPARTMENT_SECURITY = 15, DEPARTMENT_ENGINEERING = 30), 1, min_jobs = list(DEPARTMENT_SECURITY = 1, DEPARTMENT_ENGINEERING = 1)),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Drone Pod Drop",			/datum/event/drone_pod_drop,			40,		list(DEPARTMENT_RESEARCH = 40), 1),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Morph Spawn",				/datum/event/morph_spawn,				75,		list(DEPARTMENT_ANY = 5), 0),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Maintenance Predator",		/datum/event/maintenance_predator,		100,	list(DEPARTMENT_ANY = 5), 0),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Maintenance Lurker",		/datum/event/maintenance_lurker,		100,	list(DEPARTMENT_ANY = 5), 0),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Maintenance Critter",		/datum/event/maintenance_critter,		175,	list(DEPARTMENT_ANY = 5), 0),
 	)
 	add_disabled_events(list(
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Appendicitis", 			/datum/event/spontaneous_appendicitis, 	0,		list(DEPARTMENT_MEDICAL = 30), 1),
@@ -91,6 +89,9 @@
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Gliding Rays",			/datum/event/ray_migration,		0,		list(DEPARTMENT_SECURITY = 15, DEPARTMENT_MEDICAL = 5), 1, min_jobs = list(DEPARTMENT_SECURITY = 3)),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Shark Pack",			/datum/event/shark_migration,		0,		list(DEPARTMENT_SECURITY = 15, DEPARTMENT_MEDICAL = 3), 1, min_jobs = list(DEPARTMENT_SECURITY = 3)),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Gnat Swarm",			/datum/event/gnat_migration,		0,		list(DEPARTMENT_SECURITY = 15, DEPARTMENT_MEDICAL = 3), 1, min_jobs = list(DEPARTMENT_SECURITY = 3)),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Morph Spawn",				/datum/event/morph_spawn,				75,		list(DEPARTMENT_ANY = 5), 0),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Maintenance Predator",		/datum/event/maintenance_predator,		100,	list(DEPARTMENT_ANY = 5), 0),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Maintenance Lurker",		/datum/event/maintenance_lurker,		100,	list(DEPARTMENT_ANY = 5), 0),
 	))
 
 /datum/event_container/major/New()
