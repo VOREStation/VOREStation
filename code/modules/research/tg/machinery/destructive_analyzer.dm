@@ -13,10 +13,20 @@ It is used to destroy hand-held objects and advance technological research. Used
 	idle_power_usage = 30
 	active_power_usage = 2500
 	var/rped_recycler_ready = TRUE
+	var/datum/component/remote_materials/materials
 
 /obj/machinery/rnd/destructive_analyzer/Initialize(mapload)
+	materials = AddComponent(
+		/datum/component/remote_materials, \
+		mapload, \
+		mat_container_flags = MATCONTAINER_NO_INSERT \
+	)
 	. = ..()
 	default_apply_parts()
+
+/obj/machinery/rnd/destructive_analyzer/Destroy()
+	materials = null
+	. = ..()
 
 /obj/machinery/rnd/destructive_analyzer/RefreshParts()
 	var/T = 0
@@ -37,37 +47,28 @@ It is used to destroy hand-held objects and advance technological research. Used
 	if(busy)
 		to_chat(user, span_notice("\The [src] is busy right now."))
 		return
-	if(loaded_item)
-		to_chat(user, span_notice("There is something already loaded into \the [src]."))
-		return 1
 	if(default_deconstruction_crowbar(user, O))
 		return
 	if(default_part_replacement(user, O))
 		return
-	if(panel_open)
-		to_chat(user, span_notice("You can't load \the [src] while it's opened."))
-		return 1
-	if(!loaded_item)
-		if(isrobot(user)) //Don't put your module items in there!
-			return
-		if(!O.origin_tech)
-			to_chat(user, span_notice("This doesn't seem to have a tech origin."))
-			return
-		if(O.origin_tech.len == 0)
-			to_chat(user, span_notice("You cannot deconstruct this item."))
-			return
-		busy = TRUE
-		loaded_item = O
-		user.drop_item()
-		O.forceMove(src)
-		to_chat(user, span_notice("You add \the [O] to \the [src]."))
-		flick("d_analyzer_la", src)
-		spawn(10)
-			update_icon()
-			reset_busy()
-		return 1
-	return
-
+	if(!panel_open)
+		if(loaded_item)
+			to_chat(user, span_notice("There is something already loaded into \the [src]."))
+		else
+			if(isrobot(user)) //Don't put your module items in there!
+				return
+			busy = TRUE
+			loaded_item = O
+			user.drop_item()
+			O.forceMove(src)
+			to_chat(user, span_notice("You add \the [O] to \the [src]."))
+			flick("d_analyzer_la", src)
+			spawn(10)
+				update_icon()
+				reset_busy()
+		return TRUE
+	// Handle signal to remote_materials so we can link the DA to the silo
+	. = ..()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // RPED recycling
