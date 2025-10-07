@@ -278,7 +278,7 @@
 	result_amount = 2
 
 	temp_range = list(T20C + 110, T20C + 290)
-	temp_shift = 3 // It's burning off phoron
+	temp_shift = 1
 
 	require_xgm_gas = GAS_N2
 	rejects_xgm_gas = GAS_O2
