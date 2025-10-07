@@ -336,6 +336,7 @@
 	if(recursion >= MAX_RECURSIVE) // If we escaped due to iteration limit, cancel
 		log_runtime("REMOTE_VIEW: Turf search hit recursion limit. ([host_mob]) ([host_mob.type])")
 
+/// Makes a new remote view focused on the release_turf argument. This remote view ends as soon as any movement happens. Even if we are inside many levels of objects due to our recursive_move listener
 /datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf)
 	// Yes this spawn is needed, yes I wish it wasn't.
 	spawn(0)
@@ -346,6 +347,7 @@
 		if(!isturf(cache_mob.loc)) // For stuff like paicards
 			rebuild_recursive_movement_handler(cache_mob)
 
+/// Rebuilds the recursive movement listener, as just adding the component while we already have one makes it linger with incorrect values,and not add the new location to our move parents
 /datum/component/remote_view/mob_holding_item/proc/rebuild_recursive_movement_handler(mob/cache_mob)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
