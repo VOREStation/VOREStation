@@ -75,7 +75,6 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		var/mob/living/L = user
 		L.handle_vision()
 	user.set_viewsize(world.view + extra_view)
-	user.AddComponent(/datum/component/recursive_move)
 
 /obj/machinery/computer/ship/unlook(var/mob/user)
 	user.unset_machine()

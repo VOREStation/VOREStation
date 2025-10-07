@@ -62,7 +62,6 @@
 
 /datum/tgui_module/ship/look(var/mob/user)
 	user.set_viewsize(world.view + extra_view)
-	user.AddComponent(/datum/component/recursive_move)
 	if(!map_view_used)
 		map_view_used = TRUE
 
