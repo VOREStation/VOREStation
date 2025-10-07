@@ -304,11 +304,11 @@
 	to_chat( world, "RECURSIVE HANDLER [source]  [oldloc]  [new_loc] ")
 	to_chat( world, "  - [host_mob] -> [remote_view_target.type] -> [remote_view_target.loc]")
 	if(!ismob(oldloc))
-		to_chat( world, "NOT MOVED OUT OF MOB, DON'T BOTHER")
+		to_chat( world, "NOT MOVED OUT OF TOPLEVEL MOB, DON'T BOTHER CHECKING STATE CHANGE")
 		return
 	// default moved signal will handle this
 	if(isturf(host_mob.loc))
-		to_chat( world, "MOB ON TURF, NO PARENT CHECK")
+		to_chat( world, "OUR MOB ON TURF, NO PARENT CHECK")
 		return
 	// This only triggers when we are deeper in than our mob. See who is in charge of this clowncar...
 	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
@@ -323,7 +323,7 @@
 			break
 		if(ismob(cur_parent))
 			to_chat( world, "     -IS MOB, END LOOP")
-			rebuild_recursive_movement_handler(host_mob)
+			host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
 			break // Mob is holding us, we were picked up.
 		if(isturf(cur_parent))
 			to_chat( world, "     -IS TURF, DECOUPLE")
@@ -345,18 +345,6 @@
 		cache_mob.client.eye = release_turf // Yes--
 		cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
 		if(!isturf(cache_mob.loc)) // For stuff like paicards
-			rebuild_recursive_movement_handler(cache_mob)
-
-/// Rebuilds the recursive movement listener, as just adding the component while we already have one makes it linger with incorrect values,and not add the new location to our move parents
-/datum/component/remote_view/mob_holding_item/proc/rebuild_recursive_movement_handler(mob/cache_mob)
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
-	var/datum/component/recursive_move/force_rebuild = cache_mob.GetComponent(/datum/component/recursive_move)
-	if(force_rebuild)
-		// Rebuild our parents, as this won't trigger in the right order due to move code
-		force_rebuild.reset_parents()
-		force_rebuild.setup_parents()
-		return
-	cache_mob.AddComponent(/datum/component/recursive_move)
+			cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
 
 #undef MAX_RECURSIVE
