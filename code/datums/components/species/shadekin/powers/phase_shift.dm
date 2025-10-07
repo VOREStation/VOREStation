@@ -137,7 +137,7 @@
 		update_icon()
 
 		//Cosmetics mostly
-		var/obj/effect/temp_visual/shadekin/phase_in/phaseanim = new SK.phase_in_anim(src.loc)
+		var/obj/effect/temp_visual/shadekin/phase_in/phaseanim = new /obj/effect/temp_visual/shadekin/phase_in(src.loc)
 		phaseanim.pixel_y = (src.size_multiplier - 1) * 16 // Pixel shift for the animation placement
 		phaseanim.adjust_scale(src.size_multiplier, src.size_multiplier)
 		phaseanim.dir = dir
@@ -241,7 +241,7 @@
 		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = FALSE
 
-		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new SK.phase_out_anim(src.loc)
+		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new /obj/effect/temp_visual/shadekin/phase_out(src.loc)
 		phaseanim.pixel_y = (src.size_multiplier - 1) * 16 // Pixel shift for the animation placement
 		phaseanim.adjust_scale(src.size_multiplier, src.size_multiplier)
 		phaseanim.dir = dir
