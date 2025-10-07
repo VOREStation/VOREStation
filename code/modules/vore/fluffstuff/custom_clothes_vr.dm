@@ -2442,7 +2442,7 @@ Departamental Swimsuits, for general use
 		return
 
 
-	if(toggled)
+	if(!toggled)
 		AddComponent(/datum/component/reactive_icon_update/clothing, \
 		icon_prefix = "_corrupted", \
 		directions = list(NORTH,EAST,SOUTH,WEST,SOUTHWEST,SOUTHEAST,NORTHWEST,NORTHEAST), \
