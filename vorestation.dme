@@ -1912,6 +1912,7 @@
 #include "code\game\objects\structures\ghost_pods\silicon.dm"
 #include "code\game\objects\structures\ghost_pods\silicon_vr.dm"
 #include "code\game\objects\structures\ghost_pods\survivor.dm"
+#include "code\game\objects\structures\ghost_pods\unified_ghost_hole.dm"
 #include "code\game\objects\structures\props\alien_props.dm"
 #include "code\game\objects\structures\props\alien_props_vr.dm"
 #include "code\game\objects\structures\props\altevian.dm"
