@@ -86,6 +86,8 @@
 /turf/simulated/check_slipping(var/mob/living/M,var/dirtslip)
 	if(M.buckled)
 		return FALSE
+	if(M.is_incorporeal()) // Mar!
+		return FALSE
 	if(!wet && !(dirtslip && (dirt > 50 || is_outdoors() == OUTDOORS_YES)))
 		return FALSE
 	if(wet == TURFSLIP_WET && M.m_intent == I_WALK)
