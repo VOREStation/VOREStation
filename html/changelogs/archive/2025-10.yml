@@ -41,3 +41,8 @@
   - bugfix: Multiple items can be stripped from someone at once, again.
   Kashargul:
   - bugfix: last changelog state being inverted
+2025-10-07:
+  Diana:
+  - refactor: Makes Stumble Vore, Drop Vore, Throw Vore, and Slip Vore an element
+  - bugfix: Fixes a bug prevent slipnoms from working.
+  - code_imp: Makes the spontaneous vore procs less crungo.

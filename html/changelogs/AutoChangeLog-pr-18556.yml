@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - refactor: "Makes Stumble Vore, Drop Vore, Throw Vore, and Slip Vore an element"
-  - bugfix: "Fixes a bug prevent slipnoms from working."
-  - code_imp: "Makes the spontaneous vore procs less crungo."
