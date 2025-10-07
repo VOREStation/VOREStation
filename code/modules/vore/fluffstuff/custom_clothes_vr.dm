@@ -1255,16 +1255,16 @@ Departamental Swimsuits, for general use
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return FALSE
 
-		if(unbuttoned)
-			icon_state = "[initial(icon_state)]"
-			item_state = "[initial(item_state)]"
-			unbuttoned = FALSE
-			to_chat(usr, "You button up the coat.")
-		else
-			icon_state = "[initial(icon_state)]_open"
-			item_state = "[initial(item_state)]_open"
-			unbuttoned = TRUE
-			to_chat(usr, "You unbutton the coat.")
+	if(unbuttoned)
+		icon_state = "[initial(icon_state)]"
+		item_state = "[initial(item_state)]"
+		unbuttoned = FALSE
+		to_chat(usr, "You button up the coat.")
+	else
+		icon_state = "[initial(icon_state)]_open"
+		item_state = "[initial(item_state)]_open"
+		unbuttoned = TRUE
+		to_chat(usr, "You unbutton the coat.")
 	usr.update_inv_wear_suit()
 
 /obj/item/clothing/suit/storage/fluff/jacket/field //Just here so it can be seen and easily recognized under /spawn.
@@ -2442,22 +2442,22 @@ Departamental Swimsuits, for general use
 		return
 
 
-		if(toggled)
-			AddComponent(/datum/component/reactive_icon_update/clothing, \
-			icon_prefix = "_corrupted", \
-			directions = list(NORTH,EAST,SOUTH,WEST,SOUTHWEST,SOUTHEAST,NORTHWEST,NORTHEAST), \
-			range = 3, \
-			triggering_mobs = list(/mob/living))
-			toggled = TRUE
-			to_chat(user, span_info("The coat's eyes open."))
-		else
-			var/datum/component/reactive_icon_update/clothing/reactive_component = GetComponent(/datum/component/reactive_icon_update/clothing)
-			if(reactive_component)
-				qdel(reactive_component)
-			toggled = FALSE
-			icon_state = initial(icon_state)
-			item_state = initial(item_state)
-			to_chat(user, span_info("The coat's eyes close."))
+	if(toggled)
+		AddComponent(/datum/component/reactive_icon_update/clothing, \
+		icon_prefix = "_corrupted", \
+		directions = list(NORTH,EAST,SOUTH,WEST,SOUTHWEST,SOUTHEAST,NORTHWEST,NORTHEAST), \
+		range = 3, \
+		triggering_mobs = list(/mob/living))
+		toggled = TRUE
+		to_chat(user, span_info("The coat's eyes open."))
+	else
+		var/datum/component/reactive_icon_update/clothing/reactive_component = GetComponent(/datum/component/reactive_icon_update/clothing)
+		if(reactive_component)
+			qdel(reactive_component)
+		toggled = FALSE
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+		to_chat(user, span_info("The coat's eyes close."))
 	last_toggled = world.time
 	user.update_inv_wear_suit()
 
