@@ -88,7 +88,7 @@
 
 	if(!(SK.in_phase))
 		SK.shadekin_adjust_energy(-ability_cost)
-	playsound(src, 'sound/effects/stealthoff.ogg', 75, 1)
+	playsound(src, SK.phase_noise, 75, 1)
 
 	if(!T.CanPass(src,T) || loc != T)
 		to_chat(src,span_warning("You can't use that here!"))
@@ -144,7 +144,7 @@
 		alpha = 0
 		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
 
-		addtimer(CALLBACK(src, PROC_REF(shadekin_complete_phase_in), original_canmove, SK), 5, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(shadekin_complete_phase_in), original_canmove, SK), SK.phase_time, TIMER_DELETE_ME)
 
 
 /mob/living/proc/shadekin_complete_phase_in(var/original_canmove, var/datum/component/shadekin/SK)
@@ -249,7 +249,7 @@
 		add_modifier(/datum/modifier/shadekin_phase_vision)
 		if(SK.normal_phase)
 			add_modifier(/datum/modifier/phased_out)
-		addtimer(CALLBACK(src, PROC_REF(complete_phase_out), original_canmove, SK), 5, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(complete_phase_out), original_canmove, SK), SK.phase_time, TIMER_DELETE_ME)
 
 
 /mob/living/proc/complete_phase_out(original_canmove, var/datum/component/shadekin/SK)

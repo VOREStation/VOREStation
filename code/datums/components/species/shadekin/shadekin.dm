@@ -40,6 +40,14 @@
 	var/drop_items_on_phase = FALSE
 	///If cameras count as watchers for us
 	var/camera_counts_as_watcher = FALSE
+	///Phase in animation
+	var/obj/effect/temp_visual/phase_in_anim = /obj/effect/temp_visual/shadekin/phase_in
+	///Phase out animation
+	var/obj/effect/temp_visual/phase_out_anim = /obj/effect/temp_visual/shadekin/phase_out
+	//How long does it take to complete
+	var/phase_time = 0.5 SECONDS
+	//Phase sound
+	var/phase_noise = 'sound/effects/stealthoff.ogg'
 
 	//Dark Respite Vars (Unused on Virgo)
 	///If we are in dark respite or not
@@ -70,10 +78,6 @@
 	var/eye_color = BLUE_EYES
 	///For downstream. Enables some extra verbs. Causes things to drop in hand when you phase.
 	var/extended_kin = FALSE
-	///Phase in animation
-	var/obj/effect/temp_visual/phase_in_anim = /obj/effect/temp_visual/shadekin/phase_in
-	///Phase out animation
-	var/obj/effect/temp_visual/phase_out_anim = /obj/effect/temp_visual/shadekin/phase_out
 
 /datum/component/shadekin/phase_only
 	shadekin_abilities = list(/datum/power/shadekin/phase_shift)
