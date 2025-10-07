@@ -41,6 +41,7 @@
 	QDEL_NULL(ghost_reporter)
 	. = ..()
 
+//placeholder, give new sprites.
 /obj/item/ghost_trap/update_icon()
 	..()
 
