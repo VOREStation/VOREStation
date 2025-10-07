@@ -1,13 +1,12 @@
 /*
 Destructive Analyzer
 
-It is used to destroy hand-held objects and advance technological research.
+It is used to destroy hand-held objects and advance technological research. Used to perform /datum/experiment/physical/destructive_analysis experiments.
 */
 
 /obj/machinery/rnd/destructive_analyzer
 	name = "destructive analyzer"
 	icon_state = "d_analyzer"
-	var/obj/item/loaded_item = null
 	var/decon_mod = 0
 	circuit = /obj/item/circuitboard/destructive_analyzer
 	use_power = USE_POWER_IDLE
@@ -41,11 +40,6 @@ It is used to destroy hand-held objects and advance technological research.
 	if(loaded_item)
 		to_chat(user, span_notice("There is something already loaded into \the [src]."))
 		return 1
-	if(default_deconstruction_screwdriver(user, O))
-		if(linked_console)
-			linked_console.linked_destroy = null
-			linked_console = null
-		return
 	if(default_deconstruction_crowbar(user, O))
 		return
 	if(default_part_replacement(user, O))
@@ -53,9 +47,6 @@ It is used to destroy hand-held objects and advance technological research.
 	if(panel_open)
 		to_chat(user, span_notice("You can't load \the [src] while it's opened."))
 		return 1
-	if(!linked_console)
-		to_chat(user, span_notice("\The [src] must be linked to an R&D console first."))
-		return
 	if(!loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
 			return
@@ -85,15 +76,14 @@ It is used to destroy hand-held objects and advance technological research.
 	if(istype(dropping, /obj/item/storage/part_replacer))
 		var/obj/item/storage/part_replacer/replacer = dropping
 		replacer.hide_from(user)
-		if(!linked_console)
-			to_chat(user, span_notice("\The [src] must be linked to an R&D console first."))
-			return 0
-		if(!linked_console.linked_lathe)
-			to_chat(user, span_notice("Link a protolathe to [src]'s R&D console first."))
-			return 0
 		if(!rped_recycler_ready)
 			to_chat(user, span_notice("\The [src]'s stock parts recycler isn't ready yet."))
 			return 0
+
+		to_chat(user, span_notice("TODO TODO TODO"))
+		return 1
+
+		/* TODO - Recycle mats from things
 		var/obj/machinery/rnd/protolathe/lathe_to_fill = linked_console.linked_lathe
 		var/lowest_rating = INFINITY // We want the lowest-part tier rating in the RPED so we only recycle the lowest-tier parts.
 		for(var/obj/item/B in replacer.contents)
@@ -110,11 +100,13 @@ It is used to destroy hand-held objects and advance technological research.
 					if(t in lathe_to_fill.materials)
 						lathe_to_fill.materials[t] += B.matter[t] * src.decon_mod
 			qdel(B)
+
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		rped_recycler_ready = FALSE
 		addtimer(CALLBACK(src, PROC_REF(rped_ready)), 5 SECONDS, TIMER_DELETE_ME)
 		to_chat(user, span_notice("You deconstruct all the parts of rating [lowest_rating] in [replacer] with [src]."))
 		return 1
+		*/
 	. = ..()
 
 /obj/machinery/rnd/destructive_analyzer/proc/rped_ready()
@@ -163,21 +155,31 @@ It is used to destroy hand-held objects and advance technological research.
 			icon_state = "d_analyzer"
 			return
 
-	for(var/T in loaded_item.origin_tech)
-		files.UpdateTech(T, loaded_item.origin_tech[T])
-
+	/* TODO - Recycle mats from things
 	if(linked_lathe && loaded_item.matter) // Also sends salvaged materials to a linked protolathe, if any.
 		for(var/t in loaded_item.matter)
 			if(t in linked_lathe.materials)
 				linked_lathe.materials[t] += min(linked_lathe.max_material_storage - linked_lathe.TotalMaterials(), loaded_item.matter[t] * decon_mod)
+	*/
 
 	loaded_item = null
-	for(var/obj/I in contents)
-		for(var/mob/M in I.contents)
+	var/list/all_destructing_things = list()
+	recursive_content_check(src, all_destructing_things, recursion_limit = 5, client_check = FALSE, sight_check = FALSE, include_mobs = TRUE, include_objects = TRUE, ignore_show_messages = TRUE)
+	all_destructing_things -= circuit
+	all_destructing_things -= component_parts
+
+	// Process contents and notify experimenters
+	SEND_SIGNAL(src, COMSIG_DESTRUCTIVE_ANALYSIS, all_destructing_things)
+	for(var/atom/A in all_destructing_things)
+		// DEATH
+		if(ismob(A))
+			var/mob/M = A
 			playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 			M.death()
-		if(istype(I,/obj/item/stack/material))//Only deconsturcts one sheet at a time instead of the entire stack
-			var/obj/item/stack/material/S = I
+			continue
+		// Only deconsturcts one sheet at a time instead of the entire stack
+		if(istype(A,/obj/item/stack/material))
+			var/obj/item/stack/material/S = A
 			if(S.get_amount() > 1)
 				playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 				S.use(1)
@@ -186,11 +188,9 @@ It is used to destroy hand-held objects and advance technological research.
 				playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 				qdel(S)
 				icon_state = "d_analyzer"
-		else
-			if(I != circuit && !(I in component_parts))
-				playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
-				qdel(I)
-				icon_state = "d_analyzer"
-
+			continue
+		// Everything else
+		playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
+		qdel(A)
+		icon_state = "d_analyzer"
 	use_power(active_power_usage)
-	files.RefreshResearch()
