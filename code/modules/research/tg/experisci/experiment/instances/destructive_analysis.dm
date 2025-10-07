@@ -1,6 +1,7 @@
 /datum/experiment/physical/destructive_analysis
 	name = "Destructive Analysis"
 	description = "Deconstruct an object into it's base components."
+	points_reward = 5
 	var/obj/item/acceptable_item = null // If this is a list, it will be item_type == type checked, otherwise any item will do
 	var/item_count_required = 1
 

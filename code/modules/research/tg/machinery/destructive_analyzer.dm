@@ -56,7 +56,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 		if(O.origin_tech.len == 0)
 			to_chat(user, span_notice("You cannot deconstruct this item."))
 			return
-		busy = 1
+		busy = TRUE
 		loaded_item = O
 		user.drop_item()
 		O.forceMove(src)
@@ -64,7 +64,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 		flick("d_analyzer_la", src)
 		spawn(10)
 			update_icon()
-			busy = 0
+			reset_busy()
 		return 1
 	return
 
@@ -142,7 +142,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
-	busy = FALSE
+	reset_busy()
 	if(!loaded_item)
 		to_chat(user, span_notice("The destructive analyzer appears to be empty."))
 		return
