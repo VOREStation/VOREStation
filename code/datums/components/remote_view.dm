@@ -294,26 +294,39 @@
 	if(!host_mob)
 		return
 	if(isturf(host_mob.loc))
+		to_chat( world, "MOB MOVED TO TURF, DECOUPLE")
 		decouple_view_to_turf( host_mob, host_mob.loc)
 		qdel(src)
 
 /datum/component/remote_view/mob_holding_item/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
 	if(!host_mob)
 		return
+	to_chat( world, "RECURSIVE HANDLER [source]  [oldloc]  [new_loc] ")
+	to_chat( world, "  - [host_mob] -> [remote_view_target.type] -> [remote_view_target.loc]")
+	if(!ismob(oldloc))
+		to_chat( world, "NOT MOVED OUT OF MOB, DON'T BOTHER")
+		return
 	// default moved signal will handle this
 	if(isturf(host_mob.loc))
+		to_chat( world, "MOB ON TURF, NO PARENT CHECK")
 		return
 	// This only triggers when we are deeper in than our mob. See who is in charge of this clowncar...
 	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
 	var/atom/cur_parent = remote_view_target?.loc // first loc could be null
 	var/recursion = 0 // safety check - max iterations
+	to_chat( world, "CHECKING PARENT FOR DECOUPLE: ")
 	while(!isnull(cur_parent) && (recursion < MAX_RECURSIVE))
+		to_chat( world, "  -[cur_parent]")
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
 			log_runtime("REMOTE_VIEW: Parent is inside itself. ([host_mob]) ([host_mob.type]) : [MAX_RECURSIVE - recursion]")
+			to_chat( world, "     -INSIDE ITSELF")
 			break
 		if(ismob(cur_parent))
+			to_chat( world, "     -IS MOB, END LOOP")
+			rebuild_recursive_movement_handler(host_mob)
 			break // Mob is holding us, we were picked up.
 		if(isturf(cur_parent))
+			to_chat( world, "     -IS TURF, DECOUPLE")
 			decouple_view_to_turf( host_mob, cur_parent)
 			qdel(src)
 			return
@@ -331,6 +344,17 @@
 		cache_mob.client.eye = release_turf // Yes--
 		cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
 		if(!isturf(cache_mob.loc)) // For stuff like paicards
-			cache_mob.AddComponent(/datum/component/recursive_move)
+			rebuild_recursive_movement_handler(cache_mob)
+
+/datum/component/remote_view/mob_holding_item/proc/rebuild_recursive_movement_handler(mob/cache_mob)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/datum/component/recursive_move/force_rebuild = cache_mob.GetComponent(/datum/component/recursive_move)
+	if(force_rebuild)
+		// Rebuild our parents, as this won't trigger in the right order due to move code
+		force_rebuild.reset_parents()
+		force_rebuild.setup_parents()
+		return
+	cache_mob.AddComponent(/datum/component/recursive_move)
 
 #undef MAX_RECURSIVE

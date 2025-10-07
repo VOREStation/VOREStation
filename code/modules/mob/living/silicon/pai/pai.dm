@@ -395,23 +395,22 @@
 	// If we are being held, handle removing our holder from their inv.
 	var/obj/item/holder/our_holder = loc
 	if(istype(our_holder))
+		var/turf/drop_turf = get_turf(our_holder)
 		var/mob/living/M = our_holder.loc
 		if(istype(M))
 			M.drop_from_inventory(our_holder)
-		card.forceMove(our_holder.loc)
 		src.forceMove(card)
-		if(istype(M)) // Transfer to hand as if we never left it!
-			card.attack_hand(M)
+		card.forceMove(drop_turf)
 
 	if(isbelly(loc))	//If in tumby, when fold up, card go into tumby
 		var/obj/belly/B = loc
-		card.forceMove(B)
 		src.forceMove(card)
+		card.forceMove(B)
 
 	if(istype(loc,/obj/structure/disposalholder))
 		var/obj/structure/disposalholder/hold = loc
-		card.forceMove(hold)
 		src.forceMove(card)
+		card.forceMove(hold)
 
 	else				//Otherwise go on floor
 		card.forceMove(get_turf(src))
