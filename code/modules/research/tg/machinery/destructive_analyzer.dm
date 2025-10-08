@@ -78,7 +78,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 			if(is_type_in_list(O, GLOB.item_deconstruction_blacklist))
 				to_chat(user, span_notice("The machine rejects \the [O]!"))
 				return
-			if((O.itemflags & DROPDEL) || (O.item_flags & NOSTRIP))
+			if((O.item_flags & DROPDEL) || (O.item_flags & NOSTRIP))
 				to_chat(user, span_notice("The machine rejects \the [O]!"))
 				return
 			if(O.tethered_host_item)
