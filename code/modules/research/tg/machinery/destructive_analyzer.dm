@@ -13,10 +13,10 @@ It is used to destroy hand-held objects and advance technological research. Used
 	idle_power_usage = 30
 	active_power_usage = 2500
 	var/rped_recycler_ready = TRUE
-	var/datum/component/remote_materials/materials
+	var/datum/component/remote_materials/rmat
 
 /obj/machinery/rnd/destructive_analyzer/Initialize(mapload)
-	materials = AddComponent(
+	rmat = AddComponent(
 		/datum/component/remote_materials, \
 		mapload, \
 		mat_container_flags = MATCONTAINER_NO_INSERT \
@@ -81,33 +81,28 @@ It is used to destroy hand-held objects and advance technological research. Used
 			to_chat(user, span_notice("\The [src]'s stock parts recycler isn't ready yet."))
 			return 0
 
-		to_chat(user, span_notice("TODO TODO TODO"))
-		return 1
-
-		/* TODO - Recycle mats from things
-		var/obj/machinery/rnd/protolathe/lathe_to_fill = linked_console.linked_lathe
-		var/lowest_rating = INFINITY // We want the lowest-part tier rating in the RPED so we only recycle the lowest-tier parts.
+		// We want the lowest-part tier rating in the RPED so we only recycle the lowest-tier parts.
+		var/lowest_rating = INFINITY
 		for(var/obj/item/B in replacer.contents)
 			if(B.rped_rating() < lowest_rating)
 				lowest_rating = B.rped_rating()
 		if(lowest_rating == INFINITY)
-			to_chat(user, span_notice("Mass part deconstruction attempt canceled - no valid parts for recycling detected."))
-			return 0
+			atom_say("Mass part deconstruction attempt canceled - no valid parts for recycling detected.")
+			return FALSE
+		// Sending salvaged materials to the silo
+		var/datum/component/material_container/materials = get_silo_material_container_datum(TRUE)
+		if(!materials)
+			return FALSE
 		for(var/obj/item/B in replacer.contents)
 			if(B.rped_rating() > lowest_rating)
 				continue
-			if(lathe_to_fill && B.matter) // Sending salvaged materials to the lathe...
-				for(var/t in B.matter)
-					if(t in lathe_to_fill.materials)
-						lathe_to_fill.materials[t] += B.matter[t] * src.decon_mod
-			qdel(B)
-
+			materials.insert_item(B, decon_mod, src)
+		// Feedback
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		rped_recycler_ready = FALSE
 		addtimer(CALLBACK(src, PROC_REF(rped_ready)), 5 SECONDS, TIMER_DELETE_ME)
 		to_chat(user, span_notice("You deconstruct all the parts of rating [lowest_rating] in [replacer] with [src]."))
-		return 1
-		*/
+		return TRUE
 	. = ..()
 
 /obj/machinery/rnd/destructive_analyzer/proc/rped_ready()
@@ -117,6 +112,17 @@ It is used to destroy hand-held objects and advance technological research. Used
 	rped_recycler_ready = TRUE
 	playsound(get_turf(src), 'sound/machines/chime.ogg', 50, 1)
 
+/obj/machinery/rnd/destructive_analyzer/proc/get_silo_material_container_datum(verbose)
+	var/datum/component/material_container/materials = rmat.mat_container
+	if(!materials)
+		if(verbose)
+			atom_say("No access to material storage, please contact the quartermaster.")
+		return null
+	if(rmat.on_hold())
+		if(verbose)
+			atom_say("Mineral access is on hold, please contact the quartermaster.")
+		return null
+	return materials
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // Handling deconstruction
@@ -132,7 +138,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 
 /obj/machinery/rnd/destructive_analyzer/proc/deconstruct_contents(mob/user)
 	if(busy)
-		to_chat(user, span_notice("The destructive analyzer is busy at the moment."))
+		atom_say("The destructive analyzer is busy at the moment.")
 		return
 
 	busy = TRUE
@@ -156,13 +162,6 @@ It is used to destroy hand-held objects and advance technological research. Used
 			icon_state = "d_analyzer"
 			return
 
-	/* TODO - Recycle mats from things
-	if(linked_lathe && loaded_item.matter) // Also sends salvaged materials to a linked protolathe, if any.
-		for(var/t in loaded_item.matter)
-			if(t in linked_lathe.materials)
-				linked_lathe.materials[t] += min(linked_lathe.max_material_storage - linked_lathe.TotalMaterials(), loaded_item.matter[t] * decon_mod)
-	*/
-
 	loaded_item = null
 	var/list/all_destructing_things = list()
 	recursive_content_check(src, all_destructing_things, recursion_limit = 5, client_check = FALSE, sight_check = FALSE, include_mobs = TRUE, include_objects = TRUE, ignore_show_messages = TRUE)
@@ -170,28 +169,18 @@ It is used to destroy hand-held objects and advance technological research. Used
 	all_destructing_things -= component_parts
 
 	// Process contents and notify experimenters
+	var/datum/component/material_container/materials = get_silo_material_container_datum(FALSE)
 	SEND_SIGNAL(src, COMSIG_DESTRUCTIVE_ANALYSIS, all_destructing_things)
 	for(var/atom/A in all_destructing_things)
-		// DEATH
+		// DEATH for the mob, no mats recovery either
 		if(ismob(A))
 			var/mob/M = A
-			playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 			M.death()
 			continue
-		// Only deconsturcts one sheet at a time instead of the entire stack
-		if(istype(A,/obj/item/stack/material))
-			var/obj/item/stack/material/S = A
-			if(S.get_amount() > 1)
-				playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
-				S.use(1)
-				loaded_item = S
-			else
-				playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
-				qdel(S)
-				icon_state = "d_analyzer"
-			continue
 		// Everything else
-		playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
-		qdel(A)
+		materials.insert_item(A, decon_mod, src)
+	// Feedback
+	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
+	if(!all_destructing_things.len)
 		icon_state = "d_analyzer"
 	use_power(active_power_usage)
