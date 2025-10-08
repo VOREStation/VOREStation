@@ -1,0 +1,4 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - qol: "The suit sensors setting menu now defaults to whatever the outfit's suit sensors are already set to. Now you can be totally sure whether or not you set them on or off!"
