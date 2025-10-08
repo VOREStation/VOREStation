@@ -59,6 +59,7 @@
 
 /datum/component/turfslip/proc/next_slip()
 	// check tile for next slip
+	owner.is_slipping = TRUE
 	if(!step(owner, owner.dir) || dirtslip) // done sliding, failed to move, dirt also only slips once
 		qdel(src)
 		return
@@ -70,6 +71,7 @@
 /datum/component/turfslip/Destroy(force = FALSE)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	owner.inertia_dir = 0
+	owner.is_slipping = FALSE
 	owner = null
 	slip_dist = 0
 	. = ..()
@@ -83,6 +85,8 @@
 
 /turf/simulated/check_slipping(var/mob/living/M,var/dirtslip)
 	if(M.buckled)
+		return FALSE
+	if(M.is_incorporeal()) // Mar!
 		return FALSE
 	if(!wet && !(dirtslip && (dirt > 50 || is_outdoors() == OUTDOORS_YES)))
 		return FALSE
