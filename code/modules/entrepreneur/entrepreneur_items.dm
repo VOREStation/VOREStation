@@ -327,7 +327,9 @@
 	///How much we'll increase/decrease the EMF reading.
 	var/emf_change = 0
 	if(advanced)
-		for(var/mob/observer/ghosts in range(detection_range, user_turf))
+		for(var/mob/observer/dead/ghosts in range(detection_range, user_turf))
+			if(ghosts.following || !ghosts.interact_with_world) //Ghosts orbiting us or someone else, or have opted out of interactions.
+				continue
 			ghosts_present++
 	if(last_used != get_turf(user))
 		if(emf >= 100)

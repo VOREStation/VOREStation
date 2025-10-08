@@ -168,7 +168,7 @@
 	var/mob/passing_entity = AM
 	if(isobserver(passing_entity))
 		var/mob/observer/dead/ghost = AM
-		if(ghost.admin_ghosted)
+		if(ghost.admin_ghosted || !ghost.interact_with_world)
 			return
 	if(!passing_entity.is_incorporeal())
 		return
