@@ -2175,6 +2175,7 @@
 #include "code\modules\asset_cache\transports\webroot_transport.dm"
 #include "code\modules\autowiki\autowiki.dm"
 #include "code\modules\autowiki\page\base.dm"
+#include "code\modules\autowiki\page\symptom.dm"
 #include "code\modules\autowiki\page\techweb.dm"
 #include "code\modules\awaymissions\bluespaceartillery.dm"
 #include "code\modules\awaymissions\corpse.dm"
