@@ -197,7 +197,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 				return TRUE
 		if("deconstruct")
 			if(!user_try_decon_id(params["deconstruct_id"]))
-				balloon_alert(user, "Destructive analysis failed!")
+				balloon_alert(user, "analysis failed!")
 			return TRUE
 
 ///Drops the loaded item where it can and nulls it.
