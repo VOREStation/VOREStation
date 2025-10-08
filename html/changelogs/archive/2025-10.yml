@@ -46,3 +46,6 @@
   - refactor: Makes Stumble Vore, Drop Vore, Throw Vore, and Slip Vore an element
   - bugfix: Fixes a bug prevent slipnoms from working.
   - code_imp: Makes the spontaneous vore procs less crungo.
+2025-10-08:
+  Will:
+  - bugfix: shadekin no longer slip on wet or icey turfs while phased
