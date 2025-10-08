@@ -172,13 +172,12 @@ It is used to destroy hand-held objects and advance technological research. Used
 	var/datum/component/material_container/materials = get_silo_material_container_datum(FALSE)
 	SEND_SIGNAL(src, COMSIG_DESTRUCTIVE_ANALYSIS, all_destructing_things)
 	for(var/atom/A in all_destructing_things)
-		// DEATH for the mob, no mats recovery either
 		if(ismob(A))
 			var/mob/M = A
 			M.death()
-			continue
-		// Everything else
-		materials.insert_item(A, decon_mod, src)
+		else
+			materials.insert_item(A, decon_mod, src, FALSE)
+		qdel(A) // Can't rely on above to del, we have stuff that might not have mats
 	// Feedback
 	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 	if(!all_destructing_things.len)
