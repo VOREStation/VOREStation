@@ -110,7 +110,6 @@
 		copy_board = O
 		O.forceMove(src)
 		user.visible_message("[user] inserts [O] into \the [src]'s circuit reader.", span_notice("You insert [O] into \the [src]'s circuit reader."))
-		updateUsrDialog(user)
 		return
 	if(try_load_materials(user, O))
 		return
@@ -136,7 +135,6 @@
 			count++
 		user.visible_message("[user] inserts [S.name] into \the [src].", span_notice("You insert [count] [S.name] into \the [src]."))
 		flick("partslathe-load-[S.material.name]", src)
-		updateUsrDialog(user)
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
 	return 1

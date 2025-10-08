@@ -279,7 +279,6 @@
 		return 0
 
 	connected.temp = "[name] : [message]"
-	connected.updateUsrDialog()
 	return 1
 
 /obj/machinery/clonepod/RefreshParts()

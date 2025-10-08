@@ -287,6 +287,13 @@
 	item_state = "pizzadelivery"
 	rolled_down = 0
 
+/obj/item/clothing/under/names_pizza
+	name = "pizza delivery uniform"
+	desc = "An outfit fit for delivering pizzas! Whoever wears it either has a vore-wish or really needs the money. Maybe both."
+	icon_state = "pizzadelivery_fluff"
+	item_state = "pizzadelivery_fluff"
+	body_parts_covered = CHEST
+
 //////////////////////TALON JUMPSUITS//////////////////////
 
 /obj/item/clothing/under/rank/talon/basic

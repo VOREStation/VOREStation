@@ -59,7 +59,6 @@
 
 /obj/machinery/organ_printer/attackby(var/obj/item/O, var/mob/user)
 	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog(user)
 		return
 	if(default_deconstruction_crowbar(user, O))
 		return

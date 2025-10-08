@@ -40,16 +40,19 @@
 		return //no! I don't want that.
 
 
-	if (isnull(viewer_client))
+	if(isnull(viewer_client))
 		return
 
-	if (isbelly(src.loc))
+	if(isbelly(src.loc))
 		return
 
 	var/bound_width = world.icon_size
-	if (ismovable(src))
+	if(ismovable(src))
 		var/atom/movable/movable_source = src
 		bound_width = movable_source.bound_width
+	if(isrobot(src) || isanimal(src))
+		bound_width += get_oversized_icon_offsets()["x"]
+
 
 	var/image/balloon_alert = image(loc = isturf(src) ? src : get_atom_on_turf(src), layer = ABOVE_MOB_LAYER)
 	balloon_alert.plane = PLANE_RUNECHAT

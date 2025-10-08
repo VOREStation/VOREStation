@@ -135,6 +135,7 @@
 	var/datum/identification/identity = null
 	var/identity_type = /datum/identification
 	var/init_hide_identity = FALSE // Set to true to automatically obscure the object on initialization.
+	var/obj/item/tethered_host_item = null // If linked to a host by a tethered_item component
 
 	//Vorestuff
 	var/trash_eatable = TRUE
@@ -438,6 +439,7 @@
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
+	SEND_SIGNAL(user, COMSIG_PICKED_UP_ITEM, src)
 	pixel_x = 0
 	pixel_y = 0
 	return
@@ -475,6 +477,12 @@
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		if(!muffled_by_belly(user))
 			playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
+	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
+	SEND_SIGNAL(user, COMSIG_MOB_EQUIPPED_ITEM, src, slot)
+	var/mob/living/M = loc
+	if(!istype(M))
+		return
+	M.update_held_icons()
 
 /// Gives one of our item actions to a mob, when equipped to a certain slot
 /obj/item/proc/give_item_action(datum/action/action, mob/to_who, slot)

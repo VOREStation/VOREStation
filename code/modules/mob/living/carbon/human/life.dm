@@ -557,7 +557,7 @@
 			if(!L.is_bruised())
 				rupture_lung(TRUE)
 
-		throw_alert("oxy", /obj/screen/alert/not_enough_atmos)
+		throw_alert("oxy", /atom/movable/screen/alert/not_enough_atmos)
 		return 0
 	else
 		clear_alert("oxy")
@@ -637,19 +637,19 @@
 
 		switch(breath_type)
 			if(GAS_O2)
-				throw_alert("oxy", /obj/screen/alert/not_enough_oxy)
+				throw_alert("oxy", /atom/movable/screen/alert/not_enough_oxy)
 			if(GAS_PHORON)
-				throw_alert("oxy", /obj/screen/alert/not_enough_tox)
+				throw_alert("oxy", /atom/movable/screen/alert/not_enough_tox)
 			if(GAS_N2)
-				throw_alert("oxy", /obj/screen/alert/not_enough_nitro)
+				throw_alert("oxy", /atom/movable/screen/alert/not_enough_nitro)
 			if(GAS_CO2)
-				throw_alert("oxy", /obj/screen/alert/not_enough_co2)
+				throw_alert("oxy", /atom/movable/screen/alert/not_enough_co2)
 			if(GAS_CH4)
-				throw_alert("oxy", /obj/screen/alert/not_enough_methane)
+				throw_alert("oxy", /atom/movable/screen/alert/not_enough_methane)
 			if(GAS_VOLATILE_FUEL)
-				throw_alert("oxy", /obj/screen/alert/not_enough_fuel)
+				throw_alert("oxy", /atom/movable/screen/alert/not_enough_fuel)
 			if(GAS_N2O)
-				throw_alert("oxy", /obj/screen/alert/not_enough_n2o)
+				throw_alert("oxy", /atom/movable/screen/alert/not_enough_n2o)
 
 	else
 		// We're in safe limits
@@ -700,7 +700,7 @@
 		if(reagents)
 			reagents.add_reagent(REAGENT_ID_TOXIN, CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 			breath.adjust_gas(poison_type, -poison_toxin/6, update = 0) //update after
-		throw_alert("tox_in_air", /obj/screen/alert/tox_in_air)
+		throw_alert("tox_in_air", /atom/movable/screen/alert/tox_in_air)
 	else
 		clear_alert("tox_in_air")
 
@@ -717,7 +717,7 @@
 			emote("gasp")
 		breath.adjust_gas(GAS_CH4, -poison_methane/6, update = 0) //update after
 		breath.adjust_gas(GAS_CH4, -breath.gas[GAS_CH4]/6, update = 0) //update after
-		throw_alert("methane_in_air", /obj/screen/alert/methane_in_air)
+		throw_alert("methane_in_air", /atom/movable/screen/alert/methane_in_air)
 	else
 		clear_alert("methane_in_air")
 
@@ -742,9 +742,9 @@
 		breath.adjust_gas(GAS_N2O, -breath.gas[GAS_N2O]/6, update = 0) //update after
 
 	if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_OXY)
-		throw_alert("oxy", /obj/screen/alert/not_enough_atmos)
+		throw_alert("oxy", /atom/movable/screen/alert/not_enough_atmos)
 	else if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_TOXIN)
-		throw_alert("tox_in_air", /obj/screen/alert/tox_in_air)
+		throw_alert("tox_in_air", /atom/movable/screen/alert/tox_in_air)
 
 	// Were we able to breathe?
 	if (failed_inhale || failed_exhale)
@@ -779,15 +779,15 @@
 
 				if(breath.temperature >= species.breath_heat_level_3)
 					apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
-					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
+					throw_alert("temp", /atom/movable/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
 				else if(breath.temperature >= species.breath_heat_level_2)
 					apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
-					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
+					throw_alert("temp", /atom/movable/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
 				else if(breath.temperature >= species.breath_heat_level_1)
 					apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
-					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
+					throw_alert("temp", /atom/movable/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
 				else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_HOT))
-					throw_alert("temp", /obj/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
+					throw_alert("temp", /atom/movable/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
 				else
 					clear_alert("temp")
 
@@ -795,15 +795,15 @@
 
 				if(breath.temperature <= species.breath_cold_level_3)
 					apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD)
-					throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
+					throw_alert("temp", /atom/movable/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
 				else if(breath.temperature <= species.breath_cold_level_2)
 					apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, BP_HEAD)
-					throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
+					throw_alert("temp", /atom/movable/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
 				else if(breath.temperature <= species.breath_cold_level_1)
 					apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, BP_HEAD)
-					throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
+					throw_alert("temp", /atom/movable/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
 				else if(species.get_environment_discomfort(src, ENVIRONMENT_COMFORT_MARKER_COLD))
-					throw_alert("temp", /obj/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
+					throw_alert("temp", /atom/movable/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
 				else
 					clear_alert("temp")
 
@@ -920,15 +920,15 @@
 				if(b.bellytemperature >= species.heat_level_2)
 					if(b.bellytemperature >= species.heat_level_3)
 						burn_dam = HEAT_DAMAGE_LEVEL_3
-						throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
+						throw_alert("temp", /atom/movable/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
 					else
 						burn_dam = HEAT_DAMAGE_LEVEL_2
-						throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
+						throw_alert("temp", /atom/movable/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
 				else
 					burn_dam = HEAT_DAMAGE_LEVEL_1
-					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
+					throw_alert("temp", /atom/movable/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
 			else
-				throw_alert("temp", /obj/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
+				throw_alert("temp", /atom/movable/screen/alert/warm, HOT_ALERT_SEVERITY_LOW)
 			if(digestable && b.temperature_damage)
 				take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 		else if(b.bellytemperature <= species.cold_discomfort_level)
@@ -937,15 +937,15 @@
 				if(b.bellytemperature <= species.cold_level_2)
 					if(b.bellytemperature <= species.cold_level_3)
 						cold_dam = COLD_DAMAGE_LEVEL_3
-						throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
+						throw_alert("temp", /atom/movable/screen/alert/cold, COLD_ALERT_SEVERITY_MAX)
 					else
 						cold_dam = COLD_DAMAGE_LEVEL_2
-						throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
+						throw_alert("temp", /atom/movable/screen/alert/cold, COLD_ALERT_SEVERITY_MODERATE)
 				else
 					cold_dam = COLD_DAMAGE_LEVEL_1
-					throw_alert("temp", /obj/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
+					throw_alert("temp", /atom/movable/screen/alert/cold, COLD_ALERT_SEVERITY_LOW)
 			else
-				throw_alert("temp", /obj/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
+				throw_alert("temp", /atom/movable/screen/alert/chilly, COLD_ALERT_SEVERITY_LOW)
 			if(digestable && b.temperature_damage)
 				take_overall_damage(burn=cold_dam, used_weapon = "Low Body Temperature")
 		else clear_alert("temp")
@@ -963,13 +963,13 @@
 			if(bodytemperature >= species.heat_level_2)
 				if(bodytemperature >= species.heat_level_3)
 					burn_dam = HEAT_DAMAGE_LEVEL_3
-					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
+					throw_alert("temp", /atom/movable/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
 				else
 					burn_dam = HEAT_DAMAGE_LEVEL_2
-					throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
+					throw_alert("temp", /atom/movable/screen/alert/hot, HOT_ALERT_SEVERITY_MODERATE)
 			else
 				burn_dam = HEAT_DAMAGE_LEVEL_1
-				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
+				throw_alert("temp", /atom/movable/screen/alert/hot, HOT_ALERT_SEVERITY_LOW)
 
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 
@@ -1005,13 +1005,13 @@
 		if(stat==DEAD)
 			pressure_damage = pressure_damage/2
 		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
-		throw_alert("pressure", /obj/screen/alert/highpressure, 2)
+		throw_alert("pressure", /atom/movable/screen/alert/highpressure, 2)
 	else if(adjusted_pressure >= species.warning_high_pressure)
-		throw_alert("pressure", /obj/screen/alert/highpressure, 1)
+		throw_alert("pressure", /atom/movable/screen/alert/highpressure, 1)
 	else if(adjusted_pressure >= species.warning_low_pressure)
 		clear_alert("pressure")
 	else if(adjusted_pressure >= species.hazard_low_pressure)
-		throw_alert("pressure", /obj/screen/alert/lowpressure, 1)
+		throw_alert("pressure", /atom/movable/screen/alert/lowpressure, 1)
 	else
 		if( !(COLD_RESISTANCE in mutations))
 			if(!isSynthetic() || !nif || !nif.flag_check(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER))
@@ -1032,7 +1032,7 @@
 																		// Firesuits (Min protection = 0.2 atmospheres) decrease oxyloss to 1/5
 
 				adjustOxyLoss(pressure_dam)
-			throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
+			throw_alert("pressure", /atom/movable/screen/alert/lowpressure, 2)
 		else
 			clear_alert("pressure")
 
@@ -1379,19 +1379,19 @@
 			SetBlinded(1)
 			blinded =    1
 			eye_blurry = 1
-			throw_alert("blind", /obj/screen/alert/blind)
+			throw_alert("blind", /atom/movable/screen/alert/blind)
 		else //You have the requisite organs
 			if(sdisabilities & BLIND) 	// Disabled-blind, doesn't get better on its own
 				blinded =    1
-				throw_alert("blind", /obj/screen/alert/blind)
+				throw_alert("blind", /atom/movable/screen/alert/blind)
 			else if(eye_blind)		  	// Blindness, heals slowly over time
 				AdjustBlinded(-1)
 				blinded =    1
-				throw_alert("blind", /obj/screen/alert/blind)
+				throw_alert("blind", /atom/movable/screen/alert/blind)
 			else if(istype(glasses, /obj/item/clothing/glasses/sunglasses/blindfold))	//resting your eyes with a blindfold heals blurry eyes faster
 				eye_blurry = max(eye_blurry-3, 0)
 				blinded =    1
-				throw_alert("blind", /obj/screen/alert/blind)
+				throw_alert("blind", /atom/movable/screen/alert/blind)
 
 			//blurry sight
 			if(vision.is_bruised())   // Vision organs impaired? Permablurry.
@@ -1476,7 +1476,7 @@
 			if(-90 to -80)			severity = 8
 			if(-95 to -90)			severity = 9
 			if(-INFINITY to -95)	severity = 10
-		overlay_fullscreen("crit", /obj/screen/fullscreen/crit, severity)
+		overlay_fullscreen("crit", /atom/movable/screen/fullscreen/crit, severity)
 	else //Alive
 		clear_fullscreen("crit")
 		//Oxygen damage overlay
@@ -1490,7 +1490,7 @@
 				if(35 to 40)		severity = 5
 				if(40 to 45)		severity = 6
 				if(45 to INFINITY)	severity = 7
-			overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
+			overlay_fullscreen("oxy", /atom/movable/screen/fullscreen/oxy, severity)
 		else
 			clear_fullscreen("oxy")
 
@@ -1506,7 +1506,7 @@
 				if(55 to 70)		severity = 4
 				if(70 to 85)		severity = 5
 				if(85 to INFINITY)	severity = 6
-			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
+			overlay_fullscreen("brute", /atom/movable/screen/fullscreen/brute, severity)
 		else
 			clear_fullscreen("brute")
 
@@ -1521,7 +1521,7 @@
 				if(60 to 75)		severity = 5
 				if(75 to 90)		severity = 6
 				if(90 to INFINITY)	severity = 7
-			overlay_fullscreen("tired", /obj/screen/fullscreen/oxy, severity)
+			overlay_fullscreen("tired", /atom/movable/screen/fullscreen/oxy, severity)
 		else
 			clear_fullscreen("tired")
 
@@ -1534,7 +1534,7 @@
 				if(50 to 70)		severity = 4
 				if(70 to 90)		severity = 5
 				if(90 to INFINITY)	severity = 6
-			overlay_fullscreen("fear", /obj/screen/fullscreen/fear, severity)
+			overlay_fullscreen("fear", /atom/movable/screen/fullscreen/fear, severity)
 		else
 			clear_fullscreen("fear")
 
@@ -1580,20 +1580,20 @@
 				healths.appearance = healths_ma
 
 
-		var/fat_alert = /obj/screen/alert/fat
-		var/hungry_alert = /obj/screen/alert/hungry
-		var/starving_alert = /obj/screen/alert/starving
+		var/fat_alert = /atom/movable/screen/alert/fat
+		var/hungry_alert = /atom/movable/screen/alert/hungry
+		var/starving_alert = /atom/movable/screen/alert/starving
 
 		if(isSynthetic())
-			fat_alert = /obj/screen/alert/fat/synth
-			hungry_alert = /obj/screen/alert/hungry/synth
-			starving_alert = /obj/screen/alert/starving/synth
+			fat_alert = /atom/movable/screen/alert/fat/synth
+			hungry_alert = /atom/movable/screen/alert/hungry/synth
+			starving_alert = /atom/movable/screen/alert/starving/synth
 		else if(get_species() in list(SPECIES_CUSTOM, SPECIES_HANNER))
 			var/datum/species/custom/C = species
 			if(/datum/trait/neutral/bloodsucker in C.traits)
-				fat_alert = /obj/screen/alert/fat/vampire
-				hungry_alert = /obj/screen/alert/hungry/vampire
-				starving_alert = /obj/screen/alert/starving/vampire
+				fat_alert = /atom/movable/screen/alert/fat/vampire
+				hungry_alert = /atom/movable/screen/alert/hungry/vampire
+				starving_alert = /atom/movable/screen/alert/starving/vampire
 
 		switch(nutrition)
 			if(450 to INFINITY)
@@ -1608,8 +1608,8 @@
 				throw_alert("nutrition", starving_alert)
 
 		if(blinded)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-			throw_alert("blind", /obj/screen/alert/blind)
+			overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
+			throw_alert("blind", /atom/movable/screen/alert/blind)
 		else
 			clear_fullscreen("blind")
 			clear_alert("blind")
@@ -1626,12 +1626,12 @@
 			if(nif && nif.flag_check(NIF_V_CORRECTIVE, NIF_FLAGS_VISION))
 				apply_nearsighted_overlay = FALSE
 
-		set_fullscreen(apply_nearsighted_overlay, "nearsighted", /obj/screen/fullscreen/impaired, 1)
+		set_fullscreen(apply_nearsighted_overlay, "nearsighted", /atom/movable/screen/fullscreen/impaired, 1)
 
-		set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
-		set_fullscreen(druggy, "high", /obj/screen/fullscreen/high)
+		set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
+		set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 		if(druggy)
-			throw_alert("high", /obj/screen/alert/high)
+			throw_alert("high", /atom/movable/screen/alert/high)
 		else
 			clear_alert("high")
 
