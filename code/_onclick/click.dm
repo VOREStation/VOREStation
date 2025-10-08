@@ -303,8 +303,8 @@
 	// if(!user.can_interact_with(src))
 	// 	return FALSE
 
-	// if(SEND_SIGNAL(src, COMSIG_CLICK_ALT, user) & COMPONENT_CANCEL_CLICK_ALT)
-	// 	return TRUE
+	if(SEND_SIGNAL(src, COMSIG_CLICK_ALT, user) & COMPONENT_CANCEL_CLICK_ALT)
+		return TRUE
 
 	if(HAS_TRAIT(src, TRAIT_ALT_CLICK_BLOCKER) && !isobserver(user))
 		return TRUE

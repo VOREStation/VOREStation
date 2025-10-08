@@ -1,3 +1,6 @@
+///The 'ID' for deconstructing items for Research points instead of nodes.
+#define DESTRUCTIVE_ANALYZER_DESTROY_POINTS "research_points"
+
 /*
 Destructive Analyzer
 
@@ -21,11 +24,22 @@ It is used to destroy hand-held objects and advance technological research. Used
 		mapload, \
 		mat_container_flags = MATCONTAINER_NO_INSERT \
 	)
+
+	//Destructive analysis
+	var/static/list/destructive_signals = list(
+		COMSIG_MACHINERY_DESTRUCTIVE_SCAN = TYPE_PROC_REF(/datum/component/experiment_handler, try_run_destructive_experiment),
+	)
+
+	AddComponent(/datum/component/experiment_handler, \
+		allowed_experiments = list(/datum/experiment/scanning),\
+		config_flags = EXPERIMENT_CONFIG_ALWAYS_ACTIVE|EXPERIMENT_CONFIG_SILENT_FAIL,\
+		experiment_signals = destructive_signals, \
+	)
 	. = ..()
 	default_apply_parts()
 
 /obj/machinery/rnd/destructive_analyzer/Destroy()
-	materials = null
+	rmat = null
 	. = ..()
 
 /obj/machinery/rnd/destructive_analyzer/RefreshParts()
@@ -46,6 +60,8 @@ It is used to destroy hand-held objects and advance technological research. Used
 /obj/machinery/rnd/destructive_analyzer/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
 		to_chat(user, span_notice("\The [src] is busy right now."))
+		return
+	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))
 		return
@@ -127,59 +143,138 @@ It is used to destroy hand-held objects and advance technological research. Used
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // Handling deconstruction
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-/obj/machinery/rnd/destructive_analyzer/verb/deconstruct_act()
-	set name = "Deconstruct Contents"
-	set category = "Object"
-	set src in view(1)
-	deconstruct_contents(usr)
 
-/obj/machinery/rnd/destructive_analyzer/AltClick(mob/user)
-	deconstruct_contents(user)
+/obj/machinery/rnd/destructive_analyzer/attack_hand(mob/user as mob)
+	tgui_interact(user)
 
-/obj/machinery/rnd/destructive_analyzer/proc/deconstruct_contents(mob/user)
-	if(busy)
-		atom_say("The destructive analyzer is busy at the moment.")
-		return
+/obj/machinery/rnd/destructive_analyzer/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DestructiveAnalyzer")
+		ui.open()
 
-	busy = TRUE
-	flick("d_analyzer_process", src)
-	addtimer(CALLBACK(src, PROC_REF(handle_end_deconstruct), user), 2.4 SECONDS, TIMER_DELETE_ME)
+/obj/machinery/rnd/destructive_analyzer/tgui_data(mob/user)
+	var/list/data = list()
+	data["server_connected"] = !!stored_research
+	data["node_data"] = list()
+	if(loaded_item)
+		data["item_icon"] = icon2base64(getFlatIcon(image(icon = loaded_item.icon, icon_state = loaded_item.icon_state), no_anim = TRUE))
+		data["indestructible"] = is_type_in_list(loaded_item, GLOB.item_digestion_blacklist)
+		data["loaded_item"] = loaded_item
+		data["already_deconstructed"] = !!stored_research.deconstructed_items[loaded_item.type]
+		var/list/points = techweb_item_point_check(loaded_item)
+		data["recoverable_points"] = techweb_point_display_generic(points)
 
-/obj/machinery/rnd/destructive_analyzer/proc/handle_end_deconstruct(mob/user)
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
+		var/list/boostable_nodes = techweb_item_unlock_check(loaded_item)
+		for(var/id in boostable_nodes)
+			var/datum/techweb_node/unlockable_node = SSresearch.techweb_node_by_id(id)
+			var/list/node_data = list()
+			node_data["node_name"] = unlockable_node.display_name
+			node_data["node_id"] = unlockable_node.id
+			node_data["node_hidden"] = !!stored_research.hidden_nodes[unlockable_node.id]
+			data["node_data"] += list(node_data)
+	else
+		data["loaded_item"] = null
+	return data
 
-	reset_busy()
+/obj/machinery/rnd/destructive_analyzer/tgui_static_data(mob/user)
+	var/list/data = list()
+	data["research_point_id"] = DESTRUCTIVE_ANALYZER_DESTROY_POINTS
+	return data
+
+/obj/machinery/rnd/destructive_analyzer/tgui_act(action, params, datum/tgui/ui)
+	if(..())
+		return TRUE
+
+	var/mob/user = usr
+	switch(action)
+		if("eject_item")
+			if(busy)
+				balloon_alert(user, "already busy!")
+				return TRUE
+			if(loaded_item)
+				unload_item()
+				return TRUE
+		if("deconstruct")
+			if(!user_try_decon_id(params["deconstruct_id"]))
+				balloon_alert(user, "Destructive analysis failed!")
+			return TRUE
+
+///Drops the loaded item where it can and nulls it.
+/obj/machinery/rnd/destructive_analyzer/proc/unload_item()
 	if(!loaded_item)
-		to_chat(user, span_notice("The destructive analyzer appears to be empty."))
-		return
-
-	if(istype(loaded_item,/obj/item/stack))//Only deconsturcts one sheet at a time instead of the entire stack
-		var/obj/item/stack/ST = loaded_item
-		if(ST.get_amount() < 1)
-			playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
-			qdel(ST)
-			icon_state = "d_analyzer"
-			return
-
+		return FALSE
+	//playsound(loc, 'sound/machines/terminal/terminal_insert_disc.ogg', 30, FALSE)
+	loaded_item.forceMove(drop_location())
 	loaded_item = null
-	var/list/all_destructing_things = list()
-	recursive_content_check(src, all_destructing_things, recursion_limit = 5, client_check = FALSE, sight_check = FALSE, include_mobs = TRUE, include_objects = TRUE, ignore_show_messages = TRUE)
-	all_destructing_things -= circuit
-	all_destructing_things -= component_parts
+	update_icon()
+	return TRUE
 
-	// Process contents and notify experimenters
-	var/datum/component/material_container/materials = get_silo_material_container_datum(FALSE)
-	SEND_SIGNAL(src, COMSIG_DESTRUCTIVE_ANALYSIS, all_destructing_things)
-	for(var/atom/A in all_destructing_things)
-		if(ismob(A))
-			var/mob/M = A
-			M.death()
-		else
-			materials.insert_item(A, decon_mod, src, FALSE)
-		qdel(A) // Can't rely on above to del, we have stuff that might not have mats
-	// Feedback
-	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
-	if(!all_destructing_things.len)
-		icon_state = "d_analyzer"
+/**
+ * Destroys an item by going through all its contents (including itself) and calling destroy_item_individual
+ * Args:
+ * gain_research_points - Whether deconstructing each individual item should check for research points to boost.
+ */
+/obj/machinery/rnd/destructive_analyzer/proc/destroy_item(gain_research_points = FALSE)
+	if(QDELETED(loaded_item) || QDELETED(src))
+		return FALSE
+	//flick("[base_icon_state]_process", src)
+	busy = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_busy)), 2.4 SECONDS)
 	use_power(active_power_usage)
+	var/list/all_contents = loaded_item.get_all_contents()
+	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, all_contents)
+	for(var/innerthing in all_contents)
+		destroy_item_individual(innerthing, gain_research_points)
+	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
+	loaded_item = null
+	update_icon()
+	return TRUE
+
+/**
+ * Destroys the individual provided item
+ * Args:
+ * thing - The thing being destroyed. Generally an object, but it can be a mob too, such as intellicards and pAIs.
+ * gain_research_points - Whether deconstructing this should give research points to the stored techweb, if applicable.
+ */
+/obj/machinery/rnd/destructive_analyzer/proc/destroy_item_individual(obj/item/thing, gain_research_points = FALSE)
+	if(isliving(thing))
+		var/mob/living/mob_thing = thing
+		if(mob_thing.stat != DEAD)
+			log_and_message_admins("[mob_thing] has been killed by a destructive analyzer")
+		mob_thing.death()
+	var/list/point_value = techweb_item_point_check(thing)
+	if(point_value && !stored_research.deconstructed_items[thing.type])
+		stored_research.deconstructed_items[thing.type] = TRUE
+		stored_research.add_point_list(point_value)
+
+	//Finally, let's add it to the material silo, if applicable.
+	var/datum/component/material_container/materials = get_silo_material_container_datum(FALSE)
+	materials.insert_item(thing, decon_mod, src, FALSE)
+	qdel(thing)
+
+/**
+ * Attempts to destroy the loaded item using a provided research id.
+ * Args:
+ * id - The techweb ID node that we're meant to unlock if applicable.
+ */
+/obj/machinery/rnd/destructive_analyzer/proc/user_try_decon_id(id)
+	if(!istype(loaded_item))
+		return FALSE
+	if(isnull(id))
+		return FALSE
+
+	if(id == DESTRUCTIVE_ANALYZER_DESTROY_POINTS)
+		if(!destroy_item(gain_research_points = TRUE))
+			return FALSE
+		return TRUE
+
+	var/datum/techweb_node/node_to_discover = SSresearch.techweb_node_by_id(id)
+	if(!istype(node_to_discover))
+		return FALSE
+	if(!destroy_item())
+		return FALSE
+	stored_research.unhide_node(node_to_discover)
+	return TRUE
+
+#undef DESTRUCTIVE_ANALYZER_DESTROY_POINTS
