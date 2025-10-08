@@ -109,7 +109,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 		replacer.hide_from(user)
 		if(!rped_recycler_ready)
 			to_chat(user, span_notice("\The [src]'s stock parts recycler isn't ready yet."))
-			return 0
+			return FALSE
 
 		// We want the lowest-part tier rating in the RPED so we only recycle the lowest-tier parts.
 		var/lowest_rating = INFINITY
