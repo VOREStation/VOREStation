@@ -47,17 +47,17 @@
 
 	player_msg = "In this form, your health will regenerate as long as you have metal in you."
 
-	can_buckle = 1
-	buckle_lying = 1
+	can_buckle = TRUE
+	buckle_lying = TRUE
 	mount_offset_x = 0
 	mount_offset_y = 0
-	has_hands = 1
-	shock_resist = 1
-	nameset = 1
+	has_hands = TRUE
+	shock_resist = TRUE
+	nameset = TRUE
 	holder_type = /obj/item/holder/protoblob
-	var/hiding = 0
-	vore_icons = 1
-	vore_active = 1
+	var/hiding = FALSE
+	vore_icons = TRUE
+	vore_active = TRUE
 
 	plane = ABOVE_MOB_PLANE	//Necessary for overlay based icons
 
@@ -790,6 +790,15 @@
 			I.layer = MOB_LAYER
 			add_overlay(I)
 			qdel(I)
+
+			I = image(icon, "[S.dullahan_overlays[7]][resting? "-rest" : (vore_fullness? "-[vore_fullness]" : null)]", pixel_x = -16)
+			I.color = S.dullahan_overlays[S.dullahan_overlays[7]]
+			I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
+			I.plane = MOB_PLANE
+			I.layer = MOB_LAYER
+			add_overlay(I)
+			qdel(I)
+
 		//You know technically I could just put all the icons into the 128x64.dmi file and off-set them to fit..
 		if(S.blob_appearance in wide_icons)
 			icon = 'icons/mob/species/protean/protean64x32.dmi'
