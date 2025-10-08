@@ -14,7 +14,7 @@
 	///Ref to global science techweb.
 	var/datum/techweb/stored_research
 	///The item loaded inside the machine, used by experimentors and destructive analyzers only.
-	var/obj/item/loaded_item
+	var/datum/weakref/loaded_item
 
 /obj/machinery/rnd/Initialize(mapload)
 	. = ..()
@@ -59,6 +59,8 @@
 	return ..()
 
 /obj/machinery/rnd/dismantle()
-	if(loaded_item)
-		loaded_item.forceMove(drop_location())
+	var/obj/item/our_item = loaded_item?.resolve()
+	if(our_item)
+		our_item.forceMove(drop_location())
+	loaded_item = null
 	. = ..()

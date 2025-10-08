@@ -50,9 +50,10 @@ It is used to destroy hand-held objects and advance technological research. Used
 	decon_mod = clamp(T, 0, 1)
 
 /obj/machinery/rnd/destructive_analyzer/update_icon()
+	var/current_item = loaded_item?.resolve()
 	if(panel_open)
 		icon_state = "d_analyzer_t"
-	else if(loaded_item)
+	else if(current_item)
 		icon_state = "d_analyzer_l"
 	else
 		icon_state = "d_analyzer"
@@ -68,13 +69,26 @@ It is used to destroy hand-held objects and advance technological research. Used
 	if(default_part_replacement(user, O))
 		return
 	if(!panel_open)
-		if(loaded_item)
+		var/current_item = loaded_item?.resolve()
+		if(current_item)
 			to_chat(user, span_notice("There is something already loaded into \the [src]."))
 		else
 			if(isrobot(user)) //Don't put your module items in there!
 				return
+			if(is_type_in_list(O, GLOB.item_deconstruction_blacklist))
+				to_chat(user, span_notice("The machine rejects \the [O]!"))
+				return
+			if((O.itemflags & DROPDEL) || (O.item_flags & NOSTRIP))
+				to_chat(user, span_notice("The machine rejects \the [O]!"))
+				return
+			if(O.tethered_host_item)
+				to_chat(user, span_notice("The machine rejects \the [O]!"))
+				return
+			if(LAZYLEN(O.contents))
+				to_chat(user, span_notice("The machine rejects \the [O]! You need to clear it of all items first!"))
+				return
 			busy = TRUE
-			loaded_item = O
+			loaded_item = WEAKREF(O)
 			user.drop_item()
 			O.forceMove(src)
 			to_chat(user, span_notice("You add \the [O] to \the [src]."))
@@ -157,15 +171,16 @@ It is used to destroy hand-held objects and advance technological research. Used
 	var/list/data = list()
 	data["server_connected"] = !!stored_research
 	data["node_data"] = list()
-	if(loaded_item)
-		data["item_icon"] = icon2base64(getFlatIcon(image(icon = loaded_item.icon, icon_state = loaded_item.icon_state), no_anim = TRUE))
-		data["indestructible"] = is_type_in_list(loaded_item, GLOB.item_digestion_blacklist)
-		data["loaded_item"] = loaded_item
-		data["already_deconstructed"] = !!stored_research.deconstructed_items[loaded_item.type]
-		var/list/points = techweb_item_point_check(loaded_item)
+	var/obj/item/current_item = loaded_item?.resolve()
+	if(current_item)
+		data["item_icon"] = icon2base64(getFlatIcon(image(icon = current_item.icon, icon_state = current_item.icon_state), no_anim = TRUE))
+		data["indestructible"] = is_type_in_list(current_item, GLOB.item_deconstruction_blacklist)
+		data["loaded_item"] = current_item
+		data["already_deconstructed"] = !!stored_research.deconstructed_items[current_item.type]
+		var/list/points = techweb_item_point_check(current_item)
 		data["recoverable_points"] = techweb_point_display_generic(points)
 
-		var/list/boostable_nodes = techweb_item_unlock_check(loaded_item)
+		var/list/boostable_nodes = techweb_item_unlock_check(current_item)
 		for(var/id in boostable_nodes)
 			var/datum/techweb_node/unlockable_node = SSresearch.techweb_node_by_id(id)
 			var/list/node_data = list()
@@ -187,12 +202,13 @@ It is used to destroy hand-held objects and advance technological research. Used
 		return TRUE
 
 	var/mob/user = usr
+	var/current_item = loaded_item?.resolve()
 	switch(action)
 		if("eject_item")
 			if(busy)
 				balloon_alert(user, "already busy!")
 				return TRUE
-			if(loaded_item)
+			if(current_item)
 				unload_item()
 				return TRUE
 		if("deconstruct")
@@ -202,10 +218,12 @@ It is used to destroy hand-held objects and advance technological research. Used
 
 ///Drops the loaded item where it can and nulls it.
 /obj/machinery/rnd/destructive_analyzer/proc/unload_item()
-	if(!loaded_item)
+	var/obj/item/current_item = loaded_item?.resolve()
+	if(!current_item)
+		loaded_item = null
 		return FALSE
 	//playsound(loc, 'sound/machines/terminal/terminal_insert_disc.ogg', 30, FALSE)
-	loaded_item.forceMove(drop_location())
+	current_item.forceMove(drop_location())
 	loaded_item = null
 	update_icon()
 	return TRUE
@@ -216,17 +234,19 @@ It is used to destroy hand-held objects and advance technological research. Used
  * gain_research_points - Whether deconstructing each individual item should check for research points to boost.
  */
 /obj/machinery/rnd/destructive_analyzer/proc/destroy_item(gain_research_points = FALSE)
-	if(QDELETED(loaded_item) || QDELETED(src))
+	var/obj/item/current_item = loaded_item?.resolve()
+	if(!current_item || QDELETED(src))
 		return FALSE
 	//flick("[base_icon_state]_process", src)
 	busy = TRUE
 	addtimer(CALLBACK(src, PROC_REF(reset_busy)), 2.4 SECONDS)
 	use_power(active_power_usage)
-	var/list/all_contents = loaded_item.get_all_contents()
-	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, all_contents)
-	for(var/innerthing in all_contents)
-		destroy_item_individual(innerthing, gain_research_points)
+	//Failsafe.
+	for(var/atom/movable/AM in current_item.contents)
+		AM.forceMove(get_turf(src))
 	playsound(src, 'sound/machines/destructive_analyzer.ogg', 50, 1)
+	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, current_item)
+	destroy_item_individual(current_item, gain_research_points)
 	loaded_item = null
 	update_icon()
 	return TRUE
@@ -240,9 +260,18 @@ It is used to destroy hand-held objects and advance technological research. Used
 /obj/machinery/rnd/destructive_analyzer/proc/destroy_item_individual(obj/item/thing, gain_research_points = FALSE)
 	if(isliving(thing))
 		var/mob/living/mob_thing = thing
-		if(mob_thing.stat != DEAD)
-			log_and_message_admins("[mob_thing] has been killed by a destructive analyzer")
-		mob_thing.death()
+		var/turf/turf_to_dump_to = get_turf(src)
+		log_and_message_admins("made an attempt to kill [mob_thing] in a destructive analyzer was made at [ADMIN_VERBOSEJMP(turf_to_dump_to)]")
+		visible_message(span_warning("A loud buzz sounds out from \the [src] as it rejects and spits out \the [mob_thing]!"))
+		mob_thing.forceMove(turf_to_dump_to)
+		return
+	//Safety.
+	if(is_type_in_list(thing, GLOB.item_deconstruction_blacklist))
+		var/turf/turf_to_dump_to = get_turf(src)
+		log_and_message_admins("made an attempt to destroy [thing] in a destructive analyzer was made at [ADMIN_VERBOSEJMP(turf_to_dump_to)]")
+		visible_message(span_warning("A loud buzz sounds out from \the [src] as it rejects and spits out \the [thing]!"))
+		thing.forceMove(turf_to_dump_to)
+		return
 	var/list/point_value = techweb_item_point_check(thing)
 	//If it has a point value and we haven't deconstructed it OR we've deconstructed it but it's a repeatable.
 	if(point_value && (!stored_research.deconstructed_items[thing.type] || (stored_research.deconstructed_items[thing.type] && SSresearch.techweb_repeatable_items[thing.type])))
@@ -260,7 +289,11 @@ It is used to destroy hand-held objects and advance technological research. Used
  * id - The techweb ID node that we're meant to unlock if applicable.
  */
 /obj/machinery/rnd/destructive_analyzer/proc/user_try_decon_id(id)
-	if(!istype(loaded_item))
+	var/obj/item/current_item = loaded_item?.resolve()
+	if(!istype(current_item))
+		return FALSE
+	if(LAZYLEN(current_item.contents))
+		visible_message(span_notice("A warning blares from \the [src]: The [current_item] still has items inside it!"))
 		return FALSE
 	if(isnull(id))
 		return FALSE
