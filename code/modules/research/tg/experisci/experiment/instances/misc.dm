@@ -1,3 +1,5 @@
+
+///Example of a destructive experiment.
 /datum/experiment/scanning/random/artifact_destruction
 	name = "Artifact Analysis"
 	description = "Destroy some artifacts"
