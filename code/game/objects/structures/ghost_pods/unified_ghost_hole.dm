@@ -1,11 +1,11 @@
 /obj/structure/ghost_pod/ghost_activated/unified_hole
-	name = "strange maintenance hole"
+	name = "maintenance critter hole"
 	desc = "This is my hole! It was made for me!"
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "tunnel_hole"
-	icon_state_opened = "tunnel_hole"
+	icon_state = "rift"
+	icon_state_opened = "tendril_dead"
 	density = FALSE
-	ghost_query_type = /datum/ghost_query/maints_lurker
+	ghost_query_type = /datum/ghost_query/maints_spawner
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
@@ -24,7 +24,7 @@
 		return
 
 	if(redgate_restricted)
-		choice = tgui_alert(user, "Which type of critter do you wish to spawn as? Note that this is a Redgate Spawner: if you choose the Lurker spawn you will not be able to leave through the redgate until another character grants you permission by clicking on the redgate with you nearby. Are you absolutely sure you wish to continue?", "Redgate Critter Spawner", list("Mob", "Morph", "Lurker", "Cancel"))
+		choice = tgui_alert(user, "Which type of critter do you wish to spawn as? Note that this is a Redgate Spawner: if you choose the Lurker role you will not be able to leave through the redgate until another character grants you permission by clicking on the redgate with you nearby. Are you absolutely sure you wish to continue?", "Redgate Critter Spawner", list("Mob", "Morph", "Lurker", "Cancel"))
 	else
 		choice = tgui_alert(user, "Which type of critter do you wish to spawn as?", "Critter Spawner", list("Mob", "Morph", "Lurker", "Cancel"))
 
