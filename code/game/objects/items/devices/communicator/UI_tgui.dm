@@ -4,10 +4,10 @@
 	var/turf/last_camera_turf
 	// Stuff needed to render the map
 	var/map_name
-	var/obj/screen/map_view/cam_screen
+	var/atom/movable/screen/map_view/cam_screen
 	var/list/cam_plane_masters
-	var/obj/screen/background/cam_background
-	var/obj/screen/skybox/local_skybox
+	var/atom/movable/screen/background/cam_background
+	var/atom/movable/screen/skybox/local_skybox
 
 // Proc: setup_tgui_camera()
 // Parameters: None
@@ -24,7 +24,7 @@
 
 	cam_plane_masters = get_tgui_plane_masters()
 
-	for(var/obj/screen/instance as anything in cam_plane_masters)
+	for(var/atom/movable/screen/instance as anything in cam_plane_masters)
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "[map_name]:CENTER"
@@ -381,7 +381,7 @@
 			if(text)
 				exonet.send_message(their_address, "text", text)
 				im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
-				log_pda("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", ui.user)
+				ui.user.log_talk("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", LOG_PDA)
 				var/obj/item/communicator/comm = exonet.get_atom_from_address(their_address)
 				to_chat(ui.user, span_notice("[icon2html(src, ui.user.client)] Sent message to [istype(comm, /obj/item/communicator) ? comm.owner : comm.name], <b>\"[text]\"</b> (<a href='byond://?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)"))
 				for(var/mob/M in GLOB.player_list)

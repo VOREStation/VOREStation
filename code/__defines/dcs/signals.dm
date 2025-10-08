@@ -163,6 +163,11 @@
 ///from base of atom/attack_paw(): (mob/user)
 //This signal return value bitflags can be found in __DEFINES/misc.dm
 
+///from base of /obj/structure/stairs/top/use_stairs(var/atom/movable/AM, var/atom/oldloc)
+#define COMSIG_MOVED_DOWN_STAIRS "atom_moved_down_stairs"
+///from base of /obj/structure/stairs/bottom/use_stairs(var/atom/movable/AM, var/atom/oldloc)
+#define COMSIG_MOVED_UP_STAIRS "atom_moved_up_stairs"
+
 ///called for each movable in a turf contents on /turf/zImpact(): (atom/movable/A, levels)
 #define COMSIG_ATOM_INTERCEPT_Z_FALL "movable_intercept_z_impact"
 ///called on a movable (NOT living) when someone starts pulling it (atom/movable/puller, state, force)
@@ -240,6 +245,8 @@
 	#define COMPONENT_MOVABLE_IMPACT_NEVERMIND (1<<1)					//return true if you destroyed whatever it was you're impacting and there won't be anything for hitby() to run on
 ///from base of mob/living/hitby(): (mob/living/target, hit_zone)
 #define COMSIG_MOVABLE_IMPACT_ZONE "item_impact_zone"
+///from the base of mob/living/carbon/human/hitby(): (atom/movable/source, speed)
+#define COMSIG_HUMAN_ON_CATCH_THROW "human_on_catch_throw"
 ///from base of atom/movable/buckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_BUCKLE "buckle"
 ///from base of atom/movable/unbuckle_mob(): (mob, force)
@@ -265,6 +272,10 @@
 ///from /datum/controller/subsystem/motion_tracker/notice() (/datum/weakref/source_atom,/turf/echo_turf_location)
 #define COMSIG_MOVABLE_MOTIONTRACKER "move_motiontracker"
 
+///called when a disposal connected object flushes its contents into the disposal pipe network
+#define COMSIG_DISPOSAL_FLUSH "disposal_system_flushing"
+///called when a disposal connected object gets a packet from the disposal pipe network
+#define COMSIG_DISPOSAL_RECEIVING "disposal_system_receiving"
 ///called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"
 
@@ -285,6 +296,9 @@
 ///from base of mob/AltClickOn(): (atom/A)
 #define COMSIG_MOB_ALTCLICKON "mob_altclickon"
 	#define COMSIG_MOB_CANCEL_CLICKON (1<<0)
+
+///from base of /obj/item/dice/proc/rollDice(mob/user as mob, var/silent = 0). Has the arguments of 'src, silent, result'
+#define COMSIG_MOB_ROLLED_DICE "mob_rolled_dice" //can give a return value if we want it to make the dice roll a specific number!
 
 ///from base of obj/allowed(mob/M): (/obj) returns bool, if TRUE the mob has id access to the obj
 #define COMSIG_MOB_ALLOWED "mob_allowed"
@@ -339,7 +353,7 @@
 
 ///from base of mob/living/resist() (/mob/living)
 #define COMSIG_LIVING_RESIST "living_resist"
-///from base of mob/living/IgniteMob() (/mob/living)
+///from base of mob/living/ignite_mob() (/mob/living)
 #define COMSIG_LIVING_IGNITED "living_ignite"
 ///from base of mob/living/ExtinguishMob() (/mob/living)
 #define COMSIG_LIVING_EXTINGUISHED "living_extinguished"
@@ -402,6 +416,8 @@
 #define COMSIG_TAKING_APPLY_EFFECT "applying_effect"
 ///Return this in response if you don't want the effect to be applied
 	#define COMSIG_CANCEL_EFFECT (1<<0)
+///from /mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
+#define COMSIG_STUN_EFFECT_ACT "stun_effect_act"
 
 ///Misc signal for checking for godmode. Used by /datum/element/godmode
 #define COMSIG_CHECK_FOR_GODMODE "check_for_godmode"
@@ -446,7 +462,8 @@
 ///called when being electrocuted, from /mob/living/carbon/electrocute_act(shock_damage, source, siemens_coeff, def_zone, stun)
 #define COMSIG_BEING_ELECTROCUTED "being_electrocuted"
 	#define COMPONENT_CARBON_CANCEL_ELECTROCUTE (1<<0) //If this is set, the carbon will be not be electrocuted.
-
+///called when a carbon slipps, from /mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+#define COMSIG_ON_CARBON_SLIP "carbon_slip"
 
 // /mob/living/silicon signals
 ///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity)
@@ -484,6 +501,27 @@
 ///from base power_change() when power is restored
 #define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored"
 
+// /obj/machinery/door signals
+
+//from /obj/machinery/door/can_open():
+#define COMSIG_DOOR_CAN_OPEN "attempt_door_open"
+	/// Return to stop the door opening
+	#define DOOR_DENY_OPEN (1<<0)
+//from /obj/machinery/door/can_close():
+#define COMSIG_DOOR_CAN_CLOSE "attempt_door_close"
+	/// Return to stop the door closing
+	#define DOOR_DENY_CLOSE (1<<0)
+//from /obj/machinery/door/open(): (forced)
+#define COMSIG_DOOR_OPEN "door_open"
+//from /obj/machinery/door/close(): (forced)
+#define COMSIG_DOOR_CLOSE "door_close"
+///from /obj/machinery/door/airlock/set_bolt():
+#define COMSIG_AIRLOCK_SET_BOLT "airlock_set_bolt"
+///from /obj/machinery/door/bumpopen(), to the mob who bumped: (door)
+#define COMSIG_MOB_BUMPED_DOOR_OPEN "mob_bumped_door_open"
+	/// Return to stop the door opening on bump.
+	#define DOOR_STOP_BUMP (1<<0)
+
 // /obj/item signals
 
 ///from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
@@ -505,8 +543,14 @@
 #define COMSIG_ITEM_EQUIPPED "item_equip"
 ///from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_DROPPED "item_drop"
+/// A mob has just equipped an item. Called on [/mob] from base of [/obj/item/equipped()]: (/obj/item/equipped_item, slot)
+#define COMSIG_MOB_EQUIPPED_ITEM "mob_equipped_item"
+/// A mob has just unequipped an item.
+#define COMSIG_MOB_UNEQUIPPED_ITEM "mob_unequipped_item"
 ///from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_ITEM_PICKUP "item_pickup"
+///from base of obj/item/pickup(): (/obj/item)
+#define COMSIG_PICKED_UP_ITEM "piked_up_item"
 ///from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
 #define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"
 ///return a truthy value to prevent ensouling, checked in /obj/effect/proc_holder/spell/targeted/lichdom/cast(): (mob/user)
@@ -688,6 +732,11 @@
 ///called when you wash your face at a sink: (num/strength)
 #define COMSIG_COMPONENT_CLEAN_FACE_ACT "clean_face_act"
 
+//Reagent holder
+
+///from base of /datum/reagents/proc/handle_reactions(): (list/decl/chemical_reaction)
+#define COMSIG_REAGENTS_HOLDER_REACTED "reagents_holder_reacted"
+
 //Food
 
 ///from base of obj/item/reagent_containers/food/snacks/attack(): (mob/living/eater, mob/feeder)
@@ -854,6 +903,8 @@
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
 ///Called right after the atom changes the value of light_flags to a different one, from base of [/atom/proc/set_light_flags]: (old_flags)
 #define COMSIG_ATOM_UPDATE_LIGHT_FLAGS "atom_update_light_flags"
+///Called right after the atom is flushed into a disposal holder and sent through the disposal network: (/obj/structure/disposalholder)
+#define COMSIG_ATOM_DISPOSAL_FLUSHED "atom_disposal_flushed"
 
 // /datum/element/light_eater
 ///from base of [/datum/element/light_eater/proc/table_buffet]: (list/light_queue, datum/light_eater)
@@ -901,18 +952,6 @@
 /// COMSIG used to get messages where they need to go
 #define COMSIG_VISIBLE_MESSAGE "visible_message"
 
-// Weaver Component
-///from /mob/living/proc/check_silk_amount()
-#define COMSIG_CHECK_SILK_AMOUNT "check_silk_amount"
-///from /mob/living/proc/weave_structure()
-#define COMSIG_WEAVE_STRUCTURE "weave_structure"
-///from /mob/living/proc/toggle_silk_production()
-#define COMSIG_TOGGLE_SILK_PRODUCTION "toggle_silk_production"
-///from /mob/living/proc/weave_item()
-#define COMSIG_WEAVE_ITEM "weave_item"
-///from /mob/living/proc/set_silk_color()
-#define COMSIG_SET_SILK_COLOR "set_silk_color"
-
 // Gargoyle Component
 ///from /mob/living/carbon/human/proc/gargoyle_transformation()
 #define COMSIG_GARGOYLE_TRANSFORMATION "gargoyle_transformation"
@@ -928,6 +967,21 @@
 
 // Hose Connector Component
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"
+
+
+// Spontaneous vore stuff.
+///from /mob/living/stumble_into(mob/living/M)
+#define COMSIG_LIVING_STUMBLED_INTO "living_stumbled_into"
+		///Something has special handling. Don't continue.
+	#define CANCEL_STUMBLED_INTO	(1<<0)
+///from /mob/living/handle_fall(var/turf/landing) args: landing, drop_mob)
+#define COMSIG_LIVING_FALLING_DOWN "living_falling_down"
+		//Special handling. Cancel the fall chain.
+	#define COMSIG_CANCEL_FALL	(1<<0)
+///from /mob/living/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)
+#define COMSIG_LIVING_HIT_BY_THROWN_ENTITY "hit_by_thrown_entity"
+		//Special handling. Cancel the hitby proc.
+	#define COMSIG_CANCEL_HITBY	(1<<0)
 
 //Unittest data update
 #ifdef UNIT_TESTS

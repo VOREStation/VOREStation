@@ -1,0 +1,51 @@
+2025-10-02:
+  Cameron-The-Raven:
+  - bugfix: Pain from internal bleeding will no longer inform you that the pain is
+      coming from your character name.
+  Diana:
+  - bugfix: Fixes grabs hard deleting when pushed over.
+  - qol: Weaver trait now has a TGUI panel
+  - qol: Weaver now has the ability to spin a cocoon
+  - code_imp: Cleans up some signals pertaining to Weaver.
+  Kashargul:
+  - bugfix: mentors seeing some mod / admin messages
+  Ryumi:
+  - qol: Added an option to the Reflexive Biting and Personal Bubble traits that lets
+      you choose to start with them enabled or disabled.
+  Will:
+  - bugfix: Charge blade no longer deletes itself on drop
+2025-10-03:
+  Drathek:
+  - code_imp: Tweaked a few grep lints for balloon alerts and a check for de-optimization
+      of o?range/o?view with as anything
+2025-10-04:
+  Kashargul:
+  - qol: adds some basic color matrix solving
+  - code_imp: react 19.2
+  - bugfix: some door buttons not triggering multiple doors
+2025-10-05:
+  Diana:
+  - rscadd: 'Adds two negative traits: Unlucky and Unlucky Major'
+  - rscadd: Unlucky (-2 trait points) is a trait that has a plethora of effects, ranging
+      from dice being worse to slipping into a washing machine!
+  - rscadd: 'Unlucky Major (-5 trait points) makes the game a movie and you''re the
+      main character. The downside: The movie is Final Destination.'
+  - code_imp: Removes bluespace crackers list and replaces it with the effect being
+      decided upon during init
+  - code_imp: Swaps some strings in the bluespace cracker to defines
+  Tenryumi:
+  - rscadd: Added operating tables to the crafting menu. You'll need 12 silver, 10
+      metal rods, and one leather!
+2025-10-06:
+  Diana:
+  - bugfix: Multiple items can be stripped from someone at once, again.
+  Kashargul:
+  - bugfix: last changelog state being inverted
+2025-10-07:
+  Diana:
+  - refactor: Makes Stumble Vore, Drop Vore, Throw Vore, and Slip Vore an element
+  - bugfix: Fixes a bug prevent slipnoms from working.
+  - code_imp: Makes the spontaneous vore procs less crungo.
+2025-10-08:
+  Will:
+  - bugfix: shadekin no longer slip on wet or icey turfs while phased

@@ -244,7 +244,7 @@
 /datum/trait/negative/less_blood
 	name = "Low Blood Volume"
 	desc = "You have 33.3% less blood volume compared to most species, making you more prone to blood loss issues."
-	cost = -3
+	cost = -2
 	var_changes = list("blood_volume" = 375)
 	excludes = list(/datum/trait/negative/less_blood_extreme)
 	can_take = ORGANICS
@@ -252,7 +252,7 @@
 /datum/trait/negative/less_blood_extreme
 	name = "Low Blood Volume, Extreme"
 	desc = "You have 60% less blood volume compared to most species, making you much more prone to blood loss issues."
-	cost = -5
+	cost = -3
 	var_changes = list("blood_volume" = 224)
 	excludes = list(/datum/trait/negative/less_blood)
 	can_take = ORGANICS
@@ -601,21 +601,21 @@
 /datum/trait/negative/reduced_biocompat_minor
 	name = "Reduced Biocompatibility, Minor"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 80% as effective on you!"
-	cost = -2
+	cost = -1
 	var_changes = list("chem_strength_heal" = 0.8)
 	can_take = ORGANICS
 
 /datum/trait/negative/reduced_biocompat
 	name = "Reduced Biocompatibility"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 60% as effective on you!"
-	cost = -4
+	cost = -2
 	var_changes = list("chem_strength_heal" = 0.6)
 	can_take = ORGANICS
 
 /datum/trait/negative/reduced_biocompat_extreme
 	name = "Reduced Biocompatibility, Major"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 30% as effective on you!"
-	cost = -8
+	cost = -4
 	var_changes = list("chem_strength_heal" = 0.3)
 	can_take = ORGANICS
 
@@ -828,3 +828,26 @@
 	addiction = REAGENT_ID_ASUSTENANCE
 	custom_only = FALSE
 	hidden = TRUE //Disabled on Virgo
+
+/datum/trait/negative/unlucky
+	name = "Unlucky"
+	desc = "You are naturally unlucky and ill-events often befall you."
+	cost = -2
+	is_genetrait = FALSE
+	hidden = FALSE
+	custom_only = FALSE
+	added_component_path = /datum/component/omen/trait
+	excludes = list(/datum/trait/negative/unlucky/major)
+
+
+/datum/trait/negative/unlucky/major
+	name = "Unlucky, Major"
+	desc = "Your luck is extremely awful and potentially fatal."
+	cost = -5
+	tutorial = "You should avoid disposal bins."
+	is_genetrait = TRUE
+	hidden = FALSE
+	added_component_path = /datum/component/omen/trait/major
+	excludes = list(/datum/trait/negative/unlucky)
+	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
+	primitive_expression_messages=list("unluckily stubs their toe!")

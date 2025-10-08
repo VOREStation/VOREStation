@@ -146,7 +146,7 @@ Class Procs:
 			if(A.loc == src) // If the components are inside the machine, delete them.
 				qdel(A)
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
-				warning("[A] was still in [src]'s component_parts when it was Destroy()'d")
+				WARNING("[A] was still in [src]'s component_parts when it was Destroy()'d")
 		component_parts.Cut()
 		component_parts = null
 	if(contents) // The same for contents.
@@ -356,6 +356,11 @@ Class Procs:
 			if(parts_replaced)
 				R.play_rped_sound()
 	return 1
+
+// This is it's own proc so it can be more easily found when looking for machines that can upgrade themselves from mapped parts
+// Should be called from LateInitialize()
+/obj/machinery/proc/apply_mapped_upgrades()
+	return
 
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
 /obj/machinery/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)

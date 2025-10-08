@@ -235,7 +235,7 @@
 	var/mob/M = usr
 	if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
 		return
-	if(!istype(over_object, /obj/screen))
+	if(!istype(over_object, /atom/movable/screen))
 		return attack_self(M)
 	return
 

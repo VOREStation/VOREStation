@@ -349,35 +349,12 @@
 		reagents.add_reagent(REAGENT_ID_WATER,2000)
 	update_icon()
 	AddElement(/datum/element/climbable)
+	AddElement(/datum/element/rotatable)
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
 	. = ..()
 	if(cupholder)
 		. += span_notice("There are [cups] cups in the cup dispenser.")
-
-/obj/structure/reagent_dispensers/water_cooler/verb/rotate_clockwise()
-	set name = "Rotate Cooler Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened to the floor!")
-		return 0
-	src.set_dir(turn(src.dir, 270))
-	return 1
-
-//VOREstation edit: counter-clockwise rotation
-/obj/structure/reagent_dispensers/water_cooler/verb/rotate_counterclockwise()
-	set name = "Rotate Cooler Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if (src.anchored || usr:stat)
-		to_chat(usr, "It is fastened to the floor!")
-		return 0
-	src.set_dir(turn(src.dir, 90))
-	return 1
-//VOREstation edit end
 
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_WRENCH))

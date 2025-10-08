@@ -28,7 +28,7 @@
 		else
 			var/turf/playerTurf = get_turf(Player)
 			if(!playerTurf)
-				log_debug("Player [Player.name] ([Player.ckey]) playing as [Player.species] was in nullspace at round end.")
+				log_runtime("Player [Player.name] ([Player.ckey]) playing as [Player.species] was in nullspace at round end.")
 				continue
 			if(isAdminLevel(playerTurf.z))
 				// Evac'd - Next round they arrive on the shuttle.
@@ -51,17 +51,17 @@
 		// Okay this mob has a real loaded-from-savefile mind in it!
 		var/datum/preferences/prefs = preferences_datums[persister.mind.loaded_from_ckey]
 		if(!prefs)
-			warning("Persist (P4P): [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found.")
+			WARNING("Persist (P4P): [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found.")
 			return
 
 		// Okay, lets do a few checks to see if we should really save tho!
 		if(!prefs.load_character(persister.mind.loaded_from_slot))
-			warning("Persist (P4P): [persister.mind] was loaded from slot [persister.mind.loaded_from_slot] but loading prefs failed.")
+			WARNING("Persist (P4P): [persister.mind] was loaded from slot [persister.mind.loaded_from_slot] but loading prefs failed.")
 			return // Failed to load character
 
 		// For now as a safety measure we will only save if the name matches.
 		if(prefs.real_name != persister.real_name)
-			log_debug("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs.real_name].")
+			NOTICE("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs.real_name].")
 			return
 
 		return prefs
@@ -69,7 +69,7 @@
 /**
  * Called when mob despawns early (via cryopod)!
  */
-/hook/despawn/proc/persist_despawned_mob(var/mob/occupant, var/obj/machinery/cryopod/pod)
+/proc/persist_despawned_mob(var/mob/occupant, var/obj/machinery/cryopod/pod)
 	ASSERT(istype(pod))
 	ASSERT(ispath(pod.spawnpoint_type, /datum/spawnpoint))
 	persist_interround_data(occupant, pod.spawnpoint_type)
@@ -82,7 +82,7 @@
 
 	var/datum/preferences/prefs = prep_for_persist(occupant)
 	if(!prefs)
-		warning("Persist (PID): Skipping [occupant] for persisting, as they have no prefs.")
+		WARNING("Persist (PID): Skipping [occupant] for persisting, as they have no prefs.")
 		return
 
 	//This one doesn't rely on persistence prefs
@@ -238,7 +238,7 @@
 
 	var/slot = H?.mind?.loaded_from_slot
 	if(isnull(slot))
-		warning("Persist (NIF): [H] has no mind slot, skipping")
+		WARNING("Persist (NIF): [H] has no mind slot, skipping")
 		return
 
 	var/datum/json_savefile/savefile = new /datum/json_savefile(nif_savefile_path(H.ckey))

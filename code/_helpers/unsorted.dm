@@ -14,31 +14,6 @@
 		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
 	)
 
-//Inverts the colour of an HTML string
-/proc/invertHTML(HTMLstring)
-
-	if (!( istext(HTMLstring) ))
-		CRASH("Given non-text argument!")
-	else
-		if (length(HTMLstring) != 7)
-			CRASH("Given non-HTML argument!")
-	var/textr = copytext(HTMLstring, 2, 4)
-	var/textg = copytext(HTMLstring, 4, 6)
-	var/textb = copytext(HTMLstring, 6, 8)
-	var/r = hex2num(textr)
-	var/g = hex2num(textg)
-	var/b = hex2num(textb)
-	textr = num2hex(255 - r)
-	textg = num2hex(255 - g)
-	textb = num2hex(255 - b)
-	if (length(textr) < 2)
-		textr = text("0[]", textr)
-	if (length(textg) < 2)
-		textr = text("0[]", textg)
-	if (length(textb) < 2)
-		textr = text("0[]", textb)
-	return text("#[][][]", textr, textg, textb)
-
 //Returns the middle-most value
 /proc/dd_range(var/low, var/high, var/num)
 	return max(low,min(high,num))
@@ -1180,7 +1155,7 @@ var/list/WALLITEMS = list(
 		colour = pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))
 	else
 		for(var/i=1;i<=3;i++)
-			var/temp_col = "[num2hex(rand(lower,upper))]"
+			var/temp_col = "[num2hex(rand(lower,upper), 2)]"
 			if(length(temp_col )<2)
 				temp_col  = "0[temp_col]"
 			colour += temp_col
@@ -1475,21 +1450,6 @@ var/mob/dview/dview_mob
 /proc/pass(...)
 	return
 
-//gives us the stack trace from CRASH() without ending the current proc.
-/proc/stack_trace(msg)
-	CRASH(msg)
-
-/datum/proc/stack_trace(msg)
-	CRASH(msg)
-
-GLOBAL_REAL_VAR(list/stack_trace_storage)
-/proc/gib_stack_trace()
-	stack_trace_storage = list()
-	stack_trace()
-	stack_trace_storage.Cut(1, min(3,stack_trace_storage.len))
-	. = stack_trace_storage
-	stack_trace_storage = null
-
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
 // #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
@@ -1516,47 +1476,47 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/get_tgui_plane_masters()
 	. = list()
 	// 'Utility' planes
-	. += new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
-	. += new /obj/screen/plane_master/lighting							//Lighting system (but different!)
-	. += new /obj/screen/plane_master/o_light_visual					//Object lighting (using masks)
-	. += new /obj/screen/plane_master/emissive							//Emissive overlays
+	. += new /atom/movable/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
+	. += new /atom/movable/screen/plane_master/lighting							//Lighting system (but different!)
+	. += new /atom/movable/screen/plane_master/o_light_visual					//Object lighting (using masks)
+	. += new /atom/movable/screen/plane_master/emissive							//Emissive overlays
 
-	. += new /obj/screen/plane_master/ghosts							//Ghosts!
-	. += new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
+	. += new /atom/movable/screen/plane_master/ghosts							//Ghosts!
+	. += new /atom/movable/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 
-	. += new /obj/screen/plane_master{plane = PLANE_CH_STATUS}			//Status is the synth/human icon left side of medhuds
-	. += new /obj/screen/plane_master{plane = PLANE_CH_HEALTH}			//Health bar
-	. += new /obj/screen/plane_master{plane = PLANE_CH_LIFE}			//Alive-or-not icon
-	. += new /obj/screen/plane_master{plane = PLANE_CH_ID}				//Job ID icon
-	. += new /obj/screen/plane_master{plane = PLANE_CH_WANTED}			//Wanted status
-	. += new /obj/screen/plane_master{plane = PLANE_CH_IMPLOYAL}		//Loyalty implants
-	. += new /obj/screen/plane_master{plane = PLANE_CH_IMPTRACK}		//Tracking implants
-	. += new /obj/screen/plane_master{plane = PLANE_CH_IMPCHEM}		//Chemical implants
-	. += new /obj/screen/plane_master{plane = PLANE_CH_SPECIAL}		//"Special" role stuff
-	. += new /obj/screen/plane_master{plane = PLANE_CH_STATUS_OOC}		//OOC status HUD
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_STATUS}			//Status is the synth/human icon left side of medhuds
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_HEALTH}			//Health bar
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_LIFE}			//Alive-or-not icon
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_ID}				//Job ID icon
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_WANTED}			//Wanted status
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_IMPLOYAL}		//Loyalty implants
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_IMPTRACK}		//Tracking implants
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_IMPCHEM}		//Chemical implants
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_SPECIAL}		//"Special" role stuff
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_STATUS_OOC}		//OOC status HUD
 
-	. += new /obj/screen/plane_master{plane = PLANE_ADMIN1}			//For admin use
-	. += new /obj/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
-	. += new /obj/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
+	. += new /atom/movable/screen/plane_master{plane = PLANE_ADMIN1}			//For admin use
+	. += new /atom/movable/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
+	. += new /atom/movable/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
 
-	. += new /obj/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
-	. += new /obj/screen/plane_master{plane = PLANE_BUILDMODE}			//Things that only show up while in build mode
-	. += new /obj/screen/plane_master{plane = PLANE_JANHUD}
+	. += new /atom/movable/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
+	. += new /atom/movable/screen/plane_master{plane = PLANE_BUILDMODE}			//Things that only show up while in build mode
+	. += new /atom/movable/screen/plane_master{plane = PLANE_JANHUD}
 
 	// Real tangible stuff planes
-	. += new /obj/screen/plane_master/main{plane = TURF_PLANE}
-	. += new /obj/screen/plane_master/main{plane = OBJ_PLANE}
-	. += new /obj/screen/plane_master/main{plane = MOB_PLANE}
-	. += new /obj/screen/plane_master/cloaked								//Cloaked atoms!
+	. += new /atom/movable/screen/plane_master/main{plane = TURF_PLANE}
+	. += new /atom/movable/screen/plane_master/main{plane = OBJ_PLANE}
+	. += new /atom/movable/screen/plane_master/main{plane = MOB_PLANE}
+	. += new /atom/movable/screen/plane_master/cloaked								//Cloaked atoms!
 
 	//VOREStation Add - Random other plane masters
-	. += new /obj/screen/plane_master{plane = PLANE_CH_STATUS_R}			//Right-side status icon
-	. += new /obj/screen/plane_master{plane = PLANE_CH_HEALTH_VR}			//Health bar but transparent at 100
-	. += new /obj/screen/plane_master{plane = PLANE_CH_BACKUP}				//Backup implant status
-	. += new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
-	. += new /obj/screen/plane_master{plane = PLANE_CH_STOMACH}				//Stomachs
-	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
-	. += new /obj/screen/plane_master{plane = PLANE_SOULCATCHER}			//Soulcatcher
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_STATUS_R}			//Right-side status icon
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_HEALTH_VR}			//Health bar but transparent at 100
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_BACKUP}				//Backup implant status
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
+	. += new /atom/movable/screen/plane_master{plane = PLANE_CH_STOMACH}				//Stomachs
+	. += new /atom/movable/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
+	. += new /atom/movable/screen/plane_master{plane = PLANE_SOULCATCHER}			//Soulcatcher
 	//VOREStation Add End
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE

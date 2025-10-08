@@ -22,6 +22,7 @@
 	//These are frequenly used with windows, so make sure zones can pass.
 	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.
 	block_air_zones = 0
+	heat_proof = 1
 
 	var/blocked = 0
 	var/prying = 0
@@ -54,7 +55,7 @@
 	//Delete ourselves if we find extra mapped in firedoors
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
-			log_debug("Duplicate firedoors at [x],[y],[z]")
+			log_mapping("Duplicate firedoors at [x],[y],[z]")
 			return INITIALIZE_HINT_QDEL
 
 	var/area/A = get_area(src)

@@ -118,7 +118,8 @@ something, make sure it's not in one of the other lists.*/
 				prob(2);/obj/item/cracker,
 				prob(5);/obj/random/mega_nukies,
 				prob(1);/obj/random/potion_ingredient/plus,
-				prob(2);/obj/random/translator
+				prob(2);/obj/random/translator,
+				prob(1);/obj/random/shibari
 				/* VOREStation Edit End */
 				)
 

@@ -267,6 +267,7 @@
 	var/list/belly_surrounding = list()		// A list of living mobs surrounded by this belly, including inside containers, food, on mobs, etc. Exclusing inside other bellies.
 	var/bellytemperature = T20C				// Temperature applied to humans in the belly.
 	var/temperature_damage = FALSE			// Does temperature damage prey?
+	flags = NOREACT							// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()
@@ -487,7 +488,7 @@
 	//If not, we're probably just in a prefs list or something.
 	if(ismob(loc))
 		owner = loc
-		owner.vore_organs |= src
+		owner.vore_organs += src
 		if(isliving(loc))
 			if(mode_flags & DM_FLAG_TURBOMODE)
 				START_PROCESSING(SSobj, src)
@@ -495,7 +496,6 @@
 				START_PROCESSING(SSbellies, src)
 
 	create_reagents(300)	// So we can have some liquids in bellies
-	flags |= NOREACT		// We dont want bellies to start bubling nonstop due to people mixing when transfering and making different reagents
 
 /obj/belly/Destroy()
 	if(mode_flags & DM_FLAG_TURBOMODE)
@@ -671,7 +671,7 @@
 		L.clear_fullscreen("belly")
 	if(belly_fullscreen)
 		if(colorization_enabled)
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly, severity) // preserving save data
+			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly, severity) // preserving save data
 			var/datum/belly_overlays/lookup_belly_path = text2path("/datum/belly_overlays/[lowertext(belly_fullscreen)]")
 			if(!lookup_belly_path)
 				var/used_fullscreen = belly_fullscreen
@@ -749,7 +749,7 @@
 				F.add_overlay(I)
 			F.update_for_view(L.client.view)
 		else
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/fixed, severity) //preserving save data
+			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly/fixed, severity) //preserving save data
 			F.icon = 'icons/mob/screen_full_vore.dmi'
 			F.cut_overlays()
 			F.add_overlay(image(F.icon, belly_fullscreen))
@@ -1255,7 +1255,7 @@
 		return owner.drop_location()
 	//Sketchy fallback for safety, put them somewhere safe.
 	else
-		log_debug("[src] (\ref[src]) doesn't have an owner, and dropped someone at a latespawn point!")
+		log_runtime("[src] (\ref[src]) doesn't have an owner, and dropped someone at a latespawn point!")
 		var/fallback = pick(GLOB.latejoin)
 		return get_turf(fallback)
 

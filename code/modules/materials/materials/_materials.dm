@@ -143,7 +143,7 @@ var/list/name_to_material
 	if(istext(key))	// text ID
 		. = name_to_material[key]
 		if(!.)
-			warning("Attempted to fetch material ref with invalid text id '[key]'")
+			WARNING("Attempted to fetch material ref with invalid text id '[key]'")
 		return
 
 	if(!ispath(key, /datum/material))
@@ -152,7 +152,7 @@ var/list/name_to_material
 	key = GetIdFromArguments(arguments)
 	. = name_to_material[key]
 	if(!.)
-		warning("Attempted to fetch nonexistent material with key [key]")
+		WARNING("Attempted to fetch nonexistent material with key [key]")
 
 /** I'm not going to lie, this was swiped from [SSdcs][/datum/controller/subsystem/processing/dcs].
  * Credit does to ninjanomnom
@@ -192,7 +192,7 @@ var/list/name_to_material
 	var/name	                          // Unique name for use in indexing the list.
 	var/display_name                      // Prettier name for display.
 	var/use_name
-	var/flags = 0                         // Various status modifiers.
+	var/flags = NONE                         // Various status modifiers.
 	var/sheet_singular_name = "sheet"
 	var/sheet_plural_name = "sheets"
 	var/sheet_collective_name = "stack"

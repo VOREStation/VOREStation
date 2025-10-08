@@ -1180,9 +1180,11 @@
 					/obj/item/deck/cah/black = 5,
 					/obj/item/deck/tarot = 5,
 					/obj/item/deck/cards = 5,
+					/obj/item/deck/cards/triple =5,
 					/obj/item/pack/spaceball = 10,
 					/obj/item/storage/pill_bottle/dice = 5,
 					/obj/item/storage/pill_bottle/dice_nerd = 5,
+					/obj/item/spacecasinocash_fake/c1000 = 50,
 					/obj/item/melee/umbrella/random = 10,
 					/obj/item/picnic_blankets_carried = 10,
 					/obj/item/deck/schnapsen = 5,
@@ -1194,9 +1196,11 @@
 					/obj/item/deck/cah/black = 100,
 					/obj/item/deck/tarot = 100,
 					/obj/item/deck/cards = 100,
+					/obj/item/deck/cards/triple = 150,
 					/obj/item/pack/spaceball = 100,
 					/obj/item/storage/pill_bottle/dice = 100,
 					/obj/item/storage/pill_bottle/dice_nerd = 100,
+					/obj/item/spacecasinocash_fake/c1000 = 100,
 					/obj/item/melee/umbrella/random = 100,
 					/obj/item/picnic_blankets_carried = 100,
 					/obj/item/deck/schnapsen = 100,
@@ -1511,7 +1515,8 @@
 					/obj/item/clothing/under/reverse_bunnytop_maid = 3,
 					/obj/item/clothing/head/rabbitears = 3,
 					/obj/item/clothing/accessory/bunny_tail = 3,
-					/obj/item/clothing/suit/shrine_maiden = 3)
+					/obj/item/clothing/suit/shrine_maiden = 3,
+					/obj/item/clothing/suit/shibari = 5)
 	prices = list(/obj/item/clothing/suit/storage/hooded/costume/carp = 200,
 					/obj/item/clothing/suit/storage/hooded/costume/carp = 200,
 					/obj/item/clothing/suit/chickensuit = 200,
@@ -1596,7 +1601,8 @@
 					/obj/item/clothing/under/reverse_bunnytop_maid = 50,
 					/obj/item/clothing/head/rabbitears = 25,
 					/obj/item/clothing/accessory/bunny_tail = 25,
-					/obj/item/clothing/suit/shrine_maiden = 200)
+					/obj/item/clothing/suit/shrine_maiden = 200,
+					/obj/item/clothing/suit/shibari = 50)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
 					/obj/item/clothing/suit/barding/agatha = 2,
 					/obj/item/clothing/suit/barding/alt_agatha = 2,

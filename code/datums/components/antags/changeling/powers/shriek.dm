@@ -141,7 +141,7 @@
 	changeling.set_cooldown(CHANGELING_SCREECH, 10 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(changeling_screech_ready)), 10 SECONDS, TIMER_DELETE_ME)
 	visible_message(span_notice("[src] appears to shout."))
-	add_attack_logs(src,null,"Use dissonant shriek")
+	add_attack_logs(src,src,"Use dissonant shriek")
 	return TRUE
 
 /mob/proc/changeling_screech_ready()

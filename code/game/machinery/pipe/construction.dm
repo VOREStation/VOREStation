@@ -48,7 +48,8 @@ Buildable meters
 	update()
 	pixel_x += rand(-5, 5)
 	pixel_y += rand(-5, 5)
-	return ..()
+	AddElement(/datum/element/rotatable)
+	. = ..()
 
 /obj/item/pipe/proc/make_from_existing(obj/machinery/atmospherics/make_from)
 	set_dir(make_from.dir)
@@ -121,29 +122,10 @@ Buildable meters
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 	icon_state = "[initial(fakeA.pipe_state)][mirrored ? "m" : ""]"
 
-/obj/item/pipe/verb/rotate_clockwise()
-	set category = "Object"
-	set name = "Rotate Pipe Clockwise"
-	set src in view(1)
-
-	if ( usr.stat || usr.restrained() || !usr.canmove )
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	fixdir()
-
-//VOREstation edit: counter-clockwise rotation
-/obj/item/pipe/verb/rotate_counterclockwise()
-	set category = "Object"
-	set name = "Rotate Pipe Counter-Clockwise"
-	set src in view(1)
-
-	if ( usr.stat || usr.restrained() || !usr.canmove )
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	fixdir()
-//VOREstation edit end
+/obj/item/pipe/handle_rotation_verbs(angle)
+	. = ..()
+	if(.)
+		fixdir()
 
 // Don't let pulling a pipe straighten it out.
 /obj/item/pipe/binary/bendable/Move()
@@ -317,6 +299,3 @@ Buildable meters
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, span_notice("You fasten the meter to the pipe."))
 	qdel(src)
-
-/obj/item/pipe_gsensor/dropped(mob/user)
-	. = ..()

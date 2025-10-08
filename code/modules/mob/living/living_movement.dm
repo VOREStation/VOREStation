@@ -24,128 +24,123 @@
 	return ..() // Parent call should make the mob move.
 
 /*one proc, four uses
-swapping: if it's 1, the mobs are trying to switch, if 0, non-passive is pushing passive
+swapping: if it's TRUE, the mobs are trying to switch, if FALSE, non-passive is pushing passive
 default behaviour is:
 	- non-passive mob passes the passive version
 	- passive mob checks to see if its mob_bump_flag is in the non-passive's mob_bump_flags
 	- if si, the proc returns
 */
-/mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = 0, passive = 0)
+/mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = FALSE, passive = FALSE)
 	if(!swapped)
-		return 1
+		return TRUE
 	if(!passive)
-		return swapped.can_move_mob(src, swapping, 1)
+		return swapped.can_move_mob(src, swapping, TRUE)
 	else
-		var/context_flags = 0
+		var/context_flags = FALSE
 		if(swapping)
 			context_flags = swapped.mob_swap_flags
 		else
 			context_flags = swapped.mob_push_flags
 		if(!mob_bump_flag) //nothing defined, go wild
-			return 1
+			return TRUE
 		if(mob_bump_flag & context_flags)
-			return 1
-		return 0
+			return TRUE
+		return FALSE
 
 /mob/living/Bump(atom/movable/AM)
 	if(now_pushing || !loc || buckled == AM || AM.is_incorporeal())
 		return
-	now_pushing = 1
+	now_pushing = TRUE
 	if (isliving(AM))
 		var/mob/living/tmob = AM
 
 		//Even if we don't push/swap places, we "touched" them, so spread fire
-		spread_fire(tmob)
+		spreadFire(tmob)
 
 		for(var/mob/living/M in range(tmob, 1))
-			if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
+			if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == CONSCIOUS)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
 				if ( !(world.time % 5) )
 					to_chat(src, span_warning("[tmob] is restrained, you cannot push past"))
-				now_pushing = 0
+				now_pushing = FALSE
 				return
-			if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
+			if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == CONSCIOUS) )
 				if ( !(world.time % 5) )
 					to_chat(src, span_warning("[tmob] is restraining [M], you cannot push past"))
-				now_pushing = 0
+				now_pushing = FALSE
 				return
 
 		//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-		var/can_swap = 1
+		var/can_swap = TRUE
 		if(loc.density || tmob.loc.density)
-			can_swap = 0
+			can_swap = FALSE
 		if(can_swap)
 			for(var/atom/movable/A in loc)
 				if(A == src)
 					continue
 				if(!A.CanPass(tmob, loc))
-					can_swap = 0
+					can_swap = FALSE
 				if(!can_swap) break
 		if(can_swap)
 			for(var/atom/movable/A in tmob.loc)
 				if(A == tmob)
 					continue
 				if(!A.CanPass(src, tmob.loc))
-					can_swap = 0
+					can_swap = FALSE
 				if(!can_swap) break
 
 		//Leaping mobs just land on the tile, no pushing, no anything.
 		if(status_flags & LEAPING)
 			loc = tmob.loc
 			status_flags &= ~LEAPING
-			now_pushing = 0
+			now_pushing = FALSE
 			return
 
 		if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && can_swap && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 			var/turf/oldloc = loc
-			//VOREstation Edit - Begin
 
 			//check bumpnom chance, if it's a simplemob that's doing the bumping
 			var/mob/living/simple_mob/srcsimp = src
 			if(istype(srcsimp))
 				if(srcsimp.tryBumpNom(tmob))
-					now_pushing = 0
+					now_pushing = FALSE
 					return
 
 			//if it's a simplemob being bumped, and the above didn't make them start getting bumpnommed, they get a chance to bumpnom
 			var/mob/living/simple_mob/tmobsimp = tmob
 			if(istype(tmobsimp))
 				if(tmobsimp.tryBumpNom(src))
-					now_pushing = 0
+					now_pushing = FALSE
 					return
 
-			//VOREstation Edit - End
 			forceMove(tmob.loc)
-			//VOREstation Edit - Begin
 			// In case of micros, we don't swap positions; instead occupying the same square!
 			if(step_mechanics_pref && tmob.step_mechanics_pref)
 				if(handle_micro_bump_helping(tmob))
-					now_pushing = 0
+					now_pushing = FALSE
 					return
-			// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
-			// VOREStation Edit - End
 			tmob.forceMove(oldloc)
-			now_pushing = 0
+			now_pushing = FALSE
 			return
 		else if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && canmove && can_swap && handle_micro_bump_helping(tmob))
 			forceMove(tmob.loc)
-			now_pushing = 0
+			now_pushing = FALSE
 			return
 
-		if(!can_move_mob(tmob, 0, 0))
-			now_pushing = 0
+		if(!can_move_mob(tmob, FALSE, FALSE))
+			now_pushing = FALSE
 			return
 		if(a_intent == I_HELP || src.restrained())
-			now_pushing = 0
+			now_pushing = FALSE
 			return
 		// Plow that nerd.
 		if(ishuman(tmob))
 			var/mob/living/carbon/human/H = tmob
-			if(H.species.lightweight == 1 && prob(50))
+			if(H.species.lightweight == TRUE && prob(50))
 				if(HULK in H.mutations) //No knocking over the hulk
 					return
 				H.visible_message(span_warning("[src] bumps into [H], knocking them off balance!"))
 				H.Weaken(5)
-				now_pushing = 0
+				now_pushing = FALSE
 				return
 		// Handle grabbing, stomping, and such of micros!
 		if(step_mechanics_pref && tmob.step_mechanics_pref)
@@ -153,55 +148,45 @@ default behaviour is:
 		if(ishuman(tmob) && (FAT in tmob.mutations))
 			if(prob(40) && !(FAT in src.mutations))
 				to_chat(src, span_danger("You fail to push [tmob]'s fat ass out of the way."))
-				now_pushing = 0
+				now_pushing = FALSE
 				return
 		if(tmob.r_hand && istype(tmob.r_hand, /obj/item/shield/riot))
 			if(prob(99))
-				now_pushing = 0
+				now_pushing = FALSE
 				return
 		if(tmob.l_hand && istype(tmob.l_hand, /obj/item/shield/riot))
 			if(prob(99))
-				now_pushing = 0
+				now_pushing = FALSE
 				return
 		if(!(tmob.status_flags & CANPUSH))
-			now_pushing = 0
+			now_pushing = FALSE
 			return
 
 		tmob.LAssailant = src
 
-	now_pushing = 0
+	now_pushing = FALSE
 	. = ..()
 	if (!istype(AM, /atom/movable) || AM.anchored)
-		//VOREStation Edit - object-specific proc for running into things
 		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent==I_RUN) || flying)
 			AM.stumble_into(src)
-		//VOREStation Edit End
-		/* VOREStation Removal - See above
-		if(confused && prob(50) && m_intent==I_RUN)
-			Weaken(2)
-			playsound(src, "punch", 25, 1, -1)
-			visible_message(span_warning("[src] [pick("ran", "slammed")] into \the [AM]!"))
-			src.apply_damage(5, BRUTE)
-			to_chat(src, span_warning("You just [pick("ran", "slammed")] into \the [AM]!"))
-			*/ // VOREStation Removal End
 		return
 	if (!now_pushing)
 		if(isobj(AM))
 			var/obj/I = AM
 			if(!can_pull_size || can_pull_size < I.w_class)
 				return
-		now_pushing = 1
+		now_pushing = TRUE
 
 		var/t = get_dir(src, AM)
 		if (istype(AM, /obj/structure/window))
 			for(var/obj/structure/window/win in get_step(AM,t))
-				now_pushing = 0
+				now_pushing = FALSE
 				return
 
 		var/turf/T = AM.loc
 		var/turf/T2 = get_step(AM,t)
 		if(!T2) // Map edge
-			now_pushing = 0
+			now_pushing = FALSE
 			return
 		var/move_time = movement_delay(loc, t)
 		move_time = DS2NEARESTTICK(move_time)
@@ -210,9 +195,9 @@ default behaviour is:
 
 		if(ishuman(AM) && AM:grabbed_by)
 			for(var/obj/item/grab/G in AM:grabbed_by)
-				step(G:assailant, get_dir(G:assailant, AM))
+				step(G.assailant, get_dir(G.assailant, AM))
 				G.adjust_position()
-		now_pushing = 0
+		now_pushing = FALSE
 
 /mob/living/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/structure/blob) && faction == "blob") //Blobs should ignore things on their faction.

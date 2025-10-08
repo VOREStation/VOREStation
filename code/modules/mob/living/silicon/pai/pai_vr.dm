@@ -458,7 +458,7 @@
 		return
 	card.screen_msg = message
 	var/logmsg = "(CARD SCREEN)[message]"
-	log_say(logmsg,src)
+	log_talk(logmsg, LOG_SAY)
 	to_chat(src, span_filter_say(span_cult("You print a message to your screen, \"[message]\"")))
 	if(isliving(card.loc))
 		var/mob/living/L = card.loc
@@ -543,7 +543,7 @@
 			soft_si = TRUE
 		if(istype(soft,/datum/pai_software/deathalarm))
 			soft_da = TRUE
-	for(var/obj/screen/pai/button in hud_used.other)
+	for(var/atom/movable/screen/pai/button in hud_used.other)
 		if(button.name == "medical records")
 			if(soft_mr)
 				button.icon_state = "[button.base_state]"
