@@ -389,6 +389,10 @@
 		return
 
 	H.apply_damage(burn_damage_amt, BURN, BP_TORSO)
+	if(HAS_TRAIT(H, TRAIT_UNLUCKY) && prob(5))
+		make_announcement("buzzes, \"Unknown error occurred. Please try again.\"", "warning")
+		playsound(src, 'sound/machines/defib_failed.ogg', 50, FALSE)
+		return
 
 	//set oxyloss so that the patient is just barely in crit, if possible
 	var/barely_in_crit = H.get_crit_point() - 1
@@ -437,7 +441,7 @@
 	playsound(src, 'sound/weapons/egloves.ogg', 100, 1, -1)
 	set_cooldown(cooldowntime)
 
-	H.stun_effect_act(2, 120, target_zone)
+	H.stun_effect_act(2, 120, target_zone, electric = TRUE)
 	var/burn_damage = H.electrocute_act(burn_damage_amt*2, src, def_zone = target_zone)
 	if(burn_damage > 15 && H.can_feel_pain())
 		H.emote("scream")

@@ -30,26 +30,26 @@ export const CanvasBackedImage = (props: {
   const [bitmap, setBitmap] = useState<string>('');
 
   useEffect(() => {
-    const offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(64, 64);
-
+    const offscreenCanvas = new OffscreenCanvas(64, 64);
     const ctx = offscreenCanvas.getContext('2d');
-    if (!ctx) {
-      return;
-    }
+    if (!ctx) return;
+
+    let active = true;
+    let bitmap = '';
 
     const drawImage = async () => {
-      // Render
       await props.render(offscreenCanvas, ctx);
-
-      // Convert to a blob and put in our <img> tag
-      const bitmap = await offscreenCanvas.convertToBlob();
-      setBitmap(URL.createObjectURL(bitmap));
+      const blob = await offscreenCanvas.convertToBlob();
+      if (!active) return;
+      bitmap = URL.createObjectURL(blob);
+      setBitmap(bitmap);
     };
 
     drawImage();
 
     return () => {
-      if (bitmap !== '') {
+      active = false;
+      if (bitmap) {
         URL.revokeObjectURL(bitmap);
       }
     };
