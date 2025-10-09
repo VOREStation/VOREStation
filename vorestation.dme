@@ -1904,6 +1904,7 @@
 #include "code\game\objects\structures\flora\moretrees_vr.dm"
 #include "code\game\objects\structures\flora\trees.dm"
 #include "code\game\objects\structures\ghost_pods\antagonist.dm"
+#include "code\game\objects\structures\ghost_pods\event_vr.dm"
 #include "code\game\objects\structures\ghost_pods\ghost_pods.dm"
 #include "code\game\objects\structures\ghost_pods\ghost_pods_vr.dm"
 #include "code\game\objects\structures\ghost_pods\human.dm"
