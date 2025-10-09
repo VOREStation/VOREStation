@@ -1,0 +1,4 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - qol: "Rigsuits now use balloon alerts instead of logged messages when parts of them are deployed and retracted. No more log spam for rigsuit users!"

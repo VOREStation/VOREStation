@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Adds a new loadout item: the Cloak of Eyes"
+  - code_imp: "Adds a new reactive icon subtype: Clothing"
+  - image: "Adds sprites for the Cloak of Eyes"
