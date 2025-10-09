@@ -1,4 +1,0 @@
-author: "TheCaramelion"
-delete-after: True
-changes:
-  - code_imp: "Moved various shadekin-related vars into Shadekin Component"
