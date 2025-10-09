@@ -219,7 +219,25 @@
 	if(stat || sleeping || paralysis || weakened)
 		return
 
-	if(src.loc != card)
+	if(loc != card)
+		return
+
+	// Lets not trap the pai forever. These are special cases we want to escape out of when in our card
+	if(istype(loc.loc, /obj/item/pda))
+		var/obj/item/pda/ourpda = loc.loc
+		if(ourpda.pai == card)
+			ourpda.pai.forceMove(ourpda.loc)
+			ourpda.pai = null
+			visible_message(span_warning("\The [card] ejects itself from \the [ourpda]."))
+		return
+	if(istype(loc.loc, /obj/item/storage/vore_egg))
+		var/obj/item/storage/vore_egg/ouregg = loc.loc
+		to_chat(src, span_notice("You craftily use your built in rumble function to break free of \the [ouregg]'s confines!"))
+		ouregg.hatch(src)
+		return
+
+	if(is_folding_unsafe(loc.loc))
+		to_chat(src, span_danger("It's not safe to unfold while inside a [loc.loc]!"))
 		return
 
 	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
@@ -379,7 +397,12 @@
 
 	last_special = world.time + 100
 
-	if(src.loc == card)
+	if(loc == card)
+		return
+
+	// some snowflake locations where we really shouldn't fold up...
+	if(is_folding_unsafe(loc))
+		to_chat(src, span_danger("It's not safe to fold up while inside a [loc]!"))
 		return
 
 	release_vore_contents(FALSE) //VOREStation Add
@@ -423,6 +446,9 @@
 		fall()
 	remove_verb(src, /mob/living/silicon/pai/proc/pai_nom)
 	remove_verb(src, /mob/living/proc/vertical_nom)
+
+/mob/living/silicon/pai/proc/is_folding_unsafe(check_location)
+	return isbelly(check_location) || istype(check_location, /obj/machinery) || istype(check_location, /obj/item/storage/vore_egg || istype(check_location, /obj/item/pda))
 
 // No binary for pAIs.
 /mob/living/silicon/pai/binarycheck()
