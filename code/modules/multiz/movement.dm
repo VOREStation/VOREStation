@@ -574,14 +574,26 @@
 				visible_message(span_warning("\The [src] falls from above and slams into \the [landing]!"), \
 					span_danger("You fall off and hit \the [landing]!"), \
 					"You hear something slam into \the [landing].")
-			playsound(src, "punch", 25, 1, -1)
+			if(hardfall)
+				playsound(src, 'sound/effects/meteorimpact.ogg', 75, 1, 3)
+			else
+				playsound(src, "punch", 25, 1, -1)
 
 		// Because wounds heal rather quickly, 10 (the default for this proc) should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
 		// Hits 10 times, because apparently targeting individual limbs lets certain species survive the fall from atmosphere
-		for(var/i = 1 to 10)
-			adjustBruteLoss(rand(damage_min, damage_max))
-		Weaken(4)
-		updatehealth()
+		if(hardfall)
+			for(var/i = 1 to 10)
+				adjustBruteLoss(rand((damage_min * 2), (damage_max * 2)))
+			Weaken(20)
+			updatehealth()
+			if(istype(landing, /turf/simulated/floor) && prob(50))
+				var/turf/simulated/floor/our_crash = landing
+				our_crash.break_tile()
+		else
+			for(var/i = 1 to 10)
+				adjustBruteLoss(rand(damage_min, damage_max))
+			Weaken(4)
+			updatehealth()
 
 /mob/living/carbon/human/fall_impact(atom/hit_atom, damage_min, damage_max, silent, planetary)
 	if(!species?.handle_falling(src, hit_atom, damage_min, damage_max, silent, planetary))

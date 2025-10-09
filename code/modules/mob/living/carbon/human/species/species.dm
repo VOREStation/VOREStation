@@ -241,6 +241,7 @@
 	var/holder_type = /obj/item/holder/micro 				//This allows you to pick up crew
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
+	var/heavy_landing = FALSE								// Crashes down hard when falling from heights!
 
 	var/crit_mod = 1										// Used for when we go unconscious. Used downstream.
 	var/list/env_traits = list()
@@ -734,6 +735,21 @@
 			to_chat(H, span_notice("You manage to lower impact of the fall and land safely."))
 			landing.visible_message(span_infoplain(span_bold("\The [H]") + " lowers down from above, landing safely."))
 			playsound(H, "rustle", 25, 1)
+		return TRUE
+
+	if(heavy_landing)
+
+		if(!silent)
+			to_chat(H, span_danger("You land with a heavy crash!"))
+			landing.visible_message(span_danger(span_bold("\The [H]") + " crashes down from above!"))
+			playsound(H, 'sound/effects/meteorimpact.ogg', 75, 1, 3)
+			for(var/i = 1 to 10)
+				H.adjustBruteLoss(rand((0), (10)))
+			H.Weaken(20)
+			H.updatehealth()
+			if(istype(landing, /turf/simulated/floor) && prob(50))
+				var/turf/simulated/floor/our_crash = landing
+				our_crash.break_tile()
 		return TRUE
 
 	return FALSE

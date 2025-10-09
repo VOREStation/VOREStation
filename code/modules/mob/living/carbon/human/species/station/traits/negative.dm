@@ -851,3 +851,11 @@
 	excludes = list(/datum/trait/negative/unlucky)
 	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
 	primitive_expression_messages=list("unluckily stubs their toe!")
+
+/datum/trait/negative/heavy_landing
+	name = "Heavy Landing"
+	desc = "Your heavy frame causes you to crash heavily when falling from heights. The bigger they are, the harder they fall!"
+	cost = -1
+	var_changes = list("heavy_landing" = TRUE, "soft_landing" = FALSE)
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/soft_landing)
