@@ -63,12 +63,17 @@
 		if(slip_dist > 5)
 			slip_dist = rand(2,4)
 
+	else if(ground.wet == TURFSLIP_LUBE)
+		// Lube slips forever, if we re-enter the lube then restore our slip
+		slip_dist = 99
+
 	addtimer(CALLBACK(src, PROC_REF(next_slip)), 1)
 
 /datum/component/turfslip/proc/next_slip()
 	// check tile for next slip
 	owner.is_slipping = TRUE
 	if(!step(owner, owner.dir) || dirtslip) // done sliding, failed to move, dirt also only slips once
+		slip_dist = 0
 		qdel(src)
 		return
 	// Kill the slip if it's over
