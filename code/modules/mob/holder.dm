@@ -96,7 +96,9 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(held_mob)
+		var/mob/cached_mob = held_mob
 		dump_mob()
+		cached_mob.reset_perspective() // This case cannot be handled gracefully, make sure the mob view is cleaned up.
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src, loc)
@@ -112,8 +114,7 @@ var/list/holder_mob_icon_cache = list()
 	if(!held_mob)
 		return
 	if (held_mob.loc == src || isnull(held_mob.loc))
-		var/mob/unstick_mob = held_mob
-		unstick_mob.forceMove(loc)
+		held_mob.forceMove(loc)
 
 /obj/item/holder/throw_at(atom/target, range, speed, thrower)
 	if(held_mob)

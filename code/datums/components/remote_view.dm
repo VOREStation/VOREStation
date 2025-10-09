@@ -57,6 +57,7 @@
 		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
 	host_mob = null
+	to_chat( world, "[parent] =========XXXXXXXXXXXXXXXXXXXX DESTROYED REMOTE VIEW OF [remote_view_target]")
 	remote_view_target = null
 
 /datum/component/remote_view/proc/handle_hostmob_moved(atom/source, atom/oldloc, direction, forced, movetime)
@@ -288,7 +289,6 @@
 	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved)) // Doesn't need override, basetype only ever registers this signal if we're looking at a turf
 	// Check our inmob state
 	if(ismob(find_topmost_atom()))
-		to_chat( world, "COUPLED TO MOB ON INIT")
 		in_mob = TRUE
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
@@ -300,30 +300,23 @@
 	if(!host_mob)
 		return
 	if(isturf(host_mob.loc))
-		in_mob = TRUE // always decouple
-		to_chat( world, "MOB MOVED TO TURF, END VIEW [in_mob]")
 		decouple_view_to_turf( host_mob, host_mob.loc)
 		return
 
 /datum/component/remote_view/mob_holding_item/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
 	if(!host_mob)
 		return
-	to_chat( world, "RECURSIVE HANDLER [source]  [oldloc]  [new_loc] ")
-	to_chat( world, "  - [host_mob] -> [remote_view_target.type] -> [remote_view_target.loc]")
 	// default moved signal will handle this
 	if(isturf(host_mob.loc))
-		to_chat( world, "OUR MOB ON TURF, NO PARENT CHECK")
 		return
-	to_chat( world, "CHECKING PARENT FOR DECOUPLE: ")
 	// This only triggers when we are deeper in than our mob. See who is in charge of this clowncar...
 	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
 	var/atom/top_most = find_topmost_atom()
 	if(isturf(top_most))
-		to_chat( world, "     -IS TURF, DECOUPLE [in_mob]")
-		decouple_view_to_turf( host_mob, top_most)
+		if(in_mob) // Only need to do this if we were held by a mob prior, otherwise this triggers every move and is expensive for no reason
+			decouple_view_to_turf( host_mob, top_most)
 		return
 	if(ismob(top_most))
-		to_chat( world, "COUPLED TO MOB")
 		host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
 		in_mob = TRUE
 		return
@@ -333,7 +326,6 @@
 	var/atom/cur_parent = remote_view_target?.loc // first loc could be null
 	var/recursion = 0 // safety check - max iterations
 	while(!isnull(cur_parent) && (recursion < MAX_RECURSIVE))
-		to_chat( world, "  -[cur_parent]")
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
 			log_runtime("REMOTE_VIEW: Parent is inside itself. ([host_mob]) ([host_mob.type]) : [MAX_RECURSIVE - recursion]")
 			return null
@@ -348,8 +340,8 @@
 
 /// Makes a new remote view focused on the release_turf argument. This remote view ends as soon as any movement happens. Even if we are inside many levels of objects due to our recursive_move listener
 /datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf)
-	// Yes this spawn is needed, yes I wish it wasn't.
 	if(in_mob)
+		// Yes this spawn is needed, yes I wish it wasn't.
 		spawn(0)
 			// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
 			cache_mob.AddComponent(/datum/component/remote_view, release_turf)
@@ -357,7 +349,6 @@
 			cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
 			if(!isturf(cache_mob.loc)) // For stuff like paicards
 				cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
-	in_mob = FALSE
 	qdel(src)
 
 #undef MAX_RECURSIVE
