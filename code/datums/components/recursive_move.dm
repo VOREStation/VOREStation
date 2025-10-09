@@ -18,12 +18,10 @@
 			setup_parents()
 
 /datum/component/recursive_move/InheritComponent(datum/component/recursive_move/C, i_am_original)
-	if(i_am_original)
-		reset_parents()
-		setup_parents()
+	if(!i_am_original)
 		return
-	C.reset_parents()
-	C.setup_parents()
+	reset_parents()
+	setup_parents()
 
 /datum/component/recursive_move/proc/setup_parents()
 	SIGNAL_HANDLER
