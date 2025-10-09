@@ -26,11 +26,6 @@
 	if(istype(rig))
 		rig.forced_move(direction, user)
 
-/obj/item/paicard/dropped(mob/user)
-	. = ..()
-	if(pai) // Needed to handle mobs dropping us
-		pai.reset_perspective()
-
 /obj/item/paicard/Initialize(mapload)
 	. = ..()
 	add_overlay("pai-off")
