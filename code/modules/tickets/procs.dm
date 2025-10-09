@@ -248,7 +248,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	if(!recipient)
 		if(!current_ticket)
-			to_chat(src, span_admin_pm_warning("Error: Admin-PM: Client not found."))
+			to_chat(src, span_admin_pm_warning("Error: Mentor-PM: Client not found."))
 			to_chat(src, msg)
 			return
 		log_admin("Mentorhelp: [key_name(src)]: [msg]")
