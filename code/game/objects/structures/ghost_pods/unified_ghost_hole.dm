@@ -1,3 +1,8 @@
+/obj/structure/ghost_pod/proc/reset_ghostpod()	//Makes the ghost pod usable again and re-adds it to the active ghost pod list if it is not on it.
+	GLOB.active_ghost_pods |= src
+	used = FALSE
+	busy = FALSE
+
 /obj/structure/ghost_pod/ghost_activated/unified_hole
 	name = "maintenance critter hole"
 	desc = "This is my hole! It was made for me!"
@@ -155,6 +160,10 @@
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Initialize(mapload)
 	. = ..()
 	GLOB.active_ghost_pods += src
+
+/obj/structure/ghost_pod/ghost_activated/unified_hole/Destroy()
+	. = ..()
+	GLOB.active_ghost_pods -= src
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/redgate
 	name = "Redspace inhabitant hole"

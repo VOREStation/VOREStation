@@ -78,9 +78,6 @@
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Gliding Rays",			/datum/event/ray_migration,					0,		list(DEPARTMENT_SECURITY = 15, DEPARTMENT_MEDICAL = 5), 1, min_jobs = list(DEPARTMENT_SECURITY = 3)),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Shark Pack",			/datum/event/shark_migration,				0,		list(DEPARTMENT_SECURITY = 15, DEPARTMENT_MEDICAL = 3), 1, min_jobs = list(DEPARTMENT_SECURITY = 3)),
 		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Gnat Swarm",			/datum/event/gnat_migration,				0,		list(DEPARTMENT_SECURITY = 15, DEPARTMENT_MEDICAL = 3), 1, min_jobs = list(DEPARTMENT_SECURITY = 3)),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Morph Spawn",				/datum/event/morph_spawn,				75,		list(DEPARTMENT_ANY = 5), 0),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Maintenance Predator",		/datum/event/maintenance_predator,		100,	list(DEPARTMENT_ANY = 5), 0),
-		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Maintenance Lurker",		/datum/event/maintenance_lurker,		100,	list(DEPARTMENT_ANY = 5), 0),
 	))
 
 /datum/event_container/major/New()
