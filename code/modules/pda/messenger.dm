@@ -184,7 +184,7 @@
 		to_chat(U, "[icon2html(pda,U.client)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 	else
 		to_chat(U, span_notice("ERROR: Messaging server is not responding."))
-		to_chat(U, span_notice("However, your message has been saved: ") + span_normal(t))
+		to_chat(U, span_notice("However, your message has been saved: ") + t)
 
 /datum/data/pda/app/messenger/proc/available_pdas()
 	var/list/names = list()
