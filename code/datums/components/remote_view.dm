@@ -286,6 +286,9 @@
 	// Items can be nested deeply, so we need to update on any parent reorganization or actual move.
 	host_mob.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved)) // Doesn't need override, basetype only ever registers this signal if we're looking at a turf
+	// Check our inmob state
+	if(ismob(find_topmost_atom()))
+		in_mob = TRUE
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
 	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
@@ -311,6 +314,17 @@
 		return
 	// This only triggers when we are deeper in than our mob. See who is in charge of this clowncar...
 	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
+	var/atom/top_most = find_topmost_atom()
+	if(isturf(top_most))
+		decouple_view_to_turf( host_mob, top_most)
+		return
+	if(ismob(top_most))
+		host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+		in_mob = TRUE
+		return
+
+/// Get our topmost atom state, if it's a mob or a turf
+/datum/component/remote_view/mob_holding_item/proc/find_topmost_atom()
 	var/atom/cur_parent = remote_view_target?.loc // first loc could be null
 	var/recursion = 0 // safety check - max iterations
 	to_chat( world, "CHECKING PARENT FOR DECOUPLE: ")
@@ -319,21 +333,18 @@
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
 			log_runtime("REMOTE_VIEW: Parent is inside itself. ([host_mob]) ([host_mob.type]) : [MAX_RECURSIVE - recursion]")
 			to_chat( world, "     -INSIDE ITSELF")
-			break
+			return null
 		if(ismob(cur_parent))
 			to_chat( world, "     -IS MOB, END LOOP")
-			host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
-			in_mob = TRUE
-			break // Mob is holding us, we were picked up.
+			return cur_parent // Mob is holding us, we were picked up.
 		if(isturf(cur_parent))
 			to_chat( world, "     -IS TURF, DECOUPLE [in_mob]")
-			decouple_view_to_turf( host_mob, cur_parent)
-			return
+			return cur_parent
 		recursion++
 		cur_parent = cur_parent.loc
-
 	if(recursion >= MAX_RECURSIVE) // If we escaped due to iteration limit, cancel
 		log_runtime("REMOTE_VIEW: Turf search hit recursion limit. ([host_mob]) ([host_mob.type])")
+	return null
 
 /// Makes a new remote view focused on the release_turf argument. This remote view ends as soon as any movement happens. Even if we are inside many levels of objects due to our recursive_move listener
 /datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf)
