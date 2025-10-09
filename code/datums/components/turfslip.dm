@@ -51,9 +51,21 @@
 
 	// Can the turf be slipped on?
 	var/turf/simulated/ground = get_turf(owner)
-	if(!ground || !ground.check_slipping(owner,dirtslip))
+	if(!ground)
 		qdel(src)
 		return
+	if(!ground.check_slipping(owner,dirtslip))
+		// End our slip if we have no more slip remaining
+		if(slip_dist <= 0)
+			qdel(src)
+			return
+		// reduce absurd slip distances to something reasonable if we are no longer standing on lube
+		if(slip_dist > 5)
+			slip_dist = rand(2,4)
+
+	else if(ground.wet == TURFSLIP_LUBE)
+		// Lube slips forever, if we re-enter the lube then restore our slip
+		slip_dist = 99
 
 	addtimer(CALLBACK(src, PROC_REF(next_slip)), 1)
 
@@ -61,6 +73,7 @@
 	// check tile for next slip
 	owner.is_slipping = TRUE
 	if(!step(owner, owner.dir) || dirtslip) // done sliding, failed to move, dirt also only slips once
+		slip_dist = 0
 		qdel(src)
 		return
 	// Kill the slip if it's over
@@ -88,6 +101,10 @@
 		return FALSE
 	if(M.is_incorporeal()) // Mar!
 		return FALSE
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.shoes && (H.shoes.item_flags & NOSLIP)) // Includes activated magboots too
+			return FALSE
 	if(!wet && !(dirtslip && (dirt > 50 || is_outdoors() == OUTDOORS_YES)))
 		return FALSE
 	if(wet == TURFSLIP_WET && M.m_intent == I_WALK)
