@@ -10,7 +10,6 @@
 	forbid_movement = FALSE
 
 /datum/component/remote_view/Initialize(atom/focused_on)
-	to_chat( world, "[parent] ========================> STARTED REMOTE VIEW OF [focused_on]")
 	. = ..()
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -57,7 +56,6 @@
 		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
 	host_mob = null
-	to_chat( world, "[parent] =========XXXXXXXXXXXXXXXXXXXX DESTROYED REMOTE VIEW OF [remote_view_target]")
 	remote_view_target = null
 
 /datum/component/remote_view/proc/handle_hostmob_moved(atom/source, atom/oldloc, direction, forced, movetime)
