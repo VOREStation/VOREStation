@@ -120,11 +120,12 @@
 			return
 
 		if(!recipient)
-			if(holder)
+			if(!current_ticket)
 				to_chat(src, span_admin_pm_warning("Error: Admin-PM: Client not found."))
 				to_chat(src, msg)
-			else
-				current_ticket.MessageNoRecipient(msg)
+				return
+			log_admin("Adminhelp: [key_name(src)]: [msg]")
+			current_ticket.MessageNoRecipient(msg)
 			return
 
 	var/rawmsg = msg

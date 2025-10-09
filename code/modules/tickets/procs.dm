@@ -247,12 +247,12 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 			return
 
 	if(!recipient)
-		if(src.holder)
-			to_chat(src, span_mentor_warning("Error:Mentor-PM: Client not found."))
+		if(!current_ticket)
+			to_chat(src, span_admin_pm_warning("Error: Admin-PM: Client not found."))
 			to_chat(src, msg)
-		else
-			log_admin("Mentorhelp: [key_name(src)]: [msg]")
-			current_ticket.MessageNoRecipient(msg)
+			return
+		log_admin("Mentorhelp: [key_name(src)]: [msg]")
+		current_ticket.MessageNoRecipient(msg)
 		return
 
 	//Has mentor powers but the recipient no longer has an open ticket
