@@ -88,7 +88,7 @@
 
 	if(!(SK.in_phase))
 		SK.shadekin_adjust_energy(-ability_cost)
-	playsound(src, 'sound/effects/stealthoff.ogg', 75, 1)
+	playsound(src, SK.phase_noise, 75, 1)
 
 	if(!T.CanPass(src,T) || loc != T)
 		to_chat(src,span_warning("You can't use that here!"))
@@ -137,14 +137,14 @@
 		update_icon()
 
 		//Cosmetics mostly
-		var/obj/effect/temp_visual/shadekin/phase_in/phaseanim = new /obj/effect/temp_visual/shadekin/phase_in(src.loc)
+		var/obj/effect/temp_visual/shadekin/phase_in/phaseanim = new SK.phase_in_anim(src.loc)
 		phaseanim.pixel_y = (src.size_multiplier - 1) * 16 // Pixel shift for the animation placement
 		phaseanim.adjust_scale(src.size_multiplier, src.size_multiplier)
 		phaseanim.dir = dir
 		alpha = 0
 		automatic_custom_emote(VISIBLE_MESSAGE,"phases in!")
 
-		addtimer(CALLBACK(src, PROC_REF(shadekin_complete_phase_in), original_canmove, SK), 5, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(shadekin_complete_phase_in), original_canmove, SK), SK.phase_time, TIMER_DELETE_ME)
 
 
 /mob/living/proc/shadekin_complete_phase_in(var/original_canmove, var/datum/component/shadekin/SK)
@@ -241,7 +241,7 @@
 		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = FALSE
 
-		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new /obj/effect/temp_visual/shadekin/phase_out(src.loc)
+		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new SK.phase_out_anim(src.loc)
 		phaseanim.pixel_y = (src.size_multiplier - 1) * 16 // Pixel shift for the animation placement
 		phaseanim.adjust_scale(src.size_multiplier, src.size_multiplier)
 		phaseanim.dir = dir
@@ -249,7 +249,7 @@
 		add_modifier(/datum/modifier/shadekin_phase_vision)
 		if(SK.normal_phase)
 			add_modifier(/datum/modifier/phased_out)
-		addtimer(CALLBACK(src, PROC_REF(complete_phase_out), original_canmove, SK), 5, TIMER_DELETE_ME)
+		addtimer(CALLBACK(src, PROC_REF(complete_phase_out), original_canmove, SK), SK.phase_time, TIMER_DELETE_ME)
 
 
 /mob/living/proc/complete_phase_out(original_canmove, var/datum/component/shadekin/SK)
