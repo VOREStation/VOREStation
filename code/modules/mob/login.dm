@@ -46,10 +46,8 @@
 	..()
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 
-	client.perspective = MOB_PERSPECTIVE
-	if(loc && !isturf(loc))
-		client.set_eye(loc)
-	else
+	if(!restore_remote_views())
+		client.perspective = MOB_PERSPECTIVE
 		client.set_eye(src)
 	add_click_catcher()
 	update_client_color()
