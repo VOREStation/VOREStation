@@ -10,6 +10,7 @@
 	forbid_movement = FALSE
 
 /datum/component/remote_view/Initialize(atom/focused_on)
+	to_chat( world, "[parent] ========================> STARTED REMOTE VIEW OF [focused_on]")
 	. = ..()
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -276,6 +277,7 @@
  */
 #define MAX_RECURSIVE 64
 /datum/component/remote_view/mob_holding_item
+	var/in_mob = FALSE // if the current top level atom is a mob
 
 /datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on)
 	if(!isobj(focused_on)) // You shouldn't be using this if so.
@@ -294,18 +296,15 @@
 	if(!host_mob)
 		return
 	if(isturf(host_mob.loc))
-		to_chat( world, "MOB MOVED TO TURF, DECOUPLE")
+		in_mob = TRUE // always decouple
+		to_chat( world, "MOB MOVED TO TURF, DECOUPLE [in_mob]")
 		decouple_view_to_turf( host_mob, host_mob.loc)
-		qdel(src)
 
 /datum/component/remote_view/mob_holding_item/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
 	if(!host_mob)
 		return
 	to_chat( world, "RECURSIVE HANDLER [source]  [oldloc]  [new_loc] ")
 	to_chat( world, "  - [host_mob] -> [remote_view_target.type] -> [remote_view_target.loc]")
-	if(!ismob(oldloc))
-		to_chat( world, "NOT MOVED OUT OF TOPLEVEL MOB, DON'T BOTHER CHECKING STATE CHANGE")
-		return
 	// default moved signal will handle this
 	if(isturf(host_mob.loc))
 		to_chat( world, "OUR MOB ON TURF, NO PARENT CHECK")
@@ -324,11 +323,11 @@
 		if(ismob(cur_parent))
 			to_chat( world, "     -IS MOB, END LOOP")
 			host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+			in_mob = TRUE
 			break // Mob is holding us, we were picked up.
 		if(isturf(cur_parent))
-			to_chat( world, "     -IS TURF, DECOUPLE")
+			to_chat( world, "     -IS TURF, DECOUPLE [in_mob]")
 			decouple_view_to_turf( host_mob, cur_parent)
-			qdel(src)
 			return
 		recursion++
 		cur_parent = cur_parent.loc
@@ -339,12 +338,15 @@
 /// Makes a new remote view focused on the release_turf argument. This remote view ends as soon as any movement happens. Even if we are inside many levels of objects due to our recursive_move listener
 /datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf)
 	// Yes this spawn is needed, yes I wish it wasn't.
-	spawn(0)
-		// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
-		cache_mob.AddComponent(/datum/component/remote_view, release_turf)
-		cache_mob.client.eye = release_turf // Yes--
-		cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
-		if(!isturf(cache_mob.loc)) // For stuff like paicards
-			cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+	if(in_mob)
+		spawn(0)
+			// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
+			cache_mob.AddComponent(/datum/component/remote_view, release_turf)
+			cache_mob.client.eye = release_turf // Yes--
+			cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
+			if(!isturf(cache_mob.loc)) // For stuff like paicards
+				cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+	in_mob = FALSE
+	qdel(src)
 
 #undef MAX_RECURSIVE

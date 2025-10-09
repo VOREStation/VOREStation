@@ -17,9 +17,13 @@
 		if(!QDELETED(src))
 			setup_parents()
 
-/datum/component/recursive_move/InheritComponent(datum/component/C, i_am_original)
-	reset_parents()
-	setup_parents()
+/datum/component/recursive_move/InheritComponent(datum/component/recursive_move/C, i_am_original)
+	if(i_am_original)
+		reset_parents()
+		setup_parents()
+		return
+	C.reset_parents()
+	C.setup_parents()
 
 /datum/component/recursive_move/proc/setup_parents()
 	SIGNAL_HANDLER
