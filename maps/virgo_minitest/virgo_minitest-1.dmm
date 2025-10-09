@@ -721,10 +721,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	charge = 1.5e+007;
-	cur_coils = 3
-	},
+/obj/machinery/power/smes/buildable/max_charge,
 /turf/simulated/floor/plating,
 /area/engineering/engine_smes)
 "bC" = (
@@ -5343,12 +5340,8 @@
 /turf/simulated/floor,
 /area/engineering/workshop)
 "Bo" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Engine - Core";
-	charge = 2e+006;
-	input_attempt = 1;
-	input_level = 200000;
-	output_level = 250000
+/obj/machinery/power/smes/buildable/engine_default{
+	RCon_tag = "Engine - Core"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
@@ -6524,13 +6517,8 @@
 /turf/space,
 /area/space)
 "PH" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Power - Main";
-	charge = 2e+007;
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 500000;
-	output_level = 1e+006
+/obj/machinery/power/smes/buildable/engine_default{
+	RCon_tag = "Power - Main"
 	},
 /obj/structure/cable{
 	icon_state = "0-4"

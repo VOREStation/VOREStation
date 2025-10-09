@@ -2829,9 +2829,7 @@
 /turf/simulated/shuttle/floor/alienplating/blue,
 /area/ship/aro/engineering)
 "gG" = (
-/obj/machinery/power/smes/buildable/hybrid{
-	output_level = 250000
-	},
+/obj/machinery/power/smes/buildable/hybrid/max_charge,
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
