@@ -288,6 +288,7 @@
 	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved)) // Doesn't need override, basetype only ever registers this signal if we're looking at a turf
 	// Check our inmob state
 	if(ismob(find_topmost_atom()))
+		to_chat( world, "COUPLED TO MOB ON INIT")
 		in_mob = TRUE
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
@@ -300,8 +301,9 @@
 		return
 	if(isturf(host_mob.loc))
 		in_mob = TRUE // always decouple
-		to_chat( world, "MOB MOVED TO TURF, DECOUPLE [in_mob]")
+		to_chat( world, "MOB MOVED TO TURF, END VIEW [in_mob]")
 		decouple_view_to_turf( host_mob, host_mob.loc)
+		return
 
 /datum/component/remote_view/mob_holding_item/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
 	if(!host_mob)
@@ -312,13 +314,16 @@
 	if(isturf(host_mob.loc))
 		to_chat( world, "OUR MOB ON TURF, NO PARENT CHECK")
 		return
+	to_chat( world, "CHECKING PARENT FOR DECOUPLE: ")
 	// This only triggers when we are deeper in than our mob. See who is in charge of this clowncar...
 	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
 	var/atom/top_most = find_topmost_atom()
 	if(isturf(top_most))
+		to_chat( world, "     -IS TURF, DECOUPLE [in_mob]")
 		decouple_view_to_turf( host_mob, top_most)
 		return
 	if(ismob(top_most))
+		to_chat( world, "COUPLED TO MOB")
 		host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
 		in_mob = TRUE
 		return
@@ -327,21 +332,16 @@
 /datum/component/remote_view/mob_holding_item/proc/find_topmost_atom()
 	var/atom/cur_parent = remote_view_target?.loc // first loc could be null
 	var/recursion = 0 // safety check - max iterations
-	to_chat( world, "CHECKING PARENT FOR DECOUPLE: ")
 	while(!isnull(cur_parent) && (recursion < MAX_RECURSIVE))
 		to_chat( world, "  -[cur_parent]")
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
 			log_runtime("REMOTE_VIEW: Parent is inside itself. ([host_mob]) ([host_mob.type]) : [MAX_RECURSIVE - recursion]")
-			to_chat( world, "     -INSIDE ITSELF")
 			return null
-		if(ismob(cur_parent))
-			to_chat( world, "     -IS MOB, END LOOP")
-			return cur_parent // Mob is holding us, we were picked up.
-		if(isturf(cur_parent))
-			to_chat( world, "     -IS TURF, DECOUPLE [in_mob]")
+		if(ismob(cur_parent) || isturf(cur_parent))
 			return cur_parent
 		recursion++
 		cur_parent = cur_parent.loc
+
 	if(recursion >= MAX_RECURSIVE) // If we escaped due to iteration limit, cancel
 		log_runtime("REMOTE_VIEW: Turf search hit recursion limit. ([host_mob]) ([host_mob.type])")
 	return null
