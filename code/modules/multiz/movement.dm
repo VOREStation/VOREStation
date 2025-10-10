@@ -577,7 +577,7 @@
 			if(HAS_TRAIT(src, TRAIT_HEAVY_LANDING))
 				playsound(src, 'sound/effects/meteorimpact.ogg', 75, TRUE, 3)
 			else
-				playsound(src, "punch", 25, 1, -1)
+				playsound(src, "punch", 25, TRUE, -1)
 
 		// Because wounds heal rather quickly, 10 (the default for this proc) should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
 		// Hits 10 times, because apparently targeting individual limbs lets certain species survive the fall from atmosphere
