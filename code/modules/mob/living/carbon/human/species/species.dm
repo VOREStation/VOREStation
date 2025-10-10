@@ -741,7 +741,7 @@
 		if(!silent)
 			to_chat(H, span_danger("You land with a heavy crash!"))
 			landing.visible_message(span_danger(span_bold("\The [H]") + " crashes down from above!"))
-			playsound(H, 'sound/effects/meteorimpact.ogg', 75, 1, 3)
+			playsound(H, 'sound/effects/meteorimpact.ogg', 75, TRUE, 3)
 			for(var/i = 1 to 10)
 				H.adjustBruteLoss(rand((0), (10)))
 			H.Weaken(20)
