@@ -575,7 +575,7 @@
 					span_danger("You fall off and hit \the [landing]!"), \
 					"You hear something slam into \the [landing].")
 			if(HAS_TRAIT(src, TRAIT_HEAVY_LANDING))
-				playsound(src, 'sound/effects/meteorimpact.ogg', 75, 1, 3)
+				playsound(src, 'sound/effects/meteorimpact.ogg', 75, TRUE, 3)
 			else
 				playsound(src, "punch", 25, 1, -1)
 
