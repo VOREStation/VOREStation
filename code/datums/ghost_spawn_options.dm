@@ -262,25 +262,6 @@
 	var/obj/structure/ghost_pod/manual/lost_drone/dogborg/lost = new(get_turf(spawnspot))
 	lost.create_occupant(user)
 
-/datum/tgui_module/ghost_spawn_menu/proc/join_maintpred(mob/observer/dead/user)
-	if(jobban_isbanned(user, JOB_GHOSTROLES))
-		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a maint pred."))
-		return
-
-	if(GLOB.allowed_ghost_spawns <= 0)
-		to_chat(user, span_warning("There're no free ghost join slots."))
-		return
-
-	var/obj/effect/landmark/spawnspot = get_ghost_role_spawn()
-	if(!spawnspot)
-		to_chat(user, span_warning("No spawnpoint available."))
-		return
-
-	GLOB.allowed_ghost_spawns--
-	announce_ghost_joinleave(user, 0, "They are now a maint pred.")
-	var/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce/mpred = new(get_turf(spawnspot))
-	mpred.create_occupant(user)
-
 /datum/tgui_module/ghost_spawn_menu/proc/join_grave(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_CYBORG))
 		to_chat(user, span_danger("You are banned from playing synthetics and cannot spawn as a gravekeeper."))
@@ -299,25 +280,6 @@
 	announce_ghost_joinleave(user, 0, "They are now a gravekeeper drone.")
 	var/obj/structure/ghost_pod/automatic/gravekeeper_drone/grave = new(get_turf(spawnspot))
 	grave.create_occupant(user)
-
-/datum/tgui_module/ghost_spawn_menu/proc/join_morpth(mob/observer/dead/user)
-	if(jobban_isbanned(user, JOB_GHOSTROLES))
-		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a morph."))
-		return
-
-	if(GLOB.allowed_ghost_spawns <= 0)
-		to_chat(user, span_warning("There're no free ghost join slots."))
-		return
-
-	var/obj/effect/landmark/spawnspot = get_ghost_role_spawn()
-	if(!spawnspot)
-		to_chat(user, span_warning("No spawnpoint available."))
-		return
-
-	GLOB.allowed_ghost_spawns--
-	announce_ghost_joinleave(user, 0, "They are now a morph.")
-	var/obj/structure/ghost_pod/ghost_activated/morphspawn/no_announce/morph = new(get_turf(spawnspot))
-	morph.create_occupant(user)
 
 /datum/tgui_module/ghost_spawn_menu/proc/get_ghost_role_spawn()
 	var/list/possibleSpawnspots = list()

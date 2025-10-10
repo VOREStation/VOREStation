@@ -10,7 +10,6 @@
 	icon_state = "tunnel_hole"
 	icon_state_opened = "tunnel_hole"
 	density = FALSE
-	ghost_query_type = /datum/ghost_query/maints_pred
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
@@ -76,7 +75,6 @@
 	icon_state = "morph"
 	icon_state_opened = "morph_dead"
 	density = FALSE
-	ghost_query_type = /datum/ghost_query/morph
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
@@ -132,7 +130,6 @@
 	icon_state = "tunnel_hole"
 	icon_state_opened = "tunnel_hole"
 	density = FALSE
-	ghost_query_type = /datum/ghost_query/maints_lurker
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
