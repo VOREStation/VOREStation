@@ -23,18 +23,13 @@
 	if(drop_mob && drop_mob != src)
 		///Varible to tell if we take damage or not for falling.
 		var/safe_fall = FALSE
-		var/hard_fall = FALSE
 		if(drop_mob.softfall || (isanimal(drop_mob) && drop_mob.mob_size <= MOB_SMALL))
 			safe_fall = TRUE
-		else if(drop_mob.hardfall)
-			hard_fall = TRUE
 
 		if(ishuman(drop_mob))
 			var/mob/living/carbon/human/H = drop_mob
 			if(H.species.soft_landing)
 				safe_fall = TRUE
-			if(H.species.heavy_landing)
-				hard_fall = TRUE
 
 		forceMove(get_turf(drop_mob))
 		if(!safe_fall)
@@ -44,13 +39,13 @@
 			var/tdamage
 			for(var/i = 1 to 5)	//Twice as less damage because cushioned fall, but both get damaged.
 				tdamage = rand(0, 5)
-				if(hard_fall)
+				if(HAS_TRAIT(drop_mob, TRAIT_HEAVY_LANDING))
 					tdamage = tdamage * 1.5
 				drop_mob.adjustBruteLoss(tdamage)
 				adjustBruteLoss(tdamage)
 			drop_mob.updatehealth()
 			updatehealth()
-			if(hard_fall)
+			if(HAS_TRAIT(drop_mob, TRAIT_HEAVY_LANDING))
 				drop_mob.visible_message(span_danger("\The [drop_mob] crashes down onto \the [src]!"))
 			else
 				drop_mob.visible_message(span_danger("\The [drop_mob] falls onto \the [src]!"))

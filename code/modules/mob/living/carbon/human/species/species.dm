@@ -241,7 +241,6 @@
 	var/holder_type = /obj/item/holder/micro 				//This allows you to pick up crew
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
-	var/heavy_landing = FALSE								// Crashes down hard when falling from heights!
 
 	var/crit_mod = 1										// Used for when we go unconscious. Used downstream.
 	var/list/env_traits = list()
@@ -737,7 +736,7 @@
 			playsound(H, "rustle", 25, 1)
 		return TRUE
 
-	if(heavy_landing)
+	if(HAS_TRAIT(src, TRAIT_HEAVY_LANDING))
 
 		if(!silent)
 			to_chat(H, span_danger("You land with a heavy crash!"))

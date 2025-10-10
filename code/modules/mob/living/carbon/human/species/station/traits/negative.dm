@@ -856,6 +856,10 @@
 	name = "Heavy Landing"
 	desc = "Your heavy frame causes you to crash heavily when falling from heights. The bigger they are, the harder they fall!"
 	cost = -1
-	var_changes = list("heavy_landing" = TRUE, "soft_landing" = FALSE)
+	var_changes = list("soft_landing" = FALSE) //override soft landing if the species would otherwise start with it
 	custom_only = FALSE
 	excludes = list(/datum/trait/positive/soft_landing)
+
+/datum/trait/negative/heavy_landing/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	ADD_TRAIT(H, TRAIT_HEAVY_LANDING, ROUNDSTART_TRAIT)
