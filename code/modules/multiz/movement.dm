@@ -54,8 +54,7 @@
 		return 0
 
 	if(direction == DOWN)
-		var/turf/simulated/floor/water/deep/ocean/diving/sink = start
-		if(istype(sink) && !destination.density)
+		if(isdiveablewater(start) && !destination.density)
 			var/pull_up_time = max((3 SECONDS + (src.movement_delay() * 10) * swim_modifier), 1)
 			to_chat(src, span_notice("You start diving underwater..."))
 			src.audible_message(span_notice("[src] begins to dive under the water."), runemessage = "splish splosh")
@@ -90,7 +89,7 @@
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
 					return 0
 
-			else if(istype(destination, /turf/simulated/floor/water/deep/ocean/diving))
+			else if(isdiveablewater(destination))
 				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * swim_modifier), 1)
 				to_chat(src, span_notice("You start swimming upwards..."))
 				src.audible_message(span_notice("[src] begins to swim towards the surface."), runemessage = "splish splosh")

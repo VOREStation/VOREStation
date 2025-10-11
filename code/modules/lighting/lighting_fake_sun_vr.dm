@@ -240,3 +240,10 @@ var/static/list/fake_sunlight_zs = list()
 			"color" = "#1c49ff"
 		)
 	)
+/obj/effect/fake_sun/underwater/lighter
+	possible_light_setups = list(
+		list(
+			"brightness" = 1,
+			"color" = "#4bd1f3"
+		)
+	)

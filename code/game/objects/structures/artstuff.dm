@@ -349,6 +349,18 @@
 	desc_with_canvas = "A piece of art (or \"art\"). Anyone could've hung it."
 	persistence_id = "public"
 
+/obj/structure/sign/painting/public/north
+	pixel_y = 30
+
+/obj/structure/sign/painting/public/south
+	pixel_y = -30
+
+/obj/structure/sign/painting/public/east
+	pixel_x = 30
+
+/obj/structure/sign/painting/public/west
+	pixel_x = -30
+
 /obj/structure/sign/painting/library_secure
 	name = "\improper Curated Painting Exhibit mounting"
 	desc = "For masterpieces hand-picked by the librarian."
