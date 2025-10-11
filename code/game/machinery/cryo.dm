@@ -9,7 +9,6 @@
 	anchored = TRUE
 	layer = UNDER_JUNK_LAYER
 	interact_offline = 1
-	flags = REMOTEVIEW_ON_ENTER
 
 	var/on = 0
 	use_power = USE_POWER_IDLE

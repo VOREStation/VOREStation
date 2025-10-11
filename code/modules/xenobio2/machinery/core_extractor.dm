@@ -10,7 +10,6 @@
 	icon_state = "scanner_0old"
 	density = TRUE
 	anchored = TRUE
-	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/slimeextractor
 	var/inuse
 	var/mob/living/simple_mob/xeno/slime/occupant = null

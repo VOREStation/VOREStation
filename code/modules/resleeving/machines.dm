@@ -294,7 +294,6 @@
 	density = TRUE
 	opacity = 0
 	anchored = TRUE
-	flags = REMOTEVIEW_ON_ENTER
 	var/blur_amount
 	var/confuse_amount
 

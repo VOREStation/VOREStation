@@ -13,7 +13,6 @@
 	use_power = USE_POWER_IDLE
 	icon = 'icons/obj/biogenerator.dmi'
 	icon_state = "biogen-work"
-	flags = REMOTEVIEW_ON_ENTER
 	var/mob/living/occupant
 	var/obj/item/reagent_containers/glass/beaker
 	var/obj/machinery/computer/xenobio2/computer

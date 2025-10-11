@@ -8,7 +8,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 	icon = 'icons/obj/suit_cycler.dmi'
 	icon_state = "suit_cycler"
-	flags = REMOTEVIEW_ON_ENTER
 
 	req_access = list(ACCESS_CAPTAIN,ACCESS_HEADS)
 

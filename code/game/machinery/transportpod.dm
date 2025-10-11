@@ -7,7 +7,6 @@
 	density = TRUE //thicc
 	anchored = TRUE
 	use_power = USE_POWER_OFF
-	flags = REMOTEVIEW_ON_ENTER
 
 	var/in_transit = 0
 	var/mob/occupant = null

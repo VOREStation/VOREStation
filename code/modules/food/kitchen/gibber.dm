@@ -7,7 +7,6 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
-	flags = REMOTEVIEW_ON_ENTER
 	req_access = list(ACCESS_KITCHEN,ACCESS_MORGUE)
 
 	var/operating = 0 //Is it on?

@@ -14,7 +14,6 @@
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 	light_color = "#00FF00"
-	flags = REMOTEVIEW_ON_ENTER
 	var/obj/machinery/body_scanconsole/console
 	var/printing_text = null
 

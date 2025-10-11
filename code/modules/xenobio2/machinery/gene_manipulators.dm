@@ -255,7 +255,6 @@
 	icon_state = "cellold0"
 	disk_needs_genes = 1
 	circuit = /obj/item/circuitboard/biobombarder
-	flags = REMOTEVIEW_ON_ENTER
 
 	var/mob/living/simple_mob/xeno/slime/occupant
 

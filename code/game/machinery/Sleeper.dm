@@ -7,7 +7,6 @@
 	anchored = TRUE //About time someone fixed this.
 	density = TRUE
 	unacidable = TRUE
-	flags = REMOTEVIEW_ON_ENTER
 	dir = 8
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
