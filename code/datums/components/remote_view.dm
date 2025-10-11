@@ -276,7 +276,7 @@
  */
 #define MAX_RECURSIVE 64
 /datum/component/remote_view/mob_holding_item
-	var/in_mob = FALSE // if the current top level atom is a mob
+	var/needs_to_decouple = FALSE // if the current top level atom is a mob
 
 /datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on)
 	if(!isobj(focused_on)) // You shouldn't be using this if so.
@@ -287,7 +287,7 @@
 	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved)) // Doesn't need override, basetype only ever registers this signal if we're looking at a turf
 	// Check our inmob state
 	if(ismob(find_topmost_atom()))
-		in_mob = TRUE
+		needs_to_decouple = TRUE
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
 	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
@@ -311,12 +311,12 @@
 	// Loop upward until we find a mob or a turf. Mobs will hold our current view, turfs mean our bag-stack was dropped.
 	var/atom/top_most = find_topmost_atom()
 	if(isturf(top_most))
-		if(in_mob) // Only need to do this if we were held by a mob prior, otherwise this triggers every move and is expensive for no reason
+		if(needs_to_decouple) // Only need to do this if we were held by a mob prior, otherwise this triggers every move and is expensive for no reason
 			decouple_view_to_turf( host_mob, top_most)
 		return
 	if(ismob(top_most) || ismecha(top_most)) // Mobs and mechas both do this
 		host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
-		in_mob = TRUE
+		needs_to_decouple = TRUE
 		return
 
 /// Get our topmost atom state, if it's a mob or a turf
@@ -338,7 +338,7 @@
 
 /// Makes a new remote view focused on the release_turf argument. This remote view ends as soon as any movement happens. Even if we are inside many levels of objects due to our recursive_move listener
 /datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf)
-	if(in_mob)
+	if(needs_to_decouple)
 		// Yes this spawn is needed, yes I wish it wasn't.
 		spawn(0)
 			// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
