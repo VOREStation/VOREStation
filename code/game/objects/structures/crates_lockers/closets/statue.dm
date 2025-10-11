@@ -65,6 +65,7 @@
 		M.forceMove(loc) // Might be in a belly
 		M.sdisabilities &= ~MUTE
 		M.take_overall_damage((M.health - health - 100),0) //any new damage the statue incurred is transfered to the mob
+		M.reset_perspective() // Fixes a blackscreen flicker
 
 /obj/structure/closet/statue/open()
 	return
