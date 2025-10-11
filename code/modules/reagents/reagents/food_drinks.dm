@@ -2542,7 +2542,7 @@
 /datum/reagent/drink/dry_ramen
 	name = REAGENT_DRYRAMEN
 	id = REAGENT_ID_DRYRAMEN
-	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
+	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, boil in water before serving."
 	taste_description = "dry cheap noodles"
 	reagent_state = SOLID
 	nutrition = 1
