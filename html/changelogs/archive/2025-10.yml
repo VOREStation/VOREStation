@@ -81,3 +81,7 @@
       boiling on a bunsen burner or other distilling machine. Does not apply to coffee/tea
       dispensers that already contain coffee/tea.
   - rscadd: Added a simple kettle that acts as a beaker for more thematic brewing
+2025-10-11:
+  SatinIsle:
+  - bugfix: Changed the description of Mochi Cakes as some people found the original
+      a bit offensive.
