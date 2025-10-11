@@ -68,7 +68,6 @@
 	if(!occupant)
 		return
 	occupant.forceMove(get_turf(src))
-	occupant.reset_perspective()
 	occupant = null
 	return
 

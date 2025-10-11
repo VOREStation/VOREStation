@@ -63,7 +63,6 @@
 	occupant_message(span_infoplain("[occupant] ejected. Life support functions disabled."))
 	src.mecha_log_message("[occupant] ejected. Life support functions disabled.")
 	occupant.Stasis(0)
-	occupant.reset_perspective()
 	occupant = null
 	STOP_PROCESSING(SSprocessing, src)
 	set_ready_state(TRUE)

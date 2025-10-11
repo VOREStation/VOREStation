@@ -314,7 +314,7 @@
 		if(in_mob) // Only need to do this if we were held by a mob prior, otherwise this triggers every move and is expensive for no reason
 			decouple_view_to_turf( host_mob, top_most)
 		return
-	if(ismob(top_most))
+	if(ismob(top_most) || ismecha(top_most)) // Mobs and mechas both do this
 		host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
 		in_mob = TRUE
 		return
@@ -327,7 +327,7 @@
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
 			log_runtime("REMOTE_VIEW: Parent is inside itself. ([host_mob]) ([host_mob.type]) : [MAX_RECURSIVE - recursion]")
 			return null
-		if(ismob(cur_parent) || isturf(cur_parent))
+		if(ismob(cur_parent) || ismecha(cur_parent) || isturf(cur_parent))
 			return cur_parent
 		recursion++
 		cur_parent = cur_parent.loc
