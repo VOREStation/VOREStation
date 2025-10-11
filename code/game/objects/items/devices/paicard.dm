@@ -469,7 +469,7 @@
 	if(paicard)
 		paicard.forceMove(get_turf(src))
 		var/mob/living/silicon/pai/AI = paicard.pai
-		AI.reset_perspective(AI) // return to the card
+		AI.reset_perspective() // return to the card
 		paicard = null
 		name = initial(src.name)
 		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))

@@ -177,7 +177,7 @@
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		src.unset_machine()
-		src.reset_perspective(src)
+		src.reset_perspective()
 		return 0
 	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
 
