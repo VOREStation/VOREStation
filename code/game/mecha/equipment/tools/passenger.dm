@@ -10,7 +10,6 @@
 	var/door_locked = 1
 	salvageable = 0
 	allow_duplicate = TRUE
-
 	equip_type = EQUIP_HULL
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
@@ -69,6 +68,7 @@
 	if(!occupant)
 		return
 	occupant.forceMove(get_turf(src))
+	occupant.reset_perspective()
 	occupant = null
 	return
 
