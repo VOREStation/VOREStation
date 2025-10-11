@@ -266,7 +266,6 @@
 			return
 
 		add_fingerprint(R)
-		R.reset_view(src)
 		R.forceMove(src)
 		occupant = R
 		update_icon()
@@ -280,7 +279,6 @@
 			return
 
 		add_fingerprint(P)
-		P.reset_view(src)
 		P.forceMove(src)
 		occupant = P
 		update_icon()
@@ -291,7 +289,6 @@
 		var/mob/living/carbon/human/H = L
 		if(H.isSynthetic() || H.wearing_rig)
 			add_fingerprint(H)
-			H.reset_view(src)
 			H.forceMove(src)
 			occupant = H
 			update_icon()
@@ -302,9 +299,7 @@
 /obj/machinery/recharge_station/proc/go_out()
 	if(!occupant)
 		return
-
-	occupant.forceMove(src.loc)
-	occupant.reset_view()
+	occupant.forceMove(get_turf(src))
 	occupant = null
 	update_icon()
 

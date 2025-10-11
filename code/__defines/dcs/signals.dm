@@ -322,6 +322,8 @@
 #define COMSIG_MOB_ITEM_ATTACK_QDELETED "mob_item_attack_qdeleted"
 ///from base of mob/RangedAttack(): (atom/A, params)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"
+///from base of obj/item/dropped(): (obj/item)
+#define COMSIG_MOB_DROPPED_ITEM "mob_dropped_item"
 ///from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_THROW "mob_throw"
 ///from base of /mob/verb/examinate(): (atom/target)
@@ -348,6 +350,10 @@
 ///from base of mob/swap_hand(): (obj/item)
 #define COMSIG_MOB_SWAP_HANDS "mob_swap_hands"
 	#define COMPONENT_BLOCK_SWAP (1<<0)
+/// From base of /mob/proc/reset_perspective() : ()
+#define COMSIG_MOB_RESET_PERSPECTIVE "mob_reset_perspective"
+/// from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)
+#define COMSIG_CLIENT_SET_EYE "client_set_eye"
 
 // /mob/living signals
 
@@ -685,6 +691,8 @@
 #define COMSIG_JOB_RECEIVED "job_received"
 ///When the mob's dna and species have been fully applied
 #define COMSIG_HUMAN_DNA_FINALIZED "human_dna_finished"
+///from /proc/domutcheck(): ()
+#define COMSIG_MOB_DNA_MUTATION "mob_dna_mutation"
 
 // Organ specific signals
 
@@ -840,6 +848,10 @@
 	#define COMPONENT_TWOHANDED_BLOCK_WIELD (1<<0)
 ///from base of datum/component/two_handed/proc/unwield(mob/living/carbon/user): (/mob/user)
 #define COMSIG_TWOHANDED_UNWIELD "twohanded_unwield"
+
+// /datum/component/remote_view signals
+/// Signal that can be sent from the mob remote viewing, the viewed mob, or object being used to view to forcibly end all related remote viewing components
+#define COMSIG_REMOTE_VIEW_CLEAR "remote_view_clear_viewers"
 
 // /datum/action signals
 

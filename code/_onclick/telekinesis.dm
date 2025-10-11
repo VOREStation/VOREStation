@@ -97,7 +97,7 @@
 	if(isobj(target) && !isturf(target.loc))
 		return
 
-	if(user.client.eye != user) // Extremely bad exploits if allowed to TK while remote viewing
+	if(user.is_remote_viewing()) // Extremely bad exploits if allowed to TK while remote viewing
 		to_chat(user, TK_DENIED_MESSAGE)
 		return
 

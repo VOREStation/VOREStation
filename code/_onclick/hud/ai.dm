@@ -1,23 +1,3 @@
-/atom/movable/screen/ai/multicam/Click()
-	if(..())
-		return
-	var/mob/living/silicon/ai/ai_user = usr
-	ai_user.toggle_multicam()
-
-/atom/movable/screen/ai/add_multicam/Click()
-	if(..())
-		return
-	var/mob/living/silicon/ai/ai_user = usr
-	ai_user.drop_new_multicam()
-
-/atom/movable/screen/ai/up/Click()
-	var/mob/living/silicon/ai/ai_user = usr
-	ai_user.zMove(UP)
-
-/atom/movable/screen/ai/down/Click()
-	var/mob/living/silicon/ai/ai_user = usr
-	ai_user.zMove(DOWN)
-
 /mob/living/silicon/ai/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
 
@@ -146,7 +126,8 @@
 	HUD.adding += using
 
 //Multicamera mode
-	using = new /atom/movable/screen/ai/multicam() // special
+
+	using = new /atom/movable/screen()
 	using.name = "Multicamera Mode"
 	using.icon = HUD.ui_style
 	using.icon_state = "multicam"
@@ -155,7 +136,7 @@
 	HUD.adding += using
 
 //Add multicamera camera
-	using = new /atom/movable/screen/ai/add_multicam() // special
+	using = new /atom/movable/screen()
 	using.name = "New Camera"
 	using.icon = HUD.ui_style
 	using.icon_state = "new_cam"
@@ -164,16 +145,16 @@
 	HUD.adding += using
 
 //Up and Down
-	using = new /atom/movable/screen/ai/up() // special
-	using.name = "Move Upwards"
+	using = new /atom/movable/screen()
+	using.name = "Move Up"
 	using.icon = HUD.ui_style
 	using.icon_state = "up"
 	using.screen_loc = ui_ai_updown
 	using.layer = SCREEN_LAYER
 	HUD.adding += using
 
-	using = new /atom/movable/screen/ai/down() // special
-	using.name = "Move Downwards"
+	using = new /atom/movable/screen()
+	using.name = "Move Down"
 	using.icon = HUD.ui_style
 	using.icon_state = "down"
 	using.screen_loc = ui_ai_updown

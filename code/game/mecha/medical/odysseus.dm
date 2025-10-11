@@ -43,31 +43,7 @@
 			H.recalculate_vis()
 	..()
 	return
-/*
-	verb/set_perspective()
-		set name = "Set client perspective."
-		set category = "Exosuit Interface"
-		set src = usr.loc
-		var/perspective = tgui_input_list(usr, "Select a perspective type.",
-					"Client perspective",
-					list(MOB_PERSPECTIVE,EYE_PERSPECTIVE), occupant.client.perspective)
-		to_world("[perspective]")
-		occupant.client.perspective = perspective
-		return
 
-	verb/toggle_eye()
-		set name = "Toggle eye."
-		set category = "Exosuit Interface"
-		set src = usr.loc
-		if(occupant.client.eye == occupant)
-			occupant.client.eye = src
-		else
-			occupant.client.eye = occupant
-		to_world("[occupant.client.eye]")
-		return
-*/
-
-//TODO - Check documentation for client.eye and client.perspective...
 /obj/item/clothing/glasses/hud/health/mech
 	name = "Integrated Medical Hud"
 

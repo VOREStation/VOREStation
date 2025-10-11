@@ -10,14 +10,6 @@
 	if(linked)
 		name = "[linked.name] [name]"
 
-/datum/tgui_module/ship/Destroy()
-	if(LAZYLEN(viewers))
-		for(var/datum/weakref/W in viewers)
-			var/M = W.resolve()
-			if(M)
-				unlook(M)
-	. = ..()
-
 /datum/tgui_module/ship/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -39,19 +31,14 @@
 
 /datum/tgui_module/ship/tgui_status(mob/user)
 	. = ..()
-	if(. > STATUS_DISABLED)
-		if(viewing_overmap(user))
-			look(user)
-		return
-	unlook(user)
+	if(viewing_overmap(user) && (user.machine != src))
+		user.reset_perspective()
 
 /datum/tgui_module/ship/tgui_close(mob/user)
 	. = ..()
-	user.unset_machine()
-	unlook(user)
-
 	// Unregister map objects
 	user.client?.clear_map(linked?.map_name)
+	user.reset_perspective()
 
 /datum/tgui_module/ship/proc/sync_linked()
 	var/obj/effect/overmap/visitable/ship/sector = get_overmap_sector(get_z(tgui_host()))
@@ -73,32 +60,22 @@
 		linked = sector
 		return 1
 
-/datum/tgui_module/ship/proc/look(var/mob/user)
-	if(linked)
-		user.set_machine(src)
-		user.reset_view(linked)
+/datum/tgui_module/ship/look(var/mob/user)
 	user.set_viewsize(world.view + extra_view)
-	user.AddComponent(/datum/component/recursive_move)
 	if(!map_view_used)
-		RegisterSignal(user, COMSIG_OBSERVER_MOVED, /datum/tgui_module/ship/proc/unlook)
 		map_view_used = TRUE
-	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
-/datum/tgui_module/ship/proc/unlook(var/mob/user)
-	SIGNAL_HANDLER
-	user.reset_view()
+/datum/tgui_module/ship/unlook(var/mob/user)
 	user.set_viewsize() // reset to default
 	if(map_view_used)
-		UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
 		map_view_used = FALSE
-	LAZYREMOVE(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/viewing_overmap(mob/user)
 	return (WEAKREF(user) in viewers)
 
 /datum/tgui_module/ship/check_eye(var/mob/user)
 	if(!get_dist(user, tgui_host()) > 1 || user.blinded || !linked)
-		unlook(user)
+		user.reset_perspective()
 		return -1
 	else
 		return 0
@@ -159,7 +136,11 @@
 		return FALSE
 
 	if(action == "viewing")
-		viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
+		if(!viewing_overmap(ui.user))
+			if(!viewers) viewers = list() // List must exist for pass by reference to work
+			start_coordinated_remoteview(ui.user, linked, viewers)
+		else
+			ui.user.reset_perspective()
 		return TRUE
 
 /datum/tgui_module/ship/nav/ntos
@@ -419,7 +400,11 @@
 			. = TRUE
 
 		if("manual")
-			viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
+			if(!viewing_overmap(ui.user))
+				if(!viewers) viewers = list()
+				start_coordinated_remoteview(ui.user, linked, viewers)
+			else
+				ui.user.reset_perspective()
 			. = TRUE
 		/* END HELM */
 		/* ENGINES */

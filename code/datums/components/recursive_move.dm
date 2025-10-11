@@ -4,7 +4,7 @@
  * Previously there was a system where COMSIG_OBSERVER_MOVE was always recursively propogated, but that was unnecessary bloat.
  */
 /datum/component/recursive_move
-	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS //This makes it so pretty much nothing happens when a duplicate component is created since we don't actually override InheritComponent
+	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS //This makes it so pretty much nothing happens when a duplicate component is created since we only use it to regenerate our parent list
 	var/atom/movable/holder
 	var/list/parents = list()
 	var/noparents = FALSE
@@ -16,6 +16,12 @@
 	spawn(0) // Delayed action if our holder is spawned in nullspace and then loc = target, hopefully this catches it. VV Add item does this, for example.
 		if(!QDELETED(src))
 			setup_parents()
+
+/datum/component/recursive_move/InheritComponent(datum/component/recursive_move/C, i_am_original)
+	if(!i_am_original)
+		return
+	reset_parents()
+	setup_parents()
 
 /datum/component/recursive_move/proc/setup_parents()
 	SIGNAL_HANDLER

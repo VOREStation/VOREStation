@@ -870,6 +870,20 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		holder.particle_test = new /datum/particle_editor(in_atom)
 		holder.particle_test.tgui_interact(mob)
 
+/client/proc/set_eye(new_eye)
+	if(new_eye == eye)
+		return
+	var/atom/old_eye = eye
+	eye = new_eye
+	SEND_SIGNAL(src, COMSIG_CLIENT_SET_EYE, old_eye, new_eye)
+
+/mob/proc/is_remote_viewing()
+	if(!client || !client.mob || !client.eye)
+		return FALSE
+	if(isturf(client.mob.loc) && get_turf(client.eye) == get_turf(client.mob))
+		return FALSE
+	return (client.eye != client.mob)
+
 #undef ADMINSWARNED_AT
 #undef CURRENT_MINUTE
 #undef CURRENT_SECOND
