@@ -1822,7 +1822,6 @@
 // Drag damage is handled in a parent
 /mob/living/carbon/human/dragged(var/mob/living/dragger, var/oldloc, trigged_bleeding)
 	if(..())
-		var/area/A = get_area(src)
 		var/bloodtrail = TRUE
 		if(species?.flags & NO_BLOOD)
 			bloodtrail = FALSE
