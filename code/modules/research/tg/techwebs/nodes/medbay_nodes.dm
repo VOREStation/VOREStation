@@ -35,7 +35,6 @@
 		// "reflex_hammer",
 		// "blood_scanner",
 	)
-	announce_channels = list(CHANNEL_MEDICAL)
 
 /datum/techweb_node/chem_synthesis
 	id = TECHWEB_NODE_CHEM_SYNTHESIS

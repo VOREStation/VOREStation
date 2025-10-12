@@ -46,7 +46,6 @@
 		// "radio_entertainment",
 		// "photocopier",
 	)
-	announce_channels = list(CHANNEL_COMMON)
 
 /datum/techweb_node/sanitation
 	id = TECHWEB_NODE_SANITATION
@@ -234,7 +233,6 @@
 		// "foodtray",
 		// "restaurant_portal",
 	)
-	announce_channels = list(CHANNEL_SERVICE)
 
 /datum/techweb_node/food_proc
 	id = TECHWEB_NODE_FOOD_PROC

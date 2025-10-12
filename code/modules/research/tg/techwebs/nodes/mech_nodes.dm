@@ -110,6 +110,7 @@
 		"mech_med_analyzer",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/mech_mining
 	id = TECHWEB_NODE_MECH_MINING

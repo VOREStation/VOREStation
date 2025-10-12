@@ -14,6 +14,7 @@
 		"assembly-device",
 		"circuit-bug",
 	)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/circuit_shells
 	id = TECHWEB_NODE_CIRCUIT_SHELLS
@@ -26,6 +27,7 @@
 		"ic_printer_upgrade_clone",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/programmed_robot
 	id = TECHWEB_NODE_PROGRAMMED_ROBOT
@@ -36,3 +38,4 @@
 		"assembly-drone",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_SCIENCE)
