@@ -34,13 +34,6 @@
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] did not have any research_costs set.")
 			failed = TRUE
 
-		// Must have valid prereqs
-		if(node.prereq_ids.len)
-			for(var/req in node.prereq_ids)
-				if(!SSresearch.techweb_nodes[req])
-					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant prereq_id: \"[req]\"")
-					failed = TRUE
-
 		// Must have valid designs
 		if(!node.design_ids)
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] does not have any design_ids.")
@@ -50,6 +43,35 @@
 				if(!SSresearch.techweb_designs[design])
 					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant design_id: \"[design]\"")
 					failed = TRUE
+
+		// Must have valid prereqs
+		if(node.prereq_ids.len)
+			for(var/req in node.prereq_ids)
+				if(!SSresearch.techweb_nodes[req])
+					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant prereq_id: \"[req]\"")
+					failed = TRUE
+
+			// Check that our cost and make sure it's more expensive than our prior tier
+			if(!starting_node)
+				var/current_cost = INFINITY
+				for(var/check_cost_type in node.research_costs)
+					// Get the LOWEST cost of us
+					if(node.research_costs[check_cost_type] < current_cost)
+						current_cost = node.research_costs[check_cost_type]
+
+				for(var/prereq_node_id in node.prereq_ids)
+					var/prereq_currentcost
+					var/datum/techweb_node/prereq_node = SSresearch.techweb_nodes[prereq_node_id]
+					for(var/req_cost_type in prereq_node.research_costs)
+						// Get the LOWEST cost of prereq
+						if(prereq_node.research_costs[req_cost_type] < prereq_currentcost)
+							prereq_currentcost = prereq_node.research_costs[req_cost_type]
+
+				if(prereq_currentcost < current_cost)
+					TEST_NOTICE(src, "TECHWEB NODE - [node.type] costs less to make then the previous node, must always be at least the same or more expensive.")
+					failed = TRUE
+
+
 
 	// Each design
 	for(var/design_id in SSresearch.techweb_designs)
