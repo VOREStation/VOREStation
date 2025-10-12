@@ -15,11 +15,11 @@
 /datum/component/crowd_detection/Initialize()
 	if(!ishuman(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(handle_life))
 	human_parent = parent
+	RegisterSignal(human_parent, COMSIG_LIVING_LIFE, PROC_REF(handle_life))
 
 /datum/component/crowd_detection/Destroy(force = FALSE)
-	UnregisterSignal(parent, COMSIG_LIVING_LIFE)
+	UnregisterSignal(human_parent, COMSIG_LIVING_LIFE)
 	human_parent = null
 	. = ..()
 
@@ -130,6 +130,7 @@
 // Lonelyness
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/component/crowd_detection/lonely
+	VAR_PRIVATE/was_near_mobs = TRUE
 
 /datum/component/crowd_detection/lonely/major
 	only_people = TRUE
@@ -177,23 +178,25 @@
 
 	process_discomfort_stages()
 
-/datum/component/crowd_detection/agoraphobia/handle_loneliness_message()
-	if(loneliness_stage == escalation_speed)
-		return "[pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")]"
-	if(loneliness_stage >= 50)
-		return "[pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")]"
+/datum/component/crowd_detection/lonely/handle_loneliness_message()
+	if(loneliness_stage >= warning_cap)
+		return span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]"))
 	if(loneliness_stage >= 250)
 		if(human_parent.stuttering < hallucination_cap)
 			human_parent.stuttering += 5
 		return "[pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")]"
-	if(loneliness_stage >= warning_cap)
-		return span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]"))
+	if(loneliness_stage >= 50)
+		return "[pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")]"
+	if(was_near_mobs)
+		was_near_mobs = FALSE
+		return "[pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")]"
 	. = ..()
 
 /datum/component/crowd_detection/lonely/sub_loneliness(var/amount = 4, var/message)
 	if(!message)
 		message = span_infoplain("The nearby company calms you down...")
 	. = ..(amount, message)
+	was_near_mobs = TRUE
 
 
 
