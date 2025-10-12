@@ -93,7 +93,6 @@
 		// "secateurs",
 		// "hatchet",
 	)
-	announce_channels = list(CHANNEL_SERVICE)
 
 /datum/techweb_node/hydroponics
 	id = TECHWEB_NODE_HYDROPONICS

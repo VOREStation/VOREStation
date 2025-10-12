@@ -14,7 +14,6 @@
 		"assembly-device",
 		"circuit-bug",
 	)
-	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/circuit_shells
 	id = TECHWEB_NODE_CIRCUIT_SHELLS
