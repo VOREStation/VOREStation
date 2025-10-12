@@ -1822,19 +1822,16 @@
 // Drag damage is handled in a parent
 /mob/living/carbon/human/dragged(var/mob/living/dragger, var/oldloc, trigged_bleeding)
 	if(..())
-		var/bloodtrail = TRUE
 		if(species?.flags & NO_BLOOD)
-			bloodtrail = FALSE
-		else
-			var/blood_volume = vessel.get_reagent_amount(REAGENT_ID_BLOOD)
-			if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
-				bloodtrail = FALSE	//Most of it's gone already, just leave it be
-			else
-				remove_blood(1)
-		if(bloodtrail)
-			if(istype(loc, /turf/simulated))
-				var/turf/simulated/T = loc
-				T.add_blood(src)
+			return
+		var/blood_volume = vessel.get_reagent_amount(REAGENT_ID_BLOOD)
+		if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
+			return
+
+		remove_blood(1)
+		if(istype(loc, /turf/simulated))
+			var/turf/simulated/T = loc
+			T.add_blood(src)
 
 // Tries to turn off item-based things that let you see through walls, like mesons.
 // Certain stuff like genetic xray vision is allowed to be kept on.
