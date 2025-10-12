@@ -11,16 +11,16 @@
 		if(node.id == /datum/techweb_node/error_node::id)
 			continue
 
-		// Must have a description
-		if(node.description == /datum/techweb_node::description)
-			TEST_NOTICE(src, "TECHWEB NODE - [node.type] did not have a description set.")
-			failed = TRUE
-
 		// Nodes must always be unique
 		if(node.id in unique_nodes)
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] used an id already in use by another node: \"[node.id]\"")
 			failed = TRUE
 		unique_nodes += node.id
+
+		// Must have a description
+		if(node.description == /datum/techweb_node::description)
+			TEST_NOTICE(src, "TECHWEB NODE - [node.type] did not have a description set.")
+			failed = TRUE
 
 		// Must have an announcement channel
 		if(!node.starting_node && !node.announce_channels?.len)
