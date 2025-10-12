@@ -27,7 +27,7 @@
 			failed = TRUE
 
 		// Must have costs set
-		if(!node.research_costs?.len)
+		if(!node.starting_node && !node.research_costs?.len)
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] did not have any research_costs set.")
 			failed = TRUE
 

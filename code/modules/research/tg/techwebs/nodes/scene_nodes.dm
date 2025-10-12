@@ -9,6 +9,7 @@
 		// Mouse Ray
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
+	announce_channels = list(CHANNEL_COMMON)
 
 /datum/techweb_node/sizeplay
 	id = TECHWEB_NODE_SIZEPLAY
@@ -40,3 +41,4 @@
 		"bodysnatcher",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list("NO_ANNOUNCE")
