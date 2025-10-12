@@ -296,6 +296,7 @@
 		"janitor_hud",
 		"rig_component_medhud",
 		"rig_component_sechud",
+		"rig_component_mining",
 		"graviton_goggles",
 		"omnihud",
 		// "diagnostic_hud",
