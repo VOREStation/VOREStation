@@ -5,6 +5,7 @@
 	var/list/unique_nodes = list()
 
 	// Each node in the web
+	var/list/used_designs = list()
 	for(var/node_id in SSresearch.techweb_nodes)
 		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
 		if(node.id == /datum/techweb_node/error_node::id)
@@ -40,6 +41,7 @@
 			failed = TRUE
 		else
 			for(var/design in node.design_ids)
+				used_designs += design
 				if(!SSresearch.techweb_designs[design])
 					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant design_id: \"[design]\"")
 					failed = TRUE
@@ -50,17 +52,6 @@
 				if(!SSresearch.techweb_nodes[req])
 					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant prereq_id: \"[req]\"")
 					failed = TRUE
-
-	// Each design
-	for(var/design_id in SSresearch.techweb_designs)
-		var/datum/design_techweb/design = SSresearch.techweb_designs[design_id]
-		if(design.id == DESIGN_ID_IGNORE)
-			continue
-
-		// Must all be accessible by science
-		if(!(design.departmental_flags & DEPARTMENT_BITFLAG_SCIENCE))
-			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] was not flagged for science department, all designs must be accessible by science.")
-			failed = TRUE
 
 	// We can't check for for some stuff in here if we haven't already checked and made sure the nodes are valid first
 	if(!failed)
@@ -87,6 +78,21 @@
 						if(prereq_currentcost > current_cost)
 							TEST_NOTICE(src, "TECHWEB NODE - [node.type] costs less to make then the previous node, must always be at least the same or more expensive. ours lowest is \[[current_cost]\], prereq lowest is \[[prereq_currentcost]\]")
 							failed = TRUE
+
+	// Each design
+	for(var/design_id in SSresearch.techweb_designs)
+		var/datum/design_techweb/design = SSresearch.techweb_designs[design_id]
+		if(design.id == DESIGN_ID_IGNORE)
+			continue
+
+		// Must all be accessible by science
+		if(!(design.departmental_flags & DEPARTMENT_BITFLAG_SCIENCE))
+			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] was not flagged for science department, all designs must be accessible by science.")
+			failed = TRUE
+
+		// Designs SHOULD be accessible, only a warning
+		if(!(design.id in used_designs))
+			TEST_NOTICE(src, "TECHWEB DESIGN - WARNING [design.type] is orphaned and not accessible from any techweb node. Is this intended?")
 
 	if(failed)
 		TEST_FAIL("All techweb entries must be valid")
