@@ -84,7 +84,7 @@
 							if(prereq_node.research_costs[req_cost_type] < prereq_currentcost)
 								prereq_currentcost = prereq_node.research_costs[req_cost_type]
 
-						if(prereq_currentcost < current_cost)
+						if(prereq_currentcost > current_cost)
 							TEST_NOTICE(src, "TECHWEB NODE - [node.type] costs less to make then the previous node, must always be at least the same or more expensive. ours lowest is \[[current_cost]\], prereq lowest is \[[prereq_currentcost]\]")
 							failed = TRUE
 
