@@ -211,6 +211,7 @@
 		"grid_checker",
 		"breakerbox",
 		"tesla_coil",
+		"rtg",
 		// "apc_control",
 		// "powermonitor",
 		// "smes",

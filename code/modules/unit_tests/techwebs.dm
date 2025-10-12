@@ -83,6 +83,7 @@
 							failed = TRUE
 
 	// Each design
+	var/used_design_paths = list()
 	for(var/design_id in SSresearch.techweb_designs)
 		var/datum/design_techweb/design = SSresearch.techweb_designs[design_id]
 		if(design.id == DESIGN_ID_IGNORE)
@@ -96,6 +97,18 @@
 		// Designs SHOULD be accessible, only a warning
 		if(!(design.id in used_designs))
 			TEST_NOTICE(src, "TECHWEB DESIGN - WARNING [design.type] is orphaned and not accessible from any techweb node. Is this intended?")
+
+		// Design must produce something
+		if(!design.build_path)
+			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] did not have a build_path.")
+			failed = TRUE
+
+		// Design must be a unique path produced
+		if(design.build_path in used_design_paths)
+			TEST_NOTICE(src, "TECHWEB DESIGN - [design.type] had a build_path that was already used by another design: \"[design.build_path]\"")
+			failed = TRUE
+
+		used_design_paths += design.build_path
 
 	if(failed)
 		TEST_FAIL("All techweb entries must be valid")
