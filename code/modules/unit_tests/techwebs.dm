@@ -1,3 +1,5 @@
+/datum/unit_test/techwebs_must_all_be_valid
+
 /datum/unit_test/techwebs_must_all_be_valid/Run()
 	var/failed = FALSE
 	var/list/unique_nodes = list()
@@ -15,7 +17,7 @@
 
 		// Nodes must always be unique
 		if(node.id in unique_nodes)
-			TEST_NOTICE(src, "TECHWEB NODE - [node.type] used an id already in use by another node: [node.id]")
+			TEST_NOTICE(src, "TECHWEB NODE - [node.type] used an id already in use by another node: \"[node.id]\"")
 			failed = TRUE
 		unique_nodes += node.id
 
@@ -33,7 +35,7 @@
 		if(node.prereq_ids.len)
 			for(var/req in node.prereq_ids)
 				if(!SSresearch.techweb_nodes[req])
-					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant prereq_id: [req]")
+					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant prereq_id: \"[req]\"")
 					failed = TRUE
 
 		// Must have valid designs
@@ -43,7 +45,7 @@
 		else
 			for(var/design in node.design_ids)
 				if(!SSresearch.techweb_designs[design])
-					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant design_id: [design]")
+					TEST_NOTICE(src, "TECHWEB NODE - [node.type] has a non-existant design_id: \"[design]\"")
 					failed = TRUE
 
 	// Each design
