@@ -1,4 +1,0 @@
-author: "Ryumi"
-delete-after: True
-changes:
-  - qol: "When using a PDA, if you receive a messinging server error when trying to send a PDA message to someone, your message will now be saved. Now you won't have to retype everything because the servers got quirky!"

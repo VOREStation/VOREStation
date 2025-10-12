@@ -85,3 +85,16 @@
   SatinIsle:
   - bugfix: Changed the description of Mochi Cakes as some people found the original
       a bit offensive.
+2025-10-12:
+  KillianKirilenko:
+  - qol: added light replacers to engineering's protolathes
+  Ryumi:
+  - qol: When using a PDA, if you receive a messinging server error when trying to
+      send a PDA message to someone, your message will now be saved. Now you won't
+      have to retype everything because the servers got quirky!
+  Will:
+  - bugfix: methane missing from gas scanner console in phoronics/toxins
+  - bugfix: noslip shoes and magboots are no longer ignored by slippery turfs
+  - bugfix: spacelube 2-3 turf slide after leaving the slippery turf restored
+  - balance: Distilling oxygen and hydrogen from water no longer uses a phoron catalyst,
+      and instead uses platinum and different atmospheres.
