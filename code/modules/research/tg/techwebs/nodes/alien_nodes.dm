@@ -10,7 +10,7 @@
 		"anobattery-advanced",
 		"anobattery-exotic",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(CHANNEL_SCIENCE)
 
 /datum/techweb_node/alien_engi
