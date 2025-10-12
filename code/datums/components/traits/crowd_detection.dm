@@ -10,6 +10,7 @@
 	VAR_PROTECTED/warning_cap = 400
 	VAR_PROTECTED/escalation_speed = 0.8
 	VAR_PROTECTED/only_people = FALSE
+	VAR_PROTECTED/invis_matters = TRUE
 	VAR_PROTECTED/next_loneliness_time = 0
 
 /datum/component/crowd_detection/Initialize()
@@ -75,7 +76,7 @@
 			in_range |= check_contents(content,max_layer,current_layer+1)
 	return in_range
 
-/datum/component/crowd_detection/proc/check_mob_company(var/mob/living/M,var/invis_matters = TRUE)
+/datum/component/crowd_detection/proc/check_mob_company(var/mob/living/M)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(/list)
@@ -253,7 +254,7 @@
 	if(istype(H_holder))
 		var/mob/living/held_by = find_held_by(H_holder)
 		if(held_by)
-			in_range |= check_mob_company(held_by,FALSE)
+			in_range |= check_mob_company(held_by)
 		in_range |= holder_check(human_parent,held_by)
 	return in_range
 
@@ -263,7 +264,7 @@
 	RETURN_TYPE(/list)
 	var/list/in_range = list()
 	if(istype(B))
-		in_range |= check_mob_company(B.owner,FALSE)
+		in_range |= check_mob_company(B.owner)
 		if(isbelly(B.owner.loc))
 			in_range |= belly_check(human_parent,B.owner.loc)
 	return in_range
