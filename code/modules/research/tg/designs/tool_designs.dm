@@ -12,7 +12,7 @@
 
 /datum/design_techweb/light_replacer
 	name = "Light replacer"
-	desc = "A device to automatically replace lights. Refill with working lightbulbs."
+	desc = "A device to automatically replace lights. Refill with working lightbulbs. Can also recycle broken bulbs, but this requires several broken bulbs to make a functioning one."
 	id = "light_replacer"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 1500, MAT_SILVER = 150, MAT_GLASS = 3000)
@@ -20,7 +20,7 @@
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_JANITORIAL
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design_techweb/spraybottle
 	name = "spray bottle"
