@@ -1,10 +1,16 @@
+/**
+ * Component that serves as a base type for detecting groups of mobs or players around us.
+ * It functions as a framework for lonely and agoraphobia to share large sections of code.
+ * Can be extended for other situations in the future.
+ *  */
 /datum/component/crowd_detection
-	var/mob/living/carbon/human/human_parent
-	var/loneliness_stage = 0
-	var/next_loneliness_time = 0
-	var/hallucination_cap = 25
-	var/warning_cap = 400
-	var/escalation_speed = 0.8
+	VAR_PROTECTED/mob/living/carbon/human/human_parent
+	VAR_PROTECTED/loneliness_stage = 0
+	VAR_PROTECTED/hallucination_cap = 25
+	VAR_PROTECTED/warning_cap = 400
+	VAR_PROTECTED/escalation_speed = 0.8
+	VAR_PROTECTED/only_people = FALSE
+	VAR_PROTECTED/next_loneliness_time = 0
 
 /datum/component/crowd_detection/Initialize()
 	if(!ishuman(parent))
@@ -18,6 +24,8 @@
 	. = ..()
 
 /datum/component/crowd_detection/proc/handle_life()
+	SHOULD_CALL_PARENT(TRUE)
+	PROTECTED_PROC(TRUE)
 	SIGNAL_HANDLER
 	// If they're dead or unconcious they're a bit beyond this kind of thing.
 	if(human_parent.stat)
@@ -36,6 +44,8 @@
 	return FALSE
 
 /datum/component/crowd_detection/proc/process_discomfort_stages()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PROTECTED_PROC(TRUE)
 	// No company? Suffer :(
 	if(loneliness_stage < warning_cap)
 		loneliness_stage = min(warning_cap,loneliness_stage+escalation_speed)
@@ -51,6 +61,9 @@
 		human_parent.hallucination = min(hallucination_cap,human_parent.hallucination+2.5*escalation_speed)
 
 /datum/component/crowd_detection/proc/check_contents(var/atom/item,var/max_layer = 3,var/current_layer = 1)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(/list)
 	var/list/in_range = list()
 	if(!item || !istype(item) || current_layer > max_layer)
 		return in_range
@@ -63,6 +76,9 @@
 	return in_range
 
 /datum/component/crowd_detection/proc/check_mob_company(var/mob/living/M,var/invis_matters = TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(/list)
 	var/list/in_range = list()
 	if(!istype(M))
 		return in_range
@@ -84,9 +100,13 @@
 	return in_range
 
 /datum/component/crowd_detection/proc/handle_loneliness_message()
+	SHOULD_CALL_PARENT(TRUE)
+	PROTECTED_PROC(TRUE)
 	return null
 
 /datum/component/crowd_detection/proc/sub_loneliness(var/amount = 4, var/message)
+	SHOULD_CALL_PARENT(TRUE)
+	PROTECTED_PROC(TRUE)
 	loneliness_stage = max(loneliness_stage - amount, 0)
 	if(world.time >= next_loneliness_time && loneliness_stage > 0)
 		if(message)
@@ -94,6 +114,9 @@
 		next_loneliness_time = world.time+500
 
 /datum/component/crowd_detection/proc/find_held_by(var/atom/item)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(/atom)
 	if(!item || !istype(item))
 		return null
 	else if(istype(item,/mob/living))
@@ -107,7 +130,6 @@
 // Lonelyness
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/component/crowd_detection/lonely
-	var/only_people = FALSE
 
 /datum/component/crowd_detection/lonely/major
 	only_people = TRUE
@@ -161,12 +183,12 @@
 	if(loneliness_stage >= 50)
 		return "[pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")]"
 	if(loneliness_stage >= 250)
-		return "[pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")]"
 		if(human_parent.stuttering < hallucination_cap)
 			human_parent.stuttering += 5
+		return "[pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")]"
 	if(loneliness_stage >= warning_cap)
 		return span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]"))
-	return null
+	. = ..()
 
 /datum/component/crowd_detection/lonely/proc/sub_loneliness(var/amount = 4, var/message)
 	if(!message)
@@ -198,7 +220,7 @@
 	for(var/obj/effect/overlay/aiholo/A in range(5, human_parent))
 		in_range |= A
 
-	if(in_range.len <= 2)
+	if(length(in_range) <= 2)
 		sub_loneliness()
 		return
 
@@ -218,9 +240,12 @@
 						"Please, just let me be alone!",
 						"I need to be alone!")
 		return span_bolddanger("[pick(panicmessages)]")
-	return null
+	. = ..()
 
 /datum/component/crowd_detection/agoraphobia/proc/holder_check(var/obj/item/holder/H_holder)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	RETURN_TYPE(/list)
 	var/list/in_range = list()
 	if(istype(H_holder))
 		var/mob/living/held_by = find_held_by(H_holder)
@@ -230,6 +255,9 @@
 	return in_range
 
 /datum/component/crowd_detection/agoraphobia/proc/belly_check(var/obj/belly/B)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	RETURN_TYPE(/list)
 	var/list/in_range = list()
 	if(istype(B))
 		in_range |= check_mob_company(B.owner,FALSE)
