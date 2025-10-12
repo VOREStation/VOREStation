@@ -46,6 +46,7 @@
 		// "radio_entertainment",
 		// "photocopier",
 	)
+	announce_channels = list(CHANNEL_COMMON)
 
 /datum/techweb_node/sanitation
 	id = TECHWEB_NODE_SANITATION
@@ -176,6 +177,7 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/physical/arcade_winner = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_COMMON)
 
 /datum/techweb_node/fireworks
 	id = TECHWEB_NODE_FIREWORKS
@@ -232,6 +234,7 @@
 		// "foodtray",
 		// "restaurant_portal",
 	)
+	announce_channels = list(CHANNEL_SERVICE)
 
 /datum/techweb_node/food_proc
 	id = TECHWEB_NODE_FOOD_PROC

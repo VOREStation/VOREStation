@@ -22,8 +22,11 @@
 		unique_nodes += node.id
 
 		// Must have an announcement channel
-		if(!node.announce_channels?.len)
+		if(!node.starting_node && !node.announce_channels?.len)
 			TEST_NOTICE(src, "TECHWEB NODE - [node.type] did not have any announce_channels set.")
+			failed = TRUE
+		if(node.starting_node && node.announce_channels?.len)
+			TEST_NOTICE(src, "TECHWEB NODE - [node.type] starting node has announcement channels, it should not.")
 			failed = TRUE
 
 		// Must have costs set
