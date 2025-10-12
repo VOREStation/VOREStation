@@ -58,8 +58,8 @@
 		for(var/node_id in SSresearch.techweb_nodes)
 			var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
 
-			// Check that our cost and make sure it's more expensive than our prior tier
-			if(node.prereq_ids.len)
+			// Check that our cost and make sure it's more expensive than our prior tier, unless they have a required experiment.
+			if(!node.required_experiments.len && node.prereq_ids.len)
 				if(!node.starting_node)
 					var/current_cost = node.research_costs.len ? INFINITY : 0
 					for(var/check_cost_type in node.research_costs)
@@ -79,7 +79,7 @@
 								prereq_currentcost = prereq_node.research_costs[req_cost_type]
 
 						if(prereq_currentcost > current_cost)
-							TEST_NOTICE(src, "TECHWEB NODE - [node.type] costs less to make then the previous node, must always be at least the same or more expensive. ours lowest is \[[current_cost]\], prereq lowest is \[[prereq_currentcost]\]")
+							TEST_NOTICE(src, "TECHWEB NODE - [node.type] costs less to make then the previous node, must always be at least the same or more expensive. ours lowest is \[[current_cost]\], prereq lowest is \[[prereq_currentcost]\]. Lesser costs than the previous node is only allowed if the node has a required experiment.")
 							failed = TRUE
 
 	// Each design
