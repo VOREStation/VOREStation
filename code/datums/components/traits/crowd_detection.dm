@@ -86,6 +86,13 @@
 /datum/component/crowd_detection/proc/handle_loneliness_message()
 	return null
 
+/datum/component/crowd_detection/proc/sub_loneliness(var/amount = 4, var/message)
+	loneliness_stage = max(loneliness_stage - amount, 0)
+	if(world.time >= next_loneliness_time && loneliness_stage > 0)
+		if(message)
+			to_chat(human_parent, message)
+		next_loneliness_time = world.time+500
+
 /datum/component/crowd_detection/proc/find_held_by(var/atom/item)
 	if(!item || !istype(item))
 		return null
@@ -94,22 +101,7 @@
 	else
 		return find_held_by(item.loc)
 
-/datum/component/crowd_detection/proc/holder_check(var/obj/item/holder/H_holder)
-	var/list/in_range = list()
-	if(istype(H_holder))
-		var/mob/living/held_by = find_held_by(H_holder)
-		if(held_by)
-			in_range |= check_mob_company(held_by,FALSE)
-		in_range |= holder_check(human_parent,held_by)
-	return in_range
 
-/datum/component/crowd_detection/proc/belly_check(var/obj/belly/B)
-	var/list/in_range = list()
-	if(istype(B))
-		in_range |= check_mob_company(B.owner,FALSE)
-		if(isbelly(B.owner.loc))
-			in_range |= belly_check(human_parent,B.owner.loc)
-	return in_range
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Lonelyness
@@ -176,11 +168,11 @@
 		return span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]"))
 	return null
 
-/datum/component/crowd_detection/lonely/proc/sub_loneliness(var/amount = 4)
-	loneliness_stage = max(loneliness_stage - 4, 0)
-	if(world.time >= next_loneliness_time && loneliness_stage > 0)
-		to_chat(human_parent, span_infoplain("The nearby company calms you down..."))
-		next_loneliness_time = world.time+500
+/datum/component/crowd_detection/lonely/proc/sub_loneliness(var/amount = 4, var/message)
+	if(!message)
+		message = span_infoplain("The nearby company calms you down...")
+	. = ..()
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -207,7 +199,7 @@
 		in_range |= A
 
 	if(in_range.len <= 2)
-		loneliness_stage = max(loneliness_stage-4,0)
+		sub_loneliness()
 		return
 
 	process_discomfort_stages()
@@ -228,16 +220,19 @@
 		return span_bolddanger("[pick(panicmessages)]")
 	return null
 
-/datum/component/crowd_detection/agoraphobia/check_mob_company(var/mob/living/M,var/invis_matters = TRUE)
+/datum/component/crowd_detection/agoraphobia/proc/holder_check(var/obj/item/holder/H_holder)
 	var/list/in_range = list()
-	if(!istype(M))
-		return in_range
-	var/social_check = !istype(M, /mob/living/carbon) && !istype(M, /mob/living/silicon/robot)
-	var/ckey_check = !M.ckey
-	var/overall_checks = M == human_parent || M.stat == DEAD || social_check || ckey_check
-	if(invis_matters && M.invisibility > human_parent.see_invisible)
-		return in_range
-	if(!overall_checks)
-		in_range |= M
-	in_range |= check_contents(M)
+	if(istype(H_holder))
+		var/mob/living/held_by = find_held_by(H_holder)
+		if(held_by)
+			in_range |= check_mob_company(held_by,FALSE)
+		in_range |= holder_check(human_parent,held_by)
+	return in_range
+
+/datum/component/crowd_detection/agoraphobia/proc/belly_check(var/obj/belly/B)
+	var/list/in_range = list()
+	if(istype(B))
+		in_range |= check_mob_company(B.owner,FALSE)
+		if(isbelly(B.owner.loc))
+			in_range |= belly_check(human_parent,B.owner.loc)
 	return in_range
