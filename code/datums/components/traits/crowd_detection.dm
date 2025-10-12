@@ -171,7 +171,7 @@
 /datum/component/crowd_detection/lonely/proc/sub_loneliness(var/amount = 4, var/message)
 	if(!message)
 		message = span_infoplain("The nearby company calms you down...")
-	. = ..()
+	. = ..(amount, message)
 
 
 
