@@ -61,14 +61,14 @@
 			// Check that our cost and make sure it's more expensive than our prior tier
 			if(node.prereq_ids.len)
 				if(!node.starting_node)
-					var/current_cost = INFINITY
+					var/current_cost = node.research_costs.len ? INFINITY : 0
 					for(var/check_cost_type in node.research_costs)
 						// Get the LOWEST cost of us
 						if(node.research_costs[check_cost_type] < current_cost)
 							current_cost = node.research_costs[check_cost_type]
 
 					for(var/prereq_node_id in node.prereq_ids)
-						var/prereq_currentcost = INFINITY
+						var/prereq_currentcost = prereq_node.research_costs ? INFINITY : 0
 						var/datum/techweb_node/prereq_node = SSresearch.techweb_nodes[prereq_node_id]
 						for(var/req_cost_type in prereq_node.research_costs)
 							// Get the LOWEST cost of prereq
