@@ -63,10 +63,53 @@
 	return in_range
 
 /datum/component/crowd_detection/proc/check_mob_company(var/mob/living/M,var/invis_matters = TRUE)
-	return list()
+	var/list/in_range = list()
+	if(!istype(M))
+		return in_range
+	var/social_check = only_people && !istype(M, /mob/living/carbon) && !istype(M, /mob/living/silicon/robot)
+	var/self_invisible_check = M == human_parent || M.invisibility > human_parent.see_invisible
+	var/ckey_check = only_people && !M.ckey
+	var/overall_checks = M == human_parent || M.stat == DEAD || social_check || ckey_check
+	if(invis_matters && self_invisible_check)
+		return in_range
+	if((M.faction == FACTION_NEUTRAL || M.faction == human_parent.faction) && !overall_checks)
+		in_range |= M
+	else
+		in_range |= check_contents(M)
+		if(M.vore_organs)
+			for(var/obj/belly/B in M.vore_organs)
+				for(var/mob/living/content in B.contents)
+					if(istype(content))
+						in_range |= check_mob_company(content)
+	return in_range
 
 /datum/component/crowd_detection/proc/handle_loneliness_message()
 	return null
+
+/datum/component/crowd_detection/proc/find_held_by(var/atom/item)
+	if(!item || !istype(item))
+		return null
+	else if(istype(item,/mob/living))
+		return item
+	else
+		return find_held_by(item.loc)
+
+/datum/component/crowd_detection/proc/holder_check(var/obj/item/holder/H_holder)
+	var/list/in_range = list()
+	if(istype(H_holder))
+		var/mob/living/held_by = find_held_by(H_holder)
+		if(held_by)
+			in_range |= check_mob_company(held_by,FALSE)
+		in_range |= holder_check(human_parent,held_by)
+	return in_range
+
+/datum/component/crowd_detection/proc/belly_check(var/obj/belly/B)
+	var/list/in_range = list()
+	if(istype(B))
+		in_range |= check_mob_company(B.owner,FALSE)
+		if(isbelly(B.owner.loc))
+			in_range |= belly_check(human_parent,B.owner.loc)
+	return in_range
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Lonelyness
@@ -139,27 +182,6 @@
 		to_chat(human_parent, span_infoplain("The nearby company calms you down..."))
 		next_loneliness_time = world.time+500
 
-/datum/component/crowd_detection/lonely/check_mob_company(var/mob/living/M,var/invis_matters = TRUE)
-	var/list/in_range = list()
-	if(!istype(M))
-		return in_range
-	var/social_check = only_people && !istype(M, /mob/living/carbon) && !istype(M, /mob/living/silicon/robot)
-	var/self_invisible_check = M == human_parent || M.invisibility > human_parent.see_invisible
-	var/ckey_check = only_people && !M.ckey
-	var/overall_checks = M.stat == DEAD || social_check || ckey_check
-	if(invis_matters && self_invisible_check)
-		return in_range
-	if((M.faction == FACTION_NEUTRAL || M.faction == human_parent.faction) && !overall_checks)
-		sub_loneliness()
-	else
-		if(M.vore_organs)
-			for(var/obj/belly/B in M.vore_organs)
-				for(var/mob/living/content in B.contents)
-					if(istype(content))
-						in_range |= check_mob_company(content)
-	return in_range
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Agoraphobia
@@ -205,31 +227,6 @@
 						"I need to be alone!")
 		return span_bolddanger("[pick(panicmessages)]")
 	return null
-
-/datum/component/crowd_detection/agoraphobia/proc/find_held_by(var/atom/item)
-	if(!item || !istype(item))
-		return null
-	else if(istype(item,/mob/living))
-		return item
-	else
-		return find_held_by(item.loc)
-
-/datum/component/crowd_detection/agoraphobia/proc/holder_check(var/obj/item/holder/H_holder)
-	var/list/in_range = list()
-	if(istype(H_holder))
-		var/mob/living/held_by = find_held_by(H_holder)
-		if(held_by)
-			in_range |= check_mob_company(held_by,FALSE)
-		in_range |= holder_check(human_parent,held_by)
-	return in_range
-
-/datum/component/crowd_detection/agoraphobia/proc/belly_check(var/obj/belly/B)
-	var/list/in_range = list()
-	if(istype(B))
-		in_range |= check_mob_company(B.owner,FALSE)
-		if(isbelly(B.owner.loc))
-			in_range |= belly_check(human_parent,B.owner.loc)
-	return in_range
 
 /datum/component/crowd_detection/agoraphobia/check_mob_company(var/mob/living/M,var/invis_matters = TRUE)
 	var/list/in_range = list()
