@@ -190,7 +190,7 @@
 		return span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]"))
 	. = ..()
 
-/datum/component/crowd_detection/lonely/proc/sub_loneliness(var/amount = 4, var/message)
+/datum/component/crowd_detection/lonely/sub_loneliness(var/amount = 4, var/message)
 	if(!message)
 		message = span_infoplain("The nearby company calms you down...")
 	. = ..(amount, message)
