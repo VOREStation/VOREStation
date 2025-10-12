@@ -130,6 +130,12 @@
 	definition of \"form over function,\" in capsule form!"
 	mappath = "maps/submaps/shelters/shelter_h.dmm"
 
+/datum/map_template/shelter/theta
+	name = "Shelter Theta"
+	shelter_id = "shelter_theta"
+	description = "(5x7)"
+	mappath = "maps/submaps/shelters/shelter_j.dmm"
+
 /datum/map_template/shelter/rec
 	name = "Shelter Rec Room"
 	shelter_id = "shelter_recroom"
