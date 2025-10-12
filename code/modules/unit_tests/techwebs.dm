@@ -68,8 +68,8 @@
 							current_cost = node.research_costs[check_cost_type]
 
 					for(var/prereq_node_id in node.prereq_ids)
-						var/prereq_currentcost = prereq_node.research_costs ? INFINITY : 0
 						var/datum/techweb_node/prereq_node = SSresearch.techweb_nodes[prereq_node_id]
+						var/prereq_currentcost = prereq_node.research_costs ? INFINITY : 0
 						for(var/req_cost_type in prereq_node.research_costs)
 							// Get the LOWEST cost of prereq
 							if(prereq_node.research_costs[req_cost_type] < prereq_currentcost)
