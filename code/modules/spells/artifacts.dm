@@ -18,7 +18,7 @@
 		return
 
 	to_chat(user, span_info("You can see... everything!"))
-	visible_message(span_danger("[user] stares into [src], their eyes glazing over."))
+	visible_message(span_danger("[user] stares into [src], [user.p_their()] eyes glazing over."))
 
 	user.teleop = user.ghostize(1)
 	announce_ghost_joinleave(user.teleop, 1, "You feel that they used a powerful artifact to [pick("invade","disturb","disrupt","infest","taint","spoil","blight")] this place with their presence.")

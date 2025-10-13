@@ -29,9 +29,8 @@
 	temp_blade.attack_self()
 
 /obj/item/cane/concealed/attack_self(var/mob/user)
-	var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 	if(concealed_blade)
-		user.visible_message(span_warning("[user] has unsheathed \a [concealed_blade] from [T.his] [src]!"), "You unsheathe \the [concealed_blade] from \the [src].")
+		user.visible_message(span_warning("[user] has unsheathed \a [concealed_blade] from [user.p_their()] [src]!"), "You unsheathe \the [concealed_blade] from \the [src].")
 		// Calling drop/put in hands to properly call item drop/pickup procs
 		playsound(src, 'sound/weapons/holster/sheathout.ogg', 50, 1)
 		user.drop_from_inventory(src)
@@ -46,8 +45,7 @@
 
 /obj/item/cane/concealed/attackby(var/obj/item/material/sword/katana/caneblade/W, var/mob/user)
 	if(!src.concealed_blade && istype(W))
-		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
-		user.visible_message(span_warning("[user] has sheathed \a [W] into [T.his] [src]!"), "You sheathe \the [W] into \the [src].")
+		user.visible_message(span_warning("[user] has sheathed \a [W] into [user.p_their()] [src]!"), "You sheathe \the [W] into \the [src].")
 		playsound(src, 'sound/weapons/holster/sheathin.ogg', 50, 1)
 		user.drop_from_inventory(W)
 		W.loc = src
