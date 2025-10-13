@@ -829,7 +829,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	if(!isliving(M))
 		return FALSE
 	if(isbelly(M.loc) || istype(M.loc,/obj/item/dogborg/sleeper))
-		return 0
+		return FALSE
 	if(M.is_remote_viewing())
 		to_chat(M, span_warning("You are too distracted to do that."))
 		return 0
