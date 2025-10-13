@@ -18,17 +18,12 @@
 /datum/element/spontaneous_vore/proc/handle_stumble(mob/living/source, mob/living/target)
 	SIGNAL_HANDLER
 
-	//snowflake protean code to prevent protean blobform from eating their human form and humanform from eating their protean blob...gross.
-	//We are trying to eat our blobform
-	if(istype(target, /mob/living/simple_mob/protean_blob))
-		var/mob/living/simple_mob/protean_blob/PB = target
-		if(PB.humanform == source)
-			return
-	//Our blobform is trying to eat us
-	if(istype(source, /mob/living/simple_mob/protean_blob))
-		var/mob/living/simple_mob/protean_blob/PB = source
-		if(PB.humanform == target)
-			return
+	//Prevents slipping into ourselves if we have a blobform.
+	if(!isturf(target.loc) || !isturf(source.loc)) //No slipping into things that aren't even on a valid turf.
+		return
+	//Prevents eating ourselves with our own stomach.
+	if(source.vore_selected == target.vore_selected)
+		return
 
 	//We are able to eat the person stumbling into us.
 	if(CanStumbleVore(prey = target, pred = source)) //This is if the person stumbling into us is able to eat us!
