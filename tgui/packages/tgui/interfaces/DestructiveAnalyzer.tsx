@@ -11,7 +11,7 @@ type Data = {
   indestructible: BooleanLike;
   already_deconstructed: BooleanLike;
   recoverable_points: string;
-  node_data: NodeData[];
+  node_data: NodeData[] | null;
   research_point_id: string;
 };
 
@@ -31,7 +31,7 @@ export const DestructiveAnalyzer = (props) => {
     already_deconstructed,
     recoverable_points,
     research_point_id,
-    node_data = [],
+    node_data,
   } = data;
   if (!server_connected) {
     return (
@@ -104,7 +104,7 @@ export const DestructiveAnalyzer = (props) => {
               />
             </>
           )}
-          {node_data.map((node) => (
+          {node_data?.map((node) => (
             <Button.Confirm
               icon="cash-register"
               mt={1}
