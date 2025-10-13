@@ -890,8 +890,6 @@
 	set category = "Superpower"
 
 	if(stat!=CONSCIOUS)
-		reset_view(0)
-		remoteview_target = null
 		return
 
 	if(!(mMorph in mutations))
@@ -964,9 +962,7 @@
 	set name = "Project mind"
 	set category = "Abilities.Superpower"
 
-	if(stat!=CONSCIOUS)
-		reset_view(0)
-		remoteview_target = null
+	if(stat != CONSCIOUS)
 		return
 
 	if(!(mRemotetalk in src.mutations))
@@ -995,17 +991,11 @@
 	set name = "Remote View"
 	set category = "Abilities.Superpower"
 
-	if(stat!=CONSCIOUS)
-		remoteview_target = null
-		reset_view(0)
+	if(stat != CONSCIOUS)
 		return
 
-	if(!(mRemote in src.mutations))
-		remoteview_target = null
-		reset_view(0)
-		remove_verb(src, /mob/living/carbon/human/proc/remoteobserve)
-	if(client.eye != client.mob)
-		reset_view(0)
+	if(is_remote_viewing())
+		reset_perspective()
 		return
 
 	var/list/mob/creatures = list()
@@ -1022,13 +1012,9 @@
 		creatures += h
 
 	var/mob/target = input ("Who do you want to project your mind to?") as mob in creatures
-
-	if (target)
-		remoteview_target = target
-		reset_view(target)
-	else
-		remoteview_target = null
-		reset_view(0)
+	if(target)
+		AddComponent(/datum/component/remote_view/mremote_mutation, target)
+		return
 
 /mob/living/carbon/human/get_visible_gender(mob/user, force)
 	switch(force)
@@ -1572,7 +1558,7 @@
 		return remove_from_mob(W, src.loc)
 	return ..()
 
-/mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
+/mob/living/carbon/human/reset_perspective(atom/A, update_hud = 1)
 	..()
 	if(update_hud)
 		handle_regular_hud_updates()

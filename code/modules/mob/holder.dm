@@ -30,7 +30,6 @@ var/list/holder_mob_icon_cache = list()
 	ASSERT(ismob(held))
 	. = ..()
 	held.forceMove(src)
-	held.reset_view(src)
 	START_PROCESSING(SSobj, src)
 
 /mob/living/get_status_tab_items()
@@ -68,10 +67,10 @@ var/list/holder_mob_icon_cache = list()
 			. += ""
 			. += "Location: [location]"
 
+/// Loads the mob into the holder and sets several vis_flags
 /obj/item/holder/Entered(mob/held, atom/OldLoc)
 	if(held_mob)
 		held.forceMove(get_turf(src))
-		held.reset_view(null)
 		return
 	ASSERT(ismob(held))
 	. = ..()
@@ -83,38 +82,39 @@ var/list/holder_mob_icon_cache = list()
 	original_transform = held.transform
 	held.transform = null
 
+/// Handles restoring the vis flags and scale of the mob, also makes the holder invisible now that it's empty.
 /obj/item/holder/Exited(atom/movable/thing, atom/OldLoc)
 	if(thing == held_mob)
 		held_mob.transform = original_transform
-		held_mob.update_transform() //VOREStation edit
+		held_mob.update_transform()
 		held_mob.vis_flags = original_vis_flags
 		held_mob = null
+		invisibility = INVISIBILITY_ABSTRACT
 	..()
 
+/// Dumps the mob if we still hold one, and if we are held by a mob clears us from its inventory.
 /obj/item/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(held_mob)
+		var/mob/cached_mob = held_mob
 		dump_mob()
+		cached_mob.reset_perspective() // This case cannot be handled gracefully, make sure the mob view is cleaned up.
 	if(ismob(loc))
 		var/mob/M = loc
-		M.drop_from_inventory(src, get_turf(src))
-	return ..()
+		M.drop_from_inventory(src, loc)
+	. = ..()
 
+/// If the mob somehow leaves the holder, clean us up.
 /obj/item/holder/process()
-	if(held_mob?.loc != src || isturf(loc))
+	if(held_mob?.loc != src || isturf(loc) || isbelly(loc))
 		qdel(src)
 
+/// Releases the mob from inside the holder. Calls forceMove() which calls Exited(). Then does cleanup for the client's eye location.
 /obj/item/holder/proc/dump_mob()
 	if(!held_mob)
 		return
 	if (held_mob.loc == src || isnull(held_mob.loc))
-		held_mob.transform = original_transform
-		held_mob.update_transform()
-		held_mob.vis_flags = original_vis_flags
-		held_mob.reset_view(null)
-		held_mob.forceMove(get_turf(src))
-		held_mob = null
-	invisibility = INVISIBILITY_ABSTRACT
+		held_mob.forceMove(loc)
 
 /obj/item/holder/throw_at(atom/target, range, speed, thrower)
 	if(held_mob)
@@ -146,12 +146,10 @@ var/list/holder_mob_icon_cache = list()
 			holster.clear_holster()
 		to_chat(held, span_warning("You extricate yourself from [holster]."))
 		forceMove(get_turf(src))
-		held.reset_view(null)
 	else if(isitem(loc))
 		var/obj/item/I = loc
 		to_chat(held, span_warning("You struggle free of [loc]."))
 		forceMove(get_turf(src))
-		held.reset_view(null)
 		if(istype(I))
 			I.on_holder_escape(src)
 

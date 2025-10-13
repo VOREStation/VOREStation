@@ -98,3 +98,8 @@
   - bugfix: spacelube 2-3 turf slide after leaving the slippery turf restored
   - balance: Distilling oxygen and hydrogen from water no longer uses a phoron catalyst,
       and instead uses platinum and different atmospheres.
+2025-10-13:
+  Kashargul:
+  - code_imp: update dependencies
+  SatinIsle:
+  - bugfix: Fixes Fat Feline 2 sprites from going invisible on loafing
