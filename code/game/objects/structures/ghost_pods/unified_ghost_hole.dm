@@ -72,7 +72,7 @@
 	// R.has_hands = TRUE // Downstream
 	if(M.mind)
 		M.mind.transfer_to(newPred)
-	to_chat(M, span_notice("You are " + span_bold("[newPred]") + ", somehow having gotten aboard the station in search of food, shelter, or safety. The environment around you is a strange and unfamiliar one, but sooner or later you'll have to leave your hiding place in search of food. How you choose to do so is up to you, kust beware that you don't end up falling prey to some other creature."))
+	to_chat(M, span_notice("You are " + span_bold("[newPred]") + ", somehow having stowed away in search of food, shelter, or safety. The environment around you is a strange and unfamiliar one, but sooner or later you'll have to leave your hiding place in search of food. How you choose to do so is up to you, just beware that you don't end up falling prey to some other creature."))
 	to_chat(M, span_critical("Please be advised, this role is NOT AN ANTAGONIST."))
 	to_chat(M, span_warning("You may be a spooky (or cute!) space critter, but your role is to facilitate roleplay, not to fight the station and slaughter people. You're free to get into any kind of roleplay scene you like if OOC prefs align, but emphasis is on the 'roleplay' here. If you intend to be an actual threat, you MUST seek permission from staff first. GENERALLY, this role should avoid well populated areas, but you might be able to get away with it if you spawn as something relatively innocuous."))
 	newPred.ckey = M.ckey
@@ -90,12 +90,10 @@
 	newMorph.voremob_loaded = TRUE // On-demand belly loading.
 	if(M.mind)
 		M.mind.transfer_to(newMorph)
-	to_chat(M, span_notice("You are a " + span_bold("Morph") + ", somehow having gotten aboard the station in your wandering. \
-	You are wary of the environment around you, but your primal hunger still calls for you to find prey. Seek a convincing disguise, \
-	using your amorphous form to traverse vents to find and consume weak prey."))
-	to_chat(M, span_notice("You can use shift + click on objects to disguise yourself as them, but your strikes are nearly useless when you are disguised. \
-	You can undisguise yourself by shift + clicking yourself, but disguise being switched, or turned on and off has a short cooldown. You can also ventcrawl, \
-	by using alt + click on the vent or scrubber."))
+	to_chat(M, span_notice("You are a " + span_bold("Morph") + ", somehow having stowed away in your wandering. You are in a strange and unfamiliar place, but one that's sure to be full of tasty treats and learning opportunities. If you want to survive here for long you should probably seek a convincing disguise, or at the very least take advantage of your amorphous form to slither through the ventilation system and avoid danger that way."))
+	to_chat(M, span_notice("You can use shift + click on objects and creatures to disguise yourself as them, but your strikes are nearly useless when you are disguised. \
+	You can undisguise yourself by shift + clicking yourself, but changing your shape (whether changing to a false form or returning to your natural form) has a short cooldown. You can also ventcrawl, \
+	by using alt + click on the vent or scrubber. Note that it may be impossible to impersonate certain people due to mechanical preference settings."))
 	to_chat(M, span_critical("Please be advised, this role is NOT AN ANTAGONIST."))
 	to_chat(M, span_warning("You may be a weird goopy creature, but your role is to facilitate weird goopy creature roleplay, not to fight the station and slaughter people. You're free to get into any kind of roleplay scene you like if OOC prefs align, but emphasis is on the 'roleplay' here. If you intend to be an actual threat, you MUST seek permission from staff first. GENERALLY, this role should avoid well populated areas, but you might be able to get away with it if you play your cards right."))
 
