@@ -1,6 +1,13 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Image, NoticeBox, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Image,
+  NoticeBox,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
@@ -57,72 +64,81 @@ export const DestructiveAnalyzer = () => {
   }
   return (
     <Window width={400} height={260} title="Destructive Analyzer">
-      <Window.Content scrollable>
-        <Section
-          title={loaded_item}
-          buttons={
-            <Button
-              icon="eject"
-              tooltip="Ejects the item currently inside the machine."
-              onClick={() => act('eject_item')}
-            />
-          }
-        >
-          <Image
-            src={`data:image/jpeg;base64,${item_icon}`}
-            height="64px"
-            width="64px"
-            verticalAlign="middle"
-          />
-        </Section>
-        <Section title="Deconstruction Methods">
-          {!!indestructible && (
-            <NoticeBox textAlign="center" danger>
-              This item can&apos;t be deconstructed!
-            </NoticeBox>
-          )}
-          {!indestructible && (
-            <>
-              {!!recoverable_points && (
-                <>
-                  <Box fontSize="14px">Research points from deconstruction</Box>
-                  <Box>{recoverable_points}</Box>
-                </>
-              )}
-              <Button.Confirm
-                icon="hammer"
-                tooltip={
-                  already_deconstructed
-                    ? 'This item item has already been deconstructed, and will not give any additional information.'
-                    : 'Destroys the object currently residing in the machine.'
-                }
-                onClick={() =>
-                  act('deconstruct', { deconstruct_id: research_point_id })
-                }
-              >
-                Deconstruct
-              </Button.Confirm>
-            </>
-          )}
-          {node_data?.map((node) => (
-            <Button.Confirm
-              icon="cash-register"
-              mt={1}
-              disabled={!node.node_hidden}
-              key={node.node_id}
-              tooltip={
-                node.node_hidden
-                  ? 'Deconstruct this to research the selected node.'
-                  : 'This node has already been researched.'
-              }
-              onClick={() =>
-                act('deconstruct', { deconstruct_id: node.node_id })
+      <Window.Content>
+        <Stack fill>
+          <Stack.Item grow>
+            <Section
+              title={loaded_item}
+              fill
+              buttons={
+                <Button
+                  icon="eject"
+                  tooltip="Ejects the item currently inside the machine."
+                  onClick={() => act('eject_item')}
+                />
               }
             >
-              {node.node_name}
-            </Button.Confirm>
-          ))}
-        </Section>
+              <Image
+                src={`data:image/jpeg;base64,${item_icon}`}
+                height="64px"
+                width="64px"
+                verticalAlign="middle"
+              />
+            </Section>
+          </Stack.Item>
+          <Stack.Item grow>
+            <Section fill title="Deconstruction Methods">
+              {!!indestructible && (
+                <NoticeBox textAlign="center" danger>
+                  This item can&apos;t be deconstructed!
+                </NoticeBox>
+              )}
+              {!indestructible && (
+                <>
+                  {!!recoverable_points && (
+                    <>
+                      <Box fontSize="14px">
+                        Research points from deconstruction
+                      </Box>
+                      <Box>{recoverable_points}</Box>
+                    </>
+                  )}
+                  <Button.Confirm
+                    icon="hammer"
+                    tooltip={
+                      already_deconstructed
+                        ? 'This item item has already been deconstructed, and will not give any additional information.'
+                        : 'Destroys the object currently residing in the machine.'
+                    }
+                    onClick={() =>
+                      act('deconstruct', { deconstruct_id: research_point_id })
+                    }
+                  >
+                    Deconstruct
+                  </Button.Confirm>
+                </>
+              )}
+              {node_data?.map((node) => (
+                <Button.Confirm
+                  icon="cash-register"
+                  mt={1}
+                  disabled={!node.node_hidden}
+                  key={node.node_id}
+                  tooltip={
+                    node.node_hidden
+                      ? 'Deconstruct this to research the selected node.'
+                      : 'This node has already been researched.'
+                  }
+                  onClick={() =>
+                    act('deconstruct', { deconstruct_id: node.node_id })
+                  }
+                >
+                  {node.node_name}
+                </Button.Confirm>
+              ))}
+            </Section>
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );
