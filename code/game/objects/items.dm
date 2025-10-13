@@ -827,7 +827,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	if(!M.client)
 		return FALSE
 	if(!isliving(M))
-		return 0
+		return FALSE
 	if(isbelly(M.loc) || istype(M.loc,/obj/item/dogborg/sleeper))
 		return 0
 	if(M.is_remote_viewing())
