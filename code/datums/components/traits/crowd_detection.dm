@@ -13,6 +13,7 @@
 	VAR_PROTECTED/escalation_speed = 0.8
 	VAR_PROTECTED/only_people = FALSE
 	VAR_PROTECTED/invis_matters = TRUE
+	VAR_PROTECTED/belly_is_calming = TRUE
 
 	VAR_PRIVATE/is_calm = TRUE
 	VAR_PRIVATE/next_message_time = 0
@@ -40,14 +41,18 @@
 	if(human_parent.hallucination >= hallucination_cap && discomfort >= warning_cap)
 		discomfort = warning_cap
 		return TRUE
-	// Changelings are immune to these
-	var/datum/component/antag/changeling/comp = human_parent.GetComponent(/datum/component/antag/changeling)
-	if(comp) // We are never alone~
-		discomfort = 0
+	// I don't need to be told every 2 seconds I'm freaking out when I'm in a belly trying to WRITE!!! We can't be reasonably crowded in a belly, and won't be alone in one, so lets just handle it here.
+	if(isbelly(human_parent.loc))
+		if(belly_is_calming)
+			calm_discomfort()
+		return TRUE
+	// Changelings are immune to these, so we may as well stop handling it... It's unlikely you will turn back from a changeling as well.
+	if(human_parent.GetComponent(/datum/component/antag/changeling)) // We are never alone~
+		qdel(src)
 		return TRUE
 	return FALSE
 
-/datum/component/crowd_detection/proc/process_discomfort_stages()
+/datum/component/crowd_detection/proc/increase_discomfort()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	// No company? Suffer :(
@@ -65,7 +70,7 @@
 	if(discomfort >= warning_cap && human_parent.hallucination < hallucination_cap)
 		human_parent.hallucination = min(hallucination_cap,human_parent.hallucination+2.5*escalation_speed)
 
-/datum/component/crowd_detection/proc/check_contents(var/atom/item,var/max_layer = 3,var/current_layer = 1)
+/datum/component/crowd_detection/proc/check_contents(atom/item, max_layer = 3, current_layer = 1)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(/list)
@@ -80,7 +85,7 @@
 			in_range |= check_contents(content,max_layer,current_layer+1)
 	return in_range
 
-/datum/component/crowd_detection/proc/check_mob_company(var/mob/living/M)
+/datum/component/crowd_detection/proc/check_mob_company(mob/living/M)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(/list)
@@ -104,12 +109,12 @@
 						in_range |= check_mob_company(content)
 	return in_range
 
-/datum/component/crowd_detection/proc/get_discomfort_message(var/current_discomfort)
+/datum/component/crowd_detection/proc/get_discomfort_message(current_discomfort)
 	SHOULD_CALL_PARENT(TRUE)
 	PROTECTED_PROC(TRUE)
 	return null
 
-/datum/component/crowd_detection/proc/calm_discomfort(var/amount = 4, var/message)
+/datum/component/crowd_detection/proc/calm_discomfort(amount = 4, message = null)
 	SHOULD_CALL_PARENT(TRUE)
 	PROTECTED_PROC(TRUE)
 	discomfort = max(discomfort - amount, 0)
@@ -120,7 +125,7 @@
 			is_calm = TRUE
 		next_message_time = world.time+500
 
-/datum/component/crowd_detection/proc/find_held_by(var/atom/item)
+/datum/component/crowd_detection/proc/find_held_by(atom/item)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	RETURN_TYPE(/atom)
@@ -159,13 +164,12 @@
 	if(human_parent.has_brain_worms())
 		calm_discomfort()
 		return
-	// Vored? Not gonna get frightened.
-	if(isbelly(human_parent.loc))
-		calm_discomfort()
-		return
+
+	// Grabbed by a mob
 	if(istype(human_parent.loc, /obj/item/holder))
 		calm_discomfort()
 		return
+
 	// Check for company.
 	if(length(check_contents(human_parent))) //Check our item slots and storage for any micros.
 		calm_discomfort()
@@ -182,10 +186,7 @@
 					if(length(check_mob_company(content)))
 						return
 
-	//And some more misc checks
-	for(var/obj/item/holder/micro/M in human_parent)
-		calm_discomfort()
-		return
+	//Things that are not mobs, but will calm lonelyness
 	for(var/obj/effect/overlay/aiholo/A in range(5, human_parent))
 		calm_discomfort()
 		return
@@ -193,7 +194,7 @@
 		calm_discomfort()
 		return
 
-	process_discomfort_stages()
+	increase_discomfort()
 
 /datum/component/crowd_detection/lonely/get_discomfort_message(var/current_discomfort)
 	if(current_discomfort >= warning_cap)
@@ -219,12 +220,10 @@
 // Agoraphobia
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/component/crowd_detection/agoraphobia
+	belly_is_calming = FALSE // Stops message spam, but doesn't decrease discomfort
 
 /datum/component/crowd_detection/agoraphobia/handle_life()
 	if(..())
-		return
-
-	if(isbelly(human_parent.loc)) //I don't need to be told every 2 seconds I'm freaking out when I'm in a belly trying to WRITE!!! We can handle all the stress of it when (IF) we are let out of the gut.
 		return
 
 	var/list/in_range = list()
@@ -237,14 +236,13 @@
 		in_range |= check_mob_company(M)
 	for(var/obj/effect/overlay/aiholo/A in range(5, human_parent))
 		in_range |= A
-
 	if(length(in_range) <= 2)
 		calm_discomfort()
 		return
 
-	process_discomfort_stages()
+	increase_discomfort()
 
-/datum/component/crowd_detection/agoraphobia/get_discomfort_message(var/current_discomfort)
+/datum/component/crowd_detection/agoraphobia/get_discomfort_message( current_discomfort)
 	if(current_discomfort >= warning_cap)
 		return span_bolddanger(pick("Why am I still here? I have to leave and get some space!",
 									"Please, just let me be alone!",
@@ -259,12 +257,12 @@
 		return "You notice there's more people than you feel comfortable with around you..."
 	. = ..()
 
-/datum/component/crowd_detection/agoraphobia/calm_discomfort(var/amount = 4, var/message)
+/datum/component/crowd_detection/agoraphobia/calm_discomfort(amount = 4, message)
 	if(!message && !get_calm())
 		message = span_infoplain("You feel calmer with no one around...")
 	. = ..(amount, message)
 
-/datum/component/crowd_detection/agoraphobia/proc/holder_check(var/obj/item/holder/H_holder)
+/datum/component/crowd_detection/agoraphobia/proc/holder_check(obj/item/holder/H_holder)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	RETURN_TYPE(/list)
@@ -276,7 +274,7 @@
 		in_range |= holder_check(human_parent,held_by)
 	return in_range
 
-/datum/component/crowd_detection/agoraphobia/proc/belly_check(var/obj/belly/B)
+/datum/component/crowd_detection/agoraphobia/proc/belly_check(obj/belly/B)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	RETURN_TYPE(/list)
