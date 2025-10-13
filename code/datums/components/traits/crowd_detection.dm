@@ -1,3 +1,5 @@
+#define MIN_DISCOMFORT_MESSAGE 50
+
 /**
  * Component that serves as a base type for detecting groups of mobs or players around us.
  * It functions as a framework for lonely and agoraphobia to share large sections of code.
@@ -5,13 +7,15 @@
  *  */
 /datum/component/crowd_detection
 	VAR_PROTECTED/mob/living/carbon/human/human_parent
-	VAR_PROTECTED/loneliness_stage = 0
+	VAR_PROTECTED/discomfort = 0
 	VAR_PROTECTED/hallucination_cap = 25
 	VAR_PROTECTED/warning_cap = 400
 	VAR_PROTECTED/escalation_speed = 0.8
 	VAR_PROTECTED/only_people = FALSE
 	VAR_PROTECTED/invis_matters = TRUE
-	VAR_PROTECTED/next_loneliness_time = 0
+
+	VAR_PRIVATE/is_calm = TRUE
+	VAR_PRIVATE/next_message_time = 0
 
 /datum/component/crowd_detection/Initialize()
 	if(!ishuman(parent))
@@ -30,35 +34,35 @@
 	SIGNAL_HANDLER
 	// If they're dead or unconcious they're a bit beyond this kind of thing.
 	if(human_parent.stat)
-		loneliness_stage = 0
+		discomfort = 0
 		return TRUE
-
 	// No point processing if we're already stressing the hell out.
-	if(human_parent.hallucination >= hallucination_cap && loneliness_stage >= warning_cap)
+	if(human_parent.hallucination >= hallucination_cap && discomfort >= warning_cap)
+		discomfort = warning_cap
 		return TRUE
-
+	// Changelings are immune to these
 	var/datum/component/antag/changeling/comp = human_parent.GetComponent(/datum/component/antag/changeling)
 	if(comp) // We are never alone~
-		loneliness_stage = 0
+		discomfort = 0
 		return TRUE
-
 	return FALSE
 
 /datum/component/crowd_detection/proc/process_discomfort_stages()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	// No company? Suffer :(
-	if(loneliness_stage < warning_cap)
-		loneliness_stage = min(warning_cap,loneliness_stage+escalation_speed)
+	if(discomfort < warning_cap)
+		discomfort = min(warning_cap,discomfort+escalation_speed)
 	// Handle message delay
-	if(world.time >= next_loneliness_time)
-		var/ms = handle_loneliness_message()
+	if(world.time >= next_message_time)
+		var/ms = get_discomfort_message(discomfort)
 		if(ms)
 			to_chat(human_parent, ms)
-		next_loneliness_time = world.time+500
+		next_message_time = world.time+500
 		human_parent.fear = min((human_parent.fear + 3), 102)
+		is_calm = FALSE
 	// Hallucinations
-	if(loneliness_stage >= warning_cap && human_parent.hallucination < hallucination_cap)
+	if(discomfort >= warning_cap && human_parent.hallucination < hallucination_cap)
 		human_parent.hallucination = min(hallucination_cap,human_parent.hallucination+2.5*escalation_speed)
 
 /datum/component/crowd_detection/proc/check_contents(var/atom/item,var/max_layer = 3,var/current_layer = 1)
@@ -100,19 +104,21 @@
 						in_range |= check_mob_company(content)
 	return in_range
 
-/datum/component/crowd_detection/proc/handle_loneliness_message()
+/datum/component/crowd_detection/proc/get_discomfort_message(var/current_discomfort)
 	SHOULD_CALL_PARENT(TRUE)
 	PROTECTED_PROC(TRUE)
 	return null
 
-/datum/component/crowd_detection/proc/sub_loneliness(var/amount = 4, var/message)
+/datum/component/crowd_detection/proc/calm_discomfort(var/amount = 4, var/message)
 	SHOULD_CALL_PARENT(TRUE)
 	PROTECTED_PROC(TRUE)
-	loneliness_stage = max(loneliness_stage - amount, 0)
-	if(world.time >= next_loneliness_time && loneliness_stage > 0)
+	discomfort = max(discomfort - amount, 0)
+	if(world.time >= next_message_time && discomfort > 0)
 		if(message)
 			to_chat(human_parent, message)
-		next_loneliness_time = world.time+500
+		if(discomfort < MIN_DISCOMFORT_MESSAGE)
+			is_calm = TRUE
+		next_message_time = world.time+500
 
 /datum/component/crowd_detection/proc/find_held_by(var/atom/item)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -125,13 +131,19 @@
 	else
 		return find_held_by(item.loc)
 
+/datum/component/crowd_detection/proc/get_calm()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return is_calm
+
+/datum/component/crowd_detection/proc/get_discomfort()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	return discomfort
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Lonelyness
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/component/crowd_detection/lonely
-	VAR_PRIVATE/was_near_mobs = TRUE
 
 /datum/component/crowd_detection/lonely/major
 	only_people = TRUE
@@ -145,18 +157,18 @@
 
 	// Brain friends!
 	if(human_parent.has_brain_worms())
-		sub_loneliness()
+		calm_discomfort()
 		return
 	// Vored? Not gonna get frightened.
 	if(isbelly(human_parent.loc))
-		sub_loneliness()
+		calm_discomfort()
 		return
 	if(istype(human_parent.loc, /obj/item/holder))
-		sub_loneliness()
+		calm_discomfort()
 		return
 	// Check for company.
 	if(length(check_contents(human_parent))) //Check our item slots and storage for any micros.
-		sub_loneliness()
+		calm_discomfort()
 		return
 	for(var/mob/living/M in viewers(get_turf(human_parent)))
 		if(length(check_mob_company(M)))
@@ -170,34 +182,36 @@
 					if(length(check_mob_company(content)))
 						return
 
+	//And some more misc checks
 	for(var/obj/item/holder/micro/M in human_parent)
-		sub_loneliness()
+		calm_discomfort()
+		return
 	for(var/obj/effect/overlay/aiholo/A in range(5, human_parent))
-		sub_loneliness()
+		calm_discomfort()
+		return
 	for(var/obj/item/toy/plushie/teshari/P in range(5, human_parent))
-		sub_loneliness()
+		calm_discomfort()
+		return
 
 	process_discomfort_stages()
 
-/datum/component/crowd_detection/lonely/handle_loneliness_message()
-	if(loneliness_stage >= warning_cap)
-		return span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]"))
-	if(loneliness_stage >= 250)
+/datum/component/crowd_detection/lonely/get_discomfort_message(var/current_discomfort)
+	if(current_discomfort >= warning_cap)
+		return span_danger(span_bold(pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")))
+	if(current_discomfort >= 250)
 		if(human_parent.stuttering < hallucination_cap)
 			human_parent.stuttering += 5
-		return "[pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")]"
-	if(loneliness_stage >= 50)
-		return "[pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")]"
-	if(was_near_mobs)
-		was_near_mobs = FALSE
-		return "[pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")]"
+		return pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")
+	if(current_discomfort >= MIN_DISCOMFORT_MESSAGE)
+		return pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")
+	if(get_calm())
+		return pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")
 	. = ..()
 
-/datum/component/crowd_detection/lonely/sub_loneliness(var/amount = 4, var/message)
-	if(!message)
+/datum/component/crowd_detection/lonely/calm_discomfort(var/amount = 4, var/message)
+	if(!message && !get_calm())
 		message = span_infoplain("The nearby company calms you down...")
 	. = ..(amount, message)
-	was_near_mobs = TRUE
 
 
 
@@ -225,26 +239,30 @@
 		in_range |= A
 
 	if(length(in_range) <= 2)
-		sub_loneliness()
+		calm_discomfort()
 		return
 
 	process_discomfort_stages()
 
-/datum/component/crowd_detection/agoraphobia/handle_loneliness_message()
-	if(loneliness_stage == escalation_speed)
-		return "You notice there's more people than you feel comfortable with around you..."
-	if(loneliness_stage >= 50 && loneliness_stage < 250)
-		return "You start to feel anxious from the number of people around you."
-	if(loneliness_stage >= 250 && loneliness_stage < warning_cap)
+/datum/component/crowd_detection/agoraphobia/get_discomfort_message(var/current_discomfort)
+	if(current_discomfort >= warning_cap)
+		return span_bolddanger(pick("Why am I still here? I have to leave and get some space!",
+									"Please, just let me be alone!",
+									"I need to be alone!"))
+	if(current_discomfort >= 250)
 		if(human_parent.stuttering < hallucination_cap)
 			human_parent.stuttering += 5
-		return "[pick("You don't think you can last much longer with this much company!", "You should go find some space!")]" //if we add more here make it a list for readability
-	if(loneliness_stage >= warning_cap)
-		var/list/panicmessages = list(	"Why am I still here? I have to leave and get some space!",
-						"Please, just let me be alone!",
-						"I need to be alone!")
-		return span_bolddanger("[pick(panicmessages)]")
+		return pick("You don't think you can last much longer with this much company!", "You should go find some space!")
+	if(current_discomfort >= MIN_DISCOMFORT_MESSAGE)
+		return "You start to feel anxious from the number of people around you."
+	if(get_calm())
+		return "You notice there's more people than you feel comfortable with around you..."
 	. = ..()
+
+/datum/component/crowd_detection/agoraphobia/calm_discomfort(var/amount = 4, var/message)
+	if(!message && !get_calm())
+		message = span_infoplain("You feel calmer with no one around...")
+	. = ..(amount, message)
 
 /datum/component/crowd_detection/agoraphobia/proc/holder_check(var/obj/item/holder/H_holder)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -268,3 +286,5 @@
 		if(isbelly(B.owner.loc))
 			in_range |= belly_check(human_parent,B.owner.loc)
 	return in_range
+
+#undef MIN_DISCOMFORT_MESSAGE
