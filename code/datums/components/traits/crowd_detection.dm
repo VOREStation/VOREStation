@@ -65,7 +65,7 @@
 			to_chat(human_parent, ms)
 		next_message_time = world.time+500
 		human_parent.fear = min((human_parent.fear + 3), 102)
-		is_calm = FALSE
+		is_calm = FALSE // We'll only get one message early
 	// Hallucinations
 	if(discomfort >= warning_cap && human_parent.hallucination < hallucination_cap)
 		human_parent.hallucination = min(hallucination_cap,human_parent.hallucination+2.5*escalation_speed)
@@ -118,7 +118,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	PROTECTED_PROC(TRUE)
 	discomfort = max(discomfort - amount, 0)
-	if(world.time >= next_message_time && discomfort > 0)
+	if(world.time >= next_message_time && (discomfort > 0 || !is_calm))
 		if(message)
 			to_chat(human_parent, message)
 		if(discomfort < MIN_DISCOMFORT_MESSAGE)
