@@ -65,7 +65,7 @@ export const DestructiveAnalyzer = () => {
   return (
     <Window width={400} height={260} title="Destructive Analyzer">
       <Window.Content>
-        <Stack fill>
+        <Stack vertical fill>
           <Stack.Item grow>
             <Section
               title={loaded_item}
