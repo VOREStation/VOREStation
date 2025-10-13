@@ -176,6 +176,7 @@
 		return
 	for(var/mob/living/M in viewers(get_turf(human_parent)))
 		if(length(check_mob_company(M)))
+			calm_discomfort()
 			return
 
 	//Check to see if there's anyone in our belly
@@ -184,6 +185,7 @@
 			for(var/mob/living/content in B.contents)
 				if(istype(content))
 					if(length(check_mob_company(content)))
+						calm_discomfort()
 						return
 
 	//Things that are not mobs, but will calm lonelyness
@@ -259,7 +261,7 @@
 
 /datum/component/crowd_detection/agoraphobia/calm_discomfort(amount = 4, message)
 	if(!message && !get_calm())
-		message = span_infoplain("You feel calmer with no one around...")
+		message = span_infoplain("You feel calmer with noone around...")
 	. = ..(amount, message)
 
 /datum/component/crowd_detection/agoraphobia/proc/holder_check(obj/item/holder/H_holder)
