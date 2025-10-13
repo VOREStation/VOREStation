@@ -367,17 +367,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 		update_inv_r_hand()
 
 	W.hud_layerise()
-
-	if(W.zoom)
-		W.zoom()
-
 	W.in_inactive_hand(src)
 
-	//VOREStation Addition Start
 	if(istype(W, /obj/item))
 		var/obj/item/I = W
 		I.equip_special()
-	//VOREStation Addition End
 
 	return 1
 
