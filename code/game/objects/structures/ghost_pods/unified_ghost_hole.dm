@@ -77,7 +77,7 @@
 	to_chat(M, span_warning("You may be a spooky (or cute!) space critter, but your role is to facilitate roleplay, not to fight the station and slaughter people. You're free to get into any kind of roleplay scene you like if OOC prefs align, but emphasis is on the 'roleplay' here. If you intend to be an actual threat, you MUST seek permission from staff first. GENERALLY, this role should avoid well populated areas, but you might be able to get away with it if you spawn as something relatively innocuous."))
 	newPred.ckey = M.ckey
 	newPred.visible_message(span_warning("[newPred] emerges from somewhere!"))
-	log_and_message_admins("successfully used a Maintenance Critter spawner to spawn in as a [newPred].", M)
+	log_and_message_admins("successfully used a Maintenance Critter spawner to spawn in as a [newPred].", newPred)
 	if(tgui_alert(newPred, "Do you want to load the vore bellies from your current slot?", "Load Bellies", list("Yes", "No")) == "Yes")
 		newPred.copy_from_prefs_vr()
 		if(LAZYLEN(newPred.vore_organs))
@@ -99,7 +99,7 @@
 
 	newMorph.ckey = M.ckey
 	newMorph.visible_message(span_warning("A morph appears to crawl out of somewhere."))
-	log_and_message_admins("successfully used a Maintenance Critter spawner to spawn in as a Morph.", M)
+	log_and_message_admins("successfully used a Maintenance Critter spawner to spawn in as a Morph.", newMorph)
 	if(tgui_alert(newMorph, "Do you want to load the vore bellies from your current slot?", "Load Bellies", list("Yes", "No")) == "Yes")
 		newMorph.copy_from_prefs_vr()
 		if(LAZYLEN(newMorph.vore_organs))
