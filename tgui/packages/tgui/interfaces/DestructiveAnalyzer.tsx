@@ -65,7 +65,7 @@ export const DestructiveAnalyzer = () => {
   return (
     <Window width={400} height={260} title="Destructive Analyzer">
       <Window.Content>
-        <Stack fill vertical>
+        <Stack fill>
           <Stack.Item grow>
             <Section
               title={loaded_item}
@@ -88,55 +88,68 @@ export const DestructiveAnalyzer = () => {
           </Stack.Item>
           <Stack.Item grow>
             <Section fill title="Deconstruction Methods">
-              {!!indestructible && (
-                <NoticeBox textAlign="center" danger>
-                  This item can&apos;t be deconstructed!
-                </NoticeBox>
-              )}
-              {!indestructible && (
-                <>
-                  {!!recoverable_points && (
-                    <>
+              <Stack vertical fill>
+                {!!indestructible && (
+                  <Stack.Item>
+                    <NoticeBox textAlign="center" danger>
+                      This item can&apos;t be deconstructed!
+                    </NoticeBox>
+                  </Stack.Item>
+                )}
+                {!indestructible && !!recoverable_points && (
+                  <>
+                    <Stack.Item>
                       <Box fontSize="14px">
                         Research points from deconstruction
                       </Box>
+                    </Stack.Item>
+                    <Stack.Item>
                       <Box>{recoverable_points}</Box>
-                    </>
-                  )}
-                  <Button.Confirm
-                    mt={1}
-                    icon="hammer"
-                    tooltip={
-                      already_deconstructed
-                        ? 'This item item has already been deconstructed, and will not give any additional information.'
-                        : 'Destroys the object currently residing in the machine.'
-                    }
-                    onClick={() =>
-                      act('deconstruct', { deconstruct_id: research_point_id })
-                    }
-                  >
-                    Deconstruct
-                  </Button.Confirm>
-                </>
-              )}
-              {node_data?.map((node) => (
-                <Button.Confirm
-                  icon="cash-register"
-                  mt={1}
-                  disabled={!node.node_hidden}
-                  key={node.node_id}
-                  tooltip={
-                    node.node_hidden
-                      ? 'Deconstruct this to research the selected node.'
-                      : 'This node has already been researched.'
-                  }
-                  onClick={() =>
-                    act('deconstruct', { deconstruct_id: node.node_id })
-                  }
-                >
-                  {node.node_name}
-                </Button.Confirm>
-              ))}
+                    </Stack.Item>
+                  </>
+                )}
+                <Stack.Item>
+                  <Stack>
+                    {!indestructible && (
+                      <Stack.Item>
+                        <Button.Confirm
+                          icon="hammer"
+                          tooltip={
+                            already_deconstructed
+                              ? 'This item item has already been deconstructed, and will not give any additional information.'
+                              : 'Destroys the object currently residing in the machine.'
+                          }
+                          onClick={() =>
+                            act('deconstruct', {
+                              deconstruct_id: research_point_id,
+                            })
+                          }
+                        >
+                          Deconstruct
+                        </Button.Confirm>
+                      </Stack.Item>
+                    )}
+                    {node_data?.map((node) => (
+                      <Stack.Item key={node.node_id}>
+                        <Button.Confirm
+                          icon="cash-register"
+                          disabled={!node.node_hidden}
+                          tooltip={
+                            node.node_hidden
+                              ? 'Deconstruct this to research the selected node.'
+                              : 'This node has already been researched.'
+                          }
+                          onClick={() =>
+                            act('deconstruct', { deconstruct_id: node.node_id })
+                          }
+                        >
+                          {node.node_name}
+                        </Button.Confirm>
+                      </Stack.Item>
+                    ))}
+                  </Stack>
+                </Stack.Item>
+              </Stack>
             </Section>
           </Stack.Item>
         </Stack>
