@@ -739,7 +739,7 @@
 				holder = use_obj.loc
 				if(istype(holder))
 					if(use_obj && check_slot == use_obj)
-						to_chat(H, span_boldnotice("Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly."))
+						balloon_alert(H, "your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.")
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 						use_obj.canremove = TRUE
 						holder.drop_from_inventory(use_obj)
@@ -758,7 +758,7 @@
 					to_chat(H, span_danger("You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way."))
 					return
 			else
-				to_chat(H, span_notice("Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly."))
+				balloon_alert(H, "your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.")
 				playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 
 	if(piece == "helmet" && helmet?.light_system == STATIC_LIGHT)

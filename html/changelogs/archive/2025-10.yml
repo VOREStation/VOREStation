@@ -49,3 +49,52 @@
 2025-10-08:
   Will:
   - bugfix: shadekin no longer slip on wet or icey turfs while phased
+2025-10-09:
+  Asher-42:
+  - rscadd: changes dullahan protean options
+  - rscadd: adds clothing to dullahan proteans
+  KillianKirilenko:
+  - rscadd: Added new "Damage Control Specialist" alt title for Engineers
+  Ryumi:
+  - qol: The suit sensors setting menu now defaults to whatever the outfit's suit
+      sensors are already set to. Now you can be totally sure whether or not you set
+      them on or off!
+  SatinIsle:
+  - qol: 'A handful of relatively low responsibility alt job titles for those who
+      want to be a bit more specific about their jobs: Educator and Instructor for
+      Entrepreneur, Delivery Worker for Cargo Tech, and Loss Prevention Officer for
+      Security Officer.'
+  TheCaramelion:
+  - code_imp: Added Auto-Wiki for virology symptoms
+  - code_imp: Moved various shadekin-related vars into Shadekin Component
+2025-10-10:
+  Diana:
+  - code_imp: Framework added for dephasing rounds
+  - rscadd: 'Adds a new loadout item: the Cloak of Eyes'
+  - code_imp: 'Adds a new reactive icon subtype: Clothing'
+  - image: Adds sprites for the Cloak of Eyes
+  Ryumi:
+  - qol: Rigsuits now use balloon alerts instead of logged messages when parts of
+      them are deployed and retracted. No more log spam for rigsuit users!
+  Will:
+  - rscadd: Tea, coffee, ramen, fruit teas, and hot chocolate recipes now require
+      boiling on a bunsen burner or other distilling machine. Does not apply to coffee/tea
+      dispensers that already contain coffee/tea.
+  - rscadd: Added a simple kettle that acts as a beaker for more thematic brewing
+2025-10-11:
+  SatinIsle:
+  - bugfix: Changed the description of Mochi Cakes as some people found the original
+      a bit offensive.
+2025-10-12:
+  KillianKirilenko:
+  - qol: added light replacers to engineering's protolathes
+  Ryumi:
+  - qol: When using a PDA, if you receive a messinging server error when trying to
+      send a PDA message to someone, your message will now be saved. Now you won't
+      have to retype everything because the servers got quirky!
+  Will:
+  - bugfix: methane missing from gas scanner console in phoronics/toxins
+  - bugfix: noslip shoes and magboots are no longer ignored by slippery turfs
+  - bugfix: spacelube 2-3 turf slide after leaving the slippery turf restored
+  - balance: Distilling oxygen and hydrogen from water no longer uses a phoron catalyst,
+      and instead uses platinum and different atmospheres.
