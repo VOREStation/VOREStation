@@ -253,7 +253,6 @@ It is used to destroy hand-held objects and advance technological research. Used
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, current_item)
 	destroy_item_individual(current_item, gain_research_points)
 	loaded_item = null
-	SStgui.update_uis(src)
 	update_icon()
 	return TRUE
 
