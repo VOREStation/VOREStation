@@ -7,7 +7,7 @@
 
 		if (src.stat != CONSCIOUS)
 			src.cameraFollow = null
-			src.reset_view(null)
+			src.reset_perspective()
 			disconnect_shell("Disconnecting from remote shell due to local system failure.")
 
 		src.updatehealth()
