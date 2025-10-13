@@ -91,6 +91,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 			loaded_item = WEAKREF(O)
 			user.drop_item()
 			O.forceMove(src)
+			SStgui.update_uis(src)
 			to_chat(user, span_notice("You add \the [O] to \the [src]."))
 			flick("d_analyzer_la", src)
 			addtimer(CALLBACK(src, PROC_REF(analyze_finish)), 1 SECONDS, TIMER_DELETE_ME)
@@ -252,6 +253,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, current_item)
 	destroy_item_individual(current_item, gain_research_points)
 	loaded_item = null
+	SStgui.update_uis(src)
 	update_icon()
 	return TRUE
 
