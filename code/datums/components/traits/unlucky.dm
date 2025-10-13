@@ -152,6 +152,8 @@
 			return
 
 	for(var/turf/the_turf as anything in our_guy_pos.AdjacentTurfs(check_blockage = FALSE)) //need false so we can check disposal units
+		if(iswall(the_turf))
+			continue
 		if(the_turf.CanZPass(our_guy, DOWN) && !isspace(the_turf))
 			to_chat(living_guy, span_warning("You lose your balance and slip towards the edge!"))
 			living_guy.Weaken(5)
