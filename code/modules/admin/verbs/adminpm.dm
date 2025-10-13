@@ -72,6 +72,8 @@
 
 	if(!holder && !current_ticket)	//no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
 		to_chat(src, span_admin_pm_warning("You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be."))
+		if(!holder)
+			msg = trim(sanitize(copytext(msg,1,MAX_MESSAGE_LEN)))
 		to_chat(src, span_admin_pm_notice("Message: [msg]"))
 		return
 

@@ -222,8 +222,10 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 		return
 
 	//Not a mentor and no open ticket
-	if(!src.holder && !current_ticket)
+	if(!holder && !current_ticket)
 		to_chat(src, span_mentor_warning("You can no longer reply to this ticket, please open another one by using the Mentorhelp verb if need be."))
+		if(!holder)
+			msg = trim(sanitize(copytext(msg,1,MAX_MESSAGE_LEN)))
 		to_chat(src, span_mentor_notice("Message: [msg]"))
 		return
 
@@ -237,7 +239,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = tgui_input_text(src,"Message:", "Mentor-PM to [whom]", multiline = TRUE, encode = FALSE)
+		msg = tgui_input_text(src, "Message:", "Mentor-PM to [whom]", multiline = TRUE, encode = FALSE)
 
 		if(!msg)
 			return
