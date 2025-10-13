@@ -1,8 +1,7 @@
-import { Box, Button, Image, NoticeBox, Section } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
-
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
+import { Box, Button, Image, NoticeBox, Section } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   server_connected: BooleanLike;
@@ -21,7 +20,7 @@ type NodeData = {
   node_hidden: BooleanLike;
 };
 
-export const DestructiveAnalyzer = (props) => {
+export const DestructiveAnalyzer = () => {
   const { act, data } = useBackend<Data>();
   const {
     server_connected,
@@ -91,7 +90,6 @@ export const DestructiveAnalyzer = (props) => {
                 </>
               )}
               <Button.Confirm
-                content="Deconstruct"
                 icon="hammer"
                 tooltip={
                   already_deconstructed
@@ -101,7 +99,9 @@ export const DestructiveAnalyzer = (props) => {
                 onClick={() =>
                   act('deconstruct', { deconstruct_id: research_point_id })
                 }
-              />
+              >
+                Deconstruct
+              </Button.Confirm>
             </>
           )}
           {node_data?.map((node) => (
