@@ -279,7 +279,7 @@ It is used to destroy hand-held objects and advance technological research. Used
 		return
 	var/list/point_value = techweb_item_point_check(thing)
 	//If it has a point value and we haven't deconstructed it OR we've deconstructed it but it's a repeatable.
-	if(point_value && (!stored_research.deconstructed_items[thing.type] || (stored_research.deconstructed_items[thing.type] && SSresearch.techweb_repeatable_items[thing.type])))
+	if(point_value && (!stored_research.deconstructed_items[thing.type] || (stored_research.deconstructed_items[thing.type] && (thing.type in SSresearch.techweb_repeatable_items))))
 		stored_research.deconstructed_items[thing.type] = TRUE
 		stored_research.add_point_list(point_value)
 
