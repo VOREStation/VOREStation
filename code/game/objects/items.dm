@@ -832,7 +832,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 		return FALSE
 	if(M.is_remote_viewing())
 		to_chat(M, span_warning("You are too distracted to do that."))
-		return 0
+		return FALSE
 
 	var/devicename
 	if(zoomdevicename)
