@@ -430,7 +430,7 @@
 		src.forceMove(card)
 		card.forceMove(B)
 
-	if(isdisposalpacket(loc))
+	if(istype(loc,/obj/structure/disposalholder))
 		var/obj/structure/disposalholder/hold = loc
 		src.forceMove(card)
 		card.forceMove(hold)

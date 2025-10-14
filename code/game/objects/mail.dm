@@ -51,7 +51,7 @@
 
 /obj/item/mail/container_resist(mob/living/M)
 	if(istype(M, /mob/living/voice)) return
-	M.try_move_to_turf(src)
+	M.forceMove(get_turf(src))
 	to_chat(M, span_warning("You climb out of \the [src]."))
 
 /obj/item/mail/envelope

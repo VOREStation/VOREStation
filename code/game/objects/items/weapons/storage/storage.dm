@@ -545,7 +545,7 @@
 			W.reset_plane_and_layer()
 		W.forceMove(new_location)
 	else
-		W.try_move_to_turf(src)
+		W.forceMove(get_turf(src))
 
 	for(var/mob/M in is_seeing)
 		if(M.s_active == src)
@@ -597,7 +597,7 @@
 				to_chat(user, span_warning("The tray won't fit in [src]."))
 				return
 			else
-				W.try_move_to_turf(user)
+				W.forceMove(get_turf(user))
 				if ((user.client && user.s_active != src))
 					user.client.screen -= W
 				W.dropped(user)

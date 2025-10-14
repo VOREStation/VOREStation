@@ -147,7 +147,7 @@
 				to_chat(user, span_notice("[src] already has a cell."))
 		else if(W.has_tool_quality(TOOL_SCREWDRIVER) && bcell)
 			bcell.update_icon()
-			bcell.try_move_to_turf(src)
+			bcell.forceMove(get_turf(loc))
 			bcell = null
 			to_chat(user, span_notice("You remove the cell from \the [src]."))
 			deactivate()

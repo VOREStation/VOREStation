@@ -72,8 +72,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isvoice(A)		istype(A, /mob/living/voice)
 
-#define isdisposalpacket(A)	istype(A,/obj/structure/disposalholder)
-
 //---------------
 //#define isturf(D)		istype(D, /turf)	//Built in
 #define isopenspace(A)	istype(A, /turf/simulated/open)

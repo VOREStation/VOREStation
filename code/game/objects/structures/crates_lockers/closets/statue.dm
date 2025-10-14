@@ -59,10 +59,10 @@
 /obj/structure/closet/statue/dump_contents()
 
 	for(var/obj/O in src)
-		O.try_move_to_turf(src)
+		O.forceMove(get_turf(src))
 
 	for(var/mob/living/M in src)
-		M.try_move_to_turf(src)
+		M.forceMove(loc) // Might be in a belly
 		M.sdisabilities &= ~MUTE
 		M.take_overall_damage((M.health - health - 100),0) //any new damage the statue incurred is transfered to the mob
 		M.reset_perspective() // Fixes a blackscreen flicker

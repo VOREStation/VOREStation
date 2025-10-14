@@ -199,16 +199,6 @@
 /obj/proc/container_resist(var/mob/living)
 	return
 
-/// Moves you to a valid location after container_resist() or any other method of escape. Handles stuff like staying inside a disposal packet or belly when struggling out of an item.
-/atom/movable/proc/try_move_to_turf(var/atom/movable/find_turf_of)
-	if(isdisposalpacket(find_turf_of.loc)) // Do not eject to turf while being flushed
-		forceMove(find_turf_of.loc)
-		return
-	if(isbelly(find_turf_of.loc)) // Do not eject to turf while eaten
-		forceMove(find_turf_of.loc)
-		return
-	forceMove(get_turf(find_turf_of))
-
 //To be called from things that spill objects on the floor.
 //Makes an object move around randomly for a couple of tiles
 /obj/proc/tumble(var/dist = 2)

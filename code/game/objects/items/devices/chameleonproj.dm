@@ -87,7 +87,7 @@
 
 /obj/item/chameleon/proc/eject_all()
 	for(var/atom/movable/A in active_dummy)
-		A.try_move_to_turf(active_dummy)
+		A.forceMove(get_turf(active_dummy))
 
 /obj/effect/dummy/chameleon
 	name = ""

@@ -399,7 +399,7 @@
 	return
 
 /obj/item/bikehorn/rubberducky/pink/container_resist(var/mob/living/escapee)
-	escapee.try_move_to_turf(src)
+	escapee.forceMove(get_turf(src))
 	to_chat(escapee, span_vnotice("You managed to crawl out of the rubber ducky!"))
 
 /obj/item/bikehorn/rubberducky/grey

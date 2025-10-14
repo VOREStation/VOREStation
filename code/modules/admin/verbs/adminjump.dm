@@ -172,7 +172,6 @@
 		admin_ticket_log(M, msg)
 		if(M)
 			M.on_mob_jump()
-			M.reset_perspective(src) // Clear view to them before teleport
 			M.forceMove(get_turf(usr))
 			feedback_add_details("admin_verb","GK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
