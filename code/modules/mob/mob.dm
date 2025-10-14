@@ -1037,7 +1037,7 @@
 		R.adjustBruteLoss(5)
 		R.adjustFireLoss(10)
 
-	selection.try_move_to_turf(src)
+	selection.forceMove(get_turf(src))
 	U.put_in_hands(selection)
 
 	for(var/obj/item/O in pinned)

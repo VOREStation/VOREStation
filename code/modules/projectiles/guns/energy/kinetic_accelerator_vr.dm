@@ -410,7 +410,7 @@
 /obj/item/borg/upgrade/modkit/proc/uninstall(obj/item/gun/energy/kinetic_accelerator/KA, forcemove = TRUE)
 	KA.modkits -= src
 	if(forcemove)
-		try_move_to_turf(KA)
+		forceMove(get_turf(KA))
 
 //use this one to modify the projectile itself
 /obj/item/borg/upgrade/modkit/proc/modify_projectile(obj/item/projectile/kinetic/K)

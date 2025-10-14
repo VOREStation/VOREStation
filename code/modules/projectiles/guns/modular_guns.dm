@@ -63,7 +63,7 @@
 		for(var/obj/item/I in guncomponents)
 			to_chat(user, span_notice("You remove the gun's components."))
 			playsound(src, O.usesound, 50, 1)
-			I.try_move_to_turf(src)
+			I.forceMove(get_turf(src))
 			guncomponents.Remove(I)
 			CheckParts()
 		return

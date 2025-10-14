@@ -92,7 +92,7 @@
 			to_chat(user, "You begin removing \the [attached_cell] from \the [src].")
 			if(do_after(user, 1 SECOND, target = src))	// Faster than doing it by hand
 				attached_cell.update_icon()
-				attached_cell.try_move_to_turf(loc)
+				attached_cell.forceMove(get_turf(src.loc))
 				attached_cell = null
 				user.visible_message("[user] removes a cell from \the [src].", "You remove \the [attached_cell] from \the [src].")
 				update_icon()

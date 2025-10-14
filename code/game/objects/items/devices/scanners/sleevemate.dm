@@ -341,7 +341,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	if(isliving(src.loc))
 		var/mob/living/L = src.loc
 		L.unEquip(src)
-	src.try_move_to_turf(src)
+	src.forceMove(get_turf(src))
 	new /obj/item/bodysnatcher(src.loc)
 	qdel(src)
 	return 1

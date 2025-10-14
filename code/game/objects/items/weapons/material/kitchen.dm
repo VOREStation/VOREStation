@@ -102,7 +102,7 @@
 			for(var/mob/living/F in food_inserted_micros)
 				food_inserted_micros -= F
 				if(!F.can_be_drop_prey || !F.food_vore)
-					F.try_move_to_turf(src)
+					F.forceMove(get_turf(src))
 				else
 					F.forceMove(M.vore_selected)
 		if(M == user)

@@ -107,7 +107,7 @@
 				attached_device.attack_self(ui.user)
 		if("remove_device")
 			if(attached_device)
-				attached_device.try_move_to_turf(src)
+				attached_device.forceMove(get_turf(src))
 				attached_device.holder = null
 				attached_device = null
 				update_icon()
@@ -151,7 +151,7 @@
 	else
 		return
 
-	T.try_move_to_turf(src)
+	T.forceMove(get_turf(src))
 	update_icon()
 
 /obj/item/transfer_valve/proc/merge_gases()

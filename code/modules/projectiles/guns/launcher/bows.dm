@@ -54,7 +54,7 @@
 	var/obj/item/arrow/A = bolt
 	bolt = null
 	drawn = FALSE
-	A.try_move_to_turf(user)
+	A.forceMove(get_turf(user))
 	user.put_in_hands(A)
 	update_icon()
 

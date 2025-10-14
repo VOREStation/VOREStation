@@ -169,7 +169,7 @@
 	if(host.mind)
 		borers.remove_antagonist(host.mind)
 
-	try_move_to_turf(host)
+	forceMove(get_turf(host))
 
 	machine = null
 

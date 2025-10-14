@@ -80,7 +80,7 @@
 	for(var/datum/computer_file/program/P in idle_threads)
 		P.event_idremoved(1)
 
-	card_slot.stored_card.try_move_to_turf(src)
+	card_slot.stored_card.forceMove(get_turf(src))
 	card_slot.stored_card = null
 	update_uis()
 	to_chat(user, "You remove the card from \the [src]")

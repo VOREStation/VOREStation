@@ -91,7 +91,7 @@
 		return
 
 	for (var/atom/movable/A in contents)
-		A.try_move_to_turf(src)
+		A.forceMove(get_turf(src))
 
 	food_items = 0
 	to_chat(user, span_notice("You remove all the solid items from the [src]."))

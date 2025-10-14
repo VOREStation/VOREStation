@@ -144,7 +144,7 @@
 	if(!hood)
 		return
 
-	hood.try_move_to_turf(src)
+	hood.forceMove(get_turf(src))
 	hood.set_light_flags(hood.light_flags & ~LIGHT_ATTACHED)
 	hood = null
 
@@ -240,12 +240,12 @@
 
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
 				to_chat(user, "You pop \the [tank] out of \the [src]'s storage compartment.")
-				tank.try_move_to_turf(src)
+				tank.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.tank = null
 			else if(choice == cooler)
 				to_chat(user, "You pop \the [cooler] out of \the [src]'s storage compartment.")
-				cooler.try_move_to_turf(src)
+				cooler.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.cooler = null
 			else if(choice == hood)
@@ -254,7 +254,7 @@
 				playsound(src, W.usesound, 50, 1)
 			else if(choice == boots)
 				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
-				boots.try_move_to_turf(src)
+				boots.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.boots = null
 		else

@@ -161,7 +161,7 @@
 		else if(user)
 			user.put_in_hands(ai_card)
 		else
-			ai_card.try_move_to_turf(src)
+			ai_card.forceMove(get_turf(src))
 	ai_card = null
 	integrated_ai = null
 	update_verb_holder()

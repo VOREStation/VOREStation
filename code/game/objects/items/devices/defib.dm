@@ -94,7 +94,7 @@
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(bcell)
 			bcell.update_icon()
-			bcell.try_move_to_turf(src)
+			bcell.forceMove(get_turf(src.loc))
 			user.put_in_any_hand_if_possible(bcell)
 			bcell = null
 			to_chat(user, span_notice("You remove the cell from \the [src]."))

@@ -13,6 +13,6 @@
 	if(holder2 && (holder2.card_slot == src))
 		holder2.card_slot = null
 	if(stored_card)
-		stored_card.try_move_to_turf(holder2)
+		stored_card.forceMove(get_turf(holder2))
 	holder2 = null
 	return ..()

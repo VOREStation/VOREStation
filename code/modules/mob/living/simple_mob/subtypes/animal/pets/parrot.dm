@@ -83,7 +83,7 @@
 		to_chat(user, span_warning("\The [src] doesn't have a headset to remove, thankfully."))
 	else
 		ISay("BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
-		my_headset.try_move_to_turf(src)
+		my_headset.forceMove(get_turf(src))
 		user.put_in_hands(my_headset)
 		to_chat(user, span_notice("You take away \the [src]'s [my_headset.name]. Finally."))
 		to_chat(src, span_warning("\The [user] takes your [my_headset.name] away! How cruel!"))

@@ -14,7 +14,7 @@
 	if(has_hands)
 		put_in_active_hand(W)
 		return 1
-	W.try_move_to_turf(src)
+	W.forceMove(get_turf(src))
 	return 1
 
 //Puts the item into our active hand if possible. returns 1 on success.

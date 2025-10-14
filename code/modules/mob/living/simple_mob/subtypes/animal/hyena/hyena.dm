@@ -97,7 +97,7 @@ They're also cool, and Rykka/Nyria wrote this uwu
 
 /mob/living/simple_mob/animal/hyena/proc/drop_hat(var/mob/user)
 	if(hat)
-		hat.try_move_to_turf(user)
+		hat.forceMove(get_turf(user))
 		hat = null
 		update_icon()
 		if(user == src)

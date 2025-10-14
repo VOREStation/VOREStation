@@ -123,7 +123,7 @@
 			to_chat(user, span_notice("You remove [cell] into [nickname]."))
 			playsound(src, I.usesound, 50, 1)
 			power_down()
-			cell.try_move_to_turf(src)
+			cell.forceMove(get_turf(src))
 			cell = null
 
 	else if(istype(I, /obj/item/cell) && !cell)

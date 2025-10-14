@@ -676,7 +676,7 @@
 		if(M && (M.back == src || M.belt == src))
 			if(!M.unEquip(src))
 				return
-		src.try_move_to_turf(src)
+		src.forceMove(get_turf(src))
 		return
 
 	if(seal_delay > 0 && istype(M) && (M.back == src || M.belt == src))
@@ -685,7 +685,7 @@
 			if(M && (M.back == src || M.belt == src))
 				if(!M.unEquip(src))
 					return
-			src.try_move_to_turf(src)
+			src.forceMove(get_turf(src))
 			return
 
 	if(istype(M) && (M.back == src || M.belt == src))
@@ -743,7 +743,7 @@
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 						use_obj.canremove = TRUE
 						holder.drop_from_inventory(use_obj)
-						use_obj.try_move_to_turf(src)
+						use_obj.forceMove(get_turf(src))
 						use_obj.dropped(holder)
 						use_obj.canremove = FALSE
 						use_obj.forceMove(src)

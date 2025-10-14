@@ -28,7 +28,10 @@
 			if(!ismob(thing))
 				continue
 			var/mob/m = thing
-			m.try_move_to_turf(src)
+			if(isbelly(src.loc))
+				m.forceMove(src.loc)
+			else
+				m.forceMove(get_turf(src.loc))
 			m.visible_message(span_notice("\The [m] tumbles out of \the [src]!"))
 	//VOREStation Add End
 

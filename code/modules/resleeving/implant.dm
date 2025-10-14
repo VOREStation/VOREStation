@@ -85,7 +85,7 @@
 	if(imps.len)
 		to_chat(user, span_notice("You eject a backup implant."))
 		var/obj/item/implant/backup/imp = imps[imps.len]
-		imp.try_move_to_turf(user)
+		imp.forceMove(get_turf(user))
 		imps -= imp
 		user.put_in_any_hand_if_possible(imp)
 		update()
