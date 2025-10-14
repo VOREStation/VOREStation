@@ -40,7 +40,7 @@
 
 /obj/item/material/fishing_rod/CtrlClick(mob/user)
 	if((src.loc == user || Adjacent(user)) && Bait)
-		Bait.forceMove(get_turf(user))
+		Bait.try_move_to_turf(user)
 		to_chat(user, span_notice("You remove the bait from \the [src]."))
 		Bait = null
 	else
@@ -69,7 +69,7 @@
 			return
 	else if(istype(I, bait_type))
 		if(Bait)
-			Bait.forceMove(get_turf(user))
+			Bait.try_move_to_turf(user)
 			to_chat(user, span_notice("You swap \the [Bait] with \the [I]."))
 		Bait = I
 		user.drop_from_inventory(Bait)

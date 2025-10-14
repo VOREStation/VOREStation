@@ -60,7 +60,7 @@
 		factory.spores -= src
 	factory = null
 	if(infested)
-		infested.forceMove(get_turf(src))
+		infested.try_move_to_turf(src)
 		visible_message(span_warning("\The [infested] falls to the ground as the blob spore bursts."))
 		infested = null
 	return ..()

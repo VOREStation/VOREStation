@@ -357,7 +357,7 @@
 			stomachContent.forceMove(previous)
 	else
 		for(var/atom/movable/stomachContent in contents) // Or dump it out.
-			stomachContent.forceMove(get_turf(src))
+			stomachContent.try_move_to_turf(src)
 	return
 
 /mob/living/simple_mob/animal/space/space_worm/proc/stomach_special(var/atom/A)	// Futureproof. Anything that interacts with contents without relying on digestion probability. Return TRUE if it should skip digest.

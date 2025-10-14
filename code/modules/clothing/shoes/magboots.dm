@@ -78,7 +78,7 @@
 		return
 
 	if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
-		shoes.forceMove(get_turf(src))
+		shoes.try_move_to_turf(src)
 	shoes = null
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)

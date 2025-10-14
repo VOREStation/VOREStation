@@ -365,7 +365,7 @@
 		to_chat(usr, span_notice("There's no cartridge to eject."))
 		return
 
-	cartridge.forceMove(get_turf(src))
+	cartridge.try_move_to_turf(src)
 	if(ismob(loc))
 		var/mob/M = loc
 		M.put_in_hands(cartridge)
@@ -469,7 +469,7 @@
 /obj/item/pda/Destroy()
 	PDAs -= src
 	if (id && !delete_id && id.loc == src)
-		id.forceMove(get_turf(loc))
+		id.try_move_to_turf(src)
 	else
 		QDEL_NULL(id)
 

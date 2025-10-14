@@ -1860,7 +1860,7 @@ Departamental Swimsuits, for general use
 			user.put_in_hands(T)
 			user.show_message("[icon2html(src, user.client)]*click!*")
 		else
-			translocator.forceMove(get_turf(src))
+			translocator.try_move_to_turf(src)
 		translocator = null
 		playsound(src, 'sound/machines/click.ogg', 30, 1)
 

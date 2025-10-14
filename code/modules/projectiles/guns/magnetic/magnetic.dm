@@ -213,7 +213,7 @@
 			cell = null
 
 		if(removing)
-			removing.forceMove(get_turf(src))
+			removing.try_move_to_turf(src)
 			user.put_in_hands(removing)
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " removes \the [removing] from \the [src]."))
 			playsound(src, 'sound/machines/click.ogg', 10, 1)

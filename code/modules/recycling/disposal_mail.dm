@@ -111,7 +111,7 @@
 
 /obj/structure/bigDelivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.forceMove(get_turf(src))
+		wrapped.try_move_to_turf(src)
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.sealed = 0

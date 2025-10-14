@@ -176,7 +176,7 @@
 						qdel(O)
 						M.revert_mob_tf() //Voices can't eat, so this is the least intensive way to revert them.
 					else
-						M.forceMove(get_turf(O)) //Non-clothing items require a bit extra work since they don't drop contents when qdeleted.
+						M.try_move_to_turf(O) //Non-clothing items require a bit extra work since they don't drop contents when qdeleted.
 						qdel(O)
 						M.revert_mob_tf()
 				else

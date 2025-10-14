@@ -672,7 +672,7 @@
 
 	for(var/mob/living/carbon/alien/diona/D in H.contents)
 		if(D.client)
-			D.forceMove(get_turf(H))
+			D.try_move_to_turf(H)
 		else
 			qdel(D)
 

@@ -99,7 +99,7 @@
 	if(!hat)
 		to_chat(user, span_warning("\The [src] doesn't have a hat to remove."))
 	else
-		hat.forceMove(get_turf(src))
+		hat.try_move_to_turf(src)
 		user.put_in_hands(hat)
 		to_chat(user, span_warning("You take away \the [src]'s [hat.name].  How mean."))
 		hat = null
@@ -108,7 +108,7 @@
 /mob/living/simple_mob/animal/passive/armadillo/proc/drop_hat()
 	if(!hat)
 		return
-	hat.forceMove(get_turf(src))
+	hat.try_move_to_turf(src)
 	hat = null
 	update_icon()
 

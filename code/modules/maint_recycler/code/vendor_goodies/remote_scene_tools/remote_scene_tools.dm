@@ -208,7 +208,7 @@ why aren't these accessories?
 			if(counterpart)
 				counterpart.remove_from_mob(linked,get_turf(src))
 			else
-				linked.forceMove(get_turf(src))
+				linked.try_move_to_turf(src)
 			to_chat(usr,span_notice("\The [linked] materializes in front of you!"))
 	else
 		to_chat(usr,span_notice("Nothing seems to happen!"))

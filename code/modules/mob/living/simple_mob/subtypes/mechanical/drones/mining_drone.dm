@@ -85,7 +85,7 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/mining_drone/death()
-	my_storage.forceMove(get_turf(src))
+	my_storage.try_move_to_turf(src)
 	my_storage = null
 	..(null,"suddenly breaks apart.")
 	qdel(src)

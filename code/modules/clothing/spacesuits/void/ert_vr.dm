@@ -84,17 +84,17 @@
 
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
 				to_chat(user, "You pop \the [tank] out of \the [src]'s storage compartment.")
-				tank.forceMove(get_turf(src))
+				tank.try_move_to_turf(src)
 				playsound(src, W.usesound, 50, 1)
 				src.tank = null
 			else if(choice == cooler)
 				to_chat(user, "You pop \the [cooler] out of \the [src]'s storage compartment.")
-				cooler.forceMove(get_turf(src))
+				cooler.try_move_to_turf(src)
 				playsound(src, W.usesound, 50, 1)
 				src.cooler = null
 			else if(choice == boots)
 				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
-				boots.forceMove(get_turf(src))
+				boots.try_move_to_turf(src)
 				playsound(src, W.usesound, 50, 1)
 				src.boots = null
 		else

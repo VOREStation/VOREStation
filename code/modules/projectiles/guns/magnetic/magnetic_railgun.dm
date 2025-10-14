@@ -44,7 +44,7 @@
 		out_of_ammo()
 
 /obj/item/gun/magnetic/railgun/proc/out_of_ammo()
-	loaded.forceMove(get_turf(src))
+	loaded.try_move_to_turf(src)
 	loaded = null
 	visible_message(span_warning("\The [src] beeps and ejects its empty cartridge."),span_warning("There's a beeping sound!"))
 	playsound(src, empty_sound, 40, 1)

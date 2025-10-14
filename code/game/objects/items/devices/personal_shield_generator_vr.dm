@@ -187,7 +187,7 @@
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 					s.set_up(5, 1, src)
 					s.start()
-					bcell.forceMove(get_turf(src.loc))
+					bcell.try_move_to_turf(src)
 					qdel(bcell)
 					bcell = null //Sanity.
 					if(active_weapon)
@@ -200,7 +200,7 @@
 					return
 			else
 				bcell.update_icon()
-				bcell.forceMove(get_turf(src.loc))
+				bcell.try_move_to_turf(src)
 				bcell = null
 				if(active_weapon)
 					reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!

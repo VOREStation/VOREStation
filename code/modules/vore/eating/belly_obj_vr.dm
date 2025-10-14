@@ -505,7 +505,7 @@
 	owner?.vore_organs?.Remove(src)
 	owner = null
 	for(var/mob/observer/G in src)
-		G.forceMove(get_turf(src)) //ported from CHOMPStation PR#7132
+		G.try_move_to_turf(src) //ported from CHOMPStation PR#7132
 	return ..()
 
 /obj/belly/Moved(atom/old_loc)
@@ -521,7 +521,7 @@
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	. = ..()
 	if(!owner)
-		thing.forceMove(get_turf(src))
+		thing.try_move_to_turf(src)
 		return
 	thing.enter_belly(src) // Atom movable proc, does nothing by default. Overridden in children for special behavior.
 	if(owner && istype(owner.loc,/turf/simulated) && !cycle_sloshed && reagents.total_volume > 0)

@@ -51,7 +51,7 @@
 	if(!Adjacent(user))
 		..()
 	if(corptag)
-		corptag.forceMove(get_turf(user))
+		corptag.try_move_to_turf(user)
 		to_chat(user, span_notice("You remove \the [corptag] from \the [src]."))
 		corptag = null
 		update_icon()
@@ -89,7 +89,7 @@
 		else if(istype(W, /obj/item/clothing/accessory/badge))
 			if(corptag)
 				var/old_tag = corptag
-				corptag.forceMove(get_turf(src))
+				corptag.try_move_to_turf(src)
 				corptag = W
 				user.unEquip(corptag)
 				corptag.loc = null

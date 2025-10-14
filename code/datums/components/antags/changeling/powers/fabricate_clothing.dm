@@ -140,7 +140,7 @@
 		visible_message(span_warning("[H] tears off [src]!"),
 		span_notice("We remove [src]."))
 		for(var/atom/movable/AM in src.contents) //Dump whatever's in the bag before deleting.
-			AM.forceMove(get_turf(loc))
+			AM.try_move_to_turf(src)
 		qdel(src)
 
 /obj/item/clothing/gloves/chameleon/changeling

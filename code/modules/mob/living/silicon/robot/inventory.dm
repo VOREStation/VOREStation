@@ -384,7 +384,7 @@
 			A.Grant(src)
 
 /mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
-	W.forceMove(get_turf(src))
+	W.try_move_to_turf(src)
 	return 1
 
 /mob/living/silicon/robot/is_holding_item_of_type(typepath)

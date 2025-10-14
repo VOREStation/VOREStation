@@ -329,7 +329,7 @@
 	host_bodypart.implants -= src
 	host_bodypart = null
 
-	forceMove(get_turf(host))
+	try_move_to_turf(host)
 
 	host = null
 

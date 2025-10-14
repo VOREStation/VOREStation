@@ -810,7 +810,7 @@
 			to_chat(user,span_filter_notice("You begin removing \the [bolt]."))
 
 			if(do_after(user, 2 SECONDS, target = src))
-				bolt.forceMove(get_turf(src))
+				bolt.try_move_to_turf(src)
 				bolt = null
 
 				to_chat(user, span_filter_notice("You remove \the [bolt]."))
