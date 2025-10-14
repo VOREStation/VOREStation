@@ -375,7 +375,7 @@
 /obj/item/reagent_containers/food/snacks/Destroy()
 	if(contents)
 		for(var/atom/movable/something in contents)
-			something.dropInto(loc)
+			something.forceMove(loc)
 			if(food_inserted_micros && (something in food_inserted_micros))
 				food_inserted_micros -= something
 	. = ..()
