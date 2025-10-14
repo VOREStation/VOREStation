@@ -82,7 +82,7 @@
 	/// otherwise we go off the gender of our object
 	var/gender
 	if(targeted_gender)
-		if(!istext(targeted_gender) || !(targeted_gender in list(MALE, FEMALE, PLURAL, NEUTER)))
+		if(!istext(targeted_gender) || !(targeted_gender in list(MALE, FEMALE, PLURAL, NEUTER, HERM)))
 			stack_trace("REPLACE_PRONOUNS called with improper parameters.")
 			return
 		gender = targeted_gender
@@ -106,6 +106,8 @@
 			return "he"
 		if(NEUTER)
 			return "it"
+		if(HERM)
+			return "shi"
 		else
 			return "they"
 
@@ -119,6 +121,8 @@
 			return "his"
 		if(NEUTER)
 			return "its"
+		if(HERM)
+			return "hir"
 		else
 			return "their"
 
@@ -132,6 +136,8 @@
 			return "his"
 		if(NEUTER)
 			return "its"
+		if(HERM)
+			return "hirs"
 		else
 			return "theirs"
 
@@ -145,6 +151,8 @@
 			return "him"
 		if(NEUTER)
 			return "it"
+		if(HERM)
+			return "hir"
 		else
 			return "them"
 
@@ -198,6 +206,8 @@
 			return "himself"
 		if(PLURAL)
 			return "themselves"
+		if(HERM)
+			return "hirself"
 		else
 			return "itself"
 
@@ -213,6 +223,8 @@
 			return "he"
 		if(PLURAL)
 			return "they"
+		if(HERM)
+			return "shi"
 		else
 			return "it"
 
@@ -226,6 +238,8 @@
 			return "his"
 		if(PLURAL)
 			return "their"
+		if(HERM)
+			return "hir"
 		else
 			return "its"
 
@@ -239,6 +253,8 @@
 			return "his"
 		if(PLURAL)
 			return "theirs"
+		if(HERM)
+			return "hirs"
 		else
 			return "its"
 
@@ -252,6 +268,8 @@
 			return "him"
 		if(PLURAL)
 			return "them"
+		if(HERM)
+			return "hir"
 		else
 			return "it"
 
@@ -305,6 +323,8 @@
 			return "himself"
 		if(PLURAL)
 			return "themselves"
+		if(HERM)
+			return "hirself"
 		else
 			return "itself"
 
@@ -320,6 +340,8 @@
 			return "he"
 		if(PLURAL)
 			return "they"
+		if(HERM)
+			return "shi"
 		else
 			return "it"
 
@@ -333,6 +355,8 @@
 			return "his"
 		if(PLURAL)
 			return "their"
+		if(HERM)
+			return "hir"
 		else
 			return "its"
 
@@ -346,6 +370,8 @@
 			return "his"
 		if(PLURAL)
 			return "theirs"
+		if(HERM)
+			return "hirs"
 		else
 			return "its"
 
@@ -359,6 +385,8 @@
 			return "him"
 		if(PLURAL)
 			return "them"
+		if(HERM)
+			return "hir"
 		else
 			return "it"
 
@@ -412,6 +440,8 @@
 			return "himself"
 		if(PLURAL)
 			return "themselves"
+		if(HERM)
+			return "hirself"
 		else
 			return "itself"
 
@@ -549,6 +579,8 @@
 			return "himself"
 		if(PLURAL)
 			return "themselves"
+		if(HERM)
+			return "hirself"
 		else
 			return "itself"
 
