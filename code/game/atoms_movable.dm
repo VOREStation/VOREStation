@@ -753,6 +753,9 @@
 			return
 		if(QDELETED(src))
 			return
+		if(ismob(src)) // incase there was a client inside an object being yoinked
+			var/mob/M = src
+			M.reset_perspective(src) // Force reset to self before teleport
 		forceMove(get_turf(usr))
 
 	if(href_list[VV_HK_EDIT_PARTICLES] && check_rights(R_VAREDIT))
