@@ -202,8 +202,13 @@
 		forceMove(find_turf_of.loc)
 		return
 	if(isbelly(find_turf_of.loc)) // Do not eject to turf while eaten
-		forceMove(find_turf_of.loc)
-		return
+		var/can_belly_pref = TRUE
+		if(ismob(src))
+			var/mob/M = src
+			can_belly_pref = M.can_be_drop_prey
+		if(can_belly_pref)
+			forceMove(find_turf_of.loc)
+			return
 	forceMove(get_turf(find_turf_of))
 
 //To be called from things that spill objects on the floor.
