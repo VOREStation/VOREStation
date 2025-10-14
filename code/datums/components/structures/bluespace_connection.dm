@@ -15,6 +15,8 @@
 	var/throw_range_y
 
 /datum/component/bluespace_connection/Initialize(var/list/connections, exit_sound = 'sound/effects/clang.ogg', throw_range = 3, throw_range_x = 5, throw_range_y = 5)
+	if(!istype(src, /obj/structure/closet)) // Might expand this in the future? For now, it only goes on closets.
+		return COMPONENT_INCOMPATIBLE
 	assigned_closet = parent
 	src.connections = connections
 	src.exit_sound = exit_sound
