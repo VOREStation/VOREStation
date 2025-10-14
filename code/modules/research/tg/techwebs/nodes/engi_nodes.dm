@@ -118,6 +118,7 @@
 		"s-transmitter",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
 
 /datum/techweb_node/parts_omni
 	id = TECHWEB_NODE_PARTS_OMNI
@@ -210,6 +211,7 @@
 		"grid_checker",
 		"breakerbox",
 		"tesla_coil",
+		"rtg",
 		// "apc_control",
 		// "powermonitor",
 		// "smes",
@@ -256,6 +258,7 @@
 		// "modular_shield_console",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_ENGINEERING)
 
 /datum/techweb_node/exp_tools
 	id = TECHWEB_NODE_EXP_TOOLS
@@ -293,6 +296,7 @@
 		"janitor_hud",
 		"rig_component_medhud",
 		"rig_component_sechud",
+		"rig_component_mining",
 		"graviton_goggles",
 		"omnihud",
 		// "diagnostic_hud",
@@ -393,6 +397,8 @@
 		// "nv_scigoggles",
 		// "security_hud_night",
 	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
+	announce_channels = list(CHANNEL_SECURITY, CHANNEL_SCIENCE, CHANNEL_ENGINEERING)
 
 /datum/techweb_node/graviton_vision
 	id = TECHWEB_NODE_GRAVITON_VISION
