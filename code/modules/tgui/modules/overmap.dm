@@ -136,7 +136,9 @@
 		return FALSE
 
 	if(action == "viewing")
-		if(!viewing_overmap(ui.user))
+		if(check_eye(ui.user) < 0)
+			return FALSE
+		else if(!viewing_overmap(ui.user))
 			if(!viewers) viewers = list() // List must exist for pass by reference to work
 			start_coordinated_remoteview(ui.user, linked, viewers)
 		else
@@ -400,7 +402,9 @@
 			. = TRUE
 
 		if("manual")
-			if(!viewing_overmap(ui.user))
+			if(check_eye(ui.user) < 0)
+				return FALSE
+			else  if(!viewing_overmap(ui.user))
 				if(!viewers) viewers = list()
 				start_coordinated_remoteview(ui.user, linked, viewers)
 			else
