@@ -113,7 +113,7 @@
 		user.put_in_hands(src)
 		add_fingerprint(user)
 	else if(get_turf(src))		//We actually exist in space
-		forceMove(get_turf(src))
+		try_move_to_turf(src)
 
 //default attackby behaviour
 /obj/item/clothing/accessory/attackby(obj/item/I, mob/user)

@@ -41,7 +41,7 @@
 
 	playsound(src, open_sound, 50, 1, -3)
 	for(var/obj/O in src)
-		O.forceMove(get_turf(src))
+		O.try_move_to_turf(src)
 	src.opened = 1
 
 	SEND_SIGNAL(src, COMSIG_CLIMBABLE_SHAKE_CLIMBERS, null)

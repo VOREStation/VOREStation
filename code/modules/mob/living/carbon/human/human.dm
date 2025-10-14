@@ -1554,8 +1554,8 @@
 /mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	if(W in organs)
 		return FALSE
-	if(isnull(target) && istype( src.loc,/obj/structure/disposalholder))
-		return remove_from_mob(W, src.loc)
+	if(isnull(target) && isdisposalpacket(loc))
+		return remove_from_mob(W, loc)
 	return ..()
 
 /mob/living/carbon/human/reset_perspective(atom/A, update_hud = 1)

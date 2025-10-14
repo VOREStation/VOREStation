@@ -141,7 +141,7 @@
 	to_chat(user, "You remove \the [initial(name)] from [stuck].")
 
 	user.drop_from_inventory(src)
-	stuck.forceMove(get_turf(src))
+	stuck.try_move_to_turf(src)
 	user.put_in_hands(stuck)
 	stuck = null
 	overlays = null

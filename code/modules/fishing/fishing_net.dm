@@ -186,7 +186,7 @@
 
 /obj/item/material/fishing_net/butterfly_net/container_resist(mob/living/M)
 	if(prob(20))
-		M.forceMove(get_turf(src))
+		M.try_move_to_turf(src)
 		to_chat(M, span_warning("You climb out of \the [src]."))
 		update_icon()
 		update_weight()

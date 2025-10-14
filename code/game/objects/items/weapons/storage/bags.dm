@@ -161,7 +161,7 @@
 			W.reset_plane_and_layer()
 		W.forceMove(new_location)
 	else
-		W.forceMove(get_turf(src))
+		W.try_move_to_turf(src)
 
 	W.on_exit_storage(src)
 	update_icon()
