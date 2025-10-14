@@ -44,6 +44,7 @@
 	if(istype(exit_point, /obj/structure/closet))
 		var/obj/structure/closet/exit_closet = exit_point
 		exit_closet.visible_message(span_notice("\The [exit_closet] rumbles..."), span_notice("Something rumbles..."))
+		exit_closet.animate_shake()
 		addtimer(CALLBACK(exit_closet, TYPE_PROC_REF(/obj/structure/closet, open)), 1 SECONDS)
 
 	playsound(exit_point, exit_sound, 50, TRUE)
@@ -57,6 +58,8 @@
 	// Connection severed, self-destruct! (If there's no more exits)
 	if(QDELETED(exit_point))
 		connections -= exit_point // Remove the connection, first.
+
+		playsound(assigned_closet, 'sound/effects/sparks6.ogg', 100, TRUE)
 
 		if(!connections.len) // No exit points left, bluespace connection severed.
 			qdel(src)
