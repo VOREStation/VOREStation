@@ -233,7 +233,7 @@
 		if(ismob(AM))
 			var/mob/M = AM
 			M.on_mob_jump()
-		AM.reset_perspective(AM) // Force reset to self before teleport
+			M.reset_perspective(M) // Force reset to self before teleport
 		AM.forceMove(T)
 		feedback_add_details("admin_verb", "MA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		message_admins("[key_name_admin(usr)] jumped [AM] to coordinates [tx], [ty], [tz]")
