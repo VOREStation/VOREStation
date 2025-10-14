@@ -133,7 +133,7 @@
 /datum/map_template/shelter/theta
 	name = "Shelter Theta"
 	shelter_id = "shelter_theta"
-	description = "(5x7)"
+	description = "(5x7) A spatially efficient capsule that utilizes clever surfluid engineering techniques to maximize long-term survivability while compromising as little space as possible."
 	mappath = "maps/submaps/shelters/shelter_j.dmm"
 
 /datum/map_template/shelter/rec
@@ -153,6 +153,18 @@
 	shelter_id = "shelter_cafe"
 	description = "(11x11) A fully stocked and equipped cafe in your pocket. While this won't save you if you're dying, it will ensure that you and anyone who happens to be with you will never suffer from caffeine withdrawal!"
 	mappath = "maps/submaps/shelters/shelter_cafe.dmm"
+
+/datum/map_template/shelter/luxuryrecroom
+	name = "Shelter Luxury Rec Room"
+	shelter_id = "shelter_luxury_recroom"
+	description = "(11x11) The surfluid within this capsule is a carefully programmed monument to hedonism. Featuring a large gambling table supporting up to seven players, vending machines for players' needs, and even two small private dorm rooms, if you have any desire for a fully private, self-contained gambling room completely isolated from the world outside, this is your perfect answer."
+	mappath = "maps/submaps/shelters/shelter_luxury_recroom.dmm"
+
+/datum/map_template/shelter/zeta
+	name = "Shelter Zeta"
+	shelter_id = "shelter_luxury_alt"
+	description = "(7x7) An alternate configuration of Shelter Beta, prominently featuring both a windowed view of the exterior as well as the means to tint the windows for superior privacy."
+	mappath = "maps/submaps/shelters/shelter_luxury_alt.dmm"
 
 /datum/map_template/shelter/loss_1
 	name = "Shelter L1"
