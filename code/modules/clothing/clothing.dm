@@ -322,7 +322,7 @@
 
 /obj/item/clothing/gloves/Destroy()
 	for(var/mob/living/M in contents)
-		M.try_move_to_turf(src)
+		M.container_escape_move(src)
 	if(ring)
 		QDEL_NULL(ring)
 	if(gloves)
@@ -414,13 +414,13 @@
 	var/mob/living/carbon/human/H = user
 	if(gloves) //We have nested gloves! Gloves under our gloves!
 		if(!H.equip_to_slot_if_possible(gloves, slot_gloves))
-			gloves.try_move_to_turf(src)
+			gloves.container_escape_move(src)
 		if(ring)
 			gloves.ring = ring
 		src.gloves = null
 	else if(ring && istype(H)) //We do NOT have gloves under our gloves but have a ring under our glove instead!
 		if(!H.equip_to_slot_if_possible(ring, slot_gloves))
-			ring.try_move_to_turf(src)
+			ring.container_escape_move(src)
 		src.ring = null
 
 /obj/item/clothing/gloves
@@ -858,7 +858,7 @@
 	for(var/mob/M in src)
 		if(isvoice(M)) //Don't knock voices out!
 			continue
-		M.try_move_to_turf(user)
+		M.container_escape_move(user)
 		to_chat(M, span_warning("[user] shakes you out of \the [src]!"))
 		to_chat(user, span_notice("You shake [M] out of \the [src]!"))
 
@@ -872,7 +872,7 @@
 		to_chat(micro, span_notice("You start to climb out of [src]!"))
 		if(do_after(micro, 5 SECONDS, target = src))
 			to_chat(micro, span_notice("You climb out of [src]!"))
-			micro.try_move_to_turf(src)
+			micro.container_escape_move(src)
 		return
 
 	var/escape_message_micro = "You start to climb out of [src]!"
@@ -1373,7 +1373,7 @@
 		action_circuit = null // Will get deleted by qdel-ing the IC assembly.
 		QDEL_NULL(IC)
 	for(var/mob/living/M in contents)
-		M.try_move_to_turf(src)
+		M.container_escape_move(src)
 	wearer = null
 	return ..()
 
