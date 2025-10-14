@@ -34,7 +34,6 @@
 /datum/component/bluespace_connection/Destroy()
 	UnregisterSignal(assigned_closet, COMSIG_CLOSET_CLOSED)
 	assigned_closet = null
-	connections.Cut()
 	. = ..()
 
 /datum/component/bluespace_connection/proc/on_close()
