@@ -1,0 +1,8 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "WALKING (as in WALK INTENT) near disposals with unlucky will no longer make you fall into them"
+  - bugfix: "Unlucky individuals being disposal'd can not crawl out if the unit is prepared to dispose of them."
+  - bugfix: "You can now longer eat yourself"
+  - bugfix: "You can no longer get eaten by people that are not physically present"
+  - code_imp: "Spont vore eating code is better"
