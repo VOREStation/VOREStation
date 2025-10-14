@@ -14,6 +14,10 @@
 	// Turf range when exiting, y
 	var/throw_range_y
 
+/// Use this one when using a global list of exits
+/// Giving this to any locker will connect it to the network, allowing extra or none at any given point.
+/datum/component/bluespace_connection/permanent_network
+
 /datum/component/bluespace_connection/Initialize(var/list/connections, exit_sound = 'sound/effects/clang.ogg', throw_range = 3, throw_range_x = 5, throw_range_y = 5)
 	assigned_closet = parent
 
@@ -41,6 +45,10 @@
 
 	var/exit_point = pick(connections)
 
+	if(exit_point == assigned_closet)
+		sever_connection(exit_point)
+		return
+
 	if(istype(exit_point, /obj/structure/closet))
 		var/obj/structure/closet/exit_closet = exit_point
 		exit_closet.visible_message(span_notice("\The [exit_closet] rumbles..."), span_notice("Something rumbles..."))
@@ -55,22 +63,20 @@
 	if(assigned_closet.opened)
 		return
 
-	// Connection severed, self-destruct! (If there's no more exits)
 	if(QDELETED(exit_point))
-		connections -= exit_point // Remove the connection, first.
-
-		playsound(assigned_closet, 'sound/effects/sparks6.ogg', 100, TRUE)
-
-		if(!connections.len) // No exit points left, bluespace connection severed.
-			qdel(src)
+		sever_connection(exit_point)
 		return
+
+	// This is just stupid. But our do_teleport() proc is stupider.
+	// Remove this whenever we get that refactored.
+	var/datum/effect/effect/system/dummy = new /datum/effect/system
 
 	// Now the fun begins
 	if(istype(exit_point, /obj/structure/closet))
 		var/obj/structure/closet/exit_closet = exit_point
 		if(!exit_closet.can_open()) // Bwomp. You're locked now. :)
 			for(var/atom/movable/AM in contents)
-				AM.forceMove(exit_closet)
+				do_teleport(AM, exit_closet, 0, 1, dummy, dummy)
 			return
 		exit_closet.open()
 
@@ -80,7 +86,7 @@
 		for(var/atom/movable/AM in contents)
 			if(QDELETED(AM))
 				continue
-			AM.forceMove(get_turf(exit_point))
+			do_teleport(AM, get_turf(exit_point), 0, 1, dummy, dummy)
 			AM.throw_at(target, throw_range, 1)
 		contents.Cut()
 	return
@@ -89,7 +95,25 @@
 	return get_offset_target_turf(get_turf(assigned_closet), rand(throw_range_x)-rand(throw_range_x), rand(throw_range_y)-rand(throw_range_y))
 
 /datum/component/bluespace_connection/proc/add_exit(var/exit_point)
-	if(exit_point == assigned_closet)
-		return FALSE
 	connections.Add(exit_point)
 	return TRUE
+
+/datum/component/bluespace_connection/proc/sever_connection(var/removed_exit)
+	connections -= removed_exit
+
+	do_sparks()
+
+	if(!connections.len) // No exit points left, bluespace connection severed.
+		qdel(src)
+
+	return TRUE
+
+/datum/component/bluespace_connection/permanent_network/sever_connection(removed_exit)
+	do_sparks()
+	return TRUE
+
+/datum/component/bluespace_connection/proc/do_sparks()
+	playsound(assigned_closet, 'sound/effects/sparks6.ogg', 100, TRUE)
+	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+	sparks.set_up(2, 1, assigned_closet.loc)
+	sparks.start()
