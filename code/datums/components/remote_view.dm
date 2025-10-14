@@ -191,8 +191,9 @@
 		host_mob.toggle_zoom_hud()
 	host_item.zoom = FALSE
 	// return view offset
-	host_mob.client.pixel_x = 0
-	host_mob.client.pixel_y = 0
+	if(host_mob.client)
+		host_mob.client.pixel_x = 0
+		host_mob.client.pixel_y = 0
 	host_mob.handle_vision()
 	// decouple
 	UnregisterSignal(host_item, COMSIG_QDELETING)
@@ -257,6 +258,9 @@
 	view_coordinator.look(host_mob)
 	LAZYDISTINCTADD(viewers, WEAKREF(host_mob))
 	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+	// If you get this crash, it's because check_eye() in look() failed
+	if(!parent)
+		CRASH("Remoteview failed, look() cancelled view during component Initilize. Usually this is caused by check_eye().")
 
 /datum/component/remote_view/viewer_managed/Destroy(force)
 	UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
@@ -298,6 +302,8 @@
 	if(!host_mob)
 		return
 	if(isturf(host_mob.loc))
+		if(oldloc == remote_view_target)
+			needs_to_decouple = TRUE
 		decouple_view_to_turf( host_mob, host_mob.loc)
 		return
 

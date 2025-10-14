@@ -4344,6 +4344,7 @@
 #include "code\modules\research\tg\machinery\_production.dm"
 #include "code\modules\research\tg\machinery\circuit_imprinter.dm"
 #include "code\modules\research\tg\machinery\departmental_protolathe.dm"
+#include "code\modules\research\tg\machinery\destructive_analyzer.dm"
 #include "code\modules\research\tg\machinery\mech_fabricator.dm"
 #include "code\modules\research\tg\machinery\mech_prosfab.dm"
 #include "code\modules\research\tg\machinery\protolathe.dm"

@@ -152,7 +152,9 @@
 			return
 
 	for(var/turf/the_turf as anything in our_guy_pos.AdjacentTurfs(check_blockage = FALSE)) //need false so we can check disposal units
-		if(the_turf.CanZPass(our_guy, DOWN))
+		if(iswall(the_turf))
+			continue
+		if(the_turf.CanZPass(our_guy, DOWN) && !isspace(the_turf))
 			to_chat(living_guy, span_warning("You lose your balance and slip towards the edge!"))
 			living_guy.Weaken(5)
 			living_guy.throw_at(the_turf, 1, 20)
@@ -161,7 +163,7 @@
 
 		if(vorish)
 			for(var/mob/living/living_mob in the_turf)
-				if(living_mob == our_guy)
+				if(living_mob == our_guy || (living_mob.vore_selected == living_guy.vore_selected))
 					continue //Don't do anything to ourselves.
 				if(living_mob.stat)
 					continue
@@ -183,7 +185,7 @@
 				consume_omen()
 				return
 
-		if(evil || safe_disposals) //On servers without safe disposals, this is a death sentence. With servers with safe disposals, it's just funny.
+		if((evil || safe_disposals) && living_guy.m_intent == I_RUN) //On servers without safe disposals, this is a death sentence. With servers with safe disposals, it's just funny. Either way, walk near disposals.
 			for(var/obj/machinery/disposal/evil_disposal in the_turf)
 				if(evil_disposal.stat & (BROKEN|NOPOWER))
 					continue
@@ -193,7 +195,7 @@
 				living_guy.forceMove(evil_disposal)
 				evil_disposal.flush = TRUE
 				evil_disposal.update()
-				living_guy.Weaken(5)
+				living_guy.Stun(5)
 				consume_omen()
 				return
 
@@ -289,7 +291,7 @@
 		// In complete darkness
 		if(our_guy_pos.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			living_guy.Blind(5) //10 seconds of 'OH GOD WHAT'S HAPPENING'
-			living_guy.silent = 5
+			living_guy.silent = max(living_guy.silent, 5)
 			living_guy.Paralyse(5)
 			to_chat(living_guy, span_bolddanger("You feel the ground buckle underneath you, falling down, your vision going dark as you feel paralyzed in place!"))
 			consume_omen()

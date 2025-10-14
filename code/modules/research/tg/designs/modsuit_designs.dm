@@ -402,7 +402,7 @@
 	id = "rig_component_graviton"
 	//req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 4, TECH_POWER = 5)
 	materials = list(MAT_PLASTEEL = 3500, MAT_GRAPHITE = 2000, MAT_OSMIUM = 1000)
-	build_path = /obj/item/rig_module/vision/mining
+	build_path = /obj/item/rig_module/vision/graviton
 	category = list(
 		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SCIENCE
 	)

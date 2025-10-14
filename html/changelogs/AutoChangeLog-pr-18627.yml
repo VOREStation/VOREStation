@@ -1,0 +1,9 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "remote view crash if you try to use an overmap shuttle while blind"
+  - bugfix: "remote view crash if you start a remote view with a zooming item and disconnect"
+  - bugfix: "struggling out of most containers will respect being in a disposal packet"
+  - bugfix: "admin teleports and get_movable VV action clear remote views"
+  - bugfix: "attempting to remoteview a qdeleted object will force reset your view to yourself"
+  - bugfix: "throwing micros inside food into the stardog mouth no longer results in a black screen for the micro"
