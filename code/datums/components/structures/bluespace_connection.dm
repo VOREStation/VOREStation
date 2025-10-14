@@ -15,9 +15,11 @@
 	var/throw_range_y
 
 /datum/component/bluespace_connection/Initialize(var/list/connections, exit_sound = 'sound/effects/clang.ogg', throw_range = 3, throw_range_x = 5, throw_range_y = 5)
-	if(!istype(src, /obj/structure/closet)) // Might expand this in the future? For now, it only goes on closets.
-		return COMPONENT_INCOMPATIBLE
 	assigned_closet = parent
+
+	if(!istype(assigned_closet, /obj/structure/closet)) // Might expand this in the future? For now, it only goes on closets.
+		return COMPONENT_INCOMPATIBLE
+
 	src.connections = connections
 	src.exit_sound = exit_sound
 	src.throw_range = throw_range
@@ -41,6 +43,7 @@
 
 	if(istype(exit_point, /obj/structure/closet))
 		var/obj/structure/closet/exit_closet = exit_point
+		exit_closet.visible_message(span_notice("\The [exit_closet] rumbles..."), span_notice("Something rumbles..."))
 		addtimer(CALLBACK(exit_closet, TYPE_PROC_REF(/obj/structure/closet, open)), 1 SECONDS)
 
 	playsound(exit_point, exit_sound, 50, TRUE)
