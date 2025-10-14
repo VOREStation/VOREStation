@@ -254,6 +254,8 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(!client)
 		return
+	if(!isnull(new_eye) && QDELETED(new_eye))
+		new_eye = src // Something has gone terribly wrong
 
 	if(new_eye)
 		if(ismovable(new_eye))
@@ -295,6 +297,8 @@
 	if(!loc) // Nullspace during respawn
 		return FALSE
 	if(isturf(loc)) // Cannot be remote if it was a turf, also obj and turf flags overlap so stepping into space triggers remoteview endlessly.
+		return FALSE
+	if(QDELETED(loc))
 		return FALSE
 	// Check if we actually need to drop our current remote view component, as this is expensive to do, and leads to more difficult to understand error prone logic
 	var/datum/component/remote_view/remote_comp = GetComponent(/datum/component/remote_view)

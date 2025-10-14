@@ -302,6 +302,8 @@
 	if(!host_mob)
 		return
 	if(isturf(host_mob.loc))
+		if(oldloc == remote_view_target)
+			needs_to_decouple = TRUE
 		decouple_view_to_turf( host_mob, host_mob.loc)
 		return
 
