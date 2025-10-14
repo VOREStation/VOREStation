@@ -574,6 +574,7 @@
 #include "code\datums\components\overlay_lighting.dm"
 #include "code\datums\components\reactive_icon_update.dm"
 #include "code\datums\components\recursive_move.dm"
+#include "code\datums\components\remote_view.dm"
 #include "code\datums\components\resize_guard.dm"
 #include "code\datums\components\swarm.dm"
 #include "code\datums\components\tethered_item.dm"

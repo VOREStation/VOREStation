@@ -48,13 +48,7 @@
 			return
 		target.forceMove(src)
 		occupant = target
-		target.reset_view(src)
 		occupant.Stasis(3)
-		/*
-		if(target.client)
-			target.client.perspective = EYE_PERSPECTIVE
-			target.client.eye = chassis
-		*/
 		set_ready_state(FALSE)
 		START_PROCESSING(SSprocessing, src)
 		occupant_message(span_notice("[target] successfully loaded into [src]. Life support functions engaged."))
@@ -68,12 +62,6 @@
 	occupant.forceMove(get_turf(src))
 	occupant_message(span_infoplain("[occupant] ejected. Life support functions disabled."))
 	src.mecha_log_message("[occupant] ejected. Life support functions disabled.")
-	occupant.reset_view()
-	/*
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
-	*/
 	occupant.Stasis(0)
 	occupant = null
 	STOP_PROCESSING(SSprocessing, src)

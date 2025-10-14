@@ -24,9 +24,6 @@
 	playsound(src, 'sound/effects/clang.ogg', 25, 1, -1)
 	visible_message(span_warning("[M] [pick("tripped", "stumbled")] into \the [src]!"))
 	log_and_message_admins("stumbled into \the [src]", M)
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
 	M.apply_damage(5, BRUTE)
 	M.Weaken(2)
 	M.forceMove(src)
@@ -126,9 +123,6 @@
 		return ..()
 	playsound(src, 'sound/effects/clang.ogg', 25, 1, -1)
 	visible_message(span_warning("[M] [pick("tripped", "stumbled")] into \the [src]!"))
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
 	M.forceMove(src)
 	OCCUPANT = M
 	isopen = 0
