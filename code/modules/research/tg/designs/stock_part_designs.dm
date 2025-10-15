@@ -355,7 +355,7 @@
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ALL
+	departmental_flags = ALL
 
 /datum/design_techweb/high
 	name = "High-Capacity Cell"
@@ -404,7 +404,7 @@
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_1
 	)
-	departmental_flags = DEPARTMENT_BITFLAG_ALL
+	departmental_flags = ALL
 
 /datum/design_techweb/weapon_cell
 	name = "Weapon Cell"
