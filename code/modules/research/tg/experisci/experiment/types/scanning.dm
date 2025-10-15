@@ -9,7 +9,7 @@
 /datum/experiment/scanning
 	name = "Scanning Experiment"
 	description = "Base experiment for scanning atoms"
-	exp_tag = "Scan"
+	exp_tag = EXPERIMENT_TAG_SCAN
 	allowed_experimentors = list(/obj/item/experi_scanner, /obj/machinery/rnd/destructive_analyzer)
 	performance_hint = "Perform scanning experiments using a handheld experi-scanner."
 	/// The typepaths and number of atoms that must be scanned
