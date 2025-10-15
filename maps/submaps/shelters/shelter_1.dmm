@@ -48,8 +48,7 @@
 /obj/structure/bed/pod,
 /obj/item/bedsheet/mime,
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
@@ -68,9 +67,10 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
-/obj/machinery/button/remote/airlock/survival_pod{
-	dir = 10;
-	pixel_y = -24
+/obj/machinery/light_switch/survival_pod{
+	dir = 1;
+	pixel_x = -9;
+	pixel_y = -23
 	},
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
@@ -87,6 +87,13 @@
 "o" = (
 /obj/structure/sign/mining,
 /turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod)
+"p" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = -24;
+	pixel_x = 32
+	},
+/turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 
 (1,1,1) = {"
@@ -107,7 +114,7 @@ m
 b
 d
 h
-h
+p
 n
 "}
 (4,1,1) = {"
