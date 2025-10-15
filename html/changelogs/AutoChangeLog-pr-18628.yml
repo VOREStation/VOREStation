@@ -1,0 +1,6 @@
+author: "Guti"
+delete-after: True
+changes:
+  - refactor: "Refactored pronouns handling"
+  - rscdel: "Removed /datum/gender"
+  - code_imp: "Added pronoun helper procs"
