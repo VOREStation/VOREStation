@@ -7,6 +7,11 @@
 	pixel_y = -24;
 	pixel_x = 23
 	},
+/obj/machinery/light_switch/survival_pod{
+	dir = 8;
+	pixel_x = 33;
+	pixel_y = -23
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
 "d" = (

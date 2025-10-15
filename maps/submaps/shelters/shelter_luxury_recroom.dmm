@@ -1,4 +1,62 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/sign/mining,
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod/dorms)
+"ab" = (
+/obj/structure/table/gamblingtable,
+/obj/effect/floor_decal/spline/plain{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/survivalpod)
+"ac" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/survivalpod)
+"ad" = (
+/obj/structure/table/gamblingtable,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/survivalpod)
+"ae" = (
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/carpet/blue2,
+/area/survivalpod)
+"af" = (
+/obj/structure/table/gamblingtable,
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/survivalpod)
+"ag" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"ah" = (
+/obj/structure/bed/chair/sofa/corp/left,
+/turf/simulated/floor/wood,
+/area/survivalpod)
 "aE" = (
 /obj/machinery/button/remote/airlock/survival_pod/bolts{
 	pixel_y = -23;
@@ -6,15 +64,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/carpet/brown,
-/area/survivalpod)
-"aY" = (
-/obj/machinery/disposal/wall{
-	dir = 8
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
 /area/survivalpod)
 "cE" = (
 /turf/simulated/shuttle/wall/voidcraft/survival,
@@ -27,7 +76,7 @@
 /area/survivalpod)
 "dq" = (
 /obj/machinery/vending/loadout/loadout_misc,
-/turf/simulated/floor/wood/alt/parquet,
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "dD" = (
 /obj/structure/bed/chair/comfy/brown{
@@ -36,11 +85,8 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod/dorms)
 "dI" = (
-/obj/machinery/vending/cola/soft,
-/obj/effect/floor_decal/spline/plain{
-	dir = 8
-	},
-/turf/simulated/floor/wood/alt/parquet,
+/obj/structure/bed/chair/sofa/corp/right,
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "ep" = (
 /obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
@@ -74,20 +120,21 @@
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod/dorms)
 "iU" = (
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
 /area/survivalpod/dorms)
 "jc" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/vending/cola/soft{
+/obj/random/vendordrink{
 	dir = 8
 	},
-/turf/simulated/floor/wood/alt/parquet,
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "kq" = (
 /obj/structure/bed/chair/comfy/rounded/green{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/survivalpod)
@@ -105,6 +152,10 @@
 	id = "gambapod_w";
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "lw" = (
@@ -112,16 +163,6 @@
 	dir = 4
 	},
 /turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
-"lG" = (
-/obj/structure/bed/chair/bay/comfy/black{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/carpet/blue2,
 /area/survivalpod)
 "lJ" = (
 /obj/structure/grille,
@@ -135,6 +176,10 @@
 	},
 /obj/structure/window/reinforced/polarized/survival_pod{
 	id = "gambapod_w"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
@@ -192,6 +237,7 @@
 /area/survivalpod)
 "sg" = (
 /obj/structure/table/gamblingtable,
+/obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
 "tP" = (
@@ -207,11 +253,12 @@
 /obj/machinery/door/window/survival_pod{
 	dir = 2
 	},
+/obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
 "wO" = (
 /obj/machinery/holoplant,
-/turf/simulated/floor/wood/alt/parquet,
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "xy" = (
 /obj/structure/grille,
@@ -239,7 +286,7 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 1;
+	dir = 4;
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/carpet/blue2,
@@ -256,9 +303,9 @@
 /area/survivalpod)
 "BU" = (
 /obj/machinery/button/windowtint{
-	pixel_x = 23;
+	pixel_x = 32;
 	id = "gambapod_w";
-	pixel_y = -56;
+	pixel_y = -53;
 	range = 5
 	},
 /obj/structure/disposalpipe/segment{
@@ -275,10 +322,10 @@
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "De" = (
-/obj/machinery/vending/fitness{
+/obj/random/vendorfood{
 	dir = 8
 	},
-/turf/simulated/floor/wood/alt/parquet,
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "DP" = (
 /obj/structure/closet/cabinet,
@@ -300,21 +347,17 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod/dorms)
-"Fz" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
-/area/survivalpod)
 "FL" = (
-/turf/simulated/floor/wood/alt/parquet,
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "Ge" = (
 /obj/structure/table/gamblingtable,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/effect/floor_decal/spline/plain{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
@@ -323,25 +366,11 @@
 /turf/simulated/floor/carpet/blue2,
 /area/survivalpod)
 "GA" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/light,
-/turf/simulated/floor/wood/alt/parquet,
-/area/survivalpod)
-"Hr" = (
-/obj/structure/sign/mining/survival{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "HP" = (
 /turf/simulated/shuttle/wall/voidcraft/survival,
@@ -374,7 +403,7 @@
 /area/survivalpod)
 "JZ" = (
 /obj/structure/fans,
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
 /area/survivalpod/dorms)
 "KT" = (
 /obj/structure/table/darkglass,
@@ -419,17 +448,12 @@
 	pixel_x = 6
 	},
 /obj/structure/closet/walllocker_double/casino/west,
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
 "Ma" = (
 /obj/structure/table/gamblingtable,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
@@ -444,10 +468,7 @@
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 "Pb" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 8
-	},
-/turf/simulated/floor/wood/alt/parquet,
+/turf/simulated/floor/carpet/turcarpet,
 /area/survivalpod)
 "Pr" = (
 /obj/machinery/button/remote/airlock/survival_pod/bolts{
@@ -479,11 +500,7 @@
 /turf/simulated/floor/carpet/blue2,
 /area/survivalpod)
 "Rk" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/shuttle/wall/voidcraft/survival,
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
 /area/survivalpod)
 "Rp" = (
 /obj/structure/disposalpipe/segment{
@@ -498,20 +515,26 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
 "SA" = (
 /obj/machinery/vending/loadout/costume{
 	dir = 8
 	},
-/turf/simulated/floor/wood/alt/parquet,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
 /area/survivalpod)
 "UN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 8
 	},
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
 /area/survivalpod/dorms)
 "VG" = (
 /obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
@@ -532,44 +555,25 @@
 /area/survivalpod)
 "XD" = (
 /obj/structure/table/gamblingtable,
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)
 "Yc" = (
-/obj/structure/disposalpipe/junction/yjunction{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
 /area/survivalpod/dorms)
-"Zk" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/polarized/survival_pod{
-	id = "gambapoddorm_w";
-	dir = 8
-	},
-/obj/structure/window/reinforced/polarized/survival_pod{
-	id = "gambapoddorm_w";
-	dir = 4
-	},
-/obj/structure/window/reinforced/polarized/survival_pod{
-	id = "gambapoddorm_w";
-	dir = 1
-	},
-/obj/structure/window/reinforced/polarized/survival_pod{
-	id = "gambapoddorm_w"
-	},
-/turf/simulated/shuttle/floor/voidcraft/dark,
-/area/survivalpod)
 
 (1,1,1) = {"
 cE
 MO
 Jd
-Hr
-Fz
+MO
+cE
 ls
 lJ
 MO
@@ -584,7 +588,7 @@ Gv
 Rk
 KT
 Sd
-lT
+ac
 wH
 Qc
 uF
@@ -595,9 +599,9 @@ oP
 tP
 Bu
 Ma
-Rp
-kq
 lT
+kq
+Rp
 sg
 Ql
 tP
@@ -609,9 +613,9 @@ tP
 Bu
 Ge
 XD
-sg
-sg
-sg
+af
+ad
+ab
 Ql
 tP
 Wd
@@ -621,9 +625,9 @@ xy
 hq
 Qc
 Qc
-lG
-zh
 Bx
+zh
+ae
 Qc
 Qc
 oI
@@ -637,7 +641,7 @@ tP
 tP
 BU
 Jf
-aY
+tP
 tP
 qb
 df
@@ -645,7 +649,7 @@ df
 (7,1,1) = {"
 cE
 dI
-Pb
+ag
 Pb
 Pb
 Pb
@@ -657,25 +661,25 @@ HP
 "}
 (8,1,1) = {"
 yp
-FL
-FL
-FL
-FL
-FL
+ah
+ag
+Pb
+Pb
+Pb
 FL
 UN
 Pr
 DP
-PR
+aa
 "}
 (9,1,1) = {"
-Zk
-FL
-FL
-FL
-FL
-FL
-FL
+Jd
+tP
+tP
+Pb
+Pb
+Pb
+oI
 iU
 Ez
 dD
@@ -697,7 +701,7 @@ PR
 (11,1,1) = {"
 cE
 lw
-Zk
+Jd
 lw
 Jd
 ep

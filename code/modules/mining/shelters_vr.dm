@@ -157,8 +157,20 @@
 /datum/map_template/shelter/luxuryrecroom
 	name = "Shelter Luxury Rec Room"
 	shelter_id = "shelter_luxury_recroom"
-	description = "(11x11) The surfluid within this capsule is a carefully programmed monument to hedonism. Featuring a large gambling table supporting up to seven players, vending machines for players' needs, and even two small private dorm rooms, if you have any desire for a fully private, self-contained gambling room completely isolated from the world outside, this is your perfect answer."
+	description = "(11x11) The surfluid within this capsule is a carefully programmed monument to hedonism. Unlike its smaller cousin, this rec room variant  sports a larger gambling table supporting up to seven players, more vending machines for players' needs, and even a small private dorm room. If you have any desire for a fully private, self-contained gambling room completely isolated from the world outside, this is your perfect answer."
 	mappath = "maps/submaps/shelters/shelter_luxury_recroom.dmm"
+
+/datum/map_template/shelter/kitchen
+	name = "Shelter Kitchen"
+	shelter_id = "shelter_kitchen"
+	description = "(7x7) A fully stocked, functional kitchen in your pocket, equipped with an oven, fryer, grill, oven, microwave, and blender. It even comes with a pre-stocked storage of basic ingredients, to make starting your culinary pursuits easier to begin as soon as you pop open the capsule!"
+	mappath = "maps/submaps/shelters/shelter_kitchen.dmm"
+
+/datum/map_template/shelter/iota
+	name = "Shelter Iota"
+	shelter_id = "shelter_pocket_dorm"
+	description = "(5x5) An alternate configuration of Shelter Alpha. This one is more spatially efficient and supports two people inside it, but compromises some shelter equipment to make room for it."
+	mappath = "maps/submaps/shelters/shelter_pocket_dorm.dmm"
 
 /datum/map_template/shelter/zeta
 	name = "Shelter Zeta"
