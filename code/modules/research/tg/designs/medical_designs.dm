@@ -37,7 +37,7 @@
 	id = "scalpel"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
-	build_path = /obj/item/scalpel
+	build_path = /obj/item/surgical/scalpel
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
@@ -48,7 +48,7 @@
 	id = "circular_saw"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 1000)
-	build_path = /obj/item/circular_saw
+	build_path = /obj/item/surgical/circular_saw
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
@@ -59,7 +59,7 @@
 	id = "bonesetter"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 1000,  /datum/material/glass = 1000)
-	build_path = /obj/item/bonesetter
+	build_path = /obj/item/surgical/bonesetter
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
@@ -70,7 +70,7 @@
 	id = "surgicaldrill"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
-	build_path = /obj/item/surgicaldrill
+	build_path = /obj/item/surgical/surgicaldrill
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
@@ -81,7 +81,7 @@
 	id = "retractor"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
-	build_path = /obj/item/retractor
+	build_path = /obj/item/surgical/retractor
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
@@ -92,7 +92,7 @@
 	id = "cautery"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
-	build_path = /obj/item/cautery
+	build_path = /obj/item/surgical/cautery
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
@@ -103,7 +103,7 @@
 	id = "hemostat"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
-	build_path = /obj/item/hemostat
+	build_path = /obj/item/surgical/hemostat
 	category = list(
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_MEDICAL,
 	)
@@ -114,7 +114,7 @@
 	desc = "A portable defibrillator, used for resuscitating recently deceased crew."
 	id = "defibrillator"
 	build_type = PROTOLATHE
-	build_path = /obj/item/defibrillator
+	build_path = /obj/item/surgical/defibrillator
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/silver =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 0.5)
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
