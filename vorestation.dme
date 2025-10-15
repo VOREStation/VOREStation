@@ -4329,6 +4329,7 @@
 #include "code\modules\research\tg\designs\boards\telecomms.dm"
 #include "code\modules\research\tg\experisci\handheld_scanner.dm"
 #include "code\modules\research\tg\experisci\experiment\handlers\experiment_handler.dm"
+#include "code\modules\research\tg\experisci\experiment\instances\destructive.dm"
 #include "code\modules\research\tg\experisci\experiment\instances\machines.dm"
 #include "code\modules\research\tg\experisci\experiment\instances\misc.dm"
 #include "code\modules\research\tg\experisci\experiment\instances\people.dm"
