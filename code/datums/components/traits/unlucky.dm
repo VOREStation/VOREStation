@@ -278,8 +278,7 @@
 		for(var/obj/structure/table/evil_table in the_turf)
 			if(!evil_table.material) //We only want tables, not just table frames.
 				continue
-			var/datum/gender/gender = GLOB.gender_datums[living_guy.get_visible_gender()]
-			living_guy.visible_message(span_danger("[living_guy] stubs [gender.his] toe on [evil_table]!"), span_bolddanger("You stub your toe on [evil_table]!"))
+			living_guy.visible_message(span_danger("[living_guy] stubs [living_guy.p_their()] toe on [evil_table]!"), span_bolddanger("You stub your toe on [evil_table]!"))
 			living_guy.apply_damage(2 * damage_mod, BRUTE, pick(BP_L_FOOT, BP_R_FOOT), used_weapon = "blunt force trauma")
 			living_guy.adjustHalLoss(25) //It REALLY hurts.
 			living_guy.Weaken(3)
@@ -314,8 +313,7 @@
 
 	if(prob(30 * luck_mod) && our_guy.get_bodypart_name(BP_HEAD)) /// Bonk!
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
-		var/datum/gender/gender = GLOB.gender_datums[our_guy.get_visible_gender()]
-		our_guy.visible_message(span_danger("[our_guy] hits [gender.his] head really badly falling down!"), span_bolddanger("You hit your head really badly falling down!"))
+		our_guy.visible_message(span_danger("[our_guy] hits [our_guy.p_their()] head really badly falling down!"), span_bolddanger("You hit your head really badly falling down!"))
 		var/max_health_coefficient = (our_guy.maxHealth * 0.5)
 		our_guy.apply_damage(max_health_coefficient * damage_mod, BRUTE, BP_HEAD, used_weapon = "slipping")
 		if(ishuman(our_guy))
@@ -457,8 +455,7 @@
 		if(!damage_to_inflict)
 			return
 
-		var/datum/gender/gender = GLOB.gender_datums[unlucky_human.get_visible_gender()]
-		unlucky_human.visible_message(span_danger("[unlucky_human] accidentally [injury_verb] [gender.his] hand on [item]!"))
+		unlucky_human.visible_message(span_danger("[unlucky_human] accidentally [injury_verb] [unlucky_human.p_their()] hand on [item]!"))
 		unlucky_human.apply_damage(damage_to_inflict * damage_mod, damage_type, current_hand, sharp = is_sharp, edge = has_edge, used_weapon = injury_type)
 
 /datum/component/omen/proc/check_stairs(mob/living/unlucky_soul)

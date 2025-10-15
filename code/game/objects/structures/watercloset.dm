@@ -668,10 +668,9 @@
 					R.cell.charge -= 20
 				else
 					B.deductcharge(B.hitcost)
-				var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 				user.visible_message( \
-					span_danger("[user] was stunned by [TU.his] wet [O]!"), \
-					span_userdanger("[user] was stunned by [TU.his] wet [O]!"))
+					span_danger("[user] was stunned by [user.p_their()] wet [O]!"), \
+					span_userdanger("[user] was stunned by [user.p_their()] wet [O]!"))
 				return 1
 	else if(istype(O, /obj/item/mop))
 		O.reagents.add_reagent(REAGENT_ID_WATER, 5)
