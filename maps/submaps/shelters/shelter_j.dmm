@@ -11,6 +11,11 @@
 /obj/structure/bed/chair/sofa/corp/left,
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
+"c" = (
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/yellowdouble,
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
 "d" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/survival_pod{
@@ -71,21 +76,6 @@
 /obj/item/reagent_containers/food/drinks/metaglass{
 	pixel_y = 5;
 	pixel_x = 3
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/survivalpod)
-"A" = (
-/obj/item/bedsheet/yellowdouble{
-	dir = 1
-	},
-/obj/structure/bed/double/padded{
-	dir = 1
-	},
-/obj/machinery/button/windowtint{
-	pixel_x = 11;
-	id = "podwindows";
-	pixel_y = -23;
-	range = 3
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
@@ -219,6 +209,12 @@
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
 "X" = (
+/obj/machinery/button/windowtint{
+	pixel_x = -22;
+	id = "podwindows";
+	pixel_y = -54;
+	range = 2
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
 "Y" = (
@@ -234,7 +230,7 @@ P
 G
 d
 H
-G
+P
 G
 "}
 (2,1,1) = {"
@@ -243,7 +239,7 @@ a
 l
 v
 y
-A
+B
 U
 "}
 (3,1,1) = {"
@@ -261,15 +257,15 @@ j
 Y
 K
 E
-B
+c
 U
 "}
 (5,1,1) = {"
 G
 P
 G
-P
-G
 S
+G
+P
 G
 "}
