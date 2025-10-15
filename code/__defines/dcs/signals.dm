@@ -694,6 +694,12 @@
 #define COMSIG_HUMAN_DNA_FINALIZED "human_dna_finished"
 ///from /proc/domutcheck(): ()
 #define COMSIG_MOB_DNA_MUTATION "mob_dna_mutation"
+///from /mob/living/proc/handle_radiation()
+#define COMSIG_HANDLE_RADIATION "handle_radiation"
+	#define COMPONENT_BLOCK_LIVING_RADIATION (1<<0)
+///from /mob/living/proc/handle_mutations()
+#define COMSIG_HANDLE_MUTATIONS "handle_mutations"
+	#define COMPONENT_BLOCK_LIVING_MUTATIONS (1<<0)
 
 // Organ specific signals
 
