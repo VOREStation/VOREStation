@@ -4333,6 +4333,7 @@
 #include "code\modules\research\tg\experisci\experiment\instances\misc.dm"
 #include "code\modules\research\tg\experisci\experiment\instances\people.dm"
 #include "code\modules\research\tg\experisci\experiment\instances\physical.dm"
+#include "code\modules\research\tg\experisci\experiment\instances\teleporting.dm"
 #include "code\modules\research\tg\experisci\experiment\types\experiment.dm"
 #include "code\modules\research\tg\experisci\experiment\types\physical_experiment.dm"
 #include "code\modules\research\tg\experisci\experiment\types\random_scanning.dm"
