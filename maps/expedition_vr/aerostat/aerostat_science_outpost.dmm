@@ -1469,12 +1469,7 @@
 /area/offmap/aerostat/solars)
 "dK" = (
 /obj/structure/cable,
-/obj/machinery/power/smes/buildable{
-	charge = 2e+006;
-	input_attempt = 1;
-	input_level = 100000;
-	output_level = 200000
-	},
+/obj/machinery/power/smes/buildable/engine_default,
 /turf/simulated/floor/bluegrid,
 /area/offmap/aerostat/inside/powercontrol)
 "dL" = (
@@ -1493,12 +1488,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	charge = 2e+006;
-	input_attempt = 1;
-	input_level = 100000;
-	output_level = 200000
-	},
+/obj/machinery/power/smes/buildable/engine_default,
 /turf/simulated/floor/bluegrid,
 /area/offmap/aerostat/inside/powercontrol)
 "dN" = (
