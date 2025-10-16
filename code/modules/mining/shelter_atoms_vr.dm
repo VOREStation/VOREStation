@@ -65,6 +65,31 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		ret += "This capsule has an unknown template stored."
 	return ret
 
+/// Creates and shows to the user a preview of the pod's shape, like the admin load template verb does. However, this one shows valid deploy turfs in blue, and invalid turfs in red.
+/obj/item/survivalcapsule/proc/preview_template(var/mob/user, var/turf/deploy_turf)
+	if(!deploy_turf)
+		return
+	var/preview_render = list()
+	template.preload_size(template.mappath)
+	for(var/turf/S in template.get_affected_turfs(deploy_turf, centered = TRUE))
+		if(template.get_turf_deployability(S, is_ship) != SHELTER_DEPLOY_ALLOWED)
+			preview_render += image('icons/misc/debug_group.dmi',S ,"red")
+		else
+			preview_render += image('icons/misc/debug_group.dmi',S ,"blue")
+	user.client.images += preview_render
+	return preview_render
+
+/obj/item/survivalcapsule/proc/remove_preview(var/mob/user, var/list/preview_render, var/fade_time = 1 SECOND)
+	if(fade_time > 0)
+		for(var/image/I in preview_render)
+			animate(I, alpha = 0, fade_time)
+		addtimer(CALLBACK(src, PROC_REF(delete_preview_render), user, preview_render), fade_time, TIMER_DELETE_ME)
+	else
+		delete_preview_render(user, preview_render)
+
+/obj/item/survivalcapsule/proc/delete_preview_render(var/mob/user, var/list/preview_render)
+	user.client.images -= preview_render
+
 /obj/item/survivalcapsule/proc/can_deploy(var/turf/deploy_location, var/turf/above_location)
 	var/status = template.check_deploy(deploy_location, is_ship)
 	switch(status)
@@ -144,13 +169,21 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 			return
 		var/turf/deploy_location = get_turf(src)
 		// Warn the user in advance if the capsule can't work from where they're standing.
+		var/preview_render = preview_template(user, deploy_location)
 		if(!can_deploy(get_turf(src), GetAbove(deploy_location)))
+			remove_preview(user, preview_render)
 			return
-		loc.visible_message(span_warning("\The [src] begins to shake. Stand back!"))
-		user.drop_from_inventory(src)
-		used = TRUE
+		if(tgui_alert(usr,"Confirm location.", "Shelter Deploy Confirm",list("No","Yes")) == "Yes")
+			// We might have moved since the last check, so we check again!
+			if(!can_deploy(deploy_location, GetAbove(deploy_location)))
+				used = FALSE
+				return
+			loc.visible_message(span_warning("\The [src] begins to shake. Stand back!"))
+			user.drop_from_inventory(src)
+			used = TRUE
 
-		addtimer(CALLBACK(src, PROC_REF(deploy_step_one), user), 5 SECONDS, TIMER_DELETE_ME)
+			addtimer(CALLBACK(src, PROC_REF(deploy_step_one), user), 5 SECONDS, TIMER_DELETE_ME)
+		remove_preview(user, preview_render, 0)
 
 /obj/item/survivalcapsule/luxury
 	name = "luxury surfluid shelter capsule"

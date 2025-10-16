@@ -7,27 +7,35 @@
 
 /datum/map_template/shelter/New()
 	. = ..()
-	blacklisted_turfs = typecacheof(list(/turf/unsimulated, /turf/simulated/floor/tiled))
+	blacklisted_turfs = typecacheof(list(/turf/unsimulated))
 	banned_areas = typecacheof(/area/shuttle)
 	banned_objects = list()
 
+/// Checks all turfs within the area of the given deploy location to see if it is a valid shelter area.
 /datum/map_template/shelter/proc/check_deploy(turf/deploy_location, var/is_ship)
 	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
 	for(var/turf/T in affected)
-		var/area/A = get_area(T)
-		if(is_type_in_typecache(A, banned_areas) || (A.flags & AREA_BLOCK_INSTANT_BUILDING))
-			return SHELTER_DEPLOY_BAD_AREA
+		var/shelter_status = get_turf_deployability(T)
+		if(shelter_status != SHELTER_DEPLOY_ALLOWED)
+			return shelter_status
+	return SHELTER_DEPLOY_ALLOWED
 
-		var/banned = is_type_in_typecache(T, blacklisted_turfs)
-		if(banned || T.density)
-			return SHELTER_DEPLOY_BAD_TURFS
-		//Ships can only deploy in space (bacause their base turf is always turf/space)
-		if(is_ship && !is_type_in_typecache(T, typecacheof(/turf/space)))
-			return SHELTER_DEPLOY_SHIP_SPACE
+/// Checks a single given turf to see if it is a valid turf to deploy a shelter onto.
+/datum/map_template/shelter/proc/get_turf_deployability(var/turf/T, var/is_ship)
+	var/area/A = get_area(T)
+	if(is_type_in_typecache(A, banned_areas) || (A.flags & AREA_BLOCK_INSTANT_BUILDING))
+		return SHELTER_DEPLOY_BAD_AREA
 
-		for(var/obj/O in T)
-			if((O.density && O.anchored) || is_type_in_typecache(O, banned_objects))
-				return SHELTER_DEPLOY_ANCHORED_OBJECTS
+	var/banned = is_type_in_typecache(T, blacklisted_turfs)
+	if(banned || T.density)
+		return SHELTER_DEPLOY_BAD_TURFS
+	//Ships can only deploy in space (because their base turf is always turf/space)
+	if(is_ship && !is_type_in_typecache(T, typecacheof(/turf/space)))
+		return SHELTER_DEPLOY_SHIP_SPACE
+
+	for(var/obj/O in T)
+		if((O.density && O.anchored) || is_type_in_typecache(O, banned_objects))
+			return SHELTER_DEPLOY_ANCHORED_OBJECTS
 	return SHELTER_DEPLOY_ALLOWED
 
 /datum/map_template/shelter/proc/add_roof(turf/deploy_location)
