@@ -144,17 +144,17 @@
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/carbon/human/M as mob)
 	if (!..())
-		return 0
+		return FALSE
 
 	if(istype(M))
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
 			var/fresh = B.init_forensic_data().add_blooddna(M.dna,M)
 			if(fresh && M.IsInfected())
 				B.viruses = M.GetViruses()
-			return 1 //we bloodied the floor
+			return TRUE //we bloodied the floor
 		blood_splatter(src,M.get_blood(M.vessel),1)
-		return 1 //we bloodied the floor
-	return 0
+		return TRUE //we bloodied the floor
+	return FALSE
 
 // Only adds blood on the floor -- Skie
 /turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
