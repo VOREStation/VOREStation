@@ -146,7 +146,7 @@
 		to no contact, the expense of these shelters have prevented them \
 		from seeing common use."
 	mappath = "maps/submaps/shelters/7x7/shelter_a.dmm"
-	door_locations = list(list(4,1),list(7,4))
+	door_locations = list(list(4,1))
 
 /datum/map_template/shelter/chi
 	name = "Shelter Chi"
@@ -156,7 +156,7 @@
 	of recreational facilities and a more comfortable living quarters. The \
 	definition of \"form over function,\" in capsule form!"
 	mappath = "maps/submaps/shelters/7x8/shelter_h.dmm"
-	door_locations = list(list(3,1))
+	door_locations = list(list(4,1),list(7,4))
 
 /datum/map_template/shelter/rec
 	name = "Shelter Rec Room"
