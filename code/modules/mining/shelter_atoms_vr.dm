@@ -73,6 +73,9 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	template.preload_size(template.mappath)
 	// Get origin (bottom-left) of shelter template relative to where we are on the map
 	var/turf/origin = locate(user.x - round((template.width)/2) , user.y - round((template.height)/2) , user.z)
+	var/turf/topright = locate(user.x + round((template.width)/2) , user.y + round((template.height)/2) , user.z)
+	if(!origin || !topright)
+		return
 	for(var/turf/S in template.get_affected_turfs(deploy_turf, centered = TRUE))
 		if(template.get_turf_deployability(S, is_ship) != SHELTER_DEPLOY_ALLOWED)
 			preview_render += image('icons/misc/debug_group.dmi',S ,"red")
@@ -184,6 +187,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		var/turf/deploy_location = get_turf(src)
 		// Warn the user in advance if the capsule can't work from where they're standing.
 		var/preview_render = preview_template(user, deploy_location)
+		// If there's no preview render, that means it couldn't get the bottom-left or top-right corner of the map
+		// So this is prooooobably somewhere outside the map bounds!
+		if(!preview_render)
+			loc.visible_message(span_warning("\The [src] is too close to the edge of this map to deploy!"))
+			return
 		if(!can_deploy(get_turf(src), GetAbove(deploy_location)))
 			addtimer(CALLBACK(src, PROC_REF(remove_preview), user, preview_render), 1 SECONDS, TIMER_DELETE_ME)
 			return
