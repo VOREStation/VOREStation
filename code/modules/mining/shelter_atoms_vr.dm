@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		var/turf/deploy_location = get_turf(src)
 		// Warn the user in advance if the capsule can't work from where they're standing.
 		var/preview_render = preview_template(user, deploy_location)
-		// If there's no preview render, that means it couldn't get the bottom-left or top-right corner of the map
+		// If there's no preview render, that means it couldn't get the bottom-left or top-right corner of the shelter template area
 		// So this is prooooobably somewhere outside the map bounds!
 		if(!preview_render)
 			loc.visible_message(span_warning("\The [src] is too close to the edge of this map to deploy!"))
