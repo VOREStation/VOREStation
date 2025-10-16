@@ -1,6 +1,6 @@
 
 /* Component that handles species effects for mobs/species when they are afflicted with radiation.
- * Allows for healing, contamination, and immunity.
+ * Allows for glowing, healing, contamination, and immunity.
  */
 /datum/component/radiation_effects
 	///Below this value, no glow occurs.
@@ -8,9 +8,12 @@
 
 	///If we spread radiation or not.
 	var/contamination = FALSE
-	///Range of our contamination, if we contaminate.
-	var/contamination_range = 1
+	///Strength of our contamination, if we contaminate. Each 1 strength is 10% of the rads we're dissipating per
+	var/contamination_strength = 1
+	///What level our radiation has to be above to begin to contaminate our surroundings.
+	var/contamination_threshold = 600
 
+	///If we glow or not.
 	var/glows = TRUE
 
 	///What color we glow.
@@ -33,7 +36,7 @@
 	///If we dissipate radiation or keep it.
 	var/radiation_dissipation = TRUE
 
-/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_range, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation)
+/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_strength, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation)
 
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -43,8 +46,8 @@
 		src.radiation_glow_threshold = radiation_glow_threshold
 	if(contamination)
 		src.contamination = contamination
-	if(contamination_range)
-		src.contamination_range = contamination_range
+	if(contamination_strength)
+		src.contamination_strength = contamination_strength
 	if(radiation_color)
 		src.radiation_color = radiation_color
 	if(intensity_mod)
@@ -69,7 +72,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/living_guy = parent
 	if(!glows)
-		if(glow_override) //Toggled glow off while we were still actively glowing.
+		if(living_guy.glow_override) //Toggled glow off while we were still actively glowing.
 			living_guy.glow_override = FALSE
 			living_guy.set_light(0)
 		return
@@ -91,14 +94,20 @@
 	if(QDELETED(parent))
 		return
 
+	//Radiation calculation, done here since contamination uses it
+	var/rad_removal_mod = 1
+	var/rads = living_guy.radiation/25
+
+	if(ishuman(living_guy))
+		var/mob/living/carbon/human/human_guy = parent
+		rad_removal_mod = human_guy.species.rad_removal_mod
+	//End of the calculation.
+
+	if(contamination && living_guy.radiation > contamination_threshold)
+		SSradiation.radiate(living_guy, rads * contamination_strength * rad_removal_mod)
+
 	if(radiation_immunity || radiation_healing)
 		//We have to remove radiation here since we're blocking radiation altogether.
-		var/rad_removal_mod = 1
-		var/rads = living_guy.radiation/25
-
-		if(ishuman(living_guy))
-			var/mob/living/carbon/human/human_guy = parent
-			rad_removal_mod = human_guy.species.rad_removal_mod
 		var/rads_to_utilize = rads * rad_removal_mod
 
 		//If we heal from radiation, we will dissipate (use up) the amount we heal.
