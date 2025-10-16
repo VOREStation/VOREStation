@@ -199,7 +199,7 @@
 	id = "shelter_capsule_kitchen"
 	build_type = PROTOLATHE
 	materials = list(MAT_STEEL = 35000, MAT_GLASS = 35000, MAT_TITANIUM = 5000, MAT_DURASTEEL = 5000, MAT_DIAMOND = 500, MAT_URANIUM = 1000)
-	build_path = /obj/item/survivalcapsule/sauna
+	build_path = /obj/item/survivalcapsule/kitchen
 	category = list(
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_BLUESPACE
 	)
