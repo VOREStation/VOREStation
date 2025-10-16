@@ -2,6 +2,14 @@
 "a" = (
 /turf/simulated/shuttle/wall/voidcraft,
 /area/survivalpod)
+"b" = (
+/obj/machinery/button/remote/airlock/survival_pod{
+	dir = 10;
+	pixel_y = -24;
+	pixel_x = 32
+	},
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
 "g" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/voidcraft/survival_pod,
@@ -41,10 +49,6 @@
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "q" = (
-/obj/machinery/button/remote/airlock/survival_pod{
-	dir = 10;
-	pixel_y = -24
-	},
 /obj/machinery/light_switch/survival_pod{
 	dir = 1;
 	pixel_x = -9;
@@ -127,7 +131,7 @@ J
 B
 m
 O
-O
+b
 g
 "}
 (4,1,1) = {"
