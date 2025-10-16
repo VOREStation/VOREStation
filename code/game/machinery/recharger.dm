@@ -4,6 +4,7 @@
 	desc = "A standard recharger for all devices that use power."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger0"
+	flags = REMOTEVIEW_ON_ENTER
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 4
