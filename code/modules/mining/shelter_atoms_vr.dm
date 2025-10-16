@@ -207,6 +207,21 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. There's a license for use printed on the bottom."
 	template_id = "shelter_beta"
 
+/obj/item/survivalcapsule/luxuryalt
+	name = "luxury alt surfluid shelter capsule"
+	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. There's a license for use printed on the bottom."
+	template_id = "shelter_luxury_alt"
+
+/obj/item/survivalcapsule/pocketdorm
+	name = "pocket dorm surfluid shelter capsule"
+	desc = "A little dorm programmed into construction nanomachines. There's a license for use printed on the bottom."
+	template_id = "shelter_pocket_dorm"
+
+/obj/item/survivalcapsule/kitchen
+	name = "pocket dorm surfluid shelter capsule"
+	desc = "A kitchen programmed into construction nanomachines. There's a license for use printed on the bottom."
+	template_id = "shelter_kitchen"
+
 /obj/item/survivalcapsule/luxurybar
 	name = "luxury surfluid bar capsule"
 	desc = "A luxury bar in a capsule. " + JOB_BARTENDER + " required and not included. There's a license for use printed on the bottom."
@@ -221,6 +236,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	name = "luxury surfluid cafe capsule"
 	desc = "A luxury cafe in a capsule. There's a license for use printed on the bottom."
 	template_id = "shelter_cafe"
+
+/obj/item/survivalcapsule/luxuryrecroom
+	name = "luxury rec room cafe capsule"
+	desc = "A luxury rec room in a capsule. There's a license for use printed on the bottom."
+	template_id = "shelter_luxury_recroom"
 
 /obj/item/survivalcapsule/military
 	name = "military surfluid shelter capsule"
