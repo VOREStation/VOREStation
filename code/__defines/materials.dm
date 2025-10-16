@@ -130,4 +130,4 @@
 #define OPTIMAL_COST(cost)(max(1, round(cost)))
 
 /// Default circuitboard material list
-#define DEFAULT_CIRCUIT_MATERIALS list(MAT_GLASS = 1500, MAT_COPPER = 500)
+#define DEFAULT_CIRCUIT_MATERIALS list(MAT_GLASS = 2000)
