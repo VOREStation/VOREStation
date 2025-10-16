@@ -30,6 +30,9 @@
 	///If we heal from radiation or not
 	var/radiation_healing = FALSE
 
+	///If we dissipate radiation or keep it.
+	var/radiation_dissipation = TRUE
+
 /datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_range, radiation_color, intensity_mod, range_mod, radiation_immunity)
 
 	if(!isliving(parent))
@@ -61,24 +64,19 @@
 /datum/component/radiation_effects/proc/process_glow()
 	SIGNAL_HANDLER
 	var/mob/living/living_guy = parent
-	if(glows && living_guy.radiation < radiation_glow_threshold)
+	if(!glows)
+		if(glow_override) //Toggled glow off while we were still actively glowing.
+			living_guy.glow_override = FALSE
+			living_guy.set_light(0)
+		return
+	if(living_guy.radiation < radiation_glow_threshold)
 		living_guy.glow_override = FALSE
 		living_guy.set_light(0)
-		return
-	var/life_ticks = 0
-	if(iscarbon(living_guy))
-		var/mob/living/carbon/carbon_guy = parent
-		life_ticks = carbon_guy.life_tick
-
-	//If we're a carbon, we only want to process this every 5 life ticks OR every life tick if our rads are >600
-	//If we're not a carbon, we process it every life tick.
-	if(!(((living_guy.stat != DEAD && life_ticks && (life_ticks % 5 == 0))) || (living_guy.radiation > 600)))
 		return
 
 	if(glows)
 		var/light_range = CLAMP((living_guy.radiation/range_coefficient) * range_mod, 1, 7) //Min 1, max 7
 		var/light_power = max(1, living_guy.radiation/intensity_coefficient) * intensity_mod //No maximum. This can get BRIGHT.
-
 
 		living_guy.set_light(l_range = light_range, l_power = light_power, l_color = radiation_color, l_on = TRUE)
 		living_guy.glow_override = TRUE
@@ -99,15 +97,19 @@
 			rad_removal_mod = human_guy.species.rad_removal_mod
 		var/rads_to_utilize = rads * rad_removal_mod
 
-		living_guy.radiation -= rads_to_utilize
-
+		//If we heal from radiation, we will dissipate (use up) the amount we heal.
 		if(radiation_healing)
+			living_guy.radiation -= rads_to_utilize
+			rads_to_utilize = CLAMP(rads_to_utilize, 1, 10) //Only heal up to 10 rads.
 			living_guy.adjust_nutrition(rads_to_utilize)
 			living_guy.adjustBruteLoss(-rads_to_utilize)
 			living_guy.adjustFireLoss(-rads_to_utilize)
 			living_guy.adjustOxyLoss(-rads_to_utilize)
 			living_guy.adjustToxLoss(-rads_to_utilize)
 			living_guy.updatehealth()
+
+		else if(radiation_dissipation)
+			living_guy.radiation -= rads_to_utilize
 
 		return COMPONENT_BLOCK_LIVING_RADIATION
 
