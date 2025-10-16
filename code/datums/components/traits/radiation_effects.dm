@@ -33,7 +33,7 @@
 	///If we dissipate radiation or keep it.
 	var/radiation_dissipation = TRUE
 
-/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_range, radiation_color, intensity_mod, range_mod, radiation_immunity)
+/datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_range, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation)
 
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -53,6 +53,10 @@
 		src.range_mod = range_mod
 	if(radiation_immunity)
 		src.radiation_immunity = radiation_immunity
+	if(radiation_healing)
+		src.radiation_healing = radiation_healing
+	if(radiation_dissipation)
+		src.radiation_dissipation = radiation_dissipation
 
 /datum/component/radiation_effects/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_HANDLE_RADIATION, PROC_REF(process_component))
