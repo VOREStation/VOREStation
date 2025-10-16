@@ -89,7 +89,13 @@
 	switch(action)
 		if("viewing")
 			if(ui.user && !isAI(ui.user))
-				viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
+				if(check_eye(ui.user) < 0)
+					. = FALSE
+				else if(!viewing_overmap(ui.user) && linked)
+					if(!viewers) viewers = list() // List must exist for pass by reference to work
+					start_coordinated_remoteview(ui.user, linked, viewers)
+				else
+					ui.user.reset_perspective()
 			. = TRUE
 
 		if("link")

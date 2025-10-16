@@ -90,8 +90,7 @@
 		return
 	if(target.lying)
 		return
-	var/datum/gender/T = GLOB.gender_datums[attacker.get_visible_gender()]
-	attacker.visible_message(span_danger("[attacker] thrusts [T.his] head into [target]'s skull!"))
+	attacker.visible_message(span_danger("[attacker] thrusts [attacker.p_their()] head into [target]'s skull!"))
 
 	var/damage = 20
 	var/obj/item/clothing/hat = attacker.head

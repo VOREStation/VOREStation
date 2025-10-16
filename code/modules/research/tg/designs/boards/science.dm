@@ -196,3 +196,12 @@
 		RND_CATEGORY_MACHINE
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING
+
+/datum/design_techweb/board/destructive_analyzer
+	name = "destructive analyzer"
+	id = "destructive_analyzer"
+	build_path = /obj/item/circuitboard/destructive_analyzer
+	category = list(
+		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

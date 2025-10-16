@@ -176,6 +176,7 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	discount_experiments = list(/datum/experiment/physical/arcade_winner = TECHWEB_TIER_2_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)
 
 /datum/techweb_node/fireworks
 	id = TECHWEB_NODE_FIREWORKS
@@ -199,7 +200,7 @@
 		"fireworkfallout",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	announce_channels = list(CHANNEL_COMMON)
+	announce_channels = list(CHANNEL_SCIENCE)
 
 
 // Kitchen root node
@@ -271,5 +272,5 @@
 	design_ids = list(
 		"confetti_cannon",
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
-	announce_channels = list(CHANNEL_COMMON)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
+	announce_channels = list(CHANNEL_SERVICE)
