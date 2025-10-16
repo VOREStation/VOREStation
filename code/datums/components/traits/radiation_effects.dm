@@ -8,8 +8,8 @@
 
 	///If we spread radiation or not.
 	var/contamination = FALSE
-	///Strength of our contamination, if we contaminate. Each 1 strength is 10% of the rads we're dissipating per
-	var/contamination_strength = 1
+	///Strength of our contamination, if we contaminate. Each 1 strength is 100% of the rads we're dissipating.
+	var/contamination_strength = 0.1
 	///What level our radiation has to be above to begin to contaminate our surroundings.
 	var/contamination_threshold = 600
 
@@ -83,7 +83,7 @@
 
 	if(glows)
 		var/light_range = CLAMP((living_guy.radiation/range_coefficient) * range_mod, 1, 7) //Min 1, max 7
-		var/light_power = max(1, living_guy.radiation/intensity_coefficient) * intensity_mod //No maximum. This can get BRIGHT.
+		var/light_power = CLAMP(living_guy.radiation/intensity_coefficient * intensity_mod, 1, 10)
 
 		living_guy.set_light(l_range = light_range, l_power = light_power, l_color = radiation_color, l_on = TRUE)
 		living_guy.glow_override = TRUE
@@ -91,6 +91,10 @@
 /datum/component/radiation_effects/proc/process_component()
 	SIGNAL_HANDLER
 	var/mob/living/living_guy = parent
+	if(living_guy.radiation > RADIATION_CAP)
+		living_guy.radiation = CLAMP(living_guy.radiation,0,RADIATION_CAP)
+		living_guy.accumulated_rads = CLAMP(living_guy.accumulated_rads,0,RADIATION_CAP)
+
 	if(QDELETED(parent))
 		return
 
@@ -113,6 +117,7 @@
 		//If we heal from radiation, we will dissipate (use up) the amount we heal.
 		if(radiation_healing)
 			living_guy.radiation -= rads_to_utilize
+			living_guy.accumulated_rads -= rads_to_utilize
 			rads_to_utilize = CLAMP(rads_to_utilize, 1, 10) //Only heal up to 10 rads.
 			living_guy.adjust_nutrition(rads_to_utilize)
 			living_guy.adjustBruteLoss(-rads_to_utilize)
@@ -123,10 +128,11 @@
 
 		else if(radiation_dissipation)
 			living_guy.radiation -= rads_to_utilize
+			living_guy.accumulated_rads -= rads_to_utilize
 
 		return COMPONENT_BLOCK_LIVING_RADIATION
 
-//Subtypes
+//Subtypes. If making a custom one, do an ADDCOMPONENT(/datum/component/radiation_effects) with all the arguments required for the mob..
 
 ///Glows and is immune to radiation
 /datum/component/radiation_effects/promethean
