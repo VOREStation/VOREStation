@@ -599,9 +599,13 @@
 		update_flavor_text()
 	return ..()
 
-
+///Proc that checks to see if we DO damage via pulling or not.
 /mob/proc/pull_damage()
-	return 0
+	return FALSE
+
+///Proc that says if it's POSSIBLE to be damaged via pulling or not.
+/mob/proc/pull_can_damage()
+	return FALSE
 
 /mob/verb/stop_pulling()
 
@@ -702,8 +706,8 @@
 				to_chat(H, span_warning("\The [src] grips your arm."))
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
 
-		if(H.pull_damage())
-			to_chat(src, span_filter_notice("[span_red(span_bold("Pulling \the [H] in their current condition would probably be a bad idea."))]"))
+		if(H.pull_can_damage())
+			to_chat(src, span_danger(span_large("Pulling \the [H] in their current condition could easily worsen their injuries.")))
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))

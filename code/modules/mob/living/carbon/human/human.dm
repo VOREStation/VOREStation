@@ -1780,32 +1780,39 @@
 /mob/living/carbon/human/pull_damage()
 	if(((health - halloss) <= CONFIG_GET(number/health_threshold_softcrit)))
 		for(var/name in organs_by_name)
-			var/obj/item/organ/external/e = organs_by_name[name]
-			if(!e)
+			var/obj/item/organ/external/limb = organs_by_name[name]
+			if(!limb)
 				continue
-			if((e.status & ORGAN_BROKEN && (!e.splinted || ((e.splinted in e.contents) && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
-				return 1
+			if((limb.status & ORGAN_BROKEN && (!limb.splinted || ((limb.splinted in limb.contents) && prob(30))) || limb.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
+				return TRUE
 	else
 		return ..()
 
+/mob/living/carbon/human/pull_can_damage()
+	if(((health - halloss) <= CONFIG_GET(number/health_threshold_softcrit)))
+		for(var/name in organs_by_name)
+			var/obj/item/organ/external/limb = organs_by_name[name]
+			if(!limb)
+				continue
+			if(((limb.status & ORGAN_BROKEN) || (limb.status & ORGAN_BLEEDING)) && (getBruteLoss() + getFireLoss() >= 100))
+				return TRUE
+	else
+		return ..()
+
+
 // Drag damage is handled in a parent
-/mob/living/carbon/human/dragged(var/mob/living/dragger, var/oldloc)
-	var/area/A = get_area(src)
-	if(lying && !buckled && A.get_gravity() && prob(getBruteLoss() * 200 / maxHealth))
-		var/bloodtrail = 1
+/mob/living/carbon/human/dragged(var/mob/living/dragger, var/oldloc, trigged_bleeding)
+	if(..())
 		if(species?.flags & NO_BLOOD)
-			bloodtrail = 0
-		else
-			var/blood_volume = vessel.get_reagent_amount(REAGENT_ID_BLOOD)
-			if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
-				bloodtrail = 0	//Most of it's gone already, just leave it be
-			else
-				remove_blood(1)
-		if(bloodtrail)
-			if(istype(loc, /turf/simulated))
-				var/turf/T = loc
-				T.add_blood(src)
-	. = ..()
+			return
+		var/blood_volume = vessel.get_reagent_amount(REAGENT_ID_BLOOD)
+		if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
+			return
+
+		remove_blood(1)
+		if(istype(loc, /turf/simulated))
+			var/turf/simulated/T = loc
+			T.add_blood(src)
 
 // Tries to turn off item-based things that let you see through walls, like mesons.
 // Certain stuff like genetic xray vision is allowed to be kept on.

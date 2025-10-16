@@ -20285,9 +20285,8 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Atmospherics";
-	charge = 2e+006
+/obj/machinery/power/smes/buildable/max_charge{
+	RCon_tag = "Substation - Atmospherics"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/surface_atmos)
@@ -29385,9 +29384,8 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Surface Services";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Surface Services"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/surfaceservicesubstation)
@@ -29576,9 +29574,8 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Medical";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Medical"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/SurfMedsubstation)
@@ -36642,9 +36639,8 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "sBl" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Civ West";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Civ West"
 	},
 /obj/structure/cable/green{
 	icon_state = "0-2"
