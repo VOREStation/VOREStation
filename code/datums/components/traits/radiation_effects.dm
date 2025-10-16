@@ -91,7 +91,7 @@
 
 	if(radiation_immunity || radiation_healing)
 		//We have to remove radiation here since we're blocking radiation altogether.
-		var/ 	 = 1
+		var/rad_removal_mod = 1
 		var/rads = living_guy.radiation/25
 
 		if(ishuman(living_guy))
