@@ -66,14 +66,28 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	return ret
 
 /// Creates and shows to the user a preview of the pod's shape, like the admin load template verb does. However, this one shows valid deploy turfs in blue, and invalid turfs in red.
-/obj/item/survivalcapsule/proc/preview_template(var/mob/user, var/turf/deploy_turf)
+/obj/item/survivalcapsule/proc/preview_template(var/mob/user, var/turf/deploy_turf, var/show_doors = FALSE)
 	if(!deploy_turf)
 		return
 	var/preview_render = list()
 	template.preload_size(template.mappath)
+	// Get origin (bottom-left) of shelter template relative to where we are on the map
+	var/turf/origin = locate(user.x - round((template.width)/2) , user.y - round((template.height)/2) , user.z)
 	for(var/turf/S in template.get_affected_turfs(deploy_turf, centered = TRUE))
 		if(template.get_turf_deployability(S, is_ship) != SHELTER_DEPLOY_ALLOWED)
 			preview_render += image('icons/misc/debug_group.dmi',S ,"red")
+		else if(show_doors)
+			var/is_door_here = FALSE
+			for(var/list/door_coord in template.door_locations)
+				// If we're at a spot where a door is going to appear, display a green spot!
+				var/dX = origin.x + door_coord[1] - 1
+				var/dY = origin.y + door_coord[2] - 1
+				if(S.x == dX && S.y == dY)
+					preview_render += image('icons/misc/debug_group.dmi',S ,"green")
+					is_door_here = TRUE
+					break
+			if(!is_door_here)
+				preview_render += image('icons/misc/debug_group.dmi',S ,"blue")
 		else
 			preview_render += image('icons/misc/debug_group.dmi',S ,"blue")
 	user.client.images += preview_render
@@ -171,9 +185,12 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		// Warn the user in advance if the capsule can't work from where they're standing.
 		var/preview_render = preview_template(user, deploy_location)
 		if(!can_deploy(get_turf(src), GetAbove(deploy_location)))
-			remove_preview(user, preview_render)
+			addtimer(CALLBACK(src, PROC_REF(remove_preview), user, preview_render), 1 SECONDS, TIMER_DELETE_ME)
 			return
-		if(tgui_alert(usr,"Confirm location.", "Shelter Deploy Confirm",list("No","Yes")) == "Yes")
+		// We only show where the doors will be on a successful deploy check to avoid player confusion.
+		remove_preview(user, preview_render, 0)
+		preview_render = preview_template(user, deploy_location, show_doors = TRUE)
+		if(tgui_alert(usr,"Confirm location. (The shelter's exterior doors are highlighted in green!)", "Shelter Deploy Confirm",list("No","Yes")) == "Yes")
 			// We might have moved since the last check, so we check again!
 			if(!can_deploy(deploy_location, GetAbove(deploy_location)))
 				used = FALSE
