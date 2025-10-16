@@ -22,7 +22,7 @@
 	///How much we divide our radiation by to determine how far our glow is.
 	var/range_coefficient = 100
 	///How much we divide our radiation by to determine how intense our glow is.
-	var/intensity_coefficient = 125
+	var/intensity_coefficient = 150
 
 	///If we are immune to radiation damage or not.
 	var/radiation_immunity = FALSE
@@ -76,8 +76,8 @@
 		return
 
 	if(glows)
-		var/light_range = max(1, living_guy.radiation/range_coefficient) * range_mod
-		var/light_power = max(1, living_guy.radiation/intensity_coefficient) * intensity_mod
+		var/light_range = CLAMP((living_guy.radiation/range_coefficient) * range_mod, 1, 7) //Min 1, max 7
+		var/light_power = max(1, living_guy.radiation/intensity_coefficient) * intensity_mod //No maximum. This can get BRIGHT.
 
 
 		living_guy.set_light(l_range = light_range, l_power = light_power, l_color = radiation_color, l_on = TRUE)
@@ -91,7 +91,7 @@
 
 	if(radiation_immunity || radiation_healing)
 		//We have to remove radiation here since we're blocking radiation altogether.
-		var/rad_removal_mod = 1
+		var/ 	 = 1
 		var/rads = living_guy.radiation/25
 
 		if(ishuman(living_guy))
