@@ -270,6 +270,10 @@
 	description = "(11x11) A whole tesla engine setup, complete with a fully charged SMES cell ready to power the emitters. Using this is probably an exceptionally terrible idea."
 	shelter_id = "shelter_tesla"
 	mappath = "maps/submaps/shelters/11x11/shelter_tesla.dmm"
+	door_locations = list(
+		list(1,6),
+		list(6,1),
+		list(6,11))
 
 //Redspace capsule shelters - here be weird shit.
 
