@@ -12,7 +12,7 @@
 		// "rdservercontrol",
 		// "doppler_array",
 		// "experimentor",
-		// "destructive_analyzer",
+		"destructive_analyzer",
 		// "destructive_scanner",
 		// "laptop",
 		// "portadrive_basic",

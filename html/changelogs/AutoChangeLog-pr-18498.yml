@@ -1,0 +1,5 @@
+author: "Tenryumi"
+delete-after: True
+changes:
+  - rscadd: "Added item TF functionality to the casino's sentient prize handlers. People who put themselves up as a sentient prize have the option to allow the person who claims them to choose to turn them into an item!"
+  - code_imp: "Added a global list of item TF options, to make it easier for future item mechanics to have a more uniform selection of things people would probably prefer to get turned into."
