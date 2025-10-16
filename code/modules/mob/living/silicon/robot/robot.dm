@@ -491,47 +491,13 @@
 
 /mob/living/silicon/robot/verb/toggle_robot_decals() // loads overlay UNDER lights.
 	set category = "Abilities.Settings"
-	set name = "Toggle Extra Decals"
+	set name = "Control Robot Decals & Animations"
 
 	if(!sprite_datum)
 		return
-	if(!LAZYLEN(sprite_datum.sprite_decals))
-		to_chat(src, span_warning("This module does not support decals."))
-		return
 
-	var/extra_message = "Enabled decals:\n"
-	for(var/decal in robotdecal_on)
-		extra_message += decal + "\n"
-
-	var/decal_to_toggle = tgui_input_list(src, "Please select which decal you want to toggle\n[extra_message]", "Decal Toggle", sprite_datum.sprite_decals)
-	if(!decal_to_toggle)
-		return
-
-	decal_to_toggle = lowertext(decal_to_toggle)
-
-	if(robotdecal_on.Find(decal_to_toggle))
-		robotdecal_on -= decal_to_toggle
-		to_chat(src, span_filter_notice("You disable your \"[decal_to_toggle]\" extra apperances."))
-	else
-		robotdecal_on += decal_to_toggle
-		to_chat(src, span_filter_notice("You enable your \"[decal_to_toggle]\" extra apperances."))
-	update_icon()
-
-/mob/living/silicon/robot/verb/flick_robot_animation()
-	set category = "Abilities.Settings"
-	set name = "Flick Animation"
-
-	if(!sprite_datum)
-		return
-	if(!LAZYLEN(sprite_datum.sprite_animations))
-		to_chat(src, span_warning("This module does not support animations."))
-		return
-
-	var/animation_to_play = tgui_input_list(src, "Please select which decal you want to flick", "Flick Decal", sprite_datum.sprite_animations)
-	if(!animation_to_play)
-		return
-
-	flick("[sprite_datum.sprite_icon_state]-[animation_to_play]", src)
+	var/datum/tgui_module/robot_ui_decals/ui = new(src)
+	ui.tgui_interact(src)
 
 /mob/living/silicon/robot/verb/toggle_glowy_stomach()
 	set category = "Abilities.Settings"
