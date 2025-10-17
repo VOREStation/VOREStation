@@ -25,9 +25,8 @@
 	on_mob_vision_update()
 
 	// Lets complain if an object uses TGUI but is still setting the machine.
-	spawn(0)
-		if(length(linked_machine.tgui_data()))
-			log_world("## ERROR [machine.type] implements tgui_data(), and has likely been ported to tgui already. It should no longer use set_machine().")
+	if(length(linked_machine.tgui_data()))
+		log_world("## ERROR [machine.type] implements tgui_data(), and has likely been ported to tgui already. It should no longer use set_machine().")
 
 /datum/component/using_machine_shim/Destroy(force)
 	. = ..()
