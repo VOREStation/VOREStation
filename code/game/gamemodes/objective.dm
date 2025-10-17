@@ -67,8 +67,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/anti_revolution/execute/find_target()
 	..()
 	if(target && target.current)
-		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
-		explanation_text = "[target.current.real_name], the [target.assigned_role] has extracted confidential information above their clearance. Execute [T.him]."
+		explanation_text = "[target.current.real_name], the [target.assigned_role] has extracted confidential information above their clearance. Execute [target.p_them()]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -77,8 +76,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/anti_revolution/execute/find_target_by_role(role, role_type=0)
 	..(role, role_type)
 	if(target && target.current)
-		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
-		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has extracted confidential information above their clearance. Execute [T.him]."
+		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has extracted confidential information above their clearance. Execute [target.p_them()]."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -126,8 +124,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/anti_revolution/demote/find_target()
 	..()
 	if(target && target.current)
-		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
-		explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [using_map.company_name]'s goals. Demote [T.him] to assistant."
+		explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [using_map.company_name]'s goals. Demote [target.p_them()] to assistant."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -135,8 +132,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/anti_revolution/demote/find_target_by_role(role, role_type=0)
 	..(role, role_type)
 	if(target && target.current)
-		var/datum/gender/T = GLOB.gender_datums[target.current.get_visible_gender()]
-		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [using_map.company_name]'s goals. Demote [T.him] to assistant."
+		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [using_map.company_name]'s goals. Demote [target.p_them()] to assistant."
 	else
 		explanation_text = "Free Objective"
 	return target

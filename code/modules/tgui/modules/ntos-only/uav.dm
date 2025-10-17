@@ -73,7 +73,9 @@
 			if(current_uav.check_eye(ui.user) < 0)
 				to_chat(ui.user,span_warning("The screen freezes for a moment, before returning to the UAV selection menu. It's not able to connect to that UAV."))
 			else
-				if(!viewing_uav(ui.user))
+				if(check_eye(ui.user) < 0)
+					return FALSE
+				else if(!viewing_uav(ui.user))
 					if(!viewers) viewers = list() // List must exist for pass by reference to work
 					start_coordinated_remoteview(ui.user, current_uav, viewers)
 				else

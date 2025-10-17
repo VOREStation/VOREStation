@@ -160,8 +160,7 @@ var/list/sacrificed = list()
 		if (!target.can_feel_pain())
 			target.visible_message(span_warning("The markings below \the [target] glow a bloody red."))
 		else
-			var/datum/gender/TT = GLOB.gender_datums[target.get_visible_gender()]
-			target.visible_message(span_warning("[target] writhes in pain as the markings below [TT.him] glow a bloody red."), span_danger("AAAAAAHHHH!"), span_warning("You hear an anguished scream."))
+			target.visible_message(span_warning("[target] writhes in pain as the markings below [target.p_them()] glow a bloody red."), span_danger("AAAAAAHHHH!"), span_warning("You hear an anguished scream."))
 
 		if(!waiting_for_input[target]) //so we don't spam them with dialogs if they hesitate
 			waiting_for_input[target] = 1
@@ -366,17 +365,14 @@ var/list/sacrificed = list()
 
 	if(corpse_to_raise.client)
 
-		var/datum/gender/TU = GLOB.gender_datums[corpse_to_raise.get_visible_gender()]
-		var/datum/gender/TT = GLOB.gender_datums[body_to_sacrifice.get_visible_gender()]
-
 		cult.add_antagonist(corpse_to_raise.mind)
 		corpse_to_raise.revive()
 
 		usr.say("Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!")
-		corpse_to_raise.visible_message(span_warning("[corpse_to_raise]'s eyes glow with a faint red as [TU.he] stand[TU.s] up, slowly starting to breathe again."), \
+		corpse_to_raise.visible_message(span_warning("[corpse_to_raise]'s eyes glow with a faint red as [corpse_to_raise.p_they()] stand[corpse_to_raise.p_s()] up, slowly starting to breathe again."), \
 		span_warning("Life... I'm alive again..."), \
 		span_warning("You hear a faint, slightly familiar whisper."))
-		body_to_sacrifice.visible_message(span_danger("[body_to_sacrifice] is torn apart, a black smoke swiftly dissipating from [TT.his] remains!"), \
+		body_to_sacrifice.visible_message(span_danger("[body_to_sacrifice] is torn apart, a black smoke swiftly dissipating from [body_to_sacrifice.p_their()] remains!"), \
 		span_danger("You feel as your blood boils, tearing you apart."), \
 		span_danger("You hear a thousand voices, all crying in pain."))
 		body_to_sacrifice.gib()
@@ -423,9 +419,8 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/ajourney() //some bits copypastaed from admin tools - Urist
 	if(usr.loc==src.loc)
 		var/mob/living/carbon/human/L = usr
-		var/datum/gender/TU = GLOB.gender_datums[L.get_visible_gender()]
 		usr.say("Fwe[pick("'","`")]sh mah erl nyag r'ya!")
-		usr.visible_message(span_warning("[usr]'s eyes glow blue as [TU.he] freeze[TU.s] in place, absolutely motionless."), \
+		usr.visible_message(span_warning("[usr]'s eyes glow blue as [L.p_they()] freeze[L.p_s()] in place, absolutely motionless."), \
 		span_warning("The shadow that is your spirit separates itself from your body. You are now in the realm beyond. While this is a great sight, being here strains your mind and body. Hurry..."), \
 		span_warning("You hear only complete silence for a moment."))
 		announce_ghost_joinleave(usr.ghostize(1), 1, "You feel that they had to use some [pick("dark", "black", "blood", "forgotten", "forbidden")] magic to [pick("invade","disturb","disrupt","infest","taint","spoil","blight")] this place!")
@@ -590,12 +585,11 @@ var/list/sacrificed = list()
 
 /obj/effect/rune/proc/mend()
 	var/mob/living/user = usr
-	var/datum/gender/TU = GLOB.gender_datums[usr.get_visible_gender()]
 	src = null
 	user.say("Uhrast ka'hfa heldsagen ver[pick("'","`")]lot!")
 	user.take_overall_damage(200, 0)
 	GLOB.runedec+=10
-	user.visible_message(span_danger("\The [user] keels over dead, [TU.his] blood glowing blue as it escapes [TU.his] body and dissipates into thin air."), \
+	user.visible_message(span_danger("\The [user] keels over dead, [usr.p_their()] blood glowing blue as it escapes [usr.p_their()] body and dissipates into thin air."), \
 	span_danger("In the last moment of your humble life, you feel an immense pain as fabric of reality mends... with your blood."), \
 	span_warning("You hear faint rustle."))
 	for(,user.stat==2)
@@ -877,8 +871,7 @@ var/list/sacrificed = list()
 		if (cultist == user) //just to be sure.
 			return
 		if(cultist.buckled || cultist.handcuffed || (!isturf(cultist.loc) && !istype(cultist.loc, /obj/structure/closet)))
-			var/datum/gender/TU = GLOB.gender_datums[cultist.get_visible_gender()]
-			to_chat(user, span_warning("You cannot summon \the [cultist], for [TU.his] shackles of blood are strong."))
+			to_chat(user, span_warning("You cannot summon \the [cultist], for [cultist.p_their()] shackles of blood are strong."))
 			return fizzle()
 		cultist.forceMove(src.loc)
 		cultist.lying = 1

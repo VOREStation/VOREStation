@@ -1315,6 +1315,7 @@
 			return
 		L.stop_pulling()
 		L.Weaken(3)
+		L.reset_perspective() // Needed for food items that get gobbled with micros in them
 		GLOB.prey_eaten_roundstat++
 	if(target.reciever)		//We don't have to worry
 		AM.unbuckle_all_mobs(TRUE)

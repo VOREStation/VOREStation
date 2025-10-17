@@ -111,3 +111,13 @@
 	req_components = list(
 							/obj/item/stock_parts/manipulator = 1,
 							/obj/item/stock_parts/console_screen = 1)
+
+/obj/item/circuitboard/destructive_analyzer
+	name = T_BOARD("destructive analyzer")
+	build_path = /obj/machinery/rnd/destructive_analyzer
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_DATA = 2)
+	req_components = list(
+							/obj/item/stock_parts/scanning_module = 1,
+							/obj/item/stock_parts/manipulator = 1,
+							/obj/item/stock_parts/micro_laser = 1)
