@@ -46,6 +46,15 @@
 		AH.register_alarm(src, /mob/living/silicon/proc/receive_alarm)
 		queued_alarms[AH] = list()	// Makes sure alarms remain listed in consistent order
 
+/mob/living/silicon/proc/clear_subsystems()
+	QDEL_NULL(alarm_monitor)
+	QDEL_NULL(atmos_control)
+	QDEL_NULL(crew_monitor)
+	QDEL_NULL(crew_manifest)
+	QDEL_NULL(law_manager)
+	QDEL_NULL(power_monitor)
+	QDEL_NULL(rcon)
+
 /********************
 *	Alarm Monitor	*
 ********************/

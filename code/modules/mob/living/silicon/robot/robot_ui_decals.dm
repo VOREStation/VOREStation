@@ -6,6 +6,11 @@
 /datum/tgui_module/robot_ui_decals/tgui_state(mob/user)
 	return GLOB.tgui_self_state
 
+
+/datum/tgui_module/ghost_spawn_menu/tgui_close(mob/user)
+	. = ..()
+	qdel(src)
+
 /datum/tgui_module/robot_ui_decals/tgui_static_data()
 	var/list/data = ..()
 
