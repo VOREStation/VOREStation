@@ -1,13 +1,12 @@
 /**
- *
  * THIS IS A SHIM. IT SHOULD NOT BE INCLUDED IN FUTURE CODE.
  *
  * This is used to replace the machine var in mob, it is a holdover of pre-tgui code.
  * This component operates similar to how the machine var did previous, but better contained.
  * Any uses of set_machine() should eventually be removed in favor of tgui handling instead.
  *
+ * All this does is ensure that the mob releases the machine when they leave it.
  */
-
 /datum/component/using_machine_shim
 	var/mob/host_mob
 	var/obj/machinery/linked_machine
@@ -41,14 +40,23 @@
 	host_mob = null
 
 /datum/component/using_machine_shim/proc/on_mob_move()
-	if(!host_mob.Adjacent(linked_machine) || linked_machine.check_eye(host_mob) < 0)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	SIGNAL_HANDLER
+	if(host_mob.stat == DEAD || !host_mob.client || !host_mob.Adjacent(linked_machine) || linked_machine.check_eye(host_mob) < 0)
 		qdel(src)
 
 /datum/component/using_machine_shim/proc/on_mob_life()
-	if(!host_mob.Adjacent(linked_machine) || linked_machine.check_eye(host_mob) < 0)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	SIGNAL_HANDLER
+	if(host_mob.stat == DEAD || !host_mob.client || !host_mob.Adjacent(linked_machine) || linked_machine.check_eye(host_mob) < 0)
 		qdel(src)
 
 /datum/component/using_machine_shim/proc/on_machine_qdelete()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	SIGNAL_HANDLER
 	qdel(src)
 
 
