@@ -25,8 +25,9 @@
 	on_mob_vision_update()
 
 	// Lets complain if an object uses TGUI but is still setting the machine.
-	if(length(linked_machine.tgui_data()))
-		log_runtime(EXCEPTION("[machine.type] implements tgui_data(), and has likely been ported to tgui already. It should no longer use set_machine()."))
+	spawn(0)
+		if(length(linked_machine.tgui_data()))
+			log_world("## ERROR [machine.type] implements tgui_data(), and has likely been ported to tgui already. It should no longer use set_machine().")
 
 /datum/component/using_machine_shim/Destroy(force)
 	. = ..()
@@ -46,7 +47,7 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
-	if(host_mob.stat == DEAD || !host_mob.client || !host_mob.Adjacent(linked_machine) || linked_machine.check_eye(host_mob) < 0)
+	if(host_mob.stat == DEAD || !host_mob.client || !host_mob.Adjacent(linked_machine))
 		qdel(src)
 
 /datum/component/using_machine_shim/proc/on_mob_vision_update()
@@ -85,7 +86,7 @@
 	var/datum/component/using_machine_shim/shim = GetComponent(/datum/component/using_machine_shim)
 	if(!shim)
 		return FALSE
-	return shim.linked_machine == checking
+	return (shim.linked_machine == checking)
 
 /// deprecated, do not use
 /mob/proc/unset_machine()
