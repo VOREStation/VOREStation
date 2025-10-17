@@ -151,7 +151,7 @@
 
 	return 1
 
-/mob/living/silicon/robot/handle_regular_hud_updates()
+/mob/living/silicon/robot/handle_vision()
 	var/fullbright = FALSE
 	var/seemeson = FALSE
 	var/seejanhud = sight_mode & BORGJAN
@@ -211,8 +211,11 @@
 		plane_holder.set_vis(VIS_MESONS,seemeson)
 		plane_holder.set_vis(VIS_JANHUD,seejanhud)
 
+	// Call parent to handle signals
 	..()
 
+/mob/living/silicon/robot/handle_regular_hud_updates()
+	..()
 	if (healths)
 		if (stat != 2)
 			if(istype(src,/mob/living/silicon/robot/drone))
@@ -291,10 +294,6 @@
 			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /atom/movable/screen/fullscreen/impaired, 1)
 			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
-
-	var/obj/machine = get_current_machine()
-	if (machine && machine.check_eye(src) < 0)
-		reset_perspective()
 
 	if(emagged)
 		throw_alert("hacked", /atom/movable/screen/alert/hacked)

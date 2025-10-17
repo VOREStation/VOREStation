@@ -14,13 +14,15 @@
 /datum/component/using_machine_shim/Initialize(obj/machinery/machine)
 	// Mob
 	host_mob = parent
-	RegisterSignal(host_mob, COMSIG_LIVING_LIFE, PROC_REF(on_mob_life))
-	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(on_mob_move))
+	RegisterSignal(host_mob, COMSIG_LIVING_LIFE, PROC_REF(on_mob_action))
+	RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION, PROC_REF(on_mob_vision_update))
+	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(on_mob_action))
 
 	// Machine
 	linked_machine = machine
 	RegisterSignal(linked_machine, COMSIG_QDELETING, PROC_REF(on_machine_qdelete))
 	linked_machine.in_use = TRUE
+	on_mob_vision_update()
 
 	// Lets complain if an object uses TGUI but is still setting the machine.
 	if(length(linked_machine.tgui_data()))
@@ -35,30 +37,36 @@
 	linked_machine = null
 	// Mob
 	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION)
 	UnregisterSignal(host_mob, COMSIG_LIVING_LIFE)
 	host_mob.reset_perspective() // Required, because our machine may have been operating a remote view
 	host_mob = null
 
-/datum/component/using_machine_shim/proc/on_mob_move()
+/datum/component/using_machine_shim/proc/on_mob_action()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
 	if(host_mob.stat == DEAD || !host_mob.client || !host_mob.Adjacent(linked_machine) || linked_machine.check_eye(host_mob) < 0)
 		qdel(src)
 
-/datum/component/using_machine_shim/proc/on_mob_life()
+/datum/component/using_machine_shim/proc/on_mob_vision_update()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
-	if(host_mob.stat == DEAD || !host_mob.client || !host_mob.Adjacent(linked_machine) || linked_machine.check_eye(host_mob) < 0)
-		qdel(src)
+
+	if(host_mob.stat == DEAD)
+		return
+	var/viewflags = linked_machine.check_eye(host_mob)
+	if(viewflags && !host_mob.is_remote_viewing())
+		host_mob.sight |= viewflags
+	else
+		linked_machine.apply_visual(host_mob)
 
 /datum/component/using_machine_shim/proc/on_machine_qdelete()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
 	qdel(src)
-
 
 
 /////////////////////////////////////////////////////////////////////////////////

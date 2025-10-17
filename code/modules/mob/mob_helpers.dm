@@ -718,6 +718,8 @@ var/list/global/organ_rel_size = list(
 
 //Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.
 /mob/proc/handle_vision()
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src,COMSIG_LIVING_HANDLE_VISION)
 	return
 
 //Icon is used to occlude things like huds from the faulty byond context menu.

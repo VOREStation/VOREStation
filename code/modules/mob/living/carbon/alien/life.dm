@@ -86,8 +86,7 @@
 
 	return 1
 
-/mob/living/carbon/alien/handle_regular_hud_updates()
-
+/mob/living/carbon/alien/handle_vision()
 	if (stat == 2 || (XRAY in src.mutations))
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
@@ -101,6 +100,9 @@
 		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
 
+	..()
+
+/mob/living/carbon/alien/handle_regular_hud_updates()
 	if (healths)
 		if (stat != 2)
 			switch(health)
@@ -133,9 +135,6 @@
 			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 
-		var/obj/machine = get_current_machine()
-		if(machine && machine.check_eye(src) < 0)
-			reset_perspective()
 	return 1
 
 /mob/living/carbon/alien/handle_environment(var/datum/gas_mixture/environment)

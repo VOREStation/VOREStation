@@ -1744,15 +1744,12 @@
 		if(!seer && !glasses_processed && seedarkness)
 			see_invisible = see_invisible_default
 
-		var/obj/machine = get_current_machine()
-		if(machine)
-			var/viewflags = machine.check_eye(src)
-			if(viewflags && !is_remote_viewing())
-				sight |= viewflags
-			else
-				machine.apply_visual(src)
-		else if(eyeobj && eyeobj.owner != src)
+		if(!get_current_machine() && eyeobj && eyeobj.owner != src)
 			reset_perspective()
+
+	// Call parent to handle signals
+	..()
+
 	return 1
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
