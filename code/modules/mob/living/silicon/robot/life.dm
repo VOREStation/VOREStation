@@ -292,6 +292,7 @@
 			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
 
+	var/obj/machine = get_current_machine()
 	if (machine && machine.check_eye(src) < 0)
 		reset_perspective()
 

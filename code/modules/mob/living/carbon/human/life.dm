@@ -1744,11 +1744,10 @@
 		if(!seer && !glasses_processed && seedarkness)
 			see_invisible = see_invisible_default
 
+		var/obj/machine = get_current_machine()
 		if(machine)
 			var/viewflags = machine.check_eye(src)
-			if(viewflags < 0)
-				reset_perspective()
-			else if(viewflags && !is_remote_viewing())
+			if(viewflags && !is_remote_viewing())
 				sight |= viewflags
 			else
 				machine.apply_visual(src)

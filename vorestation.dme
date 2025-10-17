@@ -572,6 +572,7 @@
 #include "code\datums\components\connect_range.dm"
 #include "code\datums\components\holographic_nature.dm"
 #include "code\datums\components\infective.dm"
+#include "code\datums\components\machine_shim.dm"
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\overlay_lighting.dm"
 #include "code\datums\components\reactive_icon_update.dm"

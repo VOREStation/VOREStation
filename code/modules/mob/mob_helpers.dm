@@ -555,7 +555,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			say_dead_direct(span_name("[name]") + " no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
-	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
+	if (!C.can_use() || stat || (get_dist(C, src) > 1 || !check_current_machine(src) || blinded || !canmove))
 		return 0
 	check_eye(src)
 	return 1
