@@ -1,5 +1,5 @@
 /**
- * THIS IS A SHIM. IT SHOULD NOT BE INCLUDED IN FUTURE CODE.
+ * THIS IS A SHIM. IT SHOULD NOT BE INCLUDED IN FUTURE CODE. DEPRECATED, DO NOT USE.
  *
  * This is used to replace the machine var in mob, it is a holdover of pre-tgui code.
  * This component operates similar to how the machine var did previous, but better contained.
@@ -64,6 +64,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 // To be removed helper procs
 /////////////////////////////////////////////////////////////////////////////////
+/// deprecated, do not use
 /mob/proc/get_current_machine()
 	RETURN_TYPE(/obj)
 	var/datum/component/using_machine_shim/shim = GetComponent(/datum/component/using_machine_shim)
@@ -71,17 +72,20 @@
 		return
 	return shim.linked_machine
 
+/// deprecated, do not use
 /mob/proc/check_current_machine(var/obj/checking)
 	var/datum/component/using_machine_shim/shim = GetComponent(/datum/component/using_machine_shim)
 	if(!shim)
 		return FALSE
 	return shim.linked_machine == checking
 
+/// deprecated, do not use
 /mob/proc/unset_machine()
 	var/datum/component/using_machine_shim/shim = GetComponent(/datum/component/using_machine_shim)
 	if(shim)
 		qdel(shim)
 
+/// deprecated, do not use
 /mob/proc/set_machine(var/obj/O)
 	var/datum/component/using_machine_shim/shim = GetComponent(/datum/component/using_machine_shim)
 	if(shim)
@@ -91,7 +95,7 @@
 		return
 	AddComponent(/datum/component/using_machine_shim, O)
 
-/// return flags that should be added to the viewer's sight var. Otherwise return a negative number to indicate that the view should be cancelled.
+/// deprecated, do not use, return flags that should be added to the viewer's sight var. Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
 	if (isAI(user)) // WHYYYY
 		return 0
