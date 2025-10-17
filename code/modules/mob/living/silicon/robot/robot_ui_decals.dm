@@ -1,6 +1,6 @@
 // Robot decal and animation control
 /datum/tgui_module/robot_ui_decals
-	name = "Robot Decal / Animation Control"
+	name = "Robot Decal & Animation Control"
 	tgui_id = "RobotDecals"
 
 /datum/tgui_module/robot_ui_decals/tgui_state(mob/user)
