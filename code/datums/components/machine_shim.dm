@@ -47,7 +47,7 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
-	if(host_mob.stat == DEAD || !host_mob.client || host_mob.Adjacent(linked_machine) < 0)
+	if(host_mob.stat == DEAD || !host_mob.client || !host_mob.Adjacent(linked_machine))
 		on_mob_vision_update()
 		qdel(src)
 
@@ -111,3 +111,50 @@
 	if (isAI(user)) // WHYYYY
 		return 0
 	return -1
+
+/// deprecated, do not use
+/obj/item/proc/updateSelfDialog()
+	var/mob/M = src.loc
+	if(istype(M) && M.client && M.check_current_machine(src))
+		src.attack_self(M)
+
+/// deprecated, do not use
+/obj/proc/updateUsrDialog(mob/user)
+	if(in_use)
+		var/is_in_use = 0
+		var/list/nearby = viewers(1, src)
+		for(var/mob/M in nearby)
+			if ((M.client && M.check_current_machine(src)))
+				is_in_use = 1
+				src.attack_hand(M)
+		if (isAI(user) || isrobot(user))
+			if (!(user in nearby))
+				if (user.client && user.check_current_machine(src)) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
+					is_in_use = 1
+					src.attack_ai(user)
+
+		// check for TK users
+
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.get_type_in_hands(/obj/item/tk_grab))
+				if(!(H in nearby))
+					if(H.client && H.check_current_machine(src))
+						is_in_use = 1
+						src.attack_hand(H)
+		in_use = is_in_use
+
+/// deprecated, do not use
+/obj/proc/updateDialog()
+	// Check that people are actually using the machine. If not, don't update anymore.
+	if(in_use)
+		var/list/nearby = viewers(1, src)
+		var/is_in_use = 0
+		for(var/mob/M in nearby)
+			if ((M.client && M.check_current_machine(src)))
+				is_in_use = 1
+				src.interact(M)
+		var/ai_in_use = AutoUpdateAI(src)
+
+		if(!ai_in_use && !is_in_use)
+			in_use = 0
