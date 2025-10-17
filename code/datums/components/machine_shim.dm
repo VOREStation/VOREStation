@@ -47,8 +47,16 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
-	if(host_mob.stat == DEAD || !host_mob.client || !host_mob.Adjacent(linked_machine))
+	if(host_mob.stat == DEAD || !host_mob.client || host_mob.Adjacent(linked_machine) < 0)
+		on_mob_vision_update()
 		qdel(src)
+
+/datum/component/using_machine_shim/proc/on_machine_qdelete()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	SIGNAL_HANDLER
+	on_mob_vision_update()
+	qdel(src)
 
 /datum/component/using_machine_shim/proc/on_mob_vision_update()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -62,12 +70,6 @@
 		host_mob.sight |= viewflags
 	else
 		linked_machine.apply_visual(host_mob)
-
-/datum/component/using_machine_shim/proc/on_machine_qdelete()
-	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
-	SIGNAL_HANDLER
-	qdel(src)
 
 
 /////////////////////////////////////////////////////////////////////////////////
