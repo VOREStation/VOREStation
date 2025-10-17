@@ -1,7 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Dragging now will always warn you if it will damage the person you're dragging"
-  - bugfix: "Dragging now properly tell you if the person being dragged is damaged."
-  - bugfix: "Fixes issue where you would bleed via drag when you had no bleeding wounds / broken bones"
-  - qol: "Dragging will provide a visual message on screen if the person is being injured, as opposed to just chat."

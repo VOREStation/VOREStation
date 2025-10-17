@@ -1,4 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - bugfix: "Fixed examining others using the examiner's pronouns instead of the examined"

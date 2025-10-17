@@ -1,4 +1,0 @@
-author: "Zizzi"
-delete-after: True
-changes:
-  - rscadd: "Added string padding circuit"
