@@ -65,11 +65,12 @@
 	if(host_mob.stat == DEAD)
 		return
 	var/viewflags = linked_machine.check_eye(host_mob)
-	if(viewflags && !host_mob.is_remote_viewing())
-		host_mob.sight |= viewflags
-	else
+	if(viewflags < 0)
+		return
+	if(host_mob.is_remote_viewing())
 		linked_machine.apply_visual(host_mob)
-
+		return
+	host_mob.sight |= viewflags
 
 /////////////////////////////////////////////////////////////////////////////////
 // To be removed helper procs
