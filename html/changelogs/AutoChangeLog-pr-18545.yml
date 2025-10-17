@@ -1,0 +1,5 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "Adds boneless trait"
+  - bugfix: "Brains no longer qdel() if the head is gibbed."

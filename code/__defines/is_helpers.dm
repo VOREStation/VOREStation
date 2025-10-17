@@ -35,6 +35,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isstructure(A)	istype(A, /obj/structure)
 
+#define isdisposalpacket(A)	istype(A,/obj/structure/disposalholder)
+
 //---------------
 //#define isarea(D)		istype(D, /area)	//Built in
 

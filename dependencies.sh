@@ -17,7 +17,7 @@ export RUST_G_VERSION=4.0.0
 export NODE_VERSION_LTS=22.14.0
 
 # Bun version
-export BUN_VERSION=1.2.23
+export BUN_VERSION=1.3.0
 
 # SpacemanDMM git tag
 export SPACEMAN_DMM_VERSION=suite-1.11

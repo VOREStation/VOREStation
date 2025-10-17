@@ -67,3 +67,130 @@
   TheCaramelion:
   - code_imp: Added Auto-Wiki for virology symptoms
   - code_imp: Moved various shadekin-related vars into Shadekin Component
+2025-10-10:
+  Diana:
+  - code_imp: Framework added for dephasing rounds
+  - rscadd: 'Adds a new loadout item: the Cloak of Eyes'
+  - code_imp: 'Adds a new reactive icon subtype: Clothing'
+  - image: Adds sprites for the Cloak of Eyes
+  Ryumi:
+  - qol: Rigsuits now use balloon alerts instead of logged messages when parts of
+      them are deployed and retracted. No more log spam for rigsuit users!
+  Will:
+  - rscadd: Tea, coffee, ramen, fruit teas, and hot chocolate recipes now require
+      boiling on a bunsen burner or other distilling machine. Does not apply to coffee/tea
+      dispensers that already contain coffee/tea.
+  - rscadd: Added a simple kettle that acts as a beaker for more thematic brewing
+2025-10-11:
+  SatinIsle:
+  - bugfix: Changed the description of Mochi Cakes as some people found the original
+      a bit offensive.
+2025-10-12:
+  KillianKirilenko:
+  - qol: added light replacers to engineering's protolathes
+  Ryumi:
+  - qol: When using a PDA, if you receive a messinging server error when trying to
+      send a PDA message to someone, your message will now be saved. Now you won't
+      have to retype everything because the servers got quirky!
+  Will:
+  - bugfix: methane missing from gas scanner console in phoronics/toxins
+  - bugfix: noslip shoes and magboots are no longer ignored by slippery turfs
+  - bugfix: spacelube 2-3 turf slide after leaving the slippery turf restored
+  - balance: Distilling oxygen and hydrogen from water no longer uses a phoron catalyst,
+      and instead uses platinum and different atmospheres.
+2025-10-13:
+  Kashargul:
+  - code_imp: update dependencies
+  SatinIsle:
+  - bugfix: Fixes Fat Feline 2 sprites from going invisible on loafing
+2025-10-14:
+  Will, Diana:
+  - code_imp: implements signal COMSIG_MOB_RESET_PERSPECTIVE
+  - code_imp: implements signal COMSIG_CLIENT_SET_EYE
+  - code_imp: implements signal COMSIG_MOB_DNA_MUTATION
+  - code_imp: implements signal COMSIG_MOB_DROPPED_ITEM
+  - code_imp: implements signal COMSIG_REMOTE_VIEW_CLEAR
+  - refactor: rebuilds client eye transfer code entirely
+  - refactor: cleaned up holder drop and destroy code
+  - rscadd: several small pai QOL, ejecting from pda, and escaping vore eggs
+  - code_imp: REMOTEVIEW_ON_ENTER flag for non-item objects
+  - bugfix: black screen or locked game view when dropped or moved between objects
+      or mob holders
+  - bugfix: pai hud being non functional
+  - bugfix: Some AI hud buttons being non functional
+  - bugfix: You can no longer use binoculars/scopes from inside a vore belly or sleeper
+  - bugfix: Forcewall spellbook recoil no longer makes you an invisible statue, it
+      just makes you a statue
+  - bugfix: dropping someone from a holder within a vore belly no longer breaks their
+      screen
+  - bugfix: dropping pais from a holder no longer breaks their screen
+  - bugfix: dropping mice from a holder no longer breaks their screen
+  - bugfix: rare situation where having remote view gene and being put on a surgery
+      table would lock your view to the table
+  - bugfix: pda breaking most types of remote views by never releasing it's mob machine
+      state
+2025-10-17:
+  Diana:
+  - bugfix: Dragging now will always warn you if it will damage the person you're
+      dragging
+  - bugfix: Dragging now properly tell you if the person being dragged is damaged.
+  - bugfix: Fixes issue where you would bleed via drag when you had no bleeding wounds
+      / broken bones
+  - qol: Dragging will provide a visual message on screen if the person is being injured,
+      as opposed to just chat.
+  - qol: WALKING (as in WALK INTENT) near disposals with unlucky will no longer make
+      you fall into them
+  - bugfix: Unlucky individuals being disposal'd can not crawl out if the unit is
+      prepared to dispose of them.
+  - bugfix: You can now longer eat yourself
+  - bugfix: You can no longer get eaten by people that are not physically present
+  - code_imp: Spont vore eating code is better
+  - qol: Teshari now have a visible sprite when picked up! They can be held in your
+      hand, on your head, or on your back!
+  - bugfix: High Zorren now have the proper vulpine speech sound
+  - bugfix: Altevian now have the proper mouse speech sound
+  - bugfix: Vulpkanin now have the proper canine species sound
+  Guti:
+  - refactor: Refactored pronouns handling
+  - rscdel: Removed /datum/gender
+  - code_imp: Added pronoun helper procs
+  - bugfix: Fixed examining others using the examiner's pronouns instead of the examined
+  Kashargul:
+  - code_imp: lints for bad smes mapedits
+  - bugfix: ticket replies failing in admin to admin interaction
+  Tenryumi:
+  - rscadd: Added item TF functionality to the casino's sentient prize handlers. People
+      who put themselves up as a sentient prize have the option to allow the person
+      who claims them to choose to turn them into an item!
+  - code_imp: Added a global list of item TF options, to make it easier for future
+      item mechanics to have a more uniform selection of things people would probably
+      prefer to get turned into.
+  Will:
+  - code_imp: Unit testing for techwebs
+  - bugfix: all techweb designs are accessible to science
+  - bugfix: '"hardsuit graviton scanners" now gives you the proper graviton rig item'
+  - bugfix: '"radioisotope TEG circuit" is no longer missing from techweb'
+  - bugfix: '"hardsuit mining scanners" is no longer missing from techweb'
+  - balance: '"Precursor Technology" points cost increased by 1 tier'
+  - balance: '"Precursor Engineering" points cost increased by 1 tier'
+  - balance: '"''NSFW'' Gun" points cost increased by 1 tier'
+  - balance: '"Confetti Cannon" points cost increased by 2 tiers'
+  - bugfix: remote view crash if you try to use an overmap shuttle while blind
+  - bugfix: remote view crash if you start a remote view with a zooming item and disconnect
+  - bugfix: struggling out of most containers will respect being in a disposal packet
+  - bugfix: admin teleports and get_movable VV action clear remote views
+  - bugfix: attempting to remoteview a qdeleted object will force reset your view
+      to yourself
+  - bugfix: throwing micros inside food into the stardog mouth no longer results in
+      a black screen for the micro
+  - bugfix: Borg charger rarely locking focus to the charger itself
+  Will, Diana:
+  - rscadd: Destructive analyzer returns
+  - rscadd: Destructive analyzer circuit board added to Fundamental Science techweb
+      node
+  - rscadd: Destructive analyzer can be linked to ore silo with multitool if built
+      in round
+  - rscadd: Research samples give research points when put through the destructive
+      analyzer.
+  Zizzi:
+  - rscadd: Added string padding circuit

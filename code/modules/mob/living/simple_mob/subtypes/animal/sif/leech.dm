@@ -331,8 +331,6 @@
 
 	forceMove(get_turf(host))
 
-	reset_view(null)
-
 	host = null
 
 /mob/living/simple_mob/animal/sif/leech/verb/inject_victim()
