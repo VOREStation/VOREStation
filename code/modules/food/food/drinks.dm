@@ -429,7 +429,7 @@
 
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
-	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
+	desc = "Just add 10ml water and boil! A taste that reminds you of your school years."
 	description_fluff = "Konohagakure Brand Ramen has been an instant meal staple for centuries. Cheap, quick and available in over two hundred varieties - though most taste like artifical chicken."
 	icon_state = "ramen"
 	trash = /obj/item/trash/ramen

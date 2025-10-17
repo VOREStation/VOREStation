@@ -43,7 +43,7 @@
 		return
 	if(!is_wearing_collar(leash_pet)) //The pet has slipped their collar and is not the pet anymore.
 		leash_pet.visible_message(
-			span_warning("[leash_pet] has slipped out of their collar!"),
+			span_warning("[leash_pet] has slipped out of [leash_pet.p_their()] collar!"),
 			span_warning("You have slipped out of your collar!")
 		)
 		clear_leash()
@@ -124,7 +124,7 @@
 		return
 	if(get_dist(leash_pet, leash_master) > 3 && !leash_pet.stunned)
 		leash_pet.visible_message(
-			span_warning("[leash_pet] is pulled to the ground by their leash!"),
+			span_warning("[leash_pet] is pulled to the ground by [leash_pet.p_their()] leash!"),
 			span_warning("You are pulled to the ground by your leash!")
 		)
 		leash_pet.apply_effect(20, STUN, 0)
@@ -187,7 +187,7 @@
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/leash/proc/struggle_leash()
-	leash_pet.visible_message(span_danger("\The [leash_pet] is attempting to unhook their leash!"), span_danger("You attempt to unhook your leash"))
+	leash_pet.visible_message(span_danger("\The [leash_pet] is attempting to unhook [leash_pet.p_their()] leash!"), span_danger("You attempt to unhook your leash"))
 	add_attack_logs(leash_master,leash_pet,"Self-unleash (attempt)")
 
 	if(!do_mob(leash_pet, leash_pet, 35))

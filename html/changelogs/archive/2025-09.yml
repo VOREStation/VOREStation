@@ -480,3 +480,13 @@
   - bugfix: Wearing shoes no longer prevents map spawned blood from spreading with
       footsteps
   - code_imp: Cleans up uses of updateUsrDialog() on objects moved to tgui
+2025-09-29:
+  ItsSelis:
+  - admin: added 3 new tgs commands to manage whitelists
+  - refactor: The alienwhitelists and jobwhitelists are now loaded from the database,
+      if the database is enabled
+  Will:
+  - bugfix: Forensics items work on doors and airlocks again
+  zeskorion:
+  - rscadd: adds new markings, hairstyles, horns and sprites (dragon mane, swept horns,
+      stub horns, long/longer sharp snout, bony plates)

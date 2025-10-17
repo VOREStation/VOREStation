@@ -1149,9 +1149,8 @@
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Science Outpost";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Science Outpost"
 	},
 /turf/simulated/floor,
 /area/groundbase/science/outpost/substation)
@@ -1646,9 +1645,7 @@
 /area/groundbase/science/outpost/toxins_mixing)
 "oP" = (
 /obj/structure/cable,
-/obj/machinery/power/smes/buildable{
-	charge = 500000
-	},
+/obj/machinery/power/smes/buildable/max_charge,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/axolotl_engineering)
 "oX" = (
@@ -3407,10 +3404,11 @@
 /obj/structure/cable/heavyduty{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Power - Solar Array";
-	cur_coils = 3;
-	output_attempt = 0
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Power - Solar Array"
 	},
 /turf/simulated/floor,
 /area/groundbase/engineering/solarshed)

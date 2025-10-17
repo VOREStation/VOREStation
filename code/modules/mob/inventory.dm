@@ -157,7 +157,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target)
 	if(!W)
 		return FALSE
-	if(isnull(target) && istype( src.loc,/obj/structure/disposalholder))
+	if(isnull(target) && isdisposalpacket(src.loc))
 		return remove_from_mob(W, src.loc)
 	return remove_from_mob(W, target)
 
@@ -240,6 +240,8 @@ var/list/slot_equipment_priority = list( \
 		else
 			I.dropInto(drop_location())
 		I.dropped(src)
+	//SEND_SIGNAL(item_dropping, COMSIG_ITEM_POST_UNEQUIP, O, target)
+	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, O, target)
 	return TRUE
 
 //Returns the item equipped to the specified slot, if any.

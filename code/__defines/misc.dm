@@ -532,6 +532,7 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define COLORMATE_TINT 1
 #define COLORMATE_HSV 2
 #define COLORMATE_MATRIX 3
+#define COLORMATE_MATRIX_AUTO 4
 
 #define DEFAULT_COLORMATRIX list(1, 0, 0, 0, 1, 0, 0, 0, 1,	0, 0, 0)
 

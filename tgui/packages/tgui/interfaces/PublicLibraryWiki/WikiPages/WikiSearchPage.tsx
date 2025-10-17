@@ -5,8 +5,8 @@ import { createSearch } from 'tgui-core/string';
 
 import type { PageData } from '../types';
 import { WikiSearchList } from '../WikiCommon/WikiSearchList';
-import { WikiBotanyPage } from './WikiSubPages/WikiBotanyPage';
 import { WikiCatalogPage } from './WikiSubPages/WIkiCatalogPage';
+import { WikiBotanyPage } from './WikiSubPages/WikiBotanyPage';
 import { WikiChemistryPage } from './WikiSubPages/WikiChemistryPage';
 import { WikiFoodPage } from './WikiSubPages/WikiFoodPage';
 import { WikiGenePage } from './WikiSubPages/WikiGenePage';

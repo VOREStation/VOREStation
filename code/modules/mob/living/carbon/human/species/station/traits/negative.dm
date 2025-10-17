@@ -830,6 +830,30 @@
 	custom_only = FALSE
 	hidden = TRUE //Disabled on Virgo
 
+/datum/trait/negative/unlucky
+	name = "Unlucky"
+	desc = "You are naturally unlucky and ill-events often befall you."
+	cost = -2
+	is_genetrait = FALSE
+	hidden = FALSE
+	custom_only = FALSE
+	added_component_path = /datum/component/omen/trait
+	excludes = list(/datum/trait/negative/unlucky/major)
+
+
+/datum/trait/negative/unlucky/major
+	name = "Unlucky, Major"
+	desc = "Your luck is extremely awful and potentially fatal."
+	cost = -5
+	tutorial = "You should avoid disposal bins."
+	is_genetrait = TRUE
+	hidden = FALSE
+	added_component_path = /datum/component/omen/trait/major
+	excludes = list(/datum/trait/negative/unlucky)
+	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
+	primitive_expression_messages=list("unluckily stubs their toe!")
+
+
 /*
  * So, I know what you're thinking.
  * "Why is this a negative trait? It sounds like a positive one!"
@@ -874,3 +898,4 @@
 
 		else if(istype(ex_organ, /obj/item/organ/external/chest))
 			ex_organ.encased = FALSE
+

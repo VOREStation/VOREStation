@@ -150,7 +150,7 @@
 	overlay_above_everything = TRUE
 	color = "#3e5064"
 
-/obj/machinery/light/small/fairylights/broken()
+/obj/machinery/light/small/fairylights/broken(var/skip_sound_and_sparks = FALSE)
 	return
 
 /obj/machinery/light/small/fairylights/flicker

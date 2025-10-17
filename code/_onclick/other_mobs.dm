@@ -57,7 +57,7 @@
 		if(istype(gloves,/obj/item/clothing/gloves/telekinetic))
 			var/obj/item/clothing/gloves/telekinetic/TKG = gloves
 			TKG.use_grip_power(src,TRUE)
-		if(client.eye != src) // Extremely bad exploits if allowed to TK while remote viewing
+		if(is_remote_viewing()) // Extremely bad exploits if allowed to TK while remote viewing
 			to_chat(src, TK_DENIED_MESSAGE)
 		else if(get_dist(src, A) > TK_MAXRANGE)
 			to_chat(src, TK_OUTRANGED_MESSAGE)

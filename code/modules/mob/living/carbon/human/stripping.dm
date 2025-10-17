@@ -104,7 +104,7 @@
 		else
 			visible_message(span_danger("\The [user] is trying to put \a [wrapped] on \the [src]!"))
 
-	if(!do_after(user, HUMAN_STRIP_DELAY, target = src))
+	if(!do_after(user, HUMAN_STRIP_DELAY, target = src, max_interact_count = 15))
 		return
 
 	if(!stripping)

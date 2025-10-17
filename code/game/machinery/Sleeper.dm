@@ -308,8 +308,7 @@
 			if(!occupant)
 				return
 			if(occupant.stat == DEAD)
-				var/datum/gender/G = GLOB.gender_datums[occupant.get_visible_gender()]
-				to_chat(ui.user, span_danger("This person has no life to preserve anymore. Take [G.him] to a department capable of reanimating [G.him]."))
+				to_chat(ui.user, span_danger("This person has no life to preserve anymore. Take [occupant.p_them()] to a department capable of reanimating [occupant.p_them()]."))
 				return
 			var/chemical = params["chemid"]
 			var/amount = text2num(params["amount"])
@@ -479,9 +478,6 @@
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
 		M.forceMove(src)
 		update_use_power(USE_POWER_ACTIVE)
 		occupant = M
@@ -491,9 +487,6 @@
 	if(!occupant || occupant.loc != src)
 		occupant = null // JUST IN CASE
 		return
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.Stasis(0)
 	occupant.forceMove(get_turf(src))
 	occupant = null

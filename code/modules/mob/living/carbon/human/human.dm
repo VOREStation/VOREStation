@@ -866,8 +866,7 @@
 
 /mob/living/carbon/human/proc/play_xylophone()
 	if(!src.xylophone)
-		var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
-		visible_message(span_filter_notice("[span_red("\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.")]"),span_notice("You begin to play a spooky refrain on your ribcage."),span_filter_notice("[span_red("You hear a spooky xylophone melody.")]"))
+		visible_message(span_filter_notice("[span_red("\The [src] begins playing [p_their()] ribcage like a xylophone. It's quite spooky.")]"),span_notice("You begin to play a spooky refrain on your ribcage."),span_filter_notice("[span_red("You hear a spooky xylophone melody.")]"))
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(src, song, 50, 1, -1)
 		xylophone = 1
@@ -890,8 +889,6 @@
 	set category = "Superpower"
 
 	if(stat!=CONSCIOUS)
-		reset_view(0)
-		remoteview_target = null
 		return
 
 	if(!(mMorph in mutations))
@@ -957,16 +954,13 @@
 			gender = NEUTER
 	regenerate_icons()
 	check_dna()
-	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
-	visible_message(span_notice("\The [src] morphs and changes [T.his] appearance!"), span_notice("You change your appearance!"), span_filter_notice("[span_red("Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")]"))
+	visible_message(span_notice("\The [src] morphs and changes [p_their()] appearance!"), span_notice("You change your appearance!"), span_filter_notice("[span_red("Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")]"))
 
 /mob/living/carbon/human/proc/remotesay()
 	set name = "Project mind"
 	set category = "Abilities.Superpower"
 
-	if(stat!=CONSCIOUS)
-		reset_view(0)
-		remoteview_target = null
+	if(stat != CONSCIOUS)
 		return
 
 	if(!(mRemotetalk in src.mutations))
@@ -995,17 +989,11 @@
 	set name = "Remote View"
 	set category = "Abilities.Superpower"
 
-	if(stat!=CONSCIOUS)
-		remoteview_target = null
-		reset_view(0)
+	if(stat != CONSCIOUS)
 		return
 
-	if(!(mRemote in src.mutations))
-		remoteview_target = null
-		reset_view(0)
-		remove_verb(src, /mob/living/carbon/human/proc/remoteobserve)
-	if(client.eye != client.mob)
-		reset_view(0)
+	if(is_remote_viewing())
+		reset_perspective()
 		return
 
 	var/list/mob/creatures = list()
@@ -1022,13 +1010,9 @@
 		creatures += h
 
 	var/mob/target = input ("Who do you want to project your mind to?") as mob in creatures
-
-	if (target)
-		remoteview_target = target
-		reset_view(target)
-	else
-		remoteview_target = null
-		reset_view(0)
+	if(target)
+		AddComponent(/datum/component/remote_view/mremote_mutation, target)
+		return
 
 /mob/living/carbon/human/get_visible_gender(mob/user, force)
 	switch(force)
@@ -1225,16 +1209,13 @@
 
 	if(usr.stat || usr.restrained() || !isliving(usr)) return
 
-	var/datum/gender/TU = GLOB.gender_datums[usr.get_visible_gender()]
-	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
-
 	if(usr == src)
 		self = 1
 	if(!self)
-		usr.visible_message(span_notice("[usr] kneels down, puts [TU.his] hand on [src]'s wrist and begins counting [T.his] pulse."),\
+		usr.visible_message(span_notice("[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting [p_their()] pulse."),\
 		span_filter_notice("You begin counting [src]'s pulse."))
 	else
-		usr.visible_message(span_notice("[usr] begins counting [T.his] pulse."),\
+		usr.visible_message(span_notice("[usr] begins counting [p_their()] pulse."),\
 		span_filter_notice("You begin counting your pulse."))
 
 	if(src.pulse)
@@ -1506,12 +1487,12 @@
 	if(lying)
 		playsound(src, 'sound/misc/slip.ogg', 25, 1, -1)
 		drop_both_hands()
-		return 0
+		return FALSE
 	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
-		return 0
+		return FALSE
 	if(..(slipped_on,stun_duration))
 		drop_both_hands()
-		return 1
+		return TRUE
 
 /mob/living/carbon/human/proc/relocate()
 	set category = "Object"
@@ -1568,11 +1549,11 @@
 /mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	if(W in organs)
 		return FALSE
-	if(isnull(target) && istype( src.loc,/obj/structure/disposalholder))
+	if(isnull(target) && isdisposalpacket(src.loc))
 		return remove_from_mob(W, src.loc)
 	return ..()
 
-/mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
+/mob/living/carbon/human/reset_perspective(atom/A, update_hud = 1)
 	..()
 	if(update_hud)
 		handle_regular_hud_updates()
@@ -1799,32 +1780,39 @@
 /mob/living/carbon/human/pull_damage()
 	if(((health - halloss) <= CONFIG_GET(number/health_threshold_softcrit)))
 		for(var/name in organs_by_name)
-			var/obj/item/organ/external/e = organs_by_name[name]
-			if(!e)
+			var/obj/item/organ/external/limb = organs_by_name[name]
+			if(!limb)
 				continue
-			if((e.status & ORGAN_BROKEN && (!e.splinted || ((e.splinted in e.contents) && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
-				return 1
+			if((limb.status & ORGAN_BROKEN && (!limb.splinted || ((limb.splinted in limb.contents) && prob(30))) || limb.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
+				return TRUE
 	else
 		return ..()
 
+/mob/living/carbon/human/pull_can_damage()
+	if(((health - halloss) <= CONFIG_GET(number/health_threshold_softcrit)))
+		for(var/name in organs_by_name)
+			var/obj/item/organ/external/limb = organs_by_name[name]
+			if(!limb)
+				continue
+			if(((limb.status & ORGAN_BROKEN) || (limb.status & ORGAN_BLEEDING)) && (getBruteLoss() + getFireLoss() >= 100))
+				return TRUE
+	else
+		return ..()
+
+
 // Drag damage is handled in a parent
-/mob/living/carbon/human/dragged(var/mob/living/dragger, var/oldloc)
-	var/area/A = get_area(src)
-	if(lying && !buckled && A.get_gravity() && prob(getBruteLoss() * 200 / maxHealth))
-		var/bloodtrail = 1
+/mob/living/carbon/human/dragged(var/mob/living/dragger, var/oldloc, trigged_bleeding)
+	if(..())
 		if(species?.flags & NO_BLOOD)
-			bloodtrail = 0
-		else
-			var/blood_volume = vessel.get_reagent_amount(REAGENT_ID_BLOOD)
-			if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
-				bloodtrail = 0	//Most of it's gone already, just leave it be
-			else
-				remove_blood(1)
-		if(bloodtrail)
-			if(istype(loc, /turf/simulated))
-				var/turf/T = loc
-				T.add_blood(src)
-	. = ..()
+			return
+		var/blood_volume = vessel.get_reagent_amount(REAGENT_ID_BLOOD)
+		if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
+			return
+
+		remove_blood(1)
+		if(istype(loc, /turf/simulated))
+			var/turf/simulated/T = loc
+			T.add_blood(src)
 
 // Tries to turn off item-based things that let you see through walls, like mesons.
 // Certain stuff like genetic xray vision is allowed to be kept on.
