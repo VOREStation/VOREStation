@@ -604,12 +604,12 @@
 					return
 				var/confirmitemtf = tgui_alert(user, "Would you like to allow others to turn you into an item upon claiming you if they choose to?", "Confirm Item TF Preference", list("Yes", "No"))
 				var/allowitemtf = FALSE
-				if(confirmitemtf != "No")
-					allowitemtf = TRUE
-				to_chat(user, span_warning("You are now a prize!"))
+				if(confirmitemtf == "Yes")
+					allowitemtf = TRY_QUEUE_VERB
 				if(safety_ckey in sentientprizes_ckeys_list)
 					to_chat(user, span_warning("The SPASM beeps in an upset manner, you already have a collar!"))
 					return
+				to_chat(user, span_warning("You are now a prize!"))
 				sentientprizes_ckeys_list += user.ckey
 				var/obj/item/clothing/accessory/collar/casinosentientprize/C = new(src.loc)
 				C.sentientprizename = "[user.name]"
