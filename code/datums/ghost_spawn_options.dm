@@ -278,7 +278,7 @@
 
 	GLOB.allowed_ghost_spawns--
 	announce_ghost_joinleave(user, 0, "They are now a maint critter.")
-	var/obj/structure/ghost_pod/ghost_activated/unified_hole/no_announce/maint_critter = new(get_turf(spawnspot))
+	var/obj/structure/ghost_pod/ghost_activated/unified_hole/maint_critter = new(get_turf(spawnspot))
 	maint_critter.create_occupant(user)
 
 /datum/tgui_module/ghost_spawn_menu/proc/join_grave(mob/observer/dead/user)

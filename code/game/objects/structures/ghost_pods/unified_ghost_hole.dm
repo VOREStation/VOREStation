@@ -162,6 +162,3 @@
 	name = "Redspace inhabitant hole"
 	desc = "A starting location for critters who exist inside of the redgate!"
 	redgate_restricted = TRUE
-
-/obj/structure/ghost_pod/ghost_activated/unified_hole/no_announce
-	announce_prob = 0
