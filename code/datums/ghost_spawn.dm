@@ -85,14 +85,8 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 		if("lost_drone_spawn")
 			join_lost(ui.user)
 			. = TRUE
-		if("maintpred_spawn")
-			join_maintpred(ui.user)
-			. = TRUE
 		if("gravekeeper_spawn")
 			join_grave(ui.user)
-			. = TRUE
-		if("morph_spawn")
-			join_morpth(ui.user)
 			. = TRUE
 
 /datum/tgui_module/ghost_spawn_menu/proc/compile_pod_data()

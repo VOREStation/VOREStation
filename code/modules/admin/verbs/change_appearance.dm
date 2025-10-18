@@ -25,13 +25,12 @@
 	if(!H.client)
 		to_chat(usr, span_filter_warning(" Only mobs with clients can alter their own appearance."))
 		return
-	var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
 	switch(tgui_alert(usr, "Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
 		if("Yes")
-			log_and_message_admins("has allowed [H] to change [T.his] appearance, without whitelisting of races.")
+			log_and_message_admins("has allowed [H] to change [H.p_their()] appearance, without whitelisting of races.")
 			H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 0)
 		if("No")
-			log_and_message_admins("has allowed [H] to change [T.his] appearance, with whitelisting of races.")
+			log_and_message_admins("has allowed [H] to change [H.p_their()] appearance, with whitelisting of races.")
 			H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
 	feedback_add_details("admin_verb","CMAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

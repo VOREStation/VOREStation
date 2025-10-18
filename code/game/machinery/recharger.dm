@@ -4,6 +4,7 @@
 	desc = "A standard recharger for all devices that use power."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger0"
+	flags = REMOTEVIEW_ON_ENTER
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 4
@@ -79,7 +80,11 @@
 			else
 				to_chat(user, span_warning("\The [ourcard] doesn't have a personality!"))
 				return
-
+		if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10))
+			user.visible_message("[user] inserts [charging] into [src] backwards!", "You insert [charging] into [src] backwards!")
+			user.drop_item()
+			G.loc = get_turf(src)
+			return
 		user.drop_item()
 		G.loc = src
 		charging = G

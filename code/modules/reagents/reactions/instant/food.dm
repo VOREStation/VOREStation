@@ -2,13 +2,6 @@
 	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 	wiki_flag = WIKI_FOOD
 
-/decl/chemical_reaction/instant/food/hot_ramen
-	name = REAGENT_HOTRAMEN
-	id = REAGENT_ID_HOTRAMEN
-	result = REAGENT_ID_HOTRAMEN
-	required_reagents = list(REAGENT_ID_WATER = 1, REAGENT_ID_DRYRAMEN = 3)
-	result_amount = 3
-
 /decl/chemical_reaction/instant/food/hell_ramen
 	name = REAGENT_HELLRAMEN
 	id = REAGENT_ID_HELLRAMEN

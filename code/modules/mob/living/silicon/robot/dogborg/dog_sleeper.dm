@@ -105,7 +105,6 @@
 			user.visible_message(span_warning("[hound.name] is ingesting [trashmouse] into their [src.name]."), span_notice("You start ingesting [trashmouse] into your [src.name]..."))
 			if(do_after(user, 3 SECONDS, target = trashmouse) && length(contents) < max_item_count)
 				trashmouse.forceMove(src)
-				trashmouse.reset_view(src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashmouse] slips inside."), span_notice("Your [src.name] groans lightly as [trashmouse] slips inside."))
 				playsound(src, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
@@ -125,7 +124,6 @@
 			user.visible_message(span_warning("[hound.name] is ingesting [trashman] into their [src.name]."), span_notice("You start ingesting [trashman] into your [src.name]..."))
 			if(do_after(user, 3 SECONDS, target = trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
-				trashman.reset_view(src)
 				START_PROCESSING(SSobj, src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashman] slips inside."), span_notice("Your [src.name] groans lightly as [trashman] slips inside."))
 				log_attack("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
@@ -155,7 +153,6 @@
 				return //If you try to eat two people at once, you can only eat one.
 			else //If you don't have someone in you, proceed.
 				H.forceMove(src)
-				H.reset_view(src)
 				update_patient()
 				START_PROCESSING(SSobj, src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] lights up as [H.name] slips inside."), span_notice("Your [src] lights up as [H] slips inside. Life support functions engaged."))
@@ -206,7 +203,6 @@
 			if(ishuman(C))
 				var/mob/living/carbon/human/person = C
 				person.forceMove(get_turf(src))
-				person.reset_view()
 			else
 				var/obj/T = C
 				T.loc = hound.loc
@@ -416,7 +412,6 @@
 				if(ishuman(C))
 					var/mob/living/carbon/human/person = C
 					person.forceMove(get_turf(src))
-					person.reset_view()
 				else
 					var/obj/T = C
 					T.loc = hound.loc

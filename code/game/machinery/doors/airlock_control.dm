@@ -128,9 +128,9 @@
 	if(!surpress_send) send_status()
 
 
-/obj/machinery/door/airlock/close(surpress_send)
+/obj/machinery/door/airlock/close(var/forced= FALSE, var/ignore_safties = FALSE, var/crush_damage = DOOR_CRUSH_DAMAGE)
 	. = ..()
-	if(!surpress_send) send_status()
+	if(!forced) send_status()
 
 
 /obj/machinery/door/airlock/Bumped(atom/AM)

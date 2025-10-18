@@ -12160,9 +12160,8 @@
 /obj/structure/cable/orange{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Surface Civilian";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Surface Civilian"
 	},
 /obj/machinery/camera/network/engineering{
 	dir = 4
@@ -39514,9 +39513,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable{
-	charge = 500000
-	},
+/obj/machinery/power/smes/buildable/max_charge,
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
 "gLg" = (

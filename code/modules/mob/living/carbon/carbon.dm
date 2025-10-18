@@ -179,9 +179,8 @@
 	if (health >= get_crit_point() || on_fire)
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
 			visible_message( \
-				span_notice("[src] examines [T.himself]."), \
+				span_notice("[src] examines [p_themselves()]."), \
 				span_notice("You check yourself for injuries.") \
 				)
 
@@ -260,23 +259,21 @@
 
 			var/show_ssd
 			var/mob/living/carbon/human/H = src
-			var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
 			if(istype(H)) show_ssd = H.species.show_ssd
 			if(show_ssd && !client && !teleop)
-				M.visible_message(span_notice("[M] shakes [src] trying to wake [T.him] up!"), \
-				span_notice("You shake [src], but [T.he] [T.does] not respond... Maybe [T.he] [T.has] S.S.D?"))
+				M.visible_message(span_notice("[M] shakes [src] trying to wake [H.p_them()] up!"), \
+				span_notice("You shake [src], but [p_they()] [p_do()] not respond... Maybe [H.p_theyre()] S.S.D?"))
 			else if(lying || src.sleeping)
 				AdjustSleeping(-5)
 				if(src.sleeping == 0)
 					src.resting = 0
 				if(H) H.in_stasis = 0 //VOREStation Add - Just In Case
-				M.visible_message(span_notice("[M] shakes [src] trying to wake [T.him] up!"), \
-									span_notice("You shake [src] trying to wake [T.him] up!"))
+				M.visible_message(span_notice("[M] shakes [src] trying to wake [H.p_them()] up!"), \
+									span_notice("You shake [src] trying to wake [H.p_them()] up!"))
 			else
 				var/mob/living/carbon/human/hugger = M
-				var/datum/gender/TM = GLOB.gender_datums[M.get_visible_gender()]
 				if(M.resting == 1) //Are they resting on the ground?
-					M.visible_message(span_notice("[M] grabs onto [src] and pulls [TM.himself] up"), \
+					M.visible_message(span_notice("[M] grabs onto [src] and pulls [M.p_themselves()] up"), \
 							span_notice("You grip onto [src] and pull yourself up off the ground!"))
 					if(M.fire_stacks >= (src.fire_stacks + 3)) //Fire checks.
 						src.adjust_fire_stacks(1)
@@ -288,8 +285,8 @@
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
-					M.visible_message(span_notice("[M] hugs [src] to make [T.him] feel better!"), \
-								span_notice("You hug [src] to make [T.him] feel better!"))
+					M.visible_message(span_notice("[M] hugs [src] to make [H.p_them()] feel better!"), \
+								span_notice("You hug [src] to make [H.p_them()] feel better!"))
 				if(M.fire_stacks >= (src.fire_stacks + 3))
 					src.adjust_fire_stacks(1)
 					M.adjust_fire_stacks(-1)
@@ -388,13 +385,14 @@
 	return
 
 /mob/living/carbon/slip(var/slipped_on,stun_duration=8)
+	SEND_SIGNAL(src, COMSIG_ON_CARBON_SLIP, slipped_on, stun_duration)
 	if(buckled)
-		return 0
+		return FALSE
 	stop_pulling()
 	to_chat(src, span_warning("You slipped on [slipped_on]!"))
 	playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(FLOOR(stun_duration/2, 1))
-	return 1
+	return TRUE
 
 /mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
 	if(effect in chem_effects)

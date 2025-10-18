@@ -181,7 +181,7 @@
 	body_parts_covered = CHEST|ARMS
 	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_DETECTIVE)
 	armor = list(melee = 10, bullet = 20, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0) //As much armor as the cyberpunk jacket. Also priced the same.
-	var/unbuttoned = 0
+	var/unbuttoned = FALSE
 
 /obj/item/clothing/suit/storage/fluff/fedcoat/verb/toggle()
 	set name = "Toggle coat buttons"
@@ -189,19 +189,18 @@
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())
-		return 0
+		return FALSE
 
-	switch(unbuttoned)
-		if(0)
-			icon_state = "[initial(icon_state)]_open"
-			item_state = "[initial(item_state)]_open"
-			unbuttoned = 1
-			to_chat(usr, "You unbutton the coat.")
-		if(1)
-			icon_state = "[initial(icon_state)]"
-			item_state = "[initial(item_state)]"
-			unbuttoned = 0
-			to_chat(usr, "You button up the coat.")
+	if(unbuttoned)
+		icon_state = "[initial(icon_state)]"
+		item_state = "[initial(item_state)]"
+		unbuttoned = FALSE
+		to_chat(usr, "You button up the coat.")
+	else
+		icon_state = "[initial(icon_state)]_open"
+		item_state = "[initial(item_state)]_open"
+		unbuttoned = TRUE
+		to_chat(usr, "You unbutton the coat.")
 	usr.update_inv_wear_suit()
 
 	//Variants
@@ -684,14 +683,12 @@
 	//	to_chat(user, "You cannot turn the light on while in this [user.loc]")
 	//	return
 
-	switch(light_on)
-		if(0)
-			to_chat(user, "You light up your pom-pom.")
-			icon_state = "pom-on"
-
-		if(1)
-			to_chat(user, "You dim your pom-pom.")
-			icon_state = "pom"
+	if(light_on)
+		to_chat(user, "You dim your pom-pom.")
+		icon_state = "pom"
+	else
+		to_chat(user, "You light up your pom-pom.")
+		icon_state = "pom-on"
 
 	//update_light(user) -- old code
 	update_flashlight(user)
@@ -1248,7 +1245,7 @@ Departamental Swimsuits, for general use
 	icon_state = "fjacket"
 
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
-	var/unbuttoned = 0
+	var/unbuttoned = FALSE
 
 /obj/item/clothing/suit/storage/fluff/jacket/verb/toggle()
 	set name = "Toggle coat buttons"
@@ -1256,19 +1253,18 @@ Departamental Swimsuits, for general use
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())
-		return 0
+		return FALSE
 
-	switch(unbuttoned)
-		if(0)
-			icon_state = "[initial(icon_state)]_open"
-			item_state = "[initial(item_state)]_open"
-			unbuttoned = 1
-			to_chat(usr, "You unbutton the coat.")
-		if(1)
-			icon_state = "[initial(icon_state)]"
-			item_state = "[initial(item_state)]"
-			unbuttoned = 0
-			to_chat(usr, "You button up the coat.")
+	if(unbuttoned)
+		icon_state = "[initial(icon_state)]"
+		item_state = "[initial(item_state)]"
+		unbuttoned = FALSE
+		to_chat(usr, "You button up the coat.")
+	else
+		icon_state = "[initial(icon_state)]_open"
+		item_state = "[initial(item_state)]_open"
+		unbuttoned = TRUE
+		to_chat(usr, "You unbutton the coat.")
 	usr.update_inv_wear_suit()
 
 /obj/item/clothing/suit/storage/fluff/jacket/field //Just here so it can be seen and easily recognized under /spawn.
@@ -2260,23 +2256,20 @@ Departamental Swimsuits, for general use
 	set category = "Object"
 	set src in usr
 	if(!usr.canmove || usr.stat || usr.restrained())
-		return 0
+		return FALSE
 
-	if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
-		open = 0
+	if(open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+		open = FALSE
 		icon_state = initial(icon_state)
 		item_state = initial(item_state)
 		flags_inv = HIDETIE|HIDEHOLSTER
 		to_chat(usr, "You button up the coat.")
-	else if(open == 0)
-		open = 1
+	else
+		open = TRUE
 		icon_state = "[icon_state]_open"
 		item_state = "[item_state]_open"
 		flags_inv = HIDEHOLSTER
 		to_chat(usr, "You unbutton the coat.")
-	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
-		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
-		return
 	update_clothing_icon()	//so our overlays update
 
 /obj/item/clothing/head/welding/fluff/zera
@@ -2327,23 +2320,20 @@ Departamental Swimsuits, for general use
 	set category = "Object"
 	set src in usr
 	if(!usr.canmove || usr.stat || usr.restrained())
-		return 0
+		return FALSE
 
-	if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
-		open = 0
+	if(open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+		open = FALSE
 		icon_state = initial(icon_state)
 		item_state = initial(item_state)
 		flags_inv = HIDETIE|HIDEHOLSTER
 		to_chat(usr, "You button up the coat.")
-	else if(open == 0)
-		open = 1
+	else
+		open = TRUE
 		icon_state = "[icon_state]_open"
 		item_state = "[item_state]_open"
 		flags_inv = HIDEHOLSTER
 		to_chat(usr, "You unbutton the coat.")
-	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
-		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
-		return
 	update_clothing_icon()	//so our overlays update
 
 /obj/item/clothing/head/fluff/zerahat
@@ -2417,3 +2407,62 @@ Departamental Swimsuits, for general use
 	icon_state = "memorycrown"
 	default_worn_icon = 'icons/vore/custom_clothes_mob.dmi'
 	slot_flags = SLOT_HEAD
+
+//For general use
+/obj/item/clothing/suit/storage/hooded/purple_robes
+	name = "Purple Robes"
+	desc = "A basic set of purple robes. This one has a tag that reads 'Now with eye-tracking technology!'"
+
+	icon = 'icons/vore/fluff_clothing/eyerobes/custom_clothes_robe_item.dmi'
+	icon_state = "purple_robes"
+	default_worn_icon = 'icons/vore/fluff_clothing/eyerobes/custom_clothes_robe_mob.dmi'
+	hoodtype = /obj/item/clothing/head/hood/purple_robes
+
+	blood_overlay_type = "coat"
+	has_hood_sprite = FALSE //No need.
+	body_parts_covered = CHEST|ARMS|LEGS
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
+	var/toggled = FALSE
+	var/last_toggled = 0
+
+/obj/item/clothing/suit/storage/hooded/purple_robes/verb/toggle()
+	set name = "Toggle Eyes"
+	set category = "Object"
+	set src in usr
+	toggle_eyes(usr)
+
+/obj/item/clothing/suit/storage/hooded/purple_robes/proc/toggle_eyes(mob/user)
+
+	if(!user.canmove || user.stat || user.restrained())
+		return FALSE
+
+	//Antispam.
+	if((last_toggled + 6 SECONDS) > world.time) //Can only toggle it once every 6 seconds!
+		to_chat(user, span_info("You can only toggle the eyes every six seconds!"))
+		return
+
+
+	if(!toggled)
+		AddComponent(/datum/component/reactive_icon_update/clothing, \
+		icon_prefix = "_corrupted", \
+		directions = list(NORTH,EAST,SOUTH,WEST,SOUTHWEST,SOUTHEAST,NORTHWEST,NORTHEAST), \
+		range = 3, \
+		triggering_mobs = list(/mob/living))
+		toggled = TRUE
+		to_chat(user, span_info("The coat's eyes open."))
+	else
+		var/datum/component/reactive_icon_update/clothing/reactive_component = GetComponent(/datum/component/reactive_icon_update/clothing)
+		if(reactive_component)
+			qdel(reactive_component)
+		toggled = FALSE
+		icon_state = initial(icon_state)
+		item_state = initial(item_state)
+		to_chat(user, span_info("The coat's eyes close."))
+	last_toggled = world.time
+	user.update_inv_wear_suit()
+
+/obj/item/clothing/head/hood/purple_robes
+	name = "purple hood"
+	icon = 'icons/vore/fluff_clothing/eyerobes/custom_clothes_robe_item.dmi'
+	icon_state = "hood"
+	default_worn_icon = 'icons/vore/fluff_clothing/eyerobes/custom_clothes_robe_mob.dmi'

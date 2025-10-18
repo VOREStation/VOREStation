@@ -166,9 +166,8 @@
 					return
 
 		//extend the offer of battle to the other mech
-		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 		to_chat(user, span_notice("You offer battle to [target.name]!"))
-		to_chat(target, span_notice(span_bold("[user.name] wants to battle with [T.His] [name]!") + " " + span_italics("Attack them with a toy mech to initiate combat.")))
+		to_chat(target, span_notice(span_bold("[user.name] wants to battle with [user.p_their()] [name]!") + " " + span_italics("Attack them with a toy mech to initiate combat.")))
 		wants_to_battle = TRUE
 		addtimer(CALLBACK(src, PROC_REF(withdraw_offer), user), 6 SECONDS)
 		return
@@ -391,28 +390,25 @@
  * * target: optional arg used in Mech PvP battles (if used, attacker is target's toy)
  */
 /obj/item/toy/mecha/proc/check_battle_start(mob/living/carbon/user, obj/item/toy/mecha/attacker, mob/living/carbon/target)
-	var/datum/gender/T
-	if(target)
-		T = GLOB.gender_datums[target.get_visible_gender()] // Doing this because Polaris Code has shitty gender datums and it's clunkier than FUCK.
 	if(attacker && attacker.in_combat)
-		to_chat(user, span_notice("[target ? T.His : "Your" ] [attacker.name] is in combat."))
+		to_chat(user, span_notice("[target ? target.p_their() : "Your" ] [attacker.name] is in combat."))
 		if(target)
 			to_chat(target, span_notice("Your [attacker.name] is in combat."))
 		return FALSE
 	if(in_combat)
 		to_chat(user, span_notice("Your [name] is in combat."))
 		if(target)
-			to_chat(target, span_notice("[T.His] [name] is in combat."))
+			to_chat(target, span_notice("[target.p_Their()] [name] is in combat."))
 		return FALSE
 	if(attacker && attacker.timer > world.time)
-		to_chat(user, span_notice("[target?T.His : "Your" ] [attacker.name] isn't ready for battle."))
+		to_chat(user, span_notice("[target ? target.p_their() : "Your" ] [attacker.name] isn't ready for battle."))
 		if(target)
 			to_chat(target, span_notice("Your [attacker.name] isn't ready for battle."))
 		return FALSE
 	if(timer > world.time)
 		to_chat(user, span_notice("Your [name] isn't ready for battle."))
 		if(target)
-			to_chat(target, span_notice("[T.His] [name] isn't ready for battle."))
+			to_chat(target, span_notice("[target.p_Their()] [name] isn't ready for battle."))
 		return FALSE
 
 	return TRUE

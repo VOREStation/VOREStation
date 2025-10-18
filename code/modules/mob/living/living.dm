@@ -18,6 +18,8 @@
 
 	selected_image = image(icon = GLOB.buildmode_hud, loc = src, icon_state = "ai_sel")
 
+	AddElement(/datum/element/spontaneous_vore)
+
 /mob/living/proc/get_visible_name()
 	var/datum/component/shadekin/SK = get_shadekin_component()
 	if(SK && SK.in_phase)
@@ -1268,8 +1270,6 @@
 	// We just swapped hands, so the thing in our inactive hand will notice it's not the focus
 	var/obj/item/I = get_inactive_hand()
 	if(I)
-		if(I.zoom)
-			I.zoom()
 		I.in_inactive_hand(src)	//This'll do specific things, determined by the item
 	return
 
