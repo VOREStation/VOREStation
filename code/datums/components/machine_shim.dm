@@ -160,3 +160,12 @@
 
 		if(!ai_in_use && !is_in_use)
 			in_use = 0
+
+/// deprecated, do not use
+/obj/machinery/CouldUseTopic(var/mob/user)
+	..()
+	user.set_machine(src)
+
+/// deprecated, do not use
+/obj/machinery/CouldNotUseTopic(var/mob/user)
+	user.unset_machine()
