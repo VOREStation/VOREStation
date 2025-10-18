@@ -262,6 +262,26 @@
 	var/obj/structure/ghost_pod/manual/lost_drone/dogborg/lost = new(get_turf(spawnspot))
 	lost.create_occupant(user)
 
+
+/datum/tgui_module/ghost_spawn_menu/proc/join_maintrcritter(mob/observer/dead/user)
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
+		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a maint critter."))
+		return
+
+	if(GLOB.allowed_ghost_spawns <= 0)
+		to_chat(user, span_warning("There're no free ghost join slots."))
+		return
+
+	var/obj/effect/landmark/spawnspot = get_ghost_role_spawn()
+	if(!spawnspot)
+		to_chat(user, span_warning("No spawnpoint available."))
+		return
+
+	GLOB.allowed_ghost_spawns--
+	announce_ghost_joinleave(user, 0, "They are now a maint critter.")
+	var/obj/structure/ghost_pod/ghost_activated/unified_hole/no_announce/maint_critter = new(get_turf(spawnspot))
+	maint_critter.create_occupant(user)
+
 /datum/tgui_module/ghost_spawn_menu/proc/join_grave(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_CYBORG))
 		to_chat(user, span_danger("You are banned from playing synthetics and cannot spawn as a gravekeeper."))
