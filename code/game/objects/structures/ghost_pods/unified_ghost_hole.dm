@@ -28,19 +28,18 @@
 	else
 		choice = tgui_alert(user, "Which type of critter do you wish to spawn as?", "Critter Spawner", list("Mob", "Morph", "Lurker", "Cancel"))
 
-
-	if(choice == "Mob")
-		create_simplemob(user)
-	else if(choice == "Morph")
-		create_morph(user)
-	else if(choice == "Lurker")
-		if(!is_alien_whitelisted(user.client, GLOB.all_species[user.client.prefs.species]))
-			to_chat(user, span_warning("You cannot use this spawnpoint to spawn as a species you are not whitelisted for!"))
+	switch(choice)
+		if(null, "Cancel")
 			return
-		else
+		if("Mob")
+			create_simplemob(user)
+		if("Morph")
+			create_morph(user)
+		if("Lurker")
+			if(!is_alien_whitelisted(user.client, GLOB.all_species[user.client.prefs.species]))
+				to_chat(user, span_warning("You cannot use this spawnpoint to spawn as a species you are not whitelisted for!"))
+				return
 			create_lurker(user)
-	else if(choice == "Cancel")
-		return
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_simplemob(var/mob/M)
 	var/choice
