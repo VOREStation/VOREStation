@@ -712,15 +712,18 @@ var/list/global/organ_rel_size = list(
 /mob/proc/recalculate_vis()
 	return
 
-//General HUD updates done regularly (health puppet things, etc)
+/// General HUD updates done regularly (health puppet things, etc). Returns true if the mob has a client.
 /mob/proc/handle_regular_hud_updates()
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	if(!client)
+		return FALSE
+	SEND_SIGNAL(src,COMSIG_LIVING_HANDLE_HUD)
+	return TRUE
 
-//Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.
+/// Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.
 /mob/proc/handle_vision()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src,COMSIG_LIVING_HANDLE_VISION)
-	return
 
 //Icon is used to occlude things like huds from the faulty byond context menu.
 //   http://www.byond.com/forum/?post=2336679

@@ -100,9 +100,14 @@
 		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
 
+	// Call parent to handle signals
 	..()
 
 /mob/living/carbon/alien/handle_regular_hud_updates()
+	. = ..()
+	if(!.)
+		return
+
 	if (healths)
 		if (stat != 2)
 			switch(health)
@@ -123,8 +128,7 @@
 		else
 			healths.icon_state = "health7"
 
-	if (client)
-		client.screen.Remove(GLOB.global_hud.blurry,GLOB.global_hud.druggy,GLOB.global_hud.vimpaired)
+	client.screen.Remove(GLOB.global_hud.blurry,GLOB.global_hud.druggy,GLOB.global_hud.vimpaired)
 
 	if ( stat != 2)
 		if ((blinded))
@@ -134,8 +138,6 @@
 			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /atom/movable/screen/fullscreen/impaired, 1)
 			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
-
-	return 1
 
 /mob/living/carbon/alien/handle_environment(var/datum/gas_mixture/environment)
 	// Both alien subtypes survive in vaccum and suffer in high temperatures,

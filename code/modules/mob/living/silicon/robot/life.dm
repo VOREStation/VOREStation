@@ -149,7 +149,8 @@
 	else
 		blinded = 1
 
-	return 1
+	// Call parent to handle signals
+	. = ..()
 
 /mob/living/silicon/robot/handle_vision()
 	var/fullbright = FALSE
@@ -215,7 +216,10 @@
 	..()
 
 /mob/living/silicon/robot/handle_regular_hud_updates()
-	..()
+	. = ..()
+	if(!.)
+		return
+
 	if (healths)
 		if (stat != 2)
 			if(istype(src,/mob/living/silicon/robot/drone))
@@ -252,7 +256,7 @@
 		else
 			healths.icon_state = "health7"
 
-	if (syndicate && client)
+	if (syndicate)
 		for(var/datum/mind/tra in traitors.current_antagonists)
 			if(tra.current)
 				// TODO: Update to new antagonist system.
@@ -299,8 +303,6 @@
 		throw_alert("hacked", /atom/movable/screen/alert/hacked)
 	else
 		clear_alert("hacked")
-
-	return 1
 
 /mob/living/silicon/robot/proc/update_cell()
 	if(cell)

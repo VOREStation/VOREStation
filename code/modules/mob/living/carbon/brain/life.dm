@@ -167,6 +167,10 @@
 	..()
 
 /mob/living/carbon/brain/handle_regular_hud_updates()
+	. = ..()
+	if(!.)
+		return
+
 	if (healths)
 		if (stat != DEAD)
 			switch(health)
@@ -187,8 +191,7 @@
 		else
 			healths.icon_state = "health7"
 
-	if (client)
-		client.screen.Remove(GLOB.global_hud.blurry,GLOB.global_hud.druggy,GLOB.global_hud.vimpaired)
+	client.screen.Remove(GLOB.global_hud.blurry,GLOB.global_hud.druggy,GLOB.global_hud.vimpaired)
 
 	if (stat != DEAD)
 		if ((blinded))
@@ -198,5 +201,3 @@
 			set_fullscreen(disabilities & NEARSIGHTED, "impaired", /atom/movable/screen/fullscreen/impaired, 1)
 			set_fullscreen(eye_blurry, "blurry", /atom/movable/screen/fullscreen/blurry)
 			set_fullscreen(druggy, "high", /atom/movable/screen/fullscreen/high)
-
-	return 1
