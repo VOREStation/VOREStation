@@ -8,6 +8,7 @@
 	density = TRUE
 	opacity = 0
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/ready = 1
 	var/malfunction = 0
