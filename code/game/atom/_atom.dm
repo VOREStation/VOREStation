@@ -298,6 +298,7 @@
 
 
 /atom/proc/hitby(atom/movable/source)
+	SEND_SIGNAL(src, COMSIG_ATOM_HITBY, source)
 	if (density)
 		source.throwing = 0
 	return
