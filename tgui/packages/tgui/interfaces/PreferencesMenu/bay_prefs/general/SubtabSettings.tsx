@@ -11,21 +11,19 @@ import {
 const extra_desc = (name: string) => {
   switch (name) {
     case 'Be positronic brain':
-      return 'This notifies you when there is an opportunity to become a positronic borg brain.';
+      return 'This unlocks opportunities to become a positronic borg brain when you are a ghost.';
     case 'Be pAI candidate':
-      return 'This notifies you when there is an opportunity to become a personal AI assistant.';
+      return 'This unlocks opportunities to become a personal AI assistant when you are a ghost.';
     case 'Be lost drone':
-      return 'This notifies you when there is an opportunity to become a spooky lost drone.';
+      return 'This unlocks opportunities to become a spooky lost drone when you are a ghost.';
     case 'Be maint pred':
-      return 'This notifies you when there is an opportunity to become use a maintenance predator spawner.';
+      return 'This unlocks opportunities to become use a maintenance predator spawner.';
     case 'Be maint lurker':
-      return 'This notifies you when there is an opportunity to use a maintenance mob spawner.';
-    case 'Be maint critter':
-      return 'This notifies you when there is an opportunity to use a maintenance critter spawner to become a mob, a morph, or a lurker.';
+      return 'This unlocks opportunities to become use a maintenance mob spawner.';
     case 'Be morph':
-      return 'This notifies you when there is an opportunity to become a morph, a goopy shapeshifting critter.';
+      return 'This is totally useless, but once allowed you to become a shapeshifting mimic.';
     case 'Be corgi':
-      return 'This notifies you when there is an opportunity to become a corgi.';
+      return 'This is totally useless, but once allowed you to become a corgi.';
     case 'Be cursed sword':
       return 'This is totally useless, but once allowed you to become a cursed sword.';
     case 'Be Ship Survivor':
