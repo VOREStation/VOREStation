@@ -209,7 +209,6 @@
 
 		gem.catch_mob(user) //This will result in us being deleted so...
 
-
 /datum/tgui_module/ghost_spawn_menu/proc/vore_belly_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in GLOB.player_list
 
