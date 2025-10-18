@@ -68,16 +68,12 @@
 		sever_connection(exit_point)
 		return
 
-	// This is just stupid. But our do_teleport() proc is stupider.
-	// Remove this whenever we get that refactored.
-	var/datum/effect/effect/system/dummy = new /datum/effect/system
-
 	// Now the fun begins
 	if(istype(exit_point, /obj/structure/closet))
 		var/obj/structure/closet/exit_closet = exit_point
 		if(!exit_closet.can_open()) // Bwomp. You're locked now. :)
 			for(var/atom/movable/AM in contents)
-				do_teleport(AM, exit_closet, 0, 1, dummy, dummy)
+				do_noeffect_teleport(AM, exit_closet, 0, 1)
 			return
 		exit_closet.open()
 
@@ -87,8 +83,9 @@
 		for(var/atom/movable/AM in contents)
 			if(QDELETED(AM))
 				continue
-			do_teleport(AM, get_turf(exit_point), 0, 1, dummy, dummy)
-			AM.throw_at(target, throw_range, 1)
+			do_noeffect_teleport(AM, get_turf(exit_point), 0, 1)
+			if(!isbelly(exit_point))
+				AM.throw_at(target, throw_range, 1)
 		contents.Cut()
 	return
 
