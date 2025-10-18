@@ -155,8 +155,8 @@
 	GLOB.active_ghost_pods += src
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Destroy()
-	. = ..()
 	GLOB.active_ghost_pods -= src
+	. = ..()
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/redgate
 	name = "Redspace inhabitant hole"
