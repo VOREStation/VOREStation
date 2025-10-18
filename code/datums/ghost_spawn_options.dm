@@ -261,7 +261,6 @@
 	var/obj/structure/ghost_pod/manual/lost_drone/dogborg/lost = new(get_turf(spawnspot))
 	lost.create_occupant(user)
 
-
 /datum/tgui_module/ghost_spawn_menu/proc/join_maintrcritter(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
 		to_chat(user, span_danger("You are banned from playing ghost roles and cannot spawn as a maint critter."))
