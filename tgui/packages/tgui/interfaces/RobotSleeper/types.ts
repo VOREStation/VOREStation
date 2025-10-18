@@ -25,6 +25,7 @@ export type Data = {
 };
 
 export type RobotChem = { id: string; name: string };
+
 export type Patient = {
   name: string;
   stat: number;
