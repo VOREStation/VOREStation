@@ -198,13 +198,8 @@
 		dlist.Cut()
 	if(length(contents) > 0)
 		hound.visible_message(span_warning("[hound.name] empties out their contents via their [eject_port] port."), span_notice("You empty your contents via your [eject_port] port."))
-		for(var/C in contents)
-			if(ishuman(C))
-				var/mob/living/carbon/human/person = C
-				person.forceMove(get_turf(src))
-			else
-				var/obj/T = C
-				T.loc = hound.loc
+		for(var/atom/movable/content in contents)
+			content.forceMove(get_turf(src))
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 	update_patient()
 
@@ -347,13 +342,8 @@
 			if(!length(deliverylists[delivery_tag]))
 				return FALSE
 			hound.visible_message(span_warning("[hound.name] empties out their cargo compartment via their [eject_port] port."), span_notice("You empty your cargo compartment via your [eject_port] port."))
-			for(var/C in deliverylists[delivery_tag])
-				if(ishuman(C))
-					var/mob/living/carbon/human/person = C
-					person.forceMove(get_turf(src))
-				else
-					var/obj/T = C
-					T.loc = hound.loc
+			for(var/atom/movable/content in deliverylists[delivery_tag])
+				content.forceMove(get_turf(src))
 			playsound(src, 'sound/effects/splat.ogg', 50, 1)
 			update_patient()
 			deliverylists[delivery_tag].Cut()
