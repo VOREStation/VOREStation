@@ -1,7 +1,0 @@
-author: "Will, Diana"
-delete-after: True
-changes:
-  - rscadd: "Destructive analyzer returns"
-  - rscadd: "Destructive analyzer circuit board added to Fundamental Science techweb node"
-  - rscadd: "Destructive analyzer can be linked to ore silo with multitool if built in round"
-  - rscadd: "Research samples give research points when put through the destructive analyzer."
