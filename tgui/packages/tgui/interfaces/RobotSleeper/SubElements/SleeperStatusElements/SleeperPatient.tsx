@@ -9,7 +9,7 @@ export const SleeperPatient = (props: { name: string }) => {
   const { name } = props;
 
   if (!our_patient) {
-    return `${name} Unoccupied`;
+    return `${name} Unoccupied.`;
   }
 
   const isParalysed = Math.round(our_patient.paralysis / 4) >= 1;
