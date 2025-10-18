@@ -605,7 +605,7 @@
 				var/confirmitemtf = tgui_alert(user, "Would you like to allow others to turn you into an item upon claiming you if they choose to?", "Confirm Item TF Preference", list("Yes", "No"))
 				var/allowitemtf = FALSE
 				if(confirmitemtf == "Yes")
-					allowitemtf = TRY_QUEUE_VERB
+					allowitemtf = TRUE
 				if(safety_ckey in sentientprizes_ckeys_list)
 					to_chat(user, span_warning("The SPASM beeps in an upset manner, you already have a collar!"))
 					return
