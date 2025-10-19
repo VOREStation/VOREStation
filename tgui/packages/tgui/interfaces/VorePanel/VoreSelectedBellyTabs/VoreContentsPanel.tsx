@@ -1,14 +1,19 @@
+import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
+  Box,
   Button,
+  ColorBox,
+  Divider,
   Dropdown,
   Image,
   LabeledList,
+  Section,
   Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-
 import { stats } from '../constants';
+import { ourTypeToOptions } from '../functions';
 import type { contentData, DropdownEntry } from '../types';
 
 export const VoreContentsPanel = (props: {
@@ -22,6 +27,7 @@ export const VoreContentsPanel = (props: {
   icon_overflow: BooleanLike;
 }) => {
   const { act } = useBackend();
+  const [selectedAtom, setSelectedAtom] = useState<contentData | null>(null);
 
   const {
     contents = [],
@@ -33,6 +39,15 @@ export const VoreContentsPanel = (props: {
     show_pictures,
     icon_overflow,
   } = props;
+
+  useEffect(() => {
+    if (
+      selectedAtom &&
+      !contents?.some((item) => item.ref === selectedAtom.ref)
+    ) {
+      setSelectedAtom(null);
+    }
+  }, [contents]);
 
   function bellyValueToName(value: string) {
     const bellyName = bellyDropdownNames
@@ -50,17 +65,45 @@ export const VoreContentsPanel = (props: {
   }
 
   return (
-    <>
+    <Section
+      fill
+      title="Contents"
+      buttons={
+        <Button
+          icon={show_pictures ? 'image' : 'list-check'}
+          width="100px"
+          selected={show_pictures}
+          disabled={icon_overflow}
+          tooltip={
+            'Allows to toggle if belly contents are shown as icons or in list format. ' +
+            (show_pictures
+              ? 'Contents shown as pictures.'
+              : 'Contents shown as lists.') +
+            (show_pictures && icon_overflow
+              ? 'Temporarily disabled. Stomach contents above limits.'
+              : '')
+          }
+          backgroundColor={show_pictures && icon_overflow ? 'orange' : ''}
+          onClick={() => act('show_pictures')}
+        >
+          {show_pictures ? 'Picture View' : 'List View'}
+        </Button>
+      }
+    >
       {!!outside && (
-        <Stack>
+        <Stack align="baseline">
           <Stack.Item grow>
             <Button.Confirm
               textAlign="center"
+              tooltip="Eject all contents at your current location."
               confirmContent="Confirm Eject All?"
               fluid
               mb={1}
               onClick={() =>
-                act('pick_from_outside', { pickall: true, intent: 'eject_all' })
+                act('pick_from_outside', {
+                  pickall: true,
+                  intent: 'eject_all',
+                })
               }
             >
               Eject All
@@ -69,6 +112,8 @@ export const VoreContentsPanel = (props: {
           <Stack.Item grow>
             <Button.Confirm
               textAlign="center"
+              tooltip="Move all contents towards the selected destination."
+              disabled={!targetBelly}
               confirmContent="Confirm Move All?"
               fluid
               mb={1}
@@ -84,76 +129,172 @@ export const VoreContentsPanel = (props: {
             </Button.Confirm>
           </Stack.Item>
           {!!bellyDropdownNames && !!onTargetBely && (
-            <Stack.Item>
-              <Dropdown
-                onSelected={(value) => onTargetBely(value)}
-                options={bellyDropdownNames!}
-                selected={bellyValueToName(targetBelly)}
-              />
-            </Stack.Item>
+            <>
+              <Stack.Item color="label">Destination</Stack.Item>
+              <Stack.Item>
+                <Dropdown
+                  onSelected={(value) => onTargetBely(value)}
+                  options={bellyDropdownNames!}
+                  selected={bellyValueToName(targetBelly)}
+                />
+              </Stack.Item>
+            </>
           )}
         </Stack>
       )}
-      {(show_pictures && !icon_overflow && (
-        <Stack wrap="wrap" justify="center" align="center">
-          {contents?.map((thing) => (
-            <Stack.Item key={thing.ref} basis="32%">
-              <Button
-                width="64px"
-                color={thing.absorbed ? 'purple' : stats[thing.stat]}
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '5px',
-                  borderRadius: '20px',
-                }}
-                onClick={() =>
-                  act(
-                    thing.outside ? 'pick_from_outside' : 'pick_from_inside',
-                    {
-                      pick: thing.ref,
-                      belly: belly,
-                    },
-                  )
-                }
-              >
-                <Image
-                  src={`data:image/jpeg;base64,${thing.icon}`}
-                  width="64px"
-                  height="64px"
-                  style={{
-                    marginLeft: '-5px',
-                  }}
-                />
-              </Button>
-              {thing.name}
+      {selectedAtom ? (
+        <Stack>
+          {ourTypeToOptions(
+            selectedAtom.our_type,
+            !!selectedAtom.outside,
+            bellyValueToName(targetBelly),
+          ).map((option) => (
+            <Stack.Item key={option.name}>
+              {option.needsConfirm ? (
+                <Button.Confirm
+                  color={option.color}
+                  tooltip={option.tooltip}
+                  disabled={option.disabled}
+                  onClick={() =>
+                    act(
+                      selectedAtom.outside
+                        ? 'pick_from_outside'
+                        : 'pick_from_inside',
+                      {
+                        option: option.name,
+                        pick: selectedAtom.ref,
+                        targetBelly: targetBelly,
+                        belly: belly,
+                      },
+                    )
+                  }
+                >
+                  {option.name}
+                </Button.Confirm>
+              ) : (
+                <Button
+                  color={option.color}
+                  tooltip={option.tooltip}
+                  disabled={option.disabled}
+                  onClick={() =>
+                    act(
+                      selectedAtom.outside
+                        ? 'pick_from_outside'
+                        : 'pick_from_inside',
+                      {
+                        option: option.name,
+                        pick: selectedAtom.ref,
+                        targetBelly: targetBelly,
+                        belly: belly,
+                      },
+                    )
+                  }
+                >
+                  {option.name}
+                </Button>
+              )}
             </Stack.Item>
           ))}
+          <Stack.Item>
+            <Button
+              onClick={() =>
+                act(
+                  selectedAtom.outside
+                    ? 'pick_from_outside'
+                    : 'pick_from_inside',
+                  {
+                    pick: selectedAtom.ref,
+                    belly: belly,
+                  },
+                )
+              }
+              disabled={!selectedAtom}
+            >
+              List Window
+            </Button>
+          </Stack.Item>
         </Stack>
-      )) || (
-        <LabeledList>
-          {contents?.map((thing) => (
-            <LabeledList.Item key={thing.ref} label={thing.name}>
-              <Button
-                fluid
-                mt={-1}
-                mb={-1}
-                color={thing.absorbed ? 'purple' : stats[thing.stat]}
-                onClick={() =>
-                  act(
-                    thing.outside ? 'pick_from_outside' : 'pick_from_inside',
-                    {
-                      pick: thing.ref,
-                      belly: belly,
-                    },
-                  )
-                }
-              >
-                Interact
-              </Button>
-            </LabeledList.Item>
-          ))}
-        </LabeledList>
+      ) : (
+        <Box height="20px">Select a content to interact with it.</Box>
       )}
-    </>
+      <Divider />
+      <Section fill scrollable>
+        {(show_pictures && !icon_overflow && (
+          <Stack wrap="wrap" justify="center" align="center">
+            {contents?.map((thing) => (
+              <Stack.Item key={thing.ref} basis="32%">
+                <Button
+                  width="64px"
+                  selected={thing.ref === selectedAtom?.ref}
+                  color={thing.absorbed ? 'purple' : stats[thing.stat]}
+                  style={{
+                    verticalAlign: 'middle',
+                    marginRight: '5px',
+                    borderRadius: '20px',
+                  }}
+                  onClick={() => {
+                    if (selectedAtom?.ref === thing.ref) {
+                      setSelectedAtom(null);
+                    } else {
+                      setSelectedAtom(thing);
+                    }
+                  }}
+                >
+                  <Image
+                    src={`data:image/jpeg;base64,${thing.icon}`}
+                    width="64px"
+                    height="64px"
+                    style={{
+                      marginLeft: '-5px',
+                    }}
+                  />
+                </Button>
+                {thing.ref === selectedAtom?.ref && (
+                  <>
+                    <ColorBox
+                      color={thing.absorbed ? 'purple' : stats[thing.stat]}
+                    />
+                    <Box inline preserveWhitespace>
+                      {' '}
+                    </Box>
+                  </>
+                )}
+                {thing.name}
+              </Stack.Item>
+            ))}
+          </Stack>
+        )) || (
+          <LabeledList>
+            {contents?.map((thing) => (
+              <LabeledList.Item key={thing.ref} label={thing.name}>
+                <Button
+                  fluid
+                  mt={-1}
+                  mb={-1}
+                  selected={thing.ref === selectedAtom?.ref}
+                  color={thing.absorbed ? 'purple' : stats[thing.stat]}
+                  onClick={() => {
+                    if (selectedAtom?.ref === thing.ref) {
+                      setSelectedAtom(null);
+                    } else {
+                      setSelectedAtom(thing);
+                    }
+                  }}
+                >
+                  <Stack align="center">
+                    <Stack.Item grow>Interact</Stack.Item>
+                    {thing.ref === selectedAtom?.ref && (
+                      <ColorBox
+                        color={thing.absorbed ? 'purple' : stats[thing.stat]}
+                      />
+                    )}
+                  </Stack>
+                </Button>
+              </LabeledList.Item>
+            ))}
+          </LabeledList>
+        )}
+      </Section>
+    </Section>
   );
 };
