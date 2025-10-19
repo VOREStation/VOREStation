@@ -17,7 +17,7 @@
 		return FALSE
 	return TRUE
 
-/// Basic spont vore check
+/// Basic spont vore check.
 /// Checks if both have spont vore enable
 /proc/CanSpontaneousVore(mob/living/pred, mob/living/prey)
 	if(!CanVore(pred, prey))
@@ -66,7 +66,7 @@
 		return FALSE
 	if(!pred.slip_vore && !prey.slip_vore)
 		return FALSE
-	if(!pred.is_slipping && !prey.is_slipping)
+	if(!pred.is_slipping || !prey.is_slipping)
 		return FALSE
 	if(world.time <= prey.slip_protect)
 		return FALSE
