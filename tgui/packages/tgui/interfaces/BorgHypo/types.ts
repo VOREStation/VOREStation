@@ -1,12 +1,15 @@
 import type { BooleanLike } from 'tgui-core/react';
-import type { Recipe } from '../ChemDispenser/types';
+import type { Reagent, Recipe } from '../ChemDispenser/types';
 
 export type Data = {
   amount: number;
-  chemicals: Record<string, number>;
-  selectedReagent: string;
+  chemicals: Reagent[];
+  selectedReagentId: string;
   recipes: Record<string, Recipe[]>;
   recordingRecipe: Recipe[];
   isDispensingRecipe: BooleanLike;
   selectedRecipe: string;
+  uiTitle: string;
+  uiChemicalsName: string;
+  uiChemicalSearch: string;
 };

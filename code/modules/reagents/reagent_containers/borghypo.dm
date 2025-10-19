@@ -15,6 +15,8 @@
 	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
 	var/bypass_protection = FALSE // If true, can inject through things like spacesuits and armor.
 	var/ui_title = "Cyborg Chemical Synthesizer"
+	var/ui_chemicals_name = "Chemicals"
+	var/ui_chemical_search // Chem search bar contents
 	var/is_dispensing_recipe = FALSE // Whether or not we're dispensing just a reagent or are dispensing reagents via a recipe
 	var/selected_recipe // The recipe we will dispense if the above is TRUE
 
@@ -117,6 +119,8 @@
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		// Assuming the user is opening the UI, empty the chem search preemptively.
+		ui_chemical_search = null
 		ui = new(user, src, "BorgHypo", ui_title)
 		ui.open()
 
@@ -124,9 +128,18 @@
 	var/list/data = list()
 	data["amount"] = amount_per_transfer_from_this
 
-	data["chemicals"] = reagent_volumes
+	var/chemicals[0]
+	for(var/key, value in reagent_volumes)
+		var/datum/reagent/R = SSchemistry.chemical_reagents[key]
+		// If the user is searching for a particular chemical by name, only add this one if its name matches their search!
+		if((ui_chemical_search && findtext(R.name, ui_chemical_search)) || !ui_chemical_search)
+			chemicals.Add(list(list("name" = R.name, "id" = key, "volume" = value))) // list in a list because Byond merges the first list...
+	data["uiTitle"] = ui_title
+	data["chemicals"] = chemicals
+	data["uiChemicalsName"] = ui_chemicals_name
+	data["uiChemicalSearch"] = ui_chemical_search
 
-	data["selectedReagent"] = reagent_ids[mode]
+	data["selectedReagentId"] = reagent_ids[mode]
 	data["recipes"] = saved_recipes
 	data["recordingRecipe"] = recording_recipe
 	data["maxTransferAmount"] = max_transfer_amount
@@ -140,12 +153,12 @@
 		return
 	switch(action)
 		if("select_reagent")
-			var/t = reagent_ids.Find(params["selectedReagent"])
+			var/t = reagent_ids.Find(params["selectedReagentId"])
 			if(t)
-				var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[mode]]
+				var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[t]]
 				playsound(src, 'sound/effects/pop.ogg', 50, 0)
 				if(recording_recipe)
-					recording_recipe += list(list("id" = t, "amount" = amount_per_transfer_from_this))
+					recording_recipe += list(list("id" = R.id, "amount" = amount_per_transfer_from_this))
 					balloon_alert(usr, "synthesizer recorded '[R.name]'")
 				else
 					mode = t
@@ -201,6 +214,10 @@
 			selected_recipe = R
 			. = TRUE
 
+		if("set_chemical_search")
+			ui_chemical_search = params["uiChemicalSearch"]
+			. = TRUE
+
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	. = ..()
@@ -217,6 +234,8 @@
 	recharge_time = 3
 	volume = 60
 	max_transfer_amount = 30
+	ui_chemicals_name = "Drinks"
+	ui_title = "Drink Synthesizer"
 	reagent_ids = list(REAGENT_ID_ALE,
 		REAGENT_ID_BEER,
 		REAGENT_ID_BERRYJUICE,

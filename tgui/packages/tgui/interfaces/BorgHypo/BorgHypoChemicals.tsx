@@ -1,37 +1,51 @@
 import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
-
+import { BorgHypoSearch } from './BorgHypoSearch';
 import type { Data } from './types';
 
 export const BorgHypoChemicals = (props) => {
   const { act, data } = useBackend<Data>();
-  const { chemicals } = data;
+  const {
+    chemicals = [],
+    isDispensingRecipe,
+    selectedReagentId,
+    uiChemicalsName,
+    uiChemicalSearch,
+  } = data;
   const flexFillers: boolean[] = [];
-
-  const chemicalData = Object.keys(chemicals).sort();
 
   for (let i = 0; i < (chemicals.length + 1) % 3; i++) {
     flexFillers.push(true);
   }
   return (
-    <Section title="Dispenser" fill scrollable buttons={<RecordingBlinker />}>
+    <Section
+      title={uiChemicalsName}
+      fill
+      scrollable
+      buttons={<BorgHypoSearch />}
+    >
       <Stack direction="row" wrap="wrap" align="flex-start" g={0.3}>
-        {chemicalData.length
-          ? chemicalData.map((chemName) => (
-              <Stack.Item key={chemName} basis="40%" grow height="20px">
+        {chemicals.length
+          ? chemicals.map((chemical, i) => (
+              <Stack.Item key={i} basis="40%" grow height="20px">
                 <Button
                   icon="arrow-circle-down"
+                  color={
+                    !isDispensingRecipe && selectedReagentId === chemical.id
+                      ? 'good'
+                      : null
+                  }
                   fluid
                   ellipsis
                   align="flex-start"
                   onClick={() =>
                     act('select_reagent', {
-                      selectedReagent: chemName,
+                      selectedReagentId: chemical.id,
                     })
                   }
                 >
-                  {`${chemName} (${chemicals[chemName]})`}
+                  {`${chemical.name} (${chemical.volume})`}
                 </Button>
               </Stack.Item>
             ))
