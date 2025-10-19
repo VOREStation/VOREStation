@@ -122,10 +122,12 @@
 	var/datum/tgui_module/robot_ui_decals/decal_control
 
 /mob/living/silicon/robot/init_subsystems()
+	..()
 	decal_control = new(src)
 
 /mob/living/silicon/robot/clear_subsystems()
 	QDEL_NULL(decal_control)
+	..()
 
 /mob/living/silicon/robot/verb/toggle_robot_decals()
 	set category = "Abilities.Settings"
