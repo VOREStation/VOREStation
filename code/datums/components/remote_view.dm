@@ -311,7 +311,7 @@
 	if(isturf(host_mob.loc))
 		if(oldloc == remote_view_target)
 			needs_to_decouple = TRUE
-		decouple_view_to_turf( host_mob, host_mob.loc, remote_view_target)
+		decouple_view_to_turf( host_mob, host_mob.loc)
 		return
 
 /datum/component/remote_view/mob_holding_item/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
@@ -325,7 +325,7 @@
 	var/atom/top_most = find_topmost_atom()
 	if(isturf(top_most))
 		if(needs_to_decouple) // Only need to do this if we were held by a mob prior, otherwise this triggers every move and is expensive for no reason
-			decouple_view_to_turf( host_mob, top_most, remote_view_target)
+			decouple_view_to_turf( host_mob, top_most)
 		return
 	if(ismob(top_most) || ismecha(top_most)) // Mobs and mechas both do this
 		host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
@@ -350,7 +350,7 @@
 	return null
 
 /// Makes a new remote view focused on the release_turf argument. This remote view ends as soon as any movement happens. Even if we are inside many levels of objects due to our recursive_move listener
-/datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf, atom/cached_focus)
+/datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf)
 	if(needs_to_decouple)
 		// Yes this spawn is needed, yes I wish it wasn't.
 		spawn(0)
@@ -372,6 +372,6 @@
 	if(!host_mob)
 		return
 	needs_to_decouple = TRUE
-	decouple_view_to_turf( host_mob, get_turf(host_mob), remote_view_target)
+	decouple_view_to_turf( host_mob, get_turf(host_mob))
 
 #undef MAX_RECURSIVE
