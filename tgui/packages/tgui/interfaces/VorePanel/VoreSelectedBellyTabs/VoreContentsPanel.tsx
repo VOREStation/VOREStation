@@ -277,16 +277,19 @@ export const VoreContentsPanel = (props: {
                         }}
                       />
                     </Button>
-                    {thing.ref === selectedAtom?.ref && stats[thing.stat] && (
-                      <>
-                        <ColorBox
-                          color={thing.absorbed ? 'purple' : stats[thing.stat]}
-                        />
-                        <Box inline preserveWhitespace>
-                          {' '}
-                        </Box>
-                      </>
-                    )}
+                    {thing.ref === selectedAtom?.ref &&
+                      (stats[thing.stat] || thing.absorbed) && (
+                        <>
+                          <ColorBox
+                            color={
+                              thing.absorbed ? 'purple' : stats[thing.stat]
+                            }
+                          />
+                          <Box inline preserveWhitespace>
+                            {' '}
+                          </Box>
+                        </>
+                      )}
                     {thing.name}
                   </Stack.Item>
                 ))}
