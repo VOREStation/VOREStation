@@ -85,6 +85,9 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 		if("lost_drone_spawn")
 			join_lost(ui.user)
 			. = TRUE
+		if("maintenance_critter")
+			join_maintrcritter(ui.user)
+			. = TRUE
 		if("gravekeeper_spawn")
 			join_grave(ui.user)
 			. = TRUE
