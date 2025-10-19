@@ -489,16 +489,6 @@
 	handle_light()
 	update_icon()
 
-/mob/living/silicon/robot/verb/toggle_robot_decals() // loads overlay UNDER lights.
-	set category = "Abilities.Settings"
-	set name = "Control Robot Decals & Animations"
-
-	if(!sprite_datum)
-		return
-
-	var/datum/tgui_module/robot_ui_decals/ui = new(src)
-	ui.tgui_interact(src)
-
 /mob/living/silicon/robot/verb/toggle_glowy_stomach()
 	set category = "Abilities.Settings"
 	set name = "Toggle Glowing Stomach & Accents"
