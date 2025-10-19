@@ -198,8 +198,10 @@ export const VoreContentsPanel = (props: {
                   )}
                 </Stack.Item>
               ))}
+              <Stack.Item grow />
               <Stack.Item>
                 <Button
+                  tooltip="Open legacy list selection which persists UI closing."
                   onClick={() =>
                     act(
                       selectedAtom.outside
