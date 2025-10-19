@@ -6,11 +6,13 @@ import {
   ColorBox,
   Dropdown,
   Image,
+  Input,
   LabeledList,
   Section,
   Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 import { stats } from '../constants';
 import { ourTypeToOptions } from '../functions';
 import type { contentData, DropdownEntry } from '../types';
@@ -27,6 +29,7 @@ export const VoreContentsPanel = (props: {
 }) => {
   const { act } = useBackend();
   const [selectedAtom, setSelectedAtom] = useState<contentData | null>(null);
+  const [contentSearchText, setContentSearchText] = useState<string>('');
 
   const {
     contents = [],
@@ -63,30 +66,48 @@ export const VoreContentsPanel = (props: {
     return '';
   }
 
+  const contentSearch = createSearch(
+    contentSearchText,
+    (content: contentData) => content.name,
+  );
+  const displayedContents = contents?.filter(contentSearch);
+
   return (
     <Section
       fill
       title="Contents"
       buttons={
-        <Button
-          icon={show_pictures ? 'image' : 'list-check'}
-          width="100px"
-          selected={show_pictures}
-          disabled={icon_overflow}
-          tooltip={
-            'Allows to toggle if belly contents are shown as icons or in list format. ' +
-            (show_pictures
-              ? 'Contents shown as pictures.'
-              : 'Contents shown as lists.') +
-            (show_pictures && icon_overflow
-              ? 'Temporarily disabled. Stomach contents above limits.'
-              : '')
-          }
-          backgroundColor={show_pictures && icon_overflow ? 'orange' : ''}
-          onClick={() => act('show_pictures')}
-        >
-          {show_pictures ? 'Picture View' : 'List View'}
-        </Button>
+        <Stack>
+          <Stack.Item>
+            <Input
+              width="200px"
+              value={contentSearchText}
+              onChange={setContentSearchText}
+              placeholder="Search contents..."
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon={show_pictures ? 'image' : 'list-check'}
+              width="100px"
+              selected={show_pictures}
+              disabled={icon_overflow}
+              tooltip={
+                'Allows to toggle if belly contents are shown as icons or in list format. ' +
+                (show_pictures
+                  ? 'Contents shown as pictures.'
+                  : 'Contents shown as lists.') +
+                (show_pictures && icon_overflow
+                  ? 'Temporarily disabled. Stomach contents above limits.'
+                  : '')
+              }
+              backgroundColor={show_pictures && icon_overflow ? 'orange' : ''}
+              onClick={() => act('show_pictures')}
+            >
+              {show_pictures ? 'Picture View' : 'List View'}
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <Stack fill vertical>
@@ -228,7 +249,7 @@ export const VoreContentsPanel = (props: {
           <Section fill scrollable>
             {(show_pictures && !icon_overflow && (
               <Stack wrap="wrap" justify="center" align="center">
-                {contents?.map((thing) => (
+                {displayedContents?.map((thing) => (
                   <Stack.Item key={thing.ref} basis="32%">
                     <Button
                       width="64px"
@@ -272,7 +293,7 @@ export const VoreContentsPanel = (props: {
               </Stack>
             )) || (
               <LabeledList>
-                {contents?.map((thing) => (
+                {displayedContents?.map((thing) => (
                   <LabeledList.Item key={thing.ref} label={thing.name}>
                     <Button
                       fluid
