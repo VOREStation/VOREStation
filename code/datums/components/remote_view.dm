@@ -360,11 +360,13 @@
 			cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
 			if(!isturf(cache_mob.loc)) // For stuff like paicards
 				cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
-
-			// Because nested vore bellies do NOT get handled correctly for recursive prey. We need to tell the belly's occupants to decouple too... Then their own belly's occupants...
-			for(var/obj/check_belly in cache_mob.contents)
-				if(isbelly(check_belly) || istype(check_belly,/obj/item/dogborg/sleeper))
-					SEND_SIGNAL(check_belly, COMSIG_REMOTE_VIEW_CLEAR)
+		// Because nested vore bellies do NOT get handled correctly for recursive prey. We need to tell the belly's occupants to decouple too... Then their own belly's occupants...
+		// Yes, two loops is faster. Because we skip typechecking byondcode side and instead do it engine side when getting the contents of the mob,
+		// we also skip typechecking every /obj in the mob on the byondcode side... Evil wizard knowledge.
+		for(var/obj/belly/check_belly in cache_mob.contents)
+			SEND_SIGNAL(check_belly, COMSIG_REMOTE_VIEW_CLEAR)
+		for(var/obj/item/dogborg/sleeper/check_sleeper in cache_mob.contents)
+			SEND_SIGNAL(check_sleeper, COMSIG_REMOTE_VIEW_CLEAR)
 	qdel(src)
 
 /// We were forcibly disconnected, this situation is probably a recursive hellscape, so just decouple entirely and fix it when someone moves.
