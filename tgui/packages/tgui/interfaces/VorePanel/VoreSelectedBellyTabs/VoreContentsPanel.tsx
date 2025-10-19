@@ -218,7 +218,7 @@ export const VoreContentsPanel = (props: {
               </Stack.Item>
             </Stack>
           ) : (
-            <Box height="20px">Select a content to interact with it.</Box>
+            <Box height="20px">Select something to interact with it.</Box>
           )}
         </Stack.Item>
         <Stack.Divider />
