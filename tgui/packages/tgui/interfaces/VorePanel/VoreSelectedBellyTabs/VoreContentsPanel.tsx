@@ -131,7 +131,7 @@ export const VoreContentsPanel = (props: {
               </Stack.Item>
               {!!bellyDropdownNames && !!onTargetBely && (
                 <>
-                  <Stack.Item color="label">Destination</Stack.Item>
+                  <Stack.Item color="label">Destination:</Stack.Item>
                   <Stack.Item>
                     <Dropdown
                       onSelected={(value) => onTargetBely(value)}
