@@ -197,6 +197,7 @@
 	anchored = TRUE
 	unacidable = TRUE
 	dir = WEST
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/base_icon_state = "cryopod_0" //VOREStation Edit - New Icon
 	var/occupied_icon_state = "cryopod_1" //VOREStation Edit - New Icon
