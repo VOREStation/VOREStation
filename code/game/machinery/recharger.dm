@@ -202,12 +202,10 @@ GLOBAL_LIST_INIT(recharger_battery_exempt, list(
 			return
 		//Second, we charge the batteries in the magazine.
 		else if(magazine && LAZYLEN(magazine.stored_ammo))
-			var/shots_charged = 0
 			for(var/obj/item/ammo_casing/microbattery/shot_to_charge in magazine)
 				if(shot_to_charge.shots_left >= initial(shot_to_charge.shots_left))
 					continue
 				shot_to_charge.shots_left++
-				shots_charged += 1
 				icon_state = icon_state_charging
 				update_use_power(USE_POWER_ACTIVE * shots_charged)
 				return //only heal one at a time.
@@ -223,7 +221,6 @@ GLOBAL_LIST_INIT(recharger_battery_exempt, list(
 				if(shot_to_charge.shots_left >= initial(shot_to_charge.shots_left))
 					continue
 				shot_to_charge.shots_left++
-				shots_charged += 1
 				icon_state = icon_state_charging
 				update_use_power(USE_POWER_ACTIVE * shots_charged)
 				return
