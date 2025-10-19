@@ -278,7 +278,7 @@ export const VoreContentsPanel = (props: {
                       />
                     </Button>
                     {thing.ref === selectedAtom?.ref &&
-                      (stats[thing.stat] || thing.absorbed) && (
+                      (!!stats[thing.stat] || !!thing.absorbed) && (
                         <>
                           <ColorBox
                             color={
