@@ -27,7 +27,7 @@
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
 	RegisterSignal(host_mob, COMSIG_MOB_LOGOUT, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
-	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// Recursive move component fires this, we only want it to handle stuff like being inside a paicard when releasing turf lock
 	if(isturf(focused_on))
 		RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
@@ -36,7 +36,7 @@
 	if(host_mob != remote_view_target) // Some items just offset our view, so we set ourselves as the view target, don't double dip if so!
 		RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
 		RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
-		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
@@ -77,8 +77,15 @@
 	end_view()
 	qdel(src)
 
+/// By default pass this down, but we need unique handling for subtypes sometimes
+/datum/component/remote_view/proc/handle_forced_endview(datum/source)
+	SIGNAL_HANDLER
+	PROTECTED_PROC(TRUE)
+	handle_endview(source)
+
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(!host_mob)
 		return
@@ -151,7 +158,7 @@
 	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
-	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 	if(host_mob.hud_used.hud_shown)
 		host_mob.toggle_zoom_hud()
@@ -257,7 +264,7 @@
 	view_coordinator = coordinator
 	view_coordinator.look(host_mob)
 	LAZYDISTINCTADD(viewers, WEAKREF(host_mob))
-	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// If you get this crash, it's because check_eye() in look() failed
 	if(!parent)
 		CRASH("Remoteview failed, look() cancelled view during component Initilize. Usually this is caused by check_eye().")
@@ -304,7 +311,7 @@
 	if(isturf(host_mob.loc))
 		if(oldloc == remote_view_target)
 			needs_to_decouple = TRUE
-		decouple_view_to_turf( host_mob, host_mob.loc)
+		decouple_view_to_turf( host_mob, host_mob.loc, remote_view_target)
 		return
 
 /datum/component/remote_view/mob_holding_item/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
@@ -318,7 +325,7 @@
 	var/atom/top_most = find_topmost_atom()
 	if(isturf(top_most))
 		if(needs_to_decouple) // Only need to do this if we were held by a mob prior, otherwise this triggers every move and is expensive for no reason
-			decouple_view_to_turf( host_mob, top_most)
+			decouple_view_to_turf( host_mob, top_most, remote_view_target)
 		return
 	if(ismob(top_most) || ismecha(top_most)) // Mobs and mechas both do this
 		host_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
@@ -343,7 +350,7 @@
 	return null
 
 /// Makes a new remote view focused on the release_turf argument. This remote view ends as soon as any movement happens. Even if we are inside many levels of objects due to our recursive_move listener
-/datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf)
+/datum/component/remote_view/mob_holding_item/proc/decouple_view_to_turf(mob/cache_mob, turf/release_turf, atom/cached_focus)
 	if(needs_to_decouple)
 		// Yes this spawn is needed, yes I wish it wasn't.
 		spawn(0)
@@ -353,6 +360,18 @@
 			cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
 			if(!isturf(cache_mob.loc)) // For stuff like paicards
 				cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+
+			// Because nested vore bellies do NOT get handled correctly for recursive prey. We need to tell the belly's occupants to decouple too... Then their own belly's occupants...
+			for(var/obj/check_belly in cache_mob.contents)
+				if(isbelly(check_belly) || istype(check_belly,/obj/item/dogborg/sleeper))
+					SEND_SIGNAL(check_belly, COMSIG_REMOTE_VIEW_CLEAR)
 	qdel(src)
+
+/// We were forcibly disconnected, this situation is probably a recursive hellscape, so just decouple entirely and fix it when someone moves.
+/datum/component/remote_view/mob_holding_item/handle_forced_endview(atom/source)
+	if(!host_mob)
+		return
+	needs_to_decouple = TRUE
+	decouple_view_to_turf( host_mob, get_turf(host_mob), remote_view_target)
 
 #undef MAX_RECURSIVE
