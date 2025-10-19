@@ -277,7 +277,7 @@ export const VoreContentsPanel = (props: {
                         }}
                       />
                     </Button>
-                    {thing.ref === selectedAtom?.ref && (
+                    {thing.ref === selectedAtom?.ref && stats[thing.stat] && (
                       <>
                         <ColorBox
                           color={thing.absorbed ? 'purple' : stats[thing.stat]}
