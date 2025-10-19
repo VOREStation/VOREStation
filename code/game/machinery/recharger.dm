@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(recharger_battery_exempt, list(
 					continue
 				shot_to_charge.shots_left++
 				icon_state = icon_state_charging
-				update_use_power(USE_POWER_ACTIVE * shots_charged)
+				update_use_power(USE_POWER_ACTIVE)
 				return //only heal one at a time.
 		//If the chambered battery AND the magazine are all full, we are done.
 		icon_state = icon_state_charged
@@ -222,7 +222,7 @@ GLOBAL_LIST_INIT(recharger_battery_exempt, list(
 					continue
 				shot_to_charge.shots_left++
 				icon_state = icon_state_charging
-				update_use_power(USE_POWER_ACTIVE * shots_charged)
+				update_use_power(USE_POWER_ACTIVE)
 				return
 		icon_state = icon_state_charged
 		update_use_power(USE_POWER_IDLE)
