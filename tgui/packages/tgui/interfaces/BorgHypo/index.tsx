@@ -3,7 +3,7 @@ import { Window } from 'tgui/layouts';
 import { Stack } from 'tgui-core/components';
 
 import { BorgHypoChemicals } from './BorgHypoChemicals';
-
+import { BorgHypoSettings } from './BorgHypoSettings';
 import type { Data } from './types';
 
 export const BorgHypo = (props) => {
@@ -15,6 +15,9 @@ export const BorgHypo = (props) => {
         <Stack vertical fill>
           <Stack.Item grow>
             <Stack fill>
+              <Stack.Item grow>
+                <BorgHypoSettings />
+              </Stack.Item>
               <Stack.Item grow>
                 <BorgHypoChemicals />
               </Stack.Item>

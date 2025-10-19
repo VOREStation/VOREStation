@@ -7,7 +7,7 @@
 	amount_per_transfer_from_this = 5
 	min_transfer_amount = 1
 	volume = 30
-	max_transfer_amount = null
+	max_transfer_amount = 10
 
 	var/mode = 1
 	var/charge_cost = 50
@@ -26,6 +26,7 @@
 	var/list/reagent_names = list()
 	var/list/recording_recipe
 	var/list/saved_recipes = list()
+	var/list/transfer_amounts = list(1, 5, 10)
 
 /obj/item/reagent_containers/borghypo/surgeon
 	reagent_ids = list(REAGENT_ID_INAPROVALINE, REAGENT_ID_DEXALIN, REAGENT_ID_TRICORDRAZINE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_OXYCODONE)
@@ -128,6 +129,7 @@
 /obj/item/reagent_containers/borghypo/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list()
 	data["amount"] = amount_per_transfer_from_this
+	data["transferAmounts"] = transfer_amounts
 
 	var/chemicals[0]
 	for(var/key, value in reagent_volumes)
@@ -144,6 +146,7 @@
 	data["selectedReagentId"] = reagent_ids[mode]
 	data["recipes"] = saved_recipes
 	data["recordingRecipe"] = recording_recipe
+	data["minTransferAmount"] = min_transfer_amount
 	data["maxTransferAmount"] = max_transfer_amount
 	data["isDispensingRecipe"] = is_dispensing_recipe
 	data["selectedRecipe"] = selected_recipe
@@ -239,6 +242,7 @@
 	ui_chemicals_name = "Drinks"
 	ui_title = "Drink Synthesizer"
 	ui_window_height = 590
+	transfer_amounts = list(1, 5, 10, 15, 20, 30)
 	reagent_ids = list(REAGENT_ID_ALE,
 		REAGENT_ID_BEER,
 		REAGENT_ID_BERRYJUICE,
