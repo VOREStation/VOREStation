@@ -60,9 +60,6 @@
 /obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/M)
 	if(food_inserted_micros && food_inserted_micros.len)
 		for(var/mob/living/F in food_inserted_micros)
-			if(!CanFoodVore(M, F))
-				continue
-
 			var/do_nom = FALSE
 
 			if(!reagents.total_volume)
@@ -73,6 +70,8 @@
 					do_nom = TRUE
 
 			if(do_nom)
+				if(!CanFoodVore(M, F))
+					continue
 				F.forceMove(M.vore_selected)
 				food_inserted_micros -= F
 

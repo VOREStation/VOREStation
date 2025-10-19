@@ -92,14 +92,7 @@
 
 	if(food_inserted_micros && food_inserted_micros.len)
 		for(var/mob/living/F in food_inserted_micros)
-			if(!CanFoodVore(M, F))
-				continue
-
-			if(isanimal(M) && !F.allowmobvore && !M.ckey) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
-				continue
-
 			var/do_nom = FALSE
-
 			if(!reagents.total_volume)
 				do_nom = TRUE
 			else
@@ -108,6 +101,10 @@
 					do_nom = TRUE
 
 			if(do_nom)
+				if(!CanFoodVore(M, F))
+					continue
+				if(isanimal(M) && !F.allowmobvore && !M.ckey) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
+					continue
 				F.forceMove(M.vore_selected)
 				food_inserted_micros -= F
 
