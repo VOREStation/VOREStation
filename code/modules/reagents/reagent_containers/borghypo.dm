@@ -5,6 +5,7 @@
 	item_state = "hypo"
 	icon_state = "borghypo"
 	amount_per_transfer_from_this = 5
+	min_transfer_amount = 1
 	volume = 30
 	max_transfer_amount = null
 
@@ -13,10 +14,15 @@
 	var/charge_tick = 0
 	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
 	var/bypass_protection = FALSE // If true, can inject through things like spacesuits and armor.
+	var/ui_title = "Cyborg Chemical Synthesizer"
+	var/is_dispensing_recipe = FALSE // Whether or not we're dispensing just a reagent or are dispensing reagents via a recipe
+	var/selected_recipe // The recipe we will dispense if the above is TRUE
 
 	var/list/reagent_ids = list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_INAPROVALINE, REAGENT_ID_ANTITOXIN, REAGENT_ID_TRAMADOL, REAGENT_ID_DEXALIN ,REAGENT_ID_SPACEACILLIN)
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
+	var/list/recording_recipe
+	var/list/saved_recipes = list()
 
 /obj/item/reagent_containers/borghypo/surgeon
 	reagent_ids = list(REAGENT_ID_INAPROVALINE, REAGENT_ID_DEXALIN, REAGENT_ID_TRICORDRAZINE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_OXYCODONE)
@@ -95,17 +101,7 @@
 	return
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
-	var/t
-	for(var/i = 1 to reagent_ids.len)
-		if(t)
-			t += ", "
-		if(mode == i)
-			t += span_bold("[reagent_names[i]]")
-		else
-			t += "<a href='byond://?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
-	t = "Available reagents: [t]."
-	to_chat(user,span_infoplain(t))
-
+	tgui_interact(user)
 	return
 
 /obj/item/reagent_containers/borghypo/Topic(var/href, var/list/href_list)
@@ -116,6 +112,95 @@
 			mode = t
 			var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[mode]]
 			balloon_alert(usr, "synthesizer is now producing '[R.name]'")
+
+/obj/item/reagent_containers/borghypo/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "BorgHypo", ui_title)
+		ui.open()
+
+/obj/item/reagent_containers/borghypo/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = list()
+	data["amount"] = amount_per_transfer_from_this
+
+	data["chemicals"] = reagent_volumes
+
+	data["selectedReagent"] = reagent_ids[mode]
+	data["recipes"] = saved_recipes
+	data["recordingRecipe"] = recording_recipe
+	data["maxTransferAmount"] = max_transfer_amount
+	data["isDispensingRecipe"] = is_dispensing_recipe
+	data["selectedRecipe"] = selected_recipe
+	return data
+
+/obj/item/reagent_containers/borghypo/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("select_reagent")
+			var/t = reagent_ids.Find(params["selectedReagent"])
+			if(t)
+				var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[mode]]
+				playsound(src, 'sound/effects/pop.ogg', 50, 0)
+				if(recording_recipe)
+					recording_recipe += list(list("id" = t, "amount" = amount_per_transfer_from_this))
+					balloon_alert(usr, "synthesizer recorded '[R.name]'")
+				else
+					mode = t
+					balloon_alert(usr, "synthesizer is now producing '[R.name]'")
+					is_dispensing_recipe = FALSE
+			. = TRUE
+
+		if("set_amount")
+			amount_per_transfer_from_this = clamp(round(text2num(params["amount"]), 1), min_transfer_amount, max_transfer_amount) // Round to nearest 1, clamp between min and max transfer amount
+			. = TRUE
+
+		if("record_recipe")
+			recording_recipe = list()
+			. = TRUE
+
+		if("cancel_recording")
+			recording_recipe = null
+			. = TRUE
+
+		if("clear_recipes")
+			if(tgui_alert(ui.user, "Clear all recipes?", "Clear?", list("No", "Yes")) == "Yes")
+				saved_recipes = list()
+			. = TRUE
+
+		if("save_recording")
+			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name?", "Recipe Name", MAX_NAME_LEN)
+			if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
+				return
+			if(saved_recipes[name] && tgui_alert(ui.user, "\"[name]\" already exists, do you want to overwrite it?",, list("No", "Yes")) != "Yes")
+				return
+			if(name && recording_recipe)
+				for(var/list/L in recording_recipe)
+					var/label = L["id"]
+					// Verify this hypo can dispense every chemical
+					if(!reagent_ids.Find(label))
+						to_chat(ui.user, span_warning("\The [src] cannot find <b>[label]</b>!"))
+						return
+				saved_recipes[name] = recording_recipe
+				recording_recipe = null
+				. = TRUE
+
+		if("remove_recipe")
+			saved_recipes -= params["recipe"]
+			. = TRUE
+
+		if("select_recipe")
+			// Make sure we actually have a recipe saved with the given name before setting it!
+			var/R = params["selectedRecipe"]
+			if(!saved_recipes[R])
+				to_chat(ui.user, span_warning("\The [src] cannot find the recipe <b>[R]</b>!"))
+				return
+			is_dispensing_recipe = TRUE
+			selected_recipe = R
+			. = TRUE
+
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	. = ..()
