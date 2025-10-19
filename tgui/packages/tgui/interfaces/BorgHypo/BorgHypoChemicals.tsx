@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Button, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
+import { Button, Section, Stack } from 'tgui-core/components';
 import { BorgHypoSearch } from './BorgHypoSearch';
 import type { Data } from './types';
 
@@ -11,7 +10,6 @@ export const BorgHypoChemicals = (props) => {
     isDispensingRecipe,
     selectedReagentId,
     uiChemicalsName,
-    uiChemicalSearch,
   } = data;
   const flexFillers: boolean[] = [];
 
@@ -39,11 +37,13 @@ export const BorgHypoChemicals = (props) => {
                   fluid
                   ellipsis
                   align="flex-start"
-                  onClick={() =>
-                    act('select_reagent', {
-                      selectedReagentId: chemical.id,
-                    })
-                  }
+                  onClick={() => {
+                    if (selectedReagentId !== chemical.id) {
+                      act('select_reagent', {
+                        selectedReagentId: chemical.id,
+                      });
+                    }
+                  }}
                 >
                   {`${chemical.name} (${chemical.volume})`}
                 </Button>
@@ -55,31 +55,5 @@ export const BorgHypoChemicals = (props) => {
         ))}
       </Stack>
     </Section>
-  );
-};
-
-const RecordingBlinker = (props) => {
-  const { data } = useBackend<Data>();
-  const recording = !!data.recordingRecipe;
-
-  const [blink, setBlink] = useState(false);
-
-  useEffect(() => {
-    if (recording) {
-      const intervalId = setInterval(() => {
-        setBlink((v) => !v);
-      }, 1000);
-      return () => clearInterval(intervalId);
-    }
-  }, [recording]);
-
-  if (!recording) {
-    return null;
-  }
-
-  return (
-    <Tooltip content="Recording in progress">
-      <Icon mt={0.7} color="bad" name={blink ? 'circle-o' : 'circle'} />
-    </Tooltip>
   );
 };

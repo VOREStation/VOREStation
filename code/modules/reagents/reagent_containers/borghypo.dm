@@ -17,6 +17,7 @@
 	var/ui_title = "Cyborg Chemical Synthesizer"
 	var/ui_chemicals_name = "Chemicals"
 	var/ui_chemical_search // Chem search bar contents
+	var/ui_window_height = 540
 	var/is_dispensing_recipe = FALSE // Whether or not we're dispensing just a reagent or are dispensing reagents via a recipe
 	var/selected_recipe // The recipe we will dispense if the above is TRUE
 
@@ -138,6 +139,7 @@
 	data["chemicals"] = chemicals
 	data["uiChemicalsName"] = ui_chemicals_name
 	data["uiChemicalSearch"] = ui_chemical_search
+	data["uiWindowHeight"] = ui_window_height
 
 	data["selectedReagentId"] = reagent_ids[mode]
 	data["recipes"] = saved_recipes
@@ -236,6 +238,7 @@
 	max_transfer_amount = 30
 	ui_chemicals_name = "Drinks"
 	ui_title = "Drink Synthesizer"
+	ui_window_height = 590
 	reagent_ids = list(REAGENT_ID_ALE,
 		REAGENT_ID_BEER,
 		REAGENT_ID_BERRYJUICE,

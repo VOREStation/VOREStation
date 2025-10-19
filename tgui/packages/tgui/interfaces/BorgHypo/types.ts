@@ -12,4 +12,5 @@ export type Data = {
   uiTitle: string;
   uiChemicalsName: string;
   uiChemicalSearch: string;
+  uiWindowHeight: number;
 };
