@@ -280,9 +280,6 @@
 	var/obj/structure/ghost_pod/ghost_activated/unified_hole/maint_critter = new(get_turf(spawnspot))
 	maint_critter.create_occupant(user)
 
-/obj/structure/ghost_pod/ghost_activated/unified_hole/create_occupant(mob/observer/dead/user)
-	attack_ghost(user)
-
 /datum/tgui_module/ghost_spawn_menu/proc/join_grave(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_CYBORG))
 		to_chat(user, span_danger("You are banned from playing synthetics and cannot spawn as a gravekeeper."))

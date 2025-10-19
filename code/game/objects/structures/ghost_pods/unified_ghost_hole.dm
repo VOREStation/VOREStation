@@ -11,6 +11,9 @@
 	spawn_active = TRUE
 	var/redgate_restricted = FALSE
 
+/obj/structure/ghost_pod/ghost_activated/unified_hole/create_occupant(mob/observer/dead/user)
+	attack_ghost(user)
+
 //override the standard attack_ghost proc for custom messages
 /obj/structure/ghost_pod/ghost_activated/unified_hole/attack_ghost(var/mob/observer/dead/user)
 	var/choice
