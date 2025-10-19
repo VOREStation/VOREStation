@@ -1093,6 +1093,7 @@
 				return FALSE
 
 			if(!H.allow_spontaneous_tf)
+				to_chat(user,span_warning("Your target can't be transformed!"))
 				return FALSE
 
 			var/datum/tgui_module/appearance_changer/vore/V = new(host, H)
