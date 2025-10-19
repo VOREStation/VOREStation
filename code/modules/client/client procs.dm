@@ -882,6 +882,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return FALSE
 	if(isturf(client.mob.loc) && get_turf(client.eye) == get_turf(client.mob))
 		return FALSE
+	if(ismecha(client.mob.loc) && client.eye == client.mob.loc)
+		return FALSE
 	return (client.eye != client.mob)
 
 #undef ADMINSWARNED_AT
