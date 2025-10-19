@@ -1,4 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - refactor: "unified the mob, morph, and lurker spawns into a single multipurpose hole that can be used to spawn any one of them based on the interacting ghost's choice. the associated seperate events have been replaced with a single event that uses the new unified spawner, so that the events are no longer competing for spawn chances. the new spawner also has a high-vis icon so that it won't be difficult for ghosts to spot if they're just scrolling around with darkness enabled."

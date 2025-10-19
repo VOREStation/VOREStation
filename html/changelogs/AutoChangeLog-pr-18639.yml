@@ -1,4 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - bugfix: "Fixed FBP not being able to change eye colour"
