@@ -20,7 +20,7 @@
 
 	//No OOC notes/FT
 	if(not_has_ooc_text(user))
-		//to_chat(user, span_warning("You must have proper out-of-character notes and flavor text configured for your current character slot to use this spawnpoint."))
+		to_chat(user, span_warning("You must have proper out-of-character notes and flavor text configured for your current character slot to use this spawnpoint."))
 		return
 
 	if(redgate_restricted)
@@ -40,6 +40,9 @@
 				to_chat(user, span_warning("You cannot use this spawnpoint to spawn as a species you are not whitelisted for!"))
 				return
 			create_lurker(user)
+	used = TRUE
+	icon_state = icon_state_opened
+	GLOB.active_ghost_pods -= src
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_simplemob(var/mob/M)
 	var/choice
