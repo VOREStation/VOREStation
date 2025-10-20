@@ -23,16 +23,15 @@ export const BorgHypoRecordingBlinker = (props) => {
   }
 
   return (
-    <Stack>
+    <>
       <Stack.Item>
         <Icon mt={0.7} color="bad" name={blink ? 'circle-o' : 'circle'} />
       </Stack.Item>
       <Stack.Item>
-        {' '}
         <Box color="bad" inline bold>
           REC
-        </Box>{' '}
+        </Box>
       </Stack.Item>
-    </Stack>
+    </>
   );
 };
