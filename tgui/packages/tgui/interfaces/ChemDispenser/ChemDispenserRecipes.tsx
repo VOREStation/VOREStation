@@ -7,19 +7,19 @@ export const ChemDispenserRecipes = (props: {
   recipes: Record<string, Recipe[]>;
   /** The current recipe macro that's being recorded, if any. We assume we aren't recording a recipe if this is undefined! */
   recordingRecipe: Recipe[];
-  /** Function that will be called when the user attempts to start a recipe recording. */
+  /** Called when the user attempts to start a recipe recording. */
   recordAct: () => void;
-  /** Function that will be called when the user attempts to cancel a recipe recording. */
+  /** Called when the user attempts to cancel a recipe recording. */
   cancelAct: () => void;
-  /** Function that will be called when the user attempts to save a recipe recording. */
+  /** Called when the user attempts to save a recipe recording. */
   saveAct: () => void;
-  /** Function that will be called when the user attempts to clear all recipe recordings. */
+  /** Called when the user attempts to clear all recipe recordings. */
   clearAct: () => void;
-  /** Function that will be called when the user attempts to use a recipe macro. */
+  /** Called when the user attempts to use a recipe macro. */
   dispenseAct: (recipe: string) => void;
-  /** Optional function returning whether or not a dispense button will appear "selected" based on a given recipe. */
+  /** Optional callback returning whether or not a dispense button will appear "selected" based on a given recipe. */
   dispenseButtonSelected?: (recipe: string) => BooleanLike;
-  /** Function that will be called when the user attempts to remove a recipe macro. */
+  /** Called when the user attempts to remove a recipe macro. */
   removeAct: (recipe: string) => void;
 }) => {
   const {

@@ -1,22 +1,33 @@
-import { useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+import type { Data, Reagent } from './types';
 
-import type { Data } from './types';
-
-export const ChemDispenserChemicals = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { chemicals = [] } = data;
+export const ChemDispenserChemicals = (props: {
+  uiTitle: string;
+  chemicals: Reagent[];
+  /** Called when the user clicks on a reagent dispense button. Arg is the ID of the button's reagent. */
+  dispenseAct: (reagentId: string) => void;
+  /** Optional callback that returns whether or not a reagent dispense button will appear "activated". Arg is the ID of the button's reagent. */
+  chemicalButtonSelect?: (reagentId: string) => BooleanLike;
+  /** Extra UI elements that will appear within the header of the chemical UI. */
+  buttons: ReactNode;
+}) => {
+  const { chemicals, uiTitle, dispenseAct, chemicalButtonSelect, buttons } =
+    props;
   const flexFillers: boolean[] = [];
   for (let i = 0; i < (chemicals.length + 1) % 3; i++) {
     flexFillers.push(true);
   }
   return (
     <Section
-      title={data.glass ? 'Drink Dispenser' : 'Chemical Dispenser'}
+      //title={data.glass ? 'Drink Dispenser' : 'Chemical Dispenser'}
+      title={uiTitle}
       fill
       scrollable
-      buttons={<RecordingBlinker />}
+      //buttons={<RecordingBlinker />}
+      buttons={buttons}
     >
       <Stack direction="row" wrap="wrap" align="flex-start" g={0.3}>
         {chemicals.map((c, i) => (
@@ -26,11 +37,11 @@ export const ChemDispenserChemicals = (props) => {
               fluid
               ellipsis
               align="flex-start"
-              onClick={() =>
-                act('dispense', {
-                  reagent: c.id,
-                })
+              selected={
+                chemicalButtonSelect ? chemicalButtonSelect(c.id) : false
               }
+              // onClick={() => act('dispense', { reagent: c.id, }) }
+              onClick={() => dispenseAct(c.id)}
             >
               {`${c.name} (${c.volume})`}
             </Button>
@@ -44,7 +55,7 @@ export const ChemDispenserChemicals = (props) => {
   );
 };
 
-const RecordingBlinker = (props) => {
+export const RecordingBlinker = (props) => {
   const { data } = useBackend<Data>();
   const recording = !!data.recordingRecipe;
 

@@ -3,14 +3,17 @@ import { Window } from 'tgui/layouts';
 import { Stack } from 'tgui-core/components';
 
 import { ChemDispenserBeaker } from './ChemDispenserBeaker';
-import { ChemDispenserChemicals } from './ChemDispenserChemicals';
+import {
+  ChemDispenserChemicals,
+  RecordingBlinker,
+} from './ChemDispenserChemicals';
 import { ChemDispenserRecipes } from './ChemDispenserRecipes';
 import { ChemDispenserSettings } from './ChemDispenserSettings';
 import type { Data } from './types';
 
 export const ChemDispenser = (props) => {
   const { data, act } = useBackend<Data>();
-  const { recipes, recordingRecipe } = data;
+  const { recipes, recordingRecipe, glass, chemicals } = data;
 
   return (
     <Window width={680} height={540}>
@@ -40,7 +43,14 @@ export const ChemDispenser = (props) => {
                 </Stack>
               </Stack.Item>
               <Stack.Item grow>
-                <ChemDispenserChemicals />
+                <ChemDispenserChemicals
+                  uiTitle={glass ? 'Drink Dispenser' : 'Chemical Dispenser'}
+                  chemicals={chemicals}
+                  dispenseAct={(reagentId) =>
+                    act('dispense', { reagent: reagentId })
+                  }
+                  buttons={<RecordingBlinker />}
+                />
               </Stack.Item>
             </Stack>
           </Stack.Item>
