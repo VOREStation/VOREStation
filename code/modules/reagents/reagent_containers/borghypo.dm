@@ -50,8 +50,8 @@
 
 	for(var/T in reagent_ids)
 		reagent_volumes[T] = volume
-		var/datum/reagent/R = SSchemistry.chemical_reagents[T]
-		reagent_names += R.name
+		var/datum/reagent/hypo_reagent = SSchemistry.chemical_reagents[T]
+		reagent_names += hypo_reagent.name
 
 	START_PROCESSING(SSobj, src)
 
@@ -65,11 +65,11 @@
 	charge_tick = 0
 
 	if(isrobot(loc))
-		var/mob/living/silicon/robot/R = loc
-		if(R && R.cell)
+		var/mob/living/silicon/robot/robot_user = loc
+		if(robot_user && robot_user.cell)
 			for(var/T in reagent_ids)
 				if(reagent_volumes[T] < volume)
-					R.cell.use(charge_cost)
+					robot_user.cell.use(charge_cost)
 					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
 	return 1
 
@@ -118,8 +118,8 @@
 		if(t)
 			playsound(src, 'sound/effects/pop.ogg', 50, 0)
 			mode = t
-			var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[mode]]
-			balloon_alert(usr, "synthesizer is now producing '[R.name]'")
+			var/datum/reagent/new_reagent = SSchemistry.chemical_reagents[reagent_ids[mode]]
+			balloon_alert(usr, "synthesizer is now producing '[new_reagent.name]'")
 
 /obj/item/reagent_containers/borghypo/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
 	. = ..()
@@ -135,12 +135,12 @@
 	data["amount"] = amount_per_transfer_from_this
 	data["transferAmounts"] = transfer_amounts
 
-	var/chemicals[0]
+	var/list/chemicals = list()
 	for(var/key, value in reagent_volumes)
-		var/datum/reagent/R = SSchemistry.chemical_reagents[key]
+		var/datum/reagent/available_reagent = SSchemistry.chemical_reagents[key]
 		// If the user is searching for a particular chemical by name, only add this one if its name matches their search!
-		if((ui_chemical_search && findtext(R.name, ui_chemical_search)) || !ui_chemical_search)
-			chemicals.Add(list(list("name" = R.name, "id" = key, "volume" = value))) // list in a list because Byond merges the first list...
+		if((ui_chemical_search && findtext(available_reagent.name, ui_chemical_search)) || !ui_chemical_search)
+			UNTYPED_LIST_ADD(chemicals, list("name" = available_reagent.name, "id" = key, "volume" = value))
 	data["chemicals"] = chemicals
 	data["uiChemicalsName"] = ui_chemicals_name
 	data["uiChemicalSearch"] = ui_chemical_search
@@ -167,14 +167,14 @@
 		if("select_reagent")
 			var/new_mode = reagent_ids.Find(params["selectedReagentId"])
 			if(new_mode)
-				var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[new_mode]]
+				var/datum/reagent/selected_reagent = SSchemistry.chemical_reagents[reagent_ids[new_mode]]
 				playsound(src, 'sound/effects/pop.ogg', 50, 0)
 				if(recording_recipe)
-					UNTYPED_LIST_ADD(recording_recipe, list("id" = R.id, "amount" = amount_per_transfer_from_this))
-					balloon_alert(ui.user, "synthesizer recorded '[R.name]'")
+					UNTYPED_LIST_ADD(recording_recipe, list("id" = selected_reagent.id, "amount" = amount_per_transfer_from_this))
+					balloon_alert(ui.user, "synthesizer recorded '[selected_reagent.name]'")
 				else
 					mode = new_mode
-					balloon_alert(ui.user, "synthesizer is now producing '[R.name]'")
+					balloon_alert(ui.user, "synthesizer is now producing '[selected_reagent.name]'")
 					is_dispensing_recipe = FALSE
 			. = TRUE
 
@@ -213,25 +213,25 @@
 				. = TRUE
 
 		if("remove_recipe")
-			var/R = params["recipe"]
+			var/recipe_name = params["recipe"]
 			// If we've selected the recipe we're deleting, un-select it!
-			if(selected_recipe_id == R)
+			if(selected_recipe_id == recipe_name)
 				selected_recipe_id = null
 				is_dispensing_recipe = FALSE
-			saved_recipes -= R
+			saved_recipes -= recipe_name
 			. = TRUE
 
 		if("select_recipe")
 			// Make sure we actually have a recipe saved with the given name before setting it!
-			var/R = params["recipe"]
-			var/selectedRecipe = saved_recipes[R]
+			var/recipe_name = params["recipe"]
+			var/selectedRecipe = saved_recipes[recipe_name]
 			if(!selectedRecipe)
-				to_chat(ui.user, span_warning("\The [src] cannot find the recipe <b>[R]</b>!"))
+				to_chat(ui.user, span_warning("\The [src] cannot find the recipe <b>[recipe_name]</b>!"))
 				return
-			playsound(src, 'sound/effects/pop.ogg', 50, 0)
-			balloon_alert(usr, "synthesizer is using macro: '[R]'")
+			playsound(ui.user, 'sound/effects/pop.ogg', 50, 0)
+			balloon_alert(ui.user, "synthesizer is using macro: '[recipe_name]'")
 			is_dispensing_recipe = TRUE
-			selected_recipe_id = R
+			selected_recipe_id = recipe_name
 			. = TRUE
 
 		if("set_chemical_search")
@@ -242,8 +242,8 @@
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
-		var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[mode]]
-		. += span_notice("It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.")
+		var/datum/reagent/current_reagent = SSchemistry.chemical_reagents[reagent_ids[mode]]
+		. += span_notice("It is currently producing [current_reagent.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.")
 
 /obj/item/reagent_containers/borghypo/service
 	name = "cyborg drink synthesizer"
