@@ -151,7 +151,7 @@
 		// to_chat(world, "Radiation blocker. Current rads = [living_guy.radiation]. Original = [effect] RTA = [radiation_to_apply] After protection = [radiation_to_apply * rad_protection]. Amount of rads we're offputting = [radiation_offput]")
 
 		//This stops MOST of the radiation we're offputting from hitting us.
-		//If we linger in one place for a prolonged period, the area around us will become irradiated and give us a small bit of radiation back.
+		//If we linger in one place for a prolonged period, the area around us will become irradiated and give us a small bit of radiation back. (only got ~1 rad per tick when we were offputting 60 rads for example)
 		//However, we'll lose our rads faster than we accumulate.
 		living_guy.radiation += max((radiation_to_apply * rad_protection), 0)
 		return COMPONENT_BLOCK_IRRADIATION

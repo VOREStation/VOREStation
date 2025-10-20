@@ -206,7 +206,7 @@
 				to_chat(src, span_danger("Your legs won't respond properly, you fall down!"))
 				Weaken(10)
 
-/mob/living/carbon/human/handle_mutations() //Radiation rework! Now with 'accumulated_rads'
+/mob/living/carbon/human/handle_mutations()
 	. = ..()
 	if(.)
 		return
@@ -216,11 +216,14 @@
 	if(getFireLoss())
 		if((COLD_RESISTANCE in mutations) || (prob(1)))
 			heal_organ_damage(0,1)
+	if(getBruteLoss()) //Fireloss gets this RNG change so may as well give bruteloss it as well.
+		if(prob(1))
+			heal_organ_damage(1,0)
 
 	if((mRegen in mutations))
 		var/heal = rand(0.2,1.3)
 		if(prob(50))
-			for(var/obj/item/organ/external/O in bad_external_organs)
+			for(var/obj/item/organ/external/O in organs) //HAS to be organs and NOT bad_external_organs as a fully healed limb w/ internal damage will NOT be in bad_external_organs
 				for(var/datum/wound/W in O.wounds)
 					if(W.bleeding())
 						W.damage = max(W.damage - heal, 0)
