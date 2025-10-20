@@ -15,7 +15,6 @@ export const BorgHypoSearch = (props) => {
         <TextArea
           placeholder={`Search ${uiChemicalsName.toLowerCase()}...`}
           fluid
-          height="20px"
           onChange={(input) =>
             act('set_chemical_search', {
               uiChemicalSearch: input,
