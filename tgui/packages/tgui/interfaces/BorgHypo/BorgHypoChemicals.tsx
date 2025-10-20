@@ -29,10 +29,8 @@ export const BorgHypoChemicals = (props) => {
               <Stack.Item key={i} basis="40%" grow height="20px">
                 <Button
                   icon="arrow-circle-down"
-                  color={
+                  selected={
                     !isDispensingRecipe && selectedReagentId === chemical.id
-                      ? 'good'
-                      : null
                   }
                   fluid
                   ellipsis

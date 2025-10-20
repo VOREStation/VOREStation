@@ -20,13 +20,14 @@
 	var/ui_window_height = 540
 	var/is_dispensing_recipe = FALSE // Whether or not we're dispensing just a reagent or are dispensing reagents via a recipe
 	var/selected_recipe // The recipe we will dispense if the above is TRUE
+	var/hypo_sound = 'sound/effects/hypospray.ogg'	// What sound do we play on use?
 
 	var/list/reagent_ids = list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_INAPROVALINE, REAGENT_ID_ANTITOXIN, REAGENT_ID_TRAMADOL, REAGENT_ID_DEXALIN ,REAGENT_ID_SPACEACILLIN)
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 	var/list/recording_recipe
 	var/list/saved_recipes = list()
-	var/list/transfer_amounts = list(1, 5, 10)
+	var/list/transfer_amounts = list(5, 10)
 
 /obj/item/reagent_containers/borghypo/surgeon
 	reagent_ids = list(REAGENT_ID_INAPROVALINE, REAGENT_ID_DEXALIN, REAGENT_ID_TRICORDRAZINE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_OXYCODONE)
@@ -102,6 +103,9 @@
 			reagent_volumes[reagent_ids[mode]] -= t
 			add_attack_logs(user, M, "Borg injected with [reagent_ids[mode]]")
 			to_chat(user, span_notice("[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining."))
+
+		if(hypo_sound)
+			playsound(src, hypo_sound, 25)
 	return
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
@@ -242,7 +246,8 @@
 	ui_chemicals_name = "Drinks"
 	ui_title = "Drink Synthesizer"
 	ui_window_height = 590
-	transfer_amounts = list(1, 5, 10, 15, 20, 30)
+	transfer_amounts = list(5, 10, 15, 20, 30)
+	hypo_sound = 'sound/machines/reagent_dispense.ogg'
 	reagent_ids = list(REAGENT_ID_ALE,
 		REAGENT_ID_BEER,
 		REAGENT_ID_BERRYJUICE,
@@ -306,6 +311,9 @@
 	if(!target.reagents.get_free_space())
 		balloon_alert(user, "[target] is full!")
 		return
+
+	if(hypo_sound)
+		playsound(src, hypo_sound, 25)
 
 	var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
 	target.reagents.add_reagent(reagent_ids[mode], t)
