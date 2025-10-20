@@ -941,11 +941,16 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	if(icon_override)
 		return icon_override
 
+	///Local var to remember if we failed the species specific sprite or not. Also stores species specific sheet - if any - for use to use the default species icon.
+	var/species_sheet
+
 	//2: species-specific sprite sheets (skipped for inhands)
 	if(LAZYLEN(sprite_sheets) && !inhands)
-		var/sheet = sprite_sheets[body_type]
-		if(sheet && icon_exists(sheet, icon_state)) //Checks to make sure our custom sheet actually HAS the icon_state
-			return sheet
+		species_sheet = sprite_sheets[body_type]
+		if(species_sheet)
+			if(icon_exists(species_sheet, icon_state)) //Checks to make sure our custom sheet actually HAS the icon_state
+				return species_sheet
+
 
 	//3: slot-specific sprite sheets
 	if(LAZYLEN(item_icons))
@@ -955,17 +960,22 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 			if(!icon_exists(sheet, icon_state))
 				log_debug("Item [src] is equippable on the [slot_name] but has no sprite for it!")
 			*/
-			return sheet
+			if(!species_sheet || (species_sheet && body_type != SPECIES_TESHARI && body_type != SPECIES_VOX && body_type != SPECIES_WEREBEAST)) //These three are too different to use a default slot specific sheet. Other species look fine using the standard human sprites.
+				return sheet
 
 	//4: item's default icon
 	if(default_worn_icon)
 		return default_worn_icon
 
-	//5: provided default_icon
+	//5: Use our species_sheet as a fallback if we have one. A 'default' sprite is better than nothing at all (or a misaligned sprite)
+	if(species_sheet)
+		return species_sheet
+
+	//6: provided default_icon
 	if(default_icon)
 		return default_icon
 
-	//6: give up
+	//7: give up
 	return
 
 //Returns the state that should be used for the worn icon
