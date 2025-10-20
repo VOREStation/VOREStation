@@ -9,11 +9,12 @@ import {
 } from './ChemDispenserChemicals';
 import { ChemDispenserRecipes } from './ChemDispenserRecipes';
 import { ChemDispenserSettings } from './ChemDispenserSettings';
+import { dispenseAmounts } from './constants';
 import type { Data } from './types';
 
 export const ChemDispenser = (props) => {
   const { data, act } = useBackend<Data>();
-  const { recipes, recordingRecipe, glass, chemicals } = data;
+  const { recipes, recordingRecipe, glass, chemicals, amount } = data;
 
   return (
     <Window width={680} height={540}>
@@ -24,7 +25,17 @@ export const ChemDispenser = (props) => {
               <Stack.Item grow>
                 <Stack vertical fill>
                   <Stack.Item>
-                    <ChemDispenserSettings />
+                    <ChemDispenserSettings
+                      selectedAmount={amount}
+                      availableAmounts={dispenseAmounts}
+                      minAmount={1}
+                      maxAmount={120}
+                      amountAct={(amt) =>
+                        act('amount', {
+                          amount: amt,
+                        })
+                      }
+                    />
                   </Stack.Item>
                   <Stack.Item grow>
                     <ChemDispenserRecipes
