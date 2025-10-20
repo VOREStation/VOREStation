@@ -136,10 +136,9 @@
 	// Get the player's borg UI theme. They SHOULD be a robot, but uh, just in case...
 	var/mob/living/silicon/robot/robo_user = user
 	if(robo_user)
-		if(robo_user.emagged)
-			static_data["theme"] = "syndicate"
-		else
-			static_data["theme"] = robo_user.ui_theme
+		var/robot_theme = R.get_ui_theme()
+		if(robot_theme)
+			data["theme"] = robot_theme
 	return static_data
 
 /obj/item/reagent_containers/borghypo/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
