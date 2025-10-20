@@ -15,21 +15,17 @@ export const BorgHypo = (props) => {
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item grow>
-            <Stack fill>
-              <Stack.Item grow>
-                <Stack vertical fill>
-                  <Stack.Item>
-                    <BorgHypoSettings />
-                  </Stack.Item>
-                  <Stack.Item grow>
-                    <BorgHypoRecipes />
-                  </Stack.Item>
-                </Stack>
+            <Stack vertical fill>
+              <Stack.Item>
+                <BorgHypoSettings />
               </Stack.Item>
               <Stack.Item grow>
-                <BorgHypoChemicals />
+                <BorgHypoRecipes />
               </Stack.Item>
             </Stack>
+          </Stack.Item>
+          <Stack.Item grow>
+            <BorgHypoChemicals />
           </Stack.Item>
         </Stack>
       </Window.Content>
