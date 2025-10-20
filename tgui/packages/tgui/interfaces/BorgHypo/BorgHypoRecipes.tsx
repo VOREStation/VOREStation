@@ -7,9 +7,6 @@ export const BorgHypoRecipes = (props) => {
   const { recipes, isDispensingRecipe, selectedRecipeId, recordingRecipe } =
     data;
 
-  const recording: boolean = !!recordingRecipe;
-  const recipeData = Object.keys(recipes).sort();
-
   return (
     <ChemDispenserRecipes
       recipes={recipes}
