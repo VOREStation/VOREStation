@@ -158,6 +158,10 @@
 /datum/component/radiation_effects/promethean
 	radiation_immunity = TRUE
 
+/datum/component/radiation_effects/shadekin
+	radiation_immunity = TRUE
+	glows = FALSE
+
 ///Heals from radiation. Does not glow.
 /datum/component/radiation_effects/diona
 	glows = FALSE
