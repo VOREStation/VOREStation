@@ -166,7 +166,7 @@
 				var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[new_mode]]
 				playsound(src, 'sound/effects/pop.ogg', 50, 0)
 				if(recording_recipe)
-					recording_recipe += list(list("id" = R.id, "amount" = amount_per_transfer_from_this))
+					UNTYPED_LIST_ADD(recording_recipe,list("id" = R.id, "amount" = amount_per_transfer_from_this))
 					balloon_alert(ui.user, "synthesizer recorded '[R.name]'")
 				else
 					mode = new_mode
