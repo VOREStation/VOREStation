@@ -1,0 +1,4 @@
+author: "VOREStation"
+delete-after: True
+changes:
+  - balance: "Disables Unlucky Major"
