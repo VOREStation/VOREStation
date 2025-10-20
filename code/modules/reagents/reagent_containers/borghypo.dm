@@ -162,15 +162,15 @@
 		return
 	switch(action)
 		if("select_reagent")
-			var/t = reagent_ids.Find(params["selectedReagentId"])
-			if(t)
-				var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[t]]
+			var/new_mode = reagent_ids.Find(params["selectedReagentId"])
+			if(new_mode)
+				var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[new_mode]]
 				playsound(src, 'sound/effects/pop.ogg', 50, 0)
 				if(recording_recipe)
 					recording_recipe += list(list("id" = R.id, "amount" = amount_per_transfer_from_this))
 					balloon_alert(usr, "synthesizer recorded '[R.name]'")
 				else
-					mode = t
+					mode = new_mode
 					balloon_alert(usr, "synthesizer is now producing '[R.name]'")
 					is_dispensing_recipe = FALSE
 			. = TRUE
