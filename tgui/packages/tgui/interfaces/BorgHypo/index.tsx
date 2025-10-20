@@ -13,7 +13,7 @@ export const BorgHypo = (props) => {
   return (
     <Window width={680} height={uiWindowHeight}>
       <Window.Content>
-        <Stack vertical fill>
+        <Stack fill>
           <Stack.Item grow>
             <Stack vertical fill>
               <Stack.Item>
