@@ -17,8 +17,8 @@ export const ChemDispenserRecipes = (props: {
   clearAct: () => void;
   /** Called when the user attempts to use a recipe macro. */
   dispenseAct: (recipe: string) => void;
-  /** Optional callback returning whether or not a dispense button will appear "selected". Arg is the ID of the button's reagent. */
-  dispenseButtonSelected?: (recipe: string) => BooleanLike;
+  /** Called when a recipe dispense button is checking whether or not it will appear "selected". Arg is the ID of the button's reagent. Defaults to false if undefined. */
+  getDispenseButtonSelected?: (recipe: string) => BooleanLike;
   /** Called when the user attempts to remove a recipe macro. */
   removeAct: (recipe: string) => void;
 }) => {
@@ -30,7 +30,7 @@ export const ChemDispenserRecipes = (props: {
     saveAct,
     clearAct,
     dispenseAct,
-    dispenseButtonSelected,
+    getDispenseButtonSelected,
     removeAct,
   } = props;
 
@@ -126,8 +126,8 @@ export const ChemDispenserRecipes = (props: {
                   fluid
                   icon="flask"
                   selected={
-                    dispenseButtonSelected
-                      ? dispenseButtonSelected(recipe)
+                    getDispenseButtonSelected
+                      ? getDispenseButtonSelected(recipe)
                       : undefined
                   }
                   // onClick={() => act('dispense_recipe', { recipe })}

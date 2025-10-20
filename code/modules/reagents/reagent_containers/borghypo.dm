@@ -256,7 +256,7 @@
 	ui_chemicals_name = "Drinks"
 	ui_title = "Drink Synthesizer"
 	ui_window_height = 590
-	transfer_amounts = list(5, 10, 15, 20, 30)
+	transfer_amounts = list(5, 10, 20, 30)
 	hypo_sound = 'sound/machines/reagent_dispense.ogg'
 	reagent_ids = list(REAGENT_ID_ALE,
 		REAGENT_ID_BEER,

@@ -17,7 +17,7 @@ export const BorgHypoRecipes = (props) => {
       clearAct={() => act('clear_recipes')}
       dispenseAct={(recipe) => act('select_recipe', { recipe })}
       removeAct={(recipe) => act('remove_recipe', { recipe })}
-      dispenseButtonSelected={(recipe) => {
+      getDispenseButtonSelected={(recipe) => {
         return isDispensingRecipe && selectedRecipeId === recipe;
       }}
     />

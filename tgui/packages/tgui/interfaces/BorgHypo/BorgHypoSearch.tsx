@@ -8,7 +8,7 @@ export const BorgHypoSearch = (props) => {
   // Extract `health` and `color` variables from the `data` object.
   const { uiChemicalsName } = data;
   return (
-    <Stack direction="column" align="flex-start" g={0.3} height="20x">
+    <Stack direction="row" align="flex-start" g={0.3} height="20x">
       <Stack.Item basis="20%" grow>
         <BorgHypoRecordingBlinker />
       </Stack.Item>
