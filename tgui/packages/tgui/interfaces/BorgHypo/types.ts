@@ -12,7 +12,6 @@ export type Data = {
   recordingRecipe: Recipe[];
   isDispensingRecipe: BooleanLike;
   selectedRecipeId: string;
-  uiTitle: string;
   uiChemicalsName: string;
   uiChemicalSearch: string;
   uiWindowHeight: number;

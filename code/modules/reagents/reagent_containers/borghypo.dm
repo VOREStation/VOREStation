@@ -141,7 +141,6 @@
 		// If the user is searching for a particular chemical by name, only add this one if its name matches their search!
 		if((ui_chemical_search && findtext(R.name, ui_chemical_search)) || !ui_chemical_search)
 			chemicals.Add(list(list("name" = R.name, "id" = key, "volume" = value))) // list in a list because Byond merges the first list...
-	data["uiTitle"] = ui_title
 	data["chemicals"] = chemicals
 	data["uiChemicalsName"] = ui_chemicals_name
 	data["uiChemicalSearch"] = ui_chemical_search
@@ -168,10 +167,10 @@
 				playsound(src, 'sound/effects/pop.ogg', 50, 0)
 				if(recording_recipe)
 					recording_recipe += list(list("id" = R.id, "amount" = amount_per_transfer_from_this))
-					balloon_alert(usr, "synthesizer recorded '[R.name]'")
+					balloon_alert(ui.user, "synthesizer recorded '[R.name]'")
 				else
 					mode = new_mode
-					balloon_alert(usr, "synthesizer is now producing '[R.name]'")
+					balloon_alert(ui.user, "synthesizer is now producing '[R.name]'")
 					is_dispensing_recipe = FALSE
 			. = TRUE
 

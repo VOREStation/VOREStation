@@ -14,7 +14,7 @@ export const BorgHypoChemicals = (props) => {
   return (
     <ChemDispenserChemicals
       chemicals={chemicals}
-      uiTitle={uiChemicalsName}
+      sectionTitle={uiChemicalsName}
       dispenseAct={(reagentId) => {
         if (selectedReagentId !== reagentId) {
           act('select_reagent', {

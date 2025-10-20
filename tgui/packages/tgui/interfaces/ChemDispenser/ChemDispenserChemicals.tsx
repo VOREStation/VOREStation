@@ -5,7 +5,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import type { Data, Reagent } from './types';
 
 export const ChemDispenserChemicals = (props: {
-  uiTitle: string;
+  sectionTitle: string;
   chemicals: Reagent[];
   /** Called when the user clicks on a reagent dispense button. Arg is the ID of the button's reagent. */
   dispenseAct: (reagentId: string) => void;
@@ -14,8 +14,13 @@ export const ChemDispenserChemicals = (props: {
   /** Extra UI elements that will appear within the header of the chemical UI. */
   buttons: ReactNode;
 }) => {
-  const { chemicals, uiTitle, dispenseAct, chemicalButtonSelect, buttons } =
-    props;
+  const {
+    chemicals,
+    sectionTitle,
+    dispenseAct,
+    chemicalButtonSelect,
+    buttons,
+  } = props;
   const flexFillers: boolean[] = [];
   for (let i = 0; i < (chemicals.length + 1) % 3; i++) {
     flexFillers.push(true);
@@ -23,7 +28,7 @@ export const ChemDispenserChemicals = (props: {
   return (
     <Section
       //title={data.glass ? 'Drink Dispenser' : 'Chemical Dispenser'}
-      title={uiTitle}
+      title={sectionTitle}
       fill
       scrollable
       //buttons={<RecordingBlinker />}

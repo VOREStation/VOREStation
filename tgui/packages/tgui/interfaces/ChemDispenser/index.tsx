@@ -44,7 +44,9 @@ export const ChemDispenser = (props) => {
               </Stack.Item>
               <Stack.Item grow>
                 <ChemDispenserChemicals
-                  uiTitle={glass ? 'Drink Dispenser' : 'Chemical Dispenser'}
+                  sectionTitle={
+                    glass ? 'Drink Dispenser' : 'Chemical Dispenser'
+                  }
                   chemicals={chemicals}
                   dispenseAct={(reagentId) =>
                     act('dispense', { reagent: reagentId })
