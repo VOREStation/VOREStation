@@ -9,7 +9,8 @@ import { ChemDispenserSettings } from './ChemDispenserSettings';
 import type { Data } from './types';
 
 export const ChemDispenser = (props) => {
-  const { data } = useBackend<Data>();
+  const { data, act } = useBackend<Data>();
+  const { recipes, recordingRecipe } = data;
 
   return (
     <Window width={680} height={540}>
@@ -23,7 +24,18 @@ export const ChemDispenser = (props) => {
                     <ChemDispenserSettings />
                   </Stack.Item>
                   <Stack.Item grow>
-                    <ChemDispenserRecipes />
+                    <ChemDispenserRecipes
+                      recipes={recipes}
+                      recordingRecipe={recordingRecipe}
+                      recordAct={() => act('record_recipe')}
+                      cancelAct={() => act('cancel_recording')}
+                      saveAct={() => act('save_recording')}
+                      clearAct={() => act('clear_recipes')}
+                      dispenseAct={(recipe) =>
+                        act('dispense_recipe', { recipe })
+                      }
+                      removeAct={(recipe) => act('remove_recipe', { recipe })}
+                    />
                   </Stack.Item>
                 </Stack>
               </Stack.Item>

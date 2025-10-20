@@ -1,13 +1,40 @@
-import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+import type { Recipe } from './types';
 
-import type { Data } from './types';
+export const ChemDispenserRecipes = (props: {
+  /** Associated list of saved recipe macros. */
+  recipes: Record<string, Recipe[]>;
+  /** The current recipe macro that's being recorded, if any. We assume we aren't recording a recipe if this is undefined! */
+  recordingRecipe: Recipe[];
+  /** Function that will be called when the user attempts to start a recipe recording. */
+  recordAct: () => void;
+  /** Function that will be called when the user attempts to cancel a recipe recording. */
+  cancelAct: () => void;
+  /** Function that will be called when the user attempts to save a recipe recording. */
+  saveAct: () => void;
+  /** Function that will be called when the user attempts to clear all recipe recordings. */
+  clearAct: () => void;
+  /** Function that will be called when the user attempts to use a recipe macro. */
+  dispenseAct: (recipe: string) => void;
+  /** Optional function returning whether or not a dispense button will appear "selected" based on a given recipe. */
+  dispenseButtonSelected?: (recipe: string) => BooleanLike;
+  /** Function that will be called when the user attempts to remove a recipe macro. */
+  removeAct: (recipe: string) => void;
+}) => {
+  const {
+    recipes,
+    recordingRecipe,
+    recordAct,
+    cancelAct,
+    saveAct,
+    clearAct,
+    dispenseAct,
+    dispenseButtonSelected,
+    removeAct,
+  } = props;
 
-export const ChemDispenserRecipes = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { recipes, recordingRecipe } = data;
-
-  const recording: boolean = !!recordingRecipe;
+  const isRecording: boolean = !!recordingRecipe;
   const recipeData = Object.keys(recipes).sort();
 
   return (
@@ -17,42 +44,49 @@ export const ChemDispenserRecipes = (props) => {
       scrollable
       buttons={
         <Stack>
-          {!recording && (
+          {!isRecording && (
             <Stack.Item>
-              <Button icon="circle" onClick={() => act('record_recipe')}>
+              <Button
+                icon="circle"
+                //onClick={() => act('record_recipe')
+                onClick={recordAct}
+              >
                 Record
               </Button>
             </Stack.Item>
           )}
-          {recording && (
+          {isRecording && (
             <Stack.Item>
               <Button
                 icon="ban"
                 color="bad"
-                onClick={() => act('cancel_recording')}
+                //onClick={() => act('cancel_recording')}
+                onClick={cancelAct}
               >
                 Discard
               </Button>
             </Stack.Item>
           )}
-          {recording && (
+          {isRecording && (
             <Stack.Item>
               <Button
                 icon="save"
                 color="green"
-                onClick={() => act('save_recording')}
+                //onClick={() => act('save_recording')}
+                onClick={saveAct}
               >
                 Save
               </Button>
             </Stack.Item>
           )}
-          {!recording && (
+          {!isRecording && (
             <Stack.Item>
               <Button.Confirm
                 icon="trash"
                 confirmIcon="trash"
                 color="bad"
-                onClick={() => act('clear_recipes')}
+                //onClick={() => act('clear_recipes')}
+                onClick={clearAct}
               >
                 Clear All
               </Button.Confirm>
@@ -61,7 +95,7 @@ export const ChemDispenserRecipes = (props) => {
         </Stack>
       }
     >
-      {recording && (
+      {isRecording && (
         <>
           <Box color="green" fontSize={1.2} bold>
             Recording In Progress...
@@ -91,7 +125,13 @@ export const ChemDispenserRecipes = (props) => {
                 <Button
                   fluid
                   icon="flask"
-                  onClick={() => act('dispense_recipe', { recipe })}
+                  selected={
+                    dispenseButtonSelected
+                      ? dispenseButtonSelected(recipe)
+                      : undefined
+                  }
+                  // onClick={() => act('dispense_recipe', { recipe })}
+                  onClick={() => dispenseAct(recipe)}
                 >
                   {recipe}
                 </Button>
@@ -102,7 +142,8 @@ export const ChemDispenserRecipes = (props) => {
                   confirmIcon="triangle-exclamation"
                   confirmContent={''}
                   color="bad"
-                  onClick={() => act('remove_recipe', { recipe })}
+                  // onClick={() => act('remove_recipe', { recipe })}
+                  onClick={() => removeAct(recipe)}
                 />
               </Stack.Item>
             </Stack>
