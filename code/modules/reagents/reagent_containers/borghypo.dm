@@ -14,10 +14,8 @@
 	var/charge_tick = 0
 	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
 	var/bypass_protection = FALSE // If true, can inject through things like spacesuits and armor.
-	var/ui_title = "Cyborg Chemical Synthesizer"
-	var/ui_chemicals_name = "Chemicals"
+	var/is_dispensing_drinks = FALSE // Affects whether the TGUI will display itself as a chem or drink dispenser.
 	var/ui_chemical_search // Chem search bar contents
-	var/ui_window_height = 540
 	var/is_dispensing_recipe = FALSE // Whether or not we're dispensing just a reagent or are dispensing reagents via a recipe
 	var/selected_recipe_id // The recipe we will dispense if the above is TRUE
 	var/hypo_sound = 'sound/effects/hypospray.ogg'	// What sound do we play on use?
@@ -127,8 +125,22 @@
 	if(!ui)
 		// Assuming the user is opening the UI, empty the chem search preemptively.
 		ui_chemical_search = null
-		ui = new(user, src, "BorgHypo", ui_title)
+		ui = new(user, src, "BorgHypo", "Integrated [is_dispensing_drinks ? "Drink Dispenser" : "Chemical Hypo"]")
 		ui.open()
+
+/obj/item/reagent_containers/borghypo/tgui_static_data(mob/user)
+	var/list/static_data = list()
+	static_data["isDispensingDrinks"] = is_dispensing_drinks
+	static_data["minTransferAmount"] = min_transfer_amount
+	static_data["maxTransferAmount"] = max_transfer_amount
+	// Get the player's borg UI theme. They SHOULD be a robot, but uh, just in case...
+	var/mob/living/silicon/robot/robo_user = user
+	if(robo_user)
+		if(robo_user.emagged)
+			static_data["theme"] = "syndicate"
+		else
+			static_data["theme"] = robo_user.ui_theme
+	return static_data
 
 /obj/item/reagent_containers/borghypo/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list()
@@ -142,21 +154,13 @@
 		if((ui_chemical_search && findtext(available_reagent.name, ui_chemical_search)) || !ui_chemical_search)
 			UNTYPED_LIST_ADD(chemicals, list("name" = available_reagent.name, "id" = key, "volume" = value))
 	data["chemicals"] = chemicals
-	data["uiChemicalsName"] = ui_chemicals_name
 	data["uiChemicalSearch"] = ui_chemical_search
-	data["uiWindowHeight"] = ui_window_height
-
 	data["selectedReagentId"] = reagent_ids[mode]
 	data["recipes"] = saved_recipes
 	data["recordingRecipe"] = recording_recipe
-	data["minTransferAmount"] = min_transfer_amount
-	data["maxTransferAmount"] = max_transfer_amount
 	data["isDispensingRecipe"] = is_dispensing_recipe
 	data["selectedRecipeId"] = selected_recipe_id
-	// Get the player's borg UI theme. They SHOULD be a robot, but uh, just in case...
-	var/mob/living/silicon/robot/robo_user = ui.user
-	if(robo_user)
-		data["theme"] = robo_user.ui_theme
+
 	return data
 
 /obj/item/reagent_containers/borghypo/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -246,17 +250,15 @@
 		. += span_notice("It is currently producing [current_reagent.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.")
 
 /obj/item/reagent_containers/borghypo/service
-	name = "cyborg drink synthesizer"
-	desc = "A portable drink dispencer."
+	name = "integrated drink synthesizer"
+	desc = "An inbuilt synthesizer capable of fabricating a broad variety of drinks."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "shaker"
 	charge_cost = 20
 	recharge_time = 3
 	volume = 60
 	max_transfer_amount = 30
-	ui_chemicals_name = "Drinks"
-	ui_title = "Drink Synthesizer"
-	ui_window_height = 590
+	is_dispensing_drinks = TRUE
 	transfer_amounts = list(5, 10, 20, 30)
 	hypo_sound = 'sound/machines/reagent_dispense.ogg'
 	reagent_ids = list(REAGENT_ID_ALE,

@@ -9,9 +9,9 @@ import type { Data } from './types';
 
 export const BorgHypo = (props) => {
   const { data } = useBackend<Data>();
-  const { uiWindowHeight } = data;
+  const { isDispensingDrinks, theme } = data;
   return (
-    <Window width={680} height={uiWindowHeight}>
+    <Window width={680} height={isDispensingDrinks ? 590 : 540} theme={theme}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow>

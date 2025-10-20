@@ -12,7 +12,7 @@ export type Data = {
   recordingRecipe: Recipe[];
   isDispensingRecipe: BooleanLike;
   selectedRecipeId: string;
-  uiChemicalsName: string;
   uiChemicalSearch: string;
-  uiWindowHeight: number;
+  isDispensingDrinks: BooleanLike;
+  theme: string;
 };
