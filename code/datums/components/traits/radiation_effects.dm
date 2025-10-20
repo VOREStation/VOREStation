@@ -64,9 +64,10 @@
 /datum/component/radiation_effects/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_HANDLE_RADIATION, PROC_REF(process_component))
 	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(process_glow))
+	RegisterSignal(parent, COMSIG_LIVING_IRRADIATE_EFFECT, PROC_REF(handle_irradiate_effect))
 
 /datum/component/radiation_effects/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_HANDLE_RADIATION, COMSIG_LIVING_LIFE))
+	UnregisterSignal(parent, list(COMSIG_HANDLE_RADIATION, COMSIG_LIVING_LIFE, COMSIG_LIVING_IRRADIATE_EFFECT))
 
 /datum/component/radiation_effects/proc/process_glow()
 	SIGNAL_HANDLER
@@ -100,7 +101,7 @@
 
 	//Radiation calculation, done here since contamination uses it
 	var/rad_removal_mod = 1
-	var/rads = living_guy.radiation/25
+	var/rads = living_guy.radiation * 0.04
 
 	if(ishuman(living_guy))
 		var/mob/living/carbon/human/human_guy = parent
@@ -132,9 +133,28 @@
 
 		return COMPONENT_BLOCK_LIVING_RADIATION
 
-//Subtypes. If making a custom one, do an ADDCOMPONENT(/datum/component/radiation_effects) with all the arguments required for the mob..
+/datum/component/radiation_effects/proc/handle_irradiate_effect(var/mob/living/living_guy, var/effect, var/effecttype, var/blocked, var/check_protection, var/rad_protection)
+	SIGNAL_HANDLER
+	///If we're not contaminating, don't worry about this. Proceed like normal.
+	if(!contamination || (contamination && living_guy.radiation < contamination_threshold))
+		//to_chat(world, "Radiation like normal. Current rads = [living_guy.radiation]. Amount of rads being added = [effect].")
+		return
 
-///Glows and is immune to radiation
+	var/rad_removal_mod = 1
+	if(ishuman(living_guy))
+		var/mob/living/carbon/human/human_guy = parent
+		rad_removal_mod = human_guy.species.rad_removal_mod
+
+	var/radiation_offput = ((living_guy.radiation * 0.04) * contamination_strength * rad_removal_mod)
+	var/radiation_to_apply = (effect - radiation_offput)
+	if(radiation_to_apply > 0)
+		// to_chat(world, "Radiation blocker. Current rads = [living_guy.radiation]. Original = [effect] RTA = [radiation_to_apply] After protection = [radiation_to_apply * rad_protection]. Amount of rads we're offputting = [radiation_offput]")
+
+		//This stops MOST of the radiation we're offputting from hitting us.
+		//If we linger in one place for a prolonged period, the area around us will become irradiated and give us a small bit of radiation back.
+		//However, we'll lose our rads faster than we accumulate.
+		living_guy.radiation += max((radiation_to_apply * rad_protection), 0)
+		return COMPONENT_BLOCK_IRRADIATION
 /datum/component/radiation_effects/promethean
 	radiation_immunity = TRUE
 
