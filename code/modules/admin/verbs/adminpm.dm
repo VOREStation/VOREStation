@@ -46,7 +46,7 @@
 		if(cmptext(copytext(whom,1,2),"@"))
 			whom = findStealthKey(whom)
 		C = GLOB.directory[whom]
-	else if(istype(whom,/client))
+	else if(isclient(whom))
 		C = whom
 	if(!C)
 		if(holder)
