@@ -153,6 +153,10 @@
 	data["maxTransferAmount"] = max_transfer_amount
 	data["isDispensingRecipe"] = is_dispensing_recipe
 	data["selectedRecipeId"] = selected_recipe_id
+	// Get the player's borg UI theme. They SHOULD be a robot, but uh, just in case...
+	var/mob/living/silicon/robot/robo_user = ui.user
+	if(robo_user)
+		data["theme"] = robo_user.ui_theme
 	return data
 
 /obj/item/reagent_containers/borghypo/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -166,7 +170,7 @@
 				var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[new_mode]]
 				playsound(src, 'sound/effects/pop.ogg', 50, 0)
 				if(recording_recipe)
-					UNTYPED_LIST_ADD(recording_recipe,list("id" = R.id, "amount" = amount_per_transfer_from_this))
+					UNTYPED_LIST_ADD(recording_recipe, list("id" = R.id, "amount" = amount_per_transfer_from_this))
 					balloon_alert(ui.user, "synthesizer recorded '[R.name]'")
 				else
 					mode = new_mode
