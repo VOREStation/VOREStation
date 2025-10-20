@@ -19,7 +19,7 @@
 	var/ui_chemical_search // Chem search bar contents
 	var/ui_window_height = 540
 	var/is_dispensing_recipe = FALSE // Whether or not we're dispensing just a reagent or are dispensing reagents via a recipe
-	var/selected_recipe // The recipe we will dispense if the above is TRUE
+	var/selected_recipe_id // The recipe we will dispense if the above is TRUE
 	var/hypo_sound = 'sound/effects/hypospray.ogg'	// What sound do we play on use?
 
 	var/list/reagent_ids = list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_INAPROVALINE, REAGENT_ID_ANTITOXIN, REAGENT_ID_TRAMADOL, REAGENT_ID_DEXALIN ,REAGENT_ID_SPACEACILLIN)
@@ -153,7 +153,7 @@
 	data["minTransferAmount"] = min_transfer_amount
 	data["maxTransferAmount"] = max_transfer_amount
 	data["isDispensingRecipe"] = is_dispensing_recipe
-	data["selectedRecipe"] = selected_recipe
+	data["selectedRecipeId"] = selected_recipe_id
 	return data
 
 /obj/item/reagent_containers/borghypo/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -210,17 +210,24 @@
 				. = TRUE
 
 		if("remove_recipe")
-			saved_recipes -= params["recipe"]
+			var/R = params["recipe"]
+			// If we've selected the recipe we're deleting, un-select it!
+			if(selected_recipe_id == R)
+				selected_recipe_id = null
+				is_dispensing_recipe = FALSE
+			saved_recipes -= R
 			. = TRUE
 
 		if("select_recipe")
 			// Make sure we actually have a recipe saved with the given name before setting it!
-			var/R = params["selectedRecipe"]
-			if(!saved_recipes[R])
+			var/R = saved_recipes[params["recipe"]]
+			if(!R)
 				to_chat(ui.user, span_warning("\The [src] cannot find the recipe <b>[R]</b>!"))
 				return
+			playsound(src, 'sound/effects/pop.ogg', 50, 0)
+			balloon_alert(usr, "synthesizer is using macro: '[R]'")
 			is_dispensing_recipe = TRUE
-			selected_recipe = R
+			selected_recipe_id = R
 			. = TRUE
 
 		if("set_chemical_search")

@@ -11,7 +11,7 @@ export type Data = {
   recipes: Record<string, Recipe[]>;
   recordingRecipe: Recipe[];
   isDispensingRecipe: BooleanLike;
-  selectedRecipe: string;
+  selectedRecipeId: string;
   uiTitle: string;
   uiChemicalsName: string;
   uiChemicalSearch: string;
