@@ -206,7 +206,7 @@
 					var/label = L["id"]
 					// Verify this hypo can dispense every chemical
 					if(!reagent_ids.Find(label))
-						to_chat(ui.user, span_warning("\The [src] cannot find <b>[label]</b>!"))
+						to_chat(ui.user, span_warning("\The [src] cannot find ") + span_boldwarning(label) + span_warning("!"))
 						return
 				saved_recipes[name] = recording_recipe
 				recording_recipe = null
@@ -226,7 +226,7 @@
 			var/recipe_name = params["recipe"]
 			var/selectedRecipe = saved_recipes[recipe_name]
 			if(!selectedRecipe)
-				to_chat(ui.user, span_warning("\The [src] cannot find the recipe <b>[recipe_name]</b>!"))
+				to_chat(ui.user, span_warning("\The [src] cannot find the recipe ") + span_boldwarning(recipe_name) + span_warning("!"))
 				return
 			playsound(ui.user, 'sound/effects/pop.ogg', 50, 0)
 			balloon_alert(ui.user, "synthesizer is using macro: '[recipe_name]'")
