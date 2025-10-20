@@ -223,8 +223,9 @@
 
 		if("select_recipe")
 			// Make sure we actually have a recipe saved with the given name before setting it!
-			var/R = saved_recipes[params["recipe"]]
-			if(!R)
+			var/R = params["recipe"]
+			var/selectedRecipe = saved_recipes[R]
+			if(!selectedRecipe)
 				to_chat(ui.user, span_warning("\The [src] cannot find the recipe <b>[R]</b>!"))
 				return
 			playsound(src, 'sound/effects/pop.ogg', 50, 0)

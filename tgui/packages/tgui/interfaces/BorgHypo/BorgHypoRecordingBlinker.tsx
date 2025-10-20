@@ -31,7 +31,7 @@ export const BorgHypoRecordingBlinker = (props) => {
         {' '}
         <Box color="bad" inline bold>
           REC
-        </Box>
+        </Box>{' '}
       </Stack.Item>
     </Stack>
   );
