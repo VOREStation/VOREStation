@@ -249,7 +249,9 @@
 		UNTYPED_LIST_ADD(robot_chems, list("id" = possible_reagent.id, "name" = possible_reagent.name))
 
 	data["name"] = name
-	data["theme"] = robot_user.ui_theme
+	var/robot_theme = R.get_ui_theme()
+	if(robot_theme)
+		data["theme"] = robot_theme
 	data["chems"] = robot_chems
 	return data
 

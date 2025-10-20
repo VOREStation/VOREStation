@@ -1674,3 +1674,8 @@
 	nutrition = 1000
 	to_chat(src, span_warning("You have purged most of the nutrition lingering in your systems."))
 	return TRUE
+
+/mob/living/silicon/robot/proc/get_ui_theme()
+	if(R.emagged)
+		return "syndicate"
+	return ui_theme
