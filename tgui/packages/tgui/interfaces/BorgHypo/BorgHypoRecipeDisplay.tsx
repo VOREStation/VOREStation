@@ -33,7 +33,7 @@ export const BorgHypoRecipeDisplay = (props) => {
       }
     >
       {recording && (
-        <Stack align="center" justify="space-between" direction="column">
+        <Stack align="start" justify="space-between" direction="column">
           {recordedContents.map((reagent, i) => (
             <Stack.Item key={i} color="label">
               {formatUnits(reagent.volume)} of {reagent.name}

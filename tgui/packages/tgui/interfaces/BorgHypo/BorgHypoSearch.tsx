@@ -5,14 +5,13 @@ import type { Data } from './types';
 
 export const BorgHypoSearch = (props) => {
   const { act, data } = useBackend<Data>();
-  // Extract `health` and `color` variables from the `data` object.
   const { uiChemicalsName } = data;
   return (
-    <Stack direction="row" align="flex-start" g={0.3} height="20x">
-      <Stack.Item basis="20%" grow>
+    <Stack>
+      <Stack.Item basis="20%">
         <BorgHypoRecordingBlinker />
       </Stack.Item>
-      <Stack.Item basis="80%" grow>
+      <Stack.Item basis="80%">
         <TextArea
           placeholder={`Search ${uiChemicalsName.toLowerCase()}...`}
           fluid
