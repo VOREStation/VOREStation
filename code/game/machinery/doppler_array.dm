@@ -37,7 +37,7 @@
 	*/
 
 	var/message = "Explosive disturbance detected - Epicenter at: grid ([x0],[y0],[z0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [seconds_taken] seconds."
-	atom_say(span_npc_say(span_name("[src]") + " states coldly, \"[message]\""))
+	audible_message(span_npc_say(span_name("[src]") + " states coldly, \"[message]\""))
 
 /obj/machinery/doppler_array/power_change()
 	..()
