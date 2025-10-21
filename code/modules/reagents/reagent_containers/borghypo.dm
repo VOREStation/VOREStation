@@ -139,7 +139,7 @@
 	var/list/data = list()
 	var/mob/living/silicon/robot/robo_user = user
 	if(robo_user)
-		var/robot_theme = R.get_ui_theme()
+		var/robot_theme = robo_user.get_ui_theme()
 		if(robot_theme)
 			data["theme"] = robot_theme
 	data["amount"] = amount_per_transfer_from_this
