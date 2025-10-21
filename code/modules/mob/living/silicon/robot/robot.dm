@@ -1632,6 +1632,6 @@
 	return TRUE
 
 /mob/living/silicon/robot/proc/get_ui_theme()
-	if(R.emagged)
+	if(emagged)
 		return "syndicate"
 	return ui_theme
