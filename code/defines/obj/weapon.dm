@@ -298,7 +298,6 @@
 	desc = "Used in the construction of computers and other devices with a interactive console."
 	icon_state = "screen"
 	origin_tech = list(TECH_MATERIAL = 1)
-	rating = 5 // these are actually Really Important for some things??
 	matter = list(MAT_GLASS = 200)
 
 /obj/item/stock_parts/capacitor
