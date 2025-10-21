@@ -38,6 +38,7 @@ export type Data = {
   law_sets: law_pack[];
   active_ais: DropdownEntry[];
   selected_ai: string | null;
+  theme?: string;
 };
 
 export type DropdownEntry = {
