@@ -33,6 +33,8 @@
 #define COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD "!modified_employee_idcard"
 /// ID card terminated: (obj/item/card/id/terminated_card)
 #define COMSIG_GLOB_TERMINATE_EMPLOYEE_IDCARD "!modified_terminated_idcard"
+/// borg created: (mob/living/silicon/robot/new_robot)
+#define COMSIG_GLOB_BORGIFY "!borgify_mob"
 
 /// signals from globally accessible objects
 
