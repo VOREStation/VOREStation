@@ -212,14 +212,17 @@
 		return //No
 	shadekin_set_energy(dark_energy + amount)
 
-/datum/component/shadekin/proc/handle_nutrition_conversion(dark_gains)
+/datum/component/shadekin/proc/handle_nutrition_conversion(current_gains)
 	if(!nutrition_energy_conversion)
-		return
-	if(shadekin_get_energy() == 100 && dark_gains > 0)
-		owner.nutrition += dark_gains * 5 * nutrition_conversion_scaling
-	else if(shadekin_get_energy() < 50 && owner.nutrition > 500)
+		return current_gains
+	if(shadekin_get_energy() == 100 && current_gains > 0)
+		owner.nutrition += current_gains * 5 * nutrition_conversion_scaling
+		return current_gains
+
+	if(shadekin_get_energy() < 50 && owner.nutrition > 500)
 		owner.nutrition -= nutrition_conversion_scaling * 50
-		dark_gains += nutrition_conversion_scaling
+		current_gains += nutrition_conversion_scaling
+	return current_gains
 
 /datum/component/shadekin/proc/attack_dephase(var/turf/T = null, atom/dephaser)
 	// no assigned dephase-target, just use our own

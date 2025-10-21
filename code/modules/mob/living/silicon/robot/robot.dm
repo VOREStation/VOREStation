@@ -489,50 +489,6 @@
 	handle_light()
 	update_icon()
 
-/mob/living/silicon/robot/verb/toggle_robot_decals() // loads overlay UNDER lights.
-	set category = "Abilities.Settings"
-	set name = "Toggle Extra Decals"
-
-	if(!sprite_datum)
-		return
-	if(!LAZYLEN(sprite_datum.sprite_decals))
-		to_chat(src, span_warning("This module does not support decals."))
-		return
-
-	var/extra_message = "Enabled decals:\n"
-	for(var/decal in robotdecal_on)
-		extra_message += decal + "\n"
-
-	var/decal_to_toggle = tgui_input_list(src, "Please select which decal you want to toggle\n[extra_message]", "Decal Toggle", sprite_datum.sprite_decals)
-	if(!decal_to_toggle)
-		return
-
-	decal_to_toggle = lowertext(decal_to_toggle)
-
-	if(robotdecal_on.Find(decal_to_toggle))
-		robotdecal_on -= decal_to_toggle
-		to_chat(src, span_filter_notice("You disable your \"[decal_to_toggle]\" extra apperances."))
-	else
-		robotdecal_on += decal_to_toggle
-		to_chat(src, span_filter_notice("You enable your \"[decal_to_toggle]\" extra apperances."))
-	update_icon()
-
-/mob/living/silicon/robot/verb/flick_robot_animation()
-	set category = "Abilities.Settings"
-	set name = "Flick Animation"
-
-	if(!sprite_datum)
-		return
-	if(!LAZYLEN(sprite_datum.sprite_animations))
-		to_chat(src, span_warning("This module does not support animations."))
-		return
-
-	var/animation_to_play = tgui_input_list(src, "Please select which decal you want to flick", "Flick Decal", sprite_datum.sprite_animations)
-	if(!animation_to_play)
-		return
-
-	flick("[sprite_datum.sprite_icon_state]-[animation_to_play]", src)
-
 /mob/living/silicon/robot/verb/toggle_glowy_stomach()
 	set category = "Abilities.Settings"
 	set name = "Toggle Glowing Stomach & Accents"
@@ -1325,10 +1281,9 @@
 				to_chat(user, span_filter_notice("You assigned yourself as [src]'s operator."))
 				message_admins("[key_name_admin(user)] assigned as operator on cyborg [key_name_admin(src)]. Syndicate Operator change.")
 				log_game("[key_name(user)] assigned as operator on cyborg [key_name(src)]. Syndicate Operator change.")
-				var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
-				set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
+				set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are operatives.")
 				to_chat(src, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
-				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands."))
+				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [user.p_their()] commands."))
 			else
 				to_chat(user, span_filter_notice("[src] already has an operator assigned."))
 			return//Prevents the X has hit Y with Z message also you cant emag them twice
@@ -1357,8 +1312,7 @@
 			laws = new /datum/ai_laws/syndicate_override
 			var/time = time2text(world.realtime,"hh:mm:ss")
 			GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
-			var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
-			set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
+			set_zeroth_law("Only [user.real_name] and people [user.p_their()] designate[user.p_s()] as being such are operatives.")
 			. = 1
 			spawn()
 				to_chat(src, span_danger("ALERT: Foreign software detected."))
@@ -1380,7 +1334,7 @@
 				sleep(20)
 				to_chat(src, span_danger("ERRORERRORERROR"))
 				to_chat(src, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
-				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands."))
+				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [user.p_their()] commands."))
 				update_icon()
 				hud_used.update_robot_modules_display()
 		else
@@ -1676,3 +1630,8 @@
 	nutrition = 1000
 	to_chat(src, span_warning("You have purged most of the nutrition lingering in your systems."))
 	return TRUE
+
+/mob/living/silicon/robot/proc/get_ui_theme()
+	if(emagged)
+		return "syndicate"
+	return ui_theme

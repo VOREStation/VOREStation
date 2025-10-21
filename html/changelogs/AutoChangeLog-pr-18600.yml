@@ -1,7 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - qol: "Teshari now have a visible sprite when picked up! They can be held in your hand, on your head, or on your back!"
-  - bugfix: "High Zorren now have the proper vulpine speech sound"
-  - bugfix: "Altevian now have the proper mouse speech sound"
-  - bugfix: "Vulpkanin now have the proper canine species sound"

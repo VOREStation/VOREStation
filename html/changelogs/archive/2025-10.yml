@@ -129,3 +129,93 @@
       table would lock your view to the table
   - bugfix: pda breaking most types of remote views by never releasing it's mob machine
       state
+2025-10-17:
+  Diana:
+  - bugfix: Dragging now will always warn you if it will damage the person you're
+      dragging
+  - bugfix: Dragging now properly tell you if the person being dragged is damaged.
+  - bugfix: Fixes issue where you would bleed via drag when you had no bleeding wounds
+      / broken bones
+  - qol: Dragging will provide a visual message on screen if the person is being injured,
+      as opposed to just chat.
+  - qol: WALKING (as in WALK INTENT) near disposals with unlucky will no longer make
+      you fall into them
+  - bugfix: Unlucky individuals being disposal'd can not crawl out if the unit is
+      prepared to dispose of them.
+  - bugfix: You can now longer eat yourself
+  - bugfix: You can no longer get eaten by people that are not physically present
+  - code_imp: Spont vore eating code is better
+  - qol: Teshari now have a visible sprite when picked up! They can be held in your
+      hand, on your head, or on your back!
+  - bugfix: High Zorren now have the proper vulpine speech sound
+  - bugfix: Altevian now have the proper mouse speech sound
+  - bugfix: Vulpkanin now have the proper canine species sound
+  Guti:
+  - refactor: Refactored pronouns handling
+  - rscdel: Removed /datum/gender
+  - code_imp: Added pronoun helper procs
+  - bugfix: Fixed examining others using the examiner's pronouns instead of the examined
+  Kashargul:
+  - code_imp: lints for bad smes mapedits
+  - bugfix: ticket replies failing in admin to admin interaction
+  Tenryumi:
+  - rscadd: Added item TF functionality to the casino's sentient prize handlers. People
+      who put themselves up as a sentient prize have the option to allow the person
+      who claims them to choose to turn them into an item!
+  - code_imp: Added a global list of item TF options, to make it easier for future
+      item mechanics to have a more uniform selection of things people would probably
+      prefer to get turned into.
+  Will:
+  - code_imp: Unit testing for techwebs
+  - bugfix: all techweb designs are accessible to science
+  - bugfix: '"hardsuit graviton scanners" now gives you the proper graviton rig item'
+  - bugfix: '"radioisotope TEG circuit" is no longer missing from techweb'
+  - bugfix: '"hardsuit mining scanners" is no longer missing from techweb'
+  - balance: '"Precursor Technology" points cost increased by 1 tier'
+  - balance: '"Precursor Engineering" points cost increased by 1 tier'
+  - balance: '"''NSFW'' Gun" points cost increased by 1 tier'
+  - balance: '"Confetti Cannon" points cost increased by 2 tiers'
+  - bugfix: remote view crash if you try to use an overmap shuttle while blind
+  - bugfix: remote view crash if you start a remote view with a zooming item and disconnect
+  - bugfix: struggling out of most containers will respect being in a disposal packet
+  - bugfix: admin teleports and get_movable VV action clear remote views
+  - bugfix: attempting to remoteview a qdeleted object will force reset your view
+      to yourself
+  - bugfix: throwing micros inside food into the stardog mouth no longer results in
+      a black screen for the micro
+  - bugfix: Borg charger rarely locking focus to the charger itself
+  Will, Diana:
+  - rscadd: Destructive analyzer returns
+  - rscadd: Destructive analyzer circuit board added to Fundamental Science techweb
+      node
+  - rscadd: Destructive analyzer can be linked to ore silo with multitool if built
+      in round
+  - rscadd: Research samples give research points when put through the destructive
+      analyzer.
+  Zizzi:
+  - rscadd: Added string padding circuit
+2025-10-18:
+  Diana:
+  - balance: Makes Virus Immunity trait 3 points
+  - qol: Being attacked in the groin gives a less wordy message
+  - rscadd: Adds boneless trait
+  - bugfix: Brains no longer qdel() if the head is gibbed.
+  Guti:
+  - bugfix: Fixed FBP not being able to change eye colour
+  Kashargul:
+  - bugfix: shadekin nutrition gains
+  KillianKirilenko:
+  - refactor: unified the mob, morph, and lurker spawns into a single multipurpose
+      hole that can be used to spawn any one of them based on the interacting ghost's
+      choice. the associated seperate events have been replaced with a single event
+      that uses the new unified spawner, so that the events are no longer competing
+      for spawn chances. the new spawner also has a high-vis icon so that it won't
+      be difficult for ghosts to spot if they're just scrolling around with darkness
+      enabled.
+2025-10-21:
+  Kashargul:
+  - bugfix: free ghost role slot spawn
+  - bugfix: casino sentient price item tf getting enabled when one closes the ui
+  - admin: fix log access for devs and mods
+  VOREStation:
+  - balance: Disables Unlucky Major
