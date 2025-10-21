@@ -38,7 +38,10 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 					effectout = sparks
 
 	var/turf/curturf = get_turf(teleatom)
-	var/turf/destturf = get_teleport_turf(get_turf(destination), precision)
+	var/turf/destturf
+
+	if(!isbelly(destination)) // Well if it goes straight to a belly, don't go to the turf.
+		destturf = get_teleport_turf(get_turf(destination), precision) // This could also use the vore helpers...
 
 	// HOLD IT! destturf? Hell nah, televore finally works again.
 	// Now CHECK if someone capable of televoring is in the same turf...
