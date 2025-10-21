@@ -22,9 +22,12 @@ export const ChemDispenserChemicals = (props: {
     buttons,
   } = props;
   const flexFillers: boolean[] = [];
+  const sortedChemicals: Reagent[] = chemicals;
   for (let i = 0; i < (chemicals.length + 1) % 3; i++) {
     flexFillers.push(true);
   }
+  // Sort chemicals alphabetically by chemical names
+  sortedChemicals.sort((a, b) => a.name.localeCompare(b.name));
   return (
     <Section
       //title={data.glass ? 'Drink Dispenser' : 'Chemical Dispenser'}
@@ -35,7 +38,7 @@ export const ChemDispenserChemicals = (props: {
       buttons={buttons}
     >
       <Stack direction="row" wrap="wrap" align="flex-start" g={0.3}>
-        {chemicals.map((c, i) => (
+        {sortedChemicals.map((c, i) => (
           <Stack.Item key={i} basis="40%" grow height="20px">
             <Button
               icon="arrow-circle-down"
