@@ -5,6 +5,7 @@ import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
+  theme?: string;
   all_decals?: string[] | null;
   all_animations?: string[] | null;
   active_decals: string[];
@@ -12,7 +13,7 @@ type Data = {
 
 export const RobotDecals = () => {
   const { act, data } = useBackend<Data>();
-  const { all_decals, all_animations, active_decals } = data;
+  const { theme, all_decals, all_animations, active_decals } = data;
 
   const [decalSearchText, setDecalSearchText] = useState('');
   const [animationSearchText, setAnimationSearchText] = useState('');
@@ -27,7 +28,7 @@ export const RobotDecals = () => {
   const filteredAnimations = all_animations?.filter(animationSearcher) ?? [];
 
   return (
-    <Window width={350} height={400}>
+    <Window width={350} height={400} theme={theme || 'ntos'}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow>

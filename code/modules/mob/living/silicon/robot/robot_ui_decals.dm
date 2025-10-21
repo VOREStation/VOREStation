@@ -17,6 +17,10 @@
 	data["all_decals"] = R.sprite_datum.sprite_decals
 	data["all_animations"] = R.sprite_datum.sprite_animations
 
+	var/robot_theme = R.get_ui_theme()
+	if(robot_theme)
+		data["theme"] = robot_theme
+
 	return data
 
 /datum/tgui_module/robot_ui_decals/tgui_data()
