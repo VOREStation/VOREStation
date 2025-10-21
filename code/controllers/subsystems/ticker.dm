@@ -210,7 +210,28 @@ SUBSYSTEM_DEF(ticker)
 
 	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
 	SEND_SIGNAL(src, COMSIG_TICKER_ROUND_STARTING, world.time)
-	callHook("roundstart")
+	SSwebhooks.send(WEBHOOK_ROUNDSTART, list("url" = get_world_url()))
+	GLOB.round_start_time = REALTIMEOFDAY
+
+	for(var/id in multi_point_spawns)
+		var/list/spawn_points = multi_point_spawns[id]
+		var/obj/random_multi/rm = pickweight(spawn_points)
+		rm.generate_items()
+		for(var/entry in spawn_points)
+			qdel(entry)
+
+	for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
+		if(S.name != JOB_AI)
+			continue
+		if(locate(/mob/living) in S.loc)
+			continue
+		GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(get_turf(S))
+
+	for(var/obj/item/paper/dockingcodes/dcp as anything in GLOB.papers_dockingcode)
+		dcp.populate_info()
+
+	for(var/obj/machinery/power/solar_control/SC as anything in GLOB.solars_list)
+		SC.auto_start()
 
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
