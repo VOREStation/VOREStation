@@ -133,16 +133,15 @@
 	static_data["isDispensingDrinks"] = is_dispensing_drinks
 	static_data["minTransferAmount"] = min_transfer_amount
 	static_data["maxTransferAmount"] = max_transfer_amount
-	// Get the player's borg UI theme. They SHOULD be a robot, but uh, just in case...
+	return static_data
+
+/obj/item/reagent_containers/borghypo/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = list()
 	var/mob/living/silicon/robot/robo_user = user
 	if(robo_user)
 		var/robot_theme = R.get_ui_theme()
 		if(robot_theme)
 			data["theme"] = robot_theme
-	return static_data
-
-/obj/item/reagent_containers/borghypo/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
-	var/list/data = list()
 	data["amount"] = amount_per_transfer_from_this
 	data["transferAmounts"] = transfer_amounts
 

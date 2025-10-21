@@ -41,10 +41,6 @@
 			))
 	data["emag_modules_static"] = emag_modules
 
-	var/robot_theme = R.get_ui_theme()
-	if(robot_theme)
-		data["theme"] = robot_theme
-
 	return data
 
 /datum/tgui_module/robot_ui/tgui_data()
@@ -53,6 +49,10 @@
 	var/mob/living/silicon/robot/R = host
 
 	data["module_name"] = R.module ? "[R.module]" : null
+
+	var/robot_theme = R.get_ui_theme()
+	if(robot_theme)
+		data["theme"] = robot_theme
 
 	if(!R.module)
 		return data
