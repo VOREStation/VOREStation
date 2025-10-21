@@ -40,6 +40,19 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 	var/turf/curturf = get_turf(teleatom)
 	var/turf/destturf = get_teleport_turf(get_turf(destination), precision)
 
+	// HOLD IT! destturf? Hell nah, televore finally works again.
+	// Now CHECK if someone capable of televoring is in the same turf...
+
+	if(isliving(teleatom))
+		var/mob/living/telemob = teleatom
+		var/mob/living/mob = locate() in destturf
+		// Needs the vore helpers later. Ough.
+		if(mob && !mob.is_incorporeal())
+			if(mob.can_be_drop_pred && telemob.can_be_drop_prey && telemob.devourable)
+				destturf = mob.vore_selected
+			else if(telemob.can_be_drop_pred && mob.can_be_drop_prey && mob.devourable)
+				mob.forceMove(telemob.vore_selected)
+
 	if(!destturf || !curturf)
 		return FALSE
 
