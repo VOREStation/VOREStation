@@ -13,7 +13,7 @@ export const BorgHypo = (props) => {
   return (
     <Window
       width={680}
-      height={isDispensingDrinks ? 590 : 540}
+      height={isDispensingDrinks ? 610 : 540}
       theme={theme || 'ntos'}
     >
       <Window.Content>
