@@ -7596,7 +7596,9 @@
 /obj/item/reagent_containers/food/snacks/packaged/mochicake
 	name = "\improper Mochi Cake"
 	icon_state = "mochicake"
-	desc = "Konnichiwa! Many go lucky rice cakes in future!"
+	desc = "A sweet little cake originating from the Sol system, made from sweet rice flour. \
+	Traditionally prepared in a ceremony known as mochitsuki, in which a community would gather grind the rice for special occasions. \
+	However this particular treat was no doubt mashed together in a factory."
 	package_trash = /obj/item/trash/mochicakewrap
 	package_open_state = "lunacake_open"
 	filling_color = "#ffffff"
