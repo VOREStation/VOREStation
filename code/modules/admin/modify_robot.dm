@@ -57,7 +57,6 @@
 	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = GLOB.robot_sprite_sheets[target.modtype]
 
 	if(target)
-		// Non static as admin we could swap between syndi and normal
 		var/ui_theme = target.get_ui_theme()
 		if(ui_theme)
 			.["theme"] = ui_theme
