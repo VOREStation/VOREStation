@@ -33,6 +33,10 @@
 #define COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD "!modified_employee_idcard"
 /// ID card terminated: (obj/item/card/id/terminated_card)
 #define COMSIG_GLOB_TERMINATE_EMPLOYEE_IDCARD "!modified_terminated_idcard"
+/// payment account status changed /obj/machinery/account_database/tgui_act() : (datum/money_account/account)
+#define COMSIG_GLOB_PAYMENT_ACCOUNT_STATUS "!payment_account_change_status"
+/// payment account status changed /obj/machinery/account_database/tgui_act() : (datum/money_account/account)
+#define COMSIG_GLOB_PAYMENT_ACCOUNT_REVOKE "!payment_account_revoke_payroll"
 /// borg created: (mob/living/silicon/robot/new_robot)
 #define COMSIG_GLOB_BORGIFY "!borgify_mob"
 /// brain removed from body, called by /obj/item/organ/internal/brain/proc/transfer_identity() : (mob/living/carbon/brain/brainmob)
