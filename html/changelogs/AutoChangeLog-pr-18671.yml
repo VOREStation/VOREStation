@@ -1,0 +1,4 @@
+author: "NickBelmont"
+delete-after: True
+changes:
+  - bugfix: "Exploit where console screens would count for all stock part benchmark experiments."
