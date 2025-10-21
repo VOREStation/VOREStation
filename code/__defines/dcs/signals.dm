@@ -23,6 +23,11 @@
 	#define COMPONENT_GLOB_BLOCK_CINEMATIC (1<<0)
 /// ingame button pressed (/obj/machinery/button/button)
 #define COMSIG_GLOB_BUTTON_PRESSED "!button_pressed"
+/// Supply shuttle selling, before all items are sold: (/list/area/supply_shuttle_areas)
+#define COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART "!sell_supply_shuttle"
+/// Supply shuttle selling, for each item sold: (atom/movable/sold_item, sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
+#define COMSIG_GLOB_SELL_ITEM "!supply_shuttle_sell_item"
+
 
 /// signals from globally accessible objects
 
