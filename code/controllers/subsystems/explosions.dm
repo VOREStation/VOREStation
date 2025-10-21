@@ -82,14 +82,14 @@ SUBSYSTEM_DEF(explosions)
 		var/x0 	= time_dat[1]
 		var/y0 	= time_dat[2]
 		var/z0 	= time_dat[3]
+		var/turf/epicenter = locate(data[1],data[2],data[3])
+		if(!epicenter)
+			continue
 		var/devastation_range 	= time_dat[4]
 		var/heavy_impact_range 	= time_dat[5]
 		var/light_impact_range 	= time_dat[6]
-		var/tim 				= time_dat[7]
-		for(var/i,i<=GLOB.doppler_arrays.len,i++)
-			var/obj/machinery/doppler_array/Array = GLOB.doppler_arrays[i]
-			if(Array)
-				Array.sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range, tim - world.time)
+		var/took 				= time_dat[7] - world.time // Horrifyingly, this has always been server performance dependant. Should really only be used for cosmetic stuff.
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, took)
 	currentsignals.Cut()
 
 	// return to setup mode... Unless...

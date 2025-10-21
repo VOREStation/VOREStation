@@ -10,9 +10,9 @@
 #define COMSIG_GLOB_NEW_Z "!new_z"
 /// called after a successful var edit somewhere in the world: (list/args)
 #define COMSIG_GLOB_VAR_EDIT "!var_edit"
-/// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
+/// called after an explosion happened, called by /datum/controller/subsystem/explosions/proc/end_resolve() : (epicenter, devastation_range, heavy_impact_range, light_impact_range, took)
 #define COMSIG_GLOB_EXPLOSION "!explosion"
-/// mob was created somewhere : (mob)
+/// mob was created somewhere, called by /mob/Initialize() : (mob)
 #define COMSIG_GLOB_MOB_CREATED "!mob_created"
 /// mob died somewhere, called by /mob/proc/death(gibbed,deathmessage) : (mob , gibbed)
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
