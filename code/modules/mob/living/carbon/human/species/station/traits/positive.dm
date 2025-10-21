@@ -541,3 +541,22 @@
 
 	can_take = ORGANICS
 	var_changes = list("virus_immune" = TRUE)
+
+/datum/trait/positive/radioactive_heal
+	name = "Radioactive Heal"
+	desc = "You heal when exposed to radiation instead of becoming ill. You can also choose to emit a glow when irradiated."
+	cost = 6
+	is_genetrait = TRUE
+	hidden = FALSE
+	has_preferences = list("glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_VAREDIT_TARGET_MOB, "#c3f314",),
+	"glow_enabled" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glow enabled on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE))
+
+	added_component_path = /datum/component/radiation_effects
+
+/datum/trait/positive/radioactive_heal/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
+	if(trait_prefs)
+		G.radiation_color = trait_prefs["glow_color"]
+		G.glows = trait_prefs["glow_enabled"]
+	G.radiation_healing = TRUE

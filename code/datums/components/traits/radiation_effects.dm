@@ -61,6 +61,8 @@
 	if(radiation_dissipation)
 		src.radiation_dissipation = radiation_dissipation
 
+	add_verb(parent, /mob/living/proc/radiation_control_panel)
+
 /datum/component/radiation_effects/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_HANDLE_RADIATION, PROC_REF(process_component))
 	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(process_glow))
@@ -166,3 +168,53 @@
 /datum/component/radiation_effects/diona
 	glows = FALSE
 	radiation_healing = TRUE
+
+///TGUI below here
+//TGUI Weaver Panel
+/datum/component/radiation_effects/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "RadiationConfig", "Radiation Config")
+		ui.open()
+
+
+/mob/living/proc/radiation_control_panel()
+	set name = "Radiation Control Panel"
+	set desc = "Allows you to adjust the settings of various radioactive settings!"
+	set category = "Abilities.Radiation"
+
+	var/datum/component/radiation_effects/rad = get_radiation_component()
+	if(!rad)
+		to_chat(src, span_warning("You don't have the radiation component! This is a bug! Please report this to a maintainer."))
+		return FALSE
+
+	rad.tgui_interact(src)
+
+/datum/component/radiation_effects/tgui_data(mob/user)
+	var/data = list(
+		"glowing" = glows,
+		"radiation_color" = radiation_color,
+	)
+
+	return data
+
+/datum/component/radiation_effects/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("toggle_color")
+			var/set_new_color = tgui_color_picker(ui.user, "Select a color you wish your radioactive glow to be!", "Color Selector", radiation_color)
+			if(!set_new_color)
+				return FALSE
+			radiation_color = set_new_color
+			return TRUE
+		if("toggle_glow")
+			glows = !glows
+			to_chat(parent, span_info("You are [glows ? "now" : "no longer"] glowing."))
+			return FALSE
+
+/mob/living/proc/get_radiation_component()
+	var/datum/component/radiation_effects/rad = GetComponent(/datum/component/radiation_effects)
+	if(rad)
+		return rad
