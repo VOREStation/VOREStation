@@ -10,13 +10,15 @@ export const BorgHypoChemicals = (props) => {
     isDispensingRecipe,
     selectedReagentId,
     isDispensingDrinks,
+    recordingRecipe,
   } = data;
+  const recording = !!recordingRecipe;
   return (
     <ChemDispenserChemicals
       chemicals={chemicals}
       sectionTitle={isDispensingDrinks ? 'Drinks' : 'Chemicals'}
       dispenseAct={(reagentId) => {
-        if (selectedReagentId !== reagentId) {
+        if (recording || selectedReagentId !== reagentId) {
           act('select_reagent', {
             selectedReagentId: reagentId,
           });
@@ -24,7 +26,7 @@ export const BorgHypoChemicals = (props) => {
       }}
       buttons={<BorgHypoSearch />}
       chemicalButtonSelect={(reagentId) =>
-        !isDispensingRecipe && selectedReagentId === reagentId
+        !recording && selectedReagentId === reagentId && !isDispensingRecipe
       }
     />
   );
