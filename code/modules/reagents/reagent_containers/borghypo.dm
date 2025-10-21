@@ -62,7 +62,7 @@
 	target.reagents.add_reagent(reagent_id, amount_to_add)
 	reagent_volumes[reagent_id] -= amount_to_add
 	if(show_alert)
-		balloon_alert(user, "transfered [amount_to_add] units to [target].")
+		balloon_alert(user, "transferred [amount_to_add] units to [target].")
 	return BORGHYPO_SUCCESS
 
 /obj/item/reagent_containers/borghypo/Initialize(mapload)
