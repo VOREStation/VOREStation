@@ -5,12 +5,6 @@
 /hook/startup
 
 /**
- * Roundstart hook.
- * Called in gameticker.dm when a round starts.
- */
-/hook/roundstart
-
-/**
  * Roundend hook.
  * Called in gameticker.dm when a round ends.
  */
