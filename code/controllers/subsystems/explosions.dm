@@ -79,9 +79,6 @@ SUBSYSTEM_DEF(explosions)
 	// We've handled the actual explosions, it's time to wrap up everything else.
 	// send signals to all machines scanning for them
 	for(var/list/time_dat in currentsignals)
-		var/x0 	= time_dat[1]
-		var/y0 	= time_dat[2]
-		var/z0 	= time_dat[3]
 		var/turf/epicenter = locate(time_dat[1],time_dat[2],time_dat[3])
 		if(!epicenter)
 			continue

@@ -85,8 +85,8 @@
 		//Technically allows metagaming by allowing buddies to turn on digestion for like 2 seconds
 		//  to finish off critically wounded friends to avoid resleeving sickness, but like
 		//  *kill those people* ok?
-		var/obj/belly/B = loc
-		if(B.digest_mode == DM_DIGEST || B.digest_mode == DM_SELECT)
+		var/obj/belly/in_belly = loc
+		if(in_belly.digest_mode == DM_DIGEST || in_belly.digest_mode == DM_SELECT)
 			mind?.vore_death = TRUE
 	soulcatcher_on_mob_death()
 	if(istype(loc, /obj/item/clothing/shoes))
