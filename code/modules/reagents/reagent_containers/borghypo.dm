@@ -48,7 +48,7 @@
 	bypass_protection = TRUE // Because mercs tend to be in spacesuits.
 	reagent_ids = list(REAGENT_ID_HEALINGNANITES, REAGENT_ID_HYPERZINE, REAGENT_ID_TRAMADOL, REAGENT_ID_OXYCODONE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_PERIDAXON, REAGENT_ID_OSTEODAXON, REAGENT_ID_MYELAMINE, REAGENT_ID_SYNTHBLOOD)
 
-/obj/item/reagent_containers/borghypo/proc/try_add_reagent(var/atom/target, var/mob/user, var/reagent_id, var/amount, var/show_alert = TRUE)
+/obj/item/reagent_containers/borghypo/proc/try_add_reagent(var/atom/target, var/mob/user, var/reagent_id, var/amount)
 	var/reagent_volume = reagent_volumes[reagent_id]
 	if(!reagent_volume || reagent_volume < amount)
 		return BORGHYPO_ERROR_NOCHARGE
@@ -57,13 +57,11 @@
 		return BORGHYPO_ERROR_CONTAINERFULL
 
 	if(hypo_sound)
-		playsound(src, hypo_sound, 25)
+		playsound(src, hypo_sound, 25, TRUE)
 
 	var/amount_to_add = min(amount, reagent_volumes[reagent_id])
 	target.reagents.add_reagent(reagent_id, amount_to_add)
 	reagent_volumes[reagent_id] -= amount_to_add
-	if(show_alert)
-		balloon_alert(user, "transferred [amount_to_add] units to [target].")
 	return BORGHYPO_SUCCESS
 
 /obj/item/reagent_containers/borghypo/proc/try_injection(var/atom/target, var/mob/user)
@@ -73,11 +71,10 @@
 		if(!foundRecipe)
 			to_chat(user, span_warning("Couldn't find recipe ") + span_boldwarning(selected_recipe_id) + span_warning("! Contact a coder."))
 			return BORGHYPO_ERROR_NORECIPE
-		var/success = TRUE
 		for(var/recipe_step in foundRecipe)
 			var/step_reagent_id = recipe_step["id"]
 			var/step_dispense_amount = recipe_step["amount"]
-			var/result = try_add_reagent(target, user, step_reagent_id, step_dispense_amount, show_alert = FALSE)
+			var/result = try_add_reagent(target, user, step_reagent_id, step_dispense_amount)
 			switch(result)
 				if(BORGHYPO_ERROR_CONTAINERFULL)
 					return result
@@ -145,7 +142,6 @@
 		if(M.reagents)
 			var/reagent_id = reagent_ids[mode]
 			var/amount_to_add = min(amount_per_transfer_from_this, reagent_volumes[reagent_id])
-			//var/result = try_add_reagent(M, user, reagent_id, amount_to_add, show_alert = FALSE)
 			var/result = try_injection(M.reagents, user)
 			if(is_dispensing_recipe)
 				// Log every reagent injected in the recipe
@@ -161,17 +157,20 @@
 					balloon_alert(user, "\the [M] has too many reagents in [M.p_their()] system!")
 					return
 				if(BORGHYPO_ERROR_NOCHARGE)
-					var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[reagent_id]
-					balloon_alert(user, "\the [src] doesn't have enough [empty_reagent.name]!")
+					if(is_dispensing_recipe)
+						balloon_alert(user, "not enough reagents to inject full recipe!")
+					else
+						var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[reagent_id]
+						balloon_alert(user, "\the [src] doesn't have enough [empty_reagent.name]!")
 					return
 				if(BORGHYPO_ERROR_NORECIPE)
-					balloon_alert(user, "recipe not found?!")
+					balloon_alert(user, "recipe '[selected_recipe_id]' not found!")
 					return
 				else
 					if(is_dispensing_recipe)
-						balloon_alert(user, "recipe '[selected_recipe_id]' injected")
+						balloon_alert(user, "recipe '[selected_recipe_id]' injected into \the [M].")
 					else
-						balloon_alert(user, "[amount_to_add] units injected")
+						balloon_alert(user, "[amount_to_add] units injected into \the [M].")
 	return
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
@@ -391,11 +390,17 @@
 				balloon_alert(user, "\the [target] is full!")
 		if(BORGHYPO_ERROR_NOCHARGE)
 			if(is_dispensing_recipe)
-				balloon_alert(user, "not reagents to finish recipe '[selected_recipe_id]'!")
+				balloon_alert(user, "no reagents to finish recipe '[selected_recipe_id]'!")
 			else
 				var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[reagent_ids[mode]]
 				balloon_alert(user, "not enough of reagent '[empty_reagent.name]'!")
+		if(BORGHYPO_ERROR_NORECIPE)
+			balloon_alert(user, "recipe '[selected_recipe_id]' not found!")
 		else
+			if(is_dispensing_recipe)
+				balloon_alert(user, "recipe '[selected_recipe_id]' dispensed to \the [target].")
+			else
+				balloon_alert(user, "[amount_per_transfer_from_this] units dispensed to \the [target].")
 	return
 
 #undef BORGHYPO_ERROR_NOCHARGE
