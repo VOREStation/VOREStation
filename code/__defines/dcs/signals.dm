@@ -27,6 +27,8 @@
 #define COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART "!sell_supply_shuttle"
 /// Supply shuttle selling, for each item sold: (atom/movable/sold_item, sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
 #define COMSIG_GLOB_SELL_ITEM "!supply_shuttle_sell_item"
+/// Mind inserted into body, called from multiple locations: (mob/new_owner, /datum/mind/assigned_mind)
+#define COMSIG_GLOB_RESLEEVED_MIND "!resleeved_mind_into_body"
 
 
 /// signals from globally accessible objects
