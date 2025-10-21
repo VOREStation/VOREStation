@@ -15,37 +15,29 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION)
 	. = ..()
 
-/obj/machinery/doppler_array/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, took)
+/obj/machinery/doppler_array/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, seconds_taken)
 	SIGNAL_HANDLER
 
-	if(stat & NOPOWER)	return
+	if(stat & NOPOWER)
+		return
 
 	var/x0 = epicenter.x
 	var/y0 = epicenter.y
 	var/z0 = epicenter.z
-	if(z != z0)			return
+	if(!(z0 in GetConnectedZlevels(z)))
+		return
+	var/turf/our_turf = get_turf(src)
+	if(our_turf.Distance(epicenter) > 100)
+		return
 
-	var/dx = abs(x0-x)
-	var/dy = abs(y0-y)
-	var/distance
-	var/direct
+	/* There is no way to rotate these... Why?
+	var/direct = get_dir(our_turf,epicenter)
+	if(!(direct & dir))
+		return
+	*/
 
-	if(dx > dy)
-		distance = dx
-		if(x0 > x)	direct = EAST
-		else		direct = WEST
-	else
-		distance = dy
-		if(y0 > y)	direct = NORTH
-		else		direct = SOUTH
-
-	if(distance > 100)		return
-	if(!(direct & dir))	return
-
-	var/message = "Explosive disturbance detected - Epicenter at: grid ([x0],[y0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [took]seconds."
-
-	for(var/mob/O in hearers(src, null))
-		O.show_message(span_npc_say(span_name("[src]") + " states coldly, \"[message]\""),2)
+	var/message = "Explosive disturbance detected - Epicenter at: grid ([x0],[y0],[z0]). Epicenter radius: [devastation_range]. Outer radius: [heavy_impact_range]. Shockwave radius: [light_impact_range]. Temporal displacement of tachyons: [seconds_taken] seconds."
+	atom_say(span_npc_say(span_name("[src]") + " states coldly, \"[message]\""))
 
 /obj/machinery/doppler_array/power_change()
 	..()
