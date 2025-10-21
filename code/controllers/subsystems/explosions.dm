@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(explosions)
 		var/x0 	= time_dat[1]
 		var/y0 	= time_dat[2]
 		var/z0 	= time_dat[3]
-		var/turf/epicenter = locate(data[1],data[2],data[3])
+		var/turf/epicenter = locate(time_dat[1],time_dat[2],time_dat[3])
 		if(!epicenter)
 			continue
 		var/devastation_range 	= time_dat[4]
