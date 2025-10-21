@@ -42,7 +42,7 @@ export const RadiationConfig = (props) => {
                     </Stack.Item>
                   </Stack>
                 </LabeledList.Item>
-                <LabeledList.Item label="Production">
+                <LabeledList.Item label="Glow">
                   <Button.Checkbox
                     tooltip="Toggle if you glow when irradiated."
                     checked={glowing}
