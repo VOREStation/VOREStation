@@ -1,3 +1,7 @@
+#define BORGHYPO_ERROR_CONTAINERFULL "container full"
+#define BORGHYPO_ERROR_NOCHARGE "not enough charge"
+#define BORGHYPO_SUCCESS "success"
+
 /obj/item/reagent_containers/borghypo
 	name = "cyborg hypospray"
 	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
@@ -42,6 +46,24 @@
 	thick materials that other hyposprays would struggle with."
 	bypass_protection = TRUE // Because mercs tend to be in spacesuits.
 	reagent_ids = list(REAGENT_ID_HEALINGNANITES, REAGENT_ID_HYPERZINE, REAGENT_ID_TRAMADOL, REAGENT_ID_OXYCODONE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_PERIDAXON, REAGENT_ID_OSTEODAXON, REAGENT_ID_MYELAMINE, REAGENT_ID_SYNTHBLOOD)
+
+/obj/item/reagent_containers/borghypo/proc/try_add_reagent(var/atom/target, var/mob/user, var/reagent_id, var/amount, var/show_alert = TRUE)
+	var/reagent_volume = reagent_volumes[reagent_id]
+	if(!reagent_volume || reagent_volume < amount)
+		return BORGHYPO_ERROR_NOCHARGE
+
+	if(!target.reagents.get_free_space())
+		return BORGHYPO_ERROR_CONTAINERFULL
+
+	if(hypo_sound)
+		playsound(src, hypo_sound, 25)
+
+	var/amount_to_add = min(amount, reagent_volumes[reagent_id])
+	target.reagents.add_reagent(reagent_id, amount_to_add)
+	reagent_volumes[reagent_id] -= amount_to_add
+	if(show_alert)
+		balloon_alert(user, "transfered [amount_to_add] units to [target].")
+	return BORGHYPO_SUCCESS
 
 /obj/item/reagent_containers/borghypo/Initialize(mapload)
 	. = ..()
@@ -96,14 +118,20 @@
 		balloon_alert(M, "you feel a tiny prick!")
 
 		if(M.reagents)
-			var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
-			M.reagents.add_reagent(reagent_ids[mode], t)
-			reagent_volumes[reagent_ids[mode]] -= t
-			add_attack_logs(user, M, "Borg injected with [reagent_ids[mode]]")
-			to_chat(user, span_notice("[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining."))
-
-		if(hypo_sound)
-			playsound(src, hypo_sound, 25)
+			var/reagent_id = reagent_ids[mode]
+			var/amount_to_add = min(amount_per_transfer_from_this, reagent_volumes[reagent_id])
+			//M.reagents.add_reagent(reagent_ids[mode], amount_to_add)
+			var/result = try_add_reagent(M, user, reagent_id, amount_to_add, show_alert = FALSE)
+			switch(result)
+				if(BORGHYPO_ERROR_CONTAINERFULL)
+					balloon_alert(user, "\the [M] has too many reagents in [M.p_their()] system!")
+					return
+				if(BORGHYPO_ERROR_NOCHARGE)
+					var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[reagent_id]
+					balloon_alert(user, "\the [src] doesn't have enough [empty_reagent.name]!")
+					return
+			add_attack_logs(user, M, "Borg injected with [reagent_id]")
+			to_chat(user, span_notice("[amount_to_add] units injected."))
 	return
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
@@ -315,19 +343,32 @@
 	if(!target.is_open_container() || !target.reagents)
 		return
 
-	if(!reagent_volumes[reagent_ids[mode]])
-		to_chat(user, span_notice("[src] is out of this reagent, give it some time to refill."))
-		return
-
-	if(!target.reagents.get_free_space())
-		balloon_alert(user, "[target] is full!")
-		return
-
-	if(hypo_sound)
-		playsound(src, hypo_sound, 25)
-
-	var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
-	target.reagents.add_reagent(reagent_ids[mode], t)
-	reagent_volumes[reagent_ids[mode]] -= t
-	balloon_alert(user, "transfered [t] units to [target].")
+	if(is_dispensing_recipe && selected_recipe_id)
+		var/foundRecipe = saved_recipes[selected_recipe_id]
+		if(!foundRecipe)
+			to_chat(user, span_warning("Couldn't find recipe ") + span_boldwarning(selected_recipe_id) + span_warning("! Contact a coder."))
+			return
+		for(var/recipe_step in foundRecipe)
+			var/recipe_id = recipe_step["id"]
+			var/dispense_amount = recipe_step["amount"]
+			var/result = try_add_reagent(target, user, recipe_id, dispense_amount, show_alert = FALSE)
+			switch(result)
+				if(BORGHYPO_ERROR_NOCHARGE)
+					var/datum/reagent/new_reagent = SSchemistry.chemical_reagents[recipe_id]
+					to_chat(user, span_warning("[src] doesn't have enough ") + span_boldwarning(new_reagent.name) + span_warning(" to complete this recipe!"))
+					break
+				if(BORGHYPO_ERROR_CONTAINERFULL)
+					balloon_alert(user, "\the [target] is too full to finish the recipe!")
+					break
+	else
+		var/result = try_add_reagent(target, user, reagent_ids[mode], amount_per_transfer_from_this)
+		switch(result)
+			if(BORGHYPO_ERROR_NOCHARGE)
+				to_chat(user, span_notice("[src] is out of this reagent, give it some time to refill."))
+			if(BORGHYPO_ERROR_CONTAINERFULL)
+				balloon_alert(user, "\the [target] is full!")
 	return
+
+#undef BORGHYPO_ERROR_NOCHARGE
+#undef BORGHYPO_ERROR_CONTAINERFULL
+#undef BORGHYPO_SUCCESS
