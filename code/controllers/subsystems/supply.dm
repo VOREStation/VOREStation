@@ -93,7 +93,7 @@ SUBSYSTEM_DEF(supply)
 				// Selling things that are not in crates.
 				// Usually it just makes a log that it wasn't shipped properly, and so isn't worth anything
 				sold_successfully = SEND_SIGNAL(MA,COMSIG_ITEM_SOLD,EC,FALSE)
-			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SELL_ITEM, MA, sold_successfully, EC, subarea)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM, MA, sold_successfully, EC, subarea)
 
 			exported_crates += EC
 			points += EC.value

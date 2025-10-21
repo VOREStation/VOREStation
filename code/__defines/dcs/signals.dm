@@ -26,7 +26,7 @@
 /// Supply shuttle selling, before all items are sold, called by /datum/controller/subsystem/supply/proc/sell() : (/list/area/supply_shuttle_areas)
 #define COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART "!sell_supply_shuttle"
 /// Supply shuttle selling, for each item sold, called by /datum/controller/subsystem/supply/proc/sell() : (atom/movable/sold_item, sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
-#define COMSIG_GLOB_SELL_ITEM "!supply_shuttle_sell_item"
+#define COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM "!supply_shuttle_sell_item"
 /// Mind inserted into body: (mob/new_owner, /datum/mind/assigned_mind)
 #define COMSIG_GLOB_RESLEEVED_MIND "!resleeved_mind_into_body"
 /// ID card modified: (obj/item/card/id/modified_card)
