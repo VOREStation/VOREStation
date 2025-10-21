@@ -261,8 +261,7 @@
 			. = TRUE
 
 		if("clear_recipes")
-			if(tgui_alert(ui.user, "Clear all recipes?", "Clear?", list("No", "Yes")) == "Yes")
-				saved_recipes = list()
+			saved_recipes = list()
 			. = TRUE
 
 		if("save_recording")
