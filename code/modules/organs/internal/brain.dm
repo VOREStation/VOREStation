@@ -125,7 +125,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	brainmob.languages = H.languages
 
 	to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're just \a [initial(src.name)]."))
-	callHook("debrain", list(brainmob))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BRAIN_REMOVED, brainmob)
 
 /obj/item/organ/internal/brain/examine(mob/user) // -- TLE
 	. = ..()

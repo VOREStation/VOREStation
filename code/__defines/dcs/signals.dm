@@ -21,11 +21,11 @@
 /// called by datum/cinematic/play() : (datum/cinematic/new_cinematic)
 #define COMSIG_GLOB_PLAY_CINEMATIC "!play_cinematic"
 	#define COMPONENT_GLOB_BLOCK_CINEMATIC (1<<0)
-/// ingame button pressed (/obj/machinery/button/button)
+/// ingame button pressed, called by /obj/machinery/button/attack_hand() : (obj/machinery/button/button, mob/user)
 #define COMSIG_GLOB_BUTTON_PRESSED "!button_pressed"
-/// Supply shuttle selling, before all items are sold: (/list/area/supply_shuttle_areas)
+/// Supply shuttle selling, before all items are sold, called by /datum/controller/subsystem/supply/proc/sell() : (/list/area/supply_shuttle_areas)
 #define COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART "!sell_supply_shuttle"
-/// Supply shuttle selling, for each item sold: (atom/movable/sold_item, sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
+/// Supply shuttle selling, for each item sold, called by /datum/controller/subsystem/supply/proc/sell() : (atom/movable/sold_item, sold_successfully, datum/exported_crate/export_data, area/shuttle_subarea)
 #define COMSIG_GLOB_SELL_ITEM "!supply_shuttle_sell_item"
 /// Mind inserted into body: (mob/new_owner, /datum/mind/assigned_mind)
 #define COMSIG_GLOB_RESLEEVED_MIND "!resleeved_mind_into_body"
@@ -35,6 +35,8 @@
 #define COMSIG_GLOB_TERMINATE_EMPLOYEE_IDCARD "!modified_terminated_idcard"
 /// borg created: (mob/living/silicon/robot/new_robot)
 #define COMSIG_GLOB_BORGIFY "!borgify_mob"
+/// brain removed from body, called by /obj/item/organ/internal/brain/proc/transfer_identity() : (mob/living/carbon/brain/brainmob)
+#define COMSIG_GLOB_BRAIN_REMOVED "!brain_removed_from_mob"
 
 /// signals from globally accessible objects
 
