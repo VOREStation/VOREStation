@@ -6,6 +6,10 @@
 // These are signals which can be listened to by any component on any parent
 // start global signals with "!", this used to be necessary but now it's just a formatting choice
 
+/// /datum/controller/subsystem/ticker/proc/setup() : ()
+#define COMSIG_GLOB_ROUND_START "!round_start"
+/// /datum/controller/subsystem/ticker/proc/post_game_tick() : ()
+#define COMSIG_GLOB_ROUND_END "!round_end"
 ///from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)
 #define COMSIG_GLOB_NEW_Z "!new_z"
 /// called after a successful var edit somewhere in the world: (list/args)

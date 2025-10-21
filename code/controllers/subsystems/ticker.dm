@@ -212,6 +212,7 @@ SUBSYSTEM_DEF(ticker)
 	round_start_time = world.time
 	GLOB.round_start_time = REALTIMEOFDAY
 	SEND_SIGNAL(src, COMSIG_TICKER_ROUND_STARTING, world.time)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ROUND_START)
 	SSwebhooks.send(WEBHOOK_ROUNDSTART, list("url" = get_world_url()))
 
 	// Spawn randomized items
@@ -345,7 +346,8 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/post_game_tick()
 	switch(end_game_state)
 		if(END_GAME_READY_TO_END)
-			callHook("roundend")
+			callHook("roundend") // TODO, remove all hooks that use this in favor of global signal
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ROUND_END)
 
 			if (mode.station_was_nuked)
 				feedback_set_details("end_proper", "nuke")
