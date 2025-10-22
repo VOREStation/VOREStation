@@ -91,6 +91,7 @@
 		living_guy.set_light(l_range = light_range, l_power = light_power, l_color = radiation_color, l_on = TRUE)
 		living_guy.glow_override = TRUE
 
+///Handles the radiation removal, immunity, and healing effects.
 /datum/component/radiation_effects/proc/process_component()
 	SIGNAL_HANDLER
 	var/mob/living/living_guy = parent
