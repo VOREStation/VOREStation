@@ -18,6 +18,7 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 	if(isobserver(user))
 		var/mob/observer/dead/observer = user
 		observer.selecting_ghostrole = FALSE
+	qdel(src)
 
 /datum/tgui_module/ghost_spawn_menu/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	. = ..()
@@ -84,6 +85,9 @@ GLOBAL_VAR_INIT(allowed_ghost_spawns, 2)
 			. = TRUE
 		if("lost_drone_spawn")
 			join_lost(ui.user)
+			. = TRUE
+		if("maintenance_critter")
+			join_maintrcritter(ui.user)
 			. = TRUE
 		if("gravekeeper_spawn")
 			join_grave(ui.user)
