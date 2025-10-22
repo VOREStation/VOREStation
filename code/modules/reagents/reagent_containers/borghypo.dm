@@ -241,7 +241,6 @@
 				playsound(src, 'sound/effects/pop.ogg', 50, 0)
 				if(recording_recipe)
 					UNTYPED_LIST_ADD(recording_recipe, list("id" = selected_reagent.id, "amount" = amount_per_transfer_from_this))
-					balloon_alert(ui.user, "synthesizer recorded '[selected_reagent.name]'")
 				else
 					mode = new_mode
 					balloon_alert(ui.user, "synthesizer is now producing '[selected_reagent.name]'")
