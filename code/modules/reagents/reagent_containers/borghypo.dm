@@ -157,6 +157,7 @@
 				if(BORGHYPO_ERROR_NOCHARGE)
 					if(is_dispensing_recipe)
 						balloon_alert(user, "not enough reagents to inject full recipe!")
+						balloon_alert(M, "you feel multiple tiny pricks in quick succession!")
 					else
 						var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[reagent_id]
 						balloon_alert(user, "\the [src] doesn't have enough [empty_reagent.name]!")
