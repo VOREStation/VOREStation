@@ -354,6 +354,13 @@
 	..()
 	add_verb(H, /mob/living/proc/shred_limb)
 
+/datum/trait/neutral/hardfeet
+	name = "Hard Feet"	// Free protection 4 ur pawbs
+	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("flags" = NO_MINOR_CUT) //Checked the flag is only used by shard stepping.
+
 /datum/trait/neutral/trashcan
 	name = "Trash Can"
 	desc = "Allows you to dispose of some garbage on the go instead of having to look for a bin or littering like an animal."
