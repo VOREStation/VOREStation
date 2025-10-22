@@ -406,6 +406,7 @@
 	active_armourpen = 25
 	projectile_parry_chance = 40
 	colorable = TRUE
+	item_flags = DROPDEL | NOSTRIP
 
 	hitcost = 75
 

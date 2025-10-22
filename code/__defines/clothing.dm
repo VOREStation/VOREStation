@@ -168,4 +168,5 @@ NOTICE: Do not leave trailing commas!!!!
 #define POCKET_BAYSUIT \
 	/obj/item/storage/backpack, \
 	/obj/item/bluespaceradio, \
-	/obj/item/defib_kit
+	/obj/item/defib_kit, \
+	/obj/item/medigun_backpack
