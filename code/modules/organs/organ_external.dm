@@ -1034,9 +1034,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 					I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 
 			for(var/obj/item/I in src)
-				if(I.w_class <= ITEMSIZE_SMALL)
-					qdel(I)
-					continue
 				I.forceMove(droploc)
 				I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 

@@ -57,6 +57,9 @@
 	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = GLOB.robot_sprite_sheets[target.modtype]
 
 	if(target)
+		var/ui_theme = target.get_ui_theme()
+		if(ui_theme)
+			.["theme"] = ui_theme
 		.["target"] = list()
 		.["target"]["name"] = target.name
 		.["target"]["ckey"] = target.ckey

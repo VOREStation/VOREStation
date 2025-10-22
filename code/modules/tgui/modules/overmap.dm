@@ -166,6 +166,10 @@
 /datum/tgui_module/ship/fullmonty/tgui_state(mob/user)
 	return ADMIN_STATE(R_ADMIN|R_EVENT|R_DEBUG)
 
+/datum/tgui_module/ship/fullmonty/tgui_close(mob/user)
+	. = ..()
+	qdel(src)
+
 /datum/tgui_module/ship/fullmonty/New(host, obj/effect/overmap/visitable/ship/new_linked)
 	. = ..()
 	if(!istype(new_linked))

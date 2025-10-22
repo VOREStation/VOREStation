@@ -191,7 +191,7 @@
 		else
 			dark_gains = energy_light
 
-	handle_nutrition_conversion(dark_gains)
+	dark_gains = handle_nutrition_conversion(dark_gains)
 
 	shadekin_adjust_energy(dark_gains)
 
