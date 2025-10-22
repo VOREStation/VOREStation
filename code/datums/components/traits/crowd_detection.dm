@@ -63,7 +63,7 @@
 		var/ms = get_discomfort_message(discomfort)
 		if(ms)
 			to_chat(human_parent, ms)
-		next_message_time = world.time+500
+		next_message_time = world.time + 50 SECONDS
 		human_parent.fear = min((human_parent.fear + 3), 102)
 		is_calm = FALSE // We'll only get one message early
 	// Hallucinations
@@ -123,7 +123,7 @@
 			to_chat(human_parent, message)
 		if(discomfort < MIN_DISCOMFORT_MESSAGE)
 			is_calm = TRUE
-		next_message_time = world.time+500
+		next_message_time = world.time + 50 SECONDS
 
 /datum/component/crowd_detection/proc/find_held_by(atom/item)
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -200,6 +200,7 @@
 
 /datum/component/crowd_detection/lonely/get_discomfort_message(var/current_discomfort)
 	if(current_discomfort >= warning_cap)
+		human_parent.stuttering += 25
 		return span_danger(span_bold(pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")))
 	if(current_discomfort >= 250)
 		if(human_parent.stuttering < hallucination_cap)
@@ -246,6 +247,7 @@
 
 /datum/component/crowd_detection/agoraphobia/get_discomfort_message( current_discomfort)
 	if(current_discomfort >= warning_cap)
+		human_parent.stuttering += 25
 		return span_bolddanger(pick("Why am I still here? I have to leave and get some space!",
 									"Please, just let me be alone!",
 									"I need to be alone!"))
