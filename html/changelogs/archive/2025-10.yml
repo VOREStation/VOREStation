@@ -212,3 +212,20 @@
       for spawn chances. the new spawner also has a high-vis icon so that it won't
       be difficult for ghosts to spot if they're just scrolling around with darkness
       enabled.
+2025-10-21:
+  Kashargul:
+  - bugfix: free ghost role slot spawn
+  - bugfix: casino sentient price item tf getting enabled when one closes the ui
+  - admin: fix log access for devs and mods
+  VOREStation:
+  - balance: Disables Unlucky Major
+2025-10-22:
+  Guti:
+  - bugfix: Fixed itch symptom making the infected to mlem instead
+  Kashargul:
+  - code_imp: rust g to 4.1.0
+  - qol: moves robot sleepers to tgui
+  - qol: Robot decals and animations now use a TGUI ui for easy toggling
+  NickBelmont:
+  - bugfix: Exploit where console screens would count for all stock part benchmark
+      experiments.

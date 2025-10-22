@@ -52,6 +52,7 @@
 		QDEL_NULL(idcard)
 	if(laws)
 		QDEL_NULL(laws)
+	clear_subsystems()
 	return ..()
 
 /mob/living/silicon/proc/init_id()
