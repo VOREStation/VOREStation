@@ -847,7 +847,7 @@
 	cost = -5
 	tutorial = "You should avoid disposal bins."
 	is_genetrait = TRUE
-	hidden = FALSE
+	hidden = TRUE //VOREStation Note: Disabled
 	added_component_path = /datum/component/omen/trait/major
 	excludes = list(/datum/trait/negative/unlucky)
 	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
@@ -898,4 +898,3 @@
 
 		else if(istype(ex_organ, /obj/item/organ/external/chest))
 			ex_organ.encased = FALSE
-
