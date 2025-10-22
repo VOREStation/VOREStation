@@ -136,8 +136,6 @@
 		*/
 
 	if(M.can_inject(user, 1, ignore_thickness = bypass_protection))
-		balloon_alert(user, "you inject [M] with the injector.")
-		balloon_alert(M, "you feel a tiny prick!")
 
 		if(M.reagents)
 			var/reagent_id = reagent_ids[mode]
@@ -169,8 +167,10 @@
 				else
 					if(is_dispensing_recipe)
 						balloon_alert(user, "recipe '[selected_recipe_id]' injected into \the [M].")
+						balloon_alert(M, "you feel multiple tiny pricks in quick succession!")
 					else
 						balloon_alert(user, "[amount_to_add] units injected into \the [M].")
+						balloon_alert(M, "you feel a tiny prick!")
 	return
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
