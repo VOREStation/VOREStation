@@ -1802,6 +1802,7 @@
 	cost = 0
 	has_preferences = list("glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_VAREDIT_TARGET_MOB, "#c3f314"))
 	added_component_path = /datum/component/radiation_effects
+	excludes = list(/datum/trait/positive/radioactive_heal)
 
 /datum/trait/neutral/glowing_radiation/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
