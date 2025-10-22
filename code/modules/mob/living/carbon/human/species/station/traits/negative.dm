@@ -918,16 +918,6 @@
 	var_changes = list("minimum_breath_pressure" = 18)
 	excludes = list(/datum/trait/positive/light_breather)
 
-/datum/trait/negative/thick_digits
-	name = "Thick Digits"
-	desc = "Your hands are not shaped in a way that allows useage of guns."
-	cost = -4
-	custom_only = FALSE
-
-/datum/trait/negative/thick_digits/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..()
-	H.add_modifier(/datum/modifier/trait/thickdigits)
-
 /datum/trait/negative/faultwires
 	name = "Faulty Wires"
 	desc = "Due to poor construction, you have an unfortante weakness to EMPs."
