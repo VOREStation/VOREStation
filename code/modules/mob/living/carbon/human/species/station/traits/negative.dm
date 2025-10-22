@@ -621,6 +621,17 @@
 	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
 	primitive_expression_messages=list("unluckily stubs their toe!")
 
+/datum/trait/negative/heavy_landing
+	name = "Heavy Landing"
+	desc = "Your heavy frame causes you to crash heavily when falling from heights. The bigger they are, the harder they fall!"
+	cost = -1
+	var_changes = list("soft_landing" = FALSE) //override soft landing if the species would otherwise start with it
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/soft_landing)
+
+/datum/trait/negative/heavy_landing/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	ADD_TRAIT(H, TRAIT_HEAVY_LANDING, ROUNDSTART_TRAIT)
 
 /*
  * So, I know what you're thinking.
