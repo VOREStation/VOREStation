@@ -565,7 +565,6 @@
 	for(var/obj/item/organ/external/organ in H.organs)
 		if(istype(organ))
 			organ.min_broken_damage *= 1.5
-			organ.brokenpain *= 2
 
 /datum/trait/positive/lowpressureresminor // Same as original trait with cost reduced, much more useful as filler.
 	name = "Low Pressure Resistance, Minor"
