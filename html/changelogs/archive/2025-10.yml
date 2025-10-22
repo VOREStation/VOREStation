@@ -219,3 +219,13 @@
   - admin: fix log access for devs and mods
   VOREStation:
   - balance: Disables Unlucky Major
+2025-10-22:
+  Guti:
+  - bugfix: Fixed itch symptom making the infected to mlem instead
+  Kashargul:
+  - code_imp: rust g to 4.1.0
+  - qol: moves robot sleepers to tgui
+  - qol: Robot decals and animations now use a TGUI ui for easy toggling
+  NickBelmont:
+  - bugfix: Exploit where console screens would count for all stock part benchmark
+      experiments.
