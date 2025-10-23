@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - qol: "Robot decals and animations now use a TGUI ui for easy toggling"

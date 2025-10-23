@@ -208,6 +208,7 @@
 	cost = 1
 	var_changes = list("soft_landing" = TRUE)
 	custom_only = FALSE
+	excludes = list(/datum/trait/negative/heavy_landing)
 
 /datum/trait/positive/antiseptic_saliva
 	name = "Antiseptic Saliva"
