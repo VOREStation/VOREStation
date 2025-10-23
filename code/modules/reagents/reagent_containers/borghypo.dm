@@ -48,23 +48,23 @@
 	bypass_protection = TRUE // Because mercs tend to be in spacesuits.
 	reagent_ids = list(REAGENT_ID_HEALINGNANITES, REAGENT_ID_HYPERZINE, REAGENT_ID_TRAMADOL, REAGENT_ID_OXYCODONE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_PERIDAXON, REAGENT_ID_OSTEODAXON, REAGENT_ID_MYELAMINE, REAGENT_ID_SYNTHBLOOD)
 
-/obj/item/reagent_containers/borghypo/proc/try_add_reagent(var/atom/target, var/mob/user, var/reagent_id, var/amount)
+/obj/item/reagent_containers/borghypo/proc/try_add_reagent(var/datum/reagents/target_reagents, var/mob/user, var/reagent_id, var/amount)
 	var/reagent_volume = reagent_volumes[reagent_id]
 	if(!reagent_volume || reagent_volume < amount)
 		return BORGHYPO_ERROR_NOCHARGE
 
-	if(!target.reagents.get_free_space())
+	if(!target_reagents.get_free_space())
 		return BORGHYPO_ERROR_CONTAINERFULL
 
 	if(hypo_sound)
 		playsound(src, hypo_sound, 25, TRUE)
 
 	var/amount_to_add = min(amount, reagent_volumes[reagent_id])
-	target.reagents.add_reagent(reagent_id, amount_to_add)
+	target_reagents.add_reagent(reagent_id, amount_to_add)
 	reagent_volumes[reagent_id] -= amount_to_add
 	return BORGHYPO_SUCCESS
 
-/obj/item/reagent_containers/borghypo/proc/try_injection(var/atom/target, var/mob/user)
+/obj/item/reagent_containers/borghypo/proc/try_injection(var/datum/reagents/target_reagents, var/mob/user)
 	if(is_dispensing_recipe && selected_recipe_id)
 		// Add reagents with our selected ID
 		var/foundRecipe = saved_recipes[selected_recipe_id]
@@ -74,7 +74,7 @@
 		for(var/recipe_step in foundRecipe)
 			var/step_reagent_id = recipe_step["id"]
 			var/step_dispense_amount = recipe_step["amount"]
-			var/result = try_add_reagent(target, user, step_reagent_id, step_dispense_amount)
+			var/result = try_add_reagent(target_reagents, user, step_reagent_id, step_dispense_amount)
 			switch(result)
 				if(BORGHYPO_ERROR_CONTAINERFULL)
 					return result
@@ -85,7 +85,7 @@
 		return BORGHYPO_SUCCESS
 	else
 		// Just add reagents
-		return try_add_reagent(target, user, reagent_ids[mode], amount_per_transfer_from_this)
+		return try_add_reagent(target_reagents, user, reagent_ids[mode], amount_per_transfer_from_this)
 
 /obj/item/reagent_containers/borghypo/Initialize(mapload)
 	. = ..()
@@ -117,10 +117,6 @@
 
 /obj/item/reagent_containers/borghypo/attack(var/mob/living/M, var/mob/user)
 	if(!istype(M))
-		return
-
-	if(!reagent_volumes[reagent_ids[mode]])
-		balloon_alert(user, "the injector is empty.")
 		return
 
 	var/mob/living/carbon/human/H = M
@@ -381,7 +377,7 @@
 	if(!target.is_open_container() || !target.reagents)
 		return
 
-	var/result = try_injection(target, user)
+	var/result = try_injection(target.reagents, user)
 	switch(result)
 		if(BORGHYPO_ERROR_CONTAINERFULL)
 			if(is_dispensing_recipe)
