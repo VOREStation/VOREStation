@@ -568,10 +568,10 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define SHELTER_DEPLOY_SHIP_SPACE "ship not in space"
 
 // Borg hypo injection checks
-#define BORGHYPO_ERROR_CONTAINERFULL "container full"
-#define BORGHYPO_ERROR_NOCHARGE "not enough charge"
-#define BORGHYPO_ERROR_NORECIPE "recipe not found"
-#define BORGHYPO_SUCCESS "success"
+#define BORGHYPO_STATUS_CONTAINERFULL "container full"
+#define BORGHYPO_STATUS_NOCHARGE "not enough charge"
+#define BORGHYPO_STATUS_NORECIPE "recipe not found"
+#define BORGHYPO_STATUS_SUCCESS "success"
 
 #define PTO_SECURITY		"Security"
 #define PTO_MEDICAL			"Medical"

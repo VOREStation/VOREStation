@@ -60,10 +60,10 @@
 /obj/item/reagent_containers/borghypo/proc/try_add_reagent(var/datum/reagents/target_reagents, var/mob/user, var/reagent_id, var/amount)
 	var/reagent_volume = reagent_volumes[reagent_id]
 	if(!reagent_volume || reagent_volume < amount)
-		return BORGHYPO_ERROR_NOCHARGE
+		return BORGHYPO_STATUS_NOCHARGE
 
 	if(!target_reagents.get_free_space())
-		return BORGHYPO_ERROR_CONTAINERFULL
+		return BORGHYPO_STATUS_CONTAINERFULL
 
 	if(hypo_sound)
 		playsound(src, hypo_sound, 25, TRUE)
@@ -71,7 +71,7 @@
 	var/amount_to_add = min(amount, reagent_volumes[reagent_id])
 	target_reagents.add_reagent(reagent_id, amount_to_add)
 	reagent_volumes[reagent_id] -= amount_to_add
-	return BORGHYPO_SUCCESS
+	return BORGHYPO_STATUS_SUCCESS
 
 /// Attempts to add one reagent or multiple reagents, depending on if this hypo is currently set to dispense a recipe, (see `is_dispensing_recipe`.) Returns its success (or error) status at doing so.
 /obj/item/reagent_containers/borghypo/proc/try_injection(var/datum/reagents/target_reagents, var/mob/user)
@@ -80,19 +80,19 @@
 		var/foundRecipe = saved_recipes[selected_recipe_id]
 		if(!foundRecipe)
 			to_chat(user, span_warning("Couldn't find recipe ") + span_boldwarning(selected_recipe_id) + span_warning("! Contact a coder."))
-			return BORGHYPO_ERROR_NORECIPE
+			return BORGHYPO_STATUS_NORECIPE
 		for(var/recipe_step in foundRecipe)
 			var/step_reagent_id = recipe_step["id"]
 			var/step_dispense_amount = recipe_step["amount"]
 			var/result = try_add_reagent(target_reagents, user, step_reagent_id, step_dispense_amount)
 			switch(result)
-				if(BORGHYPO_ERROR_CONTAINERFULL)
+				if(BORGHYPO_STATUS_CONTAINERFULL)
 					return result
-				if(BORGHYPO_ERROR_NOCHARGE)
+				if(BORGHYPO_STATUS_NOCHARGE)
 					var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[step_reagent_id]
 					to_chat(user, span_warning("[src] doesn't have enough ") + span_boldwarning(empty_reagent.name) + span_warning(" to complete this recipe!"))
 					return result
-		return BORGHYPO_SUCCESS
+		return BORGHYPO_STATUS_SUCCESS
 	else
 		// Just add reagents
 		return try_add_reagent(target_reagents, user, reagent_ids[mode], amount_per_transfer_from_this)
@@ -157,10 +157,10 @@
 			else
 				add_attack_logs(user, M, "Borg injected with [amount_to_add] units of '[reagent_id]'")
 			switch(result)
-				if(BORGHYPO_ERROR_CONTAINERFULL)
+				if(BORGHYPO_STATUS_CONTAINERFULL)
 					balloon_alert(user, "\the [M] has too many reagents in [M.p_their()] system!")
 					return
-				if(BORGHYPO_ERROR_NOCHARGE)
+				if(BORGHYPO_STATUS_NOCHARGE)
 					if(is_dispensing_recipe)
 						balloon_alert(user, "not enough reagents to inject full recipe!")
 						balloon_alert(M, "you feel multiple tiny pricks in quick succession!")
@@ -168,7 +168,7 @@
 						var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[reagent_id]
 						balloon_alert(user, "\the [src] doesn't have enough [empty_reagent.name]!")
 					return
-				if(BORGHYPO_ERROR_NORECIPE)
+				if(BORGHYPO_STATUS_NORECIPE)
 					balloon_alert(user, "recipe '[selected_recipe_id]' not found!")
 					return
 				else
@@ -391,18 +391,18 @@
 
 	var/result = try_injection(target.reagents, user)
 	switch(result)
-		if(BORGHYPO_ERROR_CONTAINERFULL)
+		if(BORGHYPO_STATUS_CONTAINERFULL)
 			if(is_dispensing_recipe)
 				balloon_alert(user, "\the [target] is too full to finish the recipe!")
 			else
 				balloon_alert(user, "\the [target] is full!")
-		if(BORGHYPO_ERROR_NOCHARGE)
+		if(BORGHYPO_STATUS_NOCHARGE)
 			if(is_dispensing_recipe)
 				balloon_alert(user, "no reagents to finish recipe '[selected_recipe_id]'!")
 			else
 				var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[reagent_ids[mode]]
 				balloon_alert(user, "not enough of reagent '[empty_reagent.name]'!")
-		if(BORGHYPO_ERROR_NORECIPE)
+		if(BORGHYPO_STATUS_NORECIPE)
 			balloon_alert(user, "recipe '[selected_recipe_id]' not found!")
 		else
 			if(is_dispensing_recipe)
