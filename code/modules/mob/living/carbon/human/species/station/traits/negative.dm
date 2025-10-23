@@ -709,7 +709,7 @@
 	cost = -3
 	custom_only = FALSE
 	can_take = SYNTHETICS
-	var_changes = list("emp_dmg_mod" = 1.3, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE))
+	var_changes = list("emp_dmg_mod" = 1.3, "emp_stun_mod" = 1.3, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE))
 	excludes = list(/datum/trait/negative/poorconstruction, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
 
 /datum/trait/negative/faultwires/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -722,7 +722,7 @@
 	cost = -5
 	custom_only = FALSE
 	can_take = SYNTHETICS
-	var_changes = list("emp_dmg_mod" = 1.6, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE | EMP_WEAKEN))
+	var_changes = list("emp_dmg_mod" = 1.6, "emp_stun_mod" = 1.6, "emp_sensitivity" = (EMP_BLIND | EMP_DEAFEN | EMP_BRUTE_DMG | EMP_BURN_DMG | EMP_CONFUSE | EMP_WEAKEN))
 	excludes = list(/datum/trait/negative/faultwires, /datum/trait/positive/emp_resist, /datum/trait/positive/emp_resist_major)
 
 /datum/trait/negative/poorconstruction/apply(var/datum/species/S,var/mob/living/carbon/human/H)
