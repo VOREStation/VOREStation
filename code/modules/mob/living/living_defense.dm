@@ -164,8 +164,7 @@
 /mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	  return 0 //only carbon liveforms have this proc
 
-/mob/living/emp_act(severity)
-	var/list/L = src.get_contents()
+/mob/living/emp_act(severity, recursive)
 
 	if(LAZYLEN(modifiers))
 		for(var/datum/modifier/M in modifiers)
@@ -174,9 +173,6 @@
 
 	if(severity == 5)	// Effectively nullified.
 		return
-
-	for(var/obj/O in L)
-		O.emp_act(severity)
 	..()
 
 /mob/living/blob_act(var/obj/structure/blob/B)

@@ -426,7 +426,7 @@
 		return
 	go_out()
 
-/obj/machinery/sleeper/emp_act(var/severity)
+/obj/machinery/sleeper/emp_act(severity, recursive)
 	if(filtering)
 		toggle_filter()
 
@@ -434,13 +434,13 @@
 		toggle_pump()
 
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	if(occupant)
 		go_out()
 
-	..(severity)
+	..(severity, recursive)
 /obj/machinery/sleeper/proc/toggle_filter()
 	if(!occupant || !beaker)
 		filtering = 0
