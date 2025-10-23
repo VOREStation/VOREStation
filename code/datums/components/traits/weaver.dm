@@ -22,19 +22,23 @@
 		add_verb(owner, /mob/living/carbon/human/proc/enter_cocoon)
 
 	//Processing
-	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process_component))
 /datum/component/weaver/proc/process_component()
 	if (QDELETED(parent))
 		return
 	process_weaver_silk()
 
 /datum/component/weaver/Destroy(force = FALSE)
-	UnregisterSignal(owner, COMSIG_LIVING_LIFE) //IF we registered a signal, we need to unregister it.
 	remove_verb(owner, /mob/living/proc/weaver_control_panel)
 	if(ishuman(parent))
 		remove_verb(owner, /mob/living/carbon/human/proc/enter_cocoon)
 	owner = null
 	. = ..()
+
+/datum/component/weaver/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(process_component))
+
+/datum/component/weaver/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_LIVING_LIFE))
 
 /datum/component/weaver/proc/process_weaver_silk()
 	if(silk_reserve < silk_max_reserve && silk_production == TRUE && owner.nutrition > 100)

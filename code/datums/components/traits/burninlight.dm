@@ -1,5 +1,4 @@
 /datum/component/burninlight
-	var/mob/living/owner
 	// This is a merge of the old shadow species light burning life code, and Zaddat's handle_environment_special() proc.
 	// It handles both cases, but shadows behave more like Zaddat do now. By default this code follows Zaddat damage with no healing.
 	var/threshold = 0.2 // percent from 0 to 1
@@ -15,12 +14,17 @@
 /datum/component/burninlight/Initialize()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
-	owner = parent
-	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process_component))
+
+/datum/component/burninlight/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_LIVING_LIFE, PROC_REF(process_component))
+
+/datum/component/burninlight/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_LIVING_LIFE))
 
 /datum/component/burninlight/proc/process_component()
 	if(QDELETED(parent))
 		return
+	var/mob/living/owner = parent
 	if(owner.stat == DEAD)
 		return
 	if(owner.is_incorporeal())
@@ -51,8 +55,3 @@
 	// heal in the dark, if possible
 	else if(heal_rate > 0)
 		owner.heal_overall_damage(heal_rate,heal_rate)
-
-/datum/component/burninlight/Destroy(force = FALSE)
-	UnregisterSignal(owner, COMSIG_LIVING_LIFE)
-	owner = null
-	. = ..()
