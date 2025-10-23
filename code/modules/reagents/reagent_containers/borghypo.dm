@@ -14,7 +14,7 @@
 	volume = 30
 	max_transfer_amount = 10
 
-	/// The single chemical we have currently selected. Used to index `reagent_volumes` and `reagent_names`.
+	/// The single chemical we have currently selected. Used to index `reagent_volumes`, `reagent_names`, and `reagent_ids`.
 	var/mode = 1
 	/// Amount of power this hypo will remove from the robot user's internal cell when a reagent's stores are replenished.
 	var/charge_cost = 50
