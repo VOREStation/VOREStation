@@ -14,22 +14,35 @@
 	volume = 30
 	max_transfer_amount = 10
 
+	/// The single chemical we have currently selected. Used to index `reagent_volumes` and `reagent_names`.
 	var/mode = 1
+	/// Amount of power this hypo will remove from the robot user's internal cell when a reagent's stores are replenished.
 	var/charge_cost = 50
 	var/charge_tick = 0
-	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
-	var/bypass_protection = FALSE // If true, can inject through things like spacesuits and armor.
-	var/is_dispensing_drinks = FALSE // Affects whether the TGUI will display itself as a chem or drink dispenser.
-	var/ui_chemical_search // Chem search bar contents
-	var/is_dispensing_recipe = FALSE // Whether or not we're dispensing just a reagent or are dispensing reagents via a recipe
-	var/selected_recipe_id // The recipe we will dispense if the above is TRUE
+	/// Time it takes for shots to recharge (in seconds)
+	var/recharge_time = 5
+	/// If true, can inject through things like spacesuits and armor.
+	var/bypass_protection = FALSE
+	/// Affects whether the TGUI will display itself as a chem or drink dispenser.
+	var/is_dispensing_drinks = FALSE
+	/// String contents in the TGUI search bar.
+	var/ui_chemical_search
+	/// Whether or not we're dispensing just a single reagent or are dispensing multiple reagents via a recipe
+	var/is_dispensing_recipe = FALSE
+	/// The recipe we will dispense if `is_dispensing_recipe` is `TRUE`
+	var/selected_recipe_id
 	var/hypo_sound = 'sound/effects/hypospray.ogg'	// What sound do we play on use?
 
 	var/list/reagent_ids = list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_INAPROVALINE, REAGENT_ID_ANTITOXIN, REAGENT_ID_TRAMADOL, REAGENT_ID_DEXALIN ,REAGENT_ID_SPACEACILLIN)
+	/// Associated list of how many units of each reagent we have. Indexed via the reagent's ID.
 	var/list/reagent_volumes = list()
+	/// Associated list of the names of each of our reagents. Indexed via `mode`.
 	var/list/reagent_names = list()
+	/// If we're currently recording a recipe, this will be set to a list containing the recipe's steps.
 	var/list/recording_recipe
+	/// Associated list of the recipes we have saved. Indexed via the string ID of the recipe.
 	var/list/saved_recipes = list()
+	/// In the hypo's TGUI, this determines the amount buttons that will be available to change this hypo's transfer amount.
 	var/list/transfer_amounts = list(5, 10)
 
 /obj/item/reagent_containers/borghypo/surgeon
@@ -48,6 +61,7 @@
 	bypass_protection = TRUE // Because mercs tend to be in spacesuits.
 	reagent_ids = list(REAGENT_ID_HEALINGNANITES, REAGENT_ID_HYPERZINE, REAGENT_ID_TRAMADOL, REAGENT_ID_OXYCODONE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_PERIDAXON, REAGENT_ID_OSTEODAXON, REAGENT_ID_MYELAMINE, REAGENT_ID_SYNTHBLOOD)
 
+/// Performs a single reagent addition. Returns its success (or error) status at doing so.
 /obj/item/reagent_containers/borghypo/proc/try_add_reagent(var/datum/reagents/target_reagents, var/mob/user, var/reagent_id, var/amount)
 	var/reagent_volume = reagent_volumes[reagent_id]
 	if(!reagent_volume || reagent_volume < amount)
@@ -64,6 +78,7 @@
 	reagent_volumes[reagent_id] -= amount_to_add
 	return BORGHYPO_SUCCESS
 
+/// Attempts to add one reagent or multiple reagents, depending on if this hypo is currently set to dispense a recipe, (see `is_dispensing_recipe`.) Returns its success (or error) status at doing so.
 /obj/item/reagent_containers/borghypo/proc/try_injection(var/datum/reagents/target_reagents, var/mob/user)
 	if(is_dispensing_recipe && selected_recipe_id)
 		// Add reagents with our selected ID
@@ -174,6 +189,7 @@
 	tgui_interact(user)
 	return
 
+/* No longer necessary because we use TGUI for this now!
 /obj/item/reagent_containers/borghypo/Topic(var/href, var/list/href_list)
 	if(href_list["reagent"])
 		var/t = reagent_ids.Find(href_list["reagent"])
@@ -182,6 +198,7 @@
 			mode = t
 			var/datum/reagent/new_reagent = SSchemistry.chemical_reagents[reagent_ids[mode]]
 			balloon_alert(usr, "synthesizer is now producing '[new_reagent.name]'")
+*/
 
 /obj/item/reagent_containers/borghypo/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
 	. = ..()
@@ -398,8 +415,3 @@
 			else
 				balloon_alert(user, "[amount_per_transfer_from_this] units dispensed to \the [target].")
 	return
-
-#undef BORGHYPO_ERROR_NOCHARGE
-#undef BORGHYPO_ERROR_CONTAINERFULL
-#undef BORGHYPO_ERROR_NORECIPE
-#undef BORGHYPO_SUCCESS
