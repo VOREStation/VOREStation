@@ -640,48 +640,12 @@
 	H.mob_size = MOB_LARGE
 	H.mob_bump_flag = HEAVY
 
-//TODO: Convert this to a component.
 /datum/trait/positive/absorbent
 	name = "Absorbent"
 	desc = "You are able to clean messes just by walking over them, and gain nutrition from doing so!"
 	cost = 1
-	special_env = TRUE
 	excludes = list(/datum/trait/negative/slipperydirt)
-
-/datum/trait/positive/absorbent/handle_environment_special(var/mob/living/carbon/human/H)
-	var/turf/T = get_turf(H)
-	if(istype(T))
-		if(!(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
-			for(var/obj/O in T)
-				if(O.wash(CLEAN_WASH))
-					H.adjust_nutrition(rand(5, 15))
-			if (istype(T, /turf/simulated))
-				var/turf/simulated/S = T
-				if(T.wash(CLEAN_WASH))
-					H.adjust_nutrition(rand(10, 20))
-				if(S.dirt > 50)
-					S.dirt = 0
-					H.adjust_nutrition(rand(10, 20))
-		if(H.wash(CLEAN_WASH))
-			H.adjust_nutrition(rand(5, 15))
-		if(H.r_hand)
-			if(H.r_hand.wash(CLEAN_WASH))
-				H.adjust_nutrition(rand(5, 15))
-		if(H.l_hand)
-			if(H.l_hand.wash(CLEAN_WASH))
-				H.adjust_nutrition(rand(5, 15))
-		if(H.head)
-			if(H.head.wash(CLEAN_WASH))
-				H.update_inv_head(0)
-				H.adjust_nutrition(rand(5, 15))
-		if(H.wear_suit)
-			if(H.wear_suit.wash(CLEAN_WASH))
-				H.update_inv_wear_suit(0)
-				H.adjust_nutrition(rand(5, 15))
-		if(H.w_uniform)
-			if(H.w_uniform.wash(CLEAN_WASH))
-				H.update_inv_w_uniform(0)
-				H.adjust_nutrition(rand(5, 15))
+	added_component_path = /datum/component/absorbent
 
 /datum/trait/positive/adrenaline_rush
 	name = "Adrenaline Rush"
