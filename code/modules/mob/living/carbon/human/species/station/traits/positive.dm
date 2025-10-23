@@ -865,7 +865,7 @@
 
 /datum/trait/positive/toxin_gut/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
-	H.toxin_gut = TRUE
+	ADD_TRAIT(H, INGESTED_TOXIN_IMMUNE, ROUNDSTART_TRAIT)
 
 /datum/trait/positive/nobreathe
 	name = "Breathless"
