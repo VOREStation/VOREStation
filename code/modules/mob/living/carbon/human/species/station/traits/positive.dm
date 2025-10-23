@@ -119,7 +119,7 @@
 
 /datum/trait/positive/darksight
 	name = "Darksight"
-	desc = "Allows you to see signifigantly further in the dark and be 10% more susceptible to flashes."
+	desc = "Allows you to see significantly further in the dark and be 10% more susceptible to flashes."
 	cost = 1
 	var_changes = list("darksight" = 5, "flash_mod" = 1.1)
 	custom_only = FALSE
