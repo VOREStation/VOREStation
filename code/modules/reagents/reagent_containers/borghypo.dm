@@ -1,8 +1,3 @@
-#define BORGHYPO_ERROR_CONTAINERFULL "container full"
-#define BORGHYPO_ERROR_NOCHARGE "not enough charge"
-#define BORGHYPO_ERROR_NORECIPE "recipe not found"
-#define BORGHYPO_SUCCESS "success"
-
 /obj/item/reagent_containers/borghypo
 	name = "cyborg hypospray"
 	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
