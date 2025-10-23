@@ -1,7 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "Releasing prey, that themselves contain prey, will correctly update their remote view to follow the released mob"
-  - bugfix: "Fixes view release on the correct recharger"
-  - bugfix: "Meson and other vision goggles work in mechs again"
-  - bugfix: "canceling remote view while inside a cryopod or long distance teleporter no longer locks your view to it"
