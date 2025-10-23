@@ -259,6 +259,11 @@
 			amount_per_transfer_from_this = clamp(round(text2num(params["amount"]), 1), min_transfer_amount, max_transfer_amount) // Round to nearest 1, clamp between min and max transfer amount
 			. = TRUE
 
+		if("import_config")
+			. = TRUE
+			var/our_data = params["config"]
+			saved_recipes = our_data
+
 		if("record_recipe")
 			recording_recipe = list()
 			. = TRUE

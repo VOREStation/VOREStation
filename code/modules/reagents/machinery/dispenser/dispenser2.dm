@@ -202,6 +202,11 @@
 				container = null
 			. = TRUE
 
+		if("import_config")
+			. = TRUE
+			var/our_data = params["config"]
+			saved_recipes = our_data
+
 		if("record_recipe")
 			recording_recipe = list()
 			. = TRUE

@@ -1,5 +1,7 @@
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
+import { handleImportData } from '../PlushieEditor/function';
+import { exportRecipes } from './functions';
 import type { Recipe } from './types';
 
 export const ChemDispenserRecipes = (props: {
@@ -80,17 +82,35 @@ export const ChemDispenserRecipes = (props: {
             </Stack.Item>
           )}
           {!isRecording && (
-            <Stack.Item>
-              <Button.Confirm
-                icon="trash"
-                confirmIcon="trash"
-                color="bad"
-                //onClick={() => act('clear_recipes')}
-                onClick={clearAct}
-              >
-                Clear All
-              </Button.Confirm>
-            </Stack.Item>
+            <>
+              <Stack.Item>
+                <Button.File
+                  accept=".json"
+                  tooltip="Import recipes"
+                  icon="file-alt"
+                  onSelectFiles={(files) => handleImportData(files)}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  icon="download"
+                  tooltip="Export recipes"
+                  disabled={!recipeData.length}
+                  onClick={() => exportRecipes(recipes)}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button.Confirm
+                  icon="trash"
+                  confirmIcon="trash"
+                  color="bad"
+                  //onClick={() => act('clear_recipes')}
+                  onClick={clearAct}
+                >
+                  Clear All
+                </Button.Confirm>
+              </Stack.Item>
+            </>
           )}
         </Stack>
       }
