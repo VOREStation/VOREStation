@@ -907,7 +907,7 @@
 
 	can_take = SYNTHETICS
 	custom_only = FALSE
-	var_changes = list("emp_dmg_mod" = 0.7)
+	var_changes = list("emp_dmg_mod" = 0.7, "emp_stun_mod" = 0.7)
 	excludes = list(/datum/trait/negative/faultwires, /datum/trait/negative/poorconstruction, /datum/trait/positive/emp_resist_major)
 
 /datum/trait/positive/emp_resist/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -921,7 +921,7 @@
 
 	can_take = SYNTHETICS
 	custom_only = FALSE
-	var_changes = list("emp_dmg_mod" = 0.5)
+	var_changes = list("emp_dmg_mod" = 0.5, "emp_stun_mod" = 0.5)
 	excludes = list(/datum/trait/negative/faultwires, /datum/trait/negative/poorconstruction, /datum/trait/positive/emp_resist)
 
 /datum/trait/positive/emp_resist_major/apply(var/datum/species/S,var/mob/living/carbon/human/H)
