@@ -133,25 +133,25 @@
 		return 1
 	return 0
 
-/obj/vehicle/bike/Move(var/turf/destination)
+/obj/vehicle/bike/Move(atom/newloc, direct = 0, movetime)
 	if(kickstand) return 0
 
 	if(on && (!cell || cell.charge < charge_use))
 		turn_off()
 		visible_message(span_warning("\The [src] whines, before its engines wind down."))
-		return 0
+		return FALSE
 
 	//these things like space, not turf. Dragging shouldn't weigh you down.
 	if(on && cell)
 		cell.use(charge_use)
 
-	if(istype(destination,/turf/space) || istype(destination, /turf/simulated/floor/water) || pulledby)
+	if(isnonsolidturf(newloc) || pulledby)
 		if(!space_speed)
-			return 0
+			return FALSE
 		move_delay = space_speed
 	else
 		if(!land_speed)
-			return 0
+			return FALSE
 		move_delay = land_speed
 	return ..()
 

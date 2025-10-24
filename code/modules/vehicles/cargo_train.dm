@@ -51,7 +51,7 @@
 	update_icon()
 	turn_off()	//so engine verbs are correctly set
 
-/obj/vehicle/train/engine/Move(var/turf/destination)
+/obj/vehicle/train/engine/Move(atom/newloc, direct = 0, movetime)
 	if(on && cell.charge < charge_use)
 		turn_off()
 		update_stats()
@@ -59,11 +59,11 @@
 			to_chat(load, "The drive motor briefly whines, then drones to a stop.")
 
 	if(is_train_head() && !on)
-		return 0
+		return FALSE
 
 	//space check ~no flying space trains sorry
-	if(on && istype(destination, /turf/space))
-		return 0
+	if(on && isnonsolidturf(newloc))
+		return FALSE
 
 	return ..()
 
@@ -156,7 +156,7 @@
 		verbs += /obj/vehicle/train/engine/verb/stop_engine
 
 /obj/vehicle/train/RunOver(var/mob/living/M)
-	if(pulledby == M) // VOREstation edit: Don't destroy people pulling vehicles up stairs
+	if(pulledby == M) // Don't destroy people pulling vehicles up stairs
 		return
 
 	var/list/parts = list(BP_HEAD, BP_TORSO, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
@@ -397,7 +397,6 @@
 	else
 		anchored = TRUE
 
-// VOREStation Edit Start - Overlay stuff for the chair-like effect
 /obj/vehicle/train/engine/update_icon()
 	..()
 	cut_overlays()
@@ -409,7 +408,6 @@
 /obj/vehicle/train/engine/set_dir()
 	..()
 	update_icon()
-// VOREStation Edit End - Overlay stuff for the chair-like effect
 
 //-------------------------------------------------------
 // Cargo tugs for reagent transport from chemical refinery

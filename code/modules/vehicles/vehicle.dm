@@ -69,21 +69,20 @@
 		riding_datum.restore_position(buckled_mob)
 		riding_datum.handle_vehicle_offsets() // So the person in back goes to the front.
 
-/obj/vehicle/Move(var/newloc, var/direction, var/movetime)
-	// VOREstation edit - Zmoving for falling
+/obj/vehicle/Move(atom/newloc, direct = 0, movetime)
 	var/turf/newturf = newloc
 	var/zmove = (newturf && z != newturf.z)
 
-	if(!zmove && world.time < l_move_time + move_delay) //This AND the riding datum move speed limit? // VOREstation edit end
-		return
+	if(!zmove && world.time < l_move_time + move_delay) //This AND the riding datum move speed limit?
+		return FALSE
 
-	if(!zmove && mechanical && on && powered && cell.charge < charge_use) // VOREstation edit - zmove doesn't run this
+	if(!zmove && mechanical && on && powered && cell.charge < charge_use)
 		turn_off()
-		return
+		return FALSE
 
 	. = ..()
 
-	if(!zmove && mechanical && on && powered) // VOREstation edit - zmove doesn't run this
+	if(!zmove && mechanical && on && powered)
 		cell.use(charge_use)
 
 	//Dummy loads do not have to be moved as they are just an overlay
