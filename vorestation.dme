@@ -3111,7 +3111,7 @@
 #include "code\modules\mining\ore.dm"
 #include "code\modules\mining\ore_box.dm"
 #include "code\modules\mining\ore_datum.dm"
-#include "code\modules\mining\resonator_vr.dm"
+#include "code\modules\mining\resonator.dm"
 #include "code\modules\mining\shelter_atoms_vr.dm"
 #include "code\modules\mining\shelters_vr.dm"
 #include "code\modules\mining\drilling\drill.dm"
