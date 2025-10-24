@@ -241,6 +241,8 @@
 #ifdef AWAY_MISSION_TEST
 #include "../redgate/falls/falls.dmm"
 #include "../redgate/abandonedisland.dmm"
+#include "../redgate/casino_canal/casino_canal_1.dmm"
+#include "../redgate/casino_canal/casino_canal_2.dmm"
 #include "../redgate/cybercity.dmm"
 #include "../redgate/darkadventure.dmm"
 #include "../redgate/eggnogtown.dmm"
@@ -288,6 +290,11 @@
 	name = Z_NAME_REDGATE_INNLAND
 	desc = "Caves and grass and a tavern, woah!"
 	mappath = "maps/redgate/innland.dmm"
+
+/datum/map_template/common_lateload/redgate/casino_canal
+	name = Z_NAME_REDGATE_ABANDONED_ISLAND
+	desc = "It seems like it used to be people here!"
+	mappath = "maps/redgate/casino_canal/casino_canal.dmm"
 
 /datum/map_template/common_lateload/redgate/abandonedisland
 	name = Z_NAME_REDGATE_ABANDONED_ISLAND
@@ -391,6 +398,19 @@
 	name = Z_NAME_REDGATE_FACILITY
 	desc = "A facility full of unusual experiments."
 	mappath = "maps/redgate/facility.dmm"
+
+/datum/map_template/common_lateload/redgate/casino_canal
+	name = Z_NAME_REDGATE_CASINO_CANAL
+	desc = "An underwater casino at the bottom of the sea."
+	mappath = "maps/redgate/casino_canal/casino_canal_2.dmm"
+
+/datum/map_template/common_lateload/redgate/casino_canal_lower
+	name = Z_NAME_REDGATE_CASINO_CANAL_LOWER
+	desc = "The lower floor of an underwater casino at the bottom of the sea."
+	mappath = "maps/redgate/casino_canal/casino_canal_1.dmm"
+
+/obj/effect/landmark/map_data/underwater_casino
+	height = 2
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like

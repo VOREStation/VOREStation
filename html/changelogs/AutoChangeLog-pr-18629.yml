@@ -1,0 +1,9 @@
+author: "Guti"
+delete-after: True
+changes:
+  - code_imp: "Added Bluespace Connection component"
+  - code_imp: "Implements COMSIG_ATOM_HITBY"
+  - code_imp: "Implements COMSIG_CLOSET_CLOSED"
+  - image: "Fixed welded crate icons"
+  - bugfix: "You can now struggle out of crates"
+  - bugfix: "Crates can be weld shut once again"

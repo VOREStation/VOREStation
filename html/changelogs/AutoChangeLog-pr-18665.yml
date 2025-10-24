@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "chat replies failing as the passed ckey resulted to a null lookup"
