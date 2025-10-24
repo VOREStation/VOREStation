@@ -1,3 +1,4 @@
+//Honestly this could be an element, but I don't want to aggressively refactor traits in an upport and cleanup PR.
 /datum/component/absorbent
 
 /datum/component/absorbent/Initialize()
@@ -16,33 +17,21 @@
 	var/turf/T = get_turf(H)
 	if(istype(T))
 		if(!(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
+			//We do this first as it gives nutrition for each item on the turf.
 			for(var/obj/O in T)
 				if(O.wash(CLEAN_WASH))
 					H.adjust_nutrition(rand(5, 15))
-			if (istype(T, /turf/simulated))
-				var/turf/simulated/S = T
-				if(T.wash(CLEAN_WASH))
+
+			//Secondly, we check if the turf is a sim turf. If it's dirty, we get nutrition.
+			//The T.wash() below will clean it and set the dirt to 0.
+			if(istype(T, /turf/simulated))
+				var/turf/simulated/turf_to_clean = T
+				if(turf_to_clean.dirt >= 50)
 					H.adjust_nutrition(rand(10, 20))
-				if(S.dirt > 50)
-					S.dirt = 0
-					H.adjust_nutrition(rand(10, 20))
-		if(H.wash(CLEAN_WASH))
-			H.adjust_nutrition(rand(5, 15))
-		if(H.r_hand)
-			if(H.r_hand.wash(CLEAN_WASH))
-				H.adjust_nutrition(rand(5, 15))
-		if(H.l_hand)
-			if(H.l_hand.wash(CLEAN_WASH))
-				H.adjust_nutrition(rand(5, 15))
-		if(H.head)
-			if(H.head.wash(CLEAN_WASH))
-				H.update_inv_head(0)
-				H.adjust_nutrition(rand(5, 15))
-		if(H.wear_suit)
-			if(H.wear_suit.wash(CLEAN_WASH))
-				H.update_inv_wear_suit(0)
-				H.adjust_nutrition(rand(5, 15))
-		if(H.w_uniform)
-			if(H.w_uniform.wash(CLEAN_WASH))
-				H.update_inv_w_uniform(0)
-				H.adjust_nutrition(rand(5, 15))
+			//Third, we clean the turf itself.
+			if(T.wash(CLEAN_WASH))
+				H.adjust_nutrition(rand(10, 20))
+
+	//Lastly, we clean ourself and all the items on us.
+	if(H.wash(CLEAN_WASH))
+		H.adjust_nutrition(rand(5, 15))
