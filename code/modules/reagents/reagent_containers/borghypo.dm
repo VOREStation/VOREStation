@@ -403,7 +403,7 @@
 				balloon_alert(user, "\the [target] is full!")
 		if(BORGHYPO_STATUS_NOCHARGE)
 			if(is_dispensing_recipe)
-				balloon_alert(user, "no reagents to finish recipe '[selected_recipe_id]'!")
+				balloon_alert(user, "not enough reagents to finish recipe '[selected_recipe_id]'!")
 			else
 				var/datum/reagent/empty_reagent = SSchemistry.chemical_reagents[reagent_ids[mode]]
 				balloon_alert(user, "not enough of reagent '[empty_reagent.name]'!")
