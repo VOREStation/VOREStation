@@ -145,7 +145,7 @@ default behaviour is:
 			if(H.species.lightweight_light == 1 && H.a_intent == I_HELP)
 				H.visible_message(span_warning("[src] bumps into [H], knocking them off balance!"))
 				H.Weaken(5)
-				now_pushing = 0
+				now_pushing = FALSE
 				return
 		// Handle grabbing, stomping, and such of micros!
 		if(step_mechanics_pref && tmob.step_mechanics_pref)
