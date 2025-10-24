@@ -667,9 +667,9 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 			unique_enzymes = md5(character.real_name)
 	else
 		if(length(uni_identity) != 3*DNA_UI_LENGTH)
-			uni_identity = "00600200A00E0110148FC01300B0095BD7FD3F4"
+			uni_identity = "00600200a00e0110148fc01300b0095bd7fd3f4"
 		if(length(struc_enzymes)!= 3*DNA_SE_LENGTH)
-			struc_enzymes = "43359156756131E13763334D1C369012032164D4FE4CD61544B6C03F251B6C60A42821D26BA3B0FD6"
+			struc_enzymes = "43359156756131e13763334d1c369012032164d4fe4cd61544b6c03f251b6c60a42821d26ba3b0fd6"
 
 // BACK-COMPAT!
 //  Initial DNA setup.  I'm kind of wondering why the hell this doesn't just call the above.
