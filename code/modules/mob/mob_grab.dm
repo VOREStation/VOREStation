@@ -372,6 +372,17 @@
 
 	//It's easier to break out of a grab by a smaller mob
 	break_strength += max(size_difference(affecting, assailant), 0)
+	var/prob_mult = 1
+	var/mob/living/carbon/human/grabbee = affecting
+	var/mob/living/carbon/human/grabber = assailant
+	if(istype(grabbee))
+		prob_mult /= grabbee.species.grab_resist_divisor_self
+		break_strength += grabbee.species.grab_power_self
+	if(istype(grabber))
+		prob_mult /= grabber.species.grab_resist_divisor_victims
+		break_strength += grabber.species.grab_power_victims
+
+	var/break_chance = CLAMP(prob_mult*break_chance_table[CLAMP(break_strength, 1, break_chance_table.len)],0,100)
 
 	var/break_chance = break_chance_table[CLAMP(break_strength, 1, break_chance_table.len)]
 	if(prob(break_chance))
