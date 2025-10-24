@@ -1,0 +1,8 @@
+author: "Ryumi"
+delete-after: True
+changes:
+  - rscadd: "Added a new map: The Casino Canal! An underwater casino built for a luxurious extended stay, catering to your every gambling whim. From public gaming rooms to more private ones, it is catered to gamblers of all walks - except those wanting to make actual money. Each visitor can interact with the chips terminal next to the entrance for a set of starting chips of their own, but there are NO facilities here to turn chips into actual money. You're just in it for the fun of it. Also there's a whole underwater world outside of it full of secrets, waiting to be explored!"
+  - rscadd: "Added a new set of underwater turfs that are \"indoors,\" meaning they don't use the weather system at all."
+  - code_imp: "Improved code for multiple auto-resleevers existing in the game world"
+  - qol: "The \"Find Auto Resleever\" verb will now show you a list of auto resleevers in the game world for you to choose from if there's more than one available."
+  - balance: "TGMC windows (the ones seen in the city redgate, the facility, and Casino Canal,) now allow things that can move through glass (i.e. laser beams) to go through them"
