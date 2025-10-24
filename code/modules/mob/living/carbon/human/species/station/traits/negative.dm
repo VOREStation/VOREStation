@@ -159,6 +159,7 @@
 
 	activation_message="You feel off balance..."
 	primitive_expression_messages=list("staggers")
+	excludes = list(/datum/trait/negative/lightweight_light)
 
 /datum/trait/negative/neural_hypersensitivity
 	name = "Neural Hypersensitivity"
