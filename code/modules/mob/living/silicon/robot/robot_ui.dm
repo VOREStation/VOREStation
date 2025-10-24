@@ -50,9 +50,7 @@
 
 	data["module_name"] = R.module ? "[R.module]" : null
 
-	var/robot_theme = R.get_ui_theme()
-	if(robot_theme)
-		data["theme"] = robot_theme
+	data["theme"] = R.get_ui_theme()
 
 	if(!R.module)
 		return data

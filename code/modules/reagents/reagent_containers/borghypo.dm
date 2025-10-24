@@ -213,11 +213,10 @@
 
 /obj/item/reagent_containers/borghypo/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list()
-	var/mob/living/silicon/robot/robo_user = user
-	if(robo_user)
-		var/robot_theme = robo_user.get_ui_theme()
-		if(robot_theme)
-			data["theme"] = robot_theme
+	if(!isrobot(user))
+		return data
+	var/mob/living/silicon/robot/robot_user = user
+	data["theme"] = robot_user.get_ui_theme()
 	data["amount"] = amount_per_transfer_from_this
 	data["transferAmounts"] = transfer_amounts
 
