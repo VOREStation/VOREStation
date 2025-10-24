@@ -48,35 +48,21 @@ export const ChemDispenserRecipes = (props: {
         <Stack>
           {!isRecording && (
             <Stack.Item>
-              <Button
-                icon="circle"
-                //onClick={() => act('record_recipe')
-                onClick={recordAct}
-              >
+              <Button icon="circle" onClick={recordAct}>
                 Record
               </Button>
             </Stack.Item>
           )}
           {isRecording && (
             <Stack.Item>
-              <Button
-                icon="ban"
-                color="bad"
-                //onClick={() => act('cancel_recording')}
-                onClick={cancelAct}
-              >
+              <Button icon="ban" color="bad" onClick={cancelAct}>
                 Discard
               </Button>
             </Stack.Item>
           )}
           {isRecording && (
             <Stack.Item>
-              <Button
-                icon="save"
-                color="green"
-                //onClick={() => act('save_recording')}
-                onClick={saveAct}
-              >
+              <Button icon="save" color="green" onClick={saveAct}>
                 Save
               </Button>
             </Stack.Item>
@@ -104,7 +90,6 @@ export const ChemDispenserRecipes = (props: {
                   icon="trash"
                   confirmIcon="trash"
                   color="bad"
-                  //onClick={() => act('clear_recipes')}
                   onClick={clearAct}
                 >
                   Clear All
@@ -150,7 +135,6 @@ export const ChemDispenserRecipes = (props: {
                       ? getDispenseButtonSelected(recipe)
                       : undefined
                   }
-                  // onClick={() => act('dispense_recipe', { recipe })}
                   onClick={() => dispenseAct(recipe)}
                 >
                   {recipe}
@@ -162,7 +146,6 @@ export const ChemDispenserRecipes = (props: {
                   confirmIcon="triangle-exclamation"
                   confirmContent={''}
                   color="bad"
-                  // onClick={() => act('remove_recipe', { recipe })}
                   onClick={() => removeAct(recipe)}
                 />
               </Stack.Item>

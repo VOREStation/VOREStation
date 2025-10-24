@@ -33,17 +33,9 @@ export const ChemDispenserSettings = (props: {
               <Stack.Item key={i}>
                 <Button
                   textAlign="center"
-                  //selected={amount === a}
                   selected={selectedAmount === a}
                   m="0"
-                  onClick={() =>
-                    /*
-                    act('amount', {
-                      amount: a,
-                    })
-                    */
-                    amountAct(a)
-                  }
+                  onClick={() => amountAct(a)}
                 >
                   {`${a}u`}
                 </Button>
@@ -56,8 +48,6 @@ export const ChemDispenserSettings = (props: {
             step={1}
             stepPixelSize={5}
             value={selectedAmount}
-            //minValue={1}
-            //maxValue={120}
             minValue={minAmount}
             maxValue={maxAmount}
             onChange={(e, value) => amountAct(value)}

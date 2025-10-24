@@ -260,9 +260,18 @@
 			. = TRUE
 
 		if("import_config")
+			var/list/our_data = params["config"]
+			if(!islist(our_data))
+				return FALSE
+			var/list/new_recipes = list()
+			for(var/key, value in our_data)
+				if(istext(key) && islist(value))
+					for(var/list/steps in value)
+						if(istext(steps["id"]) && isnum(steps["amount"]))
+							new_recipes[key] += list(list("id" = steps["id"], "amount" = steps["amount"]))
+			if(length(new_recipes))
+				saved_recipes = new_recipes
 			. = TRUE
-			var/our_data = params["config"]
-			saved_recipes = our_data
 
 		if("record_recipe")
 			recording_recipe = list()
