@@ -138,7 +138,7 @@
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
 	cost = -2 //I feel like this should be higher, but let's see where it goes
-	excludes = list(/datum/trait/negative/boneless)
+	excludes = list(/datum/trait/negative/boneless, /datum/trait/positive/densebones)
 
 /datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -748,7 +748,6 @@
 	added_component_path = /datum/component/schizophrenia
 	hidden = TRUE //Disabled on Vorestation
 
-/* //Temp disable because this is a PITA and needs to be implemented in like 20 different places.
 /datum/trait/negative/synth_pain
 	name = "Obligate Pain Simulation"
 	desc = "Due to a structural flaw, hard-coding, or other inherent weakness, your body can feel pain, and you can't turn it off."
@@ -760,4 +759,3 @@
 /datum/trait/negative/synth_pain/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
 	H.synth_cosmetic_pain = TRUE
 	. = ..()
-*/
