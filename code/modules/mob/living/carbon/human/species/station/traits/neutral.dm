@@ -7,7 +7,7 @@
 	cost = 0
 	can_take = ORGANICS|SYNTHETICS
 	var_changes = list("metabolic_rate" = 1.2, "hunger_factor" = 0.2, "metabolism" = 0.06) // +20% rate and 4x hunger (Teshari level)
-	excludes = list(/datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex)
+	excludes = list(/datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex, /datum/trait/neutral/singularity_metabolism)
 	custom_only = FALSE
 
 /datum/trait/neutral/metabolism_down
@@ -16,7 +16,7 @@
 	cost = 0
 	can_take = ORGANICS|SYNTHETICS
 	var_changes = list("metabolic_rate" = 0.8, "hunger_factor" = 0.04, "metabolism" = 0.0012) // -20% of default.
-	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_apex)
+	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_apex, /datum/trait/neutral/singularity_metabolism)
 	custom_only = FALSE
 
 /datum/trait/neutral/metabolism_apex
@@ -25,8 +25,16 @@
 	cost = 0
 	can_take = ORGANICS|SYNTHETICS
 	var_changes = list("metabolic_rate" = 1.4, "hunger_factor" = 0.4, "metabolism" = 0.012) // +40% rate and 8x hunger (Double Teshari)
-	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down)
+	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down, /datum/trait/neutral/singularity_metabolism)
 	custom_only = FALSE
+
+/datum/trait/neutral/singularity_metabolism
+	name = "Metabolism, Singularity"
+	desc = "You are insanely hungry. You can seemingly never get enough to eat. Perhaps you had a singularity as an ancestor, or maybe one is currently living inside of your gut."
+	cost = 0
+	var_changes = list("metabolic_rate" = 2, "hunger_factor" = 1.6, "metabolism" = 0.012)	//2x metabolism speed, 32x hunger speed
+	custom_only = FALSE
+	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex)
 
 /datum/trait/neutral/coldadapt
 	name = "Temp. Adapted, Cold"
