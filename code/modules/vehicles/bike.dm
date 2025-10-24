@@ -145,7 +145,7 @@
 	if(on && cell)
 		cell.use(charge_use)
 
-	if(istype(newloc,/turf/space) || istype(newloc, /turf/simulated/floor/water) || pulledby)
+	if(isnonsolidturf(newloc) || pulledby)
 		if(!space_speed)
 			return FALSE
 		move_delay = space_speed
