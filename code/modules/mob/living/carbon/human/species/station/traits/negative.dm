@@ -406,17 +406,10 @@
 	desc = "Some say that when it rains, it pours.  Unfortunately, this is also true for yourself if you get cut. You bleed much faster than average, at 3x the normal rate."
 	cost = -3
 	can_take = ORGANICS
+	var_changes = list("bloodloss_rate" = 3)
 
-	activation_message="You feel "
+	activation_message="You feel like your skin is made of paper!"
 	primitive_expression_messages=list("bumps their toe, screaming in pain")
-
-/datum/trait/negative/haemophilia_plus/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..()
-	H.add_modifier(/datum/modifier/trait/haemophilia)
-
-/datum/trait/negative/haemophilia_plus/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..()
-	H.remove_modifiers_of_type(/datum/modifier/trait/haemophilia)
 
 /datum/trait/negative/pain_intolerance_basic
 	name = "Pain Intolerance"
