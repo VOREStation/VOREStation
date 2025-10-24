@@ -490,7 +490,7 @@
 
 	reagent_tag = IS_ZADDAT
 
-	species_component = /datum/component/burninlight // Until a parent component like xenochimera have is needed, only handles burning in light.
+	species_component = list(/datum/component/burninlight) // Until a parent component like xenochimera have is needed, only handles burning in light.
 
 	heat_discomfort_strings = list(
 		"Your joints itch.",
@@ -563,6 +563,8 @@
 	assisted_langs = list(LANGUAGE_VOX)	// Diona are weird, let's just assume they can use basically any language.
 	min_age = 18
 	max_age = 300
+
+	species_component = list(/datum/component/radiation_effects/diona)
 
 	economic_modifier = 10
 
@@ -1548,7 +1550,7 @@
 	tail = "tail" //Spider tail.
 	icobase_tail = 1
 
-	species_component = /datum/component/weaver
+	species_component = list(/datum/component/weaver)
 
 	inherent_verbs = list(
 	/mob/living/carbon/human/proc/tie_hair)
@@ -1741,7 +1743,7 @@
 
 	reagent_tag = IS_CHIMERA
 
-	species_component = /datum/component/xenochimera
+	species_component = list(/datum/component/xenochimera)
 
 /datum/species/xenochimera/handle_environment_special(var/mob/living/carbon/human/H)
 	//Cold/pressure effects when not regenerating

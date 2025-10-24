@@ -20,3 +20,6 @@
 #define TECHNOMANCER_INSTABILITY_MIN_GLOW			10		// When above this number, the entity starts glowing, affecting others.
 
 #define RADIATION_SPEED_COEFFICIENT 0.1
+
+///Maximum amount of radiation an entity can have.
+#define RADIATION_CAP 5000

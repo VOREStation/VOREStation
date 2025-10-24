@@ -1,10 +1,10 @@
-.theme-spookyconsole:root {
+.theme-nuclear:root {
   // Base
-  --color-base: hsl(0, 100%, 12.5%);
-  --color-primary: hsl(345, 95%, 30%);
-  --color-good: hsl(0, 82%, 52%);
-  --color-average: hsl(0, 77%, 44%);
-  --color-bad: hsl(340, 91%, 32%);
+  --color-base: hsl(71, 100%, 13%);
+  --color-primary: hsl(73, 95%, 30%);
+  --color-good: hsl(73, 95%, 46%);
+  --color-average: hsl(64, 99%, 34%);
+  --color-bad: hsl(74, 100%, 25%);
   --base-gradient-spread: 12;
   --secondary-lightness-adjustment: 9;
 
@@ -13,11 +13,11 @@
   --button-background-caution: hsl(240, 80%, 35%);
   --button-background-danger: hsl(282, 61%, 30%);
   --dimmer-background-opacity: 0.45;
-  --notice-box-background: hsl(0, 90%, 23%);
+  --notice-box-background: hsl(64, 90%, 23%);
   --notice-box-color: var(--color-fixed-white);
   --progress-bar-background: hsla(0, 97%, 7%, 0.5);
 
   .Layout__content {
-    background-image: url('../../assets/bg-spookycomp-compressed.svg');
+    background-image: url('../../assets/bg-radiation.svg');
   }
 }

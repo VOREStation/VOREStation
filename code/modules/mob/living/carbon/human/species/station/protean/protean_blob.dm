@@ -657,13 +657,14 @@
 			return 1
 	return 0
 
-/mob/living/simple_mob/protean_blob/handle_mutations_and_radiation()
+/mob/living/simple_mob/protean_blob/handle_radiation()
+	..()
 	if(!humanform)
 		to_chat(src, span_giant(span_boldwarning("You are currently a blob without a humanform and should be deleted shortly Please report what you were doing when this error occurred to the admins.")))
 		stack_trace("URGENT, SERVER-CRASHING ISSUE: A protean blob does not have a humanform! src = [src] ckey = [ckey]! The blob has been deleted.")
 		qdel(src)
 		return
-	humanform.handle_mutations_and_radiation()
+	humanform.handle_radiation()
 
 /mob/living/simple_mob/protean_blob/update_icon()
 	..()

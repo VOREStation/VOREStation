@@ -25,7 +25,8 @@
 		handle_breathing()
 
 		//Mutations and radiation
-		handle_mutations_and_radiation()
+		handle_mutations()
+		handle_radiation()
 
 
 
@@ -89,8 +90,15 @@
 /mob/living/proc/handle_breathing()
 	return
 
-/mob/living/proc/handle_mutations_and_radiation()
-	return
+/mob/living/proc/handle_mutations()
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_HANDLE_MUTATIONS) & COMPONENT_BLOCK_LIVING_MUTATIONS)
+		return COMPONENT_BLOCK_LIVING_MUTATIONS
+
+/mob/living/proc/handle_radiation()
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_HANDLE_RADIATION) & COMPONENT_BLOCK_LIVING_RADIATION)
+		return COMPONENT_BLOCK_LIVING_RADIATION
 
 /mob/living/proc/handle_chemicals_in_body()
 	return

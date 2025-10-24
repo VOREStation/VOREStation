@@ -206,6 +206,37 @@
 				to_chat(src, span_danger("Your legs won't respond properly, you fall down!"))
 				Weaken(10)
 
+/mob/living/carbon/human/handle_mutations()
+	. = ..()
+	if(.)
+		return
+	if(inStasisNow())
+		return
+
+	if(getFireLoss())
+		if((COLD_RESISTANCE in mutations) || (prob(1)))
+			heal_organ_damage(0,1)
+	if(getBruteLoss()) //Fireloss gets this RNG change so may as well give bruteloss it as well.
+		if(prob(1))
+			heal_organ_damage(1,0)
+
+	if((mRegen in mutations))
+		var/heal = rand(0.2,1.3)
+		if(prob(50))
+			for(var/obj/item/organ/external/O in organs) //HAS to be organs and NOT bad_external_organs as a fully healed limb w/ internal damage will NOT be in bad_external_organs
+				for(var/datum/wound/W in O.wounds)
+					if(W.bleeding())
+						W.damage = max(W.damage - heal, 0)
+						if(W.damage <= 0)
+							O.wounds -= W
+					if(W.internal)
+						W.damage = max(W.damage - heal, 0)
+						if(W.damage <= 0)
+							O.wounds -= W
+		else
+			heal_organ_damage(heal,heal)
+
+
 // RADIATION! Everyone's favorite thing in the world! So let's get some numbers down off the bat.
 // 50 rads = 1Bq. This means 1 rad = 0.02Bq.
 // However, unless I am a smoothbrained dumbo, absorbed rads are in Gy. Not Bq.
@@ -227,65 +258,20 @@
 
 // Additionally, RADIATION_SPEED_COEFFICIENT = 0.1
 
-/mob/living/carbon/human/handle_mutations_and_radiation() //Radiation rework! Now with 'accumulated_rads'
+/mob/living/carbon/human/handle_radiation() //Radiation rework! Now with 'accumulated_rads'
+	. = ..()
+	if(.)
+		return
 	if(inStasisNow())
 		return
 
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0,1)
-
-	if(stat != DEAD)
-		if((mRegen in mutations))
-			var/heal = rand(0.2,1.3)
-			if(prob(50))
-				for(var/obj/item/organ/external/O in bad_external_organs)
-					for(var/datum/wound/W in O.wounds)
-						if(W.bleeding())
-							W.damage = max(W.damage - heal, 0)
-							if(W.damage <= 0)
-								O.wounds -= W
-						if(W.internal)
-							W.damage = max(W.damage - heal, 0)
-							if(W.damage <= 0)
-								O.wounds -= W
-			else
-				heal_organ_damage(heal,heal)
-
-	radiation = CLAMP(radiation,0,5000) //Max of 100Gy. If you reach that...You're going to wish you were dead. You probably will be dead.
-	accumulated_rads = CLAMP(accumulated_rads,0,5000) //Max of 100Gy as well. You should never get higher than this. You will be dead before you can reach this.
+	radiation = CLAMP(radiation,0,RADIATION_CAP) //Max of 100Gy. If you reach that...You're going to wish you were dead. You probably will be dead.
+	accumulated_rads = CLAMP(accumulated_rads,0,RADIATION_CAP) //Max of 100Gy as well. You should never get higher than this. You will be dead before you can reach this.
 	var/obj/item/organ/internal/I = null //Used for further down below when an organ is picked.
 	if(!radiation)
-		if(species.appearance_flags & RADIATION_GLOWS)
-			glow_override = FALSE
-			set_light(0)
 		if(accumulated_rads)
 			accumulated_rads -= RADIATION_SPEED_COEFFICIENT //Accumulated rads slowly dissipate very slowly. Get to medical to get it treated!
 	else if(((life_tick % 5 == 0) && radiation) || (radiation > 600)) //Radiation is a slow, insidious killer. Unless you get a massive dose, then the onset is sudden!
-		if(species.appearance_flags & RADIATION_GLOWS)
-			glow_override = TRUE
-			set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
-		// END DOGSHIT SNOWFLAKE
-
-		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
-		if(rad_organ && !rad_organ.is_broken())
-			var/rads = radiation/25
-			radiation -= (rads * species.rad_removal_mod)
-			adjust_nutrition(rads * species.rad_removal_mod)
-			adjustBruteLoss(-(rads * species.rad_removal_mod))
-			adjustFireLoss(-(rads * species.rad_removal_mod))
-			adjustOxyLoss(-(rads * species.rad_removal_mod))
-			adjustToxLoss(-(rads * species.rad_removal_mod))
-			updatehealth()
-			return
-
-		var/obj/item/organ/internal/brain/slime/core = locate() in internal_organs
-		if(core)
-			return
-
-		var/obj/item/organ/internal/brain/shadekin/s_brain = locate() in internal_organs
-		if(s_brain)
-			return
 
 		if(reagents.has_reagent(REAGENT_ID_PRUSSIANBLUE)) //Prussian Blue temporarily stops radiation effects.
 			return
