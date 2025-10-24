@@ -741,14 +741,14 @@
 /datum/trait/positive/burn_resist_plus // Equivalent to Burn Weakness Major, cannot be taken at the same time.
 	name = "Burn Resist, Major"
 	desc = "Adds 40% resistance to burn damage sources."
-	cost = 5 // Exact Opposite of Burn Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
+	cost = 4 // Exact Opposite of Burn Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
 	var_changes = list("burn_mod" = 0.6)
 	excludes = list(/datum/trait/positive/burn_resist, /datum/trait/positive/minor_burn_resist)
 
 /datum/trait/positive/brute_resist_plus // Equivalent to Brute Weakness Major, cannot be taken at the same time.
 	name = "Brute Resist, Major"
 	desc = "Adds 40% resistance to brute damage sources."
-	cost = 5 // Exact Opposite of Brute Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
+	cost = 4 // Exact Opposite of Brute Weakness Major, except Weakness Major is 50% incoming, this is -40% incoming.
 	var_changes = list("brute_mod" = 0.6)
 	excludes = list(/datum/trait/positive/brute_resist, /datum/trait/positive/minor_brute_resist)
 
