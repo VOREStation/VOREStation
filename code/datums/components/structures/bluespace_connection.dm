@@ -29,8 +29,10 @@
 	src.throw_range = throw_range
 	src.throw_range_x = throw_range_x
 	src.throw_range_y = throw_range_y
-	RegisterSignal(assigned_closet, COMSIG_CLOSET_CLOSED, PROC_REF(on_close))
-	RegisterSignal(assigned_closet, COMSIG_ATOM_HITBY, PROC_REF(on_hit))
+
+/datum/component/bluespace_connection/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_CLOSET_CLOSED, PROC_REF(on_close))
+	RegisterSignal(parent, COMSIG_ATOM_HITBY, PROC_REF(on_hit))
 
 /datum/component/bluespace_connection/Destroy()
 	UnregisterSignal(assigned_closet, COMSIG_CLOSET_CLOSED)
