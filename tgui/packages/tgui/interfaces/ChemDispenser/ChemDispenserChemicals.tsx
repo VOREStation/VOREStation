@@ -23,9 +23,6 @@ export const ChemDispenserChemicals = (props: {
   } = props;
   const flexFillers: boolean[] = [];
   const sortedChemicals: Reagent[] = chemicals;
-  for (let i = 0; i < (chemicals.length + 1) % 3; i++) {
-    flexFillers.push(true);
-  }
   // Sort chemicals alphabetically by chemical names
   sortedChemicals.sort((a, b) => a.name.localeCompare(b.name));
   return (
@@ -39,24 +36,28 @@ export const ChemDispenserChemicals = (props: {
     >
       <Stack direction="row" wrap="wrap" align="flex-start" g={0.3}>
         {sortedChemicals.map((c, i) => (
-          <Stack.Item key={i} basis="40%" grow height="20px">
+          <Stack.Item key={i} basis="49%" grow maxWidth="50%">
             <Button
-              icon="arrow-circle-down"
               fluid
-              ellipsis
               align="flex-start"
+              tooltip={c.name.length > 15 ? c.name : undefined}
               selected={
                 chemicalButtonSelect ? chemicalButtonSelect(c.id) : false
               }
               // onClick={() => act('dispense', { reagent: c.id, }) }
               onClick={() => dispenseAct(c.id)}
             >
-              {`${c.name} (${c.volume})`}
+              <Stack>
+                <Stack.Item>
+                  <Icon name="arrow-circle-down" />
+                </Stack.Item>
+                <Stack.Item grow overflow="hidden">
+                  {c.name}
+                </Stack.Item>
+                <Stack.Item>{`(${c.volume})`}</Stack.Item>
+              </Stack>
             </Button>
           </Stack.Item>
-        ))}
-        {flexFillers.map((_, i) => (
-          <Stack.Item key={i} grow basis="25%" height="20px" />
         ))}
       </Stack>
     </Section>
