@@ -212,3 +212,39 @@
       for spawn chances. the new spawner also has a high-vis icon so that it won't
       be difficult for ghosts to spot if they're just scrolling around with darkness
       enabled.
+2025-10-21:
+  Kashargul:
+  - bugfix: free ghost role slot spawn
+  - bugfix: casino sentient price item tf getting enabled when one closes the ui
+  - admin: fix log access for devs and mods
+  VOREStation:
+  - balance: Disables Unlucky Major
+2025-10-22:
+  Guti:
+  - bugfix: Fixed itch symptom making the infected to mlem instead
+  Kashargul:
+  - code_imp: rust g to 4.1.0
+  - qol: moves robot sleepers to tgui
+  - qol: Robot decals and animations now use a TGUI ui for easy toggling
+  NickBelmont:
+  - bugfix: Exploit where console screens would count for all stock part benchmark
+      experiments.
+2025-10-23:
+  Lilly-Lira:
+  - bugfix: Feline 3-color (Taur, Fat vwag) loaf sprite
+  SatinIsle:
+  - rscadd: Added a new heavy landing trait (and hard fall var to other mobs) that
+      cause the mob to take more damage, get weakened for longer and create some damage
+      to the floor tiles (50% chance). Can not be taken with soft landing. Be the
+      fatty you always meant to be.
+  Will:
+  - bugfix: photodegredation should not harm phased shadekin
+  - bugfix: Photosynthesis should not generation nutrition while its shadekin are
+      phased
+  - refactor: Moves lonely and agoraphobia trait code to a component
+  - bugfix: Releasing prey, that themselves contain prey, will correctly update their
+      remote view to follow the released mob
+  - bugfix: Fixes view release on the correct recharger
+  - bugfix: Meson and other vision goggles work in mechs again
+  - bugfix: canceling remote view while inside a cryopod or long distance teleporter
+      no longer locks your view to it

@@ -11,6 +11,9 @@
 	spawn_active = TRUE
 	var/redgate_restricted = FALSE
 
+/obj/structure/ghost_pod/ghost_activated/unified_hole/create_occupant(mob/observer/dead/user)
+	attack_ghost(user)
+
 //override the standard attack_ghost proc for custom messages
 /obj/structure/ghost_pod/ghost_activated/unified_hole/attack_ghost(var/mob/observer/dead/user)
 	var/choice
@@ -20,7 +23,7 @@
 
 	//No OOC notes/FT
 	if(not_has_ooc_text(user))
-		//to_chat(user, span_warning("You must have proper out-of-character notes and flavor text configured for your current character slot to use this spawnpoint."))
+		to_chat(user, span_warning("You must have proper out-of-character notes and flavor text configured for your current character slot to use this spawnpoint."))
 		return
 
 	if(redgate_restricted)
@@ -28,19 +31,21 @@
 	else
 		choice = tgui_alert(user, "Which type of critter do you wish to spawn as?", "Critter Spawner", list("Mob", "Morph", "Lurker", "Cancel"))
 
-
-	if(choice == "Mob")
-		create_simplemob(user)
-	else if(choice == "Morph")
-		create_morph(user)
-	else if(choice == "Lurker")
-		if(!is_alien_whitelisted(user.client, GLOB.all_species[user.client.prefs.species]))
-			to_chat(user, span_warning("You cannot use this spawnpoint to spawn as a species you are not whitelisted for!"))
+	switch(choice)
+		if(null, "Cancel")
 			return
-		else
+		if("Mob")
+			create_simplemob(user)
+		if("Morph")
+			create_morph(user)
+		if("Lurker")
+			if(!is_alien_whitelisted(user.client, GLOB.all_species[user.client.prefs.species]))
+				to_chat(user, span_warning("You cannot use this spawnpoint to spawn as a species you are not whitelisted for!"))
+				return
 			create_lurker(user)
-	else if(choice == "Cancel")
-		return
+	used = TRUE
+	icon_state = icon_state_opened
+	GLOB.active_ghost_pods -= src
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/proc/create_simplemob(var/mob/M)
 	var/choice
@@ -155,8 +160,8 @@
 	GLOB.active_ghost_pods += src
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/Destroy()
-	. = ..()
 	GLOB.active_ghost_pods -= src
+	. = ..()
 
 /obj/structure/ghost_pod/ghost_activated/unified_hole/redgate
 	name = "Redspace inhabitant hole"

@@ -736,6 +736,21 @@
 			playsound(H, "rustle", 25, 1)
 		return TRUE
 
+	if(HAS_TRAIT(src, TRAIT_HEAVY_LANDING))
+
+		if(!silent)
+			to_chat(H, span_danger("You land with a heavy crash!"))
+			landing.visible_message(span_danger(span_bold("\The [H]") + " crashes down from above!"))
+			playsound(H, 'sound/effects/meteorimpact.ogg', 75, TRUE, 3)
+			for(var/i = 1 to 10)
+				H.adjustBruteLoss(rand((0), (10)))
+			H.Weaken(20)
+			H.updatehealth()
+			if(istype(landing, /turf/simulated/floor) && prob(50))
+				var/turf/simulated/floor/our_crash = landing
+				our_crash.break_tile()
+		return TRUE
+
 	return FALSE
 
 /datum/species/proc/post_spawn_special(mob/living/carbon/human/H)
