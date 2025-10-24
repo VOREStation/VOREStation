@@ -33,10 +33,11 @@
 /datum/component/bluespace_connection/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_CLOSET_CLOSED, PROC_REF(on_close))
 	RegisterSignal(parent, COMSIG_ATOM_HITBY, PROC_REF(on_hit))
+/datum/component/bluespace_connection/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_CLOSET_CLOSED)
+	UnregisterSignal(parent, COMSIG_ATOM_HITBY)
 
 /datum/component/bluespace_connection/Destroy()
-	UnregisterSignal(assigned_closet, COMSIG_CLOSET_CLOSED)
-	UnregisterSignal(assigned_closet, COMSIG_ATOM_HITBY)
 	assigned_closet = null
 	. = ..()
 
