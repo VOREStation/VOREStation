@@ -247,11 +247,12 @@ default behaviour is:
 	if(s_active && !(s_active in contents) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
 
-/mob/living/proc/dragged(var/mob/living/dragger, var/oldloc)
+/mob/living/proc/dragged(var/mob/living/dragger, var/oldloc, forced)
 	var/area/A = get_area(src)
-	if(lying && !buckled && pull_damage() && A.get_gravity() && (prob(getBruteLoss() * 200 / maxHealth)))
+	if(forced || (lying && !buckled && pull_damage() && A.get_gravity() && (prob(getBruteLoss() * 200 / maxHealth))))
 		adjustBruteLoss(2)
-		visible_message(span_danger("\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!"))
+		visible_message(span_danger("\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!"), runemessage = "is dragged, wounds worsening!")
+		return TRUE
 
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()

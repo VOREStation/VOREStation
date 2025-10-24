@@ -6,6 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/recharge_station
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50

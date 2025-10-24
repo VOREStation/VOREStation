@@ -203,6 +203,7 @@
 	cost = 1
 	var_changes = list("soft_landing" = TRUE)
 	custom_only = FALSE
+	excludes = list(/datum/trait/negative/heavy_landing)
 
 /datum/trait/positive/hardfeet
 	name = "Hard Feet"
@@ -537,7 +538,7 @@
 /datum/trait/positive/virus_immune
 	name = "Virus Immune"
 	desc = "You are immune to viruses."
-	cost = 1
+	cost = 3
 
 	can_take = ORGANICS
 	var_changes = list("virus_immune" = TRUE)

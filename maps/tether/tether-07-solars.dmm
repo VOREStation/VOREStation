@@ -316,12 +316,13 @@
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside/lower)
 "aO" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Power - Solar Array";
-	cur_coils = 3;
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Power - Solar Array"
 	},
 /obj/structure/cable/heavyduty,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
+/obj/item/smes_coil,
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
 "aP" = (
@@ -2367,9 +2368,8 @@
 /turf/simulated/floor,
 /area/maintenance/substation/outpost)
 "ff" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Science Outpost";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Science Outpost"
 	},
 /obj/structure/cable/green,
 /obj/structure/cable/green{
