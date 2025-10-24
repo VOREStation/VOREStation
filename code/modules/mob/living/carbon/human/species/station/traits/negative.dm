@@ -738,6 +738,16 @@
 	cost = -2
 	var_changes = list("grab_resist_divisor_victims" = 0.5, "grab_resist_divisor_self" = 3, "grab_power_victims" = 1, "grab_power_self" = -1)
 
+/datum/trait/negative/schizophrenia
+	name = "Episodic hallucinations."
+	desc = "You have a condition which causes you to spontaneously have hallucinations! Luckily for you, in the modern space age, our doctors have solutions for you, just make sure you don't forget to take your pills."
+	cost = -3
+	custom_only = FALSE
+	special_env = TRUE
+	can_take = ORGANICS
+	added_component_path = /datum/component/schizophrenia
+	hidden = TRUE //Disabled on Vorestation
+
 /* //Temp disable because this is a PITA and needs to be implemented in like 20 different places.
 /datum/trait/negative/synth_pain
 	name = "Obligate Pain Simulation"
