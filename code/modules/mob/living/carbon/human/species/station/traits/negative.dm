@@ -466,6 +466,7 @@
 	desc = "Even the tiniest particles of dirt give you uneasy footing, even through several layers of footwear."
 	cost = -5
 	var_changes = list("dirtslip" = TRUE)
+	excludes = list(/datum/trait/positive/absorbent)
 
 /datum/trait/negative/thick_digits
 	name = "Thick Digits"
