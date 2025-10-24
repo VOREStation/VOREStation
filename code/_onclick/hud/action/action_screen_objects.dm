@@ -3,7 +3,7 @@
 	var/datum/hud/our_hud
 	var/actiontooltipstyle = ""
 	screen_loc = null
-	icon = null // we don't use the base icon at all, just underlays and overlays
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 	/// The icon state of our active overlay, used to prevent re-applying identical overlays
 	var/active_overlay_icon_state
@@ -19,6 +19,10 @@
 	/// A weakref of the last thing we hovered over
 	/// God I hate how dragging works
 	var/datum/weakref/last_hovored_ref
+	/// overlay for keybind maptext
+	var/mutable_appearance/keybind_maptext
+	/// if observers can trigger this action at any time
+	var/allow_observer_click = FALSE
 
 /atom/movable/screen/movable/action_button/Destroy()
 	if(our_hud)
@@ -32,10 +36,12 @@
 	return ..()
 
 /atom/movable/screen/movable/action_button/proc/can_use(mob/user)
-	// if(isobserver(user))
-	// 	var/mob/dead/observer/dead_mob = user
-	// 	if(dead_mob.observetarget) // Observers can only click on action buttons if they're not observing something
-	// 		return FALSE
+	if(isobserver(user))
+		var/mob/observer/dead/dead_mob = user
+		if(allow_observer_click)
+			return TRUE
+		if(dead_mob.observetarget) // Observers can only click on action buttons if they're not observing something
+			return FALSE
 
 	if(linked_action)
 		if(linked_action.viewers[user.hud_used])
@@ -46,9 +52,12 @@
 
 /atom/movable/screen/movable/action_button/Click(location,control,params)
 	if(!can_use(usr))
-		return
+		return FALSE
 
 	var/list/modifiers = params2list(params)
+	if(LAZYACCESS(modifiers, ALT_CLICK))
+		linked_action?.begin_creating_bind(src, usr)
+		return TRUE
 	if(LAZYACCESS(modifiers, SHIFT_CLICK))
 		var/datum/hud/our_hud = usr.hud_used
 		our_hud.position_action(src, SCRN_OBJ_DEFAULT)
@@ -59,7 +68,7 @@
 	var/trigger_flags
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		trigger_flags |= TRIGGER_SECONDARY_ACTION
-	linked_action.Trigger(trigger_flags = trigger_flags)
+	linked_action.Trigger(usr, trigger_flags = trigger_flags)
 	return TRUE
 
 // Entered and Exited won't fire while you're dragging something, because you're still "holding" it
@@ -70,11 +79,10 @@
 		return
 	if(IS_WEAKREF_OF(over_object, last_hovored_ref))
 		return
-
 	var/atom/old_object
 	if(last_hovored_ref)
-		old_object = last_hovored_ref.resolve()
-	else // If there is no current ref, we assume it was us. We also treat this as our "first go" location.
+		old_object = last_hovored_ref?.resolve()
+	else // If there's no current ref, we assume it was us. We also treat this as our "first go" location
 		old_object = src
 		var/datum/hud/our_hud = usr.hud_used
 		our_hud?.generate_landings(src)
@@ -94,10 +102,11 @@
 	closeToolTip(usr)
 	return ..()
 
-/atom/movable/screen/movable/action_button/MouseDrop(over_object)
+/atom/movable/screen/movable/action_button/MouseDrop(atom/over_object, mob/user, src_location, over_location, params)
 	last_hovored_ref = null
 	if(!can_use(usr))
 		return
+
 	var/datum/hud/our_hud = usr.hud_used
 	if(over_object == src)
 		our_hud.hide_landings()
@@ -105,23 +114,28 @@
 	if(istype(over_object, /atom/movable/screen/action_landing))
 		var/atom/movable/screen/action_landing/reserve = over_object
 		reserve.hit_by(src)
-		our_hud.hide_landings()
 		save_position()
+		our_hud.hide_landings()
 		return
 
 	our_hud.hide_landings()
 	if(istype(over_object, /atom/movable/screen/button_palette) || istype(over_object, /atom/movable/screen/palette_scroll))
 		our_hud.position_action(src, SCRN_OBJ_IN_PALETTE)
 		save_position()
+		our_hud.hide_landings()
 		return
 	if(istype(over_object, /atom/movable/screen/movable/action_button))
 		var/atom/movable/screen/movable/action_button/button = over_object
 		our_hud.position_action_relative(src, button)
 		save_position()
+		our_hud.hide_landings()
 		return
+
 	. = ..()
+
 	our_hud.position_action(src, screen_loc)
 	save_position()
+	our_hud.hide_landings()
 
 /atom/movable/screen/movable/action_button/proc/save_position()
 	var/mob/user = our_hud.mymob
@@ -151,6 +165,15 @@
 		return
 	LAZYREMOVE(user.client.prefs.action_button_screen_locs, "[name]_[id]")
 
+/atom/movable/screen/movable/action_button/proc/update_keybind_maptext(key)
+	cut_overlay(keybind_maptext)
+	if(!key)
+		return
+	keybind_maptext = new
+	keybind_maptext.maptext = MAPTEXT("<span style='text-align: right'>[key]</span>")
+	keybind_maptext.transform = keybind_maptext.transform.Translate(-4, length(key) > 1 ? -6 : 2) //with modifiers, its placed lower so cooldown is visible
+	add_overlay(keybind_maptext)
+
 /**
  * This is a silly proc used in hud code code to determine what icon and icon state we should be using
  * for hud elements (such as action buttons) that don't have their own icon and icon state set.
@@ -162,7 +185,6 @@
 	.["bg_icon"] = 'icons/mob/actions/backgrounds.dmi' // ui_style // TODO: Implement hud-specific icon stuff
 	.["bg_state"] = "bg_default"
 	.["bg_state_active"] = "bg_default_on"
-
 
 /**
  * Updates all action buttons this mob has.
@@ -199,7 +221,7 @@
 	if(reload_screen)
 		hud_used.update_our_owner()
 	// This holds the logic for the palette buttons
-	hud_used?.palette_actions?.refresh_actions()
+	hud_used.palette_actions.refresh_actions()
 
 /**
  * Show (most) of the another mob's action buttons to this mob
@@ -211,7 +233,7 @@
 		return
 
 	for(var/datum/action/action as anything in take_from.actions)
-		if(!action.show_to_observers)
+		if(!action.show_to_observers || !action.owner_has_control)
 			continue
 		action.GiveAction(src)
 	RegisterSignal(take_from, COMSIG_MOB_GRANTED_ACTION, PROC_REF(on_observing_action_granted))
@@ -232,7 +254,7 @@
 /mob/proc/on_observing_action_granted(mob/living/source, datum/action/action)
 	SIGNAL_HANDLER
 
-	if(!action.show_to_observers)
+	if(!action.show_to_observers || !action.owner_has_control)
 		return
 	action.GiveAction(src)
 
@@ -245,12 +267,12 @@
 
 // Button Palette
 // A new way to interact with actions
-
 /atom/movable/screen/button_palette
-	desc = "<b>Drag</b> buttons to move them<br><b>Shift-click</b> any button to reset it<br><b>Alt-click</b> this to reset all buttons"
+	desc = "<b>Drag</b> buttons to move them<br><b>Shift-click</b> any button to reset it<br><b>Alt-click any button</b> to begin binding it to a key<br><b>Alt-click this</b> to reset all buttons"
 	icon = 'icons/hud/64x16_actions.dmi'
 	icon_state = "screen_gen_palette"
 	screen_loc = ui_action_palette
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	var/datum/hud/our_hud
 	var/expanded = FALSE
 	/// Id of any currently running timers that set our color matrix
@@ -263,7 +285,7 @@
 		our_hud = null
 	return ..()
 
-/atom/movable/screen/button_palette/Initialize(mapload)
+/atom/movable/screen/button_palette/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	// update_appearance()
 	update_name()
@@ -271,9 +293,10 @@
 /atom/movable/screen/button_palette/proc/set_hud(datum/hud/our_hud)
 	src.our_hud = our_hud
 	refresh_owner()
+	disable_landing() // If our hud already has elements, don't force hide us
 
 // /atom/movable/screen/button_palette/update_name(updates)
-/atom/movable/screen/button_palette/proc/update_name()
+/atom/movable/screen/button_palette/proc/update_name(updates)
 	// . = ..()
 	if(expanded)
 		name = "Hide Buttons"
@@ -285,13 +308,29 @@
 	if(viewer.client)
 		viewer.client.screen |= src
 
-	// var/list/settings = our_hud.get_action_buttons_icons()
-	// var/ui_icon = "[settings["bg_icon"]]"
-	// var/list/ui_segments = splittext(ui_icon, ".")
-	// var/list/ui_paths = splittext(ui_segments[1], "/")
-	// var/ui_name = ui_paths[length(ui_paths)]
+	/*
+	var/list/settings = our_hud.get_action_buttons_icons()
+	var/ui_icon = "[settings["bg_icon"]]"
+	var/list/ui_segments = splittext(ui_icon, ".")
+	var/list/ui_paths = splittext(ui_segments[1], "/")
+	var/ui_name = ui_paths[length(ui_paths)]
 
-	// icon_state = "[ui_name]_palette"
+	icon_state = "[ui_name]_palette"*/
+
+/atom/movable/screen/button_palette/proc/activate_landing()
+	// Reveal ourselves to the user
+	invisibility = INVISIBILITY_NONE
+
+/atom/movable/screen/button_palette/proc/disable_landing()
+	// If we have no elements in the palette, hide your ugly self please
+	if (!length(our_hud.palette_actions?.actions) && !length(our_hud.floating_actions))
+		invisibility = INVISIBILITY_ABSTRACT
+
+/atom/movable/screen/button_palette/proc/update_state()
+	if (length(our_hud.floating_actions))
+		activate_landing()
+	else
+		disable_landing()
 
 /atom/movable/screen/button_palette/MouseEntered(location, control, params)
 	. = ..()
@@ -326,10 +365,9 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, to_remove)
 
 /atom/movable/screen/button_palette/proc/can_use(mob/user)
-	if(isobserver(user))
-		// var/mob/dead/observer/O = user
-		// return !O.observetarget
-		return TRUE
+	if (isobserver(user))
+		var/mob/observer/dead/O = user
+		return !O.observetarget
 	return TRUE
 
 /atom/movable/screen/button_palette/Click(location, control, params)
@@ -381,16 +419,16 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 /atom/movable/screen/palette_scroll
 	icon = 'icons/hud/screen_gen.dmi'
 	screen_loc = ui_palette_scroll
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	/// How should we move the palette's actions?
 	/// Positive scrolls down the list, negative scrolls back
 	var/scroll_direction = 0
 	var/datum/hud/our_hud
 
 /atom/movable/screen/palette_scroll/proc/can_use(mob/user)
-	if(isobserver(user))
-		// var/mob/dead/observer/O = user
-		// return !O.observetarget
-		return TRUE
+	if (isobserver(user))
+		var/mob/observer/dead/O = user
+		return !O.observetarget
 	return TRUE
 
 /atom/movable/screen/palette_scroll/proc/set_hud(datum/hud/our_hud)
@@ -402,8 +440,8 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 	if(viewer.client)
 		viewer.client.screen |= src
 
-	// var/list/settings = our_hud.get_action_buttons_icons()
-	// icon = settings["bg_icon"]
+	//var/list/settings = our_hud.get_action_buttons_icons()
+	//icon = settings["bg_icon"]
 
 /atom/movable/screen/palette_scroll/Click(location, control, params)
 	if(!can_use(usr))
