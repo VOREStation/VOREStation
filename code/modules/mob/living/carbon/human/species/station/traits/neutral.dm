@@ -1859,3 +1859,12 @@
 	cost = 0
 	var_changes = list("bite_mod" = 16) // Setting this intentionally ridiculously high, so anything will overflow and be eaten in one go.
 	custom_only = FALSE
+
+/datum/trait/neutral/slip_reflex
+	name ="Slippery Reflexes"
+	desc = "Your reflexes are quick enough to react to slippery surfaces. You are not immune though."
+	cost = 0
+
+/datum/trait/neutral/slip_reflex/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, SLIP_REFLEX_TRAIT, ROUNDSTART_TRAIT)

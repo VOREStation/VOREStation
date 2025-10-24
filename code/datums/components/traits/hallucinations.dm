@@ -41,6 +41,7 @@
 		return
 	///How much medication we currently have in our system.
 	var/med_vol = get_med_volume(human_guy)
+
 	if(!episode["in_episode"])
 		if(world.time > episode["next_episode_begin"])
 			episode["meds_at_beginning"] = med_vol
