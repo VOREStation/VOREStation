@@ -620,6 +620,7 @@
 	var_changes = list("blood_volume" = 840)
 	excludes = list(/datum/trait/positive/more_blood_extreme,/datum/trait/negative/less_blood,/datum/trait/negative/less_blood_extreme)
 	can_take = ORGANICS
+	custom_only = FALSE
 
 /datum/trait/positive/more_blood_extreme
 	name = "Blood Volume, Very High"
