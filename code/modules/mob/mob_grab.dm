@@ -383,8 +383,6 @@
 		break_strength += grabber.species.grab_power_victims
 
 	var/break_chance = CLAMP(prob_mult*break_chance_table[CLAMP(break_strength, 1, break_chance_table.len)],0,100)
-
-	var/break_chance = break_chance_table[CLAMP(break_strength, 1, break_chance_table.len)]
 	if(prob(break_chance))
 		if(state == GRAB_KILL)
 			reset_kill_state()
