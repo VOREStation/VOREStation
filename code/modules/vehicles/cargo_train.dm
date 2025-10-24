@@ -62,7 +62,7 @@
 		return FALSE
 
 	//space check ~no flying space trains sorry
-	if(on && isnonsolidturf(newloc)))
+	if(on && isnonsolidturf(newloc))
 		return FALSE
 
 	return ..()
