@@ -145,7 +145,7 @@
 	if(on && cell)
 		cell.use(charge_use)
 
-	if(isnonsolidturf(newloc) || pulledby)
+	if(is_vehicle_inpassable(newloc) || pulledby)
 		if(!space_speed)
 			return FALSE
 		move_delay = space_speed
