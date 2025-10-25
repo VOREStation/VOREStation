@@ -328,6 +328,11 @@
 	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
 	. = ..()
 
+/datum/component/remote_view/mob_holding_item/handle_status_effects(datum/source, amount, ignore_canstun)
+	if(host_mob.loc == remote_view_target) // If we are still inside our holder or belly than don't bother spamming this
+		return
+	. = ..()
+
 /datum/component/remote_view/mob_holding_item/handle_hostmob_moved(atom/source, atom/oldloc)
 	// We handle this in recursive move
 	if(!host_mob)
