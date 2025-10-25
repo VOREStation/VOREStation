@@ -107,8 +107,12 @@
 /datum/component/remote_view/proc/handle_status_effects(datum/source, amount, ignore_canstun)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	if(!host_mob)
+		return
 	// We don't really care what effect was caused, just that it was increasing the value and thus negatively affecting us.
 	if(amount <= 0)
+		return
+	if(host_mob.client && isturf(host_mob.client.eye) && host_mob.client.eye == get_turf(host_mob.client.mob)) // This handles turf decoupling being protected until we actually move.
 		return
 	handle_endview(source)
 
