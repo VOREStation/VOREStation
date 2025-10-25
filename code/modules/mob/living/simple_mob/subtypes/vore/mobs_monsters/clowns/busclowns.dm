@@ -228,15 +228,6 @@
 				"bio" = 0,
 				"rad" = 0
 				)
-	armor_soak = list(
-				"melee" = 10,
-				"bullet" = 5,
-				"laser" = 0,
-				"energy" = 0,
-				"bomb" = 0,
-				"bio" = 0,
-				"rad" = 0
-				)
 
 
 /mob/living/simple_mob/clowns/big/c_shift/chlown

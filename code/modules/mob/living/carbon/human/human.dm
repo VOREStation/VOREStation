@@ -222,11 +222,6 @@
 			if (prob(50) && !shielded)
 				Paralyse(10)
 
-	var/blastsoak = getsoak(null, "bomb")
-
-	b_loss = max(1, b_loss - blastsoak)
-	f_loss = max(1, f_loss - blastsoak)
-
 	var/update = 0
 
 	// focus most of the blast on one organ

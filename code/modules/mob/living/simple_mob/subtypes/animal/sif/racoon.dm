@@ -52,16 +52,6 @@
 		"rad" = 100
 		)
 
-	armor_soak = list(
-		"melee" = 2,
-		"bullet" = 2,
-		"laser" = 0,
-		"energy" = 0,
-		"bomb" = 0,
-		"bio" = 0,
-		"rad" = 0
-		)
-
 	say_list_type = /datum/say_list/sakimm
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative/sakimm
 

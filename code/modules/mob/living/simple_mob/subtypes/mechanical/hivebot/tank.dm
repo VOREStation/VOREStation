@@ -67,15 +67,6 @@
 				"bio"		= 100,
 				"rad"		= 100
 				)
-	armor_soak = list(
-				"melee"		= 15,
-				"bullet"	= 10,
-				"laser"		= 15,
-				"energy"	= 0,
-				"bomb"		= 0,
-				"bio"		= 0,
-				"rad"		= 0
-				)
 
 /mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_melee
 	name = "riot hivebot"
@@ -89,15 +80,6 @@
 				"bomb"		= 0,
 				"bio"		= 100,
 				"rad"		= 100
-				)
-	armor_soak = list(
-				"melee"		= 20,
-				"bullet"	= 0,
-				"laser"		= 0,
-				"energy"	= 0,
-				"bomb"		= 0,
-				"bio"		= 0,
-				"rad"		= 0
 				)
 
 /mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_bullet
@@ -113,15 +95,6 @@
 				"bio"		= 100,
 				"rad"		= 100
 				)
-	armor_soak = list(
-				"melee"		= 0,
-				"bullet"	= 20,
-				"laser"		= 0,
-				"energy"	= 0,
-				"bomb"		= 0,
-				"bio"		= 0,
-				"rad"		= 0
-				)
 
 /mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_laser
 	name = "ablative hivebot"
@@ -135,15 +108,6 @@
 				"bomb"		= 0,
 				"bio"		= 100,
 				"rad"		= 100
-				)
-	armor_soak = list(
-				"melee"		= 0,
-				"bullet"	= 0,
-				"laser"		= 20,
-				"energy"	= 0,
-				"bomb"		= 0,
-				"bio"		= 0,
-				"rad"		= 0
 				)
 	var/reflect_chance = 40 // Same as regular ablative.
 

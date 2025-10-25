@@ -65,17 +65,6 @@
 		"rad" = 100
 		)
 
-	// The frostfly's body is incredibly cold at all times, natural resistance to things trying to burn it.
-	armor_soak = list(
-		"melee" = 0,
-		"bullet" = 0,
-		"laser" = 15,
-		"energy" = 0,
-		"bomb" = 0,
-		"bio" = 0,
-		"rad" = 0
-		)
-
 	var/datum/effect/effect/system/smoke_spread/frost/smoke_special
 
 	say_list_type = /datum/say_list/frostfly

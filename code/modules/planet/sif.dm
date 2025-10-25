@@ -421,7 +421,6 @@ var/datum/planet/sif/planet_sif = null
 
 		var/target_zone = pick(BP_ALL)
 		var/amount_blocked = H.run_armor_check(target_zone, "melee")
-		var/amount_soaked = H.get_armor_soak(target_zone, "melee")
 
 		var/damage = rand(1,3)
 
@@ -429,10 +428,7 @@ var/datum/planet/sif/planet_sif = null
 			return // No need to apply damage. Hardhats are 30. They should probably protect you from hail on your head.
 			//Voidsuits are likewise 40, and riot, 80. Clothes are all less than 30.
 
-		if(amount_soaked >= damage)
-			return // No need to apply damage.
-
-		H.apply_damage(damage, BRUTE, target_zone, amount_blocked, amount_soaked, used_weapon = "hail")
+		H.apply_damage(damage, BRUTE, target_zone, amount_blocked, used_weapon = "hail")
 		if(show_message)
 			to_chat(H, effect_message)
 
