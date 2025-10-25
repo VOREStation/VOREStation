@@ -11,7 +11,8 @@
 		"tgui:build": "rspack build",
 		"tgui:dev": "bun --smol packages/tgui-dev-server/index.ts",
 		"tgui:test": "bun test",
-		"tgui:tsc": "tsc"
+		"tgui:tsc": "tsc",
+		"tgui:biome-fix": "biome lint --write ."
 	},
 	"devDependencies": {
 		"@happy-dom/global-registrator": "^17.6.3",
