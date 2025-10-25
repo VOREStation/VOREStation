@@ -157,6 +157,21 @@
 	},
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod/dorms/bathroom)
+"ax" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = -23;
+	pixel_x = 21
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
+"ay" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = -23;
+	pixel_x = -23;
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
 "aD" = (
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 4
@@ -273,9 +288,7 @@
 	pixel_y = 38;
 	pixel_x = -6
 	},
-/obj/machinery/door/window/survival_pod{
-	icon_state = "windoor"
-	},
+/obj/machinery/door/window/survival_pod,
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/survivalpod/dorms/bathroom)
 "tj" = (
@@ -317,6 +330,11 @@
 "wT" = (
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = 8;
+	pixel_x = -21;
+	dir = 1
 	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
@@ -421,17 +439,22 @@
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "Ft" = (
-/obj/structure/window/reinforced/survival_pod{
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "luxcabinpod_w";
 	dir = 8
 	},
-/obj/structure/window/reinforced/survival_pod{
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "luxcabinpod_w";
 	dir = 4
 	},
-/obj/structure/window/reinforced/survival_pod{
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "luxcabinpod_w";
 	dir = 1
 	},
-/obj/structure/window/reinforced/survival_pod,
-/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "luxcabinpod_w"
+	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "Gh" = (
@@ -518,6 +541,12 @@
 "OU" = (
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/button/windowtint{
+	pixel_x = -8;
+	id = "luxcabinpod_w";
+	pixel_y = 26;
+	range = 6
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
@@ -610,7 +639,7 @@ ua
 LC
 gf
 Zb
-PY
+ay
 Am
 zW
 "}
@@ -663,7 +692,7 @@ ah
 ab
 PY
 PY
-PY
+ax
 dp
 "}
 (7,1,1) = {"
@@ -677,7 +706,7 @@ ac
 OU
 PY
 fz
-Ft
+Jj
 "}
 (8,1,1) = {"
 aw

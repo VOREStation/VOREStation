@@ -3,17 +3,38 @@
 /turf/simulated/shuttle/wall/voidcraft,
 /area/survivalpod)
 "b" = (
-/obj/structure/sign/mining/survival{
-	dir = 1
+/obj/machinery/button/remote/airlock/survival_pod{
+	dir = 10;
+	pixel_y = -24;
+	pixel_x = 32
 	},
-/turf/simulated/shuttle/wall/voidcraft,
-/area/survivalpod)
-"c" = (
-/obj/structure/fans,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
-"d" = (
-/obj/machinery/smartfridge/survival_pod,
+"g" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"h" = (
+/obj/item/gps/computer{
+	pixel_y = 0;
+	density = 0
+	},
+/obj/structure/tubes,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"k" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"m" = (
+/obj/machinery/smartfridge/survival_pod{
+	pixel_y = 28;
+	density = 0
+	},
 /obj/item/storage/mre/random,
 /obj/item/storage/mre/random,
 /obj/item/storage/mre/random,
@@ -23,104 +44,107 @@
 /obj/item/fbp_backup_cell,
 /obj/item/fbp_backup_cell,
 /obj/item/fbp_backup_cell,
-/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice_nerd,
 /obj/item/storage/firstaid/regular,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
-"e" = (
-/obj/item/gps/computer,
+"q" = (
+/obj/machinery/light_switch/survival_pod{
+	dir = 1;
+	pixel_x = -9;
+	pixel_y = -23
+	},
+/obj/structure/closet/cabinet,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
-"f" = (
+"s" = (
 /obj/structure/sign/mining/survival{
 	dir = 8
 	},
 /turf/simulated/shuttle/wall/voidcraft,
 /area/survivalpod)
-"g" = (
-/obj/machinery/sleeper/survival_pod,
-/turf/simulated/shuttle/floor/voidcraft,
-/area/survivalpod)
-"h" = (
-/turf/simulated/shuttle/floor/voidcraft,
-/area/survivalpod)
-"i" = (
-/obj/structure/bed/pod,
-/obj/item/bedsheet/mime,
+"x" = (
 /obj/machinery/light/small{
 	dir = 4;
-	pixel_y = 0
+	pixel_y = 19
 	},
+/obj/structure/bed/double/padded,
+/obj/item/bedsheet/hopdouble,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
-"j" = (
+"B" = (
 /obj/structure/sign/mining/survival{
-	dir = 4
+	dir = 1;
+	layer = 2.8
 	},
 /turf/simulated/shuttle/wall/voidcraft,
 /area/survivalpod)
-"k" = (
-/obj/structure/table/survival_pod,
-/turf/simulated/shuttle/floor/voidcraft,
-/area/survivalpod)
-"l" = (
-/obj/structure/tubes,
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/obj/machinery/button/remote/airlock/survival_pod{
-	dir = 10;
-	pixel_y = -24
+"D" = (
+/obj/structure/table/reinforced,
+/obj/item/deck/cards{
+	pixel_y = 4;
+	pixel_x = -4
 	},
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
-"m" = (
+"G" = (
+/obj/structure/fans{
+	pixel_y = 32;
+	density = 0
+	},
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"J" = (
 /obj/structure/sign/mining/survival,
 /turf/simulated/shuttle/wall/voidcraft,
 /area/survivalpod)
-"n" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/airlock/voidcraft/survival_pod,
-/obj/effect/floor_decal/industrial/danger/full,
+"O" = (
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
-"o" = (
+"Q" = (
 /obj/structure/sign/mining,
+/turf/simulated/shuttle/wall/voidcraft,
+/area/survivalpod)
+"W" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
 /turf/simulated/shuttle/wall/voidcraft,
 /area/survivalpod)
 
 (1,1,1) = {"
 a
 a
-f
+s
 a
 a
 "}
 (2,1,1) = {"
 a
-c
-g
+G
+D
 k
-m
+J
 "}
 (3,1,1) = {"
+B
+m
+O
 b
-d
-h
-h
-n
+g
 "}
 (4,1,1) = {"
 a
-e
-i
-l
-o
+h
+x
+q
+Q
 "}
 (5,1,1) = {"
 a
 a
-j
+W
 a
 a
 "}

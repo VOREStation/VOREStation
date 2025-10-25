@@ -77,27 +77,27 @@
 /obj/structure/closet/walllocker_double/casino/north,
 /obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 12;
-	pixel_x = 12
+	pixel_x = 10
 	},
 /obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 12;
-	pixel_x = 6
+	pixel_x = 4
 	},
 /obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 7;
-	pixel_x = 12
+	pixel_x = 10
 	},
 /obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 7;
-	pixel_x = 6
+	pixel_x = 4
 	},
 /obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 3;
-	pixel_x = 12
+	pixel_x = 10
 	},
 /obj/item/spacecasinocash_fake/c1000{
 	pixel_y = 3;
-	pixel_x = 6
+	pixel_x = 4
 	},
 /obj/item/storage/pill_bottle/dice{
 	pixel_y = 12;
@@ -110,6 +110,10 @@
 /obj/item/deck/cards/casino{
 	pixel_x = -6;
 	pixel_y = -1
+	},
+/obj/item/deck/cards/casino/triple{
+	pixel_y = -1;
+	pixel_x = 6
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/survivalpod)

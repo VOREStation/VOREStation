@@ -97,16 +97,14 @@
 	layer = 2.6
 	},
 /obj/machinery/door/window/survival_pod{
-	dir = 1;
-	icon_state = "windoor"
+	dir = 1
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
 "o" = (
 /obj/structure/bed/chair/comfy/black,
 /obj/structure/window/reinforced/survival_pod{
-	dir = 1;
-	icon_state = "pwindow"
+	dir = 1
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
@@ -122,8 +120,7 @@
 /area/survivalpod)
 "r" = (
 /obj/structure/window/reinforced/survival_pod{
-	dir = 8;
-	icon_state = "pwindow"
+	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
@@ -148,8 +145,7 @@
 	pixel_y = -2
 	},
 /obj/structure/window/reinforced/survival_pod{
-	dir = 1;
-	icon_state = "pwindow"
+	dir = 1
 	},
 /obj/structure/table/steel{
 	pixel_y = -9
@@ -158,15 +154,13 @@
 /area/survivalpod)
 "u" = (
 /obj/machinery/door/window/survival_pod{
-	dir = 1;
-	icon_state = "windoor"
+	dir = 1
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
 "v" = (
 /obj/structure/window/reinforced/survival_pod{
-	dir = 1;
-	icon_state = "pwindow"
+	dir = 1
 	},
 /obj/machinery/holoplant,
 /turf/simulated/floor/carpet/bcarpet,
@@ -174,8 +168,19 @@
 "w" = (
 /obj/structure/window/reinforced/survival_pod{
 	density = 0;
-	dir = 9;
-	icon_state = "pwindow"
+	dir = 9
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
+"x" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = -24;
+	pixel_x = 32
+	},
+/obj/machinery/light_switch/survival_pod{
+	dir = 8;
+	pixel_x = 23;
+	pixel_y = -23
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
@@ -213,13 +218,6 @@
 /obj/structure/sign/mining,
 /turf/simulated/shuttle/wall/voidcraft/survival,
 /area/survivalpod)
-"S" = (
-/obj/machinery/button/remote/airlock/survival_pod{
-	dir = 10;
-	pixel_y = -24
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/survivalpod)
 
 (1,1,1) = {"
 a
@@ -254,7 +252,7 @@ g
 m
 q
 v
-A
+x
 D
 "}
 (5,1,1) = {"
@@ -263,7 +261,7 @@ h
 n
 r
 w
-S
+A
 a
 "}
 (6,1,1) = {"

@@ -106,6 +106,9 @@
 	qdel(src)
 	return
 
+/obj/structure/window/proc/can_glasspassers_pass()
+	PROTECTED_PROC(TRUE)
+	return TRUE
 
 /obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
 
@@ -135,7 +138,7 @@
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return TRUE
+		return can_glasspassers_pass()
 	if(is_fulltile())
 		return FALSE	//full tile window, you can't move into it!
 	if(get_dir(mover, target) == GLOB.reverse_dir[dir]) // From elsewhere to here, can't move against our dir
@@ -583,6 +586,11 @@
 	fulltile = TRUE
 	flags = NONE
 
+/obj/structure/window/reinforced/polarized/can_glasspassers_pass()
+	// If the windows are currently tinted, they're blocking light from passing.
+	// So, they should block stuff like lasers at that time.
+	return opacity
+
 /obj/structure/window/reinforced/polarized/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/multitool) && !anchored) // Only allow programming if unanchored!
 		var/obj/item/multitool/MT = W
@@ -606,9 +614,11 @@
 	if(opacity)
 		animate(src, color="#FFFFFF", time=5)
 		set_opacity(0)
+		AddElement(/datum/element/light_blocking)
 	else
 		animate(src, color="#222222", time=5)
 		set_opacity(1)
+		RemoveElement(/datum/element/light_blocking)
 	var/turf/T = get_turf(src)
 	T.recalculate_directional_opacity()
 

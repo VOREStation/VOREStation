@@ -167,17 +167,22 @@
 /turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
 /area/survivalpod)
 "C" = (
-/obj/structure/window/reinforced/survival_pod{
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "barpod_w";
 	dir = 8
 	},
-/obj/structure/window/reinforced/survival_pod{
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "barpod_w";
 	dir = 4
 	},
-/obj/structure/window/reinforced/survival_pod{
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "barpod_w";
 	dir = 1
 	},
-/obj/structure/window/reinforced/survival_pod,
-/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "barpod_w"
+	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "D" = (
@@ -277,6 +282,38 @@
 /obj/effect/floor_decal/industrial/danger/full,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
+"T" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = -24;
+	pixel_x = -23
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
+"U" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	dir = 8;
+	pixel_x = -24;
+	pixel_y = 23
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
+"V" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	dir = 8;
+	pixel_x = -24;
+	pixel_y = 23
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"W" = (
+/obj/machinery/button/windowtint{
+	pixel_x = 27;
+	id = "barpod_w";
+	pixel_y = -24;
+	range = 5
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
 
 (1,1,1) = {"
 a
@@ -294,10 +331,10 @@ a
 (2,1,1) = {"
 b
 j
-q
+V
 s
 x
-y
+U
 D
 F
 K
@@ -349,11 +386,11 @@ i
 q
 t
 x
+W
 y
 y
 y
-y
-y
+T
 p
 "}
 (7,1,1) = {"
