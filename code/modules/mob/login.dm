@@ -46,9 +46,11 @@
 	..()
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 
-	if(!restore_remote_views())
-		client.perspective = MOB_PERSPECTIVE
-		client.set_eye(src)
+	qdel(GetComponent(/datum/component/remote_view)) // If we somehow still had a remote view. Nuke it and try again, invalid state...
+	client.perspective = MOB_PERSPECTIVE
+	client.set_eye(src)
+	restore_remote_views()
+
 	add_click_catcher()
 	update_client_color()
 
