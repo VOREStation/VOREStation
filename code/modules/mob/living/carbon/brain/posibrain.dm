@@ -85,7 +85,7 @@
 		M.show_message(span_blue("The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?"))
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
-/obj/item/mmi/digital/posibrain/emp_act(severity)
+/obj/item/mmi/digital/posibrain/emp_act(severity, recursive)
 	if(!src.brainmob)
 		return
 	else

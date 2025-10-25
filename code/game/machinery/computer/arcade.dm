@@ -61,9 +61,9 @@
 	return attack_hand(user)
 
 
-/obj/machinery/computer/arcade/emp_act(severity)
+/obj/machinery/computer/arcade/emp_act(severity, recursive)
 	if(stat & (NOPOWER|BROKEN))
-		..(severity)
+		..(severity, recursive)
 		return
 	var/empprize = null
 	var/num_of_prizes = 0
@@ -80,7 +80,7 @@
 		empprize = pickweight(prizes)
 		new empprize(src.loc)
 
-	..(severity)
+	..(severity, recursive)
 
 ///////////////////
 //  BATTLE HERE  //

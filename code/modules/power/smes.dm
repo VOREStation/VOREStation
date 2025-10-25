@@ -498,7 +498,7 @@ GLOBAL_LIST_EMPTY(smeses)
 				explosion(get_turf(src), 0, 1, 2)
 		qdel(src) // Either way we want to ensure the SMES is deleted.
 
-/obj/machinery/power/smes/emp_act(severity)
+/obj/machinery/power/smes/emp_act(severity, recursive)
 	inputting(rand(0,1))
 	outputting(rand(0,1))
 	output_level = rand(0, output_level_max)

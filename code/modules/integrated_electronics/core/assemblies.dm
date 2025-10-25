@@ -443,11 +443,6 @@
 	else
 		return ..()
 
-/obj/item/electronic_assembly/emp_act(severity)
-	..()
-	for(var/atom/movable/AM in contents)
-		AM.emp_act(severity)
-
 // Returns true if power was successfully drawn.
 /obj/item/electronic_assembly/proc/draw_power(amount)
 	if(battery)

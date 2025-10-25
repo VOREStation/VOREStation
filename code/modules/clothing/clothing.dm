@@ -338,13 +338,6 @@
 		var/mob/M = src.loc
 		M.update_inv_gloves()
 
-/obj/item/clothing/gloves/emp_act(severity)
-	if(cell)
-		cell.emp_act(severity)
-	if(ring)
-		ring.emp_act(severity)
-	..()
-
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
 	return 0 // return 1 to cancel attack_hand()

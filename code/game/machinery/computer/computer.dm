@@ -29,7 +29,7 @@
 		return 0
 	return 1
 
-/obj/machinery/computer/emp_act(severity)
+/obj/machinery/computer/emp_act(severity, recursive)
 	if(prob(20/severity)) set_broken()
 	..()
 

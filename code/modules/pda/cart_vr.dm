@@ -52,10 +52,6 @@
 		hold.remove_from_storage(I, T)
 	add_fingerprint(user)
 
-/obj/item/cartridge/storage/emp_act(severity)
-	hold.emp_act(severity)
-	..()
-
 /obj/item/cartridge/storage/deluxe
 	name = "\improper BLU-PAK DELUXE cartridge"
 	programs = list(

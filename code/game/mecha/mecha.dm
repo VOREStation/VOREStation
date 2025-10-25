@@ -1325,7 +1325,7 @@
 	return
 */
 
-/obj/mecha/emp_act(severity)
+/obj/mecha/emp_act(severity, recursive)
 	if(get_charge())
 		use_power((cell.charge/2)/severity)
 		take_damage(50 / severity,"energy")

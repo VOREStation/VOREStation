@@ -231,7 +231,7 @@
 
 
 // Electromagnetism
-/mob/living/simple_mob/emp_act(severity)
+/mob/living/simple_mob/emp_act(severity, recursive)
 	..() // To emp_act() its contents.
 	if(!isSynthetic())
 		return

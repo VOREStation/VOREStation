@@ -88,17 +88,16 @@
 	QDEL_LIST(synths)
 	return ..()
 
-/obj/item/robot_module/emp_act(severity)
+/obj/item/robot_module/emp_act(severity, recursive)
 	if(modules)
 		for(var/obj/O in modules)
-			O.emp_act(severity)
+			O.emp_act(severity, recursive)
 	if(emag)
 		for(var/obj/O in emag)
-			O.emp_act(severity)
+			O.emp_act(severity, recursive)
 	if(synths)
 		for(var/datum/matter_synth/S in synths)
-			S.emp_act(severity)
-	..()
+			S.emp_act(severity, recursive)
 	return
 
 /obj/item/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R, var/rate)

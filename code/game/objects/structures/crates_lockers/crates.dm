@@ -223,15 +223,13 @@
 		update_icon()
 		return 1
 
-/obj/structure/closet/crate/secure/emp_act(severity)
-	for(var/obj/O in src)
-		O.emp_act(severity)
+/obj/structure/closet/crate/secure/emp_act(severity, recursive)
 	if(!broken && !opened  && prob(50/severity))
 		if(!locked)
-			locked = 1
+			locked = TRUE
 		else
 			playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
-			locked = 0
+			locked = FALSE
 	if(!opened && prob(20/severity))
 		if(!locked)
 			open()

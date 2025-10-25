@@ -295,9 +295,9 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/protean_blob/emp_act(severity)
+/mob/living/simple_mob/protean_blob/emp_act(severity, recursive)
 	if(humanform)
-		return humanform.emp_act(severity)
+		return humanform.emp_act(severity, recursive)
 	else
 		return ..()
 
