@@ -376,7 +376,7 @@ export const TguiAnalyzeTarget = new Juke.Target({
 
 export const TguiFix = new Juke.Target({
   dependsOn: [BunTarget],
-  executes: () => bun('tgui:biome-fix'),
+  executes: () => bunRoot('tgui:fix'),
 });
 
 export const TestTarget = new Juke.Target({
