@@ -25,9 +25,7 @@
 	var/mob/living/silicon/robot/R = host
 	data["active_decals"] = R.robotdecal_on
 
-	var/robot_theme = R.get_ui_theme()
-	if(robot_theme)
-		data["theme"] = robot_theme
+	data["theme"] = R.get_ui_theme()
 
 	return data
 

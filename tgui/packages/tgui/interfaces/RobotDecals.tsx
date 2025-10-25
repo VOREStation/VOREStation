@@ -5,7 +5,7 @@ import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
-  theme?: string;
+  theme: string | null;
   all_decals?: string[] | null;
   all_animations?: string[] | null;
   active_decals: string[];
