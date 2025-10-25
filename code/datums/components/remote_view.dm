@@ -28,6 +28,12 @@
 	RegisterSignal(host_mob, COMSIG_MOB_LOGOUT, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
+	// Upon any disruptive status effects
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN, PROC_REF(handle_status_effects))
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN, PROC_REF(handle_status_effects))
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE, PROC_REF(handle_status_effects))
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP, PROC_REF(handle_status_effects))
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND, PROC_REF(handle_status_effects))
 	// Recursive move component fires this, we only want it to handle stuff like being inside a paicard when releasing turf lock
 	if(isturf(focused_on))
 		RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
@@ -48,6 +54,12 @@
 	UnregisterSignal(host_mob, COMSIG_MOB_LOGOUT)
 	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
+	// Status effects
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN)
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN)
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE)
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP)
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
 	if(isturf(remote_view_target))
 		UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
 	// Cleanup remote view
@@ -91,6 +103,14 @@
 		return
 	end_view()
 	qdel(src)
+
+/datum/component/remote_view/proc/handle_status_effects(datum/source, amount, ignore_canstun)
+	SIGNAL_HANDLER
+	PROTECTED_PROC(TRUE)
+	// We don't really care what effect was caused, just that it was increasing the value and thus negatively affecting us.
+	if(amount <= 0)
+		return
+	handle_endview(source)
 
 /datum/component/remote_view/proc/on_reset_perspective(datum/source)
 	SIGNAL_HANDLER
