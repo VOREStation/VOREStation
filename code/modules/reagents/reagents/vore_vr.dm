@@ -111,8 +111,7 @@
 /datum/reagent/unsorbitol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.make_dizzy(1)
 	M.adjustHalLoss(1)
-	if(!M.confused) M.confused = 1
-	M.confused = max(M.confused, 20)
+	M.SetConfused(max(M.confused, 20))
 	M.hallucination = max(M.hallucination, 20) //This used to be += 15 resulting in INFINITE HALLUCINATION
 
 	for(var/obj/belly/B as anything in M.vore_organs)
