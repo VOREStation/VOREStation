@@ -103,10 +103,13 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	//Admin PM
 	if(href_list["priv_msg"])
-		var/client/C = locate(href_list["priv_msg"])
+		var/passed_key = href_list["priv_msg"]
+		var/client/C = locate(passed_key)
 		if(ismob(C)) 		//Old stuff can feed-in mobs instead ofGLOB.clients
 			var/mob/M = C
 			C = M.client
+		if(!C && istext(passed_key))
+			C = passed_key
 		cmd_admin_pm(C,null)
 		return
 
@@ -881,6 +884,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!client || !client.mob || !client.eye)
 		return FALSE
 	if(isturf(client.mob.loc) && get_turf(client.eye) == get_turf(client.mob))
+		return FALSE
+	if(ismecha(client.mob.loc) && client.eye == client.mob.loc)
 		return FALSE
 	return (client.eye != client.mob)
 

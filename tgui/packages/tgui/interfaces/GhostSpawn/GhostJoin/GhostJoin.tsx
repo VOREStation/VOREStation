@@ -58,12 +58,12 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
     'lost_drone_spawn',
   );
   specialRoles[2] = describeSpecialData(
-    'Maint Pred',
+    'Maintenance Critter',
     !!ghost_banned,
     remaining_ghost_roles,
     !!existing_ghost_spawnpoints,
     special_role_respawn,
-    'maintpred_spawn',
+    'maintenance_critter',
   );
   specialRoles[3] = describeSpecialData(
     'Gravekeeper Drone',
@@ -72,14 +72,6 @@ export const GhostJoin = (props: { all_ghost_join_options: GhostJoinData }) => {
     !!existing_ghost_spawnpoints,
     special_role_respawn,
     'gravekeeper_spawn',
-  );
-  specialRoles[4] = describeSpecialData(
-    'Morph',
-    !!ghost_banned,
-    remaining_ghost_roles,
-    !!existing_ghost_spawnpoints,
-    special_role_respawn,
-    'morph_spawn',
   );
 
   const playerDropdown = Object.entries(drone_data.fabricators).map((entry) => {

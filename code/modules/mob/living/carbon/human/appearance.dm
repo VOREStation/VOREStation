@@ -4,7 +4,7 @@
 												var/list/species_whitelist = list(),
 												var/list/species_blacklist = list(),
 												var/datum/tgui_state/state = GLOB.tgui_self_state)
-	var/datum/tgui_module/appearance_changer/AC = new(src, src, check_species_whitelist, species_whitelist, species_blacklist)
+	var/datum/tgui_module/appearance_changer/self_deleting/AC = new(src, src, check_species_whitelist, species_whitelist, species_blacklist)
 	AC.flags = flags
 	AC.tgui_interact(user, custom_state = state)
 

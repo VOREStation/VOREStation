@@ -104,6 +104,8 @@
 #define Z_NAME_REDGATE_JUNGLE_CAVE			"Redgate - Jungle Underground"
 #define Z_NAME_REDGATE_JUNGLE				"Redgate - Jungle"
 #define Z_NAME_REDGATE_FACILITY				"Redgate - Facility"
+#define Z_NAME_REDGATE_CASINO_CANAL			"Redgate - Casino Canal"
+#define Z_NAME_REDGATE_CASINO_CANAL_LOWER	"Redgate - Casino Canal Lower Level"
 
 /obj/effect/landmark/map_data/groundbase
 	height = 3
