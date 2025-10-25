@@ -366,13 +366,13 @@
 	var/lleill_energy = 200
 	var/lleill_energy_max = 200
 
-	var/bite_mod = 1 //NYI - Used Downstream
-	var/grab_resist_divisor_victims = 1 //NYI - Used Downstream
-	var/grab_resist_divisor_self = 1 //NYI - Used Downstream
-	var/grab_power_victims = 0 //NYI - Used Downstream
-	var/grab_power_self = 0 //NYI - Used Downstream
+	var/bite_mod = 1
+	var/grab_resist_divisor_victims = 1
+	var/grab_resist_divisor_self = 1
+	var/grab_power_victims = 0
+	var/grab_power_self = 0
 	var/waking_speed = 1 //NYI - Used Downstream
-	var/lightweight_light = 0 //NYI - Used Downstream
+	var/lightweight_light = 0
 	var/unarmed_bonus = 0 //do you have stronger unarmed attacks?
 	var/shredding = FALSE //do you shred when attacking? Affects escaping restraints, and punching normally unpunchable things
 

@@ -234,8 +234,12 @@
 		else if(reagents)								//Handle ingestion of the reagent.
 			playsound(M, eating_sound, rand(10,50), 1)
 			if(reagents.total_volume)
-				if(reagents.total_volume > bitesize)
-					reagents.trans_to_mob(M, bitesize, CHEM_INGEST)
+				var/bite_mod = 1
+				var/mob/living/carbon/human/H = M
+				if(istype(H))
+					bite_mod = H.species.bite_mod
+				if(reagents.total_volume > bitesize*bite_mod)
+					reagents.trans_to_mob(M, bitesize*bite_mod, CHEM_INGEST)
 				else
 					reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 				bitecount++

@@ -33,7 +33,8 @@
 	UnregisterSignal(parent, COMSIG_GARGOYLE_PAUSE)
 	UnregisterSignal(parent, COMSIG_GARGOYLE_CHECK_ENERGY)
 	UnregisterSignal(parent, COMSIG_LIVING_LIFE)
-	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED) //happens if gargoyle_pause is used
+	if(paused)
+		UnregisterSignal(parent, COMSIG_MOVABLE_MOVED) //happens if gargoyle_pause is used
 
 /datum/component/gargoyle/proc/process_component()
 	if(QDELETED(gargoyle))
