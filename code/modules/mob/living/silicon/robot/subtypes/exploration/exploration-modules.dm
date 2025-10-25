@@ -1,9 +1,3 @@
-/* //Uncomment the exploration modules in code\global.dm
-/hook/startup/proc/Modular_Borg_init_Exploration()
-	robot_modules["Exploration"] = /obj/item/robot_module/robot/exploration //add to array
-	robot_module_types += "Exploration" //Add to global list
-	return 1
-*/
 //Explo doggos
 /obj/item/robot_module/robot/exploration
 	name = "exploration robot module"

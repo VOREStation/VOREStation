@@ -313,14 +313,14 @@
 			writer.assignment = t1
 			writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
 			data_core.manifest_modify(writer.registered_name, writer.assignment, writer.rank)
-			callHook("reassign_employee", list(writer))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, writer)
 
 	if("reg" in href_list)
 		if(auth)
 			writer.registered_name = href_list["reg"]
 			writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
 			data_core.manifest_modify(writer.registered_name, writer.assignment, writer.rank)
-			callHook("reassign_employee", list(writer))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, writer)
 
 	computer.updateUsrDialog(usr)
 	return

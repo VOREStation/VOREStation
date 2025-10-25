@@ -65,6 +65,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	M.ooc_notes_favs = ooc_notes_favs
 	M.ooc_notes_maybes = ooc_notes_maybes
 	M.ooc_notes_style = ooc_notes_style
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, M, stored_mind)
 	clear_mind()
 
 

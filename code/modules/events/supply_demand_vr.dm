@@ -1,10 +1,5 @@
 /var/global/running_demand_events = list()
 
-/hook/sell_shuttle/proc/supply_demand_sell_shuttle(var/area/area_shuttle)
-	for(var/datum/event/supply_demand/E in running_demand_events)
-		E.handle_sold_shuttle(area_shuttle)
-	return 1 // All hooks must return one to show success.
-
 //
 // The Supply Demand Event - CentCom asks for us to put some stuff on the shuttle
 //
@@ -63,6 +58,7 @@
 
 	// Also announce over main comms so people know to look
 	command_announcement.Announce("An order for the [using_map.facility_type] to deliver supplies to [command_name()] has been delivered to all supply Request Consoles", my_department)
+	RegisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART, PROC_REF(handle_supply_demand_sell_shuttle))
 
 /datum/event/supply_demand/tick()
 	if(required_items.len == 0)
@@ -70,6 +66,7 @@
 
 /datum/event/supply_demand/end()
 	running_demand_events -= src
+	UnregisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART)
 	// Check if the crew succeeded or failed!
 	if(required_items.len == 0)
 		// Success!
@@ -86,6 +83,16 @@
 		for(var/datum/supply_demand_order/req in required_items)
 			message += req.describe() + "<br>"
 		post_comm_message("'[my_department] Mission Summary'", message)
+
+/**
+ * Signal Handler for when the shuttle fires COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART
+ */
+/datum/event/supply_demand/proc/handle_supply_demand_sell_shuttle(datum/source, list/area/supply_shuttle_areas)
+	SIGNAL_HANDLER
+	for(var/datum/event/supply_demand/E in running_demand_events)
+		// I don't think multiple supply shuttles have ever been used, but retaining support regardless...
+		for(var/area/sub_area in supply_shuttle_areas)
+			E.handle_sold_shuttle(sub_area)
 /**
  * Event Handler for responding to the supply shuttle arriving at centcom.
  */

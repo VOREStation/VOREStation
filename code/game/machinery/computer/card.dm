@@ -224,7 +224,7 @@
 					modify.assignment = t1
 					modify.rank = t1
 
-				callHook("reassign_employee", list(modify))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, modify)
 			. = TRUE
 
 		if("reg")
@@ -280,8 +280,7 @@
 			if(is_authenticated())
 				modify.assignment = "Dismissed"	//VOREStation Edit: setting adjustment
 				modify.access = list()
-
-				callHook("terminate_employee", list(modify))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TERMINATE_EMPLOYEE_IDCARD, modify)
 
 			. = TRUE
 

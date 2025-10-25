@@ -79,10 +79,21 @@
 
 		remove_verb(src, /mob/living/carbon/proc/release_control)
 
-	callHook("death", list(src, gibbed))
-
+	// Handle vorny
+	if(isbelly(loc))
+		//Were they digesting and we have a mind you can update?
+		//Technically allows metagaming by allowing buddies to turn on digestion for like 2 seconds
+		//  to finish off critically wounded friends to avoid resleeving sickness, but like
+		//  *kill those people* ok?
+		var/obj/belly/in_belly = loc
+		if(in_belly.digest_mode == DM_DIGEST || in_belly.digest_mode == DM_SELECT)
+			mind?.vore_death = TRUE
+	soulcatcher_on_mob_death()
 	if(istype(loc, /obj/item/clothing/shoes))
 		mind?.vore_death = TRUE
+
+	// Let them know we died!
+	to_chat(src, span_notice("You're dead! If you don't intend to continue playing this round as this character, please use the <b>Quit This Round</b> verb in the OOC tab to free your job slot. Otherwise, you can use the <b>Notify Transcore</b> verb to let medical know you need resleeving, or <b>Find Auto Resleever</b> verb to be taken to an auto resleever, which you can click on to be resleeved automatically after a time."))
 
 	if(mind)
 		var/area/A = get_area(src)

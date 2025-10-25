@@ -308,12 +308,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 			connected_tracker.set_angle(SSsun.sun.angle)
 		set_panels(cdir)
 
-// This would use LateInitialize(), however the powernet does not appear to exist during that time.
-/hook/roundstart/proc/auto_start_solars()
-	for(var/obj/machinery/power/solar_control/SC as anything in GLOB.solars_list)
-		SC.auto_start()
-	return TRUE
-
 /obj/machinery/power/solar_control/proc/add_panel(var/obj/machinery/power/solar/P)
 	var/sgen = P.get_power_supplied()
 	connected_power -= connected_panels[P] // Just in case it was already in there

@@ -1,11 +1,5 @@
 GLOBAL_LIST_EMPTY(prevent_respawns)
 
-/hook/death/proc/quit_notify(mob/dead)
-	if(ishuman(dead))
-		to_chat(dead,span_notice("You're dead! If you don't intend to continue playing this round as this character, please use the <b>Quit This Round</b> verb in the OOC tab to free your job slot. Otherwise, you can use the <b>Notify Transcore</b> verb to let medical know you need resleeving, or <b>Find Auto Resleever</b> verb to be taken to an auto resleever, which you can click on to be resleeved automatically after a time."))
-
-	return TRUE
-
 /mob/observer/dead/verb/cleanup()
 	set name = "Quit This Round"
 	set category = "OOC.Game"

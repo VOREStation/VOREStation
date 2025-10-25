@@ -139,7 +139,7 @@
 		if("toggle_suspension")
 			if(detailed_account_view)
 				detailed_account_view.suspended = !detailed_account_view.suspended
-				callHook("change_account_status", list(detailed_account_view))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PAYMENT_ACCOUNT_STATUS, detailed_account_view)
 
 		if("finalise_create_account")
 			var/account_name = params["holder_name"]
@@ -196,7 +196,7 @@
 			detailed_account_view.transaction_log.Add(account_trx)
 			GLOB.station_account.transaction_log.Add(station_trx)
 
-			callHook("revoke_payroll", list(detailed_account_view))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PAYMENT_ACCOUNT_REVOKE, detailed_account_view)
 
 		if("print")
 			print()

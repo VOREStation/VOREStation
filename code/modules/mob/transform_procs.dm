@@ -185,7 +185,7 @@
 		O.fuzzy = B.fuzzy
 		O.custom_speech_bubble = B.custom_speech_bubble
 
-	callHook("borgify", list(O))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BORGIFY, O)
 
 	spawn(0)	// Mobs still instantly del themselves, thus we need to spawn or O will never be returned
 		qdel(src)

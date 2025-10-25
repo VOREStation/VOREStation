@@ -131,11 +131,7 @@
 	H.ckey = BR.ckey
 	to_chat(H, span_warning(span_bold("Consciousness slowly creeps over you as your body regenerates.") + "<br>" + span_bold(span_large("Your recent memories are fuzzy, and it's hard to remember anything from today...")) + \
 		"<br>" + span_notice(span_italics("So this is what cloning feels like?"))))
-
-	// -- Mode/mind specific stuff goes here
-	callHook("clone", list(H))
-	update_antag_icons(H.mind)
-	// -- End mode specific stuff
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, H, clonemind)
 
 	// A modifier is added which makes the new clone be unrobust.
 	// Upgraded cloners can reduce the time of the modifier, up to 80%

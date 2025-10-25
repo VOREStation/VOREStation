@@ -480,6 +480,8 @@
 	if(new_imp.handle_implant(occupant, BP_HEAD))
 		new_imp.post_implant(occupant)
 
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, occupant, MR.mind_ref)
+
 	//Inform them and make them a little dizzy.
 	if(confuse_amount + blur_amount <= 16)
 		to_chat(occupant, span_notice("You feel a small pain in your head as you're given a new backup implant. Your new body feels comfortable already, however."))

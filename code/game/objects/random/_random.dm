@@ -137,12 +137,3 @@ var/list/multi_point_spawns
 
 /obj/random_multi/single_item/generate_items()
 	new item_path(loc)
-
-/hook/roundstart/proc/generate_multi_spawn_items()
-	for(var/id in multi_point_spawns)
-		var/list/spawn_points = multi_point_spawns[id]
-		var/obj/random_multi/rm = pickweight(spawn_points)
-		rm.generate_items()
-		for(var/entry in spawn_points)
-			qdel(entry)
-	return 1

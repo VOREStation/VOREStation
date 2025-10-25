@@ -394,13 +394,6 @@ var/list/species_sound_map = list(
 	"Unset" = use_default
 )
 
-/* // Not sure we even really need this
-/hook/startup/proc/Init_species_sounds() // The entries we're checking over MUST have unique keys.
-	for(var/i in species_sound_map)
-		species_sounds |= species_sound_map[i]
-	return 1
-*/
-
 /*
  * Call this for when you need a sound from an already-identified list - IE, "Canine". pick() cannot parse procs.
  * Indexes must be pre-calculated by the time it reaches here - for instance;

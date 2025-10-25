@@ -75,6 +75,7 @@
 	zone_sel = null
 
 /mob/Initialize(mapload)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_CREATED, src)
 	GLOB.mob_list += src
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src

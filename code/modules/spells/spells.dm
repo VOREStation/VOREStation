@@ -29,11 +29,6 @@
 // 				if(Sp_HOLDVAR)
 // 					statpanel(S.panel,"[S.holder_var_type] [S.holder_var_amount]",S.connected_button)
 
-/hook/clone/proc/restore_spells(var/mob/H)
-	if(H.mind && H.mind.learned_spells)
-		for(var/spell/spell_to_add in H.mind.learned_spells)
-			H.add_spell(spell_to_add)
-
 /mob/proc/add_spell(var/spell/spell_to_add, var/spell_base = "wiz_spell_ready", var/master_type = /atom/movable/screen/movable/spell_master)
 	if(!spell_masters)
 		spell_masters = list()
@@ -43,6 +38,10 @@
 			if(spell_master.type == master_type)
 				spell_list.Add(spell_to_add)
 				spell_master.add_spell(spell_to_add)
+				if(mind)
+					if(!mind.learned_spells)
+						mind.learned_spells = list()
+					mind.learned_spells += spell_to_add
 				return 1
 
 	var/atom/movable/screen/movable/spell_master/new_spell_master = new master_type //we're here because either we didn't find our type, or we have no spell masters to attach to
