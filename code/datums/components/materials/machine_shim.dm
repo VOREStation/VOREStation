@@ -17,6 +17,7 @@
 	RegisterSignal(host_mob, COMSIG_LIVING_LIFE, PROC_REF(on_mob_action))
 	RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION, PROC_REF(on_mob_vision_update))
 	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(on_mob_action))
+	RegisterSignal(host_mob, COMSIG_MOB_LOGOUT, PROC_REF(on_mob_logout))
 
 	// Machine
 	linked_machine = machine
@@ -41,6 +42,7 @@
 	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
 	UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION)
 	UnregisterSignal(host_mob, COMSIG_LIVING_LIFE)
+	UnregisterSignal(host_mob, COMSIG_MOB_LOGOUT)
 	host_mob.reset_perspective() // Required, because our machine may have been operating a remote view
 	host_mob = null
 
@@ -73,6 +75,12 @@
 		linked_machine.apply_visual(host_mob)
 		return
 	host_mob.sight |= viewflags
+
+/datum/component/using_machine_shim/proc/on_mob_logout()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	SIGNAL_HANDLER
+	qdel(src)
 
 /////////////////////////////////////////////////////////////////////////////////
 // To be removed helper procs
