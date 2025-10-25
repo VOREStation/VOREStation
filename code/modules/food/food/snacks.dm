@@ -59,23 +59,21 @@
 //Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/M)
 	if(food_inserted_micros && food_inserted_micros.len)
-		if(M.can_be_drop_pred && M.food_vore && M.vore_selected)
-			for(var/mob/living/F in food_inserted_micros)
-				if(!F.can_be_drop_prey || !F.food_vore)
-					continue
+		for(var/mob/living/F in food_inserted_micros)
+			var/do_nom = FALSE
 
-				var/do_nom = FALSE
-
-				if(!reagents.total_volume)
+			if(!reagents.total_volume)
+				do_nom = TRUE
+			else
+				var/nom_chance = (bitecount/(bitecount + (bitesize / reagents.total_volume) + 1))*100
+				if(prob(nom_chance))
 					do_nom = TRUE
-				else
-					var/nom_chance = (bitecount/(bitecount + (bitesize / reagents.total_volume) + 1))*100
-					if(prob(nom_chance))
-						do_nom = TRUE
 
-				if(do_nom)
-					F.forceMove(M.vore_selected)
-					food_inserted_micros -= F
+			if(do_nom)
+				if(!CanFoodVore(M, F))
+					continue
+				F.forceMove(M.vore_selected)
+				food_inserted_micros -= F
 
 	if(!reagents.total_volume)
 		M.balloon_alert_visible("eats \the [src].","finishes eating \the [src].")

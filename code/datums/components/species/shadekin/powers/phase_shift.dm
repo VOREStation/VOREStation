@@ -169,12 +169,12 @@
 		var/mob/living/our_prey
 		if(potentials.len)
 			var/mob/living/target = pick(potentials)
-			if(can_be_drop_pred && istype(target) && target.devourable && target.can_be_drop_prey && target.phase_vore && vore_selected && phase_vore)
+			if(CanPhaseVore(src, target))
 				target.forceMove(vore_selected)
 				to_chat(target, span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.get_belly_name()]!"))
 				to_chat(src, span_vwarning("You phase around [target], [vore_selected.vore_verb]ing them into your [vore_selected.get_belly_name()]!"))
 				our_prey = target
-			else if(can_be_drop_prey && istype(target) && devourable && target.can_be_drop_pred && target.phase_vore && target.vore_selected && phase_vore)
+			else if(CanPhaseVore(target, src))
 				our_prey = src
 				forceMove(target.vore_selected)
 				to_chat(target, span_vwarning("\The [src] phases into you, [target.vore_selected.vore_verb]ing them into your [target.vore_selected.get_belly_name()]!"))

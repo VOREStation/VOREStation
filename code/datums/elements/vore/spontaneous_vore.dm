@@ -125,64 +125,11 @@
 		return
 
 	//Person being slipped into eats the person slipping
-	if(can_slip_vore(pred = source, prey = crossed))	//If we can vore them go for it
+	if(CanSlipVore(pred = source, prey = crossed))	//If we can vore them go for it
 		source.begin_instant_nom(source, prey = crossed, pred = source, belly = source.vore_selected)
 		return COMPONENT_BLOCK_CROSS
 
 	//The person slipping eats the person being slipped into
-	else if(can_slip_vore(pred = crossed, prey = source))
+	else if(CanSlipVore(pred = crossed, prey = source))
 		source.begin_instant_nom(crossed, prey = source, pred = crossed, belly = crossed.vore_selected) //Must be
 		return //We DON'T block it here. Pred can slip onto the prey's tile, no problem.
-
-
-///Helper Procs
-/proc/CanStumbleVore(mob/living/prey, mob/living/pred)
-	if(!can_spontaneous_vore(pred, prey))
-		return FALSE
-	if(!prey.stumble_vore || !pred.stumble_vore)
-		return FALSE
-	return TRUE
-
-/proc/CanDropVore(mob/living/prey, mob/living/pred)
-	if(!can_spontaneous_vore(pred, prey))
-		return FALSE
-	if(!pred.drop_vore || !prey.drop_vore)
-		return FALSE
-	return TRUE
-
-/proc/CanThrowVore(mob/living/prey, mob/living/pred)
-	if(!can_spontaneous_vore(pred, prey))
-		return FALSE
-	if(!pred.throw_vore || !prey.throw_vore)
-		return FALSE
-	return TRUE
-
-/proc/can_slip_vore(mob/living/pred, mob/living/prey)
-	if(!can_spontaneous_vore(pred, prey))
-		return FALSE
-	if(!prey.is_slipping && !pred.is_slipping)	//Obviously they have to be slipping to get slip vored
-		return FALSE
-	if(world.time <= prey.slip_protect)
-		return FALSE
-	if(!pred.slip_vore || !prey.slip_vore)
-		return FALSE
-	return TRUE
-
-///This is a general 'do we have the mechanical ability to do any type of spontaneous vore' without specialties.
-/proc/can_spontaneous_vore(mob/living/pred, mob/living/prey)
-	if(!istype(pred) || !istype(prey))
-		return FALSE
-	//Unfortunately, can_be_drop_prey is 'spontanous prey' var and can_be_drop_pred is 'spontaneous pred' var...horribly named imo.
-	if(!prey.can_be_drop_prey || !pred.can_be_drop_pred)
-		return FALSE
-	if(prey.is_incorporeal() || pred.is_incorporeal())
-		return FALSE
-	if(!prey.devourable)
-		return FALSE
-	if(!is_vore_predator(pred))	//Check their bellies and stuff
-		return FALSE
-	if(!pred.vore_selected)	//Gotta have one selected as well.
-		return FALSE
-	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
-		return FALSE
-	return TRUE
