@@ -132,7 +132,7 @@ export const VoreSelectedBelly = (props: {
         </Tabs>
       </Stack.Item>
       <Stack.Item grow>
-        <Section noTopPadding fill scrollable>
+        <Section noTopPadding fill scrollable={activeVoreTab !== 6}>
           {tabs[activeVoreTab] || 'Error'}
         </Section>
       </Stack.Item>

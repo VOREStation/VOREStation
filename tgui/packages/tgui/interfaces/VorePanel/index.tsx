@@ -80,13 +80,7 @@ export const VorePanel = () => {
       persist_edit_mode={persist_edit_mode}
     />
   );
-  tabs[3] = prefs && (
-    <VoreUserPreferences
-      prefs={prefs}
-      show_pictures={show_pictures}
-      icon_overflow={icon_overflow}
-    />
-  );
+  tabs[3] = prefs && <VoreUserPreferences prefs={prefs} />;
 
   return (
     <Window width={1030} height={760} theme="abstract">

@@ -63,6 +63,11 @@
 		for(var/atom/movable/O in inside_belly)
 			if(O == owner)
 				continue
+			var/our_type
+			if(isliving(O))
+				our_type = "Living"
+			else if(isitem(O))
+				our_type = "Item"
 
 			var/list/info = list(
 				"name" = "[O]",
@@ -70,6 +75,7 @@
 				"stat" = 0,
 				"ref" = "\ref[O]",
 				"outside" = FALSE,
+				"our_type" = our_type
 			)
 			if(show_pictures) //disables icon mode
 				if(inside_belly.contents.len <= max_icon_content)
@@ -292,6 +298,22 @@
 		var/list/selected_contents
 		var/total_content_count = 0
 		for(var/O in selected)
+
+			// Please don't pass the options as a list... let TGUI handle that
+			var/our_type
+			if(ishuman(O))
+				our_type = "Human"
+
+			else if(isobserver(O) || istype(O,/obj/item/mmi))
+				our_type = "Obeserver"
+
+			else if(isliving(O))
+				var/mob/living/datarget = O
+				if(datarget.client)
+					our_type = "LivingC"
+				else
+					our_type = "Living"
+
 			total_content_count++
 			if(active_vore_tab == CONTENTS_TAB)
 				var/list/info = list(
@@ -300,6 +322,7 @@
 					"stat" = 0,
 					"ref" = "\ref[O]",
 					"outside" = TRUE,
+					"our_type" = our_type
 				)
 				if(show_pictures) //disables icon mode
 					if(selected.contents.len <= max_icon_content)
