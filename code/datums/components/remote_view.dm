@@ -182,6 +182,7 @@
 	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
+	RegisterSignal(host_item, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 	if(host_mob.hud_used.hud_shown)
@@ -230,6 +231,7 @@
 	UnregisterSignal(host_item, COMSIG_QDELETING)
 	UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(host_item, COMSIG_ITEM_DROPPED)
+	UnregisterSignal(host_item, COMSIG_ITEM_EQUIPPED)
 	UnregisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR)
 	host_item = null
 	. = ..()
