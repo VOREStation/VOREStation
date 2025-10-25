@@ -117,7 +117,7 @@
 					winner.visible_message(span_bold("\The [winner]") + " appears as if from thin air.")
 		if(FALLING_CRACKER)
 			winner.visible_message(span_bold("\The [winner]") + " is suddenly knocked to the ground.")
-			winner.weakened = max(winner.weakened,50)
+			winner.SetWeakened(max(winner.weakened,50))
 		if(TELEPORTING_CRACKER)
 			if(loser.can_be_drop_pred && loser.vore_selected)
 				if(winner.devourable && winner.can_be_drop_prey)
