@@ -31,8 +31,6 @@
 	return attack_hand(user)
 
 /obj/machinery/photocopier/attack_hand(mob/user as mob)
-	user.set_machine(src)
-
 	tgui_interact(user)
 
 /obj/machinery/photocopier/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)

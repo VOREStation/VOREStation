@@ -128,7 +128,7 @@
 				src.anchored = FALSE
 				src.stat |= MAINT
 				src.unwrenched = 1
-				if (user.machine==src)
+				if (user.check_current_machine(src))
 					user << browse(null, "window=pipedispenser")
 		else /*if (unwrenched==1)*/
 			playsound(src, W.usesound, 50, 1)

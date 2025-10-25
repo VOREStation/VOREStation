@@ -31,7 +31,7 @@
 
 /datum/tgui_module/ship/tgui_status(mob/user)
 	. = ..()
-	if(viewing_overmap(user) && (user.machine != src))
+	if(viewing_overmap(user) && (!user.check_current_machine(src)))
 		user.reset_perspective()
 
 /datum/tgui_module/ship/tgui_close(mob/user)

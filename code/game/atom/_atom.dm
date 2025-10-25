@@ -95,12 +95,6 @@
 	else
 		return null
 
-/// return flags that should be added to the viewer's sight var. Otherwise return a negative number to indicate that the view should be cancelled.
-/atom/proc/check_eye(user as mob)
-	if (isAI(user)) // WHYYYY
-		return 0
-	return -1
-
 /atom/proc/Bumped(AM as mob|obj)
 	set waitfor = FALSE
 

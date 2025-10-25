@@ -16,7 +16,7 @@
 	default_apply_parts()
 
 /obj/machinery/smart_centrifuge/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(in_use)
+	if(working)
 		to_chat(user, "<span class='notice'>\The [src] is still spinning.</span>")
 		return
 	if(default_deconstruction_screwdriver(user, O))

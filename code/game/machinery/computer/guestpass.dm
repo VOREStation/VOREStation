@@ -150,7 +150,6 @@
 	if(..())
 		return
 
-	user.set_machine(src)
 	tgui_interact(user)
 
 /obj/machinery/computer/guestpass/tgui_interact(mob/user, datum/tgui/ui)

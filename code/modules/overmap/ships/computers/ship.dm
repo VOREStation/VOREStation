@@ -93,7 +93,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	user.reset_perspective()
 
 /obj/machinery/computer/ship/check_eye(var/mob/user)
-	if(!get_dist(user, src) > 1 || user.blinded || !linked)
+	if(user.blinded || !linked)
 		user.reset_perspective()
 		return -1
 	else

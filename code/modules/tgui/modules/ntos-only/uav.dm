@@ -177,7 +177,7 @@
 	if(!current_uav)
 		return
 
-	if(user.machine != tgui_host())
+	if(!user.check_current_machine(tgui_host()))
 		user.set_machine(tgui_host())
 	current_uav.add_master(user)
 	LAZYDISTINCTADD(viewers, WEAKREF(user))

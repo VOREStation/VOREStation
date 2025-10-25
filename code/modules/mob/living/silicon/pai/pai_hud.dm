@@ -390,6 +390,9 @@
 
 /mob/living/silicon/pai/handle_regular_hud_updates()
 	. = ..()
+	if(!.)
+		return
+
 	if(healths)
 		if(stat != DEAD)
 			var/heal_per = (health / getMaxHealth()) * 100

@@ -991,7 +991,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 				src.add_fingerprint(user)
 				CC.add_fingerprint(user)
 				spawn(0)
-					if (src && user.machine==src)
+					if (src && user.check_current_machine(src))
 						src.interact(user)
 		else
 			return

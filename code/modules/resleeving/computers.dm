@@ -117,7 +117,6 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/transhuman/resleeving/attack_hand(mob/user as mob)
-	user.set_machine(src)
 	add_fingerprint(user)
 
 	if(stat & (BROKEN|NOPOWER))

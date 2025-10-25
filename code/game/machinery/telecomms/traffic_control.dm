@@ -39,7 +39,7 @@
 			winset(editingcode, "tcscode", "is-disabled=false")
 
 		// If the player's not manning the keyboard anymore, adjust everything
-		if( (!(editingcode in range(1, src)) && !issilicon(editingcode)) || (editingcode.machine != src && !issilicon(editingcode)))
+		if( (!(editingcode in range(1, src)) && !issilicon(editingcode)) || (!editingcode.check_current_machine(src) && !issilicon(editingcode)))
 			if(editingcode)
 				winshow(editingcode, "Telecomms IDE", 0) // hide the window!
 			editingcode = null
@@ -55,7 +55,7 @@
 
 			for(var/mob/M in viewingcode)
 
-				if( (M.machine == src && (M in view(1, src)) ) || issilicon(M))
+				if( (M.check_current_machine(src) && (M in view(1, src)) ) || issilicon(M))
 					winset(M, "tcscode", "is-disabled=true")
 					winset(M, "tcscode", "text=\"[showcode]\"")
 				else

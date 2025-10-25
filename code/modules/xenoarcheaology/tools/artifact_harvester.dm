@@ -285,7 +285,7 @@
 			if(inserted_battery.battery_effect.effect == EFFECT_TOUCH)
 				var/list/nearby = viewers(1, src)
 				for(var/mob/M in nearby)
-					if(M.machine == src)
+					if(M.check_current_machine(src))
 						inserted_battery.battery_effect.DoEffectTouch(M)
 
 		//if there's no charge left, finish

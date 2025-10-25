@@ -498,7 +498,6 @@ About the new airlock wires panel:
 			return
 
 	if(p_open)
-		user.set_machine(src)
 		wires.Interact(user)
 		return
 
