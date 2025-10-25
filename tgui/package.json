@@ -8,11 +8,11 @@
 	],
 	"scripts": {
 		"tgui:analyze": "rspack --analyze",
+		"tgui:biome-fix": "biome lint --write .",
 		"tgui:build": "rspack build",
 		"tgui:dev": "bun --smol packages/tgui-dev-server/index.ts",
 		"tgui:test": "bun test",
-		"tgui:tsc": "tsc",
-		"tgui:biome-fix": "biome lint --write ."
+		"tgui:tsc": "tsc"
 	},
 	"devDependencies": {
 		"@happy-dom/global-registrator": "^17.6.3",
