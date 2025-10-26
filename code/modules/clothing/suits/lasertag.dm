@@ -51,7 +51,7 @@
 /obj/item/clothing/suit/lasertag/proc/adjust_health_proc(mob/living/user)
 	var/max_health = 10
 	var/min_health = 1
-	var/new_health = tgui_input_number(user, "Select Suit Health", "Tag Health", lasertag_max_health, max_health, min_health, round_value=TRUE) //If you need to go above 10, ask admins.
+	var/new_health = tgui_input_number(user, "Select Suit Health (Between 1 and 10)", "Tag Health", lasertag_max_health, max_health, min_health, round_value=TRUE) //If you need to go above 10, ask admins.
 	if(isnull(new_health))
 		return null
 	if(new_health > max_health || new_health < min_health)
@@ -74,7 +74,7 @@
 /obj/item/clothing/suit/lasertag/proc/adjust_heal_time_proc(mob/living/user)
 	var/max_heal_time = 60
 	var/min_heal_time = 0
-	var/new_heal_timer = tgui_input_number(user, "Select Heal Timer", "Heal Timer", time_to_heal*0.1, max_heal_time, min_heal_time, round_value=TRUE) //If you need to go above 10, ask admins.
+	var/new_heal_timer = tgui_input_number(user, "Select Heal Timer (Between 0(off) to 60 seconds)", "Heal Timer", time_to_heal*0.1, max_heal_time, min_heal_time, round_value=TRUE) //If you need to go above 10, ask admins.
 	if(isnull(new_heal_timer))
 		return null
 	if(new_heal_timer > max_heal_time || new_heal_timer < min_heal_time)
