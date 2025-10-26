@@ -253,6 +253,8 @@
 	triggered = TRUE
 	visible_message("\The [src.name]'s light flashes rapidly as it 'explodes'.")
 	new src.mineitemtype(get_turf(src))
+	for(var/wire_color in wires.colors)
+		wires.detach_assembly(wire_color) //Kick all the signallers off!
 	spawn(0)
 		qdel(src)
 
