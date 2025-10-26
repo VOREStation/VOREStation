@@ -46,11 +46,7 @@
 	..()
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 
-	// Setup our view to focus on the mob directly. This ignores any remote views we could have. Then restore
-	// any remote views if possible... Delayed because mob and client are settling during heavy lag on login.
-	// Even if you move out of the object we're in this will just correct our view when it triggers.
 	reset_perspective(src)
-	addtimer(CALLBACK(src, PROC_REF(reset_perspective)), 5, TIMER_DELETE_ME)
 
 	add_click_catcher()
 	update_client_color()
