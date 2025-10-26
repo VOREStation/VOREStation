@@ -282,7 +282,7 @@
 		if(restore_remote_views())
 			return TRUE
 		//Reset to common defaults: mob if on turf, otherwise current loc
-		if(isturf(loc))
+		if(isturf(loc) || isnull(loc)) // Login can be nullspace, so assume we want our mob
 			client.set_eye(client.mob)
 			client.perspective = MOB_PERSPECTIVE
 		else

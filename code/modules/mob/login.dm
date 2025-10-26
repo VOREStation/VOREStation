@@ -46,10 +46,10 @@
 	..()
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 
-	qdel(GetComponent(/datum/component/remote_view)) // If we somehow still had a remote view. Nuke it and try again, invalid state...
-	client.perspective = MOB_PERSPECTIVE
-	client.set_eye(src)
-	restore_remote_views()
+	reset_perspective(src)
+	// Restore any remote views if possible... Delayed because mob and client are settling during heavy lag on login.
+	// Even if you move out of it this will just correct your view when it triggers.
+	addtimer(CALLBACK(src, PROC_REF(reset_perspective)), 5, TIMER_DELETE_ME)
 
 	add_click_catcher()
 	update_client_color()
