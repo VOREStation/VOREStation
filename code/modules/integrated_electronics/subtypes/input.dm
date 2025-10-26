@@ -103,7 +103,7 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/input/textpad/ask_for_input(mob/user)
-	var/new_input = tgui_input_text(user, "Enter some words, please.", "Text pad", get_pin_data(IC_OUTPUT, 1), MAX_KEYPAD_INPUT_LEN)
+	var/new_input = sanitizeSafe(tgui_input_text(user, "Enter some words, please.", "Text pad", get_pin_data(IC_OUTPUT, 1), MAX_KEYPAD_INPUT_LEN, encode = FALSE), MAX_KEYPAD_INPUT_LEN, 1, 0)
 	if(istext(new_input) && CanInteract(user, GLOB.tgui_physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_input)
 		push_data()
