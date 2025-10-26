@@ -60,9 +60,9 @@
 	desc = "A standard set of Laser Tag equipment."
 	contains = list(
 			/obj/item/gun/energy/lasertag/red,
-			/obj/item/clothing/suit/redtag,
+			/obj/item/clothing/suit/lasertag/redtag,
 			/obj/item/gun/energy/lasertag/blue,
-			/obj/item/clothing/suit/bluetag
+			/obj/item/clothing/suit/lasertag/bluetag
 			)
 	containertype = /obj/structure/closet/crate/ward
 	containername = "Lasertag Supplies"
