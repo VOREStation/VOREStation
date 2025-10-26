@@ -115,7 +115,7 @@
 
 		// check for TK users
 
-		if (ishuman(user))
+		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.get_type_in_hands(/obj/item/tk_grab))
 				if(!(H in nearby))
