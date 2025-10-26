@@ -10,7 +10,7 @@
 	can_infect = 1
 
 /datum/surgery_step/brainstem/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (!affected || (affected.robotic >= ORGAN_ROBOT) || !(affected.open >= 3))

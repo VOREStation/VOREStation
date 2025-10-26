@@ -18,7 +18,7 @@
 		return 0
 	if (target_zone == O_EYES || target_zone == O_MOUTH)
 		return 0
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (affected == null)

@@ -315,7 +315,7 @@ var/global/narsie_cometh = 0
 	to_chat(target, span_boldnotice("[capname] HAS LOST INTEREST IN YOU."))
 	target = food
 
-	if (ishuman(target))
+	if(ishuman(target))
 		to_chat(target, span_danger("[capname] HUNGERS FOR YOUR SOUL."))
 	else
 		to_chat(target, span_danger("[capname] HAS CHOSEN YOU TO LEAD HIM TO HIS NEXT MEAL."))

@@ -71,7 +71,7 @@
 		to_chat(user,span_notice("You gracefully ring [src]."))
 
 /obj/item/deskbell/proc/check_ability(mob/user)
-	if (ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (H.hand)

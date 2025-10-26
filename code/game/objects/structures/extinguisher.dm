@@ -48,7 +48,7 @@
 /obj/structure/extinguisher_cabinet/attack_hand(mob/living/user)
 	if(isrobot(user))
 		return
-	if (ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)

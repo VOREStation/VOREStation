@@ -57,9 +57,6 @@
 /mob/proc/is_cloaked()
 	return FALSE
 
-/proc/hasorgans(A) // Fucking really??
-	return ishuman(A)
-
 /proc/iscuffed(A)
 	if(istype(A, /mob/living/carbon))
 		var/mob/living/carbon/C = A
@@ -391,7 +388,6 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return 0
 
 //converts intent-strings into numbers and back
-var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 /proc/intent_numeric(argument)
 	if(istext(argument))
 		switch(argument)
