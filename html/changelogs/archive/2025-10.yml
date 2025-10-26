@@ -280,3 +280,9 @@
   - bugfix: vehicles fall through openspace again
   stars:
   - maptweak: remapped tether morgue
+2025-10-26:
+  Kashargul:
+  - code_imp: dependency update
+  - code_imp: update the javascript bat to be more reliable
+  NickBelmont:
+  - bugfix: IC Textpad and debugger no longer trim whitespace at edges.
