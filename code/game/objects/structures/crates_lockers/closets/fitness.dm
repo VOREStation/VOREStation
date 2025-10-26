@@ -79,7 +79,9 @@
 	starts_with = list(
 		/obj/item/gun/energy/lasertag/red = 5,
 		/obj/item/clothing/suit/lasertag/redtag = 5,
-		/obj/item/lasertagknife/red = 5)
+		/obj/item/lasertagknife/red = 5,
+		/obj/item/mine/lasertag/all = 5,
+		/obj/item/mine/lasertag/red = 5)
 
 
 /obj/structure/closet/lasertag/blue
@@ -90,7 +92,9 @@
 	starts_with = list(
 		/obj/item/gun/energy/lasertag/blue = 5,
 		/obj/item/clothing/suit/lasertag/bluetag = 5,
-		/obj/item/lasertagknife/blue = 5)
+		/obj/item/lasertagknife/blue = 5,
+		/obj/item/mine/lasertag/all = 5,
+		/obj/item/mine/lasertag/blue = 5)
 
 /obj/structure/closet/lasertag/omni
 	name = "unniversal laser tag equipment"
@@ -100,7 +104,9 @@
 	starts_with = list(
 		/obj/item/gun/energy/lasertag/omni = 5,
 		/obj/item/clothing/suit/lasertag/omni = 5,
-		/obj/item/lasertagknife = 5)
+		/obj/item/lasertagknife = 5,
+		/obj/item/mine/lasertag/all = 5,
+		/obj/item/mine/lasertag/omni = 5)
 
 /obj/structure/closet/lasertag/red/laserdome
 	name = "red team laserdome equipment"

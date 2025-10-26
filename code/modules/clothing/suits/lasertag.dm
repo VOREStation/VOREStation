@@ -24,6 +24,16 @@
 	///When we were last hit!
 	var/last_hit
 
+	///If we're emagged or not.
+	var/emagged
+
+/obj/item/clothing/suit/lasertag/emag_act(remaining_charges, mob/user, emag_source)
+	if(!emagged)
+		emagged = TRUE
+		to_chat(user, span_warning("You disable the safeties on the lasertag vest."))
+		return TRUE
+
+
 /obj/item/clothing/suit/lasertag/examine(mob/user)
 	. = ..()
 	. += "It currently has [lasertag_health] hits out of [lasertag_max_health] remaining!"
@@ -109,8 +119,8 @@
 		else
 			lasertag_health--
 		last_hit = world.time
-		if(ismob(src.loc))
-			var/mob/wearer = src.loc
+		if(isliving(src.loc))
+			var/mob/living/wearer = src.loc
 
 			if(lasertag_health > 0) //Still have HP, keep going.
 				wearer.visible_message(span_warning("[src] beeps as it takes a shot! [lasertag_health] shots remaining!"))
@@ -120,6 +130,19 @@
 			to_chat(wearer, span_large(span_danger("You're out!"))) //People KEEP MISSING THAT THEY'RE OUT, SO NOW THEY WON'T.
 			wearer.Stun(5)
 			wearer.Weaken(5)
+			if(emagged)
+				to_chat(wearer, span_bolddanger(span_massive("OH GOD! YOUR HEART!"))) //this is the last thing you see before you (presumably) die.
+				wearer.apply_damage(lasertag_max_health*50, BURN, BP_TORSO, used_weapon = "High-Voltage Electrical Shock")
+				if(ishuman(wearer))
+					var/mob/living/carbon/human/human_wearer = wearer
+					var/obj/item/organ/internal/heart/H = human_wearer.internal_organs_by_name[O_HEART]
+					if(H)
+						if(H.robotic)
+							H.break_organ()
+						else
+							H.bruise()
+							if(H.damage < 15)
+								H.damage = 14 //Below this number we won't be KO'd from a heart attack.
 			return
 
 		if(lasertag_health > 0)
