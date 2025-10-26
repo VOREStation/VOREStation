@@ -1502,3 +1502,9 @@
 	result = REAGENT_ID_APHRODISIAC
 	required_reagents = list(REAGENT_ID_CARBON = 2, REAGENT_ID_HYDROGEN = 2, REAGENT_ID_OXYGEN = 2, REAGENT_ID_WATER = 1)
 	result_amount = 6
+
+/decl/chemical_reaction/instant/tercozolam
+	id = REAGENT_ID_TERCOZOLAM
+	result = REAGENT_ID_TERCOZOLAM
+	required_reagents = list(REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_LITHIUM = 1)
+	result_amount = 3

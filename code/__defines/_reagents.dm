@@ -288,7 +288,8 @@
 #define REAGENT_ID_EARTHSBLOOD "earthsblood"
 #define REAGENT_ASUSTENANCE	"Artificial Sustenance"
 #define REAGENT_ID_ASUSTENANCE "a_sustenance"
-
+#define REAGENT_TERCOZOLAM	"Tercozolam"
+#define REAGENT_ID_TERCOZOLAM "tercozolam"
 
 // Virology
 #define REAGENT_VACCINE "Vaccine"

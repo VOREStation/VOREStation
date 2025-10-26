@@ -304,7 +304,11 @@
 	if(stat != DEAD && toggled_sleeping)
 		Sleeping(2)
 	if(sleeping)
-		AdjustSleeping(-1)
+		if(iscarbon(src))
+			var/mob/living/carbon/C = src
+			AdjustSleeping(-1 * C.species.waking_speed)
+		else
+			AdjustSleeping(-1)
 		throw_alert("asleep", /atom/movable/screen/alert/asleep)
 	else
 		clear_alert("asleep")

@@ -86,6 +86,8 @@
 // Returns the nth root of x.
 #define ROOT(n, x) ((x) ** (1 / (n)))
 
+#define GAUSSIAN_RANDOM(vars...)	((-2*log(rand()))**0.5 * cos(6.28318530718*rand()))
+
 /proc/Mean(...)
 	var/sum = 0
 	for(var/val in args)
