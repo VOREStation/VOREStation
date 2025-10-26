@@ -183,9 +183,9 @@
 
 			switch(ui.user.client.selected_ticket.level)
 				if (0)
-					ui.user.client.cmd_mentor_pm(ui.user.client.selected_ticket.initiator, sanitize(params["msg"]), ui.user.client.selected_ticket)
+					ui.user.client.cmd_mentor_pm(ui.user.client.selected_ticket.initiator, params["msg"], ui.user.client.selected_ticket)
 				if (1)
-					ui.user.client.cmd_admin_pm(ui.user.client.selected_ticket.initiator, sanitize(params["msg"]), ui.user.client.selected_ticket)
+					ui.user.client.cmd_admin_pm(ui.user.client.selected_ticket.initiator, params["msg"], ui.user.client.selected_ticket)
 			. = TRUE
 
 /datum/tickets/tgui_fallback(payload, user)
