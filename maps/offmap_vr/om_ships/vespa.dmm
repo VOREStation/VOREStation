@@ -8085,9 +8085,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/engineeringpower)
 "pt" = (
-/obj/machinery/power/smes/buildable/hybrid{
-	recharge_rate = 10000
-	},
+/obj/machinery/power/smes/buildable/hybrid/high_recharge_rate,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},

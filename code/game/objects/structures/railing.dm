@@ -250,7 +250,9 @@
 	icon = 'icons/obj/railing.dmi'
 	icon_modifier = "hazard_"
 	icon_state = "hazard_railing0"
+	interactable = TRUE
 
 /obj/structure/railing/overhang/hazard/nanite
 	icon_modifier = "inactive_"
 	icon_state = "inactive_railing0"
+	interactable = FALSE

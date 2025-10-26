@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "update the javascript bat to be more reliable"

@@ -194,6 +194,7 @@
 #define COMSIG_CLICK_CTRL "ctrl_click"
 ///from base of atom/AltClick(): (/mob)
 #define COMSIG_CLICK_ALT "alt_click"
+	#define COMPONENT_CANCEL_CLICK_ALT (1<<0)
 ///from base of atom/CtrlShiftClick(/mob)
 #define COMSIG_CLICK_CTRL_SHIFT "ctrl_shift_click"
 ///from base of atom/MouseDrop(): (/atom/over, /mob/user)
@@ -322,6 +323,8 @@
 #define COMSIG_MOB_ITEM_ATTACK_QDELETED "mob_item_attack_qdeleted"
 ///from base of mob/RangedAttack(): (atom/A, params)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"
+///from base of obj/item/dropped(): (obj/item)
+#define COMSIG_MOB_DROPPED_ITEM "mob_dropped_item"
 ///from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_THROW "mob_throw"
 ///from base of /mob/verb/examinate(): (atom/target)
@@ -348,6 +351,10 @@
 ///from base of mob/swap_hand(): (obj/item)
 #define COMSIG_MOB_SWAP_HANDS "mob_swap_hands"
 	#define COMPONENT_BLOCK_SWAP (1<<0)
+/// From base of /mob/proc/reset_perspective() : ()
+#define COMSIG_MOB_RESET_PERSPECTIVE "mob_reset_perspective"
+/// from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)
+#define COMSIG_CLIENT_SET_EYE "client_set_eye"
 
 // /mob/living signals
 
@@ -685,6 +692,8 @@
 #define COMSIG_JOB_RECEIVED "job_received"
 ///When the mob's dna and species have been fully applied
 #define COMSIG_HUMAN_DNA_FINALIZED "human_dna_finished"
+///from /proc/domutcheck(): ()
+#define COMSIG_MOB_DNA_MUTATION "mob_dna_mutation"
 
 // Organ specific signals
 
@@ -841,6 +850,10 @@
 ///from base of datum/component/two_handed/proc/unwield(mob/living/carbon/user): (/mob/user)
 #define COMSIG_TWOHANDED_UNWIELD "twohanded_unwield"
 
+// /datum/component/remote_view signals
+/// Signal that can be sent from the mob remote viewing, the viewed mob, or object being used to view to forcibly end all related remote viewing components
+#define COMSIG_REMOTE_VIEW_CLEAR "remote_view_clear_viewers"
+
 // /datum/action signals
 
 ///from base of datum/action/proc/Trigger(): (datum/action)
@@ -967,6 +980,21 @@
 
 // Hose Connector Component
 #define COMSIG_HOSE_FORCEPUMP "hose_force_pump"
+
+
+// Spontaneous vore stuff.
+///from /mob/living/stumble_into(mob/living/M)
+#define COMSIG_LIVING_STUMBLED_INTO "living_stumbled_into"
+		///Something has special handling. Don't continue.
+	#define CANCEL_STUMBLED_INTO	(1<<0)
+///from /mob/living/handle_fall(var/turf/landing) args: landing, drop_mob)
+#define COMSIG_LIVING_FALLING_DOWN "living_falling_down"
+		//Special handling. Cancel the fall chain.
+	#define COMSIG_CANCEL_FALL	(1<<0)
+///from /mob/living/hitby(atom/movable/source, var/speed = THROWFORCE_SPEED_DIVISOR)
+#define COMSIG_LIVING_HIT_BY_THROWN_ENTITY "hit_by_thrown_entity"
+		//Special handling. Cancel the hitby proc.
+	#define COMSIG_CANCEL_HITBY	(1<<0)
 
 //Unittest data update
 #ifdef UNIT_TESTS

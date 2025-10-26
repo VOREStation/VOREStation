@@ -52,6 +52,7 @@
 		QDEL_NULL(idcard)
 	if(laws)
 		QDEL_NULL(laws)
+	clear_subsystems()
 	return ..()
 
 /mob/living/silicon/proc/init_id()
@@ -394,7 +395,7 @@
 /mob/living/silicon/setEarDamage()
 	return
 
-/mob/living/silicon/reset_view()
+/mob/living/silicon/reset_perspective(atom/new_eye)
 	. = ..()
 	if(cameraFollow)
 		cameraFollow = null

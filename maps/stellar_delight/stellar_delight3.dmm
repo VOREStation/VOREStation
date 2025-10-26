@@ -1991,12 +1991,7 @@
 /turf/simulated/open,
 /area/stellardelight/deck2/fore)
 "gQ" = (
-/obj/machinery/power/smes/buildable{
-	charge = 5e+006;
-	input_attempt = 1;
-	input_level = 200000;
-	output_level = 200000
-	},
+/obj/machinery/power/smes/buildable/engine_default,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -8971,9 +8966,8 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable/blue,
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Command";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Command"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/command)
@@ -12925,9 +12919,8 @@
 /obj/structure/cable/blue{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - AI/Telecomms";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - AI/Telecomms"
 	},
 /turf/simulated/floor,
 /area/ai_cyborg_station)
@@ -13469,9 +13462,7 @@
 /turf/simulated/open,
 /area/stellardelight/deck2/port)
 "Wn" = (
-/obj/machinery/power/smes/buildable{
-	charge = 500000
-	},
+/obj/machinery/power/smes/buildable/max_charge,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "sdboat"
 	},

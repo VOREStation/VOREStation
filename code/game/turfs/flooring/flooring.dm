@@ -375,6 +375,10 @@ var/list/flooring_types
 /decl/flooring/tiling/new_tile/monotile
 	icon_base = "monotile"
 
+/decl/flooring/tiling/new_tile/monotile/purple
+	icon_base = "monotile-purple"
+	build_type = /obj/item/stack/tile/floor/purple
+
 /decl/flooring/tiling/new_tile/steel_grid
 	icon_base = "steel_grid"
 	build_type = /obj/item/stack/tile/floor/steelgrip
@@ -426,6 +430,12 @@ var/list/flooring_types
 	icon_base = "white"
 	has_damage_range = null
 	build_type = /obj/item/stack/tile/floor/yellow
+
+/decl/flooring/tiling/purple
+	name = "floor"
+	icon_base = "purple"
+	has_damage_range = null
+	build_type = /obj/item/stack/tile/floor/purple
 
 /decl/flooring/tiling/dark
 	name = "floor"

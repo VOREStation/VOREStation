@@ -152,7 +152,9 @@
 			return
 
 	for(var/turf/the_turf as anything in our_guy_pos.AdjacentTurfs(check_blockage = FALSE)) //need false so we can check disposal units
-		if(the_turf.CanZPass(our_guy, DOWN))
+		if(iswall(the_turf))
+			continue
+		if(the_turf.CanZPass(our_guy, DOWN) && !isspace(the_turf))
 			to_chat(living_guy, span_warning("You lose your balance and slip towards the edge!"))
 			living_guy.Weaken(5)
 			living_guy.throw_at(the_turf, 1, 20)
@@ -161,11 +163,11 @@
 
 		if(vorish)
 			for(var/mob/living/living_mob in the_turf)
-				if(living_mob == our_guy)
+				if(living_mob == our_guy || (living_mob.vore_selected == living_guy.vore_selected))
 					continue //Don't do anything to ourselves.
 				if(living_mob.stat)
 					continue
-				if(!living_mob.CanStumbleVore(living_guy) && !living_guy.CanStumbleVore(living_mob)) //Works both ways! Either way, someone's getting eaten!
+				if(!CanStumbleVore(living_guy, living_mob) && !CanStumbleVore(living_mob, living_guy)) //Works both ways! Either way, someone's getting eaten!
 					continue
 				living_mob.stumble_into(living_guy) //logic reversed here because the game is DUMB. This means that living_guy is stumbling into the target!
 				living_guy.visible_message(span_danger("[living_guy] loses their balance and slips into [living_mob]!"), span_boldwarning("You lose your balance, slipping into [living_mob]!"))
@@ -183,7 +185,7 @@
 				consume_omen()
 				return
 
-		if(evil || safe_disposals) //On servers without safe disposals, this is a death sentence. With servers with safe disposals, it's just funny.
+		if((evil || safe_disposals) && living_guy.m_intent == I_RUN) //On servers without safe disposals, this is a death sentence. With servers with safe disposals, it's just funny. Either way, walk near disposals.
 			for(var/obj/machinery/disposal/evil_disposal in the_turf)
 				if(evil_disposal.stat & (BROKEN|NOPOWER))
 					continue
@@ -193,7 +195,7 @@
 				living_guy.forceMove(evil_disposal)
 				evil_disposal.flush = TRUE
 				evil_disposal.update()
-				living_guy.Weaken(5)
+				living_guy.Stun(5)
 				consume_omen()
 				return
 
@@ -276,8 +278,7 @@
 		for(var/obj/structure/table/evil_table in the_turf)
 			if(!evil_table.material) //We only want tables, not just table frames.
 				continue
-			var/datum/gender/gender = GLOB.gender_datums[living_guy.get_visible_gender()]
-			living_guy.visible_message(span_danger("[living_guy] stubs [gender.his] toe on [evil_table]!"), span_bolddanger("You stub your toe on [evil_table]!"))
+			living_guy.visible_message(span_danger("[living_guy] stubs [living_guy.p_their()] toe on [evil_table]!"), span_bolddanger("You stub your toe on [evil_table]!"))
 			living_guy.apply_damage(2 * damage_mod, BRUTE, pick(BP_L_FOOT, BP_R_FOOT), used_weapon = "blunt force trauma")
 			living_guy.adjustHalLoss(25) //It REALLY hurts.
 			living_guy.Weaken(3)
@@ -289,7 +290,7 @@
 		// In complete darkness
 		if(our_guy_pos.get_lumcount() <= LIGHTING_SOFT_THRESHOLD)
 			living_guy.Blind(5) //10 seconds of 'OH GOD WHAT'S HAPPENING'
-			living_guy.silent = 5
+			living_guy.silent = max(living_guy.silent, 5)
 			living_guy.Paralyse(5)
 			to_chat(living_guy, span_bolddanger("You feel the ground buckle underneath you, falling down, your vision going dark as you feel paralyzed in place!"))
 			consume_omen()
@@ -312,8 +313,7 @@
 
 	if(prob(30 * luck_mod) && our_guy.get_bodypart_name(BP_HEAD)) /// Bonk!
 		playsound(our_guy, 'sound/effects/tableheadsmash.ogg', 90, TRUE)
-		var/datum/gender/gender = GLOB.gender_datums[our_guy.get_visible_gender()]
-		our_guy.visible_message(span_danger("[our_guy] hits [gender.his] head really badly falling down!"), span_bolddanger("You hit your head really badly falling down!"))
+		our_guy.visible_message(span_danger("[our_guy] hits [our_guy.p_their()] head really badly falling down!"), span_bolddanger("You hit your head really badly falling down!"))
 		var/max_health_coefficient = (our_guy.maxHealth * 0.5)
 		our_guy.apply_damage(max_health_coefficient * damage_mod, BRUTE, BP_HEAD, used_weapon = "slipping")
 		if(ishuman(our_guy))
@@ -455,8 +455,7 @@
 		if(!damage_to_inflict)
 			return
 
-		var/datum/gender/gender = GLOB.gender_datums[unlucky_human.get_visible_gender()]
-		unlucky_human.visible_message(span_danger("[unlucky_human] accidentally [injury_verb] [gender.his] hand on [item]!"))
+		unlucky_human.visible_message(span_danger("[unlucky_human] accidentally [injury_verb] [unlucky_human.p_their()] hand on [item]!"))
 		unlucky_human.apply_damage(damage_to_inflict * damage_mod, damage_type, current_hand, sharp = is_sharp, edge = has_edge, used_weapon = injury_type)
 
 /datum/component/omen/proc/check_stairs(mob/living/unlucky_soul)

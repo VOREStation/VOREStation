@@ -401,3 +401,37 @@
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()
 	activate_pin(2)
+
+/obj/item/integrated_circuit/converter/space_pad
+	name = "string padder"
+	desc = "This circuit adds leading and/or trailing spaces to a string."
+	extended_desc = "Input a string and toggle leading/trailing space options to add single spaces to the beginning or end of the string."
+	icon_state = "ref-string"
+	complexity = 1
+	w_class = ITEMSIZE_TINY
+	inputs = list(
+		"input string" = IC_PINTYPE_STRING,
+		"leading space" = IC_PINTYPE_BOOLEAN,
+		"trailing space" = IC_PINTYPE_BOOLEAN
+		)
+	outputs = list("output string" = IC_PINTYPE_STRING)
+	activators = list("pad spaces" = IC_PINTYPE_PULSE_IN, "on padded" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/converter/space_pad/do_work()
+	var/result = null
+	pull_data()
+	var/input_string = get_pin_data(IC_INPUT, 1)
+	var/add_leading = get_pin_data(IC_INPUT, 2)
+	var/add_trailing = get_pin_data(IC_INPUT, 3)
+
+	if(!isnull(input_string))
+		result = input_string
+		if(add_leading)
+			result = " " + result
+		if(add_trailing)
+			result = result + " "
+
+	set_pin_data(IC_OUTPUT, 1, result)
+	push_data()
+	activate_pin(2)

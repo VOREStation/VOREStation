@@ -1,77 +1,61 @@
 
 /mob/living/handle_fall(var/turf/landing)
-	var/mob/drop_mob = locate(/mob/living, landing)
+	var/mob/living/drop_mob = locate(/mob/living, landing)
 
 	if(locate(/obj/structure/stairs) in landing)
 		for(var/atom/A in landing)
-			if(!A.CanPass(src, src.loc, 1, 0))
+			if(!A.CanPass(src, src.loc))
 				return FALSE
 		Move(landing)
 		if(isliving(src))
 			var/mob/living/L = src
 			if(L.pulling)
 				L.pulling.forceMove(landing)
-		return 1
+		return TRUE
 
 	for(var/obj/O in loc)
 		if(!O.CanFallThru(src, landing))
-			return 1
+			return TRUE
 
-	if(drop_mob && !(drop_mob == src)) //Shitload of checks. This is because the game finds various ways to screw me over.
-		var/mob/living/drop_living = drop_mob
-		if(drop_living.dropped_onto(src))
-			return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_FALLING_DOWN, landing, drop_mob) & COMSIG_CANCEL_FALL)
+		return
+
+	if(drop_mob && drop_mob != src)
+		///Varible to tell if we take damage or not for falling.
+		var/safe_fall = FALSE
+		if(drop_mob.softfall || (isanimal(drop_mob) && drop_mob.mob_size <= MOB_SMALL))
+			safe_fall = TRUE
+
+		if(ishuman(drop_mob))
+			var/mob/living/carbon/human/H = drop_mob
+			if(H.species.soft_landing)
+				safe_fall = TRUE
+
+		forceMove(get_turf(drop_mob))
+		if(!safe_fall)
+			drop_mob.Weaken(8)
+			Weaken(8)
+			playsound(src, "punch", 25, 1, -1)
+			var/tdamage
+			for(var/i = 1 to 5)	//Twice as less damage because cushioned fall, but both get damaged.
+				tdamage = rand(0, 5)
+				if(HAS_TRAIT(drop_mob, TRAIT_HEAVY_LANDING))
+					tdamage = tdamage * 1.5
+				drop_mob.adjustBruteLoss(tdamage)
+				adjustBruteLoss(tdamage)
+			drop_mob.updatehealth()
+			updatehealth()
+			if(HAS_TRAIT(drop_mob, TRAIT_HEAVY_LANDING))
+				drop_mob.visible_message(span_danger("\The [drop_mob] crashes down onto \the [src]!"))
+			else
+				drop_mob.visible_message(span_danger("\The [drop_mob] falls onto \the [src]!"))
+		else
+			drop_mob.visible_message(span_notice("\The [drop_mob] safely brushes past \the [src] as they land."))
 
 	// Then call parent to have us actually fall
 	return ..()
 /mob/CheckFall(var/atom/movable/falling_atom)
 	return falling_atom.fall_impact(src)
-
-/mob/living/proc/dropped_onto(var/atom/hit_atom)
-	if(!isliving(hit_atom))
-		return 0
-
-	var/mob/living/pred = hit_atom
-	if(pred.is_incorporeal())
-		return
-	var/safe_fall = FALSE
-	if(pred.softfall || (isanimal(pred) && pred.mob_size <= MOB_SMALL))		// TODO: add ability for mob below to be 'soft' and cushion fall
-		safe_fall = TRUE
-
-	if(ishuman(pred))
-		var/mob/living/carbon/human/H = pred
-		if(H.species.soft_landing)
-			safe_fall = TRUE
-
-	var/mob/living/prey = src
-	var/fallloc = prey.loc
-	if(pred.vore_selected && pred.can_be_drop_pred && prey.can_be_drop_prey && pred.drop_vore && prey.drop_vore)
-		pred.feed_grabbed_to_self_falling_nom(pred,prey)
-		pred.loc = fallloc
-		if(!safe_fall)
-			pred.Weaken(8)
-		pred.visible_message(span_vdanger("\The [pred] falls right onto \the [prey]!"))
-	else if(prey.vore_selected && prey.can_be_drop_pred && pred.can_be_drop_prey && pred.drop_vore && prey.drop_vore)
-		prey.feed_grabbed_to_self_falling_nom(prey,pred)
-		prey.Weaken(4)
-		prey.visible_message(span_vdanger("\The [pred] falls right into \the [prey]!"))
-	else
-		pred.loc = prey.loc
-		if(!safe_fall)
-			pred.Weaken(8)
-			prey.Weaken(8)
-			playsound(src, "punch", 25, 1, -1)
-			var/tdamage
-			for(var/i = 1 to 5)			//Twice as less damage because cushioned fall, but both get damaged.
-				tdamage = rand(0, 5)
-				pred.adjustBruteLoss(tdamage)
-				prey.adjustBruteLoss(tdamage)
-			pred.updatehealth()
-			prey.updatehealth()
-			pred.visible_message(span_danger("\The [pred] falls onto \the [prey]!"))
-		else
-			pred.visible_message(span_notice("\The [pred] safely brushes past \the [prey] as they land."))
-	return 1
 
 /mob/observer/dead/CheckFall()
 	return

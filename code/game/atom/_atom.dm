@@ -95,8 +95,7 @@
 	else
 		return null
 
-//return flags that should be added to the viewer's sight var.
-//Otherwise return a negative number to indicate that the view should be cancelled.
+/// return flags that should be added to the viewer's sight var. Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
 	if (isAI(user)) // WHYYYY
 		return 0
@@ -299,6 +298,7 @@
 
 
 /atom/proc/hitby(atom/movable/source)
+	SEND_SIGNAL(src, COMSIG_ATOM_HITBY, source)
 	if (density)
 		source.throwing = 0
 	return
@@ -482,9 +482,6 @@
 /atom/Exited(atom/movable/AM, atom/new_loc)
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
-
-/atom/proc/get_visible_gender(mob/user, force)
-	return gender
 
 /atom/proc/interact(mob/user)
 	return
