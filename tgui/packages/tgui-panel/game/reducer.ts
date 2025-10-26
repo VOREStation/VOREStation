@@ -4,8 +4,12 @@
  * @license MIT
  */
 
-import { connectionLost, updateExportData } from './actions';
-import { connectionRestored, dismissWarning } from './actions';
+import {
+  connectionLost,
+  connectionRestored,
+  dismissWarning,
+  updateExportData,
+} from './actions';
 import type { gameState } from './types';
 
 const initialState: gameState = {
