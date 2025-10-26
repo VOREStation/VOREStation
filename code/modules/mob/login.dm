@@ -46,7 +46,8 @@
 	..()
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 
-	reset_perspective(src)
+	client.perspective = MOB_PERSPECTIVE
+	client.eye = src
 
 	add_click_catcher()
 	update_client_color()

@@ -25,7 +25,6 @@
 	else
 		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_hostmob_moved))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
-	RegisterSignal(host_mob, COMSIG_MOB_LOGOUT, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// Upon any disruptive status effects
@@ -51,7 +50,6 @@
 	else
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED)
 	UnregisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE)
-	UnregisterSignal(host_mob, COMSIG_MOB_LOGOUT)
 	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
 	// Status effects
