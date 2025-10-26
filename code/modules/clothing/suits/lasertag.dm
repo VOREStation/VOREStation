@@ -14,6 +14,8 @@
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/gun/energy/lasertag)
 	siemens_coefficient = 3.0
+	description_fluff = "Laser tag armor can have its health and 'healing' time adjusted. Additionally, DonkSoft brand darts are compatible with laser tag vests, proving a projectile based alternative!"
+	description_antag = "Laser tag armor can be emagged, causing the user to not only have a heart attack when eliminated, but also take massive damage based on the amount of 'lives' the vest had."
 
 	var/lasertag_max_health = 3
 	var/lasertag_health = 3

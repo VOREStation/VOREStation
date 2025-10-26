@@ -99,7 +99,7 @@
 /obj/structure/closet/lasertag/omni
 	name = "unniversal laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
-	closet_appearance = /decl/closet_appearance/wardrobe/blue
+	closet_appearance = /decl/closet_appearance/wardrobe/purple
 
 	starts_with = list(
 		/obj/item/gun/energy/lasertag/omni = 5,
