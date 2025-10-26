@@ -69,7 +69,7 @@ export const ColorMate = (props) => {
 
     if (!usedMode) return;
 
-    if(!mode && !index) {
+    if (!mode && !index) {
       setActiveId({ id: null, type: null });
     }
 
