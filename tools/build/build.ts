@@ -374,6 +374,11 @@ export const TguiAnalyzeTarget = new Juke.Target({
   executes: () => bun('tgui:analyze'),
 });
 
+export const TguiFix = new Juke.Target({
+  dependsOn: [BunTarget],
+  executes: () => bunRoot('tgui:fix'),
+});
+
 export const TestTarget = new Juke.Target({
   dependsOn: [DmTestTarget, TguiTestTarget],
 });

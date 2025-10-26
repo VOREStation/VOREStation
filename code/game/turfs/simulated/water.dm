@@ -23,6 +23,11 @@
 
 	var/watercolor = null
 
+/turf/simulated/floor/water/proc/handle_water_icons()
+	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
+	var/image/water_sprite = image(icon = water_icon, icon_state = water_state, layer = WATER_LAYER)
+	add_overlay(water_sprite)
+
 /turf/simulated/floor/water/Initialize(mapload)
 	. = ..()
 	update_icon()
@@ -30,10 +35,7 @@
 
 /turf/simulated/floor/water/update_icon()
 	..() // To get the edges.
-
-	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
-	var/image/water_sprite = image(icon = water_icon, icon_state = water_state, layer = WATER_LAYER)
-	add_overlay(water_sprite)
+	handle_water_icons()
 
 /turf/simulated/floor/water/get_edge_icon_state()
 	return "water_shallow"

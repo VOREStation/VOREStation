@@ -1,5 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - bugfix: "photodegredation should not harm phased shadekin"
-  - bugfix: "Photosynthesis should not generation nutrition while its shadekin are phased"

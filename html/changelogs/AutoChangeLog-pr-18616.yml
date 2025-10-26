@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - rscadd: "Added a new heavy landing trait (and hard fall var to other mobs) that cause the mob to take more damage, get weakened for longer and create some damage to the floor tiles (50% chance). Can not be taken with soft landing. Be the fatty you always meant to be."
