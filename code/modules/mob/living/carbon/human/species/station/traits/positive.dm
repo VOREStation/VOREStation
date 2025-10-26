@@ -848,7 +848,7 @@
 	cost = 6
 	can_take = ORGANICS
 
-	var_changes = list("breath_type" = "null", "poison_type" = "null", "exhale_type" = "null", "water_breather" = "TRUE")
+	var_changes = list("breath_type" = "null", "poison_type" = "null", "exhale_type" = "null")
 	excludes = list(/datum/trait/negative/breathes/phoron,
 					/datum/trait/negative/breathes/nitrogen,
 					/datum/trait/negative/breathes/carbon_dioxide,
