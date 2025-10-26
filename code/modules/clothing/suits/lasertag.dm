@@ -72,7 +72,7 @@
 		adjust_heal_time_proc(usr)
 
 /obj/item/clothing/suit/lasertag/proc/adjust_heal_time_proc(mob/living/user)
-	var/max_heal_time = 10
+	var/max_heal_time = 60
 	var/min_heal_time = 0
 	var/new_heal_timer = tgui_input_number(user, "Select Heal Timer", "Heal Timer", time_to_heal*0.1, max_heal_time, min_heal_time, round_value=TRUE) //If you need to go above 10, ask admins.
 	if(isnull(new_heal_timer))
