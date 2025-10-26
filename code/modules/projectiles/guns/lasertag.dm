@@ -136,10 +136,10 @@
 	var/success = handle_lasertag_attack(target, user, tag_damage, vest_override, required_vest, allowed_suits)
 
 	if(success)
-		user.visible_message(span_danger("[target] has been zapped with [src] by [user]!</span>"))
+		user.visible_message(span_danger("[target] has been zapped with [src] by [user]!"))
 		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 	else
-		user.visible_message(span_danger("[target] has been harmlessly bonked with [src] by [user]!</span>"))
+		user.visible_message(span_danger("[target] has been harmlessly bonked with [src] by [user]!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 75, 1)
 	return TRUE
 
