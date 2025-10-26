@@ -281,8 +281,8 @@
 		//If we return focus to our own mob, but we are still inside something with an inherent remote view. Restart it.
 		if(restore_remote_views())
 			return TRUE
-		//Reset to common defaults: mob if on turf, otherwise current loc
-		if(isturf(loc) || isnull(loc)) // Login can be nullspace, so assume we want our mob
+		//Reset to common defaults: mob if on turf, otherwise current loc. Fallback to mob if we are in nullspace.
+		if(isturf(loc) || isnull(loc))
 			client.set_eye(client.mob)
 			client.perspective = MOB_PERSPECTIVE
 		else
