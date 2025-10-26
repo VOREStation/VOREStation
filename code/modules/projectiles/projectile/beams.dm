@@ -401,6 +401,11 @@
 	hud_state = "laser"
 	damage = 20
 
+/obj/item/projectile/beam/rainbow/non_lethal
+	damage = 0
+	agony = 50
+	damage_type = HALLOSS
+
 /obj/item/projectile/beam/sparkledog
 	name = "rainbow"
 	fire_sound = 'sound/weapons/sparkle.ogg'

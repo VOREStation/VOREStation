@@ -437,3 +437,67 @@
 	if(!(L.hovering || L.flying || L.is_incorporeal() || L.mob_size <= MOB_TINY))
 		return FALSE
 	return ..()
+
+//Lasertag mines
+
+/obj/effect/mine/lasertag
+	mineitemtype = /obj/item/mine/lasertag
+	var/beam_types = list(/obj/item/projectile/bullet/foam_dart_riot) // you fool, you baffoon, you used these, you absolute ignoramous, why did you not read this!
+	var/spread_range = 3
+
+/obj/effect/mine/lasertag/explode(var/mob/living/M)
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	triggered = 1
+	s.set_up(3, 1, src)
+	s.start()
+	var/turf/O = get_turf(src)
+	if(!O)
+		return
+	launch_many_projectiles(O, spread_range, beam_types)
+	visible_message("\The [src.name] detonates!")
+	spawn(0)
+		qdel(s)
+		qdel(src)
+
+/obj/effect/mine/lasertag/red
+	mineitemtype = /obj/item/mine/lasertag/red
+	beam_types = list(/obj/item/projectile/beam/lasertag/red)
+
+/obj/effect/mine/lasertag/blue
+	mineitemtype = /obj/item/mine/lasertag/blue
+	beam_types = list(/obj/item/projectile/beam/lasertag/blue)
+
+/obj/effect/mine/lasertag/omni
+	mineitemtype = /obj/item/mine/lasertag/omni
+	beam_types = list(/obj/item/projectile/beam/lasertag/omni)
+
+/obj/effect/mine/lasertag/all
+	mineitemtype = /obj/item/mine/lasertag/all
+	beam_types = list(/obj/item/projectile/beam/lasertag/red,/obj/item/projectile/beam/lasertag/blue,/obj/item/projectile/beam/lasertag/omni)
+
+/obj/item/mine/lasertag
+	name = "lasertag mine"
+	desc = "A small mine with 'BOOM' written on top, and an optical hazard warning on the side."
+	minetype = /obj/effect/mine/lasertag
+
+/obj/item/mine/lasertag/red
+	name = "red lasertag mine"
+	desc = "A small red mine with 'BOOM' written on top, and an optical hazard warning on the side."
+	minetype = /obj/effect/mine/lasertag/red
+
+/obj/item/mine/lasertag/blue
+	name = "blue lasertag mine"
+	desc = "A small blue mine with 'BOOM' written on top, and an optical hazard warning on the side."
+	minetype = /obj/effect/mine/lasertag/blue
+
+/obj/item/mine/lasertag/omni
+	name = "purple lasertag mine"
+	desc = "A small purple mine with 'BOOM' written on top, and an optical hazard warning on the side."
+	minetype = /obj/effect/mine/lasertag/omni
+
+/obj/item/mine/lasertag/all
+	name = "chaos lasertag mine"
+	desc = "A small grey mine with 'BOOM' written on top, and an optical hazard warning on the side."
+	minetype = /obj/effect/mine/lasertag/all
