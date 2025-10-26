@@ -55,6 +55,14 @@
 	containertype = /obj/structure/largecrate/donksoftvendor
 	containername = "\improper Donk-Soft vendor crate"
 
+/datum/supply_pack/recreation/lasertag_turrets
+	name = "Lasertag Turrets"
+	desc = "A set of one lasertag turret for each faction, plus an omni turret!"
+	contains = list()
+	cost = 25 //It's all fun and games!
+	containertype = /obj/structure/largecrate/lasertag_turrets
+	containername = "Lasertag Turrets"
+
 /datum/supply_pack/recreation/lasertag
 	name = "Lasertag equipment"
 	desc = "A standard set of Laser Tag equipment. Contains red, blue, and omni team gear."
