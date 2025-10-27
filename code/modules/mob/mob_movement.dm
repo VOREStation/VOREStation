@@ -214,8 +214,9 @@
 		return
 
 	// Relaymove could handle it
-	if(my_mob.machine)
-		var/result = my_mob.machine.relaymove(my_mob, direct)
+	var/obj/machine = my_mob.get_current_machine()
+	if(machine)
+		var/result = machine.relaymove(my_mob, direct)
 		if(result)
 			return result
 
