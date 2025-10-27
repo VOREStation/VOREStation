@@ -32,10 +32,6 @@
 
 	add_verb(owner,/mob/living/proc/example_proc) //We can add verbs to our owner.
 
-	//Register this to a signal that is sent out whenever you want this to be called. For example: We want this trait to happen every life() tick, so we register it to the COMSIG_LIVING_LIFE signal that is sent every time life() is called on a /mob.
-	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(process))
-
-
 /datum/component/template/RegisterWithParent()
 		//To put this easily: Owner is the person we're attached to, COMSIG_EXAMPLE_SIGNAL is the signal we expect them to send out when they want us to use our 'example_proc'
 	RegisterSignal(parent, COMSIG_EXAMPLE_SIGNAL, PROC_REF(example_proc))
