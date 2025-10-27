@@ -232,14 +232,11 @@
 			adjustEarDamage(-0.05,-1)
 
 /mob/living/handle_regular_hud_updates()
-	if(!client)
-		return 0
-	..()
-
+	. = ..()
+	if(!.)
+		return
 	handle_darksight()
 	handle_hud_icons()
-
-	return 1
 
 /mob/living/proc/update_sight()
 	if(!seedarkness)

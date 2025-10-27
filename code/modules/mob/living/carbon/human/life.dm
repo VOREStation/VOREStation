@@ -1431,11 +1431,9 @@
 		handle_hud_list()
 
 	// now handle what we see on our screen
-
-	if(!client)
-		return 0
-
-	..()
+	. = ..()
+	if(!.)
+		return
 
 	client.screen.Remove(GLOB.global_hud.blurry, GLOB.global_hud.druggy, GLOB.global_hud.vimpaired, GLOB.global_hud.darkMask, GLOB.global_hud.nvg, GLOB.global_hud.thermal, GLOB.global_hud.meson, GLOB.global_hud.science, GLOB.global_hud.material, GLOB.global_hud.whitense)
 
@@ -1730,17 +1728,11 @@
 		if(!seer && !glasses_processed && seedarkness)
 			see_invisible = see_invisible_default
 
-		if(machine)
-			var/viewflags = machine.check_eye(src)
-			if(viewflags < 0)
-				reset_perspective()
-			else if(viewflags && !is_remote_viewing())
-				sight |= viewflags
-			else
-				machine.apply_visual(src)
-		else if(eyeobj && eyeobj.owner != src)
+		if(!get_current_machine() && eyeobj && eyeobj.owner != src)
 			reset_perspective()
-	return 1
+
+	// Call parent to handle signals
+	..()
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	. = FALSE

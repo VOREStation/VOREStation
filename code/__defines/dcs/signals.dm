@@ -389,6 +389,11 @@
 ///From /mob/living/proc/updatehealth().
 #define COMSIG_UPDATE_HEALTH "update_health"
 	#define COMSIG_UPDATE_HEALTH_GOD_MODE (1<<0) //If this will set health to 100 and stat to conscious.
+///From /mob/handle_vision().
+#define COMSIG_LIVING_HANDLE_VISION "living_handle_vision"
+///From /mob/handle_regular_hud_updates().
+#define COMSIG_LIVING_HANDLE_HUD "living_handle_hud"
+
 
 // Damage specific signals for /mob/living
 ///from /mob/living/proc/adjustBrainLoss(amount) and /mob/living/proc/setBrainLoss(amount)
