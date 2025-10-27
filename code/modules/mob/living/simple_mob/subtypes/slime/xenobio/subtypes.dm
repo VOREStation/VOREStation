@@ -98,16 +98,6 @@
 				"rad" = 100
 				)
 
-	armor_soak = list(
-				"melee" = 5,
-				"bullet" = 5,
-				"laser" = 5,
-				"energy" = 0,
-				"bomb" = 0,
-				"bio" = 0,
-				"rad" = 0
-				)
-
 	slime_mutation = list(
 			/mob/living/simple_mob/slime/xenobio/silver,
 			/mob/living/simple_mob/slime/xenobio/yellow,

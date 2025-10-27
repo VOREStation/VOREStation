@@ -9,11 +9,10 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-
+import { DestructiveAnalyzer } from '../DestructiveAnalyzer';
 import { ConstructorEnum, type Data, Tab } from './data';
 import { Constructor } from './pages/Constructor';
 import { DesignList } from './pages/DesignList';
-import { DestructiveAnalyzer } from '../DestructiveAnalyzer';
 import { LockScreen } from './pages/LockScreen';
 import { Misc } from './pages/Misc';
 import { ResearchList } from './pages/ResearchList';

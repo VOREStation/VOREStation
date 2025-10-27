@@ -73,10 +73,14 @@
 	)
 	prize_list["Shelter Capsules"] = list(
 		EQUIPMENT("Shelter Capsule - Shelter (5x5)",				/obj/item/survivalcapsule,									50),
+		EQUIPMENT("Shelter Capsule - Pocket Dorm (5x5)",			/obj/item/survivalcapsule/pocketdorm,						50),
+		EQUIPMENT("Shelter Capsule - Kitchen (7x7)",				/obj/item/survivalcapsule/kitchen,							310),
 		EQUIPMENT("Shelter Capsule - Luxury Shelter (7x7)",			/obj/item/survivalcapsule/luxury,							310),
+		EQUIPMENT("Shelter Capsule - Alt. Luxury Shelter (7x7)",	/obj/item/survivalcapsule/luxuryalt,						310),
 		EQUIPMENT("Shelter Capsule - Redspace (7x7)",				/obj/item/survivalcapsule/randomized,						500),
-		EQUIPMENT("Shelter Capsule - Sauna (7x7)",					/obj/item/survivalcapsule/sauna,							500),
-		EQUIPMENT("Shelter Capsule - Rec Room + Cards Table (9x9)",	/obj/item/survivalcapsule/recroom,							750),
+		EQUIPMENT("Shelter Capsule - Sauna (7x7)",					/obj/item/survivalcapsule/sauna,							310),
+		EQUIPMENT("Shelter Capsule - Rec Room + Cards Table (9x9)",	/obj/item/survivalcapsule/recroom,							500),
+		EQUIPMENT("Shelter Capsule - Luxury Rec Room (11x11)",		/obj/item/survivalcapsule/luxuryrecroom,					1000),
 		EQUIPMENT("Shelter Capsule - Bar (11x11)",					/obj/item/survivalcapsule/luxurybar,						1000),
 		EQUIPMENT("Shelter Capsule - Deluxe Cabin (11x11)",			/obj/item/survivalcapsule/luxurycabin,						1000),
 		EQUIPMENT("Shelter Capsule - Cafe (11x11)",					/obj/item/survivalcapsule/cafe,								1000),
