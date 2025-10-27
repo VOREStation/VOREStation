@@ -168,6 +168,7 @@
 	if(initial(density))
 		density = !density
 	animate_door(TRUE)
+	SEND_SIGNAL(src, COMSIG_CLOSET_CLOSED, contents)
 	return 1
 
 //Cham Projector Exception
@@ -583,3 +584,7 @@
 	var/mob/living/M = usr
 	if(isliving(M))
 		M.begin_instant_nom(M,target,M,M.vore_selected)
+
+/obj/structure/closet/bluespace/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/bluespace_connection/permanent_network, GLOB.bslockers)

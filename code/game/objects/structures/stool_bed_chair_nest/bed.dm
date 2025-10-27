@@ -189,10 +189,10 @@
 	base_icon = "psychbed"
 
 /obj/structure/bed/psych/Initialize(mapload)
-	. = ..(mapload,MAT_WOOD,MAT_LEATHER)
+	. = ..(mapload, MAT_WOOD, MAT_LEATHER)
 
 /obj/structure/bed/padded/Initialize(mapload)
-	. = ..(mapload,MAT_PLASTIC,MAT_COTTON)
+	. = ..(mapload, MAT_PLASTIC, MAT_CLOTH)
 
 /obj/structure/bed/double
 	name = "double bed"
@@ -200,7 +200,7 @@
 	base_icon = "doublebed"
 
 /obj/structure/bed/double/padded/Initialize(mapload)
-	. = ..(mapload,MAT_WOOD,MAT_COTTON)
+	. = ..(mapload, MAT_WOOD, MAT_CLOTH)
 
 /obj/structure/bed/double/post_buckle_mob(mob/living/M as mob)
 	if(M.buckled == src)

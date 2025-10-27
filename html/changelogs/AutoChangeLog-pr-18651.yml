@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "casino sentient price item tf getting enabled when one closes the ui"
