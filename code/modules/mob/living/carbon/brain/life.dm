@@ -1,7 +1,10 @@
 /mob/living/carbon/brain/handle_breathing()
 	return
 
-/mob/living/carbon/brain/handle_mutations_and_radiation()
+/mob/living/carbon/brain/handle_radiation()
+	. = ..()
+	if(.)
+		return
 	if (radiation)
 		if (radiation > 100)
 			radiation = 100

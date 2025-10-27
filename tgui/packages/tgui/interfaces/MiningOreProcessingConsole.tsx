@@ -1,6 +1,5 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Stack } from 'tgui-core/components';
 import {
   AnimatedNumber,
   Box,
@@ -8,6 +7,7 @@ import {
   Dropdown,
   LabeledList,
   Section,
+  Stack,
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
