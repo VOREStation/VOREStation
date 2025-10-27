@@ -89,7 +89,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define is_vehicle_inpassable(A) (istype(A, /turf/space) || istype(A, /turf/simulated/floor/water) || istype(A, /turf/simulated/floor/lava))
 
 // Diveable water
-#define isdiveablewater(A)	istype(A, /turf/simulated/floor/water/deep/ocean/diving)
+#define isdiveablewater(A)	(istype(A, /turf/simulated/floor/water/deep/ocean/diving) || istype(A, /turf/simulated/floor/water/underwater/open) || istype(A, /turf/simulated/floor/water/underwater/indoors/open))
 
 /// NaN isn't a number, damn it. Infinity is a problem too.
 #define isnum_safe(x) ( isnum((x)) && !isnan((x)) && !isinf((x)) )

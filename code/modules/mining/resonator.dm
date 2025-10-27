@@ -5,6 +5,10 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "resonator"
 	item_state = "resonator"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_vr.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
+		)
 	origin_tech =  list(TECH_MAGNET = 3, TECH_ENGINEERING = 3)
 	desc = "A handheld device that creates small fields of energy that resonate until they detonate, crushing rock. It can also be activated without a target to create a field at the user's location, to act as a delayed time trap. It's more effective in low temperature."
 	w_class = ITEMSIZE_NORMAL
@@ -14,6 +18,8 @@
 	var/fieldsactive = 0
 	var/burst_time = 50
 	var/fieldlimit = 3
+	var/spreadmode = 0
+	var/cascading  = 0
 
 /obj/item/resonator/upgraded
 	name = "upgraded resonator"
@@ -26,20 +32,70 @@
 	var/turf/T = get_turf(target)
 	if(locate(/obj/effect/resonance) in T)
 		return
-	if(fieldsactive < fieldlimit)
+
+	if(fieldsactive > fieldlimit || cascading)
+		to_chat(creator, span_warning("You've exceeded the field limit! Wait for them to dissipate."))
+		return
+	if(spreadmode)
+		cascading = TRUE
+		var/depth = 0
+		var/fields = 0
+		if(depth == 0)
+			playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
+			new /obj/effect/resonance(T, WEAKREF(creator), burst_time)
+			fields++
+			depth++
+		var/origin_dir = get_cardinal_dir(creator, T)
+		var/dir
+		while(fields < fieldlimit)
+			for(var/i=0, i<=2, i++)
+				if(fields >= fieldlimit)
+					sleep(burst_time)
+					cascading = FALSE
+					return
+				switch(i) //Using a switch statement rather than (-90 + i * 90) to favour going straight ahead
+					if(0)
+						dir = origin_dir
+					if(1)
+						dir = turn(origin_dir, 90)
+					if(2)
+						dir = turn(origin_dir, -90)
+				var/turf/newT = T
+				for(var/step = 1, step<=depth, step++)
+					var/turf/oldT = newT
+					newT = get_step(oldT, dir)
+					if(step == depth)
+						new /obj/effect/resonance(newT, WEAKREF(creator), burst_time)
+						fields++
+						if(depth > 1 && fields < fieldlimit) //Works until 15 fieldlimit.
+							oldT = newT
+							dir = turn(dir, (i == 2 ? 135 : -135))
+							newT = get_step(oldT, dir)
+							new /obj/effect/resonance(newT, WEAKREF(creator), burst_time)
+							fields++
+			depth++
+
+
+
+	else
 		playsound(src,'sound/weapons/resonator_fire.ogg',50,1)
-		new /obj/effect/resonance(T, creator, burst_time)
+		new /obj/effect/resonance(T, WEAKREF(creator), burst_time)
 		fieldsactive++
 		spawn(burst_time)
 			fieldsactive--
 
 /obj/item/resonator/attack_self(mob/user)
-	if(burst_time == 50)
-		burst_time = 30
-		to_chat(user, span_info("You set the resonator's fields to detonate after 3 seconds."))
-	else
-		burst_time = 50
-		to_chat(user, span_info("You set the resonator's fields to detonate after 5 seconds."))
+	switch(tgui_alert(user, "Change Detonation Time or toggle Cascading?","Setting", list("Toggle Cascade", "Resonance Time")))
+		if("Resonance Time")
+			if(burst_time == 50)
+				burst_time = 30
+				to_chat(user, span_info("You set the resonator's fields to detonate after 3 seconds."))
+			else
+				burst_time = 50
+				to_chat(user, span_info("You set the resonator's fields to detonate after 5 seconds."))
+		if("Toggle Cascade")
+			spreadmode = !spreadmode
+			to_chat(user, span_info("You have [(spreadmode ? "enabled" : "disabled")] the resonance cascade mode."))
 
 /obj/item/resonator/afterattack(atom/target, mob/user, proximity_flag)
 	if(proximity_flag)
@@ -63,7 +119,7 @@
 	transform = matrix()*0.75
 	animate(src, transform = matrix()*1.5, time = timetoburst)
 	// Queue the actual bursting
-	addtimer(CALLBACK(src, ./proc/burst, creator), timetoburst)
+	addtimer(CALLBACK(src, PROC_REF(burst), creator), timetoburst)
 
 /obj/effect/resonance/proc/burst(var/creator = null)
 	var/turf/T = get_turf(src)
