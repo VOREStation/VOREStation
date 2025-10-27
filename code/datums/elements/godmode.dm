@@ -14,7 +14,7 @@
 	if(our_target.status_flags & GODMODE) //Already have it.
 		return ELEMENT_INCOMPATIBLE
 	our_target.status_flags |= GODMODE
-
+	our_target.status_flags &= CANSTUN|CANWEAKEN|CANPARALYSE
 	if(ishuman(target))
 		RegisterSignal(target, COMSIG_EXTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_external_damaged))
 		RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
@@ -65,6 +65,7 @@
 
 	//And finally, remove the fact we're in godmode.
 	our_target.status_flags &= ~GODMODE
+	our_target.status_flags |= CANSTUN|CANWEAKEN|CANPARALYSE
 	return ..()
 
 /datum/element/godmode/proc/on_external_damaged()
