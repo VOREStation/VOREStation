@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	dynamic_lighting = TRUE
 	requires_power = FALSE
 	has_gravity = TRUE
+	ignores_gravity_events = TRUE
 
 /area/survivalpod/dorms
 	name = "\improper Emergency Shelter Dorm"
