@@ -76,7 +76,7 @@
 		var/obj/structure/closet/exit_closet = exit_point
 		if(!exit_closet.can_open()) // Bwomp. You're locked now. :)
 			for(var/atom/movable/AM in contents)
-				do_teleport(AM, exit_closet, channel=TELEPORT_CHANNEL_BLUESPACE)
+				do_teleport(AM, exit_closet, channel = TELEPORT_CHANNEL_BLUESPACE, no_effects = TRUE)
 			return
 		exit_closet.open()
 
@@ -86,7 +86,7 @@
 		for(var/atom/movable/AM in contents)
 			if(QDELETED(AM))
 				continue
-			do_teleport(AM, get_turf(exit_point), channel=TELEPORT_CHANNEL_BLUESPACE)
+			do_teleport(AM, get_turf(exit_point), channel = TELEPORT_CHANNEL_BLUESPACE, no_effects = TRUE)
 			if(!isbelly(exit_point))
 				AM.throw_at(target, throw_range, 1)
 		contents.Cut()
