@@ -212,12 +212,20 @@ var/list/organ_cache = list()
 
 	/// Infection damage
 
-	//If the organ is dead, for the sake of organs that may have died due to non-infection, we'll only do damage if they have at least L1 infection (built up below)
-	if((status & ORGAN_DEAD) && antibiotics < ANTIBIO_OD && germ_level >= INFECTION_LEVEL_ONE)
-		infection_damage = max(1, 1 + round((germ_level - INFECTION_LEVEL_THREE)/200,0.25)) //1 Tox plus a little based on germ level
+	//If the organ is dead, for the sake of organs that may have died due to non-infection, we'll only do damage if they have at least L2 infection (built up below)
+	//A dead organ is bad, so you start getting flooded with toxins faster.
+	if((status & ORGAN_DEAD) && antibiotics < ANTIBIO_OD && germ_level >= INFECTION_LEVEL_TWO)
+		infection_damage = CLAMP(round((germ_level - INFECTION_LEVEL_TWO)/1000), 0.25, 1) //Between 0.25 to 1 tox per tick.
 
+
+	//Ideally, we want them to either: A. Reach Medical or B. have their organ die. Dying to toxins is lame.
+	//With this math: Toxins goes up by 0.001 per 2 seconds, up to 0.1. This means 200 seconds to reach 0.1 toxins per tick (germ level is now 700).
+	//Limb death happens at germ level 1000. This means another 600 seconds to reach there if untreated.
+	//Your kidneys helps purge toxins if you have 10% or less of your maxhealth in toxins damage. This is RNG though. (See kidneys/handle_organ_proc_special)
+	//So you COULD get really lucky and keep healing your toxins away until your limb dies, or you could get unlucky die to toxins first.
+	//Nonetheless, this should give a much more reasonable window for treatment.
 	else if(germ_level > INFECTION_LEVEL_TWO && antibiotics < ANTIBIO_OD)
-		infection_damage = max(0.25, 0.25 + round((germ_level - INFECTION_LEVEL_TWO)/200,0.25))
+		infection_damage = CLAMP(round((germ_level - INFECTION_LEVEL_TWO)/1000), 0, 0.1)
 
 	if(infection_damage)
 		owner.adjustToxLoss(infection_damage)

@@ -17,6 +17,8 @@
 	to_chat(user, span_notice("Checking bones now..."))
 	if(!do_mob(user, H, 20))
 		to_chat(user, span_notice("You must stand still to feel [E] for fractures."))
+	if(E.nonsolid && E.cannot_break) //boneless!
+		to_chat(user, span_warning("You are unable to feel any bones in the [E.name]!"))
 	else if(E.status & ORGAN_BROKEN)
 		to_chat(user, span_warning("The [E.encased ? E.encased : "bone in the [E.name]"] moves slightly when you poke it!"))
 		H.custom_pain("Your [E.name] hurts where it's poked.", 40)
@@ -39,6 +41,13 @@
 			bad = 1
 		if(!bad)
 			to_chat(user, span_notice("[H]'s skin is normal."))
+		if(E.status & ORGAN_DEAD) //this is also infection level 3
+			to_chat(user, span_bolddanger("[H]'s [E.name] is gangreous and completely dead!"))
+		else if(E.germ_level > INFECTION_LEVEL_ONE)
+			if(E.germ_level > INFECTION_LEVEL_TWO)
+				to_chat(user, span_danger("[H]'s [E.name] shows signs of a severe infection!"))
+			else
+				to_chat(user, span_warning("[H] shows signs of infection in the [E.name]."))
 
 /obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)
