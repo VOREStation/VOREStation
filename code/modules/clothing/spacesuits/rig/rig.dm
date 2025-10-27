@@ -161,7 +161,6 @@
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
 		if(islist(armor)) piece.armor = armor.Copy()
-		if(islist(armorsoak)) piece.armorsoak = armorsoak.Copy()
 
 	update_icon(1)
 
