@@ -57,7 +57,6 @@
 
 	// Note that these are combined with the mob's real armor values additatively. You can also omit specific armor types.
 	var/list/armor_percent = null		// List of armor values to add to the holder when doing armor calculations. This is for percentage based armor. E.g. 50 = half damage.
-	var/list/armor_flat = null			// Same as above but only for flat armor calculations. E.g. 5 = 5 less damage (this comes after percentage).
 	// Unlike armor, this is multiplicative. Two 50% protection modifiers will be combined into 75% protection (assuming no base protection on the mob).
 	var/heat_protection = null			// Modifies how 'heat' protection is calculated, like wearing a firesuit. 1 = full protection.
 	var/cold_protection = null			// Ditto, but for cold, like wearing a winter coat.

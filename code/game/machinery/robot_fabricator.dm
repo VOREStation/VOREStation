@@ -135,5 +135,5 @@ Please wait until completion...</TT><BR>
 		return
 
 	for (var/mob/M in viewers(1, src))
-		if(M.client && M.machine == src)
+		if(M.client && M.check_current_machine(src))
 			attack_hand(M)

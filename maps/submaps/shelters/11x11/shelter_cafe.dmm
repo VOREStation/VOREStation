@@ -9,6 +9,72 @@
 /obj/machinery/holoplant,
 /turf/simulated/floor/wood,
 /area/survivalpod)
+"ac" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w";
+	dir = 8
+	},
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w";
+	dir = 1
+	},
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"ad" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w";
+	dir = 1
+	},
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"ae" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w";
+	dir = 4
+	},
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w";
+	dir = 1
+	},
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"af" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = 23;
+	pixel_x = -23;
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"ag" = (
+/obj/machinery/button/windowtint{
+	pixel_x = -38;
+	id = "cafepod_w";
+	pixel_y = -22;
+	range = 5
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
+"ah" = (
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = 23;
+	pixel_x = 23;
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/survivalpod)
 "bZ" = (
 /obj/machinery/door/airlock/voidcraft/survival_pod/vertical,
 /obj/effect/floor_decal/industrial/danger/full,
@@ -30,17 +96,22 @@
 /turf/simulated/floor/carpet/brown,
 /area/survivalpod)
 "fW" = (
-/obj/structure/window/reinforced/survival_pod{
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w";
 	dir = 8
 	},
-/obj/structure/window/reinforced/survival_pod{
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w";
 	dir = 4
 	},
-/obj/structure/window/reinforced/survival_pod{
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w";
 	dir = 1
 	},
-/obj/structure/window/reinforced/survival_pod,
-/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/survival_pod{
+	id = "cafepod_w"
+	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "gw" = (
@@ -183,6 +254,10 @@
 /obj/machinery/holoposter{
 	dir = 4;
 	pixel_x = -30
+	},
+/obj/machinery/button/remote/airlock/survival_pod/bolts{
+	pixel_y = -23;
+	pixel_x = 21
 	},
 /turf/simulated/floor/wood,
 /area/survivalpod)
@@ -535,12 +610,12 @@ II
 uO
 VR
 ab
-tZ
+af
 Oy
 Ji
 QU
 ET
-Oy
+ac
 "}
 (3,1,1) = {"
 NM
@@ -553,7 +628,7 @@ NJ
 gw
 QU
 Te
-NJ
+ad
 "}
 (4,1,1) = {"
 pc
@@ -566,7 +641,7 @@ EM
 tB
 QU
 QW
-EM
+ae
 "}
 (5,1,1) = {"
 NM
@@ -587,7 +662,7 @@ Od
 uO
 PD
 wQ
-tZ
+ag
 GF
 YK
 tZ
@@ -639,7 +714,7 @@ JD
 uO
 po
 PW
-tZ
+ah
 qD
 ta
 Ku

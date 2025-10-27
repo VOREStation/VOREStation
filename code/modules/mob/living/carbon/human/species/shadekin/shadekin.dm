@@ -100,7 +100,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
-	species_component = /datum/component/shadekin
+	species_component = list(/datum/component/shadekin, /datum/component/radiation_effects/shadekin)
 	component_requires_late_recalc = TRUE
 
 /datum/species/shadekin/handle_death(var/mob/living/carbon/human/H)
