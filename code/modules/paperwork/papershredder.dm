@@ -163,13 +163,12 @@
 		..()
 
 /obj/item/shreddedp/proc/burnpaper(var/obj/item/flame/lighter/P, var/mob/user)
-	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	if(user.restrained())
 		return
 	if(!P.lit)
 		to_chat(user, span_warning("\The [P] is not lit."))
 		return
-	user.visible_message(span_warning("\The [user] holds \the [P] up to \the [src]. It looks like [TU.he] [TU.is] trying to burn it!"), \
+	user.visible_message(span_warning("\The [user] holds \the [P] up to \the [src]. It looks like [user.p_theyre()] trying to burn it!"), \
 		span_warning("You hold \the [P] up to \the [src], burning it slowly."))
 	if(!do_after(user, 2 SECONDS, target = src))
 		to_chat(user, span_warning("You must hold \the [P] steady to burn \the [src]."))

@@ -176,7 +176,12 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/lwarble,
 	/decl/emote/audible/croak_skrell,
 	/decl/emote/audible/roarbark,
-	/decl/emote/audible/dook
+	/decl/emote/audible/dook,
+	/decl/emote/audible/caw,
+	/decl/emote/audible/caw2,
+	/decl/emote/audible/caw_m,
+	/decl/emote/audible/gwah
+
 
 	//VOREStation Add End
 )
@@ -321,7 +326,11 @@ var/list/_simple_mob_default_emotes = list(
 	/decl/emote/audible/vox_shriek,
 	/decl/emote/audible/purr,
 	/decl/emote/audible/purrlong,
-	/decl/emote/audible/dook
+	/decl/emote/audible/dook,
+	/decl/emote/audible/caw,
+	/decl/emote/audible/caw2,
+	/decl/emote/audible/caw_m,
+	/decl/emote/audible/gwah
 
 	)
 	//VOREStation Add End
@@ -339,14 +348,12 @@ var/list/_simple_mob_default_emotes = list(
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC.Settings"
 
-	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
-
 	var/new_pose
 	var/quiet_pose = FALSE
 	var/include_icon = TRUE
 	var/list/pose_options = list()
 
-	new_pose = strip_html_simple(tgui_input_text(src, "This is [src]. [T.he]...", "Pose", null))
+	new_pose = strip_html_simple(tgui_input_text(src, "This is [src]. [p_they()]...", "Pose", null))
 	if(!new_pose)
 		pose = null
 		remove_pose_indicator()

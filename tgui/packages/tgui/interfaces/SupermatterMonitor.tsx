@@ -180,19 +180,19 @@ const SupermatterMonitorActive = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Gas Composition">
           <LabeledList>
-            <LabeledList.Item label="O²">
+            <LabeledList.Item label="O₂">
               <AnimatedNumber value={SM_gas_O2} />%
             </LabeledList.Item>
-            <LabeledList.Item label="CO²">
+            <LabeledList.Item label="CO₂">
               <AnimatedNumber value={SM_gas_CO2} />%
             </LabeledList.Item>
-            <LabeledList.Item label="N²">
+            <LabeledList.Item label="N₂">
               <AnimatedNumber value={SM_gas_N2} />%
             </LabeledList.Item>
             <LabeledList.Item label="PH">
               <AnimatedNumber value={SM_gas_PH} />%
             </LabeledList.Item>
-            <LabeledList.Item label="N²O">
+            <LabeledList.Item label="N₂O">
               <AnimatedNumber value={SM_gas_N2O} />%
             </LabeledList.Item>
             <LabeledList.Item label="CH₄">

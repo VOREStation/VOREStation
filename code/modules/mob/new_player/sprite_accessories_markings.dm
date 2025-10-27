@@ -2755,6 +2755,12 @@ includes scars and tattoos
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
 
+/datum/sprite_accessory/marking/digi/bonyplates
+	name = "Digitigrade Bony Plates(Only works with digitigrade legs)"
+	icon_state = "bonyplatesdigitigrade"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT,BP_R_LEG,BP_R_FOOT)
+
 //Big Leggies!
 /datum/sprite_accessory/marking/bigleggy
 	name = "Big Leggies - Legs"
@@ -2794,3 +2800,99 @@ includes scars and tattoos
 	icon_state = "motheyes"
 	color_blend_mode = ICON_ADD
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/thirdeye
+	name = "Third Eye (low)"
+	icon_state = "thirdeye"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/teshi_thirdeye
+	name = "Third Eye (low) (Teshari)"
+	icon_state = "teshi_thirdeye"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/thirdeye_high
+	name = "Third Eye (high)"
+	icon_state = "thirdeye_h"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/teshi_thirdeye_high
+	name = "Third Eye (high) (Teshari)"
+	icon_state = "teshi_thirdeye_h"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TESHARI)
+
+/datum/sprite_accessory/marking/animeeyeshuge
+	name = "Anime Eyes Bulging" // UWUiiieeee~~~~
+	icon_state = "animeeyeshuge"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/anteater_muzzle
+	name = "Anteater Muzzle"
+	icon_state = "anteater_muzzle"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/qaavos_muzzle
+	name = "Qaavos Head"
+	icon_state = "qaavos_face"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/qaavos_eyes
+	name = "Qaavos Eyes"
+	icon_state = "qaavos_eyes"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/gatorsnout
+	name = "Gator Snout"
+	icon_state = "gator_snout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longsnout
+	name = "Long, Sharp Snout"
+	icon_state = "longsharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longersnout
+	name = "Longer, Sharp Snout"
+	icon_state = "longersharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longsnoutlower
+	name = "Long, Sharp Snout(lower)"
+	icon_state = "lowerlongsharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/longersnoutlower
+	name = "Longer, Sharp Snout(lower)"
+	icon_state = "lowerlongersharpsnout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/boneplates
+	name = "Bony Leg Plates"
+	icon_state = "bonyplatesplantigrade"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG)
+
+/datum/sprite_accessory/marking/boneplatesarms
+	name = "Bony Arm Plates"
+	icon_state = "bonyplateswrist"
+	icon = 'icons/mob/human_races/markings.dmi'
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+
+
+/datum/sprite_accessory/marking/underarmpixel
+	name = "Under Arms Pixels"
+	icon_state = "underarmpixel"
+	icon = 'icons/mob/human_races/markings.dmi'
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_R_ARM)

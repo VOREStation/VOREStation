@@ -34,7 +34,7 @@ var/list/ai_verbs_default = list(
 	var/is_in_use = 0
 	if (subject!=null)
 		for(var/mob/living/silicon/ai/M as anything in GLOB.ai_list)
-			if ((M.client && M.machine == subject))
+			if ((M.client && M.check_current_machine(subject)))
 				is_in_use = 1
 				subject.attack_ai(M)
 	return is_in_use
@@ -91,7 +91,7 @@ var/list/ai_verbs_default = list(
 	// Multicam Vars
 	var/multicam_allowed = TRUE
 	var/multicam_on = FALSE
-	var/obj/screen/movable/pic_in_pic/ai/master_multicam
+	var/atom/movable/screen/movable/pic_in_pic/ai/master_multicam
 	var/list/multicam_screens = list()
 	var/list/all_eyes = list()
 	var/max_multicams = 6
@@ -515,7 +515,7 @@ var/list/ai_verbs_default = list(
 	if(.)
 		end_multicam()
 
-/mob/living/silicon/ai/reset_view(atom/A)
+/mob/living/silicon/ai/reset_perspective(atom/A)
 	if(camera)
 		camera.set_light(0)
 	if(istype(A,/obj/machinery/camera))
@@ -526,8 +526,7 @@ var/list/ai_verbs_default = list(
 	if(.)
 		if(!A && isturf(loc) && eyeobj)
 			end_multicam()
-			client.eye = eyeobj
-			client.perspective = MOB_PERSPECTIVE
+			reset_perspective(eyeobj)
 	if(istype(A,/obj/machinery/camera))
 		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
 		else				A.set_light(0)
@@ -841,7 +840,7 @@ var/list/ai_verbs_default = list(
 	to_chat(src, span_filter_notice("Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."))
 
 
-/mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)
+/mob/living/silicon/ai/proc/check_unable(var/flags = NONE, var/feedback = 1)
 	if(stat == DEAD)
 		if(feedback)
 			to_chat(src, span_warning("You are dead!"))

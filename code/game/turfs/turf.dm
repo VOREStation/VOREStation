@@ -201,7 +201,7 @@
 	var/area/A = T.loc
 	if((istype(A) && !(A.get_gravity())) || (istype(T,/turf/space)))
 		return
-	if(istype(O, /obj/screen))
+	if(istype(O, /atom/movable/screen))
 		return
 	if(user.restrained() || user.stat || user.stunned || user.paralysis || (!user.lying && !isrobot(user)) || LAZYLEN(user.grabbed_by))
 		return
@@ -335,14 +335,16 @@
 	return
 
 // Called when turf is hit by a thrown object
-/turf/hitby(atom/movable/AM as mob|obj, var/speed)
-	if(density)
-		if(!get_gravity(AM)) //Checked a different codebase for reference. Turns out it's only supposed to happen in no-gravity
-			spawn(2)
-				step(AM, turn(AM.last_move, 180)) //This makes it float away after hitting a wall in 0G
-		if(isliving(AM))
-			var/mob/living/M = AM
-			M.turf_collision(src, speed)
+/turf/hitby(atom/movable/source, var/speed)
+	if(!density)
+		return
+
+	if(!get_gravity(source)) //Checked a different codebase for reference. Turns out it's only supposed to happen in no-gravity
+		spawn(2)
+			step(source, turn(source.last_move, 180)) //This makes it float away after hitting a wall in 0G
+	if(isliving(source))
+		var/mob/living/M = source
+		M.turf_collision(src, speed)
 
 /turf/AllowDrop()
 	return TRUE

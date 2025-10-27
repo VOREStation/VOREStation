@@ -308,8 +308,7 @@
 			if(!occupant)
 				return
 			if(occupant.stat == DEAD)
-				var/datum/gender/G = GLOB.gender_datums[occupant.get_visible_gender()]
-				to_chat(ui.user, span_danger("This person has no life to preserve anymore. Take [G.him] to a department capable of reanimating [G.him]."))
+				to_chat(ui.user, span_danger("This person has no life to preserve anymore. Take [occupant.p_them()] to a department capable of reanimating [occupant.p_them()]."))
 				return
 			var/chemical = params["chemid"]
 			var/amount = text2num(params["amount"])
@@ -383,7 +382,7 @@
 		if(!beaker)
 			beaker = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " adds \a [I] to \the [src]."), span_notice("You add \a [I] to \the [src]."))
 		else
 			to_chat(user, span_warning("\The [src] has a beaker already."))
@@ -479,10 +478,7 @@
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
-		M.loc = src
+		M.forceMove(src)
 		update_use_power(USE_POWER_ACTIVE)
 		occupant = M
 		update_icon()
@@ -491,18 +487,15 @@
 	if(!occupant || occupant.loc != src)
 		occupant = null // JUST IN CASE
 		return
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.Stasis(0)
-	occupant.loc = src.loc
+	occupant.forceMove(get_turf(src))
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == beaker || A == circuit)
 			continue
 		if(A in component_parts)
 			continue
-		A.loc = src.loc
+		A.forceMove(get_turf(src))
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
 	toggle_filter()
@@ -510,7 +503,7 @@
 
 /obj/machinery/sleeper/proc/remove_beaker()
 	if(beaker)
-		beaker.loc = src.loc
+		beaker.forceMove(get_turf(src))
 		beaker = null
 		toggle_filter()
 

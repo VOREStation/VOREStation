@@ -131,11 +131,11 @@
 	var/list/warned_of_possession //Checks to see who has been informed this item is possessed.
 	var/cleaving = FALSE // Used to avoid infinite cleaving.
 	var/list/tool_qualities
-	var/destroy_on_drop = FALSE	// Used by augments to determine if the item should destroy itself when dropped, or return to its master.
 	var/obj/item/organ/my_augment = null	// Used to reference the object's host organ.
 	var/datum/identification/identity = null
 	var/identity_type = /datum/identification
 	var/init_hide_identity = FALSE // Set to true to automatically obscure the object on initialization.
+	var/obj/item/tethered_host_item = null // If linked to a host by a tethered_item component
 
 	//Vorestuff
 	var/trash_eatable = TRUE
@@ -421,16 +421,24 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	if(zoom)
-		zoom() //binoculars, scope, etc
 	appearance_flags &= ~NO_CLIENT_COLOR
 	// Remove any item actions we temporary gave out.
 	for(var/datum/action/action_item_has as anything in actions)
 		action_item_has.Remove(user)
 
+	if((item_flags & DROPDEL) && !QDELETED(src))
+		qdel(src)
+
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
+	SEND_SIGNAL(user, COMSIG_MOB_DROPPED_ITEM, src)
+
+	if(my_augment && !QDELETED(src))
+		forceMove(my_augment)
+
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
+	SEND_SIGNAL(user, COMSIG_PICKED_UP_ITEM, src)
 	pixel_x = 0
 	pixel_y = 0
 	return
@@ -468,6 +476,12 @@
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		if(!muffled_by_belly(user))
 			playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
+	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
+	SEND_SIGNAL(user, COMSIG_MOB_EQUIPPED_ITEM, src, slot)
+	var/mob/living/M = loc
+	if(!istype(M))
+		return
+	M.update_held_icons()
 
 /// Gives one of our item actions to a mob, when equipped to a certain slot
 /obj/item/proc/give_item_action(datum/action/action, mob/to_who, slot)
@@ -805,91 +819,42 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	if(I && !I.abstract)
 		I.showoff(src)
 
-/*
-For zooming with scope or binoculars. This is called from
-modules/mob/mob_movement.dm if you move you will be zoomed out
-modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
-*/
-//Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/var/ignore_visor_zoom_restriction = FALSE
-
+/// For zooming with scope or binoculars. Uses remote_view/item component for disabling when you move or drop the item
 /obj/item/proc/zoom(var/mob/living/M, var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	SIGNAL_HANDLER
 	if(isliving(usr)) //Always prefer usr if set
 		M = usr
-
+	if(!M.client)
+		return FALSE
 	if(!isliving(M))
-		return 0
-
+		return FALSE
+	if(isbelly(M.loc) || istype(M.loc,/obj/item/dogborg/sleeper))
+		return FALSE
+	if(M.is_remote_viewing())
+		to_chat(M, span_warning("You are too distracted to do that."))
+		return FALSE
 
 	var/devicename
-
 	if(zoomdevicename)
 		devicename = zoomdevicename
 	else
 		devicename = src.name
 
-	var/cannotzoom
-
+	var/can_zoom = TRUE
 	if((M.stat && !zoom) || !(ishuman(M)))
 		to_chat(M, span_filter_notice("You are unable to focus through the [devicename]."))
-		cannotzoom = 1
+		can_zoom = FALSE
 	else if(!zoom && (GLOB.global_hud.darkMask[1] in M.client.screen))
 		to_chat(M, span_filter_notice("Your visor gets in the way of looking through the [devicename]."))
-		cannotzoom = 1
+		can_zoom = FALSE
 	else if(!zoom && M.get_active_hand() != src)
 		to_chat(M, span_filter_notice("You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better."))
-		cannotzoom = 1
+		can_zoom = FALSE
 
-	//We checked above if they are a human and returned already if they weren't.
-	var/mob/living/carbon/human/H = M
-
-	if(!zoom && !cannotzoom)
-		if(H.hud_used.hud_shown)
-			H.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		H.set_viewsize(viewsize)
-		zoom = 1
-		H.AddComponent(/datum/component/recursive_move)
-		RegisterSignal(H, COMSIG_OBSERVER_MOVED, PROC_REF(zoom), override = TRUE)
-
-		var/tilesize = 32
-		var/viewoffset = tilesize * tileoffset
-
-		switch(H.dir)
-			if (NORTH)
-				H.client.pixel_x = 0
-				H.client.pixel_y = viewoffset
-			if (SOUTH)
-				H.client.pixel_x = 0
-				H.client.pixel_y = -viewoffset
-			if (EAST)
-				H.client.pixel_x = viewoffset
-				H.client.pixel_y = 0
-			if (WEST)
-				H.client.pixel_x = -viewoffset
-				H.client.pixel_y = 0
-
-		H.visible_message(span_filter_notice("[M] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"]."))
-		if(!ignore_visor_zoom_restriction)
-			H.looking_elsewhere = TRUE
-		H.handle_vision()
-
-	else
-		H.set_viewsize() // Reset to default
-		if(!H.hud_used.hud_shown)
-			H.toggle_zoom_hud()
-		zoom = 0
-		UnregisterSignal(H, COMSIG_OBSERVER_MOVED)
-
-		H.client.pixel_x = 0
-		H.client.pixel_y = 0
-		H.looking_elsewhere = FALSE
-		H.handle_vision()
-
-		if(!cannotzoom)
-			M.visible_message(span_filter_notice("[zoomdevicename ? "[M] looks up from the [src.name]" : "[M] lowers the [src.name]"]."))
-
-	return
+	if(!zoom && can_zoom)
+		M.AddComponent(/datum/component/remote_view/item_zoom/allow_moving, focused_on = M, our_item = src, viewsize = viewsize, tileoffset = tileoffset, show_visible_messages = TRUE)
+		return
+	SEND_SIGNAL(src,COMSIG_REMOTE_VIEW_CLEAR)
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill

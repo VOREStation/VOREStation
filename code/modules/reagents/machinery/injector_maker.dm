@@ -68,7 +68,6 @@
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			src.updateUsrDialog(user)
 			return 0
 
 

@@ -47,7 +47,7 @@ GLOBAL_DATUM_INIT(gas_data, /datum/xgm_gas_data, new())
 	var/tile_overlay = null
 	var/overlay_limit = null
 
-	var/flags = 0
+	var/flags = NONE
 
 /atom/movable/gas_visuals
 	icon = 'icons/effects/tile_effects.dmi'

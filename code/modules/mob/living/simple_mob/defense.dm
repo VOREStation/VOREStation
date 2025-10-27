@@ -90,8 +90,7 @@
 					adjustBruteLoss(-MED.heal_brute)
 					visible_message(span_infoplain(span_bold("\The [user]") + " applies the [MED] on [src]."))
 		else
-			var/datum/gender/T = GLOB.gender_datums[src.get_visible_gender()]
-			to_chat(user, span_notice("\The [src] is dead, medical items won't bring [T.him] back to life.")) // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
+			to_chat(user, span_notice("\The [src] is dead, medical items won't bring [p_them()] back to life.")) // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
 	if(can_butcher(user, O))	//if the animal can be butchered, do so and return. It's likely to be gibbed.
 		harvest(user, O)
 		return
@@ -176,17 +175,6 @@
 	. = 1 - .
 	. = min(., 1.0)
 
-
-// Fire stuff. Not really exciting at the moment.
-/mob/living/simple_mob/handle_fire()
-	return
-/mob/living/simple_mob/update_fire()
-	return
-/mob/living/simple_mob/IgniteMob()
-	return
-/mob/living/simple_mob/ExtinguishMob()
-	return
-
 /mob/living/simple_mob/get_heat_protection()
 	. = heat_resist
 	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
@@ -201,9 +189,8 @@
 	. = min(., 1.0)
 
 // Electricity
-/mob/living/simple_mob/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
-	var/zap = min((1-get_shock_protection()), siemens_coeff)
-	shock_damage *= zap
+/mob/living/simple_mob/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
+	shock_damage *= siemens_coeff
 	if(shock_damage < 1)
 		return 0
 
@@ -228,7 +215,7 @@
 	. = min(., 1.0)
 
 // Shot with taser/stunvolver
-/mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null, var/electric = FALSE)
 	if(taser_kill)
 		var/stunDam = 0
 		var/agonyDam = 0

@@ -229,7 +229,6 @@ const EStopSvg = (props: React.SVGProps<SVGSVGElement>) => {
       {...props}
     >
       <defs>
-        {/** biome-ignore lint/correctness/useUniqueElementIds: Required for SVG */}
         <marker
           id="b"
           markerHeight={2}
@@ -255,7 +254,6 @@ const EStopSvg = (props: React.SVGProps<SVGSVGElement>) => {
             transform="scale(.5)"
           />
         </marker>
-        {/** biome-ignore lint/correctness/useUniqueElementIds: Required for SVG */}
         <marker
           id="c"
           markerHeight={2}
@@ -281,7 +279,6 @@ const EStopSvg = (props: React.SVGProps<SVGSVGElement>) => {
             transform="scale(.5)"
           />
         </marker>
-        {/** biome-ignore lint/correctness/useUniqueElementIds: Required for SVG */}
         <marker
           id="a"
           markerHeight={2}

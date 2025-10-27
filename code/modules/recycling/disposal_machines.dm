@@ -29,6 +29,7 @@
 	active_power_usage = 2200	//the pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
 	var/stat_tracking = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
@@ -120,9 +121,6 @@
 			for (var/mob/V in viewers(user))
 				V.show_message("[user] starts putting [GM.name] into the disposal.", 3)
 			if(do_after(user, 2 SECONDS, target = src))
-				if (GM.client)
-					GM.client.perspective = EYE_PERSPECTIVE
-					GM.client.eye = src
 				GM.forceMove(src)
 				for (var/mob/C in viewers(src))
 					C.show_message(span_red("[GM.name] has been placed in the [src] by [user]."), 3)
@@ -187,9 +185,6 @@
 		add_attack_logs(user,target,"Disposals dunked")
 	else
 		return
-	if (target.client)
-		target.client.perspective = EYE_PERSPECTIVE
-		target.client.eye = src
 
 	target.forceMove(src)
 
@@ -211,9 +206,6 @@
 
 // leave the disposal
 /obj/machinery/disposal/proc/go_out(mob/user)
-	if (user.client)
-		user.client.eye = user.client.mob
-		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(get_turf(src))
 	update()
 	return
@@ -419,22 +411,22 @@
 	update()	// update icon
 	return
 
-/obj/machinery/disposal/hitby(atom/movable/AM)
+/obj/machinery/disposal/hitby(atom/movable/source)
 	. = ..()
-	if(istype(AM, /obj/item) && !istype(AM, /obj/item/projectile))
+	if(isitem(source) && !istype(source, /obj/item/projectile))
 		if(prob(75))
-			AM.forceMove(src)
-			visible_message("\The [AM] lands in \the [src].")
+			source.forceMove(src)
+			visible_message("\The [source] lands in \the [src].")
 		else
-			visible_message("\The [AM] bounces off of \the [src]'s rim!")
+			visible_message("\The [source] bounces off of \the [src]'s rim!")
 
-	if(istype(AM,/mob/living))
+	if(isliving(source))
 		if(prob(75))
-			var/mob/living/to_be_dunked = AM
-			if(ishuman(AM) ||to_be_dunked.client)
-				log_and_message_admins("[AM] was thrown into \the [src]", null)
-			AM.forceMove(src)
-			visible_message("\The [AM] lands in \the [src].")
+			var/mob/living/to_be_dunked = source
+			if(ishuman(source) ||to_be_dunked.client)
+				log_and_message_admins("[source] was thrown into \the [src]", null)
+			source.forceMove(src)
+			visible_message("\The [source] lands in \the [src].")
 
 /obj/machinery/disposal/wall
 	name = "inset disposal unit"

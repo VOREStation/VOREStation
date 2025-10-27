@@ -66,16 +66,13 @@
 	var/last_throw = 0
 	var/atom/movable/focus = null
 	var/mob/living/host = null
+	item_flags = DROPDEL | NOSTRIP
 
 /obj/item/tk_grab/dropped(mob/user)
 	..()
 	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
 		if(focus.Adjacent(loc))
 			focus.loc = loc
-	loc = null
-	spawn(1)
-		qdel(src)
-	return
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(var/mob/user, var/slot)
@@ -100,7 +97,7 @@
 	if(isobj(target) && !isturf(target.loc))
 		return
 
-	if(user.client.eye != user) // Extremely bad exploits if allowed to TK while remote viewing
+	if(user.is_remote_viewing()) // Extremely bad exploits if allowed to TK while remote viewing
 		to_chat(user, TK_DENIED_MESSAGE)
 		return
 

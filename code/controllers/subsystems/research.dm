@@ -41,7 +41,17 @@ SUBSYSTEM_DEF(research)
 	var/list/techweb_nodes_experimental = list()
 	///path = list(point type = value)
 	var/list/techweb_point_items = list(
-		// /obj/item/assembly/signaler/anomaly = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+		/obj/item/research_sample/common = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS*0.5),
+		/obj/item/research_sample/uncommon = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS*0.5),
+		/obj/item/research_sample/rare = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS*0.5),
+		/obj/item/research_sample/bluespace = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS*0.5)
+	)
+	///Allows repeated deconstruction of these items for points. These items MUST be in techweb_point_items as well.
+	var/list/techweb_repeatable_items = list(
+		/obj/item/research_sample/common,
+		/obj/item/research_sample/uncommon,
+		/obj/item/research_sample/rare,
+		/obj/item/research_sample/bluespace
 	)
 	var/list/errored_datums = list()
 	///Associated list of all point types that techwebs will have and their respective 'abbreviated' name.

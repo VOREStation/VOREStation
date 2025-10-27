@@ -4,6 +4,10 @@
 	name = "Admin Shuttle Controller"
 	tgui_id = "AdminShuttleController"
 
+/datum/tgui_module/admin_shuttle_controller/tgui_close(mob/user)
+	. = ..()
+	qdel(src)
+
 /datum/tgui_module/admin_shuttle_controller/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 

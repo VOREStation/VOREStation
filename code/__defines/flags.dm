@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define	NOREACT					(1<<6)	// Reagents don't react inside this container.
 #define OVERLAY_QUEUED			(1<<7)// Atom queued to SSoverlay for COMPILE_OVERLAYS
 #define IS_BUSY					(1<<8)	// Atom has a TASK_TARGET_EXCLUSIVE do_after with it as the target.
+#define REMOTEVIEW_ON_ENTER		(1<<9)	// Object starts a remoteview of itself for any mob that enters it with a client. Items will automatically handle their own remoteview, and ignore this.
 #define ATOM_INITIALIZED		(1<<23) // Atom has been initialized. Using a flag instead of a variable saves ~25mb total.
 
 //Flags for items (equipment) - Used in /obj/item/var/item_flags
@@ -46,6 +47,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define ALLOW_SURVIVALFOOD		(1<<5)	// Allows special survival food items to be eaten through it
 #define INFINITE_AIR			(1<<6)	// Provides an infinite air supply.
 #define NOSTRIP					(1<<7)  // Items that should never get stripped
+#define DROPDEL 				(1<<8)  // Items that delete upon being dropped
 
 // Flags for pass_flags. - Used in /atom/var/pass_flags
 #define PASSTABLE				(1<<0)

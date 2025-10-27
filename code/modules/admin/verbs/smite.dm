@@ -34,7 +34,7 @@
 
 		if(SMITE_SPONTANEOUSCOMBUSTION)
 			target.adjust_fire_stacks(10)
-			target.IgniteMob()
+			target.ignite_mob()
 			target.visible_message(span_danger("[target] bursts into flames!"))
 
 		if(SMITE_LIGHTNINGBOLT)
@@ -155,7 +155,7 @@
 
 		if(SMITE_AD_SPAM)
 			if(target.client)
-				target.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
+				target.client.create_fake_ad_popup_multiple(/atom/movable/screen/popup/default, 15)
 
 		if(SMITE_PEPPERNADE)
 			var/obj/item/grenade/chem_grenade/teargas/grenade = new /obj/item/grenade/chem_grenade/teargas
@@ -319,7 +319,7 @@ var/redspace_abduction_z
 	var/tip = pick(bad_tips)
 	to_chat(target, "<span class='notice' style='font: small-caps bold large monospace!important'>Tip of the day:</span><br><span class='notice'>[tip]</span>")
 
-	var/obj/screen/loader = new(target)
+	var/atom/movable/screen/loader = new(target)
 	loader.name = "Autosaving..."
 	loader.desc = "A disc icon that represents your game autosaving. Please wait."
 	loader.icon = 'icons/obj/discs_vr.dmi'

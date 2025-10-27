@@ -1759,39 +1759,41 @@
 		ball.item_state = "[initial(ball.item_state)]"
 		ball.update_icon()
 
-/obj/structure/hyperball_goal/hitby(obj/B as obj)
+/obj/structure/hyperball_goal/hitby(atom/movable/source)
 	. = ..()
-	if(istype(B,/obj/item/laserdome_hyperball))
-		var/obj/item/laserdome_hyperball/ball = B
-		if(prob(range_dunk_chance))
-			if(ball.last_team != goal_team)
-				GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball for [capitalize(ball.last_team)] team! [num2text(range_dunk_points)] points scored!","Laserdome Announcer","Entertainment")
-				score += range_dunk_points	//increment our score!
-				if(score < score_limit)	//announce the current score and how many more captures are needed
-					GLOB.global_announcer.autosay("[num2text(score_limit-score)] points remain until [capitalize(ball.last_team)] team wins.","Laserdome Announcer","Entertainment")
-				else if(score >= score_limit)	//now, if score equals or exceeds the score limit, announce that our team won and reset the score for all flag bases nearby
-					GLOB.global_announcer.autosay("+|[uppertext(ball.last_team)] TEAM HAS WON THE MATCH!|+","Laserdome Announcer","Entertainment")
-					for(var/obj/structure/hyperball_goal/HB in src.loc.loc.contents)	//this feels dirty, but it works
-						HB.score = 0
-			else if(ball.last_team == goal_team)	//discourage people from dunking the ball into their own goal as a quick way to teleport it back to the midfield
-				switch(goal_team)	//this gets a bit fiddly because we store our score on the target's goal, so we need to scan the map for the opposing team's goal and deduct points from it
-					if("blue")
-						for(var/obj/structure/hyperball_goal/red/HGR in src.loc.loc.contents)
-							HGR.score = max(0,HGR.score-range_dunk_points)
-							GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGR.score].","Laserdome Announcer","Entertainment")
-					if("red")
-						for(var/obj/structure/hyperball_goal/blue/HGB in src.loc.loc.contents)
-							HGB.score = max(0,HGB.score-range_dunk_points)
-							GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGB.score].","Laserdome Announcer","Entertainment")
+	if(!istype(source, /obj/item/laserdome_hyperball))
+		return
 
-			ball.loc = ball.start_pos	//teleport the ball back to the midfield
-			ball.icon_state = "[initial(ball.icon_state)]"
-			ball.item_state = "[initial(ball.item_state)]"
-			ball.update_icon()
-		else
-			//todo; throw the ball in a random direction
-			src.visible_message("\The [ball] bounces off \the [src]'s rim!")
-			GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball and +missed!+ |Oooh!|","Laserdome Announcer","Entertainment")
+	var/obj/item/laserdome_hyperball/ball = source
+	if(prob(range_dunk_chance))
+		if(ball.last_team != goal_team)
+			GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball for [capitalize(ball.last_team)] team! [num2text(range_dunk_points)] points scored!","Laserdome Announcer","Entertainment")
+			score += range_dunk_points	//increment our score!
+			if(score < score_limit)	//announce the current score and how many more captures are needed
+				GLOB.global_announcer.autosay("[num2text(score_limit-score)] points remain until [capitalize(ball.last_team)] team wins.","Laserdome Announcer","Entertainment")
+			else if(score >= score_limit)	//now, if score equals or exceeds the score limit, announce that our team won and reset the score for all flag bases nearby
+				GLOB.global_announcer.autosay("+|[uppertext(ball.last_team)] TEAM HAS WON THE MATCH!|+","Laserdome Announcer","Entertainment")
+				for(var/obj/structure/hyperball_goal/HB in src.loc.loc.contents)	//this feels dirty, but it works
+					HB.score = 0
+		else if(ball.last_team == goal_team)	//discourage people from dunking the ball into their own goal as a quick way to teleport it back to the midfield
+			switch(goal_team)	//this gets a bit fiddly because we store our score on the target's goal, so we need to scan the map for the opposing team's goal and deduct points from it
+				if("blue")
+					for(var/obj/structure/hyperball_goal/red/HGR in src.loc.loc.contents)
+						HGR.score = max(0,HGR.score-range_dunk_points)
+						GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGR.score].","Laserdome Announcer","Entertainment")
+				if("red")
+					for(var/obj/structure/hyperball_goal/blue/HGB in src.loc.loc.contents)
+						HGB.score = max(0,HGB.score-range_dunk_points)
+						GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball and scored an own goal! +Points |de-ducted!|+ [capitalize(goal_team)] team score is now: [HGB.score].","Laserdome Announcer","Entertainment")
+
+		ball.loc = ball.start_pos	//teleport the ball back to the midfield
+		ball.icon_state = "[initial(ball.icon_state)]"
+		ball.item_state = "[initial(ball.item_state)]"
+		ball.update_icon()
+	else
+		//todo; throw the ball in a random direction
+		src.visible_message("\The [ball] bounces off \the [src]'s rim!")
+		GLOB.global_announcer.autosay("[ball.last_holder] threw the HYPERball and +missed!+ |Oooh!|","Laserdome Announcer","Entertainment")
 
 /obj/structure/prop/machine/biosyphon/laserdome
 	name = "Laserdome Orientation Holo"

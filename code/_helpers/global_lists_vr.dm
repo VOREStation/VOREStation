@@ -160,6 +160,95 @@ GLOBAL_LIST_INIT(global_vore_egg_types, list(
 	"Spotted Pink"
 	))
 
+// Global associated list of common items people might prefer to be item TF'd into
+GLOBAL_LIST_INIT(item_tf_options, list(
+	// Accessories
+	"Accessory - Necklace (metal)"				= /obj/item/clothing/accessory/tronket,
+	"Accessory - Ring"							= /obj/item/clothing/accessory/ring,
+	"Accessory - Sweater"						= /obj/item/clothing/accessory/sweater,
+	"Accessory - Sweater (keyhole)"				= /obj/item/clothing/accessory/sweater/keyhole,
+	// Under slot items
+	"Top - Bunny suit"							= /obj/item/clothing/under/bunnysuit,
+	"Top - Bunny suit (maid)"					= /obj/item/clothing/under/bunnysuit_maid,
+	"Top - Bunny suit (maid, top-only)"			= /obj/item/clothing/under/reverse_bunnytop_maid,
+	"Top - Bunny suit (reverse)"				= /obj/item/clothing/under/reverse_bunnysuit,
+	"Top - Bunny suit (reverse, maid)"			= /obj/item/clothing/under/reverse_bunnysuit_maid,
+	"Top - Bunny suit (reverse, top-only)"		= /obj/item/clothing/under/reverse_bunnytop,
+	"Top - Maid outfit (costume)"				= /obj/item/clothing/under/dress/maid,
+	"Top - Maid outfit (latex)"					= /obj/item/clothing/under/fluff/latexmaid,
+	"Top - Maid outfit (uniform)"				= /obj/item/clothing/under/dress/maid/janitor,
+	"Top - Swimsuit (black)"					= /obj/item/clothing/under/swimsuit/black,
+	"Top - Swimsuit (blue)"						= /obj/item/clothing/under/swimsuit/blue,
+	"Top - Swimsuit (cow print)"				= /obj/item/clothing/under/swimsuit/cowbikini,
+	"Top - Swimsuit (earthen)"					= /obj/item/clothing/under/swimsuit/earth,
+	"Top - Swimsuit (green)"					= /obj/item/clothing/under/swimsuit/green,
+	"Top - Swimsuit (high class)"				= /obj/item/clothing/under/swimsuit/highclass,
+	"Top - Swimsuit (purple)"					= /obj/item/clothing/under/swimsuit/purple,
+	"Top - Swimsuit (red)"						= /obj/item/clothing/under/swimsuit/red,
+	"Top - Swimsuit (revealing, pink)"			= /obj/item/clothing/under/swimsuit/stripper,
+	"Top - Swimsuit (risque)"					= /obj/item/clothing/under/swimsuit/risque,
+	"Top - Swimsuit (streamlined)"				= /obj/item/clothing/under/swimsuit/streamlined,
+	"Top - Swimsuit (striped)"					= /obj/item/clothing/under/swimsuit/striped,
+	"Top - Swimsuit (white)"					= /obj/item/clothing/under/swimsuit/white,
+	// Foot slot items
+	"Footwear - Flip-flops"						= /obj/item/clothing/shoes/flipflop,
+	"Footwear - Footwraps"						= /obj/item/clothing/shoes/footwraps,
+	"Footwear - High heels"						= /obj/item/clothing/shoes/heels,
+	"Footwear - Jackboots"						= /obj/item/clothing/shoes/boots/jackboots,
+	"Footwear - Jackboots (toe-less)"			= /obj/item/clothing/shoes/boots/jackboots/toeless,
+	"Footwear - Shoes (black)"					= /obj/item/clothing/shoes/black,
+	"Footwear - Workboots"						= /obj/item/clothing/shoes/boots/workboots,
+	"Footwear - Workboots (toe-less)"			= /obj/item/clothing/shoes/boots/workboots/toeless,
+	// Hand slot items
+	"Gloves - Evening"							= /obj/item/clothing/gloves/evening,
+	"Gloves - Black"							= /obj/item/clothing/gloves/black,
+	// Suit slot items
+	"Overwear - Kimono (blue)"					= /obj/item/clothing/suit/kimono/blue,
+	"Overwear - Kimono (earth)"					= /obj/item/clothing/suit/kimono/blue,
+	"Overwear - Kimono (green)"					= /obj/item/clothing/suit/kimono/green,
+	"Overwear - Kimono (orange)"				= /obj/item/clothing/suit/kimono/orange,
+	"Overwear - Kimono (pink)"					= /obj/item/clothing/suit/kimono/pink,
+	"Overwear - Kimono (purple)"				= /obj/item/clothing/suit/kimono/purple,
+	"Overwear - Kimono (red)"					= /obj/item/clothing/suit/kimono/red,
+	"Overwear - Kimono (violet)"				= /obj/item/clothing/suit/kimono/violet,
+	"Overwear - Kimono (white, traditional)"	= /obj/item/clothing/suit/kimono,
+	"Overwear - T-shirt (oversized)"			= /obj/item/clothing/suit/oversize,
+	// Misc. items
+	"Item - Bar stool"							= /obj/item/stool/padded,
+	"Item - Inflatable Duck"					= /obj/item/inflatable_duck,
+	"Item - Plushie (carp)"						= /obj/item/toy/plushie/carp,
+	"Item - Plushie (cat, black)"				= /obj/item/toy/plushie/black_cat,
+	"Item - Plushie (cat, calico)"				= /obj/item/toy/plushie/kitten,
+	"Item - Plushie (cat, grey)"				= /obj/item/toy/plushie/grey_cat,
+	"Item - Plushie (cat, orange)"				= /obj/item/toy/plushie/orange_cat,
+	"Item - Plushie (cat, tabby)"				= /obj/item/toy/plushie/tabby_cat,
+	"Item - Plushie (cat, tuxedo)"				= /obj/item/toy/plushie/tuxedo_cat,
+	"Item - Plushie (cat, white)"				= /obj/item/toy/plushie/white_cat,
+	"Item - Plushie (corgi)"					= /obj/item/toy/plushie/corgi,
+	"Item - Plushie (corgi, girly)"				= /obj/item/toy/plushie/girly_corgi,
+	"Item - Plushie (deer)"						= /obj/item/toy/plushie/deer,
+	"Item - Plushie (fox, black)"				= /obj/item/toy/plushie/black_fox,
+	"Item - Plushie (fox, blue)"				= /obj/item/toy/plushie/blue_fox,
+	"Item - Plushie (fox, coffee)"				= /obj/item/toy/plushie/coffee_fox,
+	"Item - Plushie (fox, crimson)"				= /obj/item/toy/plushie/crimson_fox,
+	"Item - Plushie (fox, marble)"				= /obj/item/toy/plushie/marble_fox,
+	"Item - Plushie (fox, orange)"				= /obj/item/toy/plushie/orange_fox,
+	"Item - Plushie (fox, pink)"				= /obj/item/toy/plushie/pink_fox,
+	"Item - Plushie (fox, purple)"				= /obj/item/toy/plushie/purple_fox,
+	"Item - Plushie (fox, red)"					= /obj/item/toy/plushie/red_fox,
+	"Item - Plushie (fumo)"						= /obj/item/toy/plushie/fumo,
+	"Item - Plushie (lizard)"					= /obj/item/toy/plushie/lizard,
+	"Item - Plushie (lizard, kobold)"			= /obj/item/toy/plushie/lizardplushie/kobold,
+	"Item - Plushie (moth)"						= /obj/item/toy/plushie/moth,
+	"Item - Plushie (mouse)"					= /obj/item/toy/plushie/mouse,
+	"Item - Plushie (shark)"					= /obj/item/toy/plushie/shark,
+	"Item - Plushie (slime)"					= /obj/item/toy/plushie/slimeplushie,
+	"Item - Plushie (snake)"					= /obj/item/toy/plushie/snakeplushie,
+	"Item - Plushie (spider)"					= /obj/item/toy/plushie/spider,
+	"Item - Plushie (vox)"						= /obj/item/toy/plushie/vox,
+	"Item - Towel"								= /obj/item/towel
+	))
+
 GLOBAL_LIST_INIT(tf_vore_egg_types, list(
 	"Unathi" 		= /obj/item/storage/vore_egg/unathi,
 	"Tajara" 		= /obj/item/storage/vore_egg/tajaran,
@@ -594,10 +683,18 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 			continue //A prototype or something
 		GLOB.weavable_items[instance.title] = instance
 
+	paths = subtypesof(/datum/weaver_recipe)
+	for(var/path in paths)
+		var/datum/weaver_recipe/instance = new path()
+		if(!instance.title)
+			continue //A prototype or something
+		GLOB.all_weavable[instance.title] = instance
+
 	return 1 // Hooks must return 1
 
 GLOBAL_LIST_EMPTY(weavable_structures)
 GLOBAL_LIST_EMPTY(weavable_items)
+GLOBAL_LIST_EMPTY(all_weavable)
 
 
 GLOBAL_LIST_INIT(xenobio_metal_materials_normal, list(
@@ -1163,7 +1260,11 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/seeds, \
 	/obj/item/grown, \
 	/obj/item/trash, \
-	/obj/item/reagent_containers/cooking_container
+	/obj/item/reagent_containers/cooking_container, \
+	/obj/item/spacecasinocash, \
+	/obj/item/spacecasinocash_fake, \
+	/obj/item/deck/cards, \
+	/obj/item/hand
 
 #define GRAVEYARD_GRIPPER \
 	/obj/item/seeds, \
@@ -1180,7 +1281,9 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/petrifier, \
 	/obj/item/dice, \
 	/obj/item/casino_platinum_chip, \
-	/obj/item/spacecasinocash
+	/obj/item/spacecasinocash, \
+	/obj/item/spacecasinocash_fake, \
+	/obj/item/hand
 
 #define ORGAN_GRIPPER \
 	/obj/item/organ, \

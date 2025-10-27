@@ -21,6 +21,13 @@
 
 	var/reagent_type = REAGENT_ID_WATER
 
+	var/watercolor = null
+
+/turf/simulated/floor/water/proc/handle_water_icons()
+	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
+	var/image/water_sprite = image(icon = water_icon, icon_state = water_state, layer = WATER_LAYER)
+	add_overlay(water_sprite)
+
 /turf/simulated/floor/water/Initialize(mapload)
 	. = ..()
 	update_icon()
@@ -28,10 +35,7 @@
 
 /turf/simulated/floor/water/update_icon()
 	..() // To get the edges.
-
-	icon_state = under_state // This isn't set at compile time in order for it to show as water in the map editor.
-	var/image/water_sprite = image(icon = water_icon, icon_state = water_state, layer = WATER_LAYER)
-	add_overlay(water_sprite)
+	handle_water_icons()
 
 /turf/simulated/floor/water/get_edge_icon_state()
 	return "water_shallow"
@@ -175,10 +179,10 @@
 	return
 
 /mob/living/water_act(amount)
-	adjust_fire_stacks(-amount * 5)
+	// adjust_fire_stacks(-amount * 5)
+	adjust_wet_stacks(amount * 5)
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
-	remove_modifiers_of_type(/datum/modifier/fire)
 	inflict_water_damage(20 * amount) // Only things vulnerable to water will actually be harmed (slimes/prommies).
 
 var/list/shoreline_icon_cache = list()

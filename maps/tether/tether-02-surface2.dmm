@@ -437,12 +437,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/examroom)
-"aaK" = (
-/obj/machinery/camera/network/medbay{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/medical/morgue)
 "aaL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3500,13 +3494,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
-"afu" = (
-/obj/structure/morgue{
-	dir = 8
-	},
-/obj/structure/morgue,
-/turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/medical/morgue)
 "afv" = (
 /obj/structure/closet{
 	name = "Evidence Closet"
@@ -5250,12 +5237,12 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/examroom)
 "aiv" = (
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
@@ -5993,9 +5980,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
 "ajx" = (
-/obj/structure/filingcabinet/chestdrawer{
-	desc = "A large drawer filled with autopsy reports.";
-	name = "Autopsy Reports"
+/obj/structure/cable/green{
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
@@ -6097,15 +6083,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/medical/morgue)
-"ajJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
+/obj/structure/morgue,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "ajK" = (
@@ -6151,26 +6129,21 @@
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/research)
 "ajN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "ajO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
@@ -6509,12 +6482,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "aku" = (
-/obj/structure/table/steel,
-/obj/item/sleevemate,
-/obj/item/camera{
-	name = "Autopsy Camera";
-	pixel_x = -2;
-	pixel_y = 7
+/obj/structure/filingcabinet/chestdrawer{
+	desc = "A large drawer filled with autopsy reports.";
+	name = "Autopsy Reports"
 	},
 /obj/machinery/camera/network/medbay{
 	dir = 10
@@ -7357,6 +7327,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "alJ" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/tether/surfacebase/medical/morgue)
+"alK" = (
 /obj/structure/table/steel,
 /obj/item/storage/box/bodybags{
 	pixel_x = 4;
@@ -7366,25 +7343,24 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/medical/morgue)
-"alK" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "alL" = (
-/obj/structure/table/steel,
-/obj/item/surgical/scalpel,
-/obj/item/autopsy_scanner,
-/obj/item/surgical/cautery,
 /obj/effect/floor_decal/techfloor,
+/obj/structure/table/steel,
+/obj/item/sleevemate,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/light/floortube,
+/obj/item/camera{
+	name = "Autopsy Camera";
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/radio/intercom{
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "alM" = (
@@ -7392,7 +7368,11 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "alN" = (
-/obj/machinery/optable,
+/obj/structure/table/steel,
+/obj/machinery/computer/med_data/laptop{
+	dir = 1;
+	pixel_y = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "alO" = (
@@ -9371,9 +9351,8 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Security";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Security"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/medsec)
@@ -16923,9 +16902,8 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable,
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Command";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Command"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/command)
@@ -20406,9 +20384,8 @@
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "aKU" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Research";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Research"
 	},
 /obj/structure/cable/green,
 /obj/structure/cable/green{
@@ -23785,6 +23762,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
+"aRA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether/surfacebase/medical/morgue)
 "aRB" = (
 /obj/structure/closet,
 /obj/item/storage/mre/random,
@@ -25577,6 +25561,29 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
+"aUT" = (
+/obj/structure/morgue,
+/obj/machinery/camera/network/medbay{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/tether/surfacebase/medical/morgue)
+"aUU" = (
+/obj/structure/table/steel,
+/obj/item/autopsy_scanner,
+/obj/item/surgical/cautery,
+/obj/item/surgical/scalpel,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether/surfacebase/medical/morgue)
+"aUV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/optable,
+/obj/machinery/light/floortube,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether/surfacebase/medical/morgue)
 "aUW" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
@@ -33453,12 +33460,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_cyborg_station)
 "rRj" = (
-/obj/machinery/power/smes/buildable{
-	charge = 5e+006;
-	input_attempt = 1;
-	input_level = 200000;
-	output_level = 200000
-	},
+/obj/machinery/power/smes/buildable/engine_default,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -45507,10 +45509,10 @@ ahc
 afg
 adX
 apW
-aiJ
-aaK
-aiJ
-aiJ
+aiW
+aiW
+aUT
+aiW
 ajI
 alI
 apW
@@ -45649,11 +45651,11 @@ acH
 aag
 adY
 akM
-aiR
-aiR
-aiR
-aiR
-ajJ
+aiJ
+aiJ
+aiJ
+aiJ
+ajP
 alJ
 akM
 amE
@@ -45791,10 +45793,10 @@ aiV
 adr
 adZ
 akM
-aiW
-aiW
-aiW
-aiW
+aiJ
+aiJ
+aUU
+aiJ
 ajN
 alK
 akM
@@ -45935,7 +45937,7 @@ aax
 aeY
 aft
 aft
-aft
+aUV
 aiX
 ajO
 alL
@@ -46075,11 +46077,11 @@ acK
 adG
 aea
 akM
-afu
-afu
-afu
+afV
+ago
+ago
 ajx
-ajP
+aRA
 alN
 akM
 amH
@@ -46217,9 +46219,9 @@ acX
 adH
 aen
 akM
-afV
-ago
-ago
+aiR
+aiR
+aiR
 aiv
 aiA
 aku

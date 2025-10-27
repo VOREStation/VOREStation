@@ -65,10 +65,9 @@
 	else
 		switch(M.a_intent)
 			if(I_HELP)
-				var/datum/gender/T = GLOB.gender_datums[src.get_visible_gender()]
 				M.visible_message(
-					span_notice("\The [M] hugs [src] to make [T.him] feel better!"), \
-					span_notice("You hug [src] to make [T.him] feel better!")
+					span_notice("\The [M] hugs [src] to make [p_them()] feel better!"), \
+					span_notice("You hug [src] to make [p_them()] feel better!")
 					) // slightly redundant as at the moment most mobs still use the normal gender var, but it works and future-proofs it
 				playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 

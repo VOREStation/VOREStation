@@ -12,7 +12,7 @@ var/list/ventcrawl_machinery = list(
 	/obj/machinery/camera,
 	/obj/belly,
 	/obj/soulgem,
-	/obj/screen,
+	/atom/movable/screen,
 	/atom/movable/emissive_blocker,
 	/obj/item/rig/protean
 	)
@@ -248,6 +248,6 @@ var/list/ventcrawl_machinery = list(
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
 		client.screen -= GLOB.global_hud.centermarker
-		client.eye = src
+		reset_perspective(src)
 
 	pipes_shown.len = 0

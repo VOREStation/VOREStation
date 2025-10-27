@@ -2486,12 +2486,8 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/obj/machinery/power/smes/buildable/hybrid{
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, linked to an advanced looking generator..";
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
+/obj/machinery/power/smes/buildable/hybrid/engine_default{
+	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, linked to an advanced looking generator.."
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -3555,12 +3551,8 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable/hybrid{
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, linked to an advanced looking generator..";
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
+/obj/machinery/power/smes/buildable/hybrid/engine_default{
+	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit, linked to an advanced looking generator.."
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/lunaship/engineering)

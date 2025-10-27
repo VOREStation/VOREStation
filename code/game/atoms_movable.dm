@@ -34,6 +34,7 @@
 	var/autotransferable = TRUE // Toggle for autotransfer mechanics.
 	var/recursive_listeners
 	var/listening_recursive = NON_LISTENING_ATOM
+	var/unacidable = TRUE
 
 /atom/movable/Initialize(mapload)
 	. = ..()
@@ -238,7 +239,7 @@
 	last_move = direct // The direction you last moved
 	// set_dir(direct) //Don't think this is necessary
 
-//Called after a successful Move(). By this point, we've already moved
+///Called after a successful Move(). By this point, we've already moved
 /atom/movable/proc/Moved(atom/old_loc, direction, forced = FALSE, movetime)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, direction, forced, movetime)
 	// Handle any buckled mobs on this movable
@@ -249,8 +250,13 @@
 		riding_datum.handle_vehicle_offsets()
 	for (var/datum/light_source/light as anything in light_sources) // Cycle through the light sources on this atom and tell them to update.
 		light.source_atom.update_light()
-
 	return TRUE
+
+/mob/Moved(atom/old_loc, direction, forced, movetime)
+	. = ..()
+	//If we return focus to our own mob, but we are still inside something with an inherent remote view. Restart it.
+	if(client)
+		restore_remote_views()
 
 /atom/movable/set_dir(newdir)
 	. = ..(newdir)
@@ -722,9 +728,6 @@
 /atom/movable/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	return
 
-/atom/movable/proc/Bump_vr(var/atom/A, yes)
-	return
-
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
@@ -750,6 +753,9 @@
 			return
 		if(QDELETED(src))
 			return
+		if(ismob(src)) // incase there was a client inside an object being yoinked
+			var/mob/M = src
+			M.reset_perspective(src) // Force reset to self before teleport
 		forceMove(get_turf(usr))
 
 	if(href_list[VV_HK_EDIT_PARTICLES] && check_rights(R_VAREDIT))

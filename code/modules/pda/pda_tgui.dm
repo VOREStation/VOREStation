@@ -64,7 +64,6 @@
 		return TRUE
 
 	add_fingerprint(ui.user)
-	ui.user.set_machine(src)
 
 	if(!touch_silent)
 		playsound(src, 'sound/machines/pda_click.ogg', 20)

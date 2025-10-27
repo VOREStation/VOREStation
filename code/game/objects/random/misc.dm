@@ -774,7 +774,14 @@
 							/obj/item/toy/plushie/borgplushie/drake/jani,
 							/obj/item/toy/plushie/borgplushie/drake/eng,
 							/obj/item/toy/plushie/borgplushie/drake/mine,
-							/obj/item/toy/plushie/borgplushie/drake/trauma)))
+							/obj/item/toy/plushie/borgplushie/drake/trauma)),
+				pick(list(/obj/item/toy/plushie/dragon,
+							/obj/item/toy/plushie/dragon/green,
+							/obj/item/toy/plushie/dragon/purple,
+							/obj/item/toy/plushie/dragon/red_east,
+							/obj/item/toy/plushie/dragon/green_east,
+							/obj/item/toy/plushie/dragon/white_east,
+							/obj/item/toy/plushie/dragon/gold_east)))
 
 /obj/random/plushielarge
 	name = "random large plushie"
