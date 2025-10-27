@@ -1635,8 +1635,13 @@
 	set category = "IC.Game"
 
 	if(stat) return
-	pulling_punches = !pulling_punches
-	to_chat(src, span_notice("You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"]."))
+	var/pulling = FALSE
+	if(HAS_TRAIT_FROM(src, TRAIT_NONLETHAL_BLOWS, ACTION_TRAIT))
+		REMOVE_TRAIT(src, TRAIT_NONLETHAL_BLOWS, ACTION_TRAIT)
+	else
+		ADD_TRAIT(src, TRAIT_NONLETHAL_BLOWS, ACTION_TRAIT)
+		pulling = TRUE
+	to_chat(src, span_notice("You are now [pulling ? "pulling your punches" : "not pulling your punches"]."))
 	return
 
 /mob/living/carbon/human/should_have_organ(var/organ_check)

@@ -5,3 +5,5 @@
 #define ROUNDSTART_TRAIT "roundstart"
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
+/// Trait given by performing an action (proc, verb, etc. Something that the USER can control)
+#define ACTION_TRAIT "action"
