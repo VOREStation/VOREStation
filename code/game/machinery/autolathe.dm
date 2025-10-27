@@ -150,14 +150,12 @@
 	return ..()
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
-	user.set_machine(src)
 	interact(user)
 
 /obj/machinery/autolathe/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
-	ui.user.set_machine(src)
 	add_fingerprint(ui.user)
 
 	if(busy)

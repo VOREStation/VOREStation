@@ -389,6 +389,11 @@
 ///From /mob/living/proc/updatehealth().
 #define COMSIG_UPDATE_HEALTH "update_health"
 	#define COMSIG_UPDATE_HEALTH_GOD_MODE (1<<0) //If this will set health to 100 and stat to conscious.
+///From /mob/handle_vision().
+#define COMSIG_LIVING_HANDLE_VISION "living_handle_vision"
+///From /mob/handle_regular_hud_updates().
+#define COMSIG_LIVING_HANDLE_HUD "living_handle_hud"
+
 
 // Damage specific signals for /mob/living
 ///from /mob/living/proc/adjustBrainLoss(amount) and /mob/living/proc/setBrainLoss(amount)
@@ -449,6 +454,11 @@
 ///from base of /mob/living/can_track(): (mob/user)
 #define COMSIG_LIVING_CAN_TRACK "mob_cantrack"
 	#define COMPONENT_CANT_TRACK (1<<0)
+
+///from base of /mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1, rad_protection)
+#define COMSIG_LIVING_IRRADIATE_EFFECT "living_irradiate_effect"
+	///Return this if you want to block the effect.
+	#define COMPONENT_BLOCK_IRRADIATION (1<<0)
 
 // /mob/living/carbon signals
 
@@ -694,6 +704,12 @@
 #define COMSIG_HUMAN_DNA_FINALIZED "human_dna_finished"
 ///from /proc/domutcheck(): ()
 #define COMSIG_MOB_DNA_MUTATION "mob_dna_mutation"
+///from /mob/living/proc/handle_radiation()
+#define COMSIG_HANDLE_RADIATION "handle_radiation"
+	#define COMPONENT_BLOCK_LIVING_RADIATION (1<<0)
+///from /mob/living/proc/handle_mutations()
+#define COMSIG_HANDLE_MUTATIONS "handle_mutations"
+	#define COMPONENT_BLOCK_LIVING_MUTATIONS (1<<0)
 
 // Organ specific signals
 

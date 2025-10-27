@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, Input, Section, Stack } from 'tgui-core/components';

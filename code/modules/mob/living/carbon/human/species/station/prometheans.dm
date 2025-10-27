@@ -35,6 +35,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	secondary_langs = list(LANGUAGE_PROMETHEAN, LANGUAGE_SOL_COMMON)	// For some reason, having this as their species language does not allow it to be chosen.
 	assisted_langs = list(LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)	// Prometheans are weird, let's just assume they can use basically any language.
 
+	species_component = list(/datum/component/radiation_effects/promethean)
+
 	blood_name = "gelatinous ooze"
 	blood_reagents = REAGENT_ID_SLIMEJELLY
 

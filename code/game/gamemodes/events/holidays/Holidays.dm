@@ -244,7 +244,11 @@ GLOBAL_LIST_EMPTY(Holiday) //Holidays are lists now, so we can have more than on
 	GLOB.Holiday = list()
 
 	var/H = tgui_input_text(src,"What holiday is it today?","Set Holiday")
+	if(!H)
+		return
 	var/B = tgui_input_text(src,"Now explain what the holiday is about","Set Holiday", multiline = TRUE, prevent_enter = TRUE)
+	if(!B)
+		return
 
 
 	GLOB.Holiday[H] = B
