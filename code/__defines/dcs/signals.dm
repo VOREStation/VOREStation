@@ -752,7 +752,7 @@
 #define COMSIG_FOOD_EATEN "food_eaten"
 
 //Drink
-#define COMSIG_CAN_DRANK "can_drank"
+#define COMSIG_CONTAINER_DRANK "container_drank"
 
 //Gibs
 
