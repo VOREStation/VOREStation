@@ -36,6 +36,9 @@
 	///If we dissipate radiation or keep it.
 	var/radiation_dissipation = TRUE
 
+	dupe_mode = COMPONENT_DUPE_UNIQUE
+	dupe_type = /datum/component/radiation_effects
+
 /datum/component/radiation_effects/Initialize(glows, radiation_glow_minor_threshold, contamination, contamination_strength, radiation_color, intensity_mod, range_mod, radiation_immunity, radiation_healing, radiation_dissipation)
 
 	if(!isliving(parent))
