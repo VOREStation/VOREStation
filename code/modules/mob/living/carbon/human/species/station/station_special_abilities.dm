@@ -197,7 +197,7 @@
 			if(100)
 				C.nutrition = (C.nutrition + T.nutrition)
 				T.nutrition = 0 //Completely drained of everything.
-				var/damage_to_be_applied = T.species.total_health //Get their max health.
+				var/damage_to_be_applied = T.getMaxHealth() //Get their max health.
 				T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
 				C.absorbing_prey = 0
 				to_chat(C, span_notice("You have completely drained [T], causing them to pass out."))
@@ -267,7 +267,7 @@
 					to_chat(T, span_danger("You feel completely drained as [src] finishes draining you and begins to move onto draining you lethally, but you are too strong for them to do so!"))
 					nutrition = (nutrition + T.nutrition)
 					T.nutrition = 0 //Completely drained of everything.
-					var/damage_to_be_applied = T.species.total_health //Get their max health.
+					var/damage_to_be_applied = T.getMaxHealth() //Get their max health.
 					T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
 					absorbing_prey = 0 //Clean this up before we return
 					return
