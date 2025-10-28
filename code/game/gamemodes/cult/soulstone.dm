@@ -58,7 +58,7 @@
 
 /obj/item/soulstone/Topic(href, href_list)
 	var/mob/U = usr
-	if (!in_range(src, U)||U.machine!=src)
+	if (!in_range(src, U) || !U.check_current_machine(src))
 		U << browse(null, "window=aicard")
 		U.unset_machine()
 		return
