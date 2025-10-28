@@ -162,6 +162,13 @@
 	UnregisterSignal(target, COMSIG_UPDATE_HEALTH)
 	UnregisterSignal(target, COMSIG_TAKING_APPLY_EFFECT)
 	our_target.status_flags |= CANSTUN|CANWEAKEN|CANPARALYSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/the_target = target
+		for(var/obj/item/organ/external/external_organs in the_target.organs)
+			external_organs.cannot_amputate = initial(external_organs.cannot_amputate)
+			external_organs.cannot_break = initial(external_organs.cannot_break)
+			external_organs.cannot_gib = initial(external_organs.cannot_gib)
+			external_organs.stapled_nerves = initial(external_organs.stapled_nerves)
 	return ..()
 
 /datum/element/lite_godmode/proc/on_update_health()
