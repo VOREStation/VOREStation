@@ -383,22 +383,10 @@
 
 				varconflict:
 					for(var/P in (pref.pos_traits + pref.neu_traits + pref.neg_traits))
-						var/datum/trait/instance_test = GLOB.all_traits[P]
-						if(path in instance_test.excludes)
-							conflict = instance_test.name
+						var/datum/trait/other_trait = GLOB.all_traits[P]
+						if(check_trait_conflict(instance, other_trait))
+							conflict = other_trait.name
 							break varconflict
-
-						for(var/V in instance.var_changes)
-							if(V == "flags")
-								continue
-							if(V in instance_test.var_changes)
-								conflict = instance_test.name
-								break varconflict
-
-						for(var/V in instance.var_changes_pref)
-							if(V in instance_test.var_changes_pref)
-								conflict = instance_test.name
-								break varconflict
 
 				if(conflict)
 					tgui_alert_async(user, "You cannot take this trait and [conflict] at the same time. Please remove that trait, or pick another trait to add.", "Error")
@@ -407,6 +395,22 @@
 				instance.apply_pref(pref)
 				mylist[path] = instance.get_default_prefs()
 				return TOPIC_REFRESH
+
+/proc/check_trait_conflict(datum/trait/instance, var/datum/trait/other_trait)
+	if(instance.type in other_trait.excludes)
+		return TRUE
+
+	for(var/V in instance.var_changes)
+		if(V == "flags") // Flags can stack
+			continue
+		if(V in other_trait.var_changes)
+			return TRUE
+
+	for(var/V in instance.var_changes_pref)
+		if(V in other_trait.var_changes_pref)
+			return TRUE
+
+	return FALSE
 
 #undef POSITIVE_MODE
 #undef NEUTRAL_MODE
