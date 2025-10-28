@@ -139,7 +139,7 @@
 /datum/component/experiment_handler/proc/try_run_destructive_experiment(datum/source, list/scanned_atoms)
 	SIGNAL_HANDLER
 	var/atom/movable/our_scanner = parent
-	if (selected_experiment == null)
+	if (selected_experiment == null && !(config_flags & EXPERIMENT_CONFIG_ALWAYS_ACTIVE) )
 		if(!(config_flags & EXPERIMENT_CONFIG_SILENT_FAIL))
 			playsound(our_scanner, 'sound/machines/buzz-sigh.ogg', 25)
 			to_chat(our_scanner, span_notice("No experiment selected!"))

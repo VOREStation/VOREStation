@@ -167,9 +167,8 @@
 	for(var/obj/item/organ/external/child in E.children)
 		child.status &= ~ORGAN_CUT_AWAY
 
-	var/datum/gender/G = GLOB.gender_datums[gender]
 	visible_message(
-		span_notice("\The [src] attaches \the [E] to [G.his] body!"),
+		span_notice("\The [src] attaches \the [E] to [p_their()] body!"),
 		span_notice("You attach \the [E] to your body!"))
 	regenerate_icons() // Not sure why this isn't called by removed(), but without it we don't update our limb appearance.
 	return TRUE
@@ -195,8 +194,7 @@
 	E.removed(src)
 	E.dropInto(loc)
 	put_in_hands(E)
-	var/datum/gender/G = GLOB.gender_datums[gender]
 	visible_message(
-		span_notice("\The [src] detaches [G.his] [E.name]!"),
+		span_notice("\The [src] detaches [p_their()] [E.name]!"),
 		span_notice("You detach your [E.name]!"))
 	return TRUE

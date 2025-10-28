@@ -33,7 +33,6 @@
 	return null
 
 /mob/living/carbon/human/attack_hand(mob/living/M as mob)
-	var/datum/gender/TT = GLOB.gender_datums[M.get_visible_gender()]
 	var/mob/living/carbon/human/H = M
 
 	if(is_incorporeal())
@@ -84,19 +83,18 @@
 		// H = THE PERSON DOING THE ATTACK, BUT DEFINED AS A HUMAN. (This is for human specific interactions, such as CPR.)
 		// M = THE PERSON DOING THE ATTACK, AGAIN, DEFINED AS A MOB
 		// src = THE PERSON BEING ATTACKED
-		// TT = GENDER OF THE TARGET
 		// has_hands = Local variable. If the attacker has hands or not.
 		if(I_HELP)
-			attack_hand_help_intent(H, M, TT, has_hands)
+			attack_hand_help_intent(H, M, M, has_hands)
 
 		if(I_GRAB)
-			attack_hand_grab_intent(H, M, TT, has_hands)
+			attack_hand_grab_intent(H, M, has_hands)
 
 		if(I_HURT)
-			attack_hand_harm_intent(H, M, TT, has_hands)
+			attack_hand_harm_intent(H, M, has_hands)
 
 		if(I_DISARM)
-			attack_hand_disarm_intent(H, M, TT, has_hands)
+			attack_hand_disarm_intent(H, M, has_hands)
 	return
 
 
@@ -105,7 +103,7 @@
 /// This condenses them and makes it less of a cluster.
 
 ///Help Intent
-/mob/living/carbon/human/proc/attack_hand_help_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/datum/gender/TT, var/has_hands)
+/mob/living/carbon/human/proc/attack_hand_help_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(M.restrained()) //If we're restrained, we can't help them. If you want to add snowflake stuff that you can do while restrained, add it here.
@@ -151,7 +149,7 @@
 	return TRUE
 
 //Disarm Intent
-/mob/living/carbon/human/proc/attack_hand_disarm_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/datum/gender/TT, var/has_hands)
+/mob/living/carbon/human/proc/attack_hand_disarm_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(M.restrained()) //If we're restrained, we can't disarm them. If you want to add snowflake stuff that you can do while restrained, add it here.
@@ -235,7 +233,7 @@
 	else
 		visible_message(span_filter_combat("[span_red(span_bold("[M] attempted to disarm [src]!"))]"))
 //Grab Intent
-/mob/living/carbon/human/proc/attack_hand_grab_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/datum/gender/TT, var/has_hands)
+/mob/living/carbon/human/proc/attack_hand_grab_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(M.restrained()) //If we're restrained, we can't grab them. If you want to add snowflake stuff that you can do while restrained, add it here.
@@ -252,7 +250,7 @@
 		w_uniform.add_fingerprint(M)
 
 	if(buckled)
-		to_chat(M, span_notice("You cannot grab [src], [TT.he] is buckled in!"))
+		to_chat(M, span_notice("You cannot grab [src], [M.p_theyre()] buckled in!"))
 		return
 	var/obj/item/grab/G = new /obj/item/grab(M, src) //If this is put before the buckled check, the user will be perma-slowed due to a grab existing in nullspace.
 	if(!G)	//the grab will delete itself in New if affecting is anchored
@@ -265,7 +263,7 @@
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 	visible_message(span_warning("[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [(gender==FEMALE)? "her" : ((gender==MALE)? "his": "their")] hands": "passively"]!"))
 //Harm Intent
-/mob/living/carbon/human/proc/attack_hand_harm_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/datum/gender/TT, var/has_hands)
+/mob/living/carbon/human/proc/attack_hand_harm_intent(var/mob/living/carbon/human/H, var/mob/living/M as mob, var/has_hands)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	//As a note: This intentionally doesn't immediately return if has_hands is false. This is because you can attack with kicks/bites!
@@ -350,7 +348,7 @@
 			if(!src.lying)
 				attack_message = "[H] attempted to strike [src], but missed!"
 			else
-				attack_message = "[H] attempted to strike [src], but [TT.he] rolled out of the way!"
+				attack_message = "[H] attempted to strike [src], but [M.p_they()] rolled out of the way!"
 				src.set_dir(pick(GLOB.cardinal))
 			miss_type = 1
 
@@ -504,10 +502,8 @@
 		to_chat(user,message)
 		return FALSE
 
-	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
-
 	if(user == src)
-		user.visible_message(span_filter_notice("\The [user] starts applying pressure to [TU.his] [organ.name]!"), span_filter_notice("You start applying pressure to your [organ.name]!"))
+		user.visible_message(span_filter_notice("\The [user] starts applying pressure to [user.p_their()] [organ.name]!"), span_filter_notice("You start applying pressure to your [organ.name]!"))
 	else
 		user.visible_message(span_filter_notice("\The [user] starts applying pressure to [src]'s [organ.name]!"), span_filter_notice("You start applying pressure to [src]'s [organ.name]!"))
 	spawn(0)
@@ -519,7 +515,7 @@
 		organ.applied_pressure = null
 
 		if(user == src)
-			user.visible_message(span_filter_notice("\The [user] stops applying pressure to [TU.his] [organ.name]!"), span_filter_notice("You stop applying pressure to your [organ]!"))
+			user.visible_message(span_filter_notice("\The [user] stops applying pressure to [user.p_their()] [organ.name]!"), span_filter_notice("You stop applying pressure to your [organ]!"))
 		else
 			user.visible_message(span_filter_notice("\The [user] stops applying pressure to [src]'s [organ.name]!"), span_filter_notice("You stop applying pressure to [src]'s [organ.name]!"))
 

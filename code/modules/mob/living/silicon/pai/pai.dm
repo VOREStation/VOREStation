@@ -177,7 +177,7 @@
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
 		src.unset_machine()
-		src.reset_view(null)
+		src.reset_perspective()
 		return 0
 	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
 
@@ -185,7 +185,7 @@
 
 	src.set_machine(src)
 	src.current = C
-	src.reset_view(C)
+	src.AddComponent(/datum/component/remote_view, C)
 	return 1
 
 /mob/living/silicon/pai/verb/reset_record_view()
@@ -204,7 +204,7 @@
 /mob/living/silicon/pai/cancel_camera()
 	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
-	src.reset_view(null)
+	src.reset_perspective()
 	src.unset_machine()
 	src.cameraFollow = null
 
@@ -219,7 +219,25 @@
 	if(stat || sleeping || paralysis || weakened)
 		return
 
-	if(src.loc != card)
+	if(loc != card)
+		return
+
+	// Lets not trap the pai forever. These are special cases we want to escape out of when in our card
+	if(istype(loc.loc, /obj/item/pda))
+		var/obj/item/pda/ourpda = loc.loc
+		if(ourpda.pai == card)
+			ourpda.pai.forceMove(ourpda.loc)
+			ourpda.pai = null
+			visible_message(span_warning("\The [card] ejects itself from \the [ourpda]."))
+		return
+	if(istype(loc.loc, /obj/item/storage/vore_egg))
+		var/obj/item/storage/vore_egg/ouregg = loc.loc
+		to_chat(src, span_notice("You craftily use your built in rumble function to break free of \the [ouregg]'s confines!"))
+		ouregg.hatch(src)
+		return
+
+	if(is_folding_unsafe(loc.loc))
+		to_chat(src, span_danger("It's not safe to unfold while inside a [loc.loc]!"))
 		return
 
 	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
@@ -256,16 +274,15 @@
 		var/obj/item/pda/holder = card.loc
 		holder.pai = null
 
-	src.client.perspective = EYE_PERSPECTIVE
-	src.client.eye = src
-	src.forceMove(get_turf(card))
-
+	src.forceMove(card.loc)
 	card.forceMove(src)
 	card.screen_loc = null
 	canmove = TRUE
 
-	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message(span_filter_notice(span_bold("[src]") + " folds outwards, expanding into a mobile form."))
+	if(isturf(loc))
+		var/turf/T = get_turf(src)
+		if(istype(T)) T.visible_message(span_filter_notice(span_bold("[src]") + " folds outwards, expanding into a mobile form."))
+
 	add_verb(src, /mob/living/silicon/pai/proc/pai_nom)
 	add_verb(src, /mob/living/proc/vertical_nom)
 	update_icon()
@@ -380,7 +397,12 @@
 
 	last_special = world.time + 100
 
-	if(src.loc == card)
+	if(loc == card)
+		return
+
+	// some snowflake locations where we really shouldn't fold up...
+	if(is_folding_unsafe(loc))
+		to_chat(src, span_danger("It's not safe to fold up while inside a [loc]!"))
 		return
 
 	release_vore_contents(FALSE) //VOREStation Add
@@ -388,40 +410,35 @@
 	var/turf/T = get_turf(src)
 	if(istype(T) && !silent) T.visible_message(span_filter_notice(span_bold("[src]") + " neatly folds inwards, compacting down to a rectangular card."))
 
-	if(client)
-		src.stop_pulling()
-		src.client.perspective = EYE_PERSPECTIVE
-		src.client.eye = card
+	stop_pulling()
 
 	//stop resting
 	resting = 0
 
 	// If we are being held, handle removing our holder from their inv.
-	var/obj/item/holder/H = loc
-	if(istype(H))
-		var/mob/living/M = H.loc
+	var/obj/item/holder/our_holder = loc
+	if(istype(our_holder))
+		var/turf/drop_turf = get_turf(our_holder)
+		var/mob/living/M = our_holder.loc
 		if(istype(M))
-			M.drop_from_inventory(H)
-		H.loc = get_turf(src)
-		src.loc = get_turf(H)
+			M.drop_from_inventory(our_holder)
+		src.forceMove(card)
+		card.forceMove(drop_turf)
 
 	if(isbelly(loc))	//If in tumby, when fold up, card go into tumby
 		var/obj/belly/B = loc
 		src.forceMove(card)
 		card.forceMove(B)
 
-	if(istype( src.loc,/obj/structure/disposalholder))
+	if(isdisposalpacket(loc))
 		var/obj/structure/disposalholder/hold = loc
-		src.loc = card
-		card.loc = hold
 		src.forceMove(card)
 		card.forceMove(hold)
 
 	else				//Otherwise go on floor
-		src.loc = card
-		card.loc = get_turf(card)
+		card.forceMove(get_turf(src))
 		src.forceMove(card)
-		card.forceMove(card.loc)
+
 	canmove = 1
 	resting = 0
 	icon_state = "[chassis]"
@@ -429,6 +446,9 @@
 		fall()
 	remove_verb(src, /mob/living/silicon/pai/proc/pai_nom)
 	remove_verb(src, /mob/living/proc/vertical_nom)
+
+/mob/living/silicon/pai/proc/is_folding_unsafe(check_location)
+	return isbelly(check_location) || istype(check_location, /obj/machinery) || istype(check_location, /obj/item/storage/vore_egg || istype(check_location, /obj/item/pda))
 
 // No binary for pAIs.
 /mob/living/silicon/pai/binarycheck()

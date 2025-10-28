@@ -157,7 +157,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target)
 	if(!W)
 		return FALSE
-	if(isnull(target) && istype( src.loc,/obj/structure/disposalholder))
+	if(isnull(target) && isdisposalpacket(src.loc))
 		return remove_from_mob(W, src.loc)
 	return remove_from_mob(W, target)
 

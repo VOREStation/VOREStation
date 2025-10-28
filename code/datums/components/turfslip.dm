@@ -45,7 +45,7 @@
 	SIGNAL_HANDLER
 
 	// Can the mob slip?
-	if(QDELETED(owner) || isbelly(owner.loc))
+	if(QDELETED(owner) || !isturf(owner.loc))
 		qdel(src)
 		return
 
