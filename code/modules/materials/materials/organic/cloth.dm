@@ -102,7 +102,7 @@
 	name = MAT_CLOTH_BROWN
 	display_name = MAT_CLOTH_BROWN
 	use_name = "brown cloth"
-	icon_colour = "#b9864b"
+	icon_colour = "#5C4831"
 	wiki_flag = WIKI_SPOILER
 
 /datum/material/cloth/lime

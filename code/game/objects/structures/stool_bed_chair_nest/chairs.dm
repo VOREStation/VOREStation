@@ -100,7 +100,7 @@
 		add_overlay(I)
 
 /obj/structure/bed/chair/comfy/brown/Initialize(mapload, var/new_material, var/new_padding_material)
-	. = ..(mapload, MAT_STEEL, MAT_CLOTH)
+	. = ..(mapload, MAT_STEEL, MAT_CLOTH_BROWN)
 
 /obj/structure/bed/chair/comfy/red/Initialize(mapload, var/new_material, var/new_padding_material)
 	. = ..(mapload, MAT_STEEL, MAT_CARPET)
