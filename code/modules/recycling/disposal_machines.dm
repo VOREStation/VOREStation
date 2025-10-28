@@ -380,6 +380,12 @@
 	if(flushing)
 		return
 
+	// We don't ever want digestion remains going through disposals, but people understandably thing they're doing right by trashing them
+	// So let's just delete them instead!
+	for(var/obj/item/flushed_item in src)
+		if(istype(flushed_item, /obj/item/digestion_remains))
+			qdel(flushed_item)
+
 	flushing = TRUE
 	flick("[icon_state]-flush", src)
 	// wait for animation to finish
