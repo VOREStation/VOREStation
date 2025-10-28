@@ -972,7 +972,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/use_blood_colour = data.get_species_blood_colour(owner)
 
 	removed(null, ignore_children)
-	victim?.traumatic_shock += 60
+	victim?.shock_stage += 60
 
 	if(parent_organ)
 		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)

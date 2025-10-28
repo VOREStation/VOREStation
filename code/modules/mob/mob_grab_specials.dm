@@ -58,7 +58,7 @@
 	if(armor < 60)
 		to_chat(target, span_danger("You feel extreme pain!"))
 
-		var/max_halloss = round(target.species.total_health * 0.8) //up to 80% of passing out
+		var/max_halloss = round(target.getMaxHealth() * 0.8) //up to 80% of passing out
 		affecting.adjustHalLoss(CLAMP(max_halloss - affecting.halloss, 0, 30))
 
 /obj/item/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
