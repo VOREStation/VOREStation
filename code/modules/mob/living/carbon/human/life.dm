@@ -1976,6 +1976,7 @@
 				if(temp >= PULSE_NORM)
 					temp--
 					current_medications += R.id
+		//Stuff in our bloodstream. This is checked AFTER stomach so the heartstoppers can have their fun.
 		for(var/datum/reagent/R in reagents.reagent_list)
 			if(R.id in tachycardics && !(R.id in current_medications))
 				if(temp < PULSE_THREADY && temp != PULSE_NONE) //We can reach a thready pulse, but only if we actually have a pulse.

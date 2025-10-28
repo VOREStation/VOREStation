@@ -280,13 +280,12 @@
 						//ORGANS INVENTORY: Appendix, Intestines, Kidneys, Liver, Spleen, Stomach.
 						//Of these, the Intestines, Stomach, Liver, and Kidneys make noise.
 						if(BP_GROIN)
-							//Logically, the intestine and stomach are the only two we can hear.
 							var/obj/item/organ/internal/intestine/intestine = M.internal_organs_by_name[O_INTESTINE]
 							var/obj/item/organ/internal/stomach/stomach = M.internal_organs_by_name[O_STOMACH]
 							var/obj/item/organ/internal/kidneys/kidneys = M.internal_organs_by_name[O_KIDNEYS]
 							var/obj/item/organ/internal/liver/liver = M.internal_organs_by_name[O_LIVER	]
 							sound_strength = "hear"
-							sound = span_warning("no gastric sounds")
+							sound = span_warning("no gastric sounds,")
 							if(intestine)
 								if(intestine.is_bruised())
 									sound = span_warning("slowed intestinal sounds")
