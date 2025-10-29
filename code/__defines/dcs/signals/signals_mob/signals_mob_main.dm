@@ -10,6 +10,9 @@
 /// from /mob/living/proc/apply_damage(): (damage, damagetype, def_zone, blocked, sharp, edge, /obj/used_weapon, projectile)
 /// works like above but after the damage is actually inflicted
 #define COMSIG_MOB_AFTER_APPLY_DAMAGE "mob_after_apply_damage"
+
+/// from /mob/proc/key_down(): (key, client/client, full_key)
+#define COMSIG_MOB_KEYDOWN "mob_key_down"
 ///from end of revival_healing_action(): ()
 #define COMSIG_LIVING_AHEAL "living_post_aheal"
 
