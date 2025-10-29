@@ -787,7 +787,7 @@
 #define COMSIG_MOB_VENTCRAWL_CHECK "ventcrawl_check"
 ///called when a ventcrawling mob checks if it can enter a vent : (mob/entering_mob)
 #define COMSIG_VENT_CRAWLER_CHECK "ventcrawl_check"
-	#define MOB_VENT_CRAWL_BLOCK_ENTRY (1<<0)
+	#define VENT_CRAWL_BLOCK_ENTRY (1<<0)
 
 ///called when a ventcrawling mob enters a vent : (obj/machinery/atmospherics/unary/vent_entered)
 #define COMSIG_MOB_VENTCRAWL_START "ventcrawl_start"
