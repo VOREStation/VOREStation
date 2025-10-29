@@ -94,6 +94,7 @@
 #define MAT_CLOTH_PURPLE	"purple"
 #define MAT_CLOTH_BLUE		"blue"
 #define MAT_CLOTH_BEIGE		"beige"
+#define MAT_CLOTH_BROWN		"brown"
 #define MAT_CLOTH_LIME		"lime"
 #define MAT_CLOTH_YELLOW	"yellow"
 #define MAT_CLOTH_ORANGE	"orange"

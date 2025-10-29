@@ -100,7 +100,7 @@
 		add_overlay(I)
 
 /obj/structure/bed/chair/comfy/brown/Initialize(mapload, var/new_material, var/new_padding_material)
-	. = ..(mapload, MAT_STEEL, MAT_LEATHER)
+	. = ..(mapload, MAT_STEEL, MAT_CLOTH_BROWN)
 
 /obj/structure/bed/chair/comfy/red/Initialize(mapload, var/new_material, var/new_padding_material)
 	. = ..(mapload, MAT_STEEL, MAT_CARPET)
@@ -139,7 +139,7 @@
 	base_icon = "roundedchair"
 
 /obj/structure/bed/chair/comfy/rounded/brown/Initialize(mapload, var/new_material, var/new_padding_material)
-	. = ..(mapload, MAT_STEEL, MAT_LEATHER)
+	. = ..(mapload, MAT_STEEL, MAT_CLOTH_BROWN)
 
 /obj/structure/bed/chair/comfy/rounded/red/Initialize(mapload, var/new_material, var/new_padding_material)
 	. = ..(mapload, MAT_STEEL, MAT_CARPET)
@@ -387,7 +387,7 @@
 	sofa_material = MAT_CARPET
 
 /obj/structure/bed/chair/sofa/brown
-	sofa_material = MAT_LEATHER
+	sofa_material = MAT_CLOTH_BROWN
 
 /obj/structure/bed/chair/sofa/teal
 	sofa_material = MAT_CLOTH_TEAL
@@ -428,13 +428,13 @@
 	icon_state = "sofacorner"
 
 /obj/structure/bed/chair/sofa/left/brown
-	sofa_material = MAT_LEATHER
+	sofa_material = MAT_CLOTH_BROWN
 
 /obj/structure/bed/chair/sofa/right/brown
-	sofa_material = MAT_LEATHER
+	sofa_material = MAT_CLOTH_BROWN
 
 /obj/structure/bed/chair/sofa/corner/brown
-	sofa_material = MAT_LEATHER
+	sofa_material = MAT_CLOTH_BROWN
 
 /obj/structure/bed/chair/sofa/left/teal
 	sofa_material = MAT_CLOTH_TEAL
