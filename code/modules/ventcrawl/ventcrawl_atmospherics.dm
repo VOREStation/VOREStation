@@ -45,6 +45,7 @@
 			if(world.time > user.next_play_vent)
 				user.next_play_vent = world.time+30
 				var/turf/T = get_turf(src)
+				SSmotiontracker.ping(T,40) // Teshari rattler
 				playsound(T, 'sound/machines/ventcrawl.ogg', 50, 1, -3)
 				var/message = pick(
 					prob(90);"* clunk *",
