@@ -6,7 +6,7 @@
 /// Defaults to 100% input and output settings, starts with maximum charge by default
 /obj/machinery/power/smes/buildable/engine_default/apply_mapped_settings()
 	// Set charge
-	charge = capacity
+	charge = capacity * 0.5 // Half charge by default
 	// Set input and output to max
 	inputting(TRUE)
 	outputting(TRUE)
@@ -40,6 +40,15 @@
 /obj/machinery/power/smes/buildable/max_charge_max_output/apply_mapped_settings()
 	// Set charge
 	charge = capacity
+	// Set input to max
+	outputting(TRUE)
+	output_level = output_level_max
+
+/// Max input, max output, default starting charge
+/obj/machinery/power/smes/buildable/max_input_max_output/apply_mapped_settings()
+	// Set input to max
+	inputting(TRUE)
+	input_level = input_level_max
 	// Set input to max
 	outputting(TRUE)
 	output_level = output_level_max
@@ -99,3 +108,43 @@
 	inputting(TRUE)
 	outputting(TRUE)
 	mode = 3
+
+
+////////////////////////////////////////////////////////////////////////////////////
+// Shuttles and poi
+////////////////////////////////////////////////////////////////////////////////////
+/obj/machinery/power/smes/buildable/power_shuttle/max_charge/apply_mapped_settings()
+	// Set charge
+	charge = capacity
+
+/obj/machinery/power/smes/buildable/power_shuttle/max_charge_max_input/apply_mapped_settings()
+	// Set charge
+	charge = capacity
+	// Set input to max
+	inputting(TRUE)
+	input_level = input_level_max
+
+/obj/machinery/power/smes/buildable/power_shuttle/max_charge_max_input_base_output/apply_mapped_settings()
+	// Set charge
+	charge = capacity
+	// Set input to max
+	inputting(TRUE)
+	input_level = input_level_max
+	// Standard level output
+	outputting(TRUE)
+
+/obj/machinery/power/smes/buildable/point_of_interest/max_charge/apply_mapped_settings()
+	// Set charge
+	charge = capacity
+
+/obj/machinery/power/smes/buildable/point_of_interest/max_charge_max_input/apply_mapped_settings()
+	// Set charge
+	charge = capacity
+	// Set input to max
+	inputting(TRUE)
+	input_level = input_level_max
+
+/obj/machinery/power/smes/buildable/point_of_interest/max_input/apply_mapped_settings()
+	// Set input to max
+	inputting(TRUE)
+	input_level = input_level_max
