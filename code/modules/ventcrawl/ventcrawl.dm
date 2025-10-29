@@ -21,8 +21,8 @@ var/list/ventcrawl_machinery = list(
 
 /mob/living/var/list/icon/pipes_shown = list()
 /mob/living/var/last_played_vent
-/mob/living/var/is_ventcrawling = 0
-/mob/living/var/prepping_to_ventcrawl = 0
+/mob/living/var/is_ventcrawling = FALSE
+/mob/living/var/prepping_to_ventcrawl = FALSE
 /mob/var/next_play_vent = 0
 
 /mob/living/proc/can_ventcrawl()
@@ -180,8 +180,12 @@ var/list/ventcrawl_machinery = list(
 				break
 
 	if(vent_found)
-		if(vent_found.network && (vent_found.network.normal_members.len || vent_found.network.line_members.len))
+		if(SEND_SIGNAL(user,COMSIG_MOB_VENTCRAWL_CHECK,vent_found) & VENTCRAWLER_BLOCK_ENTRY)
+			return
+		if(SEND_SIGNAL(vent_found,COMSIG_VENTCRAWLER_CHECK,user) & VENTCRAWLER_BLOCK_ENTRY)
+			return
 
+		if(vent_found.network && (vent_found.network.normal_members.len || vent_found.network.line_members.len))
 			to_chat(src, "You begin climbing into the ventilation system...")
 			if(vent_found.air_contents && !issilicon(src))
 
@@ -208,12 +212,14 @@ var/list/ventcrawl_machinery = list(
 						to_chat(src, span_danger("You're pushed away by the extreme pressure in the vent!"))
 						return
 
+			// Handle animation delay
 			fade_towards(vent_found, vent_crawl_time)
-			prepping_to_ventcrawl = 1
-			spawn(50)
-				prepping_to_ventcrawl = 0
+			prepping_to_ventcrawl = TRUE
 			if(!do_after(src, vent_crawl_time, target = src))
+				prepping_to_ventcrawl = FALSE
 				return
+			prepping_to_ventcrawl = FALSE
+
 			if(!can_ventcrawl())
 				return
 
@@ -221,7 +227,8 @@ var/list/ventcrawl_machinery = list(
 
 			forceMove(vent_found)
 			add_ventcrawl(vent_found)
-
+			SEND_SIGNAL(src,COMSIG_MOB_VENTCRAWL_START,vent_found)
+			SEND_SIGNAL(vent_found,COMSIG_VENTCRAWLER_ENTERED,src)
 		else
 			to_chat(src, "This vent is not connected to anything.")
 
@@ -229,7 +236,7 @@ var/list/ventcrawl_machinery = list(
 		to_chat(src, "You must be standing on or beside an air vent to enter it.")
 
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
-	is_ventcrawling = 1
+	is_ventcrawling = TRUE
 	//candrop = 0
 	var/datum/pipe_network/network = starting_machine.return_network(starting_machine)
 	if(!network)
@@ -245,7 +252,7 @@ var/list/ventcrawl_machinery = list(
 		client.screen += GLOB.global_hud.centermarker
 
 /mob/living/proc/remove_ventcrawl()
-	is_ventcrawling = 0
+	is_ventcrawling = FALSE
 	//candrop = 1
 	if(client)
 		for(var/image/current_image in pipes_shown)
