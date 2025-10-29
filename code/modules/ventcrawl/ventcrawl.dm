@@ -180,9 +180,9 @@ var/list/ventcrawl_machinery = list(
 				break
 
 	if(vent_found)
-		if(SEND_SIGNAL(user,COMSIG_MOB_VENTCRAWL_CHECK,vent_found) & VENTCRAWLER_BLOCK_ENTRY)
+		if(SEND_SIGNAL(user,COMSIG_MOB_VENTCRAWL_CHECK,vent_found) & VENT_CRAWLER_BLOCK_ENTRY)
 			return
-		if(SEND_SIGNAL(vent_found,COMSIG_VENTCRAWLER_CHECK,user) & VENTCRAWLER_BLOCK_ENTRY)
+		if(SEND_SIGNAL(vent_found,COMSIG_VENT_CRAWLER_CHECK,user) & VENT_CRAWLER_BLOCK_ENTRY)
 			return
 
 		if(vent_found.network && (vent_found.network.normal_members.len || vent_found.network.line_members.len))
@@ -228,7 +228,7 @@ var/list/ventcrawl_machinery = list(
 			forceMove(vent_found)
 			add_ventcrawl(vent_found)
 			SEND_SIGNAL(src,COMSIG_MOB_VENTCRAWL_START,vent_found)
-			SEND_SIGNAL(vent_found,COMSIG_VENTCRAWLER_ENTERED,src)
+			SEND_SIGNAL(vent_found,COMSIG_VENT_CRAWLER_ENTERED,src)
 		else
 			to_chat(src, "This vent is not connected to anything.")
 

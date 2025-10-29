@@ -5,7 +5,7 @@
 		M.remove_ventcrawl()
 		M.forceMove(get_turf(src))
 		SEND_SIGNAL(M,COMSIG_MOB_VENTCRAWL_END,src)
-		SEND_SIGNAL(src,COMSIG_VENTCRAWLER_EXITED,M)
+		SEND_SIGNAL(src,COMSIG_VENT_CRAWLER_EXITED,M)
 	if(pipe_image)
 		for(var/mob/living/M in GLOB.player_list)
 			if(M.client)
@@ -59,7 +59,7 @@
 			user.remove_ventcrawl()
 			user.forceMove(src.loc)
 			SEND_SIGNAL(user,COMSIG_MOB_VENTCRAWL_END,src)
-			SEND_SIGNAL(src,COMSIG_VENTCRAWLER_EXITED,user)
+			SEND_SIGNAL(src,COMSIG_VENT_CRAWLER_EXITED,user)
 			user.visible_message("You hear something squeezing through the pipes.", "You climb out the ventilation system.")
 	user.canmove = 0
 	spawn(1)
