@@ -492,13 +492,12 @@ SUBSYSTEM_DEF(ticker)
 	if(remaining_time > 0)
 		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), 0), remaining_time)
 		return
-	if(!delay_end)
-		to_chat(world, span_boldannounce("Rebooting World."))
 
 /datum/controller/subsystem/ticker/proc/reboot_callback(reason, end_string)
 	if(end_string)
 		end_state = end_string
 
+	to_chat(world, span_boldannounce("Rebooting World."))
 	log_game(span_boldannounce("Rebooting World. [reason]"))
 
 	world.Reboot()
