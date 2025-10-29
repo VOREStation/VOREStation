@@ -48,7 +48,7 @@
 	AddElement(/datum/element/sellable/material_stack)
 
 /obj/item/stack/Destroy()
-	if (src && usr && usr.machine == src)
+	if (src && usr && usr.check_current_machine(src))
 		usr << browse(null, "window=stack")
 	if(islist(synths))
 		synths.Cut()
@@ -423,7 +423,7 @@
 				src.add_fingerprint(user)
 				F.add_fingerprint(user)
 				spawn(0)
-					if (src && user.machine==src)
+					if (src && user.check_current_machine(src))
 						src.interact(user)
 	else
 		..()
@@ -439,9 +439,9 @@
 		src.transfer_to(S)
 
 		spawn(0) //give the stacks a chance to delete themselves if necessary
-			if (S && user.machine==S)
+			if (S && user.check_current_machine(S))
 				S.interact(user)
-			if (src && user.machine==src)
+			if (src && user.check_current_machine(src))
 				src.interact(user)
 	else
 		return ..()
