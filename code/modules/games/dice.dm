@@ -251,7 +251,7 @@
 		to_chat(user, span_cult("You feel extraordinarily unlucky..."))
 		if(evil)
 			user.AddComponent(
-			/datum/component/omen/dice,\
+			/datum/component/omen,\
 			incidents_left = 1,\
 			luck_mod = 1,\
 			damage_mod = 1,\
@@ -262,7 +262,7 @@
 
 		else
 			user.AddComponent(
-			/datum/component/omen/dice,\
+			/datum/component/omen,\
 			incidents_left = 1,\
 			luck_mod = 0.3,\
 			damage_mod = 1,\

@@ -48,16 +48,6 @@
 		"bio" = 1000,
 		"rad" = 1000)
 
-	armor_soak = list(
-		"melee" = 1000,
-		"bullet" = 1000,
-		"laser" = 1000,
-		"energy" = 1000,
-		"bomb" = 1000,
-		"bio" = 1000,
-		"rad" = 1000
-		)
-
 	movement_cooldown = 5
 	copy_prefs_to_mob = FALSE
 	player_msg = "The dog accepts you into itself, allowing you to dictate what will happen. The dog occasionally thinks unknowable thoughts, though you can understand some of its needs and desires. The dog shares its experience with you. You can navigate space, 'transition' to certain locations, and you can dine upon some of the space weather. The dog doesn't seem to know how any of this works exactly, this is just how things are for the dog, they come as naturally to the dog as blinking."

@@ -399,12 +399,11 @@
 	real_damage = max(1, real_damage)
 
 	var/armour = run_armor_check(hit_zone, "melee")
-	var/soaked = get_armor_soak(hit_zone, "melee")
 	// Apply additional unarmed effects.
 	attack.apply_effects(H, src, armour, rand_damage, hit_zone)
 
 	// Finally, apply damage to target
-	apply_damage(real_damage, hit_dam_type, hit_zone, armour, soaked, sharp=attack.sharp, edge=attack.edge)
+	apply_damage(real_damage, hit_dam_type, hit_zone, armour, attack.sharp, attack.edge)
 
 /// INTENTS END
 
@@ -432,8 +431,7 @@
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	var/armor_block = run_armor_check(affecting, armor_type, armor_pen)
-	var/armor_soak = get_armor_soak(affecting, armor_type, armor_pen)
-	apply_damage(damage, BRUTE, affecting, armor_block, armor_soak, sharp = a_sharp, edge = a_edge)
+	apply_damage(damage, BRUTE, affecting, armor_block, a_sharp, a_edge)
 	updatehealth()
 	return TRUE
 
