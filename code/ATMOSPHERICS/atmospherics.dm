@@ -265,7 +265,7 @@ Pipelines + Other Objects -> Pipe network
 /obj/machinery/atmospherics/proc/blowout(mob/user)
 	// Deconstruct turf
 	var/turf/our_turf = loc
-	if(!our_turf.is_plating() && istype(T,/turf/simulated/floor)) //intact floor, pop the tile
+	if(!our_turf.is_plating() && istype(our_turf,/turf/simulated/floor)) //intact floor, pop the tile
 		var/turf/simulated/floor/our_floor = our_turf
 		our_floor.make_plating(TRUE)
 	// Deconstruct pipe
