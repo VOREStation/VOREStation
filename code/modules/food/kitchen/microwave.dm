@@ -235,7 +235,6 @@
 		if(paicard)
 			ejectpai(user)
 			return
-	user.set_machine(src)
 	tgui_interact(user)
 
 /*******************

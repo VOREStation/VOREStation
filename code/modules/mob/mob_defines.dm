@@ -69,7 +69,6 @@
 	var/list/logging = list()
 
 	var/already_placed = 0.0
-	var/obj/machinery/machine = null
 	var/other_mobs = null
 	var/memory = ""
 	var/poll_answer = 0.0

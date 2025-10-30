@@ -25,9 +25,14 @@
 	else
 		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_hostmob_moved))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
-	RegisterSignal(host_mob, COMSIG_MOB_LOGOUT, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
-	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
+	// Upon any disruptive status effects
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN, PROC_REF(handle_status_effects))
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN, PROC_REF(handle_status_effects))
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE, PROC_REF(handle_status_effects))
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP, PROC_REF(handle_status_effects))
+	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND, PROC_REF(handle_status_effects))
 	// Recursive move component fires this, we only want it to handle stuff like being inside a paicard when releasing turf lock
 	if(isturf(focused_on))
 		RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
@@ -36,7 +41,7 @@
 	if(host_mob != remote_view_target) // Some items just offset our view, so we set ourselves as the view target, don't double dip if so!
 		RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
 		RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
-		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
@@ -45,9 +50,14 @@
 	else
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED)
 	UnregisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE)
-	UnregisterSignal(host_mob, COMSIG_MOB_LOGOUT)
 	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
+	// Status effects
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN)
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN)
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE)
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP)
+	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
 	if(isturf(remote_view_target))
 		UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
 	// Cleanup remote view
@@ -77,13 +87,32 @@
 	end_view()
 	qdel(src)
 
+/// By default pass this down, but we need unique handling for subtypes sometimes
+/datum/component/remote_view/proc/handle_forced_endview(datum/source)
+	SIGNAL_HANDLER
+	PROTECTED_PROC(TRUE)
+	handle_endview(source)
+
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	if(!host_mob)
 		return
 	end_view()
 	qdel(src)
+
+/datum/component/remote_view/proc/handle_status_effects(datum/source, amount, ignore_canstun)
+	SIGNAL_HANDLER
+	PROTECTED_PROC(TRUE)
+	if(!host_mob)
+		return
+	// We don't really care what effect was caused, just that it was increasing the value and thus negatively affecting us.
+	if(amount <= 0)
+		return
+	if(host_mob.client && isturf(host_mob.client.eye) && host_mob.client.eye == get_turf(host_mob.client.mob)) // This handles turf decoupling being protected until we actually move.
+		return
+	handle_endview(source)
 
 /datum/component/remote_view/proc/on_reset_perspective(datum/source)
 	SIGNAL_HANDLER
@@ -151,7 +180,8 @@
 	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_MOVABLE_MOVED, PROC_REF(handle_endview))
 	RegisterSignal(host_item, COMSIG_ITEM_DROPPED, PROC_REF(handle_endview))
-	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+	RegisterSignal(host_item, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_endview))
+	RegisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 	if(host_mob.hud_used.hud_shown)
 		host_mob.toggle_zoom_hud()
@@ -199,6 +229,7 @@
 	UnregisterSignal(host_item, COMSIG_QDELETING)
 	UnregisterSignal(host_item, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(host_item, COMSIG_ITEM_DROPPED)
+	UnregisterSignal(host_item, COMSIG_ITEM_EQUIPPED)
 	UnregisterSignal(host_item, COMSIG_REMOTE_VIEW_CLEAR)
 	host_item = null
 	. = ..()
@@ -257,7 +288,7 @@
 	view_coordinator = coordinator
 	view_coordinator.look(host_mob)
 	LAZYDISTINCTADD(viewers, WEAKREF(host_mob))
-	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_endview))
+	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// If you get this crash, it's because check_eye() in look() failed
 	if(!parent)
 		CRASH("Remoteview failed, look() cancelled view during component Initilize. Usually this is caused by check_eye().")
@@ -295,6 +326,11 @@
 
 /datum/component/remote_view/mob_holding_item/Destroy(force)
 	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
+	. = ..()
+
+/datum/component/remote_view/mob_holding_item/handle_status_effects(datum/source, amount, ignore_canstun)
+	if(host_mob.loc == remote_view_target) // If we are still inside our holder or belly than don't bother spamming this
+		return
 	. = ..()
 
 /datum/component/remote_view/mob_holding_item/handle_hostmob_moved(atom/source, atom/oldloc)
@@ -353,6 +389,20 @@
 			cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
 			if(!isturf(cache_mob.loc)) // For stuff like paicards
 				cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+		// Because nested vore bellies do NOT get handled correctly for recursive prey. We need to tell the belly's occupants to decouple too... Then their own belly's occupants...
+		// Yes, two loops is faster. Because we skip typechecking byondcode side and instead do it engine side when getting the contents of the mob,
+		// we also skip typechecking every /obj in the mob on the byondcode side... Evil wizard knowledge.
+		for(var/obj/belly/check_belly in cache_mob.contents)
+			SEND_SIGNAL(check_belly, COMSIG_REMOTE_VIEW_CLEAR)
+		for(var/obj/item/dogborg/sleeper/check_sleeper in cache_mob.contents)
+			SEND_SIGNAL(check_sleeper, COMSIG_REMOTE_VIEW_CLEAR)
 	qdel(src)
+
+/// We were forcibly disconnected, this situation is probably a recursive hellscape, so just decouple entirely and fix it when someone moves.
+/datum/component/remote_view/mob_holding_item/handle_forced_endview(atom/source)
+	if(!host_mob)
+		return
+	needs_to_decouple = TRUE
+	decouple_view_to_turf( host_mob, get_turf(host_mob))
 
 #undef MAX_RECURSIVE
