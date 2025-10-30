@@ -281,8 +281,8 @@
 		//If we return focus to our own mob, but we are still inside something with an inherent remote view. Restart it.
 		if(restore_remote_views())
 			return TRUE
-		//Reset to common defaults: mob if on turf, otherwise current loc
-		if(isturf(loc))
+		//Reset to common defaults: mob if on turf, otherwise current loc. Fallback to mob if we are in nullspace.
+		if(isturf(loc) || isnull(loc))
 			client.set_eye(client.mob)
 			client.perspective = MOB_PERSPECTIVE
 		else
@@ -833,94 +833,130 @@
 /mob/proc/IsAdvancedToolUser()
 	return 0
 
-/mob/proc/Stun(amount)
+/mob/proc/Stun(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	if(status_flags & CANSTUN)
 		facing_dir = null
 		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
 		update_canmove()	//updates lying, canmove and icons
 	return
 
-/mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
+/mob/proc/SetStunned(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	if(status_flags & CANSTUN)
 		stunned = max(amount,0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
-/mob/proc/AdjustStunned(amount)
+/mob/proc/AdjustStunned(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	if(status_flags & CANSTUN)
 		stunned = max(stunned + amount,0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
-/mob/proc/Weaken(amount)
+/mob/proc/Weaken(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_WEAKEN, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	if(status_flags & CANWEAKEN)
 		facing_dir = null
 		weakened = max(max(weakened,amount),0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
-/mob/proc/SetWeakened(amount)
+/mob/proc/SetWeakened(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_WEAKEN, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	if(status_flags & CANWEAKEN)
 		weakened = max(amount,0)
 		update_canmove()	//can you guess what this does yet?
 	return
 
-/mob/proc/AdjustWeakened(amount)
+/mob/proc/AdjustWeakened(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_WEAKEN, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	if(status_flags & CANWEAKEN)
 		weakened = max(weakened + amount,0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
-/mob/proc/Paralyse(amount)
+/mob/proc/Paralyse(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	if(status_flags & CANPARALYSE)
 		facing_dir = null
 		paralysis = max(max(paralysis,amount),0)
 	return
 
-/mob/proc/SetParalysis(amount)
+/mob/proc/SetParalysis(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	if(status_flags & CANPARALYSE)
 		paralysis = max(amount,0)
 	return
 
-/mob/proc/AdjustParalysis(amount)
+/mob/proc/AdjustParalysis(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	if(status_flags & CANPARALYSE)
 		paralysis = max(paralysis + amount,0)
 	return
 
-/mob/proc/Sleeping(amount)
+/mob/proc/Sleeping(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	facing_dir = null
 	sleeping = max(max(sleeping,amount),0)
 	return
 
-/mob/proc/SetSleeping(amount)
+/mob/proc/SetSleeping(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	sleeping = max(amount,0)
 	return
 
-/mob/proc/AdjustSleeping(amount)
+/mob/proc/AdjustSleeping(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	sleeping = max(sleeping + amount,0)
 	return
 
-/mob/proc/Confuse(amount)
+/mob/proc/Confuse(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	confused = max(max(confused,amount),0)
 	return
 
-/mob/proc/SetConfused(amount)
+/mob/proc/SetConfused(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	confused = max(amount,0)
 	return
 
-/mob/proc/AdjustConfused(amount)
+/mob/proc/AdjustConfused(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	confused = max(confused + amount,0)
 	return
 
-/mob/proc/Blind(amount)
+/mob/proc/Blind(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_BLIND, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	eye_blind = max(max(eye_blind,amount),0)
 	return
 
-/mob/proc/SetBlinded(amount)
+/mob/proc/SetBlinded(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_BLIND, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	eye_blind = max(amount,0)
 	return
 
-/mob/proc/AdjustBlinded(amount)
+/mob/proc/AdjustBlinded(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_BLIND, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
 	eye_blind = max(eye_blind + amount,0)
 	return
 
