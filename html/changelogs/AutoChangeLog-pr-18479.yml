@@ -1,0 +1,5 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - bugfix: "Round start/end delay verb should now properly delay"
+  - spellcheck: "Fixed typo in round restarting message"
