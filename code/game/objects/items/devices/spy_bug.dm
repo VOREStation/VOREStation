@@ -190,8 +190,12 @@
 	if(in_use)
 		return
 
+	if(cameras.len == 1 && user.is_remote_viewing())
+		user.reset_perspective()
+		return
 	if(!can_use_cam(user))
 		return
+
 	if(cameras.len == 1)
 		selected_camera = cameras[1]
 	else

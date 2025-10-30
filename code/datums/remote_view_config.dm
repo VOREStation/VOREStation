@@ -29,12 +29,18 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Basic subtypes
 //////////////////////////////////////////////////////////////////////////////////////////////////
+/// Remote view that allows moving without clearing the remote view.
 /datum/remote_view_config/allow_movement
 	forbid_movement = FALSE
 
+/// Remote view that forwards the movements of the mob to the remote_view_target's relay_movement() proc.
 /datum/remote_view_config/relay_movement
 	relay_movement = TRUE
 
+/datum/remote_view_config/relay_movement/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, datum/coordinator, atom/movable/remote_view_target, direction)
+	return remote_view_target.relaymove(host_mob, direction)
+
+/// Remote view that respects camera vision flags and checking for functionality of the camera.
 /datum/remote_view_config/camera_standard
 	forbid_movement = TRUE
 
