@@ -1,7 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - refactor: "Replaces most polaris hooks with global signals"
-  - code_imp: "Implements a multitude of global signals"
-  - bugfix: "doppler arrays behave better with multiz explosions"
-  - bugfix: "wizard spells not being applied to the mind datum correctly after the first spell is learned"

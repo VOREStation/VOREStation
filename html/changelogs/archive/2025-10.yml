@@ -337,3 +337,24 @@
       to better support signals
   - refactor: cleaned out many set_machine() calls for things with tguis that don't
       alter your view
+2025-10-30:
+  ItsSelis:
+  - bugfix: Round start/end delay verb should now properly delay
+  - spellcheck: Fixed typo in round restarting message
+  Will:
+  - code_imp: Implements COMSIG_LIVING_STATUS_STUN
+  - code_imp: Implements COMSIG_LIVING_STATUS_WEAKEN
+  - code_imp: Implements COMSIG_LIVING_STATUS_PARALYZE
+  - code_imp: Implements COMSIG_LIVING_STATUS_SLEEP
+  - code_imp: Implements COMSIG_LIVING_STATUS_CONFUSE
+  - code_imp: Implements COMSIG_LIVING_STATUS_BLIND
+  - bugfix: remote views are dropped on weakened, stunned, paralyzed, blinded, or
+      sleeping
+  - bugfix: using equip hotkey to put away items no longer breaks remote views such
+      as binoculars
+  - bugfix: fixed lag during login sometimes breaking remote views
+  - refactor: Replaces most polaris hooks with global signals
+  - code_imp: Implements a multitude of global signals
+  - bugfix: doppler arrays behave better with multiz explosions
+  - bugfix: wizard spells not being applied to the mind datum correctly after the
+      first spell is learned
