@@ -10,12 +10,12 @@
 	var/will_sleep = TRUE
 	var/will_blind = TRUE
 
-/// Handles relayed movement during a remote view. Override this in a subtype to handle specialized logic.
+/// Handles relayed movement during a remote view. Override this in a subtype to handle specialized logic. If it returns true, the mob will not move, allowing you to handle remotely controlled movement.
 /datum/remote_view_config/proc/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, datum/coordinator, atom/movable/remote_view_target, direction)
 	SIGNAL_HANDLER
 	return FALSE
 
-/// Handles visual changes to mob's hud or flags when in use
+/// Handles visual changes to mob's hud or flags when in use, it is fired every life tick.
 /datum/remote_view_config/proc/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
 	SIGNAL_HANDLER
 	return

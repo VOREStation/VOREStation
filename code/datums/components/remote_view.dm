@@ -90,7 +90,7 @@
 		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
 	// Update the mob's vision right away
-	settings.handle_remove_visuals(host_mob)
+	settings.handle_remove_visuals(src, host_mob)
 	host_mob.handle_vision()
 	host_mob = null
 	remote_view_target = null

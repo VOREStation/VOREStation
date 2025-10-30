@@ -214,7 +214,7 @@
 		return
 
 	// Relaymove could handle it
-	if(SEND_SIGNAL(src, COMSIG_MOB_RELAY_MOVEMENT, direct))
+	if(SEND_SIGNAL(my_mob, COMSIG_MOB_RELAY_MOVEMENT, direct))
 		return TRUE
 
 	// Can't control ourselves when drifting

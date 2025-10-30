@@ -1723,7 +1723,7 @@
 		if(!seer && !glasses_processed && seedarkness)
 			see_invisible = see_invisible_default
 
-		if(!get_current_machine() && eyeobj && eyeobj.owner != src)
+		if(eyeobj && eyeobj.owner != src)
 			reset_perspective()
 
 	// Call parent to handle signals

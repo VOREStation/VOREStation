@@ -197,7 +197,6 @@
 	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
 	src.reset_perspective()
-	src.unset_machine()
 	src.cameraFollow = null
 
 // Procs/code after this point is used to convert the stationary pai item into a

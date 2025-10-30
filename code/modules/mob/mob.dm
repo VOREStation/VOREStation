@@ -573,7 +573,6 @@
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "OOC.Game"
-	unset_machine()
 	reset_perspective()
 
 /mob/Topic(href, href_list)
