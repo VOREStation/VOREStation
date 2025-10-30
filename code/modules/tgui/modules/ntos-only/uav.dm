@@ -70,14 +70,14 @@
 			if(!current_uav)
 				return FALSE
 
-			if(current_uav.check_eye(ui.user) < 0)
+			if(current_uav.state != UAV_ON)
 				to_chat(ui.user,span_warning("The screen freezes for a moment, before returning to the UAV selection menu. It's not able to connect to that UAV."))
 			else
-				if(check_eye(ui.user) < 0)
+				if(get_dist(user, tgui_host()) > 1 || user.blinded)
 					return FALSE
 				else if(!viewing_uav(ui.user))
 					if(!viewers) viewers = list() // List must exist for pass by reference to work
-					start_coordinated_remoteview(ui.user, current_uav, viewers)
+					start_coordinated_remoteview(ui.user, current_uav, viewers, /datum/remote_view_config/uav_control)
 				else
 					ui.user.reset_perspective()
 			return TRUE
@@ -173,17 +173,12 @@
 	if(issilicon(user)) //Too complicated for me to want to mess with at the moment
 		to_chat(user, span_warning("Regulations prevent you from controlling several corporeal forms at the same time!"))
 		return
-
 	if(!current_uav)
 		return
-
-	if(!user.check_current_machine(tgui_host()))
-		user.set_machine(tgui_host())
 	current_uav.add_master(user)
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/uav/unlook(mob/user)
-	user.unset_machine()
 	if(current_uav)
 		current_uav.remove_master(user)
 	LAZYREMOVE(viewers, WEAKREF(user))
@@ -192,45 +187,33 @@
 	. = ..()
 	user.reset_perspective()
 
-/datum/tgui_module/uav/check_eye(mob/user)
-	if(get_dist(user, tgui_host()) > 1 || user.blinded || !current_uav)
-		user.reset_perspective()
-		return -1
-
-	var/viewflag = current_uav.check_eye(user)
-	if(viewflag < 0) //camera doesn't work
-		user.reset_perspective()
-		return -1
-
-	return viewflag
-
 ////
-//// Relaying movements to the UAV
+////  Settings for remote view
 ////
-/datum/tgui_module/uav/relaymove(var/mob/user, direction)
-	if(current_uav)
-		return current_uav.relaymove(user, direction, signal_strength)
+/datum/remote_view_config/uav_control
+	relay_movement = TRUE
 
-////
-////  The effects when looking through a UAV
-////
-/datum/tgui_module/uav/apply_visual(mob/M)
-	if(!M.client)
+/datum/remote_view_config/uav_control/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, direction)
+	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+	if(tgui_owner.current_uav)
+		return tgui_owner.current_uav.relaymove(host_mob, direction, tgui_owner.signal_strength)
+	return FALSE
+
+/datum/remote_view_config/uav_control/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+	if(get_dist(host_mob, tgui_owner.tgui_host()) > 1 || !tgui_owner.current_uav)
+		host_mob.reset_perspective()
 		return
-	if(WEAKREF(M) in viewers)
-		M.overlay_fullscreen("fishbed",/atom/movable/screen/fullscreen/fishbed)
-		M.overlay_fullscreen("scanlines",/atom/movable/screen/fullscreen/scanline)
-
-		if(signal_strength <= 1)
-			M.overlay_fullscreen("whitenoise",/atom/movable/screen/fullscreen/noise)
-		else
-			M.clear_fullscreen("whitenoise", 0)
+	// Apply hud
+	host_mob.overlay_fullscreen("fishbed",/atom/movable/screen/fullscreen/fishbed)
+	host_mob.overlay_fullscreen("scanlines",/atom/movable/screen/fullscreen/scanline)
+	if(tgui_owner.signal_strength <= 1)
+		host_mob.overlay_fullscreen("whitenoise",/atom/movable/screen/fullscreen/noise)
 	else
-		remove_visual(M)
+		host_mob.clear_fullscreen("whitenoise", 0)
 
-/datum/tgui_module/uav/remove_visual(mob/M)
-	if(!M.client)
-		return
-	M.clear_fullscreen("fishbed",0)
-	M.clear_fullscreen("scanlines",0)
-	M.clear_fullscreen("whitenoise",0)
+/datum/remote_view_config/uav_control/handle_remove_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+	// Clear hud
+	host_mob.clear_fullscreen("fishbed",0)
+	host_mob.clear_fullscreen("scanlines",0)
+	host_mob.clear_fullscreen("whitenoise",0)

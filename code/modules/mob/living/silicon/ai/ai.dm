@@ -443,10 +443,6 @@ var/list/ai_verbs_default = list(
 	emergency_message_cooldown = 1
 	spawn(300)
 		emergency_message_cooldown = 0
-/mob/living/silicon/ai/check_eye(var/mob/user as mob)
-	if (!camera)
-		return -1
-	return 0
 
 /mob/living/silicon/ai/restrained()
 	return 0

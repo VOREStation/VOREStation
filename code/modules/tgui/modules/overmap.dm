@@ -73,13 +73,6 @@
 /datum/tgui_module/ship/proc/viewing_overmap(mob/user)
 	return (WEAKREF(user) in viewers)
 
-/datum/tgui_module/ship/check_eye(var/mob/user)
-	if(!get_dist(user, tgui_host()) > 1 || user.blinded || !linked)
-		user.reset_perspective()
-		return -1
-	else
-		return 0
-
 // Navigation
 /datum/tgui_module/ship/nav
 	name = "Navigation Display"
@@ -136,7 +129,7 @@
 		return FALSE
 
 	if(action == "viewing")
-		if(check_eye(ui.user) < 0)
+		if(!get_dist(ui.user, src) > 1 || ui.user.blinded || !linked)
 			return FALSE
 		else if(!viewing_overmap(ui.user))
 			if(!viewers) viewers = list() // List must exist for pass by reference to work
@@ -406,7 +399,7 @@
 			. = TRUE
 
 		if("manual")
-			if(check_eye(ui.user) < 0)
+			if(ui.user.blinded || !linked)
 				return FALSE
 			else  if(!viewing_overmap(ui.user))
 				if(!viewers) viewers = list()

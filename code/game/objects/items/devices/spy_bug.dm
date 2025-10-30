@@ -209,7 +209,7 @@
 		unpair(selected_camera)
 		selected_camera = null
 		return
-	user.AddComponent(/datum/component/remote_view/item_zoom, focused_on = selected_camera, vconfig_path = null, our_item = src, viewsize = null, tileoffset = 0, show_visible_messages = TRUE)
+	user.AddComponent(/datum/component/remote_view/item_zoom, focused_on = selected_camera, vconfig_path = /datum/remote_view_config/camera_standard, our_item = src, viewsize = null, tileoffset = 0, show_visible_messages = TRUE)
 
 /obj/item/bug_monitor/proc/can_use_cam(mob/user)
 	if(!cameras.len)
@@ -230,9 +230,6 @@
 	. = ..()
 	if(Adjacent(user))
 		. += "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made."
-
-/obj/machinery/camera/bug/check_eye(var/mob/user as mob)
-	return 0
 
 /obj/machinery/camera/bug
 	network = list(NETWORK_SECURITY)

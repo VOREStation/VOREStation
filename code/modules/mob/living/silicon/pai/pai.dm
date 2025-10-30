@@ -130,11 +130,6 @@
 	. += ""
 	. += show_silenced()
 
-/mob/living/silicon/pai/check_eye(var/mob/user as mob)
-	if (!src.current)
-		return -1
-	return 0
-
 /mob/living/silicon/pai/restrained()
 	if(istype(src.loc,/obj/item/paicard))
 		return 0
@@ -176,16 +171,13 @@
 
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
-		src.unset_machine()
 		src.reset_perspective()
 		return 0
 	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
 
 	// ok, we're alive, camera is good and in our network...
-
-	src.set_machine(src)
 	src.current = C
-	src.AddComponent(/datum/component/remote_view, focused_on = C, vconfig_path = null)
+	src.AddComponent(/datum/component/remote_view, focused_on = C, vconfig_path = /datum/remote_view_config/camera_standard)
 	return 1
 
 /mob/living/silicon/pai/verb/reset_record_view()

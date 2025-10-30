@@ -26,7 +26,6 @@
 	else
 		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_hostmob_moved))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
-	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// Upon any disruptive status effects
 	if(settings.will_stun)
@@ -39,6 +38,12 @@
 		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP, PROC_REF(handle_status_effects))
 	if(settings.will_blind)
 		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND, PROC_REF(handle_status_effects))
+	if(settings.will_death)
+		RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
+	// Handle relayed movement
+	if(settings.relay_movement)
+		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
+	RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION, PROC_REF(handle_mob_vision_update))
 	// Recursive move component fires this, we only want it to handle stuff like being inside a paicard when releasing turf lock
 	if(isturf(focused_on))
 		RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
@@ -48,6 +53,8 @@
 		RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
 		RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
 		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
+	// Update the mob's vision right away
+	host_mob.handle_vision()
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
@@ -57,7 +64,6 @@
 	else
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED)
 	UnregisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE)
-	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
 	// Status effects
 	if(settings.will_stun)
@@ -72,11 +78,20 @@
 		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
 	if(isturf(remote_view_target))
 		UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
+	if(settings.will_death)
+		UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
+	// Handle relayed movement
+	if(settings.relay_movement)
+		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
+	UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION)
 	// Cleanup remote view
 	if(host_mob != remote_view_target) // If target is not ourselves
 		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
 		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
+	// Update the mob's vision right away
+	settings.handle_remove_visuals(host_mob)
+	host_mob.handle_vision()
 	host_mob = null
 	remote_view_target = null
 	// Clear settings
@@ -167,11 +182,25 @@
 	PROTECTED_PROC(TRUE)
 	host_mob.reset_perspective()
 
+/datum/component/remote_view/proc/handle_relay_movement(datum/source, direction)
+	SIGNAL_HANDLER
+	PROTECTED_PROC(TRUE)
+	return settings.handle_relay_movement(src, host_mob, direction)
+
+/datum/component/remote_view/proc/handle_mob_vision_update(datum/source)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	SIGNAL_HANDLER
+	return settings.handle_apply_visuals(src, host_mob)
+
 /datum/component/remote_view/proc/get_host()
 	return host_mob
 
 /datum/component/remote_view/proc/get_target()
 	return remote_view_target
+
+/datum/component/remote_view/proc/get_coordinator()
+	return null // For subtype
 
 /datum/component/remote_view/proc/looking_at_target_already(atom/target)
 	return (remote_view_target == target)
@@ -293,9 +322,6 @@
 	view_coordinator.look(host_mob)
 	LAZYDISTINCTADD(viewers, WEAKREF(host_mob))
 	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
-	// If you get this crash, it's because check_eye() in look() failed
-	if(!parent)
-		CRASH("Remoteview failed, look() cancelled view during component Initilize. Usually this is caused by check_eye().")
 
 /datum/component/remote_view/viewer_managed/Destroy(force)
 	UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
@@ -305,6 +331,8 @@
 	viewers = null
 	. = ..()
 
+/datum/component/remote_view/viewer_managed/get_coordinator()
+	return view_coordinator
 
 /**
  * Remote view subtype that is handling a byond bug where mobs changing their client eye from inside of

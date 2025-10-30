@@ -268,7 +268,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			. = TRUE
 
 		if("manual")
-			if(check_eye(ui.user) < 0)
+			if(!get_dist(ui.user, src) > 1 || ui.user.blinded || !linked)
 				return FALSE
 			else if(!viewing_overmap(ui.user) && linked)
 				if(!viewers) viewers = list() // List must exist for pass by reference to work
