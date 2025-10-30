@@ -208,9 +208,34 @@ SUBSYSTEM_DEF(ticker)
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
 
-	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
+	//otherwise round_start_time would be 0 for the signals
+	round_start_time = world.time
+	GLOB.round_start_time = REALTIMEOFDAY
 	SEND_SIGNAL(src, COMSIG_TICKER_ROUND_STARTING, world.time)
-	callHook("roundstart")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ROUND_START)
+	SSwebhooks.send(WEBHOOK_ROUNDSTART, list("url" = get_world_url()))
+
+	// Spawn randomized items
+	for(var/id in multi_point_spawns)
+		var/list/spawn_points = multi_point_spawns[id]
+		var/obj/random_multi/rm = pickweight(spawn_points)
+		rm.generate_items()
+		for(var/entry in spawn_points)
+			qdel(entry)
+
+	// Place empty AI cores once we know who is playing AI
+	for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
+		if(S.name != JOB_AI)
+			continue
+		if(locate(/mob/living) in S.loc)
+			continue
+		GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(get_turf(S))
+
+	// Final init, these things need round to start for their info to be ready
+	for(var/obj/item/paper/dockingcodes/dcp as anything in GLOB.papers_dockingcode)
+		dcp.populate_info()
+	for(var/obj/machinery/power/solar_control/SC as anything in GLOB.solars_list)
+		SC.auto_start()
 
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
@@ -321,7 +346,8 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/post_game_tick()
 	switch(end_game_state)
 		if(END_GAME_READY_TO_END)
-			callHook("roundend")
+			callHook("roundend") // TODO, remove all hooks that use this in favor of global signal
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ROUND_END)
 
 			if (mode.station_was_nuked)
 				feedback_set_details("end_proper", "nuke")
