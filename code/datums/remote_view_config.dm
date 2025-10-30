@@ -43,5 +43,5 @@
 	if(!view_camera || !view_camera.can_use())
 		host_mob.reset_perspective()
 		return
-	if(host_mob.isXRay())
-		host_mob.vision_flags |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+	if(view_camera.isXRay())
+		host_mob.sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)

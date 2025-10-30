@@ -70,10 +70,10 @@
 			if(!current_uav)
 				return FALSE
 
-			if(current_uav.state != UAV_ON)
+			if(!current_uav.state)
 				to_chat(ui.user,span_warning("The screen freezes for a moment, before returning to the UAV selection menu. It's not able to connect to that UAV."))
 			else
-				if(get_dist(user, tgui_host()) > 1 || user.blinded)
+				if(get_dist(ui.user, tgui_host()) > 1 || ui.user.blinded)
 					return FALSE
 				else if(!viewing_uav(ui.user))
 					if(!viewers) viewers = list() // List must exist for pass by reference to work
