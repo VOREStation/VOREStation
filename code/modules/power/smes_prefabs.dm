@@ -6,7 +6,7 @@
 /// Defaults to 100% input and output settings, starts with maximum charge by default
 /obj/machinery/power/smes/buildable/engine_default/apply_mapped_settings()
 	// Set charge
-	charge = capacity * 0.5 // Half charge by default
+	charge = capacity // * 0.5 // Half charge is used by downstreams for coil upgrades early in shift, virgo wants fully charged from the start.
 	// Set input and output to max
 	inputting(TRUE)
 	outputting(TRUE)
