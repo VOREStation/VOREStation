@@ -195,7 +195,7 @@
 
 /datum/remote_view_config/uav_control/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, direction)
 	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
-	if(tgui_owner.current_uav)
+	if(!tgui_owner.current_uav)
 		return tgui_owner.current_uav.relaymove(host_mob, direction, tgui_owner.signal_strength)
 	return FALSE
 

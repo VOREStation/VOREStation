@@ -1,8 +1,8 @@
 /datum/remote_view_config
-	// Base configs
+	// Signal config for remote view component. This controls what signals will be subbed to during init.
 	var/forbid_movement = TRUE
-	var/relay_movement = FALSE
-	// Interuptions that end the view
+	var/relay_movement = TRUE
+	// Status effects that will knock us out of remote view
 	var/will_death = TRUE
 	var/will_stun = TRUE
 	var/will_weaken = TRUE
@@ -13,7 +13,8 @@
 /// Handles relayed movement during a remote view. Override this in a subtype to handle specialized logic. If it returns true, the mob will not move, allowing you to handle remotely controlled movement.
 /datum/remote_view_config/proc/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, datum/coordinator, atom/movable/remote_view_target, direction)
 	SIGNAL_HANDLER
-	return FALSE
+	// By default, we ask our remote_view_target to handle relaymove for us.
+	return remote_view_target.relaymove(host_mob, direction)
 
 /// Handles visual changes to mob's hud or flags when in use, it is fired every life tick.
 /datum/remote_view_config/proc/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
@@ -32,13 +33,6 @@
 /// Remote view that allows moving without clearing the remote view.
 /datum/remote_view_config/allow_movement
 	forbid_movement = FALSE
-
-/// Remote view that forwards the movements of the mob to the remote_view_target's relay_movement() proc.
-/datum/remote_view_config/relay_movement
-	relay_movement = TRUE
-
-/datum/remote_view_config/relay_movement/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, datum/coordinator, atom/movable/remote_view_target, direction)
-	return remote_view_target.relaymove(host_mob, direction)
 
 /// Remote view that respects camera vision flags and checking for functionality of the camera.
 /datum/remote_view_config/camera_standard
