@@ -2,25 +2,26 @@
  * Use this if you need to remote view something. Remote view will end if you move or the remote view target is deleted. Cleared automatically if another remote view begins.
  */
 /datum/component/remote_view
+	VAR_PROTECTED/datum/remote_view_config/settings = null
 	VAR_PROTECTED/mob/host_mob
 	VAR_PROTECTED/atom/remote_view_target
-	VAR_PROTECTED/forbid_movement = TRUE
 
-/datum/component/remote_view/allow_moving
-	forbid_movement = FALSE
-
-/datum/component/remote_view/Initialize(atom/focused_on)
+/datum/component/remote_view/Initialize(atom/focused_on, vconfig_path)
 	. = ..()
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
+	// Set config
+	if(!vconfig_path)
+		vconfig_path = /datum/remote_view_config
+	settings = new vconfig_path
 	// Safety check, focus on ourselves if the target is deleted, and flag any movement to end the view.
 	host_mob = parent
 	if(QDELETED(focused_on))
 		focused_on = host_mob
-		forbid_movement = TRUE
+		settings.forbid_movement = TRUE
 	// Begin remoteview
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
-	if(forbid_movement)
+	if(settings.forbid_movement)
 		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_hostmob_moved))
 	else
 		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_hostmob_moved))
@@ -28,11 +29,16 @@
 	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// Upon any disruptive status effects
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN, PROC_REF(handle_status_effects))
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN, PROC_REF(handle_status_effects))
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE, PROC_REF(handle_status_effects))
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP, PROC_REF(handle_status_effects))
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND, PROC_REF(handle_status_effects))
+	if(settings.will_stun)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN, PROC_REF(handle_status_effects))
+	if(settings.will_weaken)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN, PROC_REF(handle_status_effects))
+	if(settings.will_paralyze)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE, PROC_REF(handle_status_effects))
+	if(settings.will_sleep)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP, PROC_REF(handle_status_effects))
+	if(settings.will_blind)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND, PROC_REF(handle_status_effects))
 	// Recursive move component fires this, we only want it to handle stuff like being inside a paicard when releasing turf lock
 	if(isturf(focused_on))
 		RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
@@ -45,7 +51,8 @@
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
-	if(forbid_movement)
+	// Basic handling
+	if(settings.forbid_movement)
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
 	else
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED)
@@ -53,20 +60,27 @@
 	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
 	// Status effects
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN)
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN)
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE)
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP)
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
+	if(settings.will_stun)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN)
+	if(settings.will_weaken)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN)
+	if(settings.will_paralyze)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE)
+	if(settings.will_sleep)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP)
+	if(settings.will_blind)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
 	if(isturf(remote_view_target))
 		UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
 	// Cleanup remote view
-	if(host_mob != remote_view_target)
+	if(host_mob != remote_view_target) // If target is not ourselves
 		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
 		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
 	host_mob = null
 	remote_view_target = null
+	// Clear settings
+	QDEL_NULL(settings)
 
 /datum/component/remote_view/proc/handle_hostmob_moved(atom/source, atom/oldloc, direction, forced, movetime)
 	SIGNAL_HANDLER
@@ -170,11 +184,7 @@
 	VAR_PRIVATE/obj/item/host_item
 	VAR_PRIVATE/show_message
 
-/datum/component/remote_view/item_zoom/allow_moving
-	forbid_movement = FALSE
-
-
-/datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
+/datum/component/remote_view/item_zoom/Initialize(atom/focused_on, vconfig_path, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
 	. = ..()
 	host_item = our_item
 	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
@@ -240,10 +250,7 @@
  */
 /datum/component/remote_view/mremote_mutation
 
-/datum/component/remote_view/mremote_mutation/allow_moving
-	forbid_movement = FALSE
-
-/datum/component/remote_view/mremote_mutation/Initialize(atom/focused_on)
+/datum/component/remote_view/mremote_mutation/Initialize(atom/focused_on, vconfig_path)
 	if(!ismob(focused_on)) // What are you doing? This gene only works on mob targets, if you adminbus this I will personally eat your face.
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
@@ -277,10 +284,7 @@
 	VAR_PRIVATE/datum/view_coordinator // The object containing the viewer_list, with look() and unlook() logic
 	VAR_PRIVATE/list/viewers // list from the view_coordinator, lists in byond are pass by reference, so this is the SAME list as on the coordinator! If you pass a null this will explode.
 
-/datum/component/remote_view/viewer_managed/allow_moving
-	forbid_movement = FALSE
-
-/datum/component/remote_view/viewer_managed/Initialize(atom/focused_on, datum/coordinator, list/viewer_list)
+/datum/component/remote_view/viewer_managed/Initialize(atom/focused_on, vconfig_path, datum/coordinator, list/viewer_list)
 	. = ..()
 	if(!islist(viewer_list)) // BAD BAD BAD NO
 		CRASH("Passed a viewer_list that was not a list, or was null, to /datum/component/remote_view/viewer_managed component. Ensure the viewer_list exists before passing it into AddComponent.")
@@ -313,7 +317,7 @@
 /datum/component/remote_view/mob_holding_item
 	var/needs_to_decouple = FALSE // if the current top level atom is a mob
 
-/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on)
+/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on, vconfig_path)
 	if(!isobj(focused_on)) // You shouldn't be using this if so.
 		return COMPONENT_INCOMPATIBLE
 	. = ..()

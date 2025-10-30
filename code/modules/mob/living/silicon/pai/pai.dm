@@ -185,7 +185,7 @@
 
 	src.set_machine(src)
 	src.current = C
-	src.AddComponent(/datum/component/remote_view, C)
+	src.AddComponent(/datum/component/remote_view, focused_on = C, vconfig_path = null)
 	return 1
 
 /mob/living/silicon/pai/verb/reset_record_view()
