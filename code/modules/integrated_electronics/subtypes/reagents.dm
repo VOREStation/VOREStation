@@ -134,22 +134,40 @@
 		if(!reagents.total_volume) // Empty
 			activate_pin(3)
 			return
-		if(AM.can_be_injected_by(src))
-			if(isliving(AM))
-				var/mob/living/L = AM
-				var/turf/T = get_turf(AM)
-				T.visible_message(span_warning("[src] is trying to inject [L]!"))
-				sleep(3 SECONDS)
-				if(!L.can_be_injected_by(src))
-					activate_pin(3)
-					return
-				var/contained = reagents.get_reagents()
-				var/trans = reagents.trans_to_mob(L, transfer_amount, CHEM_BLOOD)
-				message_admins("[src] injected \the [L] with [trans]u of [contained].")
-				to_chat(AM, span_notice("You feel a tiny prick!"))
-				visible_message(span_warning("[src] injects [L]!"))
-			else
-				reagents.trans_to(AM, transfer_amount)
+
+		// Modified injection logic - handle living vs non-living separately
+		if(isliving(AM))
+			// For living beings, use existing safety checks
+			if(!AM.can_be_injected_by(src))
+				activate_pin(3)
+				return
+			var/mob/living/L = AM
+			var/turf/T = get_turf(AM)
+			T.visible_message(span_warning("[src] is trying to inject [L]!"))
+			sleep(3 SECONDS)
+			if(!L.can_be_injected_by(src))
+				activate_pin(3)
+				return
+			var/contained = reagents.get_reagents()
+			var/trans = reagents.trans_to_mob(L, transfer_amount, CHEM_BLOOD)
+			message_admins("[src] injected \the [L] with [trans]u of [contained].")
+			to_chat(AM, span_notice("You feel a tiny prick!"))
+			visible_message(span_warning("[src] injects [L]!"))
+		else
+			// Safety checks for valid injectables.
+			if(!AM.reagents)
+				activate_pin(3)
+				return
+			if(!AM.reagents.get_free_space())
+				activate_pin(3)
+				return
+
+			// Allow injection only for basic syringe-compatible objects.
+			if(!AM.is_open_container() && !istype(AM, /obj/item/reagent_containers/food) && !istype(AM, /obj/item/slime_extract) && !istype(AM, /obj/item/clothing/mask/smokable/cigarette))
+				activate_pin(3)
+				return
+
+			reagents.trans_to(AM, transfer_amount)
 	else
 
 		if(reagents.total_volume >= volume) // Full
