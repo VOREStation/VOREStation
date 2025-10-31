@@ -138,7 +138,14 @@
 		UnregisterSignal(T, COMSIG_OBSERVER_TURF_ENTERED)
 
 
-/atom/proc/emp_act(var/severity)
+/atom/proc/emp_act(severity, recursive)
+	recursive++
+	if(recursive > 5) //After a certain depth, we're just going to assume that it's too insulated to be EMP'd.
+		return
+	for(var/atom/A in contents)
+		if(isbelly(A)) //Prey are protected
+			continue
+		A.emp_act(severity, recursive)
 	return
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)

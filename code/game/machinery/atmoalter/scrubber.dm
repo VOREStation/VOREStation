@@ -26,16 +26,16 @@
 		cell = new/obj/item/cell/apc(src)
 	AddElement(/datum/element/climbable)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
+/obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	if(prob(50/severity))
 		on = !on
 		update_icon()
 
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/update_icon()
 	cut_overlays()

@@ -81,12 +81,12 @@
 
 		update_icon()
 
-/obj/machinery/light_switch/emp_act(severity)
+/obj/machinery/light_switch/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 	power_change()
-	..(severity)
+	..(severity, recursive)
 
 //Breakers for event maps
 

@@ -108,14 +108,6 @@
 			charging = null
 			update_icon()
 
-/obj/machinery/cell_charger/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
-		return
-	if(charging)
-		charging.emp_act(severity)
-	..(severity)
-
-
 /obj/machinery/cell_charger/process()
 	//to_world("ccpt [charging] [stat]")
 	if((stat & (BROKEN|NOPOWER)) || !anchored)

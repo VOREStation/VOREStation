@@ -419,7 +419,7 @@
 /obj/item/rig/protean/take_hit(damage, source, is_emp=0)
 	return	//We don't do that here
 
-/obj/item/rig/protean/emp_act(severity_class)
+/obj/item/rig/protean/emp_act(severity, recursive)
 	return	//Same here
 
 /obj/item/rig/protean/cut_suit()

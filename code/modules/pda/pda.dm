@@ -499,8 +499,3 @@
 						/obj/item/cartridge/signal/science,
 						/obj/item/cartridge/quartermaster)
 	new newcart(src)
-
-// Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
-/obj/item/pda/emp_act(severity)
-	for(var/atom/A in src)
-		A.emp_act(severity)

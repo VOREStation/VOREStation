@@ -118,9 +118,9 @@
 
 
 
-/obj/machinery/vr_sleeper/emp_act(var/severity)
+/obj/machinery/vr_sleeper/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	if(occupant)
@@ -134,7 +134,7 @@
 			smoke.start("#202020")
 		perform_exit()
 
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/vr_sleeper/verb/eject()
 	set src in view(1)

@@ -52,7 +52,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		qdel(A)
 	. = ..()
 
-/obj/item/integrated_circuit/emp_act(severity)
+/obj/item/integrated_circuit/emp_act(severity, recursive)
 	for(var/datum/integrated_io/io in inputs + outputs + activators)
 		io.scramble()
 

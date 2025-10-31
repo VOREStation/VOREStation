@@ -110,7 +110,7 @@ FIRE ALARM
 /obj/machinery/firealarm/bullet_act()
 	return alarm()
 
-/obj/machinery/firealarm/emp_act(severity)
+/obj/machinery/firealarm/emp_act(severity, recursive)
 	if(prob(50 / severity))
 		alarm(rand(30 / severity, 60 / severity))
 	..()

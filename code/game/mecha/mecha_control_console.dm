@@ -103,7 +103,7 @@
 
 	return data
 
-/obj/item/mecha_parts/mecha_tracking/emp_act()
+/obj/item/mecha_parts/mecha_tracking/emp_act(severity, recursive)
 	qdel(src)
 	return
 

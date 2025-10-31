@@ -156,14 +156,6 @@
 	go_out()
 	return
 
-/obj/machinery/recharge_station/emp_act(severity)
-	if(occupant)
-		occupant.emp_act(severity)
-		go_out()
-	if(cell)
-		cell.emp_act(severity)
-	..(severity)
-
 /obj/machinery/recharge_station/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(!occupant)
 		if(default_deconstruction_screwdriver(user, O))

@@ -99,13 +99,13 @@
 				L.flash_eyes()
 		O.Weaken(flash_time)
 
-/obj/machinery/flasher/emp_act(severity)
+/obj/machinery/flasher/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 	if(prob(75/severity))
 		flash()
-	..(severity)
+	..(severity, recursive)
 
 /obj/machinery/flasher/portable/HasProximity(turf/T, datum/weakref/WF, oldloc)
 	if(isnull(WF))

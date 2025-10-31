@@ -152,7 +152,7 @@
 /obj/machinery/computer/shuttle_control/ex_act()
 	return
 
-/obj/machinery/computer/shuttle_control/emp_act()
+/obj/machinery/computer/shuttle_control/emp_act(severity, recursive)
 	return
 
 /obj/item/paper/dockingcodes

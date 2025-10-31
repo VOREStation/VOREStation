@@ -154,7 +154,7 @@ circuitry. As a result neurotoxins can cause massive damage.<HR>
 Implant Specifics:<BR>"}
 	return dat
 
-/obj/item/implant/tracking/emp_act(severity)
+/obj/item/implant/tracking/emp_act(severity, recursive)
 	if (malfunction)	//no, dawg, you can't malfunction while you are malfunctioning
 		return
 	malfunction = MALFUNCTION_TEMPORARY
@@ -294,7 +294,7 @@ Implant Specifics:<BR>"}
 	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)
 	to_chat(usr, "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.")
 
-/obj/item/implant/explosive/emp_act(severity)
+/obj/item/implant/explosive/emp_act(severity, recursive)
 	if (malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
@@ -398,7 +398,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			qdel(src)
 	return
 
-/obj/item/implant/chem/emp_act(severity)
+/obj/item/implant/chem/emp_act(severity, recursive)
 	if (malfunction)
 		return
 	malfunction = MALFUNCTION_TEMPORARY
@@ -557,7 +557,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			qdel(a)
 			STOP_PROCESSING(SSobj, src)
 
-/obj/item/implant/death_alarm/emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
+/obj/item/implant/death_alarm/emp_act(severity, recursive)			//for some reason alarms stop going off in case they are emp'd, even without this
 	if (malfunction)		//so I'm just going to add a meltdown chance here
 		return
 	malfunction = MALFUNCTION_TEMPORARY
