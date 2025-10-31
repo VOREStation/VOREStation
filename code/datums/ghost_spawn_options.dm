@@ -55,6 +55,8 @@
 		host.ckey = user.ckey
 		host.add_ventcrawl(vent_found)
 		to_chat(host, span_info("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
+		SEND_SIGNAL(host,COMSIG_MOB_VENTCRAWL_START,vent_found)
+		SEND_SIGNAL(vent_found,COMSIG_VENT_CRAWLER_ENTERED,host)
 
 /datum/tgui_module/ghost_spawn_menu/proc/become_drone(mob/observer/dead/user, fabricator)
 	if(SSticker.current_state < GAME_STATE_PLAYING)
