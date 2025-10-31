@@ -194,3 +194,172 @@
       analyzer.
   Zizzi:
   - rscadd: Added string padding circuit
+2025-10-18:
+  Diana:
+  - balance: Makes Virus Immunity trait 3 points
+  - qol: Being attacked in the groin gives a less wordy message
+  - rscadd: Adds boneless trait
+  - bugfix: Brains no longer qdel() if the head is gibbed.
+  Guti:
+  - bugfix: Fixed FBP not being able to change eye colour
+  Kashargul:
+  - bugfix: shadekin nutrition gains
+  KillianKirilenko:
+  - refactor: unified the mob, morph, and lurker spawns into a single multipurpose
+      hole that can be used to spawn any one of them based on the interacting ghost's
+      choice. the associated seperate events have been replaced with a single event
+      that uses the new unified spawner, so that the events are no longer competing
+      for spawn chances. the new spawner also has a high-vis icon so that it won't
+      be difficult for ghosts to spot if they're just scrolling around with darkness
+      enabled.
+2025-10-21:
+  Kashargul:
+  - bugfix: free ghost role slot spawn
+  - bugfix: casino sentient price item tf getting enabled when one closes the ui
+  - admin: fix log access for devs and mods
+  VOREStation:
+  - balance: Disables Unlucky Major
+2025-10-22:
+  Guti:
+  - bugfix: Fixed itch symptom making the infected to mlem instead
+  Kashargul:
+  - code_imp: rust g to 4.1.0
+  - qol: moves robot sleepers to tgui
+  - qol: Robot decals and animations now use a TGUI ui for easy toggling
+  NickBelmont:
+  - bugfix: Exploit where console screens would count for all stock part benchmark
+      experiments.
+2025-10-23:
+  Lilly-Lira:
+  - bugfix: Feline 3-color (Taur, Fat vwag) loaf sprite
+  SatinIsle:
+  - rscadd: Added a new heavy landing trait (and hard fall var to other mobs) that
+      cause the mob to take more damage, get weakened for longer and create some damage
+      to the floor tiles (50% chance). Can not be taken with soft landing. Be the
+      fatty you always meant to be.
+  Will:
+  - bugfix: photodegredation should not harm phased shadekin
+  - bugfix: Photosynthesis should not generation nutrition while its shadekin are
+      phased
+  - refactor: Moves lonely and agoraphobia trait code to a component
+  - bugfix: Releasing prey, that themselves contain prey, will correctly update their
+      remote view to follow the released mob
+  - bugfix: Fixes view release on the correct recharger
+  - bugfix: Meson and other vision goggles work in mechs again
+  - bugfix: canceling remote view while inside a cryopod or long distance teleporter
+      no longer locks your view to it
+2025-10-25:
+  Guti:
+  - code_imp: Added Bluespace Connection component
+  - code_imp: Implements COMSIG_ATOM_HITBY
+  - code_imp: Implements COMSIG_CLOSET_CLOSED
+  - image: Fixed welded crate icons
+  - bugfix: You can now struggle out of crates
+  - bugfix: Crates can be weld shut once again
+  Kashargul:
+  - bugfix: chat replies failing as the passed ckey resulted to a null lookup
+  - bugfix: logging into qdelled ghosts
+  Ryumi:
+  - rscadd: 'Added a new map: The Casino Canal! An underwater casino built for a luxurious
+      extended stay, catering to your every gambling whim. From public gaming rooms
+      to more private ones, it is catered to gamblers of all walks - except those
+      wanting to make actual money. Each visitor can interact with the chips terminal
+      next to the entrance for a set of starting chips of their own, but there are
+      NO facilities here to turn chips into actual money. You''re just in it for the
+      fun of it. Also there''s a whole underwater world outside of it full of secrets,
+      waiting to be explored!'
+  - rscadd: Added a new set of underwater turfs that are "indoors," meaning they don't
+      use the weather system at all.
+  - code_imp: Improved code for multiple auto-resleevers existing in the game world
+  - qol: The "Find Auto Resleever" verb will now show you a list of auto resleevers
+      in the game world for you to choose from if there's more than one available.
+  - balance: TGMC windows (the ones seen in the city redgate, the facility, and Casino
+      Canal,) now allow things that can move through glass (i.e. laser beams) to go
+      through them
+  Will:
+  - bugfix: vehicles fall through openspace again
+  stars:
+  - maptweak: remapped tether morgue
+2025-10-26:
+  Kashargul:
+  - code_imp: dependency update
+  - code_imp: update the javascript bat to be more reliable
+  NickBelmont:
+  - bugfix: IC Textpad and debugger no longer trim whitespace at edges.
+2025-10-27:
+  Cameron-The-Raven:
+  - bugfix: 'Makes beds able to drop a material when having wirecutters used on them:
+      Cloth'
+  - bugfix: Makes the cotton material datum drop cotton
+  Ryumi:
+  - rscadd: 'Added four new shelter capsules: Pocket Dorm (5x5), Alt. Luxury Shelter
+      (7x7), Kitchen (7x7), and Luxury Rec Room (11x11)'
+  - qol: Shelter capsules now give you a visual indicator of their deploy area on
+      use, highlighting invalid deploy turfs in red, and valid ones in blue. Upon
+      finding a valid deploy location, it will even show you where the capsule's exterior
+      doors will be!
+  - qol: Shelter capsules now prompt you to confirm deploying a capsule.
+  - balance: Polarized windows now block all light (and lasers) while tinted.
+  - balance: Shelter capsules can now deploy over tiled turfs.
+  - balance: 7x7 capsule vendor prices have been lowered to match the luxury capsule's
+      price, (except the redspace capsule, which remains unchanged.)
+  - bugfix: The Sauna capsule's lathe material costs now correctly equal those of
+      the other 7x7 capsules (oops)
+  - bugfix: Fixed an edge-case bug where capsules could "deploy" outside the bounds
+      of a map.
+  - maptweak: Added privacy features (boltable/tintable windows and doors) to most
+      pre-existing pods.
+2025-10-28:
+  Diana:
+  - rscadd: 'Adds three new traits: Radiation Weakness (negative, 2 points), Radioactive
+      Glow (neutral) and Radioactive Heal (positive, 6 points).'
+  - bugfix: Promethean glowing works again!
+  - bugfix: mRegen mutation will now properly heal internal bleeding
+  - qol: Bruteloss also has a 1% chance per mutation tick of healing a minor amount,
+      just like fire damage does.
+  - code_imp: Adds a few new comsigs for radiation
+  - code_imp: Mutations and radiation are now properly separated.
+  - code_imp: Radiation now has framework to allow for contamination.
+  Kashargul:
+  - bugfix: marking section having two scrollbars
+  ReoDaProtovali:
+  - rscdel: Removed Armorsoak. no more flat damage reduction after percentage damage
+      reduction
+  - qol: made a lot of basic simplemobs less tanky as a side effect, I guess? A lot
+      of mobs had armorsoak when they really shouldn't have.
+  - balance: probably affects combat a bit, atleast for exploration, some mobs will
+      be easier to kill, while padded exploration suits wont protect as much.
+  Will:
+  - code_imp: Adds a temporary shim component to aid in machine var removal on mobs
+  - code_imp: Implements COMSIG_LIVING_HANDLE_VISION
+  - rscadd: Implements COMSIG_LIVING_HANDLE_HUD
+  - refactor: cleaned up parent calls on handle_regular_hud_updates() and handle_vision()
+      to better support signals
+  - refactor: cleaned out many set_machine() calls for things with tguis that don't
+      alter your view
+2025-10-30:
+  ItsSelis:
+  - bugfix: Round start/end delay verb should now properly delay
+  - spellcheck: Fixed typo in round restarting message
+  Will:
+  - code_imp: Implements COMSIG_LIVING_STATUS_STUN
+  - code_imp: Implements COMSIG_LIVING_STATUS_WEAKEN
+  - code_imp: Implements COMSIG_LIVING_STATUS_PARALYZE
+  - code_imp: Implements COMSIG_LIVING_STATUS_SLEEP
+  - code_imp: Implements COMSIG_LIVING_STATUS_CONFUSE
+  - code_imp: Implements COMSIG_LIVING_STATUS_BLIND
+  - bugfix: remote views are dropped on weakened, stunned, paralyzed, blinded, or
+      sleeping
+  - bugfix: using equip hotkey to put away items no longer breaks remote views such
+      as binoculars
+  - bugfix: fixed lag during login sometimes breaking remote views
+  - refactor: Replaces most polaris hooks with global signals
+  - code_imp: Implements a multitude of global signals
+  - bugfix: doppler arrays behave better with multiz explosions
+  - bugfix: wizard spells not being applied to the mind datum correctly after the
+      first spell is learned
+2025-10-31:
+  Diana:
+  - bugfix: Ian storm now properly uses the correct facility type
+  Will:
+  - bugfix: non-legacy instruments should now play music

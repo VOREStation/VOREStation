@@ -55,8 +55,7 @@
 		return
 
 	var/armor = target.run_armor_check(target, "melee")
-	var/soaked = target.get_armor_soak(target, "melee")
-	if(armor + soaked < 60)
+	if(armor < 60)
 		to_chat(target, span_danger("You feel extreme pain!"))
 
 		var/max_halloss = round(target.species.total_health * 0.8) //up to 80% of passing out
@@ -98,9 +97,8 @@
 		damage += hat.force * 3
 
 	var/armor = target.run_armor_check(BP_HEAD, "melee")
-	var/soaked = target.get_armor_soak(BP_HEAD, "melee")
-	target.apply_damage(damage, BRUTE, BP_HEAD, armor, soaked)
-	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD), attacker.get_armor_soak(BP_HEAD))
+	target.apply_damage(damage, BRUTE, BP_HEAD, armor)
+	attacker.apply_damage(10, BRUTE, BP_HEAD, attacker.run_armor_check(BP_HEAD))
 
 	if(!armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)

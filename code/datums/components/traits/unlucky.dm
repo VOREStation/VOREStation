@@ -534,10 +534,3 @@
 	. = ..()
 	var/mob/living/living_parent = parent
 	living_parent.remove_filter("omen")
-
-/**
- * The dice omen.
- * Single use omen from rolling a nat 1 on a cursed d20.
- */
-/datum/component/omen/dice
-	incidents_left = 1

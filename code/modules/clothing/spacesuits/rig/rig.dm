@@ -161,7 +161,6 @@
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
 		if(islist(armor)) piece.armor = armor.Copy()
-		if(islist(armorsoak)) piece.armorsoak = armorsoak.Copy()
 
 	update_icon(1)
 
@@ -987,8 +986,8 @@
 		wearer_move_delay = world.time
 		return wearer.buckled.relaymove(wearer, direction)
 
-	if(istype(wearer.machine, /obj/machinery))
-		if(wearer.machine.relaymove(wearer, direction))
+	if(istype(wearer.get_current_machine(), /obj/machinery))
+		if(wearer.get_current_machine().relaymove(wearer, direction))
 			return
 
 	if(wearer.pulledby || wearer.buckled) // Wheelchair driving!

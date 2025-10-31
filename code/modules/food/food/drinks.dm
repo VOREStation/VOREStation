@@ -91,26 +91,22 @@
 		user = M
 
 	if(food_inserted_micros && food_inserted_micros.len)
-		if(M.can_be_drop_pred && M.food_vore && M.vore_selected)
-			for(var/mob/living/F in food_inserted_micros)
-				if(!F.can_be_drop_prey || !F.food_vore)
-					continue
+		for(var/mob/living/F in food_inserted_micros)
+			var/do_nom = FALSE
+			if(!reagents.total_volume)
+				do_nom = TRUE
+			else
+				var/nom_chance = (1 - (reagents.total_volume / volume))*100
+				if(prob(nom_chance))
+					do_nom = TRUE
 
+			if(do_nom)
+				if(!CanFoodVore(M, F))
+					continue
 				if(isanimal(M) && !F.allowmobvore && !M.ckey) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
 					continue
-
-				var/do_nom = FALSE
-
-				if(!reagents.total_volume)
-					do_nom = TRUE
-				else
-					var/nom_chance = (1 - (reagents.total_volume / volume))*100
-					if(prob(nom_chance))
-						do_nom = TRUE
-
-				if(do_nom)
-					F.forceMove(M.vore_selected)
-					food_inserted_micros -= F
+				F.forceMove(M.vore_selected)
+				food_inserted_micros -= F
 
 	if(!reagents.total_volume && changed)
 		M.visible_message(span_notice("[M] finishes drinking from \the [src]."),span_notice("You finish drinking from \the [src]."))
