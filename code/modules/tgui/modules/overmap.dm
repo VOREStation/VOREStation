@@ -133,7 +133,7 @@
 			return FALSE
 		else if(!viewing_overmap(ui.user))
 			if(!viewers) viewers = list() // List must exist for pass by reference to work
-			start_coordinated_remoteview(ui.user, linked, viewers)
+			start_coordinated_remoteview(ui.user, linked, viewers, /datum/remote_view_config/overmap_ship_control)
 		else
 			ui.user.reset_perspective()
 		return TRUE
@@ -403,7 +403,7 @@
 				return FALSE
 			else  if(!viewing_overmap(ui.user))
 				if(!viewers) viewers = list()
-				start_coordinated_remoteview(ui.user, linked, viewers)
+				start_coordinated_remoteview(ui.user, linked, viewers, /datum/remote_view_config/overmap_ship_control)
 			else
 				ui.user.reset_perspective()
 			. = TRUE
@@ -472,3 +472,23 @@
 	return
 /datum/tgui_module/ship/fullmonty/attempt_hook_up()
 	return
+
+////
+////  Settings for remote view
+////
+/datum/remote_view_config/overmap_ship_control
+	relay_movement = TRUE
+
+/datum/remote_view_config/overmap_ship_control/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, direction)
+	var/datum/tgui_module/ship/tgui_owner = owner_component.get_coordinator()
+	if(tgui_owner?.linked)
+		return tgui_owner.relaymove(host_mob, direction)
+	return FALSE
+
+/datum/remote_view_config/overmap_ship_control/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
+	var/datum/tgui_module/ship/tgui_owner = owner_component.get_coordinator()
+	if(!tgui_owner)
+		return
+	if(get_dist(host_mob, tgui_owner.tgui_host()) > 1 || !tgui_owner.linked)
+		host_mob.reset_perspective()
+		return

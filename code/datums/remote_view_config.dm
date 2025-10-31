@@ -14,6 +14,8 @@
 /datum/remote_view_config/proc/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, datum/coordinator, atom/movable/remote_view_target, direction)
 	SIGNAL_HANDLER
 	// By default, we ask our remote_view_target to handle relaymove for us.
+	if(!remote_view_target)
+		return FALSE
 	return remote_view_target.relaymove(host_mob, direction)
 
 /// Handles visual changes to mob's hud or flags when in use, it is fired every life tick.
@@ -36,7 +38,6 @@
 
 /// Remote view that respects camera vision flags and checking for functionality of the camera.
 /datum/remote_view_config/camera_standard
-	forbid_movement = TRUE
 
 /datum/remote_view_config/camera_standard/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
 	var/obj/machinery/camera/view_camera = owner_component.get_target()

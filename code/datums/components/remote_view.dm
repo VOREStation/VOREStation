@@ -53,7 +53,9 @@
 		RegisterSignal(remote_view_target, COMSIG_QDELETING, PROC_REF(handle_endview))
 		RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
 		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
-	// Update the mob's vision right away
+
+/datum/component/remote_view/RegisterWithParent()
+	// Update the mob's vision after we attach.
 	host_mob.handle_vision()
 
 /datum/component/remote_view/Destroy(force)
