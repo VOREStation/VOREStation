@@ -4008,6 +4008,7 @@
 #include "code\modules\power\cable_heavyduty.dm"
 #include "code\modules\power\cell.dm"
 #include "code\modules\power\debug_items.dm"
+#include "code\modules\power\fusion_coil.dm"
 #include "code\modules\power\generator.dm"
 #include "code\modules\power\gravitygenerator_vr.dm"
 #include "code\modules\power\grid_checker.dm"
