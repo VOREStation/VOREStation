@@ -1,7 +1,7 @@
 /datum/remote_view_config
 	// Signal config for remote view component. This controls what signals will be subbed to during init.
 	var/forbid_movement = TRUE
-	var/relay_movement = TRUE
+	var/relay_movement = FALSE
 	// Status effects that will knock us out of remote view
 	var/will_death = TRUE
 	var/will_stun = TRUE
@@ -35,6 +35,10 @@
 /// Remote view that allows moving without clearing the remote view.
 /datum/remote_view_config/allow_movement
 	forbid_movement = FALSE
+
+/// Remote view that relays movement to the remote_view_target
+/datum/remote_view_config/relay_movement
+	relay_movement = TRUE
 
 /// Remote view that respects camera vision flags and checking for functionality of the camera.
 /datum/remote_view_config/camera_standard
