@@ -70,6 +70,11 @@
 	desc = "A hefty wooden crate displaying the logo of Donk-Soft. It's rather heavy."
 	starts_with = list(/obj/machinery/vending/donksoft)
 
+/obj/structure/largecrate/lasertag_turrets
+	name = "lasertag turret crate"
+	desc = "A hefty wooden crate displaying the logo of Laz-co. It's rather heavy."
+	starts_with = list(/obj/machinery/porta_turret/lasertag/blue, /obj/machinery/porta_turret/lasertag/red, /obj/machinery/porta_turret/lasertag/omni)
+
 /obj/structure/largecrate/vehicle
 	name = "vehicle crate"
 	desc = "Wulf Aeronautics says it comes in a box for the consumer's sake... How is this so light?"

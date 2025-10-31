@@ -55,18 +55,35 @@
 	containertype = /obj/structure/largecrate/donksoftvendor
 	containername = "\improper Donk-Soft vendor crate"
 
+/datum/supply_pack/recreation/lasertag_turrets
+	name = "Lasertag Turrets"
+	desc = "A set of one lasertag turret for each faction, plus an omni turret!"
+	contains = list()
+	cost = 25 //It's all fun and games!
+	containertype = /obj/structure/largecrate/lasertag_turrets
+	containername = "Lasertag Turrets"
+
 /datum/supply_pack/recreation/lasertag
 	name = "Lasertag equipment"
-	desc = "A standard set of Laser Tag equipment."
+	desc = "A standard set of Laser Tag equipment. Contains red, blue, and omni team gear."
 	contains = list(
-			/obj/item/gun/energy/lasertag/red,
-			/obj/item/clothing/suit/redtag,
-			/obj/item/gun/energy/lasertag/blue,
-			/obj/item/clothing/suit/bluetag
+		/obj/item/gun/energy/lasertag/omni = 5,
+		/obj/item/gun/energy/lasertag/blue = 5,
+		/obj/item/gun/energy/lasertag/red = 5,
+		/obj/item/clothing/suit/lasertag/omni = 5,
+		/obj/item/clothing/suit/lasertag/bluetag = 5,
+		/obj/item/clothing/suit/lasertag/redtag = 5,
+		/obj/item/lasertagknife = 5,
+		/obj/item/lasertagknife/blue = 5,
+		/obj/item/lasertagknife/red = 5,
+		/obj/item/mine/lasertag/all = 15,
+		/obj/item/mine/lasertag/red = 5,
+		/obj/item/mine/lasertag/omni = 5,
+		/obj/item/mine/lasertag/blue = 5
 			)
-	containertype = /obj/structure/closet/crate/ward
+	containertype = /obj/structure/closet/lasertag/omni
 	containername = "Lasertag Supplies"
-	cost = 10
+	cost = 35 //You get a lot of equipment! It costs a goot bit!
 
 /datum/supply_pack/recreation/artscrafts
 	name = "Arts and Crafts supplies"

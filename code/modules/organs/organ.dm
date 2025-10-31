@@ -354,6 +354,9 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
 
+/obj/item/organ/proc/break_organ() //can't name this break because it's a reserved word
+	damage = max(damage, min_broken_damage)
+
 /obj/item/organ/proc/robotize() //Being used to make robutt hearts, etc
 	robotic = ORGAN_ROBOT
 	src.status &= ~ORGAN_BROKEN
