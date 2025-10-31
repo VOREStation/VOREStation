@@ -186,7 +186,8 @@
 
 /datum/component/remote_view/proc/handle_relay_movement(datum/source, direction)
 	SIGNAL_HANDLER
-	PROTECTED_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	return settings.handle_relay_movement(src, host_mob, direction)
 
 /datum/component/remote_view/proc/handle_mob_vision_update(datum/source)
