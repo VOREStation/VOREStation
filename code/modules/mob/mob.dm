@@ -308,7 +308,7 @@
 	if(isitem(loc) || isbelly(loc)) // Requires more careful handling than structures because they are held by mobs
 		AddComponent(/datum/component/remote_view/mob_holding_item, focused_on = loc, vconfig_path = null)
 		return TRUE
-	if(loc.flags & REMOTEVIEW_ON_ENTER) // Handle atoms that begin a remote view upon entering them. By default these will relay movement to the object, to mirror old var/machine behaviors
+	if(loc.flags & REMOTEVIEW_ON_ENTER) // Handle atoms that begin a remote view upon entering them.
 		AddComponent(/datum/component/remote_view, focused_on = loc, vconfig_path = null)
 		return TRUE
 	return FALSE
