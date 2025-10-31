@@ -109,9 +109,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 */
 #define TRAIT_NODROP            "nodrop"
 #define TRAIT_DISRUPTED			"disrupted"
+#define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 /*
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
-#define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 
 //quirk traits
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"

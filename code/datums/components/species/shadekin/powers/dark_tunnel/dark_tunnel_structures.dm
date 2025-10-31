@@ -24,7 +24,7 @@ GLOBAL_LIST_BOILERPLATE(all_darkportal_minions, /obj/structure/dark_portal/minio
 			to_check.Stun(10)
 			return
 
-	do_teleport(M, locked, precision, local = FALSE, bohsafe = TRUE)
+	do_teleport(M, locked, precision, channel = TELEPORT_CHANNEL_QUANTUM)
 
 	if(one_time_use)
 		one_time_use = 0

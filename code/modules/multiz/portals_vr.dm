@@ -135,9 +135,9 @@
 			to_chat(M, span_notice("Something blocks your way."))
 			return
 		temptarg = pick(possible_turfs)
-		do_safe_teleport(M, temptarg, 0)
+		do_teleport(M, temptarg)
 	else if (istype(M, /atom/movable))
-		do_safe_teleport(M, target, 0)
+		do_teleport(M, target)
 
 /obj/structure/portal_event/Destroy()
 	if(target)
