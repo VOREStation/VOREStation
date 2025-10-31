@@ -402,7 +402,6 @@
 		to_chat(user, span_warning("\The [src] is broken."))
 		return
 
-	user.set_machine(src)
 	wires.Interact(user)
 
 /obj/machinery/camera/proc/add_network(var/network_name)

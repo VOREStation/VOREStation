@@ -196,8 +196,11 @@
 /mob/living/silicon/pai/cancel_camera()
 	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
-	src.reset_perspective()
-	src.cameraFollow = null
+	reset_perspective()
+
+/mob/living/silicon/pai/reset_perspective(atom/new_eye)
+	. = ..()
+	current = null
 
 // Procs/code after this point is used to convert the stationary pai item into a
 // mobile pai mob. This also includes handling some of the general shit that can occur
