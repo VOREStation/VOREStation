@@ -358,3 +358,8 @@
   - bugfix: doppler arrays behave better with multiz explosions
   - bugfix: wizard spells not being applied to the mind datum correctly after the
       first spell is learned
+2025-10-31:
+  Diana:
+  - bugfix: Ian storm now properly uses the correct facility type
+  Will:
+  - bugfix: non-legacy instruments should now play music
