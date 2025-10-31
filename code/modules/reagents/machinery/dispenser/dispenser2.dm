@@ -202,6 +202,20 @@
 				container = null
 			. = TRUE
 
+		if("import_config")
+			var/list/our_data = params["config"]
+			if(!islist(our_data))
+				return FALSE
+			var/list/new_recipes = list()
+			for(var/key, value in our_data)
+				if(istext(key) && islist(value))
+					for(var/list/steps in value)
+						if(istext(steps["id"]) && isnum(steps["amount"]))
+							new_recipes[key] += list(list("id" = steps["id"], "amount" = steps["amount"]))
+			if(length(new_recipes))
+				saved_recipes = new_recipes
+			. = TRUE
+
 		if("record_recipe")
 			recording_recipe = list()
 			. = TRUE
@@ -260,7 +274,7 @@
 					var/amount_actually_dispensed = C.reagents.trans_to(container, dispense_amount)
 					if(dispense_amount != amount_actually_dispensed)
 						visible_message(span_warning("[src] buzzes."), span_warning("You hear a faint buzz."))
-						to_chat(ui.user, span_warning("[src] was only able to dispense [amount_actually_dispensed]u out of [dispense_amount]u requested of <b>[label]</b>!"))
+						to_chat(ui.user, span_warning("[src] was only able to dispense [amount_actually_dispensed ? amount_actually_dispensed : 0]u out of [dispense_amount]u requested of <b>[label]</b>!"))
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						break
 			else

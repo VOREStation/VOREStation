@@ -150,16 +150,18 @@
 		if("import_config")
 			. = TRUE
 			var/our_data = params["config"]
-			var/imported_color = sanitize_hexcolor(our_data["base_color"])
-			if(imported_color)
-				base_color = imported_color
-			set_new_name(our_data["name"])
+			base_color = sanitize_hexcolor(our_data["base_color"])
+			var/new_name = sanitize_name(our_data["name"])
+			if(new_name)
+				set_new_name(new_name)
 			added_overlays.Cut()
 			if(!possible_overlays)
 				return
 			for(var/overlay in our_data["overlays"])
 				if(possible_overlays.Find(overlay["icon_state"]))
-					added_overlays[overlay["icon_state"]] = list( color = overlay["color"], alpha = overlay["alpha"] )
+					var/new_color = sanitize_hexcolor(overlay["color"])
+					var/new_alpha = CLAMP(text2num(overlay["alpha"]), 0, 255)
+					added_overlays[overlay["icon_state"]] = list(color = new_color, alpha = new_alpha)
 			update_icon()
 
 		if("clear")
