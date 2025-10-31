@@ -296,7 +296,7 @@
 			return
 	else if(isliving(source))
 		var/mob/living/L = source
-		if(gargoyle.throw_vore && L.throw_vore && gargoyle.can_be_drop_pred && L.can_be_drop_prey)
+		if(CanThrowVore(gargoyle, L))
 			var/drop_prey_temp = FALSE
 			if(gargoyle.can_be_drop_prey)
 				drop_prey_temp = TRUE
