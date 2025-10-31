@@ -79,17 +79,17 @@ SUBSYSTEM_DEF(explosions)
 	// We've handled the actual explosions, it's time to wrap up everything else.
 	// send signals to all machines scanning for them
 	for(var/list/time_dat in currentsignals)
-		var/x0 	= time_dat[1]
-		var/y0 	= time_dat[2]
-		var/z0 	= time_dat[3]
+		var/turf/epicenter = locate(time_dat[1],time_dat[2],time_dat[3])
+		if(!epicenter)
+			continue
+		var/z_transfer			= time_dat[8]
+		if(z_transfer != (UP|DOWN)) // Only the initial explosion in a multiz explosion transfers both up and down!
+			continue
 		var/devastation_range 	= time_dat[4]
 		var/heavy_impact_range 	= time_dat[5]
 		var/light_impact_range 	= time_dat[6]
-		var/tim 				= time_dat[7]
-		for(var/i,i<=GLOB.doppler_arrays.len,i++)
-			var/obj/machinery/doppler_array/Array = GLOB.doppler_arrays[i]
-			if(Array)
-				Array.sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range, tim - world.time)
+		var/took 				= (world.time - time_dat[7]) / (1 SECOND) // Horrifyingly, this has always been server performance dependant. Should really only be used for cosmetic stuff.
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, took)
 	currentsignals.Cut()
 
 	// return to setup mode... Unless...
@@ -217,7 +217,7 @@ SUBSYSTEM_DEF(explosions)
 		currentrun["[x0].[y0].[z0]"] = list(x0,y0,z0,pwr,direction,max_starting)
 
 // Queue explosion event, call this from explosion() ONLY
-/datum/controller/subsystem/explosions/proc/append_explosion(var/turf/epicenter,var/pwr,var/devastation_range,var/heavy_impact_range,var/light_impact_range,var/flash_range)
+/datum/controller/subsystem/explosions/proc/append_explosion(turf/epicenter, pwr, devastation_range, heavy_impact_range, light_impact_range, flash_range, z_transfer)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(pwr <= 0)
 		return
@@ -245,7 +245,7 @@ SUBSYSTEM_DEF(explosions)
 					pending_explosions["[T.x].[T.y].[T.z]"] = list(T.x,T.y,T.z,rad_power,direction,max_starting)
 
 	// send signals to dopplers
-	explosion_signals.Add(list( list(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,world.time) )) // append a list in a list. Needed so that the data list doesn't get merged into the list of datalists
+	explosion_signals.Add(list( list(x0, y0, z0, devastation_range, heavy_impact_range, light_impact_range, world.time, z_transfer))) // append a list in a list. Needed so that the data list doesn't get merged into the list of datalists
 
 	// BOINK! Time to wake up sleeping beauty!
 	wake_and_defer_subsystem_updates(devastation_range >= 8 || heavy_impact_range >= 16 || light_impact_range >= 20)
@@ -336,4 +336,4 @@ SUBSYSTEM_DEF(explosions)
 
 	// Queue explosion event
 	var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
-	SSexplosions.append_explosion(epicenter,power,devastation_range,heavy_impact_range,light_impact_range,flash_range)
+	SSexplosions.append_explosion(epicenter,power,devastation_range,heavy_impact_range,light_impact_range,flash_range,z_transfer)

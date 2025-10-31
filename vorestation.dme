@@ -303,6 +303,7 @@
 #include "code\_helpers\unsorted_vr.dm"
 #include "code\_helpers\verbs.dm"
 #include "code\_helpers\view.dm"
+#include "code\_helpers\vore.dm"
 #include "code\_helpers\weakref.dm"
 #include "code\_helpers\icons\flatten.dm"
 #include "code\_helpers\logging\_logging.dm"

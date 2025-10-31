@@ -1,6 +1,0 @@
-author: "ReoDaProtovali"
-delete-after: True
-changes:
-  - rscdel: "Removed Armorsoak. no more flat damage reduction after percentage damage reduction"
-  - qol: "made a lot of basic simplemobs less tanky as a side effect, I guess? A lot of mobs had armorsoak when they really shouldn't have."
-  - balance: "probably affects combat a bit, atleast for exploration, some mobs will be easier to kill, while padded exploration suits wont protect as much."
