@@ -8791,6 +8791,13 @@
 	dir = 8;
 	pixel_x = 30
 	},
+/obj/item/fusion_coil{
+	pixel_x = 6
+	},
+/obj/item/fusion_coil{
+	pixel_x = -6
+	},
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "awC" = (

@@ -15,6 +15,14 @@
 	containertype = /obj/structure/closet/crate/galaksi
 	containername = "Replacement lights"
 
+/datum/supply_pack/eng/fusion_coils
+	name = "Fusion Coils (SMES Recharge)"
+	desc = "A pair of single-use heavy-duty fusion coils, for recharging depleted SMES units."
+	contains = list(/obj/item/fusion_coil, /obj/item/fusion_coil)
+	cost = 150
+	containertype = /obj/structure/closet/crate/einstein
+	containername = "Fusion Coil crate"
+
 /datum/supply_pack/eng/smescoil
 	name = "Superconducting Magnetic Coil"
 	desc = "A single standard superconducting magnetic coil."

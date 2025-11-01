@@ -4132,7 +4132,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/reagent_containers/spray/cleaner,
+/obj/item/fusion_coil{
+	pixel_x = 6
+	},
+/obj/item/fusion_coil{
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/workshop)
 "iJ" = (

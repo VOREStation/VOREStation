@@ -11457,6 +11457,13 @@
 /obj/machinery/requests_console/preset/engineering{
 	pixel_x = 30
 	},
+/obj/structure/table/reinforced,
+/obj/item/fusion_coil{
+	pixel_x = 6
+	},
+/obj/item/fusion_coil{
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "zw" = (
