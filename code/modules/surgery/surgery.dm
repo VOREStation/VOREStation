@@ -212,7 +212,7 @@
 	// Not staying still fails you too.
 	if(success)
 		var/calc_duration = rand(selected_surgery.min_duration, selected_surgery.max_duration)
-		calc_duration *= CLAMP((100-cleanliness)/10, 1, 5)
+		calc_duration *= CLAMP((100-cleanliness)/10 + 1, 1, 10)
 		if(!do_mob(user, M, calc_duration * toolspeed, zone, exclusive = TRUE))
 			success = FALSE
 			to_chat(user, span_warning("You must remain close to and keep focused on your patient to conduct surgery."))
