@@ -300,11 +300,6 @@
 		status = newstatus
 		update_coverage()
 
-/obj/machinery/camera/check_eye(mob/user)
-	if(!can_use()) return -1
-	if(isXRay()) return SEE_TURFS|SEE_MOBS|SEE_OBJS
-	return 0
-
 /obj/machinery/camera/update_icon()
 	if (!status || (stat & BROKEN))
 		icon_state = "[initial(icon_state)]1"
@@ -407,7 +402,6 @@
 		to_chat(user, span_warning("\The [src] is broken."))
 		return
 
-	user.set_machine(src)
 	wires.Interact(user)
 
 /obj/machinery/camera/proc/add_network(var/network_name)

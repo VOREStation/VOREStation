@@ -92,7 +92,6 @@
 /obj/item/assembly/attack_self(mob/user as mob)
 	if(!user)
 		return 0
-	user.set_machine(src)
 	tgui_interact(user)
 	return 1
 

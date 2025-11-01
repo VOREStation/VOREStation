@@ -281,12 +281,6 @@
 /obj/item/uav/proc/remove_master(var/mob/living/M)
 	LAZYREMOVE(masters, WEAKREF(M))
 
-/obj/item/uav/check_eye()
-	if(state == UAV_ON)
-		return 0
-	else
-		return -1
-
 /obj/item/uav/proc/start_hover()
 	if(!ion_trail.on) //We'll just use this to store if we're floating or not
 		ion_trail.start()

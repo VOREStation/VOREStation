@@ -67,22 +67,13 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 // Management of mob view displacement. look to shift view to the ship on the overmap; unlook to shift back.
 
 /obj/machinery/computer/ship/look(var/mob/user)
-	apply_visual(user)
 	if(linked.real_appearance)
 		user.client?.images += linked.real_appearance
-	user.set_machine(src)
-	if(isliving(user))
-		var/mob/living/L = user
-		L.handle_vision()
 	user.set_viewsize(world.view + extra_view)
 
 /obj/machinery/computer/ship/unlook(var/mob/user)
-	user.unset_machine()
 	if(linked && linked.real_appearance && user.client)
 		user.client.images -= linked.real_appearance
-	if(isliving(user))
-		var/mob/living/L = user
-		L.handle_vision()
 	user.set_viewsize() // reset to default
 
 /obj/machinery/computer/ship/proc/viewing_overmap(mob/user)
@@ -91,13 +82,6 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 /obj/machinery/computer/ship/tgui_close(mob/user)
 	. = ..()
 	user.reset_perspective()
-
-/obj/machinery/computer/ship/check_eye(var/mob/user)
-	if(user.blinded || !linked)
-		user.reset_perspective()
-		return -1
-	else
-		return 0
 
 /obj/machinery/computer/ship/sensors/Destroy()
 	sensors = null

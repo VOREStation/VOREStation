@@ -557,7 +557,6 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
 	if (!C.can_use() || stat || (get_dist(C, src) > 1 || !check_current_machine(src) || blinded || !canmove))
 		return 0
-	check_eye(src)
 	return 1
 
 /mob/living/silicon/ai/switch_to_camera(var/obj/machinery/camera/C)
