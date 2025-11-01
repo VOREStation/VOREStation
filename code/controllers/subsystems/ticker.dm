@@ -67,6 +67,8 @@ SUBSYSTEM_DEF(ticker)
 
 	/// ID of round reboot timer, if it exists
 	var/reboot_timer = null
+	/// ID of round countdown timer, if it exists
+	var/countdown_timer = null
 
 	/// ### LEGACY VARS ###
 	/// Default time to wait before rebooting in desiseconds.
@@ -108,7 +110,7 @@ SUBSYSTEM_DEF(ticker)
 			//lobby stats for statpanels
 			if(isnull(timeLeft))
 				timeLeft = max(0,start_at - world.time)
-				to_chat(world, span_notice("Round starting in [round(timeLeft / 10)] Seonds!"))
+				to_chat(world, span_notice("Round starting in [round(timeLeft / 10)] Seconds!"))
 			totalPlayers = LAZYLEN(GLOB.new_player_list)
 			totalPlayersReady = 0
 			total_admins_ready = 0
@@ -124,7 +126,10 @@ SUBSYSTEM_DEF(ticker)
 			//countdown
 			if(timeLeft < 0)
 				return
-			timeLeft -= wait
+
+			// Do not count down the time, if the game start is delayed
+			if (GLOB.round_progressing)
+				timeLeft -= wait
 
 			//if(timeLeft <= 300 && !tipped)
 			//	send_tip_of_the_round(world, selected_tip)
@@ -208,9 +213,34 @@ SUBSYSTEM_DEF(ticker)
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
 
-	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
+	//otherwise round_start_time would be 0 for the signals
+	round_start_time = world.time
+	GLOB.round_start_time = REALTIMEOFDAY
 	SEND_SIGNAL(src, COMSIG_TICKER_ROUND_STARTING, world.time)
-	callHook("roundstart")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ROUND_START)
+	SSwebhooks.send(WEBHOOK_ROUNDSTART, list("url" = get_world_url()))
+
+	// Spawn randomized items
+	for(var/id in multi_point_spawns)
+		var/list/spawn_points = multi_point_spawns[id]
+		var/obj/random_multi/rm = pickweight(spawn_points)
+		rm.generate_items()
+		for(var/entry in spawn_points)
+			qdel(entry)
+
+	// Place empty AI cores once we know who is playing AI
+	for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
+		if(S.name != JOB_AI)
+			continue
+		if(locate(/mob/living) in S.loc)
+			continue
+		GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(get_turf(S))
+
+	// Final init, these things need round to start for their info to be ready
+	for(var/obj/item/paper/dockingcodes/dcp as anything in GLOB.papers_dockingcode)
+		dcp.populate_info()
+	for(var/obj/machinery/power/solar_control/SC as anything in GLOB.solars_list)
+		SC.auto_start()
 
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
@@ -321,7 +351,8 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/post_game_tick()
 	switch(end_game_state)
 		if(END_GAME_READY_TO_END)
-			callHook("roundend")
+			callHook("roundend") // TODO, remove all hooks that use this in favor of global signal
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ROUND_END)
 
 			if (mode.station_was_nuked)
 				feedback_set_details("end_proper", "nuke")
@@ -457,7 +488,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) SECONDS
 		if(delay >= 60 SECONDS)
-			addtimer(CALLBACK(src, PROC_REF(announce_countodwn), delay), 60 SECONDS)
+			countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), delay), 60 SECONDS)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
@@ -478,16 +509,17 @@ SUBSYSTEM_DEF(ticker)
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2)) //don't wait forever
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(reboot_callback), reason, end_string), delay - (world.time - start_wait), TIMER_STOPPABLE)
 
-/datum/controller/subsystem/ticker/proc/announce_countodwn(remaining_time)
+/datum/controller/subsystem/ticker/proc/announce_countdown(remaining_time)
 	remaining_time -= 60 SECONDS
 	if(remaining_time >= 60 SECONDS)
 		to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(remaining_time)]."))
-		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), remaining_time), 60 SECONDS)
+		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), remaining_time), 60 SECONDS)
 		return
 	if(remaining_time > 0)
-		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), 0), remaining_time)
+		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), 0), remaining_time)
 		return
-	to_chat(world, span_boldannounce("Rebooting World."))
+	if(!delay_end)
+		to_chat(world, span_boldannounce("Rebooting World."))
 
 /datum/controller/subsystem/ticker/proc/reboot_callback(reason, end_string)
 	if(end_string)
@@ -510,4 +542,24 @@ SUBSYSTEM_DEF(ticker)
 	to_chat(world, span_boldannounce("An admin has delayed the round end."))
 	deltimer(reboot_timer)
 	reboot_timer = null
+	if(countdown_timer)
+		deltimer(countdown_timer)
+		countdown_timer = null
 	return TRUE
+
+/**
+ * Helper proc that delays the roundend for us.
+ * This proc will trigger a reboot if the delay is 'toggled off'.
+ * Use with care.
+ */
+/datum/controller/subsystem/ticker/proc/toggle_delay()
+	delay_end = !delay_end
+
+	if(countdown_timer)
+		deltimer(countdown_timer)
+		countdown_timer = null
+	if(reboot_timer)
+		deltimer(reboot_timer)
+		reboot_timer = null
+	else
+		Reboot("World reboot after administrative delay.")

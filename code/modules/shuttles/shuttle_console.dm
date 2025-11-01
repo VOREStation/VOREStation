@@ -155,13 +155,6 @@
 /obj/machinery/computer/shuttle_control/emp_act()
 	return
 
-
-GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
-/hook/roundstart/proc/populate_dockingcodes()
-	for(var/obj/item/paper/dockingcodes/dcp as anything in GLOB.papers_dockingcode)
-		dcp.populate_info()
-	return TRUE
-
 /obj/item/paper/dockingcodes
 	name = "Docking Codes"
 	var/codes_from_z = null //So you can put codes from the station other places to give to antags or whatever
