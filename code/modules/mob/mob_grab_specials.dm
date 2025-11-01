@@ -39,15 +39,18 @@
 		if(E.status & ORGAN_DEAD)
 			to_chat(user, span_warning("[E] is decaying!"))
 			bad = 1
-		if(!bad)
-			to_chat(user, span_notice("[H]'s skin is normal."))
 		if(E.status & ORGAN_DEAD) //this is also infection level 3
 			to_chat(user, span_bolddanger("[H]'s [E.name] is gangreous and completely dead!"))
+			bad = 1
 		else if(E.germ_level > INFECTION_LEVEL_ONE)
 			if(E.germ_level > INFECTION_LEVEL_TWO)
 				to_chat(user, span_danger("[H]'s [E.name] shows signs of a severe infection!"))
+				bad = 1
 			else
 				to_chat(user, span_warning("[H] shows signs of infection in the [E.name]."))
+				bad = 1
+		if(!bad)
+			to_chat(user, span_notice("[H]'s skin is normal."))
 
 /obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)
