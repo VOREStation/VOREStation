@@ -1429,3 +1429,8 @@
 /datum/sprite_accessory/tail/taur/long_lizard/scaled
 	name = "Large Dragon Tail/W scales"
 	extra_overlay = "big_liz_mark"
+
+/datum/sprite_accessory/tail/taur/treeoak_roots
+	name = "Tree Roots (Oak)"
+	icon_state = "tree_oak_roots"
+	can_ride = 0
