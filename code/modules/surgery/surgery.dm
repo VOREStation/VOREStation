@@ -147,6 +147,7 @@
 		to_chat(user, span_warning("You can't operate on this area while surgery is already in progress."))
 		return TRUE
 	///How 'clean' the surace we're doing surgery on is.
+	///100 = fully clean, 0 = filthy
 	var/cleanliness = M.get_surgery_cleanliness(user)
 	if(isnull(cleanliness)) //They're standing upright.
 		return FALSE
@@ -211,6 +212,7 @@
 	// Not staying still fails you too.
 	if(success)
 		var/calc_duration = rand(selected_surgery.min_duration, selected_surgery.max_duration)
+		calc_duration *= CLAMP((100-cleanliness)/10, 1, 5)
 		if(!do_mob(user, M, calc_duration * toolspeed, zone, exclusive = TRUE))
 			success = FALSE
 			to_chat(user, span_warning("You must remain close to and keep focused on your patient to conduct surgery."))

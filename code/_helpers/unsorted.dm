@@ -1099,7 +1099,7 @@ GLOBAL_LIST_INIT(common_tools, list(
 			return 0
 		//Turf generally start with a germ level of 110 and cap out at 200.
 		//Can use sterilizine to lower germs of the floor, or space cleaner.
-		cleanliness = CLAMP(100 - T.germ_level, 0, 50)
+		cleanliness = CLAMP(100 - T.germ_level, 0, 25)
 
 	return cleanliness
 
