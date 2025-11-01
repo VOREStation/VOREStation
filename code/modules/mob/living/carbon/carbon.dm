@@ -224,7 +224,7 @@
 					status += "necrotic"
 				else if(org.germ_level > INFECTION_LEVEL_TWO)
 					status += "feels like it's on fire!"
-				else if(org.germ_level > INFECTION_LEVEL_ONE)
+				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
 					status += "warm to the touch"
 
 				if(!org.is_usable() || org.is_dislocated())
