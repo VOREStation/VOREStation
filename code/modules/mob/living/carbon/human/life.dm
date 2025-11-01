@@ -1968,21 +1968,21 @@
 		var/list/current_medications = list()
 		//Stuff in our stomach, such as coffee, nicotine, 13loko, etc.
 		for(var/datum/reagent/R in ingested.reagent_list)
-			if(R.id in tachycardics && !(R.id in current_medications))
+			if((R.id in tachycardics) && !(R.id in current_medications))
 				if(temp < PULSE_THREADY && temp != PULSE_NONE) //If we really push it, we can get our pulse to thready.
 					temp++
 					current_medications += R.id
-			if(R.id in bradycardics && !(R.id in current_medications))
+			if((R.id in bradycardics) && !(R.id in current_medications))
 				if(temp >= PULSE_NORM)
 					temp--
 					current_medications += R.id
 		//Stuff in our bloodstream. This is checked AFTER stomach so the heartstoppers can have their fun.
 		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.id in tachycardics && !(R.id in current_medications))
+			if((R.id in tachycardics) && !(R.id in current_medications))
 				if(temp < PULSE_THREADY && temp != PULSE_NONE) //We can reach a thready pulse, but only if we actually have a pulse.
 					temp++
 					current_medications += R.id
-			if(R.id in bradycardics && !(R.id in current_medications))
+			if((R.id in bradycardics) && !(R.id in current_medications))
 				if(temp >= PULSE_NORM) //Can get to PULSE_SLOW but never PULSE_NONE
 					temp--
 					current_medications += R.id
