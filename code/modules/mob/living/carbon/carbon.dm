@@ -226,7 +226,10 @@
 					status += "feels like it's on fire!"
 				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
 					status += "warm to the touch"
-
+				if(LAZYLEN(org.wounds))
+					for(var/datum/wound/W in org.wounds)
+						if(!W.internal)
+							status += "hurting with a slowly growing bruise"
 				if(!org.is_usable() || org.is_dislocated())
 					status += "dangling uselessly"
 				if(status.len)

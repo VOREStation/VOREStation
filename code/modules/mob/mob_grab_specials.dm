@@ -9,7 +9,7 @@
 	user.visible_message(span_notice("[user] starts inspecting [affecting]'s [E.name] carefully."))
 	if(!do_mob(user,H, 10))
 		to_chat(user, span_notice("You must stand still to inspect [E] for wounds."))
-	else if(E.wounds.len)
+	else if(LAZYLEN(E.wounds))
 		to_chat(user, span_warning("You find [E.get_wounds_desc()]"))
 	else
 		to_chat(user, span_notice("You find no visible wounds."))
@@ -49,6 +49,11 @@
 			else
 				to_chat(user, span_warning("[H] shows signs of infection in the [E.name]."))
 				bad = 1
+		if(LAZYLEN(E.wounds))
+			for(var/datum/wound/W in E.wounds)
+				if(W.internal)
+					to_chat(user, span_danger("You find a large, swelling hematoma in the skin")) //INTERNAL BLEEDING, BE VERY AFRAID.
+					break
 		if(!bad)
 			to_chat(user, span_notice("[H]'s skin is normal."))
 
