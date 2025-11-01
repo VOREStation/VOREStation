@@ -9,7 +9,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 1
 	active_power_usage = 5
-	surgery_odds = 100
+	surgery_cleanliness = 100
 	throwpass = 1
 	var/mob/living/carbon/human/victim = null
 	var/strapped = 0.0

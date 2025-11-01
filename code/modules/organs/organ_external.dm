@@ -81,6 +81,7 @@
 	var/cavity = 0
 	var/burn_stage = 0		//Surgical repair stage for burn.
 	var/brute_stage = 0		//Surgical repair stage for brute.
+	var/remove_necrosis = 0 //Surgical stage for necrosis removal.
 
 	// HUD element variable, see organ_icon.dm get_damage_hud_image()
 	var/image/hud_damage_image

@@ -1085,16 +1085,23 @@ GLOBAL_LIST_INIT(common_tools, list(
 	return .
 
 // Returns an instance of a valid surgery surface.
-/mob/living/proc/get_surgery_surface(mob/living/user)
+/mob/living/proc/get_surgery_cleanliness(mob/living/user)
 	if(!lying && user != src)
-		return null // Not lying down means no surface.
-	var/obj/surface = null
+		return null // Not lying down means no surface (blocks surgery)
+	var/cleanliness = 0
 	for(var/obj/O in loc) // Looks for the best surface.
-		if(O.surgery_odds)
-			if(!surface || surface.surgery_odds < O.surgery_odds)
-				surface = O
-	if(surface)
-		return surface
+		if(O.surgery_cleanliness)
+			if(!cleanliness || cleanliness < O.surgery_cleanliness)
+				cleanliness = O.surgery_cleanliness
+	if(!cleanliness) //We have no good objects on the turf. Time to check the floor!
+		var/turf/T = get_turf(src)
+		if(T.was_bloodied) //floor is contaminated
+			return 0
+		//Turf generally start with a germ level of 110 and cap out at 200.
+		//Can use sterilizine to lower germs of the floor, or space cleaner.
+		cleanliness = CLAMP(100 - T.germ_level, 0, 25)
+
+	return cleanliness
 
 /proc/reverse_direction(dir)
 	return GLOB.reverse_dir[dir]
