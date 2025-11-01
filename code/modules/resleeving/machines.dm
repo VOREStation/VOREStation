@@ -480,13 +480,15 @@
 	if(new_imp.handle_implant(occupant, BP_HEAD))
 		new_imp.post_implant(occupant)
 
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RESLEEVED_MIND, occupant, MR.mind_ref)
+
 	//Inform them and make them a little dizzy.
 	if(confuse_amount + blur_amount <= 16)
 		to_chat(occupant, span_notice("You feel a small pain in your head as you're given a new backup implant. Your new body feels comfortable already, however."))
 	else
 		to_chat(occupant, span_warning("You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least."))
 
-	occupant.confused = max(occupant.confused, confuse_amount)									// Apply immedeate effects
+	occupant.SetConfused(max(occupant.confused, confuse_amount))								// Apply immedeate effects
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
 
 	// Vore deaths get a fake modifier labeled as such
