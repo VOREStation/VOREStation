@@ -1,0 +1,5 @@
+author: "VictorZisthus"
+delete-after: True
+changes:
+  - qol: "Basic borg grippers can now use any floor tiling, as well as grab any leather product to enable tanning."
+  - qol: "Borg Sheet Grippers can now grab rods to enable reinforced floor tile production."
