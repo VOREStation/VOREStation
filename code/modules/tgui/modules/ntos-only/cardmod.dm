@@ -173,7 +173,7 @@
 			if(computer && program.can_run(ui.user, 1))
 				id_card.assignment = "Dismissed"	//VOREStation Edit: setting adjustment
 				id_card.access = list()
-				callHook("terminate_employee", list(id_card))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TERMINATE_EMPLOYEE_IDCARD, id_card)
 			. = TRUE
 		if("reg")
 			if(computer && program.can_run(ui.user, 1))
@@ -217,7 +217,7 @@
 					id_card.assignment = t1
 					id_card.rank = t1
 
-				callHook("reassign_employee", list(id_card))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, id_card)
 			. = TRUE
 		if("access")
 			if(computer && program.can_run(ui.user, 1))

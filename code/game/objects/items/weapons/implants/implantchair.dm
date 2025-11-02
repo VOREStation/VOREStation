@@ -8,6 +8,7 @@
 	density = TRUE
 	opacity = 0
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 
 	var/ready = 1
 	var/malfunction = 0
@@ -41,7 +42,6 @@
 	dat += span_bold("Implants:") + " [src.implant_list.len ? "[implant_list.len]" : "<A href='byond://?src=\ref[src];replenish=1'>Replenish</A>"]<BR>"
 	if(src.occupant)
 		dat += "[src.ready ? "<A href='byond://?src=\ref[src];implant=1'>Implant</A>" : "Recharging"]<BR>"
-	user.set_machine(src)
 
 	var/datum/browser/popup = new(user, "implant", "Implant")
 	popup.set_content(dat)

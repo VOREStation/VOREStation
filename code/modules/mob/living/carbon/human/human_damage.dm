@@ -214,15 +214,15 @@
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 
-/mob/living/carbon/human/Stun(amount)
+/mob/living/carbon/human/Stun(amount, ignore_canstun = FALSE)
 	if(HULK in mutations)	return
 	..()
 
-/mob/living/carbon/human/Weaken(amount)
+/mob/living/carbon/human/Weaken(amount, ignore_canstun = FALSE)
 	if(HULK in mutations)	return
 	..()
 
-/mob/living/carbon/human/Paralyse(amount)
+/mob/living/carbon/human/Paralyse(amount, ignore_canstun = FALSE)
 	if(HULK in mutations)	return
 	// Notify our AI if they can now control the suit.
 	if(wearing_rig && !stat && paralysis < amount) //We are passing out right this second.
@@ -331,28 +331,28 @@
 	else
 		..()
 
-/mob/living/carbon/human/Stun(var/amount)
+/mob/living/carbon/human/Stun(var/amount, ignore_canstun = FALSE)
 	if(amount > 0)	//only multiply it by the mod if it's positive, or else it takes longer to fade too!
 		amount = amount*species.stun_mod
 	..(amount)
 
-/mob/living/carbon/human/SetStunned(var/amount)
+/mob/living/carbon/human/SetStunned(var/amount, ignore_canstun = FALSE)
 	..()
 
-/mob/living/carbon/human/AdjustStunned(var/amount)
+/mob/living/carbon/human/AdjustStunned(var/amount, ignore_canstun = FALSE)
 	if(amount > 0) // Only multiply it if positive.
 		amount = amount*species.stun_mod
 	..(amount)
 
-/mob/living/carbon/human/Weaken(var/amount)
+/mob/living/carbon/human/Weaken(var/amount, ignore_canstun = FALSE)
 	if(amount > 0)	//only multiply it by the mod if it's positive, or else it takes longer to fade too!
 		amount = amount*species.weaken_mod
 	..(amount)
 
-/mob/living/carbon/human/SetWeakened(var/amount)
+/mob/living/carbon/human/SetWeakened(var/amount, ignore_canstun = FALSE)
 	..()
 
-/mob/living/carbon/human/AdjustWeakened(var/amount)
+/mob/living/carbon/human/AdjustWeakened(var/amount, ignore_canstun = FALSE)
 	if(amount > 0) // Only multiply it if positive.
 		amount = amount*species.weaken_mod
 	..(amount)
@@ -509,10 +509,10 @@ This function restores all organs.
 	return organs_by_name[zone]
 */
 
-/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/sharp = FALSE, var/edge = FALSE, var/obj/used_weapon = null, var/projectile = FALSE)
-	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, soaked, sharp, edge, used_weapon, projectile)
+/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = FALSE, var/edge = FALSE, var/obj/used_weapon = null, var/projectile = FALSE)
+	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, sharp, edge, used_weapon, projectile)
 	if(GLOB.Debug2)
-		log_world("## DEBUG: human/apply_damage() was called on [src], with [damage] damage, an armor value of [blocked], and a soak value of [soaked].")
+		log_world("## DEBUG: human/apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked].")
 	var/obj/item/organ/external/organ = null
 	if(isorgan(def_zone))
 		organ = def_zone
@@ -573,7 +573,7 @@ This function restores all organs.
 			if((damage > 25 && prob(20)) || (damage > 50 && prob(60)))
 				if(organ && organ.organ_can_feel_pain() && !isbelly(loc) && !istype(loc, /obj/item/dogborg/sleeper)) //VOREStation Add
 					emote("scream")
-		..(damage, damagetype, def_zone, blocked, soaked)
+		..(damage, damagetype, def_zone, blocked)
 		return 1
 
 	//Handle BRUTE and BURN damage
@@ -582,17 +582,11 @@ This function restores all organs.
 	if(blocked >= 100)
 		return 0
 
-	if(soaked >= damage)
-		return 0
-
 	if(!organ)	return 0
 
 	if(blocked)
 		blocked = (100-blocked)/100
 		damage = (damage * blocked)
-
-	if(soaked)
-		damage -= soaked
 
 	if(GLOB.Debug2)
 		log_world("## DEBUG: [src] was hit for [damage].")
@@ -636,5 +630,5 @@ This function restores all organs.
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 	updatehealth()
 	BITSET(hud_updateflag, HEALTH_HUD)
-	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, soaked, sharp, edge, used_weapon, projectile)
+	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, sharp, edge, used_weapon, projectile)
 	return 1

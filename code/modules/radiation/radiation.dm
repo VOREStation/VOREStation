@@ -22,6 +22,8 @@
 		qdel(src) // Decayed to nothing
 	else
 		rad_power = new_power
+		if(rad_power > 1e15) // Arbitrary cap to prevent going to infinity
+			rad_power = 1e15
 		if(!flat)
 			range = min(round(sqrt(rad_power / CONFIG_GET(number/radiation_lower_limit))), 31)  // R = rad_power / dist**2 - Solve for dist
 	return
