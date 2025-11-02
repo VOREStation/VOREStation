@@ -1,8 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - code_imp: "Adds a temporary shim component to aid in machine var removal on mobs"
-  - code_imp: "Implements COMSIG_LIVING_HANDLE_VISION"
-  - rscadd: "Implements COMSIG_LIVING_HANDLE_HUD"
-  - refactor: "cleaned up parent calls on handle_regular_hud_updates() and handle_vision() to better support signals"
-  - refactor: "cleaned out many set_machine() calls for things with tguis that don't alter your view"

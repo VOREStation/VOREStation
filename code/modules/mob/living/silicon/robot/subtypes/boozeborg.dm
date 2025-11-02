@@ -3,19 +3,6 @@
 
 // code/modules/mob/living/silicon/robot/robot_modules/station_vr.dm //tag so it shows up in gitsearch
 
-/*
-What Borgs are available is sadly handled in the above file in the proc
-
-/hook/startup/proc/robot_modules_vr()
-	robot_modules["Medihound"] = /obj/item/robot_module/robot/medihound
-	robot_modules["K9"] = /obj/item/robot_module/robot/knine
-	robot_modules["ERT"] = /obj/item/robot_module/robot/ert
-	robot_modules["Janihound"] = /obj/item/robot_module/robot/scrubpup
-	robot_modules["Sci-borg"] = /obj/item/robot_module/robot/science
-	robot_modules["Pupdozer"] = /obj/item/robot_module/robot/engiedog
-	return 1
-*/
-
 /obj/item/robot_module/robot/booze
 	name = "BoozeHound robot module"
 	channels = list("Service" = 1)
