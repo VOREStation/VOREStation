@@ -45,6 +45,8 @@
 		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
 	RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION, PROC_REF(handle_mob_vision_update))
 	// Hud overrides
+	if(settings.override_entire_hud)
+		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD, PROC_REF(handle_hud_override))
 	if(settings.override_health_hud)
 		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON, PROC_REF(handle_hud_health))
 	if(settings.override_darkvision_hud)
@@ -93,6 +95,8 @@
 		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
 	UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION)
 	// Hud overrides
+	if(settings.override_entire_hud)
+		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD)
 	if(settings.override_health_hud)
 		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON)
 	if(settings.override_darkvision_hud)
@@ -110,6 +114,8 @@
 	remote_view_target = null
 	// Clear settings
 	QDEL_NULL(settings)
+
+// Signal handlers
 
 /datum/component/remote_view/proc/handle_hostmob_moved(atom/source, atom/oldloc, direction, forced, movetime)
 	SIGNAL_HANDLER
@@ -204,11 +210,19 @@
 	RETURN_TYPE(null)
 	host_mob.reset_perspective()
 
+// Optional signal handlers for more advanced remote views
+
 /datum/component/remote_view/proc/handle_relay_movement(datum/source, direction)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	return settings.handle_relay_movement(src, host_mob, direction)
+
+/datum/component/remote_view/proc/handle_hud_override(datum/source)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	return settings.handle_hud_override(src, host_mob)
 
 /datum/component/remote_view/proc/handle_hud_health(datum/source)
 	SIGNAL_HANDLER
@@ -228,6 +242,8 @@
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
 	return settings.handle_apply_visuals(src, host_mob)
+
+// Accessors
 
 /datum/component/remote_view/proc/get_host()
 	RETURN_TYPE(/mob)

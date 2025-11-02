@@ -10,6 +10,7 @@
 	var/will_sleep = TRUE
 	var/will_blind = TRUE
 	// Hud overrides
+	var/override_entire_hud = FALSE // Overrides all others, only this needs to be set if you do a fully custom hud
 	var/override_health_hud = FALSE
 	var/override_darkvision_hud = FALSE
 
@@ -30,6 +31,11 @@
 /datum/remote_view_config/proc/handle_remove_visuals( datum/component/remote_view/owner_component, mob/host_mob)
 	SIGNAL_HANDLER
 	return
+
+/// Handles hud health indicator being replaced with a custom one (like showing the remote_view_target's health).
+/datum/remote_view_config/proc/handle_hud_override( datum/component/remote_view/owner_component, mob/host_mob)
+	SIGNAL_HANDLER
+	return COMSIG_COMPONENT_HANDLED_HUD
 
 /// Handles hud health indicator being replaced with a custom one (like showing the remote_view_target's health).
 /datum/remote_view_config/proc/handle_hud_health( datum/component/remote_view/owner_component, mob/host_mob)
