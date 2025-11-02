@@ -44,6 +44,11 @@
 	if(settings.relay_movement)
 		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
 	RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION, PROC_REF(handle_mob_vision_update))
+	// Hud overrides
+	if(settings.override_health_hud)
+		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON, PROC_REF(handle_hud_health))
+	if(settings.override_darkvision_hud)
+		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_DARKSIGHT, PROC_REF(handle_hud_darkvision))
 	// Recursive move component fires this, we only want it to handle stuff like being inside a paicard when releasing turf lock
 	if(isturf(focused_on))
 		RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
@@ -87,6 +92,11 @@
 	if(settings.relay_movement)
 		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
 	UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION)
+	// Hud overrides
+	if(settings.override_health_hud)
+		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON)
+	if(settings.override_darkvision_hud)
+		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_DARKSIGHT)
 	// Cleanup remote view
 	if(host_mob != remote_view_target) // If target is not ourselves
 		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
@@ -104,6 +114,7 @@
 /datum/component/remote_view/proc/handle_hostmob_moved(atom/source, atom/oldloc, direction, forced, movetime)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	if(!host_mob)
 		return
 	end_view()
@@ -112,6 +123,7 @@
 /datum/component/remote_view/proc/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	ASSERT(isturf(remote_view_target))
 	// This signal handler is for recursive move decoupling us from /datum/component/remote_view/mob_holding_item's turf focusing when dropped in an item like a paicard
 	// This signal is only hooked when we focus on a turf. Check the subtype for more info, this horrorshow took several days to make consistently behave.
@@ -124,12 +136,14 @@
 /datum/component/remote_view/proc/handle_forced_endview(datum/source)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	handle_endview(source)
 
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
+	RETURN_TYPE(null)
 	if(!host_mob)
 		return
 	end_view()
@@ -138,6 +152,7 @@
 /datum/component/remote_view/proc/handle_status_effects(datum/source, amount, ignore_canstun)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	if(!host_mob)
 		return
 	// We don't really care what effect was caused, just that it was increasing the value and thus negatively affecting us.
@@ -150,6 +165,7 @@
 /datum/component/remote_view/proc/on_reset_perspective(datum/source)
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
+	RETURN_TYPE(null)
 	if(!host_mob)
 		return
 	// Check if we're still remote viewing the SAME target!
@@ -161,6 +177,7 @@
 /datum/component/remote_view/proc/on_remotetarget_reset_perspective(datum/source)
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
+	RETURN_TYPE(null)
 	// Non-mobs can't do this anyway
 	if(!host_mob)
 		return
@@ -184,6 +201,7 @@
 
 /datum/component/remote_view/proc/end_view()
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	host_mob.reset_perspective()
 
 /datum/component/remote_view/proc/handle_relay_movement(datum/source, direction)
@@ -192,6 +210,19 @@
 	PRIVATE_PROC(TRUE)
 	return settings.handle_relay_movement(src, host_mob, direction)
 
+/datum/component/remote_view/proc/handle_hud_health(datum/source)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	return settings.handle_hud_health(src, host_mob)
+
+/datum/component/remote_view/proc/handle_hud_darkvision(datum/source)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	RETURN_TYPE(null)
+	PRIVATE_PROC(TRUE)
+	settings.handle_hud_darkvision(src, host_mob)
+
 /datum/component/remote_view/proc/handle_mob_vision_update(datum/source)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
@@ -199,12 +230,15 @@
 	return settings.handle_apply_visuals(src, host_mob)
 
 /datum/component/remote_view/proc/get_host()
+	RETURN_TYPE(/mob)
 	return host_mob
 
 /datum/component/remote_view/proc/get_target()
+	RETURN_TYPE(/atom)
 	return remote_view_target
 
 /datum/component/remote_view/proc/get_coordinator()
+	RETURN_TYPE(/atom)
 	return null // For subtype
 
 /datum/component/remote_view/proc/looking_at_target_already(atom/target)
