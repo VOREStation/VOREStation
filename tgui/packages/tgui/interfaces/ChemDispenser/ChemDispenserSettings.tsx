@@ -22,8 +22,7 @@ export const ChemDispenserSettings = (props: {
     props;
   return (
     <Section
-      //title="Settings"
-      title={'Settings'}
+      title="Settings"
       fill
     >
       <LabeledList>
