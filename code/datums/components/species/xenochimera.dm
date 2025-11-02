@@ -47,7 +47,7 @@
 
 /datum/component/xenochimera/proc/handle_regeneration()
 	if(revive_ready == REVIVING_NOW || revive_ready == REVIVING_DONE)
-		owner.stunned = 5
+		owner.SetStunned(5)
 		owner.canmove = 0
 		owner.does_not_breathe = TRUE
 		if(prob(2)) // 2% chance of playing squelchy noise while reviving, which is run roughly every 2 seconds/tick while regenerating.
