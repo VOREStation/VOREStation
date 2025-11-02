@@ -57,6 +57,7 @@
 /datum/component/remote_view/RegisterWithParent()
 	// Update the mob's vision after we attach.
 	host_mob.handle_vision()
+	host_mob.handle_regular_hud_updates()
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
@@ -94,6 +95,7 @@
 	// Update the mob's vision right away
 	settings.handle_remove_visuals(src, host_mob)
 	host_mob.handle_vision()
+	host_mob.handle_regular_hud_updates()
 	host_mob = null
 	remote_view_target = null
 	// Clear settings

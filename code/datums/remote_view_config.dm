@@ -36,6 +36,14 @@
 /datum/remote_view_config/allow_movement
 	forbid_movement = FALSE
 
+/// Remote view that ignores stuns and other status effects ending the view
+/datum/remote_view_config/effect_immune
+	will_stun = FALSE
+	will_weaken = FALSE
+	will_paralyze = FALSE
+	will_sleep = FALSE
+	will_blind = FALSE
+
 /// Remote view that relays movement to the remote_view_target
 /datum/remote_view_config/relay_movement
 	relay_movement = TRUE

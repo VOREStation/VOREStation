@@ -220,42 +220,6 @@
 	if(!.)
 		return
 
-	if (healths)
-		if (stat != 2)
-			if(istype(src,/mob/living/silicon/robot/drone))
-				switch(health)
-					if(35 to INFINITY)
-						healths.icon_state = "health0"
-					if(25 to 34)
-						healths.icon_state = "health1"
-					if(15 to 24)
-						healths.icon_state = "health2"
-					if(5 to 14)
-						healths.icon_state = "health3"
-					if(0 to 4)
-						healths.icon_state = "health4"
-					if(-35 to 0)
-						healths.icon_state = "health5"
-					else
-						healths.icon_state = "health6"
-			else
-				if(health >= 200)
-					healths.icon_state = "health0"
-				else if(health >= 150)
-					healths.icon_state = "health1"
-				else if(health >= 100)
-					healths.icon_state = "health2"
-				else if(health >= 50)
-					healths.icon_state = "health3"
-				else if(health >= 0)
-					healths.icon_state = "health4"
-				else if(health >= (-getMaxHealth()))
-					healths.icon_state = "health5"
-				else
-					healths.icon_state = "health6"
-		else
-			healths.icon_state = "health7"
-
 	if (syndicate)
 		for(var/datum/mind/tra in traitors.current_antagonists)
 			if(tra.current)
@@ -286,9 +250,9 @@
 			else
 				throw_alert("temp", /atom/movable/screen/alert/cold/robot, COLD_ALERT_SEVERITY_MODERATE)
 
-//Oxygen and fire does nothing yet!!
-//	if (oxygen) oxygen.icon_state = "oxy[oxygen_alert ? 1 : 0]"
-//	if (fire) fire.icon_state = "fire[fire_alert ? 1 : 0]"
+	//Oxygen and fire does nothing yet!!
+	//if (oxygen) oxygen.icon_state = "oxy[oxygen_alert ? 1 : 0]"
+	//if (fire) fire.icon_state = "fire[fire_alert ? 1 : 0]"
 
 	if(stat != 2)
 		if(blinded)
@@ -303,6 +267,49 @@
 		throw_alert("hacked", /atom/movable/screen/alert/hacked)
 	else
 		clear_alert("hacked")
+
+/mob/living/carbon/robot/handle_hud_icons_health()
+	. = ..()
+	if(!. || !healths)
+		return
+
+	if(stat == DEAD)
+		healths.icon_state = "health7"
+		return
+
+	if(istype(src,/mob/living/silicon/robot/drone))
+		switch(health)
+			if(35 to INFINITY)
+				healths.icon_state = "health0"
+			if(25 to 34)
+				healths.icon_state = "health1"
+			if(15 to 24)
+				healths.icon_state = "health2"
+			if(5 to 14)
+				healths.icon_state = "health3"
+			if(0 to 4)
+				healths.icon_state = "health4"
+			if(-35 to 0)
+				healths.icon_state = "health5"
+			else
+				healths.icon_state = "health6"
+		return
+
+	// Not a switch because of the -max_health() case
+	if(health >= 200)
+		healths.icon_state = "health0"
+	else if(health >= 150)
+		healths.icon_state = "health1"
+	else if(health >= 100)
+		healths.icon_state = "health2"
+	else if(health >= 50)
+		healths.icon_state = "health3"
+	else if(health >= 0)
+		healths.icon_state = "health4"
+	else if(health >= (-getMaxHealth()))
+		healths.icon_state = "health5"
+	else
+		healths.icon_state = "health6"
 
 /mob/living/silicon/robot/proc/update_cell()
 	if(cell)

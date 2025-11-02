@@ -1444,7 +1444,6 @@
 
 	if(stat == DEAD) //Dead
 		if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		if(healths)		healths.icon_state = "health7"	//DEAD healthmeter
 
 	else if(stat == UNCONSCIOUS && health <= 0) //Crit
 		//Critical damage passage overlay
@@ -1521,48 +1520,6 @@
 			overlay_fullscreen("fear", /atom/movable/screen/fullscreen/fear, severity)
 		else
 			clear_fullscreen("fear")
-
-		if(healths)
-			if(chem_effects[CE_PAINKILLER] > 100)
-				healths.icon_state = "health_numb"
-			else
-				// Generate a by-limb health display.
-				var/mutable_appearance/healths_ma = new(healths)
-				healths_ma.icon_state = "blank"
-				healths_ma.overlays = null
-				healths_ma.plane = PLANE_PLAYER_HUD
-
-				var/no_damage = 1
-				var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
-				if(!(species.flags & NO_PAIN))
-					trauma_val = max(traumatic_shock,halloss)/species.total_health
-				var/limb_trauma_val = trauma_val*0.3
-				// Collect and apply the images all at once to avoid appearance churn.
-				var/list/health_images = list()
-				for(var/obj/item/organ/external/E in organs)
-					if(no_damage && (E.brute_dam || E.burn_dam))
-						no_damage = 0
-					health_images += E.get_damage_hud_image(limb_trauma_val)
-
-				// Apply a fire overlay if we're burning.
-				if(on_fire || get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
-					health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
-
-				// Show a general pain/crit indicator if needed.
-				if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_CRIT)
-					trauma_val = 2
-				if(trauma_val)
-					if(!(species.flags & NO_PAIN))
-						if(trauma_val > 0.7)
-							health_images += image('icons/mob/screen1_health.dmi',"softcrit")
-						if(trauma_val >= 1)
-							health_images += image('icons/mob/screen1_health.dmi',"hardcrit")
-				else if(no_damage)
-					health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
-
-				healths_ma.add_overlay(health_images)
-				healths.appearance = healths_ma
-
 
 		var/fat_alert = /atom/movable/screen/alert/fat
 		var/hungry_alert = /atom/movable/screen/alert/hungry
@@ -1646,6 +1603,59 @@
 				if(absorbed) found_welder = 1
 			if(found_welder)
 				client.screen |= GLOB.global_hud.darkMask
+
+/mob/living/carbon/human/handle_hud_icons_health()
+	. = ..()
+	if(!. || !healths)
+		return
+
+	if(stat == DEAD) //Dead
+		healths.icon_state = "health7"	//DEAD healthmeter
+		return
+
+	if(stat == UNCONSCIOUS && health <= 0) //Crit
+		return
+
+	if(chem_effects[CE_PAINKILLER] > 100)
+		healths.icon_state = "health_numb"
+		return
+
+	// Generate a by-limb health display.
+	var/mutable_appearance/healths_ma = new(healths)
+	healths_ma.icon_state = "blank"
+	healths_ma.overlays = null
+	healths_ma.plane = PLANE_PLAYER_HUD
+
+	var/no_damage = 1
+	var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
+	if(!(species.flags & NO_PAIN))
+		trauma_val = max(traumatic_shock,halloss)/species.total_health
+	var/limb_trauma_val = trauma_val*0.3
+	// Collect and apply the images all at once to avoid appearance churn.
+	var/list/health_images = list()
+	for(var/obj/item/organ/external/E in organs)
+		if(no_damage && (E.brute_dam || E.burn_dam))
+			no_damage = 0
+		health_images += E.get_damage_hud_image(limb_trauma_val)
+
+	// Apply a fire overlay if we're burning.
+	if(on_fire || get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
+		health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
+
+	// Show a general pain/crit indicator if needed.
+	if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_CRIT)
+		trauma_val = 2
+	if(trauma_val)
+		if(!(species.flags & NO_PAIN))
+			if(trauma_val > 0.7)
+				health_images += image('icons/mob/screen1_health.dmi',"softcrit")
+			if(trauma_val >= 1)
+				health_images += image('icons/mob/screen1_health.dmi',"hardcrit")
+	else if(no_damage)
+		health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
+
+	healths_ma.add_overlay(health_images)
+	healths.appearance = healths_ma
 
 /mob/living/carbon/human/handle_vision()
 	if(stat == DEAD)

@@ -511,21 +511,23 @@ var/list/ai_verbs_default = list(
 	if(.)
 		end_multicam()
 
-/mob/living/silicon/ai/reset_perspective(atom/A)
+/mob/living/silicon/ai/reset_perspective(atom/new_eye)
 	if(camera)
 		camera.set_light(0)
-	if(istype(A,/obj/machinery/camera))
-		camera = A
-	if(A != GLOB.ai_camera_room_landmark)
+	if(istype(new_eye,/obj/machinery/camera))
+		camera = new_eye
+	if(new_eye != GLOB.ai_camera_room_landmark)
 		end_multicam()
 	. = ..()
 	if(.)
-		if(!A && isturf(loc) && eyeobj)
+		if(!new_eye && isturf(loc) && eyeobj)
 			end_multicam()
 			reset_perspective(eyeobj)
-	if(istype(A,/obj/machinery/camera))
-		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
-		else				A.set_light(0)
+	if(istype(new_eye,/obj/machinery/camera))
+		if(camera_light_on)
+			new_eye.set_light(AI_CAMERA_LUMINOSITY)
+		else
+			new_eye.set_light(0)
 
 
 /mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)
