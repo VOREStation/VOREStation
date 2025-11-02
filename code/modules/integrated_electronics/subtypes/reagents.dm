@@ -135,17 +135,16 @@
 			activate_pin(3)
 			return
 
-		// Modified injection logic - handle living vs non-living separately
+		// Handle injections using the helper, same as the syringe.
 		if(isliving(AM))
-			// For living beings, use existing safety checks
-			if(!AM.can_be_injected_by(src))
+			var/mob/living/L = AM
+			if(!L.can_inject(null, 1)) // error_msg = 1 to show errors
 				activate_pin(3)
 				return
-			var/mob/living/L = AM
 			var/turf/T = get_turf(AM)
 			T.visible_message(span_warning("[src] is trying to inject [L]!"))
 			sleep(3 SECONDS)
-			if(!L.can_be_injected_by(src))
+			if(!L.can_inject(null, 0)) // No error message on second check
 				activate_pin(3)
 				return
 			var/contained = reagents.get_reagents()
@@ -154,16 +153,8 @@
 			to_chat(AM, span_notice("You feel a tiny prick!"))
 			visible_message(span_warning("[src] injects [L]!"))
 		else
-			// Safety checks for valid injectables.
-			if(!AM.reagents)
-				activate_pin(3)
-				return
-			if(!AM.reagents.get_free_space())
-				activate_pin(3)
-				return
-
-			// Allow injection only for basic syringe-compatible objects.
-			if(!AM.is_open_container() && !istype(AM, /obj/item/reagent_containers/food) && !istype(AM, /obj/item/slime_extract) && !istype(AM, /obj/item/clothing/mask/smokable/cigarette))
+			// Use standardized injection compatibility for objects
+			if(!AM.can_be_injected_by(src))
 				activate_pin(3)
 				return
 
