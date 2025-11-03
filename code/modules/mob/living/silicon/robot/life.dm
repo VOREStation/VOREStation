@@ -268,7 +268,7 @@
 	else
 		clear_alert("hacked")
 
-/mob/living/carbon/robot/handle_hud_icons_health()
+/mob/living/silicon/robot/handle_hud_icons_health()
 	. = ..()
 	if(!. || !healths)
 		return

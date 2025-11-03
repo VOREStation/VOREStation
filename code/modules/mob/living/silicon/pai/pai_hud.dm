@@ -399,7 +399,7 @@
 		else
 			pai_fold_display.icon_state = "unfolded"
 
-/mob/living/carbon/pai/handle_hud_icons_health()
+/mob/living/silicon/pai/handle_hud_icons_health()
 	. = ..()
 	if(!. || !healths)
 		return
