@@ -16,10 +16,12 @@
 
 /// Called when remote view component finishes attaching to the mob
 /datum/remote_view_config/proc/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
+	RETURN_TYPE(null)
 	return
 
 /// Called when remote view component is destroyed
 /datum/remote_view_config/proc/detatch_from_mob( datum/component/remote_view/owner_component, mob/host_mob)
+	RETURN_TYPE(null)
 	return
 
 /// Handles relayed movement during a remote view. Override this in a subtype to handle specialized logic. If it returns true, the mob will not move, allowing you to handle remotely controlled movement.
@@ -33,11 +35,13 @@
 /// Handles visual changes to mob's hud or flags when in use, it is fired every life tick.
 /datum/remote_view_config/proc/handle_apply_visuals( datum/component/remote_view/owner_component, mob/host_mob)
 	SIGNAL_HANDLER
+	RETURN_TYPE(null)
 	return
 
 /// Handles visual changes when ending the view
 /datum/remote_view_config/proc/handle_remove_visuals( datum/component/remote_view/owner_component, mob/host_mob)
 	SIGNAL_HANDLER
+	RETURN_TYPE(null)
 	return
 
 /// Handles hud health indicator being replaced with a custom one (like showing the remote_view_target's health).
@@ -53,6 +57,7 @@
 /// Handles hud darkvision for if the remote view uses it's own logic for darkvision, or asks the remote_view_target to calculate it.
 /datum/remote_view_config/proc/handle_hud_darkvision( datum/component/remote_view/owner_component, mob/host_mob)
 	SIGNAL_HANDLER
+	RETURN_TYPE(null)
 	return
 
 
