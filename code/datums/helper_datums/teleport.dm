@@ -38,12 +38,17 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 					effectout = sparks
 
 	var/turf/curturf = get_turf(teleatom)
-	var/destturf
+	var/turf/destturf
 
 	destturf = get_teleport_turf(get_turf(destination), precision)
 
-	if(isbelly(destination) || istype(destination, /obj/structure/closet)) // BAM. Get overriden. These two have funny things to them.
+	if(istype(destination, /obj/structure/closet)) // First check if it's a closet, for the bluespace locker funsies...
 		destturf = destination
+
+	if(isbelly(destination)) // And if it goes STRAIGHT to a belly? Toss them there. (If pref matches, of course)
+		var/obj/belly/belly = destination
+		if(CanSpontaneousVore(belly.owner, teleatom) && belly.owner != teleatom)
+			destturf = destination
 
 	// HOLD IT! destturf? Hell nah, televore finally works again.
 	// Now CHECK if someone capable of televoring is in the same turf...
@@ -52,11 +57,10 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 		var/mob/living/telemob = teleatom
 		var/mob/living/mob = locate() in destturf
 		// Needs the vore helpers later. Ough.
-		if(mob && !mob.is_incorporeal())
-			if(mob.can_be_drop_pred && telemob.can_be_drop_prey && telemob.devourable)
-				destturf = mob.vore_selected
-			else if(telemob.can_be_drop_pred && mob.can_be_drop_prey && mob.devourable)
-				mob.forceMove(telemob.vore_selected)
+		if(CanSpontaneousVore(mob, telemob))
+			destturf = mob.vore_selected
+		else if(CanSpontaneousVore(telemob, mob))
+			mob.forceMove(telemob.vore_selected)
 
 	if(!destturf || !curturf)
 		return FALSE
