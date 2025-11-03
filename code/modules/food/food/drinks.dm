@@ -92,28 +92,27 @@
 		feeder = eater
 
 	if(food_inserted_micros && food_inserted_micros.len)
-		if(eater.can_be_drop_pred && eater.food_vore && eater.vore_selected)
-			for(var/mob/living/micro in food_inserted_micros)
-				if(!micro.can_be_drop_prey || !micro.food_vore)
-					continue
+		for(var/mob/living/micro in food_inserted_micros)
+			if(!CanFoodVore(eater, micro))
+				continue
 
-				if(isanimal(eater) && !micro.allowmobvore && !eater.ckey) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
-					continue
-				F.forceMove(M.vore_selected)
-				food_inserted_micros -= F
+			if(CanAnimalVore(eater, micro)) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
+				continue
+			F.forceMove(M.vore_selected)
+			food_inserted_micros -= F
 
-				var/do_nom = FALSE
+			var/do_nom = FALSE
 
-				if(!reagents.total_volume)
+			if(!reagents.total_volume)
+				do_nom = TRUE
+			else
+				var/nom_chance = (1 - (reagents.total_volume / volume))*100
+				if(prob(nom_chance))
 					do_nom = TRUE
-				else
-					var/nom_chance = (1 - (reagents.total_volume / volume))*100
-					if(prob(nom_chance))
-						do_nom = TRUE
 
-				if(do_nom)
-					micro.forceMove(eater.vore_selected)
-					food_inserted_micros -= micro
+			if(do_nom)
+				micro.forceMove(eater.vore_selected)
+				food_inserted_micros -= micro
 
 	if(!reagents.total_volume && changed)
 		eater.visible_message(span_notice("[eater] finishes drinking from \the [src]."),span_notice("You finish drinking from \the [src]."))

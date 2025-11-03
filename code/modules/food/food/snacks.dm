@@ -60,10 +60,11 @@
 /obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/eater, var/mob/living/feeder)
 	SEND_SIGNAL(src, COMSIG_FOOD_EATEN, eater, feeder)
 	if(food_inserted_micros && food_inserted_micros.len)
-		if(eater.can_be_drop_pred && eater.food_vore && eater.vore_selected)
-			for(var/mob/living/stuffed in food_inserted_micros)
-				if(!stuffed.can_be_drop_prey || !stuffed.food_vore)
-					continue
+		for(var/mob/living/stuffed in food_inserted_micros)
+			if(!CanFoodVore(eater, stuffed))
+				continue
+
+			var/do_nom
 
 			if(!reagents.total_volume)
 				do_nom = TRUE
