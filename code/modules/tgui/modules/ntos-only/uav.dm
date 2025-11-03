@@ -222,11 +222,11 @@
 	host_mob.clear_fullscreen("scanlines",0)
 	host_mob.clear_fullscreen("whitenoise",0)
 
-// We are responsible for restoring the health UI
-/datum/remote_view_config/proc/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
+// We are responsible for restoring the health UI's icons on removal
+/datum/remote_view_config/uav_control/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
 	original_health_hud_icon = host_mob.healths?.icon
 
-/datum/remote_view_config/proc/detatch_from_mob( datum/component/remote_view/owner_component, mob/host_mob)
+/datum/remote_view_config/uav_control/detatch_from_mob( datum/component/remote_view/owner_component, mob/host_mob)
 	if(host_mob.healths && original_health_hud_icon)
 		host_mob.healths.icon = original_health_hud_icon
 		host_mob.healths.appearance = null
