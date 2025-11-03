@@ -9,10 +9,18 @@
 	var/will_paralyze = TRUE
 	var/will_sleep = TRUE
 	var/will_blind = TRUE
-	// Hud overrides
+	// Hud overrides, datum is responsible for restoring the hud state on attach and detatch
 	var/override_entire_hud = FALSE // Overrides all others, only this needs to be set if you do a fully custom hud
 	var/override_health_hud = FALSE
 	var/override_darkvision_hud = FALSE
+
+/// Called when remote view component finishes attaching to the mob
+/datum/remote_view_config/proc/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
+	return
+
+/// Called when remote view component is destroyed
+/datum/remote_view_config/proc/detatch_from_mob( datum/component/remote_view/owner_component, mob/host_mob)
+	return
 
 /// Handles relayed movement during a remote view. Override this in a subtype to handle specialized logic. If it returns true, the mob will not move, allowing you to handle remotely controlled movement.
 /datum/remote_view_config/proc/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, datum/coordinator, atom/movable/remote_view_target, direction)

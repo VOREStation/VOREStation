@@ -192,6 +192,8 @@
 ////
 /datum/remote_view_config/uav_control
 	relay_movement = TRUE
+	override_health_hud = TRUE
+	var/original_health_hud_icon
 
 /datum/remote_view_config/uav_control/handle_relay_movement( datum/component/remote_view/owner_component, mob/host_mob, direction)
 	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
@@ -219,3 +221,43 @@
 	host_mob.clear_fullscreen("fishbed",0)
 	host_mob.clear_fullscreen("scanlines",0)
 	host_mob.clear_fullscreen("whitenoise",0)
+
+// We are responsible for restoring the health UI
+/datum/remote_view_config/proc/attached_to_mob( datum/component/remote_view/owner_component, mob/host_mob)
+	original_health_hud_icon = host_mob.healths?.icon
+
+/datum/remote_view_config/proc/detatch_from_mob( datum/component/remote_view/owner_component, mob/host_mob)
+	if(host_mob.healths && original_health_hud_icon)
+		host_mob.healths.icon = original_health_hud_icon
+		host_mob.healths.appearance = null
+
+// Show the uav health instead of the mob's while it is viewing
+/datum/remote_view_config/uav_control/handle_hud_health( datum/component/remote_view/owner_component, mob/host_mob)
+	var/datum/tgui_module/uav/tgui_owner = owner_component.get_coordinator()
+
+	var/mutable_appearance/MA = new (host_mob.healths)
+	MA.icon = 'icons/mob/screen1_robot_minimalist.dmi'
+	MA.cut_overlays()
+
+	if(!tgui_owner?.current_uav)
+		MA.icon_state = "health7"
+	else
+		switch(tgui_owner.current_uav.health)
+			if(100 to INFINITY)
+				MA.icon_state = "health0"
+			if(80 to 100)
+				MA.icon_state = "health1"
+			if(60 to 80)
+				MA.icon_state = "health2"
+			if(40 to 60)
+				MA.icon_state = "health3"
+			if(20 to 40)
+				MA.icon_state = "health4"
+			if(0 to 20)
+				MA.icon_state = "health5"
+			else
+				MA.icon_state = "health6"
+
+	host_mob.healths.icon_state = "blank"
+	host_mob.healths.appearance = MA
+	return COMSIG_COMPONENT_HANDLED_HEALTH_ICON

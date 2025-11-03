@@ -65,6 +65,7 @@
 	// Update the mob's vision after we attach.
 	host_mob.handle_vision()
 	host_mob.handle_regular_hud_updates()
+	settings.attached_to_mob(src, host_mob)
 
 /datum/component/remote_view/Destroy(force)
 	. = ..()
@@ -107,6 +108,7 @@
 		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
 	// Update the mob's vision right away
+	settings.detatch_from_mob(src, host_mob)
 	settings.handle_remove_visuals(src, host_mob)
 	host_mob.handle_vision()
 	host_mob.handle_regular_hud_updates()
