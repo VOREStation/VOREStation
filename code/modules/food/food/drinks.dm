@@ -99,6 +99,8 @@
 
 				if(isanimal(eater) && !micro.allowmobvore && !eater.ckey) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
 					continue
+				F.forceMove(M.vore_selected)
+				food_inserted_micros -= F
 
 				var/do_nom = FALSE
 

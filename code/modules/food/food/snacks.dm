@@ -65,14 +65,12 @@
 				if(!stuffed.can_be_drop_prey || !stuffed.food_vore)
 					continue
 
-				var/do_nom = FALSE
-
-				if(!reagents.total_volume)
+			if(!reagents.total_volume)
+				do_nom = TRUE
+			else
+				var/nom_chance = (bitecount/(bitecount + (bitesize / reagents.total_volume) + 1))*100
+				if(prob(nom_chance))
 					do_nom = TRUE
-				else
-					var/nom_chance = (bitecount/(bitecount + (bitesize / reagents.total_volume) + 1))*100
-					if(prob(nom_chance))
-						do_nom = TRUE
 
 				if(do_nom)
 					stuffed.forceMove(eater.vore_selected)

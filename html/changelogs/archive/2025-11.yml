@@ -1,0 +1,19 @@
+2025-11-01:
+  Guti:
+  - code_imp: Added vore preference helpers
+  Will:
+  - code_imp: Smes prefab tweaks
+2025-11-03:
+  Cameron-The-Raven:
+  - bugfix: Pointblank attacks will increase the agony damage just like normal damage.
+  Diana:
+  - code_imp: Rechargers are now less memory intensive
+  - qol: Cell loaded guns (ml3m, nsfw) can be charged in rechargers now
+  - qol: cell magazines can be charged in rechargers now
+  Kashargul:
+  - qol: makes some belly content interactions easier accessible
+  - bugfix: genes being shown lower case due to a change in num2hex
+  VictorZisthus:
+  - qol: Basic borg grippers can now use any floor tiling, as well as grab any leather
+      product to enable tanning.
+  - qol: Borg Sheet Grippers can now grab rods to enable reinforced floor tile production.

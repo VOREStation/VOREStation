@@ -129,3 +129,56 @@
 /datum/element/godmode/proc/godmode_check()
 	SIGNAL_HANDLER
 	return COMSIG_GODMODE_CANCEL
+
+
+///The 'lite' version of godmode
+/datum/element/lite_godmode
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY|ELEMENT_BESPOKE
+	argument_hash_start_idx = 2
+
+/datum/element/lite_godmode/Attach(datum/target)
+	. = ..()
+	if(!ismob(target))
+		return ELEMENT_INCOMPATIBLE
+	var/mob/our_target = target
+	our_target.status_flags &= ~CANSTUN
+	our_target.status_flags &= ~CANWEAKEN
+	our_target.status_flags &= ~CANPARALYSE
+	RegisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION, PROC_REF(on_internal_damaged))
+	RegisterSignal(target, COMSIG_UPDATE_HEALTH, PROC_REF(on_update_health))
+	RegisterSignal(target, COMSIG_TAKING_APPLY_EFFECT, PROC_REF(on_apply_effect))
+
+	if(ishuman(target))
+		var/mob/living/carbon/human/the_target = target
+		for(var/obj/item/organ/external/external_organs in the_target.organs)
+			external_organs.cannot_amputate = TRUE
+			external_organs.cannot_break = TRUE
+			external_organs.cannot_gib = TRUE
+			external_organs.stapled_nerves = TRUE
+
+/datum/element/lite_godmode/Detach(atom/movable/target)
+	var/mob/our_target = target
+	UnregisterSignal(target, COMSIG_INTERNAL_ORGAN_PRE_DAMAGE_APPLICATION)
+	UnregisterSignal(target, COMSIG_UPDATE_HEALTH)
+	UnregisterSignal(target, COMSIG_TAKING_APPLY_EFFECT)
+	our_target.status_flags |= CANSTUN|CANWEAKEN|CANPARALYSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/the_target = target
+		for(var/obj/item/organ/external/external_organs in the_target.organs)
+			external_organs.cannot_amputate = initial(external_organs.cannot_amputate)
+			external_organs.cannot_break = initial(external_organs.cannot_break)
+			external_organs.cannot_gib = initial(external_organs.cannot_gib)
+			external_organs.stapled_nerves = initial(external_organs.stapled_nerves)
+	return ..()
+
+/datum/element/lite_godmode/proc/on_update_health()
+	SIGNAL_HANDLER
+	return COMSIG_UPDATE_HEALTH_GOD_MODE
+
+/datum/element/lite_godmode/proc/on_apply_effect()
+	SIGNAL_HANDLER
+	return COMSIG_CANCEL_EFFECT
+
+/datum/element/lite_godmode/proc/on_internal_damaged()
+	SIGNAL_HANDLER
+	return COMPONENT_CANCEL_INTERNAL_ORGAN_DAMAGE
