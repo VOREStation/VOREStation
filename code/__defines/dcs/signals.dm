@@ -420,7 +420,7 @@
 	#define COMSIG_COMPONENT_HANDLED_HUD (1<<0)
 ///From /mob/living/proc/handle_hud_icons_health().
 #define COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON "living_handle_hud_health_icon"
-	#define COMSIG_COMPONENT_HANDLED_HEALTH_ICON (1<<0) //If this will set the healths icon was handled by component and should not be updated by mob
+	#define COMSIG_COMPONENT_HANDLED_HEALTH_ICON (1<<0)
 ///From /mob/living/proc/handle_darksight().
 #define COMSIG_LIVING_HANDLE_HUD_DARKSIGHT "living_handle_hud_darksight"
 
