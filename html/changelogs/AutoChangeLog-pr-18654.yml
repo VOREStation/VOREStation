@@ -1,6 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - code_imp: "Rechargers are now less memory intensive"
-  - qol: "Cell loaded guns (ml3m, nsfw) can be charged in rechargers now"
-  - qol: "cell magazines can be charged in rechargers now"
