@@ -152,6 +152,8 @@
 ///What we do when hit with a wrench.
 /datum/component/gas_holder/proc/handle_attack(atom/movable/our_parent, obj/item/tool as obj, mob/user as mob)
 	SIGNAL_HANDLER
+	if(user.a_intent != I_HELP) //We leet them do their normal attack chain.
+		return FALSE
 	if(!istype(tool))
 		return FALSE
 	if(tool.has_tool_quality(TOOL_WRENCH))
