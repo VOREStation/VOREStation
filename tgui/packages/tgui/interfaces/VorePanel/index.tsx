@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -51,6 +51,12 @@ export const VorePanel = () => {
   } = data;
 
   const [editMode, setEditMode] = useState(!!persist_edit_mode);
+
+  useEffect(() => {
+    if (active_tab === 1 && !inside?.ref) {
+      act('change_tab', { tab: 0 });
+    }
+  }, [inside?.ref]);
 
   const tabs: (React.JSX.Element | null | undefined)[] = [];
 
