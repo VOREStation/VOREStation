@@ -4,9 +4,10 @@
 
 #define STATION_PREF_NAME "Virgo"
 #define VORE_BELLY_TAB 0
-#define SOULCATCHER_TAB 1
-#define GENERAL_TAB 2
-#define PREFERENCE_TAB 3
+#define VORE_INSIDE_TAB 1
+#define SOULCATCHER_TAB 2
+#define GENERAL_TAB 3
+#define PREFERENCE_TAB 4
 
 /mob
 	var/datum/vore_look/vorePanel
