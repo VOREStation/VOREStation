@@ -4,7 +4,6 @@ import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Floating,
   Icon,
   NoticeBox,
   Section,
@@ -72,14 +71,16 @@ export const VorePanel = () => {
     />
   );
   tabs[1] = inside.contents?.length ? (
-      <VoreContentsPanel
-        contents={inside.contents}
-        belly={inside.ref}
-        show_pictures={show_pictures}
-        icon_overflow={icon_overflow}
-      />
+    <VoreContentsPanel
+      contents={inside.contents}
+      belly={inside.ref}
+      show_pictures={show_pictures}
+      icon_overflow={icon_overflow}
+    />
   ) : (
-    <Section fill><Box>There is nothing else around you.</Box></Section>
+    <Section fill>
+      <Box>There is nothing else around you.</Box>
+    </Section>
   );
   tabs[2] = our_bellies && soulcatcher && abilities && (
     <VoreSoulcatcher
