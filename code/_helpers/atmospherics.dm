@@ -33,9 +33,10 @@
 	return atmosanalyzer_scan(src, src.air, user)
 
 /atom/proc/atmosanalyze(var/mob/user)
-	var/return_value = SEND_SIGNAL(src, COMSIG_ATOM_ANALYSER_ACT, user)
-	if(return_value)
-		return return_value
+
+	var/datum/component/gas_holder/gas_component = GetComponent(/datum/component/gas_holder)
+	if(gas_component)
+		return gas_component.return_atmos()
 	return
 
 /obj/item/tank/atmosanalyze(var/mob/user)

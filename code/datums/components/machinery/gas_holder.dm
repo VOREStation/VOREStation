@@ -58,14 +58,14 @@
 	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 
 /datum/component/gas_holder/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ATOM_ANALYSER_ACT, PROC_REF(return_atmos))
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(handle_attack))
+	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(handle_unbuckle))
 
 /datum/component/gas_holder/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_ATOM_ANALYSER_ACT, COMSIG_PARENT_ATTACKBY))
+	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY, COMSIG_MOVABLE_UNBUCKLE))
 
 ///Returns the atmosphere we are currently using. Used by analyzers.
-/datum/component/gas_holder/proc/return_atmos(var/atom/target, var/datum/gas_mixture/mixture, var/mob/user)
+/datum/component/gas_holder/proc/return_atmos()
 	SIGNAL_HANDLER
 	var/list/results = list()
 
@@ -83,15 +83,27 @@
 	return results
 
 /datum/component/gas_holder/Destroy(force = FALSE)
+	disconnect()
 	QDEL_NULL(air_contents)
 	connected_port = null
 	..()
 
 /datum/component/gas_holder/process()
+	var/atom/movable/our_parent = parent
 	if(!connected_port) //only react when pipe_network will ont it do it for you
 		//Allow for reactions
 		air_contents.react()
+		return
+	//Just in case we somehow moved while we were attached.
+	if(connected_port.loc != our_parent.loc)
+		disconnect()
 
+///Disconnect from our connected port when we unbuckle.
+/datum/component/gas_holder/proc/handle_unbuckle(atom/movable/parent, force)
+	SIGNAL_HANDLER
+	disconnect()
+
+///When we are connected to a port.
 /datum/component/gas_holder/proc/connect(obj/machinery/atmospherics/portables_connector/new_port)
 	var/atom/movable/our_parent = parent
 	//Make sure not already connected to something else
@@ -108,6 +120,9 @@
 	connected_port.on = TRUE //Activate port updates
 
 	our_parent.anchored = TRUE //Prevent movement
+	if(ismob(our_parent))
+		var/mob/our_mob = our_parent
+		our_mob.buckled = new_port
 
 	//Actually enforce the air sharing
 	var/datum/pipe_network/network = connected_port.return_network(src)
@@ -117,6 +132,7 @@
 
 	return TRUE
 
+///Disconnect from our connected port if possible.
 /datum/component/gas_holder/proc/disconnect()
 	var/atom/movable/our_parent = parent
 	if(!connected_port)
@@ -133,16 +149,11 @@
 
 	return TRUE
 
-/datum/component/gas_holder/proc/update_connected_network()
-	if(!connected_port)
-		return
-
-	var/datum/pipe_network/network = connected_port.return_network(src)
-	if(network)
-		network.update = TRUE
-
-/datum/component/gas_holder/proc/handle_attack(var/obj/item/tool as obj, var/mob/user as mob)
-	var/atom/our_parent = parent
+///What we do when hit with a wrench.
+/datum/component/gas_holder/proc/handle_attack(atom/movable/our_parent, obj/item/tool as obj, mob/user as mob)
+	SIGNAL_HANDLER
+	if(!istype(tool))
+		return FALSE
 	if(tool.has_tool_quality(TOOL_WRENCH))
 		if(connected_port)
 			if(disconnect())
