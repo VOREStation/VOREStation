@@ -473,11 +473,15 @@
 		// Yes this spawn is needed, yes I wish it wasn't.
 		spawn(0)
 			// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
-			cache_mob.AddComponent(/datum/component/remote_view, release_turf)
-			cache_mob.client.eye = release_turf // Yes--
-			cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
-			if(!isturf(cache_mob.loc)) // For stuff like paicards
-				cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+			if(!QDELETED(cache_mob))
+				cache_mob.AddComponent(/datum/component/remote_view, release_turf)
+				cache_mob.client.eye = release_turf // Yes--
+				cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
+				if(!isturf(cache_mob.loc)) // For stuff like paicards
+					cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+			// If you somehow deleted before the decouple... Just fix this mess.
+			else
+				cache_mob.reset_perspective()
 		// Because nested vore bellies do NOT get handled correctly for recursive prey. We need to tell the belly's occupants to decouple too... Then their own belly's occupants...
 		// Yes, two loops is faster. Because we skip typechecking byondcode side and instead do it engine side when getting the contents of the mob,
 		// we also skip typechecking every /obj in the mob on the byondcode side... Evil wizard knowledge.
