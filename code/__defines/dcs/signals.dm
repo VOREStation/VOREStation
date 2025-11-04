@@ -163,7 +163,7 @@
 #define COMSIG_ATOM_WIRECUTTER_ACT "atom_wirecutter_act"
 ///from base of atom/crowbar_act(): (mob/living/user, obj/item/I)
 #define COMSIG_ATOM_CROWBAR_ACT "atom_crowbar_act"
-///from base of atom/analyser_act(): (mob/living/user, obj/item/I)
+///from base of /atom/proc/atmosanalyze(var/mob/user)
 #define COMSIG_ATOM_ANALYSER_ACT "atom_analyser_act"
 	#define COMPONENT_BLOCK_TOOL_ATTACK (1<<0)
 ///called when teleporting into a protected turf: (channel, turf/origin)

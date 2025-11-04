@@ -33,6 +33,9 @@
 	return atmosanalyzer_scan(src, src.air, user)
 
 /atom/proc/atmosanalyze(var/mob/user)
+	var/return_value = SEND_SIGNAL(src, COMSIG_ATOM_ANALYSER_ACT, user)
+	if(return_value)
+		return return_value
 	return
 
 /obj/item/tank/atmosanalyze(var/mob/user)
