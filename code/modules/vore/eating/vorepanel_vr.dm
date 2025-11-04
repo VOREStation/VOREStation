@@ -145,36 +145,42 @@
 	data["prefs"] = null
 	data["general_pref_data"] = null
 
-	if(active_tab == VORE_BELLY_TAB)
-		data["active_vore_tab"] = active_vore_tab
-		data["host_mobtype"] = get_host_mobtype(host)
+	switch(active_tab)
+		if(VORE_BELLY_TAB)
+			data["active_vore_tab"] = active_vore_tab
+			data["host_mobtype"] = get_host_mobtype(host)
 
-		// Content Data
-		data["show_pictures"] = show_pictures
-		data["icon_overflow"] = icon_overflow
+			// Content Data
+			data["show_pictures"] = show_pictures
+			data["icon_overflow"] = icon_overflow
 
-		// List of all our bellies
-		data["our_bellies"] = get_vorebellies(host)
+			// List of all our bellies
+			data["our_bellies"] = get_vorebellies(host)
 
-		// Selected belly data. TODO, split this into sub data per tab, we don't need all of this at once, ever!
-		data["selected"] = get_selected_data(host)
+			// Selected belly data. TODO, split this into sub data per tab, we don't need all of this at once, ever!
+			data["selected"] = get_selected_data(host)
 
-	if(active_tab == SOULCATCHER_TAB)
-		// Soulcatcher and abilities
-		data["our_bellies"] = get_vorebellies(host, FALSE)
-		data["soulcatcher"] = get_soulcatcher_data(host)
-		data["abilities"] = get_ability_data(host)
+		if(VORE_INSIDE_TAB)
+			// Content Data
+			data["show_pictures"] = show_pictures
+			data["icon_overflow"] = icon_overflow
 
-	if(active_tab == PREFERENCE_TAB)
-		// Preference data, we only ever need that when we go to the pref page!
-		data["prefs"] = get_preference_data(host)
-		// Content Data
-		data["show_pictures"] = show_pictures
-		data["icon_overflow"] = icon_overflow
+		if(SOULCATCHER_TAB)
+			// Soulcatcher and abilities
+			data["our_bellies"] = get_vorebellies(host, FALSE)
+			data["soulcatcher"] = get_soulcatcher_data(host)
+			data["abilities"] = get_ability_data(host)
 
-	if(active_tab == GENERAL_TAB)
-		data["general_pref_data"] = get_general_data(host)
-		data["our_bellies"] = get_vorebellies(host, FALSE)
+		if(PREFERENCE_TAB)
+			// Preference data, we only ever need that when we go to the pref page!
+			data["prefs"] = get_preference_data(host)
+			// Content Data
+			data["show_pictures"] = show_pictures
+			data["icon_overflow"] = icon_overflow
+
+		if(GENERAL_TAB)
+			data["general_pref_data"] = get_general_data(host)
+			data["our_bellies"] = get_vorebellies(host, FALSE)
 
 	return data
 
