@@ -2912,11 +2912,11 @@ includes scars and tattoos
 	name = "Thin Bodytype"
 	icon_state = "thin1"
 	color_blend_mode = ICON_MULTIPLY
-	hide_body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_GROIN,BP_TORSO)
-	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_GROIN,BP_TORSO)
+	hide_body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_GROIN,BP_TORSO,BP_L_HAND,BP_R_HAND,BP_L_FOOT,BP_R_FOOT)
+	body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_GROIN,BP_TORSO,BP_L_HAND,BP_R_HAND,BP_L_FOOT,BP_R_FOOT)
 
 /datum/sprite_accessory/marking/ch/thin2
-	name = "Thiner Bodytype"
+	name = "Thinner Bodytype"
 	icon_state = "thin2"
 	color_blend_mode = ICON_MULTIPLY
 	hide_body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
