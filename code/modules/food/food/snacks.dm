@@ -70,7 +70,7 @@
 					do_nom = TRUE
 
 			if(do_nom)
-				if(!CanFoodVore(M, F))
+				if(!can_food_vore(M, F))
 					continue
 				F.forceMove(M.vore_selected)
 				food_inserted_micros -= F

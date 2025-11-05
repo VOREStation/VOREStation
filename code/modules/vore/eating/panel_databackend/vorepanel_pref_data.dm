@@ -76,36 +76,37 @@
 		"possible_messages" = list(SET_TASTE, SET_SMELL, SET_NUTRITION_EX, SET_WEIGHT_EX),
 		"aest_subtab" = aset_message_subtab
 		)
-	if(aset_message_subtab == SET_TASTE)
-		tab_data["max_length"] = FLAVOR_MAX
-		tab_data["active_message"] = owner.vore_taste
-		tab_data["set_action"] = TASTE_FLAVOR
-		tab_data["tooltip"] = "What your character tastes like. This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream'"
-	if(aset_message_subtab == SET_SMELL)
-		tab_data["max_length"] = FLAVOR_MAX
-		tab_data["active_message"] = owner.vore_smell
-		tab_data["set_action"] = SMELL_FLAVOR
-		tab_data["tooltip"] = "What your character smells like. This text will be printed to the pred after 'X smells of...' so just put something like 'strawberries and cream'"
-	if(aset_message_subtab == SET_NUTRITION_EX)
-		tab_data["max_length"] = BELLIES_EXAMINE_MAX
-		tab_data["active_message"] = owner.nutrition_messages
-		tab_data["set_action"] = "set_attribute"
-		tab_data["sub_action"] = GENERAL_EXAMINE_NUTRI
-		tab_data["tooltip"] = "Change the nutrition display messages on examine."
-		tab_data["button_label"] = "Display Nutrition Examine"
-		tab_data["button_action"] = "toggle_nutrition_ex"
-		tab_data["button_data"] = owner.nutrition_message_visible
-		tab_data["button_tooltip"] = "the nutition messages on examine." // those will automatically be preceeded by Enables / Disables!
-	if(aset_message_subtab == SET_WEIGHT_EX)
-		tab_data["max_length"] = BELLIES_EXAMINE_MAX
-		tab_data["active_message"] = owner.weight_messages
-		tab_data["set_action"] = "set_attribute"
-		tab_data["sub_action"] = GENERAL_EXAMINE_WEIGHT
-		tab_data["tooltip"] = "Change the weight display messages on examine."
-		tab_data["button_label"] = "Display Weight Examine"
-		tab_data["button_action"] = "toggle_weight_ex"
-		tab_data["button_data"] = owner.weight_message_visible
-		tab_data["button_tooltip"] = "the weight messages on examine." // those will automatically be preceeded by Enables / Disables!
+	switch(aset_message_subtab)
+		if(SET_TASTE)
+			tab_data["max_length"] = FLAVOR_MAX
+			tab_data["active_message"] = owner.vore_taste
+			tab_data["set_action"] = TASTE_FLAVOR
+			tab_data["tooltip"] = "What your character tastes like. This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream'"
+		if(SET_SMELL)
+			tab_data["max_length"] = FLAVOR_MAX
+			tab_data["active_message"] = owner.vore_smell
+			tab_data["set_action"] = SMELL_FLAVOR
+			tab_data["tooltip"] = "What your character smells like. This text will be printed to the pred after 'X smells of...' so just put something like 'strawberries and cream'"
+		if(SET_NUTRITION_EX)
+			tab_data["max_length"] = BELLIES_EXAMINE_MAX
+			tab_data["active_message"] = owner.nutrition_messages
+			tab_data["set_action"] = "set_attribute"
+			tab_data["sub_action"] = GENERAL_EXAMINE_NUTRI
+			tab_data["tooltip"] = "Change the nutrition display messages on examine."
+			tab_data["button_label"] = "Display Nutrition Examine"
+			tab_data["button_action"] = "toggle_nutrition_ex"
+			tab_data["button_data"] = owner.nutrition_message_visible
+			tab_data["button_tooltip"] = "the nutition messages on examine." // those will automatically be preceeded by Enables / Disables!
+		if(SET_WEIGHT_EX)
+			tab_data["max_length"] = BELLIES_EXAMINE_MAX
+			tab_data["active_message"] = owner.weight_messages
+			tab_data["set_action"] = "set_attribute"
+			tab_data["sub_action"] = GENERAL_EXAMINE_WEIGHT
+			tab_data["tooltip"] = "Change the weight display messages on examine."
+			tab_data["button_label"] = "Display Weight Examine"
+			tab_data["button_action"] = "toggle_weight_ex"
+			tab_data["button_data"] = owner.weight_message_visible
+			tab_data["button_tooltip"] = "the weight messages on examine." // those will automatically be preceeded by Enables / Disables!
 	return tab_data
 
 #undef SET_TASTE

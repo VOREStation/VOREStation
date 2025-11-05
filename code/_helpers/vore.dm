@@ -4,7 +4,9 @@
 
 /// Most basic check of them all.
 /// Checks if PRED can eat PREY.
-/proc/CanVore(mob/living/pred, mob/living/prey)
+/proc/can_vore(mob/living/pred, mob/living/prey)
+	if(pred == prey)
+		return FALSE
 	if(!istype(pred) || !istype(prey))
 		return FALSE
 	if(!prey.devourable)
@@ -19,50 +21,50 @@
 
 /// Basic spont vore check.
 /// Checks if both have spont vore enable
-/proc/CanSpontaneousVore(mob/living/pred, mob/living/prey)
-	if(!CanVore(pred, prey))
+/proc/can_spontaneous_vore(mob/living/pred, mob/living/prey)
+	if(!can_vore(pred, prey))
 		return FALSE
 	if(!pred.can_be_drop_pred || !prey.can_be_drop_prey)
 		return FALSE
 	return TRUE
 
-/proc/CanStumbleVore(mob/living/pred, mob/living/prey)
-	if(!CanSpontaneousVore(pred, prey))
+/proc/can_stumble_vore(mob/living/pred, mob/living/prey)
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
 	if(!pred.stumble_vore || !prey.stumble_vore)
 		return FALSE
 	return TRUE
 
-/proc/CanDropVore(mob/living/pred, mob/living/prey)
-	if(!CanSpontaneousVore(pred, prey))
+/proc/can_drop_vore(mob/living/pred, mob/living/prey)
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
-	if(!pred.drop_vore || !prey.stumble_vore)
+	if(!pred.drop_vore || !prey.drop_vore)
 		return FALSE
 	return TRUE
 
-/proc/CanThrowVore(mob/living/pred, mob/living/prey)
-	if(!CanSpontaneousVore(pred, prey))
+/proc/can_throw_vore(mob/living/pred, mob/living/prey)
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
 	if(!pred.throw_vore || !prey.throw_vore)
 		return FALSE
 	return TRUE
 
-/proc/CanFoodVore(mob/living/pred, mob/living/prey)
-	if(!CanSpontaneousVore(pred, prey))
+/proc/can_food_vore(mob/living/pred, mob/living/prey)
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
 	if(!pred.food_vore || !prey.food_vore)
 		return FALSE
 	return TRUE
 
-/proc/CanPhaseVore(mob/living/pred, mob/living/prey)
-	if(!CanSpontaneousVore(pred, prey))
+/proc/can_phase_vore(mob/living/pred, mob/living/prey)
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
 	if(!pred.phase_vore || !prey.phase_vore)
 		return FALSE
 	return TRUE
 
-/proc/CanSlipVore(mob/living/pred, mob/living/prey)
-	if(!CanSpontaneousVore(pred, prey))
+/proc/can_slip_vore(mob/living/pred, mob/living/prey)
+	if(!can_spontaneous_vore(pred, prey))
 		return FALSE
 	if(!pred.slip_vore && !prey.slip_vore)
 		return FALSE
@@ -72,8 +74,8 @@
 		return FALSE
 	return TRUE
 
-/proc/CanAnimalVore(mob/living/pred, mob/living/prey)
-	if(!CanVore(pred, prey))
+/proc/can_animal_vore(mob/living/pred, mob/living/prey)
+	if(!can_vore(pred, prey))
 		return FALSE
 	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
 		return FALSE

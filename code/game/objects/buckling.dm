@@ -129,7 +129,7 @@
 
 	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs)
 		for(var/mob/living/L in buckled_mobs)
-			if(istype(L) && CanStumbleVore(prey = L, pred = M))
+			if(istype(L) && can_stumble_vore(prey = L, pred = M))
 				unbuckle_mob(L, TRUE)
 				if(M == user)
 					M.visible_message(span_warning("[M.name] sits down on [L.name]!"))
@@ -218,7 +218,7 @@
 	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs) //Handles trying to buckle yourself to the chair when someone is on it
 		if(can_do_spont_vore && is_vore_predator(M) && M.vore_selected)
 			for(var/mob/living/buckled in buckled_mobs)
-				if(CanStumbleVore(prey = buckled, pred = M))
+				if(can_stumble_vore(prey = buckled, pred = M))
 					return TRUE
 		to_chat(M, span_notice("\The [src] can't buckle any more people."))
 		return FALSE

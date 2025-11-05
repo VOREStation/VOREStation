@@ -167,7 +167,7 @@
 					continue //Don't do anything to ourselves.
 				if(living_mob.stat)
 					continue
-				if(!CanStumbleVore(living_guy, living_mob) && !CanStumbleVore(living_mob, living_guy)) //Works both ways! Either way, someone's getting eaten!
+				if(!can_stumble_vore(living_guy, living_mob) && !can_stumble_vore(living_mob, living_guy)) //Works both ways! Either way, someone's getting eaten!
 					continue
 				living_mob.stumble_into(living_guy) //logic reversed here because the game is DUMB. This means that living_guy is stumbling into the target!
 				living_guy.visible_message(span_danger("[living_guy] loses their balance and slips into [living_mob]!"), span_boldwarning("You lose your balance, slipping into [living_mob]!"))
