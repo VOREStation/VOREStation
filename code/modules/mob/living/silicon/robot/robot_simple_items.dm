@@ -160,7 +160,7 @@
 	icon_state = "indwelder_cyborg"
 	usesound = 'sound/items/Welder2.ogg'
 	toolspeed = 0.5
-	welding = TRUE
+	welding = FALSE
 	no_passive_burn = TRUE
 
 /obj/item/tool/wirecutters/cyborg
