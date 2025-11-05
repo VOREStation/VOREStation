@@ -484,8 +484,8 @@ var/list/global/tank_gauge_cache = list()
 				var/obj/item/transfer_valve/TTV = source.loc
 				TTV.remove_tank(source)
 
-
-			qdel(source)
+			if(!ismob(source))
+				qdel(source)
 
 		else
 			if(!valve_welded)
