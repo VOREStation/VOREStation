@@ -770,7 +770,7 @@
 	generate_icons()
 	//update_icon()
 
-//FORCES the item onto the ground and resets the
+//FORCES the item onto the ground and resets.
 /obj/item/gripper/proc/drop_item_nm()
 	var/obj/item/wrapped = get_current_pocket()
 	if(!wrapped)
@@ -780,8 +780,10 @@
 		current_pocket = pick(pockets)
 		return
 
-	wrapped.loc = get_turf(src)
+	wrapped.forceMove(get_turf(src))
 	WR = null
+	//Reselect our pocket.
+	current_pocket = pick(pockets)
 
 /obj/item/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	var/busy = is_in_use()
@@ -797,6 +799,8 @@
 			M.attackby(wrapped, user)	//attackby reportedly gets procced by being clicked on, at least according to Anewbe.
 			if((wrapped.loc != src.loc && !istype(wrapped.loc,/obj/item/storage/internal/gripper))) //If our wrapper was deleted OR it's no longer in our internal gripper storage
 				WR = null
+				wrapped = null
+				return 1
 			if(wrapped) //In the event nothing happened to wrapped, go back into the gripper.
 				wrapped.loc = current_pocket
 			return 1
@@ -895,11 +899,14 @@
 		if(A.opened)
 			if(A.cell && is_type_in_list(A.cell, can_hold))
 
-				wrapped = A.cell
+				current_pocket = A.cell
 
 				A.cell.add_fingerprint(user)
 				A.cell.update_icon()
-				A.cell.loc = selected_pocket
+				A.update_icon()
+				A.cell.forceMove(current_pocket)
+				current_pocket = A.cell
+				WR = WEAKREF(current_pocket)
 				A.cell = null
 
 				A.charging = 0
@@ -912,12 +919,12 @@
 		if(A.opened)
 			if(A.cell && is_type_in_list(A.cell, can_hold))
 
-				wrapped = A.cell
-
 				A.cell.add_fingerprint(user)
 				A.cell.update_icon()
 				A.update_icon()
-				A.cell.loc = current_pocket
+				A.cell.forceMove(current_pocket)
+				current_pocket = A.cell
+				WR = WEAKREF(current_pocket)
 				A.cell = null
 
 				user.visible_message(span_danger("[user] removes the power cell from [A]!"), "You remove the power cell.")
