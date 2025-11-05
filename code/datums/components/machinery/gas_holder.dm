@@ -2,14 +2,9 @@
  */
 /datum/component/gas_holder
 	///The gas mixture we possess.
-	var/datum/gas_mixture/air_contents = new
+	var/datum/gas_mixture/air_contents
 	///CONVERT THIS TO A WEAKREF
 	var/obj/machinery/atmospherics/portables_connector/connected_port
-	///Starting volume of our gas_mixture.
-	var/volume = 1000
-	///Starting pressure of the gasses we spawn with.
-	var/start_pressure = ONE_ATMOSPHERE
-
 
 	//Rupture stuff!
 
@@ -26,29 +21,16 @@
 	///If we are currently leaking (mixing with our current atmos) or not.
 	var/leaking = FALSE
 
-
-	var/list/gasses_to_add = list(GAS_O2)
-
 //Yes, it's using 'gas 1 pressure gas 2 pressure etc'...I need to know a better way to do this.
-/datum/component/gas_holder/Initialize(list/gasses_to_add, gas_one_pressure, gas_two_pressure, gas_three_pressure, gas_four_pressure, volume, temperature, start_pressure, maximum_pressure, can_rupture, max_integrity, integrity, leaking)
+/datum/component/gas_holder/Initialize(datum/gas_mixture/new_gas_mixture, obj/machinery/atmospherics/portables_connector/connected_port, maximum_pressure, can_rupture, max_integrity, integrity, leaking)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-
-	if(volume)
-		air_contents.volume = volume
+	if(gas_mixture)
+		air_contents = new_gas_mixture
 	else
-		air_contents.volume = src.volume
-
-	if(temperature)
-		air_contents.temperature = temperature
-	else
-		air_contents.temperature = T20C
-
-	if((gasses_to_add && LAZYLEN(gasses_to_add)))
-		src.gasses_to_add = gasses_to_add
-
-	if(start_pressure)
-		src.start_pressure = start_pressure
+		air_contents = new
+	if(connected_port)
+		src.connected_port = connected_port
 
 	if(maximum_pressure)
 		src.maximum_pressure = maximum_pressure
@@ -63,33 +45,6 @@
 	if(leaking)
 		src.leaking = leaking
 
-	if(LAZYLEN(gasses_to_add))
-		///How many gasses we're added so far.
-		var/total_gasses = 1
-		///We default to adding the start_pressure UNLESS a specific pressure for that gas is given.
-		///This is abysmal and needs to be replaced with a different way.
-		var/pressure_to_use = start_pressure
-		for(var/gas_type in gasses_to_add)
-			//begin shitcode
-			switch(total_gasses)
-				if(1)
-					if(gas_one_pressure)
-						pressure_to_use = gas_one_pressure
-						total_gasses++
-				if(2)
-					if(gas_two_pressure)
-						pressure_to_use = gas_two_pressure
-						total_gasses++
-				if(3)
-					if(gas_three_pressure)
-						pressure_to_use = gas_three_pressure
-						total_gasses++
-				if(4)
-					if(gas_four_pressure)
-						pressure_to_use = gas_four_pressure
-						total_gasses++
-			//end shitcode
-			air_contents.adjust_gas(gas_type, MolesForPressure(pressure_to_use))
 	START_PROCESSING(SSfastprocess, src)
 
 /datum/component/gas_holder/proc/MolesForPressure(var/target_pressure = start_pressure)
