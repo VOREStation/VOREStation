@@ -380,14 +380,25 @@ var/list/global/tank_gauge_cache = list()
 
 
 
-
-
-
+/* Proc that checks the status of an any air container (tanks, canisters, anything with a gas_component, etc)
+ * And handles the explosions, leaks, and rupturing of it.
+ * Has a few different arguments:
+ * air_conents: Can be any gas_mixture we want to check
+ * source: The thing that is holding said air contents
+ * integrity: What the 'integrity' of the container we are in is.
+ * max_integrity: Same as above, but our maximum.
+ * leaking: If we are currently mixing our gas contents with the outside air.
+ * valve_welded: If our 'safety release' is enabled or not. Will cause integrity to go down by 3 instead of 5 and cause us to leak to prevent a catastrophic meltdown.
+ * failure_temp: What temperature the tank will begin to leak at.
+ *
+*/
 /proc/check_status(var/datum/gas_mixture/air_contents, var/atom/movable/source, var/integrity, var/max_integrity, var/leaking, var/valve_welded, var/failure_temp)
 	//Handle exploding, leaking, and rupturing of the tank
 
-	if(!air_contents)
-		return 0
+	if(!air_contents || !istype(air_contents))
+		return FALSE
+	if(!source)
+		return FALSE
 
 	var/pressure = air_contents.return_pressure()
 
@@ -436,7 +447,7 @@ var/list/global/tank_gauge_cache = list()
 				qdel(TTV)
 
 
-			if(source)
+			if(source && !ismob(source))
 				qdel(source)
 				return
 
