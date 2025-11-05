@@ -235,7 +235,7 @@
 			if(integrity == max_integrity)
 				leaking = FALSE
 	if(leaking)
-		mingle_with_turf(get_turf(parent), volume)
+		mingle_with_turf(get_turf(parent), air_contents.volume)
 
 ///Disconnect from our connected port when we unbuckle.
 /datum/component/gas_holder/proc/handle_unbuckle(atom/movable/parent, force)
