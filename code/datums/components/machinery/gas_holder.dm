@@ -1,6 +1,7 @@
 /* Component that allows any movable atom to hold gas inside of it.
  */
 /datum/component/gas_holder
+	///The gas mixture we possess.
 	var/datum/gas_mixture/air_contents = new
 	///CONVERT THIS TO A WEAKREF
 	var/obj/machinery/atmospherics/portables_connector/connected_port
@@ -127,6 +128,14 @@
 	var/atom/movable/our_parent = parent
 	if(!connected_port) //only react when pipe_network will ont it do it for you
 		//Allow for reactions
+		if(ismob(our_parent)) //If we're a mob, make our gas assume the temp of our owner. Up to a 5K difference.
+			var/mob/our_mob = parent
+			//Our contents is hotter than our vessel, cool it down.
+			if(air_contents.temperature+5 > our_mob.bodytemperature)
+				air_contents.add_thermal_energy(-our_mob.bodytemperature)
+			//Our contents is colder than our vessel, heat it up.
+			if(air_contents.temperature-5 < our_mob.bodytemperature)
+				air_contents.add_thermal_energy(our_mob.bodytemperature)
 		air_contents.react()
 		check_status() //We ONLY go kaboom when we're off of a pipeline.
 		return
@@ -145,6 +154,7 @@
 
 
 	if(pressure > TANK_FRAGMENT_PRESSURE)
+		disconnect()
 		if(integrity <= 7)
 			message_admins("A gas holder has ruptured! tank rupture! last key to touch [our_parent.name] was [our_parent.forensic_data?.get_lastprint()].")
 			log_game("Explosive tank rupture! last key to touch [our_parent.name] was [our_parent.forensic_data?.get_lastprint()].")
@@ -195,6 +205,7 @@
 
 
 	else if(pressure > TANK_RUPTURE_PRESSURE)
+		disconnect()
 		#ifdef FIREDBG
 		log_world(span_warning("[our_parent.x],[our_parent.y] tank is rupturing: [pressure] kPa, integrity [integrity]"))
 		#endif
