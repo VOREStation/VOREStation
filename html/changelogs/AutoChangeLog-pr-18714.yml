@@ -1,0 +1,12 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "remote views with decorations and sight changing flags apply instantly"
+  - bugfix: "weird view behavior when cancelling remote view while using the spy-kit pda with only a single camera linked"
+  - bugfix: "MMIs removed from borgs and fbps no longer have their view desync"
+  - bugfix: "remote view runtime from interrupted views in the machine var shim"
+  - bugfix: "prey views becoming locked to several medical machines if their pred left them"
+  - refactor: "Moved relaymove() from machine var to remote_view component"
+  - code_imp: "Implements COMSIG_MOB_RELAY_MOVEMENT"
+  - code_imp: "COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON"
+  - code_imp: "COMSIG_LIVING_HANDLE_HUD_DARKSIGHT"
