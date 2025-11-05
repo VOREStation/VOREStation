@@ -1,0 +1,6 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "You can now drag-drop items onto chargers"
+  - code_imp: "Recharger code is a bit better"
+  - code_imp: "Got rid of some loc = X"
