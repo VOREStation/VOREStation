@@ -60,8 +60,8 @@
 /obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/eater, var/mob/living/feeder)
 	SEND_SIGNAL(src, COMSIG_FOOD_EATEN, eater, feeder)
 	if(food_inserted_micros && food_inserted_micros.len)
-		for(var/mob/living/stuffed in food_inserted_micros)
-			if(!CanFoodVore(eater, stuffed))
+		for(var/mob/living/micro in food_inserted_micros)
+			if(!can_food_vore(eater, micro))
 				continue
 
 			var/do_nom
@@ -73,9 +73,9 @@
 				if(prob(nom_chance))
 					do_nom = TRUE
 
-				if(do_nom)
-					stuffed.forceMove(eater.vore_selected)
-					food_inserted_micros -= stuffed
+			if(do_nom)
+				micro.forceMove(eater.vore_selected)
+				food_inserted_micros -= micro
 
 	if(!reagents.total_volume)
 		eater.balloon_alert_visible("eats \the [src].","finishes eating \the [src].")

@@ -93,10 +93,10 @@
 
 	if(food_inserted_micros && food_inserted_micros.len)
 		for(var/mob/living/micro in food_inserted_micros)
-			if(!CanFoodVore(eater, micro))
+			if(!can_food_vore(eater, micro))
 				continue
 
-			if(CanAnimalVore(eater, micro)) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
+			if(!can_animal_vore(eater, micro)) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
 				continue
 
 			var/do_nom = FALSE
