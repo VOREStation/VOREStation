@@ -20,9 +20,11 @@
 	var/failure_temp = 173 //173 C
 	///If we are currently leaking (mixing with our current atmos) or not.
 	var/leaking = FALSE
+	///If our release valve is plugged or not
+	var/release_plugged = FALSE
 
 //Yes, it's using 'gas 1 pressure gas 2 pressure etc'...I need to know a better way to do this.
-/datum/component/gas_holder/Initialize(datum/gas_mixture/new_gas_mixture, obj/machinery/atmospherics/portables_connector/connected_port, maximum_pressure, can_rupture, max_integrity, integrity, leaking)
+/datum/component/gas_holder/Initialize(datum/gas_mixture/new_gas_mixture, obj/machinery/atmospherics/portables_connector/connected_port, maximum_pressure, can_rupture, max_integrity, integrity, leaking, release_plugged)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -46,6 +48,8 @@
 		src.integrity = integrity
 	if(leaking)
 		src.leaking = leaking
+	if(release_plugged)
+		src.release_plugged = release_plugged
 
 	START_PROCESSING(SSfastprocess, src)
 
@@ -94,148 +98,11 @@
 			if(air_contents.temperature-5 < our_mob.bodytemperature)
 				air_contents.add_thermal_energy(our_mob.bodytemperature)
 		air_contents.react()
-		check_status() //We ONLY go kaboom when we're off of a pipeline.
+		check_status(air_contents, our_parent, integrity, max_integrity, leaking, release_plugged, failure_temp) //We ONLY go kaboom when we're off of a pipeline.
 		return
 	//Just in case we somehow moved while we were attached.
 	if(connected_port.loc != our_parent.loc)
 		disconnect()
-
-/datum/component/gas_holder/proc/check_status()
-	var/atom/movable/our_parent = parent
-	//Handle exploding, leaking, and rupturing of the tank
-
-	if(!air_contents || !can_rupture)
-		return
-
-	var/pressure = air_contents.return_pressure()
-
-
-	if(pressure > TANK_FRAGMENT_PRESSURE)
-		disconnect()
-		if(integrity <= 7)
-			message_admins("A gas holder has ruptured! tank rupture! last key to touch [our_parent.name] was [our_parent.forensic_data?.get_lastprint()].")
-			log_game("Explosive tank rupture! last key to touch [our_parent.name] was [our_parent.forensic_data?.get_lastprint()].")
-
-			//Give the gas a chance to build up more pressure through reacting
-			air_contents.react()
-			air_contents.react()
-			air_contents.react()
-
-			pressure = air_contents.return_pressure()
-			var/strength = ((pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE)
-
-			var/mult = ((src.air_contents.volume/140)**(1/2)) * (air_contents.total_moles**(2/3))/((29*0.64) **(2/3)) //tanks appear to be experiencing a reduction on scale of about 0.64 total moles
-			//tanks appear to be experiencing a reduction on scale of about 0.64 total moles
-
-
-
-			var/turf/simulated/T = get_turf(our_parent)
-			T.hotspot_expose(air_contents.temperature, 70, 1)
-			if(!T)
-				return
-
-			T.assume_air(air_contents)
-			explosion(
-				get_turf(our_parent.loc),
-				round(min(BOMBCAP_DVSTN_RADIUS, ((mult)*strength)*0.15)),
-				round(min(BOMBCAP_HEAVY_RADIUS, ((mult)*strength)*0.35)),
-				round(min(BOMBCAP_LIGHT_RADIUS, ((mult)*strength)*0.80)),
-				round(min(BOMBCAP_FLASH_RADIUS, ((mult)*strength)*1.20)),
-				)
-
-			if(isobj(our_parent))
-				var/obj/our_obj = parent
-				var/num_fragments = round(rand(8,10) * sqrt(strength * mult))
-				our_obj.fragmentate(T, num_fragments, rand(5) + 7, list(/obj/item/projectile/bullet/pellet/fragment/tank/small = 7,/obj/item/projectile/bullet/pellet/fragment/tank = 2,/obj/item/projectile/bullet/pellet/fragment/strong = 1))
-
-			if(our_parent && !QDELETED(our_parent))
-				if(ismob(our_parent))
-					var/mob/our_mob = parent
-					our_mob.gib()
-					return
-				else
-					qdel(our_parent)
-					return
-
-		else
-			integrity -=7
-
-
-	else if(pressure > TANK_RUPTURE_PRESSURE)
-		disconnect()
-		#ifdef FIREDBG
-		log_world(span_warning("[our_parent.x],[our_parent.y] tank is rupturing: [pressure] kPa, integrity [integrity]"))
-		#endif
-
-		air_contents.react()
-
-		if(integrity <= 0)
-			var/turf/simulated/T = get_turf(src)
-			if(!T)
-				return
-			T.assume_air(air_contents)
-			playsound(src, 'sound/weapons/gunshot_shotgun.ogg', 20, 1)
-			our_parent.visible_message("[icon2html(src,viewers(src))] " + span_danger("\The [parent] flies apart!"), span_warning("You hear a bang!"))
-			T.hotspot_expose(air_contents.temperature, 70, 1)
-
-
-			var/strength = 1+((pressure-TANK_LEAK_PRESSURE)/TANK_FRAGMENT_SCALE)
-
-			var/mult = (air_contents.total_moles**2/3)/((29*0.64) **2/3) //tanks appear to be experiencing a reduction on scale of about 0.64 total moles
-
-			if(isobj(our_parent))
-				var/obj/our_obj = parent
-				var/num_fragments = round(rand(6,8) * sqrt(strength * mult)) //Less chunks, but bigger
-				our_obj.fragmentate(T, num_fragments, 7, list(/obj/item/projectile/bullet/pellet/fragment/tank/small = 1,/obj/item/projectile/bullet/pellet/fragment/tank = 5,/obj/item/projectile/bullet/pellet/fragment/strong = 4))
-
-			if(our_parent && !QDELETED(our_parent))
-				if(ismob(our_parent))
-					var/mob/our_mob = parent
-					our_mob.gib()
-					return
-				else
-					qdel(our_parent)
-					return
-
-		else
-			integrity-= 5
-
-
-	else if(pressure > TANK_LEAK_PRESSURE || air_contents.temperature - T0C > failure_temp)
-
-		if((integrity <= 17 || src.leaking))
-			var/turf/simulated/T = get_turf(our_parent)
-			if(!T)
-				return
-			var/datum/gas_mixture/environment = our_parent.loc.return_air()
-			var/env_pressure = environment.return_pressure()
-			var/tank_pressure = src.air_contents.return_pressure()
-
-			var/release_ratio = 0.002
-			if(tank_pressure)
-				release_ratio = CLAMP(sqrt(max(tank_pressure-env_pressure,0)/tank_pressure), 0.002, 1)
-
-			var/datum/gas_mixture/leaked_gas = air_contents.remove_ratio(release_ratio)
-			//dynamic air release based on ambient pressure
-
-			T.assume_air(leaked_gas)
-			if(!leaking)
-				our_parent.visible_message("[icon2html(src,viewers(src))] " + span_warning("\The [src] relief valve flips open with a hiss!"), "You hear hissing.")
-				playsound(our_parent, 'sound/effects/spray.ogg', 10, 1, -3)
-				leaking = TRUE
-				#ifdef FIREDBG
-				log_world(span_warning("[our_parent.x],[our_parent.y] tank is leaking: [pressure] kPa, integrity [integrity]"))
-				#endif
-
-	else
-		if(integrity < max_integrity)
-			integrity++
-			if(leaking)
-				integrity++
-			if(integrity == max_integrity)
-				leaking = FALSE
-	if(leaking)
-		mingle_with_turf(get_turf(parent), air_contents.volume)
 
 ///Disconnect from our connected port when we unbuckle.
 /datum/component/gas_holder/proc/handle_unbuckle(atom/movable/parent, force)
@@ -327,9 +194,7 @@
 ///What we do when hit with a wrench.
 /datum/component/gas_holder/proc/handle_attack(atom/movable/our_parent, obj/item/tool as obj, mob/user as mob)
 	SIGNAL_HANDLER
-	if(user.a_intent != I_HELP) //We let them do their normal attack chain.
-		return FALSE
-	if(!istype(tool))
+	if(!istype(tool) || user.a_intent != I_HELP) //We let them do their normal attack chain.
 		return FALSE
 	if(tool.has_tool_quality(TOOL_WRENCH))
 		if(connected_port)
