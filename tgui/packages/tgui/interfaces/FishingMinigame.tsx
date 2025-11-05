@@ -4,6 +4,7 @@ import {
   type PropsWithChildren,
   type ReactNode,
   useEffect,
+  useEffectEvent,
   useState,
 } from 'react';
 import { Window } from 'tgui/layouts';
@@ -34,18 +35,18 @@ export const GameWindow = (props: {
   const [gameOver, setGameOver] = useState(GameOverState.GameTitle);
   const [score, setScore] = useState((MAX_SCORE + MIN_SCORE) / 2);
 
-  useEffect(() => {
+  const handleGameEnd = useEffectEvent(() => {
     if (score === MIN_SCORE) {
-      if (props.onLose) {
-        props.onLose();
-      }
+      props.onLose?.();
       setGameOver(GameOverState.GameFail);
     } else if (score === MAX_SCORE) {
-      if (props.onWin) {
-        props.onWin();
-      }
+      props.onWin?.();
       setGameOver(GameOverState.GameWin);
     }
+  });
+
+  useEffect(() => {
+    handleGameEnd();
   }, [score]);
 
   return gameOver ? (

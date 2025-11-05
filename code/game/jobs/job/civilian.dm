@@ -10,8 +10,8 @@
 	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
 	faction = FACTION_STATION
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	pto_type = PTO_CIVILIAN
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
@@ -387,7 +387,8 @@
 						JOB_ALT_YOGA_TEACHER = /datum/alt_title/yoga_teacher, JOB_ALT_MASSEUSE = /datum/alt_title/masseuse, JOB_ALT_TRADESPERSON = /datum/alt_title/tradesperson,
 						JOB_ALT_STREAMER = /datum/alt_title/streamer, JOB_ALT_INFLUENCER = /datum/alt_title/influencer, JOB_ALT_PARANORMAL_INVESTIGATOR = /datum/alt_title/paranormal_investigator,
 						JOB_ALT_PERSONAL_SECRETARY = /datum/alt_title/personal_secretary, JOB_ALT_STYLIST = /datum/alt_title/stylist, JOB_ALT_FISHER = /datum/alt_title/fisher,
-						JOB_ALT_FORTUNE_TELLER = /datum/alt_title/fortune_teller, JOB_ALT_SPIRIT_HEALER = /datum/alt_title/spirit_healer)
+						JOB_ALT_FORTUNE_TELLER = /datum/alt_title/fortune_teller, JOB_ALT_SPIRIT_HEALER = /datum/alt_title/spirit_healer, JOB_ALT_EDUCATOR = /datum/alt_title/educator,
+						JOB_ALT_INSTRUCTOR = /datum/alt_title/instructor)
 
 /datum/alt_title/lawyer
 	title = JOB_ALT_LAWYER
@@ -473,3 +474,13 @@
 	title = JOB_ALT_SPIRIT_HEALER
 	title_blurb = "A " + JOB_ALT_SPIRIT_HEALER + " offers alternative forms of medicine. Rituals, magic rocks, seances... It totally works. What's that about placebo?"
 	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/spirit_healer
+
+/datum/alt_title/educator
+	title = JOB_ALT_EDUCATOR
+	title_blurb = "A " + JOB_ALT_EDUCATOR + " provides an education of some sort to the crew. Perhaps somebody coming in to teach a health and safety course, or teach about cultures?"
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/educator
+
+/datum/alt_title/instructor
+	title = JOB_ALT_INSTRUCTOR
+	title_blurb = "A " + JOB_ALT_INSTRUCTOR + " provides instructions on how to perform certain tasks, providing training for crew members in new skills."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/entrepreneur/educator

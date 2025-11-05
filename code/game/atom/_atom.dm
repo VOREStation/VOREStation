@@ -95,13 +95,6 @@
 	else
 		return null
 
-//return flags that should be added to the viewer's sight var.
-//Otherwise return a negative number to indicate that the view should be cancelled.
-/atom/proc/check_eye(user as mob)
-	if (isAI(user)) // WHYYYY
-		return 0
-	return -1
-
 /atom/proc/Bumped(AM as mob|obj)
 	set waitfor = FALSE
 
@@ -260,9 +253,23 @@
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return -1
 
-/atom/proc/fire_act()
-	return
+/**
+ * Respond to fire being used on our atom
+ *
+ * Default behaviour is to send [COMSIG_ATOM_FIRE_ACT] and return
+ */
+/atom/proc/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	SEND_SIGNAL(src, COMSIG_ATOM_FIRE_ACT, air, exposed_temperature, exposed_volume)
+	return FALSE
 
+/**
+ * Sends [COMSIG_ATOM_EXTINGUISH] signal, which properly removes burning component if it is present.
+ *
+ * Default behaviour is to send [COMSIG_ATOM_ACID_ACT] and return
+ */
+/atom/proc/extinguish()
+	SHOULD_CALL_PARENT(TRUE)
+	return SEND_SIGNAL(src, COMSIG_ATOM_EXTINGUISH)
 
 // Returns an assoc list of RCD information.
 // Example would be: list(RCD_VALUE_MODE = RCD_DECONSTRUCT, RCD_VALUE_DELAY = 50, RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 4)
@@ -285,6 +292,7 @@
 
 
 /atom/proc/hitby(atom/movable/source)
+	SEND_SIGNAL(src, COMSIG_ATOM_HITBY, source)
 	if (density)
 		source.throwing = 0
 	return
@@ -468,9 +476,6 @@
 /atom/Exited(atom/movable/AM, atom/new_loc)
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
-
-/atom/proc/get_visible_gender(mob/user, force)
-	return gender
 
 /atom/proc/interact(mob/user)
 	return

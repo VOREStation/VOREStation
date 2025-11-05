@@ -35,6 +35,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isstructure(A)	istype(A, /obj/structure)
 
+#define isdisposalpacket(A)	istype(A,/obj/structure/disposalholder)
+
 //---------------
 //#define isarea(D)		istype(D, /area)	//Built in
 
@@ -83,8 +85,11 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define istaurtail(A)	istype(A, /datum/sprite_accessory/tail/taur)
 #define islongtail(A)	istype(A, /datum/sprite_accessory/tail/longtail)
 
+///If a vehicle cannot pass through the turf
+#define is_vehicle_inpassable(A) (istype(A, /turf/space) || istype(A, /turf/simulated/floor/water) || istype(A, /turf/simulated/floor/lava))
+
 // Diveable water
-#define isdiveablewater(A)	istype(A, /turf/simulated/floor/water/deep/ocean/diving)
+#define isdiveablewater(A)	(istype(A, /turf/simulated/floor/water/deep/ocean/diving) || istype(A, /turf/simulated/floor/water/underwater/open) || istype(A, /turf/simulated/floor/water/underwater/indoors/open))
 
 /// NaN isn't a number, damn it. Infinity is a problem too.
 #define isnum_safe(x) ( isnum((x)) && !isnan((x)) && !isinf((x)) )

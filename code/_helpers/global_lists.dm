@@ -396,6 +396,20 @@ GLOBAL_LIST_INIT(item_digestion_blacklist, list(
 		/obj/item/mmi/digital/robot,
 		/obj/item/rig/protean))
 
+///A list of stuff we do NOT want being deconstructed. Either due to how critical it is (ID/nuke disk) or buggy (holders and paicards)
+GLOBAL_LIST_INIT(item_deconstruction_blacklist, list(
+		/obj/item/card/id,
+		/obj/item/areaeditor/blueprints,
+		/obj/item/disk/nuclear,
+		/obj/item/perfect_tele_beacon,
+		/obj/item/organ/internal/brain,
+		/obj/item/mmi,
+		/obj/item/rig/protean,
+		/obj/item/holder,
+		/obj/item/paicard,
+		/obj/item/stack/material/cyborg,
+		/obj/item/storage))
+
 ///A list of chemicals that are banned from being obtainable through means that generate chemicals. These chemicals are either lame, annoying, pref-breaking, or OP (This list does NOT include reactions)
 GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
 	REAGENT_ID_ADMINORDRAZINE,
@@ -1610,6 +1624,7 @@ GLOBAL_LIST_INIT(suitable_fish_turf_types,  list(
 	/turf/simulated/floor/water
 ))
 
+GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
 
 //Chamelion clothing was all stupid so it's done here instead.
 //Jumpsuit

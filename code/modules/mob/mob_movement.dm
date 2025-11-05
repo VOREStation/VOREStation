@@ -205,13 +205,6 @@
 		if(L.is_incorporeal())//Move though walls
 			Process_Incorpmove(direct)
 			return
-		/* TODO observer unzoom
-		if(view != world.view) // If mob moves while zoomed in with device, unzoom them.
-			for(var/obj/item/item in mob.contents)
-				if(item.zoom)
-					item.zoom()
-					break
-		*/
 
 	if(Process_Grab())
 		return
@@ -221,8 +214,9 @@
 		return
 
 	// Relaymove could handle it
-	if(my_mob.machine)
-		var/result = my_mob.machine.relaymove(my_mob, direct)
+	var/obj/machine = my_mob.get_current_machine()
+	if(machine)
+		var/result = machine.relaymove(my_mob, direct)
 		if(result)
 			return result
 

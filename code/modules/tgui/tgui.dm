@@ -175,6 +175,9 @@
 		if(user.client)
 			terminate_byondui_elements()
 
+	// Unset machine just to be sure.
+	user.unset_machine()
+
 	state = null
 	if(parent_ui)
 		parent_ui.children -= src

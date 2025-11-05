@@ -81,16 +81,6 @@
 		"rad" = 100
 		)
 
-	armor_soak = list(
-		"melee" = 5,
-		"bullet" = 5,
-		"laser" = 0,
-		"energy" = 0,
-		"bomb" = 0,
-		"bio" = 0,
-		"rad" = 0
-		)
-
 	say_list_type = /datum/say_list/leech
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/leech
 
@@ -330,8 +320,6 @@
 	host_bodypart = null
 
 	forceMove(get_turf(host))
-
-	reset_view(null)
 
 	host = null
 

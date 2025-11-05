@@ -15,9 +15,8 @@
 	w_class = ITEMSIZE_LARGE
 	unacidable = TRUE
 	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
-	actions_types = list(/datum/action/item_action/remove_replace_paddles)
 
-	var/obj/item/shockpaddles/linked/paddles
+	var/obj/item/shockpaddles/linked/paddle_path = /obj/item/shockpaddles/linked
 	var/obj/item/cell/bcell = null
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
@@ -26,29 +25,28 @@
 	return bcell
 
 /obj/item/defib_kit/Initialize(mapload) //starts without a cell for rnd
+	AddComponent(/datum/component/tethered_item, paddle_path)
 	. = ..()
-	if(ispath(paddles))
-		paddles = new paddles(src, src)
-	else
-		paddles = new(src, src)
-
 	if(ispath(bcell))
 		bcell = new bcell(src)
 	update_icon()
 
 /obj/item/defib_kit/Destroy()
 	. = ..()
-	QDEL_NULL(paddles)
 	QDEL_NULL(bcell)
 
 /obj/item/defib_kit/loaded //starts with a cell
 	bcell = /obj/item/cell/apc
 
+/obj/item/defib_kit/proc/get_paddles()
+	var/datum/component/tethered_item/TI = GetComponent(/datum/component/tethered_item)
+	return TI.get_handheld()
 
 /obj/item/defib_kit/update_icon()
 	cut_overlays()
 
-	if(paddles && paddles.loc == src) //in case paddles got destroyed somehow.
+	var/obj/item/shockpaddles/linked/paddles = get_paddles()
+	if(paddles && paddles.loc == src)
 		add_overlay("[initial(icon_state)]-paddles")
 	if(bcell && paddles)
 		if(bcell.check_charge(paddles.chargecost))
@@ -64,14 +62,11 @@
 	else
 		add_overlay("[initial(icon_state)]-nocell")
 
-/obj/item/defib_kit/ui_action_click(mob/user, actiontype)
-	toggle_paddles()
-
-/obj/item/defib_kit/attack_hand(mob/user)
-	if(loc == user)
-		toggle_paddles()
-	else
-		..()
+/obj/item/defib_kit/attack_hand(mob/living/user)
+	// See important note in tethered_item.dm
+	if(SEND_SIGNAL(src,COMSIG_ITEM_ATTACK_SELF,user) & COMPONENT_NO_INTERACT)
+		return TRUE
+	. = ..()
 
 /obj/item/defib_kit/MouseDrop()
 	if(ismob(src.loc))
@@ -85,9 +80,7 @@
 
 
 /obj/item/defib_kit/attackby(obj/item/W, mob/user, params)
-	if(W == paddles)
-		reattach_paddles(user)
-	else if(istype(W, /obj/item/cell))
+	if(istype(W, /obj/item/cell))
 		if(bcell)
 			to_chat(user, span_notice("\The [src] already has a cell."))
 		else
@@ -102,6 +95,7 @@
 		if(bcell)
 			bcell.update_icon()
 			bcell.forceMove(get_turf(src.loc))
+			user.put_in_any_hand_if_possible(bcell)
 			bcell = null
 			to_chat(user, span_notice("You remove the cell from \the [src]."))
 			update_icon()
@@ -109,32 +103,11 @@
 		return ..()
 
 /obj/item/defib_kit/emag_act(var/remaining_charges, var/mob/user)
+	var/obj/item/shockpaddles/linked/paddles = get_paddles()
 	if(paddles)
 		. = paddles.emag_act(user)
 		update_icon()
 	return
-
-//Paddle stuff
-
-/obj/item/defib_kit/verb/toggle_paddles()
-	set name = "Toggle Paddles"
-	set category = "Object"
-
-	var/mob/living/carbon/human/user = usr
-	if(!paddles)
-		to_chat(user, span_warning("The paddles are missing!"))
-		return
-
-	if(paddles.loc != src)
-		reattach_paddles(user) //Remove from their hands and back onto the defib unit
-		return
-
-	if(!slot_check())
-		to_chat(user, span_warning("You need to equip [src] before taking out [paddles]."))
-	else
-		if(!user.put_in_hands(paddles)) //Detach the paddles into the user's hands
-			to_chat(user, span_warning("You need a free hand to hold the paddles!"))
-		update_icon() //success
 
 //checks that the base unit is in the correct slot to be used
 /obj/item/defib_kit/proc/slot_check()
@@ -146,30 +119,12 @@
 		return 1
 	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_belt) == src)
 		return 1
-	//VOREStation Add Start - RIGSuit compatability
 	if((slot_flags & SLOT_BACK) && M.get_equipped_item(slot_s_store) == src)
 		return 1
 	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_s_store) == src)
 		return 1
-	//VOREStation Add End
 
 	return 0
-
-/obj/item/defib_kit/dropped(mob/user)
-	..()
-	reattach_paddles(user) //paddles attached to a base unit should never exist outside of their base unit or the mob equipping the base unit
-
-/obj/item/defib_kit/proc/reattach_paddles(mob/user)
-	if(!paddles) return
-
-	if(ismob(paddles.loc))
-		var/mob/M = paddles.loc
-		if(M.drop_from_inventory(paddles, src))
-			to_chat(user, span_notice("\The [paddles] snap back into the main unit."))
-	else
-		paddles.forceMove(src)
-
-	update_icon()
 
 /*
 	Base Unit Subtypes
@@ -191,7 +146,7 @@
 /obj/item/defib_kit/compact/combat
 	name = "combat defibrillator"
 	desc = "A belt-equipped blood-red defibrillator that can be rapidly deployed. Does not have the restrictions or safeties of conventional defibrillators and can revive through space suits."
-	paddles = /obj/item/shockpaddles/linked/combat
+	paddle_path = /obj/item/shockpaddles/linked/combat
 
 /obj/item/defib_kit/compact/combat/loaded
 	bcell = /obj/item/cell/high
@@ -214,6 +169,7 @@
 	force = 2
 	throwforce = 6
 	w_class = ITEMSIZE_LARGE
+	item_flags = NOSTRIP
 
 	var/safety = 1 //if you can zap people with the paddles on harm mode
 	var/combat = 0 //If it can be used to revive people wearing thick clothing (e.g. spacesuits)
@@ -433,6 +389,10 @@
 		return
 
 	H.apply_damage(burn_damage_amt, BURN, BP_TORSO)
+	if(HAS_TRAIT(H, TRAIT_UNLUCKY) && prob(5))
+		make_announcement("buzzes, \"Unknown error occurred. Please try again.\"", "warning")
+		playsound(src, 'sound/machines/defib_failed.ogg', 50, FALSE)
+		return
 
 	//set oxyloss so that the patient is just barely in crit, if possible
 	var/barely_in_crit = H.get_crit_point() - 1
@@ -481,7 +441,7 @@
 	playsound(src, 'sound/weapons/egloves.ogg', 100, 1, -1)
 	set_cooldown(cooldowntime)
 
-	H.stun_effect_act(2, 120, target_zone)
+	H.stun_effect_act(2, 120, target_zone, electric = TRUE)
 	var/burn_damage = H.electrocute_act(burn_damage_amt*2, src, def_zone = target_zone)
 	if(burn_damage > 15 && H.can_feel_pain())
 		H.emote("scream")
@@ -594,34 +554,16 @@
 /*
 	Shockpaddles that are linked to a base unit
 */
-/obj/item/shockpaddles/linked
-	var/obj/item/defib_kit/base_unit
-
-/obj/item/shockpaddles/linked/Initialize(mapload, obj/item/defib_kit/defib)
-	. = ..()
-	base_unit = defib
-
-/obj/item/shockpaddles/linked/Destroy()
-	if(base_unit)
-		//ensure the base unit's icon updates
-		if(base_unit.paddles == src)
-			base_unit.paddles = null
-			base_unit.update_icon()
-		base_unit = null
-	return ..()
-
-/obj/item/shockpaddles/linked/dropped(mob/user)
-	..() //update twohanding
-	if(base_unit)
-		base_unit.reattach_paddles(user) //paddles attached to a base unit should never exist outside of their base unit or the mob equipping the base unit
-
 /obj/item/shockpaddles/linked/check_charge(var/charge_amt)
+	var/obj/item/defib_kit/base_unit = tethered_host_item
 	return (base_unit.bcell && base_unit.bcell.check_charge(charge_amt))
 
 /obj/item/shockpaddles/linked/checked_use(var/charge_amt)
+	var/obj/item/defib_kit/base_unit = tethered_host_item
 	return (base_unit.bcell && base_unit.bcell.checked_use(charge_amt))
 
 /obj/item/shockpaddles/linked/make_announcement(var/message, var/msg_class)
+	var/obj/item/defib_kit/base_unit = tethered_host_item
 	base_unit.audible_message(span_infoplain(span_bold("\The [base_unit]") + " [message]"), span_info("\The [base_unit] vibrates slightly."))
 
 /*
@@ -685,7 +627,7 @@
 	icon_state = "jumperunit"
 	item_state = "defibunit"
 //	item_state = "jumperunit"
-	paddles = /obj/item/shockpaddles/linked/jumper
+	paddle_path = /obj/item/shockpaddles/linked/jumper
 
 /obj/item/defib_kit/jumper_kit/loaded
 	bcell = /obj/item/cell/high

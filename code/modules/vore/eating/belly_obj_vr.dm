@@ -671,7 +671,7 @@
 		L.clear_fullscreen("belly")
 	if(belly_fullscreen)
 		if(colorization_enabled)
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly, severity) // preserving save data
+			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly, severity) // preserving save data
 			var/datum/belly_overlays/lookup_belly_path = text2path("/datum/belly_overlays/[lowertext(belly_fullscreen)]")
 			if(!lookup_belly_path)
 				var/used_fullscreen = belly_fullscreen
@@ -749,7 +749,7 @@
 				F.add_overlay(I)
 			F.update_for_view(L.client.view)
 		else
-			var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly/fixed, severity) //preserving save data
+			var/atom/movable/screen/fullscreen/F = L.overlay_fullscreen("belly", /atom/movable/screen/fullscreen/belly/fixed, severity) //preserving save data
 			F.icon = 'icons/mob/screen_full_vore.dmi'
 			F.cut_overlays()
 			F.add_overlay(image(F.icon, belly_fullscreen))
@@ -900,9 +900,6 @@
 		slip.slip_protect = world.time + 25 // This is to prevent slipping back into your pred if they stand on soap or something.
 	//Place them into our drop_location
 	M.forceMove(drop_location())
-	if(ismob(M))
-		var/mob/ourmob = M
-		ourmob.reset_view(null)
 	items_preserved -= M
 
 	//Special treatment for absorbed prey
@@ -961,10 +958,6 @@
 			soundfile = GLOB.fancy_release_sounds[release_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = sound_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, frequency = noise_freq, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
-	//Should fix your view not following you out of mobs sometimes!
-	if(ismob(M))
-		var/mob/ourmob = M
-		ourmob.reset_view(null)
 
 	if(!owner.ckey && escape_stun)
 		owner.Weaken(escape_stun)
@@ -981,9 +974,6 @@
 		prey.buckled.unbuckle_mob()
 
 	prey.forceMove(src)
-	if(ismob(prey))
-		var/mob/ourmob = prey
-		ourmob.reset_view(owner)
 	owner.updateVRPanel()
 
 	for(var/mob/living/M in contents)
@@ -1174,10 +1164,6 @@
 	//This is probably already the case, but for sub-prey, it won't be.
 	if(M.loc != src)
 		M.forceMove(src)
-
-	if(ismob(M))
-		var/mob/ourmob = M
-		ourmob.reset_view(owner)
 
 	//Seek out absorbed prey of the prey, absorb them too.
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
@@ -1522,9 +1508,6 @@
 		return
 	content.belly_cycles = 0
 	content.forceMove(target)
-	if(ismob(content) && !isobserver(content))
-		var/mob/ourmob = content
-		ourmob.reset_view(owner)
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/card/id))

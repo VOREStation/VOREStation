@@ -183,6 +183,7 @@
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/melee/robotic/jaws/small(src)
 	src.modules += new /obj/item/gripper/scene(src)
+	src.modules += new /obj/item/robo_dice(src)
 
 /obj/item/robot_module/robot/standard
 	name = "standard robot module"

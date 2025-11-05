@@ -950,7 +950,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	if(!legcuffed)
 		return //Not legcuffed, why bother.
 
-	throw_alert("legcuffed", /obj/screen/alert/restrained/legcuffed, new_master = legcuffed)
+	throw_alert("legcuffed", /atom/movable/screen/alert/restrained/legcuffed, new_master = legcuffed)
 
 	overlays_standing[LEGCUFF_LAYER] = legcuffed.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_legcuffed_str, default_icon = INV_LCUFF_DEF_ICON, default_layer = LEGCUFF_LAYER)
 
@@ -1193,6 +1193,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts) //see UpdateDamageIcon()
 	var/atom/A = loc // We'd better be swimming and on a turf
 	var/image/I = image(icon = 'icons/mob/submerged.dmi', icon_state = "human_swimming_[depth]", layer = BODY_LAYER+MOB_WATER_LAYER) //TODO: Improve
 	I.color = A.color
+	if(istype(A, /turf/simulated/floor/water))
+		var/turf/simulated/floor/water/underwater = A
+		if(underwater.watercolor)
+			I.color = underwater.watercolor
 	overlays_standing[MOB_WATER_LAYER] = I
 
 	apply_layer(MOB_WATER_LAYER)

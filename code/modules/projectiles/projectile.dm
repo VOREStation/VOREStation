@@ -144,6 +144,11 @@
 	var/hud_state = "unknown" // What HUD state we use when we have ammunition.
 	var/hud_state_empty = "unknown" // The empty state. DON'T USE _FLASH IN THE NAME OF THE EMPTY STATE STRING, THAT IS ADDED BY THE CODE.
 
+	///If the rounds dephase or not
+	var/dephasing = FALSE
+	///If the rounds hit phased entities or not.
+	var/hits_phased = FALSE
+
 	var/obj/item/ammo_casing/my_case = null
 
 
@@ -242,13 +247,15 @@
 	Range()
 
 /obj/item/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
-	if(AM.is_incorporeal())
+	if(AM.is_incorporeal() && !hits_phased)
 		return
 	..()
 	if(isliving(AM) && !(pass_flags & PASSMOB))
 		var/mob/living/L = AM
 		if(can_hit_target(L, permutated, (AM == original)))
 			Bump(AM)
+			if(dephasing)
+				L.phase_in() //If the mob is phased, dephase them. If they're not phased, this does nothing.
 
 /obj/item/projectile/proc/process_homing()			//may need speeding up in the future performance wise.
 	if(!homing_target)
@@ -554,7 +561,9 @@
 			if(L.GetComponent(/datum/component/swarming) && L.stat != DEAD && !L.lying)
 				return TRUE
 			if(!L.density)
-				return FALSE
+				var/datum/component/shadekin/SK = L.GetComponent(/datum/component/shadekin)
+				if(!SK || (SK.in_phase && !hits_phased)) //We don't have the phasing component, or we do but we're currently phased and the bullet can't hit phased things...This is needed for simple mobs.
+					return FALSE
 	return TRUE
 
 /obj/item/projectile/Bump(atom/A)
@@ -678,7 +687,7 @@
 	if(!istype(target_mob))
 		return
 
-	if(target_mob.is_incorporeal())
+	if(target_mob.is_incorporeal() && !hits_phased)
 		return
 
 	if(target_mob in impacted_mobs)
@@ -734,6 +743,10 @@
 	if(!no_attack_log)
 		if(istype(firer, /mob) && istype(target_mob))
 			add_attack_logs(firer,target_mob,"Shot with \a [src.type] projectile")
+
+	if(dephasing)
+		target_mob.phase_in() //If the mob is phased, dephase them. If they're not phased, this does nothing.
+
 
 	//sometimes bullet_act() will want the projectile to continue flying
 	if (result == PROJECTILE_CONTINUE)

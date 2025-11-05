@@ -2,9 +2,9 @@
 	layer = OBJ_LAYER
 	plane = OBJ_PLANE
 	vis_flags = VIS_INHERIT_PLANE //when this be added to vis_contents of something it inherit something.plane, important for visualisation of obj in openspace.
+	unacidable = FALSE //universal "unacidabliness" var, here so you can use it in any obj.
 	//Used to store information about the contents of the object.
 	var/w_class // Size of the object.
-	var/unacidable = FALSE //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/show_messages
@@ -99,64 +99,9 @@
 	else
 		return null
 
-/obj/proc/updateUsrDialog(mob/user)
-	if(in_use)
-		var/is_in_use = 0
-		var/list/nearby = viewers(1, src)
-		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
-				is_in_use = 1
-				src.attack_hand(M)
-		if (isAI(user) || isrobot(user))
-			if (!(user in nearby))
-				if (user.client && user.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-					is_in_use = 1
-					src.attack_ai(user)
-
-		// check for TK users
-
-		if (ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(H.get_type_in_hands(/obj/item/tk_grab))
-				if(!(H in nearby))
-					if(H.client && H.machine==src)
-						is_in_use = 1
-						src.attack_hand(H)
-		in_use = is_in_use
-
-/obj/proc/updateDialog()
-	// Check that people are actually using the machine. If not, don't update anymore.
-	if(in_use)
-		var/list/nearby = viewers(1, src)
-		var/is_in_use = 0
-		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
-				is_in_use = 1
-				src.interact(M)
-		var/ai_in_use = AutoUpdateAI(src)
-
-		if(!ai_in_use && !is_in_use)
-			in_use = 0
-
 /obj/attack_ghost(mob/user)
 	tgui_interact(user)
 	..()
-
-/mob/proc/unset_machine()
-	machine?.remove_visual(src)
-	src.machine = null
-
-/mob/proc/set_machine(var/obj/O)
-	if(src.machine)
-		unset_machine()
-	src.machine = O
-	if(istype(O))
-		O.in_use = 1
-
-/obj/item/proc/updateSelfDialog()
-	var/mob/M = src.loc
-	if(istype(M) && M.client && M.machine == src)
-		src.attack_self(M)
 
 /obj/proc/hide(h)
 	return

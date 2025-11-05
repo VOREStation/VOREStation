@@ -1337,6 +1337,12 @@
 	ckeywhitelist = list("theskringdinger")
 	character_name = list("Monty Kopic")
 
+/datum/gear/fluff/flute_tief
+	path = /obj/item/instrument/recorder/fluff_tief
+	display_name = "flute"
+	ckeywhitelist = list("tief")
+	character_name = list("Belphi")
+
 /datum/gear/fluff/shadow_laptop
 	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens
 	display_name = "Shadow's Laptop"
@@ -1590,6 +1596,20 @@
 	display_name = "engraved d6"
 	ckeywhitelist = list("yeehawguvnah")
 	character_name = list("Cephyra")
+
+/datum/gear/fluff/names_hat
+	path = /obj/item/clothing/head/fluff/names_pizza
+	display_name = "pizza delivery hat"
+	slot = slot_head
+	ckeywhitelist = list("yepthatsmyname")
+	character_name = list("Mothza Aurella")
+
+/datum/gear/fluff/names_uniform
+	path = /obj/item/clothing/under/names_pizza
+	display_name = "pizza delivery uniform"
+	slot = slot_w_uniform
+	ckeywhitelist = list("yepthatsmyname")
+	character_name = list("Mothza Aurella")
 
 //  Z CKEYS
 /datum/gear/fluff/tachika_medal

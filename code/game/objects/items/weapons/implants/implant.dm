@@ -123,16 +123,18 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/implant/tracking)
 	return ..()
 
 /obj/item/implant/tracking/process()
-	var/implant_location = src.loc
-	if(ismob(implant_location))
-		var/mob/living/L = implant_location
-		if(L.stat == DEAD)
-			if(world.time >= L.timeofdeath + degrade_time)
-				name = "melted implant"
-				desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
-				icon_state = "implant_melted"
-				malfunction = MALFUNCTION_PERMANENT
-				STOP_PROCESSING(SSobj, src)
+	var/mob/living/implant_mob // Get implant's mob from our host organ
+	if(istype(loc, /obj/item/organ))
+		var/obj/item/organ/O = loc
+		implant_mob = O.owner
+
+	if(ismob(implant_mob) && implant_mob.stat == DEAD)
+		if(world.time >= implant_mob.timeofdeath + degrade_time)
+			name = "melted implant"
+			desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
+			icon_state = "implant_melted"
+			malfunction = MALFUNCTION_PERMANENT
+			STOP_PROCESSING(SSobj, src)
 	return 1
 
 /obj/item/implant/tracking/get_data()

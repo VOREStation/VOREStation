@@ -15,6 +15,8 @@
 		return
 	if(owner.stat == DEAD)
 		return
+	if(owner.is_incorporeal())
+		return
 	if(owner.inStasisNow())
 		return
 	if(!isturf(owner.loc))

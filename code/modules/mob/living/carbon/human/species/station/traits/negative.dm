@@ -138,6 +138,7 @@
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
 	cost = -2 //I feel like this should be higher, but let's see where it goes
+	excludes = list(/datum/trait/negative/boneless)
 
 /datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -244,7 +245,7 @@
 /datum/trait/negative/less_blood
 	name = "Low Blood Volume"
 	desc = "You have 33.3% less blood volume compared to most species, making you more prone to blood loss issues."
-	cost = -3
+	cost = -2
 	var_changes = list("blood_volume" = 375)
 	excludes = list(/datum/trait/negative/less_blood_extreme)
 	can_take = ORGANICS
@@ -252,7 +253,7 @@
 /datum/trait/negative/less_blood_extreme
 	name = "Low Blood Volume, Extreme"
 	desc = "You have 60% less blood volume compared to most species, making you much more prone to blood loss issues."
-	cost = -5
+	cost = -3
 	var_changes = list("blood_volume" = 224)
 	excludes = list(/datum/trait/negative/less_blood)
 	can_take = ORGANICS
@@ -325,11 +326,8 @@
 	name = "Agoraphobia"
 	desc = "You very much dislike being in crowded places. When in the company of more than two other people, you start to panic and experience adverse effects."
 	cost = -3
-	var/warning_cap = 400
-	var/hallucination_cap = 25
-	var/escalation_speed = 0.8
-	special_env = TRUE
 	excludes = list(/datum/trait/negative/lonely,/datum/trait/negative/lonely/major)
+	added_component_path = /datum/component/crowd_detection/agoraphobia
 
 	//Traitgenes
 	is_genetrait = TRUE
@@ -338,136 +336,19 @@
 	activation_message="You feel like you need some space"
 	primitive_expression_messages=list("keeps their distance from others")
 
-/datum/trait/negative/agoraphobia/handle_environment_special(var/mob/living/carbon/human/H)
-	spawn(0)
-		if(isbelly(H.loc)) //I don't need to be told every 2 seconds I'm freaking out when I'm in a belly trying to WRITE!!! We can handle all the stress of it when (IF) we are let out of the gut.
-			return
-		var/list/in_range = list()
-		// If they're dead or unconcious they're a bit beyond this kind of thing.
-		if(H.stat)
-			return
-		// No point processing if we're already stressing the hell out.
-		if(H.hallucination >= hallucination_cap && H.loneliness_stage >= warning_cap)
-			return
-		in_range |= check_mob_company(H,H)	//Checks our item slots and bellies for any people.
-		in_range |= belly_check(H,H.loc)	//Recursive check if we're in anyones bellies, are they in anyone's belly, etc.
-		in_range |= holder_check(H,H.loc)	//Recursive check if someone's holding us, is anyone holding them, etc.
-
-		// Check for company.
-		for(var/mob/living/M in viewers(get_turf(H)))
-			in_range |= check_mob_company(H,M)
-
-		for(var/obj/effect/overlay/aiholo/A in range(5, H))
-			in_range |= A
-
-		if(in_range.len > 2)
-			if(H.loneliness_stage < warning_cap)
-				H.loneliness_stage = min(warning_cap,H.loneliness_stage+escalation_speed)
-			handle_loneliness(H)
-			if(H.loneliness_stage >= warning_cap && H.hallucination < hallucination_cap)
-				H.hallucination = min(hallucination_cap,H.hallucination+2.5*escalation_speed)
-		else
-			H.loneliness_stage = max(H.loneliness_stage-4,0)
-
-
-/datum/trait/negative/agoraphobia/proc/handle_loneliness(var/mob/living/carbon/human/H)
-	if(world.time < H.next_loneliness_time)
-		return //Moved this at the top so we dont waste time assigning vars we will never use
-	var/ms = handle_loneliness_message(H)
-	if(ms)
-		to_chat(H, ms)
-	H.next_loneliness_time = world.time+500
-	H.fear = min((H.fear + 3), 102)
-
-/datum/trait/negative/agoraphobia/proc/handle_loneliness_message(var/mob/living/carbon/human/H)
-	var/Lonely = H.loneliness_stage
-	if(Lonely == escalation_speed)
-		return "You notice there's more people than you feel comfortable with around you..."
-	else if(Lonely >= 50 && Lonely < 250)
-		return "You start to feel anxious from the number of people around you."
-	else if(Lonely >= 250 && Lonely < warning_cap)
-		if(H.stuttering < hallucination_cap)
-			H.stuttering += 5
-		return "[pick("You don't think you can last much longer with this much company!", "You should go find some space!")]" //if we add more here make it a list for readability
-	else if(Lonely >= warning_cap)
-		var/list/panicmessages = list(	"Why am I still here? I have to leave and get some space!",
-						"Please, just let me be alone!",
-						"I need to be alone!")
-		return span_bolddanger("[pick(panicmessages)]")
-	return FALSE
-
-/datum/trait/negative/agoraphobia/proc/find_held_by(var/atom/item)
-	if(!item || !istype(item))
-		return null
-	else if(istype(item,/mob/living))
-		return item
-	else
-		return find_held_by(item.loc)
-
-/datum/trait/negative/agoraphobia/proc/holder_check(var/mob/living/carbon/human/H,var/obj/item/holder/H_holder)
-	var/list/in_range = list()
-	if(istype(H_holder))
-		var/mob/living/held_by = find_held_by(H_holder)
-		if(held_by)
-			in_range |= check_mob_company(H,held_by,FALSE)
-		in_range |= holder_check(H,held_by)
-	return in_range
-
-/datum/trait/negative/agoraphobia/proc/belly_check(var/mob/living/carbon/human/H,var/obj/belly/B)
-	var/list/in_range = list()
-	if(istype(B))
-		in_range |= check_mob_company(H,B.owner,FALSE)
-		if(isbelly(B.owner.loc))
-			in_range |= belly_check(H,B.owner.loc)
-	return in_range
-
-/datum/trait/negative/agoraphobia/proc/check_mob_company(var/mob/living/carbon/human/H,var/mob/living/M,var/invis_matters = TRUE)
-	var/list/in_range = list()
-	if(!istype(M))
-		return in_range
-	var/social_check = !istype(M, /mob/living/carbon) && !istype(M, /mob/living/silicon/robot)
-	var/ckey_check = !M.ckey
-	var/overall_checks = M == H || M.stat == DEAD || social_check || ckey_check
-	if(invis_matters && M.invisibility > H.see_invisible)
-		return in_range
-	if(!overall_checks)
-		in_range |= M
-	in_range |= check_contents(M,H)
-	return in_range
-
-/datum/trait/negative/agoraphobia/proc/check_contents(var/atom/item,var/mob/living/carbon/human/H,var/max_layer = 3,var/current_layer = 1)
-	var/list/in_range = list()
-	if(!item || !istype(item) || current_layer > max_layer)
-		return in_range
-	for(var/datum/content in item.contents)
-		if(istype(content,/obj/item/holder))
-			var/obj/item/holder/contentholder = content
-			in_range |= check_mob_company(H,contentholder.held_mob)
-		else
-			in_range |= check_contents(content,H,max_layer,current_layer+1)
-	return in_range
-
 /datum/trait/negative/lonely
 	name = "Minor loneliness vulnerability"
 	desc = "You're very prone to loneliness! Being alone for extended periods of time causes adverse effects. Most mobs will cure this loneliness as long as they aren't hostile."
 	cost = -1
-	var/warning_cap = 400
-	var/only_people = FALSE
-	var/hallucination_cap = 25
-	var/escalation_speed = 0.8
-	special_env = TRUE
 	excludes = list(/datum/trait/negative/lonely/major,/datum/trait/negative/agoraphobia)
+	added_component_path = /datum/component/crowd_detection/lonely
 
 /datum/trait/negative/lonely/major
 	name = "Major loneliness vulnerability"
 	desc = "You're extremely prone to loneliness! Being alone for extended periods of time causes adverse effects. Most mobs won't be enough to cure this loneliness, you need other social beings."
 	cost = -3
-	warning_cap = 300
-	hallucination_cap = 50
-	escalation_speed = 1.3
-	only_people = TRUE
-	special_env = TRUE
 	excludes = list(/datum/trait/negative/lonely,/datum/trait/negative/agoraphobia)
+	added_component_path = /datum/component/crowd_detection/lonely/major
 
 	//Traitgenes
 	is_genetrait = TRUE
@@ -475,118 +356,6 @@
 
 	activation_message="You feel like you are in desperate need of company..."
 	primitive_expression_messages=list("Looks up at you pleadingly")
-
-/datum/trait/negative/lonely/proc/sub_loneliness(var/mob/living/carbon/human/H,var/amount = 4)
-	H.loneliness_stage = max(H.loneliness_stage - 4, 0)
-	if(world.time >= H.next_loneliness_time && H.loneliness_stage > 0)
-		to_chat(H, span_infoplain("The nearby company calms you down..."))
-		H.next_loneliness_time = world.time+500
-
-/datum/trait/negative/lonely/proc/check_mob_company(var/mob/living/carbon/human/H,var/mob/living/M)
-	if(!istype(M))
-		return 0
-	var/social_check = only_people && !istype(M, /mob/living/carbon) && !istype(M, /mob/living/silicon/robot)
-	var/self_invisible_check = M == H || M.invisibility > H.see_invisible
-	var/ckey_check = only_people && !M.ckey
-	var/overall_checks = M.stat == DEAD || social_check || ckey_check
-	if(self_invisible_check)
-		return 0
-	if((M.faction == "neutral" || M.faction == H.faction) && !overall_checks)
-		sub_loneliness(H)
-		return 1
-	else
-		if(M.vore_organs)
-			for(var/obj/belly/B in M.vore_organs)
-				for(var/mob/living/content in B.contents)
-					if(istype(content))
-						check_mob_company(H,content)
-	return 0
-
-/datum/trait/negative/lonely/proc/check_contents(var/atom/item,var/mob/living/carbon/human/H,var/max_layer = 3,var/current_layer = 1)
-	if(!item || !istype(item) || current_layer > max_layer)
-		return 0
-	for(var/datum/content in item.contents)
-		if(istype(content,/obj/item/holder))
-			var/obj/item/holder/contentholder = content
-			if(check_mob_company(H,contentholder.held_mob))
-				return 1
-		else
-			if(check_contents(content,H,max_layer,current_layer+1))
-				return 1
-	return 0
-
-/datum/trait/negative/lonely/handle_environment_special(var/mob/living/carbon/human/H)
-	spawn(0)
-		// If they're dead or unconcious they're a bit beyond this kind of thing.
-		if(H.stat)
-			return
-		// No point processing if we're already stressing the hell out.
-		if(H.hallucination >= hallucination_cap && H.loneliness_stage >= warning_cap)
-			return
-
-		var/datum/component/antag/changeling/comp = H.GetComponent(/datum/component/antag/changeling)
-		if(comp) // We are never alone~
-			H.loneliness_stage = 0
-			return
-		if(H.has_brain_worms()) // Brain friends!
-			sub_loneliness(H)
-			return
-
-		// Vored? Not gonna get frightened.
-		if(isbelly(H.loc))
-			sub_loneliness(H)
-			return
-		if(istype(H.loc, /obj/item/holder))
-			sub_loneliness(H)
-			return
-		// Check for company.
-		if(check_contents(H,H)) //Check our item slots and storage for any micros.
-			sub_loneliness(H)
-			return
-		for(var/mob/living/M in viewers(get_turf(H)))
-			if(check_mob_company(H,M))
-				return
-		//Check to see if there's anyone in our belly
-		if(H.vore_organs)
-			for(var/obj/belly/B in H.vore_organs)
-				for(var/mob/living/content in B.contents)
-					if(istype(content))
-						if(check_mob_company(H,content))
-							return
-		for(var/obj/item/holder/micro/M in range(1, H))
-			sub_loneliness(H)
-		for(var/obj/effect/overlay/aiholo/A in range(5, H))
-			sub_loneliness(H)
-
-		for(var/obj/item/toy/plushie/teshari/P in range(5, H))
-			sub_loneliness(H)
-
-		// No company? Suffer :(
-		if(H.loneliness_stage < warning_cap)
-			H.loneliness_stage = min(warning_cap,H.loneliness_stage+escalation_speed)
-		handle_loneliness(H)
-		if(H.loneliness_stage >= warning_cap && H.hallucination < hallucination_cap)
-			H.hallucination = min(hallucination_cap,H.hallucination+2.5*escalation_speed)
-
-/datum/trait/negative/lonely/proc/handle_loneliness(var/mob/living/carbon/human/H)
-	var/ms = ""
-	if(H.loneliness_stage == escalation_speed)
-		ms = "[pick("Well.. No one is around you anymore...","Well.. You're alone now...","You suddenly feel alone...")]"
-	if(H.loneliness_stage >= 50)
-		ms = "[pick("You begin to feel alone...","You feel isolated...","You need company...","Where is everyone?...","You need to find someone...")]"
-	if(H.loneliness_stage >= 250)
-		ms = "[pick("You don't think you can last much longer without some visible company!", "You should go find someone to be with!","You need to find company!","Find someone to be with!")]"
-		if(H.stuttering < hallucination_cap)
-			H.stuttering += 5
-	if(H.loneliness_stage >= warning_cap)
-		ms = span_danger(span_bold("[pick("Where are the others?", "Please, there has to be someone nearby!", "I don't want to be alone!","Please, anyone! I don't want to be alone!")]"))
-	if(world.time < H.next_loneliness_time)
-		return
-	if(ms != "")
-		to_chat(H, ms)
-	H.next_loneliness_time = world.time+500
-	H.fear = min((H.fear + 3), 102)
-
 
 /datum/trait/negative/endurance_glass // Glass Cannon
 	name = "Glass Endurance"
@@ -601,21 +370,21 @@
 /datum/trait/negative/reduced_biocompat_minor
 	name = "Reduced Biocompatibility, Minor"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 80% as effective on you!"
-	cost = -2
+	cost = -1
 	var_changes = list("chem_strength_heal" = 0.8)
 	can_take = ORGANICS
 
 /datum/trait/negative/reduced_biocompat
 	name = "Reduced Biocompatibility"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 60% as effective on you!"
-	cost = -4
+	cost = -2
 	var_changes = list("chem_strength_heal" = 0.6)
 	can_take = ORGANICS
 
 /datum/trait/negative/reduced_biocompat_extreme
 	name = "Reduced Biocompatibility, Major"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 30% as effective on you!"
-	cost = -8
+	cost = -4
 	var_changes = list("chem_strength_heal" = 0.3)
 	can_take = ORGANICS
 
@@ -828,3 +597,89 @@
 	addiction = REAGENT_ID_ASUSTENANCE
 	custom_only = FALSE
 	hidden = TRUE //Disabled on Virgo
+
+/datum/trait/negative/unlucky
+	name = "Unlucky"
+	desc = "You are naturally unlucky and ill-events often befall you."
+	cost = -2
+	is_genetrait = FALSE
+	hidden = FALSE
+	custom_only = FALSE
+	added_component_path = /datum/component/omen/trait
+	excludes = list(/datum/trait/negative/unlucky/major)
+
+
+/datum/trait/negative/unlucky/major
+	name = "Unlucky, Major"
+	desc = "Your luck is extremely awful and potentially fatal."
+	cost = -5
+	tutorial = "You should avoid disposal bins."
+	is_genetrait = TRUE
+	hidden = TRUE //VOREStation Note: Disabled
+	added_component_path = /datum/component/omen/trait/major
+	excludes = list(/datum/trait/negative/unlucky)
+	activation_message= span_cult(span_bold("What a terrible night to have a curse!"))
+	primitive_expression_messages=list("unluckily stubs their toe!")
+
+/datum/trait/negative/heavy_landing
+	name = "Heavy Landing"
+	desc = "Your heavy frame causes you to crash heavily when falling from heights. The bigger they are, the harder they fall!"
+	cost = -1
+	var_changes = list("soft_landing" = FALSE) //override soft landing if the species would otherwise start with it
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/soft_landing)
+
+/datum/trait/negative/heavy_landing/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	ADD_TRAIT(H, TRAIT_HEAVY_LANDING, ROUNDSTART_TRAIT)
+
+/*
+ * So, I know what you're thinking.
+ * "Why is this a negative trait? It sounds like a positive one!"
+ * In theory, yes. Being unable to have your limbs break DOES sound like a good thing!
+ * However, that is where limb code comes into play.
+ * Normally, with highly damaged limbs, you have a RNG(X)% chance for it to be sliced off if it takes a lot of damage and the damage from the blow is over a certain threshold.
+ * Additionally, limbs have a 'maximum damage' it can reach in which it can't reach anymore. Your arm, for example, is 80 damage maximum. Head 75.
+ * Trying to hit it more won't do any more damage, just constantly roll chances (if the hitting blow is strong enough) to cut it off/gib it.
+ * With this trait, however, as soon as you reach that maximum damage, your limb IMMEDIATELY gibs. No RNG chance rolls. 'attack must be X strong to hit it off'. Nothing.
+ * Additionally, normal limbloss code has one-shot protection and prevents bullets from gibbing limbs. This makes you forfeit that protection.
+ */
+/datum/trait/negative/boneless
+	name = "Boneless"
+	desc = "You have no bones! Though your limbs will gib once reaching their maximum limit in exchange."
+	cost = -3
+	custom_only = TRUE
+	can_take = ORGANICS
+	is_genetrait = FALSE //genetically removes your bones? nah.
+	hidden = FALSE
+	///How much our limbs max_damage is multiplied by.
+	var/limb_health = 1
+	excludes = list(/datum/trait/negative/hollow)
+
+/datum/trait/negative/boneless/major
+	name = "Boneless, Major"
+	desc = "You have no bones! Your limbs are also much, much easier to gib in exchange. (Seriously this can result in one shot deaths and similar)"
+	cost = -6 //For reference, getting hit in the head with a welder 3 times kills you. Head has 37.5 HP. Reaching that cap = instant death
+	limb_health = 0.5
+
+/datum/trait/negative/boneless/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	for(var/obj/item/organ/external/ex_organ in H.organs)
+		ex_organ.cannot_break = TRUE
+		ex_organ.dislocated = -1
+		ex_organ.nonsolid = TRUE //ESSENTIAL for boneless. Otherwise it acts like a normal limb.
+		ex_organ.spread_dam = TRUE
+		ex_organ.max_damage = floor(ex_organ.max_damage * limb_health)
+
+		if(istype(ex_organ, /obj/item/organ/external/head))
+			ex_organ.encased = FALSE //you can just reach in and grab it
+			ex_organ.cannot_gib = FALSE
+
+		else if(istype(ex_organ, /obj/item/organ/external/chest))
+			ex_organ.encased = FALSE
+
+/datum/trait/negative/rad_weakness
+	name = "Radiation Weakness"
+	desc = "You are approximately 50% more susceptible to radiation, and it dissipates slower from your body."
+	cost = -2
+	var_changes = list("radiation_mod" = 1.5, "rad_removal_mod" = 0.5, "rad_levels" = WEAKENED_RADIATION_RESISTANCE)

@@ -183,7 +183,6 @@
 
 	// Body writing
 	else if(istype(I, /obj/item/pen))
-		// Avoids having an override on this proc because attempt_vr won't call the override
 		if(!ishuman(src))
 			return FALSE
 		var/mob/living/carbon/human/us = src
@@ -211,20 +210,6 @@
 		LAZYSET(us.body_writing, affecting.organ_tag, message)
 		return TRUE
 
-	return FALSE
-
-//
-// Our custom resist catches for /mob/living
-//
-/mob/living/proc/vore_process_resist()
-	//Are we resisting from inside a belly?
-	// if(isbelly(loc))
-	// 	var/obj/belly/B = loc
-	// 	B.relay_resist(src)
-	// 	return TRUE //resist() on living does this TRUE thing.
-	// Note: This is no longer required, as the refactors to resisting allow bellies to just define container_resist
-
-	//Other overridden resists go here
 	return FALSE
 
 //
@@ -364,14 +349,14 @@
 		return
 
 	load_character(slotnum)
-	attempt_vr(user.client?.prefs_vr,"load_vore","")
+	user.client?.prefs_vr.load_vore()
 	sanitize_preferences()
 
 	return remember_default
 
 /datum/preferences/proc/return_to_character_slot(mob/user, var/remembered_default)
 	load_character(remembered_default)
-	attempt_vr(user.client?.prefs_vr,"load_vore","")
+	user.client?.prefs_vr.load_vore()
 	sanitize_preferences()
 
 //
@@ -647,7 +632,7 @@
 		log_and_message_admins("used the OOC escape button to get out of a food item.", src)
 
 	else if(alerts && alerts["leashed"])
-		var/obj/screen/alert/leash_pet/pet_alert = src.alerts["leashed"]
+		var/atom/movable/screen/alert/leash_pet/pet_alert = src.alerts["leashed"]
 		var/obj/item/leash/owner = pet_alert.master
 		owner.clear_leash()
 		log_and_message_admins("used the OOC escape button to get out of a leash.", src)
@@ -1097,10 +1082,10 @@
 	popup.open()
 
 // Full screen belly overlays!
-/obj/screen/fullscreen/belly
+/atom/movable/screen/fullscreen/belly
 	icon = 'icons/mob/vore_fullscreens/screen_full_vore_list.dmi'
 
-/obj/screen/fullscreen/belly/fixed
+/atom/movable/screen/fullscreen/belly/fixed
 	icon = 'icons/mob/screen_full_vore.dmi'
 	icon_state = ""
 
@@ -1256,7 +1241,7 @@
  * Small helper component to manage the vore panel HUD icon
  */
 /datum/component/vore_panel
-	var/obj/screen/vore_panel/screen_icon
+	var/atom/movable/screen/vore_panel/screen_icon
 
 /datum/component/vore_panel/Initialize()
 	if(!isliving(parent))
@@ -1297,6 +1282,8 @@
 		screen_icon.icon = HUD.ui_style
 		screen_icon.color = HUD.ui_color
 		screen_icon.alpha = HUD.ui_alpha
+	if(isAI(user))
+		screen_icon.screen_loc = ui_ai_pda_send
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 
@@ -1308,7 +1295,7 @@
 /**
  * Screen object for vore panel
  */
-/obj/screen/vore_panel
+/atom/movable/screen/vore_panel
 	name = "vore panel"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "vore"

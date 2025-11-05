@@ -50,7 +50,7 @@
 		to_chat(L, span_danger("You've been burned by \the [src]!"))
 		L.adjust_fire_stacks(1)
 		if(prob(12))
-			L.IgniteMob()
+			L.ignite_mob()
 
 /mob/living/simple_mob/slime/xenobio/blue
 	desc = "This slime produces 'cryotoxin' and uses it against their foes.  Very deadly to other slimes."
@@ -96,16 +96,6 @@
 				"bomb" = 80,
 				"bio" = 100,
 				"rad" = 100
-				)
-
-	armor_soak = list(
-				"melee" = 5,
-				"bullet" = 5,
-				"laser" = 5,
-				"energy" = 0,
-				"bomb" = 0,
-				"bio" = 0,
-				"rad" = 0
 				)
 
 	slime_mutation = list(

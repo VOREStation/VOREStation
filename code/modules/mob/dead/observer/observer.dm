@@ -554,6 +554,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	GLOB.observer_mob_list -= src
 	for(var/datum/chunk/ghost/ghost_chunks in visibleChunks)
 		ghost_chunks.remove(src)
+	if(key)
+		key = null
 	return ..()
 
 /mob/Moved(atom/old_loc, direction, forced = FALSE)
@@ -762,9 +764,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		)
 		toggle_ghost_visibility(TRUE)
 	else
-		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 		user.visible_message ( \
-			span_warning("\The [user] just tried to smash [T.his] book into that ghost!  It's not very effective."), \
+			span_warning("\The [user] just tried to smash [user.p_their()] book into that ghost!  It's not very effective."), \
 			span_warning("You get the feeling that the ghost can't become any more visible.") \
 		)
 
@@ -997,7 +998,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(message)
 		to_chat(src, span_ghostalert(span_huge("[message]")))
 		if(source)
-			throw_alert("\ref[source]_notify_revive", /obj/screen/alert/notify_cloning, new_master = source)
+			throw_alert("\ref[source]_notify_revive", /atom/movable/screen/alert/notify_cloning, new_master = source)
 	to_chat(src, span_ghostalert("<a href='byond://?src=[REF(src)];reenter=1'>(Click to re-enter)</a>"))
 	if(sound)
 		SEND_SOUND(src, sound(sound))

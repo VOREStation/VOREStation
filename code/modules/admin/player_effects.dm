@@ -73,7 +73,7 @@
 			if(!istype(Tar))
 				return
 			Tar.adjust_fire_stacks(10)
-			Tar.IgniteMob()
+			Tar.ignite_mob()
 			Tar.visible_message(span_danger("[target] bursts into flames!"))
 
 		if("lightning_strike")
@@ -197,7 +197,7 @@
 
 		if("adspam")
 			if(target.client)
-				target.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 15)
+				target.client.create_fake_ad_popup_multiple(/atom/movable/screen/popup/default, 15)
 
 		if("peppernade")
 			var/obj/item/grenade/chem_grenade/teargas/grenade = new /obj/item/grenade/chem_grenade/teargas
@@ -322,7 +322,7 @@
 		if("elder_smite")
 			if(!target.ckey)
 				return
-			target.overlay_fullscreen("scrolls", /obj/screen/fullscreen/scrolls, 1)
+			target.overlay_fullscreen("scrolls", /atom/movable/screen/fullscreen/scrolls, 1)
 			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, clear_fullscreen), "scrolls"), 20 SECONDS)
 
 		////////MEDICAL//////////////

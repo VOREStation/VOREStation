@@ -176,7 +176,7 @@
 
 /obj/item/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
 	var/mob/M = usr
-	if((!istype(over_object, /obj/screen)) && can_use(usr))
+	if((!istype(over_object, /atom/movable/screen)) && can_use(usr))
 		return attack_self(M)
 	return
 
@@ -184,8 +184,6 @@
 	SStgui.close_uis(src)
 
 /obj/item/pda/attack_self(mob/user as mob)
-	user.set_machine(src)
-
 	if(active_uplink_check(user))
 		return
 
@@ -434,12 +432,9 @@
 				if(id_check(user, 2))
 					to_chat(user, span_notice("You put the ID into \the [src]'s slot."))
 					add_overlay("pda-id")
-					updateSelfDialog()//Update self dialog on success.
 			return	//Return in case of failed check or when successful.
-		updateSelfDialog()//For the non-input related code.
 	else if(istype(C, /obj/item/paicard) && !src.pai)
-		user.drop_item()
-		C.loc = src
+		user.drop_item(src)
 		pai = C
 		to_chat(user, span_notice("You slot \the [C] into \the [src]."))
 		SStgui.update_uis(src) // update all UIs attached to src
@@ -448,8 +443,7 @@
 		if(O)
 			to_chat(user, span_notice("There is already a pen in \the [src]."))
 		else
-			user.drop_item()
-			C.loc = src
+			user.drop_item(src)
 			to_chat(user, span_notice("You slot \the [C] into \the [src]."))
 			add_overlay("pda-pen")
 	return

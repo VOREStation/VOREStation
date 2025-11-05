@@ -78,13 +78,10 @@
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
 		visible_message(span_notice("\The [C] has been laid on \the [src] by [user]."))
-	if(C.client)
-		C.client.perspective = EYE_PERSPECTIVE
-		C.client.eye = src
 	if(C.pulledby)
 		C.pulledby.stop_pulling()
 	C.resting = 1
-	C.loc = src.loc
+	C.forceMove(get_turf(src))
 	for(var/obj/O in src)
 		O.loc = src.loc
 	add_fingerprint(user)

@@ -125,13 +125,15 @@ var/last_chew = 0
 	if (H.zone_sel.selecting != O_MOUTH) return
 	if (H.wear_mask) return
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
+	if (istype(H.wear_suit, /obj/item/clothing/suit/shibari))
+		var/obj/item/clothing/suit/shibari/s = wear_suit
+		if(s.rope_mode == "Arms" || s.rope_mode == "Arms and Legs")
+			return
 
 	var/obj/item/organ/external/O = H.organs_by_name[(H.hand ? BP_L_HAND : BP_R_HAND)]
 	if (!O) return
 
-	var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
-
-	var/s = span_warning("[H.name] chews on [T.his] [O.name]!")
+	var/s = span_warning("[H.name] chews on [H.p_their()] [O.name]!")
 	H.visible_message(s, span_warning("You chew on your [O.name]!"))
 	add_attack_logs(H,H,"chewed own [O.name]")
 

@@ -161,7 +161,6 @@
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
 		if(islist(armor)) piece.armor = armor.Copy()
-		if(islist(armorsoak)) piece.armorsoak = armorsoak.Copy()
 
 	update_icon(1)
 
@@ -296,8 +295,8 @@
 	var/seal_target = !canremove
 	var/failed_to_seal
 
-	var/obj/screen/rig_booting/booting_L = new
-	var/obj/screen/rig_booting/booting_R = new
+	var/atom/movable/screen/rig_booting/booting_L = new
+	var/atom/movable/screen/rig_booting/booting_R = new
 
 	if(!seal_target)
 		booting_L.icon_state = "boot_left"
@@ -739,7 +738,7 @@
 				holder = use_obj.loc
 				if(istype(holder))
 					if(use_obj && check_slot == use_obj)
-						to_chat(H, span_boldnotice("Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly."))
+						balloon_alert(H, "your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.")
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 						use_obj.canremove = TRUE
 						holder.drop_from_inventory(use_obj)
@@ -758,7 +757,7 @@
 					to_chat(H, span_danger("You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way."))
 					return
 			else
-				to_chat(H, span_notice("Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly."))
+				balloon_alert(H, "your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.")
 				playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 
 	if(piece == "helmet" && helmet?.light_system == STATIC_LIGHT)
@@ -987,8 +986,8 @@
 		wearer_move_delay = world.time
 		return wearer.buckled.relaymove(wearer, direction)
 
-	if(istype(wearer.machine, /obj/machinery))
-		if(wearer.machine.relaymove(wearer, direction))
+	if(istype(wearer.get_current_machine(), /obj/machinery))
+		if(wearer.get_current_machine().relaymove(wearer, direction))
 			return
 
 	if(wearer.pulledby || wearer.buckled) // Wheelchair driving!
@@ -1038,7 +1037,7 @@
 		return null
 
 //Boot animation screen objects
-/obj/screen/rig_booting
+/atom/movable/screen/rig_booting
 	screen_loc = "1,1"
 	icon = 'icons/obj/rig_boot.dmi'
 	icon_state = ""

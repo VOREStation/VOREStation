@@ -44,7 +44,6 @@
 			O.loc = src
 			update_icon()
 			to_chat(user, span_notice("You place the [O] in the alembic."))
-			src.updateUsrDialog(user)
 			return
 	else if(istype(O,/obj/item/potion_base))
 		if(base_reagent != 0 )
@@ -56,7 +55,6 @@
 			O.loc = src
 			update_icon()
 			to_chat(user, span_notice("You place the [O] in the alembic."))
-			src.updateUsrDialog(user)
 			return
 	else
 		to_chat(user, span_warning("This item is no use in the alembic."))
