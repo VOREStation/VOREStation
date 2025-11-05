@@ -101,7 +101,7 @@
 					do_nom = TRUE
 
 			if(do_nom)
-				if(!CanFoodVore(M, F))
+				if(!can_food_vore(M, F))
 					continue
 				if(isanimal(M) && !F.allowmobvore && !M.ckey) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
 					continue
