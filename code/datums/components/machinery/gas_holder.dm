@@ -47,6 +47,9 @@
 	if((gasses_to_add && LAZYLEN(gasses_to_add)))
 		src.gasses_to_add = gasses_to_add
 
+	if(start_pressure)
+		src.start_pressure = start_pressure
+
 	if(maximum_pressure)
 		src.maximum_pressure = maximum_pressure
 
