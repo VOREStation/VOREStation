@@ -224,6 +224,12 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 			return TRUE
 
 		if("view_variables")
+			if(!check_rights_for(ui.user.client, R_DEBUG))
+				message_admins(
+					"[key_name(ui.user)] tried to view master controller variables while having improper rights, \
+					this is potentially a malicious exploit and worth noting."
+				)
+
 			var/datum/controller/subsystem/subsystem = locate(params["ref"]) in subsystems
 			if(isnull(subsystem))
 				to_chat(ui.user, span_warning("Failed to locate subsystem."))
@@ -339,7 +345,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 	// Allows subsystems to declare other subsystems that must initialize after them.
 	for(var/datum/controller/subsystem/subsystem as anything in subsystems)
-		for(var/dependent_type as anything in subsystem.dependents)
+		for(var/dependent_type in subsystem.dependents)
 			if(!ispath(dependent_type, /datum/controller/subsystem))
 				stack_trace("ERROR: MC: subsystem `[subsystem.type]` has an invalid dependent: `[dependent_type]`. Skipping")
 				continue
@@ -349,7 +355,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 	// Constructs a reverse-dependency graph.
 	for(var/datum/controller/subsystem/subsystem as anything in subsystems)
-		for(var/dependency_type as anything in subsystem.dependencies)
+		for(var/dependency_type in subsystem.dependencies)
 			if(!ispath(dependency_type, /datum/controller/subsystem))
 				stack_trace("ERROR: MC: subsystem `[subsystem.type]` has an invalid dependency: `[dependency_type]`. Skipping")
 				continue
