@@ -128,7 +128,7 @@
 	if(!connected_port) //only react when pipe_network will ont it do it for you
 		//Allow for reactions
 		air_contents.react()
-		check_status()
+		check_status() //We ONLY go kaboom when we're off of a pipeline.
 		return
 	//Just in case we somehow moved while we were attached.
 	if(connected_port.loc != our_parent.loc)
@@ -348,6 +348,8 @@
 		network.gases -= air_contents
 
 	our_parent.anchored = FALSE
+	if(ismob(our_parent))
+		connected_port.unbuckle_mob(our_parent, TRUE)
 
 	connected_port.connected_device = null
 	connected_port = null
