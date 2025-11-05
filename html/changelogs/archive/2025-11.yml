@@ -17,3 +17,9 @@
   - qol: Basic borg grippers can now use any floor tiling, as well as grab any leather
       product to enable tanning.
   - qol: Borg Sheet Grippers can now grab rods to enable reinforced floor tile production.
+2025-11-04:
+  Kashargul:
+  - bugfix: multiple vore issues
+2025-11-05:
+  Kashargul:
+  - qol: moves inside contents to its own tab

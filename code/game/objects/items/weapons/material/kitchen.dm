@@ -101,7 +101,7 @@
 		if(food_inserted_micros && food_inserted_micros.len)
 			for(var/mob/living/F in food_inserted_micros)
 				food_inserted_micros -= F
-				if(!CanFoodVore(M, F))
+				if(!can_food_vore(M, F))
 					F.forceMove(get_turf(src))
 				else
 					F.forceMove(M.vore_selected)

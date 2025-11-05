@@ -331,14 +331,16 @@
 	set category = "Abilities.Vore"
 	set name = "Resist Control"
 	set desc = "Attempt to resist control."
+
 	if(pred_body.ckey == pred_ckey)
 		dominate_predator()
 		return
+
 	if(pred_ckey == ckey && pred_body.prey_controlled)
 		to_chat(src, span_danger("You begin to resist \the [prey_name]'s control!!!"))
 		to_chat(pred_body, span_danger("You feel the captive mind of [src] begin to resist your control."))
 
-		if(do_after(src, 10 SECONDS, target = prey_name))
+		if(do_after(src, 10 SECONDS, target = src))
 			restore_control()
 		else
 			to_chat(src, span_notice("Your attempt to regain control has been interrupted..."))
