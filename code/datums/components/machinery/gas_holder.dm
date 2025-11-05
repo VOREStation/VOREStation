@@ -4,12 +4,32 @@
 	var/datum/gas_mixture/air_contents = new
 	///CONVERT THIS TO A WEAKREF
 	var/obj/machinery/atmospherics/portables_connector/connected_port
+	///Starting volume of our gas_mixture.
 	var/volume = 1000
+	///Starting pressure of the gasses we spawn with.
 	var/start_pressure = ONE_ATMOSPHERE
+
+
+	//Rupture stuff!
+
+	///Maximum pressure we can hold (before bursting)
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
+	///If the vessel can rupture or not
+	var/can_rupture = FALSE
+	///How much integrity (lowered when our pressure is too high) we have. Explodes/breaches when it reaches 0!
+	var/max_integrity = 20
+	///Our current integrity
+	var/integrity = 20
+	///How much temperature until we begin leaking
+	var/failure_temp = 173 //173 C
+	///If we are currently leaking (mixing with our current atmos) or not.
+	var/leaking = FALSE
+
+
+	var/list/gasses_to_add = list(GAS_O2)
 
 //Yes, it's using 'gas 1 pressure gas 2 pressure etc'...I need to know a better way to do this.
-/datum/component/gas_holder/Initialize(list/gasses_to_add, gas_one_pressure, gas_two_pressure, gas_three_pressure, gas_four_pressure, volume, temperature, start_pressure, maximum_pressure)
+/datum/component/gas_holder/Initialize(list/gasses_to_add, gas_one_pressure, gas_two_pressure, gas_three_pressure, gas_four_pressure, volume, temperature, start_pressure, maximum_pressure, can_rupture, max_integrity, integrity, leaking)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -23,7 +43,21 @@
 	else
 		air_contents.temperature = T20C
 
-	gasses_to_add = list(GAS_O2)
+	if((gasses_to_add && LAZYLEN(gasses_to_add)))
+		src.gasses_to_add = gasses_to_add
+
+	if(maximum_pressure)
+		src.maximum_pressure = maximum_pressure
+
+	if(can_rupture)
+		src.can_rupture = can_rupture
+
+	if(max_integrity)
+		src.max_integrity = max_integrity
+	if(integrity)
+		src.integrity = integrity
+	if(leaking)
+		src.leaking = leaking
 
 	if(LAZYLEN(gasses_to_add))
 		///How many gasses we're added so far.
@@ -88,20 +122,191 @@
 	connected_port = null
 	..()
 
+///Handles gas reactions inside us.
 /datum/component/gas_holder/process()
 	var/atom/movable/our_parent = parent
 	if(!connected_port) //only react when pipe_network will ont it do it for you
 		//Allow for reactions
 		air_contents.react()
+		check_status()
 		return
 	//Just in case we somehow moved while we were attached.
 	if(connected_port.loc != our_parent.loc)
 		disconnect()
 
+/datum/component/gas_holder/proc/check_status()
+	var/atom/movable/our_parent = parent
+	//Handle exploding, leaking, and rupturing of the tank
+
+	if(!air_contents || !can_rupture)
+		return
+
+	var/pressure = air_contents.return_pressure()
+
+
+	if(pressure > TANK_FRAGMENT_PRESSURE)
+		if(integrity <= 7)
+			message_admins("A gas holder has ruptured! tank rupture! last key to touch [our_parent.name] was [our_parent.forensic_data?.get_lastprint()].")
+			log_game("Explosive tank rupture! last key to touch [our_parent.name] was [our_parent.forensic_data?.get_lastprint()].")
+
+			//Give the gas a chance to build up more pressure through reacting
+			air_contents.react()
+			air_contents.react()
+			air_contents.react()
+
+			pressure = air_contents.return_pressure()
+			var/strength = ((pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE)
+
+			var/mult = ((src.air_contents.volume/140)**(1/2)) * (air_contents.total_moles**(2/3))/((29*0.64) **(2/3)) //tanks appear to be experiencing a reduction on scale of about 0.64 total moles
+			//tanks appear to be experiencing a reduction on scale of about 0.64 total moles
+
+
+
+			var/turf/simulated/T = get_turf(our_parent)
+			T.hotspot_expose(air_contents.temperature, 70, 1)
+			if(!T)
+				return
+
+			T.assume_air(air_contents)
+			explosion(
+				get_turf(our_parent.loc),
+				round(min(BOMBCAP_DVSTN_RADIUS, ((mult)*strength)*0.15)),
+				round(min(BOMBCAP_HEAVY_RADIUS, ((mult)*strength)*0.35)),
+				round(min(BOMBCAP_LIGHT_RADIUS, ((mult)*strength)*0.80)),
+				round(min(BOMBCAP_FLASH_RADIUS, ((mult)*strength)*1.20)),
+				)
+
+			if(isobj(our_parent))
+				var/obj/our_obj = parent
+				var/num_fragments = round(rand(8,10) * sqrt(strength * mult))
+				our_obj.fragmentate(T, num_fragments, rand(5) + 7, list(/obj/item/projectile/bullet/pellet/fragment/tank/small = 7,/obj/item/projectile/bullet/pellet/fragment/tank = 2,/obj/item/projectile/bullet/pellet/fragment/strong = 1))
+
+			if(our_parent && !QDELETED(our_parent))
+				if(ismob(our_parent))
+					var/mob/our_mob = parent
+					our_mob.gib()
+					return
+				else
+					qdel(our_parent)
+					return
+
+		else
+			integrity -=7
+
+
+	else if(pressure > TANK_RUPTURE_PRESSURE)
+		#ifdef FIREDBG
+		log_world(span_warning("[our_parent.x],[our_parent.y] tank is rupturing: [pressure] kPa, integrity [integrity]"))
+		#endif
+
+		air_contents.react()
+
+		if(integrity <= 0)
+			var/turf/simulated/T = get_turf(src)
+			if(!T)
+				return
+			T.assume_air(air_contents)
+			playsound(src, 'sound/weapons/gunshot_shotgun.ogg', 20, 1)
+			our_parent.visible_message("[icon2html(src,viewers(src))] " + span_danger("\The [parent] flies apart!"), span_warning("You hear a bang!"))
+			T.hotspot_expose(air_contents.temperature, 70, 1)
+
+
+			var/strength = 1+((pressure-TANK_LEAK_PRESSURE)/TANK_FRAGMENT_SCALE)
+
+			var/mult = (air_contents.total_moles**2/3)/((29*0.64) **2/3) //tanks appear to be experiencing a reduction on scale of about 0.64 total moles
+
+			if(isobj(our_parent))
+				var/obj/our_obj = parent
+				var/num_fragments = round(rand(6,8) * sqrt(strength * mult)) //Less chunks, but bigger
+				our_obj.fragmentate(T, num_fragments, 7, list(/obj/item/projectile/bullet/pellet/fragment/tank/small = 1,/obj/item/projectile/bullet/pellet/fragment/tank = 5,/obj/item/projectile/bullet/pellet/fragment/strong = 4))
+
+			if(our_parent && !QDELETED(our_parent))
+				if(ismob(our_parent))
+					var/mob/our_mob = parent
+					our_mob.gib()
+					return
+				else
+					qdel(our_parent)
+					return
+
+		else
+			integrity-= 5
+
+
+	else if(pressure > TANK_LEAK_PRESSURE || air_contents.temperature - T0C > failure_temp)
+
+		if((integrity <= 17 || src.leaking))
+			var/turf/simulated/T = get_turf(our_parent)
+			if(!T)
+				return
+			var/datum/gas_mixture/environment = our_parent.loc.return_air()
+			var/env_pressure = environment.return_pressure()
+			var/tank_pressure = src.air_contents.return_pressure()
+
+			var/release_ratio = 0.002
+			if(tank_pressure)
+				release_ratio = CLAMP(sqrt(max(tank_pressure-env_pressure,0)/tank_pressure), 0.002, 1)
+
+			var/datum/gas_mixture/leaked_gas = air_contents.remove_ratio(release_ratio)
+			//dynamic air release based on ambient pressure
+
+			T.assume_air(leaked_gas)
+			if(!leaking)
+				our_parent.visible_message("[icon2html(src,viewers(src))] " + span_warning("\The [src] relief valve flips open with a hiss!"), "You hear hissing.")
+				playsound(our_parent, 'sound/effects/spray.ogg', 10, 1, -3)
+				leaking = TRUE
+				#ifdef FIREDBG
+				log_world(span_warning("[our_parent.x],[our_parent.y] tank is leaking: [pressure] kPa, integrity [integrity]"))
+				#endif
+
+	else
+		if(integrity < max_integrity)
+			integrity++
+			if(leaking)
+				integrity++
+			if(integrity == max_integrity)
+				leaking = FALSE
+	if(leaking)
+		mingle_with_turf(get_turf(parent), volume)
+
 ///Disconnect from our connected port when we unbuckle.
 /datum/component/gas_holder/proc/handle_unbuckle(atom/movable/parent, force)
 	SIGNAL_HANDLER
 	disconnect()
+	return
+
+/datum/component/gas_holder/proc/mingle_with_turf(turf/simulated/target, mingle_volume)
+	if(!target || !mingle_volume)
+		return
+	var/datum/gas_mixture/air_sample = air_contents.remove_ratio(mingle_volume/air_contents.volume)
+	air_sample.volume = mingle_volume
+
+	if(istype(target) && target.zone)
+		//Have to consider preservation of group statuses
+		var/datum/gas_mixture/turf_copy = new
+		var/datum/gas_mixture/turf_original = new
+
+		turf_copy.copy_from(target.zone.air)
+		turf_copy.volume = target.zone.air.volume //Copy a good representation of the turf from parent group
+		turf_original.copy_from(turf_copy)
+
+		equalize_gases(list(air_sample, turf_copy))
+		air_contents.merge(air_sample)
+
+
+		target.zone.air.remove(turf_original.total_moles)
+		target.zone.air.merge(turf_copy)
+
+	else
+		var/datum/gas_mixture/turf_air = target.return_air()
+
+		equalize_gases(list(air_sample, turf_air))
+		air_contents.merge(air_sample)
+		//turf_air already modified by equalize_gases()
+
+	if(connected_port && connected_port.network)
+		connected_port.network.update = 1
+
 
 ///When we are connected to a port.
 /datum/component/gas_holder/proc/connect(obj/machinery/atmospherics/portables_connector/new_port)
