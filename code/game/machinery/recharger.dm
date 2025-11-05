@@ -1,3 +1,39 @@
+GLOBAL_LIST_INIT(allowed_recharger_devices, list(
+	/obj/item/gun/energy,
+	/obj/item/gun/magnetic,
+	/obj/item/melee/baton,
+	/obj/item/modular_computer,
+	/obj/item/computer_hardware/battery_module,
+	/obj/item/cell,
+	/obj/item/suit_cooling_unit/emergency,
+	/obj/item/flashlight,
+	/obj/item/electronic_assembly,
+	/obj/item/weldingtool/electric,
+	/obj/item/ammo_magazine/smart,
+	/obj/item/flash,
+	/obj/item/defib_kit,
+	/obj/item/ammo_casing/microbattery,
+	/obj/item/paicard,
+	/obj/item/personal_shield_generator,
+	/obj/item/gun/projectile/cell_loaded,
+	/obj/item/ammo_magazine/cell_mag
+	))
+
+GLOBAL_LIST_INIT(allowed_wallcharger_devices, list(
+	/obj/item/gun/energy,
+	/obj/item/gun/magnetic,
+	/obj/item/melee/baton,
+	/obj/item/flashlight,
+	/obj/item/cell/device
+	))
+
+GLOBAL_LIST_INIT(recharger_battery_exempt, list(
+	/obj/item/ammo_casing/microbattery,
+	/obj/item/paicard,
+	/obj/item/gun/projectile/cell_loaded,
+	/obj/item/ammo_magazine/cell_mag
+	))
+
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 /obj/machinery/recharger
 	name = "recharger"
@@ -10,11 +46,13 @@
 	active_power_usage = 40000	//40 kW
 	var/efficiency = 40000 //will provide the modified power rate when upgraded
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/modular_computer, /obj/item/computer_hardware/battery_module, /obj/item/cell, /obj/item/suit_cooling_unit/emergency, /obj/item/flashlight, /obj/item/electronic_assembly, /obj/item/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/flash, /obj/item/defib_kit, /obj/item/ammo_casing/microbattery, /obj/item/paicard, /obj/item/personal_shield_generator)  //VOREStation Add - NSFW Batteries
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
-	var/portable = 1
+	///If we can be wrenched and moved around or not.
+	var/portable = TRUE
+	///If we can charge everything or use a smaller list.
+	var/small = FALSE
 	circuit = /obj/item/circuitboard/recharger
 
 /obj/machinery/recharger/Initialize(mapload)
@@ -32,11 +70,7 @@
 				. += "Current charge: [C.charge] / [C.maxcharge]"
 
 /obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
-	var/allowed = 0
-	for (var/allowed_type in allowed_devices)
-		if(istype(G, allowed_type)) allowed = 1
-
-	if(allowed)
+	if((!small && is_type_in_list(G, GLOB.allowed_recharger_devices)) || (small && is_type_in_list(G, GLOB.allowed_wallcharger_devices)))
 		if(charging)
 			to_chat(user, span_warning("\A [charging] is already charging here."))
 			return
@@ -64,7 +98,7 @@
 			if(EW.use_external_power)
 				to_chat(user, span_notice("\The [EW] has no recharge port."))
 				return
-		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery) && !istype(G, /obj/item/paicard))	//VOREStation Edit: NSFW charging
+		if(!G.get_cell() && !is_type_in_list(G, GLOB.recharger_battery_exempt))
 			to_chat(user, "\The [G] does not have a battery installed.")
 			return
 		if(istype(G, /obj/item/paicard))
@@ -79,7 +113,11 @@
 			else
 				to_chat(user, span_warning("\The [ourcard] doesn't have a personality!"))
 				return
-
+		if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10))
+			user.visible_message("[user] inserts [charging] into [src] backwards!", "You insert [charging] into [src] backwards!")
+			user.drop_item()
+			G.loc = get_turf(src)
+			return
 		user.drop_item()
 		G.loc = src
 		charging = G
@@ -130,7 +168,8 @@
 	if(!charging)
 		update_use_power(USE_POWER_IDLE)
 		icon_state = icon_state_idle
-	//VOREStation Edit Start - pAI revival!
+
+	//PAI Cards
 	else if(istype(charging, /obj/item/paicard))
 		var/obj/item/paicard/pcard = charging
 		if(pcard.is_damage_critical())
@@ -148,8 +187,47 @@
 			src.visible_message(span_notice("\The [src] ejects the [pcard]!"))
 			pcard.forceMove(get_turf(src))
 			pcard.pai.full_restore()
-	//VOREStation Edit End
+	//Charging cell-loaded guns.
+	else if(istype(charging, /obj/item/gun/projectile/cell_loaded))
+		var/obj/item/gun/projectile/cell_loaded/cellgun = charging
+		var/obj/item/ammo_magazine/magazine = cellgun.ammo_magazine //CAN BE NULL.
+		var/obj/item/ammo_casing/microbattery/batt = cellgun.chambered //CAN BE NULL.
+
+		//First, we charge the currently chambered battery if there is one.
+		if(batt && !(batt.shots_left >= initial(batt.shots_left)))
+			icon_state = icon_state_charging
+			batt.shots_left++
+			update_use_power(USE_POWER_ACTIVE)
+			return
+		//Second, we charge the batteries in the magazine.
+		else if(magazine && LAZYLEN(magazine.stored_ammo))
+			for(var/obj/item/ammo_casing/microbattery/shot_to_charge in magazine)
+				if(shot_to_charge.shots_left >= initial(shot_to_charge.shots_left))
+					continue
+				shot_to_charge.shots_left++
+				icon_state = icon_state_charging
+				update_use_power(USE_POWER_ACTIVE)
+				return //only heal one at a time.
+		//If the chambered battery AND the magazine are all full, we are done.
+		icon_state = icon_state_charged
+		update_use_power(USE_POWER_IDLE)
+		return
+	//Charging cell magazines
+	else if(istype(charging, /obj/item/ammo_magazine/cell_mag))
+		var/obj/item/ammo_magazine/cell_mag/magazine = charging
+		if(LAZYLEN(magazine.stored_ammo))
+			for(var/obj/item/ammo_casing/microbattery/shot_to_charge in magazine)
+				if(shot_to_charge.shots_left >= initial(shot_to_charge.shots_left))
+					continue
+				shot_to_charge.shots_left++
+				icon_state = icon_state_charging
+				update_use_power(USE_POWER_ACTIVE)
+				return
+		icon_state = icon_state_charged
+		update_use_power(USE_POWER_IDLE)
+		return
 	else
+		//Everything Else
 		var/obj/item/cell/C = charging.get_cell()
 		if(istype(C))
 			if(!C.fully_charged())
@@ -160,7 +238,7 @@
 				icon_state = icon_state_charged
 				update_use_power(USE_POWER_IDLE)
 
-		//VOREStation Add - NSFW Batteries
+		//NSFW Batteries
 		else if(istype(charging, /obj/item/ammo_casing/microbattery))
 			var/obj/item/ammo_casing/microbattery/batt = charging
 			if(batt.shots_left >= initial(batt.shots_left))
@@ -171,7 +249,6 @@
 				batt.shots_left++
 				update_use_power(USE_POWER_ACTIVE)
 			return
-		//VOREStation Add End
 
 /obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
@@ -206,9 +283,9 @@
 	layer = ABOVE_TURF_LAYER
 	active_power_usage = 60000	//60 kW , It's more specialized than the standalone recharger (guns, batons, and flashlights only) so make it more powerful
 	efficiency = 60000
-	allowed_devices = list(/obj/item/gun/energy, /obj/item/gun/magnetic, /obj/item/melee/baton, /obj/item/flashlight, /obj/item/cell/device)
+	small = TRUE
 	icon_state_charged = "wrecharger2"
 	icon_state_charging = "wrecharger1"
 	icon_state_idle = "wrecharger0"
-	portable = 0
+	portable = FALSE
 	circuit = /obj/item/circuitboard/recharger/wrecharger

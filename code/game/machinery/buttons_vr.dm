@@ -1,5 +1,6 @@
 /obj/machinery/button/attack_hand(obj/item/W, mob/user as mob)
 	if(..()) return 1
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BUTTON_PRESSED, src, user)
 	playsound(src, 'sound/machines/button.ogg', 100, 1)
 
 /obj/machinery/button/windowtint/multitint
@@ -14,10 +15,8 @@
 	var/in_range = range(src,range)
 	for(var/obj/structure/window/reinforced/polarized/W in in_range)
 		if(W.id == src.id || !W.id)
-			spawn(0)
-				W.toggle()
+			W.toggle()
 	for(var/obj/machinery/door/D in in_range)
 		if(D.icon_tinted)
 			if(D.id_tint == src.id || !D.id_tint)
-				spawn(0)
-					D.toggle()
+				D.toggle()

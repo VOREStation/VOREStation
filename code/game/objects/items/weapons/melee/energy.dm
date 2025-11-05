@@ -102,10 +102,9 @@
 			to_chat(user, span_notice("\The [src] does not seem to have power."))
 			return
 
-	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
-			user.visible_message(span_danger("\The [user] accidentally cuts [TU.himself] with \the [src]."),\
+			user.visible_message(span_danger("\The [user] accidentally cuts [user.p_their()] with \the [src]."),\
 			span_danger("You accidentally cut yourself with \the [src]."))
 			user.take_organ_damage(5,5)
 		deactivate(user)
@@ -422,6 +421,7 @@
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon_state = "blade"
 	item_state = "blade"
+	item_flags = DROPDEL | NOSTRIP
 	force = 40 //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100
 	sharp = TRUE
@@ -453,10 +453,6 @@
 
 /obj/item/melee/energy/blade/attack_self(mob/user as mob)
 	user.drop_from_inventory(src)
-	QDEL_IN(src, 1)
-
-/obj/item/melee/energy/blade/dropped(mob/user)
-	..()
 	QDEL_IN(src, 1)
 
 /obj/item/melee/energy/blade/process()

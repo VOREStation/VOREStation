@@ -1,5 +1,4 @@
 import { Section } from 'tgui-core/components';
-import type { BooleanLike } from 'tgui-core/react';
 
 import { digestModeToColor } from '../constants';
 import type { localPrefs, prefData } from '../types';
@@ -10,17 +9,14 @@ import { VoreUserPreferencesSoulcatcher } from '../VoreUserPreferencesTabs/VoreU
 import { VoreUserPreferencesSpawn } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpawn';
 import { VoreUserPreferencesSpontaneous } from '../VoreUserPreferencesTabs/VoreUserPreferencesSpontaneous';
 
-export const VoreUserPreferences = (props: {
-  prefs: prefData;
-  show_pictures: BooleanLike;
-  icon_overflow: BooleanLike;
-}) => {
-  const { prefs, show_pictures, icon_overflow } = props;
+export const VoreUserPreferences = (props: { prefs: prefData }) => {
+  const { prefs } = props;
   const {
     digestable,
     absorbable,
     devourable,
     allowmobvore,
+    allowtemp,
     feeding,
     permit_healbelly,
     can_be_drop_prey,
@@ -118,6 +114,19 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Mobs eating you allowed',
         disabled: 'No Mobs eating you',
+      },
+    },
+    temperature: {
+      action: 'toggle_allowtemp',
+      test: allowtemp,
+      tooltip: {
+        main: "This button is for those who don't want to be affected by belly temperature, as temperature can be deadly.",
+        enable: 'Click here to be affected by belly temperature.',
+        disable: 'Click here to not be affected by belly temperature.',
+      },
+      content: {
+        enabled: 'Affected By Temperature',
+        disabled: 'Immune To Temperature',
       },
     },
     feed: {
@@ -701,11 +710,7 @@ export const VoreUserPreferences = (props: {
 
   return (
     <Section scrollable fill>
-      <VoreUserPreferencesMechanical
-        show_pictures={show_pictures}
-        icon_overflow={icon_overflow}
-        preferences={preferences}
-      />
+      <VoreUserPreferencesMechanical preferences={preferences} />
       <VoreUserPreferencesDevouring
         devourable={devourable}
         digestModeToColor={digestModeToColor}

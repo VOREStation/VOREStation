@@ -53,7 +53,7 @@
 		else
 			blob = temporary_form
 		active_regen = 1
-		if(do_after(blob,50,exclusive = TASK_ALL_EXCLUSIVE))
+		if(do_after(blob, 5 SECONDS, target = src))
 			var/list/limblist = species.has_limbs[choice]
 			var/limbpath = limblist["path"]
 			var/obj/item/organ/external/new_eo = new limbpath(src)
@@ -106,7 +106,7 @@
 		var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
 		if(refactory.get_stored_material(MAT_STEEL) >= 10000)
 			to_chat(protie, span_notify("You begin to rebuild. You will need to remain still."))
-			if(do_after(protie, 400,exclusive = TASK_ALL_EXCLUSIVE))
+			if(do_after(protie, 40 SECONDS, target = src))
 				if(species?:OurRig)	//Unsafe, but we should only ever be using this with a Protean
 					species?:OurRig?:make_alive(src,1)	//Re-using this proc
 					refactory.use_stored_material(MAT_STEEL,refactory.get_stored_material(MAT_STEEL))	//Use all of our steel
@@ -129,7 +129,7 @@
 			oocnotes = 1
 		to_chat(protie, span_notify("You begin to reassemble. You will need to remain still."))
 		protie.visible_message(span_notify("[protie] rapidly contorts and shifts!"), span_danger("You begin to reassemble."))
-		if(do_after(protie, 40,exclusive = TASK_ALL_EXCLUSIVE))
+		if(do_after(protie, 4 SECONDS, target = src))
 			if(protie.client.prefs)	//Make sure we didn't d/c
 				var/obj/item/rig/protean/Rig = species?:OurRig
 				protie.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, TRUE, FALSE)
@@ -191,7 +191,7 @@
 
 	to_chat(protie, span_notify("You begin to reassemble into [victim]. You will need to remain still."))
 	protie.visible_message(span_notify("[protie] rapidly contorts and shifts!"), span_danger("You begin to reassemble into [victim]."))
-	if(do_after(protie, 40,exclusive = TASK_ALL_EXCLUSIVE))
+	if(do_after(protie, 4 SECONDS, target = src))
 		checking = FALSE
 		for(var/obj/item/grab/G in protie)
 			if(G.affecting == victim && G.state >= GRAB_AGGRESSIVE)
@@ -327,7 +327,7 @@
 		to_chat(protie, span_warning("You need to be repaired first before you can act!"))
 		return
 	to_chat(protie, span_notice("You rapidly condense into your module."))
-	if(forced || do_after(protie,20,exclusive = TASK_ALL_EXCLUSIVE))
+	if(forced || do_after(protie, 2 SECONDS, target = src))
 		if(!temporary_form)	//If you're human, force you into blob form before rig'ing
 			nano_blobform(forced)
 		spawn(2)
@@ -365,7 +365,6 @@
 						src.drop_from_inventory(S.OurRig)
 						P.forceMove(S.OurRig)
 						S.OurRig.canremove = 1
-				P.reset_view()
 			else	//Make one if not
 				to_chat(temporary_form, span_warning("Somehow, your RIG got disconnected from your species. This may have been caused by an admin heal. A new one has been created for you, contact a coder."))
 				new /obj/item/rig/protean(src,src)
@@ -404,7 +403,7 @@
 			"rat" = image(icon = 'icons/mob/species/protean/protean64x32.dmi', icon_state = "rat", pixel_x = -16),
 			"lizard" = image(icon = 'icons/mob/species/protean/protean64x32.dmi', icon_state = "lizard", pixel_x = -16),
 			"wolf" = image(icon = 'icons/mob/species/protean/protean64x32.dmi', icon_state = "wolf", pixel_x = -16),
-			//"drake" = image(icon = 'modular_chomp/icons/mob/species/protean/protean64x64.dmi', icon_state = "drake", pixel_x = -16),
+			//"drake" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "drake", pixel_x = -16),
 			"teppi" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "teppi", pixel_x = -16),
 			"panther" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "panther", pixel_x = -16),
 			"robodrgn" = image(icon = 'icons/mob/species/protean/protean128x64.dmi', icon_state = "robodrgn", pixel_x = -48),
@@ -531,7 +530,7 @@
 					S.dragon_overlays[S.dragon_overlays[6]] = new_color
 			S.blob_appearance = "dragon"
 		if("Dullahan") //START OF DULLAHAN PORT.
-			var/list/options = list("Metalshell","Eyes","Decals","Import","Export")
+			var/list/options = list("Metalshell","Head","Eyes","Lights","Clothes","Import","Export")
 			for(var/option in options)
 				LAZYSET(options, option, image('icons/mob/robot/dullahan/v1/dullahansigns.dmi', option))
 			var/choice = show_radial_menu(protie, protie, options, radius = 60)
@@ -542,24 +541,34 @@
 				"dullahanmetal",
 				"dullahanmetal2"
 			)
-			if(mind.assigned_role in command_positions)
+			if(mind.assigned_role in GLOB.command_positions)
 				dullahanmetal_styles.Add("dullahancommand")
 			var/list/dullahaneyes_styles = list(
 				"dullahaneyes"
 			)
-			var/list/dullahandecals_styles = list(
-				"dullahandecals",
-				"dullahandecals1",
-				"dullahandecals2",
-				"dullahandecals3",
-				"dullahandecals4",
-				"dullahandecals5",
-				"emptydecals"
+			var/list/dullahanlights_styles = list(
+				"dullahanlightsempty",
+				"dullahanlights",
+				"dullahanwings",
+				"dullahanlights2",
+				"dullahanwings2",
+				"dullahanwings3"
+			)
+			var/list/dullahanhead_styles = list(
+				"dullahanhead",
+				"dullahanhead2"
+			)
+			var/list/dullahanclothes_styles = list(
+				"dullahanclothesempty",
+				"dullahanclothes",
+				"dullahanclothes2",
+				"dullahanengibreastplate"
 			)
 			var/dmetal
-			var/ddecals
+			var/dlights
 			var/deyes
-			var/ddecalscolor
+			var/dlightscolor
+			var/dclothescolor
 			var/deyescolor
 			var/dmetalcolor
 			switch(choice)
@@ -592,30 +601,57 @@
 					choice = show_radial_menu(protie, protie, options, radius = 90)
 					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
-					var/new_color = tgui_color_picker(protie, "Pick eye color:","Eye Color", S.dullahan_overlays[4])
+					var/new_color = tgui_color_picker(protie, "Pick eye color:","Eye Color", S.dullahan_overlays[2])
 					if(!new_color)
 						return 0
-					S.dullahan_overlays[4] = choice
-					S.dullahan_overlays[S.dullahan_overlays[4]] = new_color
-				if("Decals")
-					options = dullahandecals_styles
+					S.dullahan_overlays[2] = choice
+					S.dullahan_overlays[S.dullahan_overlays[2]] = new_color
+				if("Lights")
+					options = dullahanlights_styles
 					for(var/option in options)
 						var/image/I = image('icons/mob/robot/dullahan/v1/Dullahanprotean64x64.dmi', option, dir = 2, pixel_x = -16, pixel_y = -16)
 						LAZYSET(options, option, I)
 					choice = show_radial_menu(protie, protie, options, radius = 90)
 					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
-					var/new_color = tgui_color_picker(protie, "Pick decal color:","Decal Color", S.dullahan_overlays[5])
+					var/new_color = tgui_color_picker(protie, "Pick light color:","Lights Color", S.dullahan_overlays[5])
 					if(!new_color)
 						return 0
 					S.dullahan_overlays[5] = choice
 					S.dullahan_overlays[S.dullahan_overlays[5]] = new_color
+				if("Clothes")
+					options = dullahanclothes_styles
+					for(var/option in options)
+						var/image/I = image('icons/mob/robot/dullahan/v1/Dullahanprotean64x64.dmi', option, dir = 2, pixel_x = -16, pixel_y = -16)
+						LAZYSET(options, option, I)
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
+						return 0
+					var/new_color ="#FFFFFF"
+					if (choice == "dullahanclothesempty" || choice == "dullahanengibreastplate" ||  choice == "dullahanclothes2" || choice =="dullahanclothes")
+						// clothes empty and breastplate have only white as a color
+						new_color = "#FFFFFF"
+					else
+						new_color = tgui_color_picker(protie, "Pick clothes color:","Clothes Color", S.dullahan_overlays[7])
+					if(!new_color)
+						return 0
+					S.dullahan_overlays[7] = choice //clothes overlay is 7
+					S.dullahan_overlays[S.dullahan_overlays[7]] = new_color
+				if("Head")
+					options = dullahanhead_styles
+					for(var/option in options)
+						var/image/I = image('icons/mob/robot/dullahan/v1/Dullahanprotean64x64.dmi', option, dir = 2, pixel_x = -16, pixel_y = -16)
+						LAZYSET(options, option, I)
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
+						return 0
+					S.dullahan_overlays[4] = choice //head overlay is 2
 				if("Import")
 					var/dinput_style
 					dinput_style = sanitizeSafe(tgui_input_text(protie,"Paste the style string you exported with Export Style.", "Style loading","", 120, encode = FALSE), 128)
 					if(dinput_style)
 						var/list/dinput_style_list = splittext(dinput_style, ";")
-						if((LAZYLEN(dinput_style_list) == 6) && (dinput_style_list[1] in dullahanmetal_styles) && (dinput_style_list[3] in dullahandecals_styles) && (dinput_style_list[5] in dullahaneyes_styles))
+						if((LAZYLEN(dinput_style_list) == 7) && (dinput_style_list[1] in dullahanmetal_styles) && (dinput_style_list[3] in dullahanlights_styles) && (dinput_style_list[5] in dullahaneyes_styles) && (dinput_style_list[7] in dullahanmetal_styles))
 							try
 								if(dinput_style_list[1] in dullahanmetal_styles)
 									S.dullahan_overlays[3] = dinput_style_list[1]
@@ -628,27 +664,35 @@
 							catch
 								dmetal = dinput_style_list[1]
 							try
-								if(dinput_style_list[3] in dullahandecals_styles)
+								if(dinput_style_list[3] in dullahanlights_styles)
 									S.dullahan_overlays[5] = dinput_style_list[3]
 								if(rgb2num(dinput_style_list[4]))
-									S.dullahan_overlays[S.dullahan_overlays[5]] = dinput_style_list[4] // decals color
+									S.dullahan_overlays[S.dullahan_overlays[5]] = dinput_style_list[4] // lights color
 							catch
-								ddecals = dinput_style_list[3]
+								dlights = dinput_style_list[3]
 							try
 								if(dinput_style_list[5] in dullahaneyes_styles)
-									S.dullahan_overlays[4] = dinput_style_list[5]
+									S.dullahan_overlays[2] = dinput_style_list[5]
 								if(rgb2num(dinput_style_list[6]))
-									S.dullahan_overlays[S.dullahan_overlays[4]] = dinput_style_list[6] //eyes color
+									S.dullahan_overlays[S.dullahan_overlays[2]] = dinput_style_list[6] //eyes color
 							catch
-								ddecals = dinput_style_list[5]
+								dlights = dinput_style_list[5]
+							try
+								if(dinput_style_list[7] in dullahanclothes_styles)
+									S.dullahan_overlays[7] = dinput_style_list[7]
+								if(rgb2num(dinput_style_list[7]))
+									S.dullahan_overlays[S.dullahan_overlays[7]] = dinput_style_list[7] //clothes color
+							catch
+								dlights = dinput_style_list[5]
 				if("Export")
 					dmetal = S.dullahan_overlays[3]
-					ddecals = S.dullahan_overlays[5]
-					deyes = S.dullahan_overlays[4]
+					dlights = S.dullahan_overlays[5]
+					deyes = S.dullahan_overlays[2]
 					dmetalcolor = S.dullahan_overlays[S.dullahan_overlays[3]]
-					ddecalscolor = S.dullahan_overlays[S.dullahan_overlays[5]]
-					deyescolor = S.dullahan_overlays[S.dullahan_overlays[4]]
-					var/output_style = jointext(list(dmetal,dmetalcolor,ddecals,ddecalscolor,deyes,deyescolor), ";")
+					dlightscolor = S.dullahan_overlays[S.dullahan_overlays[5]]
+					dclothescolor = S.dullahan_overlays[S.dullahan_overlays[7]]
+					deyescolor = S.dullahan_overlays[S.dullahan_overlays[2]]
+					var/output_style = jointext(list(dmetal,dmetalcolor,dlights,dlightscolor,deyes,deyescolor,dclothescolor), ";")
 					to_chat(protie, span_notice("Exported style string is \" [output_style] \". Use this to get the same style in the future with import style"))
 			S.blob_appearance = "dullahan" //END OF DULLAHAN PORT.
 		if("Primary")
@@ -700,7 +744,7 @@
 				return
 			if(G.loc == protie && G.state >= GRAB_AGGRESSIVE)
 				protie.visible_message(span_warning("[protie] is attempting to latch onto [target]!"), span_danger("You attempt to latch onto [target]!"))
-				if(do_after(protie, 50, target,exclusive = TASK_ALL_EXCLUSIVE))
+				if(do_after(protie, 5 SECONDS, target))
 					if(G.loc == protie && G.state >= GRAB_AGGRESSIVE)
 						target.drop_from_inventory(target.back)
 						protie.visible_message(span_danger("[protie] latched onto [target]!"), span_danger("You latch yourself onto [target]!"))

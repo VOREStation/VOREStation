@@ -1,7 +1,6 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
 import { Button, Modal } from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
 import { TechwebContent } from './Content';
 import { TechWebRoute } from './hooks';
 import type { TechWebData } from './types';

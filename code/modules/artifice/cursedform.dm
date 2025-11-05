@@ -11,16 +11,15 @@
 
 /obj/item/paper/carbon/cursedform/burnpaper(obj/item/flame/P, mob/user)
 	var/class = "warning"
-	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 
 	if(P.lit && !user.restrained())
 		if(istype(P, /obj/item/flame/lighter/zippo))
 			class = "rose"
 
-		user.visible_message("<span class='[class]'>[user] holds \the [P] up to \the [src], it looks like [TU.hes] trying to burn it!</span>", \
+		user.visible_message("<span class='[class]'>[user] holds \the [P] up to \the [src], it looks like [user.p_they()] [user.p_are()] trying to burn it!</span>", \
 		"<span class='[class]'>You hold \the [P] up to \the [src], burning it slowly.</span>")
 
-		if(do_after(user, 2 SECONDS, src) && P.lit)
+		if(do_after(user, 2 SECONDS, target = src) && P.lit)
 			user.visible_message("<span class='[class]'>[user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 			"<span class='[class]'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 

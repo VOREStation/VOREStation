@@ -90,3 +90,9 @@
 
 /decl/hierarchy/outfit/job/assistant/entrepreneur/spirit_healer
 	l_hand = /obj/item/storage/box/spirit_healer
+
+/decl/hierarchy/outfit/job/assistant/entrepreneur/educator
+	uniform = /obj/item/clothing/under/suit_jacket/charcoal
+	r_hand = /obj/item/clipboard
+	l_pocket = /obj/item/pen/fountain2
+	r_pocket = /obj/item/laser_pointer

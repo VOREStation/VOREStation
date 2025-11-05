@@ -49,6 +49,7 @@
 	var/eating_privacy_global = FALSE //Makes eating attempt/success messages only reach for subtle range if true, overwritten by belly-specific var
 	var/vore_death_privacy = FALSE //Makes it so that vore deaths don't get advertised to ghosts
 	var/allow_mimicry = TRUE
+	var/allowtemp = TRUE //Can be affected by belly temperature
 
 	// These are 'modifier' prefs, do nothing on their own but pair with drop_prey/drop_pred settings.
 	var/drop_vore = TRUE
@@ -193,6 +194,7 @@
 	absorbable = json_from_file["absorbable"]
 	digest_leave_remains = json_from_file["digest_leave_remains"]
 	allowmobvore = json_from_file["allowmobvore"]
+	allowtemp = json_from_file["allowtemp"]
 	vore_taste = json_from_file["vore_taste"]
 	vore_smell = json_from_file["vore_smell"]
 	permit_healbelly = json_from_file["permit_healbelly"]
@@ -262,6 +264,8 @@
 		digest_leave_remains = FALSE
 	if(isnull(allowmobvore))
 		allowmobvore = TRUE
+	if(isnull(allowtemp))
+		allowtemp = TRUE
 	if(isnull(permit_healbelly))
 		permit_healbelly = TRUE
 	if(isnull(selective_preference))
@@ -396,6 +400,7 @@
 			"feeding"				= feeding,
 			"digest_leave_remains"	= digest_leave_remains,
 			"allowmobvore"			= allowmobvore,
+			"allowtemp"				= allowtemp,
 			"vore_taste"			= vore_taste,
 			"vore_smell"			= vore_smell,
 			"permit_healbelly"		= permit_healbelly,
@@ -448,14 +453,14 @@
 	//List to JSON
 	var/json_to_file = json_encode(settings_list)
 	if(!json_to_file)
-		log_debug("Saving: [path] failed jsonencode")
+		log_runtime("Saving: [path] failed jsonencode")
 		return FALSE
 
 	//Write it out
 	rustg_file_write(json_to_file, path)
 
 	if(!fexists(path))
-		log_debug("Saving: [path] failed file write")
+		log_runtime("Saving: [path] failed file write")
 		return FALSE
 
 	return TRUE

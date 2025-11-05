@@ -85,7 +85,7 @@
 					wearable = TRUE
 
 				///Prevent us from wearing clothing that is restricted to vox, werebeast, or teshari. This generally means it's custom designed for them and them only.
-				if((((SPECIES_VOX in species_restricted) && our_species != SPECIES_VOX) || ((SPECIES_WEREBEAST in species_restricted) && our_species != SPECIES_WEREBEAST) || ((SPECIES_TESHARI in species_restricted) && our_species != SPECIES_TESHARI)))
+				else if((((SPECIES_VOX in species_restricted) && our_species != SPECIES_VOX) || ((SPECIES_WEREBEAST in species_restricted) && our_species != SPECIES_WEREBEAST) || ((SPECIES_TESHARI in species_restricted) && our_species != SPECIES_TESHARI)))
 					wearable = FALSE
 
 				///Prevent us from from wearing clothing if we ARE a teshari or werebeast. This is due to these two having different anatomy that don't fix most clothing.
@@ -574,13 +574,24 @@
 	heat_protection = FALSE //No heat protection anywhere
 	cold_protection = FALSE //No heat protection anywhere
 	slot_flags = SLOT_MASK
-	body_parts_covered = FACE|EYES
+	body_parts_covered = HEAD|FACE|EYES
 	blood_sprite_state = "maskblood"
+	item_icons = list(
+		slot_wear_mask_str = 'icons/inventory/face/mob.dmi'
+		)
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/face/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/face/mob_vox.dmi',
-		SPECIES_TAJARAN = 'icons/inventory/face/mob_tajaran.dmi',
-		SPECIES_UNATHI = 'icons/inventory/face/mob_unathi.dmi'
+		SPECIES_TESHARI		= 'icons/inventory/face/mob_teshari.dmi',
+		SPECIES_VOX 		= 'icons/inventory/face/mob_vox.dmi',
+		SPECIES_TAJARAN 	= 'icons/inventory/face/mob_tajaran.dmi',
+		SPECIES_UNATHI 		= 'icons/inventory/face/mob_unathi.dmi',
+		SPECIES_SERGAL 		= 'icons/inventory/face/mob_sergal.dmi',
+		SPECIES_NEVREAN 	= 'icons/inventory/face/mob_nevrean.dmi',
+		SPECIES_ZORREN_HIGH	= 'icons/inventory/face/mob_fox.dmi',
+		SPECIES_ZORREN_FLAT = 'icons/inventory/face/mob_fennec.dmi',
+		SPECIES_AKULA 		= 'icons/inventory/face/mob_akula.dmi',
+		SPECIES_VULPKANIN 	= 'icons/inventory/face/mob_vulpkanin.dmi',
+		SPECIES_XENOCHIMERA	= 'icons/inventory/face/mob_tajaran.dmi',
+		SPECIES_WEREBEAST	= 'icons/inventory/face/mob_werebeast.dmi'
 		)
 
 	var/voicechange = 0
@@ -859,7 +870,7 @@
 		return
 	if(!istype(macro))
 		to_chat(micro, span_notice("You start to climb out of [src]!"))
-		if(do_after(micro, 50, src))
+		if(do_after(micro, 5 SECONDS, target = src))
 			to_chat(micro, span_notice("You climb out of [src]!"))
 			micro.forceMove(loc)
 		return
@@ -874,7 +885,7 @@
 
 	to_chat(micro, span_notice("[escape_message_micro]"))
 	to_chat(macro, span_danger("[escape_message_macro]"))
-	if(!do_after(micro, escape_time, macro))
+	if(!do_after(micro, escape_time, target = macro))
 		to_chat(micro, span_danger("You're pinned underfoot!"))
 		to_chat(macro, span_danger("You pin the escapee underfoot!"))
 		return
@@ -1042,7 +1053,7 @@
 	var/image/standing = ..()
 	if(taurized) //Special snowflake var on suits
 		standing.pixel_x = -16
-		standing.layer = BODY_LAYER + 17 // 17 is above tail layer, so will not be covered by taurbody. TAIL_UPPER_LAYER +1
+		standing.layer = BODY_LAYER + TAIL_UPPER_LAYER + 1
 	return standing
 
 /obj/item/clothing/suit/apply_accessories(var/image/standing)
@@ -1076,7 +1087,8 @@
 	blood_sprite_state = "uniformblood"
 
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
-	var/sensor_mode = 0
+	var/sensor_mode = 3
+	var/sensorpref = 5
 		/*
 		1 = Report living/dead
 		2 = Report detailed damages
@@ -1089,7 +1101,8 @@
 	var/rolled_sleeves_icon_override = TRUE
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/uniform/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/uniform/mob_vox.dmi'
+		SPECIES_VOX = 'icons/inventory/uniform/mob_vox.dmi',
+		SPECIES_WEREBEAST = 'icons/inventory/uniform/mob_werebeast.dmi'
 		)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
@@ -1145,6 +1158,21 @@
 		verbs -= /obj/item/clothing/under/verb/rollsuit
 	if(rolled_sleeves == -1)
 		verbs -= /obj/item/clothing/under/verb/rollsleeves
+
+	if(!ishuman(loc))
+		return
+
+	var/mob/living/carbon/human/H = loc
+	sensorpref = isnull(H) ? 1 : (ishuman(H) ? H.sensorpref : 1)
+	switch(sensorpref)
+		if(1) sensor_mode = SUIT_SENSOR_OFF			//Sensors off
+		if(2) sensor_mode = SUIT_SENSOR_BINARY		//Sensors on binary
+		if(3) sensor_mode = SUIT_SENSOR_VITAL		//Sensors display vitals
+		if(4) sensor_mode = SUIT_SENSOR_TRACKING	//Sensors display vitals and enables tracking
+		if(5) sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)	//Select a random setting
+		else
+			sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)
+			log_runtime("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")
 
 /obj/item/clothing/under/proc/update_rolldown_status()
 	var/mob/living/carbon/human/H
@@ -1224,22 +1252,32 @@
 		to_chat(user, "This suit does not have any sensors.")
 		return 0
 
-	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = tgui_input_list(user, "Select a sensor mode:", "Suit Sensor Mode", modes)
+	var/list/modes = list(
+		"Off" = SUIT_SENSOR_OFF,
+		"Binary sensors" = SUIT_SENSOR_BINARY,
+		"Vitals tracker" = SUIT_SENSOR_VITAL,
+		"Tracking beacon" = SUIT_SENSOR_TRACKING
+		)
+	var/default_choice
+	for(var/key, value in modes)
+		if(value == sensor_mode)
+			default_choice = key
+			break
+	var/switchMode = tgui_input_list(user, "Select a sensor mode:", "Suit Sensor Mode", modes, default_choice)
 	if(get_dist(user, src) > 1)
 		to_chat(user, "You have moved too far away.")
 		return
-	sensor_mode = modes.Find(switchMode) - 1
+	sensor_mode = modes[switchMode]
 
 	if (src.loc == user)
 		switch(sensor_mode)
-			if(0)
+			if(SUIT_SENSOR_OFF)
 				user.visible_message("[user] adjusts their sensors.", "You disable your suit's remote sensing equipment.")
-			if(1)
+			if(SUIT_SENSOR_BINARY)
 				user.visible_message("[user] adjusts their sensors.", "Your suit will now report whether you are live or dead.")
-			if(2)
+			if(SUIT_SENSOR_VITAL)
 				user.visible_message("[user] adjusts their sensors.", "Your suit will now report your vital lifesigns.")
-			if(3)
+			if(SUIT_SENSOR_TRACKING)
 				user.visible_message("[user] adjusts their sensors.", "Your suit will now report your vital lifesigns as well as your coordinate position.")
 
 	else if (istype(src.loc, /mob))

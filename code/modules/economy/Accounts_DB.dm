@@ -5,7 +5,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "account_computer"
 	density = TRUE
-	req_one_access = list(access_hop, access_captain, access_cent_captain)
+	req_one_access = list(ACCESS_HOP, ACCESS_CAPTAIN, ACCESS_CENT_CAPTAIN)
 	anchored = TRUE
 	var/receipt_num
 	var/machine_id = ""
@@ -17,9 +17,9 @@
 /obj/machinery/account_database/proc/get_access_level()
 	if(!held_card)
 		return 0
-	if(access_cent_captain in held_card.access)
+	if(ACCESS_CENT_CAPTAIN in held_card.access)
 		return 2
-	else if((access_hop in held_card.access) || (access_captain in held_card.access))
+	else if((ACCESS_HOP in held_card.access) || (ACCESS_CAPTAIN in held_card.access))
 		return 1
 
 /obj/machinery/account_database/proc/create_transation(target, reason, amount)
@@ -139,7 +139,7 @@
 		if("toggle_suspension")
 			if(detailed_account_view)
 				detailed_account_view.suspended = !detailed_account_view.suspended
-				callHook("change_account_status", list(detailed_account_view))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PAYMENT_ACCOUNT_STATUS, detailed_account_view)
 
 		if("finalise_create_account")
 			var/account_name = params["holder_name"]
@@ -196,7 +196,7 @@
 			detailed_account_view.transaction_log.Add(account_trx)
 			GLOB.station_account.transaction_log.Add(station_trx)
 
-			callHook("revoke_payroll", list(detailed_account_view))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PAYMENT_ACCOUNT_REVOKE, detailed_account_view)
 
 		if("print")
 			print()

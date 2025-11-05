@@ -66,34 +66,6 @@
 		for(var/mob/living/L as anything in buckled_mobs)
 			L.set_dir(dir)
 
-/obj/structure/bed/chair/verb/rotate_clockwise()
-	set name = "Rotate Chair Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-
-	src.set_dir(turn(src.dir, 270))
-
-/obj/structure/bed/chair/verb/rotate_counterclockwise()
-	set name = "Rotate Chair Counter-Clockwise"
-	set category = "Object"
-	set src in oview(1)
-
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
-		return
-
-	src.set_dir(turn(src.dir, 90))
-
 /obj/structure/bed/chair/shuttle
 	name = "chair"
 	icon_state = "shuttlechair"
@@ -239,22 +211,20 @@
 
 			var/def_zone = ran_zone()
 			var/blocked = occupant.run_armor_check(def_zone, "melee")
-			var/soaked = occupant.get_armor_soak(def_zone, "melee")
 			occupant.throw_at(A, 3, propelled)
 			occupant.apply_effect(6, STUN, blocked)
 			occupant.apply_effect(6, WEAKEN, blocked)
 			occupant.apply_effect(6, STUTTER, blocked)
-			occupant.apply_damage(10, BRUTE, def_zone, blocked, soaked)
+			occupant.apply_damage(10, BRUTE, def_zone, blocked)
 			playsound(src, 'sound/weapons/punch1.ogg', 50, 1, -1)
 			if(isliving(A))
 				var/mob/living/victim = A
 				def_zone = ran_zone()
 				blocked = victim.run_armor_check(def_zone, "melee")
-				soaked = victim.get_armor_soak(def_zone, "melee")
 				victim.apply_effect(6, STUN, blocked)
 				victim.apply_effect(6, WEAKEN, blocked)
 				victim.apply_effect(6, STUTTER, blocked)
-				victim.apply_damage(10, BRUTE, def_zone, blocked, soaked)
+				victim.apply_damage(10, BRUTE, def_zone, blocked)
 			occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 
 /obj/structure/bed/chair/office/light

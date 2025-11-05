@@ -120,7 +120,7 @@
 	item_state = "collar_shk"
 	overlay_state = "collar_shk"
 	var/on = FALSE // 0 for off, 1 for on, starts off to encourage people to set non-default frequencies and codes.
-	var/frequency = 1449
+	var/frequency = AMAG_ELE_FREQ
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
 
@@ -628,6 +628,7 @@
 	var/sentientprizeckey = null	//Ckey for system to check who is the person and ensure no abuse of system or errors
 	var/sentientprizeflavor = null	//Description to show on the SPASM
 	var/sentientprizeooc = null		//OOC text to show on the SPASM
+	var/sentientprizeitemtf = FALSE	//Whether the person opted in to allowing themselves to be item TF'd as a prize
 
 /obj/item/clothing/accessory/collar/casinosentientprize/attack_self(mob/user as mob)
 	//keeping it blank so people don't tag and reset collar status

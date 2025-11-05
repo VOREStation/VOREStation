@@ -254,7 +254,7 @@
 				value = new_value
 				E = new_ver
 			else
-				warning("[new_ver.type] is deprecated but gave no proper return for DeprecationUpdate()")
+				WARNING("[new_ver.type] is deprecated but gave no proper return for DeprecationUpdate()")
 
 		var/validated = E.ValidateAndSet(value)
 		if(!validated)

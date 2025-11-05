@@ -44,6 +44,8 @@
 	var/used_dominate							// world.time when the dominate power was last used.
 	var/datum/ghost_query/Q						// Used to unregister our signal
 
+	can_be_drop_prey = FALSE
+
 /mob/living/simple_mob/animal/borer/roundstart
 	roundstart = TRUE
 
@@ -169,8 +171,7 @@
 
 	forceMove(get_turf(host))
 
-	reset_view(null)
-	machine = null
+	unset_machine()
 
 	if(ishuman(host))
 		var/mob/living/carbon/human/H = host
@@ -178,8 +179,7 @@
 		if(head)
 			head.implants -= src
 
-	host.reset_view(null)
-	host.machine = null
+	host.unset_machine()
 	host = null
 
 /mob/living/simple_mob/animal/borer/proc/request_player()
@@ -213,6 +213,12 @@
 
 /mob/living/simple_mob/animal/borer/cannot_use_vents()
 	return
+
+/mob/living/simple_mob/animal/borer/UnarmedAttack(var/atom/A, var/proximity)
+	if(ismob(loc))
+		to_chat(src, span_warning("You cannot interact with that from inside a host!"))
+		return
+	. = ..()
 
 // This is awful but its literally say code.
 /mob/living/simple_mob/animal/borer/say(var/message, var/datum/language/speaking = null, var/whispering = 0)

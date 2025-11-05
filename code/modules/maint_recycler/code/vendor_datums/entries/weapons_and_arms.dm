@@ -7,7 +7,7 @@
 	tagline = "clean and effective as fuck! OnlySec!"
 	per_person_cap = 1
 	per_round_cap = 1 //limited supply!
-	required_access = list(access_security)
+	required_access = list(ACCESS_SECURITY)
 	vendor_category = MAINTVENDOR_WEAPONS
 
 /datum/maint_recycler_vendor_entry/foamforce_ammo //fun!

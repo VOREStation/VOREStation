@@ -93,15 +93,6 @@
 		return FALSE
 	return ..()
 
-/obj/item/storage/backpack/santabag
-	name = "\improper Santa's gift bag"
-	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
-	icon_state = "giftbag0"
-	item_state_slots = list(slot_r_hand_str = "giftbag", slot_l_hand_str = "giftbag")
-	w_class = ITEMSIZE_LARGE
-	max_w_class = ITEMSIZE_NORMAL
-	max_storage_space = ITEMSIZE_COST_NORMAL * 100 // can store a ton of shit!
-
 /obj/item/storage/backpack/cultpack
 	name = "trophy rack"
 	desc = "It's useful for both carrying extra gear and proudly declaring your insanity."
@@ -528,7 +519,7 @@
 		H.visible_message(span_infoplain(span_bold("\The [H]") + " starts to pack \the [src]!"), \
 					span_notice("You start to pack \the [src]!"), \
 					span_infoplain("You hear the shuffling of cloth."))
-		if(do_after(H, 50))
+		if(do_after(H, 5 SECONDS, target = src))
 			H.visible_message(span_infoplain(span_bold("\The [H]") + " finishes packing \the [src]!"), \
 					span_notice("You finish packing \the [src]!"), \
 					span_infoplain("You hear the shuffling of cloth."))
@@ -541,7 +532,7 @@
 		H.visible_message(span_infoplain(span_bold("\The [src]") + " starts to unpack \the [src]!"), \
 					span_notice("You start to unpack \the [src]!"), \
 					span_infoplain("You hear the shuffling of cloth."))
-		if(do_after(H, 25))
+		if(do_after(H, 25, target = src))
 			H.visible_message(span_infoplain(span_bold("\The [src]") + " finishes unpacking \the [src]!"), \
 					span_notice("You finish unpacking \the [src]!"), \
 					span_infoplain("You hear the shuffling of cloth."))

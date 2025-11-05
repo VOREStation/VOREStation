@@ -227,8 +227,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness1_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -238,8 +238,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness2_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -249,8 +249,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness3_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -260,8 +260,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness4_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -271,8 +271,8 @@
 	var/formatted_message
 	var/raw_message = pick(fullness5_messages)
 
-	formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-	formatted_message = replacetext(formatted_message,"%pred",owner)
+	formatted_message = replacetext(raw_message,"%belly", get_belly_name())
+	formatted_message = replacetext(formatted_message, "%pred", owner)
 
 	return(span_red("[formatted_message]<BR>"))
 
@@ -292,7 +292,7 @@
 
 	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
 	if(!DM)
-		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
+		log_runtime("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
 		return FALSE
 	if(DM.handle_atoms(src, touchable_atoms))
 		updateVRPanels()

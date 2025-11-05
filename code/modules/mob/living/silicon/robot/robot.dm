@@ -43,12 +43,12 @@
 
 //Hud stuff
 
-	var/obj/screen/inv1 = null
-	var/obj/screen/inv2 = null
-	var/obj/screen/inv3 = null
+	var/atom/movable/screen/inv1 = null
+	var/atom/movable/screen/inv2 = null
+	var/atom/movable/screen/inv3 = null
 
 	var/shown_robot_modules = 0 //Used to determine whether they have the module menu shown or not
-	var/obj/screen/robot_modules_background
+	var/atom/movable/screen/robot_modules_background
 
 	var/ui_theme
 	var/selecting_module = FALSE
@@ -87,7 +87,7 @@
 	var/wiresexposed = 0
 	var/locked = 1
 	var/has_power = 1
-	var/list/req_access = list(access_robotics)
+	var/list/req_access = list(ACCESS_ROBOTICS)
 	var/ident = 0
 	//var/list/laws = list()
 	var/viewalerts = 0
@@ -96,7 +96,7 @@
 	var/lower_mod = 0
 	var/jetpack = 0
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
-	var/datum/effect/effect/system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
 	var/killswitch = 0
 	var/killswitch_time = 60
@@ -111,6 +111,7 @@
 	var/braintype = JOB_CYBORG
 
 	var/obj/item/implant/restrainingbolt/bolt	// The restraining bolt installed into the cyborg.
+	var/datum/tgui_module/robot_ui/robotact
 
 	var/list/robot_verbs_default = list(
 		/mob/living/silicon/robot/proc/sensor_mode,
@@ -306,31 +307,66 @@
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
 /mob/living/silicon/robot/Destroy()
-	if(mmi && mind)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
-		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
-		if(T)	mmi.loc = T
-		if(mmi.brainmob)
-			var/obj/item/robot_module/M = locate() in contents
-			if(M)
-				mmi.brainmob.languages = M.original_languages
-			else
-				mmi.brainmob.languages = languages
-			mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
-			mind.transfer_to(mmi.brainmob)
-		else if(!shell) // Shells don't have brainmbos in their MMIs.
-			to_chat(src, span_danger("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
-			ghostize()
-			//ERROR("A borg has been destroyed, but its MMI lacked a brainmob, so the mind could not be transferred. Player: [ckey].")
-		mmi = null
-	if(connected_ai)
-		connected_ai.connected_robots -= src
+	if(mmi)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
+		if(mind)
+			var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
+			if(T)
+				mmi.forceMove(T)
+			if(mmi.brainmob)
+				var/obj/item/robot_module/M = locate() in contents
+				if(M)
+					mmi.brainmob.languages = M.original_languages
+				else
+					mmi.brainmob.languages = languages
+				mmi.brainmob.remove_language(LANGUAGE_ROBOT_TALK)
+				mind.transfer_to(mmi.brainmob)
+			else if(!shell) // Shells don't have brainmbos in their MMIs.
+				to_chat(src, span_danger("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
+				ghostize()
+				//ERROR("A borg has been destroyed, but its MMI lacked a brainmob, so the mind could not be transferred. Player: [ckey].")
+			mmi = null
+		else
+			QDEL_NULL(mmi)
+	disconnect_from_ai(TRUE)
 	if(shell)
 		if(deployed)
 			undeploy()
 		revert_shell() // To get it out of the GLOB list.
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
+	sprite_datum = null
 	QDEL_NULL(robotact)
+	QDEL_LIST_ASSOC_VAL(components)
+	if(bolt)
+		QDEL_NULL(bolt)
+	if(module)
+		QDEL_NULL(module)
+	if(radio)
+		QDEL_NULL(radio)
+	if(communicator)
+		QDEL_NULL(communicator)
+	if(cell)
+		QDEL_NULL(cell)
+	if(camera)
+		QDEL_NULL(camera)
+	if(rbPDA)
+		QDEL_NULL(rbPDA)
+	if(inv1)
+		QDEL_NULL(inv1)
+	if(inv2)
+		QDEL_NULL(inv2)
+	if(inv3)
+		QDEL_NULL(inv3)
+	if(robot_modules_background)
+		QDEL_NULL(robot_modules_background)
+	if(ion_trail)
+		QDEL_NULL(ion_trail)
+	if(spark_system)
+		QDEL_NULL(spark_system)
+	module_active = null
+	module_state_1 = null
+	module_state_2 = null
+	module_state_3 = null
+
 	return ..()
 
 // CONTINUE CODING HERE
@@ -452,50 +488,6 @@
 	to_chat(src, span_filter_notice("You [lights_on ? "enable" : "disable"] your integrated light."))
 	handle_light()
 	update_icon()
-
-/mob/living/silicon/robot/verb/toggle_robot_decals() // loads overlay UNDER lights.
-	set category = "Abilities.Settings"
-	set name = "Toggle Extra Decals"
-
-	if(!sprite_datum)
-		return
-	if(!LAZYLEN(sprite_datum.sprite_decals))
-		to_chat(src, span_warning("This module does not support decals."))
-		return
-
-	var/extra_message = "Enabled decals:\n"
-	for(var/decal in robotdecal_on)
-		extra_message += decal + "\n"
-
-	var/decal_to_toggle = tgui_input_list(src, "Please select which decal you want to toggle\n[extra_message]", "Decal Toggle", sprite_datum.sprite_decals)
-	if(!decal_to_toggle)
-		return
-
-	decal_to_toggle = lowertext(decal_to_toggle)
-
-	if(robotdecal_on.Find(decal_to_toggle))
-		robotdecal_on -= decal_to_toggle
-		to_chat(src, span_filter_notice("You disable your \"[decal_to_toggle]\" extra apperances."))
-	else
-		robotdecal_on += decal_to_toggle
-		to_chat(src, span_filter_notice("You enable your \"[decal_to_toggle]\" extra apperances."))
-	update_icon()
-
-/mob/living/silicon/robot/verb/flick_robot_animation()
-	set category = "Abilities.Settings"
-	set name = "Flick Animation"
-
-	if(!sprite_datum)
-		return
-	if(!LAZYLEN(sprite_datum.sprite_animations))
-		to_chat(src, span_warning("This module does not support animations."))
-		return
-
-	var/animation_to_play = tgui_input_list(src, "Please select which decal you want to flick", "Flick Decal", sprite_datum.sprite_animations)
-	if(!animation_to_play)
-		return
-
-	flick("[sprite_datum.sprite_icon_state]-[animation_to_play]", src)
 
 /mob/living/silicon/robot/verb/toggle_glowy_stomach()
 	set category = "Abilities.Settings"
@@ -773,7 +765,7 @@
 		if(bolt)
 			to_chat(user,span_filter_notice("You begin removing \the [bolt]."))
 
-			if(do_after(user, 2 SECONDS, src))
+			if(do_after(user, 2 SECONDS, target = src))
 				bolt.forceMove(get_turf(src))
 				bolt = null
 
@@ -847,7 +839,7 @@
 	if(bolt)
 		if(!bolt.malfunction)
 			visible_message(span_danger("[src] is trying to break their [bolt]!"), span_warning("You attempt to break your [bolt]. (This will take around 90 seconds and you need to stand still)"))
-			if(do_after(src, 1.5 MINUTES, src, incapacitation_flags = INCAPACITATION_DISABLED))
+			if(do_after(src, 1.5 MINUTES, src, timed_action_flags = IGNORE_INCAPACITATED))
 				visible_message(span_danger("[src] manages to break \the [bolt]!"), span_warning("You successfully break your [bolt]."))
 				bolt.malfunction = MALFUNCTION_PERMANENT
 
@@ -862,9 +854,8 @@
 	if(notify)
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
-	qdel(module)
+	QDEL_NULL(module)
 	icon_selected = FALSE
-	module = null
 	updatename("Default")
 	has_recoloured = FALSE
 	robotact?.update_static_data_for_all_viewers()
@@ -877,11 +868,11 @@
 	set category = "Abilities.Settings"
 	set desc = "Allows to recolour once."
 
-	if(!has_recoloured)
-		var/datum/ColorMate/recolour = new /datum/ColorMate(src)
-		recolour.tgui_interact(src)
+	if(has_recoloured)
+		to_chat(src, "You've already recoloured yourself once. Ask for a module reset for another.")
 		return
-	to_chat(src, "You've already recoloured yourself once. Ask for a module reset for another.")
+
+	tgui_input_colormatrix(src, "Allows you to recolor yourself", "Robot Recolor", src, ui_state = GLOB.tgui_conscious_state)
 
 /mob/living/silicon/robot/attack_hand(mob/user)
 	if(LAZYLEN(buckled_mobs))
@@ -1144,7 +1135,7 @@
 	if(wires.is_cut(WIRE_BORG_LOCKED))
 		state = 1
 	if(state)
-		throw_alert("locked", /obj/screen/alert/locked)
+		throw_alert("locked", /atom/movable/screen/alert/locked)
 	else
 		clear_alert("locked")
 	lockdown = state
@@ -1252,9 +1243,10 @@
 		if(ROBOT_NOTIFICATION_AI_SHELL) //New Shell
 			to_chat(connected_ai, span_filter_notice("<br><br>" + span_notice("NOTICE - New AI shell detected: <a href='byond://?src=[REF(connected_ai)];track2=[html_encode(name)]'>[name]</a>") + "<br>"))
 
-/mob/living/silicon/robot/proc/disconnect_from_ai()
+/mob/living/silicon/robot/proc/disconnect_from_ai(silent)
 	if(connected_ai)
-		sync() // One last sync attempt
+		if(!silent)
+			sync() // One last sync attempt
 		connected_ai.connected_robots -= src
 		connected_ai = null
 
@@ -1289,11 +1281,9 @@
 				to_chat(user, span_filter_notice("You assigned yourself as [src]'s operator."))
 				message_admins("[key_name_admin(user)] assigned as operator on cyborg [key_name_admin(src)]. Syndicate Operator change.")
 				log_game("[key_name(user)] assigned as operator on cyborg [key_name(src)]. Syndicate Operator change.")
-				var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
-				set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
-				to_chat(src, span_infoplain(span_bold("Obey these laws:")))
-				laws.show_laws(src)
-				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands."))
+				set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are operatives.")
+				to_chat(src, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
+				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [user.p_their()] commands."))
 			else
 				to_chat(user, span_filter_notice("[src] already has an operator assigned."))
 			return//Prevents the X has hit Y with Z message also you cant emag them twice
@@ -1322,8 +1312,7 @@
 			laws = new /datum/ai_laws/syndicate_override
 			var/time = time2text(world.realtime,"hh:mm:ss")
 			GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
-			var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
-			set_zeroth_law("Only [user.real_name] and people [TU.he] designate[TU.s] as being such are operatives.")
+			set_zeroth_law("Only [user.real_name] and people [user.p_their()] designate[user.p_s()] as being such are operatives.")
 			. = 1
 			spawn()
 				to_chat(src, span_danger("ALERT: Foreign software detected."))
@@ -1344,9 +1333,8 @@
 				to_chat(src, span_danger("> N"))
 				sleep(20)
 				to_chat(src, span_danger("ERRORERRORERROR"))
-				to_chat(src, span_infoplain(span_bold("Obey these laws:")))
-				laws.show_laws(src)
-				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands."))
+				to_chat(src, span_infoplain(span_bold("Obey these laws:\n") + laws.get_formatted_laws()))
+				to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [user.p_their()] commands."))
 				update_icon()
 				hud_used.update_robot_modules_display()
 		else
@@ -1642,3 +1630,8 @@
 	nutrition = 1000
 	to_chat(src, span_warning("You have purged most of the nutrition lingering in your systems."))
 	return TRUE
+
+/mob/living/silicon/robot/proc/get_ui_theme()
+	if(emagged)
+		return "syndicate"
+	return ui_theme

@@ -67,6 +67,8 @@ SUBSYSTEM_DEF(ticker)
 
 	/// ID of round reboot timer, if it exists
 	var/reboot_timer = null
+	/// ID of round countdown timer, if it exists
+	var/countdown_timer = null
 
 	/// ### LEGACY VARS ###
 	/// Default time to wait before rebooting in desiseconds.
@@ -93,11 +95,11 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/fire(resumed = FALSE)
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
-			if(Master.initializations_finished_with_no_players_logged_in)
-				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+			// if(Master.initializations_finished_with_no_players_logged_in) // We want to wait the full time after the startup finished
+			start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
-			to_chat(world, span_notice("<b>Welcome to [station_name()]!</b>"))
+			to_chat(world, span_boldnotice("Welcome to [station_name()]!"))
 			//for(var/channel_tag in CONFIG_GET(str_list/channel_announce_new_game))
 			//	send2chat(new /datum/tgs_message_content("New round starting on [SSmapping.current_map.map_name]!"), channel_tag)
 			current_state = GAME_STATE_PREGAME
@@ -108,6 +110,7 @@ SUBSYSTEM_DEF(ticker)
 			//lobby stats for statpanels
 			if(isnull(timeLeft))
 				timeLeft = max(0,start_at - world.time)
+				to_chat(world, span_notice("Round starting in [round(timeLeft / 10)] Seconds!"))
 			totalPlayers = LAZYLEN(GLOB.new_player_list)
 			totalPlayersReady = 0
 			total_admins_ready = 0
@@ -123,7 +126,10 @@ SUBSYSTEM_DEF(ticker)
 			//countdown
 			if(timeLeft < 0)
 				return
-			timeLeft -= wait
+
+			// Do not count down the time, if the game start is delayed
+			if (GLOB.round_progressing)
+				timeLeft -= wait
 
 			//if(timeLeft <= 300 && !tipped)
 			//	send_tip_of_the_round(world, selected_tip)
@@ -175,7 +181,7 @@ SUBSYSTEM_DEF(ticker)
 					end_game_state = END_GAME_MODE_FINISHED // Only do this cleanup once!
 					mode.cleanup()
 					//call a transfer shuttle vote
-					to_world(span_boldannounce("The round has ended!"))
+					to_chat(world, span_boldannounce("The round has ended!"))
 					SSvote.start_vote(new /datum/vote/crew_transfer)
 
 		// FIXME: IMPROVE THIS LATER!
@@ -183,7 +189,7 @@ SUBSYSTEM_DEF(ticker)
 			post_game_tick()
 
 			if (world.time - last_restart_notify >= 1 MINUTE && !delay_end)
-				to_world(span_boldannounce("Restarting in [round(restart_timeleft/600, 1)] minute\s."))
+				to_chat(world, span_boldannounce("Restarting in [round(restart_timeleft/600, 1)] minute\s."))
 				last_restart_notify = world.time
 
 /datum/controller/subsystem/ticker/proc/setup()
@@ -207,9 +213,34 @@ SUBSYSTEM_DEF(ticker)
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
 
-	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
+	//otherwise round_start_time would be 0 for the signals
+	round_start_time = world.time
+	GLOB.round_start_time = REALTIMEOFDAY
 	SEND_SIGNAL(src, COMSIG_TICKER_ROUND_STARTING, world.time)
-	callHook("roundstart")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ROUND_START)
+	SSwebhooks.send(WEBHOOK_ROUNDSTART, list("url" = get_world_url()))
+
+	// Spawn randomized items
+	for(var/id in multi_point_spawns)
+		var/list/spawn_points = multi_point_spawns[id]
+		var/obj/random_multi/rm = pickweight(spawn_points)
+		rm.generate_items()
+		for(var/entry in spawn_points)
+			qdel(entry)
+
+	// Place empty AI cores once we know who is playing AI
+	for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
+		if(S.name != JOB_AI)
+			continue
+		if(locate(/mob/living) in S.loc)
+			continue
+		GLOB.empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(get_turf(S))
+
+	// Final init, these things need round to start for their info to be ready
+	for(var/obj/item/paper/dockingcodes/dcp as anything in GLOB.papers_dockingcode)
+		dcp.populate_info()
+	for(var/obj/machinery/power/solar_control/SC as anything in GLOB.solars_list)
+		SC.auto_start()
 
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore,SetRoundStart))
@@ -275,7 +306,7 @@ SUBSYSTEM_DEF(ticker)
 	var/list/runnable_modes = config.get_runnable_modes()
 	if((GLOB.master_mode == "random") || (GLOB.master_mode == "secret"))
 		if(!runnable_modes.len)
-			to_world(span_filter_system(span_bold("Unable to choose playable game mode.") + " Reverting to pregame lobby."))
+			to_chat(world, span_filter_system(span_bold("Unable to choose playable game mode.") + " Reverting to pregame lobby."))
 			return 0
 		if(GLOB.secret_force_mode != "secret")
 			src.mode = config.pick_mode(GLOB.secret_force_mode)
@@ -288,7 +319,7 @@ SUBSYSTEM_DEF(ticker)
 		src.mode = config.pick_mode(GLOB.master_mode)
 
 	if(!src.mode)
-		to_world(span_boldannounce("Serious error in mode setup! Reverting to pregame lobby.")) //Uses setup instead of set up due to computational context.
+		to_chat(world, span_boldannounce("Serious error in mode setup! Reverting to pregame lobby.")) //Uses setup instead of set up due to computational context.
 		return 0
 
 	job_master.ResetOccupations()
@@ -297,21 +328,21 @@ SUBSYSTEM_DEF(ticker)
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.mode.can_start())
-		to_world(span_filter_system(span_bold("Unable to start [mode.name].") + " Not enough players readied, [CONFIG_GET(keyed_list/player_requirements)[mode.config_tag]] players needed. Reverting to pregame lobby."))
+		to_chat(world, span_filter_system(span_bold("Unable to start [mode.name].") + " Not enough players readied, [CONFIG_GET(keyed_list/player_requirements)[mode.config_tag]] players needed. Reverting to pregame lobby."))
 		mode.fail_setup()
 		mode = null
 		job_master.ResetOccupations()
 		return 0
 
 	if(hide_mode)
-		to_world(span_world(span_notice("The current game mode is - Secret!")))
+		to_chat(world, span_world(span_notice("The current game mode is - Secret!")))
 		if(runnable_modes.len)
 			var/list/tmpmodes = list()
 			for (var/datum/game_mode/M in runnable_modes)
 				tmpmodes+=M.name
 			tmpmodes = sortList(tmpmodes)
 			if(tmpmodes.len)
-				to_world(span_filter_system(span_bold("Possibilities:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
+				to_chat(world, span_filter_system(span_bold("Possibilities:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
 	else
 		src.mode.announce()
 	return 1
@@ -320,13 +351,14 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/post_game_tick()
 	switch(end_game_state)
 		if(END_GAME_READY_TO_END)
-			callHook("roundend")
+			callHook("roundend") // TODO, remove all hooks that use this in favor of global signal
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ROUND_END)
 
 			if (mode.station_was_nuked)
 				feedback_set_details("end_proper", "nuke")
 				restart_timeleft = 1 MINUTE // No point waiting five minutes if everyone's dead.
 				if(!delay_end)
-					to_world(span_boldannounce("Rebooting due to destruction of [station_name()] in [round(restart_timeleft/600)] minute\s."))
+					to_chat(world, span_boldannounce("Rebooting due to destruction of [station_name()] in [round(restart_timeleft/600)] minute\s."))
 					last_restart_notify = world.time
 			else
 				feedback_set_details("end_proper", "proper completion")
@@ -456,7 +488,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) SECONDS
 		if(delay >= 60 SECONDS)
-			addtimer(CALLBACK(src, PROC_REF(announce_countodwn), delay), 60 SECONDS)
+			countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), delay), 60 SECONDS)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
@@ -477,16 +509,17 @@ SUBSYSTEM_DEF(ticker)
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2)) //don't wait forever
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(reboot_callback), reason, end_string), delay - (world.time - start_wait), TIMER_STOPPABLE)
 
-/datum/controller/subsystem/ticker/proc/announce_countodwn(remaining_time)
+/datum/controller/subsystem/ticker/proc/announce_countdown(remaining_time)
+	remaining_time -= 60 SECONDS
 	if(remaining_time >= 60 SECONDS)
-		remaining_time -= 60 SECONDS
 		to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(remaining_time)]."))
-		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), remaining_time), 60 SECONDS)
+		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), remaining_time), 60 SECONDS)
 		return
 	if(remaining_time > 0)
-		addtimer(CALLBACK(src, PROC_REF(announce_countodwn), 0), remaining_time)
+		countdown_timer = addtimer(CALLBACK(src, PROC_REF(announce_countdown), 0), remaining_time)
 		return
-	to_chat(world, span_boldannounce("Rebooting World."))
+	if(!delay_end)
+		to_chat(world, span_boldannounce("Rebooting World."))
 
 /datum/controller/subsystem/ticker/proc/reboot_callback(reason, end_string)
 	if(end_string)
@@ -509,4 +542,24 @@ SUBSYSTEM_DEF(ticker)
 	to_chat(world, span_boldannounce("An admin has delayed the round end."))
 	deltimer(reboot_timer)
 	reboot_timer = null
+	if(countdown_timer)
+		deltimer(countdown_timer)
+		countdown_timer = null
 	return TRUE
+
+/**
+ * Helper proc that delays the roundend for us.
+ * This proc will trigger a reboot if the delay is 'toggled off'.
+ * Use with care.
+ */
+/datum/controller/subsystem/ticker/proc/toggle_delay()
+	delay_end = !delay_end
+
+	if(countdown_timer)
+		deltimer(countdown_timer)
+		countdown_timer = null
+	if(reboot_timer)
+		deltimer(reboot_timer)
+		reboot_timer = null
+	else
+		Reboot("World reboot after administrative delay.")

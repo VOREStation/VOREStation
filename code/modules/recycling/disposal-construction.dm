@@ -10,7 +10,6 @@
 	anchored = FALSE
 	density = FALSE
 	pressure_resistance = 5*ONE_ATMOSPHERE
-	matter = list(MAT_STEEL = 1850)
 	level = 2
 	var/sortType = ""
 	var/ptype = 0
@@ -18,7 +17,7 @@
 	var/dpdir = 0	// directions as disposalpipe
 	var/base_state = "pipe-s"
 
-/obj/structure/disposalconstruct/Initialize(mapload, var/newtype, var/newdir, var/flipped, var/newsubtype)
+/obj/structure/disposalconstruct/Initialize(mapload, newtype, newdir, flipped, newsubtype)
 	. = ..()
 	ptype = newtype
 	dir = newdir
@@ -45,6 +44,8 @@
 		do_a_flip()
 	else
 		update() // do_a_flip() calls update anyway, so, lazy way of catching unupdated pipe!
+
+	AddElement(/datum/element/rotatable)
 
 // update iconstate and dpdir due to dir and type
 /obj/structure/disposalconstruct/proc/update()
@@ -115,43 +116,9 @@
 
 // hide called by levelupdate if turf intact status changes
 // change visibility status and force update of icon
-/obj/structure/disposalconstruct/hide(var/intact)
+/obj/structure/disposalconstruct/hide(intact)
 	invisibility = (intact && level==1) ? INVISIBILITY_ABSTRACT: INVISIBILITY_NONE	// hide if floor is intact
 	update()
-
-
-// flip and rotate verbs
-/obj/structure/disposalconstruct/verb/rotate_clockwise()
-	set category = "Object"
-	set name = "Rotate Pipe Clockwise"
-	set src in view(1)
-
-	if(usr.stat)
-		return
-
-	if(anchored)
-		to_chat(usr, "You must unfasten the pipe before rotating it.")
-		return
-
-	src.set_dir(turn(src.dir, 270))
-	update()
-
-//VOREstation edit: counter-clockwise rotation
-/obj/structure/disposalconstruct/verb/rotate_counterclockwise()
-	set category = "Object"
-	set name = "Rotate Pipe Counter-Clockwise"
-	set src in view(1)
-
-	if(usr.stat)
-		return
-
-	if(anchored)
-		to_chat(usr, "You must unfasten the pipe before rotating it.")
-		return
-
-	src.set_dir(turn(src.dir, 90))
-	update()
-//VOREstation edit end
 
 /obj/structure/disposalconstruct/verb/flip()
 	set category = "Object"
@@ -225,7 +192,7 @@
 // attackby item
 // wrench: (un)anchor
 // weldingtool: convert to real pipe
-/obj/structure/disposalconstruct/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/disposalconstruct/attackby(obj/item/I, mob/user)
 	var/nicetype = "pipe"
 	var/ispipe = 0 // Indicates if we should change the level of this pipe
 	src.add_fingerprint(user)
@@ -308,7 +275,7 @@
 			if(W.remove_fuel(0,user))
 				playsound(src, W.usesound, 100, 1)
 				to_chat(user, "Welding the [nicetype] in place.")
-				if(do_after(user, 20 * W.toolspeed))
+				if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 					if(!src || !W.isOn()) return
 					to_chat(user, "The [nicetype] has been welded in place!")
 					update() // TODO: Make this neat
@@ -339,9 +306,6 @@
 						var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.set_dir(dir)
-						P.target = get_ranged_target_turf(src, dir, 10) //TODO: replace this with a proc parameter or other cleaner
-						var/obj/structure/disposalpipe/trunk/Trunk = CP
-						Trunk.linked = P
 
 					else if(ptype==DISPOSAL_PIPE_CHUTE)
 						var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)

@@ -240,7 +240,7 @@
 	result = REAGENT_ID_DEXALIN
 	required_reagents = list(REAGENT_ID_OXYGEN = 2, REAGENT_ID_PHORON = 0.1)
 	catalysts = list(REAGENT_ID_PHORON = 1)
-	inhibitors = list(REAGENT_ID_WATER = 1) // Messes with cryox
+	inhibitors = list(REAGENT_ID_WATER = 1, REAGENT_ID_TIN = 1) // Messes with cryox, and oxygen distilling
 	result_amount = 1
 
 /decl/chemical_reaction/instant/dermaline
@@ -446,6 +446,7 @@
 	name = REAGENT_LYE
 	id = REAGENT_ID_LYE
 	result = REAGENT_ID_LYE
+	inhibitors = list(REAGENT_ID_CARBON = 1) // Or it blocks aphrodisiac
 	required_reagents = list(REAGENT_ID_SODIUM = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
 
@@ -784,16 +785,18 @@
 	for(var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
+				if(ishuman(M))
+					var/mob/living/carbon/human/target = M
+					if(istype(target.glasses, /obj/item/clothing/glasses/sunglasses))
 						continue
 
 				M.flash_eyes()
 				M.Weaken(15)
 
 			if(4 to 5)
-				if(hasvar(M, "glasses"))
-					if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
+				if(ishuman(M))
+					var/mob/living/carbon/human/target = M
+					if(istype(target.glasses, /obj/item/clothing/glasses/sunglasses))
 						continue
 
 				M.flash_eyes()
@@ -1492,3 +1495,10 @@
 
 /decl/chemical_reaction/instant/potato_juice_metal_paint/send_data()
 	return "#2e2a21"
+
+/decl/chemical_reaction/instant/aphrodisiac
+	name = REAGENT_APHRODISIAC
+	id = REAGENT_ID_APHRODISIAC
+	result = REAGENT_ID_APHRODISIAC
+	required_reagents = list(REAGENT_ID_CARBON = 2, REAGENT_ID_HYDROGEN = 2, REAGENT_ID_OXYGEN = 2, REAGENT_ID_WATER = 1)
+	result_amount = 6

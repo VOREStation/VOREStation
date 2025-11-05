@@ -10,7 +10,6 @@
 	var/door_locked = 1
 	salvageable = 0
 	allow_duplicate = TRUE
-
 	equip_type = EQUIP_HULL
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
@@ -26,11 +25,11 @@
 	if (chassis)
 		chassis.visible_message(span_notice("[user] starts to climb into [chassis]."))
 
-	if(do_after(user, 40, needhand=0))
+	if(do_after(user, 4 SECONDS, target = src))
 		if(!src.occupant)
 			user.forceMove(src)
 			occupant = user
-			log_message("[user] boarded.")
+			src.mecha_log_message("[user] boarded.")
 			occupant_message("[user] boarded.")
 		else if(src.occupant != user)
 			to_chat(user, span_warning("[src.occupant] was faster. Try harder next time, loser."))
@@ -62,19 +61,13 @@
 	to_chat(occupant, span_info("You climb out from \the [src]."))
 	go_out()
 	occupant_message("[occupant] disembarked.")
-	log_message("[occupant] disembarked.")
+	src.mecha_log_message("[occupant] disembarked.")
 	add_fingerprint(usr)
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/go_out()
 	if(!occupant)
 		return
 	occupant.forceMove(get_turf(src))
-	occupant.reset_view()
-	/*
-	if(occupant.client)
-		occupant.client.eye = occupant.client.mob
-		occupant.client.perspective = MOB_PERSPECTIVE
-	*/
 	occupant = null
 	return
 

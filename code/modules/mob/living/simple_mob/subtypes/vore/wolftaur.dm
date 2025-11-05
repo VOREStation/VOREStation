@@ -74,7 +74,6 @@
 	B.name = "stomach"
 	B.desc = "After a gruelling compressive traversal down through the taur's gullet, you briefly get deposited in an oppressively tight stomach at it's humanoid waist. However, the wolf has little interest in keeping you here, instead treating you as a mere snack, an orifice opens beneath you and you're soon dragged deeper into her depths. Soon you're splashing into an active, waiting caustic slurry, and the world around you drops as though you're trapped in a hammock. The taur's underbelly sags with your weight, and you feel a heavy pat from the woman outside settling in to make the most of her meal."
 	B.mode_flags = DM_FLAG_THICKBELLY
-	B.belly_fullscreen = "yet_another_tumby"
 	B.digest_brute = 2
 	B.digest_burn = 2
 	B.digest_oxy = 1

@@ -44,8 +44,7 @@ const icons = {
 
 type Data = { dates: string[] };
 
-// biome-ignore lint/complexity/noBannedTypes:Ingored here
-type ChangelogProps = {};
+type ChangelogProps = Record<never, never>;
 
 interface ChangelogState {
   data: string | { date: string; authors: { name: string; changes: string[] } };
@@ -111,9 +110,9 @@ export class Changelog extends Component<ChangelogProps, ChangelogState> {
     } = useBackend<Data>();
 
     if (dates) {
-      dates.forEach((date) =>
-        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true)),
-      );
+      dates.forEach((date) => {
+        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true));
+      });
       this.setSelectedDate(this.dateChoices[0]);
       this.getData(dates[0]);
     }

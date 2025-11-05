@@ -1,18 +1,18 @@
-/obj/screen/alert/leash_dom
+/atom/movable/screen/alert/leash_dom
 	name = "Leash Holder"
 	desc = "You're holding a leash, with someone on the end."
 	icon_state = "leash_master"
 
-/obj/screen/alert/leash_dom/Click()
+/atom/movable/screen/alert/leash_dom/Click()
 	var/obj/item/leash/owner = master
 	owner.unleash()
 
-/obj/screen/alert/leash_pet
+/atom/movable/screen/alert/leash_pet
 	name = "Leashed"
 	desc = "You're on the hook now!"
 	icon_state = "leash_pet"
 
-/obj/screen/alert/leash_dom/Click()
+/atom/movable/screen/alert/leash_dom/Click()
 	var/obj/item/leash/owner = master
 	owner.struggle_leash()
 
@@ -43,7 +43,7 @@
 		return
 	if(!is_wearing_collar(leash_pet)) //The pet has slipped their collar and is not the pet anymore.
 		leash_pet.visible_message(
-			span_warning("[leash_pet] has slipped out of their collar!"),
+			span_warning("[leash_pet] has slipped out of [leash_pet.p_their()] collar!"),
 			span_warning("You have slipped out of your collar!")
 		)
 		clear_leash()
@@ -85,12 +85,12 @@
 
 	leash_pet = C //Save pet reference for later
 	leash_pet.add_modifier(/datum/modifier/leash)
-	leash_pet.throw_alert("leashed", /obj/screen/alert/leash_pet, new_master = src) //Is the leasher
+	leash_pet.throw_alert("leashed", /atom/movable/screen/alert/leash_pet, new_master = src) //Is the leasher
 	RegisterSignal(leash_pet, COMSIG_MOVABLE_MOVED, PROC_REF(on_pet_move))
 	to_chat(leash_pet, span_userdanger("You have been leashed!"))
 	to_chat(leash_pet, span_danger("(You can use OOC escape to detach the leash)"))
 	leash_master = user //Save dom reference for later
-	leash_master.throw_alert("leash", /obj/screen/alert/leash_dom, new_master = src)//Has now been leashed
+	leash_master.throw_alert("leash", /atom/movable/screen/alert/leash_dom, new_master = src)//Has now been leashed
 	RegisterSignal(leash_master, COMSIG_MOVABLE_MOVED, PROC_REF(on_master_move))
 
 	START_PROCESSING(SSobj, src)
@@ -124,7 +124,7 @@
 		return
 	if(get_dist(leash_pet, leash_master) > 3 && !leash_pet.stunned)
 		leash_pet.visible_message(
-			span_warning("[leash_pet] is pulled to the ground by their leash!"),
+			span_warning("[leash_pet] is pulled to the ground by [leash_pet.p_their()] leash!"),
 			span_warning("You are pulled to the ground by your leash!")
 		)
 		leash_pet.apply_effect(20, STUN, 0)
@@ -187,7 +187,7 @@
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/leash/proc/struggle_leash()
-	leash_pet.visible_message(span_danger("\The [leash_pet] is attempting to unhook their leash!"), span_danger("You attempt to unhook your leash"))
+	leash_pet.visible_message(span_danger("\The [leash_pet] is attempting to unhook [leash_pet.p_their()] leash!"), span_danger("You attempt to unhook your leash"))
 	add_attack_logs(leash_master,leash_pet,"Self-unleash (attempt)")
 
 	if(!do_mob(leash_pet, leash_pet, 35))

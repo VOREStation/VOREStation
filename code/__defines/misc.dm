@@ -118,6 +118,7 @@
 #define AREA_BLOCK_SUIT_SENSORS		0x800	// If suit sensors are blocked in the area.
 #define AREA_BLOCK_TRACKING			0x1000	// If camera tracking is blocked in the area.
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
+#define AREA_BLOCK_INSTANT_BUILDING	0x4000	// If an area blocks the usage of instant building creation items/mechanics such as shelter capsules
 // The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
 #define PHASE_SHIELDED				0x100000 // A less rough way to prevent phase shifting without blocking access //VOREStation Note: Not implemented on VS. Used downstream.
@@ -531,6 +532,9 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define COLORMATE_TINT 1
 #define COLORMATE_HSV 2
 #define COLORMATE_MATRIX 3
+#define COLORMATE_MATRIX_AUTO 4
+
+#define DEFAULT_COLORMATRIX list(1, 0, 0, 0, 1, 0, 0, 0, 1,	0, 0, 0)
 
 #define DEPARTMENT_OFFDUTY			"Off-Duty"
 
@@ -602,3 +606,5 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define LADDER_CONSTRUCTION_UNANCHORED 0
 #define LADDER_CONSTRUCTION_WRENCHED 1
 #define LADDER_CONSTRUCTION_WELDED 2
+
+#define FINGERPRINT_COMPLETE 6

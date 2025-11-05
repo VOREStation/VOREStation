@@ -69,7 +69,7 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 	spark_system.attach(src)
 	add_overlay("rms_charge[charge_stage]")
 
-/obj/item/pipe_dispenser/Destroy()
+/obj/item/rms/Destroy()
 	QDEL_NULL(spark_system)
 	return ..()
 
@@ -96,7 +96,7 @@ var/list/RMS_random_malfunction = list(/obj/item/fbp_backup_cell,
 		to_chat(user, span_notice("The battery has no charge."))
 	else
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
-		if(do_after(user, 2,target = C))
+		if(do_after(user, 2, target = C))
 			stored_charge += C.charge
 			if(C.charge > charge_needed) //We only drain what we need!
 				C.use(charge_needed)

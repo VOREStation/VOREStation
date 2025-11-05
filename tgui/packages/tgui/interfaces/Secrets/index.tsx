@@ -9,7 +9,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
 
 import { TAB2NAME } from './constants';
 import type { Data } from './types';
@@ -130,7 +129,7 @@ export const Secrets = (props) => {
                           average: [100 * 0.25, 100 * 0.75],
                           bad: [100 * 0.75, 100],
                         }}
-                        format={(value) => `${toFixed(value)}%`}
+                        format={(value) => `${value.toFixed()}%`}
                       />
                     </LabeledControls.Item>
                   </LabeledControls>

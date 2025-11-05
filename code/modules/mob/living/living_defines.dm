@@ -42,8 +42,12 @@
 	var/tod = null // Time of death
 	var/update_slimes = 1
 	var/silent = null 		// Can't talk. Value goes down every life proc.
-	var/on_fire = 0 //The "Are we on fire?" var
+
+	/// Helper vars for quick access to firestacks, these should be updated every time firestacks are adjusted
+	var/on_fire = 0
 	var/fire_stacks
+	/// Rate at which fire stacks should decay from this mob
+	var/fire_stack_decay_rate = -0.05
 
 	var/failed_last_breath = 0 //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
 	var/lastpuke = 0
@@ -67,8 +71,6 @@
 	var/has_huds = FALSE	//Whether or not we should bother initializing the above list
 
 	var/makes_dirt = TRUE	//FALSE if the mob shouldn't be making dirt on the ground when it walks
-
-	var/looking_elsewhere = FALSE //If the mob's view has been relocated to somewhere else, like via a camera or with binocs
 
 	var/image/selected_image = null // Used for buildmode AI control stuff.
 
@@ -115,3 +117,6 @@
 	var/ooc_notes_favs = null
 	var/ooc_notes_maybes = null
 	var/ooc_notes_style = FALSE
+
+	///a list of all status effects the mob has
+	var/list/status_effects

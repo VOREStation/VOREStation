@@ -110,7 +110,6 @@
 		copy_board = O
 		O.forceMove(src)
 		user.visible_message("[user] inserts [O] into \the [src]'s circuit reader.", span_notice("You insert [O] into \the [src]'s circuit reader."))
-		updateUsrDialog(user)
 		return
 	if(try_load_materials(user, O))
 		return
@@ -136,7 +135,6 @@
 			count++
 		user.visible_message("[user] inserts [S.name] into \the [src].", span_notice("You insert [count] [S.name] into \the [src]."))
 		flick("partslathe-load-[S.material.name]", src)
-		updateUsrDialog(user)
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
 	return 1
@@ -196,7 +194,7 @@
 /obj/machinery/partslathe/proc/build(var/datum/category_item/partslathe/D)
 	for(var/M in D.resources)
 		materials[M] = max(0, materials[M] - CEILING((D.resources[M] * mat_efficiency), 1))
-	var/obj/new_item = D.build(loc);
+	var/obj/item/new_item = D.build(loc);
 	if(new_item)
 		new_item.loc = loc
 		if(mat_efficiency < 1) // No matter out of nowhere

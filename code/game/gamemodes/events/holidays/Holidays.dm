@@ -244,7 +244,11 @@ GLOBAL_LIST_EMPTY(Holiday) //Holidays are lists now, so we can have more than on
 	GLOB.Holiday = list()
 
 	var/H = tgui_input_text(src,"What holiday is it today?","Set Holiday")
+	if(!H)
+		return
 	var/B = tgui_input_text(src,"Now explain what the holiday is about","Set Holiday", multiline = TRUE, prevent_enter = TRUE)
+	if(!B)
+		return
 
 
 	GLOB.Holiday[H] = B
@@ -266,11 +270,11 @@ GLOBAL_LIST_EMPTY(Holiday) //Holidays are lists now, so we can have more than on
 			holidays.Add(p)
 			holiday_blurbs.Add("[GLOB.Holiday[p]]")
 		var/holidays_string = english_list(holidays, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
-		to_world(span_filter_system(span_blue("and...")))
-		to_world(span_filter_system("<h4>Happy [holidays_string] Everybody!</h4>"))
+		to_chat(world, span_filter_system(span_blue("and...")))
+		to_chat(world, span_filter_system("<h4>Happy [holidays_string] Everybody!</h4>"))
 		if(holiday_blurbs.len != 0)
 			for(var/blurb in holiday_blurbs)
-				to_world(span_filter_system(span_blue("<div align='center'>[blurb]</div>")))
+				to_chat(world, span_filter_system(span_blue("<div align='center'>[blurb]</div>")))
 		switch(GLOB.Holiday)			//special holidays
 			//if("Easter")
 				//do easter stuff

@@ -1809,7 +1809,7 @@
 /area/maintenance/lower/xenoflora)
 "ads" = (
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -3325,12 +3325,10 @@
 /area/rnd/hardstorage)
 "afB" = (
 /obj/structure/table/glass,
-/obj/item/radio{
+/obj/item/radio/phone{
 	anchored = 1;
 	canhear_range = 7;
 	frequency = 1487;
-	icon = 'icons/obj/items.dmi';
-	icon_state = "red_phone";
 	name = "Virology Emergency Phone";
 	pixel_x = -4;
 	pixel_y = 4
@@ -3744,10 +3742,10 @@
 	dir = 4
 	},
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
 /obj/item/tank/emergency/oxygen/engi,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled,
@@ -4176,7 +4174,7 @@
 	dir = 4
 	},
 /obj/random/maintenance/clean,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
 /area/storage/surface_eva)
@@ -8382,7 +8380,7 @@
 	dir = 9
 	},
 /obj/machinery/door/window/southleft,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/structure/sign/nosmoking_2{
@@ -8402,7 +8400,7 @@
 	dir = 5
 	},
 /obj/machinery/door/window/southright,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled/dark,
@@ -9496,7 +9494,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/northleft,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /obj/structure/sign/fire{
@@ -9514,7 +9512,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/northright,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled/dark,
@@ -10585,6 +10583,11 @@
 	},
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/clothing/shoes/black,
+/obj/item/radio{
+	pixel_x = 4;
+	pixel_y = -4;
+	on = 0
+	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/crew_quarters/locker)
 "asu" = (
@@ -10605,6 +10608,11 @@
 	dir = 1
 	},
 /obj/item/clothing/shoes/black,
+/obj/item/radio{
+	pixel_x = 4;
+	pixel_y = -4;
+	on = 0
+	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/crew_quarters/locker)
 "asv" = (
@@ -11735,6 +11743,11 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/machinery/light,
 /obj/item/clothing/shoes/black,
+/obj/item/radio{
+	pixel_x = 4;
+	pixel_y = -4;
+	on = 0
+	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/crew_quarters/locker)
 "auz" = (
@@ -20272,9 +20285,8 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Atmospherics";
-	charge = 2e+006
+/obj/machinery/power/smes/buildable/max_charge{
+	RCon_tag = "Substation - Atmospherics"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/surface_atmos)
@@ -29372,9 +29384,8 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Surface Services";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Surface Services"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/surfaceservicesubstation)
@@ -29563,9 +29574,8 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Medical";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Medical"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/SurfMedsubstation)
@@ -31250,7 +31260,7 @@
 /area/tether/surfacebase/lowernorthhall)
 "dxY" = (
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled/techfloor,
@@ -31378,7 +31388,7 @@
 /area/tether/surfacebase/security/brig)
 "dPY" = (
 /obj/structure/table/rack,
-/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas/clear,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
 /obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled/techfloor,
@@ -34276,6 +34286,11 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = -26;
+	pixel_x = -33;
+	id = "autor"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/autoresleeving)
 "lQu" = (
@@ -36624,9 +36639,8 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "sBl" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Civ West";
-	output_attempt = 0
+/obj/machinery/power/smes/buildable/disable_output{
+	RCon_tag = "Substation - Civ West"
 	},
 /obj/structure/cable/green{
 	icon_state = "0-2"

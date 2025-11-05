@@ -9,7 +9,6 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { formatMoney, formatSiUnit } from 'tgui-core/format';
-import { toFixed } from 'tgui-core/math';
 import { classes } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
 import { MATERIAL_KEYS } from './constants';
@@ -118,7 +117,7 @@ export const MaterialAmount = (props: {
 
   let amountDisplay: string = '0';
   if (amount < 1 && amount > 0) {
-    amountDisplay = toFixed(amount, 2);
+    amountDisplay = amount.toFixed(2);
   } else if (formatsi) {
     amountDisplay = formatSiUnit(amount, 0);
   } else if (formatmoney) {

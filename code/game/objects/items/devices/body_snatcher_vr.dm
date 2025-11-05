@@ -45,7 +45,7 @@
 			else
 				log_and_message_admins("attempted to body swap with [key_name(M)].")
 			user.visible_message(span_warning("[user] pushes the device up their forehead and [M]'s head, the device beginning to let out a series of light beeps!"),span_notice("You begin swap minds with [M]!"))
-			if(do_after(user,35 SECONDS,M))
+			if(do_after(user,35 SECONDS, target = M))
 				if(user.mind && M.mind && M.stat != DEAD && user.stat != DEAD)
 					log_and_message_admins("[user.ckey] used a Bodysnatcher to swap bodies with [M.ckey]", user)
 					to_chat(user,span_notice("Your minds have been swapped! Have a nice day."))
@@ -93,11 +93,11 @@
 					user.ooc_notes = target_ooc_notes
 					user.ooc_notes_likes = target_likes
 					user.ooc_notes_dislikes = target_dislikes
-					user.sleeping = 10 //Device knocks out both the user and the target.
+					user.SetSleeping(10) //Device knocks out both the user and the target.
 					user.eye_blurry = 30 //Blurry vision while they both get used to their new body's vision
 					user.slurring = 50 //And let's also have them slurring while they attempt to get used to using their new body.
 					if(ishuman(M)) //Let's not have the AI slurring, even though its downright hilarious.
-						M.sleeping = 10
+						M.SetSleeping(10)
 						M.eye_blurry = 30
 						M.slurring = 50
 

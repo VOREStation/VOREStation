@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(escape_list)
 GLOBAL_LIST_EMPTY(endgame_exits)
 GLOBAL_LIST_EMPTY(endgame_safespawns)
 
-GLOBAL_LIST_INIT(syndicate_access, list(access_maint_tunnels, access_syndicate, access_external_airlocks))
+GLOBAL_LIST_INIT(syndicate_access, list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_EXTERNAL_AIRLOCKS))
 
 // Ores (for mining)
 GLOBAL_LIST_EMPTY(ore_data)
@@ -193,7 +193,6 @@ GLOBAL_LIST_EMPTY(mannequins)
 		if (isnull(GLOB.all_languages[L.name]))
 			GLOB.all_languages[L.name] = L
 		else
-			log_debug("Language name conflict! [T] is named [L.name], but that is taken by [GLOB.all_languages[L.name].type]")
 			if(isnull(GLOB.language_name_conflicts[L.name]))
 				GLOB.language_name_conflicts[L.name] = list(GLOB.all_languages[L.name])
 			GLOB.language_name_conflicts[L.name] += L
@@ -204,7 +203,6 @@ GLOBAL_LIST_EMPTY(mannequins)
 			if(isnull(GLOB.language_keys[L.key]))
 				GLOB.language_keys[L.key] = L
 			else
-				log_debug("Language key conflict! [L] has key [L.key], but that is taken by [(GLOB.language_keys[L.key])]")
 				if(isnull(GLOB.language_key_conflicts[L.key]))
 					GLOB.language_key_conflicts[L.key] = list(GLOB.language_keys[L.key])
 				GLOB.language_key_conflicts[L.key] += L
@@ -397,6 +395,20 @@ GLOBAL_LIST_INIT(item_digestion_blacklist, list(
 		/obj/item/mmi/digital/posibrain,
 		/obj/item/mmi/digital/robot,
 		/obj/item/rig/protean))
+
+///A list of stuff we do NOT want being deconstructed. Either due to how critical it is (ID/nuke disk) or buggy (holders and paicards)
+GLOBAL_LIST_INIT(item_deconstruction_blacklist, list(
+		/obj/item/card/id,
+		/obj/item/areaeditor/blueprints,
+		/obj/item/disk/nuclear,
+		/obj/item/perfect_tele_beacon,
+		/obj/item/organ/internal/brain,
+		/obj/item/mmi,
+		/obj/item/rig/protean,
+		/obj/item/holder,
+		/obj/item/paicard,
+		/obj/item/stack/material/cyborg,
+		/obj/item/storage))
 
 ///A list of chemicals that are banned from being obtainable through means that generate chemicals. These chemicals are either lame, annoying, pref-breaking, or OP (This list does NOT include reactions)
 GLOBAL_LIST_INIT(obtainable_chemical_blacklist, list(
@@ -677,19 +689,19 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 // Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
 GLOBAL_LIST_INIT(default_internal_channels, list(
 	num2text(PUB_FREQ) = list(),
-	num2text(AI_FREQ)  = list(access_synth),
+	num2text(AI_FREQ)  = list(ACCESS_SYNTH),
 	num2text(ENT_FREQ) = list(),
-	num2text(ERT_FREQ) = list(access_cent_specops),
-	num2text(COMM_FREQ)= list(access_heads),
-	num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
-	num2text(MED_FREQ) = list(access_medical_equip),
-	num2text(MED_I_FREQ)=list(access_medical_equip),
-	num2text(SEC_FREQ) = list(access_security),
-	num2text(SEC_I_FREQ)=list(access_security),
-	num2text(SCI_FREQ) = list(access_tox, access_robotics, access_xenobiology),
-	num2text(SUP_FREQ) = list(access_cargo, access_mining_station),
-	num2text(SRV_FREQ) = list(access_janitor, access_library, access_hydroponics, access_bar, access_kitchen),
-	num2text(EXP_FREQ) = list(access_explorer)
+	num2text(ERT_FREQ) = list(ACCESS_CENT_SPECOPS),
+	num2text(COMM_FREQ)= list(ACCESS_HEADS),
+	num2text(ENG_FREQ) = list(ACCESS_ENGINE_EQUIP, ACCESS_ATMOSPHERICS),
+	num2text(MED_FREQ) = list(ACCESS_MEDICAL_EQUIP),
+	num2text(MED_I_FREQ)=list(ACCESS_MEDICAL_EQUIP),
+	num2text(SEC_FREQ) = list(ACCESS_SECURITY),
+	num2text(SEC_I_FREQ)=list(ACCESS_SECURITY),
+	num2text(SCI_FREQ) = list(ACCESS_TOX, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY),
+	num2text(SUP_FREQ) = list(ACCESS_CARGO, ACCESS_MINING_STATION),
+	num2text(SRV_FREQ) = list(ACCESS_JANITOR, ACCESS_LIBRARY, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN),
+	num2text(EXP_FREQ) = list(ACCESS_EXPLORER)
 ))
 
 GLOBAL_LIST_INIT(default_medbay_channels, list(
@@ -1612,6 +1624,7 @@ GLOBAL_LIST_INIT(suitable_fish_turf_types,  list(
 	/turf/simulated/floor/water
 ))
 
+GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/paper/dockingcodes)
 
 //Chamelion clothing was all stupid so it's done here instead.
 //Jumpsuit

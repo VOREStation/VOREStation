@@ -18,12 +18,7 @@
 /turf/simulated/shuttle/floor,
 /area/shuttle/overmap_examples/outpost)
 "ag" = (
-/obj/effect/mapinfo/sector{
-	icon = 'icons/obj/mining.dmi';
-	icon_state = "ore2";
-	landing_area = /area/shuttle/escape_pod2/centcom;
-	name = "Abandoned Outpost"
-	},
+/obj/effect/mapinfo/sector/abandoned,
 /turf/space,
 /area)
 "ah" = (

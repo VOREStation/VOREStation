@@ -21,3 +21,4 @@
 	for(var/decl/chemical_reaction/C as anything in effect_reactions)
 		C.post_reaction(src)
 	update_total()
+	return TRUE

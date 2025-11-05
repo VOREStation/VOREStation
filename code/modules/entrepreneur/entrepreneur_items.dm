@@ -294,7 +294,7 @@
 	if(M.nutrition <= 100)
 		to_chat(user, span_notice("You are too hungry to exercise right now."))
 		return 0
-	if(!do_after(user, 3 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(user, 3 SECONDS, target = src))
 		return 0
 	M.adjust_nutrition(-10)
 	to_chat(user, span_notice("You successfully perform a [src] exercise!"))
@@ -362,7 +362,7 @@
 		to_chat(user, span_notice("You need some sort of glass, bottle or cup to contact the spirit world."))
 		return 0
 	var/result = 0
-	if(!do_after(user, 3 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
+	if(!do_after(user, 3 SECONDS, target = src))
 		return 0
 	if(next_result)
 		result = next_result

@@ -33,7 +33,7 @@
 
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
-
+	minbodytemp = 175
 	maxHealth = 100
 	health = 100
 
@@ -79,16 +79,6 @@
 		"bomb" = 10,
 		"bio" = 100,
 		"rad" = 100
-		)
-
-	armor_soak = list(
-		"melee" = 5,
-		"bullet" = 5,
-		"laser" = 0,
-		"energy" = 0,
-		"bomb" = 0,
-		"bio" = 0,
-		"rad" = 0
 		)
 
 	say_list_type = /datum/say_list/leech
@@ -279,7 +269,7 @@
 				to_chat(user, span_notice("We cannot get through that host's protective gear."))
 				return
 
-	if(!do_after(src,2))
+	if(!do_after(src, 2, target))
 		to_chat(user, span_notice("As [M] moves away, we are dislodged and fall to the ground."))
 		return
 
@@ -330,8 +320,6 @@
 	host_bodypart = null
 
 	forceMove(get_turf(host))
-
-	reset_view(null)
 
 	host = null
 

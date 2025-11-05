@@ -35,7 +35,7 @@
 	..()
 	if(cheater)
 		if(!loaded)
-			var/to_weight = tgui_input_number(user, "What should the [name] be weighted towards?","Set the desired result", 1, 6, 1)
+			var/to_weight = tgui_input_number(user, "What should the [name] be weighted towards?","Set the desired result", 1, sides, 1)
 			if(isnull(to_weight) || (to_weight < 1) || (to_weight > sides) ) //You must input a number higher than 0 and no greater than the number of sides
 				return 0
 			else
@@ -91,10 +91,10 @@
 	sides = 10
 	result = 10
 
-/obj/item/dice/attack_self(mob/user as mob)
+/obj/item/dice/attack_self(mob/user)
 	rollDice(user, 0)
 
-/obj/item/dice/proc/rollDice(mob/user as mob, var/silent = 0)
+/obj/item/dice/proc/rollDice(mob/user, silent = FALSE)
 	result = rand(1, sides)
 	if(loaded)
 		if(cheater)
@@ -103,6 +103,9 @@
 		else if(prob(75)) //makeshift weighted dice don't always work
 			result = loaded
 	icon_state = "[name][result]"
+	var/result_override = SEND_SIGNAL(user, COMSIG_MOB_ROLLED_DICE, src, silent, result) //We can override dice rolls!
+	if(result_override)
+		result = result_override
 
 	if(!silent)
 		var/comment = ""
@@ -114,6 +117,33 @@
 		user.visible_message(span_notice("[user] has thrown [src]. It lands on [result]. [comment]"), \
 								span_notice("You throw [src]. It lands on a [result]. [comment]"), \
 								span_notice("You hear [src] landing on a [result]. [comment]"))
+
+/obj/item/dice/verb/set_dice_verb()
+	set category = "Object"
+	set name = "Set Face"
+	set desc = "Turn the dice to a specific face."
+	set src in view(1)
+
+	var/mob/living/carbon/user = usr
+	if(!istype(user))
+		return
+
+	set_dice(user)
+
+/obj/item/dice/proc/set_dice(mob/user)
+	if(user.stat || !Adjacent(user))
+		return
+	var/to_value = tgui_input_number(user, "What face should \the [src] be turned to?","Set die face", 1, sides, 1)
+	if(!to_value)
+		return
+
+	result = to_value
+	icon_state = "[name][result]"
+	user.visible_message(span_notice("\The [user] turned \the [src] to the face reading [result] manually."))
+
+/obj/item/dice/CtrlClick(mob/user)
+	set_dice(user)
+
 
 /*
  * Dice packs
@@ -165,18 +195,18 @@
 		/obj/item/dice,
 		)
 
-/obj/item/storage/dicecup/attack_self(mob/user as mob)
+/obj/item/storage/dicecup/attack_self(mob/user)
 	user.visible_message(span_notice("[user] shakes [src]."), \
 							span_notice("You shake [src]."), \
 							span_notice("You hear dice rolling."))
 	rollCup(user)
 
-/obj/item/storage/dicecup/proc/rollCup(mob/user as mob)
+/obj/item/storage/dicecup/proc/rollCup(mob/user)
 	for(var/obj/item/dice/I in src.contents)
 		var/obj/item/dice/D = I
 		D.rollDice(user, 1)
 
-/obj/item/storage/dicecup/proc/revealDice(var/mob/viewer)
+/obj/item/storage/dicecup/proc/revealDice(mob/viewer)
 	for(var/obj/item/dice/I in src.contents)
 		var/obj/item/dice/D = I
 		to_chat(viewer, "The [D.name] shows a [D.result].")
@@ -203,3 +233,40 @@
 	. = ..()
 	for(var/i = 1 to 5)
 		new /obj/item/dice(src)
+
+/obj/item/dice/d20/cursed
+	name = "d20"
+	desc = "A dice with twenty sides."
+	icon_state = "d2020"
+	sides = 20
+	result = 20
+
+	///If the dice will apply the major version of unlucky or not.
+	var/evil = TRUE
+
+
+/obj/item/dice/d20/cursed/rollDice(mob/user, silent = FALSE)
+	..()
+	if(result == 1)
+		to_chat(user, span_cult("You feel extraordinarily unlucky..."))
+		if(evil)
+			user.AddComponent(
+			/datum/component/omen,\
+			incidents_left = 1,\
+			luck_mod = 1,\
+			damage_mod = 1,\
+			evil = TRUE,\
+			safe_disposals = FALSE,\
+			vorish = TRUE,\
+			)
+
+		else
+			user.AddComponent(
+			/datum/component/omen,\
+			incidents_left = 1,\
+			luck_mod = 0.3,\
+			damage_mod = 1,\
+			evil = FALSE,\
+			safe_disposals = FALSE,\
+			vorish = TRUE,\
+			)

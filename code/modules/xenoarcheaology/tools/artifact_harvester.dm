@@ -123,7 +123,7 @@
 					inserted_battery.battery_effect.ToggleActivate()
 				harvesting = 0
 				cur_artifact.anchored = FALSE
-				cur_artifact.being_used = 0
+				cur_artifact.in_use = 0
 				cur_artifact = null
 				atom_say("Energy harvesting interrupted.")
 				icon_state = "incubator"
@@ -173,7 +173,7 @@
 		atom_say("Cannot harvest. No noteworthy energy signature isolated.")
 		return
 
-	if(analysed && analysed.being_used)
+	if(analysed && analysed.in_use)
 		atom_say("Cannot harvest. Source already being harvested.")
 		return
 
@@ -236,7 +236,7 @@
 			harvesting = 1
 			update_use_power(USE_POWER_ACTIVE)
 			cur_artifact.anchored = TRUE
-			cur_artifact.being_used = 1
+			cur_artifact.in_use = 1
 			icon_state = "incubator_on"
 			atom_say("Beginning energy harvesting.")
 
@@ -268,7 +268,7 @@
 			update_use_power(USE_POWER_IDLE)
 			harvesting = 0
 			cur_artifact.anchored = FALSE
-			cur_artifact.being_used = 0
+			cur_artifact.in_use = 0
 			cur_artifact = null
 			src.visible_message(span_bold("[name]") + " states, \"Battery is full.\"")
 			icon_state = "incubator"
@@ -285,7 +285,7 @@
 			if(inserted_battery.battery_effect.effect == EFFECT_TOUCH)
 				var/list/nearby = viewers(1, src)
 				for(var/mob/M in nearby)
-					if(M.machine == src)
+					if(M.check_current_machine(src))
 						inserted_battery.battery_effect.DoEffectTouch(M)
 
 		//if there's no charge left, finish

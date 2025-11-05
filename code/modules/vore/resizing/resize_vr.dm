@@ -128,8 +128,12 @@
 			var/datum/species/S = H.species
 			special_x = S.icon_scale_x
 			special_y = S.icon_scale_y
+			if(fuzzy || offset_override)
+				center_offset = 0
+			else
+				center_offset = S.center_offset
 		resize.Scale(new_size * icon_scale_x * special_x, new_size * icon_scale_y * special_y) //Change the size of the matrix
-		resize.Translate(0, (vis_height/2) * (new_size - 1)) //Move the player up in the tile so their feet align with the bottom
+		resize.Translate(center_offset * size_multiplier * icon_scale_x * special_x, (vis_height/2) * (new_size - 1)) //Move the player up in the tile so their feet align with the bottom
 		animate(src, transform = resize, time = duration) //Animate the player resizing
 
 		if(aura_animation)
@@ -175,8 +179,9 @@
 	var/new_size = tgui_input_number(src, nagmessage, "Pick a Size", default, 600, 1)
 	if(size_range_check(new_size))
 		resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
-		// I'm not entirely convinced that `src ? ADMIN_JMP(src) : "null"` here does anything
-		// but just in case it does, I'm leaving the null-src checking
+		if(temporary_form)
+			var/mob/living/L = temporary_form
+			L.resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
 		log_admin("[key_name(src)] used the resize command in-game to be [new_size]% size. [src ? ADMIN_JMP(src) : "null"]")
 
 /**
@@ -185,33 +190,33 @@
  */
 /mob/living/proc/attempt_to_scoop(mob/living/M, mob/living/G, ignore_size = FALSE) //second one is for the Grabber, only exists for animals to self-grab
 	if(src == M)
-		return 0
+		return FALSE
 	if(!(pickup_pref && M.pickup_pref && M.pickup_active))
-		return 0
+		return FALSE
 	if(!(M.a_intent == I_HELP))
-		return 0
+		return FALSE
 	var/size_diff = M.get_effective_size(FALSE) - get_effective_size(TRUE)
 	if(!holder_default && holder_type)
 		holder_default = holder_type
 	if(!istype(M))
-		return 0
+		return FALSE
 	if(isanimal(M))
 		var/mob/living/simple_mob/SA = M
 		if(!SA.has_hands)
-			return 0
+			return FALSE
 		if(mob_size < MOB_SMALL && src == M)
-			return 0
+			return FALSE
 	if(size_diff >= 0.50 || mob_size < MOB_SMALL || size_diff >= get_effective_size() || ignore_size)
 		if(buckled)
 			to_chat(src,span_notice("You have to unbuckle \the [src] before you pick them up."))
-			return 0
+			return FALSE
 		holder_type = /obj/item/holder/micro
 		var/obj/item/holder/m_holder = get_scooped(M, G)
 		holder_type = holder_default
 		if (m_holder)
-			return 1
+			return TRUE
 		else
-			return 0; // Unable to scoop, let other code run
+			return FALSE; // Unable to scoop, let other code run
 
 #define STEP_TEXT_OWNER(x) "[replacetext(x,"%prey",tmob)]"
 #define STEP_TEXT_PREY(x) "[replacetext(x,"%owner",src)]"

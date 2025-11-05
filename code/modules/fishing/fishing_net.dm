@@ -186,7 +186,10 @@
 
 /obj/item/material/fishing_net/butterfly_net/container_resist(mob/living/M)
 	if(prob(20))
-		M.forceMove(get_turf(src))
+		if(isdisposalpacket(loc))
+			M.forceMove(loc)
+		else
+			M.forceMove(get_turf(src))
 		to_chat(M, span_warning("You climb out of \the [src]."))
 		update_icon()
 		update_weight()

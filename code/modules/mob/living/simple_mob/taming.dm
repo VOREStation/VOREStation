@@ -30,7 +30,7 @@
 	return FALSE
 
 /mob/living/simple_mob/proc/unique_tame_check(var/obj/O, var/mob/user)
-	if(do_after(user, 0.5 SECONDS, src))
+	if(do_after(user, 0.5 SECONDS, target = src))
 		return TRUE
 	return FALSE
 

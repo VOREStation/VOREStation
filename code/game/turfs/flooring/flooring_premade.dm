@@ -220,6 +220,10 @@
 	icon_state = "monotile"
 	initial_flooring = /decl/flooring/tiling/new_tile/monotile
 
+/turf/simulated/floor/tiled/monotile/purple
+	icon_state = "monotile-purple"
+	initial_flooring = /decl/flooring/tiling/new_tile/monotile/purple
+
 /turf/simulated/floor/tiled/steel_grid
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles_vr.dmi'
@@ -340,11 +344,12 @@
 /turf/simulated/floor/reinforced/n20
 	oxygen = 0
 	nitrogen = 0
+	nitrous_oxide = ATMOSTANK_NITROUSOXIDE
 
-/turf/simulated/floor/reinforced/n20/Initialize(mapload)
-	. = ..()
-	if(!air) make_air()
-	air.adjust_gas(GAS_N2O, ATMOSTANK_NITROUSOXIDE)
+/turf/simulated/floor/reinforced/methane
+	oxygen = 0
+	nitrogen = 0
+	methane = ATMOSTANK_METHANE
 
 /turf/simulated/floor/cult
 	name = "engraved floor"
@@ -409,6 +414,11 @@
 	color = COLOR_BROWN
 	icon_state = "white"
 	initial_flooring = /decl/flooring/tiling/yellow
+
+/turf/simulated/floor/tiled/purple
+	name = "purple floor"
+	icon_state = "purple"
+	initial_flooring = /decl/flooring/tiling/purple
 
 /turf/simulated/floor/tiled/freezer
 	name = "tiles"

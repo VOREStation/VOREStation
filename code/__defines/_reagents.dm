@@ -6,27 +6,34 @@
 
 // Gasses
 #define GAS_CO2 "carbon_dioxide"
+#define GASNAME_CO2 "Carbon Dioxide"
 #define GAS_N2 "nitrogen"
+#define GASNAME_N2 "Nitrogen"
 #define GAS_N2O "nitrous_oxide"
+#define GASNAME_N2O "Nitrous Oxide"
 #define GAS_O2 "oxygen"
+#define GASNAME_O2 "Oxygen"
 #define GAS_PHORON "phoron"
+#define GASNAME_PHORON "Phoron"
 #define GAS_VOLATILE_FUEL "volatile_fuel"
+#define GASNAME_VOLATILE_FUEL "Volatile Fuel"
+#define GAS_CH4 "methane"
+#define GASNAME_CH4 "Methane"
 
 
 // Gas Reagents
-#define REAGENT_CARBON_DIOXIDE "Carbon Dioxide"
 #define REAGENT_NITROGEN "Nitrogen"
 #define REAGENT_ID_NITROGEN "nitrogen"
-#define REAGENT_NITROUS_OXIDE "Nitrous Oxide"
 #define REAGENT_OXYGEN "Oxygen"
 #define REAGENT_ID_OXYGEN "oxygen"
-#define REAGENT_VOLATILE_FUEL "Volatile Fuel"
 #define REAGENT_HYDROGEN "Hydrogen"
 #define REAGENT_ID_HYDROGEN "hydrogen"
 #define REAGENT_FLUORINE "Fluorine"
 #define REAGENT_ID_FLUORINE "fluorine"
 #define REAGENT_CHLORINE "Chlorine"
 #define REAGENT_ID_CHLORINE "chlorine"
+#define REAGENT_MIASMA "Miasma"
+#define REAGENT_ID_MIASMA "miasma"
 
 
 // Fluid Reagents
@@ -147,6 +154,8 @@
 #define REAGENT_ID_PAROXETINE "paroxetine"
 #define REAGENT_QERRQUEM "Qerr-quem"
 #define REAGENT_ID_QERRQUEM "qerr_quem"
+#define REAGENT_APHRODISIAC "Aphrodisiac"
+#define REAGENT_ID_APHRODISIAC "aphrodisiac"
 
 
 // Modifiers
@@ -177,6 +186,12 @@
 #define REAGENT_ID_POLYMORPH "polymorph"
 #define REAGENT_GLAMOUR "Glamour"
 #define REAGENT_ID_GLAMOUR "glamour"
+#define REAGENT_GLAMOUR_INVIS "Clear Glamour"
+#define REAGENT_ID_GLAMOUR_INVIS "transparent_glamour"
+#define REAGENT_GLAMOUR_SCALE "Scaling Glamour"
+#define REAGENT_ID_GLAMOUR_SCALE "scaling_glamour"
+#define REAGENT_GLAMOUR_TWINKLING "Twinkling Glamour"
+#define REAGENT_ID_GLAMOUR_TWINKLING "twinkling_glamour"
 #define REAGENT_INAPROVALINE "Inaprovaline"
 #define REAGENT_ID_INAPROVALINE "inaprovaline"
 #define REAGENT_INAPROVALAZE "Inaprovalaze"
@@ -433,6 +448,8 @@
 #define REAGENT_ID_LIQUIDCARPETO "liquidcarpeto"
 #define REAGENT_ESSENTIALOIL "Essential Oils"
 #define REAGENT_ID_ESSENTIALOIL "essential_oil"
+#define REAGENT_PITCHERNECTAR "Pitcher Nectar"
+#define REAGENT_ID_PITCHERNECTAR "pitcher_nectar"
 
 
 // Admin chems
@@ -1033,6 +1050,8 @@
 #define REAGENT_ID_CHAMPAGNE "champagne"
 #define REAGENT_CIDER "Cider"
 #define REAGENT_ID_CIDER "cider"
+#define REAGENT_TEAMUSH "Tea mush"
+#define REAGENT_ID_TEAMUSH "teamush"
 
 // Cocktails
 #define REAGENT_ACIDSPIT "Acid Spit"
@@ -1369,6 +1388,11 @@
 #define REAGENT_ID_METAMORPHIC "metamorphic"
 #define REAGENT_BINDING "Binding Metal"
 #define REAGENT_ID_BINDING "binding"
+#define REAGENT_NUMBING_FLUID "Numbing Fluid"
+#define REAGENT_ID_NUMBING_FLUID "succubi_numbing"
+#define REAGENT_PARALYZE_FLUID "Paralyzing Fluid"
+#define REAGENT_ID_PARALYZE_FLUID "succubi_paralize"
+#define REAGENT_ID_APHRODIAC_FLUID "succubi_aphrodisiac"
 
 
 // Xenoslimes

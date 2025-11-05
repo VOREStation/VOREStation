@@ -134,13 +134,13 @@
 
 /datum/trait/positive/melee_attack
 	name = "Special Attack: Sharp Melee" // Trait Organization for easier browsing. TODO: Proper categorization of 'health/ability/resist/etc'
-	desc = "Provides sharp melee attacks that do slightly more damage."
+	desc = "Provides sharp melee attacks which can inflict bleeding."
 	cost = 1
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp))
 
 /datum/trait/positive/melee_attack_fangs
 	name = "Special Attack: Sharp Melee & Numbing Fangs" // Trait Organization for easier browsing. TODO: Proper categorization of 'health/ability/resist/etc'
-	desc = "Provides sharp melee attacks that do slightly more damage, along with fangs that makes the person bit unable to feel their body or pain."
+	desc = "Provides sharp melee attacks which can inflict bleeding, along with fangs that makes the person bit unable to feel their body or pain."
 	cost = 2
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp, /datum/unarmed_attack/bite/sharp/numbing))
 
@@ -203,6 +203,7 @@
 	cost = 1
 	var_changes = list("soft_landing" = TRUE)
 	custom_only = FALSE
+	excludes = list(/datum/trait/negative/heavy_landing)
 
 /datum/trait/positive/hardfeet
 	name = "Hard Feet"
@@ -244,6 +245,7 @@
 	has_preferences = list("silk_production" = list(TRAIT_PREF_TYPE_BOOLEAN, "Silk production on spawn", TRAIT_NO_VAREDIT_TARGET), \
 							"silk_color" = list(TRAIT_PREF_TYPE_COLOR, "Silk color", TRAIT_NO_VAREDIT_TARGET))
 	added_component_path = /datum/component/weaver
+	excludes = list(/datum/trait/positive/cocoon_tf)
 
 /datum/trait/positive/weaver/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
 	..()
@@ -263,11 +265,22 @@
 	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
 	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
 	custom_only = FALSE
+	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic/plus)
 
 /datum/trait/positive/aquatic/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/water_stealth)
 	add_verb(H, /mob/living/carbon/human/proc/underwater_devour)
+
+/datum/trait/positive/aquatic/plus
+	name = "Aquatic 2"
+	desc = "You can breathe under water and can traverse water more efficiently than most aquatic humanoids. Additionally, you can eat others in the water."
+	cost = 2
+	custom_only = FALSE
+	var_changes = list("water_breather" = 1, "water_movement" = -4, "swim_mult" = 0.5) //Negate shallow water. Half the speed in deep water.
+	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
+	custom_only = FALSE
+	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic)
 
 /datum/trait/positive/cocoon_tf
 	name = "Cocoon Spinner"
@@ -275,6 +288,7 @@
 	cost = 1
 	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
 	custom_only = FALSE
+	excludes = list(/datum/trait/positive/weaver)
 
 /datum/trait/positive/cocoon_tf/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -524,7 +538,35 @@
 /datum/trait/positive/virus_immune
 	name = "Virus Immune"
 	desc = "You are immune to viruses."
-	cost = 1
+	cost = 3
 
 	can_take = ORGANICS
 	var_changes = list("virus_immune" = TRUE)
+
+/datum/trait/positive/radioactive_heal
+	name = "Radioactive Heal"
+	desc = "You heal when exposed to radiation instead of becoming ill. You can also choose to emit a glow when irradiated."
+	cost = 6
+	is_genetrait = TRUE
+	hidden = FALSE
+	has_preferences = list("glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_NO_VAREDIT_TARGET, "#c3f314",),
+	"glow_enabled" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glow enabled on spawn", TRAIT_NO_VAREDIT_TARGET, FALSE))
+
+	added_component_path = /datum/component/radiation_effects
+	excludes = list(/datum/trait/neutral/glowing_radiation, /datum/trait/positive/rad_resistance, /datum/trait/positive/rad_resistance_extreme, /datum/trait/positive/rad_immune, /datum/trait/negative/rad_weakness)
+
+/datum/trait/positive/radioactive_heal/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
+	if(trait_prefs)
+		G.radiation_color = trait_prefs["glow_color"]
+		G.glows = trait_prefs["glow_enabled"]
+	G.radiation_healing = TRUE
+
+/datum/trait/positive/radioactive_heal/unapply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..() //Does all the removal stuff
+	//We then check to see if we still have the radiation component (such as we have a species componennt of it)
+	//If so, we remove the healing effect.
+	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
+	if(G)
+		G.radiation_healing = initial(G.radiation_healing)

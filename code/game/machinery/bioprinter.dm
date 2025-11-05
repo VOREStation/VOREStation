@@ -59,7 +59,6 @@
 
 /obj/machinery/organ_printer/attackby(var/obj/item/O, var/mob/user)
 	if(default_deconstruction_screwdriver(user, O))
-		updateUsrDialog(user)
 		return
 	if(default_deconstruction_crowbar(user, O))
 		return
@@ -306,7 +305,7 @@
 		if(container)
 			to_chat(user, span_warning("\The [src] already has a container loaded!"))
 			return
-		else if(do_after(user, 1 SECOND))
+		else if(do_after(user, 1 SECOND, target = src))
 			user.visible_message("[user] has loaded \the [G] into \the [src].", "You load \the [G] into \the [src].")
 			container = G
 			user.drop_item()

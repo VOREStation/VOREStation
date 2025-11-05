@@ -146,16 +146,15 @@ Class Procs:
 			if(A.loc == src) // If the components are inside the machine, delete them.
 				qdel(A)
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
-				warning("[A] was still in [src]'s component_parts when it was Destroy()'d")
+				WARNING("[A] was still in [src]'s component_parts when it was Destroy()'d")
 		component_parts.Cut()
 		component_parts = null
 	if(contents) // The same for contents.
 		for(var/atom/A in contents)
 			if(ishuman(A))
 				var/mob/living/carbon/human/H = A
-				H.client.eye = H.client.mob
-				H.client.perspective = MOB_PERSPECTIVE
-				H.loc = src.loc
+				H.forceMove(loc)
+				H.reset_perspective()
 			else
 				qdel(A)
 	return ..()
@@ -226,20 +225,13 @@ Class Procs:
 		return STATUS_CLOSE
 	return ..()
 
-/obj/machinery/CouldUseTopic(var/mob/user)
-	..()
-	user.set_machine(src)
-
-/obj/machinery/CouldNotUseTopic(var/mob/user)
-	user.unset_machine()
-
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/machinery/attack_ai(mob/user as mob)
 	if(isrobot(user))
 		// For some reason attack_robot doesn't work
 		// This is to stop robots from using cameras to remotely control machines.
-		if(user.client && user.client.eye == user)
+		if(user.client && !user.is_remote_viewing())
 			return attack_hand(user)
 	else
 		return attack_hand(user)
@@ -357,6 +349,11 @@ Class Procs:
 				R.play_rped_sound()
 	return 1
 
+// This is it's own proc so it can be more easily found when looking for machines that can upgrade themselves from mapped parts
+// Should be called from LateInitialize()
+/obj/machinery/proc/apply_mapped_upgrades()
+	return
+
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
 /obj/machinery/proc/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time = 0)
 	if(!W.has_tool_quality(TOOL_WRENCH))
@@ -401,7 +398,7 @@ Class Procs:
 		return 0
 	to_chat(user, span_notice("You start disconnecting the monitor."))
 	playsound(src, S.usesound, 50, 1)
-	if(do_after(user, 20 * S.toolspeed))
+	if(do_after(user, 2 SECONDS * S.toolspeed, target = src))
 		if(stat & BROKEN)
 			to_chat(user, span_notice("The broken glass falls out."))
 			new /obj/item/material/shard(src.loc)

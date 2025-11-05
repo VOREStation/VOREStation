@@ -125,7 +125,7 @@
 				to_chat(user, span_warning("\The [src] cannot hold more [ammo_material]."))
 				return
 			loading = TRUE
-			while(mat_storage + SHEET_MATERIAL_AMOUNT <= max_mat_storage && do_after(user,1.5 SECONDS))
+			while(mat_storage + SHEET_MATERIAL_AMOUNT <= max_mat_storage && do_after(user,1.5 SECONDS, target = src))
 				mat_storage += SHEET_MATERIAL_AMOUNT
 				playsound(src, 'sound/effects/phasein.ogg', 15, 1)
 				M.use(1)

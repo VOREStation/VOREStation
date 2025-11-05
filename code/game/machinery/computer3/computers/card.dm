@@ -189,7 +189,7 @@
 
 // These are here partly in order to be overwritten by the centcom card computer code
 /datum/file/program/card_comp/proc/authenticate()
-	if(access_change_ids in reader.GetAccess())
+	if(ACCESS_CHANGE_IDS in reader.GetAccess())
 		return 1
 	if(isAI(usr))
 		return 1
@@ -313,14 +313,14 @@
 			writer.assignment = t1
 			writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
 			data_core.manifest_modify(writer.registered_name, writer.assignment, writer.rank)
-			callHook("reassign_employee", list(writer))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, writer)
 
 	if("reg" in href_list)
 		if(auth)
 			writer.registered_name = href_list["reg"]
 			writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
 			data_core.manifest_modify(writer.registered_name, writer.assignment, writer.rank)
-			callHook("reassign_employee", list(writer))
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, writer)
 
 	computer.updateUsrDialog(usr)
 	return
@@ -342,6 +342,6 @@
 	return accesses
 
 /datum/file/program/card_comp/centcom/authenticate()
-	if(access_cent_captain in reader.GetAccess())
+	if(ACCESS_CENT_CAPTAIN in reader.GetAccess())
 		return 1
 	return 0

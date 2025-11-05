@@ -111,8 +111,7 @@
 /datum/reagent/unsorbitol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.make_dizzy(1)
 	M.adjustHalLoss(1)
-	if(!M.confused) M.confused = 1
-	M.confused = max(M.confused, 20)
+	M.SetConfused(max(M.confused, 20))
 	M.hallucination = max(M.hallucination, 20) //This used to be += 15 resulting in INFINITE HALLUCINATION
 
 	for(var/obj/belly/B as anything in M.vore_organs)
@@ -272,3 +271,21 @@
 	M.add_chemical_effect(CE_PAINKILLER, -200)
 	if(prob(0.01)) //1 in 10000 chance per tick. Extremely rare.
 		to_chat(M,span_warning("Your body feels as though it's on fire!"))
+
+/datum/reagent/aphrodisiac
+	name = REAGENT_APHRODISIAC
+	id = REAGENT_ID_APHRODISIAC
+	description = "You so horny."
+	taste_description = "sweetness"
+	reagent_state = LIQUID
+	color = "#FF9999"
+	scannable = 1
+	supply_conversion_value = REFINERYEXPORT_VALUE_RARE
+	industrial_use = REFINERYEXPORT_REASON_DRUG
+
+
+/datum/reagent/aphrodisiac/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!M)	return
+
+	if(prob(3))
+		M.emote(pick("blush", "moan", "moan", "giggle"))

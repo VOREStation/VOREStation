@@ -53,13 +53,13 @@
 	// Special distilling conditions must be met, each object has different vars to meet it though.
 	if(istype(holder.my_atom,/obj/distilling_tester))
 		// Unit test needs some special handholding
-		var/obj/distilling_tester/DD = holder.my_atom
-		if(DD.current_temp < temp_range[1] || DD.current_temp > temp_range[2])
+		var/obj/distilling_tester/distillery_tester = holder.my_atom
+		if(distillery_tester.current_temp < temp_range[1] || distillery_tester.current_temp > temp_range[2])
 			return FALSE
 	else if(istype(holder.my_atom,/obj/machinery/portable_atmospherics/powered/reagent_distillery))
 		// Super special temperature check.
-		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = holder.my_atom
-		if(RD.current_temp < temp_range[1] || RD.current_temp > temp_range[2])
+		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/reagent_distillery = holder.my_atom
+		if(reagent_distillery.current_temp < temp_range[1] || reagent_distillery.current_temp > temp_range[2])
 			return FALSE
 	else if(istype(holder.my_atom, /obj/machinery/reagent_refinery/reactor))
 		// Check gas temp for refinery
@@ -80,8 +80,8 @@
 			return
 		// Special handling for this
 		if(istype(holder.my_atom,/obj/machinery/portable_atmospherics/powered/reagent_distillery))
-			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = holder.my_atom
-			RD.current_temp += temp_shift
+			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/reagent_distillery = holder.my_atom
+			reagent_distillery.current_temp += temp_shift
 			return
 		// Change gas temps
 		if(!GM)
@@ -274,12 +274,13 @@
 	result = REAGENT_ID_HYDROGEN
 	inhibitors = list(REAGENT_ID_CARBON = 1)
 	required_reagents = list(REAGENT_ID_WATER = 1)
+	catalysts = list(REAGENT_ID_PLATINUM = 1)
 	result_amount = 2
 
 	temp_range = list(T20C + 110, T20C + 290)
-	temp_shift = 3 // It's burning off phoron
+	temp_shift = 1
 
-	require_xgm_gas = GAS_PHORON
+	require_xgm_gas = GAS_N2
 	rejects_xgm_gas = GAS_O2
 
 /decl/chemical_reaction/distilling/oxygen
@@ -288,13 +289,13 @@
 	result = REAGENT_ID_OXYGEN
 	inhibitors = list(REAGENT_ID_CARBON = 1)
 	required_reagents = list(REAGENT_ID_WATER = 1)
-	catalysts = list(REAGENT_ID_PHORON = 1)
+	catalysts = list(REAGENT_ID_PLATINUM = 1)
 	result_amount = 1
 
 	temp_range = list(T20C + 150, T20C + 320)
 	temp_shift = 3 // It's burning off phoron
 
-	require_xgm_gas = GAS_N2
+	require_xgm_gas = GAS_PHORON
 	rejects_xgm_gas = GAS_O2
 
 /decl/chemical_reaction/distilling/mineralized_sodium
@@ -328,10 +329,7 @@
 	id = "distill_reduce_tablesalt"
 	result = REAGENT_ID_SODIUM
 	required_reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1)
-	result_amount = 1
+	result_amount = 0.5
 
 	temp_range = list(T20C + 800, T20C + 1000)
 	temp_shift = -1
-
-	require_xgm_gas = GAS_PHORON
-	rejects_xgm_gas = GAS_O2

@@ -10,7 +10,7 @@
 	icon_state = null
 	flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = list(5,10,15,25,30)
+	max_transfer_amount = 50
 	volume = 50
 	var/trash = null
 	var/cant_open = 0
@@ -91,29 +91,25 @@
 		user = M
 
 	if(food_inserted_micros && food_inserted_micros.len)
-		if(M.can_be_drop_pred && M.food_vore && M.vore_selected)
-			for(var/mob/living/F in food_inserted_micros)
-				if(!F.can_be_drop_prey || !F.food_vore)
-					continue
+		for(var/mob/living/F in food_inserted_micros)
+			var/do_nom = FALSE
+			if(!reagents.total_volume)
+				do_nom = TRUE
+			else
+				var/nom_chance = (1 - (reagents.total_volume / volume))*100
+				if(prob(nom_chance))
+					do_nom = TRUE
 
+			if(do_nom)
+				if(!can_food_vore(M, F))
+					continue
 				if(isanimal(M) && !F.allowmobvore && !M.ckey) //If the one doing the eating is a simple mob controlled by AI, check mob vore prefs
 					continue
-
-				var/do_nom = FALSE
-
-				if(!reagents.total_volume)
-					do_nom = TRUE
-				else
-					var/nom_chance = (1 - (reagents.total_volume / volume))*100
-					if(prob(nom_chance))
-						do_nom = TRUE
-
-				if(do_nom)
-					F.forceMove(M.vore_selected)
-					food_inserted_micros -= F
+				F.forceMove(M.vore_selected)
+				food_inserted_micros -= F
 
 	if(!reagents.total_volume && changed)
-		M.visible_message(span_notice("[M] finishes drinking \the [src]."),span_notice("You finish drinking \the [src]."))
+		M.visible_message(span_notice("[M] finishes drinking from \the [src]."),span_notice("You finish drinking from \the [src]."))
 		if(trash)
 			user.drop_from_inventory(src)	//so icons update :[
 			if(ispath(trash,/obj/item))
@@ -184,12 +180,16 @@
 /obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
 	if(amount_per_transfer_from_this == volume)	//I wanted to use a switch, but switch statements can't use vars and the maximum volume of containers varies
 		to_chat(user, span_notice("You knock back the entire [src] in one go!"))
+	else if(amount_per_transfer_from_this == 1)
+		to_chat(user, span_notice("You take a dainty little sip from \the [src]."))
 	else if(amount_per_transfer_from_this <= 4)	//below the standard 5
 		to_chat(user, span_notice("You take a modest sip from \the [src]."))
 	else if(amount_per_transfer_from_this <= 10)	//the standard five to a bit more
 		to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 	else if(amount_per_transfer_from_this <= 30)
 		to_chat(user, span_notice("You take a long drag from \the [src]."))
+	else if(amount_per_transfer_from_this <= 60)
+		to_chat(user, span_notice("You chug from \the [src]!"))
 	else	//default message as a fallback
 		to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 
@@ -228,7 +228,7 @@
 	force = 14
 	throwforce = 10
 	amount_per_transfer_from_this = 20
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 150
 	flags = OPENCONTAINER
 
@@ -425,7 +425,7 @@
 
 /obj/item/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
-	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
+	desc = "Just add 10ml water and boil! A taste that reminds you of your school years."
 	description_fluff = "Konohagakure Brand Ramen has been an instant meal staple for centuries. Cheap, quick and available in over two hundred varieties - though most taste like artifical chicken."
 	icon_state = "ramen"
 	trash = /obj/item/trash/ramen
@@ -442,7 +442,7 @@
 	name = "paper cup"
 	desc = "A paper water cup."
 	icon_state = "water_cup_e"
-	possible_transfer_amounts = null
+	max_transfer_amount = null
 	volume = 10
 	center_of_mass_x = 16
 	center_of_mass_y = 12

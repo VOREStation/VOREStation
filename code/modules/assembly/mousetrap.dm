@@ -58,7 +58,7 @@
 			if(!user.hand)
 				which_hand = BP_R_HAND
 			triggered(user, which_hand)
-			user.visible_message(span_warning("[user] accidentally sets off [src], breaking their fingers."), \
+			user.visible_message(span_warning("[user] accidentally sets off [src], breaking [p_their()] fingers."), \
 									span_warning("You accidentally trigger [src]!"))
 			return
 
@@ -74,7 +74,7 @@
 			if(!user.hand)
 				which_hand = BP_R_HAND
 			triggered(user, which_hand)
-			user.visible_message(span_warning("[user] accidentally sets off [src], breaking their fingers."), \
+			user.visible_message(span_warning("[user] accidentally sets off [src], breaking [p_their()] fingers."), \
 									span_warning("You accidentally trigger [src]!"))
 			return
 	..()
@@ -95,16 +95,16 @@
 
 /obj/item/assembly/mousetrap/on_found(var/mob/living/finder)
 	if(armed)
-		finder.visible_message(span_warning("[finder] accidentally sets off [src], breaking their fingers."), \
+		finder.visible_message(span_warning("[finder] accidentally sets off [src], breaking [p_their()] fingers."), \
 							   span_warning("You accidentally trigger [src]!"))
 		triggered(finder, finder.hand ? BP_L_HAND : BP_R_HAND)
 		return 1	//end the search!
 	return 0
 
-/obj/item/assembly/mousetrap/hitby(var/atom/movable/A)
+/obj/item/assembly/mousetrap/hitby(var/atom/movable/source)
 	if(!armed)
 		return ..()
-	visible_message(span_warning("[src] is triggered by [A]."))
+	visible_message(span_warning("[src] is triggered by [source]."))
 	triggered(null)
 
 /obj/item/assembly/mousetrap/armed

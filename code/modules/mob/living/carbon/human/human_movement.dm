@@ -131,11 +131,20 @@
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
+	if(pose && pose_move) //clear pose on movement if choosing to
+		pose = null
+		pose_move = FALSE
+		remove_pose_indicator()
+
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
 // Also its nice to have these things seperated.
 
-/mob/living/carbon/human/proc/calculate_item_encumbrance()
+//Return FALSE for no encumberance
+/mob/proc/calculate_item_encumbrance()
+	return FALSE
+
+/mob/living/carbon/human/calculate_item_encumbrance()
 	/// We check for all the items the wearer has that cause slowdown (positive or negative)
 	/// We then multiply the postive ones by our species.item_slowdown_mod to slow us down more, while we leave negative ones untouched.
 	/// Heavy things in your hands are affected by this change, UNLESS the thing in your hand speeds you up, in which case it doesn't.
@@ -203,9 +212,11 @@
 
 	if(T.movement_cost && !flying) //If you are flying you are probably not affected by the terrain on the ground.
 		var/turf_move_cost = T.movement_cost
+		if(locate(/obj/structure/catwalk) in T) //catwalks prevent turfs from slowing your
+			return 0
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
-				turf_move_cost = 0
+				turf_move_cost = CLAMP(turf_move_cost + species.water_movement, HUMAN_LOWEST_SLOWDOWN, 15)
 			if(istype(shoes, /obj/item/clothing/shoes))
 				var/obj/item/clothing/shoes/feet = shoes
 				if(istype(feet) && feet.water_speed)

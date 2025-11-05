@@ -128,9 +128,6 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
-		if(M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
 
 /obj/structure/closet/proc/open()
 	if(opened)
@@ -171,6 +168,7 @@
 	if(initial(density))
 		density = !density
 	animate_door(TRUE)
+	SEND_SIGNAL(src, COMSIG_CLOSET_CLOSED, contents)
 	return 1
 
 //Cham Projector Exception
@@ -201,9 +199,6 @@
 			continue
 		if(stored_units + added_units + M.mob_size > storage_capacity)
 			break
-		if(M.client)
-			M.client.perspective = EYE_PERSPECTIVE
-			M.client.eye = src
 		M.forceMove(src)
 		added_units += M.mob_size
 	return added_units
@@ -278,7 +273,7 @@
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 			else
 				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-			if(do_after(user, 20 * W.toolspeed))
+			if(do_after(user, 2 SECONDS * W.toolspeed, target = src))
 				if(!src) return
 				to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
@@ -336,7 +331,7 @@
 					else
 						to_chat(user, span_notice("You need more welding fuel to complete this task."))
 						return
-			if(do_after(user, 20 * S.toolspeed))
+			if(do_after(user, 2 SECONDS * S.toolspeed, target = src))
 				playsound(src, S.usesound, 50)
 				sealed = !sealed
 				update_icon()
@@ -347,7 +342,7 @@
 	return
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
-	if(istype(O, /obj/screen))	//fix for HUD elements making their way into the world	-Pete
+	if(istype(O, /atom/movable/screen))	//fix for HUD elements making their way into the world	-Pete
 		return
 	if(O.loc == user)
 		return
@@ -447,7 +442,7 @@
 
 	breakout = 1 //can't think of a better way to do this right now.
 	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
-		if(!do_after(escapee, 50)) //5 seconds
+		if(!do_after(escapee, 5 SECONDS, target = src)) //5 seconds
 			breakout = 0
 			return
 		if(!escapee || escapee.incapacitated() || escapee.loc != src)
@@ -589,3 +584,7 @@
 	var/mob/living/M = usr
 	if(isliving(M))
 		M.begin_instant_nom(M,target,M,M.vore_selected)
+
+/obj/structure/closet/bluespace/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/bluespace_connection/permanent_network, GLOB.bslockers)

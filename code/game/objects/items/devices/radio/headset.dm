@@ -87,7 +87,6 @@
 
 /obj/item/radio/headset/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
-	user.set_machine(src)
 	if(!(W.has_tool_quality(TOOL_SCREWDRIVER) || istype(W, /obj/item/encryptionkey)))
 		return
 
@@ -96,7 +95,7 @@
 
 
 			for(var/ch_name in channels)
-				SSradio.remove_object(src, radiochannels[ch_name])
+				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 
@@ -192,7 +191,7 @@
 		return
 
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = SSradio.add_object(src, GLOB.radiochannels[ch_name],  RADIO_CHAT)
 
 	if(setDescription)
 		setupRadioDescription()

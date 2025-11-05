@@ -29,7 +29,7 @@
 	health = 50
 	has_hands = TRUE
 	humanoid_hands = TRUE
-
+	minbodytemp = 175
 	pass_flags = PASSTABLE
 
 	universal_understand = 1
@@ -50,16 +50,6 @@
 		"bomb" = 10,
 		"bio" = 100,
 		"rad" = 100
-		)
-
-	armor_soak = list(
-		"melee" = 2,
-		"bullet" = 2,
-		"laser" = 0,
-		"energy" = 0,
-		"bomb" = 0,
-		"bio" = 0,
-		"rad" = 0
 		)
 
 	say_list_type = /datum/say_list/sakimm

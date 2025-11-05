@@ -103,7 +103,8 @@
 	if(internal_organs)
 		for(var/obj/item/organ/O in internal_organs)
 			internal_organs -= O
-			qdel(O)
+			if(isobj(O))
+				qdel(O)
 
 	if(splinted && splinted.loc == src)
 		splinted.loc = null
@@ -540,8 +541,7 @@
 	if(damage_desc)
 		var/fix_verb = (damage_amount > repair_amount) ? "patches" : "finishes patching"
 		if(user == src.owner)
-			var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
-			user.visible_message(span_infoplain(span_bold("\The [user]") + " [fix_verb] [damage_desc] on [T.his] [src.name] with [tool]."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " [fix_verb] [damage_desc] on [user.p_their()] [src.name] with [tool]."))
 		else
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " [fix_verb] [damage_desc] on [owner]'s [src.name] with [tool]."))
 
@@ -1034,9 +1034,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 					I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 
 			for(var/obj/item/I in src)
-				if(I.w_class <= ITEMSIZE_SMALL)
-					qdel(I)
-					continue
 				I.forceMove(droploc)
 				I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 
@@ -1298,7 +1295,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	implants += W
 	owner.embedded_flag = 1
 	add_verb(owner, /mob/proc/yank_out_object)
-	owner.throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
+	owner.throw_alert("embeddedobject", /atom/movable/screen/alert/embeddedobject)
 	W.add_blood(owner)
 	if(ismob(W.loc))
 		var/mob/living/H = W.loc

@@ -82,8 +82,6 @@
 /obj/machinery/computer/HolodeckControl/attack_hand(var/mob/user as mob)
 	if(..())
 		return
-	user.set_machine(src)
-
 	tgui_interact(user)
 
 /**
@@ -192,7 +190,7 @@
 	current_program = powerdown_program
 	linkedholodeck = locate(projection_area)
 	if(!linkedholodeck)
-		to_world(span_danger("Holodeck computer at [x],[y],[z] failed to locate projection area."))
+		to_chat(world, span_danger("Holodeck computer at [x],[y],[z] failed to locate projection area."))
 
 //This could all be done better, but it works for now.
 /obj/machinery/computer/HolodeckControl/Destroy()

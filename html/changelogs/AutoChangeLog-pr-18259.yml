@@ -1,7 +1,0 @@
-author: "Cameron-The-Raven"
-delete-after: True
-changes:
-  - qol: "Suit cyclers can be used to swap to metamorphic mode, automatically becoming the proper worn state"
-  - qol: "Clothing can be equipped and it will fallback to the default worn state if your species does not have species specific sprites for it."
-  - code_imp: "swapped a few hardcoded \"thing\" with its appropriate define when used"
-  - rscadd: "Consolidates all the species mob.dmi sprites together"

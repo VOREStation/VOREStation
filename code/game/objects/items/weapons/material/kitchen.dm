@@ -101,7 +101,7 @@
 		if(food_inserted_micros && food_inserted_micros.len)
 			for(var/mob/living/F in food_inserted_micros)
 				food_inserted_micros -= F
-				if(!F.can_be_drop_prey || !F.food_vore)
+				if(!can_food_vore(M, F))
 					F.forceMove(get_turf(src))
 				else
 					F.forceMove(M.vore_selected)
@@ -132,7 +132,10 @@
 /obj/item/material/kitchen/utensil/container_resist(mob/living/M)
 	if(food_inserted_micros)
 		food_inserted_micros -= M
-	M.forceMove(get_turf(src))
+	if(isdisposalpacket(loc))
+		M.forceMove(loc)
+	else
+		M.forceMove(get_turf(src))
 	to_chat(M, span_warning("You climb off of \the [src]."))
 
 /obj/item/material/kitchen/utensil/fork

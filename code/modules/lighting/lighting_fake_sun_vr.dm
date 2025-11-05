@@ -152,7 +152,7 @@ var/static/list/fake_sunlight_zs = list()
 			turfs_to_use += T
 
 	if(!turfs_to_use.len)
-		warning("Fake sun placed on a level where it can't find any outdoor turfs to color at [x],[y],[z].")
+		WARNING("Fake sun placed on a level where it can't find any outdoor turfs to color at [x],[y],[z].")
 		return
 
 	sun = new(null)
@@ -238,5 +238,12 @@ var/static/list/fake_sunlight_zs = list()
 		list(
 			"brightness" = 1,
 			"color" = "#1c49ff"
+		)
+	)
+/obj/effect/fake_sun/underwater/lighter
+	possible_light_setups = list(
+		list(
+			"brightness" = 1,
+			"color" = "#4bd1f3"
 		)
 	)

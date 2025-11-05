@@ -69,11 +69,11 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 	set name = "Request help"
 	set hidden = 1
 
-	var/mhelp = tgui_alert(usr, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp"))
+	var/mhelp = tgui_alert(src, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp"))
 	if(!mhelp)
 		return
 
-	var/msg = tgui_input_text(usr, "Input your request for help.", "Request for Help ([mhelp])", multiline = TRUE)
+	var/msg = tgui_input_text(src, "Input your request for help.", "Request for Help ([mhelp])", multiline = TRUE)
 	if(!msg)
 		return
 
@@ -130,7 +130,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	var/browse_to
 
-	switch(tgui_input_list(usr, "Display which ticket list?", "List Choice", list("Active Tickets", "Closed Tickets", "Resolved Tickets")))
+	switch(tgui_input_list(src, "Display which ticket list?", "List Choice", list("Active Tickets", "Closed Tickets", "Resolved Tickets")))
 		if("Active Tickets")
 			browse_to = AHELP_ACTIVE
 		if("Closed Tickets")
@@ -195,7 +195,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 	var/client/C
 	if(istext(whom))
 		C = GLOB.directory[whom]
-	else if(istype(whom,/client))
+	else if(isclient(whom))
 		C = whom
 	if(!C)
 		if(src.holder)
@@ -206,7 +206,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	if(T)
 		message_mentors(span_mentor_channel("[src] has started replying to [C]'s mentor help."))
-	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE)
+	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE, encode = FALSE)
 	if (!msg)
 		message_mentors(span_mentor_channel("[src] has cancelled their reply to [C]'s mentor help."))
 		return
@@ -222,8 +222,10 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 		return
 
 	//Not a mentor and no open ticket
-	if(!src.holder && !current_ticket)
+	if(!holder && !current_ticket)
 		to_chat(src, span_mentor_warning("You can no longer reply to this ticket, please open another one by using the Mentorhelp verb if need be."))
+		if(!holder)
+			msg = trim(sanitize(copytext(msg,1,MAX_MESSAGE_LEN)))
 		to_chat(src, span_mentor_notice("Message: [msg]"))
 		return
 
@@ -237,7 +239,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = tgui_input_text(src,"Message:", "Mentor-PM to [whom]", multiline = TRUE, encode = FALSE)
+		msg = tgui_input_text(src, "Message:", "Mentor-PM to [whom]", multiline = TRUE, encode = FALSE)
 
 		if(!msg)
 			return
@@ -246,14 +248,14 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 			to_chat(src, span_mentor_warning("Error: Mentor-PM: You are unable to use mentor PM-s (muted)."))
 			return
 
-		if(!recipient)
-			if(src.holder)
-				to_chat(src, span_mentor_warning("Error:Mentor-PM: Client not found."))
-				to_chat(src, msg)
-			else
-				log_admin("Mentorhelp: [key_name(src)]: [msg]")
-				current_ticket.MessageNoRecipient(msg)
+	if(!recipient)
+		if(!current_ticket)
+			to_chat(src, span_mentor_warning("Error: Mentor-PM: Client not found."))
+			to_chat(src, msg)
 			return
+		log_admin("Mentorhelp: [key_name(src)]: [msg]")
+		current_ticket.MessageNoRecipient(msg)
+		return
 
 	//Has mentor powers but the recipient no longer has an open ticket
 	if(src.holder && !recipient.current_ticket)
@@ -268,7 +270,7 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 	if(!msg)
 		return
 
-	var/interaction_message = span_mentor_notice("Mentor-PM from-<b>[src]</b> to-<b>[recipient]</b>: [msg]")
+	var/interaction_message = span_mentor_notice("Mentor-PM from-" + span_bold("[src]") + " to-" + span_bold("[recipient]") + ": [msg]")
 
 	if (recipient.current_ticket && !recipient.holder && recipient.current_ticket.level == 0)
 		recipient.current_ticket.AddInteraction(interaction_message)
@@ -282,8 +284,8 @@ ADMIN_VERB(cmd_mentor_ticket_panel, (R_ADMIN|R_SERVER|R_MOD|R_MENTOR), "Mentor T
 		if (src.current_ticket && src.current_ticket.level == 0)
 			src.current_ticket.AddInteraction(interaction_message)
 
-	to_chat(recipient, span_mentor(span_italics("Mentor-PM from-<b><a href='byond://?mentorhelp_msg=\ref[src]'>[src]</a></b>: [msg]")))
-	to_chat(src, span_mentor(span_italics("Mentor-PM to-<b>[recipient]</b>: [msg]")))
+	to_chat(recipient, span_mentor(span_italics("Mentor-PM from-" + span_bold("<a href='byond://?mentorhelp_msg=\ref[src]'>[src]</a>") + ": [msg]")))
+	to_chat(src, span_mentor(span_italics("Mentor-PM to-" + span_bold("[recipient]") + ": [msg]")))
 
 	log_admin("[key_name(src)]->[key_name(recipient)]: [msg]")
 

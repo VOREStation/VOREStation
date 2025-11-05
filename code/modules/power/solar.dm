@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	if(W.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message(span_notice("[user] begins to take the glass off the solar panel."))
-		if(do_after(user, 50))
+		if(do_after(user, 5 SECONDS, target = src))
 			var/obj/item/solar_assembly/S = new(loc)
 			S.anchored = TRUE
 			new glass_type(loc, 2)
@@ -308,12 +308,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 			connected_tracker.set_angle(SSsun.sun.angle)
 		set_panels(cdir)
 
-// This would use LateInitialize(), however the powernet does not appear to exist during that time.
-/hook/roundstart/proc/auto_start_solars()
-	for(var/obj/machinery/power/solar_control/SC as anything in GLOB.solars_list)
-		SC.auto_start()
-	return TRUE
-
 /obj/machinery/power/solar_control/proc/add_panel(var/obj/machinery/power/solar/P)
 	var/sgen = P.get_power_supplied()
 	connected_power -= connected_panels[P] // Just in case it was already in there
@@ -416,7 +410,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/machinery/power/solar_control/attackby(obj/item/I, user as mob)
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, I.usesound, 50, 1)
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS, target = src))
 			if (src.stat & BROKEN)
 				to_chat(user, span_blue("The broken glass falls out."))
 				var/obj/structure/frame/A = new /obj/structure/frame/computer( src.loc )

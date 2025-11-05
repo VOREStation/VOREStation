@@ -543,7 +543,7 @@
 	var/list/players = list()
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
+		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > 10 MINUTES)
 			continue
 		players += player.real_name
 
@@ -608,10 +608,8 @@
 		spawn(5) //gia said so
 			icon_state = "nuketoy"
 			playsound(src, 'sound/machines/alarm.ogg', 10, 0, 0)
-			sleep(135)
-			icon_state = "nuketoycool"
-			sleep(cooldown - world.time)
-			icon_state = "nuketoyidle"
+			VARSET_IN(src, icon_state, "nuketoycool", 135)
+			VARSET_IN(src, icon_state, "nuketoyidle", (135 + (cooldown - world.time)))
 	else
 		var/timeleft = (cooldown - world.time)
 		to_chat(user, span_warning("Nothing happens, and") + " '[round(timeleft/10)]' " + span_warning("appears on a small display."))
@@ -647,7 +645,7 @@
 /obj/item/toy/minigibber/attackby(obj/O, mob/user, params)
 	if(istype(O,/obj/item/toy/figure) || istype(O,/obj/item/toy/character) && O.loc == user)
 		to_chat(user, span_notice("You start feeding \the [O] [icon2html(O, user.client)] into \the [src]'s mini-input."))
-		if(do_after(user, 10, target = src))
+		if(do_after(user, 1 SECOND, target = src))
 			if(O.loc != user)
 				to_chat(user, span_warning("\The [O] is too far away to feed into \the [src]!"))
 			else
@@ -787,8 +785,7 @@
 	s.set_up(5, 1, src)
 	s.start()
 	icon_state = "shoot"
-	sleep(5)
-	icon_state = "[initial(icon_state)]"
+	VARSET_IN(src, icon_state, "[initial(icon_state)]", 5)
 
 /*
  * Toy chainsaw
@@ -1188,3 +1185,54 @@
 	H.put_in_inactive_hand(I)
 	next_use = (world.time + 30 SECONDS)
 	H.visible_message(span_notice("\The [H] pulls an acorn from \the [src]!"))
+
+/obj/item/toy/plushie/dragon
+	name = "dragon plushie"
+	desc = "A soft plushie in the shape of a dragon. How ferocious!"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "reddragon"
+	var/cooldown = FALSE
+
+/obj/item/toy/plushie/dragon/Initialize(mapload)
+	. = ..()
+	if (pokephrase != "Rawr~!")
+		pokephrase = pick("ROAR!", "RAWR!", "GAWR!", "GRR!", "GROAR!", "GRAH!", "Weh!", "Merp!")
+
+/obj/item/toy/plushie/dragon/attack_self(mob/user)
+	if(!cooldown)
+		switch(pokephrase)
+			if("Weh!")
+				playsound(user, 'sound/voice/weh.ogg', 20, 0)
+			if("Merp!")
+				playsound(user, 'sound/voice/merp.ogg', 20, 0)
+			else
+				playsound(user, 'sound/voice/roarbark.ogg', 20, 0)
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 SECONDS, TIMER_DELETE_ME)
+	return ..()
+
+/obj/item/toy/plushie/dragon/green
+	name = "green dragon plushie"
+	icon_state = "greendragon"
+
+/obj/item/toy/plushie/dragon/purple
+	name = "purple dragon plushie"
+	icon_state = "purpledragon"
+
+/obj/item/toy/plushie/dragon/white_east
+	name = "white eastern dragon plushie"
+	icon_state = "whiteeasterndragon"
+
+/obj/item/toy/plushie/dragon/red_east
+	name = "red eastern dragon plushie"
+	icon_state = "redeasterndragon"
+
+/obj/item/toy/plushie/dragon/green_east
+	name = "green eastern dragon plushie"
+	icon_state = "greeneasterndragon"
+
+/obj/item/toy/plushie/dragon/gold_east
+	name = "golden eastern dragon plushie"
+	desc = "A soft plushie of a shiny golden dragon. Made of Real* gold!"
+	icon_state = "goldeasterndragon"
+	pokephrase = "Rawr~!"

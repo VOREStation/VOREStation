@@ -230,9 +230,7 @@
 
 
 /datum/action/innate/mecha/mech_switch_damtype/Activate()
-
-
-	button_icon_state = "mech_damtype_[chassis.damtype]"
+	button_icon_state = "mech_damtype_[chassis.damage_type]"
 	playsound(src, 'sound/mecha/mechmove01.ogg', 50, 1)
 	build_all_button_icons()
 	chassis.query_damtype()
@@ -416,15 +414,15 @@
 		return
 	switch(new_damtype)
 		if("Brute")
-			damtype = "brute"
-			src.occupant_message("Your exosuit's hands form into fists.")
+			damage_type = BRUTE
+			occupant_message("Your exosuit's hands form into fists.")
 		if("Fire")
-			damtype = "fire"
-			src.occupant_message("A torch tip extends from your exosuit's hand, glowing red.")
+			damage_type = BURN
+			occupant_message("A torch tip extends from your exosuit's hand, glowing red.")
 		if("Toxic")
-			damtype = "tox"
-			src.occupant_message("A bone-chillingly thick plasteel needle protracts from the exosuit's palm.")
-	src.occupant_message("Melee damage type switched to [new_damtype]")
+			damage_type = TOX
+			occupant_message("A bone-chillingly thick plasteel needle protracts from the exosuit's palm.")
+	occupant_message("Melee damage type switched to [new_damtype]")
 	return
 
 

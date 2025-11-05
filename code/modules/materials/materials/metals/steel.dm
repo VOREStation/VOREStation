@@ -152,6 +152,8 @@
 		new /datum/stack_recipe("big floor lamp fixture frame", /obj/machinery/light_construct/bigfloorlamp, 3, recycle_material = "[name]"),
 		new /datum/stack_recipe("apc frame", /obj/item/frame/apc, 2, recycle_material = "[name]"),
 		new /datum/stack_recipe("desk bell", /obj/item/deskbell, 1, on_floor = 1, supplied_material = "[name]"),
+		new /datum/stack_recipe("steel kettle", /obj/item/reagent_containers/glass/kettle, 1, on_floor = 1, supplied_material = "[name]"),
+		new /datum/stack_recipe("bunsen burner", /obj/machinery/bunsen_burner, 1, time = 25, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]"),
 		new /datum/stack_recipe("steel hull sheet", /obj/item/stack/material/steel/hull, 2, 1, 5, time = 20, one_per_turf = 0, on_floor = 1, recycle_material = "[name]")
 	)

@@ -47,7 +47,7 @@
 			return
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " starts trying to repair \the [src]'s bulb."))
 		repairing = TRUE
-		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed) && can_repair)
+		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed, target = src) && can_repair)
 			if(prob(30))
 				user.visible_message(span_notice("\The [user] successfully repairs \the [src]!"))
 				broken = FALSE
@@ -195,7 +195,7 @@
 						H.eye_blurry = max(H.eye_blurry, flash_strength + 5)
 						H.flash_eyes()
 						H.adjustHalLoss(halloss_per_flash * (flash_strength / 5)) // Should take four flashes to stun.
-						H.apply_damage(flash_strength * H.species.flash_burn/5, BURN, BP_HEAD, 0, 0)
+						H.apply_damage(flash_strength * H.species.flash_burn/5, BURN, BP_HEAD, 0)
 
 			else
 				flashfail = 1
@@ -222,8 +222,7 @@
 			animation.icon = 'icons/mob/mob.dmi'
 			animation.master = user
 			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
+			QDEL_IN(animation, 5)
 
 	if(!flashfail)
 		flick("flash2", src)
@@ -267,8 +266,7 @@
 			animation.icon = 'icons/mob/mob.dmi'
 			animation.master = user
 			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
+			QDEL_IN(animation, 5)
 
 	for(var/mob/living/carbon/C in oviewers(3, null))
 		var/safety = C.eyecheck()

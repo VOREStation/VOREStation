@@ -54,7 +54,7 @@ var/list/preferences_datums = list()
 	var/antag_vis = "Hidden"			//How visible antag association is to others.
 
 		//Mob preview
-	var/list/char_render_holders		//Should only be a key-value list of north/south/east/west = obj/screen.
+	var/list/char_render_holders		//Should only be a key-value list of north/south/east/west = atom/movable/screen.
 	var/static/list/preview_screen_locs = list(
 		"1" = "character_preview_map:2,7",
 		"2" = "character_preview_map:2,5",
@@ -195,14 +195,14 @@ var/list/preferences_datums = list()
 	if(!client)
 		return
 
-	var/obj/screen/setup_preview/pm_helper/PMH = LAZYACCESS(char_render_holders, "PMH")
+	var/atom/movable/screen/setup_preview/pm_helper/PMH = LAZYACCESS(char_render_holders, "PMH")
 	if(!PMH)
 		PMH = new
 		LAZYSET(char_render_holders, "PMH", PMH)
 		client.screen |= PMH
 	PMH.screen_loc = preview_screen_locs["PMH"]
 
-	var/obj/screen/setup_preview/bg/BG = LAZYACCESS(char_render_holders, "BG")
+	var/atom/movable/screen/setup_preview/bg/BG = LAZYACCESS(char_render_holders, "BG")
 	if(!BG)
 		BG = new
 		BG.plane = TURF_PLANE
@@ -214,7 +214,7 @@ var/list/preferences_datums = list()
 	BG.screen_loc = preview_screen_locs["BG"]
 
 	for(var/D in GLOB.cardinal)
-		var/obj/screen/setup_preview/O = LAZYACCESS(char_render_holders, "[D]")
+		var/atom/movable/screen/setup_preview/O = LAZYACCESS(char_render_holders, "[D]")
 		if(!O)
 			O = new
 			O.pref = src
@@ -235,7 +235,7 @@ var/list/preferences_datums = list()
 
 /datum/preferences/proc/clear_character_previews()
 	for(var/index in char_render_holders)
-		var/obj/screen/S = char_render_holders[index]
+		var/atom/movable/screen/S = char_render_holders[index]
 		client?.screen -= S
 		qdel(S)
 	char_render_holders = null
@@ -265,7 +265,7 @@ var/list/preferences_datums = list()
 	else if(href_list["reload"])
 		load_preferences(TRUE)
 		load_character()
-		attempt_vr(client.prefs_vr,"load_vore","")
+		client.prefs_vr.load_vore()
 		sanitize_preferences()
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
@@ -354,12 +354,12 @@ var/list/preferences_datums = list()
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
-		error("Player picked [choice] slot to load, but that wasn't one we sent.")
+		log_world("## ERROR Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
 	load_preferences(TRUE)
 	load_character(slotnum)
-	attempt_vr(user.client?.prefs_vr,"load_vore","")
+	user.client?.prefs_vr.load_vore()
 	sanitize_preferences()
 	save_preferences()
 	ShowChoices(user)
@@ -395,7 +395,7 @@ var/list/preferences_datums = list()
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
-		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
+		log_world("## ERROR Player picked [choice] slot to copy to, but that wasn't one we sent.")
 		return
 
 	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [choice]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
@@ -404,7 +404,7 @@ var/list/preferences_datums = list()
 		save_preferences()
 		load_preferences(TRUE)
 		load_character()
-		attempt_vr(user.client?.prefs_vr,"load_vore","")
+		user.client?.prefs_vr.load_vore()
 		ShowChoices(user)
 
 /datum/preferences/proc/vanity_copy_to(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/copy_ooc_notes = FALSE, var/convert_to_prosthetics = FALSE, var/apply_bloodtype = TRUE)

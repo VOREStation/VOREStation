@@ -2542,7 +2542,7 @@
 /datum/reagent/drink/dry_ramen
 	name = REAGENT_DRYRAMEN
 	id = REAGENT_ID_DRYRAMEN
-	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
+	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, boil in water before serving."
 	taste_description = "dry cheap noodles"
 	reagent_state = SOLID
 	nutrition = 1
@@ -5091,3 +5091,14 @@
 
 	supply_conversion_value = REFINERYEXPORT_VALUE_UNWANTED
 	industrial_use = REFINERYEXPORT_REASON_FOOD
+
+
+/datum/reagent/drink/teamush
+	name = REAGENT_TEAMUSH
+	id = REAGENT_ID_TEAMUSH
+	description = "Mashed tea leaves, a bit like grass clippings. You can't make proper tea out of this now."
+	taste_description = "overwhelmingly bitter plant"
+	color = "#7db72d"
+
+	glass_name = "blended plant"
+	glass_desc = "Chunky, mashed up plant of some sort. Looks kinda gross."

@@ -65,8 +65,8 @@ SUBSYSTEM_DEF(supply)
 //Selling
 /datum/controller/subsystem/supply/proc/sell()
 	// Loop over each area in the supply shuttle
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SUPPLY_SHUTTLE_DEPART, shuttle.shuttle_area)
 	for(var/area/subarea in shuttle.shuttle_area)
-		callHook("sell_shuttle", list(subarea));
 		for(var/atom/movable/MA in subarea)
 			if(MA.anchored)
 				continue
@@ -77,10 +77,10 @@ SUBSYSTEM_DEF(supply)
 			EC.contents = list()
 			var/base_value = 0
 
-			// Must be in a crate!
+			// Most items must be in a crate!
+			var/sold_successfully = FALSE
 			if(istype(MA,/obj/structure/closet/crate))
 				var/obj/structure/closet/crate/CR = MA
-				callHook("sell_crate", list(CR, subarea))
 
 				points += CR.points_per_crate
 				if(CR.points_per_crate)
@@ -88,11 +88,12 @@ SUBSYSTEM_DEF(supply)
 
 				// For each thing in the crate, get the value and quantity
 				for(var/atom/A in CR)
-					SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
+					sold_successfully = SEND_SIGNAL(A,COMSIG_ITEM_SOLD,EC,TRUE)
 			else
 				// Selling things that are not in crates.
 				// Usually it just makes a log that it wasn't shipped properly, and so isn't worth anything
-				SEND_SIGNAL(MA,COMSIG_ITEM_SOLD,EC,FALSE)
+				sold_successfully = SEND_SIGNAL(MA,COMSIG_ITEM_SOLD,EC,FALSE)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SUPPLY_SHUTTLE_SELL_ITEM, MA, sold_successfully, EC, subarea)
 
 			exported_crates += EC
 			points += EC.value
@@ -168,7 +169,7 @@ SUBSYSTEM_DEF(supply)
 					A.req_access = L.Copy()
 					LAZYCLEARLIST(A.req_one_access)
 				else
-					log_debug(span_danger("Supply pack with invalid access restriction [SP.access] encountered!"))
+					log_runtime(span_danger("Supply pack with invalid access restriction [SP.access] encountered!"))
 
 		//supply manifest generation begin
 		var/obj/item/paper/manifest/slip
