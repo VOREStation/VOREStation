@@ -163,6 +163,15 @@
 	welding = FALSE
 	no_passive_burn = TRUE
 
+/obj/item/weldingtool/electric/mounted/cyborg/update_icon()
+	. = ..()
+	if(istype(loc, /obj/item/robotic_multibelt))
+		var/obj/item/robotic_multibelt/our_belt = loc
+		if(welding)
+			our_belt.add_overlay("indwelder_cyborg-on")
+		else
+			our_belt.cut_overlays()
+
 /obj/item/tool/wirecutters/cyborg
 	name = "wirecutters"
 	desc = "This cuts wires. With science."
