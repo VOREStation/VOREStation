@@ -137,7 +137,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 /datum/controller/master/Shutdown()
 	processing = FALSE
 	sortTim(subsystems, GLOBAL_PROC_REF(cmp_subsystem_init))
-	reverseRange(subsystems)
+	reverse_range(subsystems)
 	for(var/datum/controller/subsystem/ss in subsystems)
 		log_world("Shutting down [ss.name] subsystem...")
 		if (ss.slept_count > 0)
