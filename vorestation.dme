@@ -2366,6 +2366,7 @@
 #include "code\modules\clothing\accessories\holster.dm"
 #include "code\modules\clothing\accessories\holster_vr.dm"
 #include "code\modules\clothing\accessories\lockets.dm"
+#include "code\modules\clothing\accessories\neoclothing.dm"
 #include "code\modules\clothing\accessories\permits.dm"
 #include "code\modules\clothing\accessories\permits_vr.dm"
 #include "code\modules\clothing\accessories\rings.dm"
