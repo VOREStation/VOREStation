@@ -110,39 +110,6 @@
 	disconnect()
 	return
 
-/datum/component/gas_holder/proc/mingle_with_turf(turf/simulated/target, mingle_volume)
-	if(!target || !mingle_volume)
-		return
-	var/datum/gas_mixture/air_sample = air_contents.remove_ratio(mingle_volume/air_contents.volume)
-	air_sample.volume = mingle_volume
-
-	if(istype(target) && target.zone)
-		//Have to consider preservation of group statuses
-		var/datum/gas_mixture/turf_copy = new
-		var/datum/gas_mixture/turf_original = new
-
-		turf_copy.copy_from(target.zone.air)
-		turf_copy.volume = target.zone.air.volume //Copy a good representation of the turf from parent group
-		turf_original.copy_from(turf_copy)
-
-		equalize_gases(list(air_sample, turf_copy))
-		air_contents.merge(air_sample)
-
-
-		target.zone.air.remove(turf_original.total_moles)
-		target.zone.air.merge(turf_copy)
-
-	else
-		var/datum/gas_mixture/turf_air = target.return_air()
-
-		equalize_gases(list(air_sample, turf_air))
-		air_contents.merge(air_sample)
-		//turf_air already modified by equalize_gases()
-
-	if(connected_port && connected_port.network)
-		connected_port.network.update = 1
-
-
 ///When we are connected to a port.
 /datum/component/gas_holder/proc/connect(obj/machinery/atmospherics/portables_connector/new_port)
 	var/atom/movable/our_parent = parent
