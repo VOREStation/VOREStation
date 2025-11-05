@@ -104,6 +104,7 @@
 		choice = show_radial_menu(user, src, options, radius = 40, require_near = TRUE)
 	if(!choice)
 		return
+	cut_overlays()
 	assume_selected_item(integrated_tools_by_name[choice])
 
 	..()
