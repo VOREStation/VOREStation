@@ -557,7 +557,6 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
 	if (!C.can_use() || stat || (get_dist(C, src) > 1 || !check_current_machine(src) || blinded || !canmove))
 		return 0
-	check_eye(src)
 	return 1
 
 /mob/living/silicon/ai/switch_to_camera(var/obj/machinery/camera/C)
@@ -712,12 +711,13 @@ var/list/global/organ_rel_size = list(
 /mob/proc/recalculate_vis()
 	return
 
-/// General HUD updates done regularly (health puppet things, etc). Returns true if the mob has a client.
+/// General HUD updates done regularly (health puppet things, etc). Returns true if the mob has a client and is allowed to update its hud.
 /mob/proc/handle_regular_hud_updates()
 	SHOULD_CALL_PARENT(TRUE)
 	if(!client)
 		return FALSE
-	SEND_SIGNAL(src,COMSIG_LIVING_HANDLE_HUD)
+	if(SEND_SIGNAL(src,COMSIG_LIVING_HANDLE_HUD) & COMSIG_COMPONENT_HANDLED_HUD)
+		return FALSE
 	return TRUE
 
 /// Handle eye things like the Byond SEE_TURFS, SEE_OBJS, etc.

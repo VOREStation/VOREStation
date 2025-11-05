@@ -64,6 +64,7 @@
 	icon_state = "scanner_0"
 	density = TRUE
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 	active_power_usage = 300
