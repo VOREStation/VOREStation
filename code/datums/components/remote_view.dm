@@ -240,9 +240,9 @@
 	settings.handle_hud_darkvision(src, host_mob)
 
 /datum/component/remote_view/proc/handle_mob_vision_update(datum/source)
+	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-	SIGNAL_HANDLER
 	return settings.handle_apply_visuals(src, host_mob)
 
 // Accessors
