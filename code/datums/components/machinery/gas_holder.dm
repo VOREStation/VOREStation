@@ -25,10 +25,12 @@
 /datum/component/gas_holder/Initialize(datum/gas_mixture/new_gas_mixture, obj/machinery/atmospherics/portables_connector/connected_port, maximum_pressure, can_rupture, max_integrity, integrity, leaking)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-	if(gas_mixture)
+
+	if(new_gas_mixture)
 		air_contents = new_gas_mixture
 	else
 		air_contents = new
+
 	if(connected_port)
 		src.connected_port = connected_port
 
@@ -46,9 +48,6 @@
 		src.leaking = leaking
 
 	START_PROCESSING(SSfastprocess, src)
-
-/datum/component/gas_holder/proc/MolesForPressure(var/target_pressure = start_pressure)
-	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 
 /datum/component/gas_holder/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(handle_attack))
