@@ -155,7 +155,7 @@
 	if(living_target.is_incorporeal())
 		return
 	if(istype(living_target) && living_target != src && Adjacent(living_target))
-		living_target.show_inventory_panel(src)
+		living_target.show_inventory_panel(src) //We don't have the loot panel, so...We'll use our inventory panel for now.
 
 	/* //NYI
 	if(!CAN_I_SEE(target) || (is_blind() && !IN_GIVEN_RANGE(src, target, 1)))

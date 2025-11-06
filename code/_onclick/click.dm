@@ -282,7 +282,7 @@
 	src.pointed(A)
 	return
 
-/atom/proc/CtrlShiftClick(var/mob/user)
+/atom/proc/click_ctrl_shift(var/mob/user)
 	return
 
 /*

@@ -99,7 +99,7 @@
 	if(SEND_SIGNAL(target, COMSIG_CLICK_CTRL_SHIFT, src) & CLICK_ACTION_ANY)
 		return
 
-	target.CtrlShiftClick(src)
+	target.click_ctrl_shift(src)
 	/* //NYI
 	// Proceed with ctrl shift click
 	if(can_perform_action(target, target.interaction_flags_click | SILENT_ADJACENCY))

@@ -121,7 +121,7 @@
 //Give cyborgs hotkey clicks without breaking existing uses of hotkey clicks
 // for non-doors/apcs
 /mob/living/silicon/robot/CtrlShiftClickOn(var/atom/A)
-	A.BorgCtrlShiftClick(src)
+	A.Borgclick_ctrl_shift(src)
 
 /mob/living/silicon/robot/ShiftClickOn(var/atom/A)
 	A.BorgShiftClick(src)
@@ -132,14 +132,14 @@
 /mob/living/silicon/robot/AltClickOn(var/atom/A)
 	A.BorgAltClick(src)
 
-/atom/proc/BorgCtrlShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
-	CtrlShiftClick(user)
+/atom/proc/Borgclick_ctrl_shift(var/mob/living/silicon/robot/user) //forward to human click if not overriden
+	click_ctrl_shift(user)
 
-/obj/machinery/door/airlock/BorgCtrlShiftClick(var/mob/living/silicon/robot/user)
+/obj/machinery/door/airlock/Borgclick_ctrl_shift(var/mob/living/silicon/robot/user)
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
-	AICtrlShiftClick(user)
+	AIclick_ctrl_shift(user)
 
 /atom/proc/BorgShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
 	ShiftClick(user)

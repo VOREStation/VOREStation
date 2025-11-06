@@ -120,7 +120,7 @@
 	I have no idea why it was in atoms.dm instead of respective files.
 */
 
-/atom/proc/AICtrlShiftClick()
+/atom/proc/AIclick_ctrl_shift()
 	return
 
 /atom/proc/AIShiftClick()

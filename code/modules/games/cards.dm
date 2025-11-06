@@ -256,7 +256,7 @@
 /obj/item/deck/click_ctrl(mob/user)
 	deal_card()
 
-/obj/item/deck/CtrlShiftClick(mob/user)
+/obj/item/deck/click_ctrl_shift(mob/user)
 	deal_card_multi()
 
 /obj/item/deck/proc/deal_at(mob/user, mob/target, dcard) // Take in the no. of card to be dealt
