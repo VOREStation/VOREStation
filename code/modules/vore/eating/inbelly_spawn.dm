@@ -144,7 +144,7 @@
 		prey.mind.current = prey
 		prey.mind.active = TRUE
 
-		soulgem.catch_mob(prey) //This will result in us being deleted so...
+		soulgem.catch_mob(prey) //This will result in the prey being deleted so...
 
 /mob/living/carbon/human/proc/nif_soulcatcher_spawn_prompt(mob/observer/dead/prey, req_time)
 	if(tgui_alert(src, "[prey.name] wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny", "Allow"), timeout=1 MINUTES) != "Allow")
@@ -172,4 +172,4 @@
 		prey.mind.current = prey
 		prey.mind.active = TRUE
 
-		SC.catch_mob(prey) //This will result in us being deleted so...
+		SC.catch_mob(prey) //This will result in the prey being deleted so...
