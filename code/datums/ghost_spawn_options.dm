@@ -143,29 +143,7 @@
 
 	var/req_time = world.time
 	nif.notify("Transient mindstate detected, analyzing...")
-	addtimer(CALLBACK(src, PROC_REF(finish_soulcatcher_spawn), user, H, SC, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
-
-/datum/tgui_module/ghost_spawn_menu/proc/finish_soulcatcher_spawn(mob/observer/dead/user, mob/living/carbon/human/H, datum/nifsoft/soulcatcher/SC, req_time)
-	var/response = tgui_alert(H,"[user] ([user.key]) wants to join into your Soulcatcher.","Soulcatcher Request", list("Deny", "Allow"), timeout = 1 MINUTE)
-
-	if(!response || response == "Deny")
-		to_chat(user, span_warning("[H] denied your request."))
-		return
-
-	if((world.time - req_time) > 1 MINUTE)
-		to_chat(H, span_warning("The request had already expired. (1 minute waiting max)"))
-		return
-
-	//Final check since we waited for input a couple times.
-	if(H && user && user.key && !H.stat && H.nif && SC)
-		if(!user.mind) //No mind yet, aka haven't played in this round.
-			user.mind = new(user.key)
-
-		user.mind.name = user.name
-		user.mind.current = user
-		user.mind.active = TRUE
-
-		SC.catch_mob(user) //This will result in us being deleted so...
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, nif_soulcatcher_spawn_prompt), user, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
 
 /datum/tgui_module/ghost_spawn_menu/proc/soulcatcher_vore_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in GLOB.player_list
@@ -187,27 +165,7 @@
 
 	var/req_time = world.time
 	gem.notify_holder("Transient mindstate detected, analyzing...")
-	addtimer(CALLBACK(src, PROC_REF(finish_soulcatcher_vore_spawn), user, M, gem, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
-
-/datum/tgui_module/ghost_spawn_menu/proc/finish_soulcatcher_vore_spawn(mob/observer/dead/user, mob/M, obj/soulgem/gem, req_time)
-	if(tgui_alert(M, "[user.name] wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny", "Allow"), timeout=1 MINUTES) != "Allow")
-		to_chat(user, span_warning("[M] has denied your request."))
-		return
-
-	if((world.time - req_time) > 1 MINUTES)
-		to_chat(M, span_warning("The request had already expired. (1 minute waiting max)"))
-		return
-
-	//Final check since we waited for input a couple times.
-	if(M && user && user.key && !M.stat && gem?.flag_check(SOULGEM_ACTIVE | SOULGEM_CATCHING_GHOSTS, TRUE))
-		if(!user.mind) //No mind yet, aka haven't played in this round.
-			user.mind = new(user.key)
-
-		user.mind.name = user.name
-		user.mind.current = user
-		user.mind.active = TRUE
-
-		gem.catch_mob(user) //This will result in us being deleted so...
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, soulcatcher_spawn_prompt), user, req_time), 1.5 SECONDS, TIMER_DELETE_ME)
 
 /datum/tgui_module/ghost_spawn_menu/proc/vore_belly_spawn(mob/observer/dead/user, selected_player)
 	var/mob/living/target = locate(selected_player) in GLOB.player_list
