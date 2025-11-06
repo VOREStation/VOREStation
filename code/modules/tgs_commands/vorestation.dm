@@ -384,7 +384,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 #define VALID_USAGE "whitelist \[[list2text(VALID_ACTIONS, ", ")]\] \[[list2text(VALID_KINDS, ", ")]\] <ckey> (role)"
 /datum/tgs_chat_command/whitelist
 	name = "whitelist"
-	help_text = "allows the management of player whitelists. Usage: whitelist \[add, remove, list\] \[job, species\] <ckey> (role)"
+	help_text = "allows the management of player whitelists.\nUsage: whitelist \[add, remove, list\] \[job, species\] <ckey> (role)"
 	admin_only = TRUE
 
 /datum/tgs_chat_command/whitelist/Run(datum/tgs_chat_user/sender, params)
@@ -431,7 +431,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 			message.text = "```Invalid command usage: [VALID_USAGE]```"
 			return message
 
-		role = message_as_list[1]
+		role = message_as_list.Join(" ")
 		if(!istext(role))
 			message.text = "```Fourth param must be a valid whitelist role.```"
 			return message
