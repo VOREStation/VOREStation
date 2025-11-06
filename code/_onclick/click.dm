@@ -282,9 +282,6 @@
 	src.pointed(A)
 	return
 
-/atom/proc/click_ctrl_shift(var/mob/user)
-	return
-
 /*
 	Misc helpers
 
