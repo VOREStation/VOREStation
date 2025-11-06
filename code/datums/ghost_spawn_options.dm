@@ -218,10 +218,7 @@
 
 	to_chat(user, span_notice("Inbelly spawn request sent to predator."))
 	to_chat(target, span_notice("Incoming belly spawn request."))
-	addtimer(CALLBACK(src, PROC_REF(finish_vore_belly_spawn), user, target), 1.5 SECONDS, TIMER_DELETE_ME)
-
-/datum/tgui_module/ghost_spawn_menu/proc/finish_vore_belly_spawn(mob/observer/dead/user,  mob/living/L)
-	L.inbelly_spawn_prompt(user.client)			// Hand reins over to them
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, inbelly_spawn_prompt), user.client), 1.5 SECONDS, TIMER_DELETE_ME) // Hand reins over to them
 
 /datum/tgui_module/ghost_spawn_menu/proc/join_corgi(mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
