@@ -117,7 +117,7 @@
 					continue
 				if(used == amount)
 					break
-				if(!do_mob(user, M, W.damage/3, exclusive = TRUE))
+				if(!do_after(user, W.damage/3, W))
 					balloon_alert(user, "stand still to bandage wounds.")
 					break
 
@@ -186,7 +186,7 @@
 					continue
 				if(used == amount)
 					break
-				if(!do_mob(user, M, W.damage/5, exclusive = TRUE))
+				if(!do_after(user, W.damage/5, W))
 					balloon_alert(user, "stand still to bandage wounds.")
 					break
 
@@ -251,7 +251,7 @@
 		else
 			user.balloon_alert_visible("\the [user] starts salving wounds on [M]'s [affecting.name].", \
 										"salving the wounds on [M]'s [affecting.name]." )
-			if(!do_mob(user, M, 10, exclusive = TRUE))
+			if(!do_after(user, 1 SECOND, affecting))
 				balloon_alert(user, "stand still to salve wounds.")
 				return 1
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
@@ -305,7 +305,7 @@
 					continue
 				//if(used == amount)
 				//	break
-				if(!do_mob(user, M, W.damage/5, exclusive = TRUE))
+				if(!do_after(user, W.damage/5, W))
 					balloon_alert(user, "stand still to bandage wounds.")
 					break
 				if(affecting.is_bandaged() && affecting.is_disinfected()) // We do a second check after the delay, in case it was bandaged after the first check.
@@ -365,7 +365,7 @@
 		else
 			user.balloon_alert_visible("\the [user] starts salving wounds on [M]'s [affecting.name].", \
 										"salving the wounds on [M]'s [affecting.name]." )
-			if(!do_mob(user, M, 10, exclusive = TRUE))
+			if(!do_after(user, 1 SECOND, affecting))
 				balloon_alert(user, "stand still to salve wounds.")
 				return 1
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.

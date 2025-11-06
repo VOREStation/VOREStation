@@ -529,7 +529,7 @@
 			return 0
 
 	user.setClickCooldown(user.get_attack_speed(tool))
-	if(!do_mob(user, owner, 10))
+	if(!do_after(user, 1 SECOND, src))
 		to_chat(user, span_warning("You must stand still to do that."))
 		return 0
 
