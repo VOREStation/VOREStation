@@ -263,7 +263,7 @@
 	cost = 1
 	custom_only = FALSE
 	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
-	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
+	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM, SPECIES_REPLICANT_CREW) //So it only shows up for custom species, hanner, and Gamma replicants
 	custom_only = FALSE
 	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic/plus)
 
@@ -278,7 +278,7 @@
 	cost = 2
 	custom_only = FALSE
 	var_changes = list("water_breather" = 1, "water_movement" = -4, "swim_mult" = 0.5) //Negate shallow water. Half the speed in deep water.
-	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
+	allowed_species = list(SPECIES_HANNER, , SPECIES_REPLICANT_CREW) //So it only shows up for custom species, hanner, and Gamma replicants
 	custom_only = FALSE
 	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic)
 
