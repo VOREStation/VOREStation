@@ -1,5 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - code_imp: "Makes food/drink code easier to read"
-  - code_imp: "Implements signals for food eaten/can drank"

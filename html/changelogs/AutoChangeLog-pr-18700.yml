@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Equipping boxing gloves will make your unarmed blows nonlethal"
