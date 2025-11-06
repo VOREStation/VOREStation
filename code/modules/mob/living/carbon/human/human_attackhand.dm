@@ -508,7 +508,7 @@
 		organ.applied_pressure = user
 
 		//apply pressure as long as they stay still and keep grabbing
- 		//This USED to have a 'target_zone' check that never actually worked so whatever.
+		//This USED to have a 'target_zone' check that never actually worked so whatever.
 		//Let it be said that it's a feature you can apply pressure to all sites on you all at once.
 		//You're already locking yourself down when you do so.
 		do_after(user, INFINITY, organ, hidden = TRUE)
