@@ -7,6 +7,7 @@
 	icon_state = "pod_preview"
 	density = TRUE
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	layer = UNDER_JUNK_LAYER
 	interact_offline = 1
 
