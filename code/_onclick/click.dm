@@ -343,14 +343,14 @@
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && istype(usr, /mob/living/carbon))
+	if(LAZYACCESS(modifiers, MIDDLE_CLICK) && istype(usr, /mob/living/carbon))
 		var/mob/living/carbon/C = usr
 		C.swap_hand()
 	else
 		var/list/P = params2list(params)
 		var/turf/T = screen_loc2turf(P["screen-loc"], get_turf(usr))
 		if(T)
-			if(modifiers["shift"])
+			if(LAZYACCESS(modifiers, SHIFT_CLICK))
 				usr.face_atom(T)
 				return 1
 			T.Click(location, control, params)
