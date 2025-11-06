@@ -117,7 +117,7 @@
 					continue
 				if(used == amount)
 					break
-				if(!do_after(user, W.damage/3, W))
+				if(!do_after(user, W.damage/3, affecting))
 					balloon_alert(user, "stand still to bandage wounds.")
 					break
 
@@ -186,7 +186,7 @@
 					continue
 				if(used == amount)
 					break
-				if(!do_after(user, W.damage/5, W))
+				if(!do_after(user, W.damage/5, affecting))
 					balloon_alert(user, "stand still to bandage wounds.")
 					break
 
@@ -305,7 +305,7 @@
 					continue
 				//if(used == amount)
 				//	break
-				if(!do_after(user, W.damage/5, W))
+				if(!do_after(user, W.damage/5, affecting))
 					balloon_alert(user, "stand still to bandage wounds.")
 					break
 				if(affecting.is_bandaged() && affecting.is_disinfected()) // We do a second check after the delay, in case it was bandaged after the first check.
@@ -413,7 +413,7 @@
 				balloon_alert(user, "you can't apply a splint to the arm you're using!")
 				return
 			user.balloon_alert_visible("[user] starts to apply \the [src] to their [limb].", "applying \the [src] to your [limb].", "You hear something being wrapped.")
-		if(do_after(user, 5 SECONDS, target = M))
+		if(do_after(user, 5 SECONDS, affecting))
 			if(affecting.splinted)
 				balloon_alert(user, "[M]'s [limb] is already splinted!")
 				return
