@@ -1183,8 +1183,11 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/circuitboard, \
 	/obj/item/smes_coil, \
 	/obj/item/fuel_assembly, \
-	/obj/item/stack/tile/floor, \
-	/obj/item/stack/hose
+	/obj/item/stack/tile, \
+	/obj/item/stack/hose, \
+	/obj/item/stack/animalhide, \
+	/obj/item/stack/hairlesshide, \
+	/obj/item/stack/wetleather
 
 #define OMNI_GRIPPER \
 	/obj/item
@@ -1304,7 +1307,8 @@ GLOBAL_LIST_INIT(area_or_turf_fail_types, typecacheof(list(
 	/obj/item/mecha_parts/component
 
 #define SHEET_GRIPPER \
-	/obj/item/stack/material
+	/obj/item/stack/material, \
+	/obj/item/stack/rods
 
 GLOBAL_LIST_INIT(all_borg_multitool_options, list(
 	/obj/item/tool/screwdriver/cyborg,
