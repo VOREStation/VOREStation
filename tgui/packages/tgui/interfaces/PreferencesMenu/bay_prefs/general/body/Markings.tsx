@@ -61,7 +61,6 @@ export const MarkingsPopup = (props: {
       title="Markings"
       fill
       scrollable
-      mt={1}
       buttons={
         <>
           <Button.Checkbox

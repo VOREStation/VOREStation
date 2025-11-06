@@ -21,8 +21,6 @@
 	var/insistinga = 0
 
 /obj/machinery/wish_granter_dark/attack_hand(var/mob/living/carbon/human/user)
-	user.set_machine(src)
-
 	if(chargesa <= 0)
 		to_chat(user, "The Wish Granter lies silent.")
 		return

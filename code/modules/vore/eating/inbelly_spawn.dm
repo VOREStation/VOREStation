@@ -123,3 +123,53 @@
 	message_admins("[prey] (as [new_character.real_name] has spawned inside one of [pred]'s bellies.", 1)
 
 	return new_character			// incase its ever needed
+
+/mob/living/proc/soulcatcher_spawn_prompt(mob/observer/dead/prey, req_time)
+	if(tgui_alert(src, "[prey.name] wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny", "Allow"), timeout=1 MINUTES) != "Allow")
+		to_chat(prey, span_warning("[src] has denied your request."))
+		return
+
+	if((world.time - req_time) > 1 MINUTES)
+		to_chat(src, span_warning("The request had already expired. (1 minute waiting max)"))
+		return
+
+	if(!soulgem)
+		return
+
+	if(prey && prey.key && !stat && soulgem.flag_check(SOULGEM_ACTIVE | SOULGEM_CATCHING_GHOSTS, TRUE))
+		if(!prey.mind) //No mind yet, aka haven't played in this round.
+			prey.mind = new(prey.key)
+
+		prey.mind.name = prey.name
+		prey.mind.current = prey
+		prey.mind.active = TRUE
+
+		soulgem.catch_mob(prey) //This will result in the prey being deleted so...
+
+/mob/living/carbon/human/proc/nif_soulcatcher_spawn_prompt(mob/observer/dead/prey, req_time)
+	if(tgui_alert(src, "[prey.name] wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny", "Allow"), timeout=1 MINUTES) != "Allow")
+		to_chat(prey, span_warning("[src] has denied your request."))
+		return
+
+	if((world.time - req_time) > 1 MINUTES)
+		to_chat(src, span_warning("The request had already expired. (1 minute waiting max)"))
+		return
+
+	if(!nif)
+		return
+
+	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
+	if(!SC)
+		to_chat(prey, span_warning("[src] doesn't have the Soulcatcher NIFSoft installed, or their NIF is unpowered."))
+		return
+
+	//Final check since we waited for input a couple times.
+	if(prey && prey.key && !stat && nif && SC)
+		if(!prey.mind) //No mind yet, aka haven't played in this round.
+			prey.mind = new(prey.key)
+
+		prey.mind.name = prey.name
+		prey.mind.current = prey
+		prey.mind.active = TRUE
+
+		SC.catch_mob(prey) //This will result in the prey being deleted so...
