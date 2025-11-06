@@ -100,7 +100,7 @@
 	var/selectedColor = 1
 	var/colors = list("black","blue","red")
 
-/obj/item/pen/AltClick(mob/user)
+/obj/item/pen/click_alt(mob/user)
 	if(!Adjacent(user))
 		return
 	to_chat(user, span_notice("Click."))
@@ -181,7 +181,7 @@
 	active_icon_state = "[icon_state]-x"
 	default_icon_state = icon_state
 
-/obj/item/pen/blade/AltClick(mob/user)
+/obj/item/pen/blade/click_alt(mob/user)
 	..()
 	if(active)
 		deactivate(user)

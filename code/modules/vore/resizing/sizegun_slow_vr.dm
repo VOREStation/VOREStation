@@ -253,7 +253,7 @@
 
 //Alt click to activate size trading
 
-/obj/item/slow_sizegun/AltClick(mob/user)
+/obj/item/slow_sizegun/click_alt(mob/user)
 	if (trading == 0)
 		trading = 1
 		to_chat(user, span_notice("\The [src] will now trade your targets size for your own."))

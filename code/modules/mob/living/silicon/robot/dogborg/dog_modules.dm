@@ -447,7 +447,7 @@
 	exact = TRUE
 	to_chat(user, span_notice("You've upgraded the mining scanner for [upgrade_cost] points."))
 
-/obj/item/mining_scanner/robot/AltClick(mob/user)
+/obj/item/mining_scanner/robot/click_alt(mob/user)
 	change_size(user)
 
 /obj/item/mining_scanner/robot/proc/change_size(mob/user)

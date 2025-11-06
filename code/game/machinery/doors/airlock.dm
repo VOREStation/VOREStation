@@ -503,7 +503,7 @@ About the new airlock wires panel:
 
 	. = ..()
 
-/obj/machinery/door/airlock/CtrlClick(mob/user) //Hold door open
+/obj/machinery/door/airlock/click_ctrl(mob/user) //Hold door open
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(user.is_incorporeal())
 		return

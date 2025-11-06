@@ -253,7 +253,7 @@
 
 	user.visible_message(span_notice("\The [user] searches for specific cards in \the [src], and draws [cards_to_draw.len]."))
 
-/obj/item/deck/CtrlClick(mob/user)
+/obj/item/deck/click_ctrl(mob/user)
 	deal_card()
 
 /obj/item/deck/CtrlShiftClick(mob/user)
@@ -329,7 +329,7 @@
 	else
 		return
 
-/obj/item/deck/AltClick(mob/user)
+/obj/item/deck/click_alt(mob/user)
 	if(user.stat || !Adjacent(user))
 		return
 	shuffle(user)
@@ -569,10 +569,10 @@
 	..()
 	src.update_icon()
 
-/obj/item/hand/CtrlClick(mob/user)
+/obj/item/hand/click_ctrl(mob/user)
 	if(user.stat || !Adjacent(user))
 		return
 	discard()
 
-/obj/item/hand/AltClick(mob/user)
+/obj/item/hand/click_alt(mob/user)
 	Removecard()

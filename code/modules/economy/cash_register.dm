@@ -62,7 +62,7 @@
 		interact(user)
 
 
-/obj/machinery/cash_register/AltClick(mob/user)
+/obj/machinery/cash_register/click_alt(mob/user)
 	if(Adjacent(user))
 		open_cash_box()
 

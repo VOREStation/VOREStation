@@ -17,22 +17,35 @@
 		return
 
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] && modifiers["ctrl"])
-		CtrlShiftClickOn(A)
+
+	if(LAZYACCESS(modifiers, BUTTON4) || LAZYACCESS(modifiers, BUTTON5))
 		return
-	if(modifiers["shift"] && modifiers["middle"])
-		ShiftMiddleClickOn(A)
-		return
-	if(modifiers["middle"])
-		MiddleClickOn(A)
-		return
-	if(modifiers["shift"])
+
+	if(LAZYACCESS(modifiers, SHIFT_CLICK))
+		if(LAZYACCESS(modifiers, MIDDLE_CLICK))
+			ShiftMiddleClickOn(A)
+			return
+		if(LAZYACCESS(modifiers, CTRL_CLICK))
+			CtrlShiftClickOn(A)
+			return
+		if (LAZYACCESS(modifiers, ALT_CLICK))
+			alt_shift_click_on(A)
+			return
 		ShiftClickOn(A)
 		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
-		AltClickOn(A)
+	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
+		if(LAZYACCESS(modifiers, CTRL_CLICK))
+			CtrlMiddleClickOn(A)
+		else
+			MiddleClickOn(A, params)
 		return
-	if(modifiers["ctrl"])
+	if(LAZYACCESS(modifiers, ALT_CLICK)) // alt and alt-gr (rightalt)
+		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+			AltClickSecondaryOn(A)
+		else
+			AltClickOn(A)
+		return
+	if(LAZYACCESS(modifiers, CTRL_CLICK))
 		CtrlClickOn(A)
 		return
 
@@ -138,28 +151,28 @@
 	AIShiftClick(user)
 
 /atom/proc/BorgCtrlClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
-	CtrlClick(user)
+	click_ctrl(user)
 
 /obj/machinery/door/airlock/BorgCtrlClick(var/mob/living/silicon/robot/user) // Bolts doors. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
-	AICtrlClick(user)
+	ctrl_click_ai(user)
 
 /obj/machinery/power/apc/BorgCtrlClick(var/mob/living/silicon/robot/user) // turns off/on APCs. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
-	AICtrlClick(user)
+	ctrl_click_ai(user)
 
 /obj/machinery/turretid/BorgCtrlClick(var/mob/living/silicon/robot/user) //turret control on/off. Forwards to AI code.
 	if(user.bolt && !user.bolt.malfunction)
 		return
 
-	AICtrlClick(user)
+	ctrl_click_ai(user)
 
 /atom/proc/BorgAltClick(var/mob/living/silicon/robot/user)
-	AltClick(user)
+	click_alt(user)
 	return
 
 /obj/machinery/door/airlock/BorgAltClick(var/mob/living/silicon/robot/user) // Eletrifies doors. Forwards to AI code.
