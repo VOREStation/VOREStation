@@ -96,7 +96,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 /datum/component/artifact_master/proc/DoRegistry()
 //Melee Hit
-	RegisterSignal(holder, COMSIG_PARENT_ATTACKBY, /datum/component/artifact_master/proc/on_attackby, override = FALSE)
+	RegisterSignal(holder, COMSIG_ATOM_ATTACKBY, /datum/component/artifact_master/proc/on_attackby, override = FALSE)
 //Explosions
 	RegisterSignal(holder, COMSIG_ATOM_EX_ACT, /datum/component/artifact_master/proc/on_exact, override = FALSE)
 //Bullets
@@ -120,7 +120,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
  */
 
 /datum/component/artifact_master/proc/do_unregister()
-	UnregisterSignal(holder, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(holder, COMSIG_ATOM_ATTACKBY)
 	UnregisterSignal(holder, COMSIG_ATOM_EX_ACT)
 	UnregisterSignal(holder, COMSIG_ATOM_BULLET_ACT)
 	UnregisterSignal(holder, COMSIG_ATOM_ATTACK_HAND)

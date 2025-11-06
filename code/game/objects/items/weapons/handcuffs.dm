@@ -36,17 +36,17 @@
 
 	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, span_warning("Uh ... how do those things work?!"))
-		place_handcuffs(user, user)
+		attempt_to_cuff(user, user)
 		return
 
 	if(!C.handcuffed)
 		if (C == user)
-			place_handcuffs(user, user)
+			attempt_to_cuff(user, user)
 			return
 
 		//check for an aggressive grab (or robutts)
 		if(can_place(C, user))
-			place_handcuffs(C, user)
+			attempt_to_cuff(C, user)
 		else
 			to_chat(user, span_danger("You need to have a firm grip on [C] before you can put \the [src] on!"))
 
@@ -62,7 +62,10 @@
 				return 1
 	return 0
 
-/obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/proc/attempt_to_cuff(var/mob/living/carbon/target, var/mob/user)
+	if(SEND_SIGNAL(victim, COMSIG_CARBON_CUFF_ATTEMPTED, user) & COMSIG_CARBON_CUFF_PREVENT)
+		victim.balloon_alert(user, "can't be handcuffed!")
+		return
 	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target

@@ -84,7 +84,12 @@
 		CtrlClickOn(A)
 		return
 
-	if(stat || paralysis || stunned || weakened)
+	//Replaces thee old 'stat||paralysis||stunned' check
+	//Not fully implemented yet.
+	if(INCAPACITATED_IGNORING(src, INCAPABLE_RESTRAINTS|INCAPABLE_STASIS))
+		return
+
+	if(stat || paralysis || stunned)
 		return
 
 	face_atom(A) // change direction to face what you clicked on

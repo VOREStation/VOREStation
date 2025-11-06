@@ -254,7 +254,7 @@
 
 /mob/living/proc/handle_hud_icons_health()
 	SHOULD_CALL_PARENT(TRUE)
-	if(SEND_SIGNAL(src,COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON) & COMSIG_COMPONENT_HANDLED_HEALTH_ICON)
+	if(SEND_SIGNAL(src,COMSIG_MOB_HANDLE_HUD_HEALTH_ICON) & COMSIG_COMPONENT_HANDLED_HEALTH_ICON)
 		return FALSE
 	return TRUE
 
@@ -276,7 +276,7 @@
 		return FALSE
 
 /mob/living/proc/handle_darksight()
-	SEND_SIGNAL(src,COMSIG_LIVING_HANDLE_HUD_DARKSIGHT)
+	SEND_SIGNAL(src,COMSIG_MOB_HANDLE_HUD_DARKSIGHT)
 	if(!seedarkness) //Cheap 'always darksight' var
 		dsoverlay.alpha = 255
 		return
