@@ -221,6 +221,9 @@ Proc for attack log creation, because really why not
 	if(!isnum(delay))
 		CRASH("do_after was passed a non-number delay: [delay || "null"].")
 
+	if(!isatom(target))
+		CRASH("do_after was given a non-atom target! [target]")
+
 	if(!interaction_key && target)
 		interaction_key = target //Use the direct ref to the target
 	if(interaction_key) //Do we have a interaction_key now?
