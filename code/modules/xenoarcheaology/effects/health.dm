@@ -53,7 +53,7 @@
 				C.adjust_nutrition(-50 * weakness)
 				C.nutrition -= min(50 * weakness, C.nutrition)
 				C.make_dizzy(6 * weakness)
-				C.weakened += 6 * weakness
+				C.AdjustWeakened(6 * weakness)
 			return 1
 
 /datum/artifact_effect/health/DoEffectAura()

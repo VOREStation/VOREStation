@@ -34,11 +34,10 @@
 /atom/movable/proc/end_fall(var/crushing = FALSE)
 	if(isliving(src))
 		var/mob/living/L = src
-		if(L.vore_selected && L.can_be_drop_pred && L.drop_vore)
-			for(var/mob/living/P in loc)
-				if(P.can_be_drop_prey && P.drop_vore)
-					L.feed_grabbed_to_self_falling_nom(L,P)
-					L.visible_message(span_vdanger("\The [L] falls right onto \the [P]!"))
+		for(var/mob/living/P in loc)
+			if(can_drop_vore(L, P))
+				L.feed_grabbed_to_self_falling_nom(L,P)
+				L.visible_message(span_vdanger("\The [L] falls right onto \the [P]!"))
 
 	if(crushing)
 		for(var/atom/movable/AM in loc)
