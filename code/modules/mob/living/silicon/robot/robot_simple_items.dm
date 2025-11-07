@@ -930,16 +930,24 @@
 				user.visible_message(span_danger("[user] removes the power cell from [A]!"), "You remove the power cell.")
 
 /obj/item/gripper/proc/update_ref(var/datum/weakref/new_ref)
+	var/had_item = get_current_pocket()
 	WR = new_ref
+	var/holding_item = get_current_pocket()
+	// Feedback
 	update_icon()
+	if(had_item && !holding_item) // Dropped
+		our_robot.playsound_local(get_turf(our_robot), 'sound/machines/click.ogg', 50)
+	if(holding_item && !had_item) // Pickup
+		our_robot.playsound_local(get_turf(our_robot), 'sound/machines/click2.ogg', 50)
 
 /obj/item/gripper/update_icon()
 	cut_overlays()
 	var/obj/item/wrapped = get_current_pocket()
 	if(!wrapped)
 		return
+	// Draw the held item as a mini-image in the gripper itself
 	var/mutable_appearance/item_display = new(wrapped)
-	item_display.SetTransform(0.80, offset_y = -16)
+	item_display.SetTransform(0.80, offset_y = -8)
 	item_display.plane = plane
 	item_display.layer = layer + 0.01
 	add_overlay(item_display)
