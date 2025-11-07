@@ -177,12 +177,6 @@
 
 //INCOMPLETE and not ready, no sprites other than tall and basically useless, also lacking a belly
 
-//Add ourselves to the borg list
-/hook/startup/proc/Modular_Borg_init_standardhound()
-	//robot_modules["Honk-Hound"] = /obj/item/robot_module/robot/clerical/honkborg - done in station_vr modular chomp for ordering reasons
-	robot_module_types += "Standard-Hound" //Add ourselves to global
-	return 1
-
 /obj/item/robot_module/robot/standard/hound
 	name = "Standard-Hound"
 	sprites = list(

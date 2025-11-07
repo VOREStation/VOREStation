@@ -244,7 +244,7 @@
 			break
 	if (user.stat == 2) return
 
-	user.AddComponent(/datum/component/remote_view/item_zoom, focused_on = target, our_item = src, viewsize = null, tileoffset = 0, show_visible_messages = FALSE)
+	user.AddComponent(/datum/component/remote_view/item_zoom, focused_on = target, vconfig_path = /datum/remote_view_config/camera_standard, our_item = src, viewsize = null, tileoffset = 0, show_visible_messages = FALSE)
 
 /*
 /obj/item/cigarpacket
@@ -298,7 +298,6 @@
 	desc = "Used in the construction of computers and other devices with a interactive console."
 	icon_state = "screen"
 	origin_tech = list(TECH_MATERIAL = 1)
-	rating = 5 // these are actually Really Important for some things??
 	matter = list(MAT_GLASS = 200)
 
 /obj/item/stock_parts/capacitor

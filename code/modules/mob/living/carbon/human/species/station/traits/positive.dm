@@ -203,6 +203,7 @@
 	cost = 1
 	var_changes = list("soft_landing" = TRUE)
 	custom_only = FALSE
+	excludes = list(/datum/trait/negative/heavy_landing)
 
 /datum/trait/positive/hardfeet
 	name = "Hard Feet"
@@ -262,7 +263,7 @@
 	cost = 1
 	custom_only = FALSE
 	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
-	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
+	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM, SPECIES_REPLICANT_CREW) //So it only shows up for custom species, hanner, and Gamma replicants
 	custom_only = FALSE
 	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic/plus)
 
@@ -277,7 +278,7 @@
 	cost = 2
 	custom_only = FALSE
 	var_changes = list("water_breather" = 1, "water_movement" = -4, "swim_mult" = 0.5) //Negate shallow water. Half the speed in deep water.
-	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
+	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM, SPECIES_REPLICANT_CREW) //So it only shows up for custom species, hanner, and Gamma replicants
 	custom_only = FALSE
 	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic)
 
@@ -541,3 +542,31 @@
 
 	can_take = ORGANICS
 	var_changes = list("virus_immune" = TRUE)
+
+/datum/trait/positive/radioactive_heal
+	name = "Radioactive Heal"
+	desc = "You heal when exposed to radiation instead of becoming ill. You can also choose to emit a glow when irradiated."
+	cost = 6
+	is_genetrait = TRUE
+	hidden = FALSE
+	has_preferences = list("glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_NO_VAREDIT_TARGET, "#c3f314",),
+	"glow_enabled" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glow enabled on spawn", TRAIT_NO_VAREDIT_TARGET, FALSE))
+
+	added_component_path = /datum/component/radiation_effects
+	excludes = list(/datum/trait/neutral/glowing_radiation, /datum/trait/positive/rad_resistance, /datum/trait/positive/rad_resistance_extreme, /datum/trait/positive/rad_immune, /datum/trait/negative/rad_weakness)
+
+/datum/trait/positive/radioactive_heal/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
+	if(trait_prefs)
+		G.radiation_color = trait_prefs["glow_color"]
+		G.glows = trait_prefs["glow_enabled"]
+	G.radiation_healing = TRUE
+
+/datum/trait/positive/radioactive_heal/unapply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..() //Does all the removal stuff
+	//We then check to see if we still have the radiation component (such as we have a species componennt of it)
+	//If so, we remove the healing effect.
+	var/datum/component/radiation_effects/G = H.GetComponent(added_component_path)
+	if(G)
+		G.radiation_healing = initial(G.radiation_healing)

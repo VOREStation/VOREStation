@@ -219,24 +219,3 @@
 
 				if(istype(user))
 					computer.tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
-
-
-
-// Relays the call to nano module, if we have one
-/datum/computer_file/program/proc/check_eye(var/mob/user)
-	if(TM)
-		return TM.check_eye(user)
-	else
-		return -1
-
-/datum/computer_file/program/apply_visual(mob/M)
-	if(TM)
-		return TM.apply_visual(M)
-
-/datum/computer_file/program/remove_visual(mob/M)
-	if(TM)
-		return TM.remove_visual(M)
-
-/datum/computer_file/program/proc/relaymove(var/mob/M, direction)
-	if(TM)
-		return TM.relaymove(M, direction)

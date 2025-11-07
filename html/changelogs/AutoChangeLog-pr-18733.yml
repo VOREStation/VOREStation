@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - bugfix: "free ghost role slot spawn"
+  - code_imp: "dependency update"

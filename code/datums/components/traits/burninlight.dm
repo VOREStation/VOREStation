@@ -23,6 +23,8 @@
 		return
 	if(owner.stat == DEAD)
 		return
+	if(owner.is_incorporeal())
+		return
 	if(!isturf(owner.loc))
 		return
 	if(owner.inStasisNow())
@@ -42,7 +44,7 @@
 				var/covered = H.get_coverage()
 				for(var/K in damageable)
 					if(!(K in covered))
-						H.apply_damage(light_amount * damage_rate, BURN, K, 0, 0)
+						H.apply_damage(light_amount * damage_rate, BURN, K, 0)
 			else
 				owner.take_overall_damage(light_amount * damage_rate,light_amount * damage_rate)
 

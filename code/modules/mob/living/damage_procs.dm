@@ -8,8 +8,8 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/sharp = FALSE, var/edge = FALSE, var/obj/used_weapon = null, var/projectile = 0)
-	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, soaked, sharp, edge, used_weapon, projectile)
+/mob/living/proc/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = FALSE, var/edge = FALSE, var/obj/used_weapon = null, var/projectile = 0)
+	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, sharp, edge, used_weapon, projectile)
 	if(GLOB.Debug2)
 		log_world("## DEBUG: apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked].")
 	if(!damage || (blocked >= 100))
@@ -61,11 +61,6 @@
 			else
 				damage = damage * M.effective_tox_resistance
 			continue
-	if(soaked)
-		if(soaked >= round(damage*0.8))
-			damage -= round(damage*0.8)
-		else
-			damage -= soaked
 
 	var/initial_blocked = blocked
 
@@ -79,8 +74,8 @@
 			adjustFireLoss(damage * blocked)
 			attempt_multishock(SHOCKFLAG_BURNDAMAGE)
 		if(SEARING)
-			apply_damage(round(damage / 3), BURN, def_zone, initial_blocked, soaked, sharp, edge, used_weapon)
-			apply_damage(round(damage / 3 * 2), BRUTE, def_zone, initial_blocked, soaked, sharp, edge, used_weapon)
+			apply_damage(round(damage / 3), BURN, def_zone, initial_blocked, sharp, edge, used_weapon)
+			apply_damage(round(damage / 3 * 2), BRUTE, def_zone, initial_blocked, sharp, edge, used_weapon)
 		if(TOX)
 			adjustToxLoss(damage * blocked)
 		if(OXY)
@@ -93,7 +88,7 @@
 			electrocute_act(damage, used_weapon, 1.0, def_zone)
 		if(BIOACID)
 			if(isSynthetic())
-				apply_damage(damage, BURN, def_zone, initial_blocked, soaked, sharp, edge, used_weapon)	// Handle it as normal burn.
+				apply_damage(damage, BURN, def_zone, initial_blocked, sharp, edge, used_weapon)	// Handle it as normal burn.
 			else
 				adjustToxLoss(damage * blocked)
 		if(ELECTROMAG)
@@ -124,7 +119,7 @@
 					emp_act(4)
 	flash_weak_pain()
 	updatehealth()
-	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, soaked, sharp, edge, used_weapon, projectile)
+	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, sharp, edge, used_weapon, projectile)
 	return 1
 
 
@@ -159,13 +154,10 @@
 		if(AGONY)
 			halloss += max((effect * blocked), 0) // Useful for objects that cause "subdual" damage. PAIN!
 		if(IRRADIATE)
-		/*
-			var/rad_protection = check_protection ? getarmor(null, "rad")/100 : 0
-			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor
-		*/
 			var/rad_protection = getarmor(null, "rad")
 			rad_protection = (100-rad_protection)/100
-			radiation += max((effect * rad_protection), 0)
+			if(!(SEND_SIGNAL(src, COMSIG_LIVING_IRRADIATE_EFFECT, effect, effecttype, blocked, check_protection, rad_protection) & COMPONENT_BLOCK_IRRADIATION))
+				radiation += max((effect * rad_protection), 0)
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
 				stuttering = max(stuttering,(effect * blocked))

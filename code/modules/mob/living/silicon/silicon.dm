@@ -52,6 +52,7 @@
 		QDEL_NULL(idcard)
 	if(laws)
 		QDEL_NULL(laws)
+	clear_subsystems()
 	return ..()
 
 /mob/living/silicon/proc/init_id()
@@ -67,7 +68,7 @@
 /mob/living/silicon/proc/show_laws()
 	return
 
-/mob/living/silicon/drop_item()
+/mob/living/silicon/drop_item(var/atom/Target)
 	return
 
 /mob/living/silicon/emp_act(severity)
@@ -396,8 +397,7 @@
 
 /mob/living/silicon/reset_perspective(atom/new_eye)
 	. = ..()
-	if(cameraFollow)
-		cameraFollow = null
+	cameraFollow = null
 
 /mob/living/silicon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(affect_silicon)

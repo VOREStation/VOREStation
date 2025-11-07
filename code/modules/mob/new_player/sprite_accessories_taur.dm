@@ -617,9 +617,9 @@
 
 /datum/sprite_accessory/tail/taur/feline/feline_2c_wag
 	name = "Feline 3-color (Taur, Fat vwag)"
-	icon_state = "feline2_s"
-	extra_overlay = "feline2_markings"
-	extra_overlay2 = "feline2_markings_2"
+	icon_state = "fatfeline2_s"
+	extra_overlay = "fatfeline2_markings"
+	extra_overlay2 = "fatfeline2_markings_2"
 	ani_state = "fatfeline_s"
 	extra_overlay_w = "fatfeline_markings_vwag"
 	extra_overlay2_w = "fatfeline_markings_vwag2"
@@ -1429,3 +1429,8 @@
 /datum/sprite_accessory/tail/taur/long_lizard/scaled
 	name = "Large Dragon Tail/W scales"
 	extra_overlay = "big_liz_mark"
+
+/datum/sprite_accessory/tail/taur/treeoak_roots
+	name = "Tree Roots (Oak)"
+	icon_state = "tree_oak_roots"
+	can_ride = 0
