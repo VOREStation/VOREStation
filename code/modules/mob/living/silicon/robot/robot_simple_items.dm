@@ -937,7 +937,7 @@
 	update_icon()
 	if(had_item && !holding_item) // Dropped
 		our_robot.playsound_local(get_turf(our_robot), 'sound/machines/click.ogg', 50)
-	if(holding_item && !had_item) // Pickup
+	if(holding_item && !had_item || (holding_item != had_item)) // Pickup or change item
 		our_robot.playsound_local(get_turf(our_robot), 'sound/machines/click2.ogg', 50)
 
 /obj/item/gripper/update_icon()
