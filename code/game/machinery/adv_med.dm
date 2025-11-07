@@ -9,6 +9,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/body_scanner
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 60

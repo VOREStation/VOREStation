@@ -206,6 +206,37 @@
 				to_chat(src, span_danger("Your legs won't respond properly, you fall down!"))
 				Weaken(10)
 
+/mob/living/carbon/human/handle_mutations()
+	. = ..()
+	if(.)
+		return
+	if(inStasisNow())
+		return
+
+	if(getFireLoss())
+		if((COLD_RESISTANCE in mutations) || (prob(1)))
+			heal_organ_damage(0,1)
+	if(getBruteLoss()) //Fireloss gets this RNG change so may as well give bruteloss it as well.
+		if(prob(1))
+			heal_organ_damage(1,0)
+
+	if((mRegen in mutations))
+		var/heal = rand(0.2,1.3)
+		if(prob(50))
+			for(var/obj/item/organ/external/O in organs) //HAS to be organs and NOT bad_external_organs as a fully healed limb w/ internal damage will NOT be in bad_external_organs
+				for(var/datum/wound/W in O.wounds)
+					if(W.bleeding())
+						W.damage = max(W.damage - heal, 0)
+						if(W.damage <= 0)
+							O.wounds -= W
+					if(W.internal)
+						W.damage = max(W.damage - heal, 0)
+						if(W.damage <= 0)
+							O.wounds -= W
+		else
+			heal_organ_damage(heal,heal)
+
+
 // RADIATION! Everyone's favorite thing in the world! So let's get some numbers down off the bat.
 // 50 rads = 1Bq. This means 1 rad = 0.02Bq.
 // However, unless I am a smoothbrained dumbo, absorbed rads are in Gy. Not Bq.
@@ -227,65 +258,20 @@
 
 // Additionally, RADIATION_SPEED_COEFFICIENT = 0.1
 
-/mob/living/carbon/human/handle_mutations_and_radiation() //Radiation rework! Now with 'accumulated_rads'
+/mob/living/carbon/human/handle_radiation() //Radiation rework! Now with 'accumulated_rads'
+	. = ..()
+	if(.)
+		return
 	if(inStasisNow())
 		return
 
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0,1)
-
-	if(stat != DEAD)
-		if((mRegen in mutations))
-			var/heal = rand(0.2,1.3)
-			if(prob(50))
-				for(var/obj/item/organ/external/O in bad_external_organs)
-					for(var/datum/wound/W in O.wounds)
-						if(W.bleeding())
-							W.damage = max(W.damage - heal, 0)
-							if(W.damage <= 0)
-								O.wounds -= W
-						if(W.internal)
-							W.damage = max(W.damage - heal, 0)
-							if(W.damage <= 0)
-								O.wounds -= W
-			else
-				heal_organ_damage(heal,heal)
-
-	radiation = CLAMP(radiation,0,5000) //Max of 100Gy. If you reach that...You're going to wish you were dead. You probably will be dead.
-	accumulated_rads = CLAMP(accumulated_rads,0,5000) //Max of 100Gy as well. You should never get higher than this. You will be dead before you can reach this.
+	radiation = CLAMP(radiation,0,RADIATION_CAP) //Max of 100Gy. If you reach that...You're going to wish you were dead. You probably will be dead.
+	accumulated_rads = CLAMP(accumulated_rads,0,RADIATION_CAP) //Max of 100Gy as well. You should never get higher than this. You will be dead before you can reach this.
 	var/obj/item/organ/internal/I = null //Used for further down below when an organ is picked.
 	if(!radiation)
-		if(species.appearance_flags & RADIATION_GLOWS)
-			glow_override = FALSE
-			set_light(0)
 		if(accumulated_rads)
 			accumulated_rads -= RADIATION_SPEED_COEFFICIENT //Accumulated rads slowly dissipate very slowly. Get to medical to get it treated!
 	else if(((life_tick % 5 == 0) && radiation) || (radiation > 600)) //Radiation is a slow, insidious killer. Unless you get a massive dose, then the onset is sudden!
-		if(species.appearance_flags & RADIATION_GLOWS)
-			glow_override = TRUE
-			set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
-		// END DOGSHIT SNOWFLAKE
-
-		var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
-		if(rad_organ && !rad_organ.is_broken())
-			var/rads = radiation/25
-			radiation -= (rads * species.rad_removal_mod)
-			adjust_nutrition(rads * species.rad_removal_mod)
-			adjustBruteLoss(-(rads * species.rad_removal_mod))
-			adjustFireLoss(-(rads * species.rad_removal_mod))
-			adjustOxyLoss(-(rads * species.rad_removal_mod))
-			adjustToxLoss(-(rads * species.rad_removal_mod))
-			updatehealth()
-			return
-
-		var/obj/item/organ/internal/brain/slime/core = locate() in internal_organs
-		if(core)
-			return
-
-		var/obj/item/organ/internal/brain/shadekin/s_brain = locate() in internal_organs
-		if(s_brain)
-			return
 
 		if(reagents.has_reagent(REAGENT_ID_PRUSSIANBLUE)) //Prussian Blue temporarily stops radiation effects.
 			return
@@ -1445,11 +1431,9 @@
 		handle_hud_list()
 
 	// now handle what we see on our screen
-
-	if(!client)
-		return 0
-
-	..()
+	. = ..()
+	if(!.)
+		return
 
 	client.screen.Remove(GLOB.global_hud.blurry, GLOB.global_hud.druggy, GLOB.global_hud.vimpaired, GLOB.global_hud.darkMask, GLOB.global_hud.nvg, GLOB.global_hud.thermal, GLOB.global_hud.meson, GLOB.global_hud.science, GLOB.global_hud.material, GLOB.global_hud.whitense)
 
@@ -1460,7 +1444,6 @@
 
 	if(stat == DEAD) //Dead
 		if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		if(healths)		healths.icon_state = "health7"	//DEAD healthmeter
 
 	else if(stat == UNCONSCIOUS && health <= 0) //Crit
 		//Critical damage passage overlay
@@ -1537,48 +1520,6 @@
 			overlay_fullscreen("fear", /atom/movable/screen/fullscreen/fear, severity)
 		else
 			clear_fullscreen("fear")
-
-		if(healths)
-			if(chem_effects[CE_PAINKILLER] > 100)
-				healths.icon_state = "health_numb"
-			else
-				// Generate a by-limb health display.
-				var/mutable_appearance/healths_ma = new(healths)
-				healths_ma.icon_state = "blank"
-				healths_ma.overlays = null
-				healths_ma.plane = PLANE_PLAYER_HUD
-
-				var/no_damage = 1
-				var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
-				if(!(species.flags & NO_PAIN))
-					trauma_val = max(traumatic_shock,halloss)/species.total_health
-				var/limb_trauma_val = trauma_val*0.3
-				// Collect and apply the images all at once to avoid appearance churn.
-				var/list/health_images = list()
-				for(var/obj/item/organ/external/E in organs)
-					if(no_damage && (E.brute_dam || E.burn_dam))
-						no_damage = 0
-					health_images += E.get_damage_hud_image(limb_trauma_val)
-
-				// Apply a fire overlay if we're burning.
-				if(on_fire || get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
-					health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
-
-				// Show a general pain/crit indicator if needed.
-				if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_CRIT)
-					trauma_val = 2
-				if(trauma_val)
-					if(!(species.flags & NO_PAIN))
-						if(trauma_val > 0.7)
-							health_images += image('icons/mob/screen1_health.dmi',"softcrit")
-						if(trauma_val >= 1)
-							health_images += image('icons/mob/screen1_health.dmi',"hardcrit")
-				else if(no_damage)
-					health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
-
-				healths_ma.add_overlay(health_images)
-				healths.appearance = healths_ma
-
 
 		var/fat_alert = /atom/movable/screen/alert/fat
 		var/hungry_alert = /atom/movable/screen/alert/hungry
@@ -1663,10 +1604,58 @@
 			if(found_welder)
 				client.screen |= GLOB.global_hud.darkMask
 
-/mob/living/carbon/human/reset_perspective(atom/A)
-	..()
-	if(machine_visual && machine_visual != A)
-		machine_visual.remove_visual(src)
+/mob/living/carbon/human/handle_hud_icons_health()
+	. = ..()
+	if(!. || !healths)
+		return
+
+	if(stat == DEAD) //Dead
+		healths.icon_state = "health7"	//DEAD healthmeter
+		return
+
+	if(stat == UNCONSCIOUS && health <= 0) //Crit
+		return
+
+	if(chem_effects[CE_PAINKILLER] > 100)
+		healths.icon_state = "health_numb"
+		return
+
+	// Generate a by-limb health display.
+	var/mutable_appearance/healths_ma = new(healths)
+	healths_ma.icon_state = "blank"
+	healths_ma.overlays = null
+	healths_ma.plane = PLANE_PLAYER_HUD
+
+	var/no_damage = 1
+	var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
+	if(!(species.flags & NO_PAIN))
+		trauma_val = max(traumatic_shock,halloss)/species.total_health
+	var/limb_trauma_val = trauma_val*0.3
+	// Collect and apply the images all at once to avoid appearance churn.
+	var/list/health_images = list()
+	for(var/obj/item/organ/external/E in organs)
+		if(no_damage && (E.brute_dam || E.burn_dam))
+			no_damage = 0
+		health_images += E.get_damage_hud_image(limb_trauma_val)
+
+	// Apply a fire overlay if we're burning.
+	if(on_fire || get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_ONFIRE)
+		health_images += image('icons/mob/OnFire.dmi',"[get_fire_icon_state()]")
+
+	// Show a general pain/crit indicator if needed.
+	if(get_hallucination_component()?.get_hud_state() == HUD_HALLUCINATION_CRIT)
+		trauma_val = 2
+	if(trauma_val)
+		if(!(species.flags & NO_PAIN))
+			if(trauma_val > 0.7)
+				health_images += image('icons/mob/screen1_health.dmi',"softcrit")
+			if(trauma_val >= 1)
+				health_images += image('icons/mob/screen1_health.dmi',"hardcrit")
+	else if(no_damage)
+		health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
+
+	healths_ma.add_overlay(health_images)
+	healths.appearance = healths_ma
 
 /mob/living/carbon/human/handle_vision()
 	if(stat == DEAD)
@@ -1744,17 +1733,11 @@
 		if(!seer && !glasses_processed && seedarkness)
 			see_invisible = see_invisible_default
 
-		if(machine)
-			var/viewflags = machine.check_eye(src)
-			if(viewflags < 0)
-				reset_perspective()
-			else if(viewflags && !is_remote_viewing())
-				sight |= viewflags
-			else
-				machine.apply_visual(src)
-		else if(eyeobj && eyeobj.owner != src)
+		if(eyeobj && eyeobj.owner != src)
 			reset_perspective()
-	return 1
+
+	// Call parent to handle signals
+	..()
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	. = FALSE
