@@ -947,7 +947,9 @@
 		return
 	// Draw the held item as a mini-image in the gripper itself
 	var/mutable_appearance/item_display = new(wrapped)
-	item_display.SetTransform(0.80, offset_y = -8)
+	item_display.SetTransform(0.75, offset_y = -8)
+	item_display.pixel_x = 0
+	item_display.pixel_y = 0
 	item_display.plane = plane
 	item_display.layer = layer + 0.01
 	add_overlay(item_display)
