@@ -116,7 +116,7 @@
 		playsound(src, I.usesound, 50, 1)
 		user.visible_message(span_notice("[user] [panel_open ? "opens" : "closes"] the hatch on the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on the [src]."))
 		update_icon()
-		if(!panel_open && user.machine == src)
+		if(!panel_open && user.check_current_machine(src))
 			user << browse(null, "window=spaceheater")
 			user.unset_machine()
 	else

@@ -65,7 +65,6 @@
 /obj/machinery/computer/timeclock/attack_hand(var/mob/user as mob)
 	if(..())
 		return
-	user.set_machine(src)
 	tgui_interact(user)
 
 /obj/machinery/computer/timeclock/tgui_interact(mob/user, datum/tgui/ui)
@@ -180,7 +179,7 @@
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
 		GLOB.data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
 		card.last_job_switch = world.time
-		callHook("reassign_employee", list(card))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, card)
 		newjob.current_positions++
 		var/mob/living/carbon/human/H = user
 		H.mind.assigned_role = card.rank
@@ -206,7 +205,7 @@
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
 		GLOB.data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
 		card.last_job_switch = world.time
-		callHook("reassign_employee", list(card))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REASSIGN_EMPLOYEE_IDCARD, card)
 		var/mob/living/carbon/human/H = user
 		H.mind.assigned_role = ptojob.title
 		H.mind.role_alt_title = ptojob.title

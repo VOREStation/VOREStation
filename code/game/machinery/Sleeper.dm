@@ -91,6 +91,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list()

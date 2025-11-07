@@ -1,8 +1,9 @@
 /client/verb/tcssave()
 	set hidden = 1
-	if(mob.machine || issilicon(mob))
-		if((istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && (mob.machine in view(1, mob))) || issilicon(mob))
-			var/obj/machinery/computer/telecomms/traffic/Machine = mob.machine
+	var/obj/machine = mob.get_current_machine()
+	if(machine || issilicon(mob))
+		if((istype(machine, /obj/machinery/computer/telecomms/traffic) && (machine in view(1, mob))) || issilicon(mob))
+			var/obj/machinery/computer/telecomms/traffic/Machine = machine
 			if(Machine.editingcode != mob)
 				return
 
@@ -27,9 +28,10 @@
 
 /client/verb/tcscompile()
 	set hidden = 1
-	if(mob.machine || issilicon(mob))
-		if((istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && (mob.machine in view(1, mob))) || (issilicon(mob) && istype(mob.machine, /obj/machinery/computer/telecomms/traffic) ))
-			var/obj/machinery/computer/telecomms/traffic/Machine = mob.machine
+	var/obj/machine = mob.get_current_machine()
+	if(machine || issilicon(mob))
+		if((istype(machine, /obj/machinery/computer/telecomms/traffic) && (machine in view(1, mob))) || (issilicon(mob) && istype(machine, /obj/machinery/computer/telecomms/traffic) ))
+			var/obj/machinery/computer/telecomms/traffic/Machine = machine
 			if(Machine.editingcode != mob)
 				return
 
@@ -78,9 +80,10 @@
 
 /client/verb/tcsrun()
 	set hidden = 1
-	if(mob.machine || issilicon(mob))
-		if((istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && (mob.machine in view(1, mob))) || (issilicon(mob) && istype(mob.machine, /obj/machinery/computer/telecomms/traffic) ))
-			var/obj/machinery/computer/telecomms/traffic/Machine = mob.machine
+	var/obj/machine = mob.get_current_machine()
+	if(machine || issilicon(mob))
+		if((istype(machine, /obj/machinery/computer/telecomms/traffic) && (machine in view(1, mob))) || (issilicon(mob) && istype(machine, /obj/machinery/computer/telecomms/traffic) ))
+			var/obj/machinery/computer/telecomms/traffic/Machine = machine
 			if(Machine.editingcode != mob)
 				return
 
@@ -144,9 +147,10 @@
 
 /client/verb/exittcs()
 	set hidden = 1
-	if(mob.machine || issilicon(mob))
-		if((istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && (mob.machine in view(1, mob))) || (issilicon(mob) && istype(mob.machine, /obj/machinery/computer/telecomms/traffic) ))
-			var/obj/machinery/computer/telecomms/traffic/Machine = mob.machine
+	var/obj/machine = mob.get_current_machine()
+	if(machine || issilicon(mob))
+		if((istype(machine, /obj/machinery/computer/telecomms/traffic) && (machine in view(1, mob))) || (issilicon(mob) && istype(machine, /obj/machinery/computer/telecomms/traffic) ))
+			var/obj/machinery/computer/telecomms/traffic/Machine = machine
 			if(Machine.editingcode == mob)
 				Machine.storedcode = "[winget(mob, "tcscode", "text")]"
 				Machine.editingcode = null
@@ -156,9 +160,10 @@
 
 /client/verb/tcsrevert()
 	set hidden = 1
-	if(mob.machine || issilicon(mob))
-		if((istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && (mob.machine in view(1, mob))) || (issilicon(mob) && istype(mob.machine, /obj/machinery/computer/telecomms/traffic) ))
-			var/obj/machinery/computer/telecomms/traffic/Machine = mob.machine
+	var/obj/machine = mob.get_current_machine()
+	if(machine || issilicon(mob))
+		if((istype(machine, /obj/machinery/computer/telecomms/traffic) && (machine in view(1, mob))) || (issilicon(mob) && istype(machine, /obj/machinery/computer/telecomms/traffic) ))
+			var/obj/machinery/computer/telecomms/traffic/Machine = machine
 			if(Machine.editingcode != mob)
 				return
 
@@ -185,9 +190,10 @@
 
 /client/verb/tcsclearmem()
 	set hidden = 1
-	if(mob.machine || issilicon(mob))
-		if((istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && (mob.machine in view(1, mob))) || (issilicon(mob) && istype(mob.machine, /obj/machinery/computer/telecomms/traffic) ))
-			var/obj/machinery/computer/telecomms/traffic/Machine = mob.machine
+	var/obj/machine = mob.get_current_machine()
+	if(machine || issilicon(mob))
+		if((istype(machine, /obj/machinery/computer/telecomms/traffic) && (machine in view(1, mob))) || (issilicon(mob) && istype(machine, /obj/machinery/computer/telecomms/traffic) ))
+			var/obj/machinery/computer/telecomms/traffic/Machine = machine
 			if(Machine.editingcode != mob)
 				return
 

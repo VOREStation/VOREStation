@@ -156,7 +156,7 @@
 /obj/effect/abstract/dark_maw/proc/do_trigger(var/mob/living/L)
 	var/will_vore = 1
 
-	if(!owner || !(target in owner) || !L.devourable || !L.can_be_drop_prey || !owner.can_be_drop_pred || !L.phase_vore)
+	if(!(target in owner) || can_phase_vore(owner, L))
 		will_vore = 0
 
 	if(!src || src.gc_destroyed)

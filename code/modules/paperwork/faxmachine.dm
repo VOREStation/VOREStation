@@ -36,8 +36,6 @@ GLOBAL_LIST_EMPTY(adminfaxes)	//cache for faxes that have been sent to admins
 		GLOB.alldepartments |= department
 
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
-	user.set_machine(src)
-
 	tgui_interact(user)
 
 /obj/machinery/photocopier/faxmachine/verb/remove_card()

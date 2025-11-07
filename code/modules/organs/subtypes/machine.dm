@@ -102,6 +102,7 @@
 		stored_mmi.forceMove(drop_location())
 		if(owner.mind)
 			owner.mind.transfer_to(stored_mmi.brainmob)
+			stored_mmi.brainmob.reset_perspective()
 	..()
 
 	var/mob/living/holder_mob = loc

@@ -870,7 +870,7 @@ var/const/preview_icons = 'icons/mob/human_races/preview.dmi'
 				if(BP_R_ARM)
 					second_limb = BP_R_HAND
 				// standardize these to the same settings for full body
-				if(BP_HEAD, BP_TORSO, BP_GROIN)
+				if(BP_TORSO, BP_GROIN)
 					limb = BP_TORSO
 					second_limb = BP_HEAD
 					third_limb = BP_GROIN

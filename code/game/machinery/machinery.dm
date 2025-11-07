@@ -223,13 +223,6 @@ Class Procs:
 		return STATUS_CLOSE
 	return ..()
 
-/obj/machinery/CouldUseTopic(var/mob/user)
-	..()
-	user.set_machine(src)
-
-/obj/machinery/CouldNotUseTopic(var/mob/user)
-	user.unset_machine()
-
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/machinery/attack_ai(mob/user as mob)
@@ -559,10 +552,3 @@ Class Procs:
 	spark_system.start()
 	qdel(spark_system)
 	qdel(src)
-
-/datum/proc/apply_visual(mob/M)
-	M.sight = 0 //Just reset their mesons and stuff so they can't use them, by default.
-	return
-
-/datum/proc/remove_visual(mob/M)
-	return
