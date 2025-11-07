@@ -49,3 +49,14 @@
   - code_imp: Implements COMSIG_MOB_RELAY_MOVEMENT
   - code_imp: COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON
   - code_imp: COMSIG_LIVING_HANDLE_HUD_DARKSIGHT
+2025-11-07:
+  Guti:
+  - bugfix: Fixed slip vore not working
+  ItsSelis:
+  - bugfix: It is now possible to add players to whitelists that have entries deliminated
+      by a space character.
+  Kashargul:
+  - bugfix: vorespawn should work again
+  - bugfix: soulcatcher spawn should work again
+  Ryumi:
+  - balance: Gamma Replicants can now take the Aquatic traits.
