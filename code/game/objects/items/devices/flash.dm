@@ -205,6 +205,7 @@
 	var/flash_strength = 5
 	var/flash_burn = 0
 
+	//Flashes can only flash THREE things: Humans, Silicons, and Robots. NOTHING ELSE!!!
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
 		if(human_target.nif && human_target.nif.flag_check(NIF_V_FLASHPROT,NIF_FLAGS_VISION))
@@ -239,7 +240,7 @@
 	target.flash_eyes()
 	target.adjustHalLoss(halloss_per_flash * (flash_strength / 5)) // Should take two flashes to stun.
 	if(flash_burn)
-		target.apply_damage(flash_strength * flash_burn/5, BURN, BP_HEAD, 0)
+		target.apply_damage(flash_burn * (flash_strength/5), BURN, BP_HEAD, 0)
 	return TRUE
 
 
