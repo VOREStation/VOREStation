@@ -39,3 +39,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_HEAVY_LANDING "trait_heavy_landing"
 /// Owner is immune to ingested toxins. (Any reagent/toxin subtype)
 #define INGESTED_TOXIN_IMMUNE "ingested_toxin_immune"
+/// If using melee, attacks will use the 'get_sparring_variant' if possible
+#define TRAIT_NONLETHAL_BLOWS "trait_nonlethal_blows"

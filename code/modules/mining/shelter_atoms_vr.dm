@@ -549,7 +549,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	icon_state = "bed"
 
 /obj/structure/bed/pod/Initialize(mapload)
-	. = ..(mapload, MAT_STEEL, MAT_COTTON)
+	. = ..(mapload, MAT_STEEL, MAT_CLOTH)
 
 //Survival Storage Unit
 /obj/machinery/smartfridge/survival_pod

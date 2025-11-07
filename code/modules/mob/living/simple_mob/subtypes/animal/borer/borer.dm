@@ -171,7 +171,7 @@
 
 	forceMove(get_turf(host))
 
-	machine = null
+	unset_machine()
 
 	if(ishuman(host))
 		var/mob/living/carbon/human/H = host
@@ -179,7 +179,7 @@
 		if(head)
 			head.implants -= src
 
-	host.machine = null
+	host.unset_machine()
 	host = null
 
 /mob/living/simple_mob/animal/borer/proc/request_player()

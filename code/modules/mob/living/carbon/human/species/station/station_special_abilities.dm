@@ -124,7 +124,7 @@
 		else
 			src.visible_message(span_infoplain(span_red(span_italics("[src] suddenly extends their fangs and plunges them down into [B]'s neck!"))), range = 1)
 		if(bleed)
-			B.apply_damage(10, BRUTE, BP_HEAD, blocked = 0, soaked = 0, sharp = TRUE, edge = FALSE)
+			B.apply_damage(10, BRUTE, BP_HEAD, blocked = 0, sharp = TRUE, edge = FALSE)
 			var/obj/item/organ/external/E = B.get_organ(BP_HEAD)
 			if(!(E.status & ORGAN_BLEEDING))
 				E.status |= ORGAN_BLEEDING //If 10 points of piercing didn't make the organ bleed, we are making it bleed.

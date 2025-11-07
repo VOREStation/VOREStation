@@ -48,7 +48,7 @@
 				var/covered = H.get_coverage()
 				for(var/K in damageable)
 					if(!(K in covered))
-						H.apply_damage(light_amount * damage_rate, BURN, K, 0, 0)
+						H.apply_damage(light_amount * damage_rate, BURN, K, 0)
 			else
 				owner.take_overall_damage(light_amount * damage_rate,light_amount * damage_rate)
 
