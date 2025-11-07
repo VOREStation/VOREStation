@@ -121,7 +121,7 @@
 		if(robot_user && robot_user.cell)
 			for(var/T in reagent_ids)
 				if(reagent_volumes[T] < volume)
-					if(!R.use_direct_power(charge_cost, 800))
+					if(!robot_user.use_direct_power(charge_cost, 800))
 						return 0
 					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
 	return 1
