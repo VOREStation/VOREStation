@@ -63,8 +63,8 @@ SUBSYSTEM_DEF(nightshift)
 				announce("Good evening, crew. To reduce power consumption and stimulate the circadian rhythms of some species, all of the lights aboard the station have been dimmed for the night.")
 			else
 				announce("Good morning, crew. As it is now day time, all of the lights aboard the station have been restored to their former brightness.")
-	for(var/obj/machinery/power/apc/APC as anything in currentrun)
-		currentrun -= APC
+	for(var/obj/machinery/power/apc/apc as anything in currentrun)
+		currentrun -= apc
 		if(apc.z in using_map.station_levels)
 			apc.set_nightshift(active, TRUE)
 		if(MC_TICK_CHECK && !forced) // subsystem will be in state SS_IDLE if forced by an admin
