@@ -822,6 +822,24 @@
 ///called when you clear a mood event from anywhere in the code.
 #define COMSIG_CLEAR_MOOD_EVENT "clear_mood"
 
+//Ventcrawling
+
+///called when a ventcrawling mob checks if it can begin ventcrawling : (obj/machinery/atmospherics/unary/vent_entered)
+#define COMSIG_MOB_VENTCRAWL_CHECK "ventcrawl_check"
+///called when a ventcrawling mob checks if it can enter a vent : (mob/entering_mob)
+#define COMSIG_VENT_CRAWLER_CHECK "ventcrawl_check"
+	#define VENT_CRAWL_BLOCK_ENTRY (1<<0)
+
+///called when a ventcrawling mob enters a vent : (obj/machinery/atmospherics/unary/vent_entered)
+#define COMSIG_MOB_VENTCRAWL_START "ventcrawl_start"
+///called when a ventcrawling mob leaves a vent : (obj/machinery/atmospherics/unary/vent_exited)
+#define COMSIG_MOB_VENTCRAWL_END "ventcrawl_end"
+
+///called when a ventcrawling mob enters a vent : (mob/entering_mob)
+#define COMSIG_VENT_CRAWLER_ENTERED "ventcrawl_entered_vent"
+///called when a ventcrawling mob leaves a vent : (mob/exiting_mob)
+#define COMSIG_VENT_CRAWLER_EXITED "ventcrawl_exit_vent"
+
 //NTnet
 
 ///called on an object by its NTNET connection component on receive. (sending_id(number), sending_netname(text), data(datum/netdata))
