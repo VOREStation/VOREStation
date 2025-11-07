@@ -18,3 +18,5 @@ SUBSYSTEM_DEF(sun)
 			GLOB.solars_list.Remove(SC)
 			continue
 		SC.update()
+		if(MC_TICK_CHECK)
+			return
