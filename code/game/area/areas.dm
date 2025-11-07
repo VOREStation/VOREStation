@@ -40,7 +40,6 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 
 	var/music = null
 	var/has_gravity = TRUE // Don't check this var directly; use get_gravity() instead
-	var/ignores_gravity_events = FALSE // Whether gravity-altering events can set the gravity of this area.
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
