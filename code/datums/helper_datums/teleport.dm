@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 
 	if(isbelly(destination)) // And if it goes STRAIGHT to a belly? Toss them there. (If pref matches, of course)
 		var/obj/belly/belly = destination
-		if(CanSpontaneousVore(belly.owner, teleatom) && belly.owner != teleatom)
+		if(can_spontaneous_vore(belly.owner, teleatom) && belly.owner != teleatom)
 			destturf = destination
 
 	// HOLD IT! destturf? Hell nah, televore finally works again.
@@ -57,9 +57,9 @@ GLOBAL_LIST_INIT(bluespace_item_types, list(
 		var/mob/living/telemob = teleatom
 		var/mob/living/mob = locate() in destturf
 		// Needs the vore helpers later. Ough.
-		if(CanSpontaneousVore(mob, telemob))
+		if(can_spontaneous_vore(mob, telemob))
 			destturf = mob.vore_selected
-		else if(CanSpontaneousVore(telemob, mob))
+		else if(can_spontaneous_vore(telemob, mob))
 			mob.forceMove(telemob.vore_selected)
 
 	if(!destturf || !curturf)
