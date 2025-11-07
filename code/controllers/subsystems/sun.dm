@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(sun)
 	//now tell the solar control computers to update their status and linked devices
 	while(current_run.len)
 		var/obj/machinery/power/solar_control/SC = current_run[current_run.len]
-		current_run--
+		current_run.len--
 		if(!SC.powernet)
 			GLOB.solars_list.Remove(SC)
 			continue
