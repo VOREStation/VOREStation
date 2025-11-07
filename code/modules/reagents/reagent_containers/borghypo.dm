@@ -123,7 +123,6 @@
 				if(reagent_volumes[T] < volume)
 					if(!R.use_direct_power(charge_cost, 800))
 						return 0
-					R.cell.use(charge_cost)
 					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
 	return 1
 
