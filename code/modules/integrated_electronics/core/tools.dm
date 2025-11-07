@@ -123,7 +123,7 @@
 		if("string")
 			accepting_refs = 0
 			new_data = tgui_input_text(user, "Now type in a string.","[src] string writing", null, MAX_MESSAGE_LEN, encode = FALSE)
-			new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 1, 0)
+			new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
 			if(istext(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				data_to_write = new_data
 				to_chat(user, span_notice("You set \the [src]'s memory to \"[new_data]\"."))

@@ -15,7 +15,6 @@
 	// Mob
 	host_mob = parent
 	RegisterSignal(host_mob, COMSIG_LIVING_LIFE, PROC_REF(on_mob_action))
-	RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION, PROC_REF(on_mob_vision_update))
 	RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(on_mob_action))
 	RegisterSignal(host_mob, COMSIG_MOB_LOGOUT, PROC_REF(on_mob_logout))
 
@@ -23,7 +22,6 @@
 	linked_machine = machine
 	RegisterSignal(linked_machine, COMSIG_QDELETING, PROC_REF(on_machine_qdelete))
 	linked_machine.in_use = TRUE
-	on_mob_vision_update()
 
 	// Lets complain if an object uses TGUI but is still setting the machine.
 	if(length(linked_machine.tgui_data()))
@@ -35,12 +33,10 @@
 	linked_machine.balloon_alert(host_mob,"you stop using \the [linked_machine]")
 	// Machine
 	UnregisterSignal(linked_machine, COMSIG_QDELETING)
-	linked_machine.remove_visual(host_mob)
 	linked_machine.in_use = FALSE
 	linked_machine = null
 	// Mob
 	UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
-	UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION)
 	UnregisterSignal(host_mob, COMSIG_LIVING_LIFE)
 	UnregisterSignal(host_mob, COMSIG_MOB_LOGOUT)
 	host_mob.reset_perspective() // Required, because our machine may have been operating a remote view
@@ -51,30 +47,13 @@
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
 	if(host_mob.stat == DEAD || !host_mob.client || !host_mob.Adjacent(linked_machine))
-		on_mob_vision_update()
 		qdel(src)
 
 /datum/component/using_machine_shim/proc/on_machine_qdelete()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 	SIGNAL_HANDLER
-	on_mob_vision_update()
 	qdel(src)
-
-/datum/component/using_machine_shim/proc/on_mob_vision_update()
-	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
-	SIGNAL_HANDLER
-
-	if(host_mob.stat == DEAD)
-		return
-	var/viewflags = linked_machine.check_eye(host_mob)
-	if(viewflags < 0)
-		return
-	if(host_mob.is_remote_viewing())
-		linked_machine.apply_visual(host_mob)
-		return
-	host_mob.sight |= viewflags
 
 /datum/component/using_machine_shim/proc/on_mob_logout()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -115,12 +94,6 @@
 		qdel(shim)
 		return
 	AddComponent(/datum/component/using_machine_shim, O)
-
-/// deprecated, do not use, return flags that should be added to the viewer's sight var. Otherwise return a negative number to indicate that the view should be cancelled.
-/atom/proc/check_eye(user as mob)
-	if (isAI(user)) // WHYYYY
-		return 0
-	return -1
 
 /// deprecated, do not use
 /obj/item/proc/updateSelfDialog()

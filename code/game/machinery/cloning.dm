@@ -30,6 +30,7 @@
 	desc = "An electronically-lockable pod for growing organic tissue."
 	density = TRUE
 	anchored = TRUE
+	flags = REMOTEVIEW_ON_ENTER
 	circuit = /obj/item/circuitboard/clonepod
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"

@@ -2,37 +2,55 @@
  * Use this if you need to remote view something. Remote view will end if you move or the remote view target is deleted. Cleared automatically if another remote view begins.
  */
 /datum/component/remote_view
+	VAR_PROTECTED/datum/remote_view_config/settings = null
 	VAR_PROTECTED/mob/host_mob
 	VAR_PROTECTED/atom/remote_view_target
-	VAR_PROTECTED/forbid_movement = TRUE
 
-/datum/component/remote_view/allow_moving
-	forbid_movement = FALSE
-
-/datum/component/remote_view/Initialize(atom/focused_on)
+/datum/component/remote_view/Initialize(atom/focused_on, vconfig_path)
 	. = ..()
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
+	// Set config
+	if(!vconfig_path)
+		vconfig_path = /datum/remote_view_config
+	settings = new vconfig_path
 	// Safety check, focus on ourselves if the target is deleted, and flag any movement to end the view.
 	host_mob = parent
 	if(QDELETED(focused_on))
 		focused_on = host_mob
-		forbid_movement = TRUE
+		settings.forbid_movement = TRUE
 	// Begin remoteview
 	host_mob.reset_perspective(focused_on) // Must be done before registering the signals
-	if(forbid_movement)
+	if(settings.forbid_movement)
 		RegisterSignal(host_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_hostmob_moved))
 	else
 		RegisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(handle_hostmob_moved))
 	RegisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_reset_perspective))
-	RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
 	RegisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 	// Upon any disruptive status effects
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN, PROC_REF(handle_status_effects))
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN, PROC_REF(handle_status_effects))
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE, PROC_REF(handle_status_effects))
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP, PROC_REF(handle_status_effects))
-	RegisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND, PROC_REF(handle_status_effects))
+	if(settings.will_stun)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN, PROC_REF(handle_status_effects))
+	if(settings.will_weaken)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN, PROC_REF(handle_status_effects))
+	if(settings.will_paralyze)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE, PROC_REF(handle_status_effects))
+	if(settings.will_sleep)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP, PROC_REF(handle_status_effects))
+	if(settings.will_blind)
+		RegisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND, PROC_REF(handle_status_effects))
+	if(settings.will_death)
+		RegisterSignal(host_mob, COMSIG_MOB_DEATH, PROC_REF(handle_endview))
+	// Handle relayed movement
+	if(settings.relay_movement)
+		RegisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT, PROC_REF(handle_relay_movement))
+	RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION, PROC_REF(handle_mob_vision_update))
+	// Hud overrides
+	if(settings.override_entire_hud)
+		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD, PROC_REF(handle_hud_override))
+	if(settings.override_health_hud)
+		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON, PROC_REF(handle_hud_health))
+	if(settings.override_darkvision_hud)
+		RegisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_DARKSIGHT, PROC_REF(handle_hud_darkvision))
 	// Recursive move component fires this, we only want it to handle stuff like being inside a paicard when releasing turf lock
 	if(isturf(focused_on))
 		RegisterSignal(host_mob, COMSIG_OBSERVER_MOVED, PROC_REF(handle_recursive_moved))
@@ -43,34 +61,68 @@
 		RegisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE, PROC_REF(on_remotetarget_reset_perspective))
 		RegisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
 
+/datum/component/remote_view/RegisterWithParent()
+	// Update the mob's vision after we attach.
+	host_mob.handle_vision()
+	host_mob.handle_regular_hud_updates()
+	settings.attached_to_mob(src, host_mob)
+
 /datum/component/remote_view/Destroy(force)
 	. = ..()
-	if(forbid_movement)
+	// Basic handling
+	if(settings.forbid_movement)
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_MOVED)
 	else
 		UnregisterSignal(host_mob, COMSIG_MOVABLE_Z_CHANGED)
 	UnregisterSignal(host_mob, COMSIG_MOB_RESET_PERSPECTIVE)
-	UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
 	UnregisterSignal(host_mob, COMSIG_REMOTE_VIEW_CLEAR)
 	// Status effects
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN)
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN)
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE)
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP)
-	UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
+	if(settings.will_stun)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_STUN)
+	if(settings.will_weaken)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_WEAKEN)
+	if(settings.will_paralyze)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_PARALYZE)
+	if(settings.will_sleep)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_SLEEP)
+	if(settings.will_blind)
+		UnregisterSignal(host_mob, COMSIG_LIVING_STATUS_BLIND)
 	if(isturf(remote_view_target))
 		UnregisterSignal(host_mob, COMSIG_OBSERVER_MOVED)
+	if(settings.will_death)
+		UnregisterSignal(host_mob, COMSIG_MOB_DEATH)
+	// Handle relayed movement
+	if(settings.relay_movement)
+		UnregisterSignal(host_mob, COMSIG_MOB_RELAY_MOVEMENT)
+	UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_VISION)
+	// Hud overrides
+	if(settings.override_entire_hud)
+		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD)
+	if(settings.override_health_hud)
+		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON)
+	if(settings.override_darkvision_hud)
+		UnregisterSignal(host_mob, COMSIG_LIVING_HANDLE_HUD_DARKSIGHT)
 	// Cleanup remote view
-	if(host_mob != remote_view_target)
+	if(host_mob != remote_view_target) // If target is not ourselves
 		UnregisterSignal(remote_view_target, COMSIG_QDELETING)
 		UnregisterSignal(remote_view_target, COMSIG_MOB_RESET_PERSPECTIVE)
 		UnregisterSignal(remote_view_target, COMSIG_REMOTE_VIEW_CLEAR)
+	// Update the mob's vision right away
+	settings.detatch_from_mob(src, host_mob)
+	settings.handle_remove_visuals(src, host_mob)
+	host_mob.handle_vision()
+	host_mob.handle_regular_hud_updates()
 	host_mob = null
 	remote_view_target = null
+	// Clear settings
+	QDEL_NULL(settings)
+
+// Signal handlers
 
 /datum/component/remote_view/proc/handle_hostmob_moved(atom/source, atom/oldloc, direction, forced, movetime)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	if(!host_mob)
 		return
 	end_view()
@@ -79,6 +131,7 @@
 /datum/component/remote_view/proc/handle_recursive_moved(atom/source, atom/oldloc, atom/new_loc)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	ASSERT(isturf(remote_view_target))
 	// This signal handler is for recursive move decoupling us from /datum/component/remote_view/mob_holding_item's turf focusing when dropped in an item like a paicard
 	// This signal is only hooked when we focus on a turf. Check the subtype for more info, this horrorshow took several days to make consistently behave.
@@ -91,12 +144,14 @@
 /datum/component/remote_view/proc/handle_forced_endview(datum/source)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	handle_endview(source)
 
 /datum/component/remote_view/proc/handle_endview(datum/source)
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
+	RETURN_TYPE(null)
 	if(!host_mob)
 		return
 	end_view()
@@ -105,6 +160,7 @@
 /datum/component/remote_view/proc/handle_status_effects(datum/source, amount, ignore_canstun)
 	SIGNAL_HANDLER
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	if(!host_mob)
 		return
 	// We don't really care what effect was caused, just that it was increasing the value and thus negatively affecting us.
@@ -117,6 +173,7 @@
 /datum/component/remote_view/proc/on_reset_perspective(datum/source)
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
+	RETURN_TYPE(null)
 	if(!host_mob)
 		return
 	// Check if we're still remote viewing the SAME target!
@@ -128,6 +185,7 @@
 /datum/component/remote_view/proc/on_remotetarget_reset_perspective(datum/source)
 	SIGNAL_HANDLER
 	PRIVATE_PROC(TRUE)
+	RETURN_TYPE(null)
 	// Non-mobs can't do this anyway
 	if(!host_mob)
 		return
@@ -151,13 +209,55 @@
 
 /datum/component/remote_view/proc/end_view()
 	PROTECTED_PROC(TRUE)
+	RETURN_TYPE(null)
 	host_mob.reset_perspective()
 
+// Optional signal handlers for more advanced remote views
+
+/datum/component/remote_view/proc/handle_relay_movement(datum/source, direction)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	return settings.handle_relay_movement(src, host_mob, direction)
+
+/datum/component/remote_view/proc/handle_hud_override(datum/source)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	return settings.handle_hud_override(src, host_mob)
+
+/datum/component/remote_view/proc/handle_hud_health(datum/source)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	return settings.handle_hud_health(src, host_mob)
+
+/datum/component/remote_view/proc/handle_hud_darkvision(datum/source)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	RETURN_TYPE(null)
+	PRIVATE_PROC(TRUE)
+	settings.handle_hud_darkvision(src, host_mob)
+
+/datum/component/remote_view/proc/handle_mob_vision_update(datum/source)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	return settings.handle_apply_visuals(src, host_mob)
+
+// Accessors
+
 /datum/component/remote_view/proc/get_host()
+	RETURN_TYPE(/mob)
 	return host_mob
 
 /datum/component/remote_view/proc/get_target()
+	RETURN_TYPE(/atom)
 	return remote_view_target
+
+/datum/component/remote_view/proc/get_coordinator()
+	RETURN_TYPE(/atom)
+	return null // For subtype
 
 /datum/component/remote_view/proc/looking_at_target_already(atom/target)
 	return (remote_view_target == target)
@@ -170,11 +270,7 @@
 	VAR_PRIVATE/obj/item/host_item
 	VAR_PRIVATE/show_message
 
-/datum/component/remote_view/item_zoom/allow_moving
-	forbid_movement = FALSE
-
-
-/datum/component/remote_view/item_zoom/Initialize(atom/focused_on, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
+/datum/component/remote_view/item_zoom/Initialize(atom/focused_on, vconfig_path, obj/item/our_item, viewsize, tileoffset, show_visible_messages)
 	. = ..()
 	host_item = our_item
 	RegisterSignal(host_item, COMSIG_QDELETING, PROC_REF(handle_endview))
@@ -240,10 +336,7 @@
  */
 /datum/component/remote_view/mremote_mutation
 
-/datum/component/remote_view/mremote_mutation/allow_moving
-	forbid_movement = FALSE
-
-/datum/component/remote_view/mremote_mutation/Initialize(atom/focused_on)
+/datum/component/remote_view/mremote_mutation/Initialize(atom/focused_on, vconfig_path)
 	if(!ismob(focused_on)) // What are you doing? This gene only works on mob targets, if you adminbus this I will personally eat your face.
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
@@ -277,10 +370,7 @@
 	VAR_PRIVATE/datum/view_coordinator // The object containing the viewer_list, with look() and unlook() logic
 	VAR_PRIVATE/list/viewers // list from the view_coordinator, lists in byond are pass by reference, so this is the SAME list as on the coordinator! If you pass a null this will explode.
 
-/datum/component/remote_view/viewer_managed/allow_moving
-	forbid_movement = FALSE
-
-/datum/component/remote_view/viewer_managed/Initialize(atom/focused_on, datum/coordinator, list/viewer_list)
+/datum/component/remote_view/viewer_managed/Initialize(atom/focused_on, vconfig_path, datum/coordinator, list/viewer_list)
 	. = ..()
 	if(!islist(viewer_list)) // BAD BAD BAD NO
 		CRASH("Passed a viewer_list that was not a list, or was null, to /datum/component/remote_view/viewer_managed component. Ensure the viewer_list exists before passing it into AddComponent.")
@@ -289,9 +379,6 @@
 	view_coordinator.look(host_mob)
 	LAZYDISTINCTADD(viewers, WEAKREF(host_mob))
 	RegisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR, PROC_REF(handle_forced_endview))
-	// If you get this crash, it's because check_eye() in look() failed
-	if(!parent)
-		CRASH("Remoteview failed, look() cancelled view during component Initilize. Usually this is caused by check_eye().")
 
 /datum/component/remote_view/viewer_managed/Destroy(force)
 	UnregisterSignal(view_coordinator, COMSIG_REMOTE_VIEW_CLEAR)
@@ -301,6 +388,8 @@
 	viewers = null
 	. = ..()
 
+/datum/component/remote_view/viewer_managed/get_coordinator()
+	return view_coordinator
 
 /**
  * Remote view subtype that is handling a byond bug where mobs changing their client eye from inside of
@@ -313,7 +402,7 @@
 /datum/component/remote_view/mob_holding_item
 	var/needs_to_decouple = FALSE // if the current top level atom is a mob
 
-/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on)
+/datum/component/remote_view/mob_holding_item/Initialize(atom/focused_on, vconfig_path)
 	if(!isobj(focused_on)) // You shouldn't be using this if so.
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
@@ -384,11 +473,15 @@
 		// Yes this spawn is needed, yes I wish it wasn't.
 		spawn(0)
 			// Decouple the view to the turf on drop, or we'll be stuck on the mob that dropped us forever
-			cache_mob.AddComponent(/datum/component/remote_view, release_turf)
-			cache_mob.client.eye = release_turf // Yes--
-			cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
-			if(!isturf(cache_mob.loc)) // For stuff like paicards
-				cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+			if(!QDELETED(cache_mob))
+				cache_mob.AddComponent(/datum/component/remote_view, release_turf)
+				cache_mob.client.eye = release_turf // Yes--
+				cache_mob.client.perspective = EYE_PERSPECTIVE // --this is required too.
+				if(!isturf(cache_mob.loc)) // For stuff like paicards
+					cache_mob.AddComponent(/datum/component/recursive_move) // Will rebuild parent chain.
+			// If you somehow deleted before the decouple... Just fix this mess.
+			else
+				cache_mob.reset_perspective()
 		// Because nested vore bellies do NOT get handled correctly for recursive prey. We need to tell the belly's occupants to decouple too... Then their own belly's occupants...
 		// Yes, two loops is faster. Because we skip typechecking byondcode side and instead do it engine side when getting the contents of the mob,
 		// we also skip typechecking every /obj in the mob on the byondcode side... Evil wizard knowledge.
