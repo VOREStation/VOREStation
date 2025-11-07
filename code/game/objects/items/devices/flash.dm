@@ -173,14 +173,13 @@
 	playsound(src, 'sound/weapons/flash.ogg', 100, 1)
 
 	if(isrobot(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			QDEL_IN(animation, 5)
+		var/atom/movable/overlay/animation = new(user.loc)
+		animation.layer = user.layer + 1
+		animation.icon_state = "blank"
+		animation.icon = 'icons/mob/mob.dmi'
+		animation.master = user
+		flick("blspell", animation)
+		QDEL_IN(animation, 5)
 
 	if(attempt_flash(target))
 		flick("flash2", src)
@@ -261,14 +260,13 @@
 	playsound(src, 'sound/weapons/flash.ogg', 100, 1)
 	flick("flash2", src)
 	if(user && isrobot(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			QDEL_IN(animation, 5)
+		var/atom/movable/overlay/animation = new(user.loc)
+		animation.layer = user.layer + 1
+		animation.icon_state = "blank"
+		animation.icon = 'icons/mob/mob.dmi'
+		animation.master = user
+		flick("blspell", animation)
+		QDEL_IN(animation, 5)
 
 	for(var/mob/living/carbon/C in oviewers(3, null))
 		var/safety = C.eyecheck()
