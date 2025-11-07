@@ -26,14 +26,14 @@
 		return
 
 	//We are able to eat the person stumbling into us.
-	if(CanStumbleVore(prey = target, pred = source)) //This is if the person stumbling into us is able to eat us!
+	if(can_stumble_vore(prey = target, pred = source)) //This is if the person stumbling into us is able to eat us!
 		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
 		source.begin_instant_nom(source, prey = target, pred = source, belly = source.vore_selected)
 		target.stop_flying()
 		return CANCEL_STUMBLED_INTO
 
 	//The person stumbling into us is able to eat us.
-	if(CanStumbleVore(prey = source, pred = target)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
+	if(can_stumble_vore(prey = source, pred = target)) //This is if the person stumbling into us is able to be eaten by us! BROKEN!
 		source.visible_message(span_vwarning("[target] flops carelessly into [source]!"))
 		target.forceMove(get_turf(source))
 		source.begin_instant_nom(target, prey = source, pred = target, belly = target.vore_selected)
@@ -52,7 +52,7 @@
 	//pred = drop_mob
 	//prey = source
 	//result: source is eaten by drop_mob
-	if(CanDropVore(prey = source, pred = drop_mob))
+	if(can_drop_vore(prey = source, pred = drop_mob))
 		drop_mob.feed_grabbed_to_self_falling_nom(drop_mob, prey = source)
 		drop_mob.visible_message(span_vdanger("\The [drop_mob] falls right onto \the [source]!"))
 		return COMSIG_CANCEL_FALL
@@ -60,7 +60,7 @@
 	//pred = source
 	//prey = drop_mob
 	//result: drop_mob is eaten by source
-	if(CanDropVore(prey = drop_mob, pred = source))
+	if(can_drop_vore(prey = drop_mob, pred = source))
 		source.feed_grabbed_to_self_falling_nom(source, prey = drop_mob)
 		source.Weaken(4)
 		source.visible_message(span_vdanger("\The [drop_mob] falls right into \the [source]!"))
@@ -93,7 +93,7 @@
 
 		// PERSON BEING HIT: CAN BE DROP PRED, ALLOWS THROW VORE.
 		// PERSON BEING THROWN: DEVOURABLE, ALLOWS THROW VORE, CAN BE DROP PREY.
-		if(CanThrowVore(prey = thrown_mob, pred = source))
+		if(can_throw_vore(prey = thrown_mob, pred = source))
 			if(!source.vore_selected)
 				return
 			source.vore_selected.nom_mob(thrown_mob) //Eat them!!!
@@ -106,7 +106,7 @@
 
 		// PERSON BEING HIT: CAN BE DROP PREY, ALLOWS THROW VORE, AND IS DEVOURABLE.
 		// PERSON BEING THROWN: CAN BE DROP PRED, ALLOWS THROW VORE.
-		else if(CanThrowVore(prey = source, pred = thrown_mob))//Pred thrown into prey.
+		else if(can_throw_vore(prey = source, pred = thrown_mob))//Pred thrown into prey.
 			if(!thrown_mob.vore_selected)
 				return
 			source.visible_message(span_vwarning("[source] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
@@ -133,56 +133,3 @@
 	else if(can_slip_vore(pred = crossed, prey = source))
 		source.begin_instant_nom(crossed, prey = source, pred = crossed, belly = crossed.vore_selected) //Must be
 		return //We DON'T block it here. Pred can slip onto the prey's tile, no problem.
-
-
-///Helper Procs
-/proc/CanStumbleVore(mob/living/prey, mob/living/pred)
-	if(!can_spontaneous_vore(pred, prey))
-		return FALSE
-	if(!prey.stumble_vore || !pred.stumble_vore)
-		return FALSE
-	return TRUE
-
-/proc/CanDropVore(mob/living/prey, mob/living/pred)
-	if(!can_spontaneous_vore(pred, prey))
-		return FALSE
-	if(!pred.drop_vore || !prey.drop_vore)
-		return FALSE
-	return TRUE
-
-/proc/CanThrowVore(mob/living/prey, mob/living/pred)
-	if(!can_spontaneous_vore(pred, prey))
-		return FALSE
-	if(!pred.throw_vore || !prey.throw_vore)
-		return FALSE
-	return TRUE
-
-/proc/can_slip_vore(mob/living/pred, mob/living/prey)
-	if(!can_spontaneous_vore(pred, prey))
-		return FALSE
-	if(!prey.is_slipping && !pred.is_slipping)	//Obviously they have to be slipping to get slip vored
-		return FALSE
-	if(world.time <= prey.slip_protect)
-		return FALSE
-	if(!pred.slip_vore || !prey.slip_vore)
-		return FALSE
-	return TRUE
-
-///This is a general 'do we have the mechanical ability to do any type of spontaneous vore' without specialties.
-/proc/can_spontaneous_vore(mob/living/pred, mob/living/prey)
-	if(!istype(pred) || !istype(prey))
-		return FALSE
-	//Unfortunately, can_be_drop_prey is 'spontanous prey' var and can_be_drop_pred is 'spontaneous pred' var...horribly named imo.
-	if(!prey.can_be_drop_prey || !pred.can_be_drop_pred)
-		return FALSE
-	if(prey.is_incorporeal() || pred.is_incorporeal())
-		return FALSE
-	if(!prey.devourable)
-		return FALSE
-	if(!is_vore_predator(pred))	//Check their bellies and stuff
-		return FALSE
-	if(!pred.vore_selected)	//Gotta have one selected as well.
-		return FALSE
-	if(!prey.allowmobvore && isanimal(pred) && !pred.ckey || (!pred.allowmobvore && isanimal(prey) && !prey.ckey))
-		return FALSE
-	return TRUE

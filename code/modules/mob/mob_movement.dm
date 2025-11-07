@@ -214,10 +214,8 @@
 		return
 
 	// Relaymove could handle it
-	if(my_mob.machine)
-		var/result = my_mob.machine.relaymove(my_mob, direct)
-		if(result)
-			return result
+	if(SEND_SIGNAL(my_mob, COMSIG_MOB_RELAY_MOVEMENT, direct))
+		return TRUE
 
 	// Can't control ourselves when drifting
 	if((isspace(loc) || my_mob.lastarea?.get_gravity() == 0) && isturf(loc))

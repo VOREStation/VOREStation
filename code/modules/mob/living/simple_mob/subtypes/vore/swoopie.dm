@@ -75,7 +75,7 @@
 		return ..()
 	if(istype(A, /mob/living)) //Swoopie gonn swoop
 		var/mob/living/M = A //typecast
-		if(!M.devourable || !M.can_be_drop_prey)
+		if(can_spontaneous_vore(src, A))
 			return ..()
 		Vac.afterattack(M, src, 1)
 		return
@@ -246,7 +246,7 @@
 				for(var/atom/movable/AM in D)
 					if(istype(AM, /mob/living))
 						var/mob/living/M = AM
-						if(!M.devourable || !M.can_be_drop_prey)
+						if(!can_spontaneous_vore(src, M))
 							to_chat(M, span_warning("[src] plunges their head into \the [D], while you narrowly avoid being sucked up!"))
 							continue
 						to_chat(M, span_warning("[src] plunges their head into \the [D], sucking up everything inside- Including you!"))

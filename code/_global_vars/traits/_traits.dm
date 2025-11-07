@@ -4,11 +4,13 @@
 
 // Please do note that there is absolutely no bearing on what traits are added to what subtype of `/datum`, this is just an easily referenceable list sorted by type.
 // The only thing that truly matters about traits is the code that is built to handle the traits, and where that code is located. Nothing else.
+#define WEAKENED_RADIATION_RESISTANCE "Weakened"
 #define NORMAL_RADIATION_RESISTANCE "Normal"
 #define RESISTANT_RADIATION_RESISTANCE "Resistant"
 #define MAJOR_RESISTANT_RADIATION_RESISTANCE "Major Resistance"
 #define IMMUNITY_RADIATION_RESISTANCE "Immunity"
 GLOBAL_LIST_INIT(radiation_levels, list(
+	WEAKENED_RADIATION_RESISTANCE  = list("safe" = 15, "danger_1" = 50, "danger_2" = 150, "danger_3" = 200, "danger_4" = 750),
 	NORMAL_RADIATION_RESISTANCE  = list("safe" = 50, "danger_1" = 100, "danger_2" = 300, "danger_3" = 400, "danger_4" = 1500),
 	RESISTANT_RADIATION_RESISTANCE  = list("safe" = 70, "danger_1" = 150, "danger_2" = 450, "danger_3" = 600, "danger_4" = 2250),
 	MAJOR_RESISTANT_RADIATION_RESISTANCE  = list("safe" = 150, "danger_1" = 300, "danger_2" = 600, "danger_3" = 1000, "danger_4" = 3000),

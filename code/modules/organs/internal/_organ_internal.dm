@@ -18,8 +18,9 @@
 
 // Heals the internal organ passively as long as it's under the bruised threshold
 // Not a lot of MATH just yet, but nutrition or other factors could be taken into account
+// Per the original PR: 'Allows internal organs to regenerate themselves passively, as long as they're not bruised.'
 /obj/item/organ/internal/proc/passive_heal()
-	if(!is_bruised() && !is_broken())
+	if(is_bruised() || is_broken())
 		return
 
 	var/heal_amt = healing_factor * CONFIG_GET(number/organ_regeneration_multiplier)
