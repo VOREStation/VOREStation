@@ -9,46 +9,6 @@
 // -S2-note- Needs categorizing and sorting.
 
 /*
- * Lasertag
- */
-
-#define LASER_TAG_HEALTH 3	//how many strikes do we get?
-
-/obj/item/clothing/suit/bluetag
-	name = "blue laser tag armor"
-	desc = "Blue Pride, Station Wide."
-	icon_state = "bluetag"
-	item_state_slots = list(slot_r_hand_str = "tdblue", slot_l_hand_str = "tdblue")
-	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO
-	allowed = list (/obj/item/gun/energy/lasertag/blue)
-	siemens_coefficient = 3.0
-	var/lasertag_health = LASER_TAG_HEALTH
-
-/obj/item/clothing/suit/bluetag/sub
-	name = "Brigader Armor"
-	desc = "Replica armor commonly worn by Spacer Union Brigade members from the hit series Spacer Trail. Modified for Laser Tag (Blue Team)."
-	icon_state = "bluetag2"
-
-/obj/item/clothing/suit/redtag
-	name = "red laser tag armor"
-	desc = "Reputed to go faster."
-	icon_state = "redtag"
-	item_state_slots = list(slot_r_hand_str = "tdred", slot_l_hand_str = "tdred")
-	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO
-	allowed = list (/obj/item/gun/energy/lasertag/red)
-	siemens_coefficient = 3.0
-	var/lasertag_health = LASER_TAG_HEALTH
-
-/obj/item/clothing/suit/redtag/dom
-	name = "Mu'tu'bi Armor"
-	desc = "Replica armor commonly worn by Dominion Of Mu'tu'bi soldiers from the hit series Spacer Trail. Modified for Laser Tag (Red Team)."
-	icon_state = "redtag2"
-
-#undef LASER_TAG_HEALTH
-
-/*
  * 80s
  */
 
