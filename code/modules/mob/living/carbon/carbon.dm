@@ -391,6 +391,10 @@
 	stop_pulling()
 	to_chat(src, span_warning("You slipped on [slipped_on]!"))
 	playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
+	if(HAS_TRAIT(src, SLIP_REFLEX_TRAIT) && !lying)
+		if(world.time >= next_emote)
+			src.emote("sflip")
+			return TRUE
 	Weaken(FLOOR(stun_duration/2, 1))
 	return TRUE
 
