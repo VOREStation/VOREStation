@@ -521,12 +521,12 @@
 #define COMSIG_ON_CARBON_SLIP "carbon_slip"
 
 // /mob/living/silicon signals
-///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity)
+///called when a silicon is emp'd. from /mob/living/silicon/emp_act(severity, recursive)
 #define COMSIG_SILICON_EMP_ACT "silicon_emp_act"
 	#define COMPONENT_BLOCK_EMP (1<<0) //If this is set, the EMP will not go through. Used by other EMP acts as well.
 
 // /mob/living/silicon/robot signals
-///called when a robot is emp'd. from /mob/living/silicon/robot/emp_act(severity)
+///called when a robot is emp'd. from /mob/living/silicon/robot/emp_act(severity, recursive)
 #define COMSIG_ROBOT_EMP_ACT "robot_emp_act"
 
 ///from base of obj/deconstruct(): (disassembled)

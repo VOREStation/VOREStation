@@ -118,7 +118,7 @@
 					return
 				if (breather)
 					src.add_fingerprint(usr)
-					if(!do_mob(usr, target, 30) || !can_apply_to_target(target, usr))
+					if(!do_after(usr, 3 SECONDS, target) || !can_apply_to_target(target, usr))
 						return
 					if(tank)
 						tank.forceMove(src)
@@ -134,7 +134,7 @@
 					return
 				usr.visible_message(span_infoplain(span_bold("\The [usr]") + " begins carefully placing the mask onto [target]."),
 							span_notice("You begin carefully placing the mask onto [target]."))
-				if(!do_mob(usr, target, 100) || !can_apply_to_target(target, usr))
+				if(!do_after(usr, 10 SECONDS, target) || !can_apply_to_target(target, usr))
 					return
 				// place mask and add fingerprints
 				usr.visible_message(span_notice("\The [usr] has placed \the mask on [target]'s mouth."),
@@ -146,14 +146,14 @@
 				return
 			if("Drip needle")
 				if(attached)
-					if(!do_mob(usr, target, 20))
+					if(!do_after(usr, 2 SECONDS, target))
 						return
 					visible_message("\The [attached] is taken off \the [src]")
 					attached = null
 				else if(ishuman(target))
 					usr.visible_message(span_infoplain(span_bold("\The [usr]") + " begins inserting needle into [target]'s vein."),
 									span_notice("You begin inserting needle into [target]'s vein."))
-					if(!do_mob(usr, target, 50))
+					if(!do_after(usr, 5 SECONDS, target))
 						usr.visible_message(span_notice("\The [usr]'s hand slips and pricks \the [target]."),
 									span_notice("Your hand slips and pricks \the [target]."))
 						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM))
