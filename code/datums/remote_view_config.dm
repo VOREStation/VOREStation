@@ -90,3 +90,13 @@
 		return
 	if(view_camera.isXRay())
 		host_mob.sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+
+/// Remote view that only allows decoupling a turf view by movement. Seperate from effect_immune to allow for easier removal in the future if the underlying issue that makes this needed is someday fixed
+/datum/remote_view_config/turf_decoupling
+	forbid_movement = TRUE
+	will_death = TRUE
+	will_stun = FALSE
+	will_weaken = FALSE
+	will_paralyze = FALSE
+	will_sleep = FALSE
+	will_blind = FALSE
