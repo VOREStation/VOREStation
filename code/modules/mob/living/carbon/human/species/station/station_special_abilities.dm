@@ -199,15 +199,15 @@
 				T.nutrition = 0 //Completely drained of everything.
 				var/damage_to_be_applied = T.species.total_health //Get their max health.
 				T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
-				C.absorbing_prey = 0
+				C.absorbing_prey = FALSE
 				to_chat(C, span_notice("You have completely drained [T], causing them to pass out."))
 				to_chat(T, span_danger("You feel weak, as if you have no control over your body whatsoever as [C] finishes draining you.!"))
 				add_attack_logs(C,T,"Succubus drained")
 				return
 
-		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
+		if(!do_after(src, 5 SECONDS, T) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
 			to_chat(src, span_warning("Your draining of [T] has been interrupted!"))
-			C.absorbing_prey = 0
+			C.absorbing_prey = FALSE
 			return
 
 /mob/living/carbon/human/proc/succubus_drain_lethal()
@@ -294,16 +294,16 @@
 				if(soulgem?.flag_check(SOULGEM_ACTIVE | SOULGEM_CATCHING_DRAIN, TRUE))
 					soulgem.catch_mob(T)
 				T.apply_damage(500, OXY) //Kill them.
-				absorbing_prey = 0
+				absorbing_prey = FALSE
 				to_chat(src, span_notice("You have completely drained [T], killing them in the process."))
 				to_chat(T, span_danger(span_massive("You... Feel... So... Weak...")))
 				visible_message(span_danger("[src] seems to finish whatever they were doing to [T]."))
 				add_attack_logs(src,T,"Succubus drained (lethal)")
 				return
 
-		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
+		if(!do_after(src, 5 SECONDS, T) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
 			to_chat(src, span_warning("Your draining of [T] has been interrupted!"))
-			absorbing_prey = 0
+			absorbing_prey = FALSE
 			return
 
 /mob/living/carbon/human/proc/slime_feed()
@@ -355,16 +355,16 @@
 			if(100)
 				T.nutrition = (T.nutrition + C.nutrition)
 				C.nutrition = 0 //Completely drained of everything.
-				C.absorbing_prey = 0
+				C.absorbing_prey = FALSE
 				to_chat(C, span_danger("You have completely fed [T] every part of your body!"))
 				to_chat(T, span_notice("You feel quite strong and well fed, as [C] finishes feeding \himself to you!"))
 				add_attack_logs(C,T,"Slime fed")
 				C.feed_grabbed_to_self_falling_nom(T,C) //Reused this proc instead of making a new one to cut down on code usage.
 				return
 
-		if(!do_mob(src, T, 50) || !G.state) //One drain tick every 5 seconds.
+		if(!do_after(src, 5 SECONDS, T) || !G.state) //One drain tick every 5 seconds.
 			to_chat(src, span_warning("Your feeding of [T] has been interrupted!"))
-			C.absorbing_prey = 0
+			C.absorbing_prey = FALSE
 			return
 
 /mob/living/carbon/human/proc/succubus_drain_finalize()
