@@ -1,0 +1,5 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "View becoming stuck on bodyscanner if you sleep or get stunned inside it, and other similar situations inside of machines or items."
+  - bugfix: "ghosting will clear remote views"

@@ -89,14 +89,6 @@
 		return 1
 	return 0
 
-/obj/machinery/space_heater/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
-		..(severity)
-		return
-	if(cell)
-		cell.emp_act(severity)
-	..(severity)
-
 /obj/machinery/space_heater/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/cell))
 		if(panel_open)

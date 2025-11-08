@@ -366,9 +366,9 @@
 	if(update_now)
 		SStgui.update_uis(src)
 
-/obj/machinery/computer/skills/emp_act(severity)
+/obj/machinery/computer/skills/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.security)
@@ -394,7 +394,7 @@
 			qdel(R)
 			continue
 
-	..(severity)
+	..(severity, recursive)
 
 #undef GENERAL_RECORD_LIST
 #undef GENERAL_RECORD_MAINT

@@ -1560,3 +1560,13 @@
 	if(current_addiction <= 0)
 		current_addiction = 40
 	return current_addiction
+
+/datum/reagent/tercozolam
+	name = REAGENT_TERCOZOLAM
+	id = REAGENT_ID_TERCOZOLAM
+	color = "#afeb17"
+	metabolism = 0.05
+	description = "A well respected drug used for treatment of schizophrenia in specific."
+	overdose = REAGENTS_OVERDOSE * 2
+	supply_conversion_value = REFINERYEXPORT_VALUE_PROCESSED
+	industrial_use = REFINERYEXPORT_REASON_DRUG

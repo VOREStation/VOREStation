@@ -49,3 +49,83 @@
   - code_imp: Implements COMSIG_MOB_RELAY_MOVEMENT
   - code_imp: COMSIG_LIVING_HANDLE_HUD_HEALTH_ICON
   - code_imp: COMSIG_LIVING_HANDLE_HUD_DARKSIGHT
+2025-11-07:
+  Guti:
+  - bugfix: Fixed slip vore not working
+  ItsSelis:
+  - bugfix: It is now possible to add players to whitelists that have entries deliminated
+      by a space character.
+  Kashargul:
+  - bugfix: vorespawn should work again
+  - bugfix: soulcatcher spawn should work again
+  Ryumi:
+  - balance: Gamma Replicants can now take the Aquatic traits.
+2025-11-08:
+  Diana:
+  - bugfix: Objects that collide with windows will no longer runtime
+  - bugfix: Protean rigs no longer runtime in Nullspace
+  - bugfix: Mecha paintkits no longer runtime when used on non-mechas
+  - bugfix: Inserting and removing borg (and apc) cells with a robot gripper now works
+      properly.
+  - bugfix: Absorbed prey will no longer slurp up stomach reagents
+  - qol: Darkvision positive no longer gives you flash weakness negative
+  - qol: Metabolism perks can be taken  by synths AND humans. Synths can now metabolize
+      beer faster!
+  - qol: Hard feet is now a neutral instead of a positive trait. It cost 0 points
+      and is so unimpactful that it made little sense to have it take a positive slot
+      when it's mostly just a fluff trait.
+  - bugfix: Brute resistance positives block you from taking other brute resistance
+      positives instead of fire resistance. The opposite is true.
+  - spellcheck: Darkvision note adjustments.
+  - rscadd: A LOT of new traits have been added from downstream.
+  - rscadd: Hide added as a neutral trait. AR huds make this irrelevant so eh. Could
+      lead to stealthy pred stuff.
+  - bugfix: Food no longer deletes weirdly
+  - code_imp: do_mob axed and replaced with the nicer, saner do_after
+  - bugfix: Halloss and Succubus Drain now take your CURRENT max health into account
+      instead of SPECIES max health
+  - bugfix: You can no longer shove a micro holding your guns into the microwave to
+      prevent your guns from being EMP'd while in a firefight.
+  - bugfix: Robotic eyes now get EMP'd.
+  - bugfix: Organic eyes no longer get EMP'd
+  - bugfix: MMIs will properly apply drain bamage to the brain within when EMP'd
+  - bugfix: Polychrome wallets no longer act as faraday cages for anything within
+  - bugfix: Chameleon equipment no longer makes anything attached to it EMP proof
+      (holster exploit)
+  - bugfix: You can no longer stick your gun into a disposal unit mid fight to protect
+      it against EMPs
+  - code_imp: EMP code is less scuffed now
+  - bugfix: Fixes a flaw in clothing logic allowing Teshari to use default icons instead
+      of falling back to their species specific icon.
+  Guti:
+  - refactor: Refactored do_teleport code
+  - bugfix: Fixes teleportation not causing spont vore
+  Kashargul:
+  - bugfix: borg hypos can no longer drain borg power cells below 800 charge
+  - code_imp: dependency update
+  Ryumi:
+  - rscadd: Cyborg hypos now use a fancy TGUI interface that makes them work kinda
+      like chem dispensers, even utilizing macros!
+  - code_imp: Further modularized chem dispenser UI code so that its UI can be used
+      by other chemical dispensing devices.
+  - code_imp: Improved borg hypo code to be less janky.
+  - qol: Chem dispensers now sort their chemicals by the name of the chemical, instead
+      of its ID - so now dispensers will be sorted in a way that's more visually intuitive
+      to players!
+  SatinIsle:
+  - qol: Disposal chutes now delete any digestion remains when they flush, making
+      them a safe place to throw them away.
+  Will:
+  - refactor: traitgenes and traits share conflict checking code
+  - bugfix: simplemobs no longer ignore pipe atmos while ventcrawling
+  - bugfix: ventcrawling mobs will no longer be affected by turf atmos while ventcrawling
+  - bugfix: scrubbers can now be welded shut
+  - balance: extreme pressure will prevent a mob from ventcrawling
+  - code_imp: Mobs can now have a unique ventcrawl entry speed
+  - code_imp: Implements COMSIG_MOB_VENTCRAWL_CHECK
+  - code_imp: Implements COMSIG_MOB_VENTCRAWL_START
+  - code_imp: Implements COMSIG_MOB_VENTCRAWL_END
+  - code_imp: Implements COMSIG_VENT_CRAWLER_CHECK
+  - code_imp: Implements COMSIG_VENT_CRAWLER_ENTERED
+  - code_imp: Implements COMSIG_VENT_CRAWLER_EXITED
+  - bugfix: Adds missing data to chemalyzer

@@ -354,6 +354,9 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/bruise()
 	damage = max(damage, min_bruised_damage)
 
+/obj/item/organ/proc/break_organ() //can't name this break because it's a reserved word
+	damage = max(damage, min_broken_damage)
+
 /obj/item/organ/proc/robotize() //Being used to make robutt hearts, etc
 	robotic = ORGAN_ROBOT
 	src.status &= ~ORGAN_BROKEN
@@ -370,9 +373,9 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/digitize() //Used to make the circuit-brain. On this level in the event more circuit-organs are added/tweaks are wanted.
 	robotize()
 
-/obj/item/organ/emp_act(severity)
+/obj/item/organ/emp_act(severity, recursive)
 	for(var/obj/O as anything in src.contents)
-		O.emp_act(severity)
+		O.emp_act(severity, recursive)
 
 	if(!(robotic >= ORGAN_ASSISTED))
 		return

@@ -1,4 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - bugfix: "It is now possible to add players to whitelists that have entries deliminated by a space character."
