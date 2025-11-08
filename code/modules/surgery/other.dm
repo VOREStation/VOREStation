@@ -327,9 +327,9 @@
 /datum/surgery_step/hardsuit
 	surgery_name = "Remove Hardsuit"
 	allowed_tools = list(
+		/obj/item/pickaxe/plasmacutter = 100,
 		/obj/item/weldingtool = 80,
 		/obj/item/surgical/circular_saw = 60,
-		/obj/item/pickaxe/plasmacutter = 100
 		)
 	req_open = 0
 
@@ -401,7 +401,8 @@
 /datum/surgery_step/dehusk/structinitial
 	surgery_name = "Create Structure"
 	allowed_tools = list(
-		/obj/item/surgical/bioregen = 100
+		/obj/item/surgical/bioregen = 100,
+		/obj/item/tape_roll = 25
 	)
 	min_duration = 90
 	max_duration = 120
@@ -524,7 +525,7 @@
 	max_duration = 120
 
 /datum/surgery_step/internal/detoxify/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return ..() && target_zone == BP_TORSO && (target.toxloss > 25 || target.oxyloss > 25)
+	return ..() && target_zone == BP_TORSO && (target.toxloss || target.oxyloss)
 
 /datum/surgery_step/internal/detoxify/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_notice("[user] begins to pull toxins from, and restore oxygen to [target]'s musculature and organs with \the [tool]."), \
@@ -536,10 +537,8 @@
 	user.visible_message(span_notice("[user] finishes pulling toxins from, and restoring oxygen to [target]'s musculature and organs with \the [tool]."), \
 	span_notice("You finish pulling toxins from, and restoring oxygen to [target]'s musculature and organs with \the [tool]."))
 	user.balloon_alert_visible("finishes pulling toxins and restoring oxygen to [target]'s organs", "pulled toxins from and restored oxygen to the organs")
-	if(target.toxloss>25)
-		target.adjustToxLoss(-20)
-	if(target.oxyloss>25)
-		target.adjustOxyLoss(-20)
+	target.adjustToxLoss(-20)
+	target.adjustOxyLoss(-20)
 	..()
 
 /datum/surgery_step/internal/detoxify/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

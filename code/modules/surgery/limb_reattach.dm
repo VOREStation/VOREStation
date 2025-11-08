@@ -94,7 +94,7 @@
 	allowed_tools = list(
 	/obj/item/surgical/hemostat = 100,	\
 	/obj/item/stack/cable_coil = 75, 	\
-	/obj/item/assembly/mousetrap = 20
+	/obj/item/assembly/mousetrap = 25
 	)
 	can_infect = 1
 

@@ -28,6 +28,8 @@
 		/obj/item/material/knife/machete/hatchet = 75
 	)
 
+	allowed_procs = list(IS_CROWBAR = 50)
+
 	min_duration = 50
 	max_duration = 70
 
