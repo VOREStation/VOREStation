@@ -73,28 +73,28 @@
 		return 0
 
 	if (!human_victim.has_organ_for_slot(slot_handcuffed))
-		to_chat(user, span_danger("\The [human_victim] needs at least two wrists before you can cuff them together!"))
+		to_chat(user, span_danger("\The [victim] needs at least two wrists before you can cuff them together!"))
 		return 0
 
 	if(istype(human_victim.gloves,/obj/item/clothing/gloves/gauntlets/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
 		to_chat(user, span_danger("\The [src] won't fit around \the [human_victim.gloves]!"))
 		return 0
 
-	user.visible_message(span_danger("\The [user] is attempting to put [cuff_type] on \the [human_victim]!"))
+	user.visible_message(span_danger("\The [user] is attempting to put [cuff_type] on \the [victim]!"))
 
 	if(!do_after(user, use_time, target = src))
 		return 0
 
-	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
+	if(!can_place(victim, user)) //victim may have resisted out of the grab in the meantime
 		return 0
 
-	add_attack_logs(user,human_victim,"Handcuffed (attempt)")
-	feedback_add_details("handcuffs","human_victim")
+	add_attack_logs(user,victim,"Handcuffed (attempt)")
+	feedback_add_details("handcuffs","victim")
 
 	user.setClickCooldown(user.get_attack_speed(src))
-	user.do_attack_animation(human_victim)
+	user.do_attack_animation(victim)
 
-	user.visible_message(span_danger("\The [user] has put [cuff_type] on \the [human_victim]!"))
+	user.visible_message(span_danger("\The [user] has put [cuff_type] on \the [victim]!"))
 
 	// Apply cuffs.
 	var/obj/item/handcuffs/cuffs = src
@@ -102,12 +102,12 @@
 		cuffs = new(get_turf(user))
 	else
 		user.drop_from_inventory(cuffs)
-	cuffs.loc = target
-	target.handcuffed = cuffs
-	target.update_handcuffed()
-	target.drop_r_hand()
-	target.drop_l_hand()
-	target.stop_pulling()
+	cuffs.loc = victim
+	victim.handcuffed = cuffs
+	victim.update_handcuffed()
+	victim.drop_r_hand()
+	victim.drop_l_hand()
+	victim.stop_pulling()
 	return 1
 
 /obj/item/handcuffs/equipped(var/mob/living/user,var/slot)
