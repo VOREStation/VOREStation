@@ -60,7 +60,7 @@
 	var/body_part = parse_zone(target_zone)
 	if(body_part == BP_GROIN || body_part == BP_TORSO || body_part == BP_HEAD)
 		to_chat(user, span_notice("Checking for internal injury now..."))
-		if(!do_mob(user, H, 50))
+		if(!do_after(user, 5 SECONDS, H))
 			to_chat(user, span_notice("You must stand still to check [H]'s [E.name] for internal injury."))
 		else
 
