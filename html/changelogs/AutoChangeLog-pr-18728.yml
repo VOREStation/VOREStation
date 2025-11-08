@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Objects that collide with windows will no longer runtime"
-  - bugfix: "Protean rigs no longer runtime in Nullspace"
-  - bugfix: "Mecha paintkits no longer runtime when used on non-mechas"
-  - bugfix: "Inserting and removing borg (and apc) cells with a robot gripper now works properly."
-  - bugfix: "Absorbed prey will no longer slurp up stomach reagents"

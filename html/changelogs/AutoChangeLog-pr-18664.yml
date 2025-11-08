@@ -1,4 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Fixes a flaw in clothing logic allowing Teshari to use default icons instead of falling back to their species specific icon."

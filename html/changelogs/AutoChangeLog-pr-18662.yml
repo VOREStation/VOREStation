@@ -1,7 +1,0 @@
-author: "Ryumi"
-delete-after: True
-changes:
-  - rscadd: "Cyborg hypos now use a fancy TGUI interface that makes them work kinda like chem dispensers, even utilizing macros!"
-  - code_imp: "Further modularized chem dispenser UI code so that its UI can be used by other chemical dispensing devices."
-  - code_imp: "Improved borg hypo code to be less janky."
-  - qol: "Chem dispensers now sort their chemicals by the name of the chemical, instead of its ID - so now dispensers will be sorted in a way that's more visually intuitive to players!"

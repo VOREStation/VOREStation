@@ -1,5 +1,0 @@
-author: "Guti"
-delete-after: True
-changes:
-  - refactor: "Refactored do_teleport code"
-  - bugfix: "Fixes teleportation not causing spont vore"
