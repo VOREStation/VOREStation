@@ -237,8 +237,8 @@
 				var/mob/living/carbon/human/human_eater = eater
 				if(istype(human_eater))
 					bite_mod = human_eater.species.bite_mod
-				if(reagents.total_volume > bitesize*bite_mod)
-					reagents.trans_to_mob(eater, bitesize*bite_mod, CHEM_INGEST)
+				if(reagents.total_volume > bitesize * bite_mod)
+					reagents.trans_to_mob(eater, bitesize * bite_mod, CHEM_INGEST)
 				else
 					reagents.trans_to_mob(eater, reagents.total_volume, CHEM_INGEST)
 				bitecount++
