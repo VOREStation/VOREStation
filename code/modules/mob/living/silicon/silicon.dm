@@ -71,7 +71,7 @@
 /mob/living/silicon/drop_item(var/atom/Target)
 	return
 
-/mob/living/silicon/emp_act(severity)
+/mob/living/silicon/emp_act(severity, recursive)
 	if(SEND_SIGNAL(src, COMSIG_SILICON_EMP_ACT, severity) & COMPONENT_BLOCK_EMP)
 		return
 	switch(severity)

@@ -1,0 +1,14 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "simplemobs no longer ignore pipe atmos while ventcrawling"
+  - bugfix: "ventcrawling mobs will no longer be affected by turf atmos while ventcrawling"
+  - bugfix: "scrubbers can now be welded shut"
+  - balance: "extreme pressure will prevent a mob from ventcrawling"
+  - code_imp: "Mobs can now have a unique ventcrawl entry speed"
+  - code_imp: "Implements COMSIG_MOB_VENTCRAWL_CHECK"
+  - code_imp: "Implements COMSIG_MOB_VENTCRAWL_START"
+  - code_imp: "Implements COMSIG_MOB_VENTCRAWL_END"
+  - code_imp: "Implements COMSIG_VENT_CRAWLER_CHECK"
+  - code_imp: "Implements COMSIG_VENT_CRAWLER_ENTERED"
+  - code_imp: "Implements COMSIG_VENT_CRAWLER_EXITED"
