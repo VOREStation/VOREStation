@@ -23,11 +23,11 @@
 		return
 	if((living_guy.nutrition < nutrition_threshold) && prob(5))
 		if(living_guy.nutrition > nutrition_weak)
-			to_chat(living_guy,span_warning("You start to feel noticeably weak as your stomach rumbles, begging for more food. Maybe you should eat something to keep your blood sugar up"))
+			to_chat(living_guy, span_warning("You start to feel noticeably weak as your stomach rumbles, begging for more food. Maybe you should eat something to keep your blood sugar up"))
 		else if(living_guy.nutrition > nutrition_danger)
-			to_chat(living_guy,span_warning("You begin to feel rather weak, and your stomach rumbles loudly. You feel lightheaded and it's getting harder to think. You really need to eat something."))
+			to_chat(living_guy, span_warning("You begin to feel rather weak, and your stomach rumbles loudly. You feel lightheaded and it's getting harder to think. You really need to eat something."))
 		else if(living_guy.nutrition > nutrition_critical)
-			to_chat(living_guy,span_danger("You're feeling very weak and lightheaded, and your stomach continously rumbles at you. You really need to eat something!"))
+			to_chat(living_guy, span_danger("You're feeling very weak and lightheaded, and your stomach continously rumbles at you. You really need to eat something!"))
 		else
 			to_chat(living_guy,span_critical("You're feeling extremely weak and lightheaded. You feel as though you might pass out any moment and your stomach is screaming for food by now! You should really find something to eat!"))
 	if((living_guy.nutrition < nutrition_weak) && prob(10))
