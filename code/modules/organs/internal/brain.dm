@@ -162,6 +162,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 			target.languages = brainmob.languages
 		else
 			target.key = brainmob.key
+			target.languages = brainmob.languages
 	..()
 
 /obj/item/organ/internal/brain/proc/get_control_efficiency()
