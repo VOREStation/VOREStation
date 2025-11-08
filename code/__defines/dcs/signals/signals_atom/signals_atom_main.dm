@@ -187,3 +187,7 @@
 #define COMSIG_OBSERVER_MOB_UNEQUIPPED "observer_mob_unequipped"
 #define COMSIG_OBSERVER_ITEM_UNEQUIPPED "observer_item_unequipped"
 #define COMSIG_OBSERVER_GLOBALMOVED "observer_global_move"
+
+///called when teleporting into a protected turf: (channel, turf/origin)
+#define COMSIG_ATOM_INTERCEPT_TELEPORT "intercept_teleport"
+	#define COMPONENT_BLOCK_TELEPORT (1<<0)
