@@ -514,7 +514,7 @@
 		update_icon()
 		return 1
 
-/obj/item/shockpaddles/emp_act(severity)
+/obj/item/shockpaddles/emp_act(severity, recursive)
 	var/new_safety = rand(0, 1)
 	if(safety != new_safety)
 		safety = new_safety
@@ -594,7 +594,7 @@
 	else
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/shockpaddles/standalone/emp_act(severity)
+/obj/item/shockpaddles/standalone/emp_act(severity, recursive)
 	..()
 	var/new_fail = 0
 	switch(severity)

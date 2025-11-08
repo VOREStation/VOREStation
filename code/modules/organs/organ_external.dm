@@ -127,9 +127,9 @@
 
 	return ..()
 
-/obj/item/organ/external/emp_act(severity)
+/obj/item/organ/external/emp_act(severity, recursive)
 	for(var/obj/O as anything in src.contents)
-		O.emp_act(severity)
+		O.emp_act(severity, recursive)
 
 	if(!(robotic >= ORGAN_ROBOT))
 		return
@@ -530,7 +530,7 @@
 			return 0
 
 	user.setClickCooldown(user.get_attack_speed(tool))
-	if(!do_mob(user, owner, 10))
+	if(!do_after(user, 1 SECOND, src))
 		to_chat(user, span_warning("You must stand still to do that."))
 		return 0
 
@@ -973,7 +973,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/use_blood_colour = data.get_species_blood_colour(owner)
 
 	removed(null, ignore_children)
-	victim?.traumatic_shock += 60
+	victim?.shock_stage += 60
 
 	if(parent_organ)
 		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)

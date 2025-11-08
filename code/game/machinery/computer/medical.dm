@@ -478,9 +478,9 @@
 	if(update_now)
 		SStgui.update_uis(src)
 
-/obj/machinery/computer/med_data/emp_act(severity)
+/obj/machinery/computer/med_data/emp_act(severity, recursive)
 	if(stat & (BROKEN|NOPOWER))
-		..(severity)
+		..(severity, recursive)
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.medical)
@@ -506,7 +506,7 @@
 			qdel(R)
 			continue
 
-	..(severity)
+	..(severity, recursive)
 
 
 /obj/machinery/computer/med_data/laptop //[TO DO] Change name to PCU and update mapdata to include replacement computers

@@ -29,7 +29,7 @@
 	var/image/filling //holds a reference to the current filling overlay
 	var/visible_name = "a syringe"
 	var/time = 30
-	var/drawing = 0
+	var/drawing = FALSE
 	var/used = FALSE
 	var/dirtiness = 0
 	var/list/targets
@@ -133,24 +133,24 @@
 						return
 
 					var/datum/reagent/B
-					drawing = 1
+					drawing = TRUE
 					if(ishuman(T))
 						var/mob/living/carbon/human/H = T
 						if(H.species && !H.should_have_organ(O_HEART))
 							H.reagents.trans_to_obj(src, amount)
 						else
 							if(ismob(H) && H != user)
-								if(!do_mob(user, target, time))
-									drawing = 0
+								if(!do_after(user, time, target))
+									drawing = FALSE
 									return
 							B = T.take_blood(src, amount)
-							drawing = 0
+							drawing = FALSE
 					else
-						if(!do_mob(user, target, time))
-							drawing = 0
+						if(!do_after(user, time, target))
+							drawing = FALSE
 							return
 						B = T.take_blood(src,amount)
-						drawing = 0
+						drawing = FALSE
 
 					if (B)
 						reagents.reagent_list += B

@@ -7,7 +7,7 @@
 		return
 
 	user.visible_message(span_notice("[user] starts inspecting [affecting]'s [E.name] carefully."))
-	if(!do_mob(user,H, 10))
+	if(!do_after(user, 1 SECOND, H))
 		to_chat(user, span_notice("You must stand still to inspect [E] for wounds."))
 	else if(LAZYLEN(E.wounds))
 		to_chat(user, span_warning("You find [E.get_wounds_desc()]"))
@@ -15,7 +15,7 @@
 		to_chat(user, span_notice("You find no visible wounds."))
 
 	to_chat(user, span_notice("Checking bones now..."))
-	if(!do_mob(user, H, 20))
+	if(!do_after(user, 2 SECONDS, H))
 		to_chat(user, span_notice("You must stand still to feel [E] for fractures."))
 	if(E.nonsolid && E.cannot_break) //boneless!
 		to_chat(user, span_warning("You are unable to feel any bones in the [E.name]!"))
@@ -26,7 +26,7 @@
 		to_chat(user, span_notice("The [E.encased ? E.encased : "bones in the [E.name]"] seem to be fine."))
 
 	to_chat(user, span_notice("Checking skin now..."))
-	if(!do_mob(user, H, 10))
+	if(!do_after(user, 1 SECOND, H))
 		to_chat(user, span_notice("You must stand still to check [H]'s skin for abnormalities."))
 	else
 		var/bad = 0
@@ -132,7 +132,7 @@
 	if(armor < 60)
 		to_chat(target, span_danger("You feel extreme pain!"))
 
-		var/max_halloss = round(target.species.total_health * 0.8) //up to 80% of passing out
+		var/max_halloss = round(target.getMaxHealth() * 0.8) //up to 80% of passing out
 		affecting.adjustHalLoss(CLAMP(max_halloss - affecting.halloss, 0, 30))
 
 /obj/item/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
