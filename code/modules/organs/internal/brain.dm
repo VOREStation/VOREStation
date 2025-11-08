@@ -159,6 +159,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	if(brainmob)
 		if(brainmob.mind)
 			brainmob.mind.transfer_to(target)
+			target.languages = brainmob.languages
 		else
 			target.key = brainmob.key
 	..()
