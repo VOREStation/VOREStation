@@ -879,7 +879,7 @@
 			if(allowtemp)
 				loc_temp = b.bellytemperature
 			else
-				loc_temp = T20C //Default "safe" temp.
+				loc_temp = species.body_temperature //Should be safe for just about anyone
 		else
 			loc_temp = environment.temperature
 
