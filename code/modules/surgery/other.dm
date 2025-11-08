@@ -171,6 +171,7 @@
 
 	var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD) //technically it's contact, but the reagents are being applied to internal tissue
 	if (trans > 0)
+		affected.germ_level = 0 //CURE THE INFECTION
 		affected.status &= ~ORGAN_DEAD
 		affected.owner.update_icons_body()
 
@@ -307,6 +308,7 @@
 	user.balloon_alert_visible("rerouted the vessels in [target]'s [affected.name]", "rerouted the vessels in \the [affected.name]")
 
 	//the actual heal stuffs
+	affected.germ_level = 0
 	affected.status &= ~ORGAN_DEAD
 	affected.owner.update_icons_body()
 	affected.remove_necrosis = 0
