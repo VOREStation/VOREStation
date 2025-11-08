@@ -214,6 +214,8 @@
 	turret_type = "normal"
 	req_one_access = list()
 	installation = /obj/item/gun/energy/lasertag/omni
+	projectile = /obj/item/projectile/beam/lasertag/omni
+	lethal_projectile = /obj/item/projectile/beam/rainbow/non_lethal //Did you know that lasertag vests have 3x weakness to shock?
 
 	targetting_is_configurable = FALSE
 	lethal_is_configurable = FALSE
@@ -221,9 +223,12 @@
 	locked = FALSE
 	enabled = FALSE
 	anchored = FALSE
-	//These two are used for lasertag
-	check_synth	 = FALSE
-	check_weapons = FALSE
+	///What vests we will target.
+	var/list/vests_to_target = list(
+		/obj/item/clothing/suit/lasertag/redtag,
+		/obj/item/clothing/suit/lasertag/bluetag,
+		/obj/item/clothing/suit/lasertag/omni
+	)
 	//These vars aren't used
 	check_access = FALSE
 	check_arrest = FALSE
@@ -232,17 +237,32 @@
 	check_all = FALSE
 	check_down = FALSE
 
+
 /obj/machinery/porta_turret/lasertag/red
 	turret_type = "red"
 	installation = /obj/item/gun/energy/lasertag/red
-	check_weapons = TRUE // Used to target blue players
+	projectile = /obj/item/projectile/beam/lasertag/red
+	vests_to_target = list(
+		/obj/item/clothing/suit/lasertag/bluetag,
+		/obj/item/clothing/suit/lasertag/omni
+	)
 
 /obj/machinery/porta_turret/lasertag/blue
 	turret_type = "blue"
 	installation = /obj/item/gun/energy/lasertag/blue
-	check_synth = TRUE // Used to target red players
+	projectile = /obj/item/projectile/beam/lasertag/blue
+	vests_to_target = list(
+		/obj/item/clothing/suit/lasertag/redtag,
+		/obj/item/clothing/suit/lasertag/omni
+	)
+
+/obj/machinery/porta_turret/lasertag/omni
+	turret_type = "industrial"
 
 /obj/machinery/porta_turret/lasertag/assess_living(var/mob/living/L)
+	if(emagged)	// FUCK YOU, PERISH
+		return L.stat ? TURRET_NOT_TARGET : TURRET_PRIORITY_TARGET //we won't be uber evil though. If you're KO'd, let's let you get back up.
+
 	if(!ishuman(L))
 		return TURRET_NOT_TARGET
 
@@ -252,16 +272,13 @@
 	if(get_dist(src, L) > 7)	//if it's too far away, why bother?
 		return TURRET_NOT_TARGET
 
-	if(L.lying)		//Don't need to stun-lock the players
-		return TURRET_NOT_TARGET
-
 	if(ishuman(L))
 		var/mob/living/carbon/human/M = L
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag) && check_synth) // Checks if they are a red player
-			return TURRET_PRIORITY_TARGET
-
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag) && check_weapons) // Checks if they are a blue player
-			return TURRET_PRIORITY_TARGET
+		if(is_type_in_list(M.wear_suit, vests_to_target)) // Checks if they are a red player
+			var/obj/item/clothing/suit/lasertag/tag_suit = M.wear_suit
+			if(tag_suit.lasertag_health > 0)
+				return TURRET_PRIORITY_TARGET
+		return TURRET_NOT_TARGET
 
 /obj/machinery/porta_turret/lasertag/tgui_data(mob/user)
 	var/list/data = list(
@@ -318,9 +335,11 @@
 	//var/obj/item/ammo_casing/shottype = E.projectile_type
 
 	projectile = P
-	lethal_projectile = projectile
+	if(!lethal_projectile)
+		lethal_projectile = projectile
 	shot_sound = initial(P.fire_sound)
-	lethal_shot_sound = shot_sound
+	if(!lethal_shot_sound)
+		lethal_shot_sound = shot_sound
 
 	if(istype(P, /obj/item/projectile/energy))
 		icon_color = "orange"
@@ -614,7 +633,7 @@
 		check_weapons = prob(50)
 		check_access = prob(20)	// check_access is a pretty big deal, so it's least likely to get turned on
 		check_anomalies = prob(50)
-		if(prob(5))
+		if(prob(20 * (1/severity))) //sev 1  = 20% chance sev 2 = 10% sev 3 = ~6 sev 4 = 5%
 			emagged = TRUE
 
 		enabled=0

@@ -21,7 +21,7 @@
 	max_duration = 90
 
 /datum/surgery_step/fix_vein/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -79,7 +79,7 @@
 	blood_level = 0 //Already gone.
 
 /datum/surgery_step/necrotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 
 	if (target_zone == O_MOUTH || target_zone == O_EYES)
@@ -389,7 +389,7 @@
 	blood_level = 1
 
 /datum/surgery_step/dehusk/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (!affected || (affected.robotic >= ORGAN_ROBOT))

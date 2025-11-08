@@ -1,4 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - qol: "Disposal chutes now delete any digestion remains when they flush, making them a safe place to throw them away."

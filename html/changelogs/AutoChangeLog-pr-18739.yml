@@ -1,5 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Food no longer deletes weirdly"
-  - code_imp: "do_mob axed and replaced with the nicer, saner do_after"

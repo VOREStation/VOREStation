@@ -6,7 +6,7 @@
 
 /datum/surgery_step/internal/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -31,7 +31,7 @@
 	max_duration = 60
 
 /datum/surgery_step/internal/fix_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!affected)
@@ -50,7 +50,7 @@
 	else if (istype(tool, /obj/item/stack/medical/bruise_pack))
 		tool_name = "the bandaid"
 
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -72,7 +72,7 @@
 	if (istype(tool, /obj/item/stack/medical/bruise_pack))
 		tool_name = "the bandaid"
 
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -93,7 +93,7 @@
 					target.SetLosebreath(0)
 
 /datum/surgery_step/internal/fix_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -133,7 +133,7 @@
 	max_duration = 60
 
 /datum/surgery_step/fix_organic_organ_robotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!affected) return
@@ -145,7 +145,7 @@
 	return affected.open != 3 && is_organ_damaged //Robots have their own code.
 
 /datum/surgery_step/fix_organic_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -160,7 +160,7 @@
 	..()
 
 /datum/surgery_step/fix_organic_organ_robotic/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -175,7 +175,7 @@
 					target.sdisabilities &= ~BLIND
 
 /datum/surgery_step/fix_organic_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!hasorgans(target))
+	if(!ishuman(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
