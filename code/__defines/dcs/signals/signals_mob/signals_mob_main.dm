@@ -311,6 +311,5 @@
 /// COMSIG used to get messages where they need to go
 #define COMSIG_VISIBLE_MESSAGE "visible_message"
 #define COMSIG_OBSERVER_MOB_EQUIPPED "observer_mob_equipped"
-#define COMSIG_OBSERVER_ITEM_EQUIPPED "observer_item_equipped"
 ///from end of revival_healing_action(): ()
 #define COMSIG_LIVING_AHEAL "living_post_aheal"

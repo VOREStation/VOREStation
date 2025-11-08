@@ -254,6 +254,7 @@
 #include "code\__defines\dcs\signals\signals_hose.dm"
 #include "code\__defines\dcs\signals\signals_hud.dm"
 #include "code\__defines\dcs\signals\signals_hydroponic.dm"
+#include "code\__defines\dcs\signals\signals_instrument.dm"
 #include "code\__defines\dcs\signals\signals_janitor.dm"
 #include "code\__defines\dcs\signals\signals_key.dm"
 #include "code\__defines\dcs\signals\signals_ladder.dm"

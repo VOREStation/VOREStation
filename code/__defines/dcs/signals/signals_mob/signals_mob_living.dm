@@ -425,3 +425,8 @@
 #define COMSIG_TAKING_APPLY_EFFECT "applying_effect"
 ///Return this in response if you don't want the effect to be applied
 	#define COMSIG_CANCEL_EFFECT (1<<0)
+///from /mob/living/proc/handle_mutations()
+#define COMSIG_HANDLE_MUTATIONS "handle_mutations"
+	#define COMPONENT_BLOCK_LIVING_MUTATIONS (1<<0)
+///from base of /mob/living/regenerate_limbs(): (noheal, excluded_limbs)
+#define COMSIG_LIVING_REGENERATE_LIMBS "living_regen_limbs"

@@ -62,25 +62,25 @@
 				return 1
 	return 0
 
-/obj/item/handcuffs/proc/attempt_to_cuff(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/proc/attempt_to_cuff(var/mob/living/carbon/victim, var/mob/user)
 	if(SEND_SIGNAL(victim, COMSIG_CARBON_CUFF_ATTEMPTED, user) & COMSIG_CARBON_CUFF_PREVENT)
 		victim.balloon_alert(user, "can't be handcuffed!")
 		return
 	playsound(src, cuff_sound, 30, 1, -2)
 
-	var/mob/living/carbon/human/H = target
-	if(!istype(H))
+	var/mob/living/carbon/human/human_victim = victim
+	if(!istype(human_victim))
 		return 0
 
-	if (!H.has_organ_for_slot(slot_handcuffed))
-		to_chat(user, span_danger("\The [H] needs at least two wrists before you can cuff them together!"))
+	if (!human_victim.has_organ_for_slot(slot_handcuffed))
+		to_chat(user, span_danger("\The [human_victim] needs at least two wrists before you can cuff them together!"))
 		return 0
 
-	if(istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
-		to_chat(user, span_danger("\The [src] won't fit around \the [H.gloves]!"))
+	if(istype(human_victim.gloves,/obj/item/clothing/gloves/gauntlets/rig) && !elastic) // Can't cuff someone who's in a deployed hardsuit.
+		to_chat(user, span_danger("\The [src] won't fit around \the [human_victim.gloves]!"))
 		return 0
 
-	user.visible_message(span_danger("\The [user] is attempting to put [cuff_type] on \the [H]!"))
+	user.visible_message(span_danger("\The [user] is attempting to put [cuff_type] on \the [human_victim]!"))
 
 	if(!do_after(user, use_time, target = src))
 		return 0
@@ -88,13 +88,13 @@
 	if(!can_place(target, user)) //victim may have resisted out of the grab in the meantime
 		return 0
 
-	add_attack_logs(user,H,"Handcuffed (attempt)")
-	feedback_add_details("handcuffs","H")
+	add_attack_logs(user,human_victim,"Handcuffed (attempt)")
+	feedback_add_details("handcuffs","human_victim")
 
 	user.setClickCooldown(user.get_attack_speed(src))
-	user.do_attack_animation(H)
+	user.do_attack_animation(human_victim)
 
-	user.visible_message(span_danger("\The [user] has put [cuff_type] on \the [H]!"))
+	user.visible_message(span_danger("\The [user] has put [cuff_type] on \the [human_victim]!"))
 
 	// Apply cuffs.
 	var/obj/item/handcuffs/cuffs = src
