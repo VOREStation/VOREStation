@@ -269,7 +269,7 @@
 										if(PULSE_THREADY)
 											sound = span_warning("an extremely rapid, thready, irregular heartbeat")
 
-							var/obj/item/organ/internal/heart/L = M.internal_organs_by_name[O_LUNGS]
+							var/obj/item/organ/internal/lungs/L = M.internal_organs_by_name[O_LUNGS]
 							if(!L || M.losebreath)
 								sound += span_warning(" and no respiration")
 							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
