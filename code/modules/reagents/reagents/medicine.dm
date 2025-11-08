@@ -1319,7 +1319,7 @@
 /datum/reagent/sterilizine
 	name = REAGENT_STERILIZINE
 	id = REAGENT_ID_STERILIZINE
-	description = "Sterilizes wounds in preparation for surgery and thoroughly removes blood."
+	description = "Sterilizes wounds in preparation for surgery and thoroughly removes blood. Can additionally be used to prepare a surface for surgery to lower risk of infection."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1344,12 +1344,12 @@
 
 /datum/reagent/sterilizine/touch_obj(var/obj/O)
 	..()
-	O.germ_level -= min(volume*20, O.germ_level)
+	O.germ_level -= min(volume*200, O.germ_level)
 	O.was_bloodied = null
 
 /datum/reagent/sterilizine/touch_turf(var/turf/T)
 	..()
-	T.germ_level -= min(volume*20, T.germ_level)
+	T.germ_level -= min(volume*200, T.germ_level)
 	for(var/obj/item/I in T.contents)
 		I.was_bloodied = null
 	for(var/obj/effect/decal/cleanable/blood/B in T)

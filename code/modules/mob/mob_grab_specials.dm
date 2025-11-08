@@ -9,7 +9,7 @@
 	user.visible_message(span_notice("[user] starts inspecting [affecting]'s [E.name] carefully."))
 	if(!do_after(user, 1 SECOND, H))
 		to_chat(user, span_notice("You must stand still to inspect [E] for wounds."))
-	else if(E.wounds.len)
+	else if(LAZYLEN(E.wounds))
 		to_chat(user, span_warning("You find [E.get_wounds_desc()]"))
 	else
 		to_chat(user, span_notice("You find no visible wounds."))
@@ -17,6 +17,8 @@
 	to_chat(user, span_notice("Checking bones now..."))
 	if(!do_after(user, 2 SECONDS, H))
 		to_chat(user, span_notice("You must stand still to feel [E] for fractures."))
+	if(E.nonsolid && E.cannot_break) //boneless!
+		to_chat(user, span_warning("You are unable to feel any bones in the [E.name]!"))
 	else if(E.status & ORGAN_BROKEN)
 		to_chat(user, span_warning("The [E.encased ? E.encased : "bone in the [E.name]"] moves slightly when you poke it!"))
 		H.custom_pain("Your [E.name] hurts where it's poked.", 40)
@@ -37,8 +39,80 @@
 		if(E.status & ORGAN_DEAD)
 			to_chat(user, span_warning("[E] is decaying!"))
 			bad = 1
+		if(E.status & ORGAN_DEAD) //this is also infection level 3
+			to_chat(user, span_bolddanger("[H]'s [E.name] is gangreous and completely dead!"))
+			bad = 1
+		else if(E.germ_level > INFECTION_LEVEL_ONE)
+			if(E.germ_level > INFECTION_LEVEL_TWO)
+				to_chat(user, span_danger("[H]'s [E.name] shows signs of a severe infection!"))
+				bad = 1
+			else
+				to_chat(user, span_warning("[H] shows signs of infection in the [E.name]."))
+				bad = 1
+		if(LAZYLEN(E.wounds))
+			for(var/datum/wound/W in E.wounds)
+				if(W.internal)
+					to_chat(user, span_danger("You find a large, swelling hematoma in the skin")) //INTERNAL BLEEDING, BE VERY AFRAID.
+					break
 		if(!bad)
 			to_chat(user, span_notice("[H]'s skin is normal."))
+
+	var/body_part = parse_zone(target_zone)
+	if(body_part == BP_GROIN || body_part == BP_TORSO || body_part == BP_HEAD)
+		to_chat(user, span_notice("Checking for internal injury now..."))
+		if(!do_after(user, 5 SECONDS, H))
+			to_chat(user, span_notice("You must stand still to check [H]'s [E.name] for internal injury."))
+		else
+
+			///If we have a bad organ down here. Very non-specific. Doctor should ask how badly it hurt.
+			var/bad_organs = 0
+			///If we have appendicitis or not.
+			var/appendicitis = FALSE
+			switch(body_part)
+
+				if(BP_GROIN)
+					var/obj/item/organ/internal/intestine/intestine = H.internal_organs_by_name[O_INTESTINE]
+					var/obj/item/organ/internal/stomach/stomach = H.internal_organs_by_name[O_STOMACH]
+					var/obj/item/organ/internal/kidneys/kidneys = H.internal_organs_by_name[O_KIDNEYS]
+					var/obj/item/organ/internal/liver/liver = H.internal_organs_by_name[O_LIVER]
+					var/obj/item/organ/internal/spleen/spleen = H.internal_organs_by_name[O_SPLEEN]
+					var/obj/item/organ/internal/appendix/appendix = H.internal_organs_by_name[O_APPENDIX]
+					if(intestine && intestine.is_bruised())
+						bad_organs++
+					if(stomach && stomach.is_bruised())
+						bad_organs++
+					if(kidneys && kidneys.is_bruised())
+						bad_organs++
+					if(liver && liver.is_bruised())
+						bad_organs++
+					if(spleen && spleen.is_bruised())
+						bad_organs++
+					if(appendix && (appendix.is_bruised() || appendix.inflamed))
+						bad_organs++
+						appendicitis = TRUE
+
+				if(BP_TORSO)
+					var/obj/item/organ/internal/lungs/lungs = H.internal_organs_by_name[O_LUNGS]
+					var/obj/item/organ/internal/heart/heart = H.internal_organs_by_name[O_HEART]
+					if(lungs && lungs.is_bruised())
+						bad_organs++
+					if(heart && heart.is_bruised())
+						bad_organs++
+
+				if(BP_HEAD)
+					var/obj/item/organ/internal/voicebox/voicebox = H.internal_organs_by_name[O_VOICE]
+					if(voicebox && voicebox.is_bruised())
+						bad_organs++
+
+			if(bad_organs)
+				to_chat(user, span_warning("[H]'s [E.name] appears to be tender when you press on it, indicating an internal injury."))
+				H.custom_pain("Your [E.name] hurts where it's poked.", bad_organs*20)
+
+			if(appendicitis)
+				var/pain_check = (H.stat && (H.can_feel_pain() || H.synth_cosmetic_pain) && H.chem_effects[CE_PAINKILLER] < 60)
+				if(pain_check) //They can feel pain.
+					to_chat(user, span_danger("[H] jolts when you let go of their [E.name], indicating appendicitis!"))
+					H.custom_pain("You feel pure agony as [src] pushes down on your [E.name]!", 200)
 
 /obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)

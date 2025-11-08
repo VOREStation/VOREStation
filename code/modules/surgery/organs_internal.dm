@@ -97,9 +97,9 @@
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	user.visible_message(span_warning("[user]'s hand slips, getting mess and tearing the inside of [target]'s [affected.name] with \the [tool]!"), \
-	span_warning("Your hand slips, getting mess and tearing the inside of [target]'s [affected.name] with \the [tool]!"))
-	user.balloon_alert_visible("slips, gettng mess and tearing the inside of [target]'s [affected.name]", "your hand slips, getting mess and tearng the [affected.name]'s insides")
+	user.visible_message(span_warning("[user]'s hand slips, getting messy and tearing the inside of [target]'s [affected.name] with \the [tool]!"), \
+	span_warning("Your hand slips, getting messy and tearing the inside of [target]'s [affected.name] with \the [tool]!"))
+	user.balloon_alert_visible("slips, getting messy and tearing the inside of [target]'s [affected.name]", "your hand slips, getting mess and tearing the [affected.name]'s insides")
 	var/dam_amt = 2
 
 	if (istype(tool, /obj/item/stack/medical/advanced/bruise_pack))
@@ -273,7 +273,7 @@
 
 	allowed_tools = list(
 	/obj/item/surgical/hemostat = 100,	\
-	/obj/item/material/kitchen/utensil/fork = 20
+	/obj/item/material/kitchen/utensil/fork = 50
 	)
 
 	allowed_procs = list(IS_WIRECUTTER = 100) //FBP code also uses this, so let's be nice. Roboticists won't know to use hemostats.
@@ -419,7 +419,7 @@
 	var/obj/item/organ/O = tool
 	if(istype(O))
 		user.remove_from_mob(O)
-		O.replaced(target,affected)
+		O.replaced(target, affected)
 
 /datum/surgery_step/internal/replace_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(span_warning("[user]'s hand slips, damaging \the [tool]!"), \
