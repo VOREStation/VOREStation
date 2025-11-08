@@ -306,6 +306,7 @@
 #include "code\__defines\dcs\signals\signals_transport.dm"
 #include "code\__defines\dcs\signals\signals_turf.dm"
 #include "code\__defines\dcs\signals\signals_twohand.dm"
+#include "code\__defines\dcs\signals\signals_unittest.dm"
 #include "code\__defines\dcs\signals\signals_vehicle.dm"
 #include "code\__defines\dcs\signals\signals_vore.dm"
 #include "code\__defines\dcs\signals\signals_wash.dm"
