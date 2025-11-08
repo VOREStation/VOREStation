@@ -1,0 +1,10 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Darkvision positive no longer gives you flash weakness negative"
+  - qol: "Metabolism perks can be taken  by synths AND humans. Synths can now metabolize beer faster!"
+  - qol: "Hard feet is now a neutral instead of a positive trait. It cost 0 points and is so unimpactful that it made little sense to have it take a positive slot when it's mostly just a fluff trait."
+  - bugfix: "Brute resistance positives block you from taking other brute resistance positives instead of fire resistance. The opposite is true."
+  - spellcheck: "Darkvision note adjustments."
+  - rscadd: "A LOT of new traits have been added from downstream."
+  - rscadd: "Hide added as a neutral trait. AR huds make this irrelevant so eh. Could lead to stealthy pred stuff."
