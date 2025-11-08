@@ -319,7 +319,7 @@
 	if(anchored)
 		to_chat(user, span_notice("\The [src] won't budge, you can't pick it up!"))
 		return
-	if (hasorgans(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_HAND]
 		if (user.hand)
@@ -401,7 +401,7 @@
 	else
 		return 0
 
-/obj/item/throw_impact(atom/hit_atom)
+/obj/item/throw_impact(atom/hit_atom, var/speed)
 	..()
 	if(isliving(hit_atom) && !hit_atom.is_incorporeal()) //Living mobs handle hit sounds differently.
 		var/volume = get_volume_by_throwforce_and_or_w_class()

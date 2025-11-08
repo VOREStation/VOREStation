@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "borg hypos can no longer drain borg power cells below 800 charge"

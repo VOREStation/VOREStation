@@ -59,7 +59,7 @@
 		user.balloon_alert_visible("[user] attempts to force [M] to swallow \the [src].")
 
 		user.setClickCooldown(user.get_attack_speed(src))
-		if(!do_mob(user, M))
+		if(!do_after(user, 3 SECONDS, M))
 			return
 
 		user.drop_from_inventory(src) //icon update
