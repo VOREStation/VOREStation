@@ -119,7 +119,7 @@
 			winner.visible_message(span_bold("\The [winner]") + " is suddenly knocked to the ground.")
 			winner.SetWeakened(max(winner.weakened,50))
 		if(TELEPORTING_CRACKER)
-			if(CanSpontaneousVore(loser, winner))
+			if(can_spontaneous_vore(loser, winner))
 				winner.visible_message(span_bold("\The [winner]") + " is teleported to somewhere nearby...")
 				var/datum/effect/effect/system/spark_spread/spk
 				spk = new(winner)

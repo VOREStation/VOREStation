@@ -4,7 +4,7 @@
 /mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
 	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)){return unarmed_hardclaws}
 	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
-		if(pulling_punches)
+		if(HAS_TRAIT(src, TRAIT_NONLETHAL_BLOWS))
 			var/datum/unarmed_attack/soft_type = src.default_attack.get_sparring_variant()
 			if(soft_type)
 				return soft_type
@@ -12,20 +12,20 @@
 	if(src.gloves)
 		var/obj/item/clothing/gloves/G = src.gloves
 		if(istype(G) && G.special_attack && G.special_attack.is_usable(src, target, hit_zone))
-			if(pulling_punches)
+			if(HAS_TRAIT(src, TRAIT_NONLETHAL_BLOWS))
 				var/datum/unarmed_attack/soft_type = G.special_attack.get_sparring_variant()
 				if(soft_type)
 					return soft_type
 			return G.special_attack
 	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
-		if(pulling_punches)
+		if(HAS_TRAIT(src, TRAIT_NONLETHAL_BLOWS))
 			var/datum/unarmed_attack/soft_type = src.default_attack.get_sparring_variant()
 			if(soft_type)
 				return soft_type
 		return src.default_attack
 	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
 		if(u_attack.is_usable(src, target, hit_zone))
-			if(pulling_punches)
+			if(HAS_TRAIT(src, TRAIT_NONLETHAL_BLOWS))
 				var/datum/unarmed_attack/soft_variant = u_attack.get_sparring_variant()
 				if(soft_variant)
 					return soft_variant
@@ -389,7 +389,7 @@
 			var/obj/item/clothing/accessory/G = H.gloves
 			real_damage += G.punch_force
 			hit_dam_type = G.punch_damtype
-		if(H.pulling_punches && !attack.sharp && !attack.edge)	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN, BUT YOU CAN'T "PULL" A KNIFE
+		if(HAS_TRAIT(H, TRAIT_NONLETHAL_BLOWS) && !attack.sharp && !attack.edge)	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN, BUT YOU CAN'T "PULL" A KNIFE
 			hit_dam_type = HALLOSS
 	real_damage *= damage_multiplier
 	rand_damage *= damage_multiplier

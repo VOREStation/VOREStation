@@ -165,9 +165,12 @@
 	var/tforce = 0
 	if(ismob(source))
 		tforce = 40
-	else if(isobj(source))
+	else if(isitem(source))
 		var/obj/item/I = source
 		tforce = I.throwforce
+	else if(isobj(source))
+		var/obj/hitting_object = source
+		tforce = hitting_object.w_class * 5
 	if(reinf) tforce *= 0.25
 	if(health - tforce <= 7 && !reinf)
 		anchored = FALSE

@@ -263,7 +263,7 @@
 	cost = 1
 	custom_only = FALSE
 	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
-	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
+	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM, SPECIES_REPLICANT_CREW) //So it only shows up for custom species, hanner, and Gamma replicants
 	custom_only = FALSE
 	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic/plus)
 
@@ -278,7 +278,7 @@
 	cost = 2
 	custom_only = FALSE
 	var_changes = list("water_breather" = 1, "water_movement" = -4, "swim_mult" = 0.5) //Negate shallow water. Half the speed in deep water.
-	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
+	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM, SPECIES_REPLICANT_CREW) //So it only shows up for custom species, hanner, and Gamma replicants
 	custom_only = FALSE
 	excludes = list(/datum/trait/positive/good_swimmer, /datum/trait/negative/bad_swimmer, /datum/trait/positive/aquatic)
 
@@ -549,8 +549,8 @@
 	cost = 6
 	is_genetrait = TRUE
 	hidden = FALSE
-	has_preferences = list("glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_VAREDIT_TARGET_MOB, "#c3f314",),
-	"glow_enabled" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glow enabled on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE))
+	has_preferences = list("glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_NO_VAREDIT_TARGET, "#c3f314",),
+	"glow_enabled" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glow enabled on spawn", TRAIT_NO_VAREDIT_TARGET, FALSE))
 
 	added_component_path = /datum/component/radiation_effects
 	excludes = list(/datum/trait/neutral/glowing_radiation, /datum/trait/positive/rad_resistance, /datum/trait/positive/rad_resistance_extreme, /datum/trait/positive/rad_immune, /datum/trait/negative/rad_weakness)

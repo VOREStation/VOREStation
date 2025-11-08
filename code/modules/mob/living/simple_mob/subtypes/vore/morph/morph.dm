@@ -217,7 +217,7 @@
 				var/list/potentials = living_mobs(0)
 				if(potentials.len)
 					var/mob/living/target = pick(potentials)
-					if(CanSpontaneousVore(src, target))
+					if(can_spontaneous_vore(src, target))
 						if(target.buckled)
 							target.buckled.unbuckle_mob(target, force = TRUE)
 						target.forceMove(vore_selected)

@@ -4,7 +4,7 @@ export type Data = {
   possible_sprites?: spriteOption[];
   currentName: string;
   isDefaultName: boolean;
-  theme?: string;
+  theme: string | null;
   selected_module?: string;
   sprite_datum?: string | null;
   sprite_datum_class?: string | null;
