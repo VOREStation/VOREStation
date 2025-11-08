@@ -842,11 +842,12 @@
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
 		return
+
+	if(is_incorporeal()) //Not in this plane of existance right now, tbh.
+		return
+
 	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
-
-	if(is_incorporeal())
-		return
 
 	//Moved pressure calculations here for use in skip-processing check.
 	var/pressure = environment.return_pressure()
@@ -875,7 +876,10 @@
 			loc_temp = cc.air_contents.temperature
 		else if(isbelly(loc))
 			var/obj/belly/b = loc
-			loc_temp = b.bellytemperature
+			if(allowtemp)
+				loc_temp = b.bellytemperature
+			else
+				loc_temp = species.body_temperature //Should be safe for just about anyone
 		else
 			loc_temp = environment.temperature
 
