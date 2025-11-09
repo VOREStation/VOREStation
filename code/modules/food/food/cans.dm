@@ -10,7 +10,9 @@
 /obj/item/reagent_containers/food/drinks/cans/attack_self(mob/user)
 	if(user.a_intent == I_HURT && !is_open_container())
 		to_chat(user, span_warning("You shake [src]."))
-		shaken++
+		if(!shaken)
+			START_PROCESSING(SSobj, src)
+		shaken += 3
 		return
 	if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10)) // Because it's always funny
 		shaken += 10
@@ -27,6 +29,11 @@
 		if(shaken > 50)
 			explosion(get_turf(src), -1, -1, -1, 1)
 			qdel(src)
+
+/obj/item/reagent_containers/food/drinks/cans/process()
+	if(shaken <= 0)
+		return PROCESS_KILL
+	shaken--
 
 //DRINKS
 
