@@ -18,7 +18,7 @@
 		owner.set_stat(CONSCIOUS)
 		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
-/obj/item/organ/internal/cell/emp_act(severity)
+/obj/item/organ/internal/cell/emp_act(severity, recursive)
 	..()
 	owner.adjust_nutrition(-rand(10 / severity, 50 / severity))
 
@@ -102,6 +102,7 @@
 		stored_mmi.forceMove(drop_location())
 		if(owner.mind)
 			owner.mind.transfer_to(stored_mmi.brainmob)
+			stored_mmi.brainmob.reset_perspective()
 	..()
 
 	var/mob/living/holder_mob = loc
@@ -109,9 +110,8 @@
 		holder_mob.drop_from_inventory(src)
 	qdel(src)
 
-/obj/item/organ/internal/mmi_holder/emp_act(severity)
-	// ..() // VOREStation Edit - Don't take damage
-	owner?.adjustToxLoss(rand(6/severity, 12/severity))
+/obj/item/organ/internal/mmi_holder/emp_act(severity, recursive)
+	stored_mmi.emp_act(severity, recursive)
 
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"

@@ -458,7 +458,7 @@
 	power_gen = cool_rotations
 	runner.nutrition -= nutrition_drain
 
-/obj/machinery/power/rtg/reg/emp_act(severity)
+/obj/machinery/power/rtg/reg/emp_act(severity, recursive)
 	return
 
 /obj/item/circuitboard/machine/reg_d

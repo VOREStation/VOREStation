@@ -417,9 +417,9 @@
 		audible_message(span_notice("\The [src] flashes a message across its screen, \"Additional personalities available for download.\""), hearing_distance = world.view, runemessage = "bleeps!")
 		last_notify = world.time
 
-/obj/item/paicard/emp_act(severity)
+/obj/item/paicard/emp_act(severity, recursive)
 	for(var/mob/M in src)
-		M.emp_act(severity)
+		M.emp_act(severity, recursive)
 
 /obj/item/paicard/ex_act(severity)
 	if(pai)

@@ -324,7 +324,26 @@ GLOBAL_LIST_EMPTY(smeses)
 		to_chat(user, span_filter_notice(span_warning("You need to open access hatch on [src] first!")))
 		return FALSE
 
-	if(W.has_tool_quality(TOOL_WELDER))
+	if(istype(W, /obj/item/fusion_coil))
+		var/obj/item/fusion_coil/FC = W
+		if(FC.spent || FC.coil_charge == 0)
+			to_chat(user, span_filter_notice("\The [FC] has no charge remaining."))
+			return FALSE
+		else if(charge + FC.coil_charge > capacity)
+			to_chat(user, span_filter_notice("\The [FC] has too much charge stored to recharge \the [src]."))
+			return FALSE
+		else
+			playsound(src, 'sound/effects/lightning_chargeup.ogg', 75, 0, 1)
+			if(do_after(user, 10 SECONDS, target = src))
+				to_chat(user, span_filter_notice("You successfully recharge \the [src] with \the [FC]. It is now depleted."))
+				charge += FC.coil_charge
+				FC.coil_charge = 0
+				FC.spent = TRUE
+				FC.name = "depleted [FC.name]"
+				FC.icon_state = FC.spent_icon
+				return FALSE
+
+	else if(W.has_tool_quality(TOOL_WELDER))
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(!WT.isOn())
 			to_chat(user, span_filter_notice("Turn on \the [WT] first!"))
@@ -336,6 +355,7 @@ GLOBAL_LIST_EMPTY(smeses)
 			to_chat(user, span_filter_notice("You repair all structural damage to \the [src]"))
 			damage = 0
 		return FALSE
+
 	else if(istype(W, /obj/item/stack/cable_coil) && !building_terminal)
 		building_terminal = 1
 		var/obj/item/stack/cable_coil/CC = W
@@ -498,7 +518,7 @@ GLOBAL_LIST_EMPTY(smeses)
 				explosion(get_turf(src), 0, 1, 2)
 		qdel(src) // Either way we want to ensure the SMES is deleted.
 
-/obj/machinery/power/smes/emp_act(severity)
+/obj/machinery/power/smes/emp_act(severity, recursive)
 	inputting(rand(0,1))
 	outputting(rand(0,1))
 	output_level = rand(0, output_level_max)

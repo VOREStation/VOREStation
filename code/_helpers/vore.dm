@@ -68,7 +68,7 @@
 		return FALSE
 	if(!pred.slip_vore && !prey.slip_vore)
 		return FALSE
-	if(!pred.is_slipping || !prey.is_slipping)
+	if(!pred.is_slipping && !prey.is_slipping)
 		return FALSE
 	if(world.time <= prey.slip_protect)
 		return FALSE
