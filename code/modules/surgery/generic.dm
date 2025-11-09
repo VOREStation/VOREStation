@@ -192,7 +192,6 @@
 	surgery_name = "Clamp Bleeders"
 	allowed_tools = list(
 		/obj/item/surgical/hemostat = 100,	\
-		/obj/item/material/twohanded/fireaxe = 99, \
 		/obj/item/stack/cable_coil = 75, 	\
 		/obj/item/assembly/mousetrap = 25
 	)
@@ -362,6 +361,7 @@
 	surgery_name = "Amputate Limb"
 	allowed_tools = list(
 		/obj/item/surgical/circular_saw = 100, \
+		/obj/item/material/twohanded/fireaxe = 99, \
 		/obj/item/material/knife/machete/hatchet = 75
 	)
 	req_open = 0
