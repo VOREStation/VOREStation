@@ -94,7 +94,6 @@
 /datum/component/gas_holder/Destroy(force = FALSE)
 	disconnect()
 	QDEL_NULL(air_contents)
-	portables_connector = null
 	..()
 
 ///Handles gas reactions inside us.
