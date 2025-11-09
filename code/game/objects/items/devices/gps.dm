@@ -182,6 +182,9 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		add_overlay("working")
 
 /obj/item/gps/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	display(user)
 
 // Compiles all the data not available directly from the GPS

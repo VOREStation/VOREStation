@@ -12,6 +12,7 @@
 	var/scanning = 0
 	var/radiation_count = 0
 	var/datum/looping_sound/geiger/soundloop
+	var/mounted = FALSE
 
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
@@ -62,6 +63,11 @@
 	loop.start()
 
 /obj/item/geiger/attack_self(var/mob/user)
+	. = ..()
+	if(.)
+		return TRUE
+	if(mounted)
+		return
 	scanning = !scanning
 	if(scanning)
 		START_PROCESSING(SSobj, src)
@@ -109,6 +115,7 @@
 	var/number = 0
 	var/last_tick //used to delay the powercheck
 	var/wiresexposed = 0
+	mounted = TRUE
 
 /obj/item/geiger/wall/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
@@ -121,6 +128,9 @@
 	return ..()
 
 /obj/item/geiger/wall/attack_self(var/mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	scanning = !scanning
 	update_icon()
 	update_sound()

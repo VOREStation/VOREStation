@@ -810,6 +810,8 @@
 	//This should be used if a plushie can be made to say custom messages. Not currently required at the moment, but here just in case it'd added in the future.
 	var/prevent_impersonation = FALSE
 
+	var/special_handling = TRUE
+
 /obj/item/toy/plushie/Initialize(mapload)
 	. = ..()
 	adjusted_name = name
@@ -822,6 +824,11 @@
 			. += span_italics("You can see something in there...")
 
 /obj/item/toy/plushie/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
+	if(special_handling)
+		return
 	if(stored_item && opened && !searching)
 		searching = TRUE
 		if(do_after(user, 1 SECOND, target = src))

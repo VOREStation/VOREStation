@@ -82,6 +82,9 @@
 	return
 
 /obj/item/tk_grab/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(focus)
 		focus.attack_self_tk(user)
 

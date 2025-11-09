@@ -24,6 +24,9 @@
 
 //hit yourself with it
 /obj/item/holowarrant/attack_self(mob/living/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	active = null
 	var/list/warrants = list()
 	if(!isnull(GLOB.data_core.general))

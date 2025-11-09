@@ -172,14 +172,6 @@
 	var/datum/integrated_io/selected_io = null
 	var/mode = 0
 
-/obj/item/multitool/attack_self(mob/user)
-	if(selected_io)
-		selected_io = null
-		to_chat(user, span_notice("You clear the wired connection from the multitool."))
-	else
-		..()
-	update_icon()
-
 /obj/item/multitool/update_icon()
 	if(selected_io)
 		if(buffer || connecting || connectable)

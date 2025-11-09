@@ -36,6 +36,9 @@
 	var/age = 0
 	var/last_modified_ckey
 
+	///Occult check. Used for do_after
+	var/occult = FALSE
+
 	var/was_maploaded = FALSE // This tracks if the paper was created on mapload.
 
 	var/const/deffont = "Verdana"
@@ -176,6 +179,11 @@
 	return
 
 /obj/item/paper/attack_self(mob/living/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
+	if(occult)
+		return
 	if(user.a_intent == I_HURT)
 		if(icon_state == "scrap")
 			user.show_message(span_warning("\The [src] is already crumpled."))

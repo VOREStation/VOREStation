@@ -216,6 +216,9 @@
 	throw_range = 20
 
 /obj/item/camera_bug/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(in_use)
 		return
 

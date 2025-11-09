@@ -12,6 +12,10 @@
 	var/obj/item/disk/nuclear/the_disk = null
 	var/active = 0
 
+	///TODO: Clear up click code entirely. This is used exclusively for do_after
+	var/nuclear = FALSE
+	var/shuttle = FALSE
+
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
@@ -21,6 +25,11 @@
 	return ..()
 
 /obj/item/pinpointer/attack_self()
+	. = ..()
+	if(.)
+		return TRUE
+	if(nuclear || shuttle)
+		return
 	if(!active)
 		active = 1
 		START_PROCESSING(SSobj, src)
@@ -186,6 +195,9 @@
 	var/obj/machinery/computer/shuttle_control/multi/syndicate/home = null
 
 /obj/item/pinpointer/nukeop/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(!active)
 		active = 1
 		START_PROCESSING(SSobj, src)
@@ -272,6 +284,9 @@
 	var/obj/machinery/computer/shuttle_control/our_shuttle = null
 
 /obj/item/pinpointer/shuttle/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if(!active)
 		active = TRUE
 		START_PROCESSING(SSobj, src)

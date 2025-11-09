@@ -25,6 +25,9 @@
 	return atmosanalyzer_scan(src, air, user)
 
 /obj/item/analyzer/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if (user.stat)
 		return
 	if (!user.IsAdvancedToolUser())

@@ -31,9 +31,15 @@
 	pressure_resistance = 2
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
+	var/can_click = TRUE
 
 /obj/item/pen/attack_self(var/mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	if(!user.checkClickCooldown())
+		return
+	if(!can_click)
 		return
 	user.setClickCooldown(1 SECOND)
 	to_chat(user, span_notice("Click."))
@@ -338,6 +344,7 @@
 	var/colourName = "red" //for updateIcon purposes
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
+	can_click = FALSE
 
 /obj/item/pen/crayon/Initialize(mapload)
 	. = ..()

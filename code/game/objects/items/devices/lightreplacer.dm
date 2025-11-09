@@ -129,6 +129,9 @@
 		to_chat(user, span_notice("You fill \the [src] with lights from \the [S]."))
 
 /obj/item/lightreplacer/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	/* // This would probably be a bit OP. If you want it though, uncomment the code.
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
@@ -250,6 +253,9 @@
 			. += "It is currently coloring lights."
 
 /obj/item/lightpainter/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 
 	if(!resetmode)
 		resetmode = 1

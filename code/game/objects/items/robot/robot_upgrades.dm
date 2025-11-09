@@ -56,6 +56,9 @@
 	var/heldname = "default name"
 
 /obj/item/borg/upgrade/utility/rename/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	var/new_name = tgui_input_text(user, "Enter new robot name", "Robot Reclassification", heldname, MAX_NAME_LEN)
 	if(new_name)
 		heldname = new_name

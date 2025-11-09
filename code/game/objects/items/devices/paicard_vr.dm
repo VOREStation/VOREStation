@@ -217,6 +217,9 @@ GLOBAL_LIST_EMPTY(paikeys)
 			to_chat(user, span_warning("You would need to remove the installed [I] first!"))
 
 /obj/item/paicard/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	if(!panel_open)
 		access_screen(user)
 		return

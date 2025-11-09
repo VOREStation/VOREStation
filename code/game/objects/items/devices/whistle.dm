@@ -32,6 +32,9 @@
 	to_chat(usr, "You configure the hailer to shout \"[use_message]\".")
 
 /obj/item/hailer/attack_self(mob/living/carbon/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	if (spamcheck)
 		return
 

@@ -848,14 +848,15 @@
 		M.update_inv_shoes()
 
 /obj/item/clothing/shoes/attack_self(var/mob/user)
+	. = ..()
+	if(.)
+		return
 	for(var/mob/M in src)
 		if(isvoice(M)) //Don't knock voices out!
 			continue
 		M.forceMove(get_turf(user))
 		to_chat(M, span_warning("[user] shakes you out of \the [src]!"))
 		to_chat(user, span_notice("You shake [M] out of \the [src]!"))
-
-	..()
 
 /obj/item/clothing/shoes/container_resist(mob/living/micro)
 	var/mob/living/carbon/human/macro = loc

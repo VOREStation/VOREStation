@@ -182,20 +182,26 @@ Book Cart End
 	var/title		 // The real name of the book.
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
+	var/occult_tier = 0 //If the book is an occult book or not and how strong it is. Used for attack_self
 	drop_sound = 'sound/items/drop/book.ogg'
 	pickup_sound = 'sound/items/pickup/book.ogg'
 
 /obj/item/book/attack_self(var/mob/user)
+	. = ..()
+	if(.)
+		return TRUE
+	if(occult)
+		return
 	if(carved)
 		if(store)
 			to_chat(user, span_notice("[store] falls out of [title]!"))
-			store.loc = get_turf(src.loc)
+			store.forceMove(get_turf(src.loc))
 			store = null
 			return
 		else
 			to_chat(user, span_notice("The pages of [title] have been cut out!"))
 			return
-	if(src.dat)
+	if(dat)
 		display_content(user)
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
 		playsound(src, 'sound/bureaucracy/bookopen.ogg', 50, 1)

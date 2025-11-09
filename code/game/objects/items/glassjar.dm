@@ -48,6 +48,9 @@
 		return
 
 /obj/item/glass_jar/attack_self(var/mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	switch(contains)
 		if(JAR_MONEY)
 			for(var/obj/O in src)

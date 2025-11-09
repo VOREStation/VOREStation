@@ -43,6 +43,9 @@
 	uses = 0
 
 /obj/item/pen/crayon/mime/attack_self(mob/living/user as mob) //inversion
+	. = ..()
+	if(.)
+		return TRUE
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
 		colour = "#FFFFFF"
 		shadeColour = "#000000"
@@ -61,6 +64,9 @@
 	uses = 0
 
 /obj/item/pen/crayon/rainbow/attack_self(mob/living/user)
+	. = ..()
+	if(.)
+		return TRUE
 	var/new_colour = tgui_color_picker(user, "Please select the main colour.", "Crayon colour", colour)
 	if(new_colour)
 		colour = new_colour
@@ -192,6 +198,9 @@
 	uses = 0
 
 /obj/item/pen/crayon/marker/mime/attack_self(mob/living/user) //inversion
+	. = ..()
+	if(.)
+		return TRUE
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
 		colour = "#FFFFFF"
 		shadeColour = "#000000"
@@ -210,6 +219,9 @@
 	uses = 0
 
 /obj/item/pen/crayon/marker/rainbow/attack_self(mob/living/user)
+	. = ..()
+	if(.)
+		return TRUE
 	var/new_colour = tgui_color_picker(user, "Please select the main colour.", "Marker colour", colour)
 	if(new_colour)
 		colour = new_colour
@@ -236,4 +248,7 @@
 		..()
 
 /obj/item/pen/crayon/attack_self(var/mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	return

@@ -11,6 +11,9 @@
 									"Health Analyzer" = /obj/item/healthanalyzer)
 
 /obj/item/selectable_item/attack_self(mob/user as mob)
+	. = ..()
+	if(.)
+		return TRUE
 	tgui_alert(user, {"[preface_string]"}, preface_title)
 	var/chosen_item = tgui_input_list(user, selection_string, selection_title, item_options)
 	chosen_item = item_options[chosen_item]

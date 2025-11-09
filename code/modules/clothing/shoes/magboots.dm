@@ -24,6 +24,9 @@
 		slowdown += 3
 
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(magpulse)
 		item_flags &= ~NOSLIP
 		magpulse = 0

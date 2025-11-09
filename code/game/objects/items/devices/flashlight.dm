@@ -89,6 +89,9 @@
 			. += "It appears to have a high amount of power remaining."
 
 /obj/item/flashlight/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return TRUE
 	if(flickering)
 		to_chat(user, "The light is currently malfunctioning and you're unable to adjust it!") //To prevent some lighting anomalities.
 		return
