@@ -276,7 +276,7 @@
 		if (WT.remove_fuel(0,user))
 			to_chat(user, span_notice("Now welding the vent."))
 
-			if(do_after(user, 20 * WT.toolspeed))
+			if(do_after(user, 20 * WT.toolspeed, src))
 				if(!src || !WT.isOn()) return
 				playsound(src, WT.usesound, 50, 1)
 				if(!welded)
