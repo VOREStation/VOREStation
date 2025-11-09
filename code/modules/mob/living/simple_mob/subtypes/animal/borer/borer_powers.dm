@@ -271,8 +271,14 @@
 		if("Revive Dead Host")
 			if(chemicals < chems_used || !host || controlling || QDELETED(src) || stat) //Sanity check.
 				return
+			if(!host)
+				to_chat(src, span_warning("You are not inside a host body."))
+				return
 			if(host.stat != DEAD)
 				to_chat(src, span_danger("Your host must be dead!"))
+				return
+			if(docile)
+				to_chat(src, span_cult("You are feeling far too docile to do that."))
 				return
 			to_chat(src, span_danger("You squirt an intense mix of chemicals from your reservoirs into [host]'s bloodstream."))
 			// This is meant to be a bit silly, cause borers don't have much options otherwise
@@ -445,14 +451,6 @@
 	set category = "Abilities.Borer"
 	set name = "Revive Host"
 	set desc = "Send a jolt of electricity through your host, reviving them."
-
-	if(!host)
-		to_chat(src, span_warning("You are not inside a host body."))
-		return
-
-	if(docile)
-		to_chat(src, span_cult("You are feeling far too docile to do that."))
-		return
 
 	if(stat != DEAD)
 		to_chat(src, span_warning("Your host is already alive."))
