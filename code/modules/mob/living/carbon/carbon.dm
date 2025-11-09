@@ -215,12 +215,21 @@
 					status += "MISSING"
 				if(org.status & ORGAN_MUTATED)
 					status += "weirdly shapen"
-				if(org.dislocated == 1) //VOREStation Edit Bugfix
+				if(org.dislocated == 1)
 					status += "dislocated"
 				if(org.status & ORGAN_BROKEN)
 					status += "hurts when touched"
+				//infection stuff
 				if(org.status & ORGAN_DEAD)
-					status += "is bruised and necrotic"
+					status += "necrotic"
+				else if(org.germ_level > INFECTION_LEVEL_TWO)
+					status += "feels like it's on fire!"
+				else if(org.germ_level > INFECTION_LEVEL_TWO-INFECTION_LEVEL_ONE) //Early warning
+					status += "warm to the touch"
+				if(LAZYLEN(org.wounds))
+					for(var/datum/wound/W in org.wounds)
+						if(!W.internal)
+							status += "hurting with a slowly growing bruise"
 				if(!org.is_usable() || org.is_dislocated())
 					status += "dangling uselessly"
 				if(status.len)

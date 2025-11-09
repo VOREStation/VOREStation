@@ -157,7 +157,7 @@
 		/obj/item/surgical/bonegel = 100
 	)
 
-	allowed_procs = list(IS_SCREWDRIVER = 75)
+	allowed_procs = list(IS_SCREWDRIVER = 90) //this is what we actually use irl!
 
 	can_infect = 1
 	blood_level = 1
@@ -216,7 +216,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(coverage_check(user, target, affected, tool))
 		return 0
-	return affected && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 0
+	return affected &&  (affected.status & ORGAN_BROKEN) && (affected.robotic < ORGAN_ROBOT) && affected.open >= 2 && affected.stage == 0
 
 /datum/surgery_step/clamp_bone/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

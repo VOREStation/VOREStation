@@ -64,6 +64,8 @@
 
 /datum/surgery_step/robotics/unscrew_hatch/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(istype(tool, /obj/item/coin))
+		user.drop_item()
 	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to unscrew [target]'s [affected.name]."), \
 	span_warning("Your [tool] slips, failing to unscrew [target]'s [affected.name]."))
 	user.balloon_alert_visible("slips, failing to unscrew [target]'s [affected.name]", "your [tool] slips, failing to unscrew \the [affected.name]")
