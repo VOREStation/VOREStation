@@ -21,6 +21,7 @@
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
 	movement_cooldown = 1.5
+	mob_size = MOB_TINY // no landmines for you
 
 	universal_understand = TRUE
 	can_be_antagged = TRUE
@@ -39,12 +40,14 @@
 	var/true_name = null						// String used when speaking among other worms.
 	var/controlling = FALSE						// Used in human death ceck.
 	var/docile = FALSE							// Sugar can stop borers from acting.
+	var/docile_counter = 0						// How long we are docile for
 
 	var/has_reproduced = FALSE
 	var/used_dominate							// world.time when the dominate power was last used.
 	var/datum/ghost_query/Q						// Used to unregister our signal
 
 	can_be_drop_prey = FALSE
+	vent_crawl_time = 30 						// faster vent crawler
 
 /mob/living/simple_mob/animal/borer/roundstart
 	roundstart = TRUE
@@ -53,7 +56,7 @@
 	antag = FALSE
 
 /mob/living/simple_mob/animal/borer/Login()
-	..()
+	. = ..()
 	if(antag && mind)
 		borers.add_antagonist(mind)
 
@@ -73,19 +76,25 @@
 	request_player()
 
 /mob/living/simple_mob/animal/borer/handle_special()
+	docile_counter--
 	if(host && !stat && !host.stat)
 		// Handle docility.
-		if(host.reagents.has_reagent(REAGENT_ID_SUGAR) && !docile)
-			var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
-			var/target = controlling ? host : src
-			to_chat(target, span_warning(message))
-			docile = TRUE
+		if(host.reagents.has_reagent(REAGENT_ID_SUGAR) || host.ingested.has_reagent(REAGENT_ID_SUGAR))
+			docile_counter = 5 SECONDS
+			if(docile_counter < 0)
+				docile_counter = 0
 
-		else if(docile)
-			var/message = "You shake off your lethargy as the sugar leaves your host's blood."
-			var/target = controlling ? host : src
-			to_chat(target, span_notice(message))
-			docile = FALSE
+			if(docile_counter > 0)
+				if(!docile)
+					var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
+					var/target = controlling ? host : src
+					to_chat(target, span_danger( message))
+					docile = TRUE
+			else if(docile)
+				var/message = "You shake off your lethargy as the sugar leaves your host's blood."
+				var/target = controlling ? host : src
+				to_chat(target, span_notice( message))
+				docile = FALSE
 
 		// Chem regen.
 		if(chemicals < max_chemicals)
@@ -94,7 +103,7 @@
 		// Control stuff.
 		if(controlling)
 			if(docile)
-				to_chat(host, span_warning("You are feeling far too docile to continue controlling your host..."))
+				to_chat(host, span_vdanger("You are feeling far too docile to continue controlling your host..."))
 				host.release_control()
 				return
 
@@ -103,6 +112,28 @@
 
 			if(prob(host.brainloss/20))
 				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_v","gasp"))]")
+
+	if(borer_chem_display)
+		borer_chem_display.invisibility = INVISIBILITY_NONE
+		switch(chemicals)
+			if(0 to 9)
+				borer_chem_display.icon_state = "ling_chems0e"
+			if(10 to 19)
+				borer_chem_display.icon_state = "ling_chems10e"
+			if(20 to 29)
+				borer_chem_display.icon_state = "ling_chems20e"
+			if(30 to 39)
+				borer_chem_display.icon_state = "ling_chems30e"
+			if(40 to 49)
+				borer_chem_display.icon_state = "ling_chems40e"
+			if(50 to 59)
+				borer_chem_display.icon_state = "ling_chems50e"
+			if(60 to 69)
+				borer_chem_display.icon_state = "ling_chems60e"
+			if(70 to 79)
+				borer_chem_display.icon_state = "ling_chems70e"
+			if(80 to INFINITY)
+				borer_chem_display.icon_state = "ling_chems80e"
 
 /mob/living/simple_mob/animal/borer/get_status_tab_items()
 	. = ..()
@@ -125,6 +156,7 @@
 	remove_verb(host, /mob/living/carbon/proc/punish_host)
 	remove_verb(host, /mob/living/carbon/proc/spawn_larvae)
 
+	// This entire section is awful and a relic of ancient times. It needs to be replaced
 	if(host_brain)
 		// these are here so bans and multikey warnings are not triggered on the wrong people when ckey is changed.
 		// computer_id and IP are not updated magically on their own in offline mobs -walter0o
@@ -160,7 +192,7 @@
 			host.lastKnownIP = b2h_ip
 
 	qdel(host_brain)
-
+	// End horrible ip swapping code for bans
 
 /mob/living/simple_mob/animal/borer/proc/leave_host()
 	if(!host)
@@ -169,8 +201,7 @@
 	if(host.mind)
 		borers.remove_antagonist(host.mind)
 
-	forceMove(get_turf(host))
-
+	forceMove(get_turf(host.loc))
 	unset_machine()
 
 	if(ishuman(host))
@@ -206,17 +237,25 @@
 		mind.assigned_role = JOB_CORTICAL_BORER
 		mind.special_role = JOB_CORTICAL_BORER
 
+	// TODO - This needs to be made into something more pref friendly if it's ever going to be used on virgo.
 	to_chat(src, span_notice("You are a cortical borer! You are a brain slug that worms its way \
 	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, \
 	your host and your eventual spawn safe and warm."))
 	to_chat(src, "You can speak to your victim with <b>say</b>, to other borers with <b>say :x</b>, and use your Abilities tab to access powers.")
 
 /mob/living/simple_mob/animal/borer/cannot_use_vents()
-	return
+	return host || stat
+
+/mob/living/simple_mob/animal/borer/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
+	// Chem hud
+	borer_chem_display = new /atom/movable/screen/borer/chems()
+	borer_chem_display.screen_loc = ui_ling_chemical_display
+	borer_chem_display.icon_state = "ling_chems"
+	hud_elements |= borer_chem_display
 
 /mob/living/simple_mob/animal/borer/UnarmedAttack(var/atom/A, var/proximity)
 	if(ismob(loc))
-		to_chat(src, span_warning("You cannot interact with that from inside a host!"))
+		to_chat(src, span_notice("You cannot interact with that from inside a host!"))
 		return
 	. = ..()
 
