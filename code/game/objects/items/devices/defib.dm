@@ -395,8 +395,10 @@
 		return
 
 	//set oxyloss so that the patient is just barely in crit, if possible
-	var/barely_in_crit = H.get_crit_point() - 1
+	var/barely_in_crit = -(H.get_crit_point() - 1) //Assume get_crit_point will return -50, so we take the inverse of it.
 	var/adjust_health = barely_in_crit - H.health //need to increase health by this much
+	if(adjust_health < 0) //We got a negative value. Safety in case of weird fuckery.
+		adjust_health *= -1
 	H.adjustOxyLoss(-adjust_health)
 
 	if(H.isSynthetic())

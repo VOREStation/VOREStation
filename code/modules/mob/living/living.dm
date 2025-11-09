@@ -470,6 +470,7 @@
 	return result
 
 ///Use this proc to get the damage in which the mob will be put into critical condition (hardcrit)
+///Will return a NEGATIVE value. Ex: MaxHealth of 100 returns -50
 /mob/living/proc/get_crit_point()
 	return -(getMaxHealth()*0.5)
 
