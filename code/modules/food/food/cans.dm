@@ -5,6 +5,28 @@
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 	cant_chance = 1 //arbitrarily high for april fools; if it's not reverted in its entirety I suggest rolling it down to 2% or something
+	var/shaken = 0 // How many times this can has been shaken.
+
+/obj/item/reagent_containers/food/drinks/cans/attack_self(mob/user)
+	if(user.a_intent == I_HURT && !is_open_container())
+		to_chat(user, span_warning("You shake [src]."))
+		shaken++
+		return
+	if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(10)) // Because it's always funny
+		shaken += 10
+	. = ..()
+
+/obj/item/reagent_containers/food/drinks/cans/open(mob/user)
+	. = ..()
+	if(!cant_open && shaken)
+		to_chat(user, span_warning("[src] [(shaken > 50) ? "explodes" : "foams"] when you open it!"))
+		var/obj/effect/effect/foam/foam = new /obj/effect/effect/foam(src.loc)
+		foam.amount = (shaken > 50) ? 2 : 1
+		reagents.splash(user, shaken/2)
+		reagents.trans_to(foam, shaken/2)
+		if(shaken > 50)
+			explosion(get_turf(src), -1, -1, -1, 1)
+			qdel(src)
 
 //DRINKS
 
