@@ -99,7 +99,7 @@
 		to_chat(M, span_vdanger("Something slimy begins trying to find a way past your helmet..."))
 	to_chat(src, span_warning("You slither up [M] and begin probing at their ear canal..."))
 
-	if(!do_after(src,entering_timer, target = M))
+	if(!do_after(src, entering_timer, target = M))
 		to_chat(src, span_danger("As [M] moves away, you are dislodged and fall to the ground."))
 		return
 	if(!M || QDELETED(src))
