@@ -27,7 +27,11 @@
 		reagents.splash(user, shaken/2)
 		reagents.trans_to(foam, shaken/2)
 		if(shaken > 50)
-			explosion(get_turf(src), -1, -1, -1, 1)
+			if(HAS_TRAIT(user, TRAIT_UNLUCKY) && prob(0.1))
+				explosion(get_turf(src), -1, -1, -1, 7)
+				user.gib()
+			else
+				explosion(get_turf(src), -1, -1, -1, 1)
 			qdel(src)
 
 /obj/item/reagent_containers/food/drinks/cans/process()
