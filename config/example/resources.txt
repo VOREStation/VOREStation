@@ -50,4 +50,4 @@ SMART_CACHE_ASSETS
 # and chat tabs will be persistent across both.
 # If this setting is not configured, but the webroot CDN is, that will be used instead of GitHub Pages.
 # If this setting is mpty, and the webroot CDN is disabled, byondstorage will be used.
-# STORAGE_CDN_IFRAME https://tgstation.github.io/byond-client-storage/iframe.html
+# STORAGE_CDN_IFRAME https://vorestation.github.io/byond-client-storage/iframe.html
