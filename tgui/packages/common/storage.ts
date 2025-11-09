@@ -219,19 +219,20 @@ class StorageProxy implements StorageBackend {
         }
 
         iframe.destroy();
+      }
+      if (!testHubStorage()) {
+        Byond.winset(null, 'browser-options', '+byondstorage');
 
-        if (!testHubStorage()) {
-          Byond.winset(null, 'browser-options', '+byondstorage');
+        return new Promise((resolve) => {
+          const listener = () => {
+            document.removeEventListener('byondstorageupdated', listener);
+            resolve(new HubStorageBackend());
+          };
 
-          return new Promise((resolve) => {
-            const listener = () => {
-              document.removeEventListener('byondstorageupdated', listener);
-              resolve(new HubStorageBackend());
-            };
-
-            document.addEventListener('byondstorageupdated', listener);
-          });
-        }
+          document.addEventListener('byondstorageupdated', listener);
+        });
+      }
+      if (testHubStorage()) {
         return new HubStorageBackend();
       }
       console.warn(
