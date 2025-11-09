@@ -10,6 +10,7 @@ export const IMPL_MEMORY = 0;
 export const IMPL_HUB_STORAGE = 1;
 export const IMPL_IFRAME_INDEXED_DB = 2;
 
+const KEY_NAME = 'virgo';
 type StorageImplementation =
   | typeof IMPL_MEMORY
   | typeof IMPL_HUB_STORAGE
@@ -69,7 +70,7 @@ class HubStorageBackend implements StorageBackend {
   }
 
   async get(key: string): Promise<any> {
-    const value = await window.hubStorage.getItem(key);
+    const value = await window.hubStorage.getItem(`${KEY_NAME}-${key}`);
     if (typeof value === 'string') {
       return JSON.parse(value);
     }
@@ -77,11 +78,11 @@ class HubStorageBackend implements StorageBackend {
   }
 
   async set(key: string, value: any): Promise<void> {
-    window.hubStorage.setItem(key, JSON.stringify(value));
+    window.hubStorage.setItem(`${KEY_NAME}-${key}`, JSON.stringify(value));
   }
 
   async remove(key: string): Promise<void> {
-    window.hubStorage.removeItem(key);
+    window.hubStorage.removeItem(`${KEY_NAME}-${key}`);
   }
 
   async clear(): Promise<void> {
@@ -127,16 +128,25 @@ class IFrameIndexedDbBackend implements StorageBackend {
       });
     });
 
-    this.iframeWindow.postMessage({ type: 'get', key: key }, '*');
+    this.iframeWindow.postMessage(
+      { type: 'get', key: `${KEY_NAME}-${key}` },
+      '*',
+    );
     return promise;
   }
 
   async set(key: string, value: any): Promise<void> {
-    this.iframeWindow.postMessage({ type: 'set', key: key, value: value }, '*');
+    this.iframeWindow.postMessage(
+      { type: 'set', key: `${KEY_NAME}-${key}`, value: value },
+      '*',
+    );
   }
 
   async remove(key: string): Promise<void> {
-    this.iframeWindow.postMessage({ type: 'remove', key: key }, '*');
+    this.iframeWindow.postMessage(
+      { type: 'remove', key: `${KEY_NAME}-${key}` },
+      '*',
+    );
   }
 
   async clear(): Promise<void> {
