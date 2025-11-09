@@ -1,4 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - rscadd: "Added fusion coils, special single-use cells which can be used to kickstart depleted SMES units"
