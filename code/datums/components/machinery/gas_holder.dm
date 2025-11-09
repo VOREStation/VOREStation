@@ -3,13 +3,12 @@
 /datum/component/gas_holder
 	///The gas mixture we possess.
 	var/datum/gas_mixture/air_contents
-	///CONVERT THIS TO A WEAKREF
-	var/obj/machinery/atmospherics/portables_connector/connected_port
+
+	///The port we are currently attached to.
+	var/datum/weakref/portables_connector
 
 	//Rupture stuff!
 
-	///Maximum pressure we can hold (before bursting)
-	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 	///If the vessel can rupture or not
 	var/can_rupture = FALSE
 	///How much integrity (lowered when our pressure is too high) we have. Explodes/breaches when it reaches 0!
@@ -23,8 +22,14 @@
 	///If our release valve is plugged or not
 	var/release_plugged = FALSE
 
-//Yes, it's using 'gas 1 pressure gas 2 pressure etc'...I need to know a better way to do this.
-/datum/component/gas_holder/Initialize(datum/gas_mixture/new_gas_mixture, obj/machinery/atmospherics/portables_connector/connected_port, maximum_pressure, can_rupture, max_integrity, integrity, leaking, release_plugged)
+	//Variables that handle things such as 'does this act as a tank' and 'can we wrench it down'
+
+	///If we can be wrenched to things or not!
+	var/wrenchable = TRUE
+	///If we can open and utilize it like an item tank when in hand.
+	var/is_tank = FALSE
+
+/datum/component/gas_holder/Initialize(datum/gas_mixture/new_gas_mixture, can_rupture, max_integrity, integrity, leaking, release_plugged, connect_to_port)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -32,12 +37,6 @@
 		air_contents = new_gas_mixture
 	else
 		air_contents = new
-
-	if(connected_port)
-		src.connected_port = connected_port
-
-	if(maximum_pressure)
-		src.maximum_pressure = maximum_pressure
 
 	if(can_rupture)
 		src.can_rupture = can_rupture
@@ -53,12 +52,26 @@
 
 	START_PROCESSING(SSfastprocess, src)
 
+	//If we are told to 'connect to port' then we automatically attempt to locate and connect to any port in our loc.
+	//This HAS to be the last thing done in init, as we NEED to set all the other vars, first.
+	if(connect_to_port)
+		var/atom/movable/our_parent = parent
+		var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in our_parent.loc
+		if(possible_port)
+			connect(possible_port)
+
 /datum/component/gas_holder/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(handle_attack))
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(handle_unbuckle))
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(handle_attack_self))
 
 /datum/component/gas_holder/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY, COMSIG_MOVABLE_UNBUCKLE))
+
+///Handles when we are 'used' in hand. TODO
+/datum/component/gas_holder/proc/handle_attack_self()
+	SIGNAL_HANDLER
+	return
 
 ///Returns the atmosphere we are currently using. Used by analyzers.
 /datum/component/gas_holder/proc/return_atmos()
@@ -81,12 +94,13 @@
 /datum/component/gas_holder/Destroy(force = FALSE)
 	disconnect()
 	QDEL_NULL(air_contents)
-	connected_port = null
+	portables_connector = null
 	..()
 
 ///Handles gas reactions inside us.
 /datum/component/gas_holder/process()
 	var/atom/movable/our_parent = parent
+	var/obj/machinery/atmospherics/portables_connector/connected_port = portables_connector?.resolve()
 	if(!connected_port) //only react when pipe_network will ont it do it for you
 		//Allow for reactions
 		if(ismob(our_parent)) //If we're a mob, make our gas assume the temp of our owner. Up to a 5K difference.
@@ -113,6 +127,7 @@
 ///When we are connected to a port.
 /datum/component/gas_holder/proc/connect(obj/machinery/atmospherics/portables_connector/new_port)
 	var/atom/movable/our_parent = parent
+	var/obj/machinery/atmospherics/portables_connector/connected_port = portables_connector?.resolve()
 	//Make sure not already connected to something else
 	if(connected_port || !new_port || new_port.connected_device)
 		return FALSE
@@ -122,6 +137,7 @@
 		return FALSE
 
 	//Perform the connection
+	portables_connector = WEAKREF(new_port)
 	connected_port = new_port
 	connected_port.connected_device = src
 	connected_port.on = TRUE //Activate port updates
@@ -141,7 +157,8 @@
 
 ///Disconnect from our connected port if possible.
 /datum/component/gas_holder/proc/disconnect()
-	var/atom/movable/our_parent = parent
+	var/obj/machinery/atmospherics/portables_connector/connected_port = portables_connector?.resolve()
+
 	if(!connected_port)
 		return FALSE
 
@@ -149,6 +166,7 @@
 	if(network)
 		network.gases -= air_contents
 
+	var/atom/movable/our_parent = parent
 	our_parent.anchored = FALSE
 	if(ismob(our_parent))
 		connected_port.unbuckle_mob(our_parent, TRUE)
@@ -161,9 +179,10 @@
 ///What we do when hit with a wrench.
 /datum/component/gas_holder/proc/handle_attack(atom/movable/our_parent, obj/item/tool as obj, mob/user as mob)
 	SIGNAL_HANDLER
-	if(!istype(tool) || user.a_intent != I_HELP) //We let them do their normal attack chain.
+	if(!istype(tool) || user.a_intent != I_HELP || !wrenchable) //We let them do their normal attack chain.
 		return FALSE
 	if(tool.has_tool_quality(TOOL_WRENCH))
+		var/obj/machinery/atmospherics/portables_connector/connected_port = portables_connector?.resolve()
 		if(connected_port)
 			if(disconnect())
 				to_chat(user, span_warning("You disconnect \the [parent] from the port."))
