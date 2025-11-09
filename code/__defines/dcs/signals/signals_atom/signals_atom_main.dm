@@ -177,7 +177,6 @@
 
 #define COMSIG_OBSERVER_SHUTTLE_ADDED "observer_shuttle_added"
 
-#define COMSIG_OBSERVER_MOVED "observer_move"
 #define COMSIG_OBSERVER_SHUTTLE_PRE_MOVE "observer_shuttle_premove"
 #define COMSIG_OBSERVER_SHUTTLE_MOVED "observer_shuttle_moved"
 #define COMSIG_OBSERVER_TURF_ENTERED "observer_turf_entered"
