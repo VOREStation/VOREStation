@@ -8,6 +8,38 @@
  *		Book Binder
  */
 
+#define INVPAGESIZE 6
+#define INVPAGESIZEPUBLIC 7
+var/global/list/all_books // moved to global list so it can be shared by public comps
+
+// Moved to a hook instead of in initilize. The whole pre-packaged book inventory is fully static and isn't meant to be changed anyway
+/hook/roundstart/proc/assemble_library_inventory()
+	global.all_books = list()
+	var/list/base_genre_books = list(
+		/obj/item/book/custom_library/fiction,
+		/obj/item/book/custom_library/nonfiction,
+		/obj/item/book/custom_library/reference,
+		/obj/item/book/custom_library/religious,
+		/obj/item/book/bundle/custom_library/fiction,
+		/obj/item/book/bundle/custom_library/nonfiction,
+		/obj/item/book/bundle/custom_library/reference,
+		/obj/item/book/bundle/custom_library/religious
+		)
+
+	for(var/path in subtypesof(/obj/item/book/codex/lore))
+		var/obj/item/book/C = new path(null)
+		global.all_books[C.name] = C
+
+	for(var/path in subtypesof(/obj/item/book/custom_library) - base_genre_books)
+		var/obj/item/book/B = new path(null)
+		global.all_books[B.title] = B
+
+	for(var/path in subtypesof(/obj/item/book/bundle/custom_library) - base_genre_books)
+		var/obj/item/book/M = new path(null)
+		global.all_books[M.title] = M
+
+	return TRUE
+
 /*
  * Borrowbook datum
  */
@@ -26,79 +58,89 @@
 	icon_state = "computer"
 	anchored = TRUE
 	density = TRUE
-	var/screenstate = 0
-	var/title
-	var/category = "Any"
-	var/author
-	var/SQLquery
+	var/inventory_page = 0
+	var/screenstate = "publicarchive"
 
-/obj/machinery/librarypubliccomp/attack_hand(var/mob/user)
-	user.set_machine(src)
-	var/dat = "<html><HEAD><TITLE>Library Visitor</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
+/obj/machinery/librarypubliccomp/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "LibraryPublicComp", name)
+		ui.open()
+
+/obj/machinery/librarypubliccomp/tgui_data(mob/user)
+	var/data[0]
+	data["admin_mode"] = FALSE
+	data["is_public"] = TRUE
+	data["screenstate"] = screenstate
+	var/list/inv = list()
+	var/start_entry = 1 + (inventory_page * INVPAGESIZEPUBLIC) // 6 per page in inventory
+	var/entry_count = 0
+	var/inv_left = (inventory_page > 0)
+	var/inv_right = TRUE
 	switch(screenstate)
-		if(0)
-			dat += {"<h2>Search Settings</h2><br>
-			<A href='byond://?src=\ref[src];settitle=1'>Filter by Title: [title]</A><BR>
-			<A href='byond://?src=\ref[src];setcategory=1'>Filter by Category: [category]</A><BR>
-			<A href='byond://?src=\ref[src];setauthor=1'>Filter by Author: [author]</A><BR>
-			<A href='byond://?src=\ref[src];search=1'>\[Start Search\]</A><BR>"}
-		if(1)
-			establish_db_connection()
-			if(!SSdbcore.IsConnected())
-				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.") + "<BR>"
-			else if(!SQLquery)
-				dat += span_red(span_bold("ERROR") + ": Malformed search request. Please contact your system administrator for assistance.") + "<BR>"
-			else
-				dat += {"<table>
-				<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"}
+		if("publicarchive") // external archive (SSpersistance database)
+			if(inventory_page + 1 >= SSpersistence.all_books.len / INVPAGESIZEPUBLIC)
+				inv_right = FALSE
+			for(var/token_id in SSpersistence.all_books)
+				entry_count++
+				if(entry_count < start_entry)
+					continue
+				if(entry_count >= start_entry + INVPAGESIZEPUBLIC)
+					break
+				var/list/token = SSpersistence.all_books[token_id]
+				if(token)
+					inv += list(tgui_add_library_token(token))
+		if("publiconline") // internal archive (hardcoded books)
+			if(inventory_page + 1 >= global.all_books.len / INVPAGESIZEPUBLIC)
+				inv_right = FALSE
+			for(var/BP in global.all_books)
+				entry_count++
+				if(entry_count < start_entry)
+					continue
+				if(entry_count >= start_entry + INVPAGESIZEPUBLIC)
+					break
+				var/obj/item/book/B = global.all_books[BP]
+				if(B)
+					inv += list(tgui_add_library_book(B))
+	data["inventory"] = inv
+	data["inv_left"] = inv_left
+	data["inv_right"] = inv_right
+	return data
 
-				var/datum/db_query/query = SSdbcore.NewQuery(SQLquery)
-				query.Execute()
-
-				while(query.NextRow())
-					var/author = query.item[1]
-					var/title = query.item[2]
-					var/category = query.item[3]
-					var/id = query.item[4]
-					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>[id]</td></tr>"
-				qdel(query)
-				dat += "</table><BR>"
-			dat += "<A href='byond://?src=\ref[src];back=1'>\[Go Back\]</A><BR></html>"
-	user << browse(dat, "window=publiclibrary")
-	onclose(user, "publiclibrary")
-
-/obj/machinery/librarypubliccomp/Topic(href, href_list)
+/obj/machinery/librarypubliccomp/tgui_act(action, params)
 	if(..())
-		usr << browse(null, "window=publiclibrary")
-		onclose(usr, "publiclibrary")
-		return
+		return TRUE
+	switch(action)
+		if("switchscreen")
+			playsound(src, "keyboard", 40)
+			inventory_page = 0 // reset inv menus
+			screenstate = params["switchscreen"]
+			. = TRUE
 
-	if(href_list["settitle"])
-		var/newtitle = tgui_input_text(usr, "Enter a title to search for:", max_length = MAX_MESSAGE_LEN)
-		title = sanitizeSQL(newtitle)
-	if(href_list["setcategory"])
-		var/newcategory = tgui_input_list(usr, "Choose a category to search for:", "Category", list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
-		if(!newcategory)
-			category = "Any"
-		category = sanitizeSQL(category)
-	if(href_list["setauthor"])
-		var/newauthor = tgui_input_text(usr, "Enter an author to search for:", max_length = MAX_MESSAGE_LEN)
-		author = sanitizeSQL(newauthor)
-	if(href_list["search"])
-		SQLquery = "SELECT author, title, category, id FROM library WHERE "
-		if(category == "Any")
-			SQLquery += "author LIKE '%[author]%' AND title LIKE '%[title]%'"
-		else
-			SQLquery += "author LIKE '%[author]%' AND title LIKE '%[title]%' AND category='[category]'"
-		screenstate = 1
+		if("inv_prev")
+			playsound(src, "keyboard", 40)
+			inventory_page--
+			if(inventory_page < 0)
+				inventory_page = 0
 
-	if(href_list["back"])
-		screenstate = 0
+		if("inv_nex")
+			playsound(src, "keyboard", 40)
+			inventory_page++
+			var/siz = 0
+			switch(screenstate)
+				if("publicarchive") // external archive (SSpersistance database)
+					siz = SSpersistence.all_books.len / INVPAGESIZEPUBLIC
+				if("publiconline") // internal archive (hardcoded books)
+					siz = global.all_books.len / INVPAGESIZEPUBLIC
+			if(inventory_page + 1 >= siz)
+				inventory_page-- // go back
+	if(.)
+		SStgui.update_uis(src)
 
-	src.add_fingerprint(usr)
-	src.updateUsrDialog(usr)
-	return
-
+/obj/machinery/librarypubliccomp/attack_hand(var/mob/user as mob)
+	usr.set_machine(src)
+	add_fingerprint(usr)
+	tgui_interact(user)
 
 /*
  * Library Computer
@@ -112,12 +154,11 @@
 	icon_state = "computer"
 	anchored = TRUE
 	density = TRUE
-	var/arcanecheckout = 0
-	var/screenstate = 0 // 0 - Main Menu, 1 - Inventory, 2 - Checked Out, 3 - Check Out a Book
+	var/screenstate = 0
+	var/inventory_page = 0
 	var/sortby = "author"
 	var/buffer_book
 	var/buffer_mob
-	var/upload_category = "Fiction"
 	var/list/checkouts = list()
 	var/list/inventory = list()
 	var/checkoutperiod = 5 // In minutes
@@ -125,213 +166,328 @@
 
 	var/bibledelay = 0 // LOL NO SPAM (1 minute delay) -- Doohl
 
-	var/static/list/all_books
+/obj/machinery/librarycomp/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "LibraryPublicComp", name)
+		ui.open()
 
-	var/static/list/base_genre_books
-
-/obj/machinery/librarycomp/Initialize(mapload)
-	. = ..()
-
-	if(!base_genre_books || !base_genre_books.len)
-		base_genre_books = list(
-			/obj/item/book/custom_library/fiction,
-			/obj/item/book/custom_library/nonfiction,
-			/obj/item/book/custom_library/reference,
-			/obj/item/book/custom_library/religious,
-			/obj/item/book/bundle/custom_library/fiction,
-			/obj/item/book/bundle/custom_library/nonfiction,
-			/obj/item/book/bundle/custom_library/reference,
-			/obj/item/book/bundle/custom_library/religious
-			)
-
-	if(!all_books || !all_books.len)
-		all_books = list()
-
-		for(var/path in subtypesof(/obj/item/book/codex/lore))
-			var/obj/item/book/C = new path(null)
-			all_books[C.name] = C
-
-		for(var/path in subtypesof(/obj/item/book/custom_library) - base_genre_books)
-			var/obj/item/book/B = new path(null)
-			all_books[B.title] = B
-
-		for(var/path in subtypesof(/obj/item/book/bundle/custom_library) - base_genre_books)
-			var/obj/item/book/M = new path(null)
-			all_books[M.title] = M
-
-/obj/machinery/librarycomp/attack_hand(var/mob/user)
-	user.set_machine(src)
-	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
+/obj/machinery/librarycomp/tgui_data(mob/user)
+	var/data[0]
+	data["admin_mode"] = check_rights_for(user.client, (R_ADMIN|R_MOD))
+	data["is_public"] = FALSE
+	data["screenstate"] = screenstate
+	data["emagged"] = emagged
+	// Book storage
+	var/list/inv = list()
+	var/list/checks = list()
+	var/start_entry = 1 + (inventory_page * INVPAGESIZE) // 6 per page in inventory
+	var/entry_count = 0
+	var/inv_left = (inventory_page > 0)
+	var/inv_right = TRUE
 	switch(screenstate)
-		if(0)
-			// Main Menu //VOREStation Edit start
-			dat += {"<A href='byond://?src=\ref[src];switchscreen=1'>1. View General Inventory</A><BR>
-			<A href='byond://?src=\ref[src];switchscreen=2'>2. View Checked Out Inventory</A><BR>
-			<A href='byond://?src=\ref[src];switchscreen=3'>3. Check out a Book</A><BR>
-			<A href='byond://?src=\ref[src];switchscreen=4'>4. Connect to Internal Archive</A><BR>
-			<A href='byond://?src=\ref[src];switchscreen=5'>5. Upload New Title to Archive</A><BR>
-			<A href='byond://?src=\ref[src];switchscreen=6'>6. Print a Bible</A><BR>
-			<A href='byond://?src=\ref[src];switchscreen=8'>8. Access External Archive</A><BR>"} //VOREStation Edit end
-			if(src.emagged)
-				dat += "<A href='byond://?src=\ref[src];switchscreen=7'>7. Access the Forbidden Lore Vault</A><BR>"
-			if(src.arcanecheckout)
-				new /obj/item/book/tome(src.loc)
-				to_chat(user, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it."))
-				user.visible_message(span_infoplain(span_bold("\The [user]") + " stares at the blank screen for a few moments, [user.p_their()] expression frozen in fear. When [user.p_they()] finally awaken from it, [user.p_they()] look a lot older."), 2)
-				src.arcanecheckout = 0
-		if(1)
-			// Inventory
-			dat += "<H3>Inventory</H3><BR>"
-			for(var/obj/item/book/b in inventory)
-				dat += "[b.name] <A href='byond://?src=\ref[src];delbook=\ref[b]'>(Delete)</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
-		if(2)
-			// Checked Out
-			dat += "<h3>Checked Out Books</h3><BR>"
-			for(var/datum/borrowbook/b in checkouts)
-				var/timetaken = world.time - b.getdate
-				//timetaken *= 10
+		if("inventory") // barcode scanned books for checkout
+			if(inventory_page + 1 >= inventory.len / INVPAGESIZE)
+				inv_right = FALSE
+			for(var/obj/item/book/B in inventory)
+				entry_count++
+				if(entry_count < start_entry)
+					continue
+				if(entry_count >= start_entry + INVPAGESIZE)
+					break
+				if(B)
+					inv += list(tgui_add_library_book(B))
+		if("online") // internal archive (hardcoded books)
+			if(inventory_page + 1 >= global.all_books.len / INVPAGESIZE)
+				inv_right = FALSE
+			for(var/BP in global.all_books)
+				entry_count++
+				if(entry_count < start_entry)
+					continue
+				if(entry_count >= start_entry + INVPAGESIZE)
+					break
+				var/obj/item/book/B = global.all_books[BP]
+				if(B)
+					inv += list(tgui_add_library_book(B))
+		if("archive") // external archive (SSpersistance database)
+			if(inventory_page + 1 >= SSpersistence.all_books.len / INVPAGESIZE)
+				inv_right = FALSE
+			for(var/token_id in SSpersistence.all_books)
+				entry_count++
+				if(entry_count < start_entry)
+					continue
+				if(entry_count >= start_entry + INVPAGESIZE)
+					break
+				var/list/token = SSpersistence.all_books[token_id]
+				if(token)
+					inv += list(tgui_add_library_token(token))
+		if("checkedout") // books checked out of the library
+			if(inventory_page + 1 >= checkouts.len / INVPAGESIZE)
+				inv_right = FALSE
+			for(var/datum/borrowbook/BB in checkouts)
+				entry_count++
+				if(entry_count < start_entry)
+					continue
+				if(entry_count >= start_entry + INVPAGESIZE)
+					break
+				// for returns
+				var/list/book = list()
+				book["bookname"] = BB.bookname
+				book["mobname"] = BB.mobname
+				var/timetaken = world.time - BB.getdate
 				timetaken /= 600
 				timetaken = round(timetaken)
-				var/timedue = b.duedate - world.time
-				//timedue *= 10
+				var/timedue = BB.duedate - world.time
 				timedue /= 600
-				if(timedue <= 0)
-					timedue = span_red(span_bold("(OVERDUE)") + " [timedue]")
-				else
-					timedue = round(timedue)
-				dat += {"\"[b.bookname]\", Checked out to: [b.mobname]<BR>--- Taken: [timetaken] minutes ago, Due: in [timedue] minutes<BR>
-				<A href='byond://?src=\ref[src];checkin=\ref[b]'>(Check In)</A><BR><BR>"}
-			dat += "<A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
-		if(3)
-			// Check Out a Book
-			dat += {"<h3>Check Out a Book</h3><BR>
-			Book: [src.buffer_book]
-			<A href='byond://?src=\ref[src];editbook=1'>\[Edit\]</A><BR>
-			Recipient: [src.buffer_mob]
-			<A href='byond://?src=\ref[src];editmob=1'>\[Edit\]</A><BR>
-			Checkout Date : [world.time/600]<BR>
-			Due Date: [(world.time + checkoutperiod)/600]<BR>
-			(Checkout Period: [checkoutperiod] minutes) (<A href='byond://?src=\ref[src];increasetime=1'>+</A>/<A href='byond://?src=\ref[src];decreasetime=1'>-</A>)
-			<A href='byond://?src=\ref[src];checkout=1'>(Commit Entry)</A><BR>
-			<A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"}
-		if(4)
-			dat += "<h3>Internal Archive</h3>"
-			if(!all_books || !all_books.len)
-				dat +=	span_red(span_bold("ERROR") + " Something has gone seriously wrong. Contact System Administrator for more information.")
-			else
-				dat += {"<table>
-				<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-
-				for(var/name in all_books)
-					var/obj/item/book/masterbook = all_books[name]
-					var/id = masterbook.type
-					var/author = masterbook.author
-					var/title = masterbook.name
-					var/category = masterbook.libcategory
-					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='byond://?src=\ref[src];hardprint=[id]'>\[Order\]</A></td></tr>"
-				dat += "</table>"
-			dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
-		if(5)
-			//dat += "<H3>ERROR</H3>" //VOREStation Removal
-			//dat+= span_red("Library Database is in Secure Management Mode.") + "<BR>\ //VOREStation Removal
-			//Contact a System Administrator for more information.<BR>" //VOREStation Removal
-			//VOREstation Edit Start
-			dat += "<H3>Upload a New Title</H3>"
-			if(!scanner)
-				for(var/obj/machinery/libraryscanner/S in range(9))
-					scanner = S
-					break
-			if(!scanner)
-				dat += span_red("No scanner found within wireless network range.") + "<BR>"
-			else if(!scanner.cache)
-				dat += span_red("No data found in scanner memory.") + "<BR>"
-			else
-				dat += {"<TT>Data marked for upload...</TT><BR>
-				<TT>Title: </TT>[scanner.cache.name]<BR>"}
-				if(!scanner.cache.author)
-					scanner.cache.author = "Anonymous"
-				dat += {"<TT>Author: </TT><A href='byond://?src=\ref[src];setauthor=1'>[scanner.cache.author]</A><BR>
-				<TT>Category: </TT><A href='byond://?src=\ref[src];setcategory=1'>[upload_category]</A><BR>
-				<A href='byond://?src=\ref[src];upload=1'>\[Upload\]</A><BR>"}
-			//VOREStation Edit End
-			dat += "<A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
-		if(7)
-			dat += {"<h3>Accessing Forbidden Lore Vault v 1.3</h3>
-			Are you absolutely sure you want to proceed? EldritchTomes Inc. takes no responsibilities for loss of sanity resulting from this action.<p>
-			<A href='byond://?src=\ref[src];arccheckout=1'>Yes.</A><BR>
-			<A href='byond://?src=\ref[src];switchscreen=0'>No.</A><BR>"}
-		if(8)
-			dat += "<h3>External Archive</h3>" //VOREStation Edit
-			establish_db_connection()
-
-			//dat += "<h3>" + span_red("arning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.") + "</h3>" //VOREStation Removal
-
-			if(!SSdbcore.IsConnected())
-				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
-			else
-				dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
-				<table>
-				<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-				var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
-				query.Execute()
-
-				var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
-
-				while(query.NextRow())
-					var/id = query.item[1]
-					var/author = query.item[2]
-					var/title = query.item[3]
-					var/category = query.item[4]
-					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='byond://?src=\ref[src];targetid=[id]'>\[Order\]</A>"
-					if(show_admin_options) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
-						dat += "<A href='byond://?src=\ref[src];delid=[id]'>\[Del\]</A>"
-					dat += "</td></tr>"
-				qdel(query)
-				dat += "</table>"
-			dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
-
-	//dat += "<A href='byond://?src=\ref[user];mach_close=library'>Close</A><br><br>"
-	user << browse("<html>[dat]</html>", "window=library")
-	onclose(user, "library")
-
-//VOREStation Addition Start
-/obj/machinery/librarycomp/attack_ghost(mob/user)
-
-	var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
-	if(!show_admin_options)
-		. = ..()
-
+				book["timetaken"] = round(timetaken)
+				book["timedue"] = round(timedue)
+				book["overdue"] = round(timedue) <= 0
+				book["ref"] = REF(BB)
+				checks += list(book)
+	data["inventory"] = inv
+	data["checks"] = checks
+	data["inv_left"] = inv_left
+	data["inv_right"] = inv_right
+	// Book scanner
+	data["scanned"] = null
+	data["scanner_error"] = ""
+	if(!scanner)
+		for(var/obj/machinery/libraryscanner/S in range(9))
+			scanner = S
+			break
+	if(!scanner)
+		data["scanner_error"] = "No scanner found within wireless network range."
+	else if(!scanner.cache)
+		data["scanner_error"] = "No data found in scanner memory."
 	else
-		user.set_machine(src)
-		var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
+		data["scanned"] = tgui_add_library_book(scanner.cache)
+	// Checkout entrys
+	data["checkoutperiod"] = checkoutperiod
+	data["world_time"] = world.time
+	data["buffer_book"] = buffer_book
+	data["buffer_mob"] = buffer_mob
+	return data
 
-		dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
-		establish_db_connection()
+// shared with public pc
+/proc/tgui_add_library_book(var/obj/item/book/B)
+	var/list/book = list()
+	book["id"] = B.type
+	book["title"] = B.name
+	if(B.author)
+		book["author"] = B.author
+	else
+		book["author"] = "Anonymous"
+	book["category"] = B.libcategory
+	book["deleted"] = FALSE
+	book["protected"] = TRUE
+	book["unique"] = B.unique
+	book["ref"] = "[REF(B)]"
+	book["type"] = "[B.type]"
+	return book
 
-		if(!SSdbcore.IsConnected())
-			dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
-		else
-			dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
-			<table>
-			<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-			var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
-			query.Execute()
+/proc/tgui_add_library_token(var/list/token)
+	var/list/book = list()
+	book["id"] = token["uid"]
+	book["title"] = token["title"]
+	if(token["author"])
+		book["author"] = token["author"]
+	else
+		book["author"] = "Anonymous"
+	book["category"] = token["libcategory"]
+	book["deleted"] = token["deleted"]
+	book["protected"] = token["protected"] // ADMIN deletion prevention
+	book["unique"] = FALSE
+	book["ref"] = token["uid"]
+	book["type"] = "[/obj/item/book]"
+	return book
 
-			while(query.NextRow())
-				var/id = query.item[1]
-				var/author = query.item[2]
-				var/title = query.item[3]
-				var/category = query.item[4]
-				dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='byond://?src=\ref[src];delid=[id]'>\[Del\]</A>"
-				dat += "</td></tr>"
-			dat += "</table>"
-			qdel(query)
-		dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
+/obj/machinery/librarycomp/tgui_act(action, params)
+	if(..())
+		return TRUE
+	switch(action)
+		if("switchscreen")
+			playsound(src, "keyboard", 40)
+			if(params["switchscreen"] != "bible")
+				inventory_page = 0 // reset inv menus
+				screenstate = params["switchscreen"]
+			else
+				// don't change screens if printing a bible
+				if(!bibledelay)
+					new /obj/item/storage/bible(src.loc)
+					bibledelay = 1
+					spawn(60)
+						bibledelay = 0
+				else
+					visible_message(span_infoplain(span_bold("[src]") + "'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\""))
+			// Prevent access to forbidden lore vault if emag is fixed somehow
+			if(params["switchscreen"] == "arcane")
+				if(!src.emagged)
+					screenstate = "inventory"
+			. = TRUE
 
-		user << browse("<html>[dat]</html>", "window=library")
-		onclose(user, "library")
-//VOREStation Addition End
+		if("increasetime")
+			playsound(src, "keyboard", 40)
+			checkoutperiod += 1
+			. = TRUE
+
+		if("decreasetime")
+			playsound(src, "keyboard", 40)
+			checkoutperiod -= 1
+			if(checkoutperiod < 5)
+				checkoutperiod = 5
+			. = TRUE
+
+		if("editbook")
+			playsound(src, "keyboard", 40)
+			buffer_book = tgui_input_text(usr, "Enter the book's title:")
+			. = TRUE
+
+		if("editmob")
+			playsound(src, "keyboard", 40)
+			buffer_mob = tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN)
+			. = TRUE
+
+		if("checkout")
+			playsound(src, "keyboard", 40)
+			var/datum/borrowbook/b = new /datum/borrowbook
+			b.bookname = sanitizeSafe(buffer_book)
+			b.mobname = sanitize(buffer_mob)
+			b.getdate = world.time
+			b.duedate = world.time + (checkoutperiod * 600)
+			checkouts.Add(b)
+			screenstate = "checkedout" // more clear what happened
+			. = TRUE
+
+		if("checkin")
+			playsound(src, "keyboard", 40)
+			var/datum/borrowbook/b = locate(params["checkin"]) in checkouts
+			checkouts.Remove(b)
+			. = TRUE
+
+		if("delbook")
+			playsound(src, "keyboard", 40)
+			var/obj/item/book/b = locate(params["delbook"]) in inventory
+			inventory.Remove(b)
+			. = TRUE
+
+		if("quickcheck")
+			playsound(src, "keyboard", 40)
+			var/obj/item/book/b = locate(params["delbook"]) in inventory
+			buffer_book = sanitize(b.title)
+			screenstate = "checking"
+			. = TRUE
+
+		if("inv_prev")
+			playsound(src, "keyboard", 40)
+			inventory_page--
+			if(inventory_page < 0)
+				inventory_page = 0
+
+		if("inv_nex")
+			playsound(src, "keyboard", 40)
+			inventory_page++
+			var/siz = 0
+			switch(screenstate)
+				if("inventory") // barcode scanned books for checkout
+					siz = inventory.len / INVPAGESIZE
+				if("online") // internal archive (hardcoded books)
+					siz = global.all_books.len / INVPAGESIZE
+				if("archive") // external archive (SSpersistance database)
+					siz = SSpersistence.all_books.len / INVPAGESIZE
+				if("checkedout") // books checked out of the library
+					siz = checkouts.len / INVPAGESIZE
+			if(inventory_page + 1 >= siz)
+				inventory_page-- // go back
+
+		if("setauthor")
+			playsound(src, "keyboard", 40)
+			var/newauthor = tgui_input_text(usr, "Enter the author's name: ")
+			if(newauthor)
+				scanner.cache.author = newauthor
+			. = TRUE
+
+		if("setcategory")
+			playsound(src, "keyboard", 40)
+			var/newcategory = tgui_input_list(usr, "Choose a category: ", "Category", list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
+			if(newcategory)
+				scanner.cache.libcategory = newcategory
+			. = TRUE
+
+		if("upload")
+			if(scanner)
+				if(scanner.cache)
+					if(!scanner.cache.unique)
+						playsound(src, "keyboard", 40)
+						spawn(0)
+							var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
+							var/status = SSBooks.add_new_book(scanner.cache,usr.client)
+							switch(status)
+								if(0)
+									tgui_alert_async(usr, "Uploaded book \"[scanner.cache.name]\" by \"[scanner.cache.author]\" already exists, and is protected .")
+								if(1)
+									tgui_alert_async(usr, "\"[scanner.cache.name]\" by \"[scanner.cache.author]\", Upload Complete!")
+								if(2)
+									tgui_alert_async(usr, "Replaced book \"[scanner.cache.name]\" by \"[scanner.cache.author]\".")
+								if(3)
+									tgui_alert_async(usr, "Upload failed to parse \"[scanner.cache.name]\" by \"[scanner.cache.author]\".")
+								if(4)
+									tgui_alert_async(usr, "Please wait, still processing.")
+			. = TRUE
+
+		if("hardprint")
+			playsound(src, "sound/machines/printer.ogg", 50, 1)
+			var/newpath = params["hardprint"]
+			var/obj/item/book/NewBook = new newpath(get_turf(src))
+			NewBook.name = "Book: [NewBook.name]"
+			NewBook.unique = TRUE
+			. = TRUE
+
+		if("import_external")
+			playsound(src, "sound/machines/printer.ogg", 50, 1)
+			var/get_id = params["import_external"]
+			var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
+			if(isnull(SSBooks.get_stored_book(get_id,get_turf(src))))
+				tgui_alert_async(usr, "This book's data is invalid, please try another from the catalogue.")
+			. = TRUE
+
+		if("delete_external")
+			playsound(src, "keyboard", 40)
+			var/get_id = params["delete_external"]
+			var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
+			SSBooks.delete_stored_book(get_id)
+			. = TRUE
+
+		if("restore_external")
+			playsound(src, "keyboard", 40)
+			var/get_id = params["restore_external"]
+			var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
+			SSBooks.restore_stored_book(get_id)
+			. = TRUE
+
+		if("protect_external")
+			if(check_rights_for(usr.client, (R_ADMIN|R_MOD)))
+				playsound(src, "keyboard", 40)
+				var/get_id = params["protect_external"]
+				var/datum/persistent/library_books/SSBooks = SSpersistence.persistence_datums[/datum/persistent/library_books]
+				SSBooks.protect_stored_book(get_id)
+			. = TRUE
+
+		if("arcane_checkout")
+			playsound(src, "keyboard", 40)
+			new /obj/item/book/tome(src.loc)
+			SShaunting.intense_world_haunt() // Outpost 21 edit - IT DA SPOOKY STATION!
+			to_chat(usr, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it."))
+			usr.visible_message(span_infoplain(span_bold("\The [usr]") + " stares at the blank screen for a few moments, [usr.p_their()] expression frozen in fear. When [usr.p_they()] finally awaken from it, [usr.p_they()] look a lot older."), 2)
+			screenstate = "home"
+			emagged = FALSE // used up
+			. = TRUE
+	if(.)
+		SStgui.update_uis(src)
+
+/obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
+	usr.set_machine(src)
+	add_fingerprint(usr)
+	tgui_interact(user)
 
 /obj/machinery/librarycomp/emag_act(var/remaining_charges, var/mob/user)
 	if (src.density && !src.emagged)
@@ -348,168 +504,6 @@
 	else
 		..()
 
-/obj/machinery/librarycomp/Topic(href, href_list)
-	if(..())
-		usr << browse(null, "window=library")
-		onclose(usr, "library")
-		return
-
-	if(href_list["switchscreen"])
-		switch(href_list["switchscreen"])
-			if("0")
-				screenstate = 0
-			if("1")
-				screenstate = 1
-			if("2")
-				screenstate = 2
-			if("3")
-				screenstate = 3
-			if("4")
-				screenstate = 4
-			if("5")
-				screenstate = 5
-			if("6")
-				if(!bibledelay)
-					new /obj/item/storage/bible(src.loc)
-					bibledelay = 1
-					spawn(60)
-						bibledelay = 0
-
-				else
-					for (var/mob/V in hearers(src))
-						V.show_message(span_infoplain(span_bold("[src]") + "'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\""))
-
-			if("7")
-				screenstate = 7
-			if("8")
-				screenstate = 8
-	if(href_list["arccheckout"])
-		if(src.emagged)
-			src.arcanecheckout = 1
-		src.screenstate = 0
-	if(href_list["increasetime"])
-		checkoutperiod += 1
-	if(href_list["decreasetime"])
-		checkoutperiod -= 1
-		if(checkoutperiod < 1)
-			checkoutperiod = 1
-	if(href_list["editbook"])
-		buffer_book = sanitizeSafe(tgui_input_text(usr, "Enter the book's title:", encode = FALSE))
-	if(href_list["editmob"])
-		buffer_mob = tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN)
-	if(href_list["checkout"])
-		var/datum/borrowbook/b = new /datum/borrowbook
-		b.bookname = sanitizeSafe(buffer_book)
-		b.mobname = sanitize(buffer_mob)
-		b.getdate = world.time
-		b.duedate = world.time + (checkoutperiod * 600)
-		checkouts.Add(b)
-	if(href_list["checkin"])
-		var/datum/borrowbook/b = locate(href_list["checkin"])
-		checkouts.Remove(b)
-	if(href_list["delbook"])
-		var/obj/item/book/b = locate(href_list["delbook"])
-		inventory.Remove(b)
-	if(href_list["setauthor"])
-		var/newauthor = tgui_input_text(usr, "Enter the author's name: ", "", "", MAX_MESSAGE_LEN)
-		if(newauthor)
-			scanner.cache.author = newauthor
-	if(href_list["setcategory"])
-		var/newcategory = tgui_input_list(usr, "Choose a category: ", "Category", list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
-		if(newcategory)
-			upload_category = newcategory
-
-	//VOREStation Edit Start
-	if(href_list["upload"])
-		if(scanner)
-			if(scanner.cache)
-				var/choice = tgui_alert(usr, "Are you certain you wish to upload this title to the Archive?", "Confirmation", list("Confirm", "Abort"))
-				if(choice == "Confirm")
-					if(scanner.cache.unique)
-						tgui_alert_async(usr, "This book has been rejected from the database. Aborting!")
-					else
-						establish_db_connection()
-						if(!SSdbcore.IsConnected())
-							tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
-						else
-							/*
-							var/sqltitle = SSdbcore.Quote(scanner.cache.name)
-							var/sqlauthor = SSdbcore.Quote(scanner.cache.author)
-							var/sqlcontent = SSdbcore.Quote(scanner.cache.dat)
-							var/sqlcategory = SSdbcore.Quote(upload_category)
-							*/
-							var/sqltitle = sanitizeSQL(scanner.cache.name)
-							var/sqlauthor = sanitizeSQL(scanner.cache.author)
-							var/sqlcontent = sanitizeSQL(scanner.cache.dat)
-							var/sqlcategory = sanitizeSQL(upload_category)
-							var/datum/db_query/query = SSdbcore.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
-							if(!query.Execute())
-								to_chat(usr,query.ErrorMsg())
-							else
-								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
-								tgui_alert_async(usr, "Upload Complete.")
-							qdel(query)
-	//VOREStation Edit End
-
-	if(href_list["targetid"])
-		var/sqlid = sanitizeSQL(href_list["targetid"])
-		establish_db_connection()
-		if(!SSdbcore.IsConnected())
-			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
-		if(bibledelay)
-			for (var/mob/V in hearers(src))
-				V.show_message(span_infoplain(span_bold("[src]") + "'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\""))
-		else
-			bibledelay = 1
-			spawn(6)
-				bibledelay = 0
-			var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
-			query.Execute()
-
-			while(query.NextRow())
-				var/author = query.item[2]
-				var/title = query.item[3]
-				var/content = query.item[4]
-				var/obj/item/book/B = new(src.loc)
-				B.name = "Book: [title]"
-				B.title = title
-				B.author = author
-				B.dat = content
-				B.icon_state = "book[rand(1,16)]"
-				B.item_state = B.icon_state
-				src.visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
-				break
-			qdel(query)
-
-	if(href_list["delid"])
-		if(!check_rights(R_ADMIN))
-			return
-		var/sqlid = sanitizeSQL(href_list["delid"])
-		establish_db_connection()
-		if(!SSdbcore.IsConnected())
-			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
-		else
-			var/datum/db_query/query = SSdbcore.NewQuery("DELETE FROM library WHERE id=[sqlid]")
-			query.Execute()
-			log_admin("[usr.key] has deleted the book [sqlid]")	//VOREStation Addition
-			qdel(query)
-
-	if(href_list["orderbyid"])
-		var/orderid = tgui_input_number(usr, "Enter your order:")
-		if(orderid)
-			if(isnum(orderid))
-				var/nhref = "src=\ref[src];targetid=[orderid]"
-				spawn() src.Topic(nhref, params2list(nhref), src)
-	if(href_list["sort"] in list("author", "title", "category"))
-		sortby = href_list["sort"]
-	if(href_list["hardprint"])
-		var/newpath = href_list["hardprint"]
-		var/obj/item/book/NewBook = new newpath(get_turf(src))
-		NewBook.name = "Book: [NewBook.name]"
-	src.add_fingerprint(usr)
-	src.updateUsrDialog(usr)
-	return
-
 /*
  * Library Scanner
  */
@@ -522,44 +516,24 @@
 	density = TRUE
 	var/obj/item/book/cache		// Last scanned book
 
-/obj/machinery/libraryscanner/attackby(var/obj/O, var/mob/user)
+/obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
+	if(cache) // Prevent stacking books in here, unlike the original code.
+		to_chat(user,span_warning("\The [src] already has a book inside it!"))
+		return
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
+		cache = O
+		visible_message(span_notice("\The [O] was inserted into \the [src]."))
 
-/obj/machinery/libraryscanner/attack_hand(var/mob/user)
-	user.set_machine(src)
-	var/dat = "<HEAD><TITLE>Scanner Control Interface</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
-	if(cache)
-		dat += span_darkgray("Data stored in memory.") + "<BR>"
-	else
-		dat += "No data stored in memory.<BR>"
-	dat += "<A href='byond://?src=\ref[src];scan=1'>\[Scan\]</A>"
-	if(cache)
-		dat += "       <A href='byond://?src=\ref[src];clear=1'>\[Clear Memory\]</A><BR><BR><A href='byond://?src=\ref[src];eject=1'>\[Remove Book\]</A>"
-	else
-		dat += "<BR>"
-	user << browse("<html>[dat]</html>", "window=scanner")
-	onclose(user, "scanner")
-
-/obj/machinery/libraryscanner/Topic(href, href_list)
-	if(..())
-		usr << browse(null, "window=scanner")
-		onclose(usr, "scanner")
-		return
-
-	if(href_list["scan"])
-		for(var/obj/item/book/B in contents)
-			cache = B
-			break
-	if(href_list["clear"])
+/obj/machinery/libraryscanner/attack_hand(var/mob/user as mob)
+	if(cache) // Prevent stacking books in here
 		cache = null
-	if(href_list["eject"])
-		for(var/obj/item/book/B in contents)
+		for(var/obj/item/book/B in contents) // The old code allowed stacking, if multiple things end up in here somehow we may as well drop them all out too.
 			B.loc = src.loc
-	src.add_fingerprint(usr)
-	src.updateUsrDialog(usr)
-	return
+		visible_message(span_notice("\The [src] ejects a book."))
+		return
+	to_chat(user,span_warning("There is nothing to eject from \the [src]!"))
 
 
 /*
@@ -609,3 +583,6 @@
 			qdel(O)
 	else
 		..()
+
+#undef INVPAGESIZE
+#undef INVPAGESIZEPUBLIC

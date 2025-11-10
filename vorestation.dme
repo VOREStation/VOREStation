@@ -3990,6 +3990,7 @@
 #include "code\modules\pda\utilities.dm"
 #include "code\modules\persistence\filth.dm"
 #include "code\modules\persistence\graffiti.dm"
+#include "code\modules\persistence\library_books.dm"
 #include "code\modules\persistence\noticeboard.dm"
 #include "code\modules\persistence\paintings.dm"
 #include "code\modules\persistence\serialize.dm"
