@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "runtimes due to multiple signal registers on opacity changes"
